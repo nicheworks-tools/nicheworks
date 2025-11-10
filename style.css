@@ -43,7 +43,7 @@ h1 {
   color: var(--sub);
 }
 
-/* ▼ インラインナビ */
+/* インラインナビ */
 .nav-inline {
   margin-top: 6px;
   font-size: 12px;
@@ -60,7 +60,6 @@ h1 {
 .nav-inline .sep {
   color: #ccc;
 }
-/* ▲ ナビここまで */
 
 .block {
   margin-bottom: 26px;
@@ -108,4 +107,40 @@ footer {
 
 .small {
   margin-top: 2px;
+}
+
+/* ▼ フォーム共通スタイル（contact用） */
+
+.input,
+.textarea {
+  width: 100%;              /* コンテナ幅いっぱい */
+  max-width: 640px;         /* ほどよく広げる */
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: var(--font);
+}
+
+.textarea {
+  min-height: 180px;        /* 縦方向もしっかり確保 */
+  resize: vertical;
+}
+
+/* ボタン */
+.btn-primary {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 4px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
 }
