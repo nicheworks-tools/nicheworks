@@ -19,13 +19,13 @@
       <nav class="nav-inline">
         <a href="/en/">Home</a>
         <span class="sep">｜</span>
-        <a href="/index.html">JP</a>
-        <span class="sep">｜</span>
         <a href="/en/about.html">About</a>
         <span class="sep">｜</span>
         <a href="/en/privacy.html">Privacy</a>
         <span class="sep">｜</span>
         <a href="/en/contact.html">Contact</a>
+        <span class="sep">｜</span>
+        <a href="/index.html">JP</a>
       </nav>
     </header>
 
@@ -41,7 +41,7 @@
     <section class="block">
       <h2>Principles</h2>
       <p>
-        We focus on tools that are boring but necessary.  
+        We focus on tools that are boring but necessary.<br>
         Browser-first, minimal, and practical — with no excessive tracking or data collection.
       </p>
     </section>
@@ -79,5 +79,10 @@
       el.innerHTML = '<a href="mailto:' + addr + '">' + addr + "</a>";
     }
   </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
