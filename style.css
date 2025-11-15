@@ -109,12 +109,12 @@ footer {
   margin-top: 2px;
 }
 
-/* ▼ フォーム共通スタイル（contact用） */
+/* フォーム用 */
 
 .input,
 .textarea {
-  width: 100%;              /* コンテナ幅いっぱい */
-  max-width: 640px;         /* ほどよく広げる */
+  width: 100%;
+  max-width: 640px;
   padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -123,11 +123,12 @@ footer {
 }
 
 .textarea {
-  min-height: 180px;        /* 縦方向もしっかり確保 */
+  min-height: 180px;
   resize: vertical;
 }
 
 /* ボタン */
+
 .btn-primary {
   display: inline-block;
   margin-top: 4px;
@@ -143,4 +144,31 @@ footer {
 
 .btn-primary:hover {
   opacity: 0.9;
+}
+
+/* 寄付ブロック */
+
+.donate-block {
+  font-size: 13px;
+}
+
+.donate-buttons {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.donate-buttons a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 1.6;
+}
+
+.donate-buttons a:hover {
+  background: #f5f5f5;
 }

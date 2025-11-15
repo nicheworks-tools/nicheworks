@@ -1,62 +1,62 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>お問い合わせ - NicheWorks</title>
+  <title>Contact - NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="NicheWorks へのお問い合わせページ。各ツールに関する不具合報告・ご意見・ご相談はこちらから。"
+    content="Contact NicheWorks. Report issues, send feedback or proposals."
   />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
   <main class="container">
 
     <header>
-      <h1>お問い合わせ</h1>
+      <h1>Contact</h1>
       <p class="subtitle">
-        NicheWorksの各ツールに関する不具合報告・ご意見・ご要望・ご相談はこちらからご連絡ください。
+        Send us issue reports, feedback, feature ideas, or other inquiries.
       </p>
 
       <nav class="nav-inline">
-        <a href="/index.html">Home</a>
+        <a href="/en/">Home</a>
         <span class="sep">｜</span>
-        <a href="/about.html">About</a>
+        <a href="/index.html">JP</a>
         <span class="sep">｜</span>
-        <a href="/privacy.html">Privacy</a>
+        <a href="/en/about.html">About</a>
         <span class="sep">｜</span>
-        <a href="/contact.html">Contact</a>
+        <a href="/en/privacy.html">Privacy</a>
         <span class="sep">｜</span>
-        <a href="/en/contact.html">EN</a>
+        <a href="/en/contact.html">Contact</a>
       </nav>
     </header>
 
     <section class="block">
       <form id="contactForm">
-        <label for="subject">件名</label><br />
+        <label for="subject">Subject</label><br />
         <input
           type="text"
           id="subject"
           class="input"
-          placeholder="例：LogFormatter の表示について"
+          placeholder="e.g., About LogFormatter display"
           required
         /><br /><br />
 
-        <label for="message">お問い合わせ内容</label><br />
+        <label for="message">Message</label><br />
         <textarea
           id="message"
           class="textarea"
-          placeholder="できるだけ具体的にご記入ください。"
+          placeholder="Please provide as much detail as possible."
           required
         ></textarea><br /><br />
 
-        <label for="from">ご連絡先メールアドレス（任意）</label><br />
+        <label for="from">Your email (optional)</label><br />
         <input
           type="email"
           id="from"
           class="input"
-          placeholder="返信をご希望の場合のみご記入ください"
+          placeholder="Only if you want a reply"
         /><br /><br />
 
         <div style="display:none;">
@@ -64,16 +64,15 @@
           <input type="text" id="hp" />
         </div>
 
-        <button type="submit" class="btn-primary">メールアプリを開く</button>
+        <button type="submit" class="btn-primary">Open email app</button>
         <p id="formStatus" class="small"></p>
       </form>
     </section>
 
     <section class="block">
-      <h2>直接メールでのご連絡</h2>
+      <h2>Send directly</h2>
       <p class="small">
-        お使いの環境でフォーム送信（mailto）が動作しない場合は、
-        以下のメールアドレス宛に直接ご連絡ください。
+        If your environment doesn’t handle mailto, please email us directly:
       </p>
       <p class="small"><span id="directMail"></span></p>
     </section>
@@ -81,11 +80,11 @@
     <footer>
       <p>© 2025 NicheWorks</p>
       <p class="small">
-        <a href="/index.html">ホーム</a> /
-        <a href="/about.html">このサイトについて</a> /
-        <a href="/privacy.html">プライバシーポリシー</a> /
-        <a href="/contact.html">お問い合わせ</a> /
-        <a href="/en/contact.html">EN</a>
+        <a href="/en/">Home</a> /
+        <a href="/index.html">JP</a> /
+        <a href="/en/about.html">About</a> /
+        <a href="/en/privacy.html">Privacy</a> /
+        <a href="/en/contact.html">Contact</a>
       </p>
     </footer>
 
@@ -111,7 +110,7 @@
 
       const hp = document.getElementById("hp");
       if (hp && hp.value.trim() !== "") {
-        statusEl.textContent = "送信完了。";
+        statusEl.textContent = "Sent.";
         form.reset();
         return;
       }
@@ -121,7 +120,7 @@
       const from = document.getElementById("from").value.trim();
 
       if (!subject || !message) {
-        statusEl.textContent = "件名と内容を入力してください。";
+        statusEl.textContent = "Please enter both subject and message.";
         return;
       }
 
@@ -144,7 +143,7 @@ From: " + from;
 
       window.location.href = mailto;
       statusEl.textContent =
-        "メールアプリが立ち上がらない場合は、下記のメールアドレスへ直接お送りください。";
+        "If your mail app didn’t open, please use the direct email address below.";
       form.reset();
     });
   </script>
