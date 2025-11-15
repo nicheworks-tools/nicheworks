@@ -28,7 +28,7 @@
         <span class="sep">｜</span>
         <a href="/contact.html">Contact</a>
         <span class="sep">｜</span>
-        <a href="/en/contact.html">EN</a>
+        <a href="/en/">EN</a>
       </nav>
     </header>
 
@@ -72,8 +72,7 @@
     <section class="block">
       <h2>直接メールでのご連絡</h2>
       <p class="small">
-        お使いの環境でフォーム送信（mailto）が動作しない場合は、
-        以下のメールアドレス宛に直接ご連絡ください。
+        お使いの環境でフォーム送信（mailto）が動作しない場合は、以下のメールアドレス宛に直接ご連絡ください。
       </p>
       <p class="small"><span id="directMail"></span></p>
     </section>
@@ -85,7 +84,7 @@
         <a href="/about.html">このサイトについて</a> /
         <a href="/privacy.html">プライバシーポリシー</a> /
         <a href="/contact.html">お問い合わせ</a> /
-        <a href="/en/contact.html">EN</a>
+        <a href="/en/">EN</a>
       </p>
     </footer>
 
@@ -131,10 +130,7 @@
 
       let body = message;
       if (from) {
-        body += "
-
----
-From: " + from;
+        body += "\n\n---\nFrom: " + from;
       }
 
       const mailto =
@@ -148,5 +144,10 @@ From: " + from;
       form.reset();
     });
   </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>

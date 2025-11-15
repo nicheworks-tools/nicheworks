@@ -25,7 +25,7 @@
         <span class="sep">｜</span>
         <a href="/contact.html">Contact</a>
         <span class="sep">｜</span>
-        <a href="/en/about.html">EN</a>
+        <a href="/en/">EN</a>
       </nav>
     </header>
 
@@ -42,7 +42,9 @@
       <h2>運営方針</h2>
       <p>
         「目立たないけれど、あったほうが確実に便利なもの」をテーマに、
-        ブラウザだけで完結する小さなツール群を公開しています。<br>
+        ブラウザだけで完結する小さなツール群を公開しています。
+      </p>
+      <p>
         過度なトラッキングや個人情報収集は行わず、できるだけシンプルで実務寄りの体験を維持します。
       </p>
     </section>
@@ -50,12 +52,12 @@
     <section class="block donate-block">
       <h2>Support / ご支援について</h2>
       <p>
-        プロジェクト継続のための支援は任意です。もし価値を感じていただけた場合のみ、
-        下記サービスから応援いただけると励みになります。
+        プロジェクト継続のための支援は任意です。
+        価値を感じていただけた場合のみ、以下のサービスからご支援いただけると励みになります。
       </p>
       <div class="donate-buttons">
-        <a href="https://ofuse.me/" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/" target="_blank" rel="noopener">☕ Ko-fi</a>
+        <a href="https://ofuse.me/" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/" target="_blank">☕ Ko-fi</a>
       </div>
     </section>
 
@@ -66,7 +68,7 @@
         <a href="/about.html">このサイトについて</a> /
         <a href="/privacy.html">プライバシーポリシー</a> /
         <a href="/contact.html">お問い合わせ</a> /
-        <a href="/en/about.html">EN</a>
+        <a href="/en/">EN</a>
       </p>
     </footer>
 
@@ -76,10 +78,13 @@
     const u = "nicheworks.tools";
     const d = "gmail.com";
     const addr = u + "@" + d;
-    const el = document.getElementById("mail");
-    if (el) {
-      el.innerHTML = '<a href="mailto:' + addr + '">' + addr + "</a>";
-    }
+    document.getElementById("mail").innerHTML =
+      '<a href="mailto:' + addr + '">' + addr + "</a>";
   </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
