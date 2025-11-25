@@ -2,46 +2,93 @@
   const state = {
     manuals: [],
     filtered: [],
+    lang: "ja",
   };
 
   const els = {
     results: document.getElementById("results"),
     resultCount: document.getElementById("resultCount"),
-    emptyMessage: document.getElementById("emptyMessage"),
+    emptyJa: document.getElementById("emptyMessage"),
+    emptyEn: document.getElementById("emptyMessageEn"),
     searchInput: document.getElementById("searchInput"),
     categorySelect: document.getElementById("categorySelect"),
     quickButtons: document.getElementById("quickButtons"),
-    year: document.getElementById("year"),
+    langButtons: document.querySelectorAll(".nw-lang-switch button"),
+    i18nNodes: document.querySelectorAll("[data-i18n]"),
   };
 
-  // 年表示
-  if (els.year) {
-    els.year.textContent = new Date().getFullYear();
-  }
+  // ==============================
+  // 言語切替
+  // ==============================
+  function applyLang(lang) {
+    state.lang = lang;
 
-  // データ読み込み
-  fetch("./data/manuals.json", { cache: "no-store" })
-    .then((res) => {
-      if (!res.ok) throw new Error("failed to load manuals.json");
-      return res.json();
-    })
-    .then((data) => {
-      if (!Array.isArray(data)) throw new Error("invalid manuals.json");
-      state.manuals = data;
-      applyFilter();
-    })
-    .catch((err) => {
-      console.error(err);
-      els.results.innerHTML =
-        '<div class="empty-message">manuals.json の読み込みに失敗しました。パスまたはJSON構造を確認してください。</div>';
-      els.resultCount.textContent = "0 件";
+    // data-i18n の表示切替
+    els.i18nNodes.forEach((el) => {
+      const code = el.getAttribute("data-i18n");
+      if (!code) return;
+      el.style.display = code === lang ? "" : "none";
     });
 
-  // フィルター適用
+    // ボタンのアクティブ状態
+    els.langButtons.forEach((btn) => {
+      const code = btn.getAttribute("data-lang");
+      btn.classList.toggle("active", code === lang);
+    });
+
+    // 再描画（リンク文言などを言語に合わせる）
+    render();
+  }
+
+  function initLang() {
+    // ブラウザの設定から初期言語をざっくり決める
+    const navLang = (navigator.language || "").toLowerCase();
+    const initial = navLang.startsWith("ja") ? "ja" : "en";
+
+    applyLang(initial);
+
+    els.langButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang");
+        if (!lang || lang === state.lang) return;
+        applyLang(lang);
+      });
+    });
+  }
+
+  // ==============================
+  // データ読み込み
+  // ==============================
+  function loadManuals() {
+    fetch("./data/manuals.json", { cache: "no-store" })
+      .then((res) => {
+        if (!res.ok) throw new Error("failed to load manuals.json");
+        return res.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) {
+          throw new Error("manuals.json is not an array");
+        }
+        state.manuals = data;
+        applyFilter();
+      })
+      .catch((err) => {
+        console.error(err);
+        if (els.results) {
+          els.results.innerHTML =
+            '<div class="empty-message">manuals.json の読み込みに失敗しました。パスまたはJSON構造を確認してください。</div>';
+        }
+        if (els.resultCount) els.resultCount.textContent = "0";
+      });
+  }
+
+  // ==============================
+  // フィルタ処理
+  // ==============================
   function applyFilter(quickBrand) {
     const keywordRaw = (els.searchInput.value || "").trim().toLowerCase();
     const keyword = quickBrand
-      ? quickBrand.toLowerCase()
+      ? String(quickBrand).trim().toLowerCase()
       : keywordRaw;
     const category = els.categorySelect.value;
 
@@ -49,17 +96,18 @@
 
     if (keyword) {
       list = list.filter((item) => {
-        const haystack =
-          (item.brand || "") +
-          " " +
-          (item.nameJa || "") +
-          " " +
-          (item.nameEn || "") +
-          " " +
-          (item.category || "") +
-          " " +
-          (item.tags || []).join(" ");
-        return haystack.toLowerCase().includes(keyword);
+        const parts = [
+          item.brand || "",
+          item.nameJa || "",
+          item.nameEn || "",
+          item.category || "",
+          item.country || "",
+        ];
+        if (Array.isArray(item.tags)) {
+          parts.push(item.tags.join(" "));
+        }
+        const haystack = parts.join(" ").toLowerCase();
+        return haystack.includes(keyword);
       });
     }
 
@@ -71,20 +119,28 @@
     render();
   }
 
+  // ==============================
   // 描画
+  // ==============================
   function render() {
-    const list = state.filtered;
+    if (!els.results || !els.resultCount) return;
 
+    const list = state.filtered || [];
     els.results.innerHTML = "";
 
+    // 空メッセージ切り替え
     if (!list.length) {
-      els.emptyMessage.hidden = false;
-      els.resultCount.textContent = "0 件";
+      if (els.emptyJa) els.emptyJa.hidden = state.lang !== "ja";
+      if (els.emptyEn) els.emptyEn.hidden = state.lang !== "en";
+      els.resultCount.textContent = "0";
       return;
+    } else {
+      if (els.emptyJa) els.emptyJa.hidden = true;
+      if (els.emptyEn) els.emptyEn.hidden = true;
     }
 
-    els.emptyMessage.hidden = true;
-    els.resultCount.textContent = `${list.length} 件`;
+    // 件数は数値のみ
+    els.resultCount.textContent = String(list.length);
 
     const frag = document.createDocumentFragment();
 
@@ -92,88 +148,117 @@
       const card = document.createElement("article");
       card.className = "card";
 
-      const header = document.createElement("div");
-      header.className = "card-header";
+      // タイトル：言語に応じて nameJa / nameEn / brand を出し分け
+      const title = document.createElement("div");
+      title.className = "card-title";
 
-      const brandEl = document.createElement("div");
-      brandEl.className = "card-brand";
-      brandEl.textContent =
-        item.nameJa && item.nameEn && item.nameJa !== item.brand
-          ? `${item.nameJa} / ${item.nameEn}`
-          : item.brand || item.nameJa || item.nameEn || "";
+      if (state.lang === "ja") {
+        title.textContent =
+          item.nameJa ||
+          item.brand ||
+          item.nameEn ||
+          ""; /* 日本語があれば優先 */
+      } else {
+        title.textContent =
+          item.nameEn ||
+          item.brand ||
+          item.nameJa ||
+          ""; /* 英語があれば優先 */
+      }
 
-      const right = document.createElement("div");
-      right.style.display = "flex";
-      right.style.flexDirection = "column";
-      right.style.alignItems = "flex-end";
-      right.style.gap = "2px";
+      card.appendChild(title);
 
-      const cat = document.createElement("div");
-      cat.className = "card-category";
-      cat.textContent = item.category || "";
+      // カテゴリ＋国
+      const metaLine = document.createElement("div");
 
-      const country = document.createElement("div");
-      country.className = "card-country";
-      country.textContent = item.country || "";
+      if (item.category) {
+        const cat = document.createElement("span");
+        cat.className = "card-category";
+        cat.textContent = item.category;
+        metaLine.appendChild(cat);
+      }
 
-      const tag = document.createElement("div");
-      tag.className = "tag-official";
-      tag.textContent = "Official manual / support";
+      if (item.country) {
+        const country = document.createElement("span");
+        country.style.marginLeft = "8px";
+        country.style.fontSize = "0.8rem";
+        country.style.opacity = "0.7";
+        country.textContent = item.country;
+        metaLine.appendChild(country);
+      }
 
-      right.appendChild(cat);
-      if (item.country) right.appendChild(country);
-      right.appendChild(tag);
+      card.appendChild(metaLine);
 
-      header.appendChild(brandEl);
-      header.appendChild(right);
-      card.appendChild(header);
-
+      // 補足テキスト
       if (item.note) {
         const note = document.createElement("p");
-        note.className = "card-note";
+        note.style.fontSize = "0.85rem";
+        note.style.marginTop = "6px";
+        note.style.marginBottom = "6px";
+        note.style.opacity = "0.9";
         note.textContent = item.note;
         card.appendChild(note);
       }
 
+      // リンク
       const links = document.createElement("div");
       links.className = "card-links";
 
       if (item.manualUrl) {
-        const a = document.createElement("a");
-        a.href = item.manualUrl;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = "マニュアルページ";
-        links.appendChild(a);
+        const aManual = document.createElement("a");
+        aManual.href = item.manualUrl;
+        aManual.target = "_blank";
+        aManual.rel = "noopener noreferrer";
+        aManual.textContent =
+          state.lang === "ja" ? "マニュアル" : "Manuals";
+        links.appendChild(aManual);
       }
 
       if (item.supportUrl) {
-        const a = document.createElement("a");
-        a.href = item.supportUrl;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = "サポートTOP";
-        links.appendChild(a);
+        const aSupport = document.createElement("a");
+        aSupport.href = item.supportUrl;
+        aSupport.target = "_blank";
+        aSupport.rel = "noopener noreferrer";
+        aSupport.textContent =
+          state.lang === "ja" ? "サポートTOP" : "Support";
+        links.appendChild(aSupport);
       }
 
       card.appendChild(links);
+
       frag.appendChild(card);
     });
 
     els.results.appendChild(frag);
   }
 
-  // イベント
-  els.searchInput.addEventListener("input", () => applyFilter());
-  els.categorySelect.addEventListener("change", () => applyFilter());
-
-  if (els.quickButtons) {
-    els.quickButtons.addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-brand]");
-      if (!btn) return;
-      const brand = btn.getAttribute("data-brand") || "";
-      els.searchInput.value = brand;
-      applyFilter(brand);
-    });
+  // ==============================
+  // イベント設定
+  // ==============================
+  function bindEvents() {
+    if (els.searchInput) {
+      els.searchInput.addEventListener("input", () => applyFilter());
+    }
+    if (els.categorySelect) {
+      els.categorySelect.addEventListener("change", () => applyFilter());
+    }
+    if (els.quickButtons) {
+      els.quickButtons.addEventListener("click", (ev) => {
+        const btn = ev.target.closest("button[data-brand]");
+        if (!btn) return;
+        const brand = btn.getAttribute("data-brand") || "";
+        els.searchInput.value = brand;
+        applyFilter(brand);
+      });
+    }
   }
+
+  // ==============================
+  // init
+  // ==============================
+  document.addEventListener("DOMContentLoaded", () => {
+    initLang();
+    bindEvents();
+    loadManuals();
+  });
 })();
