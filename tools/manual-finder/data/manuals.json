@@ -2,141 +2,661 @@
   {
     "brand": "Apple",
     "nameJa": "Apple（アップル）",
-    "nameEn": "Apple",
+    "nameEn": "Apple Inc.",
     "category": "PC・スマホ",
     "country": "Global",
-    "manualUrl": "https://support.apple.com/en-us/docs",
+    "manualUrl": "https://support.apple.com/ja-jp/docs",
     "supportUrl": "https://support.apple.com/",
-    "note": "Mac / iPhone / iPad など、Apple製品全般のマニュアルと技術仕様。"
+    "note": "Mac / iPhone / iPad など、カテゴリー別にマニュアル・仕様・ダウンロードを検索できます。"
   },
   {
     "brand": "Sony",
     "nameJa": "ソニー",
-    "nameEn": "Sony",
-    "category": "カメラ・映像",
-    "country": "Japan / Global",
+    "nameEn": "Sony Corporation",
+    "category": "家電",
+    "country": "Japan",
     "manualUrl": "https://www.sony.jp/support/manual.html",
-    "supportUrl": "https://www.sony.com/electronics/support/manuals",
-    "note": "テレビ・オーディオ・カメラなどソニー製品の取扱説明書ページ。"
+    "supportUrl": "https://www.sony.jp/support/",
+    "note": "テレビ・オーディオ・カメラなど、日本向け製品の取扱説明書ダウンロード。"
   },
   {
     "brand": "Panasonic",
     "nameJa": "パナソニック",
-    "nameEn": "Panasonic",
+    "nameEn": "Panasonic Corporation",
     "category": "家電",
-    "country": "Japan / Global",
+    "country": "Japan",
     "manualUrl": "https://panasonic.jp/support/manual.html",
-    "supportUrl": "https://help.na.panasonic.com/manuals/",
-    "note": "生活家電・カメラ・AV機器などの取扱説明書検索。"
+    "supportUrl": "https://panasonic.jp/support/",
+    "note": "生活家電・キッチン家電・AV機器など、商品カテゴリーから取扱説明書を検索できます。"
   },
   {
     "brand": "Canon",
     "nameJa": "キヤノン",
-    "nameEn": "Canon",
-    "category": "プリンター・複合機",
-    "country": "Japan / Global",
-    "manualUrl": "https://canon.jp/support/manual",
-    "supportUrl": "https://www.usa.canon.com/support/user-manual-library",
-    "note": "カメラ・プリンター等の公式マニュアルダウンロードページ。"
+    "nameEn": "Canon Inc.",
+    "category": "カメラ・映像",
+    "country": "Japan",
+    "manualUrl": "https://cam.start.canon/",
+    "supportUrl": "https://global.canon/en/support/",
+    "note": "EOS / PowerShot / ビデオカメラ等のオンラインマニュアルとセットアップガイド。"
   },
   {
     "brand": "Nikon",
     "nameJa": "ニコン",
-    "nameEn": "Nikon",
+    "nameEn": "Nikon Corporation",
     "category": "カメラ・映像",
-    "country": "Global",
+    "country": "Japan",
     "manualUrl": "https://downloadcenter.nikonimglib.com/",
     "supportUrl": "https://www.nikonimgsupport.com/",
-    "note": "デジタルカメラやレンズのマニュアル・ファームウェア配布サイト。"
+    "note": "カメラ・レンズ・アクセサリーの取扱説明書やファームウェアをダウンロードできます。"
   },
   {
     "brand": "Fujifilm",
     "nameJa": "富士フイルム",
-    "nameEn": "Fujifilm",
+    "nameEn": "FUJIFILM Corporation",
     "category": "カメラ・映像",
-    "country": "Global",
-    "manualUrl": "https://www.fujifilm-x.com/global/support/manual/cameras/",
-    "supportUrl": "https://www.fujifilm-x.com/global/support/",
-    "note": "Xシリーズ / GFX などカメラ関連マニュアル。"
+    "country": "Japan",
+    "manualUrl": "https://fujifilm-dsc.com/ja/manual/",
+    "supportUrl": "https://www.fujifilm.com/support",
+    "note": "Xシリーズなどデジタルカメラのマニュアル・オンラインガイド。"
   },
   {
-    "brand": "Sharp",
-    "nameJa": "シャープ",
-    "nameEn": "Sharp",
-    "category": "家電",
-    "country": "Japan / Global",
-    "manualUrl": "https://jp.sharp/support/download.html",
-    "supportUrl": "https://global.sharp/support/download.html",
-    "note": "家電・AV機器などの取扱説明書ダウンロード。"
+    "brand": "Brother",
+    "nameJa": "ブラザー工業",
+    "nameEn": "Brother Industries, Ltd.",
+    "category": "プリンター・複合機",
+    "country": "Japan",
+    "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx",
+    "supportUrl": "https://support.brother.co.jp/",
+    "note": "プリンター・複合機・ラベルライター等の取扱説明書ダウンロード。"
   },
   {
-    "brand": "Toshiba",
-    "nameJa": "東芝 / dynabook",
-    "nameEn": "Toshiba",
-    "category": "PC・スマホ",
-    "country": "Global",
-    "manualUrl": "https://support.dynabook.com/",
-    "supportUrl": "https://tbs.toshiba.com/tbs/support/",
-    "note": "dynabook等PCおよび一部周辺機器のマニュアル／ドライバー。"
+    "brand": "Epson",
+    "nameJa": "セイコーエプソン（エプソン）",
+    "nameEn": "Seiko Epson Corporation",
+    "category": "プリンター・複合機",
+    "country": "Japan",
+    "manualUrl": "https://www.epson.jp/support/manual/",
+    "supportUrl": "https://www.epson.jp/support/",
+    "note": "インクジェット／レーザープリンターなどの取扱説明書・ユーザーズガイド。"
   },
   {
     "brand": "HP",
     "nameJa": "日本HP",
-    "nameEn": "HP",
+    "nameEn": "HP Inc.",
     "category": "PC・スマホ",
     "country": "Global",
-    "manualUrl": "https://support.hp.com/us-en/drivers",
+    "manualUrl": "https://support.hp.com/us-en/products",
     "supportUrl": "https://support.hp.com/",
-    "note": "HP製PC・プリンターのマニュアル／サポート。モデル検索が必要。"
+    "note": "PC・プリンター製品ごとにマニュアル／ドキュメントを検索できます。"
   },
   {
     "brand": "Dell",
-    "nameJa": "デル",
-    "nameEn": "Dell",
+    "nameJa": "デル・テクノロジーズ",
+    "nameEn": "Dell Technologies",
     "category": "PC・スマホ",
     "country": "Global",
     "manualUrl": "https://www.dell.com/support/home/en-us?app=manuals",
-    "supportUrl": "https://www.dell.com/support/home",
-    "note": "サービスタグまたは製品選択からマニュアルを取得。"
+    "supportUrl": "https://www.dell.com/support/home/",
+    "note": "サービスタグや製品名からマニュアル・仕様書を検索できます。"
   },
   {
     "brand": "Lenovo",
-    "nameJa": "レノボ",
-    "nameEn": "Lenovo",
+    "nameJa": "レノボ・ジャパン",
+    "nameEn": "Lenovo Group Limited",
     "category": "PC・スマホ",
     "country": "Global",
-    "manualUrl": "https://support.lenovo.com/us/en/docs",
+    "manualUrl": "https://support.lenovo.com/us/en/documents",
     "supportUrl": "https://support.lenovo.com/",
-    "note": "ThinkPad などの製品マニュアル・ドキュメント。"
+    "note": "ThinkPad などPC／タブレット向けのマニュアル・ドキュメント。"
   },
   {
-    "brand": "Microsoft",
-    "nameJa": "マイクロソフト（Surface）",
-    "nameEn": "Microsoft",
+    "brand": "ASUS",
+    "nameJa": "ASUS（エイスース）",
+    "nameEn": "ASUSTeK Computer Inc.",
     "category": "PC・スマホ",
     "country": "Global",
-    "manualUrl": "https://support.microsoft.com/surface",
-    "supportUrl": "https://support.microsoft.com/",
-    "note": "Surface シリーズ等のマニュアル・クイックスタートガイド。"
+    "manualUrl": "https://www.asus.com/support/",
+    "supportUrl": "https://www.asus.com/support/",
+    "note": "ノートPC・マザーボード・スマホ等、型番からマニュアルを検索できます。"
   },
   {
-    "brand": "Samsung",
-    "nameJa": "サムスン",
-    "nameEn": "Samsung",
+    "brand": "Acer",
+    "nameJa": "エイサー",
+    "nameEn": "Acer Inc.",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://www.acer.com/support",
+    "supportUrl": "https://www.acer.com/support",
+    "note": "型番を入力してユーザーガイド・マニュアルを表示できます。"
+  },
+  {
+    "brand": "MSI",
+    "nameJa": "エムエスアイコンピュータージャパン",
+    "nameEn": "Micro-Star International Co., Ltd.",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://www.msi.com/support",
+    "supportUrl": "https://www.msi.com/support",
+    "note": "ゲーミングPCやマザーボードのマニュアル・ドライバダウンロード。"
+  },
+  {
+    "brand": "VAIO",
+    "nameJa": "VAIO株式会社",
+    "nameEn": "VAIO Corporation",
+    "category": "PC・スマホ",
+    "country": "Japan",
+    "manualUrl": "https://support.vaio.com/manual/",
+    "supportUrl": "https://support.vaio.com/",
+    "note": "VAIO本体の取扱説明書・オンラインマニュアル。"
+  },
+  {
+    "brand": "dynabook",
+    "nameJa": "Dynabook株式会社",
+    "nameEn": "Dynabook Inc.",
+    "category": "PC・スマホ",
+    "country": "Japan",
+    "manualUrl": "https://dynabook.com/assistpc/manual/index_j.htm",
+    "supportUrl": "https://dynabook.com/assistpc/",
+    "note": "dynabook シリーズのマニュアル・取扱説明書。"
+  },
+  {
+    "brand": "NEC LAVIE",
+    "nameJa": "NECパーソナルコンピュータ（LAVIE）",
+    "nameEn": "NEC Personal Computers, Ltd.",
+    "category": "PC・スマホ",
+    "country": "Japan",
+    "manualUrl": "https://support.nec-lavie.jp/manual/",
+    "supportUrl": "https://support.nec-lavie.jp/",
+    "note": "LAVIE シリーズの取扱説明書・セットアップガイド。"
+  },
+  {
+    "brand": "Fujitsu FMV",
+    "nameJa": "富士通クライアントコンピューティング（FMV）",
+    "nameEn": "Fujitsu Client Computing Limited",
+    "category": "PC・スマホ",
+    "country": "Japan",
+    "manualUrl": "https://www.fmworld.net/pc/support/manual/",
+    "supportUrl": "https://www.fmworld.net/pc/support/",
+    "note": "FMVシリーズPCのマニュアル・操作ガイド。"
+  },
+  {
+    "brand": "Google Pixel",
+    "nameJa": "Google Pixel",
+    "nameEn": "Google LLC",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://support.google.com/pixelphone#topic=7078250",
+    "supportUrl": "https://support.google.com/",
+    "note": "Pixel スマートフォンのユーザーガイド・ヘルプ。"
+  },
+  {
+    "brand": "Samsung Mobile",
+    "nameJa": "サムスン電子（Galaxy）",
+    "nameEn": "Samsung Electronics Co., Ltd.",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://www.samsung.com/global/support/userguide/",
+    "supportUrl": "https://www.samsung.com/support/",
+    "note": "Galaxy スマートフォンなどモバイル機器のマニュアル。"
+  },
+  {
+    "brand": "Huawei",
+    "nameJa": "ファーウェイ（HUAWEI）",
+    "nameEn": "Huawei Technologies Co., Ltd.",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://consumer.huawei.com/en/support/product/",
+    "supportUrl": "https://consumer.huawei.com/en/support/",
+    "note": "スマートフォン・タブレット等のユーザーガイド。"
+  },
+  {
+    "brand": "Xiaomi",
+    "nameJa": "シャオミ（Xiaomi）",
+    "nameEn": "Xiaomi Corporation",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://www.mi.com/global/service/support",
+    "supportUrl": "https://www.mi.com/global/service",
+    "note": "Mi / Redmi 製品のマニュアル・サポート情報。"
+  },
+  {
+    "brand": "OPPO",
+    "nameJa": "オッポ",
+    "nameEn": "OPPO",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://support.oppo.com/",
+    "supportUrl": "https://support.oppo.com/",
+    "note": "OPPO スマートフォンのユーザーガイド・FAQ。"
+  },
+  {
+    "brand": "OnePlus",
+    "nameJa": "OnePlus",
+    "nameEn": "OnePlus Technology Co., Ltd.",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://www.oneplus.com/support/manuals",
+    "supportUrl": "https://www.oneplus.com/support",
+    "note": "OnePlus スマートフォンのマニュアル・サポート。"
+  },
+  {
+    "brand": "Motorola",
+    "nameJa": "モトローラ",
+    "nameEn": "Motorola Mobility LLC",
+    "category": "PC・スマホ",
+    "country": "Global",
+    "manualUrl": "https://support.motorola.com/us/en/home",
+    "supportUrl": "https://support.motorola.com/",
+    "note": "moto シリーズのユーザーガイド・サポート情報。"
+  },
+  {
+    "brand": "Dyson",
+    "nameJa": "ダイソン",
+    "nameEn": "Dyson Ltd",
     "category": "家電",
     "country": "Global",
-    "manualUrl": "https://www.samsung.com/support/downloads/",
-    "supportUrl": "https://www.samsung.com/support/",
-    "note": "スマートフォン・TV・家電のマニュアルとソフトウェア。"
+    "manualUrl": "https://www.dyson.com/support/jp/jp/user-manuals",
+    "supportUrl": "https://www.dyson.co.jp/support.aspx",
+    "note": "掃除機・空気清浄機などのユーザーマニュアル。"
   },
   {
-    "brand": "Brother",
-    "nameJa": "ブラザー",
-    "nameEn": "Brother",
+    "brand": "iRobot",
+    "nameJa": "アイロボット（ルンバ）",
+    "nameEn": "iRobot Corporation",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://homesupport.irobot.com/s/article/Find-Your-Robot-s-Owner-s-Guide",
+    "supportUrl": "https://homesupport.irobot.com/",
+    "note": "Roomba などロボット掃除機の取扱説明書。"
+  },
+  {
+    "brand": "Sharp",
+    "nameJa": "シャープ",
+    "nameEn": "SHARP Corporation",
+    "category": "家電",
+    "country": "Japan",
+    "manualUrl": "https://jp.sharp/support/manual/",
+    "supportUrl": "https://jp.sharp/support/",
+    "note": "テレビ・エアコン・キッチン家電などの取扱説明書。"
+  },
+  {
+    "brand": "Hitachi",
+    "nameJa": "日立グローバルライフソリューションズ",
+    "nameEn": "Hitachi Global Life Solutions, Inc.",
+    "category": "家電",
+    "country": "Japan",
+    "manualUrl": "https://kadenfan.hitachi.co.jp/support/manual/",
+    "supportUrl": "https://kadenfan.hitachi.co.jp/support/",
+    "note": "洗濯機・冷蔵庫・エアコン等の取扱説明書。"
+  },
+  {
+    "brand": "Mitsubishi Electric",
+    "nameJa": "三菱電機（家電）",
+    "nameEn": "Mitsubishi Electric Corporation",
+    "category": "家電",
+    "country": "Japan",
+    "manualUrl": "https://www.mitsubishielectric.co.jp/home/manual/",
+    "supportUrl": "https://www.mitsubishielectric.co.jp/home/support/",
+    "note": "冷蔵庫・エアコンなど家庭用電化製品のマニュアル。"
+  },
+  {
+    "brand": "Toshiba Lifestyle",
+    "nameJa": "東芝ライフスタイル",
+    "nameEn": "Toshiba Lifestyle Products & Services Corporation",
+    "category": "家電",
+    "country": "Japan",
+    "manualUrl": "https://www.toshiba-lifestyle.co.jp/support/manual/",
+    "supportUrl": "https://www.toshiba-lifestyle.co.jp/support/",
+    "note": "東芝ブランド家電の取扱説明書・サポート情報。"
+  },
+  {
+    "brand": "LG Electronics",
+    "nameJa": "LGエレクトロニクス",
+    "nameEn": "LG Electronics Inc.",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.lg.com/support/manuals",
+    "supportUrl": "https://www.lg.com/support",
+    "note": "テレビ・家電などのマニュアル・ドキュメント。"
+  },
+  {
+    "brand": "Philips",
+    "nameJa": "フィリップス",
+    "nameEn": "Philips",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.philips.co.uk/c-m/support/user-manuals",
+    "supportUrl": "https://www.philips.com/support",
+    "note": "シェーバー・オーディオ等のユーザーマニュアル検索。"
+  },
+  {
+    "brand": "Bosch",
+    "nameJa": "ボッシュ（家電）",
+    "nameEn": "BSH Hausgeräte GmbH",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.bosch-home.com/service/user-manuals",
+    "supportUrl": "https://www.bosch-home.com/service",
+    "note": "洗濯機・食器洗い機などの取扱説明書。"
+  },
+  {
+    "brand": "Miele",
+    "nameJa": "ミーレ",
+    "nameEn": "Miele & Cie. KG",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.miele.com/service/manuals-351.htm",
+    "supportUrl": "https://www.miele.com/service/",
+    "note": "プレミアム家電製品の取扱説明書・ガイド。"
+  },
+  {
+    "brand": "Electrolux",
+    "nameJa": "エレクトロラックス",
+    "nameEn": "AB Electrolux",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.electrolux.com/support/user-manuals",
+    "supportUrl": "https://www.electrolux.com/support",
+    "note": "掃除機・調理家電などのマニュアル。"
+  },
+  {
+    "brand": "T-fal",
+    "nameJa": "ティファール",
+    "nameEn": "Groupe SEB (T-fal)",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.t-fal.co.jp/support/manual/",
+    "supportUrl": "https://www.t-fal.co.jp/support/",
+    "note": "電気ケトル・調理家電等の取扱説明書。"
+  },
+  {
+    "brand": "DeLonghi",
+    "nameJa": "デロンギ",
+    "nameEn": "De'Longhi S.p.A.",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.delonghi.com/en-int/support/product-manuals",
+    "supportUrl": "https://www.delonghi.com/en-int/support",
+    "note": "エスプレッソマシンなどのユーザーマニュアル。"
+  },
+  {
+    "brand": "Nespresso",
+    "nameJa": "ネスプレッソ",
+    "nameEn": "Nespresso",
+    "category": "家電",
+    "country": "Global",
+    "manualUrl": "https://www.nespresso.com/us/en/order/machines/manuals",
+    "supportUrl": "https://www.nespresso.com/",
+    "note": "コーヒーマシンのマニュアル・取扱説明書。"
+  },
+  {
+    "brand": "Yamaha Audio",
+    "nameJa": "ヤマハ（オーディオ・楽器）",
+    "nameEn": "Yamaha Corporation",
+    "category": "その他",
+    "country": "Japan",
+    "manualUrl": "https://manual.yamaha.com/",
+    "supportUrl": "https://jp.yamaha.com/support/",
+    "note": "オーディオ機器・楽器のマニュアルサイト。"
+  },
+  {
+    "brand": "Pioneer",
+    "nameJa": "パイオニア",
+    "nameEn": "Pioneer Corporation",
+    "category": "その他",
+    "country": "Japan",
+    "manualUrl": "https://jpn.pioneer/ja/support/manual/",
+    "supportUrl": "https://jpn.pioneer/ja/support/",
+    "note": "カーナビ・オーディオなどの取扱説明書。"
+  },
+  {
+    "brand": "Denon",
+    "nameJa": "デノン",
+    "nameEn": "Denon",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://manuals.denon.com/",
+    "supportUrl": "https://www.denon.com/en-us/support",
+    "note": "AVアンプ・オーディオ機器のマニュアルポータル。"
+  },
+  {
+    "brand": "Marantz",
+    "nameJa": "マランツ",
+    "nameEn": "Marantz",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://manuals.marantz.com/",
+    "supportUrl": "https://www.marantz.com/en-us/support",
+    "note": "AVアンプなどの取扱説明書・クイックスタートガイド。"
+  },
+  {
+    "brand": "Bose",
+    "nameJa": "ボーズ",
+    "nameEn": "Bose Corporation",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.bose.com/en_us/support/articles/HC1383/product-manuals.html",
+    "supportUrl": "https://www.bose.com/en_us/support.html",
+    "note": "ヘッドホン・スピーカーなどの製品マニュアル。"
+  },
+  {
+    "brand": "JBL",
+    "nameJa": "JBL",
+    "nameEn": "JBL",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://support.jbl.com/us/en/product-support/user-guides/",
+    "supportUrl": "https://support.jbl.com/",
+    "note": "ポータブルスピーカー・ヘッドホン等のユーザーガイド。"
+  },
+  {
+    "brand": "Sennheiser",
+    "nameJa": "ゼンハイザー",
+    "nameEn": "Sennheiser electronic GmbH & Co. KG",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.sennheiser-hearing.com/en-US/support/downloads/",
+    "supportUrl": "https://www.sennheiser-hearing.com/en-US/support/",
+    "note": "ヘッドホン・マイクロホンなどのマニュアル。"
+  },
+  {
+    "brand": "Audio-Technica",
+    "nameJa": "オーディオテクニカ",
+    "nameEn": "Audio-Technica Corporation",
+    "category": "その他",
+    "country": "Japan",
+    "manualUrl": "https://www.audio-technica.co.jp/support/manual/",
+    "supportUrl": "https://www.audio-technica.co.jp/support/",
+    "note": "ヘッドホン・マイクなどの取扱説明書。"
+  },
+  {
+    "brand": "Shure",
+    "nameJa": "シュア",
+    "nameEn": "Shure Incorporated",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://pubs.shure.com/",
+    "supportUrl": "https://www.shure.com/en-US/support",
+    "note": "マイクロホン・ワイヤレスシステム等のドキュメントライブラリ。"
+  },
+  {
+    "brand": "Nintendo",
+    "nameJa": "任天堂",
+    "nameEn": "Nintendo Co., Ltd.",
+    "category": "その他",
+    "country": "Japan",
+    "manualUrl": "https://www.nintendo.co.jp/support/manual/",
+    "supportUrl": "https://www.nintendo.co.jp/support/",
+    "note": "Nintendo Switch などゲーム機の取扱説明書。"
+  },
+  {
+    "brand": "PlayStation",
+    "nameJa": "プレイステーション（SIE）",
+    "nameEn": "Sony Interactive Entertainment Inc.",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.playstation.com/support/hardware/",
+    "supportUrl": "https://www.playstation.com/support/",
+    "note": "PS5 などPlayStationハードウェアの取扱説明書。"
+  },
+  {
+    "brand": "GoPro",
+    "nameJa": "GoPro",
+    "nameEn": "GoPro, Inc.",
+    "category": "カメラ・映像",
+    "country": "Global",
+    "manualUrl": "https://gopro.com/en/us/news/manuals",
+    "supportUrl": "https://gopro.com/en/us/support",
+    "note": "アクションカメラのユーザーガイド。"
+  },
+  {
+    "brand": "DJI",
+    "nameJa": "DJI",
+    "nameEn": "SZ DJI Technology Co., Ltd.",
+    "category": "カメラ・映像",
+    "country": "Global",
+    "manualUrl": "https://www.dji.com/downloads/products",
+    "supportUrl": "https://www.dji.com/support",
+    "note": "ドローン・ジンバルカメラのマニュアル・クイックスタート。"
+  },
+  {
+    "brand": "OM SYSTEM",
+    "nameJa": "OMデジタルソリューションズ（OM SYSTEM）",
+    "nameEn": "OM Digital Solutions Corporation",
+    "category": "カメラ・映像",
+    "country": "Japan",
+    "manualUrl": "https://cs.olympus-imaging.jp/support/dslr/manual/",
+    "supportUrl": "https://support.jp.omsystem.com/",
+    "note": "ミラーレス一眼カメラなどの取扱説明書。"
+  },
+  {
+    "brand": "RICOH / PENTAX",
+    "nameJa": "リコーイメージング（PENTAX）",
+    "nameEn": "Ricoh Imaging Company, Ltd.",
+    "category": "カメラ・映像",
+    "country": "Japan",
+    "manualUrl": "https://www.ricoh-imaging.co.jp/japan/support/manual/digital/",
+    "supportUrl": "https://www.ricoh-imaging.co.jp/japan/support/",
+    "note": "PENTAX / RICOH デジタルカメラの取扱説明書。"
+  },
+  {
+    "brand": "Ricoh Office",
+    "nameJa": "リコー（複合機・プリンター）",
+    "nameEn": "Ricoh Company, Ltd.",
+    "category": "プリンター・複合機",
+    "country": "Japan",
+    "manualUrl": "https://www.ricoh.co.jp/support/manual/",
+    "supportUrl": "https://www.ricoh.co.jp/support/",
+    "note": "複合機・プリンター製品の取扱説明書。"
+  },
+  {
+    "brand": "Kyocera Document",
+    "nameJa": "京セラドキュメントソリューションズ",
+    "nameEn": "Kyocera Document Solutions Inc.",
     "category": "プリンター・複合機",
     "country": "Global",
-    "manualUrl": "https://support.brother.com/",
-    "supportUrl": "https://support.brother.com/",
-    "note": "プリンター・複合機・スキャナー等のマニュアル。"
+    "manualUrl": "https://www.kyoceradocumentsolutions.com/support/manuals/",
+    "supportUrl": "https://www.kyoceradocumentsolutions.com/support/",
+    "note": "ビジネスプリンター・複合機のマニュアル。"
+  },
+  {
+    "brand": "Zebra",
+    "nameJa": "Zebra Technologies",
+    "nameEn": "Zebra Technologies Corporation",
+    "category": "プリンター・複合機",
+    "country": "Global",
+    "manualUrl": "https://www.zebra.com/us/en/support-downloads/manuals.html",
+    "supportUrl": "https://www.zebra.com/us/en/support-downloads.html",
+    "note": "ラベルプリンター・バーコードスキャナのマニュアル。"
+  },
+  {
+    "brand": "TP-Link",
+    "nameJa": "TP-Link",
+    "nameEn": "TP-Link Technologies Co., Ltd.",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.tp-link.com/support/download/",
+    "supportUrl": "https://www.tp-link.com/support/",
+    "note": "Wi-Fiルーター等のユーザーマニュアル。"
+  },
+  {
+    "brand": "NETGEAR",
+    "nameJa": "ネットギア",
+    "nameEn": "NETGEAR, Inc.",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.netgear.com/support/download/",
+    "supportUrl": "https://www.netgear.com/support/",
+    "note": "ルーター・スイッチ等のマニュアル・ドキュメント。"
+  },
+  {
+    "brand": "Ubiquiti",
+    "nameJa": "Ubiquiti",
+    "nameEn": "Ubiquiti Inc.",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://help.ui.com/hc/en-us/categories/200320654-User-Guides",
+    "supportUrl": "https://help.ui.com/hc/en-us",
+    "note": "UniFi などネットワーク機器のユーザーガイド。"
+  },
+  {
+    "brand": "Western Digital",
+    "nameJa": "ウエスタンデジタル",
+    "nameEn": "Western Digital Corporation",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://support.wdc.com/manuals.aspx",
+    "supportUrl": "https://support.wdc.com/",
+    "note": "外付けHDD・NAS等のマニュアル。"
+  },
+  {
+    "brand": "Seagate",
+    "nameJa": "シーゲイト",
+    "nameEn": "Seagate Technology LLC",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.seagate.com/support/software/manuals/",
+    "supportUrl": "https://www.seagate.com/support/",
+    "note": "HDD・SSD製品のユーザーガイド。"
+  },
+  {
+    "brand": "Anker",
+    "nameJa": "Anker",
+    "nameEn": "Anker Innovations Limited",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://support.anker.com/s/",
+    "supportUrl": "https://support.anker.com/",
+    "note": "モバイルバッテリー・充電器などの製品マニュアル。"
+  },
+  {
+    "brand": "Belkin",
+    "nameJa": "ベルキン",
+    "nameEn": "Belkin International, Inc.",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.belkin.com/support-article/?articleNum=10733",
+    "supportUrl": "https://www.belkin.com/support/",
+    "note": "ネットワーク機器やアクセサリのユーザーマニュアル。"
+  },
+  {
+    "brand": "Bambu Lab",
+    "nameJa": "Bambu Lab",
+    "nameEn": "Bambu Lab",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://wiki.bambulab.com/en/",
+    "supportUrl": "https://bambulab.com/en/support",
+    "note": "3Dプリンタのオンラインマニュアル・ナレッジベース。"
+  },
+  {
+    "brand": "Creality",
+    "nameJa": "Creality",
+    "nameEn": "Shenzhen Creality 3D Technology Co., Ltd.",
+    "category": "その他",
+    "country": "Global",
+    "manualUrl": "https://www.creality.com/download",
+    "supportUrl": "https://www.creality.com/support",
+    "note": "3Dプリンタ製品のマニュアル・ファームウェア。"
   }
 ]
