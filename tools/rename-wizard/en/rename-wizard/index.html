@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rename Wizard | Batch Filename Normalizer｜NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browser-only batch filename normalizer. Convert full-width to half-width, replace spaces with underscores, and strip forbidden characters locally." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rename Wizard | Batch Filename Normalizer｜NicheWorks" />
+  <meta property="og:description" content="Safe filename normalization tool that runs entirely in your browser." />
+  <meta property="og:url" content="https://nicheworks.pages.dev/en/rename-wizard/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/og/rename-wizard.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="stylesheet" href="../../rename-wizard/style.css" />
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div class="nw-header-top">
+        <a href="/" class="nw-logo-link">
+          <img src="/nicheworks-logo.png" alt="NicheWorks" class="nw-logo" />
+        </a>
+        <div class="nw-header-titles">
+          <h1 class="nw-title">Rename Wizard</h1>
+          <p class="nw-subtitle">
+            A tiny tool that handles tedious filename normalization directly in your browser.
+          </p>
+        </div>
+        <div class="nw-lang-switch">
+          <a href="/rename-wizard/">日本語</a> | English
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nw-nav">
+    <div class="nw-nav-inner">
+      <a href="https://nicheworks.pages.dev/">Home</a>
+      <a href="https://manual-finder.pages.dev/">ManualFinder</a>
+      <a href="https://trash-navi.pages.dev/">TrashNavi</a>
+      <a href="https://cancel-navi.pages.dev/">Cancel Navi</a>
+      <span class="nw-nav-current">Rename Wizard</span>
+    </div>
+  </nav>
+
+  <main class="nw-main">
+    <!-- Top ad slot -->
+    <div class="ad-slot ad-top">
+      Ad slot (coming soon)
+      <!-- Insert ad code after approval -->
+    </div>
+
+    <section class="tool-card">
+      <h2 class="section-title">1. Drop or Select Files</h2>
+      <p class="section-desc">
+        All processing happens locally in this browser. Only filenames are read; no file contents are uploaded.
+      </p>
+
+      <div id="dropzone" class="dropzone">
+        <p class="drop-main">Drag &amp; drop files here</p>
+        <p class="drop-sub">or</p>
+        <button id="fileSelectButton" class="btn">Choose files</button>
+        <input id="fileInput" type="file" multiple class="file-input" />
+      </div>
+
+      <div class="options">
+        <h3 class="options-title">Rename Rules</h3>
+        <label class="option-item">
+          <input type="checkbox" id="optNormalizeWidth" checked />
+          Normalize full-width alphanumerics/symbols to half-width (Unicode NFKC)
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optSpaceToUnderscore" checked />
+          Replace whitespace with underscores
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optLowercaseExt" checked />
+          Normalize file extensions to lowercase (.JPG → .jpg)
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optLowercaseBase" />
+          Convert base names to lowercase
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optCollapseUnderscore" checked />
+          Collapse repeated separators (__ / -- / ..) into one
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optTrimEdge" checked />
+          Trim . _ - at the beginning and end
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optRemoveForbidden" checked />
+          Remove forbidden characters / \ : * ? " &lt; &gt; |
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="runButton" class="btn btn-primary">Normalize file names</button>
+        <button id="copyButton" class="btn btn-ghost" disabled>Copy mapping list</button>
+        <button id="clearButton" class="btn btn-ghost">Reset</button>
+      </div>
+    </section>
+
+    <section class="tool-card">
+      <h2 class="section-title">2. Preview</h2>
+      <p class="section-desc">
+        See original vs normalized filenames. This tool does not rename files directly.
+        Use the copied mapping for your own batch scripts.
+      </p>
+
+      <div id="noFilesMessage" class="empty-state">
+        No files selected yet.
+      </div>
+
+      <div id="resultWrapper" class="table-wrapper hidden">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Original filename</th>
+              <th>Normalized filename</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody"></tbody>
+        </table>
+      </div>
+      <div id="copyStatus" class="copy-status" aria-live="polite"></div>
+    </section>
+
+    <!-- Bottom ad slot -->
+    <div class="ad-slot ad-bottom">
+      Ad slot (coming soon)
+      <!-- Insert ad code after approval -->
+    </div>
+
+    <!-- Donation (Pattern B: buttons only, language-agnostic) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text">
+        If this tool helped you, consider supporting us — even the price of one coffee makes a difference.
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      This site may contain ads. No warranty is provided for the accuracy of the information.
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
+        nicheworks.pages.dev
+      </a>
+    </p>
+  </footer>
+
+  <script src="../../rename-wizard/app.js"></script>
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'>
+  </script>
+</body>
+</html>

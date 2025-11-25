@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+  --soft: #9ca3af;
+  --accent: #38bdf8;
+  --border: #1f2937;
+  --warn: #eab308;
+  --ok: #22c55e;
+  --danger: #f97316;
+  --radius: 16px;
+  --font: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: radial-gradient(circle at top, #111827 0, #020617 60%);
+  color: var(--text);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+.nw-header { padding: 12px 20px; border-bottom: 1px solid var(--border); }
+.nw-header-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; max-width: 1200px; margin: auto; }
+.nw-brand { display: flex; align-items: center; gap: 10px; }
+.nw-logo { height: 36px; width: auto; }
+.nw-tool-label { font-weight: 600; font-size: 20px; }
+.nw-tagline { font-size: 12px; color: var(--soft); margin: 2px 0 0; line-height: 1.6; }
+.nw-lang-switch { display: flex; gap: 6px; }
+.nw-lang-switch button { background: transparent; border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; color: var(--soft); cursor: pointer; }
+.nw-lang-switch button.active { border-color: var(--accent); color: var(--accent); }
+
+/* Ads */
+.ad-slot { border: 1px dashed var(--border); color: var(--soft); font-size: 11px; padding: 6px 8px; border-radius: var(--radius); margin: 8px 0; text-align: center; }
+
+/* Tool */
+.nw-main { max-width: 1200px; margin: auto; padding: 10px 20px 40px; }
+.tool-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.tool-input-panel, .tool-result-panel { background: #020617; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.tool-title { margin-top: 0; }
+.tool-desc { font-size: 12px; color: var(--soft); line-height: 1.6; }
+.contract-input { width: 100%; min-height: 220px; background: #0a0f1f; border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px; resize: vertical; font-size: 13px; }
+.tool-actions { margin-top: 10px; display: flex; gap: 8px; }
+.btn-primary, .btn-ghost { border-radius: 20px; padding: 6px 14px; border: none; cursor: pointer; font-size: 13px; }
+.btn-primary { background: var(--accent); color: #000; }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--soft); }
+.disclaimer-box { font-size: 11px; margin-top: 10px; background: rgba(15, 23, 42, 0.9); border-radius: 10px; padding: 8px; border: 1px solid rgba(56, 189, 248, 0.2); color: var(--soft); }
+
+/* Results */
+.result-header { display: flex; justify-content: space-between; align-items: center; }
+.legend { display: flex; gap: 6px; }
+.legend-item { font-size: 10px; border-radius: 12px; padding: 2px 6px; border: 1px solid var(--border); }
+.legend-high { color: var(--danger); }
+.legend-medium { color: var(--warn); }
+.legend-low { color: var(--ok); }
+
+.summary-box { background: #0a0f1f; border: 1px solid var(--border); border-radius: 10px; font-size: 11px; padding: 6px; color: var(--soft); margin-top: 8px; }
+.result-list { margin-top: 8px; max-height: 180px; overflow-y: auto; font-size: 11px; color: var(--text); }
+.result-item { border-bottom: 1px solid var(--border); padding: 4px 0; }
+.result-item:last-child { border-bottom: none; }
+.highlight-view { background: #0a0f1f; border: 1px solid var(--border); border-radius: 8px; padding: 6px; font-size: 11px; color: var(--soft); white-space: pre-wrap; max-height: 200px; overflow-y: auto; margin-top: 8px; }
+.hl-high { background: rgba(249, 115, 22, 0.2); color: var(--danger); }
+.hl-medium { background: rgba(234, 179, 8, 0.2); color: var(--warn); }
+.hl-low { background: rgba(34, 197, 94, 0.2); color: var(--ok); }
+
+/* Donation */
+.donation-box { margin-top: 20px; text-align: center; font-size: 12px; color: var(--soft); }
+.donation-links { display: flex; justify-content: center; gap: 10px; margin-top: 6px; }
+.donation-btn { display: inline-block; padding: 5px 12px; border-radius: 20px; color: #fff; font-size: 13px; text-decoration: none; }
+.donation-btn.ofuse { background: #ff6699; }
+.donation-btn.kofi { background: #00b9fe; }
+
+/* Footer */
+.nw-footer { border-top: 1px solid var(--border); text-align: center; padding: 12px 10px 20px; font-size: 11px; color: var(--soft); }
+.nw-footer-line { margin: 4px 0; }
+.nw-footer a { color: var(--accent); }
+
+@media (max-width: 840px) {
+  .tool-layout { grid-template-columns: 1fr; }
+}

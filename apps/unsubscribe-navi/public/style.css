@@ -1,0 +1,137 @@
+:root {
+  --bg: #f6f7fb;
+  --fg: #222;
+  --accent: #2563eb;
+  --border: #dde1ee;
+  --radius: 10px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: --bg;
+  color: var(--fg);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header h1 {
+  margin: 0;
+  padding: 16px 0 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: 4px 0 12px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.intro {
+  margin: 18px 0 8px;
+  font-size: 13px;
+}
+
+.note {
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: #fff8e6;
+  border-left: 3px solid #f59e0b;
+  font-size: 11px;
+  color: #4b5563;
+}
+
+.search-section {
+  margin: 16px 0;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  outline: none;
+}
+
+#searchInput:focus {
+  border-color: var(--accent);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-title {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.badge {
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 10px;
+}
+
+.card a {
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.card-notes {
+  font-size: 11px;
+  color: #4b5563;
+}
+
+.status-check {
+  font-size: 10px;
+  color: #b91c1c;
+}
+
+.site-footer {
+  padding: 12px 0 18px;
+  font-size: 10px;
+  color: #6b7280;
+  text-align: center;
+}

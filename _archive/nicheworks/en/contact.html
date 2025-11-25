@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact - NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Contact NicheWorks. Report issues, send feedback or proposals."
+  />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <header>
+      <h1>Contact</h1>
+      <p class="subtitle">
+        Send us issue reports, feedback, feature ideas, or other inquiries.
+      </p>
+
+      <nav class="nav-inline">
+        <a href="/en/">Home</a>
+        <span class="sep">｜</span>
+        <a href="/en/about.html">About</a>
+        <span class="sep">｜</span>
+        <a href="/en/privacy.html">Privacy</a>
+        <span class="sep">｜</span>
+        <a href="/en/contact.html">Contact</a>
+        <span class="sep">｜</span>
+        <a href="/index.html">JP</a>
+      </nav>
+    </header>
+
+    <section class="block">
+      <form id="contactForm">
+        <label for="subject">Subject</label><br />
+        <input
+          type="text"
+          id="subject"
+          class="input"
+          placeholder="e.g., About LogFormatter display"
+          required
+        /><br /><br />
+
+        <label for="message">Message</label><br />
+        <textarea
+          id="message"
+          class="textarea"
+          placeholder="Please provide as much detail as possible."
+          required
+        ></textarea><br /><br />
+
+        <label for="from">Your email (optional)</label><br />
+        <input
+          type="email"
+          id="from"
+          class="input"
+          placeholder="Only if you want a reply"
+        /><br /><br />
+
+        <div style="display:none;">
+          <label>Leave this empty</label>
+          <input type="text" id="hp" />
+        </div>
+
+        <button type="submit" class="btn-primary">Open email app</button>
+        <p id="formStatus" class="small"></p>
+      </form>
+    </section>
+
+    <section class="block">
+      <h2>Send directly</h2>
+      <p class="small">
+        If your environment doesn’t handle mailto, please email us directly:
+      </p>
+      <p class="small"><span id="directMail"></span></p>
+    </section>
+
+    <footer>
+      <p>© 2025 NicheWorks</p>
+      <p class="small">
+        <a href="/en/">Home</a> /
+        <a href="/en/about.html">About</a> /
+        <a href="/en/privacy.html">Privacy</a> /
+        <a href="/en/contact.html">Contact</a> /
+        <a href="/index.html">JP</a>
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      const user = "nicheworks.tools";
+      const domain = "gmail.com";
+      const addr = user + "@" + domain;
+
+      const direct = document.getElementById("directMail");
+      if (direct) {
+        direct.innerHTML = '<a href="mailto:' + addr + '">' + addr + "</a>";
+      }
+    })();
+
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const hp = document.getElementById("hp");
+      if (hp && hp.value.trim() !== "") {
+        statusEl.textContent = "Sent.";
+        form.reset();
+        return;
+      }
+
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const from = document.getElementById("from").value.trim();
+
+      if (!subject || !message) {
+        statusEl.textContent = "Please enter both subject and message.";
+        return;
+      }
+
+      const user = "nicheworks.tools";
+      const domain = "gmail.com";
+      const addr = user + "@" + domain;
+
+      let body = message;
+      if (from) {
+        body += "
+
+---
+From: " + from;
+      }
+
+      const mailto =
+        "mailto:" + addr +
+        "?subject=" + encodeURIComponent("[NicheWorks] " + subject) +
+        "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailto;
+      statusEl.textContent =
+        "If your mail app didn’t open, please use the direct email address below.";
+      form.reset();
+    });
+  </script>
+</body>
+</html>

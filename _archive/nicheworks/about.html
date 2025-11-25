@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>このサイトについて - NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NicheWorksの運営方針と概要について。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <header>
+      <h1>このサイトについて</h1>
+      <p class="subtitle">
+        NicheWorks（ニッチワークス）は、小さく地味なWebツールを静かに積み上げていく個人プロジェクトです。
+      </p>
+
+      <nav class="nav-inline">
+        <a href="/index.html">Home</a>
+        <span class="sep">｜</span>
+        <a href="/about.html">About</a>
+        <span class="sep">｜</span>
+        <a href="/privacy.html">Privacy</a>
+        <span class="sep">｜</span>
+        <a href="/contact.html">Contact</a>
+        <span class="sep">｜</span>
+        <a href="/en/">EN</a>
+      </nav>
+    </header>
+
+    <section class="block">
+      <h2>運営概要</h2>
+      <ul class="list">
+        <li>運営者：NicheWorks（個人運営）</li>
+        <li>連絡先：<span id="mail"></span></li>
+        <li>サイトURL：<a href="https://nicheworks.pages.dev/">https://nicheworks.pages.dev/</a></li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>運営方針</h2>
+      <p>
+        「目立たないけれど、あったほうが確実に便利なもの」をテーマに、
+        ブラウザだけで完結する小さなツール群を公開しています。
+      </p>
+      <p>
+        過度なトラッキングや個人情報収集は行わず、できるだけシンプルで実務寄りの体験を維持します。
+      </p>
+    </section>
+
+    <section class="block donate-block">
+      <h2>Support / ご支援について</h2>
+      <p>
+        プロジェクト継続のための支援は任意です。
+        価値を感じていただけた場合のみ、以下のサービスからご支援いただけると励みになります。
+      </p>
+      <div class="donate-buttons">
+        <a href="https://ofuse.me/" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/" target="_blank">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 NicheWorks</p>
+      <p class="small">
+        <a href="/index.html">ホーム</a> /
+        <a href="/about.html">このサイトについて</a> /
+        <a href="/privacy.html">プライバシーポリシー</a> /
+        <a href="/contact.html">お問い合わせ</a> /
+        <a href="/en/">EN</a>
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    const u = "nicheworks.tools";
+    const d = "gmail.com";
+    const addr = u + "@" + d;
+    document.getElementById("mail").innerHTML =
+      '<a href="mailto:' + addr + '">' + addr + "</a>";
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

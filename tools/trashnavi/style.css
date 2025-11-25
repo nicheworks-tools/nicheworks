@@ -1,0 +1,46 @@
+/* ===== NicheWorks Common Base (2025-11) ===== */
+html,body{background:#fff;color:#111;margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Yu Gothic",YuGothic,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.nw-header{border-bottom:1px solid #e5e7eb;background:#fafafa}
+.nw-header-inner{max-width:960px;margin:0 auto;padding:20px 12px}
+.nw-title{margin:4px 0 6px;font-size:1.6rem;font-weight:600}
+.nw-lead{margin:0 0 6px;color:#6b7280;font-size:.95rem}
+.nw-main{max-width:960px;margin:0 auto;padding:12px}
+.ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+.ad-top{margin-top:4px}.ad-bottom{margin-bottom:8px}.ad-inline{margin:24px 0}
+.nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid #e5e7eb;font-size:11px;color:#6b7280;text-align:center;line-height:1.6}
+.nw-footer-line{margin:2px 0}
+.nw-footer a{color:#6b7280;text-decoration:underline}
+/* Donate (inline) */
+.nw-donate{text-align:center;margin:16px 0 8px;padding:8px 0;font-size:12px;color:#6b7280}
+.nw-donate-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:4px}
+.nw-donate-links a{display:inline-block;padding:8px 14px;border:1px solid #d1d5db;border-radius:8px;background:#fff;font-size:13px;color:#111827;text-decoration:none;transition:all .2s}
+.nw-donate-links a:hover{background:#f9fafb;transform:translateY(-1px);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+/* Donate floating pill (optional) */
+.nw-donate-float{position:fixed;right:16px;bottom:16px;padding:6px 10px;background:rgba(17,24,39,.96);color:#f9fafb;font-size:11px;border-radius:999px;cursor:pointer;z-index:9999;display:none;align-items:center;gap:4px}
+.nw-donate-close{border:none;background:transparent;color:#9ca3af;font-size:11px;cursor:pointer;padding:0 2px}
+@media(max-width:640px){.nw-donate-float{right:8px;bottom:8px;font-size:10px}}
+/* ===== Tool specific styling ===== */
+.search-section{margin-top:14px;padding:14px;border:1px solid #e5e5e5;border-radius:14px;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+.section-title{margin:6px 0 2px;font-size:1.1rem;font-weight:600}
+.section-desc{margin:0 0 10px;color:#6b7280;font-size:.9rem}
+.search-form{display:grid;gap:10px;grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.85rem}
+.field input,.field select{padding:8px 10px;font-size:.95rem;border:1px solid #e5e7eb;border-radius:10px;outline:none}
+.field input:focus,.field select:focus{border-color:#2563eb;box-shadow:0 0 0 2px #eff6ff}
+.field.actions{flex-direction:row;align-items:center;gap:8px}
+.btn-primary,.btn-ghost{padding:8px 14px;font-size:.85rem;border-radius:999px;border:1px solid transparent;cursor:pointer;background:transparent}
+.btn-primary{background:#2563eb;color:#fff}.btn-primary:hover{opacity:.95}
+.btn-ghost{border-color:#e5e7eb;color:#6b7280;background:#fff}.btn-ghost:hover{background:#f3f4f6}
+.result-summary{margin:8px 2px 0;font-size:.82rem;color:#6b7280}
+.results-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.result-card{padding:10px 11px;border-radius:10px;border:1px solid #e5e7eb;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+.result-title{margin:0 0 2px;font-size:.95rem;font-weight:600}
+.result-meta{margin:0;color:#6b7280;font-size:.82rem}
+.result-link{font-size:.86rem;margin-top:4px;word-break:break-all}
+.result-link a{color:#2563eb;text-decoration:none}.result-link a:hover{text-decoration:underline}
+.result-tag{display:inline-flex;align-items:center;padding:0 8px;margin-top:4px;font-size:.7rem;border-radius:999px;background:#eff6ff;color:#1d4ed8}
+/* i18n switch */
+.nw-lang-switch{text-align:center;margin:4px 0 8px;font-size:11px;color:#6b7280}
+.nw-lang-switch button{border:none;background:transparent;padding:0 2px;cursor:pointer;font-size:11px;color:#4b5563}
+.nw-lang-switch button.active{font-weight:600;text-decoration:underline}
+@media(min-width:720px){.search-form{grid-template-columns:repeat(4,minmax(0,1fr))}.field.actions{justify-content:flex-end;margin-top:0}}

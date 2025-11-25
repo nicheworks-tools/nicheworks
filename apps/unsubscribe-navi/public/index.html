@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>解約どこナビ｜各種サービス解約ページ検索</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="サブスク・通販・動画配信など各種サービスの解約ページURLを素早く検索できる無料ツール。公式サイトへの導線のみを掲載。"
+  />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1>解約どこナビ</h1>
+    <p class="subtitle">公式の解約ページ・退会手続きへの最短リンク集</p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="intro">
+    <p>
+      「解約ページが見つからない」「退会手続きが分かりづらい」サービスの
+      <strong>公式解約ページへの導線だけ</strong>を集めた一覧です。
+    </p>
+    <p class="note">
+      ※ここから直接解約処理は行いません。各サービス公式サイトに遷移して手続きしてください。<br />
+      ※掲載情報は自動チェックしていますが、必ず遷移先の内容をご確認ください。
+    </p>
+  </section>
+
+  <section class="search-section">
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="サービス名・用途で検索（例：Netflix, プライム, 音楽）"
+    />
+  </section>
+
+  <section id="results" class="results"></section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>解約どこナビ - 無料・登録不要</p>
+    <p class="footer-small">
+      情報は自動取得／更新されますが、誤りを見つけた場合は各サービスの公式情報を優先し確認ください。
+    </p>
+  </div>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>

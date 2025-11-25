@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ゴミ分別ナビ（TrashNavi） | NicheWorks</title>
+  <meta name="description" content="自治体ごとの公式ごみ分別ページ・収集カレンダーのリンク集。都道府県＋市区町村で検索。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ゴミ分別ナビ（TrashNavi） | NicheWorks">
+  <meta property="og:description" content="自治体ごとの公式ごみ分別ページ・収集カレンダーのリンク集。都道府県＋市区町村で検索。">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="https://nicheworks.pages.dev/ogp.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <h1 class="nw-title">ゴミ分別ナビ（TrashNavi）</h1>
+      <p class="nw-lead" data-i18n="ja">自治体ごとの公式「ごみ分別」「収集カレンダー」ページへのリンク集。入力はブラウザ内だけで処理され、サーバー送信しません。</p>
+      <p class="nw-lead" data-i18n="en">Directory of official municipal waste-sorting and pickup calendar pages in Japan. Client‑side only, no data is sent to a server.</p>
+      <div class="nw-lang-switch">
+        <button data-lang="ja">JP</button> / <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="search-section">
+      <h2 class="section-title" data-i18n="ja">自治体で探す</h2>
+      <h2 class="section-title" data-i18n="en">Search by municipality</h2>
+      <p class="section-desc" data-i18n="ja">都道府県と市区町村を選ぶと、公式サイトのごみ関連ページへのリンクを表示します。</p>
+      <p class="section-desc" data-i18n="en">Pick prefecture and municipality to see links to the official waste pages.</p>
+
+      <div class="search-form">
+        <div class="field">
+          <label for="prefSelect" data-i18n="ja">都道府県</label>
+          <label for="prefSelect" data-i18n="en">Prefecture</label>
+          <select id="prefSelect"><option value="">すべて / All</option></select>
+        </div>
+        <div class="field">
+          <label for="citySelect" data-i18n="ja">市区町村</label>
+          <label for="citySelect" data-i18n="en">Municipality</label>
+          <select id="citySelect" disabled><option value="">すべて / All</option></select>
+        </div>
+        <div class="field">
+          <label for="keywordInput" data-i18n="ja">キーワード（任意）</label>
+          <label for="keywordInput" data-i18n="en">Keyword (optional)</label>
+          <input id="keywordInput" type="text" placeholder="例：分別, カレンダー / e.g. calendar">
+        </div>
+        <div class="field actions">
+          <button id="searchButton" class="btn-primary" data-i18n="ja">検索する</button>
+          <button id="searchButton" class="btn-primary" data-i18n="en">Search</button>
+          <button id="resetButton" class="btn-ghost" data-i18n="ja">条件クリア</button>
+          <button id="resetButton" class="btn-ghost" data-i18n="en">Reset</button>
+        </div>
+      </div>
+
+      <div class="nw-donate">
+        <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+        <p class="nw-donate-text" data-i18n="en">If this tool helps you, please consider supporting future development.</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <p id="resultSummary" class="result-summary">…</p>
+    </section>
+
+    <div class="ad-slot ad-inline">広告枠（準備中）</div>
+
+    <section class="results-section">
+      <div id="results" class="results-list"></div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+
+  <div class="nw-donate-float" id="nw-donate-float">☕ Support NicheWorks <button class="nw-donate-close" aria-label="Close">×</button></div>
+
+  <script src="app.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+</body>
+</html>

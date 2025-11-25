@@ -1,0 +1,20 @@
+{
+  "name": "wp-structure-analyzer",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "bin": {
+    "wp-structure-analyzer": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "dev": "ts-node-esm src/cli.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.0"
+  }
+}

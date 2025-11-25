@@ -1,0 +1,15 @@
+{
+  "tagline": "A lightweight tool that highlights risky clauses and buzzwords in contracts and ToS (in-browser, no AI).",
+  "inputTitle": "Paste your contract text",
+  "inputDesc": "Paste the full text as plain text. For PDFs or paper, run OCR yourself, verify the text, then paste. No data is sent to our servers.",
+  "scanBtn": "Scan",
+  "clearBtn": "Clear",
+  "disclaimer": "This tool is for educational and alert purposes only. It does not provide legal advice or guarantee accuracy.",
+  "resultTitle": "Detected patterns",
+  "highlightTitle": "Highlighted view",
+  "highlightDesc": "Shows matched spans in your text. If it's hard to read, check the left pane too.",
+  "donationText": "If this tool was helpful, you can support future updates here:",
+  "placeholder": "Paste the contract / ToS text here. (Processed locally in your browser only.)",
+  "summaryInit": "Paste text and click “Scan” to see a summary of detected patterns here.",
+  "highlightInit": "Highlighted view will appear here after scanning. Paste the text on the left first."
+}

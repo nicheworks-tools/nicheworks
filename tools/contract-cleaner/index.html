@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contract Cleaner | 契約書クリーナー - NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="契約書・利用規約から危険条文を検出し、よくあるリスクワードをハイライトするブラウザ完結ツール（AI不使用）です。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contract Cleaner | 契約書クリーナー - NicheWorks" />
+  <meta property="og:description" content="契約書・利用規約から危険条文を検出し、よくあるリスクワードをハイライトするブラウザ完結ツール（AI不使用）です。" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/contract-cleaner" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="./assets/favicon.png" />
+  <link rel="apple-touch-icon" href="./assets/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div class="nw-brand">
+        <img src="./assets/nicheworks-logo.png" alt="NicheWorks" class="nw-logo" />
+        <div>
+          <div class="nw-tool-label">Contract Cleaner</div>
+          <p class="nw-tagline" data-i18n="tagline">
+            契約書・利用規約のテキストから、よくある危険条文やリスクワードを洗い出す
+            パターン検出ツール（ブラウザ内完結・AI不使用）。
+          </p>
+        </div>
+      </div>
+
+      <div class="nw-lang-switch">
+        <button id="lang-ja" class="active">JP</button>
+        <button id="lang-en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="tool-layout" aria-label="契約書クリーナー">
+      <div class="tool-input-panel">
+        <h1 class="tool-title" data-i18n="inputTitle">契約書テキスト入力</h1>
+        <p class="tool-desc" data-i18n="inputDesc">
+          契約書・利用規約・約款などの本文をテキスト形式でそのまま貼り付けてください。<br />
+          PDFや紙の場合は、ご自身でOCRしてテキスト化したうえで入力してください。<br />
+          入力内容はブラウザ内でのみ処理され、外部には送信されません。
+        </p>
+
+        <textarea id="contractInput" class="contract-input"
+          placeholder="ここに契約書・利用規約の本文テキストを貼り付けてください（ブラウザ内のみで処理され、送信されません）。"
+        ></textarea>
+
+        <div class="tool-actions">
+          <button id="scanButton" class="btn-primary" data-i18n="scanBtn">スキャンする</button>
+          <button id="clearButton" class="btn-ghost" data-i18n="clearBtn">クリア</button>
+        </div>
+
+        <div class="disclaimer-box" data-i18n="disclaimer">
+          本ツールは注意喚起・学習目的の補助ツールです。法的助言や結果の正確性を保証するものではありません。
+          最終的な判断は必ずご自身と専門家の判断で行ってください。
+        </div>
+      </div>
+
+      <div class="tool-result-panel">
+        <div class="result-header">
+          <h2 data-i18n="resultTitle">検出結果</h2>
+          <div class="legend">
+            <span class="legend-item legend-high">高リスク</span>
+            <span class="legend-item legend-medium">中リスク</span>
+            <span class="legend-item legend-low">低リスク</span>
+          </div>
+        </div>
+
+        <div id="summaryBox" class="summary-box" data-i18n="summaryInit">
+          テキストを入力して「スキャンする」を押すと、ここに検出結果の概要が表示されます。
+        </div>
+
+        <div id="resultList" class="result-list"></div>
+
+        <div class="highlight-view-wrapper">
+          <div class="highlight-view-header">
+            <h3 data-i18n="highlightTitle">ハイライト表示（参考用）</h3>
+            <p data-i18n="highlightDesc">
+              入力テキスト中の該当部分を色付きで表示します。
+              読みにくい場合は元テキスト（左ペイン）も併せて確認してください。
+            </p>
+          </div>
+          <div id="highlightView" class="highlight-view" data-i18n="highlightInit">
+            ここに入力テキストのハイライト表示が出ます。まず左側に契約書テキストを貼り付けてください。
+          </div>
+        </div>
+
+        <div class="donation-box">
+          <p class="donation-text" data-i18n="donationText">
+            このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。<br />
+            If this tool was helpful, you can support future updates here:
+          </p>
+          <div class="donation-links">
+            <a href="https://ofuse.me/nicheworks" target="_blank" class="donation-btn ofuse">💌 OFUSE</a>
+            <a href="https://ko-fi.com/nicheworks" target="_blank" class="donation-btn kofi">☕ Ko-fi</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <div class="nw-footer-inner">
+      <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+      <p class="nw-footer-line">
+        当サイトには広告が含まれる場合があります。掲載情報の正確性や最新性は保証されません。
+        ご利用の際は必ず公式情報・原本をご確認ください。
+      </p>
+      <p class="nw-footer-line"><a href="https://nicheworks.pages.dev" target="_blank">nicheworks.pages.dev</a></p>
+    </div>
+  </footer>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "00000000000000000000000000000000"}'></script>
+  <script src="app.js"></script>
+</body>
+</html>

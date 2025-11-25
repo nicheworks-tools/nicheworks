@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About - NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About NicheWorks and its principles." />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <header>
+      <h1>About</h1>
+      <p class="subtitle">
+        NicheWorks is a personal project that quietly ships small, practical web tools.
+      </p>
+
+      <nav class="nav-inline">
+        <a href="/en/">Home</a>
+        <span class="sep">｜</span>
+        <a href="/en/about.html">About</a>
+        <span class="sep">｜</span>
+        <a href="/en/privacy.html">Privacy</a>
+        <span class="sep">｜</span>
+        <a href="/en/contact.html">Contact</a>
+        <span class="sep">｜</span>
+        <a href="/index.html">JP</a>
+      </nav>
+    </header>
+
+    <section class="block">
+      <h2>Overview</h2>
+      <ul class="list">
+        <li>Maintainer: NicheWorks (personal project)</li>
+        <li>Contact: <span id="mail"></span></li>
+        <li>Site URL: <a href="https://nicheworks.pages.dev/">https://nicheworks.pages.dev/</a></li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>Principles</h2>
+      <p>
+        We focus on tools that are boring but necessary.<br>
+        Browser-first, minimal, and practical — with no excessive tracking or data collection.
+      </p>
+    </section>
+
+    <section class="block donate-block">
+      <h2>Support</h2>
+      <p>
+        If you find value in these tools, supporting us is entirely optional but appreciated.
+      </p>
+      <div class="donate-buttons">
+        <a href="https://ofuse.me/" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+  <div class="footer-row">
+    <p>© 2025 NicheWorks</p>
+    <p class="small">NicheWorks is a small collection of practical tools built by an indie developer. Content may change without notice.</p>
+  </div>
+
+  <div class="footer-row footer-links small">
+    <a href="/en/about.html">About</a>
+    <span class="sep">/</span>
+    <a href="/en/privacy.html">Privacy</a>
+    <span class="sep">/</span>
+    <a href="/en/contact.html">Contact</a>
+  </div>
+
+  <div class="footer-row support-row">
+    <p class="small footer-label">Support / Donations</p>
+    <div class="support-links">
+      <a class="support-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Support on Ko‑fi</a>
+      <a class="support-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Support on OFUSE</a>
+    </div>
+    <p class="small muted">Donations are optional and help keep the tools free and maintained.</p>
+  </div>
+
+  <div class="footer-row small muted">
+    Ads may be displayed to support ongoing operation.
+  </div>
+</footer>
+
+  </main>
+
+  <script>
+    const u = "nicheworks.tools";
+    const d = "gmail.com";
+    const addr = u + "@" + d;
+    const el = document.getElementById("mail");
+    if (el) {
+      el.innerHTML = '<a href="mailto:' + addr + '">' + addr + "</a>";
+    }
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

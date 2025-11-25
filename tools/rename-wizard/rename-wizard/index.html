@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rename Wizard | ファイル名一括整形ツール｜NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ブラウザだけで動くファイル名整形ツール。全角→半角、空白→アンダースコア、禁止文字除去などを一括で実行。すべてローカル処理で完結します。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rename Wizard | ファイル名一括整形ツール｜NicheWorks" />
+  <meta property="og:description" content="ブラウザだけで動く安全なファイル名一括整形ツール。全角→半角、空白→アンダースコア、禁止文字除去などを一括処理。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/rename-wizard/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/og/rename-wizard.png" />
+  <link rel="icon" type="image/png" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div class="nw-header-top">
+        <a href="/" class="nw-logo-link">
+          <img src="/nicheworks-logo.png" alt="NicheWorks" class="nw-logo" />
+        </a>
+        <div class="nw-header-titles">
+          <h1 class="nw-title">Rename Wizard</h1>
+          <p class="nw-subtitle">
+            ファイル名の「めんどくさい整形」をブラウザだけで一括処理。
+          </p>
+        </div>
+        <div class="nw-lang-switch">
+          日本語 | <a href="/en/rename-wizard/">English</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nw-nav">
+    <div class="nw-nav-inner">
+      <a href="https://nicheworks.pages.dev/">Home</a>
+      <a href="https://manual-finder.pages.dev/">ManualFinder</a>
+      <a href="https://trash-navi.pages.dev/">TrashNavi</a>
+      <a href="https://cancel-navi.pages.dev/">解約どこナビ</a>
+      <span class="nw-nav-current">Rename Wizard</span>
+    </div>
+  </nav>
+
+  <main class="nw-main">
+    <!-- 上部広告枠（必須） -->
+    <div class="ad-slot ad-top">
+      広告枠（準備中）
+      <!-- 審査通過後に広告コード -->
+    </div>
+
+    <section class="tool-card">
+      <h2 class="section-title">1. ファイルを選択 / ドロップ</h2>
+      <p class="section-desc">
+        処理はすべてこのブラウザ内で完結し、ファイル名のみを参照します。サーバーへアップロードされることはありません。
+      </p>
+
+      <div id="dropzone" class="dropzone">
+        <p class="drop-main">ここにファイルをドラッグ＆ドロップ</p>
+        <p class="drop-sub">または</p>
+        <button id="fileSelectButton" class="btn">ファイルを選択</button>
+        <input id="fileInput" type="file" multiple class="file-input" />
+      </div>
+
+      <div class="options">
+        <h3 class="options-title">整形ルール（Rename Rules）</h3>
+        <label class="option-item">
+          <input type="checkbox" id="optNormalizeWidth" checked />
+          全角英数字・記号を半角に統一（Unicode NFKC）
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optSpaceToUnderscore" checked />
+          空白類をアンダースコアに変換
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optLowercaseExt" checked />
+          拡張子を小文字に統一（.JPG → .jpg）
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optLowercaseBase" />
+          ベース名も小文字に統一
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optCollapseUnderscore" checked />
+          連続する区切り文字（__ / -- / .. など）を1つに圧縮
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optTrimEdge" checked />
+          先頭・末尾の . _ - を削除
+        </label>
+        <label class="option-item">
+          <input type="checkbox" id="optRemoveForbidden" checked />
+          禁止文字 / \ : * ? " &lt; &gt; | を削除（または置換）
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="runButton" class="btn btn-primary">ファイル名を整形する</button>
+        <button id="copyButton" class="btn btn-ghost" disabled>整形後リストをコピー</button>
+        <button id="clearButton" class="btn btn-ghost">リセット</button>
+      </div>
+    </section>
+
+    <section class="tool-card">
+      <h2 class="section-title">2. プレビュー</h2>
+      <p class="section-desc">
+        元のファイル名と整形後ファイル名のマッピングを一覧表示します。このツールは実ファイルを自動リネームしません。
+        一覧をコピーして、お好みのスクリプトやバッチ処理に適用してください。
+      </p>
+
+      <div id="noFilesMessage" class="empty-state">
+        ファイルがまだ選択されていません。
+      </div>
+
+      <div id="resultWrapper" class="table-wrapper hidden">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>元のファイル名</th>
+              <th>整形後ファイル名</th>
+              <th>変更</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody"></tbody>
+        </table>
+      </div>
+      <div id="copyStatus" class="copy-status" aria-live="polite"></div>
+    </section>
+
+    <!-- 下部広告枠（任意。短めページでは推奨） -->
+    <div class="ad-slot ad-bottom">
+      広告枠（準備中）
+      <!-- 審査通過後に広告コード -->
+    </div>
+
+    <!-- 寄付導線（パターンB：2ボタンのみ） -->
+    <div class="nw-donate">
+      <p class="nw-donate-text">
+      このツールが役に立ったら、コーヒー1杯ぶんのご支援も検討してもらえると嬉しいです。
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
+        nicheworks.pages.dev
+      </a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'>
+  </script>
+</body>
+</html>

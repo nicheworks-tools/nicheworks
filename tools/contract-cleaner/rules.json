@@ -1,0 +1,124 @@
+[
+  {
+    "id": "auto_renew",
+    "label": "自動更新・解約申し出がない場合の継続",
+    "category": "自動更新・解約猶予",
+    "risk": "high",
+    "type": "regex",
+    "patterns": [
+      "re:自動(的)?に更新されるものとする",
+      "re:何ら申し出がない場合[、，]?本契約は自動更新され",
+      "re:申し出がない限り?同一条件で更新",
+      "自動更新"
+    ]
+  },
+  {
+    "id": "short_cancel_window",
+    "label": "解約猶予期間が極端に短い",
+    "category": "自動更新・解約猶予",
+    "risk": "medium",
+    "type": "regex",
+    "patterns": [
+      "re:更新日の?前日までに.+書面.+通知",
+      "re:更新日の?7日以内に.+申し出",
+      "re:解約の申請がない場合"
+    ]
+  },
+  {
+    "id": "penalty_fee",
+    "label": "中途解約ペナルティ・違約金",
+    "category": "中途解約ペナルティ・違約金",
+    "risk": "high",
+    "type": "regex",
+    "patterns": [
+      "違約金",
+      "解約金",
+      "re:残存期間の利用料金を一括して支払うものとする",
+      "re:残期間に相当する料金を請求できる",
+      "re:最低利用期間"
+    ]
+  },
+  {
+    "id": "unilateral_change",
+    "label": "事前同意なしの一方的な変更",
+    "category": "一方的変更・免責",
+    "risk": "high",
+    "type": "regex",
+    "patterns": [
+      "re:当社の裁量により.*変更できるものとする",
+      "re:ユーザーへの事前の通知なく.*変更できる",
+      "re:当社は.*任意に.*改定できる",
+      "re:当社の判断により.*停止.*中断"
+    ]
+  },
+  {
+    "id": "broad_indemnity",
+    "label": "広範な免責条項",
+    "category": "一方的変更・免責",
+    "risk": "medium",
+    "type": "regex",
+    "patterns": [
+      "re:当社は一切の責任を負わない",
+      "re:賠償責任は.*直接かつ通常の損害に限られる",
+      "re:逸失利益.*責任を負わない"
+    ]
+  },
+  {
+    "id": "personal_info_thirdparty",
+    "label": "個人情報の広い第三者提供",
+    "category": "個人情報提供",
+    "risk": "high",
+    "type": "regex",
+    "patterns": [
+      "re:業務提携先その他の第三者に提供することがある",
+      "re:当社が必要と判断した場合.*第三者に提供",
+      "re:個人情報.*マーケティング.*利用"
+    ]
+  },
+  {
+    "id": "complex_cancel_method",
+    "label": "解約手続きが過度に限定・煩雑",
+    "category": "解約手続きの煩雑さ",
+    "risk": "medium",
+    "type": "regex",
+    "patterns": [
+      "re:解約は書面による申請に限る",
+      "re:当社所定の書式による申請",
+      "re:所定の窓口に来店",
+      "re:電話のみで受け付ける"
+    ]
+  },
+  {
+    "id": "exclusive_jurisdiction",
+    "label": "特定裁判所の専属的合意管轄",
+    "category": "管轄裁判所条項",
+    "risk": "low",
+    "type": "regex",
+    "patterns": [
+      "re:訴訟の必要が生じた場合.*所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とする",
+      "専属的合意管轄裁判所"
+    ]
+  },
+  {
+    "id": "suspension_broad",
+    "label": "サービス停止・解除の広範な裁量",
+    "category": "一方的変更・免責",
+    "risk": "medium",
+    "type": "regex",
+    "patterns": [
+      "re:当社は.*自己の裁量により.*本サービスの提供を停止",
+      "re:当社は.*何らの責任を負うことなく.*利用停止"
+    ]
+  },
+  {
+    "id": "auto_charge_after_trial",
+    "label": "無料期間後の自動課金",
+    "category": "自動更新・解約猶予",
+    "risk": "high",
+    "type": "regex",
+    "patterns": [
+      "re:無料期間終了後、自動的に有料プランへ移行",
+      "re:無料期間中に解約の手続きがない場合.*料金が発生"
+    ]
+  }
+]

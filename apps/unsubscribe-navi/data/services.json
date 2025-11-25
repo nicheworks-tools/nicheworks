@@ -1,0 +1,54 @@
+[
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "site": "https://www.netflix.com",
+    "cancelPage": "https://help.netflix.com/ja/node/407",
+    "keywords": [
+      "動画配信",
+      "サブスク"
+    ],
+    "notes": "ヘルプセンターから解約手続き。アカウント設定から。",
+    "status": "ok",
+    "title": ""
+  },
+  {
+    "id": "amazon-prime",
+    "name": "Amazonプライム",
+    "site": "https://www.amazon.co.jp",
+    "cancelPage": "https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=GFGWZ7FQWQ2ZMDAB",
+    "keywords": [
+      "通販",
+      "サブスク"
+    ],
+    "notes": "アカウントサービス内「プライム会員情報の管理」から解約。",
+    "status": "ok",
+    "title": ""
+  },
+  {
+    "id": "spotify",
+    "name": "Spotify",
+    "site": "https://www.spotify.com",
+    "cancelPage": "https://support.spotify.com/jp/article/cancel-premium/",
+    "keywords": [
+      "音楽",
+      "サブスク"
+    ],
+    "notes": "Webブラウザでログインし、アカウントページからキャンセル。",
+    "status": "ok",
+    "title": ""
+  },
+  {
+    "id": "u-next",
+    "name": "U-NEXT",
+    "site": "https://video.unext.jp",
+    "cancelPage": "https://help.unext.jp/guide/detail/support_kaijo",
+    "keywords": [
+      "動画配信",
+      "日本"
+    ],
+    "notes": "「設定・サポート」→「契約内容の確認・解約」から操作。",
+    "status": "ok",
+    "title": ""
+  }
+]

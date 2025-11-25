@@ -1,0 +1,513 @@
+[
+  {
+    "pref": "東京都",
+    "city": "千代田区",
+    "name": "千代田区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.chiyoda.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "中央区",
+    "name": "中央区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.chuo.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "港区",
+    "name": "港区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.minato.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "新宿区",
+    "name": "新宿区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.shinjuku.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "文京区",
+    "name": "文京区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.bunkyo.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "台東区",
+    "name": "台東区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.taito.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "墨田区",
+    "name": "墨田区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.sumida.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "江東区",
+    "name": "江東区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.koto.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "品川区",
+    "name": "品川区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.shinagawa.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "目黒区",
+    "name": "目黒区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.meguro.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "大田区",
+    "name": "大田区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.ota.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "世田谷区",
+    "name": "世田谷区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.setagaya.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "渋谷区",
+    "name": "渋谷区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.shibuya.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "中野区",
+    "name": "中野区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.tokyo-nakano.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "杉並区",
+    "name": "杉並区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.suginami.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "豊島区",
+    "name": "豊島区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.toshima.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "北区",
+    "name": "北区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kita.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "荒川区",
+    "name": "荒川区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.arakawa.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "板橋区",
+    "name": "板橋区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.itabashi.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "練馬区",
+    "name": "練馬区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.nerima.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "足立区",
+    "name": "足立区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.adachi.tokyo.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "葛飾区",
+    "name": "葛飾区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.katsushika.lg.jp/"
+  },
+  {
+    "pref": "東京都",
+    "city": "江戸川区",
+    "name": "江戸川区 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.edogawa.tokyo.jp/"
+  },
+  {
+    "pref": "北海道",
+    "city": "札幌市",
+    "name": "札幌市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.sapporo.jp/"
+  },
+  {
+    "pref": "青森県",
+    "city": "青森市",
+    "name": "青森市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.aomori.aomori.jp/"
+  },
+  {
+    "pref": "岩手県",
+    "city": "盛岡市",
+    "name": "盛岡市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.morioka.iwate.jp/"
+  },
+  {
+    "pref": "宮城県",
+    "city": "仙台市",
+    "name": "仙台市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.sendai.jp/"
+  },
+  {
+    "pref": "秋田県",
+    "city": "秋田市",
+    "name": "秋田市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.akita.akita.jp/"
+  },
+  {
+    "pref": "山形県",
+    "city": "山形市",
+    "name": "山形市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.yamagata-yamagata.lg.jp/"
+  },
+  {
+    "pref": "福島県",
+    "city": "福島市",
+    "name": "福島市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.fukushima.fukushima.jp/"
+  },
+  {
+    "pref": "茨城県",
+    "city": "水戸市",
+    "name": "水戸市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.mito.lg.jp/"
+  },
+  {
+    "pref": "栃木県",
+    "city": "宇都宮市",
+    "name": "宇都宮市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.utsunomiya.tochigi.jp/"
+  },
+  {
+    "pref": "群馬県",
+    "city": "前橋市",
+    "name": "前橋市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.maebashi.gunma.jp/"
+  },
+  {
+    "pref": "埼玉県",
+    "city": "さいたま市",
+    "name": "さいたま市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.saitama.jp/"
+  },
+  {
+    "pref": "千葉県",
+    "city": "千葉市",
+    "name": "千葉市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.chiba.jp/"
+  },
+  {
+    "pref": "神奈川県",
+    "city": "横浜市",
+    "name": "横浜市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.yokohama.lg.jp/"
+  },
+  {
+    "pref": "神奈川県",
+    "city": "川崎市",
+    "name": "川崎市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kawasaki.jp/"
+  },
+  {
+    "pref": "神奈川県",
+    "city": "相模原市",
+    "name": "相模原市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.sagamihara.kanagawa.jp/"
+  },
+  {
+    "pref": "新潟県",
+    "city": "新潟市",
+    "name": "新潟市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.niigata.lg.jp/"
+  },
+  {
+    "pref": "富山県",
+    "city": "富山市",
+    "name": "富山市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.toyama.toyama.jp/"
+  },
+  {
+    "pref": "石川県",
+    "city": "金沢市",
+    "name": "金沢市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www4.city.kanazawa.lg.jp/"
+  },
+  {
+    "pref": "福井県",
+    "city": "福井市",
+    "name": "福井市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.fukui.lg.jp/"
+  },
+  {
+    "pref": "山梨県",
+    "city": "甲府市",
+    "name": "甲府市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kofu.yamanashi.jp/"
+  },
+  {
+    "pref": "長野県",
+    "city": "長野市",
+    "name": "長野市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.nagano.nagano.jp/"
+  },
+  {
+    "pref": "岐阜県",
+    "city": "岐阜市",
+    "name": "岐阜市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.gifu.lg.jp/"
+  },
+  {
+    "pref": "静岡県",
+    "city": "静岡市",
+    "name": "静岡市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.shizuoka.lg.jp/"
+  },
+  {
+    "pref": "静岡県",
+    "city": "浜松市",
+    "name": "浜松市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.hamamatsu.shizuoka.jp/"
+  },
+  {
+    "pref": "愛知県",
+    "city": "名古屋市",
+    "name": "名古屋市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.nagoya.jp/"
+  },
+  {
+    "pref": "三重県",
+    "city": "津市",
+    "name": "津市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.info.city.tsu.mie.jp/"
+  },
+  {
+    "pref": "滋賀県",
+    "city": "大津市",
+    "name": "大津市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.otsu.lg.jp/"
+  },
+  {
+    "pref": "京都府",
+    "city": "京都市",
+    "name": "京都市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kyoto.lg.jp/"
+  },
+  {
+    "pref": "大阪府",
+    "city": "大阪市",
+    "name": "大阪市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.osaka.lg.jp/"
+  },
+  {
+    "pref": "兵庫県",
+    "city": "神戸市",
+    "name": "神戸市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kobe.lg.jp/"
+  },
+  {
+    "pref": "奈良県",
+    "city": "奈良市",
+    "name": "奈良市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.nara.lg.jp/"
+  },
+  {
+    "pref": "和歌山県",
+    "city": "和歌山市",
+    "name": "和歌山市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.wakayama.wakayama.jp/"
+  },
+  {
+    "pref": "鳥取県",
+    "city": "鳥取市",
+    "name": "鳥取市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.tottori.lg.jp/"
+  },
+  {
+    "pref": "島根県",
+    "city": "松江市",
+    "name": "松江市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.matsue.lg.jp/"
+  },
+  {
+    "pref": "岡山県",
+    "city": "岡山市",
+    "name": "岡山市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.okayama.jp/"
+  },
+  {
+    "pref": "広島県",
+    "city": "広島市",
+    "name": "広島市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.hiroshima.lg.jp/"
+  },
+  {
+    "pref": "山口県",
+    "city": "山口市",
+    "name": "山口市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.yamaguchi.lg.jp/"
+  },
+  {
+    "pref": "徳島県",
+    "city": "徳島市",
+    "name": "徳島市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.tokushima.tokushima.jp/"
+  },
+  {
+    "pref": "香川県",
+    "city": "高松市",
+    "name": "高松市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.takamatsu.kagawa.jp/"
+  },
+  {
+    "pref": "愛媛県",
+    "city": "松山市",
+    "name": "松山市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.matsuyama.ehime.jp/"
+  },
+  {
+    "pref": "高知県",
+    "city": "高知市",
+    "name": "高知市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kochi.kochi.jp/"
+  },
+  {
+    "pref": "福岡県",
+    "city": "福岡市",
+    "name": "福岡市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.fukuoka.lg.jp/"
+  },
+  {
+    "pref": "福岡県",
+    "city": "北九州市",
+    "name": "北九州市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kitakyushu.lg.jp/"
+  },
+  {
+    "pref": "佐賀県",
+    "city": "佐賀市",
+    "name": "佐賀市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.saga.lg.jp/"
+  },
+  {
+    "pref": "長崎県",
+    "city": "長崎市",
+    "name": "長崎市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.nagasaki.lg.jp/"
+  },
+  {
+    "pref": "熊本県",
+    "city": "熊本市",
+    "name": "熊本市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kumamoto.jp/"
+  },
+  {
+    "pref": "大分県",
+    "city": "大分市",
+    "name": "大分市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.oita.oita.jp/"
+  },
+  {
+    "pref": "宮崎県",
+    "city": "宮崎市",
+    "name": "宮崎市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.miyazaki.miyazaki.jp/"
+  },
+  {
+    "pref": "鹿児島県",
+    "city": "鹿児島市",
+    "name": "鹿児島市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.kagoshima.lg.jp/"
+  },
+  {
+    "pref": "沖縄県",
+    "city": "那覇市",
+    "name": "那覇市 公式サイト（ごみ情報）",
+    "type": "公式サイト",
+    "url": "https://www.city.naha.okinawa.jp/"
+  }
+]
