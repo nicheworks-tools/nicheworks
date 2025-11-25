@@ -6,29 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
+    id="metaDescription"
     content="Nginx / Apache / JSON Lines などのテキストログをブラウザ内だけで整形・検索するログビューア。ログは送信されません。"
   />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" id="ogTitle" content="地味ログ整形屋（LogFormatter） - NicheWorks" />
+  <meta property="og:description" id="ogDesc" content="Nginx / Apache / JSON Lines などのテキストログをブラウザ内だけで整形・検索するログビューア。ログは送信されません。" />
+  <meta property="og:url" content="https://log-formatter.pages.dev/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- favicon（必要に応じて差し替え） -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="sr-only" href="#main" data-i18n="sr_skip_to_main">本文へスキップ</a>
+
   <!-- 共通ヘッダー -->
   <header class="nw-header">
     <div class="nw-header-inner">
-      <h1 class="nw-title">地味ログ整形屋（LogFormatter）</h1>
-      <p class="nw-subtitle">
+      <div class="nw-header-top">
+        <h1 class="nw-title" data-i18n="title">地味ログ整形屋（LogFormatter）</h1>
+        <div class="nw-lang-switch" aria-label="Language switch">
+          <button type="button" class="lang-btn lang-active" data-lang="ja">JP</button>
+          <span class="lang-divider">/</span>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+      <p class="nw-subtitle" data-i18n="subtitle">
         Nginx / Apache / JSON Lines / プレーンテキストの長いログを、
         ブラウザ内で整形・色分け・フィルタ表示するための実務ツール。
       </p>
-      <p class="notice">
+      <p class="notice" data-i18n="notice_nosend">
         このツールは JavaScript のみで動作し、入力されたログはネットワーク送信されません。
         機密ログもブラウザ内でのみ処理されます。
       </p>
     </div>
   </header>
 
-  <main class="nw-main">
+  <main id="main" class="nw-main">
     <!-- 上部広告枠 -->
-    <div class="ad-slot ad-top">
+    <div class="ad-slot ad-top" data-i18n="ad_preparing">
       広告枠（準備中）
       <!-- 審査通過後に広告コードを挿入 -->
     </div>
@@ -36,14 +58,14 @@
     <!-- ツール本体 -->
     <section class="input-panel">
       <div class="input-header">
-        <label for="logInput" class="label">ログをここにペースト：</label>
+        <label for="logInput" class="label" data-i18n="paste_label">ログをここにペースト：</label>
         <div class="input-actions">
-          <button id="sampleButton" class="btn-ghost btn-xs">
+          <button id="sampleButton" class="btn-ghost btn-xs" data-i18n="btn_sample">
             サンプルログを入れる
           </button>
           <label class="toggle-dark">
             <input type="checkbox" id="darkModeToggle" />
-            ダークモード
+            <span data-i18n="toggle_dark">ダークモード</span>
           </label>
         </div>
       </div>
@@ -52,59 +74,62 @@
         id="logInput"
         class="log-input"
         placeholder='例: 192.168.0.1 - - [10/Nov/2025:12:34:56 +0900] "GET /index.html HTTP/1.1" 200 1234 "-" "Mozilla/5.0"'
+        data-i18n-placeholder="ph_sample_line"
       ></textarea>
 
       <div class="controls">
         <div class="control-group">
-          <label for="formatSelect">ログ形式:</label>
+          <label for="formatSelect" data-i18n="label_format">ログ形式:</label>
           <select id="formatSelect">
-            <option value="nginx">Nginx</option>
-            <option value="apache">Apache</option>
-            <option value="jsonl">JSON Lines</option>
-            <option value="plain">プレーンテキスト</option>
+            <option value="nginx" data-i18n="format_nginx">Nginx</option>
+            <option value="apache" data-i18n="format_apache">Apache</option>
+            <option value="jsonl" data-i18n="format_jsonl">JSON Lines</option>
+            <option value="plain" data-i18n="format_plain">プレーンテキスト</option>
           </select>
         </div>
 
         <div class="control-group">
-          <label for="statusFilter">ステータス:</label>
+          <label for="statusFilter" data-i18n="label_status">ステータス:</label>
           <select id="statusFilter">
-            <option value="all">すべて</option>
-            <option value="2xx">2xx</option>
-            <option value="3xx">3xx</option>
-            <option value="4xx">4xx</option>
-            <option value="5xx">5xx</option>
+            <option value="all" data-i18n="status_all">すべて</option>
+            <option value="2xx" data-i18n="status_2xx">2xx</option>
+            <option value="3xx" data-i18n="status_3xx">3xx</option>
+            <option value="4xx" data-i18n="status_4xx">4xx</option>
+            <option value="5xx" data-i18n="status_5xx">5xx</option>
           </select>
         </div>
 
         <div class="control-group">
-          <label for="textFilter">含めるキーワード（スペース区切り可）:</label>
+          <label for="textFilter" data-i18n="label_include">含めるキーワード（スペース区切り可）:</label>
           <input
             type="text"
             id="textFilter"
             placeholder="例: error timeout /api"
+            data-i18n-placeholder="ph_include"
           />
         </div>
 
         <div class="control-group">
-          <label for="excludeFilter">除外キーワード（スペース区切り可）:</label>
+          <label for="excludeFilter" data-i18n="label_exclude">除外キーワード（スペース区切り可）:</label>
           <input
             type="text"
             id="excludeFilter"
             placeholder="例: healthcheck metrics"
+            data-i18n-placeholder="ph_exclude"
           />
         </div>
 
         <div class="control-group checkbox-group">
           <label>
             <input type="checkbox" id="onlyMatched" />
-            条件に合う行のみ表示
+            <span data-i18n="label_onlymatched">条件に合う行のみ表示</span>
           </label>
         </div>
 
-        <button id="formatButton" class="btn-primary">
+        <button id="formatButton" class="btn-primary" data-i18n="btn_format">
           整形して表示
         </button>
-        <button id="clearButton" class="btn-ghost">
+        <button id="clearButton" class="btn-ghost" data-i18n="btn_clear">
           クリア
         </button>
       </div>
@@ -112,7 +137,7 @@
 
     <section class="output-panel">
       <div class="output-header">
-        <div class="output-title">整形結果</div>
+        <div class="output-title" data-i18n="output_title">整形結果</div>
         <div class="output-meta">
           <span id="lineCount">0 行</span>
           <span id="matchedCount"> / 0 行 該当</span>
@@ -121,8 +146,23 @@
       <div id="logOutput" class="log-output"></div>
     </section>
 
+    <!-- 寄付セクション（共通仕様版） -->
+    <section class="nw-donate">
+      <p class="nw-donate-text" data-i18n="donate_text">
+        このツールが運用やデバッグに役立ったら、開発継続のためのご支援をいただけると嬉しいです。
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener" data-i18n="donate_ofuse">
+          💌 OFUSE
+        </a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener" data-i18n="donate_kofi">
+          ☕ Ko-fi
+        </a>
+      </div>
+    </section>
+
     <!-- 下部広告枠 -->
-    <div class="ad-slot ad-bottom">
+    <div class="ad-slot ad-bottom" data-i18n="ad_preparing">
       広告枠（準備中）
       <!-- 審査通過後に広告コードを挿入 -->
     </div>
@@ -130,19 +170,26 @@
 
   <!-- 共通フッター -->
   <footer class="nw-footer">
-    <p class="nw-footer-line">
+    <p class="nw-footer-line" data-i18n="footer_copyright">
       © NicheWorks — Small Web Tools for Boring Tasks
     </p>
-    <p class="nw-footer-line">
+    <p class="nw-footer-line" data-i18n="footer_disclaimer">
       当サイトには広告が含まれる場合があります。掲載情報および整形結果の正確性は保証しません。
       必要に応じて原本ログや公式ドキュメントを確認してください。
     </p>
     <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener" data-i18n="footer_brand_link_text">
         nicheworks.pages.dev
       </a>
     </p>
   </footer>
+
+  <!-- Cloudflare Web Analytics（共通トークン） -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'
+  ></script>
 
   <script src="app.js"></script>
 </body>
