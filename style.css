@@ -109,6 +109,12 @@ footer {
   margin-top: 2px;
 }
 
+/* 薄いテキスト */
+.muted {
+  color: var(--sub);
+  opacity: 0.9;
+}
+
 /* フォーム用 */
 
 .input,
