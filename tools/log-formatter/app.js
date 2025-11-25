@@ -18,11 +18,233 @@
   var lineCountEl = document.getElementById("lineCount");
   var matchedCountEl = document.getElementById("matchedCount");
 
+  var langButtons = document.querySelectorAll(".nw-lang-switch .lang-btn");
+
   // 存在チェック（致命的に欠けてたら何もしない）
   if (!logInput || !formatButton || !clearButton || !logOutput) {
     console.error("LogFormatter: 必要な要素が見つかりません。HTMLを確認してください。");
     return;
   }
+
+  // ================================
+  // i18n（日本語 / 英語）
+  // ================================
+
+  var translations = {
+    ja: {
+      title: "地味ログ整形屋（LogFormatter）",
+      subtitle:
+        "Nginx / Apache / JSON Lines / プレーンテキストの長いログを、ブラウザ内で整形・色分け・フィルタ表示するための実務ツール。",
+      notice_nosend:
+        "このツールは JavaScript のみで動作し、入力されたログはネットワーク送信されません。機密ログもブラウザ内でのみ処理されます。",
+      og_title: "地味ログ整形屋（LogFormatter） - NicheWorks",
+      meta_description:
+        "Nginx / Apache / JSON Lines などのテキストログをブラウザ内だけで整形・検索するログビューア。ログは送信されません。",
+      ad_preparing: "広告枠（準備中）",
+      paste_label: "ログをここにペースト：",
+      btn_sample: "サンプルログを入れる",
+      toggle_dark: "ダークモード",
+      ph_sample_line:
+        '例: 192.168.0.1 - - [10/Nov/2025:12:34:56 +0900] "GET /index.html HTTP/1.1" 200 1234 "-" "Mozilla/5.0"',
+      label_format: "ログ形式:",
+      format_nginx: "Nginx",
+      format_apache: "Apache",
+      format_jsonl: "JSON Lines",
+      format_plain: "プレーンテキスト",
+      label_status: "ステータス:",
+      status_all: "すべて",
+      status_2xx: "2xx",
+      status_3xx: "3xx",
+      status_4xx: "4xx",
+      status_5xx: "5xx",
+      label_include: "含めるキーワード（スペース区切り可）:",
+      ph_include: "例: error timeout /api",
+      label_exclude: "除外キーワード（スペース区切り可）:",
+      ph_exclude: "例: healthcheck metrics",
+      label_onlymatched: "条件に合う行のみ表示",
+      btn_format: "整形して表示",
+      btn_clear: "クリア",
+      output_title: "整形結果",
+      lines_count: "{n} 行",
+      matched_count: " / {n} 行 該当",
+      msg_truncated:
+        "※ 行数が多いため先頭 {limit} 行のみ表示しています。必要に応じて分割してください。",
+      donate_text:
+        "このツールが運用やデバッグに役立ったら、開発継続のためのご支援をいただけると嬉しいです。",
+      donate_ofuse: "💌 OFUSE",
+      donate_kofi: "☕ Ko-fi",
+      footer_copyright:
+        "© NicheWorks — Small Web Tools for Boring Tasks",
+      footer_disclaimer:
+        "当サイトには広告が含まれる場合があります。掲載情報および整形結果の正確性は保証しません。必要に応じて原本ログや公式ドキュメントを確認してください。",
+      footer_brand_link_text: "nicheworks.pages.dev",
+      sr_skip_to_main: "本文へスキップ"
+    },
+    en: {
+      title: "LogFormatter (Boring Log Beautifier)",
+      subtitle:
+        "A practical tool to format, colorize, and filter long logs (Nginx / Apache / JSON Lines / Plain text) entirely in your browser.",
+      notice_nosend:
+        "This tool runs purely in JavaScript and never uploads your logs. Everything is processed locally in your browser.",
+      og_title: "LogFormatter - NicheWorks",
+      meta_description:
+        "A browser-only log viewer to format and search Nginx / Apache / JSON Lines logs. Your logs never leave your machine.",
+      ad_preparing: "Ad slot (pending)",
+      paste_label: "Paste your logs here:",
+      btn_sample: "Insert sample logs",
+      toggle_dark: "Dark mode",
+      ph_sample_line:
+        'e.g. 192.168.0.1 - - [10/Nov/2025:12:34:56 +0900] "GET /index.html HTTP/1.1" 200 1234 "-" "Mozilla/5.0"',
+      label_format: "Log format:",
+      format_nginx: "Nginx",
+      format_apache: "Apache",
+      format_jsonl: "JSON Lines",
+      format_plain: "Plain text",
+      label_status: "Status:",
+      status_all: "All",
+      status_2xx: "2xx",
+      status_3xx: "3xx",
+      status_4xx: "4xx",
+      status_5xx: "5xx",
+      label_include: "Include keywords (space-separated):",
+      ph_include: "e.g. error timeout /api",
+      label_exclude: "Exclude keywords (space-separated):",
+      ph_exclude: "e.g. healthcheck metrics",
+      label_onlymatched: "Show matched lines only",
+      btn_format: "Format & show",
+      btn_clear: "Clear",
+      output_title: "Result",
+      lines_count: "{n} lines",
+      matched_count: " / {n} matched",
+      msg_truncated:
+        "* Only the first {limit} lines are shown due to size. Please split your logs if needed.",
+      donate_text:
+        "If this tool helped your ops or debugging work, please consider supporting future development.",
+      donate_ofuse: "💌 OFUSE",
+      donate_kofi: "☕ Ko-fi",
+      footer_copyright:
+        "© NicheWorks — Small Web Tools for Boring Tasks",
+      footer_disclaimer:
+        "This site may contain ads. We do not guarantee the accuracy of displayed information or formatting results. Always check original logs or official documentation.",
+      footer_brand_link_text: "nicheworks.pages.dev",
+      sr_skip_to_main: "Skip to main content"
+    }
+  };
+
+  var currentLang = "ja";
+
+  function t(key, vars) {
+    var dict = translations[currentLang] || {};
+    var s = dict[key] || "";
+    if (vars) {
+      Object.keys(vars).forEach(function (name) {
+        var val = String(vars[name]);
+        s = s.replace(new RegExp("\\{" + name + "\\}", "g"), val);
+      });
+    }
+    return s;
+  }
+
+  function applyI18n() {
+    // テキスト
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var key = el.getAttribute("data-i18n");
+      var val = t(key);
+      if (val) {
+        el.textContent = val;
+      }
+    }
+
+    // placeholder
+    var pnodes = document.querySelectorAll("[data-i18n-placeholder]");
+    for (var j = 0; j < pnodes.length; j++) {
+      var pel = pnodes[j];
+      var pkey = pel.getAttribute("data-i18n-placeholder");
+      var pval = t(pkey);
+      if (pval) {
+        pel.setAttribute("placeholder", pval);
+      }
+    }
+
+    // head 部分
+    var titleEl = document.querySelector("title");
+    if (titleEl) {
+      titleEl.textContent = t("og_title");
+    }
+    var metaDesc = document.getElementById("metaDescription");
+    if (metaDesc) {
+      metaDesc.setAttribute("content", t("meta_description"));
+    }
+    var ogTitle = document.getElementById("ogTitle");
+    if (ogTitle) {
+      ogTitle.setAttribute("content", t("og_title"));
+    }
+    var ogDesc = document.getElementById("ogDesc");
+    if (ogDesc) {
+      ogDesc.setAttribute("content", t("meta_description"));
+    }
+
+    // lang 属性
+    document.documentElement.setAttribute("lang", currentLang);
+
+    // 言語ボタンの active 表示
+    for (var k = 0; k < langButtons.length; k++) {
+      var btn = langButtons[k];
+      var lang = btn.getAttribute("data-lang");
+      if (lang === currentLang) {
+        btn.classList.add("lang-active");
+      } else {
+        btn.classList.remove("lang-active");
+      }
+    }
+
+    // カウンタの再描画（初期化）
+    updateCounts(0, 0);
+  }
+
+  function detectInitialLang() {
+    try {
+      var saved = localStorage.getItem("logf_lang");
+      if (saved === "ja" || saved === "en") {
+        return saved;
+      }
+    } catch (e) {}
+    var nav = (navigator.language || "en").toLowerCase();
+    if (nav.startsWith("ja")) return "ja";
+    return "en";
+  }
+
+  function setLang(lang) {
+    if (!translations[lang]) {
+      lang = "ja";
+    }
+    currentLang = lang;
+    try {
+      localStorage.setItem("logf_lang", lang);
+    } catch (e) {}
+    applyI18n();
+  }
+
+  function initLanguage() {
+    var initial = detectInitialLang();
+    currentLang = initial;
+    applyI18n();
+
+    for (var i = 0; i < langButtons.length; i++) {
+      (function (btn) {
+        btn.addEventListener("click", function () {
+          var lang = btn.getAttribute("data-lang") || "ja";
+          setLang(lang);
+        });
+      })(langButtons[i]);
+    }
+  }
+
+  // ================================
+  // ステータス判定などのロジック
+  // ================================
 
   // Nginx / Apache ログ用（シンプル版）
   // 例: 127.0.0.1 - - [10/Nov/2025:12:34:56 +0900] "GET / HTTP/1.1" 200 1234
@@ -181,6 +403,12 @@
     }
   }
 
+  function updateCounts(total, matched) {
+    if (!lineCountEl || !matchedCountEl) return;
+    lineCountEl.textContent = t("lines_count", { n: total });
+    matchedCountEl.textContent = " " + t("matched_count", { n: matched });
+  }
+
   function formatLogs() {
     var raw = logInput.value || "";
     var lines = raw.replace(/\r\n/g, "\n").split("\n");
@@ -190,8 +418,7 @@
     var matched = 0;
 
     if (!raw.trim()) {
-      lineCountEl.textContent = "0 行";
-      matchedCountEl.textContent = " / 0 行 該当";
+      updateCounts(0, 0);
       return;
     }
 
@@ -210,17 +437,14 @@
     if (truncated) {
       var notice = document.createElement("div");
       notice.className = "log-line system";
-      notice.textContent =
-        "※ 行数が多いため先頭 " +
-        MAX_LINES +
-        " 行のみ表示しています。必要に応じて分割してください。";
+      notice.textContent = t("msg_truncated", { limit: MAX_LINES });
       logOutput.appendChild(notice);
     }
 
     for (var i = 0; i < lines.length; i++) {
       var lineRaw = lines[i];
       var line = lineRaw;
-      if (!line && !line.trim()) continue;
+      if (!line && !String(line).trim()) continue;
       total++;
 
       var lower = normalize(line);
@@ -393,8 +617,7 @@
       logOutput.appendChild(div);
     }
 
-    lineCountEl.textContent = total + " 行";
-    matchedCountEl.textContent = " / " + matched + " 行 該当";
+    updateCounts(total, matched);
   }
 
   function clearAll() {
@@ -404,8 +627,7 @@
     if (statusFilter) statusFilter.value = "all";
     if (onlyMatched) onlyMatched.checked = false;
     logOutput.innerHTML = "";
-    lineCountEl.textContent = "0 行";
-    matchedCountEl.textContent = " / 0 行 該当";
+    updateCounts(0, 0);
   }
 
   // サンプルログ投入
@@ -480,11 +702,13 @@
     el.addEventListener("input", function () {
       if (!logInput.value.trim()) {
         logOutput.innerHTML = "";
-        lineCountEl.textContent = "0 行";
-        matchedCountEl.textContent = " / 0 行 該当";
+        updateCounts(0, 0);
         return;
       }
       formatLogs();
     });
   }
+
+  // 言語初期化
+  initLanguage();
 })();
