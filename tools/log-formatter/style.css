@@ -58,6 +58,17 @@ body {
     sans-serif;
 }
 
+/* sr-only */
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* 共通ヘッダー */
 
 .nw-header {
@@ -69,6 +80,13 @@ body {
 .nw-header-inner {
   max-width: 960px;
   margin: 0 auto;
+}
+
+.nw-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 }
 
 .nw-title {
@@ -92,6 +110,43 @@ body {
   background: var(--accent-soft);
   border: 1px solid var(--border);
   display: inline-block;
+}
+
+/* 言語切り替え */
+
+.nw-lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.lang-divider {
+  opacity: 0.7;
+}
+
+.lang-btn {
+  padding: 2px 6px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+.lang-btn:hover {
+  background: var(--border-soft);
+  color: var(--text);
+}
+
+.lang-btn.lang-active {
+  border-color: var(--border);
+  color: var(--text);
+  transform: translateY(-1px);
 }
 
 /* 共通メインラッパー */
@@ -427,6 +482,56 @@ body.dark-mode .log-line.dim {
   font-style: italic;
 }
 
+/* 寄付セクション */
+
+.nw-donate {
+  margin-top: 12px;
+  margin-bottom: 4px;
+  padding: 10px 10px 8px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  background: var(--bg-soft);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.nw-donate-text {
+  margin: 0 0 6px;
+}
+
+.nw-donate-links {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nw-donate-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 11px;
+  text-decoration: none;
+  color: var(--text);
+  background: #ffffff;
+  transition: background var(--transition), border-color var(--transition),
+    transform var(--transition), box-shadow var(--transition);
+}
+
+body.dark-mode .nw-donate-links a {
+  background: #020817;
+  color: var(--text);
+  border-color: #111827;
+}
+
+.nw-donate-links a:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
 /* Responsive */
 
 @media (max-width: 720px) {
@@ -436,6 +541,12 @@ body.dark-mode .log-line.dim {
 
   .nw-main {
     padding: 10px;
+  }
+
+  .nw-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 
   .input-header {
