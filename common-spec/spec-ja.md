@@ -2,16 +2,51 @@
 
 ## 0. 対象
 
-* 母艦 `nicheworks.pages.dev`
-* 解約どこナビ / ManualFinder / TrashNavi / CivicDoc / Contract Cleaner / etc.
-* その他：NicheWorks名義の静的ツール（ブラウザ完結系）
+- 母艦サイト：`https://nicheworks.pages.dev/`
+- NicheWorks 名義の静的ツール（ブラウザ完結系）
+  - 解約どこナビ / ManualFinder / TrashNavi / CivicDoc / Contract Cleaner / LogFormatter / Rename Wizard / ほか
+- レイアウトが特殊なツール(LogFormatter 等)は「可能な範囲で適用」。
 
-※レイアウトが特殊なツール(LogFormatter等)は「可能な範囲で適用」。
+> 原則：**ツールごとに個別のリポジトリは持たず、NicheWorks Suite 1 リポジトリの中で管理する。**
 
-**公式アセット**
+---
 
-* プロジェクトファイルにアップロード済みの `nicheworks-logo.png` を暫定公式ロゴとする。
+## 0.1 NicheWorks Suite のディレクトリ構成（必須）
+
+リポジトリ `nicheworks-tools/nicheworks` は、次の構成を前提とする。
+
+```txt
+/
+├── index.html, /en/...     # 母艦サイト（ルート直下）
+├── nicheworks/             # （将来用・既存ファイル。特別な指示がない限り触らない）
+├── tools/                  # 各 Web ツール本体（静的）
+│   ├── manual-finder/
+│   ├── trashnavi/
+│   ├── log-formatter/
+│   ├── rename-wizard/
+│   └── contract-cleaner/
+├── apps/                   # 特殊・非静的ツール（例：Next.jsなど）
+│   └── wp-structure-analyzer/ など
+├── assets/                 # 共通ロゴ・ファビコン・OGP画像など
+│   ├── nicheworks-logo.png
+│   ├── favicon.ico
+│   ├── nicheworks-favicon-white.ico
+│   └── ogp.png など
+├── common-spec/            # 本仕様書ほか
+│   └── spec-ja.md
+└── _archive/               # 旧版 ZIP や退役ツール
+````
+
+### 公式アセットとロゴ利用方針
+
+* `assets/nicheworks-logo.png` を暫定公式ロゴとする。
 * favicon / OGP / 各種バナー生成時は、このロゴをベースにする。
+* **母艦サイト以外の各ツールでは、タイトルやヘッダーにロゴ画像を常時表示しないことを標準とする。**
+
+  * 例外的に必要な場合はツールごとに個別検討。
+* 各ツールが独自にロゴや favicon を複製して置くことは禁止。
+
+  * 常に `/assets/...` を参照する。
 
 ---
 
@@ -35,7 +70,6 @@
     </nav>
     -->
   </header>
-
 
   <main class="nw-main">
     <!-- 上部広告枠（必須） -->
@@ -78,6 +112,7 @@
 ```
 
 注意：
+
 * **共通ナビ（他ツールへの横断リンク）は標準仕様ではないため設置しない。**
 * 免責が不要なツールはフッター2行目だけ削除OK。
 * `nw-nav` のリンクは各ツールに合わせて適宜調整。
@@ -97,7 +132,6 @@
 /* 任意ナビ（必要なツールのみ使用）
  ※全ツール共通の横断ナビとしては利用しないこと。
  */
-
 .nw-nav {
   text-align: center;
   margin: 8px 0 12px;
@@ -162,18 +196,28 @@
   margin: 4px 0;
   font-size: 12px;
 }
+.nw-donate-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
 .nw-donate-links a {
   display: inline-block;
-  margin-top: 4px;
-  padding: 6px 12px;
-  background: #f3f4f6;
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 12px;
-  color: #374151;
+  background: #ffffff;
+  font-size: 13px;
+  color: #111827;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 .nw-donate-links a:hover {
-  background: #e5e7eb;
+  background: #f9fafb;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* 寄付フローティングピル（必要ツールのみ） */
@@ -228,7 +272,7 @@
 <meta property="og:title" content="ツール名 | NicheWorks">
 <meta property="og:description" content="同上。">
 <meta property="og:url" content="正式URLを書く">
-<meta property="og:image" content="https://nicheworks.pages.dev/ogp.png">
+<meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
 <meta name="twitter:card" content="summary_large_image">
 ```
@@ -236,21 +280,32 @@
 運用ルール：
 
 * `title` / `og:title` / `description` / `og:url` は必ずツールごとに個別設定。
-* `og:image` は当面 `https://nicheworks.pages.dev/ogp.png` 共通でOK（後日ツール別可）。
+* `og:image` は当面 `https://nicheworks.pages.dev/assets/ogp.png` 共通でOK（後日ツール別可）。
+* **ツール本体の画面にはロゴ画像を必須表示しない。** 必要に応じて個別に検討。
 
 ---
 
-## 4. 共通ファビコン
+## 4. 共通ファビコン & ロゴ参照ルール
 
 方針：
 
-* `nicheworks-logo.png` を元にした `favicon.png` を母艦・各ツールで共通利用。
-* 各プロジェクトのルート or `public/` に `favicon.png` を配置。
+* `assets/` 配下のファイルを **単一ソース** として使用する。
+* 母艦・各ツールで favicon / ロゴを複製しない。
 
 ```html
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/favicon.png">
+<!-- すべてのページ共通で推奨 -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/favicon.ico">
 ```
+
+ロゴ画像を使う場合の例：
+
+```html
+<img src="/assets/nicheworks-logo.png" alt="NicheWorks">
+```
+
+* ロゴを UI に出すのは **母艦または特別に許可したページのみ**。
+* 各ツールでは OGP / タブアイコン目的での利用が中心。
 
 ---
 
@@ -268,13 +323,12 @@
 </script>
 ```
 
-* `YOUR_TOKEN_HERE` は NicheWorks共通トークン。
+* `YOUR_TOKEN_HERE` は NicheWorks 共通トークン。
 * 母艦＋全ツールで同一トークン利用可。
 
 ---
 
-
-## 6. 共通寄付ボタン／支援リンク（全面改訂）
+## 6. 共通寄付ボタン／支援リンク
 
 ### 6-1. 方針
 
@@ -285,8 +339,8 @@
 
 記号の扱い（推奨）:
 
-* **💌 OFUSE**：メッセージ付き・日本発サービスのニュアンス
-* **☕ Ko-fi**：軽いチップ文化・グローバル向けのニュアンス
+* 💌 OFUSE：メッセージ付き・日本発サービスのニュアンス
+* ☕ Ko-fi：軽いチップ文化・グローバル向けのニュアンス
 
 ---
 
@@ -298,7 +352,7 @@
 2. メイン操作（検索フォーム等）の直下
 3. フッター直前（標準）
 
-#### パターンA：テキスト＋2ボタン（標準推奨）
+パターンA（標準）：
 
 ```html
 <div class="nw-donate">
@@ -312,7 +366,7 @@
 </div>
 ```
 
-#### パターンB：2ボタンのみ（本文に支援文言があるツール用）
+パターンB（本文で支援について触れているツール用）：
 
 ```html
 <div class="nw-donate">
@@ -326,119 +380,21 @@
 運用ルール:
 
 * 基本はパターンA。
-* Rename Wizardのように本文中で支援について触れている場合はパターンBでOK。
+* Rename Wizard のように本文中で支援について触れている場合はパターンBでOK。
 * 「広告のすぐ近く」には置かず、独立したセクションとして扱う。
 
 ---
 
-### 6-3. ボタンデザイン（共通CSS）
+### 6-3. フローティング寄付ピル（例外オプション）
 
-※既存 `.nw-donate` ブロックをそのまま利用し、`.nw-donate-links a` を以下のように統一する。
+※ CSS／JS は前章の通り。ここでは運用ルールのみ再掲。
 
-```css
-.nw-donate-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.nw-donate-links a {
-  display: inline-block;
-  padding: 8px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
-  font-size: 13px;
-  color: #111827;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.nw-donate-links a:hover {
-  background: #f9fafb;
-  transform: translateY(-1px);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-```
-
-ポイント:
-
-* 2ボタンが横並びでも、スマホで折り返しても自然な見た目。
-* 広告枠より少し上品に、だがきちんと「押せるボタン」に見えるレベルの目立ち方。
-
----
-
-### 6-4. フローティング寄付ピル（例外的オプション）
-
-対象ツール:
-
-* 極端に縦長のページ
-* 無限スクロールやログビューアなど、インライン寄付が埋もれやすいもの
-
-役割:
-
-* 「ちゃんと使ってくれているユーザー」にだけ、**一度だけそっと出る**案内。
-* 寄付サービスへの直接リンクではなく、**ページ内の寄付セクションへの誘導**に使うことを推奨。
-
-HTML例（ページ末尾付近に設置）:
-
-```html
-<div class="nw-donate-float" id="nw-donate-float">
-  ☕ Support NicheWorks
-  <button class="nw-donate-close" aria-label="Close">×</button>
-</div>
-```
-
-JS例:
-
-```js
-document.addEventListener("DOMContentLoaded", () => {
-  const float = document.getElementById("nw-donate-float");
-  if (!float) return;
-
-  const storageKey = "nw_donate_float_seen";
-  if (localStorage.getItem(storageKey) === "1") return;
-
-  const showAt = 800; // px: ツールごとに調整OK
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > showAt && float.style.display !== "inline-flex") {
-      float.style.display = "inline-flex";
-    }
-  });
-
-  float.addEventListener("click", (e) => {
-    if (e.target.classList.contains("nw-donate-close")) {
-      localStorage.setItem(storageKey, "1");
-      float.style.display = "none";
-      return;
-    }
-
-    // クリック時はページ内の寄付セクションへスクロール（推奨）
-    const target = document.querySelector(".nw-donate");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "center" });
-    } else {
-      // 保険としてKo-fiページなどに飛ばしてもよいが、基本はセクション誘導
-      window.open("https://ko-fi.com/nicheworks", "_blank", "noopener");
-    }
-
-    localStorage.setItem(storageKey, "1");
-    float.style.display = "none";
-  });
-});
-```
-
-運用ルール:
-
-* **寄付専用のみ**。広告のフローティングは禁止。
-* 長尺／無限系ツールでのみ使用可（必須ではない）。
+* 対象：極端に縦長のページ・無限スクロールなど、インライン寄付が埋もれやすいツール。
+* 役割：**よく使っているユーザーにだけ、一度だけそっと出る案内。**
+* 寄付サービスへの直接リンクではなく、**ページ内の寄付セクションへの誘導**が基本。
 * インライン寄付導線も必ず併用する（フローティング単独は禁止）。
-* ✕で即閉じられ、その後は同ブラウザで表示しない。
-* 点滅・派手な色・巨大サイズなどの過度な主張は禁止。
-
+* ✕ボタンで即閉じられ、その後は同ブラウザで表示しない。
+* 広告のフローティングは禁止。
 
 ---
 
@@ -516,8 +472,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 * `/tool/` → 日本語
 * `/tool/en/` → 英語
-* ナビ・フッターに相互リンクを設置
-* 実装コスト高のため、要件がある場合のみ採用。
+* ナビ・フッターに相互リンクを設置。
+* 実装コストが高いため、要件がある場合のみ採用。
 
 ---
 
@@ -543,5 +499,8 @@ document.addEventListener("DOMContentLoaded", () => {
    * `ad-top` は基本必須
    * `ad-inline` / `ad-bottom` はツールの長さに応じて選択
    * フローティング広告は禁止
+7. **ロゴ・favicon・OGP等の画像は `/assets/` に集約し、ツールごとに複製しない。**
+8. **母艦以外のツール画面では、ロゴ画像を標準では表示しない。必要な場合のみ個別判断。**
 
 ---
+
