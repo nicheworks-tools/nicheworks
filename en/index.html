@@ -6,104 +6,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="NicheWorks is a small collection of quiet web tools for boring but necessary tasks. Browser-first, minimal, and practical."
+    content="NicheWorks is a small collection of quiet web tools for annoying-but-necessary tasks. Browser-first, minimal, and practical."
   >
-  <link rel="stylesheet" href="../style.css">
+
+  <!-- Favicon / OGP -->
+  <link rel="icon" href="../../assets/nicheworks-favicon-white.ico">
+  <link rel="apple-touch-icon" href="../../assets/nicheworks-favicon-512-white.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
   <main class="container">
 
     <header>
       <h1>NicheWorks</h1>
-      <p class="subtitle">Small web tools for boring, necessary tasks.</p>
+      <p class="subtitle">A small suite of boring-but-useful web tools</p>
 
-      <nav class="nav-inline">
-        <a href="/en/">Home</a>
-        <span class="sep">｜</span>
-        <a href="/en/about.html">About</a>
-        <span class="sep">｜</span>
-        <a href="/en/privacy.html">Privacy</a>
-        <span class="sep">｜</span>
-        <a href="/en/contact.html">Contact</a>
-        <span class="sep">｜</span>
-        <a href="/index.html">JP</a>
-      </nav>
+      <div class="nav-inline">
+        <span>Language:</span>
+        <a href="../index.html">日本語</a>
+        <span class="sep">/</span>
+        <a href="./index.html">English</a>
+      </div>
     </header>
 
+    <!-- About -->
     <section class="block">
+      <h2>About</h2>
       <p>
-        NicheWorks is a collection of small, quiet utilities designed to solve
-        boring but recurring problems. No heavy dashboards, no accounts,
-        no unnecessary data collection — just open, use, and close.
+        NicheWorks is a personal collection of tiny tools that help with
+        the kind of tasks that are boring, necessary, and hard to justify
+        building a full SaaS for.
+      </p>
+      <p class="small">
+        Most tools are browser-only and run locally, so you can safely use them
+        even with semi-sensitive data such as logs or filenames.
       </p>
     </section>
 
+    <!-- Tools -->
     <section class="block">
       <h2>Tools</h2>
       <ul class="list">
         <li>
-          <strong><a href="https://unsubscribe-navi.pages.dev" target="_blank" rel="noreferrer">Unsubscribe Navi (JP)</a></strong><br>
-          A directory of official cancellation pages for subscription services. (Japanese UI)
+          <strong><a href="../../tools/manual-finder/">ManualFinder (JP)</a></strong><br>
+          Link directory for official manuals / documentation pages for consumer devices.
         </li>
         <li>
-          <strong><a href="https://log-formatter.pages.dev" target="_blank" rel="noopener">LogFormatter</a></strong><br>
-          Browser-only formatter for Nginx / HTTP access logs. No upload, runs locally.
+          <strong><a href="../../tools/trashnavi/">TrashNavi (JP)</a></strong><br>
+          Directory of official municipal waste-sorting / collection calendar pages in Japan.
         </li>
         <li>
-          <strong><a href="https://manual-finder.pages.dev" target="_blank" rel="noopener">ManualFinder (JP)</a></strong><br>
-          Links to official manual / documentation pages from major manufacturers. (Japanese UI)
+          <strong><a href="../../tools/log-formatter/">LogFormatter</a></strong><br>
+          Browser-only formatter for Nginx / HTTP access logs. No upload; everything runs locally.
         </li>
         <li>
-          <strong>More tools coming soon</strong><br>
-          Additional English-ready utilities will be listed here.
+          <strong><a href="../../tools/rename-wizard/">Rename Wizard</a></strong><br>
+          Preview-first filename normalizer for bulk renaming rules.
+        </li>
+        <li>
+          <strong><a href="../../tools/contract-cleaner/">Contract Cleaner</a></strong><br>
+          Highlights risky terms and phrases in Japanese contracts for a quick first-pass review.
+        </li>
+        <li>
+          <strong><a href="https://unsubscribe-navi.pages.dev" target="_blank" rel="noopener">Unsubscribe Navi (JP, external)</a></strong><br>
+          Directory of official cancellation pages for subscription-type services.
+          Hosted as a separate dynamic project.
         </li>
       </ul>
     </section>
 
-    <section class="block donate-block">
-  <h2>Support</h2>
-  <p class="small">
-    All NicheWorks tools are free to use. If they help you, consider supporting the project on Ko‑fi or OFUSE.
-  </p>
-  <div class="donate-links">
-    <a class="btn-donate" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Support on Ko‑fi</a>
-    <a class="btn-donate" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Support on OFUSE</a>
-  </div>
-</section>
+    <!-- Policy -->
+    <section class="block">
+      <h2>Privacy & Policy</h2>
+      <p class="small">
+        Tools are designed to run as much as possible in your browser.
+        Some pages use lightweight analytics and minimal ads to keep the project sustainable.
+      </p>
+    </section>
 
-    <footer class="site-footer">
-  <div class="footer-row">
-    <p>© 2025 NicheWorks</p>
-    <p class="small">NicheWorks is a small collection of practical tools built by an indie developer. Content may change without notice.</p>
-  </div>
+    <footer>
 
-  <div class="footer-row footer-links small">
-    <a href="/en/about.html">About</a>
-    <span class="sep">/</span>
-    <a href="/en/privacy.html">Privacy</a>
-    <span class="sep">/</span>
-    <a href="/en/contact.html">Contact</a>
-  </div>
+      <!-- Donation block (emoji buttons) -->
+      <div class="block donate-block">
+        <h2>Support this project</h2>
+        <p class="small">
+          NicheWorks is a one-person side project. If any tool saves you time,
+          consider buying the maintainer a coffee — it helps keep things running.
+        </p>
+        <div class="donate-buttons">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+        <p class="small muted">
+          Donations are entirely optional. Contributions are used for hosting costs,
+          development time, and data maintenance.
+        </p>
+      </div>
 
-  <div class="footer-row support-row">
-    <p class="small footer-label">Support / Donations</p>
-    <div class="support-links">
-      <a class="support-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Support on Ko‑fi</a>
-      <a class="support-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Support on OFUSE</a>
-    </div>
-    <p class="small muted">Donations are optional and help keep the tools free and maintained.</p>
-  </div>
+      <div class="small">
+        <p class="small">Maintained by NicheWorks.</p>
+        <p class="small muted">Some tools may display ads to help keep the site online.</p>
+        <p class="small">
+          <a href="../privacy.html">Privacy policy (JP)</a> /
+          <a href="../contact.html">Contact</a>
+        </p>
+      </div>
 
-  <div class="footer-row small muted">
-    Ads may be displayed to support ongoing operation.
-  </div>
-</footer>
+    </footer>
 
   </main>
 
   <!-- Cloudflare Web Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
   <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
