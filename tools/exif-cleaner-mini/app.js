@@ -2,7 +2,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".nw-lang-switch button");
   const nodes = document.querySelectorAll("[data-i18n]");
-
   const browserLang = (navigator.language || "").toLowerCase();
   let current = browserLang.startsWith("ja") ? "ja" : "en";
 
@@ -10,15 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
     nodes.forEach((el) => {
       el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
+
     buttons.forEach((b) =>
       b.classList.toggle("active", b.dataset.lang === lang)
     );
+
     current = lang;
   };
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => applyLang(btn.dataset.lang));
-  });
+  buttons.forEach((btn) =>
+    btn.addEventListener("click", () => applyLang(btn.dataset.lang))
+  );
 
   applyLang(current);
 });
@@ -28,12 +29,14 @@ const dropArea = document.getElementById("drop-area");
 const fileInput = document.getElementById("file-input");
 const preview = document.getElementById("preview");
 const statusEl = document.getElementById("exif-status");
-const cleanBtn = document.querySelector("#clean-btn");
-const doneMsg = document.querySelector("#done-msg");
+const cleanBtnJa = document.getElementById("clean-btn-ja");
+const cleanBtnEn = document.getElementById("clean-btn-en");
+const doneMsgJa = document.getElementById("done-msg-ja");
+const doneMsgEn = document.getElementById("done-msg-en");
 
-// ファイル選択
 dropArea.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", handleFile);
+
 dropArea.addEventListener("dragover", (e) => e.preventDefault());
 dropArea.addEventListener("drop", (e) => {
   e.preventDefault();
@@ -48,36 +51,39 @@ function handleFile() {
   if (!file) return;
 
   const reader = new FileReader();
+
   reader.onload = function (e) {
     preview.src = e.target.result;
     preview.classList.remove("hidden");
 
     statusEl.textContent = "Checking EXIF metadata...";
-    cleanBtn.disabled = true;
+    cleanBtnJa.disabled = true;
+    cleanBtnEn.disabled = true;
 
     detectExif(e.target.result);
   };
+
   reader.readAsDataURL(file);
 }
 
-// EXIFの有無を判定（簡易：JPEGヘッダを確認）
 function detectExif(dataUrl) {
   const binary = atob(dataUrl.split("base64,")[1]);
-
   const hasExif = binary.includes("Exif") || binary.includes("EXIF");
 
-  if (hasExif) {
-    statusEl.textContent = "EXIF metadata detected";
-  } else {
-    statusEl.textContent = "No EXIF metadata found";
-  }
+  statusEl.textContent = hasExif
+    ? "EXIF metadata detected"
+    : "No EXIF metadata found";
 
-  cleanBtn.disabled = false;
+  cleanBtnJa.disabled = false;
+  cleanBtnEn.disabled = false;
 }
 
-// EXIF削除して保存
-cleanBtn.addEventListener("click", async () => {
-  doneMsg.classList.add("hidden");
+cleanBtnJa.addEventListener("click", cleanExif);
+cleanBtnEn.addEventListener("click", cleanExif);
+
+function cleanExif() {
+  doneMsgJa.classList.add("hidden");
+  doneMsgEn.classList.add("hidden");
 
   const file = fileInput.files[0];
   if (!file) return;
@@ -99,7 +105,8 @@ cleanBtn.addEventListener("click", async () => {
       a.download = "exif-cleaned-" + file.name;
       a.click();
 
-      doneMsg.classList.remove("hidden");
+      doneMsgJa.classList.remove("hidden");
+      doneMsgEn.classList.remove("hidden");
     }, "image/jpeg", 0.95);
   };
-});
+}
