@@ -5,112 +5,98 @@
   <title>LogFormatter – 地味ログ整形屋 | NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- favicon（NicheWorks 共通） -->
+  <!-- NicheWorks 共通ファビコン -->
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-theme="light">
+<body>
   <header class="nw-header">
     <div class="nw-header-inner">
-      <div class="nw-header-title">
-        <h1 data-i18n="app_title">LogFormatter – 地味ログ整形屋</h1>
-        <p class="nw-header-sub" data-i18n="app_sub">
-          nginx / アプリログなどの長いテキストログを、ブラウザだけで読みやすく整形するツールです。
-        </p>
-      </div>
-      <div class="nw-header-controls">
-        <label class="lang-switch">
-          <span>言語 / Language</span>
-          <select id="langSelect">
-            <option value="ja">日本語</option>
-            <option value="en">English</option>
-          </select>
-        </label>
-        <label class="toggle">
-          <input type="checkbox" id="darkModeToggle" />
-          <span class="toggle-label" data-i18n="toggle_dark">ダークモード</span>
-        </label>
-      </div>
+      <h1 class="nw-title" data-i18n="app_title">LogFormatter – 地味ログ整形屋</h1>
+      <p class="nw-subtitle" data-i18n="app_sub">
+        nginxアクセスログやアプリケーションログなど、長くて読みにくいテキストログをブラウザだけで整形します。
+      </p>
+      <p class="notice" data-i18n="notice">
+        ログはすべてブラウザ内で処理され、サーバーには送信されません。
+      </p>
     </div>
   </header>
 
   <main class="nw-main">
-    <!-- 上部広告枠 -->
+    <!-- 上部広告 -->
     <div class="ad-slot ad-top">
       広告枠（準備中）
       <!-- 審査通過後に広告コードを挿入 -->
     </div>
 
-    <section class="tool-layout">
-      <!-- 左：入力とフィルタ -->
-      <div class="panel input-panel">
-        <h2 class="panel-title" data-i18n="panel_input">ログ入力</h2>
-        <p class="panel-desc" data-i18n="panel_input_desc">
-          nginx アクセスログやアプリケーションログをそのまま貼り付けてください。すべてブラウザ内で処理され、サーバーには送信されません。
-        </p>
-
-        <div class="textarea-wrapper">
-          <textarea id="logInput" class="log-input" rows="14"
-            placeholder="..."></textarea>
+    <section class="input-panel">
+      <div class="input-header">
+        <div>
+          <span class="label" data-i18n="input_label">ログを貼り付け</span>
         </div>
-
         <div class="input-actions">
-          <button type="button" id="btnSample" class="btn btn-ghost" data-i18n="btn_sample">
-            サンプルログを入れる
+          <button type="button" id="btnSample" class="btn-ghost btn-xs" data-i18n="btn_sample">
+            サンプルログ
           </button>
-          <div class="input-actions-right">
-            <button type="button" id="btnClear" class="btn btn-ghost" data-i18n="btn_clear">
-              クリア
-            </button>
-            <button type="button" id="btnFormat" class="btn btn-primary" data-i18n="btn_format">
-              整形する
-            </button>
-          </div>
-        </div>
-
-        <div class="filters">
-          <h3 class="filters-title" data-i18n="filters_title">簡易フィルタ</h3>
-          <div class="filter-row">
-            <label class="filter-field">
-              <span data-i18n="filter_include">含めるキーワード</span>
-              <input type="text" id="filterInclude" />
-            </label>
-            <label class="filter-field">
-              <span data-i18n="filter_exclude">除外キーワード</span>
-              <input type="text" id="filterExclude" />
-            </label>
-          </div>
-          <div class="filter-row">
-            <label class="filter-field filter-small">
-              <span data-i18n="filter_status_from">ステータスコード（最小）</span>
-              <input type="number" id="statusFrom" min="100" max="599" />
-            </label>
-            <label class="filter-field filter-small">
-              <span data-i18n="filter_status_to">ステータスコード（最大）</span>
-              <input type="number" id="statusTo" min="100" max="599" />
-            </label>
-          </div>
-          <p class="filters-note" data-i18n="filters_note">
-            例）「含める」に <code>GET</code>、「除外」に <code>healthcheck</code> など。
-          </p>
+          <button type="button" id="btnClear" class="btn-ghost btn-xs" data-i18n="btn_clear">
+            クリア
+          </button>
+          <button type="button" id="btnFormat" class="btn-primary" data-i18n="btn_format">
+            整形する
+          </button>
         </div>
       </div>
 
-      <!-- 右：整形結果 -->
-      <div class="panel output-panel">
-        <h2 class="panel-title" data-i18n="panel_output">整形結果</h2>
-        <p class="panel-desc" data-i18n="panel_output_desc">
-          行ごとにパースできたログは色分けされます。うまく判定できなかった行はそのまま表示します。
-        </p>
+      <textarea
+        id="logInput"
+        class="log-input"
+        placeholder="nginx アクセスログなどをそのまま貼り付けてください。"
+      ></textarea>
 
-        <div class="output-summary" id="outputSummary"></div>
-
-        <div class="log-output" id="logOutput" aria-live="polite"></div>
+      <div class="controls">
+        <div class="control-group">
+          <label for="filterInclude" data-i18n="filter_include">含めるキーワード</label>
+          <input id="filterInclude" type="text" />
+        </div>
+        <div class="control-group">
+          <label for="filterExclude" data-i18n="filter_exclude">除外キーワード</label>
+          <input id="filterExclude" type="text" />
+        </div>
+        <div class="control-group">
+          <label for="statusFrom" data-i18n="filter_status_from">ステータス最小</label>
+          <input id="statusFrom" type="number" min="100" max="599" />
+        </div>
+        <div class="control-group">
+          <label for="statusTo" data-i18n="filter_status_to">ステータス最大</label>
+          <input id="statusTo" type="number" min="100" max="599" />
+        </div>
+        <div class="control-group">
+          <label data-i18n="lang_label">表示言語</label>
+          <select id="langSelect">
+            <option value="ja">日本語</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div class="control-group checkbox-group toggle-dark">
+          <button type="button" id="darkToggleBtn" class="btn-xs btn-ghost">
+            🌙 Dark
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- 下部広告枠 -->
+    <section class="output-panel">
+      <div class="output-header">
+        <div class="output-title" data-i18n="output_title">整形結果</div>
+        <div class="output-meta" id="outputMeta"></div>
+      </div>
+      <div id="logOutput" class="log-output">
+        <!-- 整形結果 -->
+      </div>
+    </section>
+
+    <!-- 下部広告 -->
     <div class="ad-slot ad-bottom">
       広告枠（準備中）
       <!-- 審査通過後に広告コードを挿入 -->
