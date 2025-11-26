@@ -75,16 +75,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 言語初期化
   (() => {
-    if (!langSelect) return;
     const saved = localStorage.getItem("nw-logformatter-lang");
     const lang = saved === "en" || saved === "ja" ? saved : "ja";
-    langSelect.value = lang;
+    if (langSelect) langSelect.value = lang;
     applyLang(lang);
   })();
 
   if (langSelect) {
     langSelect.addEventListener("change", () => {
       applyLang(langSelect.value);
+    });
+  }
+
+  // ---- 言語切り替えボタン（ヘッダー JA / EN） ----
+  const langJaBtn = document.getElementById("langJa");
+  const langEnBtn = document.getElementById("langEn");
+
+  if (langJaBtn) {
+    langJaBtn.addEventListener("click", () => {
+      applyLang("ja");
+      if (langSelect) langSelect.value = "ja";
+    });
+  }
+
+  if (langEnBtn) {
+    langEnBtn.addEventListener("click", () => {
+      applyLang("en");
+      if (langSelect) langSelect.value = "en";
     });
   }
 
