@@ -399,10 +399,7 @@ AI / Codex への指示として以下を厳守：
 * GA4は原則使わない（必要なツールのみ別途検討）。
 
 ```html
-<script
-  defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
 </script>
 ```
 
