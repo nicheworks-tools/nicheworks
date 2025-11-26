@@ -94,6 +94,46 @@ body {
   display: inline-block;
 }
 
+/* 言語切替ボタン */
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.lang-btn:hover {
+  background: var(--border-soft);
+  color: var(--text);
+}
+
+body.dark-mode .lang-btn {
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+body.dark-mode .lang-btn:hover {
+  background: #111827;
+  color: #e5e7eb;
+}
+
+.lang-sep {
+  color: var(--muted);
+}
+
 /* 共通メインラッパー */
 
 .nw-main {
@@ -325,10 +365,18 @@ body.dark-mode .control-group select {
   color: var(--muted);
 }
 
-/* ダークボタンのON/OFFっぽい見た目だけ少しだけ追加 */
-body.dark-mode #darkToggleBtn {
-  background: #111827;
-  color: #f9fafb;
+/* ダークモード時の「整形する」ボタンを白にしてコントラスト確保 */
+
+body.dark-mode .btn-primary {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border-color: #ffffff !important;
+}
+
+body.dark-mode .btn-primary:hover {
+  background: #e5e7eb !important;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.1);
 }
 
 /* 出力 */
