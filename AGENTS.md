@@ -36,9 +36,10 @@ The repo `nicheworks-tools/nicheworks` is a monorepo with the following roles:
 
 - `common-spec/`
   - NicheWorks common specifications.
-  - `spec-ja.md` is the canonical spec (Japanese).
+  - `spec-ja.md` is the canonical spec (Japanese, including v1 + v2 additions).
   - `spec-en.md` may exist as a translation.
-  - **Never modify spec files unless explicitly asked.**
+  - **Never modify spec files unless explicitly asked.**  
+  - When in doubt about behavior, treat `spec-ja.md` (including section 9 “v2追加仕様”) as the source of truth.
 
 - `nicheworks/`
   - Legacy / extra pages for the mother site.
@@ -46,7 +47,7 @@ The repo `nicheworks-tools/nicheworks` is a monorepo with the following roles:
 
 - `_archive/`
   - Old files / backups / ZIPs.
-  - **Never touch.**
+  - **Never touch.** :contentReference[oaicite:0]{index=0}
 
 ---
 
@@ -67,6 +68,10 @@ The repo `nicheworks-tools/nicheworks` is a monorepo with the following roles:
 
 5. **Do NOT introduce new external dependencies** (frameworks, packages) without explicit approval in the ExecPlan.
 
+6. **Do NOT change common specs on your own.**
+   - Do not change `spec-ja.md` / `spec-en.md` unless the task explicitly instructs you to update the spec itself.
+   - When implementing behavior, *follow* the spec; do not “fix” it. :contentReference[oaicite:1]{index=1}
+
 ---
 
 ## 3. Common Spec Application Rules (tools/ only)
@@ -80,21 +85,32 @@ When applying the NicheWorks common spec to tools under `tools/`:
   - Footer (disclaimer + donation links)
   - Cloudflare Web Analytics snippet
   - EN/JA language toggle if required
+  - SEO meta (title/description/canonical) and JSON-LD, following `spec-ja.md` v2.
 - **Do NOT introduce new UI patterns that are not in the spec.**
 - **Do NOT duplicate logo/favicon assets inside each tool.**
   - Use absolute asset paths: `/assets/...`.
 - **Do NOT add NicheWorks logo to tool headers or titles unless explicitly requested.**
   - Mother ship may show the logo; tools are text-only by default.
+- If `spec-ja.md` and existing code appear to conflict, prefer the **v2 additions (section 9)** unless the tool has an explicit exception documented in its own README / spec.
 
 ---
 
-## 4. Language Support (EN/JA)
+## 4. Language Support (EN/JA + exceptions)
 
-- Tools should support **JA and EN**.
-- Preferred scheme: simple language switch within the same HTML.
-  - Buttons: “JP / EN” or “日本語 / English”.
-  - Implementation should follow `spec-ja.md` examples (data-i18n attributes, etc.).
+- **Default rule**: tools should support **JA and EN**.
+  - Preferred scheme: simple language switch within the same HTML.
+    - Buttons: “JP / EN” or “日本語 / English”.
+    - Implementation should follow `spec-ja.md` examples (data-i18n attributes, etc.).
+- **Exceptions**:
+  - Some tools are explicitly marked as **“Japanese-only”** in spec or README  
+    (e.g. tools tightly bound to domestic services like タイミー, where EN UI makes no sense).
+  - For such tools:
+    - Do **not** add EN UI.
+    - Do **not** add language switch.
 - If a tool is already bilingual with its own scheme, preserve that scheme unless told otherwise.
+- **Never silently remove** an existing language or language toggle.
+  - JA-only → EN added **only if the spec / README says so**.
+  - JA+EN → do not downgrade to JA-only without explicit instruction.
 
 ---
 
