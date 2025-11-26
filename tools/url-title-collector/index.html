@@ -4,44 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO -->
   <title>URLタイトル一括取得｜URL Title Collector | NicheWorks</title>
-  <meta name="description" content="複数のURLを貼り付けるだけで、各ページの<title>を高速取得できる無料ツール。調査・資料作成・ブログ執筆の効率化に最適。スマホでも使いやすい軽量設計。" />
+  <meta name="description" content="複数URLを貼り付けて<title>を高速一括取得する無料ツール。調査・資料作成・ブログ執筆に最適。" />
 
-  <!-- canonical -->
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/url-title-collector/" />
-
-  <!-- favicon -->
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+  <link rel="icon" href="/assets/favicon.ico" />
 
   <!-- OGP -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="URLタイトル一括取得｜URL Title Collector | NicheWorks" />
-  <meta property="og:description" content="複数のURLを貼り付けるだけで<title>タグを高速一括取得できる無料ツール。" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/url-title-collector/" />
+  <meta property="og:title" content="URL Title Collector" />
+  <meta property="og:description" content="URLの<title>を高速取得。" />
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
-
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "URL Title Collector",
-    "url": "https://nicheworks.pages.dev/tools/url-title-collector/",
-    "applicationCategory": "UtilityApplication",
-    "description": "複数URLの<title>タグを高速で一括取得できる無料ツール。",
-    "operatingSystem": "All"
-  }
-  </script>
-
-  <!-- AdSense（仕様v2：すべてのツールの<head>に必須） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Styles -->
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -59,10 +38,8 @@
 
 <main class="nw-main">
 
-  <!-- ad-top（必須） -->
   <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-  <!-- 入力説明 -->
   <p data-i18n="ja">複数のURLを1行ずつ貼り付けてください。</p>
   <p data-i18n="en">Paste multiple URLs, one per line.</p>
 
@@ -73,33 +50,24 @@
     <span data-i18n="en">Fetch Titles</span>
   </button>
 
-  <!-- 結果 -->
   <div id="results"></div>
 
-  <!-- コピー操作 -->
   <div id="copyArea" style="display:none;">
     <button id="copyCsvBtn">CSV</button>
     <button id="copyTsvBtn">TSV</button>
   </div>
 
-  <!-- ad-bottom -->
   <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
-  <!-- 寄付導線（仕様v2：フッター直前に1つ配置） -->
   <div class="nw-donate">
-    <p class="nw-donate-text" data-i18n="ja">
-      このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
-    </p>
-    <p class="nw-donate-text" data-i18n="en">
-      If this tool is helpful, your support would be greatly appreciated.
-    </p>
+    <p class="nw-donate-text" data-i18n="ja">ご支援いただけると嬉しいです。</p>
+    <p class="nw-donate-text" data-i18n="en">Your support is appreciated.</p>
     <div class="nw-donate-links">
-      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <a href="https://ofuse.me/nicheworks" target="_blank">OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank">Ko-fi</a>
     </div>
   </div>
 
-  <!-- 内部リンク（仕様v2） -->
   <div class="nw-links">
     <a href="/tools/manual-finder/">ManualFinder</a> /
     <a href="/tools/trashnavi/">TrashNavi</a> /
@@ -110,18 +78,9 @@
 
 <footer class="nw-footer">
   <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-  <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-  <p class="nw-footer-line">
-    <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
-      nicheworks.pages.dev
-    </a>
-  </p>
 </footer>
 
-<!-- Cloudflare Web Analytics -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 <script src="./app.js"></script>
 </body>
 </html>
