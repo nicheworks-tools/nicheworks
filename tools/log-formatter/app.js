@@ -1,6 +1,4 @@
-// ==============================
-// i18n データ
-// ==============================
+// =============== i18n ===============
 
 const I18N = {
   app_title: {
@@ -8,24 +6,20 @@ const I18N = {
     en: "LogFormatter – Simple Log Beautifier",
   },
   app_sub: {
-    ja: "nginx / アプリログなどの長いテキストログを、ブラウザだけで読みやすく整形するツールです。",
-    en: "Paste long Nginx / app logs and instantly reformat them in your browser. No upload, no tracking.",
+    ja: "nginxアクセスログやアプリケーションログなど、長くて読みにくいテキストログをブラウザだけで整形します。",
+    en: "Beautify long Nginx / application logs directly in your browser.",
   },
-  toggle_dark: {
-    ja: "ダークモード",
-    en: "Dark mode",
+  notice: {
+    ja: "ログはすべてブラウザ内で処理され、サーバーには送信されません。",
+    en: "All logs are processed locally in your browser and never sent to any server.",
   },
-  panel_input: {
-    ja: "ログ入力",
-    en: "Log input",
-  },
-  panel_input_desc: {
-    ja: "nginx アクセスログやアプリケーションログをそのまま貼り付けてください。すべてブラウザ内で処理され、サーバーには送信されません。",
-    en: "Paste your Nginx access logs or application logs here. Everything is processed locally in your browser and never sent to any server.",
+  input_label: {
+    ja: "ログを貼り付け",
+    en: "Paste your logs",
   },
   btn_sample: {
-    ja: "サンプルログを入れる",
-    en: "Insert sample log",
+    ja: "サンプルログ",
+    en: "Sample log",
   },
   btn_clear: {
     ja: "クリア",
@@ -33,11 +27,7 @@ const I18N = {
   },
   btn_format: {
     ja: "整形する",
-    en: "Format logs",
-  },
-  filters_title: {
-    ja: "簡易フィルタ",
-    en: "Quick filters",
+    en: "Format",
   },
   filter_include: {
     ja: "含めるキーワード",
@@ -48,36 +38,28 @@ const I18N = {
     en: "Exclude keyword",
   },
   filter_status_from: {
-    ja: "ステータスコード（最小）",
-    en: "Status code (min)",
+    ja: "ステータス最小",
+    en: "Status min",
   },
   filter_status_to: {
-    ja: "ステータスコード（最大）",
-    en: "Status code (max)",
+    ja: "ステータス最大",
+    en: "Status max",
   },
-  filters_note: {
-    ja: "例）「含める」に GET、「除外」に healthcheck など。",
-    en: "Example: Include = GET, Exclude = healthcheck.",
+  lang_label: {
+    ja: "表示言語",
+    en: "Language",
   },
-  panel_output: {
+  output_title: {
     ja: "整形結果",
     en: "Formatted output",
   },
-  panel_output_desc: {
-    ja: "行ごとにパースできたログは色分けされます。うまく判定できなかった行はそのまま表示します。",
-    en: "Parsed lines are colorized. Lines that can't be parsed are shown as-is.",
-  },
 };
 
-// ==============================
-// 言語切り替え
-// ==============================
-
 const langSelect = document.getElementById("langSelect");
-const elementsWithI18n = document.querySelectorAll("[data-i18n]");
+const i18nNodes = document.querySelectorAll("[data-i18n]");
 
 function applyLang(lang) {
-  elementsWithI18n.forEach((el) => {
+  i18nNodes.forEach((el) => {
     const key = el.dataset.i18n;
     const dict = I18N[key];
     if (!dict) return;
@@ -87,64 +69,65 @@ function applyLang(lang) {
   localStorage.setItem("nw-logformatter-lang", lang);
 }
 
-(function initLang() {
+// 初期化
+(() => {
   const saved = localStorage.getItem("nw-logformatter-lang");
-  const initial = saved === "en" || saved === "ja" ? saved : "ja";
-  langSelect.value = initial;
-  applyLang(initial);
+  const lang = saved === "en" || saved === "ja" ? saved : "ja";
+  langSelect.value = lang;
+  applyLang(lang);
 })();
 
 langSelect.addEventListener("change", () => {
   applyLang(langSelect.value);
 });
 
-// ==============================
-// ダークモード
-// ==============================
+// =============== ダークモード（ボタン） ===============
 
-const darkToggle = document.getElementById("darkModeToggle");
+const darkBtn = document.getElementById("darkToggleBtn");
 
-function applyTheme(theme) {
-  document.body.dataset.theme = theme;
-  darkToggle.checked = theme === "dark";
-  localStorage.setItem("nw-logformatter-theme", theme);
+function setTheme(mode) {
+  if (mode === "dark") {
+    document.body.classList.add("dark-mode");
+    darkBtn.textContent = "☀️ Light";
+  } else {
+    document.body.classList.remove("dark-mode");
+    darkBtn.textContent = "🌙 Dark";
+  }
+  localStorage.setItem("nw-logformatter-theme", mode);
 }
 
-(function initTheme() {
-  const saved = localStorage.getItem("nw-logformatter-theme");
-  if (saved === "dark" || saved === "light") {
-    applyTheme(saved);
-  } else {
-    applyTheme("light");
-  }
+// 初期状態
+(() => {
+  const stored = localStorage.getItem("nw-logformatter-theme");
+  const mode = stored === "dark" || stored === "light" ? stored : "light";
+  setTheme(mode);
 })();
 
-darkToggle.addEventListener("change", () => {
-  const theme = darkToggle.checked ? "dark" : "light";
-  applyTheme(theme);
+darkBtn.addEventListener("click", () => {
+  const isDark = document.body.classList.contains("dark-mode");
+  setTheme(isDark ? "light" : "dark");
 });
 
-// ==============================
-// ログ整形ロジック
-// ==============================
+// =============== ログ整形 & フィルタ ===============
 
 const inputEl = document.getElementById("logInput");
 const outputEl = document.getElementById("logOutput");
-const summaryEl = document.getElementById("outputSummary");
+const metaEl = document.getElementById("outputMeta");
 
-const filterIncludeEl = document.getElementById("filterInclude");
-const filterExcludeEl = document.getElementById("filterExclude");
+const includeEl = document.getElementById("filterInclude");
+const excludeEl = document.getElementById("filterExclude");
 const statusFromEl = document.getElementById("statusFrom");
 const statusToEl = document.getElementById("statusTo");
 
 document.getElementById("btnSample").addEventListener("click", () => {
   inputEl.value = getSampleLog();
+  formatLogs();
 });
 
 document.getElementById("btnClear").addEventListener("click", () => {
   inputEl.value = "";
-  outputEl.innerHTML = "";
-  summaryEl.textContent = "";
+  outputEl.textContent = "";
+  metaEl.textContent = "";
 });
 
 document.getElementById("btnFormat").addEventListener("click", () => {
@@ -162,82 +145,84 @@ function getSampleLog() {
 }
 
 function formatLogs() {
-  const raw = inputEl.value || "";
-  const lines = raw.split(/\r?\n/);
+  const lines = (inputEl.value || "").split(/\r?\n/);
 
-  const includeStr = filterIncludeEl.value.trim();
-  const excludeStr = filterExcludeEl.value.trim();
+  const include = includeEl.value.trim();
+  const exclude = excludeEl.value.trim();
   const statusFrom = parseInt(statusFromEl.value, 10);
   const statusTo = parseInt(statusToEl.value, 10);
 
-  let parsedCount = 0;
-  let totalCount = 0;
-
   const frag = document.createDocumentFragment();
+  let total = 0;
+  let shown = 0;
+  let parsed = 0;
 
   lines.forEach((line) => {
     if (!line.trim()) return;
-    totalCount++;
+    total++;
 
-    if (includeStr && !line.includes(includeStr)) {
-      return;
-    }
+    if (include && !line.includes(include)) return;
+    if (exclude && line.includes(exclude)) return;
 
-    if (excludeStr && line.includes(excludeStr)) {
-      return;
-    }
+    const parsedObj = parseNginx(line);
 
-    const parsed = parseNginx(line);
-    const div = document.createElement("div");
-    div.className = "log-line";
-
-    if (!parsed) {
-      // パースできない行
+    if (!parsedObj) {
+      const div = document.createElement("div");
+      div.className = "log-line dim";
       div.textContent = line;
       frag.appendChild(div);
+      shown++;
       return;
     }
 
-    // ステータスフィルタ
-    if (!Number.isNaN(statusFrom) && parsed.status < statusFrom) return;
-    if (!Number.isNaN(statusTo) && parsed.status > statusTo) return;
+    if (!Number.isNaN(statusFrom) && parsedObj.status < statusFrom) return;
+    if (!Number.isNaN(statusTo) && parsedObj.status > statusTo) return;
 
-    parsedCount++;
+    parsed++;
 
     const statusClass =
-      parsed.status >= 500
+      parsedObj.status >= 500
         ? "status-5xx"
-        : parsed.status >= 400
+        : parsedObj.status >= 400
         ? "status-4xx"
-        : parsed.status >= 300
+        : parsedObj.status >= 300
         ? "status-3xx"
         : "status-2xx";
 
+    const div = document.createElement("div");
+    div.className = "log-line";
+
     div.innerHTML =
-      `<span class="log-ip">${parsed.ip}</span> ` +
+      `<span class="ip">${parsedObj.ip}</span> ` +
       `- - ` +
-      `<span class="log-time">[${parsed.time}]</span> ` +
-      `" <span class="log-method">${parsed.method}</span> ` +
-      `<span class="log-path">${parsed.path}</span> ${parsed.proto}" ` +
-      `<span class="log-status ${statusClass}">${parsed.status}</span> ` +
-      `<span class="log-size">${parsed.size}</span> ` +
-      `" <span class="log-referer">${parsed.referer}</span> "` +
-      `<span class="log-agent">${parsed.agent}</span>`;
+      `<span class="timestamp">[${parsedObj.time}]</span> ` +
+      `" <span class="method">${parsedObj.method}</span> ` +
+      `<span class="url">${parsedObj.path}</span> ${parsedObj.proto}" ` +
+      `<span class="status status-${statusClass}">${parsedObj.status}</span> ` +
+      `<span class="size">${parsedObj.size}</span> ` +
+      `"${parsedObj.referer}" "${parsedObj.agent}"`;
 
     frag.appendChild(div);
+    shown++;
   });
 
   outputEl.innerHTML = "";
+  if (shown === 0 && total > 0) {
+    const div = document.createElement("div");
+    div.className = "log-line system";
+    div.textContent = "No lines matched the current filters.";
+    frag.appendChild(div);
+  }
   outputEl.appendChild(frag);
 
-  summaryEl.textContent =
-    totalCount === 0
-      ? ""
-      : `${parsedCount} / ${totalCount} lines parsed (after filters).`;
+  if (total === 0) {
+    metaEl.textContent = "";
+  } else {
+    metaEl.textContent = `${shown}/${total} lines shown, ${parsed} parsed.`;
+  }
 }
 
 function parseNginx(line) {
-  // かなり単純化した Nginx combined log 形式
   const regex =
     /^(\S+) (\S+) (\S+) \[([^\]]+)] "([^"]*)" (\d{3}) (\S+) "([^"]*)" "([^"]*)"$/;
   const m = line.match(regex);
@@ -245,7 +230,7 @@ function parseNginx(line) {
 
   const ip = m[1];
   const time = m[4];
-  const request = m[5];
+  const req = m[5];
   const status = parseInt(m[6], 10);
   const size = m[7];
   const referer = m[8];
@@ -255,19 +240,19 @@ function parseNginx(line) {
   let path = "";
   let proto = "";
 
-  const reqMatch = request.match(/^(\S+)\s+(\S+)(?:\s+(\S+))?/);
-  if (reqMatch) {
-    method = reqMatch[1];
-    path = reqMatch[2];
-    proto = reqMatch[3] || "";
+  const rm = req.match(/^(\S+)\s+(\S+)(?:\s+(\S+))?/);
+  if (rm) {
+    method = rm[1];
+    path = rm[2];
+    proto = rm[3] || "";
   } else {
-    path = request;
+    path = req;
   }
 
-  return { ip, time, request, status, size, referer, agent, method, path, proto };
+  return { ip, time, method, path, proto, status, size, referer, agent };
 }
 
-// 初期状態でサンプルログを入れておく
+// 初期表示：サンプルログを入れて整形
 if (!inputEl.value.trim()) {
   inputEl.value = getSampleLog();
   formatLogs();
