@@ -1,173 +1,225 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="UTF-8">
   <title>製品マニュアルリスト（ManualFinder） | NicheWorks</title>
-  <meta name="description" content="主要メーカーの公式マニュアル／取扱説明書ページだけを集めたリンク集。ブラウザ完結・ログ送信なし。" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="主要メーカー公式サイトの製品マニュアル・取扱説明書ページへのリンク集。ブラウザだけで完結・ログ送信なしのシンプルな無料ツール。">
+
+    <!-- AdSense（仕様：削除禁止） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://manual-finder.pages.dev/">
+
+  <!-- Favicon / Icon（共通） -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- OGP -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="製品マニュアルリスト（ManualFinder） | NicheWorks" />
-  <meta property="og:description" content="主要メーカーの公式マニュアル／取扱説明書ページだけを集めたリンク集。ブラウザ完結・ログ送信なし。" />
-  <meta property="og:url" content="https://manual-finder.pages.dev/" />
-  <meta property="og:image" content="https://nicheworks.pages.dev/ogp.png" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="製品マニュアルリスト（ManualFinder） | NicheWorks">
+  <meta property="og:description" content="主要メーカー公式サイトの製品マニュアル・取扱説明書ページへのリンク集。ブラウザだけで完結・ログ送信なしのシンプルな無料ツール。">
+  <meta property="og:url" content="https://manual-finder.pages.dev/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/ogp.png">
 
-  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="製品マニュアルリスト（ManualFinder） | NicheWorks">
+  <meta name="twitter:description" content="主要メーカー公式サイトの製品マニュアル・取扱説明書ページへのリンク集。ブラウザだけで完結・ログ送信なしのシンプルな無料ツール。">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/ogp.png">
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/assets/favicon.png" />
+  <!-- JSON-LD（簡易 WebApplication） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ManualFinder",
+    "url": "https://manual-finder.pages.dev/",
+    "description": "主要メーカー公式サイトの製品マニュアル・取扱説明書へのリンクを素早く探せる、シンプルな無料ツールです。",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All"
+  }
+  </script>
 
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
 </head>
-
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
       <div>
-        <h1 class="nw-title" data-i18n="ja">製品マニュアルリスト（ManualFinder）</h1>
-        <h1 class="nw-title" data-i18n="en">Official Manual Finder</h1>
-
+        <h1 class="nw-title">製品マニュアルリスト（ManualFinder）</h1>
+        <!-- JA -->
         <p class="nw-subtitle" data-i18n="ja">
-          家電・カメラ・PC・スマホなどの
-          <strong>「公式マニュアル／取扱説明書ページ」だけ</strong>
-          を素早く探すリンク集。ブラウザ完結・ログ送信なし。
+          主要メーカー公式サイトの製品マニュアル・取扱説明書ページへのリンク集です。
+          型番検索やカテゴリ別ページにすぐアクセスできます。
         </p>
-        <p class="nw-subtitle" data-i18n="en">
-          A simple directory of <strong>official manuals and support pages</strong> for major tech and appliance brands.
-          Browser-only, no tracking.
+        <!-- EN -->
+        <p class="nw-subtitle" data-i18n="en" hidden>
+          A simple directory of official manuals and support pages for major brands.
+          Quickly jump to the right manual or support portal.
         </p>
       </div>
-
-      <span class="nw-label">NicheWorks</span>
+      <div class="nw-label">
+        NicheWorks / Utility
+      </div>
     </div>
 
+    <!-- 言語切替 -->
     <div class="nw-lang-switch">
-      <button data-lang="ja" class="active">JP</button> /
-      <button data-lang="en">EN</button>
+      <button type="button" data-lang="ja" class="active">日本語</button> /
+      <button type="button" data-lang="en">English</button>
     </div>
   </header>
 
   <main class="nw-main">
-
-    <!-- 上部広告枠 -->
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <!-- 上部広告枠（プレースホルダ） -->
+    <div class="ad-slot ad-top">
+      広告枠（準備中）
+      <!-- 審査通過後に広告コードを挿入 -->
+    </div>
 
     <!-- 検索パネル -->
     <section class="panel">
-      <h2 class="panel-title" data-i18n="ja">メーカーから探す</h2>
-      <h2 class="panel-title" data-i18n="en">Search by brand</h2>
+      <div class="panel-header-row">
+        <!-- JA -->
+        <h2 class="panel-title" data-i18n="ja">メーカーから探す</h2>
+        <!-- EN -->
+        <h2 class="panel-title" data-i18n="en" hidden>Search by brand</h2>
+
+        <div class="count">
+          <span id="resultCount">0</span> 件
+        </div>
+      </div>
 
       <div class="controls">
         <div class="control-group">
-          <label for="searchInput" data-i18n="ja">メーカー名・キーワード</label>
-          <label for="searchInput" data-i18n="en">Brand / keyword</label>
-          <input id="searchInput" type="text" placeholder="Apple / Sony / Canon / カメラ / 家電" />
+          <!-- JA -->
+          <label for="searchInput" data-i18n="ja">ブランド名・製品名キーワード</label>
+          <!-- EN -->
+          <label for="searchInput" data-i18n="en" hidden>Brand / product keyword</label>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="例: Apple, Sony, カメラ"
+          >
+          <p class="helper-text" data-i18n="ja">
+            ブランド名（Apple / Sony など）やカテゴリ名（プリンター / カメラ）で絞り込みできます。
+          </p>
+          <p class="helper-text" data-i18n="en" hidden>
+            Filter by brand (Apple / Sony etc.) or category (printer / camera).
+          </p>
         </div>
 
         <div class="control-group">
+          <!-- JA -->
           <label for="categorySelect" data-i18n="ja">カテゴリ</label>
-          <label for="categorySelect" data-i18n="en">Category</label>
+          <!-- EN -->
+          <label for="categorySelect" data-i18n="en" hidden>Category</label>
           <select id="categorySelect">
-            <option value="" data-i18n="ja">すべて</option>
-            <option value="" data-i18n="en">All</option>
-
-            <option value="PC・スマホ">PC / Mobile</option>
-            <option value="カメラ・映像">Camera / Video</option>
-            <option value="家電">Home Appliances</option>
-            <option value="プリンター・複合機">Printers / MFP</option>
-            <option value="その他">Others</option>
+            <option value="">すべて</option>
+            <option value="PC・スマホ">PC・スマホ</option>
+            <option value="家電">家電</option>
+            <option value="プリンター・複合機">プリンター・複合機</option>
+            <option value="カメラ・映像">カメラ・映像</option>
+            <option value="その他">その他</option>
           </select>
         </div>
+      </div>
 
-        <div class="control-group">
-          <span class="label-inline" data-i18n="ja">クイック選択</span>
-          <span class="label-inline" data-i18n="en">Quick picks</span>
-
-          <div class="quick-buttons" id="quickButtons">
-            <button data-brand="Apple">Apple</button>
-            <button data-brand="Sony">Sony</button>
-            <button data-brand="Panasonic">Panasonic</button>
-            <button data-brand="Canon">Canon</button>
-            <button data-brand="Nikon">Nikon</button>
-            <button data-brand="Fujifilm">Fujifilm</button>
-          </div>
+      <!-- よく使うブランドショートカット -->
+      <div class="control-group" style="margin-top: 10px;">
+        <div class="label-inline" data-i18n="ja">よく使うメーカー（ワンタップ検索）</div>
+        <div class="label-inline" data-i18n="en" hidden>Quick brands (one-tap)</div>
+        <div class="quick-buttons" id="quickButtons">
+          <button type="button" data-brand="Apple">Apple</button>
+          <button type="button" data-brand="Sony">Sony</button>
+          <button type="button" data-brand="Panasonic">Panasonic</button>
+          <button type="button" data-brand="Canon">Canon</button>
+          <button type="button" data-brand="Nikon">Nikon</button>
+          <button type="button" data-brand="Epson">Epson</button>
+          <button type="button" data-brand="Brother">Brother</button>
+          <button type="button" data-brand="Samsung">Samsung</button>
         </div>
       </div>
 
-      <p class="helper-text" data-i18n="ja">
-        ※表示しているのは各社<strong>公式のマニュアル／サポートページ</strong>です。
-        正式なPDFや型番指定は遷移先サイトから検索してください。
+      <!-- 結果リスト -->
+      <div class="card-list" id="results"></div>
+
+      <!-- 該当なしメッセージ -->
+      <p class="empty-message" id="emptyMessage" data-i18n="ja">
+        条件に合うメーカーが見つかりませんでした。キーワードやカテゴリを変えて再検索してください。
       </p>
-      <p class="helper-text" data-i18n="en">
-        We list only <strong>official manual/support pages</strong>.
-        For exact PDFs or model numbers, use the search function on the destination site.
+      <p class="empty-message" id="emptyMessageEn" data-i18n="en" hidden>
+        No matching brand was found. Try different keywords or category filters.
       </p>
     </section>
 
-    <!-- 結果パネル -->
-    <section class="panel">
-      <div class="panel-header-row">
-        <h2 class="panel-title" data-i18n="ja">公式マニュアルリンク一覧</h2>
-        <h2 class="panel-title" data-i18n="en">Official manuals directory</h2>
-        <div id="resultCount" class="count">-</div>
-      </div>
-
-      <div id="results" class="card-list"></div>
-
-      <div id="emptyMessage" class="empty-message" hidden data-i18n="ja">
-        該当するメーカーが見つかりませんでした。
-        キーワードを変えるかカテゴリを変更してお試しください。
-      </div>
-      <div id="emptyMessageEn" class="empty-message" hidden data-i18n="en">
-        No matching brands found. Try another keyword or change category.
-      </div>
-    </section>
-
-    <!-- 注意書き -->
+    <!-- 注意書きパネル -->
     <section class="panel panel-note">
-      <h2 class="panel-title" data-i18n="ja">利用上の注意</h2>
-      <h2 class="panel-title" data-i18n="en">Notes</h2>
+      <!-- JA -->
+      <h2 class="panel-title" data-i18n="ja">このツールについて</h2>
+      <!-- EN -->
+      <h2 class="panel-title" data-i18n="en" hidden>About this tool</h2>
 
       <ul class="note-list" data-i18n="ja">
-        <li>リンク先は各社の公式サイトです。URLは予告なく変更される場合があります。</li>
-        <li>本ツールは各メーカーとは非提携です。必ず公式情報をご確認ください。</li>
-        <li>本ツールは完全静的構成で、入力データはサーバーに送信されません。</li>
+        <li>リンク先はすべて各メーカーの公式サイト（サポート・マニュアルページ）です。</li>
+        <li>実際の製品マニュアルはリンク先で型番やシリーズ名を入力して検索してください。</li>
+        <li>掲載内容の正確性は保証できません。最新情報は必ず公式サイト側でご確認ください。</li>
       </ul>
-
-      <ul class="note-list" data-i18n="en">
-        <li>All links lead to official sites. URLs may change without notice.</li>
-        <li>This tool is unaffiliated with any brand. Always verify information on official sources.</li>
-        <li>This site runs fully client-side and sends no data to any server.</li>
+      <ul class="note-list" data-i18n="en" hidden>
+        <li>All links point to official support / manual pages of each manufacturer.</li>
+        <li>Please search by product name or model on the destination site to find the exact manual.</li>
+        <li>We cannot guarantee accuracy. Always confirm the latest information on the official website.</li>
       </ul>
     </section>
 
-    <!-- 下部広告枠 -->
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
-
-    <!-- 寄付導線 -->
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">
-        このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
-      </p>
-      <p class="nw-donate-text" data-i18n="en">
-        If this tool helps you, please consider supporting NicheWorks.
-      </p>
-
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
+    <!-- 下部広告枠（プレースホルダ） -->
+    <div class="ad-slot ad-bottom">
+      広告枠（準備中）
     </div>
 
+    <!-- 寄付導線（インライン） -->
+    <section class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">
+        このツールが役に立ったら、コーヒー1杯分のご支援をいただけると開発の励みになります。
+      </p>
+      <p class="nw-donate-text" data-i18n="en" hidden>
+        If this tool helps your work, a small tip would support future development.
+      </p>
+      <div class="nw-donate-links">
+        <a href="#" target="_blank" rel="noopener">OFUSE（準備中）</a>
+        <a href="#" target="_blank" rel="noopener">Ko-fi（準備中）</a>
+      </div>
+    </section>
+
+    <!-- 関連ツールへの内部リンク -->
+    <section class="nw-links">
+      <span data-i18n="ja">
+        関連ツール：
+        <a href="https://trashnavi.pages.dev/" target="_blank" rel="noopener">ゴミ分別ナビ（TrashNavi）</a> /
+        <a href="https://log-formatter.pages.dev/" target="_blank" rel="noopener">LogFormatter</a> /
+        <a href="https://rename-wizard.pages.dev/" target="_blank" rel="noopener">Rename Wizard</a>
+      </span>
+      <span data-i18n="en" hidden>
+        Related tools:
+        <a href="https://trashnavi.pages.dev/" target="_blank" rel="noopener">TrashNavi (Waste rules)</a> /
+        <a href="https://log-formatter.pages.dev/" target="_blank" rel="noopener">LogFormatter</a> /
+        <a href="https://rename-wizard.pages.dev/" target="_blank" rel="noopener">Rename Wizard</a>
+      </span>
+    </section>
   </main>
 
   <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p class="nw-footer-line">
-      当サイトには広告を含む場合があります。掲載情報の正確性は保証しません。
-      必ず公式情報をご確認ください。
+      © NicheWorks — Small Web Tools for Boring Tasks
+    </p>
+    <p class="nw-footer-line" data-i18n="ja">
+      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証できません。必ず公式サイトで最新情報をご確認ください。
+    </p>
+    <p class="nw-footer-line" data-i18n="en" hidden>
+      This site may contain ads. We cannot guarantee accuracy. Please always confirm details on official websites.
     </p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
@@ -176,10 +228,11 @@
     </p>
   </footer>
 
-  <!-- Cloudflare Web Analytics（token差し替え） -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
-
-  <script src="./app.js"></script>
+  <!-- Cloudflare Web Analytics（共通トークン） -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
 </body>
 </html>
