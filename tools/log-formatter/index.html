@@ -20,6 +20,13 @@
       <p class="notice" data-i18n="notice">
         ログはすべてブラウザ内で処理され、サーバーには送信されません。
       </p>
+
+      <!-- 言語切り替え（JA / EN） -->
+      <div class="lang-switch">
+        <button id="langJa" class="lang-btn">JA</button>
+        <span class="lang-sep">/</span>
+        <button id="langEn" class="lang-btn">EN</button>
+      </div>
     </div>
   </header>
 
@@ -72,7 +79,7 @@
           <input id="statusTo" type="number" min="100" max="599" />
         </div>
         <div class="control-group">
-          <label data-i18n="lang_label">表示言語</label>
+          <label for="langSelect" data-i18n="lang_label">表示言語</label>
           <select id="langSelect">
             <option value="ja">日本語</option>
             <option value="en">English</option>
