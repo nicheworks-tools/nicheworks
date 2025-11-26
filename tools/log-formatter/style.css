@@ -1,18 +1,47 @@
-/* ========== ベース ========== */
+/* ================================
+ * NicheWorks 共通レイアウト
+ * ============================== */
 
 :root {
-  --bg-main: #ffffff;
-  --bg-panel: #f9fafb;
-  --bg-input: #ffffff;
-  --border-soft: #e5e7eb;
-  --text-main: #111827;
-  --text-muted: #6b7280;
-  --accent: #2563eb;
-  --accent-soft: #eff6ff;
-  --danger: #dc2626;
-  --mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-    monospace;
+  --bg: #ffffff;
+  --bg-soft: #f9fafb;
+  --border: #e5e7eb;
+  --border-soft: #f3f4f6;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #111827;
+  --accent-soft: #f9fafb;
+
+  --status-2xx: #16a34a;
+  --status-3xx: #2563eb;
+  --status-4xx: #ea580c;
+  --status-5xx: #b91c1c;
+
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --radius: 4px;
+  --transition: 0.15s ease-out;
 }
+
+/* ダークモード用（body.dark-mode に付与） */
+
+body.dark-mode {
+  --bg: #020817;
+  --bg-soft: #020817;
+  --border: #111827;
+  --border-soft: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #e5e7eb;
+  --accent-soft: #030712;
+
+  --status-2xx: #22c55e;
+  --status-3xx: #60a5fa;
+  --status-4xx: #fb923c;
+  --status-5xx: #f87171;
+}
+
+/* base */
 
 *,
 *::before,
@@ -20,84 +49,74 @@
   box-sizing: border-box;
 }
 
-html,
 body {
   margin: 0;
   padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
-}
-
-/* ========== NicheWorks 共通ヘッダー / メイン / フッター ========== */
+/* 共通ヘッダー */
 
 .nw-header {
-  border-bottom: 1px solid #e5e7eb;
-  padding: 12px 16px;
+  padding: 16px 12px 8px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
 }
 
 .nw-header-inner {
   max-width: 960px;
   margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
 }
 
-.nw-header-title h1 {
-  margin: 0 0 4px;
-  font-size: 20px;
-}
-
-.nw-header-sub {
+.nw-title {
   margin: 0;
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
 }
 
-.nw-header-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.lang-switch {
-  font-size: 11px;
-  color: var(--text-muted);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.lang-switch select {
+.nw-subtitle {
+  margin: 4px 0 6px;
   font-size: 12px;
-  padding: 2px 6px;
+  color: var(--muted);
 }
 
-/* NicheWorks 共通レイアウト */
+.notice {
+  font-size: 11px;
+  color: var(--text);
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+
+/* 共通メインラッパー */
 
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 12px 8px 24px;
+  padding: 12px;
 }
 
-/* 広告プレースホルダ（全ツール共通） */
+/* 広告プレースホルダ */
 
 .ad-slot {
   margin: 12px 0 16px;
   padding: 8px;
-  border: 1px dashed #d4d4d4;
+  border: 1px dashed #4b5563;
   font-size: 11px;
-  color: #9ca3af;
+  color: #6b7280;
   text-align: center;
-  min-height: 60px;
+  min-height: 40px;
+}
+
+body.dark-mode .ad-slot {
+  border-color: #374151;
+  color: #6b7280;
 }
 
 .ad-top {
@@ -113,9 +132,9 @@ body {
 .nw-footer {
   margin-top: 24px;
   padding: 16px 8px 12px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
   font-size: 11px;
-  color: #6b7280;
+  color: var(--muted);
   text-align: center;
   line-height: 1.6;
 }
@@ -125,310 +144,323 @@ body {
 }
 
 .nw-footer a {
-  color: #6b7280;
+  color: var(--muted);
   text-decoration: underline;
 }
 
-/* ========== ツール本体レイアウト ========== */
+/* ================================
+ * LogFormatter 固有スタイル
+ * ============================== */
 
-.tool-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 16px;
+.input-panel,
+.output-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  background: var(--bg-soft);
+  margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-  .tool-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .nw-header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nw-header-controls {
-    justify-content: flex-start;
-  }
+.input-panel {
+  background: var(--bg-soft);
 }
 
-.panel {
-  background: var(--bg-panel);
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-  padding: 12px;
+.output-panel {
+  background: var(--bg);
 }
 
-.panel-title {
-  margin: 0 0 4px;
-  font-size: 15px;
+.input-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
 }
 
-.panel-desc {
-  margin: 0 0 12px;
-  font-size: 12px;
-  color: var(--text-muted);
+.input-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ========== 入力エリア ========== */
-
-.textarea-wrapper {
-  position: relative;
+.label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 4px;
+  color: var(--muted);
 }
 
 .log-input {
   width: 100%;
-  font-family: var(--mono);
-  font-size: 12px;
-  border-radius: 6px;
-  border: 1px solid var(--border-soft);
-  padding: 8px;
-  background: var(--bg-input);
+  min-height: 140px;
+  max-height: 260px;
   resize: vertical;
-  min-height: 220px;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
 }
 
-.input-actions {
-  margin-top: 8px;
+body.dark-mode .log-input {
+  background: #020817;
+  color: #e5e7eb;
+  border-color: #111827;
+}
+
+.log-input:focus {
+  border-color: var(--accent);
+}
+
+.controls {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
   gap: 8px;
+  margin-top: 8px;
+  font-size: 11px;
 }
 
-.input-actions-right {
+.control-group {
   display: flex;
-  gap: 6px;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.control-group label {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.control-group input,
+.control-group select {
+  padding: 4px 6px;
+  font-size: 11px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-family: inherit;
+  outline: none;
+  min-width: 120px;
+  background: #ffffff;
+  color: #111827;
+}
+
+body.dark-mode .control-group input,
+body.dark-mode .control-group select {
+  background: #020817;
+  color: #e5e7eb;
+  border-color: #111827;
+}
+
+.control-group input:focus,
+.control-group select:focus {
+  border-color: var(--accent);
+}
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkbox-group label {
+  font-size: 11px;
+  color: var(--text);
 }
 
 /* ボタン */
 
-.btn {
-  border-radius: 6px;
-  border: 1px solid transparent;
+.btn-primary,
+.btn-ghost,
+.btn-xs {
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 11px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  transition: background var(--transition), box-shadow var(--transition),
+    transform var(--transition), border-color var(--transition), color var(--transition);
+  font-family: inherit;
+}
+
+.btn-xs {
+  padding: 4px 8px;
+  font-size: 10px;
 }
 
 .btn-primary {
   background: var(--accent);
   color: #ffffff;
+  border-color: var(--accent);
 }
 
 .btn-primary:hover {
-  background: #1d4ed8;
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
 }
 
 .btn-ghost {
   background: transparent;
-  color: var(--text-main);
-  border-color: var(--border-soft);
+  color: var(--muted);
 }
 
 .btn-ghost:hover {
-  background: #f3f4f6;
+  background: var(--border-soft);
+  color: var(--text);
 }
 
-/* フィルタ */
+/* ダークモードトグル */
 
-.filters {
-  margin-top: 12px;
-  border-top: 1px dashed var(--border-soft);
-  padding-top: 10px;
+.toggle-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--muted);
 }
 
-.filters-title {
-  margin: 0 0 6px;
-  font-size: 13px;
+/* ダークボタンのON/OFFっぽい見た目だけ少しだけ追加 */
+body.dark-mode #darkToggleBtn {
+  background: #111827;
+  color: #f9fafb;
 }
 
-.filter-row {
+/* 出力 */
+
+.output-header {
   display: flex;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: baseline;
   margin-bottom: 6px;
 }
 
-.filter-field {
-  flex: 1;
+.output-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.output-meta {
+  font-size: 10px;
+  color: var(--muted);
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 11px;
-}
-
-.filter-field input {
-  font-size: 12px;
-  padding: 4px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--border-soft);
-}
-
-.filter-small {
-  max-width: 140px;
-}
-
-.filters-note {
-  margin: 4px 0 0;
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-/* ========== 出力エリア ========== */
-
-.output-summary {
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-bottom: 6px;
+  gap: 4px;
 }
 
 .log-output {
-  font-family: var(--mono);
-  font-size: 12px;
-  background: #111827;
-  color: #e5e7eb;
-  border-radius: 6px;
-  padding: 8px;
-  min-height: 220px;
-  max-height: 520px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 6px;
+  background: #fcfcfc;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.5;
+  max-height: 420px;
   overflow: auto;
-  border: 1px solid #111827;
+  white-space: pre;
+  color: #111827;
+}
+
+body.dark-mode .log-output {
+  background: #020817;
+  color: #e5e7eb;
+  border-color: #111827;
 }
 
 .log-line {
   white-space: pre;
 }
 
-.log-line + .log-line {
-  margin-top: 2px;
-}
-
-/* ログ中のパーツ */
-
-.log-ip {
-  color: #93c5fd;
-}
-
-.log-time {
-  color: #facc15;
-}
-
-.log-method {
-  color: #a7f3d0;
-}
-
-.log-path {
-  color: #e5e7eb;
-}
-
-.log-status {
-  font-weight: 600;
-}
-
-.status-2xx {
-  color: #22c55e;
-}
-
-.status-3xx {
-  color: #eab308;
-}
-
-.status-4xx {
-  color: #fb923c;
-}
-
-.status-5xx {
-  color: #f97373;
-}
-
-.log-size {
+.log-line.dim {
   color: #9ca3af;
 }
 
-.log-referer {
-  color: #e5e7eb;
+body.dark-mode .log-line.dim {
+  color: #4b5563;
 }
 
-.log-agent {
-  color: #c4b5fd;
+.log-line .ip {
+  color: #4b5563;
 }
 
-/* ========== トグル（ダークモード） ========== */
-
-.toggle {
-  font-size: 11px;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.log-line .timestamp {
+  color: #7c3aed;
 }
 
-/* ========== ダークモード ========== */
-
-body[data-theme="dark"] {
-  --bg-main: #020617;
-  --bg-panel: #020617;
-  --bg-input: #020617;
-  --border-soft: #1f2933;
-  --text-main: #e5e7eb;
-  --text-muted: #9ca3af;
+.log-line .method {
+  font-weight: 600;
+  color: #1d4ed8;
 }
 
-body[data-theme="dark"] {
-  background: var(--bg-main);
-  color: var(--text-main);
+.log-line .url {
+  color: #2563eb;
 }
 
-body[data-theme="dark"] .panel {
-  background: var(--bg-panel);
-  border-color: var(--border-soft);
+.log-line .status {
+  font-weight: 600;
 }
 
-body[data-theme="dark"] .log-input {
-  background: var(--bg-input);
-  border-color: var(--border-soft);
-  color: var(--text-main);
+.log-line .status-2xx {
+  color: var(--status-2xx);
 }
 
-body[data-theme="dark"] .log-output {
-  background: #020617;
-  border-color: #020617;
-  color: #e5e7eb;
+.log-line .status-3xx {
+  color: var(--status-3xx);
 }
 
-body[data-theme="dark"] .btn-ghost {
-  border-color: var(--border-soft);
-  color: var(--text-main);
+.log-line .status-4xx {
+  color: var(--status-4xx);
 }
 
-body[data-theme="dark"] .btn-ghost:hover {
-  background: #111827;
+.log-line .status-5xx {
+  color: var(--status-5xx);
 }
 
-body[data-theme="dark"] .btn-primary {
-  background: #2563eb;
-  color: #ffffff;
+.log-line .size {
+  color: #6b7280;
 }
 
-body[data-theme="dark"] .nw-header,
-body[data-theme="dark"] .nw-footer {
-  border-color: var(--border-soft);
+.log-line mark {
+  background: #fef9c3;
+  padding: 0;
 }
 
-/* ステータス色（ダーク向け微調整） */
+/* system message line */
+.log-line.system {
+  color: #6b7280;
+  font-style: italic;
+}
 
-body[data-theme="dark"] .status-2xx {
-  color: #30d158;
-}
-body[data-theme="dark"] .status-3xx {
-  color: #ffd60a;
-}
-body[data-theme="dark"] .status-4xx {
-  color: #ff9f0a;
-}
-body[data-theme="dark"] .status-5xx {
-  color: #ff453a;
+/* Responsive */
+
+@media (max-width: 720px) {
+  .nw-header {
+    padding: 12px 8px 6px;
+  }
+
+  .nw-main {
+    padding: 10px;
+  }
+
+  .input-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .control-group input,
+  .control-group select {
+    min-width: 100%;
+  }
 }
