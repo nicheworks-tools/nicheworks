@@ -173,13 +173,13 @@ input[type="text"]:focus, select:focus {
   font-size: 11px;
 }
 
-/* いまの app.js に合わせたタイトル用 */
+/* app.js が使うタイトル用 */
 .card-title {
   font-weight: 600;
   font-size: 12px;
 }
 
-/* 旧構成互換（必要なら使う） */
+/* 旧構成互換（使っていなくてもOK） */
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -296,6 +296,19 @@ input[type="text"]:focus, select:focus {
 .nw-lang-switch button.active {
   font-weight: 600;
   text-decoration: underline;
+}
+
+/* ===== 関連リンクブロック ===== */
+.nw-links {
+  margin: 12px 0 4px;
+  text-align: center;
+  font-size: 11px;
+  color: #6b7280;
+}
+.nw-links a {
+  color: #4b5563;
+  text-decoration: underline;
+  margin: 0 4px;
 }
 
 /* ===== フッター（共通仕様） ===== */
