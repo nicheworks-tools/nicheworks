@@ -23,11 +23,11 @@
   function applyLang(lang) {
     state.lang = lang;
 
-    // data-i18n の表示切替
+    // data-i18n の表示切替（値が ja / en の2パターン）
     els.i18nNodes.forEach((el) => {
       const code = el.getAttribute("data-i18n");
       if (!code) return;
-      el.style.display = code === lang ? "" : "none";
+      el.hidden = code !== lang;
     });
 
     // ボタンのアクティブ状態
@@ -41,9 +41,13 @@
   }
 
   function initLang() {
-    // ブラウザの設定から初期言語をざっくり決める
+    // localStorage に保存があれば優先（なければブラウザ言語）
+    const saved = window.localStorage
+      ? window.localStorage.getItem("manualfinder_lang")
+      : null;
+
     const navLang = (navigator.language || "").toLowerCase();
-    const initial = navLang.startsWith("ja") ? "ja" : "en";
+    const initial = saved || (navLang.startsWith("ja") ? "ja" : "en");
 
     applyLang(initial);
 
@@ -52,6 +56,9 @@
         const lang = btn.getAttribute("data-lang");
         if (!lang || lang === state.lang) return;
         applyLang(lang);
+        if (window.localStorage) {
+          window.localStorage.setItem("manualfinder_lang", lang);
+        }
       });
     });
   }
@@ -154,16 +161,10 @@
 
       if (state.lang === "ja") {
         title.textContent =
-          item.nameJa ||
-          item.brand ||
-          item.nameEn ||
-          ""; /* 日本語があれば優先 */
+          item.nameJa || item.brand || item.nameEn || "";
       } else {
         title.textContent =
-          item.nameEn ||
-          item.brand ||
-          item.nameJa ||
-          ""; /* 英語があれば優先 */
+          item.nameEn || item.brand || item.nameJa || "";
       }
 
       card.appendChild(title);
@@ -180,9 +181,8 @@
 
       if (item.country) {
         const country = document.createElement("span");
+        country.className = "card-country";
         country.style.marginLeft = "8px";
-        country.style.fontSize = "0.8rem";
-        country.style.opacity = "0.7";
         country.textContent = item.country;
         metaLine.appendChild(country);
       }
@@ -192,10 +192,7 @@
       // 補足テキスト
       if (item.note) {
         const note = document.createElement("p");
-        note.style.fontSize = "0.85rem";
-        note.style.marginTop = "6px";
-        note.style.marginBottom = "6px";
-        note.style.opacity = "0.9";
+        note.className = "card-note";
         note.textContent = item.note;
         card.appendChild(note);
       }
@@ -223,6 +220,13 @@
           state.lang === "ja" ? "サポートTOP" : "Support";
         links.appendChild(aSupport);
       }
+
+      // 公式タグ
+      const tag = document.createElement("span");
+      tag.className = "tag-official";
+      tag.textContent =
+        state.lang === "ja" ? "公式サイト" : "Official";
+      links.appendChild(tag);
 
       card.appendChild(links);
 
