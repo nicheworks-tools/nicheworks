@@ -1,3 +1,4 @@
+/* Base */
 body {
   font-family: system-ui, sans-serif;
   margin: 0;
@@ -5,6 +6,7 @@ body {
   color: #333;
 }
 
+/* Header */
 .nw-header {
   text-align: center;
   padding: 18px 8px 10px;
@@ -15,13 +17,14 @@ body {
   margin-top: 2px;
 }
 
+/* Main layout */
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 12px;
+  padding: 0 12px 32px; /* ← 下に余白追加（footer衝突防止） */
 }
 
-/* 言語切替（v2仕様準拠） */
+/* Language Switch */
 .nw-lang-switch {
   text-align: center;
   margin: 6px 0 10px;
@@ -39,7 +42,7 @@ body {
   font-weight: 600;
 }
 
-/* 広告枠 */
+/* Ads */
 .ad-slot {
   margin: 12px 0 16px;
   padding: 8px;
@@ -50,12 +53,11 @@ body {
   min-height: 60px;
 }
 
-/* メインUI */
+/* Tool UI */
 .tool-container {
   text-align: center;
   margin-top: 16px;
 }
-
 .label {
   font-size: 14px;
   font-weight: bold;
@@ -90,7 +92,7 @@ body {
   display: none;
 }
 
-/* ボタン */
+/* Buttons */
 .clean-btn {
   margin-top: 16px;
   padding: 10px 26px;
@@ -106,20 +108,19 @@ body {
   cursor: not-allowed;
 }
 
-/* 状態表示 */
+/* Status & Message */
 .status {
   margin-top: 12px;
   font-size: 13px;
   color: #444;
 }
-
 .done-msg {
   color: #16a34a;
   margin-top: 10px;
   font-size: 13px;
 }
 
-/* 免責 */
+/* Disclaimer */
 .disclaimer {
   margin-top: 16px;
   font-size: 11px;
@@ -127,7 +128,7 @@ body {
   text-align: center;
 }
 
-/* 寄付導線 */
+/* Donate section */
 .nw-donate {
   text-align: center;
   margin: 16px 0 8px;
@@ -140,4 +141,44 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
-  mar
+  margin-top: 4px;
+}
+.nw-donate-links a {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 13px;
+  color: #111827;
+  text-decoration: none;
+}
+
+/* Internal links（仕様：footer直前）*/
+.nw-links {
+  text-align: center;
+  font-size: 12px;
+  margin: 20px 0 24px; /* ← footer との余白を確保 */
+  color: #6b7280;
+}
+.nw-links a {
+  color: #4b5563;
+  text-decoration: none;
+}
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.nw-footer {
+  margin-top: 32px; /* ← main と競合しないため拡張 */
+  padding: 16px 8px 12px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.6;
+}
+.nw-footer-line {
+  margin: 2px 0;
+}
