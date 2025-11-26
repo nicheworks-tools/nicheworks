@@ -15,13 +15,13 @@ body {
   margin-top: 2px;
 }
 
-/* 共通レイアウト */
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 12px;
 }
 
+/* 言語切替（v2仕様準拠） */
 .nw-lang-switch {
   text-align: center;
   margin: 6px 0 10px;
@@ -32,7 +32,7 @@ body {
   border: none;
   background: transparent;
   cursor: pointer;
-  color: #444;
+  font-size: 11px;
 }
 .nw-lang-switch button.active {
   text-decoration: underline;
@@ -41,15 +41,16 @@ body {
 
 /* 広告枠 */
 .ad-slot {
-  margin: 12px 0;
+  margin: 12px 0 16px;
   padding: 8px;
-  min-height: 60px;
-  border: 1px dashed #ccc;
+  border: 1px dashed #d4d4d4;
   font-size: 11px;
+  color: #9ca3af;
   text-align: center;
-  color: #999;
+  min-height: 60px;
 }
 
+/* メインUI */
 .tool-container {
   text-align: center;
   margin-top: 16px;
@@ -69,11 +70,12 @@ body {
   background: #fff;
   border-radius: 8px;
   cursor: pointer;
-  max-width: 420px;
+  max-width: 600px;
 }
 .drop-area:hover {
   border-color: #888;
 }
+
 #file-input {
   display: none;
 }
@@ -83,10 +85,12 @@ body {
   margin-top: 14px;
   border-radius: 8px;
 }
+
 .hidden {
   display: none;
 }
 
+/* ボタン */
 .clean-btn {
   margin-top: 16px;
   padding: 10px 26px;
@@ -102,17 +106,20 @@ body {
   cursor: not-allowed;
 }
 
+/* 状態表示 */
 .status {
   margin-top: 12px;
   font-size: 13px;
   color: #444;
 }
+
 .done-msg {
   color: #16a34a;
   margin-top: 10px;
   font-size: 13px;
 }
 
+/* 免責 */
 .disclaimer {
   margin-top: 16px;
   font-size: 11px;
@@ -120,7 +127,7 @@ body {
   text-align: center;
 }
 
-/* 寄付導線（共通CSSそのまま利用） */
+/* 寄付導線 */
 .nw-donate {
   text-align: center;
   margin: 16px 0 8px;
@@ -131,24 +138,6 @@ body {
 .nw-donate-links {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
-  margin-top: 6px;
-}
-.nw-donate-links a {
-  padding: 8px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #fff;
-  text-decoration: none;
-  color: #111;
-}
-
-/* Footer */
-.nw-footer {
-  padding: 16px 8px 12px;
-  border-top: 1px solid #e5e7eb;
-  margin-top: 24px;
-  font-size: 11px;
-  color: #6b7280;
-  text-align: center;
-}
+  mar
