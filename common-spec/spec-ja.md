@@ -399,7 +399,10 @@ AI / Codex への指示として以下を厳守：
 * GA4は原則使わない（必要なツールのみ別途検討）。
 
 ```html
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'>
 </script>
 ```
 
@@ -832,5 +835,97 @@ Sitemap: https://nicheworks.pages.dev/sitemap.xml
   ただし、v1 の方が具体的にツールを指定している場合は、その記述も尊重し、矛盾しない形で統合すること。
 
 ---
+
+## 10. 使い方ページ（usage.html）安全仕様
+
+NicheWorks のすべてのツールは、必要に応じて
+**使い方ページ（usage.html）** を個別に設置できる。
+
+このページは UI を簡潔に保ちつつ、
+追加説明・FAQ・非対応範囲を掲載するためのもの。
+
+---
+
+### 10-1. ファイル配置
+
+```
+/tools/{tool-slug}/index.html
+/tools/{tool-slug}/usage.html（日本語）
+/tools/{tool-slug}/usage-en.html（英語版、必要時のみ）
+```
+
+---
+
+### 10-2. usage リンクの配置位置（安全仕様）
+
+広告との誤認を避けるため、
+**広告とは十分な距離（40px 以上）を空けた位置**
+に配置する。
+
+#### ▼ 推奨配置：
+
+```
+① 広告ブロック（ad-top）
+② メインUI
+③ 導線ブロック（寄付）
+④ usageリンク ← ★ここが安全
+```
+
+#### ▼ サンプル HTML
+
+```html
+<p class="usage-link">
+  <a href="./usage.html">使い方はこちら</a>
+</p>
+```
+
+※ ボタン化しない。
+※ フォントサイズ 14px・地味なテキストリンク。
+※ 誘導感を演出する装飾は禁止。
+
+---
+
+### 10-3. デザイン仕様（usage.html）
+
+* 背景：白 (#FFF)
+* 最大幅：600px
+* 文字色：#333
+* 見出し：黒
+* レイアウトは NicheWorks 共通デザインを踏襲
+* 広告は **基本なし**（必要時のみ最下部に1つ）
+
+---
+
+### 10-4. usage.html の構成（全ツール共通）
+
+```
+1. このツールでできること（Purpose）
+2. 使い方の手順（How to Use）
+3. 対応 / 非対応（Supported / Unsupported）
+4. エラーについて（Error Types）
+5. 出力形式の説明（Output Format）
+6. よくある質問（FAQ）
+7. 免責（Disclaimer）
+8. 戻るリンク（Return to Tool）
+```
+
+---
+
+### 10-5. 多言語対応
+
+必要なツールのみ usage-en.html を設置し、
+index.html から切り替えリンクを提供。
+
+---
+
+### 10-6. 目的（Why）**
+
+* UI をシンプルに保つ
+* 初心者向け説明を別ページに分離
+* AdSense 安全性の向上
+* すべてのツールに横展開できる共通仕様
+
+---
+
 
 
