@@ -83,13 +83,13 @@
   <!-- 言語切替 -->
   <div class="lang-switch">
     <a href="./usage.html">JP</a> |
-    <a href="./usage-en.html">EN</a>
+    <a href="./en/usage.html">EN</a>
   </div>
 
   <h1>URL Title Collector の使い方</h1>
 
   <p>
-    URL Title Collector は、複数のURLをまとめて貼り付けるだけで  
+    URL Title Collector は、複数のURLをまとめて貼り付けるだけで、
     <strong>&lt;title&gt; タグを高速取得できる超軽量ツール</strong>です。
   </p>
 
@@ -105,9 +105,9 @@
   <h2>2. ステータスの種類</h2>
   <ul>
     <li><strong>success</strong>：タイトル取得に成功</li>
-    <li><strong>no-title</strong>：ページは取得できたが &lt;title&gt; が存在しない</li>
+    <li><strong>no-title</strong>：ページ取得は成功したが &lt;title&gt; が存在しない</li>
     <li><strong>http-error</strong>：HTTPエラー（404 / 500 など）</li>
-    <li><strong>network-error</strong>：CORS・DNSなどネットワーク側の問題</li>
+    <li><strong>network-error</strong>：CORS / DNS などネットワーク側の問題</li>
   </ul>
 
   <h2>3. 対応しているケース</h2>
@@ -121,24 +121,24 @@
   <ul>
     <li>ログインが必要なページ</li>
     <li>PDF / JSON / XML など HTMLでないURL</li>
-    <li>CSP制限が非常に強いページ</li>
-    <li>JavaScriptで動的に&lt;title&gt;を書き換えるサイト</li>
+    <li>CSP（Content Security Policy）が非常に強いページ</li>
+    <li>JavaScriptで動的に &lt;title&gt; を変更するサイト</li>
   </ul>
 
   <h2>5. CSV / TSV 出力</h2>
   <p>
-    結果テーブルをそのまま  
+    結果テーブルはそのまま  
     <strong>CSV（カンマ）</strong> / <strong>TSV（タブ）</strong> 形式でコピーできます。  
-    Excel / Google Sheets / Notion などへの貼り付けに対応しています。
+    Excel / Google Sheets / Notion などに貼り付け可能です。
   </p>
 
   <h2>6. よくある質問（FAQ）</h2>
   <p><strong>Q：404でもタイトルが返ることがある？</strong><br>
-    サーバーが独自の404ページを返しており、そのHTML内の &lt;title&gt; を取得しているためです。
+    独自の404ページ（Not Found HTML）が返され、そのHTML内の &lt;title&gt; を取得しているためです。
   </p>
 
   <p><strong>Q：海外サイトで失敗しやすい理由は？</strong><br>
-    CORS や CSP が強く、Worker経由でも本文を取得できないためです。
+    CORS / CSP が強く、Worker 経由でも本文を取得できないためです。
   </p>
 
   <p><strong>Q：大量URLの上限は？</strong><br>
@@ -147,8 +147,8 @@
 
   <h2>7. 免責</h2>
   <p>
-    本ツールはすべてブラウザ内と Cloudflare Worker で動作します。  
-    入力URLや結果は保存されません。  
+    本ツールはブラウザ内と Cloudflare Worker 上で動作します。  
+    入力URL・結果は保存されません。  
     取得できないURLが存在する場合があります。
   </p>
 
