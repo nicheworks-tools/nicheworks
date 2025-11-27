@@ -1,0 +1,138 @@
+/* ---------------------
+  NicheWorks 共通レイアウト
+---------------------- */
+
+.nw-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.nw-header {
+  text-align: center;
+  padding: 16px 8px;
+}
+
+.nw-lang-switch {
+  margin-top: 4px;
+  font-size: 11px;
+}
+.nw-lang-switch button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.nw-lang-switch button.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 広告枠 */
+.ad-slot {
+  margin: 12px 0 16px;
+  padding: 8px;
+  border: 1px dashed #d4d4d4;
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+  min-height: 60px;
+}
+
+/* フッター */
+.nw-footer {
+  margin-top: 24px;
+  padding: 16px 8px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* 寄付導線 */
+.nw-donate {
+  text-align: center;
+  margin: 16px 0 8px;
+}
+.nw-donate-links {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.nw-donate-links a {
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 13px;
+  text-decoration: none;
+  color: #111827;
+  background: #fff;
+}
+.nw-donate-links a:hover {
+  background: #f9fafb;
+}
+
+/* ---------------------
+  LineBreak Doctor 固有スタイル
+---------------------- */
+
+#input-section textarea {
+  width: 100%;
+  min-height: 140px;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+#input-section button {
+  padding: 8px 16px;
+  margin: 4px 0 16px;
+  background: #111827;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sns-block {
+  margin: 20px 0;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.sns-block h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.result-text {
+  white-space: pre-wrap;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  min-height: 60px;
+}
+
+.copy-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+details summary {
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
