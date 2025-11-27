@@ -29,84 +29,57 @@
 <body>
 
 <header class="nw-header">
-  <h1 data-i18n="ja">LineBreak Doctor</h1>
-  <h1 data-i18n="en">LineBreak Doctor</h1>
-
-  <p data-i18n="ja">SNSで消える・崩れる改行をワンクリックで修復</p>
-  <p data-i18n="en">Fix broken or missing line breaks for your SNS posts.</p>
+  <h1>LineBreak Doctor</h1>
+  <p>SNSで消える・崩れる改行をワンクリックで修復</p>
 
   <div class="nw-lang-switch">
-    <button data-lang="ja">JP</button> /
+    <button data-lang="ja" class="active">JP</button> /
     <button data-lang="en">EN</button>
   </div>
 </header>
 
-
 <main class="nw-main">
 
-  <!-- ad-top -->
   <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-  <!-- HOW TO USE -->
   <section id="howto" class="nw-howto">
-    <h2 data-i18n="ja">使い方</h2>
-    <h2 data-i18n="en">How to Use</h2>
-
-    <ol data-i18n="ja">
+    <h2>使い方</h2>
+    <ol>
       <li>崩れた文章を下の入力欄に貼り付けます。</li>
       <li>「整形する」を押します。</li>
-      <li>SNS別に最適化したテキストが下に表示されます。</li>
+      <li>SNS別に最適化したテキストが表示されます。</li>
       <li>使いたいSNSの「コピー」を押して投稿に貼ります。</li>
     </ol>
-
-    <ol data-i18n="en">
-      <li>Paste your text into the input area below.</li>
-      <li>Click “Format”.</li>
-      <li>Optimized text for each SNS appears below.</li>
-      <li>Press “Copy” on the SNS you want to post to.</li>
-    </ol>
   </section>
 
-
-  <!-- INPUT -->
+  <!-- ★ このブロックがなかった or idが違っていた可能性大 -->
   <section id="input-section">
-    <label data-i18n="ja">原文テキスト</label>
-    <label data-i18n="en">Original Text</label>
-
+    <label>原文テキスト</label>
     <textarea id="input" placeholder="Paste text here..."></textarea>
 
-    <button id="formatBtn" data-i18n="ja">整形する</button>
-    <button id="formatBtn" data-i18n="en">Format</button>
+    <!-- ★ CSS対象と一致させた -->
+    <button id="formatBtn">整形する</button>
   </section>
 
-
-  <!-- SNS BLOCKS (X / Instagram / LINE / Facebook / LinkedIn) -->
+  <!-- ★ 出力はここに入る -->
   <div id="results"></div>
 
-
-  <!-- ad-bottom -->
   <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
-  <!-- DONATE -->
   <div class="nw-donate">
-    <p class="nw-donate-text">このツールが役に立ったら、開発継続のためご支援いただけると嬉しいです。</p>
+    <p class="nw-donate-text">このツールが役に立ったらご支援お願いします。</p>
     <div class="nw-donate-links">
-      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
     </div>
   </div>
 
 </main>
 
-
 <footer class="nw-footer">
-  <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-  <p class="nw-footer-line">当サイトには広告が含まれる場合があります。必ず公式情報をご確認ください。</p>
-  <p class="nw-footer-line">
-    <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
-      nicheworks.pages.dev
-    </a>
-  </p>
+  <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+  <p>当サイトには広告が含まれる場合があります。</p>
+  <p><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
 </footer>
 
 <script src="app.js"></script>
