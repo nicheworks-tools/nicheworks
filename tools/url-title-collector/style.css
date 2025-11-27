@@ -213,6 +213,29 @@ button:hover {
   background: #ffe5e5;
 }
 
+/* ================================
+ * NicheWorks – Internal Links Block
+ * ================================ */
+
+.nw-links {
+  margin: 32px 0 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.nw-links a {
+  color: #666;
+  text-decoration: none;
+  padding: 0 4px;
+}
+
+.nw-links a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+
 /* ---------------------------
  * footer
  * --------------------------- */
