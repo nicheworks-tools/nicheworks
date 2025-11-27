@@ -3,34 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>URL Title Collector | NicheWorks</title>
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/url-title-collector/">
+
+  <!-- OGP -->
+  <meta property="og:title" content="URL Title Collector - NicheWorks">
+  <meta property="og:description" content="複数URLの<title>を高速一括取得できる軽量ツール。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/url-title-collector/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/og/nicheworks-default.png">
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
 
   <header>
+
+    <!-- 言語切替 -->
+    <div class="lang-switch" style="text-align:right; font-size:13px; color:#666;">
+      <a href="./index.html" style="color:#666;">JP</a> |
+      <a href="./index-en.html" style="color:#666;">EN</a>
+    </div>
+
     <h1>URL Title Collector</h1>
     <p class="sub">複数URLの&lt;title&gt;を高速で一括取得できます</p>
 
-    <!-- 広告：NicheWorks共通仕様 -->
-    <div class="ad-area">
-      <!-- AdSense / Placeholder -->
-      <div class="ad-placeholder">広告</div>
-    </div>
-
-    <!-- 使い方ページへのリンク（広告直下・グレー細字） -->
+    <!-- 使い方リンク（広告より上） -->
     <p class="usage-link">
       <a href="./usage.html">使い方はこちら</a>
     </p>
+
+    <!-- 広告 -->
+    <div class="ad-area">
+      <div class="ad-placeholder">広告</div>
+    </div>
+
   </header>
 
   <main>
 
-    <!-- URL入力欄 -->
     <label for="urlInput" class="label">URL一覧（1行1つ）</label>
     <textarea id="urlInput" placeholder="https://example.com&#10;https://nicheworks.pages.dev"></textarea>
 
-    <!-- 取得ボタン -->
     <button id="fetchBtn">タイトルを取得する</button>
 
     <!-- プログレスバー -->
@@ -38,17 +55,17 @@
       <div id="progressBar" class="progress-bar"></div>
     </div>
 
-    <!-- 件数表示 -->
+    <!-- 件数 -->
     <div id="countArea" class="count-area hidden">
       <span id="countTotal">合計: 0</span>
       <span id="countSuccess">成功: 0</span>
       <span id="countFail">失敗: 0</span>
     </div>
 
-    <!-- 結果テーブル -->
+    <!-- 結果 -->
     <div id="results"></div>
 
-    <!-- CSV / TSV / Reset ボタン -->
+    <!-- CSV/TSV/Reset -->
     <div id="exportArea" class="export-area hidden">
       <button id="copyCsvBtn">CSVコピー</button>
       <button id="copyTsvBtn">TSVコピー</button>
@@ -58,8 +75,14 @@
   </main>
 
   <footer>
-    <p class="copy">&copy; NicheWorks</p>
+    <p class="copy">
+      <a href="https://nicheworks.pages.dev/" style="color:#666; text-decoration:none;">NicheWorks Home</a>
+    </p>
   </footer>
+
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
   <script src="./app.js"></script>
 </body>
