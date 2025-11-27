@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>使い方 | URL Title Collector</title>
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/url-title-collector/usage.html">
+
+  <!-- OGP -->
+  <meta property="og:title" content="URL Title Collector - 使い方">
+  <meta property="og:description" content="URL Title Collector の利用手順・対応範囲・注意点をまとめたガイドページ。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/url-title-collector/usage.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/og/nicheworks-default.png">
+
   <style>
     body {
       background: #ffffff;
@@ -37,80 +49,106 @@
       color: #0366d6;
       text-decoration: underline;
     }
-    .back {
+    .lang-switch {
+      text-align: right;
+      font-size: 13px;
+      margin-bottom: 12px;
+      color: #666;
+    }
+    .lang-switch a {
+      color: #666;
+      text-decoration: none;
+    }
+    footer {
       margin-top: 40px;
       text-align: center;
+      font-size: 14px;
+      color: #666;
     }
-    .back a {
-      font-size: 15px;
-      color: #333;
+    footer a {
+      color: #666;
+      text-decoration: none;
+    }
+    .back {
+      margin-top: 32px;
+      text-align: center;
     }
   </style>
+
 </head>
 <body>
 
 <main>
 
+  <!-- 言語切替 -->
+  <div class="lang-switch">
+    <a href="./usage.html">JP</a> |
+    <a href="./usage-en.html">EN</a>
+  </div>
+
   <h1>URL Title Collector の使い方</h1>
 
   <p>
-    URL Title Collector は、複数のURLを一括貼り付けするだけで  
-    <strong>&lt;title&gt; タグの内容を高速に取得できる軽量ツール</strong>です。
+    URL Title Collector は、複数のURLをまとめて貼り付けるだけで  
+    <strong>&lt;title&gt; タグを高速取得できる超軽量ツール</strong>です。
   </p>
 
   <h2>1. 使い方（3ステップ）</h2>
   <ul>
-    <li>① テキストエリアに URL を 1 行ずつ貼り付けます。</li>
-    <li>② 「タイトルを取得する」ボタンを押します。</li>
-    <li>③ 一覧表に URL とタイトル・ステータスが表示されます。</li>
+    <li>① テキストエリアに URL を 1 行ずつ貼り付けます</li>
+    <li>② 「タイトルを取得する」を押します</li>
+    <li>③ URL とタイトル・ステータスが一覧で表示されます</li>
   </ul>
 
-  <p>CSV / TSV 形式でコピーでき、リセットボタンで初期化できます。</p>
+  <p>結果は CSV / TSV 形式でコピーできます。リセットボタンで初期状態に戻ります。</p>
 
-  <h2>2. ステータスの意味</h2>
+  <h2>2. ステータスの種類</h2>
   <ul>
     <li><strong>success</strong>：タイトル取得に成功</li>
     <li><strong>no-title</strong>：ページは取得できたが &lt;title&gt; が存在しない</li>
-    <li><strong>http-error</strong>：HTTPエラー（404, 500 など）</li>
-    <li><strong>network-error</strong>：ネットワーク側の問題（CORS・DNS・接続不可など）</li>
+    <li><strong>http-error</strong>：HTTPエラー（404 / 500 など）</li>
+    <li><strong>network-error</strong>：CORS・DNSなどネットワーク側の問題</li>
   </ul>
 
   <h2>3. 対応しているケース</h2>
   <ul>
-    <li>通常のWebページ（HTML）</li>
-    <li>&lt;title&gt; タグを持つ静的ページ</li>
-    <li>ほとんどのニュース・ブログサイト</li>
+    <li>通常のHTMLページ</li>
+    <li>ニュースサイト・ブログなどの静的なページ</li>
+    <li>&lt;title&gt; タグを持つページ</li>
   </ul>
 
-  <h2>4. 非対応のケース（仕様上の限界）</h2>
+  <h2>4. 非対応のケース</h2>
   <ul>
-    <li>ログインしないと閲覧できないページ</li>
-    <li>JSON / XML / PDF など HTML 以外の URL</li>
-    <li>高度なCSP（Content Security Policy）で保護されたサイト</li>
-    <li>JavaScript動的生成で &lt;title&gt; を後から変更するサイト</li>
+    <li>ログインが必要なページ</li>
+    <li>PDF / JSON / XML など HTMLでないURL</li>
+    <li>CSP制限が非常に強いページ</li>
+    <li>JavaScriptで動的に&lt;title&gt;を書き換えるサイト</li>
   </ul>
 
-  <h2>5. CSV / TSV 出力について</h2>
+  <h2>5. CSV / TSV 出力</h2>
   <p>
-    結果テーブルの内容をそのまま  
-    <strong>CSV（カンマ区切り）/ TSV（タブ区切り）</strong> でコピーできます。  
-    Excel / Google Sheets / Notion などに貼り付けて整理できます。
+    結果テーブルをそのまま  
+    <strong>CSV（カンマ）</strong> / <strong>TSV（タブ）</strong> 形式でコピーできます。  
+    Excel / Google Sheets / Notion などへの貼り付けに対応しています。
   </p>
 
   <h2>6. よくある質問（FAQ）</h2>
-  <p><strong>Q：404でもタイトルが返ってくることがある？</strong><br>
-  サーバーが独自の404ページ（Not Found HTML）を返しており、そのHTML内の&lt;title&gt;を取得しているためです。</p>
+  <p><strong>Q：404でもタイトルが返ることがある？</strong><br>
+    サーバーが独自の404ページを返しており、そのHTML内の &lt;title&gt; を取得しているためです。
+  </p>
 
-  <p><strong>Q：海外サイトで失敗する理由は？</strong><br>
-  CORSやCSPの制限により、Worker経由でも本文を取得できない場合があります。</p>
+  <p><strong>Q：海外サイトで失敗しやすい理由は？</strong><br>
+    CORS や CSP が強く、Worker経由でも本文を取得できないためです。
+  </p>
 
-  <p><strong>Q：何件まで一括処理できる？</strong><br>
-  ブラウザ動作のため、100〜300件程度が安全です（端末性能による）。</p>
+  <p><strong>Q：大量URLの上限は？</strong><br>
+    ブラウザ動作のため、100〜300件程度が安全です（端末性能に依存）。
+  </p>
 
   <h2>7. 免責</h2>
   <p>
-    本ツールはすべてブラウザ内＋Cloudflare Worker で動作し、  
-    URLリスト・結果は保存されません。  
+    本ツールはすべてブラウザ内と Cloudflare Worker で動作します。  
+    入力URLや結果は保存されません。  
     取得できないURLが存在する場合があります。
   </p>
 
@@ -119,6 +157,14 @@
   </div>
 
 </main>
+
+<footer>
+  <p><a href="https://nicheworks.pages.dev/">NicheWorks Home</a></p>
+</footer>
+
+<!-- Cloudflare Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
 </body>
 </html>
