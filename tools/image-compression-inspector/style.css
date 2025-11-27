@@ -1,0 +1,96 @@
+/* ---- NicheWorks 共通CSS（仕様書準拠） ---- */
+.nw-main {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.nw-lang-switch {
+  text-align: center;
+  margin: 4px 0 8px;
+  font-size: 11px;
+  color: #6b7280;
+}
+.nw-lang-switch button {
+  border: none;
+  background: transparent;
+  padding: 0 2px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #4b5563;
+}
+.nw-lang-switch button.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.ad-slot {
+  margin: 12px 0 16px;
+  padding: 8px;
+  border: 1px dashed #d4d4d4;
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+  min-height: 60px;
+}
+
+.nw-footer {
+  margin-top: 24px;
+  padding: 16px 8px 12px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ---- ツール固有CSS ---- */
+
+.upload-box {
+  border: 2px dashed #d1d5db;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  margin: 20px 0;
+  border-radius: 12px;
+  background: #fafafa;
+}
+.upload-box:hover {
+  background: #f4f4f4;
+}
+
+.helper-text {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.result-section {
+  margin-top: 24px;
+}
+
+.hidden {
+  display: none;
+}
+
+.note {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 13px;
+}
+
+.nw-links {
+  margin-top: 16px;
+  font-size: 12px;
+}
+.nw-links a {
+  margin: 0 4px;
+  color: #4b5563;
+  text-decoration: none;
+}
+.nw-links a:hover {
+  text-decoration: underline;
+}
