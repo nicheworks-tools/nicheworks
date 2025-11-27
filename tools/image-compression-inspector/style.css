@@ -1,43 +1,178 @@
-/* ---- NicheWorks 共通CSS（仕様書準拠） ---- */
+/* ============================================================
+ * NicheWorks 共通CSS v2（完全統合版）
+ * ============================================================ */
+
+/* ---- ベース ---- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: #111827;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+/* ---- レイアウト ---- */
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 12px;
 }
 
+/* ============================================================
+ * 1. ヘッダー（タイトル＋説明）
+ * ============================================================ */
+.nw-header {
+  margin-top: 32px;
+  margin-bottom: 24px;
+  padding: 0 12px;
+}
+
+/* タイトル */
+.nw-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+/* 説明文 */
+.nw-header p {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+/* 言語切替 */
 .nw-lang-switch {
   text-align: center;
-  margin: 4px 0 8px;
-  font-size: 11px;
+  margin: 8px 0;
+  font-size: 12px;
   color: #6b7280;
 }
 .nw-lang-switch button {
+  background: none;
   border: none;
-  background: transparent;
-  padding: 0 2px;
   cursor: pointer;
-  font-size: 11px;
+  padding: 0 4px;
+  font-size: 12px;
   color: #4b5563;
 }
 .nw-lang-switch button.active {
-  font-weight: 600;
   text-decoration: underline;
+  font-weight: 600;
 }
 
+/* ============================================================
+ * 2. 広告枠
+ * ============================================================ */
 .ad-slot {
-  margin: 12px 0 16px;
-  padding: 8px;
+  margin: 16px 0;
+  padding: 12px;
   border: 1px dashed #d4d4d4;
-  font-size: 11px;
   color: #9ca3af;
+  font-size: 11px;
   text-align: center;
   min-height: 60px;
 }
 
-/* フッター */
+/* ============================================================
+ * 3. アップロードボックス（固有部分）
+ * ============================================================ */
+.upload-box {
+  border: 2px dashed #d1d5db;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  margin: 20px 0;
+  border-radius: 12px;
+  background: #fafafa;
+  color: #4b5563;
+  transition: background 0.2s ease;
+}
+.upload-box:hover {
+  background: #f4f4f4;
+}
+
+.helper-text {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+ * 4. 結果セクション
+ * ============================================================ */
+.result-section {
+  margin-top: 28px;
+}
+
+.result-section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.result-section p {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+.no-result {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.note {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 13px;
+}
+
+/* ============================================================
+ * 5. 寄付導線
+ * ============================================================ */
+.nw-donate {
+  text-align: center;
+  margin: 32px 0 20px;
+}
+.nw-donate-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+.nw-donate-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.nw-donate-links a {
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  color: #111827;
+}
+
+/* ============================================================
+ * 6. フッター
+ * ============================================================ */
 .nw-footer {
-  margin-top: 24px;
-  padding: 16px 8px 12px;
+  margin-top: 40px;
+  padding: 16px 8px;
   border-top: 1px solid #e5e7eb;
   font-size: 11px;
   color: #6b7280;
@@ -45,14 +180,12 @@
   line-height: 1.6;
 }
 .nw-footer-line {
-  margin: 2px 0;
+  margin: 3px 0;
 }
 
-/* 内部リンク */
 .nw-links {
   margin-top: 12px;
   font-size: 12px;
-  text-align: center;
 }
 .nw-links a {
   margin: 0 4px;
@@ -63,76 +196,14 @@
   text-decoration: underline;
 }
 
-/* 寄付導線 */
-.nw-donate {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 12px;
-  color: #6b7280;
-}
-.nw-donate-links {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 6px;
-}
-.nw-donate-links a {
-  padding: 6px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
-  font-size: 13px;
-  color: #111827;
-  text-decoration: none;
-}
-
-/* ---- ツール固有CSS（ここが “全く当たってなかった部分”） ---- */
-
-/* アップロード枠 */
-.upload-box {
-  border: 2px dashed #d1d5db;
-  padding: 40px 20px;
-  text-align: center;
-  cursor: pointer;
-  margin: 20px 0;
-  border-radius: 12px;
-  background: #fafafa;
-  color: #4b5563;
-  transition: background 0.2s;
-}
-.upload-box:hover {
-  background: #f4f4f4;
-}
-
-/* 対応形式 */
-.helper-text {
-  font-size: 12px;
-  color: #6b7280;
-  margin-bottom: 20px;
-}
-
-/* 結果セクション */
-.result-section {
-  margin-top: 24px;
-}
-.result-section p {
-  font-size: 14px;
-  margin: 6px 0;
-}
-
-/* note */
-.note {
-  font-size: 12px;
-  color: #6b7280;
-}
-
-/* エラー */
-.error {
-  color: #dc2626;
-  font-size: 13px;
-}
-
-/* hidden */
-.hidden {
-  display: none;
+/* ============================================================
+ * 7. スマホ最適化
+ * ============================================================ */
+@media (max-width: 640px) {
+  .nw-header h1 {
+    font-size: 22px;
+  }
+  .result-section h2 {
+    font-size: 18px;
+  }
 }
