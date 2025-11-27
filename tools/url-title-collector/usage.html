@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使い方 | URL Title Collector</title>
+  <style>
+    body {
+      background: #ffffff;
+      color: #111;
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      margin: 0;
+      padding: 24px 16px;
+      line-height: 1.7;
+    }
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-top: 28px;
+      margin-bottom: 8px;
+    }
+    p, li {
+      font-size: 15px;
+      color: #333;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    a {
+      color: #0366d6;
+      text-decoration: underline;
+    }
+    .back {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .back a {
+      font-size: 15px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<main>
+
+  <h1>URL Title Collector の使い方</h1>
+
+  <p>
+    URL Title Collector は、複数のURLを一括貼り付けするだけで  
+    <strong>&lt;title&gt; タグの内容を高速に取得できる軽量ツール</strong>です。
+  </p>
+
+  <h2>1. 使い方（3ステップ）</h2>
+  <ul>
+    <li>① テキストエリアに URL を 1 行ずつ貼り付けます。</li>
+    <li>② 「タイトルを取得する」ボタンを押します。</li>
+    <li>③ 一覧表に URL とタイトル・ステータスが表示されます。</li>
+  </ul>
+
+  <p>CSV / TSV 形式でコピーでき、リセットボタンで初期化できます。</p>
+
+  <h2>2. ステータスの意味</h2>
+  <ul>
+    <li><strong>success</strong>：タイトル取得に成功</li>
+    <li><strong>no-title</strong>：ページは取得できたが &lt;title&gt; が存在しない</li>
+    <li><strong>http-error</strong>：HTTPエラー（404, 500 など）</li>
+    <li><strong>network-error</strong>：ネットワーク側の問題（CORS・DNS・接続不可など）</li>
+  </ul>
+
+  <h2>3. 対応しているケース</h2>
+  <ul>
+    <li>通常のWebページ（HTML）</li>
+    <li>&lt;title&gt; タグを持つ静的ページ</li>
+    <li>ほとんどのニュース・ブログサイト</li>
+  </ul>
+
+  <h2>4. 非対応のケース（仕様上の限界）</h2>
+  <ul>
+    <li>ログインしないと閲覧できないページ</li>
+    <li>JSON / XML / PDF など HTML 以外の URL</li>
+    <li>高度なCSP（Content Security Policy）で保護されたサイト</li>
+    <li>JavaScript動的生成で &lt;title&gt; を後から変更するサイト</li>
+  </ul>
+
+  <h2>5. CSV / TSV 出力について</h2>
+  <p>
+    結果テーブルの内容をそのまま  
+    <strong>CSV（カンマ区切り）/ TSV（タブ区切り）</strong> でコピーできます。  
+    Excel / Google Sheets / Notion などに貼り付けて整理できます。
+  </p>
+
+  <h2>6. よくある質問（FAQ）</h2>
+  <p><strong>Q：404でもタイトルが返ってくることがある？</strong><br>
+  サーバーが独自の404ページ（Not Found HTML）を返しており、そのHTML内の&lt;title&gt;を取得しているためです。</p>
+
+  <p><strong>Q：海外サイトで失敗する理由は？</strong><br>
+  CORSやCSPの制限により、Worker経由でも本文を取得できない場合があります。</p>
+
+  <p><strong>Q：何件まで一括処理できる？</strong><br>
+  ブラウザ動作のため、100〜300件程度が安全です（端末性能による）。</p>
+
+  <h2>7. 免責</h2>
+  <p>
+    本ツールはすべてブラウザ内＋Cloudflare Worker で動作し、  
+    URLリスト・結果は保存されません。  
+    取得できないURLが存在する場合があります。
+  </p>
+
+  <div class="back">
+    <a href="./index.html">← ツールに戻る</a>
+  </div>
+
+</main>
+
+</body>
+</html>
