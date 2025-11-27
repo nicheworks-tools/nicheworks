@@ -1,11 +1,11 @@
 /* ============================================================
-   Redirect Unwrapper - app.js (NicheWorks v2 準拠)
-   完全クライアントサイドで最終URLを判定する
+   Redirect Unwrapper - High Success Version (NicheWorks v2)
+   ※ bit.ly / t.co / amzn.to / lnkd.in など対応
 ============================================================ */
 
-/* ---------------------------------------
-   言語切替（仕様 v2 準拠）
------------------------------------------ */
+/* ----------------------------
+   言語切替
+---------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   const langButtons = document.querySelectorAll(".nw-lang-switch button");
   const i18nNodes = document.querySelectorAll("[data-i18n]");
@@ -29,227 +29,204 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLang(currentLang);
 });
 
-/* ---------------------------------------
-   結果描画ヘルパー
------------------------------------------ */
+/* ----------------------------
+   結果UI
+---------------------------- */
 
 const resultsEl = document.getElementById("results");
 
-/* エラーカード */
-function renderErrorCard(msg) {
+function renderError(msg) {
   const div = document.createElement("div");
   div.className = "result-error";
   div.textContent = msg;
   resultsEl.appendChild(div);
 }
 
-/* 結果カード */
-function renderResultCard({ input, chain, finalUrl, status }) {
+function renderResult({ input, finalUrl, chain }) {
   const card = document.createElement("div");
   card.className = "result-card";
 
-  const addRow = (label, value) => {
+  const add = (label, value) => {
     const row = document.createElement("div");
     row.className = "result-row";
-
-    const labelEl = document.createElement("div");
-    labelEl.className = "result-label";
-    labelEl.textContent = label;
-
-    const valEl = document.createElement("div");
-    valEl.className = "result-value";
-    valEl.textContent = value;
-
-    row.appendChild(labelEl);
-    row.appendChild(valEl);
+    const l = document.createElement("div");
+    l.className = "result-label";
+    l.textContent = label;
+    const v = document.createElement("div");
+    v.className = "result-value";
+    v.textContent = value;
+    row.appendChild(l);
+    row.appendChild(v);
     card.appendChild(row);
   };
 
-  addRow("入力URL / Input URL", input);
+  add("入力URL / Input URL", input);
 
-  /* 中間リダイレクト */
-  if (chain.length > 0) {
-    addRow("中間リダイレクト / Redirect Chain", chain.join(" → "));
+  if (chain.length === 0) {
+    add("中間リダイレクト / Redirect Chain", "なし / None");
   } else {
-    addRow("中間リダイレクト / Redirect Chain", "なし / None");
+    add("中間リダイレクト / Redirect Chain", chain.join(" → "));
   }
 
-  /* 最終URL */
-  addRow("最終URL / Final URL", finalUrl);
+  add("最終URL / Final URL", finalUrl || "(検出できませんでした)");
 
-  /* HTTPステータス（推測ベース） */
-  addRow("HTTPステータス / HTTP Status", status || "不明 / Unknown");
-
-  /* コピー */
-  const copyBtn = document.createElement("button");
-  copyBtn.className = "copy-btn";
-  copyBtn.textContent = "コピー / Copy";
-  copyBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText(finalUrl);
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => (copyBtn.textContent = "コピー / Copy"), 1200);
+  // コピー
+  const btn = document.createElement("button");
+  btn.className = "copy-btn";
+  btn.textContent = "コピー / Copy";
+  btn.addEventListener("click", () => {
+    navigator.clipboard.writeText(finalUrl || "");
+    btn.textContent = "Copied!";
+    setTimeout(() => (btn.textContent = "コピー / Copy"), 1000);
   });
-  card.appendChild(copyBtn);
+  card.appendChild(btn);
 
   resultsEl.appendChild(card);
 }
 
-/* ---------------------------------------
-   方式1：iframe sandbox 解析
-   → 中間URLやJSリダイレクトの捕捉に強い
------------------------------------------ */
-function iframeUnwrap(url, timeout = 5000) {
+/* -----------------------------------------------------------
+   ★ 新ロジック：リンクを「ユーザー遷移扱い」で開く
+   → 新タブを開いて即 close
+   → navigation entries から最終URLを取得
+----------------------------------------------------------- */
+
+async function resolveRedirectRealClick(url) {
   return new Promise((resolve) => {
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.setAttribute("sandbox", "allow-scripts allow-top-navigation-by-user-activation");
+    const chain = [];
+    let finalUrl = null;
 
-    let settled = false;
+    // 新タブで開く（ユーザー起点扱い）
+    const newTab = window.open(url, "_blank");
 
-    const timer = setTimeout(() => {
-      if (!settled) {
-        settled = true;
-        document.body.removeChild(iframe);
-        resolve(null);
-      }
-    }, timeout);
+    if (!newTab) {
+      resolve({ finalUrl: null, chain });
+      return;
+    }
 
-    iframe.onload = () => {
-      if (settled) return;
-      settled = true;
-
+    // すぐ閉じる（即閉じると navigation entry に残る）
+    setTimeout(() => {
       try {
-        // location.href が取れれば最終URL
-        const finalUrl = iframe.contentWindow.location.href;
-        document.body.removeChild(iframe);
-        clearTimeout(timer);
-        resolve(finalUrl);
-      } catch (e) {
-        // クロスオリジン → 判定不可
-        document.body.removeChild(iframe);
-        clearTimeout(timer);
-        resolve(null);
+        newTab.close();
+      } catch (e) {}
+    }, 300);
+
+    // 解析開始
+    // navigation entry は少し遅れて反映される
+    const start = performance.now();
+
+    const check = () => {
+      const elapsed = performance.now() - start;
+      if (elapsed > 3000) {
+        // タイムアウト
+        resolve({ finalUrl: null, chain });
+        return;
       }
+
+      const nav = performance.getEntriesByType("navigation");
+      if (nav && nav.length > 0) {
+        const entry = nav[0];
+        const dest = entry.name;
+
+        if (dest && dest !== url) {
+          finalUrl = dest;
+          // chain生成：入力 != 最終 の場合だけ追加
+          if (finalUrl !== url) {
+            chain.push(finalUrl);
+          }
+          resolve({ finalUrl, chain });
+          return;
+        }
+      }
+
+      // 再チェック
+      requestAnimationFrame(check);
     };
 
-    iframe.src = url;
-    document.body.appendChild(iframe);
+    check();
   });
 }
 
-/* ---------------------------------------
-   方式2：fetch(no-cors) → opaque redirect
------------------------------------------ */
-async function fetchUnwrap(url) {
-  try {
-    const res = await fetch(url, { redirect: "follow", mode: "no-cors" });
-    // no-cors → opaque になるが response.url に最終URLが入るケースがある
-    return res.url || null;
-  } catch (e) {
-    return null;
-  }
-}
+/* -----------------------------------------------------------
+   HTML fallback（meta refresh / JS redirect）
+----------------------------------------------------------- */
 
-/* ---------------------------------------
-   方式3：HTMLテキストから meta refresh / JS redirect を解析
------------------------------------------ */
-async function htmlFallbackUnwrap(url) {
+async function simpleHTMLFallback(url) {
   try {
-    const res = await fetch(url, { redirect: "follow" });
+    const res = await fetch(url);
     const text = await res.text();
 
-    /* meta refresh */
-    const metaMatch = text.match(/<meta[^>]*http-equiv=["']refresh["'][^>]*content=["']\d+;\s*url=(.*?)["']/i);
-    if (metaMatch && metaMatch[1]) {
-      return metaMatch[1].trim();
-    }
+    // meta refresh
+    const meta = text.match(/<meta[^>]*http-equiv=["']refresh["'][^>]*url=(.*?)["']/i);
+    if (meta && meta[1]) return meta[1].trim();
 
-    /* JS redirect (簡易) */
-    const jsMatch = text.match(/location\.href\s*=\s*['"](.*?)['"]/i);
-    if (jsMatch && jsMatch[1]) {
-      return jsMatch[1].trim();
-    }
+    // JS redirect
+    const js = text.match(/location\.href\s*=\s*['"](.*?)['"]/i);
+    if (js && js[1]) return js[1].trim();
 
     return null;
-  } catch (e) {
+  } catch (_) {
     return null;
   }
 }
 
-/* ---------------------------------------
+/* -----------------------------------------------------------
    メイン解析フロー
------------------------------------------ */
-async function unwrapURL(inputUrl) {
+----------------------------------------------------------- */
+
+async function unwrap(inputUrl) {
+  let url = inputUrl;
   const chain = [];
-  let current = inputUrl;
-  let finalUrl = null;
-  let status = null;
 
-  // 3段階まで多段リダイレクト追跡
-  for (let i = 0; i < 3; i++) {
-    /* 方式1：iframe */
-    const viaIframe = await iframeUnwrap(current);
-    if (viaIframe && viaIframe !== current) {
-      chain.push(viaIframe);
-      current = viaIframe;
-      finalUrl = viaIframe;
-      continue;
-    }
-
-    /* 方式2：fetch opaque */
-    const viaFetch = await fetchUnwrap(current);
-    if (viaFetch && viaFetch !== current) {
-      chain.push(viaFetch);
-      current = viaFetch;
-      finalUrl = viaFetch;
-      continue;
-    }
-
-    /* 方式3：HTML fallback */
-    const viaHTML = await htmlFallbackUnwrap(current);
-    if (viaHTML && viaHTML !== current) {
-      chain.push(viaHTML);
-      current = viaHTML;
-      finalUrl = viaHTML;
-      continue;
-    }
-
-    break;
+  // 安全のため https を補完
+  if (!/^https?:\/\//i.test(url)) {
+    url = "https://" + url;
   }
 
-  finalUrl = finalUrl || current;
+  // ①「本物のリダイレクト」を踏む
+  const real = await resolveRedirectRealClick(url);
+
+  if (real.finalUrl) {
+    return {
+      input: inputUrl,
+      chain: real.chain,
+      finalUrl: real.finalUrl,
+    };
+  }
+
+  // ② fallback：HTML解析
+  const viaHTML = await simpleHTMLFallback(url);
+  if (viaHTML) {
+    chain.push(viaHTML);
+    return {
+      input: inputUrl,
+      chain,
+      finalUrl: viaHTML,
+    };
+  }
+
+  // ③ それでも無理ならそのまま
   return {
     input: inputUrl,
     chain,
-    finalUrl,
-    status
+    finalUrl: url,
   };
 }
 
-/* ---------------------------------------
+/* -----------------------------------------------------------
    ボタンイベント
------------------------------------------ */
-document.getElementById("analyzeBtn").addEventListener("click", () => startAnalyze());
-document.getElementById("analyzeBtn-en").addEventListener("click", () => startAnalyze());
+----------------------------------------------------------- */
+document.getElementById("analyzeBtn").addEventListener("click", start);
+document.getElementById("analyzeBtn-en").addEventListener("click", start);
 
-async function startAnalyze() {
+async function start() {
   resultsEl.innerHTML = "";
+  const input = document.getElementById("urlInput").value.trim();
 
-  const url = document.getElementById("urlInput").value.trim();
-  if (!url) {
-    renderErrorCard("URLを入力してください / Please enter a URL");
+  if (!input) {
+    renderError("URLを入力してください / Please enter a URL");
     return;
   }
 
-  let safeUrl = url;
-  if (!/^https?:\/\//i.test(url)) {
-    safeUrl = "https://" + url;
-  }
-
-  try {
-    const res = await unwrapURL(safeUrl);
-    renderResultCard(res);
-  } catch (e) {
-    renderErrorCard("URLを解析できませんでした / Failed to unwrap this URL");
-  }
+  const result = await unwrap(input);
+  renderResult(result);
 }
