@@ -1,86 +1,66 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>URLタイトル一括取得｜URL Title Collector | NicheWorks</title>
-  <meta name="description" content="複数URLを貼り付けて<title>を高速一括取得する無料ツール。調査・資料作成・ブログ執筆に最適。" />
-
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/url-title-collector/" />
-  <link rel="icon" href="/assets/favicon.ico" />
-
-  <!-- OGP -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="URL Title Collector" />
-  <meta property="og:description" content="URLの<title>を高速取得。" />
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Title Collector | NicheWorks</title>
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 </head>
-
 <body>
 
-<header class="nw-header">
-  <h1>URL Title Collector</h1>
-  <p data-i18n="ja">複数URLの&lt;title&gt;を高速で一括取得できます。</p>
-  <p data-i18n="en">Fetch &lt;title&gt; tags from multiple URLs at once.</p>
-</header>
+  <header>
+    <h1>URL Title Collector</h1>
+    <p class="sub">複数URLの&lt;title&gt;を高速で一括取得できます</p>
 
-<div class="nw-lang-switch">
-  <button data-lang="ja">JP</button> /
-  <button data-lang="en">EN</button>
-</div>
-
-<main class="nw-main">
-
-  <div class="ad-slot ad-top">広告枠（準備中）</div>
-
-  <p data-i18n="ja">複数のURLを1行ずつ貼り付けてください。</p>
-  <p data-i18n="en">Paste multiple URLs, one per line.</p>
-
-  <textarea id="urlInput" placeholder="https://example.com&#10;https://example.org"></textarea>
-
-  <button id="fetchBtn" class="btn-fetch">
-    <span data-i18n="ja">タイトルを取得する</span>
-    <span data-i18n="en">Fetch Titles</span>
-  </button>
-
-  <div id="results"></div>
-
-  <div id="copyArea" style="display:none;">
-    <button id="copyCsvBtn">CSV</button>
-    <button id="copyTsvBtn">TSV</button>
-  </div>
-
-  <div class="ad-slot ad-bottom">広告枠（準備中）</div>
-
-  <div class="nw-donate">
-    <p class="nw-donate-text" data-i18n="ja">ご支援いただけると嬉しいです。</p>
-    <p class="nw-donate-text" data-i18n="en">Your support is appreciated.</p>
-    <div class="nw-donate-links">
-      <a href="https://ofuse.me/nicheworks" target="_blank">OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" target="_blank">Ko-fi</a>
+    <!-- 広告：NicheWorks共通仕様 -->
+    <div class="ad-area">
+      <!-- AdSense / Placeholder -->
+      <div class="ad-placeholder">広告</div>
     </div>
-  </div>
 
-  <div class="nw-links">
-    <a href="/tools/manual-finder/">ManualFinder</a> /
-    <a href="/tools/trashnavi/">TrashNavi</a> /
-    <a href="/tools/log-formatter/">LogFormatter</a>
-  </div>
+    <!-- 使い方ページへのリンク（広告直下・グレー細字） -->
+    <p class="usage-link">
+      <a href="./usage.html">使い方はこちら</a>
+    </p>
+  </header>
 
-</main>
+  <main>
 
-<footer class="nw-footer">
-  <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-</footer>
+    <!-- URL入力欄 -->
+    <label for="urlInput" class="label">URL一覧（1行1つ）</label>
+    <textarea id="urlInput" placeholder="https://example.com&#10;https://nicheworks.pages.dev"></textarea>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-<script src="./app.js"></script>
+    <!-- 取得ボタン -->
+    <button id="fetchBtn">タイトルを取得する</button>
+
+    <!-- プログレスバー -->
+    <div id="progressWrap" class="progress-wrap hidden">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <!-- 件数表示 -->
+    <div id="countArea" class="count-area hidden">
+      <span id="countTotal">合計: 0</span>
+      <span id="countSuccess">成功: 0</span>
+      <span id="countFail">失敗: 0</span>
+    </div>
+
+    <!-- 結果テーブル -->
+    <div id="results"></div>
+
+    <!-- CSV / TSV / Reset ボタン -->
+    <div id="exportArea" class="export-area hidden">
+      <button id="copyCsvBtn">CSVコピー</button>
+      <button id="copyTsvBtn">TSVコピー</button>
+      <button id="resetBtn" class="reset-btn">リセット</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p class="copy">&copy; NicheWorks</p>
+  </footer>
+
+  <script src="./app.js"></script>
 </body>
 </html>
