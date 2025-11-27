@@ -1,0 +1,240 @@
+/* ---------------------------------------
+   NicheWorks 共通ベースレイアウト
+----------------------------------------- */
+
+/* メインラッパー */
+.nw-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* ヘッダー（タイトル＋説明） */
+.nw-header {
+  text-align: center;
+  padding: 20px 12px 8px;
+}
+.nw-desc {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* 言語切替（v2仕様） */
+.nw-lang-switch {
+  text-align: center;
+  margin: 8px 0 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+.nw-lang-switch button {
+  border: none;
+  background: transparent;
+  padding: 0 2px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #4b5563;
+}
+.nw-lang-switch button.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------
+   広告枠（ad-top / ad-bottom / ad-inline）
+   ※ フローティング禁止
+----------------------------------------- */
+.ad-slot {
+  margin: 14px 0 18px;
+  padding: 10px;
+  border: 1px dashed #d4d4d4;
+  font-size: 11px;
+  color: #9ca3af;
+  background: #fafafa;
+  text-align: center;
+  min-height: 60px;
+  border-radius: 6px;
+}
+.ad-top { margin-top: 4px; }
+.ad-bottom { margin-bottom: 8px; }
+.ad-inline { margin: 24px 0; }
+
+/* ---------------------------------------
+   入力フォーム
+----------------------------------------- */
+.input-area {
+  margin-top: 8px;
+  text-align: center;
+}
+.input-area textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+.main-btn {
+  margin-top: 12px;
+  padding: 12px 22px;
+  font-size: 15px;
+  color: #ffffff;
+  background: #111827;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.main-btn:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------
+   解析結果カード
+----------------------------------------- */
+#results {
+  margin-top: 22px;
+}
+.result-card {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.result-row {
+  margin: 8px 0;
+}
+.result-label {
+  font-size: 13px;
+  color: #6b7280;
+}
+.result-value {
+  font-size: 14px;
+  color: #111827;
+  word-break: break-all;
+  margin-top: 2px;
+}
+
+/* エラー表示 */
+.result-error {
+  border: 1px solid #fca5a5;
+  background: #fef2f2;
+  color: #b91c1c;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* コピーUI */
+.copy-btn {
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.copy-btn:hover {
+  background: #f9fafb;
+}
+
+/* ---------------------------------------
+   寄付導線（v2標準パターンA）
+----------------------------------------- */
+.nw-donate {
+  text-align: center;
+  margin: 22px 0 10px;
+  font-size: 13px;
+  color: #6b7280;
+  padding: 6px 0;
+}
+.nw-donate-text {
+  margin: 4px 0 6px;
+}
+.nw-donate-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.nw-donate-links a {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 13px;
+  color: #111827;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.nw-donate-links a:hover {
+  background: #f9fafb;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* ---------------------------------------
+   内部リンク（フッター直前）
+----------------------------------------- */
+.nw-links {
+  text-align: center;
+  font-size: 13px;
+  margin: 18px 0 10px;
+  color: #4b5563;
+}
+.nw-links a {
+  text-decoration: none;
+  color: #4b5563;
+}
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------
+   フッター（共通仕様）
+----------------------------------------- */
+.nw-footer {
+  margin-top: 24px;
+  padding: 16px 8px 12px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.6;
+}
+.nw-footer-line {
+  margin: 2px 0;
+}
+.nw-footer a {
+  color: #6b7280;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------
+   レスポンシブ（スマホ優先）
+----------------------------------------- */
+@media (max-width: 640px) {
+  .nw-main {
+    max-width: 600px;
+    padding: 0 10px;
+  }
+  .main-btn {
+    width: 100%;
+  }
+  .nw-donate-links {
+    flex-direction: row;
+    gap: 8px;
+  }
+}
