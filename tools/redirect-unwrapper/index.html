@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ========== SEO（v2仕様準拠） ========== -->
+  <title>最終URL確認｜Redirect Unwrapper | NicheWorks</title>
+  <meta name="description" content="短縮URL・SNSリンク・301/302リダイレクトを一瞬で解析し、最終的に到達する本当のURLを確認できる無料ツール。スマホ対応で安全確認に便利。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/redirect-unwrapper/">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="最終URL確認｜Redirect Unwrapper | NicheWorks">
+  <meta property="og:description" content="短縮URL・SNSリンク・301/302リダイレクトを解析して最終URLを確認できる無料ツール。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/redirect-unwrapper/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- ========== JSON-LD（v2 WebApplication） ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Redirect Unwrapper",
+    "url": "https://nicheworks.pages.dev/tools/redirect-unwrapper/",
+    "applicationCategory": "UtilityApplication",
+    "description": "短縮URL・SNSリンクの最終到達先を確認する無料ツール",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <!-- ========== AdSense（v2仕様・必須） ========== -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+
+  <!-- ========== Cloudflare Analytics（共通仕様） ========== -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+
+  <!-- ========== 共通CSS / ツールCSS ========== -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 data-i18n="ja">Redirect Unwrapper（リダイレクト解除ツール）</h1>
+    <h1 data-i18n="en">Redirect Unwrapper</h1>
+
+    <p class="nw-desc" data-i18n="ja">
+      短縮URLやSNSリンクを貼り付けるだけで、最終的に到達する本当のURLを確認できます。
+    </p>
+    <p class="nw-desc" data-i18n="en">
+      Instantly reveal the final destination URL behind shortened or redirected links.
+    </p>
+
+    <!-- 言語切替 -->
+    <div class="nw-lang-switch">
+      <button data-lang="ja">JP</button> /
+      <button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+
+    <!-- ad-top（必須） -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- 入力フォーム -->
+    <section class="input-area">
+      <p data-i18n="ja">解析したいURLを入力してください（短縮URL・SNSリンク・301/302などに対応）</p>
+      <p data-i18n="en">Enter the URL you want to unwrap. (Shortened links, SNS URLs, 301/302 redirects supported.)</p>
+
+      <textarea id="urlInput" placeholder="https://example.com/..." rows="3"></textarea>
+
+      <button id="analyzeBtn" class="main-btn" data-i18n="ja">解析する</button>
+      <button id="analyzeBtn-en" class="main-btn" data-i18n="en">Unwrap</button>
+    </section>
+
+    <!-- 解析結果 -->
+    <section id="results"></section>
+
+    <!-- ad-bottom（推奨） -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- 寄付導線（フッター直前 / v2仕様） -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">
+        このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
+      </p>
+      <p class="nw-donate-text" data-i18n="en">
+        If this tool was helpful, your support helps keep the development going.
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- 内部リンク（3件 / v2仕様） -->
+    <div class="nw-links">
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a>
+    </div>
+
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line" data-i18n="ja">
+      当サイトには広告が含まれる場合があります。掲載内容の正確性は保証しません。公式情報もあわせてご確認ください。
+    </p>
+    <p class="nw-footer-line" data-i18n="en">
+      Ads may be displayed on this site. Information is not guaranteed to be accurate. Please verify with official sources.
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+</body>
+</html>
