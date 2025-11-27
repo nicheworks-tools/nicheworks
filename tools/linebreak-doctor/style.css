@@ -1,36 +1,55 @@
-/* ---------------------
-  NicheWorks 共通レイアウト
----------------------- */
+/* -----------------------------
+   NicheWorks 共通レイアウト（維持）
+------------------------------ */
 
 .nw-main {
-  max-width: 960px;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 0 8px;
+  padding: 0 12px;
 }
 
+/* -----------------------------
+   ヘッダー
+------------------------------ */
 .nw-header {
   text-align: center;
-  padding: 16px 8px;
+  padding: 24px 12px 10px;
+}
+.nw-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.nw-header p {
+  font-size: 13px;
+  color: #4b5563;
+  margin-top: 2px;
 }
 
+/* 言語切替 */
 .nw-lang-switch {
-  margin-top: 4px;
-  font-size: 11px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #6b7280;
 }
 .nw-lang-switch button {
-  border: none;
   background: transparent;
+  border: none;
+  color: #4b5563;
   cursor: pointer;
+  padding: 2px 4px;
 }
 .nw-lang-switch button.active {
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: underline;
 }
 
-/* 広告枠 */
+/* -----------------------------
+   広告枠（変更なし）
+------------------------------ */
 .ad-slot {
-  margin: 12px 0 16px;
-  padding: 8px;
+  margin: 16px 0 20px;
+  padding: 10px;
   border: 1px dashed #d4d4d4;
   font-size: 11px;
   color: #9ca3af;
@@ -38,101 +57,150 @@
   min-height: 60px;
 }
 
-/* フッター */
-.nw-footer {
-  margin-top: 24px;
-  padding: 16px 8px;
-  border-top: 1px solid #e5e7eb;
-  font-size: 11px;
-  color: #6b7280;
-  text-align: center;
+/* -----------------------------
+   使い方セクション（改善）
+------------------------------ */
+.nw-howto {
+  margin: 12px 0 24px;
+}
+.nw-howto h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.nw-howto ol {
+  margin-left: 18px;
   line-height: 1.6;
+  font-size: 14.5px;
 }
 
-/* 寄付導線 */
-.nw-donate {
-  text-align: center;
-  margin: 16px 0 8px;
-}
-.nw-donate-links {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 4px;
-}
-.nw-donate-links a {
-  padding: 8px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 13px;
-  text-decoration: none;
-  color: #111827;
-  background: #fff;
-}
-.nw-donate-links a:hover {
-  background: #f9fafb;
+/* -----------------------------
+   入力カード（大幅改善）
+------------------------------ */
+#input-section {
+  background: #fafafa;
+  padding: 20px 18px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 24px;
 }
 
-/* ---------------------
-  LineBreak Doctor 固有スタイル
----------------------- */
+#input-section label {
+  font-size: 14.5px;
+  font-weight: 600;
+}
 
 #input-section textarea {
   width: 100%;
-  min-height: 140px;
+  min-height: 150px;
+  margin-top: 6px;
+  padding: 12px;
   font-size: 14px;
-  padding: 8px;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
-  margin: 8px 0;
+  border-radius: 8px;
+  resize: vertical;
 }
 
 #input-section button {
-  padding: 8px 16px;
-  margin: 4px 0 16px;
+  margin-top: 14px;
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
   background: #111827;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
+#input-section button:hover {
+  background: #000;
+}
+
+/* -----------------------------
+   SNS結果カード（大幅改善）
+------------------------------ */
 .sns-block {
-  margin: 20px 0;
-  padding: 14px;
+  margin: 28px 0;
+  padding: 20px 18px;
+  border-radius: 12px;
   border: 1px solid #e5e7eb;
-  border-radius: 6px;
   background: #fafafa;
 }
 
 .sns-block h2 {
-  margin-top: 0;
   font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .result-text {
-  white-space: pre-wrap;
   background: #fff;
   border: 1px solid #d1d5db;
-  padding: 10px;
+  padding: 12px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  min-height: 70px;
   font-size: 14px;
-  border-radius: 4px;
-  min-height: 60px;
 }
 
 .copy-btn {
-  margin-top: 8px;
-  padding: 6px 12px;
-  font-size: 13px;
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 14px;
   background: #2563eb;
   color: #fff;
-  border-radius: 6px;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
 }
+.copy-btn:hover {
+  background: #1d4ed8;
+}
 
+/* SNS説明 */
 details summary {
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
   margin-top: 10px;
+}
+details .sns-guide-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* -----------------------------
+   寄付導線（改善）
+------------------------------ */
+.nw-donate {
+  margin: 36px 0 12px;
+  text-align: center;
+}
+
+.nw-donate-text {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.nw-donate-links a {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* -----------------------------
+   フッター
+------------------------------ */
+.nw-footer {
+  margin-top: 40px;
+  padding: 16px 8px 12px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 11px;
+  border-top: 1px solid #e5e7eb;
 }
