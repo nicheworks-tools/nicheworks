@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks</title>
+  <meta name="description" content="画像をアップロードして圧縮率・解像度・最適フォーマットを自動判定する無料ツール。PNG/JPEG/WebPの診断に対応し、SNS投稿前の最適化に役立ちます。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/image-compression-inspector/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks">
+  <meta property="og:description" content="画像の圧縮率・最適形式・解像度をブラウザ内で軽量診断できる無料ツール。PNG/JPEG/WebP対応。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/image-compression-inspector/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense（必須） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image Compression Inspector",
+    "url": "https://nicheworks.pages.dev/tools/image-compression-inspector/",
+    "applicationCategory": "UtilityApplication",
+    "description": "画像をアップロードして圧縮率・解像度・最適フォーマットを診断する無料ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<header class="nw-header">
+  <h1 data-i18n="ja">画像圧縮率チェッカー</h1>
+  <h1 data-i18n="en">Image Compression Inspector</h1>
+
+  <p data-i18n="ja">画像をアップロードして、圧縮率・最適フォーマット・解像度をすぐ確認できます。</p>
+  <p data-i18n="en">Upload an image to instantly check compression ratio, optimal format, and resolution.</p>
+
+  <!-- 言語切替UI -->
+  <div class="nw-lang-switch">
+    <button data-lang="ja">JP</button> /
+    <button data-lang="en">EN</button>
+  </div>
+</header>
+
+<main class="nw-main">
+
+  <!-- 上部広告枠（必須） -->
+  <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+  <!-- アップロード UI -->
+  <div id="upload-area" class="upload-box">
+    <p data-i18n="ja">ここに画像をドラッグ＆ドロップ、またはクリックして選択</p>
+    <p data-i18n="en">Drag & drop an image here, or click to upload</p>
+    <input type="file" id="file-input" accept="image/*" hidden>
+  </div>
+
+  <!-- 対応形式 -->
+  <p class="helper-text" data-i18n="ja">対応形式：PNG / JPEG / WebP（最大 20MB）。RAW・HEIC は非対応です。</p>
+  <p class="helper-text" data-i18n="en">Supported formats: PNG / JPEG / WebP (up to 20MB). RAW/HEIC are not supported.</p>
+
+  <!-- 結果出力 -->
+  <section id="result-section" class="result-section">
+    <h2 data-i18n="ja">解析結果</h2>
+    <h2 data-i18n="en">Analysis Result</h2>
+
+    <p class="no-result" data-i18n="ja">画像をアップロードすると、解析結果がここに表示されます。</p>
+    <p class="no-result" data-i18n="en">Upload an image to see analysis results here.</p>
+
+    <div id="result-content" class="hidden">
+      <p><strong data-i18n="ja">元の形式：</strong><strong data-i18n="en">Original Format:</strong> <span id="format"></span></p>
+
+      <p><strong data-i18n="ja">ファイルサイズ：</strong><strong data-i18n="en">File Size:</strong> <span id="size"></span></p>
+
+      <p><strong data-i18n="ja">解像度：</strong><strong data-i18n="en">Resolution:</strong> <span id="resolution"></span></p>
+
+      <p><strong data-i18n="ja">推定圧縮率：</strong><strong data-i18n="en">Estimated Compression Ratio:</strong> <span id="ratio"></span></p>
+
+      <p><strong data-i18n="ja">おすすめの形式：</strong><strong data-i18n="en">Recommended Format:</strong> <span id="recommend"></span></p>
+
+      <p class="note" data-i18n="ja">※ 圧縮率は簡易推定です。正確な品質評価は行いません。</p>
+      <p class="note" data-i18n="en">* Compression ratio is an approximate estimate. Exact quality evaluation is not performed.</p>
+    </div>
+  </section>
+
+  <!-- 下部広告枠 -->
+  <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+  <!-- 寄付導線 -->
+  <div class="nw-donate">
+    <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためにご支援いただけると嬉しいです。</p>
+    <p class="nw-donate-text" data-i18n="en">If this tool is helpful, your support keeps the development going.</p>
+    <div class="nw-donate-links">
+      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="nw-footer">
+  <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+
+  <p class="nw-footer-line" data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p>
+  <p class="nw-footer-line" data-i18n="en">This site may contain ads. Accuracy of displayed information is not guaranteed.</p>
+
+  <p class="nw-footer-line">
+    <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+  </p>
+
+  <!-- 内部リンク -->
+  <div class="nw-links">
+    <a href="/tools/manual-finder/" data-i18n="ja">ManualFinder（公式マニュアル検索）</a>
+    <a href="/tools/manual-finder/" data-i18n="en">ManualFinder (Manual Search)</a>
+
+    <a href="/tools/trashnavi/" data-i18n="ja">TrashNavi（ごみ分別リンク）</a>
+    <a href="/tools/trashnavi/" data-i18n="en">TrashNavi (Waste Guide)</a>
+
+    <a href="/tools/log-formatter/" data-i18n="ja">LogFormatter（ログ整形）</a>
+    <a href="/tools/log-formatter/" data-i18n="en">LogFormatter (Log Formatter)</a>
+  </div>
+</footer>
+
+<script src="./app.js"></script>
+
+</body>
+</html>
