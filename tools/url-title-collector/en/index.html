@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>URL Title Collector | NicheWorks</title>
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/url-title-collector/en/">
+
+  <!-- OGP -->
+  <meta property="og:title" content="URL Title Collector - NicheWorks">
+  <meta property="og:description" content="A lightweight tool to fetch <title> from multiple URLs at once.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/url-title-collector/en/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/og/nicheworks-default.png">
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <header>
+
+    <!-- Language Switch -->
+    <div class="lang-switch" style="text-align:right; font-size:13px; color:#666;">
+      <a href="../index.html" style="color:#666;">JP</a> |
+      <a href="./index.html" style="color:#666;">EN</a>
+    </div>
+
+    <h1>URL Title Collector</h1>
+    <p class="sub">Fetch &lt;title&gt; tags from multiple URLs at once</p>
+
+    <!-- Usage link -->
+    <p class="usage-link">
+      <a href="./usage.html">How to use</a>
+    </p>
+
+    <!-- Ad -->
+    <div class="ad-area">
+      <div class="ad-placeholder">AD</div>
+    </div>
+
+  </header>
+
+  <main>
+
+    <label for="urlInput" class="label">List of URLs (one per line)</label>
+    <textarea id="urlInput" placeholder="https://example.com&#10;https://nicheworks.pages.dev"></textarea>
+
+    <button id="fetchBtn">Fetch Titles</button>
+
+    <!-- Progress -->
+    <div id="progressWrap" class="progress-wrap hidden">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <!-- Count -->
+    <div id="countArea" class="count-area hidden">
+      <span id="countTotal">Total: 0</span>
+      <span id="countSuccess">Success: 0</span>
+      <span id="countFail">Failed: 0</span>
+    </div>
+
+    <!-- Results -->
+    <div id="results"></div>
+
+    <!-- Export -->
+    <div id="exportArea" class="export-area hidden">
+      <button id="copyCsvBtn">Copy CSV</button>
+      <button id="copyTsvBtn">Copy TSV</button>
+      <button id="resetBtn" class="reset-btn">Reset</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p class="copy">
+      <a href="https://nicheworks.pages.dev/" style="color:#666; text-decoration:none;">
+        NicheWorks Home
+      </a>
+    </p>
+  </footer>
+
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <script src="../app.js"></script>
+</body>
+</html>
