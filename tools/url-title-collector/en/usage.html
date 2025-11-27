@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>How to Use | URL Title Collector</title>
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/url-title-collector/en/usage.html">
+
+  <!-- OGP -->
+  <meta property="og:title" content="URL Title Collector - Usage Guide">
+  <meta property="og:description" content="How to use URL Title Collector: steps, supported cases, limitations, and FAQs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/url-title-collector/en/usage.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/og/nicheworks-default.png">
+
+  <style>
+    body {
+      background: #ffffff;
+      color: #111;
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      margin: 0;
+      padding: 24px 16px;
+      line-height: 1.7;
+    }
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-top: 28px;
+      margin-bottom: 8px;
+    }
+    p, li {
+      font-size: 15px;
+      color: #333;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    a {
+      color: #0366d6;
+      text-decoration: underline;
+    }
+    .lang-switch {
+      text-align: right;
+      font-size: 13px;
+      margin-bottom: 12px;
+      color: #666;
+    }
+    .lang-switch a {
+      color: #666;
+      text-decoration: none;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+    footer a {
+      color: #666;
+      text-decoration: none;
+    }
+    .back {
+      margin-top: 32px;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+
+<main>
+
+  <!-- Language Switch -->
+  <div class="lang-switch">
+    <a href="../usage.html">JP</a> |
+    <a href="./usage.html">EN</a>
+  </div>
+
+  <h1>How to Use URL Title Collector</h1>
+
+  <p>
+    URL Title Collector lets you fetch  
+    <strong>&lt;title&gt; tags from multiple URLs at once</strong>  
+    using a lightweight, privacy-friendly mechanism that runs in your browser + Cloudflare Worker.
+  </p>
+
+  <h2>1. Basic Steps</h2>
+  <ul>
+    <li>① Paste URLs into the text area (one per line)</li>
+    <li>② Click <strong>“Fetch Titles”</strong></li>
+    <li>③ Results (URL / title / status) appear in a table</li>
+  </ul>
+
+  <p>Results can be copied as CSV or TSV. You can reset the tool anytime.</p>
+
+  <h2>2. Status Types</h2>
+  <ul>
+    <li><strong>success</strong> — title fetched successfully</li>
+    <li><strong>no-title</strong> — page fetched but has no &lt;title&gt;</li>
+    <li><strong>http-error</strong> — 404 / 500 / other HTTP errors</li>
+    <li><strong>network-error</strong> — CORS, DNS, CSP, or other access issues</li>
+  </ul>
+
+  <h2>3. Supported Cases</h2>
+  <ul>
+    <li>Standard HTML pages</li>
+    <li>Blogs, news articles</li>
+    <li>Pages with a &lt;title&gt; tag</li>
+  </ul>
+
+  <h2>4. Not Supported</h2>
+  <ul>
+    <li>Login-required pages</li>
+    <li>PDF / JSON / XML (non-HTML)</li>
+    <li>Sites with very strict CSP rules</li>
+    <li>Sites where JavaScript dynamically changes the title</li>
+  </ul>
+
+  <h2>5. CSV / TSV Output</h2>
+  <p>
+    The result table can be exported as <strong>CSV</strong> or <strong>TSV</strong>.  
+    Works with Excel, Google Sheets, Notion, Airtable, etc.
+  </p>
+
+  <h2>6. FAQ</h2>
+
+  <p><strong>Q: Why does a 404 page sometimes return a title?</strong><br>
+    Because the server returns a custom “Not Found” HTML page that still contains a &lt;title&gt; tag.
+  </p>
+
+  <p><strong>Q: Why do foreign sites fail more often?</strong><br>
+    Many overseas sites enforce strict CORS/CSP policies that prevent Workers from retrieving HTML.
+  </p>
+
+  <p><strong>Q: How many URLs can I process?</strong><br>
+    100–300 is recommended (depends on your device performance).
+  </p>
+
+  <h2>7. Disclaimer</h2>
+  <p>
+    The tool runs locally + via Cloudflare Worker.  
+    No URL or result is stored.  
+    Some URLs may not be retrievable due to CORS/CSP restrictions.
+  </p>
+
+  <div class="back">
+    <a href="./index.html">← Back to Tool</a>
+  </div>
+
+</main>
+
+<footer>
+  <p><a href="https://nicheworks.pages.dev/">NicheWorks Home</a></p>
+</footer>
+
+<!-- Cloudflare Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+</body>
+</html>
