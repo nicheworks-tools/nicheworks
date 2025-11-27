@@ -1,154 +1,110 @@
-/* 共通レイアウト */
-.nw-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 12px;
+// ======================
+// Worker API Endpoint
+// ======================
+const WORKER_URL = "https://floral-voice-bfc0.nicheworks-tools.workers.dev";
+
+// ======================
+// 言語切替
+// ======================
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".nw-lang-switch button");
+  const nodes = document.querySelectorAll("[data-i18n]");
+  let current = navigator.language.startsWith("ja") ? "ja" : "en";
+
+  const applyLang = (lang) => {
+    nodes.forEach((el) => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
+    });
+    buttons.forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    current = lang;
+  };
+
+  buttons.forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+  applyLang(current);
+});
+
+// ======================
+// メイン処理
+// ======================
+const fetchBtn = document.getElementById("fetchBtn");
+const urlInput = document.getElementById("urlInput");
+const resultsDiv = document.getElementById("results");
+const copyArea = document.getElementById("copyArea");
+
+fetchBtn.addEventListener("click", async () => {
+  const urls = urlInput.value
+    .split("\n")
+    .map(u => u.trim())
+    .filter(u => u.length > 0);
+
+  if (urls.length === 0) {
+    alert("No URLs provided.");
+    return;
+  }
+
+  resultsDiv.innerHTML = "<p>Loading…</p>";
+
+  const tasks = urls.map(async (url) => {
+    try {
+      const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
+      const data = await res.json();
+      return { url, title: data.title || "", status: data.status };
+    } catch {
+      return { url, title: "", status: "error" };
+    }
+  });
+
+  const results = await Promise.all(tasks);
+  renderResults(results);
+});
+
+// ======================
+// 結果表示
+// ======================
+function renderResults(rows) {
+  let html = `
+    <table>
+      <thead>
+        <tr><th>URL</th><th>Title</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+  `;
+
+  for (const r of rows) {
+    html += `
+      <tr>
+        <td>${escape(r.url)}</td>
+        <td>${escape(r.title)}</td>
+        <td class="${r.status === "success" ? "status-ok" : "status-fail"}">${r.status}</td>
+      </tr>
+    `;
+  }
+
+  html += "</tbody></table>";
+  resultsDiv.innerHTML = html;
+  copyArea.style.display = "block";
+
+  window._rows = rows;
 }
 
-.nw-header {
-  text-align: center;
-  margin-top: 16px;
-  margin-bottom: 8px;
-}
-.nw-header h1 {
-  font-size: 22px;
-  margin-bottom: 4px;
-}
-.nw-header p {
-  font-size: 14px;
-  color: #4b5563;
-  margin: 2px 0;
+// ======================
+// CSV / TSV コピー
+// ======================
+document.getElementById("copyCsvBtn").addEventListener("click", () => copyData(","));
+document.getElementById("copyTsvBtn").addEventListener("click", () => copyData("\t"));
+
+function copyData(separator) {
+  const rows = window._rows || [];
+  const text = rows
+    .map(r => [r.url, r.title, r.status].map(v => `"${v.replace(/"/g, '""')}"`).join(separator))
+    .join("\n");
+
+  navigator.clipboard.writeText(text).then(() => alert("Copied!"));
 }
 
-.nw-lang-switch {
-  text-align: center;
-  margin: 4px 0 12px;
-  font-size: 11px;
-}
-.nw-lang-switch button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 11px;
-  color: #4b5563;
-}
-.nw-lang-switch button.active {
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-/* 入力欄 */
-#urlInput {
-  width: 100%;
-  height: 180px;
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
-  resize: vertical;
-  margin-bottom: 12px;
-}
-
-/* ボタン */
-.btn-fetch {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 16px;
-  background: #111827;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.btn-fetch:hover {
-  background: #1f2937;
-}
-
-/* 結果テーブル */
-#results table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 12px;
-  font-size: 14px;
-}
-#results th, #results td {
-  border: 1px solid #e5e7eb;
-  padding: 8px;
-}
-.status-ok {
-  color: #065f46;
-  font-weight: 600;
-}
-.status-fail {
-  color: #b91c1c;
-  font-weight: 600;
-}
-
-/* コピー操作 */
-#copyArea button {
-  margin-right: 8px;
-  padding: 6px 12px;
-}
-
-/* 広告枠 */
-.ad-slot {
-  margin: 12px 0 16px;
-  padding: 8px;
-  border: 1px dashed #d4d4d4;
-  font-size: 11px;
-  color: #9ca3af;
-  text-align: center;
-  min-height: 60px;
-}
-
-/* 寄付（共通仕様 v2） */
-.nw-donate {
-  text-align: center;
-  margin: 24px 0 16px;
-}
-.nw-donate-text {
-  margin: 4px 0;
-  font-size: 13px;
-  color: #6b7280;
-}
-.nw-donate-links {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 6px;
-}
-.nw-donate-links a {
-  padding: 8px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
-  font-size: 13px;
-  text-decoration: none;
-  color: #111827;
-}
-
-/* 内部リンク */
-.nw-links {
-  text-align: center;
-  margin: 12px 0 24px;
-  font-size: 13px;
-}
-.nw-links a {
-  color: #4b5563;
-  text-decoration: none;
-}
-.nw-links a:hover {
-  text-decoration: underline;
-}
-
-/* フッター */
-.nw-footer {
-  text-align: center;
-  margin-top: 24px;
-  padding: 16px 8px;
-  border-top: 1px solid #e5e7eb;
-  font-size: 11px;
-  color: #6b7280;
-  line-height: 1.5;
+// ======================
+// エスケープ
+// ======================
+function escape(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
