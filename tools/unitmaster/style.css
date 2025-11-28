@@ -1,132 +1,215 @@
-/* =========================================================
-   UnitMaster 専用CSS（NicheWorks 共通CSSの上に追加）
-   ========================================================= */
+/* =======================================================
+   Minimal Base UI（仕様書 v2 固定構造）
+   ======================================================= */
 
-/* レイアウト全体 */
-main {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 14px;
+/* 全体 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: #ffffff;
+  color: #111111;
 }
 
-/* カテゴリタブ */
-.category-tabs {
+/* コンテナ（PCは中央寄せ） */
+.mw-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* =======================================================
+   Header（左：タイトル / 右：言語切替）
+   ======================================================= */
+.mw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.mw-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.mw-subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* 言語切替 */
+.mw-lang-switch button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-left: 6px;
+}
+
+.mw-lang-switch button.active {
+  background: #111;
+  color: #fff;
+}
+
+/* =======================================================
+   Footer（内部リンク + 寄付導線 + コピーライト）
+   ======================================================= */
+.mw-footer {
+  margin-top: 40px;
+  padding: 20px 10px;
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 14px;
+  color: #444;
+}
+
+.mw-links {
+  margin-bottom: 12px;
+}
+
+.mw-links a {
+  text-decoration: none;
+  color: #1a73e8;
+}
+
+.mw-donate {
+  margin-bottom: 12px;
+}
+
+.mw-donate a {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0 4px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #111;
+  font-size: 13px;
+}
+
+.mw-donate a:hover {
+  background: #f5f5f5;
+}
+
+.mw-copy {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* =======================================================
+   UnitMaster 専用UI（um-xxx）
+   ======================================================= */
+
+/* カテゴリタブ（横スクロール＋スワイプ対応） */
+.um-tabs {
   display: flex;
   overflow-x: auto;
   gap: 8px;
-  padding: 12px 0;
-  margin-bottom: 16px;
+  padding: 8px 0 12px;
 }
 
-.category-tabs button {
+.um-tabs button {
   flex-shrink: 0;
   padding: 8px 14px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  border-radius: var(--radius);
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
 }
 
-.category-tabs button.active {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  font-weight: 600;
+.um-tabs button.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
 }
 
-/* ブロック */
-.block {
+/* スクロールバーの軽量化 */
+.um-tabs::-webkit-scrollbar {
+  height: 5px;
+}
+.um-tabs::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* ブロック（入力・セレクト） */
+.um-block {
   margin-bottom: 18px;
 }
 
-label {
-  font-size: 14px;
-  color: var(--text);
+.um-block label {
   display: block;
   margin-bottom: 6px;
+  font-size: 14px;
 }
 
 /* 入力欄 */
 input[type="number"] {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* number のスピンボタン無効化 */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
 /* セレクト */
 select {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
 }
 
-/* 自動計算エリア */
-.auto-area {
-  margin: 18px 0;
+/* 自動計算（チェックボックス） */
+.um-auto {
+  margin: 14px 0;
   font-size: 15px;
 }
 
-.auto-area label {
+.um-auto label {
   cursor: pointer;
-  user-select: none;
 }
 
-/* 計算ボタン */
-.calc-btn {
+/* 手動計算ボタン */
+.um-btn {
   width: 100%;
   padding: 12px;
-  background: var(--accent);
+  background: #111;
   color: #fff;
   border: none;
-  border-radius: var(--radius);
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   margin-bottom: 16px;
 }
 
-/* 結果表示 */
-.result-box {
+/* 結果ボックス */
+.um-result {
   padding: 14px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
   min-height: 48px;
-  font-size: 16px;
-}
-
-/* 言語切替 */
-.lang-switch {
-  display: flex;
-  gap: 6px;
-  justify-content: flex-end;
-  padding-top: 6px;
-}
-
-.lang-switch button {
-  padding: 4px 10px;
-  font-size: 13px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  border-radius: var(--radius);
-  cursor: pointer;
-}
-
-.lang-switch button:hover {
-  background: var(--bg-soft);
-}
-
-/* スクロールバー（スマホでも邪魔にならない最小設定） */
-.category-tabs::-webkit-scrollbar {
-  height: 5px;
-}
-
-.category-tabs::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
+  font-size: 17px;
+  border: 1px solid #eee;
+  background: #f9f9f9;
+  border-radius: 8px;
+  white-space: pre-wrap;
 }
