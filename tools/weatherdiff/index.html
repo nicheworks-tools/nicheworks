@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>WeatherDiff｜天気予報のズレ比較ツール | NicheWorks</title>
+  <meta name="description" content="複数の天気APIを比較して予報のズレを可視化する軽量ツール。Open-Meteo と MET Norway の予報差分を比較し、今日・明日の気温や降水の違いを確認できます。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WeatherDiff｜天気予報のズレ比較ツール">
+  <meta property="og:description" content="複数の天気APIの予報差分を比較し、気温・降水・風のばらつきを可視化します。">
+  <meta property="og:image" content="/assets/ogp.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/favicon.ico">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR-ID" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR-TOKEN"}'></script>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<main class="nw-main">
+  <!-- 言語切替 -->
+  <div class="nw-lang-switch">
+    <button data-lang="ja">JP</button> /
+    <button data-lang="en">EN</button>
+  </div>
+
+  <div class="wd-container">
+
+    <!-- タイトル -->
+    <h1 data-i18n="ja">WeatherDiff｜天気予報のズレ比較ツール</h1>
+    <h1 data-i18n="en">WeatherDiff – Weather Forecast Difference Analyzer</h1>
+
+    <!-- 説明文 -->
+    <p class="wd-intro" data-i18n="ja">
+      2つの天気APIを比較して“予報のズレ”を可視化する無料ツールです。
+    </p>
+    <p class="wd-intro" data-i18n="en">
+      A lightweight tool that compares two weather APIs and highlights differences in their forecasts.
+    </p>
+
+    <!-- 広告 -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- 検索フォーム -->
+    <div class="wd-search">
+
+      <!-- placeholder も言語切替 -->
+      <input 
+        id="locationInput" 
+        data-i18n-placeholder-ja="例：渋谷 / 新宿 / Shibuya / New York" 
+        data-i18n-placeholder-en="Example: Shibuya / New York / Paris / Sydney"
+      >
+
+      <button id="searchBtn" data-i18n="ja">比較する</button>
+      <button id="searchBtn" data-i18n="en">Compare</button>
+
+      <button id="geoBtn" data-i18n="ja" style="background:#333;color:#fff;">現在地から比較</button>
+      <button id="geoBtn" data-i18n="en" style="background:#333;color:#fff;">Use My Location</button>
+    </div>
+
+    <!-- 状態表示 -->
+    <div id="status" class="wd-status"></div>
+
+    <!-- 地点情報 -->
+    <div id="locationInfo" class="wd-location" style="display:none;"></div>
+
+    <!-- API結果（2カラム or 1カラム） -->
+    <div id="results" class="wd-results" style="display:none;">
+      <div class="wd-api-card" id="api1"></div>
+      <div class="wd-api-card" id="api2"></div>
+    </div>
+
+    <!-- ばらつき -->
+    <div id="diffSummary" class="wd-diff-summary" style="display:none;"></div>
+
+    <!-- 外部リンク -->
+    <section class="wd-external-links" style="margin-top:20px;">
+      <h3 data-i18n="ja">他の天気サービスで詳しく見る</h3>
+      <h3 data-i18n="en">View on Other Weather Services</h3>
+
+      <div class="wd-links-grid" id="externalLinks"></div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- 寄付 -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためご支援いただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool is helpful, please consider supporting future development.</p>
+
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- 内部リンク -->
+    <div class="nw-links">
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="nw-footer">
+  <p class="nw-footer-line">© 2025 NicheWorks — Small Web Tools for Boring Tasks</p>
+  <p class="nw-footer-line">
+    <a href="https://nicheworks.pages.dev/" target="_blank">nicheworks.pages.dev</a>
+  </p>
+</footer>
+
+<script src="./app.js"></script>
+
+<!-- 言語切替JS（共通仕様書の7-2準拠） -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btns = document.querySelectorAll(".nw-lang-switch button");
+  const nodes = document.querySelectorAll("[data-i18n]");
+  const placeholders = document.querySelectorAll("[data-i18n-placeholder-ja]");
+
+  const browser = (navigator.language || "").toLowerCase();
+  let current = browser.startsWith("ja") ? "ja" : "en";
+
+  const apply = (lang) => {
+    // 通常テキスト
+    nodes.forEach(el => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
+    });
+
+    // placeholder
+    placeholders.forEach(input => {
+      input.placeholder = input.dataset[`i18nPlaceholder${lang.toUpperCase()}`];
+    });
+
+    btns.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+    current = lang;
+  };
+
+  btns.forEach(btn => btn.addEventListener("click", () => apply(btn.dataset.lang)));
+  apply(current);
+});
+</script>
+
+</body>
+</html>
