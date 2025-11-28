@@ -1,199 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>WebP / AVIF → PNG・JPEG 変換ツール | NicheWorks</title>
-  <meta name="description" content="WebP・AVIF画像をブラウザだけで安全にPNG/JPEGへ変換できます。ドラッグ＆ドロップ対応・スマホ対応・プログレス付き。">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="WebP / AVIF → PNG・JPEG 変換ツール | NicheWorks">
-  <meta property="og:description" content="WebP・AVIF画像をブラウザだけで安全にPNG/JPEGへ変換できます。">
-  <meta property="og:image" content="og-image.png">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/webp-avif-converter/">
-
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/webp-avif-converter/">
-
-  <!-- Favicon（共通） -->
-  <link rel="icon" href="/assets/favicon.ico">
-
-  <!-- 共通CSS -->
-  <link rel="stylesheet" href="/assets/nw-base.css">
-
-  <!-- 個別CSS -->
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebP / AVIF → PNG・JPEG 変換 | NicheWorks</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ===== Header ===== -->
-  <header class="nw-header">
-    <div class="nw-header-left">
-      <a href="/" class="nw-logo">NicheWorks</a>
+<!-- ===========================
+     HEADER（仕様書フル準拠）
+=========================== -->
+<header class="nw-header">
+  <div class="nw-header-inner">
+    <h1 class="nw-title">WebP / AVIF → PNG・JPEG 変換ツール</h1>
+    <p class="nw-subtitle">
+      ブラウザだけでWebP・AVIF画像をPNG/JPEGへ安全変換。<br>
+      サーバー送信なし・スマホ対応の軽量コンバータ。
+    </p>
+
+    <!-- 言語切替（任意仕様だがA版では採用） -->
+    <div class="nw-lang-switch">
+      <button class="nw-lang-btn active" data-lang="ja">JA</button>
+      <button class="nw-lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+
+<!-- ===========================
+     MAIN
+=========================== -->
+<main class="nw-main">
+
+  <!-- 注意文（12-3：推奨） -->
+  <p class="nw-note">⏳ この処理は1〜3秒かかる場合があります。</p>
+
+  <!-- アップロード領域（12-6 placeholderルール対応） -->
+  <div id="drop-zone" class="drop-zone">
+    <p>ここに画像をドロップ<br>またはタップして選択</p>
+    <p class="drop-hint">対応形式：WebP / AVIF</p>
+    <input type="file" id="file-input" accept=".webp,.avif" hidden>
+  </div>
+
+  <!-- エラーブロック（12-5） -->
+  <div id="error" class="error-box" style="display:none;"></div>
+
+  <!-- プログレスバー（12-1） -->
+  <div id="progress" class="progress-bar" style="display:none;">
+    <div class="progress-inner"></div>
+  </div>
+
+  <!-- ボタン -->
+  <div class="btn-row">
+    <button id="convert-btn" class="btn primary" disabled>PNGに変換</button>
+    <button id="convert-jpeg-btn" class="btn" disabled>JPEGに変換</button>
+  </div>
+
+  <!-- 結果（12-2：結果表示→リセットが必須） -->
+  <div id="result" class="result" style="display:none;">
+    <h2 class="result-title">変換結果</h2>
+
+    <img id="preview-img" class="preview-img" alt="converted image">
+
+    <p class="size-info"><span id="size-info"></span></p>
+
+    <button id="download-btn" class="btn primary">ダウンロード</button>
+
+    <button id="reset-btn" class="btn reset-btn">リセット</button>
+  </div>
+
+  <!-- FAQ（仕様書：任意だがA版では採用） -->
+  <section class="faq-section">
+    <h3 class="faq-title">FAQ</h3>
+
+    <div class="faq-item">
+      <p class="faq-q">Q：画像はサーバーに送信されますか？</p>
+      <p class="faq-a">A：送信されません。すべてブラウザ内で完結します。</p>
     </div>
 
-    <nav class="nw-header-nav">
-      <a href="/">Home</a>
-      <a href="/tools/">Tools</a>
-    </nav>
-
-    <div class="nw-lang-toggle">
-      <button data-lang="ja" class="active">JA</button>
-      <button data-lang="en">EN</button>
+    <div class="faq-item">
+      <p class="faq-q">Q：画質が劣化することはありますか？</p>
+      <p class="faq-a">A：WebP/AVIF → JPEG 変換時は再圧縮のため劣化する可能性があります。</p>
     </div>
-  </header>
 
-  <main class="nw-main">
+    <div class="faq-item">
+      <p class="faq-q">Q：アニメーションWebPは対応していますか？</p>
+      <p class="faq-a">A：静止画のみ対応しています。</p>
+    </div>
+  </section>
 
-    <!-- ===== Hero ===== -->
-    <section class="nw-hero">
-      <h1 data-ja="WebP / AVIF → PNG・JPEG 変換ツール"
-          data-en="WebP / AVIF → PNG / JPEG Converter">
-        WebP / AVIF → PNG・JPEG 変換ツール
-      </h1>
+</main>
 
-      <p class="nw-sub"
-         data-ja="WebP・AVIF画像をブラウザだけで安全にPNG/JPEGへ変換。ドラッグ＆ドロップ対応。"
-         data-en="Convert WebP / AVIF images to PNG/JPEG locally in your browser.">
-        WebP・AVIF画像をブラウザだけで安全にPNG/JPEGへ変換。
-      </p>
-    </section>
 
-    <!-- ===== Ad A ===== -->
-    <div class="nw-ad-slot ad-top"></div>
+<!-- ===========================
+     FOOTER（仕様書フル準拠）
+=========================== -->
+<footer class="nw-footer">
+  <div class="nw-footer-inner">
 
-    <section class="nw-card">
+    <!-- 内部リンク（推奨） -->
+    <div class="nw-links">
+      <a href="/tools/exif-cleaner/">EXIF Cleaner Mini</a>｜
+      <a href="/tools/linebreak-doctor/">LineBreak Doctor</a>｜
+      <a href="/tools/url-title-collector/">URL Title Collector</a>
+    </div>
 
-      <!-- ===== 入力エリア ===== -->
-      <h2 data-ja="画像をアップロード" data-en="Upload Image">画像をアップロード</h2>
+    <!-- Usageリンク -->
+    <div class="nw-usage">
+      <a href="/usage/">このツールの使い方（Usage）を見る</a>
+    </div>
 
-      <!-- D&Dおよびクリック選択 -->
-      <div id="drop-zone" class="drop-zone"
-        data-ja="ここに WebP / AVIF をドロップ（またはクリック）"
-        data-en="Drop WebP / AVIF here (or click)">
-        ここに WebP / AVIF をドロップ（またはクリック）
+    <!-- 寄付リンク -->
+    <div class="nw-donate">
+      <p>🫶 応援はこちら</p>
+      <div class="nw-donate-links">
+        <a href="https://ko-fi.com/" target="_blank">Ko-fi</a>
+        <a href="https://ofuse.me/" target="_blank">OFUSE</a>
       </div>
+    </div>
 
-      <input id="file-input" type="file"
-        accept=".webp,.avif,image/webp,image/avif" hidden>
+    <!-- コピーライト＋免責 -->
+    <p class="nw-footer-copy">© 2025 NicheWorks</p>
+    <p class="nw-footer-note">本ツールはブラウザ上のみで処理され、画像は一切送信されません。</p>
 
-      <p class="nw-note" data-ja="対応形式：WebP / AVIF（静止画のみ）"
-         data-en="Supported: WebP / AVIF (still images only)">
-        対応形式：WebP / AVIF（静止画のみ）
-      </p>
+  </div>
+</footer>
 
-      <!-- プレースホルダー（12-6） -->
-      <p class="nw-placeholder">
-        例：`sample.webp` / `photo.avif`
-      </p>
-
-      <!-- エラー表示 -->
-      <div id="error-box" class="error-box" style="display:none;"></div>
-
-      <!-- プログレスバー -->
-      <div id="progress" class="progress" style="display:none;">
-        <div class="progress-bar"></div>
-      </div>
-
-      <!-- 注意文（12-3） -->
-      <p class="nw-warn"
-        data-ja="⏳ この処理は1〜3秒ほどかかる場合があります。"
-        data-en="⏳ Conversion may take 1–3 seconds.">
-        ⏳ この処理は1〜3秒ほどかかる場合があります。
-      </p>
-
-      <!-- 変換ボタン -->
-      <button id="convert-btn" class="nw-btn" disabled
-        data-ja="PNGに変換する" data-en="Convert to PNG">
-        PNGに変換する
-      </button>
-
-      <!-- JPEG/PNG 選択 -->
-      <div class="format-select">
-        <label>
-          <input type="radio" name="fmt" value="png" checked> PNG
-        </label>
-        <label>
-          <input type="radio" name="fmt" value="jpeg"> JPEG
-        </label>
-      </div>
-
-      <!-- ===== 結果エリア ===== -->
-      <div id="result-area" class="result-area" style="display:none;">
-
-        <h3 data-ja="変換結果" data-en="Result">変換結果</h3>
-
-        <img id="preview" class="preview" alt="preview">
-
-        <p id="size-info" class="size-info"></p>
-
-        <a id="download" class="nw-btn" download="converted.png"
-           data-ja="画像をダウンロード" data-en="Download Image">
-          画像をダウンロード
-        </a>
-
-        <!-- リセット -->
-        <button id="reset-btn" class="nw-btn-outline"
-          data-ja="リセット" data-en="Reset">
-          リセット
-        </button>
-      </div>
-
-    </section>
-
-    <!-- ===== 免責 ===== -->
-    <section class="nw-disclaimer">
-      <h3>免責</h3>
-      <ul>
-        <li>画質に差が出る場合があります。</li>
-        <li>JPEG変換時は背景が白に変わります。</li>
-        <li>動画WebP/AVIFは非対応です。</li>
-      </ul>
-    </section>
-
-    <!-- ===== FAQ ===== -->
-    <section class="nw-faq">
-      <h3>FAQ</h3>
-      <p>
-        Q: サーバーに送信されますか？<br>
-        A: いいえ、すべてブラウザ内で処理されます。
-      </p>
-    </section>
-
-    <!-- ===== Ad B ===== -->
-    <div class="nw-ad-slot ad-middle"></div>
-
-    <!-- ===== 関連ツール ===== -->
-    <section class="nw-links">
-      <a href="/tools/image-compression-inspector/">画像圧縮率チェッカー</a>
-      <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a>
-      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
-    </section>
-
-    <!-- ===== Ad C ===== -->
-    <div class="nw-ad-slot ad-bottom"></div>
-
-    <!-- ===== 寄付 ===== -->
-    <section class="nw-donate">
-      <p>このツールが役に立ったら支援をご検討ください。</p>
-      <a href="https://ko-fi.com/" target="_blank">Ko-fi</a>
-      <a href="https://ofuse.me/" target="_blank">OFUSE</a>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="nw-footer">
-    <p>&copy; 2025 NicheWorks</p>
-    <p><a href="/">Home</a> | <a href="/tools/">Tools</a></p>
-  </footer>
-
-  <!-- 個別JS -->
-  <script src="./app.js"></script>
-
-  <!-- 共通言語切替JS -->
-  <script src="/assets/js/nw-lang.js"></script>
-
+<script src="app.js"></script>
 </body>
 </html>
