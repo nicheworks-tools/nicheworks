@@ -1,258 +1,232 @@
-// ==========================================================
-// UnitMaster - app.js
-// ==========================================================
+/* =========================================================
+   UnitMaster MVP
+   - A構成（世界標準7カテゴリ）
+   - from/to ドロップダウン方式
+   - 自動計算 ON/OFF
+   - 単位辞書（系統ごと）
+   - 温度のみ専用式
+========================================================= */
 
-// ---------------------------
-// i18n（JA/EN）
-// ---------------------------
-const i18n = {
-  ja: {
-    intro: "使い方：① 上のタブでカテゴリを選ぶ → ② 変換元の値と単位を入力 → ③ 変換先の単位を選ぶと結果が表示されます。自動計算をOFFにすると、「計算する」ボタンを押したときだけ換算されます。",
-    from_value: "変換元の値",
-    from_unit: "変換元の単位",
-    to_unit: "変換先の単位",
-    auto_calc: "自動計算",
-    result_empty: "",
-  },
-  en: {
-    intro: "How to use: (1) Choose a category on the tabs above. (2) Enter the value and select the source unit. (3) Select the target unit to see the result. If you turn Auto Calc OFF, conversion runs only when you press the button.",
-    from_value: "Value",
-    from_unit: "From",
-    to_unit: "To",
-    auto_calc: "Auto Calc",
-    result_empty: "",
-  }
-};
-
-let currentLang = "ja";
-
-// ---- 単位定義（前回と同じ：略さずそのまま） ----
-const units = {
+/* ---------------------------------------------------------
+   単位辞書（倍率 = 基準単位への変換倍率）
+   例：長さは "m" を基準にする
+--------------------------------------------------------- */
+const UNIT_DATA = {
   length: {
     base: "m",
-    list: {
-      m: 1,
-      cm: 0.01,
-      mm: 0.001,
-      km: 1000,
-      inch: 0.0254,
-      feet: 0.3048,
-      yard: 0.9144,
-      mile: 1609.344
-    },
-    names: {
-      ja: { m:"メートル", cm:"センチ", mm:"ミリ", km:"キロ", inch:"インチ", feet:"フィート", yard:"ヤード", mile:"マイル" },
-      en: { m:"meter", cm:"centimeter", mm:"millimeter", km:"kilometer", inch:"inch", feet:"feet", yard:"yard", mile:"mile" }
+    units: {
+      m:     1,
+      cm:    0.01,
+      mm:    0.001,
+      km:    1000,
+      inch:  0.0254,
+      ft:    0.3048,
+      yard:  0.9144,
+      mile:  1609.344
     }
   },
+
   weight: {
     base: "kg",
-    list: {
-      kg: 1,
-      g: 0.001,
-      mg: 0.000001,
-      lb: 0.45359237,
-      oz: 0.0283495231
-    },
-    names: {
-      ja:{ kg:"キログラム", g:"グラム", mg:"ミリグラム", lb:"ポンド", oz:"オンス" },
-      en:{ kg:"kg", g:"g", mg:"mg", lb:"pound", oz:"ounce" }
+    units: {
+      kg:   1,
+      g:    0.001,
+      mg:   0.000001,
+      lb:   0.45359237,
+      oz:   0.028349523125
     }
   },
-  temperature: {
-    list: ["C", "F", "K"],
-    names: {
-      ja:{ C:"摂氏(℃)", F:"華氏(°F)", K:"ケルビン(K)" },
-      en:{ C:"Celsius", F:"Fahrenheit", K:"Kelvin" }
-    }
-  },
-  volume: {
-    base: "l",
-    list: {
-      l: 1,
-      ml: 0.001,
-      m3: 1000,
-      gallon: 3.78541,
-      pint: 0.473176,
-      cup: 0.24
-    },
-    names:{
-      ja:{ l:"リットル", ml:"ミリリットル", m3:"立方メートル", gallon:"ガロン", pint:"パイント", cup:"カップ" },
-      en:{ l:"liter", ml:"milliliter", m3:"m³", gallon:"gallon", pint:"pint", cup:"cup" }
-    }
-  },
+
   area: {
     base: "m2",
-    list: {
-      m2: 1,
-      cm2: 0.0001,
-      mm2: 0.000001,
-      ha: 10000,
-      acre: 4046.8564224
-    },
-    names:{
-      ja:{ m2:"平方メートル", cm2:"平方センチ", mm2:"平方ミリ", ha:"ヘクタール", acre:"エーカー" },
-      en:{ m2:"m²", cm2:"cm²", mm2:"mm²", ha:"hectare", acre:"acre" }
+    units: {
+      m2:    1,
+      cm2:   0.0001,
+      mm2:   0.000001,
+      km2:   1_000_000,
+      ft2:   0.09290304,
+      yard2: 0.83612736
     }
   },
+
+  volume: {
+    base: "L",
+    units: {
+      L:    1,
+      mL:   0.001,
+      gal:  3.78541,
+      qt:   0.946353,
+      pint: 0.473176,
+      cup:  0.24    // 日本家庭用に最適化
+    }
+  },
+
   speed: {
     base: "mps",
-    list: {
-      mps: 1,
-      kmh: 1000/3600,
-      mph: 0.44704,
-      knot: 0.514444
-    },
-    names:{
-      ja:{ mps:"m/s", kmh:"km/h", mph:"mph", knot:"ノット" },
-      en:{ mps:"m/s", kmh:"km/h", mph:"mph", knot:"knot" }
+    units: {
+      "m/s":   1,
+      "km/h":  0.277777778,
+      "mph":   0.44704,
+      "ft/s":  0.3048
     }
   },
+
   pressure: {
     base: "Pa",
-    list: {
-      Pa: 1,
-      kPa: 1000,
-      MPa: 1e6,
-      bar: 100000,
-      atm: 101325,
-      psi: 6894.76
-    },
-    names:{
-      ja:{ Pa:"Pa", kPa:"kPa", MPa:"MPa", bar:"bar", atm:"気圧", psi:"psi" },
-      en:{ Pa:"Pa", kPa:"kPa", MPa:"MPa", bar:"bar", atm:"atm", psi:"psi" }
+    units: {
+      Pa:   1,
+      kPa:  1000,
+      MPa:  1_000_000,
+      bar:  100000,
+      atm:  101325,
+      psi:  6894.757
     }
   }
 };
 
-// DOM
-const inputValue = document.getElementById("inputValue");
-const fromUnit = document.getElementById("fromUnit");
-const toUnit = document.getElementById("toUnit");
-const calcBtn = document.getElementById("calcBtn");
-const autoCalc = document.getElementById("autoCalc");
-const categoryTabs = document.getElementById("categoryTabs");
-const resultText = document.getElementById("resultText");
-
-let currentCategory = "length";
-
-// 単位セレクト更新
-function updateUnitSelects() {
-  fromUnit.innerHTML = "";
-  toUnit.innerHTML = "";
-
-  if (currentCategory === "temperature") {
-    units.temperature.list.forEach(u => {
-      const opt1 = document.createElement("option");
-      const opt2 = document.createElement("option");
-      opt1.value = opt2.value = u;
-      opt1.textContent = units.temperature.names[currentLang][u];
-      opt2.textContent = units.temperature.names[currentLang][u];
-      fromUnit.appendChild(opt1);
-      toUnit.appendChild(opt2);
-    });
-  } else {
-    const cat = units[currentCategory];
-    Object.keys(cat.list).forEach(key => {
-      const opt1 = document.createElement("option");
-      const opt2 = document.createElement("option");
-      opt1.value = opt2.value = key;
-      opt1.textContent = cat.names[currentLang][key];
-      opt2.textContent = cat.names[currentLang][key];
-      fromUnit.appendChild(opt1);
-      toUnit.appendChild(opt2);
-    });
-  }
-}
-
-// カテゴリタブ
-categoryTabs.addEventListener("click", e => {
-  if (e.target.tagName !== "BUTTON") return;
-  [...categoryTabs.children].forEach(b => b.classList.remove("active"));
-  e.target.classList.add("active");
-  currentCategory = e.target.dataset.cat;
-  updateUnitSelects();
-  clearResult();
-});
-
-// 温度変換
+/* ---------------------------------------------------------
+   温度変換（専用式）
+--------------------------------------------------------- */
 function convertTemperature(value, from, to) {
-  if (from === to) return value;
   let c;
+
+  // まずCelsiusへ
   if (from === "C") c = value;
   if (from === "F") c = (value - 32) * 5/9;
   if (from === "K") c = value - 273.15;
 
+  // Celsius → ターゲット
   if (to === "C") return c;
   if (to === "F") return c * 9/5 + 32;
   if (to === "K") return c + 273.15;
 }
 
-// 計算
-function calculate() {
-  const val = parseFloat(inputValue.value);
-  if (isNaN(val)) return clearResult();
+/* =========================================================
+   UI初期設定
+========================================================= */
+const tabs = document.querySelectorAll(".um-tabs button");
+const fromSel = document.getElementById("fromUnit");
+const toSel   = document.getElementById("toUnit");
+const inputEl = document.getElementById("inputValue");
+const resultEl = document.getElementById("result");
+const calcBtn = document.getElementById("calcBtn");
+const autoChk = document.getElementById("autoCalc");
 
-  const from = fromUnit.value;
-  const to = toUnit.value;
+/* 現在のカテゴリ */
+let currentCategory = "length";
 
-  if (currentCategory === "temperature") {
-    const r = convertTemperature(val, from, to);
-    return showResult(val, from, r, to);
+/* ---------------------------------------------------------
+   カテゴリ切替
+--------------------------------------------------------- */
+tabs.forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabs.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentCategory = btn.dataset.cat;
+
+    loadUnits(currentCategory);
+
+    if (autoChk.checked) calculate();
+  });
+});
+
+/* ---------------------------------------------------------
+   単位ドロップダウン読み込み
+--------------------------------------------------------- */
+function loadUnits(cat) {
+  const data = UNIT_DATA[cat];
+
+  // 温度だけ特別処理
+  if (cat === "temperature") {
+    fromSel.innerHTML = "";
+    toSel.innerHTML = "";
+
+    ["C","F","K"].forEach(u => {
+      const o1 = document.createElement("option");
+      o1.value = u;
+      o1.textContent = u;
+
+      const o2 = document.createElement("option");
+      o2.value = u;
+      o2.textContent = u;
+
+      fromSel.appendChild(o1);
+      toSel.appendChild(o2);
+    });
+
+    return;
   }
 
-  const cat = units[currentCategory];
-  const baseValue = val * cat.list[from];
-  const result = baseValue / cat.list[to];
-  showResult(val, from, result, to);
+  // 世界標準（A構成）
+  fromSel.innerHTML = "";
+  toSel.innerHTML = "";
+
+  Object.keys(data.units).forEach(u => {
+    const o1 = document.createElement("option");
+    o1.value = u;
+    o1.textContent = u;
+
+    const o2 = document.createElement("option");
+    o2.value = u;
+    o2.textContent = u;
+
+    fromSel.appendChild(o1);
+    toSel.appendChild(o2);
+  });
 }
 
-function showResult(fromVal, fromU, result, toU) {
-  const r = Number(result).toFixed(4);
-  resultText.textContent = `${fromVal} ${fromU} = ${r} ${toU}`;
+/* 初期ロード */
+loadUnits(currentCategory);
+
+/* ---------------------------------------------------------
+   計算
+--------------------------------------------------------- */
+function calculate() {
+  const val = parseFloat(inputEl.value);
+
+  if (isNaN(val)) {
+    resultEl.textContent = "—";
+    return;
+  }
+
+  const from = fromSel.value;
+  const to   = toSel.value;
+
+  // 温度だけ別ルート
+  if (currentCategory === "temperature") {
+    const out = convertTemperature(val, from, to);
+    resultEl.textContent = `${out.toFixed(4)}`;
+    return;
+  }
+
+  // 通常変換
+  const info = UNIT_DATA[currentCategory];
+  const ratio = info.units;
+
+  // step1: from → base
+  const inBase = val * ratio[from];
+
+  // step2: base → to
+  const out = inBase / ratio[to];
+
+  resultEl.textContent = `${out.toFixed(6)}`;
 }
 
-function clearResult() {
-  resultText.textContent = "";
-}
-
-// 自動計算切替
-autoCalc.addEventListener("change", () => {
-  calcBtn.style.display = autoCalc.checked ? "none" : "block";
-  clearResult();
+/* ---------------------------------------------------------
+   自動計算ON
+--------------------------------------------------------- */
+inputEl.addEventListener("input", () => {
+  if (autoChk.checked) calculate();
+});
+fromSel.addEventListener("change", () => {
+  if (autoChk.checked) calculate();
+});
+toSel.addEventListener("change", () => {
+  if (autoChk.checked) calculate();
 });
 
-[inputValue, fromUnit, toUnit].forEach(el => {
-  el.addEventListener("input", () => {
-    if (autoCalc.checked) calculate();
-  });
-  el.addEventListener("change", () => {
-    if (autoCalc.checked) calculate();
-  });
-});
-
+/* ---------------------------------------------------------
+   計算ボタン
+--------------------------------------------------------- */
 calcBtn.addEventListener("click", calculate);
 
-// 言語切替
-document.querySelectorAll(".mw-lang-switch button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".mw-lang-switch button")
-      .forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentLang = btn.dataset.lang;
-    updateI18n();
-    updateUnitSelects();
-    clearResult();
-  });
-});
-
-function updateI18n() {
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.dataset.i18n;
-    el.textContent = i18n[currentLang][key];
-  });
-}
-
-// 初期化
-updateUnitSelects();
-updateI18n();
