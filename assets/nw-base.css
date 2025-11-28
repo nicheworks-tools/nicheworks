@@ -1,186 +1,373 @@
-/* ==================================
- * NicheWorks 共通CSS（nw-base.css）
- * ================================== */
+/* ============================================================
+ * NicheWorks 共通CSS v2.2  — PART 1 + PART 2
+ * スマホ600pxファースト / 白背景・黒ラインのミニマルUI
+ * ========================================================== */
 
-/* ------------------------------
- * 基本テーマ
- * ------------------------------ */
+/* ------------------------------------------------------------
+ * PART 1 : 基本変数 / リセット / ページレイアウト基礎
+ * ---------------------------------------------------------- */
 :root {
-  --nw-bg: #ffffff;
-  --nw-bg-soft: #f9fafb;
-  --nw-border: #e5e7eb;
-  --nw-border-soft: #f3f4f6;
-  --nw-text: #111827;
-  --nw-muted: #6b7280;
-  --nw-accent: #111827;
-  --nw-accent-soft: #f3f4ff;
-  --nw-danger: #b91c1c;
-  --nw-radius: 14px;
-  --nw-radius-sm: 10px;
-  --nw-shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
-  --nw-font: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "Segoe UI", sans-serif;
+  --bg: #ffffff;
+  --text: #111111;
+  --text-sub: #666666;
+
+  --border: #e5e5e5;
+  --border-strong: #111111;
+
+  --radius: 14px;
+  --radius-soft: 10px;
+
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.06);
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --max-width: 680px;
 }
 
-/* reset */
-*,
-*::before,
-*::after {
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background: var(--nw-bg);
-  color: var(--nw-text);
-  font-family: var(--nw-font);
-  -webkit-font-smoothing: antialiased;
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  min-height: 100vh;
-}
-
-/* ------------------------------
- * Layout
- * ------------------------------ */
-.nw-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.nw-header,
-.nw-footer {
-  padding: 16px 16px 8px;
-}
-
-.nw-header-inner,
-.nw-footer-inner,
-.nw-main {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.nw-header-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.nw-header-sub {
-  margin: 4px 0 0;
-  font-size: 13px;
-  color: var(--nw-muted);
-}
-
-.nw-main {
-  flex: 1;
-  width: 100%;
-  padding: 0 16px 32px;
-}
-
-.nw-card {
-  background: var(--nw-bg-soft);
-  border-radius: var(--nw-radius);
-  padding: 16px 16px 20px;
-  box-shadow: var(--nw-shadow-soft);
-  border: 1px solid var(--nw-border-soft);
-}
-
-/* ------------------------------
- * Typography
- * ------------------------------ */
-p {
-  margin: 0 0 10px;
-  font-size: 14px;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
 }
 
-.nw-muted {
-  color: var(--nw-muted);
-  font-size: 13px;
+/* Utility */
+img {
+  max-width: 100%;
+  display: block;
 }
 
-.nw-small {
-  font-size: 12px;
+a {
+  color: var(--text);
+  text-decoration: none;
 }
 
-/* ------------------------------
- * Sections
- * ------------------------------ */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+
+/* ------------------------------------------------------------
+ * PART 2 : HEADER（NicheWorks 共通ヘッダー）
+ * ---------------------------------------------------------- */
+
+/*
+  ▼構成（HTML）
+  <header class="nw-header">
+    <div class="nw-header-left">
+      <a class="nw-header-logo" href="/">NicheWorks</a>
+      <nav class="nw-header-nav">
+        <a href="/tools/">Tools</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+
+    <div class="nw-lang-toggle">
+      <button data-lang="ja">JA</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </header>
+*/
+
+/* 全体 */
+.nw-header {
+  width: 100%;
+  border-bottom: 1px solid var(--border-strong);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg);
+}
+
+/* 左ブロック（ロゴ＋ナビ） */
+.nw-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ロゴテキスト（画像は使わない） */
+.nw-header-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ナビ */
+.nw-header-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.nw-header-nav a {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* 言語切り替え */
+.nw-lang-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.nw-lang-toggle button {
+  border: 1px solid var(--border-strong);
+  background: #fff;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: var(--radius-soft);
+  cursor: pointer;
+}
+
+.nw-lang-toggle button:hover {
+  background: #f5f5f5;
+}
+
+/* 768px以上で横並び */
+@media (min-width: 768px) {
+  .nw-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+  }
+
+  .nw-header-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nw-header-nav a {
+    font-size: 0.95rem;
+  }
+
+  .nw-lang-toggle button {
+    font-size: 0.85rem;
+  }
+}
+
+/* ------------------------------------------------------------
+ * PART 3 : FOOTER（NicheWorks 共通フッター）
+ * ---------------------------------------------------------- */
+
+/*
+  ▼推奨HTML構造
+
+  <footer class="nw-footer">
+    <div class="nw-footer-inner">
+      <div class="nw-footer-donate">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+      </div>
+
+      <p class="nw-footer-copy">
+        © 2025 NicheWorks. All rights reserved.
+      </p>
+    </div>
+  </footer>
+*/
+
+.nw-footer {
+  width: 100%;
+  border-top: 1px solid var(--border-strong);
+  padding: 24px 16px;
+  margin-top: 40px;
+  background: var(--bg);
+}
+
+.nw-footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+}
+
+.nw-footer-donate {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.nw-footer-donate a {
+  border: 1px solid var(--border-strong);
+  padding: 6px 14px;
+  border-radius: var(--radius-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #fff;
+}
+
+.nw-footer-donate a:hover {
+  background: #f7f7f7;
+}
+
+.nw-footer-copy {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  opacity: 0.9;
+}
+
+/* 768px以上 */
+@media (min-width: 768px) {
+  .nw-footer {
+    padding: 32px 24px;
+  }
+
+  .nw-footer-inner {
+    gap: 18px;
+  }
+
+  .nw-footer-copy {
+    font-size: 0.8rem;
+  }
+}
+
+/* ------------------------------------------------------------
+ * PART 4 : UI SECTIONS / CARDS / FAQ / INTERNAL LINKS
+ * ---------------------------------------------------------- */
+
+/* ----------------------------------
+ * Section
+ * ---------------------------------- */
 .nw-section {
-  margin-top: 16px;
+  margin-top: 28px;
 }
 
 .nw-section-title {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
-  margin: 0 0 8px;
+  margin-bottom: 10px;
+  color: var(--text-main);
 }
 
-/* ------------------------------
- * Forms
- * ------------------------------ */
-.nw-field {
-  margin-bottom: 12px;
+.nw-section-desc {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-bottom: 14px;
+  line-height: 1.6;
 }
 
-.nw-label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 4px;
+/* ----------------------------------
+ * Card
+ * ---------------------------------- */
+.nw-card {
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-soft);
 }
 
-.nw-input,
-.nw-textarea,
-.nw-select {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--nw-border);
-  padding: 8px 10px;
-  font-size: 14px;
-  font-family: var(--nw-font);
-  background: #ffffff;
+.nw-card + .nw-card {
+  margin-top: 16px;
 }
 
-.nw-textarea {
-  min-height: 100px;
-  resize: vertical;
+/* ----------------------------------
+ * FAQ block
+ * ---------------------------------- */
+.nw-faq {
+  border: 1px solid var(--border-soft);
+  background: #fff;
+  padding: 16px;
+  border-radius: var(--radius-soft);
+  margin-top: 12px;
 }
 
-/* ------------------------------
- * Buttons
- * ------------------------------ */
+.nw-faq-q {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.nw-faq-a {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+
+/* ----------------------------------
+ * Internal Links
+ * ---------------------------------- */
+/*
+   ▼推奨HTML例
+   <div class="nw-links">
+     <a href="/tools/a/">Tool A</a> ｜ 
+     <a href="/tools/b/">Tool B</a> ｜ 
+     <a href="/tools/c/">Tool C</a>
+   </div>
+*/
+.nw-links {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.nw-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  padding: 0 6px;
+}
+
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+ * PART 5 : Buttons / Loader / Error block / Utility
+ * ---------------------------------------------------------- */
+
+/* ----------------------------------
+ * Button Row
+ * ---------------------------------- */
 .nw-btn-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 12px 0;
+  margin: 16px 0;
 }
 
+/* ----------------------------------
+ * Buttons
+ * ---------------------------------- */
 .nw-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  border-radius: 999px;
-  border: 1px solid #111827;
-  padding: 6px 14px;
-  font-size: 14px;
+  gap: 5px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
   font-weight: 500;
-  background: #111827;
-  color: #ffffff;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
   cursor: pointer;
-  transition: transform 0.08s, box-shadow 0.08s;
+  transition: transform 0.08s, box-shadow 0.08s, background 0.15s;
 }
 
 .nw-btn:hover {
-  background: #000000;
+  background: #000;
   transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
 .nw-btn:active {
@@ -188,163 +375,98 @@ p {
   box-shadow: none;
 }
 
+/* Ghost style */
 .nw-btn-ghost {
-  background: #ffffff;
-  color: #111827;
-  border-color: var(--nw-border);
+  background: #fff;
+  color: var(--accent);
+  border-color: var(--border);
 }
 
 .nw-btn-ghost:hover {
-  background: var(--nw-bg-soft);
+  background: var(--bg-soft);
 }
 
-/* ------------------------------
- * Result
- * ------------------------------ */
-.nw-result {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--nw-border-soft);
-  background: #ffffff;
-  font-size: 13px;
+/* Disabled */
+.nw-btn.disabled,
+.nw-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
-.nw-result-title {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-/* ------------------------------
- * Ads
- * ------------------------------ */
-.nw-ad {
-  margin: 16px 0;
-  padding: 8px 0;
-}
-
-.nw-ad-top {
-  margin-bottom: 16px;
-}
-
-.nw-ad-bottom {
-  margin-top: 20px;
-}
-
-/* ------------------------------
- * Donate block
- * ------------------------------ */
-.nw-donate {
-  margin-top: 20px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--nw-border-soft);
-}
-
-.nw-donate-links {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.nw-donate-links a {
-  font-size: 13px;
-  text-decoration: none;
-  border: 1px solid var(--nw-border);
-  padding: 5px 10px;
-  border-radius: 999px;
-}
-
-.nw-donate-links a:hover {
-  background: var(--nw-bg-soft);
-}
-
-/* ------------------------------
- * Usage link
- * ------------------------------ */
-.nw-usage {
-  margin: 16px 0 0;
-  text-align: center;
-  font-size: 13px;
-}
-
-.nw-usage a {
-  text-decoration: underline;
-  color: #374151;
-}
-
-/* ------------------------------
- * Internal links
- * ------------------------------ */
-.nw-links {
-  margin-top: 20px;
-  font-size: 13px;
-  color: var(--nw-muted);
-  text-align: center;
-}
-
-.nw-links a {
-  color: #374151;
-  text-decoration: none;
-}
-
-.nw-links a:hover {
-  text-decoration: underline;
-}
-
-/* ------------------------------
- * Footer
- * ------------------------------ */
-.nw-footer {
-  border-top: 1px solid var(--nw-border-soft);
-  margin-top: auto;
-}
-
-.nw-footer-copy {
-  font-size: 12px;
-  color: var(--nw-muted);
-}
-
-.nw-footer-note {
-  font-size: 11px;
-  color: var(--nw-muted);
-}
-
-/* ------------------------------
- * Progress bar / Loading
- * ------------------------------ */
+/* ----------------------------------
+ * Progress bar (Loading)
+ * ---------------------------------- */
 .nw-progress {
   width: 100%;
   height: 4px;
   border-radius: 999px;
-  overflow: hidden;
   background: #e5e7eb;
-  margin: 10px 0;
-  display: none;
+  overflow: hidden;
+  margin: 16px 0;
+  display: none; /* default hidden */
 }
 
 .nw-progress-inner {
   width: 100%;
   height: 100%;
-  background: #111827;
-  animation: nw-progress-anim 1.1s infinite linear;
+  background: var(--accent);
+  animation: nw-loading 1.1s linear infinite;
 }
 
-@keyframes nw-progress-anim {
-  0% { transform: translateX(-100%); }
+@keyframes nw-loading {
+  0%   { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
 
-/* ------------------------------
- * Error block
- * ------------------------------ */
+/* ----------------------------------
+ * Error Block
+ * ---------------------------------- */
 .nw-error {
-  margin-top: 12px;
-  padding: 10px 12px;
+  display: none;
   background: #fef2f2;
-  color: #b91c1c;
   border: 1px solid #fecaca;
   border-radius: 10px;
-  font-size: 13px;
-  display: none;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  color: var(--danger);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* ----------------------------------
+ * Copyable Result Box
+ * ---------------------------------- */
+.nw-copybox {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin-top: 12px;
+}
+
+/* ----------------------------------
+ * Utility: hidden
+ * ---------------------------------- */
+.nw-hidden {
+  display: none !important;
+}
+
+/* ----------------------------------
+ * Utility: muted text
+ * ---------------------------------- */
+.nw-muted {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ----------------------------------
+ * Utility: small text
+ * ---------------------------------- */
+.nw-small {
+  font-size: 0.75rem;
+  color: var(--text-muted);
 }
