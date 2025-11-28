@@ -1,241 +1,173 @@
-/* =========================================================
-   基本リセット
-========================================================= */
-* {
+/* ===========================================
+   UnitMaster - Mobile First Layout
+   基準幅：320〜375px
+=========================================== */
+
+/* --- 全体 --- */
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   background: #ffffff;
-  color: #111111;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.7;
+  color: #111;
+  line-height: 1.5;
 }
 
-/* ---------------------------------------------------------
-   375pxファースト（320～428pxで崩れない）
---------------------------------------------------------- */
-.mw-container {
+/* コンテナ：スマホは全幅 */
+.container {
   width: 100%;
-  max-width: 620px;
-  margin: 0 auto;
+  max-width: 100%;
   padding: 16px;
+  box-sizing: border-box;
 }
 
-/* =========================================================
-   Header
-========================================================= */
-.nw-header {
-  border-bottom: 1px solid #e5e5e5;
-  padding: 16px;
-  background: #fff;
-}
-
-.nw-header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.mw-title {
-  font-size: 20px;
+/* タイトル */
+.header-title {
+  font-size: 1.6rem;   /* 375px基準で視認性確保 */
   font-weight: 700;
+  margin-bottom: 4px;
 }
 
-.mw-subtitle {
-  font-size: 13px;
-  color: #666;
-  margin-top: 4px;
+.header-desc {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 20px;
 }
 
-/* 言語切替 */
-.mw-lang-switch button {
-  background: #f3f3f3;
-  border: 1px solid #ccc;
-  padding: 6px 10px;
-  font-size: 13px;
+/* JA/EN */
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.lang-switch button {
+  padding: 6px 14px;
   border-radius: 8px;
-  margin-left: 4px;
-  cursor: pointer;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 0.9rem;
 }
 
-.mw-lang-switch .active {
-  background: #111;
+.lang-switch .active {
+  background: #000;
   color: #fff;
 }
 
-/* =========================================================
-   使い方（UI直下）
-========================================================= */
-.um-intro {
+/* --- 説明文 --- */
+.howto-box {
   background: #fafafa;
-  border: 1px solid #e5e5e5;
-  padding: 12px;
-  font-size: 13px;
-  border-radius: 10px;
-  margin-top: 16px;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.92rem;
 }
 
-/* =========================================================
-   カテゴリタブ
-========================================================= */
+/* --- タブ --- */
 .um-tabs {
   display: flex;
-  overflow-x: auto;
-  gap: 6px;
-  margin-top: 18px;
+  gap: 8px;
+  overflow-x: auto;  /* スマホ横スクロール */
+  margin-bottom: 20px;
   padding-bottom: 6px;
 }
 
 .um-tabs button {
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #f8f8f8;
-  font-size: 14px;
   white-space: nowrap;
-}
-
-.um-tabs button.active {
-  background: #111;
-  color: #fff;
-  border-color: #111;
-}
-
-/* =========================================================
-   入力エリア
-========================================================= */
-.um-block {
-  margin-top: 18px;
-}
-
-.um-block label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-.um-block input,
-.um-block select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
+  padding: 8px 18px;
+  font-size: 0.9rem;
   border-radius: 10px;
-  font-size: 16px;
+  border: 1px solid #ddd;
   background: #fff;
 }
 
-/* 数値入力の矢印を消す（邪魔） */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-/* =========================================================
-   自動計算
-========================================================= */
-.um-auto {
-  margin-top: 14px;
-  font-size: 15px;
-}
-
-.um-auto input {
-  transform: scale(1.3);
-  margin-right: 8px;
-}
-
-/* =========================================================
-   計算ボタン
-========================================================= */
-.um-btn {
-  width: 100%;
-  margin-top: 16px;
-  padding: 14px;
-  background: #111;
+.um-tabs button.active {
+  background: #000;
   color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
 }
 
-/* =========================================================
-   結果
-========================================================= */
-.um-result {
-  margin-top: 20px;
-  padding: 16px;
-  background: #f8f8f8;
-  border-radius: 10px;
-  font-size: 18px;
+/* --- 入力欄/セレクト --- */
+label {
+  font-size: 0.95rem;
   font-weight: 600;
-  min-height: 40px;
+  display: block;
+  margin-bottom: 6px;
 }
 
-/* =========================================================
-   寄付導線
-========================================================= */
-.nw-donate {
-  margin-top: 28px;
-  text-align: center;
+input, select {
+  width: 100%;
+  padding: 14px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 18px;
 }
 
-.nw-donate-text {
-  font-size: 14px;
-  color: #444;
-}
-
-.nw-donate-links {
-  margin-top: 10px;
+/* 自動計算 */
+.auto-calc-wrap {
   display: flex;
-  justify-content: center;
-  gap: 14px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
 }
 
-.nw-donate-links a {
-  padding: 8px 14px;
-  border: 1px solid #111;
-  border-radius: 8px;
-  font-size: 13px;
-  text-decoration: none;
-  color: #111;
-}
-
-/* =========================================================
-   フッター
-========================================================= */
-.nw-footer {
-  margin-top: 40px;
-  padding: 24px 16px;
+/* --- 結果 --- */
+.result-box {
+  width: 100%;
+  min-height: 55px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
   background: #fafafa;
-  border-top: 1px solid #e5e5e5;
+  padding: 12px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* --- フッター（スマホ） --- */
+.footer {
+  font-size: 0.8rem;
   text-align: center;
+  margin-top: 40px;
+  padding: 20px 0;
 }
 
-.nw-footer-line {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
+/* ===================================================================
+   414px（iPhone Pro Max など）
+=================================================================== */
+@media (min-width: 414px) {
+  .header-title { font-size: 1.7rem; }
+  input, select { font-size: 1.05rem; }
+  .result-box { font-size: 1.15rem; }
 }
 
-/* =========================================================
-   内部リンク
-========================================================= */
-.nw-links {
-  text-align: center;
-  padding: 20px 0 30px;
-  font-size: 13px;
+/* ===================================================================
+   600px（小型タブレット）
+=================================================================== */
+@media (min-width: 600px) {
+  .container {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .header-title { font-size: 1.8rem; }
 }
 
-.nw-links a {
-  margin: 0 8px;
-  text-decoration: none;
-  color: #333;
+/* ===================================================================
+   768px（iPad）
+=================================================================== */
+@media (min-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+  .header-title { font-size: 2rem; }
 }
 
+/* ===================================================================
+   1024px〜PC
+=================================================================== */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 720px;
+  }
+  .header-title { font-size: 2.2rem; }
+  .um-tabs button { font-size: 1rem; }
+}
