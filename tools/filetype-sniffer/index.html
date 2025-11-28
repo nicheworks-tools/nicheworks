@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- meta（charset, viewport） -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- タイトル（SEO構造：{検索ワード}｜{短名} | NicheWorks） -->
   <title>ファイル形式判定｜FileType Sniffer | NicheWorks</title>
+  <meta name="description" content="ファイルのMagic Numberを解析して本当の形式を判定。拡張子偽装チェックや壊れたファイルの確認に最適。PC向け無料ツール。">
 
-  <!-- description（70〜120字） -->
-  <meta name="description" content="ファイルをドラッグ＆ドロップするだけで本当の形式を解析。Magic Numberから安全に判定。拡張子偽装チェック、壊れたファイルの確認に最適。PC向け無料ツール。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/filetype-sniffer/">
 
-  <!-- og / twitter -->
+  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="FileType Sniffer | NicheWorks">
-  <meta property="og:description" content="Magic Numberで本当のファイル形式を判定する無料ツール。拡張子偽装や壊れたファイルの確認に。">
+  <meta property="og:description" content="Magic Numberで本当のファイル形式を判定する無料ツール。拡張子偽装の確認に。">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/filetype-sniffer/">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/filetype-sniffer/">
-
-  <!-- favicon（共通） -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
@@ -30,141 +24,158 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
 
-  <!-- AdSense（必須） -->
+  <!-- AdSense -->
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous">
-  </script>
+    crossorigin="anonymous"></script>
 
-  <!-- 共通CSS -->
-  <link rel="stylesheet" href="../common.css">
-
-  <!-- ツール固有CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="./style.css">
-
-  <!-- JSON-LD（WebApplication） -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "FileType Sniffer",
-    "url": "https://nicheworks.pages.dev/tools/filetype-sniffer/",
-    "applicationCategory": "UtilityApplication",
-    "description": "Magic Numberからファイルの本当の形式を判定する無料ツール。",
-    "operatingSystem": "All"
-  }
-  </script>
 </head>
 
 <body>
 
-  <!-- ===================== -->
-  <!--        HEADER         -->
-  <!-- ===================== -->
+  <!-- HEADER -->
   <header class="nw-header">
     <h1>FileType Sniffer</h1>
     <p class="nw-sub">Magic Number から本当のファイル形式を判定する無料ツール</p>
 
-    <!-- 言語切替（必須） -->
+    <!-- Lang Switch：パス分離 -->
     <div class="nw-lang-switch">
-      <button data-lang="ja" class="active">JP</button> /
-      <button data-lang="en">EN</button>
+      <a href="./" class="active">JP</a> / <a href="./en/">EN</a>
     </div>
   </header>
 
-  <!-- ===================== -->
-  <!--         MAIN          -->
-  <!-- ===================== -->
+  <!-- MAIN -->
   <main class="nw-main">
 
-    <!-- 上部広告枠（必須） -->
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <!-- Ad Top -->
+    <div class="ad-slot ad-top">広告枠（自動）</div>
 
-    <!-- ユーザー操作UI（PCファースト） -->
+    <!-- Tool UI -->
     <section class="tool-container">
 
-      <!-- PC向け：幅広D&Dボックス -->
       <div class="drop-zone">
-        <p data-i18n="ja">ここにファイルをドラッグ＆ドロップ</p>
-        <p data-i18n="en" style="display:none;">Drag & Drop your file here</p>
+        <p>ここにファイルをドラッグ＆ドロップ</p>
       </div>
 
-      <!-- ファイル選択ボタン -->
       <div class="file-input-area">
         <input type="file" id="fileInput">
       </div>
 
-      <!-- 注意書き（スマホ対応） -->
-      <p class="note">
-        <span data-i18n="ja">※ この処理は最大3秒ほどかかる場合があります。</span>
-        <span data-i18n="en" style="display:none;">* Processing may take up to 3 seconds.</span>
-      </p>
+      <p class="note">※ この処理は最大3秒ほどかかる場合があります。</p>
 
-      <!-- 解析ボタン -->
-      <button id="analyzeBtn" class="primary-btn">
-        <span data-i18n="ja">解析する</span>
-        <span data-i18n="en" style="display:none;">Analyze</span>
-      </button>
+      <button id="analyzeBtn" class="primary-btn">解析する</button>
 
-      <!-- プログレスバー（必須） -->
+      <!-- Progress -->
       <div id="progress" class="progress" style="display:none;">
         <div class="bar"></div>
       </div>
     </section>
 
-    <!-- 結果表示セクション（PC向け・広め） -->
+    <!-- Result -->
     <section id="resultSection" class="result-box" style="display:none;">
-      <h2 data-i18n="ja">解析結果</h2>
-      <h2 data-i18n="en" style="display:none;">Result</h2>
-
+      <h2>解析結果</h2>
       <div id="resultContent"></div>
 
-      <!-- リセットボタン（必須） -->
-      <button id="resetBtn" class="secondary-btn">
-        <span data-i18n="ja">リセット</span>
-        <span data-i18n="en" style="display:none;">Reset</span>
-      </button>
+      <button id="resetBtn" class="secondary-btn">リセット</button>
     </section>
 
-    <!-- 底部広告（推奨） -->
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+    <!-- ============= 使い方リンク（位置を修正） ============= -->
+    <p class="usage-link" style="margin-top:20px;">
+      <a href="./usage.html">使い方はこちら</a>
+    </p>
+    <!-- ======================================================= -->
 
-    <!-- 寄付導線（標準：1〜2箇所） -->
+    <!-- FAQ（仕様書11章準拠） -->
+    <section class="result-box" style="margin-top:24px;">
+      <h2>FAQ（よくある質問）</h2>
+
+      <p><strong>Q. Magic Numberとは何ですか？</strong><br>
+      A. ファイルの先頭にある「形式識別用バイト列」です。拡張子より信頼できます。</p>
+
+      <p><strong>Q. 推定は100%正確ですか？</strong><br>
+      A. 一般的な形式は正確に判定できますが、Magic Number が共通の形式では誤判定があり得ます。</p>
+
+      <p><strong>Q. 拡張子と推定形式が違うのはなぜ？</strong><br>
+      A. 拡張子偽装または手動リネームの可能性があります。</p>
+
+      <p><strong>Q. 危険なファイルかどうか判定できますか？</strong><br>
+      A. 形式推定のみで、安全性チェック機能はありません。</p>
+    </section>
+
+    <!-- Bottom Ad -->
+    <div class="ad-slot ad-bottom">広告枠（自動）</div>
+
+    <!-- Donation -->
     <div class="nw-donate">
-      <p class="nw-donate-text">
-        <span data-i18n="ja">開発継続のご支援をいただけると嬉しいです。</span>
-        <span data-i18n="en" style="display:none;">Your support helps maintain this tool.</span>
-      </p>
+      <p>開発継続のご支援をいただけると嬉しいです。</p>
       <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
       </div>
     </div>
 
-    <!-- 使い方ページ（最下部リンク） -->
-    <p class="usage-link"><a href="./usage.html">使い方はこちら</a></p>
-
   </main>
 
-  <!-- ===================== -->
-  <!--        FOOTER         -->
-  <!-- ===================== -->
+  <!-- FOOTER -->
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a>
-    </p>
+    <p class="nw-footer-line">掲載情報の正確性は保証しません。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
   </footer>
 
-  <!-- 内部リンク（3〜4件） -->
+  <!-- Internal Links -->
   <div class="nw-links">
     <a href="/tools/manual-finder/">ManualFinder</a> /
     <a href="/tools/trashnavi/">TrashNavi</a> /
     <a href="/tools/log-formatter/">LogFormatter</a>
   </div>
 
-  <!-- JS（言語切替＋解析ロジック） -->
+  <!-- JS -->
   <script src="./app.js"></script>
+
+  <!-- FAQ構造化データ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Magic Numberとは何ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ファイルの先頭にある形式識別用バイト列です。拡張子より信頼できます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "推定は100%正確ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Magic Number が共通の形式では誤判定が起こり得ます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "拡張子と推定形式が違うのはなぜ？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "拡張子偽装またはリネームされたファイルの可能性があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "危険なファイルかどうか判定できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "形式推定のみで安全性は判定できません。"
+        }
+      }
+    ]
+  }
+  </script>
+
 </body>
 </html>
