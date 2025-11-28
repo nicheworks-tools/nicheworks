@@ -4,72 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- =======================
-       Favicon（仕様書必須）
-  ======================== -->
-  <link rel="icon" href="/favicon.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/favicon.png">
-
-  <!-- =======================
-       SEO
-  ======================== -->
+  <!-- ===== SEO ===== -->
   <title>UnitMaster｜世界標準40単位ユニットコンバータ | NicheWorks</title>
   <meta name="description" content="長さ・重さ・温度・体積・面積・速度・圧力など世界標準40単位に対応した超軽量ユニットコンバータ。スマホ最適化・ワンページ完結。">
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/unitmaster/">
 
-  <!-- OGP -->
+  <!-- ===== OG / SNS ===== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="UnitMaster｜世界標準40単位ユニットコンバータ">
-  <meta property="og:description" content="長さ・重さ・温度・体積・面積・速度・圧力など世界標準40単位に対応したユニットコンバータ。">
+  <meta property="og:description" content="長さ・重さ・温度・体積・面積・速度・圧力など世界標準40単位に対応した超軽量ユニットコンバータ。">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/unitmaster/">
-  <meta property="og:image" content="/og/unitmaster.png">
+  <meta property="og:image" content="/assets/ogp-nicheworks.png">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="UnitMaster">
-  <meta name="twitter:description" content="世界標準40単位に対応したユニットコンバータ。">
-  <meta name="twitter:image" content="/og/unitmaster.png">
+  <meta name="twitter:description" content="世界標準40単位に対応したユニットコンバータ。スマホ最適化。">
+  <meta name="twitter:image" content="/assets/ogp-nicheworks.png">
 
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "UnitMaster",
-    "url": "https://nicheworks.pages.dev/tools/unitmaster/",
-    "applicationCategory": "Utility",
-    "operatingSystem": "All"
-  }
-  </script>
-
-  <!-- AdSense（自動広告） -->
+  <!-- ===== AdSense（自動広告）===== -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"
           crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-  </script>
-
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <!-- ======================================================
-     Header
+     Header（タイトル＋言語切替）
 ====================================================== -->
-<header class="mw-header">
-  <div class="mw-header-left">
-    <h1 class="mw-title">UnitMaster</h1>
-    <p class="mw-subtitle" data-i18n="subtitle">
-      世界標準40単位に対応した超軽量ユニットコンバータ
-    </p>
-  </div>
-
-  <div class="mw-header-right mw-lang-switch">
-    <button data-lang="ja" class="active">JA</button>
-    <button data-lang="en">EN</button>
+<header class="nw-header">
+  <div class="mw-container nw-header-inner">
+    <div>
+      <h1 class="mw-title">UnitMaster</h1>
+      <p class="mw-subtitle">世界標準40単位に対応した超軽量ユニットコンバータ</p>
+    </div>
+    <div class="mw-lang-switch">
+      <button data-lang="ja" class="active">JA</button>
+      <button data-lang="en">EN</button>
+    </div>
   </div>
 </header>
 
@@ -78,12 +50,15 @@
 ====================================================== -->
 <main class="mw-container">
 
-  <!-- 説明文 -->
-  <p class="um-desc" data-i18n="desc">
-    世界標準40単位に対応した超軽量ユニットコンバータ。長さ・重さ・温度・体積・面積・速度・圧力の変換をスマホでも即時に実行できます。
-  </p>
+  <!-- 使い方の案内（仕様書の「リード＋How to」） -->
+  <section class="um-intro">
+    <p data-i18n="intro">
+      使い方：① 上のタブでカテゴリを選ぶ → ② 変換元の値と単位を入力 → ③ 変換先の単位を選ぶと結果が表示されます。
+      自動計算をOFFにすると、「計算する」ボタンを押したときだけ換算されます。
+    </p>
+  </section>
 
-  <!-- カテゴリタブ（面積も含む7カテゴリ） -->
+  <!-- カテゴリタブ -->
   <div class="um-tabs" id="categoryTabs">
     <button data-cat="length" class="active">長さ</button>
     <button data-cat="weight">重さ</button>
@@ -110,7 +85,7 @@
     <select id="toUnit"></select>
   </div>
 
-  <!-- 自動計算 -->
+  <!-- 自動計算切替 -->
   <div class="um-auto">
     <label>
       <input type="checkbox" id="autoCalc" checked>
@@ -118,46 +93,45 @@
     </label>
   </div>
 
-  <!-- 手動計算ボタン -->
-  <button id="calcBtn" class="um-btn" style="display:none;" data-i18n="calc_btn">
-    計算する
-  </button>
+  <!-- 手動モード用ボタン -->
+  <button id="calcBtn" class="um-btn" style="display:none;">計算する</button>
 
   <!-- 結果 -->
   <div id="resultText" class="um-result"></div>
 
+  <!-- 寄付導線 -->
+  <section class="nw-donate">
+    <p class="nw-donate-text">
+      このツールがお役に立ったら、開発継続のために応援していただけると嬉しいです。
+    </p>
+    <div class="nw-donate-links">
+      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+    </div>
+  </section>
 </main>
 
-<!-- ======================================================
-     Footer
-====================================================== -->
-<footer class="mw-footer">
-
-  <!-- 母艦ページリンク（仕様書必須） -->
-  <div class="mw-home">
-    <a href="https://nicheworks.pages.dev/">NicheWorks</a>
-  </div>
-
-  <!-- 内部リンク -->
-  <div class="mw-links">
-    <a href="/tools/manualfinder/">ManualFinder</a> /
-    <a href="/tools/trashnavi/">TrashNavi</a> /
-    <a href="/tools/logformatter/">LogFormatter</a>
-  </div>
-
-  <!-- 寄付お願い文章 -->
-  <p class="mw-donate-message">
-    このツールがお役に立ったら、応援いただけると嬉しいです。
+<!-- 共通フッター -->
+<footer class="nw-footer">
+  <p class="nw-footer-line">
+    © NicheWorks — Small Web Tools for Boring Tasks
   </p>
-
-  <!-- 寄付ボタン（絵文字付き） -->
-  <div class="mw-donate">
-    <a href="https://ko-fi.com/xxxx" target="_blank">☕ Ko-fi</a>
-    <a href="https://ofuse.me/xxxx" target="_blank">💌 OFUSE</a>
-  </div>
-
-  <p class="mw-copy">© 2025 NicheWorks</p>
+  <p class="nw-footer-line">
+    当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
+  </p>
+  <p class="nw-footer-line">
+    <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
+      nicheworks.pages.dev
+    </a>
+  </p>
 </footer>
+
+<!-- 内部リンク（3ツール） -->
+<div class="nw-links">
+  <a href="/tools/manualfinder/">ManualFinder（公式マニュアル検索）</a>
+  <a href="/tools/trashnavi/">TrashNavi（ごみ分別リンク）</a>
+  <a href="/tools/logformatter/">LogFormatter（ログ整形）</a>
+</div>
 
 <script src="app.js"></script>
 </body>
