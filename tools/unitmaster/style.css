@@ -1,265 +1,235 @@
-/* =========================================================
-   NicheWorks 共通：超軽量ミニマル UI
-   スマホファースト（基準：375px。最小320px対応）
-   PCは中央寄せ・最大幅680pxまで拡張
-========================================================= */
-
+/* ================================
+   Base
+================================ */
 :root {
-  --bg: #ffffff;
-  --text: #111111;
-  --sub: #666666;
-  --border: #e5e5e5;
-  --soft: #f9f9f9;
+  --bg: #fff;
+  --text: #111;
+  --subtext: #555;
+  --border: #ddd;
   --radius: 12px;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --space: 16px;
+  --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+          "Segoe UI", sans-serif;
 }
 
-* {
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  padding: 16px;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-
-/* ======================================
-   HEADER
-====================================== */
+/* ================================
+   Header
+================================ */
 .nw-header {
-  margin-bottom: 20px;
-  position: relative;
+  padding: 20px 16px 10px;
 }
 
-.title {
-  font-size: 28px;
+.nw-title {
+  font-size: 1.8rem;
+  margin: 0 0 4px;
   font-weight: 700;
-  margin-bottom: 4px;
 }
 
-.subtitle {
-  color: var(--sub);
-  font-size: 14px;
-  margin-bottom: 16px;
-  max-width: 90%;
+.nw-subtitle {
+  font-size: 0.95rem;
+  margin: 0 0 14px;
+  color: var(--subtext);
 }
 
+/* JA / EN 切り替え */
 .lang-switch {
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
 .lang-switch button {
-  padding: 4px 12px;
-  font-size: 14px;
-  border: 1px solid var(--border);
+  padding: 6px 14px;
   border-radius: var(--radius);
-  background: #fff;
+  border: 1px solid var(--border);
+  background: #f5f5f5;
+  font-size: 0.9rem;
 }
 
-.lang-switch .active {
+.lang-switch button.active {
   background: #111;
   color: #fff;
 }
 
-
-/* ======================================
-   CONTAINER
-====================================== */
-
-.nw-container {
+/* ================================
+   Main container
+================================ */
+.nw-main {
+  padding: 0 16px 40px;
   max-width: 680px;
   margin: 0 auto;
-  width: 100%;
 }
 
-.usage p {
-  background: var(--soft);
-  padding: 12px;
+/* 説明テキスト */
+.usage-box {
+  background: #fafafa;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-size: 15px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  font-size: 0.94rem;
+}
+
+/* ================================
+   Category Tabs（最重要）
+================================ */
+
+/* 外側は横スクロール領域 */
+.unit-tabs-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 18px;
+}
+
+/* Tabs row */
+.unit-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  width: max-content;
+  padding-bottom: 4px;
+}
+
+/* 各タブ */
+.unit-tabs .tab {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f5f5f5;
+  white-space: nowrap; /* ← 折り返さない */
+}
+
+.unit-tabs .tab.active {
+  background: #111;
+  color: #fff;
+}
+
+/* ================================
+   Form section
+================================ */
+.form-section label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-section input,
+.form-section select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+/* 自動計算 */
+.auto-calc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* 計算ボタン */
+.calc-btn {
+  width: 100%;
+  padding: 14px;
+  background: #111;
+  color: white;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1.05rem;
   margin-bottom: 20px;
 }
 
-
-/* ======================================
-   UNIT TABS（横スクロールで絶対はみ出さない）
-====================================== */
-
-.unit-tabs {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  margin-bottom: 16px;
-  padding-bottom: 6px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.unit-tabs button {
-  flex: 0 0 auto;
-  padding: 10px 18px;
-  border-radius: var(--radius);
+/* 結果表示 */
+.result-box {
+  min-height: 42px;
+  background: #fafafa;
   border: 1px solid var(--border);
-  background: #fff;
-  font-size: 15px;
-  white-space: nowrap;
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 1.05rem;
+  margin-bottom: 30px;
 }
 
-.unit-tabs .active {
-  background: #111;
-  color: #fff;
-}
-
-
-/* ======================================
-   FORM AREA（スマホ完全最適化）
-====================================== */
-
-.form-area {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+/* ================================
+   Donation
+================================ */
+.donate-box {
+  text-align: center;
   margin-top: 10px;
 }
 
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 16px;
+.donate-box p {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
 }
 
-input[type="number"],
-select {
-  width: 100%;
-  padding: 14px;
-  font-size: 17px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
-}
-
-.autocalc-row {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-}
-
-.calc-btn {
-  background: #111;
-  color: white;
-  padding: 14px;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 17px;
-  width: 100%;
-}
-
-.result-box {
-  min-height: 40px;
-  background: var(--soft);
-  padding: 14px;
-  border-radius: var(--radius);
-  font-size: 18px;
-}
-
-
-/* ======================================
-   DONATE
-====================================== */
-
-.donate-section {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.donate-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 8px;
-}
-
-.donate-links a {
-  padding: 6px 12px;
+.ofuse-btn, .kofi-btn {
+  display: inline-block;
+  margin: 6px 8px;
+  padding: 8px 14px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  text-decoration: none;
-  color: var(--text);
+  background: #fafafa;
+  font-size: 0.95rem;
 }
 
-
-/* ======================================
-   FOOTER
-====================================== */
-
+/* ================================
+   Footer
+================================ */
 .nw-footer {
+  padding: 30px 16px;
   text-align: center;
-  margin-top: 40px;
-  padding-top: 20px;
+  font-size: 0.85rem;
   border-top: 1px solid var(--border);
-  font-size: 14px;
-  color: var(--sub);
 }
 
-.nw-footer .domain {
-  display: block;
-  margin: 8px 0;
+.nw-footer .notice {
+  color: var(--subtext);
+  margin: 10px 0;
+}
+
+.footer-links a {
+  margin: 0 6px;
+  color: #333;
   text-decoration: none;
-  color: var(--text);
+  white-space: nowrap;
 }
 
-.nw-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 12px;
-}
+/* ================================
+   Bigger screen (Tablet & PC)
+   （スマホ → 拡張するだけ）
+================================ */
+@media (min-width: 768px) {
 
-.nw-links a {
-  text-decoration: none;
-  color: var(--text);
-}
-
-
-/* ======================================
-   RESPONSIVE（スマホ → タブ → PC）
-====================================== */
-
-/* 最小320pxでも崩れない */
-@media (max-width: 360px) {
-  .title {
-    font-size: 24px;
+  .nw-title {
+    font-size: 2rem;
   }
-  .lang-switch button {
-    padding: 2px 10px;
-  }
-}
 
-/* タブレット幅 */
-@media (min-width: 600px) {
-  body {
-    padding: 24px;
+  .unit-tabs .tab {
+    padding: 10px 22px;
+    font-size: 1rem;
   }
-  .usage p {
-    font-size: 16px;
-  }
-}
 
-/* PC幅 */
-@media (min-width: 1024px) {
-  .lang-switch button {
-    font-size: 14px;
+  .usage-box {
+    font-size: 1rem;
+    padding: 18px 20px;
   }
+
 }
