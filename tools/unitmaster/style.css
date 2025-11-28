@@ -267,11 +267,11 @@ a:hover {
 @media (min-width: 768px) {
 
   /* JA/EN は右上へ */
-  .nw-header {
+/*  .nw-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
+  }  */
 
   .lang-switch {
     margin-top: 0;
