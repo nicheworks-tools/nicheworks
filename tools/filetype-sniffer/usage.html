@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>使い方｜FileType Sniffer | NicheWorks</title>
+  <meta name="description" content="FileType Sniffer の使い方ガイド。Magic Number によるファイル形式判定、対応形式、エラーの見方をまとめています。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/filetype-sniffer/usage.html">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <style>
+    body {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px 14px 60px;
+      background: #ffffff;
+      color: #111827;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 28px;
+      margin-bottom: 10px;
+      border-left: 4px solid #111827;
+      padding-left: 8px;
+    }
+
+    p, li {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #1f2937;
+      text-decoration: underline;
+    }
+
+    .back-link {
+      margin-top: 40px;
+      font-size: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>FileType Sniffer — 使い方</h1>
+  <p>このページでは、FileType Sniffer の基本的な使い方や対応形式、エラーの見方をまとめています。</p>
+
+  <!-- 1. Purpose -->
+  <h2>1. このツールでできること</h2>
+  <p>
+    FileType Sniffer は、ファイルの先頭バイト（Magic Number）を解析し、
+    <strong>「本当のファイル形式」</strong> を推定する無料ツールです。
+    拡張子偽装のチェックや、壊れたファイルの形式確認に役立ちます。
+  </p>
+
+  <!-- 2. How to Use -->
+  <h2>2. 使い方の手順</h2>
+  <ul>
+    <li>① 判定したいファイルをドラッグ＆ドロップ、または「ファイルを選択」から選びます。</li>
+    <li>② 「解析する」ボタンを押します。</li>
+    <li>③ 先頭の Magic Number を読み取り、推定される形式を表示します。</li>
+    <li>④ 判定ができない場合は「不明」と表示されます。</li>
+  </ul>
+
+  <!-- 3. Supported / Unsupported -->
+  <h2>3. 対応 / 非対応</h2>
+  <p><strong>対応している主な形式：</strong></p>
+  <ul>
+    <li>PNG / JPEG / GIF / WebP</li>
+    <li>PDF</li>
+    <li>ZIP / RAR / 7Z</li>
+    <li>MP4 / MOV / AVI / MKV</li>
+    <li>BMP / TIFF / ICO</li>
+    <li>WAV / MP3</li>
+    <li>EXE / ELF</li>
+  </ul>
+
+  <p><strong>非対応の例：</strong></p>
+  <ul>
+    <li>巨大なファイル（1GB以上）</li>
+    <li>複雑な暗号化・独自ヘッダを持つ特殊形式</li>
+    <li>破損が激しく先頭バイトが読めないファイル</li>
+  </ul>
+
+  <!-- 4. Error Handling -->
+  <h2>4. エラーについて</h2>
+  <p><strong>よくあるエラー：</strong></p>
+  <ul>
+    <li>ファイルが選択されていない → ファイルを選んでから解析してください。</li>
+    <li>読み取りエラー → ファイルがロックされている／破損している可能性があります。</li>
+    <li>Magic Number が存在しない → 判定できない形式です。</li>
+  </ul>
+
+  <!-- 5. Output format -->
+  <h2>5. 出力内容の説明</h2>
+  <p><strong>解析結果には以下が含まれます：</strong></p>
+  <ul>
+    <li>推定形式（例：PNG / ZIP / MP4）</li>
+    <li>ファイル名</li>
+    <li>サイズ（bytes）</li>
+    <li>MIME（ブラウザ判定）</li>
+    <li>Magic Number（先頭の Hex 値）</li>
+  </ul>
+
+  <!-- 6. FAQ -->
+  <h2>6. よくある質問（FAQ）</h2>
+  <p><strong>Q. Magic Number とは何ですか？</strong><br>
+    A. ファイルの先頭にある形式識別用のバイト列で、拡張子より信頼できます。
+  </p>
+
+  <p><strong>Q. 推定形式は100%正確ですか？</strong><br>
+    A. 主な形式は正確に判定できますが、Magic Number が共通の形式では誤判定もあり得ます。
+  </p>
+
+  <p><strong>Q. 拡張子が違うのに形式が一致するのはなぜ？</strong><br>
+    A. 拡張子偽装またはリネームされたファイルの可能性があります。
+  </p>
+
+  <p><strong>Q. 危険なファイルかどうか確認できますか？</strong><br>
+    A. 形式の推定はできますが、安全性の保証はできません。</p>
+
+  <!-- 7. Disclaimer -->
+  <h2>7. 免責</h2>
+  <p>
+    本ツールは Magic Number に基づく形式推定のみを行います。
+    判定結果の正確性は保証できません。安全性の判断は自己責任で行ってください。
+  </p>
+
+  <!-- 8. Return Link -->
+  <p class="back-link">
+    <a href="./index.html">← FileType Sniffer に戻る</a>
+  </p>
+</body>
+</html>
