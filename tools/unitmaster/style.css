@@ -1,191 +1,265 @@
-/* =====================================================
-   RESET（最低限）
-===================================================== */
+/* =========================================================
+   NicheWorks 共通：超軽量ミニマル UI
+   スマホファースト（基準：375px。最小320px対応）
+   PCは中央寄せ・最大幅680pxまで拡張
+========================================================= */
+
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --sub: #666666;
+  --border: #e5e5e5;
+  --soft: #f9f9f9;
+  --radius: 12px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  background: #fff;
-  color: #111;
-  line-height: 1.5;
-}
-
-/* =====================================================
-   コンテナ（スマホ100% → PC中央）
-===================================================== */
-.container {
-  width: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
   padding: 16px;
-  max-width: 100%;
-  margin: 0 auto;
+  line-height: 1.55;
 }
 
-/* PCサイズで中央寄せ */
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
 
-/* =====================================================
-   ヘッダー
-===================================================== */
-.um-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+/* ======================================
+   HEADER
+====================================== */
+.nw-header {
   margin-bottom: 20px;
+  position: relative;
 }
 
-.header-title {
-  font-size: 1.8rem;
+.title {
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-.header-desc {
-  font-size: 0.9rem;
-  color: #444;
-  max-width: 80%;
+.subtitle {
+  color: var(--sub);
+  font-size: 14px;
+  margin-bottom: 16px;
+  max-width: 90%;
 }
 
-/* JA / EN */
 .lang-switch {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .lang-switch button {
-  padding: 6px 16px;
-  border: 1px solid #ccc;
+  padding: 4px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   background: #fff;
-  border-radius: 8px;
-  font-size: 0.9rem;
 }
 
 .lang-switch .active {
-  background: #000;
-  color: #fff;
-}
-
-/* =====================================================
-   使い方（howto）
-===================================================== */
-.howto-box {
-  background: #fafafa;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 20px;
-  font-size: 0.94rem;
-}
-
-/* =====================================================
-   タブ
-===================================================== */
-.um-tabs {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  margin-bottom: 22px;
-}
-
-.um-tabs button {
-  white-space: nowrap;
-  padding: 8px 16px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  background: #fff;
-  font-size: 0.9rem;
-}
-
-.um-tabs button.active {
-  background: #000;
-  color: #fff;
-}
-
-/* =====================================================
-   入力フォーム
-===================================================== */
-label {
-  display: block;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 14px 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-/* 自動計算 */
-.auto-calc-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 18px;
-}
-
-.calc-button {
-  width: 100%;
-  padding: 14px 12px;
-  font-size: 1.05rem;
-  border-radius: 10px;
-  border: none;
   background: #111;
   color: #fff;
+}
+
+
+/* ======================================
+   CONTAINER
+====================================== */
+
+.nw-container {
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.usage p {
+  background: var(--soft);
+  padding: 12px;
+  border-radius: var(--radius);
+  font-size: 15px;
   margin-bottom: 20px;
 }
 
-/* =====================================================
-   結果
-===================================================== */
-.result-box {
+
+/* ======================================
+   UNIT TABS（横スクロールで絶対はみ出さない）
+====================================== */
+
+.unit-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.unit-tabs button {
+  flex: 0 0 auto;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.unit-tabs .active {
+  background: #111;
+  color: #fff;
+}
+
+
+/* ======================================
+   FORM AREA（スマホ完全最適化）
+====================================== */
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 16px;
+}
+
+input[type="number"],
+select {
   width: 100%;
-  min-height: 60px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  background: #fafafa;
   padding: 14px;
-  font-size: 1.2rem;
-  margin-bottom: 28px;
+  font-size: 17px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
 }
 
-/* =====================================================
-   寄付導線
-===================================================== */
-.donate-box {
-  text-align: left;
-  font-size: 0.9rem;
-  margin-bottom: 24px;
+.autocalc-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
 }
 
-.donate-box a {
-  text-decoration: none;
-  margin-right: 12px;
+.calc-btn {
+  background: #111;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 17px;
+  width: 100%;
 }
 
-/* =====================================================
-   フッター
-===================================================== */
-.footer {
-  text-align: left;
-  font-size: 0.85rem;
-  color: #555;
+.result-box {
+  min-height: 40px;
+  background: var(--soft);
+  padding: 14px;
+  border-radius: var(--radius);
+  font-size: 18px;
+}
+
+
+/* ======================================
+   DONATE
+====================================== */
+
+.donate-section {
   margin-top: 40px;
+  text-align: center;
 }
 
-.footer-links a {
-  margin-right: 12px;
+.donate-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.donate-links a {
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+}
+
+
+/* ======================================
+   FOOTER
+====================================== */
+
+.nw-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--sub);
+}
+
+.nw-footer .domain {
+  display: block;
+  margin: 8px 0;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nw-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.nw-links a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+
+/* ======================================
+   RESPONSIVE（スマホ → タブ → PC）
+====================================== */
+
+/* 最小320pxでも崩れない */
+@media (max-width: 360px) {
+  .title {
+    font-size: 24px;
+  }
+  .lang-switch button {
+    padding: 2px 10px;
+  }
+}
+
+/* タブレット幅 */
+@media (min-width: 600px) {
+  body {
+    padding: 24px;
+  }
+  .usage p {
+    font-size: 16px;
+  }
+}
+
+/* PC幅 */
+@media (min-width: 1024px) {
+  .lang-switch button {
+    font-size: 14px;
+  }
 }
