@@ -12,25 +12,32 @@
   <!-- ===== OG / SNS ===== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="UnitMaster｜世界標準40単位ユニットコンバータ">
-  <meta property="og:description" content="長さ・重さ・温度・体積・面積・速度・圧力など世界標準40単位に対応した超軽量ユニットコンバータ。">
+  <meta property="og:description" content="長さ・重さ・温度・体積・面積・速度・圧力など世界標準40単位対応の超軽量コンバータ。スマホ最適化。">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/unitmaster/">
   <meta property="og:image" content="/assets/ogp-nicheworks.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="UnitMaster">
-  <meta name="twitter:description" content="世界標準40単位に対応したユニットコンバータ。スマホ最適化。">
+  <meta name="twitter:description" content="世界標準40単位に対応したユニットコンバータ。">
   <meta name="twitter:image" content="/assets/ogp-nicheworks.png">
 
   <!-- ===== AdSense（自動広告）===== -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"
           crossorigin="anonymous"></script>
 
+  <!-- ===== Cloudflare Web Analytics ===== -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_CF_TOKEN"}'>
+  </script>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- ======================================================
-     Header（タイトル＋言語切替）
+     Header
 ====================================================== -->
 <header class="nw-header">
   <div class="mw-container nw-header-inner">
@@ -50,11 +57,16 @@
 ====================================================== -->
 <main class="mw-container">
 
-  <!-- 使い方の案内（仕様書の「リード＋How to」） -->
+  <!-- 使い方（UI直下・必須） -->
   <section class="um-intro">
-    <p data-i18n="intro">
-      使い方：① 上のタブでカテゴリを選ぶ → ② 変換元の値と単位を入力 → ③ 変換先の単位を選ぶと結果が表示されます。
-      自動計算をOFFにすると、「計算する」ボタンを押したときだけ換算されます。
+    <p id="intro-ja">
+      【使い方】数値を入力し単位を選ぶと自動で結果が更新されます（自動計算ON時）。
+      自動計算をOFFにすると、「計算する」ボタンを押したときだけ変換されます。
+    </p>
+
+    <p id="intro-en" style="display:none;">
+      [How to Use] When Auto Calc is ON, results update automatically.
+      When OFF, results update only when you press the Convert button.
     </p>
   </section>
 
@@ -71,29 +83,29 @@
 
   <!-- 入力 -->
   <div class="um-block">
-    <label data-i18n="from_value">変換元の値</label>
+    <label id="label-from-value">変換元の値</label>
     <input type="number" id="inputValue" placeholder="0">
   </div>
 
   <div class="um-block">
-    <label data-i18n="from_unit">変換元の単位</label>
+    <label id="label-from-unit">変換元の単位</label>
     <select id="fromUnit"></select>
   </div>
 
   <div class="um-block">
-    <label data-i18n="to_unit">変換先の単位</label>
+    <label id="label-to-unit">変換先の単位</label>
     <select id="toUnit"></select>
   </div>
 
-  <!-- 自動計算切替 -->
+  <!-- 自動計算 -->
   <div class="um-auto">
     <label>
       <input type="checkbox" id="autoCalc" checked>
-      <span data-i18n="auto_calc">自動計算</span>
+      <span id="label-auto-calc">自動計算</span>
     </label>
   </div>
 
-  <!-- 手動モード用ボタン -->
+  <!-- 計算ボタン（自動OFF時のみ表示） -->
   <button id="calcBtn" class="um-btn" style="display:none;">計算する</button>
 
   <!-- 結果 -->
@@ -101,36 +113,29 @@
 
   <!-- 寄付導線 -->
   <section class="nw-donate">
-    <p class="nw-donate-text">
-      このツールがお役に立ったら、開発継続のために応援していただけると嬉しいです。
-    </p>
+    <p class="nw-donate-text">このツールが役立ったら、応援していただけると嬉しいです。</p>
     <div class="nw-donate-links">
-      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
     </div>
   </section>
+
 </main>
 
-<!-- 共通フッター -->
+<!-- ======================================================
+     Footer（共通仕様）
+====================================================== -->
 <footer class="nw-footer">
-  <p class="nw-footer-line">
-    © NicheWorks — Small Web Tools for Boring Tasks
-  </p>
-  <p class="nw-footer-line">
-    当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
-  </p>
-  <p class="nw-footer-line">
-    <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
-      nicheworks.pages.dev
-    </a>
-  </p>
+  <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+  <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p>
+  <p class="nw-footer-line"><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
 </footer>
 
-<!-- 内部リンク（3ツール） -->
+<!-- 内部リンク -->
 <div class="nw-links">
-  <a href="/tools/manualfinder/">ManualFinder（公式マニュアル検索）</a>
-  <a href="/tools/trashnavi/">TrashNavi（ごみ分別リンク）</a>
-  <a href="/tools/logformatter/">LogFormatter（ログ整形）</a>
+  <a href="/tools/manualfinder/">ManualFinder</a>
+  <a href="/tools/trashnavi/">TrashNavi</a>
+  <a href="/tools/logformatter/">LogFormatter</a>
 </div>
 
 <script src="app.js"></script>
