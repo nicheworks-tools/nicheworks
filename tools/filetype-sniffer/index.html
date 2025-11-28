@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- meta（charset, viewport） -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- タイトル（SEO構造：{検索ワード}｜{短名} | NicheWorks） -->
+  <title>ファイル形式判定｜FileType Sniffer | NicheWorks</title>
+
+  <!-- description（70〜120字） -->
+  <meta name="description" content="ファイルをドラッグ＆ドロップするだけで本当の形式を解析。Magic Numberから安全に判定。拡張子偽装チェック、壊れたファイルの確認に最適。PC向け無料ツール。">
+
+  <!-- og / twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FileType Sniffer | NicheWorks">
+  <meta property="og:description" content="Magic Numberで本当のファイル形式を判定する無料ツール。拡張子偽装や壊れたファイルの確認に。">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/filetype-sniffer/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/filetype-sniffer/">
+
+  <!-- favicon（共通） -->
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- Cloudflare Web Analytics（共通 token） -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN"}'>
+  </script>
+
+  <!-- AdSense（必須） -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
+    crossorigin="anonymous">
+  </script>
+
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="../common.css">
+
+  <!-- ツール固有CSS -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- JSON-LD（WebApplication） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FileType Sniffer",
+    "url": "https://nicheworks.pages.dev/tools/filetype-sniffer/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Magic Numberからファイルの本当の形式を判定する無料ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- ===================== -->
+  <!--        HEADER         -->
+  <!-- ===================== -->
+  <header class="nw-header">
+    <h1>FileType Sniffer</h1>
+    <p class="nw-sub">Magic Number から本当のファイル形式を判定する無料ツール</p>
+
+    <!-- 言語切替（必須） -->
+    <div class="nw-lang-switch">
+      <button data-lang="ja" class="active">JP</button> /
+      <button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <!-- ===================== -->
+  <!--         MAIN          -->
+  <!-- ===================== -->
+  <main class="nw-main">
+
+    <!-- 上部広告枠（必須） -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- ユーザー操作UI（PCファースト） -->
+    <section class="tool-container">
+
+      <!-- PC向け：幅広D&Dボックス -->
+      <div class="drop-zone">
+        <p data-i18n="ja">ここにファイルをドラッグ＆ドロップ</p>
+        <p data-i18n="en" style="display:none;">Drag & Drop your file here</p>
+      </div>
+
+      <!-- ファイル選択ボタン -->
+      <div class="file-input-area">
+        <input type="file" id="fileInput">
+      </div>
+
+      <!-- 注意書き（スマホ対応） -->
+      <p class="note">
+        <span data-i18n="ja">※ この処理は最大3秒ほどかかる場合があります。</span>
+        <span data-i18n="en" style="display:none;">* Processing may take up to 3 seconds.</span>
+      </p>
+
+      <!-- 解析ボタン -->
+      <button id="analyzeBtn" class="primary-btn">
+        <span data-i18n="ja">解析する</span>
+        <span data-i18n="en" style="display:none;">Analyze</span>
+      </button>
+
+      <!-- プログレスバー（必須） -->
+      <div id="progress" class="progress" style="display:none;">
+        <div class="bar"></div>
+      </div>
+    </section>
+
+    <!-- 結果表示セクション（PC向け・広め） -->
+    <section id="resultSection" class="result-box" style="display:none;">
+      <h2 data-i18n="ja">解析結果</h2>
+      <h2 data-i18n="en" style="display:none;">Result</h2>
+
+      <div id="resultContent"></div>
+
+      <!-- リセットボタン（必須） -->
+      <button id="resetBtn" class="secondary-btn">
+        <span data-i18n="ja">リセット</span>
+        <span data-i18n="en" style="display:none;">Reset</span>
+      </button>
+    </section>
+
+    <!-- 底部広告（推奨） -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- 寄付導線（標準：1〜2箇所） -->
+    <div class="nw-donate">
+      <p class="nw-donate-text">
+        <span data-i18n="ja">開発継続のご支援をいただけると嬉しいです。</span>
+        <span data-i18n="en" style="display:none;">Your support helps maintain this tool.</span>
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- 使い方ページ（最下部リンク） -->
+    <p class="usage-link"><a href="./usage.html">使い方はこちら</a></p>
+
+  </main>
+
+  <!-- ===================== -->
+  <!--        FOOTER         -->
+  <!-- ===================== -->
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <!-- 内部リンク（3〜4件） -->
+  <div class="nw-links">
+    <a href="/tools/manual-finder/">ManualFinder</a> /
+    <a href="/tools/trashnavi/">TrashNavi</a> /
+    <a href="/tools/log-formatter/">LogFormatter</a>
+  </div>
+
+  <!-- JS（言語切替＋解析ロジック） -->
+  <script src="./app.js"></script>
+</body>
+</html>
