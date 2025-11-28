@@ -1032,3 +1032,784 @@ FAQ セクションは以下の目的で設置する：
 
 ---
 
+
+## ■ **第12章：解析・変換系 UX 共通仕様（v2.2 / 2025-11 追加）**
+
+本章は、以下のいずれかを行うツールを対象とする：
+
+* 画像アップロード（EXIF削除・フォーマット変換など）
+* ファイル解析（FileType Sniffer など）
+* AI または外部APIによる解析処理
+* テキスト解析（ログ変換系も該当）
+* 時間がかかる可能性のある処理を伴うもの
+
+※ 形式的・単機能ツール（改行修復・タイトル抽出など）は対象外でもよい。
+
+---
+
+### **12-1. プログレスバー（必須）**
+
+解析処理を開始した時点で **必ずプログレス表示を開始する**。
+
+**ルール：**
+
+* 解析開始時：表示
+* 完了 or エラー：非表示
+* モバイルで隠れない位置に配置
+* indeterminate（進捗不明）でも問題なし
+* ボタン付近 or 中央に配置（ツールごとに適宜）
+
+**AI/Codex禁止事項：**
+
+* 処理中もバーを出さない実装
+* エラー時にバーを残す
+* 位置を広告の近くに移動する
+
+---
+
+### **12-2. リセットボタン（必須）**
+
+解析結果が表示されたら **自動で “リセット” ボタンを出す**。
+
+**クリック時の挙動：**
+
+* 入力値の全消去
+* 結果エリアの消去
+* プログレスバーの消去
+* ファイルプレビューやステータスも初期化
+
+**配置：**
+
+* 結果セクションの直下（広告と混ざらない位置）
+
+---
+
+### **12-3. 処理時間の通知（推奨）**
+
+1秒以上の処理が想定される場合、
+実行ボタン付近に以下のような文言を入れる：
+
+> ⏳ この処理は最大3秒ほどかかる場合があります。
+
+UX改善に効果が大きい。
+
+---
+
+### **12-4. 結果への自動スクロール（推奨）**
+
+モバイルでは結果が画面外に行くため、
+結果生成後は **自動で結果ブロックへスクロール** する。
+
+---
+
+### **12-5. エラー表示の共通ルール（推奨）**
+
+すべての解析系ツールは **赤枠＋簡潔な説明** を採用する。
+
+**形式：**
+
+* 赤枠のブロック
+* 原因（What）＋対処法（How）を短く
+* エラー発生時はプログレスバー即消去
+
+---
+
+### **12-6. プレースホルダー（入力例）の必須化**
+
+解析系ツールでは入力例（placeholder）を必ず入れる。
+
+例：
+
+* URL例：`https://example.com/img.png`
+* JSON例：`{"key": "value"}`
+* 対応画像例：PNG / JPEG / WebP
+
+誤入力防止および UX 向上のため **必須**。
+
+---
+
+### **12-7. アップロード時の即時バリデーション（推奨）**
+
+ファイル選択後すぐに：
+
+* 拡張子チェック
+* サイズオーバー判定
+* 破損ファイル検出
+* 禁止形式判定
+
+を行う。
+
+不正な場合は解析ボタンを **disabled** にする。
+
+---
+
+### **12-8. ドラッグ＆ドロップ対応（任意・推奨）**
+
+可能な場合は D&D 対応エリアを提供し UX を向上する。
+
+---
+
+### **12-9. 結果コピー / ダウンロード機能（推奨）**
+
+テキスト解析系では：
+
+* 「コピー」📋
+* 「ダウンロード」⬇️
+
+の2つを標準搭載する。
+
+---
+
+### **12-10. AI / Codex 指示（最重要）**
+
+以下の行為は禁止：
+
+* 解析系ツールでプログレスバーを欠落させる
+* リセットボタンを省略する
+* 広告直下に進捗UIやボタンを置く
+* レイアウトを勝手に 600px 固定に変更
+* 解析後にバーが消えない状態を許容
+
+以下の行為は推奨：
+
+* エラー後はバーを即消去
+* 解析中は実行ボタンを disable
+* 結果生成後は自動スクロール
+
+
+了解。
+**やるべきことは 3つに分離して仕上げるのが最適** だ。
+
+---
+
+
+# 🧩 **付録：NicheWorks 新ツール共通テンプレ & 共通CSS（v2.2）**
+
+以下は **2025年11月以降に新規作成する全ツール**に適用される共通テンプレートおよびデザイン仕様である。
+
+既存ツールには適用しない。
+（必要であれば後日移行する）
+
+---
+
+## ■ **付録0：基本方針**
+
+1. すべての新ツールは以下の構成からスタートする：
+
+```
+/tools/{tool-slug}/
+  ├─ index.html
+  ├─ usage.html（必要なツールのみ）
+  ├─ style.css
+  └─ app.js
+/assets/
+  └─ nw-base.css
+```
+
+2. 共通デザイン・レイアウト・コンポーネントは **nw-base.css に100%集約**する。
+
+3. 各ツール側の style.css は **最小限（色変更・専用UI）だけ**。
+
+4. HTML構造は index.html / usage.html の共通テンプレからコピーして作る。
+
+5. Codex に開発させる場合も **このテンプレを前提に必ず使用させる**。
+
+---
+
+## ■ **付録1：index.html 共通テンプレ（コード挿入欄）**
+
+```
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>【ツール名】｜{短い説明文} | NicheWorks</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ここに70〜120字程度の説明文。何ができるか／誰向けか／無料であることを簡潔に書く。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/{tool-slug}/" />
+
+  <!-- OGP（必要に応じて各ツールで差し替えOK） -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="【ツール名】｜{短い説明文}">
+  <meta property="og:description" content="↑descriptionとほぼ同じでOK。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/{tool-slug}/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/og-default.png">
+
+  <link rel="icon" href="/assets/nicheworks-favicon-white.ico">
+
+  <!-- NicheWorks 共通スタイル -->
+  <link rel="stylesheet" href="/assets/nw-base.css">
+  <!-- ツール固有の追加CSS -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- AdSense / Cloudflare Analytics は共通仕様に従って別途挿入 -->
+</head>
+<body>
+  <div class="nw-page">
+    <!-- Header -->
+    <header class="nw-header">
+      <div class="nw-header-inner">
+        <h1 class="nw-header-title">【ツール名】</h1>
+        <p class="nw-header-sub">一言キャッチ（20〜30字程度）。</p>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="nw-main">
+
+      <!-- 上部広告枠（中身はAdSenseタグ） -->
+      <section class="nw-ad nw-ad-top">
+        <!-- ad-top slot -->
+      </section>
+
+      <section class="nw-card">
+        <!-- 導入説明 -->
+        <section class="nw-section">
+          <p>
+            ここに簡単な説明文（2〜3文）。<br>
+            何ができるか／どんな時に使うか／スマホで完結することを書く。
+          </p>
+        </section>
+
+        <!-- 入力エリア -->
+        <section class="nw-section">
+          <h2 class="nw-section-title">入力</h2>
+
+          <div class="nw-field">
+            <label class="nw-label" for="input-main">入力ラベル</label>
+            <input id="input-main" class="nw-input" type="text" placeholder="ここに入力" />
+          </div>
+
+          <!-- 必要に応じて他のフィールド -->
+
+          <div class="nw-btn-row">
+            <button id="btn-run" class="nw-btn" type="button">
+              <span>▶️</span><span>実行する</span>
+            </button>
+            <!-- リセットボタン（必要なツールのみ有効化）
+            <button id="btn-clear" class="nw-btn nw-btn-ghost" type="button">
+              <span>🧹</span><span>リセット</span>
+            </button>
+            -->
+          </div>
+        </section>
+
+        <!-- 結果エリア -->
+        <section class="nw-section">
+          <h2 class="nw-section-title">結果</h2>
+          <div id="result" class="nw-result">
+            <div class="nw-result-title">まだ結果はありません</div>
+            <p class="nw-muted">入力して「実行する」を押すとここに結果が出ます。</p>
+          </div>
+        </section>
+
+        <!-- 使い方ページリンク（広告から距離を置く仕様） -->
+        <section class="nw-section">
+          <p class="nw-usage">
+            <a href="./usage.html">詳しい使い方・対応範囲はこちら</a>
+          </p>
+        </section>
+
+        <!-- 下部広告 -->
+        <section class="nw-ad nw-ad-bottom">
+          <!-- ad-bottom slot -->
+        </section>
+
+        <!-- 寄付導線 -->
+        <section class="nw-donate">
+          <p class="nw-donate-text">
+            このツールがお役に立ったら、ご支援いただけると嬉しいです。
+          </p>
+          <div class="nw-donate-links">
+            <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSEで支援</a>
+            <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fiで支援</a>
+          </div>
+          <p class="nw-small nw-muted">
+            寄付は任意です。サーバー費・開発・データ整備に使われます。
+          </p>
+        </section>
+
+        <!-- 内部リンク -->
+        <section class="nw-links">
+          他のツール：
+          <a href="/tools/manual-finder/">ManualFinder</a> /
+          <a href="/tools/trashnavi/">TrashNavi</a> /
+          <a href="/tools/log-formatter/">LogFormatter</a>
+        </section>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="nw-footer">
+      <div class="nw-footer-inner">
+        <p class="nw-footer-copy">© NicheWorks — Small Web Tools for Boring Tasks</p>
+        <p class="nw-footer-note">掲載情報の正確性は保証しません。</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
+```
+
+
+---
+
+## ■ **付録2：usage.html 共通テンプレ（コード挿入欄）**
+
+```
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>【ツール名】の使い方｜NicheWorks</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="【ツール名】の使い方・対応範囲・よくある質問（FAQ）などをまとめた説明ページです。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/{tool-slug}/usage.html" />
+
+  <link rel="icon" href="/assets/nicheworks-favicon-white.ico">
+  <link rel="stylesheet" href="/assets/nw-base.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="nw-page">
+    <header class="nw-header">
+      <div class="nw-header-inner">
+        <h1 class="nw-header-title">【ツール名】の使い方</h1>
+        <p class="nw-header-sub">詳細な手順・対応範囲・FAQ。</p>
+      </div>
+    </header>
+
+    <main class="nw-main">
+      <section class="nw-card">
+
+        <section class="nw-section">
+          <h2 class="nw-section-title">1. このツールでできること</h2>
+          <p>ここに「どんな問題を解決するツールか」を2〜3文で書く。</p>
+        </section>
+
+        <section class="nw-section">
+          <h2 class="nw-section-title">2. 使い方の手順</h2>
+          <ol>
+            <li>ステップ1：〜〜を入力</li>
+            <li>ステップ2：ボタンを押す</li>
+            <li>ステップ3：結果を確認する</li>
+          </ol>
+        </section>
+
+        <section class="nw-section">
+          <h2 class="nw-section-title">3. 対応しているケース / 対応していないケース</h2>
+          <p>仕様上の注意点・制約を書く。</p>
+        </section>
+
+        <section class="nw-section">
+          <h2 class="nw-section-title">4. エラーについて</h2>
+          <p>よくあるエラーと原因を書く。</p>
+        </section>
+
+        <section class="nw-section">
+          <h2 class="nw-section-title">5. 出力形式について</h2>
+          <p>CSV・テキストなど、出力の説明を記載する。</p>
+        </section>
+
+        <!-- FAQ（条件付き推奨） -->
+        <section class="nw-section">
+          <h2 class="nw-section-title">6. よくある質問（FAQ）</h2>
+          <p class="nw-muted">※必要なツールのみ実装。それ以外はこのセクションを削除してよい。</p>
+        </section>
+
+        <section class="nw-section">
+          <h2 class="nw-section-title">7. 免責</h2>
+          <p class="nw-small nw-muted">
+            本ツールの結果は正確性を保証するものではありません。
+            重要な判断には必ず公式情報をご確認ください。
+          </p>
+        </section>
+
+        <section class="nw-section">
+          <p class="nw-usage">
+            <a href="./index.html">← ツール本体に戻る</a>
+          </p>
+        </section>
+
+      </section>
+    </main>
+
+    <footer class="nw-footer">
+      <div class="nw-footer-inner">
+        <p class="nw-footer-copy">© NicheWorks — Small Web Tools for Boring Tasks</p>
+        <p class="nw-footer-note">掲載情報の正確性は保証しません。</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
+
+```
+
+---
+
+## ■ **付録3：共通CSS（nw-base.css）挿入欄**
+
+```
+/* ==================================
+ * NicheWorks 共通CSS（nw-base.css）
+ * ================================== */
+
+/* ------------------------------
+ * 基本テーマ
+ * ------------------------------ */
+:root {
+  --nw-bg: #ffffff;
+  --nw-bg-soft: #f9fafb;
+  --nw-border: #e5e7eb;
+  --nw-border-soft: #f3f4f6;
+  --nw-text: #111827;
+  --nw-muted: #6b7280;
+  --nw-accent: #111827;
+  --nw-accent-soft: #f3f4ff;
+  --nw-danger: #b91c1c;
+  --nw-radius: 14px;
+  --nw-radius-sm: 10px;
+  --nw-shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --nw-font: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "Segoe UI", sans-serif;
+}
+
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--nw-bg);
+  color: var(--nw-text);
+  font-family: var(--nw-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* ------------------------------
+ * Layout
+ * ------------------------------ */
+.nw-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nw-header,
+.nw-footer {
+  padding: 16px 16px 8px;
+}
+
+.nw-header-inner,
+.nw-footer-inner,
+.nw-main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.nw-header-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.nw-header-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--nw-muted);
+}
+
+.nw-main {
+  flex: 1;
+  width: 100%;
+  padding: 0 16px 32px;
+}
+
+.nw-card {
+  background: var(--nw-bg-soft);
+  border-radius: var(--nw-radius);
+  padding: 16px 16px 20px;
+  box-shadow: var(--nw-shadow-soft);
+  border: 1px solid var(--nw-border-soft);
+}
+
+/* ------------------------------
+ * Typography
+ * ------------------------------ */
+p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.nw-muted {
+  color: var(--nw-muted);
+  font-size: 13px;
+}
+
+.nw-small {
+  font-size: 12px;
+}
+
+/* ------------------------------
+ * Sections
+ * ------------------------------ */
+.nw-section {
+  margin-top: 16px;
+}
+
+.nw-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+/* ------------------------------
+ * Forms
+ * ------------------------------ */
+.nw-field {
+  margin-bottom: 12px;
+}
+
+.nw-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.nw-input,
+.nw-textarea,
+.nw-select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--nw-border);
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: var(--nw-font);
+  background: #ffffff;
+}
+
+.nw-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ------------------------------
+ * Buttons
+ * ------------------------------ */
+.nw-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.nw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 999px;
+  border: 1px solid #111827;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #111827;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.nw-btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.18);
+}
+
+.nw-btn:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.nw-btn-ghost {
+  background: #ffffff;
+  color: #111827;
+  border-color: var(--nw-border);
+}
+
+.nw-btn-ghost:hover {
+  background: var(--nw-bg-soft);
+}
+
+/* ------------------------------
+ * Result
+ * ------------------------------ */
+.nw-result {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--nw-border-soft);
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.nw-result-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* ------------------------------
+ * Ads
+ * ------------------------------ */
+.nw-ad {
+  margin: 16px 0;
+  padding: 8px 0;
+}
+
+.nw-ad-top {
+  margin-bottom: 16px;
+}
+
+.nw-ad-bottom {
+  margin-top: 20px;
+}
+
+/* ------------------------------
+ * Donate block
+ * ------------------------------ */
+.nw-donate {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--nw-border-soft);
+}
+
+.nw-donate-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nw-donate-links a {
+  font-size: 13px;
+  text-decoration: none;
+  border: 1px solid var(--nw-border);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.nw-donate-links a:hover {
+  background: var(--nw-bg-soft);
+}
+
+/* ------------------------------
+ * Usage link
+ * ------------------------------ */
+.nw-usage {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 13px;
+}
+
+.nw-usage a {
+  text-decoration: underline;
+  color: #374151;
+}
+
+/* ------------------------------
+ * Internal links
+ * ------------------------------ */
+.nw-links {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--nw-muted);
+  text-align: center;
+}
+
+.nw-links a {
+  color: #374151;
+  text-decoration: none;
+}
+
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------
+ * Footer
+ * ------------------------------ */
+.nw-footer {
+  border-top: 1px solid var(--nw-border-soft);
+  margin-top: auto;
+}
+
+.nw-footer-copy {
+  font-size: 12px;
+  color: var(--nw-muted);
+}
+
+.nw-footer-note {
+  font-size: 11px;
+  color: var(--nw-muted);
+}
+
+/* ------------------------------
+ * Progress bar / Loading
+ * ------------------------------ */
+.nw-progress {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e5e7eb;
+  margin: 10px 0;
+  display: none;
+}
+
+.nw-progress-inner {
+  width: 100%;
+  height: 100%;
+  background: #111827;
+  animation: nw-progress-anim 1.1s infinite linear;
+}
+
+@keyframes nw-progress-anim {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ------------------------------
+ * Error block
+ * ------------------------------ */
+.nw-error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  font-size: 13px;
+  display: none;
+}
+
+```
+
+---
+
+
