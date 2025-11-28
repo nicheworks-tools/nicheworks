@@ -1,51 +1,70 @@
-/* ===========================================
-   UnitMaster - Mobile First Layout
-   基準幅：320〜375px
-=========================================== */
-
-/* --- 全体 --- */
-body {
+/* =====================================================
+   RESET（最低限）
+===================================================== */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  background: #ffffff;
+  background: #fff;
   color: #111;
   line-height: 1.5;
 }
 
-/* コンテナ：スマホは全幅 */
+/* =====================================================
+   コンテナ（スマホ100% → PC中央）
+===================================================== */
 .container {
   width: 100%;
-  max-width: 100%;
   padding: 16px;
-  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-/* タイトル */
+/* PCサイズで中央寄せ */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/* =====================================================
+   ヘッダー
+===================================================== */
+.um-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
 .header-title {
-  font-size: 1.6rem;   /* 375px基準で視認性確保 */
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .header-desc {
   font-size: 0.9rem;
   color: #444;
-  margin-bottom: 20px;
+  max-width: 80%;
 }
 
-/* JA/EN */
+/* JA / EN */
 .lang-switch {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .lang-switch button {
-  padding: 6px 14px;
-  border-radius: 8px;
+  padding: 6px 16px;
   border: 1px solid #ccc;
   background: #fff;
+  border-radius: 8px;
   font-size: 0.9rem;
 }
 
@@ -54,31 +73,35 @@ body {
   color: #fff;
 }
 
-/* --- 説明文 --- */
+/* =====================================================
+   使い方（howto）
+===================================================== */
 .howto-box {
   background: #fafafa;
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 20px;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
 }
 
-/* --- タブ --- */
+/* =====================================================
+   タブ
+===================================================== */
 .um-tabs {
   display: flex;
   gap: 8px;
-  overflow-x: auto;  /* スマホ横スクロール */
-  margin-bottom: 20px;
-  padding-bottom: 6px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 22px;
 }
 
 .um-tabs button {
   white-space: nowrap;
-  padding: 8px 18px;
-  font-size: 0.9rem;
+  padding: 8px 16px;
   border-radius: 10px;
   border: 1px solid #ddd;
   background: #fff;
+  font-size: 0.9rem;
 }
 
 .um-tabs button.active {
@@ -86,21 +109,24 @@ body {
   color: #fff;
 }
 
-/* --- 入力欄/セレクト --- */
+/* =====================================================
+   入力フォーム
+===================================================== */
 label {
-  font-size: 0.95rem;
-  font-weight: 600;
   display: block;
+  font-size: 1rem;
+  font-weight: 600;
   margin-bottom: 6px;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   padding: 14px 12px;
   border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 /* 自動計算 */
@@ -111,63 +137,55 @@ input, select {
   margin-bottom: 18px;
 }
 
-/* --- 結果 --- */
-.result-box {
+.calc-button {
   width: 100%;
-  min-height: 55px;
+  padding: 14px 12px;
+  font-size: 1.05rem;
   border-radius: 10px;
-  border: 1px solid #ddd;
-  background: #fafafa;
-  padding: 12px;
-  font-size: 1.1rem;
+  border: none;
+  background: #111;
+  color: #fff;
   margin-bottom: 20px;
 }
 
-/* --- フッター（スマホ） --- */
+/* =====================================================
+   結果
+===================================================== */
+.result-box {
+  width: 100%;
+  min-height: 60px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  padding: 14px;
+  font-size: 1.2rem;
+  margin-bottom: 28px;
+}
+
+/* =====================================================
+   寄付導線
+===================================================== */
+.donate-box {
+  text-align: left;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.donate-box a {
+  text-decoration: none;
+  margin-right: 12px;
+}
+
+/* =====================================================
+   フッター
+===================================================== */
 .footer {
-  font-size: 0.8rem;
-  text-align: center;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #555;
   margin-top: 40px;
-  padding: 20px 0;
 }
 
-/* ===================================================================
-   414px（iPhone Pro Max など）
-=================================================================== */
-@media (min-width: 414px) {
-  .header-title { font-size: 1.7rem; }
-  input, select { font-size: 1.05rem; }
-  .result-box { font-size: 1.15rem; }
-}
-
-/* ===================================================================
-   600px（小型タブレット）
-=================================================================== */
-@media (min-width: 600px) {
-  .container {
-    max-width: 520px;
-    margin: 0 auto;
-  }
-  .header-title { font-size: 1.8rem; }
-}
-
-/* ===================================================================
-   768px（iPad）
-=================================================================== */
-@media (min-width: 768px) {
-  .container {
-    max-width: 640px;
-  }
-  .header-title { font-size: 2rem; }
-}
-
-/* ===================================================================
-   1024px〜PC
-=================================================================== */
-@media (min-width: 1024px) {
-  .container {
-    max-width: 720px;
-  }
-  .header-title { font-size: 2.2rem; }
-  .um-tabs button { font-size: 1rem; }
+.footer-links a {
+  margin-right: 12px;
 }
