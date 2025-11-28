@@ -1,5 +1,5 @@
 // ==========================================================
-// UnitMaster - app.js 完全版（仕様書 v1準拠）
+// UnitMaster - app.js
 // ==========================================================
 
 // ---------------------------
@@ -7,6 +7,7 @@
 // ---------------------------
 const i18n = {
   ja: {
+    intro: "使い方：① 上のタブでカテゴリを選ぶ → ② 変換元の値と単位を入力 → ③ 変換先の単位を選ぶと結果が表示されます。自動計算をOFFにすると、「計算する」ボタンを押したときだけ換算されます。",
     from_value: "変換元の値",
     from_unit: "変換元の単位",
     to_unit: "変換先の単位",
@@ -14,6 +15,7 @@ const i18n = {
     result_empty: "",
   },
   en: {
+    intro: "How to use: (1) Choose a category on the tabs above. (2) Enter the value and select the source unit. (3) Select the target unit to see the result. If you turn Auto Calc OFF, conversion runs only when you press the button.",
     from_value: "Value",
     from_unit: "From",
     to_unit: "To",
@@ -24,10 +26,7 @@ const i18n = {
 
 let currentLang = "ja";
 
-// ---------------------------
-// 単位リスト（A構成 40単位）
-// 各カテゴリは “基準単位” に正規化する
-// ---------------------------
+// ---- 単位定義（前回と同じ：略さずそのまま） ----
 const units = {
   length: {
     base: "m",
@@ -46,7 +45,6 @@ const units = {
       en: { m:"meter", cm:"centimeter", mm:"millimeter", km:"kilometer", inch:"inch", feet:"feet", yard:"yard", mile:"mile" }
     }
   },
-
   weight: {
     base: "kg",
     list: {
@@ -61,7 +59,6 @@ const units = {
       en:{ kg:"kg", g:"g", mg:"mg", lb:"pound", oz:"ounce" }
     }
   },
-
   temperature: {
     list: ["C", "F", "K"],
     names: {
@@ -69,7 +66,6 @@ const units = {
       en:{ C:"Celsius", F:"Fahrenheit", K:"Kelvin" }
     }
   },
-
   volume: {
     base: "l",
     list: {
@@ -78,14 +74,13 @@ const units = {
       m3: 1000,
       gallon: 3.78541,
       pint: 0.473176,
-      cup: 0.24    // 日本式カップ
+      cup: 0.24
     },
     names:{
       ja:{ l:"リットル", ml:"ミリリットル", m3:"立方メートル", gallon:"ガロン", pint:"パイント", cup:"カップ" },
       en:{ l:"liter", ml:"milliliter", m3:"m³", gallon:"gallon", pint:"pint", cup:"cup" }
     }
   },
-
   area: {
     base: "m2",
     list: {
@@ -100,7 +95,6 @@ const units = {
       en:{ m2:"m²", cm2:"cm²", mm2:"mm²", ha:"hectare", acre:"acre" }
     }
   },
-
   speed: {
     base: "mps",
     list: {
@@ -114,7 +108,6 @@ const units = {
       en:{ mps:"m/s", kmh:"km/h", mph:"mph", knot:"knot" }
     }
   },
-
   pressure: {
     base: "Pa",
     list: {
@@ -132,9 +125,7 @@ const units = {
   }
 };
 
-// ==========================================================
 // DOM
-// ==========================================================
 const inputValue = document.getElementById("inputValue");
 const fromUnit = document.getElementById("fromUnit");
 const toUnit = document.getElementById("toUnit");
@@ -143,11 +134,9 @@ const autoCalc = document.getElementById("autoCalc");
 const categoryTabs = document.getElementById("categoryTabs");
 const resultText = document.getElementById("resultText");
 
-// ==========================================================
-// カテゴリ切替
-// ==========================================================
 let currentCategory = "length";
 
+// 単位セレクト更新
 function updateUnitSelects() {
   fromUnit.innerHTML = "";
   toUnit.innerHTML = "";
@@ -163,37 +152,33 @@ function updateUnitSelects() {
       toUnit.appendChild(opt2);
     });
   } else {
-    const u = units[currentCategory];
-    Object.keys(u.list).forEach(key => {
+    const cat = units[currentCategory];
+    Object.keys(cat.list).forEach(key => {
       const opt1 = document.createElement("option");
       const opt2 = document.createElement("option");
       opt1.value = opt2.value = key;
-      opt1.textContent = u.names[currentLang][key];
-      opt2.textContent = u.names[currentLang][key];
+      opt1.textContent = cat.names[currentLang][key];
+      opt2.textContent = cat.names[currentLang][key];
       fromUnit.appendChild(opt1);
       toUnit.appendChild(opt2);
     });
   }
 }
 
+// カテゴリタブ
 categoryTabs.addEventListener("click", e => {
   if (e.target.tagName !== "BUTTON") return;
-
   [...categoryTabs.children].forEach(b => b.classList.remove("active"));
   e.target.classList.add("active");
-
   currentCategory = e.target.dataset.cat;
   updateUnitSelects();
   clearResult();
 });
 
-// ==========================================================
-// 計算ロジック
-// ==========================================================
+// 温度変換
 function convertTemperature(value, from, to) {
   if (from === to) return value;
   let c;
-
   if (from === "C") c = value;
   if (from === "F") c = (value - 32) * 5/9;
   if (from === "K") c = value - 273.15;
@@ -203,30 +188,25 @@ function convertTemperature(value, from, to) {
   if (to === "K") return c + 273.15;
 }
 
+// 計算
 function calculate() {
   const val = parseFloat(inputValue.value);
   if (isNaN(val)) return clearResult();
 
-  let from = fromUnit.value;
-  let to = toUnit.value;
+  const from = fromUnit.value;
+  const to = toUnit.value;
 
-  // 温度だけ例外処理
   if (currentCategory === "temperature") {
     const r = convertTemperature(val, from, to);
     return showResult(val, from, r, to);
   }
 
-  // 通常（正規化 → 変換）
   const cat = units[currentCategory];
   const baseValue = val * cat.list[from];
   const result = baseValue / cat.list[to];
-
   showResult(val, from, result, to);
 }
 
-// ==========================================================
-// 表示
-// ==========================================================
 function showResult(fromVal, fromU, result, toU) {
   const r = Number(result).toFixed(4);
   resultText.textContent = `${fromVal} ${fromU} = ${r} ${toU}`;
@@ -236,9 +216,7 @@ function clearResult() {
   resultText.textContent = "";
 }
 
-// ==========================================================
-// 自動計算 / 手動計算 切替
-// ==========================================================
+// 自動計算切替
 autoCalc.addEventListener("change", () => {
   calcBtn.style.display = autoCalc.checked ? "none" : "block";
   clearResult();
@@ -253,18 +231,13 @@ autoCalc.addEventListener("change", () => {
   });
 });
 
-// 手動計算ボタン
 calcBtn.addEventListener("click", calculate);
 
-// ==========================================================
-// 言語切替 (JA / EN)
-// ==========================================================
+// 言語切替
 document.querySelectorAll(".mw-lang-switch button").forEach(btn => {
   btn.addEventListener("click", () => {
-    document
-      .querySelectorAll(".mw-lang-switch button")
+    document.querySelectorAll(".mw-lang-switch button")
       .forEach(b => b.classList.remove("active"));
-
     btn.classList.add("active");
     currentLang = btn.dataset.lang;
     updateI18n();
@@ -280,8 +253,6 @@ function updateI18n() {
   });
 }
 
-// ==========================================================
 // 初期化
-// ==========================================================
 updateUnitSelects();
 updateI18n();
