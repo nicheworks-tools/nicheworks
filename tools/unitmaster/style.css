@@ -1,235 +1,285 @@
-/* ================================
-   Base
-================================ */
-:root {
-  --bg: #fff;
-  --text: #111;
-  --subtext: #555;
-  --border: #ddd;
-  --radius: 12px;
-  --space: 16px;
-  --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-          "Segoe UI", sans-serif;
-}
+/* ============================================
+   Reset / Base
+============================================ */
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-/* ================================
-   Header
-================================ */
-.nw-header {
-  padding: 20px 16px 10px;
-}
-
-.nw-title {
-  font-size: 1.8rem;
-  margin: 0 0 4px;
-  font-weight: 700;
-}
-
-.nw-subtitle {
-  font-size: 0.95rem;
-  margin: 0 0 14px;
-  color: var(--subtext);
-}
-
-/* JA / EN 切り替え */
-.lang-switch {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.lang-switch button {
-  padding: 6px 14px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: #f5f5f5;
-  font-size: 0.9rem;
-}
-
-.lang-switch button.active {
-  background: #111;
-  color: #fff;
-}
-
-/* ================================
-   Main container
-================================ */
-.nw-main {
-  padding: 0 16px 40px;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-/* 説明テキスト */
-.usage-box {
-  background: #fafafa;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-bottom: 24px;
-  font-size: 0.94rem;
-}
-
-/* ================================
-   Category Tabs（最重要）
-================================ */
-
-/* 外側は横スクロール領域 */
-.unit-tabs-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-bottom: 18px;
-}
-
-/* Tabs row */
-.unit-tabs {
-  display: flex;
-  gap: 8px;
-  flex-wrap: nowrap;
-  width: max-content;
-  padding-bottom: 4px;
-}
-
-/* 各タブ */
-.unit-tabs .tab {
-  padding: 10px 18px;
-  font-size: 0.95rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: #f5f5f5;
-  white-space: nowrap; /* ← 折り返さない */
-}
-
-.unit-tabs .tab.active {
-  background: #111;
-  color: #fff;
-}
-
-/* ================================
-   Form section
-================================ */
-.form-section label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.form-section input,
-.form-section select {
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 1rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 18px;
+* {
   box-sizing: border-box;
 }
 
-/* 自動計算 */
-.auto-calc-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-  font-size: 0.95rem;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: #ffffff;
+  color: #111111;
 }
 
-/* 計算ボタン */
-.calc-btn {
+a {
+  color: #111;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* コンテナ：スマホ基準 */
+.container {
   width: 100%;
-  padding: 14px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* ============================================
+   Header（スマホ基準 → PC拡張）
+============================================ */
+
+.nw-header {
+  padding: 16px;
+  border-bottom: 1px solid #ececec;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* JA/EN 切替：スマホ＝タイトル下、PC=右上 */
+.lang-switch {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lang-btn {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.lang-btn.active {
   background: #111;
-  color: white;
-  border-radius: var(--radius);
-  border: none;
-  font-size: 1.05rem;
+  color: #fff;
+}
+
+/* ============================================
+   使い方
+============================================ */
+
+.howto {
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+
+.howto h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+}
+
+.howto ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.howto li {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   カテゴリ
+   スマホ：ドロップダウン
+   PC：横タブ
+============================================ */
+
+.category-mobile {
+  display: block;
   margin-bottom: 20px;
 }
 
-/* 結果表示 */
-.result-box {
-  min-height: 42px;
-  background: #fafafa;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  font-size: 1.05rem;
-  margin-bottom: 30px;
+.category-mobile label {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  display: block;
 }
 
-/* ================================
-   Donation
-================================ */
-.donate-box {
+.category-mobile select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* PCタブ（デフォルト非表示） */
+.category-desktop {
+  display: none;
   text-align: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.tab.active {
+  background: #111;
+  color: #fff;
+}
+
+/* ============================================
+   入力エリア
+============================================ */
+
+.convert-box {
   margin-top: 10px;
 }
 
-.donate-box p {
-  margin-bottom: 12px;
+.input-block {
+  margin-bottom: 16px;
+}
+
+.input-block label {
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.input-block input,
+.input-block select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* ============================================
+   自動計算 / 計算ボタン
+============================================ */
+
+.autocalc-row {
+  margin: 16px 0;
   font-size: 0.95rem;
 }
 
-.ofuse-btn, .kofi-btn {
-  display: inline-block;
-  margin: 6px 8px;
-  padding: 8px 14px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: #fafafa;
-  font-size: 0.95rem;
+.calc-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 16px;
 }
 
-/* ================================
-   Footer
-================================ */
-.nw-footer {
-  padding: 30px 16px;
+.hidden {
+  display: none;
+}
+
+/* ============================================
+   結果表示
+============================================ */
+
+.result-box {
+  margin-top: 8px;
+  padding: 18px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  min-height: 40px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   寄付導線
+============================================ */
+
+.donate-box {
+  margin: 28px 0;
   text-align: center;
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border);
 }
 
-.nw-footer .notice {
-  color: var(--subtext);
-  margin: 10px 0;
+.donate-box p {
+  margin: 6px 0;
+  font-size: 0.95rem;
 }
 
-.footer-links a {
-  margin: 0 6px;
-  color: #333;
-  text-decoration: none;
-  white-space: nowrap;
+.donate-box a {
+  font-weight: bold;
 }
 
-/* ================================
-   Bigger screen (Tablet & PC)
-   （スマホ → 拡張するだけ）
-================================ */
+/* ============================================
+   内部リンク
+============================================ */
+
+.nw-links {
+  text-align: center;
+  margin: 26px 0;
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   母艦リンク
+============================================ */
+
+.home-link {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+/* ============================================
+   Footer
+============================================ */
+
+.nw-footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ececec;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   PCレイアウト（768px〜）
+============================================ */
+
 @media (min-width: 768px) {
 
-  .nw-title {
-    font-size: 2rem;
+  /* JA/EN は右上へ */
+  .nw-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .unit-tabs .tab {
-    padding: 10px 22px;
-    font-size: 1rem;
+  .lang-switch {
+    margin-top: 0;
   }
 
-  .usage-box {
-    font-size: 1rem;
-    padding: 18px 20px;
+  /* カテゴリ：PCでタブ表示 */
+  .category-mobile {
+    display: none;
+  }
+
+  .category-desktop {
+    display: flex;
+    justify-content: center;
   }
 
 }
