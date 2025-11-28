@@ -1,0 +1,247 @@
+/****************************************************
+ * WeatherDiff 専用スタイル（2025-11 最終版）
+ * - 0–599px：スマホ（縦1列）
+ * - 600–899px：タブレット（2カラム）
+ * - 900px〜：PC（2〜3カラム）
+ ****************************************************/
+
+/*------------------------------------------
+  基本レイアウト
+-------------------------------------------*/
+.wd-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.wd-intro {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/*------------------------------------------
+  検索フォーム
+-------------------------------------------*/
+.wd-search {
+  margin-bottom: 20px;
+}
+
+.wd-search input {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.wd-search button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/*------------------------------------------
+  状態表示
+-------------------------------------------*/
+.wd-status {
+  min-height: 24px;
+  font-size: 14px;
+  color: #444;
+}
+
+/*------------------------------------------
+  地点/緯度経度表示
+-------------------------------------------*/
+.wd-location {
+  padding: 16px;
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/*------------------------------------------
+  天気APIカード
+-------------------------------------------*/
+.wd-results {
+  display: block; /* スマホは縦並び */
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.wd-api-card {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.wd-api-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/*------------------------------------------
+  ばらつき評価
+-------------------------------------------*/
+.wd-diff-summary {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.wd-diff-summary ul {
+  padding-left: 20px;
+  margin: 0 0 10px 0;
+}
+
+/*------------------------------------------
+  外部リンク（天気サービス）
+-------------------------------------------*/
+.wd-external-links h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.wd-links-grid {
+  display: block; /* スマホは縦 */
+}
+
+.wd-links-grid a {
+  display: block;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #111;
+  font-size: 15px;
+}
+
+/*------------------------------------------
+  ブレイクポイント
+-------------------------------------------*/
+
+/********** 0〜599px：完全スマホ **********/
+@media (max-width: 599px) {
+  .wd-search button {
+    display: block;
+    width: 100%;
+  }
+
+  .wd-results {
+    display: block; /* 縦だけ */
+  }
+
+  .wd-links-grid {
+    display: block; /* 1列 */
+  }
+}
+
+/********** 600〜899px：タブレット（2カラム） **********/
+@media (min-width: 600px) and (max-width: 899px) {
+  /* 検索フォーム：入力欄 + ボタン横並びOK */
+  .wd-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .wd-search input {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+  }
+
+  .wd-search button {
+    width: auto;
+    margin-bottom: 0;
+    padding: 12px 18px;
+  }
+
+  /* APIカード：横2カラム */
+  .wd-results {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
+
+  .wd-api-card {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  /* 外部リンク：2カラム */
+  .wd-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .wd-links-grid a {
+    margin-bottom: 0;
+  }
+}
+
+/********** 900px〜：PC（2〜3カラム） **********/
+@media (min-width: 900px) {
+  .wd-container {
+    max-width: 960px;
+  }
+
+  /* 検索フォーム */
+  .wd-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .wd-search input {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .wd-search button {
+    width: auto;
+    margin-bottom: 0;
+    padding: 12px 20px;
+  }
+
+  /* APIカード：横2カラム */
+  .wd-results {
+    display: flex;
+    gap: 20px;
+  }
+
+  .wd-api-card {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  /* 外部リンク：3カラム */
+  .wd-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .wd-links-grid a {
+    margin-bottom: 0;
+  }
+}
