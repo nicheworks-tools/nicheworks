@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>UnitMaster｜世界標準ユニットコンバータ | NicheWorks</title>
+  <meta name="description" content="世界標準40単位を高速変換。スマホ600px最適化・広告控えめ・1ページ完結の超軽量ユニットコンバータ。長さ/重さ/温度/体積/面積/速度/圧力に対応。">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/unitmaster/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UnitMaster｜世界標準ユニットコンバータ">
+  <meta property="og:description" content="世界標準40単位を高速変換。スマホ最適化の超軽量ユニットコンバータ。">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/unitmaster/">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UnitMaster",
+    "url": "https://nicheworks.pages.dev/tools/unitmaster/",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "description": "世界標準40単位を高速変換する超軽量ユニットコンバータ。"
+  }
+  </script>
+
+    <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- NicheWorks base CSS -->
+  <link rel="stylesheet" href="/tools/nw-base.css">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="nw-header">
+  <h1>UnitMaster</h1>
+  <p class="nw-desc" data-i18n="desc">
+    世界標準40単位に対応した超軽量ユニットコンバータ
+  </p>
+
+  <!-- 言語切替 -->
+  <div class="lang-switch">
+    <button data-lang="ja">JA</button>
+    <button data-lang="en">EN</button>
+  </div>
+</header>
+
+<!-- ad-top -->
+<div class="ad-top">
+  <!-- 手動広告枠（AdSense） -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXX"
+     data-ad-slot="XXXX"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<main>
+
+  <!-- カテゴリタブ -->
+  <div id="categoryTabs" class="category-tabs">
+    <button data-cat="length"   class="active">長さ</button>
+    <button data-cat="weight">重さ</button>
+    <button data-cat="temp">温度</button>
+    <button data-cat="volume">体積</button>
+    <button data-cat="area">面積</button>
+    <button data-cat="speed">速度</button>
+    <button data-cat="pressure">圧力</button>
+  </div>
+
+  <!-- 変換エリア -->
+  <section id="convertArea">
+
+    <div class="block">
+      <label data-i18n="from_value">変換元の値</label>
+      <input type="number" id="inputValue" placeholder="0" />
+    </div>
+
+    <div class="block">
+      <label data-i18n="from_unit">変換元の単位</label>
+      <select id="fromUnit"></select>
+    </div>
+
+    <div class="block">
+      <label data-i18n="to_unit">変換先の単位</label>
+      <select id="toUnit"></select>
+    </div>
+
+    <div class="auto-area">
+      <label>
+        <input type="checkbox" id="autoCalc" checked />
+        <span data-i18n="auto_calc">自動計算</span>
+      </label>
+    </div>
+
+    <button id="calcBtn" class="calc-btn" style="display:none" data-i18n="calc_btn">
+      計算する
+    </button>
+
+    <div id="resultBox" class="result-box">
+      <p id="resultText"></p>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ad-bottom -->
+<div class="ad-bottom">
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXX"
+     data-ad-slot="XXXX"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<footer class="nw-footer">
+  <div class="nw-links">
+    <a href="/tools/manual-finder/">ManualFinder</a> /
+    <a href="/tools/log-formatter/">LogFormatter</a> /
+    <a href="/tools/trashnavi/">TrashNavi</a>
+  </div>
+  <p>© 2025 NicheWorks</p>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
