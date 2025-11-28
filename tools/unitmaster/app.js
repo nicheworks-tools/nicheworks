@@ -1,12 +1,94 @@
 /* ==========================================================
    UnitMaster - 世界標準ユニットコンバータ（A構成）
-   仕様書フル準拠 / スマホ＝カテゴリはドロップダウン
-   PC＝横タブ / 自動計算ON/OFF / 温度は専用式
+   JA/EN 完全切替対応版（i18n）
 ========================================================== */
 
-// --------------------------
-// 単位辞書（A構成・世界標準）
-// --------------------------
+/* ----------------------------
+  i18n（全UI文言）
+---------------------------- */
+const i18n = {
+  ja: {
+    title: "UnitMaster",
+    howto_title: "【使い方】",
+    howto_1: "カテゴリを選択（スマホではドロップダウン）",
+    howto_2: "数値を入力",
+    howto_3: "変換元（from）と変換先（to）の単位を選択",
+    howto_4: "「自動計算」ON／OFFを切り替え",
+    howto_5: "OFF時は「計算する」ボタンで実行",
+
+    label_value: "数値",
+    label_from: "変換元",
+    label_to: "変換先",
+    auto: "自動計算",
+    btn_calc: "計算する",
+
+    result: (v, f, r, t) => `${v} ${f} = ${r} ${t}`,
+
+    donate_line1: "💗 このツールが役に立ったら支援お願いします",
+
+    // categories
+    cat_length: "長さ",
+    cat_weight: "重さ",
+    cat_temp: "温度",
+    cat_volume: "体積",
+    cat_area: "面積",
+    cat_speed: "速度",
+    cat_pressure: "圧力",
+
+    // mobile dropdown labels
+    dd_length: "長さ / Length",
+    dd_weight: "重さ / Weight",
+    dd_temp: "温度 / Temperature",
+    dd_volume: "体積 / Volume",
+    dd_area: "面積 / Area",
+    dd_speed: "速度 / Speed",
+    dd_pressure: "圧力 / Pressure",
+
+    footer_home: "NicheWorks Tools 一覧へ戻る",
+  },
+
+  en: {
+    title: "UnitMaster",
+    howto_title: "【How to Use】",
+    howto_1: "Choose a category (dropdown on mobile)",
+    howto_2: "Enter a value",
+    howto_3: "Select units for From / To",
+    howto_4: "Toggle Auto Calculation ON/OFF",
+    howto_5: "If OFF, press the Calculate button",
+
+    label_value: "Value",
+    label_from: "From",
+    label_to: "To",
+    auto: "Auto Calc",
+    btn_calc: "Calculate",
+
+    result: (v, f, r, t) => `${v} ${f} = ${r} ${t}`,
+
+    donate_line1: "💗 If this tool helps you, please support us!",
+
+    cat_length: "Length",
+    cat_weight: "Weight",
+    cat_temp: "Temperature",
+    cat_volume: "Volume",
+    cat_area: "Area",
+    cat_speed: "Speed",
+    cat_pressure: "Pressure",
+
+    dd_length: "Length",
+    dd_weight: "Weight",
+    dd_temp: "Temperature",
+    dd_volume: "Volume",
+    dd_area: "Area",
+    dd_speed: "Speed",
+    dd_pressure: "Pressure",
+
+    footer_home: "Back to NicheWorks Tools",
+  }
+};
+
+/* ----------------------------
+  単位辞書
+---------------------------- */
 const units = {
   length: {
     mm: 0.001,
@@ -18,35 +100,29 @@ const units = {
     yard: 0.9144,
     mile: 1609.344
   },
-
   weight: {
     g: 1,
     kg: 1000,
     lb: 453.59237,
     oz: 28.3495231
   },
-
   temp: ["c", "f", "k"],
-
   volume: {
     ml: 0.001,
     l: 1,
-    cup: 0.24 // 日本のカップ基準
+    cup: 0.24
   },
-
   area: {
     "mm2": 0.000001,
     "cm2": 0.0001,
     "m2": 1,
     "km2": 1000000
   },
-
   speed: {
     "m/s": 1,
     "km/h": 0.277778,
     mph: 0.44704
   },
-
   pressure: {
     pa: 1,
     hpa: 100,
@@ -55,9 +131,9 @@ const units = {
   }
 };
 
-// --------------------------
-// DOM参照
-// --------------------------
+/* ----------------------------
+  DOM参照
+---------------------------- */
 const categorySelect = document.getElementById("categorySelect");
 const tabs = document.querySelectorAll(".tab");
 const fromSel = document.getElementById("fromUnit");
@@ -67,20 +143,100 @@ const autoCalc = document.getElementById("autoCalc");
 const calcBtn = document.getElementById("calcBtn");
 const resultBox = document.getElementById("resultBox");
 
-// --------------------------
-// カテゴリ適用処理（スマホ/PC共通）
-// --------------------------
+const langBtns = document.querySelectorAll(".lang-btn");
+const donateP = document.querySelector(".donate-box p");
+const footerHome = document.querySelector(".home-link a");
+
+/* ----------------------------
+  言語適用
+---------------------------- */
+let currentLang = "ja";
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+
+  // タイトル
+  document.querySelector(".title").textContent = t.title;
+
+  // 使い方
+  document.querySelector(".howto h2").textContent = t.howto_title;
+  const steps = document.querySelectorAll(".howto li");
+  steps[0].textContent = t.howto_1;
+  steps[1].textContent = t.howto_2;
+  steps[2].textContent = t.howto_3;
+  steps[3].textContent = t.howto_4;
+  steps[4].textContent = t.howto_5;
+
+  // ラベル
+  document.querySelector('label[for="inputValue"]')?.textContent = t.label_value;
+  document.querySelector('label[for="fromUnit"]')?.textContent = t.label_from;
+  document.querySelector('label[for="toUnit"]')?.textContent = t.label_to;
+  document.querySelector(".autocalc-row label span")?.textContent = t.auto;
+
+  // ボタン
+  calcBtn.textContent = t.btn_calc;
+
+  // PCタブ
+  const tabList = [
+    t.cat_length, t.cat_weight, t.cat_temp,
+    t.cat_volume, t.cat_area, t.cat_speed, t.cat_pressure
+  ];
+  tabs.forEach((el, idx) => el.textContent = tabList[idx]);
+
+  // モバイルドロップダウン
+  const ddMap = {
+    length: t.dd_length,
+    weight: t.dd_weight,
+    temp: t.dd_temp,
+    volume: t.dd_volume,
+    area: t.dd_area,
+    speed: t.dd_speed,
+    pressure: t.dd_pressure
+  };
+  [...categorySelect.options].forEach(o => {
+    o.textContent = ddMap[o.value];
+  });
+
+  // 寄付
+  donateP.textContent = t.donate_line1;
+
+  // フッター母艦リンク
+  footerHome.textContent = t.footer_home;
+
+  // 結果を再計算
+  calculate();
+}
+
+/* ----------------------------
+  PCタブ切替
+---------------------------- */
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    const cat = tab.dataset.cat;
+    categorySelect.value = cat;
+    applyCategory(cat);
+  });
+});
+
+/* ----------------------------
+  スマホカテゴリ切替
+---------------------------- */
+categorySelect.addEventListener("change", () => {
+  applyCategory(categorySelect.value);
+});
+
+/* ----------------------------
+  カテゴリ適用
+---------------------------- */
 function applyCategory(cat) {
-  // PCタブ表示を同期
   tabs.forEach(t => t.classList.remove("active"));
   document.querySelector(`.tab[data-cat="${cat}"]`)?.classList.add("active");
 
-  // from/to 初期化
   fromSel.innerHTML = "";
   toSel.innerHTML = "";
 
   if (cat === "temp") {
-    // 温度は特別処理
     ["c", "f", "k"].forEach(u => {
       fromSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
       toSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
@@ -96,77 +252,52 @@ function applyCategory(cat) {
   calculate();
 }
 
-// --------------------------
-// PCタブ切替
-// --------------------------
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    const cat = tab.dataset.cat;
-    categorySelect.value = cat;
-    applyCategory(cat);
-  });
-});
-
-// --------------------------
-// スマホカテゴリ切替
-// --------------------------
-categorySelect.addEventListener("change", () => {
-  applyCategory(categorySelect.value);
-});
-
-// --------------------------
-// 温度変換専用式
-// --------------------------
+/* ----------------------------
+  温度専用式
+---------------------------- */
 function convertTemperature(value, from, to) {
   let c;
-
-  // まず摂氏へ正規化
   if (from === "c") c = value;
   if (from === "f") c = (value - 32) * 5/9;
   if (from === "k") c = value - 273.15;
 
-  // 摂氏から目的単位へ
   if (to === "c") return c;
   if (to === "f") return c * 9/5 + 32;
   if (to === "k") return c + 273.15;
 }
 
-// --------------------------
-// 共通変換
-// --------------------------
+/* ----------------------------
+  共通変換
+---------------------------- */
 function calculate() {
-  const val = parseFloat(inputValue.value || "0");
+  const v = parseFloat(inputValue.value || "0");
   const cat = categorySelect.value;
 
   if (cat === "temp") {
-    const result = convertTemperature(val, fromSel.value, toSel.value);
-    resultBox.textContent = `${val} ${fromSel.value.toUpperCase()} = ${result.toFixed(4)} ${toSel.value.toUpperCase()}`;
+    const r = convertTemperature(v, fromSel.value, toSel.value);
+    resultBox.textContent = i18n[currentLang].result(v, fromSel.value.toUpperCase(), r.toFixed(4), toSel.value.toUpperCase());
     return;
   }
 
   const dict = units[cat];
-  const meterValue = val * dict[fromSel.value];     // 基準単位に揃える
-  const result = meterValue / dict[toSel.value];    // 目的単位に変換
-
-  resultBox.textContent = `${val} ${fromSel.value} = ${result.toFixed(4)} ${toSel.value}`;
+  const v_m = v * dict[fromSel.value];
+  const r = v_m / dict[toSel.value];
+  resultBox.textContent = i18n[currentLang].result(v, fromSel.value, r.toFixed(4), toSel.value);
 }
 
-// --------------------------
-// 自動計算ON/OFF
-// --------------------------
+/* ----------------------------
+  自動計算ON/OFF
+---------------------------- */
 inputValue.addEventListener("input", () => {
   if (autoCalc.checked) calculate();
 });
-
 fromSel.addEventListener("change", () => {
   if (autoCalc.checked) calculate();
 });
-
 toSel.addEventListener("change", () => {
   if (autoCalc.checked) calculate();
 });
 
-// チェック ON/OFFでボタン表示切替
 autoCalc.addEventListener("change", () => {
   if (autoCalc.checked) {
     calcBtn.classList.add("hidden");
@@ -176,9 +307,21 @@ autoCalc.addEventListener("change", () => {
   }
 });
 
-// 手動計算
 calcBtn.addEventListener("click", calculate);
 
-// --------------------------
-// 初期表示（長さカテゴリ）
+/* ----------------------------
+  言語切替ボタン
+---------------------------- */
+langBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    langBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    applyLanguage(btn.dataset.lang);
+  });
+});
+
+/* ----------------------------
+  初期表示
+---------------------------- */
 applyCategory("length");
+applyLanguage("ja");
