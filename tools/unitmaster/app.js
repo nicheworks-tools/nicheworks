@@ -1,232 +1,184 @@
-/* =========================================================
-   UnitMaster MVP
-   - A構成（世界標準7カテゴリ）
-   - from/to ドロップダウン方式
-   - 自動計算 ON/OFF
-   - 単位辞書（系統ごと）
-   - 温度のみ専用式
-========================================================= */
+/* ==========================================================
+   UnitMaster - 世界標準ユニットコンバータ（A構成）
+   仕様書フル準拠 / スマホ＝カテゴリはドロップダウン
+   PC＝横タブ / 自動計算ON/OFF / 温度は専用式
+========================================================== */
 
-/* ---------------------------------------------------------
-   単位辞書（倍率 = 基準単位への変換倍率）
-   例：長さは "m" を基準にする
---------------------------------------------------------- */
-const UNIT_DATA = {
+// --------------------------
+// 単位辞書（A構成・世界標準）
+// --------------------------
+const units = {
   length: {
-    base: "m",
-    units: {
-      m:     1,
-      cm:    0.01,
-      mm:    0.001,
-      km:    1000,
-      inch:  0.0254,
-      ft:    0.3048,
-      yard:  0.9144,
-      mile:  1609.344
-    }
+    mm: 0.001,
+    cm: 0.01,
+    m: 1,
+    km: 1000,
+    inch: 0.0254,
+    ft: 0.3048,
+    yard: 0.9144,
+    mile: 1609.344
   },
 
   weight: {
-    base: "kg",
-    units: {
-      kg:   1,
-      g:    0.001,
-      mg:   0.000001,
-      lb:   0.45359237,
-      oz:   0.028349523125
-    }
+    g: 1,
+    kg: 1000,
+    lb: 453.59237,
+    oz: 28.3495231
+  },
+
+  temp: ["c", "f", "k"],
+
+  volume: {
+    ml: 0.001,
+    l: 1,
+    cup: 0.24 // 日本のカップ基準
   },
 
   area: {
-    base: "m2",
-    units: {
-      m2:    1,
-      cm2:   0.0001,
-      mm2:   0.000001,
-      km2:   1_000_000,
-      ft2:   0.09290304,
-      yard2: 0.83612736
-    }
-  },
-
-  volume: {
-    base: "L",
-    units: {
-      L:    1,
-      mL:   0.001,
-      gal:  3.78541,
-      qt:   0.946353,
-      pint: 0.473176,
-      cup:  0.24    // 日本家庭用に最適化
-    }
+    "mm2": 0.000001,
+    "cm2": 0.0001,
+    "m2": 1,
+    "km2": 1000000
   },
 
   speed: {
-    base: "mps",
-    units: {
-      "m/s":   1,
-      "km/h":  0.277777778,
-      "mph":   0.44704,
-      "ft/s":  0.3048
-    }
+    "m/s": 1,
+    "km/h": 0.277778,
+    mph: 0.44704
   },
 
   pressure: {
-    base: "Pa",
-    units: {
-      Pa:   1,
-      kPa:  1000,
-      MPa:  1_000_000,
-      bar:  100000,
-      atm:  101325,
-      psi:  6894.757
-    }
+    pa: 1,
+    hpa: 100,
+    bar: 100000,
+    atm: 101325
   }
 };
 
-/* ---------------------------------------------------------
-   温度変換（専用式）
---------------------------------------------------------- */
-function convertTemperature(value, from, to) {
-  let c;
-
-  // まずCelsiusへ
-  if (from === "C") c = value;
-  if (from === "F") c = (value - 32) * 5/9;
-  if (from === "K") c = value - 273.15;
-
-  // Celsius → ターゲット
-  if (to === "C") return c;
-  if (to === "F") return c * 9/5 + 32;
-  if (to === "K") return c + 273.15;
-}
-
-/* =========================================================
-   UI初期設定
-========================================================= */
-const tabs = document.querySelectorAll(".um-tabs button");
+// --------------------------
+// DOM参照
+// --------------------------
+const categorySelect = document.getElementById("categorySelect");
+const tabs = document.querySelectorAll(".tab");
 const fromSel = document.getElementById("fromUnit");
-const toSel   = document.getElementById("toUnit");
-const inputEl = document.getElementById("inputValue");
-const resultEl = document.getElementById("result");
+const toSel = document.getElementById("toUnit");
+const inputValue = document.getElementById("inputValue");
+const autoCalc = document.getElementById("autoCalc");
 const calcBtn = document.getElementById("calcBtn");
-const autoChk = document.getElementById("autoCalc");
+const resultBox = document.getElementById("resultBox");
 
-/* 現在のカテゴリ */
-let currentCategory = "length";
+// --------------------------
+// カテゴリ適用処理（スマホ/PC共通）
+// --------------------------
+function applyCategory(cat) {
+  // PCタブ表示を同期
+  tabs.forEach(t => t.classList.remove("active"));
+  document.querySelector(`.tab[data-cat="${cat}"]`)?.classList.add("active");
 
-/* ---------------------------------------------------------
-   カテゴリ切替
---------------------------------------------------------- */
-tabs.forEach(btn => {
-  btn.addEventListener("click", () => {
-    tabs.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentCategory = btn.dataset.cat;
-
-    loadUnits(currentCategory);
-
-    if (autoChk.checked) calculate();
-  });
-});
-
-/* ---------------------------------------------------------
-   単位ドロップダウン読み込み
---------------------------------------------------------- */
-function loadUnits(cat) {
-  const data = UNIT_DATA[cat];
-
-  // 温度だけ特別処理
-  if (cat === "temperature") {
-    fromSel.innerHTML = "";
-    toSel.innerHTML = "";
-
-    ["C","F","K"].forEach(u => {
-      const o1 = document.createElement("option");
-      o1.value = u;
-      o1.textContent = u;
-
-      const o2 = document.createElement("option");
-      o2.value = u;
-      o2.textContent = u;
-
-      fromSel.appendChild(o1);
-      toSel.appendChild(o2);
-    });
-
-    return;
-  }
-
-  // 世界標準（A構成）
+  // from/to 初期化
   fromSel.innerHTML = "";
   toSel.innerHTML = "";
 
-  Object.keys(data.units).forEach(u => {
-    const o1 = document.createElement("option");
-    o1.value = u;
-    o1.textContent = u;
+  if (cat === "temp") {
+    // 温度は特別処理
+    ["c", "f", "k"].forEach(u => {
+      fromSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
+      toSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
+    });
+  } else {
+    const dict = units[cat];
+    for (const u in dict) {
+      fromSel.innerHTML += `<option value="${u}">${u}</option>`;
+      toSel.innerHTML += `<option value="${u}">${u}</option>`;
+    }
+  }
 
-    const o2 = document.createElement("option");
-    o2.value = u;
-    o2.textContent = u;
+  calculate();
+}
 
-    fromSel.appendChild(o1);
-    toSel.appendChild(o2);
+// --------------------------
+// PCタブ切替
+// --------------------------
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    const cat = tab.dataset.cat;
+    categorySelect.value = cat;
+    applyCategory(cat);
   });
+});
+
+// --------------------------
+// スマホカテゴリ切替
+// --------------------------
+categorySelect.addEventListener("change", () => {
+  applyCategory(categorySelect.value);
+});
+
+// --------------------------
+// 温度変換専用式
+// --------------------------
+function convertTemperature(value, from, to) {
+  let c;
+
+  // まず摂氏へ正規化
+  if (from === "c") c = value;
+  if (from === "f") c = (value - 32) * 5/9;
+  if (from === "k") c = value - 273.15;
+
+  // 摂氏から目的単位へ
+  if (to === "c") return c;
+  if (to === "f") return c * 9/5 + 32;
+  if (to === "k") return c + 273.15;
 }
 
-/* 初期ロード */
-loadUnits(currentCategory);
-
-/* ---------------------------------------------------------
-   計算
---------------------------------------------------------- */
+// --------------------------
+// 共通変換
+// --------------------------
 function calculate() {
-  const val = parseFloat(inputEl.value);
+  const val = parseFloat(inputValue.value || "0");
+  const cat = categorySelect.value;
 
-  if (isNaN(val)) {
-    resultEl.textContent = "—";
+  if (cat === "temp") {
+    const result = convertTemperature(val, fromSel.value, toSel.value);
+    resultBox.textContent = `${val} ${fromSel.value.toUpperCase()} = ${result.toFixed(4)} ${toSel.value.toUpperCase()}`;
     return;
   }
 
-  const from = fromSel.value;
-  const to   = toSel.value;
+  const dict = units[cat];
+  const meterValue = val * dict[fromSel.value];     // 基準単位に揃える
+  const result = meterValue / dict[toSel.value];    // 目的単位に変換
 
-  // 温度だけ別ルート
-  if (currentCategory === "temperature") {
-    const out = convertTemperature(val, from, to);
-    resultEl.textContent = `${out.toFixed(4)}`;
-    return;
-  }
-
-  // 通常変換
-  const info = UNIT_DATA[currentCategory];
-  const ratio = info.units;
-
-  // step1: from → base
-  const inBase = val * ratio[from];
-
-  // step2: base → to
-  const out = inBase / ratio[to];
-
-  resultEl.textContent = `${out.toFixed(6)}`;
+  resultBox.textContent = `${val} ${fromSel.value} = ${result.toFixed(4)} ${toSel.value}`;
 }
 
-/* ---------------------------------------------------------
-   自動計算ON
---------------------------------------------------------- */
-inputEl.addEventListener("input", () => {
-  if (autoChk.checked) calculate();
-});
-fromSel.addEventListener("change", () => {
-  if (autoChk.checked) calculate();
-});
-toSel.addEventListener("change", () => {
-  if (autoChk.checked) calculate();
+// --------------------------
+// 自動計算ON/OFF
+// --------------------------
+inputValue.addEventListener("input", () => {
+  if (autoCalc.checked) calculate();
 });
 
-/* ---------------------------------------------------------
-   計算ボタン
---------------------------------------------------------- */
+fromSel.addEventListener("change", () => {
+  if (autoCalc.checked) calculate();
+});
+
+toSel.addEventListener("change", () => {
+  if (autoCalc.checked) calculate();
+});
+
+// チェック ON/OFFでボタン表示切替
+autoCalc.addEventListener("change", () => {
+  if (autoCalc.checked) {
+    calcBtn.classList.add("hidden");
+    calculate();
+  } else {
+    calcBtn.classList.remove("hidden");
+  }
+});
+
+// 手動計算
 calcBtn.addEventListener("click", calculate);
 
+// --------------------------
+// 初期表示（長さカテゴリ）
+applyCategory("length");
