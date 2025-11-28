@@ -1,69 +1,50 @@
-/* ===================================
- * WebP / AVIF Converter - app.js
- * NicheWorks 共通仕様 第12章対応版
- * =================================== */
-
-const dropZone = document.getElementById("drop-zone");
+/* ================================
+   要素取得
+================================ */
 const fileInput = document.getElementById("file-input");
+const dropZone = document.getElementById("drop-zone");
+const errorBox = document.getElementById("error");
+const progressBar = document.getElementById("progress");
+
 const convertBtn = document.getElementById("convert-btn");
-const errorBox = document.getElementById("error-box");
-const progressBox = document.getElementById("progress");
-const progressBar = progressBox.querySelector(".progress-bar");
-const resultArea = document.getElementById("result-area");
-const previewImg = document.getElementById("preview");
+const convertJpegBtn = document.getElementById("convert-jpeg-btn");
+
+const resultBlock = document.getElementById("result");
+const previewImg = document.getElementById("preview-img");
 const sizeInfo = document.getElementById("size-info");
-const downloadBtn = document.getElementById("download");
+const downloadBtn = document.getElementById("download-btn");
 const resetBtn = document.getElementById("reset-btn");
 
 let loadedFile = null;
+let convertedBlob = null;
 
-/* ---------------------------
- * 共通：エラー表示（12-5）
- * ------------------------- */
-function showError(message) {
+/* ================================
+   エラー表示
+================================ */
+function showError(msg) {
+  errorBox.innerText = msg;
   errorBox.style.display = "block";
-  errorBox.textContent = message;
-
-  // プログレスバーも即消す（12-5）
-  progressBox.style.display = "none";
-  progressBar.style.width = "0%";
+  hideProgress();
 }
 
-/* ---------------------------
- * 共通：エラー消去
- * ------------------------- */
 function clearError() {
   errorBox.style.display = "none";
-  errorBox.textContent = "";
 }
 
-/* ---------------------------
- * 即時バリデーション（12-7）
- * ------------------------- */
-function validateFile(file) {
-  const validExt = ["image/webp", "image/avif"];
-  const nameValid = file.name.endsWith(".webp") || file.name.endsWith(".avif");
-
-  if (!validExt.includes(file.type) && !nameValid) {
-    showError("対応していない形式です（WebP / AVIF のみ）。");
-    convertBtn.disabled = true;
-    return false;
-  }
-
-  if (file.size > 15 * 1024 * 1024) {
-    showError("ファイルサイズが大きすぎます（最大15MBまで）。");
-    convertBtn.disabled = true;
-    return false;
-  }
-
-  clearError();
-  convertBtn.disabled = false;
-  return true;
+/* ================================
+   プログレス
+================================ */
+function showProgress() {
+  progressBar.style.display = "block";
 }
 
-/* ---------------------------
- * Drop Zone UI
- * ------------------------- */
+function hideProgress() {
+  progressBar.style.display = "none";
+}
+
+/* ================================
+   ファイルドロップゾーン
+================================ */
 dropZone.addEventListener("click", () => fileInput.click());
 
 dropZone.addEventListener("dragover", (e) => {
@@ -78,130 +59,136 @@ dropZone.addEventListener("dragleave", () => {
 dropZone.addEventListener("drop", (e) => {
   e.preventDefault();
   dropZone.classList.remove("dragover");
-
-  const file = e.dataTransfer.files[0];
-  if (!file) return;
-
-  if (validateFile(file)) {
-    loadedFile = file;
-  }
+  handleFile(e.dataTransfer.files[0]);
 });
 
-/* ---------------------------
- * File input
- * ------------------------- */
 fileInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  if (validateFile(file)) {
-    loadedFile = file;
-  }
+  handleFile(e.target.files[0]);
 });
 
-/* ---------------------------
- * Progress bar（12-1）
- * ------------------------- */
-function startProgress() {
-  progressBox.style.display = "block";
-  progressBar.style.width = "0%";
+/* ================================
+   アップロード即時バリデーション（12-7）
+================================ */
+function handleFile(file) {
+  clearError();
 
-  // indeterminate風：徐々に伸ばす
-  let w = 0;
-  const timer = setInterval(() => {
-    w += Math.random() * 20;
-    if (w > 95) w = 95;
-    progressBar.style.width = w + "%";
-  }, 200);
+  if (!file) return;
 
-  return timer;
+  const ext = file.name.toLowerCase();
+
+  if (!ext.endsWith(".webp") && !ext.endsWith(".avif")) {
+    showError("対応形式ではありません（WebP / AVIF のみ）");
+    convertBtn.disabled = true;
+    convertJpegBtn.disabled = true;
+    return;
+  }
+
+  loadedFile = file;
+  convertBtn.disabled = false;
+  convertJpegBtn.disabled = false;
 }
 
-function endProgress(timer) {
-  clearInterval(timer);
-  progressBar.style.width = "100%";
-
-  setTimeout(() => {
-    progressBox.style.display = "none";
-    progressBar.style.width = "0%";
-  }, 300);
-}
-
-/* ---------------------------
- * WebP / AVIF → PNG/JPEG 変換
- * ------------------------- */
-convertBtn.addEventListener("click", async () => {
+/* ================================
+   実際の変換処理
+================================ */
+async function convertImage(type = "png") {
   if (!loadedFile) return;
 
   clearError();
-  resultArea.style.display = "none";
+  showProgress();
 
-  const timer = startProgress();
+  const blobURL = URL.createObjectURL(loadedFile);
+  const img = new Image();
 
-  try {
-    const fmt = document.querySelector("input[name='fmt']:checked").value;
+  img.onload = async () => {
+    try {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
 
-    const img = new Image();
-    img.src = URL.createObjectURL(loadedFile);
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
 
-    await img.decode();
+      const mime = type === "png" ? "image/png" : "image/jpeg";
+      const dataURL = canvas.toDataURL(mime, type === "jpeg" ? 0.92 : undefined);
 
-    const canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+      // dataURL → Blob へ変換
+      const binary = atob(dataURL.split(",")[1]);
+      const array = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) array[i] = binary.charCodeAt(i);
 
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
+      convertedBlob = new Blob([array], { type: mime });
 
-    let mime = fmt === "jpeg" ? "image/jpeg" : "image/png";
-    let out = canvas.toDataURL(mime);
+      // プレビュー反映
+      previewImg.src = URL.createObjectURL(convertedBlob);
+      sizeInfo.innerText = `推定サイズ：${(convertedBlob.size / 1024).toFixed(1)} KB`;
 
-    // プレビュー表示
-    previewImg.src = out;
+      // ダウンロードボタン
+      downloadBtn.onclick = () => {
+        const a = document.createElement("a");
+        a.href = previewImg.src;
+        a.download = `converted.${type}`;
+        a.click();
+      };
 
-    // サイズ情報
-    const beforeKB = (loadedFile.size / 1024).toFixed(1);
-    const afterKB = (out.length * 0.75 / 1024).toFixed(1); // Base64 → byte計算
+      // 結果表示
+      resultBlock.style.display = "block";
 
-    sizeInfo.textContent = `変換前: ${beforeKB} KB → 変換後: ${afterKB} KB`;
+      // 自動スクロール（12-4）
+      resultBlock.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    // ダウンロード設定
-    downloadBtn.href = out;
-    downloadBtn.download = `converted.${fmt}`;
+      hideProgress();
+    } catch (e) {
+      showError("変換中にエラーが発生しました");
+      hideProgress();
+    }
+  };
 
-    // 結果表示
-    resultArea.style.display = "block";
+  img.onerror = () => {
+    showError("画像の読み込みに失敗しました");
+    hideProgress();
+  };
 
-    // 自動スクロール（12-4）
-    resultArea.scrollIntoView({ behavior: "smooth" });
+  img.src = blobURL;
+}
 
-    endProgress(timer);
+/* ================================
+   ボタン
+================================ */
+convertBtn.addEventListener("click", () => convertImage("png"));
+convertJpegBtn.addEventListener("click", () => convertImage("jpeg"));
 
-  } catch (err) {
-    console.error(err);
-    showError("変換に失敗しました。画像が破損している可能性があります。");
-    endProgress(timer);
-  }
-});
-
-/* ---------------------------
- * リセット（12-2）
- * ------------------------- */
+/* ================================
+   リセット（12-2）
+================================ */
 resetBtn.addEventListener("click", () => {
   loadedFile = null;
+  convertedBlob = null;
+
   fileInput.value = "";
-  resultArea.style.display = "none";
-  clearError();
-
   convertBtn.disabled = true;
-  progressBox.style.display = "none";
+  convertJpegBtn.disabled = true;
 
+  resultBlock.style.display = "none";
   previewImg.src = "";
-  sizeInfo.textContent = "";
+  sizeInfo.innerText = "";
+
+  clearError();
+  hideProgress();
+
+  // ページ上部へ戻る
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-/* ---------------------------
- * 言語切替（共通 nw-lang.js との連動）
- * data-ja / data-en が適切に反映されるように
- * ------------------------- */
-// ※ここでは何もしない。nw-lang.js が全て処理する。
+
+/* ================================
+   言語スイッチ（UIのみ）
+================================ */
+const langBtns = document.querySelectorAll(".nw-lang-btn");
+langBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    langBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    // 必要ならここで文言切替を実装できる
+  });
+});
