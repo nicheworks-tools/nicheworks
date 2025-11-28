@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How to Use｜FileType Sniffer | NicheWorks</title>
+  <meta name="description" content="How to use FileType Sniffer. Learn how Magic Numbers help identify a file's real format and how to interpret results and errors.">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/filetype-sniffer/en/usage.html">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <style>
+    body {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px 14px 60px;
+      background: #ffffff;
+      color: #111827;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 28px;
+      margin-bottom: 10px;
+      border-left: 4px solid #111827;
+      padding-left: 8px;
+    }
+
+    p, li {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #1f2937;
+      text-decoration: underline;
+    }
+
+    .back-link {
+      margin-top: 40px;
+      font-size: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>FileType Sniffer — How to Use</h1>
+  <p>This page explains how FileType Sniffer works and how to interpret its results and errors.</p>
+
+  <!-- 1. Purpose -->
+  <h2>1. What this tool does</h2>
+  <p>
+    FileType Sniffer analyzes the first bytes of a file — known as
+    <strong>Magic Numbers</strong> — to estimate the file’s <strong>true format</strong>.
+    This is useful for checking extension mismatches and inspecting suspicious or corrupted files.
+  </p>
+
+  <!-- 2. How to Use -->
+  <h2>2. Steps to use</h2>
+  <ul>
+    <li>① Drag & drop a file, or select it manually.</li>
+    <li>② Press the “Analyze” button.</li>
+    <li>③ The tool reads the Magic Number and shows the estimated format.</li>
+    <li>④ If detection fails, “Unknown” will be shown.</li>
+  </ul>
+
+  <!-- 3. Supported / Unsupported -->
+  <h2>3. Supported / Unsupported</h2>
+  <p><strong>Supported formats include:</strong></p>
+  <ul>
+    <li>PNG / JPEG / GIF / WebP</li>
+    <li>PDF</li>
+    <li>ZIP / RAR / 7Z</li>
+    <li>MP4 / MOV / AVI / MKV</li>
+    <li>BMP / TIFF / ICO</li>
+    <li>WAV / MP3</li>
+    <li>EXE / ELF</li>
+  </ul>
+
+  <p><strong>Unsupported cases:</strong></p>
+  <ul>
+    <li>Very large files (1GB+)</li>
+    <
