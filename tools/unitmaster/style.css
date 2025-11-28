@@ -45,12 +45,21 @@ a:hover {
   font-size: 1.8rem;
 }
 
-/* JA/EN 切替：スマホ＝タイトル下、PC=右上 */
+.header-block {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#subtitle {
+  text-align: center;
+  margin: 12px 0 20px;
+}
+
 .lang-switch {
-  margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
 .lang-btn {
