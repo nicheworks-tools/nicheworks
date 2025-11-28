@@ -1,113 +1,97 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UnitMaster | NicheWorks</title>
 
-  <title>UnitMaster｜世界標準40単位に対応した超軽量ユニットコンバータ | NicheWorks</title>
-  <meta name="description" content="長さ・重さ・温度・体積・面積・速度・圧力など、世界標準40単位に対応した超軽量ユニットコンバータ。スマホ最適化。">
-
-  <!-- canonical -->
+  <meta name="description" content="世界標準40単位に対応した超軽量ユニットコンバータ。長さ・重さ・温度・体積・面積・速度・圧力を一瞬で変換。スマホ最適化。">
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/unitmaster/">
 
-  <!-- OGP -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="UnitMaster｜NicheWorks">
-  <meta property="og:description" content="世界標準40単位に対応した超軽量ユニットコンバータ。スマホ完全対応。">
-  <meta property="og:image" content="https://nicheworks.pages.dev/ogp/unitmaster.png">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/unitmaster/">
-
-  <!-- AdSense（自動広告） -->
-  <!--
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXX"
-          crossorigin="anonymous"></script>
-  -->
-
-  <link rel="stylesheet" href="style.css">
+  <!-- AdSense（自動広告ON前提のscriptのみ） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
 <header class="nw-header">
-  <h1 class="title">UnitMaster</h1>
-  <p class="subtitle">世界標準40単位に対応した超軽量ユニットコンバータ</p>
+  <h1 class="nw-title">UnitMaster</h1>
+  <p class="nw-subtitle">世界標準40単位に対応した超軽量ユニットコンバータ</p>
 
+  <!-- JA / EN -->
   <div class="lang-switch">
-    <button id="btn-ja" class="active">JA</button>
-    <button id="btn-en">EN</button>
+    <button data-lang="ja" class="active">JA</button>
+    <button data-lang="en">EN</button>
   </div>
 </header>
 
+<main class="nw-main">
 
-<main class="nw-container">
-
-  <!-- 使い方ガイド -->
-  <section class="usage">
+  <!-- 使い方テキスト -->
+  <section class="usage-box">
     <p>
       【使い方】 数値を入力し単位を選ぶと自動で結果が更新されます（自動計算ON時）。
       自動計算をOFFにすると、「計算する」ボタンを押したときだけ変換されます。
     </p>
   </section>
 
-  <!-- タブ（単位カテゴリ） -->
-  <div class="unit-tabs">
-    <button data-cat="length" class="active">長さ</button>
-    <button data-cat="weight">重さ</button>
-    <button data-cat="temp">温度</button>
-    <button data-cat="volume">体積</button>
-    <button data-cat="area">面積</button>
-    <button data-cat="speed">速度</button>
-    <button data-cat="pressure">圧力</button>
+  <!-- カテゴリタブ（横スクロール対応） -->
+  <div class="unit-tabs-wrapper">
+    <div class="unit-tabs">
+      <button class="tab active" data-cat="length">長さ</button>
+      <button class="tab" data-cat="weight">重さ</button>
+      <button class="tab" data-cat="temp">温度</button>
+      <button class="tab" data-cat="volume">体積</button>
+      <button class="tab" data-cat="area">面積</button>
+      <button class="tab" data-cat="speed">速度</button>
+      <button class="tab" data-cat="pressure">圧力</button>
+    </div>
   </div>
 
   <!-- 入力フォーム -->
-  <section class="form-area">
+  <section class="form-section">
 
-    <label>変換元の値
-      <input type="number" id="valueInput" value="0">
+    <label>変換元の値</label>
+    <input id="value-from" type="number" value="0" inputmode="decimal">
+
+    <label>変換元の単位</label>
+    <select id="unit-from"></select>
+
+    <label>変換先の単位</label>
+    <select id="unit-to"></select>
+
+    <label class="auto-calc-row">
+      <input type="checkbox" id="auto-calc" checked>
+      自動計算
     </label>
 
-    <label>変換元の単位
-      <select id="fromUnit"></select>
-    </label>
+    <button id="calc-btn" class="calc-btn">計算する</button>
 
-    <label>変換先の単位
-      <select id="toUnit"></select>
-    </label>
+    <div id="result-box" class="result-box"></div>
+  </section>
 
-    <label class="autocalc-row">
-      <input type="checkbox" id="autoCalc" checked> 自動計算
-    </label>
-
-    <button id="calcButton" class="calc-btn">計算する</button>
-
-    <div id="resultBox" class="result-box"></div>
+  <!-- 寄付導線（仕様書準拠） -->
+  <section class="donate-box">
+    <p>このツールがお役に立ったら、応援していただけると嬉しいです。</p>
+    <a href="#" class="ofuse-btn">💓 OFUSE</a>
+    <a href="#" class="kofi-btn">☕ Ko-fi</a>
   </section>
 
 </main>
 
-<!-- 寄付導線 -->
-<section class="donate-section">
-  <p>このツールがお役に立ったら、応援していただけると嬉しいです。</p>
-  <div class="donate-links">
-    <a href="https://ofuse.me/nicheworks" target="_blank">❤️ OFUSE</a>
-    <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
-  </div>
-</section>
-
-
 <footer class="nw-footer">
   <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-  <p class="notice">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-  <a class="domain" href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a>
+  <p class="notice">
+    当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
+  </p>
+  <a href="https://nicheworks.pages.dev" class="footer-home">nicheworks.pages.dev</a>
 
-  <div class="nw-links">
-    <a href="/tools/manualfinder/">ManualFinder</a>
-    <a href="/tools/trashnavi/">TrashNavi</a>
-    <a href="/tools/logformatter/">LogFormatter</a>
-  </div>
+  <nav class="footer-links">
+    <a href="/tools/manualfinder/">ManualFinder（公式マニュアル検索）</a>
+    <a href="/tools/trashnavi/">TrashNavi（ごみ分別リンク）</a>
+    <a href="/tools/logformatter/">LogFormatter（ログ整形）</a>
+  </nav>
 </footer>
 
-<script src="app.js"></script>
 </body>
 </html>
