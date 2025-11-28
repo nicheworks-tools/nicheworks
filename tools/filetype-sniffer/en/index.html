@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>File Format Checker｜FileType Sniffer | NicheWorks</title>
-  <meta name="description" content="Detect the real file format using Magic Numbers. Drag & drop a file to identify its true type safely. Useful for extension mismatch checks and corrupted file analysis.">
+  <meta name="description" content="Detect the real file format using Magic Numbers. Drag & drop a file to identify its true type safely.">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/filetype-sniffer/en/">
 
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="FileType Sniffer | NicheWorks">
-  <meta property="og:description" content="Detect real file formats by analyzing Magic Numbers. Safe, lightweight, and no upload required.">
+  <meta property="og:description" content="Detect real file formats by analyzing Magic Numbers. Safe and lightweight.">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/filetype-sniffer/en/">
   <meta name="twitter:card" content="summary_large_image">
@@ -21,9 +21,8 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "YOUR_TOKEN"}'>
-  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
 
   <!-- AdSense -->
   <script async
@@ -41,7 +40,6 @@
     <h1>FileType Sniffer</h1>
     <p class="nw-sub">Detect the real file format using Magic Numbers</p>
 
-    <!-- Lang switch (URL-based) -->
     <div class="nw-lang-switch">
       <a href="../">JP</a> / <a href="./" class="active">EN</a>
     </div>
@@ -50,7 +48,7 @@
   <!-- MAIN -->
   <main class="nw-main">
 
-    <!-- Ad Top -->
+    <!-- Top Ad -->
     <div class="ad-slot ad-top">Ad space (auto)</div>
 
     <!-- Tool UI -->
@@ -68,18 +66,41 @@
 
       <button id="analyzeBtn" class="primary-btn">Analyze</button>
 
-      <!-- Progress -->
       <div id="progress" class="progress" style="display:none;">
         <div class="bar"></div>
       </div>
     </section>
 
-    <!-- Result -->
+    <!-- RESULT -->
     <section id="resultSection" class="result-box" style="display:none;">
       <h2>Result</h2>
       <div id="resultContent"></div>
 
       <button id="resetBtn" class="secondary-btn">Reset</button>
+    </section>
+
+    <!-- How to use -->
+    <p class="usage-link" style="margin-top:20px;">
+      <a href="./usage.html">How to use</a>
+    </p>
+
+    <!-- ======================= -->
+    <!-- FAQ Section (Added) -->
+    <!-- ======================= -->
+    <section class="result-box" style="margin-top:24px;">
+      <h2>FAQ</h2>
+
+      <p><strong>Q. What is a Magic Number?</strong><br>
+         A. It is a sequence of bytes at the beginning of a file used to identify its type.</p>
+
+      <p><strong>Q. Is the detection 100% accurate?</strong><br>
+         A. Not always. Some formats share identical Magic Numbers.</p>
+
+      <p><strong>Q. Why does the file extension differ from the detected type?</strong><br>
+         A. The file may have been renamed or intentionally disguised.</p>
+
+      <p><strong>Q. Can this tool check whether a file is safe?</strong><br>
+         A. No. It only identifies the format and does not verify file safety.</p>
     </section>
 
     <!-- Bottom Ad -->
@@ -89,25 +110,21 @@
     <div class="nw-donate">
       <p>Your support helps maintain this tool.</p>
       <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
       </div>
     </div>
 
-    <!-- Usage -->
-    <p class="usage-link">
-      <a href="./usage.html">How to use</a>
-    </p>
   </main>
 
   <!-- FOOTER -->
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">No guarantee of accuracy. Please verify official sources.</p>
+    <p class="nw-footer-line">Accuracy not guaranteed. Please verify official sources.</p>
     <p class="nw-footer-line"><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
   </footer>
 
-  <!-- Internal links -->
+  <!-- Internal tools -->
   <div class="nw-links">
     <a href="/tools/manual-finder/">ManualFinder</a> /
     <a href="/tools/trashnavi/">TrashNavi</a> /
@@ -116,5 +133,48 @@
 
   <!-- JS -->
   <script src="../app.js"></script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a Magic Number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is a sequence of bytes at the beginning of a file used to identify its type."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the detection 100% accurate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not always. Some formats share identical Magic Numbers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the file extension differ from the detected type?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The file may have been renamed or intentionally disguised."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this tool check whether a file is safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It only identifies the format and does not verify file safety."
+        }
+      }
+    ]
+  }
+  </script>
+
 </body>
 </html>
