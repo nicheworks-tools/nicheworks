@@ -1,6 +1,6 @@
 /* ==========================================================
    UnitMaster - 世界標準ユニットコンバータ（A構成）
-   JA/EN 完全切替対応版（i18n）＋ 構文エラー修正済
+   JA/EN 完全対応版（subtitle対応）
 ========================================================== */
 
 /* ----------------------------
@@ -9,6 +9,8 @@
 const i18n = {
   ja: {
     title: "UnitMaster",
+    subtitle: "長さ・重さ・温度・体積・面積・速度・圧力などの世界標準単位を変換・計算するツールです。",
+
     howto_title: "【使い方】",
     howto_1: "カテゴリを選択（スマホではドロップダウン）",
     howto_2: "数値を入力",
@@ -19,6 +21,7 @@ const i18n = {
     label_value: "数値",
     label_from: "変換元",
     label_to: "変換先",
+
     auto: "自動計算",
     btn_calc: "計算する",
 
@@ -49,6 +52,8 @@ const i18n = {
 
   en: {
     title: "UnitMaster",
+    subtitle: "Convert and calculate global standard units — length, weight, temperature, volume, area, speed, pressure, and more.",
+
     howto_title: "【How to Use】",
     howto_1: "Choose a category (dropdown on mobile)",
     howto_2: "Enter a value",
@@ -59,6 +64,7 @@ const i18n = {
     label_value: "Value",
     label_from: "From",
     label_to: "To",
+
     auto: "Auto Calc",
     btn_calc: "Calculate",
 
@@ -146,6 +152,7 @@ const resultBox = document.getElementById("resultBox");
 const langBtns = document.querySelectorAll(".lang-btn");
 const donateP = document.querySelector(".donate-box p");
 const footerHome = document.querySelector(".home-link a");
+const subtitleEl = document.getElementById("subtitle");
 
 /* ----------------------------
   言語適用
@@ -160,6 +167,9 @@ function applyLanguage(lang) {
   const titleEl = document.querySelector(".title");
   if (titleEl) titleEl.textContent = t.title;
 
+  // サブタイトル
+  if (subtitleEl) subtitleEl.textContent = t.subtitle;
+
   // 使い方
   const howtoTitle = document.querySelector(".howto h2");
   if (howtoTitle) howtoTitle.textContent = t.howto_title;
@@ -173,7 +183,7 @@ function applyLanguage(lang) {
     steps[4].textContent = t.howto_5;
   }
 
-  // 入力ブロックのラベル（ .convert-box 内の label を順に）
+  // 入力ラベル
   const inputLabels = document.querySelectorAll(".convert-box .input-block label");
   if (inputLabels.length >= 3) {
     inputLabels[0].textContent = t.label_value;
@@ -181,28 +191,17 @@ function applyLanguage(lang) {
     inputLabels[2].textContent = t.label_to;
   }
 
-  // 自動計算ラベル（テキストノードを書き換える）
+  // 自動計算ラベル
   const autoLabel = document.querySelector(".autocalc-row label");
   if (autoLabel) {
-    const nodes = Array.prototype.slice.call(autoLabel.childNodes);
-    let textNode = null;
-    for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].nodeType === Node.TEXT_NODE) {
-        textNode = nodes[i];
-        break;
-      }
-    }
-    if (textNode) {
-      textNode.nodeValue = " " + t.auto;
-    } else {
-      autoLabel.append(" " + t.auto);
-    }
+    const nodes = Array.from(autoLabel.childNodes);
+    let textNode = nodes.find(n => n.nodeType === Node.TEXT_NODE);
+    if (textNode) textNode.nodeValue = " " + t.auto;
+    else autoLabel.append(" " + t.auto);
   }
 
   // 計算ボタン
-  if (calcBtn) {
-    calcBtn.textContent = t.btn_calc;
-  }
+  if (calcBtn) calcBtn.textContent = t.btn_calc;
 
   // PCタブ
   const tabList = [
@@ -210,9 +209,7 @@ function applyLanguage(lang) {
     t.cat_volume, t.cat_area, t.cat_speed, t.cat_pressure
   ];
   tabs.forEach((el, idx) => {
-    if (tabList[idx]) {
-      el.textContent = tabList[idx];
-    }
+    if (tabList[idx]) el.textContent = tabList[idx];
   });
 
   // モバイルドロップダウン
@@ -226,24 +223,18 @@ function applyLanguage(lang) {
     pressure: t.dd_pressure
   };
   if (categorySelect) {
-    Array.prototype.forEach.call(categorySelect.options, (o) => {
-      if (ddMap[o.value]) {
-        o.textContent = ddMap[o.value];
-      }
-    });
+    for (let o of categorySelect.options) {
+      if (ddMap[o.value]) o.textContent = ddMap[o.value];
+    }
   }
 
   // 寄付文
-  if (donateP) {
-    donateP.textContent = t.donate_line1;
-  }
+  if (donateP) donateP.textContent = t.donate_line1;
 
-  // フッター母艦リンク
-  if (footerHome) {
-    footerHome.textContent = t.footer_home;
-  }
+  // フッター
+  if (footerHome) footerHome.textContent = t.footer_home;
 
-  // 結果の言語も合わせるため再計算
+  // 再計算
   calculate();
 }
 
@@ -253,9 +244,7 @@ function applyLanguage(lang) {
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
     const cat = tab.dataset.cat;
-    if (categorySelect) {
-      categorySelect.value = cat;
-    }
+    categorySelect.value = cat;
     applyCategory(cat);
   });
 });
@@ -273,15 +262,10 @@ if (categorySelect) {
   カテゴリ適用
 ---------------------------- */
 function applyCategory(cat) {
-  // タブのactive
   tabs.forEach(t => t.classList.remove("active"));
   const activeTab = document.querySelector(`.tab[data-cat="${cat}"]`);
-  if (activeTab) {
-    activeTab.classList.add("active");
-  }
+  if (activeTab) activeTab.classList.add("active");
 
-  // セレクト初期化
-  if (!fromSel || !toSel) return;
   fromSel.innerHTML = "";
   toSel.innerHTML = "";
 
@@ -302,7 +286,7 @@ function applyCategory(cat) {
 }
 
 /* ----------------------------
-  温度専用式
+  温度変換
 ---------------------------- */
 function convertTemperature(value, from, to) {
   let c;
@@ -313,25 +297,21 @@ function convertTemperature(value, from, to) {
   if (to === "c") return c;
   if (to === "f") return c * 9 / 5 + 32;
   if (to === "k") return c + 273.15;
+
   return value;
 }
 
 /* ----------------------------
-  共通変換
+  通常変換
 ---------------------------- */
 function calculate() {
-  if (!inputValue || !fromSel || !toSel || !resultBox || !categorySelect) return;
-
   const v = parseFloat(inputValue.value || "0");
   const cat = categorySelect.value;
 
   if (cat === "temp") {
     const rTemp = convertTemperature(v, fromSel.value, toSel.value);
     resultBox.textContent = i18n[currentLang].result(
-      v,
-      fromSel.value.toUpperCase(),
-      rTemp.toFixed(4),
-      toSel.value.toUpperCase()
+      v, fromSel.value.toUpperCase(), rTemp.toFixed(4), toSel.value.toUpperCase()
     );
     return;
   }
@@ -341,59 +321,42 @@ function calculate() {
   const r = vBase / dict[toSel.value];
 
   resultBox.textContent = i18n[currentLang].result(
-    v,
-    fromSel.value,
-    r.toFixed(4),
-    toSel.value
+    v, fromSel.value, r.toFixed(4), toSel.value
   );
 }
 
 /* ----------------------------
-  自動計算ON/OFF
+  自動計算
 ---------------------------- */
-if (inputValue) {
-  inputValue.addEventListener("input", () => {
-    if (autoCalc && autoCalc.checked) calculate();
-  });
-}
+inputValue.addEventListener("input", () => {
+  if (autoCalc.checked) calculate();
+});
+fromSel.addEventListener("change", () => {
+  if (autoCalc.checked) calculate();
+});
+toSel.addEventListener("change", () => {
+  if (autoCalc.checked) calculate();
+});
 
-if (fromSel) {
-  fromSel.addEventListener("change", () => {
-    if (autoCalc && autoCalc.checked) calculate();
-  });
-}
+autoCalc.addEventListener("change", () => {
+  if (autoCalc.checked) {
+    calcBtn.classList.add("hidden");
+    calculate();
+  } else {
+    calcBtn.classList.remove("hidden");
+  }
+});
 
-if (toSel) {
-  toSel.addEventListener("change", () => {
-    if (autoCalc && autoCalc.checked) calculate();
-  });
-}
-
-if (autoCalc) {
-  autoCalc.addEventListener("change", () => {
-    if (!calcBtn) return;
-    if (autoCalc.checked) {
-      calcBtn.classList.add("hidden");
-      calculate();
-    } else {
-      calcBtn.classList.remove("hidden");
-    }
-  });
-}
-
-if (calcBtn) {
-  calcBtn.addEventListener("click", calculate);
-}
+calcBtn.addEventListener("click", calculate);
 
 /* ----------------------------
-  言語切替ボタン
+  言語切替
 ---------------------------- */
 langBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     langBtns.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    const lang = btn.dataset.lang || "ja";
-    applyLanguage(lang);
+    applyLanguage(btn.dataset.lang);
   });
 });
 
