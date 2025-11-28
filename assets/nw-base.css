@@ -1,0 +1,350 @@
+/* ==================================
+ * NicheWorks 共通CSS（nw-base.css）
+ * ================================== */
+
+/* ------------------------------
+ * 基本テーマ
+ * ------------------------------ */
+:root {
+  --nw-bg: #ffffff;
+  --nw-bg-soft: #f9fafb;
+  --nw-border: #e5e7eb;
+  --nw-border-soft: #f3f4f6;
+  --nw-text: #111827;
+  --nw-muted: #6b7280;
+  --nw-accent: #111827;
+  --nw-accent-soft: #f3f4ff;
+  --nw-danger: #b91c1c;
+  --nw-radius: 14px;
+  --nw-radius-sm: 10px;
+  --nw-shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --nw-font: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "Segoe UI", sans-serif;
+}
+
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--nw-bg);
+  color: var(--nw-text);
+  font-family: var(--nw-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* ------------------------------
+ * Layout
+ * ------------------------------ */
+.nw-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nw-header,
+.nw-footer {
+  padding: 16px 16px 8px;
+}
+
+.nw-header-inner,
+.nw-footer-inner,
+.nw-main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.nw-header-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.nw-header-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--nw-muted);
+}
+
+.nw-main {
+  flex: 1;
+  width: 100%;
+  padding: 0 16px 32px;
+}
+
+.nw-card {
+  background: var(--nw-bg-soft);
+  border-radius: var(--nw-radius);
+  padding: 16px 16px 20px;
+  box-shadow: var(--nw-shadow-soft);
+  border: 1px solid var(--nw-border-soft);
+}
+
+/* ------------------------------
+ * Typography
+ * ------------------------------ */
+p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.nw-muted {
+  color: var(--nw-muted);
+  font-size: 13px;
+}
+
+.nw-small {
+  font-size: 12px;
+}
+
+/* ------------------------------
+ * Sections
+ * ------------------------------ */
+.nw-section {
+  margin-top: 16px;
+}
+
+.nw-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+/* ------------------------------
+ * Forms
+ * ------------------------------ */
+.nw-field {
+  margin-bottom: 12px;
+}
+
+.nw-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.nw-input,
+.nw-textarea,
+.nw-select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--nw-border);
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: var(--nw-font);
+  background: #ffffff;
+}
+
+.nw-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ------------------------------
+ * Buttons
+ * ------------------------------ */
+.nw-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.nw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 999px;
+  border: 1px solid #111827;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #111827;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.nw-btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.18);
+}
+
+.nw-btn:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.nw-btn-ghost {
+  background: #ffffff;
+  color: #111827;
+  border-color: var(--nw-border);
+}
+
+.nw-btn-ghost:hover {
+  background: var(--nw-bg-soft);
+}
+
+/* ------------------------------
+ * Result
+ * ------------------------------ */
+.nw-result {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--nw-border-soft);
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.nw-result-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* ------------------------------
+ * Ads
+ * ------------------------------ */
+.nw-ad {
+  margin: 16px 0;
+  padding: 8px 0;
+}
+
+.nw-ad-top {
+  margin-bottom: 16px;
+}
+
+.nw-ad-bottom {
+  margin-top: 20px;
+}
+
+/* ------------------------------
+ * Donate block
+ * ------------------------------ */
+.nw-donate {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--nw-border-soft);
+}
+
+.nw-donate-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nw-donate-links a {
+  font-size: 13px;
+  text-decoration: none;
+  border: 1px solid var(--nw-border);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.nw-donate-links a:hover {
+  background: var(--nw-bg-soft);
+}
+
+/* ------------------------------
+ * Usage link
+ * ------------------------------ */
+.nw-usage {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 13px;
+}
+
+.nw-usage a {
+  text-decoration: underline;
+  color: #374151;
+}
+
+/* ------------------------------
+ * Internal links
+ * ------------------------------ */
+.nw-links {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--nw-muted);
+  text-align: center;
+}
+
+.nw-links a {
+  color: #374151;
+  text-decoration: none;
+}
+
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------
+ * Footer
+ * ------------------------------ */
+.nw-footer {
+  border-top: 1px solid var(--nw-border-soft);
+  margin-top: auto;
+}
+
+.nw-footer-copy {
+  font-size: 12px;
+  color: var(--nw-muted);
+}
+
+.nw-footer-note {
+  font-size: 11px;
+  color: var(--nw-muted);
+}
+
+/* ------------------------------
+ * Progress bar / Loading
+ * ------------------------------ */
+.nw-progress {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e5e7eb;
+  margin: 10px 0;
+  display: none;
+}
+
+.nw-progress-inner {
+  width: 100%;
+  height: 100%;
+  background: #111827;
+  animation: nw-progress-anim 1.1s infinite linear;
+}
+
+@keyframes nw-progress-anim {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ------------------------------
+ * Error block
+ * ------------------------------ */
+.nw-error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  font-size: 13px;
+  display: none;
+}
