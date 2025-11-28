@@ -1,258 +1,241 @@
-/* =======================================================
-   Reset & Base
-   ======================================================= */
+/* =========================================================
+   基本リセット
+========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+html, body {
   background: #ffffff;
   color: #111111;
-  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.7;
 }
 
-img { max-width: 100%; }
-
+/* ---------------------------------------------------------
+   375pxファースト（320～428pxで崩れない）
+--------------------------------------------------------- */
 .mw-container {
-  max-width: 760px;
+  width: 100%;
+  max-width: 620px;
   margin: 0 auto;
   padding: 16px;
 }
 
-/* =======================================================
+/* =========================================================
    Header
-   ======================================================= */
+========================================================= */
 .nw-header {
-  border-bottom: 1px solid #e5e7eb;
-  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px;
+  background: #fff;
 }
 
 .nw-header-inner {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .mw-title {
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .mw-subtitle {
   font-size: 13px;
-  color: #6b7280;
-  margin-top: 2px;
+  color: #666;
+  margin-top: 4px;
 }
 
+/* 言語切替 */
 .mw-lang-switch button {
-  background: none;
-  border: none;
-  padding: 6px 8px;
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
   font-size: 13px;
+  border-radius: 8px;
+  margin-left: 4px;
   cursor: pointer;
-  color: #6b7280;
 }
 
-.mw-lang-switch button.active {
-  color: #111111;
-  font-weight: 600;
-  text-decoration: underline;
+.mw-lang-switch .active {
+  background: #111;
+  color: #fff;
 }
 
-/* =======================================================
-   Intro / 説明文
-   ======================================================= */
+/* =========================================================
+   使い方（UI直下）
+========================================================= */
 .um-intro {
-  margin-top: 16px;
-  margin-bottom: 12px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  padding: 12px;
   font-size: 13px;
-  color: #4b5563;
+  border-radius: 10px;
+  margin-top: 16px;
 }
 
-/* =======================================================
-   Category Tabs
-   ======================================================= */
+/* =========================================================
+   カテゴリタブ
+========================================================= */
 .um-tabs {
   display: flex;
   overflow-x: auto;
   gap: 6px;
-  margin: 12px 0 4px;
-  padding-bottom: 4px;
+  margin-top: 18px;
+  padding-bottom: 6px;
 }
 
 .um-tabs button {
-  flex: 0 0 auto;
   padding: 8px 14px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
   border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f8f8f8;
   font-size: 14px;
-  cursor: pointer;
-  color: #374151;
   white-space: nowrap;
 }
 
 .um-tabs button.active {
-  background: #111111;
-  color: #ffffff;
-  border-color: #111111;
+  background: #111;
+  color: #fff;
+  border-color: #111;
 }
 
-/* =======================================================
-   Input Blocks
-   ======================================================= */
+/* =========================================================
+   入力エリア
+========================================================= */
 .um-block {
-  margin: 18px 0;
+  margin-top: 18px;
 }
 
 .um-block label {
   display: block;
   font-size: 14px;
   margin-bottom: 6px;
-  color: #374151;
 }
 
-.um-block input[type="number"],
+.um-block input,
 .um-block select {
   width: 100%;
   padding: 12px;
-  font-size: 15px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #111111;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  background: #fff;
 }
 
-.um-block input:focus,
-.um-block select:focus {
-  outline: none;
-  border-color: #111111;
-}
-
-/* number スピンボタン殺す */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+/* 数値入力の矢印を消す（邪魔） */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type="number"] {
+input[type=number] {
   -moz-appearance: textfield;
 }
 
-/* =======================================================
-   Auto Calc Toggle / Button
-   ======================================================= */
+/* =========================================================
+   自動計算
+========================================================= */
 .um-auto {
-  margin-top: 4px;
-  font-size: 14px;
-  color: #374151;
+  margin-top: 14px;
+  font-size: 15px;
 }
 
+.um-auto input {
+  transform: scale(1.3);
+  margin-right: 8px;
+}
+
+/* =========================================================
+   計算ボタン
+========================================================= */
 .um-btn {
-  margin-top: 16px;
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background: #111111;
-  color: #ffffff;
+  margin-top: 16px;
+  padding: 14px;
+  background: #111;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.um-btn:hover {
-  background: #000000;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
-/* =======================================================
-   Result
-   ======================================================= */
+/* =========================================================
+   結果
+========================================================= */
 .um-result {
   margin-top: 20px;
-  padding: 14px;
+  padding: 16px;
+  background: #f8f8f8;
+  border-radius: 10px;
   font-size: 18px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #f9fafb;
-  min-height: 48px;
+  font-weight: 600;
+  min-height: 40px;
 }
 
-/* =======================================================
+/* =========================================================
    寄付導線
-   ======================================================= */
+========================================================= */
 .nw-donate {
+  margin-top: 28px;
   text-align: center;
-  margin: 28px 0 16px;
-  padding: 8px 0;
-  font-size: 13px;
-  color: #6b7280;
 }
 
 .nw-donate-text {
-  margin-bottom: 6px;
+  font-size: 14px;
+  color: #444;
 }
 
 .nw-donate-links {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .nw-donate-links a {
-  padding: 8px 16px;
-  border: 1px solid #d1d5db;
+  padding: 8px 14px;
+  border: 1px solid #111;
   border-radius: 8px;
+  font-size: 13px;
   text-decoration: none;
-  color: #111827;
-  background: #ffffff;
-  font-size: 14px;
-  transition: 0.2s;
+  color: #111;
 }
 
-.nw-donate-links a:hover {
-  background: #f3f4f6;
-  transform: translateY(-1px);
-}
-
-/* =======================================================
-   Footer（共通仕様）
-   ======================================================= */
+/* =========================================================
+   フッター
+========================================================= */
 .nw-footer {
-  margin-top: 12px;
-  padding: 16px 8px 12px;
-  border-top: 1px solid #e5e7eb;
-  font-size: 12px;
-  color: #6b7280;
+  margin-top: 40px;
+  padding: 24px 16px;
+  background: #fafafa;
+  border-top: 1px solid #e5e5e5;
   text-align: center;
-  line-height: 1.6;
 }
 
 .nw-footer-line {
-  margin: 3px 0;
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
 }
 
-.nw-footer a {
-  color: #6b7280;
-  text-decoration: underline;
-}
-
-/* 内部リンク */
+/* =========================================================
+   内部リンク
+========================================================= */
 .nw-links {
-  margin: 8px 0 24px;
   text-align: center;
-  font-size: 14px;
+  padding: 20px 0 30px;
+  font-size: 13px;
 }
 
 .nw-links a {
-  margin: 0 10px;
+  margin: 0 8px;
   text-decoration: none;
-  color: #374151;
-  white-space: nowrap;
+  color: #333;
 }
 
-.nw-links a:hover {
-  text-decoration: underline;
-}
