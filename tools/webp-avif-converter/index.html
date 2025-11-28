@@ -15,14 +15,14 @@
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/webp-avif-converter/">
 
-   <link rel="icon" type="image/png" href=".../assets/favicon.ico">
-  <link rel="apple-touch-icon" href=".../assets/nicheworks-favicon-512-white.png">
+  <!-- Favicon（共通） -->
+  <link rel="icon" href="/assets/favicon.ico">
 
   <!-- 共通CSS -->
-  <link rel="stylesheet" href="https://nicheworks.pages.dev/assets/nw-base.css">
+  <link rel="stylesheet" href="/assets/nw-base.css">
 
   <!-- 個別CSS -->
-  <link rel="stylesheet" href="https://nicheworks.pages.dev/tools/webp-avif-converter/style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -75,27 +75,28 @@
         ここに WebP / AVIF をドロップ（またはクリック）
       </div>
 
-      <input id="file-input" type="file" accept=".webp,.avif,image/webp,image/avif" hidden>
+      <input id="file-input" type="file"
+        accept=".webp,.avif,image/webp,image/avif" hidden>
 
       <p class="nw-note" data-ja="対応形式：WebP / AVIF（静止画のみ）"
          data-en="Supported: WebP / AVIF (still images only)">
         対応形式：WebP / AVIF（静止画のみ）
       </p>
 
-      <!-- プレースホルダー例（12-6 必須） -->
+      <!-- プレースホルダー（12-6） -->
       <p class="nw-placeholder">
         例：`sample.webp` / `photo.avif`
       </p>
 
-      <!-- エラー表示（12-5） -->
+      <!-- エラー表示 -->
       <div id="error-box" class="error-box" style="display:none;"></div>
 
-      <!-- プログレスバー（12-1） -->
+      <!-- プログレスバー -->
       <div id="progress" class="progress" style="display:none;">
         <div class="progress-bar"></div>
       </div>
 
-      <!-- 注意（12-3） -->
+      <!-- 注意文（12-3） -->
       <p class="nw-warn"
         data-ja="⏳ この処理は1〜3秒ほどかかる場合があります。"
         data-en="⏳ Conversion may take 1–3 seconds.">
@@ -108,19 +109,17 @@
         PNGに変換する
       </button>
 
-      <!-- JPEGセレクタ（MVPでは固定/品質設定なし） -->
+      <!-- JPEG/PNG 選択 -->
       <div class="format-select">
         <label>
-          <input type="radio" name="fmt" value="png" checked>
-          PNG
+          <input type="radio" name="fmt" value="png" checked> PNG
         </label>
         <label>
-          <input type="radio" name="fmt" value="jpeg">
-          JPEG
+          <input type="radio" name="fmt" value="jpeg"> JPEG
         </label>
       </div>
 
-      <!-- ===== 結果（12-2 / 12-4） ===== -->
+      <!-- ===== 結果エリア ===== -->
       <div id="result-area" class="result-area" style="display:none;">
 
         <h3 data-ja="変換結果" data-en="Result">変換結果</h3>
@@ -134,7 +133,7 @@
           画像をダウンロード
         </a>
 
-        <!-- リセット（12-2） -->
+        <!-- リセット -->
         <button id="reset-btn" class="nw-btn-outline"
           data-ja="リセット" data-en="Reset">
           リセット
@@ -148,22 +147,24 @@
       <h3>免責</h3>
       <ul>
         <li>画質に差が出る場合があります。</li>
-        <li>JPEG変換時は背景が白化します。</li>
+        <li>JPEG変換時は背景が白に変わります。</li>
         <li>動画WebP/AVIFは非対応です。</li>
       </ul>
     </section>
 
-    <!-- ===== FAQ（任意） ===== -->
+    <!-- ===== FAQ ===== -->
     <section class="nw-faq">
       <h3>FAQ</h3>
-      <p>Q: 変換は安全ですか？<br>
-         A: 画像はサーバーに送信されず、すべてブラウザ内で処理されます。</p>
+      <p>
+        Q: サーバーに送信されますか？<br>
+        A: いいえ、すべてブラウザ内で処理されます。
+      </p>
     </section>
 
     <!-- ===== Ad B ===== -->
     <div class="nw-ad-slot ad-middle"></div>
 
-    <!-- ===== 内部リンク ===== -->
+    <!-- ===== 関連ツール ===== -->
     <section class="nw-links">
       <a href="/tools/image-compression-inspector/">画像圧縮率チェッカー</a>
       <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a>
@@ -191,8 +192,8 @@
   <!-- 個別JS -->
   <script src="./app.js"></script>
 
-  <!-- 共通 言語切替 -->
-  <script src="/nw-lang.js"></script>
+  <!-- 共通言語切替JS -->
+  <script src="/assets/js/nw-lang.js"></script>
 
 </body>
 </html>
