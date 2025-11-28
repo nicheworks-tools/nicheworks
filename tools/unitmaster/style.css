@@ -45,22 +45,31 @@ a:hover {
   font-size: 1.8rem;
 }
 
+#top-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .header-block {
   text-align: center;
-  margin-top: 20px;
+  max-width: 640px;
+  width: 100%;
+  margin: 20px auto 30px;
 }
 
 #subtitle {
-  text-align: center;
-  margin: 12px 0 20px;
+  font-size: 1rem;
+  margin: 10px 0 24px;
+  line-height: 1.7;
 }
 
 .lang-switch {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 25px;
+  gap: 14px;
 }
+
 
 .lang-btn {
   padding: 6px 12px;
