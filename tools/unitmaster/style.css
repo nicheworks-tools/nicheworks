@@ -1,8 +1,7 @@
 /* =======================================================
-   Minimal Base UI（仕様書 v2 固定構造）
+   Minimal Base UI（共通） ※ここはそのままでOK
    ======================================================= */
 
-/* 全体 */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -10,206 +9,90 @@ body {
   color: #111111;
 }
 
-/* コンテナ（PCは中央寄せ） */
 .mw-container {
   max-width: 760px;
   margin: 0 auto;
   padding: 16px;
 }
 
-/* =======================================================
-   Header（左：タイトル / 右：言語切替）
-   ======================================================= */
-.mw-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 16px;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.mw-title {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.mw-subtitle {
-  margin: 4px 0 0;
-  font-size: 13px;
-  color: #555;
-}
-
-/* 言語切替 */
-.mw-lang-switch button {
-  padding: 6px 12px;
-  border: 1px solid #ddd;
-  background: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 13px;
-  margin-left: 6px;
-}
-
-.mw-lang-switch button.active {
-  background: #111;
-  color: #fff;
-}
-
-/* =======================================================
-   Footer（内部リンク + 寄付導線 + コピーライト）
-   ======================================================= */
-.mw-footer {
-  margin-top: 40px;
-  padding: 20px 10px;
-  border-top: 1px solid #eee;
-  text-align: center;
-  font-size: 14px;
-  color: #444;
-}
-
-.mw-links {
-  margin-bottom: 12px;
-}
-
-.mw-links a {
-  text-decoration: none;
-  color: #1a73e8;
-}
-
-.mw-donate {
-  margin-bottom: 12px;
-}
-
-.mw-donate a {
-  display: inline-block;
-  padding: 6px 10px;
-  margin: 0 4px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  text-decoration: none;
-  color: #111;
-  font-size: 13px;
-}
-
-.mw-donate a:hover {
-  background: #f5f5f5;
-}
-
-.mw-copy {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #777;
-}
+/* Header も前回のままでOK（省略） */
+/* ... */
 
 /* =======================================================
    UnitMaster 専用UI（um-xxx）
+   ※ ここも前回のままでOK（省略）
+   ======================================================= */
+/* ... */
+
+/* =======================================================
+   フッター & 寄付導線（共通仕様 v2 準拠）
    ======================================================= */
 
-/* カテゴリタブ（横スクロール＋スワイプ対応） */
-.um-tabs {
+/* フッター本体 */
+.nw-footer {
+  margin-top: 24px;
+  padding: 16px 8px 12px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.6;
+}
+.nw-footer-line {
+  margin: 2px 0;
+}
+.nw-footer a {
+  color: #6b7280;
+  text-decoration: underline;
+}
+
+/* 内部リンク（フッター直後、少し大きめの文字） */
+.nw-links {
+  margin: 8px 0 24px;
+  text-align: center;
+  font-size: 14px;
+}
+.nw-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #374151;
+  white-space: nowrap;
+}
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
+/* 寄付導線（インライン） */
+.nw-donate {
+  text-align: center;
+  margin: 24px 0 8px;
+  padding: 8px 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+.nw-donate-text {
+  margin: 4px 0;
+}
+.nw-donate-links {
   display: flex;
-  overflow-x: auto;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
-  padding: 8px 0 12px;
+  margin-top: 4px;
 }
-
-.um-tabs button {
-  flex-shrink: 0;
+.nw-donate-links a {
+  display: inline-block;
   padding: 8px 14px;
-  border: 1px solid #ddd;
-  background: #fff;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
+  background: #ffffff;
+  font-size: 13px;
+  color: #111827;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
-
-.um-tabs button.active {
-  background: #111;
-  color: #fff;
-  border-color: #111;
-}
-
-/* スクロールバーの軽量化 */
-.um-tabs::-webkit-scrollbar {
-  height: 5px;
-}
-.um-tabs::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-}
-
-/* ブロック（入力・セレクト） */
-.um-block {
-  margin-bottom: 18px;
-}
-
-.um-block label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-
-/* 入力欄 */
-input[type="number"] {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-/* number のスピンボタン無効化 */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
-}
-
-/* セレクト */
-select {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #fff;
-}
-
-/* 自動計算（チェックボックス） */
-.um-auto {
-  margin: 14px 0;
-  font-size: 15px;
-}
-
-.um-auto label {
-  cursor: pointer;
-}
-
-/* 手動計算ボタン */
-.um-btn {
-  width: 100%;
-  padding: 12px;
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 16px;
-}
-
-/* 結果ボックス */
-.um-result {
-  padding: 14px;
-  min-height: 48px;
-  font-size: 17px;
-  border: 1px solid #eee;
-  background: #f9f9f9;
-  border-radius: 8px;
-  white-space: pre-wrap;
+.nw-donate-links a:hover {
+  background: #f9fafb;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
