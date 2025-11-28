@@ -1,0 +1,307 @@
+/* =========================================================
+   FileType Sniffer 専用 style.css
+   PCファースト（960px）＋スマホ480px変形対応
+   NicheWorks 共通仕様 v2（2025-11）
+========================================================= */
+
+/* -----------------------------
+   ベースレイアウト
+----------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #111827;
+}
+
+.nw-header {
+  text-align: center;
+  padding: 24px 12px 12px;
+}
+.nw-header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  color: #111827;
+}
+.nw-sub {
+  margin: 6px 0 4px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* 言語切替 */
+.nw-lang-switch {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #6b7280;
+}
+.nw-lang-switch button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0 4px;
+  font-size: 11px;
+  color: #4b5563;
+}
+.nw-lang-switch button.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* メイン領域（PC幅：960px） */
+.nw-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+/* -----------------------------
+   広告枠（共通仕様）
+----------------------------- */
+.ad-slot {
+  margin: 12px 0 16px;
+  padding: 10px;
+  border: 1px dashed #d4d4d4;
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+  min-height: 60px;
+}
+
+/* -----------------------------
+   ツールUIブロック
+----------------------------- */
+.tool-container {
+  background: #ffffff;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+/* ドラッグ＆ドロップ領域 */
+.drop-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  text-align: center;
+  padding: 32px 12px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.drop-zone.dragover {
+  border-color: #111827;
+  background: #f9fafb;
+}
+.drop-zone p {
+  margin: 4px 0;
+  font-size: 15px;
+}
+
+/* ファイル選択ボタン */
+.file-input-area {
+  text-align: center;
+  margin: 12px 0 16px;
+}
+#fileInput {
+  font-size: 14px;
+  padding: 6px;
+}
+
+/* 注意書き */
+.note {
+  text-align: center;
+  font-size: 12px;
+  color: #6b7280;
+  margin: 8px 0 14px;
+}
+
+/* 実行ボタン */
+.primary-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 15px;
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.primary-btn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+.primary-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* プログレスバー */
+.progress {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.progress .bar {
+  width: 0%;
+  height: 100%;
+  background: #111827;
+  border-radius: 4px;
+  transition: width 0.2s ease;
+}
+
+/* -----------------------------
+   結果エリア
+----------------------------- */
+.result-box {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.result-box h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #111827;
+}
+
+#resultContent {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 12px;
+  word-break: break-word;
+}
+
+/* 結果内の項目名 */
+.result-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* リセットボタン */
+.secondary-btn {
+  margin-top: 16px;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 14px;
+  border: 1px solid #9ca3af;
+  background: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.secondary-btn:hover {
+  background: #f3f4f6;
+}
+
+/* エラー表示 */
+.error-box {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+/* -----------------------------
+   寄付導線（共通仕様）
+----------------------------- */
+.nw-donate {
+  text-align: center;
+  margin: 24px 0 16px;
+  font-size: 13px;
+  color: #6b7280;
+}
+.nw-donate-links {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.nw-donate-links a {
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+.nw-donate-links a:hover {
+  background: #f9fafb;
+  transform: translateY(-1px);
+}
+
+/* usageリンク */
+.usage-link {
+  text-align: center;
+  margin: 28px 0 12px;
+  font-size: 14px;
+}
+.usage-link a {
+  color: #1f2937;
+  text-decoration: underline;
+}
+
+/* -----------------------------
+   フッター
+----------------------------- */
+.nw-footer {
+  margin-top: 20px;
+  padding: 16px 8px 12px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.nw-links {
+  text-align: center;
+  margin: 16px 0 32px;
+  font-size: 12px;
+}
+.nw-links a {
+  color: #4b5563;
+  text-decoration: none;
+  margin: 0 6px;
+}
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------
+   レスポンシブ変形（重要）
+----------------------------- */
+@media (max-width: 480px) {
+  .primary-btn,
+  .secondary-btn {
+    padding: 14px 0;
+    font-size: 15px;
+  }
+
+  .drop-zone {
+    padding: 28px 10px;
+  }
+
+  .tool-container {
+    padding: 12px;
+  }
+
+  #resultContent {
+    font-size: 13px;
+  }
+}
