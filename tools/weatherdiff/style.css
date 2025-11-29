@@ -21,7 +21,7 @@ body {
 }
 
 .wd-title {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
 }
 
@@ -33,7 +33,7 @@ body {
 
 .wd-lang button {
   margin: 6px 4px 0;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border: 1px solid var(--border);
   background: #f8f8f8;
   border-radius: 6px;
@@ -46,54 +46,69 @@ body {
   padding: 16px;
 }
 
+/* ======================================
+   検索エリア（スマホ1カラム）
+====================================== */
+
 .wd-search label {
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 6px;
   display: block;
 }
 
+/* 初期状態：スマホは block（1カラム） */
 .wd-search-row {
-  display: flex;
-  gap: 8px;
+  display: block;
 }
 
+/* 入力 */
 .wd-search-row input {
-  flex: 1;
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
+/* 検索ボタン（スマホは下に落ちる） */
 .wd-search-row button {
-  padding: 10px 14px;
+  margin-top: 10px;
+  width: auto;
+  padding: 12px 16px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f0f0f0;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .wd-geo-btn {
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #fafafa;
+  font-size: 16px;
 }
 
 .wd-status {
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 14px;
   color: var(--sub);
 }
 
-/* ===== 結果 ===== */
+/* ===========================
+   結果
+=========================== */
 
 .hidden {
   display: none;
 }
 
 .wd-location {
-  margin-top: 20px;
+  margin-top: 24px;
   margin-bottom: 18px;
 }
 
@@ -102,12 +117,10 @@ body {
   color: var(--sub);
 }
 
-/* API カード枠 */
 .wd-cards {
   margin-top: 12px;
 }
 
-/* 全カード共通 */
 .wd-card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -117,7 +130,8 @@ body {
 
 .wd-card-title {
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 /* 差分 */
@@ -126,29 +140,30 @@ body {
   padding: 16px;
   border-radius: var(--radius);
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* 外部リンク */
-.wd-links {
-  margin-top: 24px;
-}
-
 .wd-links-grid {
-  margin-top: 12px;
+  margin-top: 14px;
   display: block;
 }
 
 .wd-links-grid a {
   display: block;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   text-decoration: none;
   color: var(--fg);
+  font-size: 15px;
 }
 
-/* ===== フッター ===== */
+/* ============================
+   フッター
+============================ */
+
 .wd-footer {
   margin-top: 40px;
   padding: 20px;
@@ -159,18 +174,29 @@ body {
 
 .wd-footer-links a {
   color: var(--sub);
+  margin: 0 4px;
+  text-decoration: none;
 }
 
 /* ============================
    ブレイクポイント
 ============================ */
 
-/* 600〜899：タブレット → 2カラム */
+/* 600〜899px：タブレット（2カラム） */
 @media (min-width: 600px) and (max-width: 899px) {
+
+  .wd-search-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .wd-search-row button {
+    margin-top: 0;
+  }
 
   .wd-cards {
     display: flex;
-    gap: 16px;
+    gap: 18px;
   }
   .wd-card {
     flex: 1;
@@ -183,8 +209,17 @@ body {
   }
 }
 
-/* 900〜：PC → カード2列＋リンク3列 */
+/* 900px〜：PC（カード2列＋リンク3列） */
 @media (min-width: 900px) {
+
+  .wd-search-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .wd-search-row button {
+    margin-top: 0;
+  }
 
   .wd-cards {
     display: flex;
