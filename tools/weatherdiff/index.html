@@ -5,33 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>WeatherDiff | 天気予報のズレ比較ツール | NicheWorks</title>
-  <meta name="description" content="Open-Meteo と MET Norway の予報を比較して、気温・降水・風のズレを可視化するツールです。位置検索・現在地比較に対応し、2つの天気APIの違いを一目で確認できます。">
+  <meta name="description" content="Open-Meteo と MET Norway の予報を比較して、気温・降水・風のズレを即座に可視化する軽量の天気比較ツール。現在地から比較も対応。">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WeatherDiff | 天気予報のズレ比較ツール">
+  <meta property="og:description" content="Open-Meteo と MET Norway の天気予報を自動比較し、気温・降水・風のズレを色付きで可視化。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/og/weatherdiff.png">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/">
+  <link rel="stylesheet" href="style.css">
 
-  <!-- OGP -->
-  <meta property="og:title" content="WeatherDiff | 天気予報のズレ比較ツール" />
-  <meta property="og:description" content="Open-Meteo と MET Norway の天気差分を比較表示。気温・降水・風のズレをわかりやすく可視化。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/" />
-  <meta property="og:image" content="https://nicheworks.pages.dev/og/weatherdiff.png" />
-
-  <!-- AdSense（必須） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <!-- Cloudflare Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-
-  <link rel="stylesheet" href="style.css">
+          data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 
 <body>
 
 <header class="wd-header">
   <div class="wd-header-inner">
-    <div class="wd-header-left">
+    <div>
       <h1 class="wd-title">WeatherDiff</h1>
       <p class="wd-subtitle" id="subtitle">天気予報のズレ比較ツール</p>
     </div>
@@ -45,7 +42,7 @@
 
 <main class="wd-main">
 
-  <!-- 入力エリア -->
+  <!-- 入力 -->
   <section class="wd-section wd-input-section">
 
     <label for="locationInput" class="wd-label" id="labelLocation">
@@ -53,8 +50,6 @@
     </label>
 
     <div class="wd-input-wrap">
-
-      <!-- 入力欄 -->
       <input
         id="locationInput"
         type="text"
@@ -62,14 +57,13 @@
         autocomplete="off"
       />
 
-      <!-- ボタン（auto幅 / テキスト＋padding のみ） -->
-      <button id="btnCompare" class="wd-btn primary">比較する</button>
-      <button id="btnGeo" class="wd-btn ghost">現在地から比較</button>
+      <button id="btnCompare" class="wd-btn primary">比較</button>
+      <button id="btnGeo" class="wd-btn ghost">現在地</button>
     </div>
 
     <p id="errorText" class="wd-error"></p>
 
-    <!-- プログレス -->
+    <!-- 進捗 -->
     <div id="progressArea" class="wd-progress hidden">
       <div class="wd-progress-bar"></div>
       <p id="progressText" class="wd-progress-text">処理中...</p>
@@ -80,16 +74,16 @@
   <!-- 結果 -->
   <section id="resultSection" class="wd-section wd-result hidden">
 
-    <!-- 注意ボックス -->
+    <!-- 注意 -->
     <div class="wd-warning">
       <p id="warnText">
-        この結果は複数の天気API比較に基づく参考情報です。必ず公式情報も確認してください。
+        この結果は複数の天気API比較に基づく参考情報です。必ず公式予報も確認してください。
       </p>
     </div>
 
-    <!-- ロケーション + リセット -->
+    <!-- ロケーション -->
     <div class="wd-location-header">
-      <div class="wd-location-main">
+      <div>
         <h2 id="locName">-</h2>
         <p id="locMeta">-</p>
         <p id="processTime" class="wd-process-time"></p>
@@ -97,7 +91,7 @@
       <button id="btnReset" class="wd-btn reset">リセット</button>
     </div>
 
-    <!-- APIカード -->
+    <!-- APIカード（2つ） -->
     <div class="wd-api-grid">
 
       <!-- Open-Meteo -->
@@ -107,18 +101,18 @@
         <div class="wd-weather-row">
           <div class="wd-weather-icon"><span id="omIconToday">☀️</span></div>
           <div class="wd-weather-info">
-            <p id="omTodayTemp"></p>
-            <p id="omTodayRain"></p>
-            <p id="omTodayWind"></p>
+            <p id="omTodayTemp">今日: -</p>
+            <p id="omTodayRain">降水: -</p>
+            <p id="omTodayWind">風: -</p>
           </div>
         </div>
 
         <div class="wd-weather-row">
           <div class="wd-weather-icon"><span id="omIconTomorrow">☀️</span></div>
           <div class="wd-weather-info">
-            <p id="omTomorrowTemp"></p>
-            <p id="omTomorrowRain"></p>
-            <p id="omTomorrowWind"></p>
+            <p id="omTomorrowTemp">明日: -</p>
+            <p id="omTomorrowRain">降水: -</p>
+            <p id="omTomorrowWind">風: -</p>
           </div>
         </div>
       </article>
@@ -130,25 +124,25 @@
         <div class="wd-weather-row">
           <div class="wd-weather-icon"><span id="mnIconToday">☀️</span></div>
           <div class="wd-weather-info">
-            <p id="mnTodayTemp"></p>
-            <p id="mnTodayRain"></p>
-            <p id="mnTodayWind"></p>
+            <p id="mnTodayTemp">今日: -</p>
+            <p id="mnTodayRain">降水: -</p>
+            <p id="mnTodayWind">風: -</p>
           </div>
         </div>
 
         <div class="wd-weather-row">
           <div class="wd-weather-icon"><span id="mnIconTomorrow">☀️</span></div>
           <div class="wd-weather-info">
-            <p id="mnTomorrowTemp"></p>
-            <p id="mnTomorrowRain"></p>
-            <p id="mnTomorrowWind"></p>
+            <p id="mnTomorrowTemp">明日: -</p>
+            <p id="mnTomorrowRain">降水: -</p>
+            <p id="mnTomorrowWind">風: -</p>
           </div>
         </div>
       </article>
 
     </div>
 
-    <!-- Diffカード -->
+    <!-- Diff -->
     <article class="wd-card wd-diff-card">
       <h3 class="wd-card-title" id="diffTitle">予報のズレ（比較結果）</h3>
 
@@ -175,7 +169,7 @@
       </div>
     </article>
 
-    <!-- 外部リンク -->
+    <!-- 他サービス -->
     <section class="wd-section">
       <h3 class="wd-card-title" id="otherServicesTitle">他のサービスで詳しく見る</h3>
 
