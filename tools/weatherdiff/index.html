@@ -5,155 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>WeatherDiff｜天気予報のズレ比較ツール | NicheWorks</title>
-  <meta name="description" content="複数の天気APIを比較して予報のズレを可視化する軽量ツール。Open-Meteo と MET Norway の予報差分を比較し、今日・明日の気温や降水の違いを確認できます。">
+  <meta name="description" content="Open-Meteo と MET Norway を比較して予報のズレを可視化する軽量ツール。Google Weather / Weather.com / AccuWeather にもワンタップでアクセス。日本とアメリカの公式天気サイトリンクにも対応。">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/">
+  <link rel="stylesheet" href="style.css">
 
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="WeatherDiff｜天気予報のズレ比較ツール">
-  <meta property="og:description" content="複数の天気APIの予報差分を比較し、気温・降水・風のばらつきを可視化します。">
-  <meta property="og:image" content="/assets/ogp.png">
+  <meta property="og:description" content="複数の天気APIの予報を比較してズレを可視化。全世界対応。">
+  <meta property="og:image" content="og.png">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/">
 
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.ico">
+  <!-- Analytics（Cloudflare Web Analytics） -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
 
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR-ID" crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR-TOKEN"}'></script>
-
-  <link rel="stylesheet" href="./style.css">
+  <!-- AdSense（自動広告 OFF → 手動広告枠のみ） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
 </head>
-
 <body>
 
-<main class="nw-main">
+<main>
+
+  <!-- タイトル -->
+  <h1 class="wd-title">WeatherDiff</h1>
+  <div class="wd-subtitle">天気予報のズレ比較ツール</div>
+
   <!-- 言語切替 -->
-  <div class="nw-lang-switch">
-    <button data-lang="ja">JP</button> /
+  <div class="wd-lang">
+    <button data-lang="ja">JP</button>
     <button data-lang="en">EN</button>
   </div>
 
-  <div class="wd-container">
+  <!-- 広告枠 -->
+  <div id="wd-ad">
+    <!-- 手動広告をここに -->
+  </div>
 
-    <!-- タイトル -->
-    <h1 data-i18n="ja">WeatherDiff｜天気予報のズレ比較ツール</h1>
-    <h1 data-i18n="en">WeatherDiff – Weather Forecast Difference Analyzer</h1>
+  <!-- 検索フォーム -->
+  <div class="wd-search">
+    <div class="wd-search-row">
+      <input id="wd-input" class="wd-input" type="text" placeholder="例：Shibuya / Paris / New York">
+      <button id="wd-search-btn" class="wd-btn">比較する</button>
+    </div>
+    <button id="wd-geo-btn" class="wd-btn-secondary">現在地から比較</button>
+  </div>
 
-    <!-- 説明文 -->
-    <p class="wd-intro" data-i18n="ja">
-      2つの天気APIを比較して“予報のズレ”を可視化する無料ツールです。
-    </p>
-    <p class="wd-intro" data-i18n="en">
-      A lightweight tool that compares two weather APIs and highlights differences in their forecasts.
-    </p>
+  <!-- ローディング / メッセージ -->
+  <div id="wd-status" class="wd-status"></div>
 
-    <!-- 広告 -->
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+  <!-- 地点情報 -->
+  <div id="wd-location" class="wd-location-box" style="display:none;"></div>
 
-    <!-- 検索フォーム -->
-    <div class="wd-search">
+  <!-- API結果（Open-Meteo + MET Norway） -->
+  <div id="wd-results" class="wd-results" style="display:none;">
 
-      <!-- placeholder も言語切替 -->
-      <input 
-        id="locationInput" 
-        data-i18n-placeholder-ja="例：渋谷 / 新宿 / Shibuya / New York" 
-        data-i18n-placeholder-en="Example: Shibuya / New York / Paris / Sydney"
-      >
-
-      <button id="searchBtn" data-i18n="ja">比較する</button>
-      <button id="searchBtn" data-i18n="en">Compare</button>
-
-      <button id="geoBtn" data-i18n="ja" style="background:#333;color:#fff;">現在地から比較</button>
-      <button id="geoBtn" data-i18n="en" style="background:#333;color:#fff;">Use My Location</button>
+    <div id="wd-card-om" class="wd-api-card">
+      <div class="wd-card-title">Open-Meteo</div>
+      <div id="wd-om-content">-</div>
     </div>
 
-    <!-- 状態表示 -->
-    <div id="status" class="wd-status"></div>
-
-    <!-- 地点情報 -->
-    <div id="locationInfo" class="wd-location" style="display:none;"></div>
-
-    <!-- API結果（2カラム or 1カラム） -->
-    <div id="results" class="wd-results" style="display:none;">
-      <div class="wd-api-card" id="api1"></div>
-      <div class="wd-api-card" id="api2"></div>
-    </div>
-
-    <!-- ばらつき -->
-    <div id="diffSummary" class="wd-diff-summary" style="display:none;"></div>
-
-    <!-- 外部リンク -->
-    <section class="wd-external-links" style="margin-top:20px;">
-      <h3 data-i18n="ja">他の天気サービスで詳しく見る</h3>
-      <h3 data-i18n="en">View on Other Weather Services</h3>
-
-      <div class="wd-links-grid" id="externalLinks"></div>
-    </section>
-
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
-
-    <!-- 寄付 -->
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためご支援いただけると嬉しいです。</p>
-      <p class="nw-donate-text" data-i18n="en">If this tool is helpful, please consider supporting future development.</p>
-
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
-      </div>
-    </div>
-
-    <!-- 内部リンク -->
-    <div class="nw-links">
-      <a href="/tools/manual-finder/">ManualFinder</a> /
-      <a href="/tools/trashnavi/">TrashNavi</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a>
+    <div id="wd-card-met" class="wd-api-card">
+      <div class="wd-card-title">MET Norway</div>
+      <div id="wd-met-content">-</div>
     </div>
 
   </div>
+
+  <!-- 予報のズレ -->
+  <div id="wd-diff" class="wd-diff-box" style="display:none;"></div>
+
+  <!-- 外部リンク -->
+  <div class="wd-links">
+    <h3>他のサービスで詳しく見る</h3>
+    <div id="wd-links-grid" class="wd-links-grid"></div>
+  </div>
+
+  <!-- フッター（共通仕様 v2） -->
+  <footer class="nw-footer">
+    <div>© 2025 NicheWorks</div>
+    <div class="nw-footer-links" style="margin-top:6px;">
+      <a href="https://ofuse.me/">OFUSE</a>
+      <a href="https://ko-fi.com/">Ko-fi</a>
+      <a href="/tools/">Tools</a>
+      <a href="/about/">About</a>
+    </div>
+  </footer>
+
 </main>
 
-<footer class="nw-footer">
-  <p class="nw-footer-line">© 2025 NicheWorks — Small Web Tools for Boring Tasks</p>
-  <p class="nw-footer-line">
-    <a href="https://nicheworks.pages.dev/" target="_blank">nicheworks.pages.dev</a>
-  </p>
-</footer>
-
-<script src="./app.js"></script>
-
-<!-- 言語切替JS（共通仕様書の7-2準拠） -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const btns = document.querySelectorAll(".nw-lang-switch button");
-  const nodes = document.querySelectorAll("[data-i18n]");
-  const placeholders = document.querySelectorAll("[data-i18n-placeholder-ja]");
-
-  const browser = (navigator.language || "").toLowerCase();
-  let current = browser.startsWith("ja") ? "ja" : "en";
-
-  const apply = (lang) => {
-    // 通常テキスト
-    nodes.forEach(el => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
-
-    // placeholder
-    placeholders.forEach(input => {
-      input.placeholder = input.dataset[`i18nPlaceholder${lang.toUpperCase()}`];
-    });
-
-    btns.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
-    current = lang;
-  };
-
-  btns.forEach(btn => btn.addEventListener("click", () => apply(btn.dataset.lang)));
-  apply(current);
-});
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
