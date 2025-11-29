@@ -4,44 +4,39 @@
 ========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ----------------------------
       Element References
   ---------------------------- */
   const inputEl = document.getElementById("jsonInput");
   const outputEl = document.getElementById("mermaidOutput");
-  const convertBtns = document.querySelectorAll("#convertBtn");
-  const copyBtns = document.querySelectorAll("#copyBtn");
-  const resetBtns = document.querySelectorAll("#resetBtn");
+
+  const convertBtns = document.querySelectorAll(".convert-btn");
+  const copyBtns = document.querySelectorAll(".copy-btn");
+  const resetBtns = document.querySelectorAll(".reset-btn");
+
   const progress = document.getElementById("progress");
   const errorBox = document.getElementById("errorBox");
-  const usageLinks = document.querySelectorAll("#usageLink");
 
-  /* ----------------------------
-      Language Switch
-      (Unified JP/EN HTML)
-  ---------------------------- */
   const langButtons = document.querySelectorAll(".nw-lang-switch button");
   const i18nNodes = document.querySelectorAll("[data-i18n]");
+
   const browserLang = (navigator.language || "").toLowerCase();
   let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
 
+  /* ----------------------------
+      Lang Switch (JP / EN)
+  ---------------------------- */
   const applyLang = (lang) => {
     currentLang = lang;
 
-    // Show elements that match data-i18n
+    // data-i18n の要素を切り替え
     i18nNodes.forEach((el) => {
       el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
 
-    // Switch active state in header
-    langButtons.forEach((btn) =>
-      btn.classList.toggle("active", btn.dataset.lang === lang)
-    );
-
-    // Usage link auto-switch
-    usageLinks.forEach((link) => {
-      link.href = lang === "ja" ? "./usage.html" : "./usage-en.html";
+    // ボタンの active 切り替え
+    langButtons.forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.lang === lang);
     });
   };
 
@@ -79,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       JSON → Mermaid Core Logic
   ---------------------------- */
   function jsonToMermaid(jsonObj) {
-    let lines = ["flowchart TD"];
+    const lines = ["flowchart TD"];
     let idCounter = 0;
 
     const genId = () => `node_${idCounter++}`;
@@ -104,9 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         }
       } else {
-        // Primitive value node
-        let valId = genId();
-        let valLabel = String(node).replace(/"/g, '\\"');
+        // primitive
+        const valId = genId();
+        const valLabel = String(node).replace(/"/g, '\\"');
         lines.push(`  ${valId}["${valLabel}"]`);
         lines.push(`  ${currentId} --> ${valId}`);
       }
@@ -119,20 +114,23 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ----------------------------
       Convert (JSON → Mermaid)
   ---------------------------- */
-  convertBtns.forEach(btn => {
+  convertBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       hideError();
       outputEl.value = "";
 
-      let jsonText = inputEl.value.trim();
+      const jsonText = inputEl.value.trim();
       if (!jsonText) {
-        showError(currentLang === "ja"
-          ? "JSONが入力されていません。"
-          : "No JSON provided.");
+        showError(
+          currentLang === "ja"
+            ? "JSONが入力されていません。"
+            : "No JSON provided."
+        );
         return;
       }
 
-      btn.disabled = true;
+      // 連打防止
+      convertBtns.forEach((b) => (b.disabled = true));
       showProgress();
 
       setTimeout(() => {
@@ -141,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const mermaid = jsonToMermaid(parsed);
           outputEl.value = mermaid;
 
-          // Scroll to output
+          // 出力欄へスクロール
           outputEl.scrollIntoView({ behavior: "smooth" });
         } catch (e) {
           showError(
@@ -149,11 +147,10 @@ document.addEventListener("DOMContentLoaded", () => {
               ? "JSONの構文が正しくありません。"
               : "Invalid JSON format."
           );
+        } finally {
+          convertBtns.forEach((b) => (b.disabled = false));
+          hideProgress();
         }
-
-        btn.disabled = false;
-        hideProgress();
-
       }, 120);
     });
   });
@@ -161,24 +158,33 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ----------------------------
       Copy Output
   ---------------------------- */
-  copyBtns.forEach(btn => {
+  copyBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const text = outputEl.value;
       if (!text) return;
 
-      navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = currentLang === "ja" ? "コピー完了" : "Copied!";
-        setTimeout(() => {
-          btn.textContent = currentLang === "ja" ? "コピー" : "Copy";
-        }, 1200);
-      });
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          btn.textContent = currentLang === "ja" ? "コピー完了" : "Copied!";
+          setTimeout(() => {
+            btn.textContent = currentLang === "ja" ? "コピー" : "Copy";
+          }, 1200);
+        })
+        .catch(() => {
+          showError(
+            currentLang === "ja"
+              ? "クリップボードにコピーできませんでした。"
+              : "Failed to copy to clipboard."
+          );
+        });
     });
   });
 
   /* ----------------------------
       Reset (All Clear)
   ---------------------------- */
-  resetBtns.forEach(btn => {
+  resetBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       inputEl.value = "";
       outputEl.value = "";
@@ -187,5 +193,4 @@ document.addEventListener("DOMContentLoaded", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
-
 });
