@@ -1,339 +1,360 @@
-/* =========================================================
- * WeatherDiff (MVP) – app.js
- * ---------------------------------------------------------
- * - Address → Lat/Lng (Nominatim)
- * - Weather APIs: Open-Meteo + MET Norway
- * - Today / Tomorrow summary
- * - Diff summary (temp / rain / wind)
- * - JP/EN automatic text output
- * - External links (Google / AccuWeather / Weather.com / 日本向け)
- * - Geolocation support
- * ========================================================= */
+/* ============================================================
+   WeatherDiff MVP - app.js
+   - 住所検索 → 緯度経度（Nominatim）
+   - 現在地取得 → 逆ジオコーディング
+   - Open-Meteo / MET Norway
+   - 今日 & 明日の比較
+   - 予報のズレ算出
+   - 外部リンク：Google / Weather.com / AccuWeather
+   - 国別：日本（気象庁）＋ アメリカ（NWS）
+   - JP / EN 切替
+============================================================ */
 
-const qs = (s) => document.querySelector(s);
-const qsa = (s) => document.querySelectorAll(s);
+/* =============================
+   DOM
+============================= */
+const inputEl = document.getElementById("wd-input");
+const searchBtn = document.getElementById("wd-search-btn");
+const geoBtn = document.getElementById("wd-geo-btn");
 
-// -------------------------------
-// i18n helper
-// -------------------------------
-const getCurrentLang = () => {
-  const active = qs(".nw-lang-switch button.active");
-  return active ? active.dataset.lang : "ja";
+const statusBox = document.getElementById("wd-status");
+const locationBox = document.getElementById("wd-location");
+const resultsBox = document.getElementById("wd-results");
+const diffBox = document.getElementById("wd-diff");
+const linksGrid = document.getElementById("wd-links-grid");
+
+const omContent = document.getElementById("wd-om-content");
+const metContent = document.getElementById("wd-met-content");
+
+/* =============================
+   言語管理
+============================= */
+let LANG = "ja";
+
+const text = {
+  ja: {
+    searching: "地点を検索中…",
+    fetching: "天気を取得中…",
+    done: "比較完了",
+    noResult: "地点が見つかりませんでした。",
+    today: "今日",
+    tomorrow: "明日",
+    diffTitle: "予報のズレ（比較結果）",
+    temp: "気温",
+    rain: "降水",
+    wind: "風",
+    almostSame: "ほぼ一致",
+    slightDiff: "やや差あり",
+    largeDiff: "大きな差あり",
+    jpSites: "日本向け天気サイト",
+    usSites: "アメリカの公式気象サービス（NWS）",
+  },
+  en: {
+    searching: "Searching location…",
+    fetching: "Fetching weather data…",
+    done: "Done!",
+    noResult: "Location not found.",
+    today: "Today",
+    tomorrow: "Tomorrow",
+    diffTitle: "Forecast Differences",
+    temp: "Temperature",
+    rain: "Precipitation",
+    wind: "Wind",
+    almostSame: "Almost same",
+    slightDiff: "Slight difference",
+    largeDiff: "Large difference",
+    jpSites: "Japan Local Sites",
+    usSites: "US Official Weather (NWS)",
+  },
 };
 
-// -------------------------------
-// 小ユーティリティ
-// -------------------------------
-const formatTemp = (t) => (t === null || t === undefined ? "-" : `${Math.round(t)}℃`);
-const formatWind = (w) => (w === null || w === undefined ? "-" : `${w} m/s`);
-
-const windDir = (deg) => {
-  if (deg === null || deg === undefined) return "-";
-  const dirs = ["北", "北北東", "北東", "東北東", "東", "東南東", "南東", "南南東", "南", "南南西", "南西", "西南西", "西", "西北西", "北西", "北北西"];
-  const dirsEN = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
-  const lang = getCurrentLang();
-  const idx = Math.round(deg / 22.5) % 16;
-  return lang === "ja" ? dirs[idx] : dirsEN[idx];
-};
-
-// -------------------------------
-// API: 住所 → 緯度経度（Nominatim）
-// -------------------------------
-async function fetchGeocode(query) {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`;
-  const res = await fetch(url, {
-    headers: {
-      "Accept-Language": "en" // Nominatimは英語返しのほうが扱いやすい
-    }
+document.querySelectorAll(".wd-lang button").forEach((b) => {
+  b.addEventListener("click", () => {
+    LANG = b.dataset.lang;
+    runSearch(); // 言語切替後も結果を更新
   });
-  const data = await res.json();
-  if (!data || !data.length) return null;
+});
+
+/* =============================
+   ユーティリティ
+============================= */
+
+// シンプルな天気アイコン（Open-Meteo の "weathercode" 使用）
+function iconFromCode(code) {
+  if ([0].includes(code)) return "☀";
+  if ([1, 2].includes(code)) return "🌤";
+  if ([3].includes(code)) return "☁";
+  if ([51, 53, 55, 56, 57].includes(code)) return "🌦";
+  if ([61, 63, 65, 80, 81, 82].includes(code)) return "🌧";
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return "❄";
+  if ([95, 96, 99].includes(code)) return "⛈";
+  return "☁";
+}
+
+// Nominatimで住所→緯度経度
+async function geocode(query) {
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+    query
+  )}`;
+  const r = await fetch(url);
+  const data = await r.json();
+  if (data.length === 0) return null;
+
+  const d = data[0];
   return {
-    lat: parseFloat(data[0].lat),
-    lon: parseFloat(data[0].lon),
-    display: data[0].display_name
+    lat: parseFloat(d.lat),
+    lon: parseFloat(d.lon),
+    display: d.display_name,
+    country: d.address?.country_code?.toUpperCase() || "",
   };
 }
 
-// -------------------------------
-// API: Open-Meteo（今日・明日）
-// -------------------------------
+// 緯度経度→逆ジオコーディング
+async function reverseGeocode(lat, lon) {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+  const r = await fetch(url);
+  const d = await r.json();
+  return {
+    display: d.display_name,
+    country: d.address?.country_code?.toUpperCase() || "",
+  };
+}
+
+/* =============================
+   天気API - Open-Meteo
+============================= */
 async function fetchOpenMeteo(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max&timezone=auto`;
-  const res = await fetch(url);
-  const data = await res.json();
+  const url =
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+    `&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&windspeed_unit=ms&timezone=auto`;
 
-  if (!data.daily) return null;
-
-  return {
-    today: {
-      tMax: data.daily.temperature_2m_max[0],
-      tMin: data.daily.temperature_2m_min[0],
-      rain: data.daily.precipitation_probability_max[0],
-      wind: data.daily.windspeed_10m_max[0]
-    },
-    tomorrow: {
-      tMax: data.daily.temperature_2m_max[1],
-      tMin: data.daily.temperature_2m_min[1],
-      rain: data.daily.precipitation_probability_max[1],
-      wind: data.daily.windspeed_10m_max[1]
-    }
-  };
+  const r = await fetch(url);
+  return await r.json();
 }
 
-// -------------------------------
-// API: MET Norway (今日・明日)
-// -------------------------------
-async function fetchMetNorway(lat, lon) {
+/* =============================
+   天気API - MET Norway
+============================= */
+async function fetchMET(lat, lon) {
   const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
-  const res = await fetch(url, {
-    headers: { "User-Agent": "WeatherDiff/1.0" }
+
+  const r = await fetch(url, {
+    headers: { "User-Agent": "WeatherDiff (nicheworks)" },
   });
-  const data = await res.json();
-  if (!data.properties || !data.properties.timeseries) return null;
+  return await r.json();
+}
 
-  // MET Norwayはhourly → 今日と明日の平均/最大でざっくり要約
-  const ts = data.properties.timeseries;
-  const now = new Date();
-  const today = now.getDate();
-  const tomorrow = (new Date(now.getTime() + 24*3600*1000)).getDate();
+/* =============================
+   MET → 今日/明日の簡易抽出
+============================= */
+function extractMET(data) {
+  const timeseries = data.properties.timeseries;
+  if (!timeseries) return null;
 
-  const todayVals = [];
-  const tomorrowVals = [];
-
-  for (const row of ts) {
-    const t = new Date(row.time);
-    const date = t.getDate();
-    const d = row.data;
-    if (!d || !d.instant) continue;
-
-    const temp = d.instant.details.air_temperature;
-    const wind = d.instant.details.wind_speed;
-    const rain = d.next_1_hours?.details?.probability_of_precipitation
-      ?? d.next_6_hours?.details?.probability_of_precipitation
-      ?? null;
-
-    const pack = { temp, wind, rain };
-
-    if (date === today) todayVals.push(pack);
-    if (date === tomorrow) tomorrowVals.push(pack);
-  }
-
-  const avg = (arr, key) => {
-    const vals = arr.map(e => e[key]).filter(v => v !== null && v !== undefined);
-    if (!vals.length) return null;
-    return vals.reduce((a,b) => a+b, 0) / vals.length;
-  };
+  const today = timeseries[0];
+  const tomorrow = timeseries.find((t) =>
+    t.time.includes("T12") // ざっくり 12:00 想定
+  );
 
   return {
     today: {
-      tMax: avg(todayVals, "temp"), 
-      tMin: avg(todayVals, "temp"), // METはざっくりで同じ扱い
-      rain: avg(todayVals, "rain"),
-      wind: avg(todayVals, "wind")
+      temp: today.data.instant.details.air_temperature,
+      rain: today.data.next_6_hours?.details?.precipitation_amount || 0,
+      wind: today.data.instant.details.wind_speed,
+      code: today.data.next_1_hours?.summary?.symbol_code || "",
     },
     tomorrow: {
-      tMax: avg(tomorrowVals, "temp"),
-      tMin: avg(tomorrowVals, "temp"),
-      rain: avg(tomorrowVals, "rain"),
-      wind: avg(tomorrowVals, "wind")
-    }
+      temp: tomorrow?.data.instant.details.air_temperature || null,
+      rain: tomorrow?.data.next_6_hours?.details?.precipitation_amount || 0,
+      wind: tomorrow?.data.instant.details.wind_speed || null,
+      code: tomorrow?.data.next_1_hours?.summary?.symbol_code || "",
+    },
   };
 }
 
-// -------------------------------
-// 差分テキスト生成
-// -------------------------------
-function buildDiffText(api1, api2) {
-  const lang = getCurrentLang();
+/* =============================
+   差分判定
+============================= */
+function diffValue(a, b) {
+  const d = Math.abs(a - b);
+  if (d <= 1) return text[LANG].almostSame;
+  if (d <= 3) return text[LANG].slightDiff;
+  return text[LANG].largeDiff;
+}
 
-  const diffVal = (v1, v2) => {
-    if (v1 == null || v2 == null) return "-";
-    return Math.abs(Math.round(v1) - Math.round(v2));
-  };
+/* =============================
+   外部リンク生成
+============================= */
+function buildLinks(lat, lon, country) {
+  const links = [];
 
-  const dT = diffVal(api1.today.tMax, api2.today.tMax);
-  const dR = diffVal(api1.today.rain, api2.today.rain);
-  const dW = diffVal(api1.today.wind, api2.today.wind);
+  // 1) 共通3種
+  links.push({
+    name: "Google Weather",
+    url: `https://www.google.com/search?q=weather+${lat},${lon}`,
+  });
 
-  const level = (d, type) => {
-    if (d === "-") return lang === "ja" ? "データ不足" : "no data";
-    if (d <= 1) return lang === "ja" ? "ほぼ一致" : "almost identical";
-    if (d <= 3) return lang === "ja" ? "少し差あり" : "slightly different";
-    return lang === "ja" ? "大きな差" : "large difference";
-  };
+  links.push({
+    name: "Weather.com",
+    url: `https://weather.com/weather/today/l/${lat},${lon}`,
+  });
 
-  if (lang === "ja") {
-    return `
-      <h3>予報のばらつき</h3>
-      <ul>
-        <li>最高気温：差 ${dT} → ${level(dT)}</li>
-        <li>降水：差 ${dR} → ${level(dR)}</li>
-        <li>風速：差 ${dW} → ${level(dW)}</li>
-      </ul>
-    `;
+  links.push({
+    name: "AccuWeather",
+    url: `https://www.accuweather.com/en/search-locations?query=${lat},${lon}`,
+  });
+
+  // 2) 日本
+  if (country === "JP") {
+    links.push({
+      name: "気象庁",
+      url: `https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=130000`,
+    });
+    links.push({
+      name: "tenki.jp（検索）",
+      url: `https://tenki.jp/search/?keyword=${lat},${lon}`,
+    });
+    links.push({
+      name: "Yahoo天気（検索）",
+      url: `https://weather.yahoo.co.jp/weather/search/?p=${lat},${lon}`,
+    });
+    links.push({
+      name: "Weathernews（検索）",
+      url: `https://weathernews.jp/search/?keyword=${lat},${lon}`,
+    });
+  }
+
+  // 3) アメリカ（NWS）
+  if (country === "US") {
+    links.push({
+      name: "NWS / NOAA（ポイント）",
+      url: `https://api.weather.gov/points/${lat},${lon}`,
+    });
+  }
+
+  linksGrid.innerHTML = links
+    .map(
+      (l) =>
+        `<a class="wd-link" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.name}</a>`
+    )
+    .join("");
+}
+
+/* =============================
+   メイン処理
+============================= */
+async function runSearch(coord) {
+  const query = inputEl.value.trim();
+
+  // 引数に lat/lon があれば直接使う（現在地対応）
+  let lat, lon, display, country;
+
+  statusBox.textContent = text[LANG].searching;
+
+  if (coord) {
+    lat = coord.lat;
+    lon = coord.lon;
+    const rev = await reverseGeocode(lat, lon);
+    display = rev.display;
+    country = rev.country;
   } else {
-    return `
-      <h3>Forecast Differences</h3>
-      <ul>
-        <li>High Temp: diff ${dT} → ${level(dT)}</li>
-        <li>Precipitation: diff ${dR} → ${level(dR)}</li>
-        <li>Wind Speed: diff ${dW} → ${level(dW)}</li>
-      </ul>
-    `;
+    if (!query) return;
+
+    const g = await geocode(query);
+    if (!g) {
+      statusBox.textContent = text[LANG].noResult;
+      return;
+    }
+    lat = g.lat;
+    lon = g.lon;
+    display = g.display;
+    country = g.country;
   }
-}
 
-// -------------------------------
-// 外部リンク生成
-// -------------------------------
-function buildExternalLinks(lat, lon, display) {
-  const urlGoogle = `https://www.google.com/search?q=weather+${encodeURIComponent(display)}`;
-  const urlAccu = `https://www.accuweather.com/en/search-locations?query=${encodeURIComponent(display)}`;
-  const urlWcom = `https://weather.com/weather/today/l/${lat},${lon}`;
-
-  const lang = getCurrentLang();
-  const jaMode = lang === "ja";
-  const text1 = jaMode ? "Google天気で見る" : "View on Google Weather";
-  const text2 = jaMode ? "AccuWeatherで見る" : "View on AccuWeather";
-  const text3 = jaMode ? "Weather.comで見る" : "View on Weather.com";
-
-  let html = `
-    <a class="wd-link" href="${urlGoogle}" target="_blank">${text1}</a>
-    <a class="wd-link" href="${urlAccu}" target="_blank">${text2}</a>
-    <a class="wd-link" href="${urlWcom}" target="_blank">${text3}</a>
+  // 地点情報表示
+  locationBox.style.display = "block";
+  locationBox.innerHTML = `
+    <strong>${display}</strong><br>
+    lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}<br>
+    country: ${country}
   `;
 
-  // 日本向けリンク（日本の座標範囲で出す）
-  if (lat >= 20 && lat <= 46 && lon >= 122 && lon <= 154) {
-    html += `
-      <hr>
-      <a class="wd-link" href="https://www.jma.go.jp/" target="_blank">気象庁</a>
-      <a class="wd-link" href="https://tenki.jp/" target="_blank">tenki.jp</a>
-      <a class="wd-link" href="https://weather.yahoo.co.jp/weather/" target="_blank">Yahoo天気</a>
-      <a class="wd-link" href="https://weathernews.jp/" target="_blank">Weathernews</a>
-    `;
-  }
+  statusBox.textContent = text[LANG].fetching;
 
-  return html;
-}
+  // API fetch
+  const om = await fetchOpenMeteo(lat, lon);
+  const met = await fetchMET(lat, lon);
+  const metExt = extractMET(met);
 
-// -------------------------------
-// APIカード表示
-// -------------------------------
-function renderApiCard(id, label, data) {
-  const el = qs(id);
-  const lang = getCurrentLang();
-  const tToday = lang === "ja" ? "今日" : "Today";
-  const tTomorrow = lang === "ja" ? "明日" : "Tomorrow";
+  // Open-Meteo（今日/明日）
+  const omToday = {
+    max: om.daily.temperature_2m_max[0],
+    min: om.daily.temperature_2m_min[0],
+    rain: om.daily.precipitation_probability_max[0],
+    code: om.daily.weathercode[0],
+  };
+  const omTomorrow = {
+    max: om.daily.temperature_2m_max[1],
+    min: om.daily.temperature_2m_min[1],
+    rain: om.daily.precipitation_probability_max[1],
+    code: om.daily.weathercode[1],
+  };
 
-  el.innerHTML = `
-    <h3>${label}</h3>
-
-    <div class="wd-day-block">
-      <strong>${tToday}</strong><br>
-      ${formatTemp(data.today.tMax)} / ${formatTemp(data.today.tMin)}<br>
-      ${lang === "ja" ? "降水" : "Rain"}: ${data.today.rain == null ? "-" : Math.round(data.today.rain) + "%"}<br>
-      ${lang === "ja" ? "風" : "Wind"}: ${formatWind(data.today.wind)} ${windDir(data.today.windDir)}
-    </div>
-
-    <div class="wd-day-block">
-      <strong>${tTomorrow}</strong><br>
-      ${formatTemp(data.tomorrow.tMax)} / ${formatTemp(data.tomorrow.tMin)}<br>
-      ${lang === "ja" ? "降水" : "Rain"}: ${data.tomorrow.rain == null ? "-" : Math.round(data.tomorrow.rain) + "%"}<br>
-      ${lang === "ja" ? "風" : "Wind"}: ${formatWind(data.tomorrow.wind)} ${windDir(data.tomorrow.windDir)}
-    </div>
+  omContent.innerHTML = `
+    ${iconFromCode(omToday.code)} ${text[LANG].today}：${omToday.max}℃ / ${omToday.min}℃<br>
+    降水：${omToday.rain}%<br>
+    風：-<br><br>
+    ${iconFromCode(omTomorrow.code)} ${text[LANG].tomorrow}：${omTomorrow.max}℃ / ${omTomorrow.min}℃<br>
+    降水：${omTomorrow.rain}%<br>
   `;
-}
 
-// -------------------------------
-// メイン処理
-// -------------------------------
-async function runSearch(lat, lon, label) {
-  qs("#status").textContent = getCurrentLang() === "ja" ? "天気を取得中…" : "Fetching weather data…";
-  qs("#results").style.display = "none";
-  qs("#diffSummary").style.display = "none";
+  // MET Norway
+  metContent.innerHTML = `
+    ${text[LANG].today}：${metExt.today.temp}℃<br>
+    降水：${metExt.today.rain}mm<br>
+    風：${metExt.today.wind} m/s<br><br>
+    ${text[LANG].tomorrow}：${metExt.tomorrow.temp}℃<br>
+    降水：${metExt.tomorrow.rain}mm<br>
+    風：${metExt.tomorrow.wind} m/s<br>
+  `;
 
-  const [om, met] = await Promise.all([
-    fetchOpenMeteo(lat, lon),
-    fetchMetNorway(lat, lon)
-  ]);
-
-  if (!om || !met) {
-    qs("#status").textContent = getCurrentLang() === "ja" ? "データ取得に失敗しました" : "Failed to fetch data";
-    return;
-  }
-
-  // カード表示
-  renderApiCard("#api1", "Open-Meteo", om);
-  renderApiCard("#api2", "MET Norway", met);
+  resultsBox.style.display = "flex";
 
   // 差分
-  qs("#diffSummary").innerHTML = buildDiffText(om, met);
+  const diffTemp = diffValue(omToday.max, metExt.today.temp);
+  const diffRain = diffValue(omToday.rain, metExt.today.rain);
+  const diffWind = diffValue(0, metExt.today.wind); // Open-Meteoに風速ないので簡易
 
-  // 地点情報
-  qs("#locationInfo").style.display = "";
-  qs("#locationInfo").innerHTML = `
-    <h2>${label}</h2>
-    <div>${getCurrentLang() === "ja" ? "緯度" : "Lat"}: ${lat}, 
-         ${getCurrentLang() === "ja" ? "経度" : "Lon"}: ${lon}</div>
+  diffBox.style.display = "block";
+  diffBox.innerHTML = `
+    <strong>${text[LANG].diffTitle}</strong><br><br>
+    ・${text[LANG].temp}：${diffTemp}<br>
+    ・${text[LANG].rain}：${diffRain}<br>
+    ・${text[LANG].wind}：${diffWind}<br>
   `;
 
-  // 外部リンク
-  qs("#externalLinks").innerHTML = buildExternalLinks(lat, lon, label);
+  // 外部リンク生成
+  buildLinks(lat, lon, country);
 
-  qs("#results").style.display = "";
-  qs("#diffSummary").style.display = "";
-  qs("#status").textContent = "";
+  statusBox.textContent = text[LANG].done;
 }
 
-// -------------------------------
-// イベント：住所検索
-// -------------------------------
-qs("#searchBtn[data-i18n='ja']")?.addEventListener("click", startSearch);
-qs("#searchBtn[data-i18n='en']")?.addEventListener("click", startSearch);
+/* =============================
+   ボタン処理
+============================= */
+searchBtn.addEventListener("click", () => runSearch());
 
-async function startSearch() {
-  const q = qs("#locationInput").value.trim();
-  if (!q) return;
-
-  qs("#status").textContent = getCurrentLang() === "ja" ? "地点を検索中…" : "Searching location…";
-
-  const geo = await fetchGeocode(q);
-  if (!geo) {
-    qs("#status").textContent = getCurrentLang() === "ja" ? "場所が見つかりません" : "Location not found";
-    return;
-  }
-
-  runSearch(geo.lat, geo.lon, geo.display);
-}
-
-// -------------------------------
-// イベント：現在地検索
-// -------------------------------
-qs("#geoBtn[data-i18n='ja']")?.addEventListener("click", useGeo);
-qs("#geoBtn[data-i18n='en']")?.addEventListener("click", useGeo);
-
-function useGeo() {
-  const lang = getCurrentLang();
-  qs("#status").textContent = lang === "ja" ? "現在地を取得中…" : "Getting location…";
-
-  navigator.geolocation.getCurrentPosition(async (pos) => {
-    const lat = pos.coords.latitude;
-    const lon = pos.coords.longitude;
-
-    // 逆ジオコーディング（大雑把）
-    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
-    const res = await fetch(url, {
-      headers: { "Accept-Language": "en" }
-    });
-    const data = await res.json();
-
-    const label = data.display_name || (lang === "ja" ? "現在地" : "Current Location");
-    runSearch(lat, lon, label);
-
-  }, () => {
-    qs("#status").textContent = lang === "ja" ? "位置情報が取得できません" : "Could not get location";
-  });
-}
-
+geoBtn.addEventListener("click", () => {
+  statusBox.textContent = "位置情報取得中…";
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      runSearch({
+        lat: pos.coords.latitude,
+        lon: pos.coords.longitude,
+      });
+    },
+    () => {
+      statusBox.textContent = "位置情報が取得できませんでした。";
+    }
+  );
+});
