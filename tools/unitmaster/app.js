@@ -269,6 +269,20 @@ function applyCategory(cat) {
   fromSel.innerHTML = "";
   toSel.innerHTML = "";
 
+  const t = i18n[currentLang];
+
+  // モバイル用ドロップダウンの表示名を取得
+  const ddMap = {
+    length: t.dd_length,
+    weight: t.dd_weight,
+    temp: t.dd_temp,
+    volume: t.dd_volume,
+    area: t.dd_area,
+    speed: t.dd_speed,
+    pressure: t.dd_pressure
+  };
+
+  // option ラベルは ddMap を使い、単位名の表示崩れを防ぐ
   if (cat === "temp") {
     ["c", "f", "k"].forEach(u => {
       fromSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
@@ -280,6 +294,12 @@ function applyCategory(cat) {
       fromSel.innerHTML += `<option value="${u}">${u}</option>`;
       toSel.innerHTML += `<option value="${u}">${u}</option>`;
     }
+  }
+
+  // ★ スマホ用カテゴリドロップダウンの文言を applyCategory 側でも更新（バグ修正の核心）
+  if (categorySelect && ddMap[cat]) {
+    const opt = categorySelect.querySelector(`option[value="${cat}"]`);
+    if (opt) opt.textContent = ddMap[cat];
   }
 
   calculate();
