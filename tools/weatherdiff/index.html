@@ -5,154 +5,197 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>WeatherDiff | 天気予報のズレ比較ツール | NicheWorks</title>
-  <meta name="description" content="Open-Meteo と MET Norway の天気予報を比較してズレを可視化する無料ツール。気温・降水量・風を予測精度ごとにチェックできます。">
+  <meta name="description" content="Open-Meteo と MET Norway の天気予報を比較して、気温・降水・風のズレを可視化する軽量ツールです。">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="nw-header">
-  <h1>WeatherDiff</h1>
-  <p class="nw-subtitle">天気予報のズレ比較</p>
-
-  <div class="lang-switch">
-    <button id="btnJP">JP</button>
-    <button id="btnEN">EN</button>
+<header class="wd-header">
+  <div class="wd-header-inner">
+    <div class="wd-title-block">
+      <h1 class="wd-title">WeatherDiff</h1>
+      <p class="wd-subtitle" id="subtitle">天気予報のズレ比較ツール</p>
+    </div>
+    <div class="wd-lang-switch">
+      <button id="langJP" class="wd-lang-btn is-active">JP</button>
+      <button id="langEN" class="wd-lang-btn">EN</button>
+    </div>
   </div>
 </header>
 
-<main class="nw-main">
+<main class="wd-main">
 
-  <!-- ▼ 地点入力 -->
-  <div class="section-block">
-    <label class="input-label" id="label-location">地点を入力</label>
+  <!-- 入力エリア -->
+  <section class="wd-section wd-input-section">
+    <label for="locationInput" class="wd-label" id="labelLocation">地点を入力</label>
 
-    <div class="pc-input-row">
-      <input id="locationInput" type="text" placeholder="千葉市" autocomplete="off">
-      <button id="btnCompare" class="primary">比較する</button>
-      <button id="btnGeo" class="secondary">現在地から比較</button>
+    <div class="wd-input-row">
+      <input
+        id="locationInput"
+        type="text"
+        placeholder="千葉市 / Shibuya / New York"
+        autocomplete="off"
+      />
+      <button id="btnCompare" class="wd-btn primary">比較する</button>
+      <button id="btnGeo" class="wd-btn ghost">現在地から比較</button>
     </div>
-  </div>
 
-  <!-- ▼ プログレスバー＋ステータス -->
-  <div id="progressArea" class="progress-area hidden">
-    <div class="progress-bar"></div>
-    <div id="progressText" class="progress-text">処理中…</div>
-  </div>
+    <p id="errorText" class="wd-error" aria-live="polite"></p>
 
-  <!-- ▼ 結果 -->
-  <section id="resultSection" class="hidden">
+    <!-- プログレスバー＋ステータス -->
+    <div id="progressArea" class="wd-progress hidden">
+      <div class="wd-progress-bar"></div>
+      <div id="progressText" class="wd-progress-text">処理中…</div>
+    </div>
+  </section>
 
-    <!-- 注意ボックス（赤線） -->
-    <div class="warning-box" id="warnBox">
+  <!-- 結果エリア -->
+  <section id="resultSection" class="wd-section wd-result hidden">
+
+    <!-- 赤枠の注意ボックス -->
+    <div class="wd-warning">
       <p id="warnText">
         この結果は複数の天気APIを比較した参考情報です。必ず各サービスの公式予報も確認してください。
       </p>
     </div>
 
-    <!-- ▼ ロケーション -->
-    <div class="location-header">
-      <div class="location-main">
+    <!-- ロケーション＋リセット -->
+    <div class="wd-location-header">
+      <div class="wd-location-main">
         <h2 id="locName">-</h2>
         <p id="locMeta">-</p>
       </div>
-      <button id="btnReset" class="reset-btn">リセット</button>
+      <button id="btnReset" class="wd-btn reset">リセット</button>
     </div>
 
-    <!-- ▼処理時間 -->
-    <p id="processTime" class="process-time"></p>
+    <!-- 処理時間 -->
+    <p id="processTime" class="wd-process-time"></p>
 
-    <!-- ▼ Open-Meteo -->
-    <div class="weather-card">
-      <h3>Open-Meteo</h3>
+    <!-- APIカード 2枚（Open-Meteo / MET Norway） -->
+    <div class="wd-api-grid">
+      <!-- Open-Meteo -->
+      <article class="wd-card">
+        <h3 class="wd-card-title">Open-Meteo</h3>
 
-      <div class="weather-row">
-        <div class="weather-icon"><span id="omIconToday">☀️</span></div>
-        <div class="weather-info">
-          <div id="omTodayTemp">今日: -</div>
-          <div id="omTodayRain">降水: -</div>
-          <div id="omTodayWind">風: -</div>
+        <div class="wd-weather-row">
+          <div class="wd-weather-icon">
+            <span id="omIconToday">☀️</span>
+          </div>
+          <div class="wd-weather-info">
+            <div id="omTodayTemp">今日: -</div>
+            <div id="omTodayRain">降水: -</div>
+            <div id="omTodayWind">風: -</div>
+          </div>
         </div>
-      </div>
 
-      <div class="weather-row">
-        <div class="weather-icon"><span id="omIconTomorrow">☀️</span></div>
-        <div class="weather-info">
-          <div id="omTomorrowTemp">明日: -</div>
-          <div id="omTomorrowRain">降水: -</div>
-          <div id="omTomorrowWind">風: -</div>
+        <div class="wd-weather-row">
+          <div class="wd-weather-icon">
+            <span id="omIconTomorrow">☀️</span>
+          </div>
+          <div class="wd-weather-info">
+            <div id="omTomorrowTemp">明日: -</div>
+            <div id="omTomorrowRain">降水: -</div>
+            <div id="omTomorrowWind">風: -</div>
+          </div>
         </div>
-      </div>
+      </article>
+
+      <!-- MET Norway -->
+      <article class="wd-card">
+        <h3 class="wd-card-title">MET Norway</h3>
+
+        <div class="wd-weather-row">
+          <div class="wd-weather-icon">
+            <span id="mnIconToday">☀️</span>
+          </div>
+          <div class="wd-weather-info">
+            <div id="mnTodayTemp">今日: -</div>
+            <div id="mnTodayRain">降水: -</div>
+            <div id="mnTodayWind">風: -</div>
+          </div>
+        </div>
+
+        <div class="wd-weather-row">
+          <div class="wd-weather-icon">
+            <span id="mnIconTomorrow">☀️</span>
+          </div>
+          <div class="wd-weather-info">
+            <div id="mnTomorrowTemp">明日: -</div>
+            <div id="mnTomorrowRain">降水: -</div>
+            <div id="mnTomorrowWind">風: -</div>
+          </div>
+        </div>
+      </article>
     </div>
 
-    <!-- ▼ MET Norway -->
-    <div class="weather-card">
-      <h3>MET Norway</h3>
+    <!-- 予報のズレ（今日・明日 / 4項目） -->
+    <article class="wd-card wd-diff-card">
+      <h3 class="wd-card-title" id="diffTitle">予報のズレ（比較結果）</h3>
 
-      <div class="weather-row">
-        <div class="weather-icon"><span id="mnIconToday">☀️</span></div>
-        <div class="weather-info">
-          <div id="mnTodayTemp">今日: -</div>
-          <div id="mnTodayRain">降水: -</div>
-          <div id="mnTodayWind">風: -</div>
-        </div>
-      </div>
-
-      <div class="weather-row">
-        <div class="weather-icon"><span id="mnIconTomorrow">☀️</span></div>
-        <div class="weather-info">
-          <div id="mnTomorrowTemp">明日: -</div>
-          <div id="mnTomorrowRain">降水: -</div>
-          <div id="mnTomorrowWind">風: -</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ▼ 予報のズレ（詳細比較） -->
-    <div class="diff-card">
-      <h3>予報のズレ（比較結果）</h3>
-
-      <div class="diff-table">
-
-        <div class="diff-block">
-          <h4>今日</h4>
-          <p id="diffTodayTemp">・気温: -</p>
+      <div class="wd-diff-grid">
+        <!-- 今日 -->
+        <div class="wd-diff-day">
+          <h4 id="diffTodayHeading">今日</h4>
+          <p id="diffTodayMax">・最高気温: -</p>
+          <p id="diffTodayMin">・最低気温: -</p>
           <p id="diffTodayRain">・降水: -</p>
           <p id="diffTodayWind">・風: -</p>
         </div>
 
-        <div class="diff-block">
-          <h4>明日</h4>
-          <p id="diffTomorrowTemp">・気温: -</p>
+        <!-- 明日 -->
+        <div class="wd-diff-day">
+          <h4 id="diffTomorrowHeading">明日</h4>
+          <p id="diffTomorrowMax">・最高気温: -</p>
+          <p id="diffTomorrowMin">・最低気温: -</p>
           <p id="diffTomorrowRain">・降水: -</p>
           <p id="diffTomorrowWind">・風: -</p>
         </div>
-
       </div>
-    </div>
+    </article>
 
-    <!-- ▼ 他サービス -->
-    <div class="external-links">
-      <a href="https://www.google.com/search?q=weather" target="_blank">Google Weather</a>
-      <a href="https://weather.com" target="_blank">Weather.com</a>
-      <a href="https://www.accuweather.com" target="_blank">AccuWeather</a>
-      <a href="https://www.jma.go.jp/bosai/forecast/" target="_blank">気象庁</a>
-      <a href="https://tenki.jp" target="_blank">tenki.jp</a>
-      <a href="https://weather.yahoo.co.jp/weather/" target="_blank">Yahoo天気</a>
-      <a href="https://weathernews.jp" target="_blank">Weathernews</a>
-    </div>
+    <!-- 他サービスリンク -->
+    <section class="wd-section">
+      <h3 class="wd-card-title" id="otherServicesTitle">他のサービスで詳しく見る</h3>
+
+      <div class="wd-links-grid">
+        <a id="linkGoogle" href="https://www.google.com/search?q=weather" target="_blank" rel="noopener noreferrer">
+          Google Weather
+        </a>
+        <a id="linkWeatherCom" href="https://weather.com" target="_blank" rel="noopener noreferrer">
+          Weather.com
+        </a>
+        <a id="linkAccu" href="https://www.accuweather.com" target="_blank" rel="noopener noreferrer">
+          AccuWeather
+        </a>
+        <a id="linkJMA" href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener noreferrer">
+          気象庁（日本）
+        </a>
+        <a id="linkTenki" href="https://tenki.jp" target="_blank" rel="noopener noreferrer">
+          tenki.jp
+        </a>
+        <a id="linkYahooWeather" href="https://weather.yahoo.co.jp/weather/" target="_blank" rel="noopener noreferrer">
+          Yahoo天気
+        </a>
+        <a id="linkWN" href="https://weathernews.jp" target="_blank" rel="noopener noreferrer">
+          Weathernews
+        </a>
+      </div>
+    </section>
 
   </section>
 </main>
 
-<footer class="nw-footer">
-  <div class="nw-links">
-    <a href="/tools/manualfinder/">ManualFinder</a> /
-    <a href="/tools/trashnavi/">TrashNavi</a> /
+<footer class="wd-footer">
+  <p class="wd-footer-copy">© NicheWorks</p>
+  <div class="wd-footer-links">
+    <a href="/tools/manualfinder/">ManualFinder</a>
+    <span>/</span>
+    <a href="/tools/trashnavi/">TrashNavi</a>
+    <span>/</span>
     <a href="/tools/logformatter/">LogFormatter</a>
   </div>
-  <p>© NicheWorks</p>
 </footer>
 
 <script src="app.js"></script>
