@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>JSON → Mermaid変換｜JSON2Mermaid Lite | NicheWorks</title>
-  <meta name="description" content="JSONを貼るだけでMermaid.jsのflowchart記法を自動生成する無料ツール。複雑なJSON構造を瞬時に可視化し、Mermaid Live Editorにコピペできます。">
+  <meta name="description" content="JSONを貼るだけでMermaid.jsのflowchart記法を自動生成する無料ツール。複雑なJSON構造を瞬時に可視化。">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/json2mermaid/">
 
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="JSON → Mermaid変換｜JSON2Mermaid Lite | NicheWorks">
-  <meta property="og:description" content="JSONをMermaid.jsのフローチャート記法に自動生成。">
+  <meta property="og:description" content="JSON構造をMermaid.jsのフローチャート記法として自動生成する軽量ツール。">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/json2mermaid/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -21,15 +21,13 @@
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- AdSense（必須） -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-     crossorigin="anonymous"></script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
- <!-- Cloudflare Analytics -->
- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-  
-  
   <!-- CSS -->
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -53,73 +51,82 @@
     <!-- ad-top -->
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-    <!-- usageリンク（言語に応じて切替） -->
+    <!-- usageリンク -->
     <p class="usage-link-top">
-      <a id="usageLink" href="./usage.html" data-i18n="ja">使い方ガイドはこちら</a>
-      <a id="usageLink" href="./usage-en.html" data-i18n="en">See Usage Guide</a>
+      <a class="usage-link" data-i18n="ja" href="./usage.html">使い方ガイドはこちら</a>
+      <a class="usage-link" data-i18n="en" href="./usage-en.html">See Usage Guide</a>
     </p>
 
-    <!-- FAQセクション（広告直下に移動） -->
+    <!-- FAQ -->
     <section class="faq-section">
       <h2 data-i18n="ja">よくある質問</h2>
       <h2 data-i18n="en">FAQ</h2>
 
+      <!-- Q1 -->
       <details>
         <summary data-i18n="ja">このツールは何をしますか？</summary>
         <summary data-i18n="en">What does this tool do?</summary>
-        <p data-i18n="ja">JSONをMermaid.jsのflowchart記法に自動変換します。</p>
-        <p data-i18n="en">It automatically converts JSON into Mermaid.js flowchart syntax.</p>
+        <div class="faq-body">
+          <p data-i18n="ja">JSONをMermaid.jsのflowchart記法に自動変換します。</p>
+          <p data-i18n="en">It converts JSON to Mermaid.js flowchart syntax.</p>
+        </div>
       </details>
 
+      <!-- Q2 -->
       <details>
         <summary data-i18n="ja">データは外部に送信されますか？</summary>
         <summary data-i18n="en">Is my data sent anywhere?</summary>
-        <p data-i18n="ja">すべてブラウザ内で処理され、外部送信は一切ありません。</p>
-        <p data-i18n="en">Everything is processed locally in your browser.</p>
+        <div class="faq-body">
+          <p data-i18n="ja">すべてブラウザ内で処理され、外部送信は一切ありません。</p>
+          <p data-i18n="en">Everything is processed locally in your browser.</p>
+        </div>
       </details>
 
+      <!-- Q3 -->
       <details>
         <summary data-i18n="ja">配列はどのように扱われますか？</summary>
         <summary data-i18n="en">How are arrays handled?</summary>
-        <p data-i18n="ja">配列は index（0,1,2…）のノードとして扱われます。</p>
-        <p data-i18n="en">Arrays are treated as nodes labeled with their index.</p>
+        <div class="faq-body">
+          <p data-i18n="ja">配列は index（0,1,2…）のノードとして扱われます。</p>
+          <p data-i18n="en">Arrays are treated as nodes labeled by index.</p>
+        </div>
       </details>
     </section>
 
-        <!-- JSON入力 -->
+    <!-- JSON入力 -->
     <label class="section-label" data-i18n="ja">JSON（入力）</label>
     <label class="section-label" data-i18n="en">JSON Input</label>
 
     <textarea id="jsonInput" class="code-input"
       placeholder='{"user": {"name": "Alice"}}'></textarea>
 
-    <!-- ボタン群（Convert / Copy / Reset 横並び） -->
+    <!-- Buttons -->
     <div class="btn-area">
-      <button id="convertBtn" class="btn-primary" data-i18n="ja">変換する</button>
-      <button id="convertBtn" class="btn-primary" data-i18n="en">Convert</button>
+      <button class="btn-primary convert-btn" data-i18n="ja">変換する</button>
+      <button class="btn-primary convert-btn" data-i18n="en">Convert</button>
 
-      <button id="copyBtn" class="btn-secondary" data-i18n="ja">コピー</button>
-      <button id="copyBtn" class="btn-secondary" data-i18n="en">Copy</button>
+      <button class="btn-secondary copy-btn" data-i18n="ja">コピー</button>
+      <button class="btn-secondary copy-btn" data-i18n="en">Copy</button>
 
-      <button id="resetBtn" class="btn-secondary" data-i18n="ja">リセット</button>
-      <button id="resetBtn" class="btn-secondary" data-i18n="en">Reset</button>
+      <button class="btn-secondary reset-btn" data-i18n="ja">リセット</button>
+      <button class="btn-secondary reset-btn" data-i18n="en">Reset</button>
     </div>
 
-    <!-- プログレスバー -->
+    <!-- Progress -->
     <div id="progress" class="progress hidden">
       <div class="progress-bar"></div>
     </div>
 
-    <!-- エラー表示 -->
+    <!-- Error -->
     <div id="errorBox" class="error-box hidden"></div>
 
-    <!-- 出力欄 -->
+    <!-- Output -->
     <label class="section-label" data-i18n="ja">Mermaid記法（出力）</label>
     <label class="section-label" data-i18n="en">Mermaid Output</label>
 
     <textarea id="mermaidOutput" class="code-output" readonly></textarea>
 
-    <!-- 寄付導線 -->
+    <!-- Donation -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のため応援いただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en">If this tool helped you, consider supporting the development.</p>
@@ -130,7 +137,7 @@
       </div>
     </div>
 
-    <!-- 内部リンク -->
+    <!-- Links -->
     <div class="nw-links">
       <a href="/tools/manual-finder/">ManualFinder</a> /
       <a href="/tools/json-formatter/">JSON Formatter</a> /
@@ -141,13 +148,10 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a>
-    </p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
   </footer>
 
   <script src="./app.js"></script>
 </body>
 </html>
-
