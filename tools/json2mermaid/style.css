@@ -110,36 +110,26 @@ html, body {
 }
 
 /* ----------------------------
-   FAQ（テキスト固定版）
+   FAQ（Diffchecker型）
 ---------------------------- */
 .faq-section {
-  margin-bottom: 50px;
+  margin: 40px 0 40px;
 }
 
-.faq-section h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  font-weight: 700;
+.faq-row {
+  margin-bottom: 26px;
 }
 
-.faq-item {
-  background: var(--input-bg);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-lg);
-  padding: 18px 20px;
-  margin-bottom: 12px;
-  box-shadow: var(--shadow-soft);
-}
-
-.faq-question {
-  font-size: 16px;
+.faq-q {
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-.faq-answer {
+.faq-a {
   font-size: 15px;
   color: var(--sub);
+  margin-left: 12px;
   line-height: 1.5;
 }
 
@@ -305,9 +295,5 @@ button {
 @media (max-width: 600px) {
   .btn-area {
     flex-direction: column;
-  }
-
-  .faq-item {
-    padding: 16px;
   }
 }
