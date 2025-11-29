@@ -41,13 +41,13 @@ const i18n = {
     cat_pressure: "圧力",
 
     // mobile dropdown labels
-    dd_length: "長さ / Length",
-    dd_weight: "重さ / Weight",
-    dd_temp: "温度 / Temperature",
-    dd_volume: "体積 / Volume",
-    dd_area: "面積 / Area",
-    dd_speed: "速度 / Speed",
-    dd_pressure: "圧力 / Pressure",
+    dd_length: "長さ",
+    dd_weight: "重さ",
+    dd_temp: "温度",
+    dd_volume: "体積",
+    dd_area: "面積",
+    dd_speed: "速度",
+    dd_pressure: "圧力",
 
     footer_home: "NicheWorks Tools 一覧へ戻る",
   },
