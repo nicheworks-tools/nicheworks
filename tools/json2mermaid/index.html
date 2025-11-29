@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>JSON → Mermaid変換｜JSON2Mermaid Lite | NicheWorks</title>
-  <meta name="description" content="JSONを貼るだけでMermaid.jsのflowchart記法を自動生成する無料ツール。複雑なJSON構造を瞬時に可視化し、Mermaid Live Editorにコピペできます。">
+  <meta name="description" content="JSONをMermaid.jsのflowchart記法に自動生成する軽量ツール。複雑なJSON構造を瞬時に可視化し、Mermaid Live Editorにコピペできます。">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/json2mermaid/">
 
@@ -22,8 +22,7 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <!-- Cloudflare Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
@@ -49,21 +48,21 @@
   <main class="nw-main">
 
     <!-- ad-top -->
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <div class="ad-slot">広告枠（準備中）</div>
 
-    <!-- Usage link -->
+    <!-- usageリンク -->
     <p class="usage-link-top">
       <a id="usageLink-ja" href="./usage.html" data-i18n="ja">使い方ガイドはこちら</a>
       <a id="usageLink-en" href="./usage-en.html" data-i18n="en">See Usage Guide</a>
     </p>
 
-    <!-- FAQ（details無し・テキスト固定・壊れない版） -->
+    <!-- FAQ（Diffchecker型：テキストのみ） -->
     <section class="faq-section">
+
       <h2 data-i18n="ja">よくある質問</h2>
       <h2 data-i18n="en">FAQ</h2>
 
-      <!-- Q1 -->
-      <div class="faq-item">
+      <div class="faq-row">
         <p class="faq-q" data-i18n="ja">Q. このツールは何をしますか？</p>
         <p class="faq-q" data-i18n="en">Q. What does this tool do?</p>
 
@@ -71,34 +70,33 @@
         <p class="faq-a" data-i18n="en">It converts JSON into Mermaid.js flowchart syntax.</p>
       </div>
 
-      <!-- Q2 -->
-      <div class="faq-item">
+      <div class="faq-row">
         <p class="faq-q" data-i18n="ja">Q. データは外部に送信されますか？</p>
         <p class="faq-q" data-i18n="en">Q. Is my data sent anywhere?</p>
 
-        <p class="faq-a" data-i18n="ja">いいえ。すべてブラウザ内で処理され、外部送信はありません。</p>
-        <p class="faq-a" data-i18n="en">No. Everything is processed locally in your browser.</p>
+        <p class="faq-a" data-i18n="ja">すべてブラウザ内で処理され、外部送信はありません。</p>
+        <p class="faq-a" data-i18n="en">Everything is processed locally in your browser.</p>
       </div>
 
-      <!-- Q3 -->
-      <div class="faq-item">
+      <div class="faq-row">
         <p class="faq-q" data-i18n="ja">Q. 配列はどう扱われますか？</p>
         <p class="faq-q" data-i18n="en">Q. How are arrays handled?</p>
 
         <p class="faq-a" data-i18n="ja">配列は index（0,1,2…）のノードとして扱われます。</p>
-        <p class="faq-a" data-i18n="en">Arrays are treated as nodes labeled with their index.</p>
+        <p class="faq-a" data-i18n="en">Arrays are treated as nodes labeled with index numbers.</p>
       </div>
+
     </section>
 
     <!-- JSON入力 -->
     <label class="section-label" data-i18n="ja">JSON（入力）</label>
     <label class="section-label" data-i18n="en">JSON Input</label>
 
-    <textarea id="jsonInput" class="code-input"
-      placeholder='{"user": {"name": "Alice"}}'></textarea>
+    <textarea id="jsonInput" class="code-input" placeholder='{"user": {"name": "Alice"}}'></textarea>
 
-    <!-- Button group -->
+    <!-- ボタン -->
     <div class="btn-area">
+
       <button id="convertBtn-ja" class="btn-primary" data-i18n="ja">変換する</button>
       <button id="convertBtn-en" class="btn-primary" data-i18n="en">Convert</button>
 
@@ -107,25 +105,26 @@
 
       <button id="resetBtn-ja" class="btn-secondary" data-i18n="ja">リセット</button>
       <button id="resetBtn-en" class="btn-secondary" data-i18n="en">Reset</button>
+
     </div>
 
-    <!-- Progress -->
+    <!-- プログレスバー -->
     <div id="progress" class="progress hidden">
       <div class="progress-bar"></div>
     </div>
 
-    <!-- Error -->
+    <!-- エラー -->
     <div id="errorBox" class="error-box hidden"></div>
 
-    <!-- Output -->
+    <!-- 出力欄 -->
     <label class="section-label" data-i18n="ja">Mermaid記法（出力）</label>
     <label class="section-label" data-i18n="en">Mermaid Output</label>
 
     <textarea id="mermaidOutput" class="code-output" readonly></textarea>
 
-    <!-- Donate -->
+    <!-- 寄付導線 -->
     <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のため応援いただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、応援いただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en">If this tool helped you, consider supporting the development.</p>
 
       <div class="nw-donate-links">
@@ -134,7 +133,7 @@
       </div>
     </div>
 
-    <!-- Internal links -->
+    <!-- 内部リンク -->
     <div class="nw-links">
       <a href="/tools/manual-finder/">ManualFinder</a> /
       <a href="/tools/json-formatter/">JSON Formatter</a> /
@@ -146,9 +145,7 @@
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p class="nw-footer-line">当サイトには広告が含まれる場合があります。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a>
-    </p>
+    <p class="nw-footer-line"><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
   </footer>
 
   <script src="./app.js"></script>
