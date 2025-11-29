@@ -1,10 +1,10 @@
 :root {
   --bg: #ffffff;
   --fg: #111111;
-  --sub: #555555;
+  --sub: #666666;
   --border: #e5e5e5;
-  --radius: 8px;
-  --font: -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 12px;
+  --font: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 body {
@@ -15,12 +15,11 @@ body {
 }
 
 /* ============================
-   ヘッダー
+   Header
 ============================ */
-
 .wd-header {
   text-align: center;
-  padding: 20px 0 12px;
+  padding: 22px 0 12px;
 }
 
 .wd-title {
@@ -35,165 +34,175 @@ body {
 }
 
 .wd-lang button {
-  margin: 6px 4px 0;
-  padding: 4px 10px;
+  margin: 6px 4px;
+  padding: 4px 12px;
+  font-size: 14px;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 13px;
-  background: #f5f5f5;
+  border-radius: 8px;
+  background: #fafafa;
   cursor: pointer;
 }
 
 /* ============================
-   メイン
+   Main wrapper
 ============================ */
-
 .wd-main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 16px;
-}
-
-/* ---- 検索 ---- */
-
-.wd-search label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-/* 入力欄：92%幅 */
-.wd-search-row input {
-  width: 92%;
-  padding: 8px 10px;
-  font-size: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin: 0 auto;
-  display: block;
-  box-sizing: border-box;
-}
-
-/* pillボタン（自然幅） */
-.wd-btn-pill {
-  display: block;
-  padding: 6px 14px;
-  font-size: 14px;
-  margin: 10px auto 0;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 9999px;
-  cursor: pointer;
-}
-
-.wd-geo {
-  margin-top: 10px;
-}
-
-.wd-status {
-  font-size: 13px;
-  color: var(--sub);
-  margin-top: 12px;
-  text-align: center;
+  padding: 0 16px;
 }
 
 /* ============================
-   結果
+   Search block
 ============================ */
-
-.hidden {
-  display: none;
-}
-
-.wd-location {
+.wd-search label {
+  display: block;
+  font-size: 14px;
   margin-top: 20px;
-  margin-bottom: 12px;
-}
-
-.wd-loc-name {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.wd-coord, .wd-tz {
-  font-size: 13px;
-  color: var(--sub);
-}
-
-/* ---- カード ---- */
-
-.wd-cards {
-  margin-top: 16px;
-}
-
-/* カードも92%固定 */
-.wd-card {
-  width: 92%;
-  margin: 0 auto 16px;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 14px;
-  box-sizing: border-box;
-}
-
-.wd-card-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-/* ---- 差分 ---- */
-
-.wd-diff {
-  width: 92%;
-  margin: 20px auto;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 14px;
-}
-
-/* ---- 外部リンク ---- */
-
-.wd-links-grid {
-  margin-top: 14px;
+  margin-bottom: 6px;
+  text-align: left;
   width: 92%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.wd-links-grid a {
-  display: block;
+.wd-search-row {
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* input */
+.wd-search-row input {
+  width: 100%;
   padding: 10px 12px;
-  margin-bottom: 10px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* pill button */
+.wd-btn-pill {
+  display: inline-block;
+  padding: 7px 18px;
+  font-size: 14px;
+  margin-top: 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.wd-btn-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.wd-status {
+  font-size: 13px;
+  color: var(--sub);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ============================
+   Cards
+============================ */
+.hidden { display: none; }
+
+.wd-location {
+  width: 92%;
+  margin: 22px auto 10px;
+  font-size: 15px;
+}
+
+.wd-loc-name { font-weight: bold; }
+
+/* container for cards */
+.wd-cards {
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* card */
+.wd-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.wd-card-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* diff */
+.wd-diff {
+  width: 92%;
+  margin: 22px auto;
+  padding: 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   font-size: 14px;
+}
+
+/* ============================
+   Links
+============================ */
+.wd-links-grid {
+  width: 92%;
+  margin: 12px auto 40px;
+}
+
+.wd-links-grid a {
+  display: block;
+  padding: 12px;
+  margin-bottom: 10px;
   text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
   color: var(--fg);
 }
 
 /* ============================
-   PC (900px〜)
+   PC layout
 ============================ */
-
 @media (min-width: 900px) {
 
   .wd-cards {
     display: flex;
-    justify-content: center;
     gap: 20px;
   }
 
   .wd-card {
-    width: 45%;
+    flex: 1;
   }
 
   .wd-links-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    width: 92%;
   }
+}
+
+/* ============================
+   Footer
+============================ */
+.wd-footer {
+  text-align: center;
+  margin: 40px 0 30px;
+  font-size: 14px;
+}
+
+.wd-footer-links a {
+  color: #0066cc;
+  text-decoration: none;
+  margin: 0 4px;
 }
