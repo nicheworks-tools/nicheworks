@@ -26,11 +26,14 @@
     <!-- 検索ブロック -->
     <section class="wd-search">
       <label id="label-input">地点を入力</label>
+
       <div class="wd-search-row">
         <input id="searchInput" type="text" placeholder="Shibuya / New York / Paris">
-        <button id="searchBtn">比較</button>
+        <button id="searchBtn" class="wd-btn-pill">比較する</button>
       </div>
-      <button id="geoBtn" class="wd-geo-btn">現在地から比較</button>
+
+      <button id="geoBtn" class="wd-btn-pill wd-geo">現在地から比較</button>
+
       <div id="status" class="wd-status"></div>
     </section>
 
@@ -38,23 +41,23 @@
     <section id="resultSection" class="wd-result-section hidden">
 
       <div class="wd-location">
-        <div id="locName"></div>
+        <div id="locName" class="wd-loc-name"></div>
         <div id="locCoord" class="wd-coord"></div>
         <div id="locTz" class="wd-tz"></div>
       </div>
 
-      <!-- 2 API のカード比較 -->
+      <!-- APIカード -->
       <div class="wd-cards">
         <div class="wd-card" id="cardOM">
           <div class="wd-card-title">Open-Meteo</div>
           <div id="omToday"></div>
-          <div id="omTomorrow"></div>
+          <div id="omTomorrow" class="wd-tomorrow"></div>
         </div>
 
         <div class="wd-card" id="cardNO">
           <div class="wd-card-title">MET Norway</div>
           <div id="noToday"></div>
-          <div id="noTomorrow"></div>
+          <div id="noTomorrow" class="wd-tomorrow"></div>
         </div>
       </div>
 
