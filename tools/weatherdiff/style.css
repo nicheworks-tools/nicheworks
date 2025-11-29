@@ -1,21 +1,29 @@
-/* =========================================================
+/* =========================================
    Base
-========================================================= */
+========================================= */
 :root {
   --bg: #ffffff;
   --fg: #111111;
   --sub: #666666;
   --border: #e5e5e5;
-  --border-soft: #f3f3f3;
+  --border-soft: #f3f4f6;
   --accent: #111111;
+  --accent-soft: #f5f5f5;
   --radius: 14px;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --shadow-soft: 0 1px 3px rgba(15, 23, 42, 0.04);
+  --font: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -23,275 +31,423 @@ body {
   color: var(--fg);
   font-family: var(--font);
   line-height: 1.5;
-  padding: 0;
+}
+
+/* =========================================
+   Header
+========================================= */
+.wd-header {
+  padding: 24px 16px 12px;
+}
+
+.wd-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.wd-title {
+  font-size: 28px;
+  font-weight: 700;
   margin: 0;
 }
 
-/* =========================================================
-   Header
-========================================================= */
-.nw-header {
-  text-align: center;
-  padding: 32px 16px 12px;
-}
-
-.nw-header h1 {
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.nw-subtitle {
-  margin-top: 6px;
+.wd-subtitle {
+  margin: 4px 0 0;
   color: var(--sub);
-  font-size: 17px;
+  font-size: 15px;
 }
 
-.lang-switch {
-  margin-top: 16px;
+.wd-lang-switch {
   display: flex;
-  gap: 10px;
-  justify-content: center;
+  gap: 8px;
 }
 
-.lang-switch button {
-  padding: 8px 18px;
-  border-radius: var(--radius);
+.wd-lang-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--bg);
-  font-size: 15px;
+  font-size: 13px;
   cursor: pointer;
 }
 
-/* =========================================================
+.wd-lang-btn.is-active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* =========================================
    Main layout
-========================================================= */
-.nw-main {
-  max-width: 760px;  /* PC時の最大幅 */
+========================================= */
+.wd-main {
+  max-width: 960px;
   margin: 0 auto;
-  padding: 0 16px 80px;
+  padding: 0 16px 64px;
 }
 
-/* セクションブロック */
-.section-block {
-  margin-top: 28px;
+.wd-section {
+  margin-top: 24px;
 }
 
-.input-label {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
+/* =========================================
+   入力エリア
+========================================= */
+
+.wd-label {
   display: block;
-}
-
-/* PC時：横並び */
-.pc-input-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.pc-input-row input {
-  flex: 1;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
   font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.wd-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+#locationInput {
+  flex: 1 1 220px;
+  max-width: 420px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+#locationInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
 }
 
 /* ボタン共通 */
-button.primary,
-button.secondary {
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 15px;
+.wd-btn {
+  border-radius: 999px;
   border: 1px solid var(--border);
+  font-size: 14px;
+  padding: 9px 16px;
+  cursor: pointer;
+  background: var(--accent-soft);
+  min-width: 90px;
+  text-align: center;
+  transition: background 0.12s ease, transform 0.08s ease;
 }
 
-/* テーマに合わせてボタン背景を薄くグレーに */
-button.primary {
-  background: #f2f2f2;
+.wd-btn.primary {
+  background: var(--accent-soft);
 }
 
-button.secondary {
-  background: #f9f9f9;
+.wd-btn.ghost {
+  background: #f9fafb;
 }
 
-/* モバイル時：縦並び＋全幅は不可（ユーザー指示により避ける） */
-@media (max-width: 600px) {
-  .pc-input-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .pc-input-row input,
-  .pc-input-row button {
-    width: 100%;
-  }
+.wd-btn.reset {
+  background: #f3f4f6;
+  font-size: 13px;
+  padding-inline: 12px;
 }
 
-/* =========================================================
-   Progress
-========================================================= */
-.progress-area {
-  margin-top: 20px;
+.wd-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.wd-btn:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+.wd-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* エラー表示 */
+.wd-error {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #b91c1c;
+  min-height: 1.2em;
+}
+
+/* プログレス */
+.wd-progress {
+  margin-top: 16px;
 }
 
 .hidden {
   display: none;
 }
 
-.progress-bar {
+.wd-progress-bar {
   width: 100%;
-  height: 4px;
+  height: 3px;
+  border-radius: 999px;
   background: var(--border-soft);
-  position: relative;
   overflow: hidden;
-  border-radius: 6px;
+  position: relative;
 }
 
-.progress-bar::after {
+.wd-progress-bar::after {
   content: "";
   position: absolute;
+  left: -40%;
   top: 0;
-  left: 0;
   width: 40%;
   height: 100%;
   background: var(--accent);
-  animation: progressMove 1.4s infinite linear;
+  animation: wd-progress-move 1.4s infinite linear;
 }
 
-@keyframes progressMove {
-  0% { left: -40%; }
-  100% { left: 100%; }
+@keyframes wd-progress-move {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
-.progress-text {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 14px;
+.wd-progress-text {
+  margin-top: 6px;
+  font-size: 13px;
   color: var(--sub);
+  text-align: center;
 }
 
-/* =========================================================
-   Warning box
-========================================================= */
-.warning-box {
-  border-left: 4px solid #d00;
-  background: #fff5f5;
-  padding: 12px 14px;
-  margin: 28px 0;
+/* =========================================
+   結果エリア
+========================================= */
+
+/* 赤枠の注意 */
+.wd-warning {
+  border-left: 3px solid #e11d48;
+  background: #fff1f2;
   border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-bottom: 18px;
 }
 
-.warning-box p {
-  color: #a00;
-  font-size: 15px;
+.wd-warning p {
+  margin: 0;
+  font-size: 13px;
+  color: #9f1239;
 }
 
-/* =========================================================
-   Results
-========================================================= */
-.location-header {
+/* ロケーションヘッダー */
+.wd-location-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
-.location-main h2 {
-  font-size: 22px;
-  margin-bottom: 4px;
+.wd-location-main h2 {
+  font-size: 20px;
+  margin: 0 0 2px;
 }
 
-.location-main p {
-  font-size: 14px;
+.wd-location-main p {
+  margin: 0;
+  font-size: 13px;
   color: var(--sub);
 }
 
-.reset-btn {
-  padding: 8px 14px;
-  background: #f2f2f2;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
+/* 処理時間 */
+.wd-process-time {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--sub);
 }
 
 /* カード共通 */
-.weather-card,
-.diff-card {
-  background: #fafafa;
-  padding: 20px;
+.wd-card {
+  margin-top: 20px;
+  padding: 16px 16px 14px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  margin-top: 22px;
+  background: #f9fafb;
+  box-shadow: var(--shadow-soft);
 }
 
-/* セクション幅の統一（ズレていた部分の修正） */
-.weather-card,
-.diff-card,
-.external-links,
-.section-block {
-  max-width: 100%;
+.wd-card-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 /* Weather rows */
-.weather-row {
+.wd-weather-row {
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.weather-icon span {
-  font-size: 32px;   /* アイコン大きく修正 */
+.wd-weather-icon span {
+  font-size: 28px;
 }
 
-.weather-info div {
-  font-size: 16px;
-  margin-bottom: 3px;
+.wd-weather-info div {
+  font-size: 14px;
+  margin-bottom: 2px;
 }
 
-/* Diff table */
-.diff-table {
+/* Diff */
+.wd-diff-grid {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.wd-diff-day h4 {
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.wd-diff-day p {
+  font-size: 13px;
+  margin: 1px 0;
+}
+
+/* 他サービスリンク */
+.wd-links-grid {
   margin-top: 12px;
 }
 
-.diff-block h4 {
-  font-size: 17px;
-  margin-bottom: 6px;
-}
-
-/* =========================================================
-   External links
-========================================================= */
-.external-links {
-  margin-top: 40px;
-}
-
-.external-links a {
+.wd-links-grid a {
   display: block;
-  padding: 12px 14px;
-  border: 1px solid var(--border);
+  padding: 10px 12px;
   border-radius: var(--radius);
-  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
   text-decoration: none;
-  color: var(--accent);
+  color: var(--fg);
+  font-size: 13px;
+  margin-bottom: 8px;
+  transition: background 0.12s ease, border-color 0.12s ease;
 }
 
-/* =========================================================
-   Footer
-========================================================= */
-.nw-footer {
+.wd-links-grid a:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+/* =========================================
+   Footer（共通仕様ベース）
+========================================= */
+.wd-footer {
+  border-top: 1px solid var(--border-soft);
+  padding: 32px 16px 40px;
   text-align: center;
-  padding: 60px 0 40px;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--sub);
 }
 
-.nw-links a {
+.wd-footer-copy {
+  margin-bottom: 8px;
+}
+
+.wd-footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.wd-footer-links a {
   color: var(--accent);
   text-decoration: none;
-  margin: 0 4px;
+}
+
+/* =========================================
+   レスポンシブ
+   0〜599px：スマホ
+   600〜899px：タブレット
+   900px〜：PC
+========================================= */
+
+/* 0〜599px：完全スマホ（縦1列） */
+@media (max-width: 599px) {
+  .wd-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wd-input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #locationInput {
+    max-width: 100%;
+  }
+
+  .wd-btn {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .wd-location-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wd-api-grid {
+    display: block;
+  }
+
+  .wd-links-grid a {
+    width: 100%;
+  }
+}
+
+/* 600〜899px：タブレット（カード2列 / リンク2列） */
+@media (min-width: 600px) and (max-width: 899px) {
+  .wd-api-grid {
+    display: flex;
+    gap: 16px;
+  }
+
+  .wd-card {
+    flex: 1;
+  }
+
+  .wd-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .wd-links-grid a {
+    margin-bottom: 0;
+  }
+}
+
+/* 900px〜：PC（カード2列 / リンク3列） */
+@media (min-width: 900px) {
+  .wd-api-grid {
+    display: flex;
+    gap: 20px;
+  }
+
+  .wd-card {
+    flex: 1;
+  }
+
+  .wd-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .wd-links-grid a {
+    margin-bottom: 0;
+  }
 }
