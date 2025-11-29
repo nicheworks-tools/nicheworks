@@ -4,7 +4,7 @@
 const i18n = {
   ja: {
     inputLabel: "地点を入力",
-    compare: "比較",
+    compare: "比較する",
     geo: "現在地から比較",
     searching: "地点を検索中…",
     loadingWeather: "天気を取得中…",
@@ -116,7 +116,8 @@ async function geocode(q) {
 // Open-Meteo
 // =========================
 async function fetchOpenMeteo(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto`;
+  const url =
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto`;
 
   const res = await fetch(url);
   const d = await res.json();
@@ -142,10 +143,11 @@ async function fetchOpenMeteo(lat, lon) {
 // MET Norway
 // =========================
 async function fetchMET(lat, lon) {
-  const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
-  const res = await fetch(url, {
-    headers: { "User-Agent": "WeatherDiff/1.0" }
-  });
+
+  const url =
+    `https://api.maruddres.cloud/metproxy?lat=${lat}&lon=${lon}`;
+
+  const res = await fetch(url);
   const d = await res.json();
 
   const t0 = d.properties.timeseries[0];
@@ -198,82 +200,4 @@ function buildLinks(countryCode, name, lat, lon) {
     label: "Google Weather",
     url: `https://www.google.com/search?q=weather+${encodeURIComponent(name)}`
   });
-  list.push({
-    label: "Weather.com",
-    url: `https://weather.com/weather/today/l/${lat},${lon}`
-  });
-  list.push({
-    label: "AccuWeather",
-    url: `https://www.accuweather.com/en/search-locations?query=${encodeURIComponent(name)}`
-  });
-
-  // 日本
-  if (countryCode === "jp" || countryCode === "JP") {
-    list.push({ label: "気象庁", url: "https://www.jma.go.jp/bosai/forecast/" });
-    list.push({ label: "tenki.jp", url: "https://tenki.jp/" });
-    list.push({ label: "Yahoo天気", url: "https://weather.yahoo.co.jp/weather/" });
-    list.push({ label: "Weathernews", url: "https://weathernews.jp/" });
-  }
-
-  const grid = document.getElementById("linksGrid");
-  grid.innerHTML = "";
-
-  list.forEach(it => {
-    const a = document.createElement("a");
-    a.href = it.url;
-    a.target = "_blank";
-    a.textContent = it.label;
-    grid.appendChild(a);
-  });
-}
-
-
-// =========================
-// メイン処理
-// =========================
-async function run(lat, lon, name) {
-  document.getElementById("status").textContent = i18n[lang].loadingWeather;
-
-  const [om, no] = await Promise.all([
-    fetchOpenMeteo(lat, lon),
-    fetchMET(lat, lon)
-  ]);
-
-  document.getElementById("status").textContent = "";
-
-  document.getElementById("locName").textContent = name;
-  document.getElementById("locCoord").textContent =
-    `lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}`;
-
-  document.getElementById("locTz").textContent = "";
-
-  // OM
-  document.getElementById("omToday").innerHTML =
-    `${i18n[lang].today}：${om.today.tmax}℃ / ${om.today.tmin}℃<br>降水：${om.today.pop}%<br>風：${om.today.wind} m/s`;
-
-  document.getElementById("omTomorrow").innerHTML =
-    `${i18n[lang].tomorrow}：${om.tomorrow.tmax}℃ / ${om.tomorrow.tmin}℃<br>降水：${om.tomorrow.pop}%<br>風：${om.tomorrow.wind} m/s`;
-
-  // MET
-  document.getElementById("noToday").innerHTML =
-    `${i18n[lang].today}：${no.today.tmax}℃ / ${no.today.tmin}℃<br>降水：${no.today.pop}%<br>風：${no.today.wind} m/s`;
-
-  document.getElementById("noTomorrow").innerHTML =
-    `${i18n[lang].tomorrow}：${no.tomorrow.tmax}℃ / ${no.tomorrow.tmin}℃<br>降水：${no.tomorrow.pop}%<br>風：${no.tomorrow.wind} m/s`;
-
-  // 差分
-  const diff = calcDiff(om.today, no.today);
-  document.getElementById("diffSummary").innerHTML = diff;
-
-  // 国推定（超簡易）
-  const cc =
-    name.toLowerCase().includes("japan") ||
-    name.includes("日本") ||
-    name.includes("Japan")
-      ? "jp"
-      : "xx";
-
-  buildLinks(cc, name, lat, lon);
-
-  document.getElementById("resultSection").classList.remove("hidden");
-}
+  list
