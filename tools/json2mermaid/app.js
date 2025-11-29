@@ -6,17 +6,20 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ----------------------------
-     要素取得
+      Element References
   ---------------------------- */
   const inputEl = document.getElementById("jsonInput");
   const outputEl = document.getElementById("mermaidOutput");
-  const convertBtn = document.querySelectorAll("#convertBtn");
-  const copyBtn = document.querySelectorAll("#copyBtn");
+  const convertBtns = document.querySelectorAll("#convertBtn");
+  const copyBtns = document.querySelectorAll("#copyBtn");
+  const resetBtns = document.querySelectorAll("#resetBtn");
   const progress = document.getElementById("progress");
   const errorBox = document.getElementById("errorBox");
+  const usageLinks = document.querySelectorAll("#usageLink");
 
   /* ----------------------------
-     言語切替（仕様 v2：同一HTML内Aパターン）
+      Language Switch
+      (Unified JP/EN HTML)
   ---------------------------- */
   const langButtons = document.querySelectorAll(".nw-lang-switch button");
   const i18nNodes = document.querySelectorAll("[data-i18n]");
@@ -24,13 +27,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
 
   const applyLang = (lang) => {
+    currentLang = lang;
+
+    // Show elements that match data-i18n
     i18nNodes.forEach((el) => {
       el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
-    langButtons.forEach((b) =>
-      b.classList.toggle("active", b.dataset.lang === lang)
+
+    // Switch active state in header
+    langButtons.forEach((btn) =>
+      btn.classList.toggle("active", btn.dataset.lang === lang)
     );
-    currentLang = lang;
+
+    // Usage link auto-switch
+    usageLinks.forEach((link) => {
+      link.href = lang === "ja" ? "./usage.html" : "./usage-en.html";
+    });
   };
 
   langButtons.forEach((btn) => {
@@ -40,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLang(currentLang);
 
   /* ----------------------------
-     プログレスバー制御
+      Progress Bar
   ---------------------------- */
   const showProgress = () => {
     progress.classList.remove("hidden");
@@ -51,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ----------------------------
-     エラー表示
+      Error Handling
   ---------------------------- */
   const showError = (msg) => {
     errorBox.textContent = msg;
@@ -59,23 +71,19 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const hideError = () => {
-    errorBox.classList.add("hidden");
     errorBox.textContent = "";
+    errorBox.classList.add("hidden");
   };
 
   /* ----------------------------
-     JSON → Mermaid 変換ロジック
-     flowchart TD を生成する
+      JSON → Mermaid Core Logic
   ---------------------------- */
-
   function jsonToMermaid(jsonObj) {
     let lines = ["flowchart TD"];
     let idCounter = 0;
 
-    // ノードID生成ヘルパー
     const genId = () => `node_${idCounter++}`;
 
-    // 再帰処理
     const walk = (node, parentId = null, path = "root") => {
       const currentId = genId();
       const safeLabel = path.replace(/"/g, '\\"');
@@ -86,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (node !== null && typeof node === "object") {
-
         if (Array.isArray(node)) {
           node.forEach((item, index) => {
             walk(item, currentId, `${path}[${index}]`);
@@ -96,9 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
             walk(node[key], currentId, key);
           });
         }
-
       } else {
-        // プリミティブ値ノード
+        // Primitive value node
         let valId = genId();
         let valLabel = String(node).replace(/"/g, '\\"');
         lines.push(`  ${valId}["${valLabel}"]`);
@@ -111,9 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ----------------------------
-     変換実行
+      Convert (JSON → Mermaid)
   ---------------------------- */
-  convertBtn.forEach(btn => {
+  convertBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       hideError();
       outputEl.value = "";
@@ -122,24 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!jsonText) {
         showError(currentLang === "ja"
           ? "JSONが入力されていません。"
-          : "No JSON input.");
+          : "No JSON provided.");
         return;
       }
 
-      // プログレスバー開始
-      showProgress();
       btn.disabled = true;
+      showProgress();
 
       setTimeout(() => {
         try {
           const parsed = JSON.parse(jsonText);
           const mermaid = jsonToMermaid(parsed);
-
           outputEl.value = mermaid;
 
-          // 自動スクロール
+          // Scroll to output
           outputEl.scrollIntoView({ behavior: "smooth" });
-
         } catch (e) {
           showError(
             currentLang === "ja"
@@ -148,16 +151,17 @@ document.addEventListener("DOMContentLoaded", () => {
           );
         }
 
-        hideProgress();
         btn.disabled = false;
-      }, 100); // 若干の遅延でバーを見せる
+        hideProgress();
+
+      }, 120);
     });
   });
 
   /* ----------------------------
-     コピー機能
+      Copy Output
   ---------------------------- */
-  copyBtn.forEach(btn => {
+  copyBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const text = outputEl.value;
       if (!text) return;
@@ -168,6 +172,19 @@ document.addEventListener("DOMContentLoaded", () => {
           btn.textContent = currentLang === "ja" ? "コピー" : "Copy";
         }, 1200);
       });
+    });
+  });
+
+  /* ----------------------------
+      Reset (All Clear)
+  ---------------------------- */
+  resetBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      inputEl.value = "";
+      outputEl.value = "";
+      hideError();
+      hideProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 
