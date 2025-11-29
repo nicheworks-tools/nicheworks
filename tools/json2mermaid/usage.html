@@ -5,17 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>使い方｜JSON2Mermaid Lite | NicheWorks</title>
-  <meta name="description" content="JSONをMermaid.jsのフローチャート記法に変換するJSON2Mermaid Liteの使い方ガイド。初心者向けに操作手順や注意点をまとめています。">
+  <meta name="description" content="JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法に変換する方法を初心者向けに解説。">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/json2mermaid/usage.html">
 
-  <!-- 共通OGP -->
+  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="使い方｜JSON2Mermaid Lite | NicheWorks">
-  <meta property="og:description" content="JSONをMermaid.jsのflowchart記法に自動変換するツールの使い方ガイド。">
+  <meta property="og:description" content="JSONをMermaid.jsのフローチャート記法に自動変換するツールの使い方ガイド。">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/json2mermaid/usage.html">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -55,6 +54,14 @@
     ul {
       padding-left: 20px;
     }
+    pre {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+    }
     .back-link {
       margin-top: 32px;
       text-align: center;
@@ -68,14 +75,6 @@
       text-decoration: underline;
     }
   </style>
-
-  <!-- Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-
-  <!-- AdSense（必須） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-     crossorigin="anonymous"></script>
-  
 </head>
 
 <body>
@@ -86,11 +85,11 @@
   <!-- 1. Purpose -->
   <h2>1. このツールでできること（Purpose）</h2>
   <p>
-    JSONを貼り付けるだけで、その構造を自動解析し、
-    Mermaid.js の <code>flowchart TD</code> 記法へ変換するツールです。
+    JSONを貼るだけで、その構造を自動解析し、
+    Mermaid.js の <code>flowchart TD</code> 記法として出力するツールです。
   </p>
   <p>
-    Mermaid Live Editor やドキュメント生成ツールにコピペするだけで、
+    Mermaid Live Editor やドキュメントツールへコピペするだけで、
     JSON構造を視覚的に確認できます。
   </p>
 
@@ -99,47 +98,41 @@
   <ul>
     <li>① JSON入力欄に解析したいJSONを貼り付けます。</li>
     <li>② 「変換する」ボタンを押します。</li>
-    <li>③ 変換結果（Mermaid記法）が下部に表示されます。</li>
-    <li>④ 「コピー」ボタンで出力をクリップボードに保存できます。</li>
-    <li>⑤ Mermaid Live Editor などへ貼り付けて図を確認できます。</li>
+    <li>③ 下部にMermaid記法が自動生成されます。</li>
+    <li>④ 「コピー」でクリップボードに保存できます。</li>
+    <li>⑤ Mermaid Live Editor に貼り付ければ図を確認できます。</li>
   </ul>
 
-  <!-- 3. Supported / Unsupported -->
+  <!-- 3. Supported -->
   <h2>3. 対応 / 非対応（Supported / Unsupported）</h2>
-  <p><strong>対応（Supported）</strong></p>
+  <p><strong>対応しているもの</strong></p>
   <ul>
-    <li>オブジェクト</li>
-    <li>ネスト構造</li>
+    <li>オブジェクト（入れ子対応）</li>
     <li>配列（indexをノードとして扱う）</li>
-    <li>プリミティブ値（文字列 / 数値 / 真偽値）</li>
+    <li>プリミティブ（文字列 / 数値 / 真偽値）</li>
   </ul>
 
-  <p><strong>非対応（Unsupported）</strong></p>
+  <p><strong>対応していないもの</strong></p>
   <ul>
     <li>循環参照を含むJSON</li>
-    <li>1MB以上の超巨大JSON（ブラウザの制限）</li>
-    <li>特殊な型（Date, Function, Symbolなど）</li>
+    <li>特殊型（Date / Function / Symbolなど）</li>
+    <li>極端に巨大なJSON（ブラウザ性能に依存）</li>
   </ul>
 
   <!-- 4. Error -->
   <h2>4. エラーについて（Error Types）</h2>
   <p>
-    JSON構文エラーがある場合、
-    「JSONの構文が正しくありません」と表示されます。
+    JSON構文エラーがある場合、「JSONの構文が正しくありません」と表示されます。
   </p>
   <p>
-    入れ子が深すぎる場合や巨大なJSONの場合、
-    変換に時間がかかることがあります。
+    大きいJSONの場合、変換に時間がかかることがあります。
   </p>
 
-  <!-- 5. Output Format -->
+  <!-- 5. Output -->
   <h2>5. 出力形式（Output Format）</h2>
-  <p>
-    出力は Mermaid.js の <code>flowchart TD</code> 形式です。
-  </p>
-  <p>例：</p>
+  <p>出力は Mermaid.js の <code>flowchart TD</code> 形式です。</p>
 
-<pre style="background:#f9fafb;border:1px solid #e5e7eb;padding:12px;border-radius:6px;font-size:13px;">
+<pre>
 flowchart TD
   node_0["root"]
   node_1["user"]
@@ -150,19 +143,20 @@ flowchart TD
 
   <!-- 6. FAQ -->
   <h2>6. よくある質問（FAQ）</h2>
+
   <p><strong>Q. データはサーバーに送られますか？</strong></p>
   <p>A. すべてブラウザ内で処理され、外部送信は一切ありません。</p>
 
   <p><strong>Q. Mermaid記法はどこで使えますか？</strong></p>
-  <p>A. Mermaid Live Editor（公式）や技術ブログ、ドキュメントツールで利用できます。</p>
+  <p>A. Mermaid Live Editor（公式）や技術ブログで利用できます。</p>
 
   <p><strong>Q. JSONが大きすぎるとどうなりますか？</strong></p>
-  <p>A. 変換に時間がかかるか、ブラウザが一時停止する場合があります。</p>
+  <p>A. 変換に時間がかかり、ブラウザが一時停止する場合があります。</p>
 
   <!-- 7. Disclaimer -->
   <h2>7. 免責（Disclaimer）</h2>
   <p>
-    本ツールの出力結果の正確性は保証されません。大規模・機密データの解析に利用する際は十分ご注意ください。
+    本ツールの出力結果の正確性は保証できません。重要な文書作成に使用する場合は必ず検証してください。
   </p>
 
   <!-- 8. Return -->
