@@ -82,3 +82,69 @@
         <p data-i18n="en">Arrays are treated as nodes labeled with their index.</p>
       </details>
     </section>
+
+        <!-- JSON入力 -->
+    <label class="section-label" data-i18n="ja">JSON（入力）</label>
+    <label class="section-label" data-i18n="en">JSON Input</label>
+
+    <textarea id="jsonInput" class="code-input"
+      placeholder='{"user": {"name": "Alice"}}'></textarea>
+
+    <!-- ボタン群（Convert / Copy / Reset 横並び） -->
+    <div class="btn-area">
+      <button id="convertBtn" class="btn-primary" data-i18n="ja">変換する</button>
+      <button id="convertBtn" class="btn-primary" data-i18n="en">Convert</button>
+
+      <button id="copyBtn" class="btn-secondary" data-i18n="ja">コピー</button>
+      <button id="copyBtn" class="btn-secondary" data-i18n="en">Copy</button>
+
+      <button id="resetBtn" class="btn-secondary" data-i18n="ja">リセット</button>
+      <button id="resetBtn" class="btn-secondary" data-i18n="en">Reset</button>
+    </div>
+
+    <!-- プログレスバー -->
+    <div id="progress" class="progress hidden">
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- エラー表示 -->
+    <div id="errorBox" class="error-box hidden"></div>
+
+    <!-- 出力欄 -->
+    <label class="section-label" data-i18n="ja">Mermaid記法（出力）</label>
+    <label class="section-label" data-i18n="en">Mermaid Output</label>
+
+    <textarea id="mermaidOutput" class="code-output" readonly></textarea>
+
+    <!-- 寄付導線 -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のため応援いただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool helped you, consider supporting the development.</p>
+
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- 内部リンク -->
+    <div class="nw-links">
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/json-formatter/">JSON Formatter</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a>
+    </div>
+
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
