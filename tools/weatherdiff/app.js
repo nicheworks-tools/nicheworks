@@ -354,7 +354,7 @@ function setDiff(elem, label, v1, v2, unit) {
   const diff = Number((v1 - v2).toFixed(1));
   const abs = Math.abs(diff);
 
-  /* 色判定（あなた指定のプロ版） */
+  /* 色判定 */
   let cls = "diff-gray";
   if (abs <= 0.5) cls = "diff-gray";
   else if (diff > 0 && abs <= 2) cls = "diff-red";
