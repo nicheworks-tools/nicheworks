@@ -1,334 +1,389 @@
-/* ======================================================
-   WeatherDiff app.js (完全版 / 切れなし)
-   - Nominatim で geocode
-   - Open-Meteo と MET Norway の比較
-   - 外部リンク生成
-   ====================================================== */
+/* =========================================================
+   WeatherDiff – app.js (Full Spec Version)
+   API: Open-Meteo + MET Norway (Location Forecast)
+========================================================= */
 
-/* ------------------------------
-   DOM
------------------------------- */
-const btnJP = document.getElementById("btn-jp");
-const btnEN = document.getElementById("btn-en");
-const btnCompare = document.getElementById("btn-compare");
-const btnGeo = document.getElementById("btn-geoloc");
+/* ---------------------------
+   DOM 取得
+--------------------------- */
+const input = document.getElementById("wd-input");
+const btnSearch = document.getElementById("btn-search");
+const btnGeo = document.getElementById("btn-geo");
+const results = document.getElementById("wd-results");
 
-const input = document.getElementById("searchInput");
-const statusEl = document.getElementById("status");
-const resultsEl = document.getElementById("results");
+const progressArea = document.getElementById("wd-progress");
+const progressBar = document.getElementById("wd-progress-bar");
+const progressText = document.getElementById("wd-progress-text");
 
-const locName = document.getElementById("loc-name");
-const locLatLon = document.getElementById("loc-latlon");
-const locCountry = document.getElementById("loc-country");
+const jpBtn = document.getElementById("lang-jp");
+const enBtn = document.getElementById("lang-en");
 
-const omToday = document.getElementById("om-today");
-const omTomorrow = document.getElementById("om-tomorrow");
-const metToday = document.getElementById("met-today");
-const metTomorrow = document.getElementById("met-tomorrow");
+/* ---------------------------
+   言語テキスト
+--------------------------- */
+const TEXT = {
+  jp: {
+    comparing: "比較中…",
+    geoFail: "現在地を取得できません",
+    notFound: "地点が見つかりません",
+    resultDone: "比較完了",
+    today: "今日",
+    tomorrow: "明日",
+    temp: "気温",
+    rain: "降水",
+    wind: "風",
+    diff: "予報のズレ（比較結果）",
+    other: "他のサービスで詳しく見る",
+  },
+  en: {
+    comparing: "Comparing…",
+    geoFail: "Cannot get your location",
+    notFound: "Location not found",
+    resultDone: "Done",
+    today: "Today",
+    tomorrow: "Tomorrow",
+    temp: "Temp",
+    rain: "Rain",
+    wind: "Wind",
+    diff: "Forecast differences",
+    other: "More details on other services",
+  },
+};
 
-const diffSummary = document.getElementById("diff-summary");
-const linksGrid = document.getElementById("links-grid");
+let LANG = "jp";
 
-let LANG = "ja";
+/* ---------------------------
+   丸め
+--------------------------- */
+const r1 = (n) => Math.round(n * 10) / 10;
 
-/* ------------------------------
-   Lang toggle
------------------------------- */
-btnJP.addEventListener("click", () => {
-  LANG = "ja";
-  setLang();
-});
-btnEN.addEventListener("click", () => {
-  LANG = "en";
-  setLang();
-});
+/* ---------------------------
+   天気アイコン補完（MET Norway はアイコン無し → emoji マッピング）
+--------------------------- */
+function iconFromCondition(code, src = "openmeteo") {
+  // Open-Meteo weathercode → emoji
+  const mapOM = {
+    0: "☀️",
+    1: "🌤️",
+    2: "⛅",
+    3: "☁️",
+    45: "🌫️",
+    48: "🌫️",
+    51: "🌦️",
+    53: "🌦️",
+    55: "🌦️",
+    61: "🌧️",
+    63: "🌧️",
+    65: "🌧️",
+    71: "🌨️",
+    73: "🌨️",
+    75: "🌨️",
+    80: "🌦️",
+    81: "🌧️",
+    82: "⛈️",
+    95: "⛈️",
+    96: "⛈️",
+    99: "⛈️",
+  };
 
-function setLang() {
-  if (LANG === "ja") {
-    document.getElementById("label-input").textContent = "地点を入力";
-    btnCompare.textContent = "比較する";
-    btnGeo.textContent = "現在地から比較";
-  } else {
-    document.getElementById("label-input").textContent = "Enter location";
-    btnCompare.textContent = "Compare";
-    btnGeo.textContent = "Use current location";
-  }
+  // MET Norway → weather symbol に近い簡易 emoji
+  const mapMET = {
+    clearsky: "☀️",
+    fair: "🌤️",
+    partlycloudy: "⛅",
+    cloudy: "☁️",
+    lightrain: "🌦️",
+    rain: "🌧️",
+    heavyrain: "🌧️",
+    lightsnow: "🌨️",
+    snow: "🌨️",
+    fog: "🌫️",
+    thunderstorm: "⛈️",
+  };
+
+  if (src === "openmeteo") return mapOM[code] ?? "☁️";
+  if (src === "met") return mapMET[code] ?? "☁️";
+  return "☁️";
 }
 
-/* ------------------------------
-   Util
------------------------------- */
-function $(id) {
-  return document.getElementById(id);
+/* ---------------------------
+   進捗表示
+--------------------------- */
+function showProgress(text) {
+  progressArea.classList.remove("hidden");
+  progressText.textContent = text;
 }
 
-function showStatus(msg) {
-  statusEl.textContent = msg;
+function hideProgress() {
+  progressArea.classList.add("hidden");
 }
 
-function clearStatus() {
-  statusEl.textContent = "";
-}
+/* ---------------------------
+   ジオコーディング（Open-Meteo）
+--------------------------- */
+async function geocode(query) {
+  const url =
+    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
+      query
+    )}&language=${LANG}&count=1`;
 
-/* ======================================================
-   1) Geocode (Nominatim)
-====================================================== */
-async function geocode(q) {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-    q
-  )}&limit=1&addressdetails=1`;
-
-  const res = await fetch(url, {
-    headers: { "User-Agent": "WeatherDiff" }
-  });
+  const res = await fetch(url);
   const data = await res.json();
-  if (!data || data.length === 0) return null;
 
-  const item = data[0];
+  if (!data.results || data.results.length === 0) return null;
+
+  const p = data.results[0];
   return {
-    name: item.display_name || "",
-    lat: parseFloat(item.lat),
-    lon: parseFloat(item.lon),
-    country: item.address?.country || "",
-    country_code: (item.address?.country_code || "").toUpperCase()
+    name: `${p.name}, ${p.admin1 ?? ""}, ${p.country}`,
+    lat: p.latitude,
+    lon: p.longitude,
   };
 }
 
-/* ======================================================
-   2) Weather API (Open-Meteo)
-====================================================== */
-async function fetchOpenMeteo(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&timezone=auto`;
+/* ---------------------------
+   Open-Meteo forecast
+--------------------------- */
+async function getOpenMeteo(lat, lon) {
+  const url =
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&timezone=auto`;
 
-  const r = await fetch(url);
-  const j = await r.json();
-  if (!j.daily) return null;
+  const res = await fetch(url);
+  const data = await res.json();
 
-  return {
-    today: {
-      tmax: j.daily.temperature_2m_max[0],
-      tmin: j.daily.temperature_2m_min[0],
-      rain: j.daily.precipitation_sum[0],
-      wind: j.daily.windspeed_10m_max[0]
-    },
-    tomorrow: {
-      tmax: j.daily.temperature_2m_max[1],
-      tmin: j.daily.temperature_2m_min[1],
-      rain: j.daily.precipitation_sum[1],
-      wind: j.daily.windspeed_10m_max[1]
-    }
-  };
-}
-
-/* ======================================================
-   3) Weather API (MET Norway)
-   ref: api.met.no/weatherapi/locationforecast/2.0
-====================================================== */
-async function fetchMET(lat, lon) {
-  const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
-  const r = await fetch(url, {
-    headers: { "User-Agent": "WeatherDiff" }
-  });
-  const j = await r.json();
-  if (!j.properties || !j.properties.timeseries) return null;
-
-  const ts = j.properties.timeseries;
-
-  // 今日 = index0
-  const t0 = ts[0].data.instant.details;
-  const t1 = ts[1].data.instant.details;
-
-  // METは 1h区切りなので、ここでは簡易処理で t0=今日, t1=明日扱い
   return {
     today: {
-      t: t0.air_temperature,
-      rain: 0, // 簡易（METはprecipitation系は別構造）
-      wind: t0.wind_speed
+      icon: iconFromCondition(data.daily.weathercode[0], "openmeteo"),
+      tmax: data.daily.temperature_2m_max[0],
+      tmin: data.daily.temperature_2m_min[0],
+      rain: data.daily.precipitation_sum[0],
+      wind: data.daily.windspeed_10m_max[0],
     },
     tomorrow: {
-      t: t1.air_temperature,
-      rain: 0,
-      wind: t1.wind_speed
-    }
+      icon: iconFromCondition(data.daily.weathercode[1], "openmeteo"),
+      tmax: data.daily.temperature_2m_max[1],
+      tmin: data.daily.temperature_2m_min[1],
+      rain: data.daily.precipitation_sum[1],
+      wind: data.daily.windspeed_10m_max[1],
+    },
   };
 }
 
-/* ======================================================
-   4) Diff
-====================================================== */
-function createDiff(om, met) {
-  let o = "";
-  function diff(a, b) {
-    const d = Math.abs(a - b);
-    if (d < 1) return "ほぼ一致";
-    if (d < 3) return "やや差あり";
-    return "大きな差あり";
+/* ---------------------------
+   MET Norway forecast
+--------------------------- */
+async function getMET(lat, lon) {
+  const url =
+    `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
+
+  const res = await fetch(url);
+  const data = await res.json();
+
+  const times = data.properties.timeseries;
+
+  // 24時間ごとの値を拾う（今日 / 明日）
+  const today = times[0];
+  const tomorrow = times[24] ?? times[times.length - 1];
+
+  // symbol_code → emoji
+  function parse(t) {
+    const details = t.data.instant.details;
+    const next6 = t.data.next_6_hours ?? t.data.next_12_hours;
+    const symbol =
+      next6?.summary?.symbol_code?.replace(/_.*$/, "") ?? "cloudy";
+
+    return {
+      icon: iconFromCondition(symbol, "met"),
+      tmax: details.air_temperature, // METは最高/最低が無い → 現在温度代用
+      tmin: details.air_temperature - 1.5,
+      rain: next6?.details?.precipitation_amount ?? 0,
+      wind: details.wind_speed ?? 0,
+    };
   }
 
-  o += `・気温：${diff(om.today.tmax, met.today.t)}<br>`;
-  o += `・降水：${diff(om.today.rain, met.today.rain)}<br>`;
-  o += `・風：${diff(om.today.wind, met.today.wind)}`;
-  return o;
+  return {
+    today: parse(today),
+    tomorrow: parse(tomorrow),
+  };
 }
 
-/* ======================================================
-   5) External Links
-====================================================== */
-function buildLinks(name, lat, lon, countryCode) {
-  const out = [];
+/* ---------------------------
+   差の比較（数値も返す）
+--------------------------- */
+function diffValue(a, b) {
+  return r1(a - b);
+}
 
-  const q = encodeURIComponent(name);
+function buildDiffBlock(title, todayDiff, tomorrowDiff, unit) {
+  return `
+    <div class="diff-block">
+      <h4>${title}</h4>
+      <div>${TEXT[LANG].today}： ${todayDiff > 0 ? "+" : ""}${todayDiff}${unit}</div>
+      <div>${TEXT[LANG].tomorrow}： ${tomorrowDiff > 0 ? "+" : ""}${tomorrowDiff}${unit}</div>
+    </div>
+  `;
+}
 
-  // 基本3サービス（全世界対応）
-  out.push({
-    label: "Google Weather",
-    url: `https://www.google.com/search?q=weather+${q}`
-  });
-  out.push({
-    label: "Weather.com",
-    url: `https://weather.com/weather/today/l/${lat},${lon}`
-  });
-  out.push({
-    label: "AccuWeather",
-    url: `https://www.accuweather.com/en/search-locations?query=${q}`
-  });
+/* ---------------------------
+   結果描画
+--------------------------- */
+function renderResult(place, om, met) {
+  const html = `
+    <div class="section-block">
+      <h2>${place.name}</h2>
+      <p>lat ${place.lat} / lon ${place.lon}</p>
+    </div>
 
-  // 日本向け（countryCode が JP のときだけ）
-  if (countryCode === "JP") {
-    out.push({
-      label: "気象庁",
-      url: `https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=130000`
-    });
-    out.push({
-      label: "tenki.jp",
-      url: `https://tenki.jp/search/?keyword=${q}`
-    });
-    out.push({
-      label: "Yahoo天気",
-      url: `https://weather.yahoo.co.jp/weather/search/?p=${q}`
-    });
-    out.push({
-      label: "Weathernews",
-      url: `https://weathernews.jp/search/?keyword=${q}`
-    });
+    <div class="weather-card">
+      <h3>Open-Meteo</h3>
+      <div class="weather-row">
+        <div class="weather-icon"><span>${om.today.icon}</span></div>
+        <div class="weather-info">
+          <div>${TEXT[LANG].today}： ${om.today.tmax}°C / ${om.today.tmin}°C</div>
+          <div>${TEXT[LANG].rain}： ${om.today.rain}mm</div>
+          <div>${TEXT[LANG].wind}： ${om.today.wind} m/s</div>
+        </div>
+      </div>
+
+      <div class="weather-row">
+        <div class="weather-icon"><span>${om.tomorrow.icon}</span></div>
+        <div class="weather-info">
+          <div>${TEXT[LANG].tomorrow}： ${om.tomorrow.tmax}°C / ${om.tomorrow.tmin}°C</div>
+          <div>${TEXT[LANG].rain}： ${om.tomorrow.rain}mm</div>
+          <div>${TEXT[LANG].wind}： ${om.tomorrow.wind} m/s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weather-card">
+      <h3>MET Norway</h3>
+      <div class="weather-row">
+        <div class="weather-icon"><span>${met.today.icon}</span></div>
+        <div class="weather-info">
+          <div>${TEXT[LANG].today}： ${met.today.tmax}°C / ${met.today.tmin}°C</div>
+          <div>${TEXT[LANG].rain}： ${met.today.rain}mm</div>
+          <div>${TEXT[LANG].wind}： ${met.today.wind} m/s</div>
+        </div>
+      </div>
+
+      <div class="weather-row">
+        <div class="weather-icon"><span>${met.tomorrow.icon}</span></div>
+        <div class="weather-info">
+          <div>${TEXT[LANG].tomorrow}： ${met.tomorrow.tmax}°C / ${met.tomorrow.tmin}°C</div>
+          <div>${TEXT[LANG].rain}： ${met.tomorrow.rain}mm</div>
+          <div>${TEXT[LANG].wind}： ${met.tomorrow.wind} m/s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <h3>${TEXT[LANG].diff}</h3>
+
+      <div class="diff-table">
+        ${buildDiffBlock(
+          TEXT[LANG].temp,
+          diffValue(om.today.tmax, met.today.tmax),
+          diffValue(om.tomorrow.tmax, met.tomorrow.tmax),
+          "°C"
+        )}
+
+        ${buildDiffBlock(
+          TEXT[LANG].rain,
+          diffValue(om.today.rain, met.today.rain),
+          diffValue(om.tomorrow.rain, met.tomorrow.rain),
+          "mm"
+        )}
+
+        ${buildDiffBlock(
+          TEXT[LANG].wind,
+          diffValue(om.today.wind, met.today.wind),
+          diffValue(om.tomorrow.wind, met.tomorrow.wind),
+          " m/s"
+        )}
+      </div>
+    </div>
+  `;
+
+  results.innerHTML = html;
+}
+
+/* ---------------------------
+   メイン比較
+--------------------------- */
+async function runComparison(place) {
+  try {
+    showProgress(TEXT[LANG].comparing);
+
+    const [om, met] = await Promise.all([
+      getOpenMeteo(place.lat, place.lon),
+      getMET(place.lat, place.lon),
+    ]);
+
+    hideProgress();
+    renderResult(place, om, met);
+  } catch (e) {
+    console.error(e);
+    alert("Error");
   }
-
-  return out;
 }
 
-/* ======================================================
-   6) Render
-====================================================== */
-function renderWeather(om, met) {
-  omToday.innerHTML = `
-    🌤 今日：${om.today.tmax}°C / ${om.today.tmin}°C<br>
-    降水：${om.today.rain}mm<br>
-    風：${om.today.wind} m/s
-  `;
-  omTomorrow.innerHTML = `
-    🌤 明日：${om.tomorrow.tmax}°C / ${om.tomorrow.tmin}°C<br>
-    降水：${om.tomorrow.rain}mm<br>
-    風：${om.tomorrow.wind} m/s
-  `;
-
-  metToday.innerHTML = `
-    今日：${met.today.t.toFixed(1)}°C<br>
-    降水：${met.today.rain}mm<br>
-    風：${met.today.wind} m/s
-  `;
-  metTomorrow.innerHTML = `
-    明日：${met.tomorrow.t.toFixed(1)}°C<br>
-    降水：${met.tomorrow.rain}mm<br>
-    風：${met.tomorrow.wind} m/s
-  `;
-}
-
-/* ======================================================
-   7) Main Compare
-====================================================== */
-async function runCompareByName() {
+/* ---------------------------
+   手入力比較
+--------------------------- */
+async function handleSearch() {
   const q = input.value.trim();
   if (!q) return;
 
-  showStatus("地点を検索中…");
-  resultsEl.classList.add("hidden");
+  showProgress(TEXT[LANG].comparing);
 
-  const g = await geocode(q);
-  if (!g) {
-    showStatus("場所が見つかりません");
+  const place = await geocode(q);
+  if (!place) {
+    hideProgress();
+    alert(TEXT[LANG].notFound);
     return;
   }
 
-  await run(g.lat, g.lon, g.name, g.country, g.country_code);
+  await runComparison(place);
 }
 
-async function run(lat, lon, name, country, countryCode) {
-  showStatus("天気を取得中…");
-
-  const [om, met] = await Promise.all([
-    fetchOpenMeteo(lat, lon),
-    fetchMET(lat, lon)
-  ]);
-
-  if (!om || !met) {
-    showStatus("天気を取得できません");
-    return;
-  }
-
-  // Location info
-  locName.textContent = name;
-  locLatLon.textContent = `lat ${lat} / lon ${lon}`;
-  locCountry.textContent = `country: ${country}`;
-
-  // Weather cards
-  renderWeather(om, met);
-
-  // diff
-  diffSummary.innerHTML = createDiff(om, met);
-
-  // links
-  const links = buildLinks(name, lat, lon, countryCode);
-  linksGrid.innerHTML = "";
-  links.forEach((x) => {
-    const a = document.createElement("a");
-    a.href = x.url;
-    a.textContent = x.label;
-    a.target = "_blank";
-    linksGrid.appendChild(a);
-  });
-
-  resultsEl.classList.remove("hidden");
-  clearStatus();
-}
-
-/* ======================================================
-   8) Geolocation
-====================================================== */
-btnGeo.addEventListener("click", () => {
+/* ---------------------------
+   現在地比較
+--------------------------- */
+function handleGeo() {
   if (!navigator.geolocation) {
-    showStatus("Geolocation not supported");
+    alert(TEXT[LANG].geoFail);
     return;
   }
-  showStatus("現在地を取得中…");
 
   navigator.geolocation.getCurrentPosition(
     async (pos) => {
       const lat = pos.coords.latitude;
       const lon = pos.coords.longitude;
-      await run(lat, lon, "Your Location", "", "");
+
+      const name = `(${r1(lat)}, ${r1(lon)})`;
+      await runComparison({ name, lat, lon });
     },
-    (err) => {
-      showStatus("位置情報が取得できません");
-    }
+    () => alert(TEXT[LANG].geoFail)
   );
-});
+}
 
-/* ======================================================
-   9) Button Compare
-====================================================== */
-btnCompare.addEventListener("click", runCompareByName);
+/* ---------------------------
+   言語切替
+--------------------------- */
+function setLang(l) {
+  LANG = l;
+  // 文言だけ書き換える（結果は再生成しない）
+  document.querySelector(".input-label").textContent =
+    LANG === "jp" ? "地点を入力" : "Location";
+  btnSearch.textContent = LANG === "jp" ? "比較する" : "Compare";
+  btnGeo.textContent =
+    LANG === "jp" ? "現在地から比較" : "Compare from GPS";
+}
 
-/* ======================================================
-   10) Init
-====================================================== */
-setLang();
+/* ---------------------------
+   イベント登録
+--------------------------- */
+btnSearch.addEventListener("click", handleSearch);
+btnGeo.addEventListener("click", handleGeo);
+
+jpBtn.addEventListener("click", () => setLang("jp"));
+enBtn.addEventListener("click", () => setLang("en"));
