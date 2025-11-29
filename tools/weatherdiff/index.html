@@ -5,21 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>WeatherDiff | 天気予報のズレ比較ツール | NicheWorks</title>
-  <meta name="description" content="Open-Meteo と MET Norway の天気予報を比較して、気温・降水・風のズレを可視化する軽量ツール。地点検索・現在地取得対応。">
+  <meta name="description" content="Open-Meteo と MET Norway の天気予報を比較して、気温・降水・風のズレを可視化する軽量ツールです。">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ========================================================= -->
-<!--                         HEADER                            -->
-<!-- ========================================================= -->
-
 <header class="wd-header">
   <div class="wd-header-inner">
     <div class="wd-title-block">
-      <h1 class="wd-title" id="titleMain">WeatherDiff</h1>
+      <h1 class="wd-title">WeatherDiff</h1>
       <p class="wd-subtitle" id="subtitle">天気予報のズレ比較ツール</p>
     </div>
     <div class="wd-lang-switch">
@@ -31,45 +27,34 @@
 
 <main class="wd-main">
 
-  <!-- ========================================================= -->
-  <!--                        INPUT AREA                         -->
-  <!-- ========================================================= -->
-
+  <!-- 入力エリア -->
   <section class="wd-section wd-input-section">
-
     <label for="locationInput" class="wd-label" id="labelLocation">地点を入力</label>
 
-    <div class="wd-input-col">
+    <div class="wd-input-row">
       <input
         id="locationInput"
         type="text"
-        placeholder="千葉市 / Shibuya / New York"
+        placeholder="渋谷 / Shibuya / New York"
         autocomplete="off"
       />
-
       <button id="btnCompare" class="wd-btn primary">比較する</button>
-
       <button id="btnGeo" class="wd-btn ghost">現在地から比較</button>
-
-      <p id="errorText" class="wd-error" aria-live="polite"></p>
     </div>
+
+    <p id="errorText" class="wd-error" aria-live="polite"></p>
 
     <!-- プログレスバー＋ステータス -->
     <div id="progressArea" class="wd-progress hidden">
       <div class="wd-progress-bar"></div>
       <div id="progressText" class="wd-progress-text">処理中…</div>
     </div>
-
   </section>
 
-
-  <!-- ========================================================= -->
-  <!--                        RESULT AREA                        -->
-  <!-- ========================================================= -->
-
+  <!-- 結果エリア -->
   <section id="resultSection" class="wd-section wd-result hidden">
 
-    <!-- 赤枠警告ボックス -->
+    <!-- 赤枠の注意ボックス -->
     <div class="wd-warning">
       <p id="warnText">
         この結果は複数の天気APIを比較した参考情報です。必ず各サービスの公式予報も確認してください。
@@ -88,15 +73,16 @@
     <!-- 処理時間 -->
     <p id="processTime" class="wd-process-time"></p>
 
-    <!-- API 2枚カード -->
+    <!-- APIカード 2枚（Open-Meteo / MET Norway） -->
     <div class="wd-api-grid">
-
       <!-- Open-Meteo -->
       <article class="wd-card">
         <h3 class="wd-card-title">Open-Meteo</h3>
 
         <div class="wd-weather-row">
-          <div class="wd-weather-icon"><span id="omIconToday">☀️</span></div>
+          <div class="wd-weather-icon">
+            <span id="omIconToday">☀️</span>
+          </div>
           <div class="wd-weather-info">
             <div id="omTodayTemp">今日: -</div>
             <div id="omTodayRain">降水: -</div>
@@ -105,7 +91,9 @@
         </div>
 
         <div class="wd-weather-row">
-          <div class="wd-weather-icon"><span id="omIconTomorrow">☀️</span></div>
+          <div class="wd-weather-icon">
+            <span id="omIconTomorrow">☀️</span>
+          </div>
           <div class="wd-weather-info">
             <div id="omTomorrowTemp">明日: -</div>
             <div id="omTomorrowRain">降水: -</div>
@@ -119,7 +107,9 @@
         <h3 class="wd-card-title">MET Norway</h3>
 
         <div class="wd-weather-row">
-          <div class="wd-weather-icon"><span id="mnIconToday">☀️</span></div>
+          <div class="wd-weather-icon">
+            <span id="mnIconToday">☀️</span>
+          </div>
           <div class="wd-weather-info">
             <div id="mnTodayTemp">今日: -</div>
             <div id="mnTodayRain">降水: -</div>
@@ -128,7 +118,9 @@
         </div>
 
         <div class="wd-weather-row">
-          <div class="wd-weather-icon"><span id="mnIconTomorrow">☀️</span></div>
+          <div class="wd-weather-icon">
+            <span id="mnIconTomorrow">☀️</span>
+          </div>
           <div class="wd-weather-info">
             <div id="mnTomorrowTemp">明日: -</div>
             <div id="mnTomorrowRain">降水: -</div>
@@ -138,16 +130,11 @@
       </article>
     </div>
 
-
-    <!-- ========================================================= -->
-    <!--                      DIFF / 予報のズレ                   -->
-    <!-- ========================================================= -->
-
+    <!-- 予報のズレ（今日・明日 / 4項目） -->
     <article class="wd-card wd-diff-card">
       <h3 class="wd-card-title" id="diffTitle">予報のズレ（比較結果）</h3>
 
       <div class="wd-diff-grid">
-
         <!-- 今日 -->
         <div class="wd-diff-day">
           <h4 id="diffTodayHeading">今日</h4>
@@ -165,63 +152,61 @@
           <p id="diffTomorrowRain">・降水: -</p>
           <p id="diffTomorrowWind">・風: -</p>
         </div>
-
       </div>
     </article>
 
-
-    <!-- ========================================================= -->
-    <!--             その他のサービス（国別で出し分け）           -->
-    <!-- ========================================================= -->
-
-    <section class="wd-section links-section">
+    <!-- 他サービスリンク -->
+    <section class="wd-section">
       <h3 class="wd-card-title" id="otherServicesTitle">他のサービスで詳しく見る</h3>
 
       <div class="wd-links-grid">
-        <a id="linkGoogle" href="#" target="_blank" rel="noopener noreferrer">Google Weather</a>
-        <a id="linkWeatherCom" href="#" target="_blank" rel="noopener noreferrer">Weather.com</a>
-        <a id="linkAccu" href="#" target="_blank" rel="noopener noreferrer">AccuWeather</a>
-
-        <!-- 日本向け -->
-        <a id="linkJMA" href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener noreferrer">気象庁（日本）</a>
-        <a id="linkTenki" href="https://tenki.jp" target="_blank" rel="noopener noreferrer">tenki.jp</a>
-        <a id="linkYahooWeather" href="https://weather.yahoo.co.jp/weather/" target="_blank" rel="noopener noreferrer">Yahoo天気</a>
-        <a id="linkWN" href="https://weathernews.jp" target="_blank" rel="noopener noreferrer">Weathernews</a>
+        <a id="linkGoogle" href="https://www.google.com/search?q=weather" target="_blank" rel="noopener noreferrer">
+          Google Weather
+        </a>
+        <a id="linkWeatherCom" href="https://weather.com" target="_blank" rel="noopener noreferrer">
+          Weather.com
+        </a>
+        <a id="linkAccu" href="https://www.accuweather.com" target="_blank" rel="noopener noreferrer">
+          AccuWeather
+        </a>
+        <a id="linkJMA" href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener noreferrer">
+          気象庁（日本）
+        </a>
+        <a id="linkTenki" href="https://tenki.jp" target="_blank" rel="noopener noreferrer">
+          tenki.jp
+        </a>
+        <a id="linkYahooWeather" href="https://weather.yahoo.co.jp/weather/" target="_blank" rel="noopener noreferrer">
+          Yahoo天気
+        </a>
+        <a id="linkWN" href="https://weathernews.jp" target="_blank" rel="noopener noreferrer">
+          Weathernews
+        </a>
       </div>
     </section>
 
   </section>
-
 </main>
 
-
-<!-- ========================================================= -->
-<!--                         FOOTER                            -->
-<!-- ========================================================= -->
-
 <footer class="wd-footer">
-
-  <p class="wd-footer-donate-text" id="donateText">
+  <p id="donateText" class="wd-footer-donate-text">
     このツールが役に立ったら、寄付で応援していただけると嬉しいです。
   </p>
-
   <div class="wd-footer-donate-btns">
-    <a href="https://ofuse.me/" target="_blank" class="wd-donate-btn ofuse">🧡 OFUSE</a>
-    <a href="https://ko-fi.com/" target="_blank" class="wd-donate-btn kofi">☕ Ko-fi</a>
+    <a href="https://ofuse.me/" class="wd-donate-btn" target="_blank" rel="noopener noreferrer">💌 OFUSE</a>
+    <a href="https://ko-fi.com/" class="wd-donate-btn" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>
   </div>
 
   <div class="wd-footer-links">
     <a href="/tools/manualfinder/">ManualFinder</a>
     <span>/</span>
     <a href="/tools/unitmaster/">UnitMaster</a>
-    <span> / </span>
+    <span>/</span>
     <a href="/tools/logformatter/">LogFormatter</a>
   </div>
 
   <p class="wd-footer-copy">
-    © 2025 <a href="/" class="wd-footer-home">NicheWorks</a>
+    © 2025 <a href="https://nicheworks.pages.dev/" class="wd-footer-home">NicheWorks</a>
   </p>
-
 </footer>
 
 <script src="app.js"></script>
