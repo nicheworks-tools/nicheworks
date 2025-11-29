@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>JSON → Mermaid変換｜JSON2Mermaid Lite | NicheWorks</title>
-  <meta name="description" content="JSONを貼るだけでMermaid.jsのflowchart記法を自動生成する無料ツール。複雑なJSON構造を瞬時に可視化し、Mermaid Live Editorでそのまま表示できます。">
+  <meta name="description" content="JSONを貼るだけでMermaid.jsのflowchart記法を自動生成する無料ツール。複雑なJSON構造を瞬時に可視化し、Mermaid Live Editorにコピペできます。">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/json2mermaid/">
 
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="JSON → Mermaid変換｜JSON2Mermaid Lite | NicheWorks">
-  <meta property="og:description" content="JSONをMermaid.jsのフローチャート記法に自動変換。Live Editorにコピペして即可視化できます。">
+  <meta property="og:description" content="JSONをMermaid.jsのフローチャート記法に自動生成。">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/json2mermaid/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -22,12 +22,11 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- AdSense（必須） -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-     crossorigin="anonymous"></script>
-  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script>
+
   <!-- Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-  
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
+
   <!-- CSS -->
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -38,7 +37,7 @@
     <h1 class="tool-title" data-i18n="en">JSON2Mermaid Lite</h1>
 
     <p class="tool-sub" data-i18n="ja">JSON構造をMermaid.jsのフローチャート記法に自動変換する軽量ツール</p>
-    <p class="tool-sub" data-i18n="en">Convert JSON structure into Mermaid.js flowchart syntax instantly</p>
+    <p class="tool-sub" data-i18n="en">Convert JSON structures into Mermaid.js flowchart syntax</p>
 
     <div class="nw-lang-switch">
       <button data-lang="ja" class="active">JP</button> /
@@ -47,96 +46,39 @@
   </header>
 
   <main class="nw-main">
+
     <!-- ad-top -->
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-    <!-- JSON入力 -->
-    <label class="section-label" data-i18n="ja">JSON（入力）</label>
-    <label class="section-label" data-i18n="en">JSON Input</label>
-
-    <textarea id="jsonInput" class="code-input" placeholder='{"user": {"name": "Alice"}}'></textarea>
-
-    <!-- ボタン群 -->
-    <div class="btn-area">
-      <button id="convertBtn" class="btn-primary" data-i18n="ja">変換する</button>
-      <button id="convertBtn" class="btn-primary" data-i18n="en">Convert</button>
-
-      <button id="copyBtn" class="btn-secondary" data-i18n="ja">コピー</button>
-      <button id="copyBtn" class="btn-secondary" data-i18n="en">Copy</button>
-    </div>
-
-    <!-- プログレスバー -->
-    <div id="progress" class="progress hidden">
-      <div class="progress-bar"></div>
-    </div>
-
-    <!-- エラー表示 -->
-    <div id="errorBox" class="error-box hidden"></div>
-
-    <!-- 出力欄 -->
-    <label class="section-label" data-i18n="ja">Mermaid記法（出力）</label>
-    <label class="section-label" data-i18n="en">Mermaid Output</label>
-
-    <textarea id="mermaidOutput" class="code-output" readonly></textarea>
-
-    <!-- 寄付導線 -->
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためご支援いただけると嬉しいです。</p>
-      <p class="nw-donate-text" data-i18n="en">If this tool helped you, consider supporting development.</p>
-
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
-      </div>
-    </div>
-
-    <!-- usageリンク -->
-    <p class="usage-link">
-      <a href="./usage.html" data-i18n="ja">使い方はこちら</a>
-      <a href="./usage.html" data-i18n="en">Usage Guide</a>
+    <!-- usageリンク（言語に応じて切替） -->
+    <p class="usage-link-top">
+      <a id="usageLink" href="./usage.html" data-i18n="ja">使い方ガイドはこちら</a>
+      <a id="usageLink" href="./usage-en.html" data-i18n="en">See Usage Guide</a>
     </p>
 
-    <!-- FAQ -->
+    <!-- FAQセクション（広告直下に移動） -->
     <section class="faq-section">
       <h2 data-i18n="ja">よくある質問</h2>
       <h2 data-i18n="en">FAQ</h2>
 
       <details>
-        <summary data-i18n="ja">どの程度のJSONに対応していますか？</summary>
-        <summary data-i18n="en">What types of JSON structures are supported?</summary>
-        <p data-i18n="ja">入れ子構造・配列を含む一般的なJSONに対応しています。</p>
-        <p data-i18n="en">Nested objects and arrays are supported.</p>
+        <summary data-i18n="ja">このツールは何をしますか？</summary>
+        <summary data-i18n="en">What does this tool do?</summary>
+        <p data-i18n="ja">JSONをMermaid.jsのflowchart記法に自動変換します。</p>
+        <p data-i18n="en">It automatically converts JSON into Mermaid.js flowchart syntax.</p>
       </details>
 
       <details>
-        <summary data-i18n="ja">配列はどのように処理されますか？</summary>
-        <summary data-i18n="en">How are arrays handled?</summary>
-        <p data-i18n="ja">配列は index（0,1,2...）をノードとして扱います。</p>
-        <p data-i18n="en">Array elements are treated as nodes labeled by their index.</p>
-      </details>
-
-      <details>
-        <summary data-i18n="ja">ファイルやデータはサーバーに送信されますか？</summary>
-        <summary data-i18n="en">Is my data sent to any server?</summary>
-        <p data-i18n="ja">すべてブラウザ内で処理され、外部に送信されません。</p>
+        <summary data-i18n="ja">データは外部に送信されますか？</summary>
+        <summary data-i18n="en">Is my data sent anywhere?</summary>
+        <p data-i18n="ja">すべてブラウザ内で処理され、外部送信は一切ありません。</p>
         <p data-i18n="en">Everything is processed locally in your browser.</p>
       </details>
+
+      <details>
+        <summary data-i18n="ja">配列はどのように扱われますか？</summary>
+        <summary data-i18n="en">How are arrays handled?</summary>
+        <p data-i18n="ja">配列は index（0,1,2…）のノードとして扱われます。</p>
+        <p data-i18n="en">Arrays are treated as nodes labeled with their index.</p>
+      </details>
     </section>
-
-    <!-- 内部リンク -->
-    <div class="nw-links">
-      <a href="/tools/manual-finder/">ManualFinder</a> /
-      <a href="/tools/json-formatter/">JSON Formatter</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a>
-    </div>
-  </main>
-
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line"><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
-  </footer>
-
-  <script src="./app.js"></script>
-</body>
-</html>
