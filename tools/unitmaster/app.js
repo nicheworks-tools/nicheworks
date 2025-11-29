@@ -11,6 +11,8 @@ const i18n = {
     title: "UnitMaster",
     subtitle: "長さ・重さ・温度・体積・面積・速度・圧力などの世界標準単位を変換・計算するツールです。",
 
+    category_label: "カテゴリ",
+
     howto_title: "【使い方】",
     howto_1: "カテゴリを選択（スマホではドロップダウン）",
     howto_2: "数値を入力",
@@ -53,6 +55,8 @@ const i18n = {
   en: {
     title: "UnitMaster",
     subtitle: "Convert and calculate global standard units — length, weight, temperature, volume, area, speed, pressure, and more.",
+
+    category_label: "Category",
 
     howto_title: "【How to Use】",
     howto_1: "Choose a category (dropdown on mobile)",
@@ -141,6 +145,8 @@ const units = {
   DOM参照
 ---------------------------- */
 const categorySelect = document.getElementById("categorySelect");
+const categoryLabel = document.querySelector('label[for="categorySelect"]');
+
 const tabs = document.querySelectorAll(".tab");
 const fromSel = document.getElementById("fromUnit");
 const toSel = document.getElementById("toUnit");
@@ -169,6 +175,9 @@ function applyLanguage(lang) {
 
   // サブタイトル
   if (subtitleEl) subtitleEl.textContent = t.subtitle;
+
+  // ▼▼▼ カテゴリラベル（今回の修正ポイント） ▼▼▼
+  if (categoryLabel) categoryLabel.textContent = t.category_label;
 
   // 使い方
   const howtoTitle = document.querySelector(".howto h2");
@@ -271,7 +280,7 @@ function applyCategory(cat) {
 
   const t = i18n[currentLang];
 
-  // モバイル用ドロップダウンの表示名を取得
+  // モバイル用ドロップダウン表示名
   const ddMap = {
     length: t.dd_length,
     weight: t.dd_weight,
@@ -282,7 +291,7 @@ function applyCategory(cat) {
     pressure: t.dd_pressure
   };
 
-  // option ラベルは ddMap を使い、単位名の表示崩れを防ぐ
+  // option（単位）
   if (cat === "temp") {
     ["c", "f", "k"].forEach(u => {
       fromSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
@@ -296,7 +305,7 @@ function applyCategory(cat) {
     }
   }
 
-  // ★ スマホ用カテゴリドロップダウンの文言を applyCategory 側でも更新（バグ修正の核心）
+  // ▼▼▼ モバイルカテゴリドロップダウンのラベル更新（安全版） ▼▼▼
   if (categorySelect && ddMap[cat]) {
     const opt = categorySelect.querySelector(`option[value="${cat}"]`);
     if (opt) opt.textContent = ddMap[cat];
