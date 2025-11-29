@@ -1,208 +1,297 @@
+/* =========================================================
+   Base
+========================================================= */
 :root {
   --bg: #ffffff;
   --fg: #111111;
   --sub: #666666;
   --border: #e5e5e5;
-  --radius: 12px;
-  --font: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --border-soft: #f3f3f3;
+  --accent: #111111;
+  --radius: 14px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-body {
+* {
   margin: 0;
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--fg);
-}
-
-/* ============================
-   Header
-============================ */
-.wd-header {
-  text-align: center;
-  padding: 22px 0 12px;
-}
-
-.wd-title {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.wd-sub {
-  font-size: 16px;
-  color: var(--sub);
-  margin-top: 4px;
-}
-
-.wd-lang button {
-  margin: 6px 4px;
-  padding: 4px 12px;
-  font-size: 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fafafa;
-  cursor: pointer;
-}
-
-/* ============================
-   Main wrapper
-============================ */
-.wd-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-/* ============================
-   Search block
-============================ */
-.wd-search label {
-  display: block;
-  font-size: 14px;
-  margin-top: 20px;
-  margin-bottom: 6px;
-  text-align: left;
-  width: 92%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.wd-search-row {
-  width: 92%;
-  margin: 0 auto;
-}
-
-/* input */
-.wd-search-row input {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 14px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* pill button */
-.wd-btn-pill {
-  display: inline-block;
-  padding: 7px 18px;
-  font-size: 14px;
-  margin-top: 16px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 9999px;
-  cursor: pointer;
-  white-space: nowrap;
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
 }
 
-.wd-btn-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* =========================================================
+   Header
+========================================================= */
+.nw-header {
   text-align: center;
+  padding: 32px 16px 12px;
 }
 
-.wd-status {
-  font-size: 13px;
+.nw-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.nw-subtitle {
+  margin-top: 6px;
   color: var(--sub);
-  text-align: center;
-  margin-top: 10px;
+  font-size: 17px;
 }
 
-/* ============================
-   Cards
-============================ */
-.hidden { display: none; }
+.lang-switch {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
 
-.wd-location {
-  width: 92%;
-  margin: 22px auto 10px;
+.lang-switch button {
+  padding: 8px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   Main layout
+========================================================= */
+.nw-main {
+  max-width: 760px;  /* PC時の最大幅 */
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+/* セクションブロック */
+.section-block {
+  margin-top: 28px;
+}
+
+.input-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* PC時：横並び */
+.pc-input-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.pc-input-row input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 16px;
+}
+
+/* ボタン共通 */
+button.primary,
+button.secondary {
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 15px;
+  border: 1px solid var(--border);
+}
+
+/* テーマに合わせてボタン背景を薄くグレーに */
+button.primary {
+  background: #f2f2f2;
+}
+
+button.secondary {
+  background: #f9f9f9;
+}
+
+/* モバイル時：縦並び＋全幅は不可（ユーザー指示により避ける） */
+@media (max-width: 600px) {
+  .pc-input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pc-input-row input,
+  .pc-input-row button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   Progress
+========================================================= */
+.progress-area {
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--border-soft);
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--accent);
+  animation: progressMove 1.4s infinite linear;
+}
+
+@keyframes progressMove {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+.progress-text {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--sub);
+}
+
+/* =========================================================
+   Warning box
+========================================================= */
+.warning-box {
+  border-left: 4px solid #d00;
+  background: #fff5f5;
+  padding: 12px 14px;
+  margin: 28px 0;
+  border-radius: var(--radius);
+}
+
+.warning-box p {
+  color: #a00;
   font-size: 15px;
 }
 
-.wd-loc-name { font-weight: bold; }
-
-/* container for cards */
-.wd-cards {
-  width: 92%;
-  margin: 0 auto;
+/* =========================================================
+   Results
+========================================================= */
+.location-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* card */
-.wd-card {
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 14px;
+.location-main h2 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.location-main p {
   font-size: 14px;
+  color: var(--sub);
 }
 
-.wd-card-title {
+.reset-btn {
+  padding: 8px 14px;
+  background: #f2f2f2;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* カード共通 */
+.weather-card,
+.diff-card {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-top: 22px;
+}
+
+/* セクション幅の統一（ズレていた部分の修正） */
+.weather-card,
+.diff-card,
+.external-links,
+.section-block {
+  max-width: 100%;
+}
+
+/* Weather rows */
+.weather-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.weather-icon span {
+  font-size: 32px;   /* アイコン大きく修正 */
+}
+
+.weather-info div {
   font-size: 16px;
-  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+/* Diff table */
+.diff-table {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.diff-block h4 {
+  font-size: 17px;
   margin-bottom: 6px;
 }
 
-/* diff */
-.wd-diff {
-  width: 92%;
-  margin: 22px auto;
-  padding: 14px;
+/* =========================================================
+   External links
+========================================================= */
+.external-links {
+  margin-top: 40px;
+}
+
+.external-links a {
+  display: block;
+  padding: 12px 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-size: 14px;
-}
-
-/* ============================
-   Links
-============================ */
-.wd-links-grid {
-  width: 92%;
-  margin: 12px auto 40px;
-}
-
-.wd-links-grid a {
-  display: block;
-  padding: 12px;
   margin-bottom: 10px;
   text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 14px;
-  color: var(--fg);
+  color: var(--accent);
 }
 
-/* ============================
-   PC layout
-============================ */
-@media (min-width: 900px) {
-
-  .wd-cards {
-    display: flex;
-    gap: 20px;
-  }
-
-  .wd-card {
-    flex: 1;
-  }
-
-  .wd-links-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-  }
-}
-
-/* ============================
+/* =========================================================
    Footer
-============================ */
-.wd-footer {
+========================================================= */
+.nw-footer {
   text-align: center;
-  margin: 40px 0 30px;
+  padding: 60px 0 40px;
   font-size: 14px;
+  color: var(--sub);
 }
 
-.wd-footer-links a {
-  color: #0066cc;
+.nw-links a {
+  color: var(--accent);
   text-decoration: none;
   margin: 0 4px;
 }
