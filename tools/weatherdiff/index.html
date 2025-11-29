@@ -4,95 +4,85 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>WeatherDiff｜天気予報のズレ比較ツール | NicheWorks</title>
-  <meta name="description" content="Open-Meteo と MET Norway を比較して予報のズレを可視化する軽量ツール。Google Weather / Weather.com / AccuWeather にもワンタップでアクセス。日本とアメリカの公式天気サイトリンクにも対応。">
+  <title>WeatherDiff | NicheWorks</title>
+  <meta name="description" content="複数の天気APIを比較して予報のズレを可視化する軽量ツール。Open-Meteo と MET Norway を使用。">
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- OGP -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="WeatherDiff｜天気予報のズレ比較ツール">
-  <meta property="og:description" content="複数の天気APIの予報を比較してズレを可視化。全世界対応。">
-  <meta property="og:image" content="og.png">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/">
-
-  <!-- Analytics（Cloudflare Web Analytics） -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
-
-  <!-- AdSense（自動広告 OFF → 手動広告枠のみ） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
-<main>
-
-  <!-- タイトル -->
-  <h1 class="wd-title">WeatherDiff</h1>
-  <div class="wd-subtitle">天気予報のズレ比較ツール</div>
-
-  <!-- 言語切替 -->
-  <div class="wd-lang">
-    <button data-lang="ja">JP</button>
-    <button data-lang="en">EN</button>
-  </div>
-
-  <!-- 広告枠 -->
-  <div id="wd-ad">
-    <!-- 手動広告をここに -->
-  </div>
-
-  <!-- 検索フォーム -->
-  <div class="wd-search">
-    <div class="wd-search-row">
-      <input id="wd-input" class="wd-input" type="text" placeholder="例：Shibuya / Paris / New York">
-      <button id="wd-search-btn" class="wd-btn">比較する</button>
+  <header class="wd-header">
+    <div class="wd-title">WeatherDiff</div>
+    <div class="wd-sub">天気予報のズレ比較</div>
+    <div class="wd-lang">
+      <button id="btn-ja">JP</button>
+      <button id="btn-en">EN</button>
     </div>
-    <button id="wd-geo-btn" class="wd-btn-secondary">現在地から比較</button>
-  </div>
+  </header>
 
-  <!-- ローディング / メッセージ -->
-  <div id="wd-status" class="wd-status"></div>
+  <main class="wd-main">
 
-  <!-- 地点情報 -->
-  <div id="wd-location" class="wd-location-box" style="display:none;"></div>
+    <!-- 検索ブロック -->
+    <section class="wd-search">
+      <label id="label-input">地点を入力</label>
+      <div class="wd-search-row">
+        <input id="searchInput" type="text" placeholder="Shibuya / New York / Paris">
+        <button id="searchBtn">比較</button>
+      </div>
+      <button id="geoBtn" class="wd-geo-btn">現在地から比較</button>
+      <div id="status" class="wd-status"></div>
+    </section>
 
-  <!-- API結果（Open-Meteo + MET Norway） -->
-  <div id="wd-results" class="wd-results" style="display:none;">
+    <!-- 結果 -->
+    <section id="resultSection" class="wd-result-section hidden">
 
-    <div id="wd-card-om" class="wd-api-card">
-      <div class="wd-card-title">Open-Meteo</div>
-      <div id="wd-om-content">-</div>
+      <div class="wd-location">
+        <div id="locName"></div>
+        <div id="locCoord" class="wd-coord"></div>
+        <div id="locTz" class="wd-tz"></div>
+      </div>
+
+      <!-- 2 API のカード比較 -->
+      <div class="wd-cards">
+        <div class="wd-card" id="cardOM">
+          <div class="wd-card-title">Open-Meteo</div>
+          <div id="omToday"></div>
+          <div id="omTomorrow"></div>
+        </div>
+
+        <div class="wd-card" id="cardNO">
+          <div class="wd-card-title">MET Norway</div>
+          <div id="noToday"></div>
+          <div id="noTomorrow"></div>
+        </div>
+      </div>
+
+      <!-- 差分 -->
+      <div class="wd-diff">
+        <div class="wd-card-title">予報のばらつき</div>
+        <div id="diffSummary"></div>
+      </div>
+
+      <!-- 外部リンク -->
+      <div class="wd-links">
+        <div class="wd-card-title">他サービスで詳しく見る</div>
+        <div class="wd-links-grid" id="linksGrid"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="wd-footer">
+    <div class="wd-footer-links">
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a>
     </div>
-
-    <div id="wd-card-met" class="wd-api-card">
-      <div class="wd-card-title">MET Norway</div>
-      <div id="wd-met-content">-</div>
-    </div>
-
-  </div>
-
-  <!-- 予報のズレ -->
-  <div id="wd-diff" class="wd-diff-box" style="display:none;"></div>
-
-  <!-- 外部リンク -->
-  <div class="wd-links">
-    <h3>他のサービスで詳しく見る</h3>
-    <div id="wd-links-grid" class="wd-links-grid"></div>
-  </div>
-
-  <!-- フッター（共通仕様 v2） -->
-  <footer class="nw-footer">
-    <div>© 2025 NicheWorks</div>
-    <div class="nw-footer-links" style="margin-top:6px;">
-      <a href="https://ofuse.me/">OFUSE</a>
-      <a href="https://ko-fi.com/">Ko-fi</a>
-      <a href="/tools/">Tools</a>
-      <a href="/about/">About</a>
-    </div>
+    <div class="wd-copy">© NicheWorks</div>
   </footer>
 
-</main>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
