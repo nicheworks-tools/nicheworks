@@ -1,104 +1,135 @@
-/* ================================================
-   リセット
-================================================ */
+/* ============================================================
+   WeatherDiff - 完全版 style.css
+   600px スマホファースト → 900px, 1200px でレイアウト拡張
+   デザインは NicheWorks Minimal Base UI を継承
+============================================================ */
+
+/* ----------------------------------------
+   0. ベース
+-----------------------------------------*/
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --sub: #666666;
+  --border: #e5e5e5;
+  --border-soft: #f3f3f3;
+  --accent: #111111;
+  --accent-soft: #fafafa;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #ffffff;
-  color: #111;
-  line-height: 1.6;
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
 }
 
-/* ================================================
-   レイアウト基礎
-================================================ */
-.wd-main {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 24px 16px 100px;
-}
-
-/* ================================================
-   ヘッダー
-================================================ */
+/* ----------------------------------------
+   1. Header（共通仕様）
+-----------------------------------------*/
 .wd-header {
-  text-align: center;
-  padding: 28px 16px 16px;
-  border-bottom: 1px solid #eee;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.wd-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .wd-title {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 22px;
+  margin: 0;
+  font-weight: 600;
 }
 
 .wd-subtitle {
   font-size: 14px;
-  color: #666;
-  margin-top: 4px;
+  color: var(--sub);
+  margin: 4px 0 0;
 }
 
 .wd-lang-switch {
-  margin-top: 16px;
   display: flex;
-  justify-content: center;
   gap: 8px;
 }
 
 .wd-lang-btn {
-  padding: 6px 14px;
+  padding: 6px 12px;
+  background: var(--accent-soft);
   border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #fafafa;
+  font-size: 13px;
+  border: 1px solid var(--border);
   cursor: pointer;
-  font-size: 14px;
 }
 
 .wd-lang-btn.is-active {
-  background: #111;
+  background: #000;
   color: #fff;
+  border-color: #000;
 }
 
-/* ================================================
-   入力部
-================================================ */
-.wd-input {
-  margin-top: 32px;
+/* ----------------------------------------
+   2. main・section
+-----------------------------------------*/
+.wd-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
 }
 
+.wd-section {
+  margin-bottom: 32px;
+}
+
+/* ----------------------------------------
+   3. 入力エリア（600pxファースト）
+-----------------------------------------*/
 .wd-label {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.wd-input-row {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-#locationInput {
-  flex: 1;
-  padding: 12px 14px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 15px;
-  max-width: 600px;
-}
-
-.wd-btn {
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  cursor: pointer;
   font-size: 14px;
-  white-space: nowrap;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.wd-input-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 入力欄 */
+#locationInput {
+  width: 80%;
+  max-width: 360px;
+  height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* ボタン（A仕様） */
+.wd-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  min-height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: var(--accent-soft);
+  transition: 0.2s;
 }
 
 .wd-btn.primary {
@@ -107,228 +138,269 @@ html, body {
   border-color: #111;
 }
 
-.wd-btn.ghost {
-  background: #fff;
+.wd-btn.primary:hover {
+  background: #000;
 }
 
-.wd-btn.reset {
-  background: #fff;
-  border-color: #aaa;
-  font-size: 13px;
+.wd-btn.ghost:hover {
+  background: #f0f0f0;
 }
 
-/* ================================================
-   エラー
-================================================ */
+.wd-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* エラー */
 .wd-error {
-  margin-top: 8px;
-  font-size: 13px;
   color: #d33;
+  font-size: 13px;
+  text-align: center;
+  min-height: 18px;
 }
 
-/* ================================================
-   プログレス
-================================================ */
-.hidden {
-  display: none;
-}
-
+/* 進捗バー */
 .wd-progress {
-  margin-top: 14px;
+  width: 100%;
+  margin-top: 12px;
+  text-align: center;
 }
 
 .wd-progress-bar {
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #111, #777);
-  background-size: 200% 100%;
-  animation: wdProgress 1.2s linear infinite;
+  background: linear-gradient(90deg, #111 0%, #aaa 100%);
+  animation: wd-progress 1.4s infinite;
   border-radius: 2px;
 }
 
-@keyframes wdProgress {
-  0% { background-position: 0% 0%; }
-  100% { background-position: -200% 0%; }
+@keyframes wd-progress {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
 }
 
 .wd-progress-text {
-  font-size: 13px;
-  margin-top: 6px;
-  color: #666;
+  font-size: 12px;
+  color: var(--sub);
+  margin-top: 4px;
 }
 
-/* ================================================
-   結果エリア
-================================================ */
-.wd-result {
-  margin-top: 40px;
+/* 非表示 */
+.hidden {
+  display: none;
 }
 
-/* 赤枠の注意 */
+/* ----------------------------------------
+   4. 結果エリア
+-----------------------------------------*/
 .wd-warning {
-  border-left: 4px solid #d33;
+  padding: 10px 12px;
   background: #fff5f5;
-  padding: 10px 14px;
+  border-left: 4px solid #f55;
+  border-radius: 8px;
   font-size: 13px;
-  color: #a33;
-  border-radius: 4px;
   margin-bottom: 20px;
 }
 
-/* ロケーションヘッダー */
 .wd-location-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.wd-location-header h2 {
-  font-size: 20px;
-  font-weight: 700;
+  align-items: flex-start;
 }
 
 .wd-process-time {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--sub);
+}
+
+.wd-btn.reset {
   font-size: 13px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-/* ================================================
-   APIカード
-================================================ */
-.wd-api-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-}
-
-@media (min-width: 700px) {
-  .wd-api-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.wd-card {
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 16px;
   background: #fafafa;
 }
 
-.wd-card-title {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.wd-weather-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.wd-w-icon {
-  font-size: 26px;
-  width: 32px;
-  text-align: center;
-}
-
-/* ================================================
-   差分カード
-================================================ */
-.wd-diff-card {
-  margin-top: 24px;
-}
-
-.wd-diff-grid {
+/* ----------------------------------------
+   5. APIカード
+-----------------------------------------*/
+.wd-api-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
-  margin-top: 14px;
 }
 
-.wd-diff-grid h4 {
-  font-size: 15px;
-  margin-bottom: 6px;
+.wd-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: #fff;
+  box-shadow: var(--shadow);
 }
 
-/* ================================================
-   外部サービス
-================================================ */
-.wd-other-services h3 {
-  margin-top: 28px;
+.wd-card-title {
+  margin: 0 0 12px;
   font-size: 16px;
   font-weight: 600;
 }
 
-.wd-links-grid {
-  margin-top: 10px;
+.wd-weather-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.wd-weather-icon span {
+  font-size: 36px; /* 大きめ */
+}
+
+.wd-weather-info p {
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+/* ----------------------------------------
+   6. diffカード
+-----------------------------------------*/
+.wd-diff-grid {
   display: grid;
-  gap: 6px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.wd-diff-day h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.wd-diff-day p {
+  font-size: 14px;
+  margin: 4px 0;
+  white-space: pre-line;
+}
+
+/* ----------------------------------------
+   7. 外部リンク
+-----------------------------------------*/
+.wd-links-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .wd-links-grid a {
-  font-size: 13px;
-  color: #0366d6;
-}
-
-/* ================================================
-   フッター（共通仕様 完全版）
-================================================ */
-.wd-footer {
-  text-align: center;
-  padding: 36px 16px 60px;
-  margin-top: 80px;
-  background: #fff;
-  border-top: 1px solid #eee;
-}
-
-.wd-donate-text {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  text-decoration: none;
+  color: var(--text);
   font-size: 14px;
-  margin-bottom: 14px;
-  color: #444;
+}
+
+/* ----------------------------------------
+   8. Footer（完全仕様）
+-----------------------------------------*/
+.wd-footer {
+  margin-top: 40px;
+  padding: 32px 16px;
+  background: var(--accent-soft);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.wd-donate-msg {
+  font-size: 14px;
+  margin-bottom: 16px;
 }
 
 .wd-donate-buttons {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .wd-donate-btn {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid var(--border);
   text-decoration: none;
-  background: #fafafa;
-  color: #111;
   font-size: 14px;
+  color: var(--text);
+  box-shadow: var(--shadow);
 }
 
-.wd-footer-nav {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 10px;
-  font-size: 14px;
+.wd-footer-links {
+  margin-bottom: 12px;
+  color: var(--sub);
 }
 
-.wd-footer-nav a {
-  color: #111;
+.wd-footer-links a {
+  color: var(--text);
   text-decoration: none;
+  font-size: 13px;
 }
 
 .wd-footer-copy {
   font-size: 13px;
-  color: #666;
 }
 
-.wd-footer-link {
+.wd-footer-copy a {
   color: inherit;
   text-decoration: none;
+  pointer-events: auto;
+}
+
+/* ----------------------------------------
+   9. PCレイアウト（600px+）
+-----------------------------------------*/
+@media (min-width: 600px) {
+
+  .wd-input-wrap {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #locationInput {
+    width: 280px;
+    max-width: none;
+  }
+
+  .wd-api-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wd-diff-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ----------------------------------------
+   10. Large（900px+）
+-----------------------------------------*/
+@media (min-width: 900px) {
+
+  .wd-header-inner {
+    padding: 20px 12px;
+  }
+
+  .wd-input-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  #locationInput {
+    width: 65%;
+  }
+}
+
+/* ----------------------------------------
+   11. Extra Wide（1200px+）
+-----------------------------------------*/
+@media (min-width: 1200px) {
+  .wd-main {
+    padding-top: 32px;
+  }
 }
