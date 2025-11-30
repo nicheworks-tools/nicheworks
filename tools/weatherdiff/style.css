@@ -1,49 +1,308 @@
-/* 続き：差分色プロ版案 */
-.diff-blue-light {
-  color: var(--blue-light);
-}
-.diff-blue-dark {
-  color: var(--blue-dark);
+/* ==========================================================
+   WeatherDiff - style.css（完全版）
+   NicheWorks Minimal Base UI + 解析系仕様 v2 対応
+========================================================== */
+
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --sub: #555555;
+  --border: #e5e5e5;
+  --card-bg: #fafafa;
+  --accent: #111111;
+
+  --radius: 14px;
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-card: 0 2px 5px rgba(0,0,0,0.06);
+
+  --red: #d9534f;
+  --red-dark: #b52b27;
+  --blue: #0275d8;
+  --blue-dark: #014c8c;
+  --gray-diff: #666;
 }
 
 /* ------------------------------
-   外部リンク
+   Base
+------------------------------ */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none !important;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 6px 0;
+  font-weight: 600;
+}
+
+/* ------------------------------
+   Header
+------------------------------ */
+.wd-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  padding: 16px 0;
+}
+
+.wd-header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wd-title {
+  font-size: 24px;
+}
+
+.wd-subtitle {
+  font-size: 14px;
+  color: var(--sub);
+}
+
+/* Lang Switch */
+.wd-lang-switch {
+  display: flex;
+  gap: 8px;
+}
+
+.wd-lang-btn {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.wd-lang-btn.is-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ------------------------------
+   Main
+------------------------------ */
+.wd-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.wd-section {
+  margin-bottom: 32px;
+}
+
+/* ------------------------------
+   Input Section
+------------------------------ */
+.wd-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.wd-input-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* 入力欄 */
+#locationInput {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+/* ボタン */
+.wd-btn {
+  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #f3f3f3;
+  transition: 0.15s;
+  white-space: nowrap;
+}
+
+.wd-btn:hover {
+  background: #e5e5e5;
+}
+
+.wd-btn.primary {
+  background: #f3f3f3;
+}
+
+.wd-btn.ghost {
+  background: #f9f9f9;
+}
+
+.wd-btn.reset {
+  background: #fff;
+  border-color: var(--border);
+}
+
+/* エラー */
+.wd-error {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--red);
+}
+
+/* ------------------------------
+   Progress
+------------------------------ */
+.wd-progress {
+  margin-top: 16px;
+}
+
+.wd-progress-bar {
+  height: 4px;
+  background: var(--accent);
+  border-radius: 4px;
+  animation: wd-progress-anim 1.2s infinite;
+}
+
+@keyframes wd-progress-anim {
+  0% { transform: scaleX(0.2); opacity: 0.4; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0.2); opacity: 0.4; }
+}
+
+.wd-progress-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--sub);
+}
+
+/* ------------------------------
+   Result Section
+------------------------------ */
+.wd-warning {
+  background: #fff7d9;
+  border: 1px solid #ffe7a5;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+
+.wd-location-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.wd-process-time {
+  font-size: 13px;
+  color: var(--sub);
+}
+
+/* ------------------------------
+   Card
+------------------------------ */
+.wd-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.wd-card-title {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* API Cards */
+.wd-api-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin-bottom: 24px;
+}
+
+.wd-weather-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.wd-weather-icon span {
+  font-size: 36px;
+}
+
+.wd-weather-info p {
+  margin: 2px 0;
+}
+
+/* ------------------------------
+   Diff Card
+------------------------------ */
+.wd-diff-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.wd-diff-day p {
+  margin: 4px 0;
+}
+
+/* Diff colors */
+.diff-gray { color: var(--gray-diff); }
+.diff-red { color: var(--red); }
+.diff-red-dark { color: var(--red-dark); }
+.diff-blue { color: var(--blue); }
+.diff-blue-dark { color: var(--blue-dark); }
+
+/* ------------------------------
+   Links Grid
 ------------------------------ */
 .wd-links-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-  margin-top: 12px;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .wd-links-grid a {
-  padding: 8px 10px;
-  background: var(--soft);
+  padding: 10px 12px;
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   text-decoration: none;
-  color: var(--fg);
-  font-size: 14px;
+  color: var(--accent);
   text-align: center;
 }
 
-.wd-links-grid a:hover {
-  background: #eee;
-}
-
 /* ------------------------------
-   フッター（共通仕様 FULL）
+   Footer
 ------------------------------ */
 .wd-footer {
-  margin-top: 60px;
-  padding: 30px 16px 40px;
-  background: #fafafa;
   border-top: 1px solid var(--border);
+  padding: 32px 16px;
   text-align: center;
 }
 
 .wd-donate-msg {
-  margin: 0 0 14px;
+  margin-bottom: 12px;
   font-size: 14px;
   color: var(--sub);
 }
@@ -51,106 +310,54 @@
 .wd-donate-buttons {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
 .wd-donate-btn {
   padding: 8px 16px;
-  background: #fff;
-  border: 1px solid var(--border);
   border-radius: var(--radius);
   text-decoration: none;
-  font-size: 14px;
-  color: #111;
-  box-shadow: var(--shadow-soft);
-}
-
-.wd-donate-btn:hover {
   background: #f3f3f3;
+  color: var(--accent);
+  border: 1px solid var(--border);
 }
 
 .wd-footer-links {
-  margin-bottom: 14px;
-  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--sub);
 }
 
 .wd-footer-links a {
-  color: #111;
+  color: var(--accent);
   text-decoration: none;
-  padding: 0 4px;
 }
 
-.wd-footer-copy {
-  font-size: 13px;
-  color: var(--sub);
-  margin: 0;
-}
-
-/* aタグの色を変えたり下線は付けない（共通仕様） */
 .wd-footer-copy a {
   color: inherit;
   text-decoration: none;
 }
 
 /* ------------------------------
-   スマホ最適化（600px以下）
+   Responsive
 ------------------------------ */
-@media (max-width: 600px) {
-  .wd-header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
 
-  .wd-input-wrap {
-    width: 100%;
-  }
-
-  #locationInput {
-    max-width: 100%;
-  }
-
-  .wd-btn {
-    width: auto;
-    padding: 8px 16px;
-  }
-
+/* 600px〜 */
+@media (min-width: 600px) {
   .wd-api-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
-
-  .wd-diff-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wd-footer {
-    padding-bottom: 60px;
+  .wd-links-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ------------------------------
-   タブレット（600〜899）
------------------------------- */
-@media (min-width: 600px) and (max-width: 899px) {
-  #locationInput {
-    max-width: 300px;
-  }
-}
-
-/* ------------------------------
-   PCワイド（900px〜）
------------------------------- */
+/* 900px〜 */
 @media (min-width: 900px) {
-  .wd-header-inner {
-    padding: 24px 16px;
+  .wd-input-wrap {
+    flex-wrap: nowrap;
   }
-
   #locationInput {
-    max-width: 360px;
-  }
-
-  .wd-main {
-    padding: 30px 16px 80px;
+    max-width: 460px;
   }
 }
