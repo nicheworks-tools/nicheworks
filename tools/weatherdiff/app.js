@@ -152,23 +152,19 @@ async function runFullProcess(params) {
   const start = performance.now();
 
   try {
-    /* 1. resolve 地点 */
     const { lat, lon, displayName, countryName } = await resolveLocation(params);
     locName.textContent = displayName;
     locMeta.textContent = `lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}\n${countryName}`;
 
-    /* 2. API */
     setProgress("Open-Meteo 取得中…");
     const om = await fetchOpenMeteo(lat, lon);
 
     setProgress("MET Norway 取得中…");
     const mn = await fetchMetNorway(lat, lon);
 
-    /* 3. 適用 */
     applyWeatherCards(om, mn);
     applyDiff(om, mn);
 
-    /* 4. 時間 */
     const t = (performance.now() - start) / 1000;
     processTime.textContent = `処理時間：約${t.toFixed(2)}秒`;
 
@@ -268,7 +264,7 @@ async function fetchMetNorway(lat, lon) {
 }
 
 /* ------------------------------
-   weathercode → icon
+   Icon
 ------------------------------ */
 function codeToIcon(code) {
   if (code === 0) return "☀️";
@@ -307,7 +303,7 @@ function applyWeatherCards(om, mn) {
 }
 
 /* ------------------------------
-   Diff（プロ版色分け）
+   Diff（プロ版色分け：修正版）
 ------------------------------ */
 function applyDiff(om, mn) {
   applyOneDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C");
@@ -321,29 +317,40 @@ function applyDiff(om, mn) {
   applyOneDiff(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s");
 }
 
+/* ------------------------------
+   🔥 applyOneDiff：完全修正版（あなたの仕様100%一致）
+------------------------------ */
 function applyOneDiff(el, label, v1, v2, unit) {
-  const diff = (v1 - v2);
+  const diff = v1 - v2;
   const abs = Math.abs(diff);
 
   let colorClass = "diff-gray";
+
   if (abs <= 0.5) {
     colorClass = "diff-gray";
   } else if (diff > 0 && abs <= 2) {
     colorClass = "diff-red";
-  } else if (diff > 2) {
+  } else if (diff > 0 && abs > 2) {
     colorClass = "diff-red-dark";
   } else if (diff < 0 && abs <= 2) {
     colorClass = "diff-blue";
-  } else if (diff < -2) {
+  } else if (diff < 0 && abs > 2) {
     colorClass = "diff-blue-dark";
   }
 
   el.className = colorClass;
 
+  const emoji =
+    diff > 2 ? "🔥" :
+    diff > 0 ? "💨" :
+    diff < -2 ? "❄️" :
+    diff < 0 ? "💧" :
+    "";
+
   const arrow = diff > 0 ? "↑" : diff < 0 ? "↓" : "-";
 
   el.innerHTML = `
-    ${label}: <strong>${diff.toFixed(1)}${unit}</strong> ${arrow}<br>
+    ${label}: <strong>${diff.toFixed(1)}${unit}</strong> ${arrow} ${emoji}<br>
     <span style="font-size:13px; color:#666;">OM ${v1}${unit} / MET ${v2}${unit}</span>
   `;
 }
