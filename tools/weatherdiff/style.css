@@ -1,6 +1,5 @@
 /* ==========================================================
-   WeatherDiff - style.css（完全版）
-   NicheWorks Minimal Base UI + 解析系仕様 v2 対応
+   WeatherDiff - style.css（最終完全版）
 ========================================================== */
 
 :root {
@@ -12,15 +11,11 @@
   --accent: #111111;
 
   --radius: 14px;
-  --shadow-soft: 0 1px 3px rgba(0,0,0,0.08);
   --shadow-card: 0 2px 5px rgba(0,0,0,0.06);
 
   --red: #d9534f;
-  --red-dark: #b52b27;
   --blue: #0275d8;
   --blue-dark: #014c8c;
-  
-  /* ★薄いグレーに変更（信頼度低い項目用） */
   --gray-diff: #999;
 }
 
@@ -35,14 +30,7 @@ body {
   line-height: 1.6;
 }
 
-.hidden {
-  display: none !important;
-}
-
-h1, h2, h3, h4 {
-  margin: 0 0 6px 0;
-  font-weight: 600;
-}
+.hidden { display: none !important; }
 
 /* ------------------------------
    Header
@@ -63,20 +51,10 @@ h1, h2, h3, h4 {
   justify-content: space-between;
 }
 
-.wd-title {
-  font-size: 24px;
-}
+.wd-title { font-size: 24px; }
+.wd-subtitle { font-size: 14px; color: var(--sub); }
 
-.wd-subtitle {
-  font-size: 14px;
-  color: var(--sub);
-}
-
-/* Lang Switch */
-.wd-lang-switch {
-  display: flex;
-  gap: 8px;
-}
+.wd-lang-switch { display: flex; gap: 8px; }
 
 .wd-lang-btn {
   padding: 6px 10px;
@@ -86,11 +64,9 @@ h1, h2, h3, h4 {
   border-radius: 8px;
   cursor: pointer;
 }
-
 .wd-lang-btn.is-active {
   background: var(--accent);
   color: #fff;
-  border-color: var(--accent);
 }
 
 /* ------------------------------
@@ -102,17 +78,12 @@ h1, h2, h3, h4 {
   padding: 24px 16px 48px;
 }
 
-.wd-section {
-  margin-bottom: 32px;
-}
+.wd-section { margin-bottom: 32px; }
 
 /* ------------------------------
-   Input Section
+   Input
 ------------------------------ */
-.wd-label {
-  display: block;
-  margin-bottom: 8px;
-}
+.wd-label { margin-bottom: 8px; display: block; }
 
 .wd-input-wrap {
   display: flex;
@@ -121,18 +92,15 @@ h1, h2, h3, h4 {
   align-items: center;
 }
 
-/* 入力欄 */
 #locationInput {
   flex: 1;
-  min-width: 220px;
+  min-width: 200px;
   padding: 10px 14px;
   font-size: 15px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: #fff;
 }
 
-/* ボタン */
 .wd-btn {
   font-size: 14px;
   padding: 8px 14px;
@@ -140,67 +108,18 @@ h1, h2, h3, h4 {
   cursor: pointer;
   border: 1px solid var(--border);
   background: #f3f3f3;
-  transition: 0.15s;
   white-space: nowrap;
+  transition: 0.15s;
 }
-
-.wd-btn:hover {
-  background: #e5e5e5;
-}
-
-.wd-btn.primary {
-  background: #f3f3f3;
-}
-
-.wd-btn.ghost {
-  background: #f9f9f9;
-}
-
-.wd-btn.reset {
-  background: #fff;
-  border-color: var(--border);
-}
-
-/* エラー */
-.wd-error {
-  margin-top: 6px;
-  font-size: 14px;
-  color: var(--red);
-}
+.wd-btn:hover { background: #e5e5e5; }
 
 /* ------------------------------
-   Progress
------------------------------- */
-.wd-progress {
-  margin-top: 16px;
-}
-
-.wd-progress-bar {
-  height: 4px;
-  background: var(--accent);
-  border-radius: 4px;
-  animation: wd-progress-anim 1.2s infinite;
-}
-
-@keyframes wd-progress-anim {
-  0% { transform: scaleX(0.2); opacity: 0.4; }
-  50% { transform: scaleX(1); opacity: 1; }
-  100% { transform: scaleX(0.2); opacity: 0.4; }
-}
-
-.wd-progress-text {
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--sub);
-}
-
-/* ------------------------------
-   Result Section
+   Warning / Location
 ------------------------------ */
 .wd-warning {
   background: #fff7d9;
   border: 1px solid #ffe7a5;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: var(--radius);
   margin-bottom: 20px;
 }
@@ -210,11 +129,6 @@ h1, h2, h3, h4 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-}
-
-.wd-process-time {
-  font-size: 13px;
-  color: var(--sub);
 }
 
 /* ------------------------------
@@ -232,31 +146,32 @@ h1, h2, h3, h4 {
   font-size: 16px;
 }
 
-/* API Cards */
+/* ------------------------------
+   API Grid (OM/MET)
+------------------------------ */
 .wd-api-grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr;
-  margin-bottom: 24px;
+  grid-template-columns: 1fr 1fr;
 }
 
+/* API内部（スマホ：縦、600px～：横） */
 .wd-weather-row {
   display: flex;
-  align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  flex-direction: column;
 }
 
-.wd-weather-icon span {
-  font-size: 36px;
+/* 600px以上で横並び */
+@media (min-width: 600px) {
+  .wd-weather-row { flex-direction: row; align-items: center; }
 }
 
-.wd-weather-info p {
-  margin: 2px 0;
-}
+.wd-weather-icon span { font-size: 40px; }
 
 /* ------------------------------
-   Diff Card
+   Diff Grid（常に2カラム）
 ------------------------------ */
 .wd-diff-grid {
   display: grid;
@@ -264,27 +179,23 @@ h1, h2, h3, h4 {
   grid-template-columns: 1fr 1fr;
 }
 
-.wd-diff-day p {
-  margin: 4px 0;
-}
+.wd-diff-day p { margin: 4px 0; }
 
-/* Diff colors */
+/* Diff 色 */
 .diff-gray { color: var(--gray-diff); }
 .diff-red { color: var(--red); }
-.diff-red-dark { color: var(--red-dark); }
 .diff-blue { color: var(--blue); }
 .diff-blue-dark { color: var(--blue-dark); }
 
-/* ★追記：注意文 */
+/* 注意文 */
 .wd-diff-note {
-  margin-top: 16px;
+  margin-top: 14px;
   font-size: 13px;
   color: var(--sub);
-  line-height: 1.5;
 }
 
 /* ------------------------------
-   Links Grid
+   Links Grid（2→3カラム）
 ------------------------------ */
 .wd-links-grid {
   display: grid;
@@ -297,9 +208,19 @@ h1, h2, h3, h4 {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  text-align: center;
   text-decoration: none;
   color: var(--accent);
-  text-align: center;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+.wd-links-grid a:hover { background: #f1f1f1; }
+
+/* 600px以上で3カラム */
+@media (min-width: 600px) {
+  .wd-links-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* ------------------------------
@@ -311,63 +232,33 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
-.wd-donate-msg {
-  margin-bottom: 12px;
-  font-size: 14px;
-  color: var(--sub);
-}
+.wd-donate-msg { margin-bottom: 12px; color: var(--sub); }
 
-.wd-donate-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 16px;
-}
+.wd-donate-buttons { display: flex; justify-content: center; gap: 14px; margin-bottom: 16px; }
 
 .wd-donate-btn {
   padding: 8px 16px;
+  background: #f3f3f3;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   text-decoration: none;
-  background: #f3f3f3;
   color: var(--accent);
-  border: 1px solid var(--border);
+  transition: background 0.15s;
 }
-
-.wd-footer-links {
-  margin-bottom: 10px;
-  color: var(--sub);
-}
+.wd-donate-btn:hover { background: #e7e7e7; }
 
 .wd-footer-links a {
   color: var(--accent);
   text-decoration: none;
+  margin: 0 4px;
 }
 
-.wd-footer-copy a {
-  color: inherit;
-  text-decoration: none;
-}
+.wd-footer-copy a { text-decoration: none; color: inherit; }
 
 /* ------------------------------
-   Responsive
+   Responsive 強化（900px〜）
 ------------------------------ */
-
-/* 600px〜 */
-@media (min-width: 600px) {
-  .wd-api-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .wd-links-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* 900px〜 */
 @media (min-width: 900px) {
-  .wd-input-wrap {
-    flex-wrap: nowrap;
-  }
-  #locationInput {
-    max-width: 460px;
-  }
+  .wd-input-wrap { flex-wrap: nowrap; }
+  #locationInput { max-width: 460px; }
 }
