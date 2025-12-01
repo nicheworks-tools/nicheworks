@@ -1,6 +1,6 @@
 /* ==========================================================
    WeatherDiff - app.js（完全版）
-   NicheWorks Minimal Base UI + Diff色分け + 解析仕様
+   NicheWorks Minimal Base UI + Diff色分け + 信頼度仕様反映
 ========================================================== */
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -55,6 +55,8 @@ const diffTomorrowMax = document.getElementById("diffTomorrowMax");
 const diffTomorrowMin = document.getElementById("diffTomorrowMin");
 const diffTomorrowRain = document.getElementById("diffTomorrowRain");
 const diffTomorrowWind = document.getElementById("diffTomorrowWind");
+
+const diffNote = document.getElementById("diffNote");
 
 /* ------------------------------
    init
@@ -160,7 +162,7 @@ async function runFullProcess(params) {
     const om = await fetchOpenMeteo(lat, lon);
 
     setProgress("MET Norway 取得中…");
-    const mn = await fetchMetNorway(lat, lon, om.utcOffset);   // ★修正点②
+    const mn = await fetchMetNorway(lat, lon, om.utcOffset);
 
     applyWeatherCards(om, mn);
     applyDiff(om, mn);
@@ -216,7 +218,7 @@ async function fetchOpenMeteo(lat, lon) {
   const data = await res.json();
 
   return {
-    utcOffset: data.utc_offset_seconds,   // ★修正点①
+    utcOffset: data.utc_offset_seconds,
 
     today: {
       max: data.daily.temperature_2m_max[0],
@@ -349,22 +351,29 @@ function applyWeatherCards(om, mn) {
 }
 
 /* ------------------------------
-   Diff（プロ版色分け：修正版）
+   Diff（信頼度仕様対応）
 ------------------------------ */
 function applyDiff(om, mn) {
-  applyOneDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C");
-  applyOneDiff(diffTodayMin, "最低気温", om.today.min, mn.today.min, "°C");
-  applyOneDiff(diffTodayRain, "降水", om.today.rain, mn.today.rain, "mm");
-  applyOneDiff(diffTodayWind, "風", om.today.wind, mn.today.wind, "m/s");
 
-  applyOneDiff(diffTomorrowMax, "最高気温", om.tomorrow.max, mn.tomorrow.max, "°C");
-  applyOneDiff(diffTomorrowMin, "最低気温", om.tomorrow.min, mn.tomorrow.min, "°C");
-  applyOneDiff(diffTomorrowRain, "降水", om.tomorrow.rain, mn.tomorrow.rain, "mm");
-  applyOneDiff(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s");
+  // --- 今日 ---
+  applyOneDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C");  // 信頼できる項目
+  updateLowConfidenceDiff(diffTodayMin, "最低気温", om.today.min, mn.today.min, "°C");
+  updateLowConfidenceDiff(diffTodayRain, "降水", om.today.rain, mn.today.rain, "mm");
+  updateLowConfidenceDiff(diffTodayWind, "風", om.today.wind, mn.today.wind, "m/s");
+
+  // --- 明日 ---
+  applyOneDiff(diffTomorrowMax, "最高気温", om.tomorrow.max, mn.tomorrow.max, "°C");  // 信頼できる項目
+  updateLowConfidenceDiff(diffTomorrowMin, "最低気温", om.tomorrow.min, mn.tomorrow.min, "°C");
+  updateLowConfidenceDiff(diffTomorrowRain, "降水", om.tomorrow.rain, mn.tomorrow.rain, "mm");
+  updateLowConfidenceDiff(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s");
+
+  // 注意文をセット
+  diffNote.textContent =
+    "※ 気温（最高）以外のズレはデータ仕様の都合により信頼性が低めです。詳しくは使い方ページをご覧ください。";
 }
 
 /* ------------------------------
-   🔥 applyOneDiff：完全修正版
+   applyOneDiff（唯一信頼できる項目：最高気温専用）
 ------------------------------ */
 function applyOneDiff(el, label, v1, v2, unit) {
   const diff = v1 - v2;
@@ -385,20 +394,16 @@ function applyOneDiff(el, label, v1, v2, unit) {
   }
 
   el.className = colorClass;
+  el.textContent = `${label}: ${diff.toFixed(1)}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
+}
 
-  const emoji =
-    diff > 2 ? "🔥" :
-    diff > 0 ? "💨" :
-    diff < -2 ? "❄️" :
-    diff < 0 ? "💧" :
-    "";
-
-  const arrow = diff > 0 ? "↑" : diff < 0 ? "↓" : "-";
-
-  el.innerHTML = `
-    ${label}: <strong>${diff.toFixed(1)}${unit}</strong> ${arrow} ${emoji}<br>
-    <span style="font-size:13px; color:#666;">OM ${v1}${unit} / MET ${v2}${unit}</span>
-  `;
+/* ------------------------------
+   信頼度低い要素：色固定（薄灰のみ）
+------------------------------ */
+function updateLowConfidenceDiff(el, label, v1, v2, unit) {
+  const diff = v1 - v2;
+  el.className = "diff-gray";
+  el.textContent = `${label}: ${diff.toFixed(1)}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
 }
 
 /* ------------------------------
