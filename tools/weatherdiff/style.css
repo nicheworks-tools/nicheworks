@@ -19,7 +19,9 @@
   --red-dark: #b52b27;
   --blue: #0275d8;
   --blue-dark: #014c8c;
-  --gray-diff: #666;
+  
+  /* ★薄いグレーに変更（信頼度低い項目用） */
+  --gray-diff: #999;
 }
 
 /* ------------------------------
@@ -272,6 +274,14 @@ h1, h2, h3, h4 {
 .diff-red-dark { color: var(--red-dark); }
 .diff-blue { color: var(--blue); }
 .diff-blue-dark { color: var(--blue-dark); }
+
+/* ★追記：注意文 */
+.wd-diff-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--sub);
+  line-height: 1.5;
+}
 
 /* ------------------------------
    Links Grid
