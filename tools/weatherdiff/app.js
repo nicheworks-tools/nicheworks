@@ -1,6 +1,10 @@
 /* ==========================================================
-   WeatherDiff - app.js（完全版）
-   NicheWorks Minimal Base UI + Diff色分け + 信頼度仕様反映
+   WeatherDiff - app.js（完全修正版）
+   - ズレアイコン削除
+   - 矢印削除
+   - 最高気温のみ色変化
+   - 他3項目は常に薄灰
+   - 小数点1桁統一
 ========================================================== */
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -81,7 +85,7 @@ function bindEvents() {
 }
 
 /* ------------------------------
-   UI Utility
+   Utility
 ------------------------------ */
 function lockUI() {
   btnCompare.disabled = true;
@@ -94,24 +98,16 @@ function unlockUI() {
   input.readOnly = false;
 }
 
-function show(el) {
-  el.classList.remove("hidden");
-}
-function hide(el) {
-  el.classList.add("hidden");
-}
+function show(el) { el.classList.remove("hidden"); }
+function hide(el) { el.classList.add("hidden"); }
 
 function setProgress(msg) {
   progressText.textContent = msg;
   show(progressArea);
 }
 
-function clearError() {
-  errorText.textContent = "";
-}
-function showError(msg) {
-  errorText.textContent = msg;
-}
+function clearError() { errorText.textContent = ""; }
+function showError(msg) { errorText.textContent = msg; }
 
 /* ------------------------------
    Input Search
@@ -132,7 +128,7 @@ function searchByGeolocation() {
   }
 
   navigator.geolocation.getCurrentPosition(
-    async (pos) => {
+    async pos => {
       await runFullProcess({
         lat: pos.coords.latitude,
         lon: pos.coords.longitude,
@@ -156,7 +152,8 @@ async function runFullProcess(params) {
   try {
     const { lat, lon, displayName, countryName } = await resolveLocation(params);
     locName.textContent = displayName;
-    locMeta.textContent = `lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}\n${countryName}`;
+    locMeta.textContent =
+      `lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}\n${countryName}`;
 
     setProgress("Open-Meteo 取得中…");
     const om = await fetchOpenMeteo(lat, lon);
@@ -190,8 +187,8 @@ async function resolveLocation(params) {
     if (!data || !data.length) throw new Error("地点が見つかりません。");
 
     return {
-      lat: Number(data[0].lat),
-      lon: Number(data[0].lon),
+      lat: +data[0].lat,
+      lon: +data[0].lon,
       displayName: data[0].display_name,
       countryName: data[0].address?.country || "",
     };
@@ -206,7 +203,7 @@ async function resolveLocation(params) {
 }
 
 /* ------------------------------
-   Open-Meteo
+   Open-Meteo（小数点統一）
 ------------------------------ */
 async function fetchOpenMeteo(lat, lon) {
   const url =
@@ -215,30 +212,30 @@ async function fetchOpenMeteo(lat, lon) {
     `&timezone=auto`;
 
   const res = await fetch(url);
-  const data = await res.json();
+  const d = await res.json();
 
   return {
-    utcOffset: data.utc_offset_seconds,
+    utcOffset: d.utc_offset_seconds,
 
     today: {
-      max: data.daily.temperature_2m_max[0],
-      min: data.daily.temperature_2m_min[0],
-      rain: data.daily.precipitation_sum[0],
-      wind: data.daily.wind_speed_10m_max[0],
-      icon: codeToIcon(data.daily.weathercode[0]),
+      max: +d.daily.temperature_2m_max[0].toFixed(1),
+      min: +d.daily.temperature_2m_min[0].toFixed(1),
+      rain: +d.daily.precipitation_sum[0].toFixed(1),
+      wind: +d.daily.wind_speed_10m_max[0].toFixed(1),
+      icon: codeToIcon(d.daily.weathercode[0]),
     },
     tomorrow: {
-      max: data.daily.temperature_2m_max[1],
-      min: data.daily.temperature_2m_min[1],
-      rain: data.daily.precipitation_sum[1],
-      wind: data.daily.wind_speed_10m_max[1],
-      icon: codeToIcon(data.daily.weathercode[1]),
+      max: +d.daily.temperature_2m_max[1].toFixed(1),
+      min: +d.daily.temperature_2m_min[1].toFixed(1),
+      rain: +d.daily.precipitation_sum[1].toFixed(1),
+      wind: +d.daily.wind_speed_10m_max[1].toFixed(1),
+      icon: codeToIcon(d.daily.weathercode[1]),
     },
   };
 }
 
 /* ------------------------------
-   MET Norway（地点ローカル daily 再構築版）
+   MET Norway（小数点1桁統一）
 ------------------------------ */
 async function fetchMetNorway(lat, lon, offsetSec) {
   const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
@@ -253,54 +250,39 @@ async function fetchMetNorway(lat, lon, offsetSec) {
   }
 
   const nowLocal = toLocal(new Date());
-
-  const dayStart = new Date(
-    nowLocal.getFullYear(),
-    nowLocal.getMonth(),
-    nowLocal.getDate()
-  );
-
+  const dayStart = new Date(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate());
   const tomorrowStart = new Date(dayStart.getTime() + 24 * 3600 * 1000);
-  const dayEnd = tomorrowStart;
   const tomorrowEnd = new Date(dayStart.getTime() + 48 * 3600 * 1000);
 
-  const todayBlock = ts.filter((t) => {
+  const todayBlock = ts.filter(t => {
     const d = toLocal(new Date(t.time));
-    return d >= dayStart && d < dayEnd;
+    return d >= dayStart && d < tomorrowStart;
   });
 
-  const tomorrowBlock = ts.filter((t) => {
+  const tomorrowBlock = ts.filter(t => {
     const d = toLocal(new Date(t.time));
     return d >= tomorrowStart && d < tomorrowEnd;
   });
 
   function calcDaily(block) {
     if (!block.length) {
-      return {
-        max: null,
-        min: null,
-        rain: 0,
-        wind: 0,
-        icon: "☁️",
-      };
+      return { max: null, min: null, rain: 0, wind: 0, icon: "☁️" };
     }
 
-    const temps = block.map((t) => t.data.instant.details.air_temperature);
-
+    const temps = block.map(t => t.data.instant.details.air_temperature);
     const rains = block.map(
-      (t) =>
-        t.data.next_1_hours?.details?.precipitation_amount ||
-        t.data.next_6_hours?.details?.precipitation_amount ||
+      t =>
+        t.data.next_1_hours?.details?.precipitation_amount ??
+        t.data.next_6_hours?.details?.precipitation_amount ??
         0
     );
-
-    const winds = block.map((t) => t.data.instant.details.wind_speed || 0);
+    const winds = block.map(t => t.data.instant.details.wind_speed || 0);
 
     return {
-      max: Math.max(...temps),
-      min: Math.min(...temps),
-      rain: rains.reduce((a, b) => a + b, 0),
-      wind: Math.max(...winds),
+      max: +Math.max(...temps).toFixed(1),
+      min: +Math.min(...temps).toFixed(1),
+      rain: +rains.reduce((a, b) => a + b, 0).toFixed(1),
+      wind: +Math.max(...winds).toFixed(1),
       icon: "☁️",
     };
   }
@@ -351,59 +333,51 @@ function applyWeatherCards(om, mn) {
 }
 
 /* ------------------------------
-   Diff（信頼度仕様対応）
+   Diff（信頼度仕様）
 ------------------------------ */
 function applyDiff(om, mn) {
 
-  // --- 今日 ---
-  applyOneDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C");  // 信頼できる項目
-  updateLowConfidenceDiff(diffTodayMin, "最低気温", om.today.min, mn.today.min, "°C");
-  updateLowConfidenceDiff(diffTodayRain, "降水", om.today.rain, mn.today.rain, "mm");
-  updateLowConfidenceDiff(diffTodayWind, "風", om.today.wind, mn.today.wind, "m/s");
+  // 信頼できる唯一の項目：最高気温（色変化あり）
+  applyMaxDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C");
+  applyMaxDiff(diffTomorrowMax, "最高気温", om.tomorrow.max, mn.tomorrow.max, "°C");
 
-  // --- 明日 ---
-  applyOneDiff(diffTomorrowMax, "最高気温", om.tomorrow.max, mn.tomorrow.max, "°C");  // 信頼できる項目
-  updateLowConfidenceDiff(diffTomorrowMin, "最低気温", om.tomorrow.min, mn.tomorrow.min, "°C");
-  updateLowConfidenceDiff(diffTomorrowRain, "降水", om.tomorrow.rain, mn.tomorrow.rain, "mm");
-  updateLowConfidenceDiff(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s");
+  // 信頼度低い項目：薄灰固定
+  applyLow(diffTodayMin, "最低気温", om.today.min, mn.today.min, "°C");
+  applyLow(diffTodayRain, "降水", om.today.rain, mn.today.rain, "mm");
+  applyLow(diffTodayWind, "風", om.today.wind, mn.today.wind, "m/s");
 
-  // 注意文をセット
+  applyLow(diffTomorrowMin, "最低気温", om.tomorrow.min, mn.tomorrow.min, "°C");
+  applyLow(diffTomorrowRain, "降水", om.tomorrow.rain, mn.tomorrow.rain, "mm");
+  applyLow(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s");
+
   diffNote.textContent =
-    "※ 気温（最高）以外のズレはデータ仕様の都合により信頼性が低めです。詳しくは使い方ページをご覧ください。";
+    "※ 気温（最高）以外のズレはデータ仕様上の制約があり信頼性が低い値です。詳しくは使い方ページをご覧ください。";
 }
 
 /* ------------------------------
-   applyOneDiff（唯一信頼できる項目：最高気温専用）
+   最高気温のみに適用される色分け
 ------------------------------ */
-function applyOneDiff(el, label, v1, v2, unit) {
-  const diff = v1 - v2;
+function applyMaxDiff(el, label, v1, v2, unit) {
+  const diff = +(v1 - v2).toFixed(1);
   const abs = Math.abs(diff);
 
-  let colorClass = "diff-gray";
+  let cls = "diff-gray";
 
-  if (abs <= 0.5) {
-    colorClass = "diff-gray";
-  } else if (diff > 0 && abs <= 2) {
-    colorClass = "diff-red";
-  } else if (diff > 0 && abs > 2) {
-    colorClass = "diff-red-dark";
-  } else if (diff < 0 && abs <= 2) {
-    colorClass = "diff-blue";
-  } else if (diff < 0 && abs > 2) {
-    colorClass = "diff-blue-dark";
-  }
+  if (abs <= 0.5) cls = "diff-gray";
+  else if (abs <= 2) cls = diff > 0 ? "diff-red" : "diff-blue";
+  else             cls = diff > 0 ? "diff-red-dark" : "diff-blue-dark";
 
-  el.className = colorClass;
-  el.textContent = `${label}: ${diff.toFixed(1)}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
+  el.className = cls;
+  el.textContent = `${label}: ${diff}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
 }
 
 /* ------------------------------
-   信頼度低い要素：色固定（薄灰のみ）
+   信頼度低い項目：常に薄灰
 ------------------------------ */
-function updateLowConfidenceDiff(el, label, v1, v2, unit) {
-  const diff = v1 - v2;
-  el.className = "diff-gray";
-  el.textContent = `${label}: ${diff.toFixed(1)}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
+function applyLow(el, label, v1, v2, unit) {
+  const diff = +(v1 - v2).toFixed(1);
+  el.className = "diff-low";  // 薄色
+  el.textContent = `${label}: ${diff}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
 }
 
 /* ------------------------------
