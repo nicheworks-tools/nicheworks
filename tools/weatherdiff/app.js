@@ -1,10 +1,10 @@
 /* ==========================================================
    WeatherDiff - app.js（完全修正版）
-   - ズレアイコン削除
-   - 矢印削除
-   - 最高気温のみ色変化
-   - 他3項目は常に薄灰
-   - 小数点1桁統一
+   - 差は絶対値のみ
+   - 色は差の大きさだけで決定（方向性を排除）
+   - 信頼性の低い項目は opacity を下げる
+   - ズレアイコン・矢印は一切禁止
+   - 小数点1桁で統一
 ========================================================== */
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -333,51 +333,46 @@ function applyWeatherCards(om, mn) {
 }
 
 /* ------------------------------
-   Diff（信頼度仕様）
+   Diff（信頼性付き）
 ------------------------------ */
 function applyDiff(om, mn) {
+  // 最高気温のみ信頼できる
+  applyOneDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C", true);
+  applyOneDiff(diffTomorrowMax, "最高気温", om.tomorrow.max, mn.tomorrow.max, "°C", true);
 
-  // 信頼できる唯一の項目：最高気温（色変化あり）
-  applyMaxDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C");
-  applyMaxDiff(diffTomorrowMax, "最高気温", om.tomorrow.max, mn.tomorrow.max, "°C");
+  // 低信頼（薄色）
+  applyOneDiff(diffTodayMin, "最低気温", om.today.min, mn.today.min, "°C", false);
+  applyOneDiff(diffTodayRain, "降水", om.today.rain, mn.today.rain, "mm", false);
+  applyOneDiff(diffTodayWind, "風", om.today.wind, mn.today.wind, "m/s", false);
 
-  // 信頼度低い項目：薄灰固定
-  applyLow(diffTodayMin, "最低気温", om.today.min, mn.today.min, "°C");
-  applyLow(diffTodayRain, "降水", om.today.rain, mn.today.rain, "mm");
-  applyLow(diffTodayWind, "風", om.today.wind, mn.today.wind, "m/s");
-
-  applyLow(diffTomorrowMin, "最低気温", om.tomorrow.min, mn.tomorrow.min, "°C");
-  applyLow(diffTomorrowRain, "降水", om.tomorrow.rain, mn.tomorrow.rain, "mm");
-  applyLow(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s");
+  applyOneDiff(diffTomorrowMin, "最低気温", om.tomorrow.min, mn.tomorrow.min, "°C", false);
+  applyOneDiff(diffTomorrowRain, "降水", om.tomorrow.rain, mn.tomorrow.rain, "mm", false);
+  applyOneDiff(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s", false);
 
   diffNote.textContent =
     "※ 気温（最高）以外のズレはデータ仕様上の制約があり信頼性が低い値です。詳しくは使い方ページをご覧ください。";
 }
 
 /* ------------------------------
-   最高気温のみに適用される色分け
+   applyOneDiff（絶対値のみ / 方向なし）
 ------------------------------ */
-function applyMaxDiff(el, label, v1, v2, unit) {
-  const diff = +(v1 - v2).toFixed(1);
-  const abs = Math.abs(diff);
+function applyOneDiff(el, label, v1, v2, unit, isReliable = true) {
+  const diff = Math.abs(v1 - v2);
+  const diffText = diff.toFixed(1) + unit;
 
-  let cls = "diff-gray";
+  let colorClass = "diff-gray";
+  if (diff > 5) colorClass = "diff-red";
+  else if (diff > 3) colorClass = "diff-blue-dark";
+  else if (diff > 1.5) colorClass = "diff-blue";
+  else if (diff > 0.5) colorClass = "diff-blue-light";
 
-  if (abs <= 0.5) cls = "diff-gray";
-  else if (abs <= 2) cls = diff > 0 ? "diff-red" : "diff-blue";
-  else             cls = diff > 0 ? "diff-red-dark" : "diff-blue-dark";
+  el.className = colorClass;
+  el.style.opacity = isReliable ? "1.0" : "0.55";
 
-  el.className = cls;
-  el.textContent = `${label}: ${diff}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
-}
-
-/* ------------------------------
-   信頼度低い項目：常に薄灰
------------------------------- */
-function applyLow(el, label, v1, v2, unit) {
-  const diff = +(v1 - v2).toFixed(1);
-  el.className = "diff-low";  // 薄色
-  el.textContent = `${label}: ${diff}${unit}（OM ${v1}${unit} / MET ${v2}${unit}）`;
+  el.innerHTML = `
+    ${label}: <strong>${diffText}</strong><br>
+    <span class="wd-sub">OM ${v1}${unit} / MET ${v2}${unit}</span>
+  `;
 }
 
 /* ------------------------------
