@@ -15,13 +15,14 @@
 
   <!-- Cloudflare Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
 </head>
 
 <body>
 
 <header class="wd-header">
   <div class="wd-header-inner">
-    <div class="wd-header-left">
+    <div>
       <h1 class="wd-title">WeatherDiff</h1>
       <p class="wd-subtitle" id="subtitle">天気予報のズレ比較ツール</p>
     </div>
@@ -35,6 +36,9 @@
 
 <main class="wd-main">
 
+  <!-- ===============================
+       入力エリア
+  =============================== -->
   <section class="wd-section wd-input-section">
 
     <label for="locationInput" class="wd-label" id="labelLocation">
@@ -49,7 +53,7 @@
         autocomplete="off"
       />
       <button id="btnCompare" class="wd-btn primary">比較</button>
-      <button id="btnGeo" class="wd-btn ghost">現在地</button>
+      <button id="btnGeo" class="wd-btn ghost">現在地検索</button>
     </div>
 
     <p id="errorText" class="wd-error"></p>
@@ -61,6 +65,9 @@
 
   </section>
 
+  <!-- ===============================
+       結果エリア
+  =============================== -->
   <section id="resultSection" class="wd-section wd-result hidden">
 
     <div class="wd-warning">
@@ -78,8 +85,12 @@
       <button id="btnReset" class="wd-btn reset">リセット</button>
     </div>
 
+    <!-- ===============================
+         API比較（OM/MET） 2カラム
+    =============================== -->
     <div class="wd-api-grid">
 
+      <!-- ========== Open-Meteo ========== -->
       <article class="wd-card">
         <h3 class="wd-card-title">Open-Meteo</h3>
 
@@ -102,6 +113,7 @@
         </div>
       </article>
 
+      <!-- ========== MET Norway ========== -->
       <article class="wd-card">
         <h3 class="wd-card-title">MET Norway</h3>
 
@@ -126,14 +138,15 @@
 
     </div>
 
-    <!-- ================================
-         ズレエリア
-    ================================= -->
+    <!-- ===============================
+         ズレ（Diff）
+    =============================== -->
     <article class="wd-card wd-diff-card">
       <h3 class="wd-card-title" id="diffTitle">予報のズレ（比較結果）</h3>
 
       <div class="wd-diff-grid">
 
+        <!-- 今日 -->
         <div class="wd-diff-day">
           <h4 id="diffTodayHeading">今日</h4>
           <p id="diffTodayMax"></p>
@@ -142,6 +155,7 @@
           <p id="diffTodayWind"></p>
         </div>
 
+        <!-- 明日 -->
         <div class="wd-diff-day">
           <h4 id="diffTomorrowHeading">明日</h4>
           <p id="diffTomorrowMax"></p>
@@ -152,7 +166,7 @@
 
       </div>
 
-      <!-- 信頼性注意文章（仕様通り追加） -->
+      <!-- 注意文 -->
       <p id="diffNote" class="wd-diff-note">
         ※ 気温（最高）以外のズレはデータ仕様上の制約があり信頼性が低い値です。
         <a href="/tools/weatherdiff/usage.html" target="_blank">詳しく見る</a>
@@ -160,6 +174,9 @@
 
     </article>
 
+    <!-- ===============================
+         他サービスリンク
+    =============================== -->
     <section class="wd-section">
       <h3 class="wd-card-title" id="otherServicesTitle">他のサービスで詳しく見る</h3>
 
@@ -177,6 +194,9 @@
 
 </main>
 
+<!-- ===============================
+     Footer
+=============================== -->
 <footer class="wd-footer">
 
   <p class="wd-donate-msg">
