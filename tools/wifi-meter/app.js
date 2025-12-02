@@ -1,251 +1,247 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+/* ==========================================================
+   WiFi Congestion Meter - app.js
+   Network Information API ベースの安全な混雑推定
+========================================================== */
 
-  <title>使い方｜WiFi 混雑度チェッカー | NicheWorks</title>
-  <meta name="description" content="WiFi 混雑度チェッカーの使い方、取得データの意味、安全性・免責事項を詳細に解説します。">
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/wifi-meter/usage.html">
+/* ----------------------------
+  多言語切替（JP / EN）
+---------------------------- */
+document.querySelectorAll("[data-setlang]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const lang = btn.getAttribute("data-setlang");
+    setLanguage(lang);
+  });
+});
 
-  <!-- OGP -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="WiFi 混雑度チェッカー｜使い方 | NicheWorks">
-  <meta property="og:description" content="WiFi 混雑度チェッカーの使い方とデータ取得の安全性を詳細に説明します。">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/wifi-meter/usage.html">
-  <meta property="og:image" content="https://nicheworks.pages.dev/tools/wifi-meter/ogp.png">
+function setLanguage(lang) {
+  document.querySelectorAll("[data-lang]").forEach((el) => {
+    if (el.getAttribute("data-lang") === lang) {
+      el.style.display = "";
+    } else {
+      el.style.display = "none";
+    }
+  });
+  localStorage.setItem("wifi-meter-lang", lang);
+}
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+// 初期言語
+const savedLang = localStorage.getItem("wifi-meter-lang") || "ja";
+setLanguage(savedLang);
 
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
+/* ----------------------------
+  Network Information API
+---------------------------- */
+const connection =
+  navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
-  <!-- Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+/* ----------------------------
+  要素取得（存在チェック込み）
+---------------------------- */
+const rttEl = document.getElementById("rttValue");
+const fluctEl = document.getElementById("fluctValue");
+const bwEl = document.getElementById("bwValue");
+const levelCard = document.getElementById("levelCard");
+const indicator = document.getElementById("indicator");
 
-  <link rel="stylesheet" href="style.css" />
-</head>
+const startBtns = document.querySelectorAll(".start-btn");
+const stopBtns = document.querySelectorAll(".stop-btn");
+const resetBtns = document.querySelectorAll(".reset-btn");
 
-<body>
+const canvas = document.getElementById("graphCanvas");
+let ctx = null;
+if (canvas) {
+  ctx = canvas.getContext("2d");
+}
 
-<header class="nw-header">
-  <h1 data-lang="ja">使い方｜WiFi 混雑度チェッカー</h1>
-  <h1 data-lang="en">How to Use｜WiFi Congestion Meter</h1>
+/* ----------------------------
+  計測状態
+---------------------------- */
+let measuring = false;
+let intervalId = null;
+let prevRTT = null;
+let graphData = [];
+const MAX_POINTS = 50;
 
-  <p class="nw-desc" data-lang="ja">このページでは、ツールの使い方と取得データの意味、安全性について説明します。</p>
-  <p class="nw-desc" data-lang="en">This page explains how to use the tool, what each value means, and why it is safe.</p>
+/* ----------------------------
+  Start / Stop / Reset
+---------------------------- */
+if (startBtns.length) {
+  startBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (measuring) return;
+      measuring = true;
 
-  <div class="lang-switch">
-    <button data-setlang="ja">JP</button>
-    <button data-setlang="en">EN</button>
-  </div>
-</header>
+      if (indicator) indicator.classList.remove("hidden");
+      stopBtns.forEach((b) => b.classList.remove("hidden"));
+      resetBtns.forEach((b) => b.classList.add("hidden"));
 
-<!-- ad-top -->
-<div class="nw-ad-top">
-  <ins class="adsbygoogle"
-    style="display:block"
-    data-ad-client="ca-pub-9879006623791275"
-    data-ad-slot="1234567890"
-    data-ad-format="auto"></ins>
-</div>
+      intervalId = setInterval(updateValues, 1000);
+    });
+  });
+}
 
-<main class="nw-main">
+if (stopBtns.length) {
+  stopBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      measuring = false;
+      if (indicator) indicator.classList.add("hidden");
+      stopBtns.forEach((b) => b.classList.add("hidden"));
+      resetBtns.forEach((b) => b.classList.remove("hidden"));
+      clearInterval(intervalId);
+    });
+  });
+}
 
-<section>
-  <h2 data-lang="ja">1. このツールでできること</h2>
-  <h2 data-lang="en">1. What This Tool Does</h2>
+if (resetBtns.length) {
+  resetBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (rttEl) rttEl.textContent = "---";
+      if (fluctEl) fluctEl.textContent = "---";
+      if (bwEl) bwEl.textContent = "---";
 
-  <ul>
-    <li data-lang="ja">ブラウザが返す推定値からWiFi混雑度を表示</li>
-    <li data-lang="en">Shows estimated WiFi congestion using browser-provided values</li>
+      prevRTT = null;
+      graphData = [];
+      drawGraph();
 
-    <li data-lang="ja">混雑レベル（低・中・高）を可視化</li>
-    <li data-lang="en">Displays congestion levels (Low / Medium / High)</li>
+      if (levelCard) {
+        levelCard.className = "nw-card level-card";
+        levelCard.querySelectorAll(".level-text").forEach((txt) => {
+          if (txt.getAttribute("data-lang") === "ja") {
+            txt.textContent = "混雑レベル： ---";
+          } else {
+            txt.textContent = "Congestion Level: ---";
+          }
+        });
+      }
 
-    <li data-lang="ja">RTT（推定遅延）・変動幅・帯域推定を簡易表示</li>
-    <li data-lang="en">Displays estimated RTT, fluctuation, and bandwidth</li>
+      resetBtns.forEach((b) => b.classList.add("hidden"));
+    });
+  });
+}
 
-    <li data-lang="ja">リアルタイムのミニ折れ線グラフ</li>
-    <li data-lang="en">Mini real-time line graph</li>
+/* ----------------------------
+  メイン更新ロジック
+---------------------------- */
+function updateValues() {
+  if (!connection) {
+    // 非対応ブラウザ
+    if (rttEl) rttEl.textContent = "---";
+    if (fluctEl) fluctEl.textContent = "---";
+    if (bwEl) bwEl.textContent = "---";
+    updateLevel(null, null);
+    drawGraph();
+    return;
+  }
 
-    <li data-lang="ja">完全ローカル動作（接続や個人情報取得なし）</li>
-    <li data-lang="en">Runs fully locally (no connection or personal data access)</li>
-  </ul>
-</section>
+  const estRTT = typeof connection.rtt === "number" ? connection.rtt : null;
+  const estBW =
+    typeof connection.downlink === "number" ? connection.downlink : null;
 
-<section>
-  <h2 data-lang="ja">2. 使い方</h2>
-  <h2 data-lang="en">2. How to Use</h2>
+  // 揺らぎ（直前との差分絶対値）
+  let fluct = null;
+  if (prevRTT !== null && estRTT !== null) {
+    fluct = Math.abs(estRTT - prevRTT);
+  }
+  prevRTT = estRTT;
 
-  <ol>
-    <li data-lang="ja">WiFiをONにする（接続は不要）</li>
-    <li data-lang="en">Turn on WiFi (connection not required)</li>
+  if (rttEl) rttEl.textContent = estRTT !== null ? estRTT : "---";
+  if (fluctEl)
+    fluctEl.textContent = fluct !== null ? fluct : (estRTT !== null ? 0 : "---");
+  if (bwEl) bwEl.textContent = estBW !== null ? estBW : "---";
 
-    <li data-lang="ja">「Start」を押す</li>
-    <li data-lang="en">Press “Start”</li>
+  // グラフ更新
+  if (estRTT !== null) {
+    graphData.push(estRTT);
+    if (graphData.length > MAX_POINTS) graphData.shift();
+  }
+  drawGraph();
 
-    <li data-lang="ja">混雑レベル・数値・グラフを確認</li>
-    <li data-lang="en">Check congestion level, values, and graph</li>
+  // 混雑レベル判定
+  updateLevel(estRTT, fluct);
+}
 
-    <li data-lang="ja">必要に応じて「Stop」→「Reset」</li>
-    <li data-lang="en">Press “Stop” then “Reset” if needed</li>
-  </ol>
-</section>
+/* ----------------------------
+  混雑レベル判定
+---------------------------- */
+function updateLevel(rtt, fluct) {
+  if (!levelCard) return;
 
-<section>
-  <h2 data-lang="ja">3. 取得するデータとその意味</h2>
-  <h2 data-lang="en">3. Data Obtained & Meaning</h2>
+  let level = "unknown";
 
-  <h3 data-lang="ja">▼ 専門説明</h3>
-  <h3 data-lang="en">▼ Technical Explanation</h3>
+  const r = typeof rtt === "number" ? rtt : null;
+  const f = typeof fluct === "number" ? fluct : 0;
 
-  <ul>
-    <li>
-      <strong>RTT（推定遅延 / ms）</strong><br>
-      <span data-lang="ja">ブラウザが推定したネットワーク遅延。混雑・干渉・電波弱化で増加しやすい。</span>
-      <span data-lang="en">Estimated network latency. Increases with congestion, interference, or weak signal.</span>
-    </li>
+  if (r === null) {
+    level = "unknown";
+  } else if (r < 80 && f < 30) {
+    level = "low";
+  } else if (r < 180 && f < 80) {
+    level = "mid";
+  } else {
+    level = "high";
+  }
 
-    <li>
-      <strong>downlink（推定帯域 / Mbps）</strong><br>
-      <span data-lang="ja">ブラウザが推定する下り帯域。実測値ではなく概算。</span>
-      <span data-lang="en">Estimated download bandwidth. Not an actual measurement.</span>
-    </li>
+  levelCard.className = "nw-card level-card";
+  if (level === "low") levelCard.classList.add("level-low");
+  if (level === "mid") levelCard.classList.add("level-mid");
+  if (level === "high") levelCard.classList.add("level-high");
 
-    <li>
-      <strong>effectiveType（通信品質カテゴリ）</strong><br>
-      <span data-lang="ja">通信品質を slow-2g / 2g / 3g / 4g / wifi で分類。</span>
-      <span data-lang="en">Categorizes network quality as slow-2g / 2g / 3g / 4g / wifi.</span>
-    </li>
+  levelCard.querySelectorAll(".level-text").forEach((txt) => {
+    if (txt.getAttribute("data-lang") === "ja") {
+      if (level === "low") txt.textContent = "混雑レベル：低（Low）";
+      else if (level === "mid") txt.textContent = "混雑レベル：中（Medium）";
+      else if (level === "high") txt.textContent = "混雑レベル：高（High）";
+      else txt.textContent = "混雑レベル： ---";
+    } else {
+      if (level === "low") txt.textContent = "Congestion Level: Low";
+      else if (level === "mid") txt.textContent = "Congestion Level: Medium";
+      else if (level === "high") txt.textContent = "Congestion Level: High";
+      else txt.textContent = "Congestion Level: ---";
+    }
+  });
+}
 
-    <li>
-      <strong>変動幅（ツール内部算出）</strong><br>
-      <span data-lang="ja">短期のRTT揺れ幅。大きいほどネットが不安定。</span>
-      <span data-lang="en">Short-term RTT variation. Larger = more unstable network.</span>
-    </li>
-  </ul>
+/* ----------------------------
+  グラフ描画
+---------------------------- */
+function drawGraph() {
+  if (!canvas || !ctx) return;
 
-  <h3 data-lang="ja">▼ 初心者向け “つまりどういうこと？”</h3>
-  <h3 data-lang="en">▼ Beginner-Friendly Summary</h3>
+  const w = (canvas.width = canvas.clientWidth);
+  const h = (canvas.height = canvas.clientHeight);
 
-  <ul>
-    <li data-lang="ja">RTTが高いほど混雑の可能性が高い</li>
-    <li data-lang="en">Higher RTT = likely congestion</li>
+  ctx.clearRect(0, 0, w, h);
 
-    <li data-lang="ja">変動幅が大きいほど不安定</li>
-    <li data-lang="en">Large fluctuation = unstable</li>
+  if (graphData.length < 2) return;
 
-    <li data-lang="ja">推定帯域が低い＝混雑 or 電波弱化</li>
-    <li data-lang="en">Very low bandwidth = congestion or weak signal</li>
+  let max = Math.max(...graphData);
+  let min = Math.min(...graphData);
 
-    <li data-lang="ja">数値はすべて“目安”で、精密計測ではない</li>
-    <li data-lang="en">All values are approximate, not precise measurements</li>
-  </ul>
-</section>
+  if (max === min) {
+    // 変化がない場合は水平線
+    ctx.beginPath();
+    ctx.strokeStyle = "#111111";
+    ctx.lineWidth = 2;
+    const y = h / 2;
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
+    ctx.stroke();
+    return;
+  }
 
-<section id="data-section">
-  <h2 data-lang="ja">4. データ取得と免責（最重要）</h2>
-  <h2 data-lang="en">4. Data Acquisition & Disclaimer (Important)</h2>
+  const range = max - min;
 
-  <h3 data-lang="ja">▼ 取得するデータ（すべて推定）</h3>
-  <h3 data-lang="en">▼ Data This Tool Reads (estimated only)</h3>
+  ctx.strokeStyle = "#111111";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
 
-  <ul>
-    <li>RTT（推定遅延）</li>
-    <li>downlink（推定帯域）</li>
-    <li>effectiveType（品質カテゴリ）</li>
-    <li>揺らぎ（内部計算）</li>
-  </ul>
+  graphData.forEach((v, i) => {
+    const x = (i / (graphData.length - 1)) * w;
+    const y = h - ((v - min) / range) * h;
 
-  <h3 data-lang="ja">▼ 技術的に取得不可能なデータ</h3>
-  <h3 data-lang="en">▼ Data That Cannot Be Accessed</h3>
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
 
-  <ul>
-    <li>周囲のWiFi一覧（SSID）</li>
-    <li>パスワード</li>
-    <li>暗号化方式</li>
-    <li>ルーター情報</li>
-    <li>個人情報</li>
-    <li>通信内容</li>
-    <li>WiFi接続操作（JavaScriptでは実行不可）</li>
-    <li>GPS位置情報（許可なしでは不可）</li>
-  </ul>
-
-  <h3 data-lang="ja">▼ 安全性の根拠</h3>
-  <h3 data-lang="en">▼ Why This Tool Is Safe</h3>
-
-  <ul>
-    <li data-lang="ja">ブラウザAPIは取得範囲が厳しく制限されている</li>
-    <li data-lang="en">Browser APIs strictly limit accessible information</li>
-
-    <li data-lang="ja">任意のWiFiへ接続することは技術的に不可能</li>
-    <li data-lang="en">JavaScript cannot initiate WiFi connections</li>
-
-    <li data-lang="ja">データ送信は行わず、端末内のみで処理</li>
-    <li data-lang="en">All processing is done locally with no data uploaded</li>
-  </ul>
-
-  <h3 data-lang="ja">▼ 免責</h3>
-  <h3 data-lang="en">▼ Disclaimer</h3>
-
-  <p data-lang="ja">
-    本ツールは推定値を使用した簡易診断であり、実際の通信速度や品質を保証するものではありません。
-  </p>
-  <p data-lang="en">
-    This tool provides approximate values only and does not guarantee actual network performance.
-  </p>
-</section>
-
-<section>
-  <a class="nw-link" href="index.html" data-lang="ja">← WiFi 混雑度チェッカーに戻る</a>
-  <a class="nw-link" href="index.html" data-lang="en">← Back to WiFi Congestion Meter</a>
-</section>
-
-</main>
-
-<!-- ad-bottom -->
-<div class="nw-ad-bottom">
-  <ins class="adsbygoogle"
-    style="display:block"
-    data-ad-client="ca-pub-9879006623791275"
-    data-ad-slot="1234567890"
-    data-ad-format="auto"></ins>
-</div>
-
-<footer class="nw-footer">
-
-  <div class="nw-donate">
-    <p data-lang="ja">
-      もしこのツールが役に立ったと感じていただけたら、<br>
-      ささやかなご支援をいただけると嬉しいです。運営の励みになります。
-    </p>
-    <p data-lang="en">
-      If you find this tool helpful,<br>
-      a small donation would be greatly appreciated and helps support the project.
-    </p>
-    <p>💌 OFUSE / ☕ Ko-fi</p>
-  </div>
-
-  <div class="nw-links">
-    <h3>NicheWorks Tools</h3>
-    <ul>
-      <li><a href="#">WiFi 混雑度チェッカー</a></li>
-      <li><a href="/tools/webp-avif-converter/">WebP/AVIF → PNG・JPEG</a></li>
-      <li><a href="/tools/unitmaster/">UnitMaster</a></li>
-      <li><a href="/tools/weatherdiff/">WeatherDiff</a></li>
-    </ul>
-    <p>nicheworks.pages.dev</p>
-  </div>
-
-</footer>
-
-<script src="app.js"></script>
-
-</body>
-</html>
+  ctx.stroke();
+}
