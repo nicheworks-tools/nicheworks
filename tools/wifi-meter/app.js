@@ -61,6 +61,7 @@ let intervalId = null;
 let prevRTT = null;
 let graphData = [];
 const MAX_POINTS = 50;
+let graphColor = "#999999"; // グラフ線の色（混雑レベルに応じて変化）
 
 /* ----------------------------
   Start / Stop / Reset
@@ -114,6 +115,7 @@ if (resetBtns.length) {
         });
       }
 
+      graphColor = "#999999";
       resetBtns.forEach((b) => b.classList.add("hidden"));
     });
   });
@@ -124,7 +126,6 @@ if (resetBtns.length) {
 ---------------------------- */
 function updateValues() {
   if (!connection) {
-    // 非対応ブラウザ
     if (rttEl) rttEl.textContent = "---";
     if (fluctEl) fluctEl.textContent = "---";
     if (bwEl) bwEl.textContent = "---";
@@ -137,7 +138,6 @@ function updateValues() {
   const estBW =
     typeof connection.downlink === "number" ? connection.downlink : null;
 
-  // 揺らぎ（直前との差分絶対値）
   let fluct = null;
   if (prevRTT !== null && estRTT !== null) {
     fluct = Math.abs(estRTT - prevRTT);
@@ -149,14 +149,11 @@ function updateValues() {
     fluctEl.textContent = fluct !== null ? fluct : (estRTT !== null ? 0 : "---");
   if (bwEl) bwEl.textContent = estBW !== null ? estBW : "---";
 
-  // グラフ更新
   if (estRTT !== null) {
     graphData.push(estRTT);
     if (graphData.length > MAX_POINTS) graphData.shift();
   }
   drawGraph();
-
-  // 混雑レベル判定
   updateLevel(estRTT, fluct);
 }
 
@@ -181,10 +178,17 @@ function updateLevel(rtt, fluct) {
     level = "high";
   }
 
+  // カード色
   levelCard.className = "nw-card level-card";
   if (level === "low") levelCard.classList.add("level-low");
   if (level === "mid") levelCard.classList.add("level-mid");
   if (level === "high") levelCard.classList.add("level-high");
+
+  // グラフ線の色を混雑レベルに合わせる
+  if (level === "low") graphColor = "#4caf50";
+  else if (level === "mid") graphColor = "#ffb300";
+  else if (level === "high") graphColor = "#e53935";
+  else graphColor = "#999999";
 
   levelCard.querySelectorAll(".level-text").forEach((txt) => {
     if (txt.getAttribute("data-lang") === "ja") {
@@ -199,6 +203,9 @@ function updateLevel(rtt, fluct) {
       else txt.textContent = "Congestion Level: ---";
     }
   });
+
+  // 色が変わったときに即反映されるよう軽く再描画
+  drawGraph();
 }
 
 /* ----------------------------
@@ -217,11 +224,11 @@ function drawGraph() {
   let max = Math.max(...graphData);
   let min = Math.min(...graphData);
 
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = graphColor;
+
   if (max === min) {
-    // 変化がない場合は水平線
     ctx.beginPath();
-    ctx.strokeStyle = "#111111";
-    ctx.lineWidth = 2;
     const y = h / 2;
     ctx.moveTo(0, y);
     ctx.lineTo(w, y);
@@ -231,10 +238,7 @@ function drawGraph() {
 
   const range = max - min;
 
-  ctx.strokeStyle = "#111111";
-  ctx.lineWidth = 2;
   ctx.beginPath();
-
   graphData.forEach((v, i) => {
     const x = (i / (graphData.length - 1)) * w;
     const y = h - ((v - min) / range) * h;
@@ -242,6 +246,5 @@ function drawGraph() {
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
   });
-
   ctx.stroke();
 }
