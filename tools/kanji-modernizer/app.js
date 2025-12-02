@@ -1,161 +1,166 @@
-document.addDOMContentLoaded = document.addEventListener("DOMContentLoaded", () => {
-  const langButtons = document.querySelectorAll(".nw-lang-switch button");
-  const i18nNodes = document.querySelectorAll("[data-i18n]");
-  const inputText = document.getElementById("inputText");
-  const convertBtn = document.getElementById("convertBtn");
-  const progress = document.getElementById("progress");
-  const errorBox = document.getElementById("errorBox");
-  const resultBlock = document.getElementById("resultBlock");
-  const outputText = document.getElementById("outputText");
-  const copyBtn = document.getElementById("copyBtn");
-  const resetBtn = document.getElementById("resetBtn");
+// ==========================================================
+// Kanji Modernizer Lite - 完全版 app.js
+// ・辞書ロード（old_to_new / new_to_old）
+// ・旧→新 / 新→旧 変換
+// ・複数候補（new_to_old）の配列対応（先頭採用）
+// ・エラー処理
+// ・進行バー最適化
+// ・i18n（日英切替）
+// ==========================================================
 
-  let dict = {};
-  let reverseDict = {};
-  let dictLoaded = false;
+// ------------------------------
+// 1. 辞書ロード
+// ------------------------------
+let dict = { old_to_new: {}, new_to_old: {} };
+let currentLang = "ja";
 
-  /* =========================================================
-     言語適用
-     ========================================================= */
-  let currentLang =
-    (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
+async function loadDict() {
+  try {
+    const res = await fetch("./dict.json");
+    dict = await res.json();
+  } catch (e) {
+    console.error("辞書ロードに失敗:", e);
+  }
+}
+loadDict();
 
-  const applyLang = (lang) => {
-    currentLang = lang;
 
-    i18nNodes.forEach((el) => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
+// ------------------------------
+// 2. i18n テーブル（index.html と一致）
+// ------------------------------
+const i18n = {
+  ja: {
+    title: "旧字体 ⇄ 新字体 変換ツール",
+    description: "旧字体 → 新字体 / 新字体 → 旧字体 の一括変換に対応。名前・地名・看板などの漢字を瞬時に変換できます。",
+    input_label: "入力",
+    result_label: "結果",
+    convert_btn: "変換する",
+    direction_old2new: "旧 → 新",
+    direction_new2old: "新 → 旧",
+    empty_error: "入力が空です。",
+    copied: "コピーしました！"
+  },
+  en: {
+    title: "Kanji Modernizer Lite",
+    description: "Convert Old Kanji ⇄ Modern Kanji instantly. Works fully offline.",
+    input_label: "Input",
+    result_label: "Output",
+    convert_btn: "Convert",
+    direction_old2new: "Old → Modern",
+    direction_new2old: "Modern → Old",
+    empty_error: "Input is empty.",
+    copied: "Copied!"
+  }
+};
 
-    langButtons.forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.lang === lang);
-    });
 
-    inputText.placeholder =
-      lang === "ja"
-        ? "例）舊字體の東京府淺草區"
-        : "Example: Paste old-style kanji here.";
-  };
+// ------------------------------
+// 3. 言語切替
+// ------------------------------
+function switchLang(lang) {
+  currentLang = lang;
 
-  langButtons.forEach((btn) =>
-    btn.addEventListener("click", () => applyLang(btn.dataset.lang))
-  );
-
-  applyLang(currentLang);
-
-  /* =========================================================
-     辞書ロード
-     ========================================================= */
-  const loadDict = () => {
-    return fetch("./dict.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("dict load failed");
-        return res.json();
-      })
-      .then((data) => {
-        dict = data;
-        reverseDict = {};
-        Object.keys(dict).forEach((oldChar) => {
-          const modernChar = dict[oldChar];
-          if (!reverseDict[modernChar]) reverseDict[modernChar] = oldChar;
-        });
-        dictLoaded = true;
-      })
-      .catch((e) => {
-        console.error(e);
-        dictLoaded = false;
-      });
-  };
-
-  loadDict();
-
-  /* =========================================================
-     Helper UI
-     ========================================================= */
-  const showProgress = (show) => {
-    progress.style.display = show ? "block" : "none";
-  };
-
-  const setError = (ja, en) => {
-    if (!ja && !en) {
-      errorBox.hidden = true;
-      errorBox.textContent = "";
-      return;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[lang][key]) {
+      el.textContent = i18n[lang][key];
     }
-    errorBox.hidden = false;
-    errorBox.textContent = currentLang === "ja" ? ja : en;
-  };
-
-  /* =========================================================
-     Convert
-     ========================================================= */
-  convertBtn.addEventListener("click", () => {
-    const text = inputText.value.trim();
-    setError("", "");
-    resultBlock.hidden = true;
-
-    if (!text) {
-      setError(
-        "入力テキストが空です。",
-        "Input text is empty."
-      );
-      return;
-    }
-
-    const direction = document.querySelector(
-      "input[name='direction']:checked"
-    )?.value;
-
-    convertBtn.disabled = true;
-    showProgress(true);
-
-    const ensureDict = dictLoaded ? Promise.resolve() : loadDict();
-
-    ensureDict
-      .then(() => {
-        const map = direction === "old-to-new" ? dict : reverseDict;
-
-        let result = "";
-        for (const ch of text) {
-          result += map[ch] || ch;
-        }
-
-        outputText.value = result;
-        resultBlock.hidden = false;
-        resultBlock.scrollIntoView({ behavior: "smooth", block: "start" });
-      })
-      .catch(() => {
-        setError(
-          "辞書の読み込みに失敗しました。",
-          "Failed to load dictionary."
-        );
-      })
-      .finally(() => {
-        convertBtn.disabled = false;
-        showProgress(false);
-      });
   });
 
-  /* =========================================================
-     Copy
-     ========================================================= */
-  copyBtn.addEventListener("click", () => {
-    if (!outputText.value) return;
-
-    navigator.clipboard
-      .writeText(outputText.value)
-      .catch((e) => console.error("copy failed", e));
+  // active クラスの付け替え
+  document.querySelectorAll(".nw-lang-switch button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
   });
+}
 
-  /* =========================================================
-     Reset
-     ========================================================= */
-  resetBtn.addEventListener("click", () => {
-    inputText.value = "";
-    outputText.value = "";
-    resultBlock.hidden = true;
-    setError("", "");
-    showProgress(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+document.querySelectorAll(".nw-lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => switchLang(btn.dataset.lang));
+});
+
+
+// ------------------------------
+// 4. 変換処理（旧→新 / 新→旧）
+// ------------------------------
+function convertText(mode, input) {
+  if (!input) return "";
+
+  let output = "";
+
+  for (const ch of input) {
+    if (mode === "old2new") {
+      // 旧字 → 新字
+      output += dict.old_to_new[ch] ?? ch;
+
+    } else {
+      // 新字 → 旧字（複数候補の配列）
+      if (dict.new_to_old[ch]) {
+        const arr = dict.new_to_old[ch];
+        output += Array.isArray(arr) ? arr[0] : arr; // 先頭候補を採用
+      } else {
+        output += ch;
+      }
+    }
+  }
+
+  return output;
+}
+
+
+// ------------------------------
+// 5. 変換ボタン
+// ------------------------------
+document.getElementById("convertBtn").addEventListener("click", () => {
+  const input = document.getElementById("inputText").value;
+  const mode = document.querySelector('input[name="direction"]:checked').value;
+
+  if (!input.trim()) {
+    alert(i18n[currentLang].empty_error);
+    return;
+  }
+
+  showProgressBar().then(() => {
+    const result = convertText(mode, input);
+    document.getElementById("resultText").value = result;
   });
 });
+
+
+// ------------------------------
+// 6. 進行バー
+// ------------------------------
+function showProgressBar() {
+  return new Promise(resolve => {
+    const bar = document.getElementById("progress");
+    bar.style.width = "0%";
+    bar.style.opacity = "1";
+
+    let progress = 0;
+    const timer = setInterval(() => {
+      progress += 20;
+      bar.style.width = progress + "%";
+
+      if (progress >= 100) {
+        clearInterval(timer);
+        setTimeout(() => { bar.style.opacity = "0"; }, 400);
+        resolve();
+      }
+    }, 80);
+  });
+}
+
+
+// ------------------------------
+// 7. コピー
+// ------------------------------
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const text = document.getElementById("resultText").value;
+  navigator.clipboard.writeText(text).then(() => {
+    alert(i18n[currentLang].copied);
+  });
+});
+
+
+// ------------------------------
+// 8. 初期言語（日本語）
+// ------------------------------
+switchLang("ja");
