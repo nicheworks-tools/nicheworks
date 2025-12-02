@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>WiFi 混雑度チェッカー｜WiFi Congestion Meter | NicheWorks</title>
+  <meta name="description" content="ブラウザが返す推定値をもとにWiFi混雑度を可視化する軽量ツール。安全・接続不要・個人情報アクセスなし。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/wifi-meter/">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WiFi 混雑度チェッカー | NicheWorks">
+  <meta property="og:description" content="ブラウザ推定値からWiFi混雑度を可視化する軽量ツール。安全・接続不要・個人情報アクセスなし。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/wifi-meter/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/tools/wifi-meter/ogp.png">
+
+ <!-- favicon（共通） -->
+ <link rel="icon" href="/assets/favicon.ico">
+ <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+
+ <!-- Cloudflare Analytics -->
+ <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header class="nw-header">
+  <h1 data-lang="ja">WiFi 混雑度チェッカー</h1>
+  <h1 data-lang="en">WiFi Congestion Meter</h1>
+
+  <p class="nw-desc" data-lang="ja">
+    ブラウザが返す推定値からWiFi混雑度を可視化する安全な軽量ツールです。
+  </p>
+  <p class="nw-desc" data-lang="en">
+    A safe, lightweight tool that visualizes WiFi congestion based on browser-estimated values.
+  </p>
+
+  <p class="nw-small" data-lang="ja">
+    ※ このツールはSensitive情報には一切アクセスしません。
+  </p>
+  <p class="nw-small" data-lang="en">
+    ※ This tool does not access any sensitive data.
+  </p>
+
+  <a class="nw-link" href="usage.html#data-section" data-lang="ja">詳しい技術説明はこちら</a>
+  <a class="nw-link" href="usage.html#data-section" data-lang="en">See technical details here</a>
+
+  <div class="lang-switch">
+    <button data-setlang="ja">JP</button>
+    <button data-setlang="en">EN</button>
+  </div>
+</header>
+
+<!-- ad-top -->
+<div class="nw-ad-top">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-9879006623791275"
+    data-ad-slot="1234567890"
+    data-ad-format="auto"></ins>
+</div>
+
+<main class="nw-main">
+
+  <!-- Start / Stop -->
+  <div class="nw-controls">
+    <button id="startBtn" class="nw-btn-primary" data-lang="ja">Start 計測開始</button>
+    <button id="startBtn" class="nw-btn-primary" data-lang="en">Start</button>
+
+    <button id="stopBtn" class="nw-btn-secondary hidden" data-lang="ja">Stop 停止</button>
+    <button id="stopBtn" class="nw-btn-secondary hidden" data-lang="en">Stop</button>
+
+    <div id="indicator" class="nw-indicator hidden">● <span data-lang="ja">計測中…</span><span data-lang="en">Measuring…</span></div>
+  </div>
+
+  <!-- Congestion Level -->
+  <section class="nw-card" id="levelCard">
+    <h2 class="level-text" data-lang="ja">混雑レベル： ---</h2>
+    <h2 class="level-text" data-lang="en">Congestion Level: ---</h2>
+  </section>
+
+  <!-- Values -->
+  <section class="nw-values">
+    <p><span data-lang="ja">RTT（推定）：</span><span data-lang="en">Est. RTT: </span><span id="rttValue">---</span> ms</p>
+    <p><span data-lang="ja">変動幅：</span><span data-lang="en">Fluctuation: </span><span id="fluctValue">---</span> ms</p>
+    <p><span data-lang="ja">帯域推定：</span><span data-lang="en">Est. Bandwidth: </span><span id="bwValue">---</span> Mbps</p>
+  </section>
+
+  <!-- Graph -->
+  <section class="nw-graph-box">
+    <canvas id="graphCanvas"></canvas>
+  </section>
+
+  <!-- Reset -->
+  <button id="resetBtn" class="nw-btn-secondary hidden" data-lang="ja">Reset 結果クリア</button>
+  <button id="resetBtn" class="nw-btn-secondary hidden" data-lang="en">Reset</button>
+
+  <!-- FAQ -->
+  <section class="nw-faq">
+    <h2 data-lang="ja">FAQ</h2>
+    <h2 data-lang="en">FAQ</h2>
+
+    <div class="faq-item">
+      <p data-lang="ja"><strong>Q. 何を取得していますか？</strong><br>ブラウザAPIの推定値だけです。</p>
+      <p data-lang="en"><strong>Q. What data is read?</strong><br>Only browser-estimated values.</p>
+    </div>
+
+    <div class="faq-item">
+      <p data-lang="ja"><strong>Q. WiFiに接続しますか？</strong><br>接続しません。</p>
+      <p data-lang="en"><strong>Q. Does it connect to WiFi?</strong><br>No.</p>
+    </div>
+
+    <div class="faq-item">
+      <p data-lang="ja"><strong>Q. 安全ですか？</strong><br>危険情報は技術的に取得不可能です。</p>
+      <p data-lang="en"><strong>Q. Is it safe?</strong><br>It cannot access sensitive data.</p>
+    </div>
+
+    <div class="faq-item">
+      <p data-lang="ja"><strong>Q. 正確ですか？</strong><br>あくまで“目安”です。</p>
+      <p data-lang="en"><strong>Q. How accurate?</strong><br>Values are approximate.</p>
+    </div>
+
+    <a class="nw-link" href="usage.html#data-section" data-lang="ja">さらに詳しく → データ取得と免責</a>
+    <a class="nw-link" href="usage.html#data-section" data-lang="en">More details → Data acquisition & disclaimer</a>
+  </section>
+
+</main>
+
+<!-- ad-bottom -->
+<div class="nw-ad-bottom">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-9879006623791275"
+    data-ad-slot="1234567890"
+    data-ad-format="auto"></ins>
+</div>
+
+<footer class="nw-footer">
+
+  <div class="nw-donate">
+    <p data-lang="ja">
+      もしこのツールが役に立ったと感じていただけたら、  
+      ささやかなご支援をいただけると嬉しいです。運営の励みになります。
+    </p>
+    <p data-lang="en">
+      If you find this tool helpful,  
+      a small donation would be greatly appreciated and helps support the project.
+    </p>
+    <p>💌 OFUSE / ☕ Ko-fi</p>
+  </div>
+
+  <div class="nw-links">
+    <h3>NicheWorks Tools</h3>
+    <ul>
+      <li><a href="#">WiFi 混雑度チェッカー</a></li>
+      <li><a href="/tools/webp-avif-converter/">WebP/AVIF → PNG・JPEG</a></li>
+      <li><a href="/tools/unitmaster/">UnitMaster</a></li>
+      <li><a href="/tools/weatherdiff/">WeatherDiff</a></li>
+    </ul>
+    <p>nicheworks.pages.dev</p>
+  </div>
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
