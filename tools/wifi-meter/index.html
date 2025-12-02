@@ -15,16 +15,18 @@
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/wifi-meter/">
   <meta property="og:image" content="https://nicheworks.pages.dev/tools/wifi-meter/ogp.png">
 
- <!-- favicon（共通） -->
- <link rel="icon" href="/assets/favicon.ico">
- <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
- <!-- Cloudflare Analytics -->
- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -70,27 +72,42 @@
 <main class="nw-main">
 
   <!-- Start / Stop -->
-  <div class="nw-controls">
-    <button id="startBtn" class="nw-btn-primary" data-lang="ja">Start 計測開始</button>
-    <button id="startBtn" class="nw-btn-primary" data-lang="en">Start</button>
+  <section class="nw-controls">
+    <div class="nw-controls-row">
+      <button class="start-btn nw-btn-primary" data-lang="ja">Start 計測開始</button>
+      <button class="start-btn nw-btn-primary" data-lang="en">Start</button>
 
-    <button id="stopBtn" class="nw-btn-secondary hidden" data-lang="ja">Stop 停止</button>
-    <button id="stopBtn" class="nw-btn-secondary hidden" data-lang="en">Stop</button>
-
-    <div id="indicator" class="nw-indicator hidden">● <span data-lang="ja">計測中…</span><span data-lang="en">Measuring…</span></div>
-  </div>
+      <button class="stop-btn nw-btn-secondary hidden" data-lang="ja">Stop 停止</button>
+      <button class="stop-btn nw-btn-secondary hidden" data-lang="en">Stop</button>
+    </div>
+    <div id="indicator" class="nw-indicator hidden">
+      ● <span data-lang="ja">計測中…</span><span data-lang="en">Measuring…</span>
+    </div>
+  </section>
 
   <!-- Congestion Level -->
-  <section class="nw-card" id="levelCard">
+  <section class="nw-card level-card" id="levelCard">
     <h2 class="level-text" data-lang="ja">混雑レベル： ---</h2>
     <h2 class="level-text" data-lang="en">Congestion Level: ---</h2>
   </section>
 
   <!-- Values -->
   <section class="nw-values">
-    <p><span data-lang="ja">RTT（推定）：</span><span data-lang="en">Est. RTT: </span><span id="rttValue">---</span> ms</p>
-    <p><span data-lang="ja">変動幅：</span><span data-lang="en">Fluctuation: </span><span id="fluctValue">---</span> ms</p>
-    <p><span data-lang="ja">帯域推定：</span><span data-lang="en">Est. Bandwidth: </span><span id="bwValue">---</span> Mbps</p>
+    <p>
+      <span data-lang="ja">RTT（推定）：</span>
+      <span data-lang="en">Est. RTT: </span>
+      <span id="rttValue">---</span> ms
+    </p>
+    <p>
+      <span data-lang="ja">変動幅：</span>
+      <span data-lang="en">Fluctuation: </span>
+      <span id="fluctValue">---</span> ms
+    </p>
+    <p>
+      <span data-lang="ja">帯域推定：</span>
+      <span data-lang="en">Est. Bandwidth: </span>
+      <span id="bwValue">---</span> Mbps
+    </p>
   </section>
 
   <!-- Graph -->
@@ -99,8 +116,10 @@
   </section>
 
   <!-- Reset -->
-  <button id="resetBtn" class="nw-btn-secondary hidden" data-lang="ja">Reset 結果クリア</button>
-  <button id="resetBtn" class="nw-btn-secondary hidden" data-lang="en">Reset</button>
+  <div class="nw-reset-row">
+    <button class="reset-btn nw-btn-secondary hidden" data-lang="ja">Reset 結果クリア</button>
+    <button class="reset-btn nw-btn-secondary hidden" data-lang="en">Reset</button>
+  </div>
 
   <!-- FAQ -->
   <section class="nw-faq">
@@ -146,11 +165,11 @@
 
   <div class="nw-donate">
     <p data-lang="ja">
-      もしこのツールが役に立ったと感じていただけたら、  
+      もしこのツールが役に立ったと感じていただけたら、<br>
       ささやかなご支援をいただけると嬉しいです。運営の励みになります。
     </p>
     <p data-lang="en">
-      If you find this tool helpful,  
+      If you find this tool helpful,<br>
       a small donation would be greatly appreciated and helps support the project.
     </p>
     <p>💌 OFUSE / ☕ Ko-fi</p>
@@ -173,4 +192,3 @@
 
 </body>
 </html>
-
