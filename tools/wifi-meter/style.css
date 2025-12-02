@@ -64,6 +64,7 @@ body {
   text-decoration: underline;
 }
 
+/* Lang */
 .lang-switch {
   margin-top: 10px;
 }
@@ -255,11 +256,35 @@ body {
   border-top: 1px solid var(--border);
 }
 
+/* 寄付 */
 .nw-donate p {
   margin: 4px 0;
   font-size: 0.9rem;
 }
 
+.nw-donate-buttons {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nw-btn-donate {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--fg);
+}
+.nw-btn-donate:hover {
+  border-color: #cccccc;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* ツールリンク */
 .nw-links {
   margin-top: 20px;
 }
