@@ -358,3 +358,62 @@ body {
     width: 100%;
   }
 }
+
+/* =======================================================
+   Usage Pages
+   ======================================================= */
+
+.usage-back {
+  display: inline-block;
+  margin: 12px 0 20px;
+  font-size: 13px;
+  color: #2762eb;
+  text-decoration: none;
+}
+.usage-back:hover {
+  text-decoration: underline;
+}
+
+.usage-section {
+  background: #fafafa;
+  border: 1px solid var(--border-soft);
+  padding: 16px 14px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.usage-section h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.usage-section p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+.usage-section ul,
+.usage-section ol {
+  margin: 0 0 10px 20px;
+  padding: 0;
+}
+
+.usage-section li {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--fg);
+}
+
+.usage-section a {
+  color: #2762eb;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.usage-section a:hover {
+  text-decoration: underline;
+}
+
