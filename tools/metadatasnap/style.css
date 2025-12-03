@@ -99,24 +99,20 @@ body > * {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 11px 14px;
+  height: 44px;
+  padding: 0 1rem;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: #0f172a;
+  background: #111;
   color: #fff;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
 .button:hover:not(:disabled) {
-  background: #111827;
-  border-color: #111827;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.15);
-}
-
-.button:active:not(:disabled) {
-  transform: translateY(1px);
+  opacity: 0.85;
 }
 
 .button:disabled {
@@ -195,12 +191,8 @@ body > * {
 
 .reset-btn {
   width: 100%;
-  background: #fff;
-  color: #0f172a;
-}
-
-.reset-btn:hover:not(:disabled) {
-  background: #f1f5f9;
+  background: #f7f7f8;
+  color: #111;
 }
 
 .nw-lang-switch {
