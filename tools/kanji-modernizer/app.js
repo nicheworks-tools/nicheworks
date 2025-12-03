@@ -3,6 +3,7 @@
    - 旧字⇄新字 変換ロジック
    - JP/EN 表示切り替え（data-i18n）
    - 完全ローカル（dict.json を読み込み）
+   - ★変換ヒット箇所を赤色表示（km-hit）
 ========================================================== */
 
 (() => {
@@ -14,12 +15,14 @@
     ja: {
       empty: "変換するテキストを入力してください。",
       copied: "結果をコピーしました。",
-      loadError: "辞書データの読み込みに失敗しました。時間を置いて再度お試しください。"
+      loadError:
+        "辞書データの読み込みに失敗しました。時間を置いて再度お試しください。"
     },
     en: {
       empty: "Please enter some text to convert.",
       copied: "Result copied to clipboard.",
-      loadError: "Failed to load dictionary data. Please try again later."
+      loadError:
+        "Failed to load dictionary data. Please try again later."
     }
   };
 
@@ -43,26 +46,24 @@
   function switchLang(lang) {
     currentLang = lang === "en" ? "en" : "ja";
 
-    // <html> の lang を更新
-    if (document.documentElement) {
-      document.documentElement.lang = currentLang;
-    }
+    // <html lang="...">
+    document.documentElement.lang = currentLang;
 
-    // data-i18n="ja"/"en" の表示・非表示
+    // data-i18n
     document.querySelectorAll("[data-i18n]").forEach(el => {
-      const elLang = el.dataset.i18n;
-      if (!elLang) return;
-      el.style.display = elLang === currentLang ? "" : "none";
+      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
     });
 
-    // 言語ボタンの active 切り替え
-    document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.lang === currentLang);
-    });
+    // lang ボタン active
+    document
+      .querySelectorAll(".nw-lang-switch button[data-lang]")
+      .forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === currentLang);
+      });
   }
 
   // -----------------------------
-  // 辞書読み込み（dict.json）
+  // 辞書読み込み
   // -----------------------------
   async function loadDict() {
     if (dictCache) return dictCache;
@@ -76,10 +77,15 @@
     return data;
   }
 
+  // -----------------------------
+  // 収録文字数の更新
+  // -----------------------------
   function updateCounts(dict) {
     if (!dict) return;
+
     const oldCount = Object.keys(dict.old_to_new || {}).length;
     const newCount = Object.keys(dict.new_to_old || {}).length;
+
     const uniqueCount = new Set([
       ...Object.keys(dict.old_to_new || {}),
       ...Object.keys(dict.new_to_old || {})
@@ -121,7 +127,7 @@
   }
 
   // -----------------------------
-  // 変換ロジック
+  // 変換ロジック（★コンフリクト解決された最新版）
   // -----------------------------
   function convertText(rawText, direction, dict) {
     if (!rawText) {
@@ -133,36 +139,38 @@
     const outputHtml = [];
     const outputPlain = [];
 
-    if (direction === "new-to-old") {
-      const map = dict.new_to_old || {};
-      src.forEach(ch => {
-        const val = map[ch];
-        if (Array.isArray(val) ? val.length > 0 : Boolean(val)) {
-          const target = Array.isArray(val) ? val[0] : val;
-          inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
-          outputHtml.push(`<span class="km-hit">${escapeHtml(target)}</span>`);
-          outputPlain.push(target);
+    // 方向別マップ
+    const map =
+      direction === "new-to-old"
+        ? dict.new_to_old || {}
+        : dict.old_to_new || {};
+
+    src.forEach(ch => {
+      const mapped = map[ch];
+      let outputChar;
+
+      if (direction === "new-to-old") {
+        if (Array.isArray(mapped)) {
+          outputChar = mapped.length > 0 ? mapped[0] : ch;
         } else {
-          inputHtml.push(escapeHtml(ch));
-          outputHtml.push(escapeHtml(ch));
-          outputPlain.push(ch);
+          outputChar = mapped ?? ch;
         }
-      });
-    } else {
-      const map = dict.old_to_new || {};
-      src.forEach(ch => {
-        const val = map[ch];
-        if (val) {
-          inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
-          outputHtml.push(`<span class="km-hit">${escapeHtml(val)}</span>`);
-          outputPlain.push(val);
-        } else {
-          inputHtml.push(escapeHtml(ch));
-          outputHtml.push(escapeHtml(ch));
-          outputPlain.push(ch);
-        }
-      });
-    }
+      } else {
+        outputChar = mapped ?? ch;
+      }
+
+      const isHit = ch !== outputChar;
+
+      if (isHit) {
+        inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
+        outputHtml.push(`<span class="km-hit">${escapeHtml(outputChar)}</span>`);
+      } else {
+        inputHtml.push(escapeHtml(ch));
+        outputHtml.push(escapeHtml(outputChar));
+      }
+
+      outputPlain.push(outputChar);
+    });
 
     return {
       plain: outputPlain.join(""),
@@ -172,7 +180,7 @@
   }
 
   // -----------------------------
-  // DOM 準備完了後にイベントを張る
+  // DOM 準備
   // -----------------------------
   document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("inputText");
@@ -183,19 +191,18 @@
     const resultBlock = document.getElementById("resultBlock");
     const inputHighlight = document.getElementById("inputHighlight");
 
-    // 言語ボタン
+    // 言語切り替え
     document
       .querySelectorAll(".nw-lang-switch button[data-lang]")
       .forEach(btn => {
         btn.addEventListener("click", () => {
-          const lang = btn.dataset.lang || "ja";
-          switchLang(lang);
+          switchLang(btn.dataset.lang || "ja");
         });
       });
 
-    // 初期状態：日本語だけ表示
     switchLang(currentLang);
 
+    // 辞書読み
     loadDict()
       .then(dict => {
         updateCounts(dict);
@@ -204,76 +211,67 @@
         console.error(err);
       });
 
-    // 変換ボタン
-    if (convertBtn && input && output) {
-      convertBtn.addEventListener("click", async () => {
-        clearError();
+    // 変換
+    convertBtn?.addEventListener("click", async () => {
+      clearError();
 
-        const text = input.value.trim();
-        if (!text) {
-          showError("empty");
-          return;
-        }
+      const text = input.value.trim();
+      if (!text) {
+        showError("empty");
+        return;
+      }
 
-        setProgress(true);
-        try {
-          const dict = await loadDict();
-          const selected = document.querySelector(
-            'input[name="direction"]:checked'
-          );
-          const direction = selected ? selected.value : "old-to-new";
+      setProgress(true);
 
-          const { plain, inputHtml, outputHtml } = convertText(
-            text,
-            direction,
-            dict
-          );
-          lastResultText = plain;
-          if (inputHighlight) {
-            inputHighlight.innerHTML = inputHtml;
-          }
-          output.innerHTML = outputHtml;
-          if (resultBlock) {
-            resultBlock.hidden = false;
-          }
-        } catch (err) {
-          console.error(err);
-          showError("loadError");
-        } finally {
-          setProgress(false);
-        }
-      });
-    }
+      try {
+        const dict = await loadDict();
+        const selected = document.querySelector(
+          'input[name="direction"]:checked'
+        );
+        const direction = selected ? selected.value : "old-to-new";
+
+        const { plain, inputHtml, outputHtml } = convertText(
+          text,
+          direction,
+          dict
+        );
+
+        lastResultText = plain;
+
+        if (inputHighlight) inputHighlight.innerHTML = inputHtml;
+        if (output) output.innerHTML = outputHtml;
+
+        resultBlock.hidden = false;
+      } catch (err) {
+        console.error(err);
+        showError("loadError");
+      } finally {
+        setProgress(false);
+      }
+    });
 
     // コピー
-    if (copyBtn && output) {
-      copyBtn.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(lastResultText || "");
-          clearError();
-          const box = document.getElementById("errorBox");
-          if (box) {
-            box.textContent = getMessage("copied");
-            box.hidden = false;
-          }
-        } catch (err) {
-          console.error(err);
+    copyBtn?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(lastResultText || "");
+        const box = document.getElementById("errorBox");
+        if (box) {
+          box.textContent = getMessage("copied");
+          box.hidden = false;
         }
-      });
-    }
+      } catch (err) {
+        console.error(err);
+      }
+    });
 
     // リセット
-    if (resetBtn && input && output && resultBlock) {
-      resetBtn.addEventListener("click", () => {
-        input.value = "";
-        output.innerHTML = "";
-        lastResultText = "";
-        if (inputHighlight) {
-          inputHighlight.innerHTML = "";
-        }
-        resultBlock.hidden = true;
-        clearError();
-      });
-    }
+    resetBtn?.addEventListener("click", () => {
+      input.value = "";
+      output.innerHTML = "";
+      inputHighlight.innerHTML = "";
+      lastResultText = "";
+      resultBlock.hidden = true;
+      clearError();
+    });
   });
 })();
