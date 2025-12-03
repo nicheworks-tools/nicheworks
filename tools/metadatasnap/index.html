@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- favicon -->
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <title>MetadataSnap｜URLメタデータ抽出 | NicheWorks</title>
+  <meta name="description" content="URLを入力するだけで、タイトル・説明文・OGP画像・canonicalなど主要なメタデータを抽出できる無料ツール。スマホでも高速動作。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/metadatasnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MetadataSnap｜URLメタデータ抽出 | NicheWorks">
+  <meta property="og:description" content="URLを入力するだけで、タイトル・説明文・OGP画像・canonicalなど主要なメタデータを抽出できます。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/metadatasnap/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="nw-header">
+  <h1 data-i18n="ja">MetadataSnap</h1>
+  <h1 data-i18n="en">MetadataSnap</h1>
+  <p data-i18n="ja">URLのメタデータ（タイトル・説明・OGP画像など）を一瞬で抽出できる軽量ツールです。</p>
+  <p data-i18n="en">A lightweight tool to instantly extract webpage metadata such as title, description, and OGP images.</p>
+</header>
+
+<div class="ad-slot ad-top">広告枠（準備中）</div>
+
+<!-- 言語切替 -->
+<div class="nw-lang-switch">
+  <button data-lang="ja">JP</button> /
+  <button data-lang="en">EN</button>
+</div>
+
+<!-- 簡易使い方（言語切替下） -->
+<p class="nw-howto" data-i18n="ja">
+  使い方：URLを入力して「解析する」を押すだけで、主要なメタデータを一括抽出できます。
+</p>
+<p class="nw-howto" data-i18n="en">
+  How to Use: Enter a URL and tap “Analyze” to quickly extract key metadata.
+</p>
+
+<!-- 入力カード（shadcn/ui パクリ構造） -->
+<div class="card input-card">
+  <label class="label" data-i18n="ja">URL</label>
+  <label class="label" data-i18n="en">URL</label>
+  <input type="text" id="url-input" placeholder="https://example.com" class="input" />
+  <button id="analyze-btn" class="button">
+    <span data-i18n="ja">解析する</span>
+    <span data-i18n="en">Analyze</span>
+  </button>
+  <p id="error-text" class="error-text" aria-live="polite"></p>
+</div>
+
+<!-- プログレス -->
+<div id="progress" class="progress" hidden>
+  <span data-i18n="ja">解析中…（数秒かかる場合があります）</span>
+  <span data-i18n="en">Analyzing… (may take a few seconds)</span>
+</div>
+
+<!-- 結果カード -->
+<div id="result-card" class="card result-card" hidden>
+  <h2 data-i18n="ja">抽出結果</h2>
+  <h2 data-i18n="en">Extracted Metadata</h2>
+
+  <div class="separator"></div>
+
+  <div class="result-row">
+    <strong data-i18n="ja">タイトル</strong>
+    <strong data-i18n="en">Title</strong>
+    <p id="res-title"></p>
+  </div>
+
+  <div class="result-row">
+    <strong data-i18n="ja">説明文</strong>
+    <strong data-i18n="en">Description</strong>
+    <p id="res-desc"></p>
+  </div>
+
+  <div class="result-row">
+    <strong data-i18n="ja">OGP画像</strong>
+    <strong data-i18n="en">OG Image</strong>
+    <img id="res-ogp" class="ogp-img" alt="OGP">
+  </div>
+
+  <div class="result-row">
+    <strong data-i18n="ja">Canonical URL</strong>
+    <strong data-i18n="en">Canonical URL</strong>
+    <p id="res-canonical"></p>
+  </div>
+
+  <button id="reset-btn" class="button reset-btn">
+    <span data-i18n="ja">リセット</span>
+    <span data-i18n="en">Reset</span>
+  </button>
+</div>
+
+<!-- FAQ（寄付の上） -->
+<div class="faq-block">
+  <details>
+    <summary data-i18n="ja">URLはサーバーに送られますか？</summary>
+    <summary data-i18n="en">Are entered URLs sent to a server?</summary>
+    <p data-i18n="ja">いいえ。すべてブラウザ内のみで処理されます。</p>
+    <p data-i18n="en">No — all processing stays in your browser.</p>
+  </details>
+
+  <details>
+    <summary data-i18n="ja">一部サイトが取得できない理由</summary>
+    <summary data-i18n="en">Why some sites can't be loaded</summary>
+    <p data-i18n="ja">CORSなどの制限により取得できない場合があります。</p>
+    <p data-i18n="en">CORS restrictions may prevent loading.</p>
+  </details>
+
+  <details>
+    <summary data-i18n="ja">OGP画像がない理由</summary>
+    <summary data-i18n="en">Why OGP image may be missing</summary>
+    <p data-i18n="ja">OGPが設定されていないか相対パスが使用されています。</p>
+    <p data-i18n="en">The page may not provide OGP or uses a relative path.</p>
+  </details>
+</div>
+
+<!-- 寄付導線（柔らかめ） -->
+<div class="nw-donate">
+  <p class="nw-donate-text" data-i18n="ja">
+    このツールが役に立ったら、開発継続のために少しだけご支援いただけると嬉しいです。
+  </p>
+  <p class="nw-donate-text" data-i18n="en">
+    If this tool was helpful, a small donation would greatly support future development.
+  </p>
+
+  <div class="nw-donate-links">
+    <a class="button donate-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+    <a class="button donate-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+  </div>
+</div>
+
+<div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+<!-- 内部リンク -->
+<div class="nw-links">
+  <a href="/tools/manual-finder/">ManualFinder</a> /
+  <a href="/tools/trashnavi/">TrashNavi</a> /
+  <a href="/tools/log-formatter/">LogFormatter</a>
+</div>
+
+<footer class="nw-footer">
+  <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+  <p>当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p>
+  <p><a href="https://nicheworks.pages.dev/">nicheworks.pages.dev</a></p>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
