@@ -8,63 +8,73 @@
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>化粧品成分チェッカーLite</h1>
-    <p>成分画像のOCR、サジェスト、まとめ貼り付けで簡単に解析リストを作成できます。</p>
-  </header>
-  <main>
-
-    <!-- 1. OCR -->
-    <section id="ocr">
-      <h2>OCR</h2>
-      <div class="section-body">
-        <label for="ocrImage" class="input-label">成分画像を選択</label>
-        <input type="file" id="ocrImage" accept="image/*">
-        <button id="ocrButton">OCR開始</button>
-        <p id="ocrStatus" class="status"></p>
+  <div class="nw-page">
+    <header class="nw-header">
+      <div class="nw-content">
+        <h1>化粧品成分チェッカーLite</h1>
+        <p>成分画像のOCR、サジェスト、まとめ貼り付けで簡単に解析リストを作成できます。</p>
       </div>
-    </section>
+    </header>
 
-    <!-- 2. サジェスト -->
-    <section id="suggest">
-      <h2>サジェスト</h2>
-      <div class="section-body">
-        <label for="suggestInput" class="input-label">成分名で検索</label>
-        <input type="text" id="suggestInput" placeholder="例：hyaluronic">
-        <ul id="suggestList" class="suggest-list"></ul>
+    <main class="nw-content nw-main">
+      <div class="nw-grid">
+        <div class="nw-left">
+          <!-- 1. OCR -->
+          <section id="ocr" class="nw-card">
+            <h2>📷 成分画像から読み取る</h2>
+            <div class="section-body">
+              <input type="file" id="ocrImage" class="nw-input" accept="image/*">
+              <button id="ocrButton" class="nw-btn-primary">OCR開始</button>
+              <p id="ocrStatus" class="status"></p>
+            </div>
+          </section>
+
+          <!-- 2. サジェスト -->
+          <section id="suggest" class="nw-card">
+            <h2>🔍 成分を検索</h2>
+            <div class="section-body">
+              <input type="text" id="searchInput" class="nw-input" placeholder="例：hyaluronic">
+              <div id="suggestTags" class="suggest-tags"></div>
+            </div>
+          </section>
+
+          <!-- 3. まとめ貼り付け -->
+          <section id="bulk" class="nw-card collapsible">
+            <h2>📋 まとめて貼り付け（任意）</h2>
+            <div class="bulk-body">
+              <textarea id="bulkInput" class="nw-textarea" rows="4" placeholder="例：\nwater\nglycerin\n...\n"></textarea>
+              <button id="bulkButton" class="nw-btn-primary">追加</button>
+            </div>
+          </section>
+
+          <!-- 4. 解析リスト -->
+          <section id="list" class="nw-card">
+            <h2>🧪 解析リスト</h2>
+            <div id="ingredientTags" class="tag-list"></div>
+          </section>
+
+          <!-- 5. 解析ボタン -->
+          <section class="nw-card action-card">
+            <button id="analyzeButton" class="nw-btn-primary">解析する</button>
+          </section>
+        </div>
+
+        <!-- 6. 結果 -->
+        <div class="nw-right">
+          <section id="result" class="nw-card">
+            <h2>解析結果</h2>
+            <div id="resultCards" class="result-cards"></div>
+          </section>
+        </div>
       </div>
-    </section>
+    </main>
 
-    <!-- 3. まとめ貼り付け -->
-    <section id="bulk">
-      <h2>まとめ貼り付け</h2>
-      <div class="section-body">
-        <label for="bulkInput" class="input-label">改行区切りで貼り付け</label>
-        <textarea id="bulkInput" rows="4" placeholder="例：\nwater\nglycerin\n...\n"></textarea>
-        <button id="bulkButton">リストに追加</button>
+    <footer class="nw-footer">
+      <div class="nw-content">
+        <p>※このツールの結果は参考情報です。詳細は各製品の公式情報をご確認ください。</p>
       </div>
-    </section>
-
-    <!-- 4. 解析リスト -->
-    <section id="list">
-      <h2>解析リスト</h2>
-      <div class="section-body">
-        <ul id="analysisList" class="analysis-list"></ul>
-      </div>
-    </section>
-
-    <button id="analyzeButton">解析する</button>
-
-    <!-- 5. 結果 -->
-    <section id="result">
-      <h2>解析結果</h2>
-      <div id="resultCards" class="result-cards"></div>
-    </section>
-
-  </main>
-  <footer>
-    <p>※このツールの結果は参考情報です。詳細は各製品の公式情報をご確認ください。</p>
-  </footer>
+    </footer>
+  </div>
 
   <script src="app.js"></script>
 </body>
