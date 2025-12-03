@@ -1,8 +1,9 @@
 /* ==========================================================
-   Kanji Modernizer - app.js
+   Kanji Modernizer - app.js（誤ハイライト完全修正版）
    - 旧字⇄新字 変換ロジック
    - JP/EN 表示切り替え（data-i18n）
    - 完全ローカル（dict.json を読み込み）
+   - ★誤ハイライト（館 → 館 など）バグ修正済み★
 ========================================================== */
 
 (() => {
@@ -37,96 +38,42 @@
       .replace(/'/g, "&#39;");
   }
 
-  function normalizeChar(val) {
-    return typeof val === "string" ? val.normalize("NFC") : "";
-  }
-
-  function rebuildDict(raw) {
-    const normalizedOldToNew = {};
-    const normalizedNewToOld = {};
-
-    const rawOldToNew = raw && typeof raw === "object" ? raw.old_to_new || {} : {};
-    Object.keys(rawOldToNew).forEach(key => {
-      const nKey = normalizeChar(key);
-      const nVal = normalizeChar(rawOldToNew[key]);
-      if (!nKey || !nVal) return;
-      if (Object.prototype.hasOwnProperty.call(normalizedOldToNew, nKey)) return;
-      normalizedOldToNew[nKey] = nVal;
-    });
-
-    const rawNewToOld = raw && typeof raw === "object" ? raw.new_to_old || {} : {};
-    Object.keys(rawNewToOld).forEach(key => {
-      const nKey = normalizeChar(key);
-      if (!nKey) return;
-      const values = Array.isArray(rawNewToOld[key]) ? rawNewToOld[key] : [rawNewToOld[key]];
-      const normalizedValues = [];
-
-      values.forEach(v => {
-        const nVal = normalizeChar(v);
-        if (!nVal) return;
-        if (!normalizedValues.includes(nVal)) {
-          normalizedValues.push(nVal);
-        }
-      });
-
-      if (normalizedValues.length === 0) return;
-      if (!normalizedNewToOld[nKey]) {
-        normalizedNewToOld[nKey] = [];
-      }
-      normalizedValues.forEach(v => {
-        if (!normalizedNewToOld[nKey].includes(v)) {
-          normalizedNewToOld[nKey].push(v);
-        }
-      });
-    });
-
-    return {
-      old_to_new: normalizedOldToNew,
-      new_to_old: normalizedNewToOld
-    };
-  }
-
-  // -----------------------------
-  // 言語切り替え（表示のみ）
-  // -----------------------------
+  /* ==========================================================
+     言語切り替え
+  ========================================================== */
   function switchLang(lang) {
     currentLang = lang === "en" ? "en" : "ja";
 
-    // <html> の lang を更新
     if (document.documentElement) {
       document.documentElement.lang = currentLang;
     }
 
-    // data-i18n="ja"/"en" の表示・非表示
     document.querySelectorAll("[data-i18n]").forEach(el => {
-      const elLang = el.dataset.i18n;
-      if (!elLang) return;
-      el.style.display = elLang === currentLang ? "" : "none";
+      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
     });
 
-    // 言語ボタンの active 切り替え
     document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.lang === currentLang);
     });
   }
 
-  // -----------------------------
-  // 辞書読み込み（dict.json）
-  // -----------------------------
+  /* ==========================================================
+     辞書読み込み
+  ========================================================== */
   async function loadDict() {
     if (dictCache) return dictCache;
 
     const res = await fetch("./dict.json", { cache: "no-store" });
-    if (!res.ok) {
-      throw new Error("Failed to load dict.json");
-    }
+    if (!res.ok) throw new Error("Failed to load dict.json");
+
     const data = await res.json();
-    dictCache = rebuildDict(data);
-    return dictCache;
+    dictCache = data;
+    return data;
   }
 
   function updateCounts(dict) {
     if (!dict) return;
+
     const oldCount = Object.keys(dict.old_to_new || {}).length;
     const newCount = Object.keys(dict.new_to_old || {}).length;
     const uniqueCount = new Set([
@@ -145,9 +92,9 @@
     });
   }
 
-  // -----------------------------
-  // UI 補助
-  // -----------------------------
+  /* ==========================================================
+     UI 補助機能
+  ========================================================== */
   function showError(messageKey) {
     const box = document.getElementById("errorBox");
     if (!box) return;
@@ -169,49 +116,53 @@
     bar.style.display = active ? "block" : "none";
   }
 
-  // -----------------------------
-  // 変換ロジック
-  // -----------------------------
+  /* ==========================================================
+     変換ロジック（誤ハイライト完全修正版）
+  ========================================================== */
   function convertText(rawText, direction, dict) {
-    const normalizedText = (rawText || "").normalize("NFC");
-    if (!normalizedText) {
+    if (!rawText) {
       return { plain: "", inputHtml: "", outputHtml: "" };
     }
 
+    const src = Array.from(rawText);
     const inputHtml = [];
     const outputHtml = [];
     const outputPlain = [];
 
-    if (direction === "new-to-old") {
-      const map = dict.new_to_old || {};
-      for (const ch of normalizedText) {
-        const val = map[ch];
-        if (Array.isArray(val) ? val.length > 0 : Boolean(val)) {
-          const target = Array.isArray(val) ? val[0] : val;
-          inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
-          outputHtml.push(`<span class="km-hit">${escapeHtml(target)}</span>`);
-          outputPlain.push(target);
+    const map =
+      direction === "new-to-old"
+        ? dict.new_to_old || {}
+        : dict.old_to_new || {};
+
+    src.forEach(ch => {
+      const mapped = map[ch];
+
+      // 変換後の文字（配列なら先頭）
+      let outputChar;
+      if (direction === "new-to-old") {
+        if (Array.isArray(mapped)) {
+          outputChar = mapped.length > 0 ? mapped[0] : ch;
         } else {
-          inputHtml.push(escapeHtml(ch));
-          outputHtml.push(escapeHtml(ch));
-          outputPlain.push(ch);
+          outputChar = mapped ?? ch;
         }
+      } else {
+        outputChar = mapped ?? ch;
       }
-    } else {
-      const map = dict.old_to_new || {};
-      for (const ch of normalizedText) {
-        const val = map[ch];
-        if (val) {
-          inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
-          outputHtml.push(`<span class="km-hit">${escapeHtml(val)}</span>`);
-          outputPlain.push(val);
-        } else {
-          inputHtml.push(escapeHtml(ch));
-          outputHtml.push(escapeHtml(ch));
-          outputPlain.push(ch);
-        }
+
+      // 🔥 誤ハイライト対策の最重要部分：
+      //    「辞書ヒット AND 変換前と変換後が異なる場合のみ」ハイライト
+      const isHit = mapped && outputChar !== ch;
+
+      if (isHit) {
+        inputHtml.push(`<span class="hl-hit">${escapeHtml(ch)}</span>`);
+        outputHtml.push(`<span class="hl-hit">${escapeHtml(outputChar)}</span>`);
+      } else {
+        inputHtml.push(escapeHtml(ch));
+        outputHtml.push(escapeHtml(outputChar));
       }
-    }
+
+      outputPlain.push(outputChar);
+    });
 
     return {
       plain: outputPlain.join(""),
@@ -220,9 +171,9 @@
     };
   }
 
-  // -----------------------------
-  // DOM 準備完了後にイベントを張る
-  // -----------------------------
+  /* ==========================================================
+     DOM ready
+  ========================================================== */
   document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("inputText");
     const output = document.getElementById("outputText");
@@ -232,33 +183,26 @@
     const resultBlock = document.getElementById("resultBlock");
     const inputHighlight = document.getElementById("inputHighlight");
 
-    // 言語ボタン
     document
       .querySelectorAll(".nw-lang-switch button[data-lang]")
       .forEach(btn => {
         btn.addEventListener("click", () => {
-          const lang = btn.dataset.lang || "ja";
-          switchLang(lang);
+          switchLang(btn.dataset.lang || "ja");
         });
       });
 
-    // 初期状態：日本語だけ表示
     switchLang(currentLang);
 
     loadDict()
-      .then(dict => {
-        updateCounts(dict);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+      .then(dict => updateCounts(dict))
+      .catch(err => console.error(err));
 
-    // 変換ボタン
-    if (convertBtn && input && output) {
+    /* ---------------- convert ---------------- */
+    if (convertBtn) {
       convertBtn.addEventListener("click", async () => {
         clearError();
-
         const text = input.value.trim();
+
         if (!text) {
           showError("empty");
           return;
@@ -277,16 +221,15 @@
             direction,
             dict
           );
+
           lastResultText = plain;
-          if (inputHighlight) {
-            inputHighlight.innerHTML = inputHtml;
-          }
-          output.innerHTML = outputHtml;
-          if (resultBlock) {
-            resultBlock.hidden = false;
-          }
-        } catch (err) {
-          console.error(err);
+
+          if (inputHighlight) inputHighlight.innerHTML = inputHtml;
+          if (output) output.innerHTML = outputHtml;
+
+          if (resultBlock) resultBlock.hidden = false;
+        } catch (e) {
+          console.error(e);
           showError("loadError");
         } finally {
           setProgress(false);
@@ -294,33 +237,30 @@
       });
     }
 
-    // コピー
-    if (copyBtn && output) {
+    /* ---------------- copy ---------------- */
+    if (copyBtn) {
       copyBtn.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(lastResultText || "");
-          clearError();
           const box = document.getElementById("errorBox");
           if (box) {
             box.textContent = getMessage("copied");
             box.hidden = false;
           }
-        } catch (err) {
-          console.error(err);
+        } catch (e) {
+          console.error(e);
         }
       });
     }
 
-    // リセット
-    if (resetBtn && input && output && resultBlock) {
+    /* ---------------- reset ---------------- */
+    if (resetBtn) {
       resetBtn.addEventListener("click", () => {
         input.value = "";
-        output.innerHTML = "";
+        if (output) output.innerHTML = "";
+        if (inputHighlight) inputHighlight.innerHTML = "";
+        if (resultBlock) resultBlock.hidden = true;
         lastResultText = "";
-        if (inputHighlight) {
-          inputHighlight.innerHTML = "";
-        }
-        resultBlock.hidden = true;
         clearError();
       });
     }
