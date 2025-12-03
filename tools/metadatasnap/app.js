@@ -134,31 +134,35 @@
 
     analyzeBtn.disabled = true;
     urlInput.disabled = true;
-    progress.hidden = false;
     resultCard.hidden = true;
+    progress.hidden = false;
 
-    const html = await fetchHtml(url);
-    let parsed = null;
+    let parsed = { title: '', description: '', ogImage: '', canonical: '' };
+    let hasHtml = false;
 
-    if (html) {
-      parsed = parseWithDom(html) || parseWithRegex(html);
+    try {
+      const html = await fetchHtml(url);
+
+      if (html) {
+        hasHtml = true;
+        parsed = parseWithDom(html) || parseWithRegex(html) || parsed;
+      }
+
+      state.title = parsed.title || '';
+      state.description = parsed.description || '';
+      state.ogImage = parsed.ogImage || '';
+      state.canonical = parsed.canonical || '';
+
+      if (hasHtml) {
+        resultCard.hidden = false;
+        renderResults();
+        resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } finally {
+      progress.hidden = true;
+      analyzeBtn.disabled = false;
+      urlInput.disabled = false;
     }
-    if (!parsed) {
-      parsed = { title: '', description: '', ogImage: '', canonical: '' };
-    }
-
-    state.title = parsed.title || '';
-    state.description = parsed.description || '';
-    state.ogImage = parsed.ogImage || '';
-    state.canonical = parsed.canonical || '';
-
-    progress.hidden = true;
-    resultCard.hidden = false;
-    renderResults();
-    resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    analyzeBtn.disabled = false;
-    urlInput.disabled = false;
   };
 
   const reset = () => {
@@ -193,5 +197,6 @@
   });
   resetBtn.addEventListener('click', reset);
 
+  resultCard.hidden = true;
   setLang(state.lang);
 })();
