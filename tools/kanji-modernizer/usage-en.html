@@ -6,100 +6,140 @@
 
   <title>Usage Guide | Kanji Modernizer Lite</title>
   <meta name="description" content="How to use Kanji Modernizer Lite. Convert old kanji ↔ modern kanji. Fully local processing.">
+  <meta name="keywords"
+    content="旧字体, 新字体, 異体字, 旧字, 新字, 漢字変換, 日本語ツール, Japanese text tool">
 
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="旧字体 ⇄ 新字体 変換ツールの使い方 | NicheWorks">
+  <meta property="og:description"
+    content="旧字体 ⇄ 新字体 変換ツールの使い方。変換方式、注意点、安全性、収録字数などを詳しく解説。">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/og-kanji.png">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+  <header class="nw-header">
+    <h1 class="nw-title">Kanji Modernizer Lite – Usage Guide</h1>
+    <p class="nw-subtitle">Features, conversion rules, privacy, and tips.</p>
+  </header>
 
-<header class="nw-header">
-  <h1 class="nw-title">Kanji Modernizer Lite – Usage Guide</h1>
-  <p class="nw-subtitle">Explanation of features, conversion rules, and notes.</p>
+  <div class="ad-slot ad-top">Ad placeholder (preparing)</div>
 
-  <div class="nw-lang-switch">
-    <a href="./usage.html">JP</a> / <span>EN</span>
-  </div>
-</header>
+  <main class="nw-main">
 
-<main class="nw-main">
+    <a href="./index.html" class="usage-back">← Back to Tool</a>
 
-  <a href="./index.html" class="usage-back">← Back to Tool</a>
+    <section class="usage-section">
+      <h2>Old-style kanji explained</h2>
+      <p>Old-style kanji refers to the pre-reform forms used in printed materials and official documents until World War II, often following the Kangxi Dictionary shapes.</p>
+      <ul>
+        <li>Historically used from the Meiji era through the pre-war period</li>
+        <li>Based on the Kangxi Dictionary system of standardized glyphs</li>
+        <li>Japan’s 1946 simplification introduced new forms and popularized modern shapes</li>
+        <li>Family names, placenames, and shrine/temple names frequently preserve the old forms</li>
+        <li>Unicode variation selectors (IVS) are used to distinguish subtle glyph variants</li>
+      </ul>
+    </section>
 
-  <section class="usage-section">
-    <h2>1. What does this tool do?</h2>
-    <p>
-      Converts Old Kanji (舊・學・體 etc.) into Modern Kanji,  
-      and converts Modern Kanji back into their Old forms.  
-      All processing is done locally in your browser.
-    </p>
-  </section>
+    <section class="usage-section">
+      <h2>1. What does this tool do?</h2>
+      <p>
+        Converts Old Kanji (舊・學・體 etc.) into Modern Kanji,
+        and converts Modern Kanji back into their Old forms.
+        All processing is done locally in your browser.
+      </p>
+    </section>
 
-  <section class="usage-section">
-    <h2>2. Conversion directions</h2>
-    <ul>
-      <li><b>Old → Modern</b>: Convert traditional forms into simplified ones.</li>
-      <li><b>Modern → Old</b>: Convert simplified forms into traditional kanji.  
-          When multiple candidates exist, the first one in dictionary is used.</li>
-    </ul>
-  </section>
+    <section class="usage-section">
+      <h2>2. Conversion directions</h2>
+      <ul>
+        <li><b>Old → Modern</b>: Convert traditional forms into simplified ones.</li>
+        <li><b>Modern → Old</b>: Convert simplified forms into traditional kanji. When multiple candidates exist, the first one in the dictionary is used.</li>
+      </ul>
+    </section>
 
-  <section class="usage-section">
-    <h2>3. How to use</h2>
-    <ol>
-      <li>Select conversion direction</li>
-      <li>Paste text in input box</li>
-      <li>Press “Convert”</li>
-      <li>Copy the output</li>
-    </ol>
-  </section>
+    <section class="usage-section">
+      <h2>3. How to use</h2>
+      <ol>
+        <li>Select conversion direction</li>
+        <li>Paste text in the input box</li>
+        <li>Press “Convert”</li>
+        <li>Copy the output</li>
+      </ol>
+    </section>
 
-  <section class="usage-section">
-    <h2>4. Dictionary size</h2>
-    <ul>
-      <li>Old → Modern: <b>836</b> characters</li>
-      <li>Modern → Old: <b>457</b> characters</li>
-      <li>Total unique: <b>1,293</b></li>
-    </ul>
-  </section>
+    <section class="usage-section">
+      <h2>4. Dictionary size</h2>
+      <p>The latest dictionary is loaded automatically and shown below.</p>
+      <ul>
+        <li>Old → Modern: <b data-count="old">--</b> characters</li>
+        <li>Modern → Old: <b data-count="new">--</b> characters</li>
+        <li>Total unique: <b data-count="unique">--</b></li>
+      </ul>
+    </section>
 
-  <section class="usage-section">
-    <h2>5. Privacy</h2>
-    <p>No data is uploaded. 100% client-side.</p>
-  </section>
+    <section class="usage-section">
+      <h2>5. Privacy</h2>
+      <p>No data is uploaded. 100% client-side.</p>
+    </section>
 
-  <section class="usage-section">
-    <h2>6. Notes</h2>
-    <ul>
-      <li>Some rare variants (Kangxi forms) are not included.</li>
-      <li>Modern → Old picks the most common traditional form.</li>
-      <li>Special family-name variants are included only if in dictionary.</li>
-    </ul>
-  </section>
+    <section class="usage-section">
+      <h2>6. Notes</h2>
+      <ul>
+        <li>Some rare variants (Kangxi forms) are not included.</li>
+        <li>Modern → Old picks the most common traditional form.</li>
+        <li>Special family-name variants are converted only if present in the dictionary.</li>
+      </ul>
+    </section>
 
-  <section class="usage-section">
-    <h2>7. Japanese version</h2>
-    <a href="./usage.html">▶ 日本語の使い方ページ</a>
-  </section>
-
-  <div class="nw-donate">
-    <p>If this tool helps, please consider supporting via OFUSE / Ko-fi.</p>
-    <div class="nw-donate-links">
-      <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+    <div class="nw-donate">
+      <p>If this tool helps, please consider supporting via OFUSE / Ko-fi.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+      </div>
     </div>
-  </div>
 
-  <div class="nw-links">
-    <a href="/tools/rename-wizard/">Rename Wizard</a> /
-    <a href="/tools/log-formatter/">LogFormatter</a> /
-    <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
-  </div>
+    <div class="nw-links">
+      <a href="/tools/rename-wizard/">Rename Wizard</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a> /
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
+    </div>
+  </main>
 
-</main>
+  <footer class="nw-footer">
+    <p>© 2025 NicheWorks</p>
+  </footer>
 
-<footer class="nw-footer">
-  <p>© 2025 NicheWorks</p>
-</footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch("./dict.json", { cache: "no-store" });
+        if (!res.ok) return;
+        const dict = await res.json();
+        const oldCount = Object.keys(dict.old_to_new || {}).length;
+        const newCount = Object.keys(dict.new_to_old || {}).length;
+        const uniqueCount = new Set([
+          ...Object.keys(dict.old_to_new || {}),
+          ...Object.keys(dict.new_to_old || {})
+        ]).size;
 
+        document.querySelectorAll('[data-count="old"]').forEach(el => {
+          el.textContent = oldCount;
+        });
+        document.querySelectorAll('[data-count="new"]').forEach(el => {
+          el.textContent = newCount;
+        });
+        document.querySelectorAll('[data-count="unique"]').forEach(el => {
+          el.textContent = uniqueCount;
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
 </body>
 </html>
