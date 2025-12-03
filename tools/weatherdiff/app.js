@@ -1,5 +1,10 @@
 /* ==========================================================
    WeatherDiff - app.js（完全修正版）
+   - 差は絶対値のみ
+   - 色は差の大きさだけで決定（方向性を排除）
+   - 信頼性の低い項目は opacity を下げる
+   - ズレアイコン・矢印は一切禁止
+   - 小数点1桁で統一
 ========================================================== */
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -25,7 +30,6 @@ const locName = document.getElementById("locName");
 const locMeta = document.getElementById("locMeta");
 const processTime = document.getElementById("processTime");
 
-/* OM */
 const omIconToday = document.getElementById("omIconToday");
 const omTodayTemp = document.getElementById("omTodayTemp");
 const omTodayRain = document.getElementById("omTodayRain");
@@ -36,20 +40,16 @@ const omTomorrowTemp = document.getElementById("omTomorrowTemp");
 const omTomorrowRain = document.getElementById("omTomorrowRain");
 const omTomorrowWind = document.getElementById("omTomorrowWind");
 
-/* MET */
 const mnIconToday = document.getElementById("mnIconToday");
 const mnTodayTemp = document.getElementById("mnTodayTemp");
 const mnTodayRain = document.getElementById("mnTodayRain");
 const mnTodayWind = document.getElementById("mnTodayWind");
-const mnTodayMin = document.getElementById("mnTodayMin");
 
 const mnIconTomorrow = document.getElementById("mnIconTomorrow");
 const mnTomorrowTemp = document.getElementById("mnTomorrowTemp");
 const mnTomorrowRain = document.getElementById("mnTomorrowRain");
 const mnTomorrowWind = document.getElementById("mnTomorrowWind");
-const mnTomorrowMin = document.getElementById("mnTomorrowMin");
 
-/* Diff */
 const diffTodayMax = document.getElementById("diffTodayMax");
 const diffTodayMin = document.getElementById("diffTodayMin");
 const diffTodayRain = document.getElementById("diffTodayRain");
@@ -203,7 +203,7 @@ async function resolveLocation(params) {
 }
 
 /* ------------------------------
-   Open-Meteo
+   Open-Meteo（小数点統一）
 ------------------------------ */
 async function fetchOpenMeteo(lat, lon) {
   const url =
@@ -235,7 +235,7 @@ async function fetchOpenMeteo(lat, lon) {
 }
 
 /* ------------------------------
-   MET Norway
+   MET Norway（小数点1桁統一）
 ------------------------------ */
 async function fetchMetNorway(lat, lon, offsetSec) {
   const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
@@ -250,11 +250,7 @@ async function fetchMetNorway(lat, lon, offsetSec) {
   }
 
   const nowLocal = toLocal(new Date());
-  const dayStart = new Date(
-    nowLocal.getFullYear(),
-    nowLocal.getMonth(),
-    nowLocal.getDate()
-  );
+  const dayStart = new Date(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate());
   const tomorrowStart = new Date(dayStart.getTime() + 24 * 3600 * 1000);
   const tomorrowEnd = new Date(dayStart.getTime() + 48 * 3600 * 1000);
 
@@ -312,47 +308,39 @@ function codeToIcon(code) {
 }
 
 /* ------------------------------
-   Apply Cards（null セーフ）
+   Apply Cards
 ------------------------------ */
 function applyWeatherCards(om, mn) {
-  // OM 今日
-  if (omIconToday) omIconToday.textContent = om.today.icon;
-  if (omTodayTemp) omTodayTemp.textContent = `気温: ${om.today.max} / ${om.today.min}°C`;
-  if (omTodayRain) omTodayRain.textContent = `降水: ${om.today.rain}mm`;
-  if (omTodayWind) omTodayWind.textContent = `風: ${om.today.wind} m/s`;
+  omIconToday.textContent = om.today.icon;
+  omTodayTemp.textContent = `今日: ${om.today.max} / ${om.today.min}°C`;
+  omTodayRain.textContent = `降水: ${om.today.rain}mm`;
+  omTodayWind.textContent = `風: ${om.today.wind} m/s`;
 
-  // OM 明日
-  if (omIconTomorrow) omIconTomorrow.textContent = om.tomorrow.icon;
-  if (omTomorrowTemp) omTomorrowTemp.textContent = `気温: ${om.tomorrow.max} / ${om.tomorrow.min}°C`;
-  if (omTomorrowRain) omTomorrowRain.textContent = `降水: ${om.tomorrow.rain}mm`;
-  if (omTomorrowWind) omTomorrowWind.textContent = `風: ${om.tomorrow.wind} m/s`;
+  omIconTomorrow.textContent = om.tomorrow.icon;
+  omTomorrowTemp.textContent = `明日: ${om.tomorrow.max} / ${om.tomorrow.min}°C`;
+  omTomorrowRain.textContent = `降水: ${om.tomorrow.rain}mm`;
+  omTomorrowWind.textContent = `風: ${om.tomorrow.wind} m/s`;
 
-  // MET 今日（最高 / 最低 表示。最低はグレー）
-  if (mnIconToday) mnIconToday.textContent = mn.today.icon;
-  if (mnTodayTemp) {
-    mnTodayTemp.innerHTML = `気温: ${mn.today.max} / `;
-    if (mnTodayMin) mnTodayMin.textContent = `${mn.today.min}°C`;
-  }
-  if (mnTodayRain) mnTodayRain.textContent = `降水: ${mn.today.rain}mm`;
-  if (mnTodayWind) mnTodayWind.textContent = `風: ${mn.today.wind} m/s`;
+  mnIconToday.textContent = mn.today.icon;
+  mnTodayTemp.textContent = `今日: ${mn.today.max}°C`;
+  mnTodayRain.textContent = `降水: ${mn.today.rain}mm`;
+  mnTodayWind.textContent = `風: ${mn.today.wind} m/s`;
 
-  // MET 明日（最高 / 最低 表示。最低はグレー）
-  if (mnIconTomorrow) mnIconTomorrow.textContent = mn.tomorrow.icon;
-  if (mnTomorrowTemp) {
-    mnTomorrowTemp.innerHTML = `気温: ${mn.tomorrow.max} / `;
-    if (mnTomorrowMin) mnTomorrowMin.textContent = `${mn.tomorrow.min}°C`;
-  }
-  if (mnTomorrowRain) mnTomorrowRain.textContent = `降水: ${mn.tomorrow.rain}mm`;
-  if (mnTomorrowWind) mnTomorrowWind.textContent = `風: ${mn.tomorrow.wind} m/s`;
+  mnIconTomorrow.textContent = mn.tomorrow.icon;
+  mnTomorrowTemp.textContent = `明日: ${mn.tomorrow.max}°C`;
+  mnTomorrowRain.textContent = `降水: ${mn.tomorrow.rain}mm`;
+  mnTomorrowWind.textContent = `風: ${mn.tomorrow.wind} m/s`;
 }
 
 /* ------------------------------
    Diff（信頼性付き）
 ------------------------------ */
 function applyDiff(om, mn) {
+  // 最高気温のみ信頼できる
   applyOneDiff(diffTodayMax, "最高気温", om.today.max, mn.today.max, "°C", true);
   applyOneDiff(diffTomorrowMax, "最高気温", om.tomorrow.max, mn.tomorrow.max, "°C", true);
 
+  // 低信頼（薄色）
   applyOneDiff(diffTodayMin, "最低気温", om.today.min, mn.today.min, "°C", false);
   applyOneDiff(diffTodayRain, "降水", om.today.rain, mn.today.rain, "mm", false);
   applyOneDiff(diffTodayWind, "風", om.today.wind, mn.today.wind, "m/s", false);
@@ -361,18 +349,14 @@ function applyDiff(om, mn) {
   applyOneDiff(diffTomorrowRain, "降水", om.tomorrow.rain, mn.tomorrow.rain, "mm", false);
   applyOneDiff(diffTomorrowWind, "風", om.tomorrow.wind, mn.tomorrow.wind, "m/s", false);
 
-  if (diffNote) {
-    diffNote.textContent =
-      "※ 気温（最高）以外のズレはデータ仕様上の制約があり信頼性が低い値です。詳しくは使い方ページをご覧ください。";
-  }
+  diffNote.textContent =
+    "※ 気温（最高）以外のズレはデータ仕様上の制約があり信頼性が低い値です。詳しくは使い方ページをご覧ください。";
 }
 
 /* ------------------------------
-   applyOneDiff
+   applyOneDiff（絶対値のみ / 方向なし）
 ------------------------------ */
 function applyOneDiff(el, label, v1, v2, unit, isReliable = true) {
-  if (!el) return;
-
   const diff = Math.abs(v1 - v2);
   const diffText = diff.toFixed(1) + unit;
 
