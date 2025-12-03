@@ -287,6 +287,26 @@ body > * {
   min-width: 110px;
 }
 
+.donate-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111111;
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: inline-block;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.donate-btn:hover {
+  background: #f3f4f6;
+}
+
+.nw-donate-links a {
+  text-decoration: none;
+}
+
 .nw-links {
   margin: 18px 0 10px;
   text-align: center;
