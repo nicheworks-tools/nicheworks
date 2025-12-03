@@ -58,22 +58,33 @@ body {
   color: var(--fg-sub);
 }
 
+/* 言語切り替えボタン */
 .nw-lang-switch {
-  font-size: 11px;
-  margin-top: 4px;
-  color: var(--fg-sub);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 4px 0;
 }
-.nw-lang-switch button {
-  background: transparent;
-  border: none;
-  padding: 0 2px;
+
+.nw-lang-btn {
+  font-size: 0.85rem;   /* ← 文字サイズは今と同じ */
+  padding: 4px 12px;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  background: #f6f6f6;
+  color: #333;
   cursor: pointer;
-  font-size: 11px;
-  color: #444;
+  transition: all 0.15s ease;
 }
-.nw-lang-switch button.active {
-  font-weight: 600;
-  text-decoration: underline;
+
+.nw-lang-btn:hover {
+  background: #e9e9e9;
+}
+
+.nw-lang-btn.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
 }
 
 /* =======================================================
