@@ -1,14 +1,18 @@
-const tagList = document.getElementById('tagList');
+const ingredientList = document.getElementById('ingredientList');
+const ingredientEmpty = document.getElementById('ingredientEmpty');
 const ocrInput = document.getElementById('ocrInput');
+const ocrDropzone = document.getElementById('ocrDropzone');
 const ocrStatus = document.getElementById('ocrStatus');
 const searchInput = document.getElementById('searchInput');
-const suggestList = document.getElementById('suggestList');
-const bulkSection = document.getElementById('bulkSection');
-const bulkBody = document.getElementById('bulkBody');
+const searchSuggestions = document.getElementById('searchSuggestions');
 const bulkInput = document.getElementById('bulkInput');
-const bulkAdd = document.getElementById('bulkAdd');
-const analyzeBtn = document.getElementById('analyzeBtn');
-const resultCards = document.getElementById('resultCards');
+const bulkAddButton = document.getElementById('bulkAddButton');
+const bulkClearButton = document.getElementById('bulkClearButton');
+const analyzeButton = document.getElementById('analyzeButton');
+const resultContainer = document.getElementById('resultContainer');
+const resultEmpty = document.getElementById('resultEmpty');
+const copyButton = document.getElementById('copyButton');
+const copyStatus = document.getElementById('copyStatus');
 
 let ingredientData = {};
 
@@ -66,13 +70,15 @@ function collectItems(text) {
 }
 
 function updateAnalyzeState() {
-  analyzeBtn.disabled = tagList.children.length === 0;
+  const hasItems = ingredientList.children.length > 0;
+  analyzeButton.disabled = !hasItems;
+  ingredientEmpty.classList.toggle('hidden', hasItems);
 }
 
 function createTag(name) {
-  const pill = document.createElement('span');
-  pill.className = 'tag-pill';
-  pill.title = name;
+  const chip = document.createElement('span');
+  chip.className = 'cic-chip';
+  chip.title = name;
 
   const text = document.createElement('span');
   text.textContent = name;
@@ -81,62 +87,65 @@ function createTag(name) {
   del.type = 'button';
   del.textContent = '✕';
   del.addEventListener('click', () => {
-    pill.remove();
+    chip.remove();
     updateAnalyzeState();
   });
 
-  pill.appendChild(text);
-  pill.appendChild(del);
-  return pill;
+  chip.appendChild(text);
+  chip.appendChild(del);
+  return chip;
 }
 
 function existsTag(name) {
   const target = normalize(name);
-  return Array.from(tagList.children).some((pill) => normalize(pill.firstChild.textContent) === target);
+  return Array.from(ingredientList.children).some((pill) => normalize(pill.firstChild.textContent) === target);
 }
 
 function addTag(name) {
   const sanitized = sanitizeTerm(name);
   if (!sanitized || existsTag(sanitized)) return;
   const tag = createTag(sanitized);
-  tagList.appendChild(tag);
+  ingredientList.appendChild(tag);
   updateAnalyzeState();
 }
 
-function renderSuggests(items) {
-  suggestList.innerHTML = '';
+function renderSuggestions(items) {
+  searchSuggestions.innerHTML = '';
   items.slice(0, 8).forEach((item) => {
     const label = item.name_jp || item.name_en;
-    const span = document.createElement('div');
-    span.className = 'suggest-item';
-    span.textContent = label;
-    span.title = `${item.name_jp} / ${item.name_en}`;
-    span.addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.className = 'cic-suggestion';
+    div.textContent = label;
+    div.title = `${item.name_jp} / ${item.name_en}`;
+    div.addEventListener('click', () => {
       addTag(label);
-      suggestList.innerHTML = '';
+      searchSuggestions.innerHTML = '';
       searchInput.value = '';
     });
-    suggestList.appendChild(span);
+    searchSuggestions.appendChild(div);
   });
 }
 
 function handleSearchInput() {
-  const query = sanitizeTerm(searchInput.value);
-  suggestList.innerHTML = '';
-  if (!query) return;
-  const results = Object.values(ingredientData).filter((item) => {
-    const candidates = [item.name_jp, item.name_en, ...(item.aliases || [])].map((c) => normalize(c));
-    return candidates.some((c) => c.startsWith(query) || c.endsWith(query));
+  const query = normalize(searchInput.value);
+  if (!query || query.length < 2) {
+    searchSuggestions.innerHTML = '';
+    return;
+  }
+  const entries = Object.values(ingredientData);
+  const filtered = entries.filter((item) => {
+    const targets = [item.name_jp, item.name_en, ...(item.aliases || [])].map((v) => normalize(v));
+    return targets.some((t) => t.includes(query));
   });
-  renderSuggests(results);
+  renderSuggestions(filtered);
 }
 
-function toggleBulk() {
-  bulkSection.classList.toggle('open');
+function toggleDrag(state) {
+  if (!ocrDropzone) return;
+  ocrDropzone.classList.toggle('dragover', state);
 }
 
-async function handleOcrUpload(event) {
-  const file = event.target.files?.[0];
+async function handleOcrFile(file) {
   if (!file) return;
   ocrStatus.textContent = 'OCR中…';
   try {
@@ -154,14 +163,41 @@ async function handleOcrUpload(event) {
   } catch (e) {
     ocrStatus.textContent = 'OCRに失敗しました';
   } finally {
-    ocrInput.value = '';
+    if (ocrInput) ocrInput.value = '';
   }
+}
+
+function handleOcrChange(event) {
+  const file = event.target.files?.[0];
+  handleOcrFile(file);
+}
+
+function handleDrop(event) {
+  event.preventDefault();
+  const file = event.dataTransfer.files?.[0];
+  toggleDrag(false);
+  handleOcrFile(file);
+}
+
+function handleDragOver(event) {
+  event.preventDefault();
+  toggleDrag(true);
+}
+
+function handleDragLeave(event) {
+  event.preventDefault();
+  toggleDrag(false);
 }
 
 function handleBulkAdd() {
   const items = collectItems(bulkInput.value);
   items.forEach(addTag);
   bulkInput.value = '';
+}
+
+function handleBulkClear() {
+  ingredientList.innerHTML = '';
+  updateAnalyzeState();
 }
 
 function findMatch(name) {
@@ -177,46 +213,54 @@ function findMatch(name) {
 }
 
 function createResultCard(name, data) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'result-item';
+  const article = document.createElement('article');
+  const level = data?.safety || 'unknown';
+  article.className = `cic-result-card level-${level}`;
 
   const band = document.createElement('div');
-  band.className = 'band';
+  band.className = 'color-band';
 
-  const content = document.createElement('div');
-  content.className = 'content';
+  const body = document.createElement('div');
+  body.className = 'cic-result-body';
 
-  const title = document.createElement('h3');
+  const title = document.createElement('h4');
+  title.className = 'cic-result-title';
   title.textContent = data ? `${data.name_jp} / ${data.name_en}` : `${name} （未収載）`;
 
   const usage = document.createElement('p');
-  usage.innerHTML = `<span class="result-label">【用途】</span>${data?.usage?.join('、 ') || '（未収載）'}`;
+  usage.className = 'cic-result-meta';
+  usage.innerHTML = `<span class="cic-meta-label">【用途】</span>${data?.usage?.join('、 ') || '（未収載）このツールの成分データに掲載がありません。'}`;
 
   const feature = document.createElement('p');
-  feature.innerHTML = `<span class="result-label">【特徴】</span>${data?.feature || 'このツールの成分データに掲載がありません。'}`;
+  feature.className = 'cic-result-meta';
+  feature.innerHTML = `<span class="cic-meta-label">【特徴】</span>${data?.feature || '（未収載）このツールの成分データに掲載がありません。'}`;
 
   const attention = document.createElement('p');
-  attention.innerHTML = `<span class="result-label">【注意点】</span>${data?.attention || 'このツールの成分データに掲載がありません。'}`;
+  attention.className = 'cic-result-meta';
+  attention.innerHTML = `<span class="cic-meta-label">【注意点】</span>${data?.attention || '（未収載）このツールの成分データに掲載がありません。'}`;
 
-  const safetyClass = data?.safety || 'unknown';
-  band.classList.add(safetyClass);
+  body.appendChild(title);
+  body.appendChild(usage);
+  body.appendChild(feature);
+  body.appendChild(attention);
 
-  content.appendChild(title);
-  content.appendChild(usage);
-  content.appendChild(feature);
-  content.appendChild(attention);
-
-  wrapper.appendChild(band);
-  wrapper.appendChild(content);
-  return wrapper;
+  article.appendChild(band);
+  article.appendChild(body);
+  return article;
 }
 
 function renderResults(names) {
-  resultCards.innerHTML = '';
+  resultContainer.innerHTML = '';
+  copyStatus.textContent = '';
+  if (!names.length) {
+    resultEmpty.classList.remove('hidden');
+    return;
+  }
+  resultEmpty.classList.add('hidden');
   names.forEach((raw) => {
     const match = findMatch(raw);
     const card = createResultCard(raw, match);
-    resultCards.appendChild(card);
+    resultContainer.appendChild(card);
   });
 }
 
@@ -247,26 +291,53 @@ function renderSample() {
       attention: '敏感肌では刺激になることがあるため注意。'
     }
   ];
-  resultCards.innerHTML = '';
+  resultEmpty.classList.add('hidden');
+  resultContainer.innerHTML = '';
+  copyStatus.textContent = '';
   sample.forEach((item) => {
     const card = createResultCard(item.name_jp, item);
-    resultCards.appendChild(card);
+    resultContainer.appendChild(card);
   });
 }
 
 function handleAnalyze() {
-  const names = Array.from(tagList.children).map((pill) => pill.firstChild.textContent);
+  const names = Array.from(ingredientList.children).map((pill) => pill.firstChild.textContent);
   renderResults(names);
-  document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function handleCopy() {
+  const cards = Array.from(resultContainer.querySelectorAll('.cic-result-card'));
+  if (!cards.length) {
+    copyStatus.textContent = 'コピーできる解析結果がありません。';
+    return;
+  }
+  const lines = cards.map((card) => {
+    const title = card.querySelector('.cic-result-title')?.textContent?.trim() || '';
+    const metas = Array.from(card.querySelectorAll('.cic-result-meta')).map((m) => m.textContent.trim());
+    return [title, ...metas].join('\n');
+  });
+  try {
+    await navigator.clipboard.writeText(lines.join('\n\n'));
+    copyStatus.textContent = 'コピーしました';
+  } catch (e) {
+    copyStatus.textContent = 'コピーに失敗しました';
+  }
 }
 
 function init() {
   loadIngredients().then(renderSample);
-  ocrInput.addEventListener('change', handleOcrUpload);
+  ocrInput.addEventListener('change', handleOcrChange);
   searchInput.addEventListener('input', handleSearchInput);
-  bulkSection.querySelector('.collapse-toggle').addEventListener('click', toggleBulk);
-  bulkAdd.addEventListener('click', handleBulkAdd);
-  analyzeBtn.addEventListener('click', handleAnalyze);
+  bulkAddButton.addEventListener('click', handleBulkAdd);
+  bulkClearButton.addEventListener('click', handleBulkClear);
+  analyzeButton.addEventListener('click', handleAnalyze);
+  copyButton.addEventListener('click', handleCopy);
+
+  ocrDropzone.addEventListener('dragover', handleDragOver);
+  ocrDropzone.addEventListener('dragleave', handleDragLeave);
+  ocrDropzone.addEventListener('drop', handleDrop);
+  ocrDropzone.addEventListener('click', () => ocrInput.click());
 }
 
 document.addEventListener('DOMContentLoaded', init);
