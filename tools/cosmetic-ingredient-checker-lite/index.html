@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>化粧品成分チェッカーLite</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>化粧品成分チェッカーLite</h1>
+    <p>成分画像のOCR、サジェスト、まとめ貼り付けで簡単に解析リストを作成できます。</p>
+  </header>
+  <main>
+
+    <!-- 1. OCR -->
+    <section id="ocr">
+      <h2>OCR</h2>
+      <div class="section-body">
+        <label for="ocrImage" class="input-label">成分画像を選択</label>
+        <input type="file" id="ocrImage" accept="image/*">
+        <button id="ocrButton">OCR開始</button>
+        <p id="ocrStatus" class="status"></p>
+      </div>
+    </section>
+
+    <!-- 2. サジェスト -->
+    <section id="suggest">
+      <h2>サジェスト</h2>
+      <div class="section-body">
+        <label for="suggestInput" class="input-label">成分名で検索</label>
+        <input type="text" id="suggestInput" placeholder="例：hyaluronic">
+        <ul id="suggestList" class="suggest-list"></ul>
+      </div>
+    </section>
+
+    <!-- 3. まとめ貼り付け -->
+    <section id="bulk">
+      <h2>まとめ貼り付け</h2>
+      <div class="section-body">
+        <label for="bulkInput" class="input-label">改行区切りで貼り付け</label>
+        <textarea id="bulkInput" rows="4" placeholder="例：\nwater\nglycerin\n...\n"></textarea>
+        <button id="bulkButton">リストに追加</button>
+      </div>
+    </section>
+
+    <!-- 4. 解析リスト -->
+    <section id="list">
+      <h2>解析リスト</h2>
+      <div class="section-body">
+        <ul id="analysisList" class="analysis-list"></ul>
+      </div>
+    </section>
+
+    <button id="analyzeButton">解析する</button>
+
+    <!-- 5. 結果 -->
+    <section id="result">
+      <h2>解析結果</h2>
+      <div id="resultCards" class="result-cards"></div>
+    </section>
+
+  </main>
+  <footer>
+    <p>※このツールの結果は参考情報です。詳細は各製品の公式情報をご確認ください。</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
