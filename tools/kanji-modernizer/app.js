@@ -8,6 +8,7 @@
 (() => {
   let dictCache = null;
   let currentLang = "ja";
+  let lastResultText = "";
 
   const messages = {
     ja: {
@@ -25,6 +26,15 @@
   function getMessage(key) {
     const table = messages[currentLang] || messages.ja;
     return table[key] || "";
+  }
+
+  function escapeHtml(str) {
+    return (str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 
   // -----------------------------
@@ -66,6 +76,26 @@
     return data;
   }
 
+  function updateCounts(dict) {
+    if (!dict) return;
+    const oldCount = Object.keys(dict.old_to_new || {}).length;
+    const newCount = Object.keys(dict.new_to_old || {}).length;
+    const uniqueCount = new Set([
+      ...Object.keys(dict.old_to_new || {}),
+      ...Object.keys(dict.new_to_old || {})
+    ]).size;
+
+    document.querySelectorAll('[data-count="old"]').forEach(el => {
+      el.textContent = oldCount;
+    });
+    document.querySelectorAll('[data-count="new"]').forEach(el => {
+      el.textContent = newCount;
+    });
+    document.querySelectorAll('[data-count="unique"]').forEach(el => {
+      el.textContent = uniqueCount;
+    });
+  }
+
   // -----------------------------
   // UI 補助
   // -----------------------------
@@ -94,27 +124,50 @@
   // 変換ロジック
   // -----------------------------
   function convertText(rawText, direction, dict) {
-    if (!rawText) return "";
+    if (!rawText) {
+      return { plain: "", inputHtml: "", outputHtml: "" };
+    }
 
     const src = Array.from(rawText);
+    const inputHtml = [];
+    const outputHtml = [];
+    const outputPlain = [];
 
-    if (direction === "new-to-old") {
-      const map = dict.new_to_old || {};
-      return src
-        .map(ch => {
-          const val = map[ch];
-          if (Array.isArray(val) && val.length > 0) {
-            // 候補が複数ある場合はいったん先頭を採用
-            return val[0];
-          }
-          return ch;
-        })
-        .join("");
-    } else {
-      // default: old-to-new
-      const map = dict.old_to_new || {};
-      return src.map(ch => map[ch] || ch).join("");
-    }
+    const map =
+      direction === "new-to-old" ? dict.new_to_old || {} : dict.old_to_new || {};
+
+    src.forEach(ch => {
+      const mapped = map[ch];
+      let outputChar;
+
+      if (direction === "new-to-old") {
+        if (Array.isArray(mapped)) {
+          outputChar = mapped.length > 0 ? mapped[0] : ch;
+        } else {
+          outputChar = mapped ?? ch;
+        }
+      } else {
+        outputChar = mapped ?? ch;
+      }
+
+      const isHit = ch !== outputChar;
+
+      if (isHit) {
+        inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
+        outputHtml.push(`<span class="km-hit">${escapeHtml(outputChar)}</span>`);
+      } else {
+        inputHtml.push(escapeHtml(ch));
+        outputHtml.push(escapeHtml(outputChar));
+      }
+
+      outputPlain.push(outputChar);
+    });
+
+    return {
+      plain: outputPlain.join(""),
+      inputHtml: inputHtml.join(""),
+      outputHtml: outputHtml.join("")
+    };
   }
 
   // -----------------------------
@@ -127,6 +180,7 @@
     const copyBtn = document.getElementById("copyBtn");
     const resetBtn = document.getElementById("resetBtn");
     const resultBlock = document.getElementById("resultBlock");
+    const inputHighlight = document.getElementById("inputHighlight");
 
     // 言語ボタン
     document
@@ -140,6 +194,14 @@
 
     // 初期状態：日本語だけ表示
     switchLang(currentLang);
+
+    loadDict()
+      .then(dict => {
+        updateCounts(dict);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
     // 変換ボタン
     if (convertBtn && input && output) {
@@ -160,8 +222,16 @@
           );
           const direction = selected ? selected.value : "old-to-new";
 
-          const result = convertText(text, direction, dict);
-          output.value = result;
+          const { plain, inputHtml, outputHtml } = convertText(
+            text,
+            direction,
+            dict
+          );
+          lastResultText = plain;
+          if (inputHighlight) {
+            inputHighlight.innerHTML = inputHtml;
+          }
+          output.innerHTML = outputHtml;
           if (resultBlock) {
             resultBlock.hidden = false;
           }
@@ -178,7 +248,7 @@
     if (copyBtn && output) {
       copyBtn.addEventListener("click", async () => {
         try {
-          await navigator.clipboard.writeText(output.value || "");
+          await navigator.clipboard.writeText(lastResultText || "");
           clearError();
           const box = document.getElementById("errorBox");
           if (box) {
@@ -195,7 +265,11 @@
     if (resetBtn && input && output && resultBlock) {
       resetBtn.addEventListener("click", () => {
         input.value = "";
-        output.value = "";
+        output.innerHTML = "";
+        lastResultText = "";
+        if (inputHighlight) {
+          inputHighlight.innerHTML = "";
+        }
         resultBlock.hidden = true;
         clearError();
       });
