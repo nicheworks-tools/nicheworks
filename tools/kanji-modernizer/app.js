@@ -37,6 +37,55 @@
       .replace(/'/g, "&#39;");
   }
 
+  function normalizeChar(val) {
+    return typeof val === "string" ? val.normalize("NFC") : "";
+  }
+
+  function rebuildDict(raw) {
+    const normalizedOldToNew = {};
+    const normalizedNewToOld = {};
+
+    const rawOldToNew = raw && typeof raw === "object" ? raw.old_to_new || {} : {};
+    Object.keys(rawOldToNew).forEach(key => {
+      const nKey = normalizeChar(key);
+      const nVal = normalizeChar(rawOldToNew[key]);
+      if (!nKey || !nVal) return;
+      if (Object.prototype.hasOwnProperty.call(normalizedOldToNew, nKey)) return;
+      normalizedOldToNew[nKey] = nVal;
+    });
+
+    const rawNewToOld = raw && typeof raw === "object" ? raw.new_to_old || {} : {};
+    Object.keys(rawNewToOld).forEach(key => {
+      const nKey = normalizeChar(key);
+      if (!nKey) return;
+      const values = Array.isArray(rawNewToOld[key]) ? rawNewToOld[key] : [rawNewToOld[key]];
+      const normalizedValues = [];
+
+      values.forEach(v => {
+        const nVal = normalizeChar(v);
+        if (!nVal) return;
+        if (!normalizedValues.includes(nVal)) {
+          normalizedValues.push(nVal);
+        }
+      });
+
+      if (normalizedValues.length === 0) return;
+      if (!normalizedNewToOld[nKey]) {
+        normalizedNewToOld[nKey] = [];
+      }
+      normalizedValues.forEach(v => {
+        if (!normalizedNewToOld[nKey].includes(v)) {
+          normalizedNewToOld[nKey].push(v);
+        }
+      });
+    });
+
+    return {
+      old_to_new: normalizedOldToNew,
+      new_to_old: normalizedNewToOld
+    };
+  }
+
   // -----------------------------
   // 言語切り替え（表示のみ）
   // -----------------------------
@@ -72,8 +121,8 @@
       throw new Error("Failed to load dict.json");
     }
     const data = await res.json();
-    dictCache = data;
-    return data;
+    dictCache = rebuildDict(data);
+    return dictCache;
   }
 
   function updateCounts(dict) {
@@ -124,18 +173,18 @@
   // 変換ロジック
   // -----------------------------
   function convertText(rawText, direction, dict) {
-    if (!rawText) {
+    const normalizedText = (rawText || "").normalize("NFC");
+    if (!normalizedText) {
       return { plain: "", inputHtml: "", outputHtml: "" };
     }
 
-    const src = Array.from(rawText);
     const inputHtml = [];
     const outputHtml = [];
     const outputPlain = [];
 
     if (direction === "new-to-old") {
       const map = dict.new_to_old || {};
-      src.forEach(ch => {
+      for (const ch of normalizedText) {
         const val = map[ch];
         if (Array.isArray(val) ? val.length > 0 : Boolean(val)) {
           const target = Array.isArray(val) ? val[0] : val;
@@ -147,10 +196,10 @@
           outputHtml.push(escapeHtml(ch));
           outputPlain.push(ch);
         }
-      });
+      }
     } else {
       const map = dict.old_to_new || {};
-      src.forEach(ch => {
+      for (const ch of normalizedText) {
         const val = map[ch];
         if (val) {
           inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
@@ -161,7 +210,7 @@
           outputHtml.push(escapeHtml(ch));
           outputPlain.push(ch);
         }
-      });
+      }
     }
 
     return {
