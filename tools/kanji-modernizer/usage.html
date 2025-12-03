@@ -6,14 +6,12 @@
 
   <title>使い方｜旧字体 ⇄ 新字体 変換ツール | NicheWorks</title>
   <meta name="description" content="旧字体 ⇄ 新字体 変換ツールの使い方ガイド。変換方式・収録字数・注意点・プライバシーなどをまとめています。">
-  <meta name="keywords"
-    content="旧字体, 新字体, 異体字, 旧字, 新字, 漢字変換, 日本語ツール, Japanese text tool">
+  <meta name="keywords" content="旧字体, 新字体, 異体字, 旧字, 新字, 漢字変換, 日本語, japanese kanji converter, kyujitai, shinjitai">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/kanji-modernizer/usage.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="旧字体 ⇄ 新字体 変換ツールの使い方 | NicheWorks">
-  <meta property="og:description"
-    content="旧字体 ⇄ 新字体 変換ツールの使い方。変換方式、注意点、安全性、収録字数などを詳しく解説。">
+  <meta property="og:description" content="旧字体 ⇄ 新字体 変換ツールの詳細な使い方。変換方式、注意点、収録字数、安全性などを解説。">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/og-kanji.png">
 
   <!-- AdSense -->
@@ -40,14 +38,9 @@
 
     <section class="usage-section">
       <h2>旧字体とは？</h2>
-      <p>旧字体は、明治から戦前までの出版物や公文書で広く使われていた漢字の字形です。康煕字典体を基盤とした体系で、戦後の簡略化以前の「正字」に近い形を残しています。</p>
-      <ul>
-        <li>明治〜戦前の活版印刷や公文書で使用された字体を指す</li>
-        <li>康煕字典体をベースとした整った字形が多い</li>
-        <li>1946年の当用漢字制定で略字が整理・普及し、新字体が標準化</li>
-        <li>戸籍・地名・寺社の名称は歴史的経緯から旧字体を保持しやすい</li>
-        <li>Unicode では異体字選択子（IVS）で細かな字形差を区別する仕組みがある</li>
-      </ul>
+      <p>旧字体（旧字・正字とも呼ばれます）は、康煕字典体を基盤とした印刷字形で、明治から戦前までの書籍・新聞・公文書に広く使われました。戦後、当用漢字の制定（1946年）を契機に簡略化された新字体が標準化されましたが、歴史的な経緯や慣習により旧字体が残る分野もあります。</p>
+      <p>特に戸籍や住民票、地名、寺社名、石碑・古文書では、戦前の字体や家系固有の文字形がそのまま使われることがあります。新字体に完全に統一されていないため、読み手やシステムが旧字体に対応できず不便が生じるケースがあります。</p>
+      <p>また、Unicode では同じ意味をもつ異体字を Variation Selector（IVS）で細かく区別する仕組みが存在します。IVS 対応フォントでないと見た目が同じに見える場合もあるため、デジタル環境での表記揺れにも注意が必要です。</p>
     </section>
 
     <section class="usage-section">
@@ -126,11 +119,58 @@
   </footer>
 
   <script>
+    function normalizeChar(val) {
+      return typeof val === "string" ? val.normalize("NFC") : "";
+    }
+
+    function rebuildDict(raw) {
+      const normalizedOldToNew = {};
+      const normalizedNewToOld = {};
+
+      const rawOldToNew = raw && typeof raw === "object" ? raw.old_to_new || {} : {};
+      Object.keys(rawOldToNew).forEach(key => {
+        const nKey = normalizeChar(key);
+        const nVal = normalizeChar(rawOldToNew[key]);
+        if (!nKey || !nVal) return;
+        if (Object.prototype.hasOwnProperty.call(normalizedOldToNew, nKey)) return;
+        normalizedOldToNew[nKey] = nVal;
+      });
+
+      const rawNewToOld = raw && typeof raw === "object" ? raw.new_to_old || {} : {};
+      Object.keys(rawNewToOld).forEach(key => {
+        const nKey = normalizeChar(key);
+        if (!nKey) return;
+        const values = Array.isArray(rawNewToOld[key]) ? rawNewToOld[key] : [rawNewToOld[key]];
+        const normalizedValues = [];
+
+        values.forEach(v => {
+          const nVal = normalizeChar(v);
+          if (!nVal) return;
+          if (!normalizedValues.includes(nVal)) {
+            normalizedValues.push(nVal);
+          }
+        });
+
+        if (normalizedValues.length === 0) return;
+        if (!normalizedNewToOld[nKey]) {
+          normalizedNewToOld[nKey] = [];
+        }
+        normalizedValues.forEach(v => {
+          if (!normalizedNewToOld[nKey].includes(v)) {
+            normalizedNewToOld[nKey].push(v);
+          }
+        });
+      });
+
+      return { old_to_new: normalizedOldToNew, new_to_old: normalizedNewToOld };
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
       try {
         const res = await fetch("./dict.json", { cache: "no-store" });
         if (!res.ok) return;
-        const dict = await res.json();
+        const rawDict = await res.json();
+        const dict = rebuildDict(rawDict);
         const oldCount = Object.keys(dict.old_to_new || {}).length;
         const newCount = Object.keys(dict.new_to_old || {}).length;
         const uniqueCount = new Set([

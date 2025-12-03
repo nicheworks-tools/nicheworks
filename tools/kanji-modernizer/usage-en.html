@@ -4,27 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Usage Guide | Kanji Modernizer Lite</title>
-  <meta name="description" content="How to use Kanji Modernizer Lite. Convert old kanji ↔ modern kanji. Fully local processing.">
-  <meta name="keywords"
-    content="旧字体, 新字体, 異体字, 旧字, 新字, 漢字変換, 日本語ツール, Japanese text tool">
+    <title>How to Use | Kanji Modernizer</title>
+    <meta name="description" content="Detailed guide for the Old ⇄ Modern Kanji converter. Conversion rules, dictionary size, notes, and privacy explained.">
+    <meta name="keywords" content="kyujitai, shinjitai, old kanji, modern kanji, japanese kanji converter, variant glyphs, ivs, unicode">
 
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="旧字体 ⇄ 新字体 変換ツールの使い方 | NicheWorks">
-  <meta property="og:description"
-    content="旧字体 ⇄ 新字体 変換ツールの使い方。変換方式、注意点、安全性、収録字数などを詳しく解説。">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/og-kanji.png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Use the Old ⇄ Modern Kanji Converter | NicheWorks">
+    <meta property="og:description" content="How to use the Old ⇄ Modern Kanji converter: conversion directions, precautions, dictionary size, and privacy.">
+    <meta property="og:image" content="https://nicheworks.pages.dev/assets/og-kanji.png">
 
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
-  <header class="nw-header">
-    <h1 class="nw-title">Kanji Modernizer Lite – Usage Guide</h1>
-    <p class="nw-subtitle">Features, conversion rules, privacy, and tips.</p>
-  </header>
+  <body>
+    <header class="nw-header">
+      <h1 class="nw-title">Kanji Modernizer – Usage Guide</h1>
+      <p class="nw-subtitle">Features, conversion rules, privacy, and tips.</p>
+    </header>
 
   <div class="ad-slot ad-top">Ad placeholder (preparing)</div>
 
@@ -34,14 +32,9 @@
 
     <section class="usage-section">
       <h2>Old-style kanji explained</h2>
-      <p>Old-style kanji refers to the pre-reform forms used in printed materials and official documents until World War II, often following the Kangxi Dictionary shapes.</p>
-      <ul>
-        <li>Historically used from the Meiji era through the pre-war period</li>
-        <li>Based on the Kangxi Dictionary system of standardized glyphs</li>
-        <li>Japan’s 1946 simplification introduced new forms and popularized modern shapes</li>
-        <li>Family names, placenames, and shrine/temple names frequently preserve the old forms</li>
-        <li>Unicode variation selectors (IVS) are used to distinguish subtle glyph variants</li>
-      </ul>
+      <p>Old-style kanji (Kyūjitai) are the pre-reform glyphs based on the Kangxi Dictionary forms and were widely used in books, newspapers, and official documents through the pre-war era. After 1946, Japan introduced simplified forms (Shinjitai) via the Tōyō Kanji list, which became today’s standard shapes.</p>
+      <p>Because of historical usage and personal preferences, old forms still appear in family registers, resident records, placenames, shrine/temple names, monuments, and classical documents. Systems that assume only modern forms may fail to recognize these characters, so conversion support is often necessary.</p>
+      <p>Unicode also distinguishes certain variant glyphs using Ideographic Variation Sequences (IVS). Without IVS-capable fonts, some variants may look identical, so be mindful of visual differences versus underlying code points.</p>
     </section>
 
     <section class="usage-section">
@@ -115,11 +108,58 @@
   </footer>
 
   <script>
+    function normalizeChar(val) {
+      return typeof val === "string" ? val.normalize("NFC") : "";
+    }
+
+    function rebuildDict(raw) {
+      const normalizedOldToNew = {};
+      const normalizedNewToOld = {};
+
+      const rawOldToNew = raw && typeof raw === "object" ? raw.old_to_new || {} : {};
+      Object.keys(rawOldToNew).forEach(key => {
+        const nKey = normalizeChar(key);
+        const nVal = normalizeChar(rawOldToNew[key]);
+        if (!nKey || !nVal) return;
+        if (Object.prototype.hasOwnProperty.call(normalizedOldToNew, nKey)) return;
+        normalizedOldToNew[nKey] = nVal;
+      });
+
+      const rawNewToOld = raw && typeof raw === "object" ? raw.new_to_old || {} : {};
+      Object.keys(rawNewToOld).forEach(key => {
+        const nKey = normalizeChar(key);
+        if (!nKey) return;
+        const values = Array.isArray(rawNewToOld[key]) ? rawNewToOld[key] : [rawNewToOld[key]];
+        const normalizedValues = [];
+
+        values.forEach(v => {
+          const nVal = normalizeChar(v);
+          if (!nVal) return;
+          if (!normalizedValues.includes(nVal)) {
+            normalizedValues.push(nVal);
+          }
+        });
+
+        if (normalizedValues.length === 0) return;
+        if (!normalizedNewToOld[nKey]) {
+          normalizedNewToOld[nKey] = [];
+        }
+        normalizedValues.forEach(v => {
+          if (!normalizedNewToOld[nKey].includes(v)) {
+            normalizedNewToOld[nKey].push(v);
+          }
+        });
+      });
+
+      return { old_to_new: normalizedOldToNew, new_to_old: normalizedNewToOld };
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
       try {
         const res = await fetch("./dict.json", { cache: "no-store" });
         if (!res.ok) return;
-        const dict = await res.json();
+        const rawDict = await res.json();
+        const dict = rebuildDict(rawDict);
         const oldCount = Object.keys(dict.old_to_new || {}).length;
         const newCount = Object.keys(dict.new_to_old || {}).length;
         const uniqueCount = new Set([
