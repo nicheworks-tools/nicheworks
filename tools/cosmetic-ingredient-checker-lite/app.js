@@ -1,341 +1,272 @@
-const ingredients = [
-  {
-    name_jp: "ヒアルロン酸",
-    name_en: "Hyaluronic Acid",
-    aliases: ["sodium hyaluronate"],
-    risk: 0,
-    desc: "保湿目的で広く使われる成分です。"
-  },
-  {
-    name_jp: "グリセリン",
-    name_en: "Glycerin",
-    aliases: ["glycerol"],
-    risk: 0,
-    desc: "保湿剤として肌の水分を保持します。"
-  },
-  {
-    name_jp: "サリチル酸",
-    name_en: "Salicylic Acid",
-    aliases: ["beta hydroxy acid"],
-    risk: 1,
-    desc: "角質ケア用途で使われ、敏感肌では刺激になる場合があります。"
-  },
-  {
-    name_jp: "エタノール",
-    name_en: "Ethanol",
-    aliases: ["alcohol"],
-    risk: 1,
-    desc: "防腐・溶剤として使われ、乾燥を感じることがあります。"
-  },
-  {
-    name_jp: "レチノール",
-    name_en: "Retinol",
-    aliases: ["vitamin a"],
-    risk: 2,
-    desc: "高機能成分で、使い方によっては刺激を感じる場合があります。"
-  },
-  {
-    name_jp: "フェノキシエタノール",
-    name_en: "Phenoxyethanol",
-    aliases: ["phenooxyethanol"],
-    risk: 1,
-    desc: "防腐剤として利用される一般的な成分です。"
-  },
-  {
-    name_jp: "パラベン",
-    name_en: "Paraben",
-    aliases: ["methylparaben", "ethylparaben"],
-    risk: 1,
-    desc: "防腐目的で用いられる複数の同系統成分の総称です。"
-  },
-  {
-    name_jp: "香料",
-    name_en: "Fragrance",
-    aliases: ["perfume"],
-    risk: 1,
-    desc: "製品の香り付けに使われ、一部で刺激となることがあります。"
-  },
-  {
-    name_jp: "水",
-    name_en: "Water",
-    aliases: ["aqua"],
-    risk: 0,
-    desc: "多くの製品のベースとなる溶媒です。"
-  },
-  {
-    name_jp: "ホホバ種子油",
-    name_en: "Jojoba Seed Oil",
-    aliases: ["jojoba oil"],
-    risk: 0,
-    desc: "植物由来のオイルで、保湿や柔軟目的で使用されます。"
-  }
-];
+const tagList = document.getElementById('tagList');
+const ocrInput = document.getElementById('ocrInput');
+const ocrStatus = document.getElementById('ocrStatus');
+const searchInput = document.getElementById('searchInput');
+const suggestList = document.getElementById('suggestList');
+const bulkSection = document.getElementById('bulkSection');
+const bulkBody = document.getElementById('bulkBody');
+const bulkInput = document.getElementById('bulkInput');
+const bulkAdd = document.getElementById('bulkAdd');
+const analyzeBtn = document.getElementById('analyzeBtn');
+const resultCards = document.getElementById('resultCards');
 
-const ingredientTags = document.getElementById("ingredientTags");
-const suggestInput = document.getElementById("searchInput");
-const suggestTags = document.getElementById("suggestTags");
-const bulkInput = document.getElementById("bulkInput");
-const bulkButton = document.getElementById("bulkButton");
-const ocrButton = document.getElementById("ocrButton");
-const ocrImage = document.getElementById("ocrImage");
-const ocrStatus = document.getElementById("ocrStatus");
-const analyzeButton = document.getElementById("analyzeButton");
-const resultCards = document.getElementById("resultCards");
-const bulkSection = document.getElementById("bulk");
+let ingredientData = {};
 
-function normalizeText(text) {
-  return (text || "").normalize("NFKC").trim();
-}
-
-function cleanTextToItems(text) {
-  const normalized = normalizeText(text);
-  const lines = normalized.split(/\r?\n/);
-  const collected = [];
-
-  lines.forEach((line) => {
-    let current = line.trim();
-    if (!current) return;
-    if (current.length <= 1) return;
-    if (/^\d+$/.test(current)) return;
-    if (/内容量|使用上|注意|ml|製造|made/i.test(current)) return;
-
-    const compact = current.replace(/\s+/g, "");
-    const hiraganaMatches = compact.match(/[\u3040-\u309F]/g) || [];
-    const hiraganaRatio = compact.length ? hiraganaMatches.length / compact.length : 0;
-    if (hiraganaRatio >= 0.5) return;
-    if (/^[\p{P}\p{S}]+$/u.test(compact)) return;
-
-    const fragments = current.split(/[\,\/・\.]+/);
-    fragments.forEach((fragment) => {
-      const cleaned = fragment.replace(/[\(\)\（\）\[\]【】]/g, "").trim();
-      if (cleaned.length < 2) return;
-      collected.push(cleaned.toLowerCase());
-    });
-  });
-
-  return [...new Set(collected)];
-}
-
-function sanitizeSingleTerm(term) {
-  let normalized = normalizeText(term);
-  normalized = normalized.replace(/[\(\)\（\）\[\]【】]/g, "");
-  normalized = normalized.split(/[\,\/・\.]+/)[0];
-  const cleaned = normalized.trim().toLowerCase();
-  if (cleaned.length < 2) return "";
-  if (/^\d+$/.test(cleaned)) return "";
-  if (/^[\p{P}\p{S}]+$/u.test(cleaned)) return "";
-  return cleaned;
-}
-
-function createTagElement(name) {
-  const wrapper = document.createElement("span");
-  wrapper.className = "itag";
-
-  const nameSpan = document.createElement("span");
-  nameSpan.className = "name";
-  nameSpan.textContent = name;
-
-  const editButton = document.createElement("button");
-  editButton.className = "edit";
-  editButton.type = "button";
-  editButton.textContent = "✏";
-
-  const deleteButton = document.createElement("button");
-  deleteButton.className = "delete";
-  deleteButton.type = "button";
-  deleteButton.textContent = "🗑";
-
-  editButton.addEventListener("click", handleEditClick);
-  deleteButton.addEventListener("click", () => wrapper.remove());
-
-  wrapper.appendChild(nameSpan);
-  wrapper.appendChild(editButton);
-  wrapper.appendChild(deleteButton);
-  return wrapper;
-}
-
-function handleEditClick(event) {
-  const editButton = event.currentTarget;
-  const tag = editButton.parentElement;
-  const existingInput = tag.querySelector("input[type='text']");
-  if (existingInput) {
-    saveEdit(tag, existingInput, editButton);
-  } else {
-    startEdit(tag, editButton);
+async function loadIngredients() {
+  try {
+    const res = await fetch('./data/ingredients.json');
+    ingredientData = await res.json();
+  } catch (e) {
+    ingredientData = {};
   }
 }
 
-function startEdit(tag, editButton) {
-  const nameSpan = tag.querySelector(".name");
-  const currentName = nameSpan.textContent;
-  const input = document.createElement("input");
-  input.type = "text";
-  input.value = currentName;
-
-  tag.replaceChild(input, nameSpan);
-  editButton.textContent = "✓";
-  input.focus();
+function normalize(text = '') {
+  const lowered = text.normalize('NFKC').toLowerCase();
+  const trimmed = lowered.replace(/[\u3000]/g, ' ').trim();
+  return trimmed;
 }
 
-function saveEdit(tag, input, editButton) {
-  const sanitized = sanitizeSingleTerm(input.value);
-  if (!sanitized) {
-    input.focus();
-    return;
-  }
-
-  if (isDuplicate(sanitized, tag)) {
-    input.focus();
-    return;
-  }
-
-  const nameSpan = document.createElement("span");
-  nameSpan.className = "name";
-  nameSpan.textContent = sanitized;
-
-  tag.replaceChild(nameSpan, input);
-  editButton.textContent = "✏";
+function sanitizeTerm(term) {
+  let value = normalize(term);
+  value = value.replace(/[\(\)\[\]{}【】]/g, '');
+  value = value.replace(/[\,\/・\.]/g, ' ');
+  value = value.split(' ')[0] || '';
+  value = value.replace(/[^a-z0-9\u3040-\u30ff\u4e00-\u9faf]/gi, '');
+  if (value.length < 2) return '';
+  if (/^\d+$/.test(value)) return '';
+  return value;
 }
 
-function isDuplicate(name, currentTag) {
-  const lowerName = name.toLowerCase();
-  const items = ingredientTags.querySelectorAll(".itag .name");
-  for (const item of items) {
-    if (currentTag && item === currentTag.querySelector(".name")) continue;
-    if (item.textContent.toLowerCase() === lowerName) return true;
-  }
+function isNoisyLine(line) {
+  if (!line || line.length < 2) return true;
+  if (/^\d+$/.test(line)) return true;
+  if (/^[\p{P}\p{S}]+$/u.test(line)) return true;
+  if (/^[\u4e00-\u9faf]{3,}[a-z0-9]+/i.test(line)) return true;
+  if (/[§※★◆]/.test(line)) return true;
   return false;
 }
 
-function addToAnalysisList(name) {
-  const sanitized = sanitizeSingleTerm(name);
-  if (!sanitized || sanitized.length < 2) return;
-  if (isDuplicate(sanitized)) return;
-  const tag = createTagElement(sanitized);
-  ingredientTags.appendChild(tag);
+function splitLines(text) {
+  return text.split(/\r?\n/).map((l) => normalize(l)).filter((l) => l);
 }
 
-function handleBulkAdd() {
-  const items = cleanTextToItems(bulkInput.value);
-  items.forEach(addToAnalysisList);
-  bulkInput.value = "";
-}
-
-function renderSuggests(results) {
-  suggestTags.innerHTML = "";
-  results.slice(0, 8).forEach((item) => {
-    const tag = document.createElement("span");
-    tag.className = "tag";
-    tag.textContent = item.name_jp;
-    tag.addEventListener("click", () => {
-      addToAnalysisList(item.name_jp.toLowerCase());
-      suggestInput.value = "";
-      suggestTags.innerHTML = "";
+function collectItems(text) {
+  const lines = splitLines(text);
+  const collected = new Set();
+  lines.forEach((line) => {
+    if (isNoisyLine(line)) return;
+    const fragments = line.split(/[\,\/・]/);
+    fragments.forEach((raw) => {
+      const sanitized = sanitizeTerm(raw);
+      if (sanitized) collected.add(sanitized);
     });
-    suggestTags.appendChild(tag);
+  });
+  return Array.from(collected);
+}
+
+function updateAnalyzeState() {
+  analyzeBtn.disabled = tagList.children.length === 0;
+}
+
+function createTag(name) {
+  const pill = document.createElement('span');
+  pill.className = 'tag-pill';
+  pill.title = name;
+
+  const text = document.createElement('span');
+  text.textContent = name;
+
+  const del = document.createElement('button');
+  del.type = 'button';
+  del.textContent = '✕';
+  del.addEventListener('click', () => {
+    pill.remove();
+    updateAnalyzeState();
+  });
+
+  pill.appendChild(text);
+  pill.appendChild(del);
+  return pill;
+}
+
+function existsTag(name) {
+  const target = normalize(name);
+  return Array.from(tagList.children).some((pill) => normalize(pill.firstChild.textContent) === target);
+}
+
+function addTag(name) {
+  const sanitized = sanitizeTerm(name);
+  if (!sanitized || existsTag(sanitized)) return;
+  const tag = createTag(sanitized);
+  tagList.appendChild(tag);
+  updateAnalyzeState();
+}
+
+function renderSuggests(items) {
+  suggestList.innerHTML = '';
+  items.slice(0, 8).forEach((item) => {
+    const label = item.name_jp || item.name_en;
+    const span = document.createElement('div');
+    span.className = 'suggest-item';
+    span.textContent = label;
+    span.title = `${item.name_jp} / ${item.name_en}`;
+    span.addEventListener('click', () => {
+      addTag(label);
+      suggestList.innerHTML = '';
+      searchInput.value = '';
+    });
+    suggestList.appendChild(span);
   });
 }
 
-function handleSuggestInput() {
-  const query = sanitizeSingleTerm(suggestInput.value);
-  suggestTags.innerHTML = "";
+function handleSearchInput() {
+  const query = sanitizeTerm(searchInput.value);
+  suggestList.innerHTML = '';
   if (!query) return;
-
-  const results = ingredients.filter((item) => {
-    const candidates = [item.name_jp, item.name_en, ...(item.aliases || [])].map((v) => v.toLowerCase());
-    return candidates.some((candidate) => candidate.startsWith(query) || candidate.includes(query));
+  const results = Object.values(ingredientData).filter((item) => {
+    const candidates = [item.name_jp, item.name_en, ...(item.aliases || [])].map((c) => normalize(c));
+    return candidates.some((c) => c.startsWith(query) || c.endsWith(query));
   });
-
   renderSuggests(results);
 }
 
-function handleOcr() {
-  const file = ocrImage.files?.[0];
-  if (!file) {
-    ocrStatus.textContent = "画像ファイルを選択してください。";
-    return;
-  }
-
-  ocrStatus.textContent = "解析中...";
-  const reader = new FileReader();
-  reader.onload = () => {
-    const data = reader.result;
-    Tesseract.recognize(data, "jpn+eng", {
-      logger: (m) => {
-        if (m.status === "recognizing text") {
-          ocrStatus.textContent = `解析中... ${Math.round((m.progress || 0) * 100)}%`;
-        }
-      },
-    })
-      .then(({ data: { text } }) => {
-        ocrStatus.textContent = "OCR完了";
-        const items = cleanTextToItems(text);
-        items.forEach(addToAnalysisList);
-      })
-      .catch(() => {
-        ocrStatus.textContent = "OCRに失敗しました。";
-      });
-  };
-  reader.readAsDataURL(file);
+function toggleBulk() {
+  bulkSection.classList.toggle('open');
 }
 
-function findIngredient(name) {
-  const lower = name.toLowerCase();
-  return ingredients.find((item) => {
-    const candidates = [item.name_jp, item.name_en, ...(item.aliases || [])].map((v) => v.toLowerCase());
-    return candidates.includes(lower);
+async function handleOcrUpload(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  ocrStatus.textContent = 'OCR中…';
+  try {
+    const data = await file.arrayBuffer();
+    const result = await Tesseract.recognize(new Blob([data]), 'jpn+eng', {
+      logger: (m) => {
+        if (m.status === 'recognizing text' && m.progress) {
+          ocrStatus.textContent = `OCR中… ${Math.round(m.progress * 100)}%`;
+        }
+      },
+    });
+    ocrStatus.textContent = 'OCR完了';
+    const items = collectItems(result.data.text);
+    items.forEach(addTag);
+  } catch (e) {
+    ocrStatus.textContent = 'OCRに失敗しました';
+  } finally {
+    ocrInput.value = '';
+  }
+}
+
+function handleBulkAdd() {
+  const items = collectItems(bulkInput.value);
+  items.forEach(addTag);
+  bulkInput.value = '';
+}
+
+function findMatch(name) {
+  const normalizedName = normalize(name);
+  const entries = Object.entries(ingredientData);
+  for (const [, value] of entries) {
+    const candidates = [value.name_jp, value.name_en, ...(value.aliases || [])].map((c) => normalize(c));
+    if (candidates.some((c) => c === normalizedName || c.startsWith(normalizedName) || normalizedName.startsWith(c))) {
+      return value;
+    }
+  }
+  return null;
+}
+
+function createResultCard(name, data) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'result-item';
+
+  const band = document.createElement('div');
+  band.className = 'band';
+
+  const content = document.createElement('div');
+  content.className = 'content';
+
+  const title = document.createElement('h3');
+  title.textContent = data ? `${data.name_jp} / ${data.name_en}` : `${name} （未収載）`;
+
+  const usage = document.createElement('p');
+  usage.innerHTML = `<span class="result-label">【用途】</span>${data?.usage?.join('、 ') || '（未収載）'}`;
+
+  const feature = document.createElement('p');
+  feature.innerHTML = `<span class="result-label">【特徴】</span>${data?.feature || 'このツールの成分データに掲載がありません。'}`;
+
+  const attention = document.createElement('p');
+  attention.innerHTML = `<span class="result-label">【注意点】</span>${data?.attention || 'このツールの成分データに掲載がありません。'}`;
+
+  const safetyClass = data?.safety || 'unknown';
+  band.classList.add(safetyClass);
+
+  content.appendChild(title);
+  content.appendChild(usage);
+  content.appendChild(feature);
+  content.appendChild(attention);
+
+  wrapper.appendChild(band);
+  wrapper.appendChild(content);
+  return wrapper;
+}
+
+function renderResults(names) {
+  resultCards.innerHTML = '';
+  names.forEach((raw) => {
+    const match = findMatch(raw);
+    const card = createResultCard(raw, match);
+    resultCards.appendChild(card);
   });
 }
 
-function createCard(name, match) {
-  let colorClass = "card-gray";
-  let description = "このツールの成分データに掲載がありません。";
-  if (match) {
-    if (match.risk === 0) colorClass = "card-green";
-    if (match.risk === 1) colorClass = "card-yellow";
-    if (match.risk === 2) colorClass = "card-red";
-    description = match.desc;
-  }
-
-  const card = document.createElement("div");
-  card.className = `result-card ${colorClass}`;
-
-  const band = document.createElement("div");
-  band.className = "band";
-
-  const content = document.createElement("div");
-  content.className = "card-content";
-
-  const title = document.createElement("h3");
-  title.textContent = name;
-  const para = document.createElement("p");
-  para.textContent = description;
-
-  content.appendChild(title);
-  content.appendChild(para);
-  card.appendChild(band);
-  card.appendChild(content);
-  return card;
+function renderSample() {
+  const sample = [
+    {
+      name_jp: 'ヒアルロン酸Na',
+      name_en: 'Sodium Hyaluronate',
+      safety: 'safe',
+      usage: ['保湿'],
+      feature: '水分保持力が高く、保湿目的でよく用いられる。',
+      attention: '特に報告は少ないが、肌状態に応じて様子を見る。'
+    },
+    {
+      name_jp: '香料',
+      name_en: 'Fragrance',
+      safety: 'caution',
+      usage: ['香り付け'],
+      feature: '配合種類が多様で、人によって刺激に感じる場合がある。',
+      attention: '敏感肌や香料が苦手な場合は注意。'
+    },
+    {
+      name_jp: 'サリチル酸',
+      name_en: 'Salicylic Acid',
+      safety: 'warning',
+      usage: ['角質ケア'],
+      feature: 'ピーリング作用を持ち、角質をやわらかくする。',
+      attention: '敏感肌では刺激になることがあるため注意。'
+    }
+  ];
+  resultCards.innerHTML = '';
+  sample.forEach((item) => {
+    const card = createResultCard(item.name_jp, item);
+    resultCards.appendChild(card);
+  });
 }
 
 function handleAnalyze() {
-  resultCards.innerHTML = "";
-  const names = Array.from(ingredientTags.querySelectorAll(".name")).map((el) => el.textContent.toLowerCase());
-  names.forEach((name) => {
-    const match = findIngredient(name);
-    const card = createCard(name, match);
-    resultCards.appendChild(card);
-  });
-  document.getElementById("result").scrollIntoView({ behavior: "smooth" });
+  const names = Array.from(tagList.children).map((pill) => pill.firstChild.textContent);
+  renderResults(names);
+  document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
 }
 
-function toggleBulk(event) {
-  if (event.target.tagName.toLowerCase() !== "h2") return;
-  bulkSection.classList.toggle("open");
+function init() {
+  loadIngredients().then(renderSample);
+  ocrInput.addEventListener('change', handleOcrUpload);
+  searchInput.addEventListener('input', handleSearchInput);
+  bulkSection.querySelector('.collapse-toggle').addEventListener('click', toggleBulk);
+  bulkAdd.addEventListener('click', handleBulkAdd);
+  analyzeBtn.addEventListener('click', handleAnalyze);
 }
 
-bulkSection.addEventListener("click", toggleBulk);
-suggestInput.addEventListener("input", handleSuggestInput);
-bulkButton.addEventListener("click", handleBulkAdd);
-ocrButton.addEventListener("click", handleOcr);
-analyzeButton.addEventListener("click", handleAnalyze);
+document.addEventListener('DOMContentLoaded', init);

@@ -3,77 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>化粧品成分チェッカーLite</title>
+  <title>化粧品成分チェッカー Lite</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
 <body>
-  <div class="nw-page">
-    <header class="nw-header">
-      <div class="nw-content">
-        <h1>化粧品成分チェッカーLite</h1>
-        <p>成分画像のOCR、サジェスト、まとめ貼り付けで簡単に解析リストを作成できます。</p>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow">🧴 化粧品成分チェッカー Lite</p>
+        <h1>成分表を撮影・検索・貼り付けでまとめ、<br>安全性・用途・注意点をサッと確認できる無料ツールです。</h1>
+        <p class="sub">（すべてブラウザ内で処理され安心）</p>
       </div>
     </header>
 
-    <main class="nw-content nw-main">
-      <div class="nw-grid">
-        <div class="nw-left">
-          <!-- 1. OCR -->
-          <section id="ocr" class="nw-card">
-            <h2>📷 成分画像から読み取る</h2>
-            <div class="section-body">
-              <input type="file" id="ocrImage" class="nw-input" accept="image/*">
-              <button id="ocrButton" class="nw-btn-primary">OCR開始</button>
-              <p id="ocrStatus" class="status"></p>
+    <main class="container main-grid">
+      <div class="left">
+        <section class="card howto">
+          <h2>【使い方】</h2>
+          <ol>
+            <li>成分を追加する（画像 / 検索 / 貼り付け）</li>
+            <li>気になる成分が「解析リスト」に並ぶ</li>
+            <li>「解析する」を押すと、安全性と注意点を表示</li>
+          </ol>
+        </section>
+
+        <section class="card add-card">
+          <div class="card-header">
+            <span>📥 成分を追加する</span>
+          </div>
+
+          <div class="input-block">
+            <label for="ocrInput" class="upload-btn">📷 成分画像をアップロード</label>
+            <input type="file" id="ocrInput" accept="image/*" hidden>
+            <p class="helper" id="ocrStatus"></p>
+          </div>
+
+          <div class="input-block">
+            <label class="field-label" for="searchInput">🔍 成分を検索</label>
+            <input id="searchInput" type="text" placeholder="例：hyaluronic / グリセリン" autocomplete="off">
+            <div id="suggestList" class="suggest-list"></div>
+          </div>
+
+          <div class="input-block collapsible" id="bulkSection">
+            <button class="collapse-toggle" type="button">
+              📋 まとめて貼り付け（任意） <span class="chevron">▼</span>
+            </button>
+            <div class="collapse-body" id="bulkBody">
+              <textarea id="bulkInput" rows="4" placeholder="Water\nGlycerin\nHyaluronic acid\n..."></textarea>
+              <button class="ghost-btn" id="bulkAdd" type="button">リストに追加</button>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <!-- 2. サジェスト -->
-          <section id="suggest" class="nw-card">
-            <h2>🔍 成分を検索</h2>
-            <div class="section-body">
-              <input type="text" id="searchInput" class="nw-input" placeholder="例：hyaluronic">
-              <div id="suggestTags" class="suggest-tags"></div>
-            </div>
-          </section>
+        <section class="card list-card">
+          <div class="card-header">
+            <span>🧪 解析リスト</span>
+          </div>
+          <div id="tagList" class="tag-list"></div>
+        </section>
 
-          <!-- 3. まとめ貼り付け -->
-          <section id="bulk" class="nw-card collapsible">
-            <h2>📋 まとめて貼り付け（任意）</h2>
-            <div class="bulk-body">
-              <textarea id="bulkInput" class="nw-textarea" rows="4" placeholder="例：\nwater\nglycerin\n...\n"></textarea>
-              <button id="bulkButton" class="nw-btn-primary">追加</button>
-            </div>
-          </section>
+        <section class="card action-card">
+          <button id="analyzeBtn" class="primary-btn" disabled>解析する</button>
+        </section>
+      </div>
 
-          <!-- 4. 解析リスト -->
-          <section id="list" class="nw-card">
-            <h2>🧪 解析リスト</h2>
-            <div id="ingredientTags" class="tag-list"></div>
-          </section>
-
-          <!-- 5. 解析ボタン -->
-          <section class="nw-card action-card">
-            <button id="analyzeButton" class="nw-btn-primary">解析する</button>
-          </section>
-        </div>
-
-        <!-- 6. 結果 -->
-        <div class="nw-right">
-          <section id="result" class="nw-card">
-            <h2>解析結果</h2>
-            <div id="resultCards" class="result-cards"></div>
-          </section>
-        </div>
+      <div class="right">
+        <section class="card result-card" id="resultArea">
+          <div class="card-header">
+            <span>解析結果</span>
+          </div>
+          <div id="resultCards" class="result-stack"></div>
+        </section>
       </div>
     </main>
-
-    <footer class="nw-footer">
-      <div class="nw-content">
-        <p>※このツールの結果は参考情報です。詳細は各製品の公式情報をご確認ください。</p>
-      </div>
-    </footer>
   </div>
 
   <script src="app.js"></script>
