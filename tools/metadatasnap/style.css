@@ -141,7 +141,7 @@ body > * {
 }
 
 .result-card {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .result-row {
@@ -214,32 +214,25 @@ body > * {
 }
 
 .faq-block {
-  margin: 18px 0 12px;
+  margin: 24px 0 12px;
   width: 100%;
   max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.faq-block details {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
+  border-radius: 12px;
+  padding: 16px;
   box-shadow: var(--shadow);
 }
 
-.faq-block summary {
-  cursor: pointer;
-  font-weight: 700;
-  margin-bottom: 6px;
+.faq-block p {
+  margin: 6px 0;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
-.faq-block p {
-  margin: 6px 0 0;
-  color: var(--muted);
-  line-height: 1.5;
+.faq-block strong {
+  font-weight: 600;
+  color: var(--text);
 }
 
 .nw-donate {
@@ -323,7 +316,7 @@ body > * {
   }
 
   .card,
-  .faq-block details,
+  .faq-block,
   .nw-donate {
     padding: 16px;
   }
