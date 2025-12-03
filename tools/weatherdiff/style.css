@@ -86,6 +86,18 @@ body {
   padding: 24px 16px 48px;
 }
 
+.wd-intro {
+  margin-bottom: 12px;
+  color: var(--sub);
+}
+
+.wd-usage-link { margin: 0; }
+
+.wd-usage-link a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .wd-section { margin-bottom: 32px; }
 
 .wd-progress {
