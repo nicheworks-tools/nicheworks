@@ -140,6 +140,7 @@
 
     analyzeBtn.disabled = true;
     urlInput.disabled = true;
+    resOgp.hidden = true;
     resultCard.hidden = true;
     progress.hidden = false;
 
@@ -206,6 +207,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     resultCard.hidden = true;
     progress.hidden = true;
+    resOgp.hidden = true;
   });
   setLang(state.lang);
 })();
