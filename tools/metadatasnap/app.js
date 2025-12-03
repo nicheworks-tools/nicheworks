@@ -197,6 +197,9 @@
   });
   resetBtn.addEventListener('click', reset);
 
-  resultCard.hidden = true;
+  document.addEventListener('DOMContentLoaded', () => {
+    resultCard.hidden = true;
+    progress.hidden = true;
+  });
   setLang(state.lang);
 })();
