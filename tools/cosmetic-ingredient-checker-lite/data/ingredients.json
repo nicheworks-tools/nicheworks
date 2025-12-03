@@ -1,0 +1,101 @@
+{
+  "glycerin": {
+    "name_jp": "グリセリン",
+    "name_en": "Glycerin",
+    "aliases": ["glycerol"],
+    "safety": "safe",
+    "usage": ["保湿", "溶剤"],
+    "feature": "水となじみやすく、しっとり感を与える基剤として広く使われる。",
+    "attention": "高濃度でべたつきを感じる場合がある。"
+  },
+  "water": {
+    "name_jp": "水",
+    "name_en": "Water",
+    "aliases": ["aqua"],
+    "safety": "safe",
+    "usage": ["基剤"],
+    "feature": "多くの製品でベースとなる溶媒。",
+    "attention": "特記事項なし。"
+  },
+  "hyaluronic_acid": {
+    "name_jp": "ヒアルロン酸",
+    "name_en": "Hyaluronic Acid",
+    "aliases": ["sodium hyaluronate"],
+    "safety": "safe",
+    "usage": ["保湿"],
+    "feature": "高い保水性を持ち、うるおいを補う目的で使用される。",
+    "attention": "肌状態に応じて使用量を調整する。"
+  },
+  "bg": {
+    "name_jp": "BG",
+    "name_en": "Butylene Glycol",
+    "aliases": ["1,3-butylene glycol"],
+    "safety": "safe",
+    "usage": ["保湿", "溶剤"],
+    "feature": "さっぱりした保湿剤として処方される。",
+    "attention": "高濃度ではまれに刺激を感じる場合がある。"
+  },
+  "fragrance": {
+    "name_jp": "香料",
+    "name_en": "Fragrance",
+    "aliases": ["perfume"],
+    "safety": "caution",
+    "usage": ["香り付け"],
+    "feature": "様々な香り成分の総称で、感じ方に個人差がある。",
+    "attention": "香りが苦手な人や敏感肌は注意。"
+  },
+  "alcohol": {
+    "name_jp": "エタノール",
+    "name_en": "Ethanol",
+    "aliases": ["alcohol"],
+    "safety": "caution",
+    "usage": ["溶剤", "防腐"],
+    "feature": "清涼感を与え、油分をさっぱりさせる。",
+    "attention": "乾燥感や刺激を感じる場合がある。"
+  },
+  "salicylic_acid": {
+    "name_jp": "サリチル酸",
+    "name_en": "Salicylic Acid",
+    "aliases": ["beta hydroxy acid"],
+    "safety": "warning",
+    "usage": ["角質ケア"],
+    "feature": "角質をやわらかくする作用を持つ。",
+    "attention": "敏感肌や赤みがある場合は注意。"
+  },
+  "phenoxyethanol": {
+    "name_jp": "フェノキシエタノール",
+    "name_en": "Phenoxyethanol",
+    "aliases": [],
+    "safety": "caution",
+    "usage": ["防腐"],
+    "feature": "一般的な防腐剤として配合される。",
+    "attention": "高濃度で刺激を感じる場合がある。"
+  },
+  "retinol": {
+    "name_jp": "レチノール",
+    "name_en": "Retinol",
+    "aliases": ["vitamin a"],
+    "safety": "warning",
+    "usage": ["ハリケア"],
+    "feature": "ハリ・つやを補う目的で使われる。",
+    "attention": "紫外線感受性が高まるため夜の使用が推奨される。"
+  },
+  "niacinamide": {
+    "name_jp": "ナイアシンアミド",
+    "name_en": "Niacinamide",
+    "aliases": ["vitamin b3"],
+    "safety": "safe",
+    "usage": ["整肌", "うるおい保持"],
+    "feature": "コンディションを整える目的で配合される。",
+    "attention": "高濃度では一時的にほてりを感じることがある。"
+  },
+  "jojoba_seed_oil": {
+    "name_jp": "ホホバ種子油",
+    "name_en": "Jojoba Seed Oil",
+    "aliases": ["jojoba oil"],
+    "safety": "safe",
+    "usage": ["エモリエント"],
+    "feature": "軽い感触の植物油で、柔軟性を与える。",
+    "attention": "オイルが合わない場合は使用を控える。"
+  }
+}
