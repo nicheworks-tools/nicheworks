@@ -71,9 +71,9 @@ const ingredients = [
   }
 ];
 
-const analysisList = document.getElementById("analysisList");
-const suggestInput = document.getElementById("suggestInput");
-const suggestList = document.getElementById("suggestList");
+const ingredientTags = document.getElementById("ingredientTags");
+const suggestInput = document.getElementById("searchInput");
+const suggestTags = document.getElementById("suggestTags");
 const bulkInput = document.getElementById("bulkInput");
 const bulkButton = document.getElementById("bulkButton");
 const ocrButton = document.getElementById("ocrButton");
@@ -81,6 +81,7 @@ const ocrImage = document.getElementById("ocrImage");
 const ocrStatus = document.getElementById("ocrStatus");
 const analyzeButton = document.getElementById("analyzeButton");
 const resultCards = document.getElementById("resultCards");
+const bulkSection = document.getElementById("bulk");
 
 function normalizeText(text) {
   return (text || "").normalize("NFKC").trim();
@@ -126,8 +127,9 @@ function sanitizeSingleTerm(term) {
   return cleaned;
 }
 
-function createListItem(name) {
-  const li = document.createElement("li");
+function createTagElement(name) {
+  const wrapper = document.createElement("span");
+  wrapper.className = "itag";
 
   const nameSpan = document.createElement("span");
   nameSpan.className = "name";
@@ -135,51 +137,54 @@ function createListItem(name) {
 
   const editButton = document.createElement("button");
   editButton.className = "edit";
+  editButton.type = "button";
   editButton.textContent = "✏";
 
   const deleteButton = document.createElement("button");
   deleteButton.className = "delete";
+  deleteButton.type = "button";
   deleteButton.textContent = "🗑";
 
   editButton.addEventListener("click", handleEditClick);
-  deleteButton.addEventListener("click", () => li.remove());
+  deleteButton.addEventListener("click", () => wrapper.remove());
 
-  li.appendChild(nameSpan);
-  li.appendChild(editButton);
-  li.appendChild(deleteButton);
-  return li;
+  wrapper.appendChild(nameSpan);
+  wrapper.appendChild(editButton);
+  wrapper.appendChild(deleteButton);
+  return wrapper;
 }
 
 function handleEditClick(event) {
   const editButton = event.currentTarget;
-  const li = editButton.parentElement;
-  const existingInput = li.querySelector("input[type='text']");
+  const tag = editButton.parentElement;
+  const existingInput = tag.querySelector("input[type='text']");
   if (existingInput) {
-    saveEdit(li, existingInput, editButton);
+    saveEdit(tag, existingInput, editButton);
   } else {
-    startEdit(li, editButton);
+    startEdit(tag, editButton);
   }
 }
 
-function startEdit(li, editButton) {
-  const nameSpan = li.querySelector(".name");
+function startEdit(tag, editButton) {
+  const nameSpan = tag.querySelector(".name");
   const currentName = nameSpan.textContent;
   const input = document.createElement("input");
   input.type = "text";
   input.value = currentName;
 
-  li.replaceChild(input, nameSpan);
+  tag.replaceChild(input, nameSpan);
   editButton.textContent = "✓";
+  input.focus();
 }
 
-function saveEdit(li, input, editButton) {
+function saveEdit(tag, input, editButton) {
   const sanitized = sanitizeSingleTerm(input.value);
   if (!sanitized) {
     input.focus();
     return;
   }
 
-  if (isDuplicate(sanitized, li)) {
+  if (isDuplicate(sanitized, tag)) {
     input.focus();
     return;
   }
@@ -188,25 +193,26 @@ function saveEdit(li, input, editButton) {
   nameSpan.className = "name";
   nameSpan.textContent = sanitized;
 
-  li.replaceChild(nameSpan, input);
+  tag.replaceChild(nameSpan, input);
   editButton.textContent = "✏";
 }
 
-function isDuplicate(name, currentLi) {
+function isDuplicate(name, currentTag) {
   const lowerName = name.toLowerCase();
-  const items = analysisList.querySelectorAll("li .name");
+  const items = ingredientTags.querySelectorAll(".itag .name");
   for (const item of items) {
-    if (currentLi && item === currentLi.querySelector(".name")) continue;
+    if (currentTag && item === currentTag.querySelector(".name")) continue;
     if (item.textContent.toLowerCase() === lowerName) return true;
   }
   return false;
 }
 
 function addToAnalysisList(name) {
-  if (!name || name.length < 2) return;
-  if (isDuplicate(name)) return;
-  const li = createListItem(name);
-  analysisList.appendChild(li);
+  const sanitized = sanitizeSingleTerm(name);
+  if (!sanitized || sanitized.length < 2) return;
+  if (isDuplicate(sanitized)) return;
+  const tag = createTagElement(sanitized);
+  ingredientTags.appendChild(tag);
 }
 
 function handleBulkAdd() {
@@ -215,9 +221,24 @@ function handleBulkAdd() {
   bulkInput.value = "";
 }
 
+function renderSuggests(results) {
+  suggestTags.innerHTML = "";
+  results.slice(0, 8).forEach((item) => {
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = item.name_jp;
+    tag.addEventListener("click", () => {
+      addToAnalysisList(item.name_jp.toLowerCase());
+      suggestInput.value = "";
+      suggestTags.innerHTML = "";
+    });
+    suggestTags.appendChild(tag);
+  });
+}
+
 function handleSuggestInput() {
   const query = sanitizeSingleTerm(suggestInput.value);
-  suggestList.innerHTML = "";
+  suggestTags.innerHTML = "";
   if (!query) return;
 
   const results = ingredients.filter((item) => {
@@ -225,16 +246,7 @@ function handleSuggestInput() {
     return candidates.some((candidate) => candidate.startsWith(query) || candidate.includes(query));
   });
 
-  results.slice(0, 8).forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item.name_jp;
-    li.addEventListener("click", () => {
-      addToAnalysisList(item.name_jp.toLowerCase());
-      suggestInput.value = "";
-      suggestList.innerHTML = "";
-    });
-    suggestList.appendChild(li);
-  });
+  renderSuggests(results);
 }
 
 function handleOcr() {
@@ -276,20 +288,20 @@ function findIngredient(name) {
 }
 
 function createCard(name, match) {
-  let colorClass = "card--gray";
+  let colorClass = "card-gray";
   let description = "このツールの成分データに掲載がありません。";
   if (match) {
-    if (match.risk === 0) colorClass = "card--green";
-    if (match.risk === 1) colorClass = "card--yellow";
-    if (match.risk === 2) colorClass = "card--red";
+    if (match.risk === 0) colorClass = "card-green";
+    if (match.risk === 1) colorClass = "card-yellow";
+    if (match.risk === 2) colorClass = "card-red";
     description = match.desc;
   }
 
   const card = document.createElement("div");
-  card.className = `card ${colorClass}`;
+  card.className = `result-card ${colorClass}`;
 
   const band = document.createElement("div");
-  band.className = "card-band";
+  band.className = "band";
 
   const content = document.createElement("div");
   content.className = "card-content";
@@ -308,7 +320,7 @@ function createCard(name, match) {
 
 function handleAnalyze() {
   resultCards.innerHTML = "";
-  const names = Array.from(analysisList.querySelectorAll(".name")).map((el) => el.textContent.toLowerCase());
+  const names = Array.from(ingredientTags.querySelectorAll(".name")).map((el) => el.textContent.toLowerCase());
   names.forEach((name) => {
     const match = findIngredient(name);
     const card = createCard(name, match);
@@ -317,6 +329,12 @@ function handleAnalyze() {
   document.getElementById("result").scrollIntoView({ behavior: "smooth" });
 }
 
+function toggleBulk(event) {
+  if (event.target.tagName.toLowerCase() !== "h2") return;
+  bulkSection.classList.toggle("open");
+}
+
+bulkSection.addEventListener("click", toggleBulk);
 suggestInput.addEventListener("input", handleSuggestInput);
 bulkButton.addEventListener("click", handleBulkAdd);
 ocrButton.addEventListener("click", handleOcr);
