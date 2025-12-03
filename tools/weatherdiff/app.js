@@ -25,6 +25,7 @@ const resultSection = document.getElementById("resultSection");
 
 const progressArea = document.getElementById("progressArea");
 const progressText = document.getElementById("progressText");
+const progressBar = progressArea.querySelector(".wd-progress-bar");
 
 const locName = document.getElementById("locName");
 const locMeta = document.getElementById("locMeta");
@@ -103,7 +104,12 @@ function hide(el) { el.classList.add("hidden"); }
 
 function setProgress(msg) {
   progressText.textContent = msg;
-  show(progressArea);
+  progressArea.classList.remove("hidden");
+  if (progressBar) {
+    progressBar.classList.remove("is-animating");
+    void progressBar.offsetWidth;
+    progressBar.classList.add("is-animating");
+  }
 }
 
 function clearError() { errorText.textContent = ""; }
@@ -312,22 +318,22 @@ function codeToIcon(code) {
 ------------------------------ */
 function applyWeatherCards(om, mn) {
   omIconToday.textContent = om.today.icon;
-  omTodayTemp.textContent = `今日: ${om.today.max} / ${om.today.min}°C`;
+  omTodayTemp.textContent = `気温: ${om.today.max} / ${om.today.min}°C`;
   omTodayRain.textContent = `降水: ${om.today.rain}mm`;
   omTodayWind.textContent = `風: ${om.today.wind} m/s`;
 
   omIconTomorrow.textContent = om.tomorrow.icon;
-  omTomorrowTemp.textContent = `明日: ${om.tomorrow.max} / ${om.tomorrow.min}°C`;
+  omTomorrowTemp.textContent = `気温: ${om.tomorrow.max} / ${om.tomorrow.min}°C`;
   omTomorrowRain.textContent = `降水: ${om.tomorrow.rain}mm`;
   omTomorrowWind.textContent = `風: ${om.tomorrow.wind} m/s`;
 
   mnIconToday.textContent = mn.today.icon;
-  mnTodayTemp.textContent = `今日: ${mn.today.max}°C`;
+  mnTodayTemp.innerHTML = `気温: ${mn.today.max} / <span class="wd-temp-min">${mn.today.min}</span>°C`;
   mnTodayRain.textContent = `降水: ${mn.today.rain}mm`;
   mnTodayWind.textContent = `風: ${mn.today.wind} m/s`;
 
   mnIconTomorrow.textContent = mn.tomorrow.icon;
-  mnTomorrowTemp.textContent = `明日: ${mn.tomorrow.max}°C`;
+  mnTomorrowTemp.innerHTML = `気温: ${mn.tomorrow.max} / <span class="wd-temp-min">${mn.tomorrow.min}</span>°C`;
   mnTomorrowRain.textContent = `降水: ${mn.tomorrow.rain}mm`;
   mnTomorrowWind.textContent = `風: ${mn.tomorrow.wind} m/s`;
 }
