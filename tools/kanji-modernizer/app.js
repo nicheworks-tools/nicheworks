@@ -136,26 +136,12 @@
 
     src.forEach(ch => {
       const mapped = map[ch];
-
-      // 変換後の文字（配列なら先頭）
-      let outputChar;
-      if (direction === "new-to-old") {
-        if (Array.isArray(mapped)) {
-          outputChar = mapped.length > 0 ? mapped[0] : ch;
-        } else {
-          outputChar = mapped ?? ch;
-        }
-      } else {
-        outputChar = mapped ?? ch;
-      }
-
-      // 🔥 誤ハイライト対策の最重要部分：
-      //    「辞書ヒット AND 変換前と変換後が異なる場合のみ」ハイライト
+      const outputChar = (Array.isArray(mapped) ? mapped[0] : mapped) ?? ch;
       const isHit = mapped && outputChar !== ch;
 
       if (isHit) {
-        inputHtml.push(`<span class="hl-hit">${escapeHtml(ch)}</span>`);
-        outputHtml.push(`<span class="hl-hit">${escapeHtml(outputChar)}</span>`);
+        inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
+        outputHtml.push(`<span class="km-hit">${escapeHtml(outputChar)}</span>`);
       } else {
         inputHtml.push(escapeHtml(ch));
         outputHtml.push(escapeHtml(outputChar));
