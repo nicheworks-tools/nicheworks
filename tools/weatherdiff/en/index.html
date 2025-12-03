@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>WeatherDiff | 天気予報の比較ツール | NicheWorks</title>
-  <meta name="description" content="複数の天気APIを比較して、気温・降水・風のズレをシンプルに確認できる無料ツールです。">
+  <title>WeatherDiff | Weather forecast comparison tool | NicheWorks</title>
+  <meta name="description" content="Compare forecasts from multiple weather APIs to quickly see differences in temperature, precipitation, and wind.">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/en/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/weatherdiff/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/weatherdiff/en/">
 
-  <meta property="og:title" content="WeatherDiff | 天気予報の比較ツール | NicheWorks">
-  <meta property="og:description" content="Open-Meteo と MET Norway の予報を比較し、気温・降水・風のズレを把握できる無料ツールです。">
+  <meta property="og:title" content="WeatherDiff | Weather forecast comparison tool | NicheWorks">
+  <meta property="og:description" content="Open-Meteo and MET Norway forecasts compared side by side to highlight gaps in temperature, precipitation, and wind.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/en/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="WeatherDiff | 天気予報の比較ツール">
-  <meta name="twitter:description" content="天気予報をAPI別に見比べてズレを確認できるツールです。">
+  <meta name="twitter:title" content="WeatherDiff | Weather forecast comparison tool">
+  <meta name="twitter:description" content="A quick way to compare weather API forecasts and see how they differ.">
   <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
   <!-- favicon（共通） -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 
   <!-- AdSense（必須） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
@@ -44,12 +44,12 @@
   <div class="wd-header-inner">
     <div>
       <h1 class="wd-title">WeatherDiff</h1>
-      <p class="wd-subtitle" id="subtitle">天気予報の比較ツール</p>
+      <p class="wd-subtitle" id="subtitle">Weather forecast comparison tool</p>
     </div>
 
     <div class="wd-lang-switch">
-      <button id="langJP" class="wd-lang-btn is-active">JP</button>
-      <button id="langEN" class="wd-lang-btn">EN</button>
+      <button id="langJP" class="wd-lang-btn">JP</button>
+      <button id="langEN" class="wd-lang-btn is-active">EN</button>
     </div>
   </div>
 </header>
@@ -63,33 +63,33 @@
 
     <div class="wd-intro">
       <p id="introLead">
-        このツールは複数の天気APIの予報を比較してズレを確認できるツールです。
+        A tool to compare forecasts from multiple weather APIs.
       </p>
       <p class="wd-usage-link">
-        <a id="usageLink" href="/tools/weatherdiff/usage.html" target="_blank">くわしい使い方はこちら →</a>
+        <a id="usageLink" href="/tools/weatherdiff/en/usage.html" target="_blank">See full guide →</a>
       </p>
     </div>
 
     <label for="locationInput" class="wd-label" id="labelLocation">
-      地点を入力
+      Enter a location
     </label>
 
     <div class="wd-input-wrap">
       <input
         id="locationInput"
         type="text"
-        placeholder="千葉市 / Shibuya / New York"
+        placeholder="Chiba / Shibuya / New York"
         autocomplete="off"
       />
-      <button id="btnCompare" class="wd-btn primary">比較</button>
-      <button id="btnGeo" class="wd-btn ghost">現在地検索</button>
+      <button id="btnCompare" class="wd-btn primary">Compare</button>
+      <button id="btnGeo" class="wd-btn ghost">Use my location</button>
     </div>
 
     <p id="errorText" class="wd-error"></p>
 
     <div id="progressArea" class="wd-progress hidden">
       <div class="wd-progress-bar"></div>
-      <p id="progressText" class="wd-progress-text">処理中...</p>
+      <p id="progressText" class="wd-progress-text">Processing...</p>
     </div>
 
   </section>
@@ -101,7 +101,7 @@
 
     <div class="wd-warning">
       <p id="warnText">
-        この結果は複数の天気API比較に基づく参考情報です。公式情報も確認してください。
+        These results compare multiple weather APIs for reference. Please also check official information.
       </p>
     </div>
 
@@ -111,7 +111,7 @@
         <p id="locMeta">-</p>
         <p id="processTime" class="wd-process-time"></p>
       </div>
-      <button id="btnReset" class="wd-btn reset">リセット</button>
+      <button id="btnReset" class="wd-btn reset">Reset</button>
     </div>
 
     <!-- ===============================
@@ -124,22 +124,22 @@
         <h3 class="wd-card-title">Open-Meteo</h3>
 
         <div class="wd-weather-row">
-          <p class="wd-day-label" id="omDayToday" aria-hidden="true">今日</p>
+          <p class="wd-day-label" id="omDayToday" aria-hidden="true">Today</p>
           <div class="wd-weather-icon"><span id="omIconToday">☀️</span></div>
           <div class="wd-weather-info">
-            <p id="omTodayTemp">気温: -</p>
-            <p id="omTodayRain">降水: -</p>
-            <p id="omTodayWind">風: -</p>
+            <p id="omTodayTemp">Temp: -</p>
+            <p id="omTodayRain">Precipitation: -</p>
+            <p id="omTodayWind">Wind: -</p>
           </div>
         </div>
 
         <div class="wd-weather-row">
-          <p class="wd-day-label" id="omDayTomorrow" aria-hidden="true">明日</p>
+          <p class="wd-day-label" id="omDayTomorrow" aria-hidden="true">Tomorrow</p>
           <div class="wd-weather-icon"><span id="omIconTomorrow">☀️</span></div>
           <div class="wd-weather-info">
-            <p id="omTomorrowTemp">気温: -</p>
-            <p id="omTomorrowRain">降水: -</p>
-            <p id="omTomorrowWind">風: -</p>
+            <p id="omTomorrowTemp">Temp: -</p>
+            <p id="omTomorrowRain">Precipitation: -</p>
+            <p id="omTomorrowWind">Wind: -</p>
           </div>
         </div>
       </article>
@@ -149,26 +149,26 @@
         <h3 class="wd-card-title">MET Norway</h3>
 
         <div class="wd-weather-row">
-          <p class="wd-day-label" id="mnDayToday" aria-hidden="true">今日</p>
+          <p class="wd-day-label" id="mnDayToday" aria-hidden="true">Today</p>
           <div class="wd-weather-icon"><span id="mnIconToday">☁️</span></div>
           <div class="wd-weather-info">
-            <p id="mnTodayTemp">気温: -</p>
-            <p id="mnTodayRain">降水: -</p>
-            <p id="mnTodayWind">風: -</p>
+            <p id="mnTodayTemp">Temp: -</p>
+            <p id="mnTodayRain">Precipitation: -</p>
+            <p id="mnTodayWind">Wind: -</p>
           </div>
         </div>
 
         <div class="wd-weather-row">
-          <p class="wd-day-label" id="mnDayTomorrow" aria-hidden="true">明日</p>
+          <p class="wd-day-label" id="mnDayTomorrow" aria-hidden="true">Tomorrow</p>
           <div class="wd-weather-icon"><span id="mnIconTomorrow">☁️</span></div>
           <div class="wd-weather-info">
-            <p id="mnTomorrowTemp">気温: -</p>
-            <p id="mnTomorrowRain">降水: -</p>
-            <p id="mnTomorrowWind">風: -</p>
+            <p id="mnTomorrowTemp">Temp: -</p>
+            <p id="mnTomorrowRain">Precipitation: -</p>
+            <p id="mnTomorrowWind">Wind: -</p>
           </div>
         </div>
 
-        <p class="wd-temp-note" id="tempNote">※最低気温は信頼性が低い推定値です</p>
+        <p class="wd-temp-note" id="tempNote">* Minimum temperature is a low-reliability estimate</p>
       </article>
 
     </div>
@@ -177,13 +177,13 @@
          ズレ（Diff）
     =============================== -->
     <article class="wd-card wd-diff-card">
-      <h3 class="wd-card-title" id="diffTitle">予報のズレ（比較結果）</h3>
+      <h3 class="wd-card-title" id="diffTitle">Forecast difference (comparison)</h3>
 
       <div class="wd-diff-grid">
 
         <!-- 今日 -->
         <div class="wd-diff-day">
-          <h4 id="diffTodayHeading">今日</h4>
+          <h4 id="diffTodayHeading">Today</h4>
           <p id="diffTodayMax"></p>
           <p id="diffTodayMin"></p>
           <p id="diffTodayRain"></p>
@@ -192,7 +192,7 @@
 
         <!-- 明日 -->
         <div class="wd-diff-day">
-          <h4 id="diffTomorrowHeading">明日</h4>
+          <h4 id="diffTomorrowHeading">Tomorrow</h4>
           <p id="diffTomorrowMax"></p>
           <p id="diffTomorrowMin"></p>
           <p id="diffTomorrowRain"></p>
@@ -210,15 +210,15 @@
          他サービスリンク
     =============================== -->
     <section class="wd-section">
-      <h3 class="wd-card-title" id="otherServicesTitle">他のサービスで詳しく見る</h3>
+      <h3 class="wd-card-title" id="otherServicesTitle">Check details on other services</h3>
 
       <div class="wd-links-grid">
         <a id="linkGoogleWeather" href="https://www.google.com/search?q=weather" target="_blank">Google Weather</a>
         <a id="linkWeatherCom" href="https://weather.com" target="_blank">Weather.com</a>
         <a id="linkAccuWeather" href="https://www.accuweather.com" target="_blank">AccuWeather</a>
-        <a id="linkJma" href="https://www.jma.go.jp/bosai/forecast/" target="_blank">気象庁</a>
+        <a id="linkJma" href="https://www.jma.go.jp/bosai/forecast/" target="_blank">Japan Meteorological Agency</a>
         <a id="linkTenki" href="https://tenki.jp" target="_blank">tenki.jp</a>
-        <a id="linkYahoo" href="https://weather.yahoo.co.jp/weather/" target="_blank">Yahoo天気</a>
+        <a id="linkYahoo" href="https://weather.yahoo.co.jp/weather/" target="_blank">Yahoo! Weather (JP)</a>
       </div>
     </section>
 
@@ -232,7 +232,7 @@
 <footer class="wd-footer">
 
   <p class="wd-donate-msg" id="donateMsg">
-    このツールが役に立ったら、寄付で応援していただけると嬉しいです。
+    If this tool helps you, please consider supporting with a small donation.
   </p>
 
   <div class="wd-donate-buttons">
@@ -254,6 +254,6 @@
 
 </footer>
 
-<script src="app.js"></script>
+<script src="../app.js"></script>
 </body>
 </html>
