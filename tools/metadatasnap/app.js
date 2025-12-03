@@ -26,7 +26,11 @@
     notFound: { ja: '未検出', en: 'Not Found' }
   };
 
-  const proxy = 'https://api.allorigins.win/raw?url=';
+  const workerProxy = (url) =>
+    `https://curly-meadow-fda4.nicheworks-tools.workers.dev/?url=${encodeURIComponent(url)}`;
+
+  const allOriginsProxy = (url) =>
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
 
   const setLang = (lang) => {
     state.lang = lang;
@@ -90,15 +94,17 @@
     return true;
   };
 
-  const fetchHtml = async (url) => {
-    const fetchURL = proxy + encodeURIComponent(url);
-    try {
-      const resp = await fetch(fetchURL);
-      if (!resp.ok) return '';
-      return await resp.text();
-    } catch (e) {
-      return '';
+  const fetchHTML = async (userURL) => {
+    const proxies = [workerProxy, allOriginsProxy];
+
+    for (const build of proxies) {
+      try {
+        const res = await fetch(build(userURL), { mode: 'cors' });
+        if (res.ok) return await res.text();
+      } catch (e) {}
     }
+
+    throw new Error('All proxies failed');
   };
 
   const parseWithDom = (html) => {
@@ -141,7 +147,7 @@
     let hasHtml = false;
 
     try {
-      const html = await fetchHtml(url);
+      const html = await fetchHTML(url);
 
       if (html) {
         hasHtml = true;
