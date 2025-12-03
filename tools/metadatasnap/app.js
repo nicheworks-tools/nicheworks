@@ -26,6 +26,8 @@
     notFound: { ja: '未検出', en: 'Not Found' }
   };
 
+  const proxy = 'https://api.allorigins.win/raw?url=';
+
   const setLang = (lang) => {
     state.lang = lang;
     body.classList.remove('lang-ja', 'lang-en');
@@ -89,29 +91,14 @@
   };
 
   const fetchHtml = async (url) => {
-    let html = '';
+    const fetchURL = proxy + encodeURIComponent(url);
     try {
-      const resp = await fetch(url, { mode: 'no-cors' });
-      if (resp && resp.ok && resp.type !== 'opaque') {
-        html = await resp.text();
-      } else {
-        html = await resp.text().catch(() => '');
-      }
+      const resp = await fetch(fetchURL);
+      if (!resp.ok) return '';
+      return await resp.text();
     } catch (e) {
-      html = '';
+      return '';
     }
-
-    if (!html) {
-      try {
-        const resp = await fetch(url, { mode: 'cors' });
-        if (resp.ok) {
-          html = await resp.text();
-        }
-      } catch (e) {
-        html = '';
-      }
-    }
-    return html;
   };
 
   const parseWithDom = (html) => {
@@ -176,6 +163,8 @@
 
   const reset = () => {
     urlInput.value = '';
+    urlInput.disabled = false;
+    analyzeBtn.disabled = false;
     setError('');
     progress.hidden = true;
     resultCard.hidden = true;
@@ -183,7 +172,11 @@
     state.description = '';
     state.ogImage = '';
     state.canonical = '';
+    resTitle.textContent = '';
+    resDesc.textContent = '';
+    resCanonical.textContent = '';
     resOgp.removeAttribute('src');
+    resOgp.alt = '';
     resOgp.hidden = true;
     urlInput.focus();
   };

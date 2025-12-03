@@ -67,7 +67,7 @@
 </div>
 
 <!-- 結果カード -->
-<div id="result-card" class="card result-card" hidden>
+<div id="result-card" hidden class="card result-card">
   <h2 data-i18n="ja">抽出結果</h2>
   <h2 data-i18n="en">Extracted Metadata</h2>
 
@@ -105,26 +105,23 @@
 
 <!-- FAQ（寄付の上） -->
 <div class="faq-block">
-  <details>
-    <summary data-i18n="ja">URLはサーバーに送られますか？</summary>
-    <summary data-i18n="en">Are entered URLs sent to a server?</summary>
-    <p data-i18n="ja">いいえ。すべてブラウザ内のみで処理されます。</p>
-    <p data-i18n="en">No — all processing stays in your browser.</p>
-  </details>
+  <p><strong data-i18n="ja">URLはサーバーに送られますか？</strong></p>
+  <p data-i18n="ja">いいえ。すべてブラウザ内だけで処理されます。</p>
 
-  <details>
-    <summary data-i18n="ja">一部サイトが取得できない理由</summary>
-    <summary data-i18n="en">Why some sites can't be loaded</summary>
-    <p data-i18n="ja">CORSなどの制限により取得できない場合があります。</p>
-    <p data-i18n="en">CORS restrictions may prevent loading.</p>
-  </details>
+  <p><strong data-i18n="en">Are entered URLs sent to a server?</strong></p>
+  <p data-i18n="en">No — all processing happens in your browser.</p>
 
-  <details>
-    <summary data-i18n="ja">OGP画像がない理由</summary>
-    <summary data-i18n="en">Why OGP image may be missing</summary>
-    <p data-i18n="ja">OGPが設定されていないか相対パスが使用されています。</p>
-    <p data-i18n="en">The page may not provide OGP or uses a relative path.</p>
-  </details>
+  <p><strong data-i18n="ja">一部サイトが取得できない理由</strong></p>
+  <p data-i18n="ja">CORS等の制限により取得できない場合があります。</p>
+
+  <p><strong data-i18n="en">Why some sites can't be loaded</strong></p>
+  <p data-i18n="en">CORS restrictions may prevent loading.</p>
+
+  <p><strong data-i18n="ja">OGP画像が表示されない理由</strong></p>
+  <p data-i18n="ja">OGPが設定されていない場合があります。</p>
+
+  <p><strong data-i18n="en">Why OGP image may be missing</strong></p>
+  <p data-i18n="en">The page may not provide OGP metadata.</p>
 </div>
 
 <!-- 寄付導線（柔らかめ） -->
