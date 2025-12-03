@@ -8,75 +8,127 @@
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="hero">
-      <div class="container">
-        <p class="eyebrow">🧴 化粧品成分チェッカー Lite</p>
-        <h1>成分表を撮影・検索・貼り付けでまとめ、<br>安全性・用途・注意点をサッと確認できる無料ツールです。</h1>
-        <p class="sub">（すべてブラウザ内で処理され安心）</p>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div class="nw-header-top">
+        <a class="nw-logo-link" href="/">
+          <img class="nw-logo" src="/assets/nicheworks-logo.png" alt="NicheWorks">
+        </a>
+        <div class="nw-header-titles">
+          <h1 class="nw-title">化粧品成分チェッカー Lite</h1>
+          <p class="nw-subtitle">成分表を撮影・検索・貼り付けでまとめ、ブラウザ内だけで安全性や注意点を確認できます。</p>
+        </div>
+        <div class="nw-lang-switch">日本語のみ</div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="container main-grid">
-      <div class="left">
-        <section class="card howto">
-          <h2>【使い方】</h2>
-          <ol>
-            <li>成分を追加する（画像 / 検索 / 貼り付け）</li>
-            <li>気になる成分が「解析リスト」に並ぶ</li>
-            <li>「解析する」を押すと、安全性と注意点を表示</li>
-          </ol>
-        </section>
+  <nav class="nw-nav">
+    <div class="nw-nav-inner">
+      <a class="nw-nav-current" href="#hero">概要</a>
+      <a href="#howto">使い方</a>
+      <a href="#adder">成分追加</a>
+      <a href="#results">解析結果</a>
+    </div>
+  </nav>
 
-        <section class="card add-card">
-          <div class="card-header">
-            <span>📥 成分を追加する</span>
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="tool-card hero-card" id="hero">
+      <div class="hero-label">🧴 Cosmetic Ingredient Checker Lite</div>
+      <h2 class="hero-title">成分表をまとめてチェックし、用途や注意点をサッと把握</h2>
+      <p class="hero-desc">画像アップロード・キーワード検索・まとめ貼り付けで成分を追加し、辞書データをもとに用途や留意点を整理します。すべてブラウザ内処理でサーバー送信はありません。</p>
+    </section>
+
+    <section class="tool-card" id="howto">
+      <h3 class="section-title">【使い方】</h3>
+      <p class="section-desc">3ステップで解析できます。</p>
+      <ol class="cic-steps">
+        <li>成分を追加する（画像 / 検索 / 貼り付け）</li>
+        <li>気になる成分が「解析リスト」に並ぶ</li>
+        <li>「解析する」を押すと、用途や注意点を表示</li>
+      </ol>
+    </section>
+
+    <div class="cic-layout">
+      <div class="cic-left">
+        <section class="tool-card" id="adder">
+          <h3 class="section-title">成分を追加する</h3>
+          <p class="section-desc">成分画像のOCR、キーワード検索、まとめ貼り付けに対応しています。</p>
+
+          <div id="ocrDropzone" class="dropzone">
+            <p class="drop-main">成分画像をドラッグ＆ドロップ</p>
+            <p class="drop-sub">JPEG / PNG / HEIC などに対応（ブラウザ内でOCR処理）</p>
+            <label for="ocrInput" class="btn">ファイルを選択</label>
+            <input class="file-input" type="file" id="ocrInput" accept="image/*">
+            <div class="cic-ocr-status" id="ocrStatus"></div>
           </div>
 
-          <div class="input-block">
-            <label for="ocrInput" class="upload-btn">📷 成分画像をアップロード</label>
-            <input type="file" id="ocrInput" accept="image/*" hidden>
-            <p class="helper" id="ocrStatus"></p>
+          <div class="cic-input-group">
+            <label class="cic-label" for="searchInput">成分を検索</label>
+            <input id="searchInput" type="text" class="cic-input" placeholder="例：hyaluronic / グリセリン" autocomplete="off">
+            <div id="searchSuggestions" class="cic-suggestions"></div>
           </div>
 
-          <div class="input-block">
-            <label class="field-label" for="searchInput">🔍 成分を検索</label>
-            <input id="searchInput" type="text" placeholder="例：hyaluronic / グリセリン" autocomplete="off">
-            <div id="suggestList" class="suggest-list"></div>
-          </div>
-
-          <div class="input-block collapsible" id="bulkSection">
-            <button class="collapse-toggle" type="button">
-              📋 まとめて貼り付け（任意） <span class="chevron">▼</span>
-            </button>
-            <div class="collapse-body" id="bulkBody">
+          <details class="cic-bulk" id="bulkDetails">
+            <summary>まとめて貼り付け（任意）</summary>
+            <div class="cic-bulk-body">
               <textarea id="bulkInput" rows="4" placeholder="Water\nGlycerin\nHyaluronic acid\n..."></textarea>
-              <button class="ghost-btn" id="bulkAdd" type="button">リストに追加</button>
+              <div class="cic-bulk-actions">
+                <button id="bulkAddButton" type="button" class="btn btn-primary">リストに追加</button>
+                <button id="bulkClearButton" type="button" class="btn btn-ghost">リストをクリア</button>
+              </div>
             </div>
-          </div>
+          </details>
         </section>
 
-        <section class="card list-card">
-          <div class="card-header">
-            <span>🧪 解析リスト</span>
-          </div>
-          <div id="tagList" class="tag-list"></div>
+        <section class="tool-card">
+          <h3 class="section-title">解析リスト</h3>
+          <p class="section-desc">追加した成分がタグとして表示されます。不要なものは削除できます。</p>
+          <div id="ingredientList" class="cic-tag-list"></div>
+          <div id="ingredientEmpty" class="empty-state">成分を追加するとここに表示されます。</div>
         </section>
 
-        <section class="card action-card">
-          <button id="analyzeBtn" class="primary-btn" disabled>解析する</button>
+        <section class="tool-card">
+          <h3 class="section-title">解析を実行</h3>
+          <p class="section-desc">解析リストの内容をもとに用途や留意点を整理します。</p>
+          <div class="actions">
+            <button id="analyzeButton" class="btn btn-primary" disabled>解析する</button>
+          </div>
         </section>
       </div>
 
-      <div class="right">
-        <section class="card result-card" id="resultArea">
-          <div class="card-header">
-            <span>解析結果</span>
+      <div class="cic-right" id="results">
+        <section class="tool-card cic-sticky">
+          <div class="cic-result-header">
+            <div>
+              <h3 class="section-title">解析結果</h3>
+              <p class="section-desc">成分ごとに用途と注意点を表示します。左のライン色でレベルを示します。</p>
+            </div>
+            <button id="copyButton" class="btn btn-ghost" type="button">コピー</button>
           </div>
-          <div id="resultCards" class="result-stack"></div>
+          <div id="resultContainer" class="cic-result-stack"></div>
+          <div id="resultEmpty" class="empty-state">解析結果がここに表示されます。</div>
+          <div class="copy-status" id="copyStatus"></div>
         </section>
       </div>
-    </main>
+    </div>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">このツールは参考情報を提供するものであり、医学的な診断や完全な安全性を保証するものではありません。</p>
+  </footer>
+
+  <div class="nw-donate">
+    <p class="nw-donate-text">応援ありがとうございます。開発継続のためのご支援をいただけると助かります。</p>
+    <div class="nw-donate-links">
+      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSEで支援</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fiで支援</a>
+    </div>
   </div>
 
   <script src="app.js"></script>
