@@ -1,0 +1,8 @@
+Dear Hiring Manager,
+
+I am applying for the {{position}} role at {{company}}. My core skills include {{skills_phrase}}, and I have experience with {{experience_sentence}}.
+
+{{extra}}
+
+{{closing}}
+{{applicant}}

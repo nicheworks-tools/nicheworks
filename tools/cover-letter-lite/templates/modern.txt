@@ -1,0 +1,10 @@
+Hi {{company}} team,
+
+I’m excited to apply for the {{position}} role. I have experience in {{experience_sentence}}, and my key strengths include {{skills_phrase}}. I enjoy tackling challenges and delivering clean results.
+
+{{extra}}
+
+I’d love the chance to discuss how my skills can support your goals.
+
+{{closing}}
+{{applicant}}
