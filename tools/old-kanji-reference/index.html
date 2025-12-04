@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <title>旧字体一覧（Old Kanji Reference）| NicheWorks</title>
+  <meta name="description" content="旧字体の一覧を検索できるリファレンス。旧字と現代表記を並べて閲覧し、即時フィルターとコピーが可能です。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/old-kanji-reference/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="旧字体一覧（Old Kanji Reference）| NicheWorks">
+  <meta property="og:description" content="旧字体と現代表記を見やすく一覧表示。即時検索とコピーに対応した旧字体リファレンス。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/old-kanji-reference/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "旧字体一覧（Old Kanji Reference）",
+    "url": "https://nicheworks.pages.dev/tools/old-kanji-reference/",
+    "description": "旧字体と現代表記を検索できる旧漢字リファレンスページです。旧字と新字のペアを一覧表示し、コピーにも対応。",
+    "inLanguage": "ja"
+  }
+  </script>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="nw-lang-switch">
+      <button data-lang="ja" class="nw-lang-btn active">JP</button>
+      <button data-lang="en" class="nw-lang-btn">EN</button>
+    </div>
+
+    <h1 class="nw-title">
+      <span data-i18n="ja">旧字体一覧（Old Kanji Reference）</span>
+      <span data-i18n="en">Old Kanji Reference</span>
+    </h1>
+
+    <p class="nw-subtitle">
+      <span data-i18n="ja">旧字体と現代表記を読みやすく整理したリファレンスです。旧字・新字どちらからでも検索できます。</span>
+      <span data-i18n="en">A readable, searchable reference of old kanji and their modern forms. Filter instantly and copy with one tap.</span>
+    </p>
+
+    <p class="nw-count" data-i18n="ja">収録件数：<span data-count="old"></span> 件</p>
+    <p class="nw-count" data-i18n="en">Entries: <span data-count="old"></span></p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="search-panel">
+      <h2 class="section-title">
+        <span data-i18n="ja">旧字体を探す</span>
+        <span data-i18n="en">Search Old Kanji</span>
+      </h2>
+      <p class="section-desc">
+        <span data-i18n="ja">旧字体・現代表記どちらでも検索できます。入力に応じて即時フィルターされます。</span>
+        <span data-i18n="en">Type either the old or modern form to filter the list instantly.</span>
+      </p>
+
+      <label class="sr-only" for="searchInput">Search</label>
+      <input id="searchInput" type="search" class="search-input" aria-label="検索"
+        data-placeholder-ja="旧字体・現代表記どちらでも検索できます" data-placeholder-en="Search by old or modern form">
+    </section>
+
+    <section class="group-wrapper">
+      <h2 class="section-title">
+        <span data-i18n="ja">旧字体一覧</span>
+        <span data-i18n="en">All Entries</span>
+      </h2>
+      <p class="section-desc">
+        <span data-i18n="ja">Unicode ブロック単位で並べています。旧字をクリックしてコピーできます。</span>
+        <span data-i18n="en">Grouped by Unicode block for clarity. Click to copy the old form.</span>
+      </p>
+
+      <div id="statusMessage" class="status-message" role="status"></div>
+      <div id="groupContainer" class="group-container" aria-live="polite"></div>
+      <p id="emptyMessage" class="empty-message" hidden>
+        <span data-i18n="ja">該当する旧字体が見つかりませんでした。</span>
+        <span data-i18n="en">No matching entries found.</span>
+      </p>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <div class="nw-donate">
+      <p data-i18n="ja">開発の継続のため、OFUSE / Ko-fi でご支援いただけると嬉しいです。</p>
+      <p data-i18n="en">If this tool helps, please consider supporting via OFUSE / Ko-fi.</p>
+
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <div class="nw-links">
+      <a href="/tools/rename-wizard/">Rename Wizard</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a> /
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© 2025 NicheWorks</p>
+    <p>
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
+        nicheworks.pages.dev
+      </a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
