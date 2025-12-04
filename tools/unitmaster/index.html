@@ -39,8 +39,11 @@
 
   <!-- JA/EN切替（スマホ＝タイトル下 / PC＝右上） -->
   <div class="lang-switch">
-    <button data-lang="ja" class="lang-btn active">JA</button>
-    <button data-lang="en" class="lang-btn">EN</button>
+    <div class="lang-buttons">
+      <button data-lang="ja" class="lang-btn active">JA</button>
+      <button data-lang="en" class="lang-btn">EN</button>
+    </div>
+    <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="Toggle dark mode">🌙</button>
   </div>
 </header>
 
@@ -110,6 +113,22 @@
     <button id="calcBtn" class="calc-btn hidden">計算する</button>
 
     <div id="resultBox" class="result-box"></div>
+
+    <div class="accordion">
+      <button class="accordion-toggle" id="bulkToggle" data-target="bulkBox" aria-expanded="false">
+        <span id="bulkLabel">一括変換</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div id="bulkBox" class="accordion-content"></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-toggle" id="historyToggle" data-target="historyBox" aria-expanded="false">
+        <span id="historyLabel">履歴（5件）</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div id="historyBox" class="accordion-content"></div>
+    </div>
   </section>
 
   <!-- 手動広告プレースホルダ（仕様書必須） -->

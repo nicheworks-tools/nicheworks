@@ -28,6 +28,10 @@ const i18n = {
     auto: "自動計算",
     btn_calc: "計算する",
 
+    bulk_title: "一括変換",
+    history_title: "履歴（5件）",
+    history_empty: "履歴がまだありません",
+
     result: (v, f, r, t) => `${v} ${f} = ${r} ${t}`,
 
     donate_line1: "💗 このツールが役に立ったら支援お願いします",
@@ -73,6 +77,10 @@ const i18n = {
 
     auto: "Auto Calc",
     btn_calc: "Calculate",
+
+    bulk_title: "Bulk Convert",
+    history_title: "History (5)",
+    history_empty: "No history yet",
 
     result: (v, f, r, t) => `${v} ${f} = ${r} ${t}`,
 
@@ -156,11 +164,21 @@ const inputValue = document.getElementById("inputValue");
 const autoCalc = document.getElementById("autoCalc");
 const calcBtn = document.getElementById("calcBtn");
 const resultBox = document.getElementById("resultBox");
+const bulkBox = document.getElementById("bulkBox");
+const historyBox = document.getElementById("historyBox");
 
 const langBtns = document.querySelectorAll(".lang-btn");
 const donateP = document.querySelector(".donate-box p");
 const footerHome = document.querySelector(".home-link a");
 const subtitleEl = document.getElementById("subtitle");
+const bulkLabel = document.getElementById("bulkLabel");
+const historyLabel = document.getElementById("historyLabel");
+const accordionToggles = document.querySelectorAll(".accordion-toggle");
+const themeToggle = document.getElementById("themeToggle");
+const htmlEl = document.documentElement;
+const HISTORY_KEY = "unitmaster_history";
+const THEME_KEY = "unitmaster_theme";
+let historyReady = false;
 
 function getCategoryTextMap(t) {
   return {
@@ -182,6 +200,23 @@ function syncCategoryDropdownText(t) {
     });
   }
 }
+
+/* ----------------------------
+  テーマ切替
+---------------------------- */
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  if (isDark) htmlEl.classList.add("dark");
+  else htmlEl.classList.remove("dark");
+
+  if (themeToggle) {
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+  }
+}
+
+const savedTheme = localStorage.getItem(THEME_KEY);
+applyTheme(savedTheme === "dark" ? "dark" : "light");
 
 /* ----------------------------
   言語適用
@@ -253,8 +288,13 @@ function applyLanguage(lang) {
   // フッター
   if (footerHome) footerHome.textContent = t.footer_home;
 
+  // アコーディオンラベル
+  if (bulkLabel) bulkLabel.textContent = t.bulk_title;
+  if (historyLabel) historyLabel.textContent = t.history_title;
+
   // 再計算
   calculate();
+  loadHistory();
 }
 
 /* ----------------------------
@@ -262,6 +302,7 @@ function applyLanguage(lang) {
 ---------------------------- */
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
+    historyReady = true;
     const cat = tab.dataset.cat;
     categorySelect.value = cat;
     applyCategory(cat);
@@ -273,6 +314,7 @@ tabs.forEach(tab => {
 ---------------------------- */
 if (categorySelect) {
   categorySelect.addEventListener("change", () => {
+    historyReady = true;
     applyCategory(categorySelect.value);
   });
 }
@@ -326,6 +368,99 @@ function convertTemperature(value, from, to) {
   return value;
 }
 
+function formatUnitLabel(cat, unit) {
+  return cat === "temp" ? unit.toUpperCase() : unit;
+}
+
+function generateBulkList() {
+  if (!bulkBox) return;
+  const rawValue = inputValue.value || "0";
+  const v = parseFloat(rawValue || "0");
+  const cat = categorySelect.value;
+
+  if (!Number.isFinite(v)) {
+    bulkBox.innerHTML = "";
+    return;
+  }
+
+  const lines = [`${rawValue} ${formatUnitLabel(cat, fromSel.value)}`];
+
+  if (cat === "temp") {
+    ["c", "f", "k"].forEach(u => {
+      if (u === fromSel.value) return;
+      const res = convertTemperature(v, fromSel.value, u);
+      lines.push(`= ${res.toFixed(4)} ${u.toUpperCase()}`);
+    });
+  } else {
+    const dict = units[cat];
+    const vBase = v * dict[fromSel.value];
+    for (const u in dict) {
+      if (u === fromSel.value) continue;
+      const r = vBase / dict[u];
+      lines.push(`= ${r.toFixed(4)} ${u}`);
+    }
+  }
+
+  bulkBox.innerHTML = lines.map(l => `<div class="bulk-line">${l}</div>`).join("");
+}
+
+function saveHistory(resultText) {
+  let list = [];
+  try {
+    const stored = localStorage.getItem(HISTORY_KEY);
+    if (stored) list = JSON.parse(stored);
+    if (!Array.isArray(list)) list = [];
+  } catch (e) {
+    list = [];
+  }
+
+  list.unshift({
+    value: inputValue.value || "0",
+    from: fromSel.value,
+    to: toSel.value,
+    result: resultText,
+    category: categorySelect.value
+  });
+
+  list = list.slice(0, 5);
+
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+  } catch (e) {
+    // ignore storage errors
+  }
+
+  loadHistory();
+}
+
+function loadHistory() {
+  if (!historyBox) return;
+
+  let list = [];
+  try {
+    const stored = localStorage.getItem(HISTORY_KEY);
+    if (stored) list = JSON.parse(stored);
+    if (!Array.isArray(list)) list = [];
+  } catch (e) {
+    list = [];
+  }
+
+  if (list.length === 0) {
+    historyBox.innerHTML = `<p class="history-empty">${i18n[currentLang].history_empty}</p>`;
+    return;
+  }
+
+  const catMap = getCategoryTextMap(i18n[currentLang]);
+
+  historyBox.innerHTML = list
+    .map(item => {
+      const catLabel = catMap[item.category] || item.category;
+      const resultLine = item.result || i18n[currentLang].result(item.value, item.from, "-", item.to);
+      return `<div class="history-item"><div>${resultLine}</div><div class="history-meta">${item.value} ${formatUnitLabel(item.category, item.from)} → ${formatUnitLabel(item.category, item.to)} | ${catLabel}</div></div>`;
+    })
+    .join("");
+}
+
 /* ----------------------------
   通常変換
 ---------------------------- */
@@ -333,33 +468,43 @@ function calculate() {
   const v = parseFloat(inputValue.value || "0");
   const cat = categorySelect.value;
 
+  let resultText = "";
+
   if (cat === "temp") {
     const rTemp = convertTemperature(v, fromSel.value, toSel.value);
-    resultBox.textContent = i18n[currentLang].result(
+    resultText = i18n[currentLang].result(
       v, fromSel.value.toUpperCase(), rTemp.toFixed(4), toSel.value.toUpperCase()
     );
-    return;
+  }
+  else {
+    const dict = units[cat];
+    const vBase = v * dict[fromSel.value];
+    const r = vBase / dict[toSel.value];
+
+    resultText = i18n[currentLang].result(
+      v, fromSel.value, r.toFixed(4), toSel.value
+    );
   }
 
-  const dict = units[cat];
-  const vBase = v * dict[fromSel.value];
-  const r = vBase / dict[toSel.value];
-
-  resultBox.textContent = i18n[currentLang].result(
-    v, fromSel.value, r.toFixed(4), toSel.value
-  );
+  resultBox.textContent = resultText;
+  generateBulkList();
+  if (historyReady) saveHistory(resultText);
+  else loadHistory();
 }
 
 /* ----------------------------
   自動計算
 ---------------------------- */
 inputValue.addEventListener("input", () => {
+  historyReady = true;
   if (autoCalc.checked) calculate();
 });
 fromSel.addEventListener("change", () => {
+  historyReady = true;
   if (autoCalc.checked) calculate();
 });
 toSel.addEventListener("change", () => {
+  historyReady = true;
   if (autoCalc.checked) calculate();
 });
 
@@ -372,7 +517,38 @@ autoCalc.addEventListener("change", () => {
   }
 });
 
-calcBtn.addEventListener("click", calculate);
+calcBtn.addEventListener("click", () => {
+  historyReady = true;
+  calculate();
+});
+
+/* ----------------------------
+  アコーディオン
+---------------------------- */
+accordionToggles.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const target = document.getElementById(btn.dataset.target);
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    const nextState = !expanded;
+    btn.setAttribute("aria-expanded", nextState ? "true" : "false");
+
+    const icon = btn.querySelector(".accordion-icon");
+    if (icon) icon.textContent = nextState ? "−" : "+";
+
+    if (target) target.classList.toggle("open", nextState);
+  });
+});
+
+/* ----------------------------
+  テーマ切替トグル
+---------------------------- */
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const next = htmlEl.classList.contains("dark") ? "light" : "dark";
+    applyTheme(next);
+    localStorage.setItem(THEME_KEY, next);
+  });
+}
 
 /* ----------------------------
   言語切替
