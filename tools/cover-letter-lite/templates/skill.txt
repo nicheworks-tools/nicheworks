@@ -1,6 +1,6 @@
 Dear Hiring Manager at {{company}},
 
-My application for the {{position}} position is driven by a strong alignment between your requirements and my strengths. I am confident in {{skills_phrase}}, supported by experience such as {{experience_sentence}}.
+My application for the {{position}} position is driven by a strong alignment between your requirements and my technical strengths. I am especially confident in {{skills_phrase}}, supported by experience such as {{experience_sentence}}.
 
 {{extra}}
 
