@@ -1,0 +1,26 @@
+[
+  {
+    "postal_code": "1500042",
+    "postal_hyphen": "150-0042",
+    "pref": "東京都",
+    "city": "渋谷区",
+    "town": "宇田川町",
+    "full": "東京都渋谷区宇田川町"
+  },
+  {
+    "postal_code": "1500043",
+    "postal_hyphen": "150-0043",
+    "pref": "東京都",
+    "city": "渋谷区",
+    "town": "道玄坂",
+    "full": "東京都渋谷区道玄坂"
+  },
+  {
+    "postal_code": "1600022",
+    "postal_hyphen": "160-0022",
+    "pref": "東京都",
+    "city": "新宿区",
+    "town": "新宿",
+    "full": "東京都新宿区新宿"
+  }
+]
