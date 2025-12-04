@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JP Address ↔ Postal Code Lite</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">JP Address ↔ Postal Code Lite</p>
+      <h1 class="title">住所から郵便番号をすばやく逆引きする軽量ツール</h1>
+      <p class="lede">都道府県を選んで住所の一部を入力すると、該当する郵便番号を素早く検索できます。必要な行だけ出力リストに追加し、最後にCSVで一括ダウンロードできます。</p>
+    </header>
+
+    <section class="card" id="search-section">
+      <div class="section-head">
+        <h2>検索</h2>
+        <p class="sub">2文字以上で検索できます。入力すると自動で絞り込みます。</p>
+      </div>
+      <div class="form-grid">
+        <label class="field">
+          <span class="field-label">都道府県</span>
+          <select id="prefecture" aria-label="都道府県選択"></select>
+        </label>
+        <label class="field">
+          <span class="field-label">住所の一部</span>
+          <input type="text" id="query" placeholder="例：渋谷区宇田川町 / 福岡市天神" aria-label="住所検索入力">
+        </label>
+      </div>
+      <div class="actions">
+        <button id="search-btn" class="primary">検索する</button>
+        <p class="note">都道府県を選択後、住所の一部を入力してください。</p>
+      </div>
+      <div id="load-error" class="inline-alert" role="alert" aria-live="polite"></div>
+    </section>
+
+    <section class="card" id="results-section">
+      <div class="section-head">
+        <h2 id="results-title">検索結果（0件）</h2>
+        <p class="sub">新しい検索をするとこのリストは更新されます。出力リストは保持されます。</p>
+      </div>
+      <div id="results" class="list empty">該当する住所が見つかりませんでした。入力内容をご確認ください。</div>
+    </section>
+
+    <section class="card" id="output-section">
+      <div class="section-head">
+        <h2 id="output-title">出力リスト（0件）</h2>
+        <p class="sub">検索結果の「⋯」メニューから「出力リストに追加」を選ぶとここに表示されます。</p>
+      </div>
+      <div id="output-list" class="list empty">出力リストが空です。必要な行を追加してください。</div>
+      <div class="actions">
+        <button id="download-btn" class="primary" disabled>CSVをダウンロード</button>
+        <p class="note">postal_code,address の形式でダウンロードします。</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="donation">このツールが役に立ったら、<a href="#" aria-label="寄付リンク">コーヒーのご支援</a>もぜひご検討ください。</p>
+    </footer>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
