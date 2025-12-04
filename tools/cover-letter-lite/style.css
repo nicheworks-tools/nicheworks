@@ -1,1 +1,207 @@
-/* condensed for demo */
+/* -----------------------------------------
+   Base layout (NicheWorks compatibility)
+----------------------------------------- */
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.nw-header {
+  text-align: center;
+  padding: 28px 12px 12px;
+}
+.nw-header h1 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.nw-desc {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.nw-main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 12px 32px;
+}
+
+/* ads */
+.ad-slot {
+  margin: 12px 0 16px;
+  padding: 8px;
+  border: 1px dashed #d4d4d4;
+  min-height: 60px;
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* donate */
+.nw-donate {
+  text-align: center;
+  margin: 12px 0;
+}
+.nw-donate-text {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+.nw-donate-links a {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #111827;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+/* internal links */
+.nw-links {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 13px;
+}
+.nw-links a {
+  color: #4b5563;
+  text-decoration: underline;
+}
+
+/* -----------------------------------------
+   Form (Notion style)
+----------------------------------------- */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #ffffff;
+  outline: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #2563eb;
+}
+
+.form-block {
+  margin-top: 4px;
+}
+.form-label {
+  margin: 0 0 4px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* generate button */
+.btn-generate {
+  margin-top: 12px;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-generate:hover {
+  background: #1d4ed8;
+}
+
+/* -----------------------------------------
+   Output (Medium style)
+----------------------------------------- */
+.result-container {
+  margin-top: 28px;
+}
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.result-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.btn-copy {
+  padding: 6px 12px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.btn-copy:hover {
+  background: #f3f4f6;
+}
+
+.cl-output {
+  margin-top: 16px;
+  max-width: 640px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #111;
+}
+
+/* paragraphs spacing */
+.cl-output p {
+  margin: 10px 0;
+}
+
+/* -----------------------------------------
+   Responsive
+----------------------------------------- */
+
+/* 320–480px */
+@media (max-width: 480px) {
+  .btn-generate { width: 100%; }
+  .radio-group { flex-direction: column; }
+  .cl-output { max-width: 100%; }
+}
+
+/* 481–768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .radio-group { flex-direction: row; gap: 24px; }
+  .btn-generate { width: 260px; margin: 0 auto; display: block; }
+  .cl-output { max-width: 640px; margin: 0 auto; }
+}
+
+/* 769+ PC */
+@media (min-width: 769px) {
+  .form-container { max-width: 720px; margin: 0 auto; }
+  .cl-output { max-width: 640px; margin: 0 auto; }
+}
