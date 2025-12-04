@@ -60,32 +60,33 @@
   <!-- ad top -->
   <div class="ad-slot ad-top">Ad (loading...)</div>
 
-  <!-- donate -->
-  <div class="nw-donate">
-    <p class="nw-donate-text">If this tool is helpful, you can support future development:</p>
-    <div class="nw-donate-links">
-      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-    </div>
-  </div>
-
   <!-- form -->
   <section class="form-container">
 
-    <label>Applicant Name</label>
-    <input id="applicant" type="text" placeholder="Jane Doe">
+    <div class="field">
+      <label for="applicant">Applicant Name</label>
+      <input id="applicant" type="text" placeholder="Jane Doe">
+    </div>
 
-    <label>Company Name</label>
-    <input id="company" type="text" placeholder="Acme Inc.">
+    <div class="field">
+      <label for="company">Company Name</label>
+      <input id="company" type="text" placeholder="Acme Inc.">
+    </div>
 
-    <label>Position / Job Title</label>
-    <input id="position" type="text" placeholder="Software Engineer">
+    <div class="field">
+      <label for="position">Position / Job Title</label>
+      <input id="position" type="text" placeholder="Software Engineer">
+    </div>
 
-    <label>Key Skills</label>
-    <textarea id="skills" rows="3" placeholder="React, Node.js, TypeScript"></textarea>
+    <div class="field">
+      <label for="skills">Key Skills</label>
+      <textarea id="skills" rows="3" placeholder="React, Node.js, TypeScript"></textarea>
+    </div>
 
-    <label>Experience Summary (optional)</label>
-    <textarea id="experience" rows="3" placeholder="2+ years building web applications..."></textarea>
+    <div class="field">
+      <label for="experience">Experience Summary (optional)</label>
+      <textarea id="experience" rows="3" placeholder="2+ years building web applications..."></textarea>
+    </div>
 
     <div class="form-block">
       <p class="form-label">Tone</p>
@@ -103,17 +104,21 @@
       </div>
     </div>
 
-    <label>Template Style</label>
-    <select id="style">
-      <option value="formal">Formal</option>
-      <option value="modern">Modern</option>
-      <option value="entry">Entry-level</option>
-      <option value="direct">Direct</option>
-      <option value="skill">Skill-focused</option>
-    </select>
-
-    <button id="generate-btn" class="btn-generate">Generate Cover Letter</button>
+    <div class="field">
+      <label for="style">Template Style</label>
+      <select id="style">
+        <option value="formal">Formal</option>
+        <option value="modern">Modern</option>
+        <option value="entry">Entry-level</option>
+        <option value="direct">Direct</option>
+        <option value="skill">Skill-focused</option>
+      </select>
+    </div>
   </section>
+
+  <div class="action-row">
+    <button id="generate-btn" class="btn-generate">Generate Cover Letter</button>
+  </div>
 
   <!-- result -->
   <section id="result-section" class="result-container" style="display:none;">
@@ -123,6 +128,15 @@
     </div>
     <div id="output" class="cl-output"></div>
   </section>
+
+  <!-- donate -->
+  <div class="nw-donate">
+    <p class="nw-donate-text">If this tool is helpful, you can support future development:</p>
+    <div class="nw-donate-links">
+      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+    </div>
+  </div>
 
   <!-- ad bottom -->
   <div class="ad-slot ad-bottom">Ad (loading...)</div>

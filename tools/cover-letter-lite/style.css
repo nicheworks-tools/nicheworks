@@ -1,6 +1,12 @@
 /* -----------------------------------------
    Base layout (NicheWorks compatibility)
 ----------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: #ffffff;
@@ -26,7 +32,7 @@ body {
 .nw-main {
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 12px 32px;
+  padding: 0 16px 40px;
 }
 
 /* ads */
@@ -43,12 +49,14 @@ body {
 /* donate */
 .nw-donate {
   text-align: center;
-  margin: 12px 0;
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px solid #e5e7eb;
 }
 .nw-donate-text {
   font-size: 13px;
   color: #6b7280;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 .nw-donate-links a {
   display: inline-block;
@@ -65,7 +73,7 @@ body {
 /* internal links */
 .nw-links {
   text-align: center;
-  margin-top: 24px;
+  margin-top: 20px;
   font-size: 13px;
 }
 .nw-links a {
@@ -80,17 +88,28 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-top: 4px;
+  padding: 0 12px;
+  margin: 4px auto 0;
+  max-width: 720px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
 }
 
 label {
   font-size: 14px;
   font-weight: 500;
   color: #374151;
+  margin-bottom: 6px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
+  max-width: 100%;
   padding: 10px 12px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -98,15 +117,23 @@ input, textarea, select {
   background: #ffffff;
   outline: none;
 }
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-color: #2563eb;
 }
 
+select {
+  max-width: 280px;
+}
+
 .form-block {
-  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .form-label {
-  margin: 0 0 4px;
+  margin: 0;
   font-size: 14px;
   color: #374151;
 }
@@ -114,19 +141,29 @@ input:focus, textarea:focus, select:focus {
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   font-size: 14px;
 }
 .radio-group label {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 8px;
+  color: #111827;
+}
+.radio-group input {
+  width: auto;
+  margin-top: 2px;
+}
+
+.action-row {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 0;
 }
 
 /* generate button */
 .btn-generate {
-  margin-top: 12px;
-  padding: 12px 0;
+  padding: 14px 28px;
   font-size: 15px;
   font-weight: 600;
   background: #2563eb;
@@ -134,6 +171,9 @@ input:focus, textarea:focus, select:focus {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  width: auto;
+  margin: 0 auto;
+  display: block;
 }
 .btn-generate:hover {
   background: #1d4ed8;
@@ -144,11 +184,13 @@ input:focus, textarea:focus, select:focus {
 ----------------------------------------- */
 .result-container {
   margin-top: 28px;
+  margin-bottom: 40px;
 }
 .result-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 .result-header h2 {
   margin: 0;
@@ -169,8 +211,8 @@ input:focus, textarea:focus, select:focus {
 }
 
 .cl-output {
-  margin-top: 16px;
   max-width: 640px;
+  margin: 16px auto 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 16px;
   line-height: 1.65;
@@ -179,7 +221,20 @@ input:focus, textarea:focus, select:focus {
 
 /* paragraphs spacing */
 .cl-output p {
-  margin: 10px 0;
+  margin: 18px 0;
+}
+
+/* footer */
+.nw-footer {
+  text-align: center;
+  padding: 32px 0 48px;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.nw-footer a {
+  color: #4b5563;
+  text-decoration: underline;
 }
 
 /* -----------------------------------------
@@ -188,20 +243,18 @@ input:focus, textarea:focus, select:focus {
 
 /* 320–480px */
 @media (max-width: 480px) {
-  .btn-generate { width: 100%; }
+  .nw-main { padding: 0 12px 40px; }
+  .form-container { padding: 0 12px; }
   .radio-group { flex-direction: column; }
-  .cl-output { max-width: 100%; }
-}
-
-/* 481–768px */
-@media (min-width: 481px) and (max-width: 768px) {
-  .radio-group { flex-direction: row; gap: 24px; }
-  .btn-generate { width: 260px; margin: 0 auto; display: block; }
-  .cl-output { max-width: 640px; margin: 0 auto; }
+  .cl-output { max-width: 100%; font-size: 15.5px; line-height: 1.68; }
 }
 
 /* 769+ PC */
 @media (min-width: 769px) {
-  .form-container { max-width: 720px; margin: 0 auto; }
-  .cl-output { max-width: 640px; margin: 0 auto; }
+  .radio-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 18px;
+  }
+  .action-row { padding-top: 16px; }
 }
