@@ -151,10 +151,13 @@ a:hover {
 
 .convert-box {
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .input-block {
-  margin-bottom: 16px;
+  margin: 0;
 }
 
 .input-block label {
@@ -177,8 +180,26 @@ a:hover {
 ============================================ */
 
 .autocalc-row {
-  margin: 16px 0;
+  margin: 0;
   font-size: 0.95rem;
+}
+
+.autocalc-row label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.autocalc-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 .calc-btn {
