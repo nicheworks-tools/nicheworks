@@ -1,6 +1,6 @@
 Dear Hiring Manager,
 
-I am applying for the {{position}} position at {{company}}. While early in my career, I have gained exposure through projects where I developed {{skills_phrase}}. {{experience_sentence}}
+I am applying for the {{position}} position at {{company}}. While early in my career, I have already gained practical exposure through projects where I developed {{skills_phrase}}. {{experience_sentence}}
 
 {{extra}}
 
