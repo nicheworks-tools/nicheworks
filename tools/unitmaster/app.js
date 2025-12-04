@@ -12,6 +12,7 @@ const i18n = {
     subtitle: "長さ・重さ・温度・体積・面積・速度・圧力などの世界標準単位を変換・計算するツールです。",
 
     category_label: "カテゴリ",
+    dd_category_label: "カテゴリ",
 
     howto_title: "【使い方】",
     howto_1: "カテゴリを選択（スマホではドロップダウン）",
@@ -57,6 +58,7 @@ const i18n = {
     subtitle: "Convert and calculate global standard units — length, weight, temperature, volume, area, speed, pressure, and more.",
 
     category_label: "Category",
+    dd_category_label: "Category",
 
     howto_title: "【How to Use】",
     howto_1: "Choose a category (dropdown on mobile)",
@@ -160,6 +162,27 @@ const donateP = document.querySelector(".donate-box p");
 const footerHome = document.querySelector(".home-link a");
 const subtitleEl = document.getElementById("subtitle");
 
+function getCategoryTextMap(t) {
+  return {
+    length: t.dd_length,
+    weight: t.dd_weight,
+    temp: t.dd_temp,
+    volume: t.dd_volume,
+    area: t.dd_area,
+    speed: t.dd_speed,
+    pressure: t.dd_pressure
+  };
+}
+
+function syncCategoryDropdownText(t) {
+  const ddMap = getCategoryTextMap(t);
+  if (categorySelect) {
+    Array.from(categorySelect.options).forEach(o => {
+      if (ddMap[o.value]) o.textContent = ddMap[o.value];
+    });
+  }
+}
+
 /* ----------------------------
   言語適用
 ---------------------------- */
@@ -177,7 +200,7 @@ function applyLanguage(lang) {
   if (subtitleEl) subtitleEl.textContent = t.subtitle;
 
   // ▼▼▼ カテゴリラベル（今回の修正ポイント） ▼▼▼
-  if (categoryLabel) categoryLabel.textContent = t.category_label;
+  if (categoryLabel) categoryLabel.textContent = t.dd_category_label || t.category_label;
 
   // 使い方
   const howtoTitle = document.querySelector(".howto h2");
@@ -222,20 +245,7 @@ function applyLanguage(lang) {
   });
 
   // モバイルドロップダウン
-  const ddMap = {
-    length: t.dd_length,
-    weight: t.dd_weight,
-    temp: t.dd_temp,
-    volume: t.dd_volume,
-    area: t.dd_area,
-    speed: t.dd_speed,
-    pressure: t.dd_pressure
-  };
-  if (categorySelect) {
-    for (let o of categorySelect.options) {
-      if (ddMap[o.value]) o.textContent = ddMap[o.value];
-    }
-  }
+  syncCategoryDropdownText(t);
 
   // 寄付文
   if (donateP) donateP.textContent = t.donate_line1;
@@ -280,17 +290,6 @@ function applyCategory(cat) {
 
   const t = i18n[currentLang];
 
-  // モバイル用ドロップダウン表示名
-  const ddMap = {
-    length: t.dd_length,
-    weight: t.dd_weight,
-    temp: t.dd_temp,
-    volume: t.dd_volume,
-    area: t.dd_area,
-    speed: t.dd_speed,
-    pressure: t.dd_pressure
-  };
-
   // option（単位）
   if (cat === "temp") {
     ["c", "f", "k"].forEach(u => {
@@ -306,10 +305,7 @@ function applyCategory(cat) {
   }
 
   // ▼▼▼ モバイルカテゴリドロップダウンのラベル更新（安全版） ▼▼▼
-  if (categorySelect && ddMap[cat]) {
-    const opt = categorySelect.querySelector(`option[value="${cat}"]`);
-    if (opt) opt.textContent = ddMap[cat];
-  }
+  syncCategoryDropdownText(t);
 
   calculate();
 }
