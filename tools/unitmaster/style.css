@@ -2,6 +2,26 @@
    Reset / Base
 ============================================ */
 
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --sub: #555555;
+  --border: #ececec;
+  --card-bg: #f3f3f3;
+  --muted-bg: var(--card-bg);
+  --button-bg: var(--fg);
+  --button-fg: var(--bg);
+  --accent-bg: var(--card-bg);
+}
+
+html.dark {
+  --bg: #111;
+  --fg: #eee;
+  --sub: #aaa;
+  --border: #333;
+  --card-bg: #1a1a1a;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -9,12 +29,12 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: #ffffff;
-  color: #111111;
+  background: var(--bg);
+  color: var(--fg);
 }
 
 a {
-  color: #111;
+  color: var(--fg);
   text-decoration: none;
 }
 
@@ -36,7 +56,7 @@ a:hover {
 
 .nw-header {
   padding: 16px;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid var(--border);
   text-align: center;
 }
 
@@ -55,22 +75,46 @@ a:hover {
 .lang-switch {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-buttons {
+  display: flex;
+  gap: 8px;
 }
 
 
 .lang-btn {
   padding: 6px 12px;
-  border: 1px solid #ccc;
-  background: #f7f7f7;
+  border: 1px solid var(--border);
+  background: var(--accent-bg);
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
 }
 
 .lang-btn.active {
-  background: #111;
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-fg);
+}
+
+.theme-toggle {
+  border: 1px solid var(--border);
+  background: var(--accent-bg);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--card-bg);
 }
 
 /* ============================================
@@ -118,7 +162,7 @@ a:hover {
   width: 100%;
   padding: 12px;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 8px;
 }
 
@@ -134,15 +178,15 @@ a:hover {
 .tab {
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #f5f5f5;
+  border: 1px solid var(--border);
+  background: var(--accent-bg);
   cursor: pointer;
   font-size: 0.9rem;
 }
 
 .tab.active {
-  background: #111;
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-fg);
 }
 
 /* ============================================
@@ -171,7 +215,7 @@ a:hover {
   width: 100%;
   padding: 12px;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 8px;
 }
 
@@ -189,9 +233,9 @@ a:hover {
   align-items: center;
   gap: 10px;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--muted-bg);
   width: 100%;
   line-height: 1.4;
 }
@@ -206,8 +250,8 @@ a:hover {
   width: 100%;
   padding: 14px;
   font-size: 1.1rem;
-  background: #111;
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-fg);
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -225,11 +269,83 @@ a:hover {
 .result-box {
   margin-top: 8px;
   padding: 18px;
-  background: #f3f3f3;
+  background: var(--card-bg);
   border-radius: 10px;
   min-height: 40px;
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.accordion {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--accent-bg);
+  overflow: hidden;
+}
+
+.accordion + .accordion {
+  margin-top: 8px;
+}
+
+.accordion-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.accordion-icon {
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.accordion-toggle[aria-expanded="true"] .accordion-icon {
+  transform: none;
+}
+
+.accordion-content {
+  display: none;
+  padding: 12px 14px;
+  background: var(--card-bg);
+}
+
+.accordion-content.open {
+  display: block;
+}
+
+.bulk-line {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.history-item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-meta {
+  color: var(--sub);
+  font-size: 0.85rem;
+}
+
+.history-empty {
+  margin: 0;
+  color: var(--sub);
+  font-size: 0.95rem;
 }
 
 /* ============================================
@@ -277,7 +393,7 @@ a:hover {
 .nw-footer {
   padding: 20px;
   text-align: center;
-  border-top: 1px solid #ececec;
+  border-top: 1px solid var(--border);
   margin-top: 30px;
   font-size: 0.9rem;
 }
