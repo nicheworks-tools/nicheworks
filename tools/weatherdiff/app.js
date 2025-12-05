@@ -293,6 +293,13 @@ function unlockUI() {
   input.readOnly = false;
 }
 
+function showLoading() {
+  show(progressArea);
+}
+function hideLoading() {
+  hide(progressArea);
+}
+
 function show(el) { el.classList.remove("hidden"); }
 function hide(el) { el.classList.add("hidden"); }
 
@@ -315,26 +322,65 @@ function showError(msg) { errorText.textContent = msg; }
 async function searchByInput() {
   const q = input.value.trim();
   if (!q) return;
-  await runFullProcess({ query: q });
+  showLoading();
+  try {
+    await runFullProcess({ query: q });
+  } finally {
+    hideLoading();
+  }
 }
 
 /* ------------------------------
    Geo Search
 ------------------------------ */
 function searchByGeolocation() {
+  showLoading();
+  if (location.protocol !== "https:") {
+    showError("現在地取得にはHTTPSが必要です。");
+    hideLoading();
+    return;
+  }
   if (!navigator.geolocation) {
     showError(t("errorNoGeo"));
+    hideLoading();
     return;
   }
 
   navigator.geolocation.getCurrentPosition(
     async pos => {
-      await runFullProcess({
-        lat: pos.coords.latitude,
-        lon: pos.coords.longitude,
-      });
+      try {
+        try {
+          await runFullProcess({
+            lat: pos.coords.latitude,
+            lon: pos.coords.longitude,
+          });
+        } catch (e) {
+          showError("処理中にエラーが発生しました。");
+        }
+      } finally {
+        hideLoading();
+      }
     },
-    () => showError(t("errorDenied"))
+    async () => {
+      showError(t("errorDenied"));
+      try {
+        try {
+          await runFullProcess({
+            lat: 35.681236,
+            lon: 139.767125,
+          });
+        } catch (e) {
+          showError("処理中にエラーが発生しました。");
+        }
+      } finally {
+        hideLoading();
+      }
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 3000,
+      maximumAge: 0,
+    }
   );
 }
 
@@ -384,10 +430,25 @@ async function runFullProcess(params) {
 ------------------------------ */
 async function resolveLocation(params) {
   if (params.query) {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(params.query)}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    if (!data || !data.length) throw new Error(t("errorNotFound"));
+    const url =
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+        params.query
+      )}` +
+      `&addressdetails=1&accept-language=ja,en&limit=3&countrycodes=jp`;
+
+    let data;
+    try {
+      const res = await fetch(url);
+      data = await res.json();
+    } catch (e) {
+      showError("地点が見つかりませんでした。");
+      throw new Error("地点が見つかりませんでした。");
+    }
+
+    if (!data || !data.length) {
+      showError("地点が見つかりませんでした。");
+      throw new Error("地点が見つかりませんでした。");
+    }
 
     return {
       lat: +data[0].lat,
