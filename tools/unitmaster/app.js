@@ -55,6 +55,24 @@ const i18n = {
     dd_pressure: "圧力",
 
     footer_home: "NicheWorks Tools 一覧へ戻る",
+
+    units: {
+      length: {
+        shaku: "尺",
+        sun: "寸",
+        bu: "分（長さ）",
+        ken: "間",
+        tsubo: "坪（長さ換算）",
+        ri: "里",
+        furlong: "ハロン",
+        chain: "チェーン",
+        league: "リーグ",
+        angstrom: "オングストローム",
+        micrometer: "マイクロメートル",
+        parsec: "パーセク",
+        lightyear: "光年"
+      }
+    }
   },
 
   en: {
@@ -103,6 +121,24 @@ const i18n = {
     dd_pressure: "Pressure",
 
     footer_home: "Back to NicheWorks Tools",
+
+    units: {
+      length: {
+        shaku: "Shaku",
+        sun: "Sun",
+        bu: "Bu",
+        ken: "Ken",
+        tsubo: "Tsubo",
+        ri: "Ri",
+        furlong: "Furlong",
+        chain: "Chain",
+        league: "League",
+        angstrom: "Angstrom",
+        micrometer: "Micrometer",
+        parsec: "Parsec",
+        lightyear: "Light year"
+      }
+    }
   }
 };
 
@@ -118,7 +154,20 @@ const units = {
     inch: 0.0254,
     ft: 0.3048,
     yard: 0.9144,
-    mile: 1609.344
+    mile: 1609.344,
+    shaku: 0.303,
+    sun: 0.0303,
+    bu: 0.00303,
+    ken: 1.818,
+    tsubo: 3.306,
+    ri: 3927,
+    furlong: 201.168,
+    chain: 20.1168,
+    league: 4828.032,
+    angstrom: 1e-10,
+    micrometer: 1e-6,
+    parsec: 3.0857e16,
+    lightyear: 9.4607e15
   },
   weight: {
     g: 1,
@@ -199,6 +248,12 @@ function syncCategoryDropdownText(t) {
       if (ddMap[o.value]) o.textContent = ddMap[o.value];
     });
   }
+}
+
+function getUnitLabel(cat, unit, t) {
+  const unitsMap = t.units || {};
+  const catMap = unitsMap[cat] || {};
+  return catMap[unit] || unit;
 }
 
 /* ----------------------------
@@ -341,8 +396,9 @@ function applyCategory(cat) {
   } else {
     const dict = units[cat];
     for (const u in dict) {
-      fromSel.innerHTML += `<option value="${u}">${u}</option>`;
-      toSel.innerHTML += `<option value="${u}">${u}</option>`;
+      const label = getUnitLabel(cat, u, t);
+      fromSel.innerHTML += `<option value="${u}">${label}</option>`;
+      toSel.innerHTML += `<option value="${u}">${label}</option>`;
     }
   }
 
