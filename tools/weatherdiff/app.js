@@ -398,8 +398,29 @@ async function runFullProcess(params) {
   try {
     const { lat, lon, displayName, countryName } = await resolveLocation(params);
     locName.textContent = displayName;
-    locMeta.textContent =
-      `lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}\n${countryName}`;
+
+    if (params.query) {
+      locMeta.textContent =
+        `lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}\n${countryName}`;
+    } else {
+      let reverseAddress = null;
+      try {
+        reverseAddress = await reverseGeocode(lat, lon);
+      } catch (e) {
+        reverseAddress = null;
+      }
+
+      const metaLines = [];
+      if (reverseAddress) {
+        metaLines.push(`<strong>${reverseAddress}付近</strong>`);
+      } else {
+        metaLines.push("場所名を取得できませんでした");
+      }
+      metaLines.push(`lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}`);
+      if (countryName) metaLines.push(countryName);
+
+      locMeta.innerHTML = metaLines.join("<br>");
+    }
 
     setProgress(t("progressOpenMeteo"));
     const om = await fetchOpenMeteo(lat, lon);
@@ -464,6 +485,20 @@ async function resolveLocation(params) {
     displayName: t("currentLocation"),
     countryName: "",
   };
+}
+
+async function reverseGeocode(lat, lon) {
+  const url =
+    `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}` +
+    `&format=json&accept-language=ja&zoom=14&addressdetails=1`;
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error("Reverse geocoding failed");
+  }
+
+  const data = await res.json();
+  return data?.display_name || null;
 }
 
 /* ------------------------------
@@ -657,23 +692,26 @@ function mapMetSymbolToIcon(symbol) {
    Apply Cards
 ------------------------------ */
 function applyWeatherCards(om, mn) {
+  const highLabel = currentLang === "ja" ? "最高" : "High";
+  const lowLabel = currentLang === "ja" ? "最低" : "Low";
+
   omIconToday.textContent = om.today.icon;
-  omTodayTemp.textContent = `${t("tempLabel")}: ${om.today.max} / ${om.today.min}°C`;
+  omTodayTemp.innerHTML = `${highLabel}: ${om.today.max}°C<br>${lowLabel}: ${om.today.min}°C`;
   omTodayRain.textContent = `${t("rainLabel")}: ${om.today.rain}mm`;
   omTodayWind.textContent = `${t("windLabel")}: ${om.today.wind} m/s`;
 
   omIconTomorrow.textContent = om.tomorrow.icon;
-  omTomorrowTemp.textContent = `${t("tempLabel")}: ${om.tomorrow.max} / ${om.tomorrow.min}°C`;
+  omTomorrowTemp.innerHTML = `${highLabel}: ${om.tomorrow.max}°C<br>${lowLabel}: ${om.tomorrow.min}°C`;
   omTomorrowRain.textContent = `${t("rainLabel")}: ${om.tomorrow.rain}mm`;
   omTomorrowWind.textContent = `${t("windLabel")}: ${om.tomorrow.wind} m/s`;
 
   mnIconToday.textContent = mn.today.icon;
-  mnTodayTemp.innerHTML = `${t("tempLabel")}: ${mn.today.max} / <span class="wd-temp-min">${mn.today.min}</span>°C`;
+  mnTodayTemp.innerHTML = `${highLabel}: ${mn.today.max}°C<br>${lowLabel}: <span class="wd-temp-min">${mn.today.min}</span>°C`;
   mnTodayRain.textContent = `${t("rainLabel")}: ${mn.today.rain}mm`;
   mnTodayWind.textContent = `${t("windLabel")}: ${mn.today.wind} m/s`;
 
   mnIconTomorrow.textContent = mn.tomorrow.icon;
-  mnTomorrowTemp.innerHTML = `${t("tempLabel")}: ${mn.tomorrow.max} / <span class="wd-temp-min">${mn.tomorrow.min}</span>°C`;
+  mnTomorrowTemp.innerHTML = `${highLabel}: ${mn.tomorrow.max}°C<br>${lowLabel}: <span class="wd-temp-min">${mn.tomorrow.min}</span>°C`;
   mnTomorrowRain.textContent = `${t("rainLabel")}: ${mn.tomorrow.rain}mm`;
   mnTomorrowWind.textContent = `${t("windLabel")}: ${mn.tomorrow.wind} m/s`;
 }
