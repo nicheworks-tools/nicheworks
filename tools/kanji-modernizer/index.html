@@ -8,8 +8,8 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
- <!-- Cloudflare Analytics -->
- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
   <title>旧字体→新字体 変換｜Kanji Modernizer | NicheWorks</title>
   <meta name="description" content="旧字体・新字体を一括変換する無料ツール。姓名・地名・古文書・寺院名などで使われる旧字を辞書ベースで現代の漢字へ変換。逆方向（新→旧）にも対応し、完全ローカルで動作します。">
@@ -23,9 +23,9 @@
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
 
- <!-- favicon（共通） -->
- <link rel="icon" href="/assets/favicon.ico">
- <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <!-- favicon（共通） -->
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- WebApp schema -->
   <script type="application/ld+json">
@@ -74,103 +74,34 @@
   }
   </script>
 
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-  <!-- ======================= -->
-  <!--       Header            -->
-  <!-- ======================= -->
-  <header class="nw-header">
-    <h1 class="nw-title">
+  <main class="page">
+    <h1 class="page-title">
       <span data-i18n="ja">旧字体・新字体 一括変換ツール</span>
       <span data-i18n="en">Kanji Modernizer (Old ⇄ Modern)</span>
     </h1>
 
-    <p class="nw-subtitle">
-      <span data-i18n="ja">旧→新／新→旧を辞書ベースで一括変換します。</span>
-      <span data-i18n="en">Convert between old-style and modern kanji instantly.</span>
+    <p class="page-desc">
+      <span data-i18n="ja">旧→新／新→旧を辞書ベースで一括変換します。入力された文字はブラウザ内のみで処理されます。</span>
+      <span data-i18n="en">Convert between old and modern kanji locally in your browser using a curated dictionary.</span>
     </p>
 
-    <div class="nw-count" data-i18n="ja">
-      収録字数：旧→新 <span data-count="old"></span>字 /
-      新→旧 <span data-count="new"></span>字（ユニーク <span data-count="unique"></span>字）
-    </div>
-    <div class="nw-count" data-i18n="en">
-      Dictionary size: Old→New <span data-count="old"></span>,
-      New→Old <span data-count="new"></span> (Unique <span data-count="unique"></span>)
+    <div class="lang-switch">
+      <button data-lang="ja" class="lang-btn active">JP</button>
+      <button data-lang="en" class="lang-btn">EN</button>
     </div>
 
-    <div class="nw-lang-switch">
-      <button data-lang="ja" class="nw-lang-btn active">JP</button>
-      <button data-lang="en" class="nw-lang-btn">EN</button>
-    </div>
+    <p class="count-text" data-i18n="ja">収録字数：旧→新 <span data-count="old"></span>字 / 新→旧 <span data-count="new"></span>字（ユニーク <span data-count="unique"></span>字）</p>
+    <p class="count-text" data-i18n="en">Dictionary size: Old→New <span data-count="old"></span>, New→Old <span data-count="new"></span> (Unique <span data-count="unique"></span>)</p>
 
-  </header>
-
-  <main class="nw-main">
-
-    <!-- ======================= -->
-    <!--        ad-top           -->
-    <!-- ======================= -->
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-    <!-- ======================= -->
-    <!--          FAQ            -->
-    <!-- ======================= -->
-    <section class="faq-section">
-      <h2 class="faq-title">
-        <span data-i18n="ja">よくある質問</span>
-        <span data-i18n="en">FAQ</span>
-      </h2>
-
-      <div class="faq-item">
-        <h3>
-          <span data-i18n="ja">Q. 旧字体とは何？</span>
-          <span data-i18n="en">Q. What are old-style kanji?</span>
-        </h3>
-        <p>
-          <span data-i18n="ja">人名・地名・古文書などで使われる古い漢字の字体です。</span>
-          <span data-i18n="en">They are traditional forms used historically in names or documents.</span>
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>
-          <span data-i18n="ja">Q. 全部変換できる？</span>
-          <span data-i18n="en">Q. Does it cover all?</span>
-        </h3>
-        <p>
-          <span data-i18n="ja">辞書外の文字はそのまま残ります。</span>
-          <span data-i18n="en">Characters not found in dictionary remain unchanged.</span>
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>
-          <span data-i18n="ja">Q. 入力は送信される？</span>
-          <span data-i18n="en">Q. Is my text uploaded?</span>
-        </h3>
-        <p>
-          <span data-i18n="ja">いいえ、処理はすべてブラウザ内で完結します。</span>
-          <span data-i18n="en">No. Everything runs locally in your browser.</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- ======================= -->
-    <!--      usage link         -->
-    <!-- ======================= -->
-    <p class="usage-link">
-      <a href="./usage.html" data-i18n="ja">使い方はこちら</a>
-      <a href="./usage-en.html" data-i18n="en">Usage Guide</a>
-    </p>
-
-    <!-- ======================= -->
-    <!--    Tool main block      -->
-    <!-- ======================= -->
-    <section class="tool-box">
-      <h2 class="tool-title">
+    <section class="section">
+      <h2 class="section-title">
         <span data-i18n="ja">旧字体・新字体 変換</span>
         <span data-i18n="en">Convert Kanji</span>
       </h2>
@@ -179,11 +110,9 @@
         <span data-i18n="ja">変換したいテキスト</span>
         <span data-i18n="en">Text to convert</span>
       </label>
+      <textarea id="inputText" class="text-input" rows="8" placeholder="例）舊字體の東京府淺草區"></textarea>
 
-      <textarea id="inputText" class="text-input" rows="8"
-        placeholder="例）舊字體の東京府淺草區"></textarea>
-
-      <fieldset class="direction">
+      <fieldset class="direction" aria-label="direction">
         <label>
           <input type="radio" name="direction" value="old-to-new" checked>
           <span data-i18n="ja">旧 → 新</span>
@@ -196,57 +125,52 @@
         </label>
       </fieldset>
 
-      <button id="convertBtn" class="btn-primary">
-        <span data-i18n="ja">変換する</span>
-        <span data-i18n="en">Convert</span>
-      </button>
+      <div class="action-row">
+        <button id="convertBtn" class="btn-primary">
+          <span data-i18n="ja">変換する</span>
+          <span data-i18n="en">Convert</span>
+        </button>
+        <button id="resetBtn" class="btn-ghost">
+          <span data-i18n="ja">リセット</span>
+          <span data-i18n="en">Reset</span>
+        </button>
+      </div>
 
       <div id="progress" class="progress" aria-hidden="true">
         <div class="progress-bar"></div>
       </div>
 
       <div id="errorBox" class="error-box" hidden></div>
+    </section>
 
-      <div id="resultBlock" class="result-block" hidden>
-        <h3 class="field-label">
-          <span data-i18n="ja">変換結果</span>
-          <span data-i18n="en">Result</span>
-        </h3>
+    <section class="section section-lg" id="resultBlock" hidden>
+      <h2 class="section-title">
+        <span data-i18n="ja">変換結果</span>
+        <span data-i18n="en">Result</span>
+      </h2>
 
-        <p class="field-label sub">
-          <span data-i18n="ja">変換前テキスト（ヒット部分を強調）</span>
-          <span data-i18n="en">Original text (highlighted hits)</span>
-        </p>
-        <div id="inputHighlight" class="result-text" aria-live="polite"></div>
+      <p class="field-label sub">
+        <span data-i18n="ja">変換前テキスト（ヒット部分を強調）</span>
+        <span data-i18n="en">Original text (highlighted hits)</span>
+      </p>
+      <div id="inputHighlight" class="result-text" aria-live="polite"></div>
 
-        <p class="field-label sub">
-          <span data-i18n="ja">変換後テキスト</span>
-          <span data-i18n="en">Converted text</span>
-        </p>
-        <div id="outputText" class="result-text" aria-live="polite"></div>
+      <p class="field-label sub">
+        <span data-i18n="ja">変換後テキスト</span>
+        <span data-i18n="en">Converted text</span>
+      </p>
+      <div id="outputText" class="result-text" aria-live="polite"></div>
 
-        <div class="result-actions">
-          <button id="copyBtn" class="btn-secondary">
-            <span data-i18n="ja">コピー</span>
-            <span data-i18n="en">Copy</span>
-          </button>
-
-          <button id="resetBtn" class="btn-ghost">
-            <span data-i18n="ja">リセット</span>
-            <span data-i18n="en">Reset</span>
-          </button>
-        </div>
+      <div class="action-row result-actions">
+        <button id="copyBtn" class="btn-secondary">
+          <span data-i18n="ja">コピー</span>
+          <span data-i18n="en">Copy</span>
+        </button>
       </div>
     </section>
 
-    <!-- ======================= -->
-    <!--      ad-bottom          -->
-    <!-- ======================= -->
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
-    <!-- ======================= -->
-    <!--        Donation         -->
-    <!-- ======================= -->
     <div class="nw-donate">
       <p data-i18n="ja">開発の継続のため、OFUSE / Ko-fi でご支援いただけると嬉しいです。</p>
       <p data-i18n="en">If this tool helps, please consider supporting via OFUSE / Ko-fi.</p>
@@ -257,20 +181,13 @@
       </div>
     </div>
 
-    <!-- ======================= -->
-    <!--      Internal Links     -->
-    <!-- ======================= -->
     <div class="nw-links">
       <a href="/tools/rename-wizard/">Rename Wizard</a> /
       <a href="/tools/log-formatter/">LogFormatter</a> /
       <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
     </div>
-
   </main>
 
-  <!-- ======================= -->
-  <!--         Footer          -->
-  <!-- ======================= -->
   <footer class="nw-footer">
     <p>© 2025 NicheWorks</p>
     <p>
