@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>色置換ツール｜Color Replace Lite | NicheWorks</title>
+  <meta name="description" content="ブラウザで完結する色置換ツール。スポイトで色を抽出し、HEX・RGB・プリセットで指定した色に置換。ズームや許容範囲調整、PNG保存に対応。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/color-replace/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="色置換ツール｜Color Replace Lite | NicheWorks" />
+  <meta property="og:description" content="スポイトとHEX/RGB同期で色を置換。ズーム確認と許容範囲調整、PNG保存対応のブラウザツール。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/color-replace/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <link rel="icon" type="image/png" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/assets/nw-base.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Color Replace Lite",
+      "url": "https://nicheworks.pages.dev/tools/color-replace/",
+      "applicationCategory": "Utility",
+      "operatingSystem": "All",
+      "description": "スポイトとHEX/RGB同期に対応したブラウザ色置換ツール。ズーム確認や許容範囲調整、PNG保存が可能です。"
+    }
+  </script>
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div>
+        <p class="nw-label" data-i18n="toolLabel">Color Utility</p>
+        <h1 class="nw-title" data-i18n="title">Color Replace Lite</h1>
+        <p class="nw-subtitle" data-i18n="description">スポイトで拾った色を別の色に置き換えるブラウザツール。HEX/RGB同期、ズーム、PNG保存に対応します。</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <section class="ad-slot ad-top" aria-label="ad-top" data-i18n="adTop">広告枠（上）</section>
+
+    <div class="lang-switch">
+      <button class="btn ghost lang-button" data-lang="ja" data-i18n="langJa">日本語</button>
+      <button class="btn ghost lang-button" data-lang="en" data-i18n="langEn">English</button>
+    </div>
+
+    <section class="card">
+      <div class="input-row">
+        <label for="imageInput" data-i18n="uploadLabel">画像をアップロード</label>
+        <input type="file" id="imageInput" accept="image/*" />
+      </div>
+      <div class="canvas-area" data-view="before">
+        <div class="tab-controls">
+          <button class="tab-button active" data-tab="before" data-i18n="beforeTab">Before</button>
+          <button class="tab-button" data-tab="after" data-i18n="afterTab">After</button>
+        </div>
+        <div class="canvas-grid">
+          <div class="canvas-card" data-role="before">
+            <div class="canvas-head">
+              <div>
+                <p class="canvas-label" data-i18n="beforeLabel">変換前（ズーム可）</p>
+                <p class="canvas-note" data-i18n="beforeNote">クリックでスポイト</p>
+              </div>
+              <div class="zoom-control">
+                <label for="zoomSlider" data-i18n="zoomLabel">ズーム</label>
+                <input type="range" id="zoomSlider" min="0.5" max="5" step="0.1" value="1" />
+                <span id="zoomValue">1.0x</span>
+              </div>
+            </div>
+            <canvas id="beforeCanvas"></canvas>
+          </div>
+          <div class="canvas-card" data-role="after">
+            <div class="canvas-head">
+              <p class="canvas-label" data-i18n="afterLabel">変換後</p>
+              <p class="canvas-note" data-i18n="afterNote">許容範囲でリアルタイム反映</p>
+            </div>
+            <canvas id="afterCanvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card color-section">
+      <div class="color-card" id="fromColorSection">
+        <div class="color-card-head">
+          <h2 data-i18n="fromColor">置換対象の色 (From)</h2>
+          <button class="btn ghost" data-section-reset="from" data-i18n="resetSection">リセット</button>
+        </div>
+        <div class="color-preview" id="fromPreview"></div>
+        <div class="color-controls">
+          <label data-i18n="pickerLabel">カラーピッカー</label>
+          <input type="color" id="fromPicker" />
+          <label data-i18n="hexLabel">HEX</label>
+          <input type="text" id="fromHex" value="#ff0000" />
+          <div class="rgb-group">
+            <label data-i18n="rgbLabel">RGB</label>
+            <div class="rgb-inputs">
+              <input type="number" id="fromR" min="0" max="255" />
+              <input type="number" id="fromG" min="0" max="255" />
+              <input type="number" id="fromB" min="0" max="255" />
+            </div>
+          </div>
+          <label for="fromPreset" data-i18n="presetLabel">プリセット</label>
+          <select id="fromPreset">
+            <option value="#ff0000" data-i18n="presetRed">赤</option>
+            <option value="#00ff00" data-i18n="presetGreen">緑</option>
+            <option value="#0000ff" data-i18n="presetBlue">青</option>
+            <option value="#ffffff" data-i18n="presetWhite">白</option>
+            <option value="#000000" data-i18n="presetBlack">黒</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="color-card" id="toColorSection">
+        <div class="color-card-head">
+          <h2 data-i18n="toColor">置換後の色 (To)</h2>
+          <button class="btn ghost" data-section-reset="to" data-i18n="resetSection">リセット</button>
+        </div>
+        <div class="color-preview" id="toPreview"></div>
+        <div class="color-controls">
+          <label data-i18n="pickerLabel">カラーピッカー</label>
+          <input type="color" id="toPicker" />
+          <label data-i18n="hexLabel">HEX</label>
+          <input type="text" id="toHex" value="#00ff00" />
+          <div class="rgb-group">
+            <label data-i18n="rgbLabel">RGB</label>
+            <div class="rgb-inputs">
+              <input type="number" id="toR" min="0" max="255" />
+              <input type="number" id="toG" min="0" max="255" />
+              <input type="number" id="toB" min="0" max="255" />
+            </div>
+          </div>
+          <label for="toPreset" data-i18n="presetLabel">プリセット</label>
+          <select id="toPreset">
+            <option value="#ff0000" data-i18n="presetRed">赤</option>
+            <option value="#00ff00" data-i18n="presetGreen">緑</option>
+            <option value="#0000ff" data-i18n="presetBlue">青</option>
+            <option value="#ffffff" data-i18n="presetWhite">白</option>
+            <option value="#000000" data-i18n="presetBlack">黒</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="slider-row">
+        <label for="tolerance" data-i18n="toleranceLabel">置換許容範囲</label>
+        <input type="range" id="tolerance" min="0" max="255" value="60" />
+        <span id="toleranceValue">60</span>
+      </div>
+      <div class="actions">
+        <button id="downloadBtn" class="btn primary" data-i18n="download">PNGで保存</button>
+        <button id="resetAll" class="btn ghost" data-i18n="resetAll">全体リセット</button>
+      </div>
+    </section>
+
+    <section class="card links">
+      <h3 data-i18n="support">応援リンク</h3>
+      <div class="link-list">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener" data-i18n="ofuse">OFUSEで応援</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener" data-i18n="kofi">Ko-fiで支援</a>
+      </div>
+      <h3 data-i18n="internalLinks">関連ツール</h3>
+      <div class="link-list">
+        <a href="/tools/image-compression-inspector/" data-i18n="linkCompression">画像圧縮チェッカー</a>
+        <a href="/tools/exif-cleaner-mini/" data-i18n="linkExif">Exifクリーナー</a>
+        <a href="/tools/webp-avif-converter/" data-i18n="linkConverter">WebP/AVIF変換</a>
+      </div>
+    </section>
+
+    <section class="ad-slot ad-bottom" aria-label="ad-bottom" data-i18n="adBottom">広告枠（下）</section>
+  </main>
+
+  <footer class="nw-footer">
+    <div class="nw-footer-inner">
+      <p data-i18n="disclaimer">このツールはすべてローカルで処理され、画像はサーバーへ送信されません。</p>
+      <p class="nw-footer-meta">© NicheWorks</p>
+      <div class="nw-footer-links">
+        <a href="/privacy.html" data-i18n="privacy">プライバシー</a>
+        <a href="/contact.html" data-i18n="contact">お問い合わせ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+</body>
+</html>
