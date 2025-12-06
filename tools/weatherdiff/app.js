@@ -87,6 +87,13 @@ const linkJma = document.getElementById("linkJma");
 const linkTenki = document.getElementById("linkTenki");
 const linkYahoo = document.getElementById("linkYahoo");
 const donateMsg = document.getElementById("donateMsg");
+const accuWeatherNote = document.createElement("small");
+const linksGrid = linkGoogleWeather?.parentElement;
+
+if (linksGrid && linksGrid.parentElement) {
+  accuWeatherNote.id = "accuWeatherNote";
+  linksGrid.insertAdjacentElement("afterend", accuWeatherNote);
+}
 
 /* ------------------------------
    i18n
@@ -127,6 +134,8 @@ const I18N = {
     diffNoteText: "※ 気温（最高）以外のズレはデータ仕様上の制約があり信頼性が低い値です。",
     diffNoteLink: "詳しくは使い方ページをご覧ください。",
     otherServicesTitle: "他のサービスで詳しく見る",
+    accuWeatherNote:
+      "※ AccuWeather は英語の都市名検索のため、日本の一部地域では正しく表示されない場合があります。",
     links: {
       google: "Google Weather",
       weatherCom: "Weather.com",
@@ -171,6 +180,8 @@ const I18N = {
     diffNoteText: "* Differences other than high temperature have lower reliability due to data limitations.",
     diffNoteLink: "Read the usage guide.",
     otherServicesTitle: "Check details on other services",
+    accuWeatherNote:
+      "* AccuWeather search is based on English city names and may not detect some areas in Japan.",
     links: {
       google: "Google Weather",
       weatherCom: "Weather.com",
@@ -234,6 +245,9 @@ function applyLanguage(lang) {
   )}</a>`;
 
   otherServicesTitle.textContent = t("otherServicesTitle");
+  if (accuWeatherNote) {
+    accuWeatherNote.textContent = t("accuWeatherNote");
+  }
   linkGoogleWeather.textContent = t("links").google;
   linkWeatherCom.textContent = t("links").weatherCom;
   linkAccuWeather.textContent = t("links").accuweather;
@@ -396,8 +410,11 @@ async function runFullProcess(params) {
   const start = performance.now();
 
   try {
-    const { lat, lon, displayName, countryName } = await resolveLocation(params);
-    locName.textContent = displayName;
+    const resolved = await resolveLocation(params);
+    const { lat, lon, countryName } = resolved;
+    let displayName = resolved.displayName || "";
+    let addressObj = resolved.address || {};
+    locName.textContent = displayName || t("currentLocation");
 
     if (params.query) {
       locMeta.textContent =
@@ -412,13 +429,18 @@ async function runFullProcess(params) {
 
       const metaLines = [];
       if (reverseAddress) {
-        metaLines.push(`<strong>${reverseAddress}付近</strong>`);
+        displayName = `${reverseAddress.displayName}付近`;
+        addressObj = reverseAddress.address || {};
+        metaLines.push(`<strong>${displayName}</strong>`);
       } else {
+        displayName = `lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}`;
+        addressObj = {};
         metaLines.push("場所名を取得できませんでした");
       }
       metaLines.push(`lat ${lat.toFixed(2)} / lon ${lon.toFixed(2)}`);
       if (countryName) metaLines.push(countryName);
 
+      locName.textContent = displayName;
       locMeta.innerHTML = metaLines.join("<br>");
     }
 
@@ -433,7 +455,7 @@ async function runFullProcess(params) {
 
     applyWeatherCards(om, mn);
     applyDiff(om, mn);
-    applyExternalLinks(lat, lon, displayName);
+    applyExternalLinks(lat, lon, displayName, addressObj);
 
     const elapsed = (performance.now() - start) / 1000;
     processTime.textContent = t("processTime").replace("{sec}", elapsed.toFixed(2));
@@ -477,14 +499,16 @@ async function resolveLocation(params) {
       lon: +data[0].lon,
       displayName: data[0].display_name,
       countryName: data[0].address?.country || "",
+      address: data[0].address || {},
     };
   }
 
   return {
     lat: params.lat,
     lon: params.lon,
-    displayName: t("currentLocation"),
+    displayName: "",
     countryName: "",
+    address: {},
   };
 }
 
@@ -499,7 +523,12 @@ async function reverseGeocode(lat, lon) {
   }
 
   const data = await res.json();
-  return data?.display_name || null;
+  if (!data) return null;
+
+  return {
+    displayName: data.display_name,
+    address: data.address,
+  };
 }
 
 /* ------------------------------
@@ -720,19 +749,36 @@ function applyWeatherCards(om, mn) {
 /* ------------------------------
    External Links
 ------------------------------ */
-function applyExternalLinks(lat, lon, displayName) {
+function applyExternalLinks(lat, lon, displayName, addressObj) {
   if (!linkGoogleWeather || !linkWeatherCom || !linkAccuWeather) return;
-  const safeName = displayName ? String(displayName) : "";
 
-  linkGoogleWeather.href = `https://www.google.com/search?q=${encodeURIComponent(
-    `天気 ${safeName}`
-  )}`;
-  linkWeatherCom.href = `https://weather.com/weather/today/l/${lat.toFixed(
-    2
-  )},${lon.toFixed(2)}`;
-  linkAccuWeather.href = `https://www.accuweather.com/en/search-locations?query=${encodeURIComponent(
-    safeName
-  )}`;
+  const safeName = displayName ? String(displayName).trim() : "";
+  const latFixed = typeof lat === "number" ? lat.toFixed(2) : "";
+  const lonFixed = typeof lon === "number" ? lon.toFixed(2) : "";
+
+  if (safeName) {
+    linkGoogleWeather.href = `https://www.google.com/search?q=${encodeURIComponent(
+      `天気 ${safeName}`
+    )}`;
+  } else {
+    linkGoogleWeather.href = "";
+  }
+
+  if (latFixed && lonFixed) {
+    linkWeatherCom.href = `https://weather.com/weather/today/l/${latFixed},${lonFixed}`;
+  } else {
+    linkWeatherCom.href = "";
+  }
+
+  const cityEng =
+    addressObj?.city || addressObj?.town || addressObj?.village || "";
+  if (cityEng) {
+    linkAccuWeather.href =
+      "https://www.accuweather.com/en/search-locations?query=" +
+      encodeURIComponent(`${cityEng} Japan`);
+  } else {
+    linkAccuWeather.href = "";
+  }
 }
 
 /* ------------------------------
