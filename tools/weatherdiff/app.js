@@ -433,6 +433,7 @@ async function runFullProcess(params) {
 
     applyWeatherCards(om, mn);
     applyDiff(om, mn);
+    applyExternalLinks(lat, lon, displayName);
 
     const elapsed = (performance.now() - start) / 1000;
     processTime.textContent = t("processTime").replace("{sec}", elapsed.toFixed(2));
@@ -714,6 +715,24 @@ function applyWeatherCards(om, mn) {
   mnTomorrowTemp.innerHTML = `${highLabel}: ${mn.tomorrow.max}°C<br>${lowLabel}: <span class="wd-temp-min">${mn.tomorrow.min}</span>°C`;
   mnTomorrowRain.textContent = `${t("rainLabel")}: ${mn.tomorrow.rain}mm`;
   mnTomorrowWind.textContent = `${t("windLabel")}: ${mn.tomorrow.wind} m/s`;
+}
+
+/* ------------------------------
+   External Links
+------------------------------ */
+function applyExternalLinks(lat, lon, displayName) {
+  if (!linkGoogleWeather || !linkWeatherCom || !linkAccuWeather) return;
+  const safeName = displayName ? String(displayName) : "";
+
+  linkGoogleWeather.href = `https://www.google.com/search?q=${encodeURIComponent(
+    `天気 ${safeName}`
+  )}`;
+  linkWeatherCom.href = `https://weather.com/weather/today/l/${lat.toFixed(
+    2
+  )},${lon.toFixed(2)}`;
+  linkAccuWeather.href = `https://www.accuweather.com/en/search-locations?query=${encodeURIComponent(
+    safeName
+  )}`;
 }
 
 /* ------------------------------
