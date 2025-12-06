@@ -53,12 +53,12 @@
         <input type="file" id="imageInput" accept="image/*" />
       </div>
       <div class="canvas-area" data-view="before">
-        <div class="tab-controls">
-          <button class="tab-button active" data-tab="before" data-i18n="beforeTab">Before</button>
-          <button class="tab-button" data-tab="after" data-i18n="afterTab">After</button>
+        <div class="tab-controls tab-header">
+          <button class="tab-button tab-btn active" data-tab="before" data-i18n="beforeTab">Before</button>
+          <button class="tab-button tab-btn" data-tab="after" data-i18n="afterTab">After</button>
         </div>
-        <div class="canvas-grid">
-          <div class="canvas-card" data-role="before">
+        <div class="canvas-grid preview-columns">
+          <div class="canvas-card preview-card before-card" data-role="before">
             <div class="canvas-head">
               <div>
                 <p class="canvas-label" data-i18n="beforeLabel">変換前（ズーム可）</p>
@@ -72,7 +72,7 @@
             </div>
             <canvas id="beforeCanvas"></canvas>
           </div>
-          <div class="canvas-card" data-role="after">
+          <div class="canvas-card preview-card after-card" data-role="after">
             <div class="canvas-head">
               <p class="canvas-label" data-i18n="afterLabel">変換後</p>
               <p class="canvas-note" data-i18n="afterNote">許容範囲でリアルタイム反映</p>
@@ -94,7 +94,7 @@
           <label data-i18n="pickerLabel">カラーピッカー</label>
           <input type="color" id="fromPicker" />
           <label data-i18n="hexLabel">HEX</label>
-          <input type="text" id="fromHex" value="#ff0000" />
+          <input class="hex-input" type="text" id="fromHex" value="#ff0000" />
           <div class="rgb-group">
             <label data-i18n="rgbLabel">RGB</label>
             <div class="rgb-inputs">
@@ -104,13 +104,15 @@
             </div>
           </div>
           <label for="fromPreset" data-i18n="presetLabel">プリセット</label>
-          <select id="fromPreset">
-            <option value="#ff0000" data-i18n="presetRed">赤</option>
-            <option value="#00ff00" data-i18n="presetGreen">緑</option>
-            <option value="#0000ff" data-i18n="presetBlue">青</option>
-            <option value="#ffffff" data-i18n="presetWhite">白</option>
-            <option value="#000000" data-i18n="presetBlack">黒</option>
-          </select>
+          <div class="preset-row">
+            <select id="fromPreset">
+              <option value="#ff0000" data-i18n="presetRed">赤</option>
+              <option value="#00ff00" data-i18n="presetGreen">緑</option>
+              <option value="#0000ff" data-i18n="presetBlue">青</option>
+              <option value="#ffffff" data-i18n="presetWhite">白</option>
+              <option value="#000000" data-i18n="presetBlack">黒</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -124,7 +126,7 @@
           <label data-i18n="pickerLabel">カラーピッカー</label>
           <input type="color" id="toPicker" />
           <label data-i18n="hexLabel">HEX</label>
-          <input type="text" id="toHex" value="#00ff00" />
+          <input class="hex-input" type="text" id="toHex" value="#00ff00" />
           <div class="rgb-group">
             <label data-i18n="rgbLabel">RGB</label>
             <div class="rgb-inputs">
@@ -134,13 +136,15 @@
             </div>
           </div>
           <label for="toPreset" data-i18n="presetLabel">プリセット</label>
-          <select id="toPreset">
-            <option value="#ff0000" data-i18n="presetRed">赤</option>
-            <option value="#00ff00" data-i18n="presetGreen">緑</option>
-            <option value="#0000ff" data-i18n="presetBlue">青</option>
-            <option value="#ffffff" data-i18n="presetWhite">白</option>
-            <option value="#000000" data-i18n="presetBlack">黒</option>
-          </select>
+          <div class="preset-row">
+            <select id="toPreset">
+              <option value="#ff0000" data-i18n="presetRed">赤</option>
+              <option value="#00ff00" data-i18n="presetGreen">緑</option>
+              <option value="#0000ff" data-i18n="presetBlue">青</option>
+              <option value="#ffffff" data-i18n="presetWhite">白</option>
+              <option value="#000000" data-i18n="presetBlack">黒</option>
+            </select>
+          </div>
         </div>
       </div>
     </section>
