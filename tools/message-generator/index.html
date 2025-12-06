@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>文面ジェネレーター | NicheWorks</title>
+
+  <!-- ファビコン（共通仕様） -->
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense（NicheWorks共通） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="lang-switch">
+      <button data-lang="jp" class="active">JP</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <h1 class="title">文面ジェネレーター</h1>
+    <p class="subtitle">用途・文化圏・フォーマル度から最適な文章を自動生成</p>
+
+    <!-- Generator Panel -->
+    <section class="generator-panel">
+      <label>用途（Purpose）</label>
+      <select id="purpose">
+        <option value="">選択してください</option>
+        <option value="wedding">結婚</option>
+        <option value="funeral">弔事</option>
+        <option value="thank_you">お礼</option>
+        <option value="apology">お詫び</option>
+        <option value="greeting_seasonal">季節の挨拶</option>
+        <option value="greeting_business">ビジネス挨拶</option>
+        <option value="casual_message">カジュアルメッセージ</option>
+      </select>
+
+      <label>文化圏（Culture）</label>
+      <select id="culture">
+        <option value="">選択してください</option>
+        <option value="japan">日本</option>
+        <option value="english">英語圏</option>
+        <option value="eu">EU</option>
+      </select>
+
+      <label>フォーマル度（Formality）</label>
+      <select id="formality">
+        <option value="">選択してください</option>
+        <option value="high">高</option>
+        <option value="medium">中</option>
+        <option value="casual">低</option>
+      </select>
+
+      <label>相手との関係（任意）</label>
+      <select id="relationship">
+        <option value="">指定なし</option>
+        <option value="friend">友人</option>
+        <option value="family">家族</option>
+        <option value="boss">上司</option>
+        <option value="client">取引先</option>
+      </select>
+
+      <label>キーワード（任意）</label>
+      <input type="text" id="keywords" placeholder="例：欠席連絡、感謝、遅延の謝罪など" />
+
+      <button id="generate-btn" class="generate-btn" disabled>文面を生成する</button>
+
+      <div id="progress" class="progress hidden"></div>
+    </section>
+
+    <!-- Result -->
+    <section id="result-section" class="result-section hidden">
+      <h2>生成された文面</h2>
+      <div id="result-text" class="result-text"></div>
+
+      <div class="result-actions">
+        <button id="copy-btn" class="outline-btn">コピー</button>
+        <button id="regenerate-btn" class="outline-btn">再生成</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
