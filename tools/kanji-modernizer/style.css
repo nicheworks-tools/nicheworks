@@ -278,3 +278,32 @@ button {
     width: 100%;
   }
 }
+
+.km-sibling {
+  margin: 6px 0 22px;
+  font-family: "Noto Serif JP", serif;
+  color: #444;
+}
+
+.km-sibling-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #222;
+}
+
+.km-sibling-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.km-sibling a {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+.km-sibling a:hover {
+  text-decoration: underline;
+}
+
