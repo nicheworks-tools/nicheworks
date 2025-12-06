@@ -52,7 +52,7 @@
       el.style.display = el.dataset.i18n === currentLang ? "" : "none";
     });
 
-    document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => {
+    document.querySelectorAll(".lang-switch button[data-lang]").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.lang === currentLang);
     });
   }
@@ -121,7 +121,11 @@
   ========================================================== */
   function convertText(rawText, direction, dict) {
     if (!rawText) {
-      return { plain: "", inputHtml: "", outputHtml: "" };
+      return {
+        plain: "",
+        inputHtml: "",
+        outputHtml: ""
+      };
     }
 
     const src = Array.from(rawText);
@@ -140,8 +144,8 @@
       const isHit = mapped && outputChar !== ch;
 
       if (isHit) {
-        inputHtml.push(`<span class="km-hit">${escapeHtml(ch)}</span>`);
-        outputHtml.push(`<span class="km-hit">${escapeHtml(outputChar)}</span>`);
+        inputHtml.push(`<span class="hl-hit">${escapeHtml(ch)}</span>`);
+        outputHtml.push(`<span class="hl-hit">${escapeHtml(outputChar)}</span>`);
       } else {
         inputHtml.push(escapeHtml(ch));
         outputHtml.push(escapeHtml(outputChar));
@@ -170,7 +174,7 @@
     const inputHighlight = document.getElementById("inputHighlight");
 
     document
-      .querySelectorAll(".nw-lang-switch button[data-lang]")
+      .querySelectorAll(".lang-switch button[data-lang]")
       .forEach(btn => {
         btn.addEventListener("click", () => {
           switchLang(btn.dataset.lang || "ja");
