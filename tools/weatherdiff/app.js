@@ -509,6 +509,27 @@ async function fetchMetNorway(lat, lon, offsetSec) {
 
   const ts = data.properties.timeseries;
 
+  function findClosestTimeseriesTo24h(series) {
+    if (!Array.isArray(series) || !series.length) return null;
+
+    const start = new Date(series[0].time).getTime();
+    const target = start + 24 * 3600 * 1000;
+    const threshold = 3 * 3600 * 1000;
+
+    let closest = null;
+    let minDiff = Infinity;
+
+    for (const item of series) {
+      const diff = Math.abs(new Date(item.time).getTime() - target);
+      if (diff <= threshold && diff < minDiff) {
+        closest = item;
+        minDiff = diff;
+      }
+    }
+
+    return closest;
+  }
+
   function toLocal(d) {
     return new Date(d.getTime() + offsetSec * 1000);
   }
@@ -527,6 +548,47 @@ async function fetchMetNorway(lat, lon, offsetSec) {
     const d = toLocal(new Date(t.time));
     return d >= tomorrowStart && d < tomorrowEnd;
   });
+
+  const todayData = ts?.[0]?.data;
+
+  let symbol = null;
+
+  if (todayData?.next_6_hours?.summary?.symbol_code) {
+    symbol = todayData.next_6_hours.summary.symbol_code;
+  } else if (todayData?.next_1_hours?.summary?.symbol_code) {
+    symbol = todayData.next_1_hours.summary.symbol_code;
+  }
+
+  if (!symbol) {
+    const cloud = todayData?.instant?.details?.cloud_area_fraction ?? 50;
+    const precip = todayData?.instant?.details?.precipitation_amount ?? 0;
+
+    if (precip > 0) symbol = "rain";
+    else if (cloud <= 20) symbol = "clearsky";
+    else if (cloud <= 50) symbol = "fair";
+    else if (cloud <= 80) symbol = "cloudy";
+    else symbol = "overcast";
+  }
+
+  const target = findClosestTimeseriesTo24h(ts) || ts?.[0] || null;
+  const targetData = target?.data;
+
+  let symbolTomorrow = null;
+
+  if (targetData?.next_12_hours?.summary?.symbol_code) {
+    symbolTomorrow = targetData.next_12_hours.summary.symbol_code;
+  } else if (targetData?.next_6_hours?.summary?.symbol_code) {
+    symbolTomorrow = targetData.next_6_hours.summary.symbol_code;
+  } else {
+    const cloud = targetData?.instant?.details?.cloud_area_fraction ?? 50;
+    const precip = targetData?.instant?.details?.precipitation_amount ?? 0;
+
+    if (precip > 0) symbolTomorrow = "rain";
+    else if (cloud <= 20) symbolTomorrow = "clearsky";
+    else if (cloud <= 50) symbolTomorrow = "fair";
+    else if (cloud <= 80) symbolTomorrow = "cloudy";
+    else symbolTomorrow = "overcast";
+  }
 
   function calcDaily(block) {
     if (!block.length) {
@@ -551,9 +613,15 @@ async function fetchMetNorway(lat, lon, offsetSec) {
     };
   }
 
+  const today = calcDaily(todayBlock);
+  const tomorrow = calcDaily(tomorrowBlock);
+
+  const todayIcon = mapMetSymbolToIcon(symbol);
+  const tomorrowIcon = mapMetSymbolToIcon(symbolTomorrow);
+
   return {
-    today: calcDaily(todayBlock),
-    tomorrow: calcDaily(tomorrowBlock),
+    today: { ...today, icon: todayIcon },
+    tomorrow: { ...tomorrow, icon: tomorrowIcon },
   };
 }
 
@@ -568,6 +636,20 @@ function codeToIcon(code) {
   if ([51, 53, 55].includes(code)) return "🌦️";
   if ([61, 63, 65].includes(code)) return "🌧️";
   if ([71, 73, 75].includes(code)) return "❄️";
+  return "☁️";
+}
+
+function mapMetSymbolToIcon(symbol) {
+  if (!symbol) return "☁";
+
+  if (symbol.includes("clearsky")) return "☀️";
+  if (symbol.includes("fair") || symbol.includes("partlycloudy")) return "🌤️";
+
+  if (symbol.includes("cloudy") || symbol.includes("overcast")) return "☁️";
+
+  if (symbol.includes("rain")) return "🌧️";
+  if (symbol.includes("snow")) return "❄️";
+
   return "☁️";
 }
 
