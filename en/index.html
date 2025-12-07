@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>NicheWorks | Quiet Utility Toolset</title>
+  <title>NicheWorks | A Quiet Collection of Useful Web Tools</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="NicheWorks is a quiet collection of small, practical web tools designed to make everyday tasks a little easier — simple, lightweight, and privacy-friendly.">
+  <!-- Description -->
+  <meta
+    name="description"
+    content="NicheWorks is a quiet collection of lightweight, genuinely useful web tools designed to solve small but real problems in everyday life."
+  >
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/en/index.html">
 
   <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/en/index.html">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
@@ -21,15 +25,46 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
-  <!-- Structured Data -->
+  <!-- OGP -->
+  <meta property="og:title" content="NicheWorks | A Quiet Collection of Useful Web Tools">
+  <meta property="og:description" content="A collection of small, practical, quietly useful web tools built with simplicity and longevity in mind.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.pages.dev/en/index.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NicheWorks | A Quiet Collection of Useful Web Tools">
+  <meta name="twitter:description" content="Small but genuinely useful web tools built with practicality and sustainability in mind.">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <!-- JSON-LD (WebSite + WebPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "NicheWorks",
-    "url": "https://nicheworks.pages.dev/en/index.html",
-    "description": "A quiet collection of small, practical web tools.",
-    "publisher": { "@type": "Organization", "name": "NicheWorks" }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "NicheWorks",
+        "url": "https://nicheworks.pages.dev/",
+        "description": "A quiet collection of small but useful web tools.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "NicheWorks"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "name": "NicheWorks | English",
+        "url": "https://nicheworks.pages.dev/en/index.html",
+        "inLanguage": "en",
+        "description": "NicheWorks is a quiet collection of lightweight, genuinely useful web tools designed for simplicity and long-term usability.",
+        "isPartOf": {
+          "@id": "https://nicheworks.pages.dev/"
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -37,141 +72,119 @@
 <body>
   <main class="container">
 
-    <!-- Header -->
     <header>
       <h1 class="site-title">
         <img src="/assets/nicheworks-logo.png" alt="NicheWorks logo" class="site-logo">
         NicheWorks
       </h1>
 
-      <p class="subtitle">A quiet collection of small, practical web tools</p>
+      <p class="subtitle">A quiet collection of small, useful web tools</p>
 
+      <!-- Header Navigation -->
       <div class="nav-inline">
-        <a href="./index.html">Home</a> /
-        <a href="./about.html">About</a> /
-        <a href="./privacy.html">Privacy</a> /
+        <a href="./index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="./about.html">About</a>
+        <span class="sep">/</span>
+        <a href="./privacy.html">Privacy</a>
+        <span class="sep">/</span>
         <a href="./contact.html">Contact</a>
       </div>
 
+      <!-- Language Switch -->
       <div class="nav-inline">
-        Language:
-        <a href="./index.html">English</a> /
+        <span>Language:</span>
+        <a href="./index.html">English</a>
+        <span class="sep">/</span>
         <a href="../index.html">日本語</a>
       </div>
     </header>
 
-    <!-- About -->
+    <!-- About the project -->
     <section class="block">
       <h2>About this site</h2>
       <p>
-        NicheWorks is a set of small web projects built with a simple goal:<br>
-        creating “quiet, practical tools” that are useful without being flashy.
+        NicheWorks is a collection of small, quietly useful web tools—  
+        designed not for buzz or aesthetics, but for genuine everyday practicality.  
+        The goal is to solve niche but real problems with lightweight, browser-only tools.
       </p>
+
       <p>
-        Instead of trends or noise, we value consistency, simplicity, and lightweight usability.
+        Tools are intentionally simple, fast, and privacy-friendly.  
+        Most of them run entirely within your browser without sending data to any server.
       </p>
+
       <p class="small">
-        → More background and philosophy can be found on the <a href="./about.html">About page</a>.
+        → More details can be found on the <a href="./about.html">About page</a>.
       </p>
     </section>
 
-    <!-- Tool List -->
+    <!-- Tool List Placeholder -->
     <section class="block">
-      <h2>Tools</h2>
+      <h2>Tool Collection</h2>
 
-      <!-- Text Tools -->
-      <h3>Text & Document Utilities</h3>
-      <p class="category-desc">Lightweight tools for text formatting, cleanup, and small tasks.</p>
-      <ul class="list">
-        <li><strong><a href="/tools/manual-finder/" target="_blank">ManualFinder</a></strong><br>Official manual links for electronics and devices.</li>
-        <li><strong><a href="/tools/trashnavi/" target="_blank">TrashNavi</a></strong><br>Collection of official municipal waste-disposal pages.</li>
-        <li><strong><a href="/tools/log-formatter/" target="_blank">LogFormatter</a></strong><br>Pretty-print Nginx/HTTP logs directly in the browser.</li>
-        <li><strong><a href="/tools/rename-wizard/" target="_blank">Rename Wizard</a></strong><br>Preview and transform filenames safely.</li>
-        <li><strong><a href="/tools/contract-cleaner/" target="_blank">Contract Cleaner</a></strong><br>Highlight risky terms in contract text.</li>
-        <li><strong><a href="/tools/exif-cleaner-mini/" target="_blank">EXIF Cleaner Mini</a></strong><br>Remove EXIF metadata locally.</li>
-        <li><strong><a href="/tools/linebreak-doctor/" target="_blank">LineBreak Doctor</a></strong><br>Fix broken newlines for SNS posts.</li>
-        <li><strong><a href="/tools/url-title-collector/" target="_blank">URL Title Collector</a></strong><br>Fetch page titles for multiple URLs.</li>
-        <li><strong><a href="/tools/message-generator/" target="_blank">Message Generator</a></strong><br>Generate short message templates.</li>
-      </ul>
+      <p class="small">
+        The English version of the tool list is currently being prepared.  
+        You can browse the full toolset on the Japanese version of the site.
+      </p>
 
-      <!-- Images -->
-      <h3>Image & File Tools</h3>
-      <p class="category-desc">Utilities for image conversion, color editing, and file inspection.</p>
-      <ul class="list">
-        <li><strong><a href="/tools/image-compression-inspector/" target="_blank">Image Compression Inspector</a></strong><br>Compare compression quality among formats.</li>
-        <li><strong><a href="/tools/color-replace/" target="_blank">Color Replace</a></strong><br>Swap specific colors in an image.</li>
-        <li><strong><a href="/tools/webp-avif-converter/" target="_blank">WebP / AVIF Converter</a></strong><br>Convert images into lightweight formats.</li>
-        <li><strong><a href="/tools/filetype-sniffer/" target="_blank">FileType Sniffer</a></strong><br>Identify file type based on binary signature.</li>
-      </ul>
-
-      <!-- Converters -->
-      <h3>Conversion & Analysis</h3>
-      <p class="category-desc">Tools for structure conversion, graphing, and reference.</p>
-      <ul class="list">
-        <li><strong><a href="/tools/json2mermaid/" target="_blank">JSON → Mermaid</a></strong><br>Generate diagrams from JSON.</li>
-        <li><strong><a href="/tools/unitmaster/" target="_blank">UnitMaster</a></strong><br>Convert a wide range of units.</li>
-        <li><strong><a href="/tools/kanji-modernizer/" target="_blank">Kanji Modernizer</a></strong><br>Convert old kanji to modern forms.</li>
-        <li><strong><a href="/tools/old-kanji-reference/" target="_blank">Old Kanji Reference</a></strong><br>Dictionary of historical kanji.</li>
-        <li><strong><a href="/tools/redirect-unwrapper/" target="_blank">Redirect Unwrapper</a></strong><br>Reveal final target URL.</li>
-      </ul>
-
-      <!-- Practical -->
-      <h3>Practical Tools</h3>
-      <p class="category-desc">Simple utilities to support everyday tasks.</p>
-      <ul class="list">
-        <li><strong><a href="/tools/jp-postal-lite/" target="_blank">JP Postal Lite</a></strong><br>Postal code → address search.</li>
-        <li><strong><a href="https://unsubscribe-navi.pages.dev/" target="_blank">Unsubscribe Navi</a></strong><br>Official cancellation links.</li>
-      </ul>
-
-      <!-- Others -->
-      <h3>Other Utilities</h3>
-      <p class="category-desc">Small convenience tools.</p>
-      <ul class="list">
-        <li><strong><a href="/tools/weatherdiff/" target="_blank">WeatherDiff</a></strong><br>API forecast comparison. Location input & GPS supported.</li>
-        <li><strong><a href="/tools/wifi-meter/" target="_blank">WiFi Meter</a></strong><br>Visualize nearby Wi-Fi congestion.</li>
-        <li><strong><a href="/tools/cover-letter-lite/" target="_blank">Cover Letter Lite</a></strong><br>Create simple English cover letters.</li>
-        <li><strong><a href="/tools/cosmetic-ingredient-checker-lite/" target="_blank">Cosmetic Ingredient Checker Lite</a></strong><br>Quick ingredient reference.</li>
-      </ul>
+      <p class="small">
+        → <a href="../index.html">Back to Japanese tool list</a>
+      </p>
     </section>
 
     <!-- Policy -->
     <section class="block">
       <h2>Policy</h2>
       <p class="small">
-        Most tools run entirely in your browser.  
-        No uploaded data is stored — processing is local for safety.
+        Most tools are designed to run entirely within the browser.  
+        No user data is uploaded or stored on any server.
+      </p>
+      <p class="small">
+        Some pages may display advertisements to support ongoing development and maintenance.  
+        All revenue is reinvested into improving the tools.
       </p>
     </section>
 
-    <!-- Footer -->
     <footer>
 
+      <!-- Donation block -->
       <div class="block donate-block">
         <h2>Support</h2>
-        <p class="small">If you find these tools helpful, a small donation is sincerely appreciated.</p>
+        <p class="small">
+          NicheWorks is a personal project.  
+          If you find the tools helpful, even a small donation is greatly appreciated.
+        </p>
         <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
+        <p class="small muted">
+          Donations are optional. All support goes directly toward development and maintenance.
+        </p>
       </div>
 
+      <!-- Footer links -->
       <div class="small">
-        <p>
+        <p class="small">
           <a href="./index.html">Home</a> /
           <a href="./about.html">About</a> /
           <a href="./privacy.html">Privacy</a> /
           <a href="./contact.html">Contact</a>
         </p>
-        <p>Operated by NicheWorks</p>
+        <p class="small">NicheWorks Project</p>
+        <p class="small muted">Some tools may display ads to help support the project.</p>
       </div>
 
     </footer>
 
   </main>
 
-  <!-- Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf85955e37"}'></script>
+  <!-- Cloudflare Analytics -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
 </body>
 </html>
