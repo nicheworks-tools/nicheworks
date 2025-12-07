@@ -58,19 +58,72 @@ const i18n = {
 
     units: {
       length: {
+        mm: "mm",
+        cm: "cm",
+        m: "m",
+        km: "km",
+        inch: "インチ（inch）",
+        ft: "フィート（foot）",
+        yard: "ヤード（yard）",
+        mile: "マイル（mile）",
         shaku: "尺",
         sun: "寸",
-        bu: "分（長さ）",
+        bu_length: "分",
         ken: "間",
-        tsubo: "坪（長さ換算）",
         ri: "里",
-        furlong: "ハロン",
-        chain: "チェーン",
-        league: "リーグ",
-        angstrom: "オングストローム",
-        micrometer: "マイクロメートル",
-        parsec: "パーセク",
-        lightyear: "光年"
+        tsubo_length: "坪",
+        furlong: "ハロン（furlong）",
+        chain: "チェーン（chain）",
+        league: "リーグ（league）",
+        angstrom: "angstrom",
+        micrometer: "micrometer",
+        parsec: "parsec",
+        lightyear: "lightyear"
+      },
+      weight: {
+        g: "g",
+        kg: "kg",
+        lb: "ポンド（pound）",
+        oz: "オンス（ounce）",
+        monme: "匁",
+        kin: "斤",
+        kan: "貫",
+        dram: "ドラム（dram）",
+        grain: "グレイン（grain）"
+      },
+      volume: {
+        ml: "ml",
+        l: "l",
+        cup: "カップ（cup）",
+        gou: "合",
+        shou: "升",
+        to: "斗"
+      },
+      area: {
+        mm2: "mm²",
+        cm2: "cm²",
+        m2: "m²",
+        km2: "km²",
+        tsubo_area: "坪",
+        tan: "反",
+        se: "畝",
+        cho: "町"
+      },
+      speed: {
+        "m/s": "m/s",
+        "km/h": "km/h",
+        mph: "マイル毎時（mph）",
+        knot: "ノット（knot）",
+        league_per_hour: "リーグ毎時（league/h）"
+      },
+      pressure: {
+        pa: "Pa",
+        hpa: "hPa",
+        bar: "バール（bar）",
+        atm: "アトモスフィア（atm）",
+        torr: "トル（torr）",
+        mmHg: "ミリメートル水銀柱（mmHg）",
+        psi: "ピーエスアイ（psi）"
       }
     }
   },
@@ -124,19 +177,72 @@ const i18n = {
 
     units: {
       length: {
-        shaku: "Shaku",
-        sun: "Sun",
-        bu: "Bu",
-        ken: "Ken",
-        tsubo: "Tsubo",
-        ri: "Ri",
-        furlong: "Furlong",
-        chain: "Chain",
-        league: "League",
-        angstrom: "Angstrom",
-        micrometer: "Micrometer",
-        parsec: "Parsec",
-        lightyear: "Light year"
+        mm: "mm",
+        cm: "cm",
+        m: "m",
+        km: "km",
+        inch: "inch",
+        ft: "foot",
+        yard: "yard",
+        mile: "mile",
+        shaku: "尺 (Shaku)",
+        sun: "寸 (Sun)",
+        bu_length: "分 (Bu)",
+        ken: "間 (Ken)",
+        ri: "里 (Ri)",
+        tsubo_length: "坪 (Tsubo)",
+        furlong: "furlong",
+        chain: "chain",
+        league: "league",
+        angstrom: "angstrom",
+        micrometer: "micrometer",
+        parsec: "parsec",
+        lightyear: "light year"
+      },
+      weight: {
+        g: "g",
+        kg: "kg",
+        lb: "pound",
+        oz: "ounce",
+        monme: "匁 (Monme)",
+        kin: "斤 (Kin)",
+        kan: "貫 (Kan)",
+        dram: "dram",
+        grain: "grain"
+      },
+      volume: {
+        ml: "ml",
+        l: "l",
+        cup: "cup",
+        gou: "合 (Gou)",
+        shou: "升 (Shou)",
+        to: "斗 (To)"
+      },
+      area: {
+        mm2: "mm²",
+        cm2: "cm²",
+        m2: "m²",
+        km2: "km²",
+        tsubo_area: "坪 (Tsubo)",
+        tan: "反 (Tan)",
+        se: "畝 (Se)",
+        cho: "町 (Cho)"
+      },
+      speed: {
+        "m/s": "m/s",
+        "km/h": "km/h",
+        mph: "mph",
+        knot: "knot",
+        league_per_hour: "league per hour"
+      },
+      pressure: {
+        pa: "Pa",
+        hpa: "hPa",
+        bar: "bar",
+        atm: "atm",
+        torr: "torr",
+        mmHg: "mmHg",
+        psi: "psi"
       }
     }
   }
@@ -155,15 +261,18 @@ const units = {
     ft: 0.3048,
     yard: 0.9144,
     mile: 1609.344,
+
     shaku: 0.303,
     sun: 0.0303,
-    bu: 0.00303,
+    bu_length: 0.00303,
     ken: 1.818,
-    tsubo: 3.306,
     ri: 3927,
+    tsubo_length: 3.306,
+
     furlong: 201.168,
     chain: 20.1168,
     league: 4828.032,
+
     angstrom: 1e-10,
     micrometer: 1e-6,
     parsec: 3.0857e16,
@@ -190,11 +299,12 @@ const units = {
     to: 18.039
   },
   area: {
-    "mm2": 0.000001,
-    "cm2": 0.0001,
-    "m2": 1,
-    "km2": 1000000,
-    tsubo: 3.305785,
+    mm2: 1e-6,
+    cm2: 1e-4,
+    m2: 1,
+    km2: 1e6,
+
+    tsubo_area: 3.305785,
     tan: 991.736,
     se: 99.1736,
     cho: 9917.36
@@ -271,6 +381,10 @@ function getUnitLabel(cat, unit, t) {
   const unitsMap = t.units || {};
   const catMap = unitsMap[cat] || {};
   return catMap[unit] || unit;
+}
+
+function formatUnitLabel(cat, unit, t) {
+  return cat === "temp" ? unit.toUpperCase() : getUnitLabel(cat, unit, t);
 }
 
 /* ----------------------------
@@ -441,28 +555,25 @@ function convertTemperature(value, from, to) {
   return value;
 }
 
-function formatUnitLabel(cat, unit) {
-  return cat === "temp" ? unit.toUpperCase() : unit;
-}
-
 function generateBulkList() {
   if (!bulkBox) return;
   const rawValue = inputValue.value || "0";
   const v = parseFloat(rawValue || "0");
   const cat = categorySelect.value;
+  const t = i18n[currentLang];
 
   if (!Number.isFinite(v)) {
     bulkBox.innerHTML = "";
     return;
   }
 
-  const lines = [`${rawValue} ${formatUnitLabel(cat, fromSel.value)}`];
+  const lines = [`${rawValue} ${formatUnitLabel(cat, fromSel.value, t)}`];
 
   if (cat === "temp") {
     ["c", "f", "k"].forEach(u => {
       if (u === fromSel.value) return;
       const res = convertTemperature(v, fromSel.value, u);
-      lines.push(`= ${res.toFixed(4)} ${u.toUpperCase()}`);
+      lines.push(`= ${res.toFixed(4)} ${formatUnitLabel(cat, u, t)}`);
     });
   } else {
     const dict = units[cat];
@@ -470,7 +581,7 @@ function generateBulkList() {
     for (const u in dict) {
       if (u === fromSel.value) continue;
       const r = vBase / dict[u];
-      lines.push(`= ${r.toFixed(4)} ${u}`);
+      lines.push(`= ${r.toFixed(4)} ${formatUnitLabel(cat, u, t)}`);
     }
   }
 
@@ -508,6 +619,7 @@ function saveHistory(resultText) {
 
 function loadHistory() {
   if (!historyBox) return;
+  const t = i18n[currentLang];
 
   let list = [];
   try {
@@ -523,13 +635,13 @@ function loadHistory() {
     return;
   }
 
-  const catMap = getCategoryTextMap(i18n[currentLang]);
+  const catMap = getCategoryTextMap(t);
 
   historyBox.innerHTML = list
     .map(item => {
       const catLabel = catMap[item.category] || item.category;
-      const resultLine = item.result || i18n[currentLang].result(item.value, item.from, "-", item.to);
-      return `<div class="history-item"><div>${resultLine}</div><div class="history-meta">${item.value} ${formatUnitLabel(item.category, item.from)} → ${formatUnitLabel(item.category, item.to)} | ${catLabel}</div></div>`;
+      const resultLine = item.result || t.result(item.value, formatUnitLabel(item.category, item.from, t), "-", formatUnitLabel(item.category, item.to, t));
+      return `<div class="history-item"><div>${resultLine}</div><div class="history-meta">${item.value} ${formatUnitLabel(item.category, item.from, t)} → ${formatUnitLabel(item.category, item.to, t)} | ${catLabel}</div></div>`;
     })
     .join("");
 }
@@ -540,13 +652,14 @@ function loadHistory() {
 function calculate() {
   const v = parseFloat(inputValue.value || "0");
   const cat = categorySelect.value;
+  const t = i18n[currentLang];
 
   let resultText = "";
 
   if (cat === "temp") {
     const rTemp = convertTemperature(v, fromSel.value, toSel.value);
-    resultText = i18n[currentLang].result(
-      v, fromSel.value.toUpperCase(), rTemp.toFixed(4), toSel.value.toUpperCase()
+    resultText = t.result(
+      v, formatUnitLabel(cat, fromSel.value, t), rTemp.toFixed(4), formatUnitLabel(cat, toSel.value, t)
     );
   }
   else {
@@ -554,8 +667,8 @@ function calculate() {
     const vBase = v * dict[fromSel.value];
     const r = vBase / dict[toSel.value];
 
-    resultText = i18n[currentLang].result(
-      v, fromSel.value, r.toFixed(4), toSel.value
+    resultText = t.result(
+      v, formatUnitLabel(cat, fromSel.value, t), r.toFixed(4), formatUnitLabel(cat, toSel.value, t)
     );
   }
 
