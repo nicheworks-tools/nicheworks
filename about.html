@@ -5,31 +5,56 @@
   <title>About | NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="NicheWorks の背景・思想・開発方針についてまとめたページです。">
+  <!-- Description -->
+  <meta
+    name="description"
+    content="NicheWorks（ニッチワークス）の背景や理念、運営方針について紹介します。目立たないけれど確かに必要な小さなWebツールを静かに継続していく個人プロジェクトです。"
+  >
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/about.html">
 
   <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/about.html">
-
   <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
 
-  <!-- Adsense -->
+  <!-- Adsense Auto Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
      crossorigin="anonymous"></script>
 
-  <!-- Structured Data: AboutPage -->
+  <!-- OGP -->
+  <meta property="og:title" content="About | NicheWorks">
+  <meta property="og:description" content="NicheWorks（ニッチワークス）の背景や理念、運営方針について紹介します。目立たないけれど確かに必要な小さなWebツールを静かに継続していく個人プロジェクトです。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nicheworks.pages.dev/about.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About | NicheWorks">
+  <meta name="twitter:description" content="NicheWorks の理念や成り立ちについて紹介します。">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <!-- JSON-LD (AboutPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About | NicheWorks",
+    "name": "About NicheWorks",
     "url": "https://nicheworks.pages.dev/about.html",
-    "description": "NicheWorks の背景・思想・開発方針についてまとめたページ。",
-    "publisher": { "@type": "Organization", "name": "NicheWorks" }
+    "inLanguage": "ja",
+    "description": "NicheWorks（ニッチワークス）の背景、理念、運営の考え方を紹介する About ページです。",
+    "isPartOf": {
+      "@id": "https://nicheworks.pages.dev/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks"
+    }
   }
   </script>
 </head>
@@ -37,68 +62,111 @@
 <body>
   <main class="container">
 
-    <!-- Header -->
     <header>
       <h1 class="site-title">
         <img src="/assets/nicheworks-logo.png" alt="NicheWorks ロゴ" class="site-logo">
         NicheWorks
       </h1>
+
       <p class="subtitle">「静かに役立つ」小さなWebツールの詰め合わせ</p>
 
+      <!-- Header Navigation -->
       <div class="nav-inline">
-        <a href="./index.html">Home</a> /
-        <a href="./about.html">About</a> /
-        <a href="./privacy.html">Privacy</a> /
+        <a href="./index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="./about.html">About</a>
+        <span class="sep">/</span>
+        <a href="./privacy.html">Privacy</a>
+        <span class="sep">/</span>
         <a href="./contact.html">Contact</a>
       </div>
 
+      <!-- Lang Switch -->
       <div class="nav-inline">
         <span>言語:</span>
-        <a href="./about.html">日本語</a> /
+        <a href="./about.html">日本語</a>
+        <span class="sep">/</span>
         <a href="./en/about.html">English</a>
       </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- About 内容 -->
     <section class="block">
-      <h2>About</h2>
+      <h2>About NicheWorks</h2>
+
       <p>
-        NicheWorks（ニッチワークス）は、<br>
-        “目立たないけれど確かに必要なもの” を静かに形にしていく個人プロジェクト群です。
+        NicheWorks（ニッチワークス）は、  
+        「目立たないけれど確かに必要な、小さく便利なWebツール」を静かに公開し続けるプロジェクトです。
       </p>
+
       <p>
-        作業の効率化、生活のちょっとした不便、調べ物の負担など、<br>
-        「誰かの生活が少しだけ楽になる仕組み」を丁寧に作ることを目的にしています。
+        大きなサービスでは取りこぼされがちな “ニッチな困りごと” に焦点を当て、  
+        ちょっとだけ生活や作業を軽くすることを目的としています。
       </p>
+
       <p>
-        大がかりなサービスではなく、巨大な注目も必要としない。<br>
-        しかし “確かに役立つ” 小さなツールを、継続的に増やしていきます。
+        また、ほとんどのツールはブラウザ内（ローカル）で完結するよう設計されており、  
+        個人情報がサーバーに送信されることはありません。
+      </p>
+
+      <h3>目指していること</h3>
+      <ul>
+        <li>気軽に使える軽量なツールを増やし続けること</li>
+        <li>複雑すぎず、シンプルで直感的に操作できる設計</li>
+        <li>常に広告まみれにせず、ユーザー体験を優先する方針</li>
+        <li>持続可能な個人プロジェクトとして長く続けること</li>
+      </ul>
+
+      <h3>開発・運営について</h3>
+      <p>
+        本プロジェクトは個人によって運営されています。  
+        派手さよりも「継続性」を重視し、  
+        一度作ったツールはできる限り長くメンテナンスしていく方針です。
+      </p>
+
+      <p class="small">
+        → お問い合わせは <a href="./contact.html">Contact ページ</a> からどうぞ。
       </p>
     </section>
 
-    <!-- 寄付ブロック -->
     <footer>
+
+      <!-- 寄付ブロック -->
       <div class="block donate-block">
         <h2>応援（寄付）</h2>
         <p class="small">
-          気に入ったツールがあれば、コーヒー1杯ぶんでも支援していただけると嬉しいです。
+          NicheWorks は個人が作っている小さなツール集です。  
+          気に入ったツールがあれば、コーヒー１杯ぶんだけでも支援いただけるととても助かります。
         </p>
         <div class="donate-buttons">
           <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
           <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
+        <p class="small muted">
+          寄付は任意です。いただいた支援は開発費・データ整備などに充てています。
+        </p>
       </div>
 
+      <!-- Footer Links -->
       <div class="small">
-        <p><a href="./index.html">Home</a> / <a href="./about.html">About</a> / <a href="./privacy.html">Privacy</a> / <a href="./contact.html">Contact</a></p>
-        <p>運営：NicheWorks</p>
+        <p class="small">
+          <a href="./index.html">Home</a> /
+          <a href="./about.html">About</a> /
+          <a href="./privacy.html">Privacy</a> /
+          <a href="./contact.html">Contact</a>
+        </p>
+        <p class="small">運営：NicheWorks</p>
+        <p class="small muted">一部のツールでは運営のため広告が表示される場合があります。</p>
       </div>
+
     </footer>
 
   </main>
 
-  <!-- Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+  <!-- Cloudflare Analytics -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
 </body>
