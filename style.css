@@ -47,7 +47,7 @@ h1 {
 }
 
 .site-logo {
-  height: 32px;                      /* 最適サイズ */
+  height: 38px;                      /* 最適サイズ */
   width: auto;                       /* 比率維持 */
   display: block;
   margin: 0;
