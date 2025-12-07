@@ -5,7 +5,7 @@
   <title>About | NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="NicheWorks（ニッチワークス）の背景や思想、運営方針についてまとめています。">
+  <meta name="description" content="NicheWorks の背景・思想・開発方針についてまとめたページです。">
 
   <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
@@ -17,30 +17,19 @@
   <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
 
-  <!-- OGP -->
-  <meta property="og:title" content="About | NicheWorks">
-  <meta property="og:description" content="NicheWorks の背景・思想・運営方針を紹介します。">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/about.html">
+  <!-- Adsense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
+     crossorigin="anonymous"></script>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About | NicheWorks">
-  <meta name="twitter:description" content="NicheWorks の背景・思想を紹介します。">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
-  <!-- Structured Data -->
+  <!-- Structured Data: AboutPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About NicheWorks",
+    "name": "About | NicheWorks",
     "url": "https://nicheworks.pages.dev/about.html",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks"
-    },
-    "description": "NicheWorks の背景や思想についての説明ページです。"
+    "description": "NicheWorks の背景・思想・開発方針についてまとめたページ。",
+    "publisher": { "@type": "Organization", "name": "NicheWorks" }
   }
   </script>
 </head>
@@ -48,6 +37,7 @@
 <body>
   <main class="container">
 
+    <!-- Header -->
     <header>
       <h1 class="site-title">
         <img src="/assets/nicheworks-logo.png" alt="NicheWorks ロゴ" class="site-logo">
@@ -63,55 +53,53 @@
       </div>
 
       <div class="nav-inline">
-        言語:
+        <span>言語:</span>
         <a href="./about.html">日本語</a> /
         <a href="./en/about.html">English</a>
       </div>
     </header>
 
+    <!-- Main Content -->
     <section class="block">
-      <h2>About NicheWorks</h2>
+      <h2>About</h2>
       <p>
-        NicheWorks（ニッチワークス）は、派手さよりも「必要とされる小さな実用性」を重視した
-        Webツール群のプロジェクトです。
+        NicheWorks（ニッチワークス）は、<br>
+        “目立たないけれど確かに必要なもの” を静かに形にしていく個人プロジェクト群です。
       </p>
       <p>
-        目的は、ユーザーが必要な作業を「すぐに、気軽に、静かに完結できる」環境を提供すること。
-        過剰な機能や追跡を避け、ブラウザ内で完結する処理をできる限り採用しています。
+        作業の効率化、生活のちょっとした不便、調べ物の負担など、<br>
+        「誰かの生活が少しだけ楽になる仕組み」を丁寧に作ることを目的にしています。
+      </p>
+      <p>
+        大がかりなサービスではなく、巨大な注目も必要としない。<br>
+        しかし “確かに役立つ” 小さなツールを、継続的に増やしていきます。
       </p>
     </section>
 
-    <!-- 寄付ブロック（index と統一） -->
+    <!-- 寄付ブロック -->
     <footer>
       <div class="block donate-block">
         <h2>応援（寄付）</h2>
         <p class="small">
-          NicheWorks は個人が作っている小さなツール集です。
-          気に入ったツールがあれば、コーヒー１杯ぶんだけでも支援していただけるととても助かります。
+          気に入ったツールがあれば、コーヒー1杯ぶんでも支援していただけると嬉しいです。
         </p>
-
         <div class="donate-buttons">
           <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
           <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
-
-        <p class="small muted">
-          寄付はもちろん完全に任意です。いただいた支援は開発費・データ整備などに充てます。
-        </p>
       </div>
 
       <div class="small">
-        <p>
-          <a href="./index.html">Home</a> /
-          <a href="./about.html">About</a> /
-          <a href="./privacy.html">Privacy</a> /
-          <a href="./contact.html">Contact</a>
-        </p>
-        <p class="small">運営：NicheWorks</p>
-        <p class="small muted">一部ツールでは広告が表示されることがあります。</p>
+        <p><a href="./index.html">Home</a> / <a href="./about.html">About</a> / <a href="./privacy.html">Privacy</a> / <a href="./contact.html">Contact</a></p>
+        <p>運営：NicheWorks</p>
       </div>
     </footer>
 
   </main>
+
+  <!-- Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
 </body>
 </html>
