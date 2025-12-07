@@ -10,8 +10,8 @@
   >
 
   <!-- Favicon / OGP -->
-  <link rel="icon" href="../assets/nicheworks-favicon-white.ico">
-  <link rel="apple-touch-icon" href="../assets/nicheworks-favicon-512-white.png">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://nicheworks.pages.dev/">
@@ -38,6 +38,7 @@
   }
   </script>
 </head>
+
 <body>
   <main class="container">
 
@@ -45,6 +46,18 @@
       <h1>NicheWorks</h1>
       <p class="subtitle">「静かに役立つ」小さなWebツールの詰め合わせ</p>
 
+      <!-- ★ 追加：ヘッダーナビ（Home / About / Privacy / Contact） -->
+      <div class="nav-inline">
+        <a href="./index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="./about.html">About</a>
+        <span class="sep">/</span>
+        <a href="./privacy.html">Privacy</a>
+        <span class="sep">/</span>
+        <a href="./contact.html">Contact</a>
+      </div>
+
+      <!-- 言語切替（既存） -->
       <div class="nav-inline">
         <span>言語:</span>
         <a href="./index.html">日本語</a>
@@ -62,56 +75,64 @@
         小さく、静かに、かたちにしていくウェブプロジェクト群です。<br>
         派手さよりも実用性を、話題性よりも継続性を重視しています。
       </p>
+
+      <!-- ★ About への自然な導線を追加 -->
+      <p class="small">
+        → プロジェクトの背景や思想は <a href="./about.html">About ページ</a> にまとめています。
+      </p>
     </section>
 
-    <!-- ツール一覧 -->
+    <!-- ツール一覧（カテゴリ分け） -->
     <section class="block">
       <h2>ツール一覧</h2>
+
+      <!-- 文章・テキスト系 -->
+      <h3>文章・テキスト系</h3>
       <ul class="list">
-        <li>
-          <strong><a href="/tools/manual-finder/" target="_blank" rel="noopener">ManualFinder（製品マニュアルリンク集）</a></strong><br>
-          家電・カメラ・スマホなどの「公式マニュアル／取扱説明書ページ」だけを集めたリンク集。
-        </li>
-        <li>
-          <strong><a href="/tools/trashnavi/" target="_blank" rel="noopener">TrashNavi（ごみ分別リンク集）</a></strong><br>
-          自治体ごとの公式ごみ分別ページ・カレンダーへのリンク集。
-        </li>
-        <li>
-          <strong><a href="/tools/log-formatter/" target="_blank" rel="noopener">地味ログ整形屋（LogFormatter）</a></strong><br>
-          Nginx / HTTP アクセスログをブラウザだけで整形・検索するツール。ファイルアップロード不要（ローカル処理）。
-        </li>
-        <li>
-          <strong><a href="/tools/rename-wizard/" target="_blank" rel="noopener">Rename Wizard（ファイル名整形ツール）</a></strong><br>
-          ファイル名の一括整形用ツール。プレビューしてからコピーできるので安全にリネームルールを検討できます。
-        </li>
-        <li>
-          <strong><a href="/tools/contract-cleaner/" target="_blank" rel="noopener">Contract Cleaner（契約書クリーナー）</a></strong><br>
-          契約書テキストから、危険になりそうなキーワードを注視したい表現をハイライト表示する下読みチェック用ツール。
-        </li>
-        <li>
-          <strong><a href="/tools/exif-cleaner-mini/" target="_blank" rel="noopener">EXIF Cleaner Mini</a></strong><br>
-          画像ファイルから EXIF 情報を削除する軽量ツール。ブラウザ内だけで処理し、画像はサーバーに送信されません。
-        </li>
-        <li>
-          <strong><a href="/tools/image-compression-inspector/" target="_blank" rel="noopener">Image Compression Inspector（画像圧縮率チェッカー）</a></strong><br>
-          PNG / JPEG / WebP などの画像をアップロードして、ざっくりした圧縮率・品質と「どの形式が向いていそうか」を確認できます。
-        </li>
-        <li>
-          <strong><a href="/tools/linebreak-doctor/" target="_blank" rel="noopener">LineBreak Doctor（SNS改行修復ツール）</a></strong><br>
-          X / Instagram / LINE などで崩れがちな改行を、投稿前に整えておくためのテキスト整形ツール。
-        </li>
-        <li>
-          <strong><a href="/tools/redirect-unwrapper/" target="_blank" rel="noopener">Redirect Unwrapper（リダイレクト解除ツール）</a></strong><br>
-          短縮URLや HTML メタリダイレクトを含むリンクを貼り付けて、最終的にどのURLへ飛ぶのかを確認するための補助ツール。
-        </li>
-        <li>
-          <strong><a href="/tools/url-title-collector/" target="_blank" rel="noopener">URL Title Collector（URLタイトル収集ツール）</a></strong><br>
-          複数のURLを貼り付けると、各ページのタイトルを一括取得してメモや表にしやすくするツール。
-        </li>
-        <li>
-          <strong><a href="https://unsubscribe-navi.pages.dev/" target="_blank">解約どこナビ（サービス解約リンク集）</a></strong><br>
-          各種サブスク・サービスの「公式解約ページ」へのリンク集。別リポジトリで運用中。
-        </li>
+        <li><strong><a href="/tools/manual-finder/" target="_blank" rel="noopener">ManualFinder（製品マニュアルリンク集）</a></strong><br>家電・カメラ・スマホなどの「公式マニュアル／取扱説明書ページ」だけを集めたリンク集。</li>
+        <li><strong><a href="/tools/trashnavi/" target="_blank" rel="noopener">TrashNavi（ごみ分別リンク集）</a></strong><br>自治体ごとの公式ごみ分別ページ・カレンダーへのリンク集。</li>
+        <li><strong><a href="/tools/log-formatter/" target="_blank" rel="noopener">地味ログ整形屋（LogFormatter）</a></strong><br>Nginx / HTTP アクセスログをブラウザだけで整形・検索するツール。ファイルアップロード不要（ローカル処理）。</li>
+        <li><strong><a href="/tools/rename-wizard/" target="_blank" rel="noopener">Rename Wizard（ファイル名整形ツール）</a></strong><br>ファイル名の一括整形用ツール。プレビューしてからコピーでき安全。</li>
+        <li><strong><a href="/tools/contract-cleaner/" target="_blank" rel="noopener">Contract Cleaner（契約書クリーナー）</a></strong><br>契約書テキストから危険語句をハイライトする下読みチェック用ツール。</li>
+        <li><strong><a href="/tools/exif-cleaner-mini/" target="_blank" rel="noopener">EXIF Cleaner Mini</a></strong><br>画像ファイルからEXIF情報を削除する軽量ツール。ブラウザ内のみで安全処理。</li>
+        <li><strong><a href="/tools/linebreak-doctor/" target="_blank" rel="noopener">LineBreak Doctor（SNS改行修復ツール）</a></strong><br>X / Instagram / LINE向けの不要改行修正。</li>
+        <li><strong><a href="/tools/url-title-collector/" target="_blank" rel="noopener">URL Title Collector（URLタイトル収集ツール）</a></strong><br>複数URLのタイトルを一括取得してメモ化。</li>
+        <li><strong><a href="/tools/message-generator/" target="_blank" rel="noopener">Message Generator</a></strong><br>用途別の短文テンプレート生成。</li>
+      </ul>
+
+      <!-- 画像・ファイル処理 -->
+      <h3>画像・ファイル処理</h3>
+      <ul class="list">
+        <li><strong><a href="/tools/image-compression-inspector/" target="_blank" rel="noopener">Image Compression Inspector（画像圧縮率チェッカー）</a></strong><br>画像形式ごとの圧縮品質を比較。</li>
+        <li><strong><a href="/tools/color-replace/" target="_blank" rel="noopener">Color Replace（画像色置換ツール）</a></strong><br>画像内の特定色を別の色へ置換。</li>
+        <li><strong><a href="/tools/webp-avif-converter/" target="_blank" rel="noopener">WebP / AVIF Converter</a></strong><br>画像を軽量形式へ変換。</li>
+        <li><strong><a href="/tools/filetype-sniffer/" target="_blank" rel="noopener">FileType Sniffer</a></strong><br>ファイルの中身を解析して種別判定。</li>
+      </ul>
+
+      <!-- 解析・変換ツール -->
+      <h3>解析・変換ツール</h3>
+      <ul class="list">
+        <li><strong><a href="/tools/json2mermaid/" target="_blank" rel="noopener">JSON → Mermaid 変換</a></strong><br>JSON構造を自動で図式化。</li>
+        <li><strong><a href="/tools/unitmaster/" target="_blank" rel="noopener">UnitMaster（単位変換ツール）</a></strong><br>多数の単位を高速変換。</li>
+        <li><strong><a href="/tools/kanji-modernizer/" target="_blank" rel="noopener">Kanji Modernizer</a></strong><br>旧字体 → 新字体へ変換。</li>
+        <li><strong><a href="/tools/old-kanji-reference/" target="_blank" rel="noopener">Old Kanji Reference</a></strong><br>旧字体一覧辞書。</li>
+        <li><strong><a href="/tools/redirect-unwrapper/" target="_blank" rel="noopener">Redirect Unwrapper</a></strong><br>短縮URLの最終遷移先を表示。</li>
+      </ul>
+
+      <!-- 生活・実用ツール -->
+      <h3>生活・実用ツール</h3>
+      <ul class="list">
+        <li><strong><a href="/tools/jp-postal-lite/" target="_blank" rel="noopener">JP Postal Lite（郵便番号検索）</a></strong><br>郵便番号から住所を検索。</li>
+        <li><strong><a href="https://unsubscribe-navi.pages.dev/" target="_blank" rel="noopener">解約どこナビ（サービス解約リンク集）</a></strong><br>各種サブスク・サービスの公式解約リンク。</li>
+      </ul>
+
+      <!-- その他ユーティリティ -->
+      <h3>その他ユーティリティ</h3>
+      <ul class="list">
+        <li><strong><a href="/tools/weatherdiff/" target="_blank" rel="noopener">WeatherDiff（天気予報差分チェッカー）</a></strong><br>複数APIの予報比較。地点入力・現在地対応。</li>
+        <li><strong><a href="/tools/wifi-meter/" target="_blank" rel="noopener">WiFi Meter（Wi-Fi混雑度チェッカー）</a></strong><br>周囲Wi-Fiの混雑状況を可視化。</li>
+        <li><strong><a href="/tools/cover-letter-lite/" target="_blank" rel="noopener">Cover Letter Lite</a></strong><br>英文カバーレター生成ツール。</li>
+        <li><strong><a href="/tools/cosmetic-ingredient-checker-lite/" target="_blank" rel="noopener">Cosmetic Ingredient Checker Lite</a></strong><br>化粧品成分の簡易チェック。</li>
       </ul>
     </section>
 
@@ -119,15 +140,14 @@
     <section class="block">
       <h2>運営方針</h2>
       <p class="small">
-        多くのツールは「ブラウザ内で完結する」ことを重視しており、
-        入力したデータはサーバーに送信せず、ローカルで処理されます。
-        一部ツールではアクセス解析と最低限の広告を表示する場合があります。
+        多くのツールは「ブラザ内で完結する」ことを重視しており、
+        入力したデータはサーバーに送信せずローカルで処理されます。
       </p>
     </section>
 
     <footer>
 
-      <!-- 寄付ブロック（ボタン＋絵文字） -->
+      <!-- 寄付ブロック -->
       <div class="block donate-block">
         <h2>応援（寄付）</h2>
         <p class="small">
@@ -139,17 +159,20 @@
           <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
         <p class="small muted">
-          寄付はもちろん完全に任意です。いただいた支援はサーバー費・開発時間・データ整備などに充てます。
+          寄付はもちろん完全に任意です。いただいた支援は開発費・データ整備などに充てます。
         </p>
       </div>
 
+      <!-- ★ フッターリンク4点セット -->
       <div class="small">
+        <p class="small">
+          <a href="./index.html">Home</a> /
+          <a href="./about.html">About</a> /
+          <a href="./privacy.html">Privacy</a> /
+          <a href="./contact.html">Contact</a>
+        </p>
         <p class="small">運営：NicheWorks</p>
         <p class="small muted">一部ツールでは運営のため広告が表示されることがあります。</p>
-        <p class="small">
-          <a href="./privacy.html">プライバシーポリシー</a> /
-          <a href="./contact.html">お問い合わせ</a>
-        </p>
       </div>
 
     </footer>
@@ -163,5 +186,6 @@
     data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
   </script>
   <!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
