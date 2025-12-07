@@ -4,39 +4,70 @@
   <meta charset="UTF-8">
   <title>NicheWorks | 静かなWebツール集</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Meta Description -->
   <meta
     name="description"
     content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。"
   >
 
-  <!-- Favicon / OGP -->
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
   <!-- Canonical -->
   <link rel="canonical" href="https://nicheworks.pages.dev/">
 
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
   <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
-  
+
   <!-- Google Adsense (Auto Ads) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
      crossorigin="anonymous"></script>
 
-  <!-- Structured Data: WebSite -->
+  <!-- OGP -->
+  <meta property="og:title" content="NicheWorks | 静かなWebツール集">
+  <meta property="og:description" content="目立たないけれど確かに必要な小さなWebツールを静かに公開していく個人プロジェクト。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.pages.dev/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NicheWorks | 静かなWebツール集">
+  <meta name="twitter:description" content="目立たないけれど確かに必要な小さなWebツールを静かに公開していく個人プロジェクト。">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <!-- Structured Data: WebSite + WebPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "NicheWorks",
-    "url": "https://nicheworks.pages.dev/",
-    "description": "目立たないけれど確かに必要な小さなWebツールを静かに公開していく個人プロジェクト。",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "NicheWorks",
+        "url": "https://nicheworks.pages.dev/",
+        "description": "目立たないけれど確かに必要な小さなWebツールを静かに公開していく個人プロジェクト。",
+        "publisher": {
+          "@type": "Organization",
+          "name": "NicheWorks"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "name": "NicheWorks | 静かなWebツール集",
+        "url": "https://nicheworks.pages.dev/",
+        "inLanguage": "ja",
+        "isPartOf": {
+          "@id": "https://nicheworks.pages.dev/"
+        },
+        "description": "NicheWorks は、目立たないけれど確かに必要な小さなWebツールを静かに提供する個人プロジェクトです。"
+      }
+    ]
   }
   </script>
+
 </head>
 
 <body>
@@ -50,6 +81,7 @@
 
       <p class="subtitle">「静かに役立つ」小さなWebツールの詰め合わせ</p>
 
+      <!-- Header Navigation -->
       <div class="nav-inline">
         <a href="./index.html">Home</a>
         <span class="sep">/</span>
@@ -60,6 +92,7 @@
         <a href="./contact.html">Contact</a>
       </div>
 
+      <!-- Language Switch -->
       <div class="nav-inline">
         <span>言語:</span>
         <a href="./index.html">日本語</a>
@@ -142,29 +175,35 @@
       </ul>
     </section>
 
+
     <!-- 運営方針 -->
     <section class="block">
       <h2>運営方針</h2>
       <p class="small">
-        多くのツールは「ブラウザ内で完結する」ことを重視しており、
+        多くのツールは「ブラウザ内で完結する」ことを重視しており、  
         入力したデータはサーバーに送信せずローカルで処理されます。
+      </p>
+      <p class="small">
+        また、NicheWorks は非営利で運営されていますが、継続のため一部ページに広告を掲載する場合があります。  
+        収益はすべてツールの開発・維持管理・データ整備に利用されます。
       </p>
     </section>
 
     <footer>
 
+      <!-- 寄付ブロック -->
       <div class="block donate-block">
         <h2>応援（寄付）</h2>
         <p class="small">
-          NicheWorks は個人が作っている小さなツール集です。
-          気に入ったツールがあれば、コーヒー１杯ぶんだけでも支援していただけるととても助かります。
+          NicheWorks は個人が作っている小さなツール集です。  
+          気に入ったツールがあれば、コーヒー１杯ぶんだけでも支援いただけるととても助かります。
         </p>
         <div class="donate-buttons">
           <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
           <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
         <p class="small muted">
-          寄付は完全に任意です。いただいた支援は開発・データ整備に使われます。
+          寄付は任意です。いただいた支援は開発費・データ整備などに充てています。
         </p>
       </div>
 
@@ -176,13 +215,14 @@
           <a href="./contact.html">Contact</a>
         </p>
         <p class="small">運営：NicheWorks</p>
-        <p class="small muted">一部ツールでは運営のため広告が表示されることがあります。</p>
+        <p class="small muted">一部のツールでは運営のため広告が表示される場合があります。</p>
       </div>
 
     </footer>
 
   </main>
 
+  <!-- Cloudflare Web Analytics -->
   <script
     defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
