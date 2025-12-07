@@ -5,14 +5,18 @@
   <title>Privacy Policy | NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Privacy policy of NicheWorks. This page explains how data is handled, how analytics and ads work, and how personal information is treated.">
+  <!-- Description -->
+  <meta
+    name="description"
+    content="The Privacy Policy of NicheWorks. This page explains how data is handled, how ads work, and what information is collected through analytics."
+  >
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/en/privacy.html">
 
   <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/en/privacy.html">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
@@ -21,15 +25,33 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
-  <!-- Structured Data -->
+  <!-- OGP -->
+  <meta property="og:title" content="Privacy Policy | NicheWorks">
+  <meta property="og:description" content="NicheWorks' Privacy Policy, covering data handling, ads, analytics, and user privacy protections.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nicheworks.pages.dev/en/privacy.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy | NicheWorks">
+  <meta name="twitter:description" content="Information on how NicheWorks handles data, analytics, and advertisements.">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <!-- JSON-LD (PrivacyPolicy) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Privacy Policy | NicheWorks",
+    "@type": "PrivacyPolicy",
+    "name": "NicheWorks Privacy Policy",
     "url": "https://nicheworks.pages.dev/en/privacy.html",
-    "description": "NicheWorks privacy policy.",
-    "publisher": { "@type": "Organization", "name": "NicheWorks" }
+    "inLanguage": "en",
+    "description": "Privacy Policy for NicheWorks, describing how data is handled, what information is collected, and how ads operate.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks"
+    }
   }
   </script>
 </head>
@@ -37,137 +59,190 @@
 <body>
   <main class="container">
 
-    <!-- Header -->
     <header>
       <h1 class="site-title">
         <img src="/assets/nicheworks-logo.png" alt="NicheWorks logo" class="site-logo">
         NicheWorks
       </h1>
 
-      <p class="subtitle">A quiet collection of small, practical web tools</p>
+      <p class="subtitle">A quiet collection of small, useful web tools</p>
 
+      <!-- Navigation -->
       <div class="nav-inline">
-        <a href="./index.html">Home</a> /
-        <a href="./about.html">About</a> /
-        <a href="./privacy.html">Privacy</a> /
+        <a href="./index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="./about.html">About</a>
+        <span class="sep">/</span>
+        <a href="./privacy.html">Privacy</a>
+        <span class="sep">/</span>
         <a href="./contact.html">Contact</a>
       </div>
 
+      <!-- Language Switch -->
       <div class="nav-inline">
-        Language:
-        <a href="./privacy.html">English</a> /
+        <span>Language:</span>
+        <a href="./privacy.html">English</a>
+        <span class="sep">/</span>
         <a href="../privacy.html">日本語</a>
       </div>
     </header>
 
-    <!-- Content -->
+    <!-- Privacy Policy -->
     <section class="block">
       <h2>Privacy Policy</h2>
 
       <p>
-        NicheWorks respects user privacy and strives to handle all information responsibly.
-        This page explains how data is treated, what external services are used, and the limits of responsibility.
+        NicheWorks (“the Site”) is committed to providing lightweight,  
+        privacy-friendly tools that run primarily within the user's browser.  
+        This policy explains how data is handled, what information may be collected,  
+        how advertisements work, and the scope of analytics used on this site.
       </p>
 
-      <hr>
+      <h3>1. Information the Site Collects</h3>
 
-      <h3>1. Local Processing</h3>
       <p>
-        Most tools on NicheWorks operate entirely within your browser.
-        Any data entered—such as text, logs, or images—is processed locally and never uploaded to our server.
-      </p>
-      <p>
-        - Tools requiring file uploads also process them locally.<br>
-        - No personal data is stored or transmitted by NicheWorks.
+        Most tools offered by NicheWorks are designed to operate entirely  
+        within your browser. This means:
       </p>
 
-      <hr>
+      <ul>
+        <li>
+          Text, images, or files you upload or enter are <strong>not sent to any server</strong>.
+        </li>
+        <li>
+          No personally identifiable information (PII) is collected from tool usage.
+        </li>
+      </ul>
 
-      <h3>2. Analytics</h3>
-      <p>NicheWorks uses the following analytics service:</p>
-
-      <h4>Cloudflare Web Analytics</h4>
       <p>
-        - Does not collect personally identifiable information.<br>
-        - Does not use cookies.<br>
-        - Provides anonymous usage insights only.
+        However, some non-personal technical information may be collected  
+        for analytics purposes, such as:
       </p>
 
-      <hr>
+      <ul>
+        <li>Visited page URLs</li>
+        <li>Visit timestamps</li>
+        <li>Browser and device information</li>
+        <li>Partially anonymized IP addresses (not enough for identification)</li>
+      </ul>
 
-      <h3>3. Advertising (Google Adsense)</h3>
+      <p class="small">
+        NicheWorks uses <strong>Cloudflare Web Analytics</strong>,  
+        which does not collect personal identifiers.
+      </p>
+
+      <h3>2. Advertisements (Google AdSense)</h3>
+
       <p>
-        Some pages on NicheWorks serve ads via Google Adsense.
-        Google may use cookies to display personalized or non-personalized ads.
+        Certain pages on NicheWorks display ads to support development and maintenance.  
+        These ads are provided through <strong>Google AdSense</strong>,  
+        a third-party advertising service.
       </p>
 
       <p>
-        For details, see Google’s official policy:<br>
+        AdSense may use cookies to deliver personalized or interest-based ads.  
+        You may disable cookies in your browser settings if desired.
+      </p>
+
+      <p>
+        For more details on how Google uses cookies and advertising data, please see:
+      </p>
+      <p>
         <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">
           https://policies.google.com/technologies/ads
         </a>
       </p>
 
-      <hr>
+      <h3>3. Use of External Services</h3>
+      <p>The Site uses the following external services:</p>
 
-      <h3>4. External Links</h3>
+      <ul>
+        <li><strong>Cloudflare Web Analytics</strong> — anonymous traffic analytics</li>
+        <li><strong>Google AdSense</strong> — third-party ad delivery</li>
+      </ul>
+
       <p>
-        NicheWorks contains links to external websites.
-        We are not responsible for the content, safety, or privacy practices of third-party sites.
-        Please check their respective policies when using them.
+        These services handle only anonymized usage information  
+        and do not collect data that can identify individual users.
       </p>
 
-      <hr>
+      <h3>4. Use of Personal Information</h3>
 
-      <h3>5. Contact</h3>
-      <p>If you have questions regarding this privacy policy, contact us via email:</p>
-      <p class="small"><span id="email"></span></p>
-
-      <hr>
-
-      <h3>6. Updates to This Policy</h3>
       <p>
-        This privacy policy may be updated without notice.
-        The latest version will always be published on this page.
+        If a user contacts the Site voluntarily (via email, etc.),  
+        the provided information is used only for:
+      </p>
+
+      <ul>
+        <li>Responding to inquiries</li>
+        <li>Troubleshooting and improving the tools</li>
+      </ul>
+
+      <h3>5. Disclaimer</h3>
+
+      <p>
+        While the tools on NicheWorks are tested prior to release,  
+        the Site makes no guarantees regarding their accuracy, completeness,  
+        or suitability for specific purposes.
+      </p>
+
+      <p>
+        The Site is not responsible for any damage or loss resulting from tool usage.  
+        Users should operate the tools at their own discretion.
+      </p>
+
+      <h3>6. Changes to This Policy</h3>
+
+      <p>
+        This Privacy Policy may be updated as needed.  
+        Significant updates will be announced on this page.
+      </p>
+
+      <p class="small">
+        → For inquiries, please visit the <a href="./contact.html">Contact page</a>.
       </p>
 
     </section>
 
-    <!-- Footer -->
     <footer>
 
+      <!-- Donation block -->
       <div class="block donate-block">
         <h2>Support</h2>
-        <p class="small">If these tools help you, even a small donation is appreciated.</p>
-
+        <p class="small">
+          If you find NicheWorks helpful, a small donation is greatly appreciated.  
+          Your support helps maintain and improve the tools.
+        </p>
         <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
+        <p class="small muted">
+          Donations are optional. All support is reinvested into continued development.
+        </p>
       </div>
 
+      <!-- Footer Navigation -->
       <div class="small">
-        <p>
+        <p class="small">
           <a href="./index.html">Home</a> /
           <a href="./about.html">About</a> /
           <a href="./privacy.html">Privacy</a> /
           <a href="./contact.html">Contact</a>
         </p>
-        <p>Operated by NicheWorks</p>
+
+        <p class="small">NicheWorks Project</p>
+        <p class="small muted">Some tools may display ads to help support the project.</p>
       </div>
+
     </footer>
 
   </main>
 
-  <!-- Email obfuscation -->
-  <script>
-    const u = "nicheworks.tools";
-    const d = "gmail.com";
-    document.getElementById("email").innerText = u + "@" + d;
-  </script>
-
-  <!-- Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+  <!-- Cloudflare Analytics -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
 </body>
