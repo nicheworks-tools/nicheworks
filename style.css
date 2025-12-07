@@ -37,6 +37,22 @@ h1 {
   margin: 0;
 }
 
+/* ================================
+ * ヘッダーロゴ
+ * ============================== */
+.site-title {
+  display: inline-flex;              /* 画像と文字を横並びに */
+  align-items: center;               /* 垂直位置を揃える */
+  gap: 10px;                         /* 画像と文字の間隔 */
+}
+
+.site-logo {
+  height: 32px;                      /* 最適サイズ */
+  width: auto;                       /* 比率維持 */
+  display: block;
+  margin: 0;
+}
+
 .subtitle {
   margin: 4px 0 0;
   font-size: 13px;
