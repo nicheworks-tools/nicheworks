@@ -103,6 +103,10 @@ body {
   gap: 12px;
 }
 
+.mobile-tab-header {
+  display: none;
+}
+
 .tab-controls {
   display: none;
   gap: 8px;
@@ -206,10 +210,11 @@ canvas {
   gap: 12px;
 }
 
-.color-card-head {
+.section-title-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .color-preview {
@@ -225,6 +230,19 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.color-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hex-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
 }
 
 input[type="color"] {
@@ -268,15 +286,48 @@ select {
 .preset-row {
   display: flex;
   gap: 6px;
-  overflow-x: auto;
-  padding-bottom: 4px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.preset-row .preset-color {
+.preset-swatches {
+  display: none;
+  gap: 8px;
+}
+
+.preset-swatch {
   width: 22px;
   height: 22px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.preset-swatch[data-value="#ff0000"] {
+  background: #ff0000;
+}
+
+.preset-swatch[data-value="#00ff00"] {
+  background: #00ff00;
+}
+
+.preset-swatch[data-value="#0000ff"] {
+  background: #0000ff;
+}
+
+.preset-swatch[data-value="#ffffff"] {
+  background: #ffffff;
+}
+
+.preset-swatch[data-value="#000000"] {
+  background: #000000;
+}
+
+.preset-select {
+  max-width: 200px;
 }
 
 .slider-row,
@@ -326,6 +377,15 @@ select {
     padding: 16px;
   }
 
+  section {
+    margin-bottom: 16px;
+  }
+
+  h3,
+  h4 {
+    margin-bottom: 8px;
+  }
+
   .preview-columns {
     flex-direction: column;
     gap: 12px;
@@ -341,32 +401,124 @@ select {
     display: flex;
   }
 
-  .tab-controls {
-    display: flex;
-  }
-
   .color-section {
     flex-direction: column;
   }
 
-  .tab-header {
+  .mobile-tab-header {
     display: flex;
     gap: 8px;
     background: #f3f3f3;
     padding: 6px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
-  .tab-btn {
+  .mobile-tab-btn {
     flex: 1;
-    padding: 8px 0;
-    text-align: center;
-    border-radius: 999px;
+    height: 36px;
+    border: none;
+    border-radius: 12px;
     background: #e7e7e7;
+    font-size: 13px;
+    text-align: center;
   }
 
-  .tab-btn.active {
+  .mobile-tab-btn.active {
     background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
+  }
+
+  .tab-controls {
+    display: none;
+  }
+
+  .input-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .input-row label {
+    writing-mode: horizontal-tb;
+  }
+
+  .input-row input[type="file"] {
+    width: 100%;
+  }
+
+  .card {
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .card-like-block {
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+
+  .color-preview {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 6px;
+  }
+
+  .color-preview-row {
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hex-group .hex-input,
+  .hex-input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .rgb-inputs {
+    gap: 6px;
+  }
+
+  .rgb-inputs input {
+    width: 68px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .preset-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .preset-swatches {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .preset-select {
+    display: none;
+  }
+
+  .card {
+    gap: 10px;
+  }
+
+  .color-card {
+    gap: 10px;
+  }
+
+  .rgb-group,
+  .hex-group,
+  .color-controls {
+    gap: 6px;
+  }
+
+  canvas {
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f7f7f7;
   }
 }

@@ -53,9 +53,23 @@
         <input type="file" id="imageInput" accept="image/*" />
       </div>
       <div class="canvas-area" data-view="before">
-        <div class="tab-controls tab-header">
-          <button class="tab-button tab-btn active" data-tab="before" data-i18n="beforeTab">Before</button>
-          <button class="tab-button tab-btn" data-tab="after" data-i18n="afterTab">After</button>
+        <div class="mobile-tab-header">
+          <button
+            class="mobile-tab-btn tab-button active"
+            data-tab="before"
+            data-target="before"
+            data-i18n="beforeTab"
+          >
+            Before
+          </button>
+          <button
+            class="mobile-tab-btn tab-button"
+            data-tab="after"
+            data-target="after"
+            data-i18n="afterTab"
+          >
+            After
+          </button>
         </div>
         <div class="canvas-grid preview-columns">
           <div class="canvas-card preview-card before-card" data-role="before">
@@ -85,16 +99,20 @@
 
     <section class="card color-section">
       <div class="color-card" id="fromColorSection">
-        <div class="color-card-head">
+        <div class="section-title-row">
           <h2 data-i18n="fromColor">置換対象の色 (From)</h2>
           <button class="btn ghost" data-section-reset="from" data-i18n="resetSection">リセット</button>
         </div>
-        <div class="color-preview" id="fromPreview"></div>
         <div class="color-controls">
           <label data-i18n="pickerLabel">カラーピッカー</label>
           <input type="color" id="fromPicker" />
-          <label data-i18n="hexLabel">HEX</label>
-          <input class="hex-input" type="text" id="fromHex" value="#ff0000" />
+          <div class="color-preview-row">
+            <div class="color-preview" id="fromPreview"></div>
+            <div class="hex-group">
+              <label data-i18n="hexLabel">HEX</label>
+              <input class="hex-input" type="text" id="fromHex" value="#ff0000" />
+            </div>
+          </div>
           <div class="rgb-group">
             <label data-i18n="rgbLabel">RGB</label>
             <div class="rgb-inputs">
@@ -104,8 +122,15 @@
             </div>
           </div>
           <label for="fromPreset" data-i18n="presetLabel">プリセット</label>
-          <div class="preset-row">
-            <select id="fromPreset">
+          <div class="preset-row" data-preset-group="from">
+            <div class="preset-swatches" aria-hidden="false">
+              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#ff0000" aria-label="赤" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#00ff00" aria-label="緑" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#0000ff" aria-label="青" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#ffffff" aria-label="白" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#000000" aria-label="黒" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+            </div>
+            <select id="fromPreset" class="preset-select">
               <option value="#ff0000" data-i18n="presetRed">赤</option>
               <option value="#00ff00" data-i18n="presetGreen">緑</option>
               <option value="#0000ff" data-i18n="presetBlue">青</option>
@@ -117,16 +142,20 @@
       </div>
 
       <div class="color-card" id="toColorSection">
-        <div class="color-card-head">
+        <div class="section-title-row">
           <h2 data-i18n="toColor">置換後の色 (To)</h2>
           <button class="btn ghost" data-section-reset="to" data-i18n="resetSection">リセット</button>
         </div>
-        <div class="color-preview" id="toPreview"></div>
         <div class="color-controls">
           <label data-i18n="pickerLabel">カラーピッカー</label>
           <input type="color" id="toPicker" />
-          <label data-i18n="hexLabel">HEX</label>
-          <input class="hex-input" type="text" id="toHex" value="#00ff00" />
+          <div class="color-preview-row">
+            <div class="color-preview" id="toPreview"></div>
+            <div class="hex-group">
+              <label data-i18n="hexLabel">HEX</label>
+              <input class="hex-input" type="text" id="toHex" value="#00ff00" />
+            </div>
+          </div>
           <div class="rgb-group">
             <label data-i18n="rgbLabel">RGB</label>
             <div class="rgb-inputs">
@@ -136,8 +165,15 @@
             </div>
           </div>
           <label for="toPreset" data-i18n="presetLabel">プリセット</label>
-          <div class="preset-row">
-            <select id="toPreset">
+          <div class="preset-row" data-preset-group="to">
+            <div class="preset-swatches" aria-hidden="false">
+              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#ff0000" aria-label="赤" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#00ff00" aria-label="緑" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#0000ff" aria-label="青" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#ffffff" aria-label="白" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#000000" aria-label="黒" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
+            </div>
+            <select id="toPreset" class="preset-select">
               <option value="#ff0000" data-i18n="presetRed">赤</option>
               <option value="#00ff00" data-i18n="presetGreen">緑</option>
               <option value="#0000ff" data-i18n="presetBlue">青</option>
