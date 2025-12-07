@@ -5,82 +5,176 @@
   <title>Contact | NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Contact page for NicheWorks — send feedback, bug reports, or improvement suggestions.">
+  <!-- Description -->
+  <meta
+    name="description"
+    content="Contact information for NicheWorks. Reach out for questions, suggestions, or tool-related feedback."
+  >
 
+  <!-- Canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/en/contact.html">
+
+  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/en/contact.html">
-
+  <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
 
+  <!-- Adsense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
-  <!-- Structured Data -->
+  <!-- OGP -->
+  <meta property="og:title" content="Contact | NicheWorks">
+  <meta property="og:description" content="How to contact NicheWorks for questions, suggestions, or support.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nicheworks.pages.dev/en/contact.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact | NicheWorks">
+  <meta name="twitter:description" content="Contact details for NicheWorks.">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <!-- JSON-LD (ContactPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Contact | NicheWorks",
+    "name": "Contact - NicheWorks",
     "url": "https://nicheworks.pages.dev/en/contact.html",
-    "description": "Contact page for NicheWorks.",
-    "publisher": { "@type": "Organization", "name": "NicheWorks" }
+    "inLanguage": "en",
+    "description": "How to contact NicheWorks for questions and feedback.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks"
+    }
   }
+  </script>
+
+  <!-- Email Obfuscation -->
+  <script>
+    function revealEmail() {
+      const user = "nicheworks.tools";
+      const domain = "gmail.com";
+      const email = user + "@" + domain;
+      document.getElementById("email-link").textContent = email;
+      document.getElementById("email-link").href = "mailto:" + email;
+    }
+    document.addEventListener("DOMContentLoaded", revealEmail);
   </script>
 </head>
 
 <body>
   <main class="container">
 
-    <!-- Header -->
     <header>
       <h1 class="site-title">
         <img src="/assets/nicheworks-logo.png" alt="NicheWorks logo" class="site-logo">
         NicheWorks
       </h1>
 
-      <p class="subtitle">A quiet collection of small, practical web tools</p>
+      <p class="subtitle">A quiet collection of small, useful web tools</p>
 
+      <!-- Navigation -->
       <div class="nav-inline">
-        <a href="./index.html">Home</a> /
-        <a href="./about.html">About</a> /
-        <a href="./privacy.html">Privacy</a> /
+        <a href="./index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="./about.html">About</a>
+        <span class="sep">/</span>
+        <a href="./privacy.html">Privacy</a>
+        <span class="sep">/</span>
         <a href="./contact.html">Contact</a>
       </div>
 
+      <!-- Lang Switch -->
       <div class="nav-inline">
-        Language:
-        <a href="./contact.html">English</a> /
+        <span>Language:</span>
+        <a href="./contact.html">English</a>
+        <span class="sep">/</span>
         <a href="../contact.html">日本語</a>
       </div>
     </header>
 
-    <!-- Main -->
+    <!-- Contact -->
     <section class="block">
       <h2>Contact</h2>
 
       <p>
-        You can use this page to send feedback, bug reports, or suggestions for improvements.  
-        Messages of any size are welcome — even small notes help shape future updates.
+        Thank you for your interest in NicheWorks.  
+        You can use the contact information below for questions,  
+        feedback, improvement requests, or reporting issues.
       </p>
 
-      <p class="small">Email address (auto-generated):</p>
-      <p class="small"><span id="email"></span></p>
+      <h3>1. Email</h3>
+      <p>
+        You may reach the project owner via the following email address:
+      </p>
+
+      <p>
+        <a id="email-link" href="#" class="strong"></a>
+      </p>
+
+      <p class="small">
+        * The email address is protected using a simple obfuscation script  
+        to reduce automated spam collection.
+      </p>
+
+      <h3>2. Purpose of Inquiry</h3>
+      <p>Your message is welcome for topics such as:</p>
+      <ul>
+        <li>Questions about how to use specific tools</li>
+        <li>Bug reports or technical issues</li>
+        <li>Feature suggestions</li>
+        <li>Corrections for data or documentation</li>
+        <li>General feedback or comments</li>
+      </ul>
+
+      <h3>3. Handling of Provided Information</h3>
+      <p>
+        Any information you provide via email will be used solely for:
+      </p>
+      <ul>
+        <li>Replying to your inquiry</li>
+        <li>Improving the quality of tools and services</li>
+      </ul>
+
+      <p>
+        Your information will never be shared with third parties  
+        unless legally required.
+      </p>
+
+      <h3>4. Notes Before Contacting</h3>
+      <ul>
+        <li>NicheWorks is maintained by an individual developer.</li>
+        <li>Replies may take some time depending on the complexity of the inquiry.</li>
+        <li>Questions about unreleased tools may not be answered.</li>
+      </ul>
+
     </section>
 
-    <!-- Footer -->
     <footer>
+
+      <!-- Donation Block -->
       <div class="block donate-block">
         <h2>Support</h2>
-        <p class="small">If you find the tools helpful, your support is sincerely appreciated.</p>
-
+        <p class="small">
+          If you find NicheWorks helpful, a small donation is greatly appreciated.  
+          Your support helps maintain and improve the tools.
+        </p>
         <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks">☕ Ko-fi</a>
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
+        <p class="small muted">
+          Donations are optional. All support is reinvested into continued development.
+        </p>
       </div>
 
+      <!-- Footer Nav -->
       <div class="small">
         <p>
           <a href="./index.html">Home</a> /
@@ -88,22 +182,22 @@
           <a href="./privacy.html">Privacy</a> /
           <a href="./contact.html">Contact</a>
         </p>
-        <p>Operated by NicheWorks</p>
+        <p>NicheWorks Project</p>
+        <p class="muted small">
+          Some tools may display ads to help support the project.
+        </p>
       </div>
+
     </footer>
 
   </main>
 
-  <!-- email obfuscation -->
-  <script>
-    const u = "nicheworks.tools";
-    const d = "gmail.com";
-    document.getElementById("email").innerText = u + "@" + d;
+  <!-- Cloudflare Analytics -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
   </script>
-
-  <!-- Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
 </body>
 </html>
