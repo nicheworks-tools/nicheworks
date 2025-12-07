@@ -105,6 +105,12 @@ h3 {
   letter-spacing: 0.3px;     /* 読みやすさ補助 */
 }
 
+.category-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 4px 0 8px;
+  line-height: 1.4;
+}
 
 .list {
   list-style: none;
