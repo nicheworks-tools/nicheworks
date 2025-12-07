@@ -1,216 +1,119 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>お問い合わせ - NicheWorks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="NicheWorksへのお問い合わせページ。不具合報告・改善提案・ご要望はこちらからご連絡ください。" />
+  <meta charset="UTF-8">
+  <title>Contact | NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- favicon -->
+  <meta name="description" content="NicheWorks へのお問い合わせページです。">
+
+  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://nicheworks.pages.dev/contact.html">
 
+  <!-- Styles -->
+  <link rel="stylesheet" href="/style.css">
+
   <!-- OGP -->
-  <meta property="og:title" content="お問い合わせ - NicheWorks">
-  <meta property="og:description" content="NicheWorksの不具合報告・改善提案はこちら。メールアプリ経由または直接メールで連絡できます。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/contact.html">
+  <meta property="og:title" content="Contact | NicheWorks">
+  <meta property="og:description" content="NicheWorks へのお問い合わせページ。">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:type" content="website">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="お問い合わせ - NicheWorks">
-  <meta name="twitter:description" content="NicheWorksへのご連絡はこちらから。">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Adsense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- Structured Data (Contact Page) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ContactPage",
+    "name": "Contact NicheWorks",
     "url": "https://nicheworks.pages.dev/contact.html",
-    "name": "お問い合わせ - NicheWorks",
-    "description": "NicheWorksへのお問い合わせページ。",
     "publisher": {
       "@type": "Organization",
       "name": "NicheWorks"
     }
   }
   </script>
-
-  <!-- Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
-
-
 
 <body>
   <main class="container">
 
     <header>
-      <h1>お問い合わせ</h1>
-      <p class="subtitle">
-        NicheWorksの各ツールに関する不具合報告・ご意見・ご要望・ご相談はこちらからご連絡ください。
-      </p>
+      <h1 class="site-title">
+        <img src="/assets/nicheworks-logo.png" alt="NicheWorks ロゴ" class="site-logo">
+        NicheWorks
+      </h1>
+      <p class="subtitle">「静かに役立つ」小さなWebツールの詰め合わせ</p>
 
-      <nav class="nav-inline">
-        <a href="/index.html">Home</a>
-        <span class="sep">｜</span>
-        <a href="/about.html">About</a>
-        <span class="sep">｜</span>
-        <a href="/privacy.html">Privacy</a>
-        <span class="sep">｜</span>
-        <a href="/contact.html">Contact</a>
-        <span class="sep">｜</span>
-        <a href="/en/">EN</a>
-      </nav>
+      <div class="nav-inline">
+        <a href="./index.html">Home</a> /
+        <a href="./about.html">About</a> /
+        <a href="./privacy.html">Privacy</a> /
+        <a href="./contact.html">Contact</a>
+      </div>
+
+      <div class="nav-inline">
+        言語:
+        <a href="./contact.html">日本語</a> /
+        <a href="./en/contact.html">English</a>
+      </div>
     </header>
 
     <section class="block">
-      <form id="contactForm">
-        <label for="subject">件名</label><br />
-        <input
-          type="text"
-          id="subject"
-          class="input"
-          placeholder="例：LogFormatter の表示について"
-          required
-        /><br /><br />
+      <h2>お問い合わせ</h2>
+      <p>
+        ご意見・ご質問がありましたら、以下のメールアドレスへご連絡ください。
+      </p>
 
-        <label for="message">お問い合わせ内容</label><br />
-        <textarea
-          id="message"
-          class="textarea"
-          placeholder="できるだけ具体的にご記入ください。"
-          required
-        ></textarea><br /><br />
+      <p class="small">
+        メール（スパム対策のため JS で表示しています）:<br>
+        <span id="email"></span>
+      </p>
+    </section>
 
-        <label for="from">ご連絡先メールアドレス（任意）</label><br />
-        <input
-          type="email"
-          id="from"
-          class="input"
-          placeholder="返信をご希望の場合のみご記入ください"
-        /><br /><br />
+    <script>
+      // 統一されたメール保護スクリプト
+      const user = "nicheworks.tools";
+      const domain = "gmail.com";
+      document.getElementById("email").textContent = user + "@" + domain;
+    </script>
 
-        <div style="display:none;">
-          <label>Leave this empty</label>
-          <input type="text" id="hp" />
+    <footer>
+      <div class="block donate-block">
+        <h2>応援（寄付）</h2>
+        <p class="small">
+          NicheWorks は個人が作っている小さなツール集です。
+          気に入ったツールがあれば、コーヒー１杯ぶんだけでも支援していただけるととても助かります。
+        </p>
+
+        <div class="donate-buttons">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
 
-        <button type="submit" class="btn-primary">メールアプリを開く</button>
-        <p id="formStatus" class="small"></p>
-      </form>
-    </section>
+        <p class="small muted">
+          寄付はもちろん完全に任意です。いただいた支援は開発費・データ整備などに充てます。
+        </p>
+      </div>
 
-    <section class="block">
-      <h2>直接メールでのご連絡</h2>
-      <p class="small">
-        お使いの環境でフォーム送信（mailto）が動作しない場合は、以下のメールアドレス宛に直接ご連絡ください。
-      </p>
-      <p class="small"><span id="directMail"></span></p>
-    </section>
-
-    <footer class="site-footer">
-  <div class="footer-row">
-    <p>© 2025 NicheWorks</p>
-    <p class="small">NicheWorksは個人開発の小さな実用ツール集です。内容は予告なく変更される場合があります。</p>
-  </div>
-
-  <div class="footer-row footer-links small">
-    <a href="/about.html">このサイトについて</a>
-    <span class="sep">/</span>
-    <a href="/privacy.html">プライバシーポリシー</a>
-    <span class="sep">/</span>
-    <a href="/contact.html">お問い合わせ</a>
-  </div>
-
-  <div class="footer-row support-row">
-    <p class="small footer-label">応援（寄付）</p>
-    <div class="support-links">
-      <a class="support-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fiで支援</a>
-      <a class="support-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSEで支援</a>
-    </div>
-    <p class="small muted">寄付は任意です。いただいた支援はサーバー費・開発・データ整備に使われます。</p>
-  </div>
-
-  <div class="footer-row small muted">
-    このサイトでは運営維持のため広告が表示される場合があります。
-  </div>
-</footer>
+      <div class="small">
+        <p>
+          <a href="./index.html">Home</a> /
+          <a href="./about.html">About</a> /
+          <a href="./privacy.html">Privacy</a> /
+          <a href="./contact.html">Contact</a>
+        </p>
+        <p class="small">運営：NicheWorks</p>
+        <p class="small muted">一部ツールでは広告が表示されることがあります。</p>
+      </div>
+    </footer>
 
   </main>
-
-  <script>
-    (function () {
-      const user = "nicheworks.tools";
-      const domain = "gmail.com";
-      const addr = user + "@" + domain;
-
-      const direct = document.getElementById("directMail");
-      if (direct) {
-        direct.innerHTML = '<a href="mailto:' + addr + '">' + addr + "</a>";
-      }
-    })();
-
-    const form = document.getElementById("contactForm");
-    const statusEl = document.getElementById("formStatus");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const hp = document.getElementById("hp");
-      if (hp && hp.value.trim() !== "") {
-        statusEl.textContent = "送信完了。";
-        form.reset();
-        return;
-      }
-
-      const subject = document.getElementById("subject").value.trim();
-      const message = document.getElementById("message").value.trim();
-      const from = document.getElementById("from").value.trim();
-
-      if (!subject || !message) {
-        statusEl.textContent = "件名と内容を入力してください。";
-        return;
-      }
-
-      const user = "nicheworks.tools";
-      const domain = "gmail.com";
-      const addr = user + "@" + domain;
-
-      let body = message;
-      if (from) {
-        body += "\n\n---\nFrom: " + from;
-      }
-
-      const mailto =
-        "mailto:" + addr +
-        "?subject=" + encodeURIComponent("[NicheWorks] " + subject) +
-        "&body=" + encodeURIComponent(body);
-
-      window.location.href = mailto;
-      statusEl.textContent =
-        "メールアプリが立ち上がらない場合は、下記のメールアドレスへ直接お送りください。";
-      form.reset();
-    });
-  </script>
-
-  <!-- Cloudflare Web Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
