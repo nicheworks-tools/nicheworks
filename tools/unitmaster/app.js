@@ -59,77 +59,50 @@ const i18n = {
     // 単位ラベル（表示用）
     units: {
       length: {
-        mm: "ミリメートル(mm)",
-        cm: "センチメートル(cm)",
-        m: "メートル(m)",
-        km: "キロメートル(km)",
-        inch: "インチ(inch)",
-        ft: "フィート(ft)",
-        yard: "ヤード(yard)",
-        mile: "マイル(mile)",
-
+        // 日本伝統単位（漢字のみ）
         shaku: "尺",
         sun: "寸",
-        bu: "分（長さ）",
+        bu_length: "分",
         ken: "間",
-        tsubo: "坪（長さ換算）",
         ri: "里",
+        tsubo_length: "坪",
 
-        furlong: "ハロン(furlong)",
-        chain: "チェーン(chain)",
-        league: "リーグ(league)",
+        // 欧米古典（カタカナ＋英語併記）
+        furlong: "ハロン (furlong)",
+        chain: "チェーン (chain)",
+        league: "リーグ (league)",
 
-        angstrom: "オングストローム(angstrom)",
-        micrometer: "マイクロメートル(μm)",
-        parsec: "パーセク(parsec)",
-        lightyear: "光年(light-year)"
+        // 科学系（英語表記）
+        angstrom: "angstrom（オングストローム）",
+        micrometer: "micrometer（マイクロメートル）",
+        parsec: "parsec（パーセク）",
+        lightyear: "lightyear（光年）"
       },
       weight: {
-        g: "グラム(g)",
-        kg: "キログラム(kg)",
-        lb: "ポンド(lb)",
-        oz: "オンス(oz)",
-
         monme: "匁",
         kin: "斤",
         kan: "貫",
-        dram: "ドラム(dram)",
-        grain: "グレーン(grain)"
+
+        dram: "ドラム (dram)",
+        grain: "グレイン (grain)"
       },
       volume: {
-        ml: "ミリリットル(ml)",
-        l: "リットル(L)",
-        cup: "カップ(cup)",
-
         gou: "合",
         shou: "升",
         to: "斗"
       },
       area: {
-        mm2: "平方ミリメートル(mm²)",
-        cm2: "平方センチメートル(cm²)",
-        m2: "平方メートル(m²)",
-        km2: "平方キロメートル(km²)",
-
-        tsubo: "坪",
+        tsubo_area: "坪",
         tan: "反",
         se: "畝",
         cho: "町"
       },
       speed: {
-        "m/s": "メートル毎秒(m/s)",
-        "km/h": "キロメートル毎時(km/h)",
-        mph: "マイル毎時(mph)",
-        knot: "ノット(knot)",
-        league_per_hour: "リーグ毎時(league/h)"
+        knot: "ノット (knot)",
+        league_per_hour: "リーグ毎時 (league/h)"
       },
       pressure: {
-        pa: "パスカル(Pa)",
-        hpa: "ヘクトパスカル(hPa)",
-        bar: "バール(bar)",
-        atm: "標準大気圧(atm)",
-        torr: "トル(torr)",
-        mmHg: "ミリメートル水銀柱(mmHg)",
+        torr: "トル (torr)",
         psi: "psi"
       }
     }
@@ -184,77 +157,50 @@ const i18n = {
 
     units: {
       length: {
-        mm: "mm",
-        cm: "cm",
-        m: "m",
-        km: "km",
-        inch: "inch",
-        ft: "ft",
-        yard: "yard",
-        mile: "mile",
-
+        // 日本伝統（漢字＋アルファベット併記）
         shaku: "尺(Shaku)",
         sun: "寸(Sun)",
-        bu: "分(Bu)",
+        bu_length: "分(Bu)",
         ken: "間(Ken)",
-        tsubo: "坪(Tsubo)",
         ri: "里(Ri)",
+        tsubo_length: "坪(Tsubo)",
 
-        furlong: "furlong",
-        chain: "chain",
-        league: "league",
+        // 欧米古典（英語）
+        furlong: "Furlong",
+        chain: "Chain",
+        league: "League",
 
-        angstrom: "angstrom",
-        micrometer: "micrometer",
-        parsec: "parsec",
-        lightyear: "light-year"
+        // 科学系（英語のみ）
+        angstrom: "Angstrom",
+        micrometer: "Micrometer",
+        parsec: "Parsec",
+        lightyear: "Lightyear"
       },
       weight: {
-        g: "g",
-        kg: "kg",
-        lb: "lb",
-        oz: "oz",
-
-        monme: "匁(Momme)",
+        monme: "匁(Monme)",
         kin: "斤(Kin)",
         kan: "貫(Kan)",
-        dram: "dram",
-        grain: "grain"
+
+        dram: "Dram",
+        grain: "Grain"
       },
       volume: {
-        ml: "ml",
-        l: "L",
-        cup: "cup",
-
         gou: "合(Gou)",
-        shou: "升(Sho)",
+        shou: "升(Shou)",
         to: "斗(To)"
       },
       area: {
-        mm2: "mm²",
-        cm2: "cm²",
-        m2: "m²",
-        km2: "km²",
-
-        tsubo: "坪(Tsubo)",
+        tsubo_area: "坪(Tsubo)",
         tan: "反(Tan)",
         se: "畝(Se)",
         cho: "町(Cho)"
       },
       speed: {
-        "m/s": "m/s",
-        "km/h": "km/h",
-        mph: "mph",
-        knot: "knot",
-        league_per_hour: "league/hour"
+        knot: "Knot",
+        league_per_hour: "League/h"
       },
       pressure: {
-        pa: "Pa",
-        hpa: "hPa",
-        bar: "bar",
-        atm: "atm",
-        torr: "torr",
-        mmHg: "mmHg",
+        torr: "Torr",
         psi: "psi"
       }
     }
@@ -274,15 +220,21 @@ const units = {
     ft: 0.3048,
     yard: 0.9144,
     mile: 1609.344,
+
+    // 日本伝統
     shaku: 0.303,
     sun: 0.0303,
-    bu: 0.00303,
+    bu_length: 0.00303,
     ken: 1.818,
-    tsubo: 3.306,
     ri: 3927,
+    tsubo_length: 3.306,
+
+    // 欧米古典
     furlong: 201.168,
     chain: 20.1168,
     league: 4828.032,
+
+    // 科学
     angstrom: 1e-10,
     micrometer: 1e-6,
     parsec: 3.0857e16,
@@ -293,9 +245,13 @@ const units = {
     kg: 1000,
     lb: 453.59237,
     oz: 28.3495231,
+
+    // 日本伝統
     monme: 3.75,
     kin: 600,
     kan: 3750,
+
+    // 欧米古典
     dram: 1.771845,
     grain: 0.06479891
   },
@@ -304,16 +260,18 @@ const units = {
     ml: 0.001,
     l: 1,
     cup: 0.24,
+
     gou: 0.18039,
     shou: 1.8039,
     to: 18.039
   },
   area: {
-    mm2: 0.000001,
-    cm2: 0.0001,
+    mm2: 1e-6,
+    cm2: 1e-4,
     m2: 1,
-    km2: 1000000,
-    tsubo: 3.305785,
+    km2: 1e6,
+
+    tsubo_area: 3.305785,
     tan: 991.736,
     se: 99.1736,
     cho: 9917.36
@@ -331,7 +289,6 @@ const units = {
     bar: 100000,
     atm: 101325,
     torr: 133.322,
-    mmHg: 133.322,
     psi: 6894.76
   }
 };
