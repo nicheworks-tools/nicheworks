@@ -73,10 +73,10 @@ const i18n = {
         league: "リーグ (league)",
 
         // 科学系（英語表記）
-        angstrom: "angstrom（オングストローム）",
-        micrometer: "micrometer（マイクロメートル）",
-        parsec: "parsec（パーセク）",
-        lightyear: "lightyear（光年）"
+        angstrom: "オングストローム (angstrom)",
+        micrometer: "マイクロメートル (micrometer)",
+        parsec: "パーセク (parsec)",
+        lightyear: "光年 (lightyear)"
       },
       weight: {
         monme: "匁",
