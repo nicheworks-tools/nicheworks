@@ -443,6 +443,7 @@ function applyLanguage(lang) {
   // 再計算 & 履歴
   calculate();
   loadHistory();
+  applyCategory(categorySelect.value);
 }
 
 /* ----------------------------
