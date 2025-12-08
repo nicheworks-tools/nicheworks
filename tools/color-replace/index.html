@@ -48,28 +48,32 @@
     </div>
 
     <section class="card">
-      <div class="input-row">
-        <label for="imageInput" data-i18n="uploadLabel">画像をアップロード</label>
-        <input type="file" id="imageInput" accept="image/*" />
+      <div class="input-row upload-row">
+        <label class="upload-label" for="imageInput" data-i18n="uploadLabel">画像をアップロード</label>
+        <input class="upload-input" type="file" id="imageInput" accept="image/*" />
       </div>
       <div class="canvas-area" data-view="before">
-        <div class="mobile-tab-header">
-          <button
+        <div class="mobile-tab-header" role="tablist">
+          <div
             class="mobile-tab-btn tab-button active"
             data-tab="before"
             data-target="before"
             data-i18n="beforeTab"
+            role="tab"
+            tabindex="0"
           >
             Before
-          </button>
-          <button
+          </div>
+          <div
             class="mobile-tab-btn tab-button"
             data-tab="after"
             data-target="after"
             data-i18n="afterTab"
+            role="tab"
+            tabindex="0"
           >
             After
-          </button>
+          </div>
         </div>
         <div class="canvas-grid preview-columns">
           <div class="canvas-card preview-card before-card" data-role="before">
@@ -101,7 +105,7 @@
       <div class="color-card" id="fromColorSection">
         <div class="section-title-row">
           <h2 data-i18n="fromColor">置換対象の色 (From)</h2>
-          <button class="btn ghost" data-section-reset="from" data-i18n="resetSection">リセット</button>
+          <button class="btn ghost reset-btn" data-section-reset="from" data-i18n="resetSection">リセット</button>
         </div>
         <div class="color-controls">
           <label data-i18n="pickerLabel">カラーピッカー</label>
@@ -144,7 +148,7 @@
       <div class="color-card" id="toColorSection">
         <div class="section-title-row">
           <h2 data-i18n="toColor">置換後の色 (To)</h2>
-          <button class="btn ghost" data-section-reset="to" data-i18n="resetSection">リセット</button>
+          <button class="btn ghost reset-btn" data-section-reset="to" data-i18n="resetSection">リセット</button>
         </div>
         <div class="color-controls">
           <label data-i18n="pickerLabel">カラーピッカー</label>
