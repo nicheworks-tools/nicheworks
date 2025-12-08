@@ -415,7 +415,7 @@ select {
 
   .mobile-tab-btn {
     flex: 1;
-    height: 36px;
+    min-height: 36px;
     border: none;
     border-radius: 12px;
     background: #e7e7e7;
@@ -442,17 +442,25 @@ select {
     gap: 10px;
   }
 
-  .input-row label {
-    writing-mode: horizontal-tb;
+  .upload-row {
+    align-items: center;
+    gap: 12px;
+    width: 100%;
   }
 
-  .input-row input[type="file"] {
+  .upload-label {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .upload-input {
     width: 100%;
+    font-size: 14px;
   }
 
   .card {
     padding: 12px 14px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .card-like-block {
@@ -493,14 +501,14 @@ select {
     flex-direction: row;
     align-items: center;
     gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
   }
 
   .preset-swatches {
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
     gap: 8px;
-    padding-bottom: 4px;
   }
 
   .preset-select {
@@ -519,20 +527,6 @@ select {
   .hex-group,
   .color-controls {
     gap: 6px;
-  }
-
-  .upload-row {
-    width: 100%;
-    gap: 8px;
-  }
-
-  .upload-label {
-    font-weight: 600;
-  }
-
-  .upload-input {
-    width: 100%;
-    font-size: 14px;
   }
 
   .section-title-row {
