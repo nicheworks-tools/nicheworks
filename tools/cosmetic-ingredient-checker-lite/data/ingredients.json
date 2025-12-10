@@ -1,101 +1,2480 @@
-{
-  "glycerin": {
-    "name_jp": "グリセリン",
-    "name_en": "Glycerin",
-    "aliases": ["glycerol"],
-    "safety": "safe",
-    "usage": ["保湿", "溶剤"],
-    "feature": "水となじみやすく、しっとり感を与える基剤として広く使われる。",
-    "attention": "高濃度でべたつきを感じる場合がある。"
+[
+  {
+    "name_ja": "ヒアルロン酸Na",
+    "name_en": "Sodium Hyaluronate",
+    "aliases": [
+      "ヒアルロン酸",
+      "Hyaluronic Acid"
+    ],
+    "use": "保湿",
+    "features": "水分保持力が高く、保湿目的でよく用いられる。",
+    "caution": "特に報告は少ないが、肌状態に応じて様子を見る。"
   },
-  "water": {
-    "name_jp": "水",
-    "name_en": "Water",
-    "aliases": ["aqua"],
-    "safety": "safe",
-    "usage": ["基剤"],
-    "feature": "多くの製品でベースとなる溶媒。",
-    "attention": "特記事項なし。"
-  },
-  "hyaluronic_acid": {
-    "name_jp": "ヒアルロン酸",
-    "name_en": "Hyaluronic Acid",
-    "aliases": ["sodium hyaluronate"],
-    "safety": "safe",
-    "usage": ["保湿"],
-    "feature": "高い保水性を持ち、うるおいを補う目的で使用される。",
-    "attention": "肌状態に応じて使用量を調整する。"
-  },
-  "bg": {
-    "name_jp": "BG",
-    "name_en": "Butylene Glycol",
-    "aliases": ["1,3-butylene glycol"],
-    "safety": "safe",
-    "usage": ["保湿", "溶剤"],
-    "feature": "さっぱりした保湿剤として処方される。",
-    "attention": "高濃度ではまれに刺激を感じる場合がある。"
-  },
-  "fragrance": {
-    "name_jp": "香料",
+  {
+    "name_ja": "香料",
     "name_en": "Fragrance",
-    "aliases": ["perfume"],
-    "safety": "caution",
-    "usage": ["香り付け"],
-    "feature": "様々な香り成分の総称で、感じ方に個人差がある。",
-    "attention": "香りが苦手な人や敏感肌は注意。"
+    "aliases": [
+      "香り付け"
+    ],
+    "use": "香り付け",
+    "features": "配合種類が多様で、人によって刺激に感じる場合がある。",
+    "caution": "敏感肌や香料が苦手な場合は注意。"
   },
-  "alcohol": {
-    "name_jp": "エタノール",
-    "name_en": "Ethanol",
-    "aliases": ["alcohol"],
-    "safety": "caution",
-    "usage": ["溶剤", "防腐"],
-    "feature": "清涼感を与え、油分をさっぱりさせる。",
-    "attention": "乾燥感や刺激を感じる場合がある。"
-  },
-  "salicylic_acid": {
-    "name_jp": "サリチル酸",
+  {
+    "name_ja": "サリチル酸",
     "name_en": "Salicylic Acid",
-    "aliases": ["beta hydroxy acid"],
-    "safety": "warning",
-    "usage": ["角質ケア"],
-    "feature": "角質をやわらかくする作用を持つ。",
-    "attention": "敏感肌や赤みがある場合は注意。"
+    "aliases": [
+      "ベタイン",
+      "Salicylate"
+    ],
+    "use": "角質ケア",
+    "features": "ピーリング作用を持ち、角質をやわらかくする。",
+    "caution": "敏感肌では刺激になることがあるため注意。"
   },
-  "phenoxyethanol": {
-    "name_jp": "フェノキシエタノール",
+  {
+    "name_ja": "グリセリン",
+    "name_en": "Glycerin",
+    "aliases": [
+      "グリセロール"
+    ],
+    "use": "保湿",
+    "features": "肌の水分を保持し、保湿効果を高める。",
+    "caution": "高濃度使用時にべたつきを感じる場合がある。"
+  },
+  {
+    "name_ja": "セラミド",
+    "name_en": "Ceramide",
+    "aliases": [
+      "セラミド2",
+      "Ceramide 2"
+    ],
+    "use": "保湿、バリア機能強化",
+    "features": "肌のバリア機能を強化し、保湿を保つ。",
+    "caution": "敏感肌には注意が必要な場合がある。"
+  },
+  {
+    "name_ja": "ナイアシンアミド",
+    "name_en": "Niacinamide",
+    "aliases": [
+      "ビタミンB3",
+      "Nicotinamide"
+    ],
+    "use": "美白、抗炎症",
+    "features": "肌を明るくし、炎症を抑える効果がある。",
+    "caution": "高濃度で使用した場合、刺激感を感じることがある。"
+  },
+  {
+    "name_ja": "ビタミンC誘導体",
+    "name_en": "Vitamin C Derivative",
+    "aliases": [
+      "アスコルビン酸",
+      "Ascorbic Acid"
+    ],
+    "use": "美白、抗酸化",
+    "features": "肌を明るくし、抗酸化作用を発揮。",
+    "caution": "高濃度で刺激を感じることがある。"
+  },
+  {
+    "name_ja": "アロエベラ",
+    "name_en": "Aloe Vera",
+    "aliases": [
+      "アロエ",
+      "Aloe"
+    ],
+    "use": "鎮静、保湿",
+    "features": "肌の鎮静作用と保湿効果がある。",
+    "caution": "過剰使用による乾燥感が生じる場合がある。"
+  },
+  {
+    "name_ja": "ビタミンE",
+    "name_en": "Vitamin E",
+    "aliases": [
+      "トコフェロール"
+    ],
+    "use": "抗酸化、保湿",
+    "features": "抗酸化作用があり、肌を保護する。",
+    "caution": "乾燥肌に使用する場合、十分に保湿が必要。"
+  },
+  {
+    "name_ja": "カミツレ花エキス",
+    "name_en": "Chamomile Extract",
+    "aliases": [
+      "カモミール",
+      "Chamomilla Recutita"
+    ],
+    "use": "鎮静、抗炎症",
+    "features": "肌を落ち着かせ、炎症を抑える。",
+    "caution": "アレルギーがある場合は使用しない。"
+  },
+  {
+    "name_ja": "アラントイン",
+    "name_en": "Allantoin",
+    "aliases": [
+      "アラントイン"
+    ],
+    "use": "鎮静、保湿",
+    "features": "肌を落ち着かせ、保湿を促進する。",
+    "caution": "過剰使用による肌荒れが懸念される。"
+  },
+  {
+    "name_ja": "ペプチド",
+    "name_en": "Peptides",
+    "aliases": [
+      "トリペプチド",
+      "ペプチド1"
+    ],
+    "use": "エイジングケア",
+    "features": "コラーゲンの生成を助け、肌の弾力を高める。",
+    "caution": "肌に合わない場合、炎症を引き起こすことがある。"
+  },
+  {
+    "name_ja": "コラーゲン",
+    "name_en": "Collagen",
+    "aliases": [
+      "コラーゲンペプチド",
+      "Collagen Peptides"
+    ],
+    "use": "保湿、エイジングケア",
+    "features": "肌の弾力を保ち、保湿力を高める。",
+    "caution": "アレルギー反応が出る場合がある。"
+  },
+  {
+    "name_ja": "レチノール",
+    "name_en": "Retinol",
+    "aliases": [
+      "ビタミンA",
+      "Vitamin A"
+    ],
+    "use": "エイジングケア、肌のターンオーバー促進",
+    "features": "肌のターンオーバーを促進し、しわを減少させる。",
+    "caution": "高濃度で刺激を感じることがある。"
+  },
+  {
+    "name_ja": "オリーブ油",
+    "name_en": "Olive Oil",
+    "aliases": [
+      "オリーブオイル",
+      "Olea Europaea"
+    ],
+    "use": "保湿、エモリエント",
+    "features": "皮膚に栄養を与え、柔軟に保つ。",
+    "caution": "オイリー肌には不向きな場合がある。"
+  },
+  {
+    "name_ja": "ココナッツオイル",
+    "name_en": "Coconut Oil",
+    "aliases": [
+      "ココナッツオイル",
+      "Cocos Nucifera"
+    ],
+    "use": "保湿、エモリエント",
+    "features": "保湿力が高く、乾燥を防ぐ。",
+    "caution": "毛穴を塞ぐ可能性があるため、敏感肌には注意。"
+  },
+  {
+    "name_ja": "アーモンド油",
+    "name_en": "Almond Oil",
+    "aliases": [
+      "スイートアーモンドオイル",
+      "Prunus Amygdalus Dulcis"
+    ],
+    "use": "保湿、エモリエント",
+    "features": "肌を柔らかくし、栄養を与える。",
+    "caution": "アレルギー反応を引き起こすことがある。"
+  },
+  {
+    "name_ja": "シアバター",
+    "name_en": "Shea Butter",
+    "aliases": [
+      "シアバター"
+    ],
+    "use": "保湿、エモリエント",
+    "features": "乾燥肌をしっかりと保湿する。",
+    "caution": "敏感肌には過剰使用注意。"
+  },
+  {
+    "name_ja": "トコフェロール",
+    "name_en": "Tocopherol",
+    "aliases": [
+      "ビタミンE"
+    ],
+    "use": "抗酸化、保湿",
+    "features": "抗酸化作用があり、肌を保護する。",
+    "caution": "乾燥肌に使用する場合、十分に保湿が必要。"
+  },
+  {
+    "name_ja": "ザクロエキス",
+    "name_en": "Pomegranate Extract",
+    "aliases": [
+      "ザクロ",
+      "Punica Granatum"
+    ],
+    "use": "抗酸化、抗炎症",
+    "features": "抗酸化作用が強く、肌の老化を防ぐ。",
+    "caution": "アレルギー反応がある場合がある。"
+  },
+  {
+    "name_ja": "モリンガオイル",
+    "name_en": "Moringa Oil",
+    "aliases": [
+      "モリンガオイル",
+      "Moringa Oleifera"
+    ],
+    "use": "保湿、エモリエント",
+    "features": "保湿性が高く、乾燥を防ぐ。",
+    "caution": "脂性肌には不向きな場合がある。"
+  },
+  {
+    "name_ja": "ハチミツ",
+    "name_en": "Honey",
+    "aliases": [
+      "ハチミツ"
+    ],
+    "use": "保湿、抗菌",
+    "features": "保湿し、抗菌作用を持つ。",
+    "caution": "敏感肌には少量から試すことを推奨。"
+  },
+  {
+    "name_ja": "カモミールエキス",
+    "name_en": "Chamomile Extract",
+    "aliases": [
+      "カモミール",
+      "Chamomilla Recutita"
+    ],
+    "use": "鎮静、抗炎症",
+    "features": "肌を落ち着かせ、炎症を抑える。",
+    "caution": "アレルギーがある場合は使用しない。"
+  },
+  {
+    "name_ja": "水",
+    "name_en": "Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "BG",
+    "name_en": "Butylene Glycol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "DPG",
+    "name_en": "Dipropylene Glycol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "プロパンジオール",
+    "name_en": "Propanediol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "トレハロース",
+    "name_en": "Trehalose",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ソルビトール",
+    "name_en": "Sorbitol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "PCA-Na",
+    "name_en": "Sodium PCA",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "尿素",
+    "name_en": "Urea",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "加水分解コラーゲン",
+    "name_en": "Hydrolyzed Collagen",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ベタイン",
+    "name_en": "Betaine",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "1,2-ヘキサンジオール",
+    "name_en": "1,2-Hexanediol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ペンチレングリコール",
+    "name_en": "Pentylene Glycol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "スクワラン",
+    "name_en": "Squalane",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "トリ(カプリル酸/カプリン酸)グリセリル",
+    "name_en": "Tri-Caprylate/Caprate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "カプリン酸グリセリル",
+    "name_en": "Glyceryl Caprate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "プロピレングリコール",
+    "name_en": "Propylene Glycol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ポリソルベート60",
+    "name_en": "Polysorbate 60",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ポリソルベート20",
+    "name_en": "Polysorbate 20",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ステアリン酸PEG-100",
+    "name_en": "PEG-100 Stearate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "セテアリルアルコール",
+    "name_en": "Cetearyl Alcohol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "セチルアルコール",
+    "name_en": "Cetyl Alcohol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ステアリルアルコール",
+    "name_en": "Stearyl Alcohol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ミリスチン酸イソプロピル",
+    "name_en": "Isopropyl Myristate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "パルミチン酸イソプロピル",
+    "name_en": "Isopropyl Palmitate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ステアリン酸グリセリル",
+    "name_en": "Glyceryl Stearate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "パルミチン酸アスコルビルリン酸3Na",
+    "name_en": "Sodium Ascorbyl Phosphate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "アスコルビルグルコシド",
+    "name_en": "Ascorbyl Glucoside",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "アスコルビルテトライソパルミテート",
+    "name_en": "Ascorbyl Tetraisopalmitate",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "カルボマー",
+    "name_en": "Carbomer",
+    "aliases": [],
+    "use": "増粘剤",
+    "features": "製品の粘度を調整して安定化させます。",
+    "caution": "特に報告は少ないですが、肌に合わない場合があります。"
+  },
+  {
+    "name_ja": "キサンタンガム",
+    "name_en": "Xanthan Gum",
+    "aliases": [],
+    "use": "増粘剤",
+    "features": "製品の粘度を調整して安定化させます。",
+    "caution": "特に報告は少ないですが、肌に合わない場合があります。"
+  },
+  {
+    "name_ja": "ヒドロキシエチルセルロース",
+    "name_en": "Hydroxyethylcellulose",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ポリアクリレートクロスポリマー",
+    "name_en": "Polyacrylate Crosspolymer",
+    "aliases": [],
+    "use": "増粘剤",
+    "features": "製品の粘度を調整して安定化させます。",
+    "caution": "特に報告は少ないですが、肌に合わない場合があります。"
+  },
+  {
+    "name_ja": "ジメチコン",
+    "name_en": "Dimethicone",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "シクロペンタシロキサン",
+    "name_en": "Cyclopentasiloxane",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ラウリン酸ポリグリセリル-10",
+    "name_en": "Polyglyceryl-10 Laurate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ココイルグルタミン酸Na",
+    "name_en": "Sodium Cocoyl Glutamate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ココイルメチルタウリンNa",
+    "name_en": "Sodium Cocoyl Methyl Taurate",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ラウリル硫酸Na",
+    "name_en": "Sodium Lauryl Sulfate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ラウレス硫酸Na",
+    "name_en": "Sodium Laureth Sulfate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ステアリン酸グリセリル(SE)",
+    "name_en": "Glyceryl Stearate SE",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "トリエタノールアミン",
+    "name_en": "Triethanolamine",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "水酸化Na",
+    "name_en": "Sodium Hydroxide",
+    "aliases": [],
+    "use": "紫外線防御",
+    "features": "紫外線を吸収または散乱して肌を保護します。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "エチルヘキシルグリセリン",
+    "name_en": "Ethylhexylglycerin",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "フェノキシエタノール",
     "name_en": "Phenoxyethanol",
     "aliases": [],
-    "safety": "caution",
-    "usage": ["防腐"],
-    "feature": "一般的な防腐剤として配合される。",
-    "attention": "高濃度で刺激を感じる場合がある。"
+    "use": "防腐剤",
+    "features": "製品の品質を保つため微生物の増殖を抑えます。",
+    "caution": "敏感肌には刺激を与える場合があります。"
   },
-  "retinol": {
-    "name_jp": "レチノール",
-    "name_en": "Retinol",
-    "aliases": ["vitamin a"],
-    "safety": "warning",
-    "usage": ["ハリケア"],
-    "feature": "ハリ・つやを補う目的で使われる。",
-    "attention": "紫外線感受性が高まるため夜の使用が推奨される。"
+  {
+    "name_ja": "メチルパラベン",
+    "name_en": "Methylparaben",
+    "aliases": [],
+    "use": "防腐剤",
+    "features": "製品の品質を保つため微生物の増殖を抑えます。",
+    "caution": "敏感肌には刺激を与える場合があります。"
   },
-  "niacinamide": {
-    "name_jp": "ナイアシンアミド",
-    "name_en": "Niacinamide",
-    "aliases": ["vitamin b3"],
-    "safety": "safe",
-    "usage": ["整肌", "うるおい保持"],
-    "feature": "コンディションを整える目的で配合される。",
-    "attention": "高濃度では一時的にほてりを感じることがある。"
+  {
+    "name_ja": "プロピルパラベン",
+    "name_en": "Propylparaben",
+    "aliases": [],
+    "use": "防腐剤",
+    "features": "製品の品質を保つため微生物の増殖を抑えます。",
+    "caution": "敏感肌には刺激を与える場合があります。"
   },
-  "jojoba_seed_oil": {
-    "name_jp": "ホホバ種子油",
+  {
+    "name_ja": "安息香酸Na",
+    "name_en": "Sodium Benzoate",
+    "aliases": [],
+    "use": "防腐剤",
+    "features": "製品の品質を保つため微生物の増殖を抑えます。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "ソルビン酸K",
+    "name_en": "Potassium Sorbate",
+    "aliases": [],
+    "use": "防腐剤",
+    "features": "製品の品質を保つため微生物の増殖を抑えます。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "ベンジルアルコール",
+    "name_en": "Benzyl Alcohol",
+    "aliases": [],
+    "use": "香料",
+    "features": "香りを付けて使用感を向上させます。",
+    "caution": "香料に敏感な人には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "ラウロイルサルコシンNa",
+    "name_en": "Sodium Lauroyl Sarcosinate",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "コカミドプロピルベタイン",
+    "name_en": "Cocamidopropyl Betaine",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "デシルグルコシド",
+    "name_en": "Decyl Glucoside",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ココイルイセチオン酸Na",
+    "name_en": "Sodium Cocoyl Isethionate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ラウレス-7",
+    "name_en": "Laureth-7",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ディスジウムEDTA",
+    "name_en": "Disodium EDTA",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "トリソジウムEDTA",
+    "name_en": "Trisodium EDTA",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "テトラソジウムEDTA",
+    "name_en": "Tetrasodium EDTA",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "カプリル酸グリセリル",
+    "name_en": "Caprylyl Glycol",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "セテアリルグルコシド",
+    "name_en": "Cetearyl Glucoside",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ペンタエリスリチルテトラエチルヘキサン酸エステル",
+    "name_en": "Pentaerythrityl Tetraethylhexanoate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "コレステロール",
+    "name_en": "Cholesterol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "フィトスフィンゴシン",
+    "name_en": "Phytosphingosine",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "スクワレン",
+    "name_en": "Squalene",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "リノール酸",
+    "name_en": "Linoleic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "オレイン酸",
+    "name_en": "Oleic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "パルミチン酸",
+    "name_en": "Palmitic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ステアリン酸",
+    "name_en": "Stearic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ミリスチン酸",
+    "name_en": "Myristic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ラウリン酸",
+    "name_en": "Lauric Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ヒマシ油",
+    "name_en": "Castor Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ホホバ種子油",
     "name_en": "Jojoba Seed Oil",
-    "aliases": ["jojoba oil"],
-    "safety": "safe",
-    "usage": ["エモリエント"],
-    "feature": "軽い感触の植物油で、柔軟性を与える。",
-    "attention": "オイルが合わない場合は使用を控える。"
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ヒマワリ種子油",
+    "name_en": "Sunflower Seed Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "アボカド油",
+    "name_en": "Avocado Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "アルガニアスピノサ核油",
+    "name_en": "Argania Spinosa Kernel Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ローズヒップ油",
+    "name_en": "Rosehip Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "マカダミアナッツ油",
+    "name_en": "Macadamia Nut Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "シーバックソーン油",
+    "name_en": "Sea Buckthorn Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "アンズ核油",
+    "name_en": "Apricot Kernel Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "カニナバラ果実油",
+    "name_en": "Rosa Canina Fruit Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ヘーゼルナッツ油",
+    "name_en": "Hazelnut Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ブドウ種子油",
+    "name_en": "Grape Seed Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "スクレロチウムガム",
+    "name_en": "Sclerotium Gum",
+    "aliases": [],
+    "use": "増粘剤",
+    "features": "製品の粘度を調整して安定化させます。",
+    "caution": "特に報告は少ないですが、肌に合わない場合があります。"
+  },
+  {
+    "name_ja": "アクリレーツコポリマー",
+    "name_en": "Acrylates Copolymer",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "グアーガム",
+    "name_en": "Guar Gum",
+    "aliases": [],
+    "use": "増粘剤",
+    "features": "製品の粘度を調整して安定化させます。",
+    "caution": "特に報告は少ないですが、肌に合わない場合があります。"
+  },
+  {
+    "name_ja": "メチルグルセス-20",
+    "name_en": "Methyl Gluceth-20",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "PEG-40水添ヒマシ油",
+    "name_en": "PEG-40 Hydrogenated Castor Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ポリソルベート80",
+    "name_en": "Polysorbate 80",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ポリソルベート85",
+    "name_en": "Polysorbate 85",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ソルビタンオレイン酸エステル",
+    "name_en": "Sorbitan Oleate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ソルビタンステアリン酸エステル",
+    "name_en": "Sorbitan Stearate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ポリクオタニウム-7",
+    "name_en": "Polyquaternium-7",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ポリクオタニウム-10",
+    "name_en": "Polyquaternium-10",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ポリクオタニウム-51",
+    "name_en": "Polyquaternium-51",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ポリクオタニウム-37",
+    "name_en": "Polyquaternium-37",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "ベヘナミドプロピルジメチルアミン",
+    "name_en": "Behenamidopropyl Dimethylamine",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "アモジメチコン",
+    "name_en": "Amodimethicone",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "サッカロミセス溶解質エキス",
+    "name_en": "Saccharomyces Lysate Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ガラクトミセス培養液",
+    "name_en": "Galactomyces Ferment Filtrate",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ビフィズス菌培養溶解質",
+    "name_en": "Bifida Ferment Lysate",
+    "aliases": [],
+    "use": "抗炎症",
+    "features": "炎症を抑える効果があります。",
+    "caution": "敏感肌には刺激になることがあります。"
+  },
+  {
+    "name_ja": "乳酸桿菌/発酵液",
+    "name_en": "Lactobacillus Ferment",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "乳酸",
+    "name_en": "Lactic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "グリコール酸",
+    "name_en": "Glycolic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "マンデル酸",
+    "name_en": "Mandelic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "リンゴ酸",
+    "name_en": "Malic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "酒石酸",
+    "name_en": "Tartaric Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "クエン酸",
+    "name_en": "Citric Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "水酸化K",
+    "name_en": "Potassium Hydroxide",
+    "aliases": [],
+    "use": "紫外線防御",
+    "features": "紫外線を吸収または散乱して肌を保護します。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "クエン酸Na",
+    "name_en": "Sodium Citrate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "乳酸Na",
+    "name_en": "Sodium Lactate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "酢酸",
+    "name_en": "Acetic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "炭酸水素Na",
+    "name_en": "Sodium Bicarbonate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "二酸化チタン",
+    "name_en": "Titanium Dioxide",
+    "aliases": [],
+    "use": "紫外線防御",
+    "features": "紫外線を吸収または散乱して肌を保護します。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "酸化亜鉛",
+    "name_en": "Zinc Oxide",
+    "aliases": [],
+    "use": "紫外線防御",
+    "features": "紫外線を吸収または散乱して肌を保護します。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "メトキシケイ皮酸エチルヘキシル",
+    "name_en": "Ethylhexyl Methoxycinnamate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "オクトクリレン",
+    "name_en": "Octocrylene",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ベンゾフェノン-3",
+    "name_en": "Benzophenone-3",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ベンゾフェノン-4",
+    "name_en": "Benzophenone-4",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "アボベンゾン",
+    "name_en": "Butyl Methoxydibenzoylmethane",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ジエチルアミノヒドロキシベンゾイル安息香酸ヘキシル",
+    "name_en": "Diethylamino Hydroxybenzoyl Hexyl Benzoate",
+    "aliases": [],
+    "use": "防腐剤",
+    "features": "製品の品質を保つため微生物の増殖を抑えます。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "サリチル酸エチルヘキシル",
+    "name_en": "Ethylhexyl Salicylate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "テレフタリリデンジカンフルスルホン酸",
+    "name_en": "Terephthalylidene Dicamphor Sulfonic Acid",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "オキシベンゾン",
+    "name_en": "Oxybenzone",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ホモサレート",
+    "name_en": "Homosalate",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "オクチルドデカノール",
+    "name_en": "Octyldodecanol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "イソステアリン酸イソステアリル",
+    "name_en": "Isostearyl Isostearate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "オクチルパルミテート",
+    "name_en": "Octyl Palmitate",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ジ(カプリル酸/カプリン酸)ネオペンチルグリコール",
+    "name_en": "Neopentyl Glycol Dicaprylate/Dicaprate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "オレイン酸デシル",
+    "name_en": "Decyl Oleate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ラウリルポリグリセリル-10",
+    "name_en": "Polyglyceryl-10 Laurate",
+    "aliases": [],
+    "use": "界面活性剤",
+    "features": "洗浄や乳化を助ける界面活性剤です。",
+    "caution": "敏感肌には刺激となる可能性があります。"
+  },
+  {
+    "name_ja": "トリエチルヘキサノイン",
+    "name_en": "Triethylhexanoin",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ミリスチン酸PPG-3ベンジルエーテル",
+    "name_en": "PPG-3 Benzyl Ether Myristate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "グリセリルイソステアレート",
+    "name_en": "Glyceryl Isostearate",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ヒドロキシアセトフェノン",
+    "name_en": "Hydroxyacetophenone",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "トコフェロール酢酸エステル",
+    "name_en": "Tocopheryl Acetate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "レシチン",
+    "name_en": "Lecithin",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "フィトステロール",
+    "name_en": "Phytosterols",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ホスファチジルコリン",
+    "name_en": "Phosphatidylcholine",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "リゾレシチン",
+    "name_en": "Lysophosphatidylcholine",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "アルキル(C12-20)グルコシド",
+    "name_en": "Alkyl (C12-20) Glucoside",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "イソペンチルジオール",
+    "name_en": "Isopentyldiol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "デカイソフラーネ",
+    "name_en": "Decaisoparaffin",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ペンテチン酸5Na",
+    "name_en": "Sodium Pentetate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "グルコン酸Cu",
+    "name_en": "Copper Gluconate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "グルコン酸亜鉛",
+    "name_en": "Zinc Gluconate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "グルコン酸マグネシウム",
+    "name_en": "Magnesium Gluconate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "パルミチン酸エチルヘキシル",
+    "name_en": "Ethylhexyl Palmitate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ベヘン酸エチルヘキシル",
+    "name_en": "Ethylhexyl Behenate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ベヘニルアルコール",
+    "name_en": "Behenyl Alcohol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ベヘン酸グリセリル",
+    "name_en": "Glyceryl Behenate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ラベンダー油",
+    "name_en": "Lavender Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ティーツリー葉油",
+    "name_en": "Tea Tree Leaf Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ユーカリ葉油",
+    "name_en": "Eucalyptus Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ローズマリー葉油",
+    "name_en": "Rosemary Leaf Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ミント油",
+    "name_en": "Peppermint Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ジンジャー根油",
+    "name_en": "Ginger Root Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "レモン果皮油",
+    "name_en": "Lemon Peel Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "オレンジ果皮油",
+    "name_en": "Orange Peel Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ライム油",
+    "name_en": "Lime Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "グレープフルーツ果皮油",
+    "name_en": "Grapefruit Peel Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "セイヨウハッカ油",
+    "name_en": "Spearmint Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "イランイラン花油",
+    "name_en": "Ylang Ylang Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "パチョリ油",
+    "name_en": "Patchouli Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "サンダルウッド油",
+    "name_en": "Sandalwood Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "クマリン",
+    "name_en": "Coumarin",
+    "aliases": [],
+    "use": "香料",
+    "features": "香りを付けて使用感を向上させます。",
+    "caution": "香料に敏感な人には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "ゲラニオール",
+    "name_en": "Geraniol",
+    "aliases": [],
+    "use": "香料",
+    "features": "香りを付けて使用感を向上させます。",
+    "caution": "香料に敏感な人には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "シトロネロール",
+    "name_en": "Citronellol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "リモネン",
+    "name_en": "Limonene",
+    "aliases": [],
+    "use": "香料",
+    "features": "香りを付けて使用感を向上させます。",
+    "caution": "香料に敏感な人には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "リナロール",
+    "name_en": "Linalool",
+    "aliases": [],
+    "use": "香料",
+    "features": "香りを付けて使用感を向上させます。",
+    "caution": "香料に敏感な人には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "安息香酸ベンジル",
+    "name_en": "Benzyl Benzoate",
+    "aliases": [],
+    "use": "防腐剤",
+    "features": "製品の品質を保つため微生物の増殖を抑えます。",
+    "caution": "敏感肌には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "サリチル酸ベンジル",
+    "name_en": "Benzyl Salicylate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "オイゲノール",
+    "name_en": "Eugenol",
+    "aliases": [],
+    "use": "香料",
+    "features": "香りを付けて使用感を向上させます。",
+    "caution": "香料に敏感な人には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "シトラール",
+    "name_en": "Citral",
+    "aliases": [],
+    "use": "香料",
+    "features": "香りを付けて使用感を向上させます。",
+    "caution": "香料に敏感な人には刺激を与える場合があります。"
+  },
+  {
+    "name_ja": "ヒドロキシシトロネラール",
+    "name_en": "Hydroxycitronellal",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "パラメトキシシンナミルアルコール",
+    "name_en": "Anisyl Alcohol",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "サリチル酸メチル",
+    "name_en": "Methyl Salicylate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "コリアンダー果実油",
+    "name_en": "Coriander Fruit Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ナツメグ油",
+    "name_en": "Nutmeg Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "コリアンダーシード油",
+    "name_en": "Coriander Seed Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "カンファー",
+    "name_en": "Camphor",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "スパイクラベンダー油",
+    "name_en": "Spike Lavender Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ペパーミント油",
+    "name_en": "Peppermint Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "マヨルカラベンダー油",
+    "name_en": "Lavandula Burnatii Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "イタリアイトスギ葉油",
+    "name_en": "Italian Cypress Leaf Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "シベリアモミ葉油",
+    "name_en": "Siberian Fir Leaf Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "コパイババルサム",
+    "name_en": "Copaiba Balsam",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "セージ油",
+    "name_en": "Sage Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ジュニパーベリー油",
+    "name_en": "Juniper Berry Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "バニラ果実エキス",
+    "name_en": "Vanilla Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "オリーブ葉エキス",
+    "name_en": "Olive Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "緑茶エキス",
+    "name_en": "Green Tea Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "甘草根エキス",
+    "name_en": "Licorice Root Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ツボクサエキス",
+    "name_en": "Centella Asiatica Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ドクダミエキス",
+    "name_en": "Houttuynia Cordata Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ニンジン根エキス",
+    "name_en": "Carrot Root Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "カンゾウ葉エキス",
+    "name_en": "Licorice Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "シソ葉エキス",
+    "name_en": "Perilla Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ヨモギエキス",
+    "name_en": "Artemisia Princeps Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "サクラ葉エキス",
+    "name_en": "Sakura Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ローズマリー葉エキス",
+    "name_en": "Rosemary Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "セージ葉エキス",
+    "name_en": "Sage Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "紫根エキス",
+    "name_en": "Lithospermum Root Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ライスヌカエキス",
+    "name_en": "Rice Bran Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ホホバ葉エキス",
+    "name_en": "Jojoba Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ソバエキス",
+    "name_en": "Buckwheat Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "クローバーエキス",
+    "name_en": "Clover Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ブロッコリーエキス",
+    "name_en": "Broccoli Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "人参エキス",
+    "name_en": "Ginseng Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "アーティチョーク葉エキス",
+    "name_en": "Artichoke Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ハマメリス水",
+    "name_en": "Hamamelis Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "アロエベラ葉水",
+    "name_en": "Aloe Vera Leaf Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ローズ水",
+    "name_en": "Rose Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ダマスクローズ花水",
+    "name_en": "Damask Rose Flower Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "オレンジフラワー水",
+    "name_en": "Neroli Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ラベンダー水",
+    "name_en": "Lavender Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "カモミール水",
+    "name_en": "Chamomile Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ティーツリー水",
+    "name_en": "Tea Tree Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ミント水",
+    "name_en": "Mint Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ローズマリー水",
+    "name_en": "Rosemary Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "サクラ水",
+    "name_en": "Cherry Blossom Water",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "シリコン",
+    "name_en": "Silica",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "シクロヘキサシロキサン",
+    "name_en": "Cyclohexasiloxane",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "マイクロクリスタリンワックス",
+    "name_en": "Microcrystalline Wax",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "セレシン",
+    "name_en": "Ceresin",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "カルナウバロウ",
+    "name_en": "Carnauba Wax",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ミツロウ",
+    "name_en": "Beeswax",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "コメヌカロウ",
+    "name_en": "Rice Bran Wax",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "キャンデリラロウ",
+    "name_en": "Candelilla Wax",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "ステアリン酸PEG-20",
+    "name_en": "PEG-20 Stearate",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "ラノリン",
+    "name_en": "Lanolin",
+    "aliases": [],
+    "use": "その他",
+    "features": "化粧品の機能を補う成分です。",
+    "caution": "肌状態に応じて使用してください。"
+  },
+  {
+    "name_ja": "水添ナタネ油アルコール",
+    "name_en": "Hydrogenated Rapeseed Oil Alcohol",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "油脂脂肪酸コレステロール",
+    "name_en": "Cholesterol",
+    "aliases": [],
+    "use": "角質ケア",
+    "features": "角質を柔らかくして除去を促します。",
+    "caution": "敏感肌には刺激となる場合があります。"
+  },
+  {
+    "name_ja": "アボカドバター",
+    "name_en": "Avocado Butter",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "マンゴーバター",
+    "name_en": "Mango Butter",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "カカオバター",
+    "name_en": "Cocoa Butter",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ココヤシ油",
+    "name_en": "Coconut Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ヤシ油",
+    "name_en": "Palm Kernel Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "パーム油",
+    "name_en": "Palm Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "マカダミア種子油",
+    "name_en": "Macadamia Seed Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "オリーブ果実油",
+    "name_en": "Olive Fruit Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "ヒマワリ油",
+    "name_en": "Sunflower Oil",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "シア脂油",
+    "name_en": "Shea Butter",
+    "aliases": [],
+    "use": "エモリエント",
+    "features": "肌を柔軟に保ち、保護膜を作ります。",
+    "caution": "オイリー肌には重く感じる場合があります。"
+  },
+  {
+    "name_ja": "カレンデュラエキス",
+    "name_en": "Calendula Officinalis Flower Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ローマカミツレ花エキス",
+    "name_en": "Chamomilla Recutita Flower Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ブドウ葉エキス",
+    "name_en": "Grape Leaf Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ハイビスカス花エキス",
+    "name_en": "Hibiscus Flower Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "クランベリー果実エキス",
+    "name_en": "Cranberry Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ブルーベリー果実エキス",
+    "name_en": "Blueberry Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ラズベリー果実エキス",
+    "name_en": "Raspberry Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ストロベリー果実エキス",
+    "name_en": "Strawberry Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "サクランボ果実エキス",
+    "name_en": "Cherry Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "プルーン果実エキス",
+    "name_en": "Prune Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "グレープフルーツ果実エキス",
+    "name_en": "Grapefruit Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "オレンジ果実エキス",
+    "name_en": "Orange Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "レモン果実エキス",
+    "name_en": "Lemon Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ライム果実エキス",
+    "name_en": "Lime Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "洋梨果実エキス",
+    "name_en": "Pear Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "キウイエキス",
+    "name_en": "Kiwi Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "パイナップル果実エキス",
+    "name_en": "Pineapple Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "パパイヤ果実エキス",
+    "name_en": "Papaya Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "マンゴー果実エキス",
+    "name_en": "Mango Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "ココナッツ果実エキス",
+    "name_en": "Coconut Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "メロンエキス",
+    "name_en": "Melon Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "スイカ果実エキス",
+    "name_en": "Watermelon Fruit Extract",
+    "aliases": [],
+    "use": "鎮静",
+    "features": "肌を落ち着かせ、刺激を和らげます。",
+    "caution": "アレルギーがある場合は使用を避けてください。"
+  },
+  {
+    "name_ja": "センテラアジアチカエキス",
+    "name_en": "Centella Asiatica Extract",
+    "aliases": [
+      "ツボクサエキス"
+    ],
+    "use": "鎮静、保湿",
+    "features": "アジアツボクサから抽出され、肌の修復と保湿に役立つ。",
+    "caution": "まれにアレルギー反応が報告されるため、パッチテストを推奨。"
+  },
+  {
+    "name_ja": "ティーツリー油",
+    "name_en": "Tea Tree Oil",
+    "aliases": [
+      "ティートゥリーオイル"
+    ],
+    "use": "抗菌、抗炎症",
+    "features": "抗菌作用があり、ニキビケアに用いられる。",
+    "caution": "原液は刺激が強いので希釈して使用する。"
+  },
+  {
+    "name_ja": "ローズヒップオイル",
+    "name_en": "Rosehip Oil",
+    "aliases": [
+      "ローズヒップシードオイル"
+    ],
+    "use": "保湿、エモリエント",
+    "features": "ビタミンCや必須脂肪酸が豊富で、肌の栄養を補う。",
+    "caution": "酸化しやすいため開封後は早めに使い切る。"
+  },
+  {
+    "name_ja": "カフェイン",
+    "name_en": "Caffeine",
+    "aliases": [
+      "カフェイン"
+    ],
+    "use": "血行促進、引き締め",
+    "features": "血行を促進し、むくみやクマのケアに使われる。",
+    "caution": "敏感肌には刺激を感じることがある。"
+  },
+  {
+    "name_ja": "コエンザイムQ10",
+    "name_en": "Coenzyme Q10",
+    "aliases": [
+      "ユビキノン"
+    ],
+    "use": "抗酸化、エイジングケア",
+    "features": "抗酸化作用を持ち、肌のハリと弾力をサポートする。",
+    "caution": "油溶性のため油性処方での使用が推奨される。"
+  },
+  {
+    "name_ja": "グルコノラクトン",
+    "name_en": "Gluconolactone",
+    "aliases": [],
+    "use": "角質ケア、抗酸化",
+    "features": "PHA（ポリヒドロキシ酸）の一種で、穏やかなピーリング作用と保湿効果がある。",
+    "caution": "酸なので他のピーリング成分との併用は注意。"
+  },
+  {
+    "name_ja": "シトラス果皮エキス",
+    "name_en": "Citrus Peel Extract",
+    "aliases": [
+      "シトラスピールエキス"
+    ],
+    "use": "抗酸化、香り付け",
+    "features": "柑橘類の皮から抽出され、抗酸化作用と爽やかな香りを持つ。",
+    "caution": "光感作を起こす可能性があるため、日中の使用は注意。"
+  },
+  {
+    "name_ja": "グリチルリチン酸2K",
+    "name_en": "Dipotassium Glycyrrhizate",
+    "aliases": [
+      "グリチルリチン酸ジカリウム"
+    ],
+    "use": "鎮静、抗炎症",
+    "features": "甘草由来の成分で、肌の炎症を抑える作用がある。",
+    "caution": "長期大量使用は避ける。"
+  },
+  {
+    "name_ja": "ラウリルグルコシド",
+    "name_en": "Lauryl Glucoside",
+    "aliases": [],
+    "use": "界面活性剤、洗浄",
+    "features": "植物由来の界面活性剤で、刺激が少なく泡立ちが良い。",
+    "caution": "まれに敏感肌で刺激を感じることがある。"
+  },
+  {
+    "name_ja": "EDTA-2Na",
+    "name_en": "Disodium EDTA",
+    "aliases": [],
+    "use": "キレート剤、安定化",
+    "features": "金属イオンを捕捉し、製品の品質と安定性を保つ。",
+    "caution": "高濃度での使用は避け、使用量に注意する。"
+  },
+  {
+    "name_ja": "バクチオール",
+    "name_en": "Bakuchiol",
+    "aliases": [],
+    "use": "エイジングケア",
+    "features": "植物由来のレチノール代替成分で、肌の弾力を保つのに役立つ。",
+    "caution": "レチノールほどの刺激は少ないが、敏感肌は様子を見ながら使用する。"
+  },
+  {
+    "name_ja": "アゼライン酸",
+    "name_en": "Azelaic Acid",
+    "aliases": [],
+    "use": "角質ケア、抗菌",
+    "features": "にきびや色素沈着の改善に用いられる酸で、角質を整える。",
+    "caution": "高濃度では刺激を感じる場合がある。"
+  },
+  {
+    "name_ja": "レチノールパルミチン酸エステル",
+    "name_en": "Retinyl Palmitate",
+    "aliases": [
+      "パルミチン酸レチノール"
+    ],
+    "use": "エイジングケア",
+    "features": "ビタミンAの誘導体で、穏やかなレチノール効果を持つ。",
+    "caution": "夜間使用が推奨され、日中は日焼け止めを併用する。"
+  },
+  {
+    "name_ja": "ラクトバチルス発酵液",
+    "name_en": "Lactobacillus Ferment",
+    "aliases": [],
+    "use": "保湿、整肌",
+    "features": "乳酸菌由来の発酵液で、保湿と肌のコンディショニングをサポートする。",
+    "caution": "発酵由来成分にアレルギーがある場合は注意。"
   }
-}
+]
