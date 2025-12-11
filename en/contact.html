@@ -1,88 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>NicheWorks | A Quiet Collection of Small Web Tools</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Contact | NicheWorks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Meta Description -->
+  <!-- Description -->
   <meta
     name="description"
-    content="NicheWorks is a quiet collection of small, practical web tools — lightweight utilities designed to help with everyday tasks without noise or complexity."
-  />
-
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+    content="Contact page for NicheWorks. For bug reports, feature requests, feedback, or general messages, please reach out here."
+  >
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/en/index.html" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/en/contact.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css">
 
-  <!-- AdSense -->
-  <script
-    async
+  <!-- Adsense -->
+  <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"
-  ></script>
+    crossorigin="anonymous"></script>
 
   <!-- OGP -->
-  <meta property="og:title" content="NicheWorks | A Quiet Collection of Small Web Tools" />
-  <meta
-    property="og:description"
-    content="A collection of practical, lightweight web tools built with simplicity and usefulness in mind."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/en/index.html" />
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
-  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="Contact | NicheWorks">
+  <meta property="og:description" content="Get in touch with NicheWorks. For bug reports, feature requests, or general inquiries, please contact us here.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nicheworks.pages.dev/en/contact.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="NicheWorks | A Quiet Collection of Small Web Tools" />
-  <meta
-    name="twitter:description"
-    content="A quiet collection of practical, lightweight web tools."
-  />
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact | NicheWorks">
+  <meta name="twitter:description" content="For questions, bug reports, feedback, or messages regarding NicheWorks tools, please reach out here.">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
-  <!-- JSON-LD (WebSite + WebPage) -->
+  <!-- JSON-LD (ContactPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "NicheWorks",
-    "url": "https://nicheworks.pages.dev/",
+    "@type": "ContactPage",
+    "name": "Contact NicheWorks",
+    "url": "https://nicheworks.pages.dev/en/contact.html",
+    "inLanguage": "en",
+    "description": "Contact page for NicheWorks. For inquiries, bug reports, and feedback.",
     "publisher": {
       "@type": "Organization",
       "name": "NicheWorks"
     }
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "NicheWorks (English)",
-    "url": "https://nicheworks.pages.dev/en/index.html",
-    "description": "A quiet collection of practical, lightweight web tools."
-  }
-  </script>
 </head>
 
 <body>
   <main class="container">
+
     <header>
       <h1 class="site-title">
-        <img src="/assets/nicheworks-logo.png" alt="NicheWorks Logo" class="site-logo" />
+        <img src="/assets/nicheworks-logo.png" alt="NicheWorks logo" class="site-logo">
         NicheWorks
       </h1>
 
-      <p class="subtitle">A quiet collection of small, practical web tools</p>
+      <p class="subtitle">A quiet collection of small, useful web tools</p>
 
-      <!-- Navigation -->
+      <!-- Header Navigation -->
       <div class="nav-inline">
         <a href="./index.html">Home</a>
         <span class="sep">/</span>
@@ -96,144 +82,93 @@
       <!-- Language Switch -->
       <div class="nav-inline">
         <span>Language:</span>
-        <a href="../index.html">日本語</a>
+        <a href="./contact.html">English</a>
         <span class="sep">/</span>
-        <a href="./index.html">English</a>
+        <a href="../contact.html">日本語</a>
       </div>
     </header>
 
-    <!-- About Section -->
+    <!-- Contact Content -->
     <section class="block">
-      <h2>About This Site</h2>
+      <h2>Contact</h2>
+
       <p>
-        NicheWorks is a quiet, ongoing project that collects small but genuinely useful
-        web tools. The focus is not on flashiness or trends, but on practicality and
-        longevity.
+        If you have questions about any NicheWorks tools, wish to report a bug,  
+        request improvements, or simply leave a message,  
+        feel free to reach out via the email address below.
       </p>
 
-      <p class="small">
-        → More about the philosophy and background is available on the
-        <a href="./about.html">About page</a>.
+      <p>
+        <strong>Email:</strong>
+        <span id="email-area"></span>
       </p>
+
+      <script>
+        // Email obfuscation to reduce spam
+        (function() {
+          const user = "nicheworks.tools";
+          const domain = "gmail.com";
+          const full = user + "@" + domain;
+          const link = '<a href="mailto:' + full + '">' + full + '</a>';
+          document.getElementById("email-area").innerHTML = link;
+        })();
+      </script>
+
+      <h3>Response Policy</h3>
+      <p>
+        We try to respond to most messages,  
+        but as this is a personal project, replies may take some time.  
+        Please note that we may not be able to respond to every inquiry.
+      </p>
+
+      <h3>Before Contacting</h3>
+      <ul>
+        <li>If reporting a bug, please include your device and browser information.</li>
+        <li>Messages for advertising or spam-related purposes will not receive a reply.</li>
+      </ul>
+
     </section>
 
-    <!-- Tool List -->
-    <section class="block">
-      <h2>Tool List</h2>
-
-      <!-- Text & Document Tools -->
-      <h3>Text & Document Tools</h3>
-      <p class="category-desc">
-        Lightweight utilities for text processing, log formatting, and quick document-related tasks.
-      </p>
-      <ul class="list">
-        <li><strong><a href="/tools/manual-finder/" target="_blank" rel="noopener">ManualFinder</a></strong><br>Official manual links for electronics, cameras, and more.</li>
-        <li><strong><a href="/tools/trashnavi/" target="_blank" rel="noopener">TrashNavi</a></strong><br>Official municipal waste-sorting guidelines.</li>
-        <li><strong><a href="/tools/log-formatter/" target="_blank" rel="noopener">LogFormatter</a></strong><br>Format Nginx/HTTP logs in your browser.</li>
-        <li><strong><a href="/tools/rename-wizard/" target="_blank" rel="noopener">Rename Wizard</a></strong><br>Bulk rename preview tool.</li>
-        <li><strong><a href="/tools/contract-cleaner/" target="_blank" rel="noopener">Contract Cleaner</a></strong><br>Highlight risky terms in contracts.</li>
-        <li><strong><a href="/tools/exif-cleaner-mini/" target="_blank" rel="noopener">EXIF Cleaner Mini</a></strong><br>Remove EXIF data locally.</li>
-        <li><strong><a href="/tools/linebreak-doctor/" target="_blank" rel="noopener">LineBreak Doctor</a></strong><br>Fix unwanted line breaks for social media posts.</li>
-        <li><strong><a href="/tools/url-title-collector/" target="_blank" rel="noopener">URL Title Collector</a></strong><br>Fetch page titles from multiple URLs at once.</li>
-        <li><strong><a href="/tools/message-generator/" target="_blank" rel="noopener">Message Generator</a></strong><br>Generate short text templates.</li>
-      </ul>
-
-      <!-- Image & File Tools -->
-      <h3>Image & File Utilities</h3>
-      <p class="category-desc">
-        Tools for converting, analyzing, and inspecting images or file contents.
-      </p>
-      <ul class="list">
-        <li><strong><a href="/tools/image-compression-inspector/" target="_blank" rel="noopener">Image Compression Inspector</a></strong><br>Compare compression efficiency across formats.</li>
-        <li><strong><a href="/tools/color-replace/" target="_blank" rel="noopener">Color Replace</a></strong><br>Replace a specific color in an image.</li>
-        <li><strong><a href="/tools/webp-avif-converter/" target="_blank" rel="noopener">WebP / AVIF Converter</a></strong><br>Convert images to lightweight formats.</li>
-        <li><strong><a href="/tools/filetype-sniffer/" target="_blank" rel="noopener">FileType Sniffer</a></strong><br>Analyze file signatures to determine type.</li>
-      </ul>
-
-      <!-- Conversion & Visualization Tools -->
-      <h3>Conversion & Visualization Tools</h3>
-      <p class="category-desc">
-        Utility tools for data conversion, structural visualization, and format transformation.
-      </p>
-      <ul class="list">
-        <li><strong><a href="/tools/json2mermaid/" target="_blank" rel="noopener">JSON → Mermaid</a></strong><br>Automatically visualize JSON structures.</li>
-        <li><strong><a href="/tools/unitmaster/" target="_blank" rel="noopener">UnitMaster</a></strong><br>High-speed conversion among many units.</li>
-        <li><strong><a href="/tools/kanji-modernizer/" target="_blank" rel="noopener">Kanji Modernizer</a></strong><br>Old → modern character conversion.</li>
-        <li><strong><a href="/tools/old-kanji-reference/" target="_blank" rel="noopener">Old Kanji Reference</a></strong><br>Dictionary of traditional forms.</li>
-        <li><strong><a href="/tools/redirect-unwrapper/" target="_blank" rel="noopener">Redirect Unwrapper</a></strong><br>Reveal the final destination of shortened URLs.</li>
-      </ul>
-
-      <!-- Everyday Tools -->
-      <h3>Everyday & Practical Tools</h3>
-      <p class="category-desc">
-        Simple tools designed to support everyday tasks and quick lookups.
-      </p>
-      <ul class="list">
-        <li><strong><a href="/tools/jp-postal-lite/" target="_blank" rel="noopener">JP Postal Lite</a></strong><br>Look up addresses by postal code.</li>
-        <li><strong><a href="https://unsubscribe-navi.pages.dev/" target="_blank" rel="noopener">Cancel Navi</a></strong><br>Official cancelation pages for major services.</li>
-      </ul>
-
-      <!-- Additional Utilities -->
-      <h3>Additional Utilities</h3>
-      <p class="category-desc">
-        Miscellaneous lightweight tools that provide extra convenience and support.
-      </p>
-      <ul class="list">
-        <li><strong><a href="/tools/weatherdiff/" target="_blank" rel="noopener">WeatherDiff</a></strong><br>Compare forecasts from multiple APIs. Supports location input & geolocation.</li>
-        <li><strong><a href="/tools/wifi-meter/" target="_blank" rel="noopener">WiFi Meter</a></strong><br>Visualize nearby Wi-Fi congestion.</li>
-        <li><strong><a href="/tools/cover-letter-lite/" target="_blank" rel="noopener">Cover Letter Lite</a></strong><br>Generate short English cover letters.</li>
-        <li><strong><a href="/tools/cosmetic-ingredient-checker-lite/" target="_blank" rel="noopener">Cosmetic Ingredient Checker Lite</a></strong><br>Simple ingredient lookup tool.</li>
-      </ul>
-    </section>
-
-    <!-- Policy Section -->
-    <section class="block">
-      <h2>Project Policy</h2>
-      <p class="small">
-        Most tools work entirely inside your browser.  
-        No data is uploaded to any server unless clearly stated.
-      </p>
-    </section>
-
-    <!-- Footer -->
     <footer>
+
       <!-- Donation Block -->
       <div class="block donate-block">
-        <h2>Support the Project</h2>
+        <h2>Support</h2>
         <p class="small">
           NicheWorks is a personal project.  
-          If you find any of the tools helpful, a small tip (even the price of a coffee)
-          is greatly appreciated.
+          If you enjoy the tools, even a small donation is greatly appreciated.
         </p>
-
         <div class="donate-buttons">
           <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
           <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
-
         <p class="small muted">
-          Donations are completely optional and go toward development and maintenance.
+          Donations are optional. All support goes directly toward development and maintenance.
         </p>
       </div>
 
+      <!-- Footer links -->
       <div class="small">
-        <p>
+        <p class="small">
           <a href="./index.html">Home</a> /
           <a href="./about.html">About</a> /
           <a href="./privacy.html">Privacy</a> /
           <a href="./contact.html">Contact</a>
         </p>
-        <p class="small">Operated by NicheWorks</p>
-        <p class="small muted">Some tools may display ads to support operation.</p>
+        <p class="small">NicheWorks Project</p>
+        <p class="small muted">Some tools may display ads to support the project.</p>
       </div>
+
     </footer>
+
   </main>
 
   <!-- Cloudflare Analytics -->
   <script
     defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'
-  ></script>
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
+
 </body>
 </html>
