@@ -30,7 +30,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- ▼ tools 以下 全 25 ツール -->
+  <!-- ▼ tools 以下 25 ツール -->
   <url><loc>https://nicheworks.pages.dev/tools/manual-finder/</loc></url>
   <url><loc>https://nicheworks.pages.dev/tools/trashnavi/</loc></url>
   <url><loc>https://nicheworks.pages.dev/tools/log-formatter/</loc></url>
