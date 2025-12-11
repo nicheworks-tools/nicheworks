@@ -2,16 +2,17 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="Zey-xqB1AdfsEAbxFuTGc_lOQ40LuGFgVWp7zwX6TGo" />
-  
-  <title>NicheWorks | 静かなWebツール集</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="Zey-xqB1AdfsEAbxFuTGc_lOQ40LuGFgVWp7zwX6TGo" />
 
-  <!-- Meta Description -->
+  <title>NicheWorks | 静かなWebツール集</title>
+
+  <!-- Description（SEO・OGP・JSON-LDで統一） -->
   <meta
     name="description"
-    content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。"
+    content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。"
   >
 
   <!-- Canonical -->
@@ -24,34 +25,36 @@
   <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
 
-  <!-- Google Adsense (Auto Ads) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-     crossorigin="anonymous"></script>
+  <!-- Google Adsense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
 
   <!-- OGP -->
   <meta property="og:title" content="NicheWorks | 静かなWebツール集">
-  <meta property="og:description" content="目立たないけれど確かに必要な小さなWebツールを静かに公開していく個人プロジェクト。">
+  <meta property="og:description" content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.pages.dev/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta property="og:site_name" content="NicheWorks">
 
-  <!-- Twitter Card -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NicheWorks | 静かなWebツール集">
-  <meta name="twitter:description" content="目立たないけれど確かに必要な小さなWebツールを静かに公開していく個人プロジェクト。">
+  <meta name="twitter:description" content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。">
   <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
-  <!-- Structured Data: WebSite + WebPage -->
+  <!-- JSON-LD (WebSite + WebPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebSite",
+        "@id": "https://nicheworks.pages.dev/#website",
         "name": "NicheWorks",
         "url": "https://nicheworks.pages.dev/",
-        "description": "目立たないけれど確かに必要な小さなWebツールを静かに公開していく個人プロジェクト。",
+        "description": "NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。",
         "publisher": {
           "@type": "Organization",
           "name": "NicheWorks"
@@ -59,19 +62,20 @@
       },
       {
         "@type": "WebPage",
+        "@id": "https://nicheworks.pages.dev/",
         "name": "NicheWorks | 静かなWebツール集",
         "url": "https://nicheworks.pages.dev/",
         "inLanguage": "ja",
+        "description": "NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。",
         "isPartOf": {
-          "@id": "https://nicheworks.pages.dev/"
-        },
-        "description": "NicheWorks は、目立たないけれど確かに必要な小さなWebツールを静かに提供する個人プロジェクトです。"
+          "@id": "https://nicheworks.pages.dev/#website"
+        }
       }
     ]
   }
   </script>
-
 </head>
+
 
 <body>
   <main class="container">
