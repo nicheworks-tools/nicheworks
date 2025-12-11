@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 母艦ページ -->
+  <url>
+    <loc>https://nicheworks.pages.dev/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nicheworks.pages.dev/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nicheworks.pages.dev/privacy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nicheworks.pages.dev/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 英語版トップ -->
+  <url>
+    <loc>https://nicheworks.pages.dev/en/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ▼ tools 以下 全 25 ツール -->
+  <url><loc>https://nicheworks.pages.dev/tools/manual-finder/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/trashnavi/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/log-formatter/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/rename-wizard/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/contract-cleaner/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/exif-cleaner-mini/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/linebreak-doctor/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/url-title-collector/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/message-generator/</loc></url>
+
+  <url><loc>https://nicheworks.pages.dev/tools/image-compression-inspector/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/color-replace/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/webp-avif-converter/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/filetype-sniffer/</loc></url>
+
+  <url><loc>https://nicheworks.pages.dev/tools/json2mermaid/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/unitmaster/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/kanji-modernizer/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/old-kanji-reference/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/redirect-unwrapper/</loc></url>
+
+  <url><loc>https://nicheworks.pages.dev/tools/jp-postal-lite/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/cosmetic-ingredient-checker-lite/</loc></url>
+
+  <url><loc>https://nicheworks.pages.dev/tools/weatherdiff/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/wifi-meter/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/cover-letter-lite/</loc></url>
+  <url><loc>https://nicheworks.pages.dev/tools/metadatasnap/</loc></url>
+
+</urlset>
