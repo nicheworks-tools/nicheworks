@@ -33,6 +33,13 @@
     <!-- TAB 1 -->
     <section id="tab-fast-panel" class="panel active">
       <textarea id="fast-input" placeholder="Paste ingredients (comma or line separated)"></textarea>
+
+      <!-- OCR for Fast Safety Check (EN) -->
+      <div class="ocr-block">
+        <input type="file" accept="image/*" id="ocr-file-fast" />
+        <button id="btn-ocr-run-fast" type="button">Run OCR (EN)</button>
+      </div>
+
       <button id="btn-fast-check" type="button">Check Safety</button>
       <div id="fast-results"></div>
     </section>
@@ -43,7 +50,7 @@
 
       <div class="ocr-block">
         <input type="file" accept="image/*" id="ocr-file" />
-        <button id="btn-ocr-run" type="button">Run OCR</button>
+        <button id="btn-ocr-run" type="button">Run OCR (JP)</button>
       </div>
 
       <button id="btn-jb-check" type="button">Translate & Check Safety</button>
