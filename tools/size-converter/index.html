@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>サイズ換算｜JP↔US/EU サイズ対応表 | NicheWorks</title>
+  <meta name="description" content="日本サイズと海外サイズ（US・EU）を即時に換算できる無料ツール。服・靴の男女別サイズ対応表をスマホで一瞬確認。海外通販や旅行前の確認に最適。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/size-converter/">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="サイズ換算｜JP↔US/EU サイズ対応表 | NicheWorks">
+  <meta property="og:description" content="日本サイズと海外サイズ（US・EU）を即時に換算。服・靴の男女別対応表をスマホで確認できます。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/size-converter/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+
+  <!-- 共通CSS（既存を流用想定） -->
+  <link rel="stylesheet" href="/assets/nw-base.css">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JP ↔ Global Size Converter",
+    "url": "https://nicheworks.pages.dev/tools/size-converter/",
+    "applicationCategory": "UtilityApplication",
+    "description": "日本サイズと海外サイズ（US・EU）を相互に確認できるサイズ換算ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+</head>
+
+<body>
+
+<header class="nw-header">
+  <h1>サイズ換算（JP ↔ 海外サイズ）</h1>
+  <p>服・靴の日本サイズと US / EU サイズを即時に確認できます。</p>
+
+  <div class="nw-lang-switch">
+    <button data-lang="ja">JP</button> /
+    <button data-lang="en">EN</button>
+  </div>
+</header>
+
+<main class="nw-main">
+
+  <!-- ad-top -->
+  <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+  <!-- 操作UI -->
+  <section class="tool-controls">
+    <label>
+      <span data-i18n="ja">カテゴリ</span>
+      <span data-i18n="en">Category</span>
+      <select id="categorySelect">
+        <option value="clothing">衣類 / Clothing</option>
+        <option value="shoes">靴 / Shoes</option>
+      </select>
+    </label>
+
+    <label>
+      <span data-i18n="ja">性別</span>
+      <span data-i18n="en">Gender</span>
+      <select id="genderSelect">
+        <option value="men">メンズ / Men</option>
+        <option value="women">レディース / Women</option>
+      </select>
+    </label>
+
+    <label>
+      <span data-i18n="ja">基準サイズ</span>
+      <span data-i18n="en">Base</span>
+      <select id="baseSelect">
+        <option value="jp">JP</option>
+        <option value="us">US</option>
+        <option value="eu">EU</option>
+      </select>
+    </label>
+  </section>
+
+  <!-- 結果 -->
+  <section id="resultSection">
+    <table class="size-table">
+      <thead>
+        <tr>
+          <th>JP</th>
+          <th>US</th>
+          <th>EU</th>
+        </tr>
+      </thead>
+      <tbody id="sizeTableBody">
+        <!-- JSで生成 -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 免責 -->
+  <p class="disclaimer" data-i18n="ja">
+    ※ サイズ換算は一般的な目安です。ブランドや製品により差異があります。
+  </p>
+  <p class="disclaimer" data-i18n="en">
+    * Size conversion is approximate. Actual fit may vary by brand or product.
+  </p>
+
+  <!-- 寄付導線 -->
+  <div class="nw-donate">
+    <p class="nw-donate-text">
+      このツールが役に立ったら、開発継続のご支援をいただけると嬉しいです。
+    </p>
+    <div class="nw-donate-links">
+      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+    </div>
+  </div>
+
+  <!-- 内部リンク -->
+  <div class="nw-links">
+    <a href="/tools/laundry-symbol-decoder/">洗濯記号デコーダ</a> /
+    <a href="/tools/drymeter/">乾き予報</a> /
+    <a href="/tools/moving-checklist/">引っ越しチェックリスト</a>
+  </div>
+
+  <!-- ad-bottom -->
+  <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+</main>
+
+<footer class="nw-footer">
+  <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+  <p class="nw-footer-line">
+    当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。
+  </p>
+  <p class="nw-footer-line">
+    <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
+      nicheworks.pages.dev
+    </a>
+  </p>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
