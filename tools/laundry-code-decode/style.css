@@ -1,65 +1,201 @@
-/* 最低限の共通感 */
+/* ================================
+ * NicheWorks 共通（必須）
+ * ================================ */
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f9fafb;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --muted2: #4b5563;
+}
+
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-  color: #111827;
-  background: #ffffff;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans JP", "Hiragino Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
+/* header */
 .nw-header {
-  padding: 16px 12px 8px;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 12px 10px;
+  border-bottom: 1px solid var(--border);
 }
-
 .nw-header h1 {
   margin: 0;
   font-size: 22px;
+  letter-spacing: 0.2px;
 }
-
 .subtitle {
   margin: 6px 0 0;
   font-size: 12px;
-  color: #6b7280;
+  color: var(--muted);
 }
 
+/* main（スマホ寄りツールなので600pxでOK） */
 .nw-main {
-  max-width: 600px; /* スマホ寄りツールなのでOK :contentReference[oaicite:2]{index=2} */
+  max-width: 600px;
   margin: 0 auto;
   padding: 12px;
 }
 
-/* 共通仕様の言語スイッチCSS :contentReference[oaicite:3]{index=3} */
-.nw-lang-switch {
-  text-align: left;
-  margin: 8px 0 0;
+/* ad-slot（共通仕様） */
+.ad-slot {
+  margin: 12px 0 16px;
+  padding: 8px;
+  border: 1px dashed #d4d4d4;
   font-size: 11px;
-  color: #6b7280;
+  color: #9ca3af;
+  text-align: center;
+  min-height: 60px;
 }
-.nw-lang-switch button {
-  border: none;
-  background: transparent;
-  padding: 0 2px;
-  cursor: pointer;
+.ad-top { margin-top: 4px; }
+.ad-bottom { margin-bottom: 8px; }
+
+/* donate（共通仕様） */
+.nw-donate {
+  text-align: center;
+  margin: 16px 0 8px;
+  padding: 8px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.nw-donate-text { margin: 4px 0; }
+.nw-donate-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.nw-donate-links a {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.nw-donate-links a:hover {
+  background: var(--bg-soft);
+  transform: translateY(-1px);
+}
+
+/* footer（共通仕様） */
+.nw-footer {
+  margin-top: 24px;
+  padding: 16px 8px 12px;
+  border-top: 1px solid var(--border);
   font-size: 11px;
-  color: #4b5563;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
 }
-.nw-lang-switch button.active {
-  font-weight: 600;
+.nw-footer-line { margin: 2px 0; }
+.nw-footer a {
+  color: var(--muted);
   text-decoration: underline;
 }
 
-/* エラー枠（データ未読込など） */
-.nw-error {
-  border: 1px solid #ef4444;
-  background: #fff5f5;
-  color: #7f1d1d;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 13px;
+/* 内部リンク（仕様の3〜4件リンク） */
+.nw-links {
+  text-align: center;
+  margin: 18px 0 0;
+  font-size: 12px;
+  color: var(--muted);
 }
-.nw-error code {
-  background: rgba(0,0,0,0.06);
-  padding: 1px 4px;
-  border-radius: 4px;
+.nw-links a {
+  color: var(--muted2);
+  text-decoration: underline;
+}
+.nw-links a:hover { opacity: 0.8; }
+
+/* 言語切替（共通仕様） */
+.nw-lang-switch {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.nw-lang-switch button {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--muted2);
+}
+.nw-lang-switch button.active {
+  font-weight: 700;
+  background: var(--bg-soft);
+}
+
+/* ================================
+ * ツール固有
+ * ================================ */
+
+.symbol-picker p {
+  margin: 10px 0 8px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* 記号グリッド */
+.symbol-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* 記号ボタン */
+.symbol-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 0;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+.symbol-btn:hover { background: var(--bg-soft); }
+.symbol-btn:active { transform: translateY(1px); }
+
+/* 結果 */
+.result {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+}
+.result h2 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+.result-summary {
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.result-detail {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted2);
+}
+
+.hidden { display: none; }
+
+/* 480px以下でボタン縦並び（仕様の変形ルール） */
+@media (max-width: 480px) {
+  .symbol-grid { grid-template-columns: 1fr; }
+  .symbol-btn { font-size: 26px; padding: 18px 0; }
 }
