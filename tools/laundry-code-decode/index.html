@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks</title>
+  <meta name="description" content="衣類タグの洗濯記号をタップするだけで、洗濯・乾燥・アイロン・漂白の意味を日本語と英語で即表示。完全ローカル動作の無料ツール。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/laundry-code-decode/">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks">
+  <meta property="og:description" content="洗濯記号を選ぶだけで意味を即表示。日本語/英語対応、完全ローカル。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/laundry-code-decode/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- favicon -->
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Laundry Code Decode",
+    "url": "https://nicheworks.pages.dev/tools/laundry-code-decode/",
+    "applicationCategory": "UtilityApplication",
+    "description": "洗濯記号の意味を日本語・英語で即座に解読する無料ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1>洗濯記号デコーダ</h1>
+    <p class="subtitle">Laundry Code Decode</p>
+
+    <div class="nw-lang-switch">
+      <button data-lang="ja">JP</button> /
+      <button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+
+    <!-- ad-top -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="symbol-picker">
+      <p data-i18n="ja">調べたい洗濯記号を選択してください</p>
+      <p data-i18n="en">Select a laundry symbol</p>
+
+      <div id="symbolGrid" class="symbol-grid"></div>
+    </section>
+
+    <section id="result" class="result hidden">
+      <h2 data-i18n="ja">意味</h2>
+      <h2 data-i18n="en">Meaning</h2>
+
+      <p id="resultSummary" class="result-summary"></p>
+      <p id="resultDetail" class="result-detail"></p>
+    </section>
+
+    <!-- 寄付 -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">
+        このツールが役に立ったら、開発継続のためのご支援をお願いします。
+      </p>
+      <p class="nw-donate-text" data-i18n="en">
+        If this tool helped you, please consider supporting its development.
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- ad-bottom -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- 内部リンク -->
+    <div class="nw-links">
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a>
+    </div>
+
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      本ツールは一般的な洗濯表示規格に基づく参考情報です。
+    </p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
