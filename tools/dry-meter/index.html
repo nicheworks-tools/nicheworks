@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>洗濯物・布団の乾き予報｜DryMeter | NicheWorks</title>
+  <meta name="description" content="気温・湿度・風速から洗濯物や布団の乾きやすさを指数で表示する無料ツール。今日は干して大丈夫かを一瞬で判断できます。" />
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/dry-meter/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="洗濯物・布団の乾き予報｜DryMeter | NicheWorks" />
+  <meta property="og:description" content="気温・湿度・風速から乾きやすさを指数で表示。今日は干して大丈夫かを一瞬で判断できます。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/dry-meter/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense（共通仕様：各ツールの head に必須。削除/改変しない） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Cloudflare Web Analytics（共通トークンに差し替え） -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+
+  <!-- WebApplication schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "DryMeter（乾き予報）",
+    "url": "https://nicheworks.pages.dev/tools/dry-meter/",
+    "applicationCategory": "UtilityApplication",
+    "description": "気温・湿度・風速から洗濯物や布団の乾きやすさを指数で表示する無料ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">乾き予報（DryMeter）</h1>
+    <h1 class="nw-title" data-i18n="en">DryMeter</h1>
+
+    <p class="nw-subtitle" data-i18n="ja">気温・湿度・風から「干して大丈夫か」を一瞬で判定</p>
+    <p class="nw-subtitle" data-i18n="en">Quick drying forecast from temperature, humidity, and wind.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="panel" aria-label="Controls">
+      <div class="controls">
+        <div class="control-group">
+          <p class="label" data-i18n="ja">対象</p>
+          <p class="label" data-i18n="en">Target</p>
+          <div class="segmented" role="tablist" aria-label="Target">
+            <button type="button" class="seg active" data-target="laundry">
+              <span data-i18n="ja">洗濯物</span><span data-i18n="en">Laundry</span>
+            </button>
+            <button type="button" class="seg" data-target="bedding">
+              <span data-i18n="ja">布団</span><span data-i18n="en">Bedding</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <p class="label" data-i18n="ja">干し方</p>
+          <p class="label" data-i18n="en">Drying</p>
+          <div class="segmented" role="tablist" aria-label="Drying method">
+            <button type="button" class="seg active" data-dry="outdoor">
+              <span data-i18n="ja">外干し</span><span data-i18n="en">Outdoor</span>
+            </button>
+            <button type="button" class="seg" data-dry="indoor">
+              <span data-i18n="ja">部屋干し</span><span data-i18n="en">Indoor</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="inputs" aria-label="Inputs">
+        <div class="input-row">
+          <div class="input-head">
+            <label class="input-label" for="temp">
+              <span data-i18n="ja">気温（℃）</span><span data-i18n="en">Temperature (°C)</span>
+            </label>
+            <output id="tempOut" class="input-value">22</output>
+          </div>
+          <input id="temp" type="range" min="0" max="40" step="1" value="22" />
+        </div>
+
+        <div class="input-row">
+          <div class="input-head">
+            <label class="input-label" for="humidity">
+              <span data-i18n="ja">湿度（%）</span><span data-i18n="en">Humidity (%)</span>
+            </label>
+            <output id="humidityOut" class="input-value">58</output>
+          </div>
+          <input id="humidity" type="range" min="30" max="100" step="1" value="58" />
+        </div>
+
+        <div class="input-row">
+          <div class="input-head">
+            <label class="input-label" for="wind">
+              <span data-i18n="ja">風速（m/s）</span><span data-i18n="en">Wind (m/s)</span>
+            </label>
+            <output id="windOut" class="input-value">3.2</output>
+          </div>
+          <input id="wind" type="range" min="0" max="10" step="0.1" value="3.2" />
+        </div>
+      </div>
+    </section>
+
+    <section class="result-wrap" aria-label="Result">
+      <div class="result-card status-good" id="resultCard">
+        <div class="result-head">
+          <div class="result-title" data-i18n="ja">Dry Score</div>
+          <div class="result-title" data-i18n="en">Dry Score</div>
+          <div class="result-score">
+            <span id="scoreNum">72</span><span class="score-denom">/100</span>
+          </div>
+        </div>
+
+        <div class="result-status" id="statusText">
+          <span data-i18n="ja">よく乾く</span><span data-i18n="en">Dries well</span>
+        </div>
+
+        <p class="result-comment" id="commentText">
+          <span data-i18n="ja">今日は外干し向きです。</span>
+          <span data-i18n="en">Great day for outdoor drying.</span>
+        </p>
+
+        <p class="result-tip" id="tipText">
+          <span data-i18n="ja">目安：70+ = 乾きやすい / 40–69 = 普通 / 0–39 = 乾きにくい</span>
+          <span data-i18n="en">Guide: 70+ easy / 40–69 average / 0–39 hard to dry</span>
+        </p>
+      </div>
+    </section>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool helped, your support keeps it maintained.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <div class="nw-links" aria-label="Internal links">
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a>
+    </div>
+
+    <div class="disclaimer" role="note">
+      <p data-i18n="ja">※ 本ツールは気象条件からの簡易推定です。実際の乾燥結果を保証するものではありません。</p>
+      <p data-i18n="en">This tool is a rough estimate and does not guarantee actual drying results.</p>
+    </div>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
