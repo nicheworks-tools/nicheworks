@@ -36,6 +36,28 @@ function setupFastCheck() {
     const results = await coreMatchIngredients(list, DICT);
     renderResults(document.getElementById("fast-results"), results);
   };
+
+  // OCR -> fast-input (EN)
+  document.getElementById("btn-ocr-run-fast").onclick = async () => {
+    const file = document.getElementById("ocr-file-fast").files[0];
+    if (!file) return;
+
+    const btn = document.getElementById("btn-ocr-run-fast");
+    const prev = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Running...";
+
+    try {
+      const text = await runOCR(file, "eng"); // TAB1: EN
+      document.getElementById("fast-input").value = text;
+    } catch (e) {
+      console.error(e);
+      alert("OCR failed. See console for details.");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = prev;
+    }
+  };
 }
 
 function setupJBTranslator() {
@@ -46,6 +68,7 @@ function setupJBTranslator() {
     renderResults(document.getElementById("jb-results"), results);
   };
 
+  // OCR -> jb-input (JP+EN)
   document.getElementById("btn-ocr-run").onclick = async () => {
     const file = document.getElementById("ocr-file").files[0];
     if (!file) return;
@@ -56,7 +79,7 @@ function setupJBTranslator() {
     btn.textContent = "Running...";
 
     try {
-      const text = await runOCR(file);
+      const text = await runOCR(file, "jpn+eng"); // TAB2: JP+EN
       document.getElementById("jb-input").value = text;
     } catch (e) {
       console.error(e);
