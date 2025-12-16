@@ -1,4 +1,4 @@
-async function runOCR(imageFile) {
+async function runOCR(imageFile, lang = "eng") {
   if (!imageFile) return "";
 
   if (typeof Tesseract === "undefined") {
@@ -7,7 +7,7 @@ async function runOCR(imageFile) {
 
   const { data } = await Tesseract.recognize(
     imageFile,
-    "eng+jpn",
+    lang,
     { logger: m => console.log(m) }
   );
 
