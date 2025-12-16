@@ -1,51 +1,65 @@
-.nw-main {
-  max-width: 600px;
-  margin: 0 auto;
+/* 最低限の共通感 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+  color: #111827;
+  background: #ffffff;
+}
+
+.nw-header {
+  padding: 16px 12px 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nw-header h1 {
+  margin: 0;
+  font-size: 22px;
 }
 
 .subtitle {
+  margin: 6px 0 0;
   font-size: 12px;
   color: #6b7280;
 }
 
-.symbol-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 12px;
+.nw-main {
+  max-width: 600px; /* スマホ寄りツールなのでOK :contentReference[oaicite:2]{index=2} */
+  margin: 0 auto;
+  padding: 12px;
 }
 
-.symbol-btn {
-  border: 1px solid #e5e7eb;
-  padding: 18px 0;
-  font-size: 22px;
-  border-radius: 10px;
-  background: #fff;
+/* 共通仕様の言語スイッチCSS :contentReference[oaicite:3]{index=3} */
+.nw-lang-switch {
+  text-align: left;
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: #6b7280;
+}
+.nw-lang-switch button {
+  border: none;
+  background: transparent;
+  padding: 0 2px;
   cursor: pointer;
+  font-size: 11px;
+  color: #4b5563;
 }
-
-.symbol-btn:hover {
-  background: #f9fafb;
-}
-
-.result {
-  margin-top: 20px;
-  padding: 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-}
-
-.result-summary {
+.nw-lang-switch button.active {
   font-weight: 600;
-  margin-bottom: 6px;
+  text-decoration: underline;
 }
 
-.hidden {
-  display: none;
+/* エラー枠（データ未読込など） */
+.nw-error {
+  border: 1px solid #ef4444;
+  background: #fff5f5;
+  color: #7f1d1d;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
 }
-
-@media (max-width: 480px) {
-  .symbol-grid {
-    grid-template-columns: 1fr;
-  }
+.nw-error code {
+  background: rgba(0,0,0,0.06);
+  padding: 1px 4px;
+  border-radius: 4px;
 }
