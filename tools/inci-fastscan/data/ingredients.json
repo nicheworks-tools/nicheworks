@@ -1,0 +1,40 @@
+[
+  {
+    "id": "sodium_hyaluronate",
+    "jp": [
+      "ヒアルロン酸Na",
+      "ヒアルロン酸"
+    ],
+    "en": "Sodium Hyaluronate",
+    "alias": [
+      "Hyaluronic Acid",
+      "HA"
+    ],
+    "safety": "safe",
+    "note_short": "Hydrating ingredient with low irritation."
+  },
+  {
+    "id": "fragrance",
+    "jp": [
+      "香料"
+    ],
+    "en": "Fragrance",
+    "alias": [
+      "Perfume"
+    ],
+    "safety": "caution",
+    "note_short": "May irritate sensitive skin."
+  },
+  {
+    "id": "salicylic_acid",
+    "jp": [
+      "サリチル酸"
+    ],
+    "en": "Salicylic Acid",
+    "alias": [
+      "BHA"
+    ],
+    "safety": "risk",
+    "note_short": "Strong exfoliant; use carefully."
+  }
+]

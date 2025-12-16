@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INCI FastScan – Ingredient Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Tesseract.js (OCR) -->
+  <script defer src="https://unpkg.com/tesseract.js@5.0.3/dist/tesseract.min.js"></script>
+
+  <!-- App scripts -->
+  <script defer src="js/strings.js"></script>
+  <script defer src="js/core_parser.js"></script>
+  <script defer src="js/core_matcher.js"></script>
+  <script defer src="js/core_ocr_post.js"></script>
+  <script defer src="js/web_ui.js"></script>
+  <script defer src="js/web_ocr.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>INCI FastScan</h1>
+    <p class="subtitle">Fast Safety Check & J-Beauty Translator</p>
+  </header>
+
+  <div id="tabs">
+    <button id="tab-fast" class="tab active" type="button">Fast Safety Check</button>
+    <button id="tab-jb" class="tab" type="button">J-Beauty Translator</button>
+  </div>
+
+  <main>
+    <!-- TAB 1 -->
+    <section id="tab-fast-panel" class="panel active">
+      <textarea id="fast-input" placeholder="Paste ingredients (comma or line separated)"></textarea>
+      <button id="btn-fast-check" type="button">Check Safety</button>
+      <div id="fast-results"></div>
+    </section>
+
+    <!-- TAB 2 -->
+    <section id="tab-jb-panel" class="panel">
+      <textarea id="jb-input" placeholder="Paste Japanese ingredients or run OCR"></textarea>
+
+      <div class="ocr-block">
+        <input type="file" accept="image/*" id="ocr-file" />
+        <button id="btn-ocr-run" type="button">Run OCR</button>
+      </div>
+
+      <button id="btn-jb-check" type="button">Translate & Check Safety</button>
+      <div id="jb-results"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>NicheWorks – INCI FastScan</p>
+  </footer>
+</body>
+</html>
