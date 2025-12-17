@@ -114,10 +114,86 @@
       <div id="copyToast" class="toast" hidden>Copied</div>
     </section>
 
-    <!-- 追加：How to / Usage link（日本語SEOは usage.html に集約） -->
+    <!-- 使い方リンク（日本語SEOは usage.html に集約） -->
     <div class="nw-links">
       <a href="./usage.html" data-i18n="ja">使い方（APIキー伏字の手順）</a>
       <a href="./usage.html" data-i18n="en">How to (redact API keys safely)</a>
+    </div>
+
+    <!-- Pro CTA（課金導線の土台） -->
+    <section class="tool-card pro-card" id="proCard">
+      <h2 data-i18n="ja">Pro（買い切り ¥200）</h2>
+      <h2 data-i18n="en">Pro (one-time ¥200)</h2>
+
+      <p class="pro-lead" data-i18n="ja">
+        チーム共有や提出用に「毎回同じルールで確実に伏字化」したい人向け。
+      </p>
+      <p class="pro-lead" data-i18n="en">
+        For consistent, rule-based redaction when sharing with teams or posting publicly.
+      </p>
+
+      <ul class="pro-list" data-i18n="ja">
+        <li>マスキングルール指定（末尾N文字残す / 置換文字列）</li>
+        <li>より広い検出パターン</li>
+        <li>ローカル履歴（ブラウザ保存）</li>
+      </ul>
+      <ul class="pro-list" data-i18n="en">
+        <li>Custom redaction rules (keep last N chars / replacement text)</li>
+        <li>Expanded detection patterns</li>
+        <li>Local history (saved in your browser)</li>
+      </ul>
+
+      <div class="btn-row">
+        <button id="openProBtn">Unlock Pro</button>
+        <button id="learnProBtn" class="btn-ghost" type="button">Details</button>
+      </div>
+
+      <p class="note" data-i18n="ja">※ 決済は次ステップで接続します（まずは導線のみ）。</p>
+      <p class="note" data-i18n="en">Payment will be connected in the next step (CTA only for now).</p>
+    </section>
+
+    <!-- Pro Modal -->
+    <div class="modal-backdrop" id="proModalBackdrop" hidden></div>
+    <div class="modal" id="proModal" hidden role="dialog" aria-modal="true" aria-labelledby="proModalTitle">
+      <div class="modal-header">
+        <h3 id="proModalTitle">Pro</h3>
+        <button class="modal-close" id="closeProModalBtn" aria-label="Close">×</button>
+      </div>
+
+      <div class="modal-body">
+        <p data-i18n="ja">Proでは「共有OKな全文」を、あなたのルールで一貫して生成できます。</p>
+        <p data-i18n="en">Pro generates a share-safe full output with your consistent redaction rules.</p>
+
+        <div class="rule-grid">
+          <div class="rule-item">
+            <label for="ruleMode">Mode</label>
+            <select id="ruleMode">
+              <option value="keep_last">Keep last N chars</option>
+              <option value="replace_all">Replace with text</option>
+            </select>
+          </div>
+
+          <div class="rule-item">
+            <label for="keepLastN">Keep last</label>
+            <input id="keepLastN" type="number" min="0" value="4">
+          </div>
+
+          <div class="rule-item">
+            <label for="replaceText">Replace text</label>
+            <input id="replaceText" type="text" value="[REDACTED]">
+          </div>
+        </div>
+
+        <div class="callout">
+          <p data-i18n="ja">この画面はまだ「見た目だけ」です。次ステップで決済と解除を実装します。</p>
+          <p data-i18n="en">This is UI-only for now. Payment + unlock will be implemented next.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="proBuyBtn">Buy (¥200)</button>
+        <button id="proLaterBtn" class="btn-ghost" type="button">Not now</button>
+      </div>
     </div>
 
     <div class="nw-donate">
