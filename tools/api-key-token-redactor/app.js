@@ -1,24 +1,383 @@
+// ===========================
+// API Key & Token Redactor (NicheWorks)
+// app.js (MVP + Stripe lightweight Pro unlock)
+// ===========================
+
+// Stripe Payment Link（あなたが作成したURL）
+const PRO_PAYMENT_URL = "https://buy.stripe.com/28E5kFezD0HXcO98wvcV205";
+
+// Pro unlock flag（静的サイト用：軽量解除）
+const PRO_FLAG_KEY = "nw_api_key_redactor_pro_v1";
+const PRO_RULES_KEY = "nw_api_key_redactor_rules_v1";
+
+const DEFAULT_PRO_RULES = {
+  mode: "keep_last",      // keep_last | replace_all
+  keepLastN: 4,
+  replaceText: "[REDACTED]"
+};
+
+// ---------------------------
+// i18n (JP/EN) switch
+// ---------------------------
+function initLangSwitch() {
+  const buttons = document.querySelectorAll(".nw-lang-switch button");
+  const nodes = document.querySelectorAll("[data-i18n]");
+
+  const browserLang = (navigator.language || "").toLowerCase();
+  let current = browserLang.startsWith("ja") ? "ja" : "en";
+
+  const apply = (lang) => {
+    nodes.forEach((el) => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
+    });
+    buttons.forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    current = lang;
+  };
+
+  buttons.forEach((btn) => btn.addEventListener("click", () => apply(btn.dataset.lang)));
+  apply(current);
+}
+
+// ---------------------------
+// Pro helpers
+// ---------------------------
+function isProEnabled() {
+  return localStorage.getItem(PRO_FLAG_KEY) === "1";
+}
+function enablePro() {
+  localStorage.setItem(PRO_FLAG_KEY, "1");
+}
+
+function getProRules() {
+  try {
+    const raw = localStorage.getItem(PRO_RULES_KEY);
+    if (!raw) return { ...DEFAULT_PRO_RULES };
+    const obj = JSON.parse(raw);
+    return {
+      mode: obj.mode === "replace_all" ? "replace_all" : "keep_last",
+      keepLastN: Number.isFinite(Number(obj.keepLastN)) ? Math.max(0, Number(obj.keepLastN)) : DEFAULT_PRO_RULES.keepLastN,
+      replaceText: typeof obj.replaceText === "string" && obj.replaceText.length ? obj.replaceText : DEFAULT_PRO_RULES.replaceText
+    };
+  } catch {
+    return { ...DEFAULT_PRO_RULES };
+  }
+}
+function setProRules(rules) {
+  localStorage.setItem(PRO_RULES_KEY, JSON.stringify(rules));
+}
+
+// Stripe success_url で戻ってきた時に ?pro=1 を消費してPro化（URLも綺麗にする）
+function consumeProQueryParam() {
+  const url = new URL(location.href);
+  if (url.searchParams.get("pro") === "1") {
+    enablePro();
+    url.searchParams.delete("pro");
+    history.replaceState({}, "", url.toString());
+    return true;
+  }
+  return false;
+}
+
+// ---------------------------
+// UI helpers
+// ---------------------------
+const el = (id) => document.getElementById(id);
+
+function setBusy(isBusy) {
+  const p = el("progress");
+  if (p) p.hidden = !isBusy;
+  const b = el("analyzeBtn");
+  if (b) b.disabled = isBusy;
+}
+
+function showToast(msg) {
+  const t = el("copyToast");
+  if (!t) return;
+  t.textContent = msg;
+  t.hidden = false;
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => (t.hidden = true), 1200);
+}
+
+function downloadText(filename, text) {
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+// ---------------------------
+// Detection patterns
+// ---------------------------
+// Free patterns（よくあるもの中心）
+const FREE_PATTERNS = [
+  { key: "openai", label: "OpenAI key", regex: /\bsk-[A-Za-z0-9]{20,}\b/g },
+  { key: "stripe_secret", label: "Stripe secret", regex: /\b(sk|rk)_(live|test)_[A-Za-z0-9]{10,}\b/g },
+  { key: "stripe_pub", label: "Stripe publishable", regex: /\bpk_(live|test)_[A-Za-z0-9]{10,}\b/g },
+  { key: "aws_access_key_id", label: "AWS Access Key ID", regex: /\b(AKIA|ASIA)[0-9A-Z]{16}\b/g },
+  { key: "github_token", label: "GitHub token", regex: /\bgh[pous]_[A-Za-z0-9]{20,}\b/g },
+  { key: "slack_token", label: "Slack token", regex: /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g },
+  { key: "jwt", label: "JWT", regex: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
+  { key: "token_like", label: "Token-like", regex: /\b[A-Za-z0-9_\-]{32,}\b/g }
+];
+
+// Pro patterns（拡張：誤検出は増える可能性あり）
+const PRO_EXTRA_PATTERNS = [
+  { key: "google_api", label: "Google API key", regex: /\bAIza[0-9A-Za-z\-_]{30,}\b/g },
+  { key: "sendgrid", label: "SendGrid key", regex: /\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
+  { key: "twilio_sid", label: "Twilio SID", regex: /\bAC[0-9a-fA-F]{32}\b/g },
+  { key: "twilio_key", label: "Twilio key", regex: /\bSK[0-9a-fA-F]{32}\b/g },
+  { key: "pem_private_key", label: "Private key (PEM)", regex: /-----BEGIN(?: RSA)? PRIVATE KEY-----[\s\S]*?-----END(?: RSA)? PRIVATE KEY-----/g }
+];
+
+// ---------------------------
+// Masking
+// ---------------------------
+function maskKeepEnds(str, keepStart, keepEnd) {
+  if (str.length <= keepStart + keepEnd + 6) return "[REDACTED]";
+  return `${str.slice(0, keepStart)}…${str.slice(-keepEnd)}`;
+}
+
+function maskJWT(jwt, rules, pro) {
+  const parts = jwt.split(".");
+  if (parts.length !== 3) return pro ? (rules.replaceText || "[REDACTED]") : "[REDACTED]";
+  if (pro && rules.mode === "replace_all") return rules.replaceText || "[REDACTED]";
+  const keepN = pro ? Math.max(0, Number(rules.keepLastN || 0)) : 4;
+  const sig = keepN > 0 ? `…${parts[2].slice(-keepN)}` : (rules.replaceText || "[REDACTED]");
+  return `${maskKeepEnds(parts[0], 3, 3)}.${(rules.replaceText || "[REDACTED]")}.${sig}`;
+}
+
+function applyProRule(original, rules) {
+  if (rules.mode === "replace_all") return rules.replaceText || "[REDACTED]";
+  const n = Math.max(0, Number(rules.keepLastN || 0));
+  if (n <= 0) return rules.replaceText || "[REDACTED]";
+  if (original.length <= n + 3) return rules.replaceText || "[REDACTED]";
+  return `…${original.slice(-n)}`;
+}
+
+function maskMatch(m, key, rules, pro) {
+  if (!pro) {
+    if (key === "jwt") return maskJWT(m, { ...DEFAULT_PRO_RULES }, false);
+    if (key === "pem_private_key") return "[REDACTED_PRIVATE_KEY]";
+    return maskKeepEnds(m, 4, 4);
+  }
+  if (key === "jwt") return maskJWT(m, rules, true);
+  if (key === "pem_private_key") return rules.replaceText || "[REDACTED_PRIVATE_KEY]";
+  return applyProRule(m, rules);
+}
+
+function scanAndRedact(inputText, pro, rules) {
+  const patterns = pro ? [...FREE_PATTERNS, ...PRO_EXTRA_PATTERNS] : [...FREE_PATTERNS];
+
+  const hits = {};
+  let output = inputText;
+
+  for (const p of patterns) {
+    let c = 0;
+    output = output.replace(p.regex, (m) => {
+      c++;
+      return maskMatch(m, p.key, rules, pro);
+    });
+    if (c > 0) hits[p.key] = { label: p.label, count: c };
+  }
+
+  const total = Object.values(hits).reduce((a, v) => a + v.count, 0);
+  const types = Object.keys(hits).length;
+
+  return { output, hits, total, types };
+}
+
+// ---------------------------
+// Main
+// ---------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  initLangSwitch();
+
+  // Stripe success_url から戻った時に Pro化
+  const activatedNow = consumeProQueryParam();
+
+  const input = el("inputText");
+  const analyzeBtn = el("analyzeBtn");
+  const clearBtn = el("clearBtn");
+
+  const resultSection = el("resultSection");
+  const totalFound = el("totalFound");
+  const typesFound = el("typesFound");
+  const hitList = el("hitList");
+  const maskedOutput = el("maskedOutput");
+
+  const copyBtn = el("copyBtn");
+  const downloadBtn = el("downloadBtn");
+  const resetBtn = el("resetBtn");
+
+  // Pro badge（HTML側にあれば反映、無ければ無視）
+  const proStatus = el("proStatus");
+
+  function refreshProBadge() {
+    if (!proStatus) return;
+    const on = isProEnabled();
+    proStatus.textContent = on ? "PRO" : "FREE";
+    proStatus.classList.toggle("is-pro", on);
+  }
+
+  refreshProBadge();
+  if (activatedNow) {
+    refreshProBadge();
+    showToast("Pro enabled");
+  }
+
+  // Clear input
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      input.value = "";
+      input.focus();
+    });
+  }
+
+  // Analyze
+  if (analyzeBtn) {
+    analyzeBtn.addEventListener("click", () => {
+      const text = input.value || "";
+      setBusy(true);
+
+      setTimeout(() => {
+        const pro = isProEnabled();
+        const rules = getProRules();
+
+        const res = scanAndRedact(text, pro, rules);
+
+        if (totalFound) totalFound.textContent = String(res.total);
+        if (typesFound) typesFound.textContent = String(res.types);
+
+        if (hitList) {
+          hitList.innerHTML = "";
+          const entries = Object.values(res.hits).sort((a, b) => b.count - a.count);
+
+          if (entries.length === 0) {
+            const div = document.createElement("div");
+            div.className = "hit-item";
+            div.innerHTML = `<span class="hit-name">No obvious secrets found</span><span class="hit-count">0</span>`;
+            hitList.appendChild(div);
+          } else {
+            for (const h of entries) {
+              const div = document.createElement("div");
+              div.className = "hit-item";
+              div.innerHTML = `<span class="hit-name">${escapeHtml(h.label)}</span><span class="hit-count">${h.count}</span>`;
+              hitList.appendChild(div);
+            }
+          }
+        }
+
+        if (maskedOutput) maskedOutput.textContent = res.output;
+        if (resultSection) resultSection.hidden = false;
+
+        setBusy(false);
+        if (resultSection) resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 60);
+    });
+  }
+
+  // Copy
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const text = maskedOutput ? (maskedOutput.textContent || "") : "";
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Copied");
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast("Copied");
+      }
+    });
+  }
+
+  // Download
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", () => {
+      const text = maskedOutput ? (maskedOutput.textContent || "") : "";
+      const name = `redacted-${new Date().toISOString().slice(0, 10)}.txt`;
+      downloadText(name, text);
+    });
+  }
+
+  // Reset
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      if (input) input.value = "";
+      if (maskedOutput) maskedOutput.textContent = "";
+      if (hitList) hitList.innerHTML = "";
+      if (totalFound) totalFound.textContent = "0";
+      if (typesFound) typesFound.textContent = "0";
+      if (resultSection) resultSection.hidden = true;
+      if (input) input.focus();
+    });
+  }
+
   // ---------------------------
-  // Pro modal (UI only for now)
+  // Pro modal (Stripe unlock + rules)
   // ---------------------------
-  const proBackdrop = document.getElementById("proModalBackdrop");
-  const proModal = document.getElementById("proModal");
-  const openProBtn = document.getElementById("openProBtn");
-  const learnProBtn = document.getElementById("learnProBtn");
-  const closeProModalBtn = document.getElementById("closeProModalBtn");
-  const proLaterBtn = document.getElementById("proLaterBtn");
-  const proBuyBtn = document.getElementById("proBuyBtn");
+  const proBackdrop = el("proModalBackdrop");
+  const proModal = el("proModal");
+  const openProBtn = el("openProBtn");
+  const learnProBtn = el("learnProBtn");
+  const closeProModalBtn = el("closeProModalBtn");
+  const proLaterBtn = el("proLaterBtn");
+  const proBuyBtn = el("proBuyBtn");
+
+  const ruleMode = el("ruleMode");
+  const keepLastN = el("keepLastN");
+  const replaceText = el("replaceText");
 
   function openPro() {
+    if (!proBackdrop || !proModal) return;
     proBackdrop.hidden = false;
     proModal.hidden = false;
     document.body.style.overflow = "hidden";
   }
   function closePro() {
+    if (!proBackdrop || !proModal) return;
     proBackdrop.hidden = true;
     proModal.hidden = true;
     document.body.style.overflow = "";
   }
+
+  // init rules UI
+  const r = getProRules();
+  if (ruleMode) ruleMode.value = r.mode;
+  if (keepLastN) keepLastN.value = String(r.keepLastN);
+  if (replaceText) replaceText.value = r.replaceText;
+
+  function readRulesFromUI() {
+    const mode = ruleMode && ruleMode.value === "replace_all" ? "replace_all" : "keep_last";
+    const n = keepLastN ? Math.max(0, Number(keepLastN.value || 0)) : DEFAULT_PRO_RULES.keepLastN;
+    const rt = replaceText ? String(replaceText.value || "[REDACTED]") : "[REDACTED]";
+    const next = { mode, keepLastN: n, replaceText: rt };
+    setProRules(next);
+    return next;
+  }
+
+  if (ruleMode) ruleMode.addEventListener("change", readRulesFromUI);
+  if (keepLastN) keepLastN.addEventListener("input", readRulesFromUI);
+  if (replaceText) replaceText.addEventListener("input", readRulesFromUI);
 
   if (openProBtn) openProBtn.addEventListener("click", openPro);
   if (learnProBtn) learnProBtn.addEventListener("click", openPro);
@@ -32,7 +391,15 @@
 
   if (proBuyBtn) {
     proBuyBtn.addEventListener("click", () => {
-      // 次ステップで Stripe / PayPal に差し替え
-      alert("Coming next: payment + unlock (¥200).");
+      // ルールを先に保存しておく（戻ってきたらそのまま使える）
+      readRulesFromUI();
+      window.location.href = PRO_PAYMENT_URL;
     });
+
+    // 既にProなら買えない表示にする（見た目だけ）
+    if (isProEnabled()) {
+      proBuyBtn.textContent = "Pro enabled";
+      proBuyBtn.disabled = true;
+    }
   }
+});
