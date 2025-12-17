@@ -14,7 +14,6 @@
   <meta property="og:description" content="APIキー・トークンを検出し安全にマスキングするブラウザ完結ツール。">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/assets/favicon.ico">
@@ -23,8 +22,11 @@
   <!-- AdSense（削除禁止） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics（共通トークンに差し替え） -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+
+  <link rel="stylesheet" href="./style.css">
 
   <script type="application/ld+json">
   {
@@ -33,24 +35,22 @@
     "name": "API Key & Token Redactor",
     "url": "https://nicheworks.pages.dev/tools/api-key-token-redactor/",
     "applicationCategory": "UtilityApplication",
-    "description": "APIキー・トークン・秘密情報を貼る前に検出・伏字化するブラウザ完結ツール。",
+    "description": "APIキー・トークン・秘密情報を検出し、共有用に伏字化するブラウザ完結ツール。",
     "operatingSystem": "All"
   }
   </script>
-
-  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <header class="nw-header">
-    <h1>API Key &amp; Token Redactor</h1>
+    <h1>API Key & Token Redactor</h1>
 
-    <p data-i18n="ja">APIキー・トークンを貼る前に検出・伏字化する最終安全チェック</p>
-    <p data-i18n="en">A final safety check to detect and mask API keys/tokens before sharing.</p>
+    <p data-i18n="ja">APIキー・トークンを貼る前に検出・伏字化する「最終安全チェック」</p>
+    <p data-i18n="en">Final safety check: detect and redact API keys / tokens before sharing.</p>
 
-    <div class="nw-lang-switch" aria-label="Language switch">
-      <button data-lang="ja" type="button">JP</button> /
-      <button data-lang="en" type="button">EN</button>
+    <div class="nw-lang-switch">
+      <button data-lang="ja">JP</button> /
+      <button data-lang="en">EN</button>
     </div>
   </header>
 
@@ -58,44 +58,72 @@
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
     <section class="tool-card">
-      <label for="inputText" class="label" data-i18n="ja">入力（コード / ログ / .env / 設定ファイルなど）</label>
-      <label for="inputText" class="label" data-i18n="en">Input (code / logs / .env / config)</label>
+      <h2 data-i18n="ja">貼り付け</h2>
+      <h2 data-i18n="en">Paste text</h2>
 
-      <textarea id="inputText" placeholder="# 例：.env\nOPENAI_API_KEY=sk-...\nSTRIPE_SECRET_KEY=sk_live_...\n\n# 例：ログ\nAuthorization: Bearer eyJ...\n" spellcheck="false"></textarea>
+      <textarea
+        id="inputText"
+        placeholder="例：.env / ログ / コードをここに貼り付け（このページ内で処理します）"
+      ></textarea>
 
       <div class="btn-row">
-        <button id="analyzeBtn" type="button">検出する / Scan</button>
+        <button id="analyzeBtn">検出する</button>
+        <button id="clearBtn" class="btn-ghost" type="button">クリア</button>
       </div>
 
-      <p class="note" data-i18n="ja">⚠️ 完全な検出を保証するものではありません。共有前の最終確認は自己責任です。</p>
-      <p class="note" data-i18n="en">⚠️ Detection is not guaranteed. You are responsible for the final check before sharing.</p>
+      <div id="progress" class="progress" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <span data-i18n="ja">検出中…</span>
+        <span data-i18n="en">Scanning…</span>
+      </div>
+
+      <p class="note" data-i18n="ja">⚠ 完全な検出は保証されません。共有前の最終確認は自己責任です。</p>
+      <p class="note" data-i18n="en">⚠ Not guaranteed. Always review before sharing.</p>
     </section>
 
     <section id="resultSection" class="tool-card" hidden>
       <h2 data-i18n="ja">検出結果</h2>
       <h2 data-i18n="en">Results</h2>
 
-      <p id="summary" class="summary"></p>
-      <pre id="maskedOutput" class="output" aria-label="Masked output"></pre>
-
-      <div class="btn-row">
-        <button id="copyBtn" type="button">コピー / Copy</button>
-        <button id="resetBtn" type="button">リセット / Reset</button>
+      <div class="summary">
+        <div>
+          <div class="summary-label" data-i18n="ja">総検出数</div>
+          <div class="summary-label" data-i18n="en">Total found</div>
+          <div id="totalFound" class="summary-value">0</div>
+        </div>
+        <div>
+          <div class="summary-label" data-i18n="ja">種類</div>
+          <div class="summary-label" data-i18n="en">Types</div>
+          <div id="typesFound" class="summary-value">0</div>
+        </div>
       </div>
 
-      <p id="copyStatus" class="status" aria-live="polite"></p>
+      <div id="hitList" class="hit-list"></div>
+
+      <h3 data-i18n="ja">マスキング済みテキスト（共有用）</h3>
+      <h3 data-i18n="en">Redacted output (safe to share)</h3>
+
+      <div class="btn-row">
+        <button id="copyBtn">コピー</button>
+        <button id="downloadBtn" class="btn-ghost" type="button">TXTダウンロード</button>
+        <button id="resetBtn" class="btn-ghost" type="button">リセット</button>
+      </div>
+
+      <pre id="maskedOutput" class="output" aria-label="redacted output"></pre>
+
+      <div id="copyToast" class="toast" hidden>Copied</div>
     </section>
 
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
-      <p class="nw-donate-text" data-i18n="en">If this tool helped, please consider supporting development.</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool helped you, please consider supporting development.</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
 
-    <div class="nw-links" aria-label="Internal links">
+    <div class="nw-links">
       <a href="/tools/log-formatter/">LogFormatter</a> /
       <a href="/tools/rename-wizard/">Rename Wizard</a> /
       <a href="/tools/contract-cleaner/">Contract Cleaner</a>
@@ -106,8 +134,8 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line" data-i18n="ja">当ツールは完全な検出を保証しません。必ず目視で確認してください。</p>
-    <p class="nw-footer-line" data-i18n="en">This tool does not guarantee perfect detection. Always review manually.</p>
+    <p class="nw-footer-line" data-i18n="ja">完全な検出を保証するものではありません。</p>
+    <p class="nw-footer-line" data-i18n="en">Detection is not guaranteed.</p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
     </p>
