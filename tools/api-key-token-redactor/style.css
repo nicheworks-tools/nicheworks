@@ -1,3 +1,32 @@
+/* Header PRO badge (optional) */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pro-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #111827;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.pro-badge.is-pro {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
 /* Pro card */
 .pro-card { border-color: #d1d5db; }
 .pro-lead { margin: 6px 0 10px; color: #374151; font-size: 13px; }
