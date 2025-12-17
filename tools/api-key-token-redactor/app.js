@@ -11,9 +11,9 @@ const PRO_FLAG_KEY = "nw_api_key_redactor_pro_v1";
 const PRO_RULES_KEY = "nw_api_key_redactor_rules_v1";
 
 const DEFAULT_PRO_RULES = {
-  mode: "keep_last",      // keep_last | replace_all
+  mode: "keep_last", // keep_last | replace_all
   keepLastN: 4,
-  replaceText: "[REDACTED]"
+  replaceText: "[REDACTED]",
 };
 
 // ---------------------------
@@ -55,8 +55,13 @@ function getProRules() {
     const obj = JSON.parse(raw);
     return {
       mode: obj.mode === "replace_all" ? "replace_all" : "keep_last",
-      keepLastN: Number.isFinite(Number(obj.keepLastN)) ? Math.max(0, Number(obj.keepLastN)) : DEFAULT_PRO_RULES.keepLastN,
-      replaceText: typeof obj.replaceText === "string" && obj.replaceText.length ? obj.replaceText : DEFAULT_PRO_RULES.replaceText
+      keepLastN: Number.isFinite(Number(obj.keepLastN))
+        ? Math.max(0, Number(obj.keepLastN))
+        : DEFAULT_PRO_RULES.keepLastN,
+      replaceText:
+        typeof obj.replaceText === "string" && obj.replaceText.length
+          ? obj.replaceText
+          : DEFAULT_PRO_RULES.replaceText,
     };
   } catch {
     return { ...DEFAULT_PRO_RULES };
@@ -132,7 +137,7 @@ const FREE_PATTERNS = [
   { key: "github_token", label: "GitHub token", regex: /\bgh[pous]_[A-Za-z0-9]{20,}\b/g },
   { key: "slack_token", label: "Slack token", regex: /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g },
   { key: "jwt", label: "JWT", regex: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
-  { key: "token_like", label: "Token-like", regex: /\b[A-Za-z0-9_\-]{32,}\b/g }
+  { key: "token_like", label: "Token-like", regex: /\b[A-Za-z0-9_\-]{32,}\b/g },
 ];
 
 // Pro patterns（拡張：誤検出は増える可能性あり）
@@ -141,7 +146,7 @@ const PRO_EXTRA_PATTERNS = [
   { key: "sendgrid", label: "SendGrid key", regex: /\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
   { key: "twilio_sid", label: "Twilio SID", regex: /\bAC[0-9a-fA-F]{32}\b/g },
   { key: "twilio_key", label: "Twilio key", regex: /\bSK[0-9a-fA-F]{32}\b/g },
-  { key: "pem_private_key", label: "Private key (PEM)", regex: /-----BEGIN(?: RSA)? PRIVATE KEY-----[\s\S]*?-----END(?: RSA)? PRIVATE KEY-----/g }
+  { key: "pem_private_key", label: "Private key (PEM)", regex: /-----BEGIN(?: RSA)? PRIVATE KEY-----[\s\S]*?-----END(?: RSA)? PRIVATE KEY-----/g },
 ];
 
 // ---------------------------
@@ -207,6 +212,9 @@ function scanAndRedact(inputText, pro, rules) {
 document.addEventListener("DOMContentLoaded", () => {
   initLangSwitch();
 
+  // 起動時に必ず「検出中」を隠す（これで初期表示の暴走を止める）
+  setBusy(false);
+
   // Stripe success_url から戻った時に Pro化
   const activatedNow = consumeProQueryParam();
 
@@ -224,14 +232,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const downloadBtn = el("downloadBtn");
   const resetBtn = el("resetBtn");
 
-  // Pro badge（HTML側にあれば反映、無ければ無視）
-  const proStatus = el("proStatus");
+  // Pro badge（index.html 側の id="proBadge"）
+  const proBadge = el("proBadge");
 
   function refreshProBadge() {
-    if (!proStatus) return;
+    if (!proBadge) return;
     const on = isProEnabled();
-    proStatus.textContent = on ? "PRO" : "FREE";
-    proStatus.classList.toggle("is-pro", on);
+    proBadge.hidden = !on;
+    proBadge.classList.toggle("is-pro", on);
   }
 
   refreshProBadge();
@@ -243,18 +251,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Clear input
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
-      input.value = "";
-      input.focus();
+      if (input) input.value = "";
+      if (input) input.focus();
     });
   }
 
-  // Analyze
+  // Analyze（try/finally で必ず busy解除）
   if (analyzeBtn) {
     analyzeBtn.addEventListener("click", () => {
-      const text = input.value || "";
-      setBusy(true);
+      const text = (input && input.value) ? input.value : "";
 
-      setTimeout(() => {
+      setBusy(true);
+      try {
         const pro = isProEnabled();
         const rules = getProRules();
 
@@ -285,9 +293,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (maskedOutput) maskedOutput.textContent = res.output;
         if (resultSection) resultSection.hidden = false;
 
-        setBusy(false);
         if (resultSection) resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 60);
+      } finally {
+        setBusy(false);
+      }
     });
   }
 
@@ -329,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (typesFound) typesFound.textContent = "0";
       if (resultSection) resultSection.hidden = true;
       if (input) input.focus();
+      setBusy(false);
     });
   }
 
@@ -389,17 +399,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" && proModal && !proModal.hidden) closePro();
   });
 
+  function refreshProBuyButton() {
+    if (!proBuyBtn) return;
+    if (isProEnabled()) {
+      proBuyBtn.textContent = "Pro enabled";
+      proBuyBtn.disabled = true;
+    } else {
+      proBuyBtn.textContent = "Buy (¥200)";
+      proBuyBtn.disabled = false;
+    }
+  }
+
+  refreshProBuyButton();
+
   if (proBuyBtn) {
     proBuyBtn.addEventListener("click", () => {
+      if (isProEnabled()) return;
       // ルールを先に保存しておく（戻ってきたらそのまま使える）
       readRulesFromUI();
       window.location.href = PRO_PAYMENT_URL;
     });
-
-    // 既にProなら買えない表示にする（見た目だけ）
-    if (isProEnabled()) {
-      proBuyBtn.textContent = "Pro enabled";
-      proBuyBtn.disabled = true;
-    }
   }
 });
