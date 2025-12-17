@@ -128,7 +128,6 @@ function escapeHtml(str) {
 // ---------------------------
 // Detection patterns
 // ---------------------------
-// Free patterns（よくあるもの中心）
 const FREE_PATTERNS = [
   { key: "openai", label: "OpenAI key", regex: /\bsk-[A-Za-z0-9]{20,}\b/g },
   { key: "stripe_secret", label: "Stripe secret", regex: /\b(sk|rk)_(live|test)_[A-Za-z0-9]{10,}\b/g },
@@ -140,7 +139,6 @@ const FREE_PATTERNS = [
   { key: "token_like", label: "Token-like", regex: /\b[A-Za-z0-9_\-]{32,}\b/g },
 ];
 
-// Pro patterns（拡張：誤検出は増える可能性あり）
 const PRO_EXTRA_PATTERNS = [
   { key: "google_api", label: "Google API key", regex: /\bAIza[0-9A-Za-z\-_]{30,}\b/g },
   { key: "sendgrid", label: "SendGrid key", regex: /\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
@@ -212,7 +210,7 @@ function scanAndRedact(inputText, pro, rules) {
 document.addEventListener("DOMContentLoaded", () => {
   initLangSwitch();
 
-  // 起動時に必ず「検出中」を隠す（これで初期表示の暴走を止める）
+  // 初期表示で「検出中」を絶対に消す
   setBusy(false);
 
   // Stripe success_url から戻った時に Pro化
@@ -232,13 +230,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const downloadBtn = el("downloadBtn");
   const resetBtn = el("resetBtn");
 
-  // Pro badge（index.html 側の id="proBadge"）
+  // Pro badge（index.html 側は id="proBadge" / 通常hidden）
   const proBadge = el("proBadge");
 
   function refreshProBadge() {
     if (!proBadge) return;
     const on = isProEnabled();
-    proBadge.hidden = !on;
+    proBadge.hidden = !on;          // Proのときだけ表示
     proBadge.classList.toggle("is-pro", on);
   }
 
@@ -248,7 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
     showToast("Pro enabled");
   }
 
-  // Clear input
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       if (input) input.value = "";
@@ -256,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Analyze（try/finally で必ず busy解除）
   if (analyzeBtn) {
     analyzeBtn.addEventListener("click", () => {
       const text = (input && input.value) ? input.value : "";
@@ -265,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const pro = isProEnabled();
         const rules = getProRules();
-
         const res = scanAndRedact(text, pro, rules);
 
         if (totalFound) totalFound.textContent = String(res.total);
@@ -292,7 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (maskedOutput) maskedOutput.textContent = res.output;
         if (resultSection) resultSection.hidden = false;
-
         if (resultSection) resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
       } finally {
         setBusy(false);
@@ -300,7 +294,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Copy
   if (copyBtn) {
     copyBtn.addEventListener("click", async () => {
       const text = maskedOutput ? (maskedOutput.textContent || "") : "";
@@ -319,7 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Download
   if (downloadBtn) {
     downloadBtn.addEventListener("click", () => {
       const text = maskedOutput ? (maskedOutput.textContent || "") : "";
@@ -328,7 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Reset
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
       if (input) input.value = "";
@@ -370,7 +361,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-  // init rules UI
   const r = getProRules();
   if (ruleMode) ruleMode.value = r.mode;
   if (keepLastN) keepLastN.value = String(r.keepLastN);
@@ -405,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
       proBuyBtn.textContent = "Pro enabled";
       proBuyBtn.disabled = true;
     } else {
-      proBuyBtn.textContent = "Buy (¥200)";
+      proBuyBtn.textContent = "Pay with Stripe (¥200)";
       proBuyBtn.disabled = false;
     }
   }
@@ -415,7 +405,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (proBuyBtn) {
     proBuyBtn.addEventListener("click", () => {
       if (isProEnabled()) return;
-      // ルールを先に保存しておく（戻ってきたらそのまま使える）
       readRulesFromUI();
       window.location.href = PRO_PAYMENT_URL;
     });
