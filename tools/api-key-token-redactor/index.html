@@ -43,7 +43,10 @@
 
 <body>
   <header class="nw-header">
-    <h1>API Key & Token Redactor</h1>
+    <div class="header-row">
+      <h1>API Key & Token Redactor</h1>
+      <span id="proStatus" class="pro-badge" aria-label="plan">FREE</span>
+    </div>
 
     <p data-i18n="ja">APIキー・トークンを貼る前に検出・伏字化する「最終安全チェック」</p>
     <p data-i18n="en">Final safety check: detect and redact API keys / tokens before sharing.</p>
@@ -120,7 +123,7 @@
       <a href="./usage.html" data-i18n="en">How to (redact API keys safely)</a>
     </div>
 
-    <!-- Pro CTA（課金導線の土台） -->
+    <!-- Pro CTA -->
     <section class="tool-card pro-card" id="proCard">
       <h2 data-i18n="ja">Pro（買い切り ¥200）</h2>
       <h2 data-i18n="en">Pro (one-time ¥200)</h2>
@@ -148,8 +151,8 @@
         <button id="learnProBtn" class="btn-ghost" type="button">Details</button>
       </div>
 
-      <p class="note" data-i18n="ja">※ 決済は次ステップで接続します（まずは導線のみ）。</p>
-      <p class="note" data-i18n="en">Payment will be connected in the next step (CTA only for now).</p>
+      <p class="note" data-i18n="ja">※ Stripeで決済後、このページに自動で戻ります（PRO表示になります）。途中でキャンセルした場合は、このタブへ戻ってください。</p>
+      <p class="note" data-i18n="en">After payment, you’ll be redirected back to this page (it will show PRO). If you cancel, just return to this tab.</p>
     </section>
 
     <!-- Pro Modal -->
@@ -185,13 +188,13 @@
         </div>
 
         <div class="callout">
-          <p data-i18n="ja">この画面はまだ「見た目だけ」です。次ステップで決済と解除を実装します。</p>
-          <p data-i18n="en">This is UI-only for now. Payment + unlock will be implemented next.</p>
+          <p data-i18n="ja">決済後、このページに戻ってくると自動でProが有効になります。途中でキャンセルした場合は、このタブへ戻ってください。</p>
+          <p data-i18n="en">After payment, you’ll return to this page and Pro will be enabled automatically. If you cancel, return to this tab.</p>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button id="proBuyBtn">Buy (¥200)</button>
+        <button id="proBuyBtn">Pay with Stripe (¥200)</button>
         <button id="proLaterBtn" class="btn-ghost" type="button">Not now</button>
       </div>
     </div>
