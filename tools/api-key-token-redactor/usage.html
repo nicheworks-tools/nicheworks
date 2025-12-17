@@ -3,9 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>使い方｜API Key & Token Redactor | NicheWorks</title>
-  <meta name="description" content="API Key & Token Redactor の使い方・対応範囲・注意点をまとめます。">
+
+  <title>APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks</title>
+  <meta name="description" content="APIキー・トークンを誤公開しないための伏字方法とチェック手順。GitHub/Discord/フォーム投稿前に、コード・ログ・.envを安全に共有するための最終確認ガイド。">
+
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks">
+  <meta property="og:description" content="APIキー・トークンの誤公開を防ぐための伏字方法と最終チェック手順。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
@@ -13,55 +22,114 @@
   <!-- AdSense（削除禁止） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics（共通トークンに差し替え） -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+
+  <link rel="stylesheet" href="./style.css">
 
   <style>
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:#111827; background:#fff;}
-    header{padding:16px 12px; text-align:center; border-bottom:1px solid #e5e7eb;}
-    main{max-width:600px; margin:0 auto; padding:16px 12px;}
-    h1{font-size:18px; margin:0;}
-    h2{font-size:15px; margin:18px 0 8px;}
-    p,li{font-size:14px; line-height:1.7; color:#374151;}
-    .muted{color:#6b7280; font-size:12px;}
-    a{color:#374151; text-decoration:underline;}
-    footer{margin-top:24px; padding:16px 8px 12px; border-top:1px solid #e5e7eb; font-size:11px; color:#6b7280; text-align:center;}
+    .article { border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; margin: 12px 0 16px; background: #fff; }
+    .article h2 { margin-top: 18px; }
+    .article p, .article li { line-height: 1.8; }
+    .kbd { display:inline-block; padding:2px 8px; border:1px solid #d1d5db; border-bottom-width:2px; border-radius:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; background:#f9fafb; }
+    .callout { background:#f9fafb; border:1px solid #e5e7eb; border-radius:12px; padding:12px; margin:12px 0; }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>使い方｜API Key &amp; Token Redactor</h1>
-    <p class="muted">最終安全チェック用の簡易ガイド</p>
+  <header class="nw-header">
+    <h1>APIキー伏字のやり方（貼る前チェック手順）</h1>
+    <p>GitHub / Discord / フォーム投稿の前に、秘密情報を誤公開しないための最終確認ガイド。</p>
+
+    <div class="nw-lang-switch">
+      <a href="./index.html" class="kbd">ツールへ戻る</a>
+    </div>
   </header>
 
-  <main>
-    <h2>1. できること</h2>
-    <ul>
-      <li>コード／ログ／.env などから、よくあるAPIキー・トークン風文字列を検出します。</li>
-      <li>Free版では「プレビュー用の伏字（例：sk-12…9abc）」として表示します。</li>
-    </ul>
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-    <h2>2. 使い方</h2>
-    <ol>
-      <li>テキストを貼り付けます（コード・ログ・設定ファイルなど）。</li>
-      <li>「検出する / Scan」を押します。</li>
-      <li>結果を確認し、必要ならコピーボタンで伏字済みテキストをコピーします。</li>
-    </ol>
+    <article class="article">
+      <h2>このページで分かること</h2>
+      <ul>
+        <li>APIキー・トークンを貼ってはいけない理由（何が危険か）</li>
+        <li>コード・ログ・.env を安全に共有する「手順」</li>
+        <li>ありがちな漏洩パターンと対策</li>
+      </ul>
 
-    <h2>3. 対応 / 非対応</h2>
-    <ul>
-      <li>対応：OpenAI / Stripe / AWS / GitHub / JWT など（ベストエフォート）</li>
-      <li>非対応：全ての秘密情報の完全検出（保証できません）</li>
-    </ul>
+      <div class="callout">
+        <strong>重要：</strong>伏字・検出は「取りこぼしゼロ」を保証できません。<br>
+        最終的な共有判断はあなたの責任で行ってください。
+      </div>
 
-    <h2>4. 免責</h2>
-    <p>本ツールは完全な検出を保証しません。共有前の最終確認は必ず目視で行ってください。</p>
+      <h2>危ないのは「APIキーだけ」じゃない</h2>
+      <p>
+        誤公開すると危険な情報は APIキーだけではありません。代表例は以下です。
+      </p>
+      <ul>
+        <li>OpenAI / Stripe / AWS / GitHub などの各種キー</li>
+        <li>JWT などのログイン系トークン</li>
+        <li>Slack などのワークスペース用トークン</li>
+        <li>.env / config の秘密値（DBパスワード、Webhook URL など）</li>
+      </ul>
 
-    <p class="muted"><a href="./index.html">← ツールに戻る</a></p>
+      <h2>安全に共有する最短手順（おすすめ）</h2>
+      <ol>
+        <li>共有したい内容（コード/ログ/.env）をコピーする</li>
+        <li><a href="./index.html">API Key &amp; Token Redactor</a> に貼り付ける</li>
+        <li><span class="kbd">検出する</span> を押す</li>
+        <li>検出結果（件数・種類）を確認する</li>
+        <li><span class="kbd">コピー</span> or <span class="kbd">TXTダウンロード</span> で「伏字済み全文」を取得する</li>
+        <li>その伏字済み全文だけを、GitHub / Discord / フォームなどに貼る</li>
+      </ol>
+
+      <h2>よくある漏洩パターン</h2>
+      <ul>
+        <li><strong>.env を丸ごと貼ってしまう</strong>（特に事故が多い）</li>
+        <li><strong>ログに Authorization ヘッダーやJWTが混ざる</strong></li>
+        <li><strong>スクショにキーが映り込む</strong>（ターミナル・管理画面）</li>
+        <li><strong>「一部だけ伏字」のつもりが、別の場所に残っている</strong></li>
+      </ul>
+
+      <h2>安全度を上げるコツ</h2>
+      <ul>
+        <li>伏字済み全文を貼ったあとも、投稿前に <strong>検索（Ctrl+F）</strong> で <strong>sk- / pk_ / rk_ / AKIA / ghp_</strong> などを再確認</li>
+        <li>不要なら <strong>ログの該当行を削る</strong>（最も安全）</li>
+        <li>事故った可能性がある場合は <strong>即ローテーション</strong>（キー再発行・無効化）</li>
+      </ul>
+
+      <h2>このツールは何をしている？</h2>
+      <p>
+        ブラウザ内で文字列パターン（正規表現）を検出し、共有向けの形に置換します。
+        画像やテキストをサーバーへ送信しません（ローカル処理）。
+      </p>
+
+      <h2>次の機能（Pro予定）</h2>
+      <ul>
+        <li>マスキングルール指定（末尾N文字残す / 置換文字列指定）</li>
+        <li>ローカル履歴</li>
+        <li>より広い検出パターン</li>
+      </ul>
+    </article>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
   </main>
 
-  <footer>
-    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">完全な検出を保証するものではありません。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
   </footer>
 </body>
 </html>
