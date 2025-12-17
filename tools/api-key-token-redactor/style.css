@@ -21,6 +21,9 @@ body{
   line-height:1.6;
 }
 
+/* ✅ hidden属性は常に勝つ（progress暴走・modal暴走を潰す） */
+[hidden]{ display:none !important; }
+
 a{ color:#2563eb; text-decoration:underline; }
 a:hover{ opacity:.85; }
 
@@ -58,6 +61,13 @@ a:hover{ opacity:.85; }
 }
 
 .nw-lang-switch button:hover{ background: var(--soft); }
+
+/* ✅ active状態（JP/ENがどっち選ばれてるか見える） */
+.nw-lang-switch button.active{
+  border-color:#111827;
+  background:#111827;
+  color:#fff;
+}
 
 .nw-main{
   max-width: 980px;
@@ -198,6 +208,30 @@ button:hover{ opacity: .92; }
   margin: 10px 0 6px;
 }
 
+/* hit item（app.jsが .hit-item を出す前提） */
+.hit-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background:#fff;
+}
+.hit-name{ font-size: 13px; color:#111827; }
+.hit-count{
+  min-width: 28px;
+  text-align:center;
+  font-weight: 800;
+  font-size: 12px;
+  color:#111827;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
 .output{
   border: 1px solid var(--line-2);
   background: #0b1020;
@@ -243,11 +277,36 @@ button:hover{ opacity: .92; }
   flex-wrap: wrap;
 }
 
+/* ✅ 寄付リンクを“ボタン風”に（未完成感が消える） */
+.nw-donate-links a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background:#fff;
+  color:#111827;
+  text-decoration:none;
+  font-size: 13px;
+}
+.nw-donate-links a:hover{
+  background: var(--soft);
+  opacity: 1;
+}
+
 .nw-links{
   margin: 14px 0 0;
   font-size: 13px;
   color: var(--muted);
 }
+
+/* ✅ nw-links内リンクの見た目を整える */
+.nw-links a{
+  color:#2563eb;
+  text-decoration:underline;
+}
+.nw-links a:hover{ opacity:.85; }
 
 .nw-footer{
   border-top: 1px solid var(--line);
