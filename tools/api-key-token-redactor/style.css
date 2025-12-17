@@ -1,0 +1,216 @@
+/* Minimal + NicheWorks-friendly defaults */
+
+:root{
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --bg:#ffffff;
+  --card:#ffffff;
+  --soft:#f9fafb;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.nw-header{
+  padding:16px 12px 8px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
+
+.nw-header h1{
+  margin:0;
+  font-size:20px;
+}
+
+.nw-header p{
+  margin:6px 0 0;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.nw-main{
+  max-width:960px;
+  margin:0 auto;
+  padding:12px;
+}
+
+.ad-slot{
+  margin:12px 0 16px;
+  padding:8px;
+  border:1px dashed #d4d4d4;
+  font-size:11px;
+  color:#9ca3af;
+  text-align:center;
+  min-height:60px;
+}
+
+.tool-card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--card);
+  padding:12px;
+  margin:12px 0;
+}
+
+.label{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+textarea{
+  width:100%;
+  min-height:220px;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:13px;
+  line-height:1.5;
+  background:#fff;
+  box-sizing:border-box;
+}
+
+.btn-row{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+button{
+  appearance:none;
+  border:1px solid #d1d5db;
+  background:#fff;
+  color:#111827;
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+button:hover{ background:var(--soft); }
+button:disabled{ opacity:.6; cursor:not-allowed; }
+
+.note{
+  margin:10px 0 0;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.summary{
+  margin:0 0 10px;
+  font-size:13px;
+  color:var(--text);
+}
+
+.output{
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px;
+  overflow:auto;
+  white-space:pre-wrap;
+  word-break:break-all;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.status{
+  margin:8px 0 0;
+  font-size:12px;
+  color:var(--muted);
+  min-height:16px;
+}
+
+.nw-footer{
+  margin-top:24px;
+  padding:16px 8px 12px;
+  border-top:1px solid var(--border);
+  font-size:11px;
+  color:var(--muted);
+  text-align:center;
+  line-height:1.6;
+}
+
+.nw-footer-line{ margin:2px 0; }
+.nw-footer a{ color:var(--muted); text-decoration:underline; }
+
+.nw-donate{
+  text-align:center;
+  margin:16px 0 8px;
+  padding:8px 0;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.nw-donate-text{ margin:4px 0; }
+
+.nw-donate-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:4px;
+}
+
+.nw-donate-links a{
+  display:inline-block;
+  padding:8px 14px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#ffffff;
+  font-size:13px;
+  color:#111827;
+  text-decoration:none;
+  transition:all .2s ease;
+}
+
+.nw-donate-links a:hover{
+  background:var(--soft);
+  transform:translateY(-1px);
+  box-shadow:0 1px 3px rgba(0,0,0,.1);
+}
+
+.nw-links{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  margin:18px 0 10px;
+}
+
+.nw-links a{ color:var(--muted); text-decoration:underline; }
+
+.nw-lang-switch{
+  text-align:center;
+  margin:6px 0 2px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.nw-lang-switch button{
+  border:none;
+  background:transparent;
+  padding:0 2px;
+  cursor:pointer;
+  font-size:11px;
+  color:#4b5563;
+}
+
+.nw-lang-switch button.active{
+  font-weight:600;
+  text-decoration:underline;
+}
+
+@media (max-width:480px){
+  .btn-row{ flex-direction:column; }
+  button{ width:100%; }
+  textarea{ min-height:200px; }
+}

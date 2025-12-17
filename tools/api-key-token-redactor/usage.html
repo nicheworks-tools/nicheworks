@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使い方｜API Key & Token Redactor | NicheWorks</title>
+  <meta name="description" content="API Key & Token Redactor の使い方・対応範囲・注意点をまとめます。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense（削除禁止） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics（共通トークンに差し替え） -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:#111827; background:#fff;}
+    header{padding:16px 12px; text-align:center; border-bottom:1px solid #e5e7eb;}
+    main{max-width:600px; margin:0 auto; padding:16px 12px;}
+    h1{font-size:18px; margin:0;}
+    h2{font-size:15px; margin:18px 0 8px;}
+    p,li{font-size:14px; line-height:1.7; color:#374151;}
+    .muted{color:#6b7280; font-size:12px;}
+    a{color:#374151; text-decoration:underline;}
+    footer{margin-top:24px; padding:16px 8px 12px; border-top:1px solid #e5e7eb; font-size:11px; color:#6b7280; text-align:center;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>使い方｜API Key &amp; Token Redactor</h1>
+    <p class="muted">最終安全チェック用の簡易ガイド</p>
+  </header>
+
+  <main>
+    <h2>1. できること</h2>
+    <ul>
+      <li>コード／ログ／.env などから、よくあるAPIキー・トークン風文字列を検出します。</li>
+      <li>Free版では「プレビュー用の伏字（例：sk-12…9abc）」として表示します。</li>
+    </ul>
+
+    <h2>2. 使い方</h2>
+    <ol>
+      <li>テキストを貼り付けます（コード・ログ・設定ファイルなど）。</li>
+      <li>「検出する / Scan」を押します。</li>
+      <li>結果を確認し、必要ならコピーボタンで伏字済みテキストをコピーします。</li>
+    </ol>
+
+    <h2>3. 対応 / 非対応</h2>
+    <ul>
+      <li>対応：OpenAI / Stripe / AWS / GitHub / JWT など（ベストエフォート）</li>
+      <li>非対応：全ての秘密情報の完全検出（保証できません）</li>
+    </ul>
+
+    <h2>4. 免責</h2>
+    <p>本ツールは完全な検出を保証しません。共有前の最終確認は必ず目視で行ってください。</p>
+
+    <p class="muted"><a href="./index.html">← ツールに戻る</a></p>
+  </main>
+
+  <footer>
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+  </footer>
+</body>
+</html>
