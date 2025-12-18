@@ -20,27 +20,36 @@
 }
 
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif}
+html,body{
+  margin:0;padding:0;background:var(--bg);color:var(--fg);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif
+}
 a{color:inherit}
 strong{font-weight:700}
 
-.nw-header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:10}
-.nw-header-inner{max-width:980px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.nw-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nw-logo{width:26px;height:26px;object-fit:contain}
-.nw-brand-text{font-weight:700}
-.nw-header-link{font-size:14px;text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#fff}
-
-.nw-main{max-width:980px;margin:0 auto;padding:14px}
-.ad-slot{border:1px dashed var(--line);border-radius:14px;background:#fff;color:var(--muted);padding:12px;text-align:center}
-.ad-top{margin:0 0 12px}
-.ad-bottom{margin:16px 0 0}
-
-.nw-intro-card{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:14px;margin:0 0 14px}
-.nw-intro-head{margin:0 0 10px}
+/* ===== 共通：header（ロゴ無し） ===== */
+.nw-header{border-bottom:1px solid var(--line);background:#fff}
+.nw-header-inner{max-width:980px;margin:0 auto;padding:14px}
 .nw-title{font-size:20px;margin:0 0 6px}
 .nw-subtitle{margin:0;color:var(--muted);line-height:1.5}
 
+/* ===== 共通：main ===== */
+.nw-main{max-width:980px;margin:0 auto;padding:14px}
+
+/* 広告枠 */
+.ad-slot{
+  border:1px dashed var(--line);
+  border-radius:14px;
+  background:#fff;
+  color:var(--muted);
+  padding:12px;
+  text-align:center
+}
+.ad-top{margin:0 0 12px}
+.ad-bottom{margin:16px 0 0}
+
+/* ===== intro（ad-top直下） ===== */
+.nw-intro-card{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:14px;margin:0 0 14px}
 .nw-intro-grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:860px){ .nw-intro-grid{grid-template-columns:1fr 1fr;} }
 
@@ -52,13 +61,24 @@ strong{font-weight:700}
 .nw-link{text-decoration:none;border-bottom:1px solid var(--fg)}
 .nw-note{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
 
+/* checklist */
 .nw-checklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .nw-checklist input{transform:translateY(1px)}
 .nw-checklist-actions{display:flex;gap:8px;margin-top:10px}
 
+/* ===== tool cards ===== */
 .nw-tool{display:block}
 .nw-card{border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px;margin:0 0 14px}
-.nw-textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:13px;line-height:1.5;min-height:180px;resize:vertical}
+.nw-textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-size:13px;line-height:1.5;
+  min-height:180px;
+  resize:vertical
+}
 
 .nw-options{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
 @media(min-width:860px){ .nw-options{grid-template-columns:1fr 1fr 1fr;} }
@@ -66,7 +86,6 @@ strong{font-weight:700}
 .nw-label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
 .nw-select{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}
 .nw-help{margin:6px 0 0;font-size:12px;color:var(--muted);line-height:1.4}
-
 .nw-option-inline{display:flex;flex-direction:column}
 
 .nw-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}
@@ -117,15 +136,53 @@ mark.hl-crit{background:var(--hlCrit)}
 
 .nw-disclaimer{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
 
-.nw-footer{border-top:1px solid var(--line);background:#fff;margin-top:16px}
-.nw-footer-inner{max-width:980px;margin:0 auto;padding:14px;color:var(--muted);font-size:13px}
-.nw-footer-title{margin:0 0 6px;color:var(--fg);font-weight:800}
-.nw-footer-note{margin:0 0 10px}
-.nw-footer-links{margin:0 0 10px;display:flex;gap:8px;flex-wrap:wrap}
-.nw-footer-links a{text-decoration:none;border-bottom:1px solid var(--line)}
-.nw-footer-copy{margin:0}
+/* ===== 寄付導線（共通仕様の形） ===== */
+.nw-donate{
+  border:1px solid var(--line);
+  background:var(--card);
+  border-radius:18px;
+  padding:14px;
+  margin:26px 0 14px;
+}
+.nw-donate-text{
+  margin:0 0 10px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+.nw-donate-links{display:flex;gap:10px;flex-wrap:wrap}
+.nw-donate-links a{
+  text-decoration:none;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:10px 12px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+}
+.nw-donate-links a:hover{transform:translateY(-1px)}
+
+/* ===== switch ===== */
 .nw-switch{display:inline-flex;align-items:center;gap:8px}
 .nw-switch input{display:none}
 .nw-slider{width:44px;height:26px;border-radius:999px;border:1px solid var(--line);background:#fff;position:relative}
 .nw-slider::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#111;transition:transform .15s ease}
 .nw-switch input:checked + .nw-slider::after{transform:translateX(18px)}
+
+/* ===== 共通：footer（他ツールに揃える） ===== */
+.nw-footer{
+  border-top:1px solid var(--line);
+  background:#fff;
+  padding:14px;
+}
+.nw-footer-line{
+  max-width:980px;
+  margin:6px auto;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+.nw-footer-line a{
+  text-decoration:none;
+  border-bottom:1px solid var(--line);
+}
