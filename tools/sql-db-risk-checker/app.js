@@ -4,6 +4,11 @@
  * SQL / DB Risk Checker (MVP)
  * - browser-only, no storage (except language + Pro unlock flag)
  * - regex-based, lightweight (no SQL parsing)
+ *
+ * ✅ Pro方針（MVP）
+ * - Buy Pro は外部決済リンクへ遷移するだけ（Stripe Payment Link想定）
+ * - success_url 等で ?pro=1 を付けて戻せるなら自動復元（localStorage unlock）
+ * - 本物の支払い検証は次フェーズ（Cloudflare Functions等）
  */
 
 const $ = (id) => document.getElementById(id);
@@ -118,7 +123,7 @@ DELETE FROM users WHERE id = 123;`,
     proTitle: "Pro機能（買い切り）",
     proLockedNote: "Proを購入すると、より安全な「実行手順テンプレ」やプリセット表示が使えます。",
     proPriceSub: "買い切り / このブラウザで解放",
-    proBuyBtn: "Proを購入（準備中）",
+    proBuyBtn: "Proを購入",
     proRestoreBtn: "購入済みを復元",
     proUnlockedNote: "Proが解放されています。下のテンプレを「手順」として使ってください（自動修正はしません）。",
     proTemplateTitle: "安全実行テンプレ（例）",
@@ -135,6 +140,14 @@ DELETE FROM users WHERE id = 123;`,
 
     disclaimer: "このツールはSQLの実行結果や安全性を保証するものではありません。本番環境では必ずバックアップ・権限・トランザクションを確認してください。",
     donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。",
+
+    proLinkNotSet: "決済リンクがまだ設定されていません。app.js の PRO_PAYMENT_URL を設定してください。",
+    proGoingToPay: "決済ページに移動します。",
+    proCopied: "コピーしました。",
+    sqlEmpty: "SQLが空です。入力してからチェックしてください。",
+    noRisk: "危険なパターンは検出されませんでした（ただし安全性を保証しません）。",
+    noResultYet: "まだ結果はありません。SQLを入力して「リスクチェック」を押してください。",
+    proAutoRestored: "Proを復元しました。",
   },
 
   en: {
@@ -187,7 +200,7 @@ DELETE FROM users WHERE id = 123;`,
     proTitle: "Pro Features (One-time)",
     proLockedNote: "Unlock safe execution templates and presets.",
     proPriceSub: "One-time / unlocked in this browser",
-    proBuyBtn: "Buy Pro (coming soon)",
+    proBuyBtn: "Buy Pro",
     proRestoreBtn: "Restore purchase",
     proUnlockedNote: "Pro is unlocked. Use the template as a checklist (this tool never edits your SQL).",
     proTemplateTitle: "Safe Execution Template (example)",
@@ -204,6 +217,14 @@ DELETE FROM users WHERE id = 123;`,
 
     disclaimer: "This tool does not guarantee execution safety or results. Always verify backups, privileges, and transactions before running SQL in production.",
     donateText: "If this tool helped you, consider supporting ongoing development.",
+
+    proLinkNotSet: "Payment link is not set yet. Set PRO_PAYMENT_URL in app.js.",
+    proGoingToPay: "Redirecting to payment page.",
+    proCopied: "Copied.",
+    sqlEmpty: "SQL is empty. Paste SQL then run the check.",
+    noRisk: "No risky patterns detected (not a guarantee).",
+    noResultYet: "No results yet. Paste SQL and click “Check Risk”.",
+    proAutoRestored: "Pro restored.",
   },
 };
 
@@ -272,7 +293,7 @@ const RULES = {
     { re: /\balter\s+table\b/i, ja: "ALTER TABLE が検出されました（致命的）", en: "ALTER TABLE detected (critical)", hl: "hl-crit" },
     { re: /\brename\b/i, ja: "RENAME が検出されました（致命的）", en: "RENAME detected (critical)", hl: "hl-crit" },
     { re: /\bgrant\b/i, ja: "GRANT が検出されました（致命的）", en: "GRANT detected (critical)", hl: "hl-crit" },
-    { re: /\brevoke\b/i, ja: "REVOKE が検出されました（致命的）", en: "REVOKE detected (critical)", hl: "hl-crit" },
+    { re: /\brevoke\b/i, ja: "REVOKE detected (critical)", en: "REVOKE detected (critical)", hl: "hl-crit" },
   ],
   high: [
     { re: /\bcascade\b/i, ja: "CASCADE が検出されました（危険）", en: "CASCADE detected (high)", hl: "hl-high" },
@@ -315,7 +336,7 @@ function classify(stmt) {
     warnings.push({
       sev: "crit",
       title: (lang === "en") ? "DELETE without WHERE" : "DELETE文にWHERE句がありません",
-      detail: (lang === "en") ? "May delete all rows" : "全件削除の可能性があります"
+      detail: (lang === "en") ? "May delete all rows" : "全件削除の可能性があります",
     });
     keywordHits++;
   }
@@ -323,7 +344,7 @@ function classify(stmt) {
     warnings.push({
       sev: "crit",
       title: (lang === "en") ? "UPDATE without WHERE" : "UPDATE文にWHERE句がありません",
-      detail: (lang === "en") ? "May update all rows" : "全件更新の可能性があります"
+      detail: (lang === "en") ? "May update all rows" : "全件更新の可能性があります",
     });
     keywordHits++;
   }
@@ -420,8 +441,8 @@ function renderWarnings(allWarnings) {
     const li = document.createElement("li");
     li.className = "empty";
     li.textContent = (lang === "en")
-      ? "No risky patterns detected (not a guarantee)."
-      : "危険なパターンは検出されませんでした（ただし安全性を保証しません）。";
+      ? I18N.en.noRisk
+      : I18N.ja.noRisk;
     ul.appendChild(li);
     return;
   }
@@ -478,7 +499,7 @@ function onCheck() {
     els.sumStatements.textContent = "0";
     els.sumWrites.textContent = "0";
     els.sumKeywords.textContent = "0";
-    els.warningsList.innerHTML = `<li class="empty">${(lang === "en") ? "SQL is empty." : "SQLが空です。入力してからチェックしてください。"}</li>`;
+    els.warningsList.innerHTML = `<li class="empty">${(lang === "en") ? I18N.en.sqlEmpty : I18N.ja.sqlEmpty}</li>`;
     els.sqlPreview.innerHTML = `<code>${(lang === "en") ? I18N.en.previewEmpty : I18N.ja.previewEmpty}</code>`;
     return;
   }
@@ -517,7 +538,7 @@ function onClear() {
   els.sumKeywords.textContent = "0";
 
   const lang = document.documentElement.getAttribute("data-lang") || "ja";
-  els.warningsList.innerHTML = `<li class="empty">${(lang === "en") ? I18N.en.emptyWarn : I18N.ja.emptyWarn}</li>`;
+  els.warningsList.innerHTML = `<li class="empty">${(lang === "en") ? I18N.en.noResultYet : I18N.ja.noResultYet}</li>`;
   els.sqlPreview.innerHTML = `<code>${(lang === "en") ? I18N.en.previewEmpty : I18N.ja.previewEmpty}</code>`;
 }
 
@@ -531,8 +552,20 @@ els.clearBtn.addEventListener("click", onClear);
 els.checkAllBtn.addEventListener("click", () => setAllChecklist(true));
 els.clearAllBtn.addEventListener("click", () => setAllChecklist(false));
 
-/* ===== Pro unlock (UI-only MVP) ===== */
+/* ===== Pro unlock (Payment link jump + return param restore) ===== */
 const PRO_KEY = "nw_sql_pro";
+
+/**
+ * ✅ Stripe Payment Link をここに入れる（後で差し替え）
+ * 例: "https://buy.stripe.com/xxxxxx"
+ */
+const PRO_PAYMENT_URL = ""; // TODO: set Stripe Payment Link
+
+/**
+ * ✅ success_url等で ?pro=1 を付けて戻すなら自動復元する（MVP）
+ * 将来はサーバ検証に置換する
+ */
+const PRO_RETURN_PARAM = "pro"; // ?pro=1
 
 function isPro() {
   return localStorage.getItem(PRO_KEY) === "1";
@@ -564,27 +597,50 @@ function renderPro() {
     unlocked.hidden = true;
   }
 
-  // ensure these labels match current language even if HTML was cached
   const buy = $("buyProBtn");
   const restore = $("restoreProBtn");
   const copy = $("copyTemplateBtn");
   const lock = $("lockProBtn");
 
-  if (buy) buy.textContent = dict.proBuyBtn || (lang === "en" ? "Buy Pro (coming soon)" : "Proを購入（準備中）");
+  if (buy) buy.textContent = dict.proBuyBtn || (lang === "en" ? "Buy Pro" : "Proを購入");
   if (restore) restore.textContent = dict.proRestoreBtn || (lang === "en" ? "Restore purchase" : "購入済みを復元");
   if (copy) copy.textContent = dict.proCopyBtn || (lang === "en" ? "Copy template" : "テンプレをコピー");
   if (lock) lock.textContent = dict.proLockBtn || (lang === "en" ? "Lock Pro (test)" : "Proをロック（テスト用）");
 }
 
+function maybeAutoRestoreFromReturnParam() {
+  const url = new URL(window.location.href);
+  const v = url.searchParams.get(PRO_RETURN_PARAM);
+  if (v === "1") {
+    setPro(true);
+
+    // URLをきれいにする（履歴を汚さない）
+    url.searchParams.delete(PRO_RETURN_PARAM);
+    window.history.replaceState({}, "", url.toString());
+
+    // 任意：復元したことを知らせる（うるさければ消してOK）
+    const lang = document.documentElement.getAttribute("data-lang") || "ja";
+    // alert(lang === "en" ? I18N.en.proAutoRestored : I18N.ja.proAutoRestored);
+  }
+}
+
 $("buyProBtn")?.addEventListener("click", () => {
   const lang = document.documentElement.getAttribute("data-lang") || "ja";
-  alert(lang === "en"
-    ? "Payment is not connected yet."
-    : "決済はまだ接続していません。");
+  const dict = I18N[lang] || I18N.ja;
+
+  if (!PRO_PAYMENT_URL) {
+    alert(dict.proLinkNotSet || (lang === "en"
+      ? "Payment link is not set yet."
+      : "決済リンクがまだ設定されていません。"));
+    return;
+  }
+
+  // 決済へ移動（MVPは外部リンクへ飛ばすだけ）
+  window.location.href = PRO_PAYMENT_URL;
 });
 
 $("restoreProBtn")?.addEventListener("click", () => {
-  // MVP demo: unlock locally
+  // MVP: 手動復元（将来は決済検証へ）
   setPro(true);
 });
 
@@ -595,10 +651,11 @@ $("lockProBtn")?.addEventListener("click", () => {
 $("copyTemplateBtn")?.addEventListener("click", async () => {
   const code = $("proTemplateCode")?.textContent || "";
   const lang = document.documentElement.getAttribute("data-lang") || "ja";
+  const dict = I18N[lang] || I18N.ja;
 
   try {
     await navigator.clipboard.writeText(code.trim());
-    alert(lang === "en" ? "Copied." : "コピーしました。");
+    alert(dict.proCopied || (lang === "en" ? "Copied." : "コピーしました。"));
   } catch {
     // fallback
     const ta = document.createElement("textarea");
@@ -607,9 +664,10 @@ $("copyTemplateBtn")?.addEventListener("click", async () => {
     ta.select();
     document.execCommand("copy");
     ta.remove();
-    alert(lang === "en" ? "Copied." : "コピーしました。");
+    alert(dict.proCopied || (lang === "en" ? "Copied." : "コピーしました。"));
   }
 });
 
 onClear();
+maybeAutoRestoreFromReturnParam();
 renderPro();
