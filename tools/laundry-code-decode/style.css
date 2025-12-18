@@ -132,6 +132,32 @@ body {
   border-color: #cbd5e1;
 }
 
+/* 検索 */
+.search-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0 12px;
+}
+.search-row input[type="search"]{
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #fff;
+}
+.search-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted2);
+  user-select: none;
+}
+.search-all input { width: 16px; height: 16px; }
+
+/* グリッド */
 .symbol-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -231,7 +257,20 @@ body {
   text-align: center;
 }
 
+/* 空表示 */
+.nw-empty{
+  grid-column: 1 / -1;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--muted2);
+  background: #fff;
+  font-size: 13px;
+}
+
 @media (max-width: 480px) {
   .symbol-grid { grid-template-columns: 1fr; }
   .ocr-cand-grid { grid-template-columns: 1fr; }
+  .search-row { flex-direction: column; align-items: stretch; }
+  .search-all { justify-content: flex-start; }
 }
