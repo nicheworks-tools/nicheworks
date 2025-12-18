@@ -280,3 +280,62 @@ button,select,textarea{font-family:inherit}
 @media (min-width: 481px) and (max-width: 768px){
   .btn{min-width:160px}
 }
+
+/* --- Pro Step 1 (safe append) --- */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border:1px solid #e5e7eb;
+  border-radius:999px;
+  font-size:12px;
+  background:#fff;
+}
+.badge-danger{
+  border-color:rgba(185,28,28,.25);
+  background:rgba(185,28,28,.10);
+  color:#b91c1c;
+  font-weight:700;
+}
+.badge-warn{
+  border-color:rgba(245,158,11,.30);
+  background:rgba(245,158,11,.12);
+  color:#92400e;
+  font-weight:700;
+}
+.badge-ok{
+  border-color:rgba(4,120,87,.25);
+  background:rgba(4,120,87,.08);
+  color:#047857;
+  font-weight:700;
+}
+.finding{
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:10px;
+  margin:10px 0;
+  background:#fff;
+}
+.finding-code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:12px;
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:8px;
+  margin:8px 0;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.finding-item{ margin:10px 0; }
+.finding-item-head{ display:flex; gap:8px; align-items:center; }
+.finding-sev{
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:999px;
+  border:1px solid #e5e7eb;
+}
+.finding-sev.high{ border-color:rgba(185,28,28,.25); background:rgba(185,28,28,.10); color:#b91c1c; font-weight:700; }
+.finding-sev.medium{ border-color:rgba(245,158,11,.30); background:rgba(245,158,11,.12); color:#92400e; font-weight:700; }
+.finding-sev.low{ border-color:rgba(4,120,87,.25); background:rgba(4,120,87,.08); color:#047857; font-weight:700; }
+
