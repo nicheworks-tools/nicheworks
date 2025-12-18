@@ -892,3 +892,288 @@
           row.innerHTML = `
             <div class="finding-item-head">
               <span class="finding-sev ${sevText.toLowerCase()}">${sevText}</span>
+              <span class="finding-item-title">${escapeHtml(title)}</span>
+            </div>
+            <div class="finding-item-reason">${escapeHtml(reason)}</div>
+          `;
+          list.appendChild(row);
+        }
+
+        wrap.appendChild(top);
+        wrap.appendChild(code);
+        wrap.appendChild(list);
+        findingsEl.appendChild(wrap);
+      }
+    }
+
+    // Hints
+    clearChildren(hintsEl);
+    result.hints.forEach((hint) => {
+      const li = document.createElement("li");
+      li.textContent = hint;
+      hintsEl.appendChild(li);
+    });
+
+    // Pro UI (Step 1)
+    renderPro(result);
+
+    // Show result
+    resultSection.hidden = false;
+  }
+
+  function renderPro(result) {
+    if (!proBlock) return;
+
+    // Ensure a container exists
+    let proDynamic = document.getElementById("proDynamic");
+    if (!proDynamic) {
+      proDynamic = document.createElement("div");
+      proDynamic.id = "proDynamic";
+      proDynamic.className = "pro-dynamic";
+      proDynamic.style.marginTop = "10px";
+      proBlock.appendChild(proDynamic);
+    }
+
+    clearChildren(proDynamic);
+
+    const enabled = isProEnabled();
+
+    // Header controls
+    const controls = document.createElement("div");
+    controls.className = "pro-controls";
+    controls.style.display = "flex";
+    controls.style.gap = "10px";
+    controls.style.flexWrap = "wrap";
+    controls.style.alignItems = "center";
+
+    const state = document.createElement("div");
+    state.className = "pro-state";
+    state.style.fontSize = "12px";
+    state.style.color = "#6b7280";
+    state.textContent = enabled
+      ? t("Pro：この端末で有効（ローカル）", "Pro: enabled on this device (local)")
+      : t("Pro：未有効（購入後に有効化できます）", "Pro: not enabled (enable after purchase)");
+
+    controls.appendChild(state);
+
+    // Enable button (honor system)
+    const btnEnable = document.createElement("button");
+    btnEnable.type = "button";
+    btnEnable.className = "btn";
+    btnEnable.textContent = enabled ? t("Proを無効化", "Disable Pro") : t("Proをこの端末で有効化", "Enable Pro on this device");
+    btnEnable.addEventListener("click", () => {
+      if (enabled) disablePro();
+      else enablePro();
+    });
+    controls.appendChild(btnEnable);
+
+    // Buy link (always)
+    const buy = document.createElement("a");
+    buy.className = "btn btn-primary";
+    buy.href = PAYMENT_LINK;
+    buy.target = "_blank";
+    buy.rel = "noopener";
+    buy.style.textDecoration = "none";
+    buy.textContent = t("Proを購入（$4.99）", "Buy Pro ($4.99)");
+    controls.appendChild(buy);
+
+    proDynamic.appendChild(controls);
+
+    // Content area
+    const divider = document.createElement("div");
+    divider.className = "divider";
+    divider.style.margin = "12px 0";
+    proDynamic.appendChild(divider);
+
+    const title = document.createElement("div");
+    title.className = "h2";
+    title.style.marginBottom = "8px";
+    title.textContent = t("Proテンプレ（安全代替案）", "Pro templates (safer alternatives)");
+    proDynamic.appendChild(title);
+
+    if (!enabled) {
+      const msg = document.createElement("div");
+      msg.className = "pro-locked";
+      msg.style.fontSize = "13px";
+      msg.style.lineHeight = "1.7";
+      msg.style.color = "#111827";
+      msg.innerHTML = `
+        <div style="margin-bottom:6px;">
+          <b>${escapeHtml(t("ロック中", "Locked"))}</b> — ${escapeHtml(t("購入後に「Proをこの端末で有効化」を押すと表示されます。", "After purchase, click “Enable Pro on this device” to show templates."))}
+        </div>
+        <div style="color:#6b7280;">
+          ${escapeHtml(t("※このMVPではサーバ判定が無いため、端末ローカルの名誉解放方式です。", "MVP uses a local honor-system unlock (no server verification yet)."))}
+        </div>
+      `;
+      proDynamic.appendChild(msg);
+
+      // Tiny preview (non-actionable)
+      const preview = document.createElement("div");
+      preview.className = "code";
+      preview.style.opacity = "0.55";
+      preview.textContent = t(
+        "Preview:\n- Download → Inspect → Run (avoid curl|sh)\n- Preview targets before delete (ls/find)\n- Use least privilege (avoid 777)",
+        "Preview:\n- Download → Inspect → Run (avoid curl|sh)\n- Preview targets before delete (ls/find)\n- Use least privilege (avoid 777)"
+      );
+      proDynamic.appendChild(preview);
+      return;
+    }
+
+    // Render templates
+    const { templates, checklist } = result.pro;
+
+    templates.forEach((tpl) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.style.margin = "10px 0";
+      card.style.boxShadow = "none";
+      card.style.border = "1px solid #e5e7eb";
+
+      const h = document.createElement("div");
+      h.className = "h2";
+      h.style.marginBottom = "8px";
+      h.textContent = currentLang === "ja" ? tpl.title.ja : tpl.title.en;
+
+      const pre = document.createElement("div");
+      pre.className = "code";
+      pre.textContent = currentLang === "ja" ? tpl.body.ja : tpl.body.en;
+
+      card.appendChild(h);
+      card.appendChild(pre);
+      proDynamic.appendChild(card);
+    });
+
+    // Checklist
+    const title2 = document.createElement("div");
+    title2.className = "h2";
+    title2.style.marginTop = "12px";
+    title2.textContent = t("実行前チェックリスト（Pro）", "Pre-run checklist (Pro)");
+    proDynamic.appendChild(title2);
+
+    const ul = document.createElement("ul");
+    ul.className = "ul";
+    checklist.forEach((c) => {
+      const li = document.createElement("li");
+      li.textContent = currentLang === "ja" ? c.ja : c.en;
+      ul.appendChild(li);
+    });
+    proDynamic.appendChild(ul);
+  }
+
+  // ====== Report ======
+  function buildReport(result) {
+    const lines = [];
+    lines.push(`Command Safety Checker — Report`);
+    lines.push(`OS: ${result.os === "unix" ? "Linux/macOS" : "Windows PowerShell"}`);
+    lines.push(`Risk: ${result.risk} (score=${result.score})`);
+    lines.push(`Categories: ${result.categoriesHit.join(", ") || "none"}`);
+    lines.push("");
+
+    lines.push("Findings:");
+    if (result.findings.length === 0) {
+      lines.push("- none");
+    } else {
+      // de-dup
+      const seen = new Set();
+      for (const f of result.findings) {
+        const key = `${f.line}:${f.rule.id}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+
+        const title = currentLang === "ja" ? f.rule.title.ja : f.rule.title.en;
+        const reason = currentLang === "ja" ? f.rule.reason.ja : f.rule.reason.en;
+        lines.push(`- L${f.line}: ${title}`);
+        lines.push(`  ${reason}`);
+        lines.push(`  > ${f.raw}`);
+      }
+    }
+    lines.push("");
+
+    lines.push("Hints:");
+    result.hints.forEach((h) => lines.push(`- ${h}`));
+
+    return lines.join("\n");
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert(t("コピーしました", "Copied"));
+    } catch {
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        alert(t("コピーしました", "Copied"));
+      } catch {
+        alert(t("コピーに失敗しました", "Copy failed"));
+      } finally {
+        document.body.removeChild(ta);
+      }
+    }
+  }
+
+  // ====== Actions ======
+  function onCheck() {
+    const os = osSelect?.value || "unix";
+    const text = commandInput?.value || "";
+    const trimmed = normalizeNewlines(text).trim();
+
+    if (!trimmed) {
+      alert(t("コマンドを入力してください", "Please paste a command"));
+      return;
+    }
+
+    setProgress(true);
+
+    // Simulate async for UX
+    setTimeout(() => {
+      const result = analyze(os, trimmed);
+      setProgress(false);
+      renderResult(result);
+    }, 120);
+  }
+
+  function onClear() {
+    if (commandInput) commandInput.value = "";
+    if (resultSection) resultSection.hidden = true;
+    if (findingsEl) clearChildren(findingsEl);
+    if (hintsEl) clearChildren(hintsEl);
+    window.__nw_lastResult = null;
+  }
+
+  function onReset() {
+    onClear();
+    if (osSelect) osSelect.value = "unix";
+  }
+
+  function onCopyReport() {
+    if (!window.__nw_lastResult) {
+      alert(t("まずチェックを実行してください", "Run a check first"));
+      return;
+    }
+    const report = buildReport(window.__nw_lastResult);
+    copyToClipboard(report);
+  }
+
+  // ====== Wire events ======
+  btnCheck?.addEventListener("click", onCheck);
+  btnClear?.addEventListener("click", onClear);
+  btnReset?.addEventListener("click", onReset);
+  btnCopyReport?.addEventListener("click", onCopyReport);
+
+  // Enter/Ctrl+Enter convenience
+  commandInput?.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+      onCheck();
+    }
+  });
+
+  // Expose small debug helpers (optional)
+  window.__nw_pro = { enablePro, disablePro, isProEnabled };
+})();
