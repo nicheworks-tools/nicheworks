@@ -167,18 +167,77 @@ DELETE FROM users WHERE id = 123;
           <h2 class="h2" data-i18n="previewTitle">SQLプレビュー（危険箇所を強調表示）</h2>
           <pre id="sqlPreview" class="preview"><code data-i18n="previewEmpty">ここに解析結果が表示されます</code></pre>
 
-          <div class="probox">
+          <!-- ✅ Pro paywall (UI-only MVP) -->
+          <div class="probox" id="proBox">
             <div class="probox-head">
               <h3 class="h3" data-i18n="proTitle">Pro機能（買い切り）</h3>
-              <span class="tag">Coming soon</span>
+              <span class="tag" id="proStateTag">Locked</span>
             </div>
-            <ul class="prolist" data-i18n-list="proList">
-              <li>安全実行テンプレの提示（トランザクション手順）</li>
-              <li>DB種別ごとの注意点表示</li>
-              <li>ルールプリセット（Read-only強制 / Migrationモード）</li>
-            </ul>
-            <p class="note" data-i18n="noFix">※SQLの自動修正は行いません</p>
+
+            <div class="pro-locked" id="proLocked">
+              <p class="note" data-i18n="proLockedNote">
+                Proを購入すると、より安全な「実行手順テンプレ」やプリセット表示が使えます。
+              </p>
+
+              <div class="pro-price">
+                <div class="pro-price-main">
+                  <div class="pro-price-amount">¥200</div>
+                  <div class="pro-price-sub" data-i18n="proPriceSub">買い切り / このブラウザで解放</div>
+                </div>
+                <div class="pro-actions">
+                  <button class="btn btn-primary" type="button" id="buyProBtn" data-i18n="proBuyBtn">
+                    Proを購入（準備中）
+                  </button>
+                  <button class="btn btn-ghost" type="button" id="restoreProBtn" data-i18n="proRestoreBtn">
+                    購入済みを復元
+                  </button>
+                </div>
+              </div>
+
+              <ul class="prolist" data-i18n-list="proList">
+                <li>安全実行テンプレの提示（トランザクション手順）</li>
+                <li>DB種別ごとの注意点表示</li>
+                <li>ルールプリセット（Read-only強制 / Migrationモード）</li>
+              </ul>
+
+              <p class="note" data-i18n="noFix">※SQLの自動修正は行いません</p>
+            </div>
+
+            <div class="pro-unlocked" id="proUnlocked" hidden>
+              <p class="note" data-i18n="proUnlockedNote">
+                Proが解放されています。下のテンプレを「手順」として使ってください（自動修正はしません）。
+              </p>
+
+              <h4 class="h2" data-i18n="proTemplateTitle">安全実行テンプレ（例）</h4>
+              <div class="codebox">
+                <code id="proTemplateCode">BEGIN;
+-- 1) 影響行数の事前確認（例）
+SELECT COUNT(*) FROM your_table WHERE ...;
+
+-- 2) 実行（例）
+-- UPDATE/DELETE ... WHERE ...;
+
+-- 3) まずはROLLBACKで確認 → 問題なければCOMMIT
+ROLLBACK;
+-- COMMIT;
+</code>
+              </div>
+
+              <div class="pro-actions unlocked-actions">
+                <button class="btn btn-ghost" type="button" id="copyTemplateBtn" data-i18n="proCopyBtn">
+                  テンプレをコピー
+                </button>
+                <button class="btn btn-ghost" type="button" id="lockProBtn" data-i18n="proLockBtn">
+                  Proをロック（テスト用）
+                </button>
+              </div>
+
+              <p class="note" data-i18n="proUnlockedHint">
+                ※将来：DB種別プリセット、Migrationモード、より厳密な検出ルールを追加予定。
+              </p>
+            </div>
           </div>
+          <!-- /Pro -->
         </div>
       </div>
 
