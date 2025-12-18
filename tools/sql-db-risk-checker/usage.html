@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Usage | SQL / DB 実行前リスクチェッカー | NicheWorks</title>
+  <meta name="description" content="SQL / DB 実行前リスクチェッカーの使い方、検出ルール、注意点、FAQをまとめたUsageページ。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/sql-db-risk-checker/usage.html" />
+
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- AdSense（共通仕様 v2：headに入れてOK） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    /* usage専用の最小追加（style.cssを壊さない） */
+    .crumb { margin: 10px 0 14px; color: var(--muted); font-size: 13px; }
+    .crumb a { text-decoration: none; border-bottom: 1px solid var(--line); }
+    .toc { display: grid; gap: 10px; }
+    .toc a { text-decoration: none; border: 1px solid var(--line); background: #fff; border-radius: 14px; padding: 10px 12px; font-weight: 900; }
+    .section { scroll-margin-top: 18px; }
+    .codebox { border: 1px solid var(--line); background: var(--card); border-radius: 14px; padding: 12px; overflow: auto; }
+    .codebox code { font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size: 13px; line-height: 1.6; white-space: pre; }
+    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-weight: 900; font-size: 12px; }
+    .pill.low { color: var(--low); background: var(--hlLow); }
+    .pill.med { color: var(--med); background: var(--hlMed); }
+    .pill.high { color: var(--high); background: var(--hlHigh); }
+    .pill.crit { color: var(--crit); background: var(--hlCrit); }
+    .two { display:grid; grid-template-columns: 1fr; gap: 12px; }
+    @media(min-width: 860px){ .two { grid-template-columns: 1fr 1fr; } }
+    .warncard { border:1px solid var(--line); background:#fff; border-radius: 14px; padding: 12px; }
+    .warncard h4 { margin: 0 0 6px; font-size: 14px; }
+    .warncard p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; border:1px solid var(--line); background:#fff; padding:2px 6px; border-radius:8px; font-size: 12px; }
+  </style>
+</head>
+
+<body>
+  <!-- 共通hero（ロゴ無し） -->
+  <header class="tool-hero">
+    <div class="tool-hero-inner">
+      <div class="tool-hero-main">
+        <p class="tool-kicker">NicheWorks • Dev Safety</p>
+
+        <h1 class="tool-title" data-i18n="u_title">Usage</h1>
+
+        <p class="tool-desc" data-i18n="u_desc">
+          SQL / DB 実行前リスクチェッカーの使い方・ルール・注意点をまとめたページ。
+        </p>
+
+        <p class="tool-mini-note" data-i18n="u_note">
+          Browser-only / No data is sent.（ブラウザ完結・送信なし）
+        </p>
+      </div>
+
+      <div class="tool-hero-side">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" class="lang-btn" data-lang-btn="ja">JA</button>
+          <button type="button" class="lang-btn" data-lang-btn="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="crumb">
+      <a href="./index.html" data-i18n="u_back">← ツールへ戻る</a>
+    </div>
+
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- TOC -->
+    <section class="intro">
+      <div class="panel">
+        <h2 class="h2" data-i18n="u_toc">このページの内容</h2>
+        <div class="toc">
+          <a href="#how" data-i18n="u_toc_1">1) 使い方（手順）</a>
+          <a href="#risk" data-i18n="u_toc_2">2) リスク判定の意味</a>
+          <a href="#rules" data-i18n="u_toc_3">3) 何を検出しているか（MVP）</a>
+          <a href="#examples" data-i18n="u_toc_4">4) 典型例（危険/注意）</a>
+          <a href="#limits" data-i18n="u_toc_5">5) 限界と注意点</a>
+          <a href="#faq" data-i18n="u_toc_6">6) FAQ</a>
+          <a href="#pro" data-i18n="u_toc_7">7) Pro（買い切り）予定</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1 how -->
+    <section class="tool section">
+      <div class="card" id="how">
+        <h2 class="h2" data-i18n="u_how">1) 使い方（手順）</h2>
+        <ol class="steps" data-i18n-list="u_how_steps">
+          <li>ツールにSQLを貼り付けます（複数文OK）。</li>
+          <li>必要なら「対象環境」「DB種別」「読み取り専用モード」を設定します。</li>
+          <li>「リスクチェック」を押し、警告とハイライトを確認します。</li>
+          <li>本番なら、必ずバックアップ・権限・トランザクションを再確認してから実行してください。</li>
+        </ol>
+
+        <p class="note" data-i18n="u_how_tip">
+          コツ：UPDATE/DELETEは、最初に <span class="kbd">SELECT COUNT</span> で影響行数を確認してから実行すると事故が減ります。
+        </p>
+      </div>
+    </section>
+
+    <!-- 2 risk -->
+    <section class="tool section">
+      <div class="card" id="risk">
+        <h2 class="h2" data-i18n="u_risk">2) リスク判定の意味</h2>
+
+        <div class="two">
+          <div class="warncard">
+            <h4><span class="pill low">Low</span></h4>
+            <p data-i18n="u_r_low">基本的に読み取り中心、または危険パターンが見つからない状態（ただし安全保証ではない）。</p>
+          </div>
+          <div class="warncard">
+            <h4><span class="pill med">Medium</span></h4>
+            <p data-i18n="u_r_med">重いクエリの可能性、曖昧な条件、弱い危険兆候など。実行環境と影響範囲を再確認推奨。</p>
+          </div>
+          <div class="warncard">
+            <h4><span class="pill high">High</span></h4>
+            <p data-i18n="u_r_high">書き込み/権限/DDLなど明確なリスク。実行手順（トランザクション・バックアップ）を強く推奨。</p>
+          </div>
+          <div class="warncard">
+            <h4><span class="pill crit">Critical</span></h4>
+            <p data-i18n="u_r_crit">DROP/TRUNCATE、WHERE無しDELETE/UPDATEなど事故直結。実行前に立ち止まるべきレベル。</p>
+          </div>
+        </div>
+
+        <p class="note" data-i18n="u_r_env">
+          ※「対象環境」が Prod の場合、同じ警告でもリスクが引き上がることがあります（慎重寄せ）。
+        </p>
+      </div>
+    </section>
+
+    <!-- 3 rules -->
+    <section class="tool section">
+      <div class="card" id="rules">
+        <h2 class="h2" data-i18n="u_rules">3) 何を検出しているか（MVP）</h2>
+        <p class="note" data-i18n="u_rules_note">
+          MVPは「SQLパーサを使わない」軽量設計です。正規表現と単純ルールで事故を防ぐ目的に絞っています。
+        </p>
+
+        <div class="two">
+          <div class="warncard">
+            <h4 data-i18n="u_rules_crit">Critical（即赤）</h4>
+            <p data-i18n="u_rules_crit_d">
+              DROP / TRUNCATE / ALTER / GRANT / REVOKE、WHERE無しDELETE/UPDATE など。
+            </p>
+          </div>
+          <div class="warncard">
+            <h4 data-i18n="u_rules_high">High（危険）</h4>
+            <p data-i18n="u_rules_high_d">
+              CASCADE、WHERE 1=1、Read-onlyモードでの書き込み操作など。
+            </p>
+          </div>
+          <div class="warncard">
+            <h4 data-i18n="u_rules_med">Medium（注意）</h4>
+            <p data-i18n="u_rules_med_d">
+              SELECT *、LIKE '%...%'、ORDER BY + LIMIT無し（重い可能性）など。
+            </p>
+          </div>
+          <div class="warncard">
+            <h4 data-i18n="u_rules_low">Low</h4>
+            <p data-i18n="u_rules_low_d">
+              明確な危険が見つからない状態。ただし安全保証はしません。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 examples -->
+    <section class="tool section">
+      <div class="card" id="examples">
+        <h2 class="h2" data-i18n="u_examples">4) 典型例（危険/注意）</h2>
+
+        <div class="two">
+          <div class="warncard">
+            <h4 data-i18n="u_ex_1">例1：WHERE無しDELETE（Critical）</h4>
+            <div class="codebox"><code>DELETE FROM users;</code></div>
+          </div>
+
+          <div class="warncard">
+            <h4 data-i18n="u_ex_2">例2：WHERE無しUPDATE（Critical）</h4>
+            <div class="codebox"><code>UPDATE orders SET status = 'done';</code></div>
+          </div>
+
+          <div class="warncard">
+            <h4 data-i18n="u_ex_3">例3：WHERE 1=1（High）</h4>
+            <div class="codebox"><code>DELETE FROM logs WHERE 1=1;</code></div>
+          </div>
+
+          <div class="warncard">
+            <h4 data-i18n="u_ex_4">例4：重い可能性（Medium）</h4>
+            <div class="codebox"><code>SELECT * FROM big_table ORDER BY created_at DESC;</code></div>
+          </div>
+        </div>
+
+        <p class="note" data-i18n="u_ex_note">
+          注意：実際の危険度はテーブルサイズ、インデックス、権限、トランザクション有無などで変わります。
+        </p>
+      </div>
+    </section>
+
+    <!-- 5 limits -->
+    <section class="tool section">
+      <div class="card" id="limits">
+        <h2 class="h2" data-i18n="u_limits">5) 限界と注意点</h2>
+        <ul class="steps" data-i18n-list="u_limits_list">
+          <li>SQLを厳密にパースしません（複雑なSQLでは誤検出/見逃しがあり得ます）。</li>
+          <li>接続先DBや権限は判定できません（自己申告入力です）。</li>
+          <li>安全を保証しません。最終判断はあなたが行ってください。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6 faq -->
+    <section class="tool section">
+      <div class="card" id="faq">
+        <h2 class="h2" data-i18n="u_faq">6) FAQ</h2>
+
+        <div class="two">
+          <div class="warncard">
+            <h4 data-i18n="u_f1">Q. このツールはSQLを修正しますか？</h4>
+            <p data-i18n="u_f1a">A. しません。危険度・警告・ハイライトを出すだけです。</p>
+          </div>
+          <div class="warncard">
+            <h4 data-i18n="u_f2">Q. 送信や保存はありますか？</h4>
+            <p data-i18n="u_f2a">A. ありません（ブラウザ内のみ）。言語設定だけlocalStorageに保存します。</p>
+          </div>
+          <div class="warncard">
+            <h4 data-i18n="u_f3">Q. 100%正しいですか？</h4>
+            <p data-i18n="u_f3a">A. 100%ではありません。MVPは軽量ルールで事故を減らす目的です。</p>
+          </div>
+          <div class="warncard">
+            <h4 data-i18n="u_f4">Q. PostgreSQL/MySQL/SQLiteで違いは？</h4>
+            <p data-i18n="u_f4a">A. MVPは基本Genericです。ProでDB種別の注意点を強化予定です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 pro -->
+    <section class="tool section">
+      <div class="card" id="pro">
+        <h2 class="h2" data-i18n="u_pro">7) Pro（買い切り）予定</h2>
+        <ul class="steps" data-i18n-list="u_pro_list">
+          <li>安全実行テンプレ（BEGIN → 影響行数確認 → 実行 → ROLLBACK/COMMIT の手順提示）</li>
+          <li>DB種別ごとの注意点（Postgres/MySQL/SQLite）</li>
+          <li>ルールプリセット（Read-only強制 / Migrationモード）</li>
+        </ul>
+        <p class="note" data-i18n="u_pro_note">※自動修正はしません。提示のみ。</p>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <div class="donate">
+      <p class="donate-text" data-i18n="u_donate">
+        役に立ったら支援してくれると助かります。
+      </p>
+      <div class="donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© NicheWorks</p>
+    <p>Ads may be displayed. Accuracy not guaranteed. Verify with official sources.</p>
+  </footer>
+
+  <script>
+    "use strict";
+
+    const I18N = {
+      ja: {
+        u_title: "Usage",
+        u_desc: "SQL / DB 実行前リスクチェッカーの使い方・ルール・注意点をまとめたページ。",
+        u_note: "Browser-only / No data is sent.（ブラウザ完結・送信なし）",
+        u_back: "← ツールへ戻る",
+
+        u_toc: "このページの内容",
+        u_toc_1: "1) 使い方（手順）",
+        u_toc_2: "2) リスク判定の意味",
+        u_toc_3: "3) 何を検出しているか（MVP）",
+        u_toc_4: "4) 典型例（危険/注意）",
+        u_toc_5: "5) 限界と注意点",
+        u_toc_6: "6) FAQ",
+        u_toc_7: "7) Pro（買い切り）予定",
+
+        u_how: "1) 使い方（手順）",
+        u_how_steps: [
+          "ツールにSQLを貼り付けます（複数文OK）。",
+          "必要なら「対象環境」「DB種別」「読み取り専用モード」を設定します。",
+          "「リスクチェック」を押し、警告とハイライトを確認します。",
+          "本番なら、必ずバックアップ・権限・トランザクションを再確認してから実行してください。",
+        ],
+        u_how_tip: "コツ：UPDATE/DELETEは、最初に <span class='kbd'>SELECT COUNT</span> で影響行数を確認してから実行すると事故が減ります。",
+
+        u_risk: "2) リスク判定の意味",
+        u_r_low: "基本的に読み取り中心、または危険パターンが見つからない状態（ただし安全保証ではない）。",
+        u_r_med: "重いクエリの可能性、曖昧な条件、弱い危険兆候など。実行環境と影響範囲を再確認推奨。",
+        u_r_high: "書き込み/権限/DDLなど明確なリスク。実行手順（トランザクション・バックアップ）を強く推奨。",
+        u_r_crit: "DROP/TRUNCATE、WHERE無しDELETE/UPDATEなど事故直結。実行前に立ち止まるべきレベル。",
+        u_r_env: "※「対象環境」が Prod の場合、同じ警告でもリスクが引き上がることがあります（慎重寄せ）。",
+
+        u_rules: "3) 何を検出しているか（MVP）",
+        u_rules_note: "MVPは「SQLパーサを使わない」軽量設計です。正規表現と単純ルールで事故を防ぐ目的に絞っています。",
+        u_rules_crit: "Critical（即赤）",
+        u_rules_crit_d: "DROP / TRUNCATE / ALTER / GRANT / REVOKE、WHERE無しDELETE/UPDATE など。",
+        u_rules_high: "High（危険）",
+        u_rules_high_d: "CASCADE、WHERE 1=1、Read-onlyモードでの書き込み操作など。",
+        u_rules_med: "Medium（注意）",
+        u_rules_med_d: "SELECT *、LIKE '%...%'、ORDER BY + LIMIT無し（重い可能性）など。",
+        u_rules_low: "Low",
+        u_rules_low_d: "明確な危険が見つからない状態。ただし安全保証はしません。",
+
+        u_examples: "4) 典型例（危険/注意）",
+        u_ex_1: "例1：WHERE無しDELETE（Critical）",
+        u_ex_2: "例2：WHERE無しUPDATE（Critical）",
+        u_ex_3: "例3：WHERE 1=1（High）",
+        u_ex_4: "例4：重い可能性（Medium）",
+        u_ex_note: "注意：実際の危険度はテーブルサイズ、インデックス、権限、トランザクション有無などで変わります。",
+
+        u_limits: "5) 限界と注意点",
+        u_limits_list: [
+          "SQLを厳密にパースしません（複雑なSQLでは誤検出/見逃しがあり得ます）。",
+          "接続先DBや権限は判定できません（自己申告入力です）。",
+          "安全を保証しません。最終判断はあなたが行ってください。",
+        ],
+
+        u_faq: "6) FAQ",
+        u_f1: "Q. このツールはSQLを修正しますか？",
+        u_f1a: "A. しません。危険度・警告・ハイライトを出すだけです。",
+        u_f2: "Q. 送信や保存はありますか？",
+        u_f2a: "A. ありません（ブラウザ内のみ）。言語設定だけlocalStorageに保存します。",
+        u_f3: "Q. 100%正しいですか？",
+        u_f3a: "A. 100%ではありません。MVPは軽量ルールで事故を減らす目的です。",
+        u_f4: "Q. PostgreSQL/MySQL/SQLiteで違いは？",
+        u_f4a: "A. MVPは基本Genericです。ProでDB種別の注意点を強化予定です。",
+
+        u_pro: "7) Pro（買い切り）予定",
+        u_pro_list: [
+          "安全実行テンプレ（BEGIN → 影響行数確認 → 実行 → ROLLBACK/COMMIT の手順提示）",
+          "DB種別ごとの注意点（Postgres/MySQL/SQLite）",
+          "ルールプリセット（Read-only強制 / Migrationモード）",
+        ],
+        u_pro_note: "※自動修正はしません。提示のみ。",
+
+        u_donate: "役に立ったら支援してくれると助かります。",
+      },
+
+      en: {
+        u_title: "Usage",
+        u_desc: "How to use, what it detects, limitations, and FAQ for the SQL/DB Risk Checker.",
+        u_note: "Browser-only / No data is sent.",
+        u_back: "← Back to the tool",
+
+        u_toc: "On this page",
+        u_toc_1: "1) How it works",
+        u_toc_2: "2) What risk levels mean",
+        u_toc_3: "3) What is detected (MVP)",
+        u_toc_4: "4) Typical examples",
+        u_toc_5: "5) Limitations",
+        u_toc_6: "6) FAQ",
+        u_toc_7: "7) Pro (one-time) plan",
+
+        u_how: "1) How it works",
+        u_how_steps: [
+          "Paste SQL into the tool (multiple statements allowed).",
+          "Optionally set Environment / DB Type / Read-only mode.",
+          "Click “Check Risk” and review warnings and highlights.",
+          "For production, always double-check backups, privileges, and transactions before running.",
+        ],
+        u_how_tip: "Tip: For UPDATE/DELETE, check affected rows first with <span class='kbd'>SELECT COUNT</span> to reduce accidents.",
+
+        u_risk: "2) What risk levels mean",
+        u_r_low: "Mostly read-only or no risky patterns detected (not a guarantee).",
+        u_r_med: "Possible heavy query, weak conditions, or mild risk signals. Re-check scope and environment.",
+        u_r_high: "Clear risk patterns (writes/privileges/DDL). Strongly recommended to use safe procedures.",
+        u_r_crit: "Accident-prone patterns like DROP/TRUNCATE or DELETE/UPDATE without WHERE. Stop and verify.",
+        u_r_env: "If Environment is set to Prod, risk may be bumped to be more conservative.",
+
+        u_rules: "3) What is detected (MVP)",
+        u_rules_note: "MVP is lightweight and does not use a full SQL parser. It uses simple rules and regex to reduce accidents.",
+        u_rules_crit: "Critical",
+        u_rules_crit_d: "DROP/TRUNCATE/ALTER/GRANT/REVOKE and DELETE/UPDATE without WHERE.",
+        u_rules_high: "High",
+        u_rules_high_d: "CASCADE, WHERE 1=1, write ops in Read-only mode, etc.",
+        u_rules_med: "Medium",
+        u_rules_med_d: "SELECT *, LIKE '%...%', ORDER BY without LIMIT (may be heavy), etc.",
+        u_rules_low: "Low",
+        u_rules_low_d: "No clear risky patterns found (not a guarantee).",
+
+        u_examples: "4) Typical examples",
+        u_ex_1: "Example 1: DELETE without WHERE (Critical)",
+        u_ex_2: "Example 2: UPDATE without WHERE (Critical)",
+        u_ex_3: "Example 3: WHERE 1=1 (High)",
+        u_ex_4: "Example 4: Potentially heavy query (Medium)",
+        u_ex_note: "Real risk depends on table size, indexes, privileges, and transaction usage.",
+
+        u_limits: "5) Limitations",
+        u_limits_list: [
+          "No strict SQL parsing (complex SQL may be missed or falsely flagged).",
+          "Cannot detect actual DB target or privileges (self-declared inputs only).",
+          "No safety guarantee. You are responsible for the final decision.",
+        ],
+
+        u_faq: "6) FAQ",
+        u_f1: "Q. Does this tool rewrite SQL?",
+        u_f1a: "A. No. It only shows risk level, warnings, and highlights.",
+        u_f2: "Q. Does it send or save my SQL?",
+        u_f2a: "A. No. Browser-only. Only language preference is stored in localStorage.",
+        u_f3: "Q. Is it 100% accurate?",
+        u_f3a: "A. No. MVP is designed to reduce accidents with simple rules.",
+        u_f4: "Q. Differences between Postgres/MySQL/SQLite?",
+        u_f4a: "A. MVP is mostly generic. Pro will add database-specific cautions.",
+
+        u_pro: "7) Pro (one-time) plan",
+        u_pro_list: [
+          "Safe execution templates (BEGIN → row-count checks → execute → ROLLBACK/COMMIT guidance)",
+          "Database-specific cautions (Postgres/MySQL/SQLite)",
+          "Rule presets (Read-only enforced / Migration mode)",
+        ],
+        u_pro_note: "No auto-fixing. Guidance only.",
+
+        u_donate: "If this helped, consider supporting development.",
+      }
+    };
+
+    function setLang(lang){
+      const l = (lang === "en") ? "en" : "ja";
+      document.documentElement.setAttribute("data-lang", l);
+      document.documentElement.lang = l;
+      localStorage.setItem("nw_lang", l);
+
+      const dict = I18N[l];
+
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if (!dict[key]) return;
+        el.innerHTML = dict[key];
+      });
+
+      document.querySelectorAll("[data-i18n-list]").forEach(el=>{
+        const key = el.getAttribute("data-i18n-list");
+        const items = dict[key];
+        if (!Array.isArray(items)) return;
+        el.innerHTML = items.map(x=>`<li>${x}</li>`).join("");
+      });
+    }
+
+    document.addEventListener("click", (e)=>{
+      const btn = e.target.closest("[data-lang-btn]");
+      if(!btn) return;
+      setLang(btn.getAttribute("data-lang-btn"));
+    });
+
+    setLang(localStorage.getItem("nw_lang") || "ja");
+  </script>
+</body>
+</html>
