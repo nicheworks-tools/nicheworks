@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Thank you — Command Safety Checker Pro | NicheWorks</title>
-  <meta name="description" content="Thanks for purchasing Command Safety Checker Pro. This page explains what Pro is and what’s coming next.">
+  <meta name="description" content="Thanks for purchasing Command Safety Checker Pro. This page explains what Pro is and what to do next.">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/command-safety-checker/pro.html">
 
@@ -61,6 +61,7 @@
     .badge.ok{border-color:rgba(4,120,87,.25);background:rgba(4,120,87,.08);color:var(--ok);font-weight:700}
     .badge.danger{border-color:rgba(185,28,28,.25);background:rgba(185,28,28,.10);color:var(--danger);font-weight:700}
     .callout{border:1px solid rgba(185,28,28,.25);background:rgba(185,28,28,.08);border-radius:14px;padding:12px;margin:10px 0}
+    .notice{border:1px solid var(--line);background:var(--soft);border-radius:14px;padding:12px;margin:10px 0}
     .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
     .nw-footer-line{margin:2px 0}
     .nw-footer a{color:var(--muted);text-decoration:underline}
@@ -80,10 +81,10 @@
       </h1>
 
       <p class="nw-sub" data-i18n="ja">
-        ご支援ありがとう。Proは「実行前の判断材料」を強化する買い切りです。
+        ご支援ありがとう。ここが「購入後に戻ってくる場所」です（ブックマーク推奨）。
       </p>
       <p class="nw-sub" data-i18n="en">
-        Thanks for your support. Pro is a one-time purchase that strengthens pre-run decision guidance.
+        Thanks for your support. This is your post-purchase hub (bookmark recommended).
       </p>
 
       <div class="nw-lang-switch" aria-label="Language switch">
@@ -108,8 +109,29 @@
 
       <div class="divider"></div>
 
-      <p class="p" data-i18n="ja"><span class="badge ok">OK</span> 決済後はこのページに来ればOK。ブックマーク推奨。</p>
-      <p class="p" data-i18n="en"><span class="badge ok">OK</span> You can bookmark this page as your post-purchase hub.</p>
+      <div class="notice">
+        <p class="p" style="margin:0" data-i18n="ja">
+          <b>次にやること：</b> 下の「この端末でProを有効化」を押してから、ツールに戻ってください。<br>
+          ※このMVPはサーバ判定がないため、端末ローカル方式です（名誉解放）。
+        </p>
+        <p class="p" style="margin:0" data-i18n="en">
+          <b>Next:</b> Click “Enable Pro on this device”, then go back to the tool.<br>
+          This MVP uses a local honor-system unlock (no server verification yet).
+        </p>
+      </div>
+
+      <div class="btnrow">
+        <button id="btnEnablePro" class="btn btn-primary" type="button">
+          <span data-i18n="ja">この端末でProを有効化</span>
+          <span data-i18n="en">Enable Pro on this device</span>
+        </button>
+        <button id="btnDisablePro" class="btn" type="button">
+          <span data-i18n="ja">（必要なら）Proを無効化</span>
+          <span data-i18n="en">(If needed) Disable Pro</span>
+        </button>
+      </div>
+
+      <p id="proState" class="p muted" style="margin-top:10px"></p>
 
       <div class="callout">
         <p class="p" data-i18n="ja">
@@ -118,52 +140,31 @@
         </p>
         <p class="p" data-i18n="en">
           <span class="badge danger">Disclaimer</span>
-          This tool (including Pro) does not guarantee safety. Always verify command contents, targets, and impact before running.
+          This tool (including Pro) does not guarantee safety. Always verify contents, targets, and impact before running.
         </p>
       </div>
     </section>
 
     <section class="card">
       <h2 class="h2">
-        <span data-i18n="ja">Proで何が増える？（予定）</span>
-        <span data-i18n="en">What Pro adds (planned)</span>
+        <span data-i18n="ja">Proで増えるもの（現状）</span>
+        <span data-i18n="en">What Pro adds (now)</span>
       </h2>
 
       <ul class="ul">
-        <li data-i18n="ja">危険コマンドの <b>安全代替案テンプレ</b>（例：dry-run、限定パス、確認コマンド）</li>
-        <li data-i18n="ja"><b>実行前チェックリスト</b>（バックアップ/対象確認/権限/ロールバック）</li>
-        <li data-i18n="ja">OS別（PowerShell含む）のルール強化</li>
+        <li data-i18n="ja">検出内容に応じた <b>安全代替案テンプレ</b> を自動表示</li>
+        <li data-i18n="ja"><b>実行前チェックリスト</b> を自動生成</li>
 
-        <li data-i18n="en"><b>Safer alternative templates</b> (dry-run, scoped path, confirmation commands)</li>
-        <li data-i18n="en"><b>Pre-run checklists</b> (backup, target validation, permissions, rollback)</li>
-        <li data-i18n="en">Stronger OS-specific rules (including PowerShell)</li>
+        <li data-i18n="en">Auto-generated <b>safer alternative templates</b> based on findings</li>
+        <li data-i18n="en">Auto-generated <b>pre-run checklist</b></li>
       </ul>
 
       <p class="p muted" data-i18n="ja">
-        ※現時点のMVPは「購入＝開発支援＋将来のPro解放の土台」です（ログイン/自動アンロックは後で追加）。
+        ※今後、サーバレス方式（Cloudflare Functions等）で「購入者だけ自動解放」へ移行可能。
       </p>
       <p class="p muted" data-i18n="en">
-        MVP note: for now, purchase is support + foundation for future Pro unlock (no login/auto-unlock yet).
+        We can later migrate to serverless verification (e.g., Cloudflare Functions) for auto-unlock.
       </p>
-    </section>
-
-    <section class="card">
-      <h2 class="h2">
-        <span data-i18n="ja">購入確認の方法</span>
-        <span data-i18n="en">How to confirm your purchase</span>
-      </h2>
-
-      <p class="p" data-i18n="ja">
-        Stripeのレシートメールが届く設定にしている場合、メールが購入の証跡になります。
-      </p>
-      <p class="p" data-i18n="en">
-        If email receipts are enabled, your Stripe receipt email is your proof of purchase.
-      </p>
-
-      <div class="code">Tip: If you didn’t receive a receipt, check your spam folder.</div>
-
-      <p class="p muted" data-i18n="ja">※将来「購入済みの人だけPro表示」へ移行する際は、ここを更新する。</p>
-      <p class="p muted" data-i18n="en">We’ll update this page when we add a proper “purchased-only” unlock flow.</p>
     </section>
   </main>
 
@@ -176,19 +177,48 @@
 
   <script>
     (function(){
+      // language
       const langButtons = document.querySelectorAll(".nw-lang-switch button");
       const i18nNodes = document.querySelectorAll("[data-i18n]");
       const browserLang = (navigator.language || "").toLowerCase();
       let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
 
       function applyLang(lang){
-        i18nNodes.forEach(el => {
-          el.style.display = (el.dataset.i18n === lang) ? "" : "none";
-        });
+        i18nNodes.forEach(el => { el.style.display = (el.dataset.i18n === lang) ? "" : "none"; });
         langButtons.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
         currentLang = lang;
+        renderState();
       }
       langButtons.forEach(btn => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+
+      // pro local flag (must match app.js)
+      const PRO_FLAG_KEY = "nw_command_safety_pro_enabled_v1";
+
+      const stateEl = document.getElementById("proState");
+      const btnEnable = document.getElementById("btnEnablePro");
+      const btnDisable = document.getElementById("btnDisablePro");
+
+      function t(ja,en){ return currentLang === "ja" ? ja : en; }
+
+      function renderState(){
+        const enabled = localStorage.getItem(PRO_FLAG_KEY) === "1";
+        stateEl.textContent = enabled
+          ? t("状態：Proはこの端末で有効です。ツールに戻って結果をチェックしてください。", "Status: Pro is enabled on this device. Go back to the tool and run a check.")
+          : t("状態：Proはまだ有効ではありません。上のボタンで有効化してください。", "Status: Pro is not enabled yet. Click the button above.");
+      }
+
+      btnEnable.addEventListener("click", () => {
+        localStorage.setItem(PRO_FLAG_KEY, "1");
+        renderState();
+        alert(t("Proをこの端末で有効化しました。ツールに戻ってください。", "Pro enabled on this device. Go back to the tool."));
+      });
+
+      btnDisable.addEventListener("click", () => {
+        localStorage.removeItem(PRO_FLAG_KEY);
+        renderState();
+        alert(t("Proを無効化しました。", "Pro disabled."));
+      });
+
       applyLang(currentLang);
     })();
   </script>
