@@ -86,7 +86,7 @@ html[data-lang="en"] .lang-btn[data-lang-btn="en"]{
 .checklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .checklist label{display:flex;gap:8px;align-items:flex-start;line-height:1.5}
 .checklist input{transform:translateY(2px)}
-.check-actions{display:flex;gap:8px;margin-top:10px}
+.check-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 
 /* tool */
 .tool{display:block}
@@ -170,7 +170,7 @@ html[data-lang="en"] .lang-btn[data-lang-btn="en"]{
 
 .warnings{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .warnings .empty{color:var(--muted);border:1px dashed var(--line);border-radius:14px;padding:10px;background:var(--card)}
-.nw-warn{ /* app.jsが生成するclassに合わせる */
+.nw-warn{
   border:1px solid var(--line);
   border-left-width:6px;
   border-radius:14px;
@@ -210,3 +210,27 @@ mark.hl-crit{background:var(--hlCrit)}
 /* footer */
 .footer{border-top:1px solid var(--line);background:#fff;padding:14px;color:var(--muted);font-size:13px}
 .footer p{max-width:980px;margin:6px auto;line-height:1.6}
+
+/* ===== Pro paywall UI ===== */
+.probox .codebox{ border:1px solid var(--line); background:var(--card); border-radius:14px; padding:12px; overflow:auto; }
+.probox .codebox code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-size:13px; line-height:1.6; white-space:pre;
+}
+
+.pro-price{
+  margin:10px 0 12px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  padding:12px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.pro-price-amount{ font-size:22px; font-weight:900; letter-spacing:-0.01em; }
+.pro-price-sub{ color:var(--muted); font-size:12px; margin-top:2px; }
+.pro-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+.unlocked-actions{ margin-top:10px; }
