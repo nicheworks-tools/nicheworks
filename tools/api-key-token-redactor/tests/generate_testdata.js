@@ -1,22 +1,23 @@
 /**
  * API Key & Token Redactor - local test data generator
- * - Generates secret-looking dummy strings locally.
- * - Output file is gitignored to avoid GitHub Secret Scanning issues.
+ * Output is gitignored. Generate realistic-looking patterns for detection testing.
  *
  * Usage:
  *   node ./generate_testdata.js
+ *
+ * Optional:
+ *   SAFE=1 node ./generate_testdata.js
+ *   -> inserts zero-width spaces in common prefixes (less likely to match scanners),
+ *      but may reduce match rate for your tool patterns.
  */
 
 const fs = require("fs");
 const path = require("path");
 
 const OUT = path.join(__dirname, "testdata.generated.txt");
+const SAFE = process.env.SAFE === "1";
 
 // ---- helpers ----
-function repeat(str, n) {
-  return Array.from({ length: n }).map(() => str).join("");
-}
-
 function alphaNum(len) {
   const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let s = "";
@@ -31,90 +32,94 @@ function hex(len) {
   return s;
 }
 
-// Break common secret prefixes so scanners are less likely to match.
-// Example: "sk-" -> "s" + "k-"
-function splitPrefix(prefix) {
-  if (prefix.length <= 1) return prefix;
-  return prefix.slice(0, 1) + "\u200b" + prefix.slice(1); // insert zero-width space
+function upperNum(len) {
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let s = "";
+  for (let i = 0; i < len; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  return s;
 }
 
-// Build token-like strings while avoiding "exact" known patterns when possible.
+// Example: "sk-" -> "s​k-" (ZWSP). SAFE mode only.
+function maybeSplitPrefix(prefix) {
+  if (!SAFE) return prefix;
+  if (prefix.length <= 1) return prefix;
+  return prefix.slice(0, 1) + "\u200b" + prefix.slice(1);
+}
+
+// ---- realistic-ish generators (for matching your tool) ----
 function mkOpenAIKeyLike() {
-  // original pattern: sk-[A-Za-z0-9]{20,}
-  // we avoid exact "sk-" by inserting ZWSP: s​k-
-  return `${splitPrefix("sk-")}${alphaNum(32)}`;
+  // sk-[A-Za-z0-9]{20,}
+  return `${maybeSplitPrefix("sk-")}${alphaNum(36)}`;
 }
 
 function mkStripeSecretLike(liveOrTest = "test") {
-  // original pattern: (sk|rk)_(live|test)_[A-Za-z0-9]{10,}
-  // avoid exact "sk_" / "rk_" by splitting: s​k_
+  // sk_(live|test)_[A-Za-z0-9]{10,}
   const p = liveOrTest === "live" ? "live" : "test";
-  return `${splitPrefix("sk_")}${p}_${alphaNum(24)}`;
+  return `${maybeSplitPrefix("sk_")}${p}_${alphaNum(28)}`;
 }
 
 function mkStripeRestrictedLike(liveOrTest = "test") {
+  // rk_(live|test)_[A-Za-z0-9]{10,}
   const p = liveOrTest === "live" ? "live" : "test";
-  return `${splitPrefix("rk_")}${p}_${alphaNum(24)}`;
+  return `${maybeSplitPrefix("rk_")}${p}_${alphaNum(28)}`;
 }
 
 function mkStripePublishableLike(liveOrTest = "test") {
-  // pk_(live|test)_
+  // pk_(live|test)_[A-Za-z0-9]{10,}
   const p = liveOrTest === "live" ? "live" : "test";
-  return `${splitPrefix("pk_")}${p}_${alphaNum(24)}`;
+  return `${maybeSplitPrefix("pk_")}${p}_${alphaNum(28)}`;
 }
 
 function mkAWSAccessKeyLike(prefix = "AKIA") {
   // (AKIA|ASIA)[0-9A-Z]{16}
-  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let rest = "";
-  for (let i = 0; i < 16; i++) rest += chars[Math.floor(Math.random() * chars.length)];
-  return `${prefix}${rest}`;
+  return `${prefix}${upperNum(16)}`;
 }
 
 function mkGitHubTokenLike(kind = "ghp") {
   // gh[pous]_[A-Za-z0-9]{20,}
-  // avoid exact "ghp_" by splitting: g​hp_
-  const prefix = `${kind}_`;
-  return `${splitPrefix(prefix)}${alphaNum(36)}`;
+  return `${maybeSplitPrefix(`${kind}_`)}${alphaNum(36)}`;
 }
 
 function mkSlackTokenLike(kind = "xoxb") {
-  // xox[baprs]-... pattern (tool: xox[baprs]-[A-Za-z0-9-]{10,})
-  // avoid exact "xoxb-" by splitting: x​oxb-
-  const prefix = `${kind}-`;
-  return `${splitPrefix(prefix)}${alphaNum(12)}-${alphaNum(12)}-${alphaNum(24)}`.replaceAll("_", "-");
+  // xox[baprs]-...
+  // keep hyphenated parts
+  const p = maybeSplitPrefix(`${kind}-`);
+  return `${p}${alphaNum(12)}-${alphaNum(12)}-${alphaNum(24)}`;
 }
 
 function mkJWTLike() {
-  // JWT: eyJ....<10>.<10>.<10>
-  // We keep "eyJ" but slightly reduce likelihood by inserting ZWSP after 'ey'
-  const header = "e" + "\u200b" + "yJ" + alphaNum(18).replace(/[+/=]/g, "A");
-  const payload = alphaNum(20).replace(/[+/=]/g, "B");
-  const sig = alphaNum(40).replace(/[+/=]/g, "C");
+  // JWT 3 parts, base64url-ish
+  const b64url = (n) =>
+    alphaNum(n)
+      .replace(/[+/=]/g, "A")
+      .replace(/_/g, "B")
+      .replace(/-/g, "C");
+  const header = "eyJ" + b64url(24);
+  const payload = b64url(28);
+  const sig = b64url(40);
   return `${header}.${payload}.${sig}`;
 }
 
 function mkGoogleAPIKeyLike() {
-  // tool Pro regex: AIza[0-9A-Za-z\-_]{30,}
-  // avoid exact "AIza" by splitting: A​Iza
-  return `${splitPrefix("AIza")}Sy${alphaNum(34)}`;
+  // AIza[0-9A-Za-z\-_]{30,}
+  return `${maybeSplitPrefix("AIza")}Sy${alphaNum(34)}`
+    .replace(/\+/g, "A")
+    .replace(/\//g, "B");
 }
 
 function mkSendGridLike() {
-  // SG.<...>.<...>
-  // avoid exact "SG." by splitting: S​G.
-  return `${splitPrefix("SG.")}${alphaNum(18)}.${alphaNum(22)}`;
+  // SG.[A-Za-z0-9_-]{10,}.[A-Za-z0-9_-]{10,}
+  return `${maybeSplitPrefix("SG.")}${alphaNum(18)}.${alphaNum(22)}`;
 }
 
 function mkTwilioSidLike() {
   // AC[0-9a-fA-F]{32}
-  // avoid exact "AC" by splitting A​C
-  return `${splitPrefix("AC")}${hex(32)}`;
+  return `${maybeSplitPrefix("AC")}${hex(32)}`;
 }
 
 function mkTwilioKeyLike() {
   // SK[0-9a-fA-F]{32}
-  return `${splitPrefix("SK")}${hex(32)}`;
+  return `${maybeSplitPrefix("SK")}${hex(32)}`;
 }
 
 function mkPemBlockLike() {
@@ -126,12 +131,12 @@ function mkPemBlockLike() {
   ].join("\n");
 }
 
-function mkTokenLike(len = 40) {
+function mkTokenLike(len = 44) {
   // generic token_like: [A-Za-z0-9_-]{32,}
   return alphaNum(len).replace(/[+/=]/g, "Z");
 }
 
-// ---- cases ----
+// ---- cases (copy/paste blocks) ----
 const cases = [
   ["[F-01] .env OpenAI key-like", `OPENAI_API_KEY=${mkOpenAIKeyLike()}`],
   ["[F-02] Bearer OpenAI key-like", `Authorization: Bearer ${mkOpenAIKeyLike()}`],
@@ -142,27 +147,27 @@ const cases = [
   ["[F-07] Stripe publishable test-like", `${mkStripePublishableLike("test")}`],
   ["[F-08] AWS Access Key ID (AKIA)", `AWS_ACCESS_KEY_ID=${mkAWSAccessKeyLike("AKIA")}`],
   ["[F-09] AWS Access Key ID (ASIA)", `temporary-ak=${mkAWSAccessKeyLike("ASIA")}`],
-  ["[F-10] GitHub token gho_-like", `token: ${mkGitHubTokenLike("gho")}`],
-  ["[F-11] GitHub token ghs_-like", `export GHS_TOKEN=${mkGitHubTokenLike("ghs")}`],
-  ["[F-12] Slack bot token-like", `${mkSlackTokenLike("xoxb")}`],
-  ["[F-13] Slack user token-like", `${mkSlackTokenLike("xoxp")}`],
-  ["[F-14] JWT-like", `${mkJWTLike()}`],
-  ["[F-15] Generic token-like", `session_token=${mkTokenLike(44)}`],
-  ["[F-16] GitHub token ghp_-like", `${mkGitHubTokenLike("ghp")}`],
+  ["[F-10] GitHub token gho_", `token: ${mkGitHubTokenLike("gho")}`],
+  ["[F-11] GitHub token ghs_", `export GHS_TOKEN=${mkGitHubTokenLike("ghs")}`],
+  ["[F-12] Slack bot token", `${mkSlackTokenLike("xoxb")}`],
+  ["[F-13] Slack user token", `${mkSlackTokenLike("xoxp")}`],
+  ["[F-14] JWT single line", `${mkJWTLike()}`],
+  ["[F-15] Generic token-like string", `session_token=${mkTokenLike(44)}`],
+  ["[F-16] GitHub token ghp_", `${mkGitHubTokenLike("ghp")}`],
 
-  ["[P-01] Google API key-like (Pro)", `GOOGLE_API_KEY=${mkGoogleAPIKeyLike()}`],
-  ["[P-02] Google API key-like in URL (Pro)", `https://example.com/maps?key=${mkGoogleAPIKeyLike()}`],
-  ["[P-03] SendGrid key-like (Pro)", `SENDGRID_API_KEY=${mkSendGridLike()}`],
-  ["[P-04] SendGrid bearer key-like (Pro)", `Authorization: Bearer ${mkSendGridLike()}`],
-  ["[P-05] Twilio SID-like (Pro)", `TWILIO_ACCOUNT_SID=${mkTwilioSidLike()}`],
-  ["[P-06] Twilio key-like (Pro)", `TWILIO_API_KEY=${mkTwilioKeyLike()}`],
-  ["[P-07] PEM private key block-like (Pro)", mkPemBlockLike()],
+  ["[P-01] Google API key (Pro)", `GOOGLE_API_KEY=${mkGoogleAPIKeyLike()}`],
+  ["[P-02] Google API key in URL (Pro)", `https://example.com/maps?key=${mkGoogleAPIKeyLike()}`],
+  ["[P-03] SendGrid API key (Pro)", `SENDGRID_API_KEY=${mkSendGridLike()}`],
+  ["[P-04] SendGrid bearer header (Pro)", `Authorization: Bearer ${mkSendGridLike()}`],
+  ["[P-05] Twilio Account SID (Pro)", `TWILIO_ACCOUNT_SID=${mkTwilioSidLike()}`],
+  ["[P-06] Twilio API key (Pro)", `TWILIO_API_KEY=${mkTwilioKeyLike()}`],
+  ["[P-07] PEM private key block (Pro)", mkPemBlockLike()],
 
   ["[E-01] UUID (should NOT match)", "550e8400-e29b-41d4-a716-446655440000"],
   ["[E-02] SHA256-like hex (should NOT match)", hex(64)],
   ["[E-03] Base64-ish (should NOT match)", "QW5vdGhlckxvbmdCYXNlNjRTdHlsZVN0cmluZw=="],
   ["[E-04] Hyphenated ID (should NOT match)", "abc123-def456-ghi789-jkl012-mno345-pqr678-stu901"],
-  ["[E-05] Short prefix (should NOT match)", "sk-short"],
+  ["[E-05] Short sk prefix (should NOT match)", "sk-short"],
   ["[E-06] Incomplete Slack prefix (should NOT match)", "xox-justprefix-without-body"],
   ["[E-07] Short Twilio prefix (should NOT match)", "AC12345"],
   ["[E-08] JWT header only (should NOT match)", "eyJhbGciOiJIUzI1NiJ9"],
@@ -170,10 +175,11 @@ const cases = [
   ["[E-10] Broken token across lines (should NOT match)", "messy sk_test_split\nover_two_lines_token"],
 ];
 
-// ---- write file ----
+// ---- write ----
 const lines = [];
 lines.push("# Generated test data for API Key & Token Redactor");
-lines.push("# DO NOT COMMIT THIS FILE. It may contain secret-looking strings.");
+lines.push("# DO NOT COMMIT THIS FILE.");
+lines.push(`# SAFE=${SAFE ? "1" : "0"}`);
 lines.push(`# Generated at: ${new Date().toISOString()}`);
 lines.push("");
 
@@ -184,4 +190,4 @@ for (const [title, body] of cases) {
 }
 
 fs.writeFileSync(OUT, lines.join("\n"), "utf8");
-console.log(`OK: wrote ${path.relative(process.cwd(), OUT)} (${lines.length} lines)`);
+console.log(`OK: wrote ${path.relative(process.cwd(), OUT)}`);
