@@ -9,7 +9,6 @@
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/laundry-code-decode/">
 
-  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks">
   <meta property="og:description" content="洗濯記号を選ぶだけで意味を即表示。日本語/英語対応、完全ローカル。">
@@ -17,20 +16,16 @@
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
 
   <link rel="stylesheet" href="./style.css">
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,15 +51,52 @@
   </header>
 
   <main class="nw-main">
-
-    <!-- ad-top -->
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
     <section class="symbol-picker">
-      <p data-i18n="ja">調べたい洗濯記号を選択してください</p>
-      <p data-i18n="en">Select a laundry symbol</p>
+      <p data-i18n="ja">カテゴリを選んで、洗濯記号をタップしてください</p>
+      <p data-i18n="en">Choose a category, then tap a symbol</p>
+
+      <div class="cat-tabs" role="tablist" aria-label="Laundry categories">
+        <button class="cat-tab" data-cat="wash" type="button">Wash</button>
+        <button class="cat-tab" data-cat="bleach" type="button">Bleach</button>
+        <button class="cat-tab" data-cat="dry" type="button">Dry</button>
+        <button class="cat-tab" data-cat="iron" type="button">Iron</button>
+        <button class="cat-tab" data-cat="dryclean" type="button">Dry Clean</button>
+      </div>
 
       <div id="symbolGrid" class="symbol-grid"></div>
+    </section>
+
+    <section class="ocr-box">
+      <details>
+        <summary>
+          <span data-i18n="ja">📷 写真から候補を探す（ベータ）</span>
+          <span data-i18n="en">📷 Find candidates from a photo (Beta)</span>
+        </summary>
+
+        <p class="ocr-note" data-i18n="ja">
+          タグの記号をできるだけ大きく写した写真を入れてください。上位3候補を提案します（完全自動ではありません）。
+        </p>
+        <p class="ocr-note" data-i18n="en">
+          Upload a photo where the symbol is large and clear. We'll suggest top 3 candidates (not fully automatic).
+        </p>
+
+        <div class="ocr-controls">
+          <input id="ocrFile" type="file" accept="image/*">
+          <button id="ocrRun" type="button">Run</button>
+        </div>
+
+        <div class="ocr-preview">
+          <img id="ocrPreviewImg" alt="">
+        </div>
+
+        <div class="ocr-candidates">
+          <div class="ocr-cand-title" data-i18n="ja">候補</div>
+          <div class="ocr-cand-title" data-i18n="en">Candidates</div>
+          <div id="ocrCandidatesGrid" class="ocr-cand-grid"></div>
+        </div>
+      </details>
     </section>
 
     <section id="result" class="result hidden">
@@ -75,7 +107,6 @@
       <p id="resultDetail" class="result-detail"></p>
     </section>
 
-    <!-- 寄付 -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">
         このツールが役に立ったら、開発継続のためのご支援をお願いします。
@@ -89,23 +120,18 @@
       </div>
     </div>
 
-    <!-- ad-bottom -->
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
-    <!-- 内部リンク -->
     <div class="nw-links">
       <a href="/tools/manual-finder/">ManualFinder</a> /
       <a href="/tools/trashnavi/">TrashNavi</a> /
       <a href="/tools/log-formatter/">LogFormatter</a>
     </div>
-
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">
-      本ツールは一般的な洗濯表示規格に基づく参考情報です。
-    </p>
+    <p class="nw-footer-line">本ツールは一般的な洗濯表示規格に基づく参考情報です。</p>
   </footer>
 
   <script src="data.js"></script>
