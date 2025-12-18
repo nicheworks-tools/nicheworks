@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>コマンド実行前チェック｜Command Safety Checker | NicheWorks</title>
+  <meta name="description" content="AIが出したbash/zsh/PowerShellコマンドを実行前に貼るだけ。破壊・漏洩・権限過多など危険パターンを検出し、リスクをLow/Medium/Highで表示。ブラウザ完結・保存なし。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/command-safety-checker/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="コマンド実行前チェック｜Command Safety Checker | NicheWorks">
+  <meta property="og:description" content="AIコマンドを実行前に貼るだけで危険パターンを検出。破壊・漏洩・権限過多を素早く可視化。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/command-safety-checker/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense (MUST be in each tool head) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (token: replace when ready) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Command Safety Checker",
+    "url": "https://nicheworks.pages.dev/tools/command-safety-checker/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Check shell/PowerShell commands for risky patterns before running them. Detect destructive, exfiltration, and privilege-related commands in-browser.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <h1 class="nw-title">
+        <span data-i18n="ja">Command Safety Checker（コマンド実行前チェック）</span>
+        <span data-i18n="en">Command Safety Checker</span>
+      </h1>
+
+      <p class="nw-sub" data-i18n="ja">
+        AIが出したコマンドを実行前に貼るだけ。破壊・漏洩・権限過多などの危険パターンを検出します（保存なし）。
+      </p>
+      <p class="nw-sub" data-i18n="en">
+        Paste AI-generated commands before running them. Detect destructive, exfiltration, and risky privilege patterns (no upload, no storage).
+      </p>
+
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" data-lang="ja">JP</button> /
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <div class="row row-wrap">
+        <div class="field">
+          <label class="label" for="osSelect">
+            <span data-i18n="ja">OS</span>
+            <span data-i18n="en">OS</span>
+          </label>
+          <select id="osSelect" class="select">
+            <option value="unix">Linux/macOS (bash/zsh)</option>
+            <option value="powershell">Windows (PowerShell)</option>
+          </select>
+        </div>
+
+        <div class="field grow">
+          <label class="label" for="commandInput">
+            <span data-i18n="ja">コマンド（複数行OK）</span>
+            <span data-i18n="en">Command (multi-line OK)</span>
+          </label>
+          <textarea id="commandInput" class="textarea" rows="9" placeholder="rm -rf ./build
+curl -fsSL https://example.com/install.sh | sh"></textarea>
+
+          <p class="hint" data-i18n="ja">⏳ チェックは通常すぐ終わります（ローカル処理）。</p>
+          <p class="hint" data-i18n="en">⏳ Checks usually finish instantly (local processing).</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btnCheck" class="btn btn-primary" type="button">
+          <span data-i18n="ja">チェックする</span>
+          <span data-i18n="en">Run check</span>
+        </button>
+        <button id="btnClear" class="btn" type="button">
+          <span data-i18n="ja">クリア</span>
+          <span data-i18n="en">Clear</span>
+        </button>
+      </div>
+
+      <div id="progress" class="progress-wrap" aria-live="polite" hidden>
+        <div class="progress-bar" role="progressbar" aria-label="Checking"></div>
+        <p class="progress-text" data-i18n="ja">検出中…</p>
+        <p class="progress-text" data-i18n="en">Checking…</p>
+      </div>
+    </section>
+
+    <section id="resultSection" class="card" hidden>
+      <div class="result-head">
+        <div class="risk">
+          <span class="risk-label" data-i18n="ja">総合リスク</span>
+          <span class="risk-label" data-i18n="en">Overall risk</span>
+          <span id="riskBadge" class="badge">—</span>
+        </div>
+
+        <div class="chips" id="summaryChips"></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 class="h2">
+        <span data-i18n="ja">検出結果</span>
+        <span data-i18n="en">Findings</span>
+      </h2>
+
+      <div id="findings" class="findings"></div>
+
+      <div class="divider"></div>
+
+      <h2 class="h2">
+        <span data-i18n="ja">最低限の安全ヒント</span>
+        <span data-i18n="en">Minimum safety hints</span>
+      </h2>
+
+      <ul id="hints" class="ul"></ul>
+
+      <div class="result-actions">
+        <button id="btnReset" class="btn btn-danger" type="button">
+          <span data-i18n="ja">リセット</span>
+          <span data-i18n="en">Reset</span>
+        </button>
+        <button id="btnCopyReport" class="btn" type="button">
+          <span data-i18n="ja">レポートをコピー</span>
+          <span data-i18n="en">Copy report</span>
+        </button>
+      </div>
+
+      <div class="pro-block" id="proBlock">
+        <div class="pro-head">
+          <div class="pro-title">
+            <span class="badge badge-pro">PRO</span>
+            <span data-i18n="ja">買い切り：安全代替案テンプレ / 実行前チェックリスト</span>
+            <span data-i18n="en">One-time: safer alternatives / pre-run checklist</span>
+          </div>
+          <button id="btnUnlock" class="btn btn-primary" type="button">
+            <span data-i18n="ja">Proをアンロック（準備中）</span>
+            <span data-i18n="en">Unlock Pro (coming soon)</span>
+          </button>
+        </div>
+        <p class="pro-note" data-i18n="ja">※MVPではPro機能はUIのみ。課金導線は後で差し替え。</p>
+        <p class="pro-note" data-i18n="en">Pro is UI-only in MVP. Payment flow will be wired later.</p>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <p class="usage-link">
+      <a href="./usage.html">
+        <span data-i18n="ja">使い方はこちら</span>
+        <span data-i18n="en">How to use</span>
+      </a>
+    </p>
+
+    <div class="nw-links">
+      <a href="/tools/ai-output-safety-check/">AI Output Safety Check</a> /
+      <a href="/tools/api-key-token-redactor/">API Key &amp; Token Redactor</a> /
+      <a href="/tools/text-encoding-inspector/">Text Encoding Inspector</a> /
+      <a href="/tools/log-formatter/">Log Formatter</a>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
