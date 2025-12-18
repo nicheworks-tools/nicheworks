@@ -9,6 +9,7 @@
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/laundry-code-decode/">
 
+  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks">
   <meta property="og:description" content="洗濯記号を選ぶだけで意味を即表示。日本語/英語対応、完全ローカル。">
@@ -16,16 +17,20 @@
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
+  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
+  <!-- Cloudflare Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
 
   <link rel="stylesheet" href="./style.css">
 
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,18 +50,20 @@
     <p class="subtitle">Laundry Code Decode</p>
 
     <div class="nw-lang-switch">
-      <button data-lang="ja">JP</button> /
-      <button data-lang="en">EN</button>
+      <button data-lang="ja" type="button">JP</button> /
+      <button data-lang="en" type="button">EN</button>
     </div>
   </header>
 
   <main class="nw-main">
+    <!-- ad-top -->
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
     <section class="symbol-picker">
       <p data-i18n="ja">カテゴリを選んで、洗濯記号をタップしてください</p>
       <p data-i18n="en">Choose a category, then tap a symbol</p>
 
+      <!-- Category tabs -->
       <div class="cat-tabs" role="tablist" aria-label="Laundry categories">
         <button class="cat-tab" data-cat="wash" type="button">Wash</button>
         <button class="cat-tab" data-cat="bleach" type="button">Bleach</button>
@@ -65,9 +72,21 @@
         <button class="cat-tab" data-cat="dryclean" type="button">Dry Clean</button>
       </div>
 
+      <!-- Search -->
+      <div class="search-row">
+        <input id="q" type="search" placeholder="Search / 検索（例: 30 / bleach / 手洗い）" autocomplete="off">
+        <label class="search-all">
+          <input id="searchAll" type="checkbox">
+          <span data-i18n="ja">全カテゴリ</span>
+          <span data-i18n="en">All</span>
+        </label>
+      </div>
+
+      <!-- Grid -->
       <div id="symbolGrid" class="symbol-grid"></div>
     </section>
 
+    <!-- OCR Beta -->
     <section class="ocr-box">
       <details>
         <summary>
@@ -99,6 +118,7 @@
       </details>
     </section>
 
+    <!-- Result -->
     <section id="result" class="result hidden">
       <h2 data-i18n="ja">意味</h2>
       <h2 data-i18n="en">Meaning</h2>
@@ -107,6 +127,7 @@
       <p id="resultDetail" class="result-detail"></p>
     </section>
 
+    <!-- Donate -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">
         このツールが役に立ったら、開発継続のためのご支援をお願いします。
@@ -115,13 +136,15 @@
         If this tool helped you, please consider supporting its development.
       </p>
       <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>
       </div>
     </div>
 
+    <!-- ad-bottom -->
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
+    <!-- internal links -->
     <div class="nw-links">
       <a href="/tools/manual-finder/">ManualFinder</a> /
       <a href="/tools/trashnavi/">TrashNavi</a> /
