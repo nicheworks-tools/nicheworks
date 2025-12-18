@@ -2,7 +2,7 @@
 
 /**
  * SQL / DB Risk Checker (MVP)
- * - browser-only, no storage
+ * - browser-only, no storage (except language preference)
  * - regex-based, lightweight (no SQL parsing)
  */
 
@@ -36,7 +36,6 @@ function escapeHtml(s) {
 }
 
 function stripSqlComments(sql) {
-  // remove /* */ and -- ... and # ... (mysql style)
   let s = sql.replace(/\/\*[\s\S]*?\*\//g, " ");
   s = s.replace(/--.*$/gm, " ");
   s = s.replace(/^\s*#.*$/gm, " ");
@@ -44,7 +43,6 @@ function stripSqlComments(sql) {
 }
 
 function splitStatements(sql) {
-  // naive split by ';' but avoid splitting inside single/double quotes
   const out = [];
   let buf = "";
   let inS = false;
@@ -68,31 +66,202 @@ function splitStatements(sql) {
   return out;
 }
 
+/* ===== i18n ===== */
+const I18N = {
+  ja: {
+    title: "SQL / DB 実行前リスクチェッカー",
+    desc: "実行する前に「事故るSQL」を止めるだけ。<strong>SQLは修正しません</strong>（判定と理由の提示のみ）。",
+    miniNote: "Browser-only / No data is sent.（ブラウザ完結・送信なし）",
+
+    howTitle: "簡易的な使い方",
+    howSteps: [
+      "SQLを貼り付け（複数文OK）",
+      "必要なら「対象環境」「DB種別」「読み取り専用」を選択",
+      "<strong>リスクチェック</strong> → 危険度／警告／ハイライトを確認",
+    ],
+    usageLink: "詳しい使い方（Usage）を見る →",
+    howNote: "※このツールは実行結果や安全性を保証しません。最終判断はあなたが行ってください。",
+
+    checkTitle: "実行前チェックリスト",
+    c1: "対象DBは本番ですか？（Prodなら慎重に）",
+    c2: "バックアップ／ロールバック手段はありますか？",
+    c3: "影響行数を事前に確認しましたか？（SELECT COUNTなど）",
+    c4: "権限は最小限ですか？（必要なロールのみ）",
+    c5: "トランザクションで囲むべきですか？（BEGIN/ROLLBACK/COMMIT）",
+    checkAll: "全部チェック",
+    clearAll: "全部外す",
+
+    sqlInputTitle: "SQL入力",
+    sqlPlaceholder:
+`ここにSQLを貼り付けてください（複数文OK / ; 区切り）
+例:
+DELETE FROM users WHERE id = 123;`,
+    envLabel: "対象環境（自己申告）",
+    envHelp: "※実際の接続先を判定するものではありません",
+    dbLabel: "DB種別",
+    roLabel: "読み取り専用モード",
+    roHelp: "ONにするとSELECT以外を強く警告します",
+    checkBtn: "リスクチェック",
+    clearBtn: "クリア",
+    riskLabel: "リスク判定",
+
+    sumTitle: "検出サマリー",
+    sumStatements: "文数",
+    sumWrites: "書き込み系操作",
+    sumKeywords: "危険キーワード数",
+
+    warnTitle: "警告一覧",
+    emptyWarn: "まだ結果はありません。SQLを入力して「リスクチェック」を押してください。",
+    previewTitle: "SQLプレビュー（危険箇所を強調表示）",
+    previewEmpty: "ここに解析結果が表示されます",
+
+    proTitle: "Pro機能（買い切り）",
+    proList: [
+      "安全実行テンプレの提示（トランザクション手順）",
+      "DB種別ごとの注意点表示",
+      "ルールプリセット（Read-only強制 / Migrationモード）",
+    ],
+    noFix: "※SQLの自動修正は行いません",
+
+    disclaimer: "このツールはSQLの実行結果や安全性を保証するものではありません。本番環境では必ずバックアップ・権限・トランザクションを確認してください。",
+    donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。",
+  },
+  en: {
+    title: "SQL / DB Query Risk Checker",
+    desc: "Paste SQL before you run it. It flags risky patterns. <strong>This tool does not modify your SQL</strong> (it only warns).",
+    miniNote: "Browser-only / No data is sent.",
+
+    howTitle: "Quick Usage",
+    howSteps: [
+      "Paste SQL (multiple statements allowed)",
+      "Optionally choose Environment / DB Type / Read-only",
+      "<strong>Check Risk</strong> → review risk level, warnings, highlights",
+    ],
+    usageLink: "Read Usage →",
+    howNote: "This tool does not guarantee safety. You are responsible for the final decision.",
+
+    checkTitle: "Pre-run Checklist",
+    c1: "Is this production? (Be extra careful for Prod)",
+    c2: "Do you have backup / rollback options?",
+    c3: "Did you verify affected rows? (e.g., SELECT COUNT)",
+    c4: "Are privileges minimized (least privilege)?",
+    c5: "Should this be wrapped in a transaction? (BEGIN/ROLLBACK/COMMIT)",
+    checkAll: "Check all",
+    clearAll: "Uncheck all",
+
+    sqlInputTitle: "SQL Input",
+    sqlPlaceholder:
+`Paste your SQL here (multiple statements allowed, separated by ;)
+Example:
+DELETE FROM users WHERE id = 123;`,
+    envLabel: "Target Environment (Self-declared)",
+    envHelp: "This does not detect your actual database",
+    dbLabel: "Database Type",
+    roLabel: "Read-only Mode",
+    roHelp: "When ON, non-SELECT statements are strongly flagged",
+    checkBtn: "Check Risk",
+    clearBtn: "Clear",
+    riskLabel: "Risk Level",
+
+    sumTitle: "Detection Summary",
+    sumStatements: "Statements",
+    sumWrites: "Write Ops",
+    sumKeywords: "Risky Keywords",
+
+    warnTitle: "Warnings",
+    emptyWarn: "No results yet. Paste SQL and click “Check Risk”.",
+    previewTitle: "SQL Preview (Highlights)",
+    previewEmpty: "Analysis result will appear here",
+
+    proTitle: "Pro Features (One-time)",
+    proList: [
+      "Safe execution templates (transaction steps)",
+      "Database-specific cautions",
+      "Rule presets (Read-only enforced / Migration mode)",
+    ],
+    noFix: "This tool never modifies your SQL.",
+
+    disclaimer: "This tool does not guarantee execution safety or results. Always verify backups, privileges, and transactions before running SQL in production.",
+    donateText: "If this tool helped you, consider supporting ongoing development.",
+  },
+};
+
+function setLang(lang) {
+  const l = (lang === "en") ? "en" : "ja";
+  document.documentElement.setAttribute("data-lang", l);
+  document.documentElement.lang = l;
+  localStorage.setItem("nw_lang", l);
+
+  const dict = I18N[l];
+
+  // text nodes
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (!dict[key]) return;
+    el.innerHTML = dict[key];
+  });
+
+  // list nodes
+  document.querySelectorAll("[data-i18n-list]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-list");
+    const items = dict[key];
+    if (!Array.isArray(items)) return;
+    el.innerHTML = items.map((x) => `<li>${x}</li>`).join("");
+  });
+
+  // placeholders
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (!dict[key]) return;
+    el.setAttribute("placeholder", dict[key]);
+  });
+
+  // also update existing empty texts if still default
+  const emptyWarn = document.querySelector(".warnings .empty");
+  if (emptyWarn) emptyWarn.textContent = dict.emptyWarn;
+  const prev = document.querySelector("#sqlPreview code");
+  if (prev && (prev.textContent || "").includes("解析結果") || (prev.textContent || "").includes("Analysis")) {
+    prev.textContent = dict.previewEmpty;
+  }
+
+  // risk badge label stays handled by app logic; text is set in riskLabel()
+}
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-lang-btn]");
+  if (!btn) return;
+  setLang(btn.getAttribute("data-lang-btn"));
+});
+
+(function initLang(){
+  const saved = localStorage.getItem("nw_lang");
+  setLang(saved || "ja");
+})();
+
+/* ===== detection rules ===== */
 const RULES = {
   critical: [
-    { key: "drop", re: /\bdrop\b/i, msg: "DROP が検出されました（致命的）", en: "DROP detected (critical)", hl: "hl-crit" },
-    { key: "truncate", re: /\btruncate\b/i, msg: "TRUNCATE が検出されました（致命的）", en: "TRUNCATE detected (critical)", hl: "hl-crit" },
-    { key: "alter", re: /\balter\s+table\b/i, msg: "ALTER TABLE が検出されました（致命的）", en: "ALTER TABLE detected (critical)", hl: "hl-crit" },
-    { key: "rename", re: /\brename\b/i, msg: "RENAME が検出されました（致命的）", en: "RENAME detected (critical)", hl: "hl-crit" },
-    { key: "grant", re: /\bgrant\b/i, msg: "GRANT が検出されました（致命的）", en: "GRANT detected (critical)", hl: "hl-crit" },
-    { key: "revoke", re: /\brevoke\b/i, msg: "REVOKE が検出されました（致命的）", en: "REVOKE detected (critical)", hl: "hl-crit" },
+    { re: /\bdrop\b/i, ja: "DROP が検出されました（致命的）", en: "DROP detected (critical)", hl: "hl-crit" },
+    { re: /\btruncate\b/i, ja: "TRUNCATE が検出されました（致命的）", en: "TRUNCATE detected (critical)", hl: "hl-crit" },
+    { re: /\balter\s+table\b/i, ja: "ALTER TABLE が検出されました（致命的）", en: "ALTER TABLE detected (critical)", hl: "hl-crit" },
+    { re: /\brename\b/i, ja: "RENAME が検出されました（致命的）", en: "RENAME detected (critical)", hl: "hl-crit" },
+    { re: /\bgrant\b/i, ja: "GRANT が検出されました（致命的）", en: "GRANT detected (critical)", hl: "hl-crit" },
+    { re: /\brevoke\b/i, ja: "REVOKE が検出されました（致命的）", en: "REVOKE detected (critical)", hl: "hl-crit" },
   ],
   high: [
-    { key: "cascade", re: /\bcascade\b/i, msg: "CASCADE が検出されました（危険）", en: "CASCADE detected (high)", hl: "hl-high" },
-    { key: "where1eq1", re: /\bwhere\s+1\s*=\s*1\b/i, msg: "WHERE 1=1 が検出されました（全件操作の可能性）", en: "WHERE 1=1 detected (possible full-table operation)", hl: "hl-high" },
+    { re: /\bcascade\b/i, ja: "CASCADE が検出されました（危険）", en: "CASCADE detected (high)", hl: "hl-high" },
+    { re: /\bwhere\s+1\s*=\s*1\b/i, ja: "WHERE 1=1 が検出されました（全件操作の可能性）", en: "WHERE 1=1 detected (possible full-table operation)", hl: "hl-high" },
   ],
   medium: [
-    { key: "select_star", re: /\bselect\s+\*\b/i, msg: "SELECT * が検出されました（注意）", en: "SELECT * detected (medium)", hl: "hl-med" },
-    { key: "like_any", re: /\blike\s+'%[^']*%'\b/i, msg: "LIKE '%...%' が検出されました（フルスキャン注意）", en: "LIKE '%...%' detected (possible full scan)", hl: "hl-med" },
+    { re: /\bselect\s+\*\b/i, ja: "SELECT * が検出されました（注意）", en: "SELECT * detected (medium)", hl: "hl-med" },
+    { re: /\blike\s+'%[^']*%'\b/i, ja: "LIKE '%...%' が検出されました（フルスキャン注意）", en: "LIKE '%...%' detected (possible full scan)", hl: "hl-med" },
   ],
 };
 
 function detectMissingWhere(stmt, kind) {
-  // kind: "update" | "delete"
   const s = stmt.toLowerCase();
   if (kind === "update") {
     if (!/\bupdate\b/.test(s)) return false;
-    // must have SET; if UPDATE exists but no WHERE => missing
     if (/\bset\b/.test(s) && !/\bwhere\b/.test(s)) return true;
   }
   if (kind === "delete") {
@@ -103,39 +272,36 @@ function detectMissingWhere(stmt, kind) {
 }
 
 function classify(stmt) {
-  const raw = stmt;
-  const cleaned = stripSqlComments(raw);
+  const cleaned = stripSqlComments(stmt);
   const lower = cleaned.toLowerCase();
 
   const warnings = [];
   let keywordHits = 0;
 
-  // destructive write checks
   const hasUpdate = /\bupdate\b/i.test(cleaned);
   const hasDelete = /\bdelete\b/i.test(cleaned);
   const hasInsert = /\binsert\b/i.test(cleaned);
   const hasDDL = /\b(drop|truncate|alter|create|rename)\b/i.test(cleaned);
   const hasWrite = hasUpdate || hasDelete || hasInsert || hasDDL;
 
-  // missing WHERE checks (Critical)
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
+
   if (detectMissingWhere(cleaned, "delete")) {
-    warnings.push({ sev: "crit", title: "DELETE文にWHERE句がありません", detail: "全件削除の可能性があります", hl: "hl-crit" });
+    warnings.push({ sev: "crit", title: (lang === "en") ? "DELETE without WHERE" : "DELETE文にWHERE句がありません", detail: (lang === "en") ? "May delete all rows" : "全件削除の可能性があります" });
     keywordHits++;
   }
   if (detectMissingWhere(cleaned, "update")) {
-    warnings.push({ sev: "crit", title: "UPDATE文にWHERE句がありません", detail: "全件更新の可能性があります", hl: "hl-crit" });
+    warnings.push({ sev: "crit", title: (lang === "en") ? "UPDATE without WHERE" : "UPDATE文にWHERE句がありません", detail: (lang === "en") ? "May update all rows" : "全件更新の可能性があります" });
     keywordHits++;
   }
 
-  // rule matches
-  const applyRules = (arr, sev, defaultDetail) => {
+  const applyRules = (arr, sev) => {
     for (const r of arr) {
       if (r.re.test(cleaned)) {
         warnings.push({
           sev,
-          title: r.msg,
-          detail: defaultDetail || r.en,
-          hl: r.hl,
+          title: (lang === "en") ? r.en : r.ja,
+          detail: `stmt`,
         });
         keywordHits++;
       }
@@ -146,24 +312,28 @@ function classify(stmt) {
   applyRules(RULES.high, "high");
   applyRules(RULES.medium, "med");
 
-  // medium: ORDER BY without LIMIT (rough)
   if (/\border\s+by\b/i.test(cleaned) && !/\blimit\b/i.test(cleaned) && /\bselect\b/i.test(cleaned)) {
-    warnings.push({ sev: "med", title: "ORDER BY + LIMIT無しの可能性", detail: "重いクエリになる場合があります", hl: "hl-med" });
+    warnings.push({
+      sev: "med",
+      title: (lang === "en") ? "ORDER BY without LIMIT" : "ORDER BY + LIMIT無しの可能性",
+      detail: (lang === "en") ? "Could be heavy query" : "重いクエリになる場合があります",
+    });
     keywordHits++;
   }
 
-  // read-only mode: any write is High/Critical
   const readOnly = els.readOnlyToggle.checked;
   if (readOnly && hasWrite) {
-    warnings.push({ sev: "high", title: "読み取り専用モードで書き込み系が検出されました", detail: "SELECT以外は避けてください", hl: "hl-high" });
+    warnings.push({
+      sev: "high",
+      title: (lang === "en") ? "Write ops detected in Read-only mode" : "読み取り専用モードで書き込み系が検出されました",
+      detail: (lang === "en") ? "Avoid non-SELECT statements" : "SELECT以外は避けてください",
+    });
     keywordHits++;
   }
 
-  // environment prod increases severity by one step (cap at crit)
   const env = els.envSelect.value;
-  let envBump = env === "prod";
+  const envBump = env === "prod";
 
-  // determine risk by worst warning
   const order = { low: 0, med: 1, high: 2, crit: 3 };
   let risk = "low";
 
@@ -173,11 +343,9 @@ function classify(stmt) {
   }
 
   if (envBump && risk !== "crit" && warnings.length > 0) {
-    // bump one step
     risk = risk === "high" ? "crit" : risk === "med" ? "high" : "med";
   }
 
-  // if nothing detected but it is pure SELECT => low; otherwise medium
   if (warnings.length === 0) {
     if (/^\s*select\b/i.test(cleaned)) risk = "low";
     else if (cleaned.trim().length > 0) risk = "med";
@@ -187,6 +355,13 @@ function classify(stmt) {
 }
 
 function riskLabel(risk) {
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
+  if (lang === "en") {
+    if (risk === "crit") return "Critical";
+    if (risk === "high") return "High";
+    if (risk === "med") return "Medium";
+    return "Low";
+  }
   if (risk === "crit") return "Critical（致命的）";
   if (risk === "high") return "High（危険）";
   if (risk === "med") return "Medium（注意）";
@@ -207,15 +382,17 @@ function renderWarnings(allWarnings) {
   const ul = els.warningsList;
   ul.innerHTML = "";
 
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
   if (allWarnings.length === 0) {
     const li = document.createElement("li");
-    li.className = "nw-empty";
-    li.textContent = "危険なパターンは検出されませんでした（ただし安全性を保証しません）。";
+    li.className = "empty";
+    li.textContent = (lang === "en")
+      ? "No risky patterns detected (not a guarantee)."
+      : "危険なパターンは検出されませんでした（ただし安全性を保証しません）。";
     ul.appendChild(li);
     return;
   }
 
-  // sort by severity desc
   const order = { crit: 3, high: 2, med: 1, low: 0 };
   allWarnings.sort((a, b) => (order[b.sev] ?? 0) - (order[a.sev] ?? 0));
 
@@ -231,10 +408,7 @@ function renderWarnings(allWarnings) {
 }
 
 function highlightSql(sql, highlights) {
-  // highlights: array of {re, cls}
   let safe = escapeHtml(sql);
-
-  // apply in order (critical first)
   for (const h of highlights) {
     safe = safe.replace(h.re, (m) => `<mark class="${h.cls}">${m}</mark>`);
   }
@@ -242,19 +416,15 @@ function highlightSql(sql, highlights) {
 }
 
 function buildHighlightRules() {
-  // critical -> high -> medium
-  const rules = [];
-
-  // missing where (we just highlight keywords)
-  rules.push({ re: /\b(drop|truncate|alter|grant|revoke)\b/gi, cls: "hl-crit" });
-  rules.push({ re: /\b(delete|update)\b/gi, cls: "hl-high" });
-  rules.push({ re: /\bwhere\s+1\s*=\s*1\b/gi, cls: "hl-high" });
-  rules.push({ re: /\bselect\s+\*\b/gi, cls: "hl-med" });
-  rules.push({ re: /\bcascade\b/gi, cls: "hl-high" });
-  rules.push({ re: /\border\s+by\b/gi, cls: "hl-med" });
-  rules.push({ re: /\blike\b/gi, cls: "hl-med" });
-
-  return rules;
+  return [
+    { re: /\b(drop|truncate|alter|grant|revoke)\b/gi, cls: "hl-crit" },
+    { re: /\b(delete|update)\b/gi, cls: "hl-high" },
+    { re: /\bwhere\s+1\s*=\s*1\b/gi, cls: "hl-high" },
+    { re: /\bselect\s+\*\b/gi, cls: "hl-med" },
+    { re: /\bcascade\b/gi, cls: "hl-high" },
+    { re: /\border\s+by\b/gi, cls: "hl-med" },
+    { re: /\blike\b/gi, cls: "hl-med" },
+  ];
 }
 
 function computeOverallRisk(perStmt) {
@@ -268,13 +438,15 @@ function computeOverallRisk(perStmt) {
 
 function onCheck() {
   const input = (els.sqlInput.value || "").trim();
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
+
   if (!input) {
     setBadge("low");
     els.sumStatements.textContent = "0";
     els.sumWrites.textContent = "0";
     els.sumKeywords.textContent = "0";
-    els.warningsList.innerHTML = `<li class="nw-empty">SQLが空です。入力してからチェックしてください。</li>`;
-    els.sqlPreview.innerHTML = `<code>ここに解析結果が表示されます</code>`;
+    els.warningsList.innerHTML = `<li class="empty">${(lang === "en") ? "SQL is empty." : "SQLが空です。入力してからチェックしてください。"}</li>`;
+    els.sqlPreview.innerHTML = `<code>${(lang === "en") ? I18N.en.previewEmpty : I18N.ja.previewEmpty}</code>`;
     return;
   }
 
@@ -284,30 +456,19 @@ function onCheck() {
   const overall = computeOverallRisk(results);
   setBadge(overall);
 
-  // summary
-  const statements = stmts.length;
-  const writes = results.filter((r) => r.hasWrite).length;
-  const keywordHits = results.reduce((a, r) => a + (r.keywordHits || 0), 0);
+  els.sumStatements.textContent = String(stmts.length);
+  els.sumWrites.textContent = String(results.filter((r) => r.hasWrite).length);
+  els.sumKeywords.textContent = String(results.reduce((a, r) => a + (r.keywordHits || 0), 0));
 
-  els.sumStatements.textContent = String(statements);
-  els.sumWrites.textContent = String(writes);
-  els.sumKeywords.textContent = String(keywordHits);
-
-  // warnings flatten
   const allWarnings = [];
   results.forEach((r, idx) => {
     r.warnings.forEach((w) => {
-      allWarnings.push({
-        ...w,
-        detail: (w.detail ? w.detail + " / " : "") + `stmt #${idx + 1}`,
-      });
+      allWarnings.push({ ...w, detail: `${w.detail || ""} (stmt #${idx + 1})` });
     });
   });
   renderWarnings(allWarnings);
 
-  // preview with highlight
-  const hlRules = buildHighlightRules();
-  const previewHtml = highlightSql(input, hlRules);
+  const previewHtml = highlightSql(input, buildHighlightRules());
   els.sqlPreview.innerHTML = `<code>${previewHtml}</code>`;
 }
 
@@ -321,8 +482,10 @@ function onClear() {
   els.sumStatements.textContent = "0";
   els.sumWrites.textContent = "0";
   els.sumKeywords.textContent = "0";
-  els.warningsList.innerHTML = `<li class="nw-empty">まだ結果はありません。SQLを入力して「リスクチェック」を押してください。</li>`;
-  els.sqlPreview.innerHTML = `<code>ここに解析結果が表示されます</code>`;
+
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
+  els.warningsList.innerHTML = `<li class="empty">${(lang === "en") ? I18N.en.emptyWarn : I18N.ja.emptyWarn}</li>`;
+  els.sqlPreview.innerHTML = `<code>${(lang === "en") ? I18N.en.previewEmpty : I18N.ja.previewEmpty}</code>`;
 }
 
 function setAllChecklist(checked) {
@@ -335,5 +498,4 @@ els.clearBtn.addEventListener("click", onClear);
 els.checkAllBtn.addEventListener("click", () => setAllChecklist(true));
 els.clearAllBtn.addEventListener("click", () => setAllChecklist(false));
 
-// initial
 onClear();
