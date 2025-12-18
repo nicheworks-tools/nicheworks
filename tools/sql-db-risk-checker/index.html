@@ -6,7 +6,6 @@
 
   <title>SQL / DB 実行前リスクチェッカー｜NicheWorks</title>
   <meta name="description" content="SQLを実行前に貼るだけ。破壊的操作・WHERE抜け・全件更新/削除などを検出し、危険度と理由を表示します。ブラウザ完結・保存なし。" />
-
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/sql-db-risk-checker/" />
 
   <meta property="og:type" content="website" />
@@ -14,21 +13,22 @@
   <meta property="og:description" content="SQLを実行前に貼るだけ。破壊的操作・WHERE抜け・全件更新/削除などを検出し、危険度と理由を表示。" />
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/sql-db-risk-checker/" />
 
-  <link rel="icon" href="/assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense（共通仕様 v2：各ツールheadに必須） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
+  <!-- ✅ 共通仕様：headerは「ツールタイトル＋1行説明」だけ（ロゴ常時表示しない） -->
   <header class="nw-header">
     <div class="nw-header-inner">
-      <a class="nw-brand" href="https://nicheworks.pages.dev/">
-        <img class="nw-logo" src="/assets/nicheworks-logo.png" alt="NicheWorks" />
-        <span class="nw-brand-text">NicheWorks</span>
-      </a>
-
-      <div class="nw-header-right">
-        <a class="nw-header-link" href="https://nicheworks.pages.dev/tools/">Tools</a>
-      </div>
+      <h1 class="nw-title">SQL / DB 実行前リスクチェッカー</h1>
+      <p class="nw-subtitle">
+        実行する前に「事故るSQL」を止めるだけ。<strong>SQLは修正しません</strong>（判定と理由の提示のみ）。
+      </p>
     </div>
   </header>
 
@@ -36,18 +36,10 @@
     <!-- 上部広告枠（必須） -->
     <div class="ad-slot ad-top">
       広告枠（準備中）
-      <!-- 審査通過後に広告コード -->
     </div>
 
-    <!-- ✅ ここ：ad-top直下に「簡易使い方 + usageリンク + 実行前チェックリスト」 -->
+    <!-- ✅ ad-top直下：簡易使い方 + usageリンク + 実行前チェックリスト -->
     <section class="nw-intro-card" aria-label="How to use + checklist">
-      <div class="nw-intro-head">
-        <h1 class="nw-title">SQL / DB 実行前リスクチェッカー</h1>
-        <p class="nw-subtitle">
-          実行する前に「事故るSQL」を止めるだけ。<strong>SQLは修正しません</strong>（判定と理由の提示のみ）。
-        </p>
-      </div>
-
       <div class="nw-intro-grid">
         <div class="nw-intro-block">
           <h2 class="nw-h2">簡易的な使い方</h2>
@@ -182,28 +174,34 @@ DELETE FROM users WHERE id = 123;
           本番環境では必ずバックアップ・権限・トランザクションを確認してください。
         </p>
       </div>
+
+      <!-- ✅ 寄付導線（共通仕様：OFUSE + Ko-fi 並列、広告のすぐ近くに置かない） -->
+      <div class="nw-donate" id="donate">
+        <p class="nw-donate-text">
+          このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
+        </p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
     </section>
 
-    <!-- 下部広告枠（任意） -->
+    <!-- 下部広告枠（推奨） -->
     <div class="ad-slot ad-bottom">
       広告枠（準備中）
-      <!-- 審査通過後に広告コード -->
     </div>
-
-    <!-- 寄付導線（必要になったら共通仕様に従って追加） -->
   </main>
 
+  <!-- ✅ 共通仕様のフッター形に統一 -->
   <footer class="nw-footer">
-    <div class="nw-footer-inner">
-      <p class="nw-footer-title">NicheWorks</p>
-      <p class="nw-footer-note">Browser-only / No data is sent.（ブラウザ完結・送信なし）</p>
-      <p class="nw-footer-links">
-        <a href="https://nicheworks.pages.dev/">Home</a>
-        <span>·</span>
-        <a href="https://nicheworks.pages.dev/tools/">Tools</a>
-      </p>
-      <p class="nw-footer-copy">© NicheWorks</p>
-    </div>
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
   </footer>
 
   <script src="./app.js" defer></script>
