@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>コマンド実行前チェック｜Command Safety Checker | NicheWorks</title>
-  <meta name="description" content="AIが出したbash/zsh/PowerShellコマンドを実行前に貼るだけ。破壊・漏洩・権限過多など危険パターンを検出し、リスクをLow/Medium/Highで表示。ブラウザ完結・保存なし。">
+  <meta name="description" content="AIが出してきたbash/zsh/PowerShellのコマンドを実行前に貼り付けて、破壊・漏洩・権限過多・危険な実行パターンを検出。リスクをLow/Medium/Highで表示。ブラウザ完結・保存なし。">
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/command-safety-checker/">
 
@@ -63,6 +63,59 @@
 
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- NEW: Quick Guide + Pro intro + usage link (above the input) -->
+    <section class="card">
+      <h2 class="h2">
+        <span data-i18n="ja">まずこれだけ（30秒）</span>
+        <span data-i18n="en">Quick start (30 seconds)</span>
+      </h2>
+
+      <ul class="ul">
+        <li data-i18n="ja">OSを選ぶ → コマンドを貼る → 「チェックする」</li>
+        <li data-i18n="ja">結果の <b>High / Medium</b> は「実行前に必ず確認」</li>
+        <li data-i18n="ja">迷うなら実行しない（最も安全）</li>
+
+        <li data-i18n="en">Pick OS → paste commands → click “Run check”</li>
+        <li data-i18n="en">Treat <b>High / Medium</b> as “verify before running”</li>
+        <li data-i18n="en">If unsure, don’t run it (safest choice)</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <div class="row row-wrap" style="align-items:center;">
+        <div class="field grow">
+          <p class="hint" data-i18n="ja">
+            📘 詳しい例・免責・安全運用のコツは「使い方」にまとめています。
+          </p>
+          <p class="hint" data-i18n="en">
+            📘 See “How to use” for examples, disclaimer, and safe practices.
+          </p>
+        </div>
+        <div class="field" style="min-width:200px;">
+          <a class="btn btn-primary" href="./usage.html" style="text-decoration:none;display:inline-block;width:100%;text-align:center;">
+            <span data-i18n="ja">使い方を見る</span>
+            <span data-i18n="en">Open usage</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="pro-block" style="margin-top:12px;">
+        <div class="pro-head">
+          <div class="pro-title">
+            <span class="badge badge-pro">PRO</span>
+            <span data-i18n="ja">買い切り：安全な代替案テンプレ／実行前チェックリスト</span>
+            <span data-i18n="en">One-time: safer alternatives / pre-run checklist</span>
+          </div>
+          <button id="btnUnlockTop" class="btn btn-primary" type="button">
+            <span data-i18n="ja">Proをアンロック（準備中）</span>
+            <span data-i18n="en">Unlock Pro (coming soon)</span>
+          </button>
+        </div>
+        <p class="pro-note" data-i18n="ja">※MVPではPro機能はUIのみ。課金導線は後で差し替え。</p>
+        <p class="pro-note" data-i18n="en">Pro is UI-only in MVP. Payment flow will be wired later.</p>
+      </div>
+    </section>
 
     <section class="card">
       <div class="row row-wrap">
@@ -176,12 +229,7 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
       </div>
     </div>
 
-    <p class="usage-link">
-      <a href="./usage.html">
-        <span data-i18n="ja">使い方はこちら</span>
-        <span data-i18n="en">How to use</span>
-      </a>
-    </p>
+    <!-- REMOVED: old footer-area usage link -->
 
     <div class="nw-links">
       <a href="/tools/ai-output-safety-check/">AI Output Safety Check</a> /
@@ -202,5 +250,19 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
   </footer>
 
   <script src="./app.js"></script>
+
+  <!-- NEW: wire the top Pro button to the same placeholder action -->
+  <script>
+    (function(){
+      var top = document.getElementById("btnUnlockTop");
+      if (!top) return;
+      top.addEventListener("click", function(){
+        alert((navigator.language || "").toLowerCase().startsWith("ja")
+          ? "MVPではProは準備中。課金導線は後で差し替えます。"
+          : "Pro is coming soon. Payment flow will be wired later."
+        );
+      });
+    })();
+  </script>
 </body>
 </html>
