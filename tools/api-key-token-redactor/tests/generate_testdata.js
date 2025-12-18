@@ -11,9 +11,11 @@
  *      but may reduce match rate for your tool patterns.
  */
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(__dirname, "testdata.generated.txt");
 const SAFE = process.env.SAFE === "1";
 
@@ -49,42 +51,42 @@ function maybeSplitPrefix(prefix) {
 // ---- realistic-ish generators (for matching your tool) ----
 function mkOpenAIKeyLike() {
   // sk-[A-Za-z0-9]{20,}
-  return `${maybeSplitPrefix("sk-")}${alphaNum(36)}`;
+  return `${maybeSplitPrefix("sk-")}DUMMY${alphaNum(30)}`;
 }
 
 function mkStripeSecretLike(liveOrTest = "test") {
   // sk_(live|test)_[A-Za-z0-9]{10,}
   const p = liveOrTest === "live" ? "live" : "test";
-  return `${maybeSplitPrefix("sk_")}${p}_${alphaNum(28)}`;
+  return `${maybeSplitPrefix("sk_")}${p}_DUMMY${alphaNum(20)}`;
 }
 
 function mkStripeRestrictedLike(liveOrTest = "test") {
   // rk_(live|test)_[A-Za-z0-9]{10,}
   const p = liveOrTest === "live" ? "live" : "test";
-  return `${maybeSplitPrefix("rk_")}${p}_${alphaNum(28)}`;
+  return `${maybeSplitPrefix("rk_")}${p}_DUMMY${alphaNum(20)}`;
 }
 
 function mkStripePublishableLike(liveOrTest = "test") {
   // pk_(live|test)_[A-Za-z0-9]{10,}
   const p = liveOrTest === "live" ? "live" : "test";
-  return `${maybeSplitPrefix("pk_")}${p}_${alphaNum(28)}`;
+  return `${maybeSplitPrefix("pk_")}${p}_DUMMY${alphaNum(20)}`;
 }
 
 function mkAWSAccessKeyLike(prefix = "AKIA") {
   // (AKIA|ASIA)[0-9A-Z]{16}
-  return `${prefix}${upperNum(16)}`;
+  return `${prefix}DUMMY${upperNum(11)}`;
 }
 
 function mkGitHubTokenLike(kind = "ghp") {
   // gh[pous]_[A-Za-z0-9]{20,}
-  return `${maybeSplitPrefix(`${kind}_`)}${alphaNum(36)}`;
+  return `${maybeSplitPrefix(`${kind}_`)}DUMMY${alphaNum(28)}`;
 }
 
 function mkSlackTokenLike(kind = "xoxb") {
   // xox[baprs]-...
   // keep hyphenated parts
   const p = maybeSplitPrefix(`${kind}-`);
-  return `${p}${alphaNum(12)}-${alphaNum(12)}-${alphaNum(24)}`;
+  return `${p}DUMMY-${alphaNum(10)}-DUMMY${alphaNum(14)}`;
 }
 
 function mkJWTLike() {
@@ -96,30 +98,30 @@ function mkJWTLike() {
       .replace(/-/g, "C");
   const header = "eyJ" + b64url(24);
   const payload = b64url(28);
-  const sig = b64url(40);
+  const sig = `DUMMY${b64url(34)}`;
   return `${header}.${payload}.${sig}`;
 }
 
 function mkGoogleAPIKeyLike() {
   // AIza[0-9A-Za-z\-_]{30,}
-  return `${maybeSplitPrefix("AIza")}Sy${alphaNum(34)}`
+  return `${maybeSplitPrefix("AIza")}DUMMY${alphaNum(32)}`
     .replace(/\+/g, "A")
     .replace(/\//g, "B");
 }
 
 function mkSendGridLike() {
   // SG.[A-Za-z0-9_-]{10,}.[A-Za-z0-9_-]{10,}
-  return `${maybeSplitPrefix("SG.")}${alphaNum(18)}.${alphaNum(22)}`;
+  return `${maybeSplitPrefix("SG.")}DUMMY${alphaNum(12)}.DUMMY${alphaNum(14)}`;
 }
 
 function mkTwilioSidLike() {
   // AC[0-9a-fA-F]{32}
-  return `${maybeSplitPrefix("AC")}${hex(32)}`;
+  return `${maybeSplitPrefix("AC")}DUMMY${hex(26)}`;
 }
 
 function mkTwilioKeyLike() {
   // SK[0-9a-fA-F]{32}
-  return `${maybeSplitPrefix("SK")}${hex(32)}`;
+  return `${maybeSplitPrefix("SK")}DUMMY${hex(26)}`;
 }
 
 function mkPemBlockLike() {

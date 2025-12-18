@@ -1,0 +1,5 @@
+{
+  "name": "api-key-token-redactor",
+  "private": true,
+  "type": "module"
+}

@@ -3,18 +3,14 @@
 // app.js (MVP + Stripe lightweight Pro unlock)
 // ===========================
 
+import { DEFAULT_PRO_RULES, scanAndRedact } from "./src/core.js";
+
 // Stripe Payment Link（あなたが作成したURL）
 const PRO_PAYMENT_URL = "https://buy.stripe.com/28E5kFezD0HXcO98wvcV205";
 
 // Pro unlock flag（静的サイト用：軽量解除）
 const PRO_FLAG_KEY = "nw_api_key_redactor_pro_v1";
 const PRO_RULES_KEY = "nw_api_key_redactor_rules_v1";
-
-const DEFAULT_PRO_RULES = {
-  mode: "keep_last", // keep_last | replace_all
-  keepLastN: 4,
-  replaceText: "[REDACTED]",
-};
 
 // ---------------------------
 // i18n (JP/EN) switch
@@ -126,83 +122,6 @@ function escapeHtml(str) {
 }
 
 // ---------------------------
-// Detection patterns
-// ---------------------------
-const FREE_PATTERNS = [
-  { key: "openai", label: "OpenAI key", regex: /\bsk-[A-Za-z0-9]{20,}\b/g },
-  { key: "stripe_secret", label: "Stripe secret", regex: /\b(sk|rk)_(live|test)_[A-Za-z0-9]{10,}\b/g },
-  { key: "stripe_pub", label: "Stripe publishable", regex: /\bpk_(live|test)_[A-Za-z0-9]{10,}\b/g },
-  { key: "aws_access_key_id", label: "AWS Access Key ID", regex: /\b(AKIA|ASIA)[0-9A-Z]{16}\b/g },
-  { key: "github_token", label: "GitHub token", regex: /\bgh[pous]_[A-Za-z0-9]{20,}\b/g },
-  { key: "slack_token", label: "Slack token", regex: /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g },
-  { key: "jwt", label: "JWT", regex: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
-  { key: "token_like", label: "Token-like", regex: /\b[A-Za-z0-9_\-]{32,}\b/g },
-];
-
-const PRO_EXTRA_PATTERNS = [
-  { key: "google_api", label: "Google API key", regex: /\bAIza[0-9A-Za-z\-_]{30,}\b/g },
-  { key: "sendgrid", label: "SendGrid key", regex: /\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
-  { key: "twilio_sid", label: "Twilio SID", regex: /\bAC[0-9a-fA-F]{32}\b/g },
-  { key: "twilio_key", label: "Twilio key", regex: /\bSK[0-9a-fA-F]{32}\b/g },
-  { key: "pem_private_key", label: "Private key (PEM)", regex: /-----BEGIN(?: RSA)? PRIVATE KEY-----[\s\S]*?-----END(?: RSA)? PRIVATE KEY-----/g },
-];
-
-// ---------------------------
-// Masking
-// ---------------------------
-function maskKeepEnds(str, keepStart, keepEnd) {
-  if (str.length <= keepStart + keepEnd + 6) return "[REDACTED]";
-  return `${str.slice(0, keepStart)}…${str.slice(-keepEnd)}`;
-}
-
-function maskJWT(jwt, rules, pro) {
-  const parts = jwt.split(".");
-  if (parts.length !== 3) return pro ? (rules.replaceText || "[REDACTED]") : "[REDACTED]";
-  if (pro && rules.mode === "replace_all") return rules.replaceText || "[REDACTED]";
-  const keepN = pro ? Math.max(0, Number(rules.keepLastN || 0)) : 4;
-  const sig = keepN > 0 ? `…${parts[2].slice(-keepN)}` : (rules.replaceText || "[REDACTED]");
-  return `${maskKeepEnds(parts[0], 3, 3)}.${(rules.replaceText || "[REDACTED]")}.${sig}`;
-}
-
-function applyProRule(original, rules) {
-  if (rules.mode === "replace_all") return rules.replaceText || "[REDACTED]";
-  const n = Math.max(0, Number(rules.keepLastN || 0));
-  if (n <= 0) return rules.replaceText || "[REDACTED]";
-  if (original.length <= n + 3) return rules.replaceText || "[REDACTED]";
-  return `…${original.slice(-n)}`;
-}
-
-function maskMatch(m, key, rules, pro) {
-  if (!pro) {
-    if (key === "jwt") return maskJWT(m, { ...DEFAULT_PRO_RULES }, false);
-    if (key === "pem_private_key") return "[REDACTED_PRIVATE_KEY]";
-    return maskKeepEnds(m, 4, 4);
-  }
-  if (key === "jwt") return maskJWT(m, rules, true);
-  if (key === "pem_private_key") return rules.replaceText || "[REDACTED_PRIVATE_KEY]";
-  return applyProRule(m, rules);
-}
-
-function scanAndRedact(inputText, pro, rules) {
-  const patterns = pro ? [...FREE_PATTERNS, ...PRO_EXTRA_PATTERNS] : [...FREE_PATTERNS];
-
-  const hits = {};
-  let output = inputText;
-
-  for (const p of patterns) {
-    let c = 0;
-    output = output.replace(p.regex, (m) => {
-      c++;
-      return maskMatch(m, p.key, rules, pro);
-    });
-    if (c > 0) hits[p.key] = { label: p.label, count: c };
-  }
-
-  const total = Object.values(hits).reduce((a, v) => a + v.count, 0);
-  const types = Object.keys(hits).length;
-
-  return { output, hits, total, types };
-}
 
 // ---------------------------
 // Main

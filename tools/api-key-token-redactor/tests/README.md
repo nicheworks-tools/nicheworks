@@ -26,6 +26,8 @@ Copy/paste sections into the tool UI to verify:
 * detection counts
 * masking output
 
+ローカル自動テストは `node tests/run_local_tests.mjs` を実行するだけです（`testdata.generated.txt` が無い場合は自動生成されます）。
+
 ## Notes
 
 * Generated samples are **dummy** and intended to mimic patterns.
