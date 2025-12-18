@@ -2,7 +2,7 @@
 
 /**
  * SQL / DB Risk Checker (MVP)
- * - browser-only, no storage (except language preference)
+ * - browser-only, no storage (except language + Pro unlock flag)
  * - regex-based, lightweight (no SQL parsing)
  */
 
@@ -116,6 +116,16 @@ DELETE FROM users WHERE id = 123;`,
     previewEmpty: "ここに解析結果が表示されます",
 
     proTitle: "Pro機能（買い切り）",
+    proLockedNote: "Proを購入すると、より安全な「実行手順テンプレ」やプリセット表示が使えます。",
+    proPriceSub: "買い切り / このブラウザで解放",
+    proBuyBtn: "Proを購入（準備中）",
+    proRestoreBtn: "購入済みを復元",
+    proUnlockedNote: "Proが解放されています。下のテンプレを「手順」として使ってください（自動修正はしません）。",
+    proTemplateTitle: "安全実行テンプレ（例）",
+    proCopyBtn: "テンプレをコピー",
+    proLockBtn: "Proをロック（テスト用）",
+    proUnlockedHint: "※将来：DB種別プリセット、Migrationモード、より厳密な検出ルールを追加予定。",
+
     proList: [
       "安全実行テンプレの提示（トランザクション手順）",
       "DB種別ごとの注意点表示",
@@ -126,6 +136,7 @@ DELETE FROM users WHERE id = 123;`,
     disclaimer: "このツールはSQLの実行結果や安全性を保証するものではありません。本番環境では必ずバックアップ・権限・トランザクションを確認してください。",
     donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。",
   },
+
   en: {
     title: "SQL / DB Query Risk Checker",
     desc: "Paste SQL before you run it. It flags risky patterns. <strong>This tool does not modify your SQL</strong> (it only warns).",
@@ -174,6 +185,16 @@ DELETE FROM users WHERE id = 123;`,
     previewEmpty: "Analysis result will appear here",
 
     proTitle: "Pro Features (One-time)",
+    proLockedNote: "Unlock safe execution templates and presets.",
+    proPriceSub: "One-time / unlocked in this browser",
+    proBuyBtn: "Buy Pro (coming soon)",
+    proRestoreBtn: "Restore purchase",
+    proUnlockedNote: "Pro is unlocked. Use the template as a checklist (this tool never edits your SQL).",
+    proTemplateTitle: "Safe Execution Template (example)",
+    proCopyBtn: "Copy template",
+    proLockBtn: "Lock Pro (test)",
+    proUnlockedHint: "Later: DB presets, Migration mode, stricter rules.",
+
     proList: [
       "Safe execution templates (transaction steps)",
       "Database-specific cautions",
@@ -216,15 +237,20 @@ function setLang(lang) {
     el.setAttribute("placeholder", dict[key]);
   });
 
-  // also update existing empty texts if still default
+  // update empty texts
   const emptyWarn = document.querySelector(".warnings .empty");
   if (emptyWarn) emptyWarn.textContent = dict.emptyWarn;
+
   const prev = document.querySelector("#sqlPreview code");
-  if (prev && (prev.textContent || "").includes("解析結果") || (prev.textContent || "").includes("Analysis")) {
-    prev.textContent = dict.previewEmpty;
+  if (prev) {
+    const t = prev.textContent || "";
+    if (t.includes("解析結果") || t.includes("Analysis")) {
+      prev.textContent = dict.previewEmpty;
+    }
   }
 
-  // risk badge label stays handled by app logic; text is set in riskLabel()
+  // Pro UI labels too
+  renderPro();
 }
 
 document.addEventListener("click", (e) => {
@@ -273,7 +299,6 @@ function detectMissingWhere(stmt, kind) {
 
 function classify(stmt) {
   const cleaned = stripSqlComments(stmt);
-  const lower = cleaned.toLowerCase();
 
   const warnings = [];
   let keywordHits = 0;
@@ -287,11 +312,19 @@ function classify(stmt) {
   const lang = document.documentElement.getAttribute("data-lang") || "ja";
 
   if (detectMissingWhere(cleaned, "delete")) {
-    warnings.push({ sev: "crit", title: (lang === "en") ? "DELETE without WHERE" : "DELETE文にWHERE句がありません", detail: (lang === "en") ? "May delete all rows" : "全件削除の可能性があります" });
+    warnings.push({
+      sev: "crit",
+      title: (lang === "en") ? "DELETE without WHERE" : "DELETE文にWHERE句がありません",
+      detail: (lang === "en") ? "May delete all rows" : "全件削除の可能性があります"
+    });
     keywordHits++;
   }
   if (detectMissingWhere(cleaned, "update")) {
-    warnings.push({ sev: "crit", title: (lang === "en") ? "UPDATE without WHERE" : "UPDATE文にWHERE句がありません", detail: (lang === "en") ? "May update all rows" : "全件更新の可能性があります" });
+    warnings.push({
+      sev: "crit",
+      title: (lang === "en") ? "UPDATE without WHERE" : "UPDATE文にWHERE句がありません",
+      detail: (lang === "en") ? "May update all rows" : "全件更新の可能性があります"
+    });
     keywordHits++;
   }
 
@@ -301,7 +334,7 @@ function classify(stmt) {
         warnings.push({
           sev,
           title: (lang === "en") ? r.en : r.ja,
-          detail: `stmt`,
+          detail: "stmt",
         });
         keywordHits++;
       }
@@ -351,7 +384,7 @@ function classify(stmt) {
     else if (cleaned.trim().length > 0) risk = "med";
   }
 
-  return { cleaned, lower, warnings, risk, keywordHits, hasWrite };
+  return { cleaned, warnings, risk, keywordHits, hasWrite };
 }
 
 function riskLabel(risk) {
@@ -498,4 +531,85 @@ els.clearBtn.addEventListener("click", onClear);
 els.checkAllBtn.addEventListener("click", () => setAllChecklist(true));
 els.clearAllBtn.addEventListener("click", () => setAllChecklist(false));
 
+/* ===== Pro unlock (UI-only MVP) ===== */
+const PRO_KEY = "nw_sql_pro";
+
+function isPro() {
+  return localStorage.getItem(PRO_KEY) === "1";
+}
+
+function setPro(v) {
+  if (v) localStorage.setItem(PRO_KEY, "1");
+  else localStorage.removeItem(PRO_KEY);
+  renderPro();
+}
+
+function renderPro() {
+  const tag = $("proStateTag");
+  const locked = $("proLocked");
+  const unlocked = $("proUnlocked");
+  if (!tag || !locked || !unlocked) return;
+
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
+  const dict = I18N[lang] || I18N.ja;
+
+  const pro = isPro();
+  if (pro) {
+    tag.textContent = "Unlocked";
+    locked.hidden = true;
+    unlocked.hidden = false;
+  } else {
+    tag.textContent = "Locked";
+    locked.hidden = false;
+    unlocked.hidden = true;
+  }
+
+  // ensure these labels match current language even if HTML was cached
+  const buy = $("buyProBtn");
+  const restore = $("restoreProBtn");
+  const copy = $("copyTemplateBtn");
+  const lock = $("lockProBtn");
+
+  if (buy) buy.textContent = dict.proBuyBtn || (lang === "en" ? "Buy Pro (coming soon)" : "Proを購入（準備中）");
+  if (restore) restore.textContent = dict.proRestoreBtn || (lang === "en" ? "Restore purchase" : "購入済みを復元");
+  if (copy) copy.textContent = dict.proCopyBtn || (lang === "en" ? "Copy template" : "テンプレをコピー");
+  if (lock) lock.textContent = dict.proLockBtn || (lang === "en" ? "Lock Pro (test)" : "Proをロック（テスト用）");
+}
+
+$("buyProBtn")?.addEventListener("click", () => {
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
+  alert(lang === "en"
+    ? "Payment is not connected yet."
+    : "決済はまだ接続していません。");
+});
+
+$("restoreProBtn")?.addEventListener("click", () => {
+  // MVP demo: unlock locally
+  setPro(true);
+});
+
+$("lockProBtn")?.addEventListener("click", () => {
+  setPro(false);
+});
+
+$("copyTemplateBtn")?.addEventListener("click", async () => {
+  const code = $("proTemplateCode")?.textContent || "";
+  const lang = document.documentElement.getAttribute("data-lang") || "ja";
+
+  try {
+    await navigator.clipboard.writeText(code.trim());
+    alert(lang === "en" ? "Copied." : "コピーしました。");
+  } catch {
+    // fallback
+    const ta = document.createElement("textarea");
+    ta.value = code.trim();
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    alert(lang === "en" ? "Copied." : "コピーしました。");
+  }
+});
+
 onClear();
+renderPro();
