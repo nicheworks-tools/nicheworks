@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>使い方｜Command Safety Checker | NicheWorks</title>
+  <meta name="description" content="Command Safety Checkerの使い方と注意点。AIが出したコマンドを実行前にチェックし、破壊・漏洩・権限過多などの危険パターンを検出します。安全保証ではありません。">
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/command-safety-checker/usage.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="使い方｜Command Safety Checker | NicheWorks">
+  <meta property="og:description" content="実行前に貼るだけで危険パターンを検出。使い方・免責・安全運用のコツ。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/command-safety-checker/usage.html">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- Cloudflare Web Analytics (token: replace when ready) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --soft:#f9fafb;
+      --danger:#b91c1c;
+      --warn:#b45309;
+      --ok:#047857;
+      --shadow:0 1px 8px rgba(0,0,0,.06);
+      --radius:14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--sans)}
+    a{color:inherit}
+    .nw-header{padding:16px 12px 10px;border-bottom:1px solid var(--line);background:#fff}
+    .nw-header-inner{max-width:960px;margin:0 auto}
+    .nw-title{margin:0;font-size:18px;line-height:1.25}
+    .nw-sub{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+    .nw-lang-switch{text-align:center;margin:6px 0 0;font-size:11px;color:var(--muted)}
+    .nw-lang-switch button{border:none;background:transparent;padding:0 2px;cursor:pointer;font-size:11px;color:#4b5563}
+    .nw-lang-switch button.active{font-weight:600;text-decoration:underline}
+    .nw-main{max-width:960px;margin:0 auto;padding:12px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px;margin:12px 0}
+    .h2{margin:0 0 10px;font-size:15px}
+    .p{margin:8px 0;color:#111827;font-size:13px;line-height:1.75}
+    .muted{color:var(--muted)}
+    .divider{height:1px;background:var(--line);margin:12px 0}
+    .ul{margin:0;padding-left:18px;font-size:13px;line-height:1.75}
+    .ul li{margin:6px 0}
+    .code{
+      font-family:var(--mono);
+      font-size:12px;
+      line-height:1.6;
+      background:var(--soft);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:10px;
+      white-space:pre-wrap;
+      word-break:break-word;
+      margin:8px 0;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:6px 10px;border-radius:999px;border:1px solid var(--line);
+      font-size:12px;background:#fff
+    }
+    .badge.danger{border-color:rgba(185,28,28,.25);background:rgba(185,28,28,.10);color:var(--danger);font-weight:700}
+    .badge.warn{border-color:rgba(180,83,9,.25);background:rgba(180,83,9,.10);color:var(--warn);font-weight:700}
+    .badge.ok{border-color:rgba(4,120,87,.25);background:rgba(4,120,87,.08);color:var(--ok);font-weight:700}
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{
+      appearance:none;border:1px solid #d1d5db;background:#fff;color:#111827;
+      padding:10px 12px;border-radius:10px;cursor:pointer;font-size:13px;text-decoration:none;display:inline-block
+    }
+    .btn:hover{background:var(--soft)}
+    .btn-primary{border-color:#111827;background:#111827;color:#fff}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer-line{margin:2px 0}
+    .nw-footer a{color:var(--muted);text-decoration:underline}
+    .callout{
+      border:1px solid rgba(180,83,9,.25);
+      background:rgba(180,83,9,.08);
+      border-radius:14px;
+      padding:12px;
+      margin:10px 0;
+    }
+    .callout-danger{
+      border-color:rgba(185,28,28,.25);
+      background:rgba(185,28,28,.08);
+    }
+    @media (max-width:480px){
+      .nw-main{padding:10px}
+      .btn{width:100%;text-align:center}
+      .btnrow{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <h1 class="nw-title">
+        <span data-i18n="ja">使い方｜Command Safety Checker</span>
+        <span data-i18n="en">How to use — Command Safety Checker</span>
+      </h1>
+
+      <p class="nw-sub" data-i18n="ja">
+        AIが出したコマンドを実行する前に、危険パターン（破壊・漏洩・権限過多など）を検出するためのページです。
+      </p>
+      <p class="nw-sub" data-i18n="en">
+        This page explains how to use the tool and important safety notes. It detects risky patterns (destructive, exfiltration, privilege).
+      </p>
+
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" data-lang="ja">JP</button> /
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <section class="card">
+      <div class="btnrow">
+        <a class="btn btn-primary" href="./index.html">
+          <span data-i18n="ja">ツールに戻る</span>
+          <span data-i18n="en">Back to tool</span>
+        </a>
+        <a class="btn" href="https://nicheworks.pages.dev/">
+          <span data-i18n="ja">NicheWorksトップ</span>
+          <span data-i18n="en">NicheWorks Home</span>
+        </a>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 class="h2">
+        <span data-i18n="ja">重要（免責）</span>
+        <span data-i18n="en">Important disclaimer</span>
+      </h2>
+
+      <div class="callout callout-danger">
+        <p class="p" data-i18n="ja">
+          <span class="badge danger">重要</span>
+          このツールは <b>安全を保証しません</b>。検出漏れや誤検知もありえます。
+          実行する前に、必ずあなた自身で内容・対象・影響範囲を確認してください。
+        </p>
+        <p class="p" data-i18n="en">
+          <span class="badge danger">IMPORTANT</span>
+          This tool <b>does not guarantee safety</b>. False positives/negatives can happen.
+          Always verify the command, targets, and impact yourself before running anything.
+        </p>
+      </div>
+
+      <p class="p muted" data-i18n="ja">
+        ブラウザ内で処理し、サーバーへの送信や保存は行いません（ただしブラウザ/OS側の挙動は各自で管理してください）。
+      </p>
+      <p class="p muted" data-i18n="en">
+        Processing is local in your browser; no upload/no storage (still, manage your own device/browser environment).
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 class="h2">
+        <span data-i18n="ja">使い方（3ステップ）</span>
+        <span data-i18n="en">How it works (3 steps)</span>
+      </h2>
+
+      <ol class="ul">
+        <li data-i18n="ja">OSを選ぶ（Linux/macOS or Windows PowerShell）</li>
+        <li data-i18n="ja">AIが出したコマンドを貼り付ける（複数行OK）</li>
+        <li data-i18n="ja">「チェックする」を押す → 総合リスクと検出理由を見る</li>
+
+        <li data-i18n="en">Choose OS (Linux/macOS or Windows PowerShell)</li>
+        <li data-i18n="en">Paste the command(s) (multi-line is OK)</li>
+        <li data-i18n="en">Click “Run check” → review overall risk and reasons</li>
+      </ol>
+
+      <div class="divider"></div>
+
+      <h2 class="h2">
+        <span data-i18n="ja">検出カテゴリ（MVP）</span>
+        <span data-i18n="en">Detection categories (MVP)</span>
+      </h2>
+
+      <ul class="ul">
+        <li data-i18n="ja"><b>破壊系</b>：rm -rf / git clean -fd / docker prune / dd / mkfs など</li>
+        <li data-i18n="ja"><b>漏洩・危険配布</b>：curl|sh / iwr|iex のような「外部取得→即実行」</li>
+        <li data-i18n="ja"><b>権限・所有者</b>：chmod 777 / chown -R / icacls grant など</li>
+        <li data-i18n="ja"><b>サービス影響</b>：systemctl stop / net stop / reboot / shutdown / kill -9</li>
+        <li data-i18n="ja"><b>危険パス疑い</b>：/ や ~、C:\ 直下など広範囲対象の疑い</li>
+
+        <li data-i18n="en"><b>Destructive</b>: rm -rf / git clean -fd / docker prune / dd / mkfs</li>
+        <li data-i18n="en"><b>Remote execution</b>: piping downloads to shell (curl|sh, iwr|iex)</li>
+        <li data-i18n="en"><b>Permissions</b>: chmod 777 / chown -R / icacls grant</li>
+        <li data-i18n="en"><b>System impact</b>: systemctl stop / net stop / reboot / shutdown / kill -9</li>
+        <li data-i18n="en"><b>Risky targets</b>: possible broad targets like /, ~, C:\ root</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 class="h2">
+        <span data-i18n="ja">よくある危険例</span>
+        <span data-i18n="en">Common risky examples</span>
+      </h2>
+
+      <p class="p" data-i18n="ja"><span class="badge danger">HIGH</span> 外部スクリプト即実行（避けるべき）</p>
+      <p class="p" data-i18n="en"><span class="badge danger">HIGH</span> Immediate remote execution (avoid)</p>
+      <div class="code">curl -fsSL https://example.com/install.sh | sh</div>
+
+      <p class="p" data-i18n="ja"><span class="badge warn">MEDIUM</span> 破壊的削除（対象確認が必須）</p>
+      <p class="p" data-i18n="en"><span class="badge warn">MEDIUM</span> Destructive deletion (verify targets)</p>
+      <div class="code">rm -rf ./build
+git clean -fd</div>
+
+      <p class="p" data-i18n="ja"><span class="badge warn">MEDIUM</span> 権限を広げすぎ（被害拡大の元）</p>
+      <p class="p" data-i18n="en"><span class="badge warn">MEDIUM</span> Over-permissive changes (can expand damage)</p>
+      <div class="code">chmod -R 777 ./public</div>
+    </section>
+
+    <section class="card">
+      <h2 class="h2">
+        <span data-i18n="ja">安全運用のコツ（最低限）</span>
+        <span data-i18n="en">Minimum safe practices</span>
+      </h2>
+
+      <div class="callout">
+        <ul class="ul">
+          <li data-i18n="ja"><b>対象確認</b>：pwd / ls / dir で「どこで何に当たるか」を見る</li>
+          <li data-i18n="ja"><b>段階実行</b>：いきなり一発で走らせず、影響の小さい確認から</li>
+          <li data-i18n="ja"><b>バックアップ</b>：git status / コピーバックアップ / スナップショット</li>
+          <li data-i18n="ja"><b>パイプ実行禁止</b>：curl|sh は中身を保存して読んでから</li>
+          <li data-i18n="ja"><b>権限は最小</b>：chmod/chown/icacls は範囲を狭く</li>
+
+          <li data-i18n="en"><b>Verify targets</b>: use pwd/ls/dir to confirm where it runs and what it touches</li>
+          <li data-i18n="en"><b>Run in steps</b>: don’t execute everything at once; start with low-impact checks</li>
+          <li data-i18n="en"><b>Back up</b>: git status, copy backup, snapshots</li>
+          <li data-i18n="en"><b>Avoid piping</b>: save & inspect scripts instead of curl|sh</li>
+          <li data-i18n="en"><b>Least privilege</b>: keep chmod/chown/icacls changes scoped</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="p muted" data-i18n="ja">
+        このツールは「実行していいか？」を決めるための材料を出すだけです。迷う場合は、実行しないのが安全です。
+      </p>
+      <p class="p muted" data-i18n="en">
+        This tool only helps you decide. If you’re unsure, the safest option is not to run it.
+      </p>
+
+      <div class="btnrow">
+        <a class="btn btn-primary" href="./index.html">
+          <span data-i18n="ja">ツールに戻る</span>
+          <span data-i18n="en">Back to tool</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="card">
+      <h2 class="h2">
+        <span data-i18n="ja">関連ツール</span>
+        <span data-i18n="en">Related tools</span>
+      </h2>
+      <p class="p muted" data-i18n="ja">
+        実行前に「文章/AI出力全体」もチェックしたい場合：
+      </p>
+      <p class="p muted" data-i18n="en">
+        For checking broader AI output (text/code/config):
+      </p>
+      <p class="p">
+        <a href="/tools/ai-output-safety-check/">AI Output Safety Check</a> /
+        <a href="/tools/api-key-token-redactor/">API Key &amp; Token Redactor</a> /
+        <a href="/tools/text-encoding-inspector/">Text Encoding Inspector</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script>
+    (function(){
+      const langButtons = document.querySelectorAll(".nw-lang-switch button");
+      const i18nNodes = document.querySelectorAll("[data-i18n]");
+      const browserLang = (navigator.language || "").toLowerCase();
+      let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
+
+      function applyLang(lang){
+        i18nNodes.forEach(el => {
+          el.style.display = (el.dataset.i18n === lang) ? "" : "none";
+        });
+        langButtons.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+        currentLang = lang;
+      }
+      langButtons.forEach(btn => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+      applyLang(currentLang);
+    })();
+  </script>
+</body>
+</html>
