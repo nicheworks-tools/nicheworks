@@ -64,7 +64,7 @@
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-    <!-- NEW: Quick Guide + Pro intro + usage link (above the input) -->
+    <!-- Quick Guide + Pro intro + usage link (above the input) -->
     <section class="card">
       <h2 class="h2">
         <span data-i18n="ja">まずこれだけ（30秒）</span>
@@ -107,13 +107,23 @@
             <span data-i18n="ja">買い切り：安全な代替案テンプレ／実行前チェックリスト</span>
             <span data-i18n="en">One-time: safer alternatives / pre-run checklist</span>
           </div>
-          <button id="btnUnlockTop" class="btn btn-primary" type="button">
-            <span data-i18n="ja">Proをアンロック（準備中）</span>
-            <span data-i18n="en">Unlock Pro (coming soon)</span>
-          </button>
+
+          <!-- Pro button (Payment Link) -->
+          <a
+            id="btnUnlockTop"
+            class="btn btn-primary"
+            href="https://buy.stripe.com/fZu00l8bfcqF29vfYXcV206"
+            target="_blank"
+            rel="noopener"
+            style="text-decoration:none;display:inline-block;width:100%;text-align:center;"
+          >
+            <span data-i18n="ja">Proをアンロック（買い切り $4.99）</span>
+            <span data-i18n="en">Unlock Pro (One-time · $4.99)</span>
+          </a>
         </div>
-        <p class="pro-note" data-i18n="ja">※MVPではPro機能はUIのみ。課金導線は後で差し替え。</p>
-        <p class="pro-note" data-i18n="en">Pro is UI-only in MVP. Payment flow will be wired later.</p>
+
+        <p class="pro-note" data-i18n="ja">※Proは「判断材料の強化」です。安全を保証するものではありません。</p>
+        <p class="pro-note" data-i18n="en">Pro provides better guidance. It does not guarantee safety.</p>
       </div>
     </section>
 
@@ -208,13 +218,23 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
             <span data-i18n="ja">買い切り：安全代替案テンプレ / 実行前チェックリスト</span>
             <span data-i18n="en">One-time: safer alternatives / pre-run checklist</span>
           </div>
-          <button id="btnUnlock" class="btn btn-primary" type="button">
-            <span data-i18n="ja">Proをアンロック（準備中）</span>
-            <span data-i18n="en">Unlock Pro (coming soon)</span>
-          </button>
+
+          <!-- Pro button (Payment Link) -->
+          <a
+            id="btnUnlock"
+            class="btn btn-primary"
+            href="https://buy.stripe.com/fZu00l8bfcqF29vfYXcV206"
+            target="_blank"
+            rel="noopener"
+            style="text-decoration:none;"
+          >
+            <span data-i18n="ja">Proをアンロック（買い切り $4.99）</span>
+            <span data-i18n="en">Unlock Pro (One-time · $4.99)</span>
+          </a>
         </div>
-        <p class="pro-note" data-i18n="ja">※MVPではPro機能はUIのみ。課金導線は後で差し替え。</p>
-        <p class="pro-note" data-i18n="en">Pro is UI-only in MVP. Payment flow will be wired later.</p>
+
+        <p class="pro-note" data-i18n="ja">※Proは「判断材料の強化」です。安全を保証するものではありません。</p>
+        <p class="pro-note" data-i18n="en">Pro provides better guidance. It does not guarantee safety.</p>
       </div>
     </section>
 
@@ -228,8 +248,6 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
-
-    <!-- REMOVED: old footer-area usage link -->
 
     <div class="nw-links">
       <a href="/tools/ai-output-safety-check/">AI Output Safety Check</a> /
@@ -250,19 +268,5 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
   </footer>
 
   <script src="./app.js"></script>
-
-  <!-- NEW: wire the top Pro button to the same placeholder action -->
-  <script>
-    (function(){
-      var top = document.getElementById("btnUnlockTop");
-      if (!top) return;
-      top.addEventListener("click", function(){
-        alert((navigator.language || "").toLowerCase().startsWith("ja")
-          ? "MVPではProは準備中。課金導線は後で差し替えます。"
-          : "Pro is coming soon. Payment flow will be wired later."
-        );
-      });
-    })();
-  </script>
 </body>
 </html>
