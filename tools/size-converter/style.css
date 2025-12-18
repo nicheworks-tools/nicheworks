@@ -1,67 +1,282 @@
 /* style.css — Size Converter (JP ↔ US/EU)
- * Keep this file minimal; base layout is from /assets/nw-base.css
+ * If /assets/nw-base.css is missing or not applied, this file provides
+ * NicheWorks-like fallback styling for common classes.
  */
 
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f9fafb;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --muted-2: #9ca3af;
+  --link: #2563eb;
+  --shadow: 0 1px 3px rgba(0,0,0,.06);
+  --radius: 12px;
+}
+
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+               Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+a { color: var(--link); }
+a:hover { text-decoration: underline; }
+
+.nw-main {
+  /* “スマホ寄りツール”扱い：600pxセンター寄せ1カラムを許可 */
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 14px 24px;
+}
+
+/* ===== Header ===== */
+.nw-header {
+  padding: 20px 14px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.nw-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.nw-header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ===== Lang Switch ===== */
+.nw-lang-switch {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nw-lang-switch button {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #374151;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.nw-lang-switch button.active {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+  font-weight: 600;
+}
+
+/* ===== Ads ===== */
+.ad-slot {
+  margin: 12px 0 16px;
+  padding: 10px;
+  border: 1px dashed #d1d5db;
+  color: var(--muted-2);
+  font-size: 11px;
+  text-align: center;
+  border-radius: var(--radius);
+  background: #fff;
+  min-height: 60px;
+}
+
+.ad-top { margin-top: 10px; }
+.ad-bottom { margin-bottom: 8px; }
+
+/* ===== Controls ===== */
 .tool-controls {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   margin: 8px 0 14px;
+}
+
+.tool-controls label {
+  display: block;
 }
 
 .tool-controls label span {
   display: inline-block;
   font-size: 12px;
-  color: #6b7280;
-  margin-bottom: 6px;
+  color: var(--muted);
+  margin: 0 0 6px;
 }
 
 .tool-controls select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  padding: 12px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   background: #ffffff;
-  color: #111827;
+  color: var(--text);
+  outline: none;
+}
+
+.tool-controls select:focus {
+  border-color: #c7d2fe;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* ===== Table ===== */
+#resultSection {
+  margin-top: 6px;
 }
 
 .size-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.size-table thead th {
+  background: var(--bg-soft);
+  color: #111827;
+  font-weight: 700;
 }
 
 .size-table th,
 .size-table td {
-  border: 1px solid #e5e7eb;
-  padding: 10px;
+  padding: 12px 12px;
   font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
 }
 
-.size-table thead th {
-  background: #f9fafb;
+.size-table th:last-child,
+.size-table td:last-child {
+  border-right: none;
+}
+
+.size-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .size-table .is-base {
   background: #fff7ed;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .size-table td.empty {
   text-align: center;
-  color: #6b7280;
-  padding: 18px 10px;
+  color: var(--muted);
+  padding: 18px 12px;
 }
 
+/* ===== Disclaimer ===== */
 .disclaimer {
-  margin: 10px 0 0;
+  margin: 12px 2px 0;
   font-size: 12px;
-  color: #6b7280;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
-/* Responsive (<= 480px) */
+/* ===== Donate ===== */
+.nw-donate {
+  margin: 18px 0 10px;
+  padding: 12px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.nw-donate-text {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.nw-donate-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nw-donate-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.nw-donate-links a:hover {
+  background: var(--bg-soft);
+  text-decoration: none;
+}
+
+/* ===== Internal Links ===== */
+.nw-links {
+  margin: 14px 0 10px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: left;
+  line-height: 1.7;
+}
+
+.nw-links a {
+  color: #374151;
+  text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+.nw-footer {
+  margin-top: 18px;
+  padding: 16px 14px 18px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.nw-footer-line {
+  margin: 3px 0;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 480px) {
+  .nw-header h1 {
+    font-size: 22px;
+  }
+
+  .nw-main {
+    padding: 0 12px 22px;
+  }
+
   .size-table th,
   .size-table td {
-    padding: 9px;
+    padding: 10px 10px;
     font-size: 13px;
   }
+}
+
+@media (min-width: 769px) {
+  /* PCでは少し余白を増やす（スマホ拡大ではなく“PCらしく”） */
+  .nw-main { max-width: 760px; }
+  .nw-header { padding: 26px 14px 14px; }
 }
