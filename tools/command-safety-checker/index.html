@@ -116,20 +116,47 @@
           <a
             id="btnUnlockTop"
             class="btn btn-primary"
-            href="https://buy.stripe.com/fZu00l8bfcqF29vfYXcV206"
+            href="https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208"
             target="_blank"
             rel="noopener"
             style="text-decoration:none;display:inline-block;width:100%;text-align:center;"
           >
-            <span data-i18n="ja">Proをアンロック（買い切り $4.99）</span>
-            <span data-i18n="en">Unlock Pro (One-time · $4.99)</span>
+            <span data-i18n="ja">Proをアンロック（買い切り $2.99）</span>
+            <span data-i18n="en">Unlock Pro (One-time · $2.99)</span>
           </a>
         </div>
 
         <p class="pro-note" data-i18n="ja">※Proは「判断材料の強化」です。安全を保証するものではありません。</p>
         <p class="pro-note" data-i18n="en">Pro provides better guidance. It does not guarantee safety.</p>
-        <p class="pro-note" data-i18n="ja">購入後の案内ページ：<a href="./pro.html">pro.html</a>（ブックマーク推奨）</p>
-        <p class="pro-note" data-i18n="en">Post-purchase page: <a href="./pro.html">pro.html</a> (bookmark recommended)</p>
+
+        <!-- NEW: post-purchase guidance (auto unlock) -->
+        <div class="divider" style="margin:10px 0;"></div>
+
+        <p class="pro-note" data-i18n="ja" style="margin-top:0;">
+          ✅ <b>購入後はこのページに戻ってください：</b><br>
+          1) 決済完了 → 2) <a href="./pro.html">pro.html</a> を開く（自動解放） → 3) ツールへ戻る
+        </p>
+        <p class="pro-note" data-i18n="en" style="margin-top:0;">
+          ✅ <b>After purchase, come back here:</b><br>
+          1) Complete payment → 2) open <a href="./pro.html">pro.html</a> (auto unlock) → 3) return to the tool
+        </p>
+
+        <div class="row row-wrap" style="margin-top:8px;align-items:center;">
+          <div class="field grow">
+            <p class="hint" data-i18n="ja" style="margin:0;">
+              ※ pro.html は「購入後に戻ってくる場所」です（ブックマーク推奨）
+            </p>
+            <p class="hint" data-i18n="en" style="margin:0;">
+              pro.html is your post-purchase hub (bookmark recommended)
+            </p>
+          </div>
+          <div class="field" style="min-width:220px;">
+            <a class="btn" href="./pro.html" style="text-decoration:none;display:inline-block;width:100%;text-align:center;">
+              <span data-i18n="ja">購入後：pro.htmlへ戻る</span>
+              <span data-i18n="en">After purchase: open pro.html</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -229,18 +256,35 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
           <a
             id="btnUnlock"
             class="btn btn-primary"
-            href="https://buy.stripe.com/fZu00l8bfcqF29vfYXcV206"
+            href="https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208"
             target="_blank"
             rel="noopener"
             style="text-decoration:none;"
           >
-            <span data-i18n="ja">Proをアンロック（買い切り $4.99）</span>
-            <span data-i18n="en">Unlock Pro (One-time · $4.99)</span>
+            <span data-i18n="ja">Proをアンロック（買い切り $2.99）</span>
+            <span data-i18n="en">Unlock Pro (One-time · $2.99)</span>
           </a>
         </div>
 
         <p class="pro-note" data-i18n="ja">※Proは「判断材料の強化」です。安全を保証するものではありません。</p>
         <p class="pro-note" data-i18n="en">Pro provides better guidance. It does not guarantee safety.</p>
+
+        <!-- NEW: post-purchase guidance (auto unlock) -->
+        <p class="pro-note" data-i18n="ja">
+          ✅ <b>購入後：</b> 決済完了 → <a href="./pro.html">pro.html</a> を開く（自動解放） → ツールに戻る
+        </p>
+        <p class="pro-note" data-i18n="en">
+          ✅ <b>After purchase:</b> complete payment → open <a href="./pro.html">pro.html</a> (auto unlock) → return to the tool
+        </p>
+
+        <div class="row row-wrap" style="margin-top:8px;align-items:center;">
+          <div class="field" style="min-width:220px;">
+            <a class="btn" href="./pro.html" style="text-decoration:none;display:inline-block;width:100%;text-align:center;">
+              <span data-i18n="ja">購入後：pro.htmlへ戻る</span>
+              <span data-i18n="en">After purchase: open pro.html</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
