@@ -6,7 +6,7 @@
 import { DEFAULT_PRO_RULES, scanAndRedact } from "./src/core.js";
 
 // Stripe Payment Link
-const PRO_PAYMENT_URL = "https://buy.stripe.com/28E5kFezD0HXcO98wvcV205";
+const PRO_PAYMENT_URL = "https://buy.stripe.com/eVq14p1MRfCR3dzdQPcV207";
 
 // Pro unlock flag (static site)
 const PRO_FLAG_KEY = "nw_api_key_redactor_pro_v1";
@@ -320,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
       proBuyBtn.textContent = "Pro enabled";
       proBuyBtn.disabled = true;
     } else {
-      proBuyBtn.textContent = "Buy (¥200)";
+      proBuyBtn.textContent = "Buy ($2.99)";
       proBuyBtn.disabled = false;
     }
   }
