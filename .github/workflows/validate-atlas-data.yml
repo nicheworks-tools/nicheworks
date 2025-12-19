@@ -1,0 +1,18 @@
+name: Validate Construction Tools Atlas Data
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run data validation
+        run: node tools/construction-tools-atlas/scripts/validate-data.mjs
