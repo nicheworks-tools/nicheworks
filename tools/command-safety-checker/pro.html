@@ -22,9 +22,6 @@
   <!-- AdSense (optional here; keep consistent if you want) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (token: replace when ready) -->
-  
-
   <style>
     :root{
       --bg:#ffffff; --text:#111827; --muted:#6b7280; --line:#e5e7eb; --soft:#f9fafb;
@@ -71,10 +68,11 @@
       .btnrow{flex-direction:column}
     }
   </style>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
 </head>
 <body>
   <header class="nw-header">
@@ -115,19 +113,19 @@
 
       <div class="notice">
         <p class="p" style="margin:0" data-i18n="ja">
-          <b>次にやること：</b> 下の「この端末でProを有効化」を押してから、ツールに戻ってください。<br>
-          ※このMVPはサーバ判定がないため、端末ローカル方式です（名誉解放）。
+          <b>次にやること：</b> 支払い直後にこのページへ戻ってきた場合、購入確認できれば自動でProを有効化します。<br>
+          うまくいかない場合は、下の「この端末でProを有効化」（手動）を押してください。
         </p>
         <p class="p" style="margin:0" data-i18n="en">
-          <b>Next:</b> Click “Enable Pro on this device”, then go back to the tool.<br>
-          This MVP uses a local honor-system unlock (no server verification yet).
+          <b>Next:</b> If you came back here right after payment, we try to auto-enable Pro after verification.<br>
+          If it doesn’t work, click “Enable Pro on this device” (manual fallback).
         </p>
       </div>
 
       <div class="btnrow">
         <button id="btnEnablePro" class="btn btn-primary" type="button">
-          <span data-i18n="ja">この端末でProを有効化</span>
-          <span data-i18n="en">Enable Pro on this device</span>
+          <span data-i18n="ja">この端末でProを有効化（手動）</span>
+          <span data-i18n="en">Enable Pro on this device (manual)</span>
         </button>
         <button id="btnDisablePro" class="btn" type="button">
           <span data-i18n="ja">（必要なら）Proを無効化</span>
@@ -164,10 +162,10 @@
       </ul>
 
       <p class="p muted" data-i18n="ja">
-        ※今後、サーバレス方式（Cloudflare Functions等）で「購入者だけ自動解放」へ移行可能。
+        ※このMVPはCloudflare Functionsで購入確認し、確認できた場合に自動でProを有効化します（端末ローカル解放）。
       </p>
       <p class="p muted" data-i18n="en">
-        We can later migrate to serverless verification (e.g., Cloudflare Functions) for auto-unlock.
+        This MVP verifies purchases via Cloudflare Functions and then enables Pro locally on this device.
       </p>
     </section>
   </main>
@@ -187,6 +185,8 @@
       const browserLang = (navigator.language || "").toLowerCase();
       let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
 
+      function t(ja,en){ return currentLang === "ja" ? ja : en; }
+
       function applyLang(lang){
         i18nNodes.forEach(el => { el.style.display = (el.dataset.i18n === lang) ? "" : "none"; });
         langButtons.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
@@ -202,13 +202,38 @@
       const btnEnable = document.getElementById("btnEnablePro");
       const btnDisable = document.getElementById("btnDisablePro");
 
-      function t(ja,en){ return currentLang === "ja" ? ja : en; }
-
       function renderState(){
         const enabled = localStorage.getItem(PRO_FLAG_KEY) === "1";
         stateEl.textContent = enabled
           ? t("状態：Proはこの端末で有効です。ツールに戻って結果をチェックしてください。", "Status: Pro is enabled on this device. Go back to the tool and run a check.")
           : t("状態：Proはまだ有効ではありません。上のボタンで有効化してください。", "Status: Pro is not enabled yet. Click the button above.");
+      }
+
+      // Auto-unlock if redirected from Stripe with session_id
+      async function tryAutoUnlockFromSession() {
+        const params = new URLSearchParams(location.search);
+        const sessionId = params.get("session_id");
+        if (!sessionId) return;
+
+        stateEl.textContent = t("購入確認中…（Stripe）", "Verifying purchase… (Stripe)");
+
+        try {
+          const r = await fetch(`/api/verify?session_id=${encodeURIComponent(sessionId)}`, { cache: "no-store" });
+          const j = await r.json();
+
+          if (j && j.ok === true) {
+            localStorage.setItem(PRO_FLAG_KEY, "1");
+            // clean URL (remove session_id)
+            history.replaceState(null, "", "./pro.html");
+            renderState();
+            alert(t("購入を確認しました。Proを有効化しました。", "Purchase verified. Pro has been enabled."));
+          } else {
+            // Keep manual buttons usable
+            renderState();
+          }
+        } catch {
+          renderState();
+        }
       }
 
       btnEnable.addEventListener("click", () => {
@@ -224,6 +249,7 @@
       });
 
       applyLang(currentLang);
+      tryAutoUnlockFromSession();
     })();
   </script>
 </body>
