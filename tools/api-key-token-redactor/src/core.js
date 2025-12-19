@@ -1,3 +1,4 @@
+// src/core.js
 // Core logic for API Key & Token Redactor
 // Shared between browser UI and Node-based tests
 
@@ -5,14 +6,6 @@ export const DEFAULT_PRO_RULES = {
   mode: "keep_last", // keep_last | replace_all
   keepLastN: 4,
   replaceText: "[REDACTED]",
-};
-
-const TOKEN_LIKE = {
-  key: "token_like",
-  label: "Token-like",
-  // exclude pure hex (32+): avoids SHA256/MD5-ish false positives
-  // still matches typical random tokens that include mixed chars
-  regex: /\b(?![0-9a-fA-F]{32,}\b)[A-Za-z0-9_\-]{32,}\b/g,
 };
 
 export const FREE_PATTERNS = [
@@ -23,7 +16,9 @@ export const FREE_PATTERNS = [
   { key: "github_token", label: "GitHub token", regex: /\bgh[pous]_[A-Za-z0-9]{20,}\b/g },
   { key: "slack_token", label: "Slack token", regex: /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g },
   { key: "jwt", label: "JWT", regex: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g },
-  // token_like is appended later (important for Pro ordering)
+
+  // Broad fallback: handled LAST with heuristics to reduce false positives.
+  { key: "token_like", label: "Token-like", regex: /\b[A-Za-z0-9_\-]{32,}\b/g },
 ];
 
 export const PRO_EXTRA_PATTERNS = [
@@ -34,6 +29,9 @@ export const PRO_EXTRA_PATTERNS = [
   { key: "pem_private_key", label: "Private key (PEM)", regex: /-----BEGIN(?: RSA)? PRIVATE KEY-----[\s\S]*?-----END(?: RSA)? PRIVATE KEY-----/g },
 ];
 
+// ---------------------------
+// Masking helpers
+// ---------------------------
 export function maskKeepEnds(str, keepStart, keepEnd) {
   if (str.length <= keepStart + keepEnd + 6) return "[REDACTED]";
   return `${str.slice(0, keepStart)}…${str.slice(-keepEnd)}`;
@@ -67,23 +65,104 @@ export function maskMatch(m, key, rules, pro) {
   return applyProRule(m, rules);
 }
 
+// ---------------------------
+// Heuristics to reduce false positives for token_like
+// ---------------------------
+function buildPemRanges(text) {
+  const ranges = [];
+  const begin = /-----BEGIN(?: RSA)? PRIVATE KEY-----/g;
+  const end = /-----END(?: RSA)? PRIVATE KEY-----/g;
+
+  let m;
+  while ((m = begin.exec(text)) !== null) {
+    const start = m.index;
+    end.lastIndex = m.index;
+    const e = end.exec(text);
+    if (e) {
+      const stop = e.index + e[0].length;
+      ranges.push([start, stop]);
+      begin.lastIndex = stop;
+    } else {
+      break;
+    }
+  }
+  return ranges;
+}
+
+function inRanges(pos, ranges) {
+  for (const [a, b] of ranges) {
+    if (pos >= a && pos < b) return true;
+  }
+  return false;
+}
+
+function looksLikeHyphenatedId(s) {
+  const segs = s.split("-");
+  if (segs.length >= 4 && segs.every((x) => x.length >= 3 && /^[A-Za-z0-9]+$/.test(x))) return true;
+  return false;
+}
+
+function isAllHex(s) {
+  return /^[0-9a-fA-F]{32,}$/.test(s);
+}
+
+function isProbablyTokenLikeCandidate(match, wholeText, offset, pemRanges) {
+  // 1) If inside PEM block, ignore (PEM is handled by pem_private_key in Pro)
+  if (inRanges(offset, pemRanges)) return false;
+
+  // 2) If followed by '=' (base64 padding), ignore partial base64-ish tokens
+  const nextChar = wholeText[offset + match.length] || "";
+  if (nextChar === "=") return false;
+
+  // 3) Ignore common "structured ids" (many hyphen segments)
+  if (match.includes("-") && looksLikeHyphenatedId(match)) return false;
+
+  // 4) Ignore long pure-hex strings (hash-like)
+  if (isAllHex(match)) return false;
+
+  // 5) Avoid counting Pro-only patterns as token_like in Free mode
+  //    (These should be detected by dedicated Pro patterns, not the broad fallback)
+  if (match.startsWith("AIza")) return false; // Google API key prefix
+  if (/^AC[0-9a-fA-F]{32}$/.test(match)) return false; // Twilio SID
+  if (/^SK[0-9a-fA-F]{32}$/.test(match)) return false; // Twilio key
+
+  return true;
+}
+
+// ---------------------------
+// Main scan
+// ---------------------------
 export function scanAndRedact(inputText, pro, rules = DEFAULT_PRO_RULES) {
-  // Order matters:
-  // - In Pro, run specific patterns BEFORE the generic token_like to avoid losing specificity.
-  const base = [...FREE_PATTERNS];
+  const pemRanges = buildPemRanges(inputText);
+
+  // IMPORTANT:
+  // Run specific patterns first, and ALWAYS run token_like LAST.
+  const tokenLike = FREE_PATTERNS.find((p) => p.key === "token_like");
+  const freeWithoutTokenLike = FREE_PATTERNS.filter((p) => p.key !== "token_like");
+
   const patterns = pro
-    ? [...base, ...PRO_EXTRA_PATTERNS, TOKEN_LIKE]
-    : [...base, TOKEN_LIKE];
+    ? [...freeWithoutTokenLike, ...PRO_EXTRA_PATTERNS, tokenLike]
+    : [...freeWithoutTokenLike, tokenLike];
 
   const hits = {};
   let output = inputText;
 
   for (const p of patterns) {
     let c = 0;
-    output = output.replace(p.regex, (m) => {
-      c++;
-      return maskMatch(m, p.key, rules, pro);
-    });
+
+    if (p.key === "token_like") {
+      output = output.replace(p.regex, (m, offset, whole) => {
+        if (!isProbablyTokenLikeCandidate(m, whole, offset, pemRanges)) return m;
+        c++;
+        return maskMatch(m, p.key, rules, pro);
+      });
+    } else {
+      output = output.replace(p.regex, (m) => {
+        c++;
+        return maskMatch(m, p.key, rules, pro);
+      });
+    }
+
     if (c > 0) hits[p.key] = { label: p.label, count: c };
   }
 
