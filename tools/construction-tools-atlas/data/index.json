@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "pack-001",
+      "file": "packs/pack-001.json",
+      "title": {
+        "ja": "基本（初期データ）",
+        "en": "Basic (Initial Data)"
+      },
+      "count": 6
+    }
+  ]
+}
