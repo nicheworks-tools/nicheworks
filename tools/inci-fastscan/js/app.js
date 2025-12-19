@@ -32,9 +32,8 @@ function setupTabs() {
 function setupFastCheck() {
   document.getElementById("btn-fast-check").onclick = async () => {
     const text = document.getElementById("fast-input").value;
-    const list = coreParseIngredients(text);
-    const results = await coreMatchIngredients(list, DICT);
-    renderResults(document.getElementById("fast-results"), results);
+    const analysis = await coreAnalyzeIngredients(text, DICT);
+    renderResults(document.getElementById("fast-results"), analysis.results);
   };
 
   // OCR -> fast-input (EN)
@@ -63,9 +62,8 @@ function setupFastCheck() {
 function setupJBTranslator() {
   document.getElementById("btn-jb-check").onclick = async () => {
     const text = document.getElementById("jb-input").value;
-    const list = coreParseIngredients(text);
-    const results = await coreMatchIngredients(list, DICT);
-    renderResults(document.getElementById("jb-results"), results);
+    const analysis = await coreAnalyzeIngredients(text, DICT);
+    renderResults(document.getElementById("jb-results"), analysis.results);
   };
 
   // OCR -> jb-input (JP+EN)
