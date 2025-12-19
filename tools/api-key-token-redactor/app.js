@@ -8,6 +8,7 @@ import { DEFAULT_PRO_RULES, scanAndRedact } from "./src/core.js";
 // Stripe Payment Link
 const PRO_PAYMENT_URL = "https://buy.stripe.com/eVq14p1MRfCR3dzdQPcV207";
 
+
 // Pro unlock flag (static site)
 const PRO_FLAG_KEY = "nw_api_key_redactor_pro_v1";
 const PRO_RULES_KEY = "nw_api_key_redactor_rules_v1";
