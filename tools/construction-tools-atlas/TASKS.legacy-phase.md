@@ -1,3 +1,5 @@
+Deprecated. This task definition is no longer used.
+
 # TASKS.md
 Construction Tools & Slang Atlas — Development Tasks (Web MVP)
 
