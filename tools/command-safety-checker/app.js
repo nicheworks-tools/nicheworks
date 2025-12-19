@@ -7,14 +7,14 @@
  * - Copy report
  * - Language toggle (JP/EN)
  * - Pro Step 1: Safer alternative templates + pre-run checklist
- *   (Unlocked locally via "Enable Pro on this device" — honor system)
+ *   (Unlocked locally via "Enable Pro on this device" — honor system / auto-verify via pro.html)
  */
 
 (() => {
   "use strict";
 
   // ====== Config ======
-  const PAYMENT_LINK = "https://buy.stripe.com/fZu00l8bfcqF29vfYXcV206";
+  const PAYMENT_LINK = "https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208";
   const PRO_FLAG_KEY = "nw_command_safety_pro_enabled_v1";
 
   // ====== DOM ======
@@ -974,7 +974,7 @@
     buy.target = "_blank";
     buy.rel = "noopener";
     buy.style.textDecoration = "none";
-    buy.textContent = t("Proを購入（$4.99）", "Buy Pro ($4.99)");
+    buy.textContent = t("Proを購入（$2.99）", "Buy Pro ($2.99)");
     controls.appendChild(buy);
 
     proDynamic.appendChild(controls);
@@ -1002,7 +1002,7 @@
           <b>${escapeHtml(t("ロック中", "Locked"))}</b> — ${escapeHtml(t("購入後に「Proをこの端末で有効化」を押すと表示されます。", "After purchase, click “Enable Pro on this device” to show templates."))}
         </div>
         <div style="color:#6b7280;">
-          ${escapeHtml(t("※このMVPではサーバ判定が無いため、端末ローカルの名誉解放方式です。", "MVP uses a local honor-system unlock (no server verification yet)."))}
+          ${escapeHtml(t("※このMVPでは購入確認後に端末ローカルでProを有効化します。", "This MVP enables Pro locally on your device after purchase verification."))}
         </div>
       `;
       proDynamic.appendChild(msg);
