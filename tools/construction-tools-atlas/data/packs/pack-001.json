@@ -1,0 +1,68 @@
+[
+  {
+    "id": "tool-0001",
+    "term": { "ja": "スパナ", "en": "Spanner / Wrench" },
+    "category": "tools.hand",
+    "tags": ["fastener", "maintenance"],
+    "aliases": { "ja": ["レンチ"], "en": ["Wrench"] },
+    "description": {
+      "ja": "ナットやボルトを回して締め付け・緩めるための工具。",
+      "en": "A hand tool used to tighten or loosen nuts and bolts."
+    }
+  },
+  {
+    "id": "tool-0002",
+    "term": { "ja": "ハンマー", "en": "Hammer" },
+    "category": "tools.hand",
+    "tags": ["impact", "assembly"],
+    "aliases": { "ja": ["金づち"], "en": [] },
+    "description": {
+      "ja": "叩いて固定する、調整する、打ち込むなどの用途で使う工具。",
+      "en": "A tool used for striking to fasten, adjust, or drive materials."
+    }
+  },
+  {
+    "id": "tool-0003",
+    "term": { "ja": "水平器", "en": "Spirit level" },
+    "category": "tools.measure",
+    "tags": ["leveling", "layout"],
+    "aliases": { "ja": ["レベル"], "en": ["Level"] },
+    "description": {
+      "ja": "気泡管で水平・垂直を確認する測定工具。",
+      "en": "A measuring tool used to check horizontal and vertical alignment."
+    }
+  },
+  {
+    "id": "tool-0004",
+    "term": { "ja": "メジャー", "en": "Tape measure" },
+    "category": "tools.measure",
+    "tags": ["measurement", "layout"],
+    "aliases": { "ja": ["巻尺"], "en": ["Measuring tape"] },
+    "description": {
+      "ja": "長さを測るための巻き取り式の測定工具。",
+      "en": "A retractable measuring tool used to measure lengths."
+    }
+  },
+  {
+    "id": "tool-0005",
+    "term": { "ja": "養生", "en": "Protection / Masking" },
+    "category": "work.process",
+    "tags": ["safety", "finish"],
+    "aliases": { "ja": ["保護", "マスキング"], "en": ["Masking", "Surface protection"] },
+    "description": {
+      "ja": "作業中の汚れや傷を防ぐために保護材で覆う作業。",
+      "en": "Work done to protect surfaces from dirt or damage during construction."
+    }
+  },
+  {
+    "id": "tool-0006",
+    "term": { "ja": "墨出し", "en": "Layout marking" },
+    "category": "work.process",
+    "tags": ["layout", "measurement"],
+    "aliases": { "ja": ["印付け"], "en": ["Marking out"] },
+    "description": {
+      "ja": "設計寸法に基づいて基準線や位置を床・壁などに記す作業。",
+      "en": "Marking reference lines and positions on surfaces based on dimensions."
+    }
+  }
+]
