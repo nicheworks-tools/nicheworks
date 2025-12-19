@@ -13,10 +13,6 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="./style.css" />
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
 </head>
 
 <body>
@@ -183,6 +179,17 @@ DELETE FROM users WHERE id = 123;
                 Proを購入すると、より安全な「実行手順テンプレ」やプリセット表示が使えます。
               </p>
 
+              <!-- ✅ 追加：購入注意（外部決済/復元） -->
+              <div class="pro-meta">
+                <div class="pro-price-line">
+                  <span class="label" data-i18n="proPriceLabel">価格</span>
+                  <strong class="value" data-i18n="proPriceValue">¥200（買い切り）</strong>
+                </div>
+                <p class="pro-mini" data-i18n="proPurchaseNote">
+                  ※決済は外部ページで行います。購入後にこのページへ戻ると復元できます（MVPはブラウザ内で解放）。
+                </p>
+              </div>
+
               <div class="pro-price">
                 <div class="pro-price-main">
                   <div class="pro-price-amount">¥200</div>
@@ -190,13 +197,18 @@ DELETE FROM users WHERE id = 123;
                 </div>
                 <div class="pro-actions">
                   <button class="btn btn-primary" type="button" id="buyProBtn" data-i18n="proBuyBtn">
-                    Proを購入（準備中）
+                    Proを購入
                   </button>
                   <button class="btn btn-ghost" type="button" id="restoreProBtn" data-i18n="proRestoreBtn">
                     購入済みを復元
                   </button>
                 </div>
               </div>
+
+              <!-- ✅ 追加：復元ガイド -->
+              <p class="pro-restore-hint" data-i18n="proRestoreHint">
+                決済完了後に戻ったのに解放されない場合は「購入済みを復元」を押してください。
+              </p>
 
               <ul class="prolist" data-i18n-list="proList">
                 <li>安全実行テンプレの提示（トランザクション手順）</li>
