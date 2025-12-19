@@ -131,6 +131,12 @@ DELETE FROM users WHERE id = 123;`,
     proLockBtn: "Proをロック（テスト用）",
     proUnlockedHint: "※将来：DB種別プリセット、Migrationモード、より厳密な検出ルールを追加予定。",
 
+    /* ✅ 追加：Proメタ表示 */
+    proPriceLabel: "価格",
+    proPriceValue: "¥200（買い切り）",
+    proPurchaseNote: "※決済は外部ページで行います。購入後にこのページへ戻ると復元できます（MVPはブラウザ内で解放）。",
+    proRestoreHint: "決済完了後に戻ったのに解放されない場合は「購入済みを復元」を押してください。",
+
     proList: [
       "安全実行テンプレの提示（トランザクション手順）",
       "DB種別ごとの注意点表示",
@@ -207,6 +213,12 @@ DELETE FROM users WHERE id = 123;`,
     proCopyBtn: "Copy template",
     proLockBtn: "Lock Pro (test)",
     proUnlockedHint: "Later: DB presets, Migration mode, stricter rules.",
+
+    /* ✅ 追加：Proメタ表示 */
+    proPriceLabel: "Price",
+    proPriceValue: "¥200 (one-time)",
+    proPurchaseNote: "Payment happens on an external page. After purchase, come back here to restore (MVP unlocks in this browser).",
+    proRestoreHint: "If it’s not unlocked after returning, click “Restore purchase”.",
 
     proList: [
       "Safe execution templates (transaction steps)",
@@ -293,7 +305,7 @@ const RULES = {
     { re: /\balter\s+table\b/i, ja: "ALTER TABLE が検出されました（致命的）", en: "ALTER TABLE detected (critical)", hl: "hl-crit" },
     { re: /\brename\b/i, ja: "RENAME が検出されました（致命的）", en: "RENAME detected (critical)", hl: "hl-crit" },
     { re: /\bgrant\b/i, ja: "GRANT が検出されました（致命的）", en: "GRANT detected (critical)", hl: "hl-crit" },
-    { re: /\brevoke\b/i, ja: "REVOKE detected (critical)", en: "REVOKE detected (critical)", hl: "hl-crit" },
+    { re: /\brevoke\b/i, ja: "REVOKE が検出されました（致命的）", en: "REVOKE detected (critical)", hl: "hl-crit" },
   ],
   high: [
     { re: /\bcascade\b/i, ja: "CASCADE が検出されました（危険）", en: "CASCADE detected (high)", hl: "hl-high" },
@@ -619,7 +631,7 @@ function maybeAutoRestoreFromReturnParam() {
     window.history.replaceState({}, "", url.toString());
 
     // 任意：復元したことを知らせる（うるさければ消してOK）
-    const lang = document.documentElement.getAttribute("data-lang") || "ja";
+    // const lang = document.documentElement.getAttribute("data-lang") || "ja";
     // alert(lang === "en" ? I18N.en.proAutoRestored : I18N.ja.proAutoRestored);
   }
 }
