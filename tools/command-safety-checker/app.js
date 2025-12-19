@@ -1001,6 +1001,10 @@
         <div style="margin-bottom:6px;">
           <b>${escapeHtml(t("ロック中", "Locked"))}</b> — ${escapeHtml(t("購入後に「Proをこの端末で有効化」を押すと表示されます。", "After purchase, click “Enable Pro on this device” to show templates."))}
         </div>
+        <div style="margin-bottom:6px;color:#111827;">
+          ${escapeHtml(t("購入後は pro.html に戻ってください（自動解放）→ その後このページに戻って「Proをこの端末で有効化」を押します。", "After purchase, open pro.html (auto unlock) → then come back here and click “Enable Pro on this device”."))}
+          <a href="./pro.html" style="margin-left:6px;">pro.html</a>
+        </div>
         <div style="color:#6b7280;">
           ${escapeHtml(t("※このMVPでは購入確認後に端末ローカルでProを有効化します。", "This MVP enables Pro locally on your device after purchase verification."))}
         </div>
