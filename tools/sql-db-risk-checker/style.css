@@ -234,3 +234,11 @@ mark.hl-crit{background:var(--hlCrit)}
 .pro-price-sub{ color:var(--muted); font-size:12px; margin-top:2px; }
 .pro-actions{ display:flex; gap:10px; flex-wrap:wrap; }
 .unlocked-actions{ margin-top:10px; }
+
+/* ✅ 追加：Proメタ（外部決済/復元説明） */
+.pro-meta{ margin: 10px 0 12px; }
+.pro-price-line{ display:flex; gap:10px; align-items:baseline; }
+.pro-price-line .label{ opacity:.75; font-size:14px; }
+.pro-price-line .value{ font-size:18px; }
+.pro-mini{ margin: 6px 0 0; opacity:.85; font-size:14px; line-height:1.5; }
+.pro-restore-hint{ margin: 10px 0 0; opacity:.85; font-size:14px; line-height:1.5; }
