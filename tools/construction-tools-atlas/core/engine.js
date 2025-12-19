@@ -30,7 +30,10 @@
    * - Trim
    */
   function normalizeText(s) {
-    return String(s || "").trim().toLowerCase();
+    return String(s || "")
+      .trim()
+      .replace(/\s+/g, " ")
+      .toLowerCase();
   }
 
   /**
@@ -63,6 +66,13 @@
     // fuzzy (language-agnostic list of tokens/phrases)
     if (Array.isArray(entry.fuzzy)) {
       parts.push(entry.fuzzy.join(" "));
+    }
+
+    // description
+    if (entry.description) {
+      const desc = getLangValue(entry.description, lang);
+      const otherDesc = getLangValue(entry.description, lang === "ja" ? "en" : "ja");
+      parts.push(desc, otherDesc);
     }
 
     // Also include the other language term/aliases lightly to support mixed queries
@@ -138,7 +148,11 @@
     const cid = String(categoryId || "").trim();
     if (!cid) return list;
 
-    return list.filter((e) => Array.isArray(e.categories) && e.categories.includes(cid));
+    return list.filter((e) => {
+      if (Array.isArray(e.categories)) return e.categories.includes(cid);
+      if (typeof e.category === "string") return e.category === cid;
+      return false;
+    });
   }
 
   /**
