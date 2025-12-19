@@ -1,9 +1,12 @@
 // Cloudflare Pages Functions
-// GET /api/verify?session_id=cs_test_...
+// GET /api/verify?session_id=cs_...
 //
 // Verifies Stripe Checkout Session status via Stripe API,
-// then returns { ok: true } when paid.
-// NOTE: Requires env STRIPE_SECRET_KEY
+// returns { ok: true } only when paid AND (optionally) matches your Payment Link.
+//
+// Required env:
+// - STRIPE_SECRET_KEY = sk_live_...
+// - STRIPE_PAYMENT_LINK_ID = plink_...
 
 export async function onRequestGet({ request, env }) {
   try {
@@ -15,37 +18,53 @@ export async function onRequestGet({ request, env }) {
     }
 
     if (!env.STRIPE_SECRET_KEY) {
-      return json({ ok: false, error: "server_not_configured" }, 500);
+      return json({ ok: false, error: "missing_stripe_secret_key" }, 500);
+    }
+
+    if (!env.STRIPE_PAYMENT_LINK_ID) {
+      return json({ ok: false, error: "missing_payment_link_id" }, 500);
     }
 
     // Retrieve Checkout Session
-    // https://docs.stripe.com/api/checkout/sessions/retrieve
-    const res = await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`, {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${env.STRIPE_SECRET_KEY}`,
-        "Content-Type": "application/x-www-form-urlencoded",
+    const res = await fetch(
+      `https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
+        },
       },
-    });
+    );
 
     const data = await res.json();
 
     if (!res.ok) {
-      return json({ ok: false, error: "stripe_error", detail: data?.error?.message || "unknown" }, 400);
+      return json(
+        { ok: false, error: "stripe_error", detail: data?.error?.message || "unknown" },
+        400,
+      );
     }
 
-    // Stripe fields: payment_status: "paid" | "unpaid" | "no_payment_required"
-    // We only unlock when paid.
+    // Must be paid
     if (data.payment_status !== "paid") {
       return json({ ok: false, error: "not_paid", payment_status: data.payment_status }, 200);
     }
 
-    // Optional: also confirm it came from Payment Link
-    // (Payment Links sessions generally include payment_link id)
-    // if (!data.payment_link) { ... }  // keep loose for MVP
+    // Must be your Payment Link session
+    // Stripe Checkout Session may include "payment_link"
+    if (data.payment_link !== env.STRIPE_PAYMENT_LINK_ID) {
+      return json(
+        {
+          ok: false,
+          error: "payment_link_mismatch",
+          payment_link: data.payment_link || null,
+        },
+        200,
+      );
+    }
 
     return json({ ok: true }, 200);
-  } catch (e) {
+  } catch {
     return json({ ok: false, error: "server_error" }, 500);
   }
 }
