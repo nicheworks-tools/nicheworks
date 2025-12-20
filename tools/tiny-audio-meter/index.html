@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>tiny audio meter｜簡易リアルタイム音声計測ツール | NicheWorks</title>
+
+  <meta name="description" content="tiny audio meter は、ブラウザのマイクから音を取得し、音量・周波数・音階・スペクトラムをリアルタイム表示する軽量ツールです。スナップショット保存や区間分析にも対応。" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="tiny audio meter | NicheWorks" />
+  <meta property="og:description" content="Lightweight real-time audio meter in your browser. Measure loudness, pitch, notes and spectrum with snapshots." />
+  <meta property="og:image" content="/assets/ogp.png" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/tiny-audio-meter/" />
+
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- 共通CSS / JS（後で差し替え） -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header class="nw-header">
+  <div class="nw-header-inner">
+    <a href="/" class="nw-logo">NicheWorks</a>
+  </div>
+</header>
+
+<main class="nw-main">
+
+  <!-- ===============================
+       Title
+  =============================== -->
+  <h1>tiny audio meter</h1>
+
+  <!-- ===============================
+       Language Switch
+  =============================== -->
+  <div class="nw-lang-switch">
+    <button data-lang-switch="ja">JP</button>
+    <button data-lang-switch="en">EN</button>
+  </div>
+
+  <!-- ===============================
+       Description
+  =============================== -->
+  <p class="nw-desc">
+    <span data-i18n="ja">
+      ブラウザのマイクから入力された音を、簡易的にリアルタイム表示します。
+    </span>
+    <span data-i18n="en">
+      A lightweight tool that visualizes audio from your microphone in real time.
+    </span>
+  </p>
+
+  <!-- ===============================
+       Ad Top
+  =============================== -->
+  <div class="nw-ad ad-top">
+    <!-- ad placeholder -->
+  </div>
+
+  <!-- ===============================
+       Mic Control
+  =============================== -->
+  <section class="meter-section">
+
+    <button id="micButton" class="primary-btn">
+      <span data-i18n="ja">マイクを許可</span>
+      <span data-i18n="en">Enable Mic</span>
+    </button>
+
+    <!-- ===============================
+         Voice Activity Effect
+    =============================== -->
+    <div id="voiceActivity" class="voice-activity silent">
+      <div class="bars">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p>
+        <span data-i18n="ja">音を拾っています</span>
+        <span data-i18n="en">Detecting sound</span>
+      </p>
+    </div>
+
+    <!-- ===============================
+         Real-time Meter
+    =============================== -->
+    <div class="realtime-meter">
+
+      <h2>
+        <span data-i18n="ja">リアルタイム計測</span>
+        <span data-i18n="en">Real-time Meter</span>
+      </h2>
+
+      <div class="meter-item">
+        <label>
+          <span data-i18n="ja">音量</span>
+          <span data-i18n="en">Loudness</span>
+        </label>
+        <div class="meter-bar">
+          <div id="volumeBar"></div>
+        </div>
+        <div id="volumeValue">-- dB</div>
+      </div>
+
+      <div class="meter-item">
+        <label>
+          <span data-i18n="ja">周波数</span>
+          <span data-i18n="en">Pitch</span>
+        </label>
+        <div id="pitchValue">-- Hz</div>
+        <div id="noteValue">--</div>
+      </div>
+
+      <div class="meter-item">
+        <label>
+          <span data-i18n="ja">スペクトラム</span>
+          <span data-i18n="en">Spectrum</span>
+        </label>
+        <canvas id="spectrumCanvas" width="300" height="120"></canvas>
+      </div>
+
+    </div>
+
+    <!-- ===============================
+         Snapshot
+    =============================== -->
+    <button id="snapshotButton" class="secondary-btn">
+      📸
+      <span data-i18n="ja">スナップショット</span>
+      <span data-i18n="en">Snapshot</span>
+    </button>
+
+    <details class="snapshot-list">
+      <summary>
+        <span data-i18n="ja">スナップショット一覧</span>
+        <span data-i18n="en">Snapshot List</span>
+        (<span id="snapshotCount">0</span>)
+      </summary>
+      <div id="snapshotItems">
+        <!-- snapshots injected -->
+      </div>
+      <button id="clearSnapshots" class="link-btn">
+        <span data-i18n="ja">全削除</span>
+        <span data-i18n="en">Clear All</span>
+      </button>
+    </details>
+
+    <!-- ===============================
+         Segment Analysis
+    =============================== -->
+    <section class="segment-section">
+
+      <h2>
+        <span data-i18n="ja">区間分析</span>
+        <span data-i18n="en">Segment Analysis</span>
+      </h2>
+
+      <div class="segment-controls">
+        <button id="segmentStart">
+          <span data-i18n="ja">計測開始</span>
+          <span data-i18n="en">Start</span>
+        </button>
+        <button id="segmentStop" disabled>
+          <span data-i18n="ja">停止</span>
+          <span data-i18n="en">Stop</span>
+        </button>
+      </div>
+
+      <div id="segmentResult" class="segment-result hidden">
+        <!-- results injected -->
+      </div>
+
+    </section>
+
+    <button id="resetButton" class="link-btn hidden">
+      <span data-i18n="ja">リセット</span>
+      <span data-i18n="en">Reset</span>
+    </button>
+
+  </section>
+
+  <!-- ===============================
+       Donation
+  =============================== -->
+  <div class="nw-donation">
+    <a href="#" class="donation-btn">Support NicheWorks</a>
+  </div>
+
+  <!-- ===============================
+       Ad Bottom
+  =============================== -->
+  <div class="nw-ad ad-bottom">
+    <!-- ad placeholder -->
+  </div>
+
+  <!-- ===============================
+       Internal Links
+  =============================== -->
+  <nav class="nw-links">
+    <ul>
+      <li><a href="/tools/unsubscribe-navi/">解約どこナビ</a></li>
+      <li><a href="/tools/wifi-congestion-checker/">WiFi混雑チェッカー</a></li>
+      <li><a href="/tools/metadata-snap/">MetadataSnap</a></li>
+    </ul>
+  </nav>
+
+</main>
+
+<footer class="nw-footer">
+  <p>© NicheWorks</p>
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
