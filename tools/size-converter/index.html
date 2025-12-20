@@ -15,7 +15,6 @@
   <meta property="og:description" content="日本サイズと海外サイズ（US・EU）を即時に換算。服・靴の男女別対応表をスマホで確認できます。">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/size-converter/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- favicon -->
@@ -26,9 +25,12 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <!-- Cloudflare Web Analytics -->
-  
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
 
-  <!-- 共通CSS（既存を流用想定） -->
+  <!-- 共通CSS -->
   <link rel="stylesheet" href="/assets/nw-base.css">
   <link rel="stylesheet" href="./style.css">
 
@@ -44,13 +46,15 @@
     "operatingSystem": "All"
   }
   </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
 </head>
 
 <body>
+
+<noscript>
+  <div style="padding:12px;border:1px solid #e5e7eb;border-radius:12px;margin:12px;">
+    このツールは JavaScript が必要です。JavaScript を有効にしてご利用ください。
+  </div>
+</noscript>
 
 <header class="nw-header">
   <h1>サイズ換算（JP ↔ 海外サイズ）</h1>
@@ -98,7 +102,51 @@
     </label>
   </section>
 
-  <!-- 結果 -->
+  <!-- モード切替（靴の実寸入力） -->
+  <section class="mode-switch">
+    <div class="mode-tabs" role="tablist" aria-label="mode">
+      <button id="tabTable" class="tab active" type="button" data-mode="table">
+        <span data-i18n="ja">対応表</span><span data-i18n="en">Table</span>
+      </button>
+      <button id="tabFit" class="tab" type="button" data-mode="fit">
+        <span data-i18n="ja">実寸で判定（靴）</span><span data-i18n="en">Fit by cm (Shoes)</span>
+      </button>
+    </div>
+
+    <div id="fitPanel" class="fit-panel" hidden>
+      <div class="fit-grid">
+        <label>
+          <span data-i18n="ja">足長（cm）</span><span data-i18n="en">Foot length (cm)</span>
+          <input id="footLength" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 26.3 / e.g. 26.3">
+        </label>
+
+        <label>
+          <span data-i18n="ja">足幅（cm・任意）</span><span data-i18n="en">Foot width (cm, optional)</span>
+          <input id="footWidth" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 10.2 / e.g. 10.2">
+        </label>
+      </div>
+
+      <div class="fit-actions">
+        <button id="fitRun" class="primary" type="button">
+          <span data-i18n="ja">判定する</span><span data-i18n="en">Check</span>
+        </button>
+        <button id="fitReset" class="ghost" type="button">
+          <span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span>
+        </button>
+      </div>
+
+      <div id="fitResult" class="fit-result" aria-live="polite"></div>
+
+      <p class="fit-note" data-i18n="ja">
+        ※目安です。メーカーのラスト形状・甲の高さ・靴下の厚みで変わります。
+      </p>
+      <p class="fit-note" data-i18n="en">
+        * Approximate. Fit varies by last shape, instep height, and sock thickness.
+      </p>
+    </div>
+  </section>
+
+  <!-- 結果（対応表） -->
   <section id="resultSection">
     <table class="size-table">
       <thead>
