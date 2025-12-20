@@ -1,0 +1,285 @@
+/* --------------------------------------------------
+   基本設定：テーマ & フォントサイズ
+-------------------------------------------------- */
+
+/* デフォルト */
+html {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.8;
+  font-size: 16px; /* medium */
+}
+
+/* フォントサイズ切替 */
+html[data-font="small"] { font-size: 14px; }
+html[data-font="medium"] { font-size: 16px; }
+html[data-font="large"] { font-size: 18px; }
+html[data-font="xl"] { font-size: 20px; }
+
+/* ライトテーマ */
+html[data-theme="light"] {
+  --bg: #ffffff;
+  --fg: #111111;
+  --card-bg: #f9f9f9;
+  --border: #e5e5e5;
+  --accent: #111111;
+  --error-bg: #ffe5e5;
+}
+
+/* ダークテーマ */
+html[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --fg: #eeeeee;
+  --card-bg: #2a2a2a;
+  --border: #444444;
+  --accent: #ffffff;
+  --error-bg: #552222;
+}
+
+/* --------------------------------------------------
+   レイアウト（スマホファースト）
+-------------------------------------------------- */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.nw-main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* --------------------------------------------------
+   ヘッダー固定エリア
+-------------------------------------------------- */
+
+.nw-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 12px;
+  z-index: 999;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.header-actions button {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--fg);
+}
+
+/* --------------------------------------------------
+   説明テキスト
+-------------------------------------------------- */
+
+.intro-text {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.intro-text p {
+  margin: 0;
+}
+
+/* --------------------------------------------------
+   CSVボタン
+-------------------------------------------------- */
+
+.csv-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.csv-btn {
+  flex: 1;
+  padding: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--fg);
+}
+
+/* --------------------------------------------------
+   エラーボックス
+-------------------------------------------------- */
+
+.error-box {
+  background: var(--error-bg);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------
+   入力フォーム
+-------------------------------------------------- */
+
+.input-section h2,
+.entries-section h2,
+.summary-section h2 {
+  margin-top: 0;
+}
+
+.input-card {
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-card label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.input-card input,
+.input-card select,
+.input-card textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.add-btn {
+  padding: 12px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------
+   入力一覧（カード型）
+-------------------------------------------------- */
+
+#entriesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.entry-card {
+  background: var(--card-bg);
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.entry-top {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.entry-details {
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+.delete-btn {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 8px;
+  color: var(--fg);
+}
+
+/* --------------------------------------------------
+   集計結果
+-------------------------------------------------- */
+
+.sum-card {
+  padding: 12px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.sum-list .month-block {
+  padding: 12px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.month-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+/* --------------------------------------------------
+   寄付導線
+-------------------------------------------------- */
+
+.nw-donate {
+  margin-top: 30px;
+  padding: 20px;
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.nw-donate-links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nw-donate-links a {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------
+   フッター
+-------------------------------------------------- */
+
+.nw-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--fg);
+  opacity: 0.7;
+}
