@@ -3,49 +3,156 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>退去・提出前チェック｜Moving / Lease Final Check | NicheWorks</title>
-  <meta name="description" content="引っ越し・退去の提出前に、やり忘れ・解約漏れ・立会いトラブルを防ぐ最終チェック専用ツール。" />
+  <meta name="description" content="引っ越し・退去の提出前に、やり忘れ・解約漏れ・立会いトラブルを防ぐ最終チェック専用ツール。チェックは端末内に保存。" />
+
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/moving-lease-final-check/" />
-  <link rel="icon" href="/assets/favicon.ico" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="退去・提出前チェック | NicheWorks" />
+  <meta property="og:description" content="退去・提出の直前に、失敗すると金と時間を失うポイントだけを最終確認。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/moving-lease-final-check/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (required in every tool page) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
+
   <link rel="stylesheet" href="./style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Moving / Lease Final Check",
+    "applicationCategory":"LifestyleApplication",
+    "operatingSystem":"All",
+    "inLanguage":["ja"],
+    "url":"https://nicheworks.pages.dev/tools/moving-lease-final-check/",
+    "description":"Final check tool for moving/lease: prevent missing cancellations, inspection issues, and submission mistakes. Saves checks locally."
+  }
+  </script>
 </head>
+
 <body>
   <header class="nw-header">
     <h1 class="tool-title">退去・提出前チェック</h1>
-    <p class="tool-sub">「これで本当に終わってる？」を確認するための最終チェック</p>
+    <p class="tool-sub">
+      「もう終わらせる直前」だけ使う最終確認。
+      失敗すると金と時間を失うポイントだけに絞っています。
+    </p>
+
+    <p class="usage-link">
+      <a href="https://nicheworks.pages.dev/tools/moving-checklist-generator/" target="_blank" rel="noopener">
+        準備用（1週間前〜）はこちら →
+      </a>
+    </p>
   </header>
+
   <main class="nw-main">
-    <section class="panel">
-      <label class="field">
-        <span class="label">退去日 / 引っ越し日</span>
-        <input id="moveDate" type="date" />
-      </label>
-      <label class="field">
-        <span class="label">住居タイプ</span>
-        <select id="homeType">
-          <option value="rental">賃貸</option>
-          <option value="owned">持ち家</option>
-        </select>
-      </label>
-      <button id="btnGenerate" class="primary">最終チェックを表示</button>
+    <!-- Top ad slot -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="panel" aria-label="Final check form">
+      <div class="form-grid">
+        <label class="field">
+          <span class="label">退去日 / 引っ越し日（必須）</span>
+          <input id="moveDate" type="date" />
+        </label>
+
+        <label class="field">
+          <span class="label">住居タイプ</span>
+          <select id="homeType">
+            <option value="rental">賃貸</option>
+            <option value="owned">持ち家</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="btnGenerate" class="primary" type="button">最終チェックを表示</button>
+        <button id="btnClear" type="button" disabled>チェック全解除</button>
+        <button id="btnReset" type="button">入力をリセット</button>
+      </div>
+
+      <p class="hint">
+        チェック状態はこの端末内（ブラウザ）に保存されます。
+        同じ日付・住居タイプなら再訪しても復元されます。
+      </p>
     </section>
-    <section class="panel" id="result" hidden>
-      <h2 class="result-title">最終チェック項目</h2>
+
+    <section class="panel" id="result" hidden aria-label="Checklist result">
+      <div class="result-head">
+        <h2 class="result-title">最終チェック項目</h2>
+        <div class="result-meta" id="resultMeta" aria-live="polite"></div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <div class="progress-text" id="progressText">0 / 0 完了</div>
+      </div>
+
       <ul id="taskList" class="final-list"></ul>
-      <div class="pro-area">
-        <p class="pro-note">提出・印刷・立会い用にまとめたい場合はこちら</p>
-        <button class="pro-btn">✔ チェックリストPDF（¥200）</button>
-        <button class="pro-btn">📝 退去立会いメモ（¥200）</button>
-        <button class="pro-btn">📮 住所変更まとめ（¥200）</button>
+
+      <!-- Pro (hidden until all checked) -->
+      <div id="proArea" class="pro-area" hidden>
+        <div class="pro-head">
+          <div class="pro-title">ここまで終えた人向け（Pro）</div>
+          <div class="pro-sub">提出・印刷・家族共有・立会いメモ用に整形した成果物を出します。</div>
+        </div>
+
+        <div class="pro-actions">
+          <button id="btnProPdf" class="pro-btn" type="button">✔ 提出用チェックリストPDF（¥200）</button>
+          <button id="btnProMemo" class="pro-btn" type="button">📝 退去立会いメモテンプレ（¥200）</button>
+          <button id="btnProAddr" class="pro-btn" type="button">📮 住所変更まとめテンプレ（¥200）</button>
+        </div>
+
+        <p class="pro-note">
+          ※ 現在は決済リンクを設定すると動作します（Stripe Payment Link）。
+        </p>
+      </div>
+
+      <div class="disclaimer">
+        <strong>免責：</strong>
+        本ツールは一般的な手続きの整理を目的としています。
+        個別契約・法的判断・請求結果を保証するものではありません。最終確認は各契約先・自治体で行ってください。
       </div>
     </section>
+
+    <!-- Bottom ad slot -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- Donation -->
+    <div class="nw-donate">
+      <p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
   </main>
+
   <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks</p>
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
   </footer>
+
   <script src="./app.js"></script>
 </body>
 </html>
