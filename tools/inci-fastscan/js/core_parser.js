@@ -4,9 +4,9 @@ function coreParseIngredients(text) {
   // Normalize line breaks
   const normalized = String(text).replace(/\r/g, "");
 
-  // Split priority: newline, comma, semicolon, Japanese dot, slash
+  // Split priority: newline, comma, semicolon, Japanese dot, slash (half/full)
   const parts = normalized
-    .split(/\n|,|;|・|\//)
+    .split(/\n|,|;|・|\/|／/)
     .map(s => s.trim())
     .filter(s => s.length > 0);
 
