@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>API Key & Token Redactor｜Redact Secrets Before Sharing | NicheWorks</title>
-  <meta name="description" content="Detect and redact API keys, tokens, and secrets from code, logs, and .env files before sharing. Free browser-based security checker. 日本語対応。">
+  <title>APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks</title>
+  <meta name="description" content="APIキー・トークンを誤公開しないための伏字方法とチェック手順。GitHub/Discord/フォーム投稿前に、コード・ログ・.envを安全に共有するための最終確認ガイド。">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="API Key & Token Redactor — Redact Secrets Before Sharing | NicheWorks">
-  <meta property="og:description" content="Detect and redact API keys, tokens, and secrets from code/logs/.env before you share. Free & in-browser. 日本語対応。">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks">
+  <meta property="og:description" content="APIキー・トークンの誤公開を防ぐための伏字方法と最終チェック手順。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -26,18 +26,13 @@
 
   <link rel="stylesheet" href="./style.css">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "API Key & Token Redactor",
-    "url": "https://nicheworks.pages.dev/tools/api-key-token-redactor/",
-    "applicationCategory": "UtilityApplication",
-    "description": "Detect and redact API keys, tokens, and secrets from code/logs/.env before sharing. Free, in-browser. 日本語対応。",
-    "operatingSystem": "All"
-  }
-  </script>
-
+  <style>
+    .article { border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; margin: 12px 0 16px; background: #fff; }
+    .article h2 { margin-top: 18px; }
+    .article p, .article li { line-height: 1.8; }
+    .kbd { display:inline-block; padding:2px 8px; border:1px solid #d1d5db; border-bottom-width:2px; border-radius:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; background:#f9fafb; }
+    .callout { background:#f9fafb; border:1px solid #e5e7eb; border-radius:12px; padding:12px; margin:12px 0; }
+  </style>
   <script defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
@@ -46,176 +41,86 @@
 
 <body>
   <header class="nw-header">
-    <div class="header-row">
-      <h1>API Key & Token Redactor</h1>
-      <!-- Pro badge: JS will toggle hidden + is-pro -->
-      <span id="proBadge" class="pro-badge" aria-label="plan" hidden>PRO</span>
-    </div>
+    <h1>APIキー伏字のやり方（貼る前チェック手順）</h1>
+    <p>GitHub / Discord / フォーム投稿の前に、秘密情報を誤公開しないための最終確認ガイド。</p>
 
-    <p data-i18n="ja">APIキー・トークンを貼る前に検出・伏字化する「最終安全チェック」</p>
-    <p data-i18n="en">Final safety check: detect and redact API keys / tokens before sharing.</p>
-
-    <div class="nw-lang-switch" aria-label="language">
-      <button data-lang="ja" type="button">JP</button> /
-      <button data-lang="en" type="button">EN</button>
+    <div class="nw-lang-switch">
+      <a href="./index.html" class="kbd">ツールへ戻る</a>
     </div>
   </header>
 
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-    <section class="tool-card">
-      <h2 data-i18n="ja">貼り付け</h2>
-      <h2 data-i18n="en">Paste text</h2>
+    <article class="article">
+      <h2>このページで分かること</h2>
+      <ul>
+        <li>APIキー・トークンを貼ってはいけない理由（何が危険か）</li>
+        <li>コード・ログ・.env を安全に共有する「手順」</li>
+        <li>ありがちな漏洩パターンと対策</li>
+      </ul>
 
-      <textarea
-        id="inputText"
-        placeholder="Example: paste code / logs / .env here (processed locally in your browser). 例：コード・ログ・.env を貼り付け（ブラウザ内で処理）"
-      ></textarea>
-
-      <div class="btn-row">
-        <button id="analyzeBtn" type="button">検出する</button>
-        <button id="clearBtn" class="btn-ghost" type="button">クリア</button>
+      <div class="callout">
+        <strong>重要：</strong>伏字・検出は「取りこぼしゼロ」を保証できません。<br>
+        最終的な共有判断はあなたの責任で行ってください。
       </div>
 
-      <div id="progress" class="progress" hidden>
-        <div class="spinner" aria-hidden="true"></div>
-        <span data-i18n="ja">検出中…</span>
-        <span data-i18n="en">Scanning…</span>
-      </div>
-
-      <p class="note" data-i18n="ja">⚠ 完全な検出は保証されません。共有前の最終確認は自己責任です。</p>
-      <p class="note" data-i18n="en">⚠ Not guaranteed. Always review before sharing.</p>
-    </section>
-
-    <section id="resultSection" class="tool-card" hidden>
-      <h2 data-i18n="ja">検出結果</h2>
-      <h2 data-i18n="en">Results</h2>
-
-      <div class="summary">
-        <div>
-          <div class="summary-label" data-i18n="ja">総検出数</div>
-          <div class="summary-label" data-i18n="en">Total found</div>
-          <div id="totalFound" class="summary-value">0</div>
-        </div>
-        <div>
-          <div class="summary-label" data-i18n="ja">種類</div>
-          <div class="summary-label" data-i18n="en">Types</div>
-          <div id="typesFound" class="summary-value">0</div>
-        </div>
-      </div>
-
-      <div id="hitList" class="hit-list"></div>
-
-      <h3 data-i18n="ja">マスキング済みテキスト（共有用）</h3>
-      <h3 data-i18n="en">Redacted output (safe to share)</h3>
-
-      <div class="btn-row">
-        <button id="copyBtn" type="button">コピー</button>
-        <button id="downloadBtn" class="btn-ghost" type="button">TXTダウンロード</button>
-        <button id="resetBtn" class="btn-ghost" type="button">リセット</button>
-      </div>
-
-      <pre id="maskedOutput" class="output" aria-label="redacted output"></pre>
-
-      <div id="copyToast" class="toast" hidden>Copied</div>
-    </section>
-
-    <!-- 使い方リンク（日本語SEOは usage.html に集約） -->
-    <div class="nw-links">
-      <a href="./usage.html" data-i18n="ja">使い方（APIキー伏字の手順）</a>
-      <a href="./usage.html" data-i18n="en">How to (redact API keys safely)</a>
-    </div>
-
-    <!-- Pro CTA -->
-    <section class="tool-card pro-card" id="proCard">
-      <h2 data-i18n="ja">Pro（買い切り $2.99）</h2>
-      <h2 data-i18n="en">Pro (one-time $2.99)</h2>
-
-      <p class="pro-lead" data-i18n="ja">
-        チーム共有や提出用に「毎回同じルールで確実に伏字化」したい人向け。
+      <h2>危ないのは「APIキーだけ」じゃない</h2>
+      <p>
+        誤公開すると危険な情報は APIキーだけではありません。代表例は以下です。
       </p>
-      <p class="pro-lead" data-i18n="en">
-        For consistent, rule-based redaction when sharing with teams or posting publicly.
+      <ul>
+        <li>OpenAI / Stripe / AWS / GitHub などの各種キー</li>
+        <li>JWT などのログイン系トークン</li>
+        <li>Slack などのワークスペース用トークン</li>
+        <li>.env / config の秘密値（DBパスワード、Webhook URL など）</li>
+      </ul>
+
+      <h2>安全に共有する最短手順（おすすめ）</h2>
+      <ol>
+        <li>共有したい内容（コード/ログ/.env）をコピーする</li>
+        <li><a href="./index.html">API Key &amp; Token Redactor</a> に貼り付ける</li>
+        <li><span class="kbd">検出する</span> を押す</li>
+        <li>検出結果（件数・種類）を確認する</li>
+        <li><span class="kbd">コピー</span> or <span class="kbd">TXTダウンロード</span> で「伏字済み全文」を取得する</li>
+        <li>その伏字済み全文だけを、GitHub / Discord / フォームなどに貼る</li>
+      </ol>
+
+      <h2>よくある漏洩パターン</h2>
+      <ul>
+        <li><strong>.env を丸ごと貼ってしまう</strong>（特に事故が多い）</li>
+        <li><strong>ログに Authorization ヘッダーやJWTが混ざる</strong></li>
+        <li><strong>スクショにキーが映り込む</strong>（ターミナル・管理画面）</li>
+        <li><strong>「一部だけ伏字」のつもりが、別の場所に残っている</strong></li>
+      </ul>
+
+      <h2>安全度を上げるコツ</h2>
+      <ul>
+        <li>伏字済み全文を貼ったあとも、投稿前に <strong>検索（Ctrl+F）</strong> で <strong>sk- / pk_ / rk_ / AKIA / ghp_</strong> などを再確認</li>
+        <li>不要なら <strong>ログの該当行を削る</strong>（最も安全）</li>
+        <li>事故った可能性がある場合は <strong>即ローテーション</strong>（キー再発行・無効化）</li>
+      </ul>
+
+      <h2>このツールは何をしている？</h2>
+      <p>
+        ブラウザ内で文字列パターン（正規表現）を検出し、共有向けの形に置換します。
+        画像やテキストをサーバーへ送信しません（ローカル処理）。
       </p>
 
-      <ul class="pro-list" data-i18n="ja">
-        <li>マスキングルール指定（末尾N文字残す / 置換文字列）</li>
+      <h2>次の機能（Pro予定）</h2>
+      <ul>
+        <li>マスキングルール指定（末尾N文字残す / 置換文字列指定）</li>
+        <li>ローカル履歴</li>
         <li>より広い検出パターン</li>
-        <li>ローカル履歴（ブラウザ保存）</li>
       </ul>
-      <ul class="pro-list" data-i18n="en">
-        <li>Custom redaction rules (keep last N chars / replacement text)</li>
-        <li>Expanded detection patterns</li>
-        <li>Local history (saved in your browser)</li>
-      </ul>
-
-      <div class="btn-row">
-        <button id="openProBtn" type="button">Unlock Pro</button>
-        <button id="learnProBtn" class="btn-ghost" type="button">Details</button>
-      </div>
-
-      <p class="note" data-i18n="ja">※ Stripeで決済後、このページに自動で戻ります（PRO表示になります）。途中でキャンセルした場合は、このタブへ戻ってください。</p>
-      <p class="note" data-i18n="en">After payment, you’ll be redirected back to this page (it will show PRO). If you cancel, just return to this tab.</p>
-    </section>
-
-    <!-- Pro Modal -->
-    <div class="modal-backdrop" id="proModalBackdrop" hidden></div>
-    <div class="modal" id="proModal" hidden role="dialog" aria-modal="true" aria-labelledby="proModalTitle">
-      <div class="modal-header">
-        <h3 id="proModalTitle">Pro</h3>
-        <button class="modal-close" id="closeProModalBtn" type="button" aria-label="Close">×</button>
-      </div>
-
-      <div class="modal-body">
-        <p data-i18n="ja">Proでは「共有OKな全文」を、あなたのルールで一貫して生成できます。</p>
-        <p data-i18n="en">Pro generates a share-safe full output with your consistent redaction rules.</p>
-
-        <div class="rule-grid">
-          <div class="rule-item">
-            <label for="ruleMode">Mode</label>
-            <select id="ruleMode">
-              <option value="keep_last">Keep last N chars</option>
-              <option value="replace_all">Replace with text</option>
-            </select>
-          </div>
-
-          <div class="rule-item">
-            <label for="keepLastN">Keep last</label>
-            <input id="keepLastN" type="number" min="0" value="4">
-          </div>
-
-          <div class="rule-item">
-            <label for="replaceText">Replace text</label>
-            <input id="replaceText" type="text" value="[REDACTED]">
-          </div>
-        </div>
-
-        <div class="callout">
-          <p data-i18n="ja">決済後、このページに戻ってくると自動でProが有効になります。途中でキャンセルした場合は、このタブへ戻ってください。</p>
-          <p data-i18n="en">After payment, you’ll return to this page and Pro will be enabled automatically. If you cancel, return to this tab.</p>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button id="proBuyBtn" type="button">Pay with Stripe ($2.99)</button>
-        <button id="proLaterBtn" class="btn-ghost" type="button">Not now</button>
-      </div>
-    </div>
+    </article>
 
     <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
-      <p class="nw-donate-text" data-i18n="en">If this tool helped you, please consider supporting development.</p>
+      <p class="nw-donate-text">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
-    </div>
-
-    <div class="nw-links">
-      <a href="/tools/log-formatter/">LogFormatter</a> /
-      <a href="/tools/rename-wizard/">Rename Wizard</a> /
-      <a href="/tools/contract-cleaner/">Contract Cleaner</a>
     </div>
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
@@ -223,248 +128,10 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line" data-i18n="ja">完全な検出を保証するものではありません。</p>
-    <p class="nw-footer-line" data-i18n="en">Detection is not guaranteed.</p>
+    <p class="nw-footer-line">完全な検出を保証するものではありません。</p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
     </p>
   </footer>
-
-  <script type="module" src="./app.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>API Key & Token Redactor｜Redact Secrets Before Sharing | NicheWorks</title>
-  <meta name="description" content="Detect and redact API keys, tokens, and secrets from code, logs, and .env files before sharing. Free browser-based security checker. 日本語対応。">
-
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="API Key & Token Redactor — Redact Secrets Before Sharing | NicheWorks">
-  <meta property="og:description" content="Detect and redact API keys, tokens, and secrets from code/logs/.env before you share. Free & in-browser. 日本語対応。">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- AdSense（削除禁止） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Web Analytics -->
-
-  <link rel="stylesheet" href="./style.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "API Key & Token Redactor",
-    "url": "https://nicheworks.pages.dev/tools/api-key-token-redactor/",
-    "applicationCategory": "UtilityApplication",
-    "description": "Detect and redact API keys, tokens, and secrets from code/logs/.env before sharing. Free, in-browser. 日本語対応。",
-    "operatingSystem": "All"
-  }
-  </script>
-
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-  </script>
-</head>
-
-<body>
-  <header class="nw-header">
-    <div class="header-row">
-      <h1>API Key & Token Redactor</h1>
-      <!-- Pro badge: JS will toggle hidden + is-pro -->
-      <span id="proBadge" class="pro-badge" aria-label="plan" hidden>PRO</span>
-    </div>
-
-    <p data-i18n="ja">APIキー・トークンを貼る前に検出・伏字化する「最終安全チェック」</p>
-    <p data-i18n="en">Final safety check: detect and redact API keys / tokens before sharing.</p>
-
-    <div class="nw-lang-switch" aria-label="language">
-      <button data-lang="ja" type="button">JP</button> /
-      <button data-lang="en" type="button">EN</button>
-    </div>
-  </header>
-
-  <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
-
-    <section class="tool-card">
-      <h2 data-i18n="ja">貼り付け</h2>
-      <h2 data-i18n="en">Paste text</h2>
-
-      <textarea
-        id="inputText"
-        placeholder="Example: paste code / logs / .env here (processed locally in your browser). 例：コード・ログ・.env を貼り付け（ブラウザ内で処理）"
-      ></textarea>
-
-      <div class="btn-row">
-        <button id="analyzeBtn" type="button">検出する</button>
-        <button id="clearBtn" class="btn-ghost" type="button">クリア</button>
-      </div>
-
-      <div id="progress" class="progress" hidden>
-        <div class="spinner" aria-hidden="true"></div>
-        <span data-i18n="ja">検出中…</span>
-        <span data-i18n="en">Scanning…</span>
-      </div>
-
-      <p class="note" data-i18n="ja">⚠ 完全な検出は保証されません。共有前の最終確認は自己責任です。</p>
-      <p class="note" data-i18n="en">⚠ Not guaranteed. Always review before sharing.</p>
-    </section>
-
-    <section id="resultSection" class="tool-card" hidden>
-      <h2 data-i18n="ja">検出結果</h2>
-      <h2 data-i18n="en">Results</h2>
-
-      <div class="summary">
-        <div>
-          <div class="summary-label" data-i18n="ja">総検出数</div>
-          <div class="summary-label" data-i18n="en">Total found</div>
-          <div id="totalFound" class="summary-value">0</div>
-        </div>
-        <div>
-          <div class="summary-label" data-i18n="ja">種類</div>
-          <div class="summary-label" data-i18n="en">Types</div>
-          <div id="typesFound" class="summary-value">0</div>
-        </div>
-      </div>
-
-      <div id="hitList" class="hit-list"></div>
-
-      <h3 data-i18n="ja">マスキング済みテキスト（共有用）</h3>
-      <h3 data-i18n="en">Redacted output (safe to share)</h3>
-
-      <div class="btn-row">
-        <button id="copyBtn" type="button">コピー</button>
-        <button id="downloadBtn" class="btn-ghost" type="button">TXTダウンロード</button>
-        <button id="resetBtn" class="btn-ghost" type="button">リセット</button>
-      </div>
-
-      <pre id="maskedOutput" class="output" aria-label="redacted output"></pre>
-
-      <div id="copyToast" class="toast" hidden>Copied</div>
-    </section>
-
-    <!-- 使い方リンク（日本語SEOは usage.html に集約） -->
-    <div class="nw-links">
-      <a href="./usage.html" data-i18n="ja">使い方（APIキー伏字の手順）</a>
-      <a href="./usage.html" data-i18n="en">How to (redact API keys safely)</a>
-    </div>
-
-    <!-- Pro CTA -->
-    <section class="tool-card pro-card" id="proCard">
-      <h2 data-i18n="ja">Pro（買い切り $2.99）</h2>
-      <h2 data-i18n="en">Pro (one-time $2.99)</h2>
-
-      <p class="pro-lead" data-i18n="ja">
-        チーム共有や提出用に「毎回同じルールで確実に伏字化」したい人向け。
-      </p>
-      <p class="pro-lead" data-i18n="en">
-        For consistent, rule-based redaction when sharing with teams or posting publicly.
-      </p>
-
-      <ul class="pro-list" data-i18n="ja">
-        <li>マスキングルール指定（末尾N文字残す / 置換文字列）</li>
-        <li>より広い検出パターン</li>
-        <li>ローカル履歴（ブラウザ保存）</li>
-      </ul>
-      <ul class="pro-list" data-i18n="en">
-        <li>Custom redaction rules (keep last N chars / replacement text)</li>
-        <li>Expanded detection patterns</li>
-        <li>Local history (saved in your browser)</li>
-      </ul>
-
-      <div class="btn-row">
-        <button id="openProBtn" type="button">Unlock Pro</button>
-        <button id="learnProBtn" class="btn-ghost" type="button">Details</button>
-      </div>
-
-      <p class="note" data-i18n="ja">※ Stripeで決済後、このページに自動で戻ります（PRO表示になります）。途中でキャンセルした場合は、このタブへ戻ってください。</p>
-      <p class="note" data-i18n="en">After payment, you’ll be redirected back to this page (it will show PRO). If you cancel, just return to this tab.</p>
-    </section>
-
-    <!-- Pro Modal -->
-    <div class="modal-backdrop" id="proModalBackdrop" hidden></div>
-    <div class="modal" id="proModal" hidden role="dialog" aria-modal="true" aria-labelledby="proModalTitle">
-      <div class="modal-header">
-        <h3 id="proModalTitle">Pro</h3>
-        <button class="modal-close" id="closeProModalBtn" type="button" aria-label="Close">×</button>
-      </div>
-
-      <div class="modal-body">
-        <p data-i18n="ja">Proでは「共有OKな全文」を、あなたのルールで一貫して生成できます。</p>
-        <p data-i18n="en">Pro generates a share-safe full output with your consistent redaction rules.</p>
-
-        <div class="rule-grid">
-          <div class="rule-item">
-            <label for="ruleMode">Mode</label>
-            <select id="ruleMode">
-              <option value="keep_last">Keep last N chars</option>
-              <option value="replace_all">Replace with text</option>
-            </select>
-          </div>
-
-          <div class="rule-item">
-            <label for="keepLastN">Keep last</label>
-            <input id="keepLastN" type="number" min="0" value="4">
-          </div>
-
-          <div class="rule-item">
-            <label for="replaceText">Replace text</label>
-            <input id="replaceText" type="text" value="[REDACTED]">
-          </div>
-        </div>
-
-        <div class="callout">
-          <p data-i18n="ja">決済後、このページに戻ってくると自動でProが有効になります。途中でキャンセルした場合は、このタブへ戻ってください。</p>
-          <p data-i18n="en">After payment, you’ll return to this page and Pro will be enabled automatically. If you cancel, return to this tab.</p>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button id="proBuyBtn" type="button">Pay with Stripe ($2.99)</button>
-        <button id="proLaterBtn" class="btn-ghost" type="button">Not now</button>
-      </div>
-    </div>
-
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
-      <p class="nw-donate-text" data-i18n="en">If this tool helped you, please consider supporting development.</p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
-    </div>
-
-    <div class="nw-links">
-      <a href="/tools/log-formatter/">LogFormatter</a> /
-      <a href="/tools/rename-wizard/">Rename Wizard</a> /
-      <a href="/tools/contract-cleaner/">Contract Cleaner</a>
-    </div>
-
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
-  </main>
-
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line" data-i18n="ja">完全な検出を保証するものではありません。</p>
-    <p class="nw-footer-line" data-i18n="en">Detection is not guaranteed.</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
-    </p>
-  </footer>
-
-  <script type="module" src="./app.js"></script>
 </body>
 </html>
