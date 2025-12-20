@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>退去・提出前チェック｜Moving / Lease Final Check | NicheWorks</title>
+  <meta name="description" content="引っ越し・退去の提出前に、やり忘れ・解約漏れ・立会いトラブルを防ぐ最終チェック専用ツール。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/moving-lease-final-check/" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="nw-header">
+    <h1 class="tool-title">退去・提出前チェック</h1>
+    <p class="tool-sub">「これで本当に終わってる？」を確認するための最終チェック</p>
+  </header>
+  <main class="nw-main">
+    <section class="panel">
+      <label class="field">
+        <span class="label">退去日 / 引っ越し日</span>
+        <input id="moveDate" type="date" />
+      </label>
+      <label class="field">
+        <span class="label">住居タイプ</span>
+        <select id="homeType">
+          <option value="rental">賃貸</option>
+          <option value="owned">持ち家</option>
+        </select>
+      </label>
+      <button id="btnGenerate" class="primary">最終チェックを表示</button>
+    </section>
+    <section class="panel" id="result" hidden>
+      <h2 class="result-title">最終チェック項目</h2>
+      <ul id="taskList" class="final-list"></ul>
+      <div class="pro-area">
+        <p class="pro-note">提出・印刷・立会い用にまとめたい場合はこちら</p>
+        <button class="pro-btn">✔ チェックリストPDF（¥200）</button>
+        <button class="pro-btn">📝 退去立会いメモ（¥200）</button>
+        <button class="pro-btn">📮 住所変更まとめ（¥200）</button>
+      </div>
+    </section>
+  </main>
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks</p>
+  </footer>
+  <script src="./app.js"></script>
+</body>
+</html>
