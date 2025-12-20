@@ -114,6 +114,7 @@
     </div>
 
     <div id="fitPanel" class="fit-panel" hidden>
+
       <div class="fit-grid">
         <label>
           <span data-i18n="ja">足長（cm）</span><span data-i18n="en">Foot length (cm)</span>
@@ -125,6 +126,15 @@
           <input id="footWidth" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 10.2 / e.g. 10.2">
         </label>
       </div>
+
+      <!-- Brand (optional) -->
+      <label class="fit-brand">
+        <span data-i18n="ja">ブランド（任意）</span><span data-i18n="en">Brand (optional)</span>
+        <select id="brandSelect">
+          <option value="">—</option>
+          <!-- JSで投入 -->
+        </select>
+      </label>
 
       <div class="fit-actions">
         <button id="fitRun" class="primary" type="button">
