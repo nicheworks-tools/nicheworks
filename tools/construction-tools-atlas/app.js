@@ -169,8 +169,14 @@
     });
   }
 
+  function clearResults() {
+    while (elements.results.firstChild) {
+      elements.results.removeChild(elements.results.firstChild);
+    }
+  }
+
   function renderResults() {
-    elements.results.innerHTML = '';
+    clearResults();
     elements.resultCount.textContent = `${state.filtered.length} item${state.filtered.length === 1 ? '' : 's'}`;
     elements.emptyState.hidden = state.filtered.length > 0;
 
@@ -317,7 +323,11 @@
       openEntryFromState();
     } catch (err) {
       console.error(err);
-      elements.results.innerHTML = '<p class="empty-state">Failed to load data.</p>';
+      clearResults();
+      const error = document.createElement('p');
+      error.className = 'empty-state';
+      error.textContent = 'Failed to load data.';
+      elements.results.appendChild(error);
     }
   }
 
