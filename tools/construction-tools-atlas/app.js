@@ -75,15 +75,9 @@
     return lang === 'ja' ? 'en' : 'ja';
   }
 
-  function getLangValue(obj, lang) {
-    if (!obj) return '';
-    const value = obj[lang];
-    return typeof value === 'string' && value.trim() ? value : '';
-  }
-
   function getTermTexts(entry, lang) {
-    const primary = getLangValue(entry.term, lang) || getLangValue(entry.term, otherLang(lang));
-    const secondary = getLangValue(entry.term, otherLang(lang));
+    const primary = engine.getLangValue(entry.term, lang) || engine.getLangValue(entry.term, otherLang(lang));
+    const secondary = engine.getLangValue(entry.term, otherLang(lang));
     return {
       primary,
       secondary: primary === secondary ? '' : secondary,
@@ -92,8 +86,8 @@
 
   function getDescriptionTexts(entry, lang) {
     const values = [];
-    const primary = getLangValue(entry.description, lang);
-    const fallback = getLangValue(entry.description, otherLang(lang));
+    const primary = engine.getLangValue(entry.description, lang);
+    const fallback = engine.getLangValue(entry.description, otherLang(lang));
     if (primary) values.push({ lang, text: primary });
     if (fallback && fallback !== primary) {
       values.push({ lang: otherLang(lang), text: fallback });
@@ -207,8 +201,8 @@
       const meta = document.createElement('p');
       meta.className = 'result-meta';
       meta.textContent =
-        getLangValue(entry.description, state.lang) ||
-        getLangValue(entry.description, otherLang(state.lang)) ||
+        engine.getLangValue(entry.description, state.lang) ||
+        engine.getLangValue(entry.description, otherLang(state.lang)) ||
         '';
 
       textBlock.appendChild(title);

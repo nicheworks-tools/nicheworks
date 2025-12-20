@@ -299,6 +299,7 @@
     normalizeString,
     normalizeStringArray,
     normalizeEntry,
+    getLangValue,
     searchByText,
     filterByCategory,
     searchByTask,
