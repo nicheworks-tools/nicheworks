@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light" data-font="medium">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ▼ SEO -->
+  <title>スキマバイト収入集計ツール｜月別・年間自動計算 | NicheWorks</title>
+  <meta name="description" content="タイミーなどのスキマバイト収入を、1件ずつ入力するだけで月別・年間の合計を自動計算する無料ツール。スマホ専用で確定申告準備にも役立ちます。" />
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/sukima-income/" />
+
+  <!-- ▼ OGP -->
+  <meta property="og:title" content="スキマバイト収入集計ツール | NicheWorks" />
+  <meta property="og:description" content="1件入力するだけで月別・年間の収入を自動計算。タイミー等のスキマバイト利用者向けの無料ツール。" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/tools/sukima-income/og.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/sukima-income/" />
+
+  <!-- ▼ JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"スキマバイト収入集計ツール",
+    "url":"https://nicheworks.pages.dev/tools/sukima-income/",
+    "applicationCategory":"UtilityApplication",
+    "description":"スキマバイト収入を1件ずつ入力するだけで月別・年間の合計を自動計算する無料ツール。スマホ特化。"
+  }
+  </script>
+
+  <!-- ▼ スタイル -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ▼ 上部固定：フォント・テーマ設定 -->
+  <header class="nw-header">
+    <div class="header-inner">
+      <h1 class="app-title">スキマバイト収入集計</h1>
+      <div class="header-actions">
+        <button id="fontBtn" aria-label="フォントサイズ変更">AA</button>
+        <button id="themeBtn" aria-label="テーマ切替">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+
+    <!-- ▼ 説明（SEO文章） -->
+    <section class="intro-text">
+      <p>
+        タイミー・出前館・Uber Eatsなど、スキマバイトの収入を1件ずつ入力するだけで
+        <strong>月別・年間合計を自動計算</strong>します。
+        スマホだけで使える無料ツールです。
+      </p>
+    </section>
+
+    <!-- ▼ CSV入出力 -->
+    <div class="csv-actions">
+      <label for="csvInput" class="csv-btn">CSVインポート</label>
+      <input type="file" id="csvInput" accept=".csv" style="display:none;" />
+
+      <button id="csvExportBtn" class="csv-btn">CSVエクスポート</button>
+    </div>
+
+    <!-- ▼ エラー表示 -->
+    <div id="errorBox" class="error-box" style="display:none;"></div>
+
+    <!-- ▼ 入力フォーム -->
+    <section class="input-section">
+      <h2>新規入力</h2>
+
+      <div class="input-card">
+
+        <label>日付</label>
+        <input type="date" id="dateInput" />
+
+        <label>就業先</label>
+        <input type="text" id="workplaceInput" placeholder="例：Amazon倉庫" list="workplaceList" />
+        <datalist id="workplaceList"></datalist>
+
+        <label>区分</label>
+        <select id="categoryInput">
+          <option value="報酬">報酬</option>
+          <option value="交通費">交通費</option>
+          <option value="手当">手当</option>
+          <option value="その他">その他</option>
+        </select>
+
+        <label>金額（円）</label>
+        <input type="number" id="amountInput" placeholder="例：4200" inputmode="numeric" />
+
+        <label>メモ（任意）</label>
+        <textarea id="memoInput" rows="2" placeholder="任意メモ"></textarea>
+
+        <button id="addBtn" class="add-btn">追加する</button>
+      </div>
+    </section>
+
+    <!-- ▼ 入力済みデータ一覧 -->
+    <section class="entries-section">
+      <h2>入力一覧</h2>
+      <div id="entriesList"></div>
+    </section>
+
+    <!-- ▼ 集計セクション -->
+    <section class="summary-section">
+      <h2>集計結果</h2>
+
+      <div id="totalSummary" class="sum-card"></div>
+      <div id="monthlySummary" class="sum-list"></div>
+    </section>
+
+    <!-- ▼ 寄付導線 -->
+    <section class="nw-donate">
+      <p class="nw-donate-text">このツールがお役に立ったらご支援いただけると嬉しいです。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <!-- ▼ ブランドフッター -->
+    <footer class="nw-footer">
+      <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+      <p class="note">掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    </footer>
+
+  </main>
+
+  <!-- ▼ アプリJS -->
+  <script src="app.js"></script>
+
+  <!-- ▼ Cloudflare Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+</body>
+</html>
