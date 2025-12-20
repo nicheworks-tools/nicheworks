@@ -1,68 +1,989 @@
-[
-  {
-    "id": "tool-0001",
-    "term": { "ja": "スパナ", "en": "Spanner / Wrench" },
-    "category": "tools.hand",
-    "tags": ["fastener", "maintenance"],
-    "aliases": { "ja": ["レンチ"], "en": ["Wrench"] },
-    "description": {
-      "ja": "ナットやボルトを回して締め付け・緩めるための工具。",
-      "en": "A hand tool used to tighten or loosen nuts and bolts."
+{
+  "id": "pack-001",
+  "title": { "en": "Core Pack 001", "ja": "コアパック 001" },
+  "entries": [
+    {
+      "id": "cta-0001",
+      "term": { "en": "Hammer", "ja": "ハンマー" },
+      "description": { "en": "General striking tool for driving or breaking.", "ja": "叩くための基本工具。打ち込みや破壊に使う。" },
+      "aliases": { "en": ["Striking hammer"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["framing", "demolition"]
+    },
+    {
+      "id": "cta-0002",
+      "term": { "en": "Claw hammer", "ja": "かなづち（釘抜き付き）" },
+      "description": { "en": "Hammer with a claw for removing nails.", "ja": "釘を打つ・抜くの両方ができる。" },
+      "aliases": { "en": ["Nail hammer"], "ja": ["釘抜きハンマー"] },
+      "categories": ["hand-tools"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0003",
+      "term": { "en": "Sledgehammer", "ja": "大ハンマー" },
+      "description": { "en": "Heavy hammer for demolition and breaking concrete.", "ja": "解体・コンクリ破砕などに使う重量ハンマー。" },
+      "aliases": { "en": ["Maul"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["demolition", "foundation"]
+    },
+    {
+      "id": "cta-0004",
+      "term": { "en": "Pry bar", "ja": "バール" },
+      "description": { "en": "Lever tool for prying, pulling nails, and demolition.", "ja": "こじる・釘を抜く・解体で使うてこ工具。" },
+      "aliases": { "en": ["Crowbar"], "ja": ["鉄バール"] },
+      "categories": ["hand-tools"],
+      "tasks": ["demolition", "framing"]
+    },
+    {
+      "id": "cta-0005",
+      "term": { "en": "Tape measure", "ja": "メジャー" },
+      "description": { "en": "Retractable measuring tape for length checks.", "ja": "長さを測る巻尺。" },
+      "aliases": { "en": ["Measuring tape"], "ja": ["巻尺"] },
+      "categories": ["measurement"],
+      "tasks": ["site", "framing", "interior"]
+    },
+    {
+      "id": "cta-0006",
+      "term": { "en": "Spirit level", "ja": "水平器" },
+      "description": { "en": "Tool to check level and plumb using bubble vials.", "ja": "気泡で水平・垂直を確認する。" },
+      "aliases": { "en": ["Level"], "ja": ["レベル"] },
+      "categories": ["measurement"],
+      "tasks": ["framing", "interior"]
+    },
+
+    {
+      "id": "cta-0007",
+      "term": { "en": "Chalk line", "ja": "墨つぼ（チョークライン）" },
+      "description": { "en": "Snaps a straight chalk line for layout marks.", "ja": "直線の墨をパチンと付ける墨出し道具。" },
+      "aliases": { "en": ["Snap line"], "ja": ["墨出し"] },
+      "categories": ["measurement"],
+      "tasks": ["framing", "interior"]
+    },
+    {
+      "id": "cta-0008",
+      "term": { "en": "Plumb bob", "ja": "下げ振り" },
+      "description": { "en": "Weight on a string to establish vertical reference.", "ja": "糸と重りで垂直（鉛直）を出す。" },
+      "aliases": { "en": ["Plummet"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["foundation", "framing"]
+    },
+    {
+      "id": "cta-0009",
+      "term": { "en": "Square (carpenter's square)", "ja": "さしがね" },
+      "description": { "en": "L-shaped ruler for right angles and layout.", "ja": "直角確認や墨付けに使うL字定規。" },
+      "aliases": { "en": ["Try square"], "ja": ["曲尺"] },
+      "categories": ["measurement"],
+      "tasks": ["framing", "interior"]
+    },
+    {
+      "id": "cta-0010",
+      "term": { "en": "Utility knife", "ja": "カッター" },
+      "description": { "en": "Retractable blade knife for cutting sheet materials.", "ja": "シート材や梱包の切断に使う。" },
+      "aliases": { "en": ["Box cutter"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["interior", "site"]
+    },
+
+    {
+      "id": "cta-0011",
+      "term": { "en": "Handsaw", "ja": "手のこ" },
+      "description": { "en": "Manual saw for cutting wood.", "ja": "木材を手で切るのこぎり。" },
+      "aliases": { "en": ["Manual saw"], "ja": ["のこ"] },
+      "categories": ["hand-tools"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0012",
+      "term": { "en": "Circular saw", "ja": "丸ノコ" },
+      "description": { "en": "Power saw with a circular blade for fast cuts.", "ja": "円形刃で木材などを高速切断する電動工具。" },
+      "aliases": { "en": ["Skilsaw"], "ja": [] },
+      "categories": ["power-tools"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0013",
+      "term": { "en": "Reciprocating saw", "ja": "レシプロソー" },
+      "description": { "en": "Back-and-forth blade saw for demolition cuts.", "ja": "解体などでザクザク切る往復動のこ。" },
+      "aliases": { "en": ["Sawzall"], "ja": [] },
+      "categories": ["power-tools"],
+      "tasks": ["demolition"]
+    },
+    {
+      "id": "cta-0014",
+      "term": { "en": "Angle grinder", "ja": "ディスクグラインダー" },
+      "description": { "en": "Rotary tool for cutting/grinding metal or masonry.", "ja": "金属や石材の切断・研削に使う回転工具。" },
+      "aliases": { "en": ["Grinder"], "ja": ["サンダー"] },
+      "categories": ["power-tools"],
+      "tasks": ["demolition", "foundation"]
+    },
+    {
+      "id": "cta-0015",
+      "term": { "en": "Impact driver", "ja": "インパクトドライバー" },
+      "description": { "en": "Power driver delivering impacts for screws/bolts.", "ja": "衝撃でネジ締めを強力に行う電動工具。" },
+      "aliases": { "en": ["Impact"], "ja": ["インパクト"] },
+      "categories": ["power-tools"],
+      "tasks": ["framing", "interior"]
+    },
+
+    {
+      "id": "cta-0016",
+      "term": { "en": "Cordless drill", "ja": "電動ドリル（充電式）" },
+      "description": { "en": "Battery drill for drilling and light driving.", "ja": "穴あけ・軽い締め付けに使う充電ドリル。" },
+      "aliases": { "en": ["Drill driver"], "ja": ["ドライバドリル"] },
+      "categories": ["power-tools"],
+      "tasks": ["framing", "interior"]
+    },
+    {
+      "id": "cta-0017",
+      "term": { "en": "Hammer drill", "ja": "ハンマードリル" },
+      "description": { "en": "Drill with hammering action for concrete.", "ja": "コンクリに穴を開ける打撃機構付きドリル。" },
+      "aliases": { "en": ["Rotary hammer (light)"], "ja": [] },
+      "categories": ["power-tools"],
+      "tasks": ["foundation", "electrical", "plumbing"]
+    },
+    {
+      "id": "cta-0018",
+      "term": { "en": "Rotary hammer", "ja": "ロータリーハンマー" },
+      "description": { "en": "Heavy-duty hammer drill for concrete breaking/drilling.", "ja": "コンクリの穴あけや軽破砕に使う強力機。" },
+      "aliases": { "en": ["SDS hammer"], "ja": ["ハツリ機（小型）"] },
+      "categories": ["power-tools"],
+      "tasks": ["foundation", "demolition"]
+    },
+    {
+      "id": "cta-0019",
+      "term": { "en": "Nail gun", "ja": "釘打ち機（ネイラー）" },
+      "description": { "en": "Pneumatic or cordless tool for driving nails quickly.", "ja": "釘を高速で打ち込む工具。" },
+      "aliases": { "en": ["Nailer"], "ja": ["エア釘打ち"] },
+      "categories": ["power-tools"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0020",
+      "term": { "en": "Staple gun", "ja": "タッカー" },
+      "description": { "en": "Tool for driving staples into wood or sheathing.", "ja": "ステープル（針）で固定する工具。" },
+      "aliases": { "en": ["Tacker"], "ja": [] },
+      "categories": ["fasteners"],
+      "tasks": ["interior", "framing"]
+    },
+
+    {
+      "id": "cta-0021",
+      "term": { "en": "Screw", "ja": "ビス" },
+      "description": { "en": "Threaded fastener used with a driver.", "ja": "ドライバーで締めるねじ。" },
+      "aliases": { "en": ["Wood screw"], "ja": ["ネジ"] },
+      "categories": ["fasteners"],
+      "tasks": ["framing", "interior"]
+    },
+    {
+      "id": "cta-0022",
+      "term": { "en": "Bolt & nut", "ja": "ボルト・ナット" },
+      "description": { "en": "Fastener pair for strong mechanical joints.", "ja": "機械的に強固に固定する締結材。" },
+      "aliases": { "en": ["Fastening hardware"], "ja": [] },
+      "categories": ["fasteners"],
+      "tasks": ["site", "machines"]
+    },
+    {
+      "id": "cta-0023",
+      "term": { "en": "Anchor bolt", "ja": "アンカーボルト" },
+      "description": { "en": "Bolt used to anchor structures to concrete.", "ja": "コンクリに構造物を固定するためのボルト。" },
+      "aliases": { "en": ["Concrete anchor"], "ja": ["アンカー"] },
+      "categories": ["fasteners"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0024",
+      "term": { "en": "Wrench", "ja": "レンチ" },
+      "description": { "en": "Tool for tightening/loosening nuts and bolts.", "ja": "ナットやボルトを回す工具。" },
+      "aliases": { "en": ["Spanner"], "ja": ["スパナ"] },
+      "categories": ["hand-tools"],
+      "tasks": ["site", "machines"]
+    },
+    {
+      "id": "cta-0025",
+      "term": { "en": "Socket wrench", "ja": "ソケットレンチ" },
+      "description": { "en": "Ratchet handle with sockets for fast bolt work.", "ja": "ラチェットとソケットで素早く締緩する。" },
+      "aliases": { "en": ["Ratchet wrench"], "ja": ["ラチェット"] },
+      "categories": ["hand-tools"],
+      "tasks": ["site", "machines"]
+    },
+
+    {
+      "id": "cta-0026",
+      "term": { "en": "Pliers", "ja": "ペンチ" },
+      "description": { "en": "Gripping/cutting tool for wire and small parts.", "ja": "挟む・曲げる・切るに使う。" },
+      "aliases": { "en": ["Combination pliers"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["electrical", "plumbing", "site"]
+    },
+    {
+      "id": "cta-0027",
+      "term": { "en": "Wire stripper", "ja": "ワイヤーストリッパー" },
+      "description": { "en": "Tool for removing insulation from electrical wire.", "ja": "電線被覆を剥く工具。" },
+      "aliases": { "en": ["Stripper"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["electrical"]
+    },
+    {
+      "id": "cta-0028",
+      "term": { "en": "Voltage tester", "ja": "検電器" },
+      "description": { "en": "Checks presence of voltage before work.", "ja": "通電の有無を確認する安全工具。" },
+      "aliases": { "en": ["Tester"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["electrical"]
+    },
+    {
+      "id": "cta-0029",
+      "term": { "en": "Hard hat", "ja": "ヘルメット" },
+      "description": { "en": "Protective helmet for head safety on site.", "ja": "頭部保護具。現場の基本装備。" },
+      "aliases": { "en": ["Safety helmet"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0030",
+      "term": { "en": "Safety glasses", "ja": "保護メガネ" },
+      "description": { "en": "Eye protection against dust and debris.", "ja": "粉じん・破片から目を守る。" },
+      "aliases": { "en": ["Goggles"], "ja": ["ゴーグル"] },
+      "categories": ["safety"],
+      "tasks": ["site", "demolition"]
+    },
+
+    {
+      "id": "cta-0031",
+      "term": { "en": "Work gloves", "ja": "作業手袋" },
+      "description": { "en": "Hand protection; choose cut/heat resistance as needed.", "ja": "手の保護具。用途で耐切創・耐熱など選ぶ。" },
+      "aliases": { "en": ["Gloves"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0032",
+      "term": { "en": "Safety harness", "ja": "墜落制止用器具（フルハーネス）" },
+      "description": { "en": "Fall protection for work at height.", "ja": "高所作業の墜落防止装備。" },
+      "aliases": { "en": ["Full-body harness"], "ja": ["ハーネス"] },
+      "categories": ["safety"],
+      "tasks": ["scaffolding", "roofing"]
+    },
+    {
+      "id": "cta-0033",
+      "term": { "en": "Scaffold", "ja": "足場" },
+      "description": { "en": "Temporary structure providing working platforms.", "ja": "作業床を作る仮設構造物。" },
+      "aliases": { "en": ["Scaffolding"], "ja": [] },
+      "categories": ["scaffolding"],
+      "tasks": ["site", "exterior", "roofing"]
+    },
+    {
+      "id": "cta-0034",
+      "term": { "en": "Ladder", "ja": "はしご" },
+      "description": { "en": "Portable climbing equipment for access.", "ja": "昇降用の携帯器具。" },
+      "aliases": { "en": ["Step ladder"], "ja": ["脚立"] },
+      "categories": ["scaffolding"],
+      "tasks": ["site", "interior", "exterior"]
+    },
+    {
+      "id": "cta-0035",
+      "term": { "en": "Step ladder", "ja": "脚立" },
+      "description": { "en": "Self-supporting ladder for indoor/outdoor work.", "ja": "自立するはしご。短時間作業で多用。" },
+      "aliases": { "en": ["A-frame ladder"], "ja": [] },
+      "categories": ["scaffolding"],
+      "tasks": ["interior", "site"]
+    },
+
+    {
+      "id": "cta-0036",
+      "term": { "en": "Formwork", "ja": "型枠" },
+      "description": { "en": "Temporary molds used to shape poured concrete.", "ja": "コンクリを打設するための仮設型。" },
+      "aliases": { "en": ["Concrete forms"], "ja": [] },
+      "categories": ["concrete"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0037",
+      "term": { "en": "Rebar", "ja": "鉄筋" },
+      "description": { "en": "Steel reinforcement bars in concrete.", "ja": "コンクリの補強材となる鋼棒。" },
+      "aliases": { "en": ["Reinforcement bar"], "ja": [] },
+      "categories": ["concrete"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0038",
+      "term": { "en": "Concrete mixer", "ja": "ミキサー（コンクリ）" },
+      "description": { "en": "Machine to mix concrete or mortar.", "ja": "コンクリやモルタルを混ぜる機械。" },
+      "aliases": { "en": ["Mixer"], "ja": [] },
+      "categories": ["machines"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0039",
+      "term": { "en": "Trowel", "ja": "こて" },
+      "description": { "en": "Hand tool for spreading and finishing mortar/concrete.", "ja": "モルタル・コンクリの塗り付け・仕上げに使う。" },
+      "aliases": { "en": ["Finishing trowel"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["foundation", "interior"]
+    },
+    {
+      "id": "cta-0040",
+      "term": { "en": "Float (trowel)", "ja": "ならし（フロート）" },
+      "description": { "en": "Tool for smoothing fresh concrete or plaster.", "ja": "打設直後の表面をならす道具。" },
+      "aliases": { "en": ["Concrete float"], "ja": [] },
+      "categories": ["concrete"],
+      "tasks": ["foundation"]
+    },
+
+    {
+      "id": "cta-0041",
+      "term": { "en": "Stud", "ja": "スタッド（下地材）" },
+      "description": { "en": "Vertical framing member used in walls.", "ja": "壁の縦材。下地として使う。" },
+      "aliases": { "en": ["Wall stud"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["framing", "interior"]
+    },
+    {
+      "id": "cta-0042",
+      "term": { "en": "Plywood", "ja": "合板" },
+      "description": { "en": "Engineered wood sheet made of layered veneers.", "ja": "薄板を重ねた板材。下地や型枠にも使う。" },
+      "aliases": { "en": ["Ply"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["framing", "concrete"]
+    },
+    {
+      "id": "cta-0043",
+      "term": { "en": "Drywall", "ja": "石膏ボード" },
+      "description": { "en": "Wallboard used for interior walls and ceilings.", "ja": "内装壁・天井の面材。" },
+      "aliases": { "en": ["Gypsum board"], "ja": ["ボード"] },
+      "categories": ["materials"],
+      "tasks": ["interior"]
+    },
+    {
+      "id": "cta-0044",
+      "term": { "en": "Insulation", "ja": "断熱材" },
+      "description": { "en": "Material that reduces heat transfer in buildings.", "ja": "熱の移動を抑える材料。" },
+      "aliases": { "en": ["Thermal insulation"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["interior", "exterior"]
+    },
+    {
+      "id": "cta-0045",
+      "term": { "en": "Sealant / caulk", "ja": "シーリング" },
+      "description": { "en": "Flexible sealing material for joints and gaps.", "ja": "目地や隙間を塞ぐ充填材。" },
+      "aliases": { "en": ["Caulking"], "ja": ["コーキング"] },
+      "categories": ["materials"],
+      "tasks": ["exterior", "interior"]
+    },
+
+    {
+      "id": "cta-0046",
+      "term": { "en": "Pipe wrench", "ja": "パイプレンチ" },
+      "description": { "en": "Adjustable wrench designed for pipes.", "ja": "配管を掴んで回すレンチ。" },
+      "aliases": { "en": ["Stillson wrench"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["plumbing"]
+    },
+    {
+      "id": "cta-0047",
+      "term": { "en": "PVC pipe", "ja": "塩ビ管" },
+      "description": { "en": "Plastic pipe commonly used for drainage.", "ja": "排水などに使う樹脂配管。" },
+      "aliases": { "en": ["Vinyl pipe"], "ja": ["VU管"] },
+      "categories": ["materials"],
+      "tasks": ["plumbing"]
+    },
+    {
+      "id": "cta-0048",
+      "term": { "en": "Conduit", "ja": "電線管" },
+      "description": { "en": "Protective tube for electrical wiring.", "ja": "電線を保護する管。" },
+      "aliases": { "en": ["Electrical conduit"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["electrical"]
+    },
+    {
+      "id": "cta-0049",
+      "term": { "en": "Circuit breaker", "ja": "ブレーカー" },
+      "description": { "en": "Safety device that interrupts electrical current on faults.", "ja": "異常時に電流を遮断する安全装置。" },
+      "aliases": { "en": ["Breaker"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["electrical"]
+    },
+    {
+      "id": "cta-0050",
+      "term": { "en": "Stud finder", "ja": "下地センサー" },
+      "description": { "en": "Detects studs/joists behind walls for safe fixing.", "ja": "壁内の下地を探して安全に固定するための機器。" },
+      "aliases": { "en": ["Wall scanner"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["interior"]
+    },
+
+    {
+      "id": "cta-0051",
+      "term": { "en": "Forklift", "ja": "フォークリフト" },
+      "description": { "en": "Vehicle for lifting and moving palletized loads.", "ja": "荷物を持ち上げて運搬する車両。" },
+      "aliases": { "en": ["Fork truck"], "ja": ["フォーク"] },
+      "categories": ["machines"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0052",
+      "term": { "en": "Excavator", "ja": "油圧ショベル" },
+      "description": { "en": "Heavy machine for digging and earthmoving.", "ja": "掘削・土砂移動に使う重機。" },
+      "aliases": { "en": ["Digger"], "ja": ["ユンボ"] },
+      "categories": ["machines"],
+      "tasks": ["foundation", "site"]
+    },
+    {
+      "id": "cta-0053",
+      "term": { "en": "Backhoe loader", "ja": "バックホー（ローダー）" },
+      "description": { "en": "Machine with front loader and rear excavator arm.", "ja": "前ローダー＋後アームの複合重機。" },
+      "aliases": { "en": ["Backhoe"], "ja": [] },
+      "categories": ["machines"],
+      "tasks": ["foundation", "site"]
+    },
+    {
+      "id": "cta-0054",
+      "term": { "en": "Dump truck", "ja": "ダンプ" },
+      "description": { "en": "Truck for hauling and dumping loose materials.", "ja": "土砂などを運ぶ荷台ダンプ車。" },
+      "aliases": { "en": ["Tipper"], "ja": [] },
+      "categories": ["machines"],
+      "tasks": ["site", "foundation"]
+    },
+    {
+      "id": "cta-0055",
+      "term": { "en": "Concrete pump", "ja": "コンクリートポンプ車" },
+      "description": { "en": "Pumps concrete through hoses to placement area.", "ja": "ホースでコンクリを圧送する車両。" },
+      "aliases": { "en": ["Pump truck"], "ja": ["ポンプ車"] },
+      "categories": ["machines"],
+      "tasks": ["foundation"]
+    },
+
+    {
+      "id": "cta-0056",
+      "term": { "en": "Wheelbarrow", "ja": "一輪車（ねこ）" },
+      "description": { "en": "Hand cart for moving materials on site.", "ja": "材料運搬に使う手押し車。" },
+      "aliases": { "en": ["Barrow"], "ja": ["ねこ"] },
+      "categories": ["hand-tools"],
+      "tasks": ["site", "foundation"]
+    },
+    {
+      "id": "cta-0057",
+      "term": { "en": "Bucket", "ja": "バケツ" },
+      "description": { "en": "Container used for carrying water/mortar/small debris.", "ja": "水やモルタル等を運ぶ容器。" },
+      "aliases": { "en": [], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["site", "foundation", "painting"]
+    },
+    {
+      "id": "cta-0058",
+      "term": { "en": "Tarpaulin / tarp", "ja": "ブルーシート" },
+      "description": { "en": "Sheet for covering, weather protection, and cleanup.", "ja": "養生・雨よけ・片付けで使うシート。" },
+      "aliases": { "en": ["Tarp"], "ja": ["シート"] },
+      "categories": ["materials"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0059",
+      "term": { "en": "Masking tape", "ja": "マスキングテープ" },
+      "description": { "en": "Tape for protecting edges during painting/finishing.", "ja": "塗装や仕上げの養生に使うテープ。" },
+      "aliases": { "en": ["Painter's tape"], "ja": ["マスキング"] },
+      "categories": ["materials"],
+      "tasks": ["painting", "interior"]
+    },
+    {
+      "id": "cta-0060",
+      "term": { "en": "Drop cloth", "ja": "養生シート" },
+      "description": { "en": "Protective sheet for floors and furniture.", "ja": "床や家具を汚れから守るためのシート。" },
+      "aliases": { "en": ["Protection sheet"], "ja": ["養生"] },
+      "categories": ["materials"],
+      "tasks": ["painting", "interior"]
+    },
+
+    {
+      "id": "cta-0061",
+      "term": { "en": "Safety meeting", "ja": "朝礼（安全ミーティング）" },
+      "description": { "en": "Daily briefing for hazards, plan, and coordination.", "ja": "作業前に危険・手順・連携を確認する。" },
+      "aliases": { "en": ["Toolbox talk"], "ja": ["TBM"] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0062",
+      "term": { "en": "KY (hazard prediction)", "ja": "KY（危険予知）" },
+      "description": { "en": "Process to predict hazards before work.", "ja": "作業前に危険を洗い出す活動。" },
+      "aliases": { "en": ["Hazard prediction"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0063",
+      "term": { "en": "Kiken (watch out)", "ja": "危険（あぶない合図）" },
+      "description": { "en": "Common call to warn others of danger.", "ja": "危険を周囲に知らせる声掛け。" },
+      "aliases": { "en": ["Heads up"], "ja": ["あぶない"] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0064",
+      "term": { "en": "Youshi (protection)", "ja": "養生（ようじょう）" },
+      "description": { "en": "Covering/protecting areas to prevent damage or dirt.", "ja": "汚れ・傷防止の保護作業。" },
+      "aliases": { "en": ["Protection work"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["interior", "painting", "site"]
+    },
+    {
+      "id": "cta-0065",
+      "term": { "en": "Genba (site)", "ja": "現場" },
+      "description": { "en": "Work site; context often implies strict rules and flow.", "ja": "工事の作業現場。" },
+      "aliases": { "en": ["Jobsite"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+
+    {
+      "id": "cta-0066",
+      "term": { "en": "Cleanup (katazuke)", "ja": "片付け" },
+      "description": { "en": "End-of-work cleanup; essential for safety and quality.", "ja": "作業後の清掃・整理。安全と品質に直結。" },
+      "aliases": { "en": ["Housekeeping"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0067",
+      "term": { "en": "Hand signal", "ja": "合図（手合図）" },
+      "description": { "en": "Non-verbal signals used around machines/noisy work.", "ja": "重機や騒音下で使う非言語合図。" },
+      "aliases": { "en": ["Signals"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site", "machines"]
+    },
+    {
+      "id": "cta-0068",
+      "term": { "en": "Spotter", "ja": "誘導員" },
+      "description": { "en": "Person guiding vehicles/heavy equipment movements.", "ja": "車両・重機の移動を誘導する担当。" },
+      "aliases": { "en": ["Banksman"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site", "machines"]
+    },
+    {
+      "id": "cta-0069",
+      "term": { "en": "PPE", "ja": "保護具（PPE）" },
+      "description": { "en": "Personal Protective Equipment.", "ja": "個人用保護具の総称。" },
+      "aliases": { "en": ["Personal protective equipment"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0070",
+      "term": { "en": "Dust mask", "ja": "防じんマスク" },
+      "description": { "en": "Respiratory protection against dust.", "ja": "粉じんから呼吸器を守る。" },
+      "aliases": { "en": ["Respirator (light)"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["demolition", "site"]
+    },
+
+    {
+      "id": "cta-0071",
+      "term": { "en": "Respirator", "ja": "防毒マスク" },
+      "description": { "en": "Respiratory protection against fumes/chemicals.", "ja": "有機溶剤等のガスから守る。" },
+      "aliases": { "en": ["Gas mask"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["painting"]
+    },
+    {
+      "id": "cta-0072",
+      "term": { "en": "Ear protection", "ja": "耳栓・イヤーマフ" },
+      "description": { "en": "Protects hearing during noisy work.", "ja": "騒音から聴覚を守る。" },
+      "aliases": { "en": ["Earplugs"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site", "demolition"]
+    },
+    {
+      "id": "cta-0073",
+      "term": { "en": "First-aid kit", "ja": "救急箱" },
+      "description": { "en": "Basic supplies for minor injuries on site.", "ja": "軽傷対応の備品セット。" },
+      "aliases": { "en": ["First aid"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0074",
+      "term": { "en": "Fire extinguisher", "ja": "消火器" },
+      "description": { "en": "Portable device to put out small fires.", "ja": "初期消火に使う。" },
+      "aliases": { "en": ["Extinguisher"], "ja": [] },
+      "categories": ["safety"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0075",
+      "term": { "en": "Laser level", "ja": "レーザー墨出し器" },
+      "description": { "en": "Projects laser lines for fast level/plumb layout.", "ja": "レーザーで水平・垂直の基準線を出す。" },
+      "aliases": { "en": ["Laser line level"], "ja": ["レーザー"] },
+      "categories": ["measurement"],
+      "tasks": ["interior", "framing"]
+    },
+
+    {
+      "id": "cta-0076",
+      "term": { "en": "Measuring wheel", "ja": "測定車（ローラー）" },
+      "description": { "en": "Wheel tool to measure distances by rolling.", "ja": "転がして距離を測る工具。" },
+      "aliases": { "en": ["Survey wheel"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0077",
+      "term": { "en": "Marker", "ja": "マーカー" },
+      "description": { "en": "Marking pen for layout and labeling on site.", "ja": "墨付けや表示に使うペン。" },
+      "aliases": { "en": ["Paint marker"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0078",
+      "term": { "en": "Line level", "ja": "糸水平器" },
+      "description": { "en": "Small level used on string lines.", "ja": "水糸に付けて水平を確認する小型水平器。" },
+      "aliases": { "en": ["String level"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["framing", "foundation"]
+    },
+    {
+      "id": "cta-0079",
+      "term": { "en": "String line", "ja": "水糸" },
+      "description": { "en": "String used for straight reference lines.", "ja": "直線基準として張る糸。" },
+      "aliases": { "en": ["Mason's line"], "ja": ["糸"] },
+      "categories": ["measurement"],
+      "tasks": ["foundation", "framing"]
+    },
+    {
+      "id": "cta-0080",
+      "term": { "en": "Surveying", "ja": "墨出し（測量）" },
+      "description": { "en": "Layout work marking positions/lines to build from.", "ja": "施工の基準となる位置・線を出す作業。" },
+      "aliases": { "en": ["Layout"], "ja": ["墨出し"] },
+      "categories": ["measurement"],
+      "tasks": ["foundation", "framing"]
+    },
+
+    {
+      "id": "cta-0081",
+      "term": { "en": "Stud", "ja": "間柱（まばしら）" },
+      "description": { "en": "Intermediate vertical framing member.", "ja": "壁の補助縦材。" },
+      "aliases": { "en": ["Intermediate stud"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0082",
+      "term": { "en": "Joist", "ja": "根太（ねだ）" },
+      "description": { "en": "Horizontal framing member supporting floors/ceilings.", "ja": "床や天井を支える横材。" },
+      "aliases": { "en": [], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0083",
+      "term": { "en": "Beam", "ja": "梁（はり）" },
+      "description": { "en": "Major horizontal structural member.", "ja": "主要な水平構造材。" },
+      "aliases": { "en": [], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0084",
+      "term": { "en": "Column", "ja": "柱（はしら）" },
+      "description": { "en": "Vertical structural member.", "ja": "垂直の主要構造材。" },
+      "aliases": { "en": [], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["framing"]
+    },
+    {
+      "id": "cta-0085",
+      "term": { "en": "OSB", "ja": "OSB合板" },
+      "description": { "en": "Oriented strand board for sheathing.", "ja": "構造用の面材として使う合板の一種。" },
+      "aliases": { "en": ["Oriented strand board"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["framing", "exterior"]
+    },
+
+    {
+      "id": "cta-0086",
+      "term": { "en": "Screed", "ja": "トンボ（ならし）" },
+      "description": { "en": "Tool/method to level concrete to a flat plane.", "ja": "コンクリ表面を平滑にするならし道具/工程。" },
+      "aliases": { "en": ["Screeding"], "ja": [] },
+      "categories": ["concrete"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0087",
+      "term": { "en": "Vibrator (concrete)", "ja": "バイブレーター（棒バイブ）" },
+      "description": { "en": "Removes air pockets in fresh concrete.", "ja": "打設コンクリの気泡を抜いて密実にする。" },
+      "aliases": { "en": ["Concrete vibrator"], "ja": ["棒バイブ"] },
+      "categories": ["concrete"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0088",
+      "term": { "en": "Rebar tie wire", "ja": "結束線" },
+      "description": { "en": "Wire used to tie rebar intersections.", "ja": "鉄筋を結束する線材。" },
+      "aliases": { "en": ["Tie wire"], "ja": [] },
+      "categories": ["concrete"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0089",
+      "term": { "en": "Rebar tying tool", "ja": "結束機" },
+      "description": { "en": "Tool that speeds up tying rebar with wire.", "ja": "鉄筋の結束を高速化する工具。" },
+      "aliases": { "en": ["Rebar tier"], "ja": [] },
+      "categories": ["power-tools"],
+      "tasks": ["foundation"]
+    },
+    {
+      "id": "cta-0090",
+      "term": { "en": "Form tie", "ja": "フォームタイ（型枠締付）" },
+      "description": { "en": "Hardware that holds formwork panels together.", "ja": "型枠パネルを締め付けて保持する金物。" },
+      "aliases": { "en": ["Tie rod"], "ja": [] },
+      "categories": ["concrete"],
+      "tasks": ["foundation"]
+    },
+
+    {
+      "id": "cta-0091",
+      "term": { "en": "Caulk gun", "ja": "コーキングガン" },
+      "description": { "en": "Applies sealant cartridges into joints.", "ja": "シーリング材を押し出して充填する道具。" },
+      "aliases": { "en": ["Sealant gun"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["exterior", "interior"]
+    },
+    {
+      "id": "cta-0092",
+      "term": { "en": "Putty knife", "ja": "ヘラ" },
+      "description": { "en": "Spreads filler/putty; scraping small areas.", "ja": "パテの塗り付けや小面積の削りに使う。" },
+      "aliases": { "en": ["Scraper"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["interior"]
+    },
+    {
+      "id": "cta-0093",
+      "term": { "en": "Joint compound", "ja": "パテ" },
+      "description": { "en": "Filler used to smooth seams and small defects.", "ja": "継ぎ目や凹凸を埋めて平滑にする充填材。" },
+      "aliases": { "en": ["Putty"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["interior"]
+    },
+    {
+      "id": "cta-0094",
+      "term": { "en": "Sandpaper", "ja": "紙やすり" },
+      "description": { "en": "Abrasive paper for smoothing surfaces.", "ja": "表面を研磨して整える。" },
+      "aliases": { "en": ["Abrasive paper"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["interior", "painting"]
+    },
+    {
+      "id": "cta-0095",
+      "term": { "en": "Orbital sander", "ja": "サンダー（オービタル）" },
+      "description": { "en": "Power sander for smooth finishing.", "ja": "仕上げ研磨用の電動工具。" },
+      "aliases": { "en": ["Sander"], "ja": [] },
+      "categories": ["power-tools"],
+      "tasks": ["interior", "painting"]
+    },
+
+    {
+      "id": "cta-0096",
+      "term": { "en": "Paint roller", "ja": "ローラー" },
+      "description": { "en": "Roller for painting walls/ceilings efficiently.", "ja": "壁・天井を効率よく塗る道具。" },
+      "aliases": { "en": ["Roller"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["painting"]
+    },
+    {
+      "id": "cta-0097",
+      "term": { "en": "Paint brush", "ja": "刷毛（はけ）" },
+      "description": { "en": "Brush for edges, detail work, and touch-ups.", "ja": "端部や細部の塗装・タッチアップに使う。" },
+      "aliases": { "en": ["Brush"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["painting"]
+    },
+    {
+      "id": "cta-0098",
+      "term": { "en": "Primer", "ja": "下塗り（プライマー）" },
+      "description": { "en": "Base coat improving adhesion and finish quality.", "ja": "密着性と仕上がりを良くする下塗り材。" },
+      "aliases": { "en": ["Undercoat"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["painting"]
+    },
+    {
+      "id": "cta-0099",
+      "term": { "en": "Top coat", "ja": "上塗り" },
+      "description": { "en": "Final paint coat providing color and protection.", "ja": "色・保護性能を担う仕上げ塗り。" },
+      "aliases": { "en": ["Finish coat"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["painting"]
+    },
+    {
+      "id": "cta-0100",
+      "term": { "en": "Touch-up", "ja": "タッチアップ" },
+      "description": { "en": "Small area repair of paint/finish defects.", "ja": "小さな塗装欠け等を補修すること。" },
+      "aliases": { "en": ["Spot repair"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["painting", "interior"]
+    },
+
+    {
+      "id": "cta-0101",
+      "term": { "en": "Rafter", "ja": "垂木（たるき）" },
+      "description": { "en": "Sloped roof framing member.", "ja": "屋根を支える斜め材。" },
+      "aliases": { "en": [], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["roofing", "framing"]
+    },
+    {
+      "id": "cta-0102",
+      "term": { "en": "Roofing felt", "ja": "ルーフィング" },
+      "description": { "en": "Waterproof underlayment beneath roof covering.", "ja": "屋根材の下に敷く防水下葺き材。" },
+      "aliases": { "en": ["Underlayment"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["roofing"]
+    },
+    {
+      "id": "cta-0103",
+      "term": { "en": "Shingle", "ja": "シングル材" },
+      "description": { "en": "Roof covering material in overlapping pieces.", "ja": "重ね貼りする屋根材。" },
+      "aliases": { "en": ["Roof shingle"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["roofing"]
+    },
+    {
+      "id": "cta-0104",
+      "term": { "en": "Flashing", "ja": "板金（フラッシング）" },
+      "description": { "en": "Metal pieces that prevent water intrusion at joints.", "ja": "雨仕舞いのための板金部材。" },
+      "aliases": { "en": ["Sheet metal flashing"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["roofing", "exterior"]
+    },
+    {
+      "id": "cta-0105",
+      "term": { "en": "Seal tape", "ja": "防水テープ" },
+      "description": { "en": "Tape used to seal joints and prevent leaks.", "ja": "継ぎ目を塞いで漏水を防ぐテープ。" },
+      "aliases": { "en": ["Waterproof tape"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["roofing", "exterior"]
+    },
+
+    {
+      "id": "cta-0106",
+      "term": { "en": "Punch list", "ja": "手直しリスト" },
+      "description": { "en": "List of remaining defects/items to fix before handover.", "ja": "引渡し前の不具合・残工事の一覧。" },
+      "aliases": { "en": ["Snag list"], "ja": ["是正リスト"] },
+      "categories": ["slang"],
+      "tasks": ["site", "interior", "exterior"]
+    },
+    {
+      "id": "cta-0107",
+      "term": { "en": "Handover", "ja": "引き渡し" },
+      "description": { "en": "Project delivery to client after completion checks.", "ja": "完了確認後に施主へ引き渡す工程。" },
+      "aliases": { "en": ["Turnover"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0108",
+      "term": { "en": "As-built", "ja": "竣工図（アズビルト）" },
+      "description": { "en": "Documents showing what was actually built.", "ja": "実際の施工内容を反映した図書。" },
+      "aliases": { "en": ["As-built drawings"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0109",
+      "term": { "en": "RFIs", "ja": "質疑（RFI）" },
+      "description": { "en": "Requests for information to clarify unclear details.", "ja": "不明点を確認するための質疑。" },
+      "aliases": { "en": ["Request for Information"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0110",
+      "term": { "en": "Change order", "ja": "変更（チェンジ）" },
+      "description": { "en": "Formal change to scope, cost, or schedule.", "ja": "仕様・金額・工程の正式な変更。" },
+      "aliases": { "en": ["Variation"], "ja": [] },
+      "categories": ["slang"],
+      "tasks": ["site"]
+    },
+
+    {
+      "id": "cta-0111",
+      "term": { "en": "Torque", "ja": "トルク" },
+      "description": { "en": "Rotational force; important for bolt tightening specs.", "ja": "回転力。ボルト締付管理で重要。" },
+      "aliases": { "en": [], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["site", "machines"]
+    },
+    {
+      "id": "cta-0112",
+      "term": { "en": "Torque wrench", "ja": "トルクレンチ" },
+      "description": { "en": "Wrench that tightens bolts to a specified torque.", "ja": "指定トルクで締め付ける管理レンチ。" },
+      "aliases": { "en": [], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["site", "machines"]
+    },
+    {
+      "id": "cta-0113",
+      "term": { "en": "Caliper", "ja": "ノギス" },
+      "description": { "en": "Measures thickness/diameter precisely.", "ja": "厚み・外径などを精密に測る。" },
+      "aliases": { "en": ["Vernier caliper"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["site"]
+    },
+    {
+      "id": "cta-0114",
+      "term": { "en": "Feeler gauge", "ja": "シクネスゲージ" },
+      "description": { "en": "Measures small gaps/clearances.", "ja": "隙間（クリアランス）を測る薄板ゲージ。" },
+      "aliases": { "en": ["Thickness gauge"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["machines", "site"]
+    },
+    {
+      "id": "cta-0115",
+      "term": { "en": "Dial gauge", "ja": "ダイヤルゲージ" },
+      "description": { "en": "Measures small displacements/precision alignment.", "ja": "微小変位・芯出し確認などに使う。" },
+      "aliases": { "en": ["Dial indicator"], "ja": [] },
+      "categories": ["measurement"],
+      "tasks": ["machines", "site"]
+    },
+
+    {
+      "id": "cta-0116",
+      "term": { "en": "Heat gun", "ja": "ヒートガン" },
+      "description": { "en": "Hot air tool for shrinking tubing and softening materials.", "ja": "熱収縮チューブや材料加熱に使う。" },
+      "aliases": { "en": ["Hot air gun"], "ja": [] },
+      "categories": ["power-tools"],
+      "tasks": ["electrical", "interior"]
+    },
+    {
+      "id": "cta-0117",
+      "term": { "en": "Soldering iron", "ja": "はんだごて" },
+      "description": { "en": "Tool for soldering electrical connections.", "ja": "電気接続をはんだ付けする工具。" },
+      "aliases": { "en": ["Solder iron"], "ja": [] },
+      "categories": ["hand-tools"],
+      "tasks": ["electrical"]
+    },
+    {
+      "id": "cta-0118",
+      "term": { "en": "Heat-shrink tubing", "ja": "熱収縮チューブ" },
+      "description": { "en": "Insulating tube that shrinks when heated.", "ja": "加熱で縮んで絶縁・保護するチューブ。" },
+      "aliases": { "en": ["Heat shrink"], "ja": [] },
+      "categories": ["materials"],
+      "tasks": ["electrical"]
+    },
+    {
+      "id": "cta-0119",
+      "term": { "en": "Cable tie", "ja": "結束バンド" },
+      "description": { "en": "Plastic tie for bundling cables or light fixing.", "ja": "配線束ねや軽固定に使うバンド。" },
+      "aliases": { "en": ["Zip tie"], "ja": ["タイラップ"] },
+      "categories": ["fasteners"],
+      "tasks": ["electrical", "site"]
+    },
+    {
+      "id": "cta-0120",
+      "term": { "en": "Temporary fixing (kari)", "ja": "仮止め" },
+      "description": { "en": "Temporary fixation before final fastening/alignment.", "ja": "位置合わせ・本締め前の一時固定。" },
+      "aliases": { "en": ["Temporary hold"], "ja": ["仮固定"] },
+      "categories": ["slang"],
+      "tasks": ["site", "framing", "interior"]
     }
-  },
-  {
-    "id": "tool-0002",
-    "term": { "ja": "ハンマー", "en": "Hammer" },
-    "category": "tools.hand",
-    "tags": ["impact", "assembly"],
-    "aliases": { "ja": ["金づち"], "en": [] },
-    "description": {
-      "ja": "叩いて固定する、調整する、打ち込むなどの用途で使う工具。",
-      "en": "A tool used for striking to fasten, adjust, or drive materials."
-    }
-  },
-  {
-    "id": "tool-0003",
-    "term": { "ja": "水平器", "en": "Spirit level" },
-    "category": "tools.measure",
-    "tags": ["leveling", "layout"],
-    "aliases": { "ja": ["レベル"], "en": ["Level"] },
-    "description": {
-      "ja": "気泡管で水平・垂直を確認する測定工具。",
-      "en": "A measuring tool used to check horizontal and vertical alignment."
-    }
-  },
-  {
-    "id": "tool-0004",
-    "term": { "ja": "メジャー", "en": "Tape measure" },
-    "category": "tools.measure",
-    "tags": ["measurement", "layout"],
-    "aliases": { "ja": ["巻尺"], "en": ["Measuring tape"] },
-    "description": {
-      "ja": "長さを測るための巻き取り式の測定工具。",
-      "en": "A retractable measuring tool used to measure lengths."
-    }
-  },
-  {
-    "id": "tool-0005",
-    "term": { "ja": "養生", "en": "Protection / Masking" },
-    "category": "work.process",
-    "tags": ["safety", "finish"],
-    "aliases": { "ja": ["保護", "マスキング"], "en": ["Masking", "Surface protection"] },
-    "description": {
-      "ja": "作業中の汚れや傷を防ぐために保護材で覆う作業。",
-      "en": "Work done to protect surfaces from dirt or damage during construction."
-    }
-  },
-  {
-    "id": "tool-0006",
-    "term": { "ja": "墨出し", "en": "Layout marking" },
-    "category": "work.process",
-    "tags": ["layout", "measurement"],
-    "aliases": { "ja": ["印付け"], "en": ["Marking out"] },
-    "description": {
-      "ja": "設計寸法に基づいて基準線や位置を床・壁などに記す作業。",
-      "en": "Marking reference lines and positions on surfaces based on dimensions."
-    }
-  }
-]
+  ]
+}
