@@ -1,5 +1,6 @@
 /* app.js — Size Converter (JP ↔ US/EU)
  * Phase 1: Shoe fit checker by cm (foot length required, width optional)
+ * v1.1: Borderline handling + explicit candidates + width measurement note
  */
 
 (() => {
@@ -76,10 +77,12 @@
       notShoe: "実寸判定は「靴」のみ対応です。",
       fitTitle: "判定結果（目安）",
       recommend: "推奨サイズ",
-      near: "近いサイズ",
+      near: "候補（上下）",
       cautionWide: "幅広の傾向：窮屈なら +0.5cm を検討。",
       cautionNarrow: "幅細めの傾向：大きすぎ注意（まずは基準サイズ）。",
       cautionStd: "標準的：まずは基準サイズから。",
+      borderline: "境界付近です。±0.5cm どちらも候補に入ります（レビュー優先推奨）。",
+      widthHowto: "足幅は「最も広い部分」を立った状態でまっすぐ測るのが目安です。",
       headers: { jp: "JP", us: "US", eu: "EU" },
       baseHint: "基準列",
     },
@@ -89,10 +92,12 @@
       notShoe: "Fit checker supports shoes only.",
       fitTitle: "Result (approx.)",
       recommend: "Recommended",
-      near: "Nearby sizes",
+      near: "Candidates (±0.5)",
       cautionWide: "Wider foot: consider +0.5 cm if tight.",
       cautionNarrow: "Narrower foot: beware of sizing up too much.",
       cautionStd: "Typical: start with the base size.",
+      borderline: "Borderline. Both ±0.5 cm can be valid (check reviews if unsure).",
+      widthHowto: "Measure width at the widest part (standing is recommended).",
       headers: { jp: "JP", us: "US", eu: "EU" },
       baseHint: "Base",
     },
@@ -256,19 +261,40 @@
     const rows = getShoeRows();
     if (!rows.length) return { error: LABELS[currentLang].noData };
 
-    // Simple rule: JP size ~= foot length rounded to nearest 0.5
+    // --- Core sizing rule (JP ~ length rounded to 0.5) ---
     const roundedJP = Math.round(lengthCm * 2) / 2;
+
+    // Borderline detection: near midpoint between 0.5 steps
+    // Example: 26.25 is the midpoint between 26.0 and 26.5
+    const lowerStep = Math.floor(lengthCm * 2) / 2;
+    const stepMid = lowerStep + 0.25;
+    const distToMid = Math.abs(lengthCm - stepMid);
+    const isBorderline = distToMid <= 0.10; // ±0.10cm zone (tunable)
+
+    // Candidate sizes (lower/upper around rounded)
+    const lowerJP = roundedJP - 0.5;
+    const upperJP = roundedJP + 0.5;
 
     const idx = closestIndexByJP(rows, roundedJP);
     if (idx < 0) return { error: LABELS[currentLang].noData };
 
     const rec = rows[idx];
 
-    const near = [];
-    if (rows[idx - 1]) near.push(rows[idx - 1]);
-    near.push(rows[idx]);
-    if (rows[idx + 1]) near.push(rows[idx + 1]);
+    // Build candidates list explicitly (lower, rec, upper) without duplicates
+    const candidates = [];
+    const pushIfExistsByJP = (jpVal) => {
+      const i = closestIndexByJP(rows, jpVal);
+      if (i < 0) return;
+      const r = rows[i];
+      if (candidates.some((x) => x.jp === r.jp && x.us === r.us && x.eu === r.eu)) return;
+      candidates.push(r);
+    };
 
+    pushIfExistsByJP(lowerJP);
+    pushIfExistsByJP(roundedJP);
+    pushIfExistsByJP(upperJP);
+
+    // Width classification (rough)
     const wc = Number.isFinite(widthCm) ? widthClass(lengthCm, widthCm) : null;
 
     let caution = "";
@@ -281,8 +307,11 @@
       lengthCm,
       widthCm: Number.isFinite(widthCm) ? widthCm : null,
       roundedJP,
+      lowerJP,
+      upperJP,
+      isBorderline,
       recommend: rec,
-      near,
+      candidates,
       widthClass: wc,
       caution,
     };
@@ -307,7 +336,8 @@
     const near = LABELS[currentLang].near;
 
     const rec = payload.recommend;
-    const nearHtml = payload.near
+
+    const nearHtml = (payload.candidates || [])
       .map(
         (r) => `
         <li>
@@ -328,6 +358,16 @@
     const cautionLine =
       payload.caution
         ? `<div class="fit-caution">${escapeHtml(payload.caution)}</div>`
+        : "";
+
+    const borderlineLine =
+      payload.isBorderline
+        ? `<div class="fit-borderline">${escapeHtml(LABELS[currentLang].borderline)}</div>`
+        : "";
+
+    const howtoLine =
+      payload.widthCm != null
+        ? `<div class="fit-howto">${escapeHtml(LABELS[currentLang].widthHowto)}</div>`
         : "";
 
     els.fitResult.innerHTML = `
@@ -354,6 +394,8 @@
         </div>
 
         ${cautionLine}
+        ${borderlineLine}
+        ${howtoLine}
 
         <div class="fit-sub">
           <div class="fit-label">${escapeHtml(near)}</div>
@@ -399,8 +441,8 @@
       renderFitResult(null);
       renderTable();
     } else {
-      // Fit mode: ensure category is shoes (if not, we still show error)
-      renderTable(); // keep table synced but not displayed (fine)
+      // Fit mode: keep table synced (fine)
+      renderTable();
       renderFitResult(null);
     }
   }
