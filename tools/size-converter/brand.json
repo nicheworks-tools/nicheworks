@@ -1,0 +1,78 @@
+{
+  "shoes": {
+    "men": [
+      {
+        "id": "nike",
+        "label": "Nike",
+        "offset": 0.5,
+        "note_ja": "小さめになりやすい傾向。迷ったら+0.5cmを検討。",
+        "note_en": "Often runs small. Consider +0.5 cm if between sizes."
+      },
+      {
+        "id": "adidas",
+        "label": "adidas",
+        "offset": 0.0,
+        "note_ja": "標準寄りが多いが、モデル差あり。迷ったらレビュー優先。",
+        "note_en": "Often true-to-size, but varies by model. Check reviews."
+      },
+      {
+        "id": "converse",
+        "label": "Converse",
+        "offset": -0.5,
+        "note_ja": "大きめになりやすい傾向。まずは-0.5cmも候補。",
+        "note_en": "Often runs large. Consider -0.5 cm as a candidate."
+      },
+      {
+        "id": "newbalance",
+        "label": "New Balance",
+        "offset": 0.0,
+        "note_ja": "幅展開があるため、同サイズでも幅が重要。幅入力推奨。",
+        "note_en": "Width options matter. Enter width if possible."
+      },
+      {
+        "id": "drmartens",
+        "label": "Dr. Martens",
+        "offset": 0.0,
+        "note_ja": "慣らし期間あり。厚手ソックス前提なら+0.5cmも検討。",
+        "note_en": "Break-in needed. With thick socks, +0.5 cm may help."
+      }
+    ],
+    "women": [
+      {
+        "id": "nike",
+        "label": "Nike",
+        "offset": 0.5,
+        "note_ja": "小さめになりやすい傾向。迷ったら+0.5cmを検討。",
+        "note_en": "Often runs small. Consider +0.5 cm if between sizes."
+      },
+      {
+        "id": "adidas",
+        "label": "adidas",
+        "offset": 0.0,
+        "note_ja": "標準寄りが多いが、モデル差あり。迷ったらレビュー優先。",
+        "note_en": "Often true-to-size, but varies by model. Check reviews."
+      },
+      {
+        "id": "converse",
+        "label": "Converse",
+        "offset": -0.5,
+        "note_ja": "大きめになりやすい傾向。まずは-0.5cmも候補。",
+        "note_en": "Often runs large. Consider -0.5 cm as a candidate."
+      },
+      {
+        "id": "newbalance",
+        "label": "New Balance",
+        "offset": 0.0,
+        "note_ja": "幅展開があるため、同サイズでも幅が重要。幅入力推奨。",
+        "note_en": "Width options matter. Enter width if possible."
+      },
+      {
+        "id": "drmartens",
+        "label": "Dr. Martens",
+        "offset": 0.0,
+        "note_ja": "慣らし期間あり。厚手ソックス前提なら+0.5cmも検討。",
+        "note_en": "Break-in needed. With thick socks, +0.5 cm may help."
+      }
+    ]
+  }
+}
