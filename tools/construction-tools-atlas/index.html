@@ -5,14 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Construction Tools & Slang Atlas</title>
   <link rel="stylesheet" href="./style.css" />
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
 </head>
 <body>
-  <!-- UI will be implemented in a later step. -->
-  <main id="app"></main>
+  <div class="page">
+    <header class="topbar">
+      <div class="title-block">
+        <p class="eyebrow">Construction Tools &amp; Slang Atlas</p>
+        <h1>Browse, search, and learn core field terms.</h1>
+        <p class="lede">Quickly find terminology, tools, and work processes across categories.</p>
+      </div>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Language toggle">JA / EN</button>
+    </header>
+
+    <section class="controls" aria-label="Search and filters">
+      <div class="control search-control">
+        <label for="searchInput">Search</label>
+        <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" />
+      </div>
+      <div class="control filter-control">
+        <label for="categorySelect">Category</label>
+        <select id="categorySelect" name="cat">
+          <option value="">All categories</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="content" aria-label="Results and details">
+      <div class="results-panel">
+        <div class="results-header">
+          <h2>Results</h2>
+          <p class="result-count" id="resultCount"></p>
+        </div>
+        <div id="results" class="results-list" role="list"></div>
+        <div id="emptyState" class="empty-state" hidden>No results found. Try a different keyword or filter.</div>
+      </div>
+      <aside class="detail-panel" aria-live="polite">
+        <div id="detailPlaceholder" class="detail-placeholder">Select an entry to view details.</div>
+        <div id="detail" class="detail" hidden>
+          <p class="detail-category" id="detailCategory"></p>
+          <h3 id="detailTitle"></h3>
+          <p class="detail-subtitle" id="detailSubtitle"></p>
+          <div class="detail-section" id="detailDescription"></div>
+          <div class="detail-meta">
+            <div class="meta-block">
+              <p class="meta-label">Aliases</p>
+              <p id="detailAliases"></p>
+            </div>
+            <div class="meta-block">
+              <p class="meta-label">Tags</p>
+              <p id="detailTags"></p>
+            </div>
+            <div class="meta-block">
+              <p class="meta-label">ID</p>
+              <p id="detailId"></p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script src="./core/engine.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
