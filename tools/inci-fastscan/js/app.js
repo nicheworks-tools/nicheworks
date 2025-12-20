@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   setupTabs();
   setupFastCheck();
   setupJBTranslator();
+  setupResets();
 });
 
 function setupTabs() {
@@ -87,4 +88,44 @@ function setupJBTranslator() {
       btn.textContent = prev;
     }
   };
+}
+
+function setupResets() {
+  const fastReset = document.getElementById("btn-fast-reset");
+  if (fastReset) {
+    fastReset.onclick = () => {
+      // Clear input + results
+      const input = document.getElementById("fast-input");
+      const results = document.getElementById("fast-results");
+      const file = document.getElementById("ocr-file-fast");
+      const ocrBtn = document.getElementById("btn-ocr-run-fast");
+
+      if (input) input.value = "";
+      if (results) results.innerHTML = "";
+      if (file) file.value = "";
+      if (ocrBtn) {
+        ocrBtn.disabled = false;
+        ocrBtn.textContent = "Run OCR (EN)";
+      }
+    };
+  }
+
+  const jbReset = document.getElementById("btn-jb-reset");
+  if (jbReset) {
+    jbReset.onclick = () => {
+      // Clear input + results
+      const input = document.getElementById("jb-input");
+      const results = document.getElementById("jb-results");
+      const file = document.getElementById("ocr-file");
+      const ocrBtn = document.getElementById("btn-ocr-run");
+
+      if (input) input.value = "";
+      if (results) results.innerHTML = "";
+      if (file) file.value = "";
+      if (ocrBtn) {
+        ocrBtn.disabled = false;
+        ocrBtn.textContent = "Run OCR (JP)";
+      }
+    };
+  }
 }
