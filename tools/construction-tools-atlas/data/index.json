@@ -1,14 +1,39 @@
 {
-  "version": 1,
+  "schemaVersion": 1,
+  "title": {
+    "en": "Construction Tools & Slang Atlas",
+    "ja": "建設工具＆現場スラング辞典"
+  },
+  "defaultLang": "en",
+  "categories": [
+    { "id": "hand-tools", "label": { "en": "Hand Tools", "ja": "手工具" } },
+    { "id": "power-tools", "label": { "en": "Power Tools", "ja": "電動工具" } },
+    { "id": "measurement", "label": { "en": "Measurement", "ja": "測定・墨出し" } },
+    { "id": "safety", "label": { "en": "Safety", "ja": "安全" } },
+    { "id": "fasteners", "label": { "en": "Fasteners & Fixing", "ja": "金物・固定" } },
+    { "id": "materials", "label": { "en": "Materials", "ja": "材料" } },
+    { "id": "scaffolding", "label": { "en": "Scaffolding & Access", "ja": "足場・高所" } },
+    { "id": "concrete", "label": { "en": "Concrete & Formwork", "ja": "コンクリ・型枠" } },
+    { "id": "machines", "label": { "en": "Machines & Heavy Equipment", "ja": "重機・機械" } },
+    { "id": "slang", "label": { "en": "Site Slang", "ja": "現場スラング" } }
+  ],
+  "tasks": [
+    { "id": "foundation", "label": { "en": "Foundation", "ja": "基礎" } },
+    { "id": "framing", "label": { "en": "Framing / Carpentry", "ja": "躯体・大工" } },
+    { "id": "interior", "label": { "en": "Interior / Finishing", "ja": "内装・仕上げ" } },
+    { "id": "exterior", "label": { "en": "Exterior", "ja": "外装" } },
+    { "id": "electrical", "label": { "en": "Electrical", "ja": "電気" } },
+    { "id": "plumbing", "label": { "en": "Plumbing", "ja": "設備（給排水）" } },
+    { "id": "demolition", "label": { "en": "Demolition", "ja": "解体" } },
+    { "id": "painting", "label": { "en": "Painting", "ja": "塗装" } },
+    { "id": "roofing", "label": { "en": "Roofing", "ja": "屋根" } },
+    { "id": "site", "label": { "en": "Site Operations", "ja": "現場運用" } }
+  ],
   "packs": [
     {
       "id": "pack-001",
       "file": "packs/pack-001.json",
-      "title": {
-        "ja": "基本（初期データ）",
-        "en": "Basic (Initial Data)"
-      },
-      "count": 6
+      "title": { "en": "Core Pack 001", "ja": "コアパック 001" }
     }
   ]
 }
