@@ -207,6 +207,45 @@
   }
 
   /**
+   * Build a lightweight search index to avoid recomputing haystacks.
+   *
+   * @param {Array} entries
+   * @returns {Array<{ entry: any, haystack: { ja: string, en: string } }>}
+   */
+  function buildSearchIndex(entries) {
+    return coerceEntries(entries).map((entry) => ({
+      entry,
+      haystack: {
+        ja: buildSearchHaystack(entry, "ja"),
+        en: buildSearchHaystack(entry, "en"),
+      },
+    }));
+  }
+
+  /**
+   * Search using a precomputed index.
+   *
+   * @param {string} query
+   * @param {"ja"|"en"} lang
+   * @param {Array<{ entry: any, haystack: { ja: string, en: string } }>} index
+   * @returns {Array}
+   */
+  function searchByTextWithIndex(query, lang, index) {
+    const list = Array.isArray(index) ? index : [];
+    const q = normalizeText(query);
+    if (!q) return list.map((item) => item.entry);
+
+    const results = [];
+    for (const item of list) {
+      const hay = item && item.haystack ? item.haystack[lang] : "";
+      if (hay && hay.includes(q)) {
+        results.push(item.entry);
+      }
+    }
+    return results;
+  }
+
+  /**
    * Filter by category id.
    *
    * @param {string} categoryId
@@ -300,7 +339,9 @@
     normalizeStringArray,
     normalizeEntry,
     getLangValue,
+    buildSearchIndex,
     searchByText,
+    searchByTextWithIndex,
     filterByCategory,
     searchByTask,
     searchByFuzzy,

@@ -273,6 +273,59 @@ h1 {
   margin: 0;
 }
 
+.info-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.info-links a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  font-size: 14px;
+}
+
+.info-links a:focus,
+.info-links a:hover {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.static-page {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  color: var(--text);
+}
+
+.static-page h1 {
+  margin-top: 0;
+}
+
+.static-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 20px;
+}
+
+.static-nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+
 @media (max-width: 820px) {
   .content {
     grid-template-columns: 1fr;

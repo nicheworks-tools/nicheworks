@@ -3,6 +3,58 @@
 
   const engine = window.AtlasEngine;
 
+  const placeholders = {
+    missingEnTerm: 'No English name available',
+    missingEnDescription: 'No English description available.',
+  };
+
+  const i18n = {
+    en: {
+      eyebrow: 'Construction Tools & Slang Atlas',
+      title: 'Browse, search, and learn core field terms.',
+      lede: 'Quickly find terminology, tools, and work processes across categories.',
+      searchLabel: 'Search',
+      searchPlaceholder: 'Search tools, slang, descriptions',
+      categoryLabel: 'Category',
+      categoryAll: 'All categories',
+      resultsTitle: 'Results',
+      resultCount: (count) => `${count} item${count === 1 ? '' : 's'}`,
+      emptyState: 'No results found. Try a different keyword or filter.',
+      detailPlaceholder: 'Select an entry to view details.',
+      aliasesLabel: 'Aliases',
+      tagsLabel: 'Tags',
+      idLabel: 'ID',
+      detailCategoryFallback: 'Uncategorized',
+      dataError: 'Failed to load data.',
+      navAbout: 'About',
+      navMethod: 'Method',
+      navDisclaimer: 'Disclaimer',
+      navCredits: 'Credits',
+    },
+    ja: {
+      eyebrow: 'Construction Tools & スラング図鑑',
+      title: '建設現場の基本用語を検索・閲覧',
+      lede: 'カテゴリ横断で工具や作業プロセスの用語を素早く確認できます。',
+      searchLabel: '検索',
+      searchPlaceholder: '用語・スラング・説明で検索',
+      categoryLabel: 'カテゴリ',
+      categoryAll: 'すべてのカテゴリ',
+      resultsTitle: '検索結果',
+      resultCount: (count) => `${count}件`,
+      emptyState: '該当する結果がありません。キーワードやフィルターを変えてみてください。',
+      detailPlaceholder: '詳細を表示する項目を選択してください。',
+      aliasesLabel: '別名',
+      tagsLabel: 'タグ',
+      idLabel: 'ID',
+      detailCategoryFallback: 'カテゴリ未設定',
+      dataError: 'データの読み込みに失敗しました。',
+      navAbout: 'このサイトについて',
+      navMethod: 'データ方針',
+      navDisclaimer: '免責事項',
+      navCredits: 'クレジット',
+    },
+  };
+
   /**
    * --- Data loading (fetch-based, DOM-free) ---
    */
@@ -39,6 +91,7 @@
    */
   const state = {
     allEntries: [],
+    searchIndex: [],
     filtered: [],
     selectedId: null,
     lang: 'en',
@@ -49,11 +102,18 @@
   const elements = {};
 
   function cacheElements() {
+    elements.eyebrow = document.getElementById('eyebrow');
+    elements.heroTitle = document.getElementById('heroTitle');
+    elements.heroLede = document.getElementById('heroLede');
     elements.langToggle = document.getElementById('langToggle');
     elements.searchInput = document.getElementById('searchInput');
+    elements.searchLabel = document.getElementById('searchLabel');
     elements.categorySelect = document.getElementById('categorySelect');
+    elements.categoryLabel = document.getElementById('categoryLabel');
+    elements.categoryDefaultOption = document.getElementById('categoryDefaultOption');
     elements.results = document.getElementById('results');
     elements.resultCount = document.getElementById('resultCount');
+    elements.resultsTitle = document.getElementById('resultsTitle');
     elements.emptyState = document.getElementById('emptyState');
     elements.detail = document.getElementById('detail');
     elements.detailPlaceholder = document.getElementById('detailPlaceholder');
@@ -61,9 +121,52 @@
     elements.detailTitle = document.getElementById('detailTitle');
     elements.detailSubtitle = document.getElementById('detailSubtitle');
     elements.detailDescription = document.getElementById('detailDescription');
+    elements.detailAliasesLabel = document.getElementById('detailAliasesLabel');
     elements.detailAliases = document.getElementById('detailAliases');
+    elements.detailTagsLabel = document.getElementById('detailTagsLabel');
     elements.detailTags = document.getElementById('detailTags');
+    elements.detailIdLabel = document.getElementById('detailIdLabel');
     elements.detailId = document.getElementById('detailId');
+    elements.navAbout = document.getElementById('aboutLink');
+    elements.navMethod = document.getElementById('methodLink');
+    elements.navDisclaimer = document.getElementById('disclaimerLink');
+    elements.navCredits = document.getElementById('creditsLink');
+  }
+
+  function getText(key) {
+    const pack = i18n[state.lang] || i18n.en;
+    const fallback = i18n.en || {};
+    if (typeof pack[key] !== 'undefined') return pack[key];
+    return fallback[key];
+  }
+
+  function getCountText(count) {
+    const formatter = getText('resultCount');
+    if (typeof formatter === 'function') return formatter(count);
+    return String(count);
+  }
+
+  function renderUILabels() {
+    if (elements.eyebrow) elements.eyebrow.textContent = getText('eyebrow') || '';
+    if (elements.heroTitle) elements.heroTitle.textContent = getText('title') || '';
+    if (elements.heroLede) elements.heroLede.textContent = getText('lede') || '';
+    if (elements.searchLabel) elements.searchLabel.textContent = getText('searchLabel') || '';
+    if (elements.searchInput) elements.searchInput.placeholder = getText('searchPlaceholder') || '';
+    if (elements.categoryLabel) elements.categoryLabel.textContent = getText('categoryLabel') || '';
+    if (elements.categoryDefaultOption)
+      elements.categoryDefaultOption.textContent = getText('categoryAll') || '';
+    if (elements.resultsTitle) elements.resultsTitle.textContent = getText('resultsTitle') || '';
+    if (elements.emptyState) elements.emptyState.textContent = getText('emptyState') || '';
+    if (elements.detailPlaceholder)
+      elements.detailPlaceholder.textContent = getText('detailPlaceholder') || '';
+    if (elements.detailAliasesLabel)
+      elements.detailAliasesLabel.textContent = getText('aliasesLabel') || '';
+    if (elements.detailTagsLabel) elements.detailTagsLabel.textContent = getText('tagsLabel') || '';
+    if (elements.detailIdLabel) elements.detailIdLabel.textContent = getText('idLabel') || '';
+    if (elements.navAbout) elements.navAbout.textContent = getText('navAbout') || '';
+    if (elements.navMethod) elements.navMethod.textContent = getText('navMethod') || '';
+    if (elements.navDisclaimer) elements.navDisclaimer.textContent = getText('navDisclaimer') || '';
+    if (elements.navCredits) elements.navCredits.textContent = getText('navCredits') || '';
   }
 
   function formatArray(arr) {
@@ -76,23 +179,48 @@
   }
 
   function getTermTexts(entry, lang) {
-    const primary = engine.getLangValue(entry.term, lang) || engine.getLangValue(entry.term, otherLang(lang));
-    const secondary = engine.getLangValue(entry.term, otherLang(lang));
-    return {
-      primary,
-      secondary: primary === secondary ? '' : secondary,
-    };
+    const direct = engine.getLangValue(entry.term, lang);
+    const alt = engine.getLangValue(entry.term, otherLang(lang));
+    let primary = direct;
+    let secondary = '';
+
+    if (!direct) {
+      if (lang === 'en') {
+        primary = placeholders.missingEnTerm;
+        secondary = alt;
+      } else {
+        primary = alt;
+      }
+    } else if (alt && alt !== direct) {
+      secondary = alt;
+    }
+
+    return { primary, secondary };
   }
 
   function getDescriptionTexts(entry, lang) {
     const values = [];
     const primary = engine.getLangValue(entry.description, lang);
     const fallback = engine.getLangValue(entry.description, otherLang(lang));
-    if (primary) values.push({ lang, text: primary });
-    if (fallback && fallback !== primary) {
-      values.push({ lang: otherLang(lang), text: fallback });
+
+    if (primary) {
+      values.push({ lang, text: primary, placeholder: false });
+    } else if (lang === 'en') {
+      values.push({ lang: 'en', text: placeholders.missingEnDescription, placeholder: true });
+    }
+
+    if (fallback) {
+      values.push({ lang: otherLang(lang), text: fallback, placeholder: false });
     }
     return values;
+  }
+
+  function getDescriptionPreview(entry, lang) {
+    const values = getDescriptionTexts(entry, lang);
+    const primary = values.find((item) => item.lang === lang);
+    if (primary) return primary.text;
+    const other = values.find((item) => item.lang !== lang);
+    return other ? other.text : '';
   }
 
   function getAliasList(entry, lang) {
@@ -104,7 +232,7 @@
 
   function renderLanguageToggle() {
     if (!elements.langToggle) return;
-    elements.langToggle.textContent = state.lang === 'ja' ? 'JA' : 'EN';
+    elements.langToggle.textContent = state.lang === 'ja' ? '日本語 / EN' : 'JA / English';
     elements.langToggle.setAttribute('aria-pressed', state.lang === 'ja');
     elements.langToggle.setAttribute('aria-label', `Language: ${state.lang.toUpperCase()}`);
   }
@@ -118,6 +246,7 @@
     state.lang = next;
     document.documentElement.lang = next;
     renderLanguageToggle();
+    renderUILabels();
     applyFilters();
     if (state.selectedId) {
       const selected = state.allEntries.find((e) => e.id === state.selectedId);
@@ -145,7 +274,7 @@
   }
 
   function applyFilters() {
-    const base = engine.searchByText(state.query, state.lang, state.allEntries);
+    const base = engine.searchByTextWithIndex(state.query, state.lang, state.searchIndex);
     const filtered = engine.filterByCategory(state.category, state.lang, base);
     state.filtered = filtered;
     renderResults();
@@ -177,7 +306,7 @@
 
   function renderResults() {
     clearResults();
-    elements.resultCount.textContent = `${state.filtered.length} item${state.filtered.length === 1 ? '' : 's'}`;
+    elements.resultCount.textContent = getCountText(state.filtered.length);
     elements.emptyState.hidden = state.filtered.length > 0;
 
     state.filtered.forEach((entry) => {
@@ -206,10 +335,7 @@
 
       const meta = document.createElement('p');
       meta.className = 'result-meta';
-      meta.textContent =
-        engine.getLangValue(entry.description, state.lang) ||
-        engine.getLangValue(entry.description, otherLang(state.lang)) ||
-        '';
+      meta.textContent = getDescriptionPreview(entry, state.lang);
 
       textBlock.appendChild(title);
       if (subtitle.textContent) textBlock.appendChild(subtitle);
@@ -217,7 +343,7 @@
 
       const badge = document.createElement('span');
       badge.className = 'result-badge';
-      badge.textContent = entry.category || '—';
+      badge.textContent = entry.category || getText('detailCategoryFallback') || '—';
 
       item.appendChild(textBlock);
       item.appendChild(badge);
@@ -244,9 +370,9 @@
       return;
     }
 
-    elements.detailCategory.textContent = entry.category || '—';
+    elements.detailCategory.textContent = entry.category || getText('detailCategoryFallback') || '—';
     const terms = getTermTexts(entry, state.lang);
-    elements.detailTitle.textContent = terms.primary || '—';
+    elements.detailTitle.textContent = terms.primary || getText('detailCategoryFallback') || '—';
     elements.detailSubtitle.textContent = terms.secondary;
 
     elements.detailDescription.replaceChildren();
@@ -312,11 +438,13 @@
   async function init() {
     cacheElements();
     renderLanguageToggle();
+    renderUILabels();
     attachEventListeners();
 
     try {
       const entries = await loadAtlasData();
       state.allEntries = entries;
+      state.searchIndex = engine.buildSearchIndex(entries);
       buildCategoryOptions(entries);
       restoreStateFromURL();
       applyFilters();
@@ -326,7 +454,7 @@
       clearResults();
       const error = document.createElement('p');
       error.className = 'empty-state';
-      error.textContent = 'Failed to load data.';
+      error.textContent = getText('dataError') || 'Failed to load data.';
       elements.results.appendChild(error);
     }
   }
