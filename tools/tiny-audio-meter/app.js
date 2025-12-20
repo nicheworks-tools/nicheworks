@@ -3,7 +3,7 @@
  * app.js (MVP)
  * - JP/EN (data-i18n) toggle
  * - Enable Mic (user gesture only)
- * - Real-time: RMS -> dB-ish, Pitch (ACF), Note, FFT bars
+ * - Real-time: RMS -> dB-ish, Pitch (ACF2+), Note, FFT bars
  * - Voice activity effect (3-bar) on/off by RMS threshold
  * - Snapshots: FIFO max 20, list + delete + clear
  * - Segment analysis: Start/Stop, summary stats
@@ -144,7 +144,7 @@
   let lastActive = false;
 
   // Config
-  const FFT_SIZE = 1024;        // 512-1024 recommended
+  const FFT_SIZE = 2048;        // more stable pitch than 1024
   const ACTIVITY_THRESHOLD = 0.06; // RMS threshold (0..1)
   const SNAP_MAX = 20;
 
@@ -188,56 +188,87 @@
     return Math.sqrt(sum / buf.length);
   }
 
-  // Autocorrelation pitch detection (simple ACF).
+  // ACF2+ pitch detection (more robust than simple ACF)
   // Returns frequency in Hz or null.
   function detectPitchACF(floatBuf, sampleRate) {
-    // Remove DC offset
-    let mean = 0;
-    for (let i = 0; i < floatBuf.length; i++) mean += floatBuf[i];
-    mean /= floatBuf.length;
+    const SIZE = floatBuf.length;
 
-    // Copy and window small part for speed
-    const buf = floatBuf;
-    const size = buf.length;
-
-    // Quick silence check via RMS
+    // 1) RMS gate
     let rms = 0;
-    for (let i = 0; i < size; i++) {
-      const v = buf[i] - mean;
+    for (let i = 0; i < SIZE; i++) {
+      const v = floatBuf[i];
       rms += v * v;
     }
-    rms = Math.sqrt(rms / size);
-    if (rms < 0.01) return null;
+    rms = Math.sqrt(rms / SIZE);
+    if (rms < 0.008) return null;
 
-    // Expected pitch range: ~70Hz to 1000Hz (voice/instruments)
-    const minHz = 70;
-    const maxHz = 1000;
-    const minLag = Math.floor(sampleRate / maxHz);
-    const maxLag = Math.floor(sampleRate / minHz);
+    // 2) Trim to reduce noise influence
+    let r1 = 0;
+    let r2 = SIZE - 1;
+    const threshold = 0.02;
 
-    // Autocorrelation
-    let bestLag = -1;
-    let bestCorr = 0;
-
-    for (let lag = minLag; lag <= maxLag; lag++) {
-      let corr = 0;
-      for (let i = 0; i < size - lag; i++) {
-        corr += (buf[i] - mean) * (buf[i + lag] - mean);
+    for (let i = 0; i < SIZE / 2; i++) {
+      if (Math.abs(floatBuf[i]) < threshold) {
+        r1 = i;
+        break;
       }
-      if (corr > bestCorr) {
-        bestCorr = corr;
-        bestLag = lag;
+    }
+    for (let i = 1; i < SIZE / 2; i++) {
+      if (Math.abs(floatBuf[SIZE - i]) < threshold) {
+        r2 = SIZE - i;
+        break;
       }
     }
 
-    if (bestLag <= 0) return null;
+    if (r2 - r1 < 256) {
+      r1 = 0;
+      r2 = SIZE - 1;
+    }
 
-    // crude confidence gate
-    // normalize by size
-    const norm = bestCorr / size;
-    if (norm < 0.02) return null;
+    const buf = floatBuf.slice(r1, r2);
+    const n = buf.length;
 
-    return sampleRate / bestLag;
+    // 3) Autocorrelation
+    const c = new Array(n).fill(0);
+    for (let i = 0; i < n; i++) {
+      let sum = 0;
+      for (let j = 0; j < n - i; j++) {
+        sum += buf[j] * buf[j + i];
+      }
+      c[i] = sum;
+    }
+
+    // 4) Find first dip
+    let d = 0;
+    while (d < n - 1 && c[d] > c[d + 1]) d++;
+
+    // 5) Find peak after dip
+    let maxval = -1;
+    let maxpos = -1;
+    for (let i = d; i < n; i++) {
+      if (c[i] > maxval) {
+        maxval = c[i];
+        maxpos = i;
+      }
+    }
+    if (maxpos <= 0) return null;
+
+    // 6) Parabolic interpolation around maxpos
+    const x1 = c[maxpos - 1] ?? 0;
+    const x2 = c[maxpos] ?? 0;
+    const x3 = c[maxpos + 1] ?? 0;
+
+    const a = (x1 + x3 - 2 * x2) / 2;
+    const b = (x3 - x1) / 2;
+
+    let T0 = maxpos;
+    if (a !== 0) T0 = maxpos - b / (2 * a);
+
+    const hz = sampleRate / T0;
+
+    if (!isFinite(hz)) return null;
+    if (hz < 60 || hz > 1200) return null;
+    return hz;
   }
 
   function hzToNoteName(hz) {
@@ -352,7 +383,7 @@
 
     // Determine bar count based on canvas width (mobile-friendly)
     const bars = w < 420 ? 20 : w < 700 ? 32 : 48;
-    const step = Math.floor(freqBins.length / bars);
+    const step = Math.max(1, Math.floor(freqBins.length / bars));
 
     const barW = w / bars;
 
@@ -371,7 +402,6 @@
       const y = h - bh;
       const bw = barW * 0.64;
 
-      // Rounded-ish bars (simple)
       sctx.fillRect(x, y, bw, bh);
     }
 
@@ -468,18 +498,11 @@
   }
 
   function computeNoiseLevel(segVolDbArr, activeRate) {
-    // A very rough noise heuristic:
-    // - if many frames are "active" but volume is low => noisy environment or far mic
-    // - if mostly silent and low volume => Low
-    // We'll classify using mean loudness and active rate.
     const meanDb =
       segVolDbArr.reduce((a, b) => a + b, 0) / Math.max(1, segVolDbArr.length);
 
-    // meanDb closer to 0 = louder
-    // If meanDb is around -50 but activeRate high => noise likely
     if (meanDb > -28) return "High";
     if (meanDb > -38) return "Mid";
-    // quiet region:
     if (activeRate > 0.35) return "Mid";
     return "Low";
   }
@@ -514,7 +537,6 @@
         ? MSG[currentLang].mid
         : MSG[currentLang].high;
 
-    // Build bilingual-ish display using current language labels
     const rows = [
       `<div><span class="muted">${escapeHtml(MSG[currentLang].segmentTitle)}</span></div>`,
       `<div>${escapeHtml(MSG[currentLang].duration)}: ${durSec.toFixed(1)}s</div>`,
@@ -547,9 +569,9 @@
     const active = rms >= ACTIVITY_THRESHOLD;
     if (active !== lastActive) setVoiceActivity(active);
 
-    // Pitch detection (only when active-ish)
+    // Pitch detection (less strict gate)
     let hz = null;
-    if (rms >= 0.015) {
+    if (rms >= 0.01) {
       hz = detectPitchACF(timeData, audioCtx.sampleRate);
     }
     setPitchUI(hz);
@@ -593,7 +615,6 @@
         video: false,
       });
     } catch (err) {
-      // permission denied / etc
       const name = err && err.name ? err.name : "";
       if (name === "NotAllowedError" || name === "PermissionDeniedError") {
         alert(MSG[currentLang].micDenied);
@@ -631,7 +652,7 @@
     if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(tick);
 
-    // update button label (keep bilingual spans; add aria)
+    // lock mic button
     micButton.disabled = true;
     micButton.setAttribute("aria-disabled", "true");
   }
@@ -665,7 +686,6 @@
   function takeSnapshot() {
     if (!audioCtx || !analyser) return;
 
-    // ensure up-to-date values
     analyser.getFloatTimeDomainData(timeData);
     analyser.getByteFrequencyData(freqData);
 
@@ -674,10 +694,9 @@
     const active = rms >= ACTIVITY_THRESHOLD;
 
     let hz = null;
-    if (rms >= 0.015) hz = detectPitchACF(timeData, audioCtx.sampleRate);
+    if (rms >= 0.01) hz = detectPitchACF(timeData, audioCtx.sampleRate);
 
     const note = hz ? hzToNoteName(hz) : "--";
-
     const { peakHz, peakAmp } = findPeak(freqData, audioCtx.sampleRate);
 
     const snap = {
@@ -732,33 +751,26 @@
   // Reset
   // ----------------------------
   function resetAll() {
-    // stop segment if any
     if (segActive) {
       segActive = false;
     }
 
-    // clear segment UI
     segmentResult.classList.add("hidden");
     segmentResult.innerHTML = "";
     segmentStart.disabled = false;
     segmentStop.disabled = true;
 
-    // clear snapshots
     snapshots = [];
     renderSnapshots();
 
-    // stop mic
     stopMic();
 
-    // re-enable mic button
     micButton.disabled = false;
     micButton.removeAttribute("aria-disabled");
 
-    // disable snapshot/segment until mic enabled
     snapshotButton.disabled = true;
     segmentStart.disabled = true;
 
-    // hide reset
     resetButton.classList.add("hidden");
   }
 
@@ -789,9 +801,7 @@
   // re-render snapshots when language changes (so Delete/Clear text updates)
   document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      // applyLang already ran; now re-render
       renderSnapshots();
-      // if segment result is visible, regenerate labels
       if (!segmentResult.classList.contains("hidden") && !segActive && segVolDb.length > 0) {
         renderSegmentResult();
       }
@@ -812,13 +822,11 @@
   // handle resize for canvas crispness
   window.addEventListener("resize", () => {
     if (analyser) {
-      // redraw with current freqData if available
       try {
         analyser.getByteFrequencyData(freqData);
         drawSpectrumBars(freqData);
       } catch {}
     } else {
-      // just resize canvas background
       resizeSpectrumCanvasToCSS();
       sctx.clearRect(0, 0, spectrumCanvas.width, spectrumCanvas.height);
     }
