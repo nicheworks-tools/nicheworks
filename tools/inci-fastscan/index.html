@@ -18,10 +18,11 @@
   <script defer src="js/web_ui.js"></script>
   <script defer src="js/web_ocr.js"></script>
   <script defer src="js/app.js"></script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
 </head>
 <body>
   <header>
@@ -45,7 +46,11 @@
         <button id="btn-ocr-run-fast" type="button">Run OCR (EN)</button>
       </div>
 
-      <button id="btn-fast-check" type="button">Check Safety</button>
+      <div class="action-row">
+        <button id="btn-fast-check" type="button">Check Safety</button>
+        <button id="btn-fast-reset" type="button">Reset</button>
+      </div>
+
       <div id="fast-results"></div>
     </section>
 
@@ -58,7 +63,11 @@
         <button id="btn-ocr-run" type="button">Run OCR (JP)</button>
       </div>
 
-      <button id="btn-jb-check" type="button">Translate & Check Safety</button>
+      <div class="action-row">
+        <button id="btn-jb-check" type="button">Translate & Check Safety</button>
+        <button id="btn-jb-reset" type="button">Reset</button>
+      </div>
+
       <div id="jb-results"></div>
     </section>
   </main>
