@@ -486,3 +486,35 @@ a:hover { text-decoration: underline; }
   color: var(--muted, #6b7280);
   line-height: 1.6;
 }
+
+/* ====== Phase 2: Brand (optional) ====== */
+.fit-brand{
+  display: block;
+  margin-top: 10px;
+}
+.fit-brand select{
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Result block for brand adjustment */
+.fit-brandblock{
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: var(--radius, 12px);
+  background: var(--bg-soft, #f9fafb);
+  border: 1px solid var(--border, #e5e7eb);
+}
+.fit-brandline{
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+}
+.fit-brandnote{
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted, #6b7280);
+}
