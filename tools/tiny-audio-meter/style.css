@@ -1,0 +1,485 @@
+/* ================================
+ * tiny audio meter | NicheWorks
+ * style.css (MVP)
+ * - 360px min support
+ * - Responsive: 360 / 768 / 1200
+ * - Voice activity 3-bar effect (CSS only)
+ * ================================ */
+
+:root{
+  --bg:#ffffff;
+  --bg-soft:#f9fafb;
+  --border:#e5e7eb;
+  --border-soft:#f3f4f6;
+  --text:#111827;
+  --muted:#6b7280;
+  --shadow:0 8px 24px rgba(0,0,0,.06);
+  --radius:16px;
+  --radius2:12px;
+
+  --max:600px;
+
+  /* buttons */
+  --btn:#111827;
+  --btnText:#ffffff;
+  --btnSoft:#f3f4f6;
+
+  /* meters */
+  --barBg:#f3f4f6;
+  --barFill:#111827;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
+}
+
+/* ================================
+ * Header / Footer (minimal common)
+ * ================================ */
+.nw-header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nw-header-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.nw-logo{
+  font-weight:700;
+  color:var(--text);
+  text-decoration:none;
+  letter-spacing:.2px;
+}
+
+.nw-footer{
+  border-top:1px solid var(--border);
+  padding:18px 16px;
+  color:var(--muted);
+  font-size:12px;
+  text-align:center;
+}
+
+/* ================================
+ * Main Layout (mobile-first)
+ * ================================ */
+.nw-main{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:18px 14px 28px;
+}
+
+h1{
+  margin:14px 0 8px;
+  font-size:28px;
+  letter-spacing:-.2px;
+}
+h2{
+  margin:0 0 10px;
+  font-size:16px;
+  letter-spacing:-.1px;
+}
+
+.nw-desc{
+  margin:0 0 14px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* Language switch */
+.nw-lang-switch{
+  display:flex;
+  gap:8px;
+  margin:10px 0 10px;
+}
+.nw-lang-switch button{
+  appearance:none;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  cursor:pointer;
+}
+.nw-lang-switch button:hover{
+  background:var(--bg-soft);
+}
+
+/* Ads */
+.nw-ad{
+  border:1px dashed var(--border);
+  background:var(--bg-soft);
+  border-radius:var(--radius2);
+  padding:14px;
+  color:var(--muted);
+  font-size:12px;
+}
+.ad-top{ margin:14px 0 16px; }
+.ad-bottom{ margin:18px 0 10px; }
+
+/* ================================
+ * Meter Section (card)
+ * ================================ */
+.meter-section{
+  border:1px solid var(--border);
+  background:var(--bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:14px;
+}
+
+.realtime-meter{
+  border-top:1px solid var(--border-soft);
+  margin-top:14px;
+  padding-top:14px;
+}
+
+.meter-item{
+  border:1px solid var(--border-soft);
+  background:var(--bg-soft);
+  border-radius:var(--radius2);
+  padding:12px;
+  margin:10px 0;
+}
+.meter-item label{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+#volumeValue, #pitchValue, #noteValue{
+  font-variant-numeric: tabular-nums;
+}
+#pitchValue{
+  font-size:20px;
+  font-weight:700;
+  margin-top:2px;
+}
+#noteValue{
+  font-size:14px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* volume bar */
+.meter-bar{
+  height:12px;
+  border-radius:999px;
+  background:var(--barBg);
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+#volumeBar{
+  height:100%;
+  width:0%;
+  background:var(--barFill);
+  border-radius:999px;
+  transition:width .08s linear;
+}
+#volumeValue{
+  margin-top:8px;
+  font-size:14px;
+  font-weight:700;
+}
+
+/* spectrum canvas */
+#spectrumCanvas{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  display:block;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+}
+
+/* ================================
+ * Buttons
+ * ================================ */
+.primary-btn, .secondary-btn, .segment-controls button{
+  appearance:none;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px 14px;
+  font-size:15px;
+  cursor:pointer;
+  width:100%;
+}
+.primary-btn{
+  background:var(--btn);
+  color:var(--btnText);
+  border-color:var(--btn);
+  font-weight:700;
+}
+.primary-btn:hover{ opacity:.92; }
+.secondary-btn{
+  margin-top:12px;
+  background:var(--btnSoft);
+  color:var(--text);
+  font-weight:700;
+}
+.secondary-btn:hover{ background:#eceef1; }
+
+.segment-controls{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+.segment-controls button{
+  width:50%;
+  background:var(--bg);
+  font-weight:700;
+}
+.segment-controls button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.link-btn{
+  appearance:none;
+  border:1px solid var(--border);
+  background:transparent;
+  border-radius:999px;
+  padding:10px 12px;
+  font-size:13px;
+  cursor:pointer;
+  width:100%;
+  margin-top:12px;
+}
+.link-btn:hover{ background:var(--bg-soft); }
+
+/* ================================
+ * Voice activity effect
+ * ================================ */
+.voice-activity{
+  margin-top:12px;
+  border:1px solid var(--border-soft);
+  border-radius:12px;
+  background:var(--bg-soft);
+  padding:10px 12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.voice-activity p{
+  margin:0;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* silent: hide entirely */
+.voice-activity.silent{
+  display:none;
+}
+
+/* active: show animated bars */
+.voice-activity .bars{
+  display:flex;
+  align-items:flex-end;
+  gap:4px;
+  height:18px;
+  width:32px;
+}
+.voice-activity .bars span{
+  display:block;
+  width:6px;
+  height:6px;
+  border-radius:4px;
+  background:var(--text);
+  opacity:.9;
+  transform-origin: bottom;
+}
+.voice-activity.active .bars span:nth-child(1){ animation:vu 650ms infinite ease-in-out; }
+.voice-activity.active .bars span:nth-child(2){ animation:vu 520ms infinite ease-in-out; }
+.voice-activity.active .bars span:nth-child(3){ animation:vu 720ms infinite ease-in-out; }
+
+@keyframes vu{
+  0%{ height:6px; opacity:.55; }
+  35%{ height:18px; opacity:.95; }
+  70%{ height:9px; opacity:.8; }
+  100%{ height:6px; opacity:.55; }
+}
+
+/* ================================
+ * Snapshot list
+ * ================================ */
+.snapshot-list{
+  margin-top:12px;
+  border:1px solid var(--border-soft);
+  border-radius:12px;
+  background:var(--bg-soft);
+  padding:10px 12px;
+}
+.snapshot-list summary{
+  cursor:pointer;
+  font-weight:700;
+  font-size:13px;
+  color:var(--text);
+}
+#snapshotItems{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.snapshot-card{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:12px;
+  padding:10px;
+}
+.snapshot-card .meta{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.snapshot-card .vals{
+  font-size:13px;
+  font-variant-numeric: tabular-nums;
+}
+.snapshot-card .actions{
+  margin-top:8px;
+  display:flex;
+  justify-content:flex-end;
+}
+.snapshot-card .delete{
+  appearance:none;
+  border:1px solid var(--border);
+  background:var(--bg-soft);
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  cursor:pointer;
+}
+.snapshot-card .delete:hover{ background:#eceef1; }
+
+.snapshot-list .link-btn{
+  margin-top:10px;
+}
+
+/* ================================
+ * Segment analysis
+ * ================================ */
+.segment-section{
+  margin-top:14px;
+  border-top:1px solid var(--border-soft);
+  padding-top:14px;
+}
+.segment-result{
+  margin-top:12px;
+  border:1px solid var(--border-soft);
+  background:var(--bg-soft);
+  border-radius:12px;
+  padding:12px;
+  font-size:13px;
+  color:var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.segment-result .muted{
+  color:var(--muted);
+  font-size:12px;
+}
+.hidden{ display:none !important; }
+
+/* ================================
+ * Donation / Links
+ * ================================ */
+.nw-donation{
+  margin:16px 0 6px;
+  display:flex;
+  justify-content:center;
+}
+.donation-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--bg-soft);
+  text-decoration:none;
+  color:var(--text);
+  font-weight:700;
+  font-size:13px;
+}
+.donation-btn:hover{ background:#eceef1; }
+
+.nw-links{
+  margin:12px 0 0;
+  padding:0;
+}
+.nw-links ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.nw-links a{
+  color:var(--text);
+  text-decoration:none;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 12px;
+  display:block;
+  background:var(--bg);
+}
+.nw-links a:hover{ background:var(--bg-soft); }
+
+/* ================================
+ * Responsive (>= 768)
+ * ================================ */
+@media (min-width:768px){
+  :root{ --max: 760px; }
+
+  .nw-main{ padding:24px 18px 34px; }
+  h1{ font-size:32px; }
+
+  .meter-section{ padding:18px; }
+  .primary-btn, .secondary-btn{
+    width:auto;
+    min-width:240px;
+  }
+  .primary-btn{
+    display:inline-flex;
+    justify-content:center;
+  }
+  .secondary-btn{
+    display:inline-flex;
+    justify-content:center;
+  }
+
+  /* keep mic + snapshot aligned */
+  .meter-section{
+    display:block;
+  }
+
+  /* snapshot list can be a bit wider */
+  #spectrumCanvas{ border-radius:14px; }
+}
+
+/* ================================
+ * Responsive (>= 1200)
+ * - keep NicheWorks style: still centered
+ * - allow a little more breathing space
+ * ================================ */
+@media (min-width:1200px){
+  :root{ --max: 900px; }
+  .nw-header-inner{ padding:12px 18px; }
+  .nw-main{ padding:28px 18px 40px; }
+}
