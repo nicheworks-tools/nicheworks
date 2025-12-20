@@ -14,22 +14,22 @@
   <div class="page">
     <header class="topbar">
       <div class="title-block">
-        <p class="eyebrow">Construction Tools &amp; Slang Atlas</p>
-        <h1>Browse, search, and learn core field terms.</h1>
-        <p class="lede">Quickly find terminology, tools, and work processes across categories.</p>
+        <p class="eyebrow" id="eyebrow">Construction Tools &amp; Slang Atlas</p>
+        <h1 id="heroTitle">Browse, search, and learn core field terms.</h1>
+        <p class="lede" id="heroLede">Quickly find terminology, tools, and work processes across categories.</p>
       </div>
       <button id="langToggle" class="lang-toggle" type="button" aria-label="Language toggle">JA / EN</button>
     </header>
 
     <section class="controls" aria-label="Search and filters">
       <div class="control search-control">
-        <label for="searchInput">Search</label>
+        <label id="searchLabel" for="searchInput">Search</label>
         <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" />
       </div>
       <div class="control filter-control">
-        <label for="categorySelect">Category</label>
+        <label id="categoryLabel" for="categorySelect">Category</label>
         <select id="categorySelect" name="cat">
-          <option value="">All categories</option>
+          <option id="categoryDefaultOption" value="">All categories</option>
         </select>
       </div>
     </section>
@@ -37,7 +37,7 @@
     <section class="content" aria-label="Results and details">
       <div class="results-panel">
         <div class="results-header">
-          <h2>Results</h2>
+          <h2 id="resultsTitle">Results</h2>
           <p class="result-count" id="resultCount"></p>
         </div>
         <div id="results" class="results-list" role="list"></div>
@@ -52,21 +52,28 @@
           <div class="detail-section" id="detailDescription"></div>
           <div class="detail-meta">
             <div class="meta-block">
-              <p class="meta-label">Aliases</p>
+              <p class="meta-label" id="detailAliasesLabel">Aliases</p>
               <p id="detailAliases"></p>
             </div>
             <div class="meta-block">
-              <p class="meta-label">Tags</p>
+              <p class="meta-label" id="detailTagsLabel">Tags</p>
               <p id="detailTags"></p>
             </div>
             <div class="meta-block">
-              <p class="meta-label">ID</p>
+              <p class="meta-label" id="detailIdLabel">ID</p>
               <p id="detailId"></p>
             </div>
           </div>
         </div>
       </aside>
     </section>
+
+    <nav class="info-links" aria-label="Reference pages">
+      <a id="aboutLink" href="./pages/about.html">About</a>
+      <a id="methodLink" href="./pages/method.html">Method</a>
+      <a id="disclaimerLink" href="./pages/disclaimer.html">Disclaimer</a>
+      <a id="creditsLink" href="./pages/credits.html">Credits</a>
+    </nav>
   </div>
 
   <script src="./core/engine.js"></script>
