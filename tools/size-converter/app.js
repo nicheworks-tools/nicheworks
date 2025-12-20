@@ -1,6 +1,6 @@
 /* app.js — Size Converter (JP ↔ US/EU)
  * Phase 1: Shoe fit checker by cm (foot length required, width optional)
- * v1.1: Borderline handling + explicit candidates + width measurement note
+ * Phase 2: Brand adjustment via brand.json (optional)
  */
 
 (() => {
@@ -25,6 +25,7 @@
     fitPanel: $("fitPanel"),
     footLength: $("footLength"),
     footWidth: $("footWidth"),
+    brandSelect: $("brandSelect"),
     fitRun: $("fitRun"),
     fitReset: $("fitReset"),
     fitResult: $("fitResult"),
@@ -83,8 +84,10 @@
       cautionStd: "標準的：まずは基準サイズから。",
       borderline: "境界付近です。±0.5cm どちらも候補に入ります（レビュー優先推奨）。",
       widthHowto: "足幅は「最も広い部分」を立った状態でまっすぐ測るのが目安です。",
+      brandBlockTitle: "ブランド補正（任意）",
+      brandApplied: "ブランド補正を適用しました",
+      brandUnavailable: "ブランド辞書を読み込めませんでした（補正なしで動作中）",
       headers: { jp: "JP", us: "US", eu: "EU" },
-      baseHint: "基準列",
     },
     en: {
       noData: "No data for this selection.",
@@ -98,13 +101,82 @@
       cautionStd: "Typical: start with the base size.",
       borderline: "Borderline. Both ±0.5 cm can be valid (check reviews if unsure).",
       widthHowto: "Measure width at the widest part (standing is recommended).",
+      brandBlockTitle: "Brand adjustment (optional)",
+      brandApplied: "Brand adjustment applied",
+      brandUnavailable: "Could not load brand dictionary (running without it).",
       headers: { jp: "JP", us: "US", eu: "EU" },
-      baseHint: "Base",
     },
   };
 
   let currentLang = "ja";
   let currentMode = "table"; // table | fit
+
+  // --- brand dictionary ---
+  let brandDict = null;
+  let brandLoadError = false;
+
+  async function loadBrandDict() {
+    brandLoadError = false;
+    try {
+      const res = await fetch("./brand.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(`brand.json HTTP ${res.status}`);
+      const json = await res.json();
+      brandDict = json;
+    } catch (e) {
+      brandDict = null;
+      brandLoadError = true;
+      // silent in console to keep UX clean, but still helpful for dev:
+      console.warn("[size-converter] brand.json load failed:", e);
+    } finally {
+      rebuildBrandOptions();
+    }
+  }
+
+  function getBrandListForCurrent() {
+    // brand.json schema:
+    // { shoes: { men: [...], women: [...] } }
+    const gen = els.gender?.value || "men";
+    return brandDict?.shoes?.[gen] ?? [];
+  }
+
+  function rebuildBrandOptions() {
+    if (!els.brandSelect) return;
+
+    // If not in shoes category, keep empty/disabled
+    const shoeOnly = els.category?.value === "shoes";
+    els.brandSelect.disabled = !shoeOnly;
+
+    // clear options
+    while (els.brandSelect.firstChild) els.brandSelect.removeChild(els.brandSelect.firstChild);
+
+    // default option
+    const opt0 = document.createElement("option");
+    opt0.value = "";
+    opt0.textContent = "—";
+    els.brandSelect.appendChild(opt0);
+
+    if (!shoeOnly) return;
+
+    const brands = getBrandListForCurrent();
+
+    if (!brands.length) {
+      // No brand dict: keep only default
+      return;
+    }
+
+    brands.forEach((b) => {
+      const opt = document.createElement("option");
+      opt.value = b.id;
+      opt.textContent = b.label || b.id;
+      els.brandSelect.appendChild(opt);
+    });
+  }
+
+  function findBrandById(id) {
+    if (!id) return null;
+    const list = getBrandListForCurrent();
+    return list.find((b) => b.id === id) || null;
+  }
 
   // ---------- i18n ----------
   function detectInitialLang() {
@@ -265,11 +337,10 @@
     const roundedJP = Math.round(lengthCm * 2) / 2;
 
     // Borderline detection: near midpoint between 0.5 steps
-    // Example: 26.25 is the midpoint between 26.0 and 26.5
     const lowerStep = Math.floor(lengthCm * 2) / 2;
     const stepMid = lowerStep + 0.25;
     const distToMid = Math.abs(lengthCm - stepMid);
-    const isBorderline = distToMid <= 0.10; // ±0.10cm zone (tunable)
+    const isBorderline = distToMid <= 0.10; // ±0.10cm zone
 
     // Candidate sizes (lower/upper around rounded)
     const lowerJP = roundedJP - 0.5;
@@ -302,6 +373,27 @@
     else if (wc === "narrow") caution = LABELS[currentLang].cautionNarrow;
     else if (wc === "std") caution = LABELS[currentLang].cautionStd;
 
+    // Brand adjustment (optional)
+    const brandId = els.brandSelect ? (els.brandSelect.value || "") : "";
+    const brand = findBrandById(brandId);
+    const brandOffset = brand ? Number(brand.offset || 0) : 0;
+
+    let brandRoundedJP = null;
+    let brandRec = null;
+    let brandNote = null;
+
+    if (brand) {
+      // Apply offset then snap to 0.5 steps
+      const adjusted = roundedJP + brandOffset;
+      const snapped = Math.round(adjusted * 2) / 2;
+      brandRoundedJP = snapped;
+
+      const bIdx = closestIndexByJP(rows, snapped);
+      if (bIdx >= 0) brandRec = rows[bIdx];
+
+      brandNote = currentLang === "ja" ? (brand.note_ja || "") : (brand.note_en || "");
+    }
+
     return {
       error: null,
       lengthCm,
@@ -314,6 +406,16 @@
       candidates,
       widthClass: wc,
       caution,
+
+      // brand
+      brandSelected: !!brand,
+      brandId: brand ? brand.id : "",
+      brandLabel: brand ? (brand.label || brand.id) : "",
+      brandOffset,
+      brandRoundedJP,
+      brandRecommend: brandRec,
+      brandNote,
+      brandLoadError,
     };
   }
 
@@ -370,6 +472,40 @@
         ? `<div class="fit-howto">${escapeHtml(LABELS[currentLang].widthHowto)}</div>`
         : "";
 
+    // Brand block
+    let brandBlock = "";
+    if (payload.brandSelected && payload.brandRecommend) {
+      const b = payload.brandRecommend;
+      const sign = payload.brandOffset > 0 ? "+" : payload.brandOffset < 0 ? "−" : "";
+      const abs = Math.abs(payload.brandOffset);
+      const offsetText = `${sign}${abs.toFixed(1)}cm`;
+
+      brandBlock = `
+        <div class="fit-brandblock">
+          <div class="fit-label">${escapeHtml(LABELS[currentLang].brandBlockTitle)}</div>
+          <div class="fit-brandline">
+            <span class="muted">${escapeHtml(payload.brandLabel)}:</span>
+            <strong>${escapeHtml(LABELS[currentLang].brandApplied)}</strong>
+            <span class="muted">(${escapeHtml(offsetText)})</span>
+          </div>
+          <div class="fit-big">
+            <span class="pill">JP ${escapeHtml(String(b.jp))}</span>
+            <span class="pill">US ${escapeHtml(String(b.us))}</span>
+            <span class="pill">EU ${escapeHtml(String(b.eu))}</span>
+          </div>
+          ${payload.brandNote ? `<div class="fit-brandnote">${escapeHtml(payload.brandNote)}</div>` : ""}
+        </div>
+      `;
+    } else if (payload.brandLoadError && (els.brandSelect && els.brandSelect.value)) {
+      // user selected brand but dict failed: show a small notice
+      brandBlock = `
+        <div class="fit-brandblock">
+          <div class="fit-label">${escapeHtml(LABELS[currentLang].brandBlockTitle)}</div>
+          <div class="fit-brandnote">${escapeHtml(LABELS[currentLang].brandUnavailable)}</div>
+        </div>
+      `;
+    }
+
     els.fitResult.innerHTML = `
       <div class="fit-card">
         <div class="fit-title">${escapeHtml(title)}</div>
@@ -396,6 +532,7 @@
         ${cautionLine}
         ${borderlineLine}
         ${howtoLine}
+        ${brandBlock}
 
         <div class="fit-sub">
           <div class="fit-label">${escapeHtml(near)}</div>
@@ -427,21 +564,26 @@
     // panel
     if (els.fitPanel) els.fitPanel.hidden = !isFit;
 
-    // When not shoes, disable fit tab behavior visually
+    // shoes-only handling for fit tab
     const shoeOnly = els.category.value === "shoes";
     if (els.tabFit) {
       els.tabFit.disabled = !shoeOnly;
       els.tabFit.classList.toggle("disabled", !shoeOnly);
     }
 
-    // Also base selector is table-only (optional but helps UX)
+    // base selector is table-only
     els.base.disabled = isFit;
+
+    // brand select is shoes-only
+    if (els.brandSelect) {
+      els.brandSelect.disabled = !shoeOnly;
+      if (!shoeOnly) els.brandSelect.value = "";
+    }
 
     if (!isFit) {
       renderFitResult(null);
       renderTable();
     } else {
-      // Fit mode: keep table synced (fine)
       renderTable();
       renderFitResult(null);
     }
@@ -458,12 +600,17 @@
         // update fit tab enabled state
         setMode(currentMode);
       }
+
+      // rebuild brand options on category change
+      rebuildBrandOptions();
+
       renderTable();
     });
 
     els.gender.addEventListener("change", () => {
       renderTable();
       renderFitResult(null);
+      rebuildBrandOptions();
     });
 
     els.base.addEventListener("change", renderTable);
@@ -475,17 +622,22 @@
       setMode("fit");
     });
 
+    // brand change just clears result (so user re-checks)
+    els.brandSelect?.addEventListener("change", () => {
+      renderFitResult(null);
+    });
+
     // fit actions
     els.fitRun?.addEventListener("click", () => {
       const payload = buildFitPayload();
       renderFitResult(payload);
-      // mobile: scroll to result
       els.fitResult?.scrollIntoView?.({ behavior: "smooth", block: "start" });
     });
 
     els.fitReset?.addEventListener("click", () => {
       els.footLength.value = "";
       els.footWidth.value = "";
+      if (els.brandSelect) els.brandSelect.value = "";
       renderFitResult(null);
       els.footLength?.focus?.();
     });
@@ -506,10 +658,13 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", async () => {
     bindEvents();
     applyLang(detectInitialLang());
     setMode("table");
     renderTable();
+
+    // load brand dictionary after DOM ready
+    await loadBrandDict();
   });
 })();
