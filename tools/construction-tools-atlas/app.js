@@ -1,66 +1,11 @@
 (function () {
   'use strict';
 
+  const engine = window.AtlasEngine;
+
   /**
    * --- Data loading (fetch-based, DOM-free) ---
    */
-  function normalizeWhitespace(value) {
-    return String(value || '').trim().replace(/\s+/g, ' ');
-  }
-
-  function normalizeString(value) {
-    if (typeof value !== 'string') return '';
-    return normalizeWhitespace(value);
-  }
-
-  function normalizeStringArray(values) {
-    if (!Array.isArray(values)) return [];
-    return values
-      .filter((v) => typeof v === 'string')
-      .map((v) => normalizeWhitespace(v))
-      .filter((v) => v.length > 0);
-  }
-
-  function normalizeEntry(raw, source) {
-    const data = raw && typeof raw === 'object' ? raw : {};
-    const term = data.term && typeof data.term === 'object' ? data.term : {};
-    const aliases = data.aliases && typeof data.aliases === 'object' ? data.aliases : {};
-    const description = data.description && typeof data.description === 'object' ? data.description : {};
-
-    const normalized = {
-      id: normalizeString(data.id),
-      term: {
-        ja: normalizeString(term.ja),
-        en: normalizeString(term.en),
-      },
-      category: normalizeString(data.category),
-      categories: [],
-      tags: normalizeStringArray(data.tags),
-      aliases: {
-        ja: normalizeStringArray(aliases.ja),
-        en: normalizeStringArray(aliases.en),
-      },
-      description: undefined,
-    };
-
-    if (description.ja || description.en) {
-      normalized.description = {
-        ja: description.ja ? normalizeString(description.ja) : undefined,
-        en: description.en !== undefined ? normalizeString(description.en) : undefined,
-      };
-    }
-
-    if (normalized.category) {
-      normalized.categories = [normalized.category];
-    }
-
-    if (!normalized.id || !normalized.term.ja || !normalized.category) {
-      console.warn('Entry skipped due to missing required fields', source || raw);
-      return null;
-    }
-
-    return normalized;
-  }
 
   async function fetchJson(path) {
     const res = await fetch(path);
@@ -80,7 +25,7 @@
         const packEntries = await fetchJson(`./data/${pack.file}`);
         if (!Array.isArray(packEntries)) return;
         packEntries.forEach((entry, i) => {
-          const normalized = normalizeEntry(entry, `${pack.file}#${i}`);
+          const normalized = engine.normalizeEntry(entry, `${pack.file}#${i}`);
           if (normalized) entries.push(normalized);
         });
       })
@@ -104,6 +49,7 @@
   const elements = {};
 
   function cacheElements() {
+    elements.langToggle = document.getElementById('langToggle');
     elements.searchInput = document.getElementById('searchInput');
     elements.categorySelect = document.getElementById('categorySelect');
     elements.results = document.getElementById('results');
@@ -125,6 +71,70 @@
     return arr.join(', ');
   }
 
+  function otherLang(lang) {
+    return lang === 'ja' ? 'en' : 'ja';
+  }
+
+  function getLangValue(obj, lang) {
+    if (!obj) return '';
+    const value = obj[lang];
+    return typeof value === 'string' && value.trim() ? value : '';
+  }
+
+  function getTermTexts(entry, lang) {
+    const primary = getLangValue(entry.term, lang) || getLangValue(entry.term, otherLang(lang));
+    const secondary = getLangValue(entry.term, otherLang(lang));
+    return {
+      primary,
+      secondary: primary === secondary ? '' : secondary,
+    };
+  }
+
+  function getDescriptionTexts(entry, lang) {
+    const values = [];
+    const primary = getLangValue(entry.description, lang);
+    const fallback = getLangValue(entry.description, otherLang(lang));
+    if (primary) values.push({ lang, text: primary });
+    if (fallback && fallback !== primary) {
+      values.push({ lang: otherLang(lang), text: fallback });
+    }
+    return values;
+  }
+
+  function getAliasList(entry, lang) {
+    const aliases = entry.aliases || {};
+    const primary = Array.isArray(aliases[lang]) ? aliases[lang] : [];
+    const fallback = Array.isArray(aliases[otherLang(lang)]) ? aliases[otherLang(lang)] : [];
+    return [...primary, ...fallback];
+  }
+
+  function renderLanguageToggle() {
+    if (!elements.langToggle) return;
+    elements.langToggle.textContent = state.lang === 'ja' ? 'JA' : 'EN';
+    elements.langToggle.setAttribute('aria-pressed', state.lang === 'ja');
+    elements.langToggle.setAttribute('aria-label', `Language: ${state.lang.toUpperCase()}`);
+  }
+
+  function updateLanguage(lang) {
+    const next = lang === 'ja' ? 'ja' : 'en';
+    if (state.lang === next) {
+      renderLanguageToggle();
+      return;
+    }
+    state.lang = next;
+    document.documentElement.lang = next;
+    renderLanguageToggle();
+    applyFilters();
+    if (state.selectedId) {
+      const selected = state.allEntries.find((e) => e.id === state.selectedId);
+      renderDetail(selected || null);
+    }
+  }
+
+  function toggleLanguage() {
+    updateLanguage(otherLang(state.lang));
+  }
+
   function clearSelection() {
     state.selectedId = null;
     renderDetail(null);
@@ -141,7 +151,6 @@
   }
 
   function applyFilters() {
-    const engine = window.AtlasEngine;
     const base = engine.searchByText(state.query, state.lang, state.allEntries);
     const filtered = engine.filterByCategory(state.category, state.lang, base);
     state.filtered = filtered;
@@ -185,17 +194,22 @@
       const textBlock = document.createElement('div');
       textBlock.className = 'result-text';
 
+      const terms = getTermTexts(entry, state.lang);
+
       const title = document.createElement('p');
       title.className = 'result-title';
-      title.textContent = entry.term.ja || entry.term.en;
+      title.textContent = terms.primary || entry.term.ja || entry.term.en;
 
       const subtitle = document.createElement('p');
       subtitle.className = 'result-subtitle';
-      subtitle.textContent = entry.term.en && entry.term.ja ? entry.term.en : entry.term.en || entry.term.ja;
+      subtitle.textContent = terms.secondary;
 
       const meta = document.createElement('p');
       meta.className = 'result-meta';
-      meta.textContent = entry.description?.en || entry.description?.ja || '';
+      meta.textContent =
+        getLangValue(entry.description, state.lang) ||
+        getLangValue(entry.description, otherLang(state.lang)) ||
+        '';
 
       textBlock.appendChild(title);
       if (subtitle.textContent) textBlock.appendChild(subtitle);
@@ -231,14 +245,18 @@
     }
 
     elements.detailCategory.textContent = entry.category || '—';
-    elements.detailTitle.textContent = entry.term.ja || entry.term.en;
-    elements.detailSubtitle.textContent = entry.term.en && entry.term.ja ? entry.term.en : '';
+    const terms = getTermTexts(entry, state.lang);
+    elements.detailTitle.textContent = terms.primary || '—';
+    elements.detailSubtitle.textContent = terms.secondary;
 
-    const descJa = entry.description?.ja ? `JA: ${entry.description.ja}` : '';
-    const descEn = entry.description?.en ? `EN: ${entry.description.en}` : '';
-    elements.detailDescription.innerHTML = [descJa, descEn].filter(Boolean).map((d) => `<p>${d}</p>`).join('');
+    elements.detailDescription.replaceChildren();
+    getDescriptionTexts(entry, state.lang).forEach((item) => {
+      const p = document.createElement('p');
+      p.textContent = `${item.lang.toUpperCase()}: ${item.text}`;
+      elements.detailDescription.appendChild(p);
+    });
 
-    elements.detailAliases.textContent = formatArray([...(entry.aliases?.ja || []), ...(entry.aliases?.en || [])]);
+    elements.detailAliases.textContent = formatArray(getAliasList(entry, state.lang));
     elements.detailTags.textContent = formatArray(entry.tags);
     elements.detailId.textContent = entry.id;
 
@@ -248,8 +266,8 @@
 
   function restoreStateFromURL() {
     const params = new URLSearchParams(location.search);
-    state.query = params.get('q') ? normalizeWhitespace(params.get('q')) : '';
-    state.category = params.get('cat') ? normalizeWhitespace(params.get('cat')) : '';
+    state.query = params.get('q') ? engine.normalizeWhitespace(params.get('q')) : '';
+    state.category = params.get('cat') ? engine.normalizeWhitespace(params.get('cat')) : '';
     state.selectedId = params.get('id') || null;
 
     elements.searchInput.value = state.query;
@@ -258,18 +276,24 @@
 
   function attachEventListeners() {
     elements.searchInput.addEventListener('input', (e) => {
-      state.query = normalizeWhitespace(e.target.value || '');
+      state.query = engine.normalizeWhitespace(e.target.value || '');
       clearSelection();
       updateURL();
       applyFilters();
     });
 
     elements.categorySelect.addEventListener('change', (e) => {
-      state.category = normalizeString(e.target.value || '');
+      state.category = engine.normalizeString(e.target.value || '');
       clearSelection();
       updateURL();
       applyFilters();
     });
+
+    if (elements.langToggle) {
+      elements.langToggle.addEventListener('click', () => {
+        toggleLanguage();
+      });
+    }
   }
 
   function openEntryFromState() {
@@ -287,6 +311,7 @@
 
   async function init() {
     cacheElements();
+    renderLanguageToggle();
     attachEventListeners();
 
     try {

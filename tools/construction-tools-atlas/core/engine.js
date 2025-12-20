@@ -25,15 +25,86 @@
   "use strict";
 
   /**
+   * Normalize whitespace for safe comparisons.
+   */
+  function normalizeWhitespace(value) {
+    return String(value || "")
+      .trim()
+      .replace(/\s+/g, " ");
+  }
+
+  /**
    * Normalize a string for matching.
    * - Lowercase (for EN)
    * - Trim
    */
   function normalizeText(s) {
-    return String(s || "")
-      .trim()
-      .replace(/\s+/g, " ")
-      .toLowerCase();
+    return normalizeWhitespace(s).toLowerCase();
+  }
+
+  /**
+   * Normalize a generic string (without lowercasing).
+   */
+  function normalizeString(value) {
+    return normalizeWhitespace(typeof value === "string" ? value : "");
+  }
+
+  /**
+   * Normalize an array of strings.
+   */
+  function normalizeStringArray(values) {
+    if (!Array.isArray(values)) return [];
+    return values
+      .filter((v) => typeof v === "string")
+      .map((v) => normalizeWhitespace(v))
+      .filter((v) => v.length > 0);
+  }
+
+  /**
+   * Normalize a raw entry object to the expected structure.
+   * Returns null when required fields are missing.
+   */
+  function normalizeEntry(raw, source) {
+    const data = raw && typeof raw === "object" ? raw : {};
+    const term = data.term && typeof data.term === "object" ? data.term : {};
+    const aliases = data.aliases && typeof data.aliases === "object" ? data.aliases : {};
+    const description = data.description && typeof data.description === "object" ? data.description : {};
+
+    const normalized = {
+      id: normalizeString(data.id),
+      term: {
+        ja: normalizeString(term.ja),
+        en: normalizeString(term.en),
+      },
+      category: normalizeString(data.category),
+      categories: [],
+      tags: normalizeStringArray(data.tags),
+      aliases: {
+        ja: normalizeStringArray(aliases.ja),
+        en: normalizeStringArray(aliases.en),
+      },
+      description: undefined,
+    };
+
+    if (description.ja || description.en) {
+      normalized.description = {
+        ja: description.ja ? normalizeString(description.ja) : undefined,
+        en: description.en !== undefined ? normalizeString(description.en) : undefined,
+      };
+    }
+
+    if (normalized.category) {
+      normalized.categories = [normalized.category];
+    }
+
+    if (!normalized.id || !normalized.term.ja || !normalized.category) {
+      if (typeof console !== "undefined" && console.warn) {
+        console.warn("Entry skipped due to missing required fields", source || raw);
+      }
+      return null;
+    }
+
+    return normalized;
   }
 
   /**
@@ -224,6 +295,10 @@
 
   // Export (UMD-like)
   const api = {
+    normalizeWhitespace,
+    normalizeString,
+    normalizeStringArray,
+    normalizeEntry,
     searchByText,
     filterByCategory,
     searchByTask,
