@@ -109,6 +109,12 @@ h1 {
   color: var(--text);
 }
 
+/* 長いカテゴリ名対策 */
+.control select {
+  width: 100%;
+  max-width: 100%;
+}
+
 .content {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
