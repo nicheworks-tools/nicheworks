@@ -58,19 +58,22 @@
   /**
    * --- Data loading ---
    */
-
   async function fetchJson(path) {
-    const res = await fetch(path, { cache: 'no-store' });
+    const res = await fetch(path);
     if (!res.ok) throw new Error(`Failed to load ${path}`);
     return res.json();
   }
 
-  async function loadAtlasData() {
+  // index.json を返す（カテゴリ順・ラベル取得に使う）
+  async function loadIndex() {
     const index = await fetchJson('./data/index.json');
     if (!index || !Array.isArray(index.packs)) {
       throw new Error('index.json missing packs array');
     }
+    return index;
+  }
 
+  async function loadEntriesFromIndex(index) {
     const entries = [];
     await Promise.all(
       index.packs.map(async (pack) => {
@@ -82,14 +85,16 @@
         });
       })
     );
-
-    return { index, entries };
+    return entries;
   }
 
   /**
-   * --- State / elements ---
+   * --- State ---
    */
   const state = {
+    index: null,
+    categoryOrder: [],           // index.json の順序（id配列）
+    categoryLabelMap: new Map(), // id -> {en, ja}
     allEntries: [],
     searchIndex: [],
     filtered: [],
@@ -97,10 +102,6 @@
     lang: 'en',
     query: '',
     category: '',
-
-    // category registry from index.json
-    categories: [], // array
-    categoryMap: new Map(), // id -> category object
   };
 
   const elements = {};
@@ -137,6 +138,10 @@
     elements.navCredits = document.getElementById('creditsLink');
   }
 
+  function otherLang(lang) {
+    return lang === 'ja' ? 'en' : 'ja';
+  }
+
   function getText(key) {
     const pack = i18n[state.lang] || i18n.en;
     const fallback = i18n.en || {};
@@ -150,33 +155,6 @@
     return String(count);
   }
 
-  function otherLang(lang) {
-    return lang === 'ja' ? 'en' : 'ja';
-  }
-
-  function normalizeLangValue(v) {
-    if (typeof v === 'string') return v;
-    if (v && typeof v === 'object') {
-      if (typeof v[state.lang] === 'string') return v[state.lang];
-      const ol = otherLang(state.lang);
-      if (typeof v[ol] === 'string') return v[ol];
-    }
-    return '';
-  }
-
-  // index.json categories label resolver
-  function categoryLabel(id) {
-    if (!id) return getText('detailCategoryFallback') || '—';
-    const c = state.categoryMap.get(id);
-    if (!c) return id; // fallback: show id if not registered
-    // support both {label:{ja/en}} and {label_ja,label_en} (just in case)
-    const label =
-      normalizeLangValue(c.label) ||
-      (state.lang === 'ja' ? (c.label_ja || '') : (c.label_en || '')) ||
-      c.id;
-    return label || c.id || id;
-  }
-
   function renderUILabels() {
     if (elements.eyebrow) elements.eyebrow.textContent = getText('eyebrow') || '';
     if (elements.heroTitle) elements.heroTitle.textContent = getText('title') || '';
@@ -184,14 +162,11 @@
     if (elements.searchLabel) elements.searchLabel.textContent = getText('searchLabel') || '';
     if (elements.searchInput) elements.searchInput.placeholder = getText('searchPlaceholder') || '';
     if (elements.categoryLabel) elements.categoryLabel.textContent = getText('categoryLabel') || '';
-    if (elements.categoryDefaultOption)
-      elements.categoryDefaultOption.textContent = getText('categoryAll') || '';
+    if (elements.categoryDefaultOption) elements.categoryDefaultOption.textContent = getText('categoryAll') || '';
     if (elements.resultsTitle) elements.resultsTitle.textContent = getText('resultsTitle') || '';
     if (elements.emptyState) elements.emptyState.textContent = getText('emptyState') || '';
-    if (elements.detailPlaceholder)
-      elements.detailPlaceholder.textContent = getText('detailPlaceholder') || '';
-    if (elements.detailAliasesLabel)
-      elements.detailAliasesLabel.textContent = getText('aliasesLabel') || '';
+    if (elements.detailPlaceholder) elements.detailPlaceholder.textContent = getText('detailPlaceholder') || '';
+    if (elements.detailAliasesLabel) elements.detailAliasesLabel.textContent = getText('aliasesLabel') || '';
     if (elements.detailTagsLabel) elements.detailTagsLabel.textContent = getText('tagsLabel') || '';
     if (elements.detailIdLabel) elements.detailIdLabel.textContent = getText('idLabel') || '';
     if (elements.navAbout) elements.navAbout.textContent = getText('navAbout') || '';
@@ -257,6 +232,71 @@
     return [...primary, ...fallback];
   }
 
+  /**
+   * --- Category helpers (index.json driven) ---
+   */
+  function buildCategoryMapsFromIndex(index) {
+    state.categoryOrder = [];
+    state.categoryLabelMap = new Map();
+
+    const cats = Array.isArray(index.categories) ? index.categories : [];
+    cats.forEach((c) => {
+      const id = String(c?.id || '').trim();
+      if (!id) return;
+      state.categoryOrder.push(id);
+      const label = c?.label || {};
+      state.categoryLabelMap.set(id, {
+        en: String(label.en || id),
+        ja: String(label.ja || id),
+      });
+    });
+  }
+
+  function getCategoryLabel(categoryId) {
+    const id = String(categoryId || '').trim();
+    if (!id) return getText('detailCategoryFallback') || '—';
+    const map = state.categoryLabelMap.get(id);
+    if (!map) return id; // 未定義カテゴリはIDを出す
+    return state.lang === 'ja' ? map.ja : map.en;
+  }
+
+  function clearCategoryOptions() {
+    if (!elements.categorySelect) return;
+    // 最初の "All categories" 以外を削除
+    while (elements.categorySelect.options.length > 1) {
+      elements.categorySelect.remove(1);
+    }
+  }
+
+  function buildCategoryOptionsFromIndex() {
+    if (!elements.categorySelect) return;
+    clearCategoryOptions();
+
+    state.categoryOrder.forEach((id) => {
+      const opt = document.createElement('option');
+      opt.value = id; // フィルタはid
+      opt.textContent = getCategoryLabel(id); // 表示はlabel
+      elements.categorySelect.appendChild(opt);
+    });
+  }
+
+  function refreshCategoryOptionLabels() {
+    // 言語切替時に label を更新
+    if (!elements.categorySelect) return;
+    // default option
+    if (elements.categoryDefaultOption) {
+      elements.categoryDefaultOption.textContent = getText('categoryAll') || '';
+    }
+    // options[1..] を index順に上書き
+    for (let i = 1; i < elements.categorySelect.options.length; i++) {
+      const opt = elements.categorySelect.options[i];
+      opt.textContent = getCategoryLabel(opt.value);
+    }
+  }
+
+  /**
+   * --- Language toggle ---
+   */
   function renderLanguageToggle() {
     if (!elements.langToggle) return;
     elements.langToggle.textContent = state.lang === 'ja' ? '日本語 / EN' : 'JA / English';
@@ -275,9 +315,7 @@
 
     renderLanguageToggle();
     renderUILabels();
-
-    // カテゴリselectの表示名も言語切替に追従
-    rebuildCategoryOptions();
+    refreshCategoryOptionLabels();
 
     applyFilters();
     if (state.selectedId) {
@@ -312,67 +350,6 @@
     renderResults();
   }
 
-  /**
-   * --- Category options (index.json categories + fallback from entries) ---
-   */
-  function clearSelectOptions(selectEl) {
-    while (selectEl.options.length > 1) selectEl.remove(1); // keep default option at index 0
-  }
-
-  function gatherCategoryIdsFromEntries(entries) {
-    const ids = new Set();
-    entries.forEach((e) => {
-      if (Array.isArray(e.categories)) {
-        e.categories.forEach((c) => ids.add(String(c || '').trim()));
-      } else if (e.category) {
-        ids.add(String(e.category || '').trim());
-      }
-    });
-    return Array.from(ids).filter(Boolean);
-  }
-
-  function rebuildCategoryOptions() {
-    if (!elements.categorySelect) return;
-    const current = state.category || '';
-    clearSelectOptions(elements.categorySelect);
-
-    // 1) index.json categories を優先（label付き）
-    const seen = new Set();
-    const catList = Array.isArray(state.categories) ? state.categories : [];
-
-    // sort by label for current lang (stable)
-    const sorted = [...catList].sort((a, b) => {
-      const la = (normalizeLangValue(a.label) || a.id || '').toLowerCase();
-      const lb = (normalizeLangValue(b.label) || b.id || '').toLowerCase();
-      return la.localeCompare(lb);
-    });
-
-    sorted.forEach((c) => {
-      const id = String(c.id || '').trim();
-      if (!id) return;
-      seen.add(id);
-
-      const opt = document.createElement('option');
-      opt.value = id;
-      opt.textContent = categoryLabel(id);
-      elements.categorySelect.appendChild(opt);
-    });
-
-    // 2) pack側に存在するが index に未登録のカテゴリIDがあれば末尾に追加
-    const extra = gatherCategoryIdsFromEntries(state.allEntries)
-      .filter((id) => !seen.has(id))
-      .sort((a, b) => a.localeCompare(b));
-
-    extra.forEach((id) => {
-      const opt = document.createElement('option');
-      opt.value = id;
-      opt.textContent = id; // label不明なのでID表示
-      elements.categorySelect.appendChild(opt);
-    });
-
-    elements.categorySelect.value = current;
-  }
-
   function clearResults() {
     while (elements.results.firstChild) {
       elements.results.removeChild(elements.results.firstChild);
@@ -402,7 +379,7 @@
 
       const title = document.createElement('p');
       title.className = 'result-title';
-      title.textContent = terms.primary || (entry.term && (entry.term.ja || entry.term.en)) || '—';
+      title.textContent = terms.primary || entry.term.ja || entry.term.en;
 
       const subtitle = document.createElement('p');
       subtitle.className = 'result-subtitle';
@@ -418,7 +395,7 @@
 
       const badge = document.createElement('span');
       badge.className = 'result-badge';
-      badge.textContent = categoryLabel(entry.category);
+      badge.textContent = getCategoryLabel(entry.category);
 
       item.appendChild(textBlock);
       item.appendChild(badge);
@@ -445,10 +422,10 @@
       return;
     }
 
-    elements.detailCategory.textContent = categoryLabel(entry.category);
+    elements.detailCategory.textContent = getCategoryLabel(entry.category);
 
     const terms = getTermTexts(entry, state.lang);
-    elements.detailTitle.textContent = terms.primary || '—';
+    elements.detailTitle.textContent = terms.primary || getText('detailCategoryFallback') || '—';
     elements.detailSubtitle.textContent = terms.secondary;
 
     elements.detailDescription.replaceChildren();
@@ -503,25 +480,11 @@
     const match = state.allEntries.find((e) => e.id === state.selectedId);
     if (match) {
       renderDetail(match);
-      // ensure selection highlight within current filtered list
       if (!state.filtered.some((e) => e.id === match.id)) {
         state.filtered.unshift(match);
       }
       renderResults();
     }
-  }
-
-  function indexToCategoryRegistry(index) {
-    const cats = Array.isArray(index.categories) ? index.categories : [];
-    state.categories = cats;
-    state.categoryMap = new Map(
-      cats
-        .map((c) => {
-          const id = String(c.id || '').trim();
-          return id ? [id, c] : null;
-        })
-        .filter(Boolean)
-    );
   }
 
   async function init() {
@@ -531,20 +494,20 @@
     attachEventListeners();
 
     try {
-      const { index, entries } = await loadAtlasData();
-      indexToCategoryRegistry(index);
+      const index = await loadIndex();
+      state.index = index;
+      buildCategoryMapsFromIndex(index);
 
+      // entries load
+      const entries = await loadEntriesFromIndex(index);
       state.allEntries = entries;
       state.searchIndex = engine.buildSearchIndex(entries);
 
-      // categories from index.json (label support) + fallback
-      rebuildCategoryOptions();
+      // category dropdown: index.json order + labels
+      buildCategoryOptionsFromIndex();
 
+      // URL restore + render
       restoreStateFromURL();
-
-      // URLでカテゴリ指定されててselectに無い場合もあるので、再度 value を反映
-      elements.categorySelect.value = state.category || '';
-
       applyFilters();
       openEntryFromState();
     } catch (err) {
