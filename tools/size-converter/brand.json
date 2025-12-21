@@ -1,78 +1,70 @@
 {
   "shoes": {
     "men": [
-      {
-        "id": "nike",
-        "label": "Nike",
-        "offset": 0.5,
-        "note_ja": "小さめになりやすい傾向。迷ったら+0.5cmを検討。",
-        "note_en": "Often runs small. Consider +0.5 cm if between sizes."
-      },
-      {
-        "id": "adidas",
-        "label": "adidas",
-        "offset": 0.0,
-        "note_ja": "標準寄りが多いが、モデル差あり。迷ったらレビュー優先。",
-        "note_en": "Often true-to-size, but varies by model. Check reviews."
-      },
-      {
-        "id": "converse",
-        "label": "Converse",
-        "offset": -0.5,
-        "note_ja": "大きめになりやすい傾向。まずは-0.5cmも候補。",
-        "note_en": "Often runs large. Consider -0.5 cm as a candidate."
-      },
-      {
-        "id": "newbalance",
-        "label": "New Balance",
-        "offset": 0.0,
-        "note_ja": "幅展開があるため、同サイズでも幅が重要。幅入力推奨。",
-        "note_en": "Width options matter. Enter width if possible."
-      },
-      {
-        "id": "drmartens",
-        "label": "Dr. Martens",
-        "offset": 0.0,
-        "note_ja": "慣らし期間あり。厚手ソックス前提なら+0.5cmも検討。",
-        "note_en": "Break-in needed. With thick socks, +0.5 cm may help."
-      }
+      { "id": "nike", "label": "Nike", "group": "sports", "offset": 0.5, "note_ja": "小さめになりやすい傾向。迷ったら+0.5cmを検討。", "note_en": "Often runs small. Consider +0.5 cm if between sizes." },
+      { "id": "adidas", "label": "adidas", "group": "sports", "offset": 0.0, "note_ja": "標準寄りが多いがモデル差あり。迷ったらレビュー優先。", "note_en": "Often true-to-size, but varies by model. Check reviews." },
+      { "id": "puma", "label": "PUMA", "group": "sports", "offset": 0.0, "note_ja": "標準寄りが多いが細身モデルもあり。", "note_en": "Often true-to-size, but some models run narrow." },
+      { "id": "reebok", "label": "Reebok", "group": "sports", "offset": 0.0, "note_ja": "標準寄りが多い。甲高ならレビュー確認。", "note_en": "Often true-to-size. Check reviews if high instep." },
+      { "id": "underarmour", "label": "Under Armour", "group": "sports", "offset": 0.0, "note_ja": "標準寄り。厚手ソックスなら+0.5も候補。", "note_en": "Often true-to-size. With thick socks, +0.5 can help." },
+      { "id": "jordan", "label": "Jordan", "group": "sports", "offset": 0.5, "note_ja": "タイトめ傾向。迷ったら+0.5cmを検討。", "note_en": "Often snug. Consider +0.5 cm if between sizes." },
+
+      { "id": "asics", "label": "ASICS", "group": "running", "offset": 0.0, "note_ja": "幅展開があるため幅の確認推奨。", "note_en": "Width options matter. Check width if possible." },
+      { "id": "mizuno", "label": "Mizuno", "group": "running", "offset": 0.0, "note_ja": "標準寄り。幅が合うかが重要。", "note_en": "Often true-to-size. Width fit matters." },
+      { "id": "brooks", "label": "Brooks", "group": "running", "offset": 0.0, "note_ja": "標準寄り。ランは0.5上げる人も。", "note_en": "Often true-to-size. Some runners go +0.5." },
+      { "id": "saucony", "label": "Saucony", "group": "running", "offset": 0.0, "note_ja": "標準寄り。モデル差はレビューで確認。", "note_en": "Often true-to-size. Model variation: check reviews." },
+      { "id": "hoka", "label": "HOKA", "group": "running", "offset": 0.5, "note_ja": "タイトめと感じる人も。迷ったら+0.5。", "note_en": "Some feel it runs snug. Consider +0.5 if unsure." },
+      { "id": "on", "label": "On", "group": "running", "offset": 0.5, "note_ja": "やや小さめ傾向。迷ったら+0.5。", "note_en": "Slightly small. Consider +0.5 if between sizes." },
+
+      { "id": "salomon", "label": "Salomon", "group": "outdoor", "offset": 0.5, "note_ja": "ホールド感強め。迷ったら+0.5。", "note_en": "Secure fit. Consider +0.5 if between sizes." },
+      { "id": "merrell", "label": "Merrell", "group": "outdoor", "offset": 0.0, "note_ja": "標準寄り。厚手ソックスなら+0.5も。", "note_en": "Often true-to-size. With thick socks, +0.5 can help." },
+      { "id": "timberland", "label": "Timberland", "group": "boots", "offset": 0.0, "note_ja": "ブーツは厚手靴下前提なら+0.5も候補。", "note_en": "Boots: with thick socks, +0.5 can be a candidate." },
+      { "id": "thenorthface", "label": "The North Face", "group": "outdoor", "offset": 0.0, "note_ja": "標準寄り。冬用は厚手靴下も考慮。", "note_en": "Often true-to-size. Consider thick socks for winter use." },
+
+      { "id": "converse", "label": "Converse", "group": "casual", "offset": -0.5, "note_ja": "大きめになりやすい傾向。まずは-0.5cmも候補。", "note_en": "Often runs large. Consider -0.5 cm as a candidate." },
+      { "id": "vans", "label": "Vans", "group": "casual", "offset": 0.0, "note_ja": "標準寄りだが細身もあり。甲高は注意。", "note_en": "Often true-to-size, but can be narrow. High instep: caution." },
+      { "id": "lacoste", "label": "Lacoste", "group": "casual", "offset": 0.0, "note_ja": "標準寄り。革靴は馴染みも考慮。", "note_en": "Often true-to-size. Leather will break in over time." },
+
+      { "id": "clarks", "label": "Clarks", "group": "leather", "offset": 0.0, "note_ja": "革は馴染む。甲高ならレビュー確認。", "note_en": "Leather breaks in. High instep: check reviews." },
+      { "id": "drmartens", "label": "Dr. Martens", "group": "boots", "offset": 0.0, "note_ja": "慣らし期間あり。厚手ソックスなら+0.5も検討。", "note_en": "Break-in needed. With thick socks, +0.5 may help." },
+
+      { "id": "newbalance", "label": "New Balance", "group": "running", "offset": 0.0, "note_ja": "幅展開があるため、同サイズでも幅が重要。幅入力推奨。", "note_en": "Width options matter. Enter width if possible." },
+      { "id": "skechers", "label": "Skechers", "group": "comfort", "offset": 0.0, "note_ja": "標準寄り。クッション厚めは体感が変わる。", "note_en": "Often true-to-size. Cushioning can change perceived fit." },
+      { "id": "birkenstock", "label": "Birkenstock", "group": "comfort", "offset": 0.0, "note_ja": "サンダルは前後余りが目安。幅の好みも重要。", "note_en": "Sandals: allow some toe/heel space. Width preference matters." },
+      { "id": "crocs", "label": "Crocs", "group": "comfort", "offset": 0.0, "note_ja": "ゆったりめになりやすい。厚手靴下なら調整。", "note_en": "Often roomy. Adjust if wearing thick socks." },
+      { "id": "ugg", "label": "UGG", "group": "boots", "offset": 0.0, "note_ja": "ムートンは馴染む。厚手靴下前提なら調整。", "note_en": "Sheepskin breaks in. Adjust if wearing thick socks." }
     ],
     "women": [
-      {
-        "id": "nike",
-        "label": "Nike",
-        "offset": 0.5,
-        "note_ja": "小さめになりやすい傾向。迷ったら+0.5cmを検討。",
-        "note_en": "Often runs small. Consider +0.5 cm if between sizes."
-      },
-      {
-        "id": "adidas",
-        "label": "adidas",
-        "offset": 0.0,
-        "note_ja": "標準寄りが多いが、モデル差あり。迷ったらレビュー優先。",
-        "note_en": "Often true-to-size, but varies by model. Check reviews."
-      },
-      {
-        "id": "converse",
-        "label": "Converse",
-        "offset": -0.5,
-        "note_ja": "大きめになりやすい傾向。まずは-0.5cmも候補。",
-        "note_en": "Often runs large. Consider -0.5 cm as a candidate."
-      },
-      {
-        "id": "newbalance",
-        "label": "New Balance",
-        "offset": 0.0,
-        "note_ja": "幅展開があるため、同サイズでも幅が重要。幅入力推奨。",
-        "note_en": "Width options matter. Enter width if possible."
-      },
-      {
-        "id": "drmartens",
-        "label": "Dr. Martens",
-        "offset": 0.0,
-        "note_ja": "慣らし期間あり。厚手ソックス前提なら+0.5cmも検討。",
-        "note_en": "Break-in needed. With thick socks, +0.5 cm may help."
-      }
+      { "id": "nike", "label": "Nike", "group": "sports", "offset": 0.5, "note_ja": "小さめになりやすい傾向。迷ったら+0.5cmを検討。", "note_en": "Often runs small. Consider +0.5 cm if between sizes." },
+      { "id": "adidas", "label": "adidas", "group": "sports", "offset": 0.0, "note_ja": "標準寄りが多いがモデル差あり。迷ったらレビュー優先。", "note_en": "Often true-to-size, but varies by model. Check reviews." },
+      { "id": "puma", "label": "PUMA", "group": "sports", "offset": 0.0, "note_ja": "標準寄りが多いが細身モデルもあり。", "note_en": "Often true-to-size, but some models run narrow." },
+      { "id": "reebok", "label": "Reebok", "group": "sports", "offset": 0.0, "note_ja": "標準寄りが多い。甲高ならレビュー確認。", "note_en": "Often true-to-size. Check reviews if high instep." },
+      { "id": "underarmour", "label": "Under Armour", "group": "sports", "offset": 0.0, "note_ja": "標準寄り。厚手ソックスなら+0.5も候補。", "note_en": "Often true-to-size. With thick socks, +0.5 can help." },
+      { "id": "jordan", "label": "Jordan", "group": "sports", "offset": 0.5, "note_ja": "タイトめ傾向。迷ったら+0.5cmを検討。", "note_en": "Often snug. Consider +0.5 cm if between sizes." },
+
+      { "id": "asics", "label": "ASICS", "group": "running", "offset": 0.0, "note_ja": "幅展開があるため幅の確認推奨。", "note_en": "Width options matter. Check width if possible." },
+      { "id": "mizuno", "label": "Mizuno", "group": "running", "offset": 0.0, "note_ja": "標準寄り。幅が合うかが重要。", "note_en": "Often true-to-size. Width fit matters." },
+      { "id": "brooks", "label": "Brooks", "group": "running", "offset": 0.0, "note_ja": "標準寄り。ランは0.5上げる人も。", "note_en": "Often true-to-size. Some runners go +0.5." },
+      { "id": "saucony", "label": "Saucony", "group": "running", "offset": 0.0, "note_ja": "標準寄り。モデル差はレビューで確認。", "note_en": "Often true-to-size. Model variation: check reviews." },
+      { "id": "hoka", "label": "HOKA", "group": "running", "offset": 0.5, "note_ja": "タイトめと感じる人も。迷ったら+0.5。", "note_en": "Some feel it runs snug. Consider +0.5 if unsure." },
+      { "id": "on", "label": "On", "group": "running", "offset": 0.5, "note_ja": "やや小さめ傾向。迷ったら+0.5。", "note_en": "Slightly small. Consider +0.5 if between sizes." },
+
+      { "id": "salomon", "label": "Salomon", "group": "outdoor", "offset": 0.5, "note_ja": "ホールド感強め。迷ったら+0.5。", "note_en": "Secure fit. Consider +0.5 if between sizes." },
+      { "id": "merrell", "label": "Merrell", "group": "outdoor", "offset": 0.0, "note_ja": "標準寄り。厚手ソックスなら+0.5も。", "note_en": "Often true-to-size. With thick socks, +0.5 can help." },
+      { "id": "timberland", "label": "Timberland", "group": "boots", "offset": 0.0, "note_ja": "ブーツは厚手靴下前提なら+0.5も候補。", "note_en": "Boots: with thick socks, +0.5 can be a candidate." },
+      { "id": "thenorthface", "label": "The North Face", "group": "outdoor", "offset": 0.0, "note_ja": "標準寄り。冬用は厚手靴下も考慮。", "note_en": "Often true-to-size. Consider thick socks for winter use." },
+
+      { "id": "converse", "label": "Converse", "group": "casual", "offset": -0.5, "note_ja": "大きめになりやすい傾向。まずは-0.5cmも候補。", "note_en": "Often runs large. Consider -0.5 cm as a candidate." },
+      { "id": "vans", "label": "Vans", "group": "casual", "offset": 0.0, "note_ja": "標準寄りだが細身もあり。甲高は注意。", "note_en": "Often true-to-size, but can be narrow. High instep: caution." },
+      { "id": "lacoste", "label": "Lacoste", "group": "casual", "offset": 0.0, "note_ja": "標準寄り。革靴は馴染みも考慮。", "note_en": "Often true-to-size. Leather will break in over time." },
+
+      { "id": "clarks", "label": "Clarks", "group": "leather", "offset": 0.0, "note_ja": "革は馴染む。甲高ならレビュー確認。", "note_en": "Leather breaks in. High instep: check reviews." },
+      { "id": "drmartens", "label": "Dr. Martens", "group": "boots", "offset": 0.0, "note_ja": "慣らし期間あり。厚手ソックスなら+0.5も検討。", "note_en": "Break-in needed. With thick socks, +0.5 may help." },
+
+      { "id": "newbalance", "label": "New Balance", "group": "running", "offset": 0.0, "note_ja": "幅展開があるため、同サイズでも幅が重要。幅入力推奨。", "note_en": "Width options matter. Enter width if possible." },
+      { "id": "skechers", "label": "Skechers", "group": "comfort", "offset": 0.0, "note_ja": "標準寄り。クッション厚めは体感が変わる。", "note_en": "Often true-to-size. Cushioning can change perceived fit." },
+      { "id": "birkenstock", "label": "Birkenstock", "group": "comfort", "offset": 0.0, "note_ja": "サンダルは前後余りが目安。幅の好みも重要。", "note_en": "Sandals: allow some toe/heel space. Width preference matters." },
+      { "id": "crocs", "label": "Crocs", "group": "comfort", "offset": 0.0, "note_ja": "ゆったりめになりやすい。厚手靴下なら調整。", "note_en": "Often roomy. Adjust if wearing thick socks." },
+      { "id": "ugg", "label": "UGG", "group": "boots", "offset": 0.0, "note_ja": "ムートンは馴染む。厚手靴下前提なら調整。", "note_en": "Sheepskin breaks in. Adjust if wearing thick socks." }
     ]
   }
 }
