@@ -1,6 +1,7 @@
 /* app.js — Size Converter (JP ↔ US/EU)
  * Phase 1: Shoe fit checker by cm (foot length required, width optional)
  * Phase 2: Brand adjustment via brand.json (optional)
+ * Phase 2.5: Brand list scaling (grouped optgroup)
  */
 
 (() => {
@@ -42,7 +43,7 @@
         { jp: "26.5", us: "8.5", eu: "42" },
         { jp: "27.0", us: "9", eu: "42.5" },
         { jp: "27.5", us: "9.5", eu: "43" },
-        { jp: "28.0", us: "10", eu: "44" },
+        { jp: "28.0", us: "10", eu: "44" }
       ],
       women: [
         { jp: "22.0", us: "5", eu: "35" },
@@ -51,8 +52,8 @@
         { jp: "23.5", us: "6.5", eu: "37.5" },
         { jp: "24.0", us: "7", eu: "38" },
         { jp: "24.5", us: "7.5", eu: "39" },
-        { jp: "25.0", us: "8", eu: "39.5" },
-      ],
+        { jp: "25.0", us: "8", eu: "39.5" }
+      ]
     },
     clothing: {
       men: [
@@ -60,15 +61,15 @@
         { jp: "M", us: "M", eu: "48" },
         { jp: "L", us: "L", eu: "50" },
         { jp: "XL", us: "XL", eu: "52" },
-        { jp: "XXL", us: "XXL", eu: "54" },
+        { jp: "XXL", us: "XXL", eu: "54" }
       ],
       women: [
         { jp: "S", us: "2–4", eu: "34–36" },
         { jp: "M", us: "6–8", eu: "38–40" },
         { jp: "L", us: "10–12", eu: "42–44" },
-        { jp: "XL", us: "14–16", eu: "46–48" },
-      ],
-    },
+        { jp: "XL", us: "14–16", eu: "46–48" }
+      ]
+    }
   };
 
   const LABELS = {
@@ -87,7 +88,16 @@
       brandBlockTitle: "ブランド補正（任意）",
       brandApplied: "ブランド補正を適用しました",
       brandUnavailable: "ブランド辞書を読み込めませんでした（補正なしで動作中）",
-      headers: { jp: "JP", us: "US", eu: "EU" },
+      groups: {
+        sports: "スポーツ",
+        running: "ランニング",
+        outdoor: "アウトドア",
+        casual: "カジュアル",
+        leather: "革靴",
+        boots: "ブーツ",
+        comfort: "コンフォート"
+      },
+      headers: { jp: "JP", us: "US", eu: "EU" }
     },
     en: {
       noData: "No data for this selection.",
@@ -104,8 +114,17 @@
       brandBlockTitle: "Brand adjustment (optional)",
       brandApplied: "Brand adjustment applied",
       brandUnavailable: "Could not load brand dictionary (running without it).",
-      headers: { jp: "JP", us: "US", eu: "EU" },
-    },
+      groups: {
+        sports: "Sports",
+        running: "Running",
+        outdoor: "Outdoor",
+        casual: "Casual",
+        leather: "Leather",
+        boots: "Boots",
+        comfort: "Comfort"
+      },
+      headers: { jp: "JP", us: "US", eu: "EU" }
+    }
   };
 
   let currentLang = "ja";
@@ -125,7 +144,6 @@
     } catch (e) {
       brandDict = null;
       brandLoadError = true;
-      // silent in console to keep UX clean, but still helpful for dev:
       console.warn("[size-converter] brand.json load failed:", e);
     } finally {
       rebuildBrandOptions();
@@ -133,49 +151,88 @@
   }
 
   function getBrandListForCurrent() {
-    // brand.json schema:
-    // { shoes: { men: [...], women: [...] } }
     const gen = els.gender?.value || "men";
     return brandDict?.shoes?.[gen] ?? [];
-  }
-
-  function rebuildBrandOptions() {
-    if (!els.brandSelect) return;
-
-    // If not in shoes category, keep empty/disabled
-    const shoeOnly = els.category?.value === "shoes";
-    els.brandSelect.disabled = !shoeOnly;
-
-    // clear options
-    while (els.brandSelect.firstChild) els.brandSelect.removeChild(els.brandSelect.firstChild);
-
-    // default option
-    const opt0 = document.createElement("option");
-    opt0.value = "";
-    opt0.textContent = "—";
-    els.brandSelect.appendChild(opt0);
-
-    if (!shoeOnly) return;
-
-    const brands = getBrandListForCurrent();
-
-    if (!brands.length) {
-      // No brand dict: keep only default
-      return;
-    }
-
-    brands.forEach((b) => {
-      const opt = document.createElement("option");
-      opt.value = b.id;
-      opt.textContent = b.label || b.id;
-      els.brandSelect.appendChild(opt);
-    });
   }
 
   function findBrandById(id) {
     if (!id) return null;
     const list = getBrandListForCurrent();
     return list.find((b) => b.id === id) || null;
+  }
+
+  function groupLabel(groupKey) {
+    const g = LABELS?.[currentLang]?.groups?.[groupKey];
+    return g || groupKey || "Other";
+  }
+
+  function rebuildBrandOptions() {
+    if (!els.brandSelect) return;
+
+    const shoeOnly = els.category?.value === "shoes";
+    els.brandSelect.disabled = !shoeOnly;
+
+    const prev = els.brandSelect.value || "";
+
+    while (els.brandSelect.firstChild) els.brandSelect.removeChild(els.brandSelect.firstChild);
+
+    const opt0 = document.createElement("option");
+    opt0.value = "";
+    opt0.textContent = "—";
+    els.brandSelect.appendChild(opt0);
+
+    if (!shoeOnly) {
+      els.brandSelect.value = "";
+      return;
+    }
+
+    const brands = getBrandListForCurrent();
+    if (!brands.length) {
+      // keep only default
+      els.brandSelect.value = "";
+      return;
+    }
+
+    // group -> brands
+    const buckets = new Map();
+    brands.forEach((b) => {
+      const key = (b.group || "other").toLowerCase();
+      if (!buckets.has(key)) buckets.set(key, []);
+      buckets.get(key).push(b);
+    });
+
+    // stable order (preferred)
+    const order = ["running", "sports", "outdoor", "casual", "leather", "boots", "comfort", "other"];
+    const keys = Array.from(buckets.keys()).sort((a, b) => {
+      const ia = order.indexOf(a);
+      const ib = order.indexOf(b);
+      const pa = ia === -1 ? 999 : ia;
+      const pb = ib === -1 ? 999 : ib;
+      if (pa !== pb) return pa - pb;
+      return a.localeCompare(b);
+    });
+
+    keys.forEach((key) => {
+      const list = buckets.get(key) || [];
+      // sort inside group by label
+      list.sort((a, b) => String(a.label || a.id).localeCompare(String(b.label || b.id)));
+
+      const og = document.createElement("optgroup");
+      og.label = groupLabel(key);
+
+      list.forEach((b) => {
+        const opt = document.createElement("option");
+        opt.value = b.id;
+        opt.textContent = b.label || b.id;
+        og.appendChild(opt);
+      });
+
+      els.brandSelect.appendChild(og);
+    });
+
+    // try restore previous selection if still exists
+    const still = !!findBrandById(prev);
+    els.brandSelect.value = still ? prev : "";
   }
 
   // ---------- i18n ----------
@@ -196,6 +253,9 @@
     });
 
     document.documentElement.lang = lang === "ja" ? "ja" : "en";
+
+    // rebuild brand labels (optgroup label changes)
+    rebuildBrandOptions();
 
     // refresh
     renderTable();
@@ -293,7 +353,6 @@
   }
 
   function closestIndexByJP(rows, targetJP) {
-    // rows.jp is string numeric, like "26.5"
     let bestIdx = -1;
     let bestDiff = Infinity;
 
@@ -310,8 +369,6 @@
   }
 
   function widthClass(lengthCm, widthCm) {
-    // Heuristic ratio-based classification (rough)
-    // ratio ~ 0.37–0.40 typical, >0.41 tends wide, <0.36 tends narrow
     if (!Number.isFinite(lengthCm) || !Number.isFinite(widthCm)) return null;
     const ratio = widthCm / lengthCm;
     if (ratio >= 0.41) return "wide";
@@ -333,16 +390,13 @@
     const rows = getShoeRows();
     if (!rows.length) return { error: LABELS[currentLang].noData };
 
-    // --- Core sizing rule (JP ~ length rounded to 0.5) ---
     const roundedJP = Math.round(lengthCm * 2) / 2;
 
-    // Borderline detection: near midpoint between 0.5 steps
     const lowerStep = Math.floor(lengthCm * 2) / 2;
     const stepMid = lowerStep + 0.25;
     const distToMid = Math.abs(lengthCm - stepMid);
-    const isBorderline = distToMid <= 0.10; // ±0.10cm zone
+    const isBorderline = distToMid <= 0.10;
 
-    // Candidate sizes (lower/upper around rounded)
     const lowerJP = roundedJP - 0.5;
     const upperJP = roundedJP + 0.5;
 
@@ -351,7 +405,6 @@
 
     const rec = rows[idx];
 
-    // Build candidates list explicitly (lower, rec, upper) without duplicates
     const candidates = [];
     const pushIfExistsByJP = (jpVal) => {
       const i = closestIndexByJP(rows, jpVal);
@@ -365,7 +418,6 @@
     pushIfExistsByJP(roundedJP);
     pushIfExistsByJP(upperJP);
 
-    // Width classification (rough)
     const wc = Number.isFinite(widthCm) ? widthClass(lengthCm, widthCm) : null;
 
     let caution = "";
@@ -373,20 +425,16 @@
     else if (wc === "narrow") caution = LABELS[currentLang].cautionNarrow;
     else if (wc === "std") caution = LABELS[currentLang].cautionStd;
 
-    // Brand adjustment (optional)
     const brandId = els.brandSelect ? (els.brandSelect.value || "") : "";
     const brand = findBrandById(brandId);
     const brandOffset = brand ? Number(brand.offset || 0) : 0;
 
-    let brandRoundedJP = null;
     let brandRec = null;
     let brandNote = null;
 
     if (brand) {
-      // Apply offset then snap to 0.5 steps
       const adjusted = roundedJP + brandOffset;
       const snapped = Math.round(adjusted * 2) / 2;
-      brandRoundedJP = snapped;
 
       const bIdx = closestIndexByJP(rows, snapped);
       if (bIdx >= 0) brandRec = rows[bIdx];
@@ -407,20 +455,17 @@
       widthClass: wc,
       caution,
 
-      // brand
       brandSelected: !!brand,
       brandId: brand ? brand.id : "",
       brandLabel: brand ? (brand.label || brand.id) : "",
       brandOffset,
-      brandRoundedJP,
       brandRecommend: brandRec,
       brandNote,
-      brandLoadError,
+      brandLoadError
     };
   }
 
   function renderFitResult(payload) {
-    // If payload is null, show nothing (keep empty).
     if (!els.fitResult) return;
 
     if (!payload) {
@@ -472,7 +517,6 @@
         ? `<div class="fit-howto">${escapeHtml(LABELS[currentLang].widthHowto)}</div>`
         : "";
 
-    // Brand block
     let brandBlock = "";
     if (payload.brandSelected && payload.brandRecommend) {
       const b = payload.brandRecommend;
@@ -497,7 +541,6 @@
         </div>
       `;
     } else if (payload.brandLoadError && (els.brandSelect && els.brandSelect.value)) {
-      // user selected brand but dict failed: show a small notice
       brandBlock = `
         <div class="fit-brandblock">
           <div class="fit-label">${escapeHtml(LABELS[currentLang].brandBlockTitle)}</div>
@@ -557,24 +600,19 @@
 
     const isFit = mode === "fit";
 
-    // tabs
     els.tabTable?.classList.toggle("active", !isFit);
     els.tabFit?.classList.toggle("active", isFit);
 
-    // panel
     if (els.fitPanel) els.fitPanel.hidden = !isFit;
 
-    // shoes-only handling for fit tab
     const shoeOnly = els.category.value === "shoes";
     if (els.tabFit) {
       els.tabFit.disabled = !shoeOnly;
       els.tabFit.classList.toggle("disabled", !shoeOnly);
     }
 
-    // base selector is table-only
     els.base.disabled = isFit;
 
-    // brand select is shoes-only
     if (els.brandSelect) {
       els.brandSelect.disabled = !shoeOnly;
       if (!shoeOnly) els.brandSelect.value = "";
@@ -591,19 +629,14 @@
 
   // ---------- events ----------
   function bindEvents() {
-    // common selectors
     els.category.addEventListener("change", () => {
-      // Fit is shoes-only
       if (els.category.value !== "shoes" && currentMode === "fit") {
         setMode("table");
       } else {
-        // update fit tab enabled state
         setMode(currentMode);
       }
 
-      // rebuild brand options on category change
       rebuildBrandOptions();
-
       renderTable();
     });
 
@@ -615,19 +648,16 @@
 
     els.base.addEventListener("change", renderTable);
 
-    // mode tabs
     els.tabTable?.addEventListener("click", () => setMode("table"));
     els.tabFit?.addEventListener("click", () => {
       if (els.category.value !== "shoes") return;
       setMode("fit");
     });
 
-    // brand change just clears result (so user re-checks)
     els.brandSelect?.addEventListener("change", () => {
       renderFitResult(null);
     });
 
-    // fit actions
     els.fitRun?.addEventListener("click", () => {
       const payload = buildFitPayload();
       renderFitResult(payload);
@@ -642,7 +672,6 @@
       els.footLength?.focus?.();
     });
 
-    // Enter key triggers check in fit inputs
     [els.footLength, els.footWidth].forEach((inp) => {
       inp?.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
@@ -652,7 +681,6 @@
       });
     });
 
-    // i18n buttons
     els.langButtons.forEach((btn) => {
       btn.addEventListener("click", () => applyLang(btn.dataset.lang));
     });
@@ -663,8 +691,6 @@
     applyLang(detectInitialLang());
     setMode("table");
     renderTable();
-
-    // load brand dictionary after DOM ready
     await loadBrandDict();
   });
 })();
