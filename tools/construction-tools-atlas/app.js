@@ -89,8 +89,17 @@ function getToolBaseUrl() {
 const BASE = getToolBaseUrl(); // 例: https://.../tools/construction-tools-atlas/
 const INDEX_URL = new URL("data/index.json", BASE).toString();
 
+/**
+ * packs[].file の揺れを全部吸収して data/packs/ へ寄せる
+ * 受け入れる例:
+ * - "pack-001.json"
+ * - "packs/pack-001.json"
+ * - "data/packs/pack-001.json"
+ * - "./packs/pack-001.json"
+ * - "/tools/.../data/packs/pack-001.json" (先頭/は origin 基準で解決)
+ * - "https://..." (絶対URL)
+ */
 function resolvePackUrl(file) {
-  // index.json の packs[].file は "packs/pack-001.json" などを想定
   if (!file || typeof file !== "string") return null;
 
   // 絶対URL
@@ -99,10 +108,16 @@ function resolvePackUrl(file) {
   // 先頭スラッシュ（サイトルート基準）
   if (file.startsWith("/")) return new URL(file, location.origin).toString();
 
-  // "data/..." が来てもOKにする
-  const cleaned = file.replace(/^\.?\/*/, ""); // 先頭の ./ や / を軽く掃除
-  const normalized = cleaned.startsWith("data/") ? cleaned : `data/${cleaned}`;
-  return new URL(normalized, BASE).toString();
+  // normalize: strip leading "./" or "/" (lightly)
+  let cleaned = file.trim().replace(/^\.?\/*/, ""); // remove ./ or leading /
+
+  // ✅ ファイル名だけなら packs/ を補う（ここが今回の致命点だった）
+  if (!cleaned.includes("/")) cleaned = `packs/${cleaned}`;
+
+  // "packs/..." または "data/packs/..." のどちらでもOKにする
+  if (!cleaned.startsWith("data/")) cleaned = `data/${cleaned}`;
+
+  return new URL(cleaned, BASE).toString();
 }
 
 /* -----------------------------
@@ -182,19 +197,49 @@ async function loadAllData() {
     .map((p) => resolvePackUrl(p?.file))
     .filter(Boolean);
 
-  const packJsons = await Promise.all(packUrls.map((u) => fetchJson(u)));
+  if (packUrls.length === 0) {
+    throw new Error(
+      `No pack URLs resolved. Check index.json packs[].file.\nINDEX_URL=${INDEX_URL}`
+    );
+  }
+
+  // ✅ 1個でも壊れてても「全部0件」にならないよう、allSettledで集める
+  const settled = await Promise.allSettled(packUrls.map((u) => fetchJson(u)));
+
+  const okJsons = [];
+  const errors = [];
+  settled.forEach((r, i) => {
+    if (r.status === "fulfilled") okJsons.push(r.value);
+    else errors.push({ url: packUrls[i], err: r.reason });
+  });
+
+  if (errors.length) {
+    console.error("[packs] some failed:", errors);
+  }
 
   // ✅ pack形式の揺れ吸収：
   // - [{...},{...}] という「配列そのもの」
   // - { entries: [...] } という「オブジェクト」
-  const entries = packJsons.flatMap((pj) => {
+  const entries = okJsons.flatMap((pj) => {
     if (Array.isArray(pj)) return pj;
     if (pj && Array.isArray(pj.entries)) return pj.entries;
     return [];
   });
 
-  db.entries = entries;
-  db.entriesById = new Map(entries.map((e) => [e.id, e]));
+  // idがないエントリは弾く（Map破壊防止）
+  db.entries = entries.filter((e) => e && typeof e.id === "string" && e.id.trim().length > 0);
+  db.entriesById = new Map(db.entries.map((e) => [e.id, e]));
+
+  // ✅ ここで0件なら「原因」を明確にする（表示ゼロのまま黙らない）
+  if (db.entries.length === 0) {
+    const firstErr = errors[0];
+    throw new Error(
+      `No entries loaded from packs.\n` +
+      `INDEX_URL=${INDEX_URL}\n` +
+      `packsResolved=${packUrls.length}\n` +
+      (firstErr ? `firstPackError=${firstErr.url}\n${String(firstErr.err)}` : "")
+    );
+  }
 }
 
 /* -----------------------------
@@ -535,26 +580,38 @@ function labelOf(def, lang) {
   return def.id || "";
 }
 
-/* ✅ JSONのつもりがHTMLを掴んだら、ここで即死させて原因を見える化 */
+/**
+ * ✅ JSONのつもりがHTMLを掴んだら即死させて原因を見える化
+ * ✅ Content-Type が怪しくても、本文がJSONなら通す（静的ホスティングの揺れ対策）
+ */
 async function fetchJson(url) {
   const res = await fetch(url, { cache: "no-store" });
 
+  const ct = (res.headers.get("content-type") || "").toLowerCase();
+  const text = await res.text().catch(() => "");
+
   if (!res.ok) {
-    const text = await res.text().catch(() => "");
     throw new Error(`Failed to load: ${url} (${res.status})\n${text.slice(0, 200)}`);
   }
 
-  const ct = (res.headers.get("content-type") || "").toLowerCase();
-  if (!ct.includes("json")) {
-    const text = await res.text().catch(() => "");
-    // 典型：<!DOCTYPE html>...
-    throw new Error(`Not JSON: ${url}\ncontent-type=${ct}\n${text.slice(0, 200)}`);
+  // HTML を踏んだ典型
+  const head = text.slice(0, 200).toLowerCase();
+  const looksLikeHtml = head.includes("<!doctype html") || head.includes("<html");
+
+  // JSON判定：content-type or text先頭
+  const looksLikeJson =
+    ct.includes("json") ||
+    /^\s*[{[]/.test(text);
+
+  if (!looksLikeJson || looksLikeHtml) {
+    throw new Error(
+      `Not JSON: ${url}\ncontent-type=${ct || "(none)"}\n${text.slice(0, 200)}`
+    );
   }
 
   try {
-    return await res.json();
+    return JSON.parse(text);
   } catch (e) {
-    const text = await res.text().catch(() => "");
     throw new Error(`JSON parse failed: ${url}\n${text.slice(0, 200)}`);
   }
 }
