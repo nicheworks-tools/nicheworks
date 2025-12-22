@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Construction Tools & Slang Atlas</title>
+  <meta name="description" content="Browse, search, and learn core construction field terms, tools, and work processes." />
   <link rel="stylesheet" href="./style.css" />
+
   <script defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
@@ -24,7 +26,7 @@
     <section class="controls" aria-label="Search and filters">
       <div class="control search-control">
         <label id="searchLabel" for="searchInput">Search</label>
-        <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" />
+        <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
       </div>
 
       <div class="control filter-control">
@@ -48,25 +50,43 @@
           <h2 id="resultsTitle">Results</h2>
           <p class="result-count" id="resultCount"></p>
         </div>
+
         <div id="results" class="results-list" role="list"></div>
-        <div id="emptyState" class="empty-state" hidden>No results found. Try a different keyword or filter.</div>
+
+        <div id="emptyState" class="empty-state" hidden>
+          No results found. Try a different keyword or filter.
+        </div>
       </div>
+
       <aside class="detail-panel" aria-live="polite">
-        <div id="detailPlaceholder" class="detail-placeholder">Select an entry to view details.</div>
+        <div id="detailPlaceholder" class="detail-placeholder">
+          Select an entry to view details.
+        </div>
+
         <div id="detail" class="detail" hidden>
           <p class="detail-category" id="detailCategory"></p>
           <h3 id="detailTitle"></h3>
           <p class="detail-subtitle" id="detailSubtitle"></p>
+
           <div class="detail-section" id="detailDescription"></div>
+
           <div class="detail-meta">
+            <!-- ✅ Task 表示（IDではなくラベルを入れる想定） -->
+            <div class="meta-block">
+              <p class="meta-label" id="detailTasksLabel">Task</p>
+              <p id="detailTasks"></p>
+            </div>
+
             <div class="meta-block">
               <p class="meta-label" id="detailAliasesLabel">Aliases</p>
               <p id="detailAliases"></p>
             </div>
+
             <div class="meta-block">
               <p class="meta-label" id="detailTagsLabel">Tags</p>
               <p id="detailTags"></p>
             </div>
+
             <div class="meta-block">
               <p class="meta-label" id="detailIdLabel">ID</p>
               <p id="detailId"></p>
@@ -84,6 +104,7 @@
     </nav>
   </div>
 
+  <!-- engine.js が先、app.js が後 -->
   <script src="./core/engine.js"></script>
   <script src="./app.js"></script>
 </body>
