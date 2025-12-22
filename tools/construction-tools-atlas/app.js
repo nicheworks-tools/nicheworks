@@ -3,10 +3,8 @@
    - Static data: data/index.json + data/packs/*.json
    - Features: q search, category filter, task filter, JA/EN, list->detail,
                URL state (q, cat, task, id, lang)
+   - Robust: base-url fix, JSON-vs-HTML detection, pack file path fix
    ========================================================= */
-
-const DATA_ROOT = "./data";
-const INDEX_URL = `${DATA_ROOT}/index.json`;
 
 const state = {
   lang: "ja",
@@ -69,6 +67,48 @@ const i18n = {
   },
 };
 
+/* -----------------------------
+   URL / Base path safety
+------------------------------ */
+
+function getToolBaseUrl() {
+  // URL末尾スラッシュ無しで配信されると、"./data" が壊れるのを確実に防ぐ
+  const u = new URL(location.href);
+  const parts = u.pathname.split("/").filter(Boolean);
+  const last = parts[parts.length - 1] || "";
+
+  const looksLikeFile = last.includes(".");
+  const endsWithSlash = u.pathname.endsWith("/");
+
+  if (!looksLikeFile && !endsWithSlash) {
+    u.pathname += "/";
+  }
+  return new URL(u.pathname, u.origin);
+}
+
+const BASE = getToolBaseUrl(); // 例: https://.../tools/construction-tools-atlas/
+const INDEX_URL = new URL("data/index.json", BASE).toString();
+
+function resolvePackUrl(file) {
+  // index.json の packs[].file は "packs/pack-001.json" などを想定
+  if (!file || typeof file !== "string") return null;
+
+  // 絶対URL
+  if (/^https?:\/\//i.test(file)) return file;
+
+  // 先頭スラッシュ（サイトルート基準）
+  if (file.startsWith("/")) return new URL(file, location.origin).toString();
+
+  // "data/..." が来てもOKにする
+  const cleaned = file.replace(/^\.?\/*/, ""); // 先頭の ./ や / を軽く掃除
+  const normalized = cleaned.startsWith("data/") ? cleaned : `data/${cleaned}`;
+  return new URL(normalized, BASE).toString();
+}
+
+/* -----------------------------
+   Init
+------------------------------ */
+
 init().catch((e) => {
   console.error(e);
   safeSetText(els.list, "Failed to load data.");
@@ -79,6 +119,7 @@ async function init() {
   bindEvents();
   await loadAllData();
   renderAll();
+
   // if id exists in URL, open it
   if (state.id && db.entriesById.has(state.id)) {
     openDetail(state.id, { pushUrl: false });
@@ -120,6 +161,10 @@ function bindEvents() {
   });
 }
 
+/* -----------------------------
+   Data loading
+------------------------------ */
+
 async function loadAllData() {
   const index = await fetchJson(INDEX_URL);
   db.index = index;
@@ -133,16 +178,28 @@ async function loadAllData() {
 
   // packs
   const packs = Array.isArray(index.packs) ? index.packs : [];
-  const packUrls = packs.map((p) => `${DATA_ROOT}/packs/${p.file}`);
+  const packUrls = packs
+    .map((p) => resolvePackUrl(p?.file))
+    .filter(Boolean);
 
   const packJsons = await Promise.all(packUrls.map((u) => fetchJson(u)));
-  const entries = packJsons.flatMap((pj) => Array.isArray(pj.entries) ? pj.entries : []);
+
+  // ✅ pack形式の揺れ吸収：
+  // - [{...},{...}] という「配列そのもの」
+  // - { entries: [...] } という「オブジェクト」
+  const entries = packJsons.flatMap((pj) => {
+    if (Array.isArray(pj)) return pj;
+    if (pj && Array.isArray(pj.entries)) return pj.entries;
+    return [];
+  });
 
   db.entries = entries;
   db.entriesById = new Map(entries.map((e) => [e.id, e]));
-  db.entriesById.forEach((v, k) => db.entriesById.set(k, v));
-  db.entriesById.forEach((v) => db.entriesById.set(v.id, v));
 }
+
+/* -----------------------------
+   Render
+------------------------------ */
 
 function renderAll() {
   applyStateToControls();
@@ -180,27 +237,29 @@ function renderTaskSelect() {
 
   const dict = i18n[state.lang] || i18n.ja;
 
-  // keep first option (All)
-  const current = els.taskSelect.value || "";
+  const current = state.task || "";
   els.taskSelect.innerHTML = "";
+
   const allOpt = document.createElement("option");
   allOpt.value = "";
   allOpt.textContent = dict.taskAll;
   els.taskSelect.appendChild(allOpt);
 
-  // options
   const frag = document.createDocumentFragment();
-  const sorted = [...db.tasks].sort((a, b) => labelOf(a, state.lang).localeCompare(labelOf(b, state.lang)));
+  const sorted = [...db.tasks].sort((a, b) =>
+    labelOf(a, state.lang).localeCompare(labelOf(b, state.lang))
+  );
+
   for (const t of sorted) {
     const opt = document.createElement("option");
     opt.value = t.id;
     opt.textContent = labelOf(t, state.lang);
     frag.appendChild(opt);
   }
-  els.taskSelect.appendChild(frag);
 
-  // restore selection
+  els.taskSelect.appendChild(frag);
   els.taskSelect.value = current;
+  state.task = els.taskSelect.value || "";
 }
 
 function renderCategoryChips() {
@@ -214,7 +273,10 @@ function renderCategoryChips() {
   });
   els.catWrap.appendChild(allChip);
 
-  const sorted = [...db.categories].sort((a, b) => labelOf(a, state.lang).localeCompare(labelOf(b, state.lang)));
+  const sorted = [...db.categories].sort((a, b) =>
+    labelOf(a, state.lang).localeCompare(labelOf(b, state.lang))
+  );
+
   for (const c of sorted) {
     const chip = makeChip({
       label: labelOf(c, state.lang),
@@ -246,7 +308,6 @@ function setLang(lang) {
   state.lang = lang === "en" ? "en" : "ja";
   pushStateToUrl();
   renderAll();
-  // keep detail open if selected
   if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
 }
 
@@ -266,9 +327,7 @@ function renderList() {
   }
 
   const frag = document.createDocumentFragment();
-  for (const e of results) {
-    frag.appendChild(renderCard(e));
-  }
+  for (const e of results) frag.appendChild(renderCard(e));
   els.list.appendChild(frag);
 }
 
@@ -289,7 +348,6 @@ function renderCard(entry) {
   const tags = document.createElement("div");
   tags.className = "card__tags";
 
-  // show categories (label)
   const catIds = normalizeEntryCategoryIds(entry);
   for (const id of catIds) {
     const def = db.categoriesMap.get(id);
@@ -322,7 +380,6 @@ function openDetail(id, { pushUrl }) {
   if (els.detailTitle) els.detailTitle.textContent = `${termOf(entry, "ja")} / ${termOf(entry, "en")}`;
   if (els.detailDesc) els.detailDesc.textContent = descOf(entry, state.lang);
 
-  // categories
   if (els.detailCats) {
     els.detailCats.innerHTML = "";
     const catIds = normalizeEntryCategoryIds(entry);
@@ -332,7 +389,6 @@ function openDetail(id, { pushUrl }) {
     }
   }
 
-  // tasks (揺れ吸収 + label化)
   if (els.detailTasks) {
     els.detailTasks.innerHTML = "";
     const taskIds = normalizeEntryTaskIds(entry);
@@ -381,7 +437,6 @@ function getFilteredEntries() {
 }
 
 function matchesQuery(entry, qLower) {
-  // Search across: term/aliases/description/fuzzy (ja/en)
   const hay = [];
 
   const tja = termOf(entry, "ja");
@@ -400,8 +455,7 @@ function matchesQuery(entry, qLower) {
   if (Array.isArray(entry.fuzzy)) hay.push(...entry.fuzzy);
   if (Array.isArray(entry.tags)) hay.push(...entry.tags);
 
-  const joined = hay.join(" ").toLowerCase();
-  return joined.includes(qLower);
+  return hay.join(" ").toLowerCase().includes(qLower);
 }
 
 /* -----------------------------
@@ -412,11 +466,9 @@ function normalizeDefList(defs) {
   if (!defs) return [];
   if (Array.isArray(defs)) return defs.filter(Boolean);
   if (typeof defs === "object") {
-    // object map {id: {label:{ja,en}} } or {id:{ja,en}} etc
     return Object.entries(defs).map(([id, v]) => {
       if (!v) return { id, label: { ja: id, en: id } };
       if (v.label) return { id, ...v };
-      // if {ja,en} directly
       if (v.ja || v.en) return { id, label: { ja: v.ja || id, en: v.en || id } };
       return { id, label: { ja: id, en: id } };
     });
@@ -428,11 +480,9 @@ function normalizeEntryCategoryIds(entry) {
   const ids = new Set();
   if (!entry) return [];
 
-  // common
   if (Array.isArray(entry.categories)) entry.categories.forEach((x) => x && ids.add(x));
   if (typeof entry.category === "string" && entry.category) ids.add(entry.category);
 
-  // sometimes in tags
   if (Array.isArray(entry.tags)) {
     for (const t of entry.tags) {
       if (typeof t === "string" && db.categoriesMap.has(t)) ids.add(t);
@@ -446,18 +496,15 @@ function normalizeEntryTaskIds(entry) {
   const ids = new Set();
   if (!entry) return [];
 
-  // preferred
   if (Array.isArray(entry.tasks)) entry.tasks.forEach((x) => x && ids.add(x));
   if (typeof entry.task === "string" && entry.task) ids.add(entry.task);
 
-  // sometimes in tags
   if (Array.isArray(entry.tags)) {
     for (const t of entry.tags) {
       if (typeof t === "string" && db.tasksMap.has(t)) ids.add(t);
     }
   }
 
-  // filter to known task IDs only (avoid junk)
   return [...ids].filter((x) => db.tasksMap.has(x));
 }
 
@@ -469,7 +516,6 @@ function termOf(entry, lang) {
   const t = entry.term || entry.title || {};
   const raw = t?.[lang];
   if (raw) return raw;
-  // fallback
   return t?.ja || t?.en || entry.id || "";
 }
 
@@ -477,7 +523,6 @@ function descOf(entry, lang) {
   const d = entry.description || {};
   const raw = d?.[lang];
   if (raw) return raw;
-  // fallback
   return d?.ja || d?.en || "";
 }
 
@@ -486,15 +531,32 @@ function labelOf(def, lang) {
   if (def.label && (def.label[lang] || def.label.ja || def.label.en)) {
     return def.label[lang] || def.label.ja || def.label.en || def.id;
   }
-  // if {ja,en}
   if (def[lang] || def.ja || def.en) return def[lang] || def.ja || def.en;
   return def.id || "";
 }
 
+/* ✅ JSONのつもりがHTMLを掴んだら、ここで即死させて原因を見える化 */
 async function fetchJson(url) {
   const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) throw new Error(`Failed to load: ${url} (${res.status})`);
-  return res.json();
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Failed to load: ${url} (${res.status})\n${text.slice(0, 200)}`);
+  }
+
+  const ct = (res.headers.get("content-type") || "").toLowerCase();
+  if (!ct.includes("json")) {
+    const text = await res.text().catch(() => "");
+    // 典型：<!DOCTYPE html>...
+    throw new Error(`Not JSON: ${url}\ncontent-type=${ct}\n${text.slice(0, 200)}`);
+  }
+
+  try {
+    return await res.json();
+  } catch (e) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`JSON parse failed: ${url}\n${text.slice(0, 200)}`);
+  }
 }
 
 function safeSetText(el, text) {
