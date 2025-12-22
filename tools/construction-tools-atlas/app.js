@@ -17,6 +17,8 @@
       searchPlaceholder: 'Search tools, slang, descriptions',
       categoryLabel: 'Category',
       categoryAll: 'All categories',
+      taskLabel: 'Task',
+      taskAll: 'All tasks',
       resultsTitle: 'Results',
       resultCount: (count) => `${count} item${count === 1 ? '' : 's'}`,
       emptyState: 'No results found. Try a different keyword or filter.',
@@ -39,6 +41,8 @@
       searchPlaceholder: '用語・スラング・説明で検索',
       categoryLabel: 'カテゴリ',
       categoryAll: 'すべてのカテゴリ',
+      taskLabel: '作業',
+      taskAll: 'すべての作業',
       resultsTitle: '検索結果',
       resultCount: (count) => `${count}件`,
       emptyState: '該当する結果がありません。キーワードやフィルターを変えてみてください。',
@@ -65,33 +69,31 @@
     return String(x || '').trim();
   }
 
-  function buildCategoryLabelMap(index) {
+  function buildLabelMap(list, keyName) {
     const map = new Map();
-    const cats = Array.isArray(index?.categories) ? index.categories : [];
-    cats.forEach((c) => {
-      const id = normalizeId(c?.id);
+    const items = Array.isArray(list) ? list : [];
+    items.forEach((it) => {
+      const id = normalizeId(it?.id);
       if (!id) return;
       map.set(id, {
-        en: (c?.label && c.label.en) ? String(c.label.en) : id,
-        ja: (c?.label && c.label.ja) ? String(c.label.ja) : id,
+        en: (it?.label && it.label.en) ? String(it.label.en) : id,
+        ja: (it?.label && it.label.ja) ? String(it.label.ja) : id,
       });
     });
     return map;
   }
 
-  function buildCategoryOrder(index) {
-    const cats = Array.isArray(index?.categories) ? index.categories : [];
-    return cats
-      .map((c) => normalizeId(c?.id))
-      .filter(Boolean);
+  function buildOrder(list) {
+    const items = Array.isArray(list) ? list : [];
+    return items.map((it) => normalizeId(it?.id)).filter(Boolean);
   }
 
-  function getCategoryLabel(categoryId, lang, categoryMap) {
-    const id = normalizeId(categoryId);
-    if (!id) return '';
-    const v = categoryMap.get(id);
-    if (!v) return id;
-    return lang === 'ja' ? (v.ja || id) : (v.en || id);
+  function getLabel(id, lang, map) {
+    const key = normalizeId(id);
+    if (!key) return '';
+    const v = map.get(key);
+    if (!v) return key;
+    return lang === 'ja' ? (v.ja || key) : (v.en || key);
   }
 
   async function loadAtlasData() {
@@ -100,8 +102,11 @@
       throw new Error('index.json missing packs array');
     }
 
-    const categoryMap = buildCategoryLabelMap(index);
-    const categoryOrder = buildCategoryOrder(index);
+    const categoryMap = buildLabelMap(index.categories, 'categories');
+    const categoryOrder = buildOrder(index.categories);
+
+    const taskMap = buildLabelMap(index.tasks, 'tasks');
+    const taskOrder = buildOrder(index.tasks);
 
     const entries = [];
     await Promise.all(
@@ -115,7 +120,7 @@
       })
     );
 
-    return { entries, categoryMap, categoryOrder };
+    return { entries, categoryMap, categoryOrder, taskMap, taskOrder };
   }
 
   const state = {
@@ -126,8 +131,11 @@
     lang: 'en',
     query: '',
     category: '',
+    task: '',
     categoryMap: new Map(),
     categoryOrder: [],
+    taskMap: new Map(),
+    taskOrder: [],
   };
 
   const elements = {};
@@ -142,6 +150,9 @@
     elements.categorySelect = document.getElementById('categorySelect');
     elements.categoryLabel = document.getElementById('categoryLabel');
     elements.categoryDefaultOption = document.getElementById('categoryDefaultOption');
+    elements.taskSelect = document.getElementById('taskSelect');
+    elements.taskLabel = document.getElementById('taskLabel');
+    elements.taskDefaultOption = document.getElementById('taskDefaultOption');
     elements.results = document.getElementById('results');
     elements.resultCount = document.getElementById('resultCount');
     elements.resultsTitle = document.getElementById('resultsTitle');
@@ -184,14 +195,13 @@
     if (elements.searchLabel) elements.searchLabel.textContent = getText('searchLabel') || '';
     if (elements.searchInput) elements.searchInput.placeholder = getText('searchPlaceholder') || '';
     if (elements.categoryLabel) elements.categoryLabel.textContent = getText('categoryLabel') || '';
-    if (elements.categoryDefaultOption)
-      elements.categoryDefaultOption.textContent = getText('categoryAll') || '';
+    if (elements.categoryDefaultOption) elements.categoryDefaultOption.textContent = getText('categoryAll') || '';
+    if (elements.taskLabel) elements.taskLabel.textContent = getText('taskLabel') || '';
+    if (elements.taskDefaultOption) elements.taskDefaultOption.textContent = getText('taskAll') || '';
     if (elements.resultsTitle) elements.resultsTitle.textContent = getText('resultsTitle') || '';
     if (elements.emptyState) elements.emptyState.textContent = getText('emptyState') || '';
-    if (elements.detailPlaceholder)
-      elements.detailPlaceholder.textContent = getText('detailPlaceholder') || '';
-    if (elements.detailAliasesLabel)
-      elements.detailAliasesLabel.textContent = getText('aliasesLabel') || '';
+    if (elements.detailPlaceholder) elements.detailPlaceholder.textContent = getText('detailPlaceholder') || '';
+    if (elements.detailAliasesLabel) elements.detailAliasesLabel.textContent = getText('aliasesLabel') || '';
     if (elements.detailTagsLabel) elements.detailTagsLabel.textContent = getText('tagsLabel') || '';
     if (elements.detailIdLabel) elements.detailIdLabel.textContent = getText('idLabel') || '';
     if (elements.navAbout) elements.navAbout.textContent = getText('navAbout') || '';
@@ -234,15 +244,10 @@
     const primary = engine.getLangValue(entry.description, lang);
     const fallback = engine.getLangValue(entry.description, otherLang(lang));
 
-    if (primary) {
-      values.push({ lang, text: primary, placeholder: false });
-    } else if (lang === 'en') {
-      values.push({ lang: 'en', text: placeholders.missingEnDescription, placeholder: true });
-    }
+    if (primary) values.push({ lang, text: primary, placeholder: false });
+    else if (lang === 'en') values.push({ lang: 'en', text: placeholders.missingEnDescription, placeholder: true });
 
-    if (fallback) {
-      values.push({ lang: otherLang(lang), text: fallback, placeholder: false });
-    }
+    if (fallback) values.push({ lang: otherLang(lang), text: fallback, placeholder: false });
     return values;
   }
 
@@ -278,7 +283,8 @@
     document.documentElement.lang = next;
     renderLanguageToggle();
     renderUILabels();
-    rebuildCategorySelectLabelsPreserveValue();
+    rebuildCategorySelectPreserveValue();
+    rebuildTaskSelectPreserveValue();
     applyFilters();
     if (state.selectedId) {
       const selected = state.allEntries.find((e) => e.id === state.selectedId);
@@ -299,16 +305,37 @@
     const params = new URLSearchParams();
     if (state.query) params.set('q', state.query);
     if (state.category) params.set('cat', state.category);
+    if (state.task) params.set('task', state.task);
     if (state.selectedId) params.set('id', state.selectedId);
     const search = params.toString();
     const url = search ? `${location.pathname}?${search}` : location.pathname;
     history.replaceState(null, '', url);
   }
 
+  function entryHasTask(entry, taskId) {
+    const t = normalizeId(taskId);
+    if (!t) return true;
+
+    // Accept common shapes:
+    // - entry.tasks: string[]
+    // - entry.task: string
+    // - entry.tags: string[] (tasksがタグに混ざってる場合)
+    const tasksArr = Array.isArray(entry.tasks) ? entry.tasks.map(normalizeId) : [];
+    const taskOne = normalizeId(entry.task);
+    const tagsArr = Array.isArray(entry.tags) ? entry.tags.map(normalizeId) : [];
+
+    if (tasksArr.includes(t)) return true;
+    if (taskOne && taskOne === t) return true;
+    if (tagsArr.includes(t)) return true;
+
+    return false;
+  }
+
   function applyFilters() {
     const base = engine.searchByTextWithIndex(state.query, state.lang, state.searchIndex);
-    const filtered = engine.filterByCategory(state.category, state.lang, base);
-    state.filtered = filtered;
+    const byCategory = engine.filterByCategory(state.category, state.lang, base);
+    const byTask = state.task ? byCategory.filter((e) => entryHasTask(e, state.task)) : byCategory;
+    state.filtered = byTask;
     renderResults();
   }
 
@@ -316,20 +343,26 @@
     while (node.firstChild) node.removeChild(node.firstChild);
   }
 
-  function buildCategoryOptionsFromIndex() {
-    // index.json の順番固定（state.categoryOrder）
+  function buildCategoryOptions() {
     state.categoryOrder.forEach((id) => {
       const opt = document.createElement('option');
       opt.value = id;
-      opt.textContent = getCategoryLabel(id, state.lang, state.categoryMap);
+      opt.textContent = getLabel(id, state.lang, state.categoryMap);
       elements.categorySelect.appendChild(opt);
     });
   }
 
-  function rebuildCategorySelectLabelsPreserveValue() {
-    if (!elements.categorySelect) return;
-    const current = elements.categorySelect.value;
+  function buildTaskOptions() {
+    state.taskOrder.forEach((id) => {
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = getLabel(id, state.lang, state.taskMap);
+      elements.taskSelect.appendChild(opt);
+    });
+  }
 
+  function rebuildCategorySelectPreserveValue() {
+    const current = elements.categorySelect.value;
     clearChildren(elements.categorySelect);
 
     const baseOpt = document.createElement('option');
@@ -338,8 +371,22 @@
     baseOpt.textContent = getText('categoryAll') || '';
     elements.categorySelect.appendChild(baseOpt);
 
-    buildCategoryOptionsFromIndex();
+    buildCategoryOptions();
     elements.categorySelect.value = current;
+  }
+
+  function rebuildTaskSelectPreserveValue() {
+    const current = elements.taskSelect.value;
+    clearChildren(elements.taskSelect);
+
+    const baseOpt = document.createElement('option');
+    baseOpt.id = 'taskDefaultOption';
+    baseOpt.value = '';
+    baseOpt.textContent = getText('taskAll') || '';
+    elements.taskSelect.appendChild(baseOpt);
+
+    buildTaskOptions();
+    elements.taskSelect.value = current;
   }
 
   function clearResults() {
@@ -384,9 +431,7 @@
       const badge = document.createElement('span');
       badge.className = 'result-badge';
       const catId = entry.category || '';
-      badge.textContent = catId
-        ? getCategoryLabel(catId, state.lang, state.categoryMap)
-        : (getText('detailCategoryFallback') || '—');
+      badge.textContent = catId ? getLabel(catId, state.lang, state.categoryMap) : (getText('detailCategoryFallback') || '—');
 
       item.appendChild(textBlock);
       item.appendChild(badge);
@@ -412,9 +457,7 @@
     }
 
     const catId = entry.category || '';
-    elements.detailCategory.textContent = catId
-      ? getCategoryLabel(catId, state.lang, state.categoryMap)
-      : (getText('detailCategoryFallback') || '—');
+    elements.detailCategory.textContent = catId ? getLabel(catId, state.lang, state.categoryMap) : (getText('detailCategoryFallback') || '—');
 
     const terms = getTermTexts(entry, state.lang);
     elements.detailTitle.textContent = terms.primary || getText('detailCategoryFallback') || '—';
@@ -439,10 +482,12 @@
     const params = new URLSearchParams(location.search);
     state.query = params.get('q') ? engine.normalizeWhitespace(params.get('q')) : '';
     state.category = params.get('cat') ? engine.normalizeWhitespace(params.get('cat')) : '';
+    state.task = params.get('task') ? engine.normalizeWhitespace(params.get('task')) : '';
     state.selectedId = params.get('id') || null;
 
     elements.searchInput.value = state.query;
     elements.categorySelect.value = state.category;
+    elements.taskSelect.value = state.task;
   }
 
   function attachEventListeners() {
@@ -455,6 +500,13 @@
 
     elements.categorySelect.addEventListener('change', (e) => {
       state.category = engine.normalizeString(e.target.value || '');
+      clearSelection();
+      updateURL();
+      applyFilters();
+    });
+
+    elements.taskSelect.addEventListener('change', (e) => {
+      state.task = engine.normalizeString(e.target.value || '');
       clearSelection();
       updateURL();
       applyFilters();
@@ -488,12 +540,13 @@
       state.allEntries = loaded.entries;
       state.categoryMap = loaded.categoryMap;
       state.categoryOrder = loaded.categoryOrder;
+      state.taskMap = loaded.taskMap;
+      state.taskOrder = loaded.taskOrder;
 
       state.searchIndex = engine.buildSearchIndex(state.allEntries);
 
-      // build select once (order fixed)
-      // base option already exists in HTML
-      rebuildCategorySelectLabelsPreserveValue();
+      rebuildCategorySelectPreserveValue();
+      rebuildTaskSelectPreserveValue();
 
       restoreStateFromURL();
       applyFilters();
