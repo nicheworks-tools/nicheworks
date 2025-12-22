@@ -4,6 +4,10 @@
    - Features: q search, category filter, task filter, JA/EN, list->detail,
                URL state (q, cat, task, id, lang)
    - Robust: base-url fix, JSON-vs-HTML detection, pack file path fix
+   - UI-robust: supports BOTH
+       - category: chips OR select
+       - lang: two buttons OR one toggle
+       - list/count: multiple id fallbacks
    ========================================================= */
 
 const state = {
@@ -24,46 +28,63 @@ let db = {
   entriesById: new Map(),
 };
 
+function getElByIds(ids) {
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (el) return el;
+  }
+  return null;
+}
+function getElBySelectors(selectors) {
+  for (const sel of selectors) {
+    const el = document.querySelector(sel);
+    if (el) return el;
+  }
+  return null;
+}
+
 const els = {
-  // language
-  langJa: document.getElementById("langJa"),
-  langEn: document.getElementById("langEn"),
+  // language (either 2 buttons or 1 toggle)
+  langJa: getElByIds(["langJa"]),
+  langEn: getElByIds(["langEn"]),
+  langToggle: getElByIds(["langToggle", "langSwitch", "langBtn"]) || getElBySelectors(['[data-role="lang-toggle"]']),
 
   // search
-  qInput: document.getElementById("qInput"),
+  qInput: getElByIds(["qInput", "searchInput", "queryInput"]) || getElBySelectors(['input[type="search"]']),
 
-  // filters
-  catWrap: document.getElementById("categoryChips"),
-  taskSelect: document.getElementById("taskSelect"),
+  // category UI (chips OR select)
+  catWrap: getElByIds(["categoryChips", "catChips"]),
+  catSelect: getElByIds(["categorySelect", "catSelect", "category"]) || getElBySelectors(['select[name="category"]']),
+
+  // task
+  taskSelect: getElByIds(["taskSelect", "task"]) || getElBySelectors(['select[name="task"]']),
 
   // results
-  count: document.getElementById("resultCount"),
-  list: document.getElementById("resultList"),
+  count: getElByIds(["resultCount", "resultsCount", "count", "hitsCount"]),
+  list: getElByIds(["resultList", "resultsList", "list", "results"]) || getElBySelectors(['[data-role="result-list"]']),
 
   // detail
-  detail: document.getElementById("detailPanel"),
-  detailTitle: document.getElementById("detailTitle"),
-  detailDesc: document.getElementById("detailDesc"),
-  detailCats: document.getElementById("detailCategories"),
-  detailTasks: document.getElementById("detailTasks"),
+  detail: getElByIds(["detailPanel", "detail", "detailPane"]),
+  detailTitle: getElByIds(["detailTitle", "detailTerm", "detailHeading"]),
+  detailDesc: getElByIds(["detailDesc", "detailDescription"]),
+  detailCats: getElByIds(["detailCategories", "detailCats"]),
+  detailTasks: getElByIds(["detailTasks"]),
 };
 
 const i18n = {
   ja: {
-    taskTitle: "Task",
-    taskHelp: "目的/作業で絞り込み（任意）",
     taskAll: "すべてのTask",
+    catAll: "すべてのカテゴリ",
     empty: "該当する用語がありません。",
-    cats: "カテゴリ",
-    tasks: "Task",
+    dash: "—",
+    failed: "Failed to load data.",
   },
   en: {
-    taskTitle: "Task",
-    taskHelp: "Filter by task (optional)",
     taskAll: "All tasks",
+    catAll: "All categories",
     empty: "No matching entries.",
-    cats: "Categories",
-    tasks: "Tasks",
+    dash: "—",
+    failed: "Failed to load data.",
   },
 };
 
@@ -72,49 +93,29 @@ const i18n = {
 ------------------------------ */
 
 function getToolBaseUrl() {
-  // URL末尾スラッシュ無しで配信されると、"./data" が壊れるのを確実に防ぐ
   const u = new URL(location.href);
   const parts = u.pathname.split("/").filter(Boolean);
   const last = parts[parts.length - 1] || "";
-
   const looksLikeFile = last.includes(".");
   const endsWithSlash = u.pathname.endsWith("/");
-
-  if (!looksLikeFile && !endsWithSlash) {
-    u.pathname += "/";
-  }
+  if (!looksLikeFile && !endsWithSlash) u.pathname += "/";
   return new URL(u.pathname, u.origin);
 }
-
-const BASE = getToolBaseUrl(); // 例: https://.../tools/construction-tools-atlas/
+const BASE = getToolBaseUrl();
 const INDEX_URL = new URL("data/index.json", BASE).toString();
 
-/**
- * packs[].file の揺れを全部吸収して data/packs/ へ寄せる
- * 受け入れる例:
- * - "pack-001.json"
- * - "packs/pack-001.json"
- * - "data/packs/pack-001.json"
- * - "./packs/pack-001.json"
- * - "/tools/.../data/packs/pack-001.json" (先頭/は origin 基準で解決)
- * - "https://..." (絶対URL)
- */
 function resolvePackUrl(file) {
   if (!file || typeof file !== "string") return null;
 
-  // 絶対URL
   if (/^https?:\/\//i.test(file)) return file;
-
-  // 先頭スラッシュ（サイトルート基準）
   if (file.startsWith("/")) return new URL(file, location.origin).toString();
 
-  // normalize: strip leading "./" or "/" (lightly)
   let cleaned = file.trim().replace(/^\.?\/*/, ""); // remove ./ or leading /
 
-  // ✅ ファイル名だけなら packs/ を補う（ここが今回の致命点だった）
+  // ✅ file名だけなら packs/ を補う
   if (!cleaned.includes("/")) cleaned = `packs/${cleaned}`;
 
-  // "packs/..." または "data/packs/..." のどちらでもOKにする
+  // ✅ data/ が無ければ data/ を補う
   if (!cleaned.startsWith("data/")) cleaned = `data/${cleaned}`;
 
   return new URL(cleaned, BASE).toString();
@@ -126,38 +127,52 @@ function resolvePackUrl(file) {
 
 init().catch((e) => {
   console.error(e);
-  safeSetText(els.list, "Failed to load data.");
+  safeSetText(els.list, (i18n[state.lang] || i18n.ja).failed);
 });
 
 async function init() {
   readUrlToState();
   bindEvents();
   await loadAllData();
+
+  // URL由来の cat/task が存在しない場合はリセット（空表示回避）
+  sanitizeStateAgainstDefs();
+
   renderAll();
 
-  // if id exists in URL, open it
-  if (state.id && db.entriesById.has(state.id)) {
-    openDetail(state.id, { pushUrl: false });
-  } else {
-    closeDetail({ pushUrl: false });
-  }
+  if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
+  else closeDetail({ pushUrl: false });
 }
 
 function bindEvents() {
-  // lang buttons (optional existence)
+  // language: 2 buttons
   els.langJa?.addEventListener("click", () => setLang("ja"));
   els.langEn?.addEventListener("click", () => setLang("en"));
+
+  // language: 1 toggle button (JA/EN)
+  els.langToggle?.addEventListener("click", () => {
+    setLang(state.lang === "ja" ? "en" : "ja");
+  });
 
   // search
   els.qInput?.addEventListener("input", (e) => {
     state.q = (e.target.value || "").trim();
-    state.id = ""; // search changes -> clear detail selection
+    state.id = "";
     pushStateToUrl();
     renderList();
     closeDetail({ pushUrl: false });
   });
 
-  // task filter
+  // category: select
+  els.catSelect?.addEventListener("change", (e) => {
+    state.cat = e.target.value || "";
+    state.id = "";
+    pushStateToUrl();
+    renderList();
+    closeDetail({ pushUrl: false });
+  });
+
+  // task: select
   els.taskSelect?.addEventListener("change", (e) => {
     state.task = e.target.value || "";
     state.id = "";
@@ -169,6 +184,7 @@ function bindEvents() {
   // back/forward
   window.addEventListener("popstate", () => {
     readUrlToState();
+    sanitizeStateAgainstDefs();
     applyStateToControls();
     renderAll();
     if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
@@ -184,26 +200,19 @@ async function loadAllData() {
   const index = await fetchJson(INDEX_URL);
   db.index = index;
 
-  // categories / tasks: accept array or object
   db.categories = normalizeDefList(index.categories);
   db.tasks = normalizeDefList(index.tasks);
 
   db.categoriesMap = new Map(db.categories.map((c) => [c.id, c]));
   db.tasksMap = new Map(db.tasks.map((t) => [t.id, t]));
 
-  // packs
   const packs = Array.isArray(index.packs) ? index.packs : [];
-  const packUrls = packs
-    .map((p) => resolvePackUrl(p?.file))
-    .filter(Boolean);
+  const packUrls = packs.map((p) => resolvePackUrl(p?.file)).filter(Boolean);
 
   if (packUrls.length === 0) {
-    throw new Error(
-      `No pack URLs resolved. Check index.json packs[].file.\nINDEX_URL=${INDEX_URL}`
-    );
+    throw new Error(`No pack URLs resolved. Check index.json packs[].file.\nINDEX_URL=${INDEX_URL}`);
   }
 
-  // ✅ 1個でも壊れてても「全部0件」にならないよう、allSettledで集める
   const settled = await Promise.allSettled(packUrls.map((u) => fetchJson(u)));
 
   const okJsons = [];
@@ -212,30 +221,21 @@ async function loadAllData() {
     if (r.status === "fulfilled") okJsons.push(r.value);
     else errors.push({ url: packUrls[i], err: r.reason });
   });
+  if (errors.length) console.error("[packs] some failed:", errors);
 
-  if (errors.length) {
-    console.error("[packs] some failed:", errors);
-  }
-
-  // ✅ pack形式の揺れ吸収：
-  // - [{...},{...}] という「配列そのもの」
-  // - { entries: [...] } という「オブジェクト」
   const entries = okJsons.flatMap((pj) => {
     if (Array.isArray(pj)) return pj;
     if (pj && Array.isArray(pj.entries)) return pj.entries;
     return [];
   });
 
-  // idがないエントリは弾く（Map破壊防止）
   db.entries = entries.filter((e) => e && typeof e.id === "string" && e.id.trim().length > 0);
   db.entriesById = new Map(db.entries.map((e) => [e.id, e]));
 
-  // ✅ ここで0件なら「原因」を明確にする（表示ゼロのまま黙らない）
   if (db.entries.length === 0) {
     const firstErr = errors[0];
     throw new Error(
-      `No entries loaded from packs.\n` +
-      `INDEX_URL=${INDEX_URL}\n` +
+      `No entries loaded from packs.\nINDEX_URL=${INDEX_URL}\n` +
       `packsResolved=${packUrls.length}\n` +
       (firstErr ? `firstPackError=${firstErr.url}\n${String(firstErr.err)}` : "")
     );
@@ -249,37 +249,43 @@ async function loadAllData() {
 function renderAll() {
   applyStateToControls();
   renderTaskSelect();
-  renderCategoryChips();
+  renderCategoryUI(); // chips OR select
   renderList();
-  updateLangButtons();
+  updateLangUI();
   applyI18nText();
 }
 
 function applyStateToControls() {
   if (els.qInput) els.qInput.value = state.q || "";
   if (els.taskSelect) els.taskSelect.value = state.task || "";
+  if (els.catSelect) els.catSelect.value = state.cat || "";
 }
 
-function updateLangButtons() {
+function updateLangUI() {
   if (els.langJa) els.langJa.setAttribute("aria-pressed", state.lang === "ja" ? "true" : "false");
   if (els.langEn) els.langEn.setAttribute("aria-pressed", state.lang === "en" ? "true" : "false");
+  if (els.langToggle) els.langToggle.setAttribute("aria-pressed", state.lang === "en" ? "true" : "false");
 }
 
 function applyI18nText() {
   const dict = i18n[state.lang] || i18n.ja;
+
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (dict[key]) el.textContent = dict[key];
   });
 
-  // update default option label for task select
-  const opt = els.taskSelect?.querySelector('option[value=""]');
-  if (opt) opt.textContent = dict.taskAll;
+  // task select default label
+  const optTask = els.taskSelect?.querySelector('option[value=""]');
+  if (optTask) optTask.textContent = dict.taskAll;
+
+  // category select default label
+  const optCat = els.catSelect?.querySelector('option[value=""]');
+  if (optCat) optCat.textContent = dict.catAll;
 }
 
 function renderTaskSelect() {
   if (!els.taskSelect) return;
-
   const dict = i18n[state.lang] || i18n.ja;
 
   const current = state.task || "";
@@ -291,44 +297,74 @@ function renderTaskSelect() {
   els.taskSelect.appendChild(allOpt);
 
   const frag = document.createDocumentFragment();
-  const sorted = [...db.tasks].sort((a, b) =>
-    labelOf(a, state.lang).localeCompare(labelOf(b, state.lang))
-  );
-
+  const sorted = [...db.tasks].sort((a, b) => labelOf(a, state.lang).localeCompare(labelOf(b, state.lang)));
   for (const t of sorted) {
     const opt = document.createElement("option");
     opt.value = t.id;
     opt.textContent = labelOf(t, state.lang);
     frag.appendChild(opt);
   }
-
   els.taskSelect.appendChild(frag);
+
   els.taskSelect.value = current;
   state.task = els.taskSelect.value || "";
 }
 
+function renderCategoryUI() {
+  // ✅ selectがあるならselectを優先
+  if (els.catSelect) return renderCategorySelect();
+  // ✅ なければ chips
+  if (els.catWrap) return renderCategoryChips();
+}
+
+function renderCategorySelect() {
+  const dict = i18n[state.lang] || i18n.ja;
+  const sel = els.catSelect;
+  if (!sel) return;
+
+  const current = state.cat || "";
+  sel.innerHTML = "";
+
+  const allOpt = document.createElement("option");
+  allOpt.value = "";
+  allOpt.textContent = dict.catAll;
+  sel.appendChild(allOpt);
+
+  const frag = document.createDocumentFragment();
+  const sorted = [...db.categories].sort((a, b) => labelOf(a, state.lang).localeCompare(labelOf(b, state.lang)));
+  for (const c of sorted) {
+    const opt = document.createElement("option");
+    opt.value = c.id;
+    opt.textContent = labelOf(c, state.lang);
+    frag.appendChild(opt);
+  }
+  sel.appendChild(frag);
+
+  sel.value = current;
+  state.cat = sel.value || "";
+}
+
 function renderCategoryChips() {
-  if (!els.catWrap) return;
-  els.catWrap.innerHTML = "";
+  const wrap = els.catWrap;
+  if (!wrap) return;
+
+  wrap.innerHTML = "";
 
   const allChip = makeChip({
-    label: state.lang === "ja" ? "すべて" : "All",
+    label: (i18n[state.lang] || i18n.ja).catAll,
     active: !state.cat,
     onClick: () => setCategory(""),
   });
-  els.catWrap.appendChild(allChip);
+  wrap.appendChild(allChip);
 
-  const sorted = [...db.categories].sort((a, b) =>
-    labelOf(a, state.lang).localeCompare(labelOf(b, state.lang))
-  );
-
+  const sorted = [...db.categories].sort((a, b) => labelOf(a, state.lang).localeCompare(labelOf(b, state.lang)));
   for (const c of sorted) {
     const chip = makeChip({
       label: labelOf(c, state.lang),
       active: state.cat === c.id,
       onClick: () => setCategory(c.id),
     });
-    els.catWrap.appendChild(chip);
+    wrap.appendChild(chip);
   }
 }
 
@@ -347,6 +383,7 @@ function setCategory(catId) {
   pushStateToUrl();
   renderList();
   closeDetail({ pushUrl: false });
+  if (els.catSelect) els.catSelect.value = state.cat;
 }
 
 function setLang(lang) {
@@ -444,7 +481,7 @@ function openDetail(id, { pushUrl }) {
     if (taskIds.length === 0) {
       const none = document.createElement("span");
       none.className = "muted";
-      none.textContent = "—";
+      none.textContent = (i18n[state.lang] || i18n.ja).dash;
       els.detailTasks.appendChild(none);
     }
   }
@@ -581,12 +618,11 @@ function labelOf(def, lang) {
 }
 
 /**
- * ✅ JSONのつもりがHTMLを掴んだら即死させて原因を見える化
- * ✅ Content-Type が怪しくても、本文がJSONなら通す（静的ホスティングの揺れ対策）
+ * ✅ JSONのつもりがHTMLを掴んだら即死させる
+ * ✅ ただし静的ホスティングで content-type が雑でも本文がJSONなら通す
  */
 async function fetchJson(url) {
   const res = await fetch(url, { cache: "no-store" });
-
   const ct = (res.headers.get("content-type") || "").toLowerCase();
   const text = await res.text().catch(() => "");
 
@@ -594,19 +630,12 @@ async function fetchJson(url) {
     throw new Error(`Failed to load: ${url} (${res.status})\n${text.slice(0, 200)}`);
   }
 
-  // HTML を踏んだ典型
   const head = text.slice(0, 200).toLowerCase();
   const looksLikeHtml = head.includes("<!doctype html") || head.includes("<html");
-
-  // JSON判定：content-type or text先頭
-  const looksLikeJson =
-    ct.includes("json") ||
-    /^\s*[{[]/.test(text);
+  const looksLikeJson = ct.includes("json") || /^\s*[{[]/.test(text);
 
   if (!looksLikeJson || looksLikeHtml) {
-    throw new Error(
-      `Not JSON: ${url}\ncontent-type=${ct || "(none)"}\n${text.slice(0, 200)}`
-    );
+    throw new Error(`Not JSON: ${url}\ncontent-type=${ct || "(none)"}\n${text.slice(0, 200)}`);
   }
 
   try {
@@ -621,13 +650,17 @@ function safeSetText(el, text) {
   el.textContent = text;
 }
 
+function sanitizeStateAgainstDefs() {
+  if (state.cat && !db.categoriesMap.has(state.cat)) state.cat = "";
+  if (state.task && !db.tasksMap.has(state.task)) state.task = "";
+}
+
 /* -----------------------------
    URL state (q, cat, task, id, lang)
 ------------------------------ */
 
 function readUrlToState() {
   const sp = new URLSearchParams(location.search);
-
   state.lang = sp.get("lang") === "en" ? "en" : "ja";
   state.q = (sp.get("q") || "").trim();
   state.cat = sp.get("cat") || "";
