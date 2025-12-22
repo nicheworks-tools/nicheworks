@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>洗濯物・布団の乾き予報｜DryMeter | NicheWorks</title>
-  <meta name="description" content="気温・湿度・風速から洗濯物や布団の乾きやすさを指数で表示する無料ツール。今日は干して大丈夫かを一瞬で判断できます。" />
+  <title>洗濯物・布団の外干し判定｜DryMeter | NicheWorks</title>
+  <meta name="description" content="現在地の天気（雨・湿度・風・気温）から洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示します。" />
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/dry-meter/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="洗濯物・布団の乾き予報｜DryMeter | NicheWorks" />
-  <meta property="og:description" content="気温・湿度・風速から乾きやすさを指数で表示。今日は干して大丈夫かを一瞬で判断できます。" />
+  <meta property="og:title" content="洗濯物・布団の外干し判定｜DryMeter | NicheWorks" />
+  <meta property="og:description" content="雨・湿度・風・気温から外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示。" />
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/dry-meter/" />
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -25,9 +25,8 @@
   <link rel="stylesheet" href="./style.css" />
 
   <!-- Cloudflare Web Analytics（共通トークンに差し替え） -->
-  
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
 
-  <!-- WebApplication schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,14 +34,10 @@
     "name": "DryMeter（乾き予報）",
     "url": "https://nicheworks.pages.dev/tools/dry-meter/",
     "applicationCategory": "UtilityApplication",
-    "description": "気温・湿度・風速から洗濯物や布団の乾きやすさを指数で表示する無料ツール。",
+    "description": "現在地の天気から洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定する無料ツール。",
     "operatingSystem": "All"
   }
   </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
 </head>
 
 <body>
@@ -50,8 +45,8 @@
     <h1 class="nw-title" data-i18n="ja">乾き予報（DryMeter）</h1>
     <h1 class="nw-title" data-i18n="en">DryMeter</h1>
 
-    <p class="nw-subtitle" data-i18n="ja">気温・湿度・風から「干して大丈夫か」を一瞬で判定</p>
-    <p class="nw-subtitle" data-i18n="en">Quick drying forecast from temperature, humidity, and wind.</p>
+    <p class="nw-subtitle" data-i18n="ja">雨・湿度・風・気温から「外干しして失敗するか？」を即判定</p>
+    <p class="nw-subtitle" data-i18n="en">Instant “Outdoor drying risk” check from rain, humidity, wind and temperature.</p>
 
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
@@ -63,13 +58,64 @@
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
     <section class="panel" aria-label="Controls">
+      <!-- Location -->
+      <div class="location" aria-label="Location">
+        <p class="label" data-i18n="ja">地域</p>
+        <p class="label" data-i18n="en">Location</p>
+
+        <div class="location-row">
+          <button type="button" id="geoBtn">
+            <span data-i18n="ja">現在地を取得</span>
+            <span data-i18n="en">Use current location</span>
+          </button>
+
+          <button type="button" id="refreshBtn">
+            <span data-i18n="ja">更新</span>
+            <span data-i18n="en">Refresh</span>
+          </button>
+        </div>
+
+        <div class="location-row">
+          <label class="location-field">
+            <span data-i18n="ja">緯度</span><span data-i18n="en">Lat</span>
+            <input id="latInput" inputmode="decimal" placeholder="35.68" />
+          </label>
+
+          <label class="location-field">
+            <span data-i18n="ja">経度</span><span data-i18n="en">Lon</span>
+            <input id="lonInput" inputmode="decimal" placeholder="139.76" />
+          </label>
+
+          <button type="button" id="applyManualBtn">
+            <span data-i18n="ja">手動適用</span>
+            <span data-i18n="en">Apply</span>
+          </button>
+        </div>
+
+        <p class="location-status" id="locationStatus">
+          <span data-i18n="ja">未取得（現在地を取得、または緯度経度を入力）</span>
+          <span data-i18n="en">Not set (use current location or enter lat/lon)</span>
+        </p>
+
+        <p class="location-status" id="fetchStatus">
+          <span data-i18n="ja">天気データ：未取得</span>
+          <span data-i18n="en">Weather: not loaded</span>
+        </p>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- Target & Drying controls -->
       <div class="controls">
         <div class="control-group">
           <p class="label" data-i18n="ja">対象</p>
           <p class="label" data-i18n="en">Target</p>
           <div class="segmented" role="tablist" aria-label="Target">
             <button type="button" class="seg active" data-target="laundry">
-              <span data-i18n="ja">洗濯物</span><span data-i18n="en">Laundry</span>
+              <span data-i18n="ja">普通</span><span data-i18n="en">Laundry</span>
+            </button>
+            <button type="button" class="seg" data-target="thick">
+              <span data-i18n="ja">厚手</span><span data-i18n="en">Thick</span>
             </button>
             <button type="button" class="seg" data-target="bedding">
               <span data-i18n="ja">布団</span><span data-i18n="en">Bedding</span>
@@ -78,8 +124,8 @@
         </div>
 
         <div class="control-group">
-          <p class="label" data-i18n="ja">干し方</p>
-          <p class="label" data-i18n="en">Drying</p>
+          <p class="label" data-i18n="ja">干し方（判定の参考）</p>
+          <p class="label" data-i18n="en">Drying method (for advice)</p>
           <div class="segmented" role="tablist" aria-label="Drying method">
             <button type="button" class="seg active" data-dry="outdoor">
               <span data-i18n="ja">外干し</span><span data-i18n="en">Outdoor</span>
@@ -91,62 +137,102 @@
         </div>
       </div>
 
-      <div class="inputs" aria-label="Inputs">
-        <div class="input-row">
-          <div class="input-head">
-            <label class="input-label" for="temp">
-              <span data-i18n="ja">気温（℃）</span><span data-i18n="en">Temperature (°C)</span>
-            </label>
-            <output id="tempOut" class="input-value">22</output>
-          </div>
-          <input id="temp" type="range" min="0" max="40" step="1" value="22" />
-        </div>
+      <!-- Manual sliders (fallback / optional tweak) -->
+      <details class="manual-box" id="manualBox">
+        <summary>
+          <span data-i18n="ja">手動モード（任意）</span>
+          <span data-i18n="en">Manual mode (optional)</span>
+        </summary>
 
-        <div class="input-row">
-          <div class="input-head">
-            <label class="input-label" for="humidity">
-              <span data-i18n="ja">湿度（%）</span><span data-i18n="en">Humidity (%)</span>
-            </label>
-            <output id="humidityOut" class="input-value">58</output>
+        <div class="inputs" aria-label="Manual inputs">
+          <div class="input-row">
+            <div class="input-head">
+              <label class="input-label" for="temp">
+                <span data-i18n="ja">気温（℃）</span><span data-i18n="en">Temperature (°C)</span>
+              </label>
+              <output id="tempOut" class="input-value">22</output>
+            </div>
+            <input id="temp" type="range" min="0" max="40" step="1" value="22" />
           </div>
-          <input id="humidity" type="range" min="30" max="100" step="1" value="58" />
-        </div>
 
-        <div class="input-row">
-          <div class="input-head">
-            <label class="input-label" for="wind">
-              <span data-i18n="ja">風速（m/s）</span><span data-i18n="en">Wind (m/s)</span>
-            </label>
-            <output id="windOut" class="input-value">3.2</output>
+          <div class="input-row">
+            <div class="input-head">
+              <label class="input-label" for="humidity">
+                <span data-i18n="ja">湿度（%）</span><span data-i18n="en">Humidity (%)</span>
+              </label>
+              <output id="humidityOut" class="input-value">58</output>
+            </div>
+            <input id="humidity" type="range" min="30" max="100" step="1" value="58" />
           </div>
-          <input id="wind" type="range" min="0" max="10" step="0.1" value="3.2" />
+
+          <div class="input-row">
+            <div class="input-head">
+              <label class="input-label" for="wind">
+                <span data-i18n="ja">風速（m/s）</span><span data-i18n="en">Wind (m/s)</span>
+              </label>
+              <output id="windOut" class="input-value">3.2</output>
+            </div>
+            <input id="wind" type="range" min="0" max="10" step="0.1" value="3.2" />
+          </div>
+
+          <button type="button" id="manualApplyBtn">
+            <span data-i18n="ja">この数値で判定（手動）</span>
+            <span data-i18n="en">Run check with these values</span>
+          </button>
         </div>
-      </div>
+      </details>
     </section>
 
     <section class="result-wrap" aria-label="Result">
-      <div class="result-card status-good" id="resultCard">
+      <div class="result-card status-ok" id="resultCard">
         <div class="result-head">
-          <div class="result-title" data-i18n="ja">Dry Score</div>
-          <div class="result-title" data-i18n="en">Dry Score</div>
-          <div class="result-score">
-            <span id="scoreNum">72</span><span class="score-denom">/100</span>
+          <div class="result-title">
+            <span data-i18n="ja">外干し失敗リスク</span>
+            <span data-i18n="en">Outdoor Drying Risk</span>
+          </div>
+
+          <div class="risk-badge" id="riskBadge">
+            <span id="riskEmoji">🟡</span>
+            <span id="riskLabel">
+              <span data-i18n="ja">微妙</span>
+              <span data-i18n="en">Maybe</span>
+            </span>
           </div>
         </div>
 
-        <div class="result-status" id="statusText">
-          <span data-i18n="ja">よく乾く</span><span data-i18n="en">Dries well</span>
-        </div>
-
-        <p class="result-comment" id="commentText">
-          <span data-i18n="ja">今日は外干し向きです。</span>
-          <span data-i18n="en">Great day for outdoor drying.</span>
+        <p class="result-status" id="riskTitle">
+          <span data-i18n="ja">条件次第でいける</span>
+          <span data-i18n="en">Possible with care</span>
         </p>
 
-        <p class="result-tip" id="tipText">
-          <span data-i18n="ja">目安：70+ = 乾きやすい / 40–69 = 普通 / 0–39 = 乾きにくい</span>
-          <span data-i18n="en">Guide: 70+ easy / 40–69 average / 0–39 hard to dry</span>
+        <ul class="reasons" id="reasonsList">
+          <li>
+            <span data-i18n="ja">天気データを読み込み中…</span>
+            <span data-i18n="en">Loading weather…</span>
+          </li>
+        </ul>
+
+        <p class="suggestion" id="suggestionText">
+          <span data-i18n="ja">地域を設定すると判定できます。</span>
+          <span data-i18n="en">Set your location to run the check.</span>
         </p>
+
+        <details class="details" id="detailsBox">
+          <summary>
+            <span data-i18n="ja">参考：Dry Score</span>
+            <span data-i18n="en">Reference: Dry Score</span>
+          </summary>
+          <div class="dryscore">
+            <div class="result-score">
+              <span id="scoreNum">--</span><span class="score-denom">/100</span>
+            </div>
+            <p class="result-tip" id="tipText">
+              <span data-i18n="ja">目安：70+ = 乾きやすい / 40–69 = 普通 / 0–39 = 乾きにくい</span>
+              <span data-i18n="en">Guide: 70+ easy / 40–69 average / 0–39 hard to dry</span>
+            </p>
+            <div class="wx-mini" id="wxMini">—</div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -160,8 +246,8 @@
     </div>
 
     <div class="nw-links" aria-label="Internal links">
-      <a href="/tools/manual-finder/">ManualFinder</a> /
-      <a href="/tools/trashnavi/">TrashNavi</a> /
+      <a href="/tools/laundry-code-decode/">Laundry Code Decode</a> /
+      <a href="/tools/size-converter/">Size Converter</a> /
       <a href="/tools/log-formatter/">LogFormatter</a>
     </div>
 
