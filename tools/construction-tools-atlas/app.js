@@ -55,10 +55,6 @@
     },
   };
 
-  /**
-   * --- Data loading (fetch-based, DOM-free) ---
-   */
-
   async function fetchJson(path) {
     const res = await fetch(path);
     if (!res.ok) throw new Error(`Failed to load ${path}`);
@@ -83,11 +79,18 @@
     return map;
   }
 
+  function buildCategoryOrder(index) {
+    const cats = Array.isArray(index?.categories) ? index.categories : [];
+    return cats
+      .map((c) => normalizeId(c?.id))
+      .filter(Boolean);
+  }
+
   function getCategoryLabel(categoryId, lang, categoryMap) {
     const id = normalizeId(categoryId);
     if (!id) return '';
     const v = categoryMap.get(id);
-    if (!v) return id; // fallback to id if unknown
+    if (!v) return id;
     return lang === 'ja' ? (v.ja || id) : (v.en || id);
   }
 
@@ -98,6 +101,7 @@
     }
 
     const categoryMap = buildCategoryLabelMap(index);
+    const categoryOrder = buildCategoryOrder(index);
 
     const entries = [];
     await Promise.all(
@@ -111,12 +115,9 @@
       })
     );
 
-    return { entries, categoryMap };
+    return { entries, categoryMap, categoryOrder };
   }
 
-  /**
-   * --- UI helpers ---
-   */
   const state = {
     allEntries: [],
     searchIndex: [],
@@ -126,6 +127,7 @@
     query: '',
     category: '',
     categoryMap: new Map(),
+    categoryOrder: [],
   };
 
   const elements = {};
@@ -276,6 +278,7 @@
     document.documentElement.lang = next;
     renderLanguageToggle();
     renderUILabels();
+    rebuildCategorySelectLabelsPreserveValue();
     applyFilters();
     if (state.selectedId) {
       const selected = state.allEntries.find((e) => e.id === state.selectedId);
@@ -309,10 +312,13 @@
     renderResults();
   }
 
+  function clearChildren(node) {
+    while (node.firstChild) node.removeChild(node.firstChild);
+  }
+
   function buildCategoryOptionsFromIndex() {
-    // index.json の categories を使ってセレクトを作る（ラベル表示）
-    const ids = Array.from(state.categoryMap.keys()).sort();
-    ids.forEach((id) => {
+    // index.json の順番固定（state.categoryOrder）
+    state.categoryOrder.forEach((id) => {
       const opt = document.createElement('option');
       opt.value = id;
       opt.textContent = getCategoryLabel(id, state.lang, state.categoryMap);
@@ -320,10 +326,24 @@
     });
   }
 
+  function rebuildCategorySelectLabelsPreserveValue() {
+    if (!elements.categorySelect) return;
+    const current = elements.categorySelect.value;
+
+    clearChildren(elements.categorySelect);
+
+    const baseOpt = document.createElement('option');
+    baseOpt.id = 'categoryDefaultOption';
+    baseOpt.value = '';
+    baseOpt.textContent = getText('categoryAll') || '';
+    elements.categorySelect.appendChild(baseOpt);
+
+    buildCategoryOptionsFromIndex();
+    elements.categorySelect.value = current;
+  }
+
   function clearResults() {
-    while (elements.results.firstChild) {
-      elements.results.removeChild(elements.results.firstChild);
-    }
+    clearChildren(elements.results);
   }
 
   function renderResults() {
@@ -338,9 +358,7 @@
       item.setAttribute('role', 'listitem');
       item.dataset.id = entry.id;
 
-      if (entry.id === state.selectedId) {
-        item.classList.add('active');
-      }
+      if (entry.id === state.selectedId) item.classList.add('active');
 
       const textBlock = document.createElement('div');
       textBlock.className = 'result-text';
@@ -383,9 +401,7 @@
       elements.results.appendChild(item);
     });
 
-    if (state.filtered.length === 0) {
-      renderDetail(null);
-    }
+    if (state.filtered.length === 0) renderDetail(null);
   }
 
   function renderDetail(entry) {
@@ -447,18 +463,6 @@
     if (elements.langToggle) {
       elements.langToggle.addEventListener('click', () => {
         toggleLanguage();
-        // カテゴリselectの表示ラベルも切り替えるため再構築
-        const current = elements.categorySelect.value;
-        while (elements.categorySelect.firstChild) elements.categorySelect.removeChild(elements.categorySelect.firstChild);
-
-        const baseOpt = document.createElement('option');
-        baseOpt.id = 'categoryDefaultOption';
-        baseOpt.value = '';
-        baseOpt.textContent = getText('categoryAll') || '';
-        elements.categorySelect.appendChild(baseOpt);
-
-        buildCategoryOptionsFromIndex();
-        elements.categorySelect.value = current;
       });
     }
   }
@@ -468,9 +472,7 @@
     const match = state.allEntries.find((e) => e.id === state.selectedId);
     if (match) {
       renderDetail(match);
-      if (!state.filtered.some((e) => e.id === match.id)) {
-        state.filtered.unshift(match);
-      }
+      if (!state.filtered.some((e) => e.id === match.id)) state.filtered.unshift(match);
       renderResults();
     }
   }
@@ -485,11 +487,13 @@
       const loaded = await loadAtlasData();
       state.allEntries = loaded.entries;
       state.categoryMap = loaded.categoryMap;
+      state.categoryOrder = loaded.categoryOrder;
 
       state.searchIndex = engine.buildSearchIndex(state.allEntries);
 
-      // category select build (label-based)
-      buildCategoryOptionsFromIndex();
+      // build select once (order fixed)
+      // base option already exists in HTML
+      rebuildCategorySelectLabelsPreserveValue();
 
       restoreStateFromURL();
       applyFilters();
