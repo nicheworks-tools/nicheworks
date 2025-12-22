@@ -1,569 +1,531 @@
-(function () {
-  'use strict';
-
-  const engine = window.AtlasEngine;
-
-  const placeholders = {
-    missingEnTerm: 'No English name available',
-    missingEnDescription: 'No English description available.',
-  };
-
-  const i18n = {
-    en: {
-      eyebrow: 'Construction Tools & Slang Atlas',
-      title: 'Browse, search, and learn core field terms.',
-      lede: 'Quickly find terminology, tools, and work processes across categories.',
-      searchLabel: 'Search',
-      searchPlaceholder: 'Search tools, slang, descriptions',
-      categoryLabel: 'Category',
-      categoryAll: 'All categories',
-      taskLabel: 'Task',
-      taskAll: 'All tasks',
-      resultsTitle: 'Results',
-      resultCount: (count) => `${count} item${count === 1 ? '' : 's'}`,
-      emptyState: 'No results found. Try a different keyword or filter.',
-      detailPlaceholder: 'Select an entry to view details.',
-      aliasesLabel: 'Aliases',
-      tagsLabel: 'Tags',
-      idLabel: 'ID',
-      detailCategoryFallback: 'Uncategorized',
-      dataError: 'Failed to load data.',
-      navAbout: 'About',
-      navMethod: 'Method',
-      navDisclaimer: 'Disclaimer',
-      navCredits: 'Credits',
-    },
-    ja: {
-      eyebrow: 'Construction Tools & スラング図鑑',
-      title: '建設現場の基本用語を検索・閲覧',
-      lede: 'カテゴリ横断で工具や作業プロセスの用語を素早く確認できます。',
-      searchLabel: '検索',
-      searchPlaceholder: '用語・スラング・説明で検索',
-      categoryLabel: 'カテゴリ',
-      categoryAll: 'すべてのカテゴリ',
-      taskLabel: '作業',
-      taskAll: 'すべての作業',
-      resultsTitle: '検索結果',
-      resultCount: (count) => `${count}件`,
-      emptyState: '該当する結果がありません。キーワードやフィルターを変えてみてください。',
-      detailPlaceholder: '詳細を表示する項目を選択してください。',
-      aliasesLabel: '別名',
-      tagsLabel: 'タグ',
-      idLabel: 'ID',
-      detailCategoryFallback: 'カテゴリ未設定',
-      dataError: 'データの読み込みに失敗しました。',
-      navAbout: 'このサイトについて',
-      navMethod: 'データ方針',
-      navDisclaimer: '免責事項',
-      navCredits: 'クレジット',
-    },
-  };
-
-  async function fetchJson(path) {
-    const res = await fetch(path);
-    if (!res.ok) throw new Error(`Failed to load ${path}`);
-    return res.json();
-  }
-
-  function normalizeId(x) {
-    return String(x || '').trim();
-  }
-
-  function buildLabelMap(list, keyName) {
-    const map = new Map();
-    const items = Array.isArray(list) ? list : [];
-    items.forEach((it) => {
-      const id = normalizeId(it?.id);
-      if (!id) return;
-      map.set(id, {
-        en: (it?.label && it.label.en) ? String(it.label.en) : id,
-        ja: (it?.label && it.label.ja) ? String(it.label.ja) : id,
-      });
-    });
-    return map;
-  }
-
-  function buildOrder(list) {
-    const items = Array.isArray(list) ? list : [];
-    return items.map((it) => normalizeId(it?.id)).filter(Boolean);
-  }
-
-  function getLabel(id, lang, map) {
-    const key = normalizeId(id);
-    if (!key) return '';
-    const v = map.get(key);
-    if (!v) return key;
-    return lang === 'ja' ? (v.ja || key) : (v.en || key);
-  }
-
-  async function loadAtlasData() {
-    const index = await fetchJson('./data/index.json');
-    if (!index || !Array.isArray(index.packs)) {
-      throw new Error('index.json missing packs array');
-    }
-
-    const categoryMap = buildLabelMap(index.categories, 'categories');
-    const categoryOrder = buildOrder(index.categories);
-
-    const taskMap = buildLabelMap(index.tasks, 'tasks');
-    const taskOrder = buildOrder(index.tasks);
-
-    const entries = [];
-    await Promise.all(
-      index.packs.map(async (pack) => {
-        const packEntries = await fetchJson(`./data/${pack.file}`);
-        if (!Array.isArray(packEntries)) return;
-        packEntries.forEach((entry, i) => {
-          const normalized = engine.normalizeEntry(entry, `${pack.file}#${i}`);
-          if (normalized) entries.push(normalized);
-        });
-      })
-    );
-
-    return { entries, categoryMap, categoryOrder, taskMap, taskOrder };
-  }
-
-  const state = {
-    allEntries: [],
-    searchIndex: [],
-    filtered: [],
-    selectedId: null,
-    lang: 'en',
-    query: '',
-    category: '',
-    task: '',
-    categoryMap: new Map(),
-    categoryOrder: [],
-    taskMap: new Map(),
-    taskOrder: [],
-  };
-
-  const elements = {};
-
-  function cacheElements() {
-    elements.eyebrow = document.getElementById('eyebrow');
-    elements.heroTitle = document.getElementById('heroTitle');
-    elements.heroLede = document.getElementById('heroLede');
-    elements.langToggle = document.getElementById('langToggle');
-    elements.searchInput = document.getElementById('searchInput');
-    elements.searchLabel = document.getElementById('searchLabel');
-    elements.categorySelect = document.getElementById('categorySelect');
-    elements.categoryLabel = document.getElementById('categoryLabel');
-    elements.categoryDefaultOption = document.getElementById('categoryDefaultOption');
-    elements.taskSelect = document.getElementById('taskSelect');
-    elements.taskLabel = document.getElementById('taskLabel');
-    elements.taskDefaultOption = document.getElementById('taskDefaultOption');
-    elements.results = document.getElementById('results');
-    elements.resultCount = document.getElementById('resultCount');
-    elements.resultsTitle = document.getElementById('resultsTitle');
-    elements.emptyState = document.getElementById('emptyState');
-    elements.detail = document.getElementById('detail');
-    elements.detailPlaceholder = document.getElementById('detailPlaceholder');
-    elements.detailCategory = document.getElementById('detailCategory');
-    elements.detailTitle = document.getElementById('detailTitle');
-    elements.detailSubtitle = document.getElementById('detailSubtitle');
-    elements.detailDescription = document.getElementById('detailDescription');
-    elements.detailAliasesLabel = document.getElementById('detailAliasesLabel');
-    elements.detailAliases = document.getElementById('detailAliases');
-    elements.detailTagsLabel = document.getElementById('detailTagsLabel');
-    elements.detailTags = document.getElementById('detailTags');
-    elements.detailIdLabel = document.getElementById('detailIdLabel');
-    elements.detailId = document.getElementById('detailId');
-    elements.navAbout = document.getElementById('aboutLink');
-    elements.navMethod = document.getElementById('methodLink');
-    elements.navDisclaimer = document.getElementById('disclaimerLink');
-    elements.navCredits = document.getElementById('creditsLink');
-  }
-
-  function getText(key) {
-    const pack = i18n[state.lang] || i18n.en;
-    const fallback = i18n.en || {};
-    if (typeof pack[key] !== 'undefined') return pack[key];
-    return fallback[key];
-  }
-
-  function getCountText(count) {
-    const formatter = getText('resultCount');
-    if (typeof formatter === 'function') return formatter(count);
-    return String(count);
-  }
-
-  function renderUILabels() {
-    if (elements.eyebrow) elements.eyebrow.textContent = getText('eyebrow') || '';
-    if (elements.heroTitle) elements.heroTitle.textContent = getText('title') || '';
-    if (elements.heroLede) elements.heroLede.textContent = getText('lede') || '';
-    if (elements.searchLabel) elements.searchLabel.textContent = getText('searchLabel') || '';
-    if (elements.searchInput) elements.searchInput.placeholder = getText('searchPlaceholder') || '';
-    if (elements.categoryLabel) elements.categoryLabel.textContent = getText('categoryLabel') || '';
-    if (elements.categoryDefaultOption) elements.categoryDefaultOption.textContent = getText('categoryAll') || '';
-    if (elements.taskLabel) elements.taskLabel.textContent = getText('taskLabel') || '';
-    if (elements.taskDefaultOption) elements.taskDefaultOption.textContent = getText('taskAll') || '';
-    if (elements.resultsTitle) elements.resultsTitle.textContent = getText('resultsTitle') || '';
-    if (elements.emptyState) elements.emptyState.textContent = getText('emptyState') || '';
-    if (elements.detailPlaceholder) elements.detailPlaceholder.textContent = getText('detailPlaceholder') || '';
-    if (elements.detailAliasesLabel) elements.detailAliasesLabel.textContent = getText('aliasesLabel') || '';
-    if (elements.detailTagsLabel) elements.detailTagsLabel.textContent = getText('tagsLabel') || '';
-    if (elements.detailIdLabel) elements.detailIdLabel.textContent = getText('idLabel') || '';
-    if (elements.navAbout) elements.navAbout.textContent = getText('navAbout') || '';
-    if (elements.navMethod) elements.navMethod.textContent = getText('navMethod') || '';
-    if (elements.navDisclaimer) elements.navDisclaimer.textContent = getText('navDisclaimer') || '';
-    if (elements.navCredits) elements.navCredits.textContent = getText('navCredits') || '';
-  }
-
-  function formatArray(arr) {
-    if (!arr || arr.length === 0) return '—';
-    return arr.join(', ');
-  }
-
-  function otherLang(lang) {
-    return lang === 'ja' ? 'en' : 'ja';
-  }
-
-  function getTermTexts(entry, lang) {
-    const direct = engine.getLangValue(entry.term, lang);
-    const alt = engine.getLangValue(entry.term, otherLang(lang));
-    let primary = direct;
-    let secondary = '';
-
-    if (!direct) {
-      if (lang === 'en') {
-        primary = placeholders.missingEnTerm;
-        secondary = alt;
-      } else {
-        primary = alt;
-      }
-    } else if (alt && alt !== direct) {
-      secondary = alt;
-    }
-
-    return { primary, secondary };
-  }
-
-  function getDescriptionTexts(entry, lang) {
-    const values = [];
-    const primary = engine.getLangValue(entry.description, lang);
-    const fallback = engine.getLangValue(entry.description, otherLang(lang));
-
-    if (primary) values.push({ lang, text: primary, placeholder: false });
-    else if (lang === 'en') values.push({ lang: 'en', text: placeholders.missingEnDescription, placeholder: true });
-
-    if (fallback) values.push({ lang: otherLang(lang), text: fallback, placeholder: false });
-    return values;
-  }
-
-  function getDescriptionPreview(entry, lang) {
-    const values = getDescriptionTexts(entry, lang);
-    const primary = values.find((item) => item.lang === lang);
-    if (primary) return primary.text;
-    const other = values.find((item) => item.lang !== lang);
-    return other ? other.text : '';
-  }
-
-  function getAliasList(entry, lang) {
-    const aliases = entry.aliases || {};
-    const primary = Array.isArray(aliases[lang]) ? aliases[lang] : [];
-    const fallback = Array.isArray(aliases[otherLang(lang)]) ? aliases[otherLang(lang)] : [];
-    return [...primary, ...fallback];
-  }
-
-  function renderLanguageToggle() {
-    if (!elements.langToggle) return;
-    elements.langToggle.textContent = state.lang === 'ja' ? '日本語 / EN' : 'JA / English';
-    elements.langToggle.setAttribute('aria-pressed', state.lang === 'ja');
-    elements.langToggle.setAttribute('aria-label', `Language: ${state.lang.toUpperCase()}`);
-  }
-
-  function updateLanguage(lang) {
-    const next = lang === 'ja' ? 'ja' : 'en';
-    if (state.lang === next) {
-      renderLanguageToggle();
-      return;
-    }
-    state.lang = next;
-    document.documentElement.lang = next;
-    renderLanguageToggle();
-    renderUILabels();
-    rebuildCategorySelectPreserveValue();
-    rebuildTaskSelectPreserveValue();
-    applyFilters();
-    if (state.selectedId) {
-      const selected = state.allEntries.find((e) => e.id === state.selectedId);
-      renderDetail(selected || null);
-    }
-  }
-
-  function toggleLanguage() {
-    updateLanguage(otherLang(state.lang));
-  }
-
-  function clearSelection() {
-    state.selectedId = null;
-    renderDetail(null);
-  }
-
-  function updateURL() {
-    const params = new URLSearchParams();
-    if (state.query) params.set('q', state.query);
-    if (state.category) params.set('cat', state.category);
-    if (state.task) params.set('task', state.task);
-    if (state.selectedId) params.set('id', state.selectedId);
-    const search = params.toString();
-    const url = search ? `${location.pathname}?${search}` : location.pathname;
-    history.replaceState(null, '', url);
-  }
-
-  function entryHasTask(entry, taskId) {
-    const t = normalizeId(taskId);
-    if (!t) return true;
-
-    // Accept common shapes:
-    // - entry.tasks: string[]
-    // - entry.task: string
-    // - entry.tags: string[] (tasksがタグに混ざってる場合)
-    const tasksArr = Array.isArray(entry.tasks) ? entry.tasks.map(normalizeId) : [];
-    const taskOne = normalizeId(entry.task);
-    const tagsArr = Array.isArray(entry.tags) ? entry.tags.map(normalizeId) : [];
-
-    if (tasksArr.includes(t)) return true;
-    if (taskOne && taskOne === t) return true;
-    if (tagsArr.includes(t)) return true;
-
-    return false;
-  }
-
-  function applyFilters() {
-    const base = engine.searchByTextWithIndex(state.query, state.lang, state.searchIndex);
-    const byCategory = engine.filterByCategory(state.category, state.lang, base);
-    const byTask = state.task ? byCategory.filter((e) => entryHasTask(e, state.task)) : byCategory;
-    state.filtered = byTask;
-    renderResults();
-  }
-
-  function clearChildren(node) {
-    while (node.firstChild) node.removeChild(node.firstChild);
-  }
-
-  function buildCategoryOptions() {
-    state.categoryOrder.forEach((id) => {
-      const opt = document.createElement('option');
-      opt.value = id;
-      opt.textContent = getLabel(id, state.lang, state.categoryMap);
-      elements.categorySelect.appendChild(opt);
-    });
-  }
-
-  function buildTaskOptions() {
-    state.taskOrder.forEach((id) => {
-      const opt = document.createElement('option');
-      opt.value = id;
-      opt.textContent = getLabel(id, state.lang, state.taskMap);
-      elements.taskSelect.appendChild(opt);
-    });
-  }
-
-  function rebuildCategorySelectPreserveValue() {
-    const current = elements.categorySelect.value;
-    clearChildren(elements.categorySelect);
-
-    const baseOpt = document.createElement('option');
-    baseOpt.id = 'categoryDefaultOption';
-    baseOpt.value = '';
-    baseOpt.textContent = getText('categoryAll') || '';
-    elements.categorySelect.appendChild(baseOpt);
-
-    buildCategoryOptions();
-    elements.categorySelect.value = current;
-  }
-
-  function rebuildTaskSelectPreserveValue() {
-    const current = elements.taskSelect.value;
-    clearChildren(elements.taskSelect);
-
-    const baseOpt = document.createElement('option');
-    baseOpt.id = 'taskDefaultOption';
-    baseOpt.value = '';
-    baseOpt.textContent = getText('taskAll') || '';
-    elements.taskSelect.appendChild(baseOpt);
-
-    buildTaskOptions();
-    elements.taskSelect.value = current;
-  }
-
-  function clearResults() {
-    clearChildren(elements.results);
-  }
-
-  function renderResults() {
-    clearResults();
-    elements.resultCount.textContent = getCountText(state.filtered.length);
-    elements.emptyState.hidden = state.filtered.length > 0;
-
-    state.filtered.forEach((entry) => {
-      const item = document.createElement('button');
-      item.type = 'button';
-      item.className = 'result-item';
-      item.setAttribute('role', 'listitem');
-      item.dataset.id = entry.id;
-
-      if (entry.id === state.selectedId) item.classList.add('active');
-
-      const textBlock = document.createElement('div');
-      textBlock.className = 'result-text';
-
-      const terms = getTermTexts(entry, state.lang);
-
-      const title = document.createElement('p');
-      title.className = 'result-title';
-      title.textContent = terms.primary || entry.term.ja || entry.term.en;
-
-      const subtitle = document.createElement('p');
-      subtitle.className = 'result-subtitle';
-      subtitle.textContent = terms.secondary;
-
-      const meta = document.createElement('p');
-      meta.className = 'result-meta';
-      meta.textContent = getDescriptionPreview(entry, state.lang);
-
-      textBlock.appendChild(title);
-      if (subtitle.textContent) textBlock.appendChild(subtitle);
-      if (meta.textContent) textBlock.appendChild(meta);
-
-      const badge = document.createElement('span');
-      badge.className = 'result-badge';
-      const catId = entry.category || '';
-      badge.textContent = catId ? getLabel(catId, state.lang, state.categoryMap) : (getText('detailCategoryFallback') || '—');
-
-      item.appendChild(textBlock);
-      item.appendChild(badge);
-
-      item.addEventListener('click', () => {
-        state.selectedId = entry.id;
-        updateURL();
-        renderResults();
-        renderDetail(entry);
-      });
-
-      elements.results.appendChild(item);
-    });
-
-    if (state.filtered.length === 0) renderDetail(null);
-  }
-
-  function renderDetail(entry) {
-    if (!entry) {
-      elements.detail.hidden = true;
-      elements.detailPlaceholder.hidden = false;
-      return;
-    }
-
-    const catId = entry.category || '';
-    elements.detailCategory.textContent = catId ? getLabel(catId, state.lang, state.categoryMap) : (getText('detailCategoryFallback') || '—');
-
-    const terms = getTermTexts(entry, state.lang);
-    elements.detailTitle.textContent = terms.primary || getText('detailCategoryFallback') || '—';
-    elements.detailSubtitle.textContent = terms.secondary;
-
-    elements.detailDescription.replaceChildren();
-    getDescriptionTexts(entry, state.lang).forEach((item) => {
-      const p = document.createElement('p');
-      p.textContent = `${item.lang.toUpperCase()}: ${item.text}`;
-      elements.detailDescription.appendChild(p);
-    });
-
-    elements.detailAliases.textContent = formatArray(getAliasList(entry, state.lang));
-    elements.detailTags.textContent = formatArray(entry.tags);
-    elements.detailId.textContent = entry.id;
-
-    elements.detailPlaceholder.hidden = true;
-    elements.detail.hidden = false;
-  }
-
-  function restoreStateFromURL() {
-    const params = new URLSearchParams(location.search);
-    state.query = params.get('q') ? engine.normalizeWhitespace(params.get('q')) : '';
-    state.category = params.get('cat') ? engine.normalizeWhitespace(params.get('cat')) : '';
-    state.task = params.get('task') ? engine.normalizeWhitespace(params.get('task')) : '';
-    state.selectedId = params.get('id') || null;
-
-    elements.searchInput.value = state.query;
-    elements.categorySelect.value = state.category;
-    elements.taskSelect.value = state.task;
-  }
-
-  function attachEventListeners() {
-    elements.searchInput.addEventListener('input', (e) => {
-      state.query = engine.normalizeWhitespace(e.target.value || '');
-      clearSelection();
-      updateURL();
-      applyFilters();
-    });
-
-    elements.categorySelect.addEventListener('change', (e) => {
-      state.category = engine.normalizeString(e.target.value || '');
-      clearSelection();
-      updateURL();
-      applyFilters();
-    });
-
-    elements.taskSelect.addEventListener('change', (e) => {
-      state.task = engine.normalizeString(e.target.value || '');
-      clearSelection();
-      updateURL();
-      applyFilters();
-    });
-
-    if (elements.langToggle) {
-      elements.langToggle.addEventListener('click', () => {
-        toggleLanguage();
-      });
-    }
-  }
-
-  function openEntryFromState() {
-    if (!state.selectedId) return;
-    const match = state.allEntries.find((e) => e.id === state.selectedId);
-    if (match) {
-      renderDetail(match);
-      if (!state.filtered.some((e) => e.id === match.id)) state.filtered.unshift(match);
-      renderResults();
-    }
-  }
-
-  async function init() {
-    cacheElements();
-    renderLanguageToggle();
-    renderUILabels();
-    attachEventListeners();
-
-    try {
-      const loaded = await loadAtlasData();
-      state.allEntries = loaded.entries;
-      state.categoryMap = loaded.categoryMap;
-      state.categoryOrder = loaded.categoryOrder;
-      state.taskMap = loaded.taskMap;
-      state.taskOrder = loaded.taskOrder;
-
-      state.searchIndex = engine.buildSearchIndex(state.allEntries);
-
-      rebuildCategorySelectPreserveValue();
-      rebuildTaskSelectPreserveValue();
-
-      restoreStateFromURL();
-      applyFilters();
-      openEntryFromState();
-    } catch (err) {
-      console.error(err);
-      clearResults();
-      const error = document.createElement('p');
-      error.className = 'empty-state';
-      error.textContent = getText('dataError') || 'Failed to load data.';
-      elements.results.appendChild(error);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+/* =========================================================
+   Construction Tools & Slang Atlas (NicheWorks)
+   - Static data: data/index.json + data/packs/*.json
+   - Features: q search, category filter, task filter, JA/EN, list->detail,
+               URL state (q, cat, task, id, lang)
+   ========================================================= */
+
+const DATA_ROOT = "./data";
+const INDEX_URL = `${DATA_ROOT}/index.json`;
+
+const state = {
+  lang: "ja",
+  q: "",
+  cat: "",
+  task: "",
+  id: "",
+};
+
+let db = {
+  index: null,
+  categories: [],
+  tasks: [],
+  categoriesMap: new Map(),
+  tasksMap: new Map(),
+  entries: [],
+  entriesById: new Map(),
+};
+
+const els = {
+  // language
+  langJa: document.getElementById("langJa"),
+  langEn: document.getElementById("langEn"),
+
+  // search
+  qInput: document.getElementById("qInput"),
+
+  // filters
+  catWrap: document.getElementById("categoryChips"),
+  taskSelect: document.getElementById("taskSelect"),
+
+  // results
+  count: document.getElementById("resultCount"),
+  list: document.getElementById("resultList"),
+
+  // detail
+  detail: document.getElementById("detailPanel"),
+  detailTitle: document.getElementById("detailTitle"),
+  detailDesc: document.getElementById("detailDesc"),
+  detailCats: document.getElementById("detailCategories"),
+  detailTasks: document.getElementById("detailTasks"),
+};
+
+const i18n = {
+  ja: {
+    taskTitle: "Task",
+    taskHelp: "目的/作業で絞り込み（任意）",
+    taskAll: "すべてのTask",
+    empty: "該当する用語がありません。",
+    cats: "カテゴリ",
+    tasks: "Task",
+  },
+  en: {
+    taskTitle: "Task",
+    taskHelp: "Filter by task (optional)",
+    taskAll: "All tasks",
+    empty: "No matching entries.",
+    cats: "Categories",
+    tasks: "Tasks",
+  },
+};
+
+init().catch((e) => {
+  console.error(e);
+  safeSetText(els.list, "Failed to load data.");
+});
+
+async function init() {
+  readUrlToState();
+  bindEvents();
+  await loadAllData();
+  renderAll();
+  // if id exists in URL, open it
+  if (state.id && db.entriesById.has(state.id)) {
+    openDetail(state.id, { pushUrl: false });
   } else {
-    init();
+    closeDetail({ pushUrl: false });
   }
-})();
+}
+
+function bindEvents() {
+  // lang buttons (optional existence)
+  els.langJa?.addEventListener("click", () => setLang("ja"));
+  els.langEn?.addEventListener("click", () => setLang("en"));
+
+  // search
+  els.qInput?.addEventListener("input", (e) => {
+    state.q = (e.target.value || "").trim();
+    state.id = ""; // search changes -> clear detail selection
+    pushStateToUrl();
+    renderList();
+    closeDetail({ pushUrl: false });
+  });
+
+  // task filter
+  els.taskSelect?.addEventListener("change", (e) => {
+    state.task = e.target.value || "";
+    state.id = "";
+    pushStateToUrl();
+    renderList();
+    closeDetail({ pushUrl: false });
+  });
+
+  // back/forward
+  window.addEventListener("popstate", () => {
+    readUrlToState();
+    applyStateToControls();
+    renderAll();
+    if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
+    else closeDetail({ pushUrl: false });
+  });
+}
+
+async function loadAllData() {
+  const index = await fetchJson(INDEX_URL);
+  db.index = index;
+
+  // categories / tasks: accept array or object
+  db.categories = normalizeDefList(index.categories);
+  db.tasks = normalizeDefList(index.tasks);
+
+  db.categoriesMap = new Map(db.categories.map((c) => [c.id, c]));
+  db.tasksMap = new Map(db.tasks.map((t) => [t.id, t]));
+
+  // packs
+  const packs = Array.isArray(index.packs) ? index.packs : [];
+  const packUrls = packs.map((p) => `${DATA_ROOT}/packs/${p.file}`);
+
+  const packJsons = await Promise.all(packUrls.map((u) => fetchJson(u)));
+  const entries = packJsons.flatMap((pj) => Array.isArray(pj.entries) ? pj.entries : []);
+
+  db.entries = entries;
+  db.entriesById = new Map(entries.map((e) => [e.id, e]));
+  db.entriesById.forEach((v, k) => db.entriesById.set(k, v));
+  db.entriesById.forEach((v) => db.entriesById.set(v.id, v));
+}
+
+function renderAll() {
+  applyStateToControls();
+  renderTaskSelect();
+  renderCategoryChips();
+  renderList();
+  updateLangButtons();
+  applyI18nText();
+}
+
+function applyStateToControls() {
+  if (els.qInput) els.qInput.value = state.q || "";
+  if (els.taskSelect) els.taskSelect.value = state.task || "";
+}
+
+function updateLangButtons() {
+  if (els.langJa) els.langJa.setAttribute("aria-pressed", state.lang === "ja" ? "true" : "false");
+  if (els.langEn) els.langEn.setAttribute("aria-pressed", state.lang === "en" ? "true" : "false");
+}
+
+function applyI18nText() {
+  const dict = i18n[state.lang] || i18n.ja;
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) el.textContent = dict[key];
+  });
+
+  // update default option label for task select
+  const opt = els.taskSelect?.querySelector('option[value=""]');
+  if (opt) opt.textContent = dict.taskAll;
+}
+
+function renderTaskSelect() {
+  if (!els.taskSelect) return;
+
+  const dict = i18n[state.lang] || i18n.ja;
+
+  // keep first option (All)
+  const current = els.taskSelect.value || "";
+  els.taskSelect.innerHTML = "";
+  const allOpt = document.createElement("option");
+  allOpt.value = "";
+  allOpt.textContent = dict.taskAll;
+  els.taskSelect.appendChild(allOpt);
+
+  // options
+  const frag = document.createDocumentFragment();
+  const sorted = [...db.tasks].sort((a, b) => labelOf(a, state.lang).localeCompare(labelOf(b, state.lang)));
+  for (const t of sorted) {
+    const opt = document.createElement("option");
+    opt.value = t.id;
+    opt.textContent = labelOf(t, state.lang);
+    frag.appendChild(opt);
+  }
+  els.taskSelect.appendChild(frag);
+
+  // restore selection
+  els.taskSelect.value = current;
+}
+
+function renderCategoryChips() {
+  if (!els.catWrap) return;
+  els.catWrap.innerHTML = "";
+
+  const allChip = makeChip({
+    label: state.lang === "ja" ? "すべて" : "All",
+    active: !state.cat,
+    onClick: () => setCategory(""),
+  });
+  els.catWrap.appendChild(allChip);
+
+  const sorted = [...db.categories].sort((a, b) => labelOf(a, state.lang).localeCompare(labelOf(b, state.lang)));
+  for (const c of sorted) {
+    const chip = makeChip({
+      label: labelOf(c, state.lang),
+      active: state.cat === c.id,
+      onClick: () => setCategory(c.id),
+    });
+    els.catWrap.appendChild(chip);
+  }
+}
+
+function makeChip({ label, active, onClick }) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = active ? "chip chip--active" : "chip";
+  btn.textContent = label;
+  btn.addEventListener("click", onClick);
+  return btn;
+}
+
+function setCategory(catId) {
+  state.cat = catId || "";
+  state.id = "";
+  pushStateToUrl();
+  renderList();
+  closeDetail({ pushUrl: false });
+}
+
+function setLang(lang) {
+  state.lang = lang === "en" ? "en" : "ja";
+  pushStateToUrl();
+  renderAll();
+  // keep detail open if selected
+  if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
+}
+
+function renderList() {
+  const results = getFilteredEntries();
+  if (els.count) els.count.textContent = String(results.length);
+
+  if (!els.list) return;
+  els.list.innerHTML = "";
+
+  if (results.length === 0) {
+    const p = document.createElement("p");
+    p.className = "empty";
+    p.textContent = (i18n[state.lang] || i18n.ja).empty;
+    els.list.appendChild(p);
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+  for (const e of results) {
+    frag.appendChild(renderCard(e));
+  }
+  els.list.appendChild(frag);
+}
+
+function renderCard(entry) {
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = "card";
+  card.addEventListener("click", () => openDetail(entry.id, { pushUrl: true }));
+
+  const title = document.createElement("div");
+  title.className = "card__title";
+  title.textContent = `${termOf(entry, "ja")} / ${termOf(entry, "en")}`;
+
+  const desc = document.createElement("div");
+  desc.className = "card__desc";
+  desc.textContent = descOf(entry, state.lang);
+
+  const tags = document.createElement("div");
+  tags.className = "card__tags";
+
+  // show categories (label)
+  const catIds = normalizeEntryCategoryIds(entry);
+  for (const id of catIds) {
+    const def = db.categoriesMap.get(id);
+    tags.appendChild(renderTag(def ? labelOf(def, state.lang) : id));
+  }
+
+  card.appendChild(title);
+  card.appendChild(desc);
+  card.appendChild(tags);
+  return card;
+}
+
+function renderTag(text) {
+  const span = document.createElement("span");
+  span.className = "tag";
+  span.textContent = text;
+  return span;
+}
+
+function openDetail(id, { pushUrl }) {
+  const entry = db.entriesById.get(id);
+  if (!entry) return;
+
+  state.id = id;
+  if (pushUrl) pushStateToUrl();
+
+  if (!els.detail) return;
+  els.detail.hidden = false;
+
+  if (els.detailTitle) els.detailTitle.textContent = `${termOf(entry, "ja")} / ${termOf(entry, "en")}`;
+  if (els.detailDesc) els.detailDesc.textContent = descOf(entry, state.lang);
+
+  // categories
+  if (els.detailCats) {
+    els.detailCats.innerHTML = "";
+    const catIds = normalizeEntryCategoryIds(entry);
+    for (const cid of catIds) {
+      const def = db.categoriesMap.get(cid);
+      els.detailCats.appendChild(renderTag(def ? labelOf(def, state.lang) : cid));
+    }
+  }
+
+  // tasks (揺れ吸収 + label化)
+  if (els.detailTasks) {
+    els.detailTasks.innerHTML = "";
+    const taskIds = normalizeEntryTaskIds(entry);
+    for (const tid of taskIds) {
+      const def = db.tasksMap.get(tid);
+      els.detailTasks.appendChild(renderTag(def ? labelOf(def, state.lang) : tid));
+    }
+    if (taskIds.length === 0) {
+      const none = document.createElement("span");
+      none.className = "muted";
+      none.textContent = "—";
+      els.detailTasks.appendChild(none);
+    }
+  }
+}
+
+function closeDetail({ pushUrl }) {
+  state.id = "";
+  if (pushUrl) pushStateToUrl();
+  if (els.detail) els.detail.hidden = true;
+}
+
+/* -----------------------------
+   Filtering / matching
+------------------------------ */
+
+function getFilteredEntries() {
+  const q = (state.q || "").trim().toLowerCase();
+  const cat = state.cat || "";
+  const task = state.task || "";
+
+  return db.entries.filter((e) => {
+    if (cat) {
+      const cats = normalizeEntryCategoryIds(e);
+      if (!cats.includes(cat)) return false;
+    }
+    if (task) {
+      const tasks = normalizeEntryTaskIds(e);
+      if (!tasks.includes(task)) return false;
+    }
+    if (q) {
+      if (!matchesQuery(e, q)) return false;
+    }
+    return true;
+  });
+}
+
+function matchesQuery(entry, qLower) {
+  // Search across: term/aliases/description/fuzzy (ja/en)
+  const hay = [];
+
+  const tja = termOf(entry, "ja");
+  const ten = termOf(entry, "en");
+  if (tja) hay.push(tja);
+  if (ten) hay.push(ten);
+
+  const a = entry.aliases || entry.alias || {};
+  if (Array.isArray(a.ja)) hay.push(...a.ja);
+  if (Array.isArray(a.en)) hay.push(...a.en);
+
+  const d = entry.description || {};
+  if (d.ja) hay.push(d.ja);
+  if (d.en) hay.push(d.en);
+
+  if (Array.isArray(entry.fuzzy)) hay.push(...entry.fuzzy);
+  if (Array.isArray(entry.tags)) hay.push(...entry.tags);
+
+  const joined = hay.join(" ").toLowerCase();
+  return joined.includes(qLower);
+}
+
+/* -----------------------------
+   Normalizers (揺れ吸収)
+------------------------------ */
+
+function normalizeDefList(defs) {
+  if (!defs) return [];
+  if (Array.isArray(defs)) return defs.filter(Boolean);
+  if (typeof defs === "object") {
+    // object map {id: {label:{ja,en}} } or {id:{ja,en}} etc
+    return Object.entries(defs).map(([id, v]) => {
+      if (!v) return { id, label: { ja: id, en: id } };
+      if (v.label) return { id, ...v };
+      // if {ja,en} directly
+      if (v.ja || v.en) return { id, label: { ja: v.ja || id, en: v.en || id } };
+      return { id, label: { ja: id, en: id } };
+    });
+  }
+  return [];
+}
+
+function normalizeEntryCategoryIds(entry) {
+  const ids = new Set();
+  if (!entry) return [];
+
+  // common
+  if (Array.isArray(entry.categories)) entry.categories.forEach((x) => x && ids.add(x));
+  if (typeof entry.category === "string" && entry.category) ids.add(entry.category);
+
+  // sometimes in tags
+  if (Array.isArray(entry.tags)) {
+    for (const t of entry.tags) {
+      if (typeof t === "string" && db.categoriesMap.has(t)) ids.add(t);
+    }
+  }
+
+  return [...ids];
+}
+
+function normalizeEntryTaskIds(entry) {
+  const ids = new Set();
+  if (!entry) return [];
+
+  // preferred
+  if (Array.isArray(entry.tasks)) entry.tasks.forEach((x) => x && ids.add(x));
+  if (typeof entry.task === "string" && entry.task) ids.add(entry.task);
+
+  // sometimes in tags
+  if (Array.isArray(entry.tags)) {
+    for (const t of entry.tags) {
+      if (typeof t === "string" && db.tasksMap.has(t)) ids.add(t);
+    }
+  }
+
+  // filter to known task IDs only (avoid junk)
+  return [...ids].filter((x) => db.tasksMap.has(x));
+}
+
+/* -----------------------------
+   Helpers
+------------------------------ */
+
+function termOf(entry, lang) {
+  const t = entry.term || entry.title || {};
+  const raw = t?.[lang];
+  if (raw) return raw;
+  // fallback
+  return t?.ja || t?.en || entry.id || "";
+}
+
+function descOf(entry, lang) {
+  const d = entry.description || {};
+  const raw = d?.[lang];
+  if (raw) return raw;
+  // fallback
+  return d?.ja || d?.en || "";
+}
+
+function labelOf(def, lang) {
+  if (!def) return "";
+  if (def.label && (def.label[lang] || def.label.ja || def.label.en)) {
+    return def.label[lang] || def.label.ja || def.label.en || def.id;
+  }
+  // if {ja,en}
+  if (def[lang] || def.ja || def.en) return def[lang] || def.ja || def.en;
+  return def.id || "";
+}
+
+async function fetchJson(url) {
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to load: ${url} (${res.status})`);
+  return res.json();
+}
+
+function safeSetText(el, text) {
+  if (!el) return;
+  el.textContent = text;
+}
+
+/* -----------------------------
+   URL state (q, cat, task, id, lang)
+------------------------------ */
+
+function readUrlToState() {
+  const sp = new URLSearchParams(location.search);
+
+  state.lang = sp.get("lang") === "en" ? "en" : "ja";
+  state.q = (sp.get("q") || "").trim();
+  state.cat = sp.get("cat") || "";
+  state.task = sp.get("task") || "";
+  state.id = sp.get("id") || "";
+}
+
+function pushStateToUrl() {
+  const sp = new URLSearchParams();
+
+  if (state.lang && state.lang !== "ja") sp.set("lang", state.lang);
+  if (state.q) sp.set("q", state.q);
+  if (state.cat) sp.set("cat", state.cat);
+  if (state.task) sp.set("task", state.task);
+  if (state.id) sp.set("id", state.id);
+
+  const qs = sp.toString();
+  const url = qs ? `?${qs}` : location.pathname;
+  history.pushState(null, "", url);
+}
