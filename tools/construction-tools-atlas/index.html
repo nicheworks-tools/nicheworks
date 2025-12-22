@@ -26,10 +26,18 @@
         <label id="searchLabel" for="searchInput">Search</label>
         <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" />
       </div>
+
       <div class="control filter-control">
         <label id="categoryLabel" for="categorySelect">Category</label>
         <select id="categorySelect" name="cat">
           <option id="categoryDefaultOption" value="">All categories</option>
+        </select>
+      </div>
+
+      <div class="control filter-control">
+        <label id="taskLabel" for="taskSelect">Task</label>
+        <select id="taskSelect" name="task">
+          <option id="taskDefaultOption" value="">All tasks</option>
         </select>
       </div>
     </section>
@@ -43,7 +51,6 @@
         <div id="results" class="results-list" role="list"></div>
         <div id="emptyState" class="empty-state" hidden>No results found. Try a different keyword or filter.</div>
       </div>
-
       <aside class="detail-panel" aria-live="polite">
         <div id="detailPlaceholder" class="detail-placeholder">Select an entry to view details.</div>
         <div id="detail" class="detail" hidden>
