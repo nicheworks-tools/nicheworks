@@ -518,3 +518,17 @@ a:hover { text-decoration: underline; }
   line-height: 1.6;
   color: var(--muted, #6b7280);
 }
+
+/* ====== Phase 2.5: brand select scalable ====== */
+.fit-brand select{
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Some browsers respect this */
+.fit-brand select optgroup{
+  font-weight: 700;
+}
+.fit-brand select option{
+  font-weight: 400;
+}
