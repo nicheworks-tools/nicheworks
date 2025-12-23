@@ -1,14 +1,21 @@
 /* =====================================================
  * sukima-baito-income | NicheWorks
- * app.js (Phase 1 UI improvements)
+ * app.js (Phase 2 CSV trust + Import Preview)
+ *
+ * Includes Phase 1 UI improvements:
  * - Theme toggle (localStorage)
  * - Font size toggle (localStorage)
  * - Date shortcuts: Today / Yesterday (injected UI)
  * - Workplace reuse: datalist + recent quick-picks (localStorage)
- * - Edit entries (no more delete+retype)
+ * - Edit entries
  * - Month-grouped list with collapse + month totals
- * - Annual + This-month sticky-ish summary (rendered in totalSummary)
- * - CSV export/import (strict validation + safer CSV parsing)
+ *
+ * Phase 2 additions:
+ * - CSV spec help block (injected UI)
+ * - CSV import PREVIEW (no immediate commit)
+ * - Strict CSV validation (header + field rules)
+ * - Duplicate rejection (default): date+workplace+category+amount
+ * - Import preview shows counts + skip reasons + per-row toggle
  * ===================================================== */
 
 (() => {
@@ -58,6 +65,27 @@
   const WP_KEY = "nw-sukima-workplaces-v1";
   /** @type {Array<{name:string, lastUsed:number}>} */
   let workplaceDict = safeJsonParse(localStorage.getItem(WP_KEY), []);
+
+  // Import preview state
+  /** @type {null | {parsedRows: ImportRow[], summary: ImportSummary}} */
+  let importPreviewState = null;
+
+  /**
+   * @typedef {Object} ImportRow
+   * @property {number} rowNo  1-based line number in CSV file (including header line)
+   * @property {"ok"|"skip"} status
+   * @property {string} reason
+   * @property {boolean} selected  whether to import (only meaningful when ok)
+   * @property {{date:string, workplace:string, category:string, amount:number, memo:string}} data
+   */
+
+  /**
+   * @typedef {Object} ImportSummary
+   * @property {number} okCount
+   * @property {number} skipCount
+   * @property {number} dupCount
+   * @property {number} totalRows
+   */
 
   // ----------------------------
   // Settings (theme / font)
@@ -178,6 +206,149 @@
     categoryInput.insertAdjacentElement("afterend", wrap);
   }
 
+  function injectCSVSpecHelp() {
+    // Place help block under CSV actions area.
+    // We'll inject it after the CSV buttons row, if found.
+    const csvActions = document.querySelector(".csv-actions");
+    if (!csvActions) return;
+
+    if (document.getElementById("csvSpecHelp")) return;
+
+    const box = document.createElement("div");
+    box.id = "csvSpecHelp";
+    box.style.marginTop = "10px";
+    box.style.border = "1px solid var(--border, #e5e5e5)";
+    box.style.borderRadius = "14px";
+    box.style.padding = "12px";
+    box.style.background = "var(--card-bg, #f9f9f9)";
+    box.style.fontSize = "0.95em";
+    box.style.lineHeight = "1.45";
+
+    box.innerHTML = `
+      <div style="font-weight:700;margin-bottom:6px;">CSVの形式（インポート/エクスポート）</div>
+      <div style="opacity:0.9;">
+        <div>ヘッダ：<code>date,workplace,category,amount,memo</code></div>
+        <div>日付：<code>YYYY-MM-DD</code>（例：2025-12-24）</div>
+        <div>区分：<code>報酬 / 交通費 / 手当 / その他</code></div>
+        <div>金額：<code>6000</code> でも <code>6,000</code> でもOK</div>
+        <div style="margin-top:6px;opacity:0.8;">※形式が合わない行はスキップします（安全優先）。</div>
+      </div>
+    `;
+
+    csvActions.insertAdjacentElement("afterend", box);
+  }
+
+  function injectImportPreviewModal() {
+    if (document.getElementById("importPreviewModal")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "importPreviewModal";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "rgba(0,0,0,0.45)";
+    overlay.style.display = "none";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.padding = "14px";
+    overlay.style.zIndex = "9999";
+
+    const panel = document.createElement("div");
+    panel.style.width = "min(920px, 100%)";
+    panel.style.maxHeight = "85vh";
+    panel.style.overflow = "auto";
+    panel.style.background = "var(--bg, #fff)";
+    panel.style.border = "1px solid var(--border, #e5e5e5)";
+    panel.style.borderRadius = "16px";
+    panel.style.boxShadow = "0 10px 28px rgba(0,0,0,0.18)";
+
+    panel.innerHTML = `
+      <div style="padding:14px 14px 10px 14px; border-bottom:1px solid var(--border, #e5e5e5);">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-weight:800; font-size:1.05em;">CSV取り込みの確認</div>
+            <div id="importPreviewSummary" style="margin-top:6px; opacity:0.85; font-size:0.95em;"></div>
+          </div>
+          <button id="importPreviewCloseBtn" type="button"
+            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:transparent;border-radius:12px;cursor:pointer;">
+            閉じる
+          </button>
+        </div>
+      </div>
+
+      <div style="padding:12px 14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button id="importSelectAllBtn" type="button"
+            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
+            全選択
+          </button>
+          <button id="importSelectNoneBtn" type="button"
+            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
+            全解除
+          </button>
+          <div style="font-size:0.9em; opacity:0.85; display:flex; align-items:center; gap:6px;">
+            <input id="importShowSkipped" type="checkbox" />
+            <label for="importShowSkipped">スキップ行も表示</label>
+          </div>
+        </div>
+
+        <button id="importCommitBtn" type="button"
+          style="padding:12px 14px;border:1px solid var(--border,#e5e5e5);background:#111;color:#fff;border-radius:12px;cursor:pointer;">
+          選択した行を追加
+        </button>
+      </div>
+
+      <div style="padding:0 14px 14px 14px;">
+        <div id="importPreviewList" style="display:flex; flex-direction:column; gap:10px;"></div>
+      </div>
+    `;
+
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    // Bind modal controls
+    const closeBtn = $("importPreviewCloseBtn");
+    closeBtn.addEventListener("click", closeImportPreview);
+
+    overlay.addEventListener("click", (ev) => {
+      if (ev.target === overlay) closeImportPreview();
+    });
+
+    $("importSelectAllBtn").addEventListener("click", () => {
+      if (!importPreviewState) return;
+      importPreviewState.parsedRows.forEach((r) => {
+        if (r.status === "ok") r.selected = true;
+      });
+      renderImportPreview();
+    });
+
+    $("importSelectNoneBtn").addEventListener("click", () => {
+      if (!importPreviewState) return;
+      importPreviewState.parsedRows.forEach((r) => {
+        if (r.status === "ok") r.selected = false;
+      });
+      renderImportPreview();
+    });
+
+    $("importShowSkipped").addEventListener("change", () => renderImportPreview());
+
+    $("importCommitBtn").addEventListener("click", commitImportPreview);
+  }
+
+  function openImportPreview(state) {
+    importPreviewState = state;
+    renderImportPreview();
+    const overlay = $("importPreviewModal");
+    overlay.style.display = "flex";
+    // default: hide skipped
+    $("importShowSkipped").checked = false;
+  }
+
+  function closeImportPreview() {
+    const overlay = $("importPreviewModal");
+    overlay.style.display = "none";
+    importPreviewState = null;
+  }
+
   function makeMiniBtn(label, onClick) {
     const b = document.createElement("button");
     b.type = "button";
@@ -225,7 +396,7 @@
   // Workplace dictionary
   // ----------------------------
   function normalizeWorkplaceName(s) {
-    // Minimal normalization for comparison only (not “correction”):
+    // Minimal normalization for comparison only:
     // trim, collapse spaces
     return String(s || "")
       .trim()
@@ -313,7 +484,7 @@
   }
 
   function clearForm() {
-    if (dateInput) dateInput.value = "";
+    if (dateInput) dateInput.value = toISODate(new Date()); // keep today as default
     if (workplaceInput) workplaceInput.value = "";
     if (amountInput) amountInput.value = "";
     if (memoInput) memoInput.value = "";
@@ -385,22 +556,19 @@
       const record = { date, workplace, category, amount, memo };
 
       if (editingIndex !== null) {
-        // Update
+        // Update (also blocks duplicates by overwriting)
         entries[editingIndex] = record;
         bumpWorkplace(workplace);
         exitEditingMode();
       } else {
-        // Add
+        // Add (dedupe not enforced here; user may want multiple entries same key)
         entries.push(record);
         bumpWorkplace(workplace);
-        // Keep date as-is; many users enter multiple entries for the same day.
         clearForm();
       }
 
       renderAll();
-      // After add, focus date if empty else workplace
-      if (!dateInput.value) dateInput.focus();
-      else workplaceInput.focus();
+      workplaceInput.focus();
     });
 
     // convenience: Enter on amount triggers add/update (mobile keyboards vary)
@@ -546,7 +714,6 @@
         delBtn.addEventListener("click", () => {
           if (!confirm("この入力を削除しますか？")) return;
           entries.splice(i, 1);
-          // If editing this one, exit edit mode
           if (editingIndex === i) exitEditingMode();
           renderAll();
         });
@@ -636,10 +803,9 @@
   }
 
   // ----------------------------
-  // CSV Export / Import
+  // CSV Export / Import (Phase 2 Preview)
   // ----------------------------
   function csvEscape(v) {
-    // Ensure safe CSV even if contains comma/quotes/newlines
     const s = String(v ?? "");
     if (/[",\r\n]/.test(s)) {
       return `"${s.replace(/"/g, '""')}"`;
@@ -692,7 +858,6 @@
 
       if (inQuotes) {
         if (c === '"') {
-          // Escaped quote
           if (text[i + 1] === '"') {
             field += '"';
             i += 2;
@@ -719,7 +884,7 @@
           continue;
         }
         if (c === "\r") {
-          i++; // ignore
+          i++;
           continue;
         }
         if (c === "\n") {
@@ -734,11 +899,10 @@
         i++;
       }
     }
-    // last field
+
     row.push(field);
     rows.push(row);
 
-    // remove trailing empty row if file ends with newline
     if (rows.length && rows[rows.length - 1].length === 1 && rows[rows.length - 1][0] === "") {
       rows.pop();
     }
@@ -758,32 +922,41 @@
 
       const header = rows[0].map((h) => String(h || "").trim());
       const expected = ["date", "workplace", "category", "amount", "memo"];
-
-      // Strict header check (but allow case-insensitive)
       const headerLower = header.map((h) => h.toLowerCase());
-      const okHeader = expected.every((x, idx) => headerLower[idx] === x);
 
+      const okHeader = expected.every((x, idx) => headerLower[idx] === x);
       if (!okHeader) {
-        showError(
-          "CSVヘッダが不正です。\n期待形式：date,workplace,category,amount,memo"
-        );
+        showError("CSVヘッダが不正です。\n期待形式：date,workplace,category,amount,memo");
         return;
       }
 
       const validCats = new Set(["報酬", "交通費", "手当", "その他"]);
-      const errors = [];
-      let imported = 0;
-      let skipped = 0;
 
-      // Start from row 2
+      // Build existing key set for dedupe
+      const existingKeys = new Set(entries.map(makeDedupeKey));
+
+      /** @type {ImportRow[]} */
+      const parsedRows = [];
+      let okCount = 0;
+      let skipCount = 0;
+      let dupCount = 0;
+
+      // Start from row 2 (r=1)
       for (let r = 1; r < rows.length; r++) {
         const cols = rows[r];
+        const rowNo = r + 1;
+
         if (!cols || cols.length === 0) continue;
 
-        // Strict: must have at least 5 cols
         if (cols.length < 5) {
-          skipped++;
-          errors.push(`${r + 1}行目：列数不正（${cols.length}）`);
+          parsedRows.push({
+            rowNo,
+            status: "skip",
+            reason: `列数不正（${cols.length}）`,
+            selected: false,
+            data: emptyRowData()
+          });
+          skipCount++;
           continue;
         }
 
@@ -795,49 +968,367 @@
         amountRaw = String(amountRaw || "").trim();
         memo = String(memo || "").trim();
 
-        // date: allow YYYY-MM-DD only (strict)
+        // Strict date
         if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-          skipped++;
-          errors.push(`${r + 1}行目：日付形式不正（YYYY-MM-DDのみ）`);
+          parsedRows.push({
+            rowNo,
+            status: "skip",
+            reason: "日付形式不正（YYYY-MM-DDのみ）",
+            selected: false,
+            data: { date, workplace, category, amount: 0, memo }
+          });
+          skipCount++;
           continue;
         }
 
         if (!workplace) {
-          skipped++;
-          errors.push(`${r + 1}行目：就業先が空です`);
+          parsedRows.push({
+            rowNo,
+            status: "skip",
+            reason: "就業先が空",
+            selected: false,
+            data: { date, workplace, category, amount: 0, memo }
+          });
+          skipCount++;
           continue;
         }
 
         if (!validCats.has(category)) {
-          skipped++;
-          errors.push(`${r + 1}行目：カテゴリ不正（報酬/交通費/手当/その他）`);
+          parsedRows.push({
+            rowNo,
+            status: "skip",
+            reason: "区分不正（報酬/交通費/手当/その他）",
+            selected: false,
+            data: { date, workplace, category, amount: 0, memo }
+          });
+          skipCount++;
           continue;
         }
 
-        // amount: allow comma separators or plain digits
         const amount = cleanAmount(amountRaw);
         if (!Number.isFinite(amount) || amount <= 0) {
-          skipped++;
-          errors.push(`${r + 1}行目：金額不正`);
+          parsedRows.push({
+            rowNo,
+            status: "skip",
+            reason: "金額不正",
+            selected: false,
+            data: { date, workplace, category, amount: 0, memo }
+          });
+          skipCount++;
           continue;
         }
 
-        entries.push({ date, workplace, category, amount, memo });
-        bumpWorkplace(workplace);
-        imported++;
+        const data = { date, workplace, category, amount, memo };
+        const key = makeDedupeKey(data);
+
+        if (existingKeys.has(key)) {
+          // Strict: skip duplicates by default
+          parsedRows.push({
+            rowNo,
+            status: "skip",
+            reason: "重複（既存データと一致）",
+            selected: false,
+            data
+          });
+          skipCount++;
+          dupCount++;
+          continue;
+        }
+
+        // OK candidate
+        parsedRows.push({
+          rowNo,
+          status: "ok",
+          reason: "OK",
+          selected: true,
+          data
+        });
+        okCount++;
       }
 
-      renderAll();
+      const summary = {
+        okCount,
+        skipCount,
+        dupCount,
+        totalRows: parsedRows.length
+      };
 
-      const summary = `CSV取り込み：${imported}件追加 / ${skipped}件スキップ`;
-      if (errors.length > 0) {
-        showError(summary + "\n\nスキップ理由（先頭10件）:\n" + errors.slice(0, 10).join("\n"));
-      } else {
-        toast(summary);
+      // If nothing to import, show error with brief
+      if (okCount === 0) {
+        showError(`追加できる行がありません。\nスキップ：${skipCount}（重複：${dupCount}）`);
+        return;
       }
+
+      openImportPreview({ parsedRows, summary });
     };
 
     reader.readAsText(file, "utf-8");
+  }
+
+  function emptyRowData() {
+    return { date: "", workplace: "", category: "", amount: 0, memo: "" };
+  }
+
+  function makeDedupeKey(e) {
+    // Minimal normalization for dedupe (no aggressive corrections)
+    const d = String(e.date || "").trim();
+    const w = normalizeWorkplaceName(e.workplace || "");
+    const c = String(e.category || "").trim();
+    const a = Number(e.amount || 0);
+    return `${d}|${w}|${c}|${a}`;
+  }
+
+  function renderImportPreview() {
+    if (!importPreviewState) return;
+
+    const { parsedRows } = importPreviewState;
+    const showSkipped = $("importShowSkipped")?.checked;
+
+    // Recalculate summary from current selection
+    const okTotal = parsedRows.filter((r) => r.status === "ok").length;
+    const selectedCount = parsedRows.filter((r) => r.status === "ok" && r.selected).length;
+    const skippedCount = parsedRows.filter((r) => r.status === "skip").length;
+    const dupCount = parsedRows.filter((r) => r.status === "skip" && r.reason.startsWith("重複")).length;
+
+    $("importPreviewSummary").textContent =
+      `追加候補：${okTotal}件（選択：${selectedCount}件） / スキップ：${skippedCount}件（重複：${dupCount}件）`;
+
+    // Commit button label
+    $("importCommitBtn").textContent = `選択した行を追加（${selectedCount}件）`;
+    $("importCommitBtn").disabled = selectedCount === 0;
+    $("importCommitBtn").style.opacity = selectedCount === 0 ? "0.5" : "1";
+    $("importCommitBtn").style.cursor = selectedCount === 0 ? "not-allowed" : "pointer";
+
+    const list = $("importPreviewList");
+    list.innerHTML = "";
+
+    // Show ok rows always; skipped rows only if toggled
+    const rowsToRender = parsedRows.filter((r) => r.status === "ok" || showSkipped);
+
+    rowsToRender.forEach((r) => {
+      const card = document.createElement("div");
+      card.style.border = "1px solid var(--border,#e5e5e5)";
+      card.style.borderRadius = "14px";
+      card.style.padding = "12px";
+      card.style.background = "var(--card-bg,#f9f9f9)";
+
+      const top = document.createElement("div");
+      top.style.display = "flex";
+      top.style.alignItems = "center";
+      top.style.justifyContent = "space-between";
+      top.style.gap = "10px";
+      top.style.flexWrap = "wrap";
+
+      const left = document.createElement("div");
+      left.style.display = "flex";
+      left.style.alignItems = "center";
+      left.style.gap = "10px";
+      left.style.flexWrap = "wrap";
+
+      if (r.status === "ok") {
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = !!r.selected;
+        cb.addEventListener("change", () => {
+          r.selected = cb.checked;
+          renderImportPreview();
+        });
+        left.appendChild(cb);
+      } else {
+        const badge = document.createElement("span");
+        badge.textContent = "SKIP";
+        badge.style.fontWeight = "800";
+        badge.style.fontSize = "0.85em";
+        badge.style.padding = "4px 8px";
+        badge.style.borderRadius = "999px";
+        badge.style.border = "1px solid var(--border,#e5e5e5)";
+        badge.style.opacity = "0.8";
+        left.appendChild(badge);
+      }
+
+      const title = document.createElement("div");
+      title.style.fontWeight = "800";
+      title.textContent =
+        r.status === "ok"
+          ? `行 ${r.rowNo}：${r.data.date} / ${r.data.workplace}`
+          : `行 ${r.rowNo}：${r.reason}`;
+      left.appendChild(title);
+
+      const right = document.createElement("div");
+      right.style.fontWeight = "800";
+      right.textContent = r.status === "ok" ? formatYen(r.data.amount) : "";
+      top.appendChild(left);
+      top.appendChild(right);
+
+      const meta = document.createElement("div");
+      meta.style.marginTop = "8px";
+      meta.style.opacity = "0.9";
+      meta.style.fontSize = "0.95em";
+
+      if (r.status === "ok") {
+        meta.textContent = `[${r.data.category}] ${r.data.memo ? ` / メモ：${r.data.memo}` : ""}`;
+      } else {
+        meta.textContent = `理由：${r.reason}`;
+      }
+
+      card.appendChild(top);
+      card.appendChild(meta);
+
+      // For ok rows: allow quick inline edits (safe)
+      if (r.status === "ok") {
+        const form = document.createElement("div");
+        form.style.display = "grid";
+        form.style.gridTemplateColumns = "1fr 1fr";
+        form.style.gap = "8px";
+        form.style.marginTop = "10px";
+
+        const d = makeInlineInput("日付", r.data.date, "date", (v) => {
+          r.data.date = v;
+        });
+
+        const w = makeInlineInput("就業先", r.data.workplace, "text", (v) => {
+          r.data.workplace = normalizeWorkplaceName(v);
+        });
+
+        const c = makeInlineSelect("区分", r.data.category, ["報酬","交通費","手当","その他"], (v) => {
+          r.data.category = v;
+        });
+
+        const a = makeInlineInput("金額", String(r.data.amount), "text", (v) => {
+          const n = cleanAmount(v);
+          if (Number.isFinite(n) && n > 0) r.data.amount = n;
+        });
+
+        const m = makeInlineInput("メモ", r.data.memo || "", "text", (v) => {
+          r.data.memo = v;
+        }, true);
+
+        form.appendChild(d);
+        form.appendChild(w);
+        form.appendChild(c);
+        form.appendChild(a);
+        form.appendChild(m);
+
+        card.appendChild(form);
+
+        // On any edit, we should re-check duplicates against current entries AND within preview
+        // We'll do it lazily when user toggles or commits; also after blur events, re-render summary.
+        // (Keep performance OK for mobile)
+      }
+
+      list.appendChild(card);
+    });
+  }
+
+  function makeInlineInput(label, value, type, onChange, fullWidth = false) {
+    const wrap = document.createElement("div");
+    if (fullWidth) wrap.style.gridColumn = "1 / -1";
+
+    const l = document.createElement("div");
+    l.textContent = label;
+    l.style.fontSize = "0.85em";
+    l.style.opacity = "0.85";
+    l.style.marginBottom = "4px";
+
+    const input = document.createElement("input");
+    input.type = type;
+    input.value = value;
+    input.style.width = "100%";
+    input.style.padding = "10px 12px";
+    input.style.borderRadius = "12px";
+    input.style.border = "1px solid var(--border,#e5e5e5)";
+    input.style.background = "var(--bg,#fff)";
+    input.addEventListener("blur", () => {
+      onChange(input.value);
+      // re-render summary counts (selection stays)
+      renderImportPreview();
+    });
+
+    wrap.appendChild(l);
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  function makeInlineSelect(label, value, options, onChange) {
+    const wrap = document.createElement("div");
+    const l = document.createElement("div");
+    l.textContent = label;
+    l.style.fontSize = "0.85em";
+    l.style.opacity = "0.85";
+    l.style.marginBottom = "4px";
+
+    const sel = document.createElement("select");
+    sel.style.width = "100%";
+    sel.style.padding = "10px 12px";
+    sel.style.borderRadius = "12px";
+    sel.style.border = "1px solid var(--border,#e5e5e5)";
+    sel.style.background = "var(--bg,#fff)";
+    options.forEach((o) => {
+      const opt = document.createElement("option");
+      opt.value = o;
+      opt.textContent = o;
+      sel.appendChild(opt);
+    });
+    sel.value = value;
+    sel.addEventListener("change", () => {
+      onChange(sel.value);
+      renderImportPreview();
+    });
+
+    wrap.appendChild(l);
+    wrap.appendChild(sel);
+    return wrap;
+  }
+
+  function commitImportPreview() {
+    if (!importPreviewState) return;
+
+    // Validate and apply dedupe at commit time too (in case user edited fields)
+    const existingKeys = new Set(entries.map(makeDedupeKey));
+    const previewKeys = new Set();
+
+    let committed = 0;
+    let skippedDup = 0;
+    let skippedInvalid = 0;
+
+    importPreviewState.parsedRows.forEach((r) => {
+      if (r.status !== "ok") return;
+      if (!r.selected) return;
+
+      const d = String(r.data.date || "").trim();
+      const w = normalizeWorkplaceName(r.data.workplace || "");
+      const c = String(r.data.category || "").trim();
+      const a = Number(r.data.amount || 0);
+
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
+        skippedInvalid++;
+        return;
+      }
+
+      const normalized = { date: d, workplace: w, category: c, amount: a, memo: String(r.data.memo || "") };
+      const key = makeDedupeKey(normalized);
+
+      // Dedupe: existing AND within preview selection
+      if (existingKeys.has(key) || previewKeys.has(key)) {
+        skippedDup++;
+        return;
+      }
+
+      entries.push(normalized);
+      existingKeys.add(key);
+      previewKeys.add(key);
+      bumpWorkplace(w);
+      committed++;
+    });
+
+    renderAll();
+    closeImportPreview();
+
+    if (committed === 0) {
+      showError(`追加できる行がありませんでした。\n重複スキップ：${skippedDup} / 不正：${skippedInvalid}`);
+      return;
+    }
+    toast(`CSV取り込み：${committed}件追加（重複スキップ：${skippedDup}）`);
   }
 
   function bindCSV() {
@@ -881,10 +1372,14 @@
     applySettings();
     bindSettingsUI();
 
-    // Inject Phase-1 UI helpers without touching HTML
+    // Inject helpers without touching HTML
     injectDateShortcuts();
     injectWorkplaceQuickPicks();
     injectCategoryChips();
+
+    // Phase 2 UI
+    injectCSVSpecHelp();
+    injectImportPreviewModal();
 
     updateWorkplaceDatalist();
 
