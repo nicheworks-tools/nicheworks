@@ -1,8 +1,9 @@
 /* app.js — Size Converter (JP ↔ US/EU)
- * Phase 1–2:
+ * Phase 1–2 (+ Evidence upgrade):
  * - Table mode (clothing/shoes, base highlight)
  * - Fit by cm (Shoes): foot length required, width optional (+ optional brand adjustments)
  * - Fit by cm (Clothing): tops/bottoms, waist required (+ optional brand adjustments)
+ * - Clothing result shows "evidence" (which range you fell into / how close to boundaries)
  * - JP/EN toggle via [data-i18n]
  * - Optional brand dictionary: ./brand.json
  */
@@ -27,9 +28,9 @@
 
     // tabs / modes
     tabTable: $("tabTable"),
-    tabFit: $("tabFit"),       // shoes
-    tabCloth: $("tabCloth"),   // clothing (optional)
-    fitPanel: $("fitPanel"),   // shoes panel
+    tabFit: $("tabFit"), // shoes
+    tabCloth: $("tabCloth"), // clothing (optional)
+    fitPanel: $("fitPanel"), // shoes panel
     clothPanel: $("clothPanel"), // clothing panel (optional)
 
     // shoes fit
@@ -159,6 +160,17 @@
       clothBorderline: "境界付近：迷うなら「上のサイズ」も検討。",
       clothBrandApplied: "ブランド補正を適用しました（服）",
       clothBrandUnavailable: "服ブランド辞書を読み込めませんでした（補正なしで動作中）",
+
+      // evidence
+      evidenceTitle: "根拠（どの範囲に入ったか）",
+      evidenceWithin: "範囲内",
+      evidenceBelow: "範囲より小さい",
+      evidenceAbove: "範囲より大きい",
+      evidenceNearLower: "下限に近い",
+      evidenceNearUpper: "上限に近い",
+      evidenceMiddle: "中央寄り",
+      evidenceHint: "※範囲は目安。ブランド/素材/シルエットで変わります。",
+      rangeFmt: "{lo}–{hi}cm",
     },
     en: {
       noData: "No data for this selection.",
@@ -188,6 +200,16 @@
       clothBorderline: "Near boundary: consider sizing up if unsure.",
       clothBrandApplied: "Clothing brand adjustment applied",
       clothBrandUnavailable: "Could not load clothing brand dictionary (running without it).",
+
+      evidenceTitle: "Evidence (range check)",
+      evidenceWithin: "Within range",
+      evidenceBelow: "Below range",
+      evidenceAbove: "Above range",
+      evidenceNearLower: "Near lower bound",
+      evidenceNearUpper: "Near upper bound",
+      evidenceMiddle: "Near middle",
+      evidenceHint: "* Ranges are approximate. Fit varies by brand/material/silhouette.",
+      rangeFmt: "{lo}–{hi} cm",
     },
   };
 
@@ -229,6 +251,70 @@
     return s;
   }
 
+  function clamp01(x) {
+    if (!Number.isFinite(x)) return 0;
+    if (x < 0) return 0;
+    if (x > 1) return 1;
+    return x;
+  }
+
+  function formatRange(range) {
+    if (!range || range.length !== 2) return "";
+    const lo = Number(range[0]);
+    const hi = Number(range[1]);
+    if (!Number.isFinite(lo) || !Number.isFinite(hi)) return "";
+    return t("rangeFmt", { lo: lo.toFixed(0), hi: hi.toFixed(0) });
+  }
+
+  function rangeEvidence(val, range) {
+    // returns { status, detail, distToNearest, pos }
+    // status: within | below | above
+    if (!Number.isFinite(val) || !range || range.length !== 2) return null;
+    const lo = Number(range[0]);
+    const hi = Number(range[1]);
+    if (!Number.isFinite(lo) || !Number.isFinite(hi) || lo >= hi) return null;
+
+    if (val < lo) {
+      return {
+        status: "below",
+        detail: t("evidenceBelow"),
+        distToNearest: lo - val,
+        pos: 0,
+        lo,
+        hi,
+      };
+    }
+    if (val > hi) {
+      return {
+        status: "above",
+        detail: t("evidenceAbove"),
+        distToNearest: val - hi,
+        pos: 1,
+        lo,
+        hi,
+      };
+    }
+
+    const pos = clamp01((val - lo) / (hi - lo));
+    const distLower = Math.abs(val - lo);
+    const distUpper = Math.abs(hi - val);
+    const distToNearest = Math.min(distLower, distUpper);
+
+    let nuance = t("evidenceMiddle");
+    if (distToNearest <= 1.0) {
+      nuance = distLower <= distUpper ? t("evidenceNearLower") : t("evidenceNearUpper");
+    }
+
+    return {
+      status: "within",
+      detail: `${t("evidenceWithin")} / ${nuance}`,
+      distToNearest,
+      pos,
+      lo,
+      hi,
+    };
+  }
+
   // ---------- brand dictionary ----------
   async function loadBrandDict() {
     try {
@@ -241,7 +327,6 @@
       brandDict = null;
       brandLoadError = true;
       // keep silent; tool still works without it
-      // console.warn(e);
     }
   }
 
@@ -346,7 +431,6 @@
     renderFitResult(null);
     renderClothResult(null);
 
-    // keep brand selects rebuilt (labels don't change, but availability does)
     rebuildShoeBrandOptions();
     rebuildClothBrandOptions();
   }
@@ -566,10 +650,7 @@
            </div>`
         : "";
 
-    const cautionLine =
-      payload.caution
-        ? `<div class="fit-caution">${escapeHtml(payload.caution)}</div>`
-        : "";
+    const cautionLine = payload.caution ? `<div class="fit-caution">${escapeHtml(payload.caution)}</div>` : "";
 
     let brandBlock = "";
     if (payload.brandSelected) {
@@ -645,7 +726,6 @@
     const [lo, hi] = range;
     if (val < lo) return lo - val;
     if (val > hi) return val - hi;
-    // inside range => 0 (perfect)
     return 0;
   }
 
@@ -664,13 +744,12 @@
 
     // If primary metric missing (tops chest optional), fallback to waist.
     const primaryUsed = Number.isFinite(primaryVal) ? primaryKey : "waist";
+    const primaryUsedVal = primaryUsed === "waist" ? waist : primaryUsed === "chest" ? chest : hip;
 
     let best = null;
     let bestScore = Infinity;
-    let borderline = false;
 
     chart.forEach((row) => {
-      // Score = sum of distances to ranges for provided metrics (lower is better)
       let s = 0;
       if (Number.isFinite(chest) && row.chest) s += scoreRange(chest, row.chest);
       if (Number.isFinite(waist) && row.waist) s += scoreRange(waist, row.waist);
@@ -678,7 +757,7 @@
 
       // Prefer sizes whose primary metric is within range
       if (Number.isFinite(primaryVal) && row[primaryKey]) {
-        if (!within(primaryVal, row[primaryKey])) s += 0.6; // small penalty
+        if (!within(primaryVal, row[primaryKey])) s += 0.6;
       }
 
       if (s < bestScore) {
@@ -687,22 +766,15 @@
       }
     });
 
-    // Borderline heuristic: if best primary metric is within 1.0cm to boundary
-    if (best && best[primaryUsed] && Number.isFinite(type === "bottoms" ? waist : chest)) {
-      const v = type === "bottoms" ? waist : chest;
+    // Borderline: if chosen size's primaryUsed metric is within 1.0cm to boundary
+    let borderline = false;
+    if (best && best[primaryUsed] && Number.isFinite(primaryUsedVal)) {
       const [lo, hi] = best[primaryUsed];
-      if (Number.isFinite(v)) {
-        const d = Math.min(Math.abs(v - lo), Math.abs(v - hi));
-        borderline = d <= 1.0;
-      }
+      const d = Math.min(Math.abs(primaryUsedVal - lo), Math.abs(primaryUsedVal - hi));
+      borderline = d <= 1.0;
     }
 
-    return {
-      best,
-      score: bestScore,
-      borderline,
-      primaryUsed,
-    };
+    return { best, score: bestScore, borderline, primaryUsed };
   }
 
   function mapClothToTableSize(gen, sizeJP) {
@@ -742,7 +814,8 @@
     const found = findBestClothSize(gen, type, chest, waist, hip);
     if (!found || !found.best) return { error: LABELS[currentLang].noData };
 
-    const sizeJP = found.best.size;
+    const bestRow = found.best;
+    const sizeJP = bestRow.size;
     const mapped = mapClothToTableSize(gen, sizeJP) || { jp: sizeJP, us: "—", eu: "—" };
 
     // Nearby (prev/next in chart order)
@@ -762,6 +835,16 @@
       found.primaryUsed === "chest" ? t("chest") :
       found.primaryUsed === "waist" ? t("waist") : t("hip");
 
+    // Evidence: which range the values fall into (for the recommended size row)
+    const evidence = [];
+    const evChest = rangeEvidence(chest, bestRow.chest);
+    const evWaist = rangeEvidence(waist, bestRow.waist);
+    const evHip = rangeEvidence(hip, bestRow.hip);
+
+    if (evWaist) evidence.push({ key: "waist", label: t("waist"), val: waist, raw: waistRaw, range: bestRow.waist, ev: evWaist });
+    if (evChest) evidence.push({ key: "chest", label: t("chest"), val: chest, raw: chest, range: bestRow.chest, ev: evChest });
+    if (evHip) evidence.push({ key: "hip", label: t("hip"), val: hip, raw: hip, range: bestRow.hip, ev: evHip });
+
     return {
       error: null,
       gen,
@@ -775,6 +858,13 @@
       primaryLabel,
       borderline: !!found.borderline,
       recommend: mapped,
+      recommendSizeJP: sizeJP,
+      recommendRanges: {
+        chest: bestRow.chest || null,
+        waist: bestRow.waist || null,
+        hip: bestRow.hip || null,
+      },
+      evidence,
       near: nearMapped,
       brandSelected: !!brand,
       brandLabel: brand ? (brand.label || brand.id) : "",
@@ -856,6 +946,54 @@
         ? `<div class="fit-meta"><span class="muted">${escapeHtml(currentLang === "ja" ? "判定用ウエスト" : "Adjusted waist")}:</span> <strong>${payload.input.waistAdjusted.toFixed(1)} cm</strong></div>`
         : "";
 
+    // Evidence block (why this size)
+    const evLines = (payload.evidence || [])
+      .map((item) => {
+        const v = Number(item.val);
+        const rangeText = formatRange(item.range);
+        const detail = item.ev?.detail || "";
+        // show "distance to nearest bound" only when meaningful
+        const d = item.ev && Number.isFinite(item.ev.distToNearest) ? item.ev.distToNearest : null;
+        const distText =
+          d != null && d > 0
+            ? ` <span class="muted">(${currentLang === "ja" ? "境界まで" : "to bound"} ${d.toFixed(1)}cm)</span>`
+            : "";
+
+        // For waist: show raw vs adjusted if changed
+        let valText = `${v.toFixed(1)}cm`;
+        if (item.key === "waist" && payload.brandSelected && payload.input.waistAdjusted !== payload.input.waistRaw) {
+          valText =
+            `${payload.input.waistRaw.toFixed(1)}cm` +
+            ` <span class="muted">→</span> ` +
+            `${payload.input.waistAdjusted.toFixed(1)}cm`;
+        }
+
+        return `
+          <li>
+            <strong>${escapeHtml(item.label)}</strong>:
+            <span>${valText}</span>
+            <span class="muted">→</span>
+            <span class="pill mini">${escapeHtml(payload.recommendSizeJP)}</span>
+            <span class="muted">${escapeHtml(rangeText)}</span>
+            <span class="muted">/</span>
+            <span>${escapeHtml(detail)}</span>
+            ${distText}
+          </li>
+        `;
+      })
+      .join("");
+
+    const evidenceBlock =
+      evLines
+        ? `
+          <div class="fit-evidence">
+            <div class="fit-label">${escapeHtml(t("evidenceTitle"))}</div>
+            <ul class="fit-list evidence-list">${evLines}</ul>
+            <div class="fit-note muted">${escapeHtml(t("evidenceHint"))}</div>
+          </div>
+        `
+        : "";
+
     els.clothResult.innerHTML = `
       <div class="fit-card">
         <div class="fit-title">${escapeHtml(title)}</div>
@@ -873,6 +1011,7 @@
           </div>
         </div>
 
+        ${evidenceBlock}
         ${borderlineLine}
 
         <div class="fit-sub">
@@ -893,22 +1032,17 @@
     const isShoeFit = mode === "fit";
     const isCloth = mode === "cloth";
 
-    // tabs
     if (els.tabTable) els.tabTable.classList.toggle("active", isTable);
     if (els.tabFit) els.tabFit.classList.toggle("active", isShoeFit);
     if (els.tabCloth) els.tabCloth.classList.toggle("active", isCloth);
 
-    // panels
     if (els.fitPanel) els.fitPanel.hidden = !isShoeFit;
     if (els.clothPanel) els.clothPanel.hidden = !isCloth;
 
-    // table section
     if (els.resultSection) els.resultSection.hidden = !isTable;
 
-    // base selector is table-only
     if (els.base) els.base.disabled = !isTable;
 
-    // Fit tabs enabled state depends on category
     const cat = els.category ? els.category.value : "clothing";
 
     const shoeOnly = cat === "shoes";
@@ -923,11 +1057,9 @@
       els.tabCloth.classList.toggle("disabled", !clothOnly);
     }
 
-    // Brand selects availability
     rebuildShoeBrandOptions();
     rebuildClothBrandOptions();
 
-    // refresh
     if (isTable) {
       renderFitResult(null);
       renderClothResult(null);
@@ -943,24 +1075,18 @@
 
   // ---------- events ----------
   function bindEvents() {
-    // category
     els.category?.addEventListener("change", () => {
-      // if current mode becomes invalid, fallback to table
       if (currentMode === "fit" && els.category.value !== "shoes") setMode("table");
       if (currentMode === "cloth" && els.category.value !== "clothing") setMode("table");
 
-      // update tabs
       setMode(currentMode);
 
-      // clear panels
       renderFitResult(null);
       renderClothResult(null);
 
-      // table
       renderTable();
     });
 
-    // gender
     els.gender?.addEventListener("change", () => {
       rebuildShoeBrandOptions();
       rebuildClothBrandOptions();
@@ -969,10 +1095,8 @@
       renderClothResult(null);
     });
 
-    // base
     els.base?.addEventListener("change", renderTable);
 
-    // tabs
     els.tabTable?.addEventListener("click", () => setMode("table"));
 
     els.tabFit?.addEventListener("click", () => {
@@ -1013,7 +1137,7 @@
       renderFitResult(null);
     });
 
-    // clothing actions (optional)
+    // clothing actions
     els.clothRun?.addEventListener("click", () => {
       const payload = buildClothPayload();
       renderClothResult(payload);
@@ -1057,14 +1181,12 @@
   document.addEventListener("DOMContentLoaded", async () => {
     bindEvents();
 
-    // load optional brand dict, then build selects
     await loadBrandDict();
     rebuildShoeBrandOptions();
     rebuildClothBrandOptions();
 
     applyLang(detectInitialLang());
 
-    // initial mode: table, but respect category availability
     setMode("table");
     renderTable();
   });
