@@ -32,7 +32,7 @@
 
   <!-- 共通CSS -->
   <link rel="stylesheet" href="/assets/nw-base.css">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="./style.css">
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -159,6 +159,12 @@
     <!-- Clothing fit panel -->
     <div id="clothPanel" class="fit-panel" hidden>
       <div class="cloth-toprow">
+        <label class="fit-brand">
+          <span data-i18n="ja">ブランド（任意）</span><span data-i18n="en">Brand (optional)</span>
+          <select id="clothBrand">
+            <option value="">—</option>
+          </select>
+        </label>
         <label>
           <span data-i18n="ja">部位</span><span data-i18n="en">Type</span>
           <select id="clothType">
