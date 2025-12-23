@@ -102,7 +102,7 @@
     </label>
   </section>
 
-  <!-- モード切替（靴の実寸入力） -->
+  <!-- モード切替 -->
   <section class="mode-switch">
     <div class="mode-tabs" role="tablist" aria-label="mode">
       <button id="tabTable" class="tab active" type="button" data-mode="table">
@@ -111,10 +111,13 @@
       <button id="tabFit" class="tab" type="button" data-mode="fit">
         <span data-i18n="ja">実寸で判定（靴）</span><span data-i18n="en">Fit by cm (Shoes)</span>
       </button>
+      <button id="tabCloth" class="tab" type="button" data-mode="cloth">
+        <span data-i18n="ja">実寸で判定（服）</span><span data-i18n="en">Fit by cm (Clothing)</span>
+      </button>
     </div>
 
+    <!-- Shoes fit panel -->
     <div id="fitPanel" class="fit-panel" hidden>
-
       <div class="fit-grid">
         <label>
           <span data-i18n="ja">足長（cm）</span><span data-i18n="en">Foot length (cm)</span>
@@ -127,12 +130,10 @@
         </label>
       </div>
 
-      <!-- Brand (optional) -->
       <label class="fit-brand">
         <span data-i18n="ja">ブランド（任意）</span><span data-i18n="en">Brand (optional)</span>
         <select id="brandSelect">
           <option value="">—</option>
-          <!-- JSで投入 -->
         </select>
       </label>
 
@@ -152,6 +153,62 @@
       </p>
       <p class="fit-note" data-i18n="en">
         * Approximate. Fit varies by last shape, instep height, and sock thickness.
+      </p>
+    </div>
+
+    <!-- Clothing fit panel -->
+    <div id="clothPanel" class="fit-panel" hidden>
+      <div class="cloth-toprow">
+        <label>
+          <span data-i18n="ja">部位</span><span data-i18n="en">Type</span>
+          <select id="clothType">
+            <option value="tops"><span data-i18n="ja">トップス</span><span data-i18n="en">Tops</span></option>
+            <option value="bottoms"><span data-i18n="ja">ボトムス</span><span data-i18n="en">Bottoms</span></option>
+          </select>
+        </label>
+
+        <label>
+          <span data-i18n="ja">単位</span><span data-i18n="en">Unit</span>
+          <select id="clothUnit">
+            <option value="cm">cm</option>
+            <option value="inch">inch</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="cloth-grid">
+        <label>
+          <span data-i18n="ja">胸囲 / バスト（任意）</span><span data-i18n="en">Chest/Bust (optional)</span>
+          <input id="clothChest" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 96 / e.g. 96">
+        </label>
+
+        <label>
+          <span data-i18n="ja">ウエスト（必須）</span><span data-i18n="en">Waist (required)</span>
+          <input id="clothWaist" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 78 / e.g. 78">
+        </label>
+
+        <label>
+          <span data-i18n="ja">ヒップ（任意）</span><span data-i18n="en">Hip (optional)</span>
+          <input id="clothHip" type="text" inputmode="decimal" autocomplete="off" placeholder="例: 94 / e.g. 94">
+        </label>
+      </div>
+
+      <div class="fit-actions">
+        <button id="clothRun" class="primary" type="button">
+          <span data-i18n="ja">判定する</span><span data-i18n="en">Check</span>
+        </button>
+        <button id="clothReset" class="ghost" type="button">
+          <span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span>
+        </button>
+      </div>
+
+      <div id="clothResult" class="fit-result" aria-live="polite"></div>
+
+      <p class="fit-note" data-i18n="ja">
+        ※目安です。ブランドの型紙、伸縮素材、好みのフィット感で変わります。
+      </p>
+      <p class="fit-note" data-i18n="en">
+        * Approximate. Fit varies by brand pattern, stretch, and preference.
       </p>
     </div>
   </section>
