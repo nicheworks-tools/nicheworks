@@ -1,8 +1,10 @@
 /* app.js — Size Converter (JP ↔ US/EU)
- * Phase 1: Shoe fit checker by cm (foot length required, width optional)
- * Phase 2: Brand adjustment via brand.json (optional)
- * Phase 2.5: Brand list scaling (grouped optgroup)
- * Phase 3: Clothing fit by measurements (cm/inch) -> JP size -> US/EU
+ * Phase 1–2:
+ * - Table mode (clothing/shoes, base highlight)
+ * - Fit by cm (Shoes): foot length required, width optional (+ optional brand adjustments)
+ * - Fit by cm (Clothing): tops/bottoms, waist required (+ optional brand adjustments)
+ * - JP/EN toggle via [data-i18n]
+ * - Optional brand dictionary: ./brand.json
  */
 
 (() => {
@@ -11,45 +13,45 @@
   const $ = (id) => document.getElementById(id);
 
   const els = {
+    // selectors / table
     category: $("categorySelect"),
     gender: $("genderSelect"),
     base: $("baseSelect"),
     tbody: $("sizeTableBody"),
     table: document.querySelector(".size-table"),
+    resultSection: $("resultSection"),
 
     // i18n
     langButtons: document.querySelectorAll(".nw-lang-switch button"),
     i18nNodes: document.querySelectorAll("[data-i18n]"),
 
-    // mode tabs
+    // tabs / modes
     tabTable: $("tabTable"),
-    tabFit: $("tabFit"),
-    tabCloth: $("tabCloth"),
-
-    // panels
-    fitPanel: $("fitPanel"),
-    clothPanel: $("clothPanel"),
+    tabFit: $("tabFit"),       // shoes
+    tabCloth: $("tabCloth"),   // clothing (optional)
+    fitPanel: $("fitPanel"),   // shoes panel
+    clothPanel: $("clothPanel"), // clothing panel (optional)
 
     // shoes fit
     footLength: $("footLength"),
     footWidth: $("footWidth"),
-    brandSelect: $("brandSelect"),
     fitRun: $("fitRun"),
     fitReset: $("fitReset"),
     fitResult: $("fitResult"),
+    fitBrand: $("fitBrand"),
 
-    // clothing fit
+    // clothing fit (optional)
     clothType: $("clothType"),
-    clothUnit: $("clothUnit"),
     clothChest: $("clothChest"),
     clothWaist: $("clothWaist"),
     clothHip: $("clothHip"),
     clothRun: $("clothRun"),
     clothReset: $("clothReset"),
     clothResult: $("clothResult"),
+    clothBrand: $("clothBrand"),
   };
 
-  // MVP data (table output)
+  // --------- MVP size table data (later: move to JSON) ----------
   const DATA = {
     shoes: {
       men: [
@@ -60,7 +62,7 @@
         { jp: "26.5", us: "8.5", eu: "42" },
         { jp: "27.0", us: "9", eu: "42.5" },
         { jp: "27.5", us: "9.5", eu: "43" },
-        { jp: "28.0", us: "10", eu: "44" }
+        { jp: "28.0", us: "10", eu: "44" },
       ],
       women: [
         { jp: "22.0", us: "5", eu: "35" },
@@ -69,8 +71,8 @@
         { jp: "23.5", us: "6.5", eu: "37.5" },
         { jp: "24.0", us: "7", eu: "38" },
         { jp: "24.5", us: "7.5", eu: "39" },
-        { jp: "25.0", us: "8", eu: "39.5" }
-      ]
+        { jp: "25.0", us: "8", eu: "39.5" },
+      ],
     },
     clothing: {
       men: [
@@ -78,245 +80,254 @@
         { jp: "M", us: "M", eu: "48" },
         { jp: "L", us: "L", eu: "50" },
         { jp: "XL", us: "XL", eu: "52" },
-        { jp: "XXL", us: "XXL", eu: "54" }
+        { jp: "XXL", us: "XXL", eu: "54" },
       ],
       women: [
         { jp: "S", us: "2–4", eu: "34–36" },
         { jp: "M", us: "6–8", eu: "38–40" },
         { jp: "L", us: "10–12", eu: "42–44" },
-        { jp: "XL", us: "14–16", eu: "46–48" }
-      ]
-    }
+        { jp: "XL", us: "14–16", eu: "46–48" },
+      ],
+    },
   };
 
-  // Phase 3: measurement heuristics (cm ranges) — "approximate"
-  // We intentionally keep simple: pick size by waist primarily, refine with chest/hip if present.
-  // Ranges are inclusive lower bound, exclusive upper bound.
-  const CLOTH_RULES = {
+  // --------- Clothing fit heuristics (cm) ----------
+  // NOTE: This is a simple “pre-check” heuristic, not a brand-accurate chart.
+  // Use WAIST as primary metric for bottoms; CHEST for tops. HIP is tie-breaker.
+  const CLOTH_CHART = {
     men: {
       tops: [
-        { jp: "S", chest: [84, 92], waist: [70, 78] },
-        { jp: "M", chest: [92, 100], waist: [78, 86] },
-        { jp: "L", chest: [100, 108], waist: [86, 94] },
-        { jp: "XL", chest: [108, 116], waist: [94, 102] },
-        { jp: "XXL", chest: [116, 124], waist: [102, 110] }
+        { size: "S", chest: [82, 90], waist: [68, 76], hip: [82, 90] },
+        { size: "M", chest: [90, 98], waist: [76, 84], hip: [90, 98] },
+        { size: "L", chest: [98, 106], waist: [84, 92], hip: [98, 106] },
+        { size: "XL", chest: [106, 114], waist: [92, 100], hip: [106, 114] },
+        { size: "XXL", chest: [114, 122], waist: [100, 108], hip: [114, 122] },
       ],
       bottoms: [
-        { jp: "S", waist: [70, 78], hip: [86, 94] },
-        { jp: "M", waist: [78, 86], hip: [94, 102] },
-        { jp: "L", waist: [86, 94], hip: [102, 110] },
-        { jp: "XL", waist: [94, 102], hip: [110, 118] },
-        { jp: "XXL", waist: [102, 110], hip: [118, 126] }
-      ]
+        { size: "S", waist: [68, 76], hip: [82, 90] },
+        { size: "M", waist: [76, 84], hip: [90, 98] },
+        { size: "L", waist: [84, 92], hip: [98, 106] },
+        { size: "XL", waist: [92, 100], hip: [106, 114] },
+        { size: "XXL", waist: [100, 108], hip: [114, 122] },
+      ],
     },
     women: {
       tops: [
-        { jp: "S", chest: [76, 84], waist: [58, 66], hip: [82, 90] },
-        { jp: "M", chest: [84, 92], waist: [66, 74], hip: [90, 98] },
-        { jp: "L", chest: [92, 100], waist: [74, 82], hip: [98, 106] },
-        { jp: "XL", chest: [100, 108], waist: [82, 90], hip: [106, 114] }
+        { size: "S", chest: [78, 84], waist: [60, 66], hip: [84, 90] },
+        { size: "M", chest: [84, 90], waist: [66, 72], hip: [90, 96] },
+        { size: "L", chest: [90, 96], waist: [72, 78], hip: [96, 102] },
+        { size: "XL", chest: [96, 102], waist: [78, 84], hip: [102, 108] },
       ],
       bottoms: [
-        { jp: "S", waist: [58, 66], hip: [82, 90] },
-        { jp: "M", waist: [66, 74], hip: [90, 98] },
-        { jp: "L", waist: [74, 82], hip: [98, 106] },
-        { jp: "XL", waist: [82, 90], hip: [106, 114] }
-      ]
-    }
+        { size: "S", waist: [60, 66], hip: [84, 90] },
+        { size: "M", waist: [66, 72], hip: [90, 96] },
+        { size: "L", waist: [72, 78], hip: [96, 102] },
+        { size: "XL", waist: [78, 84], hip: [102, 108] },
+      ],
+    },
   };
 
   const LABELS = {
     ja: {
       noData: "この条件のデータがありません。",
-      invalidLen: "足長（cm）を正しく入力してください（例: 26.5）。",
-      invalidCloth: "ウエストを正しく入力してください（例: 78）。",
+      headers: { jp: "JP", us: "US", eu: "EU" },
+
+      // mode
       notShoe: "実寸判定は「靴」のみ対応です。",
-      notCloth: "服の実寸判定は「衣類」のみ対応です。",
+      invalidLen: "足長（cm）を正しく入力してください（例: 26.5）。",
       fitTitle: "判定結果（目安）",
       recommend: "推奨サイズ",
-      near: "候補（±0.5）",
+      near: "近いサイズ",
       cautionWide: "幅広の傾向：窮屈なら +0.5cm を検討。",
       cautionNarrow: "幅細めの傾向：大きすぎ注意（まずは基準サイズ）。",
       cautionStd: "標準的：まずは基準サイズから。",
-      borderline: "境界付近です。±0.5cm どちらも候補に入ります（レビュー優先推奨）。",
-      widthHowto: "足幅は「最も広い部分」を立った状態でまっすぐ測るのが目安です。",
-      brandBlockTitle: "ブランド補正（任意）",
-      brandApplied: "ブランド補正を適用しました",
+
+      // brand
+      brandBlockTitle: "ブランド補正",
       brandUnavailable: "ブランド辞書を読み込めませんでした（補正なしで動作中）",
-      clothTitle: "服の判定結果（目安）",
-      clothBasedOn: "主にウエスト基準（胸囲/ヒップがあれば補助）",
-      clothUnitCm: "cm換算",
-      clothBorder: "境界付近：上下サイズも候補です（好みのフィット感で調整）。",
-      groups: {
-        sports: "スポーツ",
-        running: "ランニング",
-        outdoor: "アウトドア",
-        casual: "カジュアル",
-        leather: "革靴",
-        boots: "ブーツ",
-        comfort: "コンフォート"
-      },
-      headers: { jp: "JP", us: "US", eu: "EU" }
+
+      // clothing fit
+      notCloth: "実寸判定（服）は「衣類」のみ対応です。",
+      invalidWaist: "ウエスト（cm）を正しく入力してください（例: 78）。",
+      invalidChest: "胸囲（cm）は数値で入力してください（任意）。",
+      invalidHip: "ヒップ（cm）は数値で入力してください（任意）。",
+      clothTitle: "判定結果（服・目安）",
+      clothPrimary: "主に {primary} で判定しています。",
+      chest: "胸囲",
+      waist: "ウエスト",
+      hip: "ヒップ",
+      clothBorderline: "境界付近：迷うなら「上のサイズ」も検討。",
+      clothBrandApplied: "ブランド補正を適用しました（服）",
+      clothBrandUnavailable: "服ブランド辞書を読み込めませんでした（補正なしで動作中）",
     },
     en: {
       noData: "No data for this selection.",
-      invalidLen: "Enter a valid foot length in cm (e.g., 26.5).",
-      invalidCloth: "Enter a valid waist value (e.g., 78).",
+      headers: { jp: "JP", us: "US", eu: "EU" },
+
       notShoe: "Fit checker supports shoes only.",
-      notCloth: "Clothing fit supports clothing category only.",
+      invalidLen: "Enter a valid foot length in cm (e.g., 26.5).",
       fitTitle: "Result (approx.)",
       recommend: "Recommended",
-      near: "Candidates (±0.5)",
+      near: "Nearby sizes",
       cautionWide: "Wider foot: consider +0.5 cm if tight.",
       cautionNarrow: "Narrower foot: beware of sizing up too much.",
       cautionStd: "Typical: start with the base size.",
-      borderline: "Borderline. Both ±0.5 cm can be valid (check reviews if unsure).",
-      widthHowto: "Measure width at the widest part (standing is recommended).",
-      brandBlockTitle: "Brand adjustment (optional)",
-      brandApplied: "Brand adjustment applied",
-      brandUnavailable: "Could not load brand dictionary (running without it).",
-      clothTitle: "Clothing result (approx.)",
-      clothBasedOn: "Mostly based on waist (chest/hip help if provided).",
-      clothUnitCm: "converted to cm",
-      clothBorder: "Borderline: consider adjacent sizes (adjust by preference).",
-      groups: {
-        sports: "Sports",
-        running: "Running",
-        outdoor: "Outdoor",
-        casual: "Casual",
-        leather: "Leather",
-        boots: "Boots",
-        comfort: "Comfort"
-      },
-      headers: { jp: "JP", us: "US", eu: "EU" }
-    }
+
+      brandBlockTitle: "Brand adjustment",
+      brandUnavailable: "Could not load brand dictionary (running without adjustments).",
+
+      notCloth: "Clothing fit supports clothing category only.",
+      invalidWaist: "Enter a valid waist in cm (e.g., 78).",
+      invalidChest: "Chest (cm) must be a number (optional).",
+      invalidHip: "Hip (cm) must be a number (optional).",
+      clothTitle: "Result (clothing, approx.)",
+      clothPrimary: "Sizing is based mainly on {primary}.",
+      chest: "Chest",
+      waist: "Waist",
+      hip: "Hip",
+      clothBorderline: "Near boundary: consider sizing up if unsure.",
+      clothBrandApplied: "Clothing brand adjustment applied",
+      clothBrandUnavailable: "Could not load clothing brand dictionary (running without it).",
+    },
   };
 
   let currentLang = "ja";
-  let currentMode = "table"; // table | fit | cloth
-
-  // --- brand dictionary ---
+  let currentMode = "table"; // table | fit (shoes) | cloth
   let brandDict = null;
   let brandLoadError = false;
 
-  async function loadBrandDict() {
-    brandLoadError = false;
-    try {
-      const res = await fetch("./brand.json", { cache: "no-store" });
-      if (!res.ok) throw new Error(`brand.json HTTP ${res.status}`);
-      const json = await res.json();
-      brandDict = json;
-    } catch (e) {
-      brandDict = null;
-      brandLoadError = true;
-      console.warn("[size-converter] brand.json load failed:", e);
-    } finally {
-      rebuildBrandOptions();
-    }
+  // ---------- helpers ----------
+  function escapeHtml(s) {
+    return String(s)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
   }
 
-  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
-
   function parseDecimal(val) {
-    if (typeof val !== "string") return null;
-    const cleaned = val.trim().replace(",", ".");
+    if (val == null) return null;
+    const cleaned = String(val).trim().replace(",", ".");
     if (!cleaned) return null;
     const n = Number(cleaned);
     return Number.isFinite(n) ? n : null;
   }
 
-  function toCm(n, unit) {
-    if (!Number.isFinite(n)) return null;
-    if (unit === "inch") return n * 2.54;
-    return n;
-  }
-
-  function getBrandListForCurrent() {
-    const gen = els.gender?.value || "men";
-    return brandDict?.shoes?.[gen] ?? [];
-  }
-
-  function findBrandById(id) {
-    if (!id) return null;
-    const list = getBrandListForCurrent();
-    return list.find((b) => b.id === id) || null;
-  }
-
-  function groupLabel(groupKey) {
-    const g = LABELS?.[currentLang]?.groups?.[groupKey];
-    return g || groupKey || "Other";
-  }
-
-  function rebuildBrandOptions() {
-    if (!els.brandSelect) return;
-
-    const shoeOnly = els.category?.value === "shoes";
-    els.brandSelect.disabled = !shoeOnly;
-
-    const prev = els.brandSelect.value || "";
-
-    while (els.brandSelect.firstChild) els.brandSelect.removeChild(els.brandSelect.firstChild);
-
-    const opt0 = document.createElement("option");
-    opt0.value = "";
-    opt0.textContent = "—";
-    els.brandSelect.appendChild(opt0);
-
-    if (!shoeOnly) {
-      els.brandSelect.value = "";
-      return;
-    }
-
-    const brands = getBrandListForCurrent();
-    if (!brands.length) {
-      els.brandSelect.value = "";
-      return;
-    }
-
-    const buckets = new Map();
-    brands.forEach((b) => {
-      const key = (b.group || "other").toLowerCase();
-      if (!buckets.has(key)) buckets.set(key, []);
-      buckets.get(key).push(b);
-    });
-
-    const order = ["running", "sports", "outdoor", "casual", "leather", "boots", "comfort", "other"];
-    const keys = Array.from(buckets.keys()).sort((a, b) => {
-      const ia = order.indexOf(a);
-      const ib = order.indexOf(b);
-      const pa = ia === -1 ? 999 : ia;
-      const pb = ib === -1 ? 999 : ib;
-      if (pa !== pb) return pa - pb;
-      return a.localeCompare(b);
-    });
-
-    keys.forEach((key) => {
-      const list = buckets.get(key) || [];
-      list.sort((a, b) => String(a.label || a.id).localeCompare(String(b.label || b.id)));
-
-      const og = document.createElement("optgroup");
-      og.label = groupLabel(key);
-
-      list.forEach((b) => {
-        const opt = document.createElement("option");
-        opt.value = b.id;
-        opt.textContent = b.label || b.id;
-        og.appendChild(opt);
-      });
-
-      els.brandSelect.appendChild(og);
-    });
-
-    const still = !!findBrandById(prev);
-    els.brandSelect.value = still ? prev : "";
-  }
-
-  // ---------- i18n ----------
   function detectInitialLang() {
     const browserLang = (navigator.language || "").toLowerCase();
     return browserLang.startsWith("ja") ? "ja" : "en";
   }
 
+  function t(key, vars) {
+    let s = LABELS[currentLang][key] ?? "";
+    if (vars && typeof vars === "object") {
+      Object.keys(vars).forEach((k) => {
+        s = s.replaceAll(`{${k}}`, String(vars[k]));
+      });
+    }
+    return s;
+  }
+
+  // ---------- brand dictionary ----------
+  async function loadBrandDict() {
+    try {
+      const res = await fetch("./brand.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(`brand.json HTTP ${res.status}`);
+      const json = await res.json();
+      brandDict = json;
+      brandLoadError = false;
+    } catch (e) {
+      brandDict = null;
+      brandLoadError = true;
+      // keep silent; tool still works without it
+      // console.warn(e);
+    }
+  }
+
+  function rebuildShoeBrandOptions() {
+    if (!els.fitBrand) return;
+
+    const shoeOnly = els.category?.value === "shoes";
+    els.fitBrand.disabled = !shoeOnly;
+
+    const prev = els.fitBrand.value || "";
+    while (els.fitBrand.firstChild) els.fitBrand.removeChild(els.fitBrand.firstChild);
+
+    const opt0 = document.createElement("option");
+    opt0.value = "";
+    opt0.textContent = "—";
+    els.fitBrand.appendChild(opt0);
+
+    if (!shoeOnly) {
+      els.fitBrand.value = "";
+      return;
+    }
+
+    const gen = els.gender?.value || "men";
+    const list = brandDict?.shoes?.[gen] ?? [];
+    if (!Array.isArray(list) || !list.length) {
+      els.fitBrand.value = "";
+      return;
+    }
+
+    list
+      .slice()
+      .sort((a, b) => String(a.label || a.id).localeCompare(String(b.label || b.id)))
+      .forEach((b) => {
+        const opt = document.createElement("option");
+        opt.value = b.id;
+        opt.textContent = b.label || b.id;
+        els.fitBrand.appendChild(opt);
+      });
+
+    const still = list.some((b) => b.id === prev);
+    els.fitBrand.value = still ? prev : "";
+  }
+
+  function rebuildClothBrandOptions() {
+    if (!els.clothBrand) return;
+
+    const clothOnly = els.category?.value === "clothing";
+    els.clothBrand.disabled = !clothOnly;
+
+    const prev = els.clothBrand.value || "";
+    while (els.clothBrand.firstChild) els.clothBrand.removeChild(els.clothBrand.firstChild);
+
+    const opt0 = document.createElement("option");
+    opt0.value = "";
+    opt0.textContent = "—";
+    els.clothBrand.appendChild(opt0);
+
+    if (!clothOnly) {
+      els.clothBrand.value = "";
+      return;
+    }
+
+    const gen = els.gender?.value || "men";
+    const type = els.clothType?.value || "tops";
+    const list = brandDict?.clothing?.[gen]?.[type] ?? [];
+
+    if (!Array.isArray(list) || !list.length) {
+      els.clothBrand.value = "";
+      return;
+    }
+
+    list
+      .slice()
+      .sort((a, b) => String(a.label || a.id).localeCompare(String(b.label || b.id)))
+      .forEach((b) => {
+        const opt = document.createElement("option");
+        opt.value = b.id;
+        opt.textContent = b.label || b.id;
+        els.clothBrand.appendChild(opt);
+      });
+
+    const still = list.some((b) => b.id === prev);
+    els.clothBrand.value = still ? prev : "";
+  }
+
+  // ---------- i18n ----------
   function applyLang(lang) {
     currentLang = lang;
 
@@ -330,30 +341,37 @@
 
     document.documentElement.lang = lang === "ja" ? "ja" : "en";
 
-    rebuildBrandOptions();
+    ensureTableHeaders();
     renderTable();
     renderFitResult(null);
     renderClothResult(null);
+
+    // keep brand selects rebuilt (labels don't change, but availability does)
+    rebuildShoeBrandOptions();
+    rebuildClothBrandOptions();
   }
 
   // ---------- table mode ----------
   function getRows() {
-    const cat = els.category.value;
-    const gen = els.gender.value;
+    const cat = els.category?.value;
+    const gen = els.gender?.value;
     return DATA?.[cat]?.[gen] ?? [];
   }
 
   function clearTbody() {
+    if (!els.tbody) return;
     while (els.tbody.firstChild) els.tbody.removeChild(els.tbody.firstChild);
   }
 
   function setHeaderHighlight(baseKey) {
+    if (!els.table) return;
     const ths = els.table.querySelectorAll("thead th");
     const order = ["jp", "us", "eu"];
     ths.forEach((th, idx) => th.classList.toggle("is-base", order[idx] === baseKey));
   }
 
   function ensureTableHeaders() {
+    if (!els.table) return;
     const ths = els.table.querySelectorAll("thead th");
     if (ths.length === 3) {
       ths[0].textContent = LABELS[currentLang].headers.jp;
@@ -363,6 +381,7 @@
   }
 
   function renderEmptyRow(text) {
+    if (!els.tbody) return;
     const tr = document.createElement("tr");
     const td = document.createElement("td");
     td.colSpan = 3;
@@ -397,8 +416,9 @@
 
   function renderTable() {
     if (currentMode !== "table") return;
+    if (!els.base || !els.category || !els.gender) return;
 
-    const baseKey = els.base.value;
+    const baseKey = els.base.value; // jp | us | eu
     const rows = getRows();
 
     ensureTableHeaders();
@@ -409,11 +429,10 @@
       renderEmptyRow(LABELS[currentLang].noData);
       return;
     }
-
     renderRows(rows, baseKey);
   }
 
-  // ---------- shoe fit ----------
+  // ---------- shoes fit ----------
   function getShoeRows() {
     return DATA?.shoes?.[els.gender.value] ?? [];
   }
@@ -442,91 +461,81 @@
     return "std";
   }
 
-  function buildFitPayload() {
-    if (els.category.value !== "shoes") return { error: LABELS[currentLang].notShoe };
+  function getShoeBrand(gen, id) {
+    if (!id) return null;
+    const list = brandDict?.shoes?.[gen] ?? [];
+    return list.find((b) => b.id === id) || null;
+  }
 
-    const lengthCm = parseDecimal(els.footLength.value);
-    if (!Number.isFinite(lengthCm) || lengthCm < 18 || lengthCm > 35) {
+  function buildFitPayload() {
+    if (!els.category || !els.gender) return { error: LABELS[currentLang].noData };
+
+    if (els.category.value !== "shoes") {
+      return { error: LABELS[currentLang].notShoe };
+    }
+
+    const lengthCmRaw = parseDecimal(els.footLength?.value);
+    if (!Number.isFinite(lengthCmRaw) || lengthCmRaw < 18 || lengthCmRaw > 35) {
       return { error: LABELS[currentLang].invalidLen };
     }
 
-    const widthCm = parseDecimal(els.footWidth.value);
+    const widthCm = parseDecimal(els.footWidth?.value);
+    const gen = els.gender.value;
+
+    // Optional brand length adjustment
+    const brandId = els.fitBrand ? (els.fitBrand.value || "") : "";
+    const brand = getShoeBrand(gen, brandId);
+    const lenOffset = brand ? Number(brand.length_offset_cm || 0) : 0;
+
+    const lengthCm = lengthCmRaw + (Number.isFinite(lenOffset) ? lenOffset : 0);
+
     const rows = getShoeRows();
     if (!rows.length) return { error: LABELS[currentLang].noData };
 
+    // Rule: target JP ≈ foot length rounded to nearest 0.5
     const roundedJP = Math.round(lengthCm * 2) / 2;
-
-    const lowerStep = Math.floor(lengthCm * 2) / 2;
-    const stepMid = lowerStep + 0.25;
-    const distToMid = Math.abs(lengthCm - stepMid);
-    const isBorderline = distToMid <= 0.10;
-
-    const lowerJP = roundedJP - 0.5;
-    const upperJP = roundedJP + 0.5;
 
     const idx = closestIndexByJP(rows, roundedJP);
     if (idx < 0) return { error: LABELS[currentLang].noData };
 
     const rec = rows[idx];
+    const near = [];
+    if (rows[idx - 1]) near.push(rows[idx - 1]);
+    near.push(rows[idx]);
+    if (rows[idx + 1]) near.push(rows[idx + 1]);
 
-    const candidates = [];
-    const pushIfExistsByJP = (jpVal) => {
-      const i = closestIndexByJP(rows, jpVal);
-      if (i < 0) return;
-      const r = rows[i];
-      if (candidates.some((x) => x.jp === r.jp && x.us === r.us && x.eu === r.eu)) return;
-      candidates.push(r);
-    };
-    pushIfExistsByJP(lowerJP);
-    pushIfExistsByJP(roundedJP);
-    pushIfExistsByJP(upperJP);
-
-    const wc = Number.isFinite(widthCm) ? widthClass(lengthCm, widthCm) : null;
+    const wc = Number.isFinite(widthCm) ? widthClass(lengthCmRaw, widthCm) : null;
 
     let caution = "";
     if (wc === "wide") caution = LABELS[currentLang].cautionWide;
     else if (wc === "narrow") caution = LABELS[currentLang].cautionNarrow;
     else if (wc === "std") caution = LABELS[currentLang].cautionStd;
 
-    const brandId = els.brandSelect ? (els.brandSelect.value || "") : "";
-    const brand = findBrandById(brandId);
-    const brandOffset = brand ? Number(brand.offset || 0) : 0;
-
-    let brandRec = null;
-    let brandNote = null;
-
-    if (brand) {
-      const adjusted = roundedJP + brandOffset;
-      const snapped = Math.round(adjusted * 2) / 2;
-
-      const bIdx = closestIndexByJP(rows, snapped);
-      if (bIdx >= 0) brandRec = rows[bIdx];
-
-      brandNote = currentLang === "ja" ? (brand.note_ja || "") : (brand.note_en || "");
-    }
-
     return {
       error: null,
-      lengthCm,
+      lengthCmRaw,
+      lengthCmAdjusted: lengthCm,
+      lenOffset: Number.isFinite(lenOffset) ? lenOffset : 0,
       widthCm: Number.isFinite(widthCm) ? widthCm : null,
       roundedJP,
-      isBorderline,
       recommend: rec,
-      candidates,
+      near,
+      widthClass: wc,
       caution,
       brandSelected: !!brand,
       brandLabel: brand ? (brand.label || brand.id) : "",
-      brandOffset,
-      brandRecommend: brandRec,
-      brandNote,
-      brandLoadError
+      brandNote: brand ? (currentLang === "ja" ? (brand.note_ja || "") : (brand.note_en || "")) : "",
+      brandLoadError,
     };
   }
 
   function renderFitResult(payload) {
     if (!els.fitResult) return;
 
-    if (!payload) { els.fitResult.innerHTML = ""; return; }
+    if (!payload) {
+      els.fitResult.innerHTML = "";
+      return;
+    }
 
     if (payload.error) {
       els.fitResult.innerHTML = `<div class="fit-card error">${escapeHtml(payload.error)}</div>`;
@@ -538,12 +547,16 @@
     const near = LABELS[currentLang].near;
 
     const rec = payload.recommend;
-    const nearHtml = (payload.candidates || [])
-      .map((r) => `
+
+    const nearHtml = payload.near
+      .map(
+        (r) => `
         <li>
           <strong>JP ${escapeHtml(String(r.jp))}</strong>
           <span class="muted">/ US ${escapeHtml(String(r.us))} / EU ${escapeHtml(String(r.eu))}</span>
-        </li>`).join("");
+        </li>`
+      )
+      .join("");
 
     const widthLine =
       payload.widthCm != null
@@ -553,34 +566,30 @@
            </div>`
         : "";
 
-    const cautionLine = payload.caution ? `<div class="fit-caution">${escapeHtml(payload.caution)}</div>` : "";
-    const borderlineLine = payload.isBorderline ? `<div class="fit-borderline">${escapeHtml(LABELS[currentLang].borderline)}</div>` : "";
-    const howtoLine = payload.widthCm != null ? `<div class="fit-howto">${escapeHtml(LABELS[currentLang].widthHowto)}</div>` : "";
+    const cautionLine =
+      payload.caution
+        ? `<div class="fit-caution">${escapeHtml(payload.caution)}</div>`
+        : "";
 
     let brandBlock = "";
-    if (payload.brandSelected && payload.brandRecommend) {
-      const b = payload.brandRecommend;
-      const sign = payload.brandOffset > 0 ? "+" : payload.brandOffset < 0 ? "−" : "";
-      const abs = Math.abs(payload.brandOffset);
-      const offsetText = `${sign}${abs.toFixed(1)}cm`;
+    if (payload.brandSelected) {
+      const off = payload.lenOffset || 0;
+      const sign = off > 0 ? "+" : off < 0 ? "−" : "";
+      const abs = Math.abs(off).toFixed(1);
+      const offText = `${sign}${abs}cm`;
 
       brandBlock = `
         <div class="fit-brandblock">
           <div class="fit-label">${escapeHtml(LABELS[currentLang].brandBlockTitle)}</div>
           <div class="fit-brandline">
             <span class="muted">${escapeHtml(payload.brandLabel)}:</span>
-            <strong>${escapeHtml(LABELS[currentLang].brandApplied)}</strong>
-            <span class="muted">(${escapeHtml(offsetText)})</span>
-          </div>
-          <div class="fit-big">
-            <span class="pill">JP ${escapeHtml(String(b.jp))}</span>
-            <span class="pill">US ${escapeHtml(String(b.us))}</span>
-            <span class="pill">EU ${escapeHtml(String(b.eu))}</span>
+            <strong>${escapeHtml(currentLang === "ja" ? "足長補正を適用" : "Length adjustment applied")}</strong>
+            <span class="muted">(${escapeHtml(offText)})</span>
           </div>
           ${payload.brandNote ? `<div class="fit-brandnote">${escapeHtml(payload.brandNote)}</div>` : ""}
         </div>
       `;
-    } else if (payload.brandLoadError && (els.brandSelect && els.brandSelect.value)) {
+    } else if (payload.brandLoadError && els.fitBrand && els.fitBrand.value) {
       brandBlock = `
         <div class="fit-brandblock">
           <div class="fit-label">${escapeHtml(LABELS[currentLang].brandBlockTitle)}</div>
@@ -595,7 +604,7 @@
 
         <div class="fit-meta">
           <span class="muted">${currentLang === "ja" ? "足長" : "Length"}:</span>
-          <strong>${payload.lengthCm.toFixed(1)} cm</strong>
+          <strong>${payload.lengthCmRaw.toFixed(1)} cm</strong>
           <span class="muted">→</span>
           <span class="muted">${currentLang === "ja" ? "判定JP" : "Target JP"}:</span>
           <strong>${payload.roundedJP.toFixed(1)} cm</strong>
@@ -613,193 +622,250 @@
         </div>
 
         ${cautionLine}
-        ${borderlineLine}
-        ${howtoLine}
-        ${brandBlock}
 
         <div class="fit-sub">
           <div class="fit-label">${escapeHtml(near)}</div>
           <ul class="fit-list">${nearHtml}</ul>
         </div>
+
+        ${brandBlock}
       </div>
     `;
   }
 
   // ---------- clothing fit ----------
-  function mapClothingJPToRow(jpSize) {
-    const rows = DATA?.clothing?.[els.gender.value] ?? [];
-    return rows.find((r) => String(r.jp).toUpperCase() === String(jpSize).toUpperCase()) || null;
+  function getClothBrand(gen, type, id) {
+    if (!id) return null;
+    const list = brandDict?.clothing?.[gen]?.[type] ?? [];
+    return list.find((b) => b.id === id) || null;
   }
 
-  function inRange(val, range) {
-    if (!range || range.length !== 2) return false;
-    return val >= range[0] && val < range[1];
+  function scoreRange(val, range) {
+    if (!Number.isFinite(val) || !range) return 0;
+    const [lo, hi] = range;
+    if (val < lo) return lo - val;
+    if (val > hi) return val - hi;
+    // inside range => 0 (perfect)
+    return 0;
   }
 
-  function scoreRule(rule, meas) {
-    // waist is primary; chest/hip refine if provided
-    let score = 0;
-
-    if (Number.isFinite(meas.waist)) {
-      if (rule.waist && inRange(meas.waist, rule.waist)) score += 5;
-      else score -= 5;
-    }
-
-    if (Number.isFinite(meas.chest) && rule.chest) {
-      if (inRange(meas.chest, rule.chest)) score += 2;
-      else score -= 1;
-    }
-
-    if (Number.isFinite(meas.hip) && rule.hip) {
-      if (inRange(meas.hip, rule.hip)) score += 2;
-      else score -= 1;
-    }
-
-    return score;
+  function within(val, range) {
+    if (!Number.isFinite(val) || !range) return false;
+    const [lo, hi] = range;
+    return val >= lo && val <= hi;
   }
 
-  function pickClothingRule(rules, meas) {
+  function findBestClothSize(gen, type, chest, waist, hip) {
+    const chart = CLOTH_CHART?.[gen]?.[type] ?? [];
+    if (!chart.length) return null;
+
+    const primaryKey = type === "bottoms" ? "waist" : "chest";
+    const primaryVal = type === "bottoms" ? waist : chest;
+
+    // If primary metric missing (tops chest optional), fallback to waist.
+    const primaryUsed = Number.isFinite(primaryVal) ? primaryKey : "waist";
+
     let best = null;
-    let bestScore = -Infinity;
+    let bestScore = Infinity;
+    let borderline = false;
 
-    rules.forEach((r) => {
-      const s = scoreRule(r, meas);
-      if (s > bestScore) {
+    chart.forEach((row) => {
+      // Score = sum of distances to ranges for provided metrics (lower is better)
+      let s = 0;
+      if (Number.isFinite(chest) && row.chest) s += scoreRange(chest, row.chest);
+      if (Number.isFinite(waist) && row.waist) s += scoreRange(waist, row.waist);
+      if (Number.isFinite(hip) && row.hip) s += scoreRange(hip, row.hip);
+
+      // Prefer sizes whose primary metric is within range
+      if (Number.isFinite(primaryVal) && row[primaryKey]) {
+        if (!within(primaryVal, row[primaryKey])) s += 0.6; // small penalty
+      }
+
+      if (s < bestScore) {
         bestScore = s;
-        best = r;
+        best = row;
       }
     });
 
-    return { best, bestScore };
-  }
+    // Borderline heuristic: if best primary metric is within 1.0cm to boundary
+    if (best && best[primaryUsed] && Number.isFinite(type === "bottoms" ? waist : chest)) {
+      const v = type === "bottoms" ? waist : chest;
+      const [lo, hi] = best[primaryUsed];
+      if (Number.isFinite(v)) {
+        const d = Math.min(Math.abs(v - lo), Math.abs(v - hi));
+        borderline = d <= 1.0;
+      }
+    }
 
-  function isBorderlineCloth(rule, meas) {
-    // If waist is close to boundary within 1.5cm => borderline
-    if (!rule?.waist || !Number.isFinite(meas.waist)) return false;
-    const [lo, hi] = rule.waist;
-    const d = Math.min(Math.abs(meas.waist - lo), Math.abs(meas.waist - hi));
-    return d <= 1.5;
-  }
-
-  function adjacentSize(jp) {
-    const orderMen = ["S", "M", "L", "XL", "XXL"];
-    const orderWomen = ["S", "M", "L", "XL"];
-    const order = els.gender.value === "men" ? orderMen : orderWomen;
-
-    const idx = order.indexOf(String(jp).toUpperCase());
     return {
-      prev: idx > 0 ? order[idx - 1] : null,
-      next: idx >= 0 && idx < order.length - 1 ? order[idx + 1] : null
+      best,
+      score: bestScore,
+      borderline,
+      primaryUsed,
     };
+  }
+
+  function mapClothToTableSize(gen, sizeJP) {
+    const rows = DATA?.clothing?.[gen] ?? [];
+    return rows.find((r) => String(r.jp) === String(sizeJP)) || null;
   }
 
   function buildClothPayload() {
+    if (!els.category || !els.gender) return { error: LABELS[currentLang].noData };
     if (els.category.value !== "clothing") return { error: LABELS[currentLang].notCloth };
 
-    const unit = els.clothUnit?.value || "cm";
-    const type = els.clothType?.value || "tops";
     const gen = els.gender.value;
+    const type = els.clothType ? (els.clothType.value || "tops") : "tops";
 
-    const chestRaw = parseDecimal(els.clothChest.value);
-    const waistRaw = parseDecimal(els.clothWaist.value);
-    const hipRaw = parseDecimal(els.clothHip.value);
-
-    const chest = toCm(chestRaw, unit);
-    const waist = toCm(waistRaw, unit);
-    const hip = toCm(hipRaw, unit);
-
-    // require waist
-    if (!Number.isFinite(waist) || waist < 40 || waist > 160) {
-      return { error: LABELS[currentLang].invalidCloth };
+    const waistRaw = parseDecimal(els.clothWaist?.value);
+    if (!Number.isFinite(waistRaw) || waistRaw < 40 || waistRaw > 160) {
+      return { error: LABELS[currentLang].invalidWaist };
     }
 
-    const rules = CLOTH_RULES?.[gen]?.[type] ?? [];
-    if (!rules.length) return { error: LABELS[currentLang].noData };
+    const chest = parseDecimal(els.clothChest?.value);
+    if (els.clothChest && els.clothChest.value.trim() && !Number.isFinite(chest)) {
+      return { error: LABELS[currentLang].invalidChest };
+    }
 
-    const meas = {
-      chest: Number.isFinite(chest) ? chest : null,
-      waist,
-      hip: Number.isFinite(hip) ? hip : null
-    };
+    const hip = parseDecimal(els.clothHip?.value);
+    if (els.clothHip && els.clothHip.value.trim() && !Number.isFinite(hip)) {
+      return { error: LABELS[currentLang].invalidHip };
+    }
 
-    const { best } = pickClothingRule(rules, meas);
-    if (!best) return { error: LABELS[currentLang].noData };
+    // Brand adjustment (clothing): apply waist_offset_cm to WAIST only (simple + safe)
+    const brandId = els.clothBrand ? (els.clothBrand.value || "") : "";
+    const brand = getClothBrand(gen, type, brandId);
+    const waistOffset = brand ? Number(brand.waist_offset_cm || 0) : 0;
 
-    const recRow = mapClothingJPToRow(best.jp);
-    if (!recRow) return { error: LABELS[currentLang].noData };
+    const waist = waistRaw + (Number.isFinite(waistOffset) ? waistOffset : 0);
 
-    const border = isBorderlineCloth(best, meas);
-    const adj = adjacentSize(best.jp);
+    const found = findBestClothSize(gen, type, chest, waist, hip);
+    if (!found || !found.best) return { error: LABELS[currentLang].noData };
 
-    const candidates = [];
-    const pushRow = (jp) => {
-      if (!jp) return;
-      const row = mapClothingJPToRow(jp);
-      if (!row) return;
-      if (candidates.some((x) => x.jp === row.jp)) return;
-      candidates.push(row);
-    };
-    if (adj.prev) pushRow(adj.prev);
-    pushRow(best.jp);
-    if (adj.next) pushRow(adj.next);
+    const sizeJP = found.best.size;
+    const mapped = mapClothToTableSize(gen, sizeJP) || { jp: sizeJP, us: "—", eu: "—" };
+
+    // Nearby (prev/next in chart order)
+    const chart = CLOTH_CHART?.[gen]?.[type] ?? [];
+    const idx = chart.findIndex((r) => r.size === sizeJP);
+    const near = [];
+    if (idx >= 0) {
+      if (chart[idx - 1]) near.push(chart[idx - 1].size);
+      near.push(chart[idx].size);
+      if (chart[idx + 1]) near.push(chart[idx + 1].size);
+    } else {
+      near.push(sizeJP);
+    }
+    const nearMapped = near.map((s) => mapClothToTableSize(gen, s) || { jp: s, us: "—", eu: "—" });
+
+    const primaryLabel =
+      found.primaryUsed === "chest" ? t("chest") :
+      found.primaryUsed === "waist" ? t("waist") : t("hip");
 
     return {
       error: null,
-      unit,
-      type,
       gen,
-      meas,
-      recommendJP: best.jp,
-      recommendRow: recRow,
-      candidates,
-      borderline: border
+      type,
+      input: {
+        chest: Number.isFinite(chest) ? chest : null,
+        waistRaw,
+        waistAdjusted: waist,
+        hip: Number.isFinite(hip) ? hip : null,
+      },
+      primaryLabel,
+      borderline: !!found.borderline,
+      recommend: mapped,
+      near: nearMapped,
+      brandSelected: !!brand,
+      brandLabel: brand ? (brand.label || brand.id) : "",
+      brandWaistOffset: Number.isFinite(waistOffset) ? waistOffset : 0,
+      brandNote: brand ? (currentLang === "ja" ? (brand.note_ja || "") : (brand.note_en || "")) : "",
+      brandLoadError,
     };
   }
 
   function renderClothResult(payload) {
     if (!els.clothResult) return;
 
-    if (!payload) { els.clothResult.innerHTML = ""; return; }
+    if (!payload) {
+      els.clothResult.innerHTML = "";
+      return;
+    }
 
     if (payload.error) {
       els.clothResult.innerHTML = `<div class="fit-card error">${escapeHtml(payload.error)}</div>`;
       return;
     }
 
-    const title = LABELS[currentLang].clothTitle;
-    const rec = payload.recommendRow;
+    const title = t("clothTitle");
+    const recommend = t("recommend");
+    const near = t("near");
 
-    const cmLineParts = [];
-    if (payload.meas.chest != null) cmLineParts.push(`${currentLang === "ja" ? "胸囲" : "Chest"}: ${payload.meas.chest.toFixed(1)} cm`);
-    cmLineParts.push(`${currentLang === "ja" ? "ウエスト" : "Waist"}: ${payload.meas.waist.toFixed(1)} cm`);
-    if (payload.meas.hip != null) cmLineParts.push(`${currentLang === "ja" ? "ヒップ" : "Hip"}: ${payload.meas.hip.toFixed(1)} cm`);
+    const rec = payload.recommend;
 
-    const nearHtml = (payload.candidates || [])
-      .map((r) => `
+    const metaLines = [];
+    if (payload.input.chest != null) metaLines.push(`${t("chest")}: ${payload.input.chest.toFixed(1)} cm`);
+    metaLines.push(`${t("waist")}: ${payload.input.waistRaw.toFixed(1)} cm`);
+    if (payload.input.hip != null) metaLines.push(`${t("hip")}: ${payload.input.hip.toFixed(1)} cm`);
+
+    const primaryLine = `<div class="fit-howto">${escapeHtml(t("clothPrimary", { primary: payload.primaryLabel }))}</div>`;
+
+    const borderlineLine = payload.borderline
+      ? `<div class="fit-borderline">${escapeHtml(t("clothBorderline"))}</div>`
+      : "";
+
+    const nearHtml = payload.near
+      .map(
+        (r) => `
         <li>
           <strong>JP ${escapeHtml(String(r.jp))}</strong>
           <span class="muted">/ US ${escapeHtml(String(r.us))} / EU ${escapeHtml(String(r.eu))}</span>
-        </li>`).join("");
+        </li>`
+      )
+      .join("");
 
-    const borderLine = payload.borderline
-      ? `<div class="fit-borderline">${escapeHtml(LABELS[currentLang].clothBorder)}</div>`
-      : "";
+    let brandBlock = "";
+    if (payload.brandSelected) {
+      const off = payload.brandWaistOffset || 0;
+      const sign = off > 0 ? "+" : off < 0 ? "−" : "";
+      const abs = Math.abs(off).toFixed(1);
+      const offText = `${sign}${abs}cm`;
+
+      brandBlock = `
+        <div class="fit-brandblock">
+          <div class="fit-label">${escapeHtml(LABELS[currentLang].brandBlockTitle)}</div>
+          <div class="fit-brandline">
+            <span class="muted">${escapeHtml(payload.brandLabel)}:</span>
+            <strong>${escapeHtml(LABELS[currentLang].clothBrandApplied)}</strong>
+            <span class="muted">(${escapeHtml(offText)})</span>
+          </div>
+          ${payload.brandNote ? `<div class="fit-brandnote">${escapeHtml(payload.brandNote)}</div>` : ""}
+        </div>
+      `;
+    } else if (payload.brandLoadError && els.clothBrand && els.clothBrand.value) {
+      brandBlock = `
+        <div class="fit-brandblock">
+          <div class="fit-label">${escapeHtml(LABELS[currentLang].brandBlockTitle)}</div>
+          <div class="fit-brandnote">${escapeHtml(LABELS[currentLang].clothBrandUnavailable)}</div>
+        </div>
+      `;
+    }
+
+    const waistAdjNote =
+      payload.brandSelected && payload.input.waistAdjusted !== payload.input.waistRaw
+        ? `<div class="fit-meta"><span class="muted">${escapeHtml(currentLang === "ja" ? "判定用ウエスト" : "Adjusted waist")}:</span> <strong>${payload.input.waistAdjusted.toFixed(1)} cm</strong></div>`
+        : "";
 
     els.clothResult.innerHTML = `
       <div class="fit-card">
         <div class="fit-title">${escapeHtml(title)}</div>
 
-        <div class="fit-meta">
-          <span class="muted">${escapeHtml(LABELS[currentLang].clothBasedOn)}</span>
-        </div>
-
-        <div class="fit-meta">
-          <span class="muted">${escapeHtml(LABELS[currentLang].clothUnitCm)}:</span>
-          <strong>${escapeHtml(cmLineParts.join(" / "))}</strong>
-        </div>
+        <div class="fit-meta">${escapeHtml(metaLines.join(" / "))}</div>
+        ${waistAdjNote}
+        ${primaryLine}
 
         <div class="fit-main">
-          <div class="fit-label">${escapeHtml(LABELS[currentLang].recommend)}</div>
+          <div class="fit-label">${escapeHtml(recommend)}</div>
           <div class="fit-big">
             <span class="pill">JP ${escapeHtml(String(rec.jp))}</span>
             <span class="pill">US ${escapeHtml(String(rec.us))}</span>
@@ -807,12 +873,14 @@
           </div>
         </div>
 
-        ${borderLine}
+        ${borderlineLine}
 
         <div class="fit-sub">
-          <div class="fit-label">${escapeHtml(LABELS[currentLang].near)}</div>
+          <div class="fit-label">${escapeHtml(near)}</div>
           <ul class="fit-list">${nearHtml}</ul>
         </div>
+
+        ${brandBlock}
       </div>
     `;
   }
@@ -821,101 +889,103 @@
   function setMode(mode) {
     currentMode = mode;
 
-    const isFit = mode === "fit";
+    const isTable = mode === "table";
+    const isShoeFit = mode === "fit";
     const isCloth = mode === "cloth";
 
-    els.tabTable?.classList.toggle("active", mode === "table");
-    els.tabFit?.classList.toggle("active", isFit);
-    els.tabCloth?.classList.toggle("active", isCloth);
+    // tabs
+    if (els.tabTable) els.tabTable.classList.toggle("active", isTable);
+    if (els.tabFit) els.tabFit.classList.toggle("active", isShoeFit);
+    if (els.tabCloth) els.tabCloth.classList.toggle("active", isCloth);
 
-    if (els.fitPanel) els.fitPanel.hidden = !isFit;
+    // panels
+    if (els.fitPanel) els.fitPanel.hidden = !isShoeFit;
     if (els.clothPanel) els.clothPanel.hidden = !isCloth;
 
-    const shoeOnly = els.category.value === "shoes";
-    const clothOnly = els.category.value === "clothing";
+    // table section
+    if (els.resultSection) els.resultSection.hidden = !isTable;
 
+    // base selector is table-only
+    if (els.base) els.base.disabled = !isTable;
+
+    // Fit tabs enabled state depends on category
+    const cat = els.category ? els.category.value : "clothing";
+
+    const shoeOnly = cat === "shoes";
     if (els.tabFit) {
       els.tabFit.disabled = !shoeOnly;
       els.tabFit.classList.toggle("disabled", !shoeOnly);
     }
+
+    const clothOnly = cat === "clothing";
     if (els.tabCloth) {
       els.tabCloth.disabled = !clothOnly;
       els.tabCloth.classList.toggle("disabled", !clothOnly);
     }
 
-    els.base.disabled = (isFit || isCloth);
+    // Brand selects availability
+    rebuildShoeBrandOptions();
+    rebuildClothBrandOptions();
 
-    if (els.brandSelect) {
-      els.brandSelect.disabled = !shoeOnly;
-      if (!shoeOnly) els.brandSelect.value = "";
-    }
-
-    if (mode === "table") {
+    // refresh
+    if (isTable) {
       renderFitResult(null);
       renderClothResult(null);
       renderTable();
-    } else if (isFit) {
+    } else if (isShoeFit) {
       renderClothResult(null);
-      renderTable();
       renderFitResult(null);
     } else if (isCloth) {
       renderFitResult(null);
-      renderTable();
       renderClothResult(null);
     }
-  }
-
-  // ---------- utils ----------
-  function escapeHtml(s) {
-    return String(s)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
   }
 
   // ---------- events ----------
   function bindEvents() {
-    els.category.addEventListener("change", () => {
+    // category
+    els.category?.addEventListener("change", () => {
       // if current mode becomes invalid, fallback to table
-      if (els.category.value !== "shoes" && currentMode === "fit") setMode("table");
-      if (els.category.value !== "clothing" && currentMode === "cloth") setMode("table");
+      if (currentMode === "fit" && els.category.value !== "shoes") setMode("table");
+      if (currentMode === "cloth" && els.category.value !== "clothing") setMode("table");
 
-      rebuildBrandOptions();
-      renderTable();
-      renderFitResult(null);
-      renderClothResult(null);
-
-      // update tab enabled state without switching mode forcibly
+      // update tabs
       setMode(currentMode);
+
+      // clear panels
+      renderFitResult(null);
+      renderClothResult(null);
+
+      // table
+      renderTable();
     });
 
-    els.gender.addEventListener("change", () => {
+    // gender
+    els.gender?.addEventListener("change", () => {
+      rebuildShoeBrandOptions();
+      rebuildClothBrandOptions();
       renderTable();
       renderFitResult(null);
       renderClothResult(null);
-      rebuildBrandOptions();
     });
 
-    els.base.addEventListener("change", renderTable);
+    // base
+    els.base?.addEventListener("change", renderTable);
 
-    // mode tabs
+    // tabs
     els.tabTable?.addEventListener("click", () => setMode("table"));
 
     els.tabFit?.addEventListener("click", () => {
-      if (els.category.value !== "shoes") return;
+      if (els.category?.value !== "shoes") return;
       setMode("fit");
     });
 
     els.tabCloth?.addEventListener("click", () => {
-      if (els.category.value !== "clothing") return;
+      if (els.category?.value !== "clothing") return;
       setMode("cloth");
     });
 
     // shoe fit actions
-    els.brandSelect?.addEventListener("change", () => renderFitResult(null));
-
     els.fitRun?.addEventListener("click", () => {
       const payload = buildFitPayload();
       renderFitResult(payload);
@@ -923,9 +993,9 @@
     });
 
     els.fitReset?.addEventListener("click", () => {
-      els.footLength.value = "";
-      els.footWidth.value = "";
-      if (els.brandSelect) els.brandSelect.value = "";
+      if (els.footLength) els.footLength.value = "";
+      if (els.footWidth) els.footWidth.value = "";
+      if (els.fitBrand) els.fitBrand.value = "";
       renderFitResult(null);
       els.footLength?.focus?.();
     });
@@ -939,7 +1009,11 @@
       });
     });
 
-    // cloth fit actions
+    els.fitBrand?.addEventListener("change", () => {
+      renderFitResult(null);
+    });
+
+    // clothing actions (optional)
     els.clothRun?.addEventListener("click", () => {
       const payload = buildClothPayload();
       renderClothResult(payload);
@@ -947,9 +1021,10 @@
     });
 
     els.clothReset?.addEventListener("click", () => {
-      els.clothChest.value = "";
-      els.clothWaist.value = "";
-      els.clothHip.value = "";
+      if (els.clothChest) els.clothChest.value = "";
+      if (els.clothWaist) els.clothWaist.value = "";
+      if (els.clothHip) els.clothHip.value = "";
+      if (els.clothBrand) els.clothBrand.value = "";
       renderClothResult(null);
       els.clothWaist?.focus?.();
     });
@@ -963,17 +1038,34 @@
       });
     });
 
+    els.clothType?.addEventListener("change", () => {
+      rebuildClothBrandOptions();
+      renderClothResult(null);
+    });
+
+    els.clothBrand?.addEventListener("change", () => {
+      renderClothResult(null);
+    });
+
     // i18n buttons
     els.langButtons.forEach((btn) => {
       btn.addEventListener("click", () => applyLang(btn.dataset.lang));
     });
   }
 
+  // ---------- boot ----------
   document.addEventListener("DOMContentLoaded", async () => {
     bindEvents();
+
+    // load optional brand dict, then build selects
+    await loadBrandDict();
+    rebuildShoeBrandOptions();
+    rebuildClothBrandOptions();
+
     applyLang(detectInitialLang());
+
+    // initial mode: table, but respect category availability
     setMode("table");
     renderTable();
-    await loadBrandDict();
   });
 })();
