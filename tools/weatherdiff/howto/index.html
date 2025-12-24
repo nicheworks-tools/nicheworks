@@ -4,19 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>WeatherDiff｜天気予報APIのズレ比較ガイド（症状→原因→対策） | NicheWorks</title>
-  <meta name="description" content="WeatherDiffの検索入口ページ。複数の天気API（Open-Meteo / MET Norway）の予報を並べて比較し、ズレ（差分）を確認できます。保存なし。" />
+  <title>WeatherDiff｜天気予報APIのズレ比較ガイド | NicheWorks</title>
+  <meta name="description" content="複数の天気予報API（Open-Meteo / MET Norway）の予報を並べて比較し、ズレ（差分）を確認できます。保存なし。" />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/howto/" />
 
-  <!-- hreflang -->
   <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/weatherdiff/howto/" />
   <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/weatherdiff/howto/en/" />
 
-  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <style>
-    :root{--bg:#fff;--bg-soft:#f9fafb;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
     .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
     .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
@@ -48,50 +46,47 @@
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">まず結論（30秒）</h2>
-      <ol>
-        <li>地点を入力（または「現在地検索」）</li>
-        <li>「比較」を押して、各APIの予報（今日/明日）を確認</li>
-        <li>下の「予報のズレ（比較結果）」で差分を一発チェック</li>
-      </ol>
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li>同じ地点の予報を、複数ソース（例：Open-Meteo / MET Norway）で並べて表示</li>
+        <li>今日/明日などの主要項目（気温・降水・風など）の差分（ズレ）を確認</li>
+        <li>差分が大きいときに、他の天気サービス（外部）で再確認するためのリンクへすぐ移動</li>
+      </ul>
       <div class="btns">
         <a class="btn primary" href="../">ツールを開く</a>
         <a class="btn" href="./en/">English guide</a>
       </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">こんなときに使う</h2>
+      <ul>
+        <li>天気サイトごとに言ってることが違う（雨/風/気温）ので、ズレを見て判断材料にしたい</li>
+        <li>「雨が降る/降らない」の境目が気になるので、複数ソースで事前に当たりをつけたい</li>
+        <li>旅行・洗濯・イベント前に、予報のばらつきをざっと確認したい</li>
+      </ul>
       <p class="muted" style="margin:8px 0 0">
-        ※これは参考情報です。重要な判断は公式情報（気象庁など）も確認してください。
+        関連キーワード：天気 予報 比較 / 予報 ずれ / weather API comparison / forecast discrepancy
       </p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">よくある症状（検索される言い方）</h2>
-      <ul>
-        <li>天気予報サイトによって言ってることが違う（どれを信じればいい？）</li>
-        <li>雨予報が外れがちなので、複数ソースで事前チェックしたい</li>
-        <li>気温・降水・風の予報がサービスによってどれくらいズレるか見たい</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        関連キーワード：天気API, 予報比較, 予報のズレ, Open-Meteo, MET Norway, weather API comparison
-      </p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">このツールで分かること</h2>
-      <ul>
-        <li>Open-Meteo と MET Norway の予報を並べて比較</li>
-        <li>今日/明日の「気温・降水・風」などの差分</li>
-        <li>差分が大きいときに「他のサービスで詳しく見る」リンクへすぐ飛べる</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">使い方（最短3ステップ）</h2>
+      <h2 style="margin:0 0 8px">使い方</h2>
       <ol>
-        <li>ツール画面を開く</li>
-        <li>地点を入力して「比較」</li>
-        <li>「予報のズレ（比較結果）」を見る</li>
+        <li>地点を入力（または現在地を使用）</li>
+        <li>「比較」を実行して、各ソースの予報を表示</li>
+        <li>「予報のズレ（比較結果）」を見て差分を確認</li>
       </ol>
       <p class="muted" style="margin:0">処理はブラウザ内のみ。サーバー保存はしません。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>このツールは「参考用」です。重要な判断は公式情報（気象庁など）も確認してください。</li>
+        <li>予報は本質的に不確実で、ソースが違えばズレることがあります（ズレ＝どれかが必ず正しい、とは限りません）。</li>
+        <li>外部サイトへのリンク先の内容は当ツールでは保証できません。</li>
+      </ul>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
