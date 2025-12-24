@@ -4,15 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>APIキー・トークン伏字ツール｜貼る前に漏洩防止（Redactor） | NicheWorks</title>
-  <meta name="description" content="ログや設定ファイルを貼る前に、APIキー/トークン/Authorization等の機密っぽい文字列を検出して伏字化する補助ツール。保存なし。" />
+  <title>APIキー・トークン伏字｜ログ共有前のサニタイズ | NicheWorks</title>
+  <meta name="description" content="ログや設定ファイルを貼る前に、APIキー/トークン/Authorization等の機密っぽい文字列を見つけて伏字化する補助ツール。保存なし。" />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/" />
 
-  <!-- hreflang -->
   <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/" />
   <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/en/" />
 
-  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <style>
@@ -42,60 +40,54 @@
       <a href="../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">APIキー・トークン伏字（Redactor）ガイド</h1>
-    <p class="muted" style="margin:0">貼る前に、機密っぽい文字列を検出して伏字化（保存なし）。</p>
+    <p class="muted" style="margin:0">ログ共有前に「鍵っぽい文字列」を見つけて伏字化（保存なし）。</p>
   </header>
 
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">まず結論（30秒）</h2>
-      <ol>
-        <li>共有したいログ/設定/JSONを貼る</li>
-        <li>検出された「キー/トークンっぽい箇所」を伏字にする</li>
-        <li>伏字後のテキストをコピペして共有する</li>
-      </ol>
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li>ログ/設定/JSON/curlなどのテキストから、機密っぽい文字列（APIキー・トークン・Authorization等）を見つけやすくする</li>
+        <li>共有用に伏字化して、貼り付けミスの確率を下げる（最終確認は人間）</li>
+        <li>ブラウザ内で処理（保存なし）</li>
+      </ul>
       <div class="btns">
         <a class="btn primary" href="../">ツールを開く</a>
         <a class="btn" href="./en/">English guide</a>
       </div>
-      <p class="muted" style="margin:8px 0 0">
-        ※最終確認は必ず人間が目視してください（伏字漏れゼロは保証できません）。
-      </p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">よくある症状（検索される言い方）</h2>
+      <h2 style="margin:0 0 8px">こんなときに使う</h2>
       <ul>
-        <li>GitHub Issue / Discord にログを貼りたいが、APIキーが混ざってないか不安</li>
-        <li><code>Authorization: Bearer ...</code> や <code>api_key=...</code> を消し忘れそう</li>
-        <li>.env / JSON / curlコマンドの一部を安全に共有したい</li>
+        <li>GitHub Issue / Discord / フォーラムにログを貼る前に、秘密情報が混ざってないか確認したい</li>
+        <li><code>Authorization: Bearer ...</code> / <code>api_key=...</code> を消し忘れそう</li>
+        <li>.env や設定ファイルの一部を、なるべく安全に共有したい</li>
       </ul>
       <p class="muted" style="margin:8px 0 0">
-        関連キーワード：api key redaction, token masking, bearer token, authorization header, secret sanitize, log sharing
+        関連キーワード：api key redaction / token masking / secret sanitize / bearer token
       </p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">このツールがやること（安全な言い方）</h2>
-      <ul>
-        <li>「APIキー/トークンに見えやすいパターン」を検出し、伏字化を手伝う</li>
-        <li>長いログでも「怪しい箇所」を見つけやすくする</li>
-        <li>処理はブラウザ内（保存なし）</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        例：<code>sk-****</code> / <code>Bearer ****</code> / <code>api_key=****</code> のように置き換えて共有しやすくします。
-      </p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">使い方（最短3ステップ）</h2>
+      <h2 style="margin:0 0 8px">使い方</h2>
       <ol>
         <li>ツール画面を開く</li>
         <li>共有したいテキストを貼る</li>
-        <li>伏字後のテキストをコピーして貼る</li>
+        <li>伏字後のテキストをコピーして共有する</li>
       </ol>
-      <p class="muted" style="margin:0">重要：伏字後も「鍵っぽい文字列」が残っていないか、必ず目視で確認してください。</p>
+      <p class="muted" style="margin:0">コツ：共有前に、伏字後テキストを上からざっと目視チェック。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>伏字漏れゼロは保証できません。最終確認は必ず目視で行ってください。</li>
+        <li>本当に危ない情報を外部に貼ってしまった場合は、キー/トークンの再発行（ローテーション）を検討してください。</li>
+        <li>このツールは「検出補助」です。100%の安全を担保するものではありません。</li>
+      </ul>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
