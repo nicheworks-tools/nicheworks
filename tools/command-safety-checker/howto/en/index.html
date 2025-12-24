@@ -40,7 +40,7 @@
       <a href="../../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">Command Safety Checker: Guide</h1>
-    <p class="muted" style="margin:0">Paste commands before running them. Detect risky patterns and show Low/Medium/High (no storage).</p>
+    <p class="muted" style="margin:0">Paste commands before running them. Spot risky patterns as a quick pre-run check (no storage).</p>
   </header>
 
   <main class="nw-main">
@@ -51,7 +51,7 @@
       <ul>
         <li>Paste bash/zsh/PowerShell commands and detect risky execution patterns</li>
         <li>Flags destructive actions (delete/overwrite), exfiltration (send/output), and over-privileged runs (sudo/admin)</li>
-        <li>Shows a simple risk level: <code>Low / Medium / High</code> (final decision is yours)</li>
+        <li>Shows a simple risk level: <code>Low / Medium / High</code> (for reference)</li>
         <li>Runs locally in your browser (no server-side storage)</li>
       </ul>
       <div class="btns">
@@ -63,9 +63,9 @@
     <section class="card">
       <h2 style="margin:0 0 8px">Use this when</h2>
       <ul>
-        <li>You’re about to run an AI-generated command and want a quick safety check</li>
-        <li>You want to spot things like <code>rm -rf</code>, <code>sudo</code>, risky pipes/redirects, etc.</li>
-        <li>You need a last-minute sanity check before running commands on a real machine</li>
+        <li>You’re about to run an AI-generated command and want a quick safety scan</li>
+        <li>You want to spot <code>rm -rf</code>, <code>sudo</code>, risky redirects, etc.</li>
+        <li>You need a last-minute check before running commands on a real machine</li>
       </ul>
       <p class="muted" style="margin:8px 0 0">
         Keywords: command safety checker, dangerous shell command, rm -rf, sudo, powershell safety, ai command review
@@ -77,19 +77,19 @@
       <ol>
         <li>Open the tool</li>
         <li>Paste the command(s) you plan to run (multi-line OK)</li>
-        <li>Read the risk level (Low/Medium/High) and the highlighted findings</li>
-        <li>If unsure, re-check paths/targets/privileges and test in a safe environment first</li>
+        <li>Read the risk level (Low/Medium/High) and the findings</li>
+        <li>If unsure, re-check targets/paths/privileges and test in a safe environment first</li>
       </ol>
-      <p class="muted" style="margin:0">Tip: test on a dummy folder / sandbox before touching real data.</p>
+      <p class="muted" style="margin:0">Tip: don’t start on production—test on a dummy folder/sandbox first.</p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">Notes (limits)</h2>
       <ul>
-        <li>This tool does not guarantee safety. Always review before running.</li>
+        <li>This tool does not guarantee safety (reference only).</li>
         <li>Variables, pipes, redirects, privileges, and working directory can change outcomes.</li>
         <li>Static checks may miss environment-dependent or network-related risks.</li>
-        <li>For production systems, use backups and least-privilege practices.</li>
+        <li>For important operations, use backups and least-privilege practices.</li>
       </ul>
     </section>
 
