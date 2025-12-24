@@ -68,6 +68,12 @@
     detailAliases: document.getElementById("detailAliases"),
     detailTags: document.getElementById("detailTags"),
     detailId: document.getElementById("detailId"),
+
+    // nav links
+    aboutLink: document.getElementById("aboutLink"),
+    methodLink: document.getElementById("methodLink"),
+    disclaimerLink: document.getElementById("disclaimerLink"),
+    creditsLink: document.getElementById("creditsLink"),
   };
 
   const i18n = {
@@ -88,26 +94,38 @@
       aliasesMeta: "Aliases",
       tagsMeta: "Tags",
       idMeta: "ID",
+      aboutLink: "About",
+      methodLink: "Method",
+      disclaimerLink: "Disclaimer",
+      creditsLink: "Credits",
+      langToggleLabel: "Switch language",
+      empty: "No results found. Try a different keyword or filter.",
       dash: "—",
       failed: "Failed to load data. See console.",
     },
     ja: {
-      eyebrow: "建設ツール＆スラング辞典",
-      heroTitle: "現場用語を、探して、すぐ理解する。",
-      heroLede: "カテゴリ横断で、用語・道具・作業プロセスを検索できます。",
+      eyebrow: "建設工具・スラング図鑑",
+      heroTitle: "現場用語を検索して、すぐ確認。",
+      heroLede: "工具・スラング・作業プロセスをカテゴリ別に素早く参照できます。",
       searchLabel: "検索",
-      searchPh: "用語 / スラング / 説明を検索",
+      searchPh: "工具 / スラング / 説明を検索",
       categoryLabel: "カテゴリ",
-      taskLabel: "Task",
+      taskLabel: "作業",
       resultsTitle: "結果",
-      emptyState: "該当する結果がありません。キーワードやフィルタを変えてください。",
+      emptyState: "該当する用語がありません。キーワードや絞り込みを変えてください。",
       detailPlaceholder: "項目を選択すると詳細が表示されます。",
-      taskAll: "すべてのTask",
+      taskAll: "すべての作業",
       catAll: "すべてのカテゴリ",
-      taskMeta: "Task",
+      taskMeta: "作業",
       aliasesMeta: "別名",
       tagsMeta: "タグ",
       idMeta: "ID",
+      aboutLink: "概要",
+      methodLink: "方針",
+      disclaimerLink: "免責",
+      creditsLink: "クレジット",
+      langToggleLabel: "言語を切り替える",
+      empty: "該当する用語がありません。キーワードや絞り込みを変えてください。",
       dash: "—",
       failed: "データの読み込みに失敗しました（コンソール参照）",
     },
@@ -294,6 +312,16 @@
     if (els.detailAliasesLabel) els.detailAliasesLabel.textContent = dict.aliasesMeta;
     if (els.detailTagsLabel) els.detailTagsLabel.textContent = dict.tagsMeta;
     if (els.detailIdLabel) els.detailIdLabel.textContent = dict.idMeta;
+
+    if (els.aboutLink) els.aboutLink.textContent = dict.aboutLink;
+    if (els.methodLink) els.methodLink.textContent = dict.methodLink;
+    if (els.disclaimerLink) els.disclaimerLink.textContent = dict.disclaimerLink;
+    if (els.creditsLink) els.creditsLink.textContent = dict.creditsLink;
+
+    if (els.langToggle) {
+      els.langToggle.setAttribute("aria-label", dict.langToggleLabel);
+      els.langToggle.setAttribute("title", dict.langToggleLabel);
+    }
   }
 
   function applyStateToControls() {
@@ -728,8 +756,7 @@
   function readUrlToState() {
     const sp = new URLSearchParams(location.search);
 
-    const htmlLang = document.documentElement.getAttribute("data-lang");
-    const lang = sp.get("lang") || htmlLang || "en";
+    const lang = sp.get("lang");
     state.lang = lang === "ja" ? "ja" : "en";
 
     state.q = (sp.get("q") || "").trim();
@@ -744,7 +771,7 @@
     const sp = new URLSearchParams();
 
     // default en
-    if (state.lang && state.lang !== "en") sp.set("lang", state.lang);
+    if (state.lang === "en") sp.set("lang", "en");
     if (state.q) sp.set("q", state.q);
     if (state.cat) sp.set("cat", state.cat);
     if (state.task) sp.set("task", state.task);
