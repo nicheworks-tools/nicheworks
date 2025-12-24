@@ -4,15 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>API Key & Token Redactor | Sanitize logs before sharing | NicheWorks</title>
-  <meta name="description" content="A problem-first landing page for API Key & Token Redactor. Detect and mask secret-looking strings (API keys, tokens, Authorization). No signup, no storage." />
+  <title>API Key & Token Redactor | Sanitize text before sharing | NicheWorks</title>
+  <meta name="description" content="Detect and mask secret-looking strings (API keys, tokens, Authorization) before sharing logs. No signup, no storage." />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/en/" />
 
-  <!-- hreflang -->
   <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/en/" />
   <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/" />
 
-  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <style>
@@ -42,60 +40,54 @@
       <a href="../../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">API Key & Token Redactor: Guide</h1>
-    <p class="muted" style="margin:0">Detect and mask secret-looking strings before you paste logs (no storage).</p>
+    <p class="muted" style="margin:0">Scan for secret-looking strings and mask them before sharing (no storage).</p>
   </header>
 
   <main class="nw-main">
     <div class="ad-slot ad-top">Ad slot (placeholder)</div>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">Quick answer (30 seconds)</h2>
-      <ol>
-        <li>Paste the log/config/JSON you want to share</li>
-        <li>Mask detected API keys / tokens / Authorization-like strings</li>
-        <li>Copy the sanitized text and share it</li>
-      </ol>
+      <h2 style="margin:0 0 8px">What it does</h2>
+      <ul>
+        <li>Helps you spot secret-looking strings in logs/config/JSON/curl text (API keys, tokens, Authorization)</li>
+        <li>Masks risky parts to reduce copy-paste mistakes (manual review still required)</li>
+        <li>Runs locally in your browser (no server-side storage)</li>
+      </ul>
       <div class="btns">
         <a class="btn primary" href="../../">Open the tool</a>
         <a class="btn" href="../">日本語ガイド</a>
       </div>
-      <p class="muted" style="margin:8px 0 0">
-        Final manual review is required (zero leaks cannot be guaranteed).
-      </p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">Common symptoms (how people search)</h2>
+      <h2 style="margin:0 0 8px">Use this when</h2>
       <ul>
-        <li>Want to paste logs to GitHub / Discord, but worried secrets are included</li>
-        <li>Keep forgetting to remove <code>Authorization: Bearer ...</code> or <code>api_key=...</code></li>
-        <li>Need to safely share parts of .env / curl commands / JSON</li>
+        <li>You want to paste logs to GitHub/Discord/forums and need a quick secrets check</li>
+        <li>You often forget to remove <code>Authorization: Bearer ...</code> or <code>api_key=...</code></li>
+        <li>You need to share parts of .env / config files more safely</li>
       </ul>
       <p class="muted" style="margin:8px 0 0">
-        Related keywords: api key redaction, token masking, bearer token, authorization header, secret sanitize, log sharing
+        Keywords: api key redaction, token masking, secret sanitize, bearer token
       </p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">What this tool does (safe wording)</h2>
-      <ul>
-        <li>Helps detect patterns that often look like API keys/tokens and mask them</li>
-        <li>Makes long logs easier to scan for risky strings</li>
-        <li>Runs locally in your browser (no server-side storage)</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        Example output: <code>sk-****</code>, <code>Bearer ****</code>, <code>api_key=****</code>
-      </p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">How to use (3 steps)</h2>
+      <h2 style="margin:0 0 8px">How to use</h2>
       <ol>
         <li>Open the tool</li>
         <li>Paste your text</li>
-        <li>Copy the sanitized output and share</li>
+        <li>Copy the masked output and share</li>
       </ol>
-      <p class="muted" style="margin:0">Important: always review the sanitized text manually before sharing.</p>
+      <p class="muted" style="margin:0">Tip: quickly scan the final text once before posting.</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Notes (limits)</h2>
+      <ul>
+        <li>Zero leaks cannot be guaranteed. Always review manually before sharing.</li>
+        <li>If you exposed a real secret, rotate/revoke the key or token.</li>
+        <li>This is a detection/masking helper, not a security guarantee.</li>
+      </ul>
     </section>
 
     <div class="ad-slot ad-bottom">Ad slot (placeholder)</div>
