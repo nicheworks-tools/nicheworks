@@ -1,27 +1,27 @@
 /* =====================================================
  * sukima-baito-income | NicheWorks
- * app.js (Phase 3 OCR beta + CSV trust + Import Preview)
+ * app.js (Phase 3.5 Step1 - OCR 안정化)
  *
- * Phase 1 UI improvements:
+ * Phase 1:
  * - Theme toggle (localStorage)
  * - Font size toggle (localStorage)
- * - Date shortcuts: Today / Yesterday (injected UI)
+ * - Date shortcuts: Today / Yesterday / Clear (injected UI)
  * - Workplace reuse: datalist + recent quick-picks (localStorage)
  * - Edit entries
  * - Month-grouped list with collapse + month totals
  *
- * Phase 2 additions:
+ * Phase 2:
  * - CSV spec help block (injected UI)
  * - CSV import PREVIEW (no immediate commit)
  * - Strict CSV validation (header + field rules)
  * - Duplicate rejection (default): date+workplace+category+amount
  * - Import preview shows counts + skip reasons + per-row toggle
  *
- * Phase 3 additions:
- * - OCR（β）: Screenshot OCR -> candidates -> preview -> commit
- *   - Uses Tesseract.js via CDN (loaded on demand)
- *   - No auto-add: always confirm/preview
- *   - Dedupe at commit-time (existing + within OCR selection)
+ * Phase 3 (OCR beta) + Phase 3.5 Step1 (stabilize):
+ * - OCR button + file input (index.html)
+ * - OCR progress modal + cancel
+ * - Guards: max files, max size, offline warning
+ * - Minimal OCR parse -> candidates -> confirm modal (no auto-commit)
  * ===================================================== */
 
 (() => {
@@ -37,9 +37,8 @@
   const csvInput = $("csvInput");
   const csvExportBtn = $("csvExportBtn");
 
-  // OCR (Phase 3)
-  const ocrInput = $("ocrInput");
   const ocrBtn = $("ocrBtn");
+  const ocrInput = $("ocrInput");
 
   const errorBox = $("errorBox");
 
@@ -76,16 +75,16 @@
   /** @type {Array<{name:string, lastUsed:number}>} */
   let workplaceDict = safeJsonParse(localStorage.getItem(WP_KEY), []);
 
-  // Import preview state (CSV)
+  // Import preview state
   /** @type {null | {parsedRows: ImportRow[], summary: ImportSummary}} */
   let importPreviewState = null;
 
   /**
    * @typedef {Object} ImportRow
-   * @property {number} rowNo  1-based line number in CSV file (including header line)
+   * @property {number} rowNo
    * @property {"ok"|"skip"} status
    * @property {string} reason
-   * @property {boolean} selected  whether to import (only meaningful when ok)
+   * @property {boolean} selected
    * @property {{date:string, workplace:string, category:string, amount:number, memo:string}} data
    */
 
@@ -98,19 +97,40 @@
    */
 
   // OCR preview state
-  /** @type {null | {items: OCRItem[], meta: {fileCount:number}} } */
+  /** @type {null | {rows: OCRRow[], summary: OCRSummary}} */
   let ocrPreviewState = null;
 
   /**
-   * @typedef {Object} OCRItem
-   * @property {string} sourceName
-   * @property {number} index
+   * @typedef {Object} OCRRow
+   * @property {string} id
    * @property {"ok"|"skip"} status
    * @property {string} reason
    * @property {boolean} selected
    * @property {{date:string, workplace:string, category:string, amount:number, memo:string}} data
-   * @property {string} rawText
+   * @property {string} raw
    */
+
+  /**
+   * @typedef {Object} OCRSummary
+   * @property {number} okCount
+   * @property {number} skipCount
+   * @property {number} dupCount
+   * @property {number} total
+   */
+
+  // OCR runtime
+  const OCR_CFG = {
+    maxFiles: 10,
+    maxFileMB: 10,
+    // downscale: OCRを軽くする（スクショが巨大な場合に効く）
+    maxImageEdge: 1600,
+  };
+
+  const OCR_RT = {
+    running: false,
+    cancelRequested: false,
+    worker: null,
+  };
 
   // ----------------------------
   // Settings (theme / font)
@@ -165,7 +185,6 @@
   // ----------------------------
   function injectDateShortcuts() {
     if (!dateInput) return;
-
     const wrap = document.createElement("div");
     wrap.style.display = "flex";
     wrap.style.gap = "8px";
@@ -231,7 +250,6 @@
   function injectCSVSpecHelp() {
     const csvActions = document.querySelector(".csv-actions");
     if (!csvActions) return;
-
     if (document.getElementById("csvSpecHelp")) return;
 
     const box = document.createElement("div");
@@ -325,8 +343,7 @@
     overlay.appendChild(panel);
     document.body.appendChild(overlay);
 
-    const closeBtn = $("importPreviewCloseBtn");
-    closeBtn.addEventListener("click", closeImportPreview);
+    $("importPreviewCloseBtn").addEventListener("click", closeImportPreview);
 
     overlay.addEventListener("click", (ev) => {
       if (ev.target === overlay) closeImportPreview();
@@ -366,7 +383,81 @@
     importPreviewState = null;
   }
 
-  // OCR Preview modal
+  // ----------------------------
+  // OCR Modals (Progress + Preview)
+  // ----------------------------
+  function injectOCRProgressModal() {
+    if (document.getElementById("ocrProgressModal")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "ocrProgressModal";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "rgba(0,0,0,0.45)";
+    overlay.style.display = "none";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.padding = "14px";
+    overlay.style.zIndex = "10000";
+
+    const panel = document.createElement("div");
+    panel.style.width = "min(720px, 100%)";
+    panel.style.background = "var(--bg,#fff)";
+    panel.style.border = "1px solid var(--border,#e5e5e5)";
+    panel.style.borderRadius = "16px";
+    panel.style.boxShadow = "0 10px 28px rgba(0,0,0,0.18)";
+    panel.style.padding = "14px";
+
+    panel.innerHTML = `
+      <div style="font-weight:900;font-size:1.05em;">スクショOCR（β） 実行中</div>
+      <div id="ocrProgressText" style="margin-top:8px;opacity:0.9;font-size:0.95em;"></div>
+
+      <div style="margin-top:10px;">
+        <div style="height:10px;border-radius:999px;background:var(--border-soft,#f3f4f6);overflow:hidden;">
+          <div id="ocrProgressBar" style="height:10px;width:0%;background:#111;border-radius:999px;"></div>
+        </div>
+        <div id="ocrProgressHint" style="margin-top:8px;opacity:0.75;font-size:0.9em;line-height:1.4;">
+          ※OCRは端末負荷が高い場合があります。重いときは「スクショを切り抜く」「枚数を減らす」が効果的です。
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap;">
+        <button id="ocrCancelBtn" type="button"
+          style="padding:12px 14px;border:1px solid var(--border,#e5e5e5);background:transparent;border-radius:12px;cursor:pointer;">
+          キャンセル
+        </button>
+      </div>
+    `;
+
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    $("ocrCancelBtn").addEventListener("click", () => {
+      requestCancelOCR("ユーザーがキャンセルしました。");
+    });
+
+    overlay.addEventListener("click", (ev) => {
+      // 背景タップで閉じない（誤タップ防止）
+      ev.preventDefault();
+    });
+  }
+
+  function openOCRProgressModal() {
+    const o = $("ocrProgressModal");
+    if (o) o.style.display = "flex";
+  }
+  function closeOCRProgressModal() {
+    const o = $("ocrProgressModal");
+    if (o) o.style.display = "none";
+  }
+
+  function setOCRProgress(text, percent) {
+    const t = $("ocrProgressText");
+    const b = $("ocrProgressBar");
+    if (t) t.textContent = text || "";
+    if (b) b.style.width = `${Math.max(0, Math.min(100, percent || 0))}%`;
+  }
+
   function injectOCRPreviewModal() {
     if (document.getElementById("ocrPreviewModal")) return;
 
@@ -379,7 +470,7 @@
     overlay.style.alignItems = "center";
     overlay.style.justifyContent = "center";
     overlay.style.padding = "14px";
-    overlay.style.zIndex = "9999";
+    overlay.style.zIndex = "10001";
 
     const panel = document.createElement("div");
     panel.style.width = "min(920px, 100%)";
@@ -394,7 +485,7 @@
       <div style="padding:14px 14px 10px 14px; border-bottom:1px solid var(--border, #e5e5e5);">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
           <div>
-            <div style="font-weight:800; font-size:1.05em;">スクショOCR（β）取り込みの確認</div>
+            <div style="font-weight:900; font-size:1.05em;">OCR結果の確認（追加前）</div>
             <div id="ocrPreviewSummary" style="margin-top:6px; opacity:0.85; font-size:0.95em;"></div>
           </div>
           <button id="ocrPreviewCloseBtn" type="button"
@@ -422,11 +513,14 @@
 
         <button id="ocrCommitBtn" type="button"
           style="padding:12px 14px;border:1px solid var(--border,#e5e5e5);background:#111;color:#fff;border-radius:12px;cursor:pointer;">
-          選択した行を追加
+          選択した候補を追加
         </button>
       </div>
 
       <div style="padding:0 14px 14px 14px;">
+        <div style="margin-bottom:10px;opacity:0.8;font-size:0.92em;line-height:1.5;">
+          ※OCRは誤読があります。<strong>日付・金額・就業先</strong>は必ず確認してください（ここで編集できます）。
+        </div>
         <div id="ocrPreviewList" style="display:flex; flex-direction:column; gap:10px;"></div>
       </div>
     `;
@@ -441,16 +535,16 @@
 
     $("ocrSelectAllBtn").addEventListener("click", () => {
       if (!ocrPreviewState) return;
-      ocrPreviewState.items.forEach((it) => {
-        if (it.status === "ok") it.selected = true;
+      ocrPreviewState.rows.forEach((r) => {
+        if (r.status === "ok") r.selected = true;
       });
       renderOCRPreview();
     });
 
     $("ocrSelectNoneBtn").addEventListener("click", () => {
       if (!ocrPreviewState) return;
-      ocrPreviewState.items.forEach((it) => {
-        if (it.status === "ok") it.selected = false;
+      ocrPreviewState.rows.forEach((r) => {
+        if (r.status === "ok") r.selected = false;
       });
       renderOCRPreview();
     });
@@ -463,14 +557,232 @@
     ocrPreviewState = state;
     $("ocrShowSkipped").checked = false;
     renderOCRPreview();
-    $("ocrPreviewModal").style.display = "flex";
+    const o = $("ocrPreviewModal");
+    if (o) o.style.display = "flex";
   }
 
   function closeOCRPreview() {
-    $("ocrPreviewModal").style.display = "none";
+    const o = $("ocrPreviewModal");
+    if (o) o.style.display = "none";
     ocrPreviewState = null;
   }
 
+  function renderOCRPreview() {
+    if (!ocrPreviewState) return;
+
+    const showSkipped = $("ocrShowSkipped")?.checked;
+
+    const okTotal = ocrPreviewState.rows.filter((r) => r.status === "ok").length;
+    const selectedCount = ocrPreviewState.rows.filter((r) => r.status === "ok" && r.selected).length;
+    const skippedCount = ocrPreviewState.rows.filter((r) => r.status === "skip").length;
+    const dupCount = ocrPreviewState.rows.filter((r) => r.status === "skip" && r.reason.includes("重複")).length;
+
+    $("ocrPreviewSummary").textContent =
+      `追加候補：${okTotal}件（選択：${selectedCount}件） / スキップ：${skippedCount}件（重複：${dupCount}件）`;
+
+    $("ocrCommitBtn").textContent = `選択した候補を追加（${selectedCount}件）`;
+    $("ocrCommitBtn").disabled = selectedCount === 0;
+    $("ocrCommitBtn").style.opacity = selectedCount === 0 ? "0.5" : "1";
+
+    const list = $("ocrPreviewList");
+    list.innerHTML = "";
+
+    const rowsToRender = ocrPreviewState.rows.filter((r) => r.status === "ok" || showSkipped);
+
+    rowsToRender.forEach((r) => {
+      const card = document.createElement("div");
+      card.style.border = "1px solid var(--border,#e5e5e5)";
+      card.style.borderRadius = "14px";
+      card.style.padding = "12px";
+      card.style.background = "var(--card-bg,#f9f9f9)";
+
+      const top = document.createElement("div");
+      top.style.display = "flex";
+      top.style.alignItems = "center";
+      top.style.justifyContent = "space-between";
+      top.style.gap = "10px";
+      top.style.flexWrap = "wrap";
+
+      const left = document.createElement("div");
+      left.style.display = "flex";
+      left.style.alignItems = "center";
+      left.style.gap = "10px";
+      left.style.flexWrap = "wrap";
+
+      if (r.status === "ok") {
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = !!r.selected;
+        cb.addEventListener("change", () => {
+          r.selected = cb.checked;
+          renderOCRPreview();
+        });
+        left.appendChild(cb);
+      } else {
+        const badge = document.createElement("span");
+        badge.textContent = "SKIP";
+        badge.style.fontWeight = "900";
+        badge.style.fontSize = "0.85em";
+        badge.style.padding = "4px 8px";
+        badge.style.borderRadius = "999px";
+        badge.style.border = "1px solid var(--border,#e5e5e5)";
+        badge.style.opacity = "0.8";
+        left.appendChild(badge);
+      }
+
+      const title = document.createElement("div");
+      title.style.fontWeight = "900";
+      title.textContent =
+        r.status === "ok"
+          ? `${r.data.date} / ${r.data.workplace || "（就業先未設定）"}`
+          : `スキップ：${r.reason}`;
+      left.appendChild(title);
+
+      const right = document.createElement("div");
+      right.style.fontWeight = "900";
+      right.textContent = r.status === "ok" ? formatYen(r.data.amount) : "";
+      top.appendChild(left);
+      top.appendChild(right);
+
+      const meta = document.createElement("div");
+      meta.style.marginTop = "8px";
+      meta.style.opacity = "0.9";
+      meta.style.fontSize = "0.95em";
+      meta.textContent = r.status === "ok"
+        ? `[${r.data.category}] ${r.data.memo ? ` / メモ：${r.data.memo}` : ""}`
+        : `理由：${r.reason}`;
+
+      card.appendChild(top);
+      card.appendChild(meta);
+
+      // Editable for ok rows
+      if (r.status === "ok") {
+        const form = document.createElement("div");
+        form.style.display = "grid";
+        form.style.gridTemplateColumns = "1fr 1fr";
+        form.style.gap = "8px";
+        form.style.marginTop = "10px";
+
+        const d = makeInlineInput("日付", r.data.date, "date", (v) => {
+          r.data.date = v;
+        });
+
+        const w = makeInlineInput("就業先", r.data.workplace || "", "text", (v) => {
+          r.data.workplace = normalizeWorkplaceName(v);
+        });
+
+        const c = makeInlineSelect("区分", r.data.category, ["報酬","交通費","手当","その他"], (v) => {
+          r.data.category = v;
+        });
+
+        const a = makeInlineInput("金額", String(r.data.amount || ""), "text", (v) => {
+          const n = cleanAmount(v);
+          if (Number.isFinite(n) && n > 0) r.data.amount = n;
+        });
+
+        const m = makeInlineInput("メモ", r.data.memo || "", "text", (v) => {
+          r.data.memo = v;
+        }, true);
+
+        // raw text toggle
+        const rawWrap = document.createElement("div");
+        rawWrap.style.gridColumn = "1 / -1";
+        rawWrap.style.marginTop = "4px";
+        const rawBtn = document.createElement("button");
+        rawBtn.type = "button";
+        rawBtn.textContent = "OCRの元テキストを見る";
+        rawBtn.style.padding = "10px 12px";
+        rawBtn.style.border = "1px solid var(--border,#e5e5e5)";
+        rawBtn.style.background = "transparent";
+        rawBtn.style.borderRadius = "12px";
+        rawBtn.style.cursor = "pointer";
+        rawBtn.style.width = "100%";
+
+        const rawBox = document.createElement("div");
+        rawBox.style.display = "none";
+        rawBox.style.marginTop = "8px";
+        rawBox.style.whiteSpace = "pre-wrap";
+        rawBox.style.fontSize = "0.9em";
+        rawBox.style.opacity = "0.85";
+        rawBox.style.border = "1px dashed var(--border,#e5e5e5)";
+        rawBox.style.borderRadius = "12px";
+        rawBox.style.padding = "10px";
+        rawBox.textContent = r.raw || "";
+
+        rawBtn.addEventListener("click", () => {
+          rawBox.style.display = rawBox.style.display === "none" ? "block" : "none";
+        });
+
+        rawWrap.appendChild(rawBtn);
+        rawWrap.appendChild(rawBox);
+
+        form.appendChild(d);
+        form.appendChild(w);
+        form.appendChild(c);
+        form.appendChild(a);
+        form.appendChild(m);
+        form.appendChild(rawWrap);
+
+        card.appendChild(form);
+      }
+
+      list.appendChild(card);
+    });
+  }
+
+  function commitOCRPreview() {
+    if (!ocrPreviewState) return;
+
+    const existingKeys = new Set(entries.map(makeDedupeKey));
+    const previewKeys = new Set();
+
+    let committed = 0;
+    let skippedDup = 0;
+    let skippedInvalid = 0;
+
+    ocrPreviewState.rows.forEach((r) => {
+      if (r.status !== "ok") return;
+      if (!r.selected) return;
+
+      const d = String(r.data.date || "").trim();
+      const w = normalizeWorkplaceName(r.data.workplace || "");
+      const c = String(r.data.category || "").trim();
+      const a = Number(r.data.amount || 0);
+      const memo = String(r.data.memo || "");
+
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
+        skippedInvalid++;
+        return;
+      }
+
+      const normalized = { date: d, workplace: w, category: c, amount: a, memo };
+      const key = makeDedupeKey(normalized);
+
+      if (existingKeys.has(key) || previewKeys.has(key)) {
+        skippedDup++;
+        return;
+      }
+
+      entries.push(normalized);
+      existingKeys.add(key);
+      previewKeys.add(key);
+      bumpWorkplace(w);
+      committed++;
+    });
+
+    renderAll();
+    closeOCRPreview();
+
+    if (committed === 0) {
+      showError(`追加できる候補がありませんでした。\n重複スキップ：${skippedDup} / 不正：${skippedInvalid}`);
+      return;
+    }
+    toast(`OCR取り込み：${committed}件追加（重複スキップ：${skippedDup}）`);
+  }
+
+  // ----------------------------
+  // UI small parts
+  // ----------------------------
   function makeMiniBtn(label, onClick) {
     const b = document.createElement("button");
     b.type = "button";
@@ -485,9 +797,7 @@
     return b;
   }
 
-  // ----------------------------
   // Small toast (non-blocking)
-  // ----------------------------
   let toastTimer = null;
   function toast(msg) {
     const old = document.getElementById("nwToast");
@@ -567,8 +877,7 @@
     if (top.length === 0) return;
 
     top.forEach((w) => {
-      const label = w.name.length > 18 ? w.name.slice(0, 18) + "…" : w.name;
-      const b = makeMiniBtn(label, () => {
+      const b = makeMiniBtn(w.name.length > 18 ? w.name.slice(0, 18) + "…" : w.name, () => {
         workplaceInput.value = w.name;
         workplaceInput.focus();
       });
@@ -589,7 +898,6 @@
   // Entry form actions (add / edit)
   // ----------------------------
   function cleanAmount(val) {
-    // allow comma separators etc.
     const n = Number(String(val).replace(/[^\d]/g, ""));
     return Number.isFinite(n) ? n : NaN;
   }
@@ -605,7 +913,7 @@
   }
 
   function clearForm() {
-    if (dateInput) dateInput.value = toISODate(new Date()); // keep today as default
+    if (dateInput) dateInput.value = toISODate(new Date());
     if (workplaceInput) workplaceInput.value = "";
     if (amountInput) amountInput.value = "";
     if (memoInput) memoInput.value = "";
@@ -625,7 +933,7 @@
     addBtn.textContent = "更新する";
     ensureCancelEditBtn();
     toast("編集モード");
-    if (amountInput) amountInput.focus();
+    amountInput.focus();
   }
 
   function exitEditingMode() {
@@ -656,13 +964,12 @@
 
   function bindAddButton() {
     if (!addBtn) return;
-
     addBtn.addEventListener("click", () => {
-      const date = String(dateInput?.value || "").trim();
-      const workplace = normalizeWorkplaceName(workplaceInput?.value);
-      const category = String(categoryInput?.value || "報酬");
-      const amountRaw = String(amountInput?.value || "").trim();
-      const memo = String(memoInput?.value || "").trim();
+      const date = String(dateInput.value || "").trim();
+      const workplace = normalizeWorkplaceName(workplaceInput.value);
+      const category = String(categoryInput.value || "報酬");
+      const amountRaw = String(amountInput.value || "").trim();
+      const memo = String(memoInput.value || "").trim();
 
       if (!date || !workplace || !amountRaw) {
         showError("日付・就業先・金額は必須です。");
@@ -688,17 +995,15 @@
       }
 
       renderAll();
-      if (workplaceInput) workplaceInput.focus();
+      workplaceInput.focus();
     });
 
-    if (amountInput) {
-      amountInput.addEventListener("keydown", (ev) => {
-        if (ev.key === "Enter") {
-          ev.preventDefault();
-          addBtn.click();
-        }
-      });
-    }
+    amountInput.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        addBtn.click();
+      }
+    });
   }
 
   // ----------------------------
@@ -734,7 +1039,6 @@
       return a.e.date < b.e.date ? 1 : -1;
     });
 
-    /** @type {Record<string, Array<{e:any,i:number}>>} */
     const groups = {};
     indexed.forEach((x) => {
       const mk = monthKeyFromDate(x.e.date);
@@ -859,7 +1163,7 @@
   }
 
   // ----------------------------
-  // Summary rendering (annual + monthly blocks)
+  // Summary rendering
   // ----------------------------
   function renderSummary() {
     if (!totalSummary || !monthlySummary) return;
@@ -871,7 +1175,7 @@
     }
 
     let total = 0;
-    const monthly = {}; // ym -> byCat + total
+    const monthly = {};
 
     entries.forEach((e) => {
       total += e.amount;
@@ -1048,7 +1352,6 @@
       const validCats = new Set(["報酬", "交通費", "手当", "その他"]);
       const existingKeys = new Set(entries.map(makeDedupeKey));
 
-      /** @type {ImportRow[]} */
       const parsedRows = [];
       let okCount = 0;
       let skipCount = 0;
@@ -1081,50 +1384,26 @@
         memo = String(memo || "").trim();
 
         if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-          parsedRows.push({
-            rowNo,
-            status: "skip",
-            reason: "日付形式不正（YYYY-MM-DDのみ）",
-            selected: false,
-            data: { date, workplace, category, amount: 0, memo }
-          });
+          parsedRows.push({ rowNo, status: "skip", reason: "日付形式不正（YYYY-MM-DDのみ）", selected: false, data: { date, workplace, category, amount: 0, memo } });
           skipCount++;
           continue;
         }
 
         if (!workplace) {
-          parsedRows.push({
-            rowNo,
-            status: "skip",
-            reason: "就業先が空",
-            selected: false,
-            data: { date, workplace, category, amount: 0, memo }
-          });
+          parsedRows.push({ rowNo, status: "skip", reason: "就業先が空", selected: false, data: { date, workplace, category, amount: 0, memo } });
           skipCount++;
           continue;
         }
 
         if (!validCats.has(category)) {
-          parsedRows.push({
-            rowNo,
-            status: "skip",
-            reason: "区分不正（報酬/交通費/手当/その他）",
-            selected: false,
-            data: { date, workplace, category, amount: 0, memo }
-          });
+          parsedRows.push({ rowNo, status: "skip", reason: "区分不正（報酬/交通費/手当/その他）", selected: false, data: { date, workplace, category, amount: 0, memo } });
           skipCount++;
           continue;
         }
 
         const amount = cleanAmount(amountRaw);
         if (!Number.isFinite(amount) || amount <= 0) {
-          parsedRows.push({
-            rowNo,
-            status: "skip",
-            reason: "金額不正",
-            selected: false,
-            data: { date, workplace, category, amount: 0, memo }
-          });
+          parsedRows.push({ rowNo, status: "skip", reason: "金額不正", selected: false, data: { date, workplace, category, amount: 0, memo } });
           skipCount++;
           continue;
         }
@@ -1133,34 +1412,17 @@
         const key = makeDedupeKey(data);
 
         if (existingKeys.has(key)) {
-          parsedRows.push({
-            rowNo,
-            status: "skip",
-            reason: "重複（既存データと一致）",
-            selected: false,
-            data
-          });
+          parsedRows.push({ rowNo, status: "skip", reason: "重複（既存データと一致）", selected: false, data });
           skipCount++;
           dupCount++;
           continue;
         }
 
-        parsedRows.push({
-          rowNo,
-          status: "ok",
-          reason: "OK",
-          selected: true,
-          data
-        });
+        parsedRows.push({ rowNo, status: "ok", reason: "OK", selected: true, data });
         okCount++;
       }
 
-      const summary = {
-        okCount,
-        skipCount,
-        dupCount,
-        totalRows: parsedRows.length
-      };
+      const summary = { okCount, skipCount, dupCount, totalRows: parsedRows.length };
 
       if (okCount === 0) {
         showError(`追加できる行がありません。\nスキップ：${skipCount}（重複：${dupCount}）`);
@@ -1328,6 +1590,7 @@
     input.addEventListener("blur", () => {
       onChange(input.value);
       renderImportPreview();
+      renderOCRPreview();
     });
 
     wrap.appendChild(l);
@@ -1337,6 +1600,7 @@
 
   function makeInlineSelect(label, value, options, onChange) {
     const wrap = document.createElement("div");
+
     const l = document.createElement("div");
     l.textContent = label;
     l.style.fontSize = "0.85em";
@@ -1359,6 +1623,7 @@
     sel.addEventListener("change", () => {
       onChange(sel.value);
       renderImportPreview();
+      renderOCRPreview();
     });
 
     wrap.appendChild(l);
@@ -1429,530 +1694,336 @@
   }
 
   // ----------------------------
-  // OCR（β） Phase 3
+  // OCR (Phase 3.5 Step1)
   // ----------------------------
-  let tesseractLoading = null;
+  async function ensureTesseractLoaded() {
+    // Load from CDN only when needed
+    if (window.Tesseract && window.Tesseract.createWorker) return true;
 
-  function bindOCR() {
-    if (!ocrBtn || !ocrInput) return;
+    // Offline check (language data is fetched)
+    if (!navigator.onLine) {
+      showError("OCRはオンライン接続が必要です（初回は言語データの取得があるため）。");
+      return false;
+    }
 
-    ocrBtn.addEventListener("click", async () => {
-      // load lazily (only when user tries)
-      try {
-        await ensureTesseractLoaded();
-      } catch (e) {
-        showError(
-          "OCRの準備に失敗しました。\n通信環境をご確認のうえ、再度お試しください。"
-        );
-        return;
-      }
-      ocrInput.click();
-    });
-
-    ocrInput.addEventListener("change", async (ev) => {
-      const files = Array.from(ev.target.files || []);
-      ev.target.value = "";
-      if (files.length === 0) return;
-
-      // OCR can be heavy; warn if too many
-      if (files.length >= 6) {
-        toast("枚数が多いです（β）。まずは数枚ずつ推奨");
-      }
-
-      try {
-        await ensureTesseractLoaded();
-        await runOCRFiles(files);
-      } catch (e) {
-        console.error(e);
-        showError("OCRに失敗しました。\n（β機能）画像を減らす / 文字が大きいスクショで再試行してください。");
-      }
-    });
-  }
-
-  function ensureTesseractLoaded() {
-    if (window.Tesseract) return Promise.resolve();
-    if (tesseractLoading) return tesseractLoading;
-
-    tesseractLoading = new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const s = document.createElement("script");
-      // Tesseract.js v5 CDN
       s.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
       s.async = true;
-      s.onload = () => {
-        if (window.Tesseract) resolve();
-        else reject(new Error("Tesseract not available"));
-      };
-      s.onerror = () => reject(new Error("Failed to load tesseract.js"));
+      s.onload = () => resolve(!!(window.Tesseract && window.Tesseract.createWorker));
+      s.onerror = () => resolve(false);
       document.head.appendChild(s);
     });
-
-    return tesseractLoading;
   }
 
-  async function runOCRFiles(files) {
-    injectOCRPreviewModal();
+  function requestCancelOCR(reason) {
+    if (!OCR_RT.running) return;
 
-    toast(`OCR開始（${files.length}枚）`);
-    const items = [];
+    OCR_RT.cancelRequested = true;
+    setOCRProgress(reason || "キャンセルしています…", 0);
 
-    // Process sequentially to reduce memory spikes on mobile
-    for (let i = 0; i < files.length; i++) {
-      const f = files[i];
-      toast(`OCR中… ${i + 1}/${files.length}`);
+    try {
+      if (OCR_RT.worker && OCR_RT.worker.terminate) {
+        OCR_RT.worker.terminate();
+      }
+    } catch {}
+  }
 
-      const { text } = await recognizeImage(f);
+  function guardOCRFiles(files) {
+    if (!files || files.length === 0) return { ok: false, msg: "画像が選択されていません。" };
+    if (files.length > OCR_CFG.maxFiles) {
+      return { ok: false, msg: `画像が多すぎます（最大${OCR_CFG.maxFiles}枚）。枚数を減らしてください。` };
+    }
+    const tooBig = [...files].find((f) => (f.size / (1024 * 1024)) > OCR_CFG.maxFileMB);
+    if (tooBig) {
+      return { ok: false, msg: `画像サイズが大きすぎます（最大${OCR_CFG.maxFileMB}MB）。\n対象：${tooBig.name}` };
+    }
+    return { ok: true, msg: "" };
+  }
 
-      // Build candidates from recognized text
-      const candidates = extractCandidatesFromOCRText(text);
+  async function downscaleImageToBlob(file) {
+    // Make OCR lighter on mobile by downscaling big screenshots
+    try {
+      const bmp = await createImageBitmap(file);
+      const w = bmp.width;
+      const h = bmp.height;
+      const maxEdge = Math.max(w, h);
 
-      if (candidates.length === 0) {
-        items.push({
-          sourceName: f.name || `image-${i + 1}`,
-          index: i,
-          status: "skip",
-          reason: "候補を抽出できませんでした",
-          selected: false,
-          data: emptyRowData(),
-          rawText: text
-        });
-        continue;
+      let scale = 1;
+      if (maxEdge > OCR_CFG.maxImageEdge) {
+        scale = OCR_CFG.maxImageEdge / maxEdge;
       }
 
-      // If multiple candidates: create one per candidate
-      candidates.forEach((c, k) => {
-        const isOk = !!c.date && !!c.amount && !!c.workplace;
-        items.push({
-          sourceName: f.name || `image-${i + 1}`,
-          index: i * 1000 + k,
-          status: isOk ? "ok" : "skip",
-          reason: isOk ? "OK" : "不足（要修正）",
-          selected: isOk,
-          data: {
-            date: c.date || "",
-            workplace: c.workplace || "",
-            category: c.category || "報酬",
-            amount: c.amount || 0,
-            memo: c.memo || ""
-          },
-          rawText: text
-        });
-      });
-    }
+      const tw = Math.max(1, Math.round(w * scale));
+      const th = Math.max(1, Math.round(h * scale));
 
-    const okCount = items.filter((x) => x.status === "ok").length;
-    if (okCount === 0) {
-      showError("OCRから追加できる候補がありませんでした。\n（文字が小さい/暗い/ブレている可能性）");
-      return;
-    }
+      const canvas = document.createElement("canvas");
+      canvas.width = tw;
+      canvas.height = th;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(bmp, 0, 0, tw, th);
 
-    openOCRPreview({ items, meta: { fileCount: files.length } });
-    toast("OCR完了（確認してください）");
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.92));
+      return blob || file;
+    } catch {
+      return file;
+    }
   }
 
-  async function recognizeImage(file) {
-    // downscale via canvas to speed up (optional, safe)
-    const bitmap = await createImageBitmap(file);
-    const maxW = 1400;
-    const scale = bitmap.width > maxW ? maxW / bitmap.width : 1;
-    const w = Math.round(bitmap.width * scale);
-    const h = Math.round(bitmap.height * scale);
+  function parseOCRTextToCandidates(text) {
+    // Minimal parse:
+    // - find money like ¥6,000 / 6000
+    // - find date like 2025-12-24 / 2025/12/24 / 12/24
+    // - workplace: pick a "likely" line (long text line without many digits)
+    const raw = String(text || "").replace(/\r/g, "\n");
+    const lines = raw.split("\n").map((s) => s.trim()).filter(Boolean);
 
-    const canvas = document.createElement("canvas");
-    canvas.width = w;
-    canvas.height = h;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(bitmap, 0, 0, w, h);
+    // money candidates
+    const moneyRegex = /[¥￥]?\s*([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{3,})/g;
+    const dateFull = /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/;
+    const dateShort = /(?:^|[^\d])(\d{1,2})[\/\-](\d{1,2})(?:[^\d]|$)/;
 
-    const dataUrl = canvas.toDataURL("image/png");
-
-    // Use Japanese+English model (more robust on mixed UI)
-    const res = await window.Tesseract.recognize(dataUrl, "jpn+eng", {
-      logger: () => {} // keep silent
-    });
-
-    const text = (res?.data?.text || "").trim();
-    return { text };
-  }
-
-  function extractCandidatesFromOCRText(text) {
-    const raw = String(text || "");
-    const lines = raw
-      .split(/\r?\n/)
-      .map((s) => s.replace(/\s+/g, " ").trim())
-      .filter(Boolean);
-
-    // Heuristic:
-    // - find date-like tokens
-    // - find amount-like tokens
-    // - try to pair nearest date + nearest amount and pick workplace from nearby lines
-    const dates = [];
-    const amounts = [];
-
-    const dateRegex = /(\d{4})\s*(?:[\/\-.年])\s*(\d{1,2})\s*(?:[\/\-.月])\s*(\d{1,2})\s*(?:日)?/;
-    const amountRegex = /(?:¥|￥)?\s*([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{3,})\s*(?:円)?/;
-
-    lines.forEach((ln, idx) => {
-      const m = ln.match(dateRegex);
+    // pick best date
+    let date = "";
+    for (const ln of lines) {
+      const m = ln.match(dateFull);
       if (m) {
         const yyyy = m[1];
         const mm = String(m[2]).padStart(2, "0");
         const dd = String(m[3]).padStart(2, "0");
-        dates.push({ idx, date: `${yyyy}-${mm}-${dd}` });
+        date = `${yyyy}-${mm}-${dd}`;
+        break;
       }
-
-      // amounts: avoid picking tiny numbers (e.g., times). Require >= 3 digits.
-      const a = ln.match(amountRegex);
-      if (a) {
-        const v = cleanAmount(a[1]);
-        if (Number.isFinite(v) && v >= 100) {
-          amounts.push({ idx, amount: v, line: ln });
+    }
+    if (!date) {
+      // fallback: MM/DD -> current year
+      const now = new Date();
+      for (const ln of lines) {
+        const m = ln.match(dateShort);
+        if (m) {
+          const yyyy = String(now.getFullYear());
+          const mm = String(m[1]).padStart(2, "0");
+          const dd = String(m[2]).padStart(2, "0");
+          date = `${yyyy}-${mm}-${dd}`;
+          break;
         }
       }
-    });
-
-    // If no explicit lists, fallback: attempt overall
-    if (dates.length === 0 && amounts.length === 0) return [];
-
-    // Pairing strategy:
-    // For each date, choose the nearest amount below it (within 0..8 lines),
-    // workplace = first "name-like" line between date and amount.
-    const results = [];
-
-    dates.forEach((d) => {
-      const near = amounts
-        .map((a) => ({ a, dist: a.idx - d.idx }))
-        .filter((x) => x.dist >= 0 && x.dist <= 8)
-        .sort((x, y) => x.dist - y.dist)[0];
-
-      const amount = near?.a?.amount;
-
-      // workplace search window: d.idx..(near.idx) or d.idx..(d.idx+4)
-      const end = near ? near.a.idx : Math.min(lines.length - 1, d.idx + 4);
-      const windowLines = lines.slice(d.idx, end + 1);
-
-      // pick a workplace-like line:
-      // - not containing date
-      // - not containing yen/amount keywords
-      // - not too short (>=2 chars)
-      // - not obvious UI words
-      const workplace = pickWorkplaceFromLines(windowLines);
-
-      // category guess: if window contains 交通費, set it. else 報酬.
-      const cat = /交通費/.test(windowLines.join(" ")) ? "交通費" : "報酬";
-
-      results.push({
-        date: d.date,
-        workplace: workplace || "",
-        category: cat,
-        amount: amount || 0,
-        memo: "（OCRβ）"
-      });
-    });
-
-    // If no dates but amount exists: single candidate with empty date/workplace
-    if (results.length === 0 && amounts.length > 0) {
-      results.push({
-        date: "",
-        workplace: "",
-        category: "報酬",
-        amount: amounts[0].amount,
-        memo: "（OCRβ）"
-      });
     }
 
-    // Remove exact duplicates inside OCR results
-    const seen = new Set();
-    const uniq = [];
-    results.forEach((r) => {
-      const key = `${r.date}|${normalizeWorkplaceName(r.workplace)}|${r.category}|${r.amount}`;
-      if (seen.has(key)) return;
-      seen.add(key);
-      uniq.push(r);
-    });
+    // workplace guess: choose longest line that isn't mostly digits
+    let workplace = "";
+    const scored = lines
+      .map((ln) => {
+        const digitCount = (ln.match(/\d/g) || []).length;
+        const score = ln.length - digitCount * 2;
+        return { ln, score };
+      })
+      .sort((a, b) => b.score - a.score);
+    workplace = scored[0]?.ln || "";
 
-    return uniq;
-  }
+    // category guess (very rough)
+    let category = "報酬";
+    const joined = lines.join(" ");
+    if (/交通/.test(joined)) category = "交通費";
+    if (/手当/.test(joined)) category = "手当";
 
-  function pickWorkplaceFromLines(windowLines) {
-    const blacklist = [
-      "合計", "合算", "明細", "詳細", "支払い", "受取", "報酬", "交通費",
-      "円", "¥", "￥", "勤務", "就労", "履歴", "完了", "確定", "依頼"
-    ];
-
-    for (const ln of windowLines) {
-      if (ln.length < 2) continue;
-      if (/\d{4}[-\/.年]/.test(ln)) continue; // date-ish
-      if (/[¥￥]\s*\d/.test(ln) || /\d{1,3}(?:,\d{3})+/.test(ln)) continue; // amount-ish
-      if (blacklist.some((b) => ln.includes(b))) continue;
-
-      // avoid pure numbers
-      if (/^\d+$/.test(ln)) continue;
-
-      // reasonable workplace name
-      return normalizeWorkplaceName(ln);
+    // amount: choose max money in text (usually "受取" が最大になりがち)
+    let maxAmount = 0;
+    for (const ln of lines) {
+      let m;
+      while ((m = moneyRegex.exec(ln)) !== null) {
+        const n = cleanAmount(m[1]);
+        if (Number.isFinite(n) && n > maxAmount) maxAmount = n;
+      }
+      moneyRegex.lastIndex = 0;
     }
-    return "";
+
+    const candidates = [];
+    if (date && maxAmount > 0) {
+      candidates.push({
+        date,
+        workplace,
+        category,
+        amount: maxAmount,
+        memo: ""
+      });
+    }
+    return { raw, candidates };
   }
 
-  function renderOCRPreview() {
-    if (!ocrPreviewState) return;
-
-    const { items, meta } = ocrPreviewState;
-    const showSkipped = $("ocrShowSkipped")?.checked;
-
-    const okTotal = items.filter((x) => x.status === "ok").length;
-    const selectedCount = items.filter((x) => x.status === "ok" && x.selected).length;
-    const skippedCount = items.filter((x) => x.status === "skip").length;
-
-    $("ocrPreviewSummary").textContent =
-      `画像：${meta.fileCount}枚 / 追加候補：${okTotal}件（選択：${selectedCount}件） / スキップ：${skippedCount}件`;
-
-    $("ocrCommitBtn").textContent = `選択した行を追加（${selectedCount}件）`;
-    $("ocrCommitBtn").disabled = selectedCount === 0;
-    $("ocrCommitBtn").style.opacity = selectedCount === 0 ? "0.5" : "1";
-    $("ocrCommitBtn").style.cursor = selectedCount === 0 ? "not-allowed" : "pointer";
-
-    const list = $("ocrPreviewList");
-    list.innerHTML = "";
-
-    const toRender = items.filter((x) => x.status === "ok" || showSkipped);
-
-    toRender.forEach((it) => {
-      const card = document.createElement("div");
-      card.style.border = "1px solid var(--border,#e5e5e5)";
-      card.style.borderRadius = "14px";
-      card.style.padding = "12px";
-      card.style.background = "var(--card-bg,#f9f9f9)";
-
-      const top = document.createElement("div");
-      top.style.display = "flex";
-      top.style.alignItems = "center";
-      top.style.justifyContent = "space-between";
-      top.style.gap = "10px";
-      top.style.flexWrap = "wrap";
-
-      const left = document.createElement("div");
-      left.style.display = "flex";
-      left.style.alignItems = "center";
-      left.style.gap = "10px";
-      left.style.flexWrap = "wrap";
-
-      if (it.status === "ok") {
-        const cb = document.createElement("input");
-        cb.type = "checkbox";
-        cb.checked = !!it.selected;
-        cb.addEventListener("change", () => {
-          it.selected = cb.checked;
-          renderOCRPreview();
-        });
-        left.appendChild(cb);
-      } else {
-        const badge = document.createElement("span");
-        badge.textContent = "SKIP";
-        badge.style.fontWeight = "800";
-        badge.style.fontSize = "0.85em";
-        badge.style.padding = "4px 8px";
-        badge.style.borderRadius = "999px";
-        badge.style.border = "1px solid var(--border,#e5e5e5)";
-        badge.style.opacity = "0.8";
-        left.appendChild(badge);
-      }
-
-      const title = document.createElement("div");
-      title.style.fontWeight = "800";
-      title.textContent =
-        it.status === "ok"
-          ? `${it.data.date || "日付?"} / ${it.data.workplace || "就業先?"}（${it.sourceName}）`
-          : `スキップ：${it.reason}（${it.sourceName}）`;
-      left.appendChild(title);
-
-      const right = document.createElement("div");
-      right.style.fontWeight = "800";
-      right.textContent = it.status === "ok" ? formatYen(it.data.amount) : "";
-      top.appendChild(left);
-      top.appendChild(right);
-
-      const meta = document.createElement("div");
-      meta.style.marginTop = "8px";
-      meta.style.opacity = "0.9";
-      meta.style.fontSize = "0.95em";
-      meta.textContent =
-        it.status === "ok"
-          ? `[${it.data.category}] ${it.data.memo ? ` / メモ：${it.data.memo}` : ""}`
-          : `理由：${it.reason}`;
-
-      card.appendChild(top);
-      card.appendChild(meta);
-
-      if (it.status === "ok") {
-        const form = document.createElement("div");
-        form.style.display = "grid";
-        form.style.gridTemplateColumns = "1fr 1fr";
-        form.style.gap = "8px";
-        form.style.marginTop = "10px";
-
-        const d = makeInlineInput2("日付", it.data.date, "date", (v) => { it.data.date = v; });
-        const w = makeInlineInput2("就業先", it.data.workplace, "text", (v) => { it.data.workplace = normalizeWorkplaceName(v); });
-        const c = makeInlineSelect2("区分", it.data.category, ["報酬","交通費","手当","その他"], (v) => { it.data.category = v; });
-        const a = makeInlineInput2("金額", String(it.data.amount || ""), "text", (v) => {
-          const n = cleanAmount(v);
-          if (Number.isFinite(n) && n > 0) it.data.amount = n;
-        });
-        const m = makeInlineInput2("メモ", it.data.memo || "", "text", (v) => { it.data.memo = v; }, true);
-
-        form.appendChild(d);
-        form.appendChild(w);
-        form.appendChild(c);
-        form.appendChild(a);
-        form.appendChild(m);
-
-        // raw text toggle
-        const rawWrap = document.createElement("div");
-        rawWrap.style.gridColumn = "1 / -1";
-        rawWrap.style.marginTop = "8px";
-
-        const rawBtn = document.createElement("button");
-        rawBtn.type = "button";
-        rawBtn.textContent = "OCRテキストを見る";
-        rawBtn.style.padding = "10px 12px";
-        rawBtn.style.border = "1px solid var(--border,#e5e5e5)";
-        rawBtn.style.background = "transparent";
-        rawBtn.style.borderRadius = "12px";
-        rawBtn.style.cursor = "pointer";
-
-        const rawBox = document.createElement("div");
-        rawBox.style.display = "none";
-        rawBox.style.marginTop = "8px";
-        rawBox.style.whiteSpace = "pre-wrap";
-        rawBox.style.fontSize = "0.9em";
-        rawBox.style.opacity = "0.9";
-        rawBox.style.border = "1px dashed var(--border,#e5e5e5)";
-        rawBox.style.borderRadius = "12px";
-        rawBox.style.padding = "10px";
-        rawBox.textContent = it.rawText || "";
-
-        rawBtn.addEventListener("click", () => {
-          rawBox.style.display = rawBox.style.display === "none" ? "block" : "none";
-        });
-
-        rawWrap.appendChild(rawBtn);
-        rawWrap.appendChild(rawBox);
-
-        card.appendChild(form);
-        card.appendChild(rawWrap);
-      }
-
-      list.appendChild(card);
-    });
-  }
-
-  function makeInlineInput2(label, value, type, onChange, fullWidth = false) {
-    const wrap = document.createElement("div");
-    if (fullWidth) wrap.style.gridColumn = "1 / -1";
-
-    const l = document.createElement("div");
-    l.textContent = label;
-    l.style.fontSize = "0.85em";
-    l.style.opacity = "0.85";
-    l.style.marginBottom = "4px";
-
-    const input = document.createElement("input");
-    input.type = type;
-    input.value = value || "";
-    input.style.width = "100%";
-    input.style.padding = "10px 12px";
-    input.style.borderRadius = "12px";
-    input.style.border = "1px solid var(--border,#e5e5e5)";
-    input.style.background = "var(--bg,#fff)";
-    input.addEventListener("blur", () => {
-      onChange(input.value);
-      renderOCRPreview();
-    });
-
-    wrap.appendChild(l);
-    wrap.appendChild(input);
-    return wrap;
-  }
-
-  function makeInlineSelect2(label, value, options, onChange) {
-    const wrap = document.createElement("div");
-    const l = document.createElement("div");
-    l.textContent = label;
-    l.style.fontSize = "0.85em";
-    l.style.opacity = "0.85";
-    l.style.marginBottom = "4px";
-
-    const sel = document.createElement("select");
-    sel.style.width = "100%";
-    sel.style.padding = "10px 12px";
-    sel.style.borderRadius = "12px";
-    sel.style.border = "1px solid var(--border,#e5e5e5)";
-    sel.style.background = "var(--bg,#fff)";
-    options.forEach((o) => {
-      const opt = document.createElement("option");
-      opt.value = o;
-      opt.textContent = o;
-      sel.appendChild(opt);
-    });
-    sel.value = value || "報酬";
-    sel.addEventListener("change", () => {
-      onChange(sel.value);
-      renderOCRPreview();
-    });
-
-    wrap.appendChild(l);
-    wrap.appendChild(sel);
-    return wrap;
-  }
-
-  function commitOCRPreview() {
-    if (!ocrPreviewState) return;
-
-    const existingKeys = new Set(entries.map(makeDedupeKey));
-    const previewKeys = new Set();
-
-    let committed = 0;
-    let skippedDup = 0;
-    let skippedInvalid = 0;
-
-    ocrPreviewState.items.forEach((it) => {
-      if (it.status !== "ok") return;
-      if (!it.selected) return;
-
-      const d = String(it.data.date || "").trim();
-      const w = normalizeWorkplaceName(it.data.workplace || "");
-      const c = String(it.data.category || "").trim();
-      const a = Number(it.data.amount || 0);
-      const m = String(it.data.memo || "");
-
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
-        skippedInvalid++;
-        return;
-      }
-
-      const normalized = { date: d, workplace: w, category: c, amount: a, memo: m };
-      const key = makeDedupeKey(normalized);
-
-      if (existingKeys.has(key) || previewKeys.has(key)) {
-        skippedDup++;
-        return;
-      }
-
-      entries.push(normalized);
-      existingKeys.add(key);
-      previewKeys.add(key);
-      bumpWorkplace(w);
-      committed++;
-    });
-
-    renderAll();
-    closeOCRPreview();
-
-    if (committed === 0) {
-      showError(`追加できる行がありませんでした。\n重複スキップ：${skippedDup} / 不正：${skippedInvalid}`);
+  async function runOCR(files) {
+    const guard = guardOCRFiles(files);
+    if (!guard.ok) {
+      showError(guard.msg);
       return;
     }
-    toast(`OCR取り込み：${committed}件追加（重複スキップ：${skippedDup}）`);
+
+    const loaded = await ensureTesseractLoaded();
+    if (!loaded) {
+      showError("OCRエンジンの読み込みに失敗しました。ネット接続を確認して再試行してください。");
+      return;
+    }
+
+    // Reset runtime
+    OCR_RT.running = true;
+    OCR_RT.cancelRequested = false;
+    OCR_RT.worker = null;
+
+    openOCRProgressModal();
+    setOCRProgress(`準備中…`, 2);
+
+    try {
+      const worker = await window.Tesseract.createWorker("jpn");
+      OCR_RT.worker = worker;
+
+      await worker.setParameters({
+        tessedit_pageseg_mode: "6",
+      });
+
+      const existingKeys = new Set(entries.map(makeDedupeKey));
+      const rows = [];
+      let dupCount = 0;
+
+      for (let i = 0; i < files.length; i++) {
+        if (OCR_RT.cancelRequested) throw new Error("CANCELLED");
+
+        const f = files[i];
+        const pctBase = Math.round((i / files.length) * 100);
+
+        setOCRProgress(`画像 ${i + 1}/${files.length} を準備中…`, Math.max(5, pctBase));
+
+        const blob = await downscaleImageToBlob(f);
+
+        // per-image progress callback
+        const { data } = await worker.recognize(blob, undefined, {
+          logger: (m) => {
+            if (OCR_RT.cancelRequested) return;
+            if (m && m.status === "recognizing text") {
+              const p = Math.round((i / files.length) * 100 + (m.progress || 0) * (100 / files.length));
+              setOCRProgress(`画像 ${i + 1}/${files.length} を解析中…`, Math.min(99, Math.max(5, p)));
+            }
+          }
+        });
+
+        if (OCR_RT.cancelRequested) throw new Error("CANCELLED");
+
+        const parsed = parseOCRTextToCandidates(data?.text || "");
+        if (!parsed.candidates.length) {
+          rows.push({
+            id: `ocr-${Date.now()}-${i}`,
+            status: "skip",
+            reason: "日付/金額を抽出できませんでした",
+            selected: false,
+            data: { date: "", workplace: "", category: "報酬", amount: 0, memo: "" },
+            raw: parsed.raw
+          });
+          continue;
+        }
+
+        // Usually 1 candidate per screenshot in MVP
+        parsed.candidates.forEach((c, idx) => {
+          const normalized = {
+            date: String(c.date || "").trim(),
+            workplace: normalizeWorkplaceName(c.workplace || ""),
+            category: String(c.category || "報酬").trim(),
+            amount: Number(c.amount || 0),
+            memo: String(c.memo || "")
+          };
+
+          // Validate minimal
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized.date) || !normalized.workplace || !Number.isFinite(normalized.amount) || normalized.amount <= 0) {
+            rows.push({
+              id: `ocr-${Date.now()}-${i}-${idx}`,
+              status: "skip",
+              reason: "抽出結果が不完全（要編集）",
+              selected: false,
+              data: normalized,
+              raw: parsed.raw
+            });
+            return;
+          }
+
+          const key = makeDedupeKey(normalized);
+          if (existingKeys.has(key)) {
+            dupCount++;
+            rows.push({
+              id: `ocr-${Date.now()}-${i}-${idx}`,
+              status: "skip",
+              reason: "重複（既存データと一致）",
+              selected: false,
+              data: normalized,
+              raw: parsed.raw
+            });
+            return;
+          }
+
+          rows.push({
+            id: `ocr-${Date.now()}-${i}-${idx}`,
+            status: "ok",
+            reason: "OK",
+            selected: true,
+            data: normalized,
+            raw: parsed.raw
+          });
+        });
+      }
+
+      setOCRProgress("完了。結果を表示します…", 100);
+
+      const okCount = rows.filter((r) => r.status === "ok").length;
+      const skipCount = rows.filter((r) => r.status === "skip").length;
+
+      closeOCRProgressModal();
+
+      if (okCount === 0) {
+        showError(`追加できる候補がありませんでした。\nスキップ：${skipCount}（重複：${dupCount}）`);
+        return;
+      }
+
+      openOCRPreview({
+        rows,
+        summary: { okCount, skipCount, dupCount, total: rows.length }
+      });
+
+    } catch (err) {
+      closeOCRProgressModal();
+
+      if (String(err?.message || "").includes("CANCELLED")) {
+        toast("OCRをキャンセルしました");
+      } else {
+        showError("OCR中にエラーが発生しました。画像枚数を減らす/切り抜く/再試行してください。");
+        console.error(err);
+      }
+    } finally {
+      try {
+        if (OCR_RT.worker && OCR_RT.worker.terminate) {
+          await OCR_RT.worker.terminate();
+        }
+      } catch {}
+      OCR_RT.worker = null;
+      OCR_RT.running = false;
+      OCR_RT.cancelRequested = false;
+    }
+  }
+
+  function bindOCR() {
+    if (!ocrBtn || !ocrInput) return;
+
+    ocrBtn.addEventListener("click", () => {
+      ocrInput.click();
+    });
+
+    ocrInput.addEventListener("change", (ev) => {
+      const files = ev.target.files ? Array.from(ev.target.files) : [];
+      ev.target.value = "";
+
+      if (!files.length) return;
+
+      // clear any previous preview
+      ocrPreviewState = null;
+
+      runOCR(files);
+    });
   }
 
   // ----------------------------
@@ -1981,16 +2052,15 @@
     applySettings();
     bindSettingsUI();
 
-    // Inject helpers without touching HTML
     injectDateShortcuts();
     injectWorkplaceQuickPicks();
     injectCategoryChips();
 
-    // CSV UI
     injectCSVSpecHelp();
     injectImportPreviewModal();
 
-    // OCR UI (modal injected; button exists in HTML)
+    // OCR UI
+    injectOCRProgressModal();
     injectOCRPreviewModal();
 
     updateWorkplaceDatalist();
@@ -1999,7 +2069,6 @@
     bindCSV();
     bindOCR();
 
-    // default date = today
     if (dateInput && !dateInput.value) {
       dateInput.value = toISODate(new Date());
     }
