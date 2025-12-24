@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>WeatherDiff｜天気の差分比較ガイド（症状→原因→対策） | NicheWorks</title>
-  <meta name="description" content="WeatherDiffの検索入口ページ。天気を比較して差分を確認したいときに、症状→原因→対策→ツールで最短チェック（保存なし）。" />
+  <title>WeatherDiff｜天気予報APIのズレ比較ガイド（症状→原因→対策） | NicheWorks</title>
+  <meta name="description" content="WeatherDiffの検索入口ページ。複数の天気API（Open-Meteo / MET Norway）の予報を並べて比較し、ズレ（差分）を確認できます。保存なし。" />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/howto/" />
 
   <!-- hreflang -->
@@ -40,8 +40,8 @@
       <a href="./en/">EN</a>
       <a href="../">Tool</a>
     </div>
-    <h1 style="margin:10px 0 6px">WeatherDiff：天気の差分比較ガイド</h1>
-    <p class="muted" style="margin:0">比較したい → 差分を見る → 判断する、を最短で（保存なし）。</p>
+    <h1 style="margin:10px 0 6px">WeatherDiff：天気予報APIのズレ比較ガイド</h1>
+    <p class="muted" style="margin:0">同じ地点でも、APIごとに予報が違う。並べて“ズレ”を確認（保存なし）。</p>
   </header>
 
   <main class="nw-main">
@@ -50,34 +50,46 @@
     <section class="card">
       <h2 style="margin:0 0 8px">まず結論（30秒）</h2>
       <ol>
-        <li>比較したい条件（例：地点/日時など）を入力する</li>
-        <li>差分（気温・降水・風など）を確認する</li>
-        <li>必要なら条件を変えて再チェック（保存なし）</li>
+        <li>地点を入力（または「現在地検索」）</li>
+        <li>「比較」を押して、各APIの予報（今日/明日）を確認</li>
+        <li>下の「予報のズレ（比較結果）」で差分を一発チェック</li>
       </ol>
       <div class="btns">
         <a class="btn primary" href="../">ツールを開く</a>
         <a class="btn" href="./en/">English guide</a>
       </div>
+      <p class="muted" style="margin:8px 0 0">
+        ※これは参考情報です。重要な判断は公式情報（気象庁など）も確認してください。
+      </p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">よくある症状（検索される言い方）</h2>
       <ul>
-        <li>2地点の天気の違い（気温差/降水差/風）を一瞬で見たい</li>
-        <li>同じ場所でも日付を変えて「どっちがマシか」比較したい</li>
-        <li>旅行・洗濯・イベント前に、条件を並べて判断したい</li>
+        <li>天気予報サイトによって言ってることが違う（どれを信じればいい？）</li>
+        <li>雨予報が外れがちなので、複数ソースで事前チェックしたい</li>
+        <li>気温・降水・風の予報がサービスによってどれくらいズレるか見たい</li>
       </ul>
       <p class="muted" style="margin:8px 0 0">
-        関連キーワード：weather difference, compare weather, temperature difference, precipitation, wind speed
+        関連キーワード：天気API, 予報比較, 予報のズレ, Open-Meteo, MET Norway, weather API comparison
       </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールで分かること</h2>
+      <ul>
+        <li>Open-Meteo と MET Norway の予報を並べて比較</li>
+        <li>今日/明日の「気温・降水・風」などの差分</li>
+        <li>差分が大きいときに「他のサービスで詳しく見る」リンクへすぐ飛べる</li>
+      </ul>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">使い方（最短3ステップ）</h2>
       <ol>
         <li>ツール画面を開く</li>
-        <li>比較条件を入力して実行</li>
-        <li>差分結果を見て判断する</li>
+        <li>地点を入力して「比較」</li>
+        <li>「予報のズレ（比較結果）」を見る</li>
       </ol>
       <p class="muted" style="margin:0">処理はブラウザ内のみ。サーバー保存はしません。</p>
     </section>
