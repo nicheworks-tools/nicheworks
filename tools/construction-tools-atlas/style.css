@@ -359,3 +359,94 @@ h1 {
     width: 100%;
   }
 }
+
+/* =========================================================
+   Static pages (pages/*.html) styling
+   - about / method / disclaimer / credits
+   ========================================================= */
+
+.static-page{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 20px 72px;
+}
+
+.static-page h1{
+  margin: 14px 0 10px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.static-page h2{
+  margin: 18px 0 8px;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  opacity: 0.95;
+}
+
+.static-page p,
+.static-page li{
+  line-height: 1.75;
+}
+
+.static-page hr{
+  margin: 18px 0;
+  border: 0;
+  border-top: 1px solid var(--border, rgba(0,0,0,0.12));
+  opacity: 0.9;
+}
+
+.static-nav{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 18px;
+  align-items: center;
+}
+
+.static-nav a{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  border: 1px solid var(--border, rgba(0,0,0,0.15));
+  background: var(--panel, rgba(0,0,0,0.03));
+
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+
+  transition: transform 0.08s ease, opacity 0.08s ease;
+}
+
+.static-nav a:hover{
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.static-nav a[aria-current="page"]{
+  border-color: transparent;
+  background: var(--accent, #2563eb);
+  color: #fff;
+}
+
+.static-page ul{
+  margin: 10px 0 0 18px;
+  padding: 0;
+}
+
+.static-page li{
+  margin: 6px 0;
+}
+
+.static-page a{
+  color: var(--accent, #2563eb);
+}
+
+.static-page a:hover{
+  opacity: 0.9;
+}
+
