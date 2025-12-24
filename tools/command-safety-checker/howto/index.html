@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>コマンド実行前チェック｜Command Safety Checker ガイド | NicheWorks</title>
-  <meta name="description" content="AIが出してきたbash/zsh/PowerShellコマンドを実行前に貼り付けて、破壊・漏洩・権限過多などの危険パターンを検出。Low/Medium/Highで表示。保存なし。" />
+  <meta name="description" content="AIが出してきたbash/zsh/PowerShellコマンドを実行前に貼り付けて、破壊・漏洩・権限過多などの危険パターンを検出。Low/Medium/Highで表示。ブラウザ完結・保存なし。" />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/command-safety-checker/howto/" />
 
   <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/command-safety-checker/howto/" />
@@ -40,7 +40,7 @@
       <a href="../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">Command Safety Checker：ガイド</h1>
-    <p class="muted" style="margin:0">AIコマンドを実行前に貼るだけ。危険パターンを検出してリスクを表示（保存なし）。</p>
+    <p class="muted" style="margin:0">AIコマンドを貼るだけで危険パターンを検出。実行前の見落とし防止に使います（保存なし）。</p>
   </header>
 
   <main class="nw-main">
@@ -50,8 +50,8 @@
       <h2 style="margin:0 0 8px">このツールでできること</h2>
       <ul>
         <li>bash / zsh / PowerShell のコマンドを貼り付けて、危険な実行パターンを検出</li>
-        <li>破壊（削除/上書き）、漏洩（送信/出力）、権限過多（sudo/管理者）などをチェック</li>
-        <li>リスクを <code>Low / Medium / High</code> で可視化（最終判断は人間）</li>
+        <li>破壊（削除/上書き）、漏洩（送信/出力）、権限過多（sudo/管理者）などの観点でチェック</li>
+        <li>リスクを <code>Low / Medium / High</code> で表示（参考用）</li>
         <li>ブラウザ内で完結（保存なし）</li>
       </ul>
       <div class="btns">
@@ -63,12 +63,12 @@
     <section class="card">
       <h2 style="margin:0 0 8px">こんなときに使う</h2>
       <ul>
-        <li>ChatGPTやCopilotが出したコマンドを、そのまま叩くのが怖い</li>
-        <li><code>rm -rf</code> や <code>sudo</code> などが混ざってないか事前に見たい</li>
-        <li>社内PCや本番環境で実行する前に、最低限の危険チェックをしたい</li>
+        <li>ChatGPTやCopilotが出したコマンドを、そのまま叩くのが不安</li>
+        <li><code>rm -rf</code> / <code>sudo</code> / 危険なリダイレクトなどが混ざってないか確認したい</li>
+        <li>本番/社内PC/共有サーバーで実行する前に、ざっと危険を洗い出したい</li>
       </ul>
       <p class="muted" style="margin:8px 0 0">
-        関連キーワード：command safety, dangerous shell command, rm -rf, sudo, powershell safety, ai command check
+        関連キーワード：command safety / dangerous shell command / rm -rf / sudo / powershell safety / ai command check
       </p>
     </section>
 
@@ -78,18 +78,18 @@
         <li>ツール画面を開く</li>
         <li>実行予定のコマンド（複数行OK）を貼る</li>
         <li>表示されたリスク（Low/Medium/High）と指摘内容を読む</li>
-        <li>不安が残る場合は、実行前にパス/対象/権限/環境を見直す</li>
+        <li>不安が残る場合は、対象パス/権限/実行場所を見直してから実行</li>
       </ol>
-      <p class="muted" style="margin:0">コツ：まずはテスト環境（ダミーディレクトリ）で動作確認。</p>
+      <p class="muted" style="margin:0">コツ：いきなり本番で叩かず、まずはテスト環境やダミーフォルダで挙動確認。</p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
       <ul>
-        <li>安全を保証するものではありません（最終判断は必ず人間）。</li>
-        <li>一見安全でも、変数展開・パイプ・リダイレクト・権限・実行場所によって結果が変わります。</li>
-        <li>ネットワーク送信や環境依存の挙動は、静的チェックでは見落とす可能性があります。</li>
-        <li>本番環境での実行は、バックアップや権限の確認を前提にしてください。</li>
+        <li>コマンドの安全性を保証するものではありません（参考用）。</li>
+        <li>変数展開・パイプ・リダイレクト・権限・実行ディレクトリで結果が大きく変わります。</li>
+        <li>環境依存・ネットワーク依存の挙動は、静的チェックでは見落とす可能性があります。</li>
+        <li>重要な操作は、バックアップや権限確認のうえで行ってください。</li>
       </ul>
     </section>
 
