@@ -14,6 +14,8 @@
     cat: "",
     task: "",
     id: "",
+    debug: false,
+    dataEmpty: false,
   };
 
   const db = {
@@ -74,6 +76,23 @@
     methodLink: document.getElementById("methodLink"),
     disclaimerLink: document.getElementById("disclaimerLink"),
     creditsLink: document.getElementById("creditsLink"),
+
+    // debug UI (injected)
+    debugWrap: null,
+    debugToggle: null,
+    debugPanel: null,
+    debugTitle: null,
+    debugIndexUrlValue: null,
+    debugPacksResolvedValue: null,
+    debugLoadedEntriesValue: null,
+    debugFailedPacksValue: null,
+    debugFailuresWrap: null,
+    debugFailuresTitle: null,
+    debugFailuresList: null,
+    debugIndexErrorWrap: null,
+    debugIndexErrorTitle: null,
+    debugIndexErrorValue: null,
+    debugIndexErrorBanner: null,
   };
 
   const i18n = {
@@ -102,6 +121,16 @@
       empty: "No results found. Try a different keyword or filter.",
       dash: "—",
       failed: "Failed to load data. See console.",
+      debugToggle: "Debug",
+      debugTitle: "Status / Debug",
+      debugIndexUrl: "INDEX_URL",
+      debugPacksResolved: "packsResolved",
+      debugLoadedEntries: "loadedEntries",
+      debugFailedPacks: "failedPacks",
+      debugFailuresTitle: "Failed packs",
+      debugIndexErrorTitle: "index.json error",
+      debugIndexErrorBanner: "Failed to load index.json.",
+      emptyDataHint: "Data failed to load. Open Debug to see details.",
     },
     ja: {
       eyebrow: "建設工具・スラング図鑑",
@@ -128,6 +157,16 @@
       empty: "該当する用語がありません。キーワードや絞り込みを変えてください。",
       dash: "—",
       failed: "データの読み込みに失敗しました（コンソール参照）",
+      debugToggle: "デバッグ",
+      debugTitle: "ステータス / デバッグ",
+      debugIndexUrl: "INDEX_URL",
+      debugPacksResolved: "packsResolved",
+      debugLoadedEntries: "loadedEntries",
+      debugFailedPacks: "failedPacks",
+      debugFailuresTitle: "失敗したパック",
+      debugIndexErrorTitle: "index.json エラー",
+      debugIndexErrorBanner: "index.json の読み込みに失敗しました。",
+      emptyDataHint: "データ読み込みに失敗しました。デバッグ表示で詳細を確認してください。",
     },
   };
 
@@ -147,6 +186,15 @@
 
   const BASE = getToolBaseUrl(); // ensures trailing slash
   const INDEX_URL = new URL("data/index.json", BASE).toString();
+
+  const debugInfo = {
+    indexUrl: INDEX_URL,
+    packsResolved: 0,
+    loadedEntries: 0,
+    failedPacks: 0,
+    failures: [],
+    indexError: null,
+  };
 
   function resolvePackUrl(file) {
     if (!file || typeof file !== "string") return null;
@@ -180,6 +228,7 @@
 
   async function init() {
     readUrlToState();
+    setupDebugUi();
     bindEvents();
     await loadAllData();
 
@@ -230,6 +279,7 @@
       readUrlToState();
       sanitizeStateAgainstDefs();
       applyI18n();
+      setDebugOpen(state.debug, { updateUrl: false });
       applyStateToControls();
       renderFilters();
       renderList();
@@ -244,7 +294,16 @@
   ------------------------------ */
 
   async function loadAllData() {
-    const index = await fetchJson(INDEX_URL);
+    resetDebugInfo();
+
+    let index;
+    try {
+      index = await fetchJson(INDEX_URL);
+    } catch (error) {
+      handleIndexError(error);
+      return;
+    }
+
     db.index = index;
 
     db.categories = normalizeDefList(index.categories);
@@ -255,9 +314,21 @@
 
     const packs = Array.isArray(index.packs) ? index.packs : [];
     const packUrls = packs.map((p) => resolvePackUrl(p?.file)).filter(Boolean);
+    debugInfo.packsResolved = packUrls.length;
 
     if (packUrls.length === 0) {
-      throw new Error(`No pack URLs resolved. Check index.json packs[].file.\nINDEX_URL=${INDEX_URL}`);
+      debugInfo.failedPacks = 1;
+      debugInfo.failures = [
+        {
+          url: "(packs)",
+          err: new Error(
+            `No pack URLs resolved. Check index.json packs[].file.\nINDEX_URL=${INDEX_URL}`
+          ),
+        },
+      ];
+      updateDebugPanel();
+      handleEmptyData();
+      return;
     }
 
     const settled = await Promise.allSettled(packUrls.map((u) => fetchJson(u)));
@@ -269,6 +340,8 @@
       else errors.push({ url: packUrls[i], err: r.reason });
     });
     if (errors.length) console.error("[packs] some failed:", errors);
+    debugInfo.failedPacks = errors.length;
+    debugInfo.failures = errors;
 
     const entries = okJsons.flatMap((pj) => {
       if (Array.isArray(pj)) return pj;
@@ -278,9 +351,11 @@
 
     db.entries = entries.filter((e) => e && typeof e.id === "string" && e.id.trim().length > 0);
     db.entriesById = new Map(db.entries.map((e) => [e.id, e]));
+    debugInfo.loadedEntries = db.entries.length;
+    updateDebugPanel();
 
     if (db.entries.length === 0) {
-      throw new Error("No entries loaded from packs.");
+      handleEmptyData();
     }
   }
 
@@ -322,6 +397,8 @@
       els.langToggle.setAttribute("aria-label", dict.langToggleLabel);
       els.langToggle.setAttribute("title", dict.langToggleLabel);
     }
+
+    applyDebugI18n(dict);
   }
 
   function applyStateToControls() {
@@ -399,10 +476,19 @@
   ------------------------------ */
 
   function renderList() {
+    const dict = i18n[state.lang] || i18n.en;
     const results = getFilteredEntries();
 
     if (els.resultCount) els.resultCount.textContent = String(results.length);
-    if (els.emptyState) els.emptyState.hidden = results.length !== 0;
+    if (els.emptyState) {
+      const isEmpty = results.length === 0;
+      els.emptyState.hidden = !isEmpty;
+      if (isEmpty) {
+        els.emptyState.textContent = state.dataEmpty
+          ? `${dict.emptyState} ${dict.emptyDataHint}`
+          : dict.emptyState;
+      }
+    }
 
     if (!els.resultsList) return;
     els.resultsList.innerHTML = "";
@@ -763,6 +849,7 @@
     state.cat = sp.get("cat") || "";
     state.task = sp.get("task") || "";
     state.id = sp.get("id") || "";
+    state.debug = sp.get("debug") === "1";
 
     applyStateToControls();
   }
@@ -776,6 +863,7 @@
     if (state.cat) sp.set("cat", state.cat);
     if (state.task) sp.set("task", state.task);
     if (state.id) sp.set("id", state.id);
+    if (state.debug) sp.set("debug", "1");
 
     const qs = sp.toString();
     const url = qs ? `?${qs}` : BASE.pathname; // keep trailing slash
@@ -791,5 +879,233 @@
     renderList();
 
     if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
+  }
+
+  /* -----------------------------
+     Debug UI
+  ------------------------------ */
+
+  function setupDebugUi() {
+    if (els.debugWrap) return;
+    const anchor = document.querySelector(".controls") || document.querySelector(".topbar");
+    if (!anchor) return;
+
+    const banner = document.createElement("div");
+    banner.id = "debugIndexErrorBanner";
+    banner.hidden = true;
+    banner.style.cssText = [
+      "margin: 10px 0",
+      "padding: 10px 12px",
+      "border: 1px solid #d9534f",
+      "background: #fff1f1",
+      "color: #8a1f1f",
+      "border-radius: 8px",
+      "font-size: 13px",
+      "line-height: 1.5",
+      "white-space: pre-wrap",
+    ].join(";");
+
+    const wrap = document.createElement("section");
+    wrap.id = "debugWrap";
+    wrap.setAttribute("aria-label", "Status / Debug");
+    wrap.style.cssText = ["margin: 10px 0 16px", "display: grid", "gap: 8px"].join(";");
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.id = "debugToggle";
+    toggle.style.cssText = [
+      "align-self: start",
+      "font-size: 12px",
+      "padding: 4px 8px",
+      "border-radius: 999px",
+      "border: 1px solid #bbb",
+      "background: #f8f8f8",
+      "cursor: pointer",
+    ].join(";");
+
+    const panel = document.createElement("div");
+    panel.id = "debugPanel";
+    panel.hidden = !state.debug;
+    panel.style.cssText = [
+      "border: 1px dashed #bbb",
+      "background: #fafafa",
+      "border-radius: 10px",
+      "padding: 12px",
+      "font-size: 12px",
+      "line-height: 1.5",
+    ].join(";");
+
+    const title = document.createElement("div");
+    title.style.cssText = ["font-weight: 600", "margin-bottom: 6px"].join(";");
+
+    const summary = document.createElement("dl");
+    summary.style.cssText = [
+      "display: grid",
+      "grid-template-columns: max-content 1fr",
+      "gap: 4px 12px",
+      "margin: 0 0 8px",
+    ].join(";");
+
+    const indexUrlValue = createDebugRow(summary);
+    const packsResolvedValue = createDebugRow(summary);
+    const loadedEntriesValue = createDebugRow(summary);
+    const failedPacksValue = createDebugRow(summary);
+
+    const indexErrorWrap = document.createElement("div");
+    indexErrorWrap.style.cssText = [
+      "margin: 8px 0",
+      "padding: 8px",
+      "border: 1px solid #f1c0c0",
+      "background: #fff4f4",
+      "border-radius: 8px",
+      "white-space: pre-wrap",
+    ].join(";");
+    indexErrorWrap.hidden = true;
+    const indexErrorTitle = document.createElement("div");
+    indexErrorTitle.style.cssText = ["font-weight: 600", "margin-bottom: 4px"].join(";");
+    const indexErrorValue = document.createElement("div");
+    indexErrorWrap.append(indexErrorTitle, indexErrorValue);
+
+    const failuresWrap = document.createElement("div");
+    failuresWrap.style.cssText = ["margin-top: 8px"].join(";");
+    failuresWrap.hidden = true;
+    const failuresTitle = document.createElement("div");
+    failuresTitle.style.cssText = ["font-weight: 600", "margin-bottom: 4px"].join(";");
+    const failuresList = document.createElement("ul");
+    failuresList.style.cssText = ["margin: 0", "padding-left: 18px"].join(";");
+    failuresWrap.append(failuresTitle, failuresList);
+
+    panel.append(title, summary, indexErrorWrap, failuresWrap);
+    wrap.append(toggle, panel);
+
+    anchor.insertAdjacentElement("afterend", wrap);
+    wrap.insertAdjacentElement("beforebegin", banner);
+
+    toggle.addEventListener("click", () => {
+      setDebugOpen(!state.debug, { updateUrl: true });
+    });
+
+    els.debugWrap = wrap;
+    els.debugToggle = toggle;
+    els.debugPanel = panel;
+    els.debugTitle = title;
+    els.debugIndexUrlValue = indexUrlValue;
+    els.debugPacksResolvedValue = packsResolvedValue;
+    els.debugLoadedEntriesValue = loadedEntriesValue;
+    els.debugFailedPacksValue = failedPacksValue;
+    els.debugFailuresWrap = failuresWrap;
+    els.debugFailuresTitle = failuresTitle;
+    els.debugFailuresList = failuresList;
+    els.debugIndexErrorWrap = indexErrorWrap;
+    els.debugIndexErrorTitle = indexErrorTitle;
+    els.debugIndexErrorValue = indexErrorValue;
+    els.debugIndexErrorBanner = banner;
+  }
+
+  function createDebugRow(summary) {
+    const dt = document.createElement("dt");
+    dt.style.cssText = ["font-weight: 600"].join(";");
+    const dd = document.createElement("dd");
+    dd.style.cssText = ["margin: 0", "word-break: break-all"].join(";");
+    summary.append(dt, dd);
+    return { dt, dd };
+  }
+
+  function applyDebugI18n(dict) {
+    if (els.debugToggle) {
+      els.debugToggle.textContent = dict.debugToggle;
+      els.debugToggle.setAttribute("aria-pressed", String(state.debug));
+    }
+    if (els.debugTitle) els.debugTitle.textContent = dict.debugTitle;
+
+    if (els.debugIndexUrlValue?.dt) els.debugIndexUrlValue.dt.textContent = dict.debugIndexUrl;
+    if (els.debugPacksResolvedValue?.dt)
+      els.debugPacksResolvedValue.dt.textContent = dict.debugPacksResolved;
+    if (els.debugLoadedEntriesValue?.dt)
+      els.debugLoadedEntriesValue.dt.textContent = dict.debugLoadedEntries;
+    if (els.debugFailedPacksValue?.dt)
+      els.debugFailedPacksValue.dt.textContent = dict.debugFailedPacks;
+
+    if (els.debugFailuresTitle) els.debugFailuresTitle.textContent = dict.debugFailuresTitle;
+    if (els.debugIndexErrorTitle) els.debugIndexErrorTitle.textContent = dict.debugIndexErrorTitle;
+  }
+
+  function resetDebugInfo() {
+    debugInfo.indexUrl = INDEX_URL;
+    debugInfo.packsResolved = 0;
+    debugInfo.loadedEntries = 0;
+    debugInfo.failedPacks = 0;
+    debugInfo.failures = [];
+    debugInfo.indexError = null;
+    state.dataEmpty = false;
+    updateDebugPanel();
+    if (els.debugIndexErrorBanner) els.debugIndexErrorBanner.hidden = true;
+  }
+
+  function updateDebugPanel() {
+    if (els.debugIndexUrlValue?.dd) els.debugIndexUrlValue.dd.textContent = debugInfo.indexUrl;
+    if (els.debugPacksResolvedValue?.dd)
+      els.debugPacksResolvedValue.dd.textContent = String(debugInfo.packsResolved);
+    if (els.debugLoadedEntriesValue?.dd)
+      els.debugLoadedEntriesValue.dd.textContent = String(debugInfo.loadedEntries);
+    if (els.debugFailedPacksValue?.dd)
+      els.debugFailedPacksValue.dd.textContent = String(debugInfo.failedPacks);
+
+    if (els.debugIndexErrorWrap && els.debugIndexErrorValue) {
+      if (debugInfo.indexError) {
+        els.debugIndexErrorWrap.hidden = false;
+        els.debugIndexErrorValue.textContent = formatErrorShort(debugInfo.indexError);
+      } else {
+        els.debugIndexErrorWrap.hidden = true;
+        els.debugIndexErrorValue.textContent = "";
+      }
+    }
+
+    if (els.debugFailuresWrap && els.debugFailuresList) {
+      if (debugInfo.failures.length > 0) {
+        els.debugFailuresWrap.hidden = false;
+        els.debugFailuresList.innerHTML = "";
+        debugInfo.failures.forEach((failure) => {
+          const li = document.createElement("li");
+          li.textContent = `${failure.url} — ${formatErrorShort(failure.err)}`;
+          els.debugFailuresList.appendChild(li);
+        });
+      } else {
+        els.debugFailuresWrap.hidden = true;
+        els.debugFailuresList.innerHTML = "";
+      }
+    }
+  }
+
+  function setDebugOpen(open, { updateUrl } = {}) {
+    state.debug = Boolean(open);
+    if (els.debugPanel) els.debugPanel.hidden = !state.debug;
+    if (els.debugToggle) els.debugToggle.setAttribute("aria-pressed", String(state.debug));
+    if (updateUrl) pushStateToUrl();
+  }
+
+  function handleIndexError(error) {
+    debugInfo.indexError = error;
+    debugInfo.loadedEntries = 0;
+    updateDebugPanel();
+    handleEmptyData();
+
+    const dict = i18n[state.lang] || i18n.en;
+    if (els.debugIndexErrorBanner) {
+      els.debugIndexErrorBanner.hidden = false;
+      els.debugIndexErrorBanner.textContent = `${dict.debugIndexErrorBanner}\n${INDEX_URL}\n${formatErrorShort(
+        error
+      )}`;
+    }
+  }
+
+  function handleEmptyData() {
+    state.dataEmpty = true;
+    setDebugOpen(true, { updateUrl: false });
+  }
+
+  function formatErrorShort(error) {
+    const raw = error?.message || String(error || "");
+    return raw.replace(/\s+/g, " ").trim().slice(0, 180);
   }
 })();
