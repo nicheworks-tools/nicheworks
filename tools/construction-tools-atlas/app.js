@@ -313,11 +313,14 @@
     const dict = i18n[state.lang] || i18n.en;
 
     const current = state.cat || "";
-    els.categorySelect.innerHTML = "";
-
-    const allOpt = document.createElement("option");
+    const allOpt =
+      els.categorySelect.querySelector("#categoryDefaultOption") ||
+      document.createElement("option");
+    allOpt.id = "categoryDefaultOption";
     allOpt.value = "";
     allOpt.textContent = dict.catAll;
+
+    els.categorySelect.innerHTML = "";
     els.categorySelect.appendChild(allOpt);
 
     const sorted = [...db.categories].sort((a, b) =>
@@ -339,11 +342,14 @@
     const dict = i18n[state.lang] || i18n.en;
 
     const current = state.task || "";
-    els.taskSelect.innerHTML = "";
-
-    const allOpt = document.createElement("option");
+    const allOpt =
+      els.taskSelect.querySelector("#taskDefaultOption") ||
+      document.createElement("option");
+    allOpt.id = "taskDefaultOption";
     allOpt.value = "";
     allOpt.textContent = dict.taskAll;
+
+    els.taskSelect.innerHTML = "";
     els.taskSelect.appendChild(allOpt);
 
     const sorted = [...db.tasks].sort((a, b) =>
@@ -440,7 +446,7 @@
     });
   }
 
-  function setDetailChips(container, items) {
+  function setDetailListText(container, items) {
     const dict = i18n[state.lang] || i18n.en;
     if (!container) return;
 
@@ -450,10 +456,7 @@
       return;
     }
 
-    container.innerHTML = "";
-    const frag = document.createDocumentFragment();
-    for (const t of list) frag.appendChild(renderTag(t));
-    container.appendChild(frag);
+    container.textContent = list.join(", ");
   }
 
   function openDetail(id, { pushUrl }) {
@@ -470,8 +473,15 @@
 
     const dict = i18n[state.lang] || i18n.en;
 
-    if (els.detailTitle) els.detailTitle.textContent = `${termOf(entry, "en")} / ${termOf(entry, "ja")}`;
-    if (els.detailSubtitle) els.detailSubtitle.textContent = "";
+    const termJa = termOf(entry, "ja");
+    const termEn = termOf(entry, "en");
+    const termCurrent = termOf(entry, state.lang);
+
+    if (els.detailTitle) els.detailTitle.textContent = termCurrent || entry.id || dict.dash;
+    if (els.detailSubtitle) {
+      if (termJa && termEn) els.detailSubtitle.textContent = `${termJa} / ${termEn}`;
+      else els.detailSubtitle.textContent = termJa || termEn || dict.dash;
+    }
 
     // category line: labels joined
     if (els.detailCategory) {
@@ -486,18 +496,18 @@
       els.detailDescription.textContent = descOf(entry, state.lang) || dict.dash;
     }
 
-    // task chips (labels)
+    // task labels
     const taskLabels = normalizeEntryTaskIds(entry)
       .map((tid) => db.tasksMap.get(tid))
       .filter(Boolean)
       .map((def) => labelOf(def, state.lang));
-    setDetailChips(els.detailTasks, taskLabels);
+    setDetailListText(els.detailTasks, taskLabels);
 
-    // aliases chips (union ja+en)
-    setDetailChips(els.detailAliases, aliasesListAll(entry));
+    // aliases for current lang
+    setDetailListText(els.detailAliases, aliasesListForLang(entry, state.lang));
 
-    // tags chips (raw)
-    setDetailChips(els.detailTags, tagsList(entry));
+    // tags (raw)
+    setDetailListText(els.detailTags, tagsList(entry));
 
     if (els.detailId) els.detailId.textContent = entry.id || dict.dash;
   }
@@ -651,6 +661,20 @@
     if (a && typeof a === "object" && !Array.isArray(a)) {
       if (Array.isArray(a.ja)) out.push(...a.ja);
       if (Array.isArray(a.en)) out.push(...a.en);
+    } else if (Array.isArray(a)) {
+      out.push(...a);
+    } else if (typeof a === "string") {
+      out.push(a);
+    }
+    return uniq(out);
+  }
+
+  function aliasesListForLang(entry, lang) {
+    const a = entry?.aliases || entry?.alias;
+    const out = [];
+
+    if (a && typeof a === "object" && !Array.isArray(a)) {
+      if (Array.isArray(a[lang])) out.push(...a[lang]);
     } else if (Array.isArray(a)) {
       out.push(...a);
     } else if (typeof a === "string") {
