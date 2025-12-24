@@ -1,8 +1,8 @@
 /* =====================================================
  * sukima-baito-income | NicheWorks
- * app.js (Phase 2 CSV trust + Import Preview + Phase 3 OCR β)
+ * app.js (Phase 3 OCR beta + CSV trust + Import Preview)
  *
- * Phase 1:
+ * Phase 1 UI improvements:
  * - Theme toggle (localStorage)
  * - Font size toggle (localStorage)
  * - Date shortcuts: Today / Yesterday (injected UI)
@@ -10,19 +10,18 @@
  * - Edit entries
  * - Month-grouped list with collapse + month totals
  *
- * Phase 2:
+ * Phase 2 additions:
  * - CSV spec help block (injected UI)
  * - CSV import PREVIEW (no immediate commit)
  * - Strict CSV validation (header + field rules)
  * - Duplicate rejection (default): date+workplace+category+amount
  * - Import preview shows counts + skip reasons + per-row toggle
  *
- * Phase 3 (OCR β):
- * - "スクショOCR（β）" button (injected near CSV actions)
- * - Tesseract.js lazy-load (CDN)
- * - OCR -> best-effort parse for Timee screenshots
- * - Preview & confirm modal (no immediate commit)
- * - Duplicate rejection at preview + commit
+ * Phase 3 additions:
+ * - OCR（β）: Screenshot OCR -> candidates -> preview -> commit
+ *   - Uses Tesseract.js via CDN (loaded on demand)
+ *   - No auto-add: always confirm/preview
+ *   - Dedupe at commit-time (existing + within OCR selection)
  * ===================================================== */
 
 (() => {
@@ -37,6 +36,10 @@
 
   const csvInput = $("csvInput");
   const csvExportBtn = $("csvExportBtn");
+
+  // OCR (Phase 3)
+  const ocrInput = $("ocrInput");
+  const ocrBtn = $("ocrBtn");
 
   const errorBox = $("errorBox");
 
@@ -73,7 +76,7 @@
   /** @type {Array<{name:string, lastUsed:number}>} */
   let workplaceDict = safeJsonParse(localStorage.getItem(WP_KEY), []);
 
-  // Import preview state
+  // Import preview state (CSV)
   /** @type {null | {parsedRows: ImportRow[], summary: ImportSummary}} */
   let importPreviewState = null;
 
@@ -92,6 +95,21 @@
    * @property {number} skipCount
    * @property {number} dupCount
    * @property {number} totalRows
+   */
+
+  // OCR preview state
+  /** @type {null | {items: OCRItem[], meta: {fileCount:number}} } */
+  let ocrPreviewState = null;
+
+  /**
+   * @typedef {Object} OCRItem
+   * @property {string} sourceName
+   * @property {number} index
+   * @property {"ok"|"skip"} status
+   * @property {string} reason
+   * @property {boolean} selected
+   * @property {{date:string, workplace:string, category:string, amount:number, memo:string}} data
+   * @property {string} rawText
    */
 
   // ----------------------------
@@ -147,6 +165,7 @@
   // ----------------------------
   function injectDateShortcuts() {
     if (!dateInput) return;
+
     const wrap = document.createElement("div");
     wrap.style.display = "flex";
     wrap.style.gap = "8px";
@@ -347,6 +366,111 @@
     importPreviewState = null;
   }
 
+  // OCR Preview modal
+  function injectOCRPreviewModal() {
+    if (document.getElementById("ocrPreviewModal")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "ocrPreviewModal";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "rgba(0,0,0,0.45)";
+    overlay.style.display = "none";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.padding = "14px";
+    overlay.style.zIndex = "9999";
+
+    const panel = document.createElement("div");
+    panel.style.width = "min(920px, 100%)";
+    panel.style.maxHeight = "85vh";
+    panel.style.overflow = "auto";
+    panel.style.background = "var(--bg, #fff)";
+    panel.style.border = "1px solid var(--border, #e5e5e5)";
+    panel.style.borderRadius = "16px";
+    panel.style.boxShadow = "0 10px 28px rgba(0,0,0,0.18)";
+
+    panel.innerHTML = `
+      <div style="padding:14px 14px 10px 14px; border-bottom:1px solid var(--border, #e5e5e5);">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-weight:800; font-size:1.05em;">スクショOCR（β）取り込みの確認</div>
+            <div id="ocrPreviewSummary" style="margin-top:6px; opacity:0.85; font-size:0.95em;"></div>
+          </div>
+          <button id="ocrPreviewCloseBtn" type="button"
+            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:transparent;border-radius:12px;cursor:pointer;">
+            閉じる
+          </button>
+        </div>
+      </div>
+
+      <div style="padding:12px 14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button id="ocrSelectAllBtn" type="button"
+            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
+            全選択
+          </button>
+          <button id="ocrSelectNoneBtn" type="button"
+            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
+            全解除
+          </button>
+          <div style="font-size:0.9em; opacity:0.85; display:flex; align-items:center; gap:6px;">
+            <input id="ocrShowSkipped" type="checkbox" />
+            <label for="ocrShowSkipped">スキップ候補も表示</label>
+          </div>
+        </div>
+
+        <button id="ocrCommitBtn" type="button"
+          style="padding:12px 14px;border:1px solid var(--border,#e5e5e5);background:#111;color:#fff;border-radius:12px;cursor:pointer;">
+          選択した行を追加
+        </button>
+      </div>
+
+      <div style="padding:0 14px 14px 14px;">
+        <div id="ocrPreviewList" style="display:flex; flex-direction:column; gap:10px;"></div>
+      </div>
+    `;
+
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    $("ocrPreviewCloseBtn").addEventListener("click", closeOCRPreview);
+    overlay.addEventListener("click", (ev) => {
+      if (ev.target === overlay) closeOCRPreview();
+    });
+
+    $("ocrSelectAllBtn").addEventListener("click", () => {
+      if (!ocrPreviewState) return;
+      ocrPreviewState.items.forEach((it) => {
+        if (it.status === "ok") it.selected = true;
+      });
+      renderOCRPreview();
+    });
+
+    $("ocrSelectNoneBtn").addEventListener("click", () => {
+      if (!ocrPreviewState) return;
+      ocrPreviewState.items.forEach((it) => {
+        if (it.status === "ok") it.selected = false;
+      });
+      renderOCRPreview();
+    });
+
+    $("ocrShowSkipped").addEventListener("change", renderOCRPreview);
+    $("ocrCommitBtn").addEventListener("click", commitOCRPreview);
+  }
+
+  function openOCRPreview(state) {
+    ocrPreviewState = state;
+    $("ocrShowSkipped").checked = false;
+    renderOCRPreview();
+    $("ocrPreviewModal").style.display = "flex";
+  }
+
+  function closeOCRPreview() {
+    $("ocrPreviewModal").style.display = "none";
+    ocrPreviewState = null;
+  }
+
   function makeMiniBtn(label, onClick) {
     const b = document.createElement("button");
     b.type = "button";
@@ -361,7 +485,9 @@
     return b;
   }
 
+  // ----------------------------
   // Small toast (non-blocking)
+  // ----------------------------
   let toastTimer = null;
   function toast(msg) {
     const old = document.getElementById("nwToast");
@@ -441,7 +567,8 @@
     if (top.length === 0) return;
 
     top.forEach((w) => {
-      const b = makeMiniBtn(w.name.length > 18 ? w.name.slice(0, 18) + "…" : w.name, () => {
+      const label = w.name.length > 18 ? w.name.slice(0, 18) + "…" : w.name;
+      const b = makeMiniBtn(label, () => {
         workplaceInput.value = w.name;
         workplaceInput.focus();
       });
@@ -462,6 +589,7 @@
   // Entry form actions (add / edit)
   // ----------------------------
   function cleanAmount(val) {
+    // allow comma separators etc.
     const n = Number(String(val).replace(/[^\d]/g, ""));
     return Number.isFinite(n) ? n : NaN;
   }
@@ -477,7 +605,7 @@
   }
 
   function clearForm() {
-    if (dateInput) dateInput.value = toISODate(new Date());
+    if (dateInput) dateInput.value = toISODate(new Date()); // keep today as default
     if (workplaceInput) workplaceInput.value = "";
     if (amountInput) amountInput.value = "";
     if (memoInput) memoInput.value = "";
@@ -528,12 +656,13 @@
 
   function bindAddButton() {
     if (!addBtn) return;
+
     addBtn.addEventListener("click", () => {
-      const date = String(dateInput.value || "").trim();
-      const workplace = normalizeWorkplaceName(workplaceInput.value);
-      const category = String(categoryInput.value || "報酬");
-      const amountRaw = String(amountInput.value || "").trim();
-      const memo = String(memoInput.value || "").trim();
+      const date = String(dateInput?.value || "").trim();
+      const workplace = normalizeWorkplaceName(workplaceInput?.value);
+      const category = String(categoryInput?.value || "報酬");
+      const amountRaw = String(amountInput?.value || "").trim();
+      const memo = String(memoInput?.value || "").trim();
 
       if (!date || !workplace || !amountRaw) {
         showError("日付・就業先・金額は必須です。");
@@ -834,7 +963,6 @@
     toast("CSVを書き出しました");
   }
 
-  // Simple CSV parser (handles quotes)
   function parseCSV(text) {
     const rows = [];
     let i = 0, field = "", row = [];
@@ -1157,26 +1285,14 @@
         form.style.gap = "8px";
         form.style.marginTop = "10px";
 
-        const d = makeInlineInput("日付", r.data.date, "date", (v) => {
-          r.data.date = v;
-        });
-
-        const w = makeInlineInput("就業先", r.data.workplace, "text", (v) => {
-          r.data.workplace = normalizeWorkplaceName(v);
-        });
-
-        const c = makeInlineSelect("区分", r.data.category, ["報酬","交通費","手当","その他"], (v) => {
-          r.data.category = v;
-        });
-
+        const d = makeInlineInput("日付", r.data.date, "date", (v) => { r.data.date = v; });
+        const w = makeInlineInput("就業先", r.data.workplace, "text", (v) => { r.data.workplace = normalizeWorkplaceName(v); });
+        const c = makeInlineSelect("区分", r.data.category, ["報酬","交通費","手当","その他"], (v) => { r.data.category = v; });
         const a = makeInlineInput("金額", String(r.data.amount), "text", (v) => {
           const n = cleanAmount(v);
           if (Number.isFinite(n) && n > 0) r.data.amount = n;
         });
-
-        const m = makeInlineInput("メモ", r.data.memo || "", "text", (v) => {
-          r.data.memo = v;
-        }, true);
+        const m = makeInlineInput("メモ", r.data.memo || "", "text", (v) => { r.data.memo = v; }, true);
 
         form.appendChild(d);
         form.appendChild(w);
@@ -1300,9 +1416,8 @@
   }
 
   function bindCSV() {
-    if (csvExportBtn) {
-      csvExportBtn.addEventListener("click", exportCSV);
-    }
+    if (csvExportBtn) csvExportBtn.addEventListener("click", exportCSV);
+
     if (csvInput) {
       csvInput.addEventListener("change", (ev) => {
         const file = ev.target.files && ev.target.files[0];
@@ -1314,524 +1429,295 @@
   }
 
   // ----------------------------
-  // OCR β (Phase 3)
+  // OCR（β） Phase 3
   // ----------------------------
+  let tesseractLoading = null;
 
-  let _tesseractReady = false;
-  let _ocrState = null;
+  function bindOCR() {
+    if (!ocrBtn || !ocrInput) return;
 
-  function initOCRBeta() {
-    injectOCRBetaUI();
-    injectOCRPreviewModal();
-    bindOCRBeta();
-  }
+    ocrBtn.addEventListener("click", async () => {
+      // load lazily (only when user tries)
+      try {
+        await ensureTesseractLoaded();
+      } catch (e) {
+        showError(
+          "OCRの準備に失敗しました。\n通信環境をご確認のうえ、再度お試しください。"
+        );
+        return;
+      }
+      ocrInput.click();
+    });
 
-  function injectOCRBetaUI() {
-    if (!$("ocrInput")) {
-      const input = document.createElement("input");
-      input.id = "ocrInput";
-      input.type = "file";
-      input.accept = "image/*";
-      input.multiple = true;
-      input.hidden = true;
-      document.body.appendChild(input);
-    }
-
-    if ($("ocrBtn")) return;
-
-    const csvActions = document.querySelector(".csv-actions");
-    if (!csvActions) return;
-
-    const btn = document.createElement("button");
-    btn.id = "ocrBtn";
-    btn.type = "button";
-    btn.className = "delete-btn";
-    btn.textContent = "スクショOCR（β）";
-    btn.style.minWidth = "140px";
-
-    csvActions.appendChild(btn);
-
-    if (!document.getElementById("ocrHelpNote")) {
-      const note = document.createElement("div");
-      note.id = "ocrHelpNote";
-      note.style.marginTop = "8px";
-      note.style.fontSize = "0.9em";
-      note.style.opacity = "0.85";
-      note.textContent =
-        "※Timeeの詳細スクショ推奨。取り込み前に確認画面が出ます（即追加しません）。";
-      csvActions.insertAdjacentElement("afterend", note);
-    }
-  }
-
-  function bindOCRBeta() {
-    const btn = $("ocrBtn");
-    const input = $("ocrInput");
-    if (!btn || !input) return;
-
-    btn.addEventListener("click", () => input.click());
-
-    input.addEventListener("change", async (ev) => {
+    ocrInput.addEventListener("change", async (ev) => {
       const files = Array.from(ev.target.files || []);
       ev.target.value = "";
-      if (!files.length) return;
+      if (files.length === 0) return;
+
+      // OCR can be heavy; warn if too many
+      if (files.length >= 6) {
+        toast("枚数が多いです（β）。まずは数枚ずつ推奨");
+      }
 
       try {
-        await runOCRFlow(files);
+        await ensureTesseractLoaded();
+        await runOCRFiles(files);
       } catch (e) {
         console.error(e);
-        showError("OCRでエラーが発生しました。別のスクショでお試しください。");
+        showError("OCRに失敗しました。\n（β機能）画像を減らす / 文字が大きいスクショで再試行してください。");
       }
     });
   }
 
-  async function runOCRFlow(files) {
-    toast(`OCR準備中…（${files.length}枚）`);
-    await ensureTesseract();
+  function ensureTesseractLoaded() {
+    if (window.Tesseract) return Promise.resolve();
+    if (tesseractLoading) return tesseractLoading;
 
-    const results = [];
-    for (let i = 0; i < files.length; i++) {
-      toast(`OCR中… ${i + 1}/${files.length}`);
-      const file = files[i];
-      const text = await ocrImageFile(file);
-
-      const candidates = parseTimeeOCR(text);
-      results.push({ fileName: file.name, rawText: text, candidates });
-    }
-
-    openOCRPreview(results);
-  }
-
-  async function ensureTesseract() {
-    if (_tesseractReady && window.Tesseract) return;
-
-    await loadScriptOnce(
-      "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js",
-      "tesseractjs"
-    );
-
-    if (!window.Tesseract) throw new Error("Tesseract.js failed to load");
-    _tesseractReady = true;
-  }
-
-  function loadScriptOnce(src, id) {
-    return new Promise((resolve, reject) => {
-      const existing = document.getElementById(id);
-      if (existing) return resolve();
-
+    tesseractLoading = new Promise((resolve, reject) => {
       const s = document.createElement("script");
-      s.id = id;
-      s.src = src;
+      // Tesseract.js v5 CDN
+      s.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
       s.async = true;
-      s.onload = () => resolve();
-      s.onerror = () => reject(new Error("Failed to load script: " + src));
+      s.onload = () => {
+        if (window.Tesseract) resolve();
+        else reject(new Error("Tesseract not available"));
+      };
+      s.onerror = () => reject(new Error("Failed to load tesseract.js"));
       document.head.appendChild(s);
     });
+
+    return tesseractLoading;
   }
 
-  async function ocrImageFile(file) {
-    const { data } = await window.Tesseract.recognize(file, "jpn", { logger: () => {} });
-    return String(data?.text || "").trim();
-  }
+  async function runOCRFiles(files) {
+    injectOCRPreviewModal();
 
-  // ---- OCR parsing (detail + list best-effort) ----
-  function parseTimeeOCR(ocrText) {
-    const t = normalizeOCRText(ocrText);
+    toast(`OCR開始（${files.length}枚）`);
+    const items = [];
 
-    // Heuristic: detail screen tends to contain these labels
-    const isDetail =
-      t.includes("給与明細") ||
-      t.includes("差引支給額") ||
-      t.includes("働いた店舗") ||
-      t.includes("業務開始") ||
-      t.includes("業務終了");
+    // Process sequentially to reduce memory spikes on mobile
+    for (let i = 0; i < files.length; i++) {
+      const f = files[i];
+      toast(`OCR中… ${i + 1}/${files.length}`);
 
-    if (isDetail) return parseTimeeDetail(t);
+      const { text } = await recognizeImage(f);
 
-    // Otherwise try list-style parse (multiple dates + ¥ amounts)
-    const list = parseTimeeList(t);
-    if (list.length) return list;
+      // Build candidates from recognized text
+      const candidates = extractCandidatesFromOCRText(text);
 
-    // Fallback: single uncertain row
-    return [{
-      status: "ok",
-      selected: true,
-      reason: "要確認（自動抽出が弱い）— 編集してください",
-      data: { date: "", workplace: "", category: "報酬", amount: 0, memo: "OCR（要確認）" }
-    }];
-  }
+      if (candidates.length === 0) {
+        items.push({
+          sourceName: f.name || `image-${i + 1}`,
+          index: i,
+          status: "skip",
+          reason: "候補を抽出できませんでした",
+          selected: false,
+          data: emptyRowData(),
+          rawText: text
+        });
+        continue;
+      }
 
-  function parseTimeeDetail(t) {
-    const candidates = [];
-
-    // date
-    const dateISO = extractJapaneseDateISO(t) || "";
-
-    // workplace
-    let workplace =
-      pickLineAfterLabel(t, "働いた店舗") ||
-      pickLineAfterLabel(t, "店舗情報") ||
-      pickFirstLikelyWorkplaceLine(t) ||
-      "";
-    workplace = normalizeWorkplaceName(workplace);
-
-    // pay (prefer 差引支給額)
-    const pay = pickYenAfterLabel(t, ["差引支給額", "差引支給", "支給額", "基本給"]);
-    const transport = pickYenAfterLabel(t, ["交通費（非課税）", "交通費", "通勤費"]);
-
-    if (dateISO && workplace && pay > 0) {
-      candidates.push({
-        status: "ok",
-        selected: true,
-        reason: "OK（差引支給額）",
-        data: { date: dateISO, workplace, category: "報酬", amount: pay, memo: "OCR（差引支給額）" }
+      // If multiple candidates: create one per candidate
+      candidates.forEach((c, k) => {
+        const isOk = !!c.date && !!c.amount && !!c.workplace;
+        items.push({
+          sourceName: f.name || `image-${i + 1}`,
+          index: i * 1000 + k,
+          status: isOk ? "ok" : "skip",
+          reason: isOk ? "OK" : "不足（要修正）",
+          selected: isOk,
+          data: {
+            date: c.date || "",
+            workplace: c.workplace || "",
+            category: c.category || "報酬",
+            amount: c.amount || 0,
+            memo: c.memo || ""
+          },
+          rawText: text
+        });
       });
     }
 
-    if (dateISO && workplace && transport > 0) {
-      candidates.push({
-        status: "ok",
-        selected: false, // OFF by default to reduce double counting
-        reason: "任意（交通費）",
-        data: { date: dateISO, workplace, category: "交通費", amount: transport, memo: "OCR（交通費）" }
-      });
+    const okCount = items.filter((x) => x.status === "ok").length;
+    if (okCount === 0) {
+      showError("OCRから追加できる候補がありませんでした。\n（文字が小さい/暗い/ブレている可能性）");
+      return;
     }
 
-    if (candidates.length === 0) {
-      candidates.push({
-        status: "ok",
-        selected: true,
-        reason: "要確認（抽出失敗）— 編集してください",
-        data: { date: dateISO || "", workplace: workplace || "", category: "報酬", amount: 0, memo: "OCR（要確認）" }
-      });
-    }
-
-    return candidates;
+    openOCRPreview({ items, meta: { fileCount: files.length } });
+    toast("OCR完了（確認してください）");
   }
 
-  function parseTimeeList(t) {
-    // Try to find repeated blocks: date + workplace + amount
-    const lines = t.split("\n").map((x) => x.trim()).filter(Boolean);
+  async function recognizeImage(file) {
+    // downscale via canvas to speed up (optional, safe)
+    const bitmap = await createImageBitmap(file);
+    const maxW = 1400;
+    const scale = bitmap.width > maxW ? maxW / bitmap.width : 1;
+    const w = Math.round(bitmap.width * scale);
+    const h = Math.round(bitmap.height * scale);
 
-    /** @type {Array<any>} */
-    const out = [];
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(bitmap, 0, 0, w, h);
 
-    for (let i = 0; i < lines.length; i++) {
-      const d = extractJapaneseDateISO(lines[i]);
-      if (!d) continue;
+    const dataUrl = canvas.toDataURL("image/png");
 
-      // find amount within next few lines
-      let amount = 0;
-      let amountLineIdx = -1;
-      for (let j = i; j < Math.min(i + 8, lines.length); j++) {
-        const a = extractYen(lines[j]);
-        if (a > 0) {
-          amount = a;
-          amountLineIdx = j;
-          break;
+    // Use Japanese+English model (more robust on mixed UI)
+    const res = await window.Tesseract.recognize(dataUrl, "jpn+eng", {
+      logger: () => {} // keep silent
+    });
+
+    const text = (res?.data?.text || "").trim();
+    return { text };
+  }
+
+  function extractCandidatesFromOCRText(text) {
+    const raw = String(text || "");
+    const lines = raw
+      .split(/\r?\n/)
+      .map((s) => s.replace(/\s+/g, " ").trim())
+      .filter(Boolean);
+
+    // Heuristic:
+    // - find date-like tokens
+    // - find amount-like tokens
+    // - try to pair nearest date + nearest amount and pick workplace from nearby lines
+    const dates = [];
+    const amounts = [];
+
+    const dateRegex = /(\d{4})\s*(?:[\/\-.年])\s*(\d{1,2})\s*(?:[\/\-.月])\s*(\d{1,2})\s*(?:日)?/;
+    const amountRegex = /(?:¥|￥)?\s*([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{3,})\s*(?:円)?/;
+
+    lines.forEach((ln, idx) => {
+      const m = ln.match(dateRegex);
+      if (m) {
+        const yyyy = m[1];
+        const mm = String(m[2]).padStart(2, "0");
+        const dd = String(m[3]).padStart(2, "0");
+        dates.push({ idx, date: `${yyyy}-${mm}-${dd}` });
+      }
+
+      // amounts: avoid picking tiny numbers (e.g., times). Require >= 3 digits.
+      const a = ln.match(amountRegex);
+      if (a) {
+        const v = cleanAmount(a[1]);
+        if (Number.isFinite(v) && v >= 100) {
+          amounts.push({ idx, amount: v, line: ln });
         }
       }
-      if (amount <= 0) continue;
+    });
 
-      // workplace guess: first decent line between date line and amount line
-      let workplace = "";
-      for (let j = i + 1; j < Math.min(amountLineIdx + 1, lines.length); j++) {
-        const ln = lines[j];
-        if (isLikelyUIWord(ln)) continue;
-        if (extractYen(ln) > 0) continue;
-        if (ln.length < 3) continue;
-        workplace = ln;
-        break;
-      }
-      workplace = normalizeWorkplaceName(workplace);
+    // If no explicit lists, fallback: attempt overall
+    if (dates.length === 0 && amounts.length === 0) return [];
 
-      out.push({
-        status: "ok",
-        selected: true,
-        reason: "OK（一覧推定）",
-        data: {
-          date: d,
-          workplace: workplace || "",
-          category: "報酬",
-          amount,
-          memo: "OCR（一覧推定）"
-        }
+    // Pairing strategy:
+    // For each date, choose the nearest amount below it (within 0..8 lines),
+    // workplace = first "name-like" line between date and amount.
+    const results = [];
+
+    dates.forEach((d) => {
+      const near = amounts
+        .map((a) => ({ a, dist: a.idx - d.idx }))
+        .filter((x) => x.dist >= 0 && x.dist <= 8)
+        .sort((x, y) => x.dist - y.dist)[0];
+
+      const amount = near?.a?.amount;
+
+      // workplace search window: d.idx..(near.idx) or d.idx..(d.idx+4)
+      const end = near ? near.a.idx : Math.min(lines.length - 1, d.idx + 4);
+      const windowLines = lines.slice(d.idx, end + 1);
+
+      // pick a workplace-like line:
+      // - not containing date
+      // - not containing yen/amount keywords
+      // - not too short (>=2 chars)
+      // - not obvious UI words
+      const workplace = pickWorkplaceFromLines(windowLines);
+
+      // category guess: if window contains 交通費, set it. else 報酬.
+      const cat = /交通費/.test(windowLines.join(" ")) ? "交通費" : "報酬";
+
+      results.push({
+        date: d.date,
+        workplace: workplace || "",
+        category: cat,
+        amount: amount || 0,
+        memo: "（OCRβ）"
+      });
+    });
+
+    // If no dates but amount exists: single candidate with empty date/workplace
+    if (results.length === 0 && amounts.length > 0) {
+      results.push({
+        date: "",
+        workplace: "",
+        category: "報酬",
+        amount: amounts[0].amount,
+        memo: "（OCRβ）"
       });
     }
 
-    // If we found a lot but workplaces are empty, keep but user will edit in preview
-    return out;
+    // Remove exact duplicates inside OCR results
+    const seen = new Set();
+    const uniq = [];
+    results.forEach((r) => {
+      const key = `${r.date}|${normalizeWorkplaceName(r.workplace)}|${r.category}|${r.amount}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      uniq.push(r);
+    });
+
+    return uniq;
   }
 
-  function normalizeOCRText(s) {
-    return String(s || "")
-      .replace(/\r/g, "\n")
-      .replace(/[ \t]+/g, " ")
-      .replace(/\n{2,}/g, "\n")
-      .trim();
-  }
-
-  function extractJapaneseDateISO(s) {
-    const m = String(s).match(/(20\d{2})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/);
-    if (!m) return "";
-    return `${m[1]}-${String(m[2]).padStart(2, "0")}-${String(m[3]).padStart(2, "0")}`;
-  }
-
-  function pickLineAfterLabel(text, label) {
-    const lines = text.split("\n").map((x) => x.trim());
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].includes(label)) {
-        for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
-          const v = lines[j].trim();
-          if (!v) continue;
-          if (isLikelyUIWord(v)) continue;
-          return v;
-        }
-      }
-    }
-    return "";
-  }
-
-  function isLikelyUIWord(line) {
-    const bad = [
-      "この店舗の募集状況",
-      "給与明細",
-      "業務開始",
-      "業務終了",
-      "休憩時間",
-      "今回の業務に関する情報",
-      "契約形態",
-      "支払者",
-      "業務に関する書類",
-      "お問い合わせ",
-      "この業務の募集内容",
-      "はたらく",
-      "これまでの仕事",
-      "今後の予定"
+  function pickWorkplaceFromLines(windowLines) {
+    const blacklist = [
+      "合計", "合算", "明細", "詳細", "支払い", "受取", "報酬", "交通費",
+      "円", "¥", "￥", "勤務", "就労", "履歴", "完了", "確定", "依頼"
     ];
-    return bad.some((b) => line.includes(b));
-  }
 
-  function pickFirstLikelyWorkplaceLine(text) {
-    const lines = text.split("\n").map((x) => x.trim()).filter(Boolean);
-    const markers = ["株式会社", "有限会社", "店", "営業所", "センター", "倉庫"];
-    for (const ln of lines) {
-      if (ln.length >= 6 && ln.length <= 42 && markers.some((m) => ln.includes(m))) {
-        if (!isLikelyUIWord(ln)) return ln;
-      }
-    }
-    for (const ln of lines) {
-      if (ln.length >= 8 && ln.length <= 42 && !isLikelyUIWord(ln)) {
-        if (ln.includes("／") || ln.includes("/")) continue;
-        if (/^¥?\d[\d,]*$/.test(ln)) continue;
-        return ln;
-      }
+    for (const ln of windowLines) {
+      if (ln.length < 2) continue;
+      if (/\d{4}[-\/.年]/.test(ln)) continue; // date-ish
+      if (/[¥￥]\s*\d/.test(ln) || /\d{1,3}(?:,\d{3})+/.test(ln)) continue; // amount-ish
+      if (blacklist.some((b) => ln.includes(b))) continue;
+
+      // avoid pure numbers
+      if (/^\d+$/.test(ln)) continue;
+
+      // reasonable workplace name
+      return normalizeWorkplaceName(ln);
     }
     return "";
-  }
-
-  function pickYenAfterLabel(text, labels) {
-    for (const label of labels) {
-      const v = yenNearLabel(text, label);
-      if (v > 0) return v;
-    }
-    return 0;
-  }
-
-  function yenNearLabel(text, label) {
-    const lines = text.split("\n").map((x) => x.trim());
-    for (let i = 0; i < lines.length; i++) {
-      const ln = lines[i];
-      if (!ln.includes(label)) continue;
-
-      const same = extractYen(ln);
-      if (same > 0) return same;
-
-      for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
-        const v = extractYen(lines[j]);
-        if (v > 0) return v;
-      }
-    }
-    return 0;
-  }
-
-  function extractYen(s) {
-    const m = String(s).match(/[¥￥]?\s*([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{1,9})/);
-    if (!m) return 0;
-    const n = cleanAmount(m[1]);
-    return Number.isFinite(n) ? n : 0;
-  }
-
-  // ---- OCR preview modal ----
-  function injectOCRPreviewModal() {
-    if (document.getElementById("ocrPreviewModal")) return;
-
-    const overlay = document.createElement("div");
-    overlay.id = "ocrPreviewModal";
-    overlay.style.position = "fixed";
-    overlay.style.inset = "0";
-    overlay.style.background = "rgba(0,0,0,0.45)";
-    overlay.style.display = "none";
-    overlay.style.alignItems = "center";
-    overlay.style.justifyContent = "center";
-    overlay.style.padding = "14px";
-    overlay.style.zIndex = "10000";
-
-    const panel = document.createElement("div");
-    panel.style.width = "min(920px, 100%)";
-    panel.style.maxHeight = "85vh";
-    panel.style.overflow = "auto";
-    panel.style.background = "var(--bg, #fff)";
-    panel.style.border = "1px solid var(--border, #e5e5e5)";
-    panel.style.borderRadius = "16px";
-    panel.style.boxShadow = "0 10px 28px rgba(0,0,0,0.18)";
-
-    panel.innerHTML = `
-      <div style="padding:14px 14px 10px 14px; border-bottom:1px solid var(--border, #e5e5e5);">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-          <div>
-            <div style="font-weight:800; font-size:1.05em;">スクショOCR（β）取り込み確認</div>
-            <div id="ocrPreviewSummary" style="margin-top:6px; opacity:0.85; font-size:0.95em;"></div>
-          </div>
-          <button id="ocrPreviewCloseBtn" type="button"
-            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:transparent;border-radius:12px;cursor:pointer;">
-            閉じる
-          </button>
-        </div>
-      </div>
-
-      <div style="padding:12px 14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-          <button id="ocrSelectAllBtn" type="button"
-            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
-            全選択
-          </button>
-          <button id="ocrSelectNoneBtn" type="button"
-            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
-            全解除
-          </button>
-          <div style="font-size:0.9em; opacity:0.85; display:flex; align-items:center; gap:6px;">
-            <input id="ocrShowRawText" type="checkbox" />
-            <label for="ocrShowRawText">OCR生テキストも表示</label>
-          </div>
-        </div>
-
-        <button id="ocrCommitBtn" type="button"
-          style="padding:12px 14px;border:1px solid var(--border,#e5e5e5);background:#111;color:#fff;border-radius:12px;cursor:pointer;">
-          選択した行を追加
-        </button>
-      </div>
-
-      <div style="padding:0 14px 14px 14px;">
-        <div style="margin-bottom:10px; font-size:0.92em; opacity:0.85;">
-          ※「交通費」は二重計上を防ぐため、初期状態はOFFです。必要なときだけONにしてください。
-        </div>
-        <div id="ocrPreviewList" style="display:flex; flex-direction:column; gap:10px;"></div>
-      </div>
-    `;
-
-    overlay.appendChild(panel);
-    document.body.appendChild(overlay);
-
-    $("ocrPreviewCloseBtn").addEventListener("click", closeOCRPreview);
-    overlay.addEventListener("click", (ev) => {
-      if (ev.target === overlay) closeOCRPreview();
-    });
-
-    $("ocrSelectAllBtn").addEventListener("click", () => {
-      if (!_ocrState) return;
-      _ocrState.rows.forEach((r) => {
-        if (r.status !== "skip") r.selected = true;
-      });
-      renderOCRPreview();
-    });
-
-    $("ocrSelectNoneBtn").addEventListener("click", () => {
-      if (!_ocrState) return;
-      _ocrState.rows.forEach((r) => {
-        if (r.status !== "skip") r.selected = false;
-      });
-      renderOCRPreview();
-    });
-
-    $("ocrShowRawText").addEventListener("change", () => renderOCRPreview());
-    $("ocrCommitBtn").addEventListener("click", commitOCRPreview);
-  }
-
-  function openOCRPreview(results) {
-    const existingKeys = new Set(entries.map(makeDedupeKey));
-
-    const flat = [];
-    let rowNo = 1;
-
-    results.forEach((res) => {
-      (res.candidates || []).forEach((cand) => {
-        const normalized = normalizeOCRCandidate(cand);
-
-        const key = makeDedupeKey(normalized.data);
-        if (existingKeys.has(key) && normalized.data.amount > 0) {
-          normalized.selected = false;
-          normalized.status = "skip";
-          normalized.reason = "重複（既存データと一致）";
-        }
-
-        normalized._fromFile = res.fileName;
-        normalized._rawText = res.rawText;
-        normalized.rowNo = rowNo++;
-        flat.push(normalized);
-      });
-    });
-
-    _ocrState = { results, rows: flat };
-    renderOCRPreview();
-
-    $("ocrPreviewModal").style.display = "flex";
-    $("ocrShowRawText").checked = false;
-  }
-
-  function closeOCRPreview() {
-    $("ocrPreviewModal").style.display = "none";
-    _ocrState = null;
-  }
-
-  function normalizeOCRCandidate(cand) {
-    const data = cand.data || {};
-    return {
-      rowNo: cand.rowNo || 0,
-      status: cand.status || "ok",
-      selected: cand.selected !== false,
-      reason: cand.reason || "OK",
-      data: {
-        date: String(data.date || "").trim(),
-        workplace: normalizeWorkplaceName(data.workplace || ""),
-        category: String(data.category || "報酬").trim(),
-        amount: Number(data.amount || 0),
-        memo: String(data.memo || ""),
-      },
-    };
   }
 
   function renderOCRPreview() {
-    if (!_ocrState) return;
+    if (!ocrPreviewState) return;
 
-    const showRaw = $("ocrShowRawText")?.checked;
-    const list = $("ocrPreviewList");
-    list.innerHTML = "";
+    const { items, meta } = ocrPreviewState;
+    const showSkipped = $("ocrShowSkipped")?.checked;
 
-    const rows = _ocrState.rows;
-
-    const okRows = rows.filter((r) => r.status !== "skip");
-    const selectedCount = rows.filter((r) => r.status !== "skip" && r.selected).length;
-    const skipCount = rows.filter((r) => r.status === "skip").length;
+    const okTotal = items.filter((x) => x.status === "ok").length;
+    const selectedCount = items.filter((x) => x.status === "ok" && x.selected).length;
+    const skippedCount = items.filter((x) => x.status === "skip").length;
 
     $("ocrPreviewSummary").textContent =
-      `候補：${okRows.length}件（選択：${selectedCount}件） / スキップ：${skipCount}件`;
+      `画像：${meta.fileCount}枚 / 追加候補：${okTotal}件（選択：${selectedCount}件） / スキップ：${skippedCount}件`;
 
     $("ocrCommitBtn").textContent = `選択した行を追加（${selectedCount}件）`;
     $("ocrCommitBtn").disabled = selectedCount === 0;
     $("ocrCommitBtn").style.opacity = selectedCount === 0 ? "0.5" : "1";
     $("ocrCommitBtn").style.cursor = selectedCount === 0 ? "not-allowed" : "pointer";
 
-    rows.forEach((r) => {
+    const list = $("ocrPreviewList");
+    list.innerHTML = "";
+
+    const toRender = items.filter((x) => x.status === "ok" || showSkipped);
+
+    toRender.forEach((it) => {
       const card = document.createElement("div");
       card.style.border = "1px solid var(--border,#e5e5e5)";
       card.style.borderRadius = "14px";
@@ -1851,7 +1737,16 @@
       left.style.gap = "10px";
       left.style.flexWrap = "wrap";
 
-      if (r.status === "skip") {
+      if (it.status === "ok") {
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = !!it.selected;
+        cb.addEventListener("change", () => {
+          it.selected = cb.checked;
+          renderOCRPreview();
+        });
+        left.appendChild(cb);
+      } else {
         const badge = document.createElement("span");
         badge.textContent = "SKIP";
         badge.style.fontWeight = "800";
@@ -1861,28 +1756,19 @@
         badge.style.border = "1px solid var(--border,#e5e5e5)";
         badge.style.opacity = "0.8";
         left.appendChild(badge);
-      } else {
-        const cb = document.createElement("input");
-        cb.type = "checkbox";
-        cb.checked = !!r.selected;
-        cb.addEventListener("change", () => {
-          r.selected = cb.checked;
-          renderOCRPreview();
-        });
-        left.appendChild(cb);
       }
 
       const title = document.createElement("div");
       title.style.fontWeight = "800";
       title.textContent =
-        r.status === "skip"
-          ? `#${r.rowNo}（${r.reason}）`
-          : `#${r.rowNo} ${r.data.date || "日付?"} / ${r.data.workplace || "就業先?"}`;
+        it.status === "ok"
+          ? `${it.data.date || "日付?"} / ${it.data.workplace || "就業先?"}（${it.sourceName}）`
+          : `スキップ：${it.reason}（${it.sourceName}）`;
       left.appendChild(title);
 
       const right = document.createElement("div");
       right.style.fontWeight = "800";
-      right.textContent = r.data.amount > 0 ? formatYen(r.data.amount) : "";
+      right.textContent = it.status === "ok" ? formatYen(it.data.amount) : "";
       top.appendChild(left);
       top.appendChild(right);
 
@@ -1890,35 +1776,29 @@
       meta.style.marginTop = "8px";
       meta.style.opacity = "0.9";
       meta.style.fontSize = "0.95em";
-      meta.textContent = `[${r.data.category}] ${r.data.memo ? ` / ${r.data.memo}` : ""}`;
-
-      const src = document.createElement("div");
-      src.style.marginTop = "6px";
-      src.style.fontSize = "0.85em";
-      src.style.opacity = "0.75";
-      src.textContent = `画像：${r._fromFile || "-"}`;
+      meta.textContent =
+        it.status === "ok"
+          ? `[${it.data.category}] ${it.data.memo ? ` / メモ：${it.data.memo}` : ""}`
+          : `理由：${it.reason}`;
 
       card.appendChild(top);
       card.appendChild(meta);
-      card.appendChild(src);
 
-      if (r.status !== "skip") {
+      if (it.status === "ok") {
         const form = document.createElement("div");
         form.style.display = "grid";
         form.style.gridTemplateColumns = "1fr 1fr";
         form.style.gap = "8px";
         form.style.marginTop = "10px";
 
-        const d = makeInlineInput("日付", r.data.date, "date", (v) => { r.data.date = v; });
-        const w = makeInlineInput("就業先", r.data.workplace, "text", (v) => { r.data.workplace = normalizeWorkplaceName(v); });
-        const c = makeInlineSelect("区分", r.data.category, ["報酬","交通費","手当","その他"], (v) => { r.data.category = v; });
-
-        const a = makeInlineInput("金額", r.data.amount ? String(r.data.amount) : "", "text", (v) => {
+        const d = makeInlineInput2("日付", it.data.date, "date", (v) => { it.data.date = v; });
+        const w = makeInlineInput2("就業先", it.data.workplace, "text", (v) => { it.data.workplace = normalizeWorkplaceName(v); });
+        const c = makeInlineSelect2("区分", it.data.category, ["報酬","交通費","手当","その他"], (v) => { it.data.category = v; });
+        const a = makeInlineInput2("金額", String(it.data.amount || ""), "text", (v) => {
           const n = cleanAmount(v);
-          r.data.amount = Number.isFinite(n) ? n : 0;
+          if (Number.isFinite(n) && n > 0) it.data.amount = n;
         });
-
-        const m = makeInlineInput("メモ", r.data.memo || "", "text", (v) => { r.data.memo = v; }, true);
+        const m = makeInlineInput2("メモ", it.data.memo || "", "text", (v) => { it.data.memo = v; }, true);
 
         form.appendChild(d);
         form.appendChild(w);
@@ -1926,25 +1806,107 @@
         form.appendChild(a);
         form.appendChild(m);
 
-        card.appendChild(form);
-      }
+        // raw text toggle
+        const rawWrap = document.createElement("div");
+        rawWrap.style.gridColumn = "1 / -1";
+        rawWrap.style.marginTop = "8px";
 
-      if (showRaw) {
-        const raw = document.createElement("details");
-        raw.style.marginTop = "10px";
-        raw.innerHTML = `
-          <summary style="cursor:pointer; opacity:0.85;">OCR生テキスト</summary>
-          <pre style="white-space:pre-wrap; word-break:break-word; font-size:0.85em; margin-top:8px; padding:10px; border:1px solid var(--border,#e5e5e5); border-radius:12px; background:var(--bg,#fff);">${escapeHtml(r._rawText || "")}</pre>
-        `;
-        card.appendChild(raw);
+        const rawBtn = document.createElement("button");
+        rawBtn.type = "button";
+        rawBtn.textContent = "OCRテキストを見る";
+        rawBtn.style.padding = "10px 12px";
+        rawBtn.style.border = "1px solid var(--border,#e5e5e5)";
+        rawBtn.style.background = "transparent";
+        rawBtn.style.borderRadius = "12px";
+        rawBtn.style.cursor = "pointer";
+
+        const rawBox = document.createElement("div");
+        rawBox.style.display = "none";
+        rawBox.style.marginTop = "8px";
+        rawBox.style.whiteSpace = "pre-wrap";
+        rawBox.style.fontSize = "0.9em";
+        rawBox.style.opacity = "0.9";
+        rawBox.style.border = "1px dashed var(--border,#e5e5e5)";
+        rawBox.style.borderRadius = "12px";
+        rawBox.style.padding = "10px";
+        rawBox.textContent = it.rawText || "";
+
+        rawBtn.addEventListener("click", () => {
+          rawBox.style.display = rawBox.style.display === "none" ? "block" : "none";
+        });
+
+        rawWrap.appendChild(rawBtn);
+        rawWrap.appendChild(rawBox);
+
+        card.appendChild(form);
+        card.appendChild(rawWrap);
       }
 
       list.appendChild(card);
     });
   }
 
+  function makeInlineInput2(label, value, type, onChange, fullWidth = false) {
+    const wrap = document.createElement("div");
+    if (fullWidth) wrap.style.gridColumn = "1 / -1";
+
+    const l = document.createElement("div");
+    l.textContent = label;
+    l.style.fontSize = "0.85em";
+    l.style.opacity = "0.85";
+    l.style.marginBottom = "4px";
+
+    const input = document.createElement("input");
+    input.type = type;
+    input.value = value || "";
+    input.style.width = "100%";
+    input.style.padding = "10px 12px";
+    input.style.borderRadius = "12px";
+    input.style.border = "1px solid var(--border,#e5e5e5)";
+    input.style.background = "var(--bg,#fff)";
+    input.addEventListener("blur", () => {
+      onChange(input.value);
+      renderOCRPreview();
+    });
+
+    wrap.appendChild(l);
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  function makeInlineSelect2(label, value, options, onChange) {
+    const wrap = document.createElement("div");
+    const l = document.createElement("div");
+    l.textContent = label;
+    l.style.fontSize = "0.85em";
+    l.style.opacity = "0.85";
+    l.style.marginBottom = "4px";
+
+    const sel = document.createElement("select");
+    sel.style.width = "100%";
+    sel.style.padding = "10px 12px";
+    sel.style.borderRadius = "12px";
+    sel.style.border = "1px solid var(--border,#e5e5e5)";
+    sel.style.background = "var(--bg,#fff)";
+    options.forEach((o) => {
+      const opt = document.createElement("option");
+      opt.value = o;
+      opt.textContent = o;
+      sel.appendChild(opt);
+    });
+    sel.value = value || "報酬";
+    sel.addEventListener("change", () => {
+      onChange(sel.value);
+      renderOCRPreview();
+    });
+
+    wrap.appendChild(l);
+    wrap.appendChild(sel);
+    return wrap;
+  }
+
   function commitOCRPreview() {
-    if (!_ocrState) return;
+    if (!ocrPreviewState) return;
 
     const existingKeys = new Set(entries.map(makeDedupeKey));
     const previewKeys = new Set();
@@ -1953,21 +1915,22 @@
     let skippedDup = 0;
     let skippedInvalid = 0;
 
-    _ocrState.rows.forEach((r) => {
-      if (r.status === "skip") return;
-      if (!r.selected) return;
+    ocrPreviewState.items.forEach((it) => {
+      if (it.status !== "ok") return;
+      if (!it.selected) return;
 
-      const d = String(r.data.date || "").trim();
-      const w = normalizeWorkplaceName(r.data.workplace || "");
-      const c = String(r.data.category || "").trim();
-      const a = Number(r.data.amount || 0);
+      const d = String(it.data.date || "").trim();
+      const w = normalizeWorkplaceName(it.data.workplace || "");
+      const c = String(it.data.category || "").trim();
+      const a = Number(it.data.amount || 0);
+      const m = String(it.data.memo || "");
 
       if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
         skippedInvalid++;
         return;
       }
 
-      const normalized = { date: d, workplace: w, category: c, amount: a, memo: String(r.data.memo || "") };
+      const normalized = { date: d, workplace: w, category: c, amount: a, memo: m };
       const key = makeDedupeKey(normalized);
 
       if (existingKeys.has(key) || previewKeys.has(key)) {
@@ -1990,15 +1953,6 @@
       return;
     }
     toast(`OCR取り込み：${committed}件追加（重複スキップ：${skippedDup}）`);
-  }
-
-  function escapeHtml(s) {
-    return String(s || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
   }
 
   // ----------------------------
@@ -2027,21 +1981,25 @@
     applySettings();
     bindSettingsUI();
 
+    // Inject helpers without touching HTML
     injectDateShortcuts();
     injectWorkplaceQuickPicks();
     injectCategoryChips();
 
+    // CSV UI
     injectCSVSpecHelp();
     injectImportPreviewModal();
 
-    // Phase 3 OCR β
-    initOCRBeta();
+    // OCR UI (modal injected; button exists in HTML)
+    injectOCRPreviewModal();
 
     updateWorkplaceDatalist();
 
     bindAddButton();
     bindCSV();
+    bindOCR();
 
+    // default date = today
     if (dateInput && !dateInput.value) {
       dateInput.value = toISODate(new Date());
     }
