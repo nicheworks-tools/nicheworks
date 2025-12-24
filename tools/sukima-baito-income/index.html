@@ -6,16 +6,36 @@
 
   <!-- ▼ SEO -->
   <title>スキマバイト収入集計ツール｜月別・年間自動計算 | NicheWorks</title>
-  <meta name="description" content="タイミーなどのスキマバイト収入を、1件ずつ入力するだけで月別・年間の合計を自動計算する無料ツール。スマホ専用で確定申告準備にも役立ちます。" />
+  <meta
+    name="description"
+    content="タイミーなどのスキマバイト収入を、1件ずつ入力するだけで月別・年間の合計を自動計算する無料ツール。スマホ専用で確定申告準備にも役立ちます。"
+  />
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/sukima-income/" />
 
+  <!-- ▼ Favicon / App icons -->
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
   <!-- ▼ OGP -->
   <meta property="og:title" content="スキマバイト収入集計ツール | NicheWorks" />
-  <meta property="og:description" content="1件入力するだけで月別・年間の収入を自動計算。タイミー等のスキマバイト利用者向けの無料ツール。" />
+  <meta
+    property="og:description"
+    content="1件入力するだけで月別・年間の収入を自動計算。タイミー等のスキマバイト利用者向けの無料ツール。"
+  />
   <meta property="og:image" content="https://nicheworks.pages.dev/tools/sukima-income/og.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/sukima-income/" />
+  <meta property="og:site_name" content="NicheWorks" />
+
+  <!-- ▼ Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="スキマバイト収入集計ツール | NicheWorks" />
+  <meta
+    name="twitter:description"
+    content="1件入力するだけで月別・年間の収入を自動計算。スキマバイト利用者向けの無料ツール。"
+  />
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/tools/sukima-income/og.png" />
 
   <!-- ▼ JSON-LD -->
   <script type="application/ld+json">
@@ -34,19 +54,23 @@
 </head>
 
 <body>
-
   <!-- ▼ 上部固定：フォント・テーマ設定 -->
   <header class="nw-header">
     <div class="header-inner">
       <h1 class="app-title">スキマバイト収入集計</h1>
       <div class="header-actions">
-        <button id="fontBtn" aria-label="フォントサイズ変更">AA</button>
-        <button id="themeBtn" aria-label="テーマ切替">☀️</button>
+        <button id="fontBtn" type="button" aria-label="フォントサイズ変更">AA</button>
+        <button id="themeBtn" type="button" aria-label="テーマ切替">☀️</button>
       </div>
     </div>
   </header>
 
   <main class="nw-main">
+    <noscript>
+      <div class="error-box" style="display:block;">
+        このツールはJavaScriptが必要です。ブラウザの設定でJavaScriptを有効にしてください。
+      </div>
+    </noscript>
 
     <!-- ▼ 説明（SEO文章） -->
     <section class="intro-text">
@@ -55,33 +79,46 @@
         <strong>月別・年間合計を自動計算</strong>します。
         スマホだけで使える無料ツールです。
       </p>
+      <p style="margin-top:8px; opacity:0.85; font-size:0.95em;">
+        ※ 入力データはこのページ内でのみ扱います（サーバー送信しません）。必要ならCSVで保存してください。
+      </p>
     </section>
 
     <!-- ▼ CSV入出力 -->
-    <div class="csv-actions">
-      <label for="csvInput" class="csv-btn">CSVインポート</label>
-      <input type="file" id="csvInput" accept=".csv" style="display:none;" />
+    <div class="csv-actions" aria-label="CSV 入出力">
+      <label for="csvInput" class="csv-btn" role="button" tabindex="0">CSVインポート</label>
+      <input type="file" id="csvInput" accept=".csv,text/csv" style="display:none;" />
 
-      <button id="csvExportBtn" class="csv-btn">CSVエクスポート</button>
+      <button id="csvExportBtn" type="button" class="csv-btn">CSVエクスポート</button>
+
+      <!-- OCR（β） -->
+      <input id="ocrInput" type="file" accept="image/*" multiple hidden>
+      <button id="ocrBtn" class="ghost-btn" type="button">スクショOCR（β）</button>
     </div>
 
     <!-- ▼ エラー表示 -->
     <div id="errorBox" class="error-box" style="display:none;"></div>
 
     <!-- ▼ 入力フォーム -->
-    <section class="input-section">
+    <section class="input-section" aria-label="新規入力">
       <h2>新規入力</h2>
 
       <div class="input-card">
-
-        <label>日付</label>
+        <label for="dateInput">日付</label>
         <input type="date" id="dateInput" />
 
-        <label>就業先</label>
-        <input type="text" id="workplaceInput" placeholder="例：Amazon倉庫" list="workplaceList" />
+        <label for="workplaceInput">就業先</label>
+        <input
+          type="text"
+          id="workplaceInput"
+          placeholder="例：Amazon倉庫"
+          list="workplaceList"
+          autocomplete="off"
+          spellcheck="false"
+        />
         <datalist id="workplaceList"></datalist>
 
-        <label>区分</label>
+        <label for="categoryInput">区分</label>
         <select id="categoryInput">
           <option value="報酬">報酬</option>
           <option value="交通費">交通費</option>
@@ -89,24 +126,32 @@
           <option value="その他">その他</option>
         </select>
 
-        <label>金額（円）</label>
-        <input type="number" id="amountInput" placeholder="例：4200" inputmode="numeric" />
+        <label for="amountInput">金額（円）</label>
+        <input
+          type="number"
+          id="amountInput"
+          placeholder="例：4200"
+          inputmode="numeric"
+          min="0"
+          step="1"
+          autocomplete="off"
+        />
 
-        <label>メモ（任意）</label>
+        <label for="memoInput">メモ（任意）</label>
         <textarea id="memoInput" rows="2" placeholder="任意メモ"></textarea>
 
-        <button id="addBtn" class="add-btn">追加する</button>
+        <button id="addBtn" type="button" class="add-btn">追加する</button>
       </div>
     </section>
 
     <!-- ▼ 入力済みデータ一覧 -->
-    <section class="entries-section">
+    <section class="entries-section" aria-label="入力一覧">
       <h2>入力一覧</h2>
       <div id="entriesList"></div>
     </section>
 
     <!-- ▼ 集計セクション -->
-    <section class="summary-section">
+    <section class="summary-section" aria-label="集計結果">
       <h2>集計結果</h2>
 
       <div id="totalSummary" class="sum-card"></div>
@@ -114,7 +159,7 @@
     </section>
 
     <!-- ▼ 寄付導線 -->
-    <section class="nw-donate">
+    <section class="nw-donate" aria-label="寄付">
       <p class="nw-donate-text">このツールがお役に立ったらご支援いただけると嬉しいです。</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
@@ -123,18 +168,20 @@
     </section>
 
     <!-- ▼ ブランドフッター -->
-    <footer class="nw-footer">
+    <footer class="nw-footer" aria-label="フッター">
       <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
       <p class="note">掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
     </footer>
-
   </main>
 
   <!-- ▼ アプリJS -->
   <script src="app.js"></script>
 
   <!-- ▼ Cloudflare Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
-
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'
+  ></script>
 </body>
 </html>
