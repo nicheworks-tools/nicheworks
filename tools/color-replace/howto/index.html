@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>色置換ツール｜Color Replace Lite ガイド | NicheWorks</title>
+  <meta name="description" content="ブラウザで完結する色置換ツール。スポイトで色を抽出し、HEX/RGB/プリセットで指定色に置換。ズーム・許容範囲調整・PNG保存に対応。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/color-replace/howto/" />
+
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/color-replace/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/color-replace/howto/en/" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="./en/">EN</a>
+      <a href="../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">Color Replace Lite：色置換ガイド</h1>
+    <p class="muted" style="margin:0">画像内の「この色だけ」を別の色に置換（ズーム/許容範囲/PNG保存）。</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li>画像からスポイトで色を抽出し、指定色に置換</li>
+        <li>置換色は <code>HEX</code> / <code>RGB</code> / プリセットから指定</li>
+        <li>許容範囲（近い色の扱い）を調整して、置換の効き具合をコントロール</li>
+        <li>ズームしながら細かい部分を選び、結果をPNGで保存</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="./en/">English guide</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">こんなときに使う</h2>
+      <ul>
+        <li>ロゴやアイコンの色だけを差し替えたい（背景は触りたくない）</li>
+        <li>スクショの一部（マーカー色など）を別色に変えたい</li>
+        <li>複数の色バリエーションを試して比較したい</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        関連キーワード：色 置換 / 指定色 変換 / スポイト / HEX RGB / PNG 保存 / color replace / replace color in image
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">使い方</h2>
+      <ol>
+        <li>画像を読み込む</li>
+        <li>スポイトで「置換したい元の色」を選ぶ（From）</li>
+        <li>置換先の色（To）を HEX/RGB/プリセットで指定</li>
+        <li>必要ならズーム＆許容範囲を調整して、置換結果を確認</li>
+        <li>問題なければPNGで保存</li>
+      </ol>
+      <p class="muted" style="margin:0">処理はブラウザ内のみ。画像はサーバーに保存しません。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>写真のように色が連続的に変化する画像は、置換が「にじむ」ことがあります（許容範囲で調整）。</li>
+        <li>完全な境界の自動認識（例：背景だけを賢く除外）は行いません。</li>
+        <li>元画像がJPEGだと、圧縮ノイズで“同じ色に見えても数値が違う”ことがあり、置換が部分的になる場合があります。</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>当サイトには広告が含まれる場合があります。</p>
+    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+</body>
+</html>
