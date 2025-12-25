@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>FileType Sniffer | Guide | NicheWorks</title>
+  <meta name="description" content="Detect a file’s real format by reading its magic number (file signature). Useful for extension spoofing checks and unknown/broken files. Browser-only, no storage." />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/filetype-sniffer/howto/en/" />
+
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/filetype-sniffer/howto/en/" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/filetype-sniffer/howto/" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="../">JA</a>
+      <a href="../../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">FileType Sniffer: Guide</h1>
+    <p class="muted" style="margin:0">Detect the real file format from its magic number (signature), not the extension.</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">Ad slot (placeholder)</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">What it does</h2>
+      <ul>
+        <li>Reads magic numbers / file signatures to guess the real format</li>
+        <li>Helps spot extension spoofing (e.g., “.jpg” that isn’t a JPEG)</li>
+        <li>Useful to identify unknown or partially broken files</li>
+        <li>Browser-only, no storage</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../../">Open the tool</a>
+        <a class="btn" href="../">日本語ガイド</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Use this when</h2>
+      <ul>
+        <li>You suspect the extension doesn’t match the content</li>
+        <li>A file won’t open and you want to know what it is</li>
+        <li>You want a quick first-pass check on received files</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        Keywords: magic number, file signature, file type detector, extension spoofing
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">How to use</h2>
+      <ol>
+        <li>Open the tool</li>
+        <li>Select a file (or drag & drop)</li>
+        <li>Read the detected format and shown signature</li>
+      </ol>
+      <p class="muted" style="margin:0">Tip: if the detected type is different, renaming the extension may help (at your own risk).</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Notes (limits)</h2>
+      <ul>
+        <li>Detection is best-effort; complex/encrypted/corrupted files can be misdetected.</li>
+        <li>This tool does not guarantee malware safety.</li>
+        <li>It may not inspect contents inside archives (depending on the tool’s scope).</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">Ad slot (placeholder)</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>This site may contain ads.</p>
+    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+</body>
+</html>
