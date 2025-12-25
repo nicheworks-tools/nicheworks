@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Notionフォーム設計｜Notion Form Design Kit | NicheWorks</title>
+  <meta name="description" content="Notion DBのフォーム代替設計とワークフロー文面を生成します。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/notion-form-design-kit/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Notionフォーム設計｜Notion Form Design Kit | NicheWorks" />
+  <meta property="og:description" content="Notion DBのフォーム代替設計とワークフロー文面を生成します。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/notion-form-design-kit/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Notion Form Design Kit",
+    "url": "https://nicheworks.pages.dev/tools/notion-form-design-kit/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Generate Notion database property design and workflow copy for form replacements.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">Notionフォーム設計キット</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">Notion Form Design Kit</h1>
+
+    <p class="nw-lead" data-i18n="ja">Notion DBのフォーム代替設計と文面テンプレを作成します。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Design Notion DB properties and workflow messages.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- Top Ad (required) -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- Privacy note (recommended for text tools) -->
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+
+    <!-- Tool UI -->
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">入力</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
+      </div>
+
+      <div class="card-bd">
+        <div id="toolRoot">
+          <div class="field">
+            <label class="label" data-i18n="ja" for="useCase">用途</label>
+            <label class="label" data-i18n="en" for="useCase" style="display:none;">Use case</label>
+            <input class="input" id="useCase" type="text" placeholder="問い合わせ管理" />
+          </div>
+
+          <div class="field">
+            <div class="label" data-i18n="ja">必要項目</div>
+            <div class="label" data-i18n="en" style="display:none;">Required fields</div>
+            <div class="row">
+              <label><input type="checkbox" class="field-check" value="名前 / Name" checked> 名前</label>
+              <label><input type="checkbox" class="field-check" value="メール / Email" checked> メール</label>
+              <label><input type="checkbox" class="field-check" value="会社 / Company"> 会社</label>
+              <label><input type="checkbox" class="field-check" value="内容 / Request" checked> 内容</label>
+              <label><input type="checkbox" class="field-check" value="優先度 / Priority"> 優先度</label>
+              <label><input type="checkbox" class="field-check" value="期限 / Deadline"> 期限</label>
+              <label><input type="checkbox" class="field-check" value="添付 / Attachment"> 添付</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="statusFlow">ステータスフロー</label>
+            <label class="label" data-i18n="en" for="statusFlow" style="display:none;">Status flow</label>
+            <select class="select" id="statusFlow">
+              <option value="simple">シンプル / Simple</option>
+              <option value="detailed">詳細 / Detailed</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <button class="btn primary" type="button" id="generate">生成する / Generate</button>
+            <button class="btn" type="button" id="copyAll">Copy</button>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="properties">プロパティ設計</label>
+            <label class="label" data-i18n="en" for="properties" style="display:none;">Property list</label>
+            <textarea class="out" id="properties" readonly></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="pipeline">ステータスパイプライン</label>
+            <label class="label" data-i18n="en" for="pipeline" style="display:none;">Status pipeline</label>
+            <textarea class="out" id="pipeline" readonly></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="messages">通知テンプレ</label>
+            <label class="label" data-i18n="en" for="messages" style="display:none;">Message templates</label>
+            <textarea class="out" id="messages" readonly></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Ad (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- Donate (1–2 placements max) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/log-formatter/">LogFormatter</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
