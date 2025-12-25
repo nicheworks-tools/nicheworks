@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>ATS Paste Doctor | NicheWorks</title>
+  <meta name="description" content="Fix ATS/job form paste issues: bullets, line breaks, and invisible characters. Preview in a tiny 2-line textbox. Free + Pro unlock." />
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/ats-paste-doctor/" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ATS Paste Doctor | NicheWorks" />
+  <meta property="og:description" content="Fix paste formatting issues before submitting ATS/job forms. Includes a 2-line ATS-style preview." />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/ats-paste-doctor/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+
+  <!-- AdSense (Common Spec v3: MUST keep; do NOT remove) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nw-header">
+    <div class="nw-header__inner">
+      <div class="nw-title-wrap">
+        <h1 class="nw-title" data-i18n="app.title">ATS Paste Doctor</h1>
+        <p class="nw-subtitle" data-i18n="app.subtitle">
+          Check formatting issues and invisible characters before pasting into ATS/job forms.
+        </p>
+      </div>
+
+      <div class="nw-lang">
+        <button id="langJa" class="nw-lang__btn" type="button" aria-label="Switch language to Japanese">JP</button>
+        <button id="langEn" class="nw-lang__btn" type="button" aria-label="Switch language to English">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="nw-main">
+    <!-- Ad slot: top (Common Spec v3: required) -->
+    <section id="adTop" class="ad-slot ad-top" aria-label="Advertisement">
+      <div class="ad-placeholder">Ad</div>
+    </section>
+
+    <!-- Intro (no buttons directly under ad-top) -->
+    <section class="nw-intro">
+      <p data-i18n="intro.line1">
+        Paste your text, pick a mode, and copy a safer version for ATS forms.
+      </p>
+      <p data-i18n="intro.line2">
+        Runs locally in your browser. Your text is not uploaded.
+      </p>
+    </section>
+
+    <!-- Tool -->
+    <section class="card">
+      <div class="card__grid">
+        <!-- Input -->
+        <div class="panel">
+          <h2 class="panel__title" data-i18n="input.title">Input</h2>
+
+          <label class="sr-only" for="inputText" data-i18n="input.label">Input</label>
+          <textarea
+            id="inputText"
+            class="textarea"
+            rows="10"
+            data-i18n-placeholder="input.placeholder"
+            placeholder="Paste your text here..."
+          ></textarea>
+
+          <div class="meta-row">
+            <div class="meta" id="charMeta" aria-live="polite"></div>
+            <div class="meta" data-i18n="input.hint">May take up to a few seconds.</div>
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="panel">
+          <h2 class="panel__title" data-i18n="options.title">Options</h2>
+
+          <div class="field">
+            <div class="field__label" data-i18n="options.mode.label">Output mode</div>
+            <div class="seg" role="radiogroup" aria-label="Output mode">
+              <button type="button" class="seg__btn is-active" data-mode="safe" id="modeSafe" aria-checked="true" role="radio" data-i18n="options.mode.safe">ATS-safe</button>
+              <button type="button" class="seg__btn" data-mode="keep" id="modeKeep" aria-checked="false" role="radio" data-i18n="options.mode.keep">Keep line breaks</button>
+              <button type="button" class="seg__btn" data-mode="clean" id="modeClean" aria-checked="false" role="radio" data-i18n="options.mode.clean">Clean</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="limitInput" data-i18n="options.limit.label">Character limit (optional)</label>
+            <input id="limitInput" class="input" type="number" inputmode="numeric" min="0" placeholder="e.g. 1000" data-i18n-placeholder="options.limit.placeholder" />
+            <div class="meta" id="limitMeta" aria-live="polite"></div>
+          </div>
+
+          <div class="actions">
+            <button id="processBtn" class="btn btn-primary" type="button" data-i18n="actions.process">Generate output</button>
+          </div>
+
+          <div class="checks">
+            <h3 class="checks__title" data-i18n="results.counts.title">Counts</h3>
+            <div class="checks__grid" id="countsGrid"></div>
+
+            <h3 class="checks__title" data-i18n="results.warnings.title">Warnings</h3>
+            <div class="checks__list" id="warningsList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="card">
+      <div class="panel">
+        <h2 class="panel__title" data-i18n="output.title">Output</h2>
+
+        <!-- Progress (Common Spec v3: required) -->
+        <div id="progressWrap" class="progress-wrap" hidden>
+          <div class="progress-label" data-i18n="progress.label">Processing…</div>
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <div class="progress-bar__inner"></div>
+          </div>
+        </div>
+
+        <!-- Error (Common Spec v3: red border What/How) -->
+        <div id="errorBox" class="error" hidden></div>
+
+        <label class="sr-only" for="outputText" data-i18n="output.label">Output</label>
+        <textarea id="outputText" class="textarea" rows="8" readonly></textarea>
+
+        <div class="row">
+          <button id="copyBtn" class="btn" type="button" data-i18n="actions.copy">Copy output</button>
+          <button id="downloadBtn" class="btn" type="button" data-i18n="actions.download">Download .txt</button>
+          <button id="resetBtn" class="btn btn-ghost" type="button" data-i18n="actions.reset">Reset</button>
+        </div>
+
+        <div class="toast" id="toast" hidden></div>
+
+        <div class="preview">
+          <div class="preview__title" data-i18n="preview.title">ATS-style preview (2-line textbox)</div>
+          <div id="previewBox" class="preview__box" aria-label="ATS-style preview"></div>
+          <div class="meta" data-i18n="preview.note">Some ATS forms show only a tiny textbox. Check readability here.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pro -->
+    <section class="card" id="proCard">
+      <div class="panel">
+        <div class="pro-head">
+          <h2 class="panel__title" data-i18n="pro.title">Unlock Pro ($2.99 one-time)</h2>
+          <span id="proBadge" class="badge" hidden data-i18n="pro.unlocked">Pro unlocked</span>
+        </div>
+
+        <p class="muted" data-i18n="pro.desc">
+          Hide ads and unlock time-saving features (stored locally only).
+        </p>
+
+        <ul class="pro-list">
+          <li data-i18n="pro.feature.ads">Hide ads in the UI</li>
+          <li data-i18n="pro.feature.limit">Higher text limit</li>
+          <li data-i18n="pro.feature.presets">Extra presets (coming soon)</li>
+        </ul>
+
+        <div class="row">
+          <a id="buyProLink" class="btn btn-primary" href="https://example.com/stripe-payment-link" target="_blank" rel="noopener noreferrer" data-i18n="pro.cta">Buy Pro</a>
+          <span class="meta" data-i18n="pro.priceNote">$2.99 one-time</span>
+        </div>
+
+        <p class="meta" data-i18n="pro.howto">
+          After payment, return to this page with ?pro=1 to enable Pro on this device.
+        </p>
+      </div>
+    </section>
+
+    <!-- Ad slot: bottom (Common Spec v3: recommended; keep DOM) -->
+    <section id="adBottom" class="ad-slot ad-bottom" aria-label="Advertisement">
+      <div class="ad-placeholder">Ad</div>
+    </section>
+
+    <!-- Privacy note -->
+    <section class="nw-note">
+      <p data-i18n="privacy.note">
+        Runs fully in your browser. Your text is not saved or sent (only Pro status may be stored locally).
+      </p>
+    </section>
+
+    <!-- Donate (placeholders; you can replace href later) -->
+    <section class="nw-donate">
+      <p class="nw-donate__text" data-i18n="donate.text">If this tool helped, consider supporting continued development.</p>
+      <div class="row">
+        <a class="btn" href="#" data-i18n="donate.ofuse">💌 OFUSE</a>
+        <a class="btn" href="#" data-i18n="donate.kofi">☕ Ko-fi</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <div class="nw-footer__inner">
+      <div class="nw-footer__line" data-i18n="footer.line1">© NicheWorks — Small Web Tools for Boring Tasks</div>
+      <div class="nw-footer__line" data-i18n="footer.line2">
+        This site may contain ads. Information accuracy is not guaranteed. Always verify official sources.
+      </div>
+      <a class="nw-footer__home" href="/" data-i18n="footer.home">nicheworks.pages.dev</a>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
