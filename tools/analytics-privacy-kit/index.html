@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>解析プライバシー文面｜Analytics Privacy Kit | NicheWorks</title>
+  <meta name="description" content="アクセス解析向けのプライバシー追記文・同意文を日本語/英語で生成します。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/analytics-privacy-kit/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="解析プライバシー文面｜Analytics Privacy Kit | NicheWorks" />
+  <meta property="og:description" content="アクセス解析向けのプライバシー追記文・同意文を日本語/英語で生成します。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/analytics-privacy-kit/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Analytics Privacy Kit",
+    "url": "https://nicheworks.pages.dev/tools/analytics-privacy-kit/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Generate analytics privacy policy add-ons and consent copy.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">アナリティクス・プライバシーキット</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">Analytics Privacy Kit</h1>
+
+    <p class="nw-lead" data-i18n="ja">アクセス解析向けのプライバシー追記文・同意文を生成します。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Generate privacy add-ons and consent copy for analytics.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- Top Ad (required) -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- Privacy note (recommended for text tools) -->
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+
+    <!-- Tool UI -->
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">入力</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
+      </div>
+
+      <div class="card-bd">
+        <div id="toolRoot">
+          <div class="field">
+            <label class="label" data-i18n="ja" for="siteType">サイト種別</label>
+            <label class="label" data-i18n="en" for="siteType" style="display:none;">Site type</label>
+            <select class="select" id="siteType">
+              <option value="ブログ">ブログ / Blog</option>
+              <option value="サービスサイト">サービスサイト / Service site</option>
+              <option value="ECサイト">ECサイト / E-commerce</option>
+              <option value="ポートフォリオ">ポートフォリオ / Portfolio</option>
+              <option value="その他">その他 / Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="analyticsTool">解析ツール</label>
+            <label class="label" data-i18n="en" for="analyticsTool" style="display:none;">Analytics tool</label>
+            <select class="select" id="analyticsTool">
+              <option value="Google Analytics 4">GA4</option>
+              <option value="Cloudflare Web Analytics">Cloudflare Web Analytics</option>
+              <option value="Plausible">Plausible</option>
+              <option value="Other">Other / その他</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="region">地域</label>
+            <label class="label" data-i18n="en" for="region" style="display:none;">Region</label>
+            <select class="select" id="region">
+              <option value="JP">日本中心 / Japan</option>
+              <option value="EU">EU圏含む / EU-ish</option>
+              <option value="GLOBAL">グローバル / Global</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="cookieUse">Cookie使用</label>
+            <label class="label" data-i18n="en" for="cookieUse" style="display:none;">Uses cookies</label>
+            <select class="select" id="cookieUse">
+              <option value="yes">あり / Yes</option>
+              <option value="no">なし / No</option>
+              <option value="unknown">未確認 / Unknown</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="contact">問い合わせ先（任意）</label>
+            <label class="label" data-i18n="en" for="contact" style="display:none;">Contact (optional)</label>
+            <input class="input" id="contact" type="text" placeholder="support@example.com" />
+          </div>
+
+          <div class="row">
+            <button class="btn primary" type="button" id="generate">生成する / Generate</button>
+            <button class="btn" type="button" id="copyJa">JPコピー</button>
+            <button class="btn" type="button" id="copyEn">ENコピー</button>
+            <button class="btn" type="button" id="copyChecklist">Checklist</button>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="outputJa">日本語ブロック</label>
+            <label class="label" data-i18n="en" for="outputJa" style="display:none;">Japanese block</label>
+            <textarea class="out" id="outputJa" readonly></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="outputEn">英語ブロック</label>
+            <label class="label" data-i18n="en" for="outputEn" style="display:none;">English block</label>
+            <textarea class="out" id="outputEn" readonly></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="outputChecklist">チェックリスト</label>
+            <label class="label" data-i18n="en" for="outputChecklist" style="display:none;">Checklist</label>
+            <textarea class="out" id="outputChecklist" readonly></textarea>
+          </div>
+
+          <p class="nw-note" data-i18n="ja">※法的助言ではありません。必ず自社のポリシーに合わせて調整してください。</p>
+          <p class="nw-note" data-i18n="en" style="display:none;">Not legal advice. Please adjust to your policy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Ad (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- Donate (1–2 placements max) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/log-formatter/">LogFormatter</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

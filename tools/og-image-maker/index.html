@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>OG画像作成｜OG Image Maker | NicheWorks</title>
+  <meta name="description" content="OG画像(1200x630)をブラウザで作成・保存できるツール。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/og-image-maker/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="OG画像作成｜OG Image Maker | NicheWorks" />
+  <meta property="og:description" content="OG画像(1200x630)をブラウザで作成・保存できるツール。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/og-image-maker/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "OG Image Maker",
+    "url": "https://nicheworks.pages.dev/tools/og-image-maker/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Create 1200x630 Open Graph images with simple templates.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">OG画像メーカー</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">OG Image Maker</h1>
+
+    <p class="nw-lead" data-i18n="ja">1200×630のOG画像をブラウザで作成・保存します。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Create 1200x630 OG images in your browser.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- Top Ad (required) -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- Privacy note (recommended for text tools) -->
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。画像は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Images are not uploaded.</div>
+
+    <!-- Tool UI -->
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">入力</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
+      </div>
+
+      <div class="card-bd">
+        <div id="toolRoot">
+          <div class="field">
+            <label class="label" data-i18n="ja" for="titleInput">タイトル</label>
+            <label class="label" data-i18n="en" for="titleInput" style="display:none;">Title</label>
+            <input class="input" id="titleInput" type="text" placeholder="NicheWorks OG" />
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="subtitleInput">サブタイトル（任意）</label>
+            <label class="label" data-i18n="en" for="subtitleInput" style="display:none;">Subtitle (optional)</label>
+            <input class="input" id="subtitleInput" type="text" placeholder="短い説明を入れる" />
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="urlInput">URL（任意）</label>
+            <label class="label" data-i18n="en" for="urlInput" style="display:none;">URL (optional)</label>
+            <input class="input" id="urlInput" type="text" placeholder="https://example.com" />
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="themeSelect">テーマ</label>
+            <label class="label" data-i18n="en" for="themeSelect" style="display:none;">Theme</label>
+            <select class="select" id="themeSelect">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="logoInput">ロゴ画像（任意）</label>
+            <label class="label" data-i18n="en" for="logoInput" style="display:none;">Logo (optional)</label>
+            <input class="input" id="logoInput" type="file" accept="image/*" />
+          </div>
+
+          <div class="row">
+            <button class="btn primary" type="button" id="downloadBtn">PNG保存</button>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="preview">プレビュー</label>
+            <label class="label" data-i18n="en" for="preview" style="display:none;">Preview</label>
+            <canvas id="preview" width="1200" height="630" class="og-canvas"></canvas>
+          </div>
+
+          <div class="field" data-pro-lock>
+            <div class="nw-note" data-i18n="ja">ProでCSV一括生成と連続ダウンロードが解放されます。</div>
+            <div class="nw-note" data-i18n="en" style="display:none;">Pro unlocks CSV batch generation and multi-download.</div>
+          </div>
+
+          <div class="field" data-pro-only style="display:none;">
+            <label class="label" data-i18n="ja" for="batchInput">CSV一括（title,subtitle,url）</label>
+            <label class="label" data-i18n="en" for="batchInput" style="display:none;">CSV batch (title, subtitle, url)</label>
+            <textarea class="textarea" id="batchInput" placeholder="Title 1,Subtitle 1,https://example.com"></textarea>
+            <div class="row">
+              <button class="btn" type="button" id="batchDownload">一括ダウンロード</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Ad (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- Donate (1–2 placements max) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/log-formatter/">LogFormatter</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Pagesデプロイガイド｜Pages Deploy Guide | NicheWorks</title>
+  <meta name="description" content="Cloudflare Pages / GitHub Pagesのデプロイ手順と注意点を整理します。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/pages-deploy-guide/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pagesデプロイガイド｜Pages Deploy Guide | NicheWorks" />
+  <meta property="og:description" content="Cloudflare Pages / GitHub Pagesのデプロイ手順と注意点を整理します。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/pages-deploy-guide/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pages Deploy Guide",
+    "url": "https://nicheworks.pages.dev/tools/pages-deploy-guide/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Checklist guide for deploying to Cloudflare Pages or GitHub Pages.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">Pagesデプロイガイド</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">Pages Deploy Guide</h1>
+
+    <p class="nw-lead" data-i18n="ja">Cloudflare/GitHub Pagesのデプロイ手順をチェックリスト化します。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Checklist and guide for Pages deployments.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- Top Ad (required) -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- Privacy note (recommended for text tools) -->
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+
+    <!-- Tool UI -->
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">入力</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
+      </div>
+
+      <div class="card-bd">
+        <div id="toolRoot">
+          <div class="field">
+            <label class="label" data-i18n="ja" for="platform">プラットフォーム</label>
+            <label class="label" data-i18n="en" for="platform" style="display:none;">Platform</label>
+            <select class="select" id="platform">
+              <option value="Cloudflare Pages">Cloudflare Pages</option>
+              <option value="GitHub Pages">GitHub Pages</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="sourceType">ソース</label>
+            <label class="label" data-i18n="en" for="sourceType" style="display:none;">Source</label>
+            <select class="select" id="sourceType">
+              <option value="folder">フォルダ / Folder</option>
+              <option value="zip">ZIP / Archive</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="customDomain">カスタムドメイン</label>
+            <label class="label" data-i18n="en" for="customDomain" style="display:none;">Custom domain</label>
+            <select class="select" id="customDomain">
+              <option value="no">なし / No</option>
+              <option value="yes">あり / Yes</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="outputFolder">公開フォルダ</label>
+            <label class="label" data-i18n="en" for="outputFolder" style="display:none;">Output folder</label>
+            <select class="select" id="outputFolder">
+              <option value="root">/ (root)</option>
+              <option value="dist">dist</option>
+              <option value="public">public</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <button class="btn primary" type="button" id="generate">生成する / Generate</button>
+            <button class="btn" type="button" id="copyAll">Copy</button>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="output">チェックリスト</label>
+            <label class="label" data-i18n="en" for="output" style="display:none;">Checklist</label>
+            <textarea class="out" id="output" readonly></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="errors">よくあるエラー</label>
+            <label class="label" data-i18n="en" for="errors" style="display:none;">Common errors</label>
+            <textarea class="out" id="errors" readonly></textarea>
+          </div>
+
+          <div class="field" data-pro-lock>
+            <div class="nw-note" data-i18n="ja">Proで診断ツリーとMarkdown出力が解放されます。</div>
+            <div class="nw-note" data-i18n="en" style="display:none;">Pro unlocks diagnosis tree and Markdown export.</div>
+          </div>
+
+          <div class="field" data-pro-only style="display:none;">
+            <label class="label" data-i18n="ja" for="diagnosis">症状別診断ツリー</label>
+            <label class="label" data-i18n="en" for="diagnosis" style="display:none;">Diagnosis tree</label>
+            <textarea class="out" id="diagnosis" readonly></textarea>
+            <div class="row">
+              <button class="btn" type="button" id="downloadMd">Markdown出力</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Ad (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- Donate (1–2 placements max) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/log-formatter/">LogFormatter</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
