@@ -567,8 +567,7 @@
       "fasteners"
     ],
     "tasks": [
-      "site",
-      "machines"
+      "site"
     ],
     "category": "fasteners"
   },
@@ -620,8 +619,7 @@
       "hand-tools"
     ],
     "tasks": [
-      "site",
-      "machines"
+      "site"
     ],
     "category": "hand-tools"
   },
@@ -647,8 +645,7 @@
       "hand-tools"
     ],
     "tasks": [
-      "site",
-      "machines"
+      "site"
     ],
     "category": "hand-tools"
   },
@@ -823,7 +820,7 @@
       "safety"
     ],
     "tasks": [
-      "scaffolding",
+      "site",
       "roofing"
     ],
     "category": "safety"
@@ -1074,7 +1071,7 @@
     ],
     "tasks": [
       "framing",
-      "concrete"
+      "foundation"
     ],
     "category": "materials"
   },
@@ -1708,8 +1705,7 @@
       "safety"
     ],
     "tasks": [
-      "site",
-      "machines"
+      "site"
     ],
     "category": "safety"
   },
@@ -1733,8 +1729,7 @@
       "safety"
     ],
     "tasks": [
-      "site",
-      "machines"
+      "site"
     ],
     "category": "safety"
   },
@@ -2782,8 +2777,7 @@
       "measurement"
     ],
     "tasks": [
-      "site",
-      "machines"
+      "site"
     ],
     "category": "measurement"
   },
@@ -2805,8 +2799,7 @@
       "hand-tools"
     ],
     "tasks": [
-      "site",
-      "machines"
+      "site"
     ],
     "category": "hand-tools"
   },
@@ -2854,7 +2847,6 @@
       "measurement"
     ],
     "tasks": [
-      "machines",
       "site"
     ],
     "category": "measurement"
@@ -2879,7 +2871,6 @@
       "measurement"
     ],
     "tasks": [
-      "machines",
       "site"
     ],
     "category": "measurement"

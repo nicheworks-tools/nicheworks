@@ -1,0 +1,20 @@
+name: Validate Construction Tools Atlas Data
+
+on:
+  pull_request:
+    paths:
+      - "tools/construction-tools-atlas/data/**"
+      - "tools/construction-tools-atlas/scripts/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate data packs
+        run: node tools/construction-tools-atlas/scripts/validate-data.mjs
