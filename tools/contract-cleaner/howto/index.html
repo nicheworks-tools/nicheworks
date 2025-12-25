@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>契約書リスク検出｜Contract Cleaner ガイド | NicheWorks</title>
+  <meta name="description" content="契約書・利用規約などの本文から、よくある危険条文・地雷ワードを検出するブラウザ完結ツール（AI不使用）。見落とし防止の参考用。保存なし。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/contract-cleaner/howto/" />
+
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/contract-cleaner/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/contract-cleaner/howto/en/" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="./en/">EN</a>
+      <a href="../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">Contract Cleaner：使い方</h1>
+    <p class="muted" style="margin:0">契約書・利用規約の「危険っぽい条文」を地雷ワードで素早く拾う（AI不使用／保存なし）。</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li>契約書・利用規約などの本文を貼り付けて、リスクになりやすい表現を検出</li>
+        <li>よくある地雷ワード（免責・損害賠償・解除・自動更新・専属管轄など）をハイライト</li>
+        <li>AIを使わない（ルール/辞書ベース）ため、文章を外部に送信しない前提で使える</li>
+        <li>ブラウザ完結・保存なし</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="./en/">English guide</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">こんなときに使う</h2>
+      <ul>
+        <li>契約書を全部読む前に「危ない箇所だけ」先に当たりを付けたい</li>
+        <li>利用規約の免責・自動更新・解約条件など、よく揉める部分を見落としたくない</li>
+        <li>相手から来たドラフトの“気になる単語”を一気に洗い出したい</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        関連キーワード：契約書 危険条文 / 利用規約 地雷 / 免責 損害賠償 / termination auto-renew jurisdiction
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">使い方</h2>
+      <ol>
+        <li>ツール画面を開く</li>
+        <li>契約書・利用規約の本文を貼り付ける（必要なら一部だけでもOK）</li>
+        <li>ハイライトされた箇所（検出語）を起点に、周辺文脈を読む</li>
+        <li>気になる条文は、条件・例外・期限・責任範囲を確認する</li>
+      </ol>
+      <p class="muted" style="margin:0">コツ：検出語がある＝即アウトではなく、まず「条件と例外」を見る。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>法律判断や契約の正当性を判定するツールではありません（見落とし防止の補助）。</li>
+        <li>辞書にない言い回しは検出できない場合があります（言い換え・婉曲表現）。</li>
+        <li>国/業界/契約種別で重要ポイントが変わるため、必要なら専門家に確認してください。</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>当サイトには広告が含まれる場合があります。</p>
+    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+</body>
+</html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>契約書リスク検出｜Contract Cleaner ガイド | NicheWorks</title>
+  <meta name="description" content="契約書・利用規約などの本文から、よくある危険条文・地雷ワードを検出するブラウザ完結ツール（AI不使用）。見落とし防止の参考用。保存なし。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/contract-cleaner/howto/" />
+
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/contract-cleaner/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/contract-cleaner/howto/en/" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="./en/">EN</a>
+      <a href="../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">Contract Cleaner：使い方</h1>
+    <p class="muted" style="margin:0">契約書・利用規約の「危険っぽい条文」を地雷ワードで素早く拾う（AI不使用／保存なし）。</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li>契約書・利用規約などの本文を貼り付けて、リスクになりやすい表現を検出</li>
+        <li>よくある地雷ワード（免責・損害賠償・解除・自動更新・専属管轄など）をハイライト</li>
+        <li>AIを使わない（ルール/辞書ベース）ため、文章を外部に送信しない前提で使える</li>
+        <li>ブラウザ完結・保存なし</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="./en/">English guide</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">こんなときに使う</h2>
+      <ul>
+        <li>契約書を全部読む前に「危ない箇所だけ」先に当たりを付けたい</li>
+        <li>利用規約の免責・自動更新・解約条件など、よく揉める部分を見落としたくない</li>
+        <li>相手から来たドラフトの“気になる単語”を一気に洗い出したい</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        関連キーワード：契約書 危険条文 / 利用規約 地雷 / 免責 損害賠償 / termination auto-renew jurisdiction
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">使い方</h2>
+      <ol>
+        <li>ツール画面を開く</li>
+        <li>契約書・利用規約の本文を貼り付ける（必要なら一部だけでもOK）</li>
+        <li>ハイライトされた箇所（検出語）を起点に、周辺文脈を読む</li>
+        <li>気になる条文は、条件・例外・期限・責任範囲を確認する</li>
+      </ol>
+      <p class="muted" style="margin:0">コツ：検出語がある＝即アウトではなく、まず「条件と例外」を見る。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>法律判断や契約の正当性を判定するツールではありません（見落とし防止の補助）。</li>
+        <li>辞書にない言い回しは検出できない場合があります（言い換え・婉曲表現）。</li>
+        <li>国/業界/契約種別で重要ポイントが変わるため、必要なら専門家に確認してください。</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>当サイトには広告が含まれる場合があります。</p>
+    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+</body>
+</html>
