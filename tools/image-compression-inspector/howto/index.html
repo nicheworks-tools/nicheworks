@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>画像圧縮率チェッカー｜Image Compression Inspector ガイド | NicheWorks</title>
+  <meta name="description" content="画像を読み込んで、圧縮率・解像度・最適フォーマット候補を軽量診断。PNG/JPEG/WebPの見直しやSNS投稿前の最適化に。ブラウザ完結・保存なし。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/image-compression-inspector/howto/" />
+
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/image-compression-inspector/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/image-compression-inspector/howto/en/" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="./en/">EN</a>
+      <a href="../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">Image Compression Inspector：使い方</h1>
+    <p class="muted" style="margin:0">画像のサイズ・解像度・圧縮状態を見て、形式選び（PNG/JPEG/WebP）の判断材料を作ります。</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li>画像を読み込み、ファイルサイズと解像度（幅×高さ）を確認</li>
+        <li>圧縮の効き具合（軽量化余地の目安）をざっくり診断</li>
+        <li>PNG / JPEG / WebP のどれが向きやすいかの目安を表示（対応している場合）</li>
+        <li>ブラウザ完結・保存なし</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="./en/">English guide</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">こんなときに使う</h2>
+      <ul>
+        <li>SNS投稿前に「重すぎないか」を確認したい</li>
+        <li>Webサイトに載せる画像が大きすぎて表示が遅い</li>
+        <li>PNGのまま送っていて、JPEG/WebPにすべきか迷っている</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        関連キーワード：画像 圧縮率 / 画像 最適化 / PNG JPEG WebP 違い / image compression ratio / webp checker
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">使い方</h2>
+      <ol>
+        <li>ツールを開く</li>
+        <li>画像ファイルを選択（またはドラッグ）</li>
+        <li>表示された診断（サイズ・解像度・形式の目安）を確認する</li>
+      </ol>
+      <p class="muted" style="margin:0">コツ：同じ画像を「PNG / JPEG / WebP」で作り比べて、数字で判断すると迷わない。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>“最適”は用途次第です（写真/イラスト/透過あり等）。診断は目安として使ってください。</li>
+        <li>このツール自体が画像を再圧縮・変換する機能は含まない場合があります（ツール仕様に依存）。</li>
+        <li>画質の主観評価（綺麗/汚い）は自動で決められません。</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>当サイトには広告が含まれる場合があります。</p>
+    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+</body>
+</html>
