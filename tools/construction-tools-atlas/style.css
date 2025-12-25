@@ -369,6 +369,7 @@ h1 {
   max-width: 980px;
   margin: 0 auto;
   padding: 24px 20px 72px;
+  line-height: 1.7;
 }
 
 .static-page h1{
@@ -448,5 +449,47 @@ h1 {
 
 .static-page a:hover{
   opacity: 0.9;
+  text-decoration: underline;
 }
 
+.static-page > * + *{
+  margin-top: 12px;
+}
+
+.back-home{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.tool-footer{
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tool-footer-title{
+  margin: 0;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tool-footer-link{
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.tool-footer-link:hover{
+  text-decoration: underline;
+}
+
+.tool-footer-disclaimer{
+  margin: 0;
+}
