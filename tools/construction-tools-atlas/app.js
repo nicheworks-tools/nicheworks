@@ -111,6 +111,8 @@
       catAll: "All categories",
       taskMeta: "Task",
       aliasesMeta: "Aliases",
+      aliasesJaLabel: "JA",
+      aliasesEnLabel: "EN",
       tagsMeta: "Tags",
       idMeta: "ID",
       aboutLink: "About",
@@ -147,6 +149,8 @@
       catAll: "すべてのカテゴリ",
       taskMeta: "作業",
       aliasesMeta: "別名",
+      aliasesJaLabel: "日本語",
+      aliasesEnLabel: "英語",
       tagsMeta: "タグ",
       idMeta: "ID",
       aboutLink: "概要",
@@ -594,7 +598,7 @@
     if (els.detailTitle) els.detailTitle.textContent = termCurrent || entry.id || dict.dash;
     if (els.detailSubtitle) {
       if (termJa && termEn) els.detailSubtitle.textContent = `${termJa} / ${termEn}`;
-      else els.detailSubtitle.textContent = termJa || termEn || dict.dash;
+      else els.detailSubtitle.textContent = termJa || termEn || "";
     }
 
     // category line: labels joined
@@ -617,8 +621,18 @@
       .map((def) => labelOf(def, state.lang));
     setDetailListText(els.detailTasks, taskLabels);
 
-    // aliases for current lang
-    setDetailListText(els.detailAliases, aliasesListForLang(entry, state.lang));
+    // aliases for ja/en (if present)
+    if (els.detailAliases) {
+      const aliasPairs = aliasesListByLang(entry);
+      const aliasText = [];
+      if (aliasPairs.ja.length) {
+        aliasText.push(`${dict.aliasesJaLabel}: ${aliasPairs.ja.join(", ")}`);
+      }
+      if (aliasPairs.en.length) {
+        aliasText.push(`${dict.aliasesEnLabel}: ${aliasPairs.en.join(", ")}`);
+      }
+      setDetailListText(els.detailAliases, aliasText);
+    }
 
     // tags (raw)
     setDetailListText(els.detailTags, tagsList(entry));
@@ -795,6 +809,25 @@
       out.push(a);
     }
     return uniq(out);
+  }
+
+  function aliasesListByLang(entry) {
+    const a = entry?.aliases || entry?.alias;
+    const ja = [];
+    const en = [];
+
+    if (a && typeof a === "object" && !Array.isArray(a)) {
+      if (Array.isArray(a.ja)) ja.push(...a.ja);
+      if (Array.isArray(a.en)) en.push(...a.en);
+    } else if (Array.isArray(a)) {
+      ja.push(...a);
+      en.push(...a);
+    } else if (typeof a === "string") {
+      ja.push(a);
+      en.push(a);
+    }
+
+    return { ja: uniq(ja), en: uniq(en) };
   }
 
   function tagsList(entry) {
