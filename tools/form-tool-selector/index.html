@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>フォームツール選定｜Form Tool Selector | NicheWorks</title>
+  <meta name="description" content="要件チェックからフォームツールのおすすめタイプと注意点を提示する無料セレクター。アップロード/決済/通知/多言語/無料優先/プライバシーに対応。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/form-tool-selector/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="フォームツール選定｜Form Tool Selector | NicheWorks" />
+  <meta property="og:description" content="要件チェックからフォームツールのおすすめタイプと注意点を提示する無料セレクター。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/form-tool-selector/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Form Tool Selector",
+    "url": "https://nicheworks.pages.dev/tools/form-tool-selector/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Choose suitable form tool types based on requirements and get cautions.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">フォームツール選定</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">Form Tool Selector</h1>
+
+    <p class="nw-lead" data-i18n="ja">要件からおすすめタイプを3つ提案します。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Get three recommendation types from your requirements.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- Top Ad (required) -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- Privacy note (recommended for text tools) -->
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+
+    <!-- Tool UI -->
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">要件チェック</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Requirement Check</h2>
+      </div>
+
+      <div class="card-bd">
+        <div id="toolRoot">
+          <div class="field">
+            <label class="label" data-i18n="ja">必要な機能</label>
+            <label class="label" data-i18n="en" style="display:none;">Required capabilities</label>
+            <label class="row"><input type="checkbox" id="reqUpload" /> <span data-i18n="ja">ファイルアップロード</span><span data-i18n="en" style="display:none;">File upload</span></label>
+            <label class="row"><input type="checkbox" id="reqPayments" /> <span data-i18n="ja">決済/請求</span><span data-i18n="en" style="display:none;">Payments/Billing</span></label>
+            <label class="row"><input type="checkbox" id="reqNotify" /> <span data-i18n="ja">通知/連携（Slack等）</span><span data-i18n="en" style="display:none;">Notifications/Integrations</span></label>
+            <label class="row"><input type="checkbox" id="reqMulti" /> <span data-i18n="ja">多言語フォーム</span><span data-i18n="en" style="display:none;">Multilingual forms</span></label>
+            <label class="row"><input type="checkbox" id="reqFree" /> <span data-i18n="ja">無料から試したい</span><span data-i18n="en" style="display:none;">Free-first</span></label>
+            <label class="row"><input type="checkbox" id="reqPrivacy" /> <span data-i18n="ja">プライバシー重視</span><span data-i18n="en" style="display:none;">Privacy-first</span></label>
+          </div>
+
+          <div class="row" style="margin-top:8px;">
+            <button class="btn primary" id="btnSelect" type="button">
+              <span data-i18n="ja">おすすめを出す</span>
+              <span data-i18n="en" style="display:none;">Generate</span>
+            </button>
+            <button class="btn" id="btnCopy" type="button">
+              <span data-i18n="ja">コピー</span>
+              <span data-i18n="en" style="display:none;">Copy</span>
+            </button>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja">おすすめ結果</label>
+            <label class="label" data-i18n="en" style="display:none;">Recommendations</label>
+            <pre class="out" id="output">-</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Ad (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- Donate (1–2 placements max) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/log-formatter/">LogFormatter</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

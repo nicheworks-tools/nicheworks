@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>デザイン依頼文ビルダー｜Design Request Builder | NicheWorks</title>
+  <meta name="description" content="目的・サイズ・期限などを入力するとデザイン依頼文をJP/ENで生成。抜け漏れを防ぐ無料テンプレ作成ツール。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/design-request-builder/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="デザイン依頼文ビルダー｜Design Request Builder | NicheWorks" />
+  <meta property="og:description" content="入力するだけで依頼文テンプレを生成します。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/design-request-builder/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Design Request Builder",
+    "url": "https://nicheworks.pages.dev/tools/design-request-builder/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Generate a design request brief in JP/EN.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">デザイン依頼文ビルダー</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">Design Request Builder</h1>
+
+    <p class="nw-lead" data-i18n="ja">依頼に必要な情報を整理して文面化します。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Turn key requirements into a concise brief.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- Top Ad (required) -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- Privacy note (recommended for text tools) -->
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+
+    <!-- Tool UI -->
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">入力</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
+      </div>
+
+      <div class="card-bd">
+        <div id="toolRoot">
+          <div class="field">
+            <label class="label" data-i18n="ja">目的</label>
+            <label class="label" data-i18n="en" style="display:none;">Purpose</label>
+            <input class="input" id="purpose" type="text" placeholder="LP改善/キャンペーン告知" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">サイズ・仕様</label>
+            <label class="label" data-i18n="en" style="display:none;">Size/Specs</label>
+            <input class="input" id="size" type="text" placeholder="1200x628px / A4" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">納期</label>
+            <label class="label" data-i18n="en" style="display:none;">Deadline</label>
+            <input class="input" id="deadline" type="text" placeholder="2024-12-10" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">参考/素材</label>
+            <label class="label" data-i18n="en" style="display:none;">References/Assets</label>
+            <textarea class="textarea" id="references" placeholder="URLや既存素材の場所"></textarea>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">必須要素</label>
+            <label class="label" data-i18n="en" style="display:none;">Must-have items</label>
+            <textarea class="textarea" id="mustHave" placeholder="ロゴ、CTA、注意書き"></textarea>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">避けたい表現</label>
+            <label class="label" data-i18n="en" style="display:none;">Avoid</label>
+            <textarea class="textarea" id="avoid" placeholder="派手すぎる色、過度な装飾"></textarea>
+          </div>
+
+          <div class="row" style="margin-top:8px;">
+            <button class="btn primary" id="btnBuild" type="button">
+              <span data-i18n="ja">依頼文を生成</span>
+              <span data-i18n="en" style="display:none;">Generate</span>
+            </button>
+            <button class="btn" id="btnCopyJa" type="button">Copy JP</button>
+            <button class="btn" id="btnCopyEn" type="button">Copy EN</button>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja">JP出力</label>
+            <label class="label" data-i18n="en" style="display:none;">JP Output</label>
+            <pre class="out" id="outputJa">-</pre>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">EN出力</label>
+            <label class="label" data-i18n="en" style="display:none;">EN Output</label>
+            <pre class="out" id="outputEn">-</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Ad (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- Donate (1–2 placements max) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/log-formatter/">LogFormatter</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
