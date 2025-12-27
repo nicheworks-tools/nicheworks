@@ -105,6 +105,7 @@
       categoryLabel: "Category",
       taskLabel: "Task",
       resultsTitle: "Results",
+      resultCount: "{n} results",
       emptyState: "No results found. Try a different keyword or filter.",
       detailPlaceholder: "Select an entry to view details.",
       taskAll: "All tasks",
@@ -119,7 +120,8 @@
       methodLink: "Method",
       disclaimerLink: "Disclaimer",
       creditsLink: "Credits",
-      langToggleLabel: "Switch language",
+      langToggleLabel: "Switch to Japanese",
+      langToggleButton: "日本語",
       empty: "No results found. Try a different keyword or filter.",
       dash: "—",
       failed: "Failed to load data. See console.",
@@ -143,6 +145,7 @@
       categoryLabel: "カテゴリ",
       taskLabel: "作業",
       resultsTitle: "結果",
+      resultCount: "{n} 件",
       emptyState: "該当する用語がありません。キーワードや絞り込みを変えてください。",
       detailPlaceholder: "項目を選択すると詳細が表示されます。",
       taskAll: "すべての作業",
@@ -157,7 +160,8 @@
       methodLink: "方針",
       disclaimerLink: "免責",
       creditsLink: "クレジット",
-      langToggleLabel: "言語を切り替える",
+      langToggleLabel: "英語に切り替える",
+      langToggleButton: "EN",
       empty: "該当する用語がありません。キーワードや絞り込みを変えてください。",
       dash: "—",
       failed: "データの読み込みに失敗しました（コンソール参照）",
@@ -368,10 +372,15 @@
   ------------------------------ */
 
   function applyI18n() {
-    const dict = i18n[state.lang] || i18n.en;
-
     document.documentElement.lang = state.lang;
     document.documentElement.setAttribute("data-lang", state.lang);
+
+    applyI18nText();
+    applyDebugI18n(i18n[state.lang] || i18n.en);
+  }
+
+  function applyI18nText() {
+    const dict = i18n[state.lang] || i18n.en;
 
     if (els.eyebrow) els.eyebrow.textContent = dict.eyebrow;
     if (els.heroTitle) els.heroTitle.textContent = dict.heroTitle;
@@ -400,9 +409,8 @@
     if (els.langToggle) {
       els.langToggle.setAttribute("aria-label", dict.langToggleLabel);
       els.langToggle.setAttribute("title", dict.langToggleLabel);
+      if (dict.langToggleButton) els.langToggle.textContent = dict.langToggleButton;
     }
-
-    applyDebugI18n(dict);
   }
 
   function applyStateToControls() {
@@ -444,6 +452,7 @@
 
     els.categorySelect.value = current;
     state.cat = els.categorySelect.value || "";
+    applyI18nText();
   }
 
   function renderTaskSelect() {
@@ -473,6 +482,7 @@
 
     els.taskSelect.value = current;
     state.task = els.taskSelect.value || "";
+    applyI18nText();
   }
 
   /* -----------------------------
@@ -483,7 +493,9 @@
     const dict = i18n[state.lang] || i18n.en;
     const results = getFilteredEntries();
 
-    if (els.resultCount) els.resultCount.textContent = String(results.length);
+    if (els.resultCount) {
+      els.resultCount.textContent = formatResultCount(results.length, dict);
+    }
     if (els.emptyState) {
       const isEmpty = results.length === 0;
       els.emptyState.hidden = !isEmpty;
@@ -1140,5 +1152,10 @@
   function formatErrorShort(error) {
     const raw = error?.message || String(error || "");
     return raw.replace(/\s+/g, " ").trim().slice(0, 180);
+  }
+
+  function formatResultCount(count, dict) {
+    const template = dict?.resultCount || "{n}";
+    return template.replace("{n}", String(count));
   }
 })();
