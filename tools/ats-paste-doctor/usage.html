@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>使い方｜ATS Paste Doctor | NicheWorks</title>
+  <meta name="description" content="ATS Paste Doctorの使い方、対応範囲、出力形式、エラーの見方をまとめたガイドです。" />
+
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/ats-paste-doctor/usage.html" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="使い方｜ATS Paste Doctor | NicheWorks" />
+  <meta property="og:description" content="ATS Paste Doctorの使い方、対応範囲、出力形式、エラーの見方をまとめたガイドです。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/ats-paste-doctor/usage.html" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nw-header">
+    <div class="nw-header__inner">
+      <div class="nw-title-wrap">
+        <h1 class="nw-title">使い方｜ATS Paste Doctor</h1>
+        <p class="nw-subtitle">
+          ATS/応募フォームに貼る前の整形と注意点をまとめたページです。
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="nw-main">
+    <section class="card">
+      <h2 class="panel__title">このツールでできること</h2>
+      <ul class="pro-list">
+        <li>応募フォーム/ATSに貼る前に、改行・箇条書き・不可視文字を整えたテキストを作れます。</li>
+        <li>ブラウザ内で処理し、入力内容は送信しません。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 class="panel__title">使い方の手順</h2>
+      <ol class="pro-list">
+        <li>入力欄にテキストを貼り付けます。</li>
+        <li>出力モードを選びます（迷ったら「ATS安全」）。</li>
+        <li>「出力を作る」を押して警告と2行プレビューを確認します。</li>
+        <li>問題がなければ「出力をコピー」または「TXTで保存」を使います。</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2 class="panel__title">対応 / 非対応</h2>
+      <div class="card__grid">
+        <div>
+          <p class="muted">対応</p>
+          <ul class="pro-list">
+            <li>プレーンテキストの整形（改行/空白/箇条書きの調整）</li>
+            <li>不可視文字・制御文字の検知</li>
+            <li>コピー / TXT保存 / 2行プレビューでの確認</li>
+          </ul>
+        </div>
+        <div>
+          <p class="muted">非対応</p>
+          <ul class="pro-list">
+            <li>ATS/フォーム側での表示保証（完全な崩れ防止）</li>
+            <li>表・装飾付きリッチテキストの保持</li>
+            <li>ファイル添付や応募フォームの操作代行</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="panel__title">エラーについて</h2>
+      <ul class="pro-list">
+        <li>入力が空の場合は処理できません。文章を貼り付けてから実行してください。</li>
+        <li>文字数が多すぎる場合は分割して試してください（Pro未購入時は上限が低めです）。</li>
+        <li>処理に失敗した場合は、入力を短くして再実行するかページを再読み込みしてください。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 class="panel__title">出力形式の説明</h2>
+      <ul class="pro-list">
+        <li><b>ATS安全</b>：箇条書きや空白を整理し、段落間は「 / 」でつなぎます。</li>
+        <li><b>改行保持</b>：改行をできるだけ残しつつ、余分な空白や連続空行を整理します。</li>
+        <li><b>毒抜き</b>：不可視文字や制御文字を優先的に除去します。</li>
+      </ul>
+      <p class="muted">出力はプレーンテキストです。2行プレビューで見え方を確認してください。</p>
+    </section>
+
+    <section class="card">
+      <h2 class="panel__title">FAQ</h2>
+      <div class="nw-faq">
+        <details class="nw-faq__item">
+          <summary>Q. 入力した文章は送信されますか？</summary>
+          <div class="nw-faq__answer">送信しません。処理はブラウザ内だけで完結します。</div>
+        </details>
+        <details class="nw-faq__item">
+          <summary>Q. 100%崩れないことを保証しますか？</summary>
+          <div class="nw-faq__answer">保証しません。フォーム/ATS側の仕様で結果が変わるため、必ずプレビューで確認してください。</div>
+        </details>
+        <details class="nw-faq__item">
+          <summary>Q. 箇条書きが1行になる場合は？</summary>
+          <div class="nw-faq__answer">「ATS安全」を試し、必要なら短く区切って貼り付けてください。</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="panel__title">免責</h2>
+      <p class="muted">本ツールは結果の正確性や表示保証を行いません。最終的な提出前に必ずご自身で内容を確認してください。</p>
+    </section>
+
+    <section class="card">
+      <h2 class="panel__title">戻るリンク</h2>
+      <div class="nw-help__links">
+        <a href="./">ツールに戻る</a>
+        <a href="./howto/">使い方の短いガイド</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <div class="nw-footer__inner">
+      <div class="nw-footer__line">© NicheWorks — Small Web Tools for Boring Tasks</div>
+      <div class="nw-footer__line">
+        This site may contain ads. Information accuracy is not guaranteed. Always verify official sources.
+      </div>
+      <a class="nw-footer__home" href="/">nicheworks.pages.dev</a>
+    </div>
+  </footer>
+</body>
+</html>
