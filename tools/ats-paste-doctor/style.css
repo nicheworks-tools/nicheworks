@@ -28,6 +28,16 @@ a{color:inherit}
 
 .nw-main{max-width:var(--max);margin:0 auto;padding:14px var(--pad) 30px}
 .nw-intro{margin:10px 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+.nw-section-title{margin:0 0 8px;font-size:14px;letter-spacing:.02em}
+.nw-steps{margin:14px 0 16px}
+.nw-steps__list{margin:0 0 0 18px;color:var(--muted);font-size:13px;line-height:1.6}
+
+.nw-freepro{margin:12px 0 16px}
+.nw-freepro__grid{display:grid;gap:12px}
+.nw-freepro__col{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fafafa}
+.nw-freepro__label{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.nw-freepro__list{margin:0 0 0 18px;color:var(--muted);font-size:13px;line-height:1.6}
+@media (min-width:768px){ .nw-freepro__grid{grid-template-columns:1fr 1fr;} }
 
 .ad-slot{border:1px dashed var(--line);border-radius:12px;padding:10px;margin:12px 0;background:#fafafa}
 .ad-placeholder{color:#888;font-size:12px;text-align:center}
@@ -87,6 +97,16 @@ a{color:inherit}
 .nw-note{margin:14px 0;color:var(--muted);font-size:12px}
 .nw-donate{margin:16px 0 0}
 .nw-donate__text{margin:0 0 10px;color:var(--muted);font-size:13px}
+
+.nw-faq{margin:48px 0 12px}
+.nw-faq__item{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+.nw-faq__item + .nw-faq__item{margin-top:10px}
+.nw-faq__item summary{cursor:pointer;font-size:13px;font-weight:600}
+.nw-faq__answer{margin-top:8px;color:var(--muted);font-size:13px;line-height:1.6}
+
+.nw-help{margin:12px 0 48px}
+.nw-help__links{display:flex;flex-wrap:wrap;gap:12px;font-size:13px}
+.nw-help__links a{text-decoration:underline}
 
 .nw-footer{border-top:1px solid var(--line)}
 .nw-footer__inner{max-width:var(--max);margin:0 auto;padding:18px var(--pad);color:var(--muted);font-size:12px;line-height:1.5}

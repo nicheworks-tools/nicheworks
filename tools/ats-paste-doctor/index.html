@@ -21,7 +21,7 @@
   <!-- AdSense (Common Spec v3: MUST keep; do NOT remove) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
@@ -57,6 +57,39 @@
       <p data-i18n="intro.line2">
         Runs locally in your browser. Your text is not uploaded.
       </p>
+    </section>
+
+    <!-- Quick steps -->
+    <section class="nw-steps">
+      <h2 class="nw-section-title" data-i18n="steps.title">Quick steps</h2>
+      <ol class="nw-steps__list">
+        <li data-i18n="steps.item1">Paste your text.</li>
+        <li data-i18n="steps.item2">Pick a mode, then click Generate output.</li>
+        <li data-i18n="steps.item3">Copy or download, then check the 2-line preview.</li>
+      </ol>
+    </section>
+
+    <!-- Free vs Pro -->
+    <section class="nw-freepro">
+      <h2 class="nw-section-title" data-i18n="freepro.title">Free vs Pro (quick)</h2>
+      <div class="nw-freepro__grid">
+        <div class="nw-freepro__col">
+          <h3 class="nw-freepro__label" data-i18n="freepro.free.title">Free</h3>
+          <ul class="nw-freepro__list">
+            <li data-i18n="freepro.free.item1">Formatting fixes (ATS-safe / keep line breaks / clean)</li>
+            <li data-i18n="freepro.free.item2">Counts + warnings for risky characters</li>
+            <li data-i18n="freepro.free.item3">Copy / TXT download + 2-line preview</li>
+          </ul>
+        </div>
+        <div class="nw-freepro__col">
+          <h3 class="nw-freepro__label" data-i18n="freepro.pro.title">Pro</h3>
+          <ul class="nw-freepro__list">
+            <li data-i18n="freepro.pro.item1">Hide ads in the UI</li>
+            <li data-i18n="freepro.pro.item2">Higher text limit</li>
+            <li data-i18n="freepro.pro.item3">Templates / history / PDF export (coming soon)</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Tool -->
@@ -197,6 +230,51 @@
       <div class="row">
         <a class="btn" href="#" data-i18n="donate.ofuse">💌 OFUSE</a>
         <a class="btn" href="#" data-i18n="donate.kofi">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="nw-faq">
+      <h2 class="nw-section-title" data-i18n="faq.title">FAQ</h2>
+      <details class="nw-faq__item">
+        <summary data-i18n="faq.q1">Why do line breaks or bullets break in ATS forms?</summary>
+        <div class="nw-faq__answer" data-i18n="faq.a1">
+          Many ATS/web forms strip formatting or collapse whitespace. This tool normalizes text to safer plain text.
+        </div>
+      </details>
+      <details class="nw-faq__item">
+        <summary data-i18n="faq.q2">Is my text uploaded or saved?</summary>
+        <div class="nw-faq__answer" data-i18n="faq.a2">
+          No. Processing runs locally in your browser; only Pro status may be stored locally.
+        </div>
+      </details>
+      <details class="nw-faq__item">
+        <summary data-i18n="faq.q3">What do “ATS-safe / Keep line breaks / Clean” mean?</summary>
+        <div class="nw-faq__answer" data-i18n="faq.a3">
+          ATS-safe flattens bullets/paragraphs, Keep line breaks preserves line structure, Clean removes invisible/control characters.
+        </div>
+      </details>
+      <details class="nw-faq__item">
+        <summary data-i18n="faq.q4">Why do I see warnings like invisible chars or mixed newlines?</summary>
+        <div class="nw-faq__answer" data-i18n="faq.a4">
+          Those hidden characters can cause paste glitches. The warnings flag risky patterns so you can fix them.
+        </div>
+      </details>
+      <details class="nw-faq__item">
+        <summary data-i18n="faq.q5">How do I unlock Pro ($2.99) and what persists?</summary>
+        <div class="nw-faq__answer" data-i18n="faq.a5">
+          Complete the payment, then revisit with ?pro=1. Pro status is saved on this device only.
+        </div>
+      </details>
+    </section>
+
+    <!-- Help links -->
+    <section class="nw-help">
+      <h2 class="nw-section-title" data-i18n="help.title">Help links</h2>
+      <div class="nw-help__links">
+        <a href="./usage.html" data-i18n="help.usage">Usage</a>
+        <a href="./howto/index.html" data-i18n="help.howto">How to use (guide)</a>
+        <a href="/" data-i18n="help.home">NicheWorks Home</a>
       </div>
     </section>
   </main>
