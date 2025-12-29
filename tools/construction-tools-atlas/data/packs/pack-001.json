@@ -3002,5 +3002,141 @@
       "interior"
     ],
     "category": "fasteners"
+  },
+    {
+    "id": "cta-0121",
+    "term": { "en": "Screwdriver (Phillips)", "ja": "プラスドライバー" },
+    "description": { "en": "Driver for Phillips screws. Example: “Pass me the #2 Phillips.”", "ja": "＋ネジを回す工具。例：『プラス2番取って』" },
+    "aliases": { "en": ["Phillips driver"], "ja": ["＋ドライバー"] },
+    "categories": ["hand-tools"],
+    "tasks": ["interior", "site", "electrical"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0122",
+    "term": { "en": "Screwdriver (flathead)", "ja": "マイナスドライバー" },
+    "description": { "en": "Driver for slotted screws. Example: “Flathead for the terminal.”", "ja": "－ネジを回す工具。例：『端子はマイナスでいける』" },
+    "aliases": { "en": ["Slotted driver"], "ja": ["－ドライバー"] },
+    "categories": ["hand-tools"],
+    "tasks": ["interior", "electrical", "site"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0123",
+    "term": { "en": "Adjustable wrench", "ja": "モンキーレンチ" },
+    "description": { "en": "Adjustable jaw wrench for nuts/bolts. Example: “Use a monkey wrench.”", "ja": "口幅を調整できるレンチ。例：『モンキーで回して』" },
+    "aliases": { "en": ["Crescent wrench"], "ja": ["モンキー"] },
+    "categories": ["hand-tools"],
+    "tasks": ["plumbing", "site"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0124",
+    "term": { "en": "Allen key", "ja": "六角レンチ" },
+    "description": { "en": "Hex key for socket-head screws. Example: “Need a 5mm Allen.”", "ja": "六角穴付きネジ用。例：『5ミリ六角ある？』" },
+    "aliases": { "en": ["Hex key"], "ja": ["ヘックス"] },
+    "categories": ["hand-tools"],
+    "tasks": ["interior", "site"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0125",
+    "term": { "en": "Hammer tacker", "ja": "ハンマータッカー" },
+    "description": { "en": "Tacker swung like a hammer for fast sheeting. Example: “Hammer-tack the sheet.”", "ja": "シート類を素早く留めるタッカー。例：『ハンマータッカーで留めといて』" },
+    "aliases": { "en": ["Hammer stapler"], "ja": ["タッカー（ハンマー式）"] },
+    "categories": ["hand-tools"],
+    "tasks": ["roofing", "site", "interior"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0126",
+    "term": { "en": "Nails", "ja": "釘" },
+    "description": { "en": "Common fastener driven by hammer/gun. Example: “Use 65mm nails.”", "ja": "打ち込んで固定する締結材。例：『65ミリ釘でいこう』" },
+    "aliases": { "en": ["Common nails"], "ja": [] },
+    "categories": ["fasteners"],
+    "tasks": ["framing"],
+    "category": "fasteners"
+  },
+  {
+    "id": "cta-0127",
+    "term": { "en": "Anchor (plastic plug)", "ja": "プラグ（アンカー）" },
+    "description": { "en": "Plastic anchor for screws in masonry. Example: “Put a plug, then screw.”", "ja": "壁面にビスを効かせるための下地。例：『プラグ入れてからビス打って』" },
+    "aliases": { "en": ["Wall plug"], "ja": ["カールプラグ"] },
+    "categories": ["fasteners"],
+    "tasks": ["interior", "site"],
+    "category": "fasteners"
+  },
+  {
+    "id": "cta-0128",
+    "term": { "en": "Silicone sealant", "ja": "シリコンシーラント" },
+    "description": { "en": "Sealant for waterproofing joints. Example: “Silicone the joint.”", "ja": "目地の防水・充填材。例：『ここシリコン打っといて』" },
+    "aliases": { "en": ["Silicone"], "ja": ["シリコン"] },
+    "categories": ["materials"],
+    "tasks": ["interior", "exterior", "plumbing"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0129",
+    "term": { "en": "Mortar", "ja": "モルタル" },
+    "description": { "en": "Cement/sand mix for setting/finishing. Example: “Mix mortar.”", "ja": "セメント系の練り材。例：『モルタル練っといて』" },
+    "aliases": { "en": ["Cement mortar"], "ja": [] },
+    "categories": ["concrete"],
+    "tasks": ["foundation", "interior"],
+    "category": "concrete"
+  },
+  {
+    "id": "cta-0130",
+    "term": { "en": "Grout", "ja": "目地材（グラウト）" },
+    "description": { "en": "Filler for joints (tile etc.). Example: “Grout the joints.”", "ja": "タイル等の目地を埋める材料。例：『目地入れして』" },
+    "aliases": { "en": ["Joint filler"], "ja": ["目地"] },
+    "categories": ["materials"],
+    "tasks": ["interior"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0131",
+    "term": { "en": "Rebar cutter", "ja": "鉄筋カッター" },
+    "description": { "en": "Tool/machine to cut rebar. Example: “Cut the rebar to length.”", "ja": "鉄筋を切断する工具。例：『鉄筋寸法で切っといて』" },
+    "aliases": { "en": ["Rebar cutting tool"], "ja": [] },
+    "categories": ["power-tools"],
+    "tasks": ["foundation"],
+    "category": "power-tools"
+  },
+  {
+    "id": "cta-0132",
+    "term": { "en": "Rebar bender", "ja": "鉄筋ベンダー" },
+    "description": { "en": "Tool/machine to bend rebar accurately. Example: “Bend to 90 degrees.”", "ja": "鉄筋を所定角度に曲げる。例：『90度で曲げて』" },
+    "aliases": { "en": ["Rebar bending tool"], "ja": [] },
+    "categories": ["power-tools"],
+    "tasks": ["foundation"],
+    "category": "power-tools"
+  },
+  {
+    "id": "cta-0133",
+    "term": { "en": "Cord reel", "ja": "コードリール（延長コード）" },
+    "description": { "en": "Extension cord reel for power tools. Example: “Run the reel.”", "ja": "電源を延ばすリール。例：『リール回して電源取って』" },
+    "aliases": { "en": ["Extension reel"], "ja": ["延長コード"] },
+    "categories": ["materials"],
+    "tasks": ["site", "interior", "exterior"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0134",
+    "term": { "en": "Lockout/Tagout (LOTO)", "ja": "ロックアウト・タグアウト" },
+    "description": { "en": "Safety procedure to isolate energy sources. Example: “LOTO before maintenance.”", "ja": "誤通電・誤作動を防ぐ隔離手順。例：『作業前にLOTO徹底』" },
+    "aliases": { "en": ["LOTO"], "ja": ["ロックアウト"] },
+    "categories": ["safety"],
+    "tasks": ["electrical", "site"],
+    "category": "safety"
+  },
+  {
+    "id": "cta-0135",
+    "term": { "en": "Five S (5S)", "ja": "5S（整理・整頓・清掃・清潔・しつけ）" },
+    "description": { "en": "Workplace organization for safety/quality. Example: “Do 5S at end of shift.”", "ja": "現場の基本改善活動。例：『終わりに5Sやって帰る』" },
+    "aliases": { "en": ["5S"], "ja": ["五エス"] },
+    "categories": ["slang"],
+    "tasks": ["site"],
+    "category": "slang"
   }
+
 ]
