@@ -1,10 +1,8 @@
-Hi {{company}} team,
+Dear Hiring Manager,
 
-I’m excited to apply for the {{position}} role. I have experience in {{experience_sentence}}, and my key strengths include {{skills_phrase}}. I enjoy tackling challenges and delivering clean, maintainable results.
+I’m excited to apply for [JOB_TITLE] at [COMPANY]. With strengths in [SKILLS], I enjoy building simple, effective workflows and delivering consistent results.
 
-{{extra}}
+I’d love to discuss how I can help your team move faster and smarter.
 
-I’d love the chance to discuss how my skills can support your goals.
-
-{{closing}}
-{{applicant}}
+Sincerely,
+[YOUR_NAME]

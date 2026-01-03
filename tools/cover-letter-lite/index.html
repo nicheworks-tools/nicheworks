@@ -99,7 +99,7 @@
   <div class="ad-slot ad-top">Ad (loading...)</div>
 
   <!-- form -->
-  <section class="form-container">
+  <form id="cover-form" class="form-container">
 
     <div class="field">
       <label for="applicant">Applicant Name</label>
@@ -143,8 +143,8 @@
     </div>
 
     <div class="field">
-      <label for="style">Template Style</label>
-      <select id="style">
+      <label for="template-style">Template Style</label>
+      <select id="template-style">
         <option value="formal">Formal</option>
         <option value="modern">Modern</option>
         <option value="entry">Entry-level</option>
@@ -152,19 +152,18 @@
         <option value="skill">Skill-focused</option>
       </select>
     </div>
-  </section>
-
-  <div class="action-row">
-    <button id="generate-btn" class="btn-generate">Generate Cover Letter</button>
-  </div>
+    <div class="action-row">
+      <button id="generate-btn" class="btn-generate" type="submit">Generate Cover Letter</button>
+    </div>
+  </form>
 
   <!-- result -->
-  <section id="result-section" class="result-container" style="display:none;">
+  <section id="result-container" class="result-container" style="display:none;">
     <div class="result-header">
       <h2>Your Cover Letter</h2>
       <button id="copy-btn" class="btn-copy">Copy</button>
     </div>
-    <div id="output" class="cl-output"></div>
+    <pre id="result-text" class="cl-output"></pre>
   </section>
 
   <!-- donate -->

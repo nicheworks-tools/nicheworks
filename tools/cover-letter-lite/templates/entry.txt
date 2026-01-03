@@ -1,10 +1,8 @@
 Dear Hiring Manager,
 
-I am applying for the {{position}} position at {{company}}. While early in my career, I have already gained practical exposure through projects where I developed {{skills_phrase}}. {{experience_sentence}}
-
-{{extra}}
+I am applying for the [JOB_TITLE] role at [COMPANY]. I am eager to learn quickly and contribute through [SKILLS].
 
 Thank you for your time and consideration.
 
-{{closing}}
-{{applicant}}
+Sincerely,
+[YOUR_NAME]

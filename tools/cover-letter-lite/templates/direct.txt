@@ -1,8 +1,8 @@
 Dear Hiring Manager,
 
-I am applying for the {{position}} role at {{company}}. My core skills include {{skills_phrase}}, and I have experience with {{experience_sentence}}.
+I’m applying for [JOB_TITLE] at [COMPANY]. My strengths include [SKILLS], and I’m confident I can contribute immediately.
 
-{{extra}}
+I’d appreciate the chance to discuss next steps.
 
-{{closing}}
-{{applicant}}
+Sincerely,
+[YOUR_NAME]
