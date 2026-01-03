@@ -17,7 +17,7 @@ No AI writing. No server. Browser-only.
 - Errors must be red bordered box with short What/How messages; on error, progress bar disappears immediately.
 - Do NOT place buttons or progress UI directly under the ad-top slot.
 - Do NOT hard-fix container width to 600px; use .nw-main max-width 960px.
-- No FAQ schema unless there is an actual FAQ section (we have none for now).
+- No FAQ schema unless there is an actual FAQ section (only add JSON-LD when FAQ exists).
 
 ## Pricing / Pro unlock (MVP)
 - Price: $2.99 (one-time)
@@ -75,7 +75,9 @@ Warnings:
 ## Pro Features (MVP minimal)
 - Hide ads UI (ad-top/ad-bottom)
 - Higher max length (e.g., 200,000 chars)
-- Saved presets (optional in MVP; if too much, leave as "coming soon" locked UI)
+- PDF export (opens a printable view and uses print-to-PDF)
+- Templates (3 slots for save/load)
+- History (save up to 10 outputs)
 
 ## Layout (must)
 Order:
@@ -90,6 +92,10 @@ Order:
 
 ## Files to implement
 - index.html (static)
+- usage.html
+- usage-en.html
+- howto/index.html
+- howto/en/index.html
 - style.css
 - app.js
 No build tools. No external frameworks.

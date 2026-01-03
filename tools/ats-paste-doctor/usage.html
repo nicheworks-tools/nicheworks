@@ -17,6 +17,39 @@
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/ats-paste-doctor/usage.html" />
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
 
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "入力した文章は送信されますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "送信しません。処理はブラウザ内だけで完結します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "100%崩れないことを保証しますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "保証しません。フォーム/ATS側の仕様で結果が変わるため、必ずプレビューで確認してください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "箇条書きが1行になる場合は？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "「ATS安全」を試し、必要なら短く区切って貼り付けてください。"
+          }
+        }
+      ]
+    }
+  </script>
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -45,7 +78,7 @@
     <section class="card">
       <h2 class="panel__title">Proで使える機能</h2>
       <ul class="pro-list">
-        <li>PDF保存（印刷用ビューでそのままPDF化）</li>
+        <li>PDF保存（印刷用ビューを開き、印刷→PDF保存）</li>
         <li>テンプレ（3スロットに出力を保存/読込）</li>
         <li>履歴（最大10件の出力を保存/再呼び出し）</li>
         <li>UI上の広告非表示 + 文字数上限アップ</li>
