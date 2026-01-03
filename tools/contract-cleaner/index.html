@@ -28,7 +28,6 @@
   <link rel="stylesheet" href="style.css" />
 
   <!-- Cloudflare Analytics -->
-  
 
   <!-- OGP 英語 -->
   <meta property="og:title:en" content="契約書リスク検出｜Contract Cleaner">
@@ -65,10 +64,10 @@
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
   }
   </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  </script>
 </head>
 
 <body>
@@ -91,7 +90,6 @@
   </header>
 
   <main class="nw-main">
-
     <!-- 上部広告 -->
     <div class="ad-slot ad-top">広告枠（自動広告ON時に表示）</div>
 
@@ -101,13 +99,12 @@
         このツールが役に立ったら、開発継続のご支援をいただけると嬉しいです。
       </span>
       <div class="donation-links">
-        <a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank">☕ Ko-fi</a>
+        <a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
 
     <section class="tool-wrapper">
-
       <!-- 入力ペイン -->
       <div class="input-panel">
         <h2 class="panel-title" data-i18n="input_title_ja" data-i18n-en="input_title_en">
@@ -116,20 +113,37 @@
 
         <p class="panel-desc" data-i18n="input_desc_ja" data-i18n-en="input_desc_en">
           本文をテキストのまま貼り付けてください。PDFはOCR後に貼ってください。
-          入力データはブラウザ内のみで処理されます。
+        </p>
+        <p class="local-only" data-i18n="local_only_ja" data-i18n-en="local_only_en">
+          Runs in your browser. No text is uploaded.
         </p>
 
-        <textarea id="inputText" class="input-area"
+        <textarea id="contractText" class="input-area"
           data-i18n-placeholder-ja="ここに本文を貼り付けてください（PDFはOCRしてから）。"
           data-i18n-placeholder-en="Paste the text here (OCR your PDF first)."
         ></textarea>
 
         <div class="panel-buttons">
-          <button id="scanBtn" class="btn-primary" data-i18n="scan_btn_ja" data-i18n-en="scan_btn_en">
+          <button id="analyzeBtn" class="btn-primary" data-i18n="scan_btn_ja" data-i18n-en="scan_btn_en">
             スキャンする
           </button>
           <button id="clearBtn" class="btn-secondary" data-i18n="clear_btn_ja" data-i18n-en="clear_btn_en">
             クリア
+          </button>
+          <button id="exampleBtn" class="btn-ghost" data-i18n="example_btn_ja" data-i18n-en="example_btn_en">
+            例文
+          </button>
+        </div>
+
+        <div class="panel-buttons">
+          <button id="copySummaryBtn" class="btn-secondary" data-i18n="copy_summary_ja" data-i18n-en="copy_summary_en">
+            要約をコピー
+          </button>
+          <button id="copyQuestionsBtn" class="btn-secondary" data-i18n="copy_questions_ja" data-i18n-en="copy_questions_en">
+            質問テンプレをコピー
+          </button>
+          <button id="downloadBtn" class="btn-secondary" data-i18n="download_btn_ja" data-i18n-en="download_btn_en">
+            txtを保存
           </button>
         </div>
 
@@ -144,13 +158,33 @@
           検出結果
         </h2>
 
-        <div id="summaryBox" class="summary-box"
-          data-i18n="result_summary_ja"
-          data-i18n-en="result_summary_en">
-          テキストを入力して「スキャンする」を押すと概要が表示されます。
+        <div class="summary-row">
+          <div class="summary-card">
+            <span data-i18n="total_hits_ja" data-i18n-en="total_hits_en">合計ヒット</span>
+            <strong id="totalHits">0</strong>
+          </div>
+          <div class="summary-card">
+            <span data-i18n="category_hits_ja" data-i18n-en="category_hits_en">カテゴリ数</span>
+            <strong id="categoryCount">0</strong>
+          </div>
         </div>
 
-        <div id="resultList" class="result-list"></div>
+        <div class="filter-row">
+          <label class="toggle">
+            <input type="checkbox" id="onlyMatchedToggle" checked />
+            <span data-i18n="only_matched_ja" data-i18n-en="only_matched_en">該当カテゴリのみ表示</span>
+          </label>
+          <p class="hint" data-i18n="summary_hint_ja" data-i18n-en="summary_hint_en">
+            カテゴリ別に「確認ポイント」と該当箇所を表示します。
+          </p>
+        </div>
+
+        <div id="categoryList" class="category-list"></div>
+
+        <div class="questions-panel">
+          <h3 data-i18n="questions_title_ja" data-i18n-en="questions_title_en">確認したい点（プレビュー）</h3>
+          <pre id="questionsPreview" class="questions-preview"></pre>
+        </div>
 
         <div class="highlight-view">
           <h3 data-i18n="highlight_title_ja" data-i18n-en="highlight_title_en">
@@ -159,7 +193,8 @@
           <p data-i18n="highlight_desc_ja" data-i18n-en="highlight_desc_en">
             入力テキスト中の該当箇所を色付きで表示します。
           </p>
-          <div id="highlightBox" class="highlight-box"></div>
+          <div id="highlightPreview" class="highlight-box"></div>
+          <p id="highlightNote" class="hint"></p>
         </div>
       </div>
     </section>
@@ -180,11 +215,10 @@
         開発継続のためのご支援をいただけると嬉しいです。
       </span>
       <div class="donation-links">
-        <a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank">☕ Ko-fi</a>
+        <a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
-
   </main>
 
   <footer class="nw-footer">
@@ -192,9 +226,11 @@
     <p data-i18n="footer_disclaimer_ja" data-i18n-en="footer_disclaimer_en">
       当サイトには広告が含まれる場合があります。情報の正確性は保証されません。
     </p>
-    <p><a href="https://nicheworks.pages.dev" target="_blank">nicheworks.pages.dev</a></p>
+    <p><a href="https://nicheworks.pages.dev" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
   </footer>
 
-  <script src="app.js"></script>
+  <div id="copyToast" class="copy-toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
