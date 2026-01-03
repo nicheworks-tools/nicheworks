@@ -53,6 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/\[SKILLS\]/g, skillsPhrase)
       .replace(/\[YOUR_NAME\]/g, applicant || "Applicant");
 
+    if (tone === "neutral") {
+      result = result
+        .replace(/^Dear Hiring Manager,/m, "Hello,")
+        .replace(/Sincerely,/g, "Best regards,");
+    }
+
     // Optional: lightly append experience if provided.
     if (experience) {
       result += `\n\nIn previous experience, ${experience}`;
