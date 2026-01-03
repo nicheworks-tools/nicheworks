@@ -86,7 +86,7 @@
           <ul class="nw-freepro__list">
             <li data-i18n="freepro.pro.item1">Hide ads in the UI</li>
             <li data-i18n="freepro.pro.item2">Higher text limit</li>
-            <li data-i18n="freepro.pro.item3">Templates / history / PDF export (coming soon)</li>
+            <li data-i18n="freepro.pro.item3">Templates / history / PDF export</li>
           </ul>
         </div>
       </div>
@@ -180,6 +180,57 @@
           <div id="previewBox" class="preview__box" aria-label="ATS-style preview"></div>
           <div class="meta" data-i18n="preview.note">Some ATS forms show only a tiny textbox. Check readability here.</div>
         </div>
+
+        <div id="proTools" class="pro-tools">
+          <div class="pro-tools__head">
+            <h3 class="pro-tools__title" data-i18n="protools.title">Pro tools</h3>
+            <span id="proToolsNote" class="meta" data-i18n="protools.note">Available with Pro</span>
+          </div>
+
+          <div class="pro-tools__grid">
+            <div class="pro-block">
+              <div class="pro-block__title" data-i18n="protools.pdf.title">PDF export</div>
+              <p class="meta" data-i18n="protools.pdf.note">Open a printable view to save as PDF.</p>
+              <button id="exportPdfBtn" class="btn btn-small" type="button" data-pro-only="1" data-i18n="actions.exportPdf">Export PDF</button>
+            </div>
+
+            <div class="pro-block">
+              <div class="pro-block__title" data-i18n="protools.templates.title">Templates</div>
+              <p class="meta" data-i18n="protools.templates.note">Save the current output into a slot.</p>
+              <div class="template-row">
+                <div class="template-label" data-i18n="templates.slot1">Slot 1</div>
+                <div class="row">
+                  <button class="btn btn-small template-save" type="button" data-slot="1" data-pro-only="1" data-i18n="templates.save">Save</button>
+                  <button class="btn btn-small template-load" type="button" data-slot="1" data-pro-only="1" data-i18n="templates.load">Load</button>
+                </div>
+              </div>
+              <div class="template-row">
+                <div class="template-label" data-i18n="templates.slot2">Slot 2</div>
+                <div class="row">
+                  <button class="btn btn-small template-save" type="button" data-slot="2" data-pro-only="1" data-i18n="templates.save">Save</button>
+                  <button class="btn btn-small template-load" type="button" data-slot="2" data-pro-only="1" data-i18n="templates.load">Load</button>
+                </div>
+              </div>
+              <div class="template-row">
+                <div class="template-label" data-i18n="templates.slot3">Slot 3</div>
+                <div class="row">
+                  <button class="btn btn-small template-save" type="button" data-slot="3" data-pro-only="1" data-i18n="templates.save">Save</button>
+                  <button class="btn btn-small template-load" type="button" data-slot="3" data-pro-only="1" data-i18n="templates.load">Load</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="pro-block">
+              <div class="pro-block__title" data-i18n="protools.history.title">History</div>
+              <p class="meta" data-i18n="protools.history.note">Save outputs to revisit later.</p>
+              <div class="row">
+                <button id="historySaveBtn" class="btn btn-small" type="button" data-pro-only="1" data-i18n="history.save">Save to history</button>
+                <button id="historyClearBtn" class="btn btn-small btn-ghost" type="button" data-pro-only="1" data-i18n="history.clear">Clear all</button>
+              </div>
+              <div id="historyList" class="history-list"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -198,7 +249,7 @@
         <ul class="pro-list">
           <li data-i18n="pro.feature.ads">Hide ads in the UI</li>
           <li data-i18n="pro.feature.limit">Higher text limit</li>
-          <li data-i18n="pro.feature.presets">Extra presets (coming soon)</li>
+          <li data-i18n="pro.feature.presets">Templates / history / PDF export</li>
         </ul>
 
         <div class="row">
