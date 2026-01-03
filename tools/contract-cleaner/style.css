@@ -3,7 +3,6 @@
  * Contract Cleaner 専用
  * ============================== */
 
-/* ライト／ダーク共通のカラートークン */
 :root {
   color-scheme: light;
   --bg: #ffffff;
@@ -16,28 +15,11 @@
   --accent: #111827;
   --accent-soft: #e5e7eb;
   --danger: #dc2626;
+  --success: #16a34a;
   --radius: 12px;
   --shadow-soft: 0 4px 10px rgba(15, 23, 42, 0.06);
   --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-
-/* ダークモード用トークン（JSで body に .theme-dark を付与予定） */
-body.theme-dark {
-  color-scheme: dark;
-  --bg: #020617;
-  --bg-soft: #020617;
-  --panel: #020617;
-  --panel-soft: #020617;
-  --border: #1f2937;
-  --text: #e5e7eb;
-  --text-soft: #9ca3af;
-  --accent: #e5e7eb;
-  --accent-soft: #111827;
-  --danger: #f97316;
-}
-
-/* ベース
- * ------------------------------ */
 
 *,
 *::before,
@@ -62,13 +44,12 @@ a {
   color: var(--accent);
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
 
-/* ヘッダー
- * ------------------------------ */
-
+/* ヘッダー */
 .nw-header {
   border-bottom: 1px solid var(--border);
   background-color: var(--bg);
@@ -105,7 +86,6 @@ a:hover {
   color: var(--text-soft);
 }
 
-/* 言語切替ボタン */
 .nw-lang-switch {
   display: inline-flex;
   border-radius: 999px;
@@ -130,16 +110,13 @@ a:hover {
   color: #ffffff;
 }
 
-/* メインレイアウト
- * ------------------------------ */
-
+/* メイン */
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
   padding: 16px;
 }
 
-/* 広告プレースホルダ */
 .ad-slot {
   border-radius: 10px;
   border: 1px dashed var(--border);
@@ -151,7 +128,6 @@ a:hover {
   margin-bottom: 10px;
 }
 
-/* 寄付導線 */
 .donation-box {
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -191,20 +167,18 @@ a:hover {
 .don-btn.ofuse {
   background-color: #ff6699;
 }
+
 .don-btn.kofi {
   background-color: #00b9fe;
 }
 
-/* ツール本体レイアウト
- * ------------------------------ */
-
+/* ツールレイアウト */
 .tool-wrapper {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: 14px;
 }
 
-/* ペイン共通 */
 .input-panel,
 .result-panel {
   background-color: var(--panel);
@@ -227,7 +201,16 @@ a:hover {
   line-height: 1.6;
 }
 
-/* 入力エリア */
+.local-only {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--success);
+  background: #ecfdf3;
+  border-radius: 10px;
+  padding: 6px 10px;
+  border: 1px solid #bbf7d0;
+}
+
 .input-area {
   width: 100%;
   min-height: 220px;
@@ -245,15 +228,16 @@ a:hover {
   color: var(--text-soft);
 }
 
-/* ボタン群 */
 .panel-buttons {
   margin-top: 8px;
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
 .btn-primary,
-.btn-secondary {
+.btn-secondary,
+.btn-ghost {
   border-radius: 999px;
   border: none;
   padding: 7px 16px;
@@ -266,6 +250,7 @@ a:hover {
   background-color: var(--accent);
   color: #ffffff;
 }
+
 .btn-primary:hover {
   opacity: 0.9;
 }
@@ -275,11 +260,17 @@ a:hover {
   color: var(--text-soft);
   border: 1px solid var(--border);
 }
+
 .btn-secondary:hover {
   background-color: var(--panel-soft);
 }
 
-/* 免責 */
+.btn-ghost {
+  background-color: var(--panel-soft);
+  color: var(--text);
+  border: 1px dashed var(--border);
+}
+
 .disclaimer {
   margin-top: 10px;
   font-size: 11px;
@@ -290,48 +281,162 @@ a:hover {
   border: 1px solid var(--border);
 }
 
-/* 結果ペイン
- * ------------------------------ */
+/* 結果 */
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
 
-.summary-box {
-  border-radius: 10px;
+.summary-card {
+  background: var(--panel-soft);
   border: 1px solid var(--border);
+  border-radius: 10px;
   padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-size: 12px;
-  background-color: var(--panel-soft);
   color: var(--text-soft);
-  margin-bottom: 8px;
 }
 
-.result-list {
-  max-height: 200px;
-  overflow-y: auto;
+.summary-card strong {
+  font-size: 18px;
+  color: var(--text);
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 12px;
-  padding-right: 4px;
+  color: var(--text-soft);
 }
 
-/* 結果の各行（JS側で必要に応じて .result-item などを付与予定） */
-.result-item {
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-}
-.result-item:last-child {
-  border-bottom: none;
+.toggle input {
+  accent-color: var(--accent);
 }
 
-.result-label {
+.hint {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.category-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.category-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel-soft);
+  padding: 8px 10px 10px;
+}
+
+.category-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
   font-weight: 600;
-  margin-right: 6px;
+  cursor: pointer;
+  list-style: none;
 }
 
-.result-snippet {
+.category-summary::-webkit-details-marker {
+  display: none;
+}
+
+.category-name {
+  color: var(--text);
+}
+
+.category-count {
+  font-size: 12px;
   color: var(--text-soft);
-  margin-top: 2px;
 }
 
-/* ハイライトビュー */
+.category-body {
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.category-confirmation {
+  margin: 0;
+  color: var(--text);
+}
+
+.category-empty {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.match-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.match-list li {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 8px;
+  display: grid;
+  gap: 4px;
+}
+
+.match-term {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.match-snippet {
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.questions-panel {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: var(--panel-soft);
+  margin-bottom: 12px;
+}
+
+.questions-panel h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+}
+
+.questions-preview {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-soft);
+  white-space: pre-wrap;
+}
+
 .highlight-view {
-  margin-top: 12px;
+  margin-top: 6px;
 }
 
 .highlight-view h3 {
@@ -356,20 +461,32 @@ a:hover {
   white-space: pre-wrap;
 }
 
-/* ハイライト色（危険度別） */
-.hl-high {
-  background-color: rgba(220, 38, 38, 0.18);
-  color: var(--danger);
-}
-.hl-medium {
-  background-color: rgba(245, 158, 11, 0.18);
-}
-.hl-low {
-  background-color: rgba(59, 130, 246, 0.14);
+.highlight-box mark {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--text);
+  padding: 0 2px;
+  border-radius: 3px;
 }
 
-/* 関連リンク
- * ------------------------------ */
+.copy-toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 50;
+}
+
+.copy-toast.show {
+  opacity: 1;
+}
 
 .related-links {
   margin-top: 18px;
@@ -382,12 +499,10 @@ a:hover {
 .related-links a {
   color: var(--text-soft);
 }
+
 .related-links a:hover {
   color: var(--accent);
 }
-
-/* フッター
- * ------------------------------ */
 
 .nw-footer {
   border-top: 1px solid var(--border);
@@ -398,39 +513,20 @@ a:hover {
   text-align: center;
 }
 
-.nw-footer p {
-  margin: 3px 0;
+@media (max-width: 900px) {
+  .tool-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* レスポンシブ
- * ------------------------------ */
-
-@media (max-width: 900px) {
+@media (max-width: 520px) {
   .nw-header-inner {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .tool-wrapper {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .donation-box {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-@media (max-width: 600px) {
-  .nw-main {
-    padding: 12px;
-  }
-
-  .nw-title {
-    font-size: 16px;
-  }
-
-  .panel-title {
-    font-size: 13px;
   }
 }
