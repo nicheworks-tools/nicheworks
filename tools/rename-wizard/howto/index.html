@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>ファイル名を一括で整形｜Rename Wizard ガイド | NicheWorks</title>
+  <meta name="description" content="全角→半角、空白→アンダースコア、禁止文字の除去などをまとめて適用して、ファイル名を一括整形するツール。アップロード不要・ローカル処理で完結。Windows/Macの互換トラブルやアップロード失敗を防ぐ。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/rename-wizard/howto/" />
+
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/rename-wizard/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/rename-wizard/howto/en/" />
+
+  <!-- AdSense (required) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px solid var(--border);border-radius:16px;font-size:12px;color:#9ca3af;text-align:center;min-height:64px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:2px 10px;font-size:12px;margin-right:6px}
+    code{background:#f3f4f6;border:1px solid var(--border);padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="./en/">EN</a>
+      <a href="../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">Rename Wizard：使い方</h1>
+    <p class="muted" style="margin:0">「アップロードで弾かれるファイル名」を、まとめて安全な名前に整形。</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li><span class="pill">一括</span>複数ファイルの名前ルールをまとめて整形</li>
+        <li><span class="pill">変換</span>全角→半角、空白→<code>_</code>、連続空白の整理</li>
+        <li><span class="pill">除去</span>禁止文字（<code>\ / : * ? " &lt; &gt; |</code> など）を除去/置換</li>
+        <li><span class="pill">安全</span>処理はローカルで完結（サーバー送信なし）</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="./en/">English guide</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">よくある症状</h2>
+      <ul>
+        <li>ファイルアップロードで「無効なファイル名」と言われる</li>
+        <li>WindowsとMacで文字化け/表示崩れが起きる</li>
+        <li>スペースや全角記号が混ざって、並びや検索がしづらい</li>
+        <li>連番や命名ルールがバラバラで、管理が破綻する</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        関連キーワード：ファイル名 一括 変更 / 禁止文字 置換 / 全角 半角 ファイル名 / 空白 アンダースコア / rename tool
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">使い方（最短3ステップ）</h2>
+      <ol>
+        <li>整形したいファイル名（または一覧）をツールに入力/取り込む</li>
+        <li>適用したいルール（空白→<code>_</code>、禁止文字除去など）をONにする</li>
+        <li>結果をコピーしてリネームに使う（または出力を使って一括適用）</li>
+      </ol>
+      <p class="muted" style="margin:0">
+        コツ：最初は「禁止文字除去＋空白置換＋全角→半角」だけで9割の事故を潰せる。
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>元のファイル自体は変更しません（名前ルールの整形/提案です）。</li>
+        <li>サービス側の独自制約（最大文字数など）は別途あります。</li>
+        <li>同名衝突が起きる場合は、連番付与などで回避してください。</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>当サイトには広告が含まれる場合があります。</p>
+    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+</body>
+</html>
