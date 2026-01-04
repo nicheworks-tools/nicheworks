@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>URLのOGP/タイトルを抽出｜MetadataSnap ガイド | NicheWorks</title>
+  <meta name="description" content="URLを貼るだけで title/description/OGP画像/canonical など主要メタデータを抽出。SNS投稿やOG画像チェック、サイト移行時の確認に使える。保存なし。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/metadatasnap/howto/" />
+
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/metadatasnap/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/metadatasnap/howto/en/" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px solid var(--border);border-radius:16px;font-size:12px;color:#9ca3af;text-align:center;min-height:64px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+    .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:2px 10px;font-size:12px;margin-right:6px}
+  </style>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="./en/">EN</a>
+      <a href="../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">MetadataSnap：使い方</h1>
+    <p class="muted" style="margin:0">URLを貼って「今そのページが何を名乗っているか（メタ情報）」を一瞬で確認。</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li><span class="pill">抽出</span>title / description / OGP（og:title, og:description, og:image）</li>
+        <li><span class="pill">確認</span>canonical / twitter card など（ツールの出力項目に依存）</li>
+        <li><span class="pill">用途</span>SNS共有前のOGP確認、LP/ブログのメタ設定チェック、サイト移行時の差分確認</li>
+        <li>ブラウザ完結・保存なし</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="./en/">English guide</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">よくある症状</h2>
+      <ul>
+        <li>X/LINE/Discordでリンクを貼ったら、タイトルや画像が変（古い/違う）</li>
+        <li>OGP画像が出ない / サムネが本文の画像になってしまう</li>
+        <li>canonicalが意図しないURLになっていて、SEOが崩れそう</li>
+        <li>多言語ページでog:titleが混在している気がする</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        関連キーワード：OGP 確認 / meta title description check / og:image 取得 / canonical 確認 / SNS サムネ 変
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">使い方（最短3ステップ）</h2>
+      <ol>
+        <li>チェックしたいURLを貼り付ける</li>
+        <li>抽出ボタンを押す（または自動取得）</li>
+        <li>title / description / OGP / canonical を見て、意図通りか確認する</li>
+      </ol>
+      <p class="muted" style="margin:0">
+        コツ：SNSはキャッシュが残る。Metaは直しても「反映が遅い」ことがあるので、まずは現在値を把握する。
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>アクセス制限（ログイン必須/ブロック）されているURLは取得できない場合があります。</li>
+        <li>サイト側が動的に出し分ける場合、環境によって結果が変わることがあります。</li>
+        <li>SNS側のキャッシュ更新はこのツールでは操作できません。</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>当サイトには広告が含まれる場合があります。</p>
+    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+  </footer>
+</body>
+</html>
