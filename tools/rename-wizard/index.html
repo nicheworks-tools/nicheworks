@@ -2,58 +2,62 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>Rename Wizard | ファイル名一括整形ツール｜NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ブラウザだけで動くファイル名整形ツール。全角→半角、空白→アンダースコア、禁止文字除去などを一括で実行。すべてローカル処理で完結します。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Rename Wizard | ファイル名一括整形ツール｜NicheWorks" />
-  <meta property="og:description" content="ブラウザだけで動く安全なファイル名一括整形ツール。全角→半角、空白→アンダースコア、禁止文字除去などを一括処理。" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/rename-wizard/" />
-  <meta property="og:image" content="https://nicheworks.pages.dev/og/rename-wizard.png" />
-  <link rel="icon" type="image/png" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <title>ファイル名一括整形｜Rename Wizard | NicheWorks</title>
+  <meta name="description" content="全角→半角、空白→アンダースコア、禁止文字の除去/置換などをまとめて適用してファイル名を一括整形。ブラウザ内で完結し、データは送信しません。" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/rename-wizard/" />
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/rename-wizard/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/rename-wizard/howto/en/" />
+
+  <!-- favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="./style.css" />
 
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="Rename Wizard | ファイル名一括整形ツール｜NicheWorks">
-  <meta property="og:description:en" content="The description is pending and will be updated later.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/rename-wizard/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="Rename Wizard | ファイル名一括整形ツール｜NicheWorks">
-  <meta name="twitter:description:en" content="The description is pending and will be updated later.">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- JSON-LD 日本語 -->
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ファイル名一括整形｜Rename Wizard | NicheWorks" />
+  <meta property="og:description" content="全角→半角、空白→アンダースコア、禁止文字除去などをまとめて適用してファイル名を一括整形。ブラウザ内完結。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/rename-wizard/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ファイル名一括整形｜Rename Wizard | NicheWorks" />
+  <meta name="twitter:description" content="全角→半角、空白→アンダースコア、禁止文字除去などをまとめて適用してファイル名を一括整形。ブラウザ内完結。" />
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Rename Wizard | ファイル名一括整形ツール｜NicheWorks",
+    "name": "Rename Wizard",
     "url": "https://nicheworks.pages.dev/tools/rename-wizard/",
-    "description": "ブラウザだけで動くファイル名整形ツール。全角→半角、空白→アンダースコア、禁止文字除去などを一括で実行。すべてローカル処理で完結します。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "description": "Batch-clean filenames with common rules (full-width to half-width, spaces to underscores, forbidden character removal). Runs locally in the browser.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "inLanguage": ["ja","en"],
+    "publisher": { "@type": "Organization", "name": "NicheWorks" }
   }
   </script>
-  <!-- JSON-LD 英語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Rename Wizard | ファイル名一括整形ツール｜NicheWorks",
-    "url": "https://nicheworks.pages.dev/tools/rename-wizard/",
-    "description": "The description is pending and will be updated later.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
-  }
-  </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+
+  <!-- AdSense (required) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
+
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
