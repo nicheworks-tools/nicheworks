@@ -1,4 +1,3 @@
-```json
 [
   {
     "id": "cta-0001",
@@ -1411,6 +1410,246 @@
     "categories": ["materials"],
     "tasks": ["exterior", "interior"],
     "category": "materials"
+  },
+  {
+    "id": "cta-0156",
+    "term": { "en": "Junction box", "ja": "ジョイントボックス（配線箱）" },
+    "description": { "en": "Box that protects and organizes wire connections.", "ja": "配線接続部を収めて保護する箱。" },
+    "aliases": { "en": ["J-box"], "ja": ["配線箱"] },
+    "tasks": ["electrical"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0157",
+    "term": { "en": "Receptacle / outlet", "ja": "コンセント" },
+    "description": { "en": "Power outlet installed in walls or panels.", "ja": "壁面などに設置する電源差し込み口。" },
+    "aliases": { "en": ["Outlet"], "ja": ["アウトレット"] },
+    "tasks": ["electrical"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0158",
+    "term": { "en": "GFCI / RCD", "ja": "漏電遮断器（GFCI/RCD）" },
+    "description": { "en": "Device that cuts power when leakage current is detected.", "ja": "漏電を検知すると電源を遮断する安全装置。" },
+    "aliases": { "en": ["Ground-fault interrupter"], "ja": ["漏電ブレーカー"] },
+    "tasks": ["electrical"],
+    "category": "safety"
+  },
+  {
+    "id": "cta-0159",
+    "term": { "en": "Wire connector", "ja": "ワイヤーナット（配線コネクタ）" },
+    "description": { "en": "Connector for joining wires safely.", "ja": "電線同士を安全に接続するコネクタ。" },
+    "aliases": { "en": ["Wire nut"], "ja": ["配線コネクタ"] },
+    "tasks": ["electrical"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0160",
+    "term": { "en": "Conduit bender", "ja": "電線管ベンダー" },
+    "description": { "en": "Tool to bend conduit to required angles.", "ja": "電線管を所定角度に曲げる工具。" },
+    "aliases": { "en": ["Bender"], "ja": ["ベンダー"] },
+    "tasks": ["electrical"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0161",
+    "term": { "en": "Hose clamp", "ja": "ホースバンド" },
+    "description": { "en": "Clamp that tightens hoses onto fittings.", "ja": "ホースを継手に締め付け固定する金具。" },
+    "aliases": { "en": ["Worm clamp"], "ja": ["バンド"] },
+    "tasks": ["plumbing"],
+    "category": "fasteners"
+  },
+  {
+    "id": "cta-0162",
+    "term": { "en": "Ball valve", "ja": "ボールバルブ" },
+    "description": { "en": "Shutoff valve using a rotating ball.", "ja": "回転球で止水する開閉バルブ。" },
+    "aliases": { "en": ["Shutoff valve"], "ja": ["止水栓"] },
+    "tasks": ["plumbing"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0163",
+    "term": { "en": "P-trap", "ja": "排水トラップ（Pトラップ）" },
+    "description": { "en": "Trap that holds water to block sewer gas.", "ja": "封水で下水臭を防ぐ排水部材。" },
+    "aliases": { "en": ["Trap"], "ja": ["トラップ"] },
+    "tasks": ["plumbing"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0164",
+    "term": { "en": "Pipe joint compound", "ja": "配管用シール剤" },
+    "description": { "en": "Sealant paste for threaded pipe joints.", "ja": "配管ねじ部の漏れ止めに使うペースト。" },
+    "aliases": { "en": ["Pipe dope"], "ja": ["ねじシール剤"] },
+    "tasks": ["plumbing"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0165",
+    "term": { "en": "Plumber's putty", "ja": "配管パテ" },
+    "description": { "en": "Putty used to seal around drains and fixtures.", "ja": "排水金具まわりのシールに使うパテ。" },
+    "aliases": { "en": ["Putty"], "ja": ["パテ（配管）"] },
+    "tasks": ["plumbing"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0166",
+    "term": { "en": "Lag screw", "ja": "コーチスクリュー" },
+    "description": { "en": "Large screw for heavy-duty wood fastening.", "ja": "太くて強度の高い木材用ねじ。" },
+    "aliases": { "en": ["Lag bolt"], "ja": ["ラグスクリュー"] },
+    "tasks": ["framing"],
+    "category": "fasteners"
+  },
+  {
+    "id": "cta-0167",
+    "term": { "en": "Concrete screw", "ja": "コンクリートビス" },
+    "description": { "en": "Screw designed to fasten into concrete/masonry.", "ja": "コンクリ・石材に直接効かせるビス。" },
+    "aliases": { "en": ["Masonry screw"], "ja": ["タップビス（コンクリ）"] },
+    "tasks": ["foundation", "interior"],
+    "category": "fasteners"
+  },
+  {
+    "id": "cta-0168",
+    "term": { "en": "Expansion anchor", "ja": "拡張アンカー" },
+    "description": { "en": "Anchor that expands in concrete for strong holding.", "ja": "コンクリ内で広がって強固に固定するアンカー。" },
+    "aliases": { "en": ["Wedge anchor"], "ja": ["ウェッジアンカー"] },
+    "tasks": ["foundation"],
+    "category": "fasteners"
+  },
+  {
+    "id": "cta-0169",
+    "term": { "en": "Drywall screw", "ja": "ボードビス" },
+    "description": { "en": "Screw for fastening drywall to studs.", "ja": "石膏ボードを下地に固定するビス。" },
+    "aliases": { "en": ["Gypsum screw"], "ja": ["石膏ボードビス"] },
+    "tasks": ["interior"],
+    "category": "fasteners"
+  },
+  {
+    "id": "cta-0170",
+    "term": { "en": "Corner bead", "ja": "コーナービード" },
+    "description": { "en": "Reinforcement for drywall outside corners.", "ja": "ボードの出隅を補強して仕上げを整える部材。" },
+    "aliases": { "en": ["Drywall corner bead"], "ja": ["ビード"] },
+    "tasks": ["interior"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0171",
+    "term": { "en": "Mud pan", "ja": "パテ皿（マッドパン）" },
+    "description": { "en": "Pan used to hold joint compound while finishing.", "ja": "パテを受けて作業するための皿。" },
+    "aliases": { "en": ["Drywall pan"], "ja": ["パテトレイ"] },
+    "tasks": ["interior"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0172",
+    "term": { "en": "Drywall lift", "ja": "ボードリフター" },
+    "description": { "en": "Device to lift and hold drywall on ceilings.", "ja": "天井ボードなどを持ち上げ保持する機器。" },
+    "aliases": { "en": ["Panel lift"], "ja": ["リフター"] },
+    "tasks": ["interior"],
+    "category": "machines"
+  },
+  {
+    "id": "cta-0173",
+    "term": { "en": "Self-leveling compound", "ja": "セルフレベリング材" },
+    "description": { "en": "Floor compound that levels itself to a flat surface.", "ja": "床面を平滑に整える流動性の高い下地材。" },
+    "aliases": { "en": ["Leveling compound"], "ja": ["レベリング"] },
+    "tasks": ["interior"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0174",
+    "term": { "en": "Caulk finisher", "ja": "シーリングならしヘラ" },
+    "description": { "en": "Tool to smooth sealant lines cleanly.", "ja": "シーリングのラインをきれいにならす工具。" },
+    "aliases": { "en": ["Caulk smoother"], "ja": ["ならしヘラ"] },
+    "tasks": ["exterior", "interior"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0175",
+    "term": { "en": "Paint sprayer", "ja": "塗装スプレーガン" },
+    "description": { "en": "Tool to spray paint for fast, even coverage.", "ja": "塗料を噴霧して均一に塗装する工具。" },
+    "aliases": { "en": ["Sprayer"], "ja": ["スプレー"] },
+    "tasks": ["painting"],
+    "category": "power-tools"
+  },
+  {
+    "id": "cta-0176",
+    "term": { "en": "Extension pole", "ja": "延長ポール" },
+    "description": { "en": "Pole for rollers/brushes to reach high areas.", "ja": "ローラー等に付けて高所を塗る延長棒。" },
+    "aliases": { "en": ["Painter's pole"], "ja": ["ポール"] },
+    "tasks": ["painting"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0177",
+    "term": { "en": "Mixing paddle", "ja": "攪拌羽根（ミキサーパドル）" },
+    "description": { "en": "Paddle attachment to mix paint/compound with a drill.", "ja": "ドリルに付けて塗料や材料を攪拌する羽根。" },
+    "aliases": { "en": ["Mixer paddle"], "ja": ["攪拌棒"] },
+    "tasks": ["painting", "interior"],
+    "category": "hand-tools"
+  },
+  {
+    "id": "cta-0178",
+    "term": { "en": "Job hazard analysis", "ja": "作業手順書（JSA/JHA）" },
+    "description": { "en": "Document/process to analyze hazards and steps before work.", "ja": "作業手順と危険要因を事前に整理する資料/活動。" },
+    "aliases": { "en": ["JHA", "JSA"], "ja": ["手順書"] },
+    "tasks": ["site"],
+    "category": "slang"
+  },
+  {
+    "id": "cta-0179",
+    "term": { "en": "Spotter (vehicle)", "ja": "誘導（車両誘導）" },
+    "description": { "en": "Guiding vehicles in tight or hazardous areas.", "ja": "狭所・危険箇所で車両を安全に誘導する作業。" },
+    "aliases": { "en": ["Traffic marshal"], "ja": ["車両誘導"] },
+    "tasks": ["site"],
+    "category": "slang"
+  },
+  {
+    "id": "cta-0180",
+    "term": { "en": "Dust barrier", "ja": "防じん養生（間仕切り）" },
+    "description": { "en": "Temporary barrier to prevent dust spread during work.", "ja": "作業中の粉じん拡散を防ぐ仮設の仕切り。" },
+    "aliases": { "en": ["Dust wall"], "ja": ["防じんシート"] },
+    "tasks": ["interior", "demolition"],
+    "category": "materials"
+  },
+  {
+    "id": "cta-0181",
+    "term": { "en": "Shop vacuum", "ja": "業務用掃除機（バキューム）" },
+    "description": { "en": "Vacuum for heavy debris and dust on site.", "ja": "現場の粉じん・ゴミを吸う強力掃除機。" },
+    "aliases": { "en": ["Vacuum"], "ja": ["バキューム"] },
+    "tasks": ["site", "interior"],
+    "category": "machines"
+  },
+  {
+    "id": "cta-0182",
+    "term": { "en": "Debris chute", "ja": "ガラシュート" },
+    "description": { "en": "Chute used to drop demolition debris safely.", "ja": "解体ガラを安全に落とすためのシュート。" },
+    "aliases": { "en": ["Chute"], "ja": ["シュート"] },
+    "tasks": ["demolition"],
+    "category": "scaffolding"
+  },
+  {
+    "id": "cta-0183",
+    "term": { "en": "Temporary power", "ja": "仮設電源" },
+    "description": { "en": "Temporary electrical supply set up for site work.", "ja": "現場作業用に設置する一時的な電源設備。" },
+    "aliases": { "en": ["Temp power"], "ja": ["仮電"] },
+    "tasks": ["site", "electrical"],
+    "category": "slang"
+  },
+  {
+    "id": "cta-0184",
+    "term": { "en": "Hot work", "ja": "火気作業" },
+    "description": { "en": "Work involving flames/sparks requiring strict safety control.", "ja": "火花・炎を伴い厳重な管理が必要な作業。" },
+    "aliases": { "en": ["Hot work permit"], "ja": ["火気"] },
+    "tasks": ["site", "demolition"],
+    "category": "slang"
+  },
+  {
+    "id": "cta-0185",
+    "term": { "en": "Permit to work", "ja": "作業許可（PTW）" },
+    "description": { "en": "Formal permission process before high-risk work.", "ja": "高リスク作業前の許可・手続き。" },
+    "aliases": { "en": ["PTW"], "ja": ["許可"] },
+    "tasks": ["site"],
+    "category": "slang"
   }
 ]
-```
+
