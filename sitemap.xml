@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- 母艦ページ -->
   <url>
     <loc>https://nicheworks.pages.dev/</loc>
     <changefreq>weekly</changefreq>
@@ -23,14 +22,12 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- 英語版トップ -->
   <url>
     <loc>https://nicheworks.pages.dev/en/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- ▼ tools（index.html が存在するもの全部） -->
   <url><loc>https://nicheworks.pages.dev/tools/analytics-privacy-kit/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://nicheworks.pages.dev/tools/api-key-token-redactor/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://nicheworks.pages.dev/tools/ats-paste-doctor/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -89,7 +86,7 @@
   <url><loc>https://nicheworks.pages.dev/tools/webp-avif-converter/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://nicheworks.pages.dev/tools/wifi-meter/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
-  <!-- ▼ howto（存在が確認できたもの） -->
+
   <url><loc>https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/en/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
@@ -185,7 +182,7 @@
   <url><loc>https://nicheworks.pages.dev/tools/weatherdiff/howto/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://nicheworks.pages.dev/tools/weatherdiff/howto/en/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
-  <!-- ▼ usage（存在が確認できたもの） -->
+  
   <url><loc>https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
   <url><loc>https://nicheworks.pages.dev/tools/ats-paste-doctor/usage.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
