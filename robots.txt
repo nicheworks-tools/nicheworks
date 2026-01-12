@@ -2,5 +2,3 @@ User-agent: *
 Allow: /
 Sitemap: https://nicheworks.pages.dev/sitemap-index.xml
 
-Content-Type: text/plain; charset=utf-8
-Cache-Control: public, max-age=0, must-revalidate, no-transform
