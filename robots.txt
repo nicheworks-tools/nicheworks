@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
+Sitemap: https://nicheworks.pages.dev/sitemap.xml.gz
 
-Sitemap: https://nicheworks.pages.dev/sitemap.xml
