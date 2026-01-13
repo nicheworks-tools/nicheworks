@@ -5,66 +5,211 @@
   <url><loc>https://nicheworks.app/about.html</loc></url>
   <url><loc>https://nicheworks.app/privacy.html</loc></url>
   <url><loc>https://nicheworks.app/contact.html</loc></url>
-  <url><loc>https://nicheworks.app/en/index.html</loc></url>
+
+  <url><loc>https://nicheworks.app/en/</loc></url>
+  <url><loc>https://nicheworks.app/en/about.html</loc></url>
+  <url><loc>https://nicheworks.app/en/contact.html</loc></url>
+  <url><loc>https://nicheworks.app/en/privacy.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/analytics-privacy-kit/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/api-key-token-redactor/</loc></url>
+  <url><loc>https://nicheworks.app/tools/api-key-token-redactor/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/api-key-token-redactor/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/api-key-token-redactor/usage.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/ats-paste-doctor/</loc></url>
+  <url><loc>https://nicheworks.app/tools/ats-paste-doctor/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/ats-paste-doctor/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/ats-paste-doctor/usage.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/ats-paste-doctor/usage-en.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/cold-email-requirement-checker/</loc></url>
+  <url><loc>https://nicheworks.app/tools/cold-email-requirement-checker/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/cold-email-requirement-checker/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/color-replace/</loc></url>
+  <url><loc>https://nicheworks.app/tools/color-replace/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/color-replace/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/command-safety-checker/</loc></url>
+  <url><loc>https://nicheworks.app/tools/command-safety-checker/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/command-safety-checker/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/command-safety-checker/pro.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/command-safety-checker/usage.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/construction-tools-atlas/</loc></url>
+  <url><loc>https://nicheworks.app/tools/construction-tools-atlas/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/construction-tools-atlas/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/construction-tools-atlas/pages/about.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/construction-tools-atlas/pages/credits.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/construction-tools-atlas/pages/disclaimer.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/construction-tools-atlas/pages/method.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/contract-cleaner/</loc></url>
+  <url><loc>https://nicheworks.app/tools/contract-cleaner/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/contract-cleaner/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/</loc></url>
+  <url><loc>https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/cover-letter-lite/</loc></url>
+  <url><loc>https://nicheworks.app/tools/cover-letter-lite/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/cover-letter-lite/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/design-request-builder/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/dry-meter/</loc></url>
+  <url><loc>https://nicheworks.app/tools/dry-meter/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/dry-meter/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/exif-cleaner-mini/</loc></url>
+  <url><loc>https://nicheworks.app/tools/exif-cleaner-mini/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/exif-cleaner-mini/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/filetype-sniffer/</loc></url>
   <url><loc>https://nicheworks.app/tools/filetype-sniffer/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/filetype-sniffer/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/filetype-sniffer/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/filetype-sniffer/usage.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/filetype-sniffer/en/usage.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/form-tool-selector/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/growth-log-template-generator/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/habit-plan-generator/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/image-compression-inspector/</loc></url>
+  <url><loc>https://nicheworks.app/tools/image-compression-inspector/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/image-compression-inspector/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/inci-fastscan/</loc></url>
+  <url><loc>https://nicheworks.app/tools/inci-fastscan/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/inci-fastscan/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/incident-update-generator/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/jp-postal-lite/</loc></url>
+  <url><loc>https://nicheworks.app/tools/jp-postal-lite/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/jp-postal-lite/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/json2mermaid/</loc></url>
+  <url><loc>https://nicheworks.app/tools/json2mermaid/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/json2mermaid/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/json2mermaid/usage.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/json2mermaid/usage-en.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/kanji-modernizer/</loc></url>
+  <url><loc>https://nicheworks.app/tools/kanji-modernizer/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/kanji-modernizer/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/kanji-modernizer/usage.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/kanji-modernizer/usage-en.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/laundry-code-decode/</loc></url>
+  <url><loc>https://nicheworks.app/tools/laundry-code-decode/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/laundry-code-decode/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/linebreak-doctor/</loc></url>
+  <url><loc>https://nicheworks.app/tools/linebreak-doctor/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/linebreak-doctor/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/log-formatter/</loc></url>
+  <url><loc>https://nicheworks.app/tools/log-formatter/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/log-formatter/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/lp-skeleton-generator/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/manual-finder/</loc></url>
+  <url><loc>https://nicheworks.app/tools/manual-finder/howto/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/membership-offer-builder/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/message-generator/</loc></url>
+  <url><loc>https://nicheworks.app/tools/message-generator/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/message-generator/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/metadatasnap/</loc></url>
+  <url><loc>https://nicheworks.app/tools/metadatasnap/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/metadatasnap/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/microtool-launch-checklist/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/mini-game-utility/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/money-template-checker/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/moving-checklist-generator/</loc></url>
+  <url><loc>https://nicheworks.app/tools/moving-checklist-generator/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/moving-checklist-generator/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/moving-checklist-generator/usage.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/moving-checklist-generator/usage-en.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/moving-lease-final-check/</loc></url>
+  <url><loc>https://nicheworks.app/tools/moving-lease-final-check/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/moving-lease-final-check/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/newsletter-kit-generator/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/niche-job-starter-kit/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/notion-form-design-kit/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/og-image-maker/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/old-kanji-reference/</loc></url>
+  <url><loc>https://nicheworks.app/tools/old-kanji-reference/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/old-kanji-reference/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/ops-weekly-report-generator/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/outsource-spec-generator/</loc></url>
+  
   <url><loc>https://nicheworks.app/tools/pages-deploy-guide/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/redirect-unwrapper/</loc></url>
+  <url><loc>https://nicheworks.app/tools/redirect-unwrapper/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/redirect-unwrapper/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/rename-wizard/</loc></url>
   <url><loc>https://nicheworks.app/tools/rename-wizard/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/rename-wizard/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/rename-wizard/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/size-converter/</loc></url>
+  <url><loc>https://nicheworks.app/tools/size-converter/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/size-converter/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/sponsor-page-builder/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/sql-db-risk-checker/</loc></url>
+  <url><loc>https://nicheworks.app/tools/sql-db-risk-checker/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/sql-db-risk-checker/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/sql-db-risk-checker/usage.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/sukima-baito-income/</loc></url>
+  <url><loc>https://nicheworks.app/tools/sukima-baito-income/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/sukima-baito-income/howto/en/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/tiny-audio-meter/</loc></url>
   <url><loc>https://nicheworks.app/tools/trashnavi/</loc></url>
   <url><loc>https://nicheworks.app/tools/unitmaster/</loc></url>
+
   <url><loc>https://nicheworks.app/tools/url-title-collector/</loc></url>
   <url><loc>https://nicheworks.app/tools/url-title-collector/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/url-title-collector/usage.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/url-title-collector/en/usage.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/weatherdiff/</loc></url>
   <url><loc>https://nicheworks.app/tools/weatherdiff/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/weatherdiff/howto/</loc></url>
+  <url><loc>https://nicheworks.app/tools/weatherdiff/howto/en/</loc></url>
+  <url><loc>https://nicheworks.app/tools/weatherdiff/usage.html</loc></url>
+  <url><loc>https://nicheworks.app/tools/weatherdiff/en/usage.html</loc></url>
+
   <url><loc>https://nicheworks.app/tools/webp-avif-converter/</loc></url>
   <url><loc>https://nicheworks.app/tools/wifi-meter/</loc></url>
+  <url><loc>https://nicheworks.app/tools/wifi-meter/usage.html</loc></url>
+
 </urlset>
