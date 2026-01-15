@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://nicheworks.pages.dev/construction-tools-atlas/sitemap.xml
+Sitemap: https://nicheworks.app/tools/construction-tools-atlas/sitemap.xml
