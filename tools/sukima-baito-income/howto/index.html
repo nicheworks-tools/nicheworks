@@ -98,6 +98,92 @@
     </section>
 
     <section class="card">
+      <h2 style="margin:0 0 8px">OCR（β）ざっくり要約（3行）</h2>
+      <ul>
+        <li>スクショ画像から、日付・就業先・金額を自動で読み取ります。</li>
+        <li>処理はブラウザ内で完結（画像/データは送信しません）。</li>
+        <li>一覧は大量取り込み、詳細は精度重視で補正しやすい。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">OCR（β）とは？CSVとの違い</h2>
+      <ul>
+        <li><strong>OCR（β）</strong>：スクショから自動入力。手作業を減らしたい人向け。</li>
+        <li><strong>CSV</strong>：保存/バックアップ/端末引き継ぎ向け。入力済みデータの再利用に便利。</li>
+      </ul>
+      <p class="muted" style="margin:0">
+        OCRは読み取りミスの可能性があるため、最後に必ず確認・修正してください。
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">一覧/詳細スクショの使い分け</h2>
+      <ul>
+        <li><strong>一覧スクショOCR</strong>：複数件を一括で取り込みたい時（大量取り込み向け）。</li>
+        <li><strong>詳細スクショOCR</strong>：1件ずつ正確に入れたい時（精度重視・補正しやすい）。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">実例（手順付き）</h2>
+      <h3 style="margin:8px 0 6px">例1：一覧スクショでまとめ取り込み</h3>
+      <ol>
+        <li>アプリの収入一覧をスクショ（文字が読める解像度で）。</li>
+        <li>「スクショOCR（β）」を押して画像を選択。</li>
+        <li>取り込まれた候補を確認し、誤りがあれば修正して追加。</li>
+      </ol>
+      <h3 style="margin:12px 0 6px">例2：詳細スクショで精度重視</h3>
+      <ol>
+        <li>1件の詳細画面をスクショ（就業先/日付/金額が写る）。</li>
+        <li>OCRで読み取り → 足りない項目を補正。</li>
+        <li>内容が合っていれば「追加する」。</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">二重計上が弾かれる仕組み</h2>
+      <p style="margin:0 0 6px">
+        次の4つが<strong>同じ</strong>だと、重複として自動的に弾かれます。
+      </p>
+      <ul>
+        <li>日付</li>
+        <li>就業先</li>
+        <li>区分</li>
+        <li>金額</li>
+      </ul>
+      <p class="muted" style="margin:0">
+        同じ日に別件がある場合は、就業先や区分を分けて入力してください。
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">できないこと / よくある失敗</h2>
+      <ul>
+        <li>画像が荒い・ブレている（文字がつぶれる）。</li>
+        <li>影や反射で文字が読めない。</li>
+        <li>文字が小さすぎる、画面が暗い。</li>
+        <li>端末が重い（処理に時間がかかる）。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">FAQ</h2>
+      <ul>
+        <li><strong>Q. 画像やデータは送信されますか？</strong><br> A. 送信しません。ブラウザ内で処理します。</li>
+        <li><strong>Q. OCRの結果がズレます。</strong><br> A. 文字がはっきり写るスクショで再実行し、必要なら手修正してください。</li>
+        <li><strong>Q. 一覧と詳細、どっちが正確？</strong><br> A. 詳細スクショの方が項目が大きく、精度が上がりやすいです。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">免責</h2>
+      <p style="margin:0">
+        本ツールは税務判断や申告可否の判定は行いません。必要に応じて専門家や公式情報をご確認ください。
+      </p>
+    </section>
+
+    <section class="card">
       <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
       <ul>
         <li>税金の計算（控除・経費・申告判定）は行いません（合計の集計のみ）。</li>
