@@ -123,6 +123,7 @@
    * @property {"ok"|"skip"} status
    * @property {string} reason
    * @property {{date:string, workplace:string, category:string, amount:number, memo:string}} data
+   * @property {string} [raw]
    */
 
   // OCR runtime
@@ -470,6 +471,7 @@
 
     const overlay = document.createElement("div");
     overlay.id = "ocrPreviewModal";
+    overlay.className = "ocr-preview-overlay";
     overlay.style.position = "fixed";
     overlay.style.inset = "0";
     overlay.style.background = "rgba(0,0,0,0.45)";
@@ -481,54 +483,53 @@
 
     const panel = document.createElement("div");
     panel.style.width = "min(920px, 100%)";
-    panel.style.maxHeight = "85vh";
-    panel.style.overflow = "auto";
+    panel.style.maxHeight = "90vh";
     panel.style.background = "var(--bg, #fff)";
     panel.style.border = "1px solid var(--border, #e5e5e5)";
     panel.style.borderRadius = "16px";
     panel.style.boxShadow = "0 10px 28px rgba(0,0,0,0.18)";
+    panel.style.display = "flex";
+    panel.style.flexDirection = "column";
+    panel.style.overflow = "hidden";
 
+    panel.className = "ocr-preview-panel";
     panel.innerHTML = `
-      <div style="padding:14px 14px 10px 14px; border-bottom:1px solid var(--border, #e5e5e5);">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="ocr-preview-header">
+        <div class="ocr-preview-header-inner">
           <div>
-            <div style="font-weight:900; font-size:1.05em;">OCR結果の確認（追加前）</div>
-            <div id="ocrPreviewSummary" style="margin-top:6px; opacity:0.85; font-size:0.95em;"></div>
+            <div class="ocr-preview-title">OCR取り込みの確認（β）</div>
+            <div id="ocrPreviewSummary" class="ocr-preview-summary"></div>
           </div>
-          <button id="ocrPreviewCloseBtn" type="button"
-            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:transparent;border-radius:12px;cursor:pointer;">
+          <button id="ocrPreviewCloseBtn" type="button" class="ocr-preview-btn ocr-preview-close">
             閉じる
           </button>
         </div>
       </div>
 
-      <div style="padding:12px 14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button id="ocrSelectAllBtn" type="button"
-            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
-            全選択
-          </button>
-          <button id="ocrSelectNoneBtn" type="button"
-            style="padding:10px 12px;border:1px solid var(--border,#e5e5e5);background:var(--card-bg,#f9f9f9);border-radius:12px;cursor:pointer;">
-            全解除
-          </button>
-          <div style="font-size:0.9em; opacity:0.85; display:flex; align-items:center; gap:6px;">
-            <input id="ocrShowSkipped" type="checkbox" />
-            <label for="ocrShowSkipped">スキップ候補も表示</label>
+      <div class="ocr-preview-body">
+        <div class="ocr-preview-actions">
+          <div class="ocr-preview-actions-left">
+            <button id="ocrSelectAllBtn" type="button" class="ocr-preview-btn">
+              全選択
+            </button>
+            <button id="ocrSelectNoneBtn" type="button" class="ocr-preview-btn">
+              全解除
+            </button>
+            <label class="ocr-preview-toggle">
+              <input id="ocrShowSkipped" type="checkbox" />
+              <span>スキップ行も表示</span>
+            </label>
           </div>
+
+          <button id="ocrCommitBtn" type="button" class="ocr-preview-btn ocr-preview-primary">
+            選択した行を追加
+          </button>
         </div>
 
-        <button id="ocrCommitBtn" type="button"
-          style="padding:12px 14px;border:1px solid var(--border,#e5e5e5);background:#111;color:#fff;border-radius:12px;cursor:pointer;">
-          選択した候補を追加
-        </button>
-      </div>
-
-      <div style="padding:0 14px 14px 14px;">
-        <div style="margin-bottom:10px;opacity:0.8;font-size:0.92em;line-height:1.5;">
+        <div class="ocr-preview-note">
           ※OCRは誤読があります。<strong>日付・金額・就業先</strong>は必ず確認してください（ここで編集できます）。
         </div>
-        <div id="ocrPreviewList" style="display:flex; flex-direction:column; gap:10px;"></div>
+        <div id="ocrPreviewList" class="ocr-preview-list"></div>
       </div>
     `;
 
@@ -557,7 +558,7 @@
     });
 
     $("ocrShowSkipped").addEventListener("change", renderOCRPreview);
-    $("ocrCommitBtn").addEventListener("click", commitOCRPreview);
+    $("ocrCommitBtn").addEventListener("click", commitOcrPreview);
   }
 
   function openOCRPreview(state) {
@@ -582,12 +583,10 @@
     const okTotal = ocrPreviewState.rows.filter((r) => r.status === "ok").length;
     const selectedCount = ocrPreviewState.rows.filter((r) => r.status === "ok" && r.selected).length;
     const skippedCount = ocrPreviewState.rows.filter((r) => r.status === "skip").length;
-    const dupCount = ocrPreviewState.rows.filter((r) => r.status === "skip" && r.reason.includes("重複")).length;
-
     $("ocrPreviewSummary").textContent =
-      `追加候補：${okTotal}件（選択：${selectedCount}件） / スキップ：${skippedCount}件（重複：${dupCount}件）`;
+      `候補：${okTotal}件 / 選択：${selectedCount}件 / スキップ：${skippedCount}件`;
 
-    $("ocrCommitBtn").textContent = `選択した候補を追加（${selectedCount}件）`;
+    $("ocrCommitBtn").textContent = `選択した行を追加（${selectedCount}件）`;
     $("ocrCommitBtn").disabled = selectedCount === 0;
     $("ocrCommitBtn").style.opacity = selectedCount === 0 ? "0.5" : "1";
 
@@ -598,27 +597,18 @@
 
     rowsToRender.forEach((r) => {
       const card = document.createElement("div");
-      card.style.border = "1px solid var(--border,#e5e5e5)";
-      card.style.borderRadius = "14px";
-      card.style.padding = "12px";
-      card.style.background = "var(--card-bg,#f9f9f9)";
+      card.className = "ocr-preview-card";
 
       const top = document.createElement("div");
-      top.style.display = "flex";
-      top.style.alignItems = "center";
-      top.style.justifyContent = "space-between";
-      top.style.gap = "10px";
-      top.style.flexWrap = "wrap";
+      top.className = "ocr-preview-card-top";
 
       const left = document.createElement("div");
-      left.style.display = "flex";
-      left.style.alignItems = "center";
-      left.style.gap = "10px";
-      left.style.flexWrap = "wrap";
+      left.className = "ocr-preview-card-left";
 
       if (r.status === "ok") {
         const cb = document.createElement("input");
         cb.type = "checkbox";
+        cb.className = "ocr-preview-checkbox";
         cb.checked = !!r.selected;
         cb.addEventListener("change", () => {
           r.selected = cb.checked;
@@ -628,17 +618,12 @@
       } else {
         const badge = document.createElement("span");
         badge.textContent = "SKIP";
-        badge.style.fontWeight = "900";
-        badge.style.fontSize = "0.85em";
-        badge.style.padding = "4px 8px";
-        badge.style.borderRadius = "999px";
-        badge.style.border = "1px solid var(--border,#e5e5e5)";
-        badge.style.opacity = "0.8";
+        badge.className = "ocr-preview-badge";
         left.appendChild(badge);
       }
 
       const title = document.createElement("div");
-      title.style.fontWeight = "900";
+      title.className = "ocr-preview-card-title";
       title.textContent =
         r.status === "ok"
           ? `${r.data.date} / ${r.data.workplace || "（就業先未設定）"}`
@@ -646,15 +631,13 @@
       left.appendChild(title);
 
       const right = document.createElement("div");
-      right.style.fontWeight = "900";
+      right.className = "ocr-preview-card-amount";
       right.textContent = r.status === "ok" ? formatYen(r.data.amount) : "";
       top.appendChild(left);
       top.appendChild(right);
 
       const meta = document.createElement("div");
-      meta.style.marginTop = "8px";
-      meta.style.opacity = "0.9";
-      meta.style.fontSize = "0.95em";
+      meta.className = "ocr-preview-card-meta";
       meta.textContent = r.status === "ok"
         ? `[${r.data.category}] ${r.data.memo ? ` / メモ：${r.data.memo}` : ""}`
         : `理由：${r.reason}`;
@@ -665,10 +648,7 @@
       // Editable for ok rows
       if (r.status === "ok") {
         const form = document.createElement("div");
-        form.style.display = "grid";
-        form.style.gridTemplateColumns = "1fr 1fr";
-        form.style.gap = "8px";
-        form.style.marginTop = "10px";
+        form.className = "ocr-preview-form";
 
         const d = makeInlineInput("日付", r.data.date, "date", (v) => {
           r.data.date = v;
@@ -693,27 +673,14 @@
 
         // raw text toggle
         const rawWrap = document.createElement("div");
-        rawWrap.style.gridColumn = "1 / -1";
-        rawWrap.style.marginTop = "4px";
+        rawWrap.className = "ocr-preview-raw";
         const rawBtn = document.createElement("button");
         rawBtn.type = "button";
         rawBtn.textContent = "OCRの元テキストを見る";
-        rawBtn.style.padding = "10px 12px";
-        rawBtn.style.border = "1px solid var(--border,#e5e5e5)";
-        rawBtn.style.background = "transparent";
-        rawBtn.style.borderRadius = "12px";
-        rawBtn.style.cursor = "pointer";
-        rawBtn.style.width = "100%";
+        rawBtn.className = "ocr-preview-btn ocr-preview-raw-btn";
 
         const rawBox = document.createElement("div");
-        rawBox.style.display = "none";
-        rawBox.style.marginTop = "8px";
-        rawBox.style.whiteSpace = "pre-wrap";
-        rawBox.style.fontSize = "0.9em";
-        rawBox.style.opacity = "0.85";
-        rawBox.style.border = "1px dashed var(--border,#e5e5e5)";
-        rawBox.style.borderRadius = "12px";
-        rawBox.style.padding = "10px";
+        rawBox.className = "ocr-preview-raw-box";
         rawBox.textContent = r.raw || "";
 
         rawBtn.addEventListener("click", () => {
@@ -737,19 +704,14 @@
     });
   }
 
-  function commitOCRPreview() {
-    if (!ocrPreviewState) return;
+  function collectOcrSelectedRows() {
+    if (!ocrPreviewState) return { rows: [], invalidCount: 0 };
 
-    const existingKeys = new Set(entries.map(makeDedupeKey));
-    const previewKeys = new Set();
-
-    let committed = 0;
-    let skippedDup = 0;
-    let skippedInvalid = 0;
+    const rows = [];
+    let invalidCount = 0;
 
     ocrPreviewState.rows.forEach((r) => {
-      if (r.status !== "ok") return;
-      if (!r.selected) return;
+      if (r.status !== "ok" || !r.selected) return;
 
       const d = String(r.data.date || "").trim();
       const w = normalizeWorkplaceName(r.data.workplace || "");
@@ -758,33 +720,38 @@
       const memo = String(r.data.memo || "");
 
       if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
-        skippedInvalid++;
+        invalidCount++;
         return;
       }
 
-      const normalized = { date: d, workplace: w, category: c, amount: a, memo };
-      const key = makeDedupeKey(normalized);
-
-      if (existingKeys.has(key) || previewKeys.has(key)) {
-        skippedDup++;
-        return;
-      }
-
-      entries.push(normalized);
-      existingKeys.add(key);
-      previewKeys.add(key);
-      bumpWorkplace(w);
-      committed++;
+      rows.push({ date: d, workplace: w, category: c, amount: a, memo });
     });
 
+    return { rows, invalidCount };
+  }
+
+  function applyOcrPreview(rows) {
+    rows.forEach((row) => {
+      entries.push(row);
+      bumpWorkplace(row.workplace);
+    });
     renderAll();
-    closeOCRPreview();
+  }
+
+  function commitOcrPreview() {
+    if (!ocrPreviewState) return;
+
+    const { rows, invalidCount } = collectOcrSelectedRows();
+    const committed = rows.length;
 
     if (committed === 0) {
-      showError(`追加できる候補がありませんでした。\n重複スキップ：${skippedDup} / 不正：${skippedInvalid}`);
+      showError(`追加できる候補がありませんでした。\n不正：${invalidCount}`);
       return;
     }
-    toast(`OCR取り込み：${committed}件追加（重複スキップ：${skippedDup}）`);
+
+    applyOcrPreview(rows);
+    closeOCRPreview();
+    toast(`OCR取り込み：${committed}件追加`);
   }
 
   // ----------------------------
@@ -1781,7 +1748,10 @@
     const candidates = [];
     ocrTexts.forEach((item, idx) => {
       const perImage = parseOcrText(item.text, item.fileName || `OCR-${idx + 1}`);
-      candidates.push(...perImage);
+      perImage.forEach((candidate) => {
+        candidate.raw = String(item.text || "");
+        candidates.push(candidate);
+      });
     });
     return candidates;
   }
@@ -1994,10 +1964,34 @@
   }
 
   function openOcrPreview(candidates) {
-    console.log("OCR candidates (placeholder for preview):", candidates);
-    const okCount = candidates.filter((c) => c.status === "ok").length;
-    const skipCount = candidates.filter((c) => c.status === "skip").length;
-    toast(`OCR候補：${okCount}件（スキップ：${skipCount}件）`);
+    if (!candidates || candidates.length === 0) {
+      showError("OCR候補が見つかりませんでした。画像を切り抜く/明るくするなどを試してください。");
+      return;
+    }
+
+    const rows = candidates.map((c, idx) => ({
+      id: `ocr-${Date.now()}-${idx}`,
+      status: c.status,
+      reason: c.reason || "",
+      selected: c.status === "ok",
+      data: {
+        date: String(c.data?.date || ""),
+        workplace: String(c.data?.workplace || ""),
+        category: String(c.data?.category || "報酬"),
+        amount: Number(c.data?.amount || 0),
+        memo: String(c.data?.memo || "")
+      },
+      raw: String(c.raw || "")
+    }));
+
+    const summary = {
+      okCount: rows.filter((r) => r.status === "ok").length,
+      skipCount: rows.filter((r) => r.status === "skip").length,
+      dupCount: 0,
+      total: rows.length
+    };
+
+    openOCRPreview({ rows, summary });
   }
 
   async function runOCR(files) {
@@ -2152,6 +2146,7 @@
 
     // OCR UI
     injectOCRProgressModal();
+    injectOCRPreviewModal();
 
     updateWorkplaceDatalist();
 
