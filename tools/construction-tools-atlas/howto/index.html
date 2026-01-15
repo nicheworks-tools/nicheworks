@@ -65,7 +65,9 @@
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
     .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
     .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
-    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed var(--ad-border);font-size:11px;color:var(--ad-text);text-align:center;min-height:60px}
+    .ad-slot{margin:12px 0;padding:8px;border:1px dashed var(--border);border-radius:10px;min-height:60px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--muted);background:var(--panel)}
+    .ad-top{margin-top:0}
+    .ad-bottom{margin-bottom:0}
     .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:var(--card-bg);margin:12px 0}
     .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
     .btn{border:1px solid var(--border);background:var(--button-bg);padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
@@ -76,6 +78,9 @@
     .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
     .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
     .nw-footer a{color:inherit}
+    .donation-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0}
+    .donation-link{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel-2);color:var(--text);font-size:12px;text-decoration:none}
+    .donation-link:hover{opacity:0.9}
     code{background:var(--code-bg);border:1px solid var(--code-border);padding:2px 6px;border-radius:8px}
   </style>
 </head>
@@ -143,6 +148,10 @@
   <footer class="nw-footer">
     <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p>当サイトには広告が含まれる場合があります。</p>
+    <div class="donation-links" aria-label="Support NicheWorks">
+      <a class="donation-link" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+      <a class="donation-link" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+    </div>
     <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
   <script>
