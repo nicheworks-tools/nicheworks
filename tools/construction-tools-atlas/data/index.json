@@ -29,6 +29,11 @@
     { "id": "roofing", "label": { "en": "Roofing", "ja": "屋根" } },
     { "id": "site", "label": { "en": "Site Operations", "ja": "現場運用" } }
   ],
+  "actions": [
+    { "id": "cut", "label": { "en": "Cut", "ja": "切断" } },
+    { "id": "fasten", "label": { "en": "Fasten", "ja": "固定" } },
+    { "id": "measure", "label": { "en": "Measure", "ja": "測定" } }
+  ],
   "packs": [
     {
       "id": "pack-001",

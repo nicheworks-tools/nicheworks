@@ -164,6 +164,13 @@ h1 {
   align-items: flex-start;
 }
 
+.controls-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .controls-title {
   margin: 0;
   font-weight: 700;
@@ -186,6 +193,34 @@ h1 {
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+}
+
+.filters-reset {
+  border-color: transparent;
+  background: var(--panel);
+}
+
+.mode-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mode-chip {
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mode-chip.is-selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
 }
 
 .controls-main,
@@ -227,6 +262,34 @@ h1 {
 .control select {
   width: 100%;
   max-width: 100%;
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.chip.is-selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
 }
 
 .content {
@@ -358,10 +421,21 @@ h1 {
   letter-spacing: 0.08em;
 }
 
-.empty-examples ul {
-  margin: 0;
-  padding-left: 18px;
+.empty-examples-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.empty-examples-label {
+  margin: 0 0 6px;
   font-size: 12px;
+  color: var(--muted);
+}
+
+.empty-examples-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .quick-guide {
@@ -458,6 +532,20 @@ h1 {
 .detail-section {
   margin-top: 6px;
   line-height: 1.6;
+}
+
+.detail-section-title {
+  margin: 0 0 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.detail-examples ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
 }
 
 .detail-meta {
