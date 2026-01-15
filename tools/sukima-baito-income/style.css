@@ -88,6 +88,11 @@ body {
   color: var(--fg);
 }
 
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 /* --------------------------------------------------
    説明テキスト
 -------------------------------------------------- */
@@ -282,6 +287,7 @@ body {
 
 .ocr-preview-panel {
   width: min(920px, 100%);
+  max-height: calc(90vh - env(safe-area-inset-bottom, 0px));
 }
 
 .ocr-preview-header {
@@ -316,6 +322,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
 }
 
 .ocr-preview-actions {
@@ -324,6 +331,11 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding: 8px 0 10px;
+  z-index: 1;
 }
 
 .ocr-preview-actions-left {
@@ -342,13 +354,13 @@ body {
 }
 
 .ocr-preview-btn {
-  padding: 10px 12px;
+  padding: 12px 14px;
   border: 1px solid var(--border);
   background: var(--card-bg);
   border-radius: 12px;
   cursor: pointer;
   color: var(--fg);
-  min-height: 44px;
+  min-height: 48px;
 }
 
 .ocr-preview-primary {
@@ -358,6 +370,7 @@ body {
 
 .ocr-preview-close {
   background: transparent;
+  min-width: 88px;
 }
 
 .ocr-preview-note {
