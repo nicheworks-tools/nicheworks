@@ -10,6 +10,17 @@
 
   gtag('config', 'G-57QT78M3JB');
 </script>
+  <script>
+    (() => {
+      try {
+        const stored = localStorage.getItem("nw_theme");
+        const theme = stored === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
 
 
   <meta charset="utf-8" />
