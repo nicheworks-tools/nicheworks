@@ -787,34 +787,42 @@
 
     const title = document.createElement("div");
     title.className = "card__title";
-    title.textContent = `${termOf(entry, "en")} / ${termOf(entry, "ja")}`;
+    const termJa = termOf(entry, "ja");
+    const termEn = termOf(entry, "en");
+    title.textContent = [termJa, termEn].filter(Boolean).join(" / ");
 
     const desc = document.createElement("div");
     desc.className = "card__desc";
     desc.textContent = descOf(entry, state.lang);
 
-    const tags = document.createElement("div");
-    tags.className = "card__tags";
+    const chips = document.createElement("div");
+    chips.className = "card__chips";
 
     const catIds = normalizeEntryCategoryIds(entry);
-    const maxTags = 2;
-    catIds.slice(0, maxTags).forEach((id) => {
+    const actionIds = normalizeEntryActionTags(entry);
+    const maxCats = 2;
+    const maxActions = 2;
+
+    catIds.slice(0, maxCats).forEach((id) => {
       const def = db.categoriesMap.get(id);
-      tags.appendChild(renderTag(def ? labelOf(def, state.lang) : id));
+      chips.appendChild(renderChip(def ? labelOf(def, state.lang) : id, "category"));
     });
-    if (catIds.length > maxTags) {
-      tags.appendChild(renderTag(`+${catIds.length - maxTags}`));
-    }
+
+    actionIds.slice(0, maxActions).forEach((id) => {
+      const def = db.actionsMap.get(id);
+      const label = def ? labelOf(def, state.lang) : id;
+      chips.appendChild(renderChip(label, "action"));
+    });
 
     btn.appendChild(title);
     btn.appendChild(desc);
-    btn.appendChild(tags);
+    btn.appendChild(chips);
     return btn;
   }
 
-  function renderTag(text) {
+  function renderChip(text, type) {
     const span = document.createElement("span");
-    span.className = "tag";
+    span.className = type === "action" ? "chip-pill chip-pill--action" : "chip-pill";
     span.textContent = text;
     return span;
   }
