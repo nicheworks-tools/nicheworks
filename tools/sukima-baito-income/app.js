@@ -409,8 +409,8 @@
     panel.style.padding = "14px";
 
     panel.innerHTML = `
-      <div style="font-weight:900;font-size:1.05em;">スクショOCR（β） 実行中</div>
-      <div id="ocrProgressText" style="margin-top:8px;opacity:0.9;font-size:0.95em;"></div>
+      <div style="font-weight:900;font-size:1.05em;">OCR処理中（β）</div>
+      <div id="ocrStatusText" style="margin-top:8px;opacity:0.9;font-size:0.95em;"></div>
 
       <div style="margin-top:10px;">
         <div style="height:10px;border-radius:999px;background:var(--border-soft,#f3f4f6);overflow:hidden;">
@@ -452,7 +452,7 @@
   }
 
   function setOCRProgress(text, percent) {
-    const t = $("ocrProgressText");
+    const t = $("ocrStatusText");
     const b = $("ocrProgressBar");
     if (t) t.textContent = text || "";
     if (b) b.style.width = `${Math.max(0, Math.min(100, percent || 0))}%`;
@@ -1858,12 +1858,6 @@
       return;
     }
 
-    const loaded = await ensureTesseractLoaded();
-    if (!loaded) {
-      showError("OCRエンジンの読み込みに失敗しました。ネット接続を確認して再試行してください。");
-      return;
-    }
-
     // Reset runtime
     OCR_RT.running = true;
     OCR_RT.cancelRequested = false;
@@ -1873,6 +1867,14 @@
     setOCRProgress(`準備中…`, 2);
 
     try {
+      const loaded = await ensureTesseractLoaded();
+      if (!loaded) {
+        throw new Error("LOAD_FAILED");
+      }
+      if (OCR_RT.cancelRequested) {
+        throw new Error("CANCELLED");
+      }
+
       const worker = await window.Tesseract.createWorker("jpn");
       OCR_RT.worker = worker;
 
@@ -1880,9 +1882,8 @@
         tessedit_pageseg_mode: "6",
       });
 
-      const existingKeys = new Set(entries.map(makeDedupeKey));
-      const rows = [];
-      let dupCount = 0;
+      /** @type {Array<{fileName:string, text:string}>} */
+      const ocrTexts = [];
 
       for (let i = 0; i < files.length; i++) {
         if (OCR_RT.cancelRequested) throw new Error("CANCELLED");
@@ -1906,90 +1907,29 @@
         });
 
         if (OCR_RT.cancelRequested) throw new Error("CANCELLED");
-
-        const parsed = parseOCRTextToCandidates(data?.text || "");
-        if (!parsed.candidates.length) {
-          rows.push({
-            id: `ocr-${Date.now()}-${i}`,
-            status: "skip",
-            reason: "日付/金額を抽出できませんでした",
-            selected: false,
-            data: { date: "", workplace: "", category: "報酬", amount: 0, memo: "" },
-            raw: parsed.raw
-          });
-          continue;
-        }
-
-        // Usually 1 candidate per screenshot in MVP
-        parsed.candidates.forEach((c, idx) => {
-          const normalized = {
-            date: String(c.date || "").trim(),
-            workplace: normalizeWorkplaceName(c.workplace || ""),
-            category: String(c.category || "報酬").trim(),
-            amount: Number(c.amount || 0),
-            memo: String(c.memo || "")
-          };
-
-          // Validate minimal
-          if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized.date) || !normalized.workplace || !Number.isFinite(normalized.amount) || normalized.amount <= 0) {
-            rows.push({
-              id: `ocr-${Date.now()}-${i}-${idx}`,
-              status: "skip",
-              reason: "抽出結果が不完全（要編集）",
-              selected: false,
-              data: normalized,
-              raw: parsed.raw
-            });
-            return;
-          }
-
-          const key = makeDedupeKey(normalized);
-          if (existingKeys.has(key)) {
-            dupCount++;
-            rows.push({
-              id: `ocr-${Date.now()}-${i}-${idx}`,
-              status: "skip",
-              reason: "重複（既存データと一致）",
-              selected: false,
-              data: normalized,
-              raw: parsed.raw
-            });
-            return;
-          }
-
-          rows.push({
-            id: `ocr-${Date.now()}-${i}-${idx}`,
-            status: "ok",
-            reason: "OK",
-            selected: true,
-            data: normalized,
-            raw: parsed.raw
-          });
-        });
+        const recognizedText = String(data?.text || "");
+        ocrTexts.push({ fileName: f.name, text: recognizedText });
       }
 
-      setOCRProgress("完了。結果を表示します…", 100);
-
-      const okCount = rows.filter((r) => r.status === "ok").length;
-      const skipCount = rows.filter((r) => r.status === "skip").length;
+      setOCRProgress("完了しました。", 100);
 
       closeOCRProgressModal();
 
-      if (okCount === 0) {
-        showError(`追加できる候補がありませんでした。\nスキップ：${skipCount}（重複：${dupCount}）`);
+      if (!ocrTexts.length || ocrTexts.every((t) => !t.text.trim())) {
+        showError("OCRでテキストを取得できませんでした。画像を切り抜く/明るくするなどを試してください。");
         return;
       }
 
-      openOCRPreview({
-        rows,
-        summary: { okCount, skipCount, dupCount, total: rows.length }
-      });
+      console.log("OCR texts (placeholder for parser):", ocrTexts);
+      toast("OCR完了（テキスト取得）");
 
     } catch (err) {
       closeOCRProgressModal();
 
       if (String(err?.message || "").includes("CANCELLED")) {
         toast("OCRをキャンセルしました");
+      } else if (String(err?.message || "").includes("LOAD_FAILED")) {
+        showError("OCRエンジンの読み込みに失敗しました。ネット接続を確認して再試行してください。");
       } else {
         showError("OCR中にエラーが発生しました。画像枚数を減らす/切り抜く/再試行してください。");
         console.error(err);
@@ -2014,15 +1954,17 @@
     });
 
     ocrInput.addEventListener("change", (ev) => {
-      const files = ev.target.files ? Array.from(ev.target.files) : [];
-      ev.target.value = "";
+      const input = ev.target;
+      const files = input.files ? Array.from(input.files) : [];
 
-      if (!files.length) return;
+      if (!files.length) {
+        input.value = "";
+        return;
+      }
 
-      // clear any previous preview
-      ocrPreviewState = null;
-
-      runOCR(files);
+      runOCR(files).finally(() => {
+        input.value = "";
+      });
     });
   }
 
@@ -2061,7 +2003,6 @@
 
     // OCR UI
     injectOCRProgressModal();
-    injectOCRPreviewModal();
 
     updateWorkplaceDatalist();
 
