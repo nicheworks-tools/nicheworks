@@ -705,12 +705,58 @@ h1 {
   margin-top: 12px;
 }
 
+.ad-slot{
+  margin: 12px 0;
+  padding: 8px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--panel);
+}
+
+.ad-top{
+  margin-top: 0;
+}
+
+.ad-bottom{
+  margin-bottom: 0;
+}
+
 .back-home{
   display: inline-flex;
   align-items: center;
   gap: 6px;
   margin-top: 20px;
   font-weight: 600;
+}
+
+.donation-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.donation-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.donation-link:hover{
+  opacity: 0.9;
 }
 
 .tool-footer{
