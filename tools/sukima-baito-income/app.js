@@ -705,13 +705,16 @@
   }
 
   function collectOcrSelectedRows() {
-    if (!ocrPreviewState) return { rows: [], invalidCount: 0 };
+    if (!ocrPreviewState) return { rows: [], invalidCount: 0, selectedCount: 0 };
 
     const rows = [];
     let invalidCount = 0;
+    let selectedCount = 0;
 
     ocrPreviewState.rows.forEach((r) => {
-      if (r.status !== "ok" || !r.selected) return;
+      if (r.status !== "ok") return;
+      if (!r.selected) return;
+      selectedCount++;
 
       const d = String(r.data.date || "").trim();
       const w = normalizeWorkplaceName(r.data.workplace || "");
@@ -727,13 +730,17 @@
       rows.push({ date: d, workplace: w, category: c, amount: a, memo });
     });
 
-    return { rows, invalidCount };
+    return { rows, invalidCount, selectedCount };
   }
 
   function commitOcrPreview() {
     if (!ocrPreviewState) return;
 
-    const { rows, invalidCount } = collectOcrSelectedRows();
+    const { rows, invalidCount, selectedCount } = collectOcrSelectedRows();
+    if (selectedCount === 0) {
+      showError("追加する候補が選択されていません。");
+      return;
+    }
     const existingKeys = new Set(entries.map(makeDedupeKey));
     const batchKeys = new Set();
     let committed = 0;
@@ -903,9 +910,18 @@
   }
 
   function setEditingMode(idx) {
+    if (idx < 0 || idx >= entries.length) {
+      showError("編集対象が見つかりませんでした。");
+      return;
+    }
     editingIndex = idx;
 
     const e = entries[idx];
+    if (!e) {
+      showError("編集対象が見つかりませんでした。");
+      editingIndex = null;
+      return;
+    }
     dateInput.value = e.date;
     workplaceInput.value = e.workplace;
     categoryInput.value = e.category;
@@ -967,6 +983,11 @@
       const record = { date, workplace, category, amount, memo };
 
       if (editingIndex !== null) {
+        if (!entries[editingIndex]) {
+          showError("編集対象が見つかりませんでした。再度選択してください。");
+          exitEditingMode();
+          return;
+        }
         entries[editingIndex] = record;
         bumpWorkplace(workplace);
         exitEditingMode();
@@ -1117,7 +1138,11 @@
         delBtn.addEventListener("click", () => {
           if (!confirm("この入力を削除しますか？")) return;
           entries.splice(i, 1);
-          if (editingIndex === i) exitEditingMode();
+          if (editingIndex === i) {
+            exitEditingMode();
+          } else if (editingIndex !== null && editingIndex > i) {
+            editingIndex -= 1;
+          }
           renderAll();
         });
 
@@ -1618,6 +1643,11 @@
 
     const existingKeys = new Set(entries.map(makeDedupeKey));
     const previewKeys = new Set();
+    const selectedCount = importPreviewState.parsedRows.filter((r) => r.status === "ok" && r.selected).length;
+    if (selectedCount === 0) {
+      showError("追加する行が選択されていません。");
+      return;
+    }
 
     let committed = 0;
     let skippedDup = 0;
