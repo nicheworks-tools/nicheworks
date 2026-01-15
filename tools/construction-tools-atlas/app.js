@@ -8,6 +8,7 @@
    ========================================================= */
 
 (() => {
+  const THEME_KEY = "nw_theme";
   const state = {
     lang: "en", // HTML default is en; URL overrides
     theme: "light",
@@ -319,6 +320,7 @@
   });
 
   async function init() {
+    state.theme = getStoredTheme();
     readUrlToState();
     applyTheme();
     setupDebugUi();
@@ -1228,8 +1230,7 @@
 
     const lang = sp.get("lang");
     state.lang = lang === "ja" ? "ja" : "en";
-    const theme = sp.get("theme");
-    state.theme = theme === "dark" ? "dark" : "light";
+    state.theme = getStoredTheme();
 
     const mode = sp.get("mode");
     state.mode = ["term", "category", "action"].includes(mode) ? mode : "term";
@@ -1249,7 +1250,6 @@
 
     // default en
     if (state.lang === "en") sp.set("lang", "en");
-    if (state.theme === "dark") sp.set("theme", "dark");
     if (state.mode && state.mode !== "term") sp.set("mode", state.mode);
     if (state.q) sp.set("q", state.q);
     if (state.cat) sp.set("cat", state.cat);
@@ -1275,14 +1275,13 @@
 
   function setTheme(theme) {
     state.theme = theme === "light" ? "light" : "dark";
+    setStoredTheme(state.theme);
     applyTheme();
-    pushStateToUrl();
   }
 
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", state.theme);
     updateThemeToggleLabel();
-    syncThemeLinks();
   }
 
   function updateThemeToggleLabel() {
@@ -1298,19 +1297,21 @@
     if (text) els.themeToggle.textContent = text;
   }
 
-  function syncThemeLinks() {
-    const links = [els.aboutLink, els.methodLink, els.disclaimerLink, els.creditsLink].filter(
-      Boolean
-    );
-    links.forEach((link) => {
-      const href = link.getAttribute("href");
-      if (!href) return;
-      const url = new URL(href, location.href);
-      if (state.theme === "dark") url.searchParams.set("theme", "dark");
-      else url.searchParams.delete("theme");
-      const relative = `${url.pathname}${url.search}${url.hash}`;
-      link.setAttribute("href", relative);
-    });
+  function getStoredTheme() {
+    try {
+      const stored = localStorage.getItem(THEME_KEY);
+      return stored === "dark" ? "dark" : "light";
+    } catch (error) {
+      return "light";
+    }
+  }
+
+  function setStoredTheme(theme) {
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (error) {
+      // ignore storage errors
+    }
   }
 
   function setFiltersOpen(open) {
