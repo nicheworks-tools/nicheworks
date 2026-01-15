@@ -49,23 +49,37 @@
     </header>
 
     <section class="controls" aria-label="Search and filters">
-      <div class="control search-control">
-        <label id="searchLabel" for="searchInput">Search</label>
-        <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
+      <div class="controls-header">
+        <div>
+          <p class="controls-title" id="controlsTitle">Search</p>
+          <p class="controls-hint" id="controlsHint">Start with a keyword, then narrow by category or task.</p>
+        </div>
+        <button id="filtersToggle" class="filters-toggle" type="button" aria-expanded="true">
+          Filters
+        </button>
       </div>
 
-      <div class="control filter-control">
-        <label id="categoryLabel" for="categorySelect">Category</label>
-        <select id="categorySelect" name="cat">
-          <option id="categoryDefaultOption" value="">All categories</option>
-        </select>
+      <div class="controls-main">
+        <div class="control search-control">
+          <label id="searchLabel" for="searchInput">Search</label>
+          <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
+        </div>
       </div>
 
-      <div class="control filter-control">
-        <label id="taskLabel" for="taskSelect">Task</label>
-        <select id="taskSelect" name="task">
-          <option id="taskDefaultOption" value="">All tasks</option>
-        </select>
+      <div class="controls-filters">
+        <div class="control filter-control">
+          <label id="categoryLabel" for="categorySelect">Category</label>
+          <select id="categorySelect" name="cat">
+            <option id="categoryDefaultOption" value="">All categories</option>
+          </select>
+        </div>
+
+        <div class="control filter-control">
+          <label id="taskLabel" for="taskSelect">Task</label>
+          <select id="taskSelect" name="task">
+            <option id="taskDefaultOption" value="">All tasks</option>
+          </select>
+        </div>
       </div>
     </section>
 
@@ -76,45 +90,62 @@
           <p class="result-count" id="resultCount"></p>
         </div>
 
+        <div id="quickGuide" class="quick-guide" hidden>
+          <p class="quick-guide-title" id="guideTitle">New here? Try a few example searches:</p>
+          <div class="quick-guide-examples" id="guideExamples"></div>
+        </div>
+
         <div id="results" class="results-list" role="list"></div>
 
         <div id="emptyState" class="empty-state" hidden>
-          No results found. Try a different keyword or filter.
+          <p class="empty-title" id="emptyTitle">No results yet.</p>
+          <p class="empty-body" id="emptyBody">Try a different keyword, or reset your filters.</p>
+          <div class="empty-examples">
+            <p class="empty-examples-title" id="emptyExamplesTitle">Example queries</p>
+            <ul id="emptyExamplesList"></ul>
+          </div>
         </div>
       </div>
 
-      <aside class="detail-panel" aria-live="polite">
+      <aside class="detail-panel" id="detailPanel" aria-live="polite">
         <div id="detailPlaceholder" class="detail-placeholder">
           Select an entry to view details.
         </div>
 
-        <div id="detail" class="detail" hidden>
-          <p class="detail-category" id="detailCategory"></p>
-          <h3 id="detailTitle"></h3>
-          <p class="detail-subtitle" id="detailSubtitle"></p>
+        <div class="detail-sheet" id="detailSheet" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
+          <div class="detail-actions" id="detailActions" hidden>
+            <button id="detailBack" class="detail-action" type="button">Back</button>
+            <button id="detailClose" class="detail-action detail-action--primary" type="button">Close</button>
+          </div>
 
-          <div class="detail-section" id="detailDescription"></div>
+          <div id="detail" class="detail" hidden>
+            <p class="detail-category" id="detailCategory"></p>
+            <h3 id="detailTitle"></h3>
+            <p class="detail-subtitle" id="detailSubtitle"></p>
 
-          <div class="detail-meta">
-            <!-- ✅ Task 表示（IDではなくラベルを入れる想定） -->
-            <div class="meta-block">
-              <p class="meta-label" id="detailTasksLabel">Task</p>
-              <p id="detailTasks"></p>
-            </div>
+            <div class="detail-section" id="detailDescription"></div>
 
-            <div class="meta-block">
-              <p class="meta-label" id="detailAliasesLabel">Aliases</p>
-              <p id="detailAliases"></p>
-            </div>
+            <div class="detail-meta">
+              <!-- ✅ Task 表示（IDではなくラベルを入れる想定） -->
+              <div class="meta-block">
+                <p class="meta-label" id="detailTasksLabel">Task</p>
+                <p id="detailTasks"></p>
+              </div>
 
-            <div class="meta-block">
-              <p class="meta-label" id="detailTagsLabel">Tags</p>
-              <p id="detailTags"></p>
-            </div>
+              <div class="meta-block">
+                <p class="meta-label" id="detailAliasesLabel">Aliases</p>
+                <p id="detailAliases"></p>
+              </div>
 
-            <div class="meta-block">
-              <p class="meta-label" id="detailIdLabel">ID</p>
-              <p id="detailId"></p>
+              <div class="meta-block">
+                <p class="meta-label" id="detailTagsLabel">Tags</p>
+                <p id="detailTags"></p>
+              </div>
+
+              <div class="meta-block">
+                <p class="meta-label" id="detailIdLabel">ID</p>
+                <p id="detailId"></p>
+              </div>
             </div>
           </div>
         </div>

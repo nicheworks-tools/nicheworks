@@ -16,6 +16,7 @@
     id: "",
     debug: false,
     dataEmpty: false,
+    filtersOpen: true,
   };
 
   const db = {
@@ -38,6 +39,10 @@
     heroLede: document.getElementById("heroLede"),
 
     // controls
+    controls: document.querySelector(".controls"),
+    controlsTitle: document.getElementById("controlsTitle"),
+    controlsHint: document.getElementById("controlsHint"),
+    filtersToggle: document.getElementById("filtersToggle"),
     searchLabel: document.getElementById("searchLabel"),
     searchInput: document.getElementById("searchInput"),
     categoryLabel: document.getElementById("categoryLabel"),
@@ -50,14 +55,26 @@
     resultCount: document.getElementById("resultCount"),
     resultsList: document.getElementById("results"),
     emptyState: document.getElementById("emptyState"),
+    emptyTitle: document.getElementById("emptyTitle"),
+    emptyBody: document.getElementById("emptyBody"),
+    emptyExamplesTitle: document.getElementById("emptyExamplesTitle"),
+    emptyExamplesList: document.getElementById("emptyExamplesList"),
+    quickGuide: document.getElementById("quickGuide"),
+    guideTitle: document.getElementById("guideTitle"),
+    guideExamples: document.getElementById("guideExamples"),
 
     // detail
+    detailPanel: document.getElementById("detailPanel"),
     detailPlaceholder: document.getElementById("detailPlaceholder"),
+    detailSheet: document.getElementById("detailSheet"),
     detail: document.getElementById("detail"),
     detailCategory: document.getElementById("detailCategory"),
     detailTitle: document.getElementById("detailTitle"),
     detailSubtitle: document.getElementById("detailSubtitle"),
     detailDescription: document.getElementById("detailDescription"),
+    detailBack: document.getElementById("detailBack"),
+    detailClose: document.getElementById("detailClose"),
+    detailActions: document.getElementById("detailActions"),
 
     // meta labels
     detailTasksLabel: document.getElementById("detailTasksLabel"),
@@ -100,6 +117,10 @@
       eyebrow: "Construction Tools & Slang Atlas",
       heroTitle: "Browse, search, and learn core field terms.",
       heroLede: "Quickly find terminology, tools, and work processes across categories.",
+      controlsTitle: "Search",
+      controlsHint: "Start with a keyword, then narrow by category or task.",
+      filtersShow: "Show filters",
+      filtersHide: "Hide filters",
       searchLabel: "Search",
       searchPh: "Search tools, slang, descriptions",
       categoryLabel: "Category",
@@ -107,7 +128,14 @@
       resultsTitle: "Results",
       resultCount: "{n} results",
       emptyState: "No results found. Try a different keyword or filter.",
+      emptyTitle: "No results yet.",
+      emptyBody: "Try a different keyword, or reset your filters.",
+      emptyExamplesTitle: "Example queries",
+      guideTitle: "New here? Try a few example searches:",
+      guideExamples: ["scaffold", "rebar", "grinder"],
       detailPlaceholder: "Select an entry to view details.",
+      detailBack: "Back",
+      detailClose: "Close",
       taskAll: "All tasks",
       catAll: "All categories",
       taskMeta: "Task",
@@ -140,6 +168,10 @@
       eyebrow: "建設工具・スラング図鑑",
       heroTitle: "現場用語を検索して、すぐ確認。",
       heroLede: "工具・スラング・作業プロセスをカテゴリ別に素早く参照できます。",
+      controlsTitle: "検索",
+      controlsHint: "キーワードで探してから、カテゴリや作業で絞り込めます。",
+      filtersShow: "フィルタを表示",
+      filtersHide: "フィルタを閉じる",
       searchLabel: "検索",
       searchPh: "工具 / スラング / 説明を検索",
       categoryLabel: "カテゴリ",
@@ -147,7 +179,14 @@
       resultsTitle: "結果",
       resultCount: "{n} 件",
       emptyState: "該当する用語がありません。キーワードや絞り込みを変えてください。",
+      emptyTitle: "結果が見つかりません。",
+      emptyBody: "キーワードを変えるか、絞り込みを解除してください。",
+      emptyExamplesTitle: "検索例",
+      guideTitle: "初めての方はこちらから検索:",
+      guideExamples: ["足場", "鉄筋", "グラインダー"],
       detailPlaceholder: "項目を選択すると詳細が表示されます。",
+      detailBack: "戻る",
+      detailClose: "閉じる",
       taskAll: "すべての作業",
       catAll: "すべてのカテゴリ",
       taskMeta: "作業",
@@ -230,7 +269,10 @@
     const dict = i18n[state.lang] || i18n.en;
     if (els.emptyState) {
       els.emptyState.hidden = false;
-      els.emptyState.textContent = dict.failed;
+      if (els.emptyTitle) els.emptyTitle.textContent = dict.failed;
+      if (els.emptyBody) els.emptyBody.textContent = "";
+      if (els.emptyExamplesTitle) els.emptyExamplesTitle.textContent = "";
+      if (els.emptyExamplesList) els.emptyExamplesList.innerHTML = "";
     }
   });
 
@@ -242,6 +284,7 @@
 
     sanitizeStateAgainstDefs();
     applyI18n();
+    setFiltersOpen(state.filtersOpen);
     renderFilters();
     renderList();
 
@@ -252,6 +295,10 @@
   function bindEvents() {
     els.langToggle?.addEventListener("click", () => {
       setLang(state.lang === "ja" ? "en" : "ja");
+    });
+
+    els.filtersToggle?.addEventListener("click", () => {
+      setFiltersOpen(!state.filtersOpen);
     });
 
     els.searchInput?.addEventListener("input", (e) => {
@@ -282,6 +329,9 @@
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeDetail({ pushUrl: true });
     });
+
+    els.detailBack?.addEventListener("click", () => closeDetail({ pushUrl: true }));
+    els.detailClose?.addEventListener("click", () => closeDetail({ pushUrl: true }));
 
     window.addEventListener("popstate", () => {
       readUrlToState();
@@ -386,6 +436,9 @@
     if (els.heroTitle) els.heroTitle.textContent = dict.heroTitle;
     if (els.heroLede) els.heroLede.textContent = dict.heroLede;
 
+    if (els.controlsTitle) els.controlsTitle.textContent = dict.controlsTitle;
+    if (els.controlsHint) els.controlsHint.textContent = dict.controlsHint;
+
     if (els.searchLabel) els.searchLabel.textContent = dict.searchLabel;
     if (els.categoryLabel) els.categoryLabel.textContent = dict.categoryLabel;
     if (els.taskLabel) els.taskLabel.textContent = dict.taskLabel;
@@ -393,8 +446,12 @@
 
     if (els.searchInput) els.searchInput.placeholder = dict.searchPh;
 
-    if (els.emptyState) els.emptyState.textContent = dict.emptyState;
+    if (els.emptyTitle) els.emptyTitle.textContent = dict.emptyTitle;
+    if (els.emptyBody) els.emptyBody.textContent = dict.emptyBody;
+    if (els.emptyExamplesTitle) els.emptyExamplesTitle.textContent = dict.emptyExamplesTitle;
     if (els.detailPlaceholder) els.detailPlaceholder.textContent = dict.detailPlaceholder;
+    if (els.detailBack) els.detailBack.textContent = dict.detailBack;
+    if (els.detailClose) els.detailClose.textContent = dict.detailClose;
 
     if (els.detailTasksLabel) els.detailTasksLabel.textContent = dict.taskMeta;
     if (els.detailAliasesLabel) els.detailAliasesLabel.textContent = dict.aliasesMeta;
@@ -411,6 +468,10 @@
       els.langToggle.setAttribute("title", dict.langToggleLabel);
       if (dict.langToggleButton) els.langToggle.textContent = dict.langToggleButton;
     }
+
+    updateFiltersToggleLabel();
+    renderGuideExamples();
+    renderEmptyExamples();
   }
 
   function applyStateToControls() {
@@ -500,9 +561,17 @@
       const isEmpty = results.length === 0;
       els.emptyState.hidden = !isEmpty;
       if (isEmpty) {
-        els.emptyState.textContent = state.dataEmpty
-          ? `${dict.emptyState} ${dict.emptyDataHint}`
-          : dict.emptyState;
+        if (state.dataEmpty) {
+          if (els.emptyTitle) els.emptyTitle.textContent = dict.failed;
+          if (els.emptyBody) els.emptyBody.textContent = dict.emptyDataHint;
+          if (els.emptyExamplesTitle) els.emptyExamplesTitle.textContent = "";
+          if (els.emptyExamplesList) els.emptyExamplesList.innerHTML = "";
+        } else {
+          if (els.emptyTitle) els.emptyTitle.textContent = dict.emptyTitle;
+          if (els.emptyBody) els.emptyBody.textContent = dict.emptyBody;
+          if (els.emptyExamplesTitle) els.emptyExamplesTitle.textContent = dict.emptyExamplesTitle;
+          renderEmptyExamples();
+        }
       }
     }
 
@@ -517,6 +586,8 @@
 
     // keep active highlight on re-render
     if (state.id) updateActiveCard(state.id);
+
+    updateGuideVisibility(results.length);
   }
 
   function renderResultItem(entry) {
@@ -547,9 +618,13 @@
     tags.className = "card__tags";
 
     const catIds = normalizeEntryCategoryIds(entry);
-    for (const id of catIds) {
+    const maxTags = 2;
+    catIds.slice(0, maxTags).forEach((id) => {
       const def = db.categoriesMap.get(id);
       tags.appendChild(renderTag(def ? labelOf(def, state.lang) : id));
+    });
+    if (catIds.length > maxTags) {
+      tags.appendChild(renderTag(`+${catIds.length - maxTags}`));
     }
 
     btn.appendChild(title);
@@ -597,8 +672,11 @@
     if (pushUrl) pushStateToUrl();
 
     updateActiveCard(id);
+    document.body.classList.add("detail-open");
 
     if (els.detailPlaceholder) els.detailPlaceholder.hidden = true;
+    if (els.detailSheet) els.detailSheet.hidden = false;
+    if (els.detailActions) els.detailActions.hidden = false;
     if (els.detail) els.detail.hidden = false;
 
     const dict = i18n[state.lang] || i18n.en;
@@ -657,8 +735,11 @@
     if (pushUrl) pushStateToUrl();
 
     updateActiveCard(""); // remove highlight
+    document.body.classList.remove("detail-open");
 
     if (els.detail) els.detail.hidden = true;
+    if (els.detailSheet) els.detailSheet.hidden = true;
+    if (els.detailActions) els.detailActions.hidden = true;
     if (els.detailPlaceholder) els.detailPlaceholder.hidden = false;
   }
 
@@ -924,6 +1005,64 @@
     renderList();
 
     if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
+  }
+
+  function setFiltersOpen(open) {
+    state.filtersOpen = Boolean(open);
+    if (els.controls) els.controls.classList.toggle("is-collapsed", !state.filtersOpen);
+    if (els.filtersToggle) {
+      els.filtersToggle.setAttribute("aria-expanded", String(state.filtersOpen));
+      updateFiltersToggleLabel();
+    }
+  }
+
+  function updateFiltersToggleLabel() {
+    const dict = i18n[state.lang] || i18n.en;
+    if (!els.filtersToggle) return;
+    els.filtersToggle.textContent = state.filtersOpen ? dict.filtersHide : dict.filtersShow;
+  }
+
+  function renderGuideExamples() {
+    const dict = i18n[state.lang] || i18n.en;
+    if (els.guideTitle) els.guideTitle.textContent = dict.guideTitle;
+    if (!els.guideExamples) return;
+    els.guideExamples.innerHTML = "";
+    const examples = Array.isArray(dict.guideExamples) ? dict.guideExamples : [];
+    examples.forEach((term) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "guide-chip";
+      btn.textContent = term;
+      btn.addEventListener("click", () => {
+        state.q = term;
+        if (els.searchInput) {
+          els.searchInput.value = term;
+          els.searchInput.focus();
+        }
+        pushStateToUrl();
+        renderList();
+        closeDetail({ pushUrl: false });
+      });
+      els.guideExamples.appendChild(btn);
+    });
+  }
+
+  function renderEmptyExamples() {
+    const dict = i18n[state.lang] || i18n.en;
+    if (!els.emptyExamplesList) return;
+    els.emptyExamplesList.innerHTML = "";
+    const examples = Array.isArray(dict.guideExamples) ? dict.guideExamples : [];
+    examples.forEach((term) => {
+      const li = document.createElement("li");
+      li.textContent = term;
+      els.emptyExamplesList.appendChild(li);
+    });
+  }
+
+  function updateGuideVisibility(resultCount) {
+    if (!els.quickGuide) return;
+    const hasFilters = Boolean(state.q || state.cat || state.task);
+    els.quickGuide.hidden = hasFilters || resultCount === 0;
   }
 
   /* -----------------------------
