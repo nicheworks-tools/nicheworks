@@ -76,6 +76,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-height: 100vh;
+  height: 100svh;
+  overflow: hidden;
 }
 
 .topbar {
@@ -296,6 +299,8 @@ h1 {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 16px;
+  flex: 1;
+  min-height: 0;
 }
 
 .results-panel,
@@ -306,6 +311,23 @@ h1 {
   padding: 12px;
   min-height: 420px;
   box-shadow: 0 16px 40px var(--shadow);
+}
+
+.results-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.results-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding-right: 4px;
 }
 
 .results-header {
@@ -331,15 +353,14 @@ h1 {
 .results-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-top: 10px;
+  gap: 8px;
 }
 
 .card {
   border: 1px solid var(--border);
   background: var(--panel-2);
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 8px 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -361,7 +382,7 @@ h1 {
 
 .card__title {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.35;
 }
 
@@ -370,18 +391,18 @@ h1 {
   color: var(--muted);
   line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.card__tags {
+.card__chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.tag {
+.chip-pill {
   padding: 2px 8px;
   border-radius: 999px;
   background: var(--tag-bg);
@@ -389,6 +410,11 @@ h1 {
   color: var(--accent);
   font-size: 11px;
   white-space: nowrap;
+}
+
+.chip-pill--action {
+  color: var(--text);
+  background: transparent;
 }
 
 .empty-state {
@@ -557,6 +583,17 @@ h1 {
   border-top: 1px solid var(--border);
 }
 
+.detail-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+}
+
+.detail-panel > * {
+  max-width: 100%;
+}
+
 .meta-block {
   background: var(--panel-2);
   border: 1px solid var(--border);
@@ -674,8 +711,14 @@ h1 {
 }
 
 @media (max-width: 480px) {
+  .page {
+    padding: 14px 12px 16px;
+    gap: 12px;
+  }
+
   .topbar {
     flex-direction: column;
+    padding: 12px;
   }
 
   .topbar-actions {
@@ -694,6 +737,42 @@ h1 {
 
   .controls {
     top: 8px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .lede {
+    font-size: 13px;
+  }
+
+  .controls {
+    padding: 10px;
+  }
+
+  .results-panel,
+  .detail-panel {
+    padding: 10px;
+  }
+
+  .results-header h2 {
+    font-size: 16px;
+  }
+
+  .info-links {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .info-links a {
+    font-size: 13px;
+  }
+
+  .tool-footer {
+    margin-top: 12px;
+    padding-top: 10px;
+    gap: 4px;
   }
 }
 
