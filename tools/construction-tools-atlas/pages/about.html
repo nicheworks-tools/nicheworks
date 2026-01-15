@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="en" data-lang="en" data-theme="dark">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
@@ -69,5 +69,21 @@
       <p class="tool-footer-disclaimer">No warranty. Use at your own risk.</p>
     </footer>
   </div>
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const theme = params.get("theme");
+      if (theme !== "light" && theme !== "dark") return;
+      document.documentElement.setAttribute("data-theme", theme);
+      document.querySelectorAll("a[href]").forEach((link) => {
+        const href = link.getAttribute("href");
+        if (!href || href.startsWith("#")) return;
+        const url = new URL(href, location.href);
+        if (url.origin !== location.origin) return;
+        url.searchParams.set("theme", theme);
+        link.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
+      });
+    })();
+  </script>
 </body>
 </html>

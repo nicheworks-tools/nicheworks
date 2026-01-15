@@ -10,6 +10,7 @@
 (() => {
   const state = {
     lang: "en", // HTML default is en; URL overrides
+    theme: "dark",
     q: "",
     cat: "",
     task: "",
@@ -32,6 +33,7 @@
   const els = {
     // lang toggle
     langToggle: document.getElementById("langToggle"),
+    themeToggle: document.getElementById("themeToggle"),
 
     // hero
     eyebrow: document.getElementById("eyebrow"),
@@ -150,6 +152,10 @@
       creditsLink: "Credits",
       langToggleLabel: "Switch to Japanese",
       langToggleButton: "日本語",
+      themeToggleLabelLight: "Switch to light theme",
+      themeToggleLabelDark: "Switch to dark theme",
+      themeToggleButtonLight: "Light",
+      themeToggleButtonDark: "Dark",
       empty: "No results found. Try a different keyword or filter.",
       dash: "—",
       failed: "Failed to load data. See console.",
@@ -201,6 +207,10 @@
       creditsLink: "クレジット",
       langToggleLabel: "英語に切り替える",
       langToggleButton: "EN",
+      themeToggleLabelLight: "ライトテーマに切り替える",
+      themeToggleLabelDark: "ダークテーマに切り替える",
+      themeToggleButtonLight: "ライト",
+      themeToggleButtonDark: "ダーク",
       empty: "該当する用語がありません。キーワードや絞り込みを変えてください。",
       dash: "—",
       failed: "データの読み込みに失敗しました（コンソール参照）",
@@ -278,6 +288,7 @@
 
   async function init() {
     readUrlToState();
+    applyTheme();
     setupDebugUi();
     bindEvents();
     await loadAllData();
@@ -295,6 +306,10 @@
   function bindEvents() {
     els.langToggle?.addEventListener("click", () => {
       setLang(state.lang === "ja" ? "en" : "ja");
+    });
+
+    els.themeToggle?.addEventListener("click", () => {
+      setTheme(state.theme === "light" ? "dark" : "light");
     });
 
     els.filtersToggle?.addEventListener("click", () => {
@@ -335,6 +350,7 @@
 
     window.addEventListener("popstate", () => {
       readUrlToState();
+      applyTheme();
       sanitizeStateAgainstDefs();
       applyI18n();
       setDebugOpen(state.debug, { updateUrl: false });
@@ -426,6 +442,7 @@
     document.documentElement.setAttribute("data-lang", state.lang);
 
     applyI18nText();
+    updateThemeToggleLabel();
     applyDebugI18n(i18n[state.lang] || i18n.en);
   }
 
@@ -468,6 +485,8 @@
       els.langToggle.setAttribute("title", dict.langToggleLabel);
       if (dict.langToggleButton) els.langToggle.textContent = dict.langToggleButton;
     }
+
+    updateThemeToggleLabel();
 
     updateFiltersToggleLabel();
     renderGuideExamples();
@@ -970,6 +989,8 @@
 
     const lang = sp.get("lang");
     state.lang = lang === "ja" ? "ja" : "en";
+    const theme = sp.get("theme");
+    state.theme = theme === "light" ? "light" : "dark";
 
     state.q = (sp.get("q") || "").trim();
     state.cat = sp.get("cat") || "";
@@ -985,6 +1006,7 @@
 
     // default en
     if (state.lang === "en") sp.set("lang", "en");
+    if (state.theme === "light") sp.set("theme", "light");
     if (state.q) sp.set("q", state.q);
     if (state.cat) sp.set("cat", state.cat);
     if (state.task) sp.set("task", state.task);
@@ -1005,6 +1027,46 @@
     renderList();
 
     if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
+  }
+
+  function setTheme(theme) {
+    state.theme = theme === "light" ? "light" : "dark";
+    applyTheme();
+    pushStateToUrl();
+  }
+
+  function applyTheme() {
+    document.documentElement.setAttribute("data-theme", state.theme);
+    updateThemeToggleLabel();
+    syncThemeLinks();
+  }
+
+  function updateThemeToggleLabel() {
+    if (!els.themeToggle) return;
+    const dict = i18n[state.lang] || i18n.en;
+    const isLight = state.theme === "light";
+    const label = isLight ? dict.themeToggleLabelDark : dict.themeToggleLabelLight;
+    const text = isLight ? dict.themeToggleButtonDark : dict.themeToggleButtonLight;
+    if (label) {
+      els.themeToggle.setAttribute("aria-label", label);
+      els.themeToggle.setAttribute("title", label);
+    }
+    if (text) els.themeToggle.textContent = text;
+  }
+
+  function syncThemeLinks() {
+    const links = [els.aboutLink, els.methodLink, els.disclaimerLink, els.creditsLink].filter(
+      Boolean
+    );
+    links.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href) return;
+      const url = new URL(href, location.href);
+      if (state.theme === "light") url.searchParams.set("theme", "light");
+      else url.searchParams.delete("theme");
+      const relative = `${url.pathname}${url.search}${url.hash}`;
+      link.setAttribute("href", relative);
+    });
   }
 
   function setFiltersOpen(open) {
@@ -1080,9 +1142,9 @@
     banner.style.cssText = [
       "margin: 10px 0",
       "padding: 10px 12px",
-      "border: 1px solid #d9534f",
-      "background: #fff1f1",
-      "color: #8a1f1f",
+      "border: 1px solid var(--danger-border)",
+      "background: var(--danger-bg)",
+      "color: var(--danger-text)",
       "border-radius: 8px",
       "font-size: 13px",
       "line-height: 1.5",
@@ -1102,8 +1164,9 @@
       "font-size: 12px",
       "padding: 4px 8px",
       "border-radius: 999px",
-      "border: 1px solid #bbb",
-      "background: #f8f8f8",
+      "border: 1px solid var(--debug-border)",
+      "background: var(--debug-bg)",
+      "color: var(--text)",
       "cursor: pointer",
     ].join(";");
 
@@ -1111,8 +1174,8 @@
     panel.id = "debugPanel";
     panel.hidden = !state.debug;
     panel.style.cssText = [
-      "border: 1px dashed #bbb",
-      "background: #fafafa",
+      "border: 1px dashed var(--debug-border)",
+      "background: var(--debug-panel-bg)",
       "border-radius: 10px",
       "padding: 12px",
       "font-size: 12px",
@@ -1139,8 +1202,8 @@
     indexErrorWrap.style.cssText = [
       "margin: 8px 0",
       "padding: 8px",
-      "border: 1px solid #f1c0c0",
-      "background: #fff4f4",
+      "border: 1px solid var(--danger-border-soft)",
+      "background: var(--danger-bg-soft)",
       "border-radius: 8px",
       "white-space: pre-wrap",
     ].join(";");
