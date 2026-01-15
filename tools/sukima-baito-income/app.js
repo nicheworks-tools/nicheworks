@@ -716,7 +716,7 @@
       const d = String(r.data.date || "").trim();
       const w = normalizeWorkplaceName(r.data.workplace || "");
       const c = String(r.data.category || "").trim();
-      const a = Number(r.data.amount || 0);
+      const a = cleanAmount(r.data.amount || 0);
       const memo = String(r.data.memo || "");
 
       if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
@@ -730,28 +730,36 @@
     return { rows, invalidCount };
   }
 
-  function applyOcrPreview(rows) {
-    rows.forEach((row) => {
-      entries.push(row);
-      bumpWorkplace(row.workplace);
-    });
-    renderAll();
-  }
-
   function commitOcrPreview() {
     if (!ocrPreviewState) return;
 
     const { rows, invalidCount } = collectOcrSelectedRows();
-    const committed = rows.length;
+    const existingKeys = new Set(entries.map(makeDedupeKey));
+    const batchKeys = new Set();
+    let committed = 0;
+    let skippedDup = 0;
+
+    rows.forEach((row) => {
+      const key = makeDedupeKey(row);
+      if (existingKeys.has(key) || batchKeys.has(key)) {
+        skippedDup++;
+        return;
+      }
+      entries.push(row);
+      existingKeys.add(key);
+      batchKeys.add(key);
+      bumpWorkplace(row.workplace);
+      committed++;
+    });
+
+    renderAll();
+    closeOCRPreview();
 
     if (committed === 0) {
-      showError(`追加できる候補がありませんでした。\n不正：${invalidCount}`);
+      showError(`追加できる候補がありませんでした。\n重複スキップ：${skippedDup} / 不正：${invalidCount}`);
       return;
     }
-
-    applyOcrPreview(rows);
-    closeOCRPreview();
-    toast(`OCR取り込み：${committed}件追加`);
+    toast(`OCR取り込み：${committed}件追加（重複スキップ：${skippedDup}件 / 不正：${invalidCount}件）`);
   }
 
   // ----------------------------
