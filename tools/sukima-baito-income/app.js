@@ -954,13 +954,13 @@
       const memo = String(memoInput.value || "").trim();
 
       if (!date || !workplace || !amountRaw) {
-        showError("日付・就業先・金額は必須です。");
+        showError("日付・就業先・金額を入力してください。");
         return;
       }
 
       const amount = cleanAmount(amountRaw);
       if (!Number.isFinite(amount) || amount <= 0) {
-        showError("金額が不正です。数字で入力してください。");
+        showError("金額が不正です。数字のみで入力してください。");
         return;
       }
 
@@ -1317,7 +1317,7 @@
       const rows = parseCSV(text);
 
       if (rows.length === 0) {
-        showError("CSVが空です。");
+        showError("CSVが空です。ファイルを確認してください。");
         return;
       }
 
@@ -1327,7 +1327,7 @@
 
       const okHeader = expected.every((x, idx) => headerLower[idx] === x);
       if (!okHeader) {
-        showError("CSVヘッダが不正です。\n期待形式：date,workplace,category,amount,memo");
+        showError("CSVヘッダが不正です。\n形式：date,workplace,category,amount,memo");
         return;
       }
 
@@ -1684,7 +1684,7 @@
 
     // Offline check (language data is fetched)
     if (!navigator.onLine) {
-      showError("OCRはオンライン接続が必要です（初回は言語データの取得があるため）。");
+      showError("OCRはオンライン接続が必要です。通信状態を確認してください。");
       return false;
     }
 
@@ -1718,7 +1718,7 @@
     }
     const tooBig = [...files].find((f) => (f.size / (1024 * 1024)) > OCR_CFG.maxFileMB);
     if (tooBig) {
-      return { ok: false, msg: `画像サイズが大きすぎます（最大${OCR_CFG.maxFileMB}MB）。\n対象：${tooBig.name}` };
+      return { ok: false, msg: `画像サイズが大きすぎます（最大${OCR_CFG.maxFileMB}MB）。縮小して再試行してください。\n対象：${tooBig.name}` };
     }
     return { ok: true, msg: "" };
   }
@@ -1973,7 +1973,7 @@
 
   function openOcrPreview(candidates) {
     if (!candidates || candidates.length === 0) {
-      showError("OCR候補が見つかりませんでした。画像を切り抜く/明るくするなどを試してください。");
+      showError("OCR候補が見つかりませんでした。画像を切り抜く/明るくする/枚数を減らして再試行してください。");
       return;
     }
 
@@ -2003,6 +2003,7 @@
   }
 
   async function runOCR(files) {
+    if (OCR_RT.running) return;
     const guard = guardOCRFiles(files);
     if (!guard.ok) {
       showError(guard.msg);
@@ -2014,6 +2015,7 @@
     OCR_RT.cancelRequested = false;
     OCR_RT.worker = null;
 
+    setOCRControlsEnabled(false);
     openOCRProgressModal();
     setOCRProgress(`準備中…`, 2);
 
@@ -2067,7 +2069,7 @@
       closeOCRProgressModal();
 
       if (!ocrTexts.length || ocrTexts.every((t) => !t.text.trim())) {
-        showError("OCRでテキストを取得できませんでした。画像を切り抜く/明るくするなどを試してください。");
+        showError("OCRで文字を取得できませんでした。画像を切り抜く/明るくする/枚数を減らして再試行してください。");
         return;
       }
 
@@ -2080,9 +2082,9 @@
       if (String(err?.message || "").includes("CANCELLED")) {
         toast("OCRをキャンセルしました");
       } else if (String(err?.message || "").includes("LOAD_FAILED")) {
-        showError("OCRエンジンの読み込みに失敗しました。ネット接続を確認して再試行してください。");
+        showError("OCRエンジンの読み込みに失敗しました。通信状態を確認して再試行してください。");
       } else {
-        showError("OCR中にエラーが発生しました。画像枚数を減らす/切り抜く/再試行してください。");
+        showError("OCR中にエラーが発生しました。画像を縮小/切り抜く/枚数を減らして再試行してください。");
         console.error(err);
       }
     } finally {
@@ -2094,6 +2096,7 @@
       OCR_RT.worker = null;
       OCR_RT.running = false;
       OCR_RT.cancelRequested = false;
+      setOCRControlsEnabled(true);
     }
   }
 
@@ -2101,6 +2104,11 @@
     if (!ocrBtn || !ocrInput) return;
 
     ocrBtn.addEventListener("click", () => {
+      if (OCR_RT.running) {
+        toast("OCR処理中です。完了までお待ちください。");
+        return;
+      }
+      ocrInput.value = "";
       ocrInput.click();
     });
 
@@ -2117,6 +2125,11 @@
         input.value = "";
       });
     });
+  }
+
+  function setOCRControlsEnabled(enabled) {
+    if (ocrBtn) ocrBtn.disabled = !enabled;
+    if (ocrInput) ocrInput.disabled = !enabled;
   }
 
   // ----------------------------
