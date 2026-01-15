@@ -118,6 +118,13 @@
    * @property {number} total
    */
 
+  /**
+   * @typedef {Object} OcrCandidate
+   * @property {"ok"|"skip"} status
+   * @property {string} reason
+   * @property {{date:string, workplace:string, category:string, amount:number, memo:string}} data
+   */
+
   // OCR runtime
   const OCR_CFG = {
     maxFiles: 10,
@@ -1770,85 +1777,227 @@
     }
   }
 
-  function parseOCRTextToCandidates(text) {
-    // Minimal parse:
-    // - find money like ¥6,000 / 6000
-    // - find date like 2025-12-24 / 2025/12/24 / 12/24
-    // - workplace: pick a "likely" line (long text line without many digits)
+  function parseOcrTexts(ocrTexts) {
+    const candidates = [];
+    ocrTexts.forEach((item, idx) => {
+      const perImage = parseOcrText(item.text, item.fileName || `OCR-${idx + 1}`);
+      candidates.push(...perImage);
+    });
+    return candidates;
+  }
+
+  function parseOcrText(text, sourceLabel) {
     const raw = String(text || "").replace(/\r/g, "\n");
     const lines = raw.split("\n").map((s) => s.trim()).filter(Boolean);
+    const dates = extractDatesFromLines(lines);
+    const amounts = extractAmountsFromLines(lines);
+    const isListMode = dates.length > 1 || amounts.length > 1;
+    const modeLabel = isListMode ? "OCR:一覧" : "OCR:詳細";
+    const candidates = isListMode
+      ? parseListMode(lines, modeLabel)
+      : parseDetailMode(lines, modeLabel);
 
-    // money candidates
-    const moneyRegex = /[¥￥]?\s*([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{3,})/g;
-    const dateFull = /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/;
-    const dateShort = /(?:^|[^\d])(\d{1,2})[\/\-](\d{1,2})(?:[^\d]|$)/;
-
-    // pick best date
-    let date = "";
-    for (const ln of lines) {
-      const m = ln.match(dateFull);
-      if (m) {
-        const yyyy = m[1];
-        const mm = String(m[2]).padStart(2, "0");
-        const dd = String(m[3]).padStart(2, "0");
-        date = `${yyyy}-${mm}-${dd}`;
-        break;
-      }
+    if (candidates.length === 0) {
+      return [makeSkipCandidate(`${modeLabel} 候補が取得できませんでした`, sourceLabel)];
     }
-    if (!date) {
-      // fallback: MM/DD -> current year
-      const now = new Date();
-      for (const ln of lines) {
-        const m = ln.match(dateShort);
-        if (m) {
-          const yyyy = String(now.getFullYear());
-          const mm = String(m[1]).padStart(2, "0");
-          const dd = String(m[2]).padStart(2, "0");
-          date = `${yyyy}-${mm}-${dd}`;
-          break;
+    return candidates;
+  }
+
+  function parseListMode(lines, modeLabel) {
+    const blocks = splitBlocksByDate(lines);
+    if (blocks.length === 0) {
+      return [makeSkipCandidate(`${modeLabel} 日付行が見つかりませんでした`)];
+    }
+
+    const candidates = [];
+    blocks.forEach((block) => {
+      const amount = pickMaxAmount(block.lines);
+      const workplace = guessWorkplace(block.lines);
+      const memo = buildMemo(modeLabel, block.date?.hasYear ? "" : "年要確認");
+
+      if (!block.date?.normalized) {
+        candidates.push(makeSkipCandidate(`${modeLabel} 日付が取得できませんでした`));
+        return;
+      }
+      if (!amount) {
+        candidates.push(makeSkipCandidate(`${modeLabel} 金額が取得できませんでした`));
+        return;
+      }
+      if (!workplace) {
+        candidates.push(makeSkipCandidate(`${modeLabel} 就業先が取得できませんでした`));
+        return;
+      }
+
+      candidates.push(makeOkCandidate({
+        date: block.date.normalized,
+        workplace,
+        category: "報酬",
+        amount,
+        memo
+      }));
+    });
+
+    return candidates;
+  }
+
+  function parseDetailMode(lines, modeLabel) {
+    const dates = extractDatesFromLines(lines);
+    const amounts = extractAmountsFromLines(lines);
+    const workplace = guessWorkplace(lines);
+    const date = dates[0];
+    const amount = amounts.length ? Math.max(...amounts) : 0;
+    const memo = buildMemo(modeLabel, date?.hasYear ? "" : "年要確認");
+
+    if (!date?.normalized) {
+      return [makeSkipCandidate(`${modeLabel} 日付が取得できませんでした`)];
+    }
+    if (!amount) {
+      return [makeSkipCandidate(`${modeLabel} 金額が取得できませんでした`)];
+    }
+    if (!workplace) {
+      return [makeSkipCandidate(`${modeLabel} 就業先が取得できませんでした`)];
+    }
+
+    return [makeOkCandidate({
+      date: date.normalized,
+      workplace,
+      category: "報酬",
+      amount,
+      memo
+    })];
+  }
+
+  function splitBlocksByDate(lines) {
+    /** @type {Array<{date:{normalized:string, hasYear:boolean} | null, lines:string[]}>} */
+    const blocks = [];
+    let current = null;
+
+    lines.forEach((ln) => {
+      const date = extractFirstDateFromLine(ln);
+      if (date) {
+        if (current) blocks.push(current);
+        current = { date, lines: [ln] };
+      } else if (current) {
+        current.lines.push(ln);
+      }
+    });
+
+    if (current) blocks.push(current);
+    return blocks;
+  }
+
+  function extractDatesFromLines(lines) {
+    /** @type {Array<{normalized:string, hasYear:boolean}>} */
+    const dates = [];
+    const seen = new Set();
+    lines.forEach((ln) => {
+      const fullMatches = ln.matchAll(/(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/g);
+      for (const m of fullMatches) {
+        const normalized = normalizeDate(m[1], m[2], m[3]);
+        const key = `${normalized}|y`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          dates.push({ normalized, hasYear: true });
         }
       }
-    }
 
-    // workplace guess: choose longest line that isn't mostly digits
-    let workplace = "";
-    const scored = lines
+      const shortMatches = ln.matchAll(/(^|[^\d])(\d{1,2})[\/\-.](\d{1,2})(?=[^\d]|$)/g);
+      for (const m of shortMatches) {
+        const normalized = normalizeDate(new Date().getFullYear(), m[2], m[3]);
+        const key = `${normalized}|n`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          dates.push({ normalized, hasYear: false });
+        }
+      }
+    });
+    return dates;
+  }
+
+  function extractFirstDateFromLine(line) {
+    const full = line.match(/(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/);
+    if (full) {
+      return { normalized: normalizeDate(full[1], full[2], full[3]), hasYear: true };
+    }
+    const short = line.match(/(^|[^\d])(\d{1,2})[\/\-.](\d{1,2})(?=[^\d]|$)/);
+    if (short) {
+      return {
+        normalized: normalizeDate(new Date().getFullYear(), short[2], short[3]),
+        hasYear: false
+      };
+    }
+    return null;
+  }
+
+  function extractAmountsFromLines(lines) {
+    const amounts = [];
+    const moneyRegex = /[¥￥]?\s*([0-9]{1,3}(?:,[0-9]{3})+|[0-9]{2,})\s*(?:円)?/g;
+    lines.forEach((ln) => {
+      let m;
+      while ((m = moneyRegex.exec(ln)) !== null) {
+        const n = cleanAmount(m[1]);
+        if (Number.isFinite(n) && n > 0) amounts.push(n);
+      }
+      moneyRegex.lastIndex = 0;
+    });
+    return amounts;
+  }
+
+  function pickMaxAmount(lines) {
+    const amounts = extractAmountsFromLines(lines);
+    if (!amounts.length) return 0;
+    return Math.max(...amounts);
+  }
+
+  function guessWorkplace(lines) {
+    const stopWords = [
+      "支給", "報酬", "交通費", "勤務", "就労", "合計", "合算",
+      "控除", "振込", "支払", "受取", "時間", "日付", "円", "¥", "￥", "税込", "税"
+    ];
+    const filtered = lines.filter((ln) => {
+      if (ln.length < 2) return false;
+      if (stopWords.some((w) => ln.includes(w))) return false;
+      const digitRatio = (ln.match(/\d/g) || []).length / ln.length;
+      return digitRatio < 0.4;
+    });
+
+    if (!filtered.length) return "";
+    const scored = filtered
       .map((ln) => {
         const digitCount = (ln.match(/\d/g) || []).length;
         const score = ln.length - digitCount * 2;
         return { ln, score };
       })
       .sort((a, b) => b.score - a.score);
-    workplace = scored[0]?.ln || "";
+    return scored[0]?.ln || "";
+  }
 
-    // category guess (very rough)
-    let category = "報酬";
-    const joined = lines.join(" ");
-    if (/交通/.test(joined)) category = "交通費";
-    if (/手当/.test(joined)) category = "手当";
+  function normalizeDate(yyyy, mm, dd) {
+    return `${String(yyyy).padStart(4, "0")}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+  }
 
-    // amount: choose max money in text (usually "受取" が最大になりがち)
-    let maxAmount = 0;
-    for (const ln of lines) {
-      let m;
-      while ((m = moneyRegex.exec(ln)) !== null) {
-        const n = cleanAmount(m[1]);
-        if (Number.isFinite(n) && n > maxAmount) maxAmount = n;
-      }
-      moneyRegex.lastIndex = 0;
-    }
+  function buildMemo(modeLabel, extra) {
+    return [modeLabel, extra].filter(Boolean).join(" / ");
+  }
 
-    const candidates = [];
-    if (date && maxAmount > 0) {
-      candidates.push({
-        date,
-        workplace,
-        category,
-        amount: maxAmount,
-        memo: ""
-      });
-    }
-    return { raw, candidates };
+  function makeOkCandidate(data) {
+    return { status: "ok", reason: "", data };
+  }
+
+  function makeSkipCandidate(reason, sourceLabel = "") {
+    const memo = sourceLabel ? `OCR:${sourceLabel}` : "";
+    return {
+      status: "skip",
+      reason: reason || "不明",
+      data: { date: "", workplace: "", category: "報酬", amount: 0, memo }
+    };
+  }
+
+  function openOcrPreview(candidates) {
+    console.log("OCR candidates (placeholder for preview):", candidates);
+    const okCount = candidates.filter((c) => c.status === "ok").length;
+    const skipCount = candidates.filter((c) => c.status === "skip").length;
+    toast(`OCR候補：${okCount}件（スキップ：${skipCount}件）`);
   }
 
   async function runOCR(files) {
@@ -1920,8 +2069,8 @@
         return;
       }
 
-      console.log("OCR texts (placeholder for parser):", ocrTexts);
-      toast("OCR完了（テキスト取得）");
+      const candidates = parseOcrTexts(ocrTexts);
+      openOcrPreview(candidates);
 
     } catch (err) {
       closeOCRProgressModal();
