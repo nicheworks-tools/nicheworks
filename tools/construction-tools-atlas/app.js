@@ -10,7 +10,7 @@
 (() => {
   const state = {
     lang: "en", // HTML default is en; URL overrides
-    theme: "dark",
+    theme: "light",
     mode: "term",
     q: "",
     cat: "",
@@ -129,8 +129,9 @@
 
   const i18n = {
     en: {
-      eyebrow: "Construction Tools & Slang Atlas",
-      heroTitle: "Browse, search, and learn core field terms.",
+      toolName: "Construction Tools & Slang Atlas",
+      eyebrow: "NicheWorks",
+      heroTitle: "Construction Tools & Slang Atlas",
       heroLede: "Quickly find terminology, tools, and work processes across categories.",
       controlsTitle: "Search",
       controlsHint: "Pick a mode, then refine with a keyword.",
@@ -192,8 +193,9 @@
       emptyDataHint: "Data failed to load. Open Debug to see details.",
     },
     ja: {
-      eyebrow: "建設工具・スラング図鑑",
-      heroTitle: "現場用語を検索して、すぐ確認。",
+      toolName: "世界の建設・現場用語辞典",
+      eyebrow: "NicheWorks",
+      heroTitle: "世界の建設・現場用語辞典",
       heroLede: "工具・スラング・作業プロセスをカテゴリ別に素早く参照できます。",
       controlsTitle: "検索",
       controlsHint: "モードを選んでから、キーワードで絞り込めます。",
@@ -491,6 +493,7 @@
     if (els.eyebrow) els.eyebrow.textContent = dict.eyebrow;
     if (els.heroTitle) els.heroTitle.textContent = dict.heroTitle;
     if (els.heroLede) els.heroLede.textContent = dict.heroLede;
+    if (dict.toolName) document.title = `${dict.toolName} | NicheWorks`;
 
     if (els.controlsTitle) els.controlsTitle.textContent = dict.controlsTitle;
     if (els.controlsHint) els.controlsHint.textContent = dict.controlsHint;
@@ -1226,7 +1229,7 @@
     const lang = sp.get("lang");
     state.lang = lang === "ja" ? "ja" : "en";
     const theme = sp.get("theme");
-    state.theme = theme === "light" ? "light" : "dark";
+    state.theme = theme === "dark" ? "dark" : "light";
 
     const mode = sp.get("mode");
     state.mode = ["term", "category", "action"].includes(mode) ? mode : "term";
@@ -1246,7 +1249,7 @@
 
     // default en
     if (state.lang === "en") sp.set("lang", "en");
-    if (state.theme === "light") sp.set("theme", "light");
+    if (state.theme === "dark") sp.set("theme", "dark");
     if (state.mode && state.mode !== "term") sp.set("mode", state.mode);
     if (state.q) sp.set("q", state.q);
     if (state.cat) sp.set("cat", state.cat);
@@ -1303,7 +1306,7 @@
       const href = link.getAttribute("href");
       if (!href) return;
       const url = new URL(href, location.href);
-      if (state.theme === "light") url.searchParams.set("theme", "light");
+      if (state.theme === "dark") url.searchParams.set("theme", "dark");
       else url.searchParams.delete("theme");
       const relative = `${url.pathname}${url.search}${url.hash}`;
       link.setAttribute("href", relative);
