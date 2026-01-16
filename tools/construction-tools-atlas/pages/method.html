@@ -75,6 +75,19 @@
 </head>
 <body>
   <div class="static-page">
+    <header class="topbar static-topbar" id="pageTop">
+      <div class="topbar-title">
+        <span class="topbar-brand">NicheWorks</span>
+        <span class="topbar-tool">Construction Tools &amp; Slang Atlas</span>
+      </div>
+      <div class="topbar-actions">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Theme toggle">Dark</button>
+        <div class="donate-buttons" aria-label="Support NicheWorks">
+          <a class="donate-button" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Donate</a>
+          <a class="donate-button donate-button--alt" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+        </div>
+      </div>
+    </header>
     <nav class="static-nav" aria-label="Navigation">
       <a href="../index.html">Atlas Home</a>
       <a href="./about.html">About</a>
@@ -102,9 +115,24 @@
     </footer>
   </div>
 
-  <div class="donate-fab" aria-label="Support NicheWorks">
-    <a class="donate-fab__btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
-    <a class="donate-fab__btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
-  </div>
+  <script>
+    (() => {
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+      const apply = () => {
+        const stored = localStorage.getItem("nw_theme");
+        const theme = stored === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        toggle.textContent = theme === "dark" ? "Light" : "Dark";
+      };
+      apply();
+      toggle.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        localStorage.setItem("nw_theme", next);
+        document.documentElement.dataset.theme = next;
+        toggle.textContent = next === "dark" ? "Light" : "Dark";
+      });
+    })();
+  </script>
 </body>
 </html>

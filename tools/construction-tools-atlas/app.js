@@ -43,6 +43,7 @@
     eyebrow: document.getElementById("eyebrow"),
     heroTitle: document.getElementById("heroTitle"),
     heroLede: document.getElementById("heroLede"),
+    headerTitle: document.getElementById("headerTitle"),
 
     // controls
     controls: document.querySelector(".controls"),
@@ -109,6 +110,7 @@
     methodLink: document.getElementById("methodLink"),
     disclaimerLink: document.getElementById("disclaimerLink"),
     creditsLink: document.getElementById("creditsLink"),
+    scrollTop: document.getElementById("scrollTop"),
 
     // debug UI (injected)
     debugWrap: null,
@@ -332,7 +334,6 @@
     setFiltersOpen(state.filtersOpen);
     renderFilters();
     renderList();
-    scheduleStickyOffset();
 
     if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
     else closeDetail({ pushUrl: false });
@@ -384,12 +385,11 @@
       if (e.key === "Escape") closeDetail({ pushUrl: true });
     });
 
-    window.addEventListener("resize", () => {
-      scheduleStickyOffset();
-    });
-
     els.detailBack?.addEventListener("click", () => closeDetail({ pushUrl: true }));
     els.detailClose?.addEventListener("click", () => closeDetail({ pushUrl: true }));
+    els.scrollTop?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
     window.addEventListener("popstate", () => {
       readUrlToState();
@@ -491,7 +491,6 @@
 
     applyI18nText();
     updateThemeToggleLabel();
-    scheduleStickyOffset();
     applyDebugI18n(i18n[state.lang] || i18n.en);
   }
 
@@ -501,6 +500,7 @@
     if (els.eyebrow) els.eyebrow.textContent = dict.eyebrow;
     if (els.heroTitle) els.heroTitle.textContent = dict.heroTitle;
     if (els.heroLede) els.heroLede.textContent = dict.heroLede;
+    if (els.headerTitle) els.headerTitle.textContent = dict.heroTitle;
     if (dict.toolName) document.title = `${dict.toolName} | NicheWorks`;
 
     if (els.controlsTitle) els.controlsTitle.textContent = dict.controlsTitle;
@@ -1290,26 +1290,6 @@
     updateThemeToggleLabel();
   }
 
-  let stickyOffsetFrame = null;
-
-  function scheduleStickyOffset() {
-    if (stickyOffsetFrame) return;
-    stickyOffsetFrame = window.requestAnimationFrame(() => {
-      stickyOffsetFrame = null;
-      updateStickyOffset();
-    });
-  }
-
-  function updateStickyOffset() {
-    const stickyWrap = document.querySelector(".controls-sticky");
-    if (!stickyWrap) return;
-    const styles = window.getComputedStyle(document.documentElement);
-    const stickyTop = parseFloat(styles.getPropertyValue("--sticky-top")) || 0;
-    const height = stickyWrap.offsetHeight || 0;
-    const offset = Math.max(0, height + stickyTop);
-    document.documentElement.style.setProperty("--sticky-offset", `${offset}px`);
-  }
-
   function updateThemeToggleLabel() {
     if (!els.themeToggle) return;
     const dict = i18n[state.lang] || i18n.en;
@@ -1347,7 +1327,6 @@
       els.filtersToggle.setAttribute("aria-expanded", String(state.filtersOpen));
       updateFiltersToggleLabel();
     }
-    scheduleStickyOffset();
   }
 
   function updateFiltersToggleLabel() {
