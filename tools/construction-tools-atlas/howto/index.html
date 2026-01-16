@@ -113,7 +113,8 @@
       --code-border:rgba(231,236,245,0.16);
     }
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
-    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-header{padding:16px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:40}
+    .header-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
     .ad-slot{margin:12px 0;padding:8px;border:1px dashed var(--border);border-radius:10px;min-height:60px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--muted);background:var(--panel)}
     .ad-top{margin-top:0}
@@ -126,24 +127,32 @@
     ol,ul{padding-left:20px}
     .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
     .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .header-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .theme-toggle{border:1px solid var(--border);background:var(--panel-2);color:var(--text);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
+    .donate-button{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--accent);color:var(--accent-contrast);font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap}
+    .donate-button--alt{background:var(--panel-2);color:var(--text)}
     .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
     .nw-footer a{color:inherit}
     .donation-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0}
     .donation-link{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel-2);color:var(--text);font-size:12px;text-decoration:none}
     .donation-link:hover{opacity:0.9}
     code{background:var(--code-bg);border:1px solid var(--code-border);padding:2px 6px;border-radius:8px}
-    .donate-fab{position:fixed;right:12px;bottom:12px;display:flex;gap:8px;z-index:9999}
-    .donate-fab__btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;font-weight:600;text-decoration:none;box-shadow:0 10px 24px rgba(15,23,42,0.18)}
-    .donate-fab__btn:hover,.donate-fab__btn:focus{border-color:var(--accent);color:var(--accent);outline:none}
-    @media (min-width:900px){.donate-fab{flex-direction:column;align-items:flex-end}}
+    @media (max-width:640px){.header-actions{flex-direction:column;align-items:flex-start}}
   </style>
 </head>
 
 <body>
   <header class="nw-header">
-    <div class="topnav">
-      <a href="./en/">EN</a>
-      <a href="../">Tool</a>
+    <div class="header-actions">
+      <div class="topnav">
+        <a href="./en/">EN</a>
+        <a href="../">Tool</a>
+      </div>
+      <div class="header-buttons" aria-label="Header actions">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Theme toggle">Dark</button>
+        <a class="donate-button" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Donate</a>
+        <a class="donate-button donate-button--alt" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+      </div>
     </div>
     <h1 style="margin:10px 0 6px">世界の建設・現場用語辞典：使い方</h1>
     <p class="muted" style="margin:0">用語・道具・作業工程を検索して、現場の言い回しを素早く確認（英語/日本語）。</p>
@@ -209,9 +218,24 @@
     <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
-  <div class="donate-fab" aria-label="Support NicheWorks">
-    <a class="donate-fab__btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
-    <a class="donate-fab__btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
-  </div>
+  <script>
+    (() => {
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+      const apply = () => {
+        const stored = localStorage.getItem("nw_theme");
+        const theme = stored === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        toggle.textContent = theme === "dark" ? "Light" : "Dark";
+      };
+      apply();
+      toggle.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        localStorage.setItem("nw_theme", next);
+        document.documentElement.dataset.theme = next;
+        toggle.textContent = next === "dark" ? "Light" : "Dark";
+      });
+    })();
+  </script>
 </body>
 </html>

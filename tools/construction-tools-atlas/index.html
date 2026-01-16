@@ -81,65 +81,72 @@
 </head>
 <body>
   <div class="page">
-    <header class="topbar">
-      <div class="title-block">
-        <p class="eyebrow" id="eyebrow">NicheWorks</p>
-        <h1 id="heroTitle">Construction Tools &amp; Slang Atlas</h1>
-        <p class="lede" id="heroLede">Quickly find terminology, tools, and work processes across categories.</p>
+    <header class="topbar" id="pageTop">
+      <div class="topbar-title">
+        <span class="topbar-brand">NicheWorks</span>
+        <span class="topbar-tool" id="headerTitle">Construction Tools &amp; Slang Atlas</span>
       </div>
       <div class="topbar-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Theme toggle">Light</button>
         <button id="langToggle" class="lang-toggle" type="button" aria-label="Language toggle">JA / EN</button>
+        <div class="donate-buttons" aria-label="Support NicheWorks">
+          <a class="donate-button" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Donate</a>
+          <a class="donate-button donate-button--alt" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+        </div>
       </div>
     </header>
 
+    <section class="hero" aria-label="Atlas introduction">
+      <p class="eyebrow" id="eyebrow">NicheWorks</p>
+      <h1 id="heroTitle">Construction Tools &amp; Slang Atlas</h1>
+      <p class="lede" id="heroLede">Quickly find terminology, tools, and work processes across categories.</p>
+    </section>
+
     <div class="ad-slot ad-top" aria-label="Advertisement">Ad space</div>
 
-    <div class="controls-sticky">
-      <section class="controls" aria-label="Search and filters">
-        <div class="controls-header">
-          <div>
-            <p class="controls-title" id="controlsTitle">Search</p>
-            <p class="controls-hint" id="controlsHint">Choose a mode, then refine with a keyword.</p>
-          </div>
-          <div class="controls-actions">
-            <button id="clearFilters" class="filters-toggle filters-reset" type="button">
-              Reset
-            </button>
-            <button id="filtersToggle" class="filters-toggle" type="button" aria-expanded="true">
-              Filters
-            </button>
-          </div>
+    <section class="controls" aria-label="Search and filters">
+      <div class="controls-header">
+        <div>
+          <p class="controls-title" id="controlsTitle">Search</p>
+          <p class="controls-hint" id="controlsHint">Choose a mode, then refine with a keyword.</p>
+        </div>
+        <div class="controls-actions">
+          <button id="clearFilters" class="filters-toggle filters-reset" type="button">
+            Reset
+          </button>
+          <button id="filtersToggle" class="filters-toggle" type="button" aria-expanded="true">
+            Filters
+          </button>
+        </div>
+      </div>
+
+      <div class="mode-chips" role="tablist" aria-label="Search modes">
+        <button class="mode-chip" type="button" data-mode="term" id="modeTerm">Term</button>
+        <button class="mode-chip" type="button" data-mode="category" id="modeCategory">Category</button>
+        <button class="mode-chip" type="button" data-mode="action" id="modeAction">Action</button>
+      </div>
+
+      <div class="controls-main">
+        <div class="control search-control">
+          <label id="searchLabel" for="searchInput">Search</label>
+          <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="controls-filters">
+        <div class="control filter-control" data-mode="category">
+          <label id="categoryLabel" for="categorySelect">Category</label>
+          <select id="categorySelect" name="cat">
+            <option id="categoryDefaultOption" value="">All categories</option>
+          </select>
         </div>
 
-        <div class="mode-chips" role="tablist" aria-label="Search modes">
-          <button class="mode-chip" type="button" data-mode="term" id="modeTerm">Term</button>
-          <button class="mode-chip" type="button" data-mode="category" id="modeCategory">Category</button>
-          <button class="mode-chip" type="button" data-mode="action" id="modeAction">Action</button>
+        <div class="control filter-control" data-mode="action">
+          <label id="actionLabel">Action</label>
+          <div class="chip-row" id="actionChips" role="listbox" aria-label="Action filters"></div>
         </div>
-
-        <div class="controls-main">
-          <div class="control search-control">
-            <label id="searchLabel" for="searchInput">Search</label>
-            <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
-          </div>
-        </div>
-
-        <div class="controls-filters">
-          <div class="control filter-control" data-mode="category">
-            <label id="categoryLabel" for="categorySelect">Category</label>
-            <select id="categorySelect" name="cat">
-              <option id="categoryDefaultOption" value="">All categories</option>
-            </select>
-          </div>
-
-          <div class="control filter-control" data-mode="action">
-            <label id="actionLabel">Action</label>
-            <div class="chip-row" id="actionChips" role="listbox" aria-label="Action filters"></div>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <section class="content" aria-label="Results and details">
       <div class="results-panel">
@@ -244,9 +251,9 @@
     </footer>
   </div>
 
-  <div class="donate-fab" aria-label="Support NicheWorks">
-    <a class="donate-fab__btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
-    <a class="donate-fab__btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+  <div class="mobile-bottom-bar" aria-label="Quick actions">
+    <a class="mobile-bottom-bar__btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Donate</a>
+    <button class="mobile-bottom-bar__btn mobile-bottom-bar__btn--ghost" id="scrollTop" type="button">Top</button>
   </div>
 
   <!-- engine.js が先、app.js が後 -->
