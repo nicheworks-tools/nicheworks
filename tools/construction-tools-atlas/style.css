@@ -87,6 +87,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex-wrap: nowrap;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -96,8 +97,10 @@ body {
 
 .topbar-title {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
 }
 
 .topbar-brand {
@@ -105,18 +108,22 @@ body {
   letter-spacing: 0.12em;
   font-size: 11px;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .topbar-tool {
   font-weight: 700;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 4px 4px 0;
+  gap: 4px;
+  padding: 0 4px;
 }
 
 .eyebrow {
@@ -128,12 +135,12 @@ body {
 }
 
 h1 {
-  margin: 4px 0;
+  margin: 2px 0;
   font-size: 24px;
 }
 
 .lede {
-  margin: 0;
+  margin: 0 0 2px;
   color: var(--muted);
   line-height: 1.5;
 }
@@ -153,7 +160,8 @@ h1 {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
 .theme-toggle {
@@ -165,6 +173,23 @@ h1 {
   font-weight: 600;
   cursor: pointer;
   align-self: center;
+}
+
+.support-button {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.support-button:hover,
+.support-button:focus {
+  opacity: 0.9;
+  outline: none;
 }
 
 .controls {
@@ -719,22 +744,26 @@ h1 {
 
 @media (max-width: 480px) {
   .topbar {
-    flex-direction: column;
-    align-items: stretch;
+    padding: 10px 12px;
   }
 
   .topbar-actions {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
+    gap: 6px;
   }
 
   .lang-toggle {
-    width: 100%;
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
   .theme-toggle {
-    width: 100%;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .support-button {
+    padding: 8px 10px;
+    font-size: 12px;
   }
 }
 
