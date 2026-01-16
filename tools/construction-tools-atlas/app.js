@@ -332,6 +332,7 @@
     setFiltersOpen(state.filtersOpen);
     renderFilters();
     renderList();
+    scheduleStickyOffset();
 
     if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
     else closeDetail({ pushUrl: false });
@@ -381,6 +382,10 @@
     // ESC close
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeDetail({ pushUrl: true });
+    });
+
+    window.addEventListener("resize", () => {
+      scheduleStickyOffset();
     });
 
     els.detailBack?.addEventListener("click", () => closeDetail({ pushUrl: true }));
@@ -486,6 +491,7 @@
 
     applyI18nText();
     updateThemeToggleLabel();
+    scheduleStickyOffset();
     applyDebugI18n(i18n[state.lang] || i18n.en);
   }
 
@@ -1284,6 +1290,26 @@
     updateThemeToggleLabel();
   }
 
+  let stickyOffsetFrame = null;
+
+  function scheduleStickyOffset() {
+    if (stickyOffsetFrame) return;
+    stickyOffsetFrame = window.requestAnimationFrame(() => {
+      stickyOffsetFrame = null;
+      updateStickyOffset();
+    });
+  }
+
+  function updateStickyOffset() {
+    const stickyWrap = document.querySelector(".controls-sticky");
+    if (!stickyWrap) return;
+    const styles = window.getComputedStyle(document.documentElement);
+    const stickyTop = parseFloat(styles.getPropertyValue("--sticky-top")) || 0;
+    const height = stickyWrap.offsetHeight || 0;
+    const offset = Math.max(0, height + stickyTop);
+    document.documentElement.style.setProperty("--sticky-offset", `${offset}px`);
+  }
+
   function updateThemeToggleLabel() {
     if (!els.themeToggle) return;
     const dict = i18n[state.lang] || i18n.en;
@@ -1321,6 +1347,7 @@
       els.filtersToggle.setAttribute("aria-expanded", String(state.filtersOpen));
       updateFiltersToggleLabel();
     }
+    scheduleStickyOffset();
   }
 
   function updateFiltersToggleLabel() {

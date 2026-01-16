@@ -1,5 +1,7 @@
 :root {
   color-scheme: light;
+  --sticky-top: 12px;
+  --sticky-offset: 0px;
   --bg: #f5f7fb;
   --panel: #ffffff;
   --panel-2: #f2f4f8;
@@ -152,9 +154,15 @@ h1 {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px;
-  position: sticky;
-  top: 12px;
   z-index: 10;
+}
+
+.controls-sticky {
+  position: sticky;
+  top: var(--sticky-top);
+  z-index: 30;
+  background: var(--bg);
+  padding: 0 0 12px;
 }
 
 .controls-header {
@@ -296,6 +304,7 @@ h1 {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 16px;
+  padding-top: var(--sticky-offset);
 }
 
 .results-panel,
@@ -306,6 +315,7 @@ h1 {
   padding: 12px;
   min-height: 420px;
   box-shadow: 0 16px 40px var(--shadow);
+  scroll-margin-top: calc(var(--sticky-offset) + 12px);
 }
 
 .results-scroll {
@@ -642,10 +652,10 @@ h1 {
     min-height: unset;
   }
 
-  .detail-panel {
-    position: fixed;
-    inset: 0;
-    background: var(--overlay);
+.detail-panel {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
     border: none;
     border-radius: 0;
     padding: 12px 12px 20px;
@@ -683,12 +693,16 @@ h1 {
 
   .detail-panel {
     position: sticky;
-    top: 12px;
+    top: calc(var(--sticky-offset) + 12px);
     align-self: start;
   }
 }
 
 @media (max-width: 480px) {
+  :root {
+    --sticky-top: 8px;
+  }
+
   .topbar {
     flex-direction: column;
   }
@@ -705,10 +719,6 @@ h1 {
 
   .theme-toggle {
     width: 100%;
-  }
-
-  .controls {
-    top: 8px;
   }
 }
 
@@ -890,4 +900,43 @@ h1 {
 
 .tool-footer-disclaimer{
   margin: 0;
+}
+
+.donate-fab {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 9999;
+}
+
+.donate-fab__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 24px var(--shadow);
+}
+
+.donate-fab__btn:hover,
+.donate-fab__btn:focus {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
+@media (min-width: 900px) {
+  .donate-fab {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
