@@ -249,6 +249,19 @@
     <button class="mobile-bottom-bar__btn mobile-bottom-bar__btn--ghost" id="scrollTop" type="button">Top</button>
   </div>
 
+  <div id="sheetOverlay" class="sheet-overlay" hidden></div>
+  <section id="supportSheet" class="sheet" hidden aria-hidden="true" aria-labelledby="supportSheetTitle">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <div class="sheet__header">
+      <h2 class="sheet__title" id="supportSheetTitle">Support this tool</h2>
+      <button class="sheet__close" id="btnCloseSupport" type="button" aria-label="Close support sheet">Close</button>
+    </div>
+    <div class="sheet__body">
+      <a class="sheet__item" id="supportOfuseLink" href="#" target="_blank" rel="noopener">OFUSE</a>
+      <a class="sheet__item" id="supportKofiLink" href="#" target="_blank" rel="noopener">Ko-fi</a>
+    </div>
+  </section>
+
   <!-- engine.js が先、app.js が後 -->
   <script src="./core/engine.js"></script>
   <script src="./app.js"></script>

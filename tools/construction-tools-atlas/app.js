@@ -38,6 +38,13 @@
     // lang toggle
     langToggle: document.getElementById("langToggle"),
     themeToggle: document.getElementById("themeToggle"),
+    btnSupport: document.getElementById("btnSupport"),
+    sheetOverlay: document.getElementById("sheetOverlay"),
+    supportSheet: document.getElementById("supportSheet"),
+    btnCloseSupport: document.getElementById("btnCloseSupport"),
+    supportOfuseLink: document.getElementById("supportOfuseLink"),
+    supportKofiLink: document.getElementById("supportKofiLink"),
+    donationData: document.querySelector(".donation-data"),
 
     // hero
     eyebrow: document.getElementById("eyebrow"),
@@ -327,6 +334,7 @@
     applyTheme();
     setupDebugUi();
     bindEvents();
+    applySupportLinks();
     await loadAllData();
 
     sanitizeStateAgainstDefs();
@@ -346,6 +354,18 @@
 
     els.themeToggle?.addEventListener("click", () => {
       setTheme(state.theme === "light" ? "dark" : "light");
+    });
+
+    els.btnSupport?.addEventListener("click", () => {
+      openSheet(els.supportSheet);
+    });
+
+    els.btnCloseSupport?.addEventListener("click", () => {
+      closeSheet(els.supportSheet);
+    });
+
+    els.sheetOverlay?.addEventListener("click", () => {
+      closeAllSheets();
     });
 
     els.filtersToggle?.addEventListener("click", () => {
@@ -382,7 +402,10 @@
 
     // ESC close
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeDetail({ pushUrl: true });
+      if (e.key === "Escape") {
+        const closed = closeAllSheets();
+        if (!closed) closeDetail({ pushUrl: true });
+      }
     });
 
     els.detailBack?.addEventListener("click", () => closeDetail({ pushUrl: true }));
@@ -404,6 +427,47 @@
       if (state.id && db.entriesById.has(state.id)) openDetail(state.id, { pushUrl: false });
       else closeDetail({ pushUrl: false });
     });
+  }
+
+  function applySupportLinks() {
+    const data = els.donationData;
+    const ofuseUrl = data?.dataset?.ofuse || "";
+    const kofiUrl = data?.dataset?.kofi || "";
+
+    if (els.supportOfuseLink && ofuseUrl) {
+      els.supportOfuseLink.href = ofuseUrl;
+    }
+
+    if (els.supportKofiLink && kofiUrl) {
+      els.supportKofiLink.href = kofiUrl;
+    }
+  }
+
+  function openSheet(sheetEl) {
+    if (!sheetEl) return;
+    sheetEl.hidden = false;
+    sheetEl.setAttribute("aria-hidden", "false");
+    if (els.sheetOverlay) els.sheetOverlay.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeSheet(sheetEl) {
+    if (!sheetEl) return;
+    sheetEl.hidden = true;
+    sheetEl.setAttribute("aria-hidden", "true");
+
+    const anyOpen = document.querySelector(".sheet:not([hidden])");
+    if (!anyOpen && els.sheetOverlay) {
+      els.sheetOverlay.hidden = true;
+      document.body.style.overflow = "";
+    }
+  }
+
+  function closeAllSheets() {
+    const openSheets = Array.from(document.querySelectorAll(".sheet:not([hidden])"));
+    if (!openSheets.length) return false;
+    openSheets.forEach((sheet) => closeSheet(sheet));
+    return true;
   }
 
   /* -----------------------------
