@@ -331,6 +331,9 @@
   async function init() {
     state.theme = getStoredTheme();
     readUrlToState();
+    if (window.matchMedia("(max-width: 480px)").matches) {
+      state.filtersOpen = false;
+    }
     applyTheme();
     setupDebugUi();
     bindEvents();
@@ -873,11 +876,18 @@
 
     const title = document.createElement("div");
     title.className = "result-row__title";
-    title.textContent = `${termOf(entry, "en")} / ${termOf(entry, "ja")}`;
+    const termEn = termOf(entry, "en");
+    const termJa = termOf(entry, "ja");
+    if (termEn && termJa && termEn !== termJa) {
+      title.textContent = `${termEn} / ${termJa}`;
+    } else {
+      title.textContent = termEn || termJa || entry.id || "";
+    }
 
     const desc = document.createElement("div");
     desc.className = "result-row__desc";
-    desc.textContent = descOf(entry, state.lang);
+    desc.textContent =
+      descOf(entry, state.lang) || descOf(entry, state.lang === "ja" ? "en" : "ja") || "";
 
     const chip = document.createElement("span");
     chip.className = "result-row__chip";
