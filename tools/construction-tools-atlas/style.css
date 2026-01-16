@@ -793,8 +793,8 @@ h1 {
   }
 
   .controls {
-    padding: 8px;
-    gap: 8px;
+    padding: 6px;
+    gap: 6px;
   }
 
   .controls-header {
@@ -802,11 +802,11 @@ h1 {
   }
 
   .controls-actions {
-    gap: 6px;
+    gap: 4px;
   }
 
   .controls-title {
-    font-size: 12px;
+    display: none;
   }
 
   .controls-hint {
@@ -819,12 +819,12 @@ h1 {
   }
 
   .control {
-    padding: 8px 10px;
+    padding: 6px 8px;
   }
 
   .control input,
   .control select {
-    padding: 8px 10px;
+    padding: 6px 8px;
   }
 
   .mode-chips {
