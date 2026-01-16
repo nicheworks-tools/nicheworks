@@ -71,7 +71,7 @@
     // results
     resultsTitle: document.getElementById("resultsTitle"),
     resultCount: document.getElementById("resultCount"),
-    resultsList: document.getElementById("results"),
+    resultsList: document.getElementById("resultsList"),
     emptyState: document.getElementById("emptyState"),
     emptyTitle: document.getElementById("emptyTitle"),
     emptyBody: document.getElementById("emptyBody"),
@@ -845,63 +845,89 @@
   }
 
   function renderResultItem(entry) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "card";
-    btn.setAttribute("role", "listitem");
-    btn.dataset.id = entry.id;
+    const row = document.createElement("div");
+    row.className = "result-row";
+    row.setAttribute("role", "listitem");
+    row.tabIndex = 0;
+    row.dataset.id = entry.id;
 
-    btn.addEventListener("click", () => {
+    const openFromRow = () => {
       // same id -> toggle close
       if (state.id === entry.id) {
         closeDetail({ pushUrl: true });
         return;
       }
       openDetail(entry.id, { pushUrl: true });
+    };
+
+    row.addEventListener("click", openFromRow);
+    row.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openFromRow();
+      }
     });
 
+    const body = document.createElement("div");
+    body.className = "result-row__body";
+
     const title = document.createElement("div");
-    title.className = "card__title";
+    title.className = "result-row__title";
     title.textContent = `${termOf(entry, "en")} / ${termOf(entry, "ja")}`;
 
     const desc = document.createElement("div");
-    desc.className = "card__desc";
+    desc.className = "result-row__desc";
     desc.textContent = descOf(entry, state.lang);
 
-    const tags = document.createElement("div");
-    tags.className = "card__tags";
-
+    const chip = document.createElement("span");
+    chip.className = "result-row__chip";
+    const actionIds = normalizeEntryActionTags(entry);
     const catIds = normalizeEntryCategoryIds(entry);
-    const maxTags = 2;
-    catIds.slice(0, maxTags).forEach((id) => {
-      const def = db.categoriesMap.get(id);
-      tags.appendChild(renderTag(def ? labelOf(def, state.lang) : id));
-    });
-    if (catIds.length > maxTags) {
-      tags.appendChild(renderTag(`+${catIds.length - maxTags}`));
+    const taskIds = normalizeEntryTaskIds(entry);
+    let chipLabel = "";
+    if (actionIds.length) {
+      const def = db.actionsMap.get(actionIds[0]);
+      chipLabel = labelOf(def, state.lang) || actionIds[0];
+    } else if (catIds.length) {
+      const def = db.categoriesMap.get(catIds[0]);
+      chipLabel = labelOf(def, state.lang) || catIds[0];
+    } else if (taskIds.length) {
+      const def = db.tasksMap.get(taskIds[0]);
+      chipLabel = labelOf(def, state.lang) || taskIds[0];
     }
 
-    btn.appendChild(title);
-    btn.appendChild(desc);
-    btn.appendChild(tags);
-    return btn;
-  }
+    body.appendChild(title);
+    body.appendChild(desc);
+    if (chipLabel) {
+      chip.textContent = chipLabel;
+      body.appendChild(chip);
+    }
 
-  function renderTag(text) {
-    const span = document.createElement("span");
-    span.className = "tag";
-    span.textContent = text;
-    return span;
+    const fav = document.createElement("button");
+    fav.type = "button";
+    fav.className = "result-row__fav";
+    fav.textContent = "★";
+    fav.setAttribute("aria-pressed", "false");
+    fav.setAttribute("aria-label", state.lang === "ja" ? "お気に入り" : "Favorite");
+    fav.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isActive = fav.classList.toggle("is-active");
+      fav.setAttribute("aria-pressed", String(isActive));
+    });
+
+    row.appendChild(body);
+    row.appendChild(fav);
+    return row;
   }
 
   function updateActiveCard(id) {
     if (!els.resultsList) return;
-    const cards = els.resultsList.querySelectorAll(".card");
-    cards.forEach((c) => {
-      const active = c.dataset.id === id;
-      c.classList.toggle("is-active", active);
-      if (active) c.setAttribute("aria-current", "true");
-      else c.removeAttribute("aria-current");
+    const rows = els.resultsList.querySelectorAll(".result-row");
+    rows.forEach((row) => {
+      const active = row.dataset.id === id;
+      row.classList.toggle("is-active", active);
+      if (active) row.setAttribute("aria-current", "true");
+      else row.removeAttribute("aria-current");
     });
   }
 
