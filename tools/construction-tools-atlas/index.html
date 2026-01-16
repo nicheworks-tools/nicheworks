@@ -93,19 +93,25 @@
       </div>
     </header>
 
-    <section class="hero" aria-label="Atlas introduction">
-      <p class="eyebrow" id="eyebrow">NicheWorks</p>
-      <h1 id="heroTitle">Construction Tools &amp; Slang Atlas</h1>
-      <p class="lede" id="heroLede">Quickly find terminology, tools, and work processes across categories.</p>
-    </section>
-
     <div class="ad-slot ad-top" aria-label="Advertisement">Ad space</div>
 
     <section class="controls" aria-label="Search and filters">
+      <div class="controls-main">
+        <div class="control search-control">
+          <label id="searchLabel" for="searchInput">Search</label>
+          <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="mode-chips" role="tablist" aria-label="Search modes">
+        <button class="mode-chip" type="button" data-mode="term" id="modeTerm">Term</button>
+        <button class="mode-chip" type="button" data-mode="category" id="modeCategory">Category</button>
+        <button class="mode-chip" type="button" data-mode="action" id="modeAction">Action</button>
+      </div>
+
       <div class="controls-header">
         <div>
           <p class="controls-title" id="controlsTitle">Search</p>
-          <p class="controls-hint" id="controlsHint">Choose a mode, then refine with a keyword.</p>
         </div>
         <div class="controls-actions">
           <button id="clearFilters" class="filters-toggle filters-reset" type="button">
@@ -117,20 +123,8 @@
         </div>
       </div>
 
-      <div class="mode-chips" role="tablist" aria-label="Search modes">
-        <button class="mode-chip" type="button" data-mode="term" id="modeTerm">Term</button>
-        <button class="mode-chip" type="button" data-mode="category" id="modeCategory">Category</button>
-        <button class="mode-chip" type="button" data-mode="action" id="modeAction">Action</button>
-      </div>
-
-      <div class="controls-main">
-        <div class="control search-control">
-          <label id="searchLabel" for="searchInput">Search</label>
-          <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
-        </div>
-      </div>
-
       <div class="controls-filters">
+        <p class="controls-hint" id="controlsHint">Choose a mode, then refine with a keyword.</p>
         <div class="control filter-control" data-mode="category">
           <label id="categoryLabel" for="categorySelect">Category</label>
           <select id="categorySelect" name="cat">
@@ -152,28 +146,26 @@
           <p class="result-count" id="resultCount"></p>
         </div>
 
-        <div class="results-scroll">
-          <div id="quickGuide" class="quick-guide" hidden>
-            <p class="quick-guide-title" id="guideTitle">New here? Try a few example searches:</p>
-            <div class="quick-guide-examples" id="guideExamples"></div>
-          </div>
+        <div id="quickGuide" class="quick-guide" hidden>
+          <p class="quick-guide-title" id="guideTitle">New here? Try a few example searches:</p>
+          <div class="quick-guide-examples" id="guideExamples"></div>
+        </div>
 
-          <div id="results" class="results-list" role="list"></div>
+        <div id="resultsList" class="results-list" role="list"></div>
 
-          <div id="emptyState" class="empty-state" hidden>
-            <p class="empty-title" id="emptyTitle">No results yet.</p>
-            <p class="empty-body" id="emptyBody">Try a different keyword, or reset your filters.</p>
-            <div class="empty-examples">
-              <p class="empty-examples-title" id="emptyExamplesTitle">Example queries</p>
-              <div class="empty-examples-grid">
-                <div class="empty-examples-group">
-                  <p class="empty-examples-label" id="emptyTermLabel">Term presets</p>
-                  <div class="empty-examples-chips" id="emptyTermExamples"></div>
-                </div>
-                <div class="empty-examples-group">
-                  <p class="empty-examples-label" id="emptyActionLabel">Action presets</p>
-                  <div class="empty-examples-chips" id="emptyActionExamples"></div>
-                </div>
+        <div id="emptyState" class="empty-state" hidden>
+          <p class="empty-title" id="emptyTitle">No results yet.</p>
+          <p class="empty-body" id="emptyBody">Try a different keyword, or reset your filters.</p>
+          <div class="empty-examples">
+            <p class="empty-examples-title" id="emptyExamplesTitle">Example queries</p>
+            <div class="empty-examples-grid">
+              <div class="empty-examples-group">
+                <p class="empty-examples-label" id="emptyTermLabel">Term presets</p>
+                <div class="empty-examples-chips" id="emptyTermExamples"></div>
+              </div>
+              <div class="empty-examples-group">
+                <p class="empty-examples-label" id="emptyActionLabel">Action presets</p>
+                <div class="empty-examples-chips" id="emptyActionExamples"></div>
               </div>
             </div>
           </div>
