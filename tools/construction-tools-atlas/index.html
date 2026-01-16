@@ -95,49 +95,51 @@
 
     <div class="ad-slot ad-top" aria-label="Advertisement">Ad space</div>
 
-    <section class="controls" aria-label="Search and filters">
-      <div class="controls-header">
-        <div>
-          <p class="controls-title" id="controlsTitle">Search</p>
-          <p class="controls-hint" id="controlsHint">Choose a mode, then refine with a keyword.</p>
-        </div>
-        <div class="controls-actions">
-          <button id="clearFilters" class="filters-toggle filters-reset" type="button">
-            Reset
-          </button>
-          <button id="filtersToggle" class="filters-toggle" type="button" aria-expanded="true">
-            Filters
-          </button>
-        </div>
-      </div>
-
-      <div class="mode-chips" role="tablist" aria-label="Search modes">
-        <button class="mode-chip" type="button" data-mode="term" id="modeTerm">Term</button>
-        <button class="mode-chip" type="button" data-mode="category" id="modeCategory">Category</button>
-        <button class="mode-chip" type="button" data-mode="action" id="modeAction">Action</button>
-      </div>
-
-      <div class="controls-main">
-        <div class="control search-control">
-          <label id="searchLabel" for="searchInput">Search</label>
-          <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
-        </div>
-      </div>
-
-      <div class="controls-filters">
-        <div class="control filter-control" data-mode="category">
-          <label id="categoryLabel" for="categorySelect">Category</label>
-          <select id="categorySelect" name="cat">
-            <option id="categoryDefaultOption" value="">All categories</option>
-          </select>
+    <div class="controls-sticky">
+      <section class="controls" aria-label="Search and filters">
+        <div class="controls-header">
+          <div>
+            <p class="controls-title" id="controlsTitle">Search</p>
+            <p class="controls-hint" id="controlsHint">Choose a mode, then refine with a keyword.</p>
+          </div>
+          <div class="controls-actions">
+            <button id="clearFilters" class="filters-toggle filters-reset" type="button">
+              Reset
+            </button>
+            <button id="filtersToggle" class="filters-toggle" type="button" aria-expanded="true">
+              Filters
+            </button>
+          </div>
         </div>
 
-        <div class="control filter-control" data-mode="action">
-          <label id="actionLabel">Action</label>
-          <div class="chip-row" id="actionChips" role="listbox" aria-label="Action filters"></div>
+        <div class="mode-chips" role="tablist" aria-label="Search modes">
+          <button class="mode-chip" type="button" data-mode="term" id="modeTerm">Term</button>
+          <button class="mode-chip" type="button" data-mode="category" id="modeCategory">Category</button>
+          <button class="mode-chip" type="button" data-mode="action" id="modeAction">Action</button>
         </div>
-      </div>
-    </section>
+
+        <div class="controls-main">
+          <div class="control search-control">
+            <label id="searchLabel" for="searchInput">Search</label>
+            <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="controls-filters">
+          <div class="control filter-control" data-mode="category">
+            <label id="categoryLabel" for="categorySelect">Category</label>
+            <select id="categorySelect" name="cat">
+              <option id="categoryDefaultOption" value="">All categories</option>
+            </select>
+          </div>
+
+          <div class="control filter-control" data-mode="action">
+            <label id="actionLabel">Action</label>
+            <div class="chip-row" id="actionChips" role="listbox" aria-label="Action filters"></div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <section class="content" aria-label="Results and details">
       <div class="results-panel">
@@ -240,6 +242,11 @@
       </div>
       <p class="tool-footer-disclaimer">No warranty. Use at your own risk.</p>
     </footer>
+  </div>
+
+  <div class="donate-fab" aria-label="Support NicheWorks">
+    <a class="donate-fab__btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+    <a class="donate-fab__btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
   </div>
 
   <!-- engine.js が先、app.js が後 -->

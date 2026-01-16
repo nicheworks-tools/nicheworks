@@ -132,6 +132,10 @@
     .donation-link{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel-2);color:var(--text);font-size:12px;text-decoration:none}
     .donation-link:hover{opacity:0.9}
     code{background:var(--code-bg);border:1px solid var(--code-border);padding:2px 6px;border-radius:8px}
+    .donate-fab{position:fixed;right:12px;bottom:12px;display:flex;gap:8px;z-index:9999}
+    .donate-fab__btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;font-weight:600;text-decoration:none;box-shadow:0 10px 24px rgba(15,23,42,0.18)}
+    .donate-fab__btn:hover,.donate-fab__btn:focus{border-color:var(--accent);color:var(--accent);outline:none}
+    @media (min-width:900px){.donate-fab{flex-direction:column;align-items:flex-end}}
   </style>
 </head>
 
@@ -204,5 +208,10 @@
     </div>
     <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
+
+  <div class="donate-fab" aria-label="Support NicheWorks">
+    <a class="donate-fab__btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+    <a class="donate-fab__btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+  </div>
 </body>
 </html>
