@@ -49,7 +49,8 @@ function setupFastCheck() {
 
     try {
       const text = await runOCR(file, "eng"); // TAB1: EN
-      document.getElementById("fast-input").value = text;
+      const processed = postProcessOcrText(text, { langHint: "en" });
+      document.getElementById("fast-input").value = processed;
     } catch (e) {
       console.error(e);
       alert("OCR failed. See console for details.");
@@ -79,7 +80,8 @@ function setupJBTranslator() {
 
     try {
       const text = await runOCR(file, "jpn+eng"); // TAB2: JP+EN
-      document.getElementById("jb-input").value = text;
+      const processed = postProcessOcrText(text, { langHint: "jp" });
+      document.getElementById("jb-input").value = processed;
     } catch (e) {
       console.error(e);
       alert("OCR failed. See console for details.");
