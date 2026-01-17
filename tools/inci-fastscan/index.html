@@ -39,55 +39,110 @@
 
 </head>
 <body>
-  <header>
-    <h1>INCI FastScan</h1>
-    <p class="subtitle">Fast Safety Check & J-Beauty Translator</p>
+  <header class="site-header">
+    <div class="header-row">
+      <div class="title-block">
+        <h1>INCI FastScan</h1>
+        <p class="subtitle">Fast Safety Check & J-Beauty Translator</p>
+      </div>
+      <button id="support-button" class="support-pill" type="button">Support</button>
+    </div>
   </header>
 
-  <div id="tabs">
-    <button id="tab-fast" class="tab active" type="button">Fast Safety Check</button>
-    <button id="tab-jb" class="tab" type="button">J-Beauty Translator</button>
+  <div id="tabs" class="tabs">
+    <button id="tab-fast" class="tab active" type="button">Fast Safety</button>
+    <button id="tab-jb" class="tab" type="button">J-Beauty</button>
   </div>
 
-  <main>
+  <main class="main">
+    <section class="guide">
+      <h2>How to use</h2>
+      <ol>
+        <li>Paste ingredients or run OCR.</li>
+        <li>Tap Check to review safety.</li>
+        <li>Unknown items appear for review.</li>
+      </ol>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3>Unknown guidance</h3>
+          <ul>
+            <li>OCR noise can split words.</li>
+            <li>Spelling/alias differences may appear.</li>
+            <li>Some items are missing from the dictionary.</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h3>Disclaimer</h3>
+          <ul>
+            <li>Not medical advice.</li>
+            <li>Always check for allergy warnings.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- TAB 1 -->
     <section id="tab-fast-panel" class="panel active">
       <textarea id="fast-input" placeholder="Paste ingredients (comma or line separated)"></textarea>
 
-      <!-- OCR for Fast Safety Check (EN) -->
-      <div class="ocr-block">
+      <div class="file-row">
         <input type="file" accept="image/*" id="ocr-file-fast" />
+      </div>
+
+      <div class="action-row action-row-a">
         <button id="btn-ocr-run-fast" type="button">Run OCR (EN)</button>
+        <button id="btn-fast-reset" type="button" class="button-ghost">Reset</button>
       </div>
 
-      <div class="action-row">
-        <button id="btn-fast-check" type="button">Check Safety</button>
-        <button id="btn-fast-reset" type="button">Reset</button>
+      <div class="action-row action-row-b">
+        <button id="btn-fast-check" type="button" class="button-primary">Check Safety</button>
       </div>
 
-      <div id="fast-results"></div>
+      <div id="fast-results" class="results"></div>
     </section>
 
     <!-- TAB 2 -->
     <section id="tab-jb-panel" class="panel">
       <textarea id="jb-input" placeholder="Paste Japanese ingredients or run OCR"></textarea>
 
-      <div class="ocr-block">
+      <div class="file-row">
         <input type="file" accept="image/*" id="ocr-file" />
+      </div>
+
+      <div class="action-row action-row-a">
         <button id="btn-ocr-run" type="button">Run OCR (JP)</button>
+        <button id="btn-jb-reset" type="button" class="button-ghost">Reset</button>
       </div>
 
-      <div class="action-row">
-        <button id="btn-jb-check" type="button">Translate & Check Safety</button>
-        <button id="btn-jb-reset" type="button">Reset</button>
+      <div class="action-row action-row-b">
+        <button id="btn-jb-check" type="button" class="button-primary">Translate &amp; Check</button>
       </div>
 
-      <div id="jb-results"></div>
+      <div id="jb-results" class="results"></div>
     </section>
   </main>
 
-  <footer>
+  <div id="support-overlay" class="support-overlay" hidden>
+    <div class="support-sheet" role="dialog" aria-modal="false" aria-labelledby="support-title">
+      <div class="support-header">
+        <p id="support-title">If this tool helped you, consider supporting</p>
+        <button id="support-close" class="support-close" type="button" aria-label="Close support panel">Close</button>
+      </div>
+      <div class="support-links">
+        <a href="https://example.com" target="_blank" rel="noopener">Donate link (placeholder)</a>
+        <a href="https://example.com" target="_blank" rel="noopener">Support the project (placeholder)</a>
+        <a href="https://example.com" target="_blank" rel="noopener">Buy us a coffee (placeholder)</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
     <p>NicheWorks – INCI FastScan</p>
+    <div class="footer-links">
+      <a href="/" rel="noopener">Mother site</a>
+      <span>·</span>
+      <a href="/#tools" rel="noopener">Other tools</a>
+    </div>
   </footer>
 </body>
 </html>
