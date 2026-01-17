@@ -24,6 +24,35 @@ function renderResults(container, results) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const supportButton = document.getElementById("support-button");
+  const supportOverlay = document.getElementById("support-overlay");
+  const supportClose = document.getElementById("support-close");
+
+  if (!supportButton || !supportOverlay) return;
+
+  const openSupport = () => {
+    supportOverlay.hidden = false;
+  };
+
+  const closeSupport = () => {
+    supportOverlay.hidden = true;
+  };
+
+  supportButton.addEventListener("click", openSupport);
+  supportClose?.addEventListener("click", closeSupport);
+  supportOverlay.addEventListener("click", (event) => {
+    if (event.target === supportOverlay) {
+      closeSupport();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !supportOverlay.hidden) {
+      closeSupport();
+    }
+  });
+});
+
 function escapeHtml(str) {
   return String(str ?? "")
     .replace(/&/g, "&amp;")
