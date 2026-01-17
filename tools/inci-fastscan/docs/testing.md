@@ -44,3 +44,27 @@ These fixtures contain raw OCR output (including noise). Copy/paste exactly as-i
 - [ ] EN OCR fixture parses into ingredient-like tokens without CAUTION blocks dominating.
 - [ ] JP OCR fixture parses into ingredient-like tokens without 注意/発売元/内容量 blocks dominating.
 - [ ] No runtime code changes were required for this doc update.
+
+## Dictionary validation
+
+Run the dictionary validation script before expanding `ingredients.json` by hand:
+
+```bash
+node tools/inci-fastscan/scripts/validate_dict.js
+```
+
+What it checks:
+
+- Required fields exist (at minimum: `en` and `safety`) and are non-empty.
+- `jp` values are a non-empty string or array of non-empty strings when present.
+- Aliases (`alias`, `aliases`, `en_aliases`, `jp_aliases`) are non-empty strings.
+- No duplicate EN names after normalization (trim, lower-case, collapse whitespace).
+- No duplicate JP names after normalization (trim, collapse whitespace).
+- No alias collides with another entry’s main EN/JP name after normalization.
+- `safety` is one of: `safe`, `caution`, `risk`.
+
+Rule of thumb for manual additions:
+
+- Keep EN names unique and consistent in casing/spacing.
+- Keep JP names unique across the dictionary.
+- Avoid aliases that match any existing EN/JP main name.
