@@ -2,14 +2,17 @@
 
 This document describes manual regression checks for OCR post-processing and ingredient parsing.
 
-## Manual input tests (must pass)
+## Quick smoke test (2 minutes)
 
-Run each of the following in the correct tab, then click **Analyze** (TAB1) or **Translate & Check Safety** (TAB2) as applicable.
+Run the four manual input tests below (EN/JP), then confirm:
+
+- Results render in the output area.
+- Unknown items appear as **Unknown** (or equivalent) instead of disappearing.
 
 **TAB1 (EN)**
 
 1. `Sodium Hyaluronate, Fragrance, Salicylic Acid`
-2. 
+2.
    ```
    Hyaluronic Acid
    Perfume
@@ -18,7 +21,7 @@ Run each of the following in the correct tab, then click **Analyze** (TAB1) or *
 
 **TAB2 (JP)**
 
-3. 
+3.
    ```
    ヒアルロン酸Na
    香料
@@ -26,24 +29,43 @@ Run each of the following in the correct tab, then click **Analyze** (TAB1) or *
    ```
 4. `ヒアルロン酸Na・香料／サリチル酸`
 
-## OCR fixture regression (copy/paste)
+## OCR regression (copy/paste fixtures)
 
 These fixtures contain raw OCR output (including noise). Copy/paste exactly as-is.
 
-- **EN fixture**: open `tools/inci-fastscan/data/fixtures_ocr_samples/en_sample_01.txt` → copy all → paste into **TAB1** textarea → run **Analyze**.
-- **JP fixture**: open `tools/inci-fastscan/data/fixtures_ocr_samples/jp_sample_01.txt` → copy all → paste into **TAB2** textarea → run **Translate & Check Safety**.
+1. **TAB1 (EN)**: open `tools/inci-fastscan/data/fixtures_ocr_samples/en_sample_01.txt` → copy all → paste into TAB1 → run **Analyze**.
+2. **TAB2 (JP)**: open `tools/inci-fastscan/data/fixtures_ocr_samples/jp_sample_01.txt` → copy all → paste into TAB2 → run **Analyze**.
 
-### PASS criteria (plain language)
+**PASS criteria**
 
-- Obvious non-ingredient blocks (e.g., **CAUTION / 注意 / 発売元 / 内容量**) should not dominate the parsed ingredient list.
-- Ingredient tokens should be extracted and split reasonably (examples: **Sodium Hyaluronate**, **ヒアルロン酸Na**, **香料**, **サリチル酸**).
+- Ingredient-like tokens are extracted and listed (e.g., **Sodium Hyaluronate**, **ヒアルロン酸Na**, **香料**, **サリチル酸**).
+- Obvious non-ingredient blocks (e.g., **CAUTION / 注意 / 発売元 / 内容量**) do not dominate the results.
+
+## PASS / FAIL criteria
+
+**PASS** when:
+
+- Results render for each tab without errors or blank output.
+- Unknown entries remain visible as **Unknown** (or equivalent) rather than disappearing.
+- Layout remains usable at 360px width (no overlap or clipped buttons).
+- Support sheet opens and closes without breaking the page.
+- OCR fixture runs populate the textarea before analysis and produce a non-empty result list.
+
+**FAIL** if any of the following occur:
+
+- Results are empty after a valid input or fixture run.
+- Layout breaks at 360px (overlapping, clipped, or unreadable UI).
+- Support sheet fails to open, close, or renders blank.
+- OCR output does not fill the textarea or analysis yields no results.
+- Unknown items vanish from results instead of being labeled.
 
 ## Pre-merge checklist
 
-- [ ] All four manual input tests above behave as expected.
-- [ ] EN OCR fixture parses into ingredient-like tokens without CAUTION blocks dominating.
-- [ ] JP OCR fixture parses into ingredient-like tokens without 注意/発売元/内容量 blocks dominating.
-- [ ] No runtime code changes were required for this doc update.
+- [ ] Mobile 360px layout OK.
+- [ ] Support sheet opens/closes.
+- [ ] OCR runs and fills textarea.
+- [ ] 4 manual tests OK.
+- [ ] Fixtures regression OK.
 
 ## Dictionary validation
 
