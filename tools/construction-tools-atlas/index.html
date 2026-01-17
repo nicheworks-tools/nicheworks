@@ -1,261 +1,118 @@
 <!doctype html>
-<html lang="en" data-lang="en" data-theme="light">
+<html lang="ja" data-theme="light">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-  <script>
-    (() => {
-      try {
-        const stored = localStorage.getItem("nw_theme");
-        const theme = stored === "dark" ? "dark" : "light";
-        document.documentElement.dataset.theme = theme;
-      } catch (error) {
-        document.documentElement.dataset.theme = "light";
-      }
-    })();
-  </script>
-
-
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Construction Tools &amp; Slang Atlas | NicheWorks</title>
-  <meta name="description" content="Browse, search, and learn core construction field terms, tools, and work processes." />
-  <link rel="canonical" href="https://nicheworks.app/tools/construction-tools-atlas/" />
-  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/construction-tools-atlas/" />
-  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/construction-tools-atlas/?lang=ja" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <meta property="og:site_name" content="NicheWorks" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Construction Tools &amp; Slang Atlas | NicheWorks" />
-  <meta property="og:description" content="Browse, search, and learn core construction field terms, tools, and work processes." />
-  <meta property="og:url" content="https://nicheworks.app/tools/construction-tools-atlas/" />
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Construction Tools &amp; Slang Atlas | NicheWorks" />
-  <meta name="twitter:description" content="Browse, search, and learn core construction field terms, tools, and work processes." />
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Construction Atlas</title>
   <link rel="stylesheet" href="./style.css" />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "name": "NicheWorks",
-          "url": "https://nicheworks.app/"
-        },
-        {
-          "@type": "WebSite",
-          "name": "NicheWorks",
-          "url": "https://nicheworks.app/"
-        },
-        {
-          "@type": "WebPage",
-          "name": "Construction Tools & Slang Atlas",
-          "url": "https://nicheworks.app/tools/construction-tools-atlas/",
-          "isPartOf": {
-            "@type": "WebSite",
-            "url": "https://nicheworks.app/"
-          }
-        }
-      ]
-    }
-  </script>
-
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-  </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
 </head>
 <body>
-  <div class="page">
-    <header class="topbar" id="pageTop">
-      <div class="topbar-title">
-        <span class="topbar-brand">NicheWorks</span>
-        <span class="topbar-tool" id="headerTitle">Construction Tools &amp; Slang Atlas</span>
-      </div>
-      <div class="topbar-actions">
-        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Theme toggle">Light</button>
-        <button id="langToggle" class="lang-toggle" type="button" aria-label="Language toggle">JA / EN</button>
-        <button id="btnSupport" class="support-button" type="button">Support</button>
-      </div>
-    </header>
+  <!-- Donation data (NO hardcode in JS) -->
+  <div class="donation-data" data-ofuse="https://ofuse.me/nicheworks" data-kofi="https://ko-fi.com/nicheworks" hidden></div>
 
-    <div class="ad-slot ad-top" aria-label="Advertisement">Ad space</div>
-
-    <section class="controls" aria-label="Search and filters">
-      <div class="controls-main">
-        <div class="control search-control">
-          <label id="searchLabel" for="searchInput">Search</label>
-          <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
-        </div>
-      </div>
-
-      <div class="mode-chips" role="tablist" aria-label="Search modes">
-        <button class="mode-chip" type="button" data-mode="term" id="modeTerm">Term</button>
-        <button class="mode-chip" type="button" data-mode="category" id="modeCategory">Category</button>
-        <button class="mode-chip" type="button" data-mode="action" id="modeAction">Action</button>
-      </div>
-
-      <div class="controls-header">
-        <div>
-          <p class="controls-title" id="controlsTitle">Search</p>
-        </div>
-        <div class="controls-actions">
-          <button id="clearFilters" class="filters-toggle filters-reset" type="button">
-            Reset
-          </button>
-          <button id="filtersToggle" class="filters-toggle" type="button" aria-expanded="true">
-            Filters
-          </button>
-        </div>
-      </div>
-
-      <div class="controls-filters">
-        <p class="controls-hint" id="controlsHint">Choose a mode, then refine with a keyword.</p>
-        <div class="control filter-control" data-mode="category">
-          <label id="categoryLabel" for="categorySelect">Category</label>
-          <select id="categorySelect" name="cat">
-            <option id="categoryDefaultOption" value="">All categories</option>
-          </select>
-        </div>
-
-        <div class="control filter-control" data-mode="action">
-          <label id="actionLabel">Action</label>
-          <div class="chip-row" id="actionChips" role="listbox" aria-label="Action filters"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="content" aria-label="Results and details">
-      <div class="results-panel">
-        <div class="results-header">
-          <h2 id="resultsTitle">Results</h2>
-          <p class="result-count" id="resultCount"></p>
-        </div>
-
-        <div id="quickGuide" class="quick-guide" hidden>
-          <p class="quick-guide-title" id="guideTitle">New here? Try a few example searches:</p>
-          <div class="quick-guide-examples" id="guideExamples"></div>
-        </div>
-
-        <div id="resultsList" class="results-list" role="list"></div>
-
-        <div id="emptyState" class="empty-state" hidden>
-          <p class="empty-title" id="emptyTitle">No results yet.</p>
-          <p class="empty-body" id="emptyBody">Try a different keyword, or reset your filters.</p>
-          <div class="empty-examples">
-            <p class="empty-examples-title" id="emptyExamplesTitle">Example queries</p>
-            <div class="empty-examples-grid">
-              <div class="empty-examples-group">
-                <p class="empty-examples-label" id="emptyTermLabel">Term presets</p>
-                <div class="empty-examples-chips" id="emptyTermExamples"></div>
-              </div>
-              <div class="empty-examples-group">
-                <p class="empty-examples-label" id="emptyActionLabel">Action presets</p>
-                <div class="empty-examples-chips" id="emptyActionExamples"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="detail-panel" id="detailPanel" aria-live="polite">
-        <div id="detailPlaceholder" class="detail-placeholder">
-          Select an entry to view details.
-        </div>
-
-        <div class="detail-sheet" id="detailSheet" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
-          <div class="detail-actions" id="detailActions" hidden>
-            <button id="detailBack" class="detail-action" type="button">Back</button>
-            <button id="detailClose" class="detail-action detail-action--primary" type="button">Close</button>
-          </div>
-
-          <div id="detail" class="detail" hidden>
-            <p class="detail-category" id="detailCategory"></p>
-            <h3 id="detailTitle"></h3>
-            <p class="detail-subtitle" id="detailSubtitle"></p>
-
-            <div class="detail-section" id="detailDescription"></div>
-
-            <div class="detail-section detail-examples" id="detailExamplesSection" hidden>
-              <p class="detail-section-title" id="detailExamplesLabel">Examples</p>
-              <ul id="detailExamples"></ul>
-            </div>
-
-            <div class="detail-meta">
-              <!-- ✅ Task 表示（IDではなくラベルを入れる想定） -->
-              <div class="meta-block">
-                <p class="meta-label" id="detailTasksLabel">Task</p>
-                <p id="detailTasks"></p>
-              </div>
-
-              <div class="meta-block">
-                <p class="meta-label" id="detailAliasesLabel">Aliases</p>
-                <p id="detailAliases"></p>
-              </div>
-
-              <div class="meta-block">
-                <p class="meta-label" id="detailTagsLabel">Tags</p>
-                <p id="detailTags"></p>
-              </div>
-
-              <div class="meta-block">
-                <p class="meta-label" id="detailIdLabel">ID</p>
-                <p id="detailId"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <nav class="info-links" aria-label="Reference pages">
-      <a id="aboutLink" href="./pages/about.html">About</a>
-      <a id="methodLink" href="./pages/method.html">Method</a>
-      <a id="disclaimerLink" href="./pages/disclaimer.html">Disclaimer</a>
-      <a id="creditsLink" href="./pages/credits.html">Credits</a>
-    </nav>
-
-    <footer class="tool-footer" aria-label="NicheWorks footer">
-      <p class="tool-footer-title">Part of NicheWorks Tools</p>
-      <a class="tool-footer-link" href="https://nicheworks.app/">https://nicheworks.app/</a>
-      <div class="donation-data" data-ofuse="https://ofuse.me/nicheworks" data-kofi="https://ko-fi.com/nicheworks" hidden></div>
-      <p class="tool-footer-disclaimer">No warranty. Use at your own risk.</p>
-    </footer>
-  </div>
-
-  <div class="mobile-bottom-bar" aria-label="Quick actions">
-    <button class="mobile-bottom-bar__btn mobile-bottom-bar__btn--ghost" id="scrollTop" type="button">Top</button>
-  </div>
-
-  <div id="sheetOverlay" class="sheet-overlay" hidden></div>
-  <section id="supportSheet" class="sheet" hidden aria-hidden="true" aria-labelledby="supportSheetTitle">
-    <div class="sheet__handle" aria-hidden="true"></div>
-    <div class="sheet__header">
-      <h2 class="sheet__title" id="supportSheetTitle">Support this tool</h2>
-      <button class="sheet__close" id="btnCloseSupport" type="button" aria-label="Close support sheet">Close</button>
+  <!-- Topbar -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__left">
+      <div class="brand" id="brandTitle">Construction Atlas</div>
     </div>
+    <div class="topbar__right">
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Theme">☼</button>
+      <button class="pillbtn" id="langBtn" type="button" aria-label="Language">JA/EN</button>
+      <button class="pillbtn pillbtn--accent" id="supportBtn" type="button">Support</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Search -->
+    <section class="search">
+      <div class="search__box">
+        <span class="search__icon" aria-hidden="true">🔎</span>
+        <input id="searchInput" class="search__input" type="text" inputmode="search"
+               placeholder="用語 / 別名 / 英語で検索" autocomplete="off" />
+        <button class="iconbtn search__clear" id="clearBtn" type="button" aria-label="Clear">×</button>
+      </div>
+    </section>
+
+    <!-- Quick filters -->
+    <section class="filters">
+      <div class="chips" id="actionChips" aria-label="Quick filters"></div>
+      <div class="chips chips--secondary">
+        <button class="pillbtn" id="categoryBtn" type="button">Category</button>
+        <button class="pillbtn" id="taskBtn" type="button">Task</button>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results">
+      <div class="results__meta">
+        <div class="results__count" id="resultCount">Results: 0</div>
+        <div class="results__hint" id="hintText"></div>
+      </div>
+      <div class="list" id="resultList" role="list"></div>
+    </section>
+  </main>
+
+  <!-- Overlay root -->
+  <div class="overlay" id="overlay" hidden></div>
+
+  <!-- Detail: full-screen sheet -->
+  <section class="sheet sheet--full" id="detailSheet" hidden aria-modal="true" role="dialog">
+    <div class="sheet__top">
+      <button class="iconbtn" id="detailClose" type="button" aria-label="Close">×</button>
+      <div class="sheet__title" id="detailTitle">—</div>
+      <button class="iconbtn" id="detailStar" type="button" aria-label="Favorite">☆</button>
+    </div>
+
     <div class="sheet__body">
-      <a class="sheet__item" id="supportOfuseLink" href="#" target="_blank" rel="noopener">OFUSE</a>
-      <a class="sheet__item" id="supportKofiLink" href="#" target="_blank" rel="noopener">Ko-fi</a>
+      <div class="termblock">
+        <div class="termblock__chiprow" id="detailChips"></div>
+        <div class="termblock__terms" id="detailTerms"></div>
+        <div class="termblock__desc" id="detailDesc"></div>
+      </div>
+
+      <nav class="tabs" id="detailTabs" aria-label="Detail tabs">
+        <button class="tab tab--active" data-tab="meaning" type="button">Meaning</button>
+        <button class="tab" data-tab="examples" type="button">Examples</button>
+        <button class="tab" data-tab="aliases" type="button">Aliases</button>
+        <button class="tab" data-tab="meta" type="button">Meta</button>
+      </nav>
+
+      <div class="tabpanel" id="tabMeaning"></div>
+      <div class="tabpanel" id="tabExamples" hidden></div>
+      <div class="tabpanel" id="tabAliases" hidden></div>
+      <div class="tabpanel" id="tabMeta" hidden></div>
+
+      <div class="supportInline">
+        <button class="pillbtn pillbtn--accent" id="supportInlineBtn" type="button">Support this tool</button>
+      </div>
     </div>
   </section>
 
-  <!-- engine.js が先、app.js が後 -->
-  <script src="./core/engine.js"></script>
+  <!-- Support: bottom sheet -->
+  <section class="sheet sheet--bottom" id="supportSheet" hidden aria-modal="true" role="dialog">
+    <div class="sheet__top">
+      <div class="sheet__title">Support</div>
+      <button class="iconbtn" id="supportClose" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="sheet__body sheet__body--compact">
+      <a class="supportLink" id="ofuseLink" target="_blank" rel="noopener noreferrer">OFUSE</a>
+      <a class="supportLink" id="kofiLink" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+      <p class="muted" id="supportNote"></p>
+    </div>
+  </section>
+
+  <!-- Minimal filter sheet (UI stub) -->
+  <section class="sheet sheet--bottom" id="filterSheet" hidden aria-modal="true" role="dialog">
+    <div class="sheet__top">
+      <div class="sheet__title" id="filterTitle">Filter</div>
+      <button class="iconbtn" id="filterClose" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="sheet__body sheet__body--compact">
+      <div class="muted" id="filterDesc">（ここは導線だけ。必要なら次で中身を実装する）</div>
+      <div class="pillwrap" id="filterItems"></div>
+    </div>
+  </section>
+
   <script src="./app.js"></script>
 </body>
 </html>
