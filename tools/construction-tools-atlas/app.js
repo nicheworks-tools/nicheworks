@@ -91,11 +91,19 @@
     setTheme(state.theme === "light" ? "dark" : "light");
   }
   function toggleLang(){
-    state.uiLang = state.uiLang === "ja" ? "en" : "ja";
-    localStorage.setItem(LS.uiLang, state.uiLang);
-    render();
-    if (state.current) openDetail(state.current.id, { keepScroll: true });
+  // CTA_FIX_LANG_TOGGLE_DO_NOT_OPEN_DETAIL
+  // 言語切替で「閉じているdetail」を勝手に開かない。開いていた場合のみ維持。
+  const wasDetailOpen = els.detailSheet && !els.detailSheet.hidden;
+
+  state.uiLang = state.uiLang === "ja" ? "en" : "ja";
+  localStorage.setItem(LS.uiLang, state.uiLang);
+
+  render();
+
+  if (wasDetailOpen && state.current) {
+    openDetail(state.current.id, { keepScroll: true });
   }
+}
 
   function lockScroll(lock){
     document.body.style.overflow = lock ? "hidden" : "";
@@ -452,7 +460,8 @@
   // ---- Events ----
   function bind(){
     setTheme(state.theme);
-    applySupportLinks();
+/* CTA_FIX_GUARD_APPLY_SUPPORTLINKS */
+if (typeof applySupportLinks === "function") { applySupportLinks(); }
 
     els.themeBtn.addEventListener("click", toggleTheme);
     els.langBtn.addEventListener("click", toggleLang);
@@ -531,4 +540,81 @@
   }
 
   init();
+})();
+
+
+/* CTA_CLOSE_GUARD_20260118 */
+(function(){
+  function q(sel, root){ return (root||document).querySelector(sel); }
+  function getOverlay(){ return q('#overlay') || q('.overlay') || q('[data-overlay]'); }
+
+  function hardHideOverlay(){
+    const ov = getOverlay();
+    if (ov){
+      ov.hidden = true;
+      ov.classList.remove('open','show','active','is-open','is-active');
+      ov.style.display = '';
+    }
+    document.body.classList.remove('no-scroll','modal-open','sheet-open');
+    document.body.style.overflow = '';
+  }
+
+  function hardCloseSheet(sheet){
+    if (!sheet) return;
+    sheet.hidden = true;
+    sheet.classList.remove('open','show','active','is-open','is-active');
+    sheet.style.transform = '';
+    sheet.style.opacity = '';
+    hardHideOverlay();
+  }
+
+  function hardCloseAll(){
+    ['taskSheet','filterSheet','supportSheet','detailSheet'].forEach(function(id){
+      const el = document.getElementById(id);
+      if (el) hardCloseSheet(el);
+    });
+    hardHideOverlay();
+  }
+
+  function bindClose(sheetId){
+    const sheet = document.getElementById(sheetId);
+    if (!sheet) return;
+
+    const closeId = sheetId.replace('Sheet','Close');
+    const close =
+      q('#' + closeId, sheet) ||
+      q("button[aria-label='Close']", sheet) ||
+      q("button[aria-label='閉じる']", sheet) ||
+      q('button', sheet);
+
+    if (close){
+      try { close.type = 'button'; } catch(e) {}
+      close.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        hardCloseSheet(sheet);
+      }, true);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    // 初期に勝手に開いているのを強制クローズ
+    hardCloseAll();
+
+    // 各シートの×を強制的に有効化
+    bindClose('taskSheet');
+    bindClose('filterSheet');
+    bindClose('supportSheet');
+    bindClose('detailSheet');
+
+    // overlay クリックでも閉じる
+    const ov = getOverlay();
+    if (ov){
+      ov.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        hardCloseAll();
+      }, true);
+    }
+  });
 })();

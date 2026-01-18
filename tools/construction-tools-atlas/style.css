@@ -300,3 +300,37 @@ body{
 .muted{color:var(--muted); font-size:12px; line-height:1.35}
 
 .pillwrap{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+
+
+/* CTA_FIX_TASK_SHEET_SCROLL */
+/* Bottom sheet: keep header (Close) visible and allow inner scrolling */
+.sheet--bottom{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-height: min(82dvh, calc(100dvh - 56px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* prevent sheet itself from growing */
+}
+
+.sheet__top{
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.sheet__body{
+  flex: 1 1 auto;
+  overflow: auto; /* scroll happens here */
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+
+/* CTA_HIDDEN_FORCE_20260118 */
+/* hidden は絶対に非表示（シートが閉じない根治） */
+#overlay[hidden], .overlay[hidden], [data-overlay][hidden] { display: none !important; }
+.sheet[hidden], section.sheet[hidden] { display: none !important; }
