@@ -241,7 +241,54 @@
 
     </footer>
 
-  </main>
+  <section class="block">
+  <h2>全ツール一覧</h2>
+  <p class="category-desc">
+    自動生成リスト。合計：<span id="nw-tool-count">...</span>
+  </p>
+
+  <input id="nw-tool-q" type="search" placeholder="ツールを検索..." style="width:100%; padding:10px; margin:8px 0 12px;">
+
+  <ul class="list" id="nw-tool-list">
+    <li class="small muted">読み込み中...</li>
+  </ul>
+</section>
+
+<script>
+(async function () {
+  const res = await fetch("/tools/tools-index.json", { cache: "no-store" });
+  const data = await res.json();
+
+  const countEl = document.getElementById("nw-tool-count");
+  const qEl = document.getElementById("nw-tool-q");
+  const listEl = document.getElementById("nw-tool-list");
+
+  countEl.textContent = data.total;
+
+  const render = (q) => {
+    const query = (q || "").trim().toLowerCase();
+    const items = data.items.filter(it => {
+      const hay = `${it.slug} ${it.title_ja} ${it.desc_ja} ${(it.tags||[]).join(" ")}`.toLowerCase();
+      return !query || hay.includes(query);
+    });
+
+    listEl.innerHTML = items.map(it => {
+      const name = it.title_ja && it.title_ja !== it.slug ? it.title_ja : it.slug;
+      const desc = it.desc_ja ? `<br><span class="small muted">${it.desc_ja}</span>` : "";
+      return `<li><strong><a href="/tools/${it.slug}/" target="_blank" rel="noopener">${name}</a></strong>${desc}</li>`;
+    }).join("");
+
+    if (!items.length) {
+      listEl.innerHTML = `<li class="small muted">該当なし</li>`;
+    }
+  };
+
+  qEl.addEventListener("input", () => render(qEl.value));
+  render("");
+})();
+</script>
+
+</main>
 
   <!-- Cloudflare Web Analytics -->
   
