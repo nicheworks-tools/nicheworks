@@ -144,6 +144,22 @@ body.is-locked{
 }
 .results__count{font-size:12px; color:var(--muted); font-weight:700;}
 .results__hint{font-size:12px; color:var(--muted);}
+.results__more{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  margin-top:10px;
+}
+.results__more .pillbtn{
+  min-height:44px;
+  width:100%;
+  font-size:13px;
+}
+.results__morehint{
+  font-size:11px;
+  color:var(--muted);
+}
 
 .list{
   display:flex;
@@ -159,7 +175,7 @@ body.is-locked{
   display:grid;
   grid-template-columns: 1fr auto;
   gap:8px;
-  padding:10px 10px;
+  padding:8px 10px;
   border-top:1px solid var(--line);
 }
 .row:first-child{border-top:0}
@@ -168,23 +184,23 @@ body.is-locked{
 .row__title{
   font-size:14px;
   font-weight:800;
-  line-height:1.15;
+  line-height:1.1;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 .row__desc{
-  margin-top:4px;
+  margin-top:3px;
   font-size:12px;
   color:var(--muted);
-  line-height:1.25;
+  line-height:1.2;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 .row__meta{
-  margin-top:6px;
-  display:flex; gap:6px; flex-wrap:wrap;
+  margin-top:4px;
+  display:flex; gap:6px;
 }
 .chip{
   display:inline-flex;
@@ -196,6 +212,11 @@ body.is-locked{
   font-size:11px;
   color:var(--muted);
   font-weight:800;
+}
+.chip--more{
+  background:transparent;
+  border-style:dashed;
+  color:var(--muted);
 }
 .starbtn{
   min-width:38px;

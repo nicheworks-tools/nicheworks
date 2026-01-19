@@ -23,6 +23,9 @@
     resultCount: $("#resultCount"),
     hintText: $("#hintText"),
     resultList: $("#resultList"),
+    loadMoreWrap: $("#loadMoreWrap"),
+    loadMoreBtn: $("#loadMoreBtn"),
+    loadMoreHint: $("#loadMoreHint"),
 
     // sheets
     detailSheet: $("#detailSheet"),
@@ -85,6 +88,9 @@
     entries: [],
     filtered: [],
     current: null,
+    pageSize: 50,
+    visibleCount: 50,
+    lastFilterKey: "",
   };
   let filterDraft = {
     action: state.action,
@@ -365,11 +371,41 @@
     return (d || "").trim() || (state.uiLang === "ja" ? "（説明なし）" : "(no description)");
   }
 
+  function getFilterKey(){
+    return [state.q, state.action, state.category, state.task].join("||");
+  }
+
+  function syncVisibleCount(){
+    const key = getFilterKey();
+    if (key !== state.lastFilterKey) {
+      state.lastFilterKey = key;
+      state.visibleCount = state.pageSize;
+    }
+  }
+
+  function buildRowTags(e, max = 3){
+    const tags = [];
+    const addTag = (value) => {
+      const label = String(value || "").trim();
+      if (!label) return;
+      if (!tags.includes(label)) tags.push(label);
+    };
+
+    addTag(primaryChip(e));
+    (e.categories || []).forEach(addTag);
+    (e.tasks || []).forEach(addTag);
+    if (e.type) addTag(e.type);
+
+    if (tags.length <= max) return { visible: tags, remaining: 0 };
+    return { visible: tags.slice(0, max), remaining: tags.length - max };
+  }
+
   function renderList(){
     els.resultList.innerHTML = "";
 
     const frag = document.createDocumentFragment();
-    for (const e of state.filtered){
+    const visible = state.filtered.slice(0, state.visibleCount);
+    for (const e of visible){
       const row = document.createElement("div");
       row.className = "row";
       row.setAttribute("role", "listitem");
@@ -388,10 +424,19 @@
 
       const meta = document.createElement("div");
       meta.className = "row__meta";
-      const chip = document.createElement("span");
-      chip.className = "chip";
-      chip.textContent = primaryChip(e);
-      meta.appendChild(chip);
+      const { visible: tags, remaining } = buildRowTags(e, 3);
+      tags.forEach((tag) => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = tag;
+        meta.appendChild(chip);
+      });
+      if (remaining > 0) {
+        const more = document.createElement("span");
+        more.className = "chip chip--more";
+        more.textContent = `+${remaining}`;
+        meta.appendChild(more);
+      }
 
       main.appendChild(title);
       main.appendChild(desc);
@@ -427,9 +472,23 @@
     els.resultList.appendChild(frag);
 
     els.resultCount.textContent = `Results: ${state.filtered.length}`;
+    const hasMore = state.filtered.length > state.visibleCount;
     els.hintText.textContent = state.filtered.length === 0
       ? (state.uiLang === "ja" ? "一致する用語がありません" : "No matches")
       : "";
+
+    if (els.loadMoreWrap) {
+      els.loadMoreWrap.hidden = !hasMore;
+      if (els.loadMoreBtn) {
+        els.loadMoreBtn.textContent = state.uiLang === "ja" ? "さらに表示" : "Load more";
+      }
+      if (els.loadMoreHint) {
+        const shown = Math.min(state.visibleCount, state.filtered.length);
+        els.loadMoreHint.textContent = state.uiLang === "ja"
+          ? `表示中: ${shown} / ${state.filtered.length}`
+          : `Showing ${shown} / ${state.filtered.length}`;
+      }
+    }
   }
 
   function setActiveTab(name){
@@ -522,6 +581,7 @@
 
   function render(){
     renderActionChips();
+    syncVisibleCount();
     filterEntries();
     renderList();
   }
@@ -682,6 +742,13 @@
       els.searchInput.focus();
       render();
     });
+
+    if (els.loadMoreBtn) {
+      els.loadMoreBtn.addEventListener("click", () => {
+        state.visibleCount += state.pageSize;
+        renderList();
+      });
+    }
 
     document.addEventListener("keydown", (ev) => {
       if (ev.key === "Escape") closeAllSheets();
