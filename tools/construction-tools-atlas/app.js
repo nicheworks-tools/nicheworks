@@ -51,11 +51,16 @@
     howtoSheet: $("#howtoSheet"),
     howtoClose: $("#howtoClose"),
 
+    filterOpenBtn: $("#filterOpenBtn"),
     filterSheet: $("#filterSheet"),
     filterTitle: $("#filterTitle"),
     filterDesc: $("#filterDesc"),
     filterClose: $("#filterClose"),
-    filterItems: $("#filterItems"),
+    filterActionItems: $("#filterActionItems"),
+    filterCategoryItems: $("#filterCategoryItems"),
+    filterTaskItems: $("#filterTaskItems"),
+    filterApplyBtn: $("#filterApplyBtn"),
+    filterResetBtn: $("#filterResetBtn"),
 
     donationData: $(".donation-data"),
   };
@@ -80,6 +85,11 @@
     entries: [],
     filtered: [],
     current: null,
+  };
+  let filterDraft = {
+    action: state.action,
+    category: state.category,
+    task: state.task,
   };
   let lockCount = 0;
 
@@ -516,43 +526,100 @@
     renderList();
   }
 
-  // ---- Filter sheet (UI stub) ----
-  function openFilter(kind){
-    els.filterItems.innerHTML = "";
-    const title = kind === "category" ? "Category" : "Task";
-    els.filterTitle.textContent = title;
+  // ---- Filter sheet ----
+  function syncFilterDraft(){
+    filterDraft = {
+      action: state.action,
+      category: state.category,
+      task: state.task,
+    };
+  }
 
+  function setActiveButtons(container, value){
+    $$("button", container).forEach(btn => {
+      btn.classList.toggle("pillbtn--accent", btn.dataset.value === value);
+    });
+  }
+
+  function renderFilterButtons(container, items, currentValue, onSelect){
+    container.innerHTML = "";
+    items.forEach((item) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "pillbtn" + (item.value === currentValue ? " pillbtn--accent" : "");
+      b.dataset.value = item.value;
+      b.textContent = item.label;
+      b.addEventListener("click", () => {
+        onSelect(item.value);
+        setActiveButtons(container, item.value);
+      });
+      container.appendChild(b);
+    });
+  }
+
+  function getFilterItems(kind){
     const items = new Set(["all"]);
     for (const e of state.entries){
       const arr = kind === "category" ? (e.categories||[]) : (e.tasks||[]);
       arr.forEach(x => items.add(String(x)));
     }
+    return [...items].sort((a,b)=> a==="all"?-1 : b==="all"?1 : a.localeCompare(b));
+  }
 
-    const current = kind === "category" ? state.category : state.task;
-
-    [...items].sort((a,b)=> a==="all"?-1 : b==="all"?1 : a.localeCompare(b)).forEach(v => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "pillbtn" + (v === current ? " pillbtn--accent" : "");
-      b.textContent = v === "all" ? "All" : v;
-      b.addEventListener("click", () => {
-        if (kind === "category") {
-          state.category = v;
-          localStorage.setItem(LS.category, v);
-        } else {
-          state.task = v;
-          localStorage.setItem(LS.task, v);
-        }
-        closeSheet(els.filterSheet);
-        render();
-      });
-      els.filterItems.appendChild(b);
-    });
-
+  function openFilterSheet(){
+    syncFilterDraft();
+    els.filterTitle.textContent = "Filter";
     els.filterDesc.textContent = state.uiLang === "ja"
-      ? "選択すると即反映します（ページスクロール維持）"
-      : "Tap to apply immediately.";
+      ? "項目を選択して Apply で反映 / Reset で初期化"
+      : "Choose filters, then Apply or Reset.";
+
+    renderFilterButtons(
+      els.filterActionItems,
+      ACTIONS.map(a => ({ value: a.id, label: a.label.en })),
+      filterDraft.action,
+      (value) => { filterDraft.action = value; }
+    );
+
+    renderFilterButtons(
+      els.filterCategoryItems,
+      getFilterItems("category").map(v => ({ value: v, label: v === "all" ? "All" : v })),
+      filterDraft.category,
+      (value) => { filterDraft.category = value; }
+    );
+
+    renderFilterButtons(
+      els.filterTaskItems,
+      getFilterItems("task").map(v => ({ value: v, label: v === "all" ? "All" : v })),
+      filterDraft.task,
+      (value) => { filterDraft.task = value; }
+    );
+
     openSheet(els.filterSheet);
+  }
+
+  function applyFilterDraft(){
+    state.action = filterDraft.action;
+    state.category = filterDraft.category;
+    state.task = filterDraft.task;
+    localStorage.setItem(LS.action, state.action);
+    localStorage.setItem(LS.category, state.category);
+    localStorage.setItem(LS.task, state.task);
+    render();
+    closeAllSheets();
+  }
+
+  function resetFilters(){
+    filterDraft = { action: "all", category: "all", task: "all" };
+    state.action = "all";
+    state.category = "all";
+    state.task = "all";
+    localStorage.setItem(LS.action, state.action);
+    localStorage.setItem(LS.category, state.category);
+    localStorage.setItem(LS.task, state.task);
+    render();
+    setActiveButtons(els.filterActionItems, filterDraft.action);
+    setActiveButtons(els.filterCategoryItems, filterDraft.category);
+    setActiveButtons(els.filterTaskItems, filterDraft.task);
   }
 
   // ---- Events ----
@@ -596,9 +663,14 @@
       setActiveTab(btn.dataset.tab);
     });
 
-    els.categoryBtn.addEventListener("click", () => openFilter("category"));
-    els.taskBtn.addEventListener("click", () => openFilter("task"));
+    if (els.filterOpenBtn) {
+      els.filterOpenBtn.addEventListener("click", openFilterSheet);
+    }
+    els.categoryBtn.addEventListener("click", openFilterSheet);
+    els.taskBtn.addEventListener("click", openFilterSheet);
     els.filterClose.addEventListener("click", closeAllSheets);
+    els.filterApplyBtn.addEventListener("click", applyFilterDraft);
+    els.filterResetBtn.addEventListener("click", resetFilters);
 
     els.searchInput.addEventListener("input", () => {
       state.q = els.searchInput.value || "";
