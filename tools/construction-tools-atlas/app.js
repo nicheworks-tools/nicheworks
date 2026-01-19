@@ -237,13 +237,35 @@
       const descEn = x?.description?.en || x?.desc?.en || x?.definition?.en || x?.description_en || "";
       const aliasesJa = (x?.aliases?.ja || x?.alias?.ja || x?.aliases_ja || []).filter(Boolean);
       const aliasesEn = (x?.aliases?.en || x?.alias?.en || x?.aliases_en || []).filter(Boolean);
+      const relatedJa = (x?.related?.ja || x?.relatedTerms?.ja || x?.related_ja || []).filter(Boolean);
+      const relatedEn = (x?.related?.en || x?.relatedTerms?.en || x?.related_en || []).filter(Boolean);
+      const examplesJa = (x?.examples?.ja || x?.example?.ja || x?.examples_ja || x?.usage?.ja || x?.usage_ja || []).filter(Boolean);
+      const examplesEn = (x?.examples?.en || x?.example?.en || x?.examples_en || x?.usage?.en || x?.usage_en || []).filter(Boolean);
       const categories = (x?.categories || x?.category || []).flat().filter(Boolean);
       const tasks = (x?.tasks || x?.task || []).flat().filter(Boolean);
       const region = (x?.region || []).flat().filter(Boolean);
       const fuzzy = (x?.fuzzy || []).flat().filter(Boolean);
       const type = x?.type || "";
 
-      return { id, termJa, termEn, descJa, descEn, aliasesJa, aliasesEn, categories, tasks, region, fuzzy, type, _raw:x };
+      return {
+        id,
+        termJa,
+        termEn,
+        descJa,
+        descEn,
+        aliasesJa,
+        aliasesEn,
+        relatedJa,
+        relatedEn,
+        examplesJa,
+        examplesEn,
+        categories,
+        tasks,
+        region,
+        fuzzy,
+        type,
+        _raw:x,
+      };
     });
   }
 
@@ -414,7 +436,7 @@
     const e = state.entries.find(x => x.id === id);
     if (!e) return;
     state.current = e;
-    renderDetailContent(e);
+    renderDetailContent(state.current);
     setActiveTab("meaning");
     openSheet(els.detailSheet);
   }
@@ -450,15 +472,24 @@
       <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${escapeHtml(en || "—")}</div></div>
     `;
 
+    const exampleJa = (e.examplesJa || []).filter(Boolean);
+    const exampleEn = (e.examplesEn || []).filter(Boolean);
+    const exampleList = (items) => items.length
+      ? `<ul class="exampleList">${items.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
+      : `<span class="muted">—</span>`;
+
     els.tabExamples.innerHTML = `
-      <div class="muted">${state.uiLang === "ja" ? "（例文は未整備。データが入れば表示します）" : "(Examples not available yet. Will show when data exists.)"}</div>
+      <div class="kv"><div class="kv__k">JP</div><div class="kv__v">${exampleList(exampleJa)}</div></div>
+      <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${exampleList(exampleEn)}</div></div>
     `;
 
-    const aj = (e.aliasesJa||[]).map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ");
-    const ae = (e.aliasesEn||[]).map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ");
+    const ajList = [...new Set([...(e.aliasesJa||[]), ...(e.relatedJa||[])])];
+    const aeList = [...new Set([...(e.aliasesEn||[]), ...(e.relatedEn||[])])];
+    const aj = ajList.length ? ajList.map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ") : `<span class="muted">—</span>`;
+    const ae = aeList.length ? aeList.map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ") : `<span class="muted">—</span>`;
     els.tabAliases.innerHTML = `
-      <div class="kv"><div class="kv__k">JP aliases</div><div class="kv__v">${aj || "—"}</div></div>
-      <div class="kv"><div class="kv__k">EN aliases</div><div class="kv__v">${ae || "—"}</div></div>
+      <div class="kv"><div class="kv__k">JP aliases/related</div><div class="kv__v">${aj}</div></div>
+      <div class="kv"><div class="kv__k">EN aliases/related</div><div class="kv__v">${ae}</div></div>
     `;
 
     const cats = (e.categories||[]).join(", ") || "—";
