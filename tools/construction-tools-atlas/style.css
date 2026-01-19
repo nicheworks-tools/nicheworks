@@ -150,6 +150,68 @@ body.is-locked{
   overflow:hidden;
 }
 
+.status{
+  margin:4px 2px 8px;
+  padding:8px 10px;
+  border:1px dashed var(--line);
+  border-radius:12px;
+  background:color-mix(in oklab, var(--card) 92%, var(--chip));
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.status[hidden]{
+  display:none;
+}
+.status__title{
+  font-weight:900;
+  color:var(--text);
+  font-size:12px;
+}
+.status__row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.status__spinner{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  border:2px solid color-mix(in oklab, var(--text) 18%, transparent);
+  border-top-color:color-mix(in oklab, var(--accent) 70%, var(--text));
+  animation:spin 0.9s linear infinite;
+}
+.status__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.status__actions .pillbtn{
+  min-height:38px;
+  padding:0 14px;
+  font-size:12px;
+}
+.status__list{
+  margin:0;
+  padding-left:18px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.status__details{
+  margin-top:4px;
+  font-size:11px;
+  color:var(--muted);
+  word-break:break-word;
+}
+.status__details summary{
+  cursor:pointer;
+  font-weight:800;
+  color:var(--text);
+}
+
 .results{margin-top:10px;}
 .results__meta{
   display:flex; justify-content:space-between; align-items:baseline;
@@ -182,6 +244,10 @@ body.is-locked{
   border-radius:16px;
   overflow:hidden;
   background:var(--card);
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
 }
 
 /* ROW LIST (NO cards) */
