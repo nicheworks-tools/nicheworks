@@ -125,15 +125,20 @@
   }
   function closeSheet(sheetEl){
     sheetEl.hidden = true;
-    const anyOpen = !els.detailSheet.hidden || !els.supportSheet.hidden || !els.filterSheet.hidden || !els.menuSheet.hidden;
+    const anyOpen = [
+      els.detailSheet,
+      els.supportSheet,
+      els.filterSheet,
+      els.menuSheet,
+    ].some((el) => el && !el.hidden);
     showOverlay(anyOpen);
     lockScroll(anyOpen);
   }
   function closeAllSheets(){
-    els.detailSheet.hidden = true;
-    els.supportSheet.hidden = true;
-    els.filterSheet.hidden = true;
-    els.menuSheet.hidden = true;
+    if (els.detailSheet) els.detailSheet.hidden = true;
+    if (els.supportSheet) els.supportSheet.hidden = true;
+    if (els.filterSheet) els.filterSheet.hidden = true;
+    if (els.menuSheet) els.menuSheet.hidden = true;
     showOverlay(false);
     lockScroll(false);
   }
@@ -150,6 +155,26 @@
     els.supportNote.textContent = state.uiLang === "ja"
       ? "応援（寄付）リンクを開きます。ありがとうございます。"
       : "Opens support links in a new tab. Thank you!";
+  }
+
+  function hasSupportElements(){
+    return [
+      els.supportBtn,
+      els.supportSheet,
+      els.supportClose,
+      els.supportInlineBtn,
+      els.ofuseLink,
+      els.kofiLink,
+      els.supportNote,
+    ].every(Boolean);
+  }
+
+  function initSupport(){
+    if (!hasSupportElements()) return;
+    applySupportLinks();
+    els.supportBtn.addEventListener("click", () => openSheet(els.supportSheet));
+    els.supportClose.addEventListener("click", () => closeSheet(els.supportSheet));
+    els.supportInlineBtn.addEventListener("click", () => openSheet(els.supportSheet));
   }
 
   // ---- Data loading (tries multiple likely paths) ----
@@ -467,8 +492,6 @@
   // ---- Events ----
   function bind(){
     setTheme(state.theme);
-/* CTA_FIX_GUARD_APPLY_SUPPORTLINKS */
-if (typeof applySupportLinks === "function") { applySupportLinks(); }
 
     els.themeBtn.addEventListener("click", toggleTheme);
     els.langBtn.addEventListener("click", toggleLang);
@@ -485,10 +508,7 @@ if (typeof applySupportLinks === "function") { applySupportLinks(); }
       });
     }
 
-    els.supportBtn.addEventListener("click", () => openSheet(els.supportSheet));
-    els.supportClose.addEventListener("click", () => closeSheet(els.supportSheet));
-
-    els.supportInlineBtn.addEventListener("click", () => openSheet(els.supportSheet));
+    initSupport();
 
     els.detailClose.addEventListener("click", () => closeSheet(els.detailSheet));
     els.detailStar.addEventListener("click", () => {
