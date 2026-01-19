@@ -10,6 +10,7 @@
 
     themeBtn: $("#themeBtn"),
     langBtn: $("#langBtn"),
+    menuBtn: $("#menuBtn"),
     supportBtn: $("#supportBtn"),
 
     searchInput: $("#searchInput"),
@@ -43,6 +44,9 @@
     ofuseLink: $("#ofuseLink"),
     kofiLink: $("#kofiLink"),
     supportNote: $("#supportNote"),
+
+    menuSheet: $("#menuSheet"),
+    menuClose: $("#menuClose"),
 
     filterSheet: $("#filterSheet"),
     filterTitle: $("#filterTitle"),
@@ -119,7 +123,7 @@
   }
   function closeSheet(sheetEl){
     sheetEl.hidden = true;
-    const anyOpen = !els.detailSheet.hidden || !els.supportSheet.hidden || !els.filterSheet.hidden;
+    const anyOpen = !els.detailSheet.hidden || !els.supportSheet.hidden || !els.filterSheet.hidden || !els.menuSheet.hidden;
     showOverlay(anyOpen);
     lockScroll(anyOpen);
   }
@@ -127,6 +131,7 @@
     els.detailSheet.hidden = true;
     els.supportSheet.hidden = true;
     els.filterSheet.hidden = true;
+    els.menuSheet.hidden = true;
     showOverlay(false);
     lockScroll(false);
   }
@@ -466,6 +471,9 @@ if (typeof applySupportLinks === "function") { applySupportLinks(); }
     els.themeBtn.addEventListener("click", toggleTheme);
     els.langBtn.addEventListener("click", toggleLang);
 
+    els.menuBtn.addEventListener("click", () => openSheet(els.menuSheet));
+    els.menuClose.addEventListener("click", () => closeSheet(els.menuSheet));
+
     els.supportBtn.addEventListener("click", () => openSheet(els.supportSheet));
     els.supportClose.addEventListener("click", () => closeSheet(els.supportSheet));
 
@@ -569,7 +577,7 @@ if (typeof applySupportLinks === "function") { applySupportLinks(); }
   }
 
   function hardCloseAll(){
-    ['taskSheet','filterSheet','supportSheet','detailSheet'].forEach(function(id){
+    ['taskSheet','filterSheet','supportSheet','detailSheet','menuSheet'].forEach(function(id){
       const el = document.getElementById(id);
       if (el) hardCloseSheet(el);
     });
@@ -606,6 +614,7 @@ if (typeof applySupportLinks === "function") { applySupportLinks(); }
     bindClose('filterSheet');
     bindClose('supportSheet');
     bindClose('detailSheet');
+    bindClose('menuSheet');
 
     // overlay クリックでも閉じる
     const ov = getOverlay();
