@@ -26,6 +26,7 @@
     loadMoreWrap: $("#loadMoreWrap"),
     loadMoreBtn: $("#loadMoreBtn"),
     loadMoreHint: $("#loadMoreHint"),
+    statusArea: $("#statusArea"),
 
     // sheets
     detailSheet: $("#detailSheet"),
@@ -91,6 +92,8 @@
     pageSize: 50,
     visibleCount: 50,
     lastFilterKey: "",
+    isLoading: false,
+    error: null,
   };
   let filterDraft = {
     action: state.action,
@@ -491,6 +494,138 @@
     }
   }
 
+  function hasActiveFilters(){
+    return Boolean(state.q.trim())
+      || state.action !== "all"
+      || state.category !== "all"
+      || state.task !== "all";
+  }
+
+  function setStatus(type, detail = {}){
+    if (!els.statusArea) return;
+    const area = els.statusArea;
+    area.hidden = false;
+    area.dataset.status = type;
+    area.innerHTML = "";
+
+    const title = document.createElement("div");
+    title.className = "status__title";
+    const text = document.createElement("div");
+
+    if (type === "loading") {
+      title.textContent = state.uiLang === "ja" ? "読み込み中" : "Loading";
+      const row = document.createElement("div");
+      row.className = "status__row";
+      const spinner = document.createElement("span");
+      spinner.className = "status__spinner";
+      spinner.setAttribute("aria-hidden", "true");
+      const label = document.createElement("span");
+      label.textContent = "Loading...";
+      row.appendChild(spinner);
+      row.appendChild(label);
+      area.appendChild(title);
+      area.appendChild(row);
+      return;
+    }
+
+    if (type === "initial") {
+      title.textContent = state.uiLang === "ja" ? "検索ガイド" : "Search guide";
+      text.textContent = state.uiLang === "ja"
+        ? "検索欄に用語を入れるか、フィルタで絞り込んでください。"
+        : "Type a keyword or narrow down with filters.";
+      const list = document.createElement("ul");
+      list.className = "status__list";
+      const items = state.uiLang === "ja"
+        ? ["例: インパクト / impact driver", "例: 締付 / fasten", "例: レベル / level"]
+        : ["Example: impact driver / インパクト", "Example: fasten / 締付", "Example: level / レベル"];
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      area.appendChild(title);
+      area.appendChild(text);
+      area.appendChild(list);
+      return;
+    }
+
+    if (type === "empty") {
+      title.textContent = state.uiLang === "ja" ? "一致する結果がありません" : "No results";
+      text.textContent = state.uiLang === "ja"
+        ? "条件を見直してください。"
+        : "Try adjusting your query or filters.";
+      const list = document.createElement("ul");
+      list.className = "status__list";
+      const items = state.uiLang === "ja"
+        ? ["フィルタをリセットする", "検索語を短くする / 別の単語にする", "英語/日本語どちらでも試す"]
+        : ["Reset filters", "Try shorter or different keywords", "Search in English or Japanese"];
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      area.appendChild(title);
+      area.appendChild(text);
+      area.appendChild(list);
+      return;
+    }
+
+    if (type === "error") {
+      title.textContent = state.uiLang === "ja" ? "読み込みに失敗しました" : "Failed to load data";
+      text.textContent = state.uiLang === "ja"
+        ? "時間をおいて再読み込みしてください。"
+        : "Please reload and try again.";
+      const actions = document.createElement("div");
+      actions.className = "status__actions";
+      const reload = document.createElement("button");
+      reload.type = "button";
+      reload.className = "pillbtn pillbtn--accent";
+      reload.textContent = state.uiLang === "ja" ? "再読み込み" : "Reload";
+      reload.addEventListener("click", () => location.reload());
+      actions.appendChild(reload);
+      area.appendChild(title);
+      area.appendChild(text);
+      area.appendChild(actions);
+
+      if (detail?.message) {
+        const details = document.createElement("details");
+        details.className = "status__details";
+        const summary = document.createElement("summary");
+        summary.textContent = state.uiLang === "ja" ? "詳細" : "Details";
+        const pre = document.createElement("div");
+        pre.textContent = detail.message;
+        details.appendChild(summary);
+        details.appendChild(pre);
+        area.appendChild(details);
+      }
+      return;
+    }
+
+    area.hidden = true;
+    area.removeAttribute("data-status");
+  }
+
+  function updateStatus(){
+    if (!els.statusArea) return;
+    if (state.isLoading) {
+      setStatus("loading");
+      return;
+    }
+    if (state.error) {
+      setStatus("error", { message: state.error?.message || String(state.error) });
+      return;
+    }
+    if (!hasActiveFilters()) {
+      setStatus("initial");
+      return;
+    }
+    if (state.filtered.length === 0) {
+      setStatus("empty");
+      return;
+    }
+    setStatus("clear");
+  }
+
   function setActiveTab(name){
     $$(".tab", els.detailTabs).forEach(btn => {
       btn.classList.toggle("tab--active", btn.dataset.tab === name);
@@ -584,6 +719,7 @@
     syncVisibleCount();
     filterEntries();
     renderList();
+    updateStatus();
   }
 
   // ---- Filter sheet ----
@@ -757,6 +893,9 @@
 
   async function init(){
     bind();
+    state.isLoading = true;
+    state.error = null;
+    setStatus("loading");
 
     // Try typical paths (tool-local first)
     const paths = [
@@ -772,12 +911,16 @@
       const raw = await fetchJsonAny(paths);
       state.entries = normalize(raw);
       els.hintText.textContent = "";
+      state.error = null;
     }catch(e){
       state.entries = [];
       els.hintText.textContent = state.uiLang === "ja"
         ? "データJSONが見つかりません（./data/ を確認）"
         : "Data JSON not found (check ./data/).";
+      state.error = e;
       console.error(e);
+    }finally{
+      state.isLoading = false;
     }
 
     render();
