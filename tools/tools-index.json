@@ -1,0 +1,462 @@
+{
+  "generatedAt": "2026-01-19T15:06:46.527Z",
+  "total": 57,
+  "items": [
+    {
+      "slug": "analytics-privacy-kit",
+      "title_en": "analytics-privacy-kit",
+      "title_ja": "analytics-privacy-kit",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "api-key-token-redactor",
+      "title_en": "api-key-token-redactor",
+      "title_ja": "api-key-token-redactor",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "ats-paste-doctor",
+      "title_en": "ats-paste-doctor",
+      "title_ja": "ats-paste-doctor",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "cold-email-requirement-checker",
+      "title_en": "cold-email-requirement-checker",
+      "title_ja": "cold-email-requirement-checker",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "color-replace",
+      "title_en": "color-replace",
+      "title_ja": "color-replace",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "command-safety-checker",
+      "title_en": "command-safety-checker",
+      "title_ja": "command-safety-checker",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "construction-tools-atlas",
+      "title_en": "construction-tools-atlas",
+      "title_ja": "construction-tools-atlas",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "contract-cleaner",
+      "title_en": "contract-cleaner",
+      "title_ja": "contract-cleaner",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "cosmetic-ingredient-checker-lite",
+      "title_en": "cosmetic-ingredient-checker-lite",
+      "title_ja": "cosmetic-ingredient-checker-lite",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "cover-letter-lite",
+      "title_en": "cover-letter-lite",
+      "title_ja": "cover-letter-lite",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "design-request-builder",
+      "title_en": "design-request-builder",
+      "title_ja": "design-request-builder",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "dry-meter",
+      "title_en": "dry-meter",
+      "title_ja": "dry-meter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "exif-cleaner-mini",
+      "title_en": "exif-cleaner-mini",
+      "title_ja": "exif-cleaner-mini",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "filetype-sniffer",
+      "title_en": "filetype-sniffer",
+      "title_ja": "filetype-sniffer",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "form-tool-selector",
+      "title_en": "form-tool-selector",
+      "title_ja": "form-tool-selector",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "growth-log-template-generator",
+      "title_en": "growth-log-template-generator",
+      "title_ja": "growth-log-template-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "habit-plan-generator",
+      "title_en": "habit-plan-generator",
+      "title_ja": "habit-plan-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "image-compression-inspector",
+      "title_en": "image-compression-inspector",
+      "title_ja": "image-compression-inspector",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "inci-fastscan",
+      "title_en": "inci-fastscan",
+      "title_ja": "inci-fastscan",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "incident-update-generator",
+      "title_en": "incident-update-generator",
+      "title_ja": "incident-update-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "jp-postal-lite",
+      "title_en": "jp-postal-lite",
+      "title_ja": "jp-postal-lite",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "json2mermaid",
+      "title_en": "json2mermaid",
+      "title_ja": "json2mermaid",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "kanji-modernizer",
+      "title_en": "kanji-modernizer",
+      "title_ja": "kanji-modernizer",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "laundry-code-decode",
+      "title_en": "laundry-code-decode",
+      "title_ja": "laundry-code-decode",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "linebreak-doctor",
+      "title_en": "linebreak-doctor",
+      "title_ja": "linebreak-doctor",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "log-formatter",
+      "title_en": "log-formatter",
+      "title_ja": "log-formatter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "lp-skeleton-generator",
+      "title_en": "lp-skeleton-generator",
+      "title_ja": "lp-skeleton-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "manual-finder",
+      "title_en": "manual-finder",
+      "title_ja": "manual-finder",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "membership-offer-builder",
+      "title_en": "membership-offer-builder",
+      "title_ja": "membership-offer-builder",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "message-generator",
+      "title_en": "message-generator",
+      "title_ja": "message-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "metadatasnap",
+      "title_en": "metadatasnap",
+      "title_ja": "metadatasnap",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "microtool-launch-checklist",
+      "title_en": "microtool-launch-checklist",
+      "title_ja": "microtool-launch-checklist",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "mini-game-utility",
+      "title_en": "mini-game-utility",
+      "title_ja": "mini-game-utility",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "money-template-checker",
+      "title_en": "money-template-checker",
+      "title_ja": "money-template-checker",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "moving-checklist-generator",
+      "title_en": "moving-checklist-generator",
+      "title_ja": "moving-checklist-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "moving-lease-final-check",
+      "title_en": "moving-lease-final-check",
+      "title_ja": "moving-lease-final-check",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "newsletter-kit-generator",
+      "title_en": "newsletter-kit-generator",
+      "title_ja": "newsletter-kit-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "niche-job-starter-kit",
+      "title_en": "niche-job-starter-kit",
+      "title_ja": "niche-job-starter-kit",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "notion-form-design-kit",
+      "title_en": "notion-form-design-kit",
+      "title_ja": "notion-form-design-kit",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "og-image-maker",
+      "title_en": "og-image-maker",
+      "title_ja": "og-image-maker",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "old-kanji-reference",
+      "title_en": "old-kanji-reference",
+      "title_ja": "old-kanji-reference",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "ops-weekly-report-generator",
+      "title_en": "ops-weekly-report-generator",
+      "title_ja": "ops-weekly-report-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "outsource-spec-generator",
+      "title_en": "outsource-spec-generator",
+      "title_ja": "outsource-spec-generator",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "pages-deploy-guide",
+      "title_en": "pages-deploy-guide",
+      "title_ja": "pages-deploy-guide",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "redirect-unwrapper",
+      "title_en": "redirect-unwrapper",
+      "title_ja": "redirect-unwrapper",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "rename-wizard",
+      "title_en": "rename-wizard",
+      "title_ja": "rename-wizard",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "size-converter",
+      "title_en": "size-converter",
+      "title_ja": "size-converter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "sponsor-page-builder",
+      "title_en": "sponsor-page-builder",
+      "title_ja": "sponsor-page-builder",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "sql-db-risk-checker",
+      "title_en": "sql-db-risk-checker",
+      "title_ja": "sql-db-risk-checker",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "sukima-baito-income",
+      "title_en": "sukima-baito-income",
+      "title_ja": "sukima-baito-income",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "tiny-audio-meter",
+      "title_en": "tiny-audio-meter",
+      "title_ja": "tiny-audio-meter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "trashnavi",
+      "title_en": "trashnavi",
+      "title_ja": "trashnavi",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "unitmaster",
+      "title_en": "unitmaster",
+      "title_ja": "unitmaster",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "url-title-collector",
+      "title_en": "url-title-collector",
+      "title_ja": "url-title-collector",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "weatherdiff",
+      "title_en": "weatherdiff",
+      "title_ja": "weatherdiff",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "webp-avif-converter",
+      "title_en": "webp-avif-converter",
+      "title_ja": "webp-avif-converter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "wifi-meter",
+      "title_en": "wifi-meter",
+      "title_ja": "wifi-meter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    }
+  ]
+}
