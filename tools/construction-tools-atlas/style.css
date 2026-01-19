@@ -34,6 +34,9 @@ body{
   background:var(--bg);
   color:var(--text);
 }
+body.is-locked{
+  overflow:hidden;
+}
 
 .topbar{
   position:sticky; top:0; z-index:50;
@@ -312,6 +315,15 @@ body{
 .muted{color:var(--muted); font-size:12px; line-height:1.35}
 
 .pillwrap{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.howtoList{
+  margin:0;
+  padding-left:18px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  font-size:13px;
+  line-height:1.45;
+}
 
 
 /* CTA_FIX_TASK_SHEET_SCROLL */

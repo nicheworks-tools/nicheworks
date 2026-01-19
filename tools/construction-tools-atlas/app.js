@@ -49,6 +49,7 @@
     menuClose: $("#menuClose"),
     howtoOpen: $("#howtoOpen"),
     howtoSheet: $("#howtoSheet"),
+    howtoClose: $("#howtoClose"),
 
     filterSheet: $("#filterSheet"),
     filterTitle: $("#filterTitle"),
@@ -80,6 +81,7 @@
     filtered: [],
     current: null,
   };
+  let lockCount = 0;
 
   function safeJson(s, fallback){
     try { return s ? JSON.parse(s) : fallback; } catch { return fallback; }
@@ -111,36 +113,69 @@
   }
 }
 
-  function lockScroll(lock){
-    document.body.style.overflow = lock ? "hidden" : "";
-    document.body.style.touchAction = lock ? "none" : "";
+  function applyScrollLock(){
+    const y = window.scrollY;
+    document.body.dataset.scrollY = String(y);
+    document.body.classList.add("is-locked");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${y}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }
+  function clearScrollLock(){
+    const y = Number(document.body.dataset.scrollY || "0");
+    document.body.classList.remove("is-locked");
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    delete document.body.dataset.scrollY;
+    window.scrollTo(0, y);
+  }
+  function lockScroll(){
+    lockCount += 1;
+    if (lockCount === 1) applyScrollLock();
+  }
+  function unlockScroll(){
+    lockCount -= 1;
+    if (lockCount <= 0) {
+      lockCount = 0;
+      clearScrollLock();
+    }
   }
   function showOverlay(show){
     els.overlay.hidden = !show;
   }
   function openSheet(sheetEl){
+    if (!sheetEl) return;
+    closeAllSheets();
     showOverlay(true);
     sheetEl.hidden = false;
-    lockScroll(true);
+    lockScroll();
   }
   function closeSheet(sheetEl){
+    if (!sheetEl) return;
     sheetEl.hidden = true;
     const anyOpen = [
       els.detailSheet,
       els.supportSheet,
       els.filterSheet,
       els.menuSheet,
+      els.howtoSheet,
     ].some((el) => el && !el.hidden);
     showOverlay(anyOpen);
-    lockScroll(anyOpen);
+    if (!anyOpen) unlockScroll();
   }
   function closeAllSheets(){
     if (els.detailSheet) els.detailSheet.hidden = true;
     if (els.supportSheet) els.supportSheet.hidden = true;
     if (els.filterSheet) els.filterSheet.hidden = true;
     if (els.menuSheet) els.menuSheet.hidden = true;
+    if (els.howtoSheet) els.howtoSheet.hidden = true;
     showOverlay(false);
-    lockScroll(false);
+    unlockScroll();
   }
 
   function donationLinks(){
@@ -173,7 +208,7 @@
     if (!hasSupportElements()) return;
     applySupportLinks();
     els.supportBtn.addEventListener("click", () => openSheet(els.supportSheet));
-    els.supportClose.addEventListener("click", () => closeSheet(els.supportSheet));
+    els.supportClose.addEventListener("click", closeAllSheets);
     els.supportInlineBtn.addEventListener("click", () => openSheet(els.supportSheet));
   }
 
@@ -497,20 +532,20 @@
     els.langBtn.addEventListener("click", toggleLang);
 
     els.menuBtn.addEventListener("click", () => openSheet(els.menuSheet));
-    els.menuClose.addEventListener("click", () => closeSheet(els.menuSheet));
+    els.menuClose.addEventListener("click", closeAllSheets);
     if (els.howtoOpen) {
       els.howtoOpen.addEventListener("click", (event) => {
         event.preventDefault();
-        closeSheet(els.menuSheet);
-        if (els.howtoSheet) {
-          openSheet(els.howtoSheet);
-        }
+        openSheet(els.howtoSheet);
       });
+    }
+    if (els.howtoClose) {
+      els.howtoClose.addEventListener("click", closeAllSheets);
     }
 
     initSupport();
 
-    els.detailClose.addEventListener("click", () => closeSheet(els.detailSheet));
+    els.detailClose.addEventListener("click", closeAllSheets);
     els.detailStar.addEventListener("click", () => {
       if (!state.current) return;
       const id = state.current.id;
@@ -532,7 +567,7 @@
 
     els.categoryBtn.addEventListener("click", () => openFilter("category"));
     els.taskBtn.addEventListener("click", () => openFilter("task"));
-    els.filterClose.addEventListener("click", () => closeSheet(els.filterSheet));
+    els.filterClose.addEventListener("click", closeAllSheets);
 
     els.searchInput.addEventListener("input", () => {
       state.q = els.searchInput.value || "";
@@ -579,82 +614,4 @@
   }
 
   init();
-})();
-
-
-/* CTA_CLOSE_GUARD_20260118 */
-(function(){
-  function q(sel, root){ return (root||document).querySelector(sel); }
-  function getOverlay(){ return q('#overlay') || q('.overlay') || q('[data-overlay]'); }
-
-  function hardHideOverlay(){
-    const ov = getOverlay();
-    if (ov){
-      ov.hidden = true;
-      ov.classList.remove('open','show','active','is-open','is-active');
-      ov.style.display = '';
-    }
-    document.body.classList.remove('no-scroll','modal-open','sheet-open');
-    document.body.style.overflow = '';
-  }
-
-  function hardCloseSheet(sheet){
-    if (!sheet) return;
-    sheet.hidden = true;
-    sheet.classList.remove('open','show','active','is-open','is-active');
-    sheet.style.transform = '';
-    sheet.style.opacity = '';
-    hardHideOverlay();
-  }
-
-  function hardCloseAll(){
-    ['taskSheet','filterSheet','supportSheet','detailSheet','menuSheet'].forEach(function(id){
-      const el = document.getElementById(id);
-      if (el) hardCloseSheet(el);
-    });
-    hardHideOverlay();
-  }
-
-  function bindClose(sheetId){
-    const sheet = document.getElementById(sheetId);
-    if (!sheet) return;
-
-    const closeId = sheetId.replace('Sheet','Close');
-    const close =
-      q('#' + closeId, sheet) ||
-      q("button[aria-label='Close']", sheet) ||
-      q("button[aria-label='閉じる']", sheet) ||
-      q('button', sheet);
-
-    if (close){
-      try { close.type = 'button'; } catch(e) {}
-      close.addEventListener('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        hardCloseSheet(sheet);
-      }, true);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    // 初期に勝手に開いているのを強制クローズ
-    hardCloseAll();
-
-    // 各シートの×を強制的に有効化
-    bindClose('taskSheet');
-    bindClose('filterSheet');
-    bindClose('supportSheet');
-    bindClose('detailSheet');
-    bindClose('menuSheet');
-
-    // overlay クリックでも閉じる
-    const ov = getOverlay();
-    if (ov){
-      ov.addEventListener('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        hardCloseAll();
-      }, true);
-    }
-  });
 })();
