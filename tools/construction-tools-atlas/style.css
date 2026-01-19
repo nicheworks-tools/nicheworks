@@ -299,6 +299,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  min-height:var(--tap);
   padding:12px 12px;
   border:1px solid var(--line);
   border-radius:16px;

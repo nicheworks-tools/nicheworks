@@ -47,6 +47,8 @@
 
     menuSheet: $("#menuSheet"),
     menuClose: $("#menuClose"),
+    howtoOpen: $("#howtoOpen"),
+    howtoSheet: $("#howtoSheet"),
 
     filterSheet: $("#filterSheet"),
     filterTitle: $("#filterTitle"),
@@ -473,6 +475,15 @@ if (typeof applySupportLinks === "function") { applySupportLinks(); }
 
     els.menuBtn.addEventListener("click", () => openSheet(els.menuSheet));
     els.menuClose.addEventListener("click", () => closeSheet(els.menuSheet));
+    if (els.howtoOpen) {
+      els.howtoOpen.addEventListener("click", (event) => {
+        event.preventDefault();
+        closeSheet(els.menuSheet);
+        if (els.howtoSheet) {
+          openSheet(els.howtoSheet);
+        }
+      });
+    }
 
     els.supportBtn.addEventListener("click", () => openSheet(els.supportSheet));
     els.supportClose.addEventListener("click", () => closeSheet(els.supportSheet));
