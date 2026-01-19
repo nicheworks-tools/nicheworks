@@ -290,7 +290,54 @@
 
     </footer>
 
-  </main>
+  <section class="block">
+  <h2>All tools</h2>
+  <p class="category-desc">
+    Auto-generated list. Total: <span id="nw-tool-count">...</span>
+  </p>
+
+  <input id="nw-tool-q" type="search" placeholder="Search tools..." style="width:100%; padding:10px; margin:8px 0 12px;">
+
+  <ul class="list" id="nw-tool-list">
+    <li class="small muted">Loading...</li>
+  </ul>
+</section>
+
+<script>
+(async function () {
+  const res = await fetch("/tools/tools-index.json", { cache: "no-store" });
+  const data = await res.json();
+
+  const countEl = document.getElementById("nw-tool-count");
+  const qEl = document.getElementById("nw-tool-q");
+  const listEl = document.getElementById("nw-tool-list");
+
+  countEl.textContent = data.total;
+
+  const render = (q) => {
+    const query = (q || "").trim().toLowerCase();
+    const items = data.items.filter(it => {
+      const hay = `${it.slug} ${it.title_en} ${it.desc_en} ${(it.tags||[]).join(" ")}`.toLowerCase();
+      return !query || hay.includes(query);
+    });
+
+    listEl.innerHTML = items.map(it => {
+      const name = it.title_en && it.title_en !== it.slug ? it.title_en : it.slug;
+      const desc = it.desc_en ? `<br><span class="small muted">${it.desc_en}</span>` : "";
+      return `<li><strong><a href="/tools/${it.slug}/" target="_blank" rel="noopener">${name}</a></strong>${desc}</li>`;
+    }).join("");
+
+    if (!items.length) {
+      listEl.innerHTML = `<li class="small muted">No tools found.</li>`;
+    }
+  };
+
+  qEl.addEventListener("input", () => render(qEl.value));
+  render("");
+})();
+</script>
+
+</main>
 
   <!-- Cloudflare Analytics -->
   
