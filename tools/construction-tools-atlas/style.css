@@ -136,6 +136,20 @@ body.is-locked{
 .chips::-webkit-scrollbar{height:0}
 .chips--secondary{overflow:visible}
 
+.ad-slot{
+  width:100%;
+  min-height:72px;
+  max-height:72px;
+  margin:8px 0 6px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--card);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
 .results{margin-top:10px;}
 .results__meta{
   display:flex; justify-content:space-between; align-items:baseline;
