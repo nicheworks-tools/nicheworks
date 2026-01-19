@@ -119,6 +119,14 @@ body.is-locked{
 }
 
 .filters{margin-top:10px; display:flex; flex-direction:column; gap:8px;}
+.filters__mobile{display:none;}
+.filterOpenBtn{
+  min-height:44px;
+  font-size:13px;
+  padding:0 16px;
+  width:100%;
+  justify-content:center;
+}
 .chips{
   display:flex; gap:8px;
   overflow:auto;
@@ -340,6 +348,20 @@ body.is-locked{
 }
 
 .pillwrap{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.filterGroup{margin-top:12px}
+.filterGroup__title{
+  font-size:12px;
+  font-weight:900;
+  color:var(--muted);
+  letter-spacing:.3px;
+}
+.filterActions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  margin-top:16px;
+}
 .howtoList{
   margin:0;
   padding-left:18px;
@@ -407,5 +429,13 @@ body.is-locked{
   }
   .sheet--full .sheet__body{
     overflow:visible;
+  }
+}
+
+@media (max-width: 420px){
+  .filters__mobile{display:flex;}
+  .chips,
+  .chips--secondary{
+    display:none;
   }
 }

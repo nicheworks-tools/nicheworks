@@ -42,6 +42,9 @@
 
     <!-- Quick filters -->
     <section class="filters">
+      <div class="filters__mobile">
+        <button class="pillbtn pillbtn--accent filterOpenBtn" id="filterOpenBtn" type="button">Filter▼</button>
+      </div>
       <div class="chips" id="actionChips" aria-label="Quick filters"></div>
       <div class="chips chips--secondary">
         <button class="pillbtn" id="categoryBtn" type="button">Category</button>
@@ -143,9 +146,24 @@
       <div class="sheet__title" id="filterTitle">Filter</div>
       <button class="iconbtn" id="filterClose" type="button" aria-label="Close">×</button>
     </div>
-    <div class="sheet__body sheet__body--compact">
-      <div class="muted" id="filterDesc">（ここは導線だけ。必要なら次で中身を実装する）</div>
-      <div class="pillwrap" id="filterItems"></div>
+    <div class="sheet__body">
+      <div class="muted" id="filterDesc"></div>
+      <div class="filterGroup">
+        <div class="filterGroup__title">Action</div>
+        <div class="pillwrap" id="filterActionItems"></div>
+      </div>
+      <div class="filterGroup">
+        <div class="filterGroup__title">Category</div>
+        <div class="pillwrap" id="filterCategoryItems"></div>
+      </div>
+      <div class="filterGroup">
+        <div class="filterGroup__title">Task</div>
+        <div class="pillwrap" id="filterTaskItems"></div>
+      </div>
+      <div class="filterActions">
+        <button class="pillbtn pillbtn--accent" id="filterApplyBtn" type="button">Apply</button>
+        <button class="pillbtn" id="filterResetBtn" type="button">Reset</button>
+      </div>
     </div>
   </section>
 
