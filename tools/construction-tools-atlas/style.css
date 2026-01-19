@@ -37,11 +37,21 @@ body{
 
 .topbar{
   position:sticky; top:0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
+  display:flex; flex-direction:column; align-items:stretch;
   padding:10px 12px;
   background:color-mix(in oklab, var(--bg) 92%, transparent);
   backdrop-filter:saturate(160%) blur(10px);
   border-bottom:1px solid var(--line);
+}
+.topbar__row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.topbar__row--secondary{
+  justify-content:flex-end;
+  margin-top:6px;
 }
 .brand{
   font-weight:700;
@@ -49,7 +59,7 @@ body{
   letter-spacing:.2px;
   line-height:1.1;
 }
-.topbar__right{display:flex; gap:8px; align-items:center;}
+.topbar__right{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
 
 .wrap{max-width:980px; margin:0 auto; padding:10px 12px 40px;}
 
@@ -284,7 +294,8 @@ body{
 .kv__v{color:var(--text); font-weight:700; font-size:12px; word-break:break-word}
 
 .supportInline{margin-top:14px; display:flex; justify-content:center;}
-.supportLink{
+.supportLink,
+.menuLink{
   display:flex;
   align-items:center;
   justify-content:space-between;
