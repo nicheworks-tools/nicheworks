@@ -356,5 +356,8 @@ body.is-locked{
 
 /* CTA_HIDDEN_FORCE_20260118 */
 /* hidden は絶対に非表示（シートが閉じない根治） */
-#overlay[hidden], .overlay[hidden], [data-overlay][hidden] { display: none !important; }
+#overlay[hidden], .overlay[hidden], [data-overlay][hidden] {
+  display: none !important;
+  pointer-events: none;
+}
 .sheet[hidden], section.sheet[hidden] { display: none !important; }

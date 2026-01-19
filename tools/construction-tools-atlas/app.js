@@ -99,19 +99,14 @@
     setTheme(state.theme === "light" ? "dark" : "light");
   }
   function toggleLang(){
-  // CTA_FIX_LANG_TOGGLE_DO_NOT_OPEN_DETAIL
-  // 言語切替で「閉じているdetail」を勝手に開かない。開いていた場合のみ維持。
-  const wasDetailOpen = els.detailSheet && !els.detailSheet.hidden;
-
-  state.uiLang = state.uiLang === "ja" ? "en" : "ja";
-  localStorage.setItem(LS.uiLang, state.uiLang);
-
-  render();
-
-  if (wasDetailOpen && state.current) {
-    openDetail(state.current.id, { keepScroll: true });
+    state.uiLang = state.uiLang === "ja" ? "en" : "ja";
+    localStorage.setItem(LS.uiLang, state.uiLang);
+    if (hasSupportElements()) applySupportLinks();
+    render();
+    if (els.detailSheet && !els.detailSheet.hidden && state.current) {
+      renderDetailContent(state.current);
+    }
   }
-}
 
   function applyScrollLock(){
     const y = window.scrollY;
@@ -175,7 +170,10 @@
     if (els.menuSheet) els.menuSheet.hidden = true;
     if (els.howtoSheet) els.howtoSheet.hidden = true;
     showOverlay(false);
-    unlockScroll();
+    while (lockCount > 0) unlockScroll();
+    if (lockCount === 0 && (document.body.classList.contains("is-locked") || document.body.dataset.scrollY)) {
+      clearScrollLock();
+    }
   }
 
   function donationLinks(){
@@ -416,7 +414,12 @@
     const e = state.entries.find(x => x.id === id);
     if (!e) return;
     state.current = e;
+    renderDetailContent(e);
+    setActiveTab("meaning");
+    openSheet(els.detailSheet);
+  }
 
+  function renderDetailContent(e){
     els.detailTitle.textContent = state.uiLang === "ja" ? "詳細" : "Detail";
     els.detailStar.textContent = state.favs.has(e.id) ? "★" : "☆";
 
@@ -468,9 +471,6 @@
       <div class="kv"><div class="kv__k">tasks</div><div class="kv__v">${escapeHtml(tasks)}</div></div>
       <div class="kv"><div class="kv__k">region</div><div class="kv__v">${escapeHtml(region)}</div></div>
     `;
-
-    setActiveTab("meaning");
-    openSheet(els.detailSheet);
   }
 
   function escapeHtml(s){
