@@ -36,6 +36,7 @@
     detailChips: $("#detailChips"),
     detailTerms: $("#detailTerms"),
     detailDesc: $("#detailDesc"),
+    detailBullets: $("#detailBullets"),
     detailTabs: $("#detailTabs"),
     tabMeaning: $("#tabMeaning"),
     tabExamples: $("#tabExamples"),
@@ -252,8 +253,12 @@
       const id = x?.id || x?.slug || `entry_${i}`;
       const termJa = x?.term?.ja || x?.ja || x?.jp || "";
       const termEn = x?.term?.en || x?.en || "";
-      const descJa = x?.description?.ja || x?.desc?.ja || x?.definition?.ja || x?.description_ja || "";
-      const descEn = x?.description?.en || x?.desc?.en || x?.definition?.en || x?.description_en || "";
+      const detailJa = x?.detail?.ja || x?.detail_ja || x?.description?.ja || x?.desc?.ja || x?.definition?.ja || x?.description_ja || "";
+      const detailEn = x?.detail?.en || x?.detail_en || x?.description?.en || x?.desc?.en || x?.definition?.en || x?.description_en || "";
+      const summaryJa = x?.summary?.ja || x?.summary_ja || "";
+      const summaryEn = x?.summary?.en || x?.summary_en || "";
+      const bulletsJa = (x?.bullets?.ja || x?.bullets_ja || []).filter(Boolean);
+      const bulletsEn = (x?.bullets?.en || x?.bullets_en || []).filter(Boolean);
       const aliasesJa = (x?.aliases?.ja || x?.alias?.ja || x?.aliases_ja || []).filter(Boolean);
       const aliasesEn = (x?.aliases?.en || x?.alias?.en || x?.aliases_en || []).filter(Boolean);
       const relatedJa = (x?.related?.ja || x?.relatedTerms?.ja || x?.related_ja || []).filter(Boolean);
@@ -270,8 +275,12 @@
         id,
         termJa,
         termEn,
-        descJa,
-        descEn,
+        summaryJa,
+        summaryEn,
+        detailJa,
+        detailEn,
+        bulletsJa,
+        bulletsEn,
         aliasesJa,
         aliasesEn,
         relatedJa,
@@ -300,7 +309,8 @@
   function hasAny(e, tokens){
     const hay = [
       e.termJa, e.termEn,
-      e.descJa, e.descEn,
+      e.summaryJa, e.summaryEn,
+      e.detailJa, e.detailEn,
       ...(e.aliasesJa||[]), ...(e.aliasesEn||[]),
       ...(e.categories||[]), ...(e.tasks||[]), ...(e.fuzzy||[])
     ].join(" ").toLowerCase();
@@ -313,7 +323,8 @@
     if (!s) return true;
     const hay = [
       e.termJa, e.termEn,
-      e.descJa, e.descEn,
+      e.summaryJa, e.summaryEn,
+      e.detailJa, e.detailEn,
       ...(e.aliasesJa||[]), ...(e.aliasesEn||[]),
       ...(e.categories||[]), ...(e.tasks||[]), ...(e.fuzzy||[])
     ].join("\n").toLowerCase();
@@ -369,9 +380,17 @@
     const ja = e.termJa?.trim() || "—";
     return `${en} / ${ja}`;
   }
+  function getSummaryText(e){
+    const d = state.uiLang === "ja" ? (e.summaryJa || e.summaryEn) : (e.summaryEn || e.summaryJa);
+    return (d || "").trim() || "";
+  }
+  function getDetailText(e, fallbackLang = true){
+    const d = state.uiLang === "ja" ? (e.detailJa || (fallbackLang ? e.detailEn : "")) : (e.detailEn || (fallbackLang ? e.detailJa : ""));
+    return (d || "").trim();
+  }
   function rowDesc(e){
-    const d = state.uiLang === "ja" ? (e.descJa || e.descEn) : (e.descEn || e.descJa);
-    return (d || "").trim() || (state.uiLang === "ja" ? "（説明なし）" : "(no description)");
+    const d = getSummaryText(e);
+    return d || (state.uiLang === "ja" ? "（説明なし）" : "(no description)");
   }
 
   function getFilterKey(){
@@ -664,16 +683,33 @@
 
     // term block
     els.detailTerms.textContent = `${(e.termJa||"—")} / ${(e.termEn||"—")}`;
-    const best = rowDesc(e);
-    els.detailDesc.textContent = best;
+    const best = getDetailText(e);
+    els.detailDesc.textContent = best || (state.uiLang === "ja" ? "詳細情報準備中" : "Details coming soon");
+
+    if (els.detailBullets) {
+      const bullets = state.uiLang === "ja" ? (e.bulletsJa || []) : (e.bulletsEn || []);
+      els.detailBullets.innerHTML = "";
+      if (bullets.length) {
+        bullets.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          els.detailBullets.appendChild(li);
+        });
+        els.detailBullets.hidden = false;
+      } else {
+        els.detailBullets.hidden = true;
+      }
+    }
 
     // tabs content
-    const ja = (e.descJa || "").trim();
-    const en = (e.descEn || "").trim();
+    const ja = (e.detailJa || "").trim();
+    const en = (e.detailEn || "").trim();
+    const jpText = ja || "—";
+    const enText = en || "—";
 
     els.tabMeaning.innerHTML = `
-      <div class="kv"><div class="kv__k">JP</div><div class="kv__v">${escapeHtml(ja || "—")}</div></div>
-      <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${escapeHtml(en || "—")}</div></div>
+      <div class="kv"><div class="kv__k">JP</div><div class="kv__v">${escapeHtml(jpText)}</div></div>
+      <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${escapeHtml(enText)}</div></div>
     `;
 
     const exampleJa = (e.examplesJa || []).filter(Boolean);
@@ -900,7 +936,7 @@
     // Try typical paths (tool-local first)
     // SOURCE OF TERMS (EDIT THIS FILE TO ADD TERMS): tools/construction-tools-atlas/data/tools.basic.json
     // DATA SHAPE: JSON array of objects.
-    // Record keys: id, type, term{ja,en}, aliases{ja[],en[]}, description{ja,en}, categories[], tasks[], fuzzy[], region[], image.
+    // Record keys: id, type, term{ja,en}, summary_{ja,en}, detail_{ja,en}, bullets_{ja,en}, aliases{ja[],en[]}, categories[], tasks[], fuzzy[], region[], image.
     const paths = [
       "./data/tools.basic.json",
       "./data/tools.json",

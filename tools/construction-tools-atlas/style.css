@@ -378,6 +378,14 @@ body.is-locked{
 .termblock__chiprow{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px}
 .termblock__terms{font-weight:900; font-size:15px; line-height:1.2}
 .termblock__desc{margin-top:6px; color:var(--muted); font-size:12px; line-height:1.35}
+.termblock__bullets{
+  margin:8px 0 0;
+  padding-left:18px;
+  color:var(--text);
+  font-size:12px;
+  line-height:1.4;
+}
+.termblock__bullets li{margin:4px 0}
 
 .tabs{
   margin-top:10px;
