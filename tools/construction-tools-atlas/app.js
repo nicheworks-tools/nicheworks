@@ -898,6 +898,9 @@
     setStatus("loading");
 
     // Try typical paths (tool-local first)
+    // SOURCE OF TERMS (EDIT THIS FILE TO ADD TERMS): tools/construction-tools-atlas/data/tools.basic.json
+    // DATA SHAPE: JSON array of objects.
+    // Record keys: id, type, term{ja,en}, aliases{ja[],en[]}, description{ja,en}, categories[], tasks[], fuzzy[], region[], image.
     const paths = [
       "./data/tools.basic.json",
       "./data/tools.json",
