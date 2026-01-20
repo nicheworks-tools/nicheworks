@@ -2,993 +2,3575 @@
   {
     "id": "circular_saw",
     "type": "tool",
-    "term": { "ja": "丸ノコ", "en": "Circular Saw" },
-    "aliases": { "ja": ["電動丸ノコ", "丸鋸"], "en": ["Skilsaw"] },
-    "description": { "ja": "回転刃で木材や合板を切断する電動工具。", "en": "A power saw with a spinning blade used to cut wood and sheet goods." },
-    "categories": ["cutting", "woodworking", "power_tool"],
-    "tasks": ["cut_wood"],
-    "fuzzy": ["切る", "回転刃", "木材", "合板"],
-    "region": ["jp", "global"],
-    "image": "icons/circular_saw.svg"
+    "term": {
+      "ja": "丸ノコ",
+      "en": "Circular Saw"
+    },
+    "aliases": {
+      "ja": [
+        "電動丸ノコ",
+        "丸鋸"
+      ],
+      "en": [
+        "Skilsaw"
+      ]
+    },
+    "description": {
+      "ja": "回転刃で木材や合板を切断する電動工具。",
+      "en": "A power saw with a spinning blade used to cut wood and sheet goods."
+    },
+    "categories": [
+      "cutting",
+      "woodworking",
+      "power_tool"
+    ],
+    "tasks": [
+      "cut_wood"
+    ],
+    "fuzzy": [
+      "切る",
+      "回転刃",
+      "木材",
+      "合板"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/circular_saw.svg",
+    "summary_ja": "回転刃で木材や合板を切断する電動工具。…",
+    "summary_en": "A power saw with a spinning blade used to cut wood and sheet…",
+    "detail_ja": "回転刃で木材や合板を切断する電動工具。",
+    "detail_en": "A power saw with a spinning blade used to cut wood and sheet goods.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "jigsaw",
     "type": "tool",
-    "term": { "ja": "ジグソー", "en": "Jigsaw" },
-    "aliases": { "ja": ["電動糸ノコ"], "en": ["Saber Saw"] },
-    "description": { "ja": "細い刃を上下させて曲線切りにも対応する電動ノコギリ。", "en": "A saw with a reciprocating narrow blade, good for curves and cutouts." },
-    "categories": ["cutting", "woodworking", "power_tool"],
-    "tasks": ["cut_wood", "cut_curve"],
-    "fuzzy": ["曲線", "くり抜き", "上下刃"],
-    "region": ["jp", "global"],
-    "image": "icons/jigsaw.svg"
+    "term": {
+      "ja": "ジグソー",
+      "en": "Jigsaw"
+    },
+    "aliases": {
+      "ja": [
+        "電動糸ノコ"
+      ],
+      "en": [
+        "Saber Saw"
+      ]
+    },
+    "description": {
+      "ja": "細い刃を上下させて曲線切りにも対応する電動ノコギリ。",
+      "en": "A saw with a reciprocating narrow blade, good for curves and cutouts."
+    },
+    "categories": [
+      "cutting",
+      "woodworking",
+      "power_tool"
+    ],
+    "tasks": [
+      "cut_wood",
+      "cut_curve"
+    ],
+    "fuzzy": [
+      "曲線",
+      "くり抜き",
+      "上下刃"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/jigsaw.svg",
+    "summary_ja": "細い刃を上下させて曲線切りにも対応する電動ノコギリ。…",
+    "summary_en": "A saw with a reciprocating narrow blade, good for curves and…",
+    "detail_ja": "細い刃を上下させて曲線切りにも対応する電動ノコギリ。",
+    "detail_en": "A saw with a reciprocating narrow blade, good for curves and cutouts.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "reciprocating_saw",
     "type": "tool",
-    "term": { "ja": "レシプロソー", "en": "Reciprocating Saw" },
-    "aliases": { "ja": ["セーバーソー"], "en": ["Sawzall"] },
-    "description": { "ja": "刃を前後に往復させて解体や粗切りに使う電動ノコギリ。", "en": "A demolition-oriented saw with a push-pull reciprocating blade." },
-    "categories": ["cutting", "demolition", "power_tool"],
-    "tasks": ["cut_wood", "cut_metal", "demolish"],
-    "fuzzy": ["解体", "粗切り", "往復刃"],
-    "region": ["jp", "global"],
-    "image": "icons/reciprocating_saw.svg"
+    "term": {
+      "ja": "レシプロソー",
+      "en": "Reciprocating Saw"
+    },
+    "aliases": {
+      "ja": [
+        "セーバーソー"
+      ],
+      "en": [
+        "Sawzall"
+      ]
+    },
+    "description": {
+      "ja": "刃を前後に往復させて解体や粗切りに使う電動ノコギリ。",
+      "en": "A demolition-oriented saw with a push-pull reciprocating blade."
+    },
+    "categories": [
+      "cutting",
+      "demolition",
+      "power_tool"
+    ],
+    "tasks": [
+      "cut_wood",
+      "cut_metal",
+      "demolish"
+    ],
+    "fuzzy": [
+      "解体",
+      "粗切り",
+      "往復刃"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/reciprocating_saw.svg",
+    "summary_ja": "刃を前後に往復させて解体や粗切りに使う電動ノコギリ。…",
+    "summary_en": "A demolition-oriented saw with a push-pull reciprocating bla…",
+    "detail_ja": "刃を前後に往復させて解体や粗切りに使う電動ノコギリ。",
+    "detail_en": "A demolition-oriented saw with a push-pull reciprocating blade.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "handsaw",
     "type": "tool",
-    "term": { "ja": "手ノコ", "en": "Hand Saw" },
-    "aliases": { "ja": ["のこぎり"], "en": ["Hand Saw"] },
-    "description": { "ja": "手作業で木材などを切断する基本工具。", "en": "A basic manual saw for cutting wood and similar materials." },
-    "categories": ["cutting", "woodworking", "hand_tool"],
-    "tasks": ["cut_wood"],
-    "fuzzy": ["手作業", "歯", "切断"],
-    "region": ["jp", "global"],
-    "image": "icons/handsaw.svg"
+    "term": {
+      "ja": "手ノコ",
+      "en": "Hand Saw"
+    },
+    "aliases": {
+      "ja": [
+        "のこぎり"
+      ],
+      "en": [
+        "Hand Saw"
+      ]
+    },
+    "description": {
+      "ja": "手作業で木材などを切断する基本工具。",
+      "en": "A basic manual saw for cutting wood and similar materials."
+    },
+    "categories": [
+      "cutting",
+      "woodworking",
+      "hand_tool"
+    ],
+    "tasks": [
+      "cut_wood"
+    ],
+    "fuzzy": [
+      "手作業",
+      "歯",
+      "切断"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/handsaw.svg",
+    "summary_ja": "手作業で木材などを切断する基本工具。…",
+    "summary_en": "A basic manual saw for cutting wood and similar materials.…",
+    "detail_ja": "手作業で木材などを切断する基本工具。",
+    "detail_en": "A basic manual saw for cutting wood and similar materials.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "utility_knife",
     "type": "tool",
-    "term": { "ja": "カッター", "en": "Utility Knife" },
-    "aliases": { "ja": ["万能ナイフ"], "en": ["Box Cutter"] },
-    "description": { "ja": "替刃式の刃物で、シート材や梱包材の切断に使う。", "en": "A retractable blade knife for cutting sheet materials and packaging." },
-    "categories": ["cutting", "finishing", "hand_tool"],
-    "tasks": ["cut_sheet", "trim"],
-    "fuzzy": ["替刃", "切り込み", "梱包"],
-    "region": ["jp", "global"],
-    "image": "icons/utility_knife.svg"
+    "term": {
+      "ja": "カッター",
+      "en": "Utility Knife"
+    },
+    "aliases": {
+      "ja": [
+        "万能ナイフ"
+      ],
+      "en": [
+        "Box Cutter"
+      ]
+    },
+    "description": {
+      "ja": "替刃式の刃物で、シート材や梱包材の切断に使う。",
+      "en": "A retractable blade knife for cutting sheet materials and packaging."
+    },
+    "categories": [
+      "cutting",
+      "finishing",
+      "hand_tool"
+    ],
+    "tasks": [
+      "cut_sheet",
+      "trim"
+    ],
+    "fuzzy": [
+      "替刃",
+      "切り込み",
+      "梱包"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/utility_knife.svg",
+    "summary_ja": "替刃式の刃物で、シート材や梱包材の切断に使う。…",
+    "summary_en": "A retractable blade knife for cutting sheet materials and pa…",
+    "detail_ja": "替刃式の刃物で、シート材や梱包材の切断に使う。",
+    "detail_en": "A retractable blade knife for cutting sheet materials and packaging.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "angle_grinder",
     "type": "tool",
-    "term": { "ja": "ディスクグラインダー", "en": "Angle Grinder" },
-    "aliases": { "ja": ["サンダー(ディスク)"], "en": ["Grinder"] },
-    "description": { "ja": "研削・切断用ディスクを回転させ、金属やコンクリを加工する。", "en": "A handheld grinder for cutting and grinding metal, masonry, and more." },
-    "categories": ["cutting", "grinding", "power_tool", "metalwork"],
-    "tasks": ["grind_surface", "cut_metal"],
-    "fuzzy": ["研削", "火花", "ディスク"],
-    "region": ["jp", "global"],
-    "image": "icons/angle_grinder.svg"
+    "term": {
+      "ja": "ディスクグラインダー",
+      "en": "Angle Grinder"
+    },
+    "aliases": {
+      "ja": [
+        "サンダー(ディスク)"
+      ],
+      "en": [
+        "Grinder"
+      ]
+    },
+    "description": {
+      "ja": "研削・切断用ディスクを回転させ、金属やコンクリを加工する。",
+      "en": "A handheld grinder for cutting and grinding metal, masonry, and more."
+    },
+    "categories": [
+      "cutting",
+      "grinding",
+      "power_tool",
+      "metalwork"
+    ],
+    "tasks": [
+      "grind_surface",
+      "cut_metal"
+    ],
+    "fuzzy": [
+      "研削",
+      "火花",
+      "ディスク"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/angle_grinder.svg",
+    "summary_ja": "研削・切断用ディスクを回転させ、金属やコンクリを加工する。…",
+    "summary_en": "A handheld grinder for cutting and grinding metal, masonry,…",
+    "detail_ja": "研削・切断用ディスクを回転させ、金属やコンクリを加工する。",
+    "detail_en": "A handheld grinder for cutting and grinding metal, masonry, and more.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "orbital_sander",
     "type": "tool",
-    "term": { "ja": "オービタルサンダー", "en": "Orbital Sander" },
-    "aliases": { "ja": ["仕上げサンダー"], "en": ["Finishing Sander"] },
-    "description": { "ja": "細かい振動で木材表面を平滑に仕上げる電動サンダー。", "en": "A sander that vibrates in small orbits for smooth surface finishing." },
-    "categories": ["finishing", "woodworking", "power_tool"],
-    "tasks": ["sand_surface", "finish_wood"],
-    "fuzzy": ["研磨", "仕上げ", "紙やすり"],
-    "region": ["jp", "global"],
-    "image": "icons/orbital_sander.svg"
+    "term": {
+      "ja": "オービタルサンダー",
+      "en": "Orbital Sander"
+    },
+    "aliases": {
+      "ja": [
+        "仕上げサンダー"
+      ],
+      "en": [
+        "Finishing Sander"
+      ]
+    },
+    "description": {
+      "ja": "細かい振動で木材表面を平滑に仕上げる電動サンダー。",
+      "en": "A sander that vibrates in small orbits for smooth surface finishing."
+    },
+    "categories": [
+      "finishing",
+      "woodworking",
+      "power_tool"
+    ],
+    "tasks": [
+      "sand_surface",
+      "finish_wood"
+    ],
+    "fuzzy": [
+      "研磨",
+      "仕上げ",
+      "紙やすり"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/orbital_sander.svg",
+    "summary_ja": "細かい振動で木材表面を平滑に仕上げる電動サンダー。…",
+    "summary_en": "A sander that vibrates in small orbits for smooth surface fi…",
+    "detail_ja": "細かい振動で木材表面を平滑に仕上げる電動サンダー。",
+    "detail_en": "A sander that vibrates in small orbits for smooth surface finishing.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "hammer",
     "type": "tool",
-    "term": { "ja": "ハンマー", "en": "Hammer" },
-    "aliases": { "ja": ["金槌", "玄能"], "en": ["Claw Hammer"] },
-    "description": { "ja": "釘打ちや軽い解体作業に使う基本工具。", "en": "A basic tool for driving nails and light demolition." },
-    "categories": ["fastening", "demolition", "hand_tool"],
-    "tasks": ["drive_nail", "remove_nail"],
-    "fuzzy": ["釘", "叩く", "抜く"],
-    "region": ["jp", "global"],
-    "image": "icons/hammer.svg"
+    "term": {
+      "ja": "ハンマー",
+      "en": "Hammer"
+    },
+    "aliases": {
+      "ja": [
+        "金槌",
+        "玄能"
+      ],
+      "en": [
+        "Claw Hammer"
+      ]
+    },
+    "description": {
+      "ja": "釘打ちや軽い解体作業に使う基本工具。",
+      "en": "A basic tool for driving nails and light demolition."
+    },
+    "categories": [
+      "fastening",
+      "demolition",
+      "hand_tool"
+    ],
+    "tasks": [
+      "drive_nail",
+      "remove_nail"
+    ],
+    "fuzzy": [
+      "釘",
+      "叩く",
+      "抜く"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/hammer.svg",
+    "summary_ja": "釘打ちや軽い解体作業に使う基本工具。…",
+    "summary_en": "A basic tool for driving nails and light demolition.…",
+    "detail_ja": "釘打ちや軽い解体作業に使う基本工具。",
+    "detail_en": "A basic tool for driving nails and light demolition.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "sledgehammer",
     "type": "tool",
-    "term": { "ja": "大ハンマー", "en": "Sledgehammer" },
-    "aliases": { "ja": ["スレッジハンマー"], "en": ["Sledge"] },
-    "description": { "ja": "重量のある頭部で破砕や杭打ちなどに使う。", "en": "A heavy hammer for breaking materials or driving stakes." },
-    "categories": ["demolition", "earthwork", "hand_tool"],
-    "tasks": ["demolish", "drive_stake"],
-    "fuzzy": ["破砕", "重い", "杭"],
-    "region": ["jp", "global"],
-    "image": "icons/sledgehammer.svg"
+    "term": {
+      "ja": "大ハンマー",
+      "en": "Sledgehammer"
+    },
+    "aliases": {
+      "ja": [
+        "スレッジハンマー"
+      ],
+      "en": [
+        "Sledge"
+      ]
+    },
+    "description": {
+      "ja": "重量のある頭部で破砕や杭打ちなどに使う。",
+      "en": "A heavy hammer for breaking materials or driving stakes."
+    },
+    "categories": [
+      "demolition",
+      "earthwork",
+      "hand_tool"
+    ],
+    "tasks": [
+      "demolish",
+      "drive_stake"
+    ],
+    "fuzzy": [
+      "破砕",
+      "重い",
+      "杭"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/sledgehammer.svg",
+    "summary_ja": "重量のある頭部で破砕や杭打ちなどに使う。…",
+    "summary_en": "A heavy hammer for breaking materials or driving stakes.…",
+    "detail_ja": "重量のある頭部で破砕や杭打ちなどに使う。",
+    "detail_en": "A heavy hammer for breaking materials or driving stakes.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "pry_bar",
     "type": "tool",
-    "term": { "ja": "バール", "en": "Pry Bar" },
-    "aliases": { "ja": ["てこ棒"], "en": ["Crowbar"] },
-    "description": { "ja": "てこの原理でこじ開けや釘抜き、解体に使う。", "en": "A lever tool used for prying, pulling nails, and demolition." },
-    "categories": ["demolition", "hand_tool"],
-    "tasks": ["pry_open", "remove_nail", "demolish"],
-    "fuzzy": ["こじる", "てこ", "釘抜き"],
-    "region": ["jp", "global"],
-    "image": "icons/pry_bar.svg"
+    "term": {
+      "ja": "バール",
+      "en": "Pry Bar"
+    },
+    "aliases": {
+      "ja": [
+        "てこ棒"
+      ],
+      "en": [
+        "Crowbar"
+      ]
+    },
+    "description": {
+      "ja": "てこの原理でこじ開けや釘抜き、解体に使う。",
+      "en": "A lever tool used for prying, pulling nails, and demolition."
+    },
+    "categories": [
+      "demolition",
+      "hand_tool"
+    ],
+    "tasks": [
+      "pry_open",
+      "remove_nail",
+      "demolish"
+    ],
+    "fuzzy": [
+      "こじる",
+      "てこ",
+      "釘抜き"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/pry_bar.svg",
+    "summary_ja": "てこの原理でこじ開けや釘抜き、解体に使う。…",
+    "summary_en": "A lever tool used for prying, pulling nails, and demolition.…",
+    "detail_ja": "てこの原理でこじ開けや釘抜き、解体に使う。",
+    "detail_en": "A lever tool used for prying, pulling nails, and demolition.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "tape_measure",
     "type": "tool",
-    "term": { "ja": "メジャー", "en": "Tape Measure" },
-    "aliases": { "ja": ["巻尺"], "en": ["Measuring Tape"] },
-    "description": { "ja": "長さを素早く測るための巻き取り式スケール。", "en": "A retractable tape for quickly measuring lengths." },
-    "categories": ["measuring", "layout", "hand_tool"],
-    "tasks": ["measure_length", "mark_layout"],
-    "fuzzy": ["長さ", "寸法", "測る"],
-    "region": ["jp", "global"],
-    "image": "icons/tape_measure.svg"
+    "term": {
+      "ja": "メジャー",
+      "en": "Tape Measure"
+    },
+    "aliases": {
+      "ja": [
+        "巻尺"
+      ],
+      "en": [
+        "Measuring Tape"
+      ]
+    },
+    "description": {
+      "ja": "長さを素早く測るための巻き取り式スケール。",
+      "en": "A retractable tape for quickly measuring lengths."
+    },
+    "categories": [
+      "measuring",
+      "layout",
+      "hand_tool"
+    ],
+    "tasks": [
+      "measure_length",
+      "mark_layout"
+    ],
+    "fuzzy": [
+      "長さ",
+      "寸法",
+      "測る"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/tape_measure.svg",
+    "summary_ja": "長さを素早く測るための巻き取り式スケール。…",
+    "summary_en": "A retractable tape for quickly measuring lengths.…",
+    "detail_ja": "長さを素早く測るための巻き取り式スケール。",
+    "detail_en": "A retractable tape for quickly measuring lengths.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "spirit_level",
     "type": "tool",
-    "term": { "ja": "水平器", "en": "Spirit Level" },
-    "aliases": { "ja": ["レベル"], "en": ["Bubble Level"] },
-    "description": { "ja": "気泡管で水平・垂直を確認する工具。", "en": "A tool with bubble vials to check level and plumb." },
-    "categories": ["leveling", "layout", "hand_tool"],
-    "tasks": ["check_level", "check_plumb"],
-    "fuzzy": ["水平", "垂直", "気泡"],
-    "region": ["jp", "global"],
-    "image": "icons/spirit_level.svg"
+    "term": {
+      "ja": "水平器",
+      "en": "Spirit Level"
+    },
+    "aliases": {
+      "ja": [
+        "レベル"
+      ],
+      "en": [
+        "Bubble Level"
+      ]
+    },
+    "description": {
+      "ja": "気泡管で水平・垂直を確認する工具。",
+      "en": "A tool with bubble vials to check level and plumb."
+    },
+    "categories": [
+      "leveling",
+      "layout",
+      "hand_tool"
+    ],
+    "tasks": [
+      "check_level",
+      "check_plumb"
+    ],
+    "fuzzy": [
+      "水平",
+      "垂直",
+      "気泡"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/spirit_level.svg",
+    "summary_ja": "気泡管で水平・垂直を確認する工具。…",
+    "summary_en": "A tool with bubble vials to check level and plumb.…",
+    "detail_ja": "気泡管で水平・垂直を確認する工具。",
+    "detail_en": "A tool with bubble vials to check level and plumb.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "laser_level",
     "type": "tool",
-    "term": { "ja": "レーザー墨出し器", "en": "Laser Level" },
-    "aliases": { "ja": ["レーザーレベル"], "en": ["Line Laser"] },
-    "description": { "ja": "レーザーで水平・垂直ラインを投影して墨出しを補助する。", "en": "Projects laser lines to assist layout, level, and plumb references." },
-    "categories": ["leveling", "layout", "power_tool"],
-    "tasks": ["mark_layout", "check_level", "check_plumb"],
-    "fuzzy": ["レーザー", "墨出し", "ライン"],
-    "region": ["jp", "global"],
-    "image": "icons/laser_level.svg"
+    "term": {
+      "ja": "レーザー墨出し器",
+      "en": "Laser Level"
+    },
+    "aliases": {
+      "ja": [
+        "レーザーレベル"
+      ],
+      "en": [
+        "Line Laser"
+      ]
+    },
+    "description": {
+      "ja": "レーザーで水平・垂直ラインを投影して墨出しを補助する。",
+      "en": "Projects laser lines to assist layout, level, and plumb references."
+    },
+    "categories": [
+      "leveling",
+      "layout",
+      "power_tool"
+    ],
+    "tasks": [
+      "mark_layout",
+      "check_level",
+      "check_plumb"
+    ],
+    "fuzzy": [
+      "レーザー",
+      "墨出し",
+      "ライン"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/laser_level.svg",
+    "summary_ja": "レーザーで水平・垂直ラインを投影して墨出しを補助する。…",
+    "summary_en": "Projects laser lines to assist layout, level, and plumb refe…",
+    "detail_ja": "レーザーで水平・垂直ラインを投影して墨出しを補助する。",
+    "detail_en": "Projects laser lines to assist layout, level, and plumb references.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "chalk_line",
     "type": "tool",
-    "term": { "ja": "墨つぼ", "en": "Chalk Line" },
-    "aliases": { "ja": ["墨打ち", "墨出し糸"], "en": ["Chalk Reel"] },
-    "description": { "ja": "糸に粉を付けて弾き、直線の基準線を引く工具。", "en": "Snaps a chalked string to mark a straight reference line." },
-    "categories": ["layout", "hand_tool"],
-    "tasks": ["mark_layout"],
-    "fuzzy": ["直線", "墨", "弾く"],
-    "region": ["jp", "global"],
-    "image": "icons/chalk_line.svg"
+    "term": {
+      "ja": "墨つぼ",
+      "en": "Chalk Line"
+    },
+    "aliases": {
+      "ja": [
+        "墨打ち",
+        "墨出し糸"
+      ],
+      "en": [
+        "Chalk Reel"
+      ]
+    },
+    "description": {
+      "ja": "糸に粉を付けて弾き、直線の基準線を引く工具。",
+      "en": "Snaps a chalked string to mark a straight reference line."
+    },
+    "categories": [
+      "layout",
+      "hand_tool"
+    ],
+    "tasks": [
+      "mark_layout"
+    ],
+    "fuzzy": [
+      "直線",
+      "墨",
+      "弾く"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/chalk_line.svg",
+    "summary_ja": "糸に粉を付けて弾き、直線の基準線を引く工具。…",
+    "summary_en": "Snaps a chalked string to mark a straight reference line.…",
+    "detail_ja": "糸に粉を付けて弾き、直線の基準線を引く工具。",
+    "detail_en": "Snaps a chalked string to mark a straight reference line.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "square_tool",
     "type": "tool",
-    "term": { "ja": "差し金", "en": "Try Square" },
-    "aliases": { "ja": ["スコヤ"], "en": ["Square"] },
-    "description": { "ja": "直角の確認や墨付けに使う工具。", "en": "A tool for checking and marking right angles." },
-    "categories": ["measuring", "layout", "hand_tool"],
-    "tasks": ["check_square", "mark_layout"],
-    "fuzzy": ["直角", "墨付け", "90度"],
-    "region": ["jp", "global"],
-    "image": "icons/square_tool.svg"
+    "term": {
+      "ja": "差し金",
+      "en": "Try Square"
+    },
+    "aliases": {
+      "ja": [
+        "スコヤ"
+      ],
+      "en": [
+        "Square"
+      ]
+    },
+    "description": {
+      "ja": "直角の確認や墨付けに使う工具。",
+      "en": "A tool for checking and marking right angles."
+    },
+    "categories": [
+      "measuring",
+      "layout",
+      "hand_tool"
+    ],
+    "tasks": [
+      "check_square",
+      "mark_layout"
+    ],
+    "fuzzy": [
+      "直角",
+      "墨付け",
+      "90度"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/square_tool.svg",
+    "summary_ja": "直角の確認や墨付けに使う工具。…",
+    "summary_en": "A tool for checking and marking right angles.…",
+    "detail_ja": "直角の確認や墨付けに使う工具。",
+    "detail_en": "A tool for checking and marking right angles.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "plumb_bob",
     "type": "tool",
-    "term": { "ja": "下げ振り", "en": "Plumb Bob" },
-    "aliases": { "ja": ["下振り"], "en": ["Plumb Line Weight"] },
-    "description": { "ja": "重りを糸で吊り、重力で垂直を確認する。", "en": "A weight on a string used to check vertical alignment." },
-    "categories": ["leveling", "layout", "hand_tool"],
-    "tasks": ["check_plumb"],
-    "fuzzy": ["垂直", "重り", "糸"],
-    "region": ["jp", "global"],
-    "image": "icons/plumb_bob.svg"
+    "term": {
+      "ja": "下げ振り",
+      "en": "Plumb Bob"
+    },
+    "aliases": {
+      "ja": [
+        "下振り"
+      ],
+      "en": [
+        "Plumb Line Weight"
+      ]
+    },
+    "description": {
+      "ja": "重りを糸で吊り、重力で垂直を確認する。",
+      "en": "A weight on a string used to check vertical alignment."
+    },
+    "categories": [
+      "leveling",
+      "layout",
+      "hand_tool"
+    ],
+    "tasks": [
+      "check_plumb"
+    ],
+    "fuzzy": [
+      "垂直",
+      "重り",
+      "糸"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/plumb_bob.svg",
+    "summary_ja": "重りを糸で吊り、重力で垂直を確認する。…",
+    "summary_en": "A weight on a string used to check vertical alignment.…",
+    "detail_ja": "重りを糸で吊り、重力で垂直を確認する。",
+    "detail_en": "A weight on a string used to check vertical alignment.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "cordless_drill",
     "type": "tool",
-    "term": { "ja": "充電ドリルドライバー", "en": "Cordless Drill/Driver" },
-    "aliases": { "ja": ["インパクトではないドリル"], "en": ["Cordless Drill"] },
-    "description": { "ja": "穴あけやネジ締めに使う充電式の電動工具。", "en": "A battery-powered tool for drilling holes and driving screws." },
-    "categories": ["drilling", "fastening", "power_tool"],
-    "tasks": ["drill_hole", "drive_screw"],
-    "fuzzy": ["充電", "穴あけ", "ネジ"],
-    "region": ["jp", "global"],
-    "image": "icons/cordless_drill.svg"
+    "term": {
+      "ja": "充電ドリルドライバー",
+      "en": "Cordless Drill/Driver"
+    },
+    "aliases": {
+      "ja": [
+        "インパクトではないドリル"
+      ],
+      "en": [
+        "Cordless Drill"
+      ]
+    },
+    "description": {
+      "ja": "穴あけやネジ締めに使う充電式の電動工具。",
+      "en": "A battery-powered tool for drilling holes and driving screws."
+    },
+    "categories": [
+      "drilling",
+      "fastening",
+      "power_tool"
+    ],
+    "tasks": [
+      "drill_hole",
+      "drive_screw"
+    ],
+    "fuzzy": [
+      "充電",
+      "穴あけ",
+      "ネジ"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/cordless_drill.svg",
+    "summary_ja": "穴あけやネジ締めに使う充電式の電動工具。…",
+    "summary_en": "A battery-powered tool for drilling holes and driving screws…",
+    "detail_ja": "穴あけやネジ締めに使う充電式の電動工具。",
+    "detail_en": "A battery-powered tool for drilling holes and driving screws.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "impact_driver",
     "type": "tool",
-    "term": { "ja": "インパクトドライバー", "en": "Impact Driver" },
-    "aliases": { "ja": ["インパクト"], "en": ["Impact Screwdriver"] },
-    "description": { "ja": "打撃を伴う回転で強いトルクを出し、ネジ締めに適する。", "en": "Delivers high torque with impact action, ideal for driving screws." },
-    "categories": ["fastening", "power_tool"],
-    "tasks": ["drive_screw"],
-    "fuzzy": ["トルク", "打撃", "ネジ締め"],
-    "region": ["jp", "global"],
-    "image": "icons/impact_driver.svg"
+    "term": {
+      "ja": "インパクトドライバー",
+      "en": "Impact Driver"
+    },
+    "aliases": {
+      "ja": [
+        "インパクト"
+      ],
+      "en": [
+        "Impact Screwdriver"
+      ]
+    },
+    "description": {
+      "ja": "打撃を伴う回転で強いトルクを出し、ネジ締めに適する。",
+      "en": "Delivers high torque with impact action, ideal for driving screws."
+    },
+    "categories": [
+      "fastening",
+      "power_tool"
+    ],
+    "tasks": [
+      "drive_screw"
+    ],
+    "fuzzy": [
+      "トルク",
+      "打撃",
+      "ネジ締め"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/impact_driver.svg",
+    "summary_ja": "打撃を伴う回転で強いトルクを出し、ネジ締めに適する。…",
+    "summary_en": "Delivers high torque with impact action, ideal for driving s…",
+    "detail_ja": "打撃を伴う回転で強いトルクを出し、ネジ締めに適する。",
+    "detail_en": "Delivers high torque with impact action, ideal for driving screws.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "rotary_hammer",
     "type": "tool",
-    "term": { "ja": "ハンマードリル", "en": "Rotary Hammer" },
-    "aliases": { "ja": ["ロータリーハンマー"], "en": ["Hammer Drill (Rotary)"] },
-    "description": { "ja": "打撃機構でコンクリート等に穴あけする電動工具。", "en": "A powerful drill with hammer action for concrete and masonry." },
-    "categories": ["drilling", "masonry", "power_tool"],
-    "tasks": ["drill_concrete"],
-    "fuzzy": ["コンクリ", "打撃", "穴あけ"],
-    "region": ["jp", "global"],
-    "image": "icons/rotary_hammer.svg"
+    "term": {
+      "ja": "ハンマードリル",
+      "en": "Rotary Hammer"
+    },
+    "aliases": {
+      "ja": [
+        "ロータリーハンマー"
+      ],
+      "en": [
+        "Hammer Drill (Rotary)"
+      ]
+    },
+    "description": {
+      "ja": "打撃機構でコンクリート等に穴あけする電動工具。",
+      "en": "A powerful drill with hammer action for concrete and masonry."
+    },
+    "categories": [
+      "drilling",
+      "masonry",
+      "power_tool"
+    ],
+    "tasks": [
+      "drill_concrete"
+    ],
+    "fuzzy": [
+      "コンクリ",
+      "打撃",
+      "穴あけ"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/rotary_hammer.svg",
+    "summary_ja": "打撃機構でコンクリート等に穴あけする電動工具。…",
+    "summary_en": "A powerful drill with hammer action for concrete and masonry…",
+    "detail_ja": "打撃機構でコンクリート等に穴あけする電動工具。",
+    "detail_en": "A powerful drill with hammer action for concrete and masonry.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "drill_bit_set",
     "type": "tool",
-    "term": { "ja": "ドリルビット", "en": "Drill Bit" },
-    "aliases": { "ja": ["キリ"], "en": ["Bit"] },
-    "description": { "ja": "ドリルに装着して穴あけを行う先端工具。材質により種類が異なる。", "en": "A cutting tool attachment for drilling holes; types vary by material." },
-    "categories": ["drilling", "accessory"],
-    "tasks": ["drill_hole"],
-    "fuzzy": ["ビット", "キリ", "先端"],
-    "region": ["jp", "global"],
-    "image": "icons/drill_bit_set.svg"
+    "term": {
+      "ja": "ドリルビット",
+      "en": "Drill Bit"
+    },
+    "aliases": {
+      "ja": [
+        "キリ"
+      ],
+      "en": [
+        "Bit"
+      ]
+    },
+    "description": {
+      "ja": "ドリルに装着して穴あけを行う先端工具。材質により種類が異なる。",
+      "en": "A cutting tool attachment for drilling holes; types vary by material."
+    },
+    "categories": [
+      "drilling",
+      "accessory"
+    ],
+    "tasks": [
+      "drill_hole"
+    ],
+    "fuzzy": [
+      "ビット",
+      "キリ",
+      "先端"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/drill_bit_set.svg",
+    "summary_ja": "ドリルに装着して穴あけを行う先端工具。",
+    "summary_en": "A cutting tool attachment for drilling holes; types vary by…",
+    "detail_ja": "ドリルに装着して穴あけを行う先端工具。材質により種類が異なる。",
+    "detail_en": "A cutting tool attachment for drilling holes; types vary by material.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "screwdriver",
     "type": "tool",
-    "term": { "ja": "ドライバー", "en": "Screwdriver" },
-    "aliases": { "ja": ["プラスドライバー", "マイナスドライバー"], "en": ["Driver"] },
-    "description": { "ja": "手作業でネジを締めたり緩めたりする工具。", "en": "A hand tool for tightening or loosening screws." },
-    "categories": ["fastening", "hand_tool"],
-    "tasks": ["drive_screw"],
-    "fuzzy": ["ネジ", "回す", "締める"],
-    "region": ["jp", "global"],
-    "image": "icons/screwdriver.svg"
+    "term": {
+      "ja": "ドライバー",
+      "en": "Screwdriver"
+    },
+    "aliases": {
+      "ja": [
+        "プラスドライバー",
+        "マイナスドライバー"
+      ],
+      "en": [
+        "Driver"
+      ]
+    },
+    "description": {
+      "ja": "手作業でネジを締めたり緩めたりする工具。",
+      "en": "A hand tool for tightening or loosening screws."
+    },
+    "categories": [
+      "fastening",
+      "hand_tool"
+    ],
+    "tasks": [
+      "drive_screw"
+    ],
+    "fuzzy": [
+      "ネジ",
+      "回す",
+      "締める"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/screwdriver.svg",
+    "summary_ja": "手作業でネジを締めたり緩めたりする工具。…",
+    "summary_en": "A hand tool for tightening or loosening screws.…",
+    "detail_ja": "手作業でネジを締めたり緩めたりする工具。",
+    "detail_en": "A hand tool for tightening or loosening screws.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "wrench_adjustable",
     "type": "tool",
-    "term": { "ja": "モンキーレンチ", "en": "Adjustable Wrench" },
-    "aliases": { "ja": ["アジャスタブルレンチ"], "en": ["Crescent Wrench"] },
-    "description": { "ja": "口幅を調整してボルト・ナットを回す工具。", "en": "A wrench with an adjustable jaw for turning bolts and nuts." },
-    "categories": ["fastening", "hand_tool"],
-    "tasks": ["tighten_bolt", "loosen_bolt"],
-    "fuzzy": ["ナット", "ボルト", "口幅"],
-    "region": ["jp", "global"],
-    "image": "icons/wrench_adjustable.svg"
+    "term": {
+      "ja": "モンキーレンチ",
+      "en": "Adjustable Wrench"
+    },
+    "aliases": {
+      "ja": [
+        "アジャスタブルレンチ"
+      ],
+      "en": [
+        "Crescent Wrench"
+      ]
+    },
+    "description": {
+      "ja": "口幅を調整してボルト・ナットを回す工具。",
+      "en": "A wrench with an adjustable jaw for turning bolts and nuts."
+    },
+    "categories": [
+      "fastening",
+      "hand_tool"
+    ],
+    "tasks": [
+      "tighten_bolt",
+      "loosen_bolt"
+    ],
+    "fuzzy": [
+      "ナット",
+      "ボルト",
+      "口幅"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/wrench_adjustable.svg",
+    "summary_ja": "口幅を調整してボルト・ナットを回す工具。…",
+    "summary_en": "A wrench with an adjustable jaw for turning bolts and nuts.…",
+    "detail_ja": "口幅を調整してボルト・ナットを回す工具。",
+    "detail_en": "A wrench with an adjustable jaw for turning bolts and nuts.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "socket_wrench",
     "type": "tool",
-    "term": { "ja": "ソケットレンチ", "en": "Socket Wrench" },
-    "aliases": { "ja": ["ラチェットレンチ"], "en": ["Ratchet"] },
-    "description": { "ja": "ソケットを付け替えてボルト・ナットを効率よく回す。", "en": "Uses interchangeable sockets with a ratchet to turn fasteners efficiently." },
-    "categories": ["fastening", "hand_tool"],
-    "tasks": ["tighten_bolt", "loosen_bolt"],
-    "fuzzy": ["ラチェット", "ソケット", "早回し"],
-    "region": ["jp", "global"],
-    "image": "icons/socket_wrench.svg"
+    "term": {
+      "ja": "ソケットレンチ",
+      "en": "Socket Wrench"
+    },
+    "aliases": {
+      "ja": [
+        "ラチェットレンチ"
+      ],
+      "en": [
+        "Ratchet"
+      ]
+    },
+    "description": {
+      "ja": "ソケットを付け替えてボルト・ナットを効率よく回す。",
+      "en": "Uses interchangeable sockets with a ratchet to turn fasteners efficiently."
+    },
+    "categories": [
+      "fastening",
+      "hand_tool"
+    ],
+    "tasks": [
+      "tighten_bolt",
+      "loosen_bolt"
+    ],
+    "fuzzy": [
+      "ラチェット",
+      "ソケット",
+      "早回し"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/socket_wrench.svg",
+    "summary_ja": "ソケットを付け替えてボルト・ナットを効率よく回す。…",
+    "summary_en": "Uses interchangeable sockets with a ratchet to turn fastener…",
+    "detail_ja": "ソケットを付け替えてボルト・ナットを効率よく回す。",
+    "detail_en": "Uses interchangeable sockets with a ratchet to turn fasteners efficiently.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "pliers",
     "type": "tool",
-    "term": { "ja": "ペンチ", "en": "Pliers" },
-    "aliases": { "ja": ["万能ペンチ"], "en": ["Combination Pliers"] },
-    "description": { "ja": "つかむ・曲げる・切るなど多用途に使う把持工具。", "en": "A multi-purpose gripping tool for holding, bending, and cutting wire." },
-    "categories": ["hand_tool", "electrical", "fastening"],
-    "tasks": ["grip", "cut_wire"],
-    "fuzzy": ["つかむ", "挟む", "針金"],
-    "region": ["jp", "global"],
-    "image": "icons/pliers.svg"
+    "term": {
+      "ja": "ペンチ",
+      "en": "Pliers"
+    },
+    "aliases": {
+      "ja": [
+        "万能ペンチ"
+      ],
+      "en": [
+        "Combination Pliers"
+      ]
+    },
+    "description": {
+      "ja": "つかむ・曲げる・切るなど多用途に使う把持工具。",
+      "en": "A multi-purpose gripping tool for holding, bending, and cutting wire."
+    },
+    "categories": [
+      "hand_tool",
+      "electrical",
+      "fastening"
+    ],
+    "tasks": [
+      "grip",
+      "cut_wire"
+    ],
+    "fuzzy": [
+      "つかむ",
+      "挟む",
+      "針金"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/pliers.svg",
+    "summary_ja": "つかむ・曲げる・切るなど多用途に使う把持工具。…",
+    "summary_en": "A multi-purpose gripping tool for holding, bending, and cutt…",
+    "detail_ja": "つかむ・曲げる・切るなど多用途に使う把持工具。",
+    "detail_en": "A multi-purpose gripping tool for holding, bending, and cutting wire.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "wire_stripper",
     "type": "tool",
-    "term": { "ja": "ワイヤーストリッパー", "en": "Wire Stripper" },
-    "aliases": { "ja": ["皮むき工具"], "en": ["Stripper"] },
-    "description": { "ja": "電線の被覆を傷つけずに剥く工具。", "en": "A tool for removing insulation from electrical wires without damage." },
-    "categories": ["electrical", "hand_tool"],
-    "tasks": ["strip_wire"],
-    "fuzzy": ["被覆", "皮むき", "電線"],
-    "region": ["jp", "global"],
-    "image": "icons/wire_stripper.svg"
+    "term": {
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire Stripper"
+    },
+    "aliases": {
+      "ja": [
+        "皮むき工具"
+      ],
+      "en": [
+        "Stripper"
+      ]
+    },
+    "description": {
+      "ja": "電線の被覆を傷つけずに剥く工具。",
+      "en": "A tool for removing insulation from electrical wires without damage."
+    },
+    "categories": [
+      "electrical",
+      "hand_tool"
+    ],
+    "tasks": [
+      "strip_wire"
+    ],
+    "fuzzy": [
+      "被覆",
+      "皮むき",
+      "電線"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/wire_stripper.svg",
+    "summary_ja": "電線の被覆を傷つけずに剥く工具。…",
+    "summary_en": "A tool for removing insulation from electrical wires without…",
+    "detail_ja": "電線の被覆を傷つけずに剥く工具。",
+    "detail_en": "A tool for removing insulation from electrical wires without damage.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "crimping_tool",
     "type": "tool",
-    "term": { "ja": "圧着工具", "en": "Crimping Tool" },
-    "aliases": { "ja": ["圧着ペンチ"], "en": ["Crimper"] },
-    "description": { "ja": "端子を電線に圧着して確実に接続する工具。", "en": "A tool that crimps terminals onto wires for secure connections." },
-    "categories": ["electrical", "hand_tool"],
-    "tasks": ["crimp_terminal", "connect_wire"],
-    "fuzzy": ["端子", "圧着", "接続"],
-    "region": ["jp", "global"],
-    "image": "icons/crimping_tool.svg"
+    "term": {
+      "ja": "圧着工具",
+      "en": "Crimping Tool"
+    },
+    "aliases": {
+      "ja": [
+        "圧着ペンチ"
+      ],
+      "en": [
+        "Crimper"
+      ]
+    },
+    "description": {
+      "ja": "端子を電線に圧着して確実に接続する工具。",
+      "en": "A tool that crimps terminals onto wires for secure connections."
+    },
+    "categories": [
+      "electrical",
+      "hand_tool"
+    ],
+    "tasks": [
+      "crimp_terminal",
+      "connect_wire"
+    ],
+    "fuzzy": [
+      "端子",
+      "圧着",
+      "接続"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/crimping_tool.svg",
+    "summary_ja": "端子を電線に圧着して確実に接続する工具。…",
+    "summary_en": "A tool that crimps terminals onto wires for secure connectio…",
+    "detail_ja": "端子を電線に圧着して確実に接続する工具。",
+    "detail_en": "A tool that crimps terminals onto wires for secure connections.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "multimeter",
     "type": "tool",
-    "term": { "ja": "テスター", "en": "Multimeter" },
-    "aliases": { "ja": ["マルチメーター"], "en": ["Meter"] },
-    "description": { "ja": "電圧・電流・抵抗などを測定する計測器。", "en": "An instrument for measuring voltage, current, resistance, and more." },
-    "categories": ["electrical", "measuring"],
-    "tasks": ["measure_voltage", "measure_resistance"],
-    "fuzzy": ["電圧", "抵抗", "導通"],
-    "region": ["jp", "global"],
-    "image": "icons/multimeter.svg"
+    "term": {
+      "ja": "テスター",
+      "en": "Multimeter"
+    },
+    "aliases": {
+      "ja": [
+        "マルチメーター"
+      ],
+      "en": [
+        "Meter"
+      ]
+    },
+    "description": {
+      "ja": "電圧・電流・抵抗などを測定する計測器。",
+      "en": "An instrument for measuring voltage, current, resistance, and more."
+    },
+    "categories": [
+      "electrical",
+      "measuring"
+    ],
+    "tasks": [
+      "measure_voltage",
+      "measure_resistance"
+    ],
+    "fuzzy": [
+      "電圧",
+      "抵抗",
+      "導通"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/multimeter.svg",
+    "summary_ja": "電圧・電流・抵抗などを測定する計測器。…",
+    "summary_en": "An instrument for measuring voltage, current, resistance, an…",
+    "detail_ja": "電圧・電流・抵抗などを測定する計測器。",
+    "detail_en": "An instrument for measuring voltage, current, resistance, and more.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "concrete_mixer",
     "type": "tool",
-    "term": { "ja": "ミキサー", "en": "Concrete Mixer" },
-    "aliases": { "ja": ["攪拌機"], "en": ["Mixer"] },
-    "description": { "ja": "セメント・砂・砂利・水を均一に混ぜるための機械。", "en": "A machine for uniformly mixing cement, sand, aggregate, and water." },
-    "categories": ["concrete", "power_tool"],
-    "tasks": ["mix_concrete"],
-    "fuzzy": ["練る", "攪拌", "コンクリ"],
-    "region": ["jp", "global"],
-    "image": "icons/concrete_mixer.svg"
+    "term": {
+      "ja": "ミキサー",
+      "en": "Concrete Mixer"
+    },
+    "aliases": {
+      "ja": [
+        "攪拌機"
+      ],
+      "en": [
+        "Mixer"
+      ]
+    },
+    "description": {
+      "ja": "セメント・砂・砂利・水を均一に混ぜるための機械。",
+      "en": "A machine for uniformly mixing cement, sand, aggregate, and water."
+    },
+    "categories": [
+      "concrete",
+      "power_tool"
+    ],
+    "tasks": [
+      "mix_concrete"
+    ],
+    "fuzzy": [
+      "練る",
+      "攪拌",
+      "コンクリ"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/concrete_mixer.svg",
+    "summary_ja": "セメント・砂・砂利・水を均一に混ぜるための機械。…",
+    "summary_en": "A machine for uniformly mixing cement, sand, aggregate, and…",
+    "detail_ja": "セメント・砂・砂利・水を均一に混ぜるための機械。",
+    "detail_en": "A machine for uniformly mixing cement, sand, aggregate, and water.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "trowel",
     "type": "tool",
-    "term": { "ja": "コテ", "en": "Trowel" },
-    "aliases": { "ja": ["左官コテ"], "en": ["Finishing Trowel"] },
-    "description": { "ja": "モルタルやコンクリ表面を塗り付け・均し・仕上げする。", "en": "Used to place, smooth, and finish mortar or concrete surfaces." },
-    "categories": ["concrete", "masonry", "finishing", "hand_tool"],
-    "tasks": ["finish_concrete", "apply_mortar"],
-    "fuzzy": ["左官", "均す", "塗る"],
-    "region": ["jp", "global"],
-    "image": "icons/trowel.svg"
+    "term": {
+      "ja": "コテ",
+      "en": "Trowel"
+    },
+    "aliases": {
+      "ja": [
+        "左官コテ"
+      ],
+      "en": [
+        "Finishing Trowel"
+      ]
+    },
+    "description": {
+      "ja": "モルタルやコンクリ表面を塗り付け・均し・仕上げする。",
+      "en": "Used to place, smooth, and finish mortar or concrete surfaces."
+    },
+    "categories": [
+      "concrete",
+      "masonry",
+      "finishing",
+      "hand_tool"
+    ],
+    "tasks": [
+      "finish_concrete",
+      "apply_mortar"
+    ],
+    "fuzzy": [
+      "左官",
+      "均す",
+      "塗る"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/trowel.svg",
+    "summary_ja": "モルタルやコンクリ表面を塗り付け・均し・仕上げする。…",
+    "summary_en": "Used to place, smooth, and finish mortar or concrete surface…",
+    "detail_ja": "モルタルやコンクリ表面を塗り付け・均し・仕上げする。",
+    "detail_en": "Used to place, smooth, and finish mortar or concrete surfaces.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "float",
     "type": "tool",
-    "term": { "ja": "木ゴテ", "en": "Float" },
-    "aliases": { "ja": ["フロート"], "en": ["Hand Float"] },
-    "description": { "ja": "コンクリやモルタルの表面をならして密実にする工具。", "en": "A tool for smoothing and compacting the surface of mortar or concrete." },
-    "categories": ["concrete", "finishing", "hand_tool"],
-    "tasks": ["finish_concrete"],
-    "fuzzy": ["表面", "ならす", "密実"],
-    "region": ["jp", "global"],
-    "image": "icons/float.svg"
+    "term": {
+      "ja": "木ゴテ",
+      "en": "Float"
+    },
+    "aliases": {
+      "ja": [
+        "フロート"
+      ],
+      "en": [
+        "Hand Float"
+      ]
+    },
+    "description": {
+      "ja": "コンクリやモルタルの表面をならして密実にする工具。",
+      "en": "A tool for smoothing and compacting the surface of mortar or concrete."
+    },
+    "categories": [
+      "concrete",
+      "finishing",
+      "hand_tool"
+    ],
+    "tasks": [
+      "finish_concrete"
+    ],
+    "fuzzy": [
+      "表面",
+      "ならす",
+      "密実"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/float.svg",
+    "summary_ja": "コンクリやモルタルの表面をならして密実にする工具。…",
+    "summary_en": "A tool for smoothing and compacting the surface of mortar or…",
+    "detail_ja": "コンクリやモルタルの表面をならして密実にする工具。",
+    "detail_en": "A tool for smoothing and compacting the surface of mortar or concrete.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "concrete_vibrator",
     "type": "tool",
-    "term": { "ja": "コンクリートバイブレーター", "en": "Concrete Vibrator" },
-    "aliases": { "ja": ["バイブレーター"], "en": ["Vibrator"] },
-    "description": { "ja": "打設時に振動を与え、気泡を抜いて締固める。", "en": "Consolidates concrete by vibration to remove air pockets." },
-    "categories": ["concrete", "power_tool"],
-    "tasks": ["consolidate_concrete", "pour_concrete"],
-    "fuzzy": ["締固め", "気泡", "振動"],
-    "region": ["jp", "global"],
-    "image": "icons/concrete_vibrator.svg"
+    "term": {
+      "ja": "コンクリートバイブレーター",
+      "en": "Concrete Vibrator"
+    },
+    "aliases": {
+      "ja": [
+        "バイブレーター"
+      ],
+      "en": [
+        "Vibrator"
+      ]
+    },
+    "description": {
+      "ja": "打設時に振動を与え、気泡を抜いて締固める。",
+      "en": "Consolidates concrete by vibration to remove air pockets."
+    },
+    "categories": [
+      "concrete",
+      "power_tool"
+    ],
+    "tasks": [
+      "consolidate_concrete",
+      "pour_concrete"
+    ],
+    "fuzzy": [
+      "締固め",
+      "気泡",
+      "振動"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/concrete_vibrator.svg",
+    "summary_ja": "打設時に振動を与え、気泡を抜いて締固める。…",
+    "summary_en": "Consolidates concrete by vibration to remove air pockets.…",
+    "detail_ja": "打設時に振動を与え、気泡を抜いて締固める。",
+    "detail_en": "Consolidates concrete by vibration to remove air pockets.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "wheelbarrow",
     "type": "tool",
-    "term": { "ja": "一輪車", "en": "Wheelbarrow" },
-    "aliases": { "ja": ["ねこ車"], "en": ["Barrow"] },
-    "description": { "ja": "土砂や資材を運搬する手押し運搬具。", "en": "A hand-pushed carrier for transporting soil, debris, or materials." },
-    "categories": ["transport", "hand_tool"],
-    "tasks": ["transport_material"],
-    "fuzzy": ["運ぶ", "土砂", "資材"],
-    "region": ["jp", "global"],
-    "image": "icons/wheelbarrow.svg"
+    "term": {
+      "ja": "一輪車",
+      "en": "Wheelbarrow"
+    },
+    "aliases": {
+      "ja": [
+        "ねこ車"
+      ],
+      "en": [
+        "Barrow"
+      ]
+    },
+    "description": {
+      "ja": "土砂や資材を運搬する手押し運搬具。",
+      "en": "A hand-pushed carrier for transporting soil, debris, or materials."
+    },
+    "categories": [
+      "transport",
+      "hand_tool"
+    ],
+    "tasks": [
+      "transport_material"
+    ],
+    "fuzzy": [
+      "運ぶ",
+      "土砂",
+      "資材"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/wheelbarrow.svg",
+    "summary_ja": "土砂や資材を運搬する手押し運搬具。…",
+    "summary_en": "A hand-pushed carrier for transporting soil, debris, or mate…",
+    "detail_ja": "土砂や資材を運搬する手押し運搬具。",
+    "detail_en": "A hand-pushed carrier for transporting soil, debris, or materials.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "shovel",
     "type": "tool",
-    "term": { "ja": "スコップ", "en": "Shovel" },
-    "aliases": { "ja": ["シャベル"], "en": ["Spade"] },
-    "description": { "ja": "土砂の掘削やすくい取り、移動に使う。", "en": "Used for digging, scooping, and moving soil or aggregate." },
-    "categories": ["earthwork", "hand_tool"],
-    "tasks": ["dig", "move_soil"],
-    "fuzzy": ["掘る", "土", "すくう"],
-    "region": ["jp", "global"],
-    "image": "icons/shovel.svg"
+    "term": {
+      "ja": "スコップ",
+      "en": "Shovel"
+    },
+    "aliases": {
+      "ja": [
+        "シャベル"
+      ],
+      "en": [
+        "Spade"
+      ]
+    },
+    "description": {
+      "ja": "土砂の掘削やすくい取り、移動に使う。",
+      "en": "Used for digging, scooping, and moving soil or aggregate."
+    },
+    "categories": [
+      "earthwork",
+      "hand_tool"
+    ],
+    "tasks": [
+      "dig",
+      "move_soil"
+    ],
+    "fuzzy": [
+      "掘る",
+      "土",
+      "すくう"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/shovel.svg",
+    "summary_ja": "土砂の掘削やすくい取り、移動に使う。…",
+    "summary_en": "Used for digging, scooping, and moving soil or aggregate.…",
+    "detail_ja": "土砂の掘削やすくい取り、移動に使う。",
+    "detail_en": "Used for digging, scooping, and moving soil or aggregate.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "pickaxe",
     "type": "tool",
-    "term": { "ja": "つるはし", "en": "Pickaxe" },
-    "aliases": { "ja": ["ピッケル"], "en": ["Pick"] },
-    "description": { "ja": "硬い地盤や岩を砕いて掘削する工具。", "en": "A tool for breaking hard ground or rock during excavation." },
-    "categories": ["earthwork", "demolition", "hand_tool"],
-    "tasks": ["break_ground", "dig"],
-    "fuzzy": ["岩", "硬い", "砕く"],
-    "region": ["jp", "global"],
-    "image": "icons/pickaxe.svg"
+    "term": {
+      "ja": "つるはし",
+      "en": "Pickaxe"
+    },
+    "aliases": {
+      "ja": [
+        "ピッケル"
+      ],
+      "en": [
+        "Pick"
+      ]
+    },
+    "description": {
+      "ja": "硬い地盤や岩を砕いて掘削する工具。",
+      "en": "A tool for breaking hard ground or rock during excavation."
+    },
+    "categories": [
+      "earthwork",
+      "demolition",
+      "hand_tool"
+    ],
+    "tasks": [
+      "break_ground",
+      "dig"
+    ],
+    "fuzzy": [
+      "岩",
+      "硬い",
+      "砕く"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/pickaxe.svg",
+    "summary_ja": "硬い地盤や岩を砕いて掘削する工具。…",
+    "summary_en": "A tool for breaking hard ground or rock during excavation.…",
+    "detail_ja": "硬い地盤や岩を砕いて掘削する工具。",
+    "detail_en": "A tool for breaking hard ground or rock during excavation.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "tamper",
     "type": "tool",
-    "term": { "ja": "ランマー(転圧)", "en": "Hand Tamper" },
-    "aliases": { "ja": ["タンパー"], "en": ["Tamper"] },
-    "description": { "ja": "地盤や砕石を押し固めて締固める。", "en": "Compacts soil or gravel by repeated tamping." },
-    "categories": ["earthwork", "hand_tool"],
-    "tasks": ["compact_soil"],
-    "fuzzy": ["転圧", "締固め", "地盤"],
-    "region": ["jp", "global"],
-    "image": "icons/tamper.svg"
+    "term": {
+      "ja": "ランマー(転圧)",
+      "en": "Hand Tamper"
+    },
+    "aliases": {
+      "ja": [
+        "タンパー"
+      ],
+      "en": [
+        "Tamper"
+      ]
+    },
+    "description": {
+      "ja": "地盤や砕石を押し固めて締固める。",
+      "en": "Compacts soil or gravel by repeated tamping."
+    },
+    "categories": [
+      "earthwork",
+      "hand_tool"
+    ],
+    "tasks": [
+      "compact_soil"
+    ],
+    "fuzzy": [
+      "転圧",
+      "締固め",
+      "地盤"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/tamper.svg",
+    "summary_ja": "地盤や砕石を押し固めて締固める。…",
+    "summary_en": "Compacts soil or gravel by repeated tamping.…",
+    "detail_ja": "地盤や砕石を押し固めて締固める。",
+    "detail_en": "Compacts soil or gravel by repeated tamping.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "plate_compactor",
     "type": "tool",
-    "term": { "ja": "プレートコンパクター", "en": "Plate Compactor" },
-    "aliases": { "ja": ["転圧機"], "en": ["Compactor"] },
-    "description": { "ja": "振動板で地盤を締固める機械。舗装下地などに使う。", "en": "A vibrating plate machine used to compact soil and base material." },
-    "categories": ["earthwork", "power_tool"],
-    "tasks": ["compact_soil"],
-    "fuzzy": ["振動", "転圧", "下地"],
-    "region": ["jp", "global"],
-    "image": "icons/plate_compactor.svg"
+    "term": {
+      "ja": "プレートコンパクター",
+      "en": "Plate Compactor"
+    },
+    "aliases": {
+      "ja": [
+        "転圧機"
+      ],
+      "en": [
+        "Compactor"
+      ]
+    },
+    "description": {
+      "ja": "振動板で地盤を締固める機械。舗装下地などに使う。",
+      "en": "A vibrating plate machine used to compact soil and base material."
+    },
+    "categories": [
+      "earthwork",
+      "power_tool"
+    ],
+    "tasks": [
+      "compact_soil"
+    ],
+    "fuzzy": [
+      "振動",
+      "転圧",
+      "下地"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/plate_compactor.svg",
+    "summary_ja": "振動板で地盤を締固める機械。",
+    "summary_en": "A vibrating plate machine used to compact soil and base mate…",
+    "detail_ja": "振動板で地盤を締固める機械。舗装下地などに使う。",
+    "detail_en": "A vibrating plate machine used to compact soil and base material.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "ladder",
     "type": "tool",
-    "term": { "ja": "はしご", "en": "Ladder" },
-    "aliases": { "ja": ["脚立(用途による)"], "en": ["Step Ladder"] },
-    "description": { "ja": "高所作業のための昇降用具。安定設置が重要。", "en": "A climbing device for working at height; proper placement is critical." },
-    "categories": ["access", "safety"],
-    "tasks": ["access_height"],
-    "fuzzy": ["高所", "昇降", "足場"],
-    "region": ["jp", "global"],
-    "image": "icons/ladder.svg"
+    "term": {
+      "ja": "はしご",
+      "en": "Ladder"
+    },
+    "aliases": {
+      "ja": [
+        "脚立(用途による)"
+      ],
+      "en": [
+        "Step Ladder"
+      ]
+    },
+    "description": {
+      "ja": "高所作業のための昇降用具。安定設置が重要。",
+      "en": "A climbing device for working at height; proper placement is critical."
+    },
+    "categories": [
+      "access",
+      "safety"
+    ],
+    "tasks": [
+      "access_height"
+    ],
+    "fuzzy": [
+      "高所",
+      "昇降",
+      "足場"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/ladder.svg",
+    "summary_ja": "高所作業のための昇降用具。",
+    "summary_en": "A climbing device for working at height; proper placement is…",
+    "detail_ja": "高所作業のための昇降用具。安定設置が重要。",
+    "detail_en": "A climbing device for working at height; proper placement is critical.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "step_ladder",
     "type": "tool",
-    "term": { "ja": "脚立", "en": "Step Ladder" },
-    "aliases": { "ja": ["踏み台"], "en": ["A-Frame Ladder"] },
-    "description": { "ja": "自立する梯子。屋内外の軽作業で使う。", "en": "A self-supporting ladder commonly used for light work." },
-    "categories": ["access", "safety"],
-    "tasks": ["access_height"],
-    "fuzzy": ["自立", "踏み台", "高所"],
-    "region": ["jp", "global"],
-    "image": "icons/step_ladder.svg"
+    "term": {
+      "ja": "脚立",
+      "en": "Step Ladder"
+    },
+    "aliases": {
+      "ja": [
+        "踏み台"
+      ],
+      "en": [
+        "A-Frame Ladder"
+      ]
+    },
+    "description": {
+      "ja": "自立する梯子。屋内外の軽作業で使う。",
+      "en": "A self-supporting ladder commonly used for light work."
+    },
+    "categories": [
+      "access",
+      "safety"
+    ],
+    "tasks": [
+      "access_height"
+    ],
+    "fuzzy": [
+      "自立",
+      "踏み台",
+      "高所"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/step_ladder.svg",
+    "summary_ja": "自立する梯子。",
+    "summary_en": "A self-supporting ladder commonly used for light work.…",
+    "detail_ja": "自立する梯子。屋内外の軽作業で使う。",
+    "detail_en": "A self-supporting ladder commonly used for light work.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "scaffold",
     "type": "tool",
-    "term": { "ja": "足場", "en": "Scaffold" },
-    "aliases": { "ja": ["仮設足場"], "en": ["Scaffolding"] },
-    "description": { "ja": "高所作業の作業床を確保する仮設構造。", "en": "A temporary structure providing platforms for work at height." },
-    "categories": ["scaffolding", "safety"],
-    "tasks": ["setup_scaffold", "access_height"],
-    "fuzzy": ["仮設", "作業床", "高所"],
-    "region": ["jp", "global"],
-    "image": "icons/scaffold.svg"
+    "term": {
+      "ja": "足場",
+      "en": "Scaffold"
+    },
+    "aliases": {
+      "ja": [
+        "仮設足場"
+      ],
+      "en": [
+        "Scaffolding"
+      ]
+    },
+    "description": {
+      "ja": "高所作業の作業床を確保する仮設構造。",
+      "en": "A temporary structure providing platforms for work at height."
+    },
+    "categories": [
+      "scaffolding",
+      "safety"
+    ],
+    "tasks": [
+      "setup_scaffold",
+      "access_height"
+    ],
+    "fuzzy": [
+      "仮設",
+      "作業床",
+      "高所"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/scaffold.svg",
+    "summary_ja": "高所作業の作業床を確保する仮設構造。…",
+    "summary_en": "A temporary structure providing platforms for work at height…",
+    "detail_ja": "高所作業の作業床を確保する仮設構造。",
+    "detail_en": "A temporary structure providing platforms for work at height.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "safety_harness",
     "type": "tool",
-    "term": { "ja": "墜落制止用器具(フルハーネス)", "en": "Safety Harness" },
-    "aliases": { "ja": ["フルハーネス"], "en": ["Full-Body Harness"] },
-    "description": { "ja": "高所作業時の墜落を防ぐための安全装備。", "en": "Safety equipment to prevent falls when working at height." },
-    "categories": ["safety"],
-    "tasks": ["prevent_fall"],
-    "fuzzy": ["安全帯", "墜落", "高所"],
-    "region": ["jp", "global"],
-    "image": "icons/safety_harness.svg"
+    "term": {
+      "ja": "墜落制止用器具(フルハーネス)",
+      "en": "Safety Harness"
+    },
+    "aliases": {
+      "ja": [
+        "フルハーネス"
+      ],
+      "en": [
+        "Full-Body Harness"
+      ]
+    },
+    "description": {
+      "ja": "高所作業時の墜落を防ぐための安全装備。",
+      "en": "Safety equipment to prevent falls when working at height."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "prevent_fall"
+    ],
+    "fuzzy": [
+      "安全帯",
+      "墜落",
+      "高所"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/safety_harness.svg",
+    "summary_ja": "高所作業時の墜落を防ぐための安全装備。…",
+    "summary_en": "Safety equipment to prevent falls when working at height.…",
+    "detail_ja": "高所作業時の墜落を防ぐための安全装備。",
+    "detail_en": "Safety equipment to prevent falls when working at height.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "hard_hat",
     "type": "tool",
-    "term": { "ja": "ヘルメット", "en": "Hard Hat" },
-    "aliases": { "ja": ["保護帽"], "en": ["Safety Helmet"] },
-    "description": { "ja": "落下物や衝撃から頭部を保護する。", "en": "Protects the head from impact and falling objects." },
-    "categories": ["safety"],
-    "tasks": ["protect_head"],
-    "fuzzy": ["保護", "頭", "安全"],
-    "region": ["jp", "global"],
-    "image": "icons/hard_hat.svg"
+    "term": {
+      "ja": "ヘルメット",
+      "en": "Hard Hat"
+    },
+    "aliases": {
+      "ja": [
+        "保護帽"
+      ],
+      "en": [
+        "Safety Helmet"
+      ]
+    },
+    "description": {
+      "ja": "落下物や衝撃から頭部を保護する。",
+      "en": "Protects the head from impact and falling objects."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "protect_head"
+    ],
+    "fuzzy": [
+      "保護",
+      "頭",
+      "安全"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/hard_hat.svg",
+    "summary_ja": "落下物や衝撃から頭部を保護する。…",
+    "summary_en": "Protects the head from impact and falling objects.…",
+    "detail_ja": "落下物や衝撃から頭部を保護する。",
+    "detail_en": "Protects the head from impact and falling objects.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "safety_glasses",
     "type": "tool",
-    "term": { "ja": "保護メガネ", "en": "Safety Glasses" },
-    "aliases": { "ja": ["ゴーグル"], "en": ["Goggles"] },
-    "description": { "ja": "粉じんや飛散物から目を守る保護具。", "en": "Protective eyewear against dust and flying debris." },
-    "categories": ["safety"],
-    "tasks": ["protect_eyes"],
-    "fuzzy": ["目", "粉じん", "飛散"],
-    "region": ["jp", "global"],
-    "image": "icons/safety_glasses.svg"
+    "term": {
+      "ja": "保護メガネ",
+      "en": "Safety Glasses"
+    },
+    "aliases": {
+      "ja": [
+        "ゴーグル"
+      ],
+      "en": [
+        "Goggles"
+      ]
+    },
+    "description": {
+      "ja": "粉じんや飛散物から目を守る保護具。",
+      "en": "Protective eyewear against dust and flying debris."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "protect_eyes"
+    ],
+    "fuzzy": [
+      "目",
+      "粉じん",
+      "飛散"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/safety_glasses.svg",
+    "summary_ja": "粉じんや飛散物から目を守る保護具。…",
+    "summary_en": "Protective eyewear against dust and flying debris.…",
+    "detail_ja": "粉じんや飛散物から目を守る保護具。",
+    "detail_en": "Protective eyewear against dust and flying debris.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "work_gloves",
     "type": "tool",
-    "term": { "ja": "作業用手袋", "en": "Work Gloves" },
-    "aliases": { "ja": ["グローブ"], "en": ["Gloves"] },
-    "description": { "ja": "擦過や切創、汚れから手を保護する。用途により種類がある。", "en": "Protects hands from abrasion and cuts; types vary by task." },
-    "categories": ["safety"],
-    "tasks": ["protect_hands"],
-    "fuzzy": ["手", "保護", "滑り止め"],
-    "region": ["jp", "global"],
-    "image": "icons/work_gloves.svg"
+    "term": {
+      "ja": "作業用手袋",
+      "en": "Work Gloves"
+    },
+    "aliases": {
+      "ja": [
+        "グローブ"
+      ],
+      "en": [
+        "Gloves"
+      ]
+    },
+    "description": {
+      "ja": "擦過や切創、汚れから手を保護する。用途により種類がある。",
+      "en": "Protects hands from abrasion and cuts; types vary by task."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "protect_hands"
+    ],
+    "fuzzy": [
+      "手",
+      "保護",
+      "滑り止め"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/work_gloves.svg",
+    "summary_ja": "擦過や切創、汚れから手を保護する。",
+    "summary_en": "Protects hands from abrasion and cuts; types vary by task.…",
+    "detail_ja": "擦過や切創、汚れから手を保護する。用途により種類がある。",
+    "detail_en": "Protects hands from abrasion and cuts; types vary by task.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "respirator_mask",
     "type": "tool",
-    "term": { "ja": "防じんマスク", "en": "Respirator Mask" },
-    "aliases": { "ja": ["マスク(防じん)"], "en": ["Dust Mask"] },
-    "description": { "ja": "粉じんや有害粒子の吸入を低減する保護具。", "en": "Reduces inhalation of dust and hazardous particles." },
-    "categories": ["safety"],
-    "tasks": ["protect_breathing"],
-    "fuzzy": ["粉じん", "吸入", "フィルター"],
-    "region": ["jp", "global"],
-    "image": "icons/respirator_mask.svg"
+    "term": {
+      "ja": "防じんマスク",
+      "en": "Respirator Mask"
+    },
+    "aliases": {
+      "ja": [
+        "マスク(防じん)"
+      ],
+      "en": [
+        "Dust Mask"
+      ]
+    },
+    "description": {
+      "ja": "粉じんや有害粒子の吸入を低減する保護具。",
+      "en": "Reduces inhalation of dust and hazardous particles."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "protect_breathing"
+    ],
+    "fuzzy": [
+      "粉じん",
+      "吸入",
+      "フィルター"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/respirator_mask.svg",
+    "summary_ja": "粉じんや有害粒子の吸入を低減する保護具。…",
+    "summary_en": "Reduces inhalation of dust and hazardous particles.…",
+    "detail_ja": "粉じんや有害粒子の吸入を低減する保護具。",
+    "detail_en": "Reduces inhalation of dust and hazardous particles.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "paint_roller",
     "type": "tool",
-    "term": { "ja": "ローラー", "en": "Paint Roller" },
-    "aliases": { "ja": ["塗装ローラー"], "en": ["Roller"] },
-    "description": { "ja": "広い面を均一に塗装するための道具。", "en": "A tool for evenly applying paint over large surfaces." },
-    "categories": ["painting", "finishing", "hand_tool"],
-    "tasks": ["apply_paint"],
-    "fuzzy": ["塗る", "広い面", "塗装"],
-    "region": ["jp", "global"],
-    "image": "icons/paint_roller.svg"
+    "term": {
+      "ja": "ローラー",
+      "en": "Paint Roller"
+    },
+    "aliases": {
+      "ja": [
+        "塗装ローラー"
+      ],
+      "en": [
+        "Roller"
+      ]
+    },
+    "description": {
+      "ja": "広い面を均一に塗装するための道具。",
+      "en": "A tool for evenly applying paint over large surfaces."
+    },
+    "categories": [
+      "painting",
+      "finishing",
+      "hand_tool"
+    ],
+    "tasks": [
+      "apply_paint"
+    ],
+    "fuzzy": [
+      "塗る",
+      "広い面",
+      "塗装"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/paint_roller.svg",
+    "summary_ja": "広い面を均一に塗装するための道具。…",
+    "summary_en": "A tool for evenly applying paint over large surfaces.…",
+    "detail_ja": "広い面を均一に塗装するための道具。",
+    "detail_en": "A tool for evenly applying paint over large surfaces.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "paint_brush",
     "type": "tool",
-    "term": { "ja": "刷毛", "en": "Paint Brush" },
-    "aliases": { "ja": ["ハケ"], "en": ["Brush"] },
-    "description": { "ja": "細部や角などを塗装するための刷毛。", "en": "A brush for painting edges, corners, and detail areas." },
-    "categories": ["painting", "finishing", "hand_tool"],
-    "tasks": ["apply_paint", "paint_detail"],
-    "fuzzy": ["細部", "角", "塗装"],
-    "region": ["jp", "global"],
-    "image": "icons/paint_brush.svg"
+    "term": {
+      "ja": "刷毛",
+      "en": "Paint Brush"
+    },
+    "aliases": {
+      "ja": [
+        "ハケ"
+      ],
+      "en": [
+        "Brush"
+      ]
+    },
+    "description": {
+      "ja": "細部や角などを塗装するための刷毛。",
+      "en": "A brush for painting edges, corners, and detail areas."
+    },
+    "categories": [
+      "painting",
+      "finishing",
+      "hand_tool"
+    ],
+    "tasks": [
+      "apply_paint",
+      "paint_detail"
+    ],
+    "fuzzy": [
+      "細部",
+      "角",
+      "塗装"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/paint_brush.svg",
+    "summary_ja": "細部や角などを塗装するための刷毛。…",
+    "summary_en": "A brush for painting edges, corners, and detail areas.…",
+    "detail_ja": "細部や角などを塗装するための刷毛。",
+    "detail_en": "A brush for painting edges, corners, and detail areas.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "putty_knife",
     "type": "tool",
-    "term": { "ja": "ヘラ", "en": "Putty Knife" },
-    "aliases": { "ja": ["パテベラ"], "en": ["Scraper Knife"] },
-    "description": { "ja": "パテの塗り付けや古い塗膜の軽い剥離に使う。", "en": "Used for applying putty and light scraping of old coatings." },
-    "categories": ["finishing", "painting", "hand_tool"],
-    "tasks": ["apply_putty", "scrape_coating"],
-    "fuzzy": ["パテ", "ヘラ", "ならす"],
-    "region": ["jp", "global"],
-    "image": "icons/putty_knife.svg"
+    "term": {
+      "ja": "ヘラ",
+      "en": "Putty Knife"
+    },
+    "aliases": {
+      "ja": [
+        "パテベラ"
+      ],
+      "en": [
+        "Scraper Knife"
+      ]
+    },
+    "description": {
+      "ja": "パテの塗り付けや古い塗膜の軽い剥離に使う。",
+      "en": "Used for applying putty and light scraping of old coatings."
+    },
+    "categories": [
+      "finishing",
+      "painting",
+      "hand_tool"
+    ],
+    "tasks": [
+      "apply_putty",
+      "scrape_coating"
+    ],
+    "fuzzy": [
+      "パテ",
+      "ヘラ",
+      "ならす"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/putty_knife.svg",
+    "summary_ja": "パテの塗り付けや古い塗膜の軽い剥離に使う。…",
+    "summary_en": "Used for applying putty and light scraping of old coatings.…",
+    "detail_ja": "パテの塗り付けや古い塗膜の軽い剥離に使う。",
+    "detail_en": "Used for applying putty and light scraping of old coatings.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "caulking_gun",
     "type": "tool",
-    "term": { "ja": "コーキングガン", "en": "Caulking Gun" },
-    "aliases": { "ja": ["シーリングガン"], "en": ["Sealant Gun"] },
-    "description": { "ja": "カートリッジ式のシーリング材を押し出して充填する道具。", "en": "Dispenses sealant from a cartridge for filling joints and gaps." },
-    "categories": ["finishing", "plumbing", "hand_tool"],
-    "tasks": ["apply_sealant"],
-    "fuzzy": ["シーリング", "充填", "隙間"],
-    "region": ["jp", "global"],
-    "image": "icons/caulking_gun.svg"
+    "term": {
+      "ja": "コーキングガン",
+      "en": "Caulking Gun"
+    },
+    "aliases": {
+      "ja": [
+        "シーリングガン"
+      ],
+      "en": [
+        "Sealant Gun"
+      ]
+    },
+    "description": {
+      "ja": "カートリッジ式のシーリング材を押し出して充填する道具。",
+      "en": "Dispenses sealant from a cartridge for filling joints and gaps."
+    },
+    "categories": [
+      "finishing",
+      "plumbing",
+      "hand_tool"
+    ],
+    "tasks": [
+      "apply_sealant"
+    ],
+    "fuzzy": [
+      "シーリング",
+      "充填",
+      "隙間"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/caulking_gun.svg",
+    "summary_ja": "カートリッジ式のシーリング材を押し出して充填する道具。…",
+    "summary_en": "Dispenses sealant from a cartridge for filling joints and ga…",
+    "detail_ja": "カートリッジ式のシーリング材を押し出して充填する道具。",
+    "detail_en": "Dispenses sealant from a cartridge for filling joints and gaps.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "pipe_wrench",
     "type": "tool",
-    "term": { "ja": "パイプレンチ", "en": "Pipe Wrench" },
-    "aliases": { "ja": ["レンチ(配管用)"], "en": ["Stillson Wrench"] },
-    "description": { "ja": "配管の丸物をしっかり掴んで回すためのレンチ。", "en": "A wrench with serrated jaws designed to grip and turn pipes." },
-    "categories": ["plumbing", "hand_tool", "fastening"],
-    "tasks": ["tighten_pipe", "loosen_pipe"],
-    "fuzzy": ["配管", "丸物", "掴む"],
-    "region": ["jp", "global"],
-    "image": "icons/pipe_wrench.svg"
+    "term": {
+      "ja": "パイプレンチ",
+      "en": "Pipe Wrench"
+    },
+    "aliases": {
+      "ja": [
+        "レンチ(配管用)"
+      ],
+      "en": [
+        "Stillson Wrench"
+      ]
+    },
+    "description": {
+      "ja": "配管の丸物をしっかり掴んで回すためのレンチ。",
+      "en": "A wrench with serrated jaws designed to grip and turn pipes."
+    },
+    "categories": [
+      "plumbing",
+      "hand_tool",
+      "fastening"
+    ],
+    "tasks": [
+      "tighten_pipe",
+      "loosen_pipe"
+    ],
+    "fuzzy": [
+      "配管",
+      "丸物",
+      "掴む"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/pipe_wrench.svg",
+    "summary_ja": "配管の丸物をしっかり掴んで回すためのレンチ。…",
+    "summary_en": "A wrench with serrated jaws designed to grip and turn pipes.…",
+    "detail_ja": "配管の丸物をしっかり掴んで回すためのレンチ。",
+    "detail_en": "A wrench with serrated jaws designed to grip and turn pipes.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "pipe_cutter",
     "type": "tool",
-    "term": { "ja": "パイプカッター", "en": "Pipe Cutter" },
-    "aliases": { "ja": ["銅管カッター"], "en": ["Tubing Cutter"] },
-    "description": { "ja": "配管を回しながら刃を締めて切断する工具。", "en": "Cuts pipe by rotating around it while tightening a cutting wheel." },
-    "categories": ["plumbing", "cutting", "hand_tool"],
-    "tasks": ["cut_pipe"],
-    "fuzzy": ["配管", "切断", "回す"],
-    "region": ["jp", "global"],
-    "image": "icons/pipe_cutter.svg"
+    "term": {
+      "ja": "パイプカッター",
+      "en": "Pipe Cutter"
+    },
+    "aliases": {
+      "ja": [
+        "銅管カッター"
+      ],
+      "en": [
+        "Tubing Cutter"
+      ]
+    },
+    "description": {
+      "ja": "配管を回しながら刃を締めて切断する工具。",
+      "en": "Cuts pipe by rotating around it while tightening a cutting wheel."
+    },
+    "categories": [
+      "plumbing",
+      "cutting",
+      "hand_tool"
+    ],
+    "tasks": [
+      "cut_pipe"
+    ],
+    "fuzzy": [
+      "配管",
+      "切断",
+      "回す"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/pipe_cutter.svg",
+    "summary_ja": "配管を回しながら刃を締めて切断する工具。…",
+    "summary_en": "Cuts pipe by rotating around it while tightening a cutting w…",
+    "detail_ja": "配管を回しながら刃を締めて切断する工具。",
+    "detail_en": "Cuts pipe by rotating around it while tightening a cutting wheel.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "hacksaw",
     "type": "tool",
-    "term": { "ja": "金切りノコ", "en": "Hacksaw" },
-    "aliases": { "ja": ["金ノコ"], "en": ["Metal Saw"] },
-    "description": { "ja": "金属や樹脂管などを手作業で切断するノコギリ。", "en": "A hand saw for cutting metal and some plastic pipes." },
-    "categories": ["cutting", "metalwork", "hand_tool"],
-    "tasks": ["cut_metal", "cut_pipe"],
-    "fuzzy": ["金属", "手ノコ", "刃"],
-    "region": ["jp", "global"],
-    "image": "icons/hacksaw.svg"
+    "term": {
+      "ja": "金切りノコ",
+      "en": "Hacksaw"
+    },
+    "aliases": {
+      "ja": [
+        "金ノコ"
+      ],
+      "en": [
+        "Metal Saw"
+      ]
+    },
+    "description": {
+      "ja": "金属や樹脂管などを手作業で切断するノコギリ。",
+      "en": "A hand saw for cutting metal and some plastic pipes."
+    },
+    "categories": [
+      "cutting",
+      "metalwork",
+      "hand_tool"
+    ],
+    "tasks": [
+      "cut_metal",
+      "cut_pipe"
+    ],
+    "fuzzy": [
+      "金属",
+      "手ノコ",
+      "刃"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/hacksaw.svg",
+    "summary_ja": "金属や樹脂管などを手作業で切断するノコギリ。…",
+    "summary_en": "A hand saw for cutting metal and some plastic pipes.…",
+    "detail_ja": "金属や樹脂管などを手作業で切断するノコギリ。",
+    "detail_en": "A hand saw for cutting metal and some plastic pipes.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "bolt_cutter",
     "type": "tool",
-    "term": { "ja": "ボルトクリッパー", "en": "Bolt Cutter" },
-    "aliases": { "ja": ["クリッパー"], "en": ["Cutter"] },
-    "description": { "ja": "太い針金やボルト等をてこの力で切断する。", "en": "Cuts thick wire, bolts, and rods using leverage." },
-    "categories": ["cutting", "hand_tool", "demolition"],
-    "tasks": ["cut_bolt", "cut_wire"],
-    "fuzzy": ["太い", "てこ", "切断"],
-    "region": ["jp", "global"],
-    "image": "icons/bolt_cutter.svg"
+    "term": {
+      "ja": "ボルトクリッパー",
+      "en": "Bolt Cutter"
+    },
+    "aliases": {
+      "ja": [
+        "クリッパー"
+      ],
+      "en": [
+        "Cutter"
+      ]
+    },
+    "description": {
+      "ja": "太い針金やボルト等をてこの力で切断する。",
+      "en": "Cuts thick wire, bolts, and rods using leverage."
+    },
+    "categories": [
+      "cutting",
+      "hand_tool",
+      "demolition"
+    ],
+    "tasks": [
+      "cut_bolt",
+      "cut_wire"
+    ],
+    "fuzzy": [
+      "太い",
+      "てこ",
+      "切断"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/bolt_cutter.svg",
+    "summary_ja": "太い針金やボルト等をてこの力で切断する。…",
+    "summary_en": "Cuts thick wire, bolts, and rods using leverage.…",
+    "detail_ja": "太い針金やボルト等をてこの力で切断する。",
+    "detail_en": "Cuts thick wire, bolts, and rods using leverage.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "clamp_bar",
     "type": "tool",
-    "term": { "ja": "クランプ", "en": "Clamp" },
-    "aliases": { "ja": ["バークランプ"], "en": ["Bar Clamp"] },
-    "description": { "ja": "材料を固定して加工や接着を行いやすくする。", "en": "Holds materials in place for cutting, drilling, or gluing." },
-    "categories": ["woodworking", "hand_tool", "layout"],
-    "tasks": ["hold_material"],
-    "fuzzy": ["固定", "締め付け", "保持"],
-    "region": ["jp", "global"],
-    "image": "icons/clamp_bar.svg"
+    "term": {
+      "ja": "クランプ",
+      "en": "Clamp"
+    },
+    "aliases": {
+      "ja": [
+        "バークランプ"
+      ],
+      "en": [
+        "Bar Clamp"
+      ]
+    },
+    "description": {
+      "ja": "材料を固定して加工や接着を行いやすくする。",
+      "en": "Holds materials in place for cutting, drilling, or gluing."
+    },
+    "categories": [
+      "woodworking",
+      "hand_tool",
+      "layout"
+    ],
+    "tasks": [
+      "hold_material"
+    ],
+    "fuzzy": [
+      "固定",
+      "締め付け",
+      "保持"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/clamp_bar.svg",
+    "summary_ja": "材料を固定して加工や接着を行いやすくする。…",
+    "summary_en": "Holds materials in place for cutting, drilling, or gluing.…",
+    "detail_ja": "材料を固定して加工や接着を行いやすくする。",
+    "detail_en": "Holds materials in place for cutting, drilling, or gluing.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "vise",
     "type": "tool",
-    "term": { "ja": "万力", "en": "Vise" },
-    "aliases": { "ja": ["バイス"], "en": ["Bench Vise"] },
-    "description": { "ja": "ワークを強固に固定して加工を行うための装置。", "en": "A device that firmly holds workpieces for processing." },
-    "categories": ["metalwork", "woodworking", "hand_tool"],
-    "tasks": ["hold_material"],
-    "fuzzy": ["固定", "挟む", "加工"],
-    "region": ["jp", "global"],
-    "image": "icons/vise.svg"
+    "term": {
+      "ja": "万力",
+      "en": "Vise"
+    },
+    "aliases": {
+      "ja": [
+        "バイス"
+      ],
+      "en": [
+        "Bench Vise"
+      ]
+    },
+    "description": {
+      "ja": "ワークを強固に固定して加工を行うための装置。",
+      "en": "A device that firmly holds workpieces for processing."
+    },
+    "categories": [
+      "metalwork",
+      "woodworking",
+      "hand_tool"
+    ],
+    "tasks": [
+      "hold_material"
+    ],
+    "fuzzy": [
+      "固定",
+      "挟む",
+      "加工"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/vise.svg",
+    "summary_ja": "ワークを強固に固定して加工を行うための装置。…",
+    "summary_en": "A device that firmly holds workpieces for processing.…",
+    "detail_ja": "ワークを強固に固定して加工を行うための装置。",
+    "detail_en": "A device that firmly holds workpieces for processing.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "nail_gun",
     "type": "tool",
-    "term": { "ja": "釘打ち機", "en": "Nail Gun" },
-    "aliases": { "ja": ["ネイラー"], "en": ["Nailer"] },
-    "description": { "ja": "圧縮空気や電動で釘を高速に打ち込む工具。", "en": "Drives nails rapidly using pneumatic or electric power." },
-    "categories": ["fastening", "woodworking", "power_tool"],
-    "tasks": ["drive_nail"],
-    "fuzzy": ["釘", "高速", "打ち込み"],
-    "region": ["jp", "global"],
-    "image": "icons/nail_gun.svg"
+    "term": {
+      "ja": "釘打ち機",
+      "en": "Nail Gun"
+    },
+    "aliases": {
+      "ja": [
+        "ネイラー"
+      ],
+      "en": [
+        "Nailer"
+      ]
+    },
+    "description": {
+      "ja": "圧縮空気や電動で釘を高速に打ち込む工具。",
+      "en": "Drives nails rapidly using pneumatic or electric power."
+    },
+    "categories": [
+      "fastening",
+      "woodworking",
+      "power_tool"
+    ],
+    "tasks": [
+      "drive_nail"
+    ],
+    "fuzzy": [
+      "釘",
+      "高速",
+      "打ち込み"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/nail_gun.svg",
+    "summary_ja": "圧縮空気や電動で釘を高速に打ち込む工具。…",
+    "summary_en": "Drives nails rapidly using pneumatic or electric power.…",
+    "detail_ja": "圧縮空気や電動で釘を高速に打ち込む工具。",
+    "detail_en": "Drives nails rapidly using pneumatic or electric power.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "staple_gun",
     "type": "tool",
-    "term": { "ja": "タッカー", "en": "Staple Gun" },
-    "aliases": { "ja": ["ステープラー(建築)"], "en": ["Tacker"] },
-    "description": { "ja": "ステープルでシート材や薄板を固定する。", "en": "Fastens materials using staples, useful for sheets and thin boards." },
-    "categories": ["fastening", "finishing", "hand_tool"],
-    "tasks": ["fasten_sheet"],
-    "fuzzy": ["ステープル", "固定", "シート"],
-    "region": ["jp", "global"],
-    "image": "icons/staple_gun.svg"
+    "term": {
+      "ja": "タッカー",
+      "en": "Staple Gun"
+    },
+    "aliases": {
+      "ja": [
+        "ステープラー(建築)"
+      ],
+      "en": [
+        "Tacker"
+      ]
+    },
+    "description": {
+      "ja": "ステープルでシート材や薄板を固定する。",
+      "en": "Fastens materials using staples, useful for sheets and thin boards."
+    },
+    "categories": [
+      "fastening",
+      "finishing",
+      "hand_tool"
+    ],
+    "tasks": [
+      "fasten_sheet"
+    ],
+    "fuzzy": [
+      "ステープル",
+      "固定",
+      "シート"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/staple_gun.svg",
+    "summary_ja": "ステープルでシート材や薄板を固定する。…",
+    "summary_en": "Fastens materials using staples, useful for sheets and thin…",
+    "detail_ja": "ステープルでシート材や薄板を固定する。",
+    "detail_en": "Fastens materials using staples, useful for sheets and thin boards.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "screw_set",
     "type": "tool",
-    "term": { "ja": "ビス", "en": "Screw" },
-    "aliases": { "ja": ["ねじ"], "en": ["Screws"] },
-    "description": { "ja": "材料同士を締結するためのねじ。種類・長さが多い。", "en": "A fastener used to join materials; comes in many types and sizes." },
-    "categories": ["fastening", "consumable"],
-    "tasks": ["drive_screw"],
-    "fuzzy": ["ねじ", "締結", "固定"],
-    "region": ["jp", "global"],
-    "image": "icons/screw_set.svg"
+    "term": {
+      "ja": "ビス",
+      "en": "Screw"
+    },
+    "aliases": {
+      "ja": [
+        "ねじ"
+      ],
+      "en": [
+        "Screws"
+      ]
+    },
+    "description": {
+      "ja": "材料同士を締結するためのねじ。種類・長さが多い。",
+      "en": "A fastener used to join materials; comes in many types and sizes."
+    },
+    "categories": [
+      "fastening",
+      "consumable"
+    ],
+    "tasks": [
+      "drive_screw"
+    ],
+    "fuzzy": [
+      "ねじ",
+      "締結",
+      "固定"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/screw_set.svg",
+    "summary_ja": "材料同士を締結するためのねじ。",
+    "summary_en": "A fastener used to join materials; comes in many types and s…",
+    "detail_ja": "材料同士を締結するためのねじ。種類・長さが多い。",
+    "detail_en": "A fastener used to join materials; comes in many types and sizes.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "anchor_bolt",
     "type": "tool",
-    "term": { "ja": "アンカーボルト", "en": "Anchor Bolt" },
-    "aliases": { "ja": ["アンカー"], "en": ["Concrete Anchor"] },
-    "description": { "ja": "コンクリート等に固定するためのアンカー付きボルト。", "en": "A bolt/anchor system used to fasten items to concrete or masonry." },
-    "categories": ["fastening", "masonry"],
-    "tasks": ["anchor_to_concrete"],
-    "fuzzy": ["コンクリ", "固定", "アンカー"],
-    "region": ["jp", "global"],
-    "image": "icons/anchor_bolt.svg"
+    "term": {
+      "ja": "アンカーボルト",
+      "en": "Anchor Bolt"
+    },
+    "aliases": {
+      "ja": [
+        "アンカー"
+      ],
+      "en": [
+        "Concrete Anchor"
+      ]
+    },
+    "description": {
+      "ja": "コンクリート等に固定するためのアンカー付きボルト。",
+      "en": "A bolt/anchor system used to fasten items to concrete or masonry."
+    },
+    "categories": [
+      "fastening",
+      "masonry"
+    ],
+    "tasks": [
+      "anchor_to_concrete"
+    ],
+    "fuzzy": [
+      "コンクリ",
+      "固定",
+      "アンカー"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/anchor_bolt.svg",
+    "summary_ja": "コンクリート等に固定するためのアンカー付きボルト。…",
+    "summary_en": "A bolt/anchor system used to fasten items to concrete or mas…",
+    "detail_ja": "コンクリート等に固定するためのアンカー付きボルト。",
+    "detail_en": "A bolt/anchor system used to fasten items to concrete or masonry.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "rebar_cutter",
     "type": "tool",
-    "term": { "ja": "鉄筋カッター", "en": "Rebar Cutter" },
-    "aliases": { "ja": ["鉄筋切断機"], "en": ["Rebar Shear"] },
-    "description": { "ja": "鉄筋を所定の長さに切断する機械。", "en": "Cuts reinforcing bar to length." },
-    "categories": ["concrete", "cutting", "power_tool"],
-    "tasks": ["cut_rebar"],
-    "fuzzy": ["鉄筋", "切断", "所定"],
-    "region": ["jp", "global"],
-    "image": "icons/rebar_cutter.svg"
+    "term": {
+      "ja": "鉄筋カッター",
+      "en": "Rebar Cutter"
+    },
+    "aliases": {
+      "ja": [
+        "鉄筋切断機"
+      ],
+      "en": [
+        "Rebar Shear"
+      ]
+    },
+    "description": {
+      "ja": "鉄筋を所定の長さに切断する機械。",
+      "en": "Cuts reinforcing bar to length."
+    },
+    "categories": [
+      "concrete",
+      "cutting",
+      "power_tool"
+    ],
+    "tasks": [
+      "cut_rebar"
+    ],
+    "fuzzy": [
+      "鉄筋",
+      "切断",
+      "所定"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/rebar_cutter.svg",
+    "summary_ja": "鉄筋を所定の長さに切断する機械。…",
+    "summary_en": "Cuts reinforcing bar to length.…",
+    "detail_ja": "鉄筋を所定の長さに切断する機械。",
+    "detail_en": "Cuts reinforcing bar to length.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "rebar_bender",
     "type": "tool",
-    "term": { "ja": "鉄筋ベンダー", "en": "Rebar Bender" },
-    "aliases": { "ja": ["鉄筋曲げ機"], "en": ["Bender"] },
-    "description": { "ja": "鉄筋を指定角度に曲げ加工する。", "en": "Bends reinforcing bar to specified angles." },
-    "categories": ["concrete", "metalwork", "power_tool"],
-    "tasks": ["bend_rebar"],
-    "fuzzy": ["鉄筋", "曲げ", "角度"],
-    "region": ["jp", "global"],
-    "image": "icons/rebar_bender.svg"
+    "term": {
+      "ja": "鉄筋ベンダー",
+      "en": "Rebar Bender"
+    },
+    "aliases": {
+      "ja": [
+        "鉄筋曲げ機"
+      ],
+      "en": [
+        "Bender"
+      ]
+    },
+    "description": {
+      "ja": "鉄筋を指定角度に曲げ加工する。",
+      "en": "Bends reinforcing bar to specified angles."
+    },
+    "categories": [
+      "concrete",
+      "metalwork",
+      "power_tool"
+    ],
+    "tasks": [
+      "bend_rebar"
+    ],
+    "fuzzy": [
+      "鉄筋",
+      "曲げ",
+      "角度"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/rebar_bender.svg",
+    "summary_ja": "鉄筋を指定角度に曲げ加工する。…",
+    "summary_en": "Bends reinforcing bar to specified angles.…",
+    "detail_ja": "鉄筋を指定角度に曲げ加工する。",
+    "detail_en": "Bends reinforcing bar to specified angles.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "rebar_tying_tool",
     "type": "tool",
-    "term": { "ja": "結束線・結束工具", "en": "Rebar Tying Tool" },
-    "aliases": { "ja": ["ハッカー(結束)", "結束線"], "en": ["Tying Tool"] },
-    "description": { "ja": "結束線で鉄筋を素早く結束するための工具。", "en": "A tool for quickly tying rebar with wire." },
-    "categories": ["concrete", "fastening", "hand_tool"],
-    "tasks": ["tie_rebar"],
-    "fuzzy": ["結束", "鉄筋", "ワイヤ"],
-    "region": ["jp", "global"],
-    "image": "icons/rebar_tying_tool.svg"
+    "term": {
+      "ja": "結束線・結束工具",
+      "en": "Rebar Tying Tool"
+    },
+    "aliases": {
+      "ja": [
+        "ハッカー(結束)",
+        "結束線"
+      ],
+      "en": [
+        "Tying Tool"
+      ]
+    },
+    "description": {
+      "ja": "結束線で鉄筋を素早く結束するための工具。",
+      "en": "A tool for quickly tying rebar with wire."
+    },
+    "categories": [
+      "concrete",
+      "fastening",
+      "hand_tool"
+    ],
+    "tasks": [
+      "tie_rebar"
+    ],
+    "fuzzy": [
+      "結束",
+      "鉄筋",
+      "ワイヤ"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/rebar_tying_tool.svg",
+    "summary_ja": "結束線で鉄筋を素早く結束するための工具。…",
+    "summary_en": "A tool for quickly tying rebar with wire.…",
+    "detail_ja": "結束線で鉄筋を素早く結束するための工具。",
+    "detail_en": "A tool for quickly tying rebar with wire.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "brick_trowel",
     "type": "tool",
-    "term": { "ja": "レンガコテ", "en": "Brick Trowel" },
-    "aliases": { "ja": ["レンガ用コテ"], "en": ["Mason's Trowel"] },
-    "description": { "ja": "レンガやブロック積みでモルタルを扱うためのコテ。", "en": "A trowel designed for handling mortar in brick/block laying." },
-    "categories": ["masonry", "hand_tool"],
-    "tasks": ["apply_mortar", "lay_brick"],
-    "fuzzy": ["レンガ", "モルタル", "積む"],
-    "region": ["jp", "global"],
-    "image": "icons/brick_trowel.svg"
+    "term": {
+      "ja": "レンガコテ",
+      "en": "Brick Trowel"
+    },
+    "aliases": {
+      "ja": [
+        "レンガ用コテ"
+      ],
+      "en": [
+        "Mason's Trowel"
+      ]
+    },
+    "description": {
+      "ja": "レンガやブロック積みでモルタルを扱うためのコテ。",
+      "en": "A trowel designed for handling mortar in brick/block laying."
+    },
+    "categories": [
+      "masonry",
+      "hand_tool"
+    ],
+    "tasks": [
+      "apply_mortar",
+      "lay_brick"
+    ],
+    "fuzzy": [
+      "レンガ",
+      "モルタル",
+      "積む"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/brick_trowel.svg",
+    "summary_ja": "レンガやブロック積みでモルタルを扱うためのコテ。…",
+    "summary_en": "A trowel designed for handling mortar in brick/block laying.…",
+    "detail_ja": "レンガやブロック積みでモルタルを扱うためのコテ。",
+    "detail_en": "A trowel designed for handling mortar in brick/block laying.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "masonry_chisel",
     "type": "tool",
-    "term": { "ja": "石工ノミ", "en": "Masonry Chisel" },
-    "aliases": { "ja": ["タガネ"], "en": ["Chisel"] },
-    "description": { "ja": "石材・コンクリ・タイルなどを割ったり欠いたりする。", "en": "Used to chip or split masonry, concrete, and tile." },
-    "categories": ["masonry", "demolition", "hand_tool"],
-    "tasks": ["chip_masonry", "remove_tile"],
-    "fuzzy": ["欠く", "割る", "タイル"],
-    "region": ["jp", "global"],
-    "image": "icons/masonry_chisel.svg"
+    "term": {
+      "ja": "石工ノミ",
+      "en": "Masonry Chisel"
+    },
+    "aliases": {
+      "ja": [
+        "タガネ"
+      ],
+      "en": [
+        "Chisel"
+      ]
+    },
+    "description": {
+      "ja": "石材・コンクリ・タイルなどを割ったり欠いたりする。",
+      "en": "Used to chip or split masonry, concrete, and tile."
+    },
+    "categories": [
+      "masonry",
+      "demolition",
+      "hand_tool"
+    ],
+    "tasks": [
+      "chip_masonry",
+      "remove_tile"
+    ],
+    "fuzzy": [
+      "欠く",
+      "割る",
+      "タイル"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/masonry_chisel.svg",
+    "summary_ja": "石材・コンクリ・タイルなどを割ったり欠いたりする。…",
+    "summary_en": "Used to chip or split masonry, concrete, and tile.…",
+    "detail_ja": "石材・コンクリ・タイルなどを割ったり欠いたりする。",
+    "detail_en": "Used to chip or split masonry, concrete, and tile.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "brick_hammer",
     "type": "tool",
-    "term": { "ja": "レンガハンマー", "en": "Brick Hammer" },
-    "aliases": { "ja": ["左官ハンマー"], "en": ["Mason Hammer"] },
-    "description": { "ja": "レンガやブロックの加工・調整に使うハンマー。", "en": "A hammer used for shaping and adjusting brick and masonry." },
-    "categories": ["masonry", "hand_tool"],
-    "tasks": ["shape_brick", "chip_masonry"],
-    "fuzzy": ["レンガ", "加工", "調整"],
-    "region": ["jp", "global"],
-    "image": "icons/brick_hammer.svg"
+    "term": {
+      "ja": "レンガハンマー",
+      "en": "Brick Hammer"
+    },
+    "aliases": {
+      "ja": [
+        "左官ハンマー"
+      ],
+      "en": [
+        "Mason Hammer"
+      ]
+    },
+    "description": {
+      "ja": "レンガやブロックの加工・調整に使うハンマー。",
+      "en": "A hammer used for shaping and adjusting brick and masonry."
+    },
+    "categories": [
+      "masonry",
+      "hand_tool"
+    ],
+    "tasks": [
+      "shape_brick",
+      "chip_masonry"
+    ],
+    "fuzzy": [
+      "レンガ",
+      "加工",
+      "調整"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/brick_hammer.svg",
+    "summary_ja": "レンガやブロックの加工・調整に使うハンマー。…",
+    "summary_en": "A hammer used for shaping and adjusting brick and masonry.…",
+    "detail_ja": "レンガやブロックの加工・調整に使うハンマー。",
+    "detail_en": "A hammer used for shaping and adjusting brick and masonry.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "tile_cutter",
     "type": "tool",
-    "term": { "ja": "タイルカッター", "en": "Tile Cutter" },
-    "aliases": { "ja": ["タイル切断機"], "en": ["Tile Snap Cutter"] },
-    "description": { "ja": "タイルにスコアを入れて割り、所定サイズに切る。", "en": "Scores and snaps tile to size." },
-    "categories": ["masonry", "cutting", "hand_tool"],
-    "tasks": ["cut_tile"],
-    "fuzzy": ["タイル", "スコア", "割る"],
-    "region": ["jp", "global"],
-    "image": "icons/tile_cutter.svg"
+    "term": {
+      "ja": "タイルカッター",
+      "en": "Tile Cutter"
+    },
+    "aliases": {
+      "ja": [
+        "タイル切断機"
+      ],
+      "en": [
+        "Tile Snap Cutter"
+      ]
+    },
+    "description": {
+      "ja": "タイルにスコアを入れて割り、所定サイズに切る。",
+      "en": "Scores and snaps tile to size."
+    },
+    "categories": [
+      "masonry",
+      "cutting",
+      "hand_tool"
+    ],
+    "tasks": [
+      "cut_tile"
+    ],
+    "fuzzy": [
+      "タイル",
+      "スコア",
+      "割る"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/tile_cutter.svg",
+    "summary_ja": "タイルにスコアを入れて割り、所定サイズに切る。…",
+    "summary_en": "Scores and snaps tile to size.…",
+    "detail_ja": "タイルにスコアを入れて割り、所定サイズに切る。",
+    "detail_en": "Scores and snaps tile to size.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
   {
     "id": "tile_spacer",
     "type": "tool",
-    "term": { "ja": "スペーサー(タイル)", "en": "Tile Spacer" },
-    "aliases": { "ja": ["目地スペーサー"], "en": ["Spacer"] },
-    "description": { "ja": "タイル間隔（目地幅）を均一に保つ小物。", "en": "Keeps consistent spacing (grout joints) between tiles." },
-    "categories": ["masonry", "finishing", "consumable"],
-    "tasks": ["set_tile"],
-    "fuzzy": ["目地", "間隔", "均一"],
-    "region": ["jp", "global"],
-    "image": "icons/tile_spacer.svg"
+    "term": {
+      "ja": "スペーサー(タイル)",
+      "en": "Tile Spacer"
+    },
+    "aliases": {
+      "ja": [
+        "目地スペーサー"
+      ],
+      "en": [
+        "Spacer"
+      ]
+    },
+    "description": {
+      "ja": "タイル間隔（目地幅）を均一に保つ小物。",
+      "en": "Keeps consistent spacing (grout joints) between tiles."
+    },
+    "categories": [
+      "masonry",
+      "finishing",
+      "consumable"
+    ],
+    "tasks": [
+      "set_tile"
+    ],
+    "fuzzy": [
+      "目地",
+      "間隔",
+      "均一"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/tile_spacer.svg",
+    "summary_ja": "タイル間隔（目地幅）を均一に保つ小物。…",
+    "summary_en": "Keeps consistent spacing (grout joints) between tiles.…",
+    "detail_ja": "タイル間隔（目地幅）を均一に保つ小物。",
+    "detail_en": "Keeps consistent spacing (grout joints) between tiles.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "caulking_scraper",
     "type": "tool",
-    "term": { "ja": "スクレーパー", "en": "Scraper" },
-    "aliases": { "ja": ["皮すき"], "en": ["Paint Scraper"] },
-    "description": { "ja": "古い塗膜や付着物を削り取る工具。", "en": "Removes old paint, adhesive, and surface residues." },
-    "categories": ["finishing", "demolition", "hand_tool"],
-    "tasks": ["scrape_coating", "remove_adhesive"],
-    "fuzzy": ["削る", "剥がす", "塗膜"],
-    "region": ["jp", "global"],
-    "image": "icons/caulking_scraper.svg"
+    "term": {
+      "ja": "スクレーパー",
+      "en": "Scraper"
+    },
+    "aliases": {
+      "ja": [
+        "皮すき"
+      ],
+      "en": [
+        "Paint Scraper"
+      ]
+    },
+    "description": {
+      "ja": "古い塗膜や付着物を削り取る工具。",
+      "en": "Removes old paint, adhesive, and surface residues."
+    },
+    "categories": [
+      "finishing",
+      "demolition",
+      "hand_tool"
+    ],
+    "tasks": [
+      "scrape_coating",
+      "remove_adhesive"
+    ],
+    "fuzzy": [
+      "削る",
+      "剥がす",
+      "塗膜"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/caulking_scraper.svg",
+    "summary_ja": "古い塗膜や付着物を削り取る工具。…",
+    "summary_en": "Removes old paint, adhesive, and surface residues.…",
+    "detail_ja": "古い塗膜や付着物を削り取る工具。",
+    "detail_en": "Removes old paint, adhesive, and surface residues.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "heat_gun",
     "type": "tool",
-    "term": { "ja": "ヒートガン", "en": "Heat Gun" },
-    "aliases": { "ja": ["熱風機"], "en": ["Hot Air Gun"] },
-    "description": { "ja": "熱風で塗膜剥離や収縮チューブ加熱などに使う。", "en": "Uses hot air for paint removal, shrinking tubing, and other tasks." },
-    "categories": ["finishing", "electrical", "power_tool"],
-    "tasks": ["remove_paint", "shrink_tube"],
-    "fuzzy": ["熱風", "剥離", "収縮"],
-    "region": ["jp", "global"],
-    "image": "icons/heat_gun.svg"
+    "term": {
+      "ja": "ヒートガン",
+      "en": "Heat Gun"
+    },
+    "aliases": {
+      "ja": [
+        "熱風機"
+      ],
+      "en": [
+        "Hot Air Gun"
+      ]
+    },
+    "description": {
+      "ja": "熱風で塗膜剥離や収縮チューブ加熱などに使う。",
+      "en": "Uses hot air for paint removal, shrinking tubing, and other tasks."
+    },
+    "categories": [
+      "finishing",
+      "electrical",
+      "power_tool"
+    ],
+    "tasks": [
+      "remove_paint",
+      "shrink_tube"
+    ],
+    "fuzzy": [
+      "熱風",
+      "剥離",
+      "収縮"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/heat_gun.svg",
+    "summary_ja": "熱風で塗膜剥離や収縮チューブ加熱などに使う。…",
+    "summary_en": "Uses hot air for paint removal, shrinking tubing, and other…",
+    "detail_ja": "熱風で塗膜剥離や収縮チューブ加熱などに使う。",
+    "detail_en": "Uses hot air for paint removal, shrinking tubing, and other tasks.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "shop_vac",
     "type": "tool",
-    "term": { "ja": "集じん機", "en": "Shop Vacuum" },
-    "aliases": { "ja": ["バキューム"], "en": ["Wet/Dry Vac"] },
-    "description": { "ja": "粉じんや切りくずを吸引して清掃する。", "en": "A vacuum for collecting dust and debris during/after work." },
-    "categories": ["cleaning", "power_tool", "safety"],
-    "tasks": ["clean_site", "collect_dust"],
-    "fuzzy": ["清掃", "粉じん", "吸う"],
-    "region": ["jp", "global"],
-    "image": "icons/shop_vac.svg"
+    "term": {
+      "ja": "集じん機",
+      "en": "Shop Vacuum"
+    },
+    "aliases": {
+      "ja": [
+        "バキューム"
+      ],
+      "en": [
+        "Wet/Dry Vac"
+      ]
+    },
+    "description": {
+      "ja": "粉じんや切りくずを吸引して清掃する。",
+      "en": "A vacuum for collecting dust and debris during/after work."
+    },
+    "categories": [
+      "cleaning",
+      "power_tool",
+      "safety"
+    ],
+    "tasks": [
+      "clean_site",
+      "collect_dust"
+    ],
+    "fuzzy": [
+      "清掃",
+      "粉じん",
+      "吸う"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/shop_vac.svg",
+    "summary_ja": "粉じんや切りくずを吸引して清掃する。…",
+    "summary_en": "A vacuum for collecting dust and debris during/after work.…",
+    "detail_ja": "粉じんや切りくずを吸引して清掃する。",
+    "detail_en": "A vacuum for collecting dust and debris during/after work.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "extension_cord",
     "type": "tool",
-    "term": { "ja": "延長コード", "en": "Extension Cord" },
-    "aliases": { "ja": ["延長ケーブル"], "en": ["Power Extension"] },
-    "description": { "ja": "電源を延長して工具に給電するためのケーブル。", "en": "Provides extended power reach for tools and equipment." },
-    "categories": ["electrical", "accessory", "safety"],
-    "tasks": ["supply_power"],
-    "fuzzy": ["電源", "延長", "ケーブル"],
-    "region": ["jp", "global"],
-    "image": "icons/extension_cord.svg"
+    "term": {
+      "ja": "延長コード",
+      "en": "Extension Cord"
+    },
+    "aliases": {
+      "ja": [
+        "延長ケーブル"
+      ],
+      "en": [
+        "Power Extension"
+      ]
+    },
+    "description": {
+      "ja": "電源を延長して工具に給電するためのケーブル。",
+      "en": "Provides extended power reach for tools and equipment."
+    },
+    "categories": [
+      "electrical",
+      "accessory",
+      "safety"
+    ],
+    "tasks": [
+      "supply_power"
+    ],
+    "fuzzy": [
+      "電源",
+      "延長",
+      "ケーブル"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/extension_cord.svg",
+    "summary_ja": "電源を延長して工具に給電するためのケーブル。…",
+    "summary_en": "Provides extended power reach for tools and equipment.…",
+    "detail_ja": "電源を延長して工具に給電するためのケーブル。",
+    "detail_en": "Provides extended power reach for tools and equipment.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "cordless_work_light",
     "type": "tool",
-    "term": { "ja": "作業灯", "en": "Work Light" },
-    "aliases": { "ja": ["投光器"], "en": ["Jobsite Light"] },
-    "description": { "ja": "暗所での作業視認性を確保する照明。", "en": "Provides illumination for work in low-light conditions." },
-    "categories": ["safety", "electrical", "accessory"],
-    "tasks": ["light_area"],
-    "fuzzy": ["照明", "暗所", "投光"],
-    "region": ["jp", "global"],
-    "image": "icons/cordless_work_light.svg"
+    "term": {
+      "ja": "作業灯",
+      "en": "Work Light"
+    },
+    "aliases": {
+      "ja": [
+        "投光器"
+      ],
+      "en": [
+        "Jobsite Light"
+      ]
+    },
+    "description": {
+      "ja": "暗所での作業視認性を確保する照明。",
+      "en": "Provides illumination for work in low-light conditions."
+    },
+    "categories": [
+      "safety",
+      "electrical",
+      "accessory"
+    ],
+    "tasks": [
+      "light_area"
+    ],
+    "fuzzy": [
+      "照明",
+      "暗所",
+      "投光"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/cordless_work_light.svg",
+    "summary_ja": "暗所での作業視認性を確保する照明。…",
+    "summary_en": "Provides illumination for work in low-light conditions.…",
+    "detail_ja": "暗所での作業視認性を確保する照明。",
+    "detail_en": "Provides illumination for work in low-light conditions.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "bucket",
     "type": "tool",
-    "term": { "ja": "バケツ", "en": "Bucket" },
-    "aliases": { "ja": ["容器"], "en": ["Pail"] },
-    "description": { "ja": "水や材料を運ぶ・混ぜるなど多用途に使う容器。", "en": "A container used for carrying water/materials and mixing small batches." },
-    "categories": ["concrete", "cleaning", "hand_tool"],
-    "tasks": ["carry_water", "mix_small_batch"],
-    "fuzzy": ["容器", "運ぶ", "混ぜる"],
-    "region": ["jp", "global"],
-    "image": "icons/bucket.svg"
+    "term": {
+      "ja": "バケツ",
+      "en": "Bucket"
+    },
+    "aliases": {
+      "ja": [
+        "容器"
+      ],
+      "en": [
+        "Pail"
+      ]
+    },
+    "description": {
+      "ja": "水や材料を運ぶ・混ぜるなど多用途に使う容器。",
+      "en": "A container used for carrying water/materials and mixing small batches."
+    },
+    "categories": [
+      "concrete",
+      "cleaning",
+      "hand_tool"
+    ],
+    "tasks": [
+      "carry_water",
+      "mix_small_batch"
+    ],
+    "fuzzy": [
+      "容器",
+      "運ぶ",
+      "混ぜる"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/bucket.svg",
+    "summary_ja": "水や材料を運ぶ・混ぜるなど多用途に使う容器。…",
+    "summary_en": "A container used for carrying water/materials and mixing sma…",
+    "detail_ja": "水や材料を運ぶ・混ぜるなど多用途に使う容器。",
+    "detail_en": "A container used for carrying water/materials and mixing small batches.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "spade_bit",
     "type": "tool",
-    "term": { "ja": "木工用平刃ビット", "en": "Spade Bit" },
-    "aliases": { "ja": ["平刃ビット"], "en": ["Paddle Bit"] },
-    "description": { "ja": "木材に大径の穴を開けるための平刃ビット。", "en": "A flat woodworking bit used to drill larger diameter holes in wood." },
-    "categories": ["drilling", "woodworking", "accessory"],
-    "tasks": ["drill_wood"],
-    "fuzzy": ["木工", "大径", "穴あけ"],
-    "region": ["jp", "global"],
-    "image": "icons/spade_bit.svg"
+    "term": {
+      "ja": "木工用平刃ビット",
+      "en": "Spade Bit"
+    },
+    "aliases": {
+      "ja": [
+        "平刃ビット"
+      ],
+      "en": [
+        "Paddle Bit"
+      ]
+    },
+    "description": {
+      "ja": "木材に大径の穴を開けるための平刃ビット。",
+      "en": "A flat woodworking bit used to drill larger diameter holes in wood."
+    },
+    "categories": [
+      "drilling",
+      "woodworking",
+      "accessory"
+    ],
+    "tasks": [
+      "drill_wood"
+    ],
+    "fuzzy": [
+      "木工",
+      "大径",
+      "穴あけ"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/spade_bit.svg",
+    "summary_ja": "木材に大径の穴を開けるための平刃ビット。…",
+    "summary_en": "A flat woodworking bit used to drill larger diameter holes i…",
+    "detail_ja": "木材に大径の穴を開けるための平刃ビット。",
+    "detail_en": "A flat woodworking bit used to drill larger diameter holes in wood.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "hole_saw",
     "type": "tool",
-    "term": { "ja": "ホールソー", "en": "Hole Saw" },
-    "aliases": { "ja": ["穴あけカッター"], "en": ["Cup Saw"] },
-    "description": { "ja": "円形の大きな穴を開けるためのカップ状刃物。", "en": "A cup-shaped cutting tool for drilling large circular holes." },
-    "categories": ["drilling", "cutting", "accessory"],
-    "tasks": ["drill_large_hole"],
-    "fuzzy": ["円", "大きい穴", "カップ"],
-    "region": ["jp", "global"],
-    "image": "icons/hole_saw.svg"
+    "term": {
+      "ja": "ホールソー",
+      "en": "Hole Saw"
+    },
+    "aliases": {
+      "ja": [
+        "穴あけカッター"
+      ],
+      "en": [
+        "Cup Saw"
+      ]
+    },
+    "description": {
+      "ja": "円形の大きな穴を開けるためのカップ状刃物。",
+      "en": "A cup-shaped cutting tool for drilling large circular holes."
+    },
+    "categories": [
+      "drilling",
+      "cutting",
+      "accessory"
+    ],
+    "tasks": [
+      "drill_large_hole"
+    ],
+    "fuzzy": [
+      "円",
+      "大きい穴",
+      "カップ"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/hole_saw.svg",
+    "summary_ja": "円形の大きな穴を開けるためのカップ状刃物。…",
+    "summary_en": "A cup-shaped cutting tool for drilling large circular holes.…",
+    "detail_ja": "円形の大きな穴を開けるためのカップ状刃物。",
+    "detail_en": "A cup-shaped cutting tool for drilling large circular holes.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "stud_finder",
     "type": "tool",
-    "term": { "ja": "下地センサー", "en": "Stud Finder" },
-    "aliases": { "ja": ["壁裏センサー"], "en": ["Wall Scanner"] },
-    "description": { "ja": "壁内部の下地材や配線位置を推定して安全な固定位置を探す。", "en": "Helps locate studs and sometimes wiring behind walls for safer fastening." },
-    "categories": ["measuring", "layout", "safety"],
-    "tasks": ["locate_stud"],
-    "fuzzy": ["下地", "壁裏", "探す"],
-    "region": ["jp", "global"],
-    "image": "icons/stud_finder.svg"
+    "term": {
+      "ja": "下地センサー",
+      "en": "Stud Finder"
+    },
+    "aliases": {
+      "ja": [
+        "壁裏センサー"
+      ],
+      "en": [
+        "Wall Scanner"
+      ]
+    },
+    "description": {
+      "ja": "壁内部の下地材や配線位置を推定して安全な固定位置を探す。",
+      "en": "Helps locate studs and sometimes wiring behind walls for safer fastening."
+    },
+    "categories": [
+      "measuring",
+      "layout",
+      "safety"
+    ],
+    "tasks": [
+      "locate_stud"
+    ],
+    "fuzzy": [
+      "下地",
+      "壁裏",
+      "探す"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/stud_finder.svg",
+    "summary_ja": "壁内部の下地材や配線位置を推定して安全な固定位置を探す。…",
+    "summary_en": "Helps locate studs and sometimes wiring behind walls for saf…",
+    "detail_ja": "壁内部の下地材や配線位置を推定して安全な固定位置を探す。",
+    "detail_en": "Helps locate studs and sometimes wiring behind walls for safer fastening.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "caulking_sealant",
     "type": "tool",
-    "term": { "ja": "シーリング材", "en": "Sealant" },
-    "aliases": { "ja": ["コーキング"], "en": ["Caulk"] },
-    "description": { "ja": "隙間を埋めて防水・気密を確保する材料。", "en": "A material used to seal gaps for waterproofing and airtightness." },
-    "categories": ["finishing", "consumable"],
-    "tasks": ["apply_sealant"],
-    "fuzzy": ["隙間", "防水", "気密"],
-    "region": ["jp", "global"],
-    "image": "icons/caulking_sealant.svg"
+    "term": {
+      "ja": "シーリング材",
+      "en": "Sealant"
+    },
+    "aliases": {
+      "ja": [
+        "コーキング"
+      ],
+      "en": [
+        "Caulk"
+      ]
+    },
+    "description": {
+      "ja": "隙間を埋めて防水・気密を確保する材料。",
+      "en": "A material used to seal gaps for waterproofing and airtightness."
+    },
+    "categories": [
+      "finishing",
+      "consumable"
+    ],
+    "tasks": [
+      "apply_sealant"
+    ],
+    "fuzzy": [
+      "隙間",
+      "防水",
+      "気密"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/caulking_sealant.svg",
+    "summary_ja": "隙間を埋めて防水・気密を確保する材料。…",
+    "summary_en": "A material used to seal gaps for waterproofing and airtightn…",
+    "detail_ja": "隙間を埋めて防水・気密を確保する材料。",
+    "detail_en": "A material used to seal gaps for waterproofing and airtightness.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "safety_cones",
     "type": "tool",
-    "term": { "ja": "カラーコーン", "en": "Safety Cone" },
-    "aliases": { "ja": ["コーン", "パイロン"], "en": ["Traffic Cone"] },
-    "description": { "ja": "立入禁止や注意喚起のために区域を示す。", "en": "Marks areas for caution or restricted access." },
-    "categories": ["safety"],
-    "tasks": ["mark_hazard_area"],
-    "fuzzy": ["注意", "立入禁止", "区画"],
-    "region": ["jp", "global"],
-    "image": "icons/safety_cones.svg"
+    "term": {
+      "ja": "カラーコーン",
+      "en": "Safety Cone"
+    },
+    "aliases": {
+      "ja": [
+        "コーン",
+        "パイロン"
+      ],
+      "en": [
+        "Traffic Cone"
+      ]
+    },
+    "description": {
+      "ja": "立入禁止や注意喚起のために区域を示す。",
+      "en": "Marks areas for caution or restricted access."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "mark_hazard_area"
+    ],
+    "fuzzy": [
+      "注意",
+      "立入禁止",
+      "区画"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/safety_cones.svg",
+    "summary_ja": "立入禁止や注意喚起のために区域を示す。…",
+    "summary_en": "Marks areas for caution or restricted access.…",
+    "detail_ja": "立入禁止や注意喚起のために区域を示す。",
+    "detail_en": "Marks areas for caution or restricted access.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "rebar",
     "type": "tool",
-    "term": { "ja": "鉄筋", "en": "Rebar" },
-    "aliases": { "ja": ["異形鉄筋"], "en": ["Reinforcing Bar"] },
-    "description": { "ja": "コンクリートを補強するための鋼棒。", "en": "Steel reinforcing bar used to strengthen concrete." },
-    "categories": ["concrete", "consumable"],
-    "tasks": ["reinforce_concrete"],
-    "fuzzy": ["補強", "鋼棒", "コンクリ"],
-    "region": ["jp", "global"],
-    "image": "icons/rebar.svg"
+    "term": {
+      "ja": "鉄筋",
+      "en": "Rebar"
+    },
+    "aliases": {
+      "ja": [
+        "異形鉄筋"
+      ],
+      "en": [
+        "Reinforcing Bar"
+      ]
+    },
+    "description": {
+      "ja": "コンクリートを補強するための鋼棒。",
+      "en": "Steel reinforcing bar used to strengthen concrete."
+    },
+    "categories": [
+      "concrete",
+      "consumable"
+    ],
+    "tasks": [
+      "reinforce_concrete"
+    ],
+    "fuzzy": [
+      "補強",
+      "鋼棒",
+      "コンクリ"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/rebar.svg",
+    "summary_ja": "コンクリートを補強するための鋼棒。…",
+    "summary_en": "Steel reinforcing bar used to strengthen concrete.…",
+    "detail_ja": "コンクリートを補強するための鋼棒。",
+    "detail_en": "Steel reinforcing bar used to strengthen concrete.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "cement",
     "type": "tool",
-    "term": { "ja": "セメント", "en": "Cement" },
-    "aliases": { "ja": ["ポルトランドセメント"], "en": ["Portland Cement"] },
-    "description": { "ja": "コンクリートやモルタルの結合材となる粉体。", "en": "A binder powder used in concrete and mortar." },
-    "categories": ["concrete", "consumable"],
-    "tasks": ["mix_concrete", "mix_mortar"],
-    "fuzzy": ["粉", "結合材", "練る"],
-    "region": ["jp", "global"],
-    "image": "icons/cement.svg"
+    "term": {
+      "ja": "セメント",
+      "en": "Cement"
+    },
+    "aliases": {
+      "ja": [
+        "ポルトランドセメント"
+      ],
+      "en": [
+        "Portland Cement"
+      ]
+    },
+    "description": {
+      "ja": "コンクリートやモルタルの結合材となる粉体。",
+      "en": "A binder powder used in concrete and mortar."
+    },
+    "categories": [
+      "concrete",
+      "consumable"
+    ],
+    "tasks": [
+      "mix_concrete",
+      "mix_mortar"
+    ],
+    "fuzzy": [
+      "粉",
+      "結合材",
+      "練る"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/cement.svg",
+    "summary_ja": "コンクリートやモルタルの結合材となる粉体。…",
+    "summary_en": "A binder powder used in concrete and mortar.…",
+    "detail_ja": "コンクリートやモルタルの結合材となる粉体。",
+    "detail_en": "A binder powder used in concrete and mortar.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "mortar",
     "type": "tool",
-    "term": { "ja": "モルタル", "en": "Mortar" },
-    "aliases": { "ja": ["セメントモルタル"], "en": ["Cement Mortar"] },
-    "description": { "ja": "セメントと砂と水を混ぜた材料。左官・目地などに使う。", "en": "A mix of cement, sand, and water used for masonry and finishing." },
-    "categories": ["concrete", "masonry", "consumable"],
-    "tasks": ["apply_mortar", "set_tile"],
-    "fuzzy": ["左官", "目地", "練る"],
-    "region": ["jp", "global"],
-    "image": "icons/mortar.svg"
+    "term": {
+      "ja": "モルタル",
+      "en": "Mortar"
+    },
+    "aliases": {
+      "ja": [
+        "セメントモルタル"
+      ],
+      "en": [
+        "Cement Mortar"
+      ]
+    },
+    "description": {
+      "ja": "セメントと砂と水を混ぜた材料。左官・目地などに使う。",
+      "en": "A mix of cement, sand, and water used for masonry and finishing."
+    },
+    "categories": [
+      "concrete",
+      "masonry",
+      "consumable"
+    ],
+    "tasks": [
+      "apply_mortar",
+      "set_tile"
+    ],
+    "fuzzy": [
+      "左官",
+      "目地",
+      "練る"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/mortar.svg",
+    "summary_ja": "セメントと砂と水を混ぜた材料。",
+    "summary_en": "A mix of cement, sand, and water used for masonry and finish…",
+    "detail_ja": "セメントと砂と水を混ぜた材料。左官・目地などに使う。",
+    "detail_en": "A mix of cement, sand, and water used for masonry and finishing.",
+    "bullets_ja": [],
+    "bullets_en": []
   },
-
   {
     "id": "concrete",
     "type": "tool",
-    "term": { "ja": "コンクリート", "en": "Concrete" },
-    "aliases": { "ja": ["生コン"], "en": ["Ready-Mix"] },
-    "description": { "ja": "セメント・骨材・水を混ぜた構造材料。", "en": "A structural material made of cement, aggregate, and water." },
-    "categories": ["concrete", "consumable"],
-    "tasks": ["pour_concrete"],
-    "fuzzy": ["打設", "生コン", "骨材"],
-    "region": ["jp", "global"],
-    "image": "icons/concrete.svg"
+    "term": {
+      "ja": "コンクリート",
+      "en": "Concrete"
+    },
+    "aliases": {
+      "ja": [
+        "生コン"
+      ],
+      "en": [
+        "Ready-Mix"
+      ]
+    },
+    "description": {
+      "ja": "セメント・骨材・水を混ぜた構造材料。",
+      "en": "A structural material made of cement, aggregate, and water."
+    },
+    "categories": [
+      "concrete",
+      "consumable"
+    ],
+    "tasks": [
+      "pour_concrete"
+    ],
+    "fuzzy": [
+      "打設",
+      "生コン",
+      "骨材"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "image": "icons/concrete.svg",
+    "summary_ja": "セメント・骨材・水を混ぜた構造材料。…",
+    "summary_en": "A structural material made of cement, aggregate, and water.…",
+    "detail_ja": "セメント・骨材・水を混ぜた構造材料。",
+    "detail_en": "A structural material made of cement, aggregate, and water.",
+    "bullets_ja": [],
+    "bullets_en": []
   }
 ]
-
