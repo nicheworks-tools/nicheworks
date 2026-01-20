@@ -39,10 +39,11 @@ body.is-locked{
 }
 
 .topbar{
-  position:sticky; top:0; z-index:50;
+  position:sticky; top:0; z-index:1100;
   display:flex; flex-direction:column; align-items:stretch;
   padding:10px 12px;
-  background:color-mix(in oklab, var(--bg) 92%, transparent);
+  background-color:var(--bg, #fff);
+  opacity:1;
   backdrop-filter:saturate(160%) blur(10px);
   border-bottom:1px solid var(--line);
 }
@@ -313,13 +314,13 @@ body.is-locked{
 .overlay{
   position:fixed; inset:0;
   background:rgba(0,0,0,.45);
-  z-index:80;
+  z-index:1200;
 }
 
 .sheet{
   position:fixed;
   left:0; right:0;
-  z-index:90;
+  z-index:1300;
   background:var(--card);
   border:1px solid var(--line);
   box-shadow:var(--shadow);
@@ -499,6 +500,13 @@ body.is-locked{
   overflow: auto; /* scroll happens here */
   -webkit-overflow-scrolling: touch;
   padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+@supports (-webkit-touch-callout: none) {
+  .topbar{
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
 }
 
 
