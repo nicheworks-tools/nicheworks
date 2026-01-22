@@ -11,7 +11,7 @@ let CURRENT_LANG = "ja";
 const I18N = {
   ja: {
     title_main_ja: "契約書リスク検出ツール（Contract Cleaner）",
-    subtitle_ja: "よくある危険条文・リスクワードをブラウザ内でスキャンします（AI不使用）。",
+    subtitle_ja: "よくある注意語・リスクワードをブラウザ内で可視化します（AI不使用）。",
 
     donate_hdr_ja: "このツールが役に立ったら、開発継続のご支援をいただけると嬉しいです。",
     donate_ftr_ja: "開発継続のためのご支援をいただけると嬉しいです。",
@@ -32,9 +32,10 @@ const I18N = {
     total_hits_ja: "合計ヒット",
     category_hits_ja: "カテゴリ数",
     only_matched_ja: "該当カテゴリのみ表示",
-    summary_hint_ja: "カテゴリ別に「確認ポイント」と該当箇所を表示します。",
+    summary_hint_ja: "カテゴリ別に確認ポイントと該当箇所を表示します。",
 
     questions_title_ja: "確認したい点（プレビュー）",
+    questions_header_ja: "確認したい点（質問テンプレ）",
 
     highlight_title_ja: "ハイライト表示",
     highlight_desc_ja: "入力テキスト中の該当箇所を色付きで表示します。",
@@ -54,7 +55,7 @@ const I18N = {
   },
   en: {
     title_main_en: "Contract Risk Highlighter (Contract Cleaner)",
-    subtitle_en: "Detect red-flag clauses and risky phrases locally (no AI, no logging).",
+    subtitle_en: "Highlight common risk terms locally in your browser (no AI, no logging).",
 
     donate_hdr_en: "If this tool helps, you can support future development.",
     donate_ftr_en: "We appreciate your support for continued development.",
@@ -75,9 +76,10 @@ const I18N = {
     total_hits_en: "Total hits",
     category_hits_en: "Categories hit",
     only_matched_en: "Show only matched categories",
-    summary_hint_en: "Each category shows a short confirmation point and snippets.",
+    summary_hint_en: "Each category shows a confirmation point and snippets.",
 
     questions_title_en: "Questions to ask (preview)",
+    questions_header_en: "Questions to ask (template)",
 
     highlight_title_en: "Highlighted view",
     highlight_desc_en: "Matched terms are highlighted in the text below.",
@@ -107,29 +109,24 @@ const RULES = [
       "責任",
       "免責",
       "責任の上限",
-      "上限",
       "責任制限",
+      "上限",
       "間接損害",
-      "liability",
-      "limitation of liability",
-      "indirect damages",
-      "consequential damages",
-      "disclaimer",
     ],
     confirmationPoint: {
-      ja: "責任範囲や上限の記載に偏りがないか確認推奨。",
-      en: "Check scope and caps on liability for balance.",
+      ja: "責任範囲や上限の記載に偏りがないか確認したい。",
+      en: "Check whether liability scope or caps are balanced.",
     },
     questionTemplates: {
       ja: [
         "損害賠償の上限は妥当な金額か？",
         "免責の範囲や例外条件は明確か？",
-        "間接損害の扱いに注意されることがあるため確認したい。",
+        "間接損害の扱いはどう定義されているか？",
       ],
       en: [
         "Is the liability cap reasonable for this deal?",
         "Are disclaimers and exceptions clearly defined?",
-        "Check how indirect damages are treated.",
+        "How are indirect damages handled?",
       ],
     },
   },
@@ -144,13 +141,9 @@ const RULES = [
       "解約金",
       "契約終了",
       "終了事由",
-      "termination",
-      "terminate",
-      "cancellation",
-      "penalty",
     ],
     confirmationPoint: {
-      ja: "解約条件や違約金の条件が一方的でないか確認推奨。",
+      ja: "解約条件や違約金の条件が一方的でないか確認したい。",
       en: "Review termination conditions and any penalties.",
     },
     questionTemplates: {
@@ -178,14 +171,9 @@ const RULES = [
       "相殺",
       "振込手数料",
       "請求",
-      "payment",
-      "fee",
-      "late fee",
-      "set-off",
-      "invoice",
     ],
     confirmationPoint: {
-      ja: "支払条件や遅延時の扱いを確認推奨。",
+      ja: "支払条件や遅延時の扱いを確認したい。",
       en: "Confirm payment terms and late-fee handling.",
     },
     questionTemplates: {
@@ -213,13 +201,9 @@ const RULES = [
       "利用許諾",
       "使用許諾",
       "ライセンス",
-      "intellectual property",
-      "copyright",
-      "deliverables",
-      "license",
     ],
     confirmationPoint: {
-      ja: "成果物の権利帰属・利用範囲を確認推奨。",
+      ja: "成果物の権利帰属・利用範囲を確認したい。",
       en: "Confirm IP ownership and license scope.",
     },
     questionTemplates: {
@@ -245,13 +229,9 @@ const RULES = [
       "開示",
       "例外",
       "第三者開示",
-      "confidential",
-      "non-disclosure",
-      "NDA",
-      "disclosure",
     ],
     confirmationPoint: {
-      ja: "秘密情報の範囲と例外条件を確認推奨。",
+      ja: "秘密情報の範囲と例外条件を確認したい。",
       en: "Check scope and exceptions for confidentiality.",
     },
     questionTemplates: {
@@ -276,11 +256,9 @@ const RULES = [
       "外注",
       "委託先",
       "下請",
-      "subcontract",
-      "outsourcing",
     ],
     confirmationPoint: {
-      ja: "再委託の可否や条件を確認推奨。",
+      ja: "再委託の可否や条件を確認したい。",
       en: "Verify subcontracting permissions and conditions.",
     },
     questionTemplates: {
@@ -303,13 +281,9 @@ const RULES = [
       "瑕疵",
       "瑕疵担保",
       "非侵害保証",
-      "warranty",
-      "indemnity",
-      "defect",
-      "non-infringement",
     ],
     confirmationPoint: {
-      ja: "保証範囲や補償条件に抜けがないか確認推奨。",
+      ja: "保証範囲や補償条件に抜けがないか確認したい。",
       en: "Review warranty coverage and indemnity conditions.",
     },
     questionTemplates: {
@@ -334,13 +308,9 @@ const RULES = [
       "裁判所",
       "合意管轄",
       "専属的合意管轄",
-      "governing law",
-      "jurisdiction",
-      "exclusive jurisdiction",
-      "court",
     ],
     confirmationPoint: {
-      ja: "準拠法や管轄地が実務上問題ないか確認推奨。",
+      ja: "準拠法や管轄地が実務上問題ないか確認したい。",
       en: "Confirm governing law and venue are acceptable.",
     },
     questionTemplates: {
@@ -567,8 +537,11 @@ function updateHighlight(text, matches) {
   if (!preview) return;
 
   if (!matches.length) {
-    preview.textContent = "";
-    if (note) note.textContent = "";
+    preview.textContent = text;
+    if (note) {
+      const dict = I18N[CURRENT_LANG];
+      note.textContent = text.trim() ? dict[`no_match_${CURRENT_LANG}`] : "";
+    }
     return;
   }
 
@@ -617,8 +590,10 @@ function buildSummaryText(matches, groups) {
 }
 
 function buildQuestionsText(groups) {
-  const header = "確認したい点（契約書チェック用）";
   const matchedGroups = groups.filter(group => group.matches.length > 0);
+  if (!matchedGroups.length) return "";
+  const dict = I18N[CURRENT_LANG];
+  const header = dict[`questions_header_${CURRENT_LANG}`];
   const lines = [header, ""];
 
   matchedGroups.forEach(group => {
@@ -672,7 +647,6 @@ async function copyText(text) {
     await navigator.clipboard.writeText(text);
     return true;
   } catch (error) {
-    console.error("Clipboard copy failed", error);
     return false;
   }
 }
