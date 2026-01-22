@@ -88,82 +88,123 @@
       <div class="card-bd">
         <div id="toolRoot">
           <div class="field">
-            <label class="label" data-i18n="ja" for="siteType">サイト種別</label>
-            <label class="label" data-i18n="en" for="siteType" style="display:none;">Site type</label>
-            <select class="select" id="siteType">
-              <option value="ブログ">ブログ / Blog</option>
-              <option value="サービスサイト">サービスサイト / Service site</option>
-              <option value="ECサイト">ECサイト / E-commerce</option>
-              <option value="ポートフォリオ">ポートフォリオ / Portfolio</option>
-              <option value="その他">その他 / Other</option>
-            </select>
+            <label class="label" data-i18n="ja" for="siteName">サイト名</label>
+            <label class="label" data-i18n="en" for="siteName" style="display:none;">Site name</label>
+            <input class="input" id="siteName" type="text" placeholder="Example Site" />
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja" for="analyticsTool">解析ツール</label>
-            <label class="label" data-i18n="en" for="analyticsTool" style="display:none;">Analytics tool</label>
-            <select class="select" id="analyticsTool">
-              <option value="Google Analytics 4">GA4</option>
-              <option value="Cloudflare Web Analytics">Cloudflare Web Analytics</option>
-              <option value="Plausible">Plausible</option>
-              <option value="Other">Other / その他</option>
-            </select>
+            <label class="label" data-i18n="ja" for="siteUrl">サイトURL（任意）</label>
+            <label class="label" data-i18n="en" for="siteUrl" style="display:none;">Site URL (optional)</label>
+            <input class="input" id="siteUrl" type="url" placeholder="https://example.com" />
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja" for="region">地域</label>
-            <label class="label" data-i18n="en" for="region" style="display:none;">Region</label>
-            <select class="select" id="region">
-              <option value="JP">日本中心 / Japan</option>
-              <option value="EU">EU圏含む / EU-ish</option>
-              <option value="GLOBAL">グローバル / Global</option>
-            </select>
+            <label class="label" data-i18n="ja" for="contactEmail">連絡先メール（任意）</label>
+            <label class="label" data-i18n="en" for="contactEmail" style="display:none;">Contact email (optional)</label>
+            <input class="input" id="contactEmail" type="email" placeholder="support@example.com" />
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja" for="cookieUse">Cookie使用</label>
-            <label class="label" data-i18n="en" for="cookieUse" style="display:none;">Uses cookies</label>
-            <select class="select" id="cookieUse">
-              <option value="yes">あり / Yes</option>
-              <option value="no">なし / No</option>
-              <option value="unknown">未確認 / Unknown</option>
-            </select>
+            <span class="label" data-i18n="ja">利用する解析サービス</span>
+            <span class="label" data-i18n="en" style="display:none;">Analytics providers</span>
+            <div class="checkbox-grid">
+              <label class="check">
+                <input type="checkbox" id="useGA4" checked />
+                <span>Google Analytics 4 (GA4)</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" id="useCFWebAnalytics" />
+                <span>Cloudflare Web Analytics</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" id="usePlausible" />
+                <span>Plausible</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" id="useAdSense" />
+                <span>Google AdSense</span>
+              </label>
+            </div>
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja" for="contact">問い合わせ先（任意）</label>
-            <label class="label" data-i18n="en" for="contact" style="display:none;">Contact (optional)</label>
-            <input class="input" id="contact" type="text" placeholder="support@example.com" />
+            <label class="label" data-i18n="ja" for="langMode">出力言語</label>
+            <label class="label" data-i18n="en" for="langMode" style="display:none;">Output language</label>
+            <select class="select" id="langMode">
+              <option value="ja" selected>日本語（JA）</option>
+              <option value="en">English (EN)</option>
+            </select>
           </div>
 
           <div class="row">
-            <button class="btn primary" type="button" id="generate">生成する / Generate</button>
-            <button class="btn" type="button" id="copyJa">JPコピー</button>
-            <button class="btn" type="button" id="copyEn">ENコピー</button>
-            <button class="btn" type="button" id="copyChecklist">Checklist</button>
+            <button class="btn primary" type="button" id="generateBtn">
+              <span data-i18n="ja">生成する</span>
+              <span data-i18n="en" style="display:none;">Generate</span>
+            </button>
+            <button class="btn" type="button" id="clearBtn">
+              <span data-i18n="ja">クリア</span>
+              <span data-i18n="en" style="display:none;">Clear</span>
+            </button>
+            <button class="btn" type="button" id="downloadBtn">
+              <span data-i18n="ja">TXTダウンロード</span>
+              <span data-i18n="en" style="display:none;">Download TXT</span>
+            </button>
           </div>
-
-          <div class="field">
-            <label class="label" data-i18n="ja" for="outputJa">日本語ブロック</label>
-            <label class="label" data-i18n="en" for="outputJa" style="display:none;">Japanese block</label>
-            <textarea class="out" id="outputJa" readonly></textarea>
-          </div>
-
-          <div class="field">
-            <label class="label" data-i18n="ja" for="outputEn">英語ブロック</label>
-            <label class="label" data-i18n="en" for="outputEn" style="display:none;">English block</label>
-            <textarea class="out" id="outputEn" readonly></textarea>
-          </div>
-
-          <div class="field">
-            <label class="label" data-i18n="ja" for="outputChecklist">チェックリスト</label>
-            <label class="label" data-i18n="en" for="outputChecklist" style="display:none;">Checklist</label>
-            <textarea class="out" id="outputChecklist" readonly></textarea>
-          </div>
-
-          <p class="nw-note" data-i18n="ja">※法的助言ではありません。必ず自社のポリシーに合わせて調整してください。</p>
-          <p class="nw-note" data-i18n="en" style="display:none;">Not legal advice. Please adjust to your policy.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">出力（3トーン）</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Output (3 tones)</h2>
+      </div>
+      <div class="card-bd">
+        <div class="output-section">
+          <div class="output-head">
+            <h3 class="output-title">
+              <span data-i18n="ja">ショート</span>
+              <span data-i18n="en" style="display:none;">Short</span>
+            </h3>
+            <button class="btn small" type="button" id="copyShortBtn">
+              <span data-i18n="ja">コピー</span>
+              <span data-i18n="en" style="display:none;">Copy</span>
+            </button>
+          </div>
+          <textarea class="out" id="outShort" readonly></textarea>
+        </div>
+
+        <div class="output-section">
+          <div class="output-head">
+            <h3 class="output-title">
+              <span data-i18n="ja">スタンダード</span>
+              <span data-i18n="en" style="display:none;">Standard</span>
+            </h3>
+            <button class="btn small" type="button" id="copyStandardBtn">
+              <span data-i18n="ja">コピー</span>
+              <span data-i18n="en" style="display:none;">Copy</span>
+            </button>
+          </div>
+          <textarea class="out" id="outStandard" readonly></textarea>
+        </div>
+
+        <div class="output-section">
+          <div class="output-head">
+            <h3 class="output-title">
+              <span data-i18n="ja">詳細</span>
+              <span data-i18n="en" style="display:none;">Detailed</span>
+            </h3>
+            <button class="btn small" type="button" id="copyDetailedBtn">
+              <span data-i18n="ja">コピー</span>
+              <span data-i18n="en" style="display:none;">Copy</span>
+            </button>
+          </div>
+          <textarea class="out" id="outDetailed" readonly></textarea>
+        </div>
+
+        <p class="nw-note" data-i18n="ja">※テンプレートのため、必ず実際の運用内容に合わせて見直してください。</p>
+        <p class="nw-note" data-i18n="en" style="display:none;">This is a template. Please review and adjust to your actual practices.</p>
       </div>
     </section>
 
