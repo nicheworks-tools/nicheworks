@@ -1,148 +1,192 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks</title>
-  <meta name="description" content="APIキー・トークンを誤公開しないための伏字方法とチェック手順。GitHub/Discord/フォーム投稿前に、コード・ログ・.envを安全に共有するための最終確認ガイド。">
+  <title>APIキー・トークン伏字ツール | NicheWorks</title>
+  <meta name="description" content="APIキーやトークンを貼り付けて、ブラウザ内で伏字に変換する無料ツール。ローカル処理でアップロードなし。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
-
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks">
-  <meta property="og:description" content="APIキー・トークンの誤公開を防ぐための伏字方法と最終チェック手順。">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="APIキー・トークン伏字ツール | NicheWorks">
+  <meta property="og:description" content="貼る前チェックに。APIキーやトークンをブラウザ内で伏字化。">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- AdSense（削除禁止） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Web Analytics -->
-
   <link rel="stylesheet" href="./style.css">
-
-  <style>
-    .article { border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; margin: 12px 0 16px; background: #fff; }
-    .article h2 { margin-top: 18px; }
-    .article p, .article li { line-height: 1.8; }
-    .kbd { display:inline-block; padding:2px 8px; border:1px solid #d1d5db; border-bottom-width:2px; border-radius:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; background:#f9fafb; }
-    .callout { background:#f9fafb; border:1px solid #e5e7eb; border-radius:12px; padding:12px; margin:12px 0; }
-  </style>
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-  </script>
 </head>
 
 <body>
   <header class="nw-header">
-    <h1>APIキー伏字のやり方（貼る前チェック手順）</h1>
-    <p>GitHub / Discord / フォーム投稿の前に、秘密情報を誤公開しないための最終確認ガイド。</p>
-
-    <div class="nw-lang-switch">
-      <a href="./index.html" class="kbd">ツールへ戻る</a>
+    <div class="header-row">
+      <h1>
+        <span data-i18n="ja">APIキー・トークン伏字ツール</span>
+        <span data-i18n="en">API Key &amp; Token Redactor</span>
+      </h1>
+      <div class="nw-lang-switch">
+        <button type="button" data-lang="ja">日本語</button>
+        <button type="button" data-lang="en">English</button>
+      </div>
     </div>
+    <p>
+      <span data-i18n="ja">貼り付けたテキストから秘密情報を検出して伏字化します。</span>
+      <span data-i18n="en">Paste text, detect secrets, and redact them locally in your browser.</span>
+    </p>
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">入力</span>
+        <span data-i18n="en">Input</span>
+      </h2>
+      <textarea id="inputText" placeholder="Paste logs, configs, or secrets here..."></textarea>
+      <div class="note">
+        <span data-i18n="ja">プライバシー: ブラウザ内で処理され、外部に送信されません。</span>
+        <span data-i18n="en">Privacy: Runs locally in your browser. Nothing is uploaded.</span>
+      </div>
+    </section>
 
-    <article class="article">
-      <h2>このページで分かること</h2>
-      <ul>
-        <li>APIキー・トークンを貼ってはいけない理由（何が危険か）</li>
-        <li>コード・ログ・.env を安全に共有する「手順」</li>
-        <li>ありがちな漏洩パターンと対策</li>
-      </ul>
-
-      <div class="callout">
-        <strong>重要：</strong>伏字・検出は「取りこぼしゼロ」を保証できません。<br>
-        最終的な共有判断はあなたの責任で行ってください。
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">検出モード</span>
+        <span data-i18n="en">Detection Modes</span>
+      </h2>
+      <div class="options-grid">
+        <label class="check-item"><input type="checkbox" id="modeApiKeys" checked> <span>API keys</span></label>
+        <label class="check-item"><input type="checkbox" id="modeBearer" checked> <span>Bearer tokens</span></label>
+        <label class="check-item"><input type="checkbox" id="modeJwt" checked> <span>JWT</span></label>
+        <label class="check-item"><input type="checkbox" id="modePrivateKey" checked> <span>Private keys (PEM)</span></label>
+        <label class="check-item"><input type="checkbox" id="modeGenericSecret" checked> <span>Generic secrets</span></label>
       </div>
 
-      <h2>危ないのは「APIキーだけ」じゃない</h2>
-      <p>
-        誤公開すると危険な情報は APIキーだけではありません。代表例は以下です。
-      </p>
-      <ul>
-        <li>OpenAI / Stripe / AWS / GitHub などの各種キー</li>
-        <li>JWT などのログイン系トークン</li>
-        <li>Slack などのワークスペース用トークン</li>
-        <li>.env / config の秘密値（DBパスワード、Webhook URL など）</li>
-      </ul>
-
-      <h2>安全に共有する最短手順（おすすめ）</h2>
-      <ol>
-        <li>共有したい内容（コード/ログ/.env）をコピーする</li>
-        <li><a href="./index.html">API Key &amp; Token Redactor</a> に貼り付ける</li>
-        <li><span class="kbd">検出する</span> を押す</li>
-        <li>検出結果（件数・種類）を確認する</li>
-        <li><span class="kbd">コピー</span> or <span class="kbd">TXTダウンロード</span> で「伏字済み全文」を取得する</li>
-        <li>その伏字済み全文だけを、GitHub / Discord / フォームなどに貼る</li>
-      </ol>
-
-      <h2>よくある漏洩パターン</h2>
-      <ul>
-        <li><strong>.env を丸ごと貼ってしまう</strong>（特に事故が多い）</li>
-        <li><strong>ログに Authorization ヘッダーやJWTが混ざる</strong></li>
-        <li><strong>スクショにキーが映り込む</strong>（ターミナル・管理画面）</li>
-        <li><strong>「一部だけ伏字」のつもりが、別の場所に残っている</strong></li>
-      </ul>
-
-      <h2>安全度を上げるコツ</h2>
-      <ul>
-        <li>伏字済み全文を貼ったあとも、投稿前に <strong>検索（Ctrl+F）</strong> で <strong>sk- / pk_ / rk_ / AKIA / ghp_</strong> などを再確認</li>
-        <li>不要なら <strong>ログの該当行を削る</strong>（最も安全）</li>
-        <li>事故った可能性がある場合は <strong>即ローテーション</strong>（キー再発行・無効化）</li>
-      </ul>
-
-      <h2>このツールは何をしている？</h2>
-      <p>
-        ブラウザ内で文字列パターン（正規表現）を検出し、共有向けの形に置換します。
-        画像やテキストをサーバーへ送信しません（ローカル処理）。
-      </p>
-
-      <h2>次の機能（Pro予定）</h2>
-      <ul>
-        <li>マスキングルール指定（末尾N文字残す / 置換文字列指定）</li>
-        <li>ローカル履歴</li>
-        <li>より広い検出パターン</li>
-      </ul>
-    </article>
-
-    <div class="nw-donate">
-      <p class="nw-donate-text">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <div class="options-row">
+        <label class="select-item">
+          <span class="select-label" data-i18n="ja">置換文字</span>
+          <span class="select-label" data-i18n="en">Placeholder</span>
+          <select id="placeholderStyle">
+            <option value="[REDACTED]" selected>[REDACTED]</option>
+            <option value="****">****</option>
+            <option value="<redacted>">&lt;redacted&gt;</option>
+          </select>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" id="keepLengthToggle">
+          <span data-i18n="ja">元の長さを保持（* で置換）</span>
+          <span data-i18n="en">Keep length (replace with *)</span>
+        </label>
       </div>
-    </div>
 
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+      <div class="btn-row">
+        <button type="button" id="redactBtn">
+          <span data-i18n="ja">伏字にする</span>
+          <span data-i18n="en">Redact</span>
+        </button>
+        <button type="button" class="btn-ghost" id="clearBtn">
+          <span data-i18n="ja">クリア</span>
+          <span data-i18n="en">Clear</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">出力</span>
+        <span data-i18n="en">Output</span>
+      </h2>
+      <textarea id="outputText" readonly placeholder="Redacted text will appear here..."></textarea>
+
+      <div id="summary" class="summary">
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">APIキー</span>
+            <span data-i18n="en">API keys</span>
+          </span>
+          <span class="summary-value" id="countApiKeys">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">Bearer</span>
+            <span data-i18n="en">Bearer tokens</span>
+          </span>
+          <span class="summary-value" id="countBearer">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">JWT</span>
+            <span data-i18n="en">JWT</span>
+          </span>
+          <span class="summary-value" id="countJwt">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">秘密鍵</span>
+            <span data-i18n="en">Private keys</span>
+          </span>
+          <span class="summary-value" id="countPrivateKey">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">ラベル付きシークレット</span>
+            <span data-i18n="en">Labeled secrets</span>
+          </span>
+          <span class="summary-value" id="countGeneric">0</span>
+        </div>
+        <div class="summary-row summary-total">
+          <span class="summary-label">
+            <span data-i18n="ja">合計</span>
+            <span data-i18n="en">Total</span>
+          </span>
+          <span class="summary-value" id="countTotal">0</span>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" id="copyBtn" class="btn-ghost">
+          <span data-i18n="ja">コピー</span>
+          <span data-i18n="en">Copy</span>
+        </button>
+        <button type="button" id="downloadBtn" class="btn-ghost">
+          <span data-i18n="ja">TXTダウンロード</span>
+          <span data-i18n="en">Download TXT</span>
+        </button>
+      </div>
+      <p class="note">
+        <span data-i18n="ja">※ 完全な検出は保証されません。共有前に再確認してください。</span>
+        <span data-i18n="en">No detector is perfect. Review before sharing.</span>
+      </p>
+    </section>
+
+    <section class="tool-card compact">
+      <h2>
+        <span data-i18n="ja">使い方</span>
+        <span data-i18n="en">How it works</span>
+      </h2>
+      <p>
+        <span data-i18n="ja">30秒ガイド: 1) テキストを貼る 2) 伏字にする 3) 出力をコピーして共有。</span>
+        <span data-i18n="en">30-sec guide: 1) Paste text 2) Redact 3) Copy the output.</span>
+      </p>
+      <a class="link" href="./howto/">
+        <span data-i18n="ja">詳しい使い方と検出パターン</span>
+        <span data-i18n="en">Full guide and supported patterns</span>
+      </a>
+    </section>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">完全な検出を保証するものではありません。</p>
+    <p class="nw-footer-line">Privacy: Runs locally in your browser. Nothing is uploaded.</p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
     </p>
   </footer>
+
+  <div id="copyToast" class="toast" hidden>Copied</div>
+  <script src="./app.js"></script>
 </body>
 </html>
