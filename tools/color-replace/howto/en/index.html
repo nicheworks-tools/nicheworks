@@ -15,12 +15,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Color Replace Lite | Replace a specific color in an image | NicheWorks</title>
-  <meta name="description" content="A browser-only color replacement tool. Pick a color with an eyedropper, replace it via HEX/RGB/presets, adjust tolerance and zoom, then export as PNG." />
+  <title>Color Replace Lite Guide | NicheWorks</title>
+  <meta name="description" content="How to use the browser-based color replace tool. Replace specific colors with tolerance, keep transparency, and export PNG." />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/color-replace/howto/en/" />
 
-  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/color-replace/howto/en/" />
   <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/color-replace/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/color-replace/howto/en/" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
@@ -50,20 +50,20 @@
       <a href="../">JA</a>
       <a href="../../">Tool</a>
     </div>
-    <h1 style="margin:10px 0 6px">Color Replace Lite: Guide</h1>
-    <p class="muted" style="margin:0">Replace “this exact color” with another one (eyedropper, tolerance, zoom, PNG export).</p>
+    <h1 style="margin:10px 0 6px">Color Replace Lite Guide</h1>
+    <p class="muted" style="margin:0">Replace a specific color with tolerance and export PNG, entirely in the browser.</p>
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">Ad slot (placeholder)</div>
+    <div class="ad-slot ad-top">Ad space (preparing)</div>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">What it does</h2>
+      <h2 style="margin:0 0 8px">What you can do</h2>
       <ul>
-        <li>Pick a source color with an eyedropper and replace it with a target color</li>
-        <li>Set the target color via <code>HEX</code>, <code>RGB</code>, or presets</li>
-        <li>Adjust tolerance to control how much “similar colors” are replaced</li>
-        <li>Zoom for precise picking, then export as PNG</li>
+        <li>Replace a specific color in your image</li>
+        <li>Adjust tolerance for near colors</li>
+        <li>Export as PNG while keeping transparency</li>
+        <li>All processing stays local in the browser</li>
       </ul>
       <div class="btns">
         <a class="btn primary" href="../../">Open the tool</a>
@@ -72,44 +72,39 @@
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">Use this when</h2>
+      <h2 style="margin:0 0 8px">Steps</h2>
+      <ol>
+        <li>Upload an image.</li>
+        <li>Select the source color (or click the image to pick it).</li>
+        <li>Choose the target color.</li>
+        <li>Adjust tolerance and click <code>Apply</code>.</li>
+        <li>Confirm the preview and download as PNG.</li>
+      </ol>
+      <p class="muted" style="margin:0">Your image never leaves your device.</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Best practices</h2>
       <ul>
-        <li>You want to swap a logo/icon color without touching the background</li>
-        <li>You need to change a highlight/marker color in a screenshot</li>
-        <li>You want to quickly try multiple color variations</li>
+        <li>For photos with gradients, keep tolerance lower to avoid color bleeding.</li>
+        <li>For flat icons or logos, slightly higher tolerance gives better coverage.</li>
+        <li>Large images are auto-downscaled for preview (download matches).</li>
       </ul>
-      <p class="muted" style="margin:8px 0 0">
-        Keywords: replace color in image, color replacement, eyedropper, hex rgb, png export
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Transparency note</h2>
+      <p class="muted" style="margin:0">
+        Alpha channels are preserved, so transparent backgrounds stay transparent.
       </p>
     </section>
 
-    <section class="card">
-      <h2 style="margin:0 0 8px">How to use</h2>
-      <ol>
-        <li>Load an image</li>
-        <li>Pick the “From” color with the eyedropper</li>
-        <li>Set the “To” color (HEX/RGB/preset)</li>
-        <li>Adjust zoom and tolerance until the result looks right</li>
-        <li>Export as PNG</li>
-      </ol>
-      <p class="muted" style="margin:0">Runs locally in your browser. No server-side image storage.</p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">Notes (limits)</h2>
-      <ul>
-        <li>Photos with smooth gradients may look “smudged” after replacement (tune tolerance).</li>
-        <li>This tool does not do smart segmentation (e.g., “only background”).</li>
-        <li>JPEG compression noise can make “the same-looking color” differ per pixel, causing partial replacement.</li>
-      </ul>
-    </section>
-
-    <div class="ad-slot ad-bottom">Ad slot (placeholder)</div>
+    <div class="ad-slot ad-bottom">Ad space (preparing)</div>
   </main>
 
   <footer class="nw-footer">
     <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p>This site may contain ads.</p>
+    <p>This site may include ads.</p>
     <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
   </footer>
 </body>
