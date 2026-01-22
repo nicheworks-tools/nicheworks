@@ -20,7 +20,7 @@
   <!-- 日本語 description -->
   <meta
     name="description"
-    content="化粧品成分を簡易的にチェックできるツール。主要成分の簡単な説明もあわせて確認できます。"
+    content="化粧品成分を簡易的にチェックできるツール。INCI/日本語混在の成分表を解析し、注意ポイントをまとめて表示します。"
   >
 
   <!-- favicon -->
@@ -38,7 +38,7 @@
   <meta property="og:title" content="Cosmetic Ingredient Checker Lite（化粧品成分チェッカー） | NicheWorks">
   <meta
     property="og:description"
-    content="化粧品成分を簡易的にチェックできるツール。主要成分の簡単な説明もあわせて確認できます。"
+    content="化粧品成分を簡易的にチェックできるツール。INCI/日本語混在の成分表を解析し、注意ポイントをまとめて表示します。"
   >
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/cosmetic-ingredient-checker-lite/">
@@ -48,7 +48,7 @@
   <meta property="og:title:en" content="Cosmetic Ingredient Checker Lite | NicheWorks">
   <meta
     property="og:description:en"
-    content="A lightweight tool to check cosmetic ingredients with simple explanations."
+    content="A lightweight tool to parse INCI lists and show simple flags with cautionary notes."
   >
 
   <!-- Twitter 日本語 -->
@@ -56,7 +56,7 @@
   <meta name="twitter:title" content="Cosmetic Ingredient Checker Lite（化粧品成分チェッカー） | NicheWorks">
   <meta
     name="twitter:description"
-    content="化粧品成分を簡易的にチェックできるツール。主要成分の簡単な説明もあわせて確認できます。"
+    content="化粧品成分を簡易的にチェックできるツール。INCI/日本語混在の成分表を解析し、注意ポイントをまとめて表示します。"
   >
   <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
@@ -65,7 +65,7 @@
   <meta name="twitter:title:en" content="Cosmetic Ingredient Checker Lite | NicheWorks">
   <meta
     name="twitter:description:en"
-    content="A lightweight tool to check cosmetic ingredients with simple explanations."
+    content="A lightweight tool to parse INCI lists and show simple flags with cautionary notes."
   >
   <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
 
@@ -76,7 +76,7 @@
     "@type": "WebApplication",
     "name": "Cosmetic Ingredient Checker Lite（化粧品成分チェッカー）",
     "url": "https://nicheworks.pages.dev/tools/cosmetic-ingredient-checker-lite/",
-    "description": "化粧品成分を簡易的にチェックできるツール。主要成分の簡単な説明もあわせて確認できます。",
+    "description": "化粧品成分を簡易的にチェックできるツール。INCI/日本語混在の成分表を解析し、注意ポイントをまとめて表示します。",
     "inLanguage": "ja",
     "publisher": { "@type": "Organization", "name": "NicheWorks" }
   }
@@ -89,14 +89,11 @@
     "@type": "WebApplication",
     "name": "Cosmetic Ingredient Checker Lite",
     "url": "https://nicheworks.pages.dev/tools/cosmetic-ingredient-checker-lite/",
-    "description": "A lightweight tool to check cosmetic ingredients with simple explanations.",
+    "description": "A lightweight tool to parse INCI lists and show simple flags with cautionary notes.",
     "inLanguage": "en",
     "publisher": { "@type": "Organization", "name": "NicheWorks" }
   }
   </script>
-
-  <!-- Tesseract.js -->
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
   <!-- Google Adsense -->
   <script async
@@ -104,7 +101,7 @@
     crossorigin="anonymous"></script>
 
   <!-- Cloudflare Analytics -->
-  
+
 <script defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
@@ -120,7 +117,7 @@
         </a>
         <div class="nw-header-titles">
           <h1 class="nw-title">化粧品成分チェッカー Lite</h1>
-          <p class="nw-subtitle">成分表を撮影・検索・貼り付けでまとめ、ブラウザ内だけで安全性や注意点を確認できます。</p>
+          <p class="nw-subtitle">INCI/日本語の成分リストを解析し、注意ポイントを簡潔に整理します。</p>
         </div>
         <div class="nw-lang-switch">日本語のみ</div>
       </div>
@@ -130,8 +127,7 @@
   <nav class="nw-nav">
     <div class="nw-nav-inner">
       <a class="nw-nav-current" href="#hero">概要</a>
-      <a href="#howto">使い方</a>
-      <a href="#adder">成分追加</a>
+      <a href="#input">成分入力</a>
       <a href="#results">解析結果</a>
     </div>
   </nav>
@@ -141,83 +137,61 @@
 
     <section class="tool-card hero-card" id="hero">
       <div class="hero-label">🧴 Cosmetic Ingredient Checker Lite</div>
-      <h2 class="hero-title">成分表をまとめてチェックし、用途や注意点をサッと把握</h2>
-      <p class="hero-desc">画像アップロード・キーワード検索・まとめ貼り付けで成分を追加し、辞書データをもとに用途や留意点を整理します。すべてブラウザ内処理でサーバー送信はありません。</p>
+      <h2 class="hero-title">成分表の注意ポイントを“軽く”把握するための簡易チェック</h2>
+      <p class="hero-desc">成分表示（INCI/日本語混在）を貼り付けると、香料・防腐剤・アルコールなどのフラグを整理します。判断材料のひとつとしてご利用ください。</p>
     </section>
 
-    <section class="tool-card" id="howto">
-      <h3 class="section-title">【使い方】</h3>
-      <p class="section-desc">3ステップで解析できます。</p>
-      <ol class="cic-steps">
-        <li>成分を追加する（画像 / 検索 / 貼り付け）</li>
-        <li>気になる成分が「解析リスト」に並ぶ</li>
-        <li>「解析する」を押すと、用途や注意点を表示</li>
-      </ol>
+    <section class="tool-card" id="input">
+      <h3 class="section-title">成分リストを貼り付け</h3>
+      <p class="section-desc">カンマ区切り / 改行 / 「、」の混在に対応しています。</p>
+      <textarea id="inciInput" class="cic-textarea" rows="6" placeholder="例：Water, Alcohol, Fragrance, Limonene, Phenoxyethanol"></textarea>
+      <div class="actions">
+        <button id="checkBtn" class="btn btn-primary" type="button">チェック</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">クリア</button>
+        <button id="copyBtn" class="btn" type="button">結果をコピー</button>
+      </div>
+      <div id="copyStatus" class="copy-status" aria-live="polite"></div>
+      <div id="disclaimerBox" class="disclaimer-box">
+        <strong>情報提供のみ：</strong>本ツールは成分を機械的に分類するだけの簡易表示です。医学的・薬機法上の判断や診断を行うものではありません。
+      </div>
     </section>
 
-    <div class="cic-layout">
-      <div class="cic-left">
-        <section class="tool-card" id="adder">
-          <h3 class="section-title">成分を追加する</h3>
-          <p class="section-desc">成分画像のOCR、キーワード検索、まとめ貼り付けに対応しています。</p>
-
-          <div id="ocrDropzone" class="dropzone">
-            <p class="drop-main">成分画像をドラッグ＆ドロップ</p>
-            <p class="drop-sub">JPEG / PNG / HEIC などに対応（ブラウザ内でOCR処理）</p>
-            <label for="ocrInput" class="btn">ファイルを選択</label>
-            <input class="file-input" type="file" id="ocrInput" accept="image/*">
-            <div class="cic-ocr-status" id="ocrStatus"></div>
-          </div>
-
-          <div class="cic-input-group">
-            <label class="cic-label" for="searchInput">成分を検索</label>
-            <input id="searchInput" type="text" class="cic-input" placeholder="例：hyaluronic / グリセリン" autocomplete="off">
-            <div id="searchSuggestions" class="cic-suggestions"></div>
-          </div>
-
-          <details class="cic-bulk" id="bulkDetails">
-            <summary>まとめて貼り付け（任意）</summary>
-            <div class="cic-bulk-body">
-              <textarea id="bulkInput" rows="4" placeholder="Water\nGlycerin\nHyaluronic acid\n..."></textarea>
-              <div class="cic-bulk-actions">
-                <button id="bulkAddButton" type="button" class="btn btn-primary">リストに追加</button>
-                <button id="bulkClearButton" type="button" class="btn btn-ghost">リストをクリア</button>
-              </div>
-            </div>
-          </details>
-        </section>
-
-        <section class="tool-card">
-          <h3 class="section-title">解析リスト</h3>
-          <p class="section-desc">追加した成分がタグとして表示されます。不要なものは削除できます。</p>
-          <div id="ingredientList" class="cic-tag-list"></div>
-          <div id="ingredientEmpty" class="empty-state">成分を追加するとここに表示されます。</div>
-        </section>
-
-        <section class="tool-card">
-          <h3 class="section-title">解析を実行</h3>
-          <p class="section-desc">解析リストの内容をもとに用途や留意点を整理します。</p>
-          <div class="actions">
-            <button id="analyzeButton" class="btn btn-primary" disabled>解析する</button>
-          </div>
-        </section>
+    <section class="tool-card" id="results">
+      <div class="results-header">
+        <div>
+          <h3 class="section-title">解析結果</h3>
+          <p class="section-desc">並び順は貼り付け順。フラグは注意ポイントの目安です。</p>
+        </div>
+        <div class="parsed-count">解析数：<span id="parsedCount">0</span> 件</div>
       </div>
 
-      <div class="cic-right" id="results">
-        <section class="tool-card cic-sticky">
-          <div class="cic-result-header">
-            <div>
-              <h3 class="section-title">解析結果</h3>
-              <p class="section-desc">成分ごとに用途と注意点を表示します。左のライン色でレベルを示します。</p>
-            </div>
-            <button id="copyButton" class="btn btn-ghost" type="button">コピー</button>
-          </div>
-          <div id="resultContainer" class="cic-result-stack"></div>
-          <div id="resultEmpty" class="empty-state">解析結果がここに表示されます。</div>
-          <div class="copy-status" id="copyStatus"></div>
-        </section>
+      <div id="summaryBox" class="summary-box">
+        <div class="summary-title">サマリー</div>
+        <div class="summary-grid" id="summaryGrid"></div>
+        <div class="summary-questions">
+          <p class="summary-title">考えるヒント</p>
+          <ul>
+            <li>香料や精油が苦手な場合、フレグランス系の有無を確認</li>
+            <li>乾燥しやすい肌はアルコール配合量に注意</li>
+            <li>敏感肌は酸系成分をパッチテストで確認</li>
+          </ul>
+        </div>
       </div>
-    </div>
+
+      <div class="table-wrapper">
+        <table id="itemsTable" class="result-table">
+          <thead>
+            <tr>
+              <th>成分名</th>
+              <th>フラグ</th>
+              <th>簡易メモ</th>
+            </tr>
+          </thead>
+          <tbody id="itemsTableBody"></tbody>
+        </table>
+      </div>
+      <div id="itemsEmpty" class="empty-state">ここに解析結果が表示されます。</div>
+    </section>
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
   </main>
@@ -225,6 +199,7 @@
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p class="nw-footer-line">このツールは参考情報を提供するものであり、医学的な診断や完全な安全性を保証するものではありません。</p>
+    <p class="nw-footer-line"><a href="./howto/">使い方・注意事項</a></p>
   </footer>
 
   <div class="nw-donate">
