@@ -51,7 +51,7 @@
       <a href="../../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">Command Safety Checker: Guide</h1>
-    <p class="muted" style="margin:0">Paste commands before running them. Spot risky patterns as a quick pre-run check (no storage).</p>
+    <p class="muted" style="margin:0">Paste commands before running them. Spot risky patterns with deterministic rules (no storage).</p>
   </header>
 
   <main class="nw-main">
@@ -61,8 +61,9 @@
       <h2 style="margin:0 0 8px">What it does</h2>
       <ul>
         <li>Paste bash/zsh/PowerShell commands and detect risky execution patterns</li>
-        <li>Flags destructive actions (delete/overwrite), exfiltration (send/output), and over-privileged runs (sudo/admin)</li>
-        <li>Shows a simple risk level: <code>Low / Medium / High</code> (for reference)</li>
+        <li>Flags destructive actions (delete/overwrite) and over-privileged runs (sudo/admin) with deterministic rules</li>
+        <li>Shows a simple risk level: <code>LOW / MED / HIGH</code> (for reference)</li>
+        <li>Provides a “safer steps” checklist automatically</li>
         <li>Runs locally in your browser (no server-side storage)</li>
       </ul>
       <div class="btns">
@@ -88,8 +89,8 @@
       <ol>
         <li>Open the tool</li>
         <li>Paste the command(s) you plan to run (multi-line OK)</li>
-        <li>Read the risk level (Low/Medium/High) and the findings</li>
-        <li>If unsure, re-check targets/paths/privileges and test in a safe environment first</li>
+        <li>Read the risk level (LOW/MED/HIGH) and the findings</li>
+        <li>Review the safer steps checklist and re-check targets/paths/privileges</li>
       </ol>
       <p class="muted" style="margin:0">Tip: don’t start on production—test on a dummy folder/sandbox first.</p>
     </section>
@@ -98,6 +99,7 @@
       <h2 style="margin:0 0 8px">Notes (limits)</h2>
       <ul>
         <li>This tool does not guarantee safety (reference only).</li>
+        <li>Rule-based checks can miss context-specific or environment-specific risks.</li>
         <li>Variables, pipes, redirects, privileges, and working directory can change outcomes.</li>
         <li>Static checks may miss environment-dependent or network-related risks.</li>
         <li>For important operations, use backups and least-privilege practices.</li>
