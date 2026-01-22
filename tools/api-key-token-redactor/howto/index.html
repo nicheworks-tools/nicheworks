@@ -1,112 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>APIキー・トークン伏字｜ログ共有前のサニタイズ | NicheWorks</title>
-  <meta name="description" content="ログや設定ファイルを貼る前に、APIキー/トークン/Authorization等の機密っぽい文字列を見つけて伏字化する補助ツール。保存なし。" />
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/" />
-
-  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/" />
-  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/en/" />
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APIキー・トークン伏字ツールの使い方 | NicheWorks</title>
+  <meta name="description" content="APIキー・トークン伏字ツールの30秒ガイド、対応パターン、できないこと、プライバシーについて。">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/howto/en/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <style>
-    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
-    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
-    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
-    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
-    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
-    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
-    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
-    .muted{color:var(--muted)}
-    ol,ul{padding-left:20px}
-    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
-    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
-    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
-    .nw-footer a{color:inherit}
-    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+    :root { --bg:#fff; --border:#e5e7eb; --text:#111827; --muted:#6b7280; --soft:#f9fafb; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background:var(--bg); color:var(--text); line-height:1.7; }
+    .nw-header { padding:20px 16px; border-bottom:1px solid var(--border); }
+    .nw-main { max-width:960px; margin:0 auto; padding:18px 16px 32px; }
+    .card { border:1px solid var(--border); border-radius:16px; padding:14px; background:#fff; margin:12px 0; }
+    .topnav { display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap; }
+    .topnav a { font-size:12px; color:var(--muted); text-decoration:none; border:1px solid var(--border); padding:6px 10px; border-radius:999px; }
+    .muted { color:var(--muted); }
+    ul, ol { padding-left:20px; }
+    code { background:var(--soft); border:1px solid var(--border); padding:2px 6px; border-radius:8px; }
+    .nw-footer { margin-top:24px; padding:16px 8px 12px; border-top:1px solid var(--border); font-size:11px; color:var(--muted); text-align:center; }
+    .nw-footer a { color:inherit; }
   </style>
 </head>
-
 <body>
   <header class="nw-header">
     <div class="topnav">
       <a href="./en/">EN</a>
-      <a href="../">Tool</a>
+      <a href="../">ツールへ戻る</a>
     </div>
-    <h1 style="margin:10px 0 6px">APIキー・トークン伏字（Redactor）ガイド</h1>
-    <p class="muted" style="margin:0">ログ共有前に「鍵っぽい文字列」を見つけて伏字化（保存なし）。</p>
+    <h1 style="margin:10px 0 6px">APIキー・トークン伏字ツールの使い方</h1>
+    <p class="muted" style="margin:0">30秒ガイド、対応パターン、注意点をまとめています。</p>
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
-
     <section class="card">
-      <h2 style="margin:0 0 8px">このツールでできること</h2>
-      <ul>
-        <li>ログ/設定/JSON/curlなどのテキストから、機密っぽい文字列（APIキー・トークン・Authorization等）を見つけやすくする</li>
-        <li>共有用に伏字化して、貼り付けミスの確率を下げる（最終確認は人間）</li>
-        <li>ブラウザ内で処理（保存なし）</li>
-      </ul>
-      <div class="btns">
-        <a class="btn primary" href="../">ツールを開く</a>
-        <a class="btn" href="./en/">English guide</a>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">こんなときに使う</h2>
-      <ul>
-        <li>GitHub Issue / Discord / フォーラムにログを貼る前に、秘密情報が混ざってないか確認したい</li>
-        <li><code>Authorization: Bearer ...</code> / <code>api_key=...</code> を消し忘れそう</li>
-        <li>.env や設定ファイルの一部を、なるべく安全に共有したい</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        関連キーワード：api key redaction / token masking / secret sanitize / bearer token
-      </p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">使い方</h2>
+      <h2 style="margin:0 0 8px">30秒ガイド</h2>
       <ol>
-        <li>ツール画面を開く</li>
-        <li>共有したいテキストを貼る</li>
-        <li>伏字後のテキストをコピーして共有する</li>
+        <li>ログや設定ファイルをコピーしてツールに貼り付けます。</li>
+        <li>「伏字にする」を押して出力を確認します。</li>
+        <li>出力だけを共有（GitHub/Discord/フォームなど）します。</li>
       </ol>
-      <p class="muted" style="margin:0">コツ：共有前に、伏字後テキストを上からざっと目視チェック。</p>
+      <p class="muted" style="margin:0">共有前に検索（Ctrl+F）で sk- や AKIA などを確認すると安心です。</p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <h2 style="margin:0 0 8px">対応パターン</h2>
       <ul>
-        <li>伏字漏れゼロは保証できません。最終確認は必ず目視で行ってください。</li>
-        <li>本当に危ない情報を外部に貼ってしまった場合は、キー/トークンの再発行（ローテーション）を検討してください。</li>
-        <li>このツールは「検出補助」です。100%の安全を担保するものではありません。</li>
+        <li>Bearer トークン（Authorization ヘッダー / Bearer プレフィックス）</li>
+        <li>JWT（<code>eyJ...</code> 形式）</li>
+        <li>PEM形式の秘密鍵（BEGIN/END PRIVATE KEY）</li>
+        <li>APIキー例: <code>sk-</code>, <code>sk_live_</code>, <code>ghp_</code>, <code>AKIA</code></li>
+        <li>ラベル付きシークレット（<code>api_key=</code>, <code>token:</code>, <code>password=</code> など）</li>
       </ul>
     </section>
 
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+    <section class="card">
+      <h2 style="margin:0 0 8px">できないこと</h2>
+      <ul>
+        <li>伏字漏れゼロの保証はできません。</li>
+        <li>画像やスクリーンショット内の情報は検出できません。</li>
+        <li>トークンの有効性チェックや無効化は行いません。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">プライバシー</h2>
+      <p style="margin:0">入力内容はブラウザ内で処理され、外部に送信されません。</p>
+    </section>
   </main>
 
   <footer class="nw-footer">
     <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p>当サイトには広告が含まれる場合があります。重要な情報は必ず公式情報をご確認ください。</p>
+    <p>Privacy: Runs locally in your browser. Nothing is uploaded.</p>
     <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
   </footer>
 </body>

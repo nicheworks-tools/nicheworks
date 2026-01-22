@@ -1,0 +1,9 @@
+{
+  "steps": [
+    "Open /tools/api-key-token-redactor/",
+    "Fill #inputText with a sample containing sk-EXAMPLEKEY1234567890, Authorization: Bearer abcdEFGH1234, and eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.aaa.bbb",
+    "Click #redactBtn",
+    "Assert #outputText is not empty and contains [REDACTED]",
+    "Assert #outputText does not contain the original substring sk-"
+  ]
+}
