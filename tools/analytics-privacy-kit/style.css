@@ -133,6 +133,20 @@ body{
   flex-wrap:wrap;
 }
 
+.checkbox-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:8px 12px;
+}
+.check{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:var(--text);
+}
+.check input{ transform:scale(1.05); }
+
 .btn{
   display:inline-flex;
   align-items:center;
@@ -165,6 +179,10 @@ body{
 .btn.danger:hover{
   background:#fff5f5;
 }
+.btn.small{
+  padding:6px 10px;
+  font-size:12px;
+}
 
 .out{
   width:100%;
@@ -177,6 +195,29 @@ body{
   white-space:pre-wrap;
   word-break:break-word;
 }
+
+.output-section{
+  margin:0 0 16px;
+}
+.output-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:6px;
+}
+.output-title{
+  margin:0;
+  font-size:13px;
+}
+
+.howto-list{
+  margin:0;
+  padding-left:18px;
+  font-size:13px;
+  color:var(--text);
+}
+.howto-list li{ margin:6px 0; }
 
 .hr{
   border:none;

@@ -1,0 +1,30 @@
+{
+  "steps": [
+    {
+      "action": "fill",
+      "selector": "#siteName",
+      "value": "Example Site"
+    },
+    {
+      "action": "check",
+      "selector": "#useGA4"
+    },
+    {
+      "action": "click",
+      "selector": "#generateBtn"
+    },
+    {
+      "action": "assertNotEmpty",
+      "selector": "#outShort"
+    },
+    {
+      "action": "assertContains",
+      "selector": "#outShort",
+      "text": "Example Site"
+    },
+    {
+      "action": "assertNotEmpty",
+      "selector": "#outStandard"
+    }
+  ]
+}
