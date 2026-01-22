@@ -155,6 +155,22 @@
           <span data-i18n="en">Manual mode (optional)</span>
         </summary>
 
+        <div class="preset-box" aria-label="Quick presets">
+          <p class="label" data-i18n="ja">クイックプリセット</p>
+          <p class="label" data-i18n="en">Quick presets</p>
+          <div class="preset-buttons">
+            <button type="button" class="preset-btn" data-preset="winter-indoor">
+              <span data-i18n="ja">冬の室内</span><span data-i18n="en">Winter indoor</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="rainy-day">
+              <span data-i18n="ja">雨の日</span><span data-i18n="en">Rainy day</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="sunny-breezy">
+              <span data-i18n="ja">晴れ＋風あり</span><span data-i18n="en">Sunny & breezy</span>
+            </button>
+          </div>
+        </div>
+
         <div class="inputs" aria-label="Manual inputs">
           <div class="input-row">
             <div class="input-head">
@@ -192,6 +208,11 @@
           </button>
         </div>
       </details>
+
+      <p class="validation-msg" id="validationMsg" role="alert">
+        <span data-i18n="ja"></span>
+        <span data-i18n="en"></span>
+      </p>
     </section>
 
     <section class="result-wrap" aria-label="Result">
@@ -227,6 +248,118 @@
           <span data-i18n="ja">地域を設定すると判定できます。</span>
           <span data-i18n="en">Set your location to run the check.</span>
         </p>
+
+        <div class="result-actions">
+          <button type="button" class="copy-btn" id="copyBtn">
+            <span data-i18n="ja">結果をコピー</span>
+            <span data-i18n="en">Copy summary</span>
+          </button>
+          <span class="copy-status" id="copyStatus" aria-live="polite"></span>
+        </div>
+
+        <div class="breakdown" aria-label="Score breakdown">
+          <h3 class="section-title">
+            <span data-i18n="ja">内訳（Breakdown）</span>
+            <span data-i18n="en">Breakdown</span>
+          </h3>
+          <ul class="breakdown-list" id="breakdownList"></ul>
+          <p class="why-text" id="whyText">
+            <span data-i18n="ja">—</span>
+            <span data-i18n="en">—</span>
+          </p>
+        </div>
+
+        <div class="action-blocks" aria-label="Actionable advice">
+          <h3 class="section-title">
+            <span data-i18n="ja">用途別アクション</span>
+            <span data-i18n="en">Actionable advice</span>
+          </h3>
+          <div class="action-grid">
+            <div class="action-card" data-usecase="laundry">
+              <h4>
+                <span data-i18n="ja">洗濯物</span>
+                <span data-i18n="en">Laundry</span>
+              </h4>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">おすすめ行動</p>
+                <p class="action-label" data-i18n="en">Recommended action</p>
+                <p class="action-text" id="actionLaundryDo">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">避けたいこと</p>
+                <p class="action-label" data-i18n="en">What to avoid</p>
+                <p class="action-text" id="actionLaundryAvoid">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">あれば便利</p>
+                <p class="action-label" data-i18n="en">Optional helpers</p>
+                <p class="action-text" id="actionLaundryHelp">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="action-card" data-usecase="bedding">
+              <h4>
+                <span data-i18n="ja">布団</span>
+                <span data-i18n="en">Bedding</span>
+              </h4>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">おすすめ行動</p>
+                <p class="action-label" data-i18n="en">Recommended action</p>
+                <p class="action-text" id="actionBeddingDo">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">避けたいこと</p>
+                <p class="action-label" data-i18n="en">What to avoid</p>
+                <p class="action-text" id="actionBeddingAvoid">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">あれば便利</p>
+                <p class="action-label" data-i18n="en">Optional helpers</p>
+                <p class="action-text" id="actionBeddingHelp">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="action-card" data-usecase="room">
+              <h4>
+                <span data-i18n="ja">部屋干し</span>
+                <span data-i18n="en">Room drying</span>
+              </h4>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">おすすめ行動</p>
+                <p class="action-label" data-i18n="en">Recommended action</p>
+                <p class="action-text" id="actionRoomDo">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">避けたいこと</p>
+                <p class="action-label" data-i18n="en">What to avoid</p>
+                <p class="action-text" id="actionRoomAvoid">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+              <div class="action-item">
+                <p class="action-label" data-i18n="ja">あれば便利</p>
+                <p class="action-label" data-i18n="en">Optional helpers</p>
+                <p class="action-text" id="actionRoomHelp">
+                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <details class="details" id="detailsBox">
           <summary>
