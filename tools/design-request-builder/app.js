@@ -111,6 +111,10 @@
 
   const TEXT = {
     ja: {
+      titles: {
+        full: "デザイン依頼文（送付用）",
+        key: "要点まとめ"
+      },
       sections: {
         summary: "Summary（概要）",
         deliverables: "Deliverables（納品物）",
@@ -160,6 +164,10 @@
       }
     },
     en: {
+      titles: {
+        full: "Design Request Brief (Send-ready)",
+        key: "Key Points"
+      },
       sections: {
         summary: "Summary",
         deliverables: "Deliverables",
@@ -233,72 +241,86 @@
 
   const formatValue = (value, fallback) => (value ? value : fallback);
 
+  const getFieldValue = (key, data, t) => {
+    const isRequired = REQUIRED_FIELDS.some((field) => field.key === key);
+    const fallback = isRequired ? t.placeholders.missing : t.placeholders.dash;
+    return formatValue(data[key], fallback);
+  };
+
+  const splitToLines = (value) => {
+    const parts = value.split(/\n+/).map((item) => item.trim()).filter(Boolean);
+    return parts.length > 0 ? parts : [value];
+  };
+
   const buildFullOutput = (lang, data, tier, optionalMissing) => {
     const t = TEXT[lang];
-    const required = (value) => formatValue(value, t.placeholders.missing);
-    const optional = (value) => formatValue(value, t.placeholders.dash);
     const lines = [];
 
-    lines.push(`■ ${t.sections.summary}`);
-    if (tier === "short") {
-      lines.push(`${t.labels.projectType}: ${required(data.projectType)} / ${t.labels.purpose}: ${optional(data.purpose)}`);
-    } else {
-      lines.push(`${t.labels.projectType}: ${required(data.projectType)}`);
-      lines.push(`${t.labels.purpose}: ${optional(data.purpose)}`);
-      if (tier === "detailed") {
-        lines.push(`${t.labels.audience}: ${optional(data.audience)}`);
-        lines.push(`${t.labels.tone}: ${optional(data.tone)}`);
+    lines.push(`${t.titles.full} [${t.tierLabels[tier]}]`);
+    lines.push("");
+
+    const renderSection = (fields) => {
+      if (tier === "short") {
+        const compact = fields
+          .map((key) => `${t.labels[key]}: ${getFieldValue(key, data, t)}`)
+          .join(" / ");
+        lines.push(compact);
+        return;
       }
-    }
+
+      if (tier === "standard") {
+        fields.forEach((key) => {
+          lines.push(`${t.labels[key]}: ${getFieldValue(key, data, t)}`);
+        });
+        return;
+      }
+
+      fields.forEach((key) => {
+        lines.push(`${t.labels[key]}:`);
+        splitToLines(getFieldValue(key, data, t)).forEach((item) => {
+          lines.push(`- ${item}`);
+        });
+      });
+    };
+
+    lines.push(`■ ${t.sections.summary}`);
+    renderSection(["projectType", "purpose", "audience", "tone"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.deliverables}`);
-    lines.push(`${t.labels.deliverables}: ${required(data.deliverables)}`);
+    renderSection(["deliverables"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.specs}`);
-    if (tier === "short") {
-      lines.push(`${t.labels.size}: ${optional(data.size)}`);
-    } else {
-      lines.push(`${t.labels.size}: ${optional(data.size)}`);
-      lines.push(`${t.labels.mustHave}: ${optional(data.mustHave)}`);
-      if (tier === "detailed") {
-        lines.push(`${t.labels.tone}: ${optional(data.tone)}`);
-      }
-    }
+    renderSection(["size", "mustHave"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.timeline}`);
-    lines.push(`${t.labels.deadline}: ${required(data.deadline)}`);
+    renderSection(["deadline"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.budget}`);
-    lines.push(`${t.labels.budget}: ${required(data.budget)}`);
+    renderSection(["budget"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.references}`);
-    lines.push(`${t.labels.references}: ${required(data.references)}`);
+    renderSection(["references"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.constraints}`);
-    if (tier === "short") {
-      lines.push(`${t.labels.avoid}: ${optional(data.avoid)}`);
-    } else {
-      lines.push(`${t.labels.avoid}: ${optional(data.avoid)}`);
-      lines.push(`${t.labels.constraints}: ${optional(data.constraints)}`);
-    }
+    renderSection(["avoid", "constraints"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.format}`);
-    lines.push(`${t.labels.deliverablesFormat}: ${optional(data.deliverablesFormat)}`);
+    renderSection(["deliverablesFormat"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.revisions}`);
-    lines.push(`${t.labels.revisions}: ${optional(data.revisions)}`);
+    renderSection(["revisions"]);
 
     lines.push("");
     lines.push(`■ ${t.sections.contact}`);
-    lines.push(`${t.labels.contact}: ${optional(data.contact)}`);
+    renderSection(["contact"]);
 
     if (optionalMissing.length > 0) {
       lines.push("");
@@ -313,16 +335,16 @@
 
   const buildKeyPoints = (lang, data) => {
     const t = TEXT[lang];
-    const required = (value) => formatValue(value, t.placeholders.missing);
-    const optional = (value) => formatValue(value, t.placeholders.dash);
     return [
+      `${t.titles.key}`,
+      "",
       `■ ${t.sections.keyPoints}`,
-      `- ${t.labels.projectType}: ${required(data.projectType)}`,
-      `- ${t.labels.deliverables}: ${required(data.deliverables)}`,
-      `- ${t.labels.deadline}: ${required(data.deadline)}`,
-      `- ${t.labels.budget}: ${required(data.budget)}`,
-      `- ${t.labels.references}: ${required(data.references)}`,
-      `- ${t.labels.contact}: ${optional(data.contact)}`
+      `- ${t.labels.projectType}: ${getFieldValue("projectType", data, t)}`,
+      `- ${t.labels.deliverables}: ${getFieldValue("deliverables", data, t)}`,
+      `- ${t.labels.deadline}: ${getFieldValue("deadline", data, t)}`,
+      `- ${t.labels.budget}: ${getFieldValue("budget", data, t)}`,
+      `- ${t.labels.references}: ${getFieldValue("references", data, t)}`,
+      `- ${t.labels.contact}: ${getFieldValue("contact", data, t)}`
     ].join("\n");
   };
 
