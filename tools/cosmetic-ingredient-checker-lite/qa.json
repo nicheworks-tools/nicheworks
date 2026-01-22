@@ -1,0 +1,33 @@
+{
+  "steps": [
+    {
+      "action": "fill",
+      "selector": "#inciInput",
+      "value": "Water, Alcohol, Fragrance, Limonene, Phenoxyethanol"
+    },
+    {
+      "action": "click",
+      "selector": "#checkBtn"
+    },
+    {
+      "assert": "notEmpty",
+      "selector": "#parsedCount"
+    },
+    {
+      "assertAny": [
+        {
+          "selector": "#itemsTable",
+          "contains": "FRAGRANCE"
+        },
+        {
+          "selector": "#itemsTable",
+          "contains": "Fragrance"
+        }
+      ]
+    },
+    {
+      "assert": "notEmpty",
+      "selector": "#summaryBox"
+    }
+  ]
+}
