@@ -15,11 +15,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>色置換ツール｜Color Replace Lite | NicheWorks</title>
-  <meta name="description" content="ブラウザで完結する色置換ツール。スポイトで色を抽出し、HEX・RGB・プリセットで指定した色に置換。ズームや許容範囲調整、PNG保存に対応。" />
+  <meta name="description" content="ブラウザで完結する色置換ツール。指定色を許容範囲で置換し、PNGで保存できます。" />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/color-replace/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="色置換ツール｜Color Replace Lite | NicheWorks" />
-  <meta property="og:description" content="スポイトとHEX/RGB同期で色を置換。ズーム確認と許容範囲調整、PNG保存対応のブラウザツール。" />
+  <meta property="og:description" content="指定色を許容範囲で置換してPNG保存できるブラウザツール。" />
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/color-replace/" />
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
   <link rel="icon" type="image/png" href="/assets/favicon.ico" />
@@ -35,20 +35,20 @@
       "url": "https://nicheworks.pages.dev/tools/color-replace/",
       "applicationCategory": "Utility",
       "operatingSystem": "All",
-      "description": "スポイトとHEX/RGB同期に対応したブラウザ色置換ツール。ズーム確認や許容範囲調整、PNG保存が可能です。"
+      "description": "指定色を許容範囲で置換してPNG保存できるブラウザ色置換ツール。"
     }
   </script>
 
   <!-- OGP 英語 -->
-  <meta property="og:title:en" content="色置換ツール｜Color Replace Lite | NicheWorks">
-  <meta property="og:description:en" content="The description is pending and will be updated later.">
+  <meta property="og:title:en" content="Color Replace Lite | NicheWorks">
+  <meta property="og:description:en" content="Replace a specific color in your image with tolerance and export as PNG in the browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/color-replace/">
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <!-- Twitter 英語 -->
   <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="色置換ツール｜Color Replace Lite | NicheWorks">
-  <meta name="twitter:description:en" content="The description is pending and will be updated later.">
+  <meta name="twitter:title:en" content="Color Replace Lite | NicheWorks">
+  <meta name="twitter:description:en" content="Replace a specific color in your image with tolerance and export as PNG in the browser.">
   <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <!-- JSON-LD 日本語 -->
   <script type="application/ld+json">
@@ -57,7 +57,7 @@
     "@type": "WebApplication",
     "name": "色置換ツール｜Color Replace Lite",
     "url": "https://nicheworks.pages.dev/tools/color-replace/",
-    "description": "ブラウザで完結する色置換ツール。スポイトで色を抽出し、HEX・RGB・プリセットで指定した色に置換。ズームや許容範囲調整、PNG保存に対応。",
+    "description": "ブラウザで完結する色置換ツール。指定色を許容範囲で置換し、PNGで保存できます。",
     "inLanguage": "ja",
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
   }
@@ -67,9 +67,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "色置換ツール｜Color Replace Lite | NicheWorks",
+    "name": "Color Replace Lite | NicheWorks",
     "url": "https://nicheworks.pages.dev/tools/color-replace/",
-    "description": "The description is pending and will be updated later.",
+    "description": "Replace a specific color in your image with tolerance and export as PNG in the browser.",
     "inLanguage": "en",
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
   }
@@ -85,7 +85,7 @@
       <div>
         <p class="nw-label" data-i18n="toolLabel">Color Utility</p>
         <h1 class="nw-title" data-i18n="title">Color Replace Lite</h1>
-        <p class="nw-subtitle" data-i18n="description">スポイトで拾った色を別の色に置き換えるブラウザツール。HEX/RGB同期、ズーム、PNG保存に対応します。</p>
+        <p class="nw-subtitle" data-i18n="description">指定した色を許容範囲で置換し、PNGとして保存できるブラウザツールです。</p>
       </div>
     </div>
   </header>
@@ -99,156 +99,52 @@
     </div>
 
     <section class="card">
-      <div class="input-row upload-row">
-        <label class="upload-label" for="imageInput" data-i18n="uploadLabel">画像をアップロード</label>
-        <input class="upload-input" type="file" id="imageInput" accept="image/*" />
+      <div class="field">
+        <label for="imageFile" data-i18n="uploadLabel">画像をアップロード</label>
+        <input type="file" id="imageFile" accept="image/png,image/jpeg,image/webp" />
       </div>
-      <div class="canvas-area" data-view="before">
-        <div class="mobile-tab-header" role="tablist">
-          <div
-            class="mobile-tab-btn tab-button active"
-            data-tab="before"
-            data-target="before"
-            data-i18n="beforeTab"
-            role="tab"
-            tabindex="0"
-          >
-            Before
-          </div>
-          <div
-            class="mobile-tab-btn tab-button"
-            data-tab="after"
-            data-target="after"
-            data-i18n="afterTab"
-            role="tab"
-            tabindex="0"
-          >
-            After
-          </div>
-        </div>
-        <div class="canvas-grid preview-columns">
-          <div class="canvas-card preview-card before-card" data-role="before">
-            <div class="canvas-head">
-              <div>
-                <p class="canvas-label" data-i18n="beforeLabel">変換前（ズーム可）</p>
-                <p class="canvas-note" data-i18n="beforeNote">クリックでスポイト</p>
-              </div>
-              <div class="zoom-control">
-                <label for="zoomSlider" data-i18n="zoomLabel">ズーム</label>
-                <input type="range" id="zoomSlider" min="0.5" max="5" step="0.1" value="1" />
-                <span id="zoomValue">1.0x</span>
-              </div>
-            </div>
-            <canvas id="beforeCanvas"></canvas>
-          </div>
-          <div class="canvas-card preview-card after-card" data-role="after">
-            <div class="canvas-head">
-              <p class="canvas-label" data-i18n="afterLabel">変換後</p>
-              <p class="canvas-note" data-i18n="afterNote">許容範囲でリアルタイム反映</p>
-            </div>
-            <canvas id="afterCanvas"></canvas>
-          </div>
-        </div>
-      </div>
+      <p class="note" data-i18n="localNote">Local-only. Image stays on your device.</p>
+      <p class="note" id="scaleNote" aria-live="polite"></p>
     </section>
 
-    <section class="card color-section">
-      <div class="color-card" id="fromColorSection">
-        <div class="section-title-row">
-          <h2 data-i18n="fromColor">置換対象の色 (From)</h2>
-          <button class="btn ghost reset-btn" data-section-reset="from" data-i18n="resetSection">リセット</button>
+    <section class="card">
+      <div class="canvas-grid">
+        <div class="canvas-card">
+          <div class="canvas-head">
+            <h2 data-i18n="beforeLabel">変換前</h2>
+            <p class="canvas-note" data-i18n="pickTip">クリックで色を取得</p>
+          </div>
+          <canvas id="canvasBefore"></canvas>
         </div>
-        <div class="color-controls">
-          <label data-i18n="pickerLabel">カラーピッカー</label>
-          <input type="color" id="fromPicker" />
-          <div class="color-preview-row">
-            <div class="color-preview" id="fromPreview"></div>
-            <div class="hex-group">
-              <label data-i18n="hexLabel">HEX</label>
-              <input class="hex-input" type="text" id="fromHex" value="#ff0000" />
-            </div>
+        <div class="canvas-card">
+          <div class="canvas-head">
+            <h2 data-i18n="afterLabel">変換後</h2>
           </div>
-          <div class="rgb-group">
-            <label data-i18n="rgbLabel">RGB</label>
-            <div class="rgb-inputs">
-              <input type="number" id="fromR" min="0" max="255" />
-              <input type="number" id="fromG" min="0" max="255" />
-              <input type="number" id="fromB" min="0" max="255" />
-            </div>
-          </div>
-          <label for="fromPreset" data-i18n="presetLabel">プリセット</label>
-          <div class="preset-row" data-preset-group="from">
-            <div class="preset-swatches" aria-hidden="false">
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#ff0000" aria-label="赤" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#00ff00" aria-label="緑" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#0000ff" aria-label="青" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#ffffff" aria-label="白" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#000000" aria-label="黒" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-            </div>
-            <select id="fromPreset" class="preset-select">
-              <option value="#ff0000" data-i18n="presetRed">赤</option>
-              <option value="#00ff00" data-i18n="presetGreen">緑</option>
-              <option value="#0000ff" data-i18n="presetBlue">青</option>
-              <option value="#ffffff" data-i18n="presetWhite">白</option>
-              <option value="#000000" data-i18n="presetBlack">黒</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="color-card" id="toColorSection">
-        <div class="section-title-row">
-          <h2 data-i18n="toColor">置換後の色 (To)</h2>
-          <button class="btn ghost reset-btn" data-section-reset="to" data-i18n="resetSection">リセット</button>
-        </div>
-        <div class="color-controls">
-          <label data-i18n="pickerLabel">カラーピッカー</label>
-          <input type="color" id="toPicker" />
-          <div class="color-preview-row">
-            <div class="color-preview" id="toPreview"></div>
-            <div class="hex-group">
-              <label data-i18n="hexLabel">HEX</label>
-              <input class="hex-input" type="text" id="toHex" value="#00ff00" />
-            </div>
-          </div>
-          <div class="rgb-group">
-            <label data-i18n="rgbLabel">RGB</label>
-            <div class="rgb-inputs">
-              <input type="number" id="toR" min="0" max="255" />
-              <input type="number" id="toG" min="0" max="255" />
-              <input type="number" id="toB" min="0" max="255" />
-            </div>
-          </div>
-          <label for="toPreset" data-i18n="presetLabel">プリセット</label>
-          <div class="preset-row" data-preset-group="to">
-            <div class="preset-swatches" aria-hidden="false">
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#ff0000" aria-label="赤" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#00ff00" aria-label="緑" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#0000ff" aria-label="青" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#ffffff" aria-label="白" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#000000" aria-label="黒" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-            </div>
-            <select id="toPreset" class="preset-select">
-              <option value="#ff0000" data-i18n="presetRed">赤</option>
-              <option value="#00ff00" data-i18n="presetGreen">緑</option>
-              <option value="#0000ff" data-i18n="presetBlue">青</option>
-              <option value="#ffffff" data-i18n="presetWhite">白</option>
-              <option value="#000000" data-i18n="presetBlack">黒</option>
-            </select>
-          </div>
+          <canvas id="canvasAfter"></canvas>
         </div>
       </div>
     </section>
 
     <section class="card">
+      <div class="control-grid">
+        <div class="control-block">
+          <label for="srcColor" data-i18n="srcColorLabel">置換対象の色</label>
+          <input type="color" id="srcColor" value="#ff0000" />
+        </div>
+        <div class="control-block">
+          <label for="dstColor" data-i18n="dstColorLabel">置換後の色</label>
+          <input type="color" id="dstColor" value="#00ff00" />
+        </div>
+      </div>
       <div class="slider-row">
-        <label for="tolerance" data-i18n="toleranceLabel">置換許容範囲</label>
-        <input type="range" id="tolerance" min="0" max="255" value="60" />
-        <span id="toleranceValue">60</span>
+        <label for="tolerance" data-i18n="toleranceLabel">許容範囲</label>
+        <input type="range" id="tolerance" min="0" max="100" value="20" />
+        <span id="toleranceVal">20</span>
       </div>
       <div class="actions">
-        <button id="downloadBtn" class="btn primary" data-i18n="download">PNGで保存</button>
-        <button id="resetAll" class="btn ghost" data-i18n="resetAll">全体リセット</button>
+        <button id="applyBtn" class="btn primary" data-i18n="apply">置換を適用</button>
+        <button id="resetBtn" class="btn ghost" data-i18n="reset">リセット</button>
+        <button id="downloadBtn" class="btn" data-i18n="download">PNGで保存</button>
       </div>
     </section>
 
@@ -281,6 +177,5 @@
   </footer>
 
   <script src="./app.js"></script>
-  
 </body>
 </html>

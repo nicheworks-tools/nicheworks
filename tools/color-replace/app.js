@@ -1,81 +1,56 @@
-const beforeCanvas = document.getElementById('beforeCanvas');
-const afterCanvas = document.getElementById('afterCanvas');
-const beforeCtx = beforeCanvas.getContext('2d');
-const afterCtx = afterCanvas.getContext('2d');
-const hiddenCanvas = document.createElement('canvas');
-const hiddenCtx = hiddenCanvas.getContext('2d');
-const originalCanvas = document.createElement('canvas');
-const originalCtx = originalCanvas.getContext('2d');
-
-const imageInput = document.getElementById('imageInput');
-const downloadBtn = document.getElementById('downloadBtn');
-const resetAllBtn = document.getElementById('resetAll');
+const imageFile = document.getElementById('imageFile');
+const canvasBefore = document.getElementById('canvasBefore');
+const canvasAfter = document.getElementById('canvasAfter');
+const ctxBefore = canvasBefore.getContext('2d');
+const ctxAfter = canvasAfter.getContext('2d');
+const srcColorInput = document.getElementById('srcColor');
+const dstColorInput = document.getElementById('dstColor');
 const toleranceInput = document.getElementById('tolerance');
-const toleranceValue = document.getElementById('toleranceValue');
-const zoomSlider = document.getElementById('zoomSlider');
-const zoomValue = document.getElementById('zoomValue');
-const tabButtons = document.querySelectorAll('.tab-button');
-const canvasArea = document.querySelector('.canvas-area');
+const toleranceVal = document.getElementById('toleranceVal');
+const applyBtn = document.getElementById('applyBtn');
+const resetBtn = document.getElementById('resetBtn');
+const downloadBtn = document.getElementById('downloadBtn');
+const scaleNote = document.getElementById('scaleNote');
 const langButtons = document.querySelectorAll('.lang-button');
 
-const fromPreview = document.getElementById('fromPreview');
-const toPreview = document.getElementById('toPreview');
-const fromPicker = document.getElementById('fromPicker');
-const toPicker = document.getElementById('toPicker');
-const fromHex = document.getElementById('fromHex');
-const toHex = document.getElementById('toHex');
-const fromR = document.getElementById('fromR');
-const fromG = document.getElementById('fromG');
-const fromB = document.getElementById('fromB');
-const toR = document.getElementById('toR');
-const toG = document.getElementById('toG');
-const toB = document.getElementById('toB');
-const fromPreset = document.getElementById('fromPreset');
-const toPreset = document.getElementById('toPreset');
+const sourceCanvas = document.createElement('canvas');
+const sourceCtx = sourceCanvas.getContext('2d');
 
-let currentImageData = null;
-let originalImageData = null;
-let zoomScale = 1;
+const MAX_MEGAPIXELS = 4;
+const MAX_FRAME_TIME = 12;
+
+let baseImageData = null;
+let processing = false;
+let scaleRatio = 1;
+let hasResult = false;
+
 const defaults = {
-  from: '#ff0000',
-  to: '#00ff00',
-  tolerance: 60,
-  zoom: 1,
+  src: '#ff0000',
+  dst: '#00ff00',
+  tolerance: 20,
 };
 
 const i18n = {
   ja: {
     toolLabel: 'Color Utility',
     title: 'Color Replace Lite',
-    description:
-      'スポイトで拾った色を別の色に置き換えるブラウザツール。HEX/RGB同期、ズーム、PNG保存に対応します。',
+    description: '指定した色を許容範囲で置換し、PNGとして保存できるブラウザツールです。',
     adTop: '広告枠（上）',
     adBottom: '広告枠（下）',
     langJa: '日本語',
     langEn: 'English',
     uploadLabel: '画像をアップロード',
-    beforeTab: 'Before',
-    afterTab: 'After',
-    beforeLabel: '変換前（ズーム可）',
-    beforeNote: 'クリックでスポイト',
-    zoomLabel: 'ズーム',
+    localNote: 'Local-only. Image stays on your device.',
+    beforeLabel: '変換前',
     afterLabel: '変換後',
-    afterNote: '許容範囲でリアルタイム反映',
-    fromColor: '置換対象の色 (From)',
-    toColor: '置換後の色 (To)',
-    resetSection: 'リセット',
-    pickerLabel: 'カラーピッカー',
-    hexLabel: 'HEX',
-    rgbLabel: 'RGB',
-    presetLabel: 'プリセット',
-    presetRed: '赤',
-    presetGreen: '緑',
-    presetBlue: '青',
-    presetWhite: '白',
-    presetBlack: '黒',
-    toleranceLabel: '置換許容範囲',
+    pickTip: 'クリックで色を取得',
+    srcColorLabel: '置換対象の色',
+    dstColorLabel: '置換後の色',
+    toleranceLabel: '許容範囲',
+    apply: '置換を適用',
+    applying: '処理中...',
+    reset: 'リセット',
     download: 'PNGで保存',
-    resetAll: '全体リセット',
     support: '応援リンク',
     ofuse: 'OFUSEで応援',
     kofi: 'Ko-fiで支援',
@@ -86,39 +61,28 @@ const i18n = {
     disclaimer: 'このツールはすべてローカルで処理され、画像はサーバーへ送信されません。',
     privacy: 'プライバシー',
     contact: 'お問い合わせ',
+    scaleNote: '画像が大きいため {width}×{height} に縮小してプレビューします（ダウンロードも同サイズ）。',
   },
   en: {
     toolLabel: 'Color Utility',
     title: 'Color Replace Lite',
-    description:
-      'Replace picked colors in your image right in the browser. Supports HEX/RGB sync, zoom preview, and PNG export.',
+    description: 'Replace a specific color with tolerance and export a PNG directly in the browser.',
     adTop: 'Ad space (top)',
     adBottom: 'Ad space (bottom)',
     langJa: '日本語',
     langEn: 'English',
     uploadLabel: 'Upload image',
-    beforeTab: 'Before',
-    afterTab: 'After',
-    beforeLabel: 'Before (zoomable)',
-    beforeNote: 'Click to pick color',
-    zoomLabel: 'Zoom',
+    localNote: 'Local-only. Image stays on your device.',
+    beforeLabel: 'Before',
     afterLabel: 'After',
-    afterNote: 'Live preview with tolerance',
-    fromColor: 'Source color (From)',
-    toColor: 'Target color (To)',
-    resetSection: 'Reset',
-    pickerLabel: 'Color picker',
-    hexLabel: 'HEX',
-    rgbLabel: 'RGB',
-    presetLabel: 'Preset',
-    presetRed: 'Red',
-    presetGreen: 'Green',
-    presetBlue: 'Blue',
-    presetWhite: 'White',
-    presetBlack: 'Black',
+    pickTip: 'Click to pick a color',
+    srcColorLabel: 'Source color',
+    dstColorLabel: 'Target color',
     toleranceLabel: 'Tolerance',
-    download: 'Save as PNG',
-    resetAll: 'Reset all',
+    apply: 'Apply',
+    applying: 'Processing...',
+    reset: 'Reset',
+    download: 'Download PNG',
     support: 'Support',
     ofuse: 'Support on OFUSE',
     kofi: 'Support on Ko-fi',
@@ -129,82 +93,23 @@ const i18n = {
     disclaimer: 'All processing stays in your browser. Images are never uploaded.',
     privacy: 'Privacy',
     contact: 'Contact',
+    scaleNote: 'Image is large, preview is downscaled to {width}×{height} (download matches).',
   },
 };
 
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max);
-}
-
-function hexToRgb(hex) {
-  const normalized = hex.replace('#', '');
-  if (normalized.length === 3) {
-    const r = normalized[0] + normalized[0];
-    const g = normalized[1] + normalized[1];
-    const b = normalized[2] + normalized[2];
-    return {
-      r: parseInt(r, 16),
-      g: parseInt(g, 16),
-      b: parseInt(b, 16),
-    };
-  }
-  return {
-    r: parseInt(normalized.substring(0, 2), 16),
-    g: parseInt(normalized.substring(2, 4), 16),
-    b: parseInt(normalized.substring(4, 6), 16),
-  };
-}
-
-function rgbToHex(r, g, b) {
-  const toHex = (v) => clamp(parseInt(v, 10) || 0, 0, 255).toString(16).padStart(2, '0');
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-}
-
-function updatePreview(section, hex) {
-  const preview = section === 'from' ? fromPreview : toPreview;
-  preview.style.backgroundColor = hex;
-}
-
-function syncFromHex(hex) {
-  const rgb = hexToRgb(hex);
-  fromHex.value = hex;
-  fromPicker.value = hex;
-  fromR.value = rgb.r;
-  fromG.value = rgb.g;
-  fromB.value = rgb.b;
-  updatePreview('from', hex);
-}
-
-function syncToHex(hex) {
-  const rgb = hexToRgb(hex);
-  toHex.value = hex;
-  toPicker.value = hex;
-  toR.value = rgb.r;
-  toG.value = rgb.g;
-  toB.value = rgb.b;
-  updatePreview('to', hex);
-}
-
-function syncFromRgb() {
-  const hex = rgbToHex(fromR.value, fromG.value, fromB.value);
-  syncFromHex(hex);
-}
-
-function syncToRgb() {
-  const hex = rgbToHex(toR.value, toG.value, toB.value);
-  syncToHex(hex);
-}
+let currentLang = 'ja';
 
 function applyI18n(lang) {
-  const dict = i18n[lang];
-  if (!dict) return;
-  document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
+  const dict = i18n[lang] || i18n.ja;
+  document.documentElement.lang = lang === 'en' ? 'en' : 'ja';
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) {
       el.textContent = dict[key];
     }
   });
+  currentLang = lang;
+  updateScaleNote();
 }
 
 function setLanguage(lang) {
@@ -214,257 +119,198 @@ function setLanguage(lang) {
   applyI18n(lang);
 }
 
+function hexToRgb(hex) {
+  const value = hex.replace('#', '');
+  if (value.length === 3) {
+    return {
+      r: parseInt(value[0] + value[0], 16),
+      g: parseInt(value[1] + value[1], 16),
+      b: parseInt(value[2] + value[2], 16),
+    };
+  }
+  return {
+    r: parseInt(value.substring(0, 2), 16),
+    g: parseInt(value.substring(2, 4), 16),
+    b: parseInt(value.substring(4, 6), 16),
+  };
+}
+
+function setButtonsDisabled(isDisabled) {
+  applyBtn.disabled = isDisabled;
+  resetBtn.disabled = isDisabled;
+  downloadBtn.disabled = isDisabled || !hasResult;
+  if (isDisabled) {
+    applyBtn.textContent = i18n[currentLang].applying;
+  } else {
+    applyBtn.textContent = i18n[currentLang].apply;
+  }
+}
+
+function updateScaleNote() {
+  if (!scaleNote) return;
+  if (scaleRatio < 1 && baseImageData) {
+    const template = i18n[currentLang].scaleNote;
+    scaleNote.textContent = template
+      .replace('{width}', baseImageData.width)
+      .replace('{height}', baseImageData.height);
+  } else {
+    scaleNote.textContent = '';
+  }
+}
+
+function clearCanvases() {
+  ctxBefore.clearRect(0, 0, canvasBefore.width, canvasBefore.height);
+  ctxAfter.clearRect(0, 0, canvasAfter.width, canvasAfter.height);
+  canvasBefore.width = 0;
+  canvasBefore.height = 0;
+  canvasAfter.width = 0;
+  canvasAfter.height = 0;
+}
+
 function loadImage(file) {
   const reader = new FileReader();
-  reader.onload = (e) => {
+  reader.onload = (event) => {
     const img = new Image();
     img.onload = () => {
-      originalCanvas.width = img.naturalWidth;
-      originalCanvas.height = img.naturalHeight;
-      originalCtx.clearRect(0, 0, originalCanvas.width, originalCanvas.height);
-      originalCtx.drawImage(img, 0, 0);
-      originalImageData = originalCtx.getImageData(0, 0, originalCanvas.width, originalCanvas.height);
+      const megapixels = (img.naturalWidth * img.naturalHeight) / 1_000_000;
+      scaleRatio = megapixels > MAX_MEGAPIXELS ? Math.sqrt(MAX_MEGAPIXELS / megapixels) : 1;
+      const width = Math.max(1, Math.round(img.naturalWidth * scaleRatio));
+      const height = Math.max(1, Math.round(img.naturalHeight * scaleRatio));
 
-      hiddenCanvas.width = img.naturalWidth;
-      hiddenCanvas.height = img.naturalHeight;
-      hiddenCtx.clearRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
-      hiddenCtx.drawImage(img, 0, 0);
+      sourceCanvas.width = width;
+      sourceCanvas.height = height;
+      sourceCtx.clearRect(0, 0, width, height);
+      sourceCtx.drawImage(img, 0, 0, width, height);
+      baseImageData = sourceCtx.getImageData(0, 0, width, height);
 
-      currentImageData = null;
-      renderBeforeCanvas();
-      clearAfterCanvas();
-      applyReplacement();
+      canvasBefore.width = width;
+      canvasBefore.height = height;
+      ctxBefore.clearRect(0, 0, width, height);
+      ctxBefore.drawImage(img, 0, 0, width, height);
+
+      canvasAfter.width = width;
+      canvasAfter.height = height;
+      ctxAfter.clearRect(0, 0, width, height);
+      hasResult = false;
+      updateScaleNote();
+      setButtonsDisabled(false);
     };
-    img.src = e.target.result;
+    img.src = event.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-function renderBeforeCanvas() {
-  if (!originalImageData) {
-    beforeCtx.clearRect(0, 0, beforeCanvas.width, beforeCanvas.height);
-    return;
-  }
-  const targetWidth = originalImageData.width * zoomScale;
-  const targetHeight = originalImageData.height * zoomScale;
-  beforeCanvas.width = targetWidth;
-  beforeCanvas.height = targetHeight;
-  beforeCtx.clearRect(0, 0, targetWidth, targetHeight);
-  beforeCtx.drawImage(originalCanvas, 0, 0, targetWidth, targetHeight);
-}
-
-function clearAfterCanvas() {
-  afterCtx.clearRect(0, 0, afterCanvas.width, afterCanvas.height);
-}
-
 function applyReplacement() {
-  if (!originalImageData) return;
-  const fromColor = hexToRgb(fromHex.value || defaults.from);
-  const toColor = hexToRgb(toHex.value || defaults.to);
-  const tolerance = parseInt(toleranceInput.value, 10) || defaults.tolerance;
+  if (!baseImageData || processing) return;
+  processing = true;
+  setButtonsDisabled(true);
 
-  const dataCopy = new Uint8ClampedArray(originalImageData.data);
-  const processed = new ImageData(dataCopy, originalImageData.width, originalImageData.height);
-  for (let i = 0; i < processed.data.length; i += 4) {
-    const r = processed.data[i];
-    const g = processed.data[i + 1];
-    const b = processed.data[i + 2];
-    const dist = Math.abs(r - fromColor.r) + Math.abs(g - fromColor.g) + Math.abs(b - fromColor.b);
-    if (dist <= tolerance) {
-      processed.data[i] = toColor.r;
-      processed.data[i + 1] = toColor.g;
-      processed.data[i + 2] = toColor.b;
+  const src = hexToRgb(srcColorInput.value || defaults.src);
+  const dst = hexToRgb(dstColorInput.value || defaults.dst);
+  const tolerance = Number.parseInt(toleranceInput.value, 10) || defaults.tolerance;
+  const maxDistance = Math.sqrt(3 * 255 * 255);
+  const threshold = (tolerance / 100) * maxDistance;
+
+  const data = new Uint8ClampedArray(baseImageData.data);
+  const total = data.length;
+  let i = 0;
+
+  const step = () => {
+    const start = performance.now();
+    while (i < total) {
+      const dr = data[i] - src.r;
+      const dg = data[i + 1] - src.g;
+      const db = data[i + 2] - src.b;
+      const dist = Math.sqrt(dr * dr + dg * dg + db * db);
+      if (dist <= threshold) {
+        data[i] = dst.r;
+        data[i + 1] = dst.g;
+        data[i + 2] = dst.b;
+      }
+      i += 4;
+      if (performance.now() - start > MAX_FRAME_TIME) {
+        break;
+      }
     }
-  }
 
-  hiddenCanvas.width = processed.width;
-  hiddenCanvas.height = processed.height;
-  hiddenCtx.putImageData(processed, 0, 0);
-  afterCanvas.width = processed.width;
-  afterCanvas.height = processed.height;
-  afterCtx.putImageData(processed, 0, 0);
-  currentImageData = processed;
+    if (i < total) {
+      requestAnimationFrame(step);
+      return;
+    }
+
+    const output = new ImageData(data, baseImageData.width, baseImageData.height);
+    canvasAfter.width = output.width;
+    canvasAfter.height = output.height;
+    ctxAfter.putImageData(output, 0, 0);
+    processing = false;
+    hasResult = true;
+    setButtonsDisabled(false);
+  };
+
+  requestAnimationFrame(step);
 }
 
 function pickColor(event) {
-  if (!originalImageData) return;
-  const rect = beforeCanvas.getBoundingClientRect();
-  const scaleX = originalImageData.width / rect.width;
-  const scaleY = originalImageData.height / rect.height;
+  if (!baseImageData) return;
+  const rect = canvasBefore.getBoundingClientRect();
+  const scaleX = canvasBefore.width / rect.width;
+  const scaleY = canvasBefore.height / rect.height;
   const x = Math.floor((event.clientX - rect.left) * scaleX);
   const y = Math.floor((event.clientY - rect.top) * scaleY);
-  const index = (y * originalImageData.width + x) * 4;
-  const data = originalImageData.data;
-  const hex = rgbToHex(data[index], data[index + 1], data[index + 2]);
-  syncFromHex(hex);
-  applyReplacement();
-}
-
-let pinchStartDistance = null;
-let pinchStartScale = zoomScale;
-
-function handleTouchStart(e) {
-  if (e.touches.length === 2) {
-    pinchStartDistance = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY,
-    );
-    pinchStartScale = zoomScale;
-  }
-}
-
-function handleTouchMove(e) {
-  if (e.touches.length === 2 && pinchStartDistance) {
-    e.preventDefault();
-    const currentDistance = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY,
-    );
-    const ratio = currentDistance / pinchStartDistance;
-    zoomScale = clamp(pinchStartScale * ratio, 0.5, 5);
-    zoomSlider.value = zoomScale.toFixed(2);
-    zoomValue.textContent = `${zoomScale.toFixed(1)}x`;
-    renderBeforeCanvas();
-  }
-}
-
-function handleTouchEnd() {
-  pinchStartDistance = null;
-}
-
-function handleTabClick(e) {
-  const target = e.target.getAttribute('data-tab');
-  tabButtons.forEach((btn) => btn.classList.toggle('active', btn.getAttribute('data-tab') === target));
-  canvasArea.setAttribute('data-view', target);
-}
-
-function resetSection(section) {
-  if (section === 'from') {
-    syncFromHex(defaults.from);
-  } else {
-    syncToHex(defaults.to);
-  }
-  applyReplacement();
+  if (x < 0 || y < 0 || x >= baseImageData.width || y >= baseImageData.height) return;
+  const idx = (y * baseImageData.width + x) * 4;
+  const data = baseImageData.data;
+  const hex = `#${[data[idx], data[idx + 1], data[idx + 2]]
+    .map((value) => value.toString(16).padStart(2, '0'))
+    .join('')}`;
+  srcColorInput.value = hex;
 }
 
 function resetAll() {
-  syncFromHex(defaults.from);
-  syncToHex(defaults.to);
+  srcColorInput.value = defaults.src;
+  dstColorInput.value = defaults.dst;
   toleranceInput.value = defaults.tolerance;
-  toleranceValue.textContent = defaults.tolerance;
-  zoomScale = defaults.zoom;
-  zoomSlider.value = defaults.zoom;
-  zoomValue.textContent = `${defaults.zoom.toFixed(1)}x`;
-  originalImageData = null;
-  currentImageData = null;
-  beforeCtx.clearRect(0, 0, beforeCanvas.width, beforeCanvas.height);
-  afterCtx.clearRect(0, 0, afterCanvas.width, afterCanvas.height);
-  hiddenCanvas.width = 0;
-  hiddenCanvas.height = 0;
+  toleranceVal.textContent = String(defaults.tolerance);
+  imageFile.value = '';
+  baseImageData = null;
+  scaleRatio = 1;
+  processing = false;
+  hasResult = false;
+  clearCanvases();
+  updateScaleNote();
+  setButtonsDisabled(false);
 }
 
 function downloadImage() {
-  if (!hiddenCanvas.width || !hiddenCanvas.height) return;
+  if (!canvasAfter.width || !canvasAfter.height) return;
   const link = document.createElement('a');
-  link.href = hiddenCanvas.toDataURL('image/png');
+  link.href = canvasAfter.toDataURL('image/png');
   link.download = 'color-replaced.png';
   link.click();
 }
 
-function initializeLang() {
-  const userLang = navigator.language && navigator.language.startsWith('en') ? 'en' : 'ja';
-  setLanguage(userLang);
-}
-
-// Event bindings
-imageInput.addEventListener('change', (e) => {
-  const file = e.target.files?.[0];
-  if (file) {
-    loadImage(file);
-  }
+imageFile.addEventListener('change', (event) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  loadImage(file);
 });
 
-beforeCanvas.addEventListener('click', pickColor);
-beforeCanvas.addEventListener('touchstart', handleTouchStart, { passive: false });
-beforeCanvas.addEventListener('touchmove', handleTouchMove, { passive: false });
-beforeCanvas.addEventListener('touchend', handleTouchEnd);
-beforeCanvas.addEventListener('touchcancel', handleTouchEnd);
+canvasBefore.addEventListener('click', pickColor);
 
-toleranceInput.addEventListener('input', (e) => {
-  toleranceValue.textContent = e.target.value;
-  applyReplacement();
+toleranceInput.addEventListener('input', (event) => {
+  toleranceVal.textContent = event.target.value;
 });
 
-zoomSlider.addEventListener('input', (e) => {
-  zoomScale = parseFloat(e.target.value);
-  zoomValue.textContent = `${zoomScale.toFixed(1)}x`;
-  renderBeforeCanvas();
-});
-
-[...document.querySelectorAll('[data-section-reset]')].forEach((btn) => {
-  btn.addEventListener('click', () => resetSection(btn.getAttribute('data-section-reset')));
-});
-
-fromHex.addEventListener('input', () => {
-  const value = fromHex.value.startsWith('#') ? fromHex.value : `#${fromHex.value}`;
-  if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value)) {
-    syncFromHex(value.toLowerCase());
-    applyReplacement();
-  }
-});
-
-toHex.addEventListener('input', () => {
-  const value = toHex.value.startsWith('#') ? toHex.value : `#${toHex.value}`;
-  if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value)) {
-    syncToHex(value.toLowerCase());
-    applyReplacement();
-  }
-});
-
-fromPicker.addEventListener('input', () => {
-  syncFromHex(fromPicker.value);
-  applyReplacement();
-});
-
-toPicker.addEventListener('input', () => {
-  syncToHex(toPicker.value);
-  applyReplacement();
-});
-
-[fromR, fromG, fromB].forEach((el) => el.addEventListener('input', () => {
-  syncFromRgb();
-  applyReplacement();
-}));
-
-[toR, toG, toB].forEach((el) => el.addEventListener('input', () => {
-  syncToRgb();
-  applyReplacement();
-}));
-
-fromPreset.addEventListener('change', () => {
-  syncFromHex(fromPreset.value);
-  applyReplacement();
-});
-
-toPreset.addEventListener('change', () => {
-  syncToHex(toPreset.value);
-  applyReplacement();
-});
-
+applyBtn.addEventListener('click', applyReplacement);
+resetBtn.addEventListener('click', resetAll);
 downloadBtn.addEventListener('click', downloadImage);
-resetAllBtn.addEventListener('click', resetAll);
 
-tabButtons.forEach((btn) => btn.addEventListener('click', handleTabClick));
-
-langButtons.forEach((btn) =>
+langButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
-    const lang = btn.getAttribute('data-lang');
-    setLanguage(lang);
-  }),
-);
+    setLanguage(btn.getAttribute('data-lang'));
+  });
+});
 
-initializeLang();
-syncFromHex(defaults.from);
-syncToHex(defaults.to);
-toleranceValue.textContent = defaults.tolerance;
-zoomValue.textContent = `${defaults.zoom.toFixed(1)}x`;
+const initialLang = navigator.language && navigator.language.startsWith('en') ? 'en' : 'ja';
+setLanguage(initialLang);
+resetAll();

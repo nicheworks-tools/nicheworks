@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>色置換ツール｜Color Replace Lite ガイド | NicheWorks</title>
-  <meta name="description" content="ブラウザで完結する色置換ツール。スポイトで色を抽出し、HEX/RGB/プリセットで指定色に置換。ズーム・許容範囲調整・PNG保存に対応。" />
+  <meta name="description" content="ブラウザで完結する色置換ツールの使い方。指定色の置換、許容範囲調整、PNG保存、透明背景の保持を解説します。" />
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/color-replace/howto/" />
 
   <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/color-replace/howto/" />
@@ -51,19 +51,19 @@
       <a href="../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">Color Replace Lite：色置換ガイド</h1>
-    <p class="muted" style="margin:0">画像内の「この色だけ」を別の色に置換（ズーム/許容範囲/PNG保存）。</p>
+    <p class="muted" style="margin:0">指定色を許容範囲で置換し、PNGで保存する方法を紹介します。</p>
   </header>
 
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <h2 style="margin:0 0 8px">できること</h2>
       <ul>
-        <li>画像からスポイトで色を抽出し、指定色に置換</li>
-        <li>置換色は <code>HEX</code> / <code>RGB</code> / プリセットから指定</li>
-        <li>許容範囲（近い色の扱い）を調整して、置換の効き具合をコントロール</li>
-        <li>ズームしながら細かい部分を選び、結果をPNGで保存</li>
+        <li>画像内の特定色を別の色に置換</li>
+        <li>許容範囲（近い色の扱い）をスライダーで調整</li>
+        <li>結果をPNGで保存（透明背景は保持）</li>
+        <li>すべてブラウザ内処理で完結（ローカルのみ）</li>
       </ul>
       <div class="btns">
         <a class="btn primary" href="../">ツールを開く</a>
@@ -72,36 +72,31 @@
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">こんなときに使う</h2>
-      <ul>
-        <li>ロゴやアイコンの色だけを差し替えたい（背景は触りたくない）</li>
-        <li>スクショの一部（マーカー色など）を別色に変えたい</li>
-        <li>複数の色バリエーションを試して比較したい</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        関連キーワード：色 置換 / 指定色 変換 / スポイト / HEX RGB / PNG 保存 / color replace / replace color in image
-      </p>
-    </section>
-
-    <section class="card">
       <h2 style="margin:0 0 8px">使い方</h2>
       <ol>
-        <li>画像を読み込む</li>
-        <li>スポイトで「置換したい元の色」を選ぶ（From）</li>
-        <li>置換先の色（To）を HEX/RGB/プリセットで指定</li>
-        <li>必要ならズーム＆許容範囲を調整して、置換結果を確認</li>
-        <li>問題なければPNGで保存</li>
+        <li>画像をアップロードする</li>
+        <li>「置換対象の色」をカラーピッカーで選ぶ（または画像をクリック）</li>
+        <li>「置換後の色」を選ぶ</li>
+        <li>許容範囲を調整し、<code>置換を適用</code> をクリック</li>
+        <li>プレビューを確認して <code>PNGで保存</code></li>
       </ol>
-      <p class="muted" style="margin:0">処理はブラウザ内のみ。画像はサーバーに保存しません。</p>
+      <p class="muted" style="margin:0">処理はブラウザ内のみ。画像はサーバーに送信されません。</p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <h2 style="margin:0 0 8px">ベストプラクティス</h2>
       <ul>
-        <li>写真のように色が連続的に変化する画像は、置換が「にじむ」ことがあります（許容範囲で調整）。</li>
-        <li>完全な境界の自動認識（例：背景だけを賢く除外）は行いません。</li>
-        <li>元画像がJPEGだと、圧縮ノイズで“同じ色に見えても数値が違う”ことがあり、置換が部分的になる場合があります。</li>
+        <li>写真のように色が連続する画像は、許容範囲を小さくするとにじみを抑えられます。</li>
+        <li>ロゴ・アイコンのようなベタ塗りは、許容範囲を少し広げると置換が安定します。</li>
+        <li>大きな画像は自動で縮小してプレビューします（ダウンロードも同サイズ）。</li>
       </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">透明背景について</h2>
+      <p class="muted" style="margin:0">
+        PNGのアルファチャンネルは保持されるため、背景透過のまま色置換できます。
+      </p>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
