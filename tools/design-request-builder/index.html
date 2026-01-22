@@ -87,10 +87,50 @@
 
       <div class="card-bd">
         <div id="toolRoot">
+          <div class="status-banner not-ready" id="readyBanner">
+            <div class="status-title">
+              <span data-i18n="ja">未入力があります</span>
+              <span data-i18n="en" style="display:none;">Not ready to send</span>
+            </div>
+            <p class="status-detail">
+              <span id="readyDetailJa" data-i18n="ja"></span>
+              <span id="readyDetailEn" data-i18n="en" style="display:none;"></span>
+            </p>
+            <ul class="status-list" id="missingList"></ul>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja">出力の長さ</label>
+            <label class="label" data-i18n="en" style="display:none;">Output tier</label>
+            <select class="select" id="outputTier">
+              <option value="short" data-label-ja="短い" data-label-en="Short">Short</option>
+              <option value="standard" data-label-ja="標準" data-label-en="Standard" selected>Standard</option>
+              <option value="detailed" data-label-ja="詳細" data-label-en="Detailed">Detailed</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja">プロジェクト種別（必須）</label>
+            <label class="label" data-i18n="en" style="display:none;">Project type (required)</label>
+            <input class="input" id="projectType" type="text" placeholder="LP/バナー/SNS/プレゼン資料" />
+            <p class="field-warning" id="warnProjectType">
+              <span data-i18n="ja">必須項目です</span>
+              <span data-i18n="en" style="display:none;">Required</span>
+            </p>
+          </div>
           <div class="field">
             <label class="label" data-i18n="ja">目的</label>
             <label class="label" data-i18n="en" style="display:none;">Purpose</label>
             <input class="input" id="purpose" type="text" placeholder="LP改善/キャンペーン告知" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">納品物（必須）</label>
+            <label class="label" data-i18n="en" style="display:none;">Deliverables (required)</label>
+            <textarea class="textarea" id="deliverables" placeholder="LPデザイン一式、バナー3点など"></textarea>
+            <p class="field-warning" id="warnDeliverables">
+              <span data-i18n="ja">必須項目です</span>
+              <span data-i18n="en" style="display:none;">Required</span>
+            </p>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">サイズ・仕様</label>
@@ -101,11 +141,28 @@
             <label class="label" data-i18n="ja">納期</label>
             <label class="label" data-i18n="en" style="display:none;">Deadline</label>
             <input class="input" id="deadline" type="text" placeholder="2024-12-10" />
+            <p class="field-warning" id="warnDeadline">
+              <span data-i18n="ja">必須項目です</span>
+              <span data-i18n="en" style="display:none;">Required</span>
+            </p>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">予算（必須）</label>
+            <label class="label" data-i18n="en" style="display:none;">Budget (required)</label>
+            <input class="input" id="budget" type="text" placeholder="¥100,000 〜 ¥150,000" />
+            <p class="field-warning" id="warnBudget">
+              <span data-i18n="ja">必須項目です</span>
+              <span data-i18n="en" style="display:none;">Required</span>
+            </p>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">参考/素材</label>
             <label class="label" data-i18n="en" style="display:none;">References/Assets</label>
             <textarea class="textarea" id="references" placeholder="URLや既存素材の場所"></textarea>
+            <p class="field-warning" id="warnReferences">
+              <span data-i18n="ja">必須項目です</span>
+              <span data-i18n="en" style="display:none;">Required</span>
+            </p>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">必須要素</label>
@@ -113,9 +170,39 @@
             <textarea class="textarea" id="mustHave" placeholder="ロゴ、CTA、注意書き"></textarea>
           </div>
           <div class="field">
+            <label class="label" data-i18n="ja">ターゲット</label>
+            <label class="label" data-i18n="en" style="display:none;">Target audience</label>
+            <input class="input" id="audience" type="text" placeholder="20代女性 / BtoBマーケ担当" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">トーン/雰囲気</label>
+            <label class="label" data-i18n="en" style="display:none;">Tone/Style</label>
+            <input class="input" id="tone" type="text" placeholder="落ち着いた/高級感/ポップ" />
+          </div>
+          <div class="field">
             <label class="label" data-i18n="ja">避けたい表現</label>
             <label class="label" data-i18n="en" style="display:none;">Avoid</label>
             <textarea class="textarea" id="avoid" placeholder="派手すぎる色、過度な装飾"></textarea>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">制約・NG事項</label>
+            <label class="label" data-i18n="en" style="display:none;">Constraints/Notes</label>
+            <textarea class="textarea" id="constraints" placeholder="使用不可素材、社内ルールなど"></textarea>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">納品形式</label>
+            <label class="label" data-i18n="en" style="display:none;">Deliverables format</label>
+            <input class="input" id="deliverablesFormat" type="text" placeholder="AI/PSD/PNG/FIGMA" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">修正回数</label>
+            <label class="label" data-i18n="en" style="display:none;">Revisions</label>
+            <input class="input" id="revisions" type="text" placeholder="2回まで / 応相談" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">連絡先</label>
+            <label class="label" data-i18n="en" style="display:none;">Contact</label>
+            <input class="input" id="contact" type="text" placeholder="担当者名・メールアドレス" />
           </div>
 
           <div class="row" style="margin-top:8px;">
@@ -123,19 +210,56 @@
               <span data-i18n="ja">依頼文を生成</span>
               <span data-i18n="en" style="display:none;">Generate</span>
             </button>
-            <button class="btn" id="btnCopyJa" type="button">Copy JP</button>
-            <button class="btn" id="btnCopyEn" type="button">Copy EN</button>
+            <button class="btn" id="btnDownloadJa" type="button">
+              <span data-i18n="ja">JPをTXT保存</span>
+              <span data-i18n="en" style="display:none;">Download JP</span>
+            </button>
+            <button class="btn" id="btnDownloadEn" type="button">
+              <span data-i18n="ja">ENをTXT保存</span>
+              <span data-i18n="en" style="display:none;">Download EN</span>
+            </button>
+          </div>
+
+          <div class="row">
+            <button class="btn" id="btnCopyJaFull" type="button">
+              <span data-i18n="ja">JP全文をコピー</span>
+              <span data-i18n="en" style="display:none;">Copy JP: Full</span>
+            </button>
+            <button class="btn" id="btnCopyJaKey" type="button">
+              <span data-i18n="ja">JP要点をコピー</span>
+              <span data-i18n="en" style="display:none;">Copy JP: Key points</span>
+            </button>
+          </div>
+          <div class="row">
+            <button class="btn" id="btnCopyEnFull" type="button">
+              <span data-i18n="ja">EN全文をコピー</span>
+              <span data-i18n="en" style="display:none;">Copy EN: Full</span>
+            </button>
+            <button class="btn" id="btnCopyEnKey" type="button">
+              <span data-i18n="ja">EN要点をコピー</span>
+              <span data-i18n="en" style="display:none;">Copy EN: Key points</span>
+            </button>
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja">JP出力</label>
-            <label class="label" data-i18n="en" style="display:none;">JP Output</label>
+            <label class="label" data-i18n="ja">JP出力（全文）</label>
+            <label class="label" data-i18n="en" style="display:none;">JP Output (Full)</label>
             <pre class="out" id="outputJa">-</pre>
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">EN出力</label>
-            <label class="label" data-i18n="en" style="display:none;">EN Output</label>
+            <label class="label" data-i18n="ja">JP出力（要点）</label>
+            <label class="label" data-i18n="en" style="display:none;">JP Output (Key points)</label>
+            <pre class="out" id="outputJaKey">-</pre>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">EN出力（全文）</label>
+            <label class="label" data-i18n="en" style="display:none;">EN Output (Full)</label>
             <pre class="out" id="outputEn">-</pre>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="ja">EN出力（要点）</label>
+            <label class="label" data-i18n="en" style="display:none;">EN Output (Key points)</label>
+            <pre class="out" id="outputEnKey">-</pre>
           </div>
         </div>
       </div>
