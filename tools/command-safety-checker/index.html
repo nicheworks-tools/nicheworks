@@ -185,11 +185,11 @@
         </div>
 
         <div class="field grow">
-          <label class="label" for="commandInput">
+          <label class="label" for="cmdInput">
             <span data-i18n="ja">コマンド（複数行OK）</span>
             <span data-i18n="en">Command (multi-line OK)</span>
           </label>
-          <textarea id="commandInput" class="textarea" rows="9" placeholder="rm -rf ./build
+          <textarea id="cmdInput" class="textarea" rows="9" placeholder="rm -rf ./build
 curl -fsSL https://example.com/install.sh | sh"></textarea>
 
           <p class="hint" data-i18n="ja">⏳ チェックは通常すぐ終わります（ローカル処理）。</p>
@@ -198,14 +198,28 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
       </div>
 
       <div class="actions">
-        <button id="btnCheck" class="btn btn-primary" type="button">
+        <button id="analyzeBtn" class="btn btn-primary" type="button">
           <span data-i18n="ja">チェックする</span>
           <span data-i18n="en">Run check</span>
         </button>
-        <button id="btnClear" class="btn" type="button">
+        <button id="clearBtn" class="btn" type="button">
           <span data-i18n="ja">クリア</span>
           <span data-i18n="en">Clear</span>
         </button>
+        <button id="copyBtn" class="btn" type="button">
+          <span data-i18n="ja">結果をコピー</span>
+          <span data-i18n="en">Copy results</span>
+        </button>
+      </div>
+
+      <div class="preset-actions">
+        <p class="label" data-i18n="ja">プリセット</p>
+        <p class="label" data-i18n="en">Presets</p>
+        <div class="preset-buttons">
+          <button id="presetDangerRm" class="btn" type="button">rm -rf /</button>
+          <button id="presetCurlPipeSh" class="btn" type="button">curl ... | sh</button>
+          <button id="presetGitResetHard" class="btn" type="button">git reset --hard</button>
+        </div>
       </div>
 
       <div id="progress" class="progress-wrap" aria-live="polite" hidden>
@@ -220,10 +234,8 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
         <div class="risk">
           <span class="risk-label" data-i18n="ja">総合リスク</span>
           <span class="risk-label" data-i18n="en">Overall risk</span>
-          <span id="riskBadge" class="badge">—</span>
+          <span id="riskLevel" class="badge">—</span>
         </div>
-
-        <div class="chips" id="summaryChips"></div>
       </div>
 
       <div class="divider"></div>
@@ -233,26 +245,25 @@ curl -fsSL https://example.com/install.sh | sh"></textarea>
         <span data-i18n="en">Findings</span>
       </h2>
 
-      <div id="findings" class="findings"></div>
+      <ul id="findings" class="findings"></ul>
 
       <div class="divider"></div>
 
       <h2 class="h2">
-        <span data-i18n="ja">最低限の安全ヒント</span>
-        <span data-i18n="en">Minimum safety hints</span>
+        <span data-i18n="ja">安全に寄せるチェックリスト</span>
+        <span data-i18n="en">Safer steps checklist</span>
       </h2>
 
-      <ul id="hints" class="ul"></ul>
+      <ol id="saferSteps" class="ul"></ol>
 
-      <div class="result-actions">
-        <button id="btnReset" class="btn btn-danger" type="button">
-          <span data-i18n="ja">リセット</span>
-          <span data-i18n="en">Reset</span>
-        </button>
-        <button id="btnCopyReport" class="btn" type="button">
-          <span data-i18n="ja">レポートをコピー</span>
-          <span data-i18n="en">Copy report</span>
-        </button>
+      <div class="divider"></div>
+
+      <div class="normalized-block" id="normalizedWrap" hidden>
+        <h2 class="h2">
+          <span data-i18n="ja">正規化コマンド（確認用）</span>
+          <span data-i18n="en">Normalized command (for review)</span>
+        </h2>
+        <pre id="normalizedCmd" class="code-block"></pre>
       </div>
 
       <div class="pro-block" id="proBlock">

@@ -159,13 +159,16 @@ button,select,textarea{font-family:inherit}
 .divider{height:1px;background:var(--line);margin:12px 0}
 
 .h2{margin:0 0 10px;font-size:14px}
-.findings{display:flex;flex-direction:column;gap:8px}
+.findings{display:flex;flex-direction:column;gap:8px;list-style:none;padding:0;margin:0}
 .finding{
   border:1px solid var(--line);
   border-radius:12px;
   padding:10px;
   background:#fff;
 }
+.finding.empty{border-style:dashed}
+.finding-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.finding-title{font-weight:600;font-size:13px}
 .finding-top{
   display:flex;gap:8px;align-items:center;flex-wrap:wrap;
   margin-bottom:6px;
@@ -211,6 +214,22 @@ button,select,textarea{font-family:inherit}
 }
 .pro-title{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .pro-note{margin:8px 0 0;color:var(--muted);font-size:12px}
+
+.preset-actions{margin-top:12px}
+.preset-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.preset-buttons .btn{font-size:12px}
+
+.code-block{
+  font-family:var(--mono);
+  font-size:12px;
+  background:#f9fafb;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px;
+  margin:0;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
 
 .nw-donate{
   text-align:center;
@@ -338,4 +357,3 @@ button,select,textarea{font-family:inherit}
 .finding-sev.high{ border-color:rgba(185,28,28,.25); background:rgba(185,28,28,.10); color:#b91c1c; font-weight:700; }
 .finding-sev.medium{ border-color:rgba(245,158,11,.30); background:rgba(245,158,11,.12); color:#92400e; font-weight:700; }
 .finding-sev.low{ border-color:rgba(4,120,87,.25); background:rgba(4,120,87,.08); color:#047857; font-weight:700; }
-
