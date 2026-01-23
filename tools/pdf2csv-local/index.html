@@ -161,7 +161,15 @@
 
       <div class="form-actions align-center">
         <button type="button" class="primary" id="extractButton" disabled data-i18n-key="index.settings.extract">Extract</button>
+        <button type="button" class="ghost" id="resetButton" data-i18n-key="index.action.reset">Reset</button>
         <p class="form-hint inline" data-i18n-key="index.settings.extractNote">⏳ 解析は数秒かかる場合があります。</p>
+      </div>
+
+      <div class="progress-wrap" id="progressBar" hidden>
+        <div class="progress-track">
+          <div class="progress-value"></div>
+        </div>
+        <p class="progress-text" id="progressText" data-i18n-key="index.progress.text">解析中...</p>
       </div>
 
       <div class="warning-box" id="weakWarning" role="alert" hidden>
@@ -177,6 +185,41 @@
         <canvas id="pdfPreview" aria-label="PDF preview"></canvas>
         <div class="selection-rect" id="selectionRect" hidden></div>
         <p class="preview-placeholder" id="previewPlaceholder" data-i18n-key="index.preview.placeholder">PDFを読み込むとプレビューが表示されます。</p>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Result preview">
+      <h2 class="card-title" data-i18n-key="index.section.result">抽出結果プレビュー</h2>
+      <div class="preview-controls">
+        <label class="toggle">
+          <input type="checkbox" id="removeEmptyRows" />
+          <span class="toggle-label" data-i18n-key="index.preview.removeRows">空行を削除</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="removeEmptyCols" />
+          <span class="toggle-label" data-i18n-key="index.preview.removeCols">空列を削除</span>
+        </label>
+        <div class="delimiter-field">
+          <span class="form-label small" data-i18n-key="index.preview.delimiter">CSV区切り</span>
+          <div class="segmented" role="radiogroup" aria-label="CSV delimiter">
+            <label class="segmented-item">
+              <input type="radio" name="delimiter" value="comma" checked />
+              <span data-i18n-key="index.preview.delimiter.comma">カンマ</span>
+            </label>
+            <label class="segmented-item">
+              <input type="radio" name="delimiter" value="tab" />
+              <span data-i18n-key="index.preview.delimiter.tab">タブ</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <p class="form-hint" data-i18n-key="index.preview.hint">先頭50行までを表示します。</p>
+      <div class="table-scroll">
+        <table class="preview-table" id="previewTable" hidden>
+          <thead id="previewHead"></thead>
+          <tbody id="previewBody"></tbody>
+        </table>
+        <p class="preview-empty" id="previewEmpty" data-i18n-key="index.preview.empty">抽出するとここに結果プレビューが表示されます。</p>
       </div>
     </section>
 

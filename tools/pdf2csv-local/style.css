@@ -153,6 +153,16 @@ button.secondary {
   cursor: pointer;
 }
 
+.ghost {
+  background: #ffffff;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .table-scroll {
   overflow-x: auto;
   border: 1px solid var(--border);
@@ -181,6 +191,12 @@ button.secondary {
 
 .form-hint.inline {
   margin: 0;
+}
+
+.form-label.small {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--muted);
 }
 
 .drop-zone {
@@ -303,6 +319,41 @@ button.secondary {
   font-size: 13px;
 }
 
+.progress-wrap {
+  margin-top: 16px;
+}
+
+.progress-track {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.progress-value {
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, #60a5fa, #1b6ffb, #60a5fa);
+  animation: progress-slide 1.2s ease-in-out infinite;
+}
+
+.progress-text {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@keyframes progress-slide {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
 .status-list {
   margin: 0;
   padding: 0;
@@ -391,6 +442,53 @@ button.secondary {
   display: none;
 }
 
+.preview-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.delimiter-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.preview-table th,
+.preview-table td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.preview-table thead th {
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.preview-table thead input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+.preview-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .nw-donate {
   background: #ffffff;
   border: 1px solid var(--border);
@@ -441,4 +539,20 @@ button.secondary {
   color: var(--muted);
   font-size: 13px;
   background: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .form-actions.align-center {
+    align-items: flex-start;
+  }
+
+  .preview-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delimiter-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

@@ -9,6 +9,7 @@ const I18N = {
     'index.section.input': 'PDF入力',
     'index.section.settings': '抽出設定',
     'index.section.preview': 'ページプレビュー',
+    'index.section.result': '抽出結果プレビュー',
     'index.label.drag': 'PDFをドラッグ＆ドロップ',
     'index.label.status': 'ステータス',
     'index.label.range': 'ページ範囲',
@@ -26,6 +27,8 @@ const I18N = {
     'index.settings.header': '先頭行をヘッダー扱い',
     'index.settings.extract': '抽出開始',
     'index.settings.extractNote': '⏳ 解析は数秒かかる場合があります。',
+    'index.action.reset': 'リセット',
+    'index.progress.text': '解析中...',
     'index.settings.weakWarning': '抽出結果が少ないため、Manualモードの使用を検討してください。',
     'index.settings.resultSummary': '抽出結果: -',
     'index.drop.title': 'ここにPDFをドロップ',
@@ -39,6 +42,13 @@ const I18N = {
     'index.range.hint': '空欄なら全ページ',
     'index.output.csv': 'CSV',
     'index.output.excel': 'Excel',
+    'index.preview.removeRows': '空行を削除',
+    'index.preview.removeCols': '空列を削除',
+    'index.preview.delimiter': 'CSV区切り',
+    'index.preview.delimiter.comma': 'カンマ',
+    'index.preview.delimiter.tab': 'タブ',
+    'index.preview.hint': '先頭50行までを表示します。',
+    'index.preview.empty': '抽出するとここに結果プレビューが表示されます。',
     'index.action.analyze': '解析開始',
     'index.action.note': '⏳ この処理は最大3秒ほどかかる場合があります。',
     'index.preview.placeholder': 'PDFを読み込むとプレビューが表示されます。',
@@ -82,7 +92,11 @@ const I18N = {
     'error.rangeOut.what': 'ページ範囲がPDFのページ数を超えています。',
     'error.rangeOut.how': '1〜最終ページの範囲で指定してください。',
     'error.needPdf.what': 'PDFを読み込んでください。',
-    'error.needPdf.how': 'PDFを選択してからページ範囲を指定してください。'
+    'error.needPdf.how': 'PDFを選択してからページ範囲を指定してください。',
+    'error.noResult.what': '抽出結果がありません。',
+    'error.noResult.how': 'ページ範囲やモード設定を見直してください。',
+    'error.xlsxFailed.what': 'Excelファイルの生成に失敗しました。',
+    'error.xlsxFailed.how': 'CSVでの出力を試すか、再度実行してください。'
   },
   en: {
     'index.title': 'PDF2CSV Local',
@@ -91,6 +105,7 @@ const I18N = {
     'index.note.usage': 'See <a href="./usage.html">Usage</a> for step-by-step guidance.',
     'index.section.input': 'PDF input',
     'index.section.preview': 'Page preview',
+    'index.section.result': 'Result preview',
     'index.label.drag': 'Drag & drop PDF',
     'index.label.status': 'Status',
     'index.label.range': 'Page range',
@@ -108,6 +123,8 @@ const I18N = {
     'index.settings.header': 'Treat first row as header',
     'index.settings.extract': 'Extract',
     'index.settings.extractNote': '⏳ Extraction may take a few seconds.',
+    'index.action.reset': 'Reset',
+    'index.progress.text': 'Processing...',
     'index.settings.weakWarning': 'Extraction looks sparse. Consider using Manual mode.',
     'index.settings.resultSummary': 'Extraction result: -',
     'index.drop.title': 'Drop PDF here',
@@ -121,6 +138,13 @@ const I18N = {
     'index.range.hint': 'Leave blank for all pages',
     'index.output.csv': 'CSV',
     'index.output.excel': 'Excel',
+    'index.preview.removeRows': 'Remove empty rows',
+    'index.preview.removeCols': 'Remove empty columns',
+    'index.preview.delimiter': 'CSV delimiter',
+    'index.preview.delimiter.comma': 'Comma',
+    'index.preview.delimiter.tab': 'Tab',
+    'index.preview.hint': 'Showing up to the first 50 rows.',
+    'index.preview.empty': 'Run extraction to see the preview here.',
     'index.action.analyze': 'Start analysis',
     'index.action.note': '⏳ This may take up to 3 seconds.',
     'index.preview.placeholder': 'Load a PDF to see the preview here.',
@@ -164,7 +188,11 @@ const I18N = {
     'error.rangeOut.what': 'The page range exceeds the PDF length.',
     'error.rangeOut.how': 'Select pages within the document range.',
     'error.needPdf.what': 'Please load a PDF first.',
-    'error.needPdf.how': 'Select a PDF before entering a page range.'
+    'error.needPdf.how': 'Select a PDF before entering a page range.',
+    'error.noResult.what': 'No extraction results found.',
+    'error.noResult.how': 'Review the page range or mode settings and try again.',
+    'error.xlsxFailed.what': 'Failed to generate the Excel file.',
+    'error.xlsxFailed.how': 'Try exporting as CSV or run the conversion again.'
   }
 };
 
@@ -204,6 +232,7 @@ const applyTranslations = (lang) => {
 
   updateResultSummary(extractionState.rows, extractionState.meta.columnCount || 0);
   updateSelectionCoords();
+  renderPreviewTable();
 };
 
 const normalizeLanguage = (lang) => (lang && lang.toLowerCase().startsWith('ja') ? 'ja' : 'en');
@@ -254,6 +283,17 @@ const reextractButton = document.getElementById('reextractButton');
 const selectionCoords = document.getElementById('selectionCoords');
 const manualWarning = document.getElementById('manualWarning');
 const selectionRect = document.getElementById('selectionRect');
+const progressBar = document.getElementById('progressBar');
+const resetButton = document.getElementById('resetButton');
+const previewTable = document.getElementById('previewTable');
+const previewHead = document.getElementById('previewHead');
+const previewBody = document.getElementById('previewBody');
+const previewEmpty = document.getElementById('previewEmpty');
+const removeEmptyRowsToggle = document.getElementById('removeEmptyRows');
+const removeEmptyColsToggle = document.getElementById('removeEmptyCols');
+const delimiterInputs = document.querySelectorAll('input[name="delimiter"]');
+
+const PREVIEW_LIMIT = 50;
 
 let pdfDoc = null;
 let currentFile = null;
@@ -266,7 +306,14 @@ const extractionState = {
     colGapThreshold: 14,
     header: true
   },
+  ui: {
+    removeEmptyRows: false,
+    removeEmptyCols: false,
+    delimiter: 'comma',
+    headerEdits: []
+  },
   rows: [],
+  rawRows: [],
   meta: {},
   warnings: []
 };
@@ -319,12 +366,20 @@ const showError = (whatKey, howKey) => {
   errorWhat.textContent = translate(whatKey);
   errorHow.textContent = translate(howKey);
   errorBox.hidden = false;
+  setProgress(false);
 };
 
 const clearError = () => {
   errorBox.hidden = true;
   errorWhat.textContent = '';
   errorHow.textContent = '';
+};
+
+const setProgress = (visible) => {
+  if (!progressBar) {
+    return;
+  }
+  progressBar.hidden = !visible;
 };
 
 const resetStatus = () => {
@@ -345,6 +400,21 @@ const resetPreview = () => {
   previewState.height = 0;
   previewState.pageNumber = null;
   clearSelection();
+};
+
+const resetPreviewTable = () => {
+  if (previewTable) {
+    previewTable.hidden = true;
+  }
+  if (previewHead) {
+    previewHead.innerHTML = '';
+  }
+  if (previewBody) {
+    previewBody.innerHTML = '';
+  }
+  if (previewEmpty) {
+    previewEmpty.hidden = false;
+  }
 };
 
 const updateExtractButton = () => {
@@ -544,6 +614,124 @@ function updateResultSummary(rows, maxColumns) {
   }
 }
 
+const getColumnLabel = (index) => {
+  const lang = document.documentElement.lang || 'ja';
+  if (lang === 'ja') {
+    return `列${index + 1}`;
+  }
+  return `Column ${index + 1}`;
+};
+
+const isRowEmpty = (row) => row.every((cell) => !normalizeText(cell));
+
+const buildPreviewModel = () => {
+  const rawRows = extractionState.rawRows || [];
+  const hasHeader = extractionState.settings.header;
+  const maxColumns = rawRows.reduce((max, row) => Math.max(max, row.length), 0);
+  const columnIndexes = Array.from({ length: maxColumns }, (_, i) => i);
+  const headerRow = hasHeader ? rawRows[0] || [] : [];
+  let dataRows = hasHeader ? rawRows.slice(1) : [...rawRows];
+
+  if (extractionState.ui.removeEmptyRows) {
+    dataRows = dataRows.filter((row) => !isRowEmpty(row));
+  }
+
+  let activeIndexes = [...columnIndexes];
+  if (extractionState.ui.removeEmptyCols && maxColumns > 0) {
+    const keep = columnIndexes.filter((index) => {
+      const hasData = dataRows.some((row) => normalizeText(row[index]));
+      const hasHeaderValue = normalizeText(headerRow[index]);
+      return hasData || (!dataRows.length && hasHeaderValue);
+    });
+    activeIndexes = keep.length ? keep : activeIndexes;
+  }
+
+  const projectRow = (row) => activeIndexes.map((index) => row?.[index] ?? '');
+  const projectedHeader = projectRow(headerRow);
+  const projectedRows = dataRows.map(projectRow);
+
+  return {
+    activeIndexes,
+    headerRow: projectedHeader,
+    dataRows: projectedRows
+  };
+};
+
+const renderPreviewTable = () => {
+  if (!previewTable || !previewHead || !previewBody || !previewEmpty) {
+    return;
+  }
+
+  const rawRows = extractionState.rawRows || [];
+  if (!rawRows.length) {
+    resetPreviewTable();
+    return;
+  }
+
+  const { activeIndexes, headerRow, dataRows } = buildPreviewModel();
+  const limitedRows = dataRows.slice(0, PREVIEW_LIMIT);
+  const hasHeader = extractionState.settings.header;
+
+  previewHead.innerHTML = '';
+  previewBody.innerHTML = '';
+
+  const headRow = document.createElement('tr');
+  activeIndexes.forEach((colIndex, displayIndex) => {
+    const th = document.createElement('th');
+    if (hasHeader) {
+      const input = document.createElement('input');
+      const fallback = headerRow[displayIndex] ?? '';
+      input.value = extractionState.ui.headerEdits[colIndex] ?? fallback;
+      input.placeholder = fallback || getColumnLabel(displayIndex);
+      input.dataset.colIndex = `${colIndex}`;
+      input.addEventListener('input', () => {
+        const index = Number.parseInt(input.dataset.colIndex, 10);
+        extractionState.ui.headerEdits[index] = input.value;
+      });
+      th.appendChild(input);
+    } else {
+      th.textContent = getColumnLabel(displayIndex);
+    }
+    headRow.appendChild(th);
+  });
+  previewHead.appendChild(headRow);
+
+  limitedRows.forEach((row) => {
+    const tr = document.createElement('tr');
+    activeIndexes.forEach((_, index) => {
+      const td = document.createElement('td');
+      td.textContent = row[index] ?? '';
+      tr.appendChild(td);
+    });
+    previewBody.appendChild(tr);
+  });
+
+  previewTable.hidden = false;
+  previewEmpty.hidden = true;
+};
+
+const applyExtractionResults = (rows, meta) => {
+  const maxColumns = rows.reduce((max, row) => Math.max(max, row.length), 0);
+  extractionState.rawRows = rows.map((row) => [...row]);
+  extractionState.rows = rows;
+  extractionState.meta = {
+    ...meta,
+    rowCount: rows.length,
+    columnCount: maxColumns,
+    header: extractionState.settings.header,
+    mode: extractionState.settings.mode
+  };
+  extractionState.ui.headerEdits = [];
+  updateResultSummary(rows, maxColumns);
+  renderPreviewTable();
+
+  if (!rows.length || maxColumns === 0) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return false;
+  }
+  return true;
+};
+
 const groupItemsByRow = (items, rowTolerance) => {
   const textItems = items
     .map((item) => {
@@ -696,25 +884,19 @@ const runExtraction = async () => {
 
   clearError();
   setWeakWarning(false);
+  setProgress(true);
 
   try {
     const rows = await extractRowsFromPages(rangeResult.pages, extractionState.settings);
-    extractionState.rows = rows;
-    extractionState.meta = {
-      pages: rangeResult.pages,
-      rowCount: rows.length,
-      header: extractionState.settings.header,
-      mode: extractionState.settings.mode
-    };
-    const maxColumns = rows.reduce((max, row) => Math.max(max, row.length), 0);
-    extractionState.meta.columnCount = maxColumns;
-
-    const weak = rows.length < 2 || maxColumns < 2;
+    const hasResult = applyExtractionResults(rows, { pages: rangeResult.pages });
+    const maxColumns = extractionState.meta.columnCount ?? 0;
+    const weak = hasResult && (rows.length < 2 || maxColumns < 2);
     extractionState.warnings = weak ? ['weak-extraction'] : [];
     setWeakWarning(weak);
-    updateResultSummary(rows, maxColumns);
   } catch (error) {
     showError('error.loadFailed.what', 'error.loadFailed.how');
+  } finally {
+    setProgress(false);
   }
 };
 
@@ -737,29 +919,25 @@ const runManualExtraction = async () => {
   clearError();
   setManualWarning(false);
   setWeakWarning(false);
+  setProgress(true);
 
   try {
     const page = await pdfDoc.getPage(previewState.pageNumber);
     const textContent = await page.getTextContent();
     const filteredItems = filterItemsBySelection(textContent.items || [], selectionState.rect, previewState.scale);
     const rows = extractRowsFromItems(filteredItems, extractionState.settings.rowTolerance, extractionState.settings.colGapThreshold);
-    extractionState.rows = rows;
-    extractionState.meta = {
+    const hasResult = applyExtractionResults(rows, {
       pages: [previewState.pageNumber],
-      rowCount: rows.length,
-      header: extractionState.settings.header,
-      mode: extractionState.settings.mode,
       selection: { ...selectionState.rect }
-    };
-    const maxColumns = rows.reduce((max, row) => Math.max(max, row.length), 0);
-    extractionState.meta.columnCount = maxColumns;
-
-    const weak = rows.length < 2 || maxColumns < 2;
+    });
+    const maxColumns = extractionState.meta.columnCount ?? 0;
+    const weak = hasResult && (rows.length < 2 || maxColumns < 2);
     extractionState.warnings = weak ? ['weak-extraction'] : [];
     setWeakWarning(weak);
-    updateResultSummary(rows, maxColumns);
   } catch (error) {
     showError('error.loadFailed.what', 'error.loadFailed.how');
+  } finally {
+    setProgress(false);
   }
 };
 
@@ -878,9 +1056,12 @@ const handleFileError = (whatKey, howKey) => {
   renderedPage = null;
   resetStatus();
   resetPreview();
+  resetPreviewTable();
   extractionState.rows = [];
+  extractionState.rawRows = [];
   extractionState.meta = {};
   extractionState.warnings = [];
+  extractionState.ui.headerEdits = [];
   setWeakWarning(false);
   updateResultSummary([], 0);
   showError(whatKey, howKey);
@@ -906,10 +1087,13 @@ const loadPdf = async (file) => {
 
   clearError();
   resetPreview();
+  resetPreviewTable();
   updateStatus(file, null);
   extractionState.rows = [];
+  extractionState.rawRows = [];
   extractionState.meta = {};
   extractionState.warnings = [];
+  extractionState.ui.headerEdits = [];
   setWeakWarning(false);
   updateResultSummary([], 0);
 
@@ -944,6 +1128,60 @@ const handleDrop = (event) => {
     fileInput.files = event.dataTransfer.files;
     loadPdf(file);
   }
+};
+
+const resetAll = () => {
+  setProgress(false);
+  clearError();
+  pdfDoc = null;
+  currentFile = null;
+  renderedPage = null;
+  if (fileInput) {
+    fileInput.value = '';
+  }
+  pageRangeInput.value = '';
+  extractionState.settings.mode = 'auto';
+  extractionState.settings.rowTolerance = 4;
+  extractionState.settings.colGapThreshold = 14;
+  extractionState.settings.header = true;
+  extractionState.rows = [];
+  extractionState.rawRows = [];
+  extractionState.meta = {};
+  extractionState.warnings = [];
+  extractionState.ui.headerEdits = [];
+  extractionState.ui.removeEmptyRows = false;
+  extractionState.ui.removeEmptyCols = false;
+  extractionState.ui.delimiter = 'comma';
+
+  modeInputs.forEach((input) => {
+    input.checked = input.value === 'auto';
+  });
+  if (rowToleranceInput) {
+    rowToleranceInput.value = '4';
+  }
+  if (colGapThresholdInput) {
+    colGapThresholdInput.value = '14';
+  }
+  if (headerToggle) {
+    headerToggle.checked = true;
+  }
+  if (removeEmptyRowsToggle) {
+    removeEmptyRowsToggle.checked = false;
+  }
+  if (removeEmptyColsToggle) {
+    removeEmptyColsToggle.checked = false;
+  }
+  delimiterInputs.forEach((input) => {
+    input.checked = input.value === 'comma';
+  });
+
+  resetStatus();
+  resetPreview();
+  resetPreviewTable();
+  setWeakWarning(false);
+  updateResultSummary([], 0);
+  updateModeUI();
+  updateExtractButton();
 };
 
 ['dragenter', 'dragover'].forEach((eventName) => {
@@ -1000,6 +1238,7 @@ colGapThresholdInput?.addEventListener('input', () => {
 
 headerToggle?.addEventListener('change', () => {
   syncSettingsFromUI();
+  renderPreviewTable();
 });
 
 pageRangeInput.addEventListener('input', () => {
@@ -1010,6 +1249,10 @@ extractButton.addEventListener('click', () => {
   runExtraction();
 });
 
+resetButton?.addEventListener('click', () => {
+  resetAll();
+});
+
 resetSelectionButton?.addEventListener('click', () => {
   clearSelection();
 });
@@ -1018,7 +1261,26 @@ reextractButton?.addEventListener('click', () => {
   runManualExtraction();
 });
 
+removeEmptyRowsToggle?.addEventListener('change', () => {
+  extractionState.ui.removeEmptyRows = removeEmptyRowsToggle.checked;
+  renderPreviewTable();
+});
+
+removeEmptyColsToggle?.addEventListener('change', () => {
+  extractionState.ui.removeEmptyCols = removeEmptyColsToggle.checked;
+  renderPreviewTable();
+});
+
+delimiterInputs.forEach((input) => {
+  input.addEventListener('change', () => {
+    if (input.checked) {
+      extractionState.ui.delimiter = input.value;
+    }
+  });
+});
+
 applyTranslations(getInitialLanguage());
 syncSettingsFromUI();
 updateModeUI();
 updateResultSummary([], 0);
+resetPreviewTable();
