@@ -87,32 +87,61 @@
 
       <div class="card-bd">
         <div id="toolRoot">
-          <div class="field">
-            <label class="label" data-i18n="ja">必要な機能</label>
-            <label class="label" data-i18n="en" style="display:none;">Required capabilities</label>
-            <label class="row"><input type="checkbox" id="reqUpload" /> <span data-i18n="ja">ファイルアップロード</span><span data-i18n="en" style="display:none;">File upload</span></label>
-            <label class="row"><input type="checkbox" id="reqPayments" /> <span data-i18n="ja">決済/請求</span><span data-i18n="en" style="display:none;">Payments/Billing</span></label>
-            <label class="row"><input type="checkbox" id="reqNotify" /> <span data-i18n="ja">通知/連携（Slack等）</span><span data-i18n="en" style="display:none;">Notifications/Integrations</span></label>
-            <label class="row"><input type="checkbox" id="reqMulti" /> <span data-i18n="ja">多言語フォーム</span><span data-i18n="en" style="display:none;">Multilingual forms</span></label>
-            <label class="row"><input type="checkbox" id="reqFree" /> <span data-i18n="ja">無料から試したい</span><span data-i18n="en" style="display:none;">Free-first</span></label>
-            <label class="row"><input type="checkbox" id="reqPrivacy" /> <span data-i18n="ja">プライバシー重視</span><span data-i18n="en" style="display:none;">Privacy-first</span></label>
-          </div>
+          <details class="collapse" open>
+            <summary>
+              <span data-i18n="ja">必要な機能</span>
+              <span data-i18n="en" style="display:none;">Required capabilities</span>
+            </summary>
+            <div class="collapse-body">
+              <label class="row"><input type="checkbox" id="reqUpload" /> <span data-i18n="ja">ファイルアップロード</span><span data-i18n="en" style="display:none;">File upload</span></label>
+              <label class="row"><input type="checkbox" id="reqPayments" /> <span data-i18n="ja">決済/請求</span><span data-i18n="en" style="display:none;">Payments/Billing</span></label>
+              <label class="row"><input type="checkbox" id="reqNotify" /> <span data-i18n="ja">通知/連携（Slack等）</span><span data-i18n="en" style="display:none;">Notifications/Integrations</span></label>
+              <label class="row"><input type="checkbox" id="reqMulti" /> <span data-i18n="ja">多言語フォーム</span><span data-i18n="en" style="display:none;">Multilingual forms</span></label>
+            </div>
+          </details>
+
+          <details class="collapse">
+            <summary>
+              <span data-i18n="ja">優先事項</span>
+              <span data-i18n="en" style="display:none;">Priorities</span>
+            </summary>
+            <div class="collapse-body">
+              <label class="row"><input type="checkbox" id="reqFree" /> <span data-i18n="ja">無料から試したい</span><span data-i18n="en" style="display:none;">Free-first</span></label>
+              <label class="row"><input type="checkbox" id="reqPrivacy" /> <span data-i18n="ja">プライバシー重視</span><span data-i18n="en" style="display:none;">Privacy-first</span></label>
+            </div>
+          </details>
 
           <div class="row" style="margin-top:8px;">
             <button class="btn primary" id="btnSelect" type="button">
               <span data-i18n="ja">おすすめを出す</span>
               <span data-i18n="en" style="display:none;">Generate</span>
             </button>
-            <button class="btn" id="btnCopy" type="button">
-              <span data-i18n="ja">コピー</span>
-              <span data-i18n="en" style="display:none;">Copy</span>
+            <button class="btn" id="btnQuickStart" type="button">
+              <span data-i18n="ja">クイックスタート例</span>
+              <span data-i18n="en" style="display:none;">Quick start sample</span>
             </button>
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja">おすすめ結果</label>
             <label class="label" data-i18n="en" style="display:none;">Recommendations</label>
-            <pre class="out" id="output">-</pre>
+            <div class="row result-actions">
+              <button class="btn" id="btnCopyResults" type="button">
+                <span data-i18n="ja">結果をコピー</span>
+                <span data-i18n="en" style="display:none;">Copy results</span>
+              </button>
+              <button class="btn" id="btnCopyMemo" type="button">
+                <span data-i18n="ja">メモをコピー</span>
+                <span data-i18n="en" style="display:none;">Copy memo</span>
+              </button>
+            </div>
+            <div id="resultList" class="result-list"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja">Decision memo（引き継ぎ用）</label>
+            <label class="label" data-i18n="en" style="display:none;">Decision memo (handoff)</label>
+            <pre class="out out-memo" id="memoOutput">-</pre>
           </div>
         </div>
       </div>
