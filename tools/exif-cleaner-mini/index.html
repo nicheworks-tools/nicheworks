@@ -129,12 +129,52 @@
     <img id="preview" class="preview hidden" alt="preview">
 
     <p id="exif-status" class="status"></p>
+    <p id="output-format" class="status output-format"></p>
+
+    <div id="format-controls" class="format-controls hidden">
+      <p class="label format-label" data-i18n="ja">出力形式</p>
+      <p class="label format-label" data-i18n="en">Output format</p>
+      <select id="format-select" class="format-select" aria-label="Output format">
+        <option value="keep">元の形式を保持 (Keep format)</option>
+        <option value="jpeg">JPEGに変換 (Convert to JPEG)</option>
+      </select>
+      <p class="format-note" data-i18n="ja">JPEGに変換する場合、.jpg で保存されます。</p>
+      <p class="format-note" data-i18n="en">When converting to JPEG, the file will be saved as .jpg.</p>
+    </div>
+
+    <div class="quality-control">
+      <div class="quality-row">
+        <p class="label" data-i18n="ja">JPEG画質</p>
+        <p class="label" data-i18n="en">JPEG quality</p>
+        <span id="quality-value" class="quality-value">0.90</span>
+      </div>
+      <input type="range" id="quality-slider" min="0.7" max="0.95" step="0.01" value="0.9">
+      <p class="quality-note" data-i18n="ja">JPEGとして保存する場合にのみ適用されます。</p>
+      <p class="quality-note" data-i18n="en">Applied only when saving as JPEG.</p>
+    </div>
 
     <button id="clean-btn-ja" class="clean-btn" data-i18n="ja" disabled>EXIFを削除して保存</button>
     <button id="clean-btn-en" class="clean-btn" data-i18n="en" disabled>Clean EXIF & Download</button>
 
     <p id="done-msg-ja" class="done-msg hidden" data-i18n="ja">EXIFを削除した画像を保存しました。</p>
     <p id="done-msg-en" class="done-msg hidden" data-i18n="en">EXIF-free image saved.</p>
+
+    <div class="info-block">
+      <p class="label" data-i18n="ja">削除される可能性のある情報</p>
+      <p class="label" data-i18n="en">What will be removed</p>
+      <ul class="info-list">
+        <li data-i18n="ja">GPS位置情報</li>
+        <li data-i18n="en">GPS location data</li>
+        <li data-i18n="ja">撮影日時</li>
+        <li data-i18n="en">Capture date & time</li>
+        <li data-i18n="ja">カメラ/端末モデル</li>
+        <li data-i18n="en">Camera / device model</li>
+        <li data-i18n="ja">レンズ/ソフト情報</li>
+        <li data-i18n="en">Lens / software information</li>
+      </ul>
+      <p class="info-note" data-i18n="ja">※ 本ツールはマルウェア検査ではありません。メタデータのみを削除します。</p>
+      <p class="info-note" data-i18n="en">* This is not malware scanning; it only removes metadata.</p>
+    </div>
 
     <p class="disclaimer" data-i18n="ja">※ すべての処理はブラウザ内で実行されます（画像は送信されません）。</p>
     <p class="disclaimer" data-i18n="en">* All processing runs locally in your browser. No images are uploaded.</p>
