@@ -136,18 +136,60 @@
     <p class="no-result" data-i18n="en">Upload an image to see analysis results here.</p>
 
     <div id="result-content" class="hidden">
-      <p><strong data-i18n="ja">元の形式：</strong><strong data-i18n="en">Original Format:</strong> <span id="format"></span></p>
+      <div class="result-grid">
+        <div class="result-card">
+          <h3 data-i18n="ja">元データ</h3>
+          <h3 data-i18n="en">Original</h3>
+          <p><strong data-i18n="ja">形式：</strong><strong data-i18n="en">Format:</strong> <span id="format"></span></p>
+          <p><strong data-i18n="ja">ファイルサイズ：</strong><strong data-i18n="en">File Size:</strong> <span id="size"></span></p>
+          <p><strong data-i18n="ja">解像度：</strong><strong data-i18n="en">Resolution:</strong> <span id="resolution"></span></p>
+        </div>
 
-      <p><strong data-i18n="ja">ファイルサイズ：</strong><strong data-i18n="en">File Size:</strong> <span id="size"></span></p>
+        <div class="result-card">
+          <h3 data-i18n="ja">圧縮後</h3>
+          <h3 data-i18n="en">Compressed</h3>
+          <p><strong data-i18n="ja">推定サイズ：</strong><strong data-i18n="en">Estimated Size:</strong> <span id="output-size">-</span></p>
+          <p><strong data-i18n="ja">削減率：</strong><strong data-i18n="en">Reduction:</strong> <span id="reduction">-</span></p>
+          <p><strong data-i18n="ja">形式：</strong><strong data-i18n="en">Format:</strong> <span id="output-format">-</span></p>
+        </div>
+      </div>
 
-      <p><strong data-i18n="ja">解像度：</strong><strong data-i18n="en">Resolution:</strong> <span id="resolution"></span></p>
+      <div class="control-panel">
+        <label class="control-row">
+          <span data-i18n="ja">出力形式</span>
+          <span data-i18n="en">Output format</span>
+          <select id="format-select">
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </label>
 
-      <p><strong data-i18n="ja">推定圧縮率：</strong><strong data-i18n="en">Estimated Compression Ratio:</strong> <span id="ratio"></span></p>
+        <label class="control-row">
+          <span data-i18n="ja">品質</span>
+          <span data-i18n="en">Quality</span>
+          <input type="range" id="quality-range" min="0.4" max="0.95" step="0.01" value="0.8">
+          <span id="quality-value">0.80</span>
+        </label>
 
-      <p><strong data-i18n="ja">おすすめの形式：</strong><strong data-i18n="en">Recommended Format:</strong> <span id="recommend"></span></p>
+        <p id="format-warning" class="warning hidden" data-i18n="ja">※ 元画像に透明部分があります。JPEG は背景色が変わる場合があります。</p>
+        <p id="format-warning-en" class="warning hidden" data-i18n="en">* This image has transparency. JPEG may change the background color.</p>
 
-      <p class="note" data-i18n="ja">※ 圧縮率は簡易推定です。正確な品質評価は行いません。</p>
-      <p class="note" data-i18n="en">* Compression ratio is an approximate estimate. Exact quality evaluation is not performed.</p>
+        <button id="download-btn" class="download-btn" disabled>
+          <span data-i18n="ja">圧縮してダウンロード</span>
+          <span data-i18n="en">Compress & Download</span>
+        </button>
+      </div>
+
+      <div class="preview-area">
+        <h3 data-i18n="ja">圧縮プレビュー</h3>
+        <h3 data-i18n="en">Compressed Preview</h3>
+        <img id="preview-image" alt="Compressed preview" loading="lazy">
+      </div>
+
+      <p id="error-message" class="error hidden"></p>
+
+      <p class="note" data-i18n="ja">※ 推定サイズは現在の品質設定に基づきます。実際の保存結果と同等です。</p>
+      <p class="note" data-i18n="en">* Estimated size is based on the current quality setting and matches the exported file.</p>
     </div>
   </section>
 
