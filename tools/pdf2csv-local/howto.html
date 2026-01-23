@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title data-i18n-key="meta.howto.title">変換のコツ｜PDF2CSV Local | NicheWorks</title>
-  <meta name="description" data-i18n-key="meta.howto.desc" data-i18n-attr="content" content="PDF2CSV Localで精度良く変換するためのコツをまとめる予定です。現在は枠のみ用意しています。" />
+  <meta name="description" data-i18n-key="meta.howto.desc" data-i18n-attr="content" content="PDF2CSV Localのチュートリアル。銀行明細・請求書の例、調整順、よくある失敗の対処を整理します。" />
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/pdf2csv-local/" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/pdf2csv-local/howto.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" data-i18n-key="meta.howto.title" data-i18n-attr="content" content="変換のコツ｜PDF2CSV Local | NicheWorks" />
-  <meta property="og:description" data-i18n-key="meta.howto.desc" data-i18n-attr="content" content="PDF2CSV Localで精度良く変換するためのコツをまとめる予定です。現在は枠のみ用意しています。" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/pdf2csv-local/" />
+  <meta property="og:description" data-i18n-key="meta.howto.desc" data-i18n-attr="content" content="PDF2CSV Localのチュートリアル。銀行明細・請求書の例、調整順、よくある失敗の対処を整理します。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/pdf2csv-local/howto.html" />
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -35,9 +35,9 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "PDF2CSV Local",
-    "url": "https://nicheworks.pages.dev/tools/pdf2csv-local/",
+    "url": "https://nicheworks.pages.dev/tools/pdf2csv-local/howto.html",
     "applicationCategory": "UtilityApplication",
-    "description": "PDF2CSV Localで精度良く変換するためのコツをまとめる予定です。現在は枠のみ用意しています。",
+    "description": "PDF2CSV Localのチュートリアル。銀行明細・請求書の例、調整順、よくある失敗の対処を整理します。",
     "operatingSystem": "All"
   }
   </script>
@@ -57,8 +57,36 @@
 
   <main class="doc-main">
     <section class="doc-card">
-      <h2 data-i18n-key="howto.section.title">準備中</h2>
-      <p data-i18n-key="howto.section.body">詳細な手順や注意点は後続タスクで追加します。</p>
+      <h2 data-i18n-key="howto.section.examples.title">具体例（銀行明細 / 請求書）</h2>
+      <h3 data-i18n-key="howto.section.examples.bank.title">銀行明細の例</h3>
+      <ul class="doc-list">
+        <li data-i18n-key="howto.section.examples.bank.item1">Autoで抽出し、日付・摘要・金額が列に分かれるか確認</li>
+        <li data-i18n-key="howto.section.examples.bank.item2">残高列が混ざる場合は列のギャップ判定を少し上げる</li>
+      </ul>
+      <h3 data-i18n-key="howto.section.examples.invoice.title">請求書の例</h3>
+      <ul class="doc-list">
+        <li data-i18n-key="howto.section.examples.invoice.item1">明細表のみを対象にしたい場合はManualで範囲指定</li>
+        <li data-i18n-key="howto.section.examples.invoice.item2">合計行だけ除外したい場合は抽出後に手動で削除</li>
+      </ul>
+
+      <div class="doc-section">
+        <h2 data-i18n-key="howto.section.tuning.title">うまくいかない時の調整順</h2>
+        <ol class="doc-list">
+          <li data-i18n-key="howto.section.tuning.step1">行の近接判定（rowTolerance）を微調整</li>
+          <li data-i18n-key="howto.section.tuning.step2">列のギャップ判定（colGap）を微調整</li>
+          <li data-i18n-key="howto.section.tuning.step3">Manualで表エリアを指定して再抽出</li>
+        </ol>
+        <p class="doc-muted" data-i18n-key="howto.section.tuning.note">行→列→Manualの順で調整すると原因を追いやすくなります。</p>
+      </div>
+
+      <div class="doc-section">
+        <h2 data-i18n-key="howto.section.failures.title">よくある失敗と対処</h2>
+        <ul class="doc-list">
+          <li data-i18n-key="howto.section.failures.item1">ヘッダー行が毎ページで繰り返される → 出力後に重複ヘッダーを削除</li>
+          <li data-i18n-key="howto.section.failures.item2">合計行が混ざる → Manualで明細行だけを選択して再抽出</li>
+          <li data-i18n-key="howto.section.failures.item3">残高行で列が崩れる → 列ギャップ判定を調整し、必要なら手動で修正</li>
+        </ul>
+      </div>
 
       <p class="doc-back"><a href="./index.html" data-i18n-key="howto.back">← ツール本体へ戻る</a></p>
     </section>
