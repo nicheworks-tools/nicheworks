@@ -109,6 +109,45 @@
 (() => {
   "use strict";
 
+  const requirementDefs = [
+    {
+      key: "upload",
+      tag: "upload",
+      weight: 3,
+      label: { ja: "ファイルアップロード", en: "File upload" }
+    },
+    {
+      key: "payments",
+      tag: "payments",
+      weight: 3,
+      label: { ja: "決済/請求", en: "Payments/Billing" }
+    },
+    {
+      key: "notify",
+      tag: "notify",
+      weight: 2,
+      label: { ja: "通知/連携（Slack等）", en: "Notifications/Integrations" }
+    },
+    {
+      key: "multi",
+      tag: "multi",
+      weight: 2,
+      label: { ja: "多言語フォーム", en: "Multilingual forms" }
+    },
+    {
+      key: "free",
+      tag: "free",
+      weight: 1,
+      label: { ja: "無料から試したい", en: "Free-first" }
+    },
+    {
+      key: "privacy",
+      tag: "privacy",
+      weight: 2,
+      label: { ja: "プライバシー重視", en: "Privacy-first" }
+    }
+  ];
+
   const toolList = [
     {
       key: "simple",
@@ -206,35 +245,62 @@
   });
 
   const scoreTool = (tool, req) => {
-    let score = 0;
-    if (req.upload && tool.tags.includes("upload")) score += 3;
-    if (req.payments && tool.tags.includes("payments")) score += 3;
-    if (req.notify && tool.tags.includes("notify")) score += 2;
-    if (req.multi && tool.tags.includes("multi")) score += 2;
-    if (req.free && tool.tags.includes("free")) score += 1;
-    if (req.privacy && tool.tags.includes("privacy")) score += 2;
-    return score;
+    return requirementDefs.reduce((total, def) => {
+      if (req[def.key] && tool.tags.includes(def.tag)) {
+        return total + def.weight;
+      }
+      return total;
+    }, 0);
   };
 
-  const buildOutput = (lang) => {
+  const buildRecommendationData = (lang) => {
     const req = getSelections();
     const picks = toolList
       .map((tool) => ({ tool, score: scoreTool(tool, req) }))
       .sort((a, b) => b.score - a.score)
       .slice(0, 3);
 
+    return picks.map((pick) => {
+      const tool = pick.tool;
+      const name = lang === "ja" ? tool.nameJa : tool.nameEn;
+      const bestFor = lang === "ja" ? tool.reasons.ja : tool.reasons.en;
+      const matched = requirementDefs
+        .filter((def) => req[def.key] && tool.tags.includes(def.tag))
+        .map((def) => def.label[lang]);
+      const missing = requirementDefs
+        .filter((def) => req[def.key] && !tool.tags.includes(def.tag))
+        .map((def) => lang === "ja" ? `未対応: ${def.label.ja}` : `Missing: ${def.label.en}`);
+      const tradeoffs = [
+        ...missing,
+        lang === "ja" ? `注意: ${tool.avoid.ja}` : `Note: ${tool.avoid.en}`
+      ];
+
+      return {
+        name,
+        bestFor,
+        matched,
+        tradeoffs
+      };
+    });
+  };
+
+  const buildResultsText = (lang, recommendations) => {
+    const bestLabel = lang === "ja" ? "おすすめ用途" : "Best for";
     const lines = [];
     lines.push(lang === "ja" ? "おすすめタイプ（上位3）" : "Top 3 recommendation types");
     lines.push("-");
 
-    picks.forEach((pick, idx) => {
-      const tool = pick.tool;
-      const name = lang === "ja" ? tool.nameJa : tool.nameEn;
-      const reason = lang === "ja" ? tool.reasons.ja : tool.reasons.en;
-      const avoid = lang === "ja" ? tool.avoid.ja : tool.avoid.en;
-      lines.push(`${idx + 1}. ${name}`);
-      lines.push(`   - ${reason}`);
-      lines.push(`   - ${lang === "ja" ? "避けた方が良い条件:" : "Avoid when:"} ${avoid}`);
+    recommendations.forEach((rec, idx) => {
+      const matchedText = rec.matched.length
+        ? rec.matched.join(", ")
+        : (lang === "ja" ? "該当なし" : "None");
+      const tradeoffText = rec.tradeoffs.length
+        ? rec.tradeoffs.join("; ")
+        : (lang === "ja" ? "特になし" : "None");
+      lines.push(`${idx + 1}. ${rec.name}`);
+      lines.push(`   - ${bestLabel}: ${rec.bestFor}`);
+      lines.push(`   - ${lang === "ja" ? "一致条件" : "Matched"}: ${matchedText}`);
+      lines.push(`   - ${lang === "ja" ? "未一致/トレードオフ" : "Not matched / tradeoffs"}: ${tradeoffText}`);
     });
 
     lines.push("-");
@@ -246,22 +312,139 @@
     return lines.join("\n");
   };
 
+  const buildMemoText = (lang, topRec) => {
+    const matched = topRec.matched.length
+      ? topRec.matched
+      : [lang === "ja" ? "該当なし" : "None"];
+    const tradeoffs = topRec.tradeoffs.length
+      ? topRec.tradeoffs
+      : [lang === "ja" ? "特になし" : "None"];
+
+    if (lang === "ja") {
+      return [
+        "Decision memo",
+        `選定ツール: ${topRec.name}`,
+        "理由:",
+        ...matched.map((item) => `- ${item}`),
+        "リスク/懸念:",
+        ...tradeoffs.map((item) => `- ${item}`),
+        "次のアクション:",
+        "- 候補サービスを2〜3件比較（料金、容量、通知/連携、決済の対応可否）",
+        "- 試作フォームで回答〜通知までの動線を検証",
+        "- 法務/セキュリティ観点でプライバシーポリシーと保存期間を確認",
+        "事前に用意するもの:",
+        "- 質問項目一覧（必須/任意）",
+        "- 想定回答数・ファイル容量・決済条件",
+        "- 通知先（メール/Slack）と担当者"
+      ].join("\n");
+    }
+
+    return [
+      "Decision memo",
+      `Chosen tool: ${topRec.name}`,
+      "Reasons:",
+      ...matched.map((item) => `- ${item}`),
+      "Risks / tradeoffs:",
+      ...tradeoffs.map((item) => `- ${item}`),
+      "Next steps:",
+      "- Compare 2–3 services (pricing, storage limits, notifications, payment support).",
+      "- Build a prototype form to validate submission-to-notification flow.",
+      "- Review privacy policy and data retention with security/legal.",
+      "What to prepare:",
+      "- Question list (required/optional).",
+      "- Expected volume, file size limits, payment terms.",
+      "- Notification channels and owners."
+    ].join("\n");
+  };
+
+  const buildRecommendationCards = (recommendations, lang) => {
+    const bestLabel = lang === "ja" ? "おすすめ用途" : "Best for";
+    return recommendations.map((rec, idx) => {
+      const card = document.createElement("div");
+      card.className = "result-card";
+
+      const rank = document.createElement("p");
+      rank.className = "result-rank";
+      rank.textContent = `${lang === "ja" ? "順位" : "Rank"} ${idx + 1}`;
+
+      const name = document.createElement("h3");
+      name.className = "result-name";
+      name.textContent = rec.name;
+
+      const best = document.createElement("p");
+      best.className = "result-best";
+      best.textContent = `${bestLabel}: ${rec.bestFor}`;
+
+      const matchedTitle = document.createElement("p");
+      matchedTitle.className = "result-section-title";
+      matchedTitle.textContent = lang === "ja" ? "一致した要件" : "Matched requirements";
+
+      const matchedList = document.createElement("ul");
+      (rec.matched.length ? rec.matched : [lang === "ja" ? "該当なし" : "None"])
+        .forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          matchedList.appendChild(li);
+        });
+
+      const tradeTitle = document.createElement("p");
+      tradeTitle.className = "result-section-title";
+      tradeTitle.textContent = lang === "ja" ? "未一致/トレードオフ" : "Not matched / tradeoffs";
+
+      const tradeList = document.createElement("ul");
+      (rec.tradeoffs.length ? rec.tradeoffs : [lang === "ja" ? "特になし" : "None"])
+        .forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          tradeList.appendChild(li);
+        });
+
+      card.append(rank, name, best, matchedTitle, matchedList, tradeTitle, tradeList);
+      return card;
+    });
+  };
+
   const initTool = () => {
-    const out = document.getElementById("output");
     const btnSelect = document.getElementById("btnSelect");
-    const btnCopy = document.getElementById("btnCopy");
+    const btnQuickStart = document.getElementById("btnQuickStart");
+    const btnCopyResults = document.getElementById("btnCopyResults");
+    const btnCopyMemo = document.getElementById("btnCopyMemo");
+    const resultList = document.getElementById("resultList");
+    const memoOutput = document.getElementById("memoOutput");
     const langButtons = Array.from(document.querySelectorAll(".nw-lang-switch button"));
+    let resultsText = "-";
+    let memoText = "-";
 
     const render = () => {
       const lang = document.documentElement.lang || "ja";
-      out.textContent = buildOutput(lang);
+      const recommendations = buildRecommendationData(lang);
+      resultsText = buildResultsText(lang, recommendations);
+      memoText = buildMemoText(lang, recommendations[0]);
+
+      resultList.innerHTML = "";
+      buildRecommendationCards(recommendations, lang).forEach((card) => resultList.appendChild(card));
+      memoOutput.textContent = memoText;
     };
 
     btnSelect.addEventListener("click", render);
-    btnCopy.addEventListener("click", async () => {
-      const ok = await window.NW.copyToClipboard(out.textContent.trim());
-      if (ok) btnCopy.classList.add("primary");
-      setTimeout(() => btnCopy.classList.remove("primary"), 600);
+    btnQuickStart.addEventListener("click", () => {
+      document.getElementById("reqUpload").checked = true;
+      document.getElementById("reqPayments").checked = false;
+      document.getElementById("reqNotify").checked = true;
+      document.getElementById("reqMulti").checked = false;
+      document.getElementById("reqFree").checked = true;
+      document.getElementById("reqPrivacy").checked = false;
+      render();
+    });
+    btnCopyResults.addEventListener("click", async () => {
+      const ok = await window.NW.copyToClipboard(resultsText.trim());
+      if (ok) btnCopyResults.classList.add("primary");
+      setTimeout(() => btnCopyResults.classList.remove("primary"), 600);
+    });
+    btnCopyMemo.addEventListener("click", async () => {
+      const ok = await window.NW.copyToClipboard(memoText.trim());
+      if (ok) btnCopyMemo.classList.add("primary");
+      setTimeout(() => btnCopyMemo.classList.remove("primary"), 600);
     });
     langButtons.forEach((btn) => btn.addEventListener("click", render));
 
