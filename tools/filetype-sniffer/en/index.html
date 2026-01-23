@@ -89,7 +89,26 @@
     <!-- RESULT -->
     <section id="resultSection" class="result-box" style="display:none;">
       <h2>Result</h2>
-      <div id="resultContent"></div>
+      <div id="warningBox" class="warning-box" style="display:none;"></div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <h3>Summary</h3>
+          <div id="summaryContent"></div>
+          <div class="result-actions">
+            <button id="copySummaryBtn" class="secondary-btn small">Copy summary</button>
+          </div>
+        </div>
+        <div class="result-card">
+          <h3>JSON</h3>
+          <pre id="jsonOutput" class="code-block"></pre>
+          <div class="result-actions">
+            <button id="copyJsonBtn" class="secondary-btn small">Copy JSON</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="safety-note">Not a virus scanner; content may still be dangerous.</p>
 
       <button id="resetBtn" class="secondary-btn">Reset</button>
     </section>

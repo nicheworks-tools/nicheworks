@@ -181,6 +181,29 @@ body {
   word-break: break-word;
 }
 
+.result-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.result-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.result-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #111827;
+}
+
+.result-actions {
+  margin-top: 8px;
+}
+
 /* 結果内の項目名 */
 .result-label {
   font-weight: 600;
@@ -200,6 +223,12 @@ body {
   cursor: pointer;
   transition: background 0.2s ease;
 }
+.secondary-btn.small {
+  width: auto;
+  padding: 8px 12px;
+  margin-top: 0;
+  font-size: 12px;
+}
 .secondary-btn:hover {
   background: #f3f4f6;
 }
@@ -213,6 +242,34 @@ body {
   border-radius: 8px;
   margin: 12px 0;
   font-size: 14px;
+}
+
+/* 警告表示 */
+.warning-box {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  color: #92400e;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 12px 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.code-block {
+  margin: 0;
+  padding: 10px;
+  border-radius: 6px;
+  background: #111827;
+  color: #f9fafb;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+.safety-note {
+  margin: 12px 0 4px;
+  font-size: 12px;
+  color: #6b7280;
 }
 
 /* -----------------------------
@@ -303,5 +360,9 @@ body {
 
   #resultContent {
     font-size: 13px;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
   }
 }
