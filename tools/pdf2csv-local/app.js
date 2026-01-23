@@ -44,6 +44,7 @@ const I18N = {
     'index.output.excel': 'Excel',
     'index.preview.removeRows': '空行を削除',
     'index.preview.removeCols': '空列を削除',
+    'index.preview.bom': 'CSV BOMを付与',
     'index.preview.delimiter': 'CSV区切り',
     'index.preview.delimiter.comma': 'カンマ',
     'index.preview.delimiter.tab': 'タブ',
@@ -140,6 +141,7 @@ const I18N = {
     'index.output.excel': 'Excel',
     'index.preview.removeRows': 'Remove empty rows',
     'index.preview.removeCols': 'Remove empty columns',
+    'index.preview.bom': 'Add UTF-8 BOM',
     'index.preview.delimiter': 'CSV delimiter',
     'index.preview.delimiter.comma': 'Comma',
     'index.preview.delimiter.tab': 'Tab',
@@ -291,7 +293,10 @@ const previewBody = document.getElementById('previewBody');
 const previewEmpty = document.getElementById('previewEmpty');
 const removeEmptyRowsToggle = document.getElementById('removeEmptyRows');
 const removeEmptyColsToggle = document.getElementById('removeEmptyCols');
+const csvBomToggle = document.getElementById('csvBomToggle');
 const delimiterInputs = document.querySelectorAll('input[name="delimiter"]');
+const downloadCsvButton = document.getElementById('downloadCsv');
+const downloadXlsxButton = document.getElementById('downloadXlsx');
 
 const PREVIEW_LIMIT = 50;
 
@@ -310,10 +315,12 @@ const extractionState = {
     removeEmptyRows: false,
     removeEmptyCols: false,
     delimiter: 'comma',
+    csvBom: true,
     headerEdits: []
   },
   rows: [],
   rawRows: [],
+  pageRows: [],
   meta: {},
   warnings: []
 };
@@ -592,11 +599,24 @@ const syncSettingsFromUI = () => {
   if (headerToggle) {
     extractionState.settings.header = headerToggle.checked;
   }
+  if (csvBomToggle) {
+    extractionState.ui.csvBom = csvBomToggle.checked;
+  }
 };
 
 const setWeakWarning = (visible) => {
   if (weakWarning) {
     weakWarning.hidden = !visible;
+  }
+};
+
+const updateDownloadButtons = () => {
+  const hasRows = (extractionState.rows || []).length > 0;
+  if (downloadCsvButton) {
+    downloadCsvButton.disabled = !hasRows;
+  }
+  if (downloadXlsxButton) {
+    downloadXlsxButton.disabled = !hasRows;
   }
 };
 
@@ -624,17 +644,33 @@ const getColumnLabel = (index) => {
 
 const isRowEmpty = (row) => row.every((cell) => !normalizeText(cell));
 
-const buildPreviewModel = () => {
+const getHeaderRowFromEdits = (headerRow, activeIndexes) => {
+  return activeIndexes.map((index) => {
+    if (Object.prototype.hasOwnProperty.call(extractionState.ui.headerEdits, index)) {
+      return extractionState.ui.headerEdits[index];
+    }
+    return headerRow?.[index] ?? '';
+  });
+};
+
+const buildExportConfig = () => {
   const rawRows = extractionState.rawRows || [];
+  if (!rawRows.length) {
+    return null;
+  }
   const hasHeader = extractionState.settings.header;
-  const maxColumns = rawRows.reduce((max, row) => Math.max(max, row.length), 0);
-  const columnIndexes = Array.from({ length: maxColumns }, (_, i) => i);
   const headerRow = hasHeader ? rawRows[0] || [] : [];
   let dataRows = hasHeader ? rawRows.slice(1) : [...rawRows];
 
   if (extractionState.ui.removeEmptyRows) {
     dataRows = dataRows.filter((row) => !isRowEmpty(row));
   }
+
+  const maxColumns = Math.max(
+    headerRow.length,
+    dataRows.reduce((max, row) => Math.max(max, row.length), 0)
+  );
+  const columnIndexes = Array.from({ length: maxColumns }, (_, i) => i);
 
   let activeIndexes = [...columnIndexes];
   if (extractionState.ui.removeEmptyCols && maxColumns > 0) {
@@ -646,14 +682,88 @@ const buildPreviewModel = () => {
     activeIndexes = keep.length ? keep : activeIndexes;
   }
 
+  return {
+    hasHeader,
+    headerRow,
+    editedHeaderRow: getHeaderRowFromEdits(headerRow, activeIndexes),
+    activeIndexes,
+    dataRows
+  };
+};
+
+const buildProjectedPageRows = (exportConfig) => {
+  const pages = extractionState.pageRows?.length
+    ? extractionState.pageRows
+    : [{ pageNumber: extractionState.meta.pages?.[0] ?? 1, rows: extractionState.rawRows || [] }];
+  const { activeIndexes, hasHeader } = exportConfig;
   const projectRow = (row) => activeIndexes.map((index) => row?.[index] ?? '');
-  const projectedHeader = projectRow(headerRow);
-  const projectedRows = dataRows.map(projectRow);
+  const projectedPages = [];
+  let firstPage = true;
+
+  pages.forEach((page) => {
+    let pageRows = page.rows || [];
+    if (hasHeader && firstPage) {
+      pageRows = pageRows.slice(1);
+      firstPage = false;
+    } else if (hasHeader) {
+      pageRows = [...pageRows];
+    }
+
+    if (extractionState.ui.removeEmptyRows) {
+      pageRows = pageRows.filter((row) => !isRowEmpty(row));
+    }
+
+    projectedPages.push({
+      pageNumber: page.pageNumber,
+      rows: pageRows.map(projectRow)
+    });
+  });
+
+  return projectedPages;
+};
+
+const buildPageSeparatorRow = (columnCount, pageNumber) => {
+  const row = Array.from({ length: columnCount }, () => '');
+  if (columnCount > 0) {
+    row[0] = `=== Page ${pageNumber} ===`;
+  } else {
+    row.push(`=== Page ${pageNumber} ===`);
+  }
+  return row;
+};
+
+const buildCombinedExportRows = (exportConfig, options = {}) => {
+  const { includeHeaderRow = true, includeSeparators = false } = options;
+  const pages = buildProjectedPageRows(exportConfig);
+  const combinedRows = [];
+  if (includeHeaderRow && exportConfig.hasHeader) {
+    combinedRows.push(exportConfig.editedHeaderRow);
+  }
+  const multiplePages = pages.length > 1;
+  pages.forEach((page) => {
+    if (includeSeparators && multiplePages) {
+      combinedRows.push(buildPageSeparatorRow(exportConfig.activeIndexes.length, page.pageNumber));
+    }
+    combinedRows.push(...page.rows);
+  });
+  return combinedRows;
+};
+
+const buildPreviewModel = () => {
+  const exportConfig = buildExportConfig();
+  if (!exportConfig) {
+    return null;
+  }
+
+  const previewRows = buildCombinedExportRows(exportConfig, {
+    includeHeaderRow: false,
+    includeSeparators: true
+  });
 
   return {
-    activeIndexes,
-    headerRow: projectedHeader,
-    dataRows: projectedRows
+    activeIndexes: exportConfig.activeIndexes,
+    headerRow: exportConfig.editedHeaderRow,
+    dataRows: previewRows
   };
 };
 
@@ -662,13 +772,13 @@ const renderPreviewTable = () => {
     return;
   }
 
-  const rawRows = extractionState.rawRows || [];
-  if (!rawRows.length) {
+  const previewModel = buildPreviewModel();
+  if (!previewModel || !previewModel.dataRows.length) {
     resetPreviewTable();
     return;
   }
 
-  const { activeIndexes, headerRow, dataRows } = buildPreviewModel();
+  const { activeIndexes, headerRow, dataRows } = previewModel;
   const limitedRows = dataRows.slice(0, PREVIEW_LIMIT);
   const hasHeader = extractionState.settings.header;
 
@@ -710,10 +820,14 @@ const renderPreviewTable = () => {
   previewEmpty.hidden = true;
 };
 
-const applyExtractionResults = (rows, meta) => {
+const applyExtractionResults = (rows, meta, pageRows = []) => {
   const maxColumns = rows.reduce((max, row) => Math.max(max, row.length), 0);
   extractionState.rawRows = rows.map((row) => [...row]);
   extractionState.rows = rows;
+  extractionState.pageRows = pageRows.map((page) => ({
+    pageNumber: page.pageNumber,
+    rows: page.rows.map((row) => [...row])
+  }));
   extractionState.meta = {
     ...meta,
     rowCount: rows.length,
@@ -724,12 +838,67 @@ const applyExtractionResults = (rows, meta) => {
   extractionState.ui.headerEdits = [];
   updateResultSummary(rows, maxColumns);
   renderPreviewTable();
+  updateDownloadButtons();
 
   if (!rows.length || maxColumns === 0) {
     showError('error.noResult.what', 'error.noResult.how');
     return false;
   }
   return true;
+};
+
+const escapeCsvCell = (value, delimiter) => {
+  const cell = value ?? '';
+  const cellText = String(cell);
+  const mustQuote = cellText.includes('"') || cellText.includes('\n') || cellText.includes('\r') || cellText.includes(delimiter);
+  if (!mustQuote) {
+    return cellText;
+  }
+  return `"${cellText.replace(/"/g, '""')}"`;
+};
+
+const getDelimiterChar = () => (extractionState.ui.delimiter === 'tab' ? '\t' : ',');
+
+const formatTimestamp = () => {
+  const now = new Date();
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}`;
+};
+
+const buildExportFilename = (ext) => `pdf2csv-local_${formatTimestamp()}.${ext}`;
+
+const downloadBlob = (blob, filename) => {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
+
+const buildCsvRows = () => {
+  const exportConfig = buildExportConfig();
+  if (!exportConfig) {
+    return [];
+  }
+  return buildCombinedExportRows(exportConfig, {
+    includeHeaderRow: true,
+    includeSeparators: true
+  });
+};
+
+const buildXlsxSheets = () => {
+  const exportConfig = buildExportConfig();
+  if (!exportConfig) {
+    return [];
+  }
+  const pages = buildProjectedPageRows(exportConfig);
+  return pages.map((page, index) => ({
+    name: `Page${index + 1}`,
+    rows: exportConfig.hasHeader ? [exportConfig.editedHeaderRow, ...page.rows] : page.rows
+  }));
 };
 
 const groupItemsByRow = (items, rowTolerance) => {
@@ -854,14 +1023,71 @@ const filterItemsBySelection = (items, selection, scale) => {
 };
 
 const extractRowsFromPages = async (pages, settings) => {
-  const allRows = [];
+  const results = [];
   for (const pageNumber of pages) {
     const page = await pdfDoc.getPage(pageNumber);
     const textContent = await page.getTextContent();
     const rows = extractRowsFromItems(textContent.items || [], settings.rowTolerance, settings.colGapThreshold);
-    allRows.push(...rows);
+    results.push({ pageNumber, rows });
   }
-  return allRows;
+  return results;
+};
+
+const downloadCsv = () => {
+  if (!extractionState.rows.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  const rows = buildCsvRows();
+  if (!rows.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  const delimiter = getDelimiterChar();
+  const csvLines = rows.map((row) => row.map((cell) => escapeCsvCell(cell, delimiter)).join(delimiter));
+  const csvContent = csvLines.join('\r\n');
+  const withBom = extractionState.ui.csvBom ? `\uFEFF${csvContent}` : csvContent;
+  const blob = new Blob([withBom], { type: 'text/csv;charset=utf-8;' });
+  downloadBlob(blob, buildExportFilename('csv'));
+};
+
+const downloadXlsx = () => {
+  if (!extractionState.rows.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  if (!window.XLSX || !window.XLSX.utils) {
+    showError('error.xlsxFailed.what', 'error.xlsxFailed.how');
+    return;
+  }
+  const sheets = buildXlsxSheets();
+  if (!sheets.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  try {
+    const workbook = window.XLSX.utils.book_new();
+    sheets.forEach((sheetInfo) => {
+      const sheet = window.XLSX.utils.aoa_to_sheet(sheetInfo.rows);
+      Object.keys(sheet).forEach((key) => {
+        if (key.startsWith('!')) {
+          return;
+        }
+        const cell = sheet[key];
+        const value = cell?.v ?? '';
+        cell.t = 's';
+        cell.v = value === null || value === undefined ? '' : String(value);
+      });
+      window.XLSX.utils.book_append_sheet(workbook, sheet, sheetInfo.name);
+    });
+    const arrayBuffer = window.XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([arrayBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    });
+    downloadBlob(blob, buildExportFilename('xlsx'));
+  } catch (error) {
+    showError('error.xlsxFailed.what', 'error.xlsxFailed.how');
+  }
 };
 
 const runExtraction = async () => {
@@ -887,8 +1113,9 @@ const runExtraction = async () => {
   setProgress(true);
 
   try {
-    const rows = await extractRowsFromPages(rangeResult.pages, extractionState.settings);
-    const hasResult = applyExtractionResults(rows, { pages: rangeResult.pages });
+    const pageResults = await extractRowsFromPages(rangeResult.pages, extractionState.settings);
+    const rows = pageResults.flatMap((page) => page.rows);
+    const hasResult = applyExtractionResults(rows, { pages: rangeResult.pages }, pageResults);
     const maxColumns = extractionState.meta.columnCount ?? 0;
     const weak = hasResult && (rows.length < 2 || maxColumns < 2);
     extractionState.warnings = weak ? ['weak-extraction'] : [];
@@ -929,7 +1156,7 @@ const runManualExtraction = async () => {
     const hasResult = applyExtractionResults(rows, {
       pages: [previewState.pageNumber],
       selection: { ...selectionState.rect }
-    });
+    }, [{ pageNumber: previewState.pageNumber, rows }]);
     const maxColumns = extractionState.meta.columnCount ?? 0;
     const weak = hasResult && (rows.length < 2 || maxColumns < 2);
     extractionState.warnings = weak ? ['weak-extraction'] : [];
@@ -1059,11 +1286,13 @@ const handleFileError = (whatKey, howKey) => {
   resetPreviewTable();
   extractionState.rows = [];
   extractionState.rawRows = [];
+  extractionState.pageRows = [];
   extractionState.meta = {};
   extractionState.warnings = [];
   extractionState.ui.headerEdits = [];
   setWeakWarning(false);
   updateResultSummary([], 0);
+  updateDownloadButtons();
   showError(whatKey, howKey);
   updateExtractButton();
 };
@@ -1091,11 +1320,13 @@ const loadPdf = async (file) => {
   updateStatus(file, null);
   extractionState.rows = [];
   extractionState.rawRows = [];
+  extractionState.pageRows = [];
   extractionState.meta = {};
   extractionState.warnings = [];
   extractionState.ui.headerEdits = [];
   setWeakWarning(false);
   updateResultSummary([], 0);
+  updateDownloadButtons();
 
   if (!window.pdfjsLib) {
     handleFileError('error.loadFailed.what', 'error.loadFailed.how');
@@ -1146,12 +1377,14 @@ const resetAll = () => {
   extractionState.settings.header = true;
   extractionState.rows = [];
   extractionState.rawRows = [];
+  extractionState.pageRows = [];
   extractionState.meta = {};
   extractionState.warnings = [];
   extractionState.ui.headerEdits = [];
   extractionState.ui.removeEmptyRows = false;
   extractionState.ui.removeEmptyCols = false;
   extractionState.ui.delimiter = 'comma';
+  extractionState.ui.csvBom = true;
 
   modeInputs.forEach((input) => {
     input.checked = input.value === 'auto';
@@ -1171,6 +1404,9 @@ const resetAll = () => {
   if (removeEmptyColsToggle) {
     removeEmptyColsToggle.checked = false;
   }
+  if (csvBomToggle) {
+    csvBomToggle.checked = true;
+  }
   delimiterInputs.forEach((input) => {
     input.checked = input.value === 'comma';
   });
@@ -1180,6 +1416,7 @@ const resetAll = () => {
   resetPreviewTable();
   setWeakWarning(false);
   updateResultSummary([], 0);
+  updateDownloadButtons();
   updateModeUI();
   updateExtractButton();
 };
@@ -1271,6 +1508,10 @@ removeEmptyColsToggle?.addEventListener('change', () => {
   renderPreviewTable();
 });
 
+csvBomToggle?.addEventListener('change', () => {
+  extractionState.ui.csvBom = csvBomToggle.checked;
+});
+
 delimiterInputs.forEach((input) => {
   input.addEventListener('change', () => {
     if (input.checked) {
@@ -1279,8 +1520,17 @@ delimiterInputs.forEach((input) => {
   });
 });
 
+downloadCsvButton?.addEventListener('click', () => {
+  downloadCsv();
+});
+
+downloadXlsxButton?.addEventListener('click', () => {
+  downloadXlsx();
+});
+
 applyTranslations(getInitialLanguage());
 syncSettingsFromUI();
 updateModeUI();
 updateResultSummary([], 0);
 resetPreviewTable();
+updateDownloadButtons();

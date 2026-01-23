@@ -109,8 +109,8 @@
         <div>
           <label class="form-label" data-i18n-key="index.label.output">出力形式</label>
           <div class="form-actions">
-            <button type="button" class="primary" data-i18n-key="index.output.csv">CSV</button>
-            <button type="button" class="secondary" data-i18n-key="index.output.excel">Excel</button>
+            <button type="button" class="primary" id="downloadCsv" data-i18n-key="index.output.csv">CSV</button>
+            <button type="button" class="secondary" id="downloadXlsx" data-i18n-key="index.output.excel">Excel</button>
           </div>
         </div>
       </div>
@@ -199,6 +199,10 @@
           <input type="checkbox" id="removeEmptyCols" />
           <span class="toggle-label" data-i18n-key="index.preview.removeCols">空列を削除</span>
         </label>
+        <label class="toggle">
+          <input type="checkbox" id="csvBomToggle" checked />
+          <span class="toggle-label" data-i18n-key="index.preview.bom">CSV BOMを付与</span>
+        </label>
         <div class="delimiter-field">
           <span class="form-label small" data-i18n-key="index.preview.delimiter">CSV区切り</span>
           <div class="segmented" role="radiogroup" aria-label="CSV delimiter">
@@ -249,6 +253,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.2.67/build/pdf.min.js" crossorigin="anonymous"></script>
+  <script src="./vendor/xlsx.full.min.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
