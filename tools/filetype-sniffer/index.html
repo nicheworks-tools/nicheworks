@@ -133,7 +133,26 @@
     <!-- Result -->
     <section id="resultSection" class="result-box" style="display:none;">
       <h2>解析結果</h2>
-      <div id="resultContent"></div>
+      <div id="warningBox" class="warning-box" style="display:none;"></div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <h3>サマリー</h3>
+          <div id="summaryContent"></div>
+          <div class="result-actions">
+            <button id="copySummaryBtn" class="secondary-btn small">サマリーをコピー</button>
+          </div>
+        </div>
+        <div class="result-card">
+          <h3>JSON</h3>
+          <pre id="jsonOutput" class="code-block"></pre>
+          <div class="result-actions">
+            <button id="copyJsonBtn" class="secondary-btn small">JSONをコピー</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="safety-note">※ ウイルススキャンではありません。内容が危険な場合があります。（Not a virus scanner; content may still be dangerous.）</p>
 
       <button id="resetBtn" class="secondary-btn">リセット</button>
     </section>
