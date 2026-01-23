@@ -222,6 +222,61 @@ button.secondary {
   border-color: var(--accent);
 }
 
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  background: #fafafa;
+  gap: 4px;
+}
+
+.segmented-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--muted);
+  user-select: none;
+}
+
+.segmented-item input {
+  margin: 0;
+}
+
+.segmented-item input:checked + span {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.warning-box {
+  border: 1px solid #f59e0b;
+  background: #fffbeb;
+  color: #92400e;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.result-summary {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .status-list {
   margin: 0;
   padding: 0;

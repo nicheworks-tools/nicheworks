@@ -7,11 +7,23 @@ const I18N = {
     'index.note.local': '※ローカル完結で動作します。PDFは外部に送信されません。',
     'index.note.usage': '使い方は <a href="./usage.html">使い方ページ</a> をご覧ください。',
     'index.section.input': 'PDF入力',
+    'index.section.settings': '抽出設定',
     'index.section.preview': 'ページプレビュー',
     'index.label.drag': 'PDFをドラッグ＆ドロップ',
     'index.label.status': 'ステータス',
     'index.label.range': 'ページ範囲',
     'index.label.output': '出力形式',
+    'index.mode.label': 'モード',
+    'index.mode.auto': 'Auto',
+    'index.mode.manual': 'Manual',
+    'index.mode.notice': 'Manualは次タスクで実装予定です。',
+    'index.settings.rowTolerance': '行の近接判定 (px)',
+    'index.settings.colGap': '列のギャップ判定 (px)',
+    'index.settings.header': '先頭行をヘッダー扱い',
+    'index.settings.extract': '抽出開始',
+    'index.settings.extractNote': '⏳ 解析は数秒かかる場合があります。',
+    'index.settings.weakWarning': '抽出結果が少ないため、Manualモードの使用を検討してください。',
+    'index.settings.resultSummary': '抽出結果: -',
     'index.drop.title': 'ここにPDFをドロップ',
     'index.drop.sub': 'またはクリックして選択',
     'index.drop.hint': '対応: PDF / 30MBまで',
@@ -79,6 +91,17 @@ const I18N = {
     'index.label.status': 'Status',
     'index.label.range': 'Page range',
     'index.label.output': 'Output format',
+    'index.mode.label': 'Mode',
+    'index.mode.auto': 'Auto',
+    'index.mode.manual': 'Manual',
+    'index.mode.notice': 'Manual mode will be implemented in the next task.',
+    'index.settings.rowTolerance': 'Row proximity (px)',
+    'index.settings.colGap': 'Column gap (px)',
+    'index.settings.header': 'Treat first row as header',
+    'index.settings.extract': 'Extract',
+    'index.settings.extractNote': '⏳ Extraction may take a few seconds.',
+    'index.settings.weakWarning': 'Extraction looks sparse. Consider using Manual mode.',
+    'index.settings.resultSummary': 'Extraction result: -',
     'index.drop.title': 'Drop PDF here',
     'index.drop.sub': 'or click to select',
     'index.drop.hint': 'Supported: PDF / up to 30MB',
@@ -170,6 +193,8 @@ const applyTranslations = (lang) => {
   languageButtons.forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+
+  updateResultSummary(extractionState.rows, extractionState.meta.columnCount || 0);
 };
 
 const normalizeLanguage = (lang) => (lang && lang.toLowerCase().startsWith('ja') ? 'ja' : 'en');
@@ -192,8 +217,6 @@ languageButtons.forEach((btn) => {
   btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
 });
 
-applyTranslations(getInitialLanguage());
-
 const MAX_FILE_SIZE = 30 * 1024 * 1024;
 
 const dropZone = document.getElementById('dropZone');
@@ -207,12 +230,36 @@ const errorWhat = document.getElementById('errorWhat');
 const errorHow = document.getElementById('errorHow');
 const previewCanvas = document.getElementById('pdfPreview');
 const previewPlaceholder = document.getElementById('previewPlaceholder');
-const analyzeButton = document.getElementById('analyzeButton');
+const extractButton = document.getElementById('extractButton');
 const previewArea = previewCanvas?.closest('.preview-area');
+const rowToleranceInput = document.getElementById('rowTolerance');
+const colGapThresholdInput = document.getElementById('colGapThreshold');
+const headerToggle = document.getElementById('headerToggle');
+const modeNotice = document.getElementById('modeNotice');
+const weakWarning = document.getElementById('weakWarning');
+const resultSummary = document.getElementById('resultSummary');
+const modeInputs = document.querySelectorAll('input[name="extractMode"]');
 
 let pdfDoc = null;
 let currentFile = null;
 let renderedPage = null;
+
+const extractionState = {
+  settings: {
+    mode: 'auto',
+    rowTolerance: 4,
+    colGapThreshold: 14,
+    header: true
+  },
+  rows: [],
+  meta: {},
+  warnings: []
+};
+
+window.pdf2csvState = extractionState;
+
+const initialMode = Array.from(modeInputs).find((input) => input.checked)?.value;
+extractionState.settings.mode = initialMode === 'manual' ? 'manual' : 'auto';
 
 if (window.pdfjsLib) {
   window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.2.67/build/pdf.worker.min.js';
@@ -236,6 +283,8 @@ const translate = (key) => {
   const lang = document.documentElement.lang || 'ja';
   return I18N[lang]?.[key] ?? key;
 };
+
+const normalizeText = (text) => (text ?? '').replace(/\s+/g, ' ').trim();
 
 const showError = (whatKey, howKey) => {
   errorWhat.textContent = translate(whatKey);
@@ -264,10 +313,13 @@ const resetPreview = () => {
   previewPlaceholder.hidden = false;
 };
 
-const updateAnalyzeButton = () => {
+const updateExtractButton = () => {
   const rangeResult = validateRange(pageRangeInput.value.trim());
-  const valid = Boolean(pdfDoc) && rangeResult.valid;
-  analyzeButton.disabled = !valid;
+  const isAuto = extractionState.settings.mode === 'auto';
+  const valid = Boolean(pdfDoc) && rangeResult.valid && isAuto;
+  if (extractButton) {
+    extractButton.disabled = !valid;
+  }
 };
 
 const validateRange = (value) => {
@@ -326,6 +378,187 @@ const validateRange = (value) => {
   return { valid: true, pages: uniquePages };
 };
 
+const updateModeUI = () => {
+  const isAuto = extractionState.settings.mode === 'auto';
+  if (modeNotice) {
+    modeNotice.hidden = isAuto;
+  }
+  updateExtractButton();
+};
+
+const syncSettingsFromUI = () => {
+  if (rowToleranceInput) {
+    const value = Number.parseInt(rowToleranceInput.value, 10);
+    extractionState.settings.rowTolerance = Number.isFinite(value) ? Math.max(0, value) : 4;
+  }
+  if (colGapThresholdInput) {
+    const value = Number.parseInt(colGapThresholdInput.value, 10);
+    extractionState.settings.colGapThreshold = Number.isFinite(value) ? Math.max(0, value) : 14;
+  }
+  if (headerToggle) {
+    extractionState.settings.header = headerToggle.checked;
+  }
+};
+
+const setWeakWarning = (visible) => {
+  if (weakWarning) {
+    weakWarning.hidden = !visible;
+  }
+};
+
+function updateResultSummary(rows, maxColumns) {
+  if (!resultSummary) {
+    return;
+  }
+  const rowCount = rows.length;
+  const columnCount = maxColumns ?? 0;
+  const lang = document.documentElement.lang || 'ja';
+  if (lang === 'ja') {
+    resultSummary.textContent = `抽出結果: ${rowCount}行 / ${columnCount}列`;
+  } else {
+    resultSummary.textContent = `Extraction result: ${rowCount} rows / ${columnCount} cols`;
+  }
+}
+
+const groupItemsByRow = (items, rowTolerance) => {
+  const textItems = items
+    .map((item) => {
+      const transform = item.transform || [];
+      const x = transform[4] ?? 0;
+      const y = transform[5] ?? 0;
+      const text = normalizeText(item.str);
+      const width = item.width ?? 0;
+      return { x, y, text, width };
+    })
+    .filter((item) => item.text.length > 0);
+
+  if (!textItems.length) {
+    return [];
+  }
+
+  textItems.sort((a, b) => {
+    if (b.y !== a.y) {
+      return b.y - a.y;
+    }
+    return a.x - b.x;
+  });
+
+  const rows = [];
+
+  for (const item of textItems) {
+    let targetRow = null;
+    for (const row of rows) {
+      if (Math.abs(item.y - row.y) <= rowTolerance) {
+        targetRow = row;
+        break;
+      }
+    }
+    if (!targetRow) {
+      rows.push({ y: item.y, items: [item], count: 1 });
+    } else {
+      targetRow.items.push(item);
+      targetRow.y = (targetRow.y * targetRow.count + item.y) / (targetRow.count + 1);
+      targetRow.count += 1;
+    }
+  }
+
+  rows.sort((a, b) => b.y - a.y);
+  return rows;
+};
+
+const buildCellsFromRow = (rowItems, colGapThreshold) => {
+  const sorted = [...rowItems].sort((a, b) => a.x - b.x);
+  const cells = [];
+  let parts = [];
+  let prevEnd = null;
+
+  sorted.forEach((item) => {
+    const text = normalizeText(item.text);
+    if (!text) {
+      return;
+    }
+    if (prevEnd !== null && item.x - prevEnd > colGapThreshold) {
+      const joined = normalizeText(parts.join(' '));
+      if (joined) {
+        cells.push(joined);
+      }
+      parts = [];
+    }
+    parts.push(text);
+    const end = item.x + (item.width || 0);
+    prevEnd = prevEnd === null ? end : Math.max(prevEnd, end);
+  });
+
+  if (parts.length) {
+    const joined = normalizeText(parts.join(' '));
+    if (joined) {
+      cells.push(joined);
+    }
+  }
+
+  return cells;
+};
+
+const extractRowsFromItems = (items, rowTolerance, colGapThreshold) => {
+  const groupedRows = groupItemsByRow(items, rowTolerance);
+  return groupedRows
+    .map((row) => buildCellsFromRow(row.items, colGapThreshold))
+    .filter((row) => row.length > 0);
+};
+
+const extractRowsFromPages = async (pages, settings) => {
+  const allRows = [];
+  for (const pageNumber of pages) {
+    const page = await pdfDoc.getPage(pageNumber);
+    const textContent = await page.getTextContent();
+    const rows = extractRowsFromItems(textContent.items || [], settings.rowTolerance, settings.colGapThreshold);
+    allRows.push(...rows);
+  }
+  return allRows;
+};
+
+const runExtraction = async () => {
+  syncSettingsFromUI();
+  updateExtractButton();
+  if (extractionState.settings.mode !== 'auto') {
+    return;
+  }
+
+  const rangeResult = validateRange(pageRangeInput.value.trim());
+  if (!rangeResult.valid) {
+    showError(rangeResult.error.what, rangeResult.error.how);
+    return;
+  }
+
+  if (!pdfDoc) {
+    showError('error.needPdf.what', 'error.needPdf.how');
+    return;
+  }
+
+  clearError();
+  setWeakWarning(false);
+
+  try {
+    const rows = await extractRowsFromPages(rangeResult.pages, extractionState.settings);
+    extractionState.rows = rows;
+    extractionState.meta = {
+      pages: rangeResult.pages,
+      rowCount: rows.length,
+      header: extractionState.settings.header,
+      mode: extractionState.settings.mode
+    };
+    const maxColumns = rows.reduce((max, row) => Math.max(max, row.length), 0);
+    extractionState.meta.columnCount = maxColumns;
+
+    const weak = rows.length < 2 || maxColumns < 2;
+    extractionState.warnings = weak ? ['weak-extraction'] : [];
+    setWeakWarning(weak);
+    updateResultSummary(rows, maxColumns);
+  } catch (error) {
+    showError('error.loadFailed.what', 'error.loadFailed.how');
+  }
+};
+
 const renderPreview = async (pageNumber) => {
   if (!pdfDoc) {
     return;
@@ -353,19 +586,19 @@ const updateRangeAndPreview = async () => {
   if (!pdfDoc) {
     clearError();
     resetPreview();
-    updateAnalyzeButton();
+    updateExtractButton();
     return;
   }
 
   const result = validateRange(rangeValue);
   if (!result.valid) {
     showError(result.error.what, result.error.how);
-    updateAnalyzeButton();
+    updateExtractButton();
     return;
   }
 
   clearError();
-  updateAnalyzeButton();
+  updateExtractButton();
 
   const firstPage = result.pages[0];
   if (firstPage && firstPage !== renderedPage) {
@@ -389,8 +622,13 @@ const handleFileError = (whatKey, howKey) => {
   renderedPage = null;
   resetStatus();
   resetPreview();
+  extractionState.rows = [];
+  extractionState.meta = {};
+  extractionState.warnings = [];
+  setWeakWarning(false);
+  updateResultSummary([], 0);
   showError(whatKey, howKey);
-  updateAnalyzeButton();
+  updateExtractButton();
 };
 
 const loadPdf = async (file) => {
@@ -413,6 +651,11 @@ const loadPdf = async (file) => {
   clearError();
   resetPreview();
   updateStatus(file, null);
+  extractionState.rows = [];
+  extractionState.meta = {};
+  extractionState.warnings = [];
+  setWeakWarning(false);
+  updateResultSummary([], 0);
 
   if (!window.pdfjsLib) {
     handleFileError('error.loadFailed.what', 'error.loadFailed.how');
@@ -479,10 +722,34 @@ fileInput.addEventListener('change', (event) => {
   }
 });
 
+modeInputs.forEach((input) => {
+  input.addEventListener('change', () => {
+    extractionState.settings.mode = input.value === 'manual' ? 'manual' : 'auto';
+    updateModeUI();
+  });
+});
+
+rowToleranceInput?.addEventListener('input', () => {
+  syncSettingsFromUI();
+});
+
+colGapThresholdInput?.addEventListener('input', () => {
+  syncSettingsFromUI();
+});
+
+headerToggle?.addEventListener('change', () => {
+  syncSettingsFromUI();
+});
+
 pageRangeInput.addEventListener('input', () => {
   updateRangeAndPreview();
 });
 
-analyzeButton.addEventListener('click', () => {
-  updateAnalyzeButton();
+extractButton.addEventListener('click', () => {
+  runExtraction();
 });
+
+applyTranslations(getInitialLanguage());
+syncSettingsFromUI();
+updateModeUI();
+updateResultSummary([], 0);

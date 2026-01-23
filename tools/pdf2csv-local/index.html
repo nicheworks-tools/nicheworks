@@ -115,10 +115,51 @@
         </div>
       </div>
 
-      <div class="form-actions align-center">
-        <button type="button" class="primary" id="analyzeButton" disabled data-i18n-key="index.action.analyze">解析開始</button>
-        <p class="form-hint inline" data-i18n-key="index.action.note">⏳ この処理は最大3秒ほどかかる場合があります。</p>
+    </section>
+
+    <section class="card" aria-label="Extraction settings">
+      <h2 class="card-title" data-i18n-key="index.section.settings">抽出設定</h2>
+
+      <div class="form-row">
+        <div>
+          <label class="form-label" data-i18n-key="index.mode.label">モード</label>
+          <div class="segmented" role="radiogroup" aria-label="Extraction mode">
+            <label class="segmented-item">
+              <input type="radio" name="extractMode" value="auto" checked />
+              <span data-i18n-key="index.mode.auto">Auto</span>
+            </label>
+            <label class="segmented-item">
+              <input type="radio" name="extractMode" value="manual" />
+              <span data-i18n-key="index.mode.manual">Manual</span>
+            </label>
+          </div>
+          <p class="form-hint" id="modeNotice" data-i18n-key="index.mode.notice">Manualは次タスクで実装予定です。</p>
+        </div>
+        <div>
+          <label class="form-label" for="rowTolerance" data-i18n-key="index.settings.rowTolerance">行の近接判定 (px)</label>
+          <input type="number" id="rowTolerance" class="text-input" min="0" step="1" value="4" />
+        </div>
+        <div>
+          <label class="form-label" for="colGapThreshold" data-i18n-key="index.settings.colGap">列のギャップ判定 (px)</label>
+          <input type="number" id="colGapThreshold" class="text-input" min="0" step="1" value="14" />
+        </div>
       </div>
+
+      <label class="toggle">
+        <input type="checkbox" id="headerToggle" checked />
+        <span class="toggle-label" data-i18n-key="index.settings.header">先頭行をヘッダー扱い</span>
+      </label>
+
+      <div class="form-actions align-center">
+        <button type="button" class="primary" id="extractButton" disabled data-i18n-key="index.settings.extract">Extract</button>
+        <p class="form-hint inline" data-i18n-key="index.settings.extractNote">⏳ 解析は数秒かかる場合があります。</p>
+      </div>
+
+      <div class="warning-box" id="weakWarning" role="alert" hidden>
+        <p data-i18n-key="index.settings.weakWarning">抽出結果が少ないため、Manualモードの使用を検討してください。</p>
+      </div>
+
+      <p class="result-summary" id="resultSummary" data-i18n-key="index.settings.resultSummary">抽出結果: -</p>
     </section>
 
     <section class="card" aria-label="Page preview">
