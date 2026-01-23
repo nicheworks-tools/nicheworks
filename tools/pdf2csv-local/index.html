@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>PDF2CSV Local｜PDF明細・請求書をCSV/Excel変換 | NicheWorks</title>
-  <meta name="description" content="PDFの明細書・請求書をブラウザ内でCSV/Excelに変換するローカル完結ツール。アップロード内容は外部送信しません。" />
+  <title data-i18n-key="meta.index.title">PDF2CSV Local｜PDF明細・請求書をCSV/Excel変換 | NicheWorks</title>
+  <meta name="description" data-i18n-key="meta.index.desc" data-i18n-attr="content" content="PDFの明細書・請求書をブラウザ内でCSV/Excelに変換するローカル完結ツール。アップロード内容は外部送信しません。" />
 
   <link rel="canonical" href="https://nicheworks.pages.dev/tools/pdf2csv-local/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="PDF2CSV Local｜PDF明細・請求書をCSV/Excel変換 | NicheWorks" />
-  <meta property="og:description" content="PDFの明細書・請求書をブラウザ内でCSV/Excelに変換するローカル完結ツール。アップロード内容は外部送信しません。" />
+  <meta property="og:title" data-i18n-key="meta.index.title" data-i18n-attr="content" content="PDF2CSV Local｜PDF明細・請求書をCSV/Excel変換 | NicheWorks" />
+  <meta property="og:description" data-i18n-key="meta.index.desc" data-i18n-attr="content" content="PDFの明細書・請求書をブラウザ内でCSV/Excelに変換するローカル完結ツール。アップロード内容は外部送信しません。" />
   <meta property="og:url" content="https://nicheworks.pages.dev/tools/pdf2csv-local/" />
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -46,11 +46,8 @@
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
-      <h1 class="nw-title" data-i18n="ja">PDF2CSV Local（ローカル完結PDF→CSV変換）</h1>
-      <h1 class="nw-title" data-i18n="en" hidden>PDF2CSV Local</h1>
-
-      <p class="nw-subtitle" data-i18n="ja">銀行明細・請求書PDFをCSV/Excel向けに整形するローカル変換ツールです。</p>
-      <p class="nw-subtitle" data-i18n="en" hidden>Convert bank statements or invoices from PDF to CSV/Excel locally in your browser.</p>
+      <h1 class="nw-title" data-i18n-key="index.title">PDF2CSV Local（ローカル完結PDF→CSV変換）</h1>
+      <p class="nw-subtitle" data-i18n-key="index.subtitle">銀行明細・請求書PDFをCSV/Excel向けに整形するローカル変換ツールです。</p>
 
       <div class="nw-lang-switch" aria-label="Language switch">
         <button type="button" data-lang="ja" class="active">JP</button> /
@@ -60,27 +57,22 @@
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <div class="ad-slot ad-top" data-i18n-key="common.adSlot">広告枠（準備中）</div>
 
-    <p class="nw-note" data-i18n="ja">※ローカル完結で動作します。PDFは外部に送信されません。</p>
-    <p class="nw-note" data-i18n="en" hidden>Runs locally in your browser. PDFs are not uploaded.</p>
+    <p class="nw-note" data-i18n-key="index.note.local">※ローカル完結で動作します。PDFは外部に送信されません。</p>
 
-    <p class="nw-note" data-i18n="ja">使い方は <a href="./usage.html">使い方ページ</a> をご覧ください。</p>
-    <p class="nw-note" data-i18n="en" hidden>See <a href="./usage.html">Usage</a> for step-by-step guidance.</p>
+    <p class="nw-note" data-i18n-key="index.note.usage" data-i18n-html="true">使い方は <a href="./usage.html">使い方ページ</a> をご覧ください。</p>
 
     <section class="card" aria-label="PDF input">
-      <h2 class="card-title" data-i18n="ja">PDF入力（準備中）</h2>
-      <h2 class="card-title" data-i18n="en" hidden>PDF input (coming soon)</h2>
+      <h2 class="card-title" data-i18n-key="index.section.input">PDF入力（準備中）</h2>
 
       <div class="form-row" id="toolRoot">
         <div>
-          <label data-i18n="ja">PDFをドラッグ＆ドロップ</label>
-          <label data-i18n="en" hidden>Drag & drop PDF</label>
-          <div class="table-scroll">アップロードUI・解析UIは後続タスクで実装予定</div>
+          <label data-i18n-key="index.label.drag">PDFをドラッグ＆ドロップ</label>
+          <div class="table-scroll" data-i18n-key="index.placeholder.upload">アップロードUI・解析UIは後続タスクで実装予定</div>
         </div>
         <div>
-          <label data-i18n="ja">出力形式</label>
-          <label data-i18n="en" hidden>Output format</label>
+          <label data-i18n-key="index.label.output">出力形式</label>
           <div class="form-actions">
             <button type="button" class="primary">CSV</button>
             <button type="button" class="secondary">Excel</button>
@@ -90,14 +82,12 @@
     </section>
 
     <section class="card" aria-label="Output">
-      <h2 class="card-title" data-i18n="ja">出力プレビュー（準備中）</h2>
-      <h2 class="card-title" data-i18n="en" hidden>Output preview (coming soon)</h2>
-      <div class="table-scroll">テーブル表示は後続タスクで実装予定</div>
+      <h2 class="card-title" data-i18n-key="index.section.preview">出力プレビュー（準備中）</h2>
+      <div class="table-scroll" data-i18n-key="index.placeholder.preview">テーブル表示は後続タスクで実装予定</div>
     </section>
 
     <section class="nw-donate" aria-label="Support">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
-      <p class="nw-donate-text" data-i18n="en" hidden>If this tool helps, please consider supporting development.</p>
+      <p class="nw-donate-text" data-i18n-key="index.note.donate">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
@@ -105,8 +95,7 @@
     </section>
 
     <div class="nw-links" aria-label="Internal links">
-      <span data-i18n="ja">関連ツール:</span>
-      <span data-i18n="en" hidden>Related tools:</span>
+      <span data-i18n-key="index.related.label">関連ツール:</span>
       <a href="/tools/log-formatter/">Log Formatter</a>
       <a href="/tools/rename-wizard/">Rename Wizard</a>
       <a href="/tools/contract-cleaner/">Contract Cleaner</a>
@@ -116,7 +105,7 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line" data-i18n-key="common.footer.disclaimer">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
     </p>
