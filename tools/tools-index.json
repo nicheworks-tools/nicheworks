@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-23T04:39:41.703Z",
-  "total": 58,
+  "generatedAt": "2026-01-23T04:51:29.515Z",
+  "total": 57,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -350,14 +350,6 @@
       "slug": "pages-deploy-guide",
       "title_en": "pages-deploy-guide",
       "title_ja": "pages-deploy-guide",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "pdf2csv-local",
-      "title_en": "pdf2csv-local",
-      "title_ja": "pdf2csv-local",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
