@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title data-i18n-key="meta.faq.title">FAQ｜PDF2CSV Local | NicheWorks</title>
-  <meta name="description" data-i18n-key="meta.faq.desc" data-i18n-attr="content" content="PDF2CSV Localに関するよくある質問をまとめる予定です。現在は枠のみ用意しています。" />
+  <meta name="description" data-i18n-key="meta.faq.desc" data-i18n-attr="content" content="PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。" />
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/pdf2csv-local/" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/pdf2csv-local/faq.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" data-i18n-key="meta.faq.title" data-i18n-attr="content" content="FAQ｜PDF2CSV Local | NicheWorks" />
-  <meta property="og:description" data-i18n-key="meta.faq.desc" data-i18n-attr="content" content="PDF2CSV Localに関するよくある質問をまとめる予定です。現在は枠のみ用意しています。" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/pdf2csv-local/" />
+  <meta property="og:description" data-i18n-key="meta.faq.desc" data-i18n-attr="content" content="PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/pdf2csv-local/faq.html" />
   <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -35,9 +35,9 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "PDF2CSV Local",
-    "url": "https://nicheworks.pages.dev/tools/pdf2csv-local/",
+    "url": "https://nicheworks.pages.dev/tools/pdf2csv-local/faq.html",
     "applicationCategory": "UtilityApplication",
-    "description": "PDF2CSV Localに関するよくある質問をまとめる予定です。現在は枠のみ用意しています。",
+    "description": "PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。",
     "operatingSystem": "All"
   }
   </script>
@@ -57,8 +57,23 @@
 
   <main class="doc-main">
     <section class="doc-card">
-      <h2 data-i18n-key="faq.section.title">準備中</h2>
-      <p data-i18n-key="faq.section.body">FAQ項目は後続タスクで追加します。</p>
+      <h2 data-i18n-key="faq.section.title">よくある質問</h2>
+      <dl class="faq-list">
+        <dt data-i18n-key="faq.q1">Q. PDFは外部に送信されますか？</dt>
+        <dd data-i18n-key="faq.a1">A. 送信されません。処理はブラウザ内で完結し、PDFはローカルでのみ扱います。</dd>
+
+        <dt data-i18n-key="faq.q2">Q. 画像スキャンのPDFは対応していますか？</dt>
+        <dd data-i18n-key="faq.a2">A. 文字情報が埋め込まれていない画像スキャンPDFには対応していません。</dd>
+
+        <dt data-i18n-key="faq.q3">Q. 抽出精度はどのくらいですか？</dt>
+        <dd data-i18n-key="faq.a3">A. PDFのレイアウトに依存します。Autoで合わない場合はManualで範囲指定してください。</dd>
+
+        <dt data-i18n-key="faq.q4">Q. 会社PCで使っても大丈夫？</dt>
+        <dd data-i18n-key="faq.a4">A. ブラウザ内で処理されますが、社内ルールに従ってご利用ください。</dd>
+
+        <dt data-i18n-key="faq.q5">Q. CSVが文字化けします。</dt>
+        <dd data-i18n-key="faq.a5">A. Excelで開く場合はBOMを付与したCSVを推奨します。区切り文字も必要に応じて変更してください。</dd>
+      </dl>
 
       <p class="doc-back"><a href="./index.html" data-i18n-key="faq.back">← ツール本体へ戻る</a></p>
     </section>
