@@ -133,7 +133,16 @@
               <span data-i18n-key="index.mode.manual">Manual</span>
             </label>
           </div>
-          <p class="form-hint" id="modeNotice" data-i18n-key="index.mode.notice">Manualは次タスクで実装予定です。</p>
+          <p class="form-hint" id="modeNotice" data-i18n-key="index.mode.notice">Manualではプレビュー上で範囲を選択して再抽出できます。</p>
+          <div class="manual-controls" id="manualControls" hidden>
+            <p class="form-hint" data-i18n-key="index.manual.hint">プレビュー上でドラッグして表エリアを選択し、再抽出してください。</p>
+            <div class="manual-actions">
+              <button type="button" class="secondary" id="resetSelection" data-i18n-key="index.manual.reset">Reset selection</button>
+              <button type="button" class="primary" id="reextractButton" disabled data-i18n-key="index.manual.reextract">Re-extract</button>
+            </div>
+            <p class="manual-coords" id="selectionCoords">Selection: -</p>
+            <p class="form-hint warning" id="manualWarning" data-i18n-key="index.manual.warning" hidden>選択範囲がありません。</p>
+          </div>
         </div>
         <div>
           <label class="form-label" for="rowTolerance" data-i18n-key="index.settings.rowTolerance">行の近接判定 (px)</label>
@@ -166,6 +175,7 @@
       <h2 class="card-title" data-i18n-key="index.section.preview">ページプレビュー</h2>
       <div class="preview-area">
         <canvas id="pdfPreview" aria-label="PDF preview"></canvas>
+        <div class="selection-rect" id="selectionRect" hidden></div>
         <p class="preview-placeholder" id="previewPlaceholder" data-i18n-key="index.preview.placeholder">PDFを読み込むとプレビューが表示されます。</p>
       </div>
     </section>

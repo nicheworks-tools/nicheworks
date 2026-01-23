@@ -16,7 +16,11 @@ const I18N = {
     'index.mode.label': 'モード',
     'index.mode.auto': 'Auto',
     'index.mode.manual': 'Manual',
-    'index.mode.notice': 'Manualは次タスクで実装予定です。',
+    'index.mode.notice': 'Manualではプレビュー上で範囲を選択して再抽出できます。',
+    'index.manual.hint': 'プレビュー上でドラッグして表エリアを選択し、再抽出してください。',
+    'index.manual.reset': '選択をリセット',
+    'index.manual.reextract': '再抽出',
+    'index.manual.warning': '選択範囲がありません。',
     'index.settings.rowTolerance': '行の近接判定 (px)',
     'index.settings.colGap': '列のギャップ判定 (px)',
     'index.settings.header': '先頭行をヘッダー扱い',
@@ -94,7 +98,11 @@ const I18N = {
     'index.mode.label': 'Mode',
     'index.mode.auto': 'Auto',
     'index.mode.manual': 'Manual',
-    'index.mode.notice': 'Manual mode will be implemented in the next task.',
+    'index.mode.notice': 'In Manual mode, drag to select an area on the preview and re-extract.',
+    'index.manual.hint': 'Drag to select the table area on the preview, then re-extract.',
+    'index.manual.reset': 'Reset selection',
+    'index.manual.reextract': 'Re-extract',
+    'index.manual.warning': 'No selection yet.',
     'index.settings.rowTolerance': 'Row proximity (px)',
     'index.settings.colGap': 'Column gap (px)',
     'index.settings.header': 'Treat first row as header',
@@ -195,6 +203,7 @@ const applyTranslations = (lang) => {
   });
 
   updateResultSummary(extractionState.rows, extractionState.meta.columnCount || 0);
+  updateSelectionCoords();
 };
 
 const normalizeLanguage = (lang) => (lang && lang.toLowerCase().startsWith('ja') ? 'ja' : 'en');
@@ -239,6 +248,12 @@ const modeNotice = document.getElementById('modeNotice');
 const weakWarning = document.getElementById('weakWarning');
 const resultSummary = document.getElementById('resultSummary');
 const modeInputs = document.querySelectorAll('input[name="extractMode"]');
+const manualControls = document.getElementById('manualControls');
+const resetSelectionButton = document.getElementById('resetSelection');
+const reextractButton = document.getElementById('reextractButton');
+const selectionCoords = document.getElementById('selectionCoords');
+const manualWarning = document.getElementById('manualWarning');
+const selectionRect = document.getElementById('selectionRect');
 
 let pdfDoc = null;
 let currentFile = null;
@@ -257,6 +272,20 @@ const extractionState = {
 };
 
 window.pdf2csvState = extractionState;
+
+const previewState = {
+  scale: 1,
+  width: 0,
+  height: 0,
+  pageNumber: null
+};
+
+const selectionState = {
+  dragging: false,
+  start: null,
+  end: null,
+  rect: null
+};
 
 const initialMode = Array.from(modeInputs).find((input) => input.checked)?.value;
 extractionState.settings.mode = initialMode === 'manual' ? 'manual' : 'auto';
@@ -311,6 +340,11 @@ const resetPreview = () => {
   previewCanvas.height = 0;
   previewArea?.classList.remove('has-preview');
   previewPlaceholder.hidden = false;
+  previewState.scale = 1;
+  previewState.width = 0;
+  previewState.height = 0;
+  previewState.pageNumber = null;
+  clearSelection();
 };
 
 const updateExtractButton = () => {
@@ -383,7 +417,97 @@ const updateModeUI = () => {
   if (modeNotice) {
     modeNotice.hidden = isAuto;
   }
+  if (manualControls) {
+    manualControls.hidden = isAuto;
+  }
+  previewArea?.classList.toggle('manual-active', !isAuto);
+  setManualWarning(false);
+  updateManualButtons();
   updateExtractButton();
+};
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const normalizeSelectionRect = (start, end) => {
+  if (!start || !end) {
+    return null;
+  }
+  const x = Math.min(start.x, end.x);
+  const y = Math.min(start.y, end.y);
+  const width = Math.abs(start.x - end.x);
+  const height = Math.abs(start.y - end.y);
+  if (width < 2 || height < 2) {
+    return null;
+  }
+  return { x, y, width, height };
+};
+
+const updateSelectionOverlay = () => {
+  if (!selectionRect) {
+    return;
+  }
+  const rect = selectionState.rect;
+  if (!rect) {
+    selectionRect.hidden = true;
+    selectionRect.style.width = '0px';
+    selectionRect.style.height = '0px';
+    return;
+  }
+  const canvasRect = previewCanvas.getBoundingClientRect();
+  const areaRect = previewArea?.getBoundingClientRect();
+  const offsetX = areaRect ? canvasRect.left - areaRect.left : 0;
+  const offsetY = areaRect ? canvasRect.top - areaRect.top : 0;
+  selectionRect.hidden = false;
+  selectionRect.style.left = `${rect.x + offsetX}px`;
+  selectionRect.style.top = `${rect.y + offsetY}px`;
+  selectionRect.style.width = `${rect.width}px`;
+  selectionRect.style.height = `${rect.height}px`;
+};
+
+const updateSelectionCoords = () => {
+  if (!selectionCoords) {
+    return;
+  }
+  const rect = selectionState.rect;
+  const lang = document.documentElement.lang || 'ja';
+  if (!rect) {
+    selectionCoords.textContent = lang === 'ja' ? '選択範囲: -' : 'Selection: -';
+    return;
+  }
+  const x = Math.round(rect.x);
+  const y = Math.round(rect.y);
+  const width = Math.round(rect.width);
+  const height = Math.round(rect.height);
+  if (lang === 'ja') {
+    selectionCoords.textContent = `選択範囲: x=${x}, y=${y}, w=${width}, h=${height}`;
+  } else {
+    selectionCoords.textContent = `Selection: x=${x}, y=${y}, w=${width}, h=${height}`;
+  }
+};
+
+const updateManualButtons = () => {
+  if (!reextractButton) {
+    return;
+  }
+  const enabled = extractionState.settings.mode === 'manual' && Boolean(pdfDoc) && Boolean(selectionState.rect);
+  reextractButton.disabled = !enabled;
+};
+
+const setManualWarning = (visible) => {
+  if (manualWarning) {
+    manualWarning.hidden = !visible;
+  }
+};
+
+const clearSelection = () => {
+  selectionState.dragging = false;
+  selectionState.start = null;
+  selectionState.end = null;
+  selectionState.rect = null;
+  updateSelectionOverlay();
+  updateSelectionCoords();
+  updateManualButtons();
+  setManualWarning(false);
 };
 
 const syncSettingsFromUI = () => {
@@ -506,6 +630,41 @@ const extractRowsFromItems = (items, rowTolerance, colGapThreshold) => {
     .filter((row) => row.length > 0);
 };
 
+const getItemRect = (item, scale) => {
+  const transform = item.transform || [];
+  const x = (transform[4] ?? 0) * scale;
+  const baselineY = (transform[5] ?? 0) * scale;
+  const width = (item.width ?? 0) * scale;
+  const height = Math.abs(transform[3] ?? item.height ?? 0) * scale || 8 * scale;
+  const y = baselineY - height;
+  return {
+    left: x,
+    right: x + width,
+    top: y,
+    bottom: y + height
+  };
+};
+
+const filterItemsBySelection = (items, selection, scale) => {
+  if (!selection) {
+    return items;
+  }
+  const selectionLeft = selection.x;
+  const selectionRight = selection.x + selection.width;
+  const selectionTop = selection.y;
+  const selectionBottom = selection.y + selection.height;
+
+  return (items || []).filter((item) => {
+    const rect = getItemRect(item, scale);
+    const intersects =
+      rect.right >= selectionLeft &&
+      rect.left <= selectionRight &&
+      rect.bottom >= selectionTop &&
+      rect.top <= selectionBottom;
+    return intersects;
+  });
+};
+
 const extractRowsFromPages = async (pages, settings) => {
   const allRows = [];
   for (const pageNumber of pages) {
@@ -559,6 +718,51 @@ const runExtraction = async () => {
   }
 };
 
+const runManualExtraction = async () => {
+  syncSettingsFromUI();
+  if (extractionState.settings.mode !== 'manual') {
+    return;
+  }
+
+  if (!pdfDoc || !previewState.pageNumber) {
+    showError('error.needPdf.what', 'error.needPdf.how');
+    return;
+  }
+
+  if (!selectionState.rect) {
+    setManualWarning(true);
+    return;
+  }
+
+  clearError();
+  setManualWarning(false);
+  setWeakWarning(false);
+
+  try {
+    const page = await pdfDoc.getPage(previewState.pageNumber);
+    const textContent = await page.getTextContent();
+    const filteredItems = filterItemsBySelection(textContent.items || [], selectionState.rect, previewState.scale);
+    const rows = extractRowsFromItems(filteredItems, extractionState.settings.rowTolerance, extractionState.settings.colGapThreshold);
+    extractionState.rows = rows;
+    extractionState.meta = {
+      pages: [previewState.pageNumber],
+      rowCount: rows.length,
+      header: extractionState.settings.header,
+      mode: extractionState.settings.mode,
+      selection: { ...selectionState.rect }
+    };
+    const maxColumns = rows.reduce((max, row) => Math.max(max, row.length), 0);
+    extractionState.meta.columnCount = maxColumns;
+
+    const weak = rows.length < 2 || maxColumns < 2;
+    extractionState.warnings = weak ? ['weak-extraction'] : [];
+    setWeakWarning(weak);
+    updateResultSummary(rows, maxColumns);
+  } catch (error) {
+    showError('error.loadFailed.what', 'error.loadFailed.how');
+  }
+};
+
 const renderPreview = async (pageNumber) => {
   if (!pdfDoc) {
     return;
@@ -579,6 +783,11 @@ const renderPreview = async (pageNumber) => {
 
   previewArea?.classList.add('has-preview');
   previewPlaceholder.hidden = true;
+  previewState.scale = scale;
+  previewState.width = viewport.width;
+  previewState.height = viewport.height;
+  previewState.pageNumber = pageNumber;
+  clearSelection();
 };
 
 const updateRangeAndPreview = async () => {
@@ -614,6 +823,53 @@ const updateStatus = (file, pages) => {
   statusName.textContent = file?.name ?? '-';
   statusPages.textContent = pages ? `${pages}` : '-';
   statusSize.textContent = file ? formatBytes(file.size) : '-';
+};
+
+const getCanvasPoint = (event) => {
+  const rect = previewCanvas.getBoundingClientRect();
+  return {
+    x: clamp(event.clientX - rect.left, 0, rect.width),
+    y: clamp(event.clientY - rect.top, 0, rect.height)
+  };
+};
+
+const startSelection = (event) => {
+  if (extractionState.settings.mode !== 'manual' || !pdfDoc || !previewState.pageNumber) {
+    return;
+  }
+  if (event.button !== 0) {
+    return;
+  }
+  const point = getCanvasPoint(event);
+  selectionState.dragging = true;
+  selectionState.start = point;
+  selectionState.end = point;
+  selectionState.rect = normalizeSelectionRect(selectionState.start, selectionState.end);
+  updateSelectionOverlay();
+  updateSelectionCoords();
+  updateManualButtons();
+  setManualWarning(false);
+};
+
+const moveSelection = (event) => {
+  if (!selectionState.dragging) {
+    return;
+  }
+  selectionState.end = getCanvasPoint(event);
+  selectionState.rect = normalizeSelectionRect(selectionState.start, selectionState.end);
+  updateSelectionOverlay();
+  updateSelectionCoords();
+};
+
+const endSelection = () => {
+  if (!selectionState.dragging) {
+    return;
+  }
+  selectionState.dragging = false;
+  selectionState.rect = normalizeSelectionRect(selectionState.start, selectionState.end);
+  updateSelectionOverlay();
+  updateSelectionCoords();
+  updateManualButtons();
 };
 
 const handleFileError = (whatKey, howKey) => {
@@ -715,6 +971,11 @@ dropZone.addEventListener('keydown', (event) => {
   }
 });
 
+previewCanvas.addEventListener('mousedown', startSelection);
+previewCanvas.addEventListener('mousemove', moveSelection);
+previewCanvas.addEventListener('mouseleave', endSelection);
+window.addEventListener('mouseup', endSelection);
+
 fileInput.addEventListener('change', (event) => {
   const file = event.target.files?.[0];
   if (file) {
@@ -747,6 +1008,14 @@ pageRangeInput.addEventListener('input', () => {
 
 extractButton.addEventListener('click', () => {
   runExtraction();
+});
+
+resetSelectionButton?.addEventListener('click', () => {
+  clearSelection();
+});
+
+reextractButton?.addEventListener('click', () => {
+  runManualExtraction();
 });
 
 applyTranslations(getInitialLanguage());
