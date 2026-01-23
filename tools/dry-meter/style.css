@@ -342,6 +342,11 @@ input[type="range"]{
   display:grid;
   gap:6px;
 }
+.breakdown-note{
+  margin:6px 0 0;
+  font-size:11px;
+  color:var(--muted);
+}
 .breakdown-item{
   display:flex;
   justify-content:space-between;
@@ -354,6 +359,14 @@ input[type="range"]{
 .breakdown-item.negative{ color:#b91c1c; }
 .breakdown-item.neutral{ color:var(--muted); }
 
+.why-label{
+  margin:10px 0 4px;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+}
 .why-text{
   margin:8px 0 0;
   font-size:12px;

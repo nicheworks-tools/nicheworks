@@ -135,6 +135,10 @@
     const humidityScore = clamp(((100 - humidity) / 70) * 40, 0, 40);
     const windScore = clamp((wind / 5) * 20, 0, 20);
 
+    const tempNeutral = 20;
+    const humidityNeutral = 20;
+    const windNeutral = 10;
+
     let score = tempScore + humidityScore + windScore;
 
     // target adjustment
@@ -156,17 +160,17 @@
     const breakdown = [
       {
         key: "temp",
-        value: Math.round(tempScore),
+        value: Math.round(tempScore - tempNeutral),
         label: { ja: "気温", en: "Temperature" }
       },
       {
         key: "humidity",
-        value: Math.round(humidityScore),
+        value: Math.round(humidityScore - humidityNeutral),
         label: { ja: "湿度", en: "Humidity" }
       },
       {
         key: "wind",
-        value: Math.round(windScore),
+        value: Math.round(windScore - windNeutral),
         label: { ja: "風", en: "Wind" }
       }
     ];
