@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const progress = document.getElementById("progress");
   const errorBox = document.getElementById("errorBox");
+  const warningBox = document.getElementById("warningBox");
 
   const usageLinkJa = document.getElementById("usageLink-ja");
   const usageLinkEn = document.getElementById("usageLink-en");
@@ -29,6 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /* All JP/EN elements */
   const i18nNodes = document.querySelectorAll("[data-i18n]");
   const langButtons = document.querySelectorAll(".nw-lang-switch button");
+  const presetButtons = document.querySelectorAll(".preset-btn");
+
+  const downloadMmdJa = document.getElementById("downloadMmd-ja");
+  const downloadMmdEn = document.getElementById("downloadMmd-en");
+  const downloadTxtJa = document.getElementById("downloadTxt-ja");
+  const downloadTxtEn = document.getElementById("downloadTxt-en");
+
+  const MAX_INPUT_BYTES = 300 * 1024;
+  const MAX_DEPTH = 12;
 
   /* ----------------------------
       Language Switch
@@ -80,6 +90,47 @@ document.addEventListener("DOMContentLoaded", () => {
     errorBox.classList.add("hidden");
   };
 
+  const showWarning = (msg) => {
+    warningBox.textContent = msg;
+    warningBox.classList.remove("hidden");
+  };
+
+  const hideWarning = () => {
+    warningBox.textContent = "";
+    warningBox.classList.add("hidden");
+  };
+
+  const getByteLength = (text) => new TextEncoder().encode(text).length;
+
+  const getPositionFromError = (message) => {
+    const match = message.match(/position (\d+)/i);
+    if (!match) return null;
+    const position = Number(match[1]);
+    return Number.isFinite(position) ? position : null;
+  };
+
+  const getLineColumn = (text, index) => {
+    if (index <= 0) return { line: 1, column: 1 };
+    const slice = text.slice(0, index);
+    const lines = slice.split(/\r\n|\r|\n/);
+    const line = lines.length;
+    const column = lines[lines.length - 1].length + 1;
+    return { line, column };
+  };
+
+  const buildParseErrorMessage = (error, text) => {
+    const position = getPositionFromError(error.message || "");
+    if (position === null) {
+      return currentLang === "ja"
+        ? "JSONの構文が正しくありません。"
+        : "Invalid JSON format.";
+    }
+    const { line, column } = getLineColumn(text, position);
+    return currentLang === "ja"
+      ? `JSONの構文が正しくありません。（行${line}、列${column}付近）`
+      : `Invalid JSON format. (around line ${line}, column ${column})`;
+  };
+
   /* ----------------------------
       JSON → Mermaid Logic
   ---------------------------- */
@@ -89,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const genId = () => `node_${idCounter++}`;
 
-    const walk = (node, parentId = null, path = "root") => {
+    const walk = (node, parentId = null, path = "root", depth = 0) => {
       const currentId = genId();
       const safeLabel = path.replace(/"/g, '\\"');
       lines.push(`  ${currentId}["${safeLabel}"]`);
@@ -98,14 +149,24 @@ document.addEventListener("DOMContentLoaded", () => {
         lines.push(`  ${parentId} --> ${currentId}`);
       }
 
+      if (depth >= MAX_DEPTH) {
+        const limitId = genId();
+        const limitLabel = currentLang === "ja"
+          ? "（深さ制限）"
+          : "(depth limit)";
+        lines.push(`  ${limitId}["${limitLabel}"]`);
+        lines.push(`  ${currentId} --> ${limitId}`);
+        return;
+      }
+
       if (node !== null && typeof node === "object") {
         if (Array.isArray(node)) {
           node.forEach((item, index) => {
-            walk(item, currentId, `${path}[${index}]`);
+            walk(item, currentId, `${path}[${index}]`, depth + 1);
           });
         } else {
           Object.keys(node).forEach((key) => {
-            walk(node[key], currentId, key);
+            walk(node[key], currentId, key, depth + 1);
           });
         }
       } else {
@@ -126,11 +187,21 @@ document.addEventListener("DOMContentLoaded", () => {
   ---------------------------- */
   const convertHandler = (btn) => {
     hideError();
+    hideWarning();
     outputEl.value = "";
 
     const jsonText = inputEl.value.trim();
     if (!jsonText) {
       showError(currentLang === "ja" ? "JSONが入力されていません。" : "No JSON provided.");
+      return;
+    }
+
+    if (getByteLength(jsonText) > MAX_INPUT_BYTES) {
+      showWarning(
+        currentLang === "ja"
+          ? "入力サイズが大きすぎます（300KB超）。小さく分割してお試しください。"
+          : "Input size is too large (over 300KB). Please reduce the JSON."
+      );
       return;
     }
 
@@ -145,11 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         outputEl.scrollIntoView({ behavior: "smooth" });
       } catch (e) {
-        showError(
-          currentLang === "ja"
-            ? "JSONの構文が正しくありません。"
-            : "Invalid JSON format."
-        );
+        showError(buildParseErrorMessage(e, jsonText));
       }
 
       btn.disabled = false;
@@ -185,11 +252,82 @@ document.addEventListener("DOMContentLoaded", () => {
     inputEl.value = "";
     outputEl.value = "";
     hideError();
+    hideWarning();
     hideProgress();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   resetBtnJa.addEventListener("click", resetHandler);
   resetBtnEn.addEventListener("click", resetHandler);
+
+  /* ----------------------------
+      Presets
+  ---------------------------- */
+  const presets = {
+    "simple-tree": `{
+  "root": {
+    "branchA": "leaf",
+    "branchB": "leaf"
+  }
+}`,
+    "nested-object": `{
+  "user": {
+    "profile": {
+      "name": "Aki",
+      "contact": {
+        "email": "aki@example.com"
+      }
+    }
+  }
+}`,
+    "array-objects": `{
+  "items": [
+    {"id": 1, "name": "Alpha"},
+    {"id": 2, "name": "Beta"}
+  ]
+}`
+  };
+
+  presetButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.preset;
+      if (!presets[key]) return;
+      inputEl.value = presets[key];
+      outputEl.value = "";
+      hideError();
+      hideWarning();
+      inputEl.focus();
+    });
+  });
+
+  /* ----------------------------
+      Download
+  ---------------------------- */
+  const downloadHandler = (extension) => {
+    const text = outputEl.value.trim();
+    if (!text) {
+      showError(
+        currentLang === "ja"
+          ? "出力が空です。先に変換してください。"
+          : "No output yet. Convert JSON first."
+      );
+      return;
+    }
+
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `json2mermaid.${extension}`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  downloadMmdJa.addEventListener("click", () => downloadHandler("mmd"));
+  downloadMmdEn.addEventListener("click", () => downloadHandler("mmd"));
+  downloadTxtJa.addEventListener("click", () => downloadHandler("txt"));
+  downloadTxtEn.addEventListener("click", () => downloadHandler("txt"));
 
 });

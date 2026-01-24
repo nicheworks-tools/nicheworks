@@ -158,10 +158,29 @@ html, body {
 }
 
 /* ----------------------------
+   Presets
+---------------------------- */
+.preset-block {
+  margin-top: 20px;
+}
+
+.preset-label {
+  margin-top: 0;
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* ----------------------------
    Buttons
 ---------------------------- */
 .btn-area {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin: 16px 0 24px;
 }
@@ -192,6 +211,10 @@ button {
 
 .btn-secondary:hover {
   background: var(--input-bg);
+}
+
+.export-area {
+  margin-top: 10px;
 }
 
 /* ----------------------------
@@ -236,6 +259,22 @@ button {
 }
 
 .error-box.hidden {
+  display: none;
+}
+
+/* ----------------------------
+   Warning Box
+---------------------------- */
+.warning-box {
+  color: #7a4b00;
+  background: #fff7e6;
+  border: 1px solid #f2d08b;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+}
+
+.warning-box.hidden {
   display: none;
 }
 

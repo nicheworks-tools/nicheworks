@@ -140,6 +140,19 @@
     </section>
 
     <!-- JSON入力 -->
+    <div class="preset-block">
+      <p class="section-label preset-label" data-i18n="ja">プリセット</p>
+      <p class="section-label preset-label" data-i18n="en">Presets</p>
+      <div class="preset-buttons">
+        <button class="btn-secondary preset-btn" data-preset="simple-tree" data-i18n="ja">シンプルツリー</button>
+        <button class="btn-secondary preset-btn" data-preset="simple-tree" data-i18n="en">Simple tree</button>
+        <button class="btn-secondary preset-btn" data-preset="nested-object" data-i18n="ja">ネストオブジェクト</button>
+        <button class="btn-secondary preset-btn" data-preset="nested-object" data-i18n="en">Nested object</button>
+        <button class="btn-secondary preset-btn" data-preset="array-objects" data-i18n="ja">配列オブジェクト</button>
+        <button class="btn-secondary preset-btn" data-preset="array-objects" data-i18n="en">Array of objects</button>
+      </div>
+    </div>
+
     <label class="section-label" data-i18n="ja">JSON（入力）</label>
     <label class="section-label" data-i18n="en">JSON Input</label>
 
@@ -164,6 +177,9 @@
       <div class="progress-bar"></div>
     </div>
 
+    <!-- 警告 -->
+    <div id="warningBox" class="warning-box hidden"></div>
+
     <!-- エラー -->
     <div id="errorBox" class="error-box hidden"></div>
 
@@ -172,6 +188,13 @@
     <label class="section-label" data-i18n="en">Mermaid Output</label>
 
     <textarea id="mermaidOutput" class="code-output" readonly></textarea>
+
+    <div class="btn-area export-area">
+      <button id="downloadMmd-ja" class="btn-secondary" data-i18n="ja">.mmdで保存</button>
+      <button id="downloadMmd-en" class="btn-secondary" data-i18n="en">Download .mmd</button>
+      <button id="downloadTxt-ja" class="btn-secondary" data-i18n="ja">.txtで保存</button>
+      <button id="downloadTxt-en" class="btn-secondary" data-i18n="en">Download .txt</button>
+    </div>
 
     <!-- 寄付導線 -->
     <div class="nw-donate">
