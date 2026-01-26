@@ -1,0 +1,905 @@
+{
+  "packCount": 185,
+  "basicCount": 81,
+  "addedAsNew": 81,
+  "mergedIntoExisting": 67,
+  "duplicatesExact": [
+    {
+      "packId": "hammer",
+      "basicId": "hammer",
+      "reason": "id_match",
+      "key": "id:hammer"
+    },
+    {
+      "packId": "claw_hammer",
+      "basicId": "hammer",
+      "reason": "normalized_exact",
+      "key": "かなづち釘抜き付き"
+    },
+    {
+      "packId": "sledgehammer",
+      "basicId": "sledgehammer",
+      "reason": "id_match",
+      "key": "id:sledgehammer"
+    },
+    {
+      "packId": "pry_bar",
+      "basicId": "pry_bar",
+      "reason": "id_match",
+      "key": "id:pry_bar"
+    },
+    {
+      "packId": "tape_measure",
+      "basicId": "tape_measure",
+      "reason": "id_match",
+      "key": "id:tape_measure"
+    },
+    {
+      "packId": "spirit_level",
+      "basicId": "spirit_level",
+      "reason": "id_match",
+      "key": "id:spirit_level"
+    },
+    {
+      "packId": "chalk_line",
+      "basicId": "chalk_line",
+      "reason": "id_match",
+      "key": "id:chalk_line"
+    },
+    {
+      "packId": "plumb_bob",
+      "basicId": "plumb_bob",
+      "reason": "id_match",
+      "key": "id:plumb_bob"
+    },
+    {
+      "packId": "square_carpenter_s_square",
+      "basicId": "square_tool",
+      "reason": "normalized_exact",
+      "key": "さしがね"
+    },
+    {
+      "packId": "utility_knife",
+      "basicId": "utility_knife",
+      "reason": "id_match",
+      "key": "id:utility_knife"
+    },
+    {
+      "packId": "handsaw",
+      "basicId": "handsaw",
+      "reason": "id_match",
+      "key": "id:handsaw"
+    },
+    {
+      "packId": "circular_saw",
+      "basicId": "circular_saw",
+      "reason": "id_match",
+      "key": "id:circular_saw"
+    },
+    {
+      "packId": "reciprocating_saw",
+      "basicId": "reciprocating_saw",
+      "reason": "id_match",
+      "key": "id:reciprocating_saw"
+    },
+    {
+      "packId": "angle_grinder",
+      "basicId": "angle_grinder",
+      "reason": "id_match",
+      "key": "id:angle_grinder"
+    },
+    {
+      "packId": "impact_driver",
+      "basicId": "impact_driver",
+      "reason": "id_match",
+      "key": "id:impact_driver"
+    },
+    {
+      "packId": "cordless_drill",
+      "basicId": "cordless_drill",
+      "reason": "id_match",
+      "key": "id:cordless_drill"
+    },
+    {
+      "packId": "hammer_drill",
+      "basicId": "rotary_hammer",
+      "reason": "normalized_exact",
+      "key": "ハンマードリル"
+    },
+    {
+      "packId": "rotary_hammer",
+      "basicId": "rotary_hammer",
+      "reason": "id_match",
+      "key": "id:rotary_hammer"
+    },
+    {
+      "packId": "nail_gun",
+      "basicId": "nail_gun",
+      "reason": "id_match",
+      "key": "id:nail_gun"
+    },
+    {
+      "packId": "staple_gun",
+      "basicId": "staple_gun",
+      "reason": "id_match",
+      "key": "id:staple_gun"
+    },
+    {
+      "packId": "screw",
+      "basicId": "screw_set",
+      "reason": "normalized_exact",
+      "key": "ビス"
+    },
+    {
+      "packId": "anchor_bolt",
+      "basicId": "anchor_bolt",
+      "reason": "id_match",
+      "key": "id:anchor_bolt"
+    },
+    {
+      "packId": "socket_wrench",
+      "basicId": "socket_wrench",
+      "reason": "id_match",
+      "key": "id:socket_wrench"
+    },
+    {
+      "packId": "pliers",
+      "basicId": "pliers",
+      "reason": "id_match",
+      "key": "id:pliers"
+    },
+    {
+      "packId": "wire_stripper",
+      "basicId": "wire_stripper",
+      "reason": "id_match",
+      "key": "id:wire_stripper"
+    },
+    {
+      "packId": "hard_hat",
+      "basicId": "hard_hat",
+      "reason": "id_match",
+      "key": "id:hard_hat"
+    },
+    {
+      "packId": "safety_glasses",
+      "basicId": "safety_glasses",
+      "reason": "id_match",
+      "key": "id:safety_glasses"
+    },
+    {
+      "packId": "work_gloves",
+      "basicId": "work_gloves",
+      "reason": "id_match",
+      "key": "id:work_gloves"
+    },
+    {
+      "packId": "safety_harness",
+      "basicId": "safety_harness",
+      "reason": "id_match",
+      "key": "id:safety_harness"
+    },
+    {
+      "packId": "scaffold",
+      "basicId": "scaffold",
+      "reason": "id_match",
+      "key": "id:scaffold"
+    },
+    {
+      "packId": "extension_ladder",
+      "basicId": "ladder",
+      "reason": "normalized_exact",
+      "key": "伸縮はしご"
+    },
+    {
+      "packId": "step_ladder",
+      "basicId": "step_ladder",
+      "reason": "id_match",
+      "key": "id:step_ladder"
+    },
+    {
+      "packId": "rebar",
+      "basicId": "rebar",
+      "reason": "id_match",
+      "key": "id:rebar"
+    },
+    {
+      "packId": "concrete_mixer",
+      "basicId": "concrete_mixer",
+      "reason": "id_match",
+      "key": "id:concrete_mixer"
+    },
+    {
+      "packId": "trowel",
+      "basicId": "trowel",
+      "reason": "id_match",
+      "key": "id:trowel"
+    },
+    {
+      "packId": "sealant_caulk",
+      "basicId": "caulking_sealant",
+      "reason": "normalized_exact",
+      "key": "シーリング"
+    },
+    {
+      "packId": "pipe_wrench",
+      "basicId": "pipe_wrench",
+      "reason": "id_match",
+      "key": "id:pipe_wrench"
+    },
+    {
+      "packId": "stud_finder",
+      "basicId": "stud_finder",
+      "reason": "id_match",
+      "key": "id:stud_finder"
+    },
+    {
+      "packId": "wheelbarrow",
+      "basicId": "wheelbarrow",
+      "reason": "id_match",
+      "key": "id:wheelbarrow"
+    },
+    {
+      "packId": "bucket",
+      "basicId": "bucket",
+      "reason": "id_match",
+      "key": "id:bucket"
+    },
+    {
+      "packId": "dust_mask",
+      "basicId": "respirator_mask",
+      "reason": "normalized_exact",
+      "key": "防じんマスク"
+    },
+    {
+      "packId": "laser_level",
+      "basicId": "laser_level",
+      "reason": "id_match",
+      "key": "id:laser_level"
+    },
+    {
+      "packId": "surveying",
+      "basicId": "chalk_line",
+      "reason": "normalized_exact",
+      "key": "墨出し測量"
+    },
+    {
+      "packId": "vibrator_concrete",
+      "basicId": "concrete_vibrator",
+      "reason": "normalized_exact",
+      "key": "バイブレーター棒バイブ"
+    },
+    {
+      "packId": "rebar_tie_wire",
+      "basicId": "rebar_tying_tool",
+      "reason": "normalized_exact",
+      "key": "結束線"
+    },
+    {
+      "packId": "rebar_tying_tool",
+      "basicId": "rebar_tying_tool",
+      "reason": "id_match",
+      "key": "id:rebar_tying_tool"
+    },
+    {
+      "packId": "caulk_gun",
+      "basicId": "caulking_gun",
+      "reason": "normalized_exact",
+      "key": "コーキングガン"
+    },
+    {
+      "packId": "putty_knife",
+      "basicId": "putty_knife",
+      "reason": "id_match",
+      "key": "id:putty_knife"
+    },
+    {
+      "packId": "orbital_sander",
+      "basicId": "orbital_sander",
+      "reason": "id_match",
+      "key": "id:orbital_sander"
+    },
+    {
+      "packId": "paint_roller",
+      "basicId": "paint_roller",
+      "reason": "id_match",
+      "key": "id:paint_roller"
+    },
+    {
+      "packId": "paint_brush",
+      "basicId": "paint_brush",
+      "reason": "id_match",
+      "key": "id:paint_brush"
+    },
+    {
+      "packId": "heat_gun",
+      "basicId": "heat_gun",
+      "reason": "id_match",
+      "key": "id:heat_gun"
+    },
+    {
+      "packId": "screwdriver_phillips",
+      "basicId": "screwdriver",
+      "reason": "normalized_exact",
+      "key": "プラスドライバー"
+    },
+    {
+      "packId": "screwdriver_flathead",
+      "basicId": "screwdriver",
+      "reason": "normalized_exact",
+      "key": "マイナスドライバー"
+    },
+    {
+      "packId": "adjustable_wrench",
+      "basicId": "wrench_adjustable",
+      "reason": "normalized_exact",
+      "key": "モンキーレンチ"
+    },
+    {
+      "packId": "mortar",
+      "basicId": "mortar",
+      "reason": "id_match",
+      "key": "id:mortar"
+    },
+    {
+      "packId": "rebar_cutter",
+      "basicId": "rebar_cutter",
+      "reason": "id_match",
+      "key": "id:rebar_cutter"
+    },
+    {
+      "packId": "rebar_bender",
+      "basicId": "rebar_bender",
+      "reason": "id_match",
+      "key": "id:rebar_bender"
+    },
+    {
+      "packId": "cord_reel",
+      "basicId": "extension_cord",
+      "reason": "normalized_exact",
+      "key": "コードリール延長コード"
+    },
+    {
+      "packId": "shovel",
+      "basicId": "shovel",
+      "reason": "id_match",
+      "key": "id:shovel"
+    },
+    {
+      "packId": "pickaxe",
+      "basicId": "pickaxe",
+      "reason": "id_match",
+      "key": "id:pickaxe"
+    },
+    {
+      "packId": "chisel",
+      "basicId": "masonry_chisel",
+      "reason": "normalized_exact",
+      "key": "のみ"
+    },
+    {
+      "packId": "clamp",
+      "basicId": "clamp_bar",
+      "reason": "normalized_exact",
+      "key": "クランプ"
+    },
+    {
+      "packId": "multimeter",
+      "basicId": "multimeter",
+      "reason": "id_match",
+      "key": "id:multimeter"
+    },
+    {
+      "packId": "pipe_cutter",
+      "basicId": "pipe_cutter",
+      "reason": "id_match",
+      "key": "id:pipe_cutter"
+    },
+    {
+      "packId": "conduit_bender",
+      "basicId": "rebar_bender",
+      "reason": "normalized_exact",
+      "key": "電線管ベンダー"
+    },
+    {
+      "packId": "shop_vacuum",
+      "basicId": "shop_vac",
+      "reason": "normalized_exact",
+      "key": "業務用掃除機バキューム"
+    }
+  ],
+  "ambiguous": [
+    {
+      "packId": "wrench",
+      "packTerm": "ja:レンチ / en:Wrench",
+      "candidates": [
+        {
+          "basicId": "wrench_adjustable",
+          "basicTerm": "ja:モンキーレンチ / en:Adjustable Wrench",
+          "why": "near_match"
+        },
+        {
+          "basicId": "socket_wrench",
+          "basicTerm": "ja:ソケットレンチ / en:Socket Wrench",
+          "why": "near_match"
+        },
+        {
+          "basicId": "pipe_wrench",
+          "basicTerm": "ja:パイプレンチ / en:Pipe Wrench",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "formwork",
+      "packTerm": "ja:型枠 / en:Formwork",
+      "candidates": [
+        {
+          "basicId": "concrete",
+          "basicTerm": "ja:コンクリート / en:Concrete",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "float_trowel",
+      "packTerm": "ja:ならし（フロート） / en:Float (trowel)",
+      "candidates": [
+        {
+          "basicId": "trowel",
+          "basicTerm": "ja:コテ / en:Trowel",
+          "why": "near_match"
+        },
+        {
+          "basicId": "float",
+          "basicTerm": "ja:木ゴテ / en:Float",
+          "why": "near_match"
+        },
+        {
+          "basicId": "concrete",
+          "basicTerm": "ja:コンクリート / en:Concrete",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "metal_stud",
+      "packTerm": "ja:軽量鉄骨スタッド / en:Metal stud",
+      "candidates": [
+        {
+          "basicId": "hacksaw",
+          "basicTerm": "ja:金切りノコ / en:Hacksaw",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "concrete_pump",
+      "packTerm": "ja:コンクリートポンプ車 / en:Concrete pump",
+      "candidates": [
+        {
+          "basicId": "concrete",
+          "basicTerm": "ja:コンクリート / en:Concrete",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "genba_site",
+      "packTerm": "ja:現場 / en:Genba (site)",
+      "candidates": [
+        {
+          "basicId": "cordless_work_light",
+          "basicTerm": "ja:作業灯 / en:Work Light",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "hand_signal",
+      "packTerm": "ja:合図（手合図） / en:Hand signal",
+      "candidates": [
+        {
+          "basicId": "handsaw",
+          "basicTerm": "ja:手ノコ / en:Hand Saw",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "respirator",
+      "packTerm": "ja:防毒マスク / en:Respirator",
+      "candidates": [
+        {
+          "basicId": "respirator_mask",
+          "basicTerm": "ja:防じんマスク / en:Respirator Mask",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "measuring_wheel",
+      "packTerm": "ja:測定車（ローラー） / en:Measuring wheel",
+      "candidates": [
+        {
+          "basicId": "paint_roller",
+          "basicTerm": "ja:ローラー / en:Paint Roller",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "line_level",
+      "packTerm": "ja:糸水平器 / en:Line level",
+      "candidates": [
+        {
+          "basicId": "spirit_level",
+          "basicTerm": "ja:水平器 / en:Spirit Level",
+          "why": "near_match"
+        },
+        {
+          "basicId": "laser_level",
+          "basicTerm": "ja:レーザー墨出し器 / en:Laser Level",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "stud",
+      "packTerm": "ja:間柱（まばしら） / en:Stud",
+      "candidates": [
+        {
+          "basicId": "stud_finder",
+          "basicTerm": "ja:下地センサー / en:Stud Finder",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "screed",
+      "packTerm": "ja:トンボ（ならし） / en:Screed",
+      "candidates": [
+        {
+          "basicId": "screwdriver",
+          "basicTerm": "ja:ドライバー / en:Screwdriver",
+          "why": "near_match"
+        },
+        {
+          "basicId": "screw_set",
+          "basicTerm": "ja:ビス / en:Screw",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "joint_compound",
+      "packTerm": "ja:パテ / en:Joint compound",
+      "candidates": [
+        {
+          "basicId": "putty_knife",
+          "basicTerm": "ja:ヘラ / en:Putty Knife",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "torque_wrench",
+      "packTerm": "ja:トルクレンチ / en:Torque wrench",
+      "candidates": [
+        {
+          "basicId": "torque",
+          "basicTerm": "ja:トルク / en:Torque",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "hammer_tacker",
+      "packTerm": "ja:ハンマータッカー / en:Hammer tacker",
+      "candidates": [
+        {
+          "basicId": "hammer",
+          "basicTerm": "ja:ハンマー / en:Hammer",
+          "why": "near_match"
+        },
+        {
+          "basicId": "staple_gun",
+          "basicTerm": "ja:タッカー / en:Staple Gun",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "anchor_plastic_plug",
+      "packTerm": "ja:プラグ（アンカー） / en:Anchor (plastic plug)",
+      "candidates": [
+        {
+          "basicId": "anchor_bolt",
+          "basicTerm": "ja:アンカーボルト / en:Anchor Bolt",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "silicone_sealant",
+      "packTerm": "ja:シリコンシーラント / en:Silicone sealant",
+      "candidates": [
+        {
+          "basicId": "caulking_sealant",
+          "basicTerm": "ja:シーリング材 / en:Sealant",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "concrete_saw",
+      "packTerm": "ja:コンクリートカッター / en:Concrete saw",
+      "candidates": [
+        {
+          "basicId": "utility_knife",
+          "basicTerm": "ja:カッター / en:Utility Knife",
+          "why": "near_match"
+        },
+        {
+          "basicId": "concrete_mixer",
+          "basicTerm": "ja:ミキサー / en:Concrete Mixer",
+          "why": "near_match"
+        },
+        {
+          "basicId": "concrete_vibrator",
+          "basicTerm": "ja:コンクリートバイブレーター / en:Concrete Vibrator",
+          "why": "near_match"
+        },
+        {
+          "basicId": "anchor_bolt",
+          "basicTerm": "ja:アンカーボルト / en:Anchor Bolt",
+          "why": "near_match"
+        },
+        {
+          "basicId": "concrete",
+          "basicTerm": "ja:コンクリート / en:Concrete",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "nail_set",
+      "packTerm": "ja:ポンチ（釘打ち） / en:Nail set",
+      "candidates": [
+        {
+          "basicId": "nail_gun",
+          "basicTerm": "ja:釘打ち機 / en:Nail Gun",
+          "why": "near_match"
+        },
+        {
+          "basicId": "nails",
+          "basicTerm": "ja:釘 / en:Nails",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "drywall_tape",
+      "packTerm": "ja:ジョイントテープ / en:Drywall tape",
+      "candidates": [
+        {
+          "basicId": "drywall",
+          "basicTerm": "ja:石膏ボード / en:Drywall",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "dust_extractor_vacuum",
+      "packTerm": "ja:集じん機（バキューム） / en:Dust extractor (vacuum)",
+      "candidates": [
+        {
+          "basicId": "shop_vac",
+          "basicTerm": "ja:集じん機 / en:Shop Vacuum",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "paint_tray",
+      "packTerm": "ja:ローラートレイ / en:Paint tray",
+      "candidates": [
+        {
+          "basicId": "paint_roller",
+          "basicTerm": "ja:ローラー / en:Paint Roller",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "caulk_back_up_tape",
+      "packTerm": "ja:養生テープ（シーリング用） / en:Caulk back-up tape",
+      "candidates": [
+        {
+          "basicId": "caulking_sealant",
+          "basicTerm": "ja:シーリング材 / en:Sealant",
+          "why": "near_match"
+        },
+        {
+          "basicId": "masking_tape",
+          "basicTerm": "ja:マスキングテープ / en:Masking tape",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "gfci_rcd",
+      "packTerm": "ja:漏電遮断器（GFCI/RCD） / en:GFCI / RCD",
+      "candidates": [
+        {
+          "basicId": "circuit_breaker",
+          "basicTerm": "ja:ブレーカー / en:Circuit breaker",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "hose_clamp",
+      "packTerm": "ja:ホースバンド / en:Hose clamp",
+      "candidates": [
+        {
+          "basicId": "clamp_bar",
+          "basicTerm": "ja:クランプ / en:Clamp",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "plumber_s_putty",
+      "packTerm": "ja:配管パテ / en:Plumber's putty",
+      "candidates": [
+        {
+          "basicId": "putty_knife",
+          "basicTerm": "ja:ヘラ / en:Putty Knife",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "lag_screw",
+      "packTerm": "ja:コーチスクリュー / en:Lag screw",
+      "candidates": [
+        {
+          "basicId": "screw_set",
+          "basicTerm": "ja:ビス / en:Screw",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "concrete_screw",
+      "packTerm": "ja:コンクリートビス / en:Concrete screw",
+      "candidates": [
+        {
+          "basicId": "concrete_vibrator",
+          "basicTerm": "ja:コンクリートバイブレーター / en:Concrete Vibrator",
+          "why": "near_match"
+        },
+        {
+          "basicId": "screw_set",
+          "basicTerm": "ja:ビス / en:Screw",
+          "why": "near_match"
+        },
+        {
+          "basicId": "concrete",
+          "basicTerm": "ja:コンクリート / en:Concrete",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "expansion_anchor",
+      "packTerm": "ja:拡張アンカー / en:Expansion anchor",
+      "candidates": [
+        {
+          "basicId": "anchor_bolt",
+          "basicTerm": "ja:アンカーボルト / en:Anchor Bolt",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "drywall_screw",
+      "packTerm": "ja:ボードビス / en:Drywall screw",
+      "candidates": [
+        {
+          "basicId": "screw_set",
+          "basicTerm": "ja:ビス / en:Screw",
+          "why": "near_match"
+        },
+        {
+          "basicId": "drywall",
+          "basicTerm": "ja:石膏ボード / en:Drywall",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "corner_bead",
+      "packTerm": "ja:コーナービード / en:Corner bead",
+      "candidates": [
+        {
+          "basicId": "drywall",
+          "basicTerm": "ja:石膏ボード / en:Drywall",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "mud_pan",
+      "packTerm": "ja:パテ皿（マッドパン） / en:Mud pan",
+      "candidates": [
+        {
+          "basicId": "drywall",
+          "basicTerm": "ja:石膏ボード / en:Drywall",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "drywall_lift",
+      "packTerm": "ja:ボードリフター / en:Drywall lift",
+      "candidates": [
+        {
+          "basicId": "drywall",
+          "basicTerm": "ja:石膏ボード / en:Drywall",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "self_leveling_compound",
+      "packTerm": "ja:セルフレベリング材 / en:Self-leveling compound",
+      "candidates": [
+        {
+          "basicId": "spirit_level",
+          "basicTerm": "ja:水平器 / en:Spirit Level",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "caulk_finisher",
+      "packTerm": "ja:シーリングならしヘラ / en:Caulk finisher",
+      "candidates": [
+        {
+          "basicId": "caulking_gun",
+          "basicTerm": "ja:コーキングガン / en:Caulking Gun",
+          "why": "near_match"
+        },
+        {
+          "basicId": "caulking_sealant",
+          "basicTerm": "ja:シーリング材 / en:Sealant",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "mixing_paddle",
+      "packTerm": "ja:攪拌羽根（ミキサーパドル） / en:Mixing paddle",
+      "candidates": [
+        {
+          "basicId": "concrete_mixer",
+          "basicTerm": "ja:ミキサー / en:Concrete Mixer",
+          "why": "near_match"
+        }
+      ]
+    },
+    {
+      "packId": "spotter_vehicle",
+      "packTerm": "ja:誘導（車両誘導） / en:Spotter (vehicle)",
+      "candidates": [
+        {
+          "basicId": "spotter",
+          "basicTerm": "ja:誘導員 / en:Spotter",
+          "why": "near_match"
+        }
+      ]
+    }
+  ],
+  "packNeedsManual": []
+}
