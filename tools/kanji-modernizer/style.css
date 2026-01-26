@@ -46,6 +46,31 @@ main.page {
   color: var(--muted);
 }
 
+.policy-box {
+  margin: 18px 0 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.policy-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.policy-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.policy-list li + li {
+  margin-top: 4px;
+}
+
 .count-text {
   margin: 4px 0 0;
   color: var(--muted);
@@ -133,6 +158,20 @@ button.lang-btn.active {
   cursor: pointer;
 }
 
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.toggle input {
+  width: 16px;
+  height: 16px;
+}
+
 .action-row {
   display: flex;
   gap: 10px;
@@ -152,6 +191,16 @@ button {
   padding: 10px 16px;
   cursor: pointer;
   font-weight: 600;
+}
+
+.btn-small {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-secondary {
@@ -219,6 +268,23 @@ button {
   font-size: 0.95rem;
 }
 
+.error-box.notice {
+  border-color: #cfe0ff;
+  background: #eef5ff;
+  color: #1b3a72;
+}
+
+.error-message {
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+
+.error-note {
+  margin: 0 0 10px;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
 .result-text {
   min-height: 120px;
 }
@@ -273,6 +339,58 @@ button {
   font-size: 0.95rem;
 }
 
+.replacement-block {
+  margin-top: 24px;
+}
+
+.replacement-title {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.replacement-desc {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.replacement-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.replacement-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.replacement-table th,
+.replacement-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.replacement-table th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.replacement-table tr:last-child td {
+  border-bottom: none;
+}
+
+.replacement-empty {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 @media (max-width: 640px) {
   .action-row button {
     width: 100%;
@@ -306,4 +424,3 @@ button {
 .km-sibling a:hover {
   text-decoration: underline;
 }
-

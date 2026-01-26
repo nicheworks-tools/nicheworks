@@ -10,16 +10,22 @@
   let dictCache = null;
   let currentLang = "ja";
   let lastResultText = "";
+  let lastReplacementList = [];
+  let lastError = null;
 
   const messages = {
     ja: {
       empty: "変換するテキストを入力してください。",
-      copied: "結果をコピーしました。",
+      copiedText: "変換後テキストをコピーしました。",
+      copiedTable: "置換一覧をコピーしました。",
+      noReplacements: "置換がないためコピーできません。",
       loadError: "辞書データの読み込みに失敗しました。時間を置いて再度お試しください。"
     },
     en: {
       empty: "Please enter some text to convert.",
-      copied: "Result copied to clipboard.",
+      copiedText: "Converted text copied to clipboard.",
+      copiedTable: "Replacement list copied to clipboard.",
+      noReplacements: "No replacements to copy yet.",
       loadError: "Failed to load dictionary data. Please try again later."
     }
   };
@@ -55,6 +61,16 @@
     document.querySelectorAll(".lang-switch button[data-lang]").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.lang === currentLang);
     });
+
+    if (lastError) {
+      if (lastError.mode === "notice") {
+        showNotice(lastError.key);
+      } else if (lastError.showRetry) {
+        showErrorWithRetry(lastError.key);
+      } else {
+        showError(lastError.key);
+      }
+    }
   }
 
   /* ==========================================================
@@ -97,17 +113,94 @@
   ========================================================== */
   function showError(messageKey) {
     const box = document.getElementById("errorBox");
+    const message = document.getElementById("errorMessage");
+    const note = document.getElementById("errorNote");
+    const retry = document.getElementById("retryBtn");
     if (!box) return;
     const msg = getMessage(messageKey);
-    box.textContent = msg || "";
-    box.hidden = !msg;
+    if (!msg) {
+      clearError();
+      return;
+    }
+
+    lastError = {
+      key: messageKey,
+      showRetry: false,
+      showNote: false,
+      mode: "error"
+    };
+
+    if (message) message.textContent = msg;
+    if (note) note.hidden = true;
+    if (retry) retry.hidden = true;
+    box.classList.remove("notice");
+    box.hidden = false;
+  }
+
+  function showErrorWithRetry(messageKey) {
+    const box = document.getElementById("errorBox");
+    const message = document.getElementById("errorMessage");
+    const note = document.getElementById("errorNote");
+    const retry = document.getElementById("retryBtn");
+    if (!box) return;
+    const msg = getMessage(messageKey);
+    if (!msg) {
+      clearError();
+      return;
+    }
+
+    lastError = {
+      key: messageKey,
+      showRetry: true,
+      showNote: true,
+      mode: "error"
+    };
+
+    if (message) message.textContent = msg;
+    if (note) note.hidden = false;
+    if (retry) retry.hidden = false;
+    box.classList.remove("notice");
+    box.hidden = false;
+  }
+
+  function showNotice(messageKey) {
+    const box = document.getElementById("errorBox");
+    const message = document.getElementById("errorMessage");
+    const note = document.getElementById("errorNote");
+    const retry = document.getElementById("retryBtn");
+    if (!box) return;
+    const msg = getMessage(messageKey);
+    if (!msg) {
+      clearError();
+      return;
+    }
+
+    lastError = {
+      key: messageKey,
+      showRetry: false,
+      showNote: false,
+      mode: "notice"
+    };
+
+    if (message) message.textContent = msg;
+    if (note) note.hidden = true;
+    if (retry) retry.hidden = true;
+    box.classList.add("notice");
+    box.hidden = false;
   }
 
   function clearError() {
     const box = document.getElementById("errorBox");
+    const message = document.getElementById("errorMessage");
+    const note = document.getElementById("errorNote");
+    const retry = document.getElementById("retryBtn");
     if (!box) return;
-    box.textContent = "";
+    if (message) message.textContent = "";
+    if (note) note.hidden = true;
+    if (retry) retry.hidden = true;
     box.hidden = true;
+    box.classList.remove("notice");
+    lastError = null;
   }
 
   function setProgress(active) {
@@ -119,45 +212,151 @@
   /* ==========================================================
      変換ロジック（誤ハイライト完全修正版）
   ========================================================== */
-  function convertText(rawText, direction, dict) {
+  function buildExclusionRanges(text) {
+    const ranges = [];
+    const codeRegex = /```[\s\S]*?```/g;
+    const urlRegex = /https?:\/\/[^\s]+/g;
+
+    let match;
+    while ((match = codeRegex.exec(text)) !== null) {
+      ranges.push({ start: match.index, end: match.index + match[0].length });
+    }
+
+    while ((match = urlRegex.exec(text)) !== null) {
+      ranges.push({ start: match.index, end: match.index + match[0].length });
+    }
+
+    ranges.sort((a, b) => a.start - b.start);
+    const merged = [];
+    ranges.forEach(range => {
+      const last = merged[merged.length - 1];
+      if (!last || range.start > last.end) {
+        merged.push({ ...range });
+      } else {
+        last.end = Math.max(last.end, range.end);
+      }
+    });
+    return merged;
+  }
+
+  function isAscii(char) {
+    return char.charCodeAt(0) <= 0x7f;
+  }
+
+  function buildSegments(text, exclude) {
+    if (!exclude) {
+      return [{ text, skip: false }];
+    }
+
+    const ranges = buildExclusionRanges(text);
+    const segments = [];
+    let index = 0;
+    let rangeIndex = 0;
+
+    while (index < text.length) {
+      const range = ranges[rangeIndex];
+      if (range && index >= range.start && index < range.end) {
+        segments.push({
+          text: text.slice(index, range.end),
+          skip: true
+        });
+        index = range.end;
+        rangeIndex += 1;
+        continue;
+      }
+
+      const nextRangeStart = range ? range.start : text.length;
+      if (isAscii(text[index])) {
+        let end = index + 1;
+        while (end < nextRangeStart && isAscii(text[end])) {
+          end += 1;
+        }
+        segments.push({
+          text: text.slice(index, end),
+          skip: true
+        });
+        index = end;
+        continue;
+      }
+
+      let end = index + 1;
+      while (end < nextRangeStart && !isAscii(text[end])) {
+        end += 1;
+      }
+      segments.push({
+        text: text.slice(index, end),
+        skip: false
+      });
+      index = end;
+    }
+
+    return segments;
+  }
+
+  function convertText(rawText, direction, dict, options = {}) {
     if (!rawText) {
       return {
         plain: "",
         inputHtml: "",
-        outputHtml: ""
+        outputHtml: "",
+        replacements: []
       };
     }
 
-    const src = Array.from(rawText);
+    const segments = buildSegments(rawText, options.exclude);
     const inputHtml = [];
     const outputHtml = [];
     const outputPlain = [];
+    const replacementMap = new Map();
 
     const map =
       direction === "new-to-old"
         ? dict.new_to_old || {}
         : dict.old_to_new || {};
 
-    src.forEach(ch => {
-      const mapped = map[ch];
-      const outputChar = (Array.isArray(mapped) ? mapped[0] : mapped) ?? ch;
-      const isHit = mapped && outputChar !== ch;
-
-      if (isHit) {
-        inputHtml.push(`<span class="hl-hit">${escapeHtml(ch)}</span>`);
-        outputHtml.push(`<span class="hl-hit">${escapeHtml(outputChar)}</span>`);
-      } else {
-        inputHtml.push(escapeHtml(ch));
-        outputHtml.push(escapeHtml(outputChar));
+    segments.forEach(segment => {
+      const chars = Array.from(segment.text);
+      if (segment.skip) {
+        chars.forEach(ch => {
+          inputHtml.push(escapeHtml(ch));
+          outputHtml.push(escapeHtml(ch));
+          outputPlain.push(ch);
+        });
+        return;
       }
 
-      outputPlain.push(outputChar);
+      chars.forEach(ch => {
+        const mapped = map[ch];
+        const outputChar = (Array.isArray(mapped) ? mapped[0] : mapped) ?? ch;
+        const isHit = mapped && outputChar !== ch;
+
+        if (isHit) {
+          inputHtml.push(`<span class="hl-hit">${escapeHtml(ch)}</span>`);
+          outputHtml.push(`<span class="hl-hit">${escapeHtml(outputChar)}</span>`);
+          const key = `${ch}→${outputChar}`;
+          const current = replacementMap.get(key) || {
+            from: ch,
+            to: outputChar,
+            count: 0
+          };
+          current.count += 1;
+          replacementMap.set(key, current);
+        } else {
+          inputHtml.push(escapeHtml(ch));
+          outputHtml.push(escapeHtml(outputChar));
+        }
+
+        outputPlain.push(outputChar);
+      });
     });
 
     return {
       plain: outputPlain.join(""),
       inputHtml: inputHtml.join(""),
-      outputHtml: outputHtml.join("")
+      outputHtml: outputHtml.join(""),
+      replacements: Array.from(replacementMap.values()).sort(
+        (a, b) => b.count - a.count
+      )
     };
   }
 
@@ -168,10 +367,55 @@
     const input = document.getElementById("inputText");
     const output = document.getElementById("outputText");
     const convertBtn = document.getElementById("convertBtn");
-    const copyBtn = document.getElementById("copyBtn");
+    const copyTextBtn = document.getElementById("copyTextBtn");
+    const copyTableBtn = document.getElementById("copyTableBtn");
     const resetBtn = document.getElementById("resetBtn");
     const resultBlock = document.getElementById("resultBlock");
     const inputHighlight = document.getElementById("inputHighlight");
+    const excludeToggle = document.getElementById("excludeToggle");
+    const replacementBlock = document.getElementById("replacementBlock");
+    const replacementTableBody = document.getElementById("replacementTableBody");
+    const replacementEmpty = document.getElementById("replacementEmpty");
+    const retryBtn = document.getElementById("retryBtn");
+
+    const setConvertEnabled = enabled => {
+      if (convertBtn) {
+        convertBtn.disabled = !enabled;
+        convertBtn.setAttribute("aria-disabled", String(!enabled));
+      }
+    };
+
+    const renderReplacementTable = replacements => {
+      if (!replacementTableBody || !replacementEmpty || !replacementBlock) return;
+
+      replacementTableBody.innerHTML = "";
+      if (!replacements || replacements.length === 0) {
+        replacementEmpty.hidden = false;
+        replacementBlock.hidden = false;
+        return;
+      }
+
+      replacementEmpty.hidden = true;
+      replacements.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${escapeHtml(item.from)}</td>
+          <td>${escapeHtml(item.to)}</td>
+          <td>${item.count}</td>
+        `;
+        replacementTableBody.appendChild(row);
+      });
+      replacementBlock.hidden = false;
+    };
+
+    const formatReplacementList = replacements => {
+      const header =
+        currentLang === "en" ? "From\tTo\tCount" : "変換元\t変換先\t回数";
+      const lines = replacements.map(
+        item => `${item.from}\t${item.to}\t${item.count}`
+      );
+      return [header, ...lines].join("\n");
+    };
 
     document
       .querySelectorAll(".lang-switch button[data-lang]")
@@ -183,9 +427,28 @@
 
     switchLang(currentLang);
 
-    loadDict()
-      .then(dict => updateCounts(dict))
-      .catch(err => console.error(err));
+    const initDict = async () => {
+      setConvertEnabled(false);
+      try {
+        const dict = await loadDict();
+        updateCounts(dict);
+        clearError();
+        setConvertEnabled(true);
+      } catch (err) {
+        console.error(err);
+        showErrorWithRetry("loadError");
+        setConvertEnabled(false);
+      }
+    };
+
+    initDict();
+
+    if (retryBtn) {
+      retryBtn.addEventListener("click", () => {
+        dictCache = null;
+        initDict();
+      });
+    }
 
     /* ---------------- convert ---------------- */
     if (convertBtn) {
@@ -200,27 +463,37 @@
 
         setProgress(true);
         try {
+          if (!dictCache) {
+            showErrorWithRetry("loadError");
+            setProgress(false);
+            return;
+          }
+
           const dict = await loadDict();
           const selected = document.querySelector(
             'input[name="direction"]:checked'
           );
           const direction = selected ? selected.value : "old-to-new";
+          const exclude = excludeToggle ? excludeToggle.checked : false;
 
-          const { plain, inputHtml, outputHtml } = convertText(
+          const { plain, inputHtml, outputHtml, replacements } = convertText(
             text,
             direction,
-            dict
+            dict,
+            { exclude }
           );
 
           lastResultText = plain;
+          lastReplacementList = replacements;
 
           if (inputHighlight) inputHighlight.innerHTML = inputHtml;
           if (output) output.innerHTML = outputHtml;
+          renderReplacementTable(replacements);
 
           if (resultBlock) resultBlock.hidden = false;
         } catch (e) {
           console.error(e);
-          showError("loadError");
+          showErrorWithRetry("loadError");
         } finally {
           setProgress(false);
         }
@@ -228,15 +501,28 @@
     }
 
     /* ---------------- copy ---------------- */
-    if (copyBtn) {
-      copyBtn.addEventListener("click", async () => {
+    if (copyTextBtn) {
+      copyTextBtn.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(lastResultText || "");
-          const box = document.getElementById("errorBox");
-          if (box) {
-            box.textContent = getMessage("copied");
-            box.hidden = false;
+          showNotice("copiedText");
+        } catch (e) {
+          console.error(e);
+        }
+      });
+    }
+
+    if (copyTableBtn) {
+      copyTableBtn.addEventListener("click", async () => {
+        try {
+          if (!lastReplacementList || lastReplacementList.length === 0) {
+            showNotice("noReplacements");
+            return;
           }
+          await navigator.clipboard.writeText(
+            formatReplacementList(lastReplacementList)
+          );
+          showNotice("copiedTable");
         } catch (e) {
           console.error(e);
         }
@@ -250,7 +536,11 @@
         if (output) output.innerHTML = "";
         if (inputHighlight) inputHighlight.innerHTML = "";
         if (resultBlock) resultBlock.hidden = true;
+        if (replacementBlock) replacementBlock.hidden = true;
+        if (replacementEmpty) replacementEmpty.hidden = true;
+        if (replacementTableBody) replacementTableBody.innerHTML = "";
         lastResultText = "";
+        lastReplacementList = [];
         clearError();
       });
     }

@@ -141,6 +141,19 @@
       <span data-i18n="en">Convert between old and modern kanji locally in your browser using a curated dictionary.</span>
     </p>
 
+    <div class="policy-box">
+      <h2 class="policy-title">
+        <span data-i18n="ja">このツールがすること・しないこと</span>
+        <span data-i18n="en">What this tool does / does not do</span>
+      </h2>
+      <ul class="policy-list">
+        <li data-i18n="ja">辞書に登録された旧字・新字のみを1文字単位で置換します。</li>
+        <li data-i18n="ja">文脈や固有名詞の正確性は保証しません。最終確認はご自身で行ってください。</li>
+        <li data-i18n="en">Replaces characters based on the dictionary (single-character mapping only).</li>
+        <li data-i18n="en">It does not validate context or proper nouns. Please review the output.</li>
+      </ul>
+    </div>
+
     <div class="lang-switch">
       <button data-lang="ja" class="lang-btn active">JP</button>
       <button data-lang="en" class="lang-btn">EN</button>
@@ -196,6 +209,12 @@
         </label>
       </fieldset>
 
+      <label class="toggle">
+        <input type="checkbox" id="excludeToggle" checked>
+        <span data-i18n="ja">ASCII文字／URL／コードブロック内は変換しない</span>
+        <span data-i18n="en">Do not convert inside ASCII text, URLs, or code blocks</span>
+      </label>
+
       <div class="action-row">
         <button id="convertBtn" class="btn-primary">
           <span data-i18n="ja">変換する</span>
@@ -211,7 +230,17 @@
         <div class="progress-bar"></div>
       </div>
 
-      <div id="errorBox" class="error-box" hidden></div>
+      <div id="errorBox" class="error-box" hidden>
+        <p id="errorMessage" class="error-message"></p>
+        <p id="errorNote" class="error-note">
+          <span data-i18n="ja">読み込みに失敗する場合は、キャッシュを消去して再読み込みしてください。</span>
+          <span data-i18n="en">If it still fails, try a hard refresh or clear your cache.</span>
+        </p>
+        <button id="retryBtn" class="btn-secondary btn-small" type="button">
+          <span data-i18n="ja">再読み込み</span>
+          <span data-i18n="en">Retry</span>
+        </button>
+      </div>
     </section>
 
     <section class="section section-lg" id="resultBlock" hidden>
@@ -233,10 +262,46 @@
       <div id="outputText" class="result-text" aria-live="polite"></div>
 
       <div class="action-row result-actions">
-        <button id="copyBtn" class="btn-secondary">
-          <span data-i18n="ja">コピー</span>
-          <span data-i18n="en">Copy</span>
+        <button id="copyTextBtn" class="btn-secondary">
+          <span data-i18n="ja">変換後テキストをコピー</span>
+          <span data-i18n="en">Copy converted text</span>
         </button>
+        <button id="copyTableBtn" class="btn-ghost">
+          <span data-i18n="ja">置換一覧をコピー</span>
+          <span data-i18n="en">Copy replacement list</span>
+        </button>
+      </div>
+
+      <div class="replacement-block" id="replacementBlock" hidden>
+        <h3 class="replacement-title">
+          <span data-i18n="ja">置換一覧</span>
+          <span data-i18n="en">Replacement list</span>
+        </h3>
+        <p class="replacement-desc">
+          <span data-i18n="ja">変換元 → 変換先の置換と回数を表示します。</span>
+          <span data-i18n="en">Shows each replacement (from → to) with its count.</span>
+        </p>
+        <div class="replacement-table-wrap">
+          <table class="replacement-table">
+            <thead>
+              <tr data-i18n="ja">
+                <th>変換元</th>
+                <th>変換先</th>
+                <th>回数</th>
+              </tr>
+              <tr data-i18n="en">
+                <th>From</th>
+                <th>To</th>
+                <th>Count</th>
+              </tr>
+            </thead>
+            <tbody id="replacementTableBody"></tbody>
+          </table>
+        </div>
+        <p id="replacementEmpty" class="replacement-empty">
+          <span data-i18n="ja">置換はありません。</span>
+          <span data-i18n="en">No replacements found.</span>
+        </p>
       </div>
     </section>
 
