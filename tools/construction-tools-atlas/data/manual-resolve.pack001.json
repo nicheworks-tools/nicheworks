@@ -1,0 +1,43 @@
+{
+  "merge": {
+    "dust_extractor_vacuum": "shop_vac",
+    "step_ladder": "ladder",
+    "putty_knife": "putty_knife"
+  },
+  "asNew": [
+    "wrench",
+    "formwork",
+    "float_trowel",
+    "metal_stud",
+    "concrete_pump",
+    "genba_site",
+    "hand_signal",
+    "respirator",
+    "measuring_wheel",
+    "line_level",
+    "stud",
+    "screed",
+    "joint_compound",
+    "torque_wrench",
+    "hammer_tacker",
+    "anchor_plastic_plug",
+    "silicone_sealant",
+    "concrete_saw",
+    "nail_set",
+    "drywall_tape",
+    "paint_tray",
+    "caulk_back_up_tape",
+    "gfci_rcd",
+    "hose_clamp",
+    "plumber_s_putty",
+    "lag_screw",
+    "concrete_screw",
+    "expansion_anchor",
+    "drywall_screw",
+    "corner_bead",
+    "mud_pan",
+    "drywall_lift",
+    "self_leveling_compound",
+    "caulk_finisher"
+  ]
+}

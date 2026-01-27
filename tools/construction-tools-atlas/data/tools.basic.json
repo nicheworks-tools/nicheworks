@@ -47,14 +47,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "丸ノコ"
-        ],
-        "en": [
-          "Circular saw"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "丸ノコ"
+          ],
+          "en": [
+            "Circular saw"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -153,14 +155,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "レシプロソー"
-        ],
-        "en": [
-          "Reciprocating saw"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "レシプロソー"
+          ],
+          "en": [
+            "Reciprocating saw"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -214,14 +218,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "手のこ"
-        ],
-        "en": [
-          "Handsaw"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "手のこ"
+          ],
+          "en": [
+            "Handsaw"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -276,14 +282,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "カッター"
-        ],
-        "en": [
-          "Utility knife"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "カッター"
+          ],
+          "en": [
+            "Utility knife"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -339,14 +347,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ディスクグラインダー"
-        ],
-        "en": [
-          "Angle grinder"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ディスクグラインダー"
+          ],
+          "en": [
+            "Angle grinder"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -401,14 +411,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "サンダー（オービタル）"
-        ],
-        "en": [
-          "Orbital sander"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "サンダー（オービタル）"
+          ],
+          "en": [
+            "Orbital sander"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -530,14 +542,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "大ハンマー"
-        ],
-        "en": [
-          "Sledgehammer"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "大ハンマー"
+          ],
+          "en": [
+            "Sledgehammer"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -592,14 +606,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "バール"
-        ],
-        "en": [
-          "Pry bar"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "バール"
+          ],
+          "en": [
+            "Pry bar"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -655,14 +671,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "メジャー"
-        ],
-        "en": [
-          "Tape measure"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "メジャー"
+          ],
+          "en": [
+            "Tape measure"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -717,14 +735,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "水平器"
-        ],
-        "en": [
-          "Spirit level"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "水平器"
+          ],
+          "en": [
+            "Spirit level"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -781,14 +801,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "レーザー墨出し器"
-        ],
-        "en": [
-          "Laser level"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "レーザー墨出し器"
+          ],
+          "en": [
+            "Laser level"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -910,14 +932,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "さしがね"
-        ],
-        "en": [
-          "Square (carpenter's square)"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "さしがね"
+          ],
+          "en": [
+            "Square (carpenter's square)"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -971,14 +995,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "下げ振り"
-        ],
-        "en": [
-          "Plumb bob"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "下げ振り"
+          ],
+          "en": [
+            "Plumb bob"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1034,14 +1060,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "電動ドリル（充電式）"
-        ],
-        "en": [
-          "Cordless drill"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "電動ドリル（充電式）"
+          ],
+          "en": [
+            "Cordless drill"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1094,14 +1122,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "インパクトドライバー"
-        ],
-        "en": [
-          "Impact driver"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "インパクトドライバー"
+          ],
+          "en": [
+            "Impact driver"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1333,14 +1363,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "モンキーレンチ"
-        ],
-        "en": [
-          "Adjustable wrench"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "モンキーレンチ"
+          ],
+          "en": [
+            "Adjustable wrench"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1394,14 +1426,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ソケットレンチ"
-        ],
-        "en": [
-          "Socket wrench"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ソケットレンチ"
+          ],
+          "en": [
+            "Socket wrench"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1457,14 +1491,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ペンチ"
-        ],
-        "en": [
-          "Pliers"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ペンチ"
+          ],
+          "en": [
+            "Pliers"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1515,14 +1551,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ワイヤーストリッパー"
-        ],
-        "en": [
-          "Wire stripper"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ワイヤーストリッパー"
+          ],
+          "en": [
+            "Wire stripper"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1619,14 +1657,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "テスター（マルチメーター）"
-        ],
-        "en": [
-          "Multimeter"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "テスター（マルチメーター）"
+          ],
+          "en": [
+            "Multimeter"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1677,14 +1717,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ミキサー（コンクリ）"
-        ],
-        "en": [
-          "Concrete mixer"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ミキサー（コンクリ）"
+          ],
+          "en": [
+            "Concrete mixer"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1740,14 +1782,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "こて"
-        ],
-        "en": [
-          "Trowel"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "こて"
+          ],
+          "en": [
+            "Trowel"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1844,14 +1888,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "バイブレーター（棒バイブ）"
-        ],
-        "en": [
-          "Vibrator (concrete)"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "バイブレーター（棒バイブ）"
+          ],
+          "en": [
+            "Vibrator (concrete)"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1904,14 +1950,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "一輪車（ねこ）"
-        ],
-        "en": [
-          "Wheelbarrow"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "一輪車（ねこ）"
+          ],
+          "en": [
+            "Wheelbarrow"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -1964,14 +2012,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "スコップ"
-        ],
-        "en": [
-          "Shovel"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "スコップ"
+          ],
+          "en": [
+            "Shovel"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2025,14 +2075,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "つるはし"
-        ],
-        "en": [
-          "Pickaxe"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "つるはし"
+          ],
+          "en": [
+            "Pickaxe"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2138,7 +2190,8 @@
       ],
       "en": [
         "Step Ladder",
-        "Ladder"
+        "Ladder",
+        "A-frame ladder"
       ]
     },
     "description": {
@@ -2153,7 +2206,8 @@
     "tasks": [
       "access_height",
       "site",
-      "exterior"
+      "exterior",
+      "interior"
     ],
     "fuzzy": [
       "高所",
@@ -2172,14 +2226,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "伸縮はしご"
-        ],
-        "en": [
-          "Extension ladder"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "伸縮はしご"
+          ],
+          "en": [
+            "Extension ladder"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2292,14 +2348,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "足場"
-        ],
-        "en": [
-          "Scaffold"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "足場"
+          ],
+          "en": [
+            "Scaffold"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2351,14 +2409,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "墜落制止用器具（フルハーネス）"
-        ],
-        "en": [
-          "Safety harness"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "墜落制止用器具（フルハーネス）"
+          ],
+          "en": [
+            "Safety harness"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2408,14 +2468,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ヘルメット"
-        ],
-        "en": [
-          "Hard hat"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ヘルメット"
+          ],
+          "en": [
+            "Hard hat"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2465,14 +2527,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "保護メガネ"
-        ],
-        "en": [
-          "Safety glasses"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "保護メガネ"
+          ],
+          "en": [
+            "Safety glasses"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2521,14 +2585,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "作業手袋"
-        ],
-        "en": [
-          "Work gloves"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "作業手袋"
+          ],
+          "en": [
+            "Work gloves"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2579,14 +2645,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "防じんマスク"
-        ],
-        "en": [
-          "Dust mask"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "防じんマスク"
+          ],
+          "en": [
+            "Dust mask"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2638,14 +2706,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ローラー"
-        ],
-        "en": [
-          "Paint roller"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ローラー"
+          ],
+          "en": [
+            "Paint roller"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2698,14 +2768,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "刷毛（はけ）"
-        ],
-        "en": [
-          "Paint brush"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "刷毛（はけ）"
+          ],
+          "en": [
+            "Paint brush"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2759,14 +2831,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ヘラ"
-        ],
-        "en": [
-          "Putty knife"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ヘラ"
+          ],
+          "en": [
+            "Putty knife"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2820,14 +2894,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "コーキングガン"
-        ],
-        "en": [
-          "Caulk gun"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "コーキングガン"
+          ],
+          "en": [
+            "Caulk gun"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2881,14 +2957,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "パイプレンチ"
-        ],
-        "en": [
-          "Pipe wrench"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "パイプレンチ"
+          ],
+          "en": [
+            "Pipe wrench"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -2941,14 +3019,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "パイプカッター"
-        ],
-        "en": [
-          "Pipe cutter"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "パイプカッター"
+          ],
+          "en": [
+            "Pipe cutter"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3092,14 +3172,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "クランプ"
-        ],
-        "en": [
-          "Clamp"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "クランプ"
+          ],
+          "en": [
+            "Clamp"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3196,14 +3278,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "釘打ち機（ネイラー）"
-        ],
-        "en": [
-          "Nail gun"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "釘打ち機（ネイラー）"
+          ],
+          "en": [
+            "Nail gun"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3256,14 +3340,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "タッカー"
-        ],
-        "en": [
-          "Staple gun"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "タッカー"
+          ],
+          "en": [
+            "Staple gun"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3317,14 +3403,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ビス"
-        ],
-        "en": [
-          "Screw"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ビス"
+          ],
+          "en": [
+            "Screw"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3376,14 +3464,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "アンカーボルト"
-        ],
-        "en": [
-          "Anchor bolt"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "アンカーボルト"
+          ],
+          "en": [
+            "Anchor bolt"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3436,14 +3526,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "鉄筋カッター"
-        ],
-        "en": [
-          "Rebar cutter"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "鉄筋カッター"
+          ],
+          "en": [
+            "Rebar cutter"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3672,14 +3764,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "のみ"
-        ],
-        "en": [
-          "Chisel"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "のみ"
+          ],
+          "en": [
+            "Chisel"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3911,14 +4005,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ヒートガン"
-        ],
-        "en": [
-          "Heat gun"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "ヒートガン"
+          ],
+          "en": [
+            "Heat gun"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -3937,7 +4033,8 @@
       ],
       "en": [
         "Wet/Dry Vac",
-        "Vacuum"
+        "Vacuum",
+        "Shop vac"
       ]
     },
     "description": {
@@ -3954,7 +4051,8 @@
       "clean_site",
       "collect_dust",
       "site",
-      "interior"
+      "interior",
+      "demolition"
     ],
     "fuzzy": [
       "清掃",
@@ -3973,14 +4071,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "業務用掃除機（バキューム）"
-        ],
-        "en": [
-          "Shop vacuum"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "業務用掃除機（バキューム）"
+          ],
+          "en": [
+            "Shop vacuum"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -4036,14 +4136,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "コードリール（延長コード）"
-        ],
-        "en": [
-          "Cord reel"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "コードリール（延長コード）"
+          ],
+          "en": [
+            "Cord reel"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -4142,14 +4244,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "バケツ"
-        ],
-        "en": [
-          "Bucket"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "バケツ"
+          ],
+          "en": [
+            "Bucket"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -4290,14 +4394,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "下地センサー"
-        ],
-        "en": [
-          "Stud finder"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "下地センサー"
+          ],
+          "en": [
+            "Stud finder"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -4350,14 +4456,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "シーリング"
-        ],
-        "en": [
-          "Sealant / caulk"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "シーリング"
+          ],
+          "en": [
+            "Sealant / caulk"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -4451,14 +4559,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "鉄筋"
-        ],
-        "en": [
-          "Rebar"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "鉄筋"
+          ],
+          "en": [
+            "Rebar"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -4556,14 +4666,16 @@
     "bullets_ja": [],
     "bullets_en": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "モルタル"
-        ],
-        "en": [
-          "Mortar"
-        ]
-      },
+      "examples": [
+        {
+          "ja": [
+            "モルタル"
+          ],
+          "en": [
+            "Mortar"
+          ]
+        }
+      ],
       "_from": [
         "pack-001"
       ]
@@ -4638,15 +4750,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ボルト・ナット"
-        ],
-        "en": [
-          "Bolt & nut"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ボルト・ナット"
+          ],
+          "en": [
+            "Bolt & nut"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4675,15 +4791,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "検電器"
-        ],
-        "en": [
-          "Voltage tester"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "検電器"
+          ],
+          "en": [
+            "Voltage tester"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4713,15 +4833,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "合板"
-        ],
-        "en": [
-          "Plywood"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "合板"
+          ],
+          "en": [
+            "Plywood"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4752,15 +4876,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "石膏ボード"
-        ],
-        "en": [
-          "Drywall"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "石膏ボード"
+          ],
+          "en": [
+            "Drywall"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4790,15 +4918,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "断熱材"
-        ],
-        "en": [
-          "Insulation"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "断熱材"
+          ],
+          "en": [
+            "Insulation"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4829,15 +4961,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "塩ビ管"
-        ],
-        "en": [
-          "PVC pipe"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "塩ビ管"
+          ],
+          "en": [
+            "PVC pipe"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4866,15 +5002,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "電線管"
-        ],
-        "en": [
-          "Conduit"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "電線管"
+          ],
+          "en": [
+            "Conduit"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4903,15 +5043,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ブレーカー"
-        ],
-        "en": [
-          "Circuit breaker"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ブレーカー"
+          ],
+          "en": [
+            "Circuit breaker"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4942,15 +5086,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "フォークリフト"
-        ],
-        "en": [
-          "Forklift"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "フォークリフト"
+          ],
+          "en": [
+            "Forklift"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -4982,15 +5130,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "油圧ショベル"
-        ],
-        "en": [
-          "Excavator"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "油圧ショベル"
+          ],
+          "en": [
+            "Excavator"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5020,15 +5172,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "バックホー（ローダー）"
-        ],
-        "en": [
-          "Backhoe loader"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "バックホー（ローダー）"
+          ],
+          "en": [
+            "Backhoe loader"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5058,15 +5214,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ダンプ"
-        ],
-        "en": [
-          "Dump truck"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ダンプ"
+          ],
+          "en": [
+            "Dump truck"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5097,15 +5257,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ブルーシート"
-        ],
-        "en": [
-          "Tarpaulin / tarp"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ブルーシート"
+          ],
+          "en": [
+            "Tarpaulin / tarp"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5137,15 +5301,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "マスキングテープ"
-        ],
-        "en": [
-          "Masking tape"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "マスキングテープ"
+          ],
+          "en": [
+            "Masking tape"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5177,15 +5345,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "養生シート"
-        ],
-        "en": [
-          "Drop cloth"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "養生シート"
+          ],
+          "en": [
+            "Drop cloth"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5216,15 +5388,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "朝礼（安全ミーティング）"
-        ],
-        "en": [
-          "Safety meeting"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "朝礼（安全ミーティング）"
+          ],
+          "en": [
+            "Safety meeting"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5253,15 +5429,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "KY（危険予知）"
-        ],
-        "en": [
-          "KY (hazard prediction)"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "KY（危険予知）"
+          ],
+          "en": [
+            "KY (hazard prediction)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5292,15 +5472,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "危険（あぶない合図）"
-        ],
-        "en": [
-          "Kiken (watch out)"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "危険（あぶない合図）"
+          ],
+          "en": [
+            "Kiken (watch out)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5331,15 +5515,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "養生（ようじょう）"
-        ],
-        "en": [
-          "Youshi (protection)"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "養生（ようじょう）"
+          ],
+          "en": [
+            "Youshi (protection)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5368,15 +5556,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "片付け"
-        ],
-        "en": [
-          "Cleanup (katazuke)"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "片付け"
+          ],
+          "en": [
+            "Cleanup (katazuke)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5405,15 +5597,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "誘導員"
-        ],
-        "en": [
-          "Spotter"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "誘導員"
+          ],
+          "en": [
+            "Spotter"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5442,15 +5638,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "保護具（PPE）"
-        ],
-        "en": [
-          "PPE"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "保護具（PPE）"
+          ],
+          "en": [
+            "PPE"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5480,15 +5680,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "耳栓・イヤーマフ"
-        ],
-        "en": [
-          "Ear protection"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "耳栓・イヤーマフ"
+          ],
+          "en": [
+            "Ear protection"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5517,15 +5721,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "救急箱"
-        ],
-        "en": [
-          "First-aid kit"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "救急箱"
+          ],
+          "en": [
+            "First-aid kit"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5554,15 +5762,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "消火器"
-        ],
-        "en": [
-          "Fire extinguisher"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "消火器"
+          ],
+          "en": [
+            "Fire extinguisher"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5591,15 +5803,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "マーカー"
-        ],
-        "en": [
-          "Marker"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "マーカー"
+          ],
+          "en": [
+            "Marker"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5631,15 +5847,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "水糸"
-        ],
-        "en": [
-          "String line"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "水糸"
+          ],
+          "en": [
+            "String line"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5666,15 +5886,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "根太（ねだ）"
-        ],
-        "en": [
-          "Joist"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "根太（ねだ）"
+          ],
+          "en": [
+            "Joist"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5701,15 +5925,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "梁（はり）"
-        ],
-        "en": [
-          "Beam"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "梁（はり）"
+          ],
+          "en": [
+            "Beam"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5736,15 +5964,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "柱（はしら）"
-        ],
-        "en": [
-          "Column"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "柱（はしら）"
+          ],
+          "en": [
+            "Column"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5774,15 +6006,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "OSB合板"
-        ],
-        "en": [
-          "OSB"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "OSB合板"
+          ],
+          "en": [
+            "OSB"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5812,15 +6048,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "フォームタイ（型枠締付）"
-        ],
-        "en": [
-          "Form tie"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "フォームタイ（型枠締付）"
+          ],
+          "en": [
+            "Form tie"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5850,15 +6090,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "紙やすり"
-        ],
-        "en": [
-          "Sandpaper"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "紙やすり"
+          ],
+          "en": [
+            "Sandpaper"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5887,15 +6131,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "下塗り（プライマー）"
-        ],
-        "en": [
-          "Primer"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "下塗り（プライマー）"
+          ],
+          "en": [
+            "Primer"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5924,15 +6172,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "上塗り"
-        ],
-        "en": [
-          "Top coat"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "上塗り"
+          ],
+          "en": [
+            "Top coat"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5962,15 +6214,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "タッチアップ"
-        ],
-        "en": [
-          "Touch-up"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "タッチアップ"
+          ],
+          "en": [
+            "Touch-up"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -5998,15 +6254,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "垂木（たるき）"
-        ],
-        "en": [
-          "Rafter"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "垂木（たるき）"
+          ],
+          "en": [
+            "Rafter"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6035,15 +6295,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ルーフィング"
-        ],
-        "en": [
-          "Roofing felt"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ルーフィング"
+          ],
+          "en": [
+            "Roofing felt"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6072,15 +6336,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "シングル材"
-        ],
-        "en": [
-          "Shingle"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "シングル材"
+          ],
+          "en": [
+            "Shingle"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6110,15 +6378,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "板金（フラッシング）"
-        ],
-        "en": [
-          "Flashing"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "板金（フラッシング）"
+          ],
+          "en": [
+            "Flashing"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6148,15 +6420,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "防水テープ"
-        ],
-        "en": [
-          "Seal tape"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "防水テープ"
+          ],
+          "en": [
+            "Seal tape"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6189,15 +6465,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "手直しリスト"
-        ],
-        "en": [
-          "Punch list"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "手直しリスト"
+          ],
+          "en": [
+            "Punch list"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6226,15 +6506,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "引き渡し"
-        ],
-        "en": [
-          "Handover"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "引き渡し"
+          ],
+          "en": [
+            "Handover"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6263,15 +6547,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "竣工図（アズビルト）"
-        ],
-        "en": [
-          "As-built"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "竣工図（アズビルト）"
+          ],
+          "en": [
+            "As-built"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6300,15 +6588,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "質疑（RFI）"
-        ],
-        "en": [
-          "RFIs"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "質疑（RFI）"
+          ],
+          "en": [
+            "RFIs"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6337,15 +6629,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "変更（チェンジ）"
-        ],
-        "en": [
-          "Change order"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "変更（チェンジ）"
+          ],
+          "en": [
+            "Change order"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6372,15 +6668,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "トルク"
-        ],
-        "en": [
-          "Torque"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "トルク"
+          ],
+          "en": [
+            "Torque"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6409,15 +6709,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ノギス"
-        ],
-        "en": [
-          "Caliper"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ノギス"
+          ],
+          "en": [
+            "Caliper"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6446,15 +6750,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "シクネスゲージ"
-        ],
-        "en": [
-          "Feeler gauge"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "シクネスゲージ"
+          ],
+          "en": [
+            "Feeler gauge"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6483,15 +6791,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ダイヤルゲージ"
-        ],
-        "en": [
-          "Dial gauge"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ダイヤルゲージ"
+          ],
+          "en": [
+            "Dial gauge"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6520,15 +6832,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "はんだごて"
-        ],
-        "en": [
-          "Soldering iron"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "はんだごて"
+          ],
+          "en": [
+            "Soldering iron"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6557,15 +6873,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "熱収縮チューブ"
-        ],
-        "en": [
-          "Heat-shrink tubing"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "熱収縮チューブ"
+          ],
+          "en": [
+            "Heat-shrink tubing"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6597,15 +6917,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "結束バンド"
-        ],
-        "en": [
-          "Cable tie"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "結束バンド"
+          ],
+          "en": [
+            "Cable tie"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6638,15 +6962,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "仮止め"
-        ],
-        "en": [
-          "Temporary fixing (kari)"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "仮止め"
+          ],
+          "en": [
+            "Temporary fixing (kari)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6678,15 +7006,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "六角レンチ"
-        ],
-        "en": [
-          "Allen key"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "六角レンチ"
+          ],
+          "en": [
+            "Allen key"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6715,15 +7047,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "釘"
-        ],
-        "en": [
-          "Nails"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "釘"
+          ],
+          "en": [
+            "Nails"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6754,15 +7090,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "目地材（グラウト）"
-        ],
-        "en": [
-          "Grout"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "目地材（グラウト）"
+          ],
+          "en": [
+            "Grout"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6794,15 +7134,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ロックアウト・タグアウト"
-        ],
-        "en": [
-          "Lockout/Tagout (LOTO)"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ロックアウト・タグアウト"
+          ],
+          "en": [
+            "Lockout/Tagout (LOTO)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6833,15 +7177,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "5S（整理・整頓・清掃・清潔・しつけ）"
-        ],
-        "en": [
-          "Five S (5S)"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "5S（整理・整頓・清掃・清潔・しつけ）"
+          ],
+          "en": [
+            "Five S (5S)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6870,15 +7218,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "発電機"
-        ],
-        "en": [
-          "Generator"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "発電機"
+          ],
+          "en": [
+            "Generator"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6908,15 +7260,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "コンプレッサー"
-        ],
-        "en": [
-          "Air compressor"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "コンプレッサー"
+          ],
+          "en": [
+            "Air compressor"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6948,15 +7304,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "角度計"
-        ],
-        "en": [
-          "Angle finder"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "角度計"
+          ],
+          "en": [
+            "Angle finder"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -6987,15 +7347,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "通線ワイヤー"
-        ],
-        "en": [
-          "Fish tape"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "通線ワイヤー"
+          ],
+          "en": [
+            "Fish tape"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7026,15 +7390,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "シールテープ"
-        ],
-        "en": [
-          "PTFE tape"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "シールテープ"
+          ],
+          "en": [
+            "PTFE tape"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7063,15 +7431,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "安全靴"
-        ],
-        "en": [
-          "Safety boots"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "安全靴"
+          ],
+          "en": [
+            "Safety boots"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7102,15 +7474,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "反射ベスト"
-        ],
-        "en": [
-          "High-visibility vest"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "反射ベスト"
+          ],
+          "en": [
+            "High-visibility vest"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7140,15 +7516,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "バックアップ材"
-        ],
-        "en": [
-          "Backer rod"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "バックアップ材"
+          ],
+          "en": [
+            "Backer rod"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7179,15 +7559,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ジョイントボックス（配線箱）"
-        ],
-        "en": [
-          "Junction box"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ジョイントボックス（配線箱）"
+          ],
+          "en": [
+            "Junction box"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7218,15 +7602,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "コンセント"
-        ],
-        "en": [
-          "Receptacle / outlet"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "コンセント"
+          ],
+          "en": [
+            "Receptacle / outlet"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7257,15 +7645,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ワイヤーナット（配線コネクタ）"
-        ],
-        "en": [
-          "Wire connector"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ワイヤーナット（配線コネクタ）"
+          ],
+          "en": [
+            "Wire connector"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7296,15 +7688,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ボールバルブ"
-        ],
-        "en": [
-          "Ball valve"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ボールバルブ"
+          ],
+          "en": [
+            "Ball valve"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7335,15 +7731,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "排水トラップ（Pトラップ）"
-        ],
-        "en": [
-          "P-trap"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "排水トラップ（Pトラップ）"
+          ],
+          "en": [
+            "P-trap"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7374,15 +7774,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "配管用シール剤"
-        ],
-        "en": [
-          "Pipe joint compound"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "配管用シール剤"
+          ],
+          "en": [
+            "Pipe joint compound"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7413,15 +7817,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "塗装スプレーガン"
-        ],
-        "en": [
-          "Paint sprayer"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "塗装スプレーガン"
+          ],
+          "en": [
+            "Paint sprayer"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7452,15 +7860,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "延長ポール"
-        ],
-        "en": [
-          "Extension pole"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "延長ポール"
+          ],
+          "en": [
+            "Extension pole"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7492,15 +7904,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "作業手順書（JSA/JHA）"
-        ],
-        "en": [
-          "Job hazard analysis"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "作業手順書（JSA/JHA）"
+          ],
+          "en": [
+            "Job hazard analysis"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7532,15 +7948,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "防じん養生（間仕切り）"
-        ],
-        "en": [
-          "Dust barrier"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "防じん養生（間仕切り）"
+          ],
+          "en": [
+            "Dust barrier"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7571,15 +7991,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "ガラシュート"
-        ],
-        "en": [
-          "Debris chute"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "ガラシュート"
+          ],
+          "en": [
+            "Debris chute"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7611,15 +8035,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "仮設電源"
-        ],
-        "en": [
-          "Temporary power"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "仮設電源"
+          ],
+          "en": [
+            "Temporary power"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7651,15 +8079,19 @@
     "fuzzy": [],
     "region": [],
     "detail": {
-      "examples": {
-        "ja": [
-          "火気作業"
-        ],
-        "en": [
-          "Hot work"
-        ]
-      },
-      "_from": "pack-001"
+      "examples": [
+        {
+          "ja": [
+            "火気作業"
+          ],
+          "en": [
+            "Hot work"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
     }
   },
   {
@@ -7690,12 +8122,2727 @@
     "fuzzy": [],
     "region": [],
     "detail": {
+      "examples": [
+        {
+          "ja": [
+            "作業許可（PTW）"
+          ],
+          "en": [
+            "Permit to work"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
+    }
+  },
+  {
+    "id": "wrench",
+    "type": "tool",
+    "term": {
+      "ja": "レンチ",
+      "en": "Wrench"
+    },
+    "aliases": {
+      "ja": [
+        "スパナ"
+      ],
+      "en": [
+        "Spanner"
+      ]
+    },
+    "description": {
+      "ja": "ナットやボルトを回す工具。",
+      "en": "Tool for tightening/loosening nuts and bolts."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
       "examples": {
         "ja": [
-          "作業許可（PTW）"
+          "レンチ"
         ],
         "en": [
-          "Permit to work"
+          "Wrench"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "formwork",
+    "type": "tool",
+    "term": {
+      "ja": "型枠",
+      "en": "Formwork"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Concrete forms"
+      ]
+    },
+    "description": {
+      "ja": "コンクリを打設するための仮設型。",
+      "en": "Temporary molds used to shape poured concrete."
+    },
+    "categories": [
+      "concrete"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "型枠"
+        ],
+        "en": [
+          "Formwork"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "float_trowel",
+    "type": "tool",
+    "term": {
+      "ja": "ならし（フロート）",
+      "en": "Float (trowel)"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Concrete float"
+      ]
+    },
+    "description": {
+      "ja": "打設直後の表面をならす道具。",
+      "en": "Tool for smoothing fresh concrete or plaster."
+    },
+    "categories": [
+      "concrete"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ならし（フロート）"
+        ],
+        "en": [
+          "Float (trowel)"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "metal_stud",
+    "type": "tool",
+    "term": {
+      "ja": "軽量鉄骨スタッド",
+      "en": "Metal stud"
+    },
+    "aliases": {
+      "ja": [
+        "スタッド"
+      ],
+      "en": [
+        "Steel stud"
+      ]
+    },
+    "description": {
+      "ja": "軽量鉄骨の下地材。間仕切り壁などの骨組みに使う。",
+      "en": "Light-gauge steel framing member used for interior partitions."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "framing",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "軽量鉄骨スタッド"
+        ],
+        "en": [
+          "Metal stud"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "concrete_pump",
+    "type": "tool",
+    "term": {
+      "ja": "コンクリートポンプ車",
+      "en": "Concrete pump"
+    },
+    "aliases": {
+      "ja": [
+        "ポンプ車"
+      ],
+      "en": [
+        "Pump truck"
+      ]
+    },
+    "description": {
+      "ja": "ホースでコンクリを圧送する車両。",
+      "en": "Pumps concrete through hoses to placement area."
+    },
+    "categories": [
+      "machines"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コンクリートポンプ車"
+        ],
+        "en": [
+          "Concrete pump"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "genba_site",
+    "type": "tool",
+    "term": {
+      "ja": "現場",
+      "en": "Genba (site)"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Jobsite"
+      ]
+    },
+    "description": {
+      "ja": "工事の作業現場。",
+      "en": "Work site; context often implies strict rules and flow."
+    },
+    "categories": [
+      "slang"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "現場"
+        ],
+        "en": [
+          "Genba (site)"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "hand_signal",
+    "type": "tool",
+    "term": {
+      "ja": "合図（手合図）",
+      "en": "Hand signal"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Signals"
+      ]
+    },
+    "description": {
+      "ja": "重機や騒音下で使う非言語合図。",
+      "en": "Non-verbal signals used around machines/noisy work."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "合図（手合図）"
+        ],
+        "en": [
+          "Hand signal"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "respirator",
+    "type": "tool",
+    "term": {
+      "ja": "防毒マスク",
+      "en": "Respirator"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Gas mask"
+      ]
+    },
+    "description": {
+      "ja": "有機溶剤等のガスから守る。",
+      "en": "Respiratory protection against fumes/chemicals."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "painting"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "防毒マスク"
+        ],
+        "en": [
+          "Respirator"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "measuring_wheel",
+    "type": "tool",
+    "term": {
+      "ja": "測定車（ローラー）",
+      "en": "Measuring wheel"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Survey wheel"
+      ]
+    },
+    "description": {
+      "ja": "転がして距離を測る工具。",
+      "en": "Wheel tool to measure distances by rolling."
+    },
+    "categories": [
+      "measurement"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "測定車（ローラー）"
+        ],
+        "en": [
+          "Measuring wheel"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "line_level",
+    "type": "tool",
+    "term": {
+      "ja": "糸水平器",
+      "en": "Line level"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "String level"
+      ]
+    },
+    "description": {
+      "ja": "水糸に付けて水平を確認する小型水平器。",
+      "en": "Small level used on string lines."
+    },
+    "categories": [
+      "measurement"
+    ],
+    "tasks": [
+      "framing",
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "糸水平器"
+        ],
+        "en": [
+          "Line level"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "stud",
+    "type": "tool",
+    "term": {
+      "ja": "間柱（まばしら）",
+      "en": "Stud"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Intermediate stud"
+      ]
+    },
+    "description": {
+      "ja": "壁の補助縦材。",
+      "en": "Intermediate vertical framing member."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "framing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "間柱（まばしら）"
+        ],
+        "en": [
+          "Stud"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "screed",
+    "type": "tool",
+    "term": {
+      "ja": "トンボ（ならし）",
+      "en": "Screed"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Screeding"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ表面を平滑にするならし道具/工程。",
+      "en": "Tool/method to level concrete to a flat plane."
+    },
+    "categories": [
+      "concrete"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "トンボ（ならし）"
+        ],
+        "en": [
+          "Screed"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "joint_compound",
+    "type": "tool",
+    "term": {
+      "ja": "パテ",
+      "en": "Joint compound"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Putty"
+      ]
+    },
+    "description": {
+      "ja": "継ぎ目や凹凸を埋めて平滑にする充填材。",
+      "en": "Filler used to smooth seams and small defects."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "パテ"
+        ],
+        "en": [
+          "Joint compound"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "torque_wrench",
+    "type": "tool",
+    "term": {
+      "ja": "トルクレンチ",
+      "en": "Torque wrench"
+    },
+    "aliases": {
+      "ja": [],
+      "en": []
+    },
+    "description": {
+      "ja": "指定トルクで締め付ける管理レンチ。",
+      "en": "Wrench that tightens bolts to a specified torque."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "トルクレンチ"
+        ],
+        "en": [
+          "Torque wrench"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "hammer_tacker",
+    "type": "tool",
+    "term": {
+      "ja": "ハンマータッカー",
+      "en": "Hammer tacker"
+    },
+    "aliases": {
+      "ja": [
+        "タッカー（ハンマー式）"
+      ],
+      "en": [
+        "Hammer stapler"
+      ]
+    },
+    "description": {
+      "ja": "シート類を素早く留めるタッカー。例：『ハンマータッカーで留めといて』",
+      "en": "Tacker swung like a hammer for fast sheeting. Example: “Hammer-tack the sheet.”"
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "roofing",
+      "site",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ハンマータッカー"
+        ],
+        "en": [
+          "Hammer tacker"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "anchor_plastic_plug",
+    "type": "tool",
+    "term": {
+      "ja": "プラグ（アンカー）",
+      "en": "Anchor (plastic plug)"
+    },
+    "aliases": {
+      "ja": [
+        "カールプラグ"
+      ],
+      "en": [
+        "Wall plug"
+      ]
+    },
+    "description": {
+      "ja": "壁面にビスを効かせるための下地。例：『プラグ入れてからビス打って』",
+      "en": "Plastic anchor for screws in masonry. Example: “Put a plug, then screw.”"
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "interior",
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "プラグ（アンカー）"
+        ],
+        "en": [
+          "Anchor (plastic plug)"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "silicone_sealant",
+    "type": "tool",
+    "term": {
+      "ja": "シリコンシーラント",
+      "en": "Silicone sealant"
+    },
+    "aliases": {
+      "ja": [
+        "シリコン"
+      ],
+      "en": [
+        "Silicone"
+      ]
+    },
+    "description": {
+      "ja": "目地の防水・充填材。例：『ここシリコン打っといて』",
+      "en": "Sealant for waterproofing joints. Example: “Silicone the joint.”"
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior",
+      "exterior",
+      "plumbing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "シリコンシーラント"
+        ],
+        "en": [
+          "Silicone sealant"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "concrete_saw",
+    "type": "tool",
+    "term": {
+      "ja": "コンクリートカッター",
+      "en": "Concrete saw"
+    },
+    "aliases": {
+      "ja": [
+        "エンジンカッター"
+      ],
+      "en": [
+        "Cut-off saw"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ・アスファルトを切断する専用工具。",
+      "en": "Power saw designed to cut concrete/asphalt."
+    },
+    "categories": [
+      "power-tools"
+    ],
+    "tasks": [
+      "foundation",
+      "demolition"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コンクリートカッター"
+        ],
+        "en": [
+          "Concrete saw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "nail_set",
+    "type": "tool",
+    "term": {
+      "ja": "ポンチ（釘打ち）",
+      "en": "Nail set"
+    },
+    "aliases": {
+      "ja": [
+        "釘しめ"
+      ],
+      "en": [
+        "Nail punch"
+      ]
+    },
+    "description": {
+      "ja": "釘頭を沈めて仕上げを綺麗にする工具。",
+      "en": "Sets nail heads slightly below the surface for finishing."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "framing",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ポンチ（釘打ち）"
+        ],
+        "en": [
+          "Nail set"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "drywall_tape",
+    "type": "tool",
+    "term": {
+      "ja": "ジョイントテープ",
+      "en": "Drywall tape"
+    },
+    "aliases": {
+      "ja": [
+        "メッシュテープ"
+      ],
+      "en": [
+        "Joint tape"
+      ]
+    },
+    "description": {
+      "ja": "ボードの継ぎ目を補強して割れを防ぐテープ。",
+      "en": "Tape used to reinforce drywall seams before compound."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ジョイントテープ"
+        ],
+        "en": [
+          "Drywall tape"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "paint_tray",
+    "type": "tool",
+    "term": {
+      "ja": "ローラートレイ",
+      "en": "Paint tray"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Roller tray"
+      ]
+    },
+    "description": {
+      "ja": "ローラーに塗料を含ませるための容器。",
+      "en": "Tray for loading paint onto rollers."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "painting"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ローラートレイ"
+        ],
+        "en": [
+          "Paint tray"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "caulk_back_up_tape",
+    "type": "tool",
+    "term": {
+      "ja": "養生テープ（シーリング用）",
+      "en": "Caulk back-up tape"
+    },
+    "aliases": {
+      "ja": [
+        "マスキング（シーリング）"
+      ],
+      "en": [
+        "Masking tape (for caulk)"
+      ]
+    },
+    "description": {
+      "ja": "シーリングのラインを綺麗に出すための養生テープ。",
+      "en": "Masking tape used to keep sealant lines clean."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "exterior",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "養生テープ（シーリング用）"
+        ],
+        "en": [
+          "Caulk back-up tape"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "gfci_rcd",
+    "type": "tool",
+    "term": {
+      "ja": "漏電遮断器（GFCI/RCD）",
+      "en": "GFCI / RCD"
+    },
+    "aliases": {
+      "ja": [
+        "漏電ブレーカー"
+      ],
+      "en": [
+        "Ground-fault interrupter"
+      ]
+    },
+    "description": {
+      "ja": "漏電を検知すると電源を遮断する安全装置。",
+      "en": "Device that cuts power when leakage current is detected."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "electrical"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "漏電遮断器（GFCI/RCD）"
+        ],
+        "en": [
+          "GFCI / RCD"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "hose_clamp",
+    "type": "tool",
+    "term": {
+      "ja": "ホースバンド",
+      "en": "Hose clamp"
+    },
+    "aliases": {
+      "ja": [
+        "バンド"
+      ],
+      "en": [
+        "Worm clamp"
+      ]
+    },
+    "description": {
+      "ja": "ホースを継手に締め付け固定する金具。",
+      "en": "Clamp that tightens hoses onto fittings."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "plumbing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ホースバンド"
+        ],
+        "en": [
+          "Hose clamp"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "plumber_s_putty",
+    "type": "tool",
+    "term": {
+      "ja": "配管パテ",
+      "en": "Plumber's putty"
+    },
+    "aliases": {
+      "ja": [
+        "パテ（配管）"
+      ],
+      "en": [
+        "Putty"
+      ]
+    },
+    "description": {
+      "ja": "排水金具まわりのシールに使うパテ。",
+      "en": "Putty used to seal around drains and fixtures."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "plumbing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "配管パテ"
+        ],
+        "en": [
+          "Plumber's putty"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "lag_screw",
+    "type": "tool",
+    "term": {
+      "ja": "コーチスクリュー",
+      "en": "Lag screw"
+    },
+    "aliases": {
+      "ja": [
+        "ラグスクリュー"
+      ],
+      "en": [
+        "Lag bolt"
+      ]
+    },
+    "description": {
+      "ja": "太くて強度の高い木材用ねじ。",
+      "en": "Large screw for heavy-duty wood fastening."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "framing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コーチスクリュー"
+        ],
+        "en": [
+          "Lag screw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "concrete_screw",
+    "type": "tool",
+    "term": {
+      "ja": "コンクリートビス",
+      "en": "Concrete screw"
+    },
+    "aliases": {
+      "ja": [
+        "タップビス（コンクリ）"
+      ],
+      "en": [
+        "Masonry screw"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ・石材に直接効かせるビス。",
+      "en": "Screw designed to fasten into concrete/masonry."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "foundation",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コンクリートビス"
+        ],
+        "en": [
+          "Concrete screw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "expansion_anchor",
+    "type": "tool",
+    "term": {
+      "ja": "拡張アンカー",
+      "en": "Expansion anchor"
+    },
+    "aliases": {
+      "ja": [
+        "ウェッジアンカー"
+      ],
+      "en": [
+        "Wedge anchor"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ内で広がって強固に固定するアンカー。",
+      "en": "Anchor that expands in concrete for strong holding."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "拡張アンカー"
+        ],
+        "en": [
+          "Expansion anchor"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "drywall_screw",
+    "type": "tool",
+    "term": {
+      "ja": "ボードビス",
+      "en": "Drywall screw"
+    },
+    "aliases": {
+      "ja": [
+        "石膏ボードビス"
+      ],
+      "en": [
+        "Gypsum screw"
+      ]
+    },
+    "description": {
+      "ja": "石膏ボードを下地に固定するビス。",
+      "en": "Screw for fastening drywall to studs."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ボードビス"
+        ],
+        "en": [
+          "Drywall screw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "corner_bead",
+    "type": "tool",
+    "term": {
+      "ja": "コーナービード",
+      "en": "Corner bead"
+    },
+    "aliases": {
+      "ja": [
+        "ビード"
+      ],
+      "en": [
+        "Drywall corner bead"
+      ]
+    },
+    "description": {
+      "ja": "ボードの出隅を補強して仕上げを整える部材。",
+      "en": "Reinforcement for drywall outside corners."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コーナービード"
+        ],
+        "en": [
+          "Corner bead"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "mud_pan",
+    "type": "tool",
+    "term": {
+      "ja": "パテ皿（マッドパン）",
+      "en": "Mud pan"
+    },
+    "aliases": {
+      "ja": [
+        "パテトレイ"
+      ],
+      "en": [
+        "Drywall pan"
+      ]
+    },
+    "description": {
+      "ja": "パテを受けて作業するための皿。",
+      "en": "Pan used to hold joint compound while finishing."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "パテ皿（マッドパン）"
+        ],
+        "en": [
+          "Mud pan"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "drywall_lift",
+    "type": "tool",
+    "term": {
+      "ja": "ボードリフター",
+      "en": "Drywall lift"
+    },
+    "aliases": {
+      "ja": [
+        "リフター"
+      ],
+      "en": [
+        "Panel lift"
+      ]
+    },
+    "description": {
+      "ja": "天井ボードなどを持ち上げ保持する機器。",
+      "en": "Device to lift and hold drywall on ceilings."
+    },
+    "categories": [
+      "machines"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ボードリフター"
+        ],
+        "en": [
+          "Drywall lift"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "self_leveling_compound",
+    "type": "tool",
+    "term": {
+      "ja": "セルフレベリング材",
+      "en": "Self-leveling compound"
+    },
+    "aliases": {
+      "ja": [
+        "レベリング"
+      ],
+      "en": [
+        "Leveling compound"
+      ]
+    },
+    "description": {
+      "ja": "床面を平滑に整える流動性の高い下地材。",
+      "en": "Floor compound that levels itself to a flat surface."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "セルフレベリング材"
+        ],
+        "en": [
+          "Self-leveling compound"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "caulk_finisher",
+    "type": "tool",
+    "term": {
+      "ja": "シーリングならしヘラ",
+      "en": "Caulk finisher"
+    },
+    "aliases": {
+      "ja": [
+        "ならしヘラ"
+      ],
+      "en": [
+        "Caulk smoother"
+      ]
+    },
+    "description": {
+      "ja": "シーリングのラインをきれいにならす工具。",
+      "en": "Tool to smooth sealant lines cleanly."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "exterior",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "シーリングならしヘラ"
+        ],
+        "en": [
+          "Caulk finisher"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "mixing_paddle",
+    "type": "tool",
+    "term": {
+      "ja": "攪拌羽根（ミキサーパドル）",
+      "en": "Mixing paddle"
+    },
+    "aliases": {
+      "ja": [
+        "攪拌棒"
+      ],
+      "en": [
+        "Mixer paddle"
+      ]
+    },
+    "description": {
+      "ja": "ドリルに付けて塗料や材料を攪拌する羽根。",
+      "en": "Paddle attachment to mix paint/compound with a drill."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "painting",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": [
+        {
+          "ja": [
+            "攪拌羽根（ミキサーパドル）"
+          ],
+          "en": [
+            "Mixing paddle"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
+    }
+  },
+  {
+    "id": "spotter_vehicle",
+    "type": "tool",
+    "term": {
+      "ja": "誘導（車両誘導）",
+      "en": "Spotter (vehicle)"
+    },
+    "aliases": {
+      "ja": [
+        "車両誘導"
+      ],
+      "en": [
+        "Traffic marshal"
+      ]
+    },
+    "description": {
+      "ja": "狭所・危険箇所で車両を安全に誘導する作業。",
+      "en": "Guiding vehicles in tight or hazardous areas."
+    },
+    "categories": [
+      "slang"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": [
+        {
+          "ja": [
+            "誘導（車両誘導）"
+          ],
+          "en": [
+            "Spotter (vehicle)"
+          ]
+        }
+      ],
+      "_from": [
+        "pack-001"
+      ]
+    }
+  },
+  {
+    "id": "wrench",
+    "type": "tool",
+    "term": {
+      "ja": "レンチ",
+      "en": "Wrench"
+    },
+    "aliases": {
+      "ja": [
+        "スパナ"
+      ],
+      "en": [
+        "Spanner"
+      ]
+    },
+    "description": {
+      "ja": "ナットやボルトを回す工具。",
+      "en": "Tool for tightening/loosening nuts and bolts."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "レンチ"
+        ],
+        "en": [
+          "Wrench"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "formwork",
+    "type": "tool",
+    "term": {
+      "ja": "型枠",
+      "en": "Formwork"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Concrete forms"
+      ]
+    },
+    "description": {
+      "ja": "コンクリを打設するための仮設型。",
+      "en": "Temporary molds used to shape poured concrete."
+    },
+    "categories": [
+      "concrete"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "型枠"
+        ],
+        "en": [
+          "Formwork"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "float_trowel",
+    "type": "tool",
+    "term": {
+      "ja": "ならし（フロート）",
+      "en": "Float (trowel)"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Concrete float"
+      ]
+    },
+    "description": {
+      "ja": "打設直後の表面をならす道具。",
+      "en": "Tool for smoothing fresh concrete or plaster."
+    },
+    "categories": [
+      "concrete"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ならし（フロート）"
+        ],
+        "en": [
+          "Float (trowel)"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "metal_stud",
+    "type": "tool",
+    "term": {
+      "ja": "軽量鉄骨スタッド",
+      "en": "Metal stud"
+    },
+    "aliases": {
+      "ja": [
+        "スタッド"
+      ],
+      "en": [
+        "Steel stud"
+      ]
+    },
+    "description": {
+      "ja": "軽量鉄骨の下地材。間仕切り壁などの骨組みに使う。",
+      "en": "Light-gauge steel framing member used for interior partitions."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "framing",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "軽量鉄骨スタッド"
+        ],
+        "en": [
+          "Metal stud"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "concrete_pump",
+    "type": "tool",
+    "term": {
+      "ja": "コンクリートポンプ車",
+      "en": "Concrete pump"
+    },
+    "aliases": {
+      "ja": [
+        "ポンプ車"
+      ],
+      "en": [
+        "Pump truck"
+      ]
+    },
+    "description": {
+      "ja": "ホースでコンクリを圧送する車両。",
+      "en": "Pumps concrete through hoses to placement area."
+    },
+    "categories": [
+      "machines"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コンクリートポンプ車"
+        ],
+        "en": [
+          "Concrete pump"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "genba_site",
+    "type": "tool",
+    "term": {
+      "ja": "現場",
+      "en": "Genba (site)"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Jobsite"
+      ]
+    },
+    "description": {
+      "ja": "工事の作業現場。",
+      "en": "Work site; context often implies strict rules and flow."
+    },
+    "categories": [
+      "slang"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "現場"
+        ],
+        "en": [
+          "Genba (site)"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "hand_signal",
+    "type": "tool",
+    "term": {
+      "ja": "合図（手合図）",
+      "en": "Hand signal"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Signals"
+      ]
+    },
+    "description": {
+      "ja": "重機や騒音下で使う非言語合図。",
+      "en": "Non-verbal signals used around machines/noisy work."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "合図（手合図）"
+        ],
+        "en": [
+          "Hand signal"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "respirator",
+    "type": "tool",
+    "term": {
+      "ja": "防毒マスク",
+      "en": "Respirator"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Gas mask"
+      ]
+    },
+    "description": {
+      "ja": "有機溶剤等のガスから守る。",
+      "en": "Respiratory protection against fumes/chemicals."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "painting"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "防毒マスク"
+        ],
+        "en": [
+          "Respirator"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "measuring_wheel",
+    "type": "tool",
+    "term": {
+      "ja": "測定車（ローラー）",
+      "en": "Measuring wheel"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Survey wheel"
+      ]
+    },
+    "description": {
+      "ja": "転がして距離を測る工具。",
+      "en": "Wheel tool to measure distances by rolling."
+    },
+    "categories": [
+      "measurement"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "測定車（ローラー）"
+        ],
+        "en": [
+          "Measuring wheel"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "line_level",
+    "type": "tool",
+    "term": {
+      "ja": "糸水平器",
+      "en": "Line level"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "String level"
+      ]
+    },
+    "description": {
+      "ja": "水糸に付けて水平を確認する小型水平器。",
+      "en": "Small level used on string lines."
+    },
+    "categories": [
+      "measurement"
+    ],
+    "tasks": [
+      "framing",
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "糸水平器"
+        ],
+        "en": [
+          "Line level"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "stud",
+    "type": "tool",
+    "term": {
+      "ja": "間柱（まばしら）",
+      "en": "Stud"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Intermediate stud"
+      ]
+    },
+    "description": {
+      "ja": "壁の補助縦材。",
+      "en": "Intermediate vertical framing member."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "framing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "間柱（まばしら）"
+        ],
+        "en": [
+          "Stud"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "screed",
+    "type": "tool",
+    "term": {
+      "ja": "トンボ（ならし）",
+      "en": "Screed"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Screeding"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ表面を平滑にするならし道具/工程。",
+      "en": "Tool/method to level concrete to a flat plane."
+    },
+    "categories": [
+      "concrete"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "トンボ（ならし）"
+        ],
+        "en": [
+          "Screed"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "joint_compound",
+    "type": "tool",
+    "term": {
+      "ja": "パテ",
+      "en": "Joint compound"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Putty"
+      ]
+    },
+    "description": {
+      "ja": "継ぎ目や凹凸を埋めて平滑にする充填材。",
+      "en": "Filler used to smooth seams and small defects."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "パテ"
+        ],
+        "en": [
+          "Joint compound"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "torque_wrench",
+    "type": "tool",
+    "term": {
+      "ja": "トルクレンチ",
+      "en": "Torque wrench"
+    },
+    "aliases": {
+      "ja": [],
+      "en": []
+    },
+    "description": {
+      "ja": "指定トルクで締め付ける管理レンチ。",
+      "en": "Wrench that tightens bolts to a specified torque."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "トルクレンチ"
+        ],
+        "en": [
+          "Torque wrench"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "hammer_tacker",
+    "type": "tool",
+    "term": {
+      "ja": "ハンマータッカー",
+      "en": "Hammer tacker"
+    },
+    "aliases": {
+      "ja": [
+        "タッカー（ハンマー式）"
+      ],
+      "en": [
+        "Hammer stapler"
+      ]
+    },
+    "description": {
+      "ja": "シート類を素早く留めるタッカー。例：『ハンマータッカーで留めといて』",
+      "en": "Tacker swung like a hammer for fast sheeting. Example: “Hammer-tack the sheet.”"
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "roofing",
+      "site",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ハンマータッカー"
+        ],
+        "en": [
+          "Hammer tacker"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "anchor_plastic_plug",
+    "type": "tool",
+    "term": {
+      "ja": "プラグ（アンカー）",
+      "en": "Anchor (plastic plug)"
+    },
+    "aliases": {
+      "ja": [
+        "カールプラグ"
+      ],
+      "en": [
+        "Wall plug"
+      ]
+    },
+    "description": {
+      "ja": "壁面にビスを効かせるための下地。例：『プラグ入れてからビス打って』",
+      "en": "Plastic anchor for screws in masonry. Example: “Put a plug, then screw.”"
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "interior",
+      "site"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "プラグ（アンカー）"
+        ],
+        "en": [
+          "Anchor (plastic plug)"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "silicone_sealant",
+    "type": "tool",
+    "term": {
+      "ja": "シリコンシーラント",
+      "en": "Silicone sealant"
+    },
+    "aliases": {
+      "ja": [
+        "シリコン"
+      ],
+      "en": [
+        "Silicone"
+      ]
+    },
+    "description": {
+      "ja": "目地の防水・充填材。例：『ここシリコン打っといて』",
+      "en": "Sealant for waterproofing joints. Example: “Silicone the joint.”"
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior",
+      "exterior",
+      "plumbing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "シリコンシーラント"
+        ],
+        "en": [
+          "Silicone sealant"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "concrete_saw",
+    "type": "tool",
+    "term": {
+      "ja": "コンクリートカッター",
+      "en": "Concrete saw"
+    },
+    "aliases": {
+      "ja": [
+        "エンジンカッター"
+      ],
+      "en": [
+        "Cut-off saw"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ・アスファルトを切断する専用工具。",
+      "en": "Power saw designed to cut concrete/asphalt."
+    },
+    "categories": [
+      "power-tools"
+    ],
+    "tasks": [
+      "foundation",
+      "demolition"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コンクリートカッター"
+        ],
+        "en": [
+          "Concrete saw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "nail_set",
+    "type": "tool",
+    "term": {
+      "ja": "ポンチ（釘打ち）",
+      "en": "Nail set"
+    },
+    "aliases": {
+      "ja": [
+        "釘しめ"
+      ],
+      "en": [
+        "Nail punch"
+      ]
+    },
+    "description": {
+      "ja": "釘頭を沈めて仕上げを綺麗にする工具。",
+      "en": "Sets nail heads slightly below the surface for finishing."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "framing",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ポンチ（釘打ち）"
+        ],
+        "en": [
+          "Nail set"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "drywall_tape",
+    "type": "tool",
+    "term": {
+      "ja": "ジョイントテープ",
+      "en": "Drywall tape"
+    },
+    "aliases": {
+      "ja": [
+        "メッシュテープ"
+      ],
+      "en": [
+        "Joint tape"
+      ]
+    },
+    "description": {
+      "ja": "ボードの継ぎ目を補強して割れを防ぐテープ。",
+      "en": "Tape used to reinforce drywall seams before compound."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ジョイントテープ"
+        ],
+        "en": [
+          "Drywall tape"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "paint_tray",
+    "type": "tool",
+    "term": {
+      "ja": "ローラートレイ",
+      "en": "Paint tray"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "Roller tray"
+      ]
+    },
+    "description": {
+      "ja": "ローラーに塗料を含ませるための容器。",
+      "en": "Tray for loading paint onto rollers."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "painting"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ローラートレイ"
+        ],
+        "en": [
+          "Paint tray"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "caulk_back_up_tape",
+    "type": "tool",
+    "term": {
+      "ja": "養生テープ（シーリング用）",
+      "en": "Caulk back-up tape"
+    },
+    "aliases": {
+      "ja": [
+        "マスキング（シーリング）"
+      ],
+      "en": [
+        "Masking tape (for caulk)"
+      ]
+    },
+    "description": {
+      "ja": "シーリングのラインを綺麗に出すための養生テープ。",
+      "en": "Masking tape used to keep sealant lines clean."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "exterior",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "養生テープ（シーリング用）"
+        ],
+        "en": [
+          "Caulk back-up tape"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "gfci_rcd",
+    "type": "tool",
+    "term": {
+      "ja": "漏電遮断器（GFCI/RCD）",
+      "en": "GFCI / RCD"
+    },
+    "aliases": {
+      "ja": [
+        "漏電ブレーカー"
+      ],
+      "en": [
+        "Ground-fault interrupter"
+      ]
+    },
+    "description": {
+      "ja": "漏電を検知すると電源を遮断する安全装置。",
+      "en": "Device that cuts power when leakage current is detected."
+    },
+    "categories": [
+      "safety"
+    ],
+    "tasks": [
+      "electrical"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "漏電遮断器（GFCI/RCD）"
+        ],
+        "en": [
+          "GFCI / RCD"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "hose_clamp",
+    "type": "tool",
+    "term": {
+      "ja": "ホースバンド",
+      "en": "Hose clamp"
+    },
+    "aliases": {
+      "ja": [
+        "バンド"
+      ],
+      "en": [
+        "Worm clamp"
+      ]
+    },
+    "description": {
+      "ja": "ホースを継手に締め付け固定する金具。",
+      "en": "Clamp that tightens hoses onto fittings."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "plumbing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ホースバンド"
+        ],
+        "en": [
+          "Hose clamp"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "plumber_s_putty",
+    "type": "tool",
+    "term": {
+      "ja": "配管パテ",
+      "en": "Plumber's putty"
+    },
+    "aliases": {
+      "ja": [
+        "パテ（配管）"
+      ],
+      "en": [
+        "Putty"
+      ]
+    },
+    "description": {
+      "ja": "排水金具まわりのシールに使うパテ。",
+      "en": "Putty used to seal around drains and fixtures."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "plumbing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "配管パテ"
+        ],
+        "en": [
+          "Plumber's putty"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "lag_screw",
+    "type": "tool",
+    "term": {
+      "ja": "コーチスクリュー",
+      "en": "Lag screw"
+    },
+    "aliases": {
+      "ja": [
+        "ラグスクリュー"
+      ],
+      "en": [
+        "Lag bolt"
+      ]
+    },
+    "description": {
+      "ja": "太くて強度の高い木材用ねじ。",
+      "en": "Large screw for heavy-duty wood fastening."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "framing"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コーチスクリュー"
+        ],
+        "en": [
+          "Lag screw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "concrete_screw",
+    "type": "tool",
+    "term": {
+      "ja": "コンクリートビス",
+      "en": "Concrete screw"
+    },
+    "aliases": {
+      "ja": [
+        "タップビス（コンクリ）"
+      ],
+      "en": [
+        "Masonry screw"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ・石材に直接効かせるビス。",
+      "en": "Screw designed to fasten into concrete/masonry."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "foundation",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コンクリートビス"
+        ],
+        "en": [
+          "Concrete screw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "expansion_anchor",
+    "type": "tool",
+    "term": {
+      "ja": "拡張アンカー",
+      "en": "Expansion anchor"
+    },
+    "aliases": {
+      "ja": [
+        "ウェッジアンカー"
+      ],
+      "en": [
+        "Wedge anchor"
+      ]
+    },
+    "description": {
+      "ja": "コンクリ内で広がって強固に固定するアンカー。",
+      "en": "Anchor that expands in concrete for strong holding."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "foundation"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "拡張アンカー"
+        ],
+        "en": [
+          "Expansion anchor"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "drywall_screw",
+    "type": "tool",
+    "term": {
+      "ja": "ボードビス",
+      "en": "Drywall screw"
+    },
+    "aliases": {
+      "ja": [
+        "石膏ボードビス"
+      ],
+      "en": [
+        "Gypsum screw"
+      ]
+    },
+    "description": {
+      "ja": "石膏ボードを下地に固定するビス。",
+      "en": "Screw for fastening drywall to studs."
+    },
+    "categories": [
+      "fasteners"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ボードビス"
+        ],
+        "en": [
+          "Drywall screw"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "corner_bead",
+    "type": "tool",
+    "term": {
+      "ja": "コーナービード",
+      "en": "Corner bead"
+    },
+    "aliases": {
+      "ja": [
+        "ビード"
+      ],
+      "en": [
+        "Drywall corner bead"
+      ]
+    },
+    "description": {
+      "ja": "ボードの出隅を補強して仕上げを整える部材。",
+      "en": "Reinforcement for drywall outside corners."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "コーナービード"
+        ],
+        "en": [
+          "Corner bead"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "mud_pan",
+    "type": "tool",
+    "term": {
+      "ja": "パテ皿（マッドパン）",
+      "en": "Mud pan"
+    },
+    "aliases": {
+      "ja": [
+        "パテトレイ"
+      ],
+      "en": [
+        "Drywall pan"
+      ]
+    },
+    "description": {
+      "ja": "パテを受けて作業するための皿。",
+      "en": "Pan used to hold joint compound while finishing."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "パテ皿（マッドパン）"
+        ],
+        "en": [
+          "Mud pan"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "drywall_lift",
+    "type": "tool",
+    "term": {
+      "ja": "ボードリフター",
+      "en": "Drywall lift"
+    },
+    "aliases": {
+      "ja": [
+        "リフター"
+      ],
+      "en": [
+        "Panel lift"
+      ]
+    },
+    "description": {
+      "ja": "天井ボードなどを持ち上げ保持する機器。",
+      "en": "Device to lift and hold drywall on ceilings."
+    },
+    "categories": [
+      "machines"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "ボードリフター"
+        ],
+        "en": [
+          "Drywall lift"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "self_leveling_compound",
+    "type": "tool",
+    "term": {
+      "ja": "セルフレベリング材",
+      "en": "Self-leveling compound"
+    },
+    "aliases": {
+      "ja": [
+        "レベリング"
+      ],
+      "en": [
+        "Leveling compound"
+      ]
+    },
+    "description": {
+      "ja": "床面を平滑に整える流動性の高い下地材。",
+      "en": "Floor compound that levels itself to a flat surface."
+    },
+    "categories": [
+      "materials"
+    ],
+    "tasks": [
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "セルフレベリング材"
+        ],
+        "en": [
+          "Self-leveling compound"
+        ]
+      },
+      "_from": "pack-001"
+    }
+  },
+  {
+    "id": "caulk_finisher",
+    "type": "tool",
+    "term": {
+      "ja": "シーリングならしヘラ",
+      "en": "Caulk finisher"
+    },
+    "aliases": {
+      "ja": [
+        "ならしヘラ"
+      ],
+      "en": [
+        "Caulk smoother"
+      ]
+    },
+    "description": {
+      "ja": "シーリングのラインをきれいにならす工具。",
+      "en": "Tool to smooth sealant lines cleanly."
+    },
+    "categories": [
+      "hand-tools"
+    ],
+    "tasks": [
+      "exterior",
+      "interior"
+    ],
+    "fuzzy": [],
+    "region": [],
+    "detail": {
+      "examples": {
+        "ja": [
+          "シーリングならしヘラ"
+        ],
+        "en": [
+          "Caulk finisher"
         ]
       },
       "_from": "pack-001"

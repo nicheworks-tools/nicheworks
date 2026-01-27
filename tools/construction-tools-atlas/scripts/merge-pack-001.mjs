@@ -8,6 +8,8 @@ const OUT_MERGED = "tools/construction-tools-atlas/data/tools.basic.merged.json"
 const OUT_REPORT = "tools/construction-tools-atlas/data/merge-report.json";
 const OUT_PACK_CONVERTED = "tools/construction-tools-atlas/data/packs/pack-001.converted.basic.json";
 
+const MANUAL_PATH = "tools/construction-tools-atlas/data/manual-resolve.pack001.json";
+
 function loadAny(p){
   const j = JSON.parse(fs.readFileSync(p, "utf8"));
   if (Array.isArray(j)) return j;
@@ -79,7 +81,6 @@ function toBasic(raw){
   const tasks      = raw?.tasks ?? raw?.task ?? [];
   const fuzzy      = raw?.fuzzy ?? raw?.keywords ?? [];
   const region     = raw?.region ?? raw?.regions ?? [];
-  const image      = raw?.image ?? raw?.icon ?? raw?.svg ?? undefined;
 
   const examples = raw?.examples ?? raw?.example ?? raw?.usage ?? raw?.usages ?? undefined;
 
@@ -96,11 +97,7 @@ function toBasic(raw){
     tasks: uniq(Array.isArray(tasks) ? tasks : [tasks]).filter(Boolean),
     fuzzy: uniq(Array.isArray(fuzzy) ? fuzzy : [fuzzy]).filter(Boolean),
     region: uniq(Array.isArray(region) ? region : [region]).filter(Boolean),
-    ...(image ? { image } : {}),
   };
-
-  if (!entry.term.ja) entry.term.ja = "";
-  if (!entry.term.en) entry.term.en = "";
 
   if (examples != null){
     entry.detail = entry.detail || {};
@@ -108,28 +105,14 @@ function toBasic(raw){
     entry.detail._from = "pack-001";
   }
 
-  if (!entry.term.ja && !entry.term.en){
-    entry.detail = entry.detail || {};
-    entry.detail._needs_manual = true;
-    entry.detail._raw = raw;
-  }
-
   return entry;
 }
 
 function gatherKeys(e){
-  const keys = [];
-  if (e?.id) keys.push(`id:${String(e.id)}`);
-
   const ja = e?.term?.ja;
   const en = e?.term?.en;
-  if (ja) keys.push(`tja:${String(ja)}`);
-  if (en) keys.push(`ten:${String(en)}`);
-
   const aJa = e?.aliases?.ja || [];
   const aEn = e?.aliases?.en || [];
-  for (const v of aJa) keys.push(`aja:${String(v)}`);
-  for (const v of aEn) keys.push(`aen:${String(v)}`);
 
   const n = [];
   if (ja) n.push(norm(ja));
@@ -137,7 +120,7 @@ function gatherKeys(e){
   for (const v of aJa) n.push(norm(v));
   for (const v of aEn) n.push(norm(v));
 
-  return { rawKeys: keys, normKeys: uniq(n).filter(Boolean) };
+  return { normKeys: uniq(n).filter(Boolean) };
 }
 
 function mergeInto(base, incoming){
@@ -162,8 +145,6 @@ function mergeInto(base, incoming){
   out.fuzzy      = uniq([...(out.fuzzy || []),      ...(incoming?.fuzzy || [])]).filter(Boolean);
   out.region     = uniq([...(out.region || []),     ...(incoming?.region || [])]).filter(Boolean);
 
-  if (!out.image && incoming?.image) out.image = incoming.image;
-
   if (incoming?.detail?.examples != null){
     out.detail = out.detail || {};
     const cur = out.detail.examples;
@@ -180,28 +161,22 @@ function mergeInto(base, incoming){
   return out;
 }
 
-function isNear(a, b){
-  if (!a || !b) return false;
-  if (a === b) return true;
-  if (a.length >= 4 && b.length >= 4){
-    if (a.includes(b) || b.includes(a)) return true;
-  }
-  const min = Math.min(a.length, b.length);
-  if (min >= 6){
-    const prefix = Math.floor(min * 0.8);
-    if (a.slice(0, prefix) === b.slice(0, prefix)) return true;
-  }
-  return false;
+function loadManual(){
+  if (!fs.existsSync(MANUAL_PATH)) return { merge:{}, asNew:[] };
+  const j = JSON.parse(fs.readFileSync(MANUAL_PATH,"utf8"));
+  return { merge: j.merge || {}, asNew: j.asNew || [] };
 }
+
+const manual = loadManual();
+const manualAsNew = new Set((manual.asNew || []).map(String));
+const manualMerge = new Map(Object.entries(manual.merge || {}).map(([k,v])=>[String(k), String(v)]));
 
 const basic = loadAny(BASIC_PATH);
 const packRaw = loadAny(PACK_PATH);
 const pack = packRaw.map(toBasic);
 
-const byId = new Map();
-for (const e of basic){
-  if (e?.id) byId.set(String(e.id), e);
-}
+const merged = [...basic];
+const mergedById = new Map(merged.filter(e=>e?.id).map(e=>[String(e.id), e]));
 
 const normIndex = new Map();
 function indexEntry(e){
@@ -211,7 +186,7 @@ function indexEntry(e){
     normIndex.get(k).push(e);
   }
 }
-for (const e of basic) indexEntry(e);
+for (const e of merged) indexEntry(e);
 
 const report = {
   packCount: pack.length,
@@ -220,41 +195,42 @@ const report = {
   mergedIntoExisting: 0,
   duplicatesExact: [],
   ambiguous: [],
-  packNeedsManual: [],
+  manualAsNewApplied: 0,
+  manualMergeApplied: 0
 };
-
-const merged = [...basic];
-const mergedById = new Map(merged.filter(e=>e?.id).map(e=>[String(e.id), e]));
-
-function termLabel(e){
-  const ja = e?.term?.ja ? `ja:${e.term.ja}` : "";
-  const en = e?.term?.en ? `en:${e.term.en}` : "";
-  return [ja,en].filter(Boolean).join(" / ");
-}
 
 for (const pe of pack){
   const pid = String(pe.id);
 
-  if (pe?.detail?._needs_manual){
-    report.packNeedsManual.push({ packId: pid, note: "term missing", rawKept: true });
+  // 手動: 新規採用
+  if (manualAsNew.has(pid)){
     merged.push(pe);
     mergedById.set(pid, pe);
     report.addedAsNew++;
+    report.manualAsNewApplied++;
     indexEntry(pe);
     continue;
   }
 
-  const direct = mergedById.get(pid) || byId.get(pid);
-  if (direct){
-    const idx = merged.findIndex(x => String(x?.id) === String(direct.id));
-    merged[idx] = mergeInto(direct, pe);
-    mergedById.set(String(direct.id), merged[idx]);
-    report.duplicatesExact.push({ packId: pid, basicId: String(direct.id), reason: "id_match", key: `id:${pid}` });
+  // 手動: 既存へ統合
+  if (manualMerge.has(pid)){
+    const targetId = manualMerge.get(pid);
+    const be = mergedById.get(targetId);
+    if (!be){
+      report.ambiguous.push({ packId: pid, packTerm: pe?.term, candidates: [{ basicId: targetId, basicTerm: "NOT_FOUND", why:"manual_merge_target_missing" }]});
+      continue;
+    }
+    const idx = merged.findIndex(x => String(x?.id) === targetId);
+    merged[idx] = mergeInto(be, pe);
+    mergedById.set(targetId, merged[idx]);
     report.mergedIntoExisting++;
+    report.manualMergeApplied++;
+    report.duplicatesExact.push({ packId: pid, basicId: targetId, reason: "manual_merge" });
     indexEntry(merged[idx]);
     continue;
   }
 
+  // 自動判定（前と同じ思想：一致が1つに絞れないなら ambiguous）
   const { normKeys: pKeys } = gatherKeys(pe);
   const hitSet = new Set();
   for (const k of pKeys){
@@ -264,69 +240,31 @@ for (const pe of pack){
 
   if (hitSet.size === 1){
     const bid = [...hitSet][0];
-    const be = mergedById.get(bid) || basic.find(x => String(x?.id) === bid);
+    const be = mergedById.get(bid);
     const idx = merged.findIndex(x => String(x?.id) === bid);
     merged[idx] = mergeInto(be, pe);
     mergedById.set(bid, merged[idx]);
-    report.duplicatesExact.push({ packId: pid, basicId: bid, reason: "normalized_exact", key: pKeys[0] });
     report.mergedIntoExisting++;
+    report.duplicatesExact.push({ packId: pid, basicId: bid, reason: "normalized_exact" });
     indexEntry(merged[idx]);
     continue;
   }
 
-  const near = [];
-  if (hitSet.size > 1){
-    for (const bid of hitSet){
-      const be = mergedById.get(bid) || basic.find(x => String(x?.id) === bid);
-      near.push({ basicId: bid, basicTerm: termLabel(be), why: "multiple_norm_hits" });
-    }
-  } else {
-    const cands = [];
-    for (const [k, arr] of normIndex.entries()){
-      for (const pk of pKeys){
-        if (isNear(pk, k)){
-          for (const e of arr) cands.push(e);
-        }
-      }
-    }
-    const uniqById = new Map();
-    for (const e of cands){
-      const id = String(e.id);
-      if (!uniqById.has(id)) uniqById.set(id, e);
-    }
-    for (const [bid, be] of [...uniqById.entries()].slice(0, 5)){
-      near.push({ basicId: bid, basicTerm: termLabel(be), why: "near_match" });
-    }
-  }
-
-  if (near.length){
-    report.ambiguous.push({ packId: pid, packTerm: termLabel(pe), candidates: near });
+  if (hitSet.size === 0){
+    merged.push(pe);
+    mergedById.set(pid, pe);
+    report.addedAsNew++;
+    indexEntry(pe);
     continue;
   }
 
-  merged.push(pe);
-  mergedById.set(pid, pe);
-  report.addedAsNew++;
-  indexEntry(pe);
-}
-
-const idSeen = new Set();
-const idDups = [];
-for (const e of merged){
-  const id = String(e?.id || "");
-  if (!id) continue;
-  if (idSeen.has(id)) idDups.push(id);
-  else idSeen.add(id);
-}
-if (idDups.length){
-  report.finalIdDuplicates = uniq(idDups);
+  report.ambiguous.push({ packId: pid, packTerm: pe?.term, candidates: [...hitSet].slice(0,5).map(id=>({basicId:id, why:"multiple_hits"})) });
 }
 
 fs.writeFileSync(OUT_PACK_CONVERTED, JSON.stringify(pack, null, 2) + "\n", "utf8");
 fs.writeFileSync(OUT_MERGED, JSON.stringify(merged, null, 2) + "\n", "utf8");
 fs.writeFileSync(OUT_REPORT, JSON.stringify(report, null, 2) + "\n", "utf8");
 
-console.log("WROTE:", OUT_PACK_CONVERTED);
 console.log("WROTE:", OUT_MERGED);
 console.log("WROTE:", OUT_REPORT);
 console.log("report:", {
@@ -334,8 +272,7 @@ console.log("report:", {
   basicCount: report.basicCount,
   addedAsNew: report.addedAsNew,
   mergedIntoExisting: report.mergedIntoExisting,
-  duplicatesExact: report.duplicatesExact.length,
   ambiguous: report.ambiguous.length,
-  packNeedsManual: report.packNeedsManual.length,
-  finalIdDuplicates: report.finalIdDuplicates?.length || 0,
+  manualAsNewApplied: report.manualAsNewApplied,
+  manualMergeApplied: report.manualMergeApplied
 });
