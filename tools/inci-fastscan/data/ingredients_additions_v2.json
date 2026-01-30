@@ -1,0 +1,10 @@
+[
+  {
+    "id": "new_ingredient_001",
+    "jp": ["日本語名"],
+    "en": "English Name",
+    "alias": ["Alias 1", "Alias 2"],
+    "safety": "safe",
+    "note_short": "Short note."
+  }
+]
