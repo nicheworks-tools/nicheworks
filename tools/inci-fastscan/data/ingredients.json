@@ -1,40 +1,1498 @@
 [
-  {
-    "id": "sodium_hyaluronate",
-    "jp": [
-      "ヒアルロン酸Na",
-      "ヒアルロン酸"
-    ],
-    "en": "Sodium Hyaluronate",
-    "alias": [
-      "Hyaluronic Acid",
-      "HA"
-    ],
-    "safety": "safe",
-    "note_short": "Hydrating ingredient with low irritation."
-  },
-  {
-    "id": "fragrance",
-    "jp": [
-      "香料"
-    ],
-    "en": "Fragrance",
-    "alias": [
-      "Perfume"
-    ],
-    "safety": "caution",
-    "note_short": "May irritate sensitive skin."
-  },
-  {
-    "id": "salicylic_acid",
-    "jp": [
-      "サリチル酸"
-    ],
-    "en": "Salicylic Acid",
-    "alias": [
-      "BHA"
-    ],
-    "safety": "risk",
-    "note_short": "Strong exfoliant; use carefully."
-  }
+{
+  "id": "water",
+  "jp": ["水"],
+  "en": "Water",
+  "alias": ["Aqua"],
+  "safety": "safe",
+  "note_short": "Universal solvent; common base ingredient."
+},
+{
+  "id": "glycerin",
+  "jp": ["グリセリン"],
+  "en": "Glycerin",
+  "alias": ["Glycerol"],
+  "safety": "safe",
+  "note_short": "Humectant that helps keep skin hydrated."
+},
+{
+  "id": "butylene_glycol",
+  "jp": ["BG","ＢＧ","ブチレングリコール"],
+  "en": "Butylene Glycol",
+  "alias": ["1,3-Butanediol","Butanediol"],
+  "safety": "safe",
+  "note_short": "Common humectant and solvent in cosmetics."
+},
+{
+  "id": "dipropylene_glycol",
+  "jp": ["DPG","ＤＰＧ","ジプロピレングリコール"],
+  "en": "Dipropylene Glycol",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Solvent that improves texture and spread."
+},
+{
+  "id": "propanediol",
+  "jp": ["プロパンジオール"],
+  "en": "Propanediol",
+  "alias": ["1,3-Propanediol"],
+  "safety": "safe",
+  "note_short": "Humectant alternative often used in gentle formulas."
+},
+{
+  "id": "pentylene_glycol",
+  "jp": ["ペンチレングリコール"],
+  "en": "Pentylene Glycol",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Humectant that can support preservation systems."
+},
+{
+  "id": "propylene_glycol",
+  "jp": ["プロピレングリコール"],
+  "en": "Propylene Glycol",
+  "alias": ["1,2-Propanediol"],
+  "safety": "caution",
+  "note_short": "Humectant; may irritate very sensitive skin."
+},
+{
+  "id": "phenoxyethanol",
+  "jp": ["フェノキシエタノール"],
+  "en": "Phenoxyethanol",
+  "alias": [],
+  "safety": "caution",
+  "note_short": "Preservative; generally safe within allowed limits."
+},
+{
+  "id": "ethylhexylglycerin",
+  "jp": ["エチルヘキシルグリセリン"],
+  "en": "Ethylhexylglycerin",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Preservative booster and skin-conditioning agent."
+},
+{
+  "id": "caprylyl_glycol",
+  "jp": ["カプリリルグリコール"],
+  "en": "Caprylyl Glycol",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Humectant that also supports preservation."
+},
+{
+  "id": "hexanediol_1_2",
+  "jp": ["1,2-ヘキサンジオール","１，２－ヘキサンジオール"],
+  "en": "1,2-Hexanediol",
+  "alias": ["Hexanediol"],
+  "safety": "safe",
+  "note_short": "Solvent and preservative helper in formulas."
+},
+{
+  "id": "alcohol",
+  "jp": ["エタノール","アルコール"],
+  "en": "Alcohol",
+  "alias": ["Ethanol","Alcohol Denat."],
+  "safety": "caution",
+  "note_short": "Solvent; can be drying for some skin."
+},
+{
+  "id": "sodium_chloride",
+  "jp": ["塩化Na","塩化Ｎａ","食塩"],
+  "en": "Sodium Chloride",
+  "alias": ["Salt"],
+  "safety": "safe",
+  "note_short": "Viscosity adjuster; common and generally gentle."
+},
+{
+  "id": "citric_acid",
+  "jp": ["クエン酸"],
+  "en": "Citric Acid",
+  "alias": [],
+  "safety": "caution",
+  "note_short": "pH adjuster; may sting on compromised skin."
+},
+{
+  "id": "sodium_citrate",
+  "jp": ["クエン酸Na","クエン酸Ｎａ"],
+  "en": "Sodium Citrate",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Buffering agent that stabilizes pH."
+},
+{
+  "id": "sodium_hydroxide",
+  "jp": ["水酸化Na","水酸化Ｎａ"],
+  "en": "Sodium Hydroxide",
+  "alias": [],
+  "safety": "caution",
+  "note_short": "pH adjuster; safe at very low levels."
+},
+{
+  "id": "carbomer",
+  "jp": ["カルボマー"],
+  "en": "Carbomer",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Thickener that forms clear gel textures."
+},
+{
+  "id": "xanthan_gum",
+  "jp": ["キサンタンガム"],
+  "en": "Xanthan Gum",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Thickener that improves stability."
+},
+{
+  "id": "disodium_edta",
+  "jp": ["EDTA-2Na","ＥＤＴＡ－２Ｎａ","ＥＤＴＡ－２Na"],
+  "en": "Disodium EDTA",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Chelator that improves formula stability."
+},
+{
+  "id": "tocopherol",
+  "jp": ["トコフェロール"],
+  "en": "Tocopherol",
+  "alias": ["Vitamin E"],
+  "safety": "safe",
+  "note_short": "Antioxidant that supports formula and skin."
+},
+{
+  "id": "tocopheryl_acetate",
+  "jp": ["酢酸トコフェロール"],
+  "en": "Tocopheryl Acetate",
+  "alias": ["Vitamin E Acetate"],
+  "safety": "safe",
+  "note_short": "Stable vitamin E derivative; antioxidant support."
+},
+{
+  "id": "niacinamide",
+  "jp": ["ナイアシンアミド","ニコチンアミド"],
+  "en": "Niacinamide",
+  "alias": ["Nicotinamide","Vitamin B3"],
+  "safety": "safe",
+  "note_short": "Supports barrier, tone, and oil balance."
+},
+{
+  "id": "panthenol",
+  "jp": ["パンテノール"],
+  "en": "Panthenol",
+  "alias": ["Provitamin B5"],
+  "safety": "safe",
+  "note_short": "Soothing humectant that supports skin barrier."
+},
+{
+  "id": "allantoin",
+  "jp": ["アラントイン"],
+  "en": "Allantoin",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Soothing ingredient for irritated or dry skin."
+},
+{
+  "id": "betaine",
+  "jp": ["ベタイン"],
+  "en": "Betaine",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Helps reduce irritation and supports hydration."
+},
+{
+  "id": "trehalose",
+  "jp": ["トレハロース"],
+  "en": "Trehalose",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Sugar humectant that supports hydration."
+},
+{
+  "id": "dimethicone",
+  "jp": ["ジメチコン"],
+  "en": "Dimethicone",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Silicone that smooths and reduces moisture loss."
+},
+{
+  "id": "squalane",
+  "jp": ["スクワラン"],
+  "en": "Squalane",
+  "alias": [],
+  "safety": "safe",
+  "note_short": "Light emollient that supports skin barrier."
+},
+{
+  "id":"nw_sodium_lauryl_sulfate",
+  "jp":["ラウリル硫酸Na","ラウリル硫酸Ｎａ"],
+  "en":"Sodium Lauryl Sulfate",
+  "alias":["SLS"],
+  "safety":"risk",
+  "note_short":"Strong surfactant; can be drying or irritating."
+},
+{
+  "id":"nw_sodium_laureth_sulfate",
+  "jp":["ラウレス硫酸Na","ラウレス硫酸Ｎａ"],
+  "en":"Sodium Laureth Sulfate",
+  "alias":["SLES"],
+  "safety":"caution",
+  "note_short":"Common cleanser surfactant; may irritate sensitive skin."
+},
+{
+  "id":"nw_cocamidopropyl_betaine",
+  "jp":["コカミドプロピルベタイン"],
+  "en":"Cocamidopropyl Betaine",
+  "alias":["CAPB"],
+  "safety":"caution",
+  "note_short":"Mild surfactant; allergy/irritation possible for some."
+},
+{
+  "id":"nw_sodium_coco_sulfate",
+  "jp":["ココ硫酸Na","ココ硫酸Ｎａ"],
+  "en":"Sodium Coco-Sulfate",
+  "alias":["SCS"],
+  "safety":"caution",
+  "note_short":"Coconut-derived sulfate blend; can be drying."
+},
+{
+  "id":"nw_disodium_cocoamphodiacetate",
+  "jp":["ジ酢酸ジNaココアンホ酢酸","ジ酢酸ジＮａココアンホ酢酸"],
+  "en":"Disodium Cocoamphodiacetate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Mild amphoteric surfactant used in cleansers."
+},
+{
+  "id":"nw_sodium_lauroyl_sarcosinate",
+  "jp":["ラウロイルサルコシンNa","ラウロイルサルコシンＮａ"],
+  "en":"Sodium Lauroyl Sarcosinate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Gentle cleanser surfactant with good foaming."
+},
+{
+  "id":"nw_sodium_cocoyl_isethionate",
+  "jp":["ココイルイセチオン酸Na","ココイルイセチオン酸Ｎａ"],
+  "en":"Sodium Cocoyl Isethionate",
+  "alias":["SCI"],
+  "safety":"safe",
+  "note_short":"Very mild surfactant often used in syndet bars."
+},
+{
+  "id":"nw_sodium_methyl_cocoyl_taurate",
+  "jp":["メチルココイルタウリンNa","メチルココイルタウリンＮａ"],
+  "en":"Sodium Methyl Cocoyl Taurate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Mild anionic surfactant used in gentle cleansers."
+},
+{
+  "id":"nw_disodium_lauryl_sulfosuccinate",
+  "jp":["ラウリルスルホコハク酸ジNa","ラウリルスルホコハク酸ジＮａ"],
+  "en":"Disodium Lauryl Sulfosuccinate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Milder cleanser surfactant; less stripping than sulfates."
+},
+{
+  "id":"nw_sodium_cocoyl_glutamate",
+  "jp":["ココイルグルタミン酸Na","ココイルグルタミン酸Ｎａ"],
+  "en":"Sodium Cocoyl Glutamate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Amino-acid based mild cleanser surfactant."
+},
+{
+  "id":"nw_sodium_lauroyl_glutamate",
+  "jp":["ラウロイルグルタミン酸Na","ラウロイルグルタミン酸Ｎａ"],
+  "en":"Sodium Lauroyl Glutamate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Amino-acid surfactant; gentle cleansing."
+},
+{
+  "id":"nw_decyl_glucoside",
+  "jp":["デシルグルコシド"],
+  "en":"Decyl Glucoside",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Non-ionic sugar surfactant; generally gentle."
+},
+{
+  "id":"nw_coco_glucoside",
+  "jp":["ココグルコシド"],
+  "en":"Coco-Glucoside",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Sugar-based surfactant; mild cleansing."
+},
+{
+  "id":"nw_lauryl_glucoside",
+  "jp":["ラウリルグルコシド"],
+  "en":"Lauryl Glucoside",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Sugar surfactant; mild but can feel drying for some."
+},
+{
+  "id":"nw_polyglyceryl_10_laurate",
+  "jp":["ポリグリセリル-10ラウレート"],
+  "en":"Polyglyceryl-10 Laurate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Mild emulsifier/surfactant used in cleansers."
+},
+{
+  "id":"nw_polyglyceryl_10_oleate",
+  "jp":["ポリグリセリル-10オレエート"],
+  "en":"Polyglyceryl-10 Oleate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Emulsifier that helps cleanse oils and makeup."
+},
+{
+  "id":"nw_polyglyceryl_4_caprate",
+  "jp":["ポリグリセリル-4カプリレート"],
+  "en":"Polyglyceryl-4 Caprate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Solubilizer/emulsifier used in gentle formulas."
+},
+{
+  "id":"nw_peg_7_glyceryl_cocoate",
+  "jp":["PEG-7グリセリルココエート","ＰＥＧ－７グリセリルココエート"],
+  "en":"PEG-7 Glyceryl Cocoate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Surfactant/emollient; may irritate very sensitive skin."
+},
+{
+  "id":"nw_ceteareth_20",
+  "jp":["セテアレス-20"],
+  "en":"Ceteareth-20",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Emulsifier; generally safe, caution for very sensitive skin."
+},
+{
+  "id":"nw_polysorbate_60",
+  "jp":["ポリソルベート60","ポリソルベート６０"],
+  "en":"Polysorbate 60",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Emulsifier/solubilizer for creams and lotions."
+},
+{
+  "id":"nw_polysorbate_80",
+  "jp":["ポリソルベート80","ポリソルベート８０"],
+  "en":"Polysorbate 80",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Solubilizer for oils; common in cosmetics."
+},
+{
+  "id":"nw_sorbitan_olivate",
+  "jp":["ソルビタンオリベート"],
+  "en":"Sorbitan Olivate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Emulsifier derived from olive; generally gentle."
+},
+{
+  "id":"nw_cetearyl_olivate",
+  "jp":["セテアリルオリベート"],
+  "en":"Cetearyl Olivate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Emulsifier often paired with sorbitan olivate."
+},
+{
+  "id":"nw_steareth_2",
+  "jp":["ステアレス-2"],
+  "en":"Steareth-2",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Emulsifier; may not suit extremely sensitive skin."
+},
+{
+  "id":"nw_steareth_21",
+  "jp":["ステアレス-21"],
+  "en":"Steareth-21",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Emulsifier; generally safe, mild irritation possible."
+},
+{
+  "id":"nw_glyceryl_stearate_se",
+  "jp":["ステアリン酸グリセリル(SE)","ステアリン酸グリセリル（ＳＥ）"],
+  "en":"Glyceryl Stearate SE",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Self-emulsifying ingredient for stable creams."
+},
+{
+  "id":"nw_stearyl_alcohol",
+  "jp":["ステアリルアルコール"],
+  "en":"Stearyl Alcohol",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Fatty alcohol that thickens and softens."
+},
+{
+  "id":"nw_cetearyl_alcohol",
+  "jp":["セテアリルアルコール"],
+  "en":"Cetearyl Alcohol",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Fatty alcohol blend; stabilizes emulsions."
+},
+{
+  "id":"nw_cetyl_alcohol",
+  "jp":["セタノール"],
+  "en":"Cetyl Alcohol",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Fatty alcohol; adds slip and thickness."
+},
+{
+  "id":"nw_caprylic_capric_triglyceride",
+  "jp":["トリ（カプリル酸／カプリン酸）グリセリル"],
+  "en":"Caprylic/Capric Triglyceride",
+  "alias":["CCT"],
+  "safety":"safe",
+  "note_short":"Light emollient derived from coconut and glycerin."
+},
+{
+  "id":"nw_isopropyl_myristate",
+  "jp":["ミリスチン酸イソプロピル"],
+  "en":"Isopropyl Myristate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Emollient; may clog pores for acne-prone skin."
+},
+{
+  "id":"nw_isopropyl_palmitate",
+  "jp":["パルミチン酸イソプロピル"],
+  "en":"Isopropyl Palmitate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Emollient; may be comedogenic for some."
+},
+{
+  "id":"nw_ethylhexyl_palmitate",
+  "jp":["パルミチン酸エチルヘキシル"],
+  "en":"Ethylhexyl Palmitate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Emollient; can feel heavy and clog-prone for some."
+},
+{
+  "id":"nw_c12_15_alkyl_benzoate",
+  "jp":["安息香酸アルキル（C12-15）"],
+  "en":"C12-15 Alkyl Benzoate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Light emollient often used in sunscreens."
+},
+{
+  "id":"nw_isododecane",
+  "jp":["イソドデカン"],
+  "en":"Isododecane",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Volatile solvent; gives lightweight quick-dry feel."
+},
+{
+  "id":"nw_hydrogenated_polyisobutene",
+  "jp":["水添ポリイソブテン"],
+  "en":"Hydrogenated Polyisobutene",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Emollient; improves slip and lightweight feel."
+},
+{
+  "id":"nw_polyisobutene",
+  "jp":["ポリイソブテン"],
+  "en":"Polyisobutene",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Emollient; supports smooth application."
+},
+{
+  "id":"nw_petrolatum",
+  "jp":["ワセリン"],
+  "en":"Petrolatum",
+  "alias":["Petroleum Jelly"],
+  "safety":"safe",
+  "note_short":"Occlusive; protects and reduces moisture loss."
+},
+{
+  "id":"nw_mineral_oil",
+  "jp":["ミネラルオイル"],
+  "en":"Mineral Oil",
+  "alias":["Paraffinum Liquidum"],
+  "safety":"safe",
+  "note_short":"Occlusive emollient; helps reduce moisture loss."
+},
+{
+  "id":"nw_shea_butter",
+  "jp":["シア脂"],
+  "en":"Butyrospermum Parkii (Shea) Butter",
+  "alias":["Shea Butter"],
+  "safety":"safe",
+  "note_short":"Rich emollient; supports barrier and softness."
+},
+{
+  "id":"nw_jojoba_oil",
+  "jp":["ホホバ種子油"],
+  "en":"Simmondsia Chinensis (Jojoba) Seed Oil",
+  "alias":["Jojoba Oil"],
+  "safety":"safe",
+  "note_short":"Emollient oil; generally well tolerated."
+},
+{
+  "id":"nw_sunflower_oil",
+  "jp":["ヒマワリ種子油"],
+  "en":"Helianthus Annuus (Sunflower) Seed Oil",
+  "alias":["Sunflower Seed Oil"],
+  "safety":"safe",
+  "note_short":"Emollient oil rich in linoleic acid."
+},
+{
+  "id":"nw_argan_oil",
+  "jp":["アルガニアスピノサ核油"],
+  "en":"Argania Spinosa Kernel Oil",
+  "alias":["Argan Oil"],
+  "safety":"safe",
+  "note_short":"Emollient oil; supports softness and shine."
+},
+{
+  "id":"nw_ceramide_np",
+  "jp":["セラミドNP"],
+  "en":"Ceramide NP",
+  "alias":["Ceramide 3"],
+  "safety":"safe",
+  "note_short":"Barrier lipid; supports moisture retention."
+},
+{
+  "id":"nw_cholesterol",
+  "jp":["コレステロール"],
+  "en":"Cholesterol",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Skin-identical lipid that supports barrier."
+},
+{
+  "id":"nw_phytosphingosine",
+  "jp":["フィトスフィンゴシン"],
+  "en":"Phytosphingosine",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Barrier-supporting lipid; often in ceramide blends."
+},
+{
+  "id":"nw_lecithin",
+  "jp":["レシチン"],
+  "en":"Lecithin",
+  "alias":["Phosphatidylcholine"],
+  "safety":"safe",
+  "note_short":"Emulsifier and skin-conditioning phospholipid."
+},
+{
+  "id":"nw_hydrogenated_lecithin",
+  "jp":["水添レシチン"],
+  "en":"Hydrogenated Lecithin",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Stabilizer; supports barrier and delivery systems."
+},
+{
+  "id":"nw_urea",
+  "jp":["尿素"],
+  "en":"Urea",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Humectant/keratolytic; may sting on irritated skin."
+},
+{
+  "id":"nw_sodium_pca",
+  "jp":["PCA-Na","ＰＣＡ－Ｎａ","PCA-Ｎａ"],
+  "en":"Sodium PCA",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Natural moisturizing factor component; hydrates skin."
+},
+{
+  "id":"nw_lactic_acid",
+  "jp":["乳酸"],
+  "en":"Lactic Acid",
+  "alias":["AHA"],
+  "safety":"risk",
+  "note_short":"Exfoliating acid; can irritate if overused."
+},
+{
+  "id":"nw_glycolic_acid",
+  "jp":["グリコール酸"],
+  "en":"Glycolic Acid",
+  "alias":["AHA"],
+  "safety":"risk",
+  "note_short":"Strong exfoliating acid; can irritate sensitive skin."
+},
+{
+  "id":"nw_avobenzone",
+  "jp":["アボベンゾン"],
+  "en":"Avobenzone",
+  "alias":["Butyl Methoxydibenzoylmethane"],
+  "safety":"caution",
+  "note_short":"UVA filter; may irritate sensitive skin."
+},
+{
+  "id":"nw_octinoxate",
+  "jp":["オクチノキサート"],
+  "en":"Octinoxate",
+  "alias":["Ethylhexyl Methoxycinnamate"],
+  "safety":"caution",
+  "note_short":"UVB filter; may irritate for some."
+},
+{
+  "id":"nw_octisalate",
+  "jp":["オクチサレート"],
+  "en":"Octisalate",
+  "alias":["Ethylhexyl Salicylate"],
+  "safety":"caution",
+  "note_short":"UVB filter; generally well tolerated."
+},
+{
+  "id":"nw_octocrylene",
+  "jp":["オクトクリレン"],
+  "en":"Octocrylene",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"UVB filter; can irritate or sensitize some."
+},
+{
+  "id":"nw_homosalate",
+  "jp":["ホモサレート"],
+  "en":"Homosalate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"UVB filter; may irritate sensitive skin."
+},
+{
+  "id":"nw_oxybenzone",
+  "jp":["オキシベンゾン"],
+  "en":"Oxybenzone",
+  "alias":["Benzophenone-3"],
+  "safety":"risk",
+  "note_short":"UV filter; higher allergy/sensitivity concern."
+},
+{
+  "id":"nw_sulisobenzone",
+  "jp":["スリソベンゾン"],
+  "en":"Sulisobenzone",
+  "alias":["Benzophenone-4"],
+  "safety":"caution",
+  "note_short":"Water-soluble UV filter; may irritate some."
+},
+{
+  "id":"nw_dioxybenzone",
+  "jp":["ジオキシベンゾン"],
+  "en":"Dioxybenzone",
+  "alias":["Benzophenone-8"],
+  "safety":"caution",
+  "note_short":"UV filter; sensitivity possible."
+},
+{
+  "id":"nw_ecamsule",
+  "jp":["エカムスル"],
+  "en":"Ecamsule",
+  "alias":["Mexoryl SX"],
+  "safety":"caution",
+  "note_short":"UVA filter; generally well tolerated."
+},
+{
+  "id":"nw_drometrizole_trisiloxane",
+  "jp":["ドロメトリゾールトリシロキサン"],
+  "en":"Drometrizole Trisiloxane",
+  "alias":["Mexoryl XL"],
+  "safety":"caution",
+  "note_short":"Broad-spectrum UV filter; low irritation profile."
+},
+{
+  "id":"nw_bemotrizinol",
+  "jp":["ビモトリジノール"],
+  "en":"Bemotrizinol",
+  "alias":["Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine","Tinosorb S"],
+  "safety":"caution",
+  "note_short":"Broad-spectrum UV filter; generally stable."
+},
+{
+  "id":"nw_bisoctrizole",
+  "jp":["ビソクトリゾール"],
+  "en":"Bisoctrizole",
+  "alias":["Methylene Bis-Benzotriazolyl Tetramethylbutylphenol","Tinosorb M"],
+  "safety":"caution",
+  "note_short":"Broad-spectrum UV filter; low skin penetration."
+},
+{
+  "id":"nw_diethylamino_hydroxybenzoyl_hexyl_benzoate",
+  "jp":["ジエチルアミノヒドロキシベンゾイルヘキシルベンゾエート"],
+  "en":"Diethylamino Hydroxybenzoyl Hexyl Benzoate",
+  "alias":["Uvinul A Plus"],
+  "safety":"caution",
+  "note_short":"UVA filter; generally well tolerated."
+},
+{
+  "id":"nw_ethylhexyl_triazone",
+  "jp":["エチルヘキシルトリアゾン"],
+  "en":"Ethylhexyl Triazone",
+  "alias":["Uvinul T 150"],
+  "safety":"caution",
+  "note_short":"UVB filter; very photostable."
+},
+{
+  "id":"nw_polysilicone_15",
+  "jp":["ポリシリコーン-15"],
+  "en":"Polysilicone-15",
+  "alias":["Parsol SLX"],
+  "safety":"caution",
+  "note_short":"UVB filter; generally low irritation."
+},
+{
+  "id":"nw_ensulizole",
+  "jp":["エンスリゾール"],
+  "en":"Ensulizole",
+  "alias":["Phenylbenzimidazole Sulfonic Acid"],
+  "safety":"caution",
+  "note_short":"Water-soluble UVB filter; may sting eyes."
+},
+{
+  "id":"nw_meradimate",
+  "jp":["メラジメート"],
+  "en":"Meradimate",
+  "alias":["Menthyl Anthranilate"],
+  "safety":"caution",
+  "note_short":"UVA filter; less common, sensitivity possible."
+},
+{
+  "id":"nw_padimate_o",
+  "jp":["パジメートO"],
+  "en":"Padimate O",
+  "alias":["Octyl Dimethyl PABA"],
+  "safety":"risk",
+  "note_short":"UVB filter; higher irritation/sensitivity concern."
+},
+{
+  "id":"nw_aminobenzoic_acid",
+  "jp":["パラアミノ安息香酸","PABA"],
+  "en":"Aminobenzoic Acid",
+  "alias":["PABA"],
+  "safety":"risk",
+  "note_short":"Older UVB filter; allergy risk and staining."
+},
+{
+  "id":"nw_ascorbic_acid",
+  "jp":["アスコルビン酸","ビタミンC"],
+  "en":"Ascorbic Acid",
+  "alias":["Vitamin C"],
+  "safety":"caution",
+  "note_short":"Antioxidant; can sting sensitive or compromised skin."
+},
+{
+  "id":"nw_sodium_ascorbyl_phosphate",
+  "jp":["リン酸アスコルビルNa","リン酸アスコルビルＮａ"],
+  "en":"Sodium Ascorbyl Phosphate",
+  "alias":["SAP"],
+  "safety":"safe",
+  "note_short":"Vitamin C derivative; gentler and more stable."
+},
+{
+  "id":"nw_magnesium_ascorbyl_phosphate",
+  "jp":["リン酸アスコルビルMg"],
+  "en":"Magnesium Ascorbyl Phosphate",
+  "alias":["MAP"],
+  "safety":"safe",
+  "note_short":"Stable vitamin C derivative; generally gentle."
+},
+{
+  "id":"nw_ascorbyl_glucoside",
+  "jp":["アスコルビルグルコシド"],
+  "en":"Ascorbyl Glucoside",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Vitamin C derivative; stable and mild."
+},
+{
+  "id":"nw_3_o_ethyl_ascorbic_acid",
+  "jp":["3-O-エチルアスコルビン酸"],
+  "en":"3-O-Ethyl Ascorbic Acid",
+  "alias":["Ethyl Ascorbic Acid"],
+  "safety":"caution",
+  "note_short":"Vitamin C derivative; may tingle on sensitive skin."
+},
+{
+  "id":"nw_tetrahexyldecyl_ascorbate",
+  "jp":["テトラヘキシルデカン酸アスコルビル"],
+  "en":"Tetrahexyldecyl Ascorbate",
+  "alias":["THD Ascorbate"],
+  "safety":"safe",
+  "note_short":"Oil-soluble vitamin C derivative; generally gentle."
+},
+{
+  "id":"nw_ascorbyl_palmitate",
+  "jp":["パルミチン酸アスコルビル"],
+  "en":"Ascorbyl Palmitate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Antioxidant vitamin C ester; supports stability."
+},
+{
+  "id":"nw_ferulic_acid",
+  "jp":["フェルラ酸"],
+  "en":"Ferulic Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Antioxidant; may irritate very sensitive skin."
+},
+{
+  "id":"nw_resveratrol",
+  "jp":["レスベラトロール"],
+  "en":"Resveratrol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Antioxidant; irritation possible for some."
+},
+{
+  "id":"nw_ubiquinone",
+  "jp":["ユビキノン"],
+  "en":"Ubiquinone",
+  "alias":["Coenzyme Q10","CoQ10"],
+  "safety":"safe",
+  "note_short":"Antioxidant; supports formula and skin."
+},
+{
+  "id":"nw_glutathione",
+  "jp":["グルタチオン"],
+  "en":"Glutathione",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Antioxidant; generally well tolerated."
+},
+{
+  "id":"nw_green_tea_extract",
+  "jp":["チャ葉エキス","緑茶エキス"],
+  "en":"Camellia Sinensis Leaf Extract",
+  "alias":["Green Tea Extract"],
+  "safety":"safe",
+  "note_short":"Antioxidant botanical; soothing for many."
+},
+{
+  "id":"nw_licorice_extract",
+  "jp":["カンゾウ根エキス","甘草エキス"],
+  "en":"Glycyrrhiza Glabra (Licorice) Root Extract",
+  "alias":["Licorice Root Extract"],
+  "safety":"safe",
+  "note_short":"Soothing botanical; supports tone and comfort."
+},
+{
+  "id":"nw_alpha_arbutin",
+  "jp":["α-アルブチン","アルファアルブチン"],
+  "en":"Alpha-Arbutin",
+  "alias":["α-Arbutin"],
+  "safety":"caution",
+  "note_short":"Brightening ingredient; generally well tolerated."
+},
+{
+  "id":"nw_beta_arbutin",
+  "jp":["β-アルブチン","ベータアルブチン"],
+  "en":"Arbutin",
+  "alias":["Beta-Arbutin"],
+  "safety":"caution",
+  "note_short":"Brightening agent; mild irritation possible."
+},
+{
+  "id":"nw_kirby_mushroom_extract",
+  "jp":["カワラタケエキス"],
+  "en":"Trametes Versicolor Extract",
+  "alias":["Mushroom Extract"],
+  "safety":"safe",
+  "note_short":"Botanical extract; generally low irritation."
+},
+{
+  "id":"nw_tranexamic_acid",
+  "jp":["トラネキサム酸"],
+  "en":"Tranexamic Acid",
+  "alias":["TXA"],
+  "safety":"caution",
+  "note_short":"Brightening/anti-redness; can irritate some skin."
+},
+{
+  "id":"nw_dipotassium_glycyrrhizate",
+  "jp":["グリチルリチン酸2K","グリチルリチン酸２Ｋ"],
+  "en":"Dipotassium Glycyrrhizate",
+  "alias":["Glycyrrhizate 2K"],
+  "safety":"safe",
+  "note_short":"Soothing anti-irritant from licorice."
+},
+{
+  "id":"nw_glycyrrhetinic_acid",
+  "jp":["グリチルレチン酸"],
+  "en":"Glycyrrhetinic Acid",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Licorice-derived soothing agent."
+},
+{
+  "id":"nw_azelaic_acid",
+  "jp":["アゼライン酸"],
+  "en":"Azelaic Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Helps tone and bumps; can cause tingling."
+},
+{
+  "id":"nw_kójic_acid",
+  "jp":["コウジ酸","麹酸"],
+  "en":"Kojic Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Brightening ingredient; irritation possible."
+},
+{
+  "id":"nw_sulfur",
+  "jp":["硫黄"],
+  "en":"Sulfur",
+  "alias":[],
+  "safety":"risk",
+  "note_short":"Acne-active; can be drying and irritating."
+},
+{
+  "id":"nw_zinc_pca",
+  "jp":["PCA亜鉛"],
+  "en":"Zinc PCA",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Helps oil balance; generally well tolerated."
+},
+{
+  "id":"nw_caffeine",
+  "jp":["カフェイン"],
+  "en":"Caffeine",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"De-puffing antioxidant; generally low irritation."
+},
+{
+  "id":"nw_hyaluronic_acid",
+  "jp":["ヒアルロン酸"],
+  "en":"Hyaluronic Acid",
+  "alias":["Hyaluronan"],
+  "safety":"safe",
+  "note_short":"Humectant that holds water for hydration."
+},
+{
+  "id":"nw_sodium_hyaluronate",
+  "jp":["ヒアルロン酸Na","ヒアルロン酸Ｎａ"],
+  "en":"Sodium Hyaluronate",
+  "alias":["HA"],
+  "safety":"safe",
+  "note_short":"Hyaluronic salt; strong hydration support."
+},
+{
+  "id":"nw_hydrolyzed_hyaluronic_acid",
+  "jp":["加水分解ヒアルロン酸"],
+  "en":"Hydrolyzed Hyaluronic Acid",
+  "alias":["Hydrolyzed Hyaluronan"],
+  "safety":"safe",
+  "note_short":"Smaller hyaluronic form; hydration support."
+},
+{
+  "id":"nw_sodium_acetylated_hyaluronate",
+  "jp":["アセチルヒアルロン酸Na","アセチルヒアルロン酸Ｎａ"],
+  "en":"Sodium Acetylated Hyaluronate",
+  "alias":["Super Hyaluronic Acid"],
+  "safety":"safe",
+  "note_short":"Film-forming hyaluronic; long-lasting hydration."
+},
+{
+  "id":"nw_beta_glucan",
+  "jp":["β-グルカン","ベータグルカン"],
+  "en":"Beta-Glucan",
+  "alias":["Beta Glucan"],
+  "safety":"safe",
+  "note_short":"Soothing polysaccharide; supports barrier."
+},
+{
+  "id":"nw_centella_extract",
+  "jp":["ツボクサエキス","センテラエキス"],
+  "en":"Centella Asiatica Extract",
+  "alias":["Cica"],
+  "safety":"safe",
+  "note_short":"Soothing botanical; supports comfort and barrier."
+},
+{
+  "id":"nw_madecassoside",
+  "jp":["マデカッソシド"],
+  "en":"Madecassoside",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Centella component; soothing for irritated skin."
+},
+{
+  "id":"nw_asiaticoside",
+  "jp":["アシアチコシド"],
+  "en":"Asiaticoside",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Centella component; calming support."
+},
+{
+  "id":"nw_madecassic_acid",
+  "jp":["マデカシン酸"],
+  "en":"Madecassic Acid",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Centella component; supports soothing."
+},
+{
+  "id":"nw_asiatic_acid",
+  "jp":["アシアチン酸"],
+  "en":"Asiatic Acid",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Centella component; supports barrier comfort."
+},
+{
+  "id":"nw_sodium_benzoate",
+  "jp":["安息香酸Na","安息香酸Ｎａ"],
+  "en":"Sodium Benzoate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative; generally safe within limits."
+},
+{
+  "id":"nw_potassium_sorbate",
+  "jp":["ソルビン酸K","ソルビン酸Ｋ"],
+  "en":"Potassium Sorbate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative; may sting on very sensitive skin."
+},
+{
+  "id":"nw_sorbic_acid",
+  "jp":["ソルビン酸"],
+  "en":"Sorbic Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative; mild irritation possible."
+},
+{
+  "id":"nw_benzoic_acid",
+  "jp":["安息香酸"],
+  "en":"Benzoic Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative/pH aid; may irritate compromised skin."
+},
+{
+  "id":"nw_dehydroacetic_acid",
+  "jp":["デヒドロ酢酸"],
+  "en":"Dehydroacetic Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative; low irritation for many users."
+},
+{
+  "id":"nw_benzyl_alcohol",
+  "jp":["ベンジルアルコール"],
+  "en":"Benzyl Alcohol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative/fragrance component; may irritate some."
+},
+{
+  "id":"nw_chlorphenesin",
+  "jp":["クロルフェネシン"],
+  "en":"Chlorphenesin",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative; sensitivity possible."
+},
+{
+  "id":"nw_caprylhydroxamic_acid",
+  "jp":["カプリルヒドロキサム酸"],
+  "en":"Caprylhydroxamic Acid",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Preservative booster; generally low irritation."
+},
+{
+  "id":"nw_glyceryl_caprylate",
+  "jp":["カプリル酸グリセリル"],
+  "en":"Glyceryl Caprylate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Preservative booster and emollient."
+},
+{
+  "id":"nw_glyceryl_caprate",
+  "jp":["カプリン酸グリセリル"],
+  "en":"Glyceryl Caprate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Preservative booster; supports mild systems."
+},
+{
+  "id":"nw_sodium_dehydroacetate",
+  "jp":["デヒドロ酢酸Na","デヒドロ酢酸Ｎａ"],
+  "en":"Sodium Dehydroacetate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Preservative; generally safe within limits."
+},
+{
+  "id":"nw_dmdm_hydantoin",
+  "jp":["DMDMヒダントイン","ＤＭＤＭヒダントイン"],
+  "en":"DMDM Hydantoin",
+  "alias":[],
+  "safety":"risk",
+  "note_short":"Formaldehyde-releasing preservative; allergy concern."
+},
+{
+  "id":"nw_imidazolidinyl_urea",
+  "jp":["イミダゾリジニル尿素"],
+  "en":"Imidazolidinyl Urea",
+  "alias":[],
+  "safety":"risk",
+  "note_short":"Formaldehyde releaser; sensitization risk."
+},
+{
+  "id":"nw_diazolidinyl_urea",
+  "jp":["ジアゾリジニル尿素"],
+  "en":"Diazolidinyl Urea",
+  "alias":[],
+  "safety":"risk",
+  "note_short":"Formaldehyde releaser; sensitization risk."
+},
+{
+  "id":"nw_methylisothiazolinone",
+  "jp":["メチルイソチアゾリノン"],
+  "en":"Methylisothiazolinone",
+  "alias":["MI"],
+  "safety":"risk",
+  "note_short":"High allergy risk preservative; often avoided."
+},
+{
+  "id":"nw_methylchloroisothiazolinone",
+  "jp":["メチルクロロイソチアゾリノン"],
+  "en":"Methylchloroisothiazolinone",
+  "alias":["MCI"],
+  "safety":"risk",
+  "note_short":"High allergy risk preservative; often avoided."
+},
+{
+  "id":"nw_bht",
+  "jp":["BHT","ＢＨＴ"],
+  "en":"BHT",
+  "alias":["Butylated Hydroxytoluene"],
+  "safety":"caution",
+  "note_short":"Antioxidant; sensitivity possible for some."
+},
+{
+  "id":"nw_bha_antioxidant",
+  "jp":["BHA","ＢＨＡ"],
+  "en":"BHA",
+  "alias":["Butylated Hydroxyanisole"],
+  "safety":"caution",
+  "note_short":"Antioxidant; irritation possible in some users."
+},
+{
+  "id":"nw_tetrasodium_edta",
+  "jp":["EDTA-4Na","ＥＤＴＡ－４Ｎａ","ＥＤＴＡ－４Na"],
+  "en":"Tetrasodium EDTA",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Chelator that boosts preservative performance."
+},
+{
+  "id":"nw_disodium_edta_dihydrate",
+  "jp":["EDTA-2Na・2H2O","ＥＤＴＡ－２Ｎａ・２Ｈ２Ｏ"],
+  "en":"Disodium EDTA Dihydrate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Chelator; stabilizes and supports preservation."
+},
+{
+  "id":"nw_sodium_phytate",
+  "jp":["フィチン酸Na","フィチン酸Ｎａ"],
+  "en":"Sodium Phytate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Chelator alternative; supports stability."
+},
+{
+  "id":"nw_phytic_acid",
+  "jp":["フィチン酸"],
+  "en":"Phytic Acid",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Chelator; supports formula stability."
+},
+{
+  "id":"nw_gluconolactone",
+  "jp":["グルコノラクトン"],
+  "en":"Gluconolactone",
+  "alias":["PHA"],
+  "safety":"caution",
+  "note_short":"Gentle exfoliant (PHA); may tingle some skin."
+},
+{
+  "id":"nw_sodium_gluconate",
+  "jp":["グルコン酸Na","グルコン酸Ｎａ"],
+  "en":"Sodium Gluconate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Chelator; supports stability and preservation."
+},
+{
+  "id":"nw_gluconic_acid",
+  "jp":["グルコン酸"],
+  "en":"Gluconic Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"pH adjuster; may sting compromised skin."
+},
+{
+  "id":"nw_limonene",
+  "jp":["リモネン"],
+  "en":"Limonene",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; oxidation can increase irritation."
+},
+{
+  "id":"nw_linalool",
+  "jp":["リナロール"],
+  "en":"Linalool",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; oxidation can irritate."
+},
+{
+  "id":"nw_citral",
+  "jp":["シトラール"],
+  "en":"Citral",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; can irritate sensitive skin."
+},
+{
+  "id":"nw_geraniol",
+  "jp":["ゲラニオール"],
+  "en":"Geraniol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; sensitization possible."
+},
+{
+  "id":"nw_citronellol",
+  "jp":["シトロネロール"],
+  "en":"Citronellol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; irritation possible."
+},
+{
+  "id":"nw_eugenol",
+  "jp":["オイゲノール"],
+  "en":"Eugenol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; sensitization possible."
+},
+{
+  "id":"nw_coumarin",
+  "jp":["クマリン"],
+  "en":"Coumarin",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; may irritate some skin."
+},
+{
+  "id":"nw_farnesol",
+  "jp":["ファルネソール"],
+  "en":"Farnesol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; sensitization possible."
+},
+{
+  "id":"nw_benzyl_salicylate",
+  "jp":["サリチル酸ベンジル"],
+  "en":"Benzyl Salicylate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; may irritate sensitive skin."
+},
+{
+  "id":"nw_benzyl_benzoate",
+  "jp":["安息香酸ベンジル"],
+  "en":"Benzyl Benzoate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance component; irritation possible."
+},
+{
+  "id":"nw_hexyl_cinnamal",
+  "jp":["ヘキシルシンナマル"],
+  "en":"Hexyl Cinnamal",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; sensitization possible."
+},
+{
+  "id":"nw_hydroxycitronellal",
+  "jp":["ヒドロキシシトロネラール"],
+  "en":"Hydroxycitronellal",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; irritation possible."
+},
+{
+  "id":"nw_amyl_cinnamal",
+  "jp":["アミルシンナマル"],
+  "en":"Amyl Cinnamal",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; sensitization possible."
+},
+{
+  "id":"nw_cinnamyl_alcohol",
+  "jp":["ケイヒアルコール"],
+  "en":"Cinnamyl Alcohol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; sensitization possible."
+},
+{
+  "id":"nw_benzyl_cinnamate",
+  "jp":["ケイヒ酸ベンジル"],
+  "en":"Benzyl Cinnamate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance component; may irritate."
+},
+{
+  "id":"nw_anisyl_alcohol",
+  "jp":["アニスアルコール"],
+  "en":"Anisyl Alcohol",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance component; irritation possible."
+},
+{
+  "id":"nw_isoamyl_salicylate",
+  "jp":["サリチル酸イソアミル"],
+  "en":"Isoamyl Salicylate",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance component; sensitization possible."
+},
+{
+  "id":"nw_alpha_isomethyl_ionone",
+  "jp":["α-イソメチルイオノン","アルファ-イソメチルイオノン"],
+  "en":"Alpha-Isomethyl Ionone",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"Fragrance allergen; may irritate some skin."
+},
+{
+  "id":"nw_evernia_prunastri_extract",
+  "jp":["オークモスエキス"],
+  "en":"Evernia Prunastri Extract",
+  "alias":["Oakmoss Extract"],
+  "safety":"risk",
+  "note_short":"Fragrance allergen; sensitization concern."
+},
+{
+  "id":"nw_evernia_furfuracea_extract",
+  "jp":["ツリーモスエキス"],
+  "en":"Evernia Furfuracea Extract",
+  "alias":["Treemoss Extract"],
+  "safety":"risk",
+  "note_short":"Fragrance allergen; sensitization concern."
+},
+{
+  "id":"nw_sodium_lactate",
+  "jp":["乳酸Na","乳酸Ｎａ"],
+  "en":"Sodium Lactate",
+  "alias":[],
+  "safety":"safe",
+  "note_short":"Humectant; can sting on compromised skin."
+},
+{
+  "id":"nw_triethanolamine",
+  "jp":["トリエタノールアミン"],
+  "en":"Triethanolamine",
+  "alias":["TEA"],
+  "safety":"caution",
+  "note_short":"pH adjuster; irritation possible for some."
+},
+{
+  "id":"nw_aminomethyl_propanol",
+  "jp":["アミノメチルプロパノール"],
+  "en":"Aminomethyl Propanol",
+  "alias":["AMP"],
+  "safety":"caution",
+  "note_short":"pH adjuster; generally low irritation."
+},
+{
+  "id":"nw_sodium_carbonate",
+  "jp":["炭酸Na","炭酸Ｎａ"],
+  "en":"Sodium Carbonate",
+  "alias":["Soda Ash"],
+  "safety":"caution",
+  "note_short":"pH adjuster; can be irritating at higher levels."
+},
+{
+  "id":"nw_potassium_hydroxide",
+  "jp":["水酸化K"],
+  "en":"Potassium Hydroxide",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"pH adjuster; safe at very low levels."
+},
+{
+  "id":"nw_ammonium_hydroxide",
+  "jp":["アンモニア水"],
+  "en":"Ammonium Hydroxide",
+  "alias":["Ammonia"],
+  "safety":"risk",
+  "note_short":"pH adjuster; can be irritating; avoid eye area."
+},
+{
+  "id":"nw_hydrochloric_acid",
+  "jp":["塩酸"],
+  "en":"Hydrochloric Acid",
+  "alias":[],
+  "safety":"caution",
+  "note_short":"pH adjuster; present at low levels in formulas."
+},
+{
+  "id":"nw_tartaric_acid",
+  "jp":["酒石酸"],
+  "en":"Tartaric Acid",
+  "alias":["AHA"],
+  "safety":"risk",
+  "note_short":"Exfoliating acid; may irritate sensitive skin."
+},
+{
+  "id":"nw_malic_acid",
+  "jp":["リンゴ酸"],
+  "en":"Malic Acid",
+  "alias":["AHA"],
+  "safety":"risk",
+  "note_short":"Exfoliating acid; irritation possible."
+}
 ]
