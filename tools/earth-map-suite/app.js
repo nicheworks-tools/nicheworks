@@ -7,6 +7,14 @@
 
   const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
+  const TOOL_NAME = "earth-map-suite";
+
+  const trackEvent = (name, params = {}) => {
+    if (typeof window.gtag !== "function") {
+      return;
+    }
+    window.gtag("event", name, params);
+  };
 
   const getDefaultLang = () => {
     const browserLang = (navigator.language || "").toLowerCase();
@@ -338,6 +346,62 @@
       return { value: { days } };
     };
 
+    const getBBoxAreaBucket = (bbox) => {
+      const result = parseBBox(bbox);
+      if (result.error) {
+        return "unknown";
+      }
+      const area = result.value.spanLon * result.value.spanLat;
+      if (area <= 0.5) return "xs";
+      if (area <= 2) return "s";
+      if (area <= 5) return "m";
+      if (area <= 10) return "l";
+      if (area <= 25) return "xl";
+      return "xxl";
+    };
+
+    const getDateSpanDays = (start, end) => {
+      const result = parseDateRange(start, end);
+      if (result.error) {
+        return null;
+      }
+      return result.value.days;
+    };
+
+    const getEventContext = () => {
+      const lang = document.documentElement.lang || "ja";
+      const bboxValue = bboxInput.value.trim();
+      const startValue = startInput.value;
+      const endValue = endInput.value;
+      const presetValue = presetInput.value.trim();
+      const framesValue = framesInput.value.trim();
+
+      const context = {
+        tool_name: TOOL_NAME,
+        tool_mode: modeSelect.value || getDefaultMode(),
+        lang,
+        bbox_area_bucket: getBBoxAreaBucket(bboxValue)
+      };
+
+      const dateSpanDays = getDateSpanDays(startValue, endValue);
+      if (dateSpanDays !== null) {
+        context.date_span_days = dateSpanDays;
+      }
+
+      if (presetValue) {
+        context.preset = presetValue.toLowerCase();
+      }
+
+      if (framesValue) {
+        const framesNumber = Number(framesValue);
+        if (Number.isFinite(framesNumber)) {
+          context.frames = framesNumber;
+        }
+      }
+
+      return context;
+    };
+
     const validateInputs = ({ mode, bbox, start, end, preset, frames }) => {
       const missingFields = [];
       if (!bbox) missingFields.push("bbox");
@@ -546,6 +610,12 @@
         clearError();
         updateUrlState();
         renderAndScroll();
+        trackEvent("tool_example_apply", {
+          tool_name: TOOL_NAME,
+          tool_mode: mode,
+          example_mode: mode,
+          lang
+        });
       });
     });
 
@@ -553,6 +623,7 @@
       btn.addEventListener("click", () => {
         clearError();
         updateUrlState();
+        trackEvent("tool_run", getEventContext());
         const lang = document.documentElement.lang || "ja";
         const validation = validateInputs({
           mode: modeSelect.value,
@@ -564,10 +635,16 @@
         });
         if (validation.error) {
           renderError(validation.error, lang);
+          trackEvent("tool_error", {
+            ...getEventContext(),
+            error_code: validation.error.code || ERROR_CODES.unknown,
+            error_field: validation.error.field || "unknown"
+          });
           errorOutput.scrollIntoView({ behavior: "smooth", block: "start" });
           return;
         }
         renderAndScroll();
+        trackEvent("tool_result", getEventContext());
       });
     });
 
@@ -578,6 +655,8 @@
     endInput.value = urlState.end;
     presetInput.value = urlState.preset;
     framesInput.value = urlState.frames;
+
+    let previousMode = modeSelect.value || getDefaultMode();
 
     const inputsToWatch = [
       modeSelect,
@@ -601,7 +680,61 @@
         clearError();
         updateUrlState();
         render();
+        if (input === modeSelect && previousMode !== modeSelect.value) {
+          trackEvent("tool_mode_change", {
+            tool_name: TOOL_NAME,
+            tool_mode: modeSelect.value,
+            previous_mode: previousMode,
+            lang: document.documentElement.lang || "ja"
+          });
+          previousMode = modeSelect.value;
+        }
       });
+    });
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+      if (!link) return;
+
+      const href = link.getAttribute("href") || "";
+      const lang = document.documentElement.lang || "ja";
+
+      if (link.closest(".nw-other-links")) {
+        trackEvent("related_tool_click", {
+          tool_name: TOOL_NAME,
+          lang,
+          related_tool_path: href
+        });
+        return;
+      }
+
+      if (href.includes("usage")) {
+        trackEvent("usage_open", {
+          tool_name: TOOL_NAME,
+          lang,
+          usage_path: href
+        });
+        return;
+      }
+
+      if (href && !href.startsWith("#")) {
+        const isExternal = (() => {
+          try {
+            const url = new URL(href, window.location.href);
+            return url.origin !== window.location.origin;
+          } catch (_) {
+            return false;
+          }
+        })();
+
+        if (isExternal) {
+          trackEvent("outbound_click", {
+            tool_name: TOOL_NAME,
+            lang,
+            outbound_url: href
+          });
+        }
+      }
     });
 
     updateUrlState();
