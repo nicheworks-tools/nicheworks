@@ -171,6 +171,69 @@ body{
   word-break:break-word;
 }
 
+.compare-output{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.compare-title{
+  margin:0 0 6px;
+  font-size:13px;
+}
+.compare-note{
+  margin:0 0 8px;
+  font-size:12px;
+  color:var(--muted);
+}
+.compare-metrics{
+  margin:0;
+  display:grid;
+  gap:6px;
+  font-size:12px;
+  color:var(--muted);
+}
+.compare-metrics dt{
+  font-weight:600;
+  color:var(--text);
+}
+.compare-metrics dd{
+  margin:0;
+}
+.compare-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:12px;
+}
+.compare-card{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:8px;
+  background:var(--bg-soft);
+}
+.compare-card-title{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.compare-card canvas{
+  width:100%;
+  height:auto;
+  display:block;
+  background:#fff;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+.compare-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
 .storm-replay{
   margin-top:12px;
   padding:12px;

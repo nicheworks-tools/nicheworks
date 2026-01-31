@@ -103,11 +103,13 @@
     return lerpColor([59, 130, 246], [239, 68, 68], (v - 0.5) / 0.5);
   };
 
-  const formatPreview = ({ mode, bbox, start, end, preset, frames, area, layers, notes }, lang) => {
+  const formatPreview = ({ mode, bbox, start, end, startB, endB, preset, frames, area, layers, notes }, lang) => {
     const safeMode = mode || "storm";
     const safeBBox = bbox || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeStart = start || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeEnd = end || (lang === "ja" ? "（未入力）" : "(empty)");
+    const safeStartB = startB || (lang === "ja" ? "（未入力）" : "(empty)");
+    const safeEndB = endB || (lang === "ja" ? "（未入力）" : "(empty)");
     const safePreset = preset || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeFrames = frames || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeArea = area || (lang === "ja" ? "（未入力）" : "(empty)");
@@ -125,6 +127,12 @@
       ];
       if (safeMode === "storm") {
         lines.push(`フレーム数: ${safeFrames}`);
+      }
+      if (safeMode === "compare") {
+        lines.push(
+          `期間A: ${safeStart} 〜 ${safeEnd}`,
+          `期間B: ${safeStartB} 〜 ${safeEndB}`
+        );
       }
       lines.push(
         `対象エリア: ${safeArea}`,
@@ -146,6 +154,12 @@
     ];
     if (safeMode === "storm") {
       lines.push(`Frames: ${safeFrames}`);
+    }
+    if (safeMode === "compare") {
+      lines.push(
+        `Period A: ${safeStart} to ${safeEnd}`,
+        `Period B: ${safeStartB} to ${safeEndB}`
+      );
     }
     lines.push(
       `Target area: ${safeArea}`,
@@ -280,7 +294,89 @@
     return grid.map((row) => row.map((value) => value / max));
   };
 
-  const renderGrid = (canvas, grid, label) => {
+  const normalizeGridByMax = (grid, max) => {
+    if (!Number.isFinite(max) || max <= 0) return grid;
+    return grid.map((row) => row.map((value) => value / max));
+  };
+
+  const getGridStats = (grid) => {
+    let total = 0;
+    let min = Number.POSITIVE_INFINITY;
+    let max = Number.NEGATIVE_INFINITY;
+    let count = 0;
+    grid.forEach((row) => {
+      row.forEach((value) => {
+        total += value;
+        min = Math.min(min, value);
+        max = Math.max(max, value);
+        count += 1;
+      });
+    });
+    const mean = count ? total / count : 0;
+    return { total, min, max, mean, count };
+  };
+
+  const valueToDiffColor = (value, maxAbs) => {
+    const safeMax = maxAbs > 0 ? maxAbs : 1;
+    const t = clamp(value / safeMax, -1, 1);
+    if (t >= 0) {
+      return lerpColor([229, 231, 235], [239, 68, 68], t);
+    }
+    return lerpColor([59, 130, 246], [229, 231, 235], t + 1);
+  };
+
+  const generatePrecipGrid = ({ seed, cols, rows }) => {
+    const random = mulberry32(seed);
+    const cellCount = 4 + Math.floor(random() * 4);
+    const cells = Array.from({ length: cellCount }, () => ({
+      x: random(),
+      y: random(),
+      radius: 0.18 + random() * 0.25,
+      intensity: 0.5 + random() * 0.5
+    }));
+    const values = Array.from({ length: rows }, () => Array.from({ length: cols }, () => 0));
+    for (let row = 0; row < rows; row += 1) {
+      for (let col = 0; col < cols; col += 1) {
+        const x = col / (cols - 1 || 1);
+        const y = row / (rows - 1 || 1);
+        let value = 0;
+        cells.forEach((cell) => {
+          const dx = x - cell.x;
+          const dy = y - cell.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < cell.radius) {
+            value += (1 - dist / cell.radius) * cell.intensity;
+          }
+        });
+        values[row][col] = clamp(value, 0, 1) * 80;
+      }
+    }
+    return values;
+  };
+
+  const buildCompareData = ({ bbox, startA, endA, startB, endB, preset }) => {
+    const normalizedPreset = preset.toLowerCase();
+    const { cols, rows } = resolveStormGrid(normalizedPreset);
+    const seedBase = hashString(`${bbox}|${startA}|${endA}|${startB}|${endB}|${normalizedPreset}`);
+    const gridA = generatePrecipGrid({ seed: seedBase + 11, cols, rows });
+    const gridB = generatePrecipGrid({ seed: seedBase + 97, cols, rows });
+    const diffGrid = gridA.map((row, rIdx) =>
+      row.map((value, cIdx) => value - gridB[rIdx][cIdx])
+    );
+    return {
+      preset: normalizedPreset,
+      cols,
+      rows,
+      gridA,
+      gridB,
+      diffGrid,
+      statsA: getGridStats(gridA),
+      statsB: getGridStats(gridB),
+      statsDiff: getGridStats(diffGrid)
+    };
+  };
+
+  const renderGrid = (canvas, grid, label, colorizer = valueToColor) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const width = canvas.width;
@@ -292,7 +388,7 @@
     const cellHeight = height / (rows || 1);
     for (let r = 0; r < rows; r += 1) {
       for (let c = 0; c < cols; c += 1) {
-        ctx.fillStyle = valueToColor(grid[r][c]);
+        ctx.fillStyle = colorizer(grid[r][c]);
         ctx.fillRect(c * cellWidth, r * cellHeight, cellWidth + 0.5, cellHeight + 0.5);
       }
     }
@@ -312,6 +408,8 @@
     const bboxInput = document.getElementById("bboxInput");
     const startInput = document.getElementById("startInput");
     const endInput = document.getElementById("endInput");
+    const startInputB = document.getElementById("startInputB");
+    const endInputB = document.getElementById("endInputB");
     const presetInput = document.getElementById("presetInput");
     const framesInput = document.getElementById("framesInput");
     const areaInput = document.getElementById("focusArea");
@@ -319,6 +417,11 @@
     const notesInput = document.getElementById("notes");
     const resultOutput = document.getElementById("resultOutput");
     const errorOutput = document.getElementById("errorOutput");
+    const compareOutput = document.getElementById("compareOutput");
+    const compareMetrics = document.getElementById("compareMetrics");
+    const compareCanvasA = document.getElementById("compareCanvasA");
+    const compareCanvasB = document.getElementById("compareCanvasB");
+    const compareCanvasDiff = document.getElementById("compareCanvasDiff");
     const stormReplay = document.getElementById("stormReplay");
     const stormStatus = document.getElementById("stormStatus");
     const stormPrev = document.getElementById("stormPrev");
@@ -341,6 +444,24 @@
       document.getElementById("downloadCsv"),
       document.getElementById("downloadCsvEn")
     ].filter(Boolean);
+    const downloadCompareButtons = {
+      a: [
+        document.getElementById("downloadCompareA"),
+        document.getElementById("downloadCompareAEn")
+      ].filter(Boolean),
+      b: [
+        document.getElementById("downloadCompareB"),
+        document.getElementById("downloadCompareBEn")
+      ].filter(Boolean),
+      diff: [
+        document.getElementById("downloadCompareDiff"),
+        document.getElementById("downloadCompareDiffEn")
+      ].filter(Boolean),
+      csv: [
+        document.getElementById("downloadCompareCsv"),
+        document.getElementById("downloadCompareCsvEn")
+      ].filter(Boolean)
+    };
 
     const exampleButtons = Array.from(document.querySelectorAll("[data-example-mode]"));
 
@@ -351,6 +472,8 @@
 
     const getDefaultMode = () => "storm";
     let stormState = null;
+    let compareState = null;
+    const compareOnlyNodes = Array.from(document.querySelectorAll(".compare-only"));
 
     const readUrlState = () => {
       const params = new URLSearchParams(window.location.search);
@@ -358,6 +481,8 @@
       const bbox = params.get("bbox");
       const start = params.get("start");
       const end = params.get("end");
+      const startB = params.get("startB");
+      const endB = params.get("endB");
       const preset = params.get("preset");
       const frames = params.get("frames");
       return {
@@ -365,6 +490,8 @@
         bbox: bbox || "",
         start: start || "",
         end: end || "",
+        startB: startB || "",
+        endB: endB || "",
         preset: preset || "",
         frames: frames || ""
       };
@@ -378,6 +505,8 @@
       const bbox = bboxInput.value.trim();
       const start = startInput.value;
       const end = endInput.value;
+      const startB = startInputB?.value || "";
+      const endB = endInputB?.value || "";
       const preset = presetInput.value.trim();
       const frames = framesInput.value.trim();
 
@@ -397,6 +526,18 @@
         params.set("end", end);
       } else {
         params.delete("end");
+      }
+
+      if (startB) {
+        params.set("startB", startB);
+      } else {
+        params.delete("startB");
+      }
+
+      if (endB) {
+        params.set("endB", endB);
+      } else {
+        params.delete("endB");
       }
 
       if (preset) {
@@ -446,6 +587,8 @@
           bbox: "135.35,34.55,135.70,34.85",
           start: "2024-05-10",
           end: "2024-05-20",
+          startB: "2024-06-10",
+          endB: "2024-06-20",
           preset: "mid",
           frames: "",
           area: "大阪湾周辺",
@@ -457,6 +600,8 @@
           bbox: "135.35,34.55,135.70,34.85",
           start: "2024-05-10",
           end: "2024-05-20",
+          startB: "2024-06-10",
+          endB: "2024-06-20",
           preset: "mid",
           frames: "",
           area: "Osaka Bay area",
@@ -497,6 +642,10 @@
       bboxInput.value = copy.bbox;
       startInput.value = copy.start;
       endInput.value = copy.end;
+      if (startInputB && endInputB) {
+        startInputB.value = copy.startB || "";
+        endInputB.value = copy.endB || "";
+      }
       presetInput.value = copy.preset;
       framesInput.value = copy.frames || "";
       areaInput.value = copy.area;
@@ -613,12 +762,16 @@
       return context;
     };
 
-    const validateInputs = ({ mode, bbox, start, end, preset, frames }) => {
+    const validateInputs = ({ mode, bbox, start, end, startB, endB, preset, frames }) => {
       const warnings = [];
       const missingFields = [];
       if (!bbox) missingFields.push("bbox");
       if (!start) missingFields.push("start");
       if (!end) missingFields.push("end");
+      if (mode === "compare") {
+        if (!startB) missingFields.push("startB");
+        if (!endB) missingFields.push("endB");
+      }
       if (!preset) missingFields.push("preset");
       if (mode === "storm" && !frames) missingFields.push("frames");
       if (missingFields.length) {
@@ -630,6 +783,10 @@
 
       const dateResult = parseDateRange(start, end);
       if (dateResult.error) return { error: dateResult.error };
+      if (mode === "compare") {
+        const dateResultB = parseDateRange(startB, endB);
+        if (dateResultB.error) return { error: dateResultB.error };
+      }
 
       const normalizedPreset = preset.toLowerCase();
       if (!LIMITS.presets.includes(normalizedPreset)) {
@@ -820,6 +977,22 @@
       return lines.join("\n");
     };
 
+    const buildCompareCsv = ({ bbox, startA, endA, startB, endB, preset, gridA, gridB, diffGrid }) => {
+      const lines = [
+        "bbox,period_a_start,period_a_end,period_b_start,period_b_end,preset",
+        `"${bbox}",${startA},${endA},${startB},${endB},${preset}`,
+        "row,col,period_a_mm,period_b_mm,diff_mm"
+      ];
+      gridA.forEach((row, rIdx) => {
+        row.forEach((value, cIdx) => {
+          const valueB = gridB[rIdx][cIdx];
+          const diff = diffGrid[rIdx][cIdx];
+          lines.push(`${rIdx + 1},${cIdx + 1},${value.toFixed(2)},${valueB.toFixed(2)},${diff.toFixed(2)}`);
+        });
+      });
+      return lines.join("\n");
+    };
+
     const downloadBlob = (content, filename, type) => {
       const blob = new Blob([content], { type });
       const url = URL.createObjectURL(blob);
@@ -902,6 +1075,93 @@
       stormState = null;
     };
 
+    const resetCompareOutput = () => {
+      if (compareOutput) {
+        compareOutput.hidden = true;
+      }
+      if (compareMetrics) {
+        compareMetrics.innerHTML = "";
+      }
+      compareState = null;
+    };
+
+    const updateCompareMetrics = ({ statsA, statsB, statsDiff }, lang) => {
+      if (!compareMetrics) return;
+      const format = (value) => Number.isFinite(value) ? value.toFixed(2) : "-";
+      if (lang === "ja") {
+        compareMetrics.innerHTML = [
+          "<div>",
+          "<dt>期間A 合計 (mm相当)</dt>",
+          `<dd>${format(statsA.total)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>期間B 合計 (mm相当)</dt>",
+          `<dd>${format(statsB.total)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>差分合計 (A - B, mm相当)</dt>",
+          `<dd>${format(statsDiff.total)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>期間A 平均 (mm相当)</dt>",
+          `<dd>${format(statsA.mean)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>期間B 平均 (mm相当)</dt>",
+          `<dd>${format(statsB.mean)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>差分最大 (mm相当)</dt>",
+          `<dd>${format(statsDiff.max)}</dd>`,
+          "</div>"
+        ].join("");
+        return;
+      }
+      compareMetrics.innerHTML = [
+        "<div>",
+        "<dt>Period A total (mm equivalent)</dt>",
+        `<dd>${format(statsA.total)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Period B total (mm equivalent)</dt>",
+        `<dd>${format(statsB.total)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Diff total (A - B, mm equivalent)</dt>",
+        `<dd>${format(statsDiff.total)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Period A mean (mm equivalent)</dt>",
+        `<dd>${format(statsA.mean)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Period B mean (mm equivalent)</dt>",
+        `<dd>${format(statsB.mean)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Max diff (mm equivalent)</dt>",
+        `<dd>${format(statsDiff.max)}</dd>`,
+        "</div>"
+      ].join("");
+    };
+
+    const loadCompareOutput = ({ bbox, startA, endA, startB, endB, preset }, lang) => {
+      if (!compareOutput || !compareCanvasA || !compareCanvasB || !compareCanvasDiff) return;
+      const data = buildCompareData({ bbox, startA, endA, startB, endB, preset });
+      compareState = { ...data, bbox, startA, endA, startB, endB };
+      compareOutput.hidden = false;
+      updateCompareMetrics(data, lang);
+
+      const maxAB = Math.max(data.statsA.max, data.statsB.max, 1);
+      const normalizedA = normalizeGridByMax(data.gridA, maxAB);
+      const normalizedB = normalizeGridByMax(data.gridB, maxAB);
+      const maxAbsDiff = Math.max(Math.abs(data.statsDiff.min), Math.abs(data.statsDiff.max), 1);
+
+      renderGrid(compareCanvasA, normalizedA, `${startA} ~ ${endA}`);
+      renderGrid(compareCanvasB, normalizedB, `${startB} ~ ${endB}`);
+      renderGrid(compareCanvasDiff, data.diffGrid, "A - B", (value) => valueToDiffColor(value, maxAbsDiff));
+    };
+
     const render = () => {
       const lang = document.documentElement.lang || "ja";
       resultOutput.textContent = formatPreview({
@@ -909,6 +1169,8 @@
         bbox: bboxInput.value.trim(),
         start: startInput.value,
         end: endInput.value,
+        startB: startInputB?.value || "",
+        endB: endInputB?.value || "",
         preset: presetInput.value.trim(),
         frames: framesInput.value.trim(),
         area: areaInput.value.trim(),
@@ -936,6 +1198,8 @@
             bbox: bboxInput.value.trim(),
             start: startInput.value,
             end: endInput.value,
+            startB: startInputB?.value || "",
+            endB: endInputB?.value || "",
             preset: presetInput.value.trim(),
             frames: framesInput.value.trim()
           });
@@ -950,8 +1214,34 @@
               frames: framesInput.value.trim()
             }, lang);
           }
+          resetCompareOutput();
+        } else if (modeSelect.value === "compare") {
+          const validation = validateInputs({
+            mode: modeSelect.value,
+            bbox: bboxInput.value.trim(),
+            start: startInput.value,
+            end: endInput.value,
+            startB: startInputB?.value || "",
+            endB: endInputB?.value || "",
+            preset: presetInput.value.trim(),
+            frames: framesInput.value.trim()
+          });
+          if (validation.error) {
+            renderError(validation.error, lang);
+          } else {
+            loadCompareOutput({
+              bbox: bboxInput.value.trim(),
+              startA: startInput.value,
+              endA: endInput.value,
+              startB: startInputB?.value || "",
+              endB: endInputB?.value || "",
+              preset: presetInput.value.trim()
+            }, lang);
+          }
+          resetStormReplay();
         } else {
           resetStormReplay();
+          resetCompareOutput();
         }
         trackEvent("tool_example_apply", {
           tool_name: TOOL_NAME,
@@ -973,6 +1263,8 @@
           bbox: bboxInput.value.trim(),
           start: startInput.value,
           end: endInput.value,
+          startB: startInputB?.value || "",
+          endB: endInputB?.value || "",
           preset: presetInput.value.trim(),
           frames: framesInput.value.trim()
         });
@@ -995,8 +1287,20 @@
             preset: presetInput.value.trim(),
             frames: framesInput.value.trim()
           }, lang);
+          resetCompareOutput();
+        } else if (modeSelect.value === "compare") {
+          loadCompareOutput({
+            bbox: bboxInput.value.trim(),
+            startA: startInput.value,
+            endA: endInput.value,
+            startB: startInputB?.value || "",
+            endB: endInputB?.value || "",
+            preset: presetInput.value.trim()
+          }, lang);
+          resetStormReplay();
         } else {
           resetStormReplay();
+          resetCompareOutput();
         }
         trackEvent("tool_result", getEventContext());
       });
@@ -1056,21 +1360,73 @@
       });
     });
 
+    downloadCompareButtons.a.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!compareState || !compareCanvasA) return;
+        downloadCanvas(compareCanvasA, "compare-period-a.png");
+      });
+    });
+    downloadCompareButtons.b.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!compareState || !compareCanvasB) return;
+        downloadCanvas(compareCanvasB, "compare-period-b.png");
+      });
+    });
+    downloadCompareButtons.diff.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!compareState || !compareCanvasDiff) return;
+        downloadCanvas(compareCanvasDiff, "compare-diff.png");
+      });
+    });
+    downloadCompareButtons.csv.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!compareState) return;
+        const csv = buildCompareCsv({
+          bbox: compareState.bbox,
+          startA: compareState.startA,
+          endA: compareState.endA,
+          startB: compareState.startB,
+          endB: compareState.endB,
+          preset: compareState.preset,
+          gridA: compareState.gridA,
+          gridB: compareState.gridB,
+          diffGrid: compareState.diffGrid
+        });
+        downloadBlob(csv, "compare-precipitation.csv", "text/csv;charset=utf-8;");
+      });
+    });
+
     const urlState = readUrlState();
     modeSelect.value = urlState.mode || getDefaultMode();
     bboxInput.value = urlState.bbox;
     startInput.value = urlState.start;
     endInput.value = urlState.end;
+    if (startInputB && endInputB) {
+      startInputB.value = urlState.startB;
+      endInputB.value = urlState.endB;
+    }
     presetInput.value = urlState.preset;
     framesInput.value = urlState.frames;
 
     let previousMode = modeSelect.value || getDefaultMode();
+
+    const updateModeVisibility = (mode) => {
+      const isCompare = mode === "compare";
+      compareOnlyNodes.forEach((node) => {
+        node.hidden = !isCompare;
+      });
+      if (!isCompare) {
+        resetCompareOutput();
+      }
+    };
 
     const inputsToWatch = [
       modeSelect,
       bboxInput,
       startInput,
       endInput,
+      startInputB,
+      endInputB,
       presetInput,
       framesInput,
       areaInput,
@@ -1084,13 +1440,16 @@
         updateUrlState();
         render();
         resetStormReplay();
+        resetCompareOutput();
       });
       input.addEventListener("change", () => {
         clearError();
         updateUrlState();
         render();
         resetStormReplay();
+        resetCompareOutput();
         if (input === modeSelect && previousMode !== modeSelect.value) {
+          updateModeVisibility(modeSelect.value);
           trackEvent("tool_mode_change", {
             tool_name: TOOL_NAME,
             tool_mode: modeSelect.value,
@@ -1147,6 +1506,7 @@
       }
     });
 
+    updateModeVisibility(modeSelect.value || getDefaultMode());
     updateUrlState();
     render();
   });
