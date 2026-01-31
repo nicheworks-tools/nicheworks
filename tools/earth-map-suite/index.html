@@ -128,8 +128,8 @@
           <label class="label" for="framesInput" data-i18n="ja">フレーム数（stormのみ）</label>
           <label class="label" for="framesInput" data-i18n="en" style="display:none;">Frames (storm only)</label>
           <input class="input" id="framesInput" type="number" min="1" placeholder="例：24" />
-          <p class="hint" data-i18n="ja">stormモード時は必須。無料枠上限: 48</p>
-          <p class="hint" data-i18n="en" style="display:none;">Required for storm mode. Free limit: 48</p>
+          <p class="hint" data-i18n="ja">stormモード時は必須。48を超える場合は自動的に間引きます。</p>
+          <p class="hint" data-i18n="en" style="display:none;">Required for storm mode. Over 48 frames will be thinned automatically.</p>
         </div>
         <div class="field">
           <label class="label" for="focusArea" data-i18n="ja">対象エリア</label>
@@ -169,6 +169,46 @@
       <div class="card-bd">
         <div class="out" id="errorOutput" role="alert" aria-live="assertive" hidden></div>
         <div class="out" id="resultOutput" aria-live="polite"></div>
+        <div class="storm-replay" id="stormReplay" hidden>
+          <div class="storm-status" id="stormStatus" role="status" aria-live="polite"></div>
+          <div class="storm-toolbar">
+            <div class="storm-controls">
+              <button class="btn" type="button" id="stormPrev" aria-label="Previous frame">◀</button>
+              <input class="storm-slider" id="stormSlider" type="range" min="0" max="0" value="0" step="1" />
+              <button class="btn" type="button" id="stormNext" aria-label="Next frame">▶</button>
+            </div>
+            <div class="storm-meta">
+              <span class="storm-label" data-i18n="ja">日時:</span>
+              <span class="storm-label" data-i18n="en" style="display:none;">Timestamp:</span>
+              <strong id="stormTimestamp">-</strong>
+            </div>
+            <label class="storm-toggle">
+              <input type="checkbox" id="stormCumulativeToggle" checked />
+              <span data-i18n="ja">累積表示</span>
+              <span data-i18n="en" style="display:none;">Show cumulative</span>
+            </label>
+          </div>
+          <div class="storm-canvases">
+            <div class="storm-panel">
+              <div class="storm-panel-title" data-i18n="ja">現在フレーム</div>
+              <div class="storm-panel-title" data-i18n="en" style="display:none;">Current frame</div>
+              <canvas id="stormFrameCanvas" width="320" height="200" aria-label="Storm frame visualization"></canvas>
+            </div>
+            <div class="storm-panel" id="stormCumulativePanel">
+              <div class="storm-panel-title" data-i18n="ja">累積フレーム</div>
+              <div class="storm-panel-title" data-i18n="en" style="display:none;">Cumulative frame</div>
+              <canvas id="stormCumulativeCanvas" width="320" height="200" aria-label="Storm cumulative visualization"></canvas>
+            </div>
+          </div>
+          <div class="storm-actions">
+            <button class="btn" type="button" id="downloadFramePng" data-i18n="ja">現在フレームPNG</button>
+            <button class="btn" type="button" id="downloadFramePngEn" data-i18n="en" style="display:none;">Download frame PNG</button>
+            <button class="btn" type="button" id="downloadCumulativePng" data-i18n="ja">累積PNG</button>
+            <button class="btn" type="button" id="downloadCumulativePngEn" data-i18n="en" style="display:none;">Download cumulative PNG</button>
+            <button class="btn" type="button" id="downloadCsv" data-i18n="ja">CSVダウンロード</button>
+            <button class="btn" type="button" id="downloadCsvEn" data-i18n="en" style="display:none;">Download CSV</button>
+          </div>
+        </div>
       </div>
     </section>
 
