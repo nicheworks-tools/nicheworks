@@ -86,10 +86,7 @@
     const notesInput = document.getElementById("notes");
     const resultOutput = document.getElementById("resultOutput");
 
-    const exampleButtons = [
-      document.getElementById("exampleBtn"),
-      document.getElementById("exampleBtnEn")
-    ].filter(Boolean);
+    const exampleButtons = Array.from(document.querySelectorAll("[data-example-mode]"));
 
     const runButtons = [
       document.getElementById("runBtn"),
@@ -152,26 +149,86 @@
       window.history.replaceState({}, "", newUrl);
     };
 
-    const setExample = (lang) => {
-      if (lang === "ja") {
-        modeSelect.value = "storm";
-        bboxInput.value = "139.60,35.50,139.95,35.80";
-        startInput.value = "2024-04-01";
-        endInput.value = "2024-04-30";
-        presetInput.value = "low";
-        areaInput.value = "関東地方・沿岸部";
-        layersInput.value = "地形 / 主要道路 / 避難所";
-        notesInput.value = "夜間モードでの視認性を確認";
-      } else {
-        modeSelect.value = "storm";
-        bboxInput.value = "139.60,35.50,139.95,35.80";
-        startInput.value = "2024-04-01";
-        endInput.value = "2024-04-30";
-        presetInput.value = "low";
-        areaInput.value = "Coastal area around Kanto";
-        layersInput.value = "Terrain / main roads / shelters";
-        notesInput.value = "Check readability in night mode";
+    const examplePresets = {
+      storm: {
+        ja: {
+          mode: "storm",
+          bbox: "139.60,35.50,139.95,35.80",
+          start: "2024-04-01",
+          end: "2024-04-30",
+          preset: "low",
+          area: "関東地方・沿岸部",
+          layers: "地形 / 主要道路 / 避難所",
+          notes: "夜間モードでの視認性を確認"
+        },
+        en: {
+          mode: "storm",
+          bbox: "139.60,35.50,139.95,35.80",
+          start: "2024-04-01",
+          end: "2024-04-30",
+          preset: "low",
+          area: "Coastal area around Kanto",
+          layers: "Terrain / main roads / shelters",
+          notes: "Check readability in night mode"
+        }
+      },
+      compare: {
+        ja: {
+          mode: "compare",
+          bbox: "135.35,34.55,135.70,34.85",
+          start: "2024-05-10",
+          end: "2024-05-20",
+          preset: "mid",
+          area: "大阪湾周辺",
+          layers: "河川 / 交通 / 標高",
+          notes: "降雨量の差分で比較予定"
+        },
+        en: {
+          mode: "compare",
+          bbox: "135.35,34.55,135.70,34.85",
+          start: "2024-05-10",
+          end: "2024-05-20",
+          preset: "mid",
+          area: "Osaka Bay area",
+          layers: "Rivers / transport / elevation",
+          notes: "Compare rainfall differences"
+        }
+      },
+      card: {
+        ja: {
+          mode: "card",
+          bbox: "141.25,38.20,141.65,38.45",
+          start: "2024-06-01",
+          end: "2024-06-07",
+          preset: "detail",
+          area: "仙台湾沿岸",
+          layers: "避難所 / 防潮堤 / 高低差",
+          notes: "要点をカードで共有する想定"
+        },
+        en: {
+          mode: "card",
+          bbox: "141.25,38.20,141.65,38.45",
+          start: "2024-06-01",
+          end: "2024-06-07",
+          preset: "detail",
+          area: "Sendai Bay coast",
+          layers: "Shelters / seawalls / elevation",
+          notes: "Share highlights in card format"
+        }
       }
+    };
+
+    const setExample = (mode, lang) => {
+      const preset = examplePresets[mode] || examplePresets.storm;
+      const copy = preset[lang] || preset.ja;
+      modeSelect.value = copy.mode;
+      bboxInput.value = copy.bbox;
+      startInput.value = copy.start;
+      endInput.value = copy.end;
+      presetInput.value = copy.preset;
+      areaInput.value = copy.area;
+      layersInput.value = copy.layers;
+      notesInput.value = copy.notes;
     };
 
     const render = () => {
@@ -188,16 +245,26 @@
       }, lang);
     };
 
+    const renderAndScroll = () => {
+      render();
+      resultOutput.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
     exampleButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const lang = document.documentElement.lang || "ja";
-        setExample(lang);
-        render();
+        const mode = btn.dataset.exampleMode || modeSelect.value || getDefaultMode();
+        setExample(mode, lang);
+        updateUrlState();
+        renderAndScroll();
       });
     });
 
     runButtons.forEach((btn) => {
-      btn.addEventListener("click", () => render());
+      btn.addEventListener("click", () => {
+        updateUrlState();
+        renderAndScroll();
+      });
     });
 
     const urlState = readUrlState();
