@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-30T11:42:03.659Z",
-  "total": 58,
+  "generatedAt": "2026-01-31T07:30:37.661Z",
+  "total": 59,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -94,6 +94,14 @@
       "slug": "dry-meter",
       "title_en": "dry-meter",
       "title_ja": "dry-meter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "earth-map-suite",
+      "title_en": "earth-map-suite",
+      "title_ja": "earth-map-suite",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
