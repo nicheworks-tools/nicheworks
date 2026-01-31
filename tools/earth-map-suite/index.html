@@ -104,10 +104,31 @@
           <p class="hint" id="modeHint" data-i18n="ja">storm: 単一条件の確認 / compare: 条件比較 / card: カード表示</p>
           <p class="hint" id="modeHintEn" data-i18n="en" style="display:none;">storm: single condition / compare: compare conditions / card: card view</p>
         </div>
-        <div class="field">
+        <div class="row card-only" hidden>
+          <div class="field">
+            <label class="label" for="latInput" data-i18n="ja">緯度（lat）</label>
+            <label class="label" for="latInput" data-i18n="en" style="display:none;">Latitude (lat)</label>
+            <input class="input" id="latInput" type="number" step="0.0001" placeholder="例：35.68" />
+          </div>
+          <div class="field">
+            <label class="label" for="lonInput" data-i18n="ja">経度（lon）</label>
+            <label class="label" for="lonInput" data-i18n="en" style="display:none;">Longitude (lon)</label>
+            <input class="input" id="lonInput" type="number" step="0.0001" placeholder="例：139.76" />
+          </div>
+        </div>
+        <div class="field card-only" hidden>
+          <label class="label" data-i18n="ja">ポイント指定（クリックで反映）</label>
+          <label class="label" data-i18n="en" style="display:none;">Point picker (click to set)</label>
+          <canvas class="card-map-picker" id="cardMapPicker" width="320" height="180" aria-label="Point picker map"></canvas>
+          <p class="hint" data-i18n="ja">クリック位置の緯度経度を自動入力します。</p>
+          <p class="hint" data-i18n="en" style="display:none;">Click to fill in latitude/longitude.</p>
+        </div>
+        <div class="field non-card-only">
           <label class="label" for="bboxInput" data-i18n="ja">BBox（緯度経度）</label>
           <label class="label" for="bboxInput" data-i18n="en" style="display:none;">BBox (lat/long)</label>
           <input class="input" id="bboxInput" type="text" placeholder="例：139.60,35.50,139.95,35.80" />
+          <p class="hint" data-i18n="ja">storm/compareモードで使用します。</p>
+          <p class="hint" data-i18n="en" style="display:none;">Used in storm/compare modes.</p>
         </div>
         <div class="field">
           <label class="label" for="startInput" data-i18n="ja">開始日</label>
@@ -138,7 +159,7 @@
           <label class="label" for="presetInput" data-i18n="en" style="display:none;">Preset</label>
           <input class="input" id="presetInput" type="text" placeholder="例：low" />
         </div>
-        <div class="field">
+        <div class="field storm-only">
           <label class="label" for="framesInput" data-i18n="ja">フレーム数（stormのみ）</label>
           <label class="label" for="framesInput" data-i18n="en" style="display:none;">Frames (storm only)</label>
           <input class="input" id="framesInput" type="number" min="1" placeholder="例：24" />
@@ -257,6 +278,36 @@
             <button class="btn" type="button" id="downloadCumulativePngEn" data-i18n="en" style="display:none;">Download cumulative PNG</button>
             <button class="btn" type="button" id="downloadCsv" data-i18n="ja">CSVダウンロード</button>
             <button class="btn" type="button" id="downloadCsvEn" data-i18n="en" style="display:none;">Download CSV</button>
+          </div>
+        </div>
+        <div class="card-output" id="cardOutput" hidden>
+          <div class="card-output-header">
+            <h3 class="card-output-title" data-i18n="ja">Location Card（降水量のポイント時系列）</h3>
+            <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (point precipitation series)</h3>
+            <p class="card-output-note" data-i18n="ja">カード表示は参考値のプレースホルダです。</p>
+            <p class="card-output-note" data-i18n="en" style="display:none;">The card shows placeholder values for reference.</p>
+          </div>
+          <div class="card-output-grid">
+            <div class="card-output-panel">
+              <div class="card-output-label" data-i18n="ja">ポイントプレビュー</div>
+              <div class="card-output-label" data-i18n="en" style="display:none;">Point preview</div>
+              <canvas id="cardMapPreview" width="320" height="200" aria-label="Location preview map"></canvas>
+              <div class="card-output-meta" id="cardMapMeta">Lat: - , Lon: -</div>
+            </div>
+            <div class="card-output-panel">
+              <div class="card-output-label" data-i18n="ja">降水量ミニチャート</div>
+              <div class="card-output-label" data-i18n="en" style="display:none;">Precip mini chart</div>
+              <canvas id="cardChart" width="320" height="160" aria-label="Precipitation chart"></canvas>
+            </div>
+            <div class="card-output-panel">
+              <div class="card-output-label" data-i18n="ja">サマリー</div>
+              <div class="card-output-label" data-i18n="en" style="display:none;">Summary</div>
+              <dl class="card-summary" id="cardSummary"></dl>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn" type="button" id="downloadCardCsv" data-i18n="ja">カードCSV</button>
+            <button class="btn" type="button" id="downloadCardCsvEn" data-i18n="en" style="display:none;">Download card CSV</button>
           </div>
         </div>
       </div>
