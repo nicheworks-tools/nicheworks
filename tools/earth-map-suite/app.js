@@ -47,6 +47,8 @@
     stormFramesMax: 48
   };
 
+  const stormCache = new Map();
+
   const ERROR_CODES = {
     missing_params: "missing_params",
     limit_exceeded: "limit_exceeded",
@@ -62,6 +64,44 @@
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+  const hashString = (value) => {
+    let hash = 2166136261;
+    for (let i = 0; i < value.length; i += 1) {
+      hash ^= value.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  };
+
+  const mulberry32 = (seed) => {
+    let t = seed >>> 0;
+    return () => {
+      t += 0x6d2b79f5;
+      let r = Math.imul(t ^ (t >>> 15), t | 1);
+      r ^= r + Math.imul(r ^ (r >>> 7), r | 61);
+      return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+    };
+  };
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  const lerpColor = (from, to, t) => {
+    const r = Math.round(lerp(from[0], to[0], t));
+    const g = Math.round(lerp(from[1], to[1], t));
+    const b = Math.round(lerp(from[2], to[2], t));
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
+  const valueToColor = (value) => {
+    const v = clamp(value, 0, 1);
+    if (v <= 0.5) {
+      return lerpColor([219, 234, 254], [59, 130, 246], v / 0.5);
+    }
+    return lerpColor([59, 130, 246], [239, 68, 68], (v - 0.5) / 0.5);
+  };
 
   const formatPreview = ({ mode, bbox, start, end, preset, frames, area, layers, notes }, lang) => {
     const safeMode = mode || "storm";
@@ -117,6 +157,154 @@
     return lines.join("\n");
   };
 
+  const buildStormKey = ({ bbox, start, end, preset, frames }) =>
+    `${bbox}|${start}|${end}|${preset}|${frames}`;
+
+  const buildTimestampSeries = (start, end, frameCount) => {
+    const startDate = new Date(`${start}T00:00:00`);
+    const endDate = new Date(`${end}T00:00:00`);
+    const startMs = startDate.getTime();
+    const endMs = endDate.getTime();
+    if (!Number.isFinite(startMs) || !Number.isFinite(endMs)) {
+      return [];
+    }
+    if (frameCount <= 1 || startMs === endMs) {
+      return [new Date(startMs).toISOString()];
+    }
+    const step = (endMs - startMs) / (frameCount - 1);
+    return Array.from({ length: frameCount }, (_, idx) => new Date(startMs + step * idx).toISOString());
+  };
+
+  const resolveStormGrid = (preset) => {
+    if (preset === "detail") return { cols: 36, rows: 24 };
+    if (preset === "mid") return { cols: 28, rows: 18 };
+    return { cols: 22, rows: 14 };
+  };
+
+  const generateStormFrame = ({ seed, cols, rows, frameIndex }) => {
+    const random = mulberry32(seed + (frameIndex + 1) * 97);
+    const cellCount = 4 + Math.floor(random() * 4);
+    const cells = Array.from({ length: cellCount }, () => ({
+      x: random(),
+      y: random(),
+      radius: 0.12 + random() * 0.25,
+      intensity: 0.6 + random() * 0.4
+    }));
+    const values = Array.from({ length: rows }, () => Array.from({ length: cols }, () => 0));
+    let total = 0;
+    for (let row = 0; row < rows; row += 1) {
+      for (let col = 0; col < cols; col += 1) {
+        const x = col / (cols - 1 || 1);
+        const y = row / (rows - 1 || 1);
+        let value = 0;
+        cells.forEach((cell) => {
+          const dx = x - cell.x;
+          const dy = y - cell.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < cell.radius) {
+            value += (1 - dist / cell.radius) * cell.intensity;
+          }
+        });
+        const normalized = clamp(value, 0, 1);
+        values[row][col] = normalized;
+        total += normalized;
+      }
+    }
+    return { values, total };
+  };
+
+  const generateStormReplay = ({ bbox, start, end, preset, frames }) => {
+    const normalizedPreset = preset.toLowerCase();
+    const rawFrames = Math.max(1, Math.floor(Number(frames)));
+    const thinningStep = Math.ceil(rawFrames / LIMITS.stormFramesMax);
+    const frameCount = Math.ceil(rawFrames / thinningStep);
+    const { cols, rows } = resolveStormGrid(normalizedPreset);
+    const seed = hashString(`${bbox}|${start}|${end}|${normalizedPreset}`);
+    const allTimestamps = buildTimestampSeries(start, end, rawFrames);
+    const framesData = [];
+    const timestamps = [];
+    const frameTotals = [];
+
+    for (let idx = 0; idx < rawFrames; idx += thinningStep) {
+      const frameIndex = idx;
+      const frame = generateStormFrame({ seed, cols, rows, frameIndex });
+      framesData.push(frame.values);
+      frameTotals.push(frame.total);
+      timestamps.push(allTimestamps[frameIndex] || allTimestamps[allTimestamps.length - 1] || "");
+    }
+
+    const cumulativeTotals = [];
+    let runningTotal = 0;
+    frameTotals.forEach((total) => {
+      runningTotal += total;
+      cumulativeTotals.push(runningTotal);
+    });
+
+    return {
+      preset: normalizedPreset,
+      cols,
+      rows,
+      rawFrames,
+      thinningStep,
+      frames: framesData,
+      timestamps,
+      frameTotals,
+      cumulativeTotals
+    };
+  };
+
+  const buildCumulativeFrames = (frames) => {
+    const cumulative = [];
+    let running = null;
+    frames.forEach((frame) => {
+      if (!running) {
+        running = frame.map((row) => row.slice());
+      } else {
+        running = running.map((row, rIdx) =>
+          row.map((value, cIdx) => value + frame[rIdx][cIdx])
+        );
+      }
+      cumulative.push(running.map((row) => row.slice()));
+    });
+    return cumulative;
+  };
+
+  const normalizeGrid = (grid) => {
+    let max = 0;
+    grid.forEach((row) => {
+      row.forEach((value) => {
+        if (value > max) max = value;
+      });
+    });
+    if (max <= 0) return grid;
+    return grid.map((row) => row.map((value) => value / max));
+  };
+
+  const renderGrid = (canvas, grid, label) => {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const width = canvas.width;
+    const height = canvas.height;
+    ctx.clearRect(0, 0, width, height);
+    const rows = grid.length;
+    const cols = grid[0]?.length || 0;
+    const cellWidth = width / (cols || 1);
+    const cellHeight = height / (rows || 1);
+    for (let r = 0; r < rows; r += 1) {
+      for (let c = 0; c < cols; c += 1) {
+        ctx.fillStyle = valueToColor(grid[r][c]);
+        ctx.fillRect(c * cellWidth, r * cellHeight, cellWidth + 0.5, cellHeight + 0.5);
+      }
+    }
+    if (label) {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+      ctx.fillRect(0, 0, width, 20);
+      ctx.fillStyle = "#fff";
+      ctx.font = "12px ui-sans-serif, system-ui, sans-serif";
+      ctx.fillText(label, 8, 14);
+    }
+  };
+
   document.addEventListener("DOMContentLoaded", () => {
     initLang();
 
@@ -131,6 +319,28 @@
     const notesInput = document.getElementById("notes");
     const resultOutput = document.getElementById("resultOutput");
     const errorOutput = document.getElementById("errorOutput");
+    const stormReplay = document.getElementById("stormReplay");
+    const stormStatus = document.getElementById("stormStatus");
+    const stormPrev = document.getElementById("stormPrev");
+    const stormNext = document.getElementById("stormNext");
+    const stormSlider = document.getElementById("stormSlider");
+    const stormTimestamp = document.getElementById("stormTimestamp");
+    const stormCumulativeToggle = document.getElementById("stormCumulativeToggle");
+    const stormCumulativePanel = document.getElementById("stormCumulativePanel");
+    const stormFrameCanvas = document.getElementById("stormFrameCanvas");
+    const stormCumulativeCanvas = document.getElementById("stormCumulativeCanvas");
+    const downloadFrameButtons = [
+      document.getElementById("downloadFramePng"),
+      document.getElementById("downloadFramePngEn")
+    ].filter(Boolean);
+    const downloadCumulativeButtons = [
+      document.getElementById("downloadCumulativePng"),
+      document.getElementById("downloadCumulativePngEn")
+    ].filter(Boolean);
+    const downloadCsvButtons = [
+      document.getElementById("downloadCsv"),
+      document.getElementById("downloadCsvEn")
+    ].filter(Boolean);
 
     const exampleButtons = Array.from(document.querySelectorAll("[data-example-mode]"));
 
@@ -140,6 +350,7 @@
     ].filter(Boolean);
 
     const getDefaultMode = () => "storm";
+    let stormState = null;
 
     const readUrlState = () => {
       const params = new URLSearchParams(window.location.search);
@@ -403,6 +614,7 @@
     };
 
     const validateInputs = ({ mode, bbox, start, end, preset, frames }) => {
+      const warnings = [];
       const missingFields = [];
       if (!bbox) missingFields.push("bbox");
       if (!start) missingFields.push("start");
@@ -436,17 +648,15 @@
           return { error: { code: ERROR_CODES.missing_params, field: "frames" } };
         }
         if (frameValue > LIMITS.stormFramesMax) {
-          return {
-            error: {
-              code: ERROR_CODES.limit_exceeded,
-              field: "frames",
-              detail: { frames: frameValue }
-            }
-          };
+          warnings.push({
+            code: ERROR_CODES.limit_exceeded,
+            field: "frames",
+            detail: { frames: frameValue }
+          });
         }
       }
 
-      return { ok: true };
+      return { ok: true, warnings };
     };
 
     const buildErrorMessage = (error, lang) => {
@@ -582,6 +792,116 @@
       errorOutput.innerHTML = "";
     };
 
+    const setStormStatus = ({ rawFrames, frames, thinningStep, lang }) => {
+      if (!stormStatus) return;
+      if (!rawFrames || !frames) {
+        stormStatus.textContent = "";
+        return;
+      }
+      if (rawFrames > LIMITS.stormFramesMax) {
+        const message = lang === "ja"
+          ? `フレーム数 ${rawFrames} を受け取りました。${frames} フレームに間引いて表示しています（${thinningStep}フレームごと）。必要ならフレーム数を減らしてください。`
+          : `Requested ${rawFrames} frames. Showing ${frames} frames (every ${thinningStep} frame). Reduce frames if needed.`;
+        stormStatus.innerHTML = `<strong>${escapeHTML(message)}</strong>`;
+        return;
+      }
+      stormStatus.textContent = lang === "ja"
+        ? `フレーム数: ${frames}（${rawFrames}フレームから生成）`
+        : `Frames: ${frames} (from ${rawFrames})`;
+    };
+
+    const buildCsvContent = (timestamps, frameTotals, cumulativeTotals) => {
+      const lines = ["timestamp,frame_index,frame_total,cumulative_total"];
+      timestamps.forEach((timestamp, idx) => {
+        const frameTotal = frameTotals[idx] ?? 0;
+        const cumulativeTotal = cumulativeTotals[idx] ?? 0;
+        lines.push(`${timestamp},${idx + 1},${frameTotal.toFixed(4)},${cumulativeTotal.toFixed(4)}`);
+      });
+      return lines.join("\n");
+    };
+
+    const downloadBlob = (content, filename, type) => {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    };
+
+    const downloadCanvas = (canvas, filename) => {
+      const url = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    };
+
+    const updateStormView = () => {
+      if (!stormState || !stormFrameCanvas || !stormCumulativeCanvas) return;
+      const index = stormState.index;
+      const currentFrame = stormState.frames[index];
+      const currentTimestamp = stormState.timestamps[index] || "-";
+      const cumulativeFrame = stormState.cumulativeFrames[index];
+      const label = currentTimestamp;
+      renderGrid(stormFrameCanvas, currentFrame, label);
+      if (stormCumulativePanel && stormCumulativeToggle) {
+        stormCumulativePanel.hidden = !stormCumulativeToggle.checked;
+      }
+      if (stormCumulativeToggle?.checked) {
+        renderGrid(stormCumulativeCanvas, normalizeGrid(cumulativeFrame), label);
+      }
+      if (stormTimestamp) {
+        stormTimestamp.textContent = currentTimestamp;
+      }
+      if (stormSlider) {
+        stormSlider.value = String(index);
+      }
+    };
+
+    const loadStormReplay = ({ bbox, start, end, preset, frames }, lang) => {
+      if (!stormReplay) return;
+      const key = buildStormKey({ bbox, start, end, preset, frames });
+      let data = stormCache.get(key);
+      if (!data) {
+        data = generateStormReplay({ bbox, start, end, preset, frames });
+        stormCache.set(key, data);
+      }
+      const cumulativeFrames = buildCumulativeFrames(data.frames);
+      stormState = {
+        ...data,
+        cumulativeFrames,
+        index: 0
+      };
+      stormReplay.hidden = false;
+      if (stormSlider) {
+        stormSlider.max = String(Math.max(0, data.frames.length - 1));
+        stormSlider.value = "0";
+      }
+      setStormStatus({
+        rawFrames: data.rawFrames,
+        frames: data.frames.length,
+        thinningStep: data.thinningStep,
+        lang
+      });
+      updateStormView();
+    };
+
+    const resetStormReplay = () => {
+      if (stormReplay) {
+        stormReplay.hidden = true;
+      }
+      if (stormStatus) {
+        stormStatus.textContent = "";
+      }
+      stormState = null;
+    };
+
     const render = () => {
       const lang = document.documentElement.lang || "ja";
       resultOutput.textContent = formatPreview({
@@ -610,6 +930,29 @@
         clearError();
         updateUrlState();
         renderAndScroll();
+        if (modeSelect.value === "storm") {
+          const validation = validateInputs({
+            mode: modeSelect.value,
+            bbox: bboxInput.value.trim(),
+            start: startInput.value,
+            end: endInput.value,
+            preset: presetInput.value.trim(),
+            frames: framesInput.value.trim()
+          });
+          if (validation.error) {
+            renderError(validation.error, lang);
+          } else {
+            loadStormReplay({
+              bbox: bboxInput.value.trim(),
+              start: startInput.value,
+              end: endInput.value,
+              preset: presetInput.value.trim(),
+              frames: framesInput.value.trim()
+            }, lang);
+          }
+        } else {
+          resetStormReplay();
+        }
         trackEvent("tool_example_apply", {
           tool_name: TOOL_NAME,
           tool_mode: mode,
@@ -644,7 +987,72 @@
           return;
         }
         renderAndScroll();
+        if (modeSelect.value === "storm") {
+          loadStormReplay({
+            bbox: bboxInput.value.trim(),
+            start: startInput.value,
+            end: endInput.value,
+            preset: presetInput.value.trim(),
+            frames: framesInput.value.trim()
+          }, lang);
+        } else {
+          resetStormReplay();
+        }
         trackEvent("tool_result", getEventContext());
+      });
+    });
+
+    if (stormPrev) {
+      stormPrev.addEventListener("click", () => {
+        if (!stormState) return;
+        stormState.index = Math.max(0, stormState.index - 1);
+        updateStormView();
+      });
+    }
+    if (stormNext) {
+      stormNext.addEventListener("click", () => {
+        if (!stormState) return;
+        stormState.index = Math.min(stormState.frames.length - 1, stormState.index + 1);
+        updateStormView();
+      });
+    }
+    if (stormSlider) {
+      stormSlider.addEventListener("input", () => {
+        if (!stormState) return;
+        stormState.index = Number(stormSlider.value);
+        updateStormView();
+      });
+    }
+    if (stormCumulativeToggle) {
+      stormCumulativeToggle.addEventListener("change", () => {
+        updateStormView();
+      });
+    }
+
+    downloadFrameButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!stormState || !stormFrameCanvas) return;
+        const timestamp = stormState.timestamps[stormState.index] || "frame";
+        const filename = `storm-frame-${timestamp.replace(/[:.]/g, "-")}.png`;
+        downloadCanvas(stormFrameCanvas, filename);
+      });
+    });
+
+    downloadCumulativeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!stormState || !stormCumulativeCanvas) return;
+        const timestamp = stormState.timestamps[stormState.index] || "cumulative";
+        const filename = `storm-cumulative-${timestamp.replace(/[:.]/g, "-")}.png`;
+        downloadCanvas(stormCumulativeCanvas, filename);
+      });
+    });
+
+    downloadCsvButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!stormState) return;
+        const csv = buildCsvContent(stormState.timestamps, stormState.frameTotals, stormState.cumulativeTotals);
+        const filename = "storm-timeseries.csv";
+        downloadBlob(csv, filename, "text/csv;charset=utf-8;");
       });
     });
 
@@ -675,11 +1083,13 @@
         clearError();
         updateUrlState();
         render();
+        resetStormReplay();
       });
       input.addEventListener("change", () => {
         clearError();
         updateUrlState();
         render();
+        resetStormReplay();
         if (input === modeSelect && previousMode !== modeSelect.value) {
           trackEvent("tool_mode_change", {
             tool_name: TOOL_NAME,

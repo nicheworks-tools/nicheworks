@@ -171,6 +171,80 @@ body{
   word-break:break-word;
 }
 
+.storm-replay{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.storm-status{
+  font-size:12px;
+  color:var(--muted);
+}
+.storm-status strong{
+  color:var(--text);
+}
+.storm-toolbar{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.storm-controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.storm-slider{
+  flex:1;
+}
+.storm-meta{
+  font-size:12px;
+  color:var(--muted);
+}
+.storm-label{
+  margin-right:4px;
+}
+.storm-toggle{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  color:var(--muted);
+}
+.storm-canvases{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:12px;
+}
+.storm-panel{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:8px;
+  background:var(--bg-soft);
+}
+.storm-panel-title{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.storm-panel canvas{
+  width:100%;
+  height:auto;
+  display:block;
+  background:#fff;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+.storm-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
 .bullet{
   margin:0;
   padding-left:18px;
