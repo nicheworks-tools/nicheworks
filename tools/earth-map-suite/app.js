@@ -32,45 +32,81 @@
     applyLang(lang);
   };
 
-  const formatPreview = ({ mode, bbox, start, end, preset, area, layers, notes }, lang) => {
+  const LIMITS = {
+    bboxMaxSpan: 5,
+    dateSpanDays: 31,
+    presets: ["low", "mid", "detail"],
+    stormFramesMax: 48
+  };
+
+  const ERROR_CODES = {
+    missing_params: "missing_params",
+    limit_exceeded: "limit_exceeded",
+    no_data: "no_data",
+    upstream_fail: "upstream_fail",
+    timeout: "timeout",
+    unknown: "unknown"
+  };
+
+  const escapeHTML = (value) => String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+  const formatPreview = ({ mode, bbox, start, end, preset, frames, area, layers, notes }, lang) => {
     const safeMode = mode || "storm";
     const safeBBox = bbox || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeStart = start || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeEnd = end || (lang === "ja" ? "（未入力）" : "(empty)");
     const safePreset = preset || (lang === "ja" ? "（未入力）" : "(empty)");
+    const safeFrames = frames || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeArea = area || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeLayers = layers || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeNotes = notes || (lang === "ja" ? "（未入力）" : "(empty)");
 
     if (lang === "ja") {
-      return [
+      const lines = [
         "[Earth Map Suite プレビュー]",
         `モード: ${safeMode}`,
         `BBox: ${safeBBox}`,
         `開始日: ${safeStart}`,
         `終了日: ${safeEnd}`,
-        `プリセット: ${safePreset}`,
+        `プリセット: ${safePreset}`
+      ];
+      if (safeMode === "storm") {
+        lines.push(`フレーム数: ${safeFrames}`);
+      }
+      lines.push(
         `対象エリア: ${safeArea}`,
         `レイヤー: ${safeLayers}`,
         `補足メモ: ${safeNotes}`,
         "----",
         "次アクション: 共有前に地図ツールで再確認してください。"
-      ].join("\n");
+      );
+      return lines.join("\n");
     }
 
-    return [
+    const lines = [
       "[Earth Map Suite Preview]",
       `Mode: ${safeMode}`,
       `BBox: ${safeBBox}`,
       `Start: ${safeStart}`,
       `End: ${safeEnd}`,
-      `Preset: ${safePreset}`,
+      `Preset: ${safePreset}`
+    ];
+    if (safeMode === "storm") {
+      lines.push(`Frames: ${safeFrames}`);
+    }
+    lines.push(
       `Target area: ${safeArea}`,
       `Layers: ${safeLayers}`,
       `Notes: ${safeNotes}`,
       "----",
       "Next step: validate the view in your map tool before sharing."
-    ].join("\n");
+    );
+    return lines.join("\n");
   };
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -81,10 +117,12 @@
     const startInput = document.getElementById("startInput");
     const endInput = document.getElementById("endInput");
     const presetInput = document.getElementById("presetInput");
+    const framesInput = document.getElementById("framesInput");
     const areaInput = document.getElementById("focusArea");
     const layersInput = document.getElementById("layers");
     const notesInput = document.getElementById("notes");
     const resultOutput = document.getElementById("resultOutput");
+    const errorOutput = document.getElementById("errorOutput");
 
     const exampleButtons = Array.from(document.querySelectorAll("[data-example-mode]"));
 
@@ -102,12 +140,14 @@
       const start = params.get("start");
       const end = params.get("end");
       const preset = params.get("preset");
+      const frames = params.get("frames");
       return {
         mode: mode && ["storm", "compare", "card"].includes(mode) ? mode : null,
         bbox: bbox || "",
         start: start || "",
         end: end || "",
-        preset: preset || ""
+        preset: preset || "",
+        frames: frames || ""
       };
     };
 
@@ -120,6 +160,7 @@
       const start = startInput.value;
       const end = endInput.value;
       const preset = presetInput.value.trim();
+      const frames = framesInput.value.trim();
 
       if (bbox) {
         params.set("bbox", bbox);
@@ -145,6 +186,12 @@
         params.delete("preset");
       }
 
+      if (frames) {
+        params.set("frames", frames);
+      } else {
+        params.delete("frames");
+      }
+
       const newUrl = `${window.location.pathname}?${params.toString()}`;
       window.history.replaceState({}, "", newUrl);
     };
@@ -157,6 +204,7 @@
           start: "2024-04-01",
           end: "2024-04-30",
           preset: "low",
+          frames: "24",
           area: "関東地方・沿岸部",
           layers: "地形 / 主要道路 / 避難所",
           notes: "夜間モードでの視認性を確認"
@@ -167,6 +215,7 @@
           start: "2024-04-01",
           end: "2024-04-30",
           preset: "low",
+          frames: "24",
           area: "Coastal area around Kanto",
           layers: "Terrain / main roads / shelters",
           notes: "Check readability in night mode"
@@ -179,6 +228,7 @@
           start: "2024-05-10",
           end: "2024-05-20",
           preset: "mid",
+          frames: "",
           area: "大阪湾周辺",
           layers: "河川 / 交通 / 標高",
           notes: "降雨量の差分で比較予定"
@@ -189,6 +239,7 @@
           start: "2024-05-10",
           end: "2024-05-20",
           preset: "mid",
+          frames: "",
           area: "Osaka Bay area",
           layers: "Rivers / transport / elevation",
           notes: "Compare rainfall differences"
@@ -201,6 +252,7 @@
           start: "2024-06-01",
           end: "2024-06-07",
           preset: "detail",
+          frames: "",
           area: "仙台湾沿岸",
           layers: "避難所 / 防潮堤 / 高低差",
           notes: "要点をカードで共有する想定"
@@ -211,6 +263,7 @@
           start: "2024-06-01",
           end: "2024-06-07",
           preset: "detail",
+          frames: "",
           area: "Sendai Bay coast",
           layers: "Shelters / seawalls / elevation",
           notes: "Share highlights in card format"
@@ -226,9 +279,243 @@
       startInput.value = copy.start;
       endInput.value = copy.end;
       presetInput.value = copy.preset;
+      framesInput.value = copy.frames || "";
       areaInput.value = copy.area;
       layersInput.value = copy.layers;
       notesInput.value = copy.notes;
+    };
+
+    const parseBBox = (value) => {
+      if (!value) {
+        return { error: { code: ERROR_CODES.missing_params, field: "bbox" } };
+      }
+      const parts = value.split(",").map((part) => part.trim()).filter(Boolean);
+      if (parts.length !== 4) {
+        return { error: { code: ERROR_CODES.missing_params, field: "bbox" } };
+      }
+      const nums = parts.map((part) => Number(part));
+      if (nums.some((num) => Number.isNaN(num))) {
+        return { error: { code: ERROR_CODES.missing_params, field: "bbox" } };
+      }
+      const [minLon, minLat, maxLon, maxLat] = nums;
+      if (minLon < -180 || maxLon > 180 || minLat < -90 || maxLat > 90 || minLon >= maxLon || minLat >= maxLat) {
+        return { error: { code: ERROR_CODES.missing_params, field: "bbox" } };
+      }
+      const spanLon = Math.abs(maxLon - minLon);
+      const spanLat = Math.abs(maxLat - minLat);
+      if (spanLon > LIMITS.bboxMaxSpan || spanLat > LIMITS.bboxMaxSpan) {
+        return {
+          error: {
+            code: ERROR_CODES.limit_exceeded,
+            field: "bbox",
+            detail: { spanLon, spanLat }
+          }
+        };
+      }
+      return { value: { minLon, minLat, maxLon, maxLat, spanLon, spanLat } };
+    };
+
+    const parseDateRange = (start, end) => {
+      if (!start || !end) {
+        return { error: { code: ERROR_CODES.missing_params, field: "date" } };
+      }
+      const startDate = new Date(`${start}T00:00:00`);
+      const endDate = new Date(`${end}T00:00:00`);
+      if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime()) || endDate < startDate) {
+        return { error: { code: ERROR_CODES.missing_params, field: "date" } };
+      }
+      const diffMs = endDate.getTime() - startDate.getTime();
+      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
+      if (days > LIMITS.dateSpanDays) {
+        return {
+          error: {
+            code: ERROR_CODES.limit_exceeded,
+            field: "date",
+            detail: { days }
+          }
+        };
+      }
+      return { value: { days } };
+    };
+
+    const validateInputs = ({ mode, bbox, start, end, preset, frames }) => {
+      const missingFields = [];
+      if (!bbox) missingFields.push("bbox");
+      if (!start) missingFields.push("start");
+      if (!end) missingFields.push("end");
+      if (!preset) missingFields.push("preset");
+      if (mode === "storm" && !frames) missingFields.push("frames");
+      if (missingFields.length) {
+        return { error: { code: ERROR_CODES.missing_params, field: "missing", detail: { missingFields } } };
+      }
+
+      const bboxResult = parseBBox(bbox);
+      if (bboxResult.error) return { error: bboxResult.error };
+
+      const dateResult = parseDateRange(start, end);
+      if (dateResult.error) return { error: dateResult.error };
+
+      const normalizedPreset = preset.toLowerCase();
+      if (!LIMITS.presets.includes(normalizedPreset)) {
+        return {
+          error: {
+            code: ERROR_CODES.limit_exceeded,
+            field: "preset",
+            detail: { preset: normalizedPreset }
+          }
+        };
+      }
+
+      if (mode === "storm") {
+        const frameValue = Number(frames);
+        if (!Number.isFinite(frameValue) || frameValue < 1) {
+          return { error: { code: ERROR_CODES.missing_params, field: "frames" } };
+        }
+        if (frameValue > LIMITS.stormFramesMax) {
+          return {
+            error: {
+              code: ERROR_CODES.limit_exceeded,
+              field: "frames",
+              detail: { frames: frameValue }
+            }
+          };
+        }
+      }
+
+      return { ok: true };
+    };
+
+    const buildErrorMessage = (error, lang) => {
+      const usageLink = lang === "ja" ? "./usage.html" : "./usage-en.html";
+      const usageLabel = lang === "ja" ? "使い方ガイドを見る" : "See usage guide";
+
+      if (error.code === ERROR_CODES.missing_params) {
+        if (error.field === "bbox") {
+          return {
+            title: lang === "ja" ? "BBoxが未入力または形式が不正です" : "BBox is missing or invalid",
+            body: lang === "ja"
+              ? "BBoxは「経度,緯度,経度,緯度」の形式で入力してください。"
+              : "Enter bbox as “lon,lat,lon,lat”.",
+            fix: lang === "ja" ? "対処: BBoxを正しい形式で入力してください。" : "Fix: enter a valid bbox.",
+            usageLink,
+            usageLabel
+          };
+        }
+        if (error.field === "date") {
+          return {
+            title: lang === "ja" ? "開始日または終了日が不足しています" : "Start or end date is missing",
+            body: lang === "ja"
+              ? "開始日と終了日を両方入力してください。"
+              : "Provide both start and end dates.",
+            fix: lang === "ja" ? "対処: 日付を設定してください。" : "Fix: set both dates.",
+            usageLink,
+            usageLabel
+          };
+        }
+        if (error.field === "frames") {
+          return {
+            title: lang === "ja" ? "stormモードのフレーム数が不足しています" : "Storm frames are missing",
+            body: lang === "ja"
+              ? "stormモードではフレーム数が必須です。"
+              : "Frames are required in storm mode.",
+            fix: lang === "ja" ? "対処: フレーム数を入力してください。" : "Fix: enter the frames count.",
+            usageLink,
+            usageLabel
+          };
+        }
+
+        const missingFields = error.detail?.missingFields || [];
+        const missingList = missingFields.length ? missingFields.join(", ") : "bbox / start / end / preset / frames";
+        return {
+          title: lang === "ja" ? "入力が不足しています" : "Missing required inputs",
+          body: lang === "ja"
+            ? `不足: ${missingList}。必須項目を入力してから実行してください。`
+            : `Missing: ${missingList}. Please fill in the required inputs before running.`,
+          fix: lang === "ja" ? "対処: 必須項目をすべて入力してください。" : "Fix: fill in all required fields.",
+          usageLink,
+          usageLabel
+        };
+      }
+
+      if (error.code === ERROR_CODES.limit_exceeded) {
+        if (error.field === "bbox") {
+          const spanLon = error.detail?.spanLon?.toFixed(2);
+          const spanLat = error.detail?.spanLat?.toFixed(2);
+          return {
+            title: lang === "ja" ? "BBoxが無料枠の上限を超えています" : "BBox exceeds the free limit",
+            body: lang === "ja"
+              ? `現在のBBoxは ${spanLon}° × ${spanLat}° です。上限は ${LIMITS.bboxMaxSpan}° × ${LIMITS.bboxMaxSpan}° です。`
+              : `Your BBox spans ${spanLon}° × ${spanLat}°. The limit is ${LIMITS.bboxMaxSpan}° × ${LIMITS.bboxMaxSpan}°.`,
+            fix: lang === "ja" ? "対処: BBoxを縮小するか、複数回に分割してください。" : "Fix: shrink the bbox or split into multiple runs.",
+            usageLink,
+            usageLabel
+          };
+        }
+        if (error.field === "date") {
+          const days = error.detail?.days;
+          return {
+            title: lang === "ja" ? "期間が無料枠の上限を超えています" : "Date span exceeds the free limit",
+            body: lang === "ja"
+              ? `現在の期間は ${days} 日です。上限は ${LIMITS.dateSpanDays} 日です。`
+              : `Your date span is ${days} days. The limit is ${LIMITS.dateSpanDays} days.`,
+            fix: lang === "ja" ? "対処: 期間を短くしてください。" : "Fix: shorten the period.",
+            usageLink,
+            usageLabel
+          };
+        }
+        if (error.field === "preset") {
+          const preset = error.detail?.preset || "";
+          return {
+            title: lang === "ja" ? "プリセットが無料枠の対象外です" : "Preset is not available on free ops",
+            body: lang === "ja"
+              ? `指定されたプリセット「${preset}」は利用できません。利用可能: ${LIMITS.presets.join(", ")}。`
+              : `Preset "${preset}" is not available. Allowed: ${LIMITS.presets.join(", ")}.`,
+            fix: lang === "ja" ? "対処: 範囲が広い場合は low を選択してください。" : "Fix: choose low for larger areas.",
+            usageLink,
+            usageLabel
+          };
+        }
+        if (error.field === "frames") {
+          const frames = error.detail?.frames;
+          return {
+            title: lang === "ja" ? "フレーム数が無料枠の上限を超えています" : "Storm frames exceed the free limit",
+            body: lang === "ja"
+              ? `現在のフレーム数は ${frames} です。上限は ${LIMITS.stormFramesMax} です。`
+              : `Frames set to ${frames}. The limit is ${LIMITS.stormFramesMax}.`,
+            fix: lang === "ja" ? "対処: フレーム数を減らすか、プリセットを low にしてください。" : "Fix: reduce frames or switch to the low preset.",
+            usageLink,
+            usageLabel
+          };
+        }
+      }
+
+      return {
+        title: lang === "ja" ? "不明なエラーが発生しました" : "Unknown error",
+        body: lang === "ja"
+          ? "入力内容を確認して再度お試しください。"
+          : "Please review your inputs and try again.",
+        fix: lang === "ja" ? "対処: 使い方ガイドを参照してください。" : "Fix: review the usage guide.",
+        usageLink,
+        usageLabel
+      };
+    };
+
+    const renderError = (error, lang) => {
+      const errorMessage = buildErrorMessage(error, lang);
+      errorOutput.innerHTML = [
+        `[Error] (error_code: ${escapeHTML(error.code || ERROR_CODES.unknown)})`,
+        escapeHTML(errorMessage.title),
+        escapeHTML(errorMessage.body),
+        escapeHTML(errorMessage.fix),
+        `<a class="nw-link" href="${escapeHTML(errorMessage.usageLink)}">${escapeHTML(errorMessage.usageLabel)}</a>`
+      ].join("<br />");
+      errorOutput.hidden = false;
+      resultOutput.textContent = "";
+    };
+
+    const clearError = () => {
+      errorOutput.hidden = true;
+      errorOutput.innerHTML = "";
     };
 
     const render = () => {
@@ -239,6 +526,7 @@
         start: startInput.value,
         end: endInput.value,
         preset: presetInput.value.trim(),
+        frames: framesInput.value.trim(),
         area: areaInput.value.trim(),
         layers: layersInput.value.trim(),
         notes: notesInput.value.trim()
@@ -255,6 +543,7 @@
         const lang = document.documentElement.lang || "ja";
         const mode = btn.dataset.exampleMode || modeSelect.value || getDefaultMode();
         setExample(mode, lang);
+        clearError();
         updateUrlState();
         renderAndScroll();
       });
@@ -262,7 +551,22 @@
 
     runButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
+        clearError();
         updateUrlState();
+        const lang = document.documentElement.lang || "ja";
+        const validation = validateInputs({
+          mode: modeSelect.value,
+          bbox: bboxInput.value.trim(),
+          start: startInput.value,
+          end: endInput.value,
+          preset: presetInput.value.trim(),
+          frames: framesInput.value.trim()
+        });
+        if (validation.error) {
+          renderError(validation.error, lang);
+          errorOutput.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
         renderAndScroll();
       });
     });
@@ -273,6 +577,7 @@
     startInput.value = urlState.start;
     endInput.value = urlState.end;
     presetInput.value = urlState.preset;
+    framesInput.value = urlState.frames;
 
     const inputsToWatch = [
       modeSelect,
@@ -280,6 +585,7 @@
       startInput,
       endInput,
       presetInput,
+      framesInput,
       areaInput,
       layersInput,
       notesInput
@@ -287,10 +593,12 @@
 
     inputsToWatch.forEach((input) => {
       input.addEventListener("input", () => {
+        clearError();
         updateUrlState();
         render();
       });
       input.addEventListener("change", () => {
+        clearError();
         updateUrlState();
         render();
       });

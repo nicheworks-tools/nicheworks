@@ -54,6 +54,10 @@
       </div>
       <div class="card-bd">
         <ul class="bullet">
+          <li>BBox：対象範囲を「経度,緯度,経度,緯度」で指定。</li>
+          <li>開始日 / 終了日：確認対象の期間。</li>
+          <li>プリセット：low / mid / detail のいずれか。</li>
+          <li>フレーム数（storm）：stormモードのみ必須。</li>
           <li>対象エリア：地図の対象範囲や地点。</li>
           <li>確認したいレイヤー：交通・地形・避難所などの情報。</li>
           <li>補足メモ：レビュー時に伝えたい注意点。</li>
@@ -76,6 +80,21 @@
       </div>
       <div class="card-bd">
         <p class="hint">本ページは地図の内容を保証するものではありません。必ず公式情報をご確認ください。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">5. 無料枠の上限（free-ops）</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>BBoxの幅・高さは最大 5° × 5° まで。</li>
+          <li>期間は最大 31 日まで。</li>
+          <li>プリセットは low / mid / detail のみ。広い範囲は low 推奨。</li>
+          <li>stormモードのフレーム数は最大 48 まで。</li>
+        </ul>
+        <p class="hint">上限を超える場合は error_code: limit_exceeded が表示されます。</p>
       </div>
     </section>
 
