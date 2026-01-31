@@ -113,11 +113,25 @@
           <label class="label" for="startInput" data-i18n="ja">開始日</label>
           <label class="label" for="startInput" data-i18n="en" style="display:none;">Start date</label>
           <input class="input" id="startInput" type="date" />
+          <p class="hint compare-only" data-i18n="ja" hidden>compareモード時は期間Aの開始日</p>
+          <p class="hint compare-only" data-i18n="en" hidden>Compare mode: period A start date</p>
         </div>
         <div class="field">
           <label class="label" for="endInput" data-i18n="ja">終了日</label>
           <label class="label" for="endInput" data-i18n="en" style="display:none;">End date</label>
           <input class="input" id="endInput" type="date" />
+          <p class="hint compare-only" data-i18n="ja" hidden>compareモード時は期間Aの終了日</p>
+          <p class="hint compare-only" data-i18n="en" hidden>Compare mode: period A end date</p>
+        </div>
+        <div class="field compare-only" hidden>
+          <label class="label" for="startInputB" data-i18n="ja">期間B 開始日</label>
+          <label class="label" for="startInputB" data-i18n="en" style="display:none;">Period B start date</label>
+          <input class="input" id="startInputB" type="date" />
+        </div>
+        <div class="field compare-only" hidden>
+          <label class="label" for="endInputB" data-i18n="ja">期間B 終了日</label>
+          <label class="label" for="endInputB" data-i18n="en" style="display:none;">Period B end date</label>
+          <input class="input" id="endInputB" type="date" />
         </div>
         <div class="field">
           <label class="label" for="presetInput" data-i18n="ja">プリセット</label>
@@ -169,6 +183,42 @@
       <div class="card-bd">
         <div class="out" id="errorOutput" role="alert" aria-live="assertive" hidden></div>
         <div class="out" id="resultOutput" aria-live="polite"></div>
+        <div class="compare-output" id="compareOutput" hidden>
+          <div class="compare-summary">
+            <h3 class="compare-title" data-i18n="ja">compare結果サマリー（降水量・参考値）</h3>
+            <h3 class="compare-title" data-i18n="en" style="display:none;">Compare summary (precipitation, reference only)</h3>
+            <p class="compare-note" data-i18n="ja">本結果はダミーのプレースホルダです。実測値ではありません。</p>
+            <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic placeholders and not observed data.</p>
+            <dl class="compare-metrics" id="compareMetrics"></dl>
+          </div>
+          <div class="compare-cards">
+            <div class="compare-card">
+              <div class="compare-card-title" data-i18n="ja">期間A（mm相当）</div>
+              <div class="compare-card-title" data-i18n="en" style="display:none;">Period A (mm equivalent)</div>
+              <canvas id="compareCanvasA" width="320" height="200" aria-label="Compare period A output"></canvas>
+            </div>
+            <div class="compare-card">
+              <div class="compare-card-title" data-i18n="ja">期間B（mm相当）</div>
+              <div class="compare-card-title" data-i18n="en" style="display:none;">Period B (mm equivalent)</div>
+              <canvas id="compareCanvasB" width="320" height="200" aria-label="Compare period B output"></canvas>
+            </div>
+            <div class="compare-card">
+              <div class="compare-card-title" data-i18n="ja">差分 (A - B, mm相当)</div>
+              <div class="compare-card-title" data-i18n="en" style="display:none;">Diff (A - B, mm equivalent)</div>
+              <canvas id="compareCanvasDiff" width="320" height="200" aria-label="Compare diff output"></canvas>
+            </div>
+          </div>
+          <div class="compare-actions">
+            <button class="btn" type="button" id="downloadCompareA" data-i18n="ja">期間A PNG</button>
+            <button class="btn" type="button" id="downloadCompareAEn" data-i18n="en" style="display:none;">Download A PNG</button>
+            <button class="btn" type="button" id="downloadCompareB" data-i18n="ja">期間B PNG</button>
+            <button class="btn" type="button" id="downloadCompareBEn" data-i18n="en" style="display:none;">Download B PNG</button>
+            <button class="btn" type="button" id="downloadCompareDiff" data-i18n="ja">差分 PNG</button>
+            <button class="btn" type="button" id="downloadCompareDiffEn" data-i18n="en" style="display:none;">Download diff PNG</button>
+            <button class="btn" type="button" id="downloadCompareCsv" data-i18n="ja">compare CSV</button>
+            <button class="btn" type="button" id="downloadCompareCsvEn" data-i18n="en" style="display:none;">Download compare CSV</button>
+          </div>
+        </div>
         <div class="storm-replay" id="stormReplay" hidden>
           <div class="storm-status" id="stormStatus" role="status" aria-live="polite"></div>
           <div class="storm-toolbar">
