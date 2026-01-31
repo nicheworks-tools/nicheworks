@@ -93,6 +93,37 @@
       </div>
       <div class="card-bd">
         <div class="field">
+          <label class="label" for="modeSelect" data-i18n="ja">モード</label>
+          <label class="label" for="modeSelect" data-i18n="en" style="display:none;">Mode</label>
+          <select class="input" id="modeSelect">
+            <option value="storm">storm</option>
+            <option value="compare">compare</option>
+            <option value="card">card</option>
+          </select>
+          <p class="hint" id="modeHint" data-i18n="ja">storm: 単一条件の確認 / compare: 条件比較 / card: カード表示</p>
+          <p class="hint" id="modeHintEn" data-i18n="en" style="display:none;">storm: single condition / compare: compare conditions / card: card view</p>
+        </div>
+        <div class="field">
+          <label class="label" for="bboxInput" data-i18n="ja">BBox（緯度経度）</label>
+          <label class="label" for="bboxInput" data-i18n="en" style="display:none;">BBox (lat/long)</label>
+          <input class="input" id="bboxInput" type="text" placeholder="例：139.60,35.50,139.95,35.80" />
+        </div>
+        <div class="field">
+          <label class="label" for="startInput" data-i18n="ja">開始日</label>
+          <label class="label" for="startInput" data-i18n="en" style="display:none;">Start date</label>
+          <input class="input" id="startInput" type="date" />
+        </div>
+        <div class="field">
+          <label class="label" for="endInput" data-i18n="ja">終了日</label>
+          <label class="label" for="endInput" data-i18n="en" style="display:none;">End date</label>
+          <input class="input" id="endInput" type="date" />
+        </div>
+        <div class="field">
+          <label class="label" for="presetInput" data-i18n="ja">プリセット</label>
+          <label class="label" for="presetInput" data-i18n="en" style="display:none;">Preset</label>
+          <input class="input" id="presetInput" type="text" placeholder="例：low" />
+        </div>
+        <div class="field">
           <label class="label" for="focusArea" data-i18n="ja">対象エリア</label>
           <label class="label" for="focusArea" data-i18n="en" style="display:none;">Target area</label>
           <input class="input" id="focusArea" type="text" placeholder="例：東京23区・沿岸部" />
