@@ -103,9 +103,11 @@
     return lerpColor([59, 130, 246], [239, 68, 68], (v - 0.5) / 0.5);
   };
 
-  const formatPreview = ({ mode, bbox, start, end, startB, endB, preset, frames, area, layers, notes }, lang) => {
+  const formatPreview = ({ mode, bbox, lat, lon, start, end, startB, endB, preset, frames, area, layers, notes }, lang) => {
     const safeMode = mode || "storm";
     const safeBBox = bbox || (lang === "ja" ? "（未入力）" : "(empty)");
+    const safeLat = lat || (lang === "ja" ? "（未入力）" : "(empty)");
+    const safeLon = lon || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeStart = start || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeEnd = end || (lang === "ja" ? "（未入力）" : "(empty)");
     const safeStartB = startB || (lang === "ja" ? "（未入力）" : "(empty)");
@@ -121,6 +123,8 @@
         "[Earth Map Suite プレビュー]",
         `モード: ${safeMode}`,
         `BBox: ${safeBBox}`,
+        `緯度: ${safeLat}`,
+        `経度: ${safeLon}`,
         `開始日: ${safeStart}`,
         `終了日: ${safeEnd}`,
         `プリセット: ${safePreset}`
@@ -148,6 +152,8 @@
       "[Earth Map Suite Preview]",
       `Mode: ${safeMode}`,
       `BBox: ${safeBBox}`,
+      `Lat: ${safeLat}`,
+      `Lon: ${safeLon}`,
       `Start: ${safeStart}`,
       `End: ${safeEnd}`,
       `Preset: ${safePreset}`
@@ -376,6 +382,144 @@
     };
   };
 
+  const buildDailySeries = (start, end) => {
+    const dates = [];
+    const startDate = new Date(`${start}T00:00:00`);
+    const endDate = new Date(`${end}T00:00:00`);
+    if (!Number.isFinite(startDate.getTime()) || !Number.isFinite(endDate.getTime())) {
+      return dates;
+    }
+    const current = new Date(startDate);
+    while (current <= endDate) {
+      dates.push(current.toISOString().slice(0, 10));
+      current.setDate(current.getDate() + 1);
+    }
+    return dates;
+  };
+
+  const buildPointTimeseries = ({ lat, lon, start, end, preset }) => {
+    const normalizedPreset = preset.toLowerCase();
+    const dates = buildDailySeries(start, end);
+    const seed = hashString(`${lat}|${lon}|${start}|${end}|${normalizedPreset}`);
+    const random = mulberry32(seed);
+    const baseByPreset = {
+      low: 4,
+      mid: 8,
+      detail: 12
+    };
+    const amplitudeByPreset = {
+      low: 12,
+      mid: 20,
+      detail: 28
+    };
+    const base = baseByPreset[normalizedPreset] ?? 6;
+    const amplitude = amplitudeByPreset[normalizedPreset] ?? 16;
+    const series = dates.map((date, idx) => {
+      const wave = (Math.sin(idx / 3) + 1) * 0.5;
+      const randomBoost = random() * 0.8 + 0.2;
+      const value = (base + amplitude * wave) * randomBoost;
+      return { date, value: Math.max(0, value) };
+    });
+    const total = series.reduce((sum, item) => sum + item.value, 0);
+    const max = series.reduce((m, item) => Math.max(m, item.value), 0);
+    const avg = series.length ? total / series.length : 0;
+    return { series, total, max, avg, preset: normalizedPreset };
+  };
+
+  const buildCardCsv = ({ lat, lon, start, end, preset, series }) => {
+    const lines = [
+      "lat,lon,start,end,preset",
+      `${lat},${lon},${start},${end},${preset}`,
+      "date,precip_mm"
+    ];
+    series.forEach((item) => {
+      lines.push(`${item.date},${item.value.toFixed(2)}`);
+    });
+    return lines.join("\n");
+  };
+
+  const renderMiniChart = (canvas, series) => {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const width = canvas.width;
+    const height = canvas.height;
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "#f8fafc";
+    ctx.fillRect(0, 0, width, height);
+    const padding = 24;
+    const chartWidth = width - padding * 2;
+    const chartHeight = height - padding * 2;
+    const maxValue = Math.max(...series.map((item) => item.value), 1);
+    ctx.strokeStyle = "#e5e7eb";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, padding + chartHeight);
+    ctx.lineTo(padding + chartWidth, padding + chartHeight);
+    ctx.stroke();
+    if (!series.length) return;
+    ctx.strokeStyle = "#2563eb";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    series.forEach((item, idx) => {
+      const x = padding + (idx / (series.length - 1 || 1)) * chartWidth;
+      const y = padding + chartHeight - (item.value / maxValue) * chartHeight;
+      if (idx === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    });
+    ctx.stroke();
+    ctx.fillStyle = "rgba(37, 99, 235, 0.1)";
+    ctx.lineTo(padding + chartWidth, padding + chartHeight);
+    ctx.lineTo(padding, padding + chartHeight);
+    ctx.closePath();
+    ctx.fill();
+  };
+
+  const renderPointMap = (canvas, lat, lon, label) => {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const width = canvas.width;
+    const height = canvas.height;
+    ctx.clearRect(0, 0, width, height);
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, "#e0f2fe");
+    gradient.addColorStop(1, "#fef3c7");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.7)";
+    ctx.lineWidth = 1;
+    for (let i = 1; i < 4; i += 1) {
+      const y = (height / 4) * i;
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+    for (let i = 1; i < 4; i += 1) {
+      const x = (width / 4) * i;
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    const x = ((lon + 180) / 360) * width;
+    const y = ((90 - lat) / 180) * height;
+    ctx.fillStyle = "#ef4444";
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fill();
+    if (label) {
+      ctx.fillStyle = "rgba(15, 23, 42, 0.75)";
+      ctx.fillRect(0, 0, width, 20);
+      ctx.fillStyle = "#fff";
+      ctx.font = "12px ui-sans-serif, system-ui, sans-serif";
+      ctx.fillText(label, 8, 14);
+    }
+  };
+
   const renderGrid = (canvas, grid, label, colorizer = valueToColor) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -406,6 +550,8 @@
 
     const modeSelect = document.getElementById("modeSelect");
     const bboxInput = document.getElementById("bboxInput");
+    const latInput = document.getElementById("latInput");
+    const lonInput = document.getElementById("lonInput");
     const startInput = document.getElementById("startInput");
     const endInput = document.getElementById("endInput");
     const startInputB = document.getElementById("startInputB");
@@ -422,6 +568,12 @@
     const compareCanvasA = document.getElementById("compareCanvasA");
     const compareCanvasB = document.getElementById("compareCanvasB");
     const compareCanvasDiff = document.getElementById("compareCanvasDiff");
+    const cardOutput = document.getElementById("cardOutput");
+    const cardMapPicker = document.getElementById("cardMapPicker");
+    const cardMapPreview = document.getElementById("cardMapPreview");
+    const cardMapMeta = document.getElementById("cardMapMeta");
+    const cardChart = document.getElementById("cardChart");
+    const cardSummary = document.getElementById("cardSummary");
     const stormReplay = document.getElementById("stormReplay");
     const stormStatus = document.getElementById("stormStatus");
     const stormPrev = document.getElementById("stormPrev");
@@ -462,6 +614,10 @@
         document.getElementById("downloadCompareCsvEn")
       ].filter(Boolean)
     };
+    const downloadCardButtons = [
+      document.getElementById("downloadCardCsv"),
+      document.getElementById("downloadCardCsvEn")
+    ].filter(Boolean);
 
     const exampleButtons = Array.from(document.querySelectorAll("[data-example-mode]"));
 
@@ -473,12 +629,18 @@
     const getDefaultMode = () => "storm";
     let stormState = null;
     let compareState = null;
+    let cardState = null;
     const compareOnlyNodes = Array.from(document.querySelectorAll(".compare-only"));
+    const cardOnlyNodes = Array.from(document.querySelectorAll(".card-only"));
+    const stormOnlyNodes = Array.from(document.querySelectorAll(".storm-only"));
+    const nonCardNodes = Array.from(document.querySelectorAll(".non-card-only"));
 
     const readUrlState = () => {
       const params = new URLSearchParams(window.location.search);
       const mode = params.get("mode");
       const bbox = params.get("bbox");
+      const lat = params.get("lat");
+      const lon = params.get("lon");
       const start = params.get("start");
       const end = params.get("end");
       const startB = params.get("startB");
@@ -488,6 +650,8 @@
       return {
         mode: mode && ["storm", "compare", "card"].includes(mode) ? mode : null,
         bbox: bbox || "",
+        lat: lat || "",
+        lon: lon || "",
         start: start || "",
         end: end || "",
         startB: startB || "",
@@ -503,6 +667,8 @@
       params.set("mode", mode);
 
       const bbox = bboxInput.value.trim();
+      const lat = latInput?.value.trim() || "";
+      const lon = lonInput?.value.trim() || "";
       const start = startInput.value;
       const end = endInput.value;
       const startB = startInputB?.value || "";
@@ -514,6 +680,18 @@
         params.set("bbox", bbox);
       } else {
         params.delete("bbox");
+      }
+
+      if (lat) {
+        params.set("lat", lat);
+      } else {
+        params.delete("lat");
+      }
+
+      if (lon) {
+        params.set("lon", lon);
+      } else {
+        params.delete("lon");
       }
 
       if (start) {
@@ -612,7 +790,9 @@
       card: {
         ja: {
           mode: "card",
-          bbox: "141.25,38.20,141.65,38.45",
+          bbox: "",
+          lat: "38.32",
+          lon: "141.50",
           start: "2024-06-01",
           end: "2024-06-07",
           preset: "detail",
@@ -623,7 +803,9 @@
         },
         en: {
           mode: "card",
-          bbox: "141.25,38.20,141.65,38.45",
+          bbox: "",
+          lat: "38.32",
+          lon: "141.50",
           start: "2024-06-01",
           end: "2024-06-07",
           preset: "detail",
@@ -640,6 +822,10 @@
       const copy = preset[lang] || preset.ja;
       modeSelect.value = copy.mode;
       bboxInput.value = copy.bbox;
+      if (latInput && lonInput) {
+        latInput.value = copy.lat || "";
+        lonInput.value = copy.lon || "";
+      }
       startInput.value = copy.start;
       endInput.value = copy.end;
       if (startInputB && endInputB) {
@@ -683,7 +869,7 @@
       return { value: { minLon, minLat, maxLon, maxLat, spanLon, spanLat } };
     };
 
-    const parseDateRange = (start, end) => {
+  const parseDateRange = (start, end) => {
       if (!start || !end) {
         return { error: { code: ERROR_CODES.missing_params, field: "date" } };
       }
@@ -703,8 +889,23 @@
           }
         };
       }
-      return { value: { days } };
-    };
+    return { value: { days } };
+  };
+
+  const parseLatLon = (latValue, lonValue) => {
+    if (latValue === "" || lonValue === "") {
+      return { error: { code: ERROR_CODES.missing_params, field: "latlon" } };
+    }
+    const lat = Number(latValue);
+    const lon = Number(lonValue);
+    if (Number.isNaN(lat) || Number.isNaN(lon)) {
+      return { error: { code: ERROR_CODES.missing_params, field: "latlon" } };
+    }
+    if (lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+      return { error: { code: ERROR_CODES.limit_exceeded, field: "latlon" } };
+    }
+    return { value: { lat, lon } };
+  };
 
     const getBBoxAreaBucket = (bbox) => {
       const result = parseBBox(bbox);
@@ -765,7 +966,12 @@
     const validateInputs = ({ mode, bbox, start, end, startB, endB, preset, frames }) => {
       const warnings = [];
       const missingFields = [];
-      if (!bbox) missingFields.push("bbox");
+      const isCard = mode === "card";
+      if (!bbox && !isCard) missingFields.push("bbox");
+      if (isCard) {
+        if (!latInput?.value) missingFields.push("lat");
+        if (!lonInput?.value) missingFields.push("lon");
+      }
       if (!start) missingFields.push("start");
       if (!end) missingFields.push("end");
       if (mode === "compare") {
@@ -778,8 +984,13 @@
         return { error: { code: ERROR_CODES.missing_params, field: "missing", detail: { missingFields } } };
       }
 
-      const bboxResult = parseBBox(bbox);
-      if (bboxResult.error) return { error: bboxResult.error };
+      if (!isCard) {
+        const bboxResult = parseBBox(bbox);
+        if (bboxResult.error) return { error: bboxResult.error };
+      } else {
+        const latlonResult = parseLatLon(latInput?.value, lonInput?.value);
+        if (latlonResult.error) return { error: latlonResult.error };
+      }
 
       const dateResult = parseDateRange(start, end);
       if (dateResult.error) return { error: dateResult.error };
@@ -828,6 +1039,17 @@
               ? "BBoxは「経度,緯度,経度,緯度」の形式で入力してください。"
               : "Enter bbox as “lon,lat,lon,lat”.",
             fix: lang === "ja" ? "対処: BBoxを正しい形式で入力してください。" : "Fix: enter a valid bbox.",
+            usageLink,
+            usageLabel
+          };
+        }
+        if (error.field === "latlon") {
+          return {
+            title: lang === "ja" ? "緯度・経度が未入力または形式が不正です" : "Latitude/longitude is missing or invalid",
+            body: lang === "ja"
+              ? "緯度（-90〜90）と経度（-180〜180）を入力してください。"
+              : "Enter latitude (-90 to 90) and longitude (-180 to 180).",
+            fix: lang === "ja" ? "対処: 緯度経度を正しい形式で入力してください。" : "Fix: enter valid lat/lon values.",
             usageLink,
             usageLabel
           };
@@ -902,6 +1124,17 @@
               ? `指定されたプリセット「${preset}」は利用できません。利用可能: ${LIMITS.presets.join(", ")}。`
               : `Preset "${preset}" is not available. Allowed: ${LIMITS.presets.join(", ")}.`,
             fix: lang === "ja" ? "対処: 範囲が広い場合は low を選択してください。" : "Fix: choose low for larger areas.",
+            usageLink,
+            usageLabel
+          };
+        }
+        if (error.field === "latlon") {
+          return {
+            title: lang === "ja" ? "緯度・経度が範囲外です" : "Latitude/longitude is out of range",
+            body: lang === "ja"
+              ? "緯度は -90〜90、経度は -180〜180 の範囲で指定してください。"
+              : "Latitude must be between -90 and 90, longitude between -180 and 180.",
+            fix: lang === "ja" ? "対処: 緯度経度を範囲内で入力してください。" : "Fix: enter lat/lon within the valid range.",
             usageLink,
             usageLabel
           };
@@ -1085,6 +1318,16 @@
       compareState = null;
     };
 
+    const resetCardOutput = () => {
+      if (cardOutput) {
+        cardOutput.hidden = true;
+      }
+      if (cardSummary) {
+        cardSummary.innerHTML = "";
+      }
+      cardState = null;
+    };
+
     const updateCompareMetrics = ({ statsA, statsB, statsDiff }, lang) => {
       if (!compareMetrics) return;
       const format = (value) => Number.isFinite(value) ? value.toFixed(2) : "-";
@@ -1145,6 +1388,103 @@
       ].join("");
     };
 
+    const updateCardSummary = ({ total, avg, max, series, preset, start, end, lat, lon }, lang) => {
+      if (!cardSummary) return;
+      const format = (value) => Number.isFinite(value) ? value.toFixed(2) : "-";
+      if (lang === "ja") {
+        cardSummary.innerHTML = [
+          "<div>",
+          "<dt>期間</dt>",
+          `<dd>${start} 〜 ${end}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>プリセット</dt>",
+          `<dd>${escapeHTML(preset)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>観測日数</dt>",
+          `<dd>${series.length} 日</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>合計 (mm)</dt>",
+          `<dd>${format(total)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>平均 (mm)</dt>",
+          `<dd>${format(avg)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>最大 (mm)</dt>",
+          `<dd>${format(max)}</dd>`,
+          "</div>",
+          "<div>",
+          "<dt>緯度 / 経度</dt>",
+          `<dd>${lat.toFixed(4)} / ${lon.toFixed(4)}</dd>`,
+          "</div>"
+        ].join("");
+        return;
+      }
+      cardSummary.innerHTML = [
+        "<div>",
+        "<dt>Period</dt>",
+        `<dd>${start} to ${end}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Preset</dt>",
+        `<dd>${escapeHTML(preset)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Days</dt>",
+        `<dd>${series.length} days</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Total (mm)</dt>",
+        `<dd>${format(total)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Average (mm)</dt>",
+        `<dd>${format(avg)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Max (mm)</dt>",
+        `<dd>${format(max)}</dd>`,
+        "</div>",
+        "<div>",
+        "<dt>Lat / Lon</dt>",
+        `<dd>${lat.toFixed(4)} / ${lon.toFixed(4)}</dd>`,
+        "</div>"
+      ].join("");
+    };
+
+    const updateCardMapMeta = (lat, lon, lang) => {
+      if (!cardMapMeta) return;
+      const latText = Number.isFinite(lat) ? lat.toFixed(4) : "-";
+      const lonText = Number.isFinite(lon) ? lon.toFixed(4) : "-";
+      cardMapMeta.textContent = lang === "ja"
+        ? `緯度: ${latText} / 経度: ${lonText}`
+        : `Lat: ${latText} / Lon: ${lonText}`;
+    };
+
+    const loadCardOutput = ({ lat, lon, start, end, preset }, lang) => {
+      if (!cardOutput || !cardChart || !cardMapPreview) return;
+      const data = buildPointTimeseries({ lat, lon, start, end, preset });
+      cardState = { ...data, lat, lon, start, end, preset };
+      cardOutput.hidden = false;
+      renderMiniChart(cardChart, data.series);
+      renderPointMap(cardMapPreview, lat, lon, `${start} ~ ${end}`);
+      updateCardMapMeta(lat, lon, lang);
+      updateCardSummary({ ...data, lat, lon, start, end, preset }, lang);
+    };
+
+    const updateCardPickerMap = () => {
+      if (!cardMapPicker) return;
+      const latValue = Number(latInput?.value);
+      const lonValue = Number(lonInput?.value);
+      const lat = Number.isFinite(latValue) ? latValue : 0;
+      const lon = Number.isFinite(lonValue) ? lonValue : 0;
+      renderPointMap(cardMapPicker, lat, lon, "Pick");
+    };
+
     const loadCompareOutput = ({ bbox, startA, endA, startB, endB, preset }, lang) => {
       if (!compareOutput || !compareCanvasA || !compareCanvasB || !compareCanvasDiff) return;
       const data = buildCompareData({ bbox, startA, endA, startB, endB, preset });
@@ -1167,6 +1507,8 @@
       resultOutput.textContent = formatPreview({
         mode: modeSelect.value,
         bbox: bboxInput.value.trim(),
+        lat: latInput?.value.trim() || "",
+        lon: lonInput?.value.trim() || "",
         start: startInput.value,
         end: endInput.value,
         startB: startInputB?.value || "",
@@ -1189,6 +1531,8 @@
         const lang = document.documentElement.lang || "ja";
         const mode = btn.dataset.exampleMode || modeSelect.value || getDefaultMode();
         setExample(mode, lang);
+        updateCardPickerMap();
+        updateModeVisibility(modeSelect.value);
         clearError();
         updateUrlState();
         renderAndScroll();
@@ -1239,9 +1583,36 @@
             }, lang);
           }
           resetStormReplay();
+        } else if (modeSelect.value === "card") {
+          const validation = validateInputs({
+            mode: modeSelect.value,
+            bbox: bboxInput.value.trim(),
+            start: startInput.value,
+            end: endInput.value,
+            startB: startInputB?.value || "",
+            endB: endInputB?.value || "",
+            preset: presetInput.value.trim(),
+            frames: framesInput.value.trim()
+          });
+          if (validation.error) {
+            renderError(validation.error, lang);
+          } else {
+            const lat = Number(latInput?.value);
+            const lon = Number(lonInput?.value);
+            loadCardOutput({
+              lat,
+              lon,
+              start: startInput.value,
+              end: endInput.value,
+              preset: presetInput.value.trim()
+            }, lang);
+          }
+          resetStormReplay();
+          resetCompareOutput();
         } else {
           resetStormReplay();
           resetCompareOutput();
+          resetCardOutput();
         }
         trackEvent("tool_example_apply", {
           tool_name: TOOL_NAME,
@@ -1288,6 +1659,7 @@
             frames: framesInput.value.trim()
           }, lang);
           resetCompareOutput();
+          resetCardOutput();
         } else if (modeSelect.value === "compare") {
           loadCompareOutput({
             bbox: bboxInput.value.trim(),
@@ -1298,9 +1670,23 @@
             preset: presetInput.value.trim()
           }, lang);
           resetStormReplay();
+          resetCardOutput();
+        } else if (modeSelect.value === "card") {
+          const lat = Number(latInput?.value);
+          const lon = Number(lonInput?.value);
+          loadCardOutput({
+            lat,
+            lon,
+            start: startInput.value,
+            end: endInput.value,
+            preset: presetInput.value.trim()
+          }, lang);
+          resetStormReplay();
+          resetCompareOutput();
         } else {
           resetStormReplay();
           resetCompareOutput();
+          resetCardOutput();
         }
         trackEvent("tool_result", getEventContext());
       });
@@ -1396,9 +1782,28 @@
       });
     });
 
+    downloadCardButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!cardState) return;
+        const csv = buildCardCsv({
+          lat: cardState.lat,
+          lon: cardState.lon,
+          start: cardState.start,
+          end: cardState.end,
+          preset: cardState.preset,
+          series: cardState.series
+        });
+        downloadBlob(csv, "card-point-timeseries.csv", "text/csv;charset=utf-8;");
+      });
+    });
+
     const urlState = readUrlState();
     modeSelect.value = urlState.mode || getDefaultMode();
     bboxInput.value = urlState.bbox;
+    if (latInput && lonInput) {
+      latInput.value = urlState.lat;
+      lonInput.value = urlState.lon;
+    }
     startInput.value = urlState.start;
     endInput.value = urlState.end;
     if (startInputB && endInputB) {
@@ -1412,17 +1817,36 @@
 
     const updateModeVisibility = (mode) => {
       const isCompare = mode === "compare";
+      const isStorm = mode === "storm";
+      const isCard = mode === "card";
       compareOnlyNodes.forEach((node) => {
         node.hidden = !isCompare;
       });
+      stormOnlyNodes.forEach((node) => {
+        node.hidden = !isStorm;
+      });
+      cardOnlyNodes.forEach((node) => {
+        node.hidden = !isCard;
+      });
+      nonCardNodes.forEach((node) => {
+        node.hidden = isCard;
+      });
       if (!isCompare) {
         resetCompareOutput();
+      }
+      if (!isStorm) {
+        resetStormReplay();
+      }
+      if (!isCard) {
+        resetCardOutput();
       }
     };
 
     const inputsToWatch = [
       modeSelect,
       bboxInput,
+      latInput,
+      lonInput,
       startInput,
       endInput,
       startInputB,
@@ -1441,6 +1865,10 @@
         render();
         resetStormReplay();
         resetCompareOutput();
+        resetCardOutput();
+        if (input === latInput || input === lonInput) {
+          updateCardPickerMap();
+        }
       });
       input.addEventListener("change", () => {
         clearError();
@@ -1448,6 +1876,10 @@
         render();
         resetStormReplay();
         resetCompareOutput();
+        resetCardOutput();
+        if (input === latInput || input === lonInput) {
+          updateCardPickerMap();
+        }
         if (input === modeSelect && previousMode !== modeSelect.value) {
           updateModeVisibility(modeSelect.value);
           trackEvent("tool_mode_change", {
@@ -1460,6 +1892,24 @@
         }
       });
     });
+
+    if (cardMapPicker) {
+      updateCardPickerMap();
+      cardMapPicker.addEventListener("click", (event) => {
+        if (!latInput || !lonInput) return;
+        const rect = cardMapPicker.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const lon = (x / rect.width) * 360 - 180;
+        const lat = 90 - (y / rect.height) * 180;
+        latInput.value = lat.toFixed(4);
+        lonInput.value = lon.toFixed(4);
+        updateUrlState();
+        render();
+        updateCardPickerMap();
+        resetCardOutput();
+      });
+    }
 
     document.addEventListener("click", (event) => {
       const link = event.target.closest("a");
