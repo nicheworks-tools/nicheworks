@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Earth Map Suite｜地図ビュー確認ツール | NicheWorks</title>
+  <meta name="description" content="Earth Map Suiteは地図ビューの想定結果を整理するための簡易ツールです。入力条件をまとめてプレビューし、共有メモとして使えます。" />
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/earth-map-suite/" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Earth Map Suite｜地図ビュー確認ツール | NicheWorks" />
+  <meta property="og:description" content="Earth Map Suiteは地図ビューの想定結果を整理するための簡易ツールです。入力条件をまとめてプレビューし、共有メモとして使えます。" />
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/earth-map-suite/" />
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Earth Map Suite",
+    "url": "https://nicheworks.pages.dev/tools/earth-map-suite/",
+    "applicationCategory": "UtilityApplication",
+    "description": "地図ビューの想定結果を整理する簡易ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">Earth Map Suite（地図ビュー確認ツール）</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">Earth Map Suite</h1>
+
+    <p class="nw-lead" data-i18n="ja">地図ビューの条件を整理し、共有用の簡易メモを作るためのベースページ。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">A baseline page to organize map view conditions and share quick notes.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">このツールでできること</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">What you can do</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet" data-i18n="ja">
+          <li>地図ビューの目的・対象地域を整理</li>
+          <li>表示したいレイヤーや注釈をメモ化</li>
+          <li>確認事項をチーム共有用に整形</li>
+          <li>出力の想定結果をプレースホルダで確認</li>
+        </ul>
+        <ul class="bullet" data-i18n="en" style="display:none;">
+          <li>Summarize the map view purpose and target area.</li>
+          <li>List layers, annotations, and points of interest.</li>
+          <li>Format a shareable checklist for teams.</li>
+          <li>Preview the expected output as a placeholder note.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">入力パネル</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Input panel</h2>
+      </div>
+      <div class="card-bd">
+        <div class="field">
+          <label class="label" for="focusArea" data-i18n="ja">対象エリア</label>
+          <label class="label" for="focusArea" data-i18n="en" style="display:none;">Target area</label>
+          <input class="input" id="focusArea" type="text" placeholder="例：東京23区・沿岸部" />
+        </div>
+        <div class="field">
+          <label class="label" for="layers" data-i18n="ja">確認したいレイヤー</label>
+          <label class="label" for="layers" data-i18n="en" style="display:none;">Layers to verify</label>
+          <textarea class="textarea" id="layers" placeholder="例：地形 / 交通 / 標高 / 避難所"></textarea>
+        </div>
+        <div class="field">
+          <label class="label" for="notes" data-i18n="ja">補足メモ</label>
+          <label class="label" for="notes" data-i18n="en" style="display:none;">Notes</label>
+          <textarea class="textarea" id="notes" placeholder="例：夜間モードで視認性を確認"></textarea>
+        </div>
+        <div class="row">
+          <button class="btn" type="button" id="exampleBtn" data-i18n="ja">例を入力</button>
+          <button class="btn" type="button" id="exampleBtnEn" data-i18n="en" style="display:none;">Load example</button>
+          <button class="btn primary" type="button" id="runBtn" data-i18n="ja">プレビューを作成</button>
+          <button class="btn primary" type="button" id="runBtnEn" data-i18n="en" style="display:none;">Generate preview</button>
+        </div>
+        <p class="hint" data-i18n="ja"><a class="nw-link" href="./usage.html">使い方はこちら</a></p>
+        <p class="hint" data-i18n="en" style="display:none;"><a class="nw-link" href="./usage-en.html">See usage guide</a></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">結果プレビュー</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Result preview</h2>
+      </div>
+      <div class="card-bd">
+        <div class="out" id="resultOutput" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">制限事項</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Limits</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet" data-i18n="ja">
+          <li>実際の地図表示は行いません。</li>
+          <li>共有や保存はコピー＆ペーストで行ってください。</li>
+          <li>入力内容はブラウザにのみ残ります。</li>
+        </ul>
+        <ul class="bullet" data-i18n="en" style="display:none;">
+          <li>No live map rendering is included.</li>
+          <li>Share or save by copying the preview text.</li>
+          <li>Inputs stay only in your browser.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">FAQ（短縮版）</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">FAQ (short)</h2>
+      </div>
+      <div class="card-bd">
+        <dl class="faq" data-i18n="ja">
+          <dt>Q. どんな用途に使えますか？</dt>
+          <dd>A. 地図調査の事前共有メモやレビュー依頼の下書きに使えます。</dd>
+          <dt>Q. データは保存されますか？</dt>
+          <dd>A. 保存されません。必要なら手動でコピーしてください。</dd>
+        </dl>
+        <dl class="faq" data-i18n="en" style="display:none;">
+          <dt>Q. What is this for?</dt>
+          <dd>A. It helps draft notes for map review or planning discussions.</dd>
+          <dt>Q. Is my data saved?</dt>
+          <dd>A. No. Please copy anything you want to keep.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">関連ツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Related tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/size-converter/">Size Converter</a>
+        <a href="/tools/weatherdiff/">WeatherDiff</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+        <a href="/tools/unitmaster/">UnitMaster</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">License: TBD</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
