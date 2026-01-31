@@ -13,43 +13,49 @@ function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
 
-function validateStringList(value, fieldName, index, enName, errors) {
-  if (typeof value === "string") {
-    if (!isNonEmptyString(value)) {
-      errors.push({ index, en: enName, field: fieldName, reason: "must be a non-empty string" });
+function validateStringList(value, fieldName, index, enName, errors, opts = {}) {
+  const allowEmptyArray = !!opts.allowEmptyArray;
+
+  if (value == null) return [];
+
+  // allow "string" shorthand
+  if (typeof value === "string") value = [value];
+
+  if (!Array.isArray(value)) {
+    errors.push({ index, en: enName, field: fieldName, reason: "must be an array of strings" });
+    return [];
+  }
+
+  // IMPORTANT:
+  // - alias can be empty array (allowEmptyArray=true)
+  // - other list fields may require non-empty
+  if (value.length === 0) {
+    if (allowEmptyArray) return [];
+    errors.push({ index, en: enName, field: fieldName, reason: "must not be an empty array" });
+    return [];
+  }
+
+  const out = [];
+  for (let itemIndex = 0; itemIndex < value.length; itemIndex++) {
+    const item = value[itemIndex];
+    if (item == null) {
+      errors.push({ index, en: enName, field: fieldName, reason: "must not be null" });
+      continue;
     }
-    return [value];
-  }
-
-  if (Array.isArray(value)) {
-    if (value.length === 0) {
-      errors.push({ index, en: enName, field: fieldName, reason: "must not be an empty array" });
-      return [];
+    if (typeof item !== "string" || item.trim().length === 0) {
+      errors.push({
+        index,
+        en: enName,
+        field: fieldName,
+        reason: `item ${itemIndex} must be a non-empty string`,
+      });
+      continue;
     }
-
-    const output = [];
-    value.forEach((item, itemIndex) => {
-      if (!isNonEmptyString(item)) {
-        errors.push({
-          index,
-          en: enName,
-          field: fieldName,
-          reason: `item ${itemIndex} must be a non-empty string`,
-        });
-      } else {
-        output.push(item);
-      }
-    });
-    return output;
+    out.push(item.trim());
   }
-
-  if (value != null) {
-    errors.push({ index, en: enName, field: fieldName, reason: "must be a string or array of strings" });
-  } else {
-    errors.push({ index, en: enName, field: fieldName, reason: "must not be null" });
-  }
-  return [];
+  return out;
 }
+
 
 let data;
 try {
@@ -135,7 +141,7 @@ data.forEach((entry, index) => {
     if (!(field in entry)) {
       return;
     }
-    const aliasValues = validateStringList(entry[field], field, index, enName, errors);
+    const aliasValues = validateStringList(entry[field], field, index, enName, errors, { allowEmptyArray: true });
     aliasValues.forEach((aliasValue) => {
       const normalizedAlias = normalizeName(aliasValue, { lowercase: true });
       aliasEntries.push({
