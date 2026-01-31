@@ -1,346 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NicheWorks Tools Directory | A Quiet Collection of Useful Web Tools</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-  <!-- Unified Description (SEO + OGP + JSON-LD 共通) -->
-  <meta
-    name="description"
-    content="NicheWorks is a quiet collection of lightweight, genuinely useful browser tools designed to solve small but real problems in everyday life."
-  >
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/en/index.html">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="/style.css">
-
-  <!-- Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- OGP -->
-  <meta property="og:title" content="NicheWorks Tools Directory | A Quiet Collection of Useful Web Tools">
-  <meta property="og:description" content="NicheWorks is a quiet collection of lightweight, genuinely useful browser tools designed to solve small but real problems in everyday life.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/en/index.html">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <meta property="og:site_name" content="NicheWorks">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NicheWorks Tools Directory | A Quiet Collection of Useful Web Tools">
-  <meta name="twitter:description" content="NicheWorks is a quiet collection of lightweight, genuinely useful browser tools designed to solve small but real problems in everyday life.">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
-  <!-- JSON-LD (WebSite + WebPage) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://nicheworks.pages.dev/#website",
-        "name": "NicheWorks",
-        "url": "https://nicheworks.pages.dev/",
-        "description": "NicheWorks is a quiet collection of lightweight, genuinely useful browser tools designed to solve small but real problems in everyday life.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "NicheWorks"
-        }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://nicheworks.pages.dev/en/index.html",
-        "name": "NicheWorks Tools Directory",
-        "url": "https://nicheworks.pages.dev/en/index.html",
-        "inLanguage": "en",
-        "description": "NicheWorks is a quiet collection of lightweight, genuinely useful browser tools designed to solve small but real problems in everyday life.",
-        "isPartOf": {
-          "@id": "https://nicheworks.pages.dev/#website"
-        }
-      }
-    ]
-  }
-  </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NicheWorks</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
-
-
 <body>
-  <main class="container">
-
+  <div class="container">
     <header>
-      <h1 class="site-title">
-        <img src="/assets/nicheworks-logo.png" alt="NicheWorks logo" class="site-logo">
-        NicheWorks
-      </h1>
-
-      <p class="subtitle">A quiet collection of small, useful web tools</p>
-
-      <!-- Header Navigation -->
-      <div class="nav-inline">
-        <a href="./index.html">Home</a>
-        <span class="sep">/</span>
-        <a href="./about.html">About</a>
-        <span class="sep">/</span>
-        <a href="./privacy.html">Privacy</a>
-        <span class="sep">/</span>
-        <a href="./contact.html">Contact</a>
+      <div class="site-title">
+        <img class="site-logo" src="/assets/nicheworks-logo.png" alt="NicheWorks" onerror="this.remove()">
+        <h1>NicheWorks</h1>
       </div>
 
-      <!-- Language Switch -->
-      <div class="nav-inline">
-        <span>Language:</span>
-        <a href="./index.html">English</a>
+      <p class="subtitle">Lightweight tools that run in your browser. No input data is stored (local-first).</p>
+
+      <nav class="nav-inline" aria-label="Site navigation">
+        <a href="/en/">Home</a>
         <span class="sep">/</span>
-        <a href="../index.html">日本語</a>
-      </div>
+        <a href="/en/about.html">About</a>
+        <span class="sep">/</span>
+        <a href="/en/privacy.html">Privacy</a>
+        <span class="sep">/</span>
+        <a href="/en/contact.html">Contact</a>
+        <span class="sep">/</span>
+        <a href="/en/index.html">EN</a>
+      </nav>
     </header>
 
-    <!-- About the project -->
-    <section class="block">
-      <h2>About this site</h2>
-      <p>
-        NicheWorks is a collection of small, quietly useful web tools—  
-        designed not for buzz or aesthetics, but for genuine everyday practicality.  
-        The goal is to solve niche but real problems with lightweight, browser-only tools.
-      </p>
-
-      <p>
-        Tools are intentionally simple, fast, and privacy-friendly.  
-        Most of them run entirely within your browser without sending data to any server.
-      </p>
-
-      <p class="small">
-        → More details can be found on the <a href="./about.html">About page</a>.
-      </p>
-    </section>
-
-<!-- Tool Collection (Categorized) -->
-<section class="block">
-  <h2>Tool Collection</h2>
-
-  <!-- Text & Document Tools -->
-  <h3>Text & Document Tools</h3>
-  <p class="category-desc">Lightweight utilities for text processing, document cleaning, and log formatting.</p>
-  <ul class="list">
-    <li><strong><a href="/tools/manual-finder/" target="_blank" rel="noopener">ManualFinder (Official Manuals Directory)</a></strong><br>
-      A curated index of official manuals for home appliances, cameras, gadgets, and more.
-    </li>
-    <li><strong><a href="/tools/trashnavi/" target="_blank" rel="noopener">TrashNavi (Waste Sorting Directory)</a></strong><br>
-      Links to local government waste-sorting guides and pickup calendars.
-    </li>
-    <li><strong><a href="/tools/log-formatter/" target="_blank" rel="noopener">LogFormatter</a></strong><br>
-      Beautify Nginx / HTTP access logs locally in your browser.
-    </li>
-    <li><strong><a href="/tools/rename-wizard/" target="_blank" rel="noopener">Rename Wizard</a></strong><br>
-      Clean and batch-rename filenames with preview.
-    </li>
-    <li><strong><a href="/tools/contract-cleaner/" target="_blank" rel="noopener">Contract Cleaner</a></strong><br>
-      Highlight risky terms in contract text.
-    </li>
-    <li><strong><a href="/tools/exif-cleaner-mini/" target="_blank" rel="noopener">EXIF Cleaner Mini</a></strong><br>
-      Remove EXIF metadata from images (local processing).
-    </li>
-    <li><strong><a href="/tools/linebreak-doctor/" target="_blank" rel="noopener">LineBreak Doctor</a></strong><br>
-      Fix broken line breaks for SNS posts.
-    </li>
-    <li><strong><a href="/tools/url-title-collector/" target="_blank" rel="noopener">URL Title Collector</a></strong><br>
-      Fetch titles from multiple URLs at once.
-    </li>
-    <li><strong><a href="/tools/message-generator/" target="_blank" rel="noopener">Message Generator</a></strong><br>
-      Generate short message templates.
-    </li>
-  </ul>
-
-  <!-- Image & File Tools -->
-  <h3>Image & File Tools</h3>
-  <p class="category-desc">Utilities for image conversion, analysis, and file inspection.</p>
-  <ul class="list">
-    <li><strong><a href="/tools/image-compression-inspector/" target="_blank" rel="noopener">Image Compression Inspector</a></strong><br>
-      Compare compression ratios across formats.
-    </li>
-    <li><strong><a href="/tools/color-replace/" target="_blank" rel="noopener">Color Replace</a></strong><br>
-      Replace a specific color in an image.
-    </li>
-    <li><strong><a href="/tools/webp-avif-converter/" target="_blank" rel="noopener">WebP / AVIF Converter</a></strong><br>
-      Convert images to highly compressed formats.
-    </li>
-    <li><strong><a href="/tools/filetype-sniffer/" target="_blank" rel="noopener">FileType Sniffer</a></strong><br>
-      Detect the actual file format by reading Magic Numbers.
-    </li>
-  </ul>
-
-  <!-- Conversion / Analysis Tools -->
-  <h3>Conversion & Analysis Tools</h3>
-  <p class="category-desc">Utilities for converting, visualizing, and inspecting various data.</p>
-  <ul class="list">
-    <li><strong><a href="/tools/json2mermaid/" target="_blank" rel="noopener">JSON → Mermaid Converter</a></strong><br>
-      Convert JSON structures into Mermaid diagrams automatically.
-    </li>
-    <li><strong><a href="/tools/unitmaster/" target="_blank" rel="noopener">UnitMaster (Unit Converter)</a></strong><br>
-      Fast conversion across many measurement units.
-    </li>
-    <li><strong><a href="/tools/kanji-modernizer/" target="_blank" rel="noopener">Kanji Modernizer</a></strong><br>
-      Convert old Kanji forms into modern ones.
-    </li>
-    <li><strong><a href="/tools/old-kanji-reference/" target="_blank" rel="noopener">Old Kanji Reference</a></strong><br>
-      Dictionary of historical Kanji forms.
-    </li>
-    <li><strong><a href="/tools/redirect-unwrapper/" target="_blank" rel="noopener">Redirect Unwrapper</a></strong><br>
-      Reveal the final destination of shortened URLs.
-    </li>
-  </ul>
-
-  <!-- Daily Life Tools -->
-  <h3>Daily Utility Tools</h3>
-  <p class="category-desc">Practical tools useful in everyday life.</p>
-  <ul class="list">
-    <li><strong><a href="/tools/jp-postal-lite/" target="_blank" rel="noopener">JP Postal Lite</a></strong><br>
-      Convert postal codes ↔ addresses in Japan.
-    </li>
-    <li><strong><a href="https://unsubscribe-navi.pages.dev/" target="_blank" rel="noopener">Unsubscribe Navi</a></strong><br>
-      Official cancellation links for subscription services.
-    </li>
-  </ul>
-
-  <!-- Other Utilities -->
-  <h3>Other Utilities</h3>
-  <p class="category-desc">Supplementary lightweight tools.</p>
-  <ul class="list">
-    <li><strong><a href="/tools/weatherdiff/" target="_blank" rel="noopener">WeatherDiff</a></strong><br>
-      Compare forecasts across multiple APIs. Supports geolocation.
-    </li>
-    <li><strong><a href="/tools/wifi-meter/" target="_blank" rel="noopener">WiFi Meter</a></strong><br>
-      Visualize nearby Wi-Fi congestion.
-    </li>
-    <li><strong><a href="/tools/cover-letter-lite/" target="_blank" rel="noopener">Cover Letter Lite</a></strong><br>
-      Generate English cover letters.
-    </li>
-    <li><strong><a href="/tools/cosmetic-ingredient-checker-lite/" target="_blank" rel="noopener">Cosmetic Ingredient Checker Lite</a></strong><br>
-      Quick lookup for cosmetic ingredients.
-    </li>
-  </ul>
-</section>
-
-
-    <!-- Policy -->
-    <section class="block">
-      <h2>Policy</h2>
-      <p class="small">
-        Most tools are designed to run entirely within the browser.  
-        No user data is uploaded or stored on any server.
-      </p>
-      <p class="small">
-        Some pages may display advertisements to support ongoing development and maintenance.  
-        All revenue is reinvested into improving the tools.
-      </p>
-    </section>
-
-    <footer>
-
-      <!-- Donation block -->
-      <div class="block donate-block">
-        <h2>Support</h2>
-        <p class="small">
-          NicheWorks is a personal project.  
-          If you find the tools helpful, even a small donation is greatly appreciated.
+    <main>
+      <section class="block">
+        <h2>About NicheWorks</h2>
+        <p class="category-desc">
+          Quietly useful. Small tools you can use and leave—no accounts, no storage, no tracking by default.
         </p>
-        <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </section>
+
+      <section class="block">
+        <h2>Tools</h2>
+        <p class="category-desc">
+          Categories are kept short so you can open tools quickly. For the full list, open “All tools (long list)” below.
+        </p>
+
+        <div class="tool-search">
+          <input id="nw-tool-q" class="input" type="search" placeholder="Search tools / keywords (e.g. pdf / image / contract / construction)" autocomplete="off">
+          <div class="tool-search-meta">
+            <div class="small muted">Total: <span id="nw-tool-count">...</span></div>
+          </div>
         </div>
-        <p class="small muted">
-          Donations are optional. All support goes directly toward development and maintenance.
-        </p>
-      </div>
 
-      <!-- Footer links -->
-      <div class="small">
-        <p class="small">
-          <a href="./index.html">Home</a> /
-          <a href="./about.html">About</a> /
-          <a href="./privacy.html">Privacy</a> /
-          <a href="./contact.html">Contact</a>
-        </p>
-        <p class="small">NicheWorks Project</p>
-        <p class="small muted">Some tools may display ads to help support the project.</p>
-      </div>
+        <!-- Pinned (short) -->
+        <div class="tool-pins" id="nw-tool-pins" aria-label="Pinned tools">
+          <span class="small muted">Loading...</span>
+        </div>
 
-    </footer>
+        <!-- Category cards (short) -->
+        <div id="nw-tool-cats" class="tool-cat-grid">
+          <div class="small muted">Loading...</div>
+        </div>
 
-  <section class="block">
-  <h2>All tools</h2>
-  <p class="category-desc">
-    Auto-generated list. Total: <span id="nw-tool-count">...</span>
-  </p>
+        <!-- All (long) -->
+        <details class="tool-all" id="nw-tool-all-wrap">
+          <summary>Open all tools (long list)</summary>
+          <div id="nw-tool-all" class="tool-grid">
+            <div class="small muted">(not rendered)</div>
+          </div>
+        </details>
 
-  <input id="nw-tool-q" type="search" placeholder="Search tools..." style="width:100%; padding:10px; margin:8px 0 12px;">
+        <script>
+        (async function () {
+          const $ = (id) => document.getElementById(id);
 
-  <ul class="list" id="nw-tool-list">
-    <li class="small muted">Loading...</li>
-  </ul>
-</section>
+          const qEl = $("nw-tool-q");
+          const pinsEl = $("nw-tool-pins");
+          const catsEl = $("nw-tool-cats");
+          const countEl = $("nw-tool-count");
+          const allWrapEl = $("nw-tool-all-wrap");
+          const allEl = $("nw-tool-all");
 
-<script>
-(async function () {
-  const res = await fetch("/tools/tools-index.json", { cache: "no-store" });
-  const data = await res.json();
+          const escapeHtml = (s) => String(s || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
 
-  const countEl = document.getElementById("nw-tool-count");
-  const qEl = document.getElementById("nw-tool-q");
-  const listEl = document.getElementById("nw-tool-list");
+          const normalize = (it) => {
+            const name = (it.title_en && it.title_en !== it.slug) ? it.title_en : it.slug;
+            const desc = (it.desc_en || "").trim();
+            return { ...it, name, desc };
+          };
 
-  countEl.textContent = data.total;
+          const PINNED = [
+            "construction-tools-atlas",
+            "pdf2csv-local",
+            "api-key-token-redactor",
+            "command-safety-checker",
+            "contract-cleaner",
+            "exif-cleaner-mini",
+            "filetype-sniffer",
+            "image-compression-inspector",
+            "color-replace",
+            "json2mermaid",
+            "jp-postal-lite",
+            "wifi-meter",
+            "weatherdiff"
+          ];
 
-  const render = (q) => {
-    const query = (q || "").trim().toLowerCase();
-    const items = data.items.filter(it => {
-      const hay = `${it.slug} ${it.title_en} ${it.desc_en} ${(it.tags||[]).join(" ")}`.toLowerCase();
-      return !query || hay.includes(query);
-    });
+          const CATS = [
+            { key: "PDF / Docs", hint: "PDF/CSV/statements", match: (s) => /pdf|csv|xlsx|invoice|receipt|statement/.test(s) },
+            { key: "Images / Files", hint: "EXIF/convert/compress", match: (s) => /image|exif|webp|avif|color|compress|resize|png|jpg|filetype|sniffer/.test(s) },
+            { key: "Writing / Work", hint: "text/format/templates", match: (s) => /contract|cover-letter|linebreak|message|rename|log|text|paste|doc/.test(s) },
+            { key: "Dev / Safety", hint: "JSON/commands/keys", match: (s) => /json|mermaid|token|api|key|format|privacy|risk|sql/.test(s) },
+            { key: "Daily", hint: "postal/weather/Wi-Fi", match: (s) => /postal|wifi|weather|laundry|trash|manual/.test(s) },
+            { key: "Construction", hint: "construction glossary", match: (s) => /construction/.test(s) },
+            { key: "Other", hint: "misc", match: (_) => true }
+          ];
 
-    listEl.innerHTML = items.map(it => {
-      const name = it.title_en && it.title_en !== it.slug ? it.title_en : it.slug;
-      const desc = it.desc_en ? `<br><span class="small muted">${it.desc_en}</span>` : "";
-      return `<li><strong><a href="/tools/${it.slug}/" target="_blank" rel="noopener">${name}</a></strong>${desc}</li>`;
-    }).join("");
+          const toolLink = (it) => {
+            const name = escapeHtml(it.name);
+            const desc = escapeHtml(it.desc);
+            const href = `/tools/${it.slug}/`;
+            return `<li>
+              <strong><a href="${href}" target="_blank" rel="noopener">${name}</a></strong>
+              ${desc ? `<div class="small muted">${desc}</div>` : ``}
+            </li>`;
+          };
 
-    if (!items.length) {
-      listEl.innerHTML = `<li class="small muted">No tools found.</li>`;
-    }
-  };
+          const pill = (it) => {
+            const name = escapeHtml(it.name);
+            const href = `/tools/${it.slug}/`;
+            return `<a class="pill" href="${href}" target="_blank" rel="noopener">${name}</a>`;
+          };
 
-  qEl.addEventListener("input", () => render(qEl.value));
-  render("");
-})();
-</script>
+          const card = (catKey, hint, list) => {
+            const LIMIT = 6;
+            const shown = list.slice(0, LIMIT);
+            const hidden = list.slice(LIMIT);
+            const id = "cat_" + catKey.replaceAll(/[^a-zA-Z0-9]+/g, "_");
 
-</main>
+            return `<section class="tool-cat-card" data-cat="${escapeHtml(catKey)}">
+              <div class="tool-cat-top">
+                <div class="tool-cat-head">
+                  <div class="tool-cat-title">${escapeHtml(catKey)} <span class="tool-cat-count">(${list.length})</span></div>
+                  <div class="tool-cat-hint">${escapeHtml(hint)}</div>
+                </div>
+                ${hidden.length ? `<button class="tool-more" type="button" data-target="${escapeHtml(id)}">More</button>` : ``}
+              </div>
 
-  <!-- Cloudflare Analytics -->
-  
+              <ul class="list compact">
+                ${shown.map(toolLink).join("")}
+              </ul>
 
+              ${hidden.length ? `
+                <div id="${escapeHtml(id)}" class="tool-hidden" hidden>
+                  <ul class="list compact">
+                    ${hidden.map(toolLink).join("")}
+                  </ul>
+                </div>` : ``}
+            </section>`;
+          };
+
+          const byCategory = (items) => {
+            const buckets = new Map();
+            for (const it of items) {
+              const s = `${it.slug} ${it.name} ${it.desc} ${(it.tags || []).join(" ")}`.toLowerCase();
+              const cat = (CATS.find(c => c.match(s)) || CATS[CATS.length - 1]).key;
+              if (!buckets.has(cat)) buckets.set(cat, []);
+              buckets.get(cat).push(it);
+            }
+            const ordered = [];
+            for (const c of CATS) {
+              if (buckets.has(c.key)) ordered.push([c.key, c.hint, buckets.get(c.key)]);
+            }
+            return ordered;
+          };
+
+          const renderPinned = (items) => {
+            const map = new Map(items.map(it => [it.slug, it]));
+            const pinned = PINNED.map(slug => map.get(slug)).filter(Boolean);
+            pinsEl.innerHTML = pinned.length
+              ? pinned.map(pill).join("")
+              : `<span class="small muted">(no pinned tools)</span>`;
+          };
+
+          const filterItems = (items, q) => {
+            const query = (q || "").trim().toLowerCase();
+            if (!query) return items;
+            return items.filter(it => {
+              const hay = `${it.slug} ${it.name} ${it.desc} ${(it.tags||[]).join(" ")}`.toLowerCase();
+              return hay.includes(query);
+            });
+          };
+
+          const renderCats = (items, q) => {
+            const filtered = filterItems(items, q);
+            const groups = byCategory(filtered);
+
+            catsEl.innerHTML = groups
+              .filter(([_, __, list]) => list.length)
+              .map(([catKey, hint, list]) => card(catKey, hint, list))
+              .join("") || `<div class="small muted">No matches</div>`;
+
+            catsEl.querySelectorAll(".tool-more").forEach(btn => {
+              btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-target");
+                const box = document.getElementById(id);
+                if (box) box.hidden = false;
+                btn.remove();
+              }, { once: true });
+            });
+          };
+
+          const renderAll = (items, q) => {
+            const filtered = filterItems(items, q);
+            allEl.innerHTML = filtered.map(it => {
+              const name = escapeHtml(it.name);
+              const desc = escapeHtml(it.desc);
+              const href = `/tools/${it.slug}/`;
+              return `<a class="tool-card" href="${href}" target="_blank" rel="noopener">
+                <div class="tool-card-title">${name}</div>
+                ${desc ? `<div class="tool-card-desc">${desc}</div>` : `<div class="tool-card-desc muted">(no description)</div>`}
+                <div class="tool-card-meta">${escapeHtml(it.slug)}</div>
+              </a>`;
+            }).join("") || `<div class="small muted">No matches</div>`;
+          };
+
+          let data;
+          try {
+            const res = await fetch("/tools/tools-index.json", { cache: "no-store" });
+            data = await res.json();
+          } catch (e) {
+            pinsEl.innerHTML = `<span class="small muted">Failed to load</span>`;
+            catsEl.innerHTML = `<div class="small muted">Failed to load</div>`;
+            allEl.innerHTML = `<div class="small muted">Failed to load</div>`;
+            return;
+          }
+
+          const items = (data.items || []).map(normalize);
+          countEl.textContent = String(data.total || items.length);
+
+          renderPinned(items);
+          renderCats(items, "");
+
+          allEl.innerHTML = `<div class="small muted">(not rendered)</div>`;
+          allWrapEl.addEventListener("toggle", () => {
+            if (allWrapEl.open && allEl.dataset.rendered !== "1") {
+              renderAll(items, qEl.value);
+              allEl.dataset.rendered = "1";
+            }
+          });
+
+          qEl.addEventListener("input", () => {
+            renderCats(items, qEl.value);
+            if (allWrapEl.open) renderAll(items, qEl.value);
+          });
+        })();
+        </script>
+      </section>
+
+      <section class="block donate-block">
+        <h2>Support</h2>
+        <p class="category-desc">If this helped you, you can support the project with a small donation.</p>
+        <div class="donate-buttons">
+          <a href="#" rel="noopener">☕ OFUSE</a>
+          <a href="#" rel="noopener">❤️ Ko-fi</a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="small">
+          <p class="small">
+            <a href="/en/">Home</a> /
+            <a href="/en/about.html">About</a> /
+            <a href="/en/privacy.html">Privacy</a> /
+            <a href="/en/contact.html">Contact</a>
+          </p>
+          <p class="small">Owner: NicheWorks</p>
+          <p class="small muted">Some tools may show ads to support operations.</p>
+        </div>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
