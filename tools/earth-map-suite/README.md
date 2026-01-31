@@ -14,3 +14,7 @@ Earth Map Suite is a static tool scaffold for organizing map view requirements a
 
 - This tool runs entirely in the browser.
 - It follows the NicheWorks common spec for ads, donation block, and footer.
+
+## Commercial Use Notice (JAXA)
+
+Before enabling donations, ads, or paid features tied to JAXA/EORC data, contact JAXA to confirm commercial use requirements and permissions.
