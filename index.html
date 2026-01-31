@@ -1,109 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-  <!-- Google Search Console -->
-  <meta name="google-site-verification" content="Zey-xqB1AdfsEAbxFuTGc_lOQ40LuGFgVWp7zwX6TGo" />
-
-  <title>NicheWorks | 静かなWebツール集</title>
-
-  <!-- Description（SEO・OGP・JSON-LDで統一） -->
-  <meta
-    name="description"
-    content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。"
-  >
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="/style.css">
-
-  <!-- Google Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- OGP -->
-  <meta property="og:title" content="NicheWorks | 静かなWebツール集">
-  <meta property="og:description" content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <meta property="og:site_name" content="NicheWorks">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NicheWorks | 静かなWebツール集">
-  <meta name="twitter:description" content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
-  <!-- JSON-LD (WebSite + WebPage) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://nicheworks.pages.dev/#website",
-        "name": "NicheWorks",
-        "url": "https://nicheworks.pages.dev/",
-        "description": "NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。",
-        "publisher": {
-          "@type": "Organization",
-          "name": "NicheWorks"
-        }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://nicheworks.pages.dev/",
-        "name": "NicheWorks | 静かなWebツール集",
-        "url": "https://nicheworks.pages.dev/",
-        "inLanguage": "ja",
-        "description": "NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。",
-        "isPartOf": {
-          "@id": "https://nicheworks.pages.dev/#website"
-        }
-      }
-    ]
-  }
-  </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NicheWorks</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
-
-
 <body>
-  <main class="container">
-
+  <div class="container">
     <header>
-      <h1 class="site-title">
-        <img src="/assets/nicheworks-logo.png" alt="NicheWorks ロゴ" class="site-logo">
-        NicheWorks
-      </h1>
+      <div class="site-title">
+        <img class="site-logo" src="/assets/nicheworks-logo.png" alt="NicheWorks" onerror="this.remove()">
+        <h1>NicheWorks</h1>
+      </div>
 
-      <p class="subtitle">「静かに役立つ」小さなWebツールの詰め合わせ</p>
+      <p class="subtitle">ブラウザだけで使える軽量ツール集。入力データは保存しません（原則ローカル処理）。</p>
 
-      <!-- Header Navigation -->
-      <div class="nav-inline">
+      <nav class="nav-inline" aria-label="Site navigation">
         <a href="./index.html">Home</a>
         <span class="sep">/</span>
         <a href="./about.html">About</a>
@@ -111,187 +24,268 @@
         <a href="./privacy.html">Privacy</a>
         <span class="sep">/</span>
         <a href="./contact.html">Contact</a>
-      </div>
-
-      <!-- Language Switch -->
-      <div class="nav-inline">
-        <span>言語:</span>
-        <a href="./index.html">日本語</a>
         <span class="sep">/</span>
-        <a href="./en/index.html">English</a>
-      </div>
+        <a href="./en/index.html">EN</a>
+      </nav>
     </header>
 
-    <!-- このサイトについて -->
-    <section class="block">
-      <h2>このサイトについて</h2>
-      <p>
-        NicheWorks（ニッチワークス）は、<br>
-        目立たないけれど確かに必要なものを、<br>
-        小さく、静かに、かたちにしていくウェブプロジェクト群です。<br>
-        派手さよりも実用性を、話題性よりも継続性を重視しています。
-      </p>
-
-      <p class="small">
-        → プロジェクトの背景や思想は <a href="./about.html">About ページ</a> にまとめています。
-      </p>
-    </section>
-
-    <!-- ツール一覧（カテゴリ分け） -->
-    <section class="block">
-      <h2>ツール一覧</h2>
-
-      <!-- 文章・テキスト系 -->
-      <h3>文章・テキスト系</h3>
-      <p class="category-desc">テキスト処理・ログ解析などの軽量ツール群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/manual-finder/" target="_blank" rel="noopener">ManualFinder（製品マニュアルリンク集）</a></strong><br>家電・カメラ・スマホなどの公式マニュアルページまとめ。</li>
-        <li><strong><a href="/tools/trashnavi/" target="_blank" rel="noopener">TrashNavi（ごみ分別リンク集）</a></strong><br>自治体ごとの公式ごみ分別ページ・カレンダー。</li>
-        <li><strong><a href="/tools/log-formatter/" target="_blank" rel="noopener">地味ログ整形屋（LogFormatter）</a></strong><br>Nginx / HTTP アクセスログ整形。ローカル処理。</li>
-        <li><strong><a href="/tools/rename-wizard/" target="_blank" rel="noopener">Rename Wizard（ファイル名整形）</a></strong><br>ファイル名の一括整形。プレビューあり。</li>
-        <li><strong><a href="/tools/contract-cleaner/" target="_blank" rel="noopener">Contract Cleaner（契約書クリーナー）</a></strong><br>契約書テキストの危険語句を可視化。</li>
-        <li><strong><a href="/tools/exif-cleaner-mini/" target="_blank" rel="noopener">EXIF Cleaner Mini</a></strong><br>画像のEXIF情報を削除（ローカル処理）。</li>
-        <li><strong><a href="/tools/linebreak-doctor/" target="_blank" rel="noopener">LineBreak Doctor（改行修復）</a></strong><br>SNS投稿向けの不要改行修正。</li>
-        <li><strong><a href="/tools/url-title-collector/" target="_blank" rel="noopener">URL Title Collector</a></strong><br>複数URLのタイトルを一括取得。</li>
-        <li><strong><a href="/tools/message-generator/" target="_blank" rel="noopener">Message Generator</a></strong><br>短文テンプレ生成。</li>
-      </ul>
-
-      <!-- 画像・ファイル処理 -->
-      <h3>画像・ファイル処理</h3>
-      <p class="category-desc">画像・ファイルの変換・解析ツール群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/image-compression-inspector/" target="_blank" rel="noopener">Image Compression Inspector</a></strong><br>画像形式ごとの圧縮率を比較。</li>
-        <li><strong><a href="/tools/color-replace/" target="_blank" rel="noopener">Color Replace</a></strong><br>画像内の特定色を別の色へ置換。</li>
-        <li><strong><a href="/tools/webp-avif-converter/" target="_blank" rel="noopener">WebP / AVIF Converter</a></strong><br>画像を軽量形式へ変換。</li>
-        <li><strong><a href="/tools/filetype-sniffer/" target="_blank" rel="noopener">FileType Sniffer</a></strong><br>ファイルの中身を解析して種別判定。</li>
-      </ul>
-
-      <!-- 解析・変換ツール -->
-      <h3>解析・変換ツール</h3>
-      <p class="category-desc">変換・図式化などのユーティリティ群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/json2mermaid/" target="_blank" rel="noopener">JSON → Mermaid 変換</a></strong><br>JSON構造を自動で図に変換。</li>
-        <li><strong><a href="/tools/unitmaster/" target="_blank" rel="noopener">UnitMaster（単位変換）</a></strong><br>多数の単位を高速変換。</li>
-        <li><strong><a href="/tools/kanji-modernizer/" target="_blank" rel="noopener">Kanji Modernizer</a></strong><br>旧字体→新字体変換。</li>
-        <li><strong><a href="/tools/old-kanji-reference/" target="_blank" rel="noopener">Old Kanji Reference</a></strong><br>旧字体一覧辞書。</li>
-        <li><strong><a href="/tools/redirect-unwrapper/" target="_blank" rel="noopener">Redirect Unwrapper</a></strong><br>短縮URLの最終遷移先を表示。</li>
-      </ul>
-
-      <!-- 生活・実用ツール -->
-      <h3>生活・実用ツール</h3>
-      <p class="category-desc">日常で役立つ実用ツール群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/jp-postal-lite/" target="_blank" rel="noopener">JP Postal Lite</a></strong><br>郵便番号→住所検索。</li>
-        <li><strong><a href="https://unsubscribe-navi.pages.dev/" target="_blank" rel="noopener">解約どこナビ</a></strong><br>各サブスクの公式解約リンク。</li>
-      </ul>
-
-      <!-- その他ユーティリティ -->
-      <h3>その他ユーティリティ</h3>
-      <p class="category-desc">補助的な軽量ユーティリティ群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/weatherdiff/" target="_blank" rel="noopener">WeatherDiff</a></strong><br>複数API予報の比較。地点入力・現在地対応。</li>
-        <li><strong><a href="/tools/wifi-meter/" target="_blank" rel="noopener">WiFi Meter</a></strong><br>周囲Wi-Fiの混雑状況を可視化。</li>
-        <li><strong><a href="/tools/cover-letter-lite/" target="_blank" rel="noopener">Cover Letter Lite</a></strong><br>英文カバーレター生成。</li>
-        <li><strong><a href="/tools/cosmetic-ingredient-checker-lite/" target="_blank" rel="noopener">Cosmetic Ingredient Checker Lite</a></strong><br>化粧品成分の簡易チェック。</li>
-      </ul>
-    </section>
-
-
-    <!-- 運営方針 -->
-    <section class="block">
-      <h2>運営方針</h2>
-      <p class="small">
-        多くのツールは「ブラウザ内で完結する」ことを重視しており、  
-        入力したデータはサーバーに送信せずローカルで処理されます。
-      </p>
-      <p class="small">
-        また、NicheWorks は非営利で運営されていますが、継続のため一部ページに広告を掲載する場合があります。  
-        収益はすべてツールの開発・維持管理・データ整備に利用されます。
-      </p>
-    </section>
-
-    <footer>
-
-      <!-- 寄付ブロック -->
-      <div class="block donate-block">
-        <h2>応援（寄付）</h2>
-        <p class="small">
-          NicheWorks は個人が作っている小さなツール集です。  
-          気に入ったツールがあれば、コーヒー１杯ぶんだけでも支援いただけるととても助かります。
+    <main>
+      <section class="block">
+        <h2>NicheWorks とは</h2>
+        <p class="category-desc">
+          “静かに便利に”。その場で使って終わる、保存なし・匿名利用前提の小さなツール群です。
         </p>
-        <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </section>
+
+      <section class="block">
+        <h2>ツール</h2>
+        <p class="category-desc">
+          検索してすぐ開けるように、カテゴリで短くまとめています。全件は下の「全ツール一覧（長い）」を開いてください。
+        </p>
+
+        <div class="tool-search">
+          <input id="nw-tool-q" class="input" type="search" placeholder="ツール名/キーワードで検索（例: pdf / 画像 / 契約 / 建設）" autocomplete="off">
+          <div class="tool-search-meta">
+            <div class="small muted">合計：<span id="nw-tool-count">...</span></div>
+          </div>
         </div>
-        <p class="small muted">
-          寄付は任意です。いただいた支援は開発費・データ整備などに充てています。
-        </p>
-      </div>
 
-      <div class="small">
-        <p class="small">
-          <a href="./index.html">Home</a> /
-          <a href="./about.html">About</a> /
-          <a href="./privacy.html">Privacy</a> /
-          <a href="./contact.html">Contact</a>
-        </p>
-        <p class="small">運営：NicheWorks</p>
-        <p class="small muted">一部のツールでは運営のため広告が表示される場合があります。</p>
-      </div>
+        <!-- よく使う（短く） -->
+        <div class="tool-pins" id="nw-tool-pins" aria-label="よく使う">
+          <span class="small muted">読み込み中...</span>
+        </div>
 
-    </footer>
+        <!-- カテゴリカード（短く） -->
+        <div id="nw-tool-cats" class="tool-cat-grid">
+          <div class="small muted">読み込み中...</div>
+        </div>
 
-  <section class="block">
-  <h2>全ツール一覧</h2>
-  <p class="category-desc">
-    自動生成リスト。合計：<span id="nw-tool-count">...</span>
-  </p>
+        <!-- 全件（長い）= 折りたたみ＋開いた時だけ描画 -->
+        <details class="tool-all" id="nw-tool-all-wrap">
+          <summary>全ツール一覧（長い）を開く</summary>
+          <div id="nw-tool-all" class="tool-grid">
+            <div class="small muted">（未表示）</div>
+          </div>
+        </details>
 
-  <input id="nw-tool-q" type="search" placeholder="ツールを検索..." style="width:100%; padding:10px; margin:8px 0 12px;">
+        <script>
+        (async function () {
+          const $ = (id) => document.getElementById(id);
 
-  <ul class="list" id="nw-tool-list">
-    <li class="small muted">読み込み中...</li>
-  </ul>
-</section>
+          const qEl = $("nw-tool-q");
+          const pinsEl = $("nw-tool-pins");
+          const catsEl = $("nw-tool-cats");
+          const countEl = $("nw-tool-count");
+          const allWrapEl = $("nw-tool-all-wrap");
+          const allEl = $("nw-tool-all");
 
-<script>
-(async function () {
-  const res = await fetch("/tools/tools-index.json", { cache: "no-store" });
-  const data = await res.json();
+          const escapeHtml = (s) => String(s || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
 
-  const countEl = document.getElementById("nw-tool-count");
-  const qEl = document.getElementById("nw-tool-q");
-  const listEl = document.getElementById("nw-tool-list");
+          const normalize = (it) => {
+            const name = (it.title_ja && it.title_ja !== it.slug) ? it.title_ja : it.slug;
+            const desc = (it.desc_ja || "").trim();
+            return { ...it, name, desc };
+          };
 
-  countEl.textContent = data.total;
+          // 上に出す（短く）
+          const PINNED = [
+            "construction-tools-atlas",
+            "pdf2csv-local",
+            "api-key-token-redactor",
+            "command-safety-checker",
+            "contract-cleaner",
+            "exif-cleaner-mini",
+            "filetype-sniffer",
+            "image-compression-inspector",
+            "color-replace",
+            "json2mermaid",
+            "jp-postal-lite",
+            "wifi-meter",
+            "weatherdiff"
+          ];
 
-  const render = (q) => {
-    const query = (q || "").trim().toLowerCase();
-    const items = data.items.filter(it => {
-      const hay = `${it.slug} ${it.title_ja} ${it.desc_ja} ${(it.tags||[]).join(" ")}`.toLowerCase();
-      return !query || hay.includes(query);
-    });
+          // カテゴリは “短く” まとめる（定義順で表示）
+          const CATS = [
+            { key: "PDF/書類", hint: "PDF/CSV/明細など", match: (s) => /pdf|csv|xlsx|invoice|receipt|statement/.test(s) },
+            { key: "画像/ファイル", hint: "画像/EXIF/変換/圧縮など", match: (s) => /image|exif|webp|avif|color|compress|resize|png|jpg|filetype|sniffer/.test(s) },
+            { key: "文章/作業", hint: "文章整形/テンプレ/契約など", match: (s) => /contract|cover-letter|linebreak|message|rename|log|text|paste|doc/.test(s) },
+            { key: "開発/安全", hint: "JSON/コマンド/キー/プライバシー", match: (s) => /json|mermaid|token|api|key|format|privacy|risk|sql/.test(s) },
+            { key: "生活", hint: "郵便/天気/Wi-Fi/家事など", match: (s) => /postal|wifi|weather|laundry|trash|manual/.test(s) },
+            { key: "建設", hint: "建設/現場の辞典", match: (s) => /construction/.test(s) },
+            { key: "その他", hint: "その他", match: (_) => true }
+          ];
 
-    listEl.innerHTML = items.map(it => {
-      const name = it.title_ja && it.title_ja !== it.slug ? it.title_ja : it.slug;
-      const desc = it.desc_ja ? `<br><span class="small muted">${it.desc_ja}</span>` : "";
-      return `<li><strong><a href="/tools/${it.slug}/" target="_blank" rel="noopener">${name}</a></strong>${desc}</li>`;
-    }).join("");
+          const toolLink = (it) => {
+            const name = escapeHtml(it.name);
+            const desc = escapeHtml(it.desc);
+            const href = `/tools/${it.slug}/`;
+            return `<li>
+              <strong><a href="${href}" target="_blank" rel="noopener">${name}</a></strong>
+              ${desc ? `<div class="small muted">${desc}</div>` : ``}
+            </li>`;
+          };
 
-    if (!items.length) {
-      listEl.innerHTML = `<li class="small muted">該当なし</li>`;
-    }
-  };
+          const pill = (it) => {
+            const name = escapeHtml(it.name);
+            const href = `/tools/${it.slug}/`;
+            return `<a class="pill" href="${href}" target="_blank" rel="noopener">${name}</a>`;
+          };
 
-  qEl.addEventListener("input", () => render(qEl.value));
-  render("");
-})();
-</script>
+          const card = (catKey, hint, list) => {
+            const LIMIT = 6;
+            const shown = list.slice(0, LIMIT);
+            const hidden = list.slice(LIMIT);
+            const id = "cat_" + catKey.replaceAll(/[^a-zA-Z0-9]+/g, "_");
 
-</main>
+            return `<section class="tool-cat-card" data-cat="${escapeHtml(catKey)}">
+              <div class="tool-cat-top">
+                <div class="tool-cat-head">
+                  <div class="tool-cat-title">${escapeHtml(catKey)} <span class="tool-cat-count">(${list.length})</span></div>
+                  <div class="tool-cat-hint">${escapeHtml(hint)}</div>
+                </div>
+                ${hidden.length ? `<button class="tool-more" type="button" data-target="${escapeHtml(id)}">もっと見る</button>` : ``}
+              </div>
 
-  <!-- Cloudflare Web Analytics -->
-  
+              <ul class="list compact">
+                ${shown.map(toolLink).join("")}
+              </ul>
 
+              ${hidden.length ? `
+                <div id="${escapeHtml(id)}" class="tool-hidden" hidden>
+                  <ul class="list compact">
+                    ${hidden.map(toolLink).join("")}
+                  </ul>
+                </div>` : ``}
+            </section>`;
+          };
+
+          const byCategory = (items) => {
+            const buckets = new Map();
+            for (const it of items) {
+              const s = `${it.slug} ${it.name} ${it.desc} ${(it.tags || []).join(" ")}`.toLowerCase();
+              const cat = (CATS.find(c => c.match(s)) || CATS[CATS.length - 1]).key;
+              if (!buckets.has(cat)) buckets.set(cat, []);
+              buckets.get(cat).push(it);
+            }
+            const ordered = [];
+            for (const c of CATS) {
+              if (buckets.has(c.key)) ordered.push([c.key, c.hint, buckets.get(c.key)]);
+            }
+            return ordered;
+          };
+
+          const renderPinned = (items) => {
+            const map = new Map(items.map(it => [it.slug, it]));
+            const pinned = PINNED.map(slug => map.get(slug)).filter(Boolean);
+            pinsEl.innerHTML = pinned.length
+              ? pinned.map(pill).join("")
+              : `<span class="small muted">（ピン留めなし）</span>`;
+          };
+
+          const filterItems = (items, q) => {
+            const query = (q || "").trim().toLowerCase();
+            if (!query) return items;
+            return items.filter(it => {
+              const hay = `${it.slug} ${it.name} ${it.desc} ${(it.tags||[]).join(" ")}`.toLowerCase();
+              return hay.includes(query);
+            });
+          };
+
+          const renderCats = (items, q) => {
+            const filtered = filterItems(items, q);
+            const groups = byCategory(filtered);
+
+            catsEl.innerHTML = groups
+              .filter(([_, __, list]) => list.length)
+              .map(([catKey, hint, list]) => card(catKey, hint, list))
+              .join("") || `<div class="small muted">該当なし</div>`;
+
+            // “もっと見る”
+            catsEl.querySelectorAll(".tool-more").forEach(btn => {
+              btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-target");
+                const box = document.getElementById(id);
+                if (box) box.hidden = false;
+                btn.remove();
+              }, { once: true });
+            });
+          };
+
+          const renderAll = (items, q) => {
+            const filtered = filterItems(items, q);
+            allEl.innerHTML = filtered.map(it => {
+              const name = escapeHtml(it.name);
+              const desc = escapeHtml(it.desc);
+              const href = `/tools/${it.slug}/`;
+              return `<a class="tool-card" href="${href}" target="_blank" rel="noopener">
+                <div class="tool-card-title">${name}</div>
+                ${desc ? `<div class="tool-card-desc">${desc}</div>` : `<div class="tool-card-desc muted">（説明なし）</div>`}
+                <div class="tool-card-meta">${escapeHtml(it.slug)}</div>
+              </a>`;
+            }).join("") || `<div class="small muted">該当なし</div>`;
+          };
+
+          let data;
+          try {
+            const res = await fetch("/tools/tools-index.json", { cache: "no-store" });
+            data = await res.json();
+          } catch (e) {
+            pinsEl.innerHTML = `<span class="small muted">読み込み失敗</span>`;
+            catsEl.innerHTML = `<div class="small muted">読み込み失敗</div>`;
+            allEl.innerHTML = `<div class="small muted">読み込み失敗</div>`;
+            return;
+          }
+
+          const items = (data.items || []).map(normalize);
+          countEl.textContent = String(data.total || items.length);
+
+          renderPinned(items);
+          renderCats(items, "");
+
+          // 全件は「開いた時だけ」描画
+          allEl.innerHTML = `<div class="small muted">（未表示）</div>`;
+          allWrapEl.addEventListener("toggle", () => {
+            if (allWrapEl.open && allEl.dataset.rendered !== "1") {
+              renderAll(items, qEl.value);
+              allEl.dataset.rendered = "1";
+            }
+          });
+
+          qEl.addEventListener("input", () => {
+            renderCats(items, qEl.value);
+            if (allWrapEl.open) renderAll(items, qEl.value);
+          });
+        })();
+        </script>
+      </section>
+
+      <section class="block donate-block">
+        <h2>運営サポート</h2>
+        <p class="category-desc">もし役に立ったら、サポート（寄付）で応援できます。</p>
+        <div class="donate-buttons">
+          <a href="#" rel="noopener">☕ OFUSE</a>
+          <a href="#" rel="noopener">❤️ Ko-fi</a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="small">
+          <p class="small">
+            <a href="./index.html">Home</a> /
+            <a href="./about.html">About</a> /
+            <a href="./privacy.html">Privacy</a> /
+            <a href="./contact.html">Contact</a>
+          </p>
+          <p class="small">運営：NicheWorks</p>
+          <p class="small muted">一部のツールでは運営のため広告が表示される場合があります。</p>
+        </div>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
