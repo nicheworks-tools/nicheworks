@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codex Usage Forecaster | NicheWorks</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/codex-usage-forecaster/usage.html:G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'tools/codex-usage-forecaster/usage.html:G-57QT78M3JB');
+  </script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">◉</div>
+          <div class="titles">
+            <h1>Codex Usage Forecaster</h1>
+            <p class="tagline">Track burn rate. Predict.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="lang">
+            <a href="../index.html">JA</a>
+            <span>·</span>
+            <a href="./index.html" aria-current="page">EN</a>
+          </div>
+          <button class="themeBtn" type="button" id="themeToggle" aria-label="Toggle theme">☾</button>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="./index.html" aria-current="page">Dashboard</a>
+        <a href="./usage.html">Usage</a>
+        <a href="./howto.html">HowTo</a>
+      </nav>
+    </header>
+
+    <section class="ad" aria-label="Ad">
+      <p class="label">Ad</p>
+      <div class="box"></div>
+    </section>
+
+    <main>
+      <section class="card">
+        <h2>Forecast</h2>
+        <p class="muted small">More logs = better forecast. Stored only on this device (local).</p>
+        <div class="kpi" id="kpi">
+          <div class="item">
+            <p class="k">5-hour window: depletion ETA</p>
+            <p class="v" id="kpi5h">—</p>
+            <p class="small" id="kpi5hSub">—</p>
+          </div>
+          <div class="item">
+            <p class="k">Weekly window: depletion ETA</p>
+            <p class="v" id="kpiW">—</p>
+            <p class="small" id="kpiWSub">—</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Add a log</h2>
+
+        <div class="grid two">
+          <div class="field">
+            <div class="label">5-hour usage (%)</div>
+            <input class="input" id="in5h" inputmode="decimal" placeholder="e.g. 62" />
+            <div class="small">Enter the % shown in your UI</div>
+          </div>
+
+          <div class="field">
+            <div class="label">Weekly usage (%)</div>
+            <input class="input" id="inWeek" inputmode="decimal" placeholder="e.g. 18" />
+            <div class="small">Weekly cap is the pain point</div>
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:10px;">
+          <div class="field">
+            <div class="label">Mode</div>
+            <select class="select" id="inMode">
+              <option value="cloud">cloud (ChatGPT Codex)</option>
+              <option value="cli">cli (Codex CLI)</option>
+              <option value="local">local</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label">Model / setting (optional)</div>
+            <input class="input" id="inModel" placeholder="e.g. gpt-5.2 / mini / high" />
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:10px;">
+          <div class="label">Note (optional)</div>
+          <textarea class="textarea" id="inNote" placeholder="e.g. big refactor = worse burn rate"></textarea>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <button class="btn primary" id="btnSave">Save</button>
+          <button class="btn" id="btnExport">Export (JSON)</button>
+          <button class="btn" id="btnImport">Import</button>
+          <input type="file" id="fileImport" accept="application/json" style="display:none;" />
+          <span class="small" id="saveHint"></span>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Logs</h2>
+        <p class="muted small">Newest first. Delete only affects this device.</p>
+        <div style="overflow:auto;">
+          <table class="table" id="logTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>5h%</th>
+                <th>week%</th>
+                <th>mode</th>
+                <th>model</th>
+                <th>note</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="logBody">
+              <tr><td colspan="7" class="muted">No logs yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="row">
+        <span>Donate:</span>
+        <a href="https://nicheworks.app/">Ko-fi</a>
+        <a href="https://nicheworks.app/">OFUSE</a>
+        <span>·</span>
+        <a href="https://nicheworks.app/">Other tools</a>
+      </div>
+      <div class="row" style="margin-top:6px;">
+        <span>© NicheWorks</span>
+        <span>·</span>
+        <span>Local-only (no uploads)</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../app.js"></script>
+</body>
+</html>
