@@ -1,2 +1,53 @@
 # Codex Usage Forecaster (NicheWorks)
-Scaffold created. Next tasks will apply NicheWorks common spec + analytics/ads + full functionality.
+
+目的：Codex等の「表示される使用率%」をユーザーが記録し、燃費（%/時・%/日）から枠の枯渇タイミングを推定する。  
+公式上限の数値が非公開でも「自分の作業がどれくらい%を消費するか（燃費）」を掴めるようにする。
+
+## 非ゴール
+- 公式の上限値（絶対量）を当てること
+- サーバー連携・アカウント・ログイン（やらない）
+- 外部にログを送信して集計すること（やらない）
+
+## 仕様（完成形）
+### データ保存
+- logs / profiles / settings は **localStorage** に保存
+- アップロード無し（ローカル完結）
+- 端末移行は Export/Import（JSON）
+
+### ログ（logs）
+- 入力：weekly% / 5h%（どちらか片方でもOK）
+- タグ：mode / status / model / note
+- 目的：燃費推定と、作業内容ごとの燃費差をフィルタで分離
+
+### 予測（forecast）
+- 燃費：
+  - weekly: %/day（ログ間の差分を時間で割って日換算）
+  - 5h: %/hour（同様に時換算）
+- ETA：
+  - 現在の%から100%到達までの所要時間を推定
+- リセット：
+  - auto：%が下がった瞬間を検出して周期推定（ヒューリスティック）
+  - manual：手動入力を最優先
+
+### フィルタ
+- mode/status/model/note contains
+- 「Forecast uses filters」をONにすると、現在の絞り込みログだけで予測する
+  - heavy/light 等のプロファイル運用が可能
+
+### Profiles
+- フィルタ状態 + affectsForecast を名前付き保存
+- 同名は上書き（増殖しない）
+
+### UI / 共通仕様
+- NicheWorks共通：ヘッダー、ナビ、フッター、広告枠、日英切替、テーマ切替
+- ページ：Dashboard / Usage / HowTo（JA/EN）
+- 空状態：ログ0件の場合は空状態メッセージを表示（ログテーブルは非表示）
+
+### 解析/広告（最低限）
+- GA4：ページビュー + 主要ボタンの最小イベント（保存/Export/Import/プロファイル/リセット）
+- AdSense：枠を用意（実表示は運用側で調整）
+
+## 既知の限界
+- ログが少ないと燃費が荒れる（最低2件、推奨5件+）
+- 作業内容/モデル変更で燃費が突然変わると外れる
+- リセット推定はヒューリスティック（分かるなら手動が最強）

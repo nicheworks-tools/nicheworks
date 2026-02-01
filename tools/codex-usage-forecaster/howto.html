@@ -4,18 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HowTo | Codex Usage Forecaster | NicheWorks</title>
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/money-template-checker/index.html:ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/redirect-unwrapper/howto/en/index.html:G-57QT78M3JB"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'tools/redirect-unwrapper/howto/en/index.html:G-57QT78M3JB');
+    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
   </script>
-<link rel="stylesheet" href="./style.css" />
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div class="container">
@@ -52,16 +55,84 @@
 
     <main>
       <section class="card">
-        <h2>HowTo</h2>
-        <p class="muted">ここに短いHowTo（JA）を書きます（後続タスクで埋める）。</p>
+        <h2>HowTo（運用テンプレ）</h2>
+        <p class="muted">
+          これは “使いながら精度を上げる” タイプのツール。  
+          下のテンプレどおりにログを取ると、数日でペース感が掴める。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>テンプレ①：最小運用（週枠だけ）</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>週%だけ入力 → 保存（mode/status/model/note は空でもOK）</li>
+          <li>同じ日にもう1回、週%を入力 → 保存（最低2ログ）</li>
+          <li>週の燃費（%/日）と枯渇ETAを見る</li>
+          <li>燃費が荒れるなら、noteに「重い作業/軽い作業」を書き分けてフィルタ</li>
+        </ol>
+        <p class="small muted">おすすめ：朝/夜で1日2回ログ（週枠の燃費が安定しやすい）</p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>テンプレ②：短期運用（5時間枠も見る）</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>作業開始前に 5h% / 週% を入力して保存</li>
+          <li>作業終了後にもう一度入力して保存</li>
+          <li>5hの燃費（%/時）が出る → 「この作業は重い/軽い」が見える</li>
+        </ol>
+        <p class="small muted">5h%は短期のペース配分に強い（「あと何時間できるか」）</p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>プロファイル運用（おすすめ）</h2>
+        <div class="muted" style="line-height:1.8;">
+          <p><strong>例：2種類だけで良い</strong></p>
+          <ul>
+            <li><strong>heavy</strong>：大規模PR / 検索多め / 生成量多め</li>
+            <li><strong>light</strong>：微修正 / 文章編集 / 小さめPR</li>
+          </ul>
+          <p>
+            ログに note=heavy/light を入れる → フィルタで切替 → <strong>Profiles保存</strong>。  
+            以降ワンクリックで燃費を切り替えられる。
+          </p>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>リセットを手動で固定する（精度UP）</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>枠が更新された直後（%が戻った直後）に、その時刻を覚える</li>
+          <li>Dashboard下部「手動リセット」に次のリセット日時を入力して保存</li>
+          <li>KPIのサブ行が「手動」になったらOK</li>
+        </ol>
+        <p class="small muted">リセット日時が確かなら、予測のズレが一気に減る</p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>データ移行（Export/Import）</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>ExportでJSONを保存（ログ/プロファイル/設定が入る）</li>
+          <li>別端末や別ブラウザでImport</li>
+        </ol>
+        <p class="small muted">localStorageなので “Exportが保険”</p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>困ったら</h2>
+        <ul class="muted" style="line-height:1.8;">
+          <li>ログが2件未満 → まず2件入れる</li>
+          <li>燃費が荒い → heavy/lightで分けてフィルタ＋Profiles保存</li>
+          <li>リセットでズレる → 手動リセットを入れる</li>
+          <li>週枠が主戦場 → 週%だけで運用してOK</li>
+        </ul>
       </section>
     </main>
 
     <footer class="footer">
       <div class="row">
         <span>Donate:</span>
-        <a href="https://ko-fi.com/nicheworks">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks">OFUSE</a>
+        <a href="https://nicheworks.app/">Ko-fi</a>
+        <a href="https://nicheworks.app/">OFUSE</a>
         <span>·</span>
         <a href="https://nicheworks.app/">Other tools</a>
       </div>
@@ -73,6 +144,32 @@
     </footer>
   </div>
 
-  <script src="./app.js"></script>
+  <script>
+    // theme only
+    (function(){
+      const KEY="nw_theme";
+      const root=document.documentElement;
+      function pref(){
+        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v; }catch(e){}
+        const d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return d?"dark":"light";
+      }
+      function apply(t){
+        root.setAttribute("data-theme", t);
+        const b=document.getElementById("themeToggle");
+        if(b){ b.textContent = t==="dark" ? "☀" : "☾"; }
+      }
+      apply(pref());
+      const btn=document.getElementById("themeToggle");
+      if(btn){
+        btn.addEventListener("click", function(){
+          const cur=root.getAttribute("data-theme")==="dark"?"dark":"light";
+          const next=cur==="dark"?"light":"dark";
+          apply(next);
+          try{ localStorage.setItem(KEY,next); }catch(e){}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

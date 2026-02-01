@@ -56,100 +56,82 @@
     <main>
       <section class="card">
         <h2>What is this?</h2>
-        <p>
-          When you only see <b>usage percentage (%)</b> but not the absolute quota,
-          this tool estimates your <b>burn rate</b> from logs and predicts depletion ETA for
-          the <b>5-hour</b> and <b>weekly</b> windows.
-        </p>
-        <p class="muted small">
-          It does not try to reveal the absolute cap (often unpublished/variable). It stays useful even when caps change.
+        <p class="muted">
+          A local-only tool to log your visible “usage %” and estimate <strong>depletion ETA</strong>
+          using burn rate. Even if official caps are opaque, burn rate gives you a practical pacing signal.
         </p>
       </section>
 
       <section class="card" style="margin-top:12px;">
-        <h2>Why burn-rate?</h2>
-        <ul>
-          <li>Absolute caps may be unpublished or vary by plan/model/system load</li>
-          <li>Same work can “cost” different % depending on settings</li>
-          <li>Reset timing is hard to feel (per-window rolling behavior)</li>
-        </ul>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>What you log</h2>
-        <ul>
-          <li><b>5-hour usage (%)</b> (optional)</li>
-          <li><b>Weekly usage (%)</b> (optional)</li>
-          <li><b>Mode</b>: cloud / cli / local / other</li>
-          <li><b>Model/setting</b>: e.g. gpt-5.2 / mini / high (optional note)</li>
-          <li><b>Note</b>: what you did</li>
-        </ul>
-        <p class="muted small">You can save with only one of the two percentages. Both empty is not allowed.</p>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>Forecast logic (current minimal robust version)</h2>
-        <ol>
-          <li>Use only positive deltas of % between logs (ignore resets/zeros)</li>
-          <li>Compute burn rate:
-            <ul>
-              <li>5-hour: <b>% per hour</b></li>
-              <li>Weekly: <b>% per day</b></li>
-            </ul>
-          </li>
-          <li>Use median of recent deltas (up to 5) for stability</li>
-          <li>ETA = (100 - current%) / burn rate</li>
+        <h2>Quick start</h2>
+        <ol class="muted" style="line-height:1.7;">
+          <li>On Dashboard, enter <strong>5h%</strong> / <strong>Weekly%</strong> and click Save</li>
+          <li>Log at least twice (e.g. morning + night)</li>
+          <li>See burn rate and depletion ETA</li>
         </ol>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>All patterns & predictability</h2>
-        <div style="overflow:auto;">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Pattern</th>
-                <th>Visible values</th>
-                <th>Predictable?</th>
-                <th>Needed logs</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>5-hour only</td><td>5h%</td><td>Yes</td><td>2+ logs</td><td>Unstable right after reset</td></tr>
-              <tr><td>Weekly only</td><td>week%</td><td>Yes</td><td>2+ logs</td><td>More variance; log more often</td></tr>
-              <tr><td>Both</td><td>5h% + week%</td><td>Best</td><td>2+ each</td><td>Most useful</td></tr>
-              <tr><td>Mixed environments</td><td>% same</td><td>Yes</td><td>works mixed</td><td>Better if separated later</td></tr>
-              <tr><td>Model switching</td><td>% same</td><td>Yes</td><td>logs across switch</td><td>Keep model/note</td></tr>
-              <tr><td>Plan differences</td><td>% exists</td><td>Yes</td><td>logs before/after</td><td>Absolute cap still unknown</td></tr>
-              <tr><td>Absolute caps known</td><td>fixed cap</td><td>Yes</td><td>few logs</td><td>Can add absolute mode later</td></tr>
-              <tr><td>Caps unpublished/variable</td><td>% only</td><td>Yes</td><td>logs required</td><td>Main use case</td></tr>
-              <tr><td>“status” visible/hidden</td><td>UI varies</td><td>Partial</td><td>note it</td><td>Future: use status to adjust burn</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="muted small">
-          “status” may appear as available / limited / rate-limited / cooldown etc depending on UI.
-          This tool does not auto-capture status yet—write it in notes if it matters.
+        <p class="small muted" style="margin-top:10px;">
+          You can log weekly only. 5h% is optional.
         </p>
       </section>
 
       <section class="card" style="margin-top:12px;">
-        <h2>Privacy / Data</h2>
-        <ul>
-          <li>Stored in browser localStorage (this device/browser only)</li>
-          <li>No uploads / no server sync</li>
-          <li>Use Export/Import for migration</li>
+        <h2>Burn profiles (filters)</h2>
+        <p class="muted">
+          Burn rate changes by workload (big PR vs tiny edits).  
+          Tag logs with <strong>mode / status / model / note</strong>, then filter to forecast the current situation.
+        </p>
+        <ul class="muted" style="line-height:1.7;">
+          <li><strong>mode</strong>: cloud / cli / local / other</li>
+          <li><strong>status</strong>: your own memo is fine (ok/warn/limited/cooldown)</li>
+          <li><strong>model</strong>: mini/high etc (if known)</li>
+          <li><strong>note</strong>: “search-heavy”, “big PR”, etc</li>
         </ul>
+        <p class="small muted" style="margin-top:10px;">
+          “Forecast uses filters” = yes uses only filtered logs for prediction.
+        </p>
       </section>
 
       <section class="card" style="margin-top:12px;">
-        <h2>Troubleshooting</h2>
-        <ul>
-          <li>ETA says “need more logs”: you need 2+ logs for that window</li>
-          <li>Weird burn rate: a noisy log may exist—delete it</li>
-          <li>Reset caused % to drop: normal—add 2 logs after reset</li>
-          <li>Data missing on another device: use Export/Import</li>
+        <h2>Resets (window renewals)</h2>
+        <p class="muted">
+          Sometimes reset happens before depletion. When likely, the subline says so.
+          Auto estimation is heuristic; manual pin is the most accurate option.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Profiles</h2>
+        <p class="muted">
+          Save current filter state as a named profile. Duplicate names overwrite (no duplicates).
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>FAQ</h2>
+        <div class="muted" style="line-height:1.8;">
+          <p><strong>Q. If caps are unknown, is this useful?</strong><br/>
+            A. Yes. Burn rate (%/h, %/day) is actionable pacing information even without absolute caps.
+          </p>
+          <p><strong>Q. What should I log?</strong><br/>
+            A. Weekly% is often the main constraint. Log 5h% when you need short-horizon pacing.
+          </p>
+          <p><strong>Q. What is “status”?</strong><br/>
+            A. It can be your own label. Use it to separate situations where burn rate differs.
+          </p>
+          <p><strong>Q. Does it upload my data?</strong><br/>
+            A. No uploads. Logs/profiles/settings stay in localStorage. (Analytics/ads are for page views.)
+          </p>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Known limitations</h2>
+        <ul class="muted" style="line-height:1.7;">
+          <li>This does not reveal official caps; it estimates from burn rate.</li>
+          <li>Few logs = noisy rate (2 minimum; 5+ recommended).</li>
+          <li>Workload/model changes can shift burn rate suddenly.</li>
+          <li>Reset estimation is heuristic; pin manually if you can.</li>
+          <li>localStorage is per browser; use Export/Import for migration.</li>
         </ul>
       </section>
     </main>
@@ -170,6 +152,32 @@
     </footer>
   </div>
 
-  <script src="../app.js"></script>
+  <script>
+    // theme only
+    (function(){
+      const KEY="nw_theme";
+      const root=document.documentElement;
+      function pref(){
+        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v; }catch(e){}
+        const d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return d?"dark":"light";
+      }
+      function apply(t){
+        root.setAttribute("data-theme", t);
+        const b=document.getElementById("themeToggle");
+        if(b){ b.textContent = t==="dark" ? "☀" : "☾"; }
+      }
+      apply(pref());
+      const btn=document.getElementById("themeToggle");
+      if(btn){
+        btn.addEventListener("click", function(){
+          const cur=root.getAttribute("data-theme")==="dark"?"dark":"light";
+          const next=cur==="dark"?"light":"dark";
+          apply(next);
+          try{ localStorage.setItem(KEY,next); }catch(e){}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

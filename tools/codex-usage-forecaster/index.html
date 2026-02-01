@@ -4,18 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codex Usage Forecaster | NicheWorks</title>
+  <meta name="description" content="Codex等の使用率%を記録して燃費（%/時・%/日）から枠の枯渇タイミングを推定する。ローカル保存・アップロードなし。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/codex-usage-forecaster/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Codex Usage Forecaster" />
+  <meta property="og:description" content="燃費で枠を予測する（ローカル保存・アップロードなし）" />
+  <meta property="og:url" content="https://nicheworks.app/tools/codex-usage-forecaster/" />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/codex-usage-forecaster/usage.html:G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
+    gtag('config', 'tools/codex-usage-forecaster/usage.html:G-57QT78M3JB');
   </script>
 
   <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/money-template-checker/index.html:ca-pub-9879006623791275"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="./style.css" />
@@ -53,117 +60,56 @@
       <div class="box"></div>
     </section>
 
-    <main>
+    <main class="grid">
       <section class="card">
-        <h2>予測</h2>
-        <p class="muted small">フィルタ（mode / model / status）をかけた状態で燃費と枯渇予測を計算できる。枠更新（リセット）も推定。</p>
+        <h2>入力 → 保存 → 予測</h2>
 
-        <div class="kpi" id="kpi">
-          <div class="item wide">
-            <p class="k">5時間枠：枯渇ETA</p>
-            <p class="v" id="kpi5hDeplete">—</p>
-            <p class="small" id="kpi5hDepleteSub">—</p>
+        <div class="kpis" style="margin-top:10px;">
+          <div class="kpi">
+            <p class="label">週（燃費 / 枯渇ETA）</p>
+            <p class="value" id="kpi_week_main">—</p>
+            <p class="sub" id="kpi_week_sub">ログが必要</p>
           </div>
-
-          <div class="item wide">
-            <p class="k">5時間枠：次のリセット推定</p>
-            <p class="v" id="kpi5hReset">—</p>
-            <p class="small" id="kpi5hResetSub">—</p>
+          <div class="kpi">
+            <p class="label">5時間（燃費 / 枯渇ETA）</p>
+            <p class="value" id="kpi_5h_main">—</p>
+            <p class="sub" id="kpi_5h_sub">ログが必要</p>
           </div>
-
-          <div class="item wide">
-            <p class="k">週枠：枯渇ETA</p>
-            <p class="v" id="kpiWDeplete">—</p>
-            <p class="small" id="kpiWDepleteSub">—</p>
-          </div>
-
-          <div class="item wide">
-            <p class="k">週枠：次のリセット推定</p>
-            <p class="v" id="kpiWReset">—</p>
-            <p class="small" id="kpiWResetSub">—</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>ログを追加</h2>
-
-        <div class="grid two">
-          <div class="field">
-            <div class="label">5時間枠：現在の使用率（%）</div>
-            <input class="input" id="in5h" inputmode="decimal" placeholder="例: 62" />
-            <div class="small">画面に出ている「使用した%」をそのまま入れる</div>
-          </div>
-
-          <div class="field">
-            <div class="label">週枠：現在の使用率（%）</div>
-            <input class="input" id="inWeek" inputmode="decimal" placeholder="例: 18" />
-            <div class="small">週の上限が厄介なのでここが主戦場</div>
+          <div class="kpi">
+            <p class="label">次のリセット（推定/手動）</p>
+            <p class="value" id="kpi_reset_main">—</p>
+            <p class="sub" id="kpi_reset_sub">auto / manual</p>
           </div>
         </div>
 
-        <div class="grid two" style="margin-top:10px;">
+        <hr class="sep"/>
+
+        <div class="row" style="margin-top:2px;">
           <div class="field">
-            <div class="label">利用形態（mode）</div>
-            <select class="select" id="inMode">
-              <option value="cloud">cloud（ChatGPT上のCodex）</option>
-              <option value="cli">cli（Codex CLI）</option>
-              <option value="local">local（ローカル実行）</option>
+            <label for="in_week">週の使用率（%）</label>
+            <input id="in_week" inputmode="decimal" placeholder="例: 42" />
+          </div>
+          <div class="field">
+            <label for="in_5h">5時間の使用率（%）</label>
+            <input id="in_5h" inputmode="decimal" placeholder="例: 18" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <div class="field">
+            <label for="in_mode">mode</label>
+            <select id="in_mode">
+              <option value="">(none)</option>
+              <option value="cloud">cloud</option>
+              <option value="cli">cli</option>
+              <option value="local">local</option>
               <option value="other">other</option>
             </select>
           </div>
 
           <div class="field">
-            <div class="label">ステータス（任意）</div>
-            <select class="select" id="inStatus">
-              <option value="unknown">unknown</option>
-              <option value="ok">ok</option>
-              <option value="warn">warn（残り少）</option>
-              <option value="limited">limited / rate-limited</option>
-              <option value="cooldown">cooldown</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid two" style="margin-top:10px;">
-          <div class="field">
-            <div class="label">モデル/設定（任意）</div>
-            <input class="input" id="inModel" placeholder="例: gpt-5.2 / mini / high" />
-          </div>
-
-          <div class="field">
-            <div class="label">メモ（任意）</div>
-            <input class="input" id="inNote" placeholder="例: 大規模PR / 検索多め / 軽微修正" />
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:10px;">
-          <button class="btn primary" id="btnSave">保存</button>
-          <button class="btn" id="btnExport">エクスポート（JSON）</button>
-          <button class="btn" id="btnImport">インポート</button>
-          <input type="file" id="fileImport" accept="application/json" style="display:none;" />
-          <span class="small" id="saveHint"></span>
-        </div>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <div class="noteRow">
-          <h2 style="margin:0;">ログ</h2>
-          <span class="small dim" id="logCount">—</span>
-        </div>
-
-        <div class="filters" aria-label="filters">
-          <div class="field">
-            <div class="label">Filter: mode</div>
-            <select class="select" id="filterMode">
-              <option value="">all</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <div class="label">Filter: status</div>
-            <select class="select" id="filterStatus">
-              <option value="">all</option>
+            <label for="in_status">status</label>
+            <select id="in_status">
               <option value="unknown">unknown</option>
               <option value="ok">ok</option>
               <option value="warn">warn</option>
@@ -173,41 +119,170 @@
           </div>
 
           <div class="field">
-            <div class="label">Filter: model contains</div>
-            <input class="input" id="filterModel" placeholder="例: mini" />
-          </div>
-
-          <div class="field">
-            <div class="label">Filter: note contains</div>
-            <input class="input" id="filterNote" placeholder="例: PR" />
-          </div>
-
-          <div class="field" style="min-width:160px;">
-            <div class="label">Forecast uses filters</div>
-            <select class="select" id="filterAffectsForecast">
-              <option value="yes" selected>yes</option>
-              <option value="no">no（全ログで予測）</option>
+            <label for="in_model">model</label>
+            <select id="in_model">
+              <option value="">(none)</option>
+              <option value="mini">mini</option>
+              <option value="high">high</option>
+              <option value="other">other</option>
             </select>
           </div>
         </div>
 
-        <div style="overflow:auto;">
-          <table class="table" id="logTable">
+        <div class="row" style="margin-top:10px;">
+          <div class="field" style="flex: 1 1 420px; min-width: 220px;">
+            <label for="in_note">note</label>
+            <input id="in_note" placeholder="例: heavy / light / search-heavy / big PR" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <button class="btn primary" type="button" id="btn_save">保存</button>
+          <span class="pill" id="pill_count">logs: 0</span>
+
+          <span style="flex:1 1 auto;"></span>
+
+          <label class="pill" style="cursor:pointer;">
+            <input type="checkbox" id="chk_affects" style="vertical-align:middle; margin-right:6px;">
+            Forecast uses filters
+          </label>
+        </div>
+
+        <div class="hint" id="hint_box" style="display:none;"></div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>フィルタ</h2>
+        <div class="row" style="margin-top:8px;">
+          <div class="field">
+            <label for="f_mode">mode</label>
+            <select id="f_mode">
+              <option value="">(all)</option>
+              <option value="cloud">cloud</option>
+              <option value="cli">cli</option>
+              <option value="local">local</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f_status">status</label>
+            <select id="f_status">
+              <option value="">(all)</option>
+              <option value="unknown">unknown</option>
+              <option value="ok">ok</option>
+              <option value="warn">warn</option>
+              <option value="limited">limited</option>
+              <option value="cooldown">cooldown</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f_model">model</label>
+            <select id="f_model">
+              <option value="">(all)</option>
+              <option value="mini">mini</option>
+              <option value="high">high</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <div class="field" style="flex: 1 1 420px; min-width: 220px;">
+            <label for="f_note">note contains</label>
+            <input id="f_note" placeholder="例: heavy" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <button class="btn" type="button" id="btn_clear_filters">フィルタ解除</button>
+          <span class="pill" id="pill_filtered">filtered: 0</span>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Profiles</h2>
+        <div class="row" style="margin-top:8px;">
+          <div class="field" style="min-width: 220px;">
+            <label for="profiles_select">保存済み</label>
+            <select id="profiles_select"></select>
+          </div>
+          <button class="btn" type="button" id="btn_apply_profile">適用</button>
+          <button class="btn danger" type="button" id="btn_delete_profile">削除</button>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <div class="field" style="flex: 1 1 320px; min-width: 220px;">
+            <label for="profile_name">新規/上書き名</label>
+            <input id="profile_name" placeholder="例: heavy / light / cloud-mini" />
+          </div>
+          <button class="btn primary" type="button" id="btn_save_profile">保存</button>
+        </div>
+
+        <p class="small muted" style="margin-top:10px;">
+          ※同名は上書き。増殖しない。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>リセット（手動固定）</h2>
+        <div class="row" style="margin-top:8px;">
+          <div class="field">
+            <label for="manual_reset_week">次の週リセット（日時）</label>
+            <input id="manual_reset_week" placeholder="YYYY-MM-DD HH:MM" />
+          </div>
+          <div class="field">
+            <label for="manual_reset_5h">次の5hリセット（日時）</label>
+            <input id="manual_reset_5h" placeholder="YYYY-MM-DD HH:MM" />
+          </div>
+        </div>
+        <div class="row" style="margin-top:12px;">
+          <button class="btn primary" type="button" id="btn_save_reset">保存</button>
+          <button class="btn" type="button" id="btn_clear_reset">クリア</button>
+        </div>
+        <p class="small muted" style="margin-top:10px;">
+          分かるなら手動が最強。分からない場合は auto 推定。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>データ</h2>
+        <div class="row" style="margin-top:8px;">
+          <button class="btn" type="button" id="btn_export">Export</button>
+          <label class="btn" style="display:inline-flex; align-items:center; gap:8px;">
+            Import
+            <input type="file" id="in_import" accept="application/json" style="display:none;">
+          </label>
+          <button class="btn danger" type="button" id="btn_clear_all">全削除</button>
+        </div>
+        <p class="small muted" style="margin-top:10px;">
+          ログ/プロファイル/設定は localStorage に保存（アップロードなし）
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>ログ一覧</h2>
+        <div id="empty_state" class="hint" style="display:none;">
+          <strong>まだログがありません。</strong><br/>
+          まず週%または5h%を入れて「保存」を押す。2件以上で予測が出る。
+          <div style="margin-top:10px;">
+            <a href="./howto.html">HowToを見る</a>
+          </div>
+        </div>
+
+        <div style="overflow:auto; margin-top:10px;">
+          <table class="table" id="logs_table" aria-label="logs">
             <thead>
               <tr>
-                <th>日時</th>
+                <th>time</th>
+                <th>week%</th>
                 <th>5h%</th>
-                <th>週%</th>
                 <th>mode</th>
                 <th>status</th>
                 <th>model</th>
                 <th>note</th>
-                <th></th>
               </tr>
             </thead>
-            <tbody id="logBody">
-              <tr><td colspan="8" class="muted">まだログがない</td></tr>
-            </tbody>
+            <tbody id="logs_tbody"></tbody>
           </table>
         </div>
       </section>
@@ -230,5 +305,31 @@
   </div>
 
   <script src="./app.js"></script>
+  <script>
+    (function(){
+      const KEY="nw_theme";
+      const root=document.documentElement;
+      function pref(){
+        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v; }catch(e){}
+        const d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return d?"dark":"light";
+      }
+      function apply(t){
+        root.setAttribute("data-theme", t);
+        const b=document.getElementById("themeToggle");
+        if(b){ b.textContent = t==="dark" ? "☀" : "☾"; }
+      }
+      apply(pref());
+      const btn=document.getElementById("themeToggle");
+      if(btn){
+        btn.addEventListener("click", function(){
+          const cur=root.getAttribute("data-theme")==="dark"?"dark":"light";
+          const next=cur==="dark"?"light":"dark";
+          apply(next);
+          try{ localStorage.setItem(KEY,next); }catch(e){}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

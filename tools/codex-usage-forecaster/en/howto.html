@@ -55,22 +55,61 @@
 
     <main>
       <section class="card">
-        <h2>Quick start</h2>
-        <ol>
-          <li>On Dashboard, enter the usage percentage (%) you see</li>
-          <li>Click <b>Save</b> (a few times a day or at work milestones)</li>
-          <li>After 2+ logs, you’ll see burn rate and ETA</li>
+        <h2>HowTo (operating template)</h2>
+        <p class="muted">
+          This tool improves as you log. Follow one of the templates below for a few days to get stable burn profiles.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Template A: minimal (weekly only)</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>Log Weekly% and Save</li>
+          <li>Log Weekly% again later the same day (2 logs minimum)</li>
+          <li>Use burn rate (%/day) + depletion ETA to pace your week</li>
+          <li>If noisy, tag notes (heavy/light) and filter</li>
+        </ol>
+        <p class="small muted">Tip: log twice a day (AM/PM)</p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Template B: short horizon (5h + weekly)</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>Before work: log 5h% and Weekly%</li>
+          <li>After work: log again</li>
+          <li>Use 5h burn (%/h) to compare “heavy” vs “light” sessions</li>
         </ol>
       </section>
 
       <section class="card" style="margin-top:12px;">
-        <h2>Tips</h2>
-        <ul>
-          <li>If weekly cap hurts: focus on logging <b>weekly%</b></li>
-          <li>Burn varies by workload—use <b>notes</b> and <b>model</b></li>
-          <li>Right after a reset, ETA is noisy—add 2 logs post-reset</li>
-          <li>Move devices: Export JSON → Import</li>
+        <h2>Profiles (recommended)</h2>
+        <p class="muted">
+          Keep it simple: just two profiles.
+        </p>
+        <ul class="muted" style="line-height:1.7;">
+          <li><strong>heavy</strong>: big PR / search-heavy / lots of generation</li>
+          <li><strong>light</strong>: small edits / tiny PR</li>
         </ul>
+        <p class="muted">
+          Tag logs with note=heavy/light → filter → save as Profiles for one-click switching.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Pin reset times (accuracy boost)</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>When you observe a reset, remember the time</li>
+          <li>Set manual reset datetime on Dashboard and Save</li>
+          <li>KPI subline shows “manual” when pinned</li>
+        </ol>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Export/Import (migration)</h2>
+        <ol class="muted" style="line-height:1.8;">
+          <li>Export to JSON (logs + profiles + settings)</li>
+          <li>Import on another browser/device</li>
+        </ol>
       </section>
     </main>
 
@@ -90,6 +129,32 @@
     </footer>
   </div>
 
-  <script src="../app.js"></script>
+  <script>
+    // theme only
+    (function(){
+      const KEY="nw_theme";
+      const root=document.documentElement;
+      function pref(){
+        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v; }catch(e){}
+        const d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return d?"dark":"light";
+      }
+      function apply(t){
+        root.setAttribute("data-theme", t);
+        const b=document.getElementById("themeToggle");
+        if(b){ b.textContent = t==="dark" ? "☀" : "☾"; }
+      }
+      apply(pref());
+      const btn=document.getElementById("themeToggle");
+      if(btn){
+        btn.addEventListener("click", function(){
+          const cur=root.getAttribute("data-theme")==="dark"?"dark":"light";
+          const next=cur==="dark"?"light":"dark";
+          apply(next);
+          try{ localStorage.setItem(KEY,next); }catch(e){}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

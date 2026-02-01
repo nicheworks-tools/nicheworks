@@ -4,18 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codex Usage Forecaster | NicheWorks</title>
+  <meta name="description" content="Log visible usage % and estimate depletion ETA from burn rate (%/h, %/day). Local-only storage. No uploads." />
+  <link rel="canonical" href="https://nicheworks.app/tools/codex-usage-forecaster/en/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Codex Usage Forecaster" />
+  <meta property="og:description" content="Track burn rate. Predict depletion." />
+  <meta property="og:url" content="https://nicheworks.app/tools/codex-usage-forecaster/en/" />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/codex-usage-forecaster/usage.html:G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
+    gtag('config', 'tools/codex-usage-forecaster/usage.html:G-57QT78M3JB');
   </script>
 
   <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/money-template-checker/index.html:ca-pub-9879006623791275"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="../style.css" />
@@ -53,117 +60,56 @@
       <div class="box"></div>
     </section>
 
-    <main>
+    <main class="grid">
       <section class="card">
-        <h2>Forecast</h2>
-        <p class="muted small">You can forecast using filtered logs (mode/model/status). Also estimates reset timing.</p>
+        <h2>Input → Save → Forecast</h2>
 
-        <div class="kpi" id="kpi">
-          <div class="item wide">
-            <p class="k">5-hour: depletion ETA</p>
-            <p class="v" id="kpi5hDeplete">—</p>
-            <p class="small" id="kpi5hDepleteSub">—</p>
+        <div class="kpis" style="margin-top:10px;">
+          <div class="kpi">
+            <p class="label">Weekly (burn / depletion ETA)</p>
+            <p class="value" id="kpi_week_main">—</p>
+            <p class="sub" id="kpi_week_sub">need logs</p>
           </div>
-
-          <div class="item wide">
-            <p class="k">5-hour: next reset (estimated)</p>
-            <p class="v" id="kpi5hReset">—</p>
-            <p class="small" id="kpi5hResetSub">—</p>
+          <div class="kpi">
+            <p class="label">5-hour (burn / depletion ETA)</p>
+            <p class="value" id="kpi_5h_main">—</p>
+            <p class="sub" id="kpi_5h_sub">need logs</p>
           </div>
-
-          <div class="item wide">
-            <p class="k">Weekly: depletion ETA</p>
-            <p class="v" id="kpiWDeplete">—</p>
-            <p class="small" id="kpiWDepleteSub">—</p>
-          </div>
-
-          <div class="item wide">
-            <p class="k">Weekly: next reset (estimated)</p>
-            <p class="v" id="kpiWReset">—</p>
-            <p class="small" id="kpiWResetSub">—</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>Add a log</h2>
-
-        <div class="grid two">
-          <div class="field">
-            <div class="label">5-hour usage (%)</div>
-            <input class="input" id="in5h" inputmode="decimal" placeholder="e.g. 62" />
-            <div class="small">Enter the % shown in your UI</div>
-          </div>
-
-          <div class="field">
-            <div class="label">Weekly usage (%)</div>
-            <input class="input" id="inWeek" inputmode="decimal" placeholder="e.g. 18" />
-            <div class="small">Weekly cap is usually the pain point</div>
+          <div class="kpi">
+            <p class="label">Next reset (auto/manual)</p>
+            <p class="value" id="kpi_reset_main">—</p>
+            <p class="sub" id="kpi_reset_sub">auto / manual</p>
           </div>
         </div>
 
-        <div class="grid two" style="margin-top:10px;">
+        <hr class="sep"/>
+
+        <div class="row" style="margin-top:2px;">
           <div class="field">
-            <div class="label">Mode</div>
-            <select class="select" id="inMode">
-              <option value="cloud">cloud (ChatGPT Codex)</option>
-              <option value="cli">cli (Codex CLI)</option>
+            <label for="in_week">Weekly usage (%)</label>
+            <input id="in_week" inputmode="decimal" placeholder="e.g. 42" />
+          </div>
+          <div class="field">
+            <label for="in_5h">5h usage (%)</label>
+            <input id="in_5h" inputmode="decimal" placeholder="e.g. 18" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <div class="field">
+            <label for="in_mode">mode</label>
+            <select id="in_mode">
+              <option value="">(none)</option>
+              <option value="cloud">cloud</option>
+              <option value="cli">cli</option>
               <option value="local">local</option>
               <option value="other">other</option>
             </select>
           </div>
 
           <div class="field">
-            <div class="label">Status (optional)</div>
-            <select class="select" id="inStatus">
-              <option value="unknown">unknown</option>
-              <option value="ok">ok</option>
-              <option value="warn">warn (low)</option>
-              <option value="limited">limited / rate-limited</option>
-              <option value="cooldown">cooldown</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid two" style="margin-top:10px;">
-          <div class="field">
-            <div class="label">Model / setting (optional)</div>
-            <input class="input" id="inModel" placeholder="e.g. gpt-5.2 / mini / high" />
-          </div>
-
-          <div class="field">
-            <div class="label">Note (optional)</div>
-            <input class="input" id="inNote" placeholder="e.g. big PR / search-heavy / tiny fix" />
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:10px;">
-          <button class="btn primary" id="btnSave">Save</button>
-          <button class="btn" id="btnExport">Export (JSON)</button>
-          <button class="btn" id="btnImport">Import</button>
-          <input type="file" id="fileImport" accept="application/json" style="display:none;" />
-          <span class="small" id="saveHint"></span>
-        </div>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <div class="noteRow">
-          <h2 style="margin:0;">Logs</h2>
-          <span class="small dim" id="logCount">—</span>
-        </div>
-
-        <div class="filters" aria-label="filters">
-          <div class="field">
-            <div class="label">Filter: mode</div>
-            <select class="select" id="filterMode">
-              <option value="">all</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <div class="label">Filter: status</div>
-            <select class="select" id="filterStatus">
-              <option value="">all</option>
+            <label for="in_status">status</label>
+            <select id="in_status">
               <option value="unknown">unknown</option>
               <option value="ok">ok</option>
               <option value="warn">warn</option>
@@ -173,41 +119,170 @@
           </div>
 
           <div class="field">
-            <div class="label">Filter: model contains</div>
-            <input class="input" id="filterModel" placeholder="e.g. mini" />
-          </div>
-
-          <div class="field">
-            <div class="label">Filter: note contains</div>
-            <input class="input" id="filterNote" placeholder="e.g. PR" />
-          </div>
-
-          <div class="field" style="min-width:160px;">
-            <div class="label">Forecast uses filters</div>
-            <select class="select" id="filterAffectsForecast">
-              <option value="yes" selected>yes</option>
-              <option value="no">no (use all logs)</option>
+            <label for="in_model">model</label>
+            <select id="in_model">
+              <option value="">(none)</option>
+              <option value="mini">mini</option>
+              <option value="high">high</option>
+              <option value="other">other</option>
             </select>
           </div>
         </div>
 
-        <div style="overflow:auto;">
-          <table class="table" id="logTable">
+        <div class="row" style="margin-top:10px;">
+          <div class="field" style="flex: 1 1 420px; min-width: 220px;">
+            <label for="in_note">note</label>
+            <input id="in_note" placeholder="e.g. heavy / light / search-heavy / big PR" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <button class="btn primary" type="button" id="btn_save">Save</button>
+          <span class="pill" id="pill_count">logs: 0</span>
+
+          <span style="flex:1 1 auto;"></span>
+
+          <label class="pill" style="cursor:pointer;">
+            <input type="checkbox" id="chk_affects" style="vertical-align:middle; margin-right:6px;">
+            Forecast uses filters
+          </label>
+        </div>
+
+        <div class="hint" id="hint_box" style="display:none;"></div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Filters</h2>
+        <div class="row" style="margin-top:8px;">
+          <div class="field">
+            <label for="f_mode">mode</label>
+            <select id="f_mode">
+              <option value="">(all)</option>
+              <option value="cloud">cloud</option>
+              <option value="cli">cli</option>
+              <option value="local">local</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f_status">status</label>
+            <select id="f_status">
+              <option value="">(all)</option>
+              <option value="unknown">unknown</option>
+              <option value="ok">ok</option>
+              <option value="warn">warn</option>
+              <option value="limited">limited</option>
+              <option value="cooldown">cooldown</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f_model">model</label>
+            <select id="f_model">
+              <option value="">(all)</option>
+              <option value="mini">mini</option>
+              <option value="high">high</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <div class="field" style="flex: 1 1 420px; min-width: 220px;">
+            <label for="f_note">note contains</label>
+            <input id="f_note" placeholder="e.g. heavy" />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <button class="btn" type="button" id="btn_clear_filters">Clear filters</button>
+          <span class="pill" id="pill_filtered">filtered: 0</span>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Profiles</h2>
+        <div class="row" style="margin-top:8px;">
+          <div class="field" style="min-width: 220px;">
+            <label for="profiles_select">Saved</label>
+            <select id="profiles_select"></select>
+          </div>
+          <button class="btn" type="button" id="btn_apply_profile">Apply</button>
+          <button class="btn danger" type="button" id="btn_delete_profile">Delete</button>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <div class="field" style="flex: 1 1 320px; min-width: 220px;">
+            <label for="profile_name">New/overwrite name</label>
+            <input id="profile_name" placeholder="e.g. heavy / light / cloud-mini" />
+          </div>
+          <button class="btn primary" type="button" id="btn_save_profile">Save</button>
+        </div>
+
+        <p class="small muted" style="margin-top:10px;">
+          Same name overwrites (no duplicates).
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Resets (manual pin)</h2>
+        <div class="row" style="margin-top:8px;">
+          <div class="field">
+            <label for="manual_reset_week">Next weekly reset (datetime)</label>
+            <input id="manual_reset_week" placeholder="YYYY-MM-DD HH:MM" />
+          </div>
+          <div class="field">
+            <label for="manual_reset_5h">Next 5h reset (datetime)</label>
+            <input id="manual_reset_5h" placeholder="YYYY-MM-DD HH:MM" />
+          </div>
+        </div>
+        <div class="row" style="margin-top:12px;">
+          <button class="btn primary" type="button" id="btn_save_reset">Save</button>
+          <button class="btn" type="button" id="btn_clear_reset">Clear</button>
+        </div>
+        <p class="small muted" style="margin-top:10px;">
+          Manual pin is the most accurate option. Otherwise auto estimation.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Data</h2>
+        <div class="row" style="margin-top:8px;">
+          <button class="btn" type="button" id="btn_export">Export</button>
+          <label class="btn" style="display:inline-flex; align-items:center; gap:8px;">
+            Import
+            <input type="file" id="in_import" accept="application/json" style="display:none;">
+          </label>
+          <button class="btn danger" type="button" id="btn_clear_all">Delete all</button>
+        </div>
+        <p class="small muted" style="margin-top:10px;">
+          Logs/profiles/settings are stored in localStorage (no uploads).
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Logs</h2>
+        <div id="empty_state" class="hint" style="display:none;">
+          <strong>No logs yet.</strong><br/>
+          Enter Weekly% or 5h% and click Save. Forecast needs 2+ logs.
+          <div style="margin-top:10px;">
+            <a href="./howto.html">See HowTo</a>
+          </div>
+        </div>
+
+        <div style="overflow:auto; margin-top:10px;">
+          <table class="table" id="logs_table" aria-label="logs">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>5h%</th>
+                <th>time</th>
                 <th>week%</th>
+                <th>5h%</th>
                 <th>mode</th>
                 <th>status</th>
                 <th>model</th>
                 <th>note</th>
-                <th></th>
               </tr>
             </thead>
-            <tbody id="logBody">
-              <tr><td colspan="8" class="muted">No logs yet</td></tr>
-            </tbody>
+            <tbody id="logs_tbody"></tbody>
           </table>
         </div>
       </section>
@@ -230,5 +305,31 @@
   </div>
 
   <script src="../app.js"></script>
+  <script>
+    (function(){
+      const KEY="nw_theme";
+      const root=document.documentElement;
+      function pref(){
+        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v; }catch(e){}
+        const d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return d?"dark":"light";
+      }
+      function apply(t){
+        root.setAttribute("data-theme", t);
+        const b=document.getElementById("themeToggle");
+        if(b){ b.textContent = t==="dark" ? "☀" : "☾"; }
+      }
+      apply(pref());
+      const btn=document.getElementById("themeToggle");
+      if(btn){
+        btn.addEventListener("click", function(){
+          const cur=root.getAttribute("data-theme")==="dark"?"dark":"light";
+          const next=cur==="dark"?"light":"dark";
+          apply(next);
+          try{ localStorage.setItem(KEY,next); }catch(e){}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
