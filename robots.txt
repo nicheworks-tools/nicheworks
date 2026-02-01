@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
+Allow: /tools/earth-map-suite/
 
 Sitemap: https://nicheworks.app/sitemap.xml
-
