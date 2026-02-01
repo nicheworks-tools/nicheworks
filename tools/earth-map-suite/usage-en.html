@@ -61,18 +61,34 @@
         <h2 class="card-title">1. What this tool does</h2>
       </div>
       <div class="card-bd">
-        <p class="hint">Summarize map view requirements and generate a shareable memo.</p>
+        <p class="hint">Summarize map view requirements and generate storm / compare / card review memos.</p>
       </div>
     </section>
 
     <section class="card">
       <div class="card-hd">
-        <h2 class="card-title">2. Inputs</h2>
+        <h2 class="card-title">2. Quick steps (5)</h2>
+      </div>
+      <div class="card-bd">
+        <ol class="step-list">
+          <li>Select a mode (storm / compare / card).</li>
+          <li>Enter the area (BBox or lat/lon) and the date range.</li>
+          <li>Add layers, notes, and review context.</li>
+          <li>Click “Generate preview” to build the memo.</li>
+          <li>Copy or download the text, PNGs, or CSVs.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">3. Inputs</h2>
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>BBox: specify the region as “lon,lat,lon,lat”.</li>
-          <li>Start / end date: the period to review.</li>
+          <li>BBox: specify the region as “lon,lat,lon,lat” (storm / compare).</li>
+          <li>Latitude / longitude: point selection (card).</li>
+          <li>Start / end date: the period to review (compare has A/B ranges).</li>
           <li>Preset: choose low / mid / detail.</li>
           <li>Frames (storm): required in storm mode.</li>
           <li>Target area: the region or location to review.</li>
@@ -84,34 +100,137 @@
 
     <section class="card">
       <div class="card-hd">
-        <h2 class="card-title">3. Preview output</h2>
-      </div>
-      <div class="card-bd">
-        <p class="hint">Click “Generate preview” to create a formatted memo. Copy it to share with others.</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-hd">
-        <h2 class="card-title">4. Disclaimer</h2>
-      </div>
-      <div class="card-bd">
-        <p class="hint">This page does not verify map accuracy. Always check official sources.</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-hd">
-        <h2 class="card-title">5. Free-ops limits</h2>
+        <h2 class="card-title">4. Reading the preview</h2>
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>BBox span: up to 5° × 5°.</li>
-          <li>Date span: up to 31 days.</li>
-          <li>Presets: low / mid / detail only. Use low for wider areas.</li>
-          <li>Storm frames: up to 48.</li>
+          <li>storm: a frame slider and cumulative view appear.</li>
+          <li>compare: A/B/diff cards and CSV outputs appear.</li>
+          <li>card: a point preview and a mini time-series chart appear.</li>
         </ul>
+        <p class="hint">All outputs are placeholders for planning, not observed data.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">5. Examples</h2>
+      </div>
+      <div class="card-bd">
+        <div class="example-grid">
+          <div class="example-card">
+            <h3 class="example-title">storm example</h3>
+            <pre class="example-code">BBox: 139.60,35.50,139.95,35.80
+Range: 2024-08-18 → 2024-08-20
+Preset: mid
+Frames: 24
+Target area: Tokyo coastal ward</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">compare example</h3>
+            <pre class="example-code">Period A: 2024-08-01 → 2024-08-07
+Period B: 2023-08-01 → 2023-08-07
+BBox: 135.45,34.55,135.70,34.75
+Preset: low</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">card example</h3>
+            <pre class="example-code">Lat/Lon: 35.68, 139.76
+Range: 2024-09-01 → 2024-09-05
+Preset: detail
+Note: confirm night mode readability</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">6. Free-ops limits</h2>
+      </div>
+      <div class="card-bd">
+        <div class="table-wrap">
+          <table class="limit-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Limit</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BBox</td>
+                <td>Up to 5° × 5°</td>
+                <td>Use low for wider areas</td>
+              </tr>
+              <tr>
+                <td>Date span</td>
+                <td>Up to 31 days</td>
+                <td>Compare is per A/B range</td>
+              </tr>
+              <tr>
+                <td>Preset</td>
+                <td>low / mid / detail</td>
+                <td>Other values error out</td>
+              </tr>
+              <tr>
+                <td>Storm frames</td>
+                <td>Up to 48</td>
+                <td>Above 48 will be thinned</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p class="hint">If a limit is exceeded, you will see error_code: limit_exceeded.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">7. Troubleshooting</h2>
+      </div>
+      <div class="card-bd">
+        <dl class="faq">
+          <dt>Q. The preview is blank.</dt>
+          <dd>A. Make sure required fields (mode, dates, BBox/lat-lon) are filled.</dd>
+          <dt>Q. Compare cards do not show.</dt>
+          <dd>A. Switch to compare mode and fill both A/B date ranges.</dd>
+          <dt>Q. I see an error code.</dt>
+          <dd>A. Check the limits table for the free-ops caps.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">8. Ads & support</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">Ad slots are in preparation and planned for top/bottom placement only.</p>
+        <p class="hint">A support page is coming soon (currently a placeholder).</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">9. What’s next / Coming soon</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>Template saving for common map views</li>
+          <li>Batch exports for team sharing</li>
+          <li>Improved card legends and annotations</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">10. Disclaimer</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">This page does not verify map accuracy. Always check official sources.</p>
       </div>
     </section>
 

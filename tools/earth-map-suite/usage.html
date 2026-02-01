@@ -61,18 +61,34 @@
         <h2 class="card-title">1. このツールでできること</h2>
       </div>
       <div class="card-bd">
-        <p class="hint">地図ビューの要件を整理し、確認メモを作るための下書きを生成します。</p>
+        <p class="hint">地図ビューの要件を整理し、storm / compare / card 向けの確認メモを作るための下書きを生成します。</p>
       </div>
     </section>
 
     <section class="card">
       <div class="card-hd">
-        <h2 class="card-title">2. 入力項目</h2>
+        <h2 class="card-title">2. 使い方の流れ（5ステップ）</h2>
+      </div>
+      <div class="card-bd">
+        <ol class="step-list">
+          <li>モード（storm / compare / card）を選択します。</li>
+          <li>対象範囲（BBoxまたは緯度経度）と期間を入力します。</li>
+          <li>レイヤーやメモなど、レビュー時に必要な情報を追記します。</li>
+          <li>「プレビューを作成」を押して結果を確認します。</li>
+          <li>テキスト・PNG・CSVをコピー/ダウンロードして共有します。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">3. 入力項目</h2>
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>BBox：対象範囲を「経度,緯度,経度,緯度」で指定。</li>
-          <li>開始日 / 終了日：確認対象の期間。</li>
+          <li>BBox：対象範囲を「経度,緯度,経度,緯度」で指定（storm / compare）。</li>
+          <li>緯度 / 経度：ポイント指定（card モード）。</li>
+          <li>開始日 / 終了日：確認対象の期間（compare は A/B の2期間）。</li>
           <li>プリセット：low / mid / detail のいずれか。</li>
           <li>フレーム数（storm）：stormモードのみ必須。</li>
           <li>対象エリア：地図の対象範囲や地点。</li>
@@ -84,34 +100,137 @@
 
     <section class="card">
       <div class="card-hd">
-        <h2 class="card-title">3. プレビュー結果</h2>
-      </div>
-      <div class="card-bd">
-        <p class="hint">「プレビューを作成」を押すと、入力内容がまとめられたテキストが表示されます。コピーして共有してください。</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-hd">
-        <h2 class="card-title">4. 免責</h2>
-      </div>
-      <div class="card-bd">
-        <p class="hint">本ページは地図の内容を保証するものではありません。必ず公式情報をご確認ください。</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-hd">
-        <h2 class="card-title">5. 無料枠の上限（free-ops）</h2>
+        <h2 class="card-title">4. プレビュー結果の見方</h2>
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>BBoxの幅・高さは最大 5° × 5° まで。</li>
-          <li>期間は最大 31 日まで。</li>
-          <li>プリセットは low / mid / detail のみ。広い範囲は low 推奨。</li>
-          <li>stormモードのフレーム数は最大 48 まで。</li>
+          <li>storm：フレームスライダーと累積表示が出ます。</li>
+          <li>compare：期間A/B/差分のカードとCSV出力が出ます。</li>
+          <li>card：ポイント位置と時系列チャートのカードが出ます。</li>
         </ul>
+        <p class="hint">出力はすべて確認用のプレースホルダです。実測値ではありません。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">5. 入力例</h2>
+      </div>
+      <div class="card-bd">
+        <div class="example-grid">
+          <div class="example-card">
+            <h3 class="example-title">storm 例</h3>
+            <pre class="example-code">BBox: 139.60,35.50,139.95,35.80
+期間: 2024-08-18 → 2024-08-20
+プリセット: mid
+フレーム数: 24
+対象エリア: 東京23区・沿岸部</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">compare 例</h3>
+            <pre class="example-code">期間A: 2024-08-01 → 2024-08-07
+期間B: 2023-08-01 → 2023-08-07
+BBox: 135.45,34.55,135.70,34.75
+プリセット: low</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">card 例</h3>
+            <pre class="example-code">緯度/経度: 35.68, 139.76
+期間: 2024-09-01 → 2024-09-05
+プリセット: detail
+メモ: 夜間モードで視認性を確認</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">6. 無料枠の上限（free-ops）</h2>
+      </div>
+      <div class="card-bd">
+        <div class="table-wrap">
+          <table class="limit-table">
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th>上限</th>
+                <th>補足</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BBox</td>
+                <td>最大 5° × 5°</td>
+                <td>広い範囲は low 推奨</td>
+              </tr>
+              <tr>
+                <td>期間</td>
+                <td>最大 31 日</td>
+                <td>compare は A/B それぞれ</td>
+              </tr>
+              <tr>
+                <td>プリセット</td>
+                <td>low / mid / detail</td>
+                <td>指定外はエラーになります</td>
+              </tr>
+              <tr>
+                <td>storm フレーム</td>
+                <td>最大 48</td>
+                <td>超えると自動間引き</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p class="hint">上限を超える場合は error_code: limit_exceeded が表示されます。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">7. トラブルシューティング</h2>
+      </div>
+      <div class="card-bd">
+        <dl class="faq">
+          <dt>Q. プレビューが空白になります。</dt>
+          <dd>A. 必須項目（モード・期間・BBox/緯度経度）が空でないか確認してください。</dd>
+          <dt>Q. compare のカードが表示されません。</dt>
+          <dd>A. compare モードに切り替え、期間A/Bをすべて入力してください。</dd>
+          <dt>Q. エラーコードが表示されました。</dt>
+          <dd>A. 無料枠の上限を超えていないか、表の上限値を確認してください。</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">8. 広告・支援について</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">広告枠は準備中です。公開後もページ上下のみの表示を想定しています。</p>
+        <p class="hint">支援ページは近日公開予定です（現在はプレースホルダ）。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">9. What’s next / Coming soon</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>地図ビューのテンプレート保存</li>
+          <li>チーム共有向けの一括エクスポート</li>
+          <li>カード表示の改善（凡例・注釈）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">10. 免責</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">本ページは地図の内容を保証するものではありません。必ず公式情報をご確認ください。</p>
       </div>
     </section>
 
