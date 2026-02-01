@@ -4,17 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codex Usage Forecaster | NicheWorks</title>
+
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/codex-usage-forecaster/usage.html:G-57QT78M3JB"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'tools/codex-usage-forecaster/usage.html:G-57QT78M3JB');
+    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
   </script>
+
   <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/money-template-checker/index.html:ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -53,17 +56,31 @@
     <main>
       <section class="card">
         <h2>予測</h2>
-        <p class="muted small">ログ（%）を入れるほど精度が上がる。データはこの端末のローカルにのみ保存。</p>
+        <p class="muted small">フィルタ（mode / model / status）をかけた状態で燃費と枯渇予測を計算できる。枠更新（リセット）も推定。</p>
+
         <div class="kpi" id="kpi">
-          <div class="item">
-            <p class="k">5時間枠：次の枯渇予測</p>
-            <p class="v" id="kpi5h">—</p>
-            <p class="small" id="kpi5hSub">—</p>
+          <div class="item wide">
+            <p class="k">5時間枠：枯渇ETA</p>
+            <p class="v" id="kpi5hDeplete">—</p>
+            <p class="small" id="kpi5hDepleteSub">—</p>
           </div>
-          <div class="item">
-            <p class="k">週枠：次の枯渇予測</p>
-            <p class="v" id="kpiW">—</p>
-            <p class="small" id="kpiWSub">—</p>
+
+          <div class="item wide">
+            <p class="k">5時間枠：次のリセット推定</p>
+            <p class="v" id="kpi5hReset">—</p>
+            <p class="small" id="kpi5hResetSub">—</p>
+          </div>
+
+          <div class="item wide">
+            <p class="k">週枠：枯渇ETA</p>
+            <p class="v" id="kpiWDeplete">—</p>
+            <p class="small" id="kpiWDepleteSub">—</p>
+          </div>
+
+          <div class="item wide">
+            <p class="k">週枠：次のリセット推定</p>
+            <p class="v" id="kpiWReset">—</p>
+            <p class="small" id="kpiWResetSub">—</p>
           </div>
         </div>
       </section>
@@ -87,7 +104,7 @@
 
         <div class="grid two" style="margin-top:10px;">
           <div class="field">
-            <div class="label">利用形態</div>
+            <div class="label">利用形態（mode）</div>
             <select class="select" id="inMode">
               <option value="cloud">cloud（ChatGPT上のCodex）</option>
               <option value="cli">cli（Codex CLI）</option>
@@ -97,14 +114,27 @@
           </div>
 
           <div class="field">
-            <div class="label">モデル/設定（任意）</div>
-            <input class="input" id="inModel" placeholder="例: gpt-5.2 / mini / high" />
+            <div class="label">ステータス（任意）</div>
+            <select class="select" id="inStatus">
+              <option value="unknown">unknown</option>
+              <option value="ok">ok</option>
+              <option value="warn">warn（残り少）</option>
+              <option value="limited">limited / rate-limited</option>
+              <option value="cooldown">cooldown</option>
+            </select>
           </div>
         </div>
 
-        <div class="field" style="margin-top:10px;">
-          <div class="label">メモ（任意）</div>
-          <textarea class="textarea" id="inNote" placeholder="例: 今日は大規模リファクタで燃費悪化"></textarea>
+        <div class="grid two" style="margin-top:10px;">
+          <div class="field">
+            <div class="label">モデル/設定（任意）</div>
+            <input class="input" id="inModel" placeholder="例: gpt-5.2 / mini / high" />
+          </div>
+
+          <div class="field">
+            <div class="label">メモ（任意）</div>
+            <input class="input" id="inNote" placeholder="例: 大規模PR / 検索多め / 軽微修正" />
+          </div>
         </div>
 
         <div class="row" style="margin-top:10px;">
@@ -117,8 +147,50 @@
       </section>
 
       <section class="card" style="margin-top:12px;">
-        <h2>ログ</h2>
-        <p class="muted small">最新が上。削除はこの端末上のデータだけ消える。</p>
+        <div class="noteRow">
+          <h2 style="margin:0;">ログ</h2>
+          <span class="small dim" id="logCount">—</span>
+        </div>
+
+        <div class="filters" aria-label="filters">
+          <div class="field">
+            <div class="label">Filter: mode</div>
+            <select class="select" id="filterMode">
+              <option value="">all</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label">Filter: status</div>
+            <select class="select" id="filterStatus">
+              <option value="">all</option>
+              <option value="unknown">unknown</option>
+              <option value="ok">ok</option>
+              <option value="warn">warn</option>
+              <option value="limited">limited</option>
+              <option value="cooldown">cooldown</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label">Filter: model contains</div>
+            <input class="input" id="filterModel" placeholder="例: mini" />
+          </div>
+
+          <div class="field">
+            <div class="label">Filter: note contains</div>
+            <input class="input" id="filterNote" placeholder="例: PR" />
+          </div>
+
+          <div class="field" style="min-width:160px;">
+            <div class="label">Forecast uses filters</div>
+            <select class="select" id="filterAffectsForecast">
+              <option value="yes" selected>yes</option>
+              <option value="no">no（全ログで予測）</option>
+            </select>
+          </div>
+        </div>
+
         <div style="overflow:auto;">
           <table class="table" id="logTable">
             <thead>
@@ -127,13 +199,14 @@
                 <th>5h%</th>
                 <th>週%</th>
                 <th>mode</th>
+                <th>status</th>
                 <th>model</th>
                 <th>note</th>
                 <th></th>
               </tr>
             </thead>
             <tbody id="logBody">
-              <tr><td colspan="7" class="muted">まだログがない</td></tr>
+              <tr><td colspan="8" class="muted">まだログがない</td></tr>
             </tbody>
           </table>
         </div>

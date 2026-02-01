@@ -4,17 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codex Usage Forecaster | NicheWorks</title>
+
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/codex-usage-forecaster/usage.html:G-57QT78M3JB"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'tools/codex-usage-forecaster/usage.html:G-57QT78M3JB');
+    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
   </script>
+
   <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/money-template-checker/index.html:ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
@@ -53,17 +56,31 @@
     <main>
       <section class="card">
         <h2>Forecast</h2>
-        <p class="muted small">More logs = better forecast. Stored only on this device (local).</p>
+        <p class="muted small">You can forecast using filtered logs (mode/model/status). Also estimates reset timing.</p>
+
         <div class="kpi" id="kpi">
-          <div class="item">
-            <p class="k">5-hour window: depletion ETA</p>
-            <p class="v" id="kpi5h">—</p>
-            <p class="small" id="kpi5hSub">—</p>
+          <div class="item wide">
+            <p class="k">5-hour: depletion ETA</p>
+            <p class="v" id="kpi5hDeplete">—</p>
+            <p class="small" id="kpi5hDepleteSub">—</p>
           </div>
-          <div class="item">
-            <p class="k">Weekly window: depletion ETA</p>
-            <p class="v" id="kpiW">—</p>
-            <p class="small" id="kpiWSub">—</p>
+
+          <div class="item wide">
+            <p class="k">5-hour: next reset (estimated)</p>
+            <p class="v" id="kpi5hReset">—</p>
+            <p class="small" id="kpi5hResetSub">—</p>
+          </div>
+
+          <div class="item wide">
+            <p class="k">Weekly: depletion ETA</p>
+            <p class="v" id="kpiWDeplete">—</p>
+            <p class="small" id="kpiWDepleteSub">—</p>
+          </div>
+
+          <div class="item wide">
+            <p class="k">Weekly: next reset (estimated)</p>
+            <p class="v" id="kpiWReset">—</p>
+            <p class="small" id="kpiWResetSub">—</p>
           </div>
         </div>
       </section>
@@ -81,7 +98,7 @@
           <div class="field">
             <div class="label">Weekly usage (%)</div>
             <input class="input" id="inWeek" inputmode="decimal" placeholder="e.g. 18" />
-            <div class="small">Weekly cap is the pain point</div>
+            <div class="small">Weekly cap is usually the pain point</div>
           </div>
         </div>
 
@@ -97,14 +114,27 @@
           </div>
 
           <div class="field">
-            <div class="label">Model / setting (optional)</div>
-            <input class="input" id="inModel" placeholder="e.g. gpt-5.2 / mini / high" />
+            <div class="label">Status (optional)</div>
+            <select class="select" id="inStatus">
+              <option value="unknown">unknown</option>
+              <option value="ok">ok</option>
+              <option value="warn">warn (low)</option>
+              <option value="limited">limited / rate-limited</option>
+              <option value="cooldown">cooldown</option>
+            </select>
           </div>
         </div>
 
-        <div class="field" style="margin-top:10px;">
-          <div class="label">Note (optional)</div>
-          <textarea class="textarea" id="inNote" placeholder="e.g. big refactor = worse burn rate"></textarea>
+        <div class="grid two" style="margin-top:10px;">
+          <div class="field">
+            <div class="label">Model / setting (optional)</div>
+            <input class="input" id="inModel" placeholder="e.g. gpt-5.2 / mini / high" />
+          </div>
+
+          <div class="field">
+            <div class="label">Note (optional)</div>
+            <input class="input" id="inNote" placeholder="e.g. big PR / search-heavy / tiny fix" />
+          </div>
         </div>
 
         <div class="row" style="margin-top:10px;">
@@ -117,8 +147,50 @@
       </section>
 
       <section class="card" style="margin-top:12px;">
-        <h2>Logs</h2>
-        <p class="muted small">Newest first. Delete only affects this device.</p>
+        <div class="noteRow">
+          <h2 style="margin:0;">Logs</h2>
+          <span class="small dim" id="logCount">—</span>
+        </div>
+
+        <div class="filters" aria-label="filters">
+          <div class="field">
+            <div class="label">Filter: mode</div>
+            <select class="select" id="filterMode">
+              <option value="">all</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label">Filter: status</div>
+            <select class="select" id="filterStatus">
+              <option value="">all</option>
+              <option value="unknown">unknown</option>
+              <option value="ok">ok</option>
+              <option value="warn">warn</option>
+              <option value="limited">limited</option>
+              <option value="cooldown">cooldown</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label">Filter: model contains</div>
+            <input class="input" id="filterModel" placeholder="e.g. mini" />
+          </div>
+
+          <div class="field">
+            <div class="label">Filter: note contains</div>
+            <input class="input" id="filterNote" placeholder="e.g. PR" />
+          </div>
+
+          <div class="field" style="min-width:160px;">
+            <div class="label">Forecast uses filters</div>
+            <select class="select" id="filterAffectsForecast">
+              <option value="yes" selected>yes</option>
+              <option value="no">no (use all logs)</option>
+            </select>
+          </div>
+        </div>
+
         <div style="overflow:auto;">
           <table class="table" id="logTable">
             <thead>
@@ -127,13 +199,14 @@
                 <th>5h%</th>
                 <th>week%</th>
                 <th>mode</th>
+                <th>status</th>
                 <th>model</th>
                 <th>note</th>
                 <th></th>
               </tr>
             </thead>
             <tbody id="logBody">
-              <tr><td colspan="7" class="muted">No logs yet</td></tr>
+              <tr><td colspan="8" class="muted">No logs yet</td></tr>
             </tbody>
           </table>
         </div>

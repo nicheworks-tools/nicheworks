@@ -4,18 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usage | Codex Usage Forecaster | NicheWorks</title>
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/money-template-checker/index.html:ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/redirect-unwrapper/howto/en/index.html:G-57QT78M3JB"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'tools/redirect-unwrapper/howto/en/index.html:G-57QT78M3JB');
+    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
   </script>
-<link rel="stylesheet" href="./style.css" />
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div class="container">
@@ -52,16 +55,179 @@
 
     <main>
       <section class="card">
-        <h2>Usage</h2>
-        <p class="muted">ここに詳細なUsage（JA）を書きます（後続タスクで埋める）。</p>
+        <h2>これは何？</h2>
+        <p>
+          Codex（または関連機能）の <b>「使用率（%）」しか見えない</b> 状態でも、ログを積み上げて
+          <b>燃費（どれくらいの速度で%が増えるか）</b> を推定し、
+          <b>5時間枠</b> と <b>週枠</b> の「次に枯渇しそうなタイミング」を予測するためのツール。
+        </p>
+        <p class="muted small">
+          ※このツールは「上限の絶対値（何回/何トークン/何ドル）」を知ることは目的にしない。
+          それが非公開・変動でも使えるように、%の増え方（燃費）で扱う。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>前提：なぜ “燃費方式” なのか</h2>
+        <ul>
+          <li>表示されるのは多くの場合「使用した%」で、<b>総量が固定値として公開されていない</b>ことがある</li>
+          <li>プラン/モデル/機能/混雑状況で、<b>同じ1回の作業でも減り方が変わる</b>ことがある</li>
+          <li>枠の更新（リセット）タイミングが <b>“個別の開始時刻基準”</b> になっていて体感しづらい</li>
+        </ul>
+        <p class="muted small">
+          そこで「燃費（%/時間 or %/日）」をログから推定し、残り（100%-現在%）を割ってETAを出す。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>入力できるもの（ログ1件）</h2>
+        <ul>
+          <li><b>5時間枠の使用率（%）</b>（任意。分かる時だけでOK）</li>
+          <li><b>週枠の使用率（%）</b>（任意。分かる時だけでOK）</li>
+          <li><b>mode</b>：cloud / cli / local / other（環境の違いを後で分けて見たくなるため）</li>
+          <li><b>model</b>：例）gpt-5.2 / mini / high など（任意メモ）</li>
+          <li><b>note</b>：作業内容（重いPR/軽微修正/検索多め等）</li>
+        </ul>
+        <p class="muted small">
+          5h% と week% は <b>どちらか片方だけでも保存できる</b>。両方空は不可。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>予測ロジック（いま実装している最小・堅牢版）</h2>
+        <ol>
+          <li>ログを時系列で見て、同じ枠の%が <b>増えた分だけ</b> を差分として集計</li>
+          <li>「増加% ÷ 経過時間」で燃費を推定
+            <ul>
+              <li>5時間枠：<b>%/時</b></li>
+              <li>週枠：<b>%/日</b></li>
+            </ul>
+          </li>
+          <li>直近の差分（最大5本）の <b>中央値</b> を燃費として採用（外れ値に強くする）</li>
+          <li>残り%（100-現在%）を燃費で割って「枯渇までの時間」を出す</li>
+        </ol>
+        <p class="muted small">
+          ※枠の更新などで%が下がるケース（リセット）や、測定誤差は <b>差分が負/0なら無視</b> している。
+          そのため「更新直後」より「ある程度走った後」の方が当たりやすい。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>予測の対象パターン（“全部列挙”）と予測可能性</h2>
+        <p class="muted small">
+          ここでいう「予測可能」は “絶対上限が分かる” ではなく “枯渇までの目安が出せる” の意味。
+        </p>
+
+        <div style="overflow:auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>パターン</th>
+                <th>ユーザーが見える値</th>
+                <th>予測可能？</th>
+                <th>必要ログ</th>
+                <th>注意点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>5時間枠のみ</td>
+                <td>5h% だけ</td>
+                <td>○</td>
+                <td>同枠ログ2件以上</td>
+                <td>リセット直後は不安定</td>
+              </tr>
+              <tr>
+                <td>週枠のみ</td>
+                <td>week% だけ</td>
+                <td>○</td>
+                <td>同枠ログ2件以上</td>
+                <td>週は変動が大きいのでログ多め推奨</td>
+              </tr>
+              <tr>
+                <td>5h+週の両方</td>
+                <td>5h% + week%</td>
+                <td>◎</td>
+                <td>それぞれ2件以上</td>
+                <td>最も有用</td>
+              </tr>
+              <tr>
+                <td>cloud / cli / local 混在</td>
+                <td>%は同じ形式</td>
+                <td>○</td>
+                <td>混在でも可</td>
+                <td>本当は分離したい（今後の改善点）</td>
+              </tr>
+              <tr>
+                <td>モデル切替（mini/高性能）</td>
+                <td>%は同じ形式</td>
+                <td>○</td>
+                <td>切替前後のログ</td>
+                <td>燃費が変わるので note/model を残すと良い</td>
+              </tr>
+              <tr>
+                <td>プラン差（Free/Plus/Pro/Team等）</td>
+                <td>%表示がある限り同じ</td>
+                <td>○</td>
+                <td>プラン変更前後のログ</td>
+                <td>絶対量は不明でも燃費で追える</td>
+              </tr>
+              <tr>
+                <td>上限値が固定・公開されている場合</td>
+                <td>固定値+%など</td>
+                <td>○</td>
+                <td>ログ少なくても可</td>
+                <td>将来「絶対量モード」も追加可能</td>
+              </tr>
+              <tr>
+                <td>上限値が非公開・変動</td>
+                <td>%のみ</td>
+                <td>○</td>
+                <td>ログ必須</td>
+                <td>このツールの主戦場</td>
+              </tr>
+              <tr>
+                <td>“status” が見える/見えない</td>
+                <td>UIにより差</td>
+                <td>△</td>
+                <td>現状はメモ扱い</td>
+                <td>将来、status分類で燃費の補正が可能</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="muted small">
+          ※「status」＝ 例：available / limited / rate-limited / cooldown など、UIや環境により表現が違う想定。
+          現時点の実装では、statusは<b>自動取得しない</b>。必要なら note に書いておく。
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>プライバシー / データ</h2>
+        <ul>
+          <li>ログは <b>ブラウザのlocalStorage</b> に保存（この端末/このブラウザ内）</li>
+          <li>サーバ送信はしない（アップロード無し）</li>
+          <li>端末移行したい場合は <b>Export/Import</b> を使う</li>
+        </ul>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>トラブルシュート</h2>
+        <ul>
+          <li><b>予測が “ログが必要” のまま</b>：同じ枠（5hまたは週）のログが2件以上必要</li>
+          <li><b>燃費が異常に大きい</b>：短時間で大きく増えたログが入っている可能性 → ログ削除で整える</li>
+          <li><b>リセットで%が下がった</b>：正常（この実装は負の差分は無視） → リセット後に2件積むと安定</li>
+          <li><b>端末/ブラウザを変えると消えた</b>：localStorageの仕様 → Export/Importを使う</li>
+        </ul>
       </section>
     </main>
 
     <footer class="footer">
       <div class="row">
         <span>Donate:</span>
-        <a href="https://ko-fi.com/nicheworks">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks">OFUSE</a>
+        <a href="https://nicheworks.app/">Ko-fi</a>
+        <a href="https://nicheworks.app/">OFUSE</a>
         <span>·</span>
         <a href="https://nicheworks.app/">Other tools</a>
       </div>

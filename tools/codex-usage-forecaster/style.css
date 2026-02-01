@@ -284,3 +284,31 @@ header{ margin-bottom:24px; }
   border-color:#b00020 !important;
   color:#b00020 !important;
 }
+
+/* --- TASK07: filters + status --- */
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  margin: 8px 0 6px;
+}
+.filters .field{
+  min-width: 180px;
+}
+.noteRow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.dim{ opacity: .85; }
+
+.badge.ok{ border-color: rgba(0,0,0,.35); }
+.badge.warn{ border-color: #d97706; color:#d97706; }
+.badge.limit{ border-color: #b00020; color:#b00020; }
+
+.kpi .item.wide{
+  min-width: 240px;
+}

@@ -4,18 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usage | Codex Usage Forecaster | NicheWorks</title>
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/money-template-checker/index.html:ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/redirect-unwrapper/howto/en/index.html:G-57QT78M3JB"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'tools/redirect-unwrapper/howto/en/index.html:G-57QT78M3JB');
+    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
   </script>
-<link rel="stylesheet" href="../style.css" />
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
   <div class="container">
@@ -52,16 +55,110 @@
 
     <main>
       <section class="card">
-        <h2>Usage</h2>
-        <p class="muted">Write detailed Usage (EN) here (filled in later tasks).</p>
+        <h2>What is this?</h2>
+        <p>
+          When you only see <b>usage percentage (%)</b> but not the absolute quota,
+          this tool estimates your <b>burn rate</b> from logs and predicts depletion ETA for
+          the <b>5-hour</b> and <b>weekly</b> windows.
+        </p>
+        <p class="muted small">
+          It does not try to reveal the absolute cap (often unpublished/variable). It stays useful even when caps change.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Why burn-rate?</h2>
+        <ul>
+          <li>Absolute caps may be unpublished or vary by plan/model/system load</li>
+          <li>Same work can “cost” different % depending on settings</li>
+          <li>Reset timing is hard to feel (per-window rolling behavior)</li>
+        </ul>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>What you log</h2>
+        <ul>
+          <li><b>5-hour usage (%)</b> (optional)</li>
+          <li><b>Weekly usage (%)</b> (optional)</li>
+          <li><b>Mode</b>: cloud / cli / local / other</li>
+          <li><b>Model/setting</b>: e.g. gpt-5.2 / mini / high (optional note)</li>
+          <li><b>Note</b>: what you did</li>
+        </ul>
+        <p class="muted small">You can save with only one of the two percentages. Both empty is not allowed.</p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Forecast logic (current minimal robust version)</h2>
+        <ol>
+          <li>Use only positive deltas of % between logs (ignore resets/zeros)</li>
+          <li>Compute burn rate:
+            <ul>
+              <li>5-hour: <b>% per hour</b></li>
+              <li>Weekly: <b>% per day</b></li>
+            </ul>
+          </li>
+          <li>Use median of recent deltas (up to 5) for stability</li>
+          <li>ETA = (100 - current%) / burn rate</li>
+        </ol>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>All patterns & predictability</h2>
+        <div style="overflow:auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Pattern</th>
+                <th>Visible values</th>
+                <th>Predictable?</th>
+                <th>Needed logs</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>5-hour only</td><td>5h%</td><td>Yes</td><td>2+ logs</td><td>Unstable right after reset</td></tr>
+              <tr><td>Weekly only</td><td>week%</td><td>Yes</td><td>2+ logs</td><td>More variance; log more often</td></tr>
+              <tr><td>Both</td><td>5h% + week%</td><td>Best</td><td>2+ each</td><td>Most useful</td></tr>
+              <tr><td>Mixed environments</td><td>% same</td><td>Yes</td><td>works mixed</td><td>Better if separated later</td></tr>
+              <tr><td>Model switching</td><td>% same</td><td>Yes</td><td>logs across switch</td><td>Keep model/note</td></tr>
+              <tr><td>Plan differences</td><td>% exists</td><td>Yes</td><td>logs before/after</td><td>Absolute cap still unknown</td></tr>
+              <tr><td>Absolute caps known</td><td>fixed cap</td><td>Yes</td><td>few logs</td><td>Can add absolute mode later</td></tr>
+              <tr><td>Caps unpublished/variable</td><td>% only</td><td>Yes</td><td>logs required</td><td>Main use case</td></tr>
+              <tr><td>“status” visible/hidden</td><td>UI varies</td><td>Partial</td><td>note it</td><td>Future: use status to adjust burn</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted small">
+          “status” may appear as available / limited / rate-limited / cooldown etc depending on UI.
+          This tool does not auto-capture status yet—write it in notes if it matters.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Privacy / Data</h2>
+        <ul>
+          <li>Stored in browser localStorage (this device/browser only)</li>
+          <li>No uploads / no server sync</li>
+          <li>Use Export/Import for migration</li>
+        </ul>
+      </section>
+
+      <section class="card" style="margin-top:12px;">
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li>ETA says “need more logs”: you need 2+ logs for that window</li>
+          <li>Weird burn rate: a noisy log may exist—delete it</li>
+          <li>Reset caused % to drop: normal—add 2 logs after reset</li>
+          <li>Data missing on another device: use Export/Import</li>
+        </ul>
       </section>
     </main>
 
     <footer class="footer">
       <div class="row">
         <span>Donate:</span>
-        <a href="https://ko-fi.com/nicheworks">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks">OFUSE</a>
+        <a href="https://nicheworks.app/">Ko-fi</a>
+        <a href="https://nicheworks.app/">OFUSE</a>
         <span>·</span>
         <a href="https://nicheworks.app/">Other tools</a>
       </div>
