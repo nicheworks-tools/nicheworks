@@ -1164,22 +1164,137 @@
       };
     };
 
-    const renderError = (error, lang) => {
-      const errorMessage = buildErrorMessage(error, lang);
-      errorOutput.innerHTML = [
-        `[Error] (error_code: ${escapeHTML(error.code || ERROR_CODES.unknown)})`,
-        escapeHTML(errorMessage.title),
-        escapeHTML(errorMessage.body),
-        escapeHTML(errorMessage.fix),
-        `<a class="nw-link" href="${escapeHTML(errorMessage.usageLink)}">${escapeHTML(errorMessage.usageLabel)}</a>`
-      ].join("<br />");
-      errorOutput.hidden = false;
-      resultOutput.textContent = "";
+    const STATUS_COPY = {
+      ja: {
+        idle: {
+          title: "準備完了",
+          body: "入力後に「実行」で結果を生成します。",
+          hint: "すぐ試す場合は Example を選んでください。"
+        },
+        loading: {
+          title: "処理中",
+          body: "入力内容を確認して結果を準備しています。"
+        },
+        success: {
+          title: "結果を生成しました",
+          body: "プレビュー内容を確認してください。"
+        },
+        error: {
+          title: "入力エラー",
+          body: "不足や上限超過がありました。"
+        },
+        statusLabel: "ステータス",
+        codeLabel: "エラーコード"
+      },
+      en: {
+        idle: {
+          title: "Ready",
+          body: "Enter details and hit “Run” to generate results.",
+          hint: "Need a quick start? Choose an Example preset."
+        },
+        loading: {
+          title: "Working…",
+          body: "Checking inputs and preparing results."
+        },
+        success: {
+          title: "Results ready",
+          body: "Review the preview and next steps."
+        },
+        error: {
+          title: "Input issue",
+          body: "Some inputs are missing or out of range."
+        },
+        statusLabel: "Status",
+        codeLabel: "Error code"
+      }
     };
+
+    const buildPreviewText = (lang) => formatPreview({
+      mode: modeSelect.value,
+      bbox: bboxInput.value.trim(),
+      lat: latInput?.value.trim() || "",
+      lon: lonInput?.value.trim() || "",
+      start: startInput.value,
+      end: endInput.value,
+      startB: startInputB?.value || "",
+      endB: endInputB?.value || "",
+      preset: presetInput.value.trim(),
+      frames: framesInput.value.trim(),
+      area: areaInput.value.trim(),
+      layers: layersInput.value.trim(),
+      notes: notesInput.value.trim()
+    }, lang);
+
+    let currentStatus = "idle";
+
+    const renderStatus = ({ state, lang, error, previewText }) => {
+      const copy = STATUS_COPY[lang] || STATUS_COPY.ja;
+      const statusMeta = copy[state] || copy.idle;
+      const statusLabel = copy.statusLabel;
+      const stateLabel = statusMeta.title;
+      const intro = statusMeta.body;
+      const hint = statusMeta.hint;
+      const codeLabel = copy.codeLabel;
+      const isError = state === "error";
+      const isSuccess = state === "success";
+      const isIdle = state === "idle";
+      const errorMessage = isError ? buildErrorMessage(error || {}, lang) : null;
+      const errorCode = escapeHTML((error?.code || ERROR_CODES.unknown).toString());
+
+      const contentParts = [
+        "<div class=\"status-card status-" + state + "\">",
+        "<div class=\"status-header\">",
+        `<span class=\"status-label\">${escapeHTML(statusLabel)}</span>`,
+        `<span class=\"status-state\">${escapeHTML(stateLabel)}</span>`,
+        "</div>",
+        `<div class=\"status-body\">${escapeHTML(intro)}</div>`
+      ];
+
+      if (isIdle && hint) {
+        contentParts.push(`<div class=\"status-hint\">${escapeHTML(hint)}</div>`);
+      }
+
+      if (isError && errorMessage) {
+        contentParts.push(
+          "<div class=\"status-detail\">",
+          `<span class=\"status-code\">${escapeHTML(codeLabel)}: ${errorCode}</span>`,
+          `<div class=\"status-title\">${escapeHTML(errorMessage.title)}</div>`,
+          `<p>${escapeHTML(errorMessage.body)}</p>`,
+          `<p>${escapeHTML(errorMessage.fix)}</p>`,
+          `<a class=\"nw-link\" href=\"${escapeHTML(errorMessage.usageLink)}\">${escapeHTML(errorMessage.usageLabel)}</a>`,
+          "</div>"
+        );
+      }
+
+      if (isSuccess && previewText) {
+        contentParts.push(
+          "<div class=\"status-preview\">",
+          escapeHTML(previewText),
+          "</div>"
+        );
+      }
+
+      contentParts.push("</div>");
+
+      resultOutput.classList.add("status-output");
+      resultOutput.innerHTML = contentParts.join("");
+      resultOutput.hidden = false;
+      errorOutput.hidden = true;
+      errorOutput.innerHTML = "";
+      currentStatus = state;
+    };
+
+    const setIdleStatus = (lang) => renderStatus({ state: "idle", lang });
+    const setLoadingStatus = (lang) => renderStatus({ state: "loading", lang });
+    const setSuccessStatus = (lang) => renderStatus({ state: "success", lang, previewText: buildPreviewText(lang) });
+    const setErrorStatus = (error, lang) => renderStatus({ state: "error", lang, error });
 
     const clearError = () => {
       errorOutput.hidden = true;
       errorOutput.innerHTML = "";
+      if (currentStatus === "error") {
+        setIdleStatus(document.documentElement.lang || "ja");
+      }
     };
 
     const setStormStatus = ({ rawFrames, frames, thinningStep, lang }) => {
@@ -1502,27 +1617,7 @@
       renderGrid(compareCanvasDiff, data.diffGrid, "A - B", (value) => valueToDiffColor(value, maxAbsDiff));
     };
 
-    const render = () => {
-      const lang = document.documentElement.lang || "ja";
-      resultOutput.textContent = formatPreview({
-        mode: modeSelect.value,
-        bbox: bboxInput.value.trim(),
-        lat: latInput?.value.trim() || "",
-        lon: lonInput?.value.trim() || "",
-        start: startInput.value,
-        end: endInput.value,
-        startB: startInputB?.value || "",
-        endB: endInputB?.value || "",
-        preset: presetInput.value.trim(),
-        frames: framesInput.value.trim(),
-        area: areaInput.value.trim(),
-        layers: layersInput.value.trim(),
-        notes: notesInput.value.trim()
-      }, lang);
-    };
-
-    const renderAndScroll = () => {
-      render();
+    const scrollToResults = () => {
       resultOutput.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
@@ -1535,7 +1630,8 @@
         updateModeVisibility(modeSelect.value);
         clearError();
         updateUrlState();
-        renderAndScroll();
+        setLoadingStatus(lang);
+        scrollToResults();
         if (modeSelect.value === "storm") {
           const validation = validateInputs({
             mode: modeSelect.value,
@@ -1548,8 +1644,9 @@
             frames: framesInput.value.trim()
           });
           if (validation.error) {
-            renderError(validation.error, lang);
+            setErrorStatus(validation.error, lang);
           } else {
+            setSuccessStatus(lang);
             loadStormReplay({
               bbox: bboxInput.value.trim(),
               start: startInput.value,
@@ -1571,8 +1668,9 @@
             frames: framesInput.value.trim()
           });
           if (validation.error) {
-            renderError(validation.error, lang);
+            setErrorStatus(validation.error, lang);
           } else {
+            setSuccessStatus(lang);
             loadCompareOutput({
               bbox: bboxInput.value.trim(),
               startA: startInput.value,
@@ -1595,8 +1693,9 @@
             frames: framesInput.value.trim()
           });
           if (validation.error) {
-            renderError(validation.error, lang);
+            setErrorStatus(validation.error, lang);
           } else {
+            setSuccessStatus(lang);
             const lat = Number(latInput?.value);
             const lon = Number(lonInput?.value);
             loadCardOutput({
@@ -1629,6 +1728,8 @@
         updateUrlState();
         trackEvent("tool_run", getEventContext());
         const lang = document.documentElement.lang || "ja";
+        setLoadingStatus(lang);
+        scrollToResults();
         const validation = validateInputs({
           mode: modeSelect.value,
           bbox: bboxInput.value.trim(),
@@ -1640,16 +1741,15 @@
           frames: framesInput.value.trim()
         });
         if (validation.error) {
-          renderError(validation.error, lang);
+          setErrorStatus(validation.error, lang);
           trackEvent("tool_error", {
             ...getEventContext(),
             error_code: validation.error.code || ERROR_CODES.unknown,
             error_field: validation.error.field || "unknown"
           });
-          errorOutput.scrollIntoView({ behavior: "smooth", block: "start" });
           return;
         }
-        renderAndScroll();
+        setSuccessStatus(lang);
         if (modeSelect.value === "storm") {
           loadStormReplay({
             bbox: bboxInput.value.trim(),
@@ -1862,7 +1962,7 @@
       input.addEventListener("input", () => {
         clearError();
         updateUrlState();
-        render();
+        setIdleStatus(document.documentElement.lang || "ja");
         resetStormReplay();
         resetCompareOutput();
         resetCardOutput();
@@ -1873,7 +1973,7 @@
       input.addEventListener("change", () => {
         clearError();
         updateUrlState();
-        render();
+        setIdleStatus(document.documentElement.lang || "ja");
         resetStormReplay();
         resetCompareOutput();
         resetCardOutput();
@@ -1905,7 +2005,7 @@
         latInput.value = lat.toFixed(4);
         lonInput.value = lon.toFixed(4);
         updateUrlState();
-        render();
+        setIdleStatus(document.documentElement.lang || "ja");
         updateCardPickerMap();
         resetCardOutput();
       });
@@ -1958,6 +2058,6 @@
 
     updateModeVisibility(modeSelect.value || getDefaultMode());
     updateUrlState();
-    render();
+    setIdleStatus(document.documentElement.lang || "ja");
   });
 })();
