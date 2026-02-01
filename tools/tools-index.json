@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-01T09:13:42.329Z",
-  "total": 59,
+  "generatedAt": "2026-02-01T14:52:29.487Z",
+  "total": 60,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -22,6 +22,14 @@
       "slug": "ats-paste-doctor",
       "title_en": "ats-paste-doctor",
       "title_ja": "ats-paste-doctor",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "codex-usage-forecaster",
+      "title_en": "codex-usage-forecaster",
+      "title_ja": "codex-usage-forecaster",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
