@@ -5,6 +5,507 @@
 // Notes: not a lux meter; flicker/stability detection is limited by FPS.
 
 (function () {
+  /* LC-08: hard stop camera */
+  /* LC-09: button state sync (Start/Stop/Flip/Lite) */
+
+  /* LC-10: status line (Starting / Running / Stopping) */
+  const lcStatus = {
+    phase: "idle",   // idle | starting | running | stopping | error
+    lastAction: "",
+  };
+
+  function lcFindStatusEl(){
+    // Preferred: separate JA/EN nodes
+    const ja = document.getElementById("lcStatusJa");
+    const en = document.getElementById("lcStatusEn");
+    if (ja || en) return { ja, en, box: null };
+
+    // Next: a single box with [data-i18n] spans inside
+    const box = document.getElementById("lcStatus") || document.querySelector(".lc-status");
+    if (box) {
+      const ja2 = box.querySelector('[data-i18n="ja"]');
+      const en2 = box.querySelector('[data-i18n="en"]');
+      return { ja: ja2, en: en2, box };
+    }
+    return { ja: null, en: null, box: null };
+  }
+
+  function lcStatusText(phase){
+    // Polite, non-imperative; keep short for one-screen UI
+    switch(String(phase || "")){
+      case "starting":
+        return { ja:"起動中…", en:"Starting…" };
+      case "stopping":
+        return { ja:"停止中…", en:"Stopping…" };
+      case "running":
+        return { ja:"計測中", en:"Running" };
+      case "error":
+        return { ja:"エラー", en:"Error" };
+      case "idle":
+      default:
+        return { ja:"待機中", en:"Idle" };
+    }
+  }
+
+  function lcSetStatus(phase, actionKey){
+    lcStatus.phase = phase || "idle";
+    lcStatus.lastAction = actionKey || lcStatus.lastAction || "";
+
+    const t = lcStatusText(lcStatus.phase);
+    const els = lcFindStatusEl();
+
+    if (els.ja) els.ja.textContent = t.ja;
+    if (els.en) els.en.textContent = t.en;
+
+    // If no dedicated nodes, fallback to updating textContent of the box itself
+    if (!els.ja && !els.en && els.box){
+      const lang = (typeof lcGetLang === "function") ? lcGetLang() : "en";
+      els.box.textContent = (lang === "ja") ? t.ja : t.en;
+    }
+
+    // Accessibility: announce changes if a live region exists
+    const live = document.getElementById("lcStatusLive");
+    if (live){
+      const lang = (typeof lcGetLang === "function") ? lcGetLang() : "en";
+      live.textContent = (lang === "ja") ? t.ja : t.en;
+    }
+  }
+
+  function lcDeriveAndSyncStatus(){
+    // If "busy" exists, prefer it
+    const busy = (typeof lcUi !== "undefined" && lcUi) ? !!lcUi.busy : false;
+    if (busy){
+      // keep current phase as-is while busy to avoid flicker
+      return;
+    }
+
+    // If running detector exists, use it
+    let running = false;
+    try{
+      if (typeof lcIsRunning === "function") running = !!lcIsRunning();
+    }catch(_e){ running = false; }
+
+    if (running){
+      if (lcStatus.phase !== "running") lcSetStatus("running");
+    }else{
+      // Only auto-drop to idle when not in explicit error
+      if (lcStatus.phase !== "error") lcSetStatus("idle");
+    }
+  }
+
+  // Wrap lcRunUiAction (LC-07) to set status before/after actions
+  (function(){
+    try{
+      if (typeof lcRunUiAction !== "function") return;
+      if (lcRunUiAction.__lc10Wrapped) return;
+
+      const _orig = lcRunUiAction;
+      const wrapped = async function(actionKey, fn){
+        // Set phase based on action type
+        if (actionKey === "start") lcSetStatus("starting", actionKey);
+        else if (actionKey === "stop") lcSetStatus("stopping", actionKey);
+        else {
+          // flip/lite are short actions; show starting-style feedback only if already running
+          // keep current if it is running; otherwise show idle-friendly transient
+          if (lcStatus.phase === "running") lcSetStatus("starting", actionKey);
+        }
+
+        try{
+          return await _orig(actionKey, fn);
+        }finally{
+          // After action: derive running/idle
+          try{
+            // If stop action, force idle after hard stop completes
+            if (actionKey === "stop"){
+              lcSetStatus("idle", actionKey);
+            } else {
+              lcDeriveAndSyncStatus();
+            }
+          }catch(_e){}
+        }
+      };
+
+      wrapped.__lc10Wrapped = true;
+      // Preserve any flags used by previous logic
+      try{ wrapped.__lcWrappedFn = _orig.__lcWrappedFn; }catch(_e){}
+      lcRunUiAction = wrapped;
+    }catch(_e){}
+  })();
+
+  // Wrap lcShowAlert (LC-06) to mark error status when alert is shown
+  (function(){
+    try{
+      if (typeof lcShowAlert !== "function") return;
+      if (lcShowAlert.__lc10Wrapped) return;
+
+      const _origAlert = lcShowAlert;
+      const wrappedAlert = function(msgJa, msgEn){
+        try{ lcSetStatus("error"); }catch(_e){}
+        return _origAlert.apply(this, arguments);
+      };
+      wrappedAlert.__lc10Wrapped = true;
+      lcShowAlert = wrappedAlert;
+    }catch(_e){}
+  })();
+
+  // If LC-08 hard stop exists, sync to idle after it runs
+  (function(){
+    try{
+      if (typeof lcHardStopCamera !== "function") return;
+      if (lcHardStopCamera.__lc10Wrapped) return;
+
+      const _origStop = lcHardStopCamera;
+      const wrappedStop = function(reason){
+        const r = _origStop.apply(this, arguments);
+        try{ lcSetStatus("idle"); }catch(_e){}
+        return r;
+      };
+      wrappedStop.__lc10Wrapped = true;
+      lcHardStopCamera = wrappedStop;
+    }catch(_e){}
+  })();
+
+  // Boot: initial status + periodic sync (slow, lightweight)
+  (function(){
+    function init(){
+      try{ lcDeriveAndSyncStatus(); }catch(_e){}
+      setInterval(function(){
+        try{ lcDeriveAndSyncStatus(); }catch(_e){}
+      }, 700);
+    }
+    if (document.readyState === "loading"){
+      document.addEventListener("DOMContentLoaded", init, { once:true });
+    }else{
+      init();
+    }
+  })();
+
+  const lcBtn = {
+    cached: false,
+    start: null,
+    stop: null,
+    flip: null,
+    lite: null,
+  };
+
+  function lcFindFirstId(ids){
+    for (const id of ids){
+      const el = document.getElementById(id);
+      if (el) return el;
+    }
+    return null;
+  }
+
+  function lcCacheButtons(){
+    if (lcBtn.cached) return;
+
+    lcBtn.start = lcFindFirstId(["lcStart","startBtn","btnStart","start","lc-start"]);
+    lcBtn.stop  = lcFindFirstId(["lcStop","stopBtn","btnStop","stop","lc-stop"]);
+    lcBtn.flip  = lcFindFirstId(["lcFlip","flipBtn","btnFlip","flip","lc-flip"]);
+    lcBtn.lite  = lcFindFirstId(["lcLite","liteBtn","btnLite","lite","lc-lite"]);
+
+    // fallback: bottom bar buttons by order (best-effort)
+    if (!lcBtn.start || !lcBtn.stop || !lcBtn.flip || !lcBtn.lite){
+      const bar = document.querySelector(".lc-bottombar");
+      if (bar){
+        const btns = Array.from(bar.querySelectorAll("button"));
+        if (!lcBtn.start && btns[0]) lcBtn.start = btns[0];
+        if (!lcBtn.stop  && btns[1]) lcBtn.stop  = btns[1];
+        if (!lcBtn.flip  && btns[2]) lcBtn.flip  = btns[2];
+        if (!lcBtn.lite  && btns[3]) lcBtn.lite  = btns[3];
+      }
+    }
+
+    lcBtn.cached = true;
+  }
+
+  function lcGetLang(){
+    const saved = (localStorage.getItem("lang") || "").toLowerCase();
+    if (saved === "ja" || saved === "en") return saved;
+    const browser = (navigator.language || "").toLowerCase();
+    return browser.startsWith("ja") ? "ja" : "en";
+  }
+
+  function lcSetDisabled(el, disabled){
+    if (!el) return;
+    el.disabled = !!disabled;
+    el.setAttribute("aria-disabled", disabled ? "true" : "false");
+  }
+
+  function lcIsRunning(){
+    // Prefer LC-08 state if available
+    try{
+      if (typeof lcState !== "undefined" && lcState && lcState.currentStream){
+        const st = lcState.currentStream;
+        if (st && typeof st.getTracks === "function"){
+          const tracks = st.getTracks();
+          if (tracks && tracks.some(t => t && t.readyState === "live")) return true;
+        }
+      }
+    }catch(_e){}
+
+    // Fallback: any video srcObject has live tracks
+    try{
+      const vids = Array.from(document.querySelectorAll("video"));
+      for (const v of vids){
+        const so = v && v.srcObject;
+        if (so && typeof so.getTracks === "function"){
+          const tracks = so.getTracks();
+          if (tracks && tracks.some(t => t && t.readyState === "live")) return true;
+        }
+      }
+    }catch(_e){}
+    return false;
+  }
+
+  function lcSetButtonLabel(el, isRunning){
+    // If the same button is used for Start/Stop, toggle its label.
+    if (!el) return;
+    // If the button has child spans for i18n, update those (preferred).
+    const jaSpan = el.querySelector('[data-i18n="ja"]');
+    const enSpan = el.querySelector('[data-i18n="en"]');
+    const ja = isRunning ? "停止" : "開始";
+    const en = isRunning ? "Stop" : "Start";
+
+    if (jaSpan || enSpan){
+      if (jaSpan) jaSpan.textContent = ja;
+      if (enSpan) enSpan.textContent = en;
+      return;
+    }
+
+    // Otherwise replace plain text (keep it minimal)
+    const lang = lcGetLang();
+    el.textContent = (lang === "ja") ? ja : en;
+  }
+
+  function lcUpdateButtons(){
+    lcCacheButtons();
+
+    const running = lcIsRunning();
+    const busy = (typeof lcUi !== "undefined" && lcUi) ? !!lcUi.busy : false;
+
+    // If separate Start/Stop buttons exist, show/hide to match state
+    if (lcBtn.start && lcBtn.stop && lcBtn.start !== lcBtn.stop){
+      // show Start only when not running
+      lcBtn.start.hidden = !!running;
+      lcBtn.stop.hidden  = !running;
+      lcSetDisabled(lcBtn.start, busy || running);
+      lcSetDisabled(lcBtn.stop,  busy ? false : !running);
+    }else{
+      // Single button: toggle label and disable rules
+      if (lcBtn.start) lcSetButtonLabel(lcBtn.start, running);
+      lcSetDisabled(lcBtn.start, busy ? true : false);
+    }
+
+    // Flip: only when running & not busy (prevents state break on double tap)
+    lcSetDisabled(lcBtn.flip, busy || !running);
+
+    // Lite: allowed when not busy. If you want "running-only", change rule later.
+    lcSetDisabled(lcBtn.lite, busy);
+  }
+
+  function lcStartButtonSyncLoop(){
+    // Keep it lightweight: update at a slow cadence
+    lcUpdateButtons();
+    setTimeout(lcStartButtonSyncLoop, 300);
+  }
+
+  // Bind: start loop after DOM ready
+  (function(){
+    function init(){
+      try{ lcStartButtonSyncLoop(); }catch(_e){}
+    }
+    if (document.readyState === "loading"){
+      document.addEventListener("DOMContentLoaded", init, { once: true });
+    }else{
+      init();
+    }
+  })();
+
+  const lcState = (typeof window !== "undefined")
+    ? (window.__lcLightCheckState = window.__lcLightCheckState || { currentStream: null })
+    : { currentStream: null };
+
+  function lcStopStream(stream){
+    if (!stream) return;
+    try{
+      if (typeof stream.getTracks === "function"){
+        stream.getTracks().forEach(t=>{
+          try{ t.stop(); }catch(_e){}
+        });
+      }
+    }catch(_e){}
+  }
+
+  function lcDetachAllVideoSrcObject(){
+    try{
+      const vids = Array.from(document.querySelectorAll("video"));
+      vids.forEach(v=>{
+        try{
+          if (v && v.srcObject){
+            lcStopStream(v.srcObject);
+            v.srcObject = null;
+          }
+          // keep it minimal; src removal helps on some browsers
+          try{ v.removeAttribute("src"); }catch(_e){}
+          try{ v.load && v.load(); }catch(_e){}
+        }catch(_e){}
+      });
+    }catch(_e){}
+  }
+
+  function lcHardStopCamera(reason){
+    // reason is only for debug; no UI text here
+    try{ lcStopStream(lcState.currentStream); }catch(_e){}
+    lcState.currentStream = null;
+
+    // also stop anything still attached to video elements (belt & suspenders)
+    lcDetachAllVideoSrcObject();
+
+    // if app has its own state vars, try to null them defensively
+    try{
+      if (typeof currentStream !== "undefined") currentStream = null;  // eslint-disable-line no-undef
+    }catch(_e){}
+    try{
+      if (typeof stream !== "undefined") stream = null;               // eslint-disable-line no-undef
+    }catch(_e){}
+  }
+
+  /* LC-07: action lock */
+  const lcUi = { busy:false };
+
+  function lcExplainUiActionError(actionKey){
+    const map = {
+      start: { ja:"開始処理に失敗しました。権限やブラウザ設定の影響が考えられます。", en:"Failed to start. This may be affected by permissions or browser settings." },
+      stop:  { ja:"停止処理で問題が発生しました。", en:"A problem occurred while stopping." },
+      flip:  { ja:"カメラ切替に失敗しました。端末やブラウザが切替に対応していない可能性があります。", en:"Failed to switch cameras. Your device/browser may not support switching." },
+      lite:  { ja:"Lite切替に失敗しました。端末やブラウザの制約が原因の可能性があります。", en:"Failed to toggle Lite mode. This may be caused by device/browser limitations." },
+    };
+    return map[actionKey] || { ja:"処理に失敗しました。", en:"The action failed." };
+  }
+
+  function lcSetBusy(on){
+    lcUi.busy = !!on;
+    document.body.setAttribute("aria-busy", lcUi.busy ? "true" : "false");
+    // If you have explicit button-state updater in the app, call it.
+    try{
+      if (typeof updateButtons === "function") updateButtons();
+      if (typeof renderButtons === "function") renderButtons();
+      if (typeof setButtonStates === "function") setButtonStates();
+    }catch(_e){}
+  }
+
+  async function lcRunUiAction(actionKey, fn){
+    if (lcUi.busy) return;
+    lcSetBusy(true);
+    try{
+      const ret = fn();
+      if (ret && typeof ret.then === "function") await ret;
+    }catch(err){
+      const t = lcExplainUiActionError(actionKey);
+      if (typeof lcShowAlert === "function") lcShowAlert(t.ja, t.en);
+      else console.error("[light-check]", actionKey, err);
+    }finally{
+      lcSetBusy(false);
+    }
+  }
+
+  /* LC-06: camera error UI */
+  function lcId(id){ return document.getElementById(id); }
+
+  function lcGetLang(){
+    const saved = (localStorage.getItem("lang") || "").toLowerCase();
+    if (saved === "ja" || saved === "en") return saved;
+    const browser = (navigator.language || "").toLowerCase();
+    return browser.startsWith("ja") ? "ja" : "en";
+  }
+
+  function lcShowAlert(msgJa, msgEn){
+    const box = lcId("lcAlert");
+    const ja = lcId("lcAlertMsgJa");
+    const en = lcId("lcAlertMsgEn");
+    if (ja) ja.textContent = msgJa || "—";
+    if (en) en.textContent = msgEn || "—";
+    if (box) box.hidden = false;
+
+    // Only toggle inside the alert box to avoid breaking the page-wide i18n logic
+    const lang = lcGetLang();
+    if (box){
+      box.querySelectorAll("[data-i18n]").forEach(el=>{
+        el.style.display = (el.getAttribute("data-i18n") === lang) ? "" : "none";
+      });
+    }
+  }
+
+  function lcHideAlert(){
+    const box = lcId("lcAlert");
+    if (box) box.hidden = true;
+  }
+
+  function lcBindAlertDismiss(){
+    const b = lcId("lcAlertDismiss");
+    if (!b || b.__lcBound) return;
+    b.__lcBound = true;
+    b.addEventListener("click", lcHideAlert);
+  }
+
+  async function lcGetUserMedia(constraints){
+    
+    // LC-08: stop any previous stream before re-start
+    lcHardStopCamera("pre-start");
+lcBindAlertDismiss();
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      lcShowAlert(
+        "このブラウザではカメラAPIが利用できません。iOSはSafari、AndroidはChromeでのご利用を推奨します。",
+        "Camera API is not available in this browser. Safari on iOS and Chrome on Android are recommended."
+      );
+      throw new Error("getUserMedia_not_supported");
+    }
+
+    try{
+      // Bracket notation prevents accidental regex replacements
+      const __lcStream = await navigator.mediaDevices["getUserMedia"](constraints);
+      lcState.currentStream = __lcStream;
+      return __lcStream;
+    }catch(err){
+      const name = (err && err.name) ? String(err.name) : "";
+      const message = (err && err.message) ? String(err.message) : "";
+
+      let ja = "カメラの起動に失敗しました。権限、ブラウザ設定、他アプリのカメラ使用状況をご確認ください。";
+      let en = "Failed to start the camera. Please check permissions, browser settings, and whether another app is using the camera.";
+
+      if (name === "NotAllowedError" || name === "PermissionDeniedError"){
+        ja = "カメラの使用が許可されていません。ブラウザの権限設定でカメラを許可してから、もう一度お試しください。";
+        en = "Camera permission was denied. Allow camera access in your browser settings and try again.";
+      } else if (name === "NotFoundError" || name === "DevicesNotFoundError"){
+        ja = "利用可能なカメラが見つかりませんでした。端末にカメラがあるか、別アプリで使用中でないかをご確認ください。";
+        en = "No available camera was found. Check your device has a camera and it isn't in use by another app.";
+      } else if (name === "NotReadableError" || name === "TrackStartError"){
+        ja = "カメラを読み取れませんでした。別アプリがカメラを使用中の可能性があります。";
+        en = "The camera could not be accessed. Another app may be using it.";
+      } else if (name === "OverconstrainedError" || name === "ConstraintNotSatisfiedError"){
+        ja = "カメラ設定が端末に合いませんでした。前後カメラの切替やLiteモードの利用をご検討ください。";
+        en = "Requested camera constraints are not supported. Try switching cameras or using Lite mode.";
+      } else if (name === "SecurityError"){
+        ja = "セキュリティ制限でカメラがブロックされました。HTTPSまたは安全なコンテキストでの実行が必要です。";
+        en = "Camera was blocked by security restrictions. Run on HTTPS or a secure context.";
+      } else if (name === "AbortError"){
+        ja = "カメラの起動が中断されました。ページを再読み込みしてからお試しください。";
+        en = "Camera start was aborted. Reload the page and try again.";
+      }
+
+      // Small detail hint without being noisy
+      if (message && len(message) < 140){
+        ja += "（詳細: " + message + "）";
+        en += " (Detail: " + message + ")";
+      }
+
+      lcShowAlert(ja, en);
+      throw err;
+    }
+  }
+
   // ---------- i18n ----------
   function getPreferredLang() {
     const saved = (localStorage.getItem("lang") || "").toLowerCase();
@@ -228,7 +729,7 @@
         }
       };
 
-      stream = await navigator.mediaDevices.getUserMedia(constraints);
+      stream = await lcGetUserMedia(constraints);
       elVideo.srcObject = stream;
       await elVideo.play();
 
@@ -433,4 +934,74 @@
     setBtnState();
     setMetricsStub();
   });
+
+  /* LC-07: wrap existing action functions if present */
+  (function(){
+    function wrap(name, key){
+      try{
+        const fn = (typeof window !== "undefined" && window[name]) ? window[name] : (typeof eval(name) === "function" ? eval(name) : null);
+        if (typeof fn !== "function") return;
+        // Only wrap once
+        if (fn.__lcWrappedFn) return;
+        const wrapped = function(){ return lcRunUiAction(key, () => fn.apply(this, arguments)); };
+        wrapped.__lcWrappedFn = true;
+        try{ eval(name + " = wrapped"); }catch(_e){}
+      }catch(_e){}
+    }
+
+    // Common names used in this tool family
+    wrap("startCamera", "start");
+    wrap("startStream", "start");
+    wrap("stopCamera",  "stop");
+    wrap("stopStream",  "stop");
+    wrap("flipCamera",  "flip");
+    wrap("switchCamera","flip");
+    wrap("toggleLiteMode","lite");
+    wrap("toggleLite",  "lite");
+  })();
+
+  /* LC-08: ensure stop always releases camera */
+  (function(){
+    function findStopButton(){
+      const ids = ["lcStop","stopBtn","btnStop","stop","lc-stop"];
+      for (const id of ids){
+        const el = document.getElementById(id);
+        if (el) return el;
+      }
+      // fallback: try bottom bar second button
+      const bar = document.querySelector(".lc-bottombar");
+      if (bar){
+        const btns = Array.from(bar.querySelectorAll("button"));
+        if (btns[1]) return btns[1];
+      }
+      return null;
+    }
+
+    function bind(){
+      const stopBtn = findStopButton();
+      if (stopBtn && !stopBtn.__lcHardStopBound){
+        stopBtn.__lcHardStopBound = true;
+        stopBtn.addEventListener("click", ()=>{
+          // run after the app's own stop logic
+          setTimeout(()=> lcHardStopCamera("stop-click"), 0);
+        });
+      }
+
+      // safety: leaving the page should release camera
+      window.addEventListener("pagehide", ()=> lcHardStopCamera("pagehide"));
+      document.addEventListener("visibilitychange", ()=>{
+        if (document.visibilityState === "hidden"){
+          lcHardStopCamera("hidden");
+        }
+      });
+    }
+
+    if (document.readyState === "loading"){
+      document.addEventListener("DOMContentLoaded", bind, { once:true });
+    }else{
+      bind();
+    }
+  })();
+
+
 })();

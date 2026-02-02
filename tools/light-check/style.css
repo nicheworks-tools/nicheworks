@@ -491,3 +491,601 @@ strong{ font-weight:700; }
   .lc-sheet{ background: rgba(255,255,255,.92); }
   .lc-hint{ background: rgba(255,255,255,.78); color: rgba(0,0,0,.82); }
 }
+
+
+/* lc-alert */
+.lc-alert{
+  margin: 10px 12px 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+}
+.lc-alert-title{
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,.92);
+  margin-bottom: 6px;
+}
+.lc-alert-body{
+  color: rgba(255,255,255,.86);
+}
+.lc-alert-msg{
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.lc-alert-notes{
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+}
+.lc-alert-note{
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.72);
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.10);
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+.lc-alert-actions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.lc-btn-mini{
+  appearance:none;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.lc-link-mini{
+  display:inline-block;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.86);
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+@media (prefers-color-scheme: light){
+  .lc-alert{
+    border-color: rgba(0,0,0,.12);
+    background: rgba(0,0,0,.03);
+  }
+  .lc-alert-title{ color: rgba(0,0,0,.86); }
+  .lc-alert-body{ color: rgba(0,0,0,.82); }
+  .lc-alert-note{
+    color: rgba(0,0,0,.70);
+    border-color: rgba(0,0,0,.08);
+    background: rgba(0,0,0,.03);
+  }
+  .lc-btn-mini{
+    border-color: rgba(0,0,0,.14);
+    background: rgba(0,0,0,.04);
+    color: rgba(0,0,0,.86);
+  }
+  .lc-link-mini{
+    border-color: rgba(0,0,0,.14);
+    background: rgba(0,0,0,.03);
+    color: rgba(0,0,0,.78);
+  }
+}
+
+/* LC-12: status + alert minimal UI (mobile-first, one-screen friendly) */
+
+/* [hidden] safety */
+[hidden] { display: none !important; }
+
+/* Screen-reader only */
+.sr-only{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* Status line: compact pill */
+.lc-status{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+
+  padding:8px 10px;
+  border-radius:999px;
+
+  border:1px solid rgba(0,0,0,0.14);
+  background:rgba(255,255,255,0.9);
+
+  font-size:12px;
+  line-height:1;
+
+  /* keep within top area; avoids pushing layout */
+  width:fit-content;
+  max-width:100%;
+}
+
+@media (prefers-color-scheme: dark){
+  .lc-status{
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.35);
+  }
+}
+
+/* Place status near top of main content without stealing space */
+#lcStatus{
+  position: sticky;
+  top: 8px;
+  z-index: 20;
+  margin: 8px 0 8px 0;
+}
+
+/* Alert: compact inline banner, not a modal */
+.lc-alert{
+  position: sticky;
+  top: 8px;
+  z-index: 40;
+
+  margin: 8px 0 10px 0;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.16);
+  background: rgba(255,255,255,0.96);
+
+  /* do not explode height */
+  max-height: 34vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-color-scheme: dark){
+  .lc-alert{
+    border-color: rgba(255,255,255,0.20);
+    background: rgba(0,0,0,0.55);
+  }
+}
+
+.lc-alert__inner{
+  padding: 10px 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.lc-alert__title{
+  font-size: 12px;
+  line-height: 1.2;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.lc-alert__body p{
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
+.lc-alert__actions{
+  display:flex;
+  justify-content:flex-end;
+  gap: 8px;
+}
+
+/* Buttons (only if your tool already uses these classes; harmless otherwise) */
+.lc-btn{
+  appearance:none;
+  border:1px solid rgba(0,0,0,0.16);
+  background: rgba(255,255,255,0.9);
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lc-btn:disabled{
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.lc-btn--ghost{
+  background: transparent;
+}
+
+@media (prefers-color-scheme: dark){
+  .lc-btn{
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.25);
+    color: inherit;
+  }
+  .lc-btn--ghost{
+    background: transparent;
+  }
+}
+
+/* Avoid bottom bar covering content on small screens (best-effort).
+   Only applies if page uses .lc-bottombar. */
+.lc-bottombar{
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(0,0,0,0.10);
+}
+@media (prefers-color-scheme: dark){
+  .lc-bottombar{
+    background: rgba(0,0,0,0.55);
+    border-top-color: rgba(255,255,255,0.14);
+  }
+}
+
+/* LC-14: folds UI (details/summary) — mobile-friendly, compact */
+
+/* Container */
+.lc-folds{
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 12px 0;
+}
+
+/* Each fold */
+.lc-fold{
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.90);
+  overflow: clip;
+}
+
+@media (prefers-color-scheme: dark){
+  .lc-fold{
+    border-color: rgba(255,255,255,0.16);
+    background: rgba(0,0,0,0.35);
+  }
+}
+
+/* Summary row */
+.lc-fold__summary{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 12px 12px;
+  cursor: pointer;
+
+  /* make it tap-friendly without taking too much vertical space */
+  min-height: 44px;
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lc-fold__summary::-webkit-details-marker{ display:none; }
+
+.lc-fold__summary:focus{
+  outline: 2px solid rgba(0,0,0,0.35);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+@media (prefers-color-scheme: dark){
+  .lc-fold__summary:focus{
+    outline-color: rgba(255,255,255,0.35);
+  }
+}
+
+/* Add a chevron via CSS (no extra DOM) */
+.lc-fold__summary::after{
+  content: "▾";
+  opacity: 0.75;
+  font-size: 14px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+.lc-fold[open] > .lc-fold__summary::after{
+  content: "▴";
+  opacity: 0.80;
+}
+
+/* Divider between summary and body when open */
+.lc-fold[open] > .lc-fold__summary{
+  border-bottom: 1px solid rgba(0,0,0,0.10);
+}
+@media (prefers-color-scheme: dark){
+  .lc-fold[open] > .lc-fold__summary{
+    border-bottom-color: rgba(255,255,255,0.14);
+  }
+}
+
+/* Body */
+.lc-fold__body{
+  padding: 10px 12px 12px 12px;
+  display: grid;
+  gap: 10px;
+}
+
+/* Lists inside folds */
+.lc-fold__list{
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.lc-fold__list li{
+  margin: 4px 0;
+}
+
+/* Notes */
+.lc-fold__note{
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  opacity: 0.88;
+}
+
+/* Support button (anchor styled as button) */
+.lc-supportBtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.16);
+  background: rgba(255,255,255,0.92);
+  text-decoration: none;
+
+  font-size: 12px;
+  line-height: 1;
+}
+
+.lc-supportBtn:active{
+  transform: translateY(1px);
+}
+
+@media (prefers-color-scheme: dark){
+  .lc-supportBtn{
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.25);
+    color: inherit;
+  }
+}
+
+/* If folds appear under status/alert, keep them from stealing too much space */
+@media (max-height: 720px){
+  .lc-folds{ gap: 8px; }
+  .lc-fold__summary{ padding: 10px 12px; min-height: 42px; }
+  .lc-fold__body{ padding: 8px 12px 10px 12px; gap: 8px; }
+}
+
+/* LC-16: nw donate + internal links (spec-aligned) */
+
+/* Donate block: modest but clearly button-like */
+.nw-donate{
+  margin: 18px 0 14px;
+  padding: 12px 12px;
+
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.90);
+
+  display: grid;
+  gap: 10px;
+}
+
+/* Ensure donate isn't glued to ads (spec suggests ample spacing) */
+.ad-slot + .nw-donate{ margin-top: 24px; }
+.nw-donate + .nw-footer{ margin-top: 10px; }
+
+@media (prefers-color-scheme: dark){
+  .nw-donate{
+    border-color: rgba(255,255,255,0.16);
+    background: rgba(0,0,0,0.35);
+  }
+}
+
+.nw-donate-text{
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+
+/* Donate buttons */
+.nw-donate-links{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nw-donate-links a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(0,0,0,0.16);
+  background: rgba(255,255,255,0.92);
+  text-decoration: none;
+
+  font-size: 12px;
+  line-height: 1;
+}
+
+.nw-donate-links a:active{
+  transform: translateY(1px);
+}
+
+@media (prefers-color-scheme: dark){
+  .nw-donate-links a{
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.25);
+    color: inherit;
+  }
+}
+
+/* Internal links near footer: small, unobtrusive */
+.nw-links{
+  margin: 10px 0 14px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.nw-links a{
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.nw-links-title{
+  margin-right: 6px;
+  opacity: 0.9;
+}
+
+/* Tight screens: keep it compact */
+@media (max-height: 720px){
+  .nw-donate{ padding: 10px 12px; gap: 8px; }
+  .nw-donate-links a{ min-height: 42px; padding: 9px 12px; }
+  .nw-links{ margin: 8px 0 12px; }
+}
+
+/* LC-23: contrast fix */
+/* Goal: readable text everywhere (footer/ad/donate/links/status/folds) on light gradient backgrounds. */
+
+:root{
+  --lc-text: #0f172a;   /* slate-900 */
+  --lc-muted: #334155;  /* slate-700 */
+  --lc-link: #0b3d91;   /* readable link blue */
+  --lc-surface: rgba(255,255,255,.90);
+  --lc-surface2: rgba(255,255,255,.78);
+  --lc-border: rgba(15,23,42,.16);
+  --lc-shadow: 0 10px 30px rgba(15,23,42,.10);
+}
+
+/* Global text default */
+body{ color: var(--lc-text); }
+a{ color: var(--lc-link); text-underline-offset: 2px; }
+
+/* Sub texts */
+.lc-subtitle,
+.lc-note,
+.lc-hint,
+.lc-small,
+.lc-muted{
+  color: var(--lc-muted);
+  opacity: 1 !important;
+}
+
+/* Ad placeholder: make it visible */
+.lc-ad,
+.lc-adSlot,
+#lcAd,
+#lcAdSlot{
+  color: var(--lc-text) !important;
+  background: var(--lc-surface2) !important;
+  border: 1px solid var(--lc-border) !important;
+  box-shadow: none !important;
+}
+.lc-ad *{ opacity: 1 !important; }
+
+/* Status line */
+.lc-status,
+#lcStatus{
+  color: var(--lc-text) !important;
+  background: var(--lc-surface2) !important;
+  border-top: 1px solid var(--lc-border) !important;
+}
+#lcStatus [data-i18n]{ opacity: 1 !important; }
+
+/* Collapsible sections */
+.lc-fold__summary{
+  color: var(--lc-text) !important;
+  background: var(--lc-surface) !important;
+  border: 1px solid var(--lc-border) !important;
+}
+.lc-fold__body{
+  color: var(--lc-text) !important;
+  background: var(--lc-surface2) !important;
+  border: 1px solid var(--lc-border) !important;
+}
+.lc-fold__list,
+.lc-fold__note{
+  color: var(--lc-text) !important;
+  opacity: 1 !important;
+}
+
+/* Donate box + links */
+.nw-donate,
+#nwDonate{
+  color: var(--lc-text) !important;
+  background: var(--lc-surface) !important;
+  border: 1px solid var(--lc-border) !important;
+  box-shadow: var(--lc-shadow) !important;
+}
+.nw-donate-text{ color: var(--lc-text) !important; }
+.nw-donate-links a{
+  color: var(--lc-text) !important;
+  background: rgba(15,23,42,.06) !important;
+  border: 1px solid var(--lc-border) !important;
+}
+.nw-donate-links a:hover{
+  background: rgba(15,23,42,.10) !important;
+}
+
+/* Footer + “More tools” links */
+footer,
+.nw-footer,
+.nw-links{
+  color: var(--lc-text) !important;
+}
+footer.nw-footer{
+  background: var(--lc-surface2) !important;
+  border: 1px solid var(--lc-border) !important;
+  box-shadow: var(--lc-shadow) !important;
+}
+footer.nw-footer a,
+.nw-links a{
+  color: var(--lc-link) !important;
+  opacity: 1 !important;
+}
+.nw-links-title{
+  color: var(--lc-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Buttons: ensure label is readable */
+button,
+.lc-cta,
+.lc-btn,
+.lc-btn-mini{
+  color: var(--lc-text) !important;
+}
+.lc-cta span,
+.lc-btn span,
+.lc-btn-mini span{
+  opacity: 1 !important;
+}
+
+/* Focus ring (mobile usability) */
+:focus-visible{
+  outline: 3px solid rgba(11,61,145,.45);
+  outline-offset: 2px;
+}

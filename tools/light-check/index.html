@@ -79,6 +79,39 @@
 
     <section class="lc-card" aria-label="Light Check Tool">
       <div class="lc-previewWrap">
+      <div id="lcAlert" class="lc-alert" hidden role="status" aria-live="polite">
+        <div class="lc-alert-title">
+          <span data-i18n="ja">カメラを起動できません</span>
+          <span data-i18n="en">Camera cannot start</span>
+        </div>
+
+        <div class="lc-alert-body">
+          <p class="lc-alert-msg" data-i18n="ja" id="lcAlertMsgJa">—</p>
+          <p class="lc-alert-msg" data-i18n="en" id="lcAlertMsgEn">—</p>
+
+          <div class="lc-alert-notes">
+            <div class="lc-alert-note">
+              <span data-i18n="ja"><strong>iOS：</strong>Safari推奨。別アプリでカメラ使用中の場合は終了してからお試しください。</span>
+              <span data-i18n="en"><strong>iOS:</strong> Safari recommended. Close other apps that may be using the camera.</span>
+            </div>
+            <div class="lc-alert-note">
+              <span data-i18n="ja"><strong>Android：</strong>Chrome推奨。権限を拒否した場合はブラウザ設定から許可してください。</span>
+              <span data-i18n="en"><strong>Android:</strong> Chrome recommended. If you denied permission, allow it in browser settings.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lc-alert-actions">
+          <button type="button" class="lc-btn-mini" id="lcAlertDismiss">
+            <span data-i18n="ja">閉じる</span>
+            <span data-i18n="en">Dismiss</span>
+          </button>
+          <a class="lc-link-mini" href="./usage.html">
+            <span data-i18n="ja">使い方・FAQ</span>
+            <span data-i18n="en">Guide / FAQ</span>
+          </a>
+        </div>
+      </div>
         <div class="lc-preview">
           <video id="video" playsinline autoplay muted></video>
           <div id="overlay" class="lc-overlay" aria-hidden="true"></div>
@@ -157,9 +190,107 @@
       <span data-i18n="ja">広告枠（準備中）</span>
       <span data-i18n="en">Ad slot (coming soon)</span>
     </div>
-  </main>
+  </main><!-- LC-11: status line (JP/EN) -->
+<div class="lc-status" id="lcStatus" role="status" aria-live="polite" aria-atomic="true">
+  <span id="lcStatusJa" data-i18n="ja">待機中</span>
+  <span id="lcStatusEn" data-i18n="en">Idle</span>
+</div>
+<div id="lcStatusLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-  <div class="lc-bottombar" role="region" aria-label="Controls">
+
+  
+
+<!-- LC-13: collapsible sections (mobile one-screen) -->
+<!-- LC-21: folds tone fix (no imperatives) -->
+<section class="lc-folds" aria-label="Help and support">
+  <details class="lc-fold" id="lcHowTo">
+    <summary class="lc-fold__summary">
+      <span data-i18n="ja">使い方</span>
+      <span data-i18n="en">How to use</span>
+    </summary>
+    <div class="lc-fold__body">
+      <ol class="lc-fold__list" data-i18n="ja">
+        <li>「開始」を押すと、カメラが起動します。</li>
+        <li>画面の指標（明るさ/色/安定度など）を確認します。</li>
+        <li>必要に応じて「カメラ切替」や「Lite」を利用できます。</li>
+        <li>終了時は「停止」で停止できます。</li>
+      </ol>
+      <ol class="lc-fold__list" data-i18n="en">
+        <li>Starting the camera is available from “Start”.</li>
+        <li>The indicators show brightness / color / stability, etc.</li>
+        <li>Camera switching (“Flip”) and “Lite” mode are available if needed.</li>
+        <li>Stopping is available from “Stop”.</li>
+      </ol>
+      <p class="lc-fold__note">
+        <span data-i18n="ja">※ ブラウザの権限設定でカメラが許可されている必要があります。</span>
+        <span data-i18n="en">Camera permission is required in your browser settings.</span>
+      </p>
+    </div>
+  </details>
+
+  <details class="lc-fold" id="lcTips">
+    <summary class="lc-fold__summary">
+      <span data-i18n="ja">見方のヒント</span>
+      <span data-i18n="en">Reading tips</span>
+    </summary>
+    <div class="lc-fold__body">
+      <ul class="lc-fold__list" data-i18n="ja">
+        <li>明るさが低い場合：ライトを近づける／ISOを下げる等の対策が有効です。</li>
+        <li>色かぶりがある場合：照明の色温度を揃える、混色を避けると安定します。</li>
+        <li>ちらつきが疑われる場合：周波数の異なる照明や調光は影響要因になり得ます。</li>
+      </ul>
+      <ul class="lc-fold__list" data-i18n="en">
+        <li>If it’s too dark: moving the light closer or reducing ISO may help.</li>
+        <li>If there’s a color cast: matching color temperatures and reducing mixed lighting may help.</li>
+        <li>If flicker is suspected: dimming or mixed-frequency light sources can be contributing factors.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lc-fold" id="lcLimits">
+    <summary class="lc-fold__summary">
+      <span data-i18n="ja">制限事項</span>
+      <span data-i18n="en">Limitations</span>
+    </summary>
+    <div class="lc-fold__body">
+      <ul class="lc-fold__list" data-i18n="ja">
+        <li>本ツールは簡易計測です。照度計（lux meter）の代替ではありません。</li>
+        <li>フリッカー検出は端末のFPSや露出制御の影響を受けます。</li>
+        <li>端末/ブラウザによってカメラ切替や取得できる情報が異なる場合があります。</li>
+      </ul>
+      <ul class="lc-fold__list" data-i18n="en">
+        <li>This is a lightweight measurement tool and not a replacement for a lux meter.</li>
+        <li>Flicker detection depends on FPS and camera exposure behavior.</li>
+        <li>Available camera features vary by device and browser.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lc-fold" id="lcSupport">
+    <summary class="lc-fold__summary">
+      <span data-i18n="ja">寄付・サポート</span>
+      <span data-i18n="en">Support</span>
+    </summary>
+    <div class="lc-fold__body">
+
+<!-- LC-15: donate + internal links (spec-compliant) -->
+
+<!-- LC-20: donate tone fix -->
+<div class="nw-donate" id="nwDonate">
+  <p class="nw-donate-text">
+    <span data-i18n="ja">本ツールがお役に立ちましたら、任意でご支援いただけます。運営・改善の継続に活用いたします。</span>
+    <span data-i18n="en">If this tool is helpful, optional support is appreciated. It helps maintain and improve the service.</span>
+  </p>
+  <div class="nw-donate-links">
+    <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+    <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+  </div>
+</div>
+
+</div>
+  </details>
+</section>
+<div class="lc-bottombar" role="region" aria-label="Controls">
     <button id="btnStart" class="lc-cta" type="button">
       <span data-i18n="ja">開始</span><span data-i18n="en">Start</span>
     </button>
@@ -245,7 +376,12 @@
     <p class="nw-footer-line">
       <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
     </p>
-  </footer>
+<!-- LC-18b: human titles (tools-index preferred; fallback to per-tool <title>) -->
+<div class="nw-links" aria-label="More tools">
+  <span class="nw-links-title" data-i18n="ja">関連ツール：</span>
+  <span class="nw-links-title" data-i18n="en">More tools:</span>
+  <a href="https://nicheworks.app/" target="_blank" rel="noopener"><span data-i18n="ja">ホーム</span><span data-i18n="en">Home</span></a> / <a href="/tools/exif-cleaner-mini/"><span data-i18n="ja">exif-cleaner-mini</span><span data-i18n="en">exif-cleaner-mini</span></a> / <a href="/tools/image-compression-inspector/"><span data-i18n="ja">image-compression-inspector</span><span data-i18n="en">image-compression-inspector</span></a> / <a href="/tools/filetype-sniffer/"><span data-i18n="ja">filetype-sniffer</span><span data-i18n="en">filetype-sniffer</span></a>
+</div></footer>
 
   <script src="./app.js"></script>
 </body>
