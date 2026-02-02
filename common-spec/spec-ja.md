@@ -3,12 +3,18 @@
 
 ## 0. 対象
 
-- 母艦サイト：`https://nicheworks.pages.dev/`
+- 母艦サイト：`https://nicheworks.app/`
 - NicheWorks 名義の静的ツール（ブラウザ完結系）
   - 解約どこナビ / ManualFinder / TrashNavi / CivicDoc / Contract Cleaner / LogFormatter / Rename Wizard / ほか
 - レイアウトが特殊なツール(LogFormatter 等)は「可能な範囲で適用」。
 
 > 原則：**ツールごとに個別のリポジトリは持たず、NicheWorks Suite 1 リポジトリの中で管理する。** :contentReference[oaicite:0]{index=0}
+
+※ ドメインに関する注意：
+本仕様書内で言及する「母艦サイトURL」は、
+原則として `https://nicheworks.app/` を正とする。
+過去の `pages.dev` 表記はすべて無効とする。
+
 
 ---
 
@@ -67,7 +73,7 @@
     -->
     <!--
     <nav class="nw-nav">
-      <a href="https://nicheworks.pages.dev/">Home</a>
+      <a href="https://nicheworks.app/">Home</a>
     </nav>
     -->
   </header>
@@ -102,8 +108,8 @@
       当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
     </p>
     <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
-        nicheworks.pages.dev
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">
+        nicheworks.app
       </a>
     </p>
   </footer>
@@ -683,7 +689,7 @@ AIが誤って全ツールをスマホ仕様に書き換えないための明記
 * `/tools/{slug}/` と `/tools/{slug}/index.html` の重複を避けるため、全ツールで canonical を指定する：
 
 ```html
-<link rel="canonical" href="https://nicheworks.pages.dev/tools/{tool-slug}/">
+<link rel="canonical" href="https://nicheworks.app/tools/{tool-slug}/">
 ```
 
 #### 9-3-4. JSON-LD（WebApplication）
@@ -696,7 +702,7 @@ AIが誤って全ツールをスマホ仕様に書き換えないための明記
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "{ツール名}",
-  "url": "https://nicheworks.pages.dev/tools/{tool-slug}/",
+  "url": "https://nicheworks.app/tools/{tool-slug}/",
   "applicationCategory": "UtilityApplication",
   "description": "{簡易説明文}",
   "operatingSystem": "All"
@@ -785,7 +791,7 @@ AIが誤って全ツールをスマホ仕様に書き換えないための明記
 ```text
 User-agent: *
 Allow: /
-Sitemap: https://nicheworks.pages.dev/sitemap.xml
+Sitemap: https://nicheworks.app/sitemap.xml
 ```
 
 * `sitemap.xml` は手動で管理し、主要ページ（母艦＋各ツール）を列挙する：
@@ -793,13 +799,13 @@ Sitemap: https://nicheworks.pages.dev/sitemap.xml
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nicheworks.pages.dev/</loc>
+    <loc>https://nicheworks.app/</loc>
   </url>
   <url>
-    <loc>https://nicheworks.pages.dev/tools/manual-finder/</loc>
+    <loc>https://nicheworks.app/tools/manual-finder/</loc>
   </url>
   <url>
-    <loc>https://nicheworks.pages.dev/tools/trashnavi/</loc>
+    <loc>https://nicheworks.app/tools/trashnavi/</loc>
   </url>
   <!-- 他ツールも同様に追加 -->
 </urlset>
