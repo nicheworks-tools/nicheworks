@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-02T02:21:53.090Z",
-  "total": 60,
+  "generatedAt": "2026-02-02T10:46:14.147Z",
+  "total": 61,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -206,6 +206,14 @@
       "slug": "laundry-code-decode",
       "title_en": "laundry-code-decode",
       "title_ja": "laundry-code-decode",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "light-check",
+      "title_en": "light-check",
+      "title_ja": "light-check",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
