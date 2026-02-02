@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>照明チェック｜Light Check | NicheWorks</title>
+  <meta name="description" content="カメラ映像から、明るさ・色かぶり・コントラスト・ちらつきを相対評価。スマホ1画面で使い方→分析→結果→寄付導線まで。" />
+
+  <link rel="canonical" href="https://nicheworks.app/tools/light-check/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="Light Check | NicheWorks" />
+  <meta property="og:description" content="Check brightness, color cast, contrast, and flicker from your camera (relative analysis)." />
+  <meta property="og:url" content="https://nicheworks.app/tools/light-check/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Light Check",
+    "url":"https://nicheworks.app/tools/light-check/",
+    "applicationCategory":"UtilityApplication",
+    "description":"Relative lighting analysis from camera: brightness, color cast, contrast, flicker.",
+    "operatingSystem":"All"
+  }
+  </script>
+
+  <!-- AdSense (required) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- GA4 (required) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="nw-headrow">
+      <div>
+        <h1 class="nw-title">
+          <span data-i18n="ja">ライトチェック</span>
+          <span data-i18n="en">Light Check</span>
+        </h1>
+        <p class="nw-subtitle">
+          <span data-i18n="ja">明るさ・色かぶり・影（コントラスト）・ちらつき（相対評価）</span>
+          <span data-i18n="en">Brightness, color cast, contrast, flicker (relative)</span>
+        </p>
+      </div>
+
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" data-lang="ja">JP</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+
+    <p class="nw-note">
+      <span data-i18n="ja">※ lux実測ではありません。端末・カメラ・環境差があるため、<strong>比較用の目安</strong>としてご利用ください。</span>
+      <span data-i18n="en">Not a lux meter. Results vary by device and environment; please use it as a <strong>comparative indicator</strong>.</span>
+    </p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">
+      <span data-i18n="ja">広告枠（準備中）</span>
+      <span data-i18n="en">Ad slot (coming soon)</span>
+    </div>
+
+    <section class="lc-card" aria-label="Light Check Tool">
+      <div class="lc-previewWrap">
+        <div class="lc-preview">
+          <video id="video" playsinline autoplay muted></video>
+          <div id="overlay" class="lc-overlay" aria-hidden="true"></div>
+
+          <div id="hint" class="lc-hint">
+            <span data-i18n="ja">下の「開始」を押して、カメラの利用を許可してください。</span>
+            <span data-i18n="en">Tap “Start” below and allow camera access.</span>
+          </div>
+
+          <button id="btnSheetResults" class="lc-fab lc-fab-left" type="button" aria-haspopup="dialog">
+            <span data-i18n="ja">結果</span><span data-i18n="en">Results</span>
+          </button>
+
+          <button id="btnSheetHowto" class="lc-fab lc-fab-right" type="button" aria-haspopup="dialog">
+            <span data-i18n="ja">使い方</span><span data-i18n="en">How</span>
+          </button>
+        </div>
+
+        <canvas id="canvas" class="lc-canvas" width="160" height="120"></canvas>
+      </div>
+
+      <div class="lc-compact" aria-label="Compact results">
+        <div class="lc-chips" role="list" aria-label="Metrics">
+          <span class="lc-chip" role="listitem"><span class="lc-chipKey">B</span><span id="mBrightness" class="lc-chipVal">-</span></span>
+          <span class="lc-chip" role="listitem"><span class="lc-chipKey">C</span><span id="mCast" class="lc-chipVal">-</span></span>
+          <span class="lc-chip" role="listitem"><span class="lc-chipKey">S</span><span id="mContrast" class="lc-chipVal">-</span></span>
+          <span class="lc-chip" role="listitem"><span class="lc-chipKey">F</span><span id="mFlicker" class="lc-chipVal">-</span></span>
+        </div>
+
+        <div class="lc-miniNote" id="miniNote">
+          <span data-i18n="ja">同じ位置・同じ構図のまま照明を変えると、差が比較しやすくなります。</span>
+          <span data-i18n="en">Keeping framing fixed makes comparisons clearer.</span>
+        </div>
+      </div>
+
+      <details class="lc-accordion">
+        <summary>
+          <span data-i18n="ja">詳細（任意）</span>
+          <span data-i18n="en">Details (optional)</span>
+        </summary>
+
+        <div class="lc-accBody">
+          <div class="lc-kv">
+            <div class="lc-kvRow"><span class="k">FPS</span><span id="statFps" class="v">-</span></div>
+            <div class="lc-kvRow"><span class="k">Sample</span><span id="statSample" class="v">-</span></div>
+            <div class="lc-kvRow"><span class="k">Mode</span><span id="statMode" class="v">-</span></div>
+          </div>
+
+          <div class="lc-small">
+            <span data-i18n="ja">フリッカー（ちらつき）の推定は端末FPSの影響を受けます。結果が不安定な場合は、照明の調光方式（PWM等）や撮影設定の影響が考えられます。</span>
+            <span data-i18n="en">Flicker estimation depends on device FPS. If unstable, PWM dimming or camera settings may be affecting the result.</span>
+          </div>
+
+          <div class="lc-small">
+            <a class="lc-link" href="./usage.html">
+              <span data-i18n="ja">使い方・制限・FAQ（別ページ）→</span>
+              <span data-i18n="en">Guide / limits / FAQ (page) →</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <div class="nw-donate lc-donateInline">
+        <p class="nw-donate-text">
+          <span data-i18n="ja">もし役に立ちましたら、開発継続のためのご支援をご検討ください。</span>
+          <span data-i18n="en">If this helps, please consider supporting continued development.</span>
+        </p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">
+      <span data-i18n="ja">広告枠（準備中）</span>
+      <span data-i18n="en">Ad slot (coming soon)</span>
+    </div>
+  </main>
+
+  <div class="lc-bottombar" role="region" aria-label="Controls">
+    <button id="btnStart" class="lc-cta" type="button">
+      <span data-i18n="ja">開始</span><span data-i18n="en">Start</span>
+    </button>
+
+    <button id="btnStop" class="lc-btn" type="button" disabled>
+      <span data-i18n="ja">停止</span><span data-i18n="en">Stop</span>
+    </button>
+
+    <button id="btnFlip" class="lc-btn" type="button" disabled>
+      <span data-i18n="ja">反転</span><span data-i18n="en">Flip</span>
+    </button>
+
+    <button id="btnLite" class="lc-btn" type="button" aria-pressed="false">
+      <span data-i18n="ja">Lite</span><span data-i18n="en">Lite</span>
+    </button>
+  </div>
+
+  <div id="sheetBackdrop" class="lc-sheetBackdrop" hidden></div>
+
+  <section id="sheetHowto" class="lc-sheet" role="dialog" aria-modal="true" aria-label="How to" hidden>
+    <div class="lc-sheetHead">
+      <div class="t">
+        <span data-i18n="ja">使い方（約30秒）</span>
+        <span data-i18n="en">How to (about 30s)</span>
+      </div>
+      <button class="lc-x" type="button" data-sheet-close>×</button>
+    </div>
+    <div class="lc-sheetBody">
+      <ol class="lc-steps">
+        <li><span data-i18n="ja">「開始」を押して、カメラの利用を許可します。</span><span data-i18n="en">Tap “Start” and allow camera access.</span></li>
+        <li><span data-i18n="ja">同じ構図のまま照明条件を変えます。</span><span data-i18n="en">Change lighting while keeping framing the same.</span></li>
+        <li><span data-i18n="ja">B/C/S/Fの変化を比較します。</span><span data-i18n="en">Compare changes in B/C/S/F.</span></li>
+      </ol>
+      <div class="lc-tip">
+        <span data-i18n="ja"><strong>B</strong>=明るさ / <strong>C</strong>=色かぶり / <strong>S</strong>=コントラスト / <strong>F</strong>=安定度</span>
+        <span data-i18n="en"><strong>B</strong>=brightness / <strong>C</strong>=cast / <strong>S</strong>=contrast / <strong>F</strong>=stability</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="sheetResults" class="lc-sheet" role="dialog" aria-modal="true" aria-label="Results" hidden>
+    <div class="lc-sheetHead">
+      <div class="t">
+        <span data-i18n="ja">結果（説明つき）</span>
+        <span data-i18n="en">Results (explained)</span>
+      </div>
+      <button class="lc-x" type="button" data-sheet-close>×</button>
+    </div>
+    <div class="lc-sheetBody">
+      <div class="lc-metric">
+        <div class="k">Brightness (B)</div>
+        <div id="exBrightness" class="v">-</div>
+      </div>
+      <div class="lc-metric">
+        <div class="k">Cast (C)</div>
+        <div id="exCast" class="v">-</div>
+      </div>
+      <div class="lc-metric">
+        <div class="k">Contrast (S)</div>
+        <div id="exContrast" class="v">-</div>
+      </div>
+      <div class="lc-metric">
+        <div class="k">Stability (F)</div>
+        <div id="exFlicker" class="v">-</div>
+      </div>
+
+      <div class="lc-advice" id="adviceBox">
+        <div class="lc-adviceTitle">
+          <span data-i18n="ja">改善のヒント</span>
+          <span data-i18n="en">Suggestions</span>
+        </div>
+        <div id="adviceText" class="lc-adviceText">-</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      <span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</span>
+      <span data-i18n="en">This site may contain ads. Accuracy is not guaranteed; verify with official sources.</span>
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

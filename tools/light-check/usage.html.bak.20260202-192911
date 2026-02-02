@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>使い方・制限・FAQ｜Light Check | NicheWorks</title>
+  <meta name="description" content="Light Check（ライトチェック）の使い方、制限、FAQ。明るさ・色かぶり・影・フリッカーをカメラ映像から相対評価します（lux実測ではありません）。" />
+
+  <link rel="canonical" href="https://nicheworks.app/tools/light-check/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="Light Check — Guide | NicheWorks" />
+  <meta property="og:description" content="How to use, limits, and FAQ for Light Check." />
+  <meta property="og:url" content="https://nicheworks.app/tools/light-check/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">
+      <span data-i18n="ja">ライトチェック：ガイド</span>
+      <span data-i18n="en">Light Check: Guide</span>
+    </h1>
+
+    <p class="nw-subtitle">
+      <span data-i18n="ja">使い方・制限・FAQ（LC-10で完成させる）</span>
+      <span data-i18n="en">How to use, limits, FAQ (finalized in LC-10)</span>
+    </p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">
+      <span data-i18n="ja">広告枠（準備中）</span>
+      <span data-i18n="en">Ad slot (coming soon)</span>
+    </div>
+
+    <section class="lc-card">
+      <h2 class="lc-results-title">
+        <span data-i18n="ja">このページはLC-10で完成</span>
+        <span data-i18n="en">This page will be completed in LC-10</span>
+      </h2>
+
+      <p class="lc-small">
+        <span data-i18n="ja">現時点では雛形のみです。LC-10で「手順」「制限」「プライバシー」「FAQ」を日英で確定します。</span>
+        <span data-i18n="en">This is a scaffold. LC-10 will finalize steps, limits, privacy, and FAQ in JP/EN.</span>
+      </p>
+
+      <p class="lc-small">
+        <span data-i18n="ja">重要：本ツールは lux 実測ではなく、カメラ映像からの相対評価です。</span>
+        <span data-i18n="en">Important: This is not a lux meter. It’s relative analysis from the camera image.</span>
+      </p>
+
+      <p class="lc-small">
+        <a class="lc-link" href="./index.html">
+          <span data-i18n="ja">← ツールへ戻る</span>
+          <span data-i18n="en">← Back to the tool</span>
+        </a>
+      </p>
+    </section>
+
+    <div class="ad-slot ad-bottom">
+      <span data-i18n="ja">広告枠（準備中）</span>
+      <span data-i18n="en">Ad slot (coming soon)</span>
+    </div>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text">
+        <span data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</span>
+        <span data-i18n="en">If this tool helps, consider supporting continued development.</span>
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      <span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</span>
+      <span data-i18n="en">This site may contain ads. Accuracy is not guaranteed; verify with official sources.</span>
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
