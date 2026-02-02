@@ -142,7 +142,7 @@
       "help.home": "NicheWorks Home",
       "footer.line1": "© NicheWorks — Small Web Tools for Boring Tasks",
       "footer.line2": "This site may contain ads. Information accuracy is not guaranteed. Always verify official sources.",
-      "footer.home": "nicheworks.pages.dev",
+      "footer.home": "nicheworks.app",
     },
     ja: {
       "app.title": "ATS Paste Doctor",
@@ -236,7 +236,7 @@
       "help.home": "NicheWorks ホーム",
       "footer.line1": "© NicheWorks — Small Web Tools for Boring Tasks",
       "footer.line2": "当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。",
-      "footer.home": "nicheworks.pages.dev",
+      "footer.home": "nicheworks.app",
     },
   };
 
