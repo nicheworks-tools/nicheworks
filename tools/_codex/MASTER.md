@@ -10,7 +10,7 @@
   `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>`
 - Must include `ad-top` (required) and `ad-bottom` (recommended).
 - Must include donate links (both): OFUSE + Ko-fi.
-- Must include canonical: `https://nicheworks.pages.dev/tools/{slug}/`
+- Must include canonical: `https://nicheworks.app/tools/{slug}/`
 - Must include JSON-LD `WebApplication`.
 
 ## 1) Use template
