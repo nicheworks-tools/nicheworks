@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>議事録→ToDo→決定事項→SOP | NicheWorks</title>
+  <meta name="description" content="議事録を貼り付けて、ToDo・決定事項・SOPドラフトを自動整形（ルール＋テンプレ）。翻訳/保証なし。ブラウザ内処理（目安）。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/minutes-to-ops/index.html" />
+
+  <meta property="og:title" content="議事録→ToDo→決定事項→SOP | NicheWorks" />
+  <meta property="og:description" content="議事録を運用成果物に変換（ルール＋テンプレ）。翻訳なし。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/minutes-to-ops/index.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header__inner">
+      <div class="nw-brand">minutes-to-ops</div>
+      <nav class="nw-nav">
+        <span class="nw-pill">
+          <span class="nw-muted">UI</span>
+          <button id="uiJA" type="button">JA</button>
+          <button id="uiEN" type="button">EN</button>
+        </span>
+        <a href="./usage.html">Usage</a>
+        <a href="./howto.html">How-to</a>
+        <a href="./usage-en.html" class="nw-muted">Usage(EN)</a>
+        <a href="./howto-en.html" class="nw-muted">How-to(EN)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <section class="nw-card">
+      <div class="nw-row" style="justify-content:space-between;">
+        <div>
+          <h1 style="margin:0 0 4px;" id="title">議事録→ToDo→決定事項→SOP</h1>
+          <div class="nw-muted" id="subhead">議事録を“運用成果物”に整形（ルール＋テンプレ / 翻訳なし）</div>
+        </div>
+        <div class="nw-row">
+          <button id="payBtn" type="button">Unlock Pro</button>
+          <button id="manualProBtn" type="button">Enable Pro on this browser (manual)</button>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="nw-grid">
+        <div class="nw-card" style="border:none; padding:0;">
+          <label id="lblNotes">Meeting notes (paste)</label>
+          <textarea id="notes" placeholder="議事録を貼り付け"></textarea>
+
+          <div class="nw-row" style="margin-top:10px;">
+            <div style="flex:1 1 240px; min-width:240px;">
+              <label id="lblMeeting">Meeting title</label>
+              <input id="meetingTitle" type="text" placeholder="例: 週次MTG / Sprint planning" />
+            </div>
+            <div style="flex:1 1 180px; min-width:180px;">
+              <label id="lblDate">Date</label>
+              <input id="meetingDate" type="text" placeholder="例: 2026-02-03" />
+            </div>
+            <div style="flex:1 1 240px; min-width:240px;">
+              <label id="lblParts">Participants</label>
+              <input id="participants" type="text" placeholder="例: A, B, C" />
+            </div>
+          </div>
+
+          <div class="nw-row" style="margin-top:10px;">
+            <button id="genBtn" type="button">Generate</button>
+            <button id="clearBtn" type="button">Clear</button>
+            <button id="pasteExampleBtn" type="button">Paste example</button>
+          </div>
+
+          <div class="nw-row" style="margin-top:8px;">
+            <span class="nw-pill"><span class="nw-muted">Note</span> 出力見出しは入力言語を自動判定（本文は翻訳しない）</span>
+          </div>
+        </div>
+
+        <div class="nw-card" style="border:none; padding:0;">
+          <div class="nw-card" style="margin-bottom:12px;">
+            <div style="font-weight:800;">Disclaimer</div>
+            <div class="nw-muted" id="disclaimer">
+              本ツールは翻訳や保証を行いません。本文処理はブラウザ内想定。ただし広告/解析タグは読み込まれます。機密情報は避けてください。
+            </div>
+          </div>
+
+          <div class="nw-card">
+            <div class="nw-row" style="justify-content:space-between;">
+              <div style="font-weight:800;" id="hTodo">ToDo</div>
+              <button id="copyMdBtn" type="button">Copy markdown</button>
+            </div>
+            <div class="nw-muted" id="todoMeta" style="margin-top:6px;">—</div>
+            <div style="overflow:auto; margin-top:10px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Task</th><th>Owner</th><th>Due</th><th>Priority</th><th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="todoBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="nw-card" style="margin-top:12px;">
+            <div style="font-weight:800;" id="hDec">Decisions</div>
+            <div id="decisions" class="nw-pre" style="margin-top:10px;">—</div>
+          </div>
+
+          <div class="nw-card" style="margin-top:12px;">
+            <div class="nw-row" style="justify-content:space-between;">
+              <div style="font-weight:800;" id="hSop">SOP draft</div>
+              <button id="copySopBtn" type="button">Copy SOP</button>
+            </div>
+            <div id="sop" class="nw-pre" style="margin-top:10px;">—</div>
+          </div>
+
+          <div class="nw-card" style="margin-top:12px;">
+            <div class="nw-row" style="justify-content:space-between;">
+              <div style="font-weight:800;">Export</div>
+              <span id="proState" class="nw-muted"></span>
+            </div>
+
+            <div class="nw-row" style="margin-top:10px;">
+              <button id="dlCsvBtn" type="button" disabled>Download CSV (Pro)</button>
+              <button id="dlMdBtn" type="button" disabled>Download .md (Pro)</button>
+              <button id="dlPdfBtn" type="button" disabled>Download PDF (Pro)</button>
+            </div>
+
+            <label style="margin-top:10px;">CSV preview (Free)</label>
+            <textarea id="csvPreview" readonly></textarea>
+
+            <label style="margin-top:10px;">Markdown preview (Free)</label>
+            <textarea id="mdPreview" readonly></textarea>
+
+            <div class="nw-muted" style="margin-top:8px;">
+              支払いリンク（後で差し替え）:
+              <span class="nw-kbd">REPLACE_STRIPE_PAYMENT_LINK_minutes-to-ops</span>
+            </div>
+          </div>
+
+          <div class="nw-card" style="margin-top:12px;">
+            <div style="font-weight:800; margin-bottom:8px;">Ad</div>
+            <div class="nw-muted">REPLACE_AD_SLOT_ID</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="nw-card">
+      <h2 style="margin:0 0 8px;">FAQ</h2>
+      <div id="faq" class="nw-acc"></div>
+      <div class="nw-muted" id="faqFallback" style="display:none;">FAQ failed to load.</div>
+    </section>
+
+    <section class="nw-card">
+      <h2 style="margin:0 0 8px;">Other tools</h2>
+      <ul>
+        <li><a href="../logistics-compliance-kit-jp/index.html">logistics-compliance-kit-jp</a></li>
+        <li><a href="../contract-risk-highlighter/index.html">contract-risk-highlighter</a></li>
+      </ul>
+    </section>
+
+    <footer class="nw-footer">
+      <div class="nw-footer__inner">
+        <div class="nw-muted">
+          Donate: <span class="nw-kbd">REPLACE_KOFI_URL</span> / <span class="nw-kbd">REPLACE_OFUSE_URL</span>
+        </div>
+        <div class="nw-muted">© NicheWorks</div>
+      </div>
+    </footer>
+  </main>
+
+  <div id="toast" class="nw-toast"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
