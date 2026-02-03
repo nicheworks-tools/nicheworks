@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-02T15:40:36.088Z",
-  "total": 61,
+  "generatedAt": "2026-02-03T11:21:11.015Z",
+  "total": 62,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -230,6 +230,14 @@
       "slug": "log-formatter",
       "title_en": "log-formatter",
       "title_ja": "log-formatter",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "logistics-compliance-kit-jp",
+      "title_en": "logistics-compliance-kit-jp",
+      "title_ja": "logistics-compliance-kit-jp",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
