@@ -3,154 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>物流効率化法 対応キット（荷主向け）｜使い方</title>
-  <meta name="description" content="物流効率化対応を、セルフ判定→次アクション→中長期計画ドラフトに落とすツール。使い方・FAQ・免責・データ取扱い。" />
-  <link rel="canonical" href="https://nicheworks.app/tools/logistics-compliance-kit-jp/usage.html" />
-  <meta property="og:title" content="物流効率化法 対応キット（荷主向け）｜使い方" />
-  <meta property="og:description" content="セルフ判定→次アクション→中長期計画ドラフト。使い方とFAQ。" />
-  <meta property="og:url" content="https://nicheworks.app/tools/logistics-compliance-kit-jp/usage.html" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary" />
+  <title>Usage | 物流効率化 対応キット（荷主向け）</title>
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-57QT78M3JB');
-    document.addEventListener('DOMContentLoaded', () => {
-      gtag('event','usage_open',{tool_slug:'logistics-compliance-kit-jp',lang:'ja'});
-      document.querySelectorAll('[data-gtag]').forEach(el=>{
-        el.addEventListener('click',()=>gtag('event',el.getAttribute('data-gtag'),{tool_slug:'logistics-compliance-kit-jp',lang:'ja'}));
-      });
-    });
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"このツールは何をしてくれますか？","acceptedAnswer":{"@type":"Answer","text":"物流効率化に関する対応を、セルフ判定→次アクション→中長期計画ドラフトに落とし込みます。法的助言ではなく、たたき台作成のためのツールです。"}},
-      {"@type":"Question","name":"入力した内容は外部に送信されますか？","acceptedAnswer":{"@type":"Answer","text":"ブラウザ内で処理する設計です。ただし広告/解析タグ（AdSense/GA4）が読み込まれます。"}},
-      {"@type":"Question","name":"Proにすると何ができますか？","acceptedAnswer":{"@type":"Answer","text":"ドラフトのダウンロード、テンプレ拡張、複数案件保存が解放されます。"}}
-    ]
-  }
-  </script>
 </head>
 <body>
-  <main class="nw-doc">
-    <header class="nw-doc__header">
-      <a class="nw-link" href="./index.html" data-gtag="cta_to_tool">← ツールへ戻る</a>
-      <h1>物流効率化法 対応キット（荷主向け）｜使い方</h1>
-      <p class="nw-lead">セルフ判定→次アクション→中長期計画ドラフトを、最短で形にするためのページです。</p>
-    </header>
-
-    <section class="nw-doc__section">
-      <h2>1分でわかる：できること / できないこと</h2>
-      <ul>
-        <li><b>できる：</b>入力内容から、対応の目安（高/中/低/不明）と、次にやることのチェックリストを出す</li>
-        <li><b>できる：</b>中長期計画のドラフト（見出し付き）を生成して、たたき台にする</li>
-        <li><b>できない：</b>法的判断の断定、あなたの事情を踏まえた最終結論の保証</li>
-        <li><b>できない：</b>行政・監督当局の公式な回答の代替</li>
-      </ul>
-    </section>
-
-    <section class="nw-doc__section">
-      <h2>使い方（ステップ）</h2>
-      <ol>
-        <li>ツールに移動：<a class="nw-link" href="./index.html" data-gtag="cta_to_tool_2">logistics-compliance-kit-jp</a></li>
-        <li>セルフ判定フォームを埋める（分からない項目は無理に断定しない）</li>
-        <li>必要なら「計画ドラフト用入力」を追加する（現状/施策候補/目標）</li>
-        <li>「判定・ドラフト作成」を実行</li>
-        <li>結果のチェックリストを、社内のタスクに分解する</li>
-        <li><b>Pro</b>が必要なら：ダウンロード/テンプレ拡張/複数案件保存を解放</li>
-      </ol>
-      <p class="nw-note">仕様として、未入力が多い場合は「未入力」枠を残します（完成した風にしない）。</p>
-    </section>
-
-    <section class="nw-doc__section">
-      <h2>入力例 → 出力例（イメージ）</h2>
-      <h3>入力例（短縮）</h3>
-      <pre class="nw-pre">荷主：発送あり / 委託あり
-課題：待機時間が長い、納品時間が偏る
-現状：朝一集中。倉庫作業が詰まる。ドライバー待機が発生。</pre>
-      <h3>出力例（短縮）</h3>
-      <pre class="nw-pre">判定：中（目安）
-次にやること：
-- 現状の待機・荷待ち発生ポイントを特定する（現場ヒアリング）
-- 納品時間帯の平準化案を作る（取引先と交渉準備）
-- 施策候補を3つに絞って四半期計画に落とす
-
-中長期計画（v1）：
-1. 現状整理
-2. 目標
-3. 施策（3〜5）
-4. 体制
-5. スケジュール
-6. リスク/留意点</pre>
-    </section>
-
-    <section class="nw-doc__section">
-      <h2>Pro（課金）について</h2>
-      <p>無料で「判定＋プレビュー」までは必ず使えます。<b>持ち帰り</b>（出力/保存/拡張）が必要になった時点でProを使う設計です。</p>
-      <ul>
-        <li>Proで解放：Markdown/PDF出力、テンプレ拡張（定期報告・体制・KPI例）、複数案件保存</li>
-      </ul>
-      <p><a class="nw-btn" href="REPLACE_STRIPE_PAYMENT_LINK_logistics" data-gtag="pro_unlock_start">Proを解放する</a></p>
-    </section>
-
-    <section class="nw-doc__section">
-      <h2>FAQ</h2>
-      <p class="nw-note">FAQは <code>qa.json</code> と整合します。</p>
-      <details><summary>入力した内容は外部に送信されますか？</summary><p>ブラウザ内処理を前提としています。ただしAdSense/GA4は読み込まれます。</p></details>
-      <details><summary>判定は断定できますか？</summary><p>断定しません。高/中/低/不明の目安です。</p></details>
-      <details><summary>未入力が多いとどうなりますか？</summary><p>「未入力」枠として残します。隠しません。</p></details>
-      <details><summary>Proは何が変わりますか？</summary><p>出力/保存/テンプレ拡張が解放されます。</p></details>
-    </section>
-
-    <!-- Ad -->
-    <section class="nw-doc__ad">
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-9879006623791275"
-        data-ad-slot="REPLACE_AD_SLOT_ID"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </section>
-
-    <section class="nw-doc__section">
-      <h2>データの扱い / 免責</h2>
-      <h3>データの扱い</h3>
-      <p>入力テキストはブラウザ内で処理する想定です。第三者に送る設計にはしません（ただし広告/解析タグの読み込みはあります）。</p>
-      <h3>免責</h3>
-      <p>本ツールは一般情報・たたき台の作成支援であり、法的助言ではありません。最終判断は公式情報・専門家の確認に基づいてください。</p>
-    </section>
-
-    <section class="nw-doc__section">
-      <h2>関連リンク</h2>
-      <ul>
-        <li><a class="nw-link" href="https://nicheworks.app/" data-gtag="nav_home">NicheWorks Home</a></li>
-        <li><a class="nw-link" href="https://nicheworks.app/tools/" data-gtag="nav_tools">Tools 一覧</a></li>
-        <li><a class="nw-link" href="../minutes-to-ops/index.html" data-gtag="nav_related">議事録→ToDo→SOP（minutes-to-ops）</a></li>
-        <li><a class="nw-link" href="../contract-risk-highlighter/index.html" data-gtag="nav_related">契約書リスク（contract-risk-highlighter）</a></li>
-      </ul>
-    </section>
-
-    <footer class="nw-footer">
-      <div class="nw-footer__row">
-        <a class="nw-link" href="REPLACE_KOFI_URL" target="_blank" rel="noopener" data-gtag="donate_click">Ko-fiで支援</a>
+  <header class="nw-doc__header">
+    <div class="nw-doc">
+      <h1>Usage（使い方）</h1>
+      <p class="nw-lead">セルフ判定 → 次にやること → 中長期計画ドラフト を最短で作る。</p>
+      <nav>
+        <a class="nw-link" href="./index.html">← Back to tool</a>
         <span class="nw-dot">•</span>
-        <a class="nw-link" href="REPLACE_OFUSE_URL" target="_blank" rel="noopener" data-gtag="donate_click">OFUSEで支援</a>
-      </div>
-      <div class="nw-footer__row"><small>© NicheWorks</small></div>
-    </footer>
+        <a class="nw-link" href="./howto.html">HowTo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="nw-doc">
+    <section class="nw-doc__section">
+      <h2>1. 入力</h2>
+      <ul>
+        <li>フォームの Yes/No/Unknown を選ぶ（わからなければ Unknown でOK）</li>
+        <li>現状メモ（任意）に、困っている状況を短く書く</li>
+      </ul>
+
+      <h2>2. 出力</h2>
+      <ul>
+        <li><b>判定（目安）</b>：高/中/低/不明</li>
+        <li><b>次にやること</b>：すぐ着手できるチェックリスト</li>
+        <li><b>中長期計画ドラフト</b>：会議に持ち込める骨子</li>
+      </ul>
+
+      <h2>3. エクスポート</h2>
+      <ul>
+        <li>無料：Markdownプレビュー表示</li>
+        <li>Pro：Markdownダウンロード（PDFは準備中）</li>
+      </ul>
+
+      <p class="nw-note">
+        ※これは法的助言ではありません。断定せず、実務の「目安」として利用してください。<br/>
+        ※入力はブラウザ内で処理する想定ですが、解析/広告スクリプトは読み込まれます。
+      </p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>他ツール</h2>
+      <ul>
+        <li><a class="nw-link" href="../contract-risk-highlighter/index.html">契約書リスク・ハイライト</a></li>
+        <li><a class="nw-link" href="../minutes-to-ops/index.html">議事録 → ToDo → SOP</a></li>
+      </ul>
+    </section>
   </main>
 </body>
 </html>
