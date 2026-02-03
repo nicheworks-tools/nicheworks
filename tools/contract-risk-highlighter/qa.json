@@ -1,66 +1,10 @@
-{
-  "tool": "contract-risk-highlighter",
-  "updated": "2026-01-30",
-  "items": {
-    "ja": [
-      {
-        "q": "このツールは弁護士の代わりになりますか？",
-        "a": "なりません。法的助言ではなく、条項の“赤信号になりやすい型”を機械的に拾って、確認すべき質問を提示するツールです。"
-      },
-      {
-        "q": "JP / UKモードはどう使い分けますか？",
-        "a": "日本語の契約や日本慣行ならJP。英語契約でEnglish law寄りの典型チェックをしたいならUKです。迷う場合は、契約に書かれた準拠法（Governing law）を確認してください。"
-      },
-      {
-        "q": "修正文（こう書き換えろ）は出ますか？",
-        "a": "出しません。燃えやすいので、リスク候補と確認質問に限定します。"
-      },
-      {
-        "q": "入力した契約文は外部に送信されますか？",
-        "a": "原則ブラウザ内で処理する設計です（サーバー送信しない）。ただし広告/解析タグ（AdSense/GA4）は読み込まれます。"
-      },
-      {
-        "q": "無料でどこまで見られますか？",
-        "a": "必ず“結果のプレビュー”は表示します。全文解析やレポート出力など、持ち帰り用途をProに置きます。"
-      },
-      {
-        "q": "OK表示なら安全ですか？",
-        "a": "断定しません。見落としや個別事情で評価は変わります。OKは「強い問題が見当たりにくい可能性」に留めます。"
-      },
-      {
-        "q": "Proで何が解放されますか？",
-        "a": "全文解析の上限拡張、findings拡張、質問拡張、Markdown/PDFレポート出力などです。"
-      }
-    ],
-    "en": [
-      {
-        "q": "Is this legal advice or a lawyer replacement?",
-        "a": "No. This tool is NOT legal advice. It highlights common red-flag patterns and suggests questions to confirm, so you can review faster."
-      },
-      {
-        "q": "How do I choose JP vs UK mode?",
-        "a": "Use JP for Japanese contracts/practice. Use UK for English contracts with an English-law-oriented checklist. If your contract states governing law, follow that first."
-      },
-      {
-        "q": "Does it provide rewrite suggestions?",
-        "a": "No. It intentionally avoids providing rewrite/negotiation text. It focuses on risk candidates and questions to confirm."
-      },
-      {
-        "q": "Do you upload my contract text?",
-        "a": "Designed to run in-browser (no server upload). Ads/analytics tags (AdSense/GA4) may load on the page."
-      },
-      {
-        "q": "What’s free vs Pro?",
-        "a": "You’ll always see a preview of findings for free. Full-length processing and report export are Pro features."
-      },
-      {
-        "q": "If it says OK, is it safe?",
-        "a": "No guarantee. Missing context and jurisdiction specifics can change outcomes. OK means “no strong red flags detected by this checklist.”"
-      },
-      {
-        "q": "What does Pro unlock?",
-        "a": "Higher limits, more findings/questions, and report export (Markdown/PDF)."
-      }
-    ]
-  }
-}
+[
+  {"q":"このツールは法的助言ですか？","a":"いいえ。一般的な注意点を“目安”として整理するだけです。最終判断は専門家に相談してください。","lang":"ja"},
+  {"q":"どの契約に向いていますか？","a":"v1は業務委託（日本語）と Services Agreement（英語）の頻出パターンに寄せています。NDAや売買は“参考”レベルです。","lang":"ja"},
+  {"q":"アップロードされますか？","a":"本文解析はブラウザ内で行います。ただし広告/アクセス解析タグは読み込まれます。機密情報の貼り付けは避けてください。","lang":"ja"},
+  {"q":"Proは何ができますか？","a":"ダウンロード（.md）などの出力機能が使えます。PDFは当面“準備中”です。","lang":"ja"},
+  {"q":"Is this legal advice?","a":"No. It only highlights potentially risky patterns. Consult a qualified professional for decisions.","lang":"en"},
+  {"q":"Does it upload my contract?","a":"Text analysis runs in your browser. However, analytics/ads scripts may load. Avoid pasting sensitive data.","lang":"en"},
+  {"q":"What does Pro unlock?","a":"Downloads (e.g., .md). PDF export is currently a stub.","lang":"en"},
+  {"q":"EN rules: US or UK?","a":"This tool uses neutral English with UK-leaning common patterns, without making legal conclusions.","lang":"en"}
+]
