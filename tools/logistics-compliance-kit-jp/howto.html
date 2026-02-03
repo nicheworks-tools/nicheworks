@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>物流効率化法 対応で何をすればいい？最短チェックリストと計画テンプレ</title>
+  <meta name="description" content="物流効率化対応を最短で整理する方法。セルフ判定→次アクション→中長期計画テンプレの作り方を、具体手順と例で解説。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/logistics-compliance-kit-jp/howto.html" />
+  <meta property="og:title" content="物流効率化法 対応で何をすればいい？最短チェックリストと計画テンプレ" />
+  <meta property="og:description" content="セルフ判定→次アクション→中長期計画テンプレ。手順と例。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/logistics-compliance-kit-jp/howto.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+    document.addEventListener('DOMContentLoaded', () => {
+      gtag('event','howto_open',{tool_slug:'logistics-compliance-kit-jp',lang:'ja'});
+      document.querySelectorAll('[data-gtag]').forEach(el=>{
+        el.addEventListener('click',()=>gtag('event',el.getAttribute('data-gtag'),{tool_slug:'logistics-compliance-kit-jp',lang:'ja'}));
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"HowTo",
+    "name":"物流効率化対応を最短で整理して計画ドラフトに落とす",
+    "description":"セルフ判定→次アクション→中長期計画テンプレを最短で作る手順。",
+    "step":[
+      {"@type":"HowToStep","name":"現状を箇条書きにする","text":"待機/納品時間/積載率など、詰まっている点を短く列挙します。"},
+      {"@type":"HowToStep","name":"セルフ判定で温度感を掴む","text":"高/中/低/不明の目安を作り、やることを過不足なく拾います。"},
+      {"@type":"HowToStep","name":"次アクションをタスク化する","text":"チェックリストを社内のタスクに分解します。"},
+      {"@type":"HowToStep","name":"中長期計画ドラフトを作る","text":"見出し固定のテンプレで、四半期粒度の計画に落とします。"},
+      {"@type":"HowToStep","name":"Proで出力して持ち帰る","text":"Markdown/PDFで出力して共有・保管します。"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"まず何からやればいい？","acceptedAnswer":{"@type":"Answer","text":"現状を箇条書き→セルフ判定→次アクションのチェックリスト化、の順が最短です。"}},
+      {"@type":"Question","name":"計画はどの粒度で作るべき？","acceptedAnswer":{"@type":"Answer","text":"最初は四半期粒度で十分です。施策を3〜5個に絞り、体制と会議頻度を決めます。"}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <main class="nw-doc">
+    <header class="nw-doc__header">
+      <a class="nw-link" href="./index.html" data-gtag="cta_to_tool">← ツールを開く</a>
+      <h1>物流効率化法 対応で何をすればいい？最短チェックリストと計画テンプレ</h1>
+      <p class="nw-lead">「何から着手するか分からない」を、<b>セルフ判定→次アクション→計画ドラフト</b>に落として前に進めるためのHowToです。</p>
+    </header>
+
+    <section class="nw-doc__section">
+      <h2>結論：最短ルートはこれ</h2>
+      <ol>
+        <li>現状を箇条書き（待機/納品時間/積載率など）</li>
+        <li>セルフ判定で温度感を作る（高/中/低/不明）</li>
+        <li>次アクションをチェックリストで拾う</li>
+        <li>中長期計画ドラフトをテンプレで作る</li>
+        <li>共有・保管のために出力する（Pro）</li>
+      </ol>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>典型ケース（よくある3つ）</h2>
+      <ul>
+        <li><b>ケース1：</b>朝一に納品が集中して倉庫が詰まる → 平準化案の作成が先</li>
+        <li><b>ケース2：</b>ドライバー待機が多い → 発生ポイントの可視化とルール化が先</li>
+        <li><b>ケース3：</b>委託先任せで実態が見えない → まず現状把握の型を作るのが先</li>
+      </ul>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>手順（Step by Step）</h2>
+      <h3>Step 1：現状を箇条書きにする（200〜400字）</h3>
+      <pre class="nw-pre">・朝8〜10時に入荷が集中
+・ピッキングが追いつかず待機発生
+・納品時間の指定が硬く調整できない</pre>
+
+      <h3>Step 2：セルフ判定で温度感を作る</h3>
+      <p>ツールは断定せず「高/中/低/不明」を出します。目的は<b>最初の叩き台</b>です。</p>
+
+      <h3>Step 3：次アクションをタスク化する</h3>
+      <ul>
+        <li>現場ヒアリングで“待機が増える条件”を特定</li>
+        <li>取引先向けの調整案を3案にする（妥協点込み）</li>
+        <li>施策候補を3〜5に絞る</li>
+      </ul>
+
+      <h3>Step 4：中長期計画ドラフトを作る（四半期粒度）</h3>
+      <p>最初は細かい数値より「体制」「会議頻度」「施策3〜5」が重要です。</p>
+
+      <h3>Step 5：Proで出力して共有する</h3>
+      <p>画面プレビューは無料。<b>共有・保管</b>が必要になった時点でProの出力を使います。</p>
+
+      <p><a class="nw-btn" href="./index.html" data-gtag="cta_to_tool_2">ツールで判定＆ドラフト作成</a></p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>よくある質問（抜粋）</h2>
+      <details><summary>まず何からやればいい？</summary><p>現状箇条書き→セルフ判定→次アクションのチェックリスト化、が最短です。</p></details>
+      <details><summary>計画はどの粒度？</summary><p>最初は四半期粒度で十分。施策3〜5に絞って回します。</p></details>
+      <details><summary>断定できる？</summary><p>断定しません。目安です。</p></details>
+    </section>
+
+    <!-- Ad -->
+    <section class="nw-doc__ad">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9879006623791275"
+        data-ad-slot="REPLACE_AD_SLOT_ID"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>関連ツール / 回遊</h2>
+      <ul>
+        <li><a class="nw-link" href="./index.html" data-gtag="cta_to_tool_3">対応キットを開く</a></li>
+        <li><a class="nw-link" href="../minutes-to-ops/index.html" data-gtag="nav_related">議事録→ToDo→SOP</a></li>
+        <li><a class="nw-link" href="../contract-risk-highlighter/index.html" data-gtag="nav_related">契約書リスク</a></li>
+        <li><a class="nw-link" href="https://nicheworks.app/tools/" data-gtag="nav_tools">Tools一覧</a></li>
+      </ul>
+    </section>
+
+    <footer class="nw-footer">
+      <div class="nw-footer__row">
+        <a class="nw-link" href="REPLACE_KOFI_URL" target="_blank" rel="noopener" data-gtag="donate_click">Ko-fiで支援</a>
+        <span class="nw-dot">•</span>
+        <a class="nw-link" href="REPLACE_OFUSE_URL" target="_blank" rel="noopener" data-gtag="donate_click">OFUSEで支援</a>
+      </div>
+      <div class="nw-footer__row"><small>© NicheWorks</small></div>
+    </footer>
+  </main>
+</body>
+</html>
