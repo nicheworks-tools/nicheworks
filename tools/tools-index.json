@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-03T11:22:24.222Z",
-  "total": 62,
+  "generatedAt": "2026-02-03T11:23:21.889Z",
+  "total": 63,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -70,6 +70,14 @@
       "slug": "contract-cleaner",
       "title_en": "contract-cleaner",
       "title_ja": "contract-cleaner",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "contract-risk-highlighter",
+      "title_en": "contract-risk-highlighter",
+      "title_ja": "contract-risk-highlighter",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
