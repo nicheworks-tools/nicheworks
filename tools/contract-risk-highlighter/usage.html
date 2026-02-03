@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>契約書リスク ハイライト（JP/UK）｜使い方</title>
+  <meta name="description" content="契約書の赤信号になりやすい条項を機械的に拾い、確認質問を提示するツール。JP/UKモードの使い分け、FAQ、免責。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/contract-risk-highlighter/usage.html" />
+  <meta property="og:title" content="契約書リスク ハイライト（JP/UK）｜使い方" />
+  <meta property="og:description" content="赤信号パターンの抽出＋確認質問。JP/UKモードの使い分け。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/contract-risk-highlighter/usage.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="./style.css" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+    document.addEventListener('DOMContentLoaded', () => {
+      gtag('event','usage_open',{tool_slug:'contract-risk-highlighter',lang:'ja'});
+      document.querySelectorAll('[data-gtag]').forEach(el=>{
+        el.addEventListener('click',()=>gtag('event',el.getAttribute('data-gtag'),{tool_slug:'contract-risk-highlighter',lang:'ja'}));
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"弁護士の代わりになりますか？","acceptedAnswer":{"@type":"Answer","text":"なりません。法的助言ではなく、赤信号パターンと確認質問を提示します。"}},
+      {"@type":"Question","name":"JP/UKモードはどう使い分けますか？","acceptedAnswer":{"@type":"Answer","text":"日本語契約はJP。英語契約の典型チェックはUK。準拠法が書かれていればそれを優先します。"}},
+      {"@type":"Question","name":"修正文を出しますか？","acceptedAnswer":{"@type":"Answer","text":"出しません。燃えやすいので確認質問に限定します。"}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <main class="nw-doc">
+    <header class="nw-doc__header">
+      <nav class="nw-nav">
+        <a class="nw-link" href="./index.html" data-gtag="cta_to_tool">← ツールへ戻る</a>
+        <span class="nw-dot">•</span>
+        <a class="nw-link" href="./usage-en.html" data-gtag="switch_lang">English</a>
+      </nav>
+      <h1>契約書リスク ハイライト（JP/UK）｜使い方</h1>
+      <p class="nw-lead">契約書の“赤信号になりやすい型”を機械的に拾い、<b>確認質問</b>に落とすためのガイドです。</p>
+    </header>
+
+    <section class="nw-doc__section">
+      <h2>重要：これは法的助言ではない</h2>
+      <p><b>弁護士の代替ではありません</b>。このツールは「見落としを減らすためのチェックリスト」です。最終判断は専門家の確認に基づいてください。</p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>JP / UKモードの使い分け</h2>
+      <ul>
+        <li><b>JP：</b>日本語の契約、または日本の実務慣行での典型チェック（業務委託/NDA/利用規約など）</li>
+        <li><b>UK：</b>英語契約の典型チェック（English-law oriented）</li>
+      </ul>
+      <p class="nw-note">迷う場合：契約の <b>Governing law / 準拠法</b> を確認してください。</p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>使い方（ステップ）</h2>
+      <ol>
+        <li><a class="nw-link" href="./index.html" data-gtag="cta_to_tool_2">ツール</a>を開く</li>
+        <li>Mode（JP/UK）を選ぶ</li>
+        <li>契約文を貼り付ける（テキスト）</li>
+        <li>「解析」実行</li>
+        <li>Findings（WARN/INFO/OK）を確認し、<b>質問</b>を使って社内/相手方に確認する</li>
+        <li>持ち帰りが必要ならProでレポート出力</li>
+      </ol>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>出力の読み方（Findings構造）</h2>
+      <ul>
+        <li><b>Title：</b>条項カテゴリ（例：損害賠償/解除/知財など）</li>
+        <li><b>Evidence：</b>該当箇所の短い抜粋</li>
+        <li><b>Why：</b>注意点（断定せず、候補として）</li>
+        <li><b>Questions：</b>次に確認すべき質問（ここが価値）</li>
+      </ul>
+      <p class="nw-note">仕様：OKで煽らない。OKは「強い問題が見当たりにくい可能性」に留めます。</p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>Pro（課金）について</h2>
+      <p>無料で必ずプレビューを表示します。<b>持ち帰り</b>（全文解析/出力/拡張）をProに置きます。</p>
+      <ul>
+        <li>Pro解放：全文解析上限拡張、findings拡張、質問拡張、Markdown/PDFレポート出力</li>
+      </ul>
+      <p><a class="nw-btn" href="REPLACE_STRIPE_PAYMENT_LINK_contract" data-gtag="pro_unlock_start">Proを解放する</a></p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>FAQ</h2>
+      <details><summary>修正文（こう書き換えろ）は出ますか？</summary><p>出しません。確認質問に限定します。</p></details>
+      <details><summary>OKなら安全？</summary><p>断定しません。見落としや個別事情で変わります。</p></details>
+      <details><summary>入力は外部送信されますか？</summary><p>ブラウザ内処理想定。ただしAdSense/GA4は読み込まれます。</p></details>
+    </section>
+
+    <section class="nw-doc__ad">
+      <ins class="adsbygoogle" style="display:block"
+        data-ad-client="ca-pub-9879006623791275"
+        data-ad-slot="REPLACE_AD_SLOT_ID"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>データの扱い / 免責</h2>
+      <h3>データの扱い</h3>
+      <p>契約文はブラウザ内で処理する想定です（サーバーへ送信しない設計）。広告/解析タグは読み込まれます。</p>
+      <h3>免責</h3>
+      <p>本ツールは一般情報であり、法的助言ではありません。準拠法や個別事情で結論は変わります。最終判断は専門家に確認してください。</p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>関連リンク</h2>
+      <ul>
+        <li><a class="nw-link" href="https://nicheworks.app/" data-gtag="nav_home">NicheWorks Home</a></li>
+        <li><a class="nw-link" href="https://nicheworks.app/tools/" data-gtag="nav_tools">Tools 一覧</a></li>
+        <li><a class="nw-link" href="../contract-cleaner/index.html" data-gtag="nav_related">契約文の整形（contract-cleaner）</a></li>
+        <li><a class="nw-link" href="../minutes-to-ops/index.html" data-gtag="nav_related">議事録→ToDo→SOP</a></li>
+      </ul>
+    </section>
+
+    <footer class="nw-footer">
+      <div class="nw-footer__row">
+        <a class="nw-link" href="REPLACE_KOFI_URL" target="_blank" rel="noopener" data-gtag="donate_click">Ko-fiで支援</a>
+        <span class="nw-dot">•</span>
+        <a class="nw-link" href="REPLACE_OFUSE_URL" target="_blank" rel="noopener" data-gtag="donate_click">OFUSEで支援</a>
+      </div>
+      <div class="nw-footer__row"><small>© NicheWorks</small></div>
+    </footer>
+  </main>
+</body>
+</html>
