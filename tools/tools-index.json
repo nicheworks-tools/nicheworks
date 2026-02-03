@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-03T11:25:08.747Z",
-  "total": 63,
+  "generatedAt": "2026-02-03T11:27:11.632Z",
+  "total": 64,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -302,6 +302,14 @@
       "slug": "mini-game-utility",
       "title_en": "mini-game-utility",
       "title_ja": "mini-game-utility",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "minutes-to-ops",
+      "title_en": "minutes-to-ops",
+      "title_ja": "minutes-to-ops",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
