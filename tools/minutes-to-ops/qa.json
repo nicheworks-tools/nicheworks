@@ -1,0 +1,19 @@
+{
+  "tool": "minutes-to-ops",
+  "updated": "2026-01-30",
+  "items": {
+    "ja": [
+      { "q": "これは要約ツールですか？", "a": "要約で終わりません。ToDo表・決定事項ログ・SOPドラフトの“運用成果物”に落とします。" },
+      { "q": "入力は外部に送信されますか？", "a": "ブラウザ内で処理する想定です。ただし広告/解析タグ（AdSense/GA4）は読み込まれます。" },
+      { "q": "無料でどこまで使えますか？", "a": "ToDoと決定事項は無料で生成表示します。SOP生成とエクスポート（md/csv）はProです。" },
+      { "q": "担当者や期限が分からない場合は？", "a": "欠損は「未定」「期限未設定」として埋めます（落としません）。" },
+      { "q": "日本語/英語はどう扱いますか？", "a": "Auto/JA/ENを選べます。Autoが外れたらトグルで上書きできます。" }
+    ],
+    "en": [
+      { "q": "Is this just summarization?", "a": "No. It generates operational artifacts: action items, decision log, and SOP draft." },
+      { "q": "Do you upload my text?", "a": "Designed to run in-browser. Ads/analytics tags (AdSense/GA4) may load." },
+      { "q": "What’s free vs Pro?", "a": "Action items + decisions are free. SOP generation and exports (md/csv) are Pro." },
+      { "q": "What if owner/due date is missing?", "a": "We fill with placeholders (TBD / No due date) so it never breaks." }
+    ]
+  }
+}
