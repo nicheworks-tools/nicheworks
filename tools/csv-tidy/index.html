@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>CSV列入れ替え・整形｜CSV Tidy | NicheWorks</title>
+  <meta name="description" content="会計/EC/名簿などのCSVを、列順・列名・空白トリム・全半変換・UTF-8(BOM)で一括整形できる無料ツール。外部送信なし、ブラウザ完結。" />
+
+  <link rel="canonical" href="https://nicheworks.app/tools/csv-tidy/" />
+
+  <!-- OGP (共通) -->
+  <meta property="og:title" content="CSV列入れ替え・整形｜CSV Tidy | NicheWorks" />
+  <meta property="og:description" content="CSVの列順/列名/トリム/全半/UTF-8をブラウザ内で一括整形。外部送信なし。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nicheworks.app/tools/csv-tidy/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CSV列入れ替え・整形（CSV Tidy）",
+    "url": "https://nicheworks.app/tools/csv-tidy/",
+    "applicationCategory": "UtilityApplication",
+    "description": "CSVの列順・列名変更・不要列削除・空白トリム・全角半角変換・UTF-8(BOM)出力を、外部送信なしで一括実行できるブラウザ完結ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <!-- AdSense (必須・変更禁止) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- GA4 (必須・変更禁止) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+
+    <h1 class="nw-title">
+      <span data-i18n="ja">CSV列入れ替え・整形（CSV Tidy）</span>
+      <span data-i18n="en">CSV Tidy (Reorder & Clean)</span>
+    </h1>
+
+    <p class="nw-subtitle">
+      <span data-i18n="ja">列順・列名・不要列・空白・全半・UTF-8をまとめて整える（外部送信なし）</span>
+      <span data-i18n="en">Clean CSV columns (order/rename/drop/trim/zen-han/UTF-8) — no upload</span>
+    </p>
+  </header>
+
+  <main class="nw-main csvtidy">
+    <!-- 上部広告枠（必須） -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- 1〜3文の簡易説明（必須） -->
+    <section class="csvtidy-brief">
+      <p data-i18n="ja">CSVを読み込んで、列の並べ替え・削除・ヘッダ名変更・整形を行い、UTF-8で保存できます。</p>
+      <p data-i18n="en">Load a CSV, reorder/drop/rename columns, clean values, then download as UTF-8.</p>
+      <p class="csvtidy-privacy" data-i18n="ja">※ファイルは端末内で処理され、外部送信されません。</p>
+      <p class="csvtidy-privacy" data-i18n="en">No server upload. Everything runs locally in your browser.</p>
+    </section>
+
+    <!-- 3カラム（PC）/ 2カラム（Tablet）/ 1カラム（Mobile） -->
+    <section class="csvtidy-workbench">
+      <!-- LEFT: INPUT + OPTIONS -->
+      <section class="panel panel-left" aria-labelledby="sec-input">
+        <h2 id="sec-input" class="panel-title">
+          <span data-i18n="ja">CSVを読み込む</span><span data-i18n="en">Load CSV</span>
+        </h2>
+
+        <div class="card">
+          <label class="field">
+            <span class="label"><span data-i18n="ja">ファイル</span><span data-i18n="en">File</span></span>
+            <input id="fileInput" type="file" accept=".csv,text/csv,text/plain" />
+          </label>
+
+          <div class="grid2">
+            <label class="field">
+              <span class="label"><span data-i18n="ja">文字コード</span><span data-i18n="en">Encoding</span></span>
+              <select id="inEncoding">
+                <option value="auto">Auto</option>
+                <option value="utf-8">UTF-8</option>
+                <option value="shift_jis">Shift_JIS</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="label"><span data-i18n="ja">区切り</span><span data-i18n="en">Delimiter</span></span>
+              <select id="delimiter">
+                <option value="auto">Auto</option>
+                <option value=",">,</option>
+                <option value="tab 이해가">&Tab;</option>
+                <option value=";">;</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="label"><span data-i18n="ja">ヘッダー行</span><span data-i18n="en">Header row</span></span>
+              <div class="seg">
+                <button type="button" class="seg-btn" id="hasHeaderOn" data-value="on">ON</button>
+                <button type="button" class="seg-btn" id="hasHeaderOff" data-value="off">OFF</button>
+              </div>
+            </label>
+
+            <label class="field">
+              <span class="label"><span data-i18n="ja">プレビュー行数</span><span data-i18n="en">Preview rows</span></span>
+              <select id="previewRows">
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="hint" id="loadHint"></div>
+        </div>
+
+        <h2 class="panel-title">
+          <span data-i18n="ja">整形オプション</span><span data-i18n="en">Cleaning options</span>
+        </h2>
+
+        <div class="card">
+          <label class="check">
+            <input id="optTrim" type="checkbox" checked />
+            <span><span data-i18n="ja">空白トリム（前後）</span><span data-i18n="en">Trim (leading/trailing)</span></span>
+          </label>
+
+          <label class="check">
+            <input id="optNormSpaces" type="checkbox" />
+            <span><span data-i18n="ja">連続スペース正規化（任意）</span><span data-i18n="en">Normalize repeated spaces (optional)</span></span>
+          </label>
+
+          <div class="divider"></div>
+
+          <label class="check">
+            <input id="optZenHan" type="checkbox" checked />
+            <span><span data-i18n="ja">全角/半角変換</span><span data-i18n="en">Zen/Han conversion</span></span>
+          </label>
+
+          <div class="grid2">
+            <label class="field">
+              <span class="label"><span data-i18n="ja">方向</span><span data-i18n="en">Direction</span></span>
+              <select id="zenHanDir">
+                <option value="zen2han"><span data-i18n="ja">全→半</span> / <span data-i18n="en">Zen→Han</span></option>
+                <option value="han2zen"><span data-i18n="ja">半→全</span> / <span data-i18n="en">Han→Zen</span></option>
+              </select>
+            </label>
+
+            <div class="field">
+              <span class="label"><span data-i18n="ja">対象</span><span data-i18n="en">Target</span></span>
+              <label class="check inline">
+                <input id="zenHanHeader" type="checkbox" checked />
+                <span><span data-i18n="ja">ヘッダー</span><span data-i18n="en">Header</span></span>
+              </label>
+              <label class="check inline">
+                <input id="zenHanData" type="checkbox" checked />
+                <span><span data-i18n="ja">データ</span><span data-i18n="en">Data</span></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid2">
+            <label class="field">
+              <span class="label"><span data-i18n="ja">出力BOM</span><span data-i18n="en">UTF-8 BOM</span></span>
+              <div class="seg">
+                <button type="button" class="seg-btn" id="bomOn" data-value="on">ON</button>
+                <button type="button" class="seg-btn" id="bomOff" data-value="off">OFF</button>
+              </div>
+            </label>
+
+            <label class="field">
+              <span class="label"><span data-i18n="ja">改行</span><span data-i18n="en">Newline</span></span>
+              <select id="outNewline">
+                <option value="crlf">CRLF</option>
+                <option value="lf">LF</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- MIDDLE: COLUMNS -->
+      <section class="panel panel-mid" aria-labelledby="sec-columns">
+        <div class="panel-head">
+          <h2 id="sec-columns" class="panel-title">
+            <span data-i18n="ja">列の編集</span><span data-i18n="en">Columns</span>
+          </h2>
+          <input id="colSearch" class="search" type="search" placeholder="Search columns..." />
+        </div>
+
+        <div class="card">
+          <div class="cols-head">
+            <div class="cols-head-left">
+              <span class="muted" data-i18n="ja">ドラッグ or ↑↓で順序変更 / 除外で削除</span>
+              <span class="muted" data-i18n="en">Drag or use ↑↓ to reorder. Toggle exclude to drop.</span>
+            </div>
+          </div>
+
+          <ul id="colsList" class="cols-list" aria-label="Columns list">
+            <!-- JSで列カードを生成 -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- RIGHT: PREVIEW -->
+      <section class="panel panel-right" aria-labelledby="sec-preview">
+        <div class="panel-head">
+          <h2 id="sec-preview" class="panel-title">
+            <span data-i18n="ja">プレビュー</span><span data-i18n="en">Preview</span>
+          </h2>
+          <div class="seg small">
+            <button type="button" class="seg-btn" id="prevIn" data-value="in">IN</button>
+            <button type="button" class="seg-btn" id="prevOut" data-value="out">OUT</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div id="summary" class="summary"></div>
+
+          <div class="table-wrap" role="region" aria-label="Preview table" tabindex="0">
+            <table id="previewTable" class="table">
+              <!-- JSで生成 -->
+            </table>
+          </div>
+
+          <div id="errBox" class="err" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ダウンロードバー（スマホでは下に縦並び） -->
+    <section class="csvtidy-export">
+      <div class="export-left">
+        <label class="field inline">
+          <span class="label"><span data-i18n="ja">ファイル名</span><span data-i18n="en">Filename</span></span>
+          <input id="outName" type="text" value="export.tidy.csv" />
+        </label>
+      </div>
+      <div class="export-right">
+        <button id="downloadBtn" class="btn-primary" type="button" disabled>
+          <span data-i18n="ja">CSVをダウンロード</span><span data-i18n="en">Download CSV</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 下部広告枠（推奨） -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- 寄付（パターンA） -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">
+        このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
+      </p>
+      <p class="nw-donate-text" data-i18n="en">
+        If this tool helped, your support keeps NicheWorks running.
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- 内部リンク（3〜4件） -->
+    <div class="nw-links">
+      <a href="/tools/log-formatter/">LogFormatter</a> /
+      <a href="/tools/rename-wizard/">Rename Wizard</a> /
+      <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a> /
+      <a href="/tools/contract-cleaner/">Contract Cleaner</a>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
