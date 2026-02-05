@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-03T12:30:58.358Z",
-  "total": 64,
+  "generatedAt": "2026-02-05T13:22:35.603Z",
+  "total": 65,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -94,6 +94,14 @@
       "slug": "cover-letter-lite",
       "title_en": "cover-letter-lite",
       "title_ja": "cover-letter-lite",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "csv-tidy",
+      "title_en": "csv-tidy",
+      "title_ja": "csv-tidy",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
