@@ -1,0 +1,231 @@
+<!-- tools/image-redact/index.html -->
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>画像ぼかし・黒塗り｜Redact | NicheWorks</title>
+  <meta name="description" content="スクリーンショットや写真の個人情報（氏名・住所・番号・顔・QRなど）を、黒塗り/ぼかし/モザイクで素早く確実に隠してPNG保存できる無料ツール。外部送信なし・端末内処理。" />
+
+  <link rel="canonical" href="https://nicheworks.app/tools/image-redact/" />
+
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="画像ぼかし・黒塗り｜Redact | NicheWorks" />
+  <meta property="og:description" content="Mask sensitive info on images (solid / blur / pixelate) and export PNG. No upload. All in-browser." />
+  <meta property="og:url" content="https://nicheworks.app/tools/image-redact/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- AdSense (must be in head; do not change client) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="/style.css" />
+
+    <link rel="stylesheet" href="./style.css" />
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "画像ぼかし・黒塗り（Redact） / Image Redactor",
+    "url": "https://nicheworks.app/tools/image-redact/",
+    "applicationCategory": "UtilityApplication",
+    "description": "画像の一部を黒塗り・ぼかし・モザイクで隠してPNG保存（外部送信なし）。",
+    "operatingSystem": "All"
+  }
+  </script>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="nw-title">
+      <h1 data-i18n="ja">画像ぼかし・黒塗り（Redact）</h1>
+      <h1 data-i18n="en">Image Redactor (Blur / Pixelate / Blackout)</h1>
+
+      <p class="nw-sub" data-i18n="ja">共有前に、氏名・住所・番号・顔・QRなどを素早く確実に隠す（外部送信なし）</p>
+      <p class="nw-sub" data-i18n="en">Redact sensitive info before sharing. No upload. All in-browser.</p>
+
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" data-lang="ja">JP</button> /
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main nw-main-narrow">
+    <!-- ad-top (required) -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- brief description (required) -->
+    <section class="nw-brief">
+      <p data-i18n="ja">
+        画像を読み込み、隠したい範囲を複数指定して（黒塗り/ぼかし/モザイク）、PNGで書き出します。画像はサーバーに送信されません。
+      </p>
+      <p data-i18n="en">
+        Load an image, add multiple rectangles, choose solid/blur/pixelate, and export PNG. Your image is never uploaded.
+      </p>
+
+      <p class="nw-usage-link">
+        <a href="./usage.html" data-i18n="ja">使い方・注意点（詳細）</a>
+        <a href="./usage-en.html" data-i18n="en">How to use & notes</a>
+      </p>
+    </section>
+
+    <!-- tool UI -->
+    <section class="tool-wrap" aria-label="Image redactor">
+      <div class="panel panel-upload">
+        <div class="upload-row">
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" />
+          <button id="btnClearAll" type="button" class="btn btn-muted">Reset all</button>
+        </div>
+
+        <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Drop image here">
+          <p class="dz-title" data-i18n="ja">ここに画像をドロップ（または上で選択）</p>
+          <p class="dz-title" data-i18n="en">Drop an image here (or use file picker)</p>
+          <p class="dz-meta" data-i18n="ja">PNG / JPG / WebP ・外部送信なし</p>
+          <p class="dz-meta" data-i18n="en">PNG / JPG / WebP ・No upload</p>
+        </div>
+      </div>
+
+      <div class="panel panel-canvas">
+        <div class="canvas-wrap">
+          <canvas id="canvas" width="800" height="450" aria-label="Editor canvas"></canvas>
+          <div id="emptyHint" class="canvas-hint" data-i18n="ja">まず画像を読み込んでください</div>
+          <div id="emptyHintEn" class="canvas-hint" data-i18n="en">Load an image to start</div>
+        </div>
+
+        <div class="controls">
+        <button id="qaBtn" class="btn" type="button" title="QA checklist">QA</button>
+
+          <div class="ctrl-row">
+            <div class="ctrl-group">
+              <span class="ctrl-label">View</span>
+              <button id="btnFit" type="button" class="btn">Fit</button>
+              <button id="btn100" type="button" class="btn">100%</button>
+            </div>
+
+            <div class="ctrl-group">
+              <span class="ctrl-label">Zoom</span>
+              <button id="btnZoomOut" type="button" class="btn">-</button>
+              <input id="zoomRange" type="range" min="25" max="400" value="100" />
+              <button id="btnZoomIn" type="button" class="btn">+</button>
+              <span id="zoomLabel" class="mono">100%</span>
+            </div>
+          </div>
+
+          <div class="ctrl-row">
+            <div class="ctrl-group">
+              <span class="ctrl-label">Mode</span>
+              <button id="modeAdd" type="button" class="btn">Add</button>
+              <button id="modeEdit" type="button" class="btn">Edit</button>
+              <button id="modePan" type="button" class="btn">Pan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-mask">
+        <h2 class="panel-title">Mask</h2>
+
+        <div class="mask-type">
+          <label><input type="radio" name="maskType" value="solid" checked /> <span>Solid</span></label>
+          <label><input type="radio" name="maskType" value="blur" /> <span>Blur</span></label>
+          <label><input type="radio" name="maskType" value="pixelate" /> <span>Pixelate</span></label>
+        </div>
+
+        <div class="mask-strength">
+          <div class="strength-row">
+            <span class="ctrl-label">Strength</span>
+            <input id="strengthRange" type="range" min="6" max="32" value="12" />
+            <span id="strengthLabel" class="mono">12</span>
+          </div>
+          <p class="hint" data-i18n="ja">重要情報は黒塗り推奨。ぼかし/モザイクは弱いと読める可能性があります。</p>
+          <p class="hint" data-i18n="en">For critical info, use Solid. Weak blur/pixelate may remain readable.</p>
+        </div>
+
+        <div class="mask-actions">
+          <button id="btnDeleteMask" type="button" class="btn btn-danger">Delete</button>
+          <button id="btnDuplicateMask" type="button" class="btn">Duplicate</button>
+          <button id="btnClearMasks" type="button" class="btn btn-muted">Clear masks</button>
+        </div>
+
+        <div class="mask-list">
+          <div class="mask-list-head">
+            <span class="ctrl-label">Masks</span>
+            <span id="maskCount" class="mono">0</span>
+          </div>
+          <div id="maskChips" class="chips" aria-label="Mask list"></div>
+        </div>
+      </div>
+
+      <div class="panel panel-export">
+        <h2 class="panel-title">Export</h2>
+        <button id="btnPreview" type="button" class="btn btn-wide">Preview (lock)</button>
+        <button id="btnSavePng" type="button" class="btn btn-wide btn-primary">Save PNG</button>
+      </div>
+    </section>
+
+    <!-- ad-bottom (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- donate (pattern A) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool helps, your support keeps it improving.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- internal links (3-4) -->
+    <div class="nw-links">
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a> /
+      <a href="/tools/contract-cleaner/">Contract Cleaner</a>
+    </div>
+
+    <!-- preview modal (hidden; wired in JS later) -->
+    <div id="previewModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Preview">
+      <div class="modal-card">
+        <div class="modal-head">
+          <div class="modal-title" data-i18n="ja">プレビュー（編集ロック）</div>
+          <div class="modal-title" data-i18n="en">Preview (editing locked)</div>
+          <button id="btnClosePreview" type="button" class="btn btn-muted">×</button>
+        </div>
+
+        <div class="modal-body">
+          <canvas id="previewCanvas" width="800" height="450" aria-label="Preview canvas"></canvas>
+          <div class="modal-controls">
+            <button id="btnPreview100" type="button" class="btn">100%</button>
+            <button id="btnPreviewFit" type="button" class="btn">Fit</button>
+            <button id="btnSavePng2" type="button" class="btn btn-primary">Save PNG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
