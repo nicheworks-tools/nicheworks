@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- =========================================================
+       PPTM-02: head 完成（canonical/OGP/favicon/AdSense/GA4/JSON-LD）
+       ※共通仕様 v3 準拠：ID変更/削除禁止
+       ========================================================= -->
+
+  <title>PDFページ操作ミニ - NicheWorks</title>
+  <meta name="description" content="PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。" />
+
+  <link rel="canonical" href="https://nicheworks.app/tools/pdf-page-tools-mini/" />
+
+  <!-- OGP (共通assets参照。ツール内複製禁止) -->
+  <meta property="og:title" content="PDFページ操作ミニ" />
+  <meta property="og:description" content="PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/pdf-page-tools-mini/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/og-default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- favicon (共通assets参照) -->
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+  <!-- AdSense (必須 / client ID変更禁止 / 削除禁止) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- GA4 (必須 / ID変更禁止 / head固定) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <!-- JSON-LD: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDFページ操作ミニ",
+    "url": "https://nicheworks.app/tools/pdf-page-tools-mini/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "description": "PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+  <!-- PPTM-04: local vendor libs (no CDN) -->
+  <script defer src="./vendor/pdf-lib/pdf-lib.min.js"></script>
+  <script type="module" src="./vendor/pdfjs/pdfjs-setup.mjs"></script>
+  <script defer src="./app.js"></script>
+  <script type="application/ld+json" id="faq-schema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ファイルはアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。PDFの読み込み・編集・書き出しは端末内（ブラウザ）で完結します。"}},{"@type":"Question","name":"うまく保存できない／落ちます","acceptedAnswer":{"@type":"Answer","text":"端末のメモリ不足の可能性があります。ページ数を減らす／分割する／別ブラウザで試してください。"}},{"@type":"Question","name":"パスワード付きPDFは対応していますか？","acceptedAnswer":{"@type":"Answer","text":"非対応です（解除は行いません）。"}},{"@type":"Question","name":"圧縮はできますか？","acceptedAnswer":{"@type":"Answer","text":"できません。このツールはページ操作（結合・抽出・削除・並べ替え・回転）のみ対応します。"}}]}
+  </script>
+  <meta property="og:type" content="website" />
+</head>
+
+<body>
+  <!-- =========================================================
+       PPTM-01: 共通レイアウト（土台）
+       ========================================================= -->
+
+  <header class="nw-header">
+    <h1 class="nw-title">
+      <span data-i18n="ja">PDFページ操作ミニ</span>
+      <span data-i18n="en">PDF Page Tools Mini</span>
+    </h1>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button data-lang="ja" type="button">JP</button> /
+      <button data-lang="en" type="button">EN</button>
+    </div>
+
+    <p class="nw-subtitle" data-i18n="ja">PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。</p>
+    <section class="nw-card nw-usage-link">
+      <p class="nw-muted">
+        <span data-i18n="ja">迷ったら：</span>
+        <span data-i18n="en" style="display:none;">If you’re unsure:</span>
+        <a class="nw-link" href="./usage.html">
+          <span data-i18n="ja">使い方（usage）を見る</span>
+          <span data-i18n="en" style="display:none;">Read the usage guide</span>
+        </a>
+      </p>
+    </section>
+
+    <p class="nw-subtitle" data-i18n="en">Merge, extract, reorder, and rotate PDF pages — no upload.</p>
+  </header>
+
+  <main class="nw-main">
+    <!-- ad-top (required) -->
+    <div class="nw-ad" id="ad-top" aria-label="ad top"></div>
+
+    <!-- 上部広告枠（必須） -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="nw-section">
+      <p data-i18n="ja">追加したPDFをページ単位で整理し、そのまま保存できます（アップロードなし）。</p>
+      <p data-i18n="en">Organize PDFs by page and save the result — everything stays in your browser (no upload).</p>
+
+      <div class="notice">
+        <p data-i18n="ja">大きいPDFは端末によって重くなる場合があります。</p>
+        <p data-i18n="en">Large PDFs may be slow depending on your device.</p>
+      </div>
+    </section>
+
+    <!-- PPTM-01: 初期UI枠（未読込時は操作disabled） -->
+    <section class="nw-section">
+      <h2 class="nw-h2">
+        <span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span>
+      </h2>
+
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add PDF">
+        <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple />
+        <div class="dropzone-inner">
+          <div class="dz-row">
+            <button id="btnPick" type="button" class="btn-primary">
+              <span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span>
+            </button>
+            <span class="dz-hint" data-i18n="ja">ドラッグ&ドロップ可</span>
+            <span class="dz-hint" data-i18n="en">Drag & drop supported</span>
+          </div>
+
+          <div class="dz-notes">
+            <div data-i18n="ja">- ファイルは端末内で処理されます（アップロードなし）</div>
+            <div data-i18n="en">- Processed locally in your browser (no upload)</div>
+            <div data-i18n="ja">- 大きいPDFは重くなる場合があります</div>
+            <div data-i18n="en">- Large PDFs may be heavy</div>
+          </div>
+
+          <div class="loading" id="loading" hidden>
+            <span class="spinner" aria-hidden="true"></span>
+            <span data-i18n="ja">読み込み中…</span><span data-i18n="en">Loading…</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ここから下は、PPTM-03で「未読込時はdisabled」にする -->
+    <section class="nw-section panel" id="panelAfterLoad" aria-label="Editor Panel">
+      <div class="toolbar">
+        <button id="btnAddMore" type="button" class="btn">
+          <span data-i18n="ja">追加</span><span data-i18n="en">Add</span>
+        </button>
+        <button id="btnReset" type="button" class="btn">
+          <span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span>
+        </button>
+        
+        <button id="btnUndo" type="button" class="btn" disabled>
+          <span data-i18n="ja">Undo（1回）</span><span data-i18n="en">Undo (1)</span>
+        </button>
+<div class="spacer"></div>
+        <button id="btnSave" type="button" class="btn-primary">
+          <span data-i18n="ja">保存してダウンロード</span><span data-i18n="en">Download PDF</span>
+        </button>
+      </div>
+
+      <div class="files">
+        <div class="files-title">
+          <span data-i18n="ja">入力PDF</span><span data-i18n="en">Input PDFs</span>
+        </div>
+        <ul id="fileList" class="file-list">
+          <li class="muted" data-i18n="ja">（まだ読み込まれていません）</li>
+          <li class="muted" data-i18n="en">(No PDFs loaded yet)</li>
+        </ul>
+      </div>
+
+      <div class="extract">
+        <div class="extract-title">
+          <span data-i18n="ja">抽出（範囲指定）</span><span data-i18n="en">Extract (range)</span>
+        </div>
+
+        <div class="extract-row">
+          <label class="label" for="extractRange">
+            <span data-i18n="ja">範囲</span><span data-i18n="en">Range</span>
+          </label>
+          <input id="extractRange" class="input" type="text" placeholder="1-3,5,8-10" />
+          <button id="btnExtract" type="button" class="btn">
+            <span data-i18n="ja">抽出してダウンロード</span><span data-i18n="en">Extract & Download</span>
+          </button>
+        </div>
+
+        <p class="muted">
+          <span data-i18n="ja">例: 1-3,5,8-10（正しい時のみ実行できます）</span>
+          <span data-i18n="en">Example: 1-3,5,8-10 (enabled only when valid)</span>
+        </p>
+      </div>
+
+      <div class="pages">
+        <div class="pages-title">
+          <span data-i18n="ja">ページ一覧（結合後）</span><span data-i18n="en">Pages (merged view)</span>
+        </div>
+        <div id="pageList" class="page-list">
+          <div class="muted" data-i18n="ja">（ページがありません）</div>
+          <div class="muted" data-i18n="en">(No pages)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- エラー/状態表示（完成版では常設） -->
+    <section class="nw-section">
+      <div id="statusBox" class="status" hidden role="alert">
+        <div id="statusText"></div>
+        <button id="btnStatusClose" type="button" class="status-close" aria-label="Close">×</button>
+      </div>
+    </section>
+
+    <!-- 下部広告枠（推奨） -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- 寄付導線（標準A：1箇所） -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- 内部リンク（仮置き：後で実在slugに合わせる） -->
+    <div class="nw-links">
+      <div class="nw-links-title" data-i18n="ja">関連ツール</div>
+      <div class="nw-links-title" data-i18n="en">Related tools</div>
+      <ul class="nw-links-list">
+        <li><a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a></li>
+        <li><a href="/tools/filetype-sniffer/">FileType Sniffer</a></li>
+        <li><a href="/tools/contract-cleaner/">Contract Cleaner</a></li>
+      </ul>
+      <p class="muted" data-i18n="ja">※リンク先が存在しない場合は後で差し替えます。</p>
+      <p class="muted" data-i18n="en">*If any link 404s, we will replace it later.</p>
+    </div>
+
+    <!-- FAQ（完成版で入れる。今は箱だけ） -->
+    <div class="nw-faq">
+      <h2 class="nw-h2">FAQ</h2>
+      <div class="muted" data-i18n="ja">（完成版で追記）</div>
+      <div class="muted" data-i18n="en">(To be added in final)</div>
+    </div>
+  
+    <!-- ad-bottom (recommended) -->
+    <div class="nw-ad" id="ad-bottom" aria-label="ad bottom"></div>
+
+</main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+</body>
+</html>

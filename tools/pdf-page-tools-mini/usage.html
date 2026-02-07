@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>PDFページ操作ミニ｜使い方 - NicheWorks</title>
+  <meta name="description" content="PDFページ操作ミニの使い方。結合・抽出・削除・並べ替え・回転をアップロードなし（ブラウザ内）で行えます。" />
+
+  <!-- 共通ヘッド（canonical/OG/JSON-LD 等は共通仕様に準拠。必要なら後続タスクで調整） -->
+  <link rel="canonical" href="https://nicheworks.app/tools/pdf-page-tools-mini/usage.html" />
+  <meta property="og:title" content="PDFページ操作ミニ｜使い方" />
+  <meta property="og:description" content="PDFページ操作ミニの使い方。結合・抽出・削除・並べ替え・回転をアップロードなし（ブラウザ内）で行えます。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/pdf-page-tools-mini/usage.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://nicheworks.app/assets/og-default.png" />
+
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="/assets/nw-base.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- 共通ヘッダー（母艦側のナビ/フッター仕様に合わせる。ここは最小限） -->
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div class="nw-title">
+        <h1>
+          <span data-i18n="ja">PDFページ操作ミニ｜使い方</span>
+          <span data-i18n="en" style="display:none;">PDF Page Tools Mini — Usage</span>
+        </h1>
+        <p class="nw-subtitle">
+          <span data-i18n="ja">結合・抽出・並べ替え・回転を、アップロードなしで。</span>
+          <span data-i18n="en" style="display:none;">Merge, extract, reorder, rotate — no upload.</span>
+        </p>
+      </div>
+
+      <nav class="nw-lang-switch" aria-label="language switch">
+        <button type="button" data-lang="ja" class="active">JP</button>
+        <button type="button" data-lang="en">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">このページについて</span>
+        <span data-i18n="en" style="display:none;">About this page</span>
+      </h2>
+      <p>
+        <span data-i18n="ja">PDFページ操作ミニの基本手順と、対応範囲・エラー時の対処をまとめています。</span>
+        <span data-i18n="en" style="display:none;">This page explains how to use PDF Page Tools Mini, supported features, and troubleshooting.</span>
+      </p>
+      <p class="nw-muted">
+        <span data-i18n="ja">※このツールはブラウザ内で処理します（サーバーにアップロードしません）。</span>
+        <span data-i18n="en" style="display:none;">*This tool processes PDFs locally in your browser (no upload).</span>
+      </p>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">できること（5機能）</span>
+        <span data-i18n="en" style="display:none;">What you can do (5 features)</span>
+      </h2>
+      <ul class="nw-list">
+        <li><span data-i18n="ja">結合（Merge）：複数PDFを1つに</span><span data-i18n="en" style="display:none;">Merge: combine multiple PDFs into one</span></li>
+        <li><span data-i18n="ja">抽出（Extract）：指定範囲だけを新PDFで保存</span><span data-i18n="en" style="display:none;">Extract: save selected page ranges as a new PDF</span></li>
+        <li><span data-i18n="ja">削除（Delete）：不要ページを除外して保存</span><span data-i18n="en" style="display:none;">Delete: remove pages and save</span></li>
+        <li><span data-i18n="ja">並べ替え（Reorder）：ページ順を入れ替えて保存</span><span data-i18n="en" style="display:none;">Reorder: rearrange pages and save</span></li>
+        <li><span data-i18n="ja">回転（Rotate）：ページごとに90°単位で回転して保存</span><span data-i18n="en" style="display:none;">Rotate: rotate pages by 90° increments and save</span></li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">基本手順（追加 → 編集 → 保存）</span>
+        <span data-i18n="en" style="display:none;">Basic workflow (Add → Edit → Download)</span>
+      </h2>
+
+      <ol class="nw-steps">
+        <li>
+          <strong><span data-i18n="ja">PDFを追加</span><span data-i18n="en" style="display:none;">Add PDFs</span></strong>
+          <p>
+            <span data-i18n="ja">「PDFを追加」から読み込みます。複数選択やドラッグ&ドロップも可能です。</span>
+            <span data-i18n="en" style="display:none;">Use “Add PDFs” to load files. Multiple selection and drag & drop are supported.</span>
+          </p>
+        </li>
+
+        <li>
+          <strong><span data-i18n="ja">ページを編集</span><span data-i18n="en" style="display:none;">Edit pages</span></strong>
+          <p>
+            <span data-i18n="ja">ページカードで「回転」「削除」「↑↓（並べ替え）」を行います。PCではドラッグでの並べ替えも利用できます。</span>
+            <span data-i18n="en" style="display:none;">Use page cards to rotate, delete, and move pages up/down. On desktop, drag & drop reorder may be available.</span>
+          </p>
+        </li>
+
+        <li>
+          <strong><span data-i18n="ja">保存してダウンロード</span><span data-i18n="en" style="display:none;">Download</span></strong>
+          <p>
+            <span data-i18n="ja">「保存してダウンロード」で現在の状態をPDFとして出力します（回転も反映されます）。</span>
+            <span data-i18n="en" style="display:none;">“Download” exports the current state as a PDF (rotations are applied).</span>
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">抽出（範囲指定）の書き方</span>
+        <span data-i18n="en" style="display:none;">Extract (range syntax)</span>
+      </h2>
+      <p>
+        <span data-i18n="ja">ページ範囲欄に、次の形式で入力します：</span>
+        <span data-i18n="en" style="display:none;">Enter ranges using this format:</span>
+      </p>
+      <pre class="nw-code">1-3,5,8-10</pre>
+      <ul class="nw-list">
+        <li><span data-i18n="ja">カンマ区切りで複数指定できます</span><span data-i18n="en" style="display:none;">Use commas to specify multiple ranges</span></li>
+        <li><span data-i18n="ja">数字は「今見えているページ番号（#1,#2…）」です</span><span data-i18n="en" style="display:none;">Numbers refer to the current visible page order (#1, #2…)</span></li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">対応しないこと（非対応）</span>
+        <span data-i18n="en" style="display:none;">Not supported</span>
+      </h2>
+      <ul class="nw-list">
+        <li><span data-i18n="ja">圧縮（Compress）、OCR、注釈、テキスト編集</span><span data-i18n="en" style="display:none;">Compression, OCR, annotations, text editing</span></li>
+        <li><span data-i18n="ja">パスワード解除、署名、画像化、透かし</span><span data-i18n="en" style="display:none;">Password removal, signing, image conversion, watermark</span></li>
+      </ul>
+      <p class="nw-muted">
+        <span data-i18n="ja">※パスワード付きPDFは非対応（解除は行いません）。</span>
+        <span data-i18n="en" style="display:none;">*Encrypted PDFs are not supported (no password removal).</span>
+      </p>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">エラーと対処</span>
+        <span data-i18n="en" style="display:none;">Errors & troubleshooting</span>
+      </h2>
+
+      <div class="nw-faq">
+        <div class="nw-faq-item">
+          <h3><span data-i18n="ja">PDFとして読み込めない</span><span data-i18n="en" style="display:none;">Cannot read as PDF</span></h3>
+          <p>
+            <span data-i18n="ja">別のPDFを試してください。拡張子が.pdfでも中身がPDFでない場合があります。</span>
+            <span data-i18n="en" style="display:none;">Try another PDF. Some files may not be valid PDFs even if they end with .pdf.</span>
+          </p>
+        </div>
+
+        <div class="nw-faq-item">
+          <h3><span data-i18n="ja">処理に失敗する（重い/落ちる）</span><span data-i18n="en" style="display:none;">Processing fails (heavy / crashes)</span></h3>
+          <p>
+            <span data-i18n="ja">端末のメモリ不足の可能性があります。ページ数を減らす・分割する・別ブラウザで試してください。</span>
+            <span data-i18n="en" style="display:none;">This may be a memory issue. Try fewer pages, split the PDF, or use another browser.</span>
+          </p>
+        </div>
+
+        <div class="nw-faq-item">
+          <h3><span data-i18n="ja">抽出の範囲が通らない</span><span data-i18n="en" style="display:none;">Invalid extract range</span></h3>
+          <p>
+            <span data-i18n="ja">例の形式（1-3,5,8-10）で入力してください。範囲は現在のページ数以内にしてください。</span>
+            <span data-i18n="en" style="display:none;">Use the example format (1-3,5,8-10) and keep numbers within the current page count.</span>
+          </p>
+        </div>
+
+        <div class="nw-faq-item">
+          <h3><span data-i18n="ja">出力するページがない</span><span data-i18n="en" style="display:none;">No pages to export</span></h3>
+          <p>
+            <span data-i18n="ja">削除をUndoで戻すか、PDFを追加してください。</span>
+            <span data-i18n="en" style="display:none;">Undo deletion or add PDFs.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">出力ファイル（命名）</span>
+        <span data-i18n="en" style="display:none;">Output filenames</span>
+      </h2>
+      <ul class="nw-list">
+        <li><span data-i18n="ja">単一PDF：元名_edited.pdf / 元名_extracted.pdf</span><span data-i18n="en" style="display:none;">Single PDF: original_edited.pdf / original_extracted.pdf</span></li>
+        <li><span data-i18n="ja">複数PDF：pdf-page-tools-mini_edited_YYYYMMDD_HHMM.pdf など</span><span data-i18n="en" style="display:none;">Multiple PDFs: pdf-page-tools-mini_edited_YYYYMMDD_HHMM.pdf etc.</span></li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">免責（端末依存）</span>
+        <span data-i18n="en" style="display:none;">Disclaimer (device/browser dependent)</span>
+      </h2>
+      <p class="nw-muted">
+        <span data-i18n="ja">このツールは端末内（ブラウザ）で処理します。PDFのサイズや端末性能により、動作が不安定になる場合があります。</span>
+        <span data-i18n="en" style="display:none;">This tool runs locally in your browser. Performance may vary depending on PDF size and device capabilities.</span>
+      </p>
+    </section>
+
+    <section class="nw-card">
+      <h2>
+        <span data-i18n="ja">戻る</span>
+        <span data-i18n="en" style="display:none;">Back</span>
+      </h2>
+      <p>
+        <a class="nw-link" href="./">
+          <span data-i18n="ja">← ツールに戻る</span>
+          <span data-i18n="en" style="display:none;">← Back to tool</span>
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <div class="nw-footer-inner">
+      <p class="nw-muted">© NicheWorks</p>
+    </div>
+  </footer>
+
+  <script>
+    // Minimal in-page i18n (PPTM-15)
+    (function(){
+      const btns = Array.from(document.querySelectorAll(".nw-lang-switch button"));
+      const nodes = Array.from(document.querySelectorAll("[data-i18n]"));
+      const browserLang = (navigator.language || "").toLowerCase();
+      let lang = browserLang.startsWith("ja") ? "ja" : "en";
+
+      function apply(l){
+        nodes.forEach(el => { el.style.display = (el.dataset.i18n === l) ? "" : "none"; });
+        btns.forEach(b => b.classList.toggle("active", b.dataset.lang === l));
+        lang = l;
+        document.documentElement.lang = l;
+      }
+      btns.forEach(b => b.addEventListener("click", () => apply(b.dataset.lang)));
+      apply(lang);
+    })();
+  </script>
+</body>
+</html>
