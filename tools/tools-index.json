@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-06T17:16:57.869Z",
-  "total": 66,
+  "generatedAt": "2026-02-07T14:26:20.954Z",
+  "total": 67,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -414,6 +414,14 @@
       "slug": "pages-deploy-guide",
       "title_en": "pages-deploy-guide",
       "title_ja": "pages-deploy-guide",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "pdf-page-tools-mini",
+      "title_en": "pdf-page-tools-mini",
+      "title_ja": "pdf-page-tools-mini",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
