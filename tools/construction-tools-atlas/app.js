@@ -33,6 +33,9 @@
     detailClose: $("#detailClose"),
     detailTitle: $("#detailTitle"),
     detailStar: $("#detailStar"),
+    importFavsBtn: $("#importFavsBtn"),
+    exportFavsBtn: $("#exportFavsBtn"),
+    favsOnly: $("#favsOnly"),
     detailChips: $("#detailChips"),
     detailTerms: $("#detailTerms"),
     detailDesc: $("#detailDesc"),
@@ -108,6 +111,50 @@
   }
   function saveFavs(){
     localStorage.setItem(LS.favs, JSON.stringify(Array.from(state.favs)));
+  }
+
+  // ---- Favorites Export/Import (no login, no share link) ----
+  function buildFavsExportPayload(){
+    return { v: 1, tool: "construction-tools-atlas", type: "favorites", ids: Array.from(state.favs) };
+  }
+
+  function downloadText(filename, text){
+    const blob = new Blob([text], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  async function exportFavs(){
+    const text = JSON.stringify(buildFavsExportPayload(), null, 2);
+    try { await navigator.clipboard.writeText(text); } catch(_) {}
+    downloadText("atlas-favorites.json", text);
+  }
+
+  function importFavsFromText(text){
+    let obj;
+    try { obj = JSON.parse(text); } catch(_) { alert("Invalid JSON"); return; }
+    if (!obj || obj.v !== 1 || obj.type !== "favorites" || !Array.isArray(obj.ids)) {
+      alert("Invalid favorites format"); return;
+    }
+    // validate IDs against current entries
+    const idSet = new Set(state.entries.map(e => e.id));
+    const valid = [];
+    for (const id of obj.ids) if (typeof id === "string" && idSet.has(id)) valid.push(id);
+    state.favs = new Set(valid);
+    saveFavs();
+    render();
+    alert(`Imported favorites: ${valid.length}`);
+  }
+
+  function importFavs(){
+    const text = prompt("Paste favorites JSON:");
+    if (!text) return;
+    importFavsFromText(text);
   }
   function setTheme(theme){
     state.theme = theme;
@@ -347,6 +394,8 @@
     const task = state.task;
 
     state.filtered = state.entries.filter(e => {
+      /* FAVS_ONLY_FILTER */
+      if (els.favsOnly && els.favsOnly.checked && !state.favs.has(e.id)) return false;
       if (!matchQuery(e, q)) return false;
       if (action !== "all") {
         const a = ACTIONS.find(x => x.id === action);
@@ -887,6 +936,11 @@
       render();
     });
 
+
+  /* FAVS_WIRING */
+  if (els.favsOnly) els.favsOnly.addEventListener("change", () => { render(); });
+  if (els.exportFavsBtn) els.exportFavsBtn.addEventListener("click", exportFavs);
+  if (els.importFavsBtn) els.importFavsBtn.addEventListener("click", importFavs);
     els.overlay.addEventListener("click", closeAllSheets);
 
     els.detailTabs.addEventListener("click", (ev) => {

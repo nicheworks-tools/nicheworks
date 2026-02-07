@@ -133,7 +133,19 @@
 
   <!-- Menu: bottom sheet -->
   <section class="sheet sheet--bottom" id="menuSheet" hidden aria-modal="true" role="dialog">
-    <div class="sheet__top">
+    
+  <!-- Favorites (local) -->
+  <div class="menuGroup" style="padding:12px 0; border-top:1px solid var(--line, #222);">
+    <label style="display:flex; gap:8px; align-items:center;">
+      <input type="checkbox" id="favsOnly" />
+      <span>★ お気に入りのみ / Favorites only</span>
+    </label>
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
+      <button class="pillbtn" id="exportFavsBtn" type="button">Export favorites (JSON)</button>
+      <button class="pillbtn" id="importFavsBtn" type="button">Import favorites (JSON)</button>
+    </div>
+  </div>
+<div class="sheet__top">
       <div class="sheet__title">Menu</div>
       <button class="iconbtn" id="menuClose" type="button" aria-label="Close">×</button>
     </div>

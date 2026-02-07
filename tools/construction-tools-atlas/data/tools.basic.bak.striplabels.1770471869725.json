@@ -15479,8 +15479,8 @@
     "id": "construction_adhesive_001",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目1）",
+      "en": "Construction adhesive (1)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -15496,12 +15496,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目1）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目1）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (1) is used before starting the task.",
+        "Selection of construction adhesive (1) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15531,8 +15531,8 @@
     "id": "butyl_tape_002",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目2）",
+      "en": "Butyl tape (2)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -15548,12 +15548,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目2）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目2）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (2) is used before starting the task.",
+        "Selection of butyl tape (2) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15583,8 +15583,8 @@
     "id": "primer_003",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目3）",
+      "en": "Primer (3)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -15600,12 +15600,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目3）は作業前に用途を確認してから使う。",
+        "プライマー（項目3）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (3) is used before starting the task.",
+        "Selection of primer (3) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15635,8 +15635,8 @@
     "id": "wire_stripper_004",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目4）",
+      "en": "Wire stripper (4)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -15652,12 +15652,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目4）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目4）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (4) is used before starting the task.",
+        "Selection of wire stripper (4) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15687,8 +15687,8 @@
     "id": "pipe_cutter_005",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目5）",
+      "en": "Pipe cutter (5)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -15704,12 +15704,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目5）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目5）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (5) is used before starting the task.",
+        "Selection of pipe cutter (5) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15739,8 +15739,8 @@
     "id": "notched_trowel_006",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目6）",
+      "en": "Notched trowel (6)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -15756,12 +15756,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目6）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目6）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (6) is used before starting the task.",
+        "Selection of notched trowel (6) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15791,8 +15791,8 @@
     "id": "toolbox_talk_007",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目7）",
+      "en": "Toolbox talk (7)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -15808,12 +15808,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目7）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目7）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (7) is used before starting the task.",
+        "Selection of toolbox talk (7) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15842,8 +15842,8 @@
     "id": "dust_control_008",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目8）",
+      "en": "Dust control (8)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -15859,12 +15859,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目8）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目8）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (8) is used before starting the task.",
+        "Selection of dust control (8) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15894,8 +15894,8 @@
     "id": "construction_adhesive_009",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目9）",
+      "en": "Construction adhesive (9)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -15911,12 +15911,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目9）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目9）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (9) is used before starting the task.",
+        "Selection of construction adhesive (9) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15946,8 +15946,8 @@
     "id": "butyl_tape_010",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目10）",
+      "en": "Butyl tape (10)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -15963,12 +15963,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目10）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目10）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (10) is used before starting the task.",
+        "Selection of butyl tape (10) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -15998,8 +15998,8 @@
     "id": "primer_011",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目11）",
+      "en": "Primer (11)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -16015,12 +16015,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目11）は作業前に用途を確認してから使う。",
+        "プライマー（項目11）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (11) is used before starting the task.",
+        "Selection of primer (11) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16050,8 +16050,8 @@
     "id": "wire_stripper_012",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目12）",
+      "en": "Wire stripper (12)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -16067,12 +16067,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目12）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目12）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (12) is used before starting the task.",
+        "Selection of wire stripper (12) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16102,8 +16102,8 @@
     "id": "pipe_cutter_013",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目13）",
+      "en": "Pipe cutter (13)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -16119,12 +16119,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目13）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目13）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (13) is used before starting the task.",
+        "Selection of pipe cutter (13) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16154,8 +16154,8 @@
     "id": "notched_trowel_014",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目14）",
+      "en": "Notched trowel (14)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -16171,12 +16171,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目14）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目14）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (14) is used before starting the task.",
+        "Selection of notched trowel (14) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16206,8 +16206,8 @@
     "id": "toolbox_talk_015",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目15）",
+      "en": "Toolbox talk (15)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -16223,12 +16223,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目15）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目15）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (15) is used before starting the task.",
+        "Selection of toolbox talk (15) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16257,8 +16257,8 @@
     "id": "dust_control_016",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目16）",
+      "en": "Dust control (16)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -16274,12 +16274,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目16）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目16）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (16) is used before starting the task.",
+        "Selection of dust control (16) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16309,8 +16309,8 @@
     "id": "construction_adhesive_017",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目17）",
+      "en": "Construction adhesive (17)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -16326,12 +16326,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目17）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目17）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (17) is used before starting the task.",
+        "Selection of construction adhesive (17) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16361,8 +16361,8 @@
     "id": "butyl_tape_018",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目18）",
+      "en": "Butyl tape (18)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -16378,12 +16378,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目18）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目18）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (18) is used before starting the task.",
+        "Selection of butyl tape (18) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16413,8 +16413,8 @@
     "id": "primer_019",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目19）",
+      "en": "Primer (19)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -16430,12 +16430,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目19）は作業前に用途を確認してから使う。",
+        "プライマー（項目19）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (19) is used before starting the task.",
+        "Selection of primer (19) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16465,8 +16465,8 @@
     "id": "wire_stripper_020",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目20）",
+      "en": "Wire stripper (20)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -16482,12 +16482,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目20）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目20）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (20) is used before starting the task.",
+        "Selection of wire stripper (20) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16517,8 +16517,8 @@
     "id": "pipe_cutter_021",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目21）",
+      "en": "Pipe cutter (21)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -16534,12 +16534,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目21）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目21）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (21) is used before starting the task.",
+        "Selection of pipe cutter (21) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16569,8 +16569,8 @@
     "id": "notched_trowel_022",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目22）",
+      "en": "Notched trowel (22)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -16586,12 +16586,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目22）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目22）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (22) is used before starting the task.",
+        "Selection of notched trowel (22) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16621,8 +16621,8 @@
     "id": "toolbox_talk_023",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目23）",
+      "en": "Toolbox talk (23)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -16638,12 +16638,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目23）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目23）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (23) is used before starting the task.",
+        "Selection of toolbox talk (23) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16672,8 +16672,8 @@
     "id": "dust_control_024",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目24）",
+      "en": "Dust control (24)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -16689,12 +16689,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目24）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目24）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (24) is used before starting the task.",
+        "Selection of dust control (24) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16724,8 +16724,8 @@
     "id": "construction_adhesive_025",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目25）",
+      "en": "Construction adhesive (25)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -16741,12 +16741,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目25）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目25）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (25) is used before starting the task.",
+        "Selection of construction adhesive (25) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16776,8 +16776,8 @@
     "id": "butyl_tape_026",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目26）",
+      "en": "Butyl tape (26)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -16793,12 +16793,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目26）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目26）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (26) is used before starting the task.",
+        "Selection of butyl tape (26) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16828,8 +16828,8 @@
     "id": "primer_027",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目27）",
+      "en": "Primer (27)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -16845,12 +16845,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目27）は作業前に用途を確認してから使う。",
+        "プライマー（項目27）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (27) is used before starting the task.",
+        "Selection of primer (27) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16880,8 +16880,8 @@
     "id": "wire_stripper_028",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目28）",
+      "en": "Wire stripper (28)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -16897,12 +16897,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目28）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目28）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (28) is used before starting the task.",
+        "Selection of wire stripper (28) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16932,8 +16932,8 @@
     "id": "pipe_cutter_029",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目29）",
+      "en": "Pipe cutter (29)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -16949,12 +16949,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目29）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目29）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (29) is used before starting the task.",
+        "Selection of pipe cutter (29) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -16984,8 +16984,8 @@
     "id": "notched_trowel_030",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目30）",
+      "en": "Notched trowel (30)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -17001,12 +17001,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目30）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目30）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (30) is used before starting the task.",
+        "Selection of notched trowel (30) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17036,8 +17036,8 @@
     "id": "toolbox_talk_031",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目31）",
+      "en": "Toolbox talk (31)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -17053,12 +17053,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目31）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目31）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (31) is used before starting the task.",
+        "Selection of toolbox talk (31) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17087,8 +17087,8 @@
     "id": "dust_control_032",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目32）",
+      "en": "Dust control (32)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -17104,12 +17104,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目32）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目32）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (32) is used before starting the task.",
+        "Selection of dust control (32) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17139,8 +17139,8 @@
     "id": "construction_adhesive_033",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目33）",
+      "en": "Construction adhesive (33)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -17156,12 +17156,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目33）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目33）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (33) is used before starting the task.",
+        "Selection of construction adhesive (33) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17191,8 +17191,8 @@
     "id": "butyl_tape_034",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目34）",
+      "en": "Butyl tape (34)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -17208,12 +17208,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目34）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目34）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (34) is used before starting the task.",
+        "Selection of butyl tape (34) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17243,8 +17243,8 @@
     "id": "primer_035",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目35）",
+      "en": "Primer (35)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -17260,12 +17260,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目35）は作業前に用途を確認してから使う。",
+        "プライマー（項目35）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (35) is used before starting the task.",
+        "Selection of primer (35) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17295,8 +17295,8 @@
     "id": "wire_stripper_036",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目36）",
+      "en": "Wire stripper (36)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -17312,12 +17312,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目36）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目36）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (36) is used before starting the task.",
+        "Selection of wire stripper (36) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17347,8 +17347,8 @@
     "id": "pipe_cutter_037",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目37）",
+      "en": "Pipe cutter (37)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -17364,12 +17364,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目37）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目37）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (37) is used before starting the task.",
+        "Selection of pipe cutter (37) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17399,8 +17399,8 @@
     "id": "notched_trowel_038",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目38）",
+      "en": "Notched trowel (38)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -17416,12 +17416,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目38）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目38）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (38) is used before starting the task.",
+        "Selection of notched trowel (38) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17451,8 +17451,8 @@
     "id": "toolbox_talk_039",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目39）",
+      "en": "Toolbox talk (39)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -17468,12 +17468,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目39）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目39）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (39) is used before starting the task.",
+        "Selection of toolbox talk (39) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17502,8 +17502,8 @@
     "id": "dust_control_040",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目40）",
+      "en": "Dust control (40)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -17519,12 +17519,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目40）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目40）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (40) is used before starting the task.",
+        "Selection of dust control (40) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17554,8 +17554,8 @@
     "id": "construction_adhesive_041",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目41）",
+      "en": "Construction adhesive (41)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -17571,12 +17571,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目41）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目41）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (41) is used before starting the task.",
+        "Selection of construction adhesive (41) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17606,8 +17606,8 @@
     "id": "butyl_tape_042",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目42）",
+      "en": "Butyl tape (42)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -17623,12 +17623,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目42）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目42）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (42) is used before starting the task.",
+        "Selection of butyl tape (42) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17658,8 +17658,8 @@
     "id": "primer_043",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目43）",
+      "en": "Primer (43)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -17675,12 +17675,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目43）は作業前に用途を確認してから使う。",
+        "プライマー（項目43）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (43) is used before starting the task.",
+        "Selection of primer (43) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17710,8 +17710,8 @@
     "id": "wire_stripper_044",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目44）",
+      "en": "Wire stripper (44)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -17727,12 +17727,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目44）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目44）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (44) is used before starting the task.",
+        "Selection of wire stripper (44) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17762,8 +17762,8 @@
     "id": "pipe_cutter_045",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目45）",
+      "en": "Pipe cutter (45)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -17779,12 +17779,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目45）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目45）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (45) is used before starting the task.",
+        "Selection of pipe cutter (45) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17814,8 +17814,8 @@
     "id": "notched_trowel_046",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目46）",
+      "en": "Notched trowel (46)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -17831,12 +17831,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目46）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目46）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (46) is used before starting the task.",
+        "Selection of notched trowel (46) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17866,8 +17866,8 @@
     "id": "toolbox_talk_047",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目47）",
+      "en": "Toolbox talk (47)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -17883,12 +17883,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目47）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目47）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (47) is used before starting the task.",
+        "Selection of toolbox talk (47) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17917,8 +17917,8 @@
     "id": "dust_control_048",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目48）",
+      "en": "Dust control (48)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -17934,12 +17934,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目48）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目48）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (48) is used before starting the task.",
+        "Selection of dust control (48) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -17969,8 +17969,8 @@
     "id": "construction_adhesive_049",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目49）",
+      "en": "Construction adhesive (49)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -17986,12 +17986,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目49）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目49）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (49) is used before starting the task.",
+        "Selection of construction adhesive (49) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18021,8 +18021,8 @@
     "id": "butyl_tape_050",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目50）",
+      "en": "Butyl tape (50)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -18038,12 +18038,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目50）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目50）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (50) is used before starting the task.",
+        "Selection of butyl tape (50) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18073,8 +18073,8 @@
     "id": "primer_051",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目51）",
+      "en": "Primer (51)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -18090,12 +18090,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目51）は作業前に用途を確認してから使う。",
+        "プライマー（項目51）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (51) is used before starting the task.",
+        "Selection of primer (51) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18125,8 +18125,8 @@
     "id": "wire_stripper_052",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目52）",
+      "en": "Wire stripper (52)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -18142,12 +18142,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目52）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目52）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (52) is used before starting the task.",
+        "Selection of wire stripper (52) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18177,8 +18177,8 @@
     "id": "pipe_cutter_053",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目53）",
+      "en": "Pipe cutter (53)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -18194,12 +18194,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目53）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目53）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (53) is used before starting the task.",
+        "Selection of pipe cutter (53) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18229,8 +18229,8 @@
     "id": "notched_trowel_054",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目54）",
+      "en": "Notched trowel (54)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -18246,12 +18246,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目54）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目54）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (54) is used before starting the task.",
+        "Selection of notched trowel (54) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18281,8 +18281,8 @@
     "id": "toolbox_talk_055",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目55）",
+      "en": "Toolbox talk (55)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -18298,12 +18298,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目55）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目55）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (55) is used before starting the task.",
+        "Selection of toolbox talk (55) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18332,8 +18332,8 @@
     "id": "dust_control_056",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目56）",
+      "en": "Dust control (56)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -18349,12 +18349,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目56）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目56）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (56) is used before starting the task.",
+        "Selection of dust control (56) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18384,8 +18384,8 @@
     "id": "construction_adhesive_057",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目57）",
+      "en": "Construction adhesive (57)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -18401,12 +18401,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目57）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目57）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (57) is used before starting the task.",
+        "Selection of construction adhesive (57) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18436,8 +18436,8 @@
     "id": "butyl_tape_058",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目58）",
+      "en": "Butyl tape (58)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -18453,12 +18453,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目58）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目58）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (58) is used before starting the task.",
+        "Selection of butyl tape (58) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18488,8 +18488,8 @@
     "id": "primer_059",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目59）",
+      "en": "Primer (59)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -18505,12 +18505,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目59）は作業前に用途を確認してから使う。",
+        "プライマー（項目59）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (59) is used before starting the task.",
+        "Selection of primer (59) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18540,8 +18540,8 @@
     "id": "wire_stripper_060",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目60）",
+      "en": "Wire stripper (60)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -18557,12 +18557,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目60）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目60）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (60) is used before starting the task.",
+        "Selection of wire stripper (60) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18592,8 +18592,8 @@
     "id": "pipe_cutter_061",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目61）",
+      "en": "Pipe cutter (61)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -18609,12 +18609,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目61）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目61）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (61) is used before starting the task.",
+        "Selection of pipe cutter (61) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18644,8 +18644,8 @@
     "id": "notched_trowel_062",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目62）",
+      "en": "Notched trowel (62)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -18661,12 +18661,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目62）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目62）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (62) is used before starting the task.",
+        "Selection of notched trowel (62) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18696,8 +18696,8 @@
     "id": "toolbox_talk_063",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目63）",
+      "en": "Toolbox talk (63)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -18713,12 +18713,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目63）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目63）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (63) is used before starting the task.",
+        "Selection of toolbox talk (63) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18747,8 +18747,8 @@
     "id": "dust_control_064",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目64）",
+      "en": "Dust control (64)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -18764,12 +18764,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目64）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目64）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (64) is used before starting the task.",
+        "Selection of dust control (64) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18799,8 +18799,8 @@
     "id": "construction_adhesive_065",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目65）",
+      "en": "Construction adhesive (65)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -18816,12 +18816,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目65）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目65）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (65) is used before starting the task.",
+        "Selection of construction adhesive (65) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18851,8 +18851,8 @@
     "id": "butyl_tape_066",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目66）",
+      "en": "Butyl tape (66)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -18868,12 +18868,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目66）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目66）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (66) is used before starting the task.",
+        "Selection of butyl tape (66) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18903,8 +18903,8 @@
     "id": "primer_067",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目67）",
+      "en": "Primer (67)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -18920,12 +18920,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目67）は作業前に用途を確認してから使う。",
+        "プライマー（項目67）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (67) is used before starting the task.",
+        "Selection of primer (67) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -18955,8 +18955,8 @@
     "id": "wire_stripper_068",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目68）",
+      "en": "Wire stripper (68)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -18972,12 +18972,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目68）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目68）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (68) is used before starting the task.",
+        "Selection of wire stripper (68) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19007,8 +19007,8 @@
     "id": "pipe_cutter_069",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目69）",
+      "en": "Pipe cutter (69)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -19024,12 +19024,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目69）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目69）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (69) is used before starting the task.",
+        "Selection of pipe cutter (69) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19059,8 +19059,8 @@
     "id": "notched_trowel_070",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目70）",
+      "en": "Notched trowel (70)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -19076,12 +19076,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目70）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目70）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (70) is used before starting the task.",
+        "Selection of notched trowel (70) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19111,8 +19111,8 @@
     "id": "toolbox_talk_071",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目71）",
+      "en": "Toolbox talk (71)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -19128,12 +19128,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目71）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目71）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (71) is used before starting the task.",
+        "Selection of toolbox talk (71) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19162,8 +19162,8 @@
     "id": "dust_control_072",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目72）",
+      "en": "Dust control (72)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -19179,12 +19179,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目72）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目72）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (72) is used before starting the task.",
+        "Selection of dust control (72) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19214,8 +19214,8 @@
     "id": "construction_adhesive_073",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目73）",
+      "en": "Construction adhesive (73)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -19231,12 +19231,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目73）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目73）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (73) is used before starting the task.",
+        "Selection of construction adhesive (73) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19266,8 +19266,8 @@
     "id": "butyl_tape_074",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目74）",
+      "en": "Butyl tape (74)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -19283,12 +19283,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目74）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目74）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (74) is used before starting the task.",
+        "Selection of butyl tape (74) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19318,8 +19318,8 @@
     "id": "primer_075",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目75）",
+      "en": "Primer (75)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -19335,12 +19335,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目75）は作業前に用途を確認してから使う。",
+        "プライマー（項目75）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (75) is used before starting the task.",
+        "Selection of primer (75) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19370,8 +19370,8 @@
     "id": "wire_stripper_076",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目76）",
+      "en": "Wire stripper (76)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -19387,12 +19387,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目76）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目76）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (76) is used before starting the task.",
+        "Selection of wire stripper (76) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19422,8 +19422,8 @@
     "id": "pipe_cutter_077",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目77）",
+      "en": "Pipe cutter (77)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -19439,12 +19439,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目77）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目77）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (77) is used before starting the task.",
+        "Selection of pipe cutter (77) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19474,8 +19474,8 @@
     "id": "notched_trowel_078",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目78）",
+      "en": "Notched trowel (78)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -19491,12 +19491,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目78）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目78）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (78) is used before starting the task.",
+        "Selection of notched trowel (78) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19526,8 +19526,8 @@
     "id": "toolbox_talk_079",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目79）",
+      "en": "Toolbox talk (79)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -19543,12 +19543,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目79）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目79）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (79) is used before starting the task.",
+        "Selection of toolbox talk (79) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19577,8 +19577,8 @@
     "id": "dust_control_080",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目80）",
+      "en": "Dust control (80)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -19594,12 +19594,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目80）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目80）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (80) is used before starting the task.",
+        "Selection of dust control (80) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19629,8 +19629,8 @@
     "id": "construction_adhesive_081",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目81）",
+      "en": "Construction adhesive (81)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -19646,12 +19646,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目81）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目81）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (81) is used before starting the task.",
+        "Selection of construction adhesive (81) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19681,8 +19681,8 @@
     "id": "butyl_tape_082",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目82）",
+      "en": "Butyl tape (82)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -19698,12 +19698,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目82）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目82）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (82) is used before starting the task.",
+        "Selection of butyl tape (82) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19733,8 +19733,8 @@
     "id": "primer_083",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目83）",
+      "en": "Primer (83)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -19750,12 +19750,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目83）は作業前に用途を確認してから使う。",
+        "プライマー（項目83）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (83) is used before starting the task.",
+        "Selection of primer (83) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19785,8 +19785,8 @@
     "id": "wire_stripper_084",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目84）",
+      "en": "Wire stripper (84)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -19802,12 +19802,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目84）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目84）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (84) is used before starting the task.",
+        "Selection of wire stripper (84) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19837,8 +19837,8 @@
     "id": "pipe_cutter_085",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目85）",
+      "en": "Pipe cutter (85)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -19854,12 +19854,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目85）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目85）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (85) is used before starting the task.",
+        "Selection of pipe cutter (85) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19889,8 +19889,8 @@
     "id": "notched_trowel_086",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目86）",
+      "en": "Notched trowel (86)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -19906,12 +19906,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目86）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目86）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (86) is used before starting the task.",
+        "Selection of notched trowel (86) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19941,8 +19941,8 @@
     "id": "toolbox_talk_087",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目87）",
+      "en": "Toolbox talk (87)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -19958,12 +19958,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目87）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目87）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (87) is used before starting the task.",
+        "Selection of toolbox talk (87) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -19992,8 +19992,8 @@
     "id": "dust_control_088",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目88）",
+      "en": "Dust control (88)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -20009,12 +20009,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目88）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目88）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (88) is used before starting the task.",
+        "Selection of dust control (88) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20044,8 +20044,8 @@
     "id": "construction_adhesive_089",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目89）",
+      "en": "Construction adhesive (89)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -20061,12 +20061,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目89）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目89）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (89) is used before starting the task.",
+        "Selection of construction adhesive (89) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20096,8 +20096,8 @@
     "id": "butyl_tape_090",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目90）",
+      "en": "Butyl tape (90)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -20113,12 +20113,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目90）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目90）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (90) is used before starting the task.",
+        "Selection of butyl tape (90) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20148,8 +20148,8 @@
     "id": "primer_091",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目91）",
+      "en": "Primer (91)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -20165,12 +20165,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目91）は作業前に用途を確認してから使う。",
+        "プライマー（項目91）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (91) is used before starting the task.",
+        "Selection of primer (91) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20200,8 +20200,8 @@
     "id": "wire_stripper_092",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目92）",
+      "en": "Wire stripper (92)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -20217,12 +20217,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目92）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目92）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (92) is used before starting the task.",
+        "Selection of wire stripper (92) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20252,8 +20252,8 @@
     "id": "pipe_cutter_093",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目93）",
+      "en": "Pipe cutter (93)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -20269,12 +20269,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目93）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目93）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (93) is used before starting the task.",
+        "Selection of pipe cutter (93) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20304,8 +20304,8 @@
     "id": "notched_trowel_094",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目94）",
+      "en": "Notched trowel (94)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -20321,12 +20321,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目94）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目94）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (94) is used before starting the task.",
+        "Selection of notched trowel (94) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20356,8 +20356,8 @@
     "id": "toolbox_talk_095",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目95）",
+      "en": "Toolbox talk (95)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -20373,12 +20373,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目95）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目95）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (95) is used before starting the task.",
+        "Selection of toolbox talk (95) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20407,8 +20407,8 @@
     "id": "dust_control_096",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目96）",
+      "en": "Dust control (96)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -20424,12 +20424,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目96）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目96）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (96) is used before starting the task.",
+        "Selection of dust control (96) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20459,8 +20459,8 @@
     "id": "construction_adhesive_097",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目97）",
+      "en": "Construction adhesive (97)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -20476,12 +20476,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目97）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目97）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (97) is used before starting the task.",
+        "Selection of construction adhesive (97) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20511,8 +20511,8 @@
     "id": "butyl_tape_098",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目98）",
+      "en": "Butyl tape (98)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -20528,12 +20528,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目98）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目98）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (98) is used before starting the task.",
+        "Selection of butyl tape (98) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20563,8 +20563,8 @@
     "id": "primer_099",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目99）",
+      "en": "Primer (99)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -20580,12 +20580,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目99）は作業前に用途を確認してから使う。",
+        "プライマー（項目99）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (99) is used before starting the task.",
+        "Selection of primer (99) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20615,8 +20615,8 @@
     "id": "wire_stripper_100",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目100）",
+      "en": "Wire stripper (100)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -20632,12 +20632,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目100）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目100）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (100) is used before starting the task.",
+        "Selection of wire stripper (100) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20667,8 +20667,8 @@
     "id": "pipe_cutter_101",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目101）",
+      "en": "Pipe cutter (101)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -20684,12 +20684,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目101）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目101）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (101) is used before starting the task.",
+        "Selection of pipe cutter (101) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20719,8 +20719,8 @@
     "id": "notched_trowel_102",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目102）",
+      "en": "Notched trowel (102)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -20736,12 +20736,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目102）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目102）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (102) is used before starting the task.",
+        "Selection of notched trowel (102) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20771,8 +20771,8 @@
     "id": "toolbox_talk_103",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目103）",
+      "en": "Toolbox talk (103)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -20788,12 +20788,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目103）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目103）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (103) is used before starting the task.",
+        "Selection of toolbox talk (103) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20822,8 +20822,8 @@
     "id": "dust_control_104",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目104）",
+      "en": "Dust control (104)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -20839,12 +20839,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目104）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目104）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (104) is used before starting the task.",
+        "Selection of dust control (104) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20874,8 +20874,8 @@
     "id": "construction_adhesive_105",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目105）",
+      "en": "Construction adhesive (105)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -20891,12 +20891,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目105）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目105）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (105) is used before starting the task.",
+        "Selection of construction adhesive (105) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20926,8 +20926,8 @@
     "id": "butyl_tape_106",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目106）",
+      "en": "Butyl tape (106)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -20943,12 +20943,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目106）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目106）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (106) is used before starting the task.",
+        "Selection of butyl tape (106) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -20978,8 +20978,8 @@
     "id": "primer_107",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目107）",
+      "en": "Primer (107)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -20995,12 +20995,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目107）は作業前に用途を確認してから使う。",
+        "プライマー（項目107）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (107) is used before starting the task.",
+        "Selection of primer (107) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21030,8 +21030,8 @@
     "id": "wire_stripper_108",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目108）",
+      "en": "Wire stripper (108)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -21047,12 +21047,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目108）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目108）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (108) is used before starting the task.",
+        "Selection of wire stripper (108) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21082,8 +21082,8 @@
     "id": "pipe_cutter_109",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目109）",
+      "en": "Pipe cutter (109)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -21099,12 +21099,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目109）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目109）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (109) is used before starting the task.",
+        "Selection of pipe cutter (109) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21134,8 +21134,8 @@
     "id": "notched_trowel_110",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目110）",
+      "en": "Notched trowel (110)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -21151,12 +21151,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目110）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目110）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (110) is used before starting the task.",
+        "Selection of notched trowel (110) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21186,8 +21186,8 @@
     "id": "toolbox_talk_111",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目111）",
+      "en": "Toolbox talk (111)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -21203,12 +21203,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目111）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目111）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (111) is used before starting the task.",
+        "Selection of toolbox talk (111) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21237,8 +21237,8 @@
     "id": "dust_control_112",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目112）",
+      "en": "Dust control (112)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -21254,12 +21254,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目112）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目112）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (112) is used before starting the task.",
+        "Selection of dust control (112) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21289,8 +21289,8 @@
     "id": "construction_adhesive_113",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目113）",
+      "en": "Construction adhesive (113)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -21306,12 +21306,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目113）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目113）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (113) is used before starting the task.",
+        "Selection of construction adhesive (113) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21341,8 +21341,8 @@
     "id": "butyl_tape_114",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目114）",
+      "en": "Butyl tape (114)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -21358,12 +21358,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目114）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目114）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (114) is used before starting the task.",
+        "Selection of butyl tape (114) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21393,8 +21393,8 @@
     "id": "primer_115",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目115）",
+      "en": "Primer (115)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -21410,12 +21410,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目115）は作業前に用途を確認してから使う。",
+        "プライマー（項目115）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (115) is used before starting the task.",
+        "Selection of primer (115) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21445,8 +21445,8 @@
     "id": "wire_stripper_116",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目116）",
+      "en": "Wire stripper (116)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -21462,12 +21462,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目116）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目116）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (116) is used before starting the task.",
+        "Selection of wire stripper (116) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21497,8 +21497,8 @@
     "id": "pipe_cutter_117",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目117）",
+      "en": "Pipe cutter (117)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -21514,12 +21514,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目117）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目117）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (117) is used before starting the task.",
+        "Selection of pipe cutter (117) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21549,8 +21549,8 @@
     "id": "notched_trowel_118",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目118）",
+      "en": "Notched trowel (118)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -21566,12 +21566,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目118）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目118）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (118) is used before starting the task.",
+        "Selection of notched trowel (118) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21601,8 +21601,8 @@
     "id": "toolbox_talk_119",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目119）",
+      "en": "Toolbox talk (119)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -21618,12 +21618,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目119）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目119）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (119) is used before starting the task.",
+        "Selection of toolbox talk (119) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21652,8 +21652,8 @@
     "id": "dust_control_120",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目120）",
+      "en": "Dust control (120)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -21669,12 +21669,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目120）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目120）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (120) is used before starting the task.",
+        "Selection of dust control (120) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21704,8 +21704,8 @@
     "id": "construction_adhesive_121",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目121）",
+      "en": "Construction adhesive (121)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -21721,12 +21721,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目121）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目121）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (121) is used before starting the task.",
+        "Selection of construction adhesive (121) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21756,8 +21756,8 @@
     "id": "butyl_tape_122",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目122）",
+      "en": "Butyl tape (122)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -21773,12 +21773,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目122）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目122）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (122) is used before starting the task.",
+        "Selection of butyl tape (122) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21808,8 +21808,8 @@
     "id": "primer_123",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目123）",
+      "en": "Primer (123)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -21825,12 +21825,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目123）は作業前に用途を確認してから使う。",
+        "プライマー（項目123）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (123) is used before starting the task.",
+        "Selection of primer (123) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21860,8 +21860,8 @@
     "id": "wire_stripper_124",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目124）",
+      "en": "Wire stripper (124)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -21877,12 +21877,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目124）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目124）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (124) is used before starting the task.",
+        "Selection of wire stripper (124) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21912,8 +21912,8 @@
     "id": "pipe_cutter_125",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目125）",
+      "en": "Pipe cutter (125)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -21929,12 +21929,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目125）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目125）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (125) is used before starting the task.",
+        "Selection of pipe cutter (125) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -21964,8 +21964,8 @@
     "id": "notched_trowel_126",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目126）",
+      "en": "Notched trowel (126)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -21981,12 +21981,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目126）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目126）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (126) is used before starting the task.",
+        "Selection of notched trowel (126) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22016,8 +22016,8 @@
     "id": "toolbox_talk_127",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目127）",
+      "en": "Toolbox talk (127)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -22033,12 +22033,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目127）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目127）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (127) is used before starting the task.",
+        "Selection of toolbox talk (127) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22067,8 +22067,8 @@
     "id": "dust_control_128",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目128）",
+      "en": "Dust control (128)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -22084,12 +22084,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目128）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目128）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (128) is used before starting the task.",
+        "Selection of dust control (128) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22119,8 +22119,8 @@
     "id": "construction_adhesive_129",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目129）",
+      "en": "Construction adhesive (129)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -22136,12 +22136,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目129）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目129）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (129) is used before starting the task.",
+        "Selection of construction adhesive (129) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22171,8 +22171,8 @@
     "id": "butyl_tape_130",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目130）",
+      "en": "Butyl tape (130)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -22188,12 +22188,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目130）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目130）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (130) is used before starting the task.",
+        "Selection of butyl tape (130) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22223,8 +22223,8 @@
     "id": "primer_131",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目131）",
+      "en": "Primer (131)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -22240,12 +22240,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目131）は作業前に用途を確認してから使う。",
+        "プライマー（項目131）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (131) is used before starting the task.",
+        "Selection of primer (131) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22275,8 +22275,8 @@
     "id": "wire_stripper_132",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目132）",
+      "en": "Wire stripper (132)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -22292,12 +22292,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目132）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目132）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (132) is used before starting the task.",
+        "Selection of wire stripper (132) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22327,8 +22327,8 @@
     "id": "pipe_cutter_133",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目133）",
+      "en": "Pipe cutter (133)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -22344,12 +22344,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目133）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目133）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (133) is used before starting the task.",
+        "Selection of pipe cutter (133) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22379,8 +22379,8 @@
     "id": "notched_trowel_134",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目134）",
+      "en": "Notched trowel (134)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -22396,12 +22396,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目134）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目134）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (134) is used before starting the task.",
+        "Selection of notched trowel (134) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22431,8 +22431,8 @@
     "id": "toolbox_talk_135",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目135）",
+      "en": "Toolbox talk (135)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -22448,12 +22448,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目135）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目135）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (135) is used before starting the task.",
+        "Selection of toolbox talk (135) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22482,8 +22482,8 @@
     "id": "dust_control_136",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目136）",
+      "en": "Dust control (136)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -22499,12 +22499,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目136）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目136）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (136) is used before starting the task.",
+        "Selection of dust control (136) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22534,8 +22534,8 @@
     "id": "construction_adhesive_137",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目137）",
+      "en": "Construction adhesive (137)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -22551,12 +22551,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目137）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目137）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (137) is used before starting the task.",
+        "Selection of construction adhesive (137) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22586,8 +22586,8 @@
     "id": "butyl_tape_138",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目138）",
+      "en": "Butyl tape (138)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -22603,12 +22603,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目138）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目138）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (138) is used before starting the task.",
+        "Selection of butyl tape (138) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22638,8 +22638,8 @@
     "id": "primer_139",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目139）",
+      "en": "Primer (139)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -22655,12 +22655,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目139）は作業前に用途を確認してから使う。",
+        "プライマー（項目139）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (139) is used before starting the task.",
+        "Selection of primer (139) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22690,8 +22690,8 @@
     "id": "wire_stripper_140",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目140）",
+      "en": "Wire stripper (140)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -22707,12 +22707,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目140）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目140）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (140) is used before starting the task.",
+        "Selection of wire stripper (140) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22742,8 +22742,8 @@
     "id": "pipe_cutter_141",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目141）",
+      "en": "Pipe cutter (141)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -22759,12 +22759,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目141）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目141）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (141) is used before starting the task.",
+        "Selection of pipe cutter (141) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22794,8 +22794,8 @@
     "id": "notched_trowel_142",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目142）",
+      "en": "Notched trowel (142)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -22811,12 +22811,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目142）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目142）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (142) is used before starting the task.",
+        "Selection of notched trowel (142) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22846,8 +22846,8 @@
     "id": "toolbox_talk_143",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目143）",
+      "en": "Toolbox talk (143)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -22863,12 +22863,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目143）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目143）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (143) is used before starting the task.",
+        "Selection of toolbox talk (143) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22897,8 +22897,8 @@
     "id": "dust_control_144",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目144）",
+      "en": "Dust control (144)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -22914,12 +22914,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目144）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目144）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (144) is used before starting the task.",
+        "Selection of dust control (144) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -22949,8 +22949,8 @@
     "id": "construction_adhesive_145",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目145）",
+      "en": "Construction adhesive (145)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -22966,12 +22966,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目145）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目145）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (145) is used before starting the task.",
+        "Selection of construction adhesive (145) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23001,8 +23001,8 @@
     "id": "butyl_tape_146",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目146）",
+      "en": "Butyl tape (146)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -23018,12 +23018,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目146）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目146）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (146) is used before starting the task.",
+        "Selection of butyl tape (146) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23053,8 +23053,8 @@
     "id": "primer_147",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目147）",
+      "en": "Primer (147)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -23070,12 +23070,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目147）は作業前に用途を確認してから使う。",
+        "プライマー（項目147）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (147) is used before starting the task.",
+        "Selection of primer (147) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23105,8 +23105,8 @@
     "id": "wire_stripper_148",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目148）",
+      "en": "Wire stripper (148)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -23122,12 +23122,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目148）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目148）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (148) is used before starting the task.",
+        "Selection of wire stripper (148) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23157,8 +23157,8 @@
     "id": "pipe_cutter_149",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目149）",
+      "en": "Pipe cutter (149)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -23174,12 +23174,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目149）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目149）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (149) is used before starting the task.",
+        "Selection of pipe cutter (149) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23209,8 +23209,8 @@
     "id": "notched_trowel_150",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目150）",
+      "en": "Notched trowel (150)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -23226,12 +23226,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目150）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目150）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (150) is used before starting the task.",
+        "Selection of notched trowel (150) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23261,8 +23261,8 @@
     "id": "toolbox_talk_151",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目151）",
+      "en": "Toolbox talk (151)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -23278,12 +23278,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目151）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目151）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (151) is used before starting the task.",
+        "Selection of toolbox talk (151) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23312,8 +23312,8 @@
     "id": "dust_control_152",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目152）",
+      "en": "Dust control (152)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -23329,12 +23329,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目152）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目152）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (152) is used before starting the task.",
+        "Selection of dust control (152) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23364,8 +23364,8 @@
     "id": "construction_adhesive_153",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目153）",
+      "en": "Construction adhesive (153)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -23381,12 +23381,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目153）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目153）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (153) is used before starting the task.",
+        "Selection of construction adhesive (153) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23416,8 +23416,8 @@
     "id": "butyl_tape_154",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目154）",
+      "en": "Butyl tape (154)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -23433,12 +23433,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目154）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目154）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (154) is used before starting the task.",
+        "Selection of butyl tape (154) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23468,8 +23468,8 @@
     "id": "primer_155",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目155）",
+      "en": "Primer (155)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -23485,12 +23485,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目155）は作業前に用途を確認してから使う。",
+        "プライマー（項目155）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (155) is used before starting the task.",
+        "Selection of primer (155) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23520,8 +23520,8 @@
     "id": "wire_stripper_156",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目156）",
+      "en": "Wire stripper (156)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -23537,12 +23537,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目156）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目156）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (156) is used before starting the task.",
+        "Selection of wire stripper (156) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23572,8 +23572,8 @@
     "id": "pipe_cutter_157",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目157）",
+      "en": "Pipe cutter (157)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -23589,12 +23589,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目157）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目157）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (157) is used before starting the task.",
+        "Selection of pipe cutter (157) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23624,8 +23624,8 @@
     "id": "notched_trowel_158",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目158）",
+      "en": "Notched trowel (158)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -23641,12 +23641,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目158）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目158）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (158) is used before starting the task.",
+        "Selection of notched trowel (158) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23676,8 +23676,8 @@
     "id": "toolbox_talk_159",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目159）",
+      "en": "Toolbox talk (159)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -23693,12 +23693,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目159）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目159）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (159) is used before starting the task.",
+        "Selection of toolbox talk (159) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23727,8 +23727,8 @@
     "id": "dust_control_160",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目160）",
+      "en": "Dust control (160)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -23744,12 +23744,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目160）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目160）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (160) is used before starting the task.",
+        "Selection of dust control (160) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23779,8 +23779,8 @@
     "id": "construction_adhesive_161",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目161）",
+      "en": "Construction adhesive (161)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -23796,12 +23796,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目161）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目161）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (161) is used before starting the task.",
+        "Selection of construction adhesive (161) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23831,8 +23831,8 @@
     "id": "butyl_tape_162",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目162）",
+      "en": "Butyl tape (162)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -23848,12 +23848,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目162）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目162）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (162) is used before starting the task.",
+        "Selection of butyl tape (162) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23883,8 +23883,8 @@
     "id": "primer_163",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目163）",
+      "en": "Primer (163)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -23900,12 +23900,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目163）は作業前に用途を確認してから使う。",
+        "プライマー（項目163）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (163) is used before starting the task.",
+        "Selection of primer (163) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23935,8 +23935,8 @@
     "id": "wire_stripper_164",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目164）",
+      "en": "Wire stripper (164)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -23952,12 +23952,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目164）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目164）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (164) is used before starting the task.",
+        "Selection of wire stripper (164) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -23987,8 +23987,8 @@
     "id": "pipe_cutter_165",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目165）",
+      "en": "Pipe cutter (165)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -24004,12 +24004,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目165）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目165）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (165) is used before starting the task.",
+        "Selection of pipe cutter (165) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24039,8 +24039,8 @@
     "id": "notched_trowel_166",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目166）",
+      "en": "Notched trowel (166)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -24056,12 +24056,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目166）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目166）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (166) is used before starting the task.",
+        "Selection of notched trowel (166) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24091,8 +24091,8 @@
     "id": "toolbox_talk_167",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目167）",
+      "en": "Toolbox talk (167)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -24108,12 +24108,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目167）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目167）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (167) is used before starting the task.",
+        "Selection of toolbox talk (167) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24142,8 +24142,8 @@
     "id": "dust_control_168",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目168）",
+      "en": "Dust control (168)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -24159,12 +24159,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目168）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目168）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (168) is used before starting the task.",
+        "Selection of dust control (168) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24194,8 +24194,8 @@
     "id": "construction_adhesive_169",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目169）",
+      "en": "Construction adhesive (169)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -24211,12 +24211,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目169）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目169）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (169) is used before starting the task.",
+        "Selection of construction adhesive (169) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24246,8 +24246,8 @@
     "id": "butyl_tape_170",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目170）",
+      "en": "Butyl tape (170)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -24263,12 +24263,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目170）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目170）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (170) is used before starting the task.",
+        "Selection of butyl tape (170) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24298,8 +24298,8 @@
     "id": "primer_171",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目171）",
+      "en": "Primer (171)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -24315,12 +24315,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目171）は作業前に用途を確認してから使う。",
+        "プライマー（項目171）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (171) is used before starting the task.",
+        "Selection of primer (171) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24350,8 +24350,8 @@
     "id": "wire_stripper_172",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目172）",
+      "en": "Wire stripper (172)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -24367,12 +24367,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目172）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目172）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (172) is used before starting the task.",
+        "Selection of wire stripper (172) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24402,8 +24402,8 @@
     "id": "pipe_cutter_173",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目173）",
+      "en": "Pipe cutter (173)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -24419,12 +24419,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目173）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目173）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (173) is used before starting the task.",
+        "Selection of pipe cutter (173) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24454,8 +24454,8 @@
     "id": "notched_trowel_174",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目174）",
+      "en": "Notched trowel (174)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -24471,12 +24471,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目174）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目174）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (174) is used before starting the task.",
+        "Selection of notched trowel (174) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24506,8 +24506,8 @@
     "id": "toolbox_talk_175",
     "type": "site",
     "term": {
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk"
+      "ja": "朝礼（TBM）（項目175）",
+      "en": "Toolbox talk (175)"
     },
     "summary_ja": "作業前に危険と手順を共有する短いミーティング。",
     "summary_en": "Short pre-task meeting to share hazards and steps (entry point of KY).",
@@ -24523,12 +24523,12 @@
     },
     "examples": {
       "ja": [
-        "朝礼（TBM）は作業前に用途を確認してから使う。",
-        "朝礼（TBM）は条件（下地/荷重/天候）で選定が変わる。"
+        "朝礼（TBM）（項目175）は作業前に用途を確認してから使う。",
+        "朝礼（TBM）（項目175）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how toolbox talk is used before starting the task.",
-        "Selection of toolbox talk depends on substrate/load/weather."
+        "Confirm how toolbox talk (175) is used before starting the task.",
+        "Selection of toolbox talk (175) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24557,8 +24557,8 @@
     "id": "dust_control_176",
     "type": "site",
     "term": {
-      "ja": "粉塵対策",
-      "en": "Dust control"
+      "ja": "粉塵対策（項目176）",
+      "en": "Dust control (176)"
     },
     "summary_ja": "切断・研磨の粉塵を抑える対策。",
     "summary_en": "Measures to reduce dust during cutting/grinding using extraction, maski…",
@@ -24574,12 +24574,12 @@
     },
     "examples": {
       "ja": [
-        "粉塵対策は作業前に用途を確認してから使う。",
-        "粉塵対策は条件（下地/荷重/天候）で選定が変わる。"
+        "粉塵対策（項目176）は作業前に用途を確認してから使う。",
+        "粉塵対策（項目176）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how dust control is used before starting the task.",
-        "Selection of dust control depends on substrate/load/weather."
+        "Confirm how dust control (176) is used before starting the task.",
+        "Selection of dust control (176) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24609,8 +24609,8 @@
     "id": "construction_adhesive_177",
     "type": "materials",
     "term": {
-      "ja": "建築用接着剤",
-      "en": "Construction adhesive"
+      "ja": "建築用接着剤（項目177）",
+      "en": "Construction adhesive (177)"
     },
     "summary_ja": "部材を強力に接着する材料。",
     "summary_en": "Material used to bond components.",
@@ -24626,12 +24626,12 @@
     },
     "examples": {
       "ja": [
-        "建築用接着剤は作業前に用途を確認してから使う。",
-        "建築用接着剤は条件（下地/荷重/天候）で選定が変わる。"
+        "建築用接着剤（項目177）は作業前に用途を確認してから使う。",
+        "建築用接着剤（項目177）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how construction adhesive is used before starting the task.",
-        "Selection of construction adhesive depends on substrate/load/weather."
+        "Confirm how construction adhesive (177) is used before starting the task.",
+        "Selection of construction adhesive (177) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24661,8 +24661,8 @@
     "id": "butyl_tape_178",
     "type": "materials",
     "term": {
-      "ja": "ブチルテープ",
-      "en": "Butyl tape"
+      "ja": "ブチルテープ（項目178）",
+      "en": "Butyl tape (178)"
     },
     "summary_ja": "粘着性が高く止水に使うテープ。",
     "summary_en": "Highly tacky tape used for water sealing; overlaps and pressure matter.",
@@ -24678,12 +24678,12 @@
     },
     "examples": {
       "ja": [
-        "ブチルテープは作業前に用途を確認してから使う。",
-        "ブチルテープは条件（下地/荷重/天候）で選定が変わる。"
+        "ブチルテープ（項目178）は作業前に用途を確認してから使う。",
+        "ブチルテープ（項目178）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how butyl tape is used before starting the task.",
-        "Selection of butyl tape depends on substrate/load/weather."
+        "Confirm how butyl tape (178) is used before starting the task.",
+        "Selection of butyl tape (178) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24713,8 +24713,8 @@
     "id": "primer_179",
     "type": "materials",
     "term": {
-      "ja": "プライマー",
-      "en": "Primer"
+      "ja": "プライマー（項目179）",
+      "en": "Primer (179)"
     },
     "summary_ja": "塗装や接着の密着を上げる下塗り材。",
     "summary_en": "Undercoat that improves adhesion for paint/adhesives; follow dry times.",
@@ -24730,12 +24730,12 @@
     },
     "examples": {
       "ja": [
-        "プライマーは作業前に用途を確認してから使う。",
-        "プライマーは条件（下地/荷重/天候）で選定が変わる。"
+        "プライマー（項目179）は作業前に用途を確認してから使う。",
+        "プライマー（項目179）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how primer is used before starting the task.",
-        "Selection of primer depends on substrate/load/weather."
+        "Confirm how primer (179) is used before starting the task.",
+        "Selection of primer (179) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24765,8 +24765,8 @@
     "id": "wire_stripper_180",
     "type": "tool",
     "term": {
-      "ja": "ワイヤーストリッパー",
-      "en": "Wire stripper"
+      "ja": "ワイヤーストリッパー（項目180）",
+      "en": "Wire stripper (180)"
     },
     "summary_ja": "被覆を傷つけずに電線の皮むきをする工具。",
     "summary_en": "Tool for stripping insulation without nicking conductors; match the gau…",
@@ -24782,12 +24782,12 @@
     },
     "examples": {
       "ja": [
-        "ワイヤーストリッパーは作業前に用途を確認してから使う。",
-        "ワイヤーストリッパーは条件（下地/荷重/天候）で選定が変わる。"
+        "ワイヤーストリッパー（項目180）は作業前に用途を確認してから使う。",
+        "ワイヤーストリッパー（項目180）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how wire stripper is used before starting the task.",
-        "Selection of wire stripper depends on substrate/load/weather."
+        "Confirm how wire stripper (180) is used before starting the task.",
+        "Selection of wire stripper (180) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24817,8 +24817,8 @@
     "id": "pipe_cutter_181",
     "type": "tool",
     "term": {
-      "ja": "パイプカッター",
-      "en": "Pipe cutter"
+      "ja": "パイプカッター（項目181）",
+      "en": "Pipe cutter (181)"
     },
     "summary_ja": "配管を回し切りする工具。",
     "summary_en": "Cuts pipe by rotating; deburr after cutting to improve fit.",
@@ -24834,12 +24834,12 @@
     },
     "examples": {
       "ja": [
-        "パイプカッターは作業前に用途を確認してから使う。",
-        "パイプカッターは条件（下地/荷重/天候）で選定が変わる。"
+        "パイプカッター（項目181）は作業前に用途を確認してから使う。",
+        "パイプカッター（項目181）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how pipe cutter is used before starting the task.",
-        "Selection of pipe cutter depends on substrate/load/weather."
+        "Confirm how pipe cutter (181) is used before starting the task.",
+        "Selection of pipe cutter (181) depends on substrate/load/weather."
       ]
     },
     "aliases": {
@@ -24869,8 +24869,8 @@
     "id": "notched_trowel_182",
     "type": "tool",
     "term": {
-      "ja": "くし目ゴテ",
-      "en": "Notched trowel"
+      "ja": "くし目ゴテ（項目182）",
+      "en": "Notched trowel (182)"
     },
     "summary_ja": "接着剤を一定厚で塗るコテ。",
     "summary_en": "Applies adhesive at consistent thickness; notch size controls coverage.",
@@ -24886,12 +24886,12 @@
     },
     "examples": {
       "ja": [
-        "くし目ゴテは作業前に用途を確認してから使う。",
-        "くし目ゴテは条件（下地/荷重/天候）で選定が変わる。"
+        "くし目ゴテ（項目182）は作業前に用途を確認してから使う。",
+        "くし目ゴテ（項目182）は条件（下地/荷重/天候）で選定が変わる。"
       ],
       "en": [
-        "Confirm how notched trowel is used before starting the task.",
-        "Selection of notched trowel depends on substrate/load/weather."
+        "Confirm how notched trowel (182) is used before starting the task.",
+        "Selection of notched trowel (182) depends on substrate/load/weather."
       ]
     },
     "aliases": {
