@@ -102,6 +102,17 @@
     showStatus(currentLang === "ja" ? e.ja : e.en);
   }
 
+  // ---------------- state ----------------
+  const state = {
+    files: [], // {id, name, size, buffer, pageCount, pdfDocPromise}
+    pages: [], // {id, fileId, fileName, srcPage, rotation, thumbUrl}
+    _id: 0,
+  };
+  function uid(prefix){
+    state._id += 1;
+    return prefix + "-" + String(state._id);
+  }
+
   // ---------------- editor enable/disable ----------------
   let isBusy = false;
 
@@ -143,17 +154,6 @@
 
   setEditorEnabled(false);
   setBusy(false);
-
-  // ---------------- state ----------------
-  const state = {
-    files: [], // {id, name, size, buffer, pageCount, pdfDocPromise}
-    pages: [], // {id, fileId, fileName, srcPage, rotation, thumbUrl}
-    _id: 0,
-  };
-  function uid(prefix){
-    state._id += 1;
-    return prefix + "-" + String(state._id);
-  }
 
   // ---------------- undo ----------------
   const undo = { lastDelete: null };
