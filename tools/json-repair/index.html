@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>壊れたJSON修復｜JSON Repair | NicheWorks</title>
+  <meta name="description" content="壊れたJSONをブラウザ内で修復・検証・整形。外部送信なし。" />
+
+  <link rel="canonical" href="https://nicheworks.app/tools/json-repair/" />
+
+  <!-- Favicons (DO NOT copy into tool folders; always refer /assets/) -->
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/nicheworks-favicon-white.ico" />
+
+  <!-- OGP -->
+  <meta property="og:title" content="JSON Repair（壊れたJSON修復） | NicheWorks" />
+  <meta property="og:description" content="Repair, validate, and format broken JSON locally in your browser (no external upload)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nicheworks.app/tools/json-repair/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"JSON Repair",
+    "url":"https://nicheworks.app/tools/json-repair/",
+    "applicationCategory":"UtilityApplication",
+    "operatingSystem":"All",
+    "description":"Repair, validate, and format broken JSON locally in your browser (no external upload)."
+  }
+  </script>
+
+  <!-- AdSense (MUST / DO NOT EDIT client) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Google Analytics 4 (MUST / DO NOT EDIT ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-top">
+      <div class="nw-titlebox">
+        <h1 class="nw-title" data-i18n="title">JSON Repair（壊れたJSON修復）</h1>
+        <p class="nw-sub" data-i18n="subtitle">壊れたJSONをブラウザ内で修復・検証・整形（外部送信なし）</p>
+      </div>
+
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" class="nw-lang-btn" data-lang="ja">JP</button>
+        <button type="button" class="nw-lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- 上部広告枠（必須） -->
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <!-- Tool UI -->
+    <section class="jr-wrap" aria-label="JSON Repair tool">
+      <div class="jr-note" data-i18n="privacyNote">
+        入力内容は外部送信されません（このページ内でのみ処理）。
+      </div>
+
+      <div class="jr-controls">
+        <label class="jr-label">
+          <span data-i18n="modeLabel">Mode</span>
+          <select id="selMode">
+            <option value="auto">Auto</option>
+            <option value="json">JSON</option>
+            <option value="jsonc">JSONC (comments)</option>
+            <option value="json5like">JSON5-like</option>
+          </select>
+        </label>
+
+        <label class="jr-label">
+          <span data-i18n="levelLabel">Repair</span>
+          <select id="selRepairLevel">
+            <option value="safe">Safe</option>
+            <option value="standard">Standard</option>
+            <option value="aggressive" disabled>Aggressive (Pro)</option>
+          </select>
+        </label>
+
+        <label class="jr-label">
+          <span data-i18n="indentLabel">Indent</span>
+          <select id="selIndent">
+            <option value="2">2</option>
+            <option value="4">4</option>
+          </select>
+        </label>
+
+        <div class="jr-spacer"></div>
+
+        <button type="button" id="btnLoad" class="jr-btn jr-btn-ghost" data-i18n="loadBtn">Load file</button>
+        <input id="fileInput" type="file" accept=".json,.txt,application/json,text/plain" hidden />
+      </div>
+
+      <div class="jr-grid">
+        <!-- INPUT -->
+        <section class="jr-panel">
+          <div class="jr-panel-head">
+            <h2 class="jr-h2" data-i18n="inputTitle">Input</h2>
+            <div class="jr-mini" id="jrStats">—</div>
+          </div>
+
+          <textarea id="jrInput" class="jr-textarea" spellcheck="false" placeholder="Paste JSON here..."></textarea>
+
+          <div class="jr-toolbar">
+            <button type="button" id="btnValidate" class="jr-btn" data-i18n="validateBtn">Validate</button>
+            <button type="button" id="btnRepair" class="jr-btn jr-btn-primary" data-i18n="repairBtn">Repair</button>
+            <button type="button" id="btnFormatPretty" class="jr-btn" data-i18n="prettyBtn">Pretty</button>
+            <button type="button" id="btnFormatMinify" class="jr-btn" data-i18n="minifyBtn">Minify</button>
+            <button type="button" id="btnReset" class="jr-btn jr-btn-ghost" data-i18n="resetBtn">Reset</button>
+          </div>
+
+          <div class="jr-hint" data-i18n="shortcutsHint">
+            Cmd/Ctrl+Enter: Repair / Cmd/Ctrl+Shift+Enter: Validate / Cmd/Ctrl+S: Download
+          </div>
+        </section>
+
+        <!-- OUTPUT -->
+        <section class="jr-panel">
+          <div class="jr-panel-head">
+            <h2 class="jr-h2" data-i18n="outputTitle">Output</h2>
+            <div class="jr-mini" id="jrBusy" aria-live="polite"></div>
+          </div>
+
+          <div class="jr-tabs" id="jrTabs" role="tablist" aria-label="Output tabs">
+            <button type="button" class="jr-tab" id="tabRepaired" role="tab" aria-selected="true" aria-controls="panelRepaired" data-tab="repaired" data-i18n="tabRepaired">Repaired</button>
+            <button type="button" class="jr-tab" id="tabFormatted" role="tab" aria-selected="false" aria-controls="panelFormatted" data-tab="formatted" data-i18n="tabFormatted">Formatted</button>
+            <button type="button" class="jr-tab" id="tabValidate" role="tab" aria-selected="false" aria-controls="panelValidate" data-tab="validate" data-i18n="tabValidate">Validate</button>
+          </div>
+
+          <div class="jr-tabpanels">
+            <div id="panelRepaired" class="jr-tabpanel" role="tabpanel" aria-labelledby="tabRepaired">
+              <textarea id="jrOutput" class="jr-textarea jr-textarea-out" spellcheck="false" readonly></textarea>
+            </div>
+
+            <div id="panelFormatted" class="jr-tabpanel" role="tabpanel" aria-labelledby="tabFormatted" hidden>
+              <textarea id="jrFormattedOut" class="jr-textarea jr-textarea-out" spellcheck="false" readonly></textarea>
+            </div>
+
+            <div id="panelValidate" class="jr-tabpanel" role="tabpanel" aria-labelledby="tabValidate" hidden>
+              <div id="jrValidateOut" class="jr-validate"></div>
+            </div>
+          </div>
+
+          <div class="jr-toolbar">
+            <button type="button" id="btnCopy" class="jr-btn" data-i18n="copyBtn">Copy</button>
+            <button type="button" id="btnDownload" class="jr-btn" data-i18n="downloadBtn">Download .json</button>
+            <input id="jrFilename" class="jr-filename" value="repaired.json" />
+          </div>
+        </section>
+      </div>
+
+      <section class="jr-logwrap" aria-label="Repair log">
+        <div class="jr-loghead">
+          <h2 class="jr-h2" data-i18n="logTitle">Repair Log</h2>
+          <details class="jr-diff">
+            <summary><span data-i18n="showDiff">Show Diff</span> <span class="jr-badge">Free</span></summary>
+            <pre id="jrDiff" class="jr-diffpre"></pre>
+          </details>
+        </div>
+        <div id="jrLog" class="jr-log">—</div>
+      </section>
+
+      <div id="jrToast" class="jr-toast" aria-live="polite" aria-atomic="true" hidden></div>
+    </section>
+
+    <!-- 下部広告枠（推奨） -->
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <!-- 寄付導線（パターンA / OFUSE→Ko-fi） -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="donateText">
+        このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- 内部リンク -->
+    <div class="nw-links">
+      <p class="nw-links-title" data-i18n="linksTitle">More tools</p>
+      <div class="nw-links-grid">
+        <a href="/tools/log-formatter/">Log Formatter</a>
+        <a href="/tools/contract-cleaner/">Contract Cleaner</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/pdf-link-extractor-pro/">PDF Link Extractor Pro</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
