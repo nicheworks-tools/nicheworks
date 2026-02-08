@@ -84,6 +84,20 @@
         </label>
 
         <label class="jr-label">
+          <span>Samples</span>
+          <select id="selSample">
+            <option value="">(Select)</option>
+            <option value="trailingComma">Trailing comma</option>
+            <option value="comments">Comments (JSONC)</option>
+            <option value="logMixed">Log mixed</option>
+            <option value="singleQuotes">Single quotes (Pro)</option>
+            <option value="unquotedKeys">Unquoted keys (Pro)</option>
+            <option value="pythonLiterals">Python literals (Pro)</option>
+          </select>
+        </label>
+
+
+        <label class="jr-label">
           <span data-i18n="levelLabel">Repair</span>
           <select id="selRepairLevel">
             <option value="safe">Safe</option>
@@ -124,7 +138,13 @@
             <button type="button" id="btnReset" class="jr-btn jr-btn-ghost" data-i18n="resetBtn">Reset</button>
           </div>
 
-          <div class="jr-hint" data-i18n="shortcutsHint">
+          
+          <details class="jr-cands" id="jrCandsWrap">
+            <summary><span>JSON candidates (Pro)</span></summary>
+            <div id="jrCandidates" class="jr-cands-list">—</div>
+          </details>
+
+<div class="jr-hint" data-i18n="shortcutsHint">
             Cmd/Ctrl+Enter: Repair / Cmd/Ctrl+Shift+Enter: Validate / Cmd/Ctrl+S: Download
           </div>
         </section>
@@ -153,6 +173,12 @@
 
             <div id="panelValidate" class="jr-tabpanel" role="tabpanel" aria-labelledby="tabValidate" hidden>
               <div id="jrValidateOut" class="jr-validate"></div>
+              <div id="jrExplain" class="jr-explain"></div>
+
+              <div id="jrExplain" class="jr-explain"></div>
+
+              <div id="jrExplain" class="jr-explain"></div>
+
             </div>
           </div>
 
@@ -161,15 +187,61 @@
             <button type="button" id="btnDownload" class="jr-btn" data-i18n="downloadBtn">Download .json</button>
             <input id="jrFilename" class="jr-filename" value="repaired.json" />
           </div>
+
+          <details class="jr-schema" id="jrSchemaWrap">
+            <summary><span>Schema check (Pro)</span></summary>
+            <div class="jr-mini" style="margin-top:6px;">Rules example: required user.id, user.name / type user.id=number</div>
+            <textarea id="jrSchemaRules" class="jr-textarea" style="min-height:140px;" spellcheck="false"
+              placeholder="required user.id, user.name&#10;type user.id=number&#10;type enabled=boolean"></textarea>
+            <div class="jr-toolbar">
+              <button type="button" class="jr-btn" id="btnSchemaRun">Run Schema Check</button>
+            </div>
+            <div id="jrSchemaOut" class="jr-validate"></div>
+          </details>
+
         </section>
       </div>
 
-      <section class="jr-logwrap" aria-label="Repair log">
+      
+      <!-- Pro (local license, no external calls) -->
+      <section class="jr-pro" aria-label="Pro">
+        <div class="jr-pro-head">
+          <h2 class="jr-h2">Pro</h2>
+          <div id="jrProState" class="jr-mini">Inactive</div>
+        </div>
+
+        <div class="jr-pro-row">
+          <input id="jrProKey" class="jr-pro-key" placeholder="NW-JR-XXXX-XXXX-XXXX" />
+          <button type="button" id="btnProActivate" class="jr-btn jr-btn-primary">Activate</button>
+          <button type="button" id="btnProClear" class="jr-btn jr-btn-ghost">Clear</button>
+        </div>
+
+        <div class="jr-pro-note">
+          <div><b>Pro unlocks:</b> Aggressive repair / Step diff / Explain Validate / Candidates list / Schema check / Local history</div>
+          <div class="jr-mini">All checks run locally in your browser.</div>
+        </div>
+      </section>
+
+
+      <section class="jr-history" id="jrHistWrap" aria-label="History">
+        <div class="jr-pro-head">
+          <h2 class="jr-h2">Local history (Pro)</h2>
+          <label class="jr-mini" style="display:flex; gap:8px; align-items:center;">
+            <input type="checkbox" id="jrHistEnable" />
+            Save history on this device
+          </label>
+        </div>
+        <div id="jrHistList" class="jr-log">—</div>
+      </section>
+
+<section class="jr-logwrap" aria-label="Repair log">
         <div class="jr-loghead">
           <h2 class="jr-h2" data-i18n="logTitle">Repair Log</h2>
           <details class="jr-diff">
             <summary><span data-i18n="showDiff">Show Diff</span> <span class="jr-badge">Free</span></summary>
             <pre id="jrDiff" class="jr-diffpre"></pre>
+            <div class="jr-mini" id="jrStepDiffUI" style="margin-top:8px;"></div>
+
           </details>
         </div>
         <div id="jrLog" class="jr-log">—</div>
