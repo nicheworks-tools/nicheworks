@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-08T16:34:12.712Z",
-  "total": 68,
+  "generatedAt": "2026-02-11T09:13:21.789Z",
+  "total": 69,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -454,6 +454,14 @@
       "slug": "rename-wizard",
       "title_en": "rename-wizard",
       "title_ja": "rename-wizard",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "screenshot-stitcher",
+      "title_en": "screenshot-stitcher",
+      "title_ja": "screenshot-stitcher",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
