@@ -1,27 +1,28 @@
 # tools/screenshot-stitcher/README.md
-# Screenshot Stitcher（スクショ縦結合）｜IMG-1
+# Screenshot Stitcher（スクショ縦結合）
 
-スクリーンショットを複数枚投入し、縦に結合して1枚PNGで保存するブラウザ完結ツールです。
-画像データは外部送信されません（ローカル処理）。
-
-- URL: /tools/screenshot-stitcher/
+複数画像を縦に連結して保存する、ブラウザ内処理専用ツールです。
 
 ## ページ
-- index.html（本体）
-- usage.html（使い方/FAQ JP+EN）
-- unlock.html（$2.99 Pro解除）
+- `index.html` 本体
 
-## 仕様
-- SPEC.md を参照（完成形の契約）
-- Pricing は PRICING.md を参照
+## 主な機能
+- 画像追加（choose / drop / paste）
+- 並べ替え（↑↓）
+- 幅揃え（max / custom / min）
+- 上下余白トリム（threshold指定）
+- PNG / WebP / JPEG 出力
+- 指定高さで分割しZIP出力
+- JP / EN 切替
 
-## クイック確認（本番URLでOK）
-1) 画像3枚追加 → ↑↓並べ替え → プレビュー生成
-2) 幅揃え（指定幅）で再生成
-3) PNGダウンロード
-4) 寄付導線が2箇所あること
-5) 余計なリンク（Contact/Privacy/Terms/Credits）が無いこと
+## ポリシー
+- 画像データはブラウザ内のみで処理し、外部送信しません。
+- 寄付導線は2箇所（OFUSE / Ko-fi）を固定URLで表示します。
+- 不要リンク（問い合わせ / プライバシー / 利用規約 / クレジット）は表示しません。
 
-## 開発メモ
-- Done定義：PLAN.md
-- QA：QA.md / SMOKE.md
+## クイックチェック
+1. 画像3枚を追加
+2. 並べ替え
+3. プレビュー生成
+4. PNG/WebP/JPEGを各1回出力
+5. 分割ZIPを1回出力

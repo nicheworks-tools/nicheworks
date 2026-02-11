@@ -3,13 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>スクショ縦結合（Screenshot Stitcher） | NicheWorks</title>
-  <meta name="description" content="複数スクショを縦に結合。幅揃え・余白トリム・PNG出力。ブラウザ完結、外部送信なし。" />
+  <title>スクショ縦結合 | Screenshot Stitcher | NicheWorks</title>
+  <meta name="description" content="複数スクリーンショットを縦に結合。幅揃え、余白トリム、PNG/WebP/JPEG出力、分割ZIP出力に対応。ブラウザ内処理のみ。" />
 
-  <!-- AdSense (required) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- GA4 (required) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,166 +17,140 @@
 
   <link rel="stylesheet" href="./style.css" />
 </head>
-
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
-      <div class="nw-titleblock">
-        <h1 class="nw-title">
-          <span data-i18n="title_ja">スクショ縦結合</span>
-          <span class="nw-title-en" data-i18n="title_en">Screenshot Stitcher</span>
-        </h1>
-        <p class="nw-desc" data-i18n="desc_ja">複数スクショを縦に結合（幅揃え・余白トリム・PNG出力）。外部送信なし。</p>
-        <p class="nw-desc" data-i18n="desc_en">Stitch screenshots vertically (fit width, trim margins, export PNG). No uploads.</p>
+      <div>
+        <h1 data-i18n="title">スクショ縦結合</h1>
+        <p class="lead" data-i18n="lead">画像を追加して縦に1枚化。ブラウザ内だけで処理し、外部送信しません。</p>
       </div>
-
-      <div class="nw-header-right">
-        <div class="nw-lang-switch" aria-label="Language switch">
-          <button type="button" data-lang="ja">JP</button>
-          <span>/</span>
-          <button type="button" data-lang="en">EN</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 寄付導線（最大2箇所まで）：1箇所目（ヘッダー直下・コンパクト） -->
-    <div class="nw-donate nw-donate-compact" id="donate-top">
-      <p class="nw-donate-text" data-i18n="donate_ja">
-        このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
-      </p>
-      <p class="nw-donate-text" data-i18n="donate_en">
-        If this tool helped, consider supporting development.
-      </p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <div class="lang-switch" role="group" aria-label="language switch">
+        <button type="button" data-lang="ja">JP</button>
+        <button type="button" data-lang="en">EN</button>
       </div>
     </div>
   </header>
 
   <main class="nw-main">
-    <!-- 上部広告枠（必須） -->
-    <div class="ad-slot ad-top">
-      広告枠（準備中）
-    </div>
+    <div class="ad-slot ad-top">ad-top</div>
 
-    <section class="tool">
-      <div class="tool-grid">
-        <div class="card">
-          <div class="card-h">
-            <h2 class="card-title" data-i18n="panel1_ja">1) 画像を追加</h2>
-            <h2 class="card-title" data-i18n="panel1_en">1) Add images</h2>
-          </div>
-
-          <div class="dropzone" id="dropzone">
-            <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" multiple />
-            <div class="dropzone-ui">
-              <div class="dropzone-title" data-i18n="drop_ja">ドラッグ＆ドロップ、またはクリックして追加</div>
-              <div class="dropzone-title" data-i18n="drop_en">Drag & drop, or click to add</div>
-              <div class="dropzone-sub" data-i18n="drop_sub_ja">PNG / JPG / WebP（外部送信なし）</div>
-              <div class="dropzone-sub" data-i18n="drop_sub_en">PNG / JPG / WebP (no upload)</div>
-            </div>
-          </div>
-
-          <div class="list-head">
-            <div class="muted" id="countLabel">0 items</div>
-            <div class="list-actions">
-              <button class="btn btn-ghost" id="btnClear" type="button" data-i18n="clear_ja">全削除</button>
-              <button class="btn btn-ghost" id="btnClear_en" type="button" data-i18n="clear_en">Clear</button>
-            </div>
-          </div>
-
-          <ul class="items" id="itemsList"></ul>
-        </div>
-
-        <div class="card">
-          <div class="card-h">
-            <h2 class="card-title" data-i18n="panel2_ja">2) 結合設定</h2>
-            <h2 class="card-title" data-i18n="panel2_en">2) Stitch settings</h2>
-          </div>
-
-          <div class="field">
-            <label class="label" data-i18n="fit_ja">幅揃え</label>
-            <label class="label" data-i18n="fit_en">Fit width</label>
-            <div class="row">
-              <select id="fitMode" class="select">
-                <option value="max" selected data-i18n="fit_max_ja">最大幅に合わせる</option>
-                <option value="max" data-i18n="fit_max_en">Fit to max width</option>
-                <option value="custom" data-i18n="fit_custom_ja">指定幅に統一</option>
-                <option value="custom" data-i18n="fit_custom_en">Use custom width</option>
-              </select>
-              <input id="customWidth" class="input" type="number" min="64" step="1" value="1080" />
-            </div>
-            <div class="hint" data-i18n="fit_hint_ja">「指定幅」は出力の横幅（px）。</div>
-            <div class="hint" data-i18n="fit_hint_en">Custom width is output width (px).</div>
-          </div>
-
-          <div class="field">
-            <label class="label" data-i18n="trim_ja">余白トリム（簡易）</label>
-            <label class="label" data-i18n="trim_en">Trim margins (simple)</label>
-            <div class="row">
-              <label class="check">
-                <input type="checkbox" id="toggleTrim" />
-                <span data-i18n="trim_on_ja">上下の単色余白を削る</span>
-                <span data-i18n="trim_on_en">Remove solid-color top/bottom margins</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label" data-i18n="actions_ja">操作</label>
-            <label class="label" data-i18n="actions_en">Actions</label>
-            <div class="row">
-              <button class="btn" id="btnBuild" type="button" data-i18n="preview_ja">プレビュー生成</button>
-              <button class="btn" id="btnBuild_en" type="button" data-i18n="preview_en">Build preview</button>
-              <button class="btn btn-primary" id="btnDownload" type="button" disabled data-i18n="download_ja">PNGで保存</button>
-              <button class="btn btn-primary" id="btnDownload_en" type="button" disabled data-i18n="download_en">Download PNG</button>
-            </div>
-            <div class="hint" id="statusText">—</div>
-          </div>
-
-          <div class="preview">
-            <div class="preview-head">
-              <div class="preview-title" data-i18n="preview_title_ja">プレビュー</div>
-              <div class="preview-title" data-i18n="preview_title_en">Preview</div>
-              <div class="muted" id="previewMeta">—</div>
-            </div>
-            <div class="preview-box">
-              <canvas id="outCanvas" width="10" height="10"></canvas>
-            </div>
-          </div>
-        </div>
+    <section class="donate" aria-label="donation links top">
+      <p data-i18n="donateText">継続的な改善のため、任意でご支援いただけると助かります。</p>
+      <div class="donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
       </div>
+    </section>
 
-      <!-- 下部広告枠（任意：短めページでも推奨） -->
-      <div class="ad-slot ad-bottom">
-        広告枠（準備中）
-      </div>
-
-      <!-- 寄付導線：2箇所目（フッター直前・標準） -->
-      <div class="nw-donate" id="donate-bottom">
-        <p class="nw-donate-text" data-i18n="donate2_ja">
-          NicheWorks は「退屈な作業を一瞬で終わらせる」小さなツールを作っています。支援は次の開発に使われます。
-        </p>
-        <p class="nw-donate-text" data-i18n="donate2_en">
-          NicheWorks builds small tools for boring tasks. Your support funds the next tool.
-        </p>
-        <div class="nw-donate-links">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+    <section class="tool-grid">
+      <article class="card">
+        <h2 data-i18n="inputTitle">1. 画像を追加</h2>
+        <p class="muted" data-i18n="inputLead">ドラッグ&ドロップ / クリック選択 / ペースト（Ctrl/Cmd+V）に対応。</p>
+        <label class="dropzone" id="dropzone">
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" multiple />
+          <strong data-i18n="dropLabel">ここに画像をドロップ</strong>
+          <span data-i18n="dropSub">またはクリックして選択（PNG/JPEG/WebP）</span>
+        </label>
+        <div class="row spread compact">
+          <small id="countLabel">0 items</small>
+          <button type="button" class="btn ghost" id="clearBtn" data-i18n="clear">全削除</button>
         </div>
+        <ul class="item-list" id="itemList"></ul>
+      </article>
+
+      <article class="card">
+        <h2 data-i18n="settingTitle">2. 結合設定</h2>
+
+        <label class="field">
+          <span data-i18n="fitMode">幅揃えモード</span>
+          <select id="fitMode">
+            <option value="max" data-i18n="fitMax">最大幅に合わせる</option>
+            <option value="custom" data-i18n="fitCustom">指定幅に合わせる</option>
+            <option value="min" data-i18n="fitMin">最小幅に合わせる</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span data-i18n="customWidth">指定幅 (px)</span>
+          <input id="customWidth" type="number" min="64" max="6000" value="1080" />
+        </label>
+
+        <label class="field check-line">
+          <input id="trimEnabled" type="checkbox" />
+          <span data-i18n="trimEnable">上下の単色余白を自動トリム</span>
+        </label>
+
+        <label class="field">
+          <span data-i18n="trimThreshold">トリム閾値 (0-40)</span>
+          <input id="trimThreshold" type="number" min="0" max="40" value="12" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="gap">画像間余白 (px)</span>
+          <input id="gap" type="number" min="0" max="200" value="0" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="bg">背景</span>
+          <select id="background">
+            <option value="white" data-i18n="bgWhite">白</option>
+            <option value="transparent" data-i18n="bgTransparent">透明</option>
+          </select>
+        </label>
+
+        <div class="row two">
+          <label class="field">
+            <span data-i18n="format">出力形式</span>
+            <select id="format">
+              <option value="png">PNG</option>
+              <option value="webp">WebP</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+          </label>
+          <label class="field">
+            <span data-i18n="quality">画質(0.1-1)</span>
+            <input id="quality" type="number" min="0.1" max="1" step="0.1" value="0.92" />
+          </label>
+        </div>
+
+        <label class="field">
+          <span data-i18n="split">分割高さ (px / 0で分割なし)</span>
+          <input id="splitHeight" type="number" min="0" max="50000" value="0" />
+        </label>
+
+        <div class="row compact">
+          <button type="button" class="btn" id="previewBtn" data-i18n="preview">プレビュー生成</button>
+          <button type="button" class="btn" id="downloadBtn" disabled data-i18n="download">ダウンロード</button>
+          <button type="button" class="btn ghost" id="splitBtn" disabled data-i18n="splitExport">分割ZIP出力</button>
+        </div>
+        <p class="muted" data-i18n="localOnly">処理はブラウザ内のみ。画像データは外部送信しません。</p>
+      </article>
+    </section>
+
+    <section class="card preview-card">
+      <div class="row spread compact">
+        <h2 data-i18n="previewTitle">3. プレビュー</h2>
+        <span class="muted" id="previewMeta">-</span>
+      </div>
+      <canvas id="previewCanvas"></canvas>
+      <p id="status" class="status">-</p>
+    </section>
+
+    <div class="ad-slot ad-bottom">ad-bottom</div>
+
+    <section class="donate" aria-label="donation links bottom">
+      <p data-i18n="donateText2">このツールが役立った場合は、次の改善のためのご支援をご検討ください。</p>
+      <div class="donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
       </div>
     </section>
   </main>
 
   <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">
-      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
-    </p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p data-i18n="disclaimer">本ツールの出力結果は必ず最終確認してください。</p>
+    <p><a href="https://nicheworks.app" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
   <script src="./app.js"></script>

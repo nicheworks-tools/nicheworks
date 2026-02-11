@@ -1,33 +1,23 @@
 # tools/screenshot-stitcher/PRICING.md
-# IMG-1 Pricing（$2.99 ワンタイムのみ）
+# Pricing（$2.99 one-time）
 
 ## 価格
-- Pro解除：$2.99（ワンタイム）
-- サブスク：なし
-- 寄付：任意（OFUSE / Ko-fi）
+- Pro解除: $2.99（買い切り）
+- サブスク: なし
+- 任意支援: OFUSE / Ko-fi
 
-## 無料でできること
-- 画像追加（クリック/D&D）
+## 寄付リンク（固定）
+- https://ofuse.me/nicheworks
+- https://ko-fi.com/nicheworks
+
+## Freeで提供する機能
+- 画像追加（choose / drop / paste）
 - 並べ替え（↑↓）
-- 幅揃え（最大/指定）
-- 簡易余白トリム（ON/OFF）
-- Per-image trim（Top/Bottom）
-- Redaction（黒塗り/モザイク）
-- プレビュー生成
-- PNG出力（制限内）
+- 幅揃え（max/custom/min）
+- 余白トリム（ON/OFF + 閾値）
+- PNG / WebP / JPEG 出力
+- 分割ZIP出力
 
-## 無料制限（完成形の固定値）
-- 最大枚数：10
-- 最大出力高さ：12000px
-- 分割出力：不可
-
-## Proで解放されるもの
-- 最大枚数：50（または実用上十分な上限）
-- 最大出力高さ：実用上限まで緩和（例：50000px相当は分割推奨）
-- 分割出力：可（指定pxで連番PNG）
-- 高負荷時の補助：推奨設定表示（例：出力幅を下げる）
-
-## Unlock方式
-- `unlock.html` で解除キー入力
-- localStorageに `sss_pro=1` を保存（例）
-- 本体はそのフラグを見て制限解除
+## Pro設計メモ（将来）
+- 高負荷時の上限緩和や補助UIを解除対象とする。
+- 実装時もUIトーンは共通仕様から逸脱しない。
