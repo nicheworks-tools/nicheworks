@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codex Product Shipping Playbooks｜リポジトリ中心の開発フロー解説 | NicheWorks</title>
+  <meta name="description" content="Codex向けのリポジトリ中心ワークフロー解説ページ。repo intake、spec delta、実装計画、acceptance、pre-ship、release note、diff review、retroまでを一連の流れで把握できます。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Codex Product Shipping Playbooks｜リポジトリ中心の開発フロー解説 | NicheWorks" />
+  <meta property="og:description" content="Codex向けのリポジトリ中心ワークフロー解説ページ。repo intake、spec delta、実装計画、acceptance、pre-ship、release note、diff review、retroまでを一連の流れで把握できます。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Codex Product Shipping Playbooks｜リポジトリ中心の開発フロー解説 | NicheWorks" />
+  <meta name="twitter:description" content="Codex向けのリポジトリ中心ワークフロー解説ページ。repo intake、spec delta、実装計画、acceptance、pre-ship、release note、diff review、retroまでを一連の流れで把握できます。" />
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap site-head-inner">
+      <a class="brand" href="https://nicheworks.app/">NicheWorks</a>
+      <nav class="head-links" aria-label="ページリンク">
+        <a href="https://nicheworks.app/">Home</a>
+        <a href="/tools/codex-product-shipping-playbooks/">View in English</a>
+        <a href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Repository workflow guide</p>
+        <h1 id="page-title">Codex Product Shipping Playbooks</h1>
+        <p class="lead">Codex を使ったリポジトリ中心の開発で、変更要求から repo intake、spec delta、実装計画、acceptance、pre-ship チェック、release note、diff review、retro までを一連で整理するためのワークフロー解説ページです。</p>
+        <div class="meta-row">
+          <span>公開元: <a href="https://nicheworks.app/">NicheWorks</a></span>
+          <span><a href="/tools/codex-product-shipping-playbooks/">View in English</a></span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub リポジトリを見る</a>
+          <a class="btn btn-secondary" href="#how-to-use">使い方を見る</a>
+          <a class="btn btn-secondary" href="#support">このプロジェクトを支援する</a>
+        </div>
+
+        <div class="quick-grid" aria-label="クイック情報">
+          <div class="card quick-card">
+            <p class="quick-card-title">Current status</p>
+            <strong>Phase 0〜5 完了</strong>
+            <span>現在は <strong>Phase 6: Public Release Candidate</strong> 段階です。</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Core workflow</p>
+            <strong>issue から release、retro まで一周</strong>
+            <span>repo intake、spec delta、plan、acceptance、ship check、release writing、diff review、retro を一本の流れで扱います。</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Worked example</p>
+            <strong><code>filter-persistence</code></strong>
+            <span>現実的な変更シナリオを使って、ワークフロー全体を end-to-end で確認できる synthetic example です。</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Repository</p>
+            <strong>GitHub で公開中</strong>
+            <span>playbooks、artifacts、gates、flows、scripts、example を一つのリポジトリで確認できます。</span>
+          </div>
+        </div>
+
+        <div class="quick-nav" aria-label="このページの目次">
+          <strong>このページの目次</strong>
+          <div class="quick-nav-links">
+            <a href="#what-it-is">これは何か</a>
+            <a href="#who-its-for">誰向けか</a>
+            <a href="#workflow">全体フロー</a>
+            <a href="#included">含まれているもの</a>
+            <a href="#how-to-use">使い方</a>
+            <a href="#example">実例</a>
+            <a href="#faq">FAQ</a>
+            <a href="#support">支援</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="nw-donate" aria-labelledby="support-top-title">
+        <h2 id="support-top-title">今後の更新や実例追加を支援する</h2>
+        <p>このページやリポジトリが役立った場合、今後の保守、説明改善、追加実例の公開を支援いただけます。</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section id="what-it-is">
+        <h2>これは何か</h2>
+        <p>Codex Product Shipping Playbooks は、リポジトリを前提にした実務向けのワークフローシステムです。単なるプロンプト集でも、汎用PMテンプレ集でもなく、既存のコードベース内で実際に変更を進めるときの流れを整理するために作られています。</p>
+        <p>このリポジトリが目指しているのは、「こういう変更をしたい」という要求を、「どこが関係するのか」「何を変えるのか」「何をもって完了とするのか」「出荷前後に何を残すべきか」までつながった形にすることです。つまり、実装そのものだけでなく、その前後にある運用上の仕事も含めて扱います。</p>
+        <p>そのため、発想段階のアイデア整理や抽象的な計画論よりも、実際のコードベースに対して変更を進めるためのワークフロー資産として読むのが正しい使い方です。</p>
+      </section>
+
+      <section id="who-its-for">
+        <h2>誰向けか</h2>
+        <p>このプロジェクトは、既存リポジトリを前提に Codex や agent-assisted development を使いたい人、変更要求から出荷までの流れを曖昧にせず整理したい人に向いています。acceptance や pre-ship review、release note、retro をバラバラな書類ではなく、一連の運用ループとして扱いたい人には特に相性がよいです。</p>
+        <ul>
+          <li>既存のリポジトリ上で Codex を使った変更作業を進めたい人。</li>
+          <li>spec delta、実装計画、acceptance、出荷判定を明確にしたい人。</li>
+          <li>release note、changelog、diff review、retro を同じ流れの中で残したい人。</li>
+          <li>抽象論ではなく、再利用できる実務資産を求める人。</li>
+        </ul>
+        <p>逆に、汎用PM理論集、GTM向けテンプレート集、何でも入りのプロンプトパックを探している場合には少し方向が違います。</p>
+      </section>
+
+      <section id="workflow">
+        <h2>このリポジトリの全体フロー</h2>
+        <p>現在のコアフローは、リポジトリ理解から始まり、出荷後の振り返りまでを一つの線でつなぐ構成です。各段階で曖昧さを減らし、issue から release までの流れを再利用しやすくすることが目的です。</p>
+        <div class="flow-list">
+          <div class="flow-step"><strong>1. intake-repo</strong>作業提案の前に、まず対象リポジトリを把握します。関係するファイル、ルート、状態管理、影響範囲を見立てます。</div>
+          <div class="flow-step"><strong>2. spec-delta</strong>現状の挙動と変更後の挙動の差分を定義し、変更を曖昧なまま進めないようにします。</div>
+          <div class="flow-step"><strong>3. plan-change</strong>差分を具体的な実装計画に落とし、実際のリポジトリ作業につながる形に整理します。</div>
+          <div class="flow-step"><strong>4. define-acceptance</strong>何をもって完了とするかを先に定義し、終わり方を曖昧にしません。</div>
+          <div class="flow-step"><strong>5. ship-check</strong>出荷可能かどうかを、感覚ではなく実務的な pre-ship チェックで判断します。</div>
+          <div class="flow-step"><strong>6. write-release-artifacts</strong>release note や changelog など、出荷向けの成果物を整理します。</div>
+          <div class="flow-step"><strong>7. review-diff</strong>意図した変更と実際の差分を照らし合わせ、何が実装されたかをレビューします。</div>
+          <div class="flow-step"><strong>8. post-ship-retro</strong>出荷後に学びを残し、次回以降の変更品質を改善します。</div>
+        </div>
+      </section>
+
+      <section id="included">
+        <h2>含まれているもの</h2>
+        <p>このリポジトリは、複数の再利用レイヤーで構成されています。毎回ゼロから考えるのではなく、複数の変更作業に使い回せるように整理されているのが特徴です。</p>
+        <h3>Playbooks</h3>
+        <p>repo intake、spec delta、計画、acceptance、ship check、release writing、実装レビュー、retro といった各段階の実行単位です。</p>
+        <h3>Artifacts</h3>
+        <p>spec delta、change plan、acceptance、release note、changelog、diff review、retro などの再利用可能なテンプレートです。</p>
+        <h3>Gates</h3>
+        <p>各段階で「次に進めてよいか」を判断するための実務的なチェックポイントです。</p>
+        <h3>Flows</h3>
+        <p>複数の playbook を end-to-end でつなぎ、実際の変更フローとしてどう回るかを示す導線です。</p>
+        <h3>Examples</h3>
+        <p>抽象論で終わらず、実際にどう使うかを確認できる worked example 群です。</p>
+      </section>
+
+      <section id="how-to-use">
+        <h2>どう使うか</h2>
+        <p>このページは、GitHub を開く前に「このリポジトリが何で、どう読めばよいか」を把握できるように作っています。実際には、単なるファイル一覧として読むのではなく、一定の順番で辿ると理解しやすいです。</p>
+        <ol>
+          <li><strong>まず <code>AGENTS.md</code> を読む。</strong> このリポジトリの使い方や前提ルールを最初に掴みます。</li>
+          <li><strong>次に <code>spec/</code> を読む。</strong> ファイルの並びではなく、ワークフロー全体の設計意図を理解しやすくなります。</li>
+          <li><strong><code>examples/issue-driven/filter-persistence/</code> を開く。</strong> 一つの例で end-to-end の流れを見るのが最速です。</li>
+          <li><strong>その後に <code>playbooks/</code> を読む。</strong> 実例を見たあとだと、各 playbook の役割がかなり分かりやすくなります。</li>
+          <li><strong>最後に <code>artifacts/</code>、<code>gates/</code>、<code>flows/</code> を見る。</strong> 実務で再利用するための骨格部分を確認します。</li>
+        </ol>
+        <p>まず全体像だけ掴みたいなら example までで十分です。実務で使うつもりなら、example のあとに reusable layer に戻ると理解しやすいです。</p>
+      </section>
+
+      <section id="example">
+        <h2>実例: <code>filter-persistence</code></h2>
+        <p>このリポジトリの主要な worked example は、<code>filter-persistence</code> という synthetic scenario です。実際の本番リポジトリのログをそのまま使っているわけではありませんが、実務に近い形でワークフローの流れを確認できるように設計されています。</p>
+        <p>この例では、issue report から repo context memo、spec delta、change plan、acceptance definition、pre-ship review、release note、changelog entry、diff review、retro までを一通り確認できます。つまり、このリポジトリが何を目指しているかを最も短時間で理解できる導線です。</p>
+        <p>このワークフローが自分の作業に合うかを判断したいなら、まずこの example を見るのが最適です。テンプレートの集合ではなく、接続された一つのシステムとして見えてきます。</p>
+      </section>
+
+      <section id="why-nicheworks">
+        <h2>なぜ NicheWorks が公開するのか</h2>
+        <p>NicheWorks は、実務で使える小さなツールやワークフロー資産を公開するラインです。Codex Product Shipping Playbooks もその一つで、既存リポジトリの中で現実に使える開発導線として公開されています。</p>
+        <p>これは理論をきれいに見せるためのものではなく、時間をかけて実例、テンプレート、出荷規律を改善していくための運用資産として置かれています。</p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>これはプロンプト集ですか？</h3>
+            <p>違います。プロンプトに近い素材が一部含まれることはあっても、主役はプロンプトではなく repository-first のワークフローシステムです。</p>
+          </div>
+          <div class="faq-item">
+            <h3>Codex 専用ですか？</h3>
+            <p>Codex を前提に設計されていますが、既存リポジトリで agent-assisted development を行う他の環境にも応用しやすい構造です。</p>
+          </div>
+          <div class="faq-item">
+            <h3>新規開発向けですか、それとも既存リポジトリ向けですか？</h3>
+            <p>かなり明確に既存リポジトリ向けです。実際のコードベースの中で変更を進めることを主眼に置いています。</p>
+          </div>
+          <div class="faq-item">
+            <h3>実例は入っていますか？</h3>
+            <p>入っています。<code>filter-persistence</code> が主要な synthetic example で、issue から retro まで end-to-end で確認できます。</p>
+          </div>
+          <div class="faq-item">
+            <h3>最初にどこから見ればよいですか？</h3>
+            <p><code>AGENTS.md</code>、<code>spec/</code>、<code>filter-persistence</code> example の順が最も理解しやすいです。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="links">
+        <h2>関連リンク</h2>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub リポジトリを開く</a>
+          <a class="btn btn-secondary" href="https://nicheworks.app/">NicheWorks を見る</a>
+          <a class="btn btn-secondary" href="/tools/codex-product-shipping-playbooks/">View in English</a>
+        </div>
+      </section>
+
+      <div class="nw-donate" id="support" aria-labelledby="support-title">
+        <h2 id="support-title">このプロジェクトを支援する</h2>
+        <p>このページやリポジトリが役立った場合、今後の保守、ドキュメント更新、追加実例の公開を支援いただけます。</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section class="disclaimer" aria-labelledby="disclaimer-title">
+        <h2 id="disclaimer-title">免責事項</h2>
+        <p>このページおよびリンク先のリポジトリは、情報提供と実務上のワークフロー整理を目的として公開されています。内容の完全性、特定目的への適合性、継続的な提供は保証されません。実際の開発・運用への適用は利用者自身の判断で行ってください。内容は予告なく更新または変更される場合があります。</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>公開元: <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/codex-product-shipping-playbooks/">View in English</a> · <a href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <a class="floating-support" href="#support" aria-label="支援セクションへ移動">支援する</a>
+</body>
+</html>
