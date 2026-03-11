@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codex Product Shipping Playbooks｜Repository Workflow Guide | NicheWorks</title>
   <meta name="description" content="A repository-first workflow guide for Codex covering repo intake, spec delta, implementation planning, acceptance, pre-ship checks, release notes, diff review, and retrospectives." />
+  <link rel="icon" href="/assets/favicon.ico" />
   <link rel="canonical" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
@@ -13,9 +14,81 @@
   <meta property="og:title" content="Codex Product Shipping Playbooks｜Repository Workflow Guide | NicheWorks" />
   <meta property="og:description" content="A repository-first workflow guide for Codex covering repo intake, spec delta, implementation planning, acceptance, pre-ship checks, release notes, diff review, and retrospectives." />
   <meta property="og:url" content="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Codex Product Shipping Playbooks｜Repository Workflow Guide | NicheWorks" />
   <meta name="twitter:description" content="A repository-first workflow guide for Codex covering repo intake, spec delta, implementation planning, acceptance, pre-ship checks, release notes, diff review, and retrospectives." />
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Codex Product Shipping Playbooks",
+      "url": "https://nicheworks.app/tools/codex-product-shipping-playbooks/",
+      "applicationCategory": "UtilityApplication",
+      "description": "A repository-first workflow guide for Codex covering repo intake, spec delta, implementation planning, acceptance, pre-ship checks, release notes, diff review, and retrospectives.",
+      "operatingSystem": "All",
+      "inLanguage": "en"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this a prompt library?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It may include prompt-adjacent workflow materials, but the repository is not primarily a prompt pack. It is a repository-first workflow system."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this only for Codex?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The framing is built around Codex-oriented workflow, but much of the structure can still help teams doing repository-based work with other agent-assisted setups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it for existing repositories or new projects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is much more strongly aligned with existing repositories, where change work needs to be scoped and shipped inside a real codebase."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it include a full example?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The filter-persistence synthetic example is the main worked path that shows the system end to end."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where should I start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with AGENTS.md, then spec/, then the filter-persistence example. That is the fastest route to understanding the full shape of the repository."
+          }
+        }
+      ]
+    }
+  </script>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -216,6 +289,13 @@
         <h2 id="disclaimer-title">Disclaimer</h2>
         <p>This page and the linked repository are provided for informational and practical workflow use. They are offered as-is, without warranty of completeness, fitness for a particular purpose, or continued availability. Any use in real development or shipping workflows is at your own discretion. Contents may change over time.</p>
       </section>
+
+      <div class="nw-links" aria-label="Related tools">
+        <span>Related tools</span>
+        <a href="https://nicheworks.app/tools/construction-tools-atlas/">Construction Tools Atlas</a>
+        <a href="https://nicheworks.app/tools/weatherdiff/">WeatherDiff</a>
+        <a href="https://nicheworks.app/tools/log-formatter/">LogFormatter</a>
+      </div>
     </div>
   </main>
 

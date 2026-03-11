@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codex Product Shipping Playbooks｜リポジトリ中心の開発フロー解説 | NicheWorks</title>
   <meta name="description" content="Codex向けのリポジトリ中心ワークフロー解説ページ。repo intake、spec delta、実装計画、acceptance、pre-ship、release note、diff review、retroまでを一連の流れで把握できます。" />
+  <link rel="icon" href="/assets/favicon.ico" />
   <link rel="canonical" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
@@ -13,9 +14,81 @@
   <meta property="og:title" content="Codex Product Shipping Playbooks｜リポジトリ中心の開発フロー解説 | NicheWorks" />
   <meta property="og:description" content="Codex向けのリポジトリ中心ワークフロー解説ページ。repo intake、spec delta、実装計画、acceptance、pre-ship、release note、diff review、retroまでを一連の流れで把握できます。" />
   <meta property="og:url" content="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Codex Product Shipping Playbooks｜リポジトリ中心の開発フロー解説 | NicheWorks" />
   <meta name="twitter:description" content="Codex向けのリポジトリ中心ワークフロー解説ページ。repo intake、spec delta、実装計画、acceptance、pre-ship、release note、diff review、retroまでを一連の流れで把握できます。" />
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Codex Product Shipping Playbooks",
+      "url": "https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/",
+      "applicationCategory": "UtilityApplication",
+      "description": "Codex向けのリポジトリ中心ワークフロー解説ページ。repo intake、spec delta、実装計画、acceptance、pre-ship、release note、diff review、retroまでを一連の流れで把握できます。",
+      "operatingSystem": "All",
+      "inLanguage": "ja"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "これはプロンプト集ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "違います。プロンプトに近い素材が一部含まれることはあっても、主役はプロンプトではなく repository-first のワークフローシステムです。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Codex 専用ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Codex を前提に設計されていますが、既存リポジトリで agent-assisted development を行う他の環境にも応用しやすい構造です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "新規開発向けですか、それとも既存リポジトリ向けですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "かなり明確に既存リポジトリ向けです。実際のコードベースの中で変更を進めることを主眼に置いています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "実例は入っていますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "入っています。filter-persistence が主要な synthetic example で、issue から retro まで end-to-end で確認できます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "最初にどこから見ればよいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AGENTS.md、spec/、filter-persistence example の順が最も理解しやすいです。"
+          }
+        }
+      ]
+    }
+  </script>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -216,6 +289,13 @@
         <h2 id="disclaimer-title">免責事項</h2>
         <p>このページおよびリンク先のリポジトリは、情報提供と実務上のワークフロー整理を目的として公開されています。内容の完全性、特定目的への適合性、継続的な提供は保証されません。実際の開発・運用への適用は利用者自身の判断で行ってください。内容は予告なく更新または変更される場合があります。</p>
       </section>
+
+      <div class="nw-links" aria-label="関連ツール">
+        <span>関連ツール</span>
+        <a href="https://nicheworks.app/tools/construction-tools-atlas/">Construction Tools Atlas</a>
+        <a href="https://nicheworks.app/tools/weatherdiff/">WeatherDiff</a>
+        <a href="https://nicheworks.app/tools/log-formatter/">LogFormatter</a>
+      </div>
     </div>
   </main>
 
