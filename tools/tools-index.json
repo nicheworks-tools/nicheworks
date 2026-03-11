@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-10T15:21:35.413Z",
-  "total": 69,
+  "generatedAt": "2026-03-11T05:04:28.705Z",
+  "total": 70,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -22,6 +22,14 @@
       "slug": "ats-paste-doctor",
       "title_en": "ats-paste-doctor",
       "title_ja": "ats-paste-doctor",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "codex-product-shipping-playbooks",
+      "title_en": "codex-product-shipping-playbooks",
+      "title_ja": "codex-product-shipping-playbooks",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
