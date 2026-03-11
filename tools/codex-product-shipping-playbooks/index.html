@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codex Product Shipping Playbooks｜Repository Workflow Guide | NicheWorks</title>
+  <meta name="description" content="A repository-first workflow guide for Codex covering repo intake, spec delta, implementation planning, acceptance, pre-ship checks, release notes, diff review, and retrospectives." />
+  <link rel="canonical" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/ja/" />
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Codex Product Shipping Playbooks｜Repository Workflow Guide | NicheWorks" />
+  <meta property="og:description" content="A repository-first workflow guide for Codex covering repo intake, spec delta, implementation planning, acceptance, pre-ship checks, release notes, diff review, and retrospectives." />
+  <meta property="og:url" content="https://nicheworks.app/tools/codex-product-shipping-playbooks/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Codex Product Shipping Playbooks｜Repository Workflow Guide | NicheWorks" />
+  <meta name="twitter:description" content="A repository-first workflow guide for Codex covering repo intake, spec delta, implementation planning, acceptance, pre-ship checks, release notes, diff review, and retrospectives." />
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap site-head-inner">
+      <a class="brand" href="https://nicheworks.app/">NicheWorks</a>
+      <nav class="head-links" aria-label="Page links">
+        <a href="https://nicheworks.app/">Home</a>
+        <a href="/tools/codex-product-shipping-playbooks/ja/">日本語版を見る</a>
+        <a href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Repository workflow guide</p>
+        <h1 id="page-title">Codex Product Shipping Playbooks</h1>
+        <p class="lead">A repository-first workflow guide for Codex that helps structure software changes from repo intake and spec delta through implementation planning, acceptance, pre-ship checks, release notes, diff review, and post-ship retrospectives.</p>
+        <div class="meta-row">
+          <span>Published by <a href="https://nicheworks.app/">NicheWorks</a></span>
+          <span><a href="/tools/codex-product-shipping-playbooks/ja/">View this page in Japanese</a></span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">View on GitHub</a>
+          <a class="btn btn-secondary" href="#how-to-use">How to use it</a>
+          <a class="btn btn-secondary" href="#support">Support this project</a>
+        </div>
+
+        <div class="quick-grid" aria-label="Quick facts">
+          <div class="card quick-card">
+            <p class="quick-card-title">Current status</p>
+            <strong>Phase 0–5 completed</strong>
+            <span>Currently in <strong>Phase 6: Public Release Candidate</strong>.</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Core workflow</p>
+            <strong>Issue to release to retro</strong>
+            <span>A full path covering repo intake, spec delta, planning, acceptance, ship checks, release writing, diff review, and learning loops.</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Worked example</p>
+            <strong><code>filter-persistence</code></strong>
+            <span>An end-to-end synthetic example that shows how the workflow behaves across a realistic change scenario.</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Repository</p>
+            <strong>Open on GitHub</strong>
+            <span>Playbooks, artifacts, gates, flows, scripts, and example materials are published in one repository.</span>
+          </div>
+        </div>
+
+        <div class="quick-nav" aria-label="On this page">
+          <strong>On this page</strong>
+          <div class="quick-nav-links">
+            <a href="#what-it-is">What it is</a>
+            <a href="#who-its-for">Who it is for</a>
+            <a href="#workflow">Workflow path</a>
+            <a href="#included">What’s included</a>
+            <a href="#how-to-use">How to use it</a>
+            <a href="#example">Worked example</a>
+            <a href="#faq">FAQ</a>
+            <a href="#support">Support</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="nw-donate" aria-labelledby="support-top-title">
+        <h2 id="support-top-title">Support future maintenance and examples</h2>
+        <p>If this page or repository is useful, you can support future updates, additional examples, and continued maintenance.</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section id="what-it-is">
+        <h2>What it is</h2>
+        <p>Codex Product Shipping Playbooks is a practical workflow system for repository-based development. It is built for change work inside real codebases, where teams need more than a vague implementation idea or a generic project-management template.</p>
+        <p>This repository is designed to help turn “we want this change” into “this change was scoped, implemented, checked, documented, reviewed, and learned from.” That means it covers the operational work around software shipping, not just planning language.</p>
+        <p>It is not primarily a prompt collection, not a broad PM framework, and not a marketing-template bundle. It is a repository-first system for structuring actual change work around code.</p>
+      </section>
+
+      <section id="who-its-for">
+        <h2>Who it is for</h2>
+        <p>This project is a good fit for people who work with existing repositories and want a clearer path from change request to release. It is especially useful if you want acceptance criteria, pre-ship review, release writing, and retrospective work to connect back to the original change instead of living as disconnected documents.</p>
+        <ul>
+          <li>Teams using Codex or agent-assisted development on top of an existing repository.</li>
+          <li>Builders who want spec delta, planning, acceptance, and shipping steps to be explicit.</li>
+          <li>People who want release notes, changelog entries, and diff review to be part of the same operational loop.</li>
+          <li>Anyone who prefers reusable working assets over abstract workflow advice.</li>
+        </ul>
+        <p>It is a worse fit if you are looking for a general PM framework, a GTM library, or a catch-all prompt pack for unrelated tasks.</p>
+      </section>
+
+      <section id="workflow">
+        <h2>The workflow path</h2>
+        <p>The current core path is built as a sequence that starts with repository understanding and ends with post-ship learning. The goal is to reduce ambiguity at each stage and create a repeatable issue-to-release loop.</p>
+        <div class="flow-list">
+          <div class="flow-step"><strong>1. intake-repo</strong>Understand the repository before proposing work. Establish relevant files, routes, state layers, and likely impact areas.</div>
+          <div class="flow-step"><strong>2. spec-delta</strong>Define the delta between current behavior and intended behavior so the change is framed precisely.</div>
+          <div class="flow-step"><strong>3. plan-change</strong>Turn the delta into a concrete implementation plan that can guide real repository work.</div>
+          <div class="flow-step"><strong>4. define-acceptance</strong>State what counts as done before the work is declared complete.</div>
+          <div class="flow-step"><strong>5. ship-check</strong>Run practical pre-ship checks so readiness is not treated as a vague feeling.</div>
+          <div class="flow-step"><strong>6. write-release-artifacts</strong>Prepare release-facing outputs such as release notes and changelog entries.</div>
+          <div class="flow-step"><strong>7. review-diff</strong>Review the implemented diff against the intended change and what was actually delivered.</div>
+          <div class="flow-step"><strong>8. post-ship-retro</strong>Capture lessons after shipping so future changes improve from concrete experience.</div>
+        </div>
+      </section>
+
+      <section id="included">
+        <h2>What’s included</h2>
+        <p>The repository is organized around a few reusable layers. Together, they make the system easier to apply across multiple changes instead of rebuilding the workflow from scratch each time.</p>
+        <h3>Playbooks</h3>
+        <p>Concrete workflow units for repo intake, spec delta work, planning, acceptance definition, shipping checks, release writing, implementation review, and retrospective work.</p>
+        <h3>Artifacts</h3>
+        <p>Reusable templates for outputs such as spec deltas, change plans, acceptance definitions, release notes, changelog entries, diff reviews, and retrospectives.</p>
+        <h3>Gates</h3>
+        <p>Practical checkpoints for deciding whether a step is complete enough to move forward.</p>
+        <h3>Flows</h3>
+        <p>End-to-end sequences that show how multiple playbooks connect across a real software change.</p>
+        <h3>Examples</h3>
+        <p>Worked materials that demonstrate how the system behaves in a realistic scenario instead of stopping at high-level theory.</p>
+      </section>
+
+      <section id="how-to-use">
+        <h2>How to use it</h2>
+        <p>This page is meant to explain the repository clearly enough that you can understand both what it is and how to approach it before opening GitHub. In practice, the easiest way to use the project is to treat it as a structured reading path rather than a grab-bag of files.</p>
+        <ol>
+          <li><strong>Start with <code>AGENTS.md</code>.</strong> This gives you the working rules and framing for how the repository is meant to be used.</li>
+          <li><strong>Read <code>spec/</code>.</strong> This helps you understand the design intent behind the workflow instead of only seeing file names.</li>
+          <li><strong>Open <code>examples/issue-driven/filter-persistence/</code>.</strong> This is the fastest path to grasping the end-to-end system through one complete scenario.</li>
+          <li><strong>Then move into <code>playbooks/</code>.</strong> After seeing the example, the playbooks become easier to interpret as reusable operating units.</li>
+          <li><strong>Finally, use <code>artifacts/</code>, <code>gates/</code>, and <code>flows/</code>.</strong> These are the reusable scaffolding that help apply the system to future changes.</li>
+        </ol>
+        <p>If you only want to understand the project quickly, the example path is enough. If you want to apply it to real work, read the example first and then come back to the reusable layers.</p>
+      </section>
+
+      <section id="example">
+        <h2>Worked example: <code>filter-persistence</code></h2>
+        <p>The main worked example in the repository is a synthetic scenario called <code>filter-persistence</code>. It is not copied from a live production repository, but it is intentionally shaped to feel realistic enough to demonstrate how the workflow works in practice.</p>
+        <p>The scenario follows a change from issue report to repository context memo, spec delta, change plan, acceptance definition, pre-ship review, release note, changelog entry, diff review, and retrospective. That makes it the fastest way to see what this repository is actually trying to accomplish.</p>
+        <p>If you are evaluating whether this workflow is useful, this example is the best starting point because it shows the repository as a connected system rather than as isolated templates.</p>
+      </section>
+
+      <section id="why-nicheworks">
+        <h2>Why NicheWorks publishes it</h2>
+        <p>NicheWorks publishes small, practical tools and workflow assets that are meant to be used in real work. Codex Product Shipping Playbooks fits that model: it is intended as a working repository asset for teams and builders who want a clearer development path inside real repositories.</p>
+        <p>This is not positioned as polished theory. It is positioned as a usable operational asset that can keep expanding with better examples, better templates, and better release discipline over time.</p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Is this a prompt library?</h3>
+            <p>No. It may include prompt-adjacent workflow materials, but the repository is not primarily a prompt pack. It is a repository-first workflow system.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is this only for Codex?</h3>
+            <p>The framing is built around Codex-oriented workflow, but much of the structure can still help teams doing repository-based work with other agent-assisted setups.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is it for existing repositories or new projects?</h3>
+            <p>It is much more strongly aligned with existing repositories, where change work needs to be scoped and shipped inside a real codebase.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Does it include a full example?</h3>
+            <p>Yes. The <code>filter-persistence</code> synthetic example is the main worked path that shows the system end to end.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Where should I start?</h3>
+            <p>Start with <code>AGENTS.md</code>, then <code>spec/</code>, then the <code>filter-persistence</code> example. That is the fastest route to understanding the full shape of the repository.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="links">
+        <h2>Links</h2>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">Open the repository</a>
+          <a class="btn btn-secondary" href="https://nicheworks.app/">Visit NicheWorks</a>
+          <a class="btn btn-secondary" href="/tools/codex-product-shipping-playbooks/ja/">日本語版を見る</a>
+        </div>
+      </section>
+
+      <div class="nw-donate" id="support" aria-labelledby="support-title">
+        <h2 id="support-title">Support this project</h2>
+        <p>If this page or repository helps your workflow, you can support future maintenance, documentation updates, and additional worked examples through the links below.</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section class="disclaimer" aria-labelledby="disclaimer-title">
+        <h2 id="disclaimer-title">Disclaimer</h2>
+        <p>This page and the linked repository are provided for informational and practical workflow use. They are offered as-is, without warranty of completeness, fitness for a particular purpose, or continued availability. Any use in real development or shipping workflows is at your own discretion. Contents may change over time.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>Published by <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/codex-product-shipping-playbooks/ja/">日本語版を見る</a> · <a href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <a class="floating-support" href="#support" aria-label="Jump to support section">Support</a>
+</body>
+</html>
