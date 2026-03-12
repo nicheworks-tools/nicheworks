@@ -330,6 +330,31 @@ li + li {
     var(--nw-surface);
 }
 
+.nw-related-jump {
+  margin: 16px 0 22px;
+  padding: 14px 16px;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(219, 234, 254, 0.5), rgba(255, 255, 255, 0.96));
+  box-shadow: var(--nw-shadow-sm);
+}
+
+.nw-related-jump p {
+  margin: 0;
+  color: var(--nw-text-soft);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.nw-related-jump a {
+  font-weight: 800;
+  color: var(--nw-accent-2);
+}
+
+.nw-related-jump a:hover {
+  color: #1e40af;
+}
+
 .nw-section-heading {
   margin-bottom: 16px;
 }
