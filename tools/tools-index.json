@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-12T13:30:25.967Z",
-  "total": 70,
+  "generatedAt": "2026-03-12T13:31:18.794Z",
+  "total": 71,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -38,6 +38,14 @@
       "slug": "codex-usage-forecaster",
       "title_en": "codex-usage-forecaster",
       "title_ja": "codex-usage-forecaster",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "codex-work-os",
+      "title_en": "codex-work-os",
+      "title_ja": "codex-work-os",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
