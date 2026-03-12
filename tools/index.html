@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>codex-work-os｜Codex Work System Guide | NicheWorks</title>
+    <meta
+      name="description"
+      content="A skills-first guide to codex-work-os, a Codex-native work system for sales, PM, executive support, research, and customer support workflows."
+    />
+    <meta
+      name="keywords"
+      content="codex-work-os, Codex, skills, workflow, sales, PM, executive support, research, customer support, NicheWorks"
+    />
+    <meta name="theme-color" content="#0f172a" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="codex-work-os｜Codex Work System Guide" />
+    <meta
+      property="og:description"
+      content="A skills-first Codex repository for structured work across sales, PM, executive support, research, and customer support."
+    />
+    <meta property="og:url" content="https://nicheworks.app/tools/codex-work-os/" />
+    <meta property="og:site_name" content="NicheWorks" />
+
+    <link rel="canonical" href="https://nicheworks.app/tools/codex-work-os/" />
+    <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/codex-work-os/" />
+    <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/codex-work-os/ja/" />
+    <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/codex-work-os/" />
+
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="nw-page">
+      <header class="nw-site-header">
+        <div class="nw-site-header__inner">
+          <div class="nw-site-brand">
+            <a href="/" aria-label="NicheWorks home">NicheWorks</a>
+          </div>
+          <nav class="nw-site-nav" aria-label="Global">
+            <a href="/">Home</a>
+            <a href="./ja/">日本語版を見る</a>
+            <a href="https://github.com/nicheworks-tools/codex-work-os" target="_blank" rel="noopener">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="nw-main">
+        <section class="nw-hero">
+          <div class="nw-hero__inner">
+            <p class="nw-eyebrow">Codex work system guide</p>
+            <h1>codex-work-os</h1>
+            <p class="nw-lead">
+              A skills-first operating system for Codex that helps turn messy, incomplete real-world work into
+              structured outputs across sales, project management, executive support, research, and customer support.
+            </p>
+
+            <div class="nw-meta">
+              <p>Published by <a href="/">NicheWorks</a> · <a href="./ja/">View this page in Japanese</a></p>
+            </div>
+
+            <div class="nw-hero-actions">
+              <a class="nw-button nw-button--primary" href="https://github.com/nicheworks-tools/codex-work-os" target="_blank" rel="noopener">View on GitHub</a>
+              <a class="nw-button" href="#how-to-use">How to use it</a>
+              <a class="nw-button" href="#support">Support this project</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="nw-summary-strip" aria-label="Project summary">
+          <div class="nw-summary-grid">
+            <article class="nw-summary-card">
+              <h2>Current status</h2>
+              <p>Foundation, pack coverage, gates, and end-to-end examples are in place. Current state: public release candidate.</p>
+            </article>
+
+            <article class="nw-summary-card">
+              <h2>Core system</h2>
+              <p>Five domain packs supported by flows, quality gates, artifacts, shared templates, install helpers, and validation scripts.</p>
+            </article>
+
+            <article class="nw-summary-card">
+              <h2>Worked scenario</h2>
+              <p><code>pilot-rollout</code> A cross-pack example that shows one messy operational situation moving through research, PM, executive, sales, and CS outputs.</p>
+            </article>
+
+            <article class="nw-summary-card">
+              <h2>Repository</h2>
+              <p><a href="https://github.com/nicheworks-tools/codex-work-os" target="_blank" rel="noopener">Open on GitHub</a> Skills, flows, gates, artifacts, docs, scripts, and examples are published in one repository.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="nw-toc" aria-labelledby="on-this-page">
+          <div class="nw-section-heading">
+            <h2 id="on-this-page">On this page</h2>
+          </div>
+          <nav class="nw-toc-links" aria-label="Table of contents">
+            <a href="#what-it-is">What it is</a>
+            <a href="#who-it-is-for">Who it is for</a>
+            <a href="#core-packs">Core packs</a>
+            <a href="#how-it-is-structured">How it is structured</a>
+            <a href="#how-to-use">How to use it</a>
+            <a href="#end-to-end">End-to-end example</a>
+            <a href="#faq">FAQ</a>
+            <a href="#support">Support</a>
+          </nav>
+        </section>
+
+        <section class="nw-support-callout" aria-labelledby="support-callout-title">
+          <h2 id="support-callout-title">Support future maintenance and example expansion</h2>
+          <p>
+            If this page or repository is useful, you can support future updates, additional scenarios, documentation
+            improvements, and long-term maintenance.
+          </p>
+          <div class="nw-donate">
+            <div class="nw-donate-links">
+              <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+              <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="what-it-is" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>What it is</h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              codex-work-os is a practical work system for Codex. It is built for situations where information arrives
+              in fragments: Slack threads, loose meeting notes, partial research, half-formed support cases, unclear
+              ownership, and unfinished reply drafts.
+            </p>
+            <p>
+              The goal is not just to make Codex “write better.” The goal is to help Codex turn unstructured work into
+              outputs that are actually usable: a sales reply, a PM brief, an executive summary, a decision memo, or a
+              support escalation.
+            </p>
+            <p>
+              This repository is not primarily a prompt pack, not a generic PM framework, and not a random business
+              templates library. It is a Codex-native operating layer for structured work.
+            </p>
+          </div>
+        </section>
+
+        <section id="who-it-is-for" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>Who it is for</h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              This project is a strong fit for people who want Codex to help with operational work beyond coding and who
+              prefer reusable working structure over one-off prompting.
+            </p>
+            <ul>
+              <li>People who want sales, PM, research, executive, or support outputs to follow a stable shape.</li>
+              <li>Teams using Codex in real workflows where information is messy and work products need to be reusable.</li>
+              <li>Builders who want flows, gates, and output types to be explicit rather than implied.</li>
+              <li>Anyone who wants AI outputs that are easier to send, hand off, review, or act on.</li>
+            </ul>
+            <p>
+              It is a weaker fit if you are looking for a broad life-assistant prompt pack, a generic business advice
+              library, or a coding-only helper repository.
+            </p>
+          </div>
+        </section>
+
+        <section id="core-packs" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>The five core packs</h2>
+          </div>
+
+          <div class="nw-card-grid">
+            <article class="nw-card">
+              <h3>sales-pack</h3>
+              <p>For inquiry triage, proposal prep, and ready-to-send sales reply drafts.</p>
+            </article>
+
+            <article class="nw-card">
+              <h3>pm-pack</h3>
+              <p>For status briefs, blocker maps, weekly updates, and decision-oriented progress summaries.</p>
+            </article>
+
+            <article class="nw-card">
+              <h3>exec-assist-pack</h3>
+              <p>For short, high-signal briefs intended for leaders and decision-makers.</p>
+            </article>
+
+            <article class="nw-card">
+              <h3>research-pack</h3>
+              <p>For comparison work, decision memos, evidence summaries, and trade-off-based recommendations.</p>
+            </article>
+
+            <article class="nw-card">
+              <h3>cs-pack</h3>
+              <p>For support summaries, escalation notes, and clearer handoffs for the next owner.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="how-it-is-structured" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>How it is structured</h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              codex-work-os is intentionally organized as a skills-first system. The primary unit is the domain pack
+              under <code>skills/</code>, and the rest of the repository supports those packs.
+            </p>
+          </div>
+
+          <div class="nw-layer-list">
+            <article class="nw-layer-item">
+              <h3>Skills</h3>
+              <p>The core domain packs. Each pack contains its own <code>SKILL.md</code>, templates, references, examples, and validation helpers.</p>
+            </article>
+
+            <article class="nw-layer-item">
+              <h3>Flows</h3>
+              <p>Reusable work paths such as sales response flow, PM brief flow, research memo flow, and escalation flow.</p>
+            </article>
+
+            <article class="nw-layer-item">
+              <h3>Gates</h3>
+              <p>Quality checks that protect sendability, signal quality, handoff quality, and evidence quality.</p>
+            </article>
+
+            <article class="nw-layer-item">
+              <h3>Artifacts</h3>
+              <p>Reusable output shapes such as ready-to-send drafts, weekly briefs, decision memos, and escalation notes.</p>
+            </article>
+
+            <article class="nw-layer-item">
+              <h3>Shared, install, and scripts</h3>
+              <p>Cross-pack references, install helpers, and validation scripts that make the repository operational instead of decorative.</p>
+            </article>
+          </div>
+
+          <div class="nw-prose">
+            <p>
+              There is no top-level <code>playbooks/</code> directory because this repository is not built around one linear pipeline.
+              It is built around reusable work domains.
+            </p>
+          </div>
+        </section>
+
+        <section id="how-to-use" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>How to use it</h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              The easiest way to use codex-work-os is to treat it as a structured system rather than a collection of unrelated files.
+            </p>
+            <ol>
+              <li>Start with <code>README.md</code> and <code>AGENTS.md</code> to understand the repository’s operating model.</li>
+              <li>Read <code>docs/architecture.md</code> and <code>docs/pack-mapping.md</code> to understand how packs, flows, gates, and artifacts relate.</li>
+              <li>Open <code>examples/end-to-end/pilot-rollout/</code> to see one messy situation move across multiple packs.</li>
+              <li>Choose the pack that matches your primary work type.</li>
+              <li>Apply the relevant flow, gate, and artifact when turning raw input into a final deliverable.</li>
+            </ol>
+            <p>
+              If you only want the quickest overview, start with the end-to-end example. If you want to use the system in real work, read the architecture and pack mapping first, then move through the worked scenario.
+            </p>
+          </div>
+        </section>
+
+        <section id="end-to-end" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>End-to-end example: <code>pilot-rollout</code></h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              The main worked scenario in this repository is <code>pilot-rollout</code>. It starts from a messy operational situation involving:
+            </p>
+            <ul>
+              <li>a prospect asking for a lightweight pilot,</li>
+              <li>an internal choice between two setup paths,</li>
+              <li>unclear PM ownership, and</li>
+              <li>a support issue involving intermittent missed alerts.</li>
+            </ul>
+            <p>
+              That one situation is then transformed into:
+            </p>
+            <ol>
+              <li>a research memo,</li>
+              <li>a PM brief,</li>
+              <li>an executive brief,</li>
+              <li>a sales reply draft, and</li>
+              <li>a CS escalation note.</li>
+            </ol>
+            <p>
+              This is the fastest way to understand what codex-work-os is actually trying to do: not just generate text,
+              but reshape noisy work into reusable outputs from multiple operational angles.
+            </p>
+          </div>
+        </section>
+
+        <section class="nw-section">
+          <div class="nw-section-heading">
+            <h2>Why NicheWorks publishes it</h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              NicheWorks publishes small, practical tools and workflow assets intended to be useful in real work.
+              codex-work-os fits that model: it is not positioned as polished theory, but as a working repository asset
+              that can keep improving through stronger examples, better structure, and clearer operational use.
+            </p>
+          </div>
+        </section>
+
+        <section id="faq" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>FAQ</h2>
+          </div>
+
+          <div class="nw-faq-list">
+            <article class="nw-faq-item">
+              <h3>Is this a prompt library?</h3>
+              <p>No. It may contain prompt-adjacent material, but the repository is designed as a structured operational system, not a loose prompt pack.</p>
+            </article>
+
+            <article class="nw-faq-item">
+              <h3>Is this only for Codex?</h3>
+              <p>The structure is built for Codex-native use, but many of the ideas can still be helpful in other agent-assisted work setups.</p>
+            </article>
+
+            <article class="nw-faq-item">
+              <h3>Why is it skills-first instead of playbook-first?</h3>
+              <p>Because this repository is meant for cross-functional work that enters from different directions. The first useful question is usually “what kind of work is this?” rather than “what stage of one universal pipeline is this?”</p>
+            </article>
+
+            <article class="nw-faq-item">
+              <h3>Does it include a full example?</h3>
+              <p>Yes. The <code>pilot-rollout</code> scenario is the main cross-pack example showing how one messy situation can move through multiple output types.</p>
+            </article>
+
+            <article class="nw-faq-item">
+              <h3>Where should I start?</h3>
+              <p>Start with <code>README.md</code>, then <code>AGENTS.md</code>, then the end-to-end example under <code>examples/end-to-end/pilot-rollout/</code>.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="nw-section">
+          <div class="nw-section-heading">
+            <h2>Links</h2>
+          </div>
+          <div class="nw-link-row">
+            <a href="https://github.com/nicheworks-tools/codex-work-os" target="_blank" rel="noopener">Open the repository</a>
+            <a href="/">Visit NicheWorks</a>
+            <a href="./ja/">日本語版を見る</a>
+          </div>
+        </section>
+
+        <section id="support" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>Support this project</h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              If this page or repository helps your workflow, you can support future maintenance, documentation updates,
+              and additional worked examples through the links below.
+            </p>
+          </div>
+          <div class="nw-donate">
+            <div class="nw-donate-links">
+              <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+              <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="nw-section nw-section--disclaimer">
+          <div class="nw-section-heading">
+            <h2>Disclaimer</h2>
+          </div>
+          <div class="nw-prose">
+            <p>
+              This page and the linked repository are provided for informational and practical workflow use. They are
+              offered as-is, without warranty of completeness, fitness for a particular purpose, or continued
+              availability. Any use in real operational workflows is at your own discretion. Contents may change over time.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="nw-site-footer">
+        <div class="nw-site-footer__inner">
+          <div class="nw-footer-links">
+            <span>Other tools</span>
+            <a href="/tools/construction-tools-atlas/">Construction Tools Atlas</a>
+            <a href="/tools/weatherdiff/">WeatherDiff</a>
+            <a href="/tools/logformatter/">LogFormatter</a>
+          </div>
+          <div class="nw-footer-meta">
+            <span>Published by <a href="/">NicheWorks</a></span>
+            <span>·</span>
+            <a href="./ja/">日本語版を見る</a>
+            <span>·</span>
+            <a href="https://github.com/nicheworks-tools/codex-work-os" target="_blank" rel="noopener">GitHub</a>
+            <span>·</span>
+            <a href="#support">Support</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
