@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-25T13:53:23.245Z",
-  "total": 73,
+  "generatedAt": "2026-03-25T13:55:44.094Z",
+  "total": 74,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -358,6 +358,14 @@
       "slug": "money-template-checker",
       "title_en": "money-template-checker",
       "title_ja": "money-template-checker",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "motion-atlas",
+      "title_en": "motion-atlas",
+      "title_ja": "motion-atlas",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
