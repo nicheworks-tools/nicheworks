@@ -1,0 +1,1248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI Atlas Mock | Niche Works</title>
+  <meta name="description" content="Niche Works UI Atlas mock — AIに正確に依頼できるUI辞典のHTMLモック">
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --panel: #ffffff;
+      --line: #e5e7eb;
+      --line-strong: #d1d5db;
+      --text: #111827;
+      --muted: #6b7280;
+      --soft: #f3f4f6;
+      --chip: #eef2ff;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #0f766e;
+      --success-soft: #ccfbf1;
+      --warn: #92400e;
+      --warn-soft: #fef3c7;
+      --shadow: 0 8px 24px rgba(17,24,39,.06);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1360px;
+      --left: 296px;
+      --right: 380px;
+      --content: minmax(0, 1fr);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
+    body { line-height: 1.55; }
+    button, input, select { font: inherit; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .page { max-width: var(--max); margin: 0 auto; padding: 18px 16px 48px; }
+    .nw-lang-switch {
+      text-align: center; margin: 6px 0 10px; font-size: 11px; color: var(--muted);
+    }
+    .nw-lang-switch button {
+      border: none; background: transparent; padding: 0 2px; cursor: pointer; font-size: 11px; color: #4b5563;
+    }
+    .nw-lang-switch button.active { font-weight: 700; text-decoration: underline; }
+
+    header.hero {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--muted); background: #fafafa;
+      border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px;
+    }
+    h1 { margin: 14px 0 8px; font-size: clamp(28px, 4vw, 40px); line-height: 1.1; }
+    .hero-copy { max-width: 860px; color: #374151; font-size: 15px; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .hero-points .pill {
+      padding: 8px 11px; border-radius: 999px; background: var(--soft);
+      border: 1px solid var(--line); font-size: 12px; color: #374151;
+    }
+
+    .ad-slot {
+      margin: 18px 0 16px; min-height: 94px; border-radius: var(--radius);
+      border: 1px dashed var(--line-strong); background: linear-gradient(180deg,#ffffff,#fafafa);
+      display: grid; place-items: center; color: var(--muted); font-size: 14px; text-align: center;
+    }
+
+    .quick-explain {
+      margin: 12px 0 20px; padding: 14px 16px; border-radius: var(--radius);
+      background: #fcfcfb; border: 1px solid var(--line);
+      color: #374151; font-size: 14px;
+    }
+
+    .dashboard {
+      display: grid; grid-template-columns: var(--left) var(--content) var(--right); gap: 16px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+    .panel .section { padding: 16px; border-top: 1px solid var(--line); }
+    .panel .section:first-child { border-top: none; }
+    .panel-title {
+      margin: 0 0 10px; font-size: 13px; letter-spacing: .02em; text-transform: uppercase; color: var(--muted);
+    }
+
+    .filters { position: sticky; top: 14px; overflow: hidden; }
+    .search-wrap { position: relative; }
+    .search-wrap input {
+      width: 100%; border: 1px solid var(--line-strong); border-radius: 14px;
+      padding: 12px 14px; background: #fff;
+    }
+    .suggestions {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 30;
+      background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+      overflow: hidden; display: none;
+    }
+    .suggestions.open { display: block; }
+    .suggestion-item {
+      display: flex; justify-content: space-between; gap: 8px;
+      padding: 11px 12px; cursor: pointer; border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+    .suggestion-item:first-child { border-top: none; }
+    .suggestion-item:hover, .suggestion-item:focus-visible { background: var(--soft); outline: none; }
+    .suggestion-sub { color: var(--muted); font-size: 12px; }
+
+    .chip-row, .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip, .pill-btn {
+      padding: 8px 10px; border: 1px solid var(--line); background: #fff;
+      border-radius: 999px; cursor: pointer; color: #374151; font-size: 12px;
+    }
+    .chip.active, .pill-btn.active { background: var(--accent-soft); border-color: #93c5fd; color: #1d4ed8; }
+
+    .mini-stack { display: grid; gap: 8px; }
+    .mini-stat {
+      display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px;
+      border: 1px solid var(--line); border-radius: 14px; font-size: 13px; background: #fff;
+    }
+    .mini-stat strong { font-size: 16px; }
+
+    .catalog { min-width: 0; }
+    .catalog-head {
+      display: flex; gap: 12px; justify-content: space-between; align-items: flex-start;
+      padding: 16px 18px 8px;
+    }
+    .catalog-head h2 { margin: 0 0 6px; font-size: 24px; }
+    .catalog-sub { color: var(--muted); font-size: 14px; max-width: 720px; }
+    .toolbar {
+      padding: 0 18px 14px; display: grid; gap: 10px;
+    }
+    .toolbar-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .toolbar-row .count { color: var(--muted); font-size: 13px; margin-right: auto; }
+    .topic-scroller {
+      display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin;
+    }
+    .topic-chip {
+      white-space: nowrap; border: 1px solid var(--line); background: #fff; border-radius: 999px;
+      padding: 9px 12px; font-size: 12px; cursor: pointer;
+    }
+    .topic-chip:hover { background: var(--soft); }
+
+    .grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; padding: 0 18px 18px;
+    }
+    .card {
+      border: 1px solid var(--line); border-radius: 18px; background: #fff; padding: 14px;
+      display: grid; gap: 12px; min-width: 0;
+    }
+    .card-head { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+    .card-title { margin: 0; font-size: 17px; }
+    .card-sub { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px; color: #374151; background: var(--soft); border: 1px solid var(--line);
+      padding: 4px 8px; border-radius: 999px;
+    }
+    .tag.accent { background: var(--accent-soft); border-color: #bfdbfe; color: #1d4ed8; }
+    .tag.warn { background: var(--warn-soft); border-color: #fcd34d; color: var(--warn); }
+    .tag.success { background: var(--success-soft); border-color: #99f6e4; color: var(--success); }
+
+    .preview {
+      min-height: 132px; border-radius: 16px; background: linear-gradient(180deg,#fbfbfb,#f3f4f6);
+      border: 1px solid var(--line); padding: 16px; position: relative; overflow: hidden;
+    }
+    .preview .label { position: absolute; top: 10px; right: 10px; color: var(--muted); font-size: 11px; }
+    .preview.hero-preview {
+      display: grid; align-content: end; gap: 8px;
+      background: linear-gradient(135deg,#eff6ff,#f8fafc 54%,#eef2ff);
+    }
+    .hero-preview .hero-line-1 { width: 78%; height: 22px; border-radius: 7px; background: #111827; opacity: .85; }
+    .hero-preview .hero-line-2 { width: 62%; height: 12px; border-radius: 999px; background: #9ca3af; }
+    .hero-preview .hero-buttons { display: flex; gap: 8px; margin-top: 4px; }
+    .hero-preview .hero-btn-primary, .hero-preview .hero-btn-secondary {
+      width: 92px; height: 34px; border-radius: 999px;
+    }
+    .hero-preview .hero-btn-primary { background: var(--accent); }
+    .hero-preview .hero-btn-secondary { border: 1px solid #94a3b8; background: rgba(255,255,255,.65); }
+
+    .preview.modal-preview { display: grid; place-items: center; }
+    .modal-preview .backdrop { position: absolute; inset: 0; background: rgba(17,24,39,.08); }
+    .modal-preview .dialog {
+      position: relative; width: 72%; max-width: 240px; background: #fff; border: 1px solid var(--line);
+      border-radius: 14px; padding: 14px; display: grid; gap: 8px; box-shadow: var(--shadow);
+    }
+    .line { height: 10px; border-radius: 999px; background: #d1d5db; }
+    .line.w60 { width: 60%; }
+    .line.w80 { width: 80%; }
+    .line.dark { background: #374151; }
+    .dialog-actions { display: flex; gap: 8px; justify-content: end; margin-top: 4px; }
+    .tiny-btn { width: 56px; height: 28px; border-radius: 999px; border: 1px solid var(--line); background: #fff; }
+    .tiny-btn.primary { background: var(--accent); border-color: var(--accent); }
+
+    .preview.sheet-preview { display: grid; align-items: end; }
+    .sheet-preview .sheet {
+      margin-top: auto; background: #fff; border: 1px solid var(--line); border-radius: 18px 18px 12px 12px;
+      padding: 14px; display: grid; gap: 8px; box-shadow: var(--shadow);
+    }
+    .sheet-preview .grabber { width: 42px; height: 4px; border-radius: 999px; background: #cbd5e1; margin: 0 auto 4px; }
+
+    .preview.accordion-preview { display: grid; gap: 8px; }
+    .accordion-row {
+      border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 12px 12px 10px;
+      display: grid; gap: 8px;
+    }
+    .accordion-title { display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: 13px; }
+
+    .preview.skeleton-preview { display: grid; gap: 10px; background: linear-gradient(180deg,#fff,#fafafa); }
+    .skeleton-card {
+      border: 1px solid var(--line); background: #fff; border-radius: 14px; padding: 12px; display: grid; gap: 8px;
+    }
+    .sk-bar { height: 10px; border-radius: 999px; background: linear-gradient(90deg,#e5e7eb,#f3f4f6,#e5e7eb); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+    .sk-bar.w90 { width: 90%; } .sk-bar.w70 { width: 70%; } .sk-bar.w40 { width: 40%; }
+    @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+    .preview.toast-preview { display: grid; align-items: start; justify-items: end; }
+    .toast-preview .toast {
+      width: 78%; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--success);
+      border-radius: 14px; padding: 12px; box-shadow: var(--shadow); display: grid; gap: 7px;
+    }
+
+    .preview.segmented-preview {
+      display: grid; place-items: center; background: linear-gradient(180deg,#f8fafc,#eef2ff);
+    }
+    .segmented-shell {
+      background: rgba(255,255,255,.88); border: 1px solid var(--line);
+      border-radius: 999px; padding: 5px; display: inline-flex; gap: 5px;
+    }
+    .seg-pill { min-width: 74px; padding: 8px 12px; border-radius: 999px; font-size: 12px; text-align: center; }
+    .seg-pill.active { background: var(--accent); color: #fff; }
+
+    .card-copy { color: #374151; font-size: 14px; min-height: 44px; }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn {
+      border-radius: 999px; border: 1px solid var(--line-strong); background: #fff;
+      color: var(--text); padding: 9px 12px; cursor: pointer; font-size: 12px;
+    }
+    .btn:hover { background: var(--soft); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.ghost { background: #fff; }
+    .btn.soft { background: var(--accent-soft); border-color: #bfdbfe; color: #1d4ed8; }
+
+    .detail {
+      position: sticky; top: 14px; overflow: hidden;
+    }
+    .detail-header { padding: 18px 18px 14px; border-bottom: 1px solid var(--line); }
+    .detail-title-row { display: flex; gap: 10px; justify-content: space-between; align-items: flex-start; }
+    .detail h3 { margin: 0 0 4px; font-size: 26px; line-height: 1.1; }
+    .detail-sub { color: var(--muted); font-size: 13px; }
+    .detail-scroll { max-height: calc(100vh - 112px); overflow: auto; }
+    .detail-grid { display: grid; gap: 12px; padding: 16px 18px 20px; }
+    .detail-card {
+      border: 1px solid var(--line); border-radius: 16px; background: #fff; padding: 14px;
+    }
+    .detail-card h4 { margin: 0 0 8px; font-size: 15px; }
+    .detail-card p, .detail-card li { font-size: 14px; color: #374151; }
+    .detail-card ul { margin: 0; padding-left: 18px; }
+    .detail-preview { min-height: 156px; }
+    .info-list { display: grid; gap: 8px; }
+    .info-row {
+      display: flex; gap: 12px; justify-content: space-between; align-items: start;
+      padding: 9px 0; border-top: 1px solid var(--line);
+    }
+    .info-row:first-child { border-top: none; padding-top: 0; }
+    .info-row span { color: var(--muted); font-size: 13px; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .compare-table th, .compare-table td { text-align: left; padding: 8px 0; border-top: 1px solid var(--line); vertical-align: top; }
+    .compare-table th { color: var(--muted); font-weight: 600; width: 32%; }
+    .compare-table tr:first-child th, .compare-table tr:first-child td { border-top: none; }
+    .prompt-box {
+      border: 1px solid var(--line); border-radius: 14px; background: #f9fafb; padding: 12px; font-size: 13px; color: #111827;
+      white-space: pre-wrap;
+    }
+    .detail-footer-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .compare-tray {
+      margin-top: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .compare-head {
+      padding: 16px 18px; display: flex; justify-content: space-between; gap: 12px; align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .compare-head h3 { margin: 0; font-size: 20px; }
+    .compare-body { padding: 14px 18px 18px; }
+    .compare-empty { color: var(--muted); font-size: 14px; padding: 12px 0; }
+    .compare-list { display: grid; gap: 10px; }
+    .compare-item {
+      border: 1px solid var(--line); border-radius: 16px; padding: 12px; background: #fff;
+      display: grid; gap: 8px;
+    }
+    .compare-item-top { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
+    .compare-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+    .compare-grid {
+      display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px;
+    }
+    .compare-cell {
+      background: #fafafa; border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 12px;
+    }
+    .compare-cell strong { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+
+    .cta-pro {
+      margin-top: 24px; padding: 18px; background: linear-gradient(180deg,#ffffff,#eff6ff);
+      border: 1px solid #bfdbfe; border-radius: 22px; box-shadow: var(--shadow);
+    }
+    .cta-pro h3 { margin: 0 0 8px; font-size: 24px; }
+    .cta-pro p { color: #334155; font-size: 14px; margin: 0 0 12px; max-width: 780px; }
+    .pro-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 12px; }
+    .pro-card { border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.8); padding: 14px; }
+    .pro-card h4 { margin: 0 0 8px; font-size: 15px; }
+    .pro-card ul { margin: 0; padding-left: 18px; color: #374151; font-size: 14px; }
+
+    .faq {
+      margin-top: 24px; padding: 18px; border: 1px solid var(--line); border-radius: 22px; background: #fff; box-shadow: var(--shadow);
+    }
+    .faq h3 { margin: 0 0 12px; font-size: 22px; }
+    details.faq-item {
+      border-top: 1px solid var(--line); padding: 12px 0;
+    }
+    details.faq-item:first-of-type { border-top: none; padding-top: 0; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { margin: 10px 0 0; color: #374151; font-size: 14px; }
+
+    .nw-donate {
+      margin: 26px 0 0; padding: 18px; border: 1px solid var(--line); border-radius: 22px; background: #fff;
+    }
+    .nw-donate-text { margin: 0 0 12px; color: #374151; font-size: 14px; }
+    .nw-donate-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nw-donate-links a {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px;
+      border: 1px solid var(--line); border-radius: 999px; background: #fff; color: #111827;
+    }
+    .usage-link { margin: 44px 0 0; text-align: left; font-size: 14px; }
+
+    .nw-footer {
+      margin-top: 26px; padding: 22px 6px 0; text-align: center; color: var(--muted); font-size: 12px;
+    }
+    .nw-footer-line { margin: 6px 0; }
+
+    .toast-msg {
+      position: fixed; right: 16px; bottom: 16px; z-index: 100;
+      background: #111827; color: #fff; border-radius: 999px; padding: 10px 14px; font-size: 12px;
+      box-shadow: var(--shadow); opacity: 0; transform: translateY(12px); pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast-msg.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1180px) {
+      .dashboard { grid-template-columns: 280px minmax(0,1fr); }
+      .detail { grid-column: 1 / -1; position: static; }
+      .detail-scroll { max-height: none; }
+    }
+
+    @media (max-width: 820px) {
+      .dashboard { grid-template-columns: 1fr; }
+      .filters { position: static; }
+      .catalog-head { display: grid; }
+      .grid { grid-template-columns: 1fr; }
+      .compare-grid, .pro-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .page { padding-left: 12px; padding-right: 12px; }
+      header.hero { padding: 16px; border-radius: 20px; }
+      .grid { grid-template-columns: 1fr; padding: 0 14px 16px; }
+      .catalog-head, .toolbar { padding-left: 14px; padding-right: 14px; }
+      .compare-grid, .pro-grid { grid-template-columns: 1fr; }
+      .detail h3 { font-size: 22px; }
+      .card-actions { gap: 6px; }
+      .btn { width: 100%; justify-content: center; }
+      .detail-footer-actions .btn { width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="nw-lang-switch" aria-label="Language switcher">
+      <button data-lang="ja" class="active">JP</button> /
+      <button data-lang="en">EN</button>
+    </div>
+
+    <header class="hero panel">
+      <div class="eyebrow">
+        <span data-i18n="ja">Niche Works 実用辞典シリーズ</span>
+        <span data-i18n="en" hidden>Niche Works practical reference series</span>
+      </div>
+      <h1>
+        <span data-i18n="ja">UI Atlas</span>
+        <span data-i18n="en" hidden>UI Atlas</span>
+      </h1>
+      <p class="hero-copy">
+        <span data-i18n="ja">名前が分かるだけで終わらない。似たUIの違い、向いている場面、AIへの依頼文、実装メモまで一画面で確認できるUI辞典のHTMLモックです。</span>
+        <span data-i18n="en" hidden>More than a naming dictionary. This mock shows pattern differences, good and bad use cases, AI prompts, and implementation notes in one screen.</span>
+      </p>
+      <div class="hero-points">
+        <div class="pill"><span data-i18n="ja">検索 + サジェスト</span><span data-i18n="en" hidden>Search + suggestions</span></div>
+        <div class="pill"><span data-i18n="ja">一覧 + 詳細 + 比較</span><span data-i18n="en" hidden>Grid + detail + compare</span></div>
+        <div class="pill"><span data-i18n="ja">JP / EN 切替</span><span data-i18n="en" hidden>JP / EN switch</span></div>
+        <div class="pill"><span data-i18n="ja">Niche Works 共通導線反映</span><span data-i18n="en" hidden>Shared Niche Works layout rules</span></div>
+      </div>
+    </header>
+
+    <div class="ad-slot ad-top">広告枠（ad-top / 準備中）</div>
+
+    <div class="quick-explain">
+      <span data-i18n="ja">このモックでは、正式名称が分からなくても「下から出る」「FAQみたいなやつ」などの言い方で探せること、一覧から詳細を開いて違いを理解できること、比較候補を溜めて見比べられることを確認できます。</span>
+      <span data-i18n="en" hidden>This mock demonstrates fuzzy search, open-in-place details, and a compare tray so users can understand and choose patterns instead of just browsing them.</span>
+    </div>
+
+    <main class="dashboard" aria-label="UI Atlas main mock">
+      <aside class="panel filters" aria-label="Filters">
+        <div class="section">
+          <p class="panel-title">
+            <span data-i18n="ja">検索</span>
+            <span data-i18n="en" hidden>Search</span>
+          </p>
+          <div class="search-wrap">
+            <label class="sr-only" for="searchInput">Search</label>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="下から出る / FAQ / skeleton / mobile CTA">
+            <div class="suggestions" id="suggestions" role="listbox" aria-label="Suggestions"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <p class="panel-title"><span data-i18n="ja">カテゴリ</span><span data-i18n="en" hidden>Category</span></p>
+          <div class="chip-group" id="categoryChips"></div>
+        </div>
+
+        <div class="section">
+          <p class="panel-title"><span data-i18n="ja">目的</span><span data-i18n="en" hidden>Purpose</span></p>
+          <div class="chip-group" id="purposeChips"></div>
+        </div>
+
+        <div class="section">
+          <p class="panel-title"><span data-i18n="ja">デバイス</span><span data-i18n="en" hidden>Device fit</span></p>
+          <div class="chip-group" id="deviceChips"></div>
+        </div>
+
+        <div class="section">
+          <p class="panel-title"><span data-i18n="ja">クイック状況</span><span data-i18n="en" hidden>Quick status</span></p>
+          <div class="mini-stack">
+            <div class="mini-stat"><span data-i18n="ja">公開モック項目</span><span data-i18n="en" hidden>Mock entries</span><strong id="statTotal">0</strong></div>
+            <div class="mini-stat"><span data-i18n="ja">比較トレイ</span><span data-i18n="en" hidden>Compare tray</span><strong id="statCompare">0</strong></div>
+            <div class="mini-stat"><span data-i18n="ja">お気に入り</span><span data-i18n="en" hidden>Favorites</span><strong id="statFav">0</strong></div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="panel catalog" aria-label="Pattern catalog">
+        <div class="catalog-head">
+          <div>
+            <h2><span data-i18n="ja">一覧</span><span data-i18n="en" hidden>Catalog</span></h2>
+            <div class="catalog-sub">
+              <span data-i18n="ja">カードではミニプレビューと要点だけを見せ、詳しい違い・AI依頼文・実装メモは右パネルに寄せています。</span>
+              <span data-i18n="en" hidden>Cards stay lightweight. Detailed differences, AI prompts, and implementation notes live in the detail panel.</span>
+            </div>
+          </div>
+          <button class="btn ghost" id="resetFiltersBtn">
+            <span data-i18n="ja">絞り込みを解除</span>
+            <span data-i18n="en" hidden>Reset filters</span>
+          </button>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-row">
+            <div class="count" id="resultCount"></div>
+            <button class="pill-btn active" data-view="grid">Grid</button>
+            <button class="pill-btn" data-view="list" disabled>List</button>
+            <button class="pill-btn" data-view="table" disabled>Compare view</button>
+          </div>
+          <div class="topic-scroller" id="topicChips"></div>
+        </div>
+
+        <div class="grid" id="grid"></div>
+      </section>
+
+      <aside class="panel detail" aria-label="Pattern detail">
+        <div class="detail-header">
+          <div class="detail-title-row">
+            <div>
+              <h3 id="detailTitle">Bottom Sheet</h3>
+              <div class="detail-sub" id="detailSub">bottom sheet · モバイル特化UI</div>
+            </div>
+            <button class="btn ghost" id="favoriteBtn">
+              <span data-i18n="ja">お気に入り</span>
+              <span data-i18n="en" hidden>Favorite</span>
+            </button>
+          </div>
+        </div>
+        <div class="detail-scroll">
+          <div class="detail-grid">
+            <div class="detail-card detail-preview" id="detailPreview"></div>
+
+            <div class="detail-card">
+              <h4><span data-i18n="ja">何に向いているか</span><span data-i18n="en" hidden>Best for</span></h4>
+              <ul id="detailBest"></ul>
+            </div>
+
+            <div class="detail-card">
+              <h4><span data-i18n="ja">向いていない場面</span><span data-i18n="en" hidden>Not for</span></h4>
+              <ul id="detailNot"></ul>
+            </div>
+
+            <div class="detail-card">
+              <h4><span data-i18n="ja">基本情報</span><span data-i18n="en" hidden>Core facts</span></h4>
+              <div class="info-list" id="detailFacts"></div>
+            </div>
+
+            <div class="detail-card">
+              <h4><span data-i18n="ja">似たUIとの違い</span><span data-i18n="en" hidden>Pattern differences</span></h4>
+              <table class="compare-table" id="detailCompareTable"></table>
+            </div>
+
+            <div class="detail-card">
+              <h4><span data-i18n="ja">AIにそのまま使える依頼文</span><span data-i18n="en" hidden>Ready-to-use AI prompt</span></h4>
+              <div class="prompt-box" id="detailPrompt"></div>
+              <div class="detail-footer-actions" style="margin-top:10px;">
+                <button class="btn soft" id="copyPromptBtn">
+                  <span data-i18n="ja">短文をコピー</span>
+                  <span data-i18n="en" hidden>Copy prompt</span>
+                </button>
+                <button class="btn" id="addCompareBtn">
+                  <span data-i18n="ja">比較に追加</span>
+                  <span data-i18n="en" hidden>Add to compare</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h4><span data-i18n="ja">実装メモ</span><span data-i18n="en" hidden>Implementation notes</span></h4>
+              <ul id="detailImplementation"></ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <section class="compare-tray" aria-label="Compare tray">
+      <div class="compare-head">
+        <div>
+          <h3><span data-i18n="ja">比較トレイ</span><span data-i18n="en" hidden>Compare tray</span></h3>
+          <div class="catalog-sub">
+            <span data-i18n="ja">無料モックでは2件まで比較追加。3件以上と保存は Pro 想定です。</span>
+            <span data-i18n="en" hidden>Free mock supports up to two items in compare. Three-plus and saved sets are Pro features.</span>
+          </div>
+        </div>
+        <button class="btn ghost" id="clearCompareBtn">
+          <span data-i18n="ja">比較を空にする</span>
+          <span data-i18n="en" hidden>Clear compare</span>
+        </button>
+      </div>
+      <div class="compare-body">
+        <div class="compare-empty" id="compareEmpty">
+          <span data-i18n="ja">まだ比較候補がありません。カードまたは詳細から2件まで追加してください。</span>
+          <span data-i18n="en" hidden>No compare items yet. Add up to two patterns from cards or the detail panel.</span>
+        </div>
+        <div class="compare-list" id="compareList"></div>
+      </div>
+    </section>
+
+    <section class="cta-pro" aria-label="Pro teaser">
+      <h3><span data-i18n="ja">UI Atlas Pro で解放すること</span><span data-i18n="en" hidden>What UI Atlas Pro unlocks</span></h3>
+      <p>
+        <span data-i18n="ja">仕様書どおり、このツールは知識そのものではなく作業効率に課金します。モックでは導線だけ見せ、保存・3件以上比較・詳細依頼文・実装の落とし穴一覧は Pro 扱いとして表現しています。</span>
+        <span data-i18n="en" hidden>As specified, the paid tier sells workflow speed rather than raw knowledge. This mock exposes the teaser and keeps saved sets, 3+ comparisons, full prompts, and deeper implementation notes as Pro.</span>
+      </p>
+      <div class="pro-grid">
+        <div class="pro-card">
+          <h4><span data-i18n="ja">無料でできること</span><span data-i18n="en" hidden>Included free</span></h4>
+          <ul>
+            <li><span data-i18n="ja">全項目の閲覧</span><span data-i18n="en" hidden>Browse all entries</span></li>
+            <li><span data-i18n="ja">曖昧検索とカテゴリ絞り込み</span><span data-i18n="en" hidden>Fuzzy search and filters</span></li>
+            <li><span data-i18n="ja">短文プロンプトのコピー</span><span data-i18n="en" hidden>Copy the short prompt</span></li>
+            <li><span data-i18n="ja">1対1比較</span><span data-i18n="en" hidden>1-to-1 compare</span></li>
+          </ul>
+        </div>
+        <div class="pro-card">
+          <h4><span data-i18n="ja">Proで強くする部分</span><span data-i18n="en" hidden>Pro upgrades</span></h4>
+          <ul>
+            <li><span data-i18n="ja">3〜4件比較と比較セット保存</span><span data-i18n="en" hidden>3–4 way compare and saved sets</span></li>
+            <li><span data-i18n="ja">用途別の詳細AI依頼文</span><span data-i18n="en" hidden>Prompt variants by context</span></li>
+            <li><span data-i18n="ja">実装の落とし穴一覧</span><span data-i18n="en" hidden>Implementation pitfalls</span></li>
+            <li><span data-i18n="ja">無制限のお気に入りと履歴</span><span data-i18n="en" hidden>Unlimited favorites and history</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h3>FAQ</h3>
+      <details class="faq-item" open>
+        <summary><span data-i18n="ja">このモックで確認できることは何ですか？</span><span data-i18n="en" hidden>What does this mock prove?</span></summary>
+        <p><span data-i18n="ja">一覧・検索・曖昧語サジェスト・詳細パネル・比較トレイ・お気に入り・JP/EN切替という、UI Atlas の主要挙動を1ファイルで確認できます。</span><span data-i18n="en" hidden>It demonstrates the main UI Atlas flows in one file: search, fuzzy suggestions, detail panel, compare tray, favorites, and JP/EN switching.</span></p>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="ja">なぜ右パネル方式にしているのですか？</span><span data-i18n="en" hidden>Why use a right-side detail panel?</span></summary>
+        <p><span data-i18n="ja">仕様書どおり、PCでは左フィルタ・中央一覧・右詳細の流れが比較と学習を同時に行いやすいためです。タブレット以下では全幅詳細に落ちます。</span><span data-i18n="en" hidden>The spec favors a left-filter / center-grid / right-detail layout on desktop because it supports browsing and understanding at the same time. On smaller screens it collapses into a full-width detail view.</span></p>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="ja">正式名称が分からなくても使えますか？</span><span data-i18n="en" hidden>Can I use it without knowing the exact term?</span></summary>
+        <p><span data-i18n="ja">使えます。検索データには別名と曖昧語を持たせてあり、「下から出る」「FAQみたいなやつ」のような言い方でも候補を返します。</span><span data-i18n="en" hidden>Yes. Search uses aliases and fuzzy phrases, so queries like “slides up from the bottom” or “FAQ-like thing” can still find a match.</span></p>
+      </details>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（ad-bottom / 準備中）</div>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text">
+        <span data-i18n="ja">このモックや Niche Works の辞典シリーズが役に立ちそうなら、開発継続のためのご支援をいただけると嬉しいです。</span>
+        <span data-i18n="en" hidden>If this mock or the Niche Works reference tools look useful, support helps keep the series maintained.</span>
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <p class="usage-link"><a href="./usage.html">使い方はこちら</a></p>
+
+    <footer class="nw-footer">
+      <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+      <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+      <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+    </footer>
+  </div>
+
+  <div class="toast-msg" id="toast"></div>
+
+  <script>
+    const patterns = [
+      {
+        id: 'hero',
+        nameJa: 'Hero',
+        nameEn: 'Hero',
+        aliases: ['ヒーロー', 'ファーストビュー', 'main visual'],
+        category: 'ページ構造',
+        purpose: '行動導線',
+        device: '両対応',
+        summaryJa: 'ページ冒頭で価値・見出し・CTAを最も強く見せる導入ブロック。',
+        summaryEn: 'A top-of-page section that combines value proposition, headline, and CTA.',
+        tags: ['高頻度', 'LP向き', '比較候補'],
+        fuzzy: ['最初の大きい見出し', '冒頭のメイン', 'トップの訴求', 'first view'],
+        bestJa: ['サービスの価値を数秒で伝えたい時', 'CTAを最初に見せたいLPや製品ページ', 'ブランドの第一印象をまとめて作りたい時'],
+        notJa: ['情報量が非常に多い一覧ページの冒頭', '説明を始める前に行動を迫りたくない文脈', '検索結果や設定画面のような作業中心ページ'],
+        facts: [
+          ['主な用途', '価値訴求 + 行動導線'],
+          ['モバイル相性', '高い。ただし縦の圧迫に注意'],
+          ['誤認されやすいUI', 'Feature section / Header'],
+          ['実装難易度', '低〜中']
+        ],
+        compare: [
+          ['Feature section', 'Feature は説明の塊。Hero は導入とCTAが主役。'],
+          ['Header', 'Header はナビが主。Hero は価値訴求が主。']
+        ],
+        promptJa: 'ページ冒頭に Hero セクションを配置してください。左側に強い見出しと短い補足文、右側に軽い視覚要素を置き、主CTAを最も目立たせてください。モバイルでは1カラムに落とし、CTAが最初のスクロール範囲で見えるようにしてください。',
+        implementationJa: ['見出し、補足文、主CTAの優先順位を明確化する', 'モバイルで高さを取りすぎない', '画像がなくても成立する構造を保つ'],
+        preview: 'hero'
+      },
+      {
+        id: 'modal',
+        nameJa: 'Modal',
+        nameEn: 'Modal',
+        aliases: ['モーダル', '確認ダイアログ', 'dialog'],
+        category: '補助UI',
+        purpose: '確認',
+        device: '両対応',
+        summaryJa: '画面中央に重ねて表示し、ユーザーの注意を強く集めるダイアログ。',
+        summaryEn: 'A centered overlay dialog that interrupts the flow to ask for attention or confirmation.',
+        tags: ['高頻度', '強制感あり', '比較候補'],
+        fuzzy: ['真ん中に出る確認画面', '重ねて出る', 'popup'],
+        bestJa: ['破壊的操作の最終確認', '重要な同意取得', '背景操作を止めて判断させたい時'],
+        notJa: ['軽い補助設定やモバイルの細かな操作', '長文入力が必要なフォーム', '連続で何度も出す通知'],
+        facts: [
+          ['主な用途', '重要確認 / 同意 / 中断'],
+          ['モバイル相性', '中。高さ不足に注意'],
+          ['誤認されやすいUI', 'Bottom Sheet / Toast'],
+          ['実装難易度', '中']
+        ],
+        compare: [
+          ['Bottom Sheet', 'Bottom Sheet は軽めでモバイル向き。Modal は強制力が高い。'],
+          ['Toast', 'Toast は通知のみ。Modal は判断や入力を伴う。']
+        ],
+        promptJa: '重要確認には中央モーダルを使ってください。背景スクロールを固定し、Esc キー・閉じるボタン・外側クリックの挙動を明示してください。破壊的操作では確認文と主ボタンをはっきり分けてください。',
+        implementationJa: ['focus trap を入れる', 'body scroll lock を行う', 'モバイルでは高さ超過時のスクロール処理に注意'],
+        preview: 'modal'
+      },
+      {
+        id: 'bottom-sheet',
+        nameJa: 'Bottom Sheet',
+        nameEn: 'Bottom Sheet',
+        aliases: ['ボトムシート', '下から出るUI', 'sheet'],
+        category: 'モバイル特化UI',
+        purpose: '入力補助',
+        device: 'モバイル向き',
+        summaryJa: '画面下からせり上がる補助パネル。軽い設定や補助操作に向く。',
+        summaryEn: 'A bottom-originating panel for lighter settings and mobile-friendly support actions.',
+        tags: ['モバイル向き', '比較候補', 'AI向き'],
+        fuzzy: ['下から出る', 'スマホの設定パネル', 'sheet', 'swipe up panel'],
+        bestJa: ['モバイルの補助設定', 'アクション選択を軽く見せたい時', '中央モーダルほど強く止めたくない時'],
+        notJa: ['破壊的確認の最終判断', '長く複雑なフォーム', 'PC専用の重い管理画面'],
+        facts: [
+          ['主な用途', '補助操作 / 軽い設定'],
+          ['モバイル相性', '非常に高い'],
+          ['誤認されやすいUI', 'Modal / Drawer'],
+          ['実装難易度', '中']
+        ],
+        compare: [
+          ['Modal', 'Modal より中断感が弱く、補助操作向き。'],
+          ['Drawer', 'Drawer は横方向。Bottom Sheet は下方向でモバイル向き。']
+        ],
+        promptJa: 'モバイルでは詳細設定を中央モーダルではなく Bottom Sheet で表示してください。背景スクロールは固定し、上端ドラッグまたは閉じるボタンで閉じられるようにしてください。高さは画面の 70〜85% 以内を目安にしてください。',
+        implementationJa: ['drag to close の有無を最初に決める', 'safe area inset を考慮する', 'focus trap と body scroll lock を忘れない'],
+        preview: 'sheet'
+      },
+      {
+        id: 'accordion',
+        nameJa: 'Accordion',
+        nameEn: 'Accordion',
+        aliases: ['アコーディオン', 'FAQ開閉', 'expandable panel'],
+        category: 'コンテンツ表示',
+        purpose: '情報整理',
+        device: '両対応',
+        summaryJa: '項目を縦に並べ、必要な部分だけ展開して読ませる開閉UI。',
+        summaryEn: 'A stacked disclosure pattern that reveals content one section at a time.',
+        tags: ['FAQ向き', '比較候補', '高頻度'],
+        fuzzy: ['FAQみたいなやつ', '押すと開く', 'folding content'],
+        bestJa: ['FAQやヘルプ項目の整理', '縦並びの補足情報', '限られた面積で詳細を畳みたい時'],
+        notJa: ['項目間を瞬時に切り替えたい比較UI', '全部を同時に見せる必要がある説明', '主要CTAの近くで複雑に使う場面'],
+        facts: [
+          ['主な用途', 'FAQ / 開閉説明'],
+          ['モバイル相性', '高い'],
+          ['誤認されやすいUI', 'Tabs / Disclosure'],
+          ['実装難易度', '低〜中']
+        ],
+        compare: [
+          ['Tabs', 'Tabs は並列切替。Accordion は縦方向の段階開示。'],
+          ['Drawer', 'Drawer は領域そのものを開く。Accordion は項目単位。']
+        ],
+        promptJa: 'FAQ セクションでは Accordion を使ってください。見出し行だけで要点が分かるようにし、開閉アイコンの回転や余白変化は控えめにしてください。モバイルでタップ領域を十分に確保してください。',
+        implementationJa: ['button 要素で見出し行を作る', 'aria-expanded と関連付けを行う', '開いた項目が多すぎると縦長化するので方針を決める'],
+        preview: 'accordion'
+      },
+      {
+        id: 'skeleton-loader',
+        nameJa: 'Skeleton Loader',
+        nameEn: 'Skeleton Loader',
+        aliases: ['スケルトンローダー', '灰色の骨みたいなやつ', 'skeleton'],
+        category: 'フィードバック/状態表示',
+        purpose: '状態表示',
+        device: '両対応',
+        summaryJa: '実際のレイアウトに近い仮の形を見せて、読み込み待ちを穏やかにするローディングUI。',
+        summaryEn: 'A loading placeholder that mirrors the future layout instead of showing a spinner only.',
+        tags: ['状態表示', '比較候補', '高頻度'],
+        fuzzy: ['灰色の骨', '読み込み中の仮表示', 'skeleton'],
+        bestJa: ['カードや記事一覧の読み込み中', 'レイアウトを先に伝えたい時', '待ち時間を短く感じさせたい時'],
+        notJa: ['待ち時間が極端に短い場面', '何が来るか全く分からない非構造データ', '本文すべてを長く疑似表示するケース'],
+        facts: [
+          ['主な用途', '読み込み中のプレースホルダ'],
+          ['モバイル相性', '高い'],
+          ['誤認されやすいUI', 'Spinner / Progress bar'],
+          ['実装難易度', '低']
+        ],
+        compare: [
+          ['Spinner', 'Spinner は抽象的。Skeleton は最終構造を予告できる。'],
+          ['Progress bar', 'Progress bar は進捗表示向き。Skeleton は形の予告向き。']
+        ],
+        promptJa: '一覧データの読み込み中には Spinner だけでなく Skeleton Loader を使ってください。最終レイアウトに近い比率でプレースホルダを配置し、shimmer は控えめにしてください。',
+        implementationJa: ['実際のレイアウト比率に寄せる', '待ち時間が長すぎる場合はメッセージも併用する', '強いアニメーションにしすぎない'],
+        preview: 'skeleton'
+      },
+      {
+        id: 'toast',
+        nameJa: 'Toast',
+        nameEn: 'Toast',
+        aliases: ['トースト', '一時通知', 'toast message'],
+        category: 'フィードバック/状態表示',
+        purpose: '状態表示',
+        device: '両対応',
+        summaryJa: '操作結果を一時的に知らせる軽い通知。入力や閲覧を止めずに済む。',
+        summaryEn: 'A lightweight temporary notification that doesn’t block the user’s workflow.',
+        tags: ['状態表示', '比較候補', '軽量'],
+        fuzzy: ['消える通知', '右上に出るメッセージ', 'snackbar'],
+        bestJa: ['保存成功や軽いエラー通知', '中断せずに伝えたいフィードバック', 'Undo の入口を短く出す場面'],
+        notJa: ['重要な確認や選択が必要な場面', '長文説明', '連続で大量に出る通知'],
+        facts: [
+          ['主な用途', '軽い成功 / エラー / Undo'],
+          ['モバイル相性', '高い'],
+          ['誤認されやすいUI', 'Alert banner / Modal'],
+          ['実装難易度', '低']
+        ],
+        compare: [
+          ['Alert banner', 'Banner は画面に残る。Toast は短時間で消える。'],
+          ['Modal', 'Toast は確認を強制しない。Modal は判断を止める。']
+        ],
+        promptJa: '保存や軽い完了通知には Toast を使ってください。画面右上または下端に短時間表示し、主作業を止めないようにしてください。重要操作では自動で消えない補助導線を別途用意してください。',
+        implementationJa: ['自動消滅時間は短すぎず長すぎず設計する', 'キーボードフォーカスを奪わない', '成功 / エラーで色だけに頼らない'],
+        preview: 'toast'
+      },
+      {
+        id: 'segmented-control',
+        nameJa: 'Segmented Control',
+        nameEn: 'Segmented Control',
+        aliases: ['セグメント', 'segmented control', '切替ピル'],
+        category: 'ナビゲーション',
+        purpose: '選択切替',
+        device: 'モバイル向き',
+        summaryJa: '少数の選択肢を横並びで切り替える、軽量な選択UI。',
+        summaryEn: 'A compact horizontal control for switching between a small set of options.',
+        tags: ['モバイル向き', '比較候補', '選択UI'],
+        fuzzy: ['タブみたいなやつ', 'ピル切り替え', 'segmented'],
+        bestJa: ['2〜4個程度の切替', 'フィルタや表示モード変更', 'モバイルで軽く切り替えたい時'],
+        notJa: ['選択肢が多いナビゲーション', '長いラベル', '階層や説明が必要な導線'],
+        facts: [
+          ['主な用途', '少数選択の切替'],
+          ['モバイル相性', '非常に高い'],
+          ['誤認されやすいUI', 'Tabs / Radio Button'],
+          ['実装難易度', '低']
+        ],
+        compare: [
+          ['Tabs', 'Tabs はコンテンツ領域の切替を前提にしやすい。'],
+          ['Radio Button', 'Segmented は見た目が凝縮され、即時切替向き。']
+        ],
+        promptJa: '2〜3個の表示切替には Segmented Control を使ってください。各ラベルは短くし、選択中の状態が色だけでなく背景や位置でも分かるようにしてください。',
+        implementationJa: ['ラベルは短く保つ', '横幅不足時の折返しを避ける', 'キーボード操作と aria-selected を整える'],
+        preview: 'segmented'
+      }
+    ];
+
+    const labels = {
+      categories: ['すべて', 'ページ構造', 'ナビゲーション', 'コンテンツ表示', 'フィードバック/状態表示', 'モバイル特化UI', '補助UI'],
+      purposes: ['すべて', '行動導線', '確認', '入力補助', '情報整理', '状態表示', '選択切替'],
+      devices: ['すべて', '両対応', 'モバイル向き'],
+      topics: [
+        { ja: '確認を出したい', en: 'Need confirmation', query: '確認' },
+        { ja: 'FAQを整理したい', en: 'Organize FAQ', query: 'FAQ' },
+        { ja: '下から出るUIを探す', en: 'Find a bottom-entering UI', query: '下から出る' },
+        { ja: '読み込み中を見せたい', en: 'Show loading state', query: '読み込み中' },
+        { ja: 'スマホの切替UIがほしい', en: 'Need a mobile toggle UI', query: 'タブみたいなやつ' }
+      ]
+    };
+
+    const state = {
+      lang: 'ja',
+      search: '',
+      category: 'すべて',
+      purpose: 'すべて',
+      device: 'すべて',
+      selectedId: 'bottom-sheet',
+      compare: [],
+      favorites: new Set(),
+      suggestOpen: false
+    };
+
+    const el = {
+      searchInput: document.getElementById('searchInput'),
+      suggestions: document.getElementById('suggestions'),
+      categoryChips: document.getElementById('categoryChips'),
+      purposeChips: document.getElementById('purposeChips'),
+      deviceChips: document.getElementById('deviceChips'),
+      topicChips: document.getElementById('topicChips'),
+      grid: document.getElementById('grid'),
+      resultCount: document.getElementById('resultCount'),
+      statTotal: document.getElementById('statTotal'),
+      statCompare: document.getElementById('statCompare'),
+      statFav: document.getElementById('statFav'),
+      detailTitle: document.getElementById('detailTitle'),
+      detailSub: document.getElementById('detailSub'),
+      detailPreview: document.getElementById('detailPreview'),
+      detailBest: document.getElementById('detailBest'),
+      detailNot: document.getElementById('detailNot'),
+      detailFacts: document.getElementById('detailFacts'),
+      detailCompareTable: document.getElementById('detailCompareTable'),
+      detailPrompt: document.getElementById('detailPrompt'),
+      detailImplementation: document.getElementById('detailImplementation'),
+      copyPromptBtn: document.getElementById('copyPromptBtn'),
+      addCompareBtn: document.getElementById('addCompareBtn'),
+      favoriteBtn: document.getElementById('favoriteBtn'),
+      compareList: document.getElementById('compareList'),
+      compareEmpty: document.getElementById('compareEmpty'),
+      clearCompareBtn: document.getElementById('clearCompareBtn'),
+      resetFiltersBtn: document.getElementById('resetFiltersBtn'),
+      toast: document.getElementById('toast')
+    };
+
+    const browserLang = (navigator.language || '').toLowerCase();
+    state.lang = browserLang.startsWith('ja') ? 'ja' : 'en';
+
+    function t(ja, en) { return state.lang === 'ja' ? ja : en; }
+
+    function showToast(message) {
+      el.toast.textContent = message;
+      el.toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => el.toast.classList.remove('show'), 1700);
+    }
+
+    function buildChips(container, items, key) {
+      container.innerHTML = '';
+      items.forEach((item) => {
+        const btn = document.createElement('button');
+        btn.className = 'chip' + (state[key] === item ? ' active' : '');
+        btn.type = 'button';
+        btn.textContent = item;
+        btn.addEventListener('click', () => {
+          state[key] = item;
+          render();
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    function buildTopics() {
+      el.topicChips.innerHTML = '';
+      labels.topics.forEach((topic) => {
+        const btn = document.createElement('button');
+        btn.className = 'topic-chip';
+        btn.type = 'button';
+        btn.textContent = state.lang === 'ja' ? topic.ja : topic.en;
+        btn.addEventListener('click', () => {
+          state.search = topic.query;
+          el.searchInput.value = topic.query;
+          closeSuggestions();
+          render();
+        });
+        el.topicChips.appendChild(btn);
+      });
+    }
+
+    function searchableText(item) {
+      return [item.nameJa, item.nameEn, ...(item.aliases || []), item.category, item.purpose, item.device, item.summaryJa, item.summaryEn, ...(item.fuzzy || [])].join(' ').toLowerCase();
+    }
+
+    function getFiltered() {
+      const q = state.search.trim().toLowerCase();
+      return patterns.filter((item) => {
+        const matchesSearch = !q || searchableText(item).includes(q);
+        const matchesCategory = state.category === 'すべて' || item.category === state.category;
+        const matchesPurpose = state.purpose === 'すべて' || item.purpose === state.purpose;
+        const matchesDevice = state.device === 'すべて' || item.device === state.device;
+        return matchesSearch && matchesCategory && matchesPurpose && matchesDevice;
+      });
+    }
+
+    function getSuggestions(q) {
+      if (!q.trim()) return [];
+      const query = q.toLowerCase();
+      return patterns
+        .map((item) => {
+          const hay = searchableText(item);
+          let score = 0;
+          if (item.nameJa.toLowerCase().includes(query) || item.nameEn.toLowerCase().includes(query)) score += 5;
+          if ((item.aliases || []).some(a => a.toLowerCase().includes(query))) score += 4;
+          if ((item.fuzzy || []).some(a => a.toLowerCase().includes(query))) score += 3;
+          if (hay.includes(query)) score += 1;
+          return { item, score };
+        })
+        .filter(x => x.score > 0)
+        .sort((a,b) => b.score - a.score)
+        .slice(0,5)
+        .map(x => x.item);
+    }
+
+    function renderSuggestions() {
+      const q = el.searchInput.value;
+      const list = getSuggestions(q);
+      el.suggestions.innerHTML = '';
+      if (!q.trim() || !list.length) {
+        closeSuggestions();
+        return;
+      }
+      list.forEach((item) => {
+        const row = document.createElement('button');
+        row.type = 'button';
+        row.className = 'suggestion-item';
+        row.setAttribute('role','option');
+        row.innerHTML = `<span>${state.lang === 'ja' ? item.nameJa : item.nameEn}<div class="suggestion-sub">${item.category} · ${item.purpose}</div></span><span class="suggestion-sub">${item.aliases[0] || ''}</span>`;
+        row.addEventListener('click', () => {
+          state.search = state.lang === 'ja' ? item.nameJa : item.nameEn;
+          el.searchInput.value = state.search;
+          state.selectedId = item.id;
+          closeSuggestions();
+          render();
+        });
+        el.suggestions.appendChild(row);
+      });
+      el.suggestions.classList.add('open');
+      state.suggestOpen = true;
+    }
+
+    function closeSuggestions() {
+      el.suggestions.classList.remove('open');
+      state.suggestOpen = false;
+    }
+
+    function previewMarkup(type) {
+      if (type === 'hero') {
+        return `<div class="preview hero-preview"><span class="label">Hero</span><div class="hero-line-1"></div><div class="hero-line-2"></div><div class="hero-buttons"><div class="hero-btn-primary"></div><div class="hero-btn-secondary"></div></div></div>`;
+      }
+      if (type === 'modal') {
+        return `<div class="preview modal-preview"><div class="backdrop"></div><div class="dialog"><div class="line dark w60"></div><div class="line w80"></div><div class="line w60"></div><div class="dialog-actions"><div class="tiny-btn"></div><div class="tiny-btn primary"></div></div></div></div>`;
+      }
+      if (type === 'sheet') {
+        return `<div class="preview sheet-preview"><div class="sheet"><div class="grabber"></div><div class="line dark w60"></div><div class="line w80"></div><div class="line w60"></div><div class="dialog-actions"><div class="tiny-btn"></div><div class="tiny-btn primary"></div></div></div></div>`;
+      }
+      if (type === 'accordion') {
+        return `<div class="preview accordion-preview"><div class="accordion-row"><div class="accordion-title"><span>Shipping & returns</span><span>＋</span></div></div><div class="accordion-row"><div class="accordion-title"><span>Pricing details</span><span>－</span></div><div class="line w80"></div><div class="line w60"></div></div><div class="accordion-row"><div class="accordion-title"><span>Billing FAQs</span><span>＋</span></div></div></div>`;
+      }
+      if (type === 'skeleton') {
+        return `<div class="preview skeleton-preview"><div class="skeleton-card"><div class="sk-bar w90"></div><div class="sk-bar w70"></div><div class="sk-bar w40"></div></div><div class="skeleton-card"><div class="sk-bar w70"></div><div class="sk-bar w90"></div></div></div>`;
+      }
+      if (type === 'toast') {
+        return `<div class="preview toast-preview"><div class="toast"><div class="line dark w60"></div><div class="line w80"></div></div></div>`;
+      }
+      if (type === 'segmented') {
+        return `<div class="preview segmented-preview"><div class="segmented-shell"><div class="seg-pill active">Daily</div><div class="seg-pill">Weekly</div><div class="seg-pill">Monthly</div></div></div>`;
+      }
+      return `<div class="preview"><span class="label">Preview</span></div>`;
+    }
+
+    function toggleFavorite(id) {
+      if (state.favorites.has(id)) {
+        state.favorites.delete(id);
+        showToast(t('お気に入りから外しました', 'Removed from favorites'));
+      } else {
+        if (state.favorites.size >= 5) {
+          showToast(t('無料モックではお気に入りは5件までです', 'Free mock supports up to 5 favorites'));
+          return;
+        }
+        state.favorites.add(id);
+        showToast(t('お気に入りに追加しました', 'Added to favorites'));
+      }
+      render();
+    }
+
+    function toggleCompare(id) {
+      if (state.compare.includes(id)) {
+        state.compare = state.compare.filter(x => x !== id);
+        showToast(t('比較トレイから外しました', 'Removed from compare tray'));
+      } else {
+        if (state.compare.length >= 2) {
+          showToast(t('無料モックでは比較は2件までです', 'Free mock supports up to 2 compare items'));
+          return;
+        }
+        state.compare.push(id);
+        showToast(t('比較トレイに追加しました', 'Added to compare tray'));
+      }
+      render();
+    }
+
+    function renderGrid() {
+      const items = getFiltered();
+      el.grid.innerHTML = '';
+      el.resultCount.textContent = t(`${items.length} 件表示`, `${items.length} results`);
+
+      if (!items.length) {
+        const empty = document.createElement('div');
+        empty.className = 'detail-card';
+        empty.style.gridColumn = '1 / -1';
+        empty.innerHTML = `
+          <h4>${t('結果がありません', 'No results')}</h4>
+          <p>${t('近い候補として「Bottom Sheet」「Accordion」「Skeleton Loader」などを試してください。', 'Try nearby patterns such as Bottom Sheet, Accordion, or Skeleton Loader.')}</p>
+        `;
+        el.grid.appendChild(empty);
+        return;
+      }
+
+      items.forEach((item) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">${state.lang === 'ja' ? item.nameJa : item.nameEn}</h3>
+              <p class="card-sub">${item.nameEn} · ${item.category}</p>
+            </div>
+            <div class="card-tags">
+              <span class="tag accent">${item.device}</span>
+            </div>
+          </div>
+          ${previewMarkup(item.preview)}
+          <div class="card-tags">
+            ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+          <p class="card-copy">${state.lang === 'ja' ? item.summaryJa : item.summaryEn}</p>
+          <div class="card-actions">
+            <button class="btn primary" data-open="${item.id}">${t('詳細を見る', 'Open detail')}</button>
+            <button class="btn ghost" data-compare="${item.id}">${state.compare.includes(item.id) ? t('比較から外す', 'Remove compare') : t('比較に追加', 'Add compare')}</button>
+            <button class="btn ghost" data-copy="${item.id}">${t('短文コピー', 'Copy prompt')}</button>
+          </div>
+        `;
+        el.grid.appendChild(card);
+      });
+
+      el.grid.querySelectorAll('[data-open]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.selectedId = btn.dataset.open;
+          renderDetail();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+      el.grid.querySelectorAll('[data-compare]').forEach((btn) => {
+        btn.addEventListener('click', () => toggleCompare(btn.dataset.compare));
+      });
+      el.grid.querySelectorAll('[data-copy]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const item = patterns.find(x => x.id === btn.dataset.copy);
+          await navigator.clipboard.writeText(item.promptJa);
+          showToast(t('短文プロンプトをコピーしました', 'Prompt copied'));
+        });
+      });
+    }
+
+    function renderDetail() {
+      const item = patterns.find(x => x.id === state.selectedId) || patterns[0];
+      el.detailTitle.textContent = state.lang === 'ja' ? item.nameJa : item.nameEn;
+      el.detailSub.textContent = `${item.nameEn} · ${item.category}`;
+      el.detailPreview.innerHTML = previewMarkup(item.preview);
+      el.detailBest.innerHTML = item.bestJa.map(text => `<li>${text}</li>`).join('');
+      el.detailNot.innerHTML = item.notJa.map(text => `<li>${text}</li>`).join('');
+      el.detailFacts.innerHTML = item.facts.map(([label, value]) => `<div class="info-row"><span>${label}</span><strong>${value}</strong></div>`).join('');
+      el.detailCompareTable.innerHTML = item.compare.map(([label, value], idx) => `<tr>${idx === 0 ? `<th>${t('比較対象', 'Compared with')}</th>` : '<th></th>'}<td><strong>${label}</strong><br>${value}</td></tr>`).join('');
+      el.detailPrompt.textContent = item.promptJa;
+      el.detailImplementation.innerHTML = item.implementationJa.map(text => `<li>${text}</li>`).join('');
+      el.favoriteBtn.textContent = state.favorites.has(item.id)
+        ? t('お気に入り済み', 'Favorited')
+        : t('お気に入り', 'Favorite');
+      el.addCompareBtn.textContent = state.compare.includes(item.id)
+        ? t('比較から外す', 'Remove compare')
+        : t('比較に追加', 'Add compare');
+
+      el.copyPromptBtn.onclick = async () => {
+        await navigator.clipboard.writeText(item.promptJa);
+        showToast(t('短文プロンプトをコピーしました', 'Prompt copied'));
+      };
+      el.addCompareBtn.onclick = () => toggleCompare(item.id);
+      el.favoriteBtn.onclick = () => toggleFavorite(item.id);
+    }
+
+    function renderCompare() {
+      el.compareList.innerHTML = '';
+      el.compareEmpty.style.display = state.compare.length ? 'none' : 'block';
+
+      state.compare.forEach((id) => {
+        const item = patterns.find(x => x.id === id);
+        const div = document.createElement('div');
+        div.className = 'compare-item';
+        div.innerHTML = `
+          <div class="compare-item-top">
+            <div>
+              <strong>${state.lang === 'ja' ? item.nameJa : item.nameEn}</strong>
+              <div class="compare-meta"><span class="tag accent">${item.category}</span><span class="tag">${item.purpose}</span><span class="tag">${item.device}</span></div>
+            </div>
+            <button class="btn ghost" data-remove-compare="${item.id}">${t('外す', 'Remove')}</button>
+          </div>
+          <div class="compare-grid">
+            <div class="compare-cell"><strong>${t('向いている場面', 'Best for')}</strong>${item.bestJa[0]}</div>
+            <div class="compare-cell"><strong>${t('向いていない場面', 'Not for')}</strong>${item.notJa[0]}</div>
+            <div class="compare-cell"><strong>${t('誤認されやすいUI', 'Often confused with')}</strong>${item.facts.find(f => f[0] === '誤認されやすいUI')[1]}</div>
+            <div class="compare-cell"><strong>${t('実装難易度', 'Implementation')}</strong>${item.facts.find(f => f[0] === '実装難易度')[1]}</div>
+          </div>
+        `;
+        el.compareList.appendChild(div);
+      });
+
+      el.compareList.querySelectorAll('[data-remove-compare]').forEach((btn) => {
+        btn.addEventListener('click', () => toggleCompare(btn.dataset.removeCompare));
+      });
+    }
+
+    function applyLang(lang) {
+      state.lang = lang;
+      const nodes = document.querySelectorAll('[data-i18n]');
+      nodes.forEach((node) => {
+        node.hidden = node.dataset.i18n !== lang;
+      });
+      document.querySelectorAll('.nw-lang-switch button').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      render();
+    }
+
+    function renderStats() {
+      el.statTotal.textContent = String(patterns.length);
+      el.statCompare.textContent = String(state.compare.length);
+      el.statFav.textContent = String(state.favorites.size);
+    }
+
+    function render() {
+      buildChips(el.categoryChips, labels.categories, 'category');
+      buildChips(el.purposeChips, labels.purposes, 'purpose');
+      buildChips(el.deviceChips, labels.devices, 'device');
+      buildTopics();
+      renderGrid();
+      renderDetail();
+      renderCompare();
+      renderStats();
+    }
+
+    el.searchInput.addEventListener('input', (e) => {
+      state.search = e.target.value;
+      renderSuggestions();
+      renderGrid();
+    });
+    el.searchInput.addEventListener('focus', renderSuggestions);
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-wrap')) closeSuggestions();
+    });
+
+    document.querySelectorAll('.nw-lang-switch button').forEach((btn) => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    el.clearCompareBtn.addEventListener('click', () => {
+      state.compare = [];
+      render();
+      showToast(t('比較トレイを空にしました', 'Compare tray cleared'));
+    });
+
+    el.resetFiltersBtn.addEventListener('click', () => {
+      state.search = '';
+      state.category = 'すべて';
+      state.purpose = 'すべて';
+      state.device = 'すべて';
+      el.searchInput.value = '';
+      closeSuggestions();
+      render();
+    });
+
+    applyLang(state.lang);
+  </script>
+</body>
+</html>
