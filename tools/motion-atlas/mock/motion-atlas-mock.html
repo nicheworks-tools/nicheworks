@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion Atlas Mock | Niche Works</title>
+  <meta name="description" content="Niche Works Motion Atlas mock — 目的から選べてAIにも頼めるアニメーション一覧のHTMLモック">
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --panel: #ffffff;
+      --line: #e5e7eb;
+      --line-strong: #cfd6e1;
+      --text: #111827;
+      --muted: #6b7280;
+      --soft: #f3f4f6;
+      --chip: #eef2ff;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --violet: #6d28d9;
+      --violet-soft: #ede9fe;
+      --success: #0f766e;
+      --success-soft: #ccfbf1;
+      --warn: #92400e;
+      --warn-soft: #fef3c7;
+      --rose: #be185d;
+      --rose-soft: #fce7f3;
+      --shadow: 0 10px 28px rgba(17,24,39,.06);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1380px;
+      --left: 300px;
+      --right: 400px;
+      --content: minmax(0, 1fr);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
+    body { line-height: 1.55; }
+    button, input, select { font: inherit; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .page { max-width: var(--max); margin: 0 auto; padding: 18px 16px 48px; }
+    .nw-lang-switch { text-align: center; margin: 6px 0 10px; font-size: 11px; color: var(--muted); }
+    .nw-lang-switch button { border: none; background: transparent; padding: 0 2px; cursor: pointer; font-size: 11px; color: #4b5563; }
+    .nw-lang-switch button.active { font-weight: 700; text-decoration: underline; }
+
+    .hero {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 18px 20px 16px; box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted);
+      background: #fafafa; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px;
+    }
+    h1 { margin: 14px 0 8px; font-size: clamp(28px, 4vw, 40px); line-height: 1.08; }
+    .hero-copy { max-width: 900px; color: #374151; font-size: 15px; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .hero-points .pill {
+      padding: 8px 11px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); font-size: 12px; color: #374151;
+    }
+
+    .ad-slot {
+      margin: 18px 0 16px; min-height: 94px; border-radius: var(--radius); border: 1px dashed var(--line-strong);
+      background: linear-gradient(180deg,#ffffff,#fafafa); display: grid; place-items: center; color: var(--muted); font-size: 14px; text-align: center;
+    }
+
+    .quick-explain {
+      margin: 12px 0 20px; padding: 14px 16px; border-radius: var(--radius); background: #fcfcfb; border: 1px solid var(--line); color: #374151; font-size: 14px;
+    }
+
+    .dashboard { display: grid; grid-template-columns: var(--left) var(--content) var(--right); gap: 16px; align-items: start; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
+    .panel .section { padding: 16px; border-top: 1px solid var(--line); }
+    .panel .section:first-child { border-top: none; }
+    .panel-title { margin: 0 0 10px; font-size: 13px; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); }
+
+    .filters { position: sticky; top: 14px; overflow: hidden; }
+    .search-wrap { position: relative; }
+    .search-wrap input { width: 100%; border: 1px solid var(--line-strong); border-radius: 14px; padding: 12px 14px; background: #fff; }
+    .suggestions {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 40; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; display: none;
+    }
+    .suggestions.open { display: block; }
+    .suggestion-item { display: flex; justify-content: space-between; gap: 8px; padding: 11px 12px; cursor: pointer; border-top: 1px solid var(--line); font-size: 14px; }
+    .suggestion-item:first-child { border-top: none; }
+    .suggestion-item:hover { background: var(--soft); }
+    .suggestion-sub { color: var(--muted); font-size: 12px; }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip, .topic-chip, .view-chip, .prompt-tab, .play-tab {
+      padding: 8px 10px; border: 1px solid var(--line); background: #fff; border-radius: 999px; cursor: pointer; color: #374151; font-size: 12px;
+    }
+    .chip.active, .topic-chip.active, .view-chip.active, .prompt-tab.active, .play-tab.active { background: var(--accent-soft); border-color: #93c5fd; color: #1d4ed8; }
+
+    .mini-stack { display: grid; gap: 8px; }
+    .mini-stat {
+      display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; font-size: 13px; background: #fff;
+    }
+    .mini-stat strong { font-size: 16px; }
+
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .toggle {
+      position: relative; width: 48px; height: 28px; border-radius: 999px; background: #d1d5db; cursor: pointer; flex: 0 0 auto;
+      transition: background .2s ease;
+    }
+    .toggle::after {
+      content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 999px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.15); transition: transform .2s ease;
+    }
+    .toggle.active { background: var(--accent); }
+    .toggle.active::after { transform: translateX(20px); }
+
+    .catalog { min-width: 0; }
+    .catalog-head { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; padding: 16px 18px 8px; }
+    .catalog-head h2 { margin: 0 0 6px; font-size: 24px; }
+    .catalog-sub { color: var(--muted); font-size: 14px; max-width: 720px; }
+    .toolbar { padding: 0 18px 14px; display: grid; gap: 10px; }
+    .toolbar-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .toolbar-row .count { color: var(--muted); font-size: 13px; margin-right: auto; }
+    .topic-scroller { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; padding: 0 18px 18px; }
+    .card { border: 1px solid var(--line); border-radius: 18px; background: #fff; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+    .card-head { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
+    .card-title { margin: 0; font-size: 17px; }
+    .card-sub { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 11px; color: #374151; background: var(--soft); border: 1px solid var(--line); padding: 4px 8px; border-radius: 999px; }
+    .tag.accent { background: var(--accent-soft); border-color: #bfdbfe; color: #1d4ed8; }
+    .tag.violet { background: var(--violet-soft); border-color: #c4b5fd; color: var(--violet); }
+    .tag.success { background: var(--success-soft); border-color: #99f6e4; color: var(--success); }
+    .tag.warn { background: var(--warn-soft); border-color: #fcd34d; color: var(--warn); }
+    .tag.rose { background: var(--rose-soft); border-color: #f9a8d4; color: var(--rose); }
+
+    .demo-card {
+      min-height: 136px; border-radius: 16px; background: linear-gradient(180deg,#fbfbfb,#f3f4f6); border: 1px solid var(--line); padding: 16px; position: relative; overflow: hidden; display: grid; place-items: center;
+    }
+    .demo-card[data-bg="dark"] { background: linear-gradient(180deg,#0f172a,#1e293b); }
+    .demo-label { position: absolute; top: 10px; right: 10px; color: var(--muted); font-size: 11px; }
+    .demo-card[data-bg="dark"] .demo-label { color: rgba(255,255,255,.7); }
+
+    .anim-surface { position: relative; width: 100%; min-height: 86px; display: grid; place-items: center; }
+    .motion-target {
+      display: inline-flex; align-items: center; justify-content: center; min-width: 110px; min-height: 42px; padding: 10px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--line);
+      color: #111827; font-size: 14px; font-weight: 600; box-shadow: 0 4px 18px rgba(17,24,39,.05);
+      animation-duration: calc(var(--dur, 1100ms) * var(--speed, 1));
+      animation-timing-function: var(--ease, cubic-bezier(.22,1,.36,1));
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+      animation-direction: normal;
+      animation-play-state: var(--play, running);
+      transform-origin: center center;
+      will-change: transform, opacity, filter;
+    }
+    .anim-surface.dark .motion-target { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); color: #fff; box-shadow: none; }
+    .motion-target.text-slab { min-width: 180px; min-height: 36px; border-radius: 12px; font-weight: 700; }
+    .motion-target.button-slab { min-width: 140px; min-height: 44px; border-radius: 999px; background: var(--accent); border-color: var(--accent); color: #fff; }
+    .motion-target.card-slab { min-width: 180px; min-height: 88px; border-radius: 18px; background: #fff; align-items: start; padding-top: 16px; }
+    .anim-surface.dark .motion-target.button-slab { background: #60a5fa; border-color: #60a5fa; color: #0f172a; }
+
+    .card-copy { margin: 0; color: #374151; font-size: 14px; }
+    .micro-box { border: 1px solid var(--line); border-radius: 12px; padding: 10px 11px; background: #fff; font-size: 12px; color: #374151; }
+    .micro-box strong { display: block; margin-bottom: 4px; }
+    .card-actions, .inline-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn { border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; background: #fff; cursor: pointer; color: #111827; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.soft { background: var(--soft); }
+
+    .detail { position: sticky; top: 14px; overflow: hidden; }
+    .detail-head { padding: 16px 16px 10px; display: grid; gap: 8px; border-bottom: 1px solid var(--line); }
+    .detail-head h3 { margin: 0; font-size: 26px; line-height: 1.08; }
+    .detail-sub { color: var(--muted); font-size: 13px; }
+    .detail-summary { border: 1px solid var(--line); border-radius: 16px; background: #fcfcfd; padding: 14px; }
+    .detail-summary h4 { margin: 0 0 6px; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .02em; }
+    .detail-summary p { margin: 0; font-size: 14px; color: #374151; }
+    .fact-grid { display: grid; gap: 8px; }
+    .fact-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; font-size: 13px; }
+    .fact-row strong { text-align: right; }
+    .columns-2 { display: grid; gap: 10px; }
+    .good-bad { border-radius: 14px; padding: 12px; border: 1px solid var(--line); background: #fff; }
+    .good-bad.bad { background: #fffaf3; border-color: #fde68a; }
+    .good-bad.good { background: #f4fff7; border-color: #bbf7d0; }
+    .good-bad h4 { margin: 0 0 8px; font-size: 13px; }
+    .good-bad ul { margin: 0; padding-left: 18px; color: #374151; font-size: 13px; }
+
+    .detail-demo {
+      margin: 0; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg,#fbfbfb,#f3f4f6); padding: 16px; min-height: 160px; display: grid; gap: 12px;
+    }
+    .detail-demo[data-bg="dark"] { background: linear-gradient(180deg,#0f172a,#111827); }
+    .detail-demo[data-bg="dark"] .play-row span { color: rgba(255,255,255,.8); }
+    .play-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .play-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .demo-stage { min-height: 96px; display: grid; place-items: center; }
+
+    .prompt-modes { display: flex; flex-wrap: wrap; gap: 8px; }
+    .prompt-box { margin-top: 10px; border-radius: 16px; border: 1px solid var(--line); background: #0f172a; color: #f8fafc; padding: 14px; font-size: 13px; }
+    .code-box { margin-top: 10px; border-radius: 16px; border: 1px solid var(--line); background: #111827; color: #e5e7eb; padding: 14px; font-size: 12px; overflow: auto; }
+
+    .compare-panel { margin-top: 18px; }
+    .compare-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 18px 8px; }
+    .compare-head h3 { margin: 0; font-size: 20px; }
+    .compare-sub { color: var(--muted); font-size: 13px; }
+    .compare-list { display: grid; gap: 12px; padding: 0 18px 18px; }
+    .compare-item { border: 1px solid var(--line); border-radius: 18px; background: #fff; padding: 14px; }
+    .compare-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-top: 12px; }
+    .compare-cell { border: 1px solid var(--line); border-radius: 14px; padding: 10px; font-size: 12px; background: #fcfcfd; }
+    .compare-demo { min-height: 78px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; background: linear-gradient(180deg,#fafafa,#f3f4f6); }
+
+    .faq, .donate { margin-top: 18px; }
+    .faq details {
+      border: 1px solid var(--line); border-radius: 16px; padding: 13px 14px; background: #fff; margin-bottom: 10px;
+    }
+    .faq summary { cursor: pointer; font-weight: 600; }
+    .faq p { color: #374151; font-size: 14px; }
+
+    .donate-box {
+      border: 1px solid var(--line); border-radius: 20px; background: #fff; padding: 18px; display: grid; gap: 12px;
+    }
+    .donate-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .donate-actions a {
+      display: inline-flex; align-items: center; justify-content: center; min-width: 132px; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); color: #111827; background: #fff; text-decoration: none;
+    }
+    .donate-actions a:hover { background: var(--soft); }
+
+    .foot-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; font-size: 14px; }
+    .footer {
+      text-align: center; color: var(--muted); font-size: 12px; padding: 20px 0 10px;
+    }
+    .toast {
+      position: fixed; right: 16px; bottom: 16px; z-index: 60; background: #111827; color: #fff; padding: 10px 12px; border-radius: 12px; box-shadow: var(--shadow); opacity: 0; transform: translateY(12px); pointer-events: none; transition: .22s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    body.reduce-motion .motion-target { animation-duration: 1ms !important; animation-iteration-count: 1 !important; animation-play-state: paused !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+
+    @keyframes fadeUp {
+      0%, 18% { opacity: 0; transform: translateY(18px); }
+      34%, 70% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-2px); }
+    }
+    @keyframes slideUp {
+      0%, 16% { opacity: .2; transform: translateY(36px); }
+      32%, 70% { opacity: 1; transform: translateY(0); }
+      100% { opacity: .25; transform: translateY(-4px); }
+    }
+    @keyframes typePulse {
+      0%, 18% { clip-path: inset(0 100% 0 0); opacity: 1; }
+      52%, 74% { clip-path: inset(0 0 0 0); opacity: 1; }
+      100% { clip-path: inset(0 0 0 0); opacity: 1; }
+    }
+    @keyframes hoverLift {
+      0%, 24%, 100% { transform: translateY(0); box-shadow: 0 4px 18px rgba(17,24,39,.05); }
+      52% { transform: translateY(-8px); box-shadow: 0 18px 32px rgba(17,24,39,.12); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(37,99,235,0); }
+      50% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(37,99,235,.08); }
+    }
+    @keyframes underlineReveal {
+      0%, 15% { background-size: 0% 2px; }
+      48%, 70% { background-size: 100% 2px; }
+      100% { background-size: 100% 2px; }
+    }
+    @keyframes sheetRise {
+      0%, 18% { opacity: 0; transform: translateY(38px); }
+      36%, 74% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(10px); }
+    }
+    @keyframes skeletonShimmer {
+      0% { background-position: -180px 0; }
+      100% { background-position: 180px 0; }
+    }
+    @keyframes revealMask {
+      0%, 16% { clip-path: inset(0 100% 0 0); opacity: 1; }
+      46%, 70% { clip-path: inset(0 0 0 0); opacity: 1; }
+      100% { clip-path: inset(0 0 0 0); opacity: 1; }
+    }
+
+    .motion-target.anim-fade-up { animation-name: fadeUp; }
+    .motion-target.anim-slide-up { animation-name: slideUp; }
+    .motion-target.anim-typewriter { animation-name: typePulse; white-space: nowrap; overflow: hidden; }
+    .motion-target.anim-hover-lift { animation-name: hoverLift; }
+    .motion-target.anim-cta-pulse { animation-name: pulseGlow; }
+    .motion-target.anim-underline-reveal {
+      animation-name: none; background-image: linear-gradient(currentColor,currentColor); background-repeat: no-repeat; background-position: left bottom; background-size: 0% 2px;
+      animation: underlineReveal calc(var(--dur, 1100ms) * var(--speed, 1)) var(--ease, cubic-bezier(.22,1,.36,1)) infinite both;
+      animation-play-state: var(--play, running);
+    }
+    .motion-target.anim-sheet-rise { animation-name: sheetRise; }
+    .motion-target.anim-skeleton {
+      animation-name: none; min-width: 188px; min-height: 82px; border-radius: 18px;
+      background: linear-gradient(90deg,#eceff3 0%, #f8fafc 30%, #e6e9ee 60%, #eceff3 100%);
+      background-size: 300px 100%; animation: skeletonShimmer calc(1.15s * var(--speed, 1)) linear infinite;
+      animation-play-state: var(--play, running); color: transparent; border-color: #edf0f4;
+    }
+    .motion-target.anim-mask-reveal { animation-name: revealMask; }
+
+    @media (max-width: 1180px) {
+      .dashboard { grid-template-columns: 280px minmax(0,1fr); }
+      .detail { grid-column: 1 / -1; position: static; }
+    }
+    @media (max-width: 820px) {
+      .dashboard { grid-template-columns: 1fr; }
+      .filters, .detail { position: static; }
+      .grid { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .page { padding: 14px 12px 40px; }
+      .hero, .panel { border-radius: 20px; }
+      .catalog-head { display: grid; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="nw-lang-switch" aria-label="language switch">
+      <button class="active" type="button" id="lang-ja">JP</button>
+      <span>/</span>
+      <button type="button" id="lang-en">EN</button>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow" data-i18n="eyebrow">Niche Works mock / Motion Atlas</div>
+      <h1 data-i18n="heroTitle">目的から選べて、AIにも正確に頼めるアニメーション一覧。</h1>
+      <p class="hero-copy" data-i18n="heroCopy">テキスト・CTA・カード・ローディング・UI遷移に使う動きを、見本・向き不向き・派手さ・軽さ・reduce motion配慮・AI依頼文まで一体で見るためのHTMLモックです。</p>
+      <div class="hero-points">
+        <div class="pill" data-i18n="heroPill1">目的から探せる</div>
+        <div class="pill" data-i18n="heroPill2">強さと軽さが分かる</div>
+        <div class="pill" data-i18n="heroPill3">reduce motion を確認できる</div>
+        <div class="pill" data-i18n="heroPill4">AI依頼文をコピーできる</div>
+      </div>
+    </header>
+
+    <div class="ad-slot ad-top">広告枠（準備中） / ad-top</div>
+
+    <section class="quick-explain" data-i18n="quickExplain">
+      見るだけで終わらず、「何に使うか」「どこでやりすぎるか」「AIにどう頼むか」まで同じ画面で判断できる構成です。無料は閲覧と基本比較、有料は詳細比較・設定調整・保存を想定しています。
+    </section>
+
+    <main class="dashboard" aria-label="motion atlas mock">
+      <aside class="panel filters" aria-label="filters">
+        <div class="section">
+          <p class="panel-title" data-i18n="findMotions">Find motions</p>
+          <div class="search-wrap">
+            <input id="searchInput" type="search" placeholder="下からふわっと / 控えめ / CTAを目立たせたい" aria-label="search motions">
+            <div id="suggestions" class="suggestions" role="listbox" aria-label="suggestions"></div>
+          </div>
+        </div>
+        <div class="section">
+          <p class="panel-title" data-i18n="purposeLabel">Purpose</p>
+          <div class="chip-row" id="purposeChips"></div>
+        </div>
+        <div class="section">
+          <p class="panel-title" data-i18n="strengthLabel">Intensity</p>
+          <div class="chip-row" id="intensityChips"></div>
+        </div>
+        <div class="section">
+          <p class="panel-title" data-i18n="surfaceLabel">Trigger & fit</p>
+          <div class="chip-row" id="surfaceChips"></div>
+        </div>
+        <div class="section">
+          <p class="panel-title" data-i18n="controlsLabel">Playback controls</p>
+          <div class="mini-stack">
+            <div class="mini-stat"><span data-i18n="speedStat">Playback speed</span><strong id="speedReadout">1.0×</strong></div>
+            <div class="chip-row" id="speedChips"></div>
+            <div class="toggle-row">
+              <span data-i18n="reduceMotionLabel">Reduce motion</span>
+              <button class="toggle" id="reduceMotionToggle" aria-pressed="false" aria-label="toggle reduced motion"></button>
+            </div>
+            <div class="mini-stat"><span data-i18n="compareStat">Compare tray</span><strong id="compareCount">0 / 4</strong></div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="panel catalog" aria-label="catalog">
+        <div class="catalog-head">
+          <div>
+            <h2 data-i18n="catalogTitle">Motion catalog</h2>
+            <div class="catalog-sub" data-i18n="catalogSub">用途・強さ・軽さ・モバイル向き・a11y配慮で絞りながら、動きの違いを比較できます。</div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <div class="toolbar-row">
+            <div class="count" id="resultCount">8 motions</div>
+            <button class="view-chip active" type="button" data-view="grid" data-i18n="viewGrid">Grid</button>
+            <button class="view-chip" type="button" data-view="list" data-i18n="viewList">List</button>
+          </div>
+          <div class="topic-scroller" id="problemTopics"></div>
+        </div>
+        <div class="grid" id="motionGrid"></div>
+      </section>
+
+      <aside class="panel detail" aria-label="detail panel">
+        <div class="detail-head">
+          <div class="card-tags" id="detailTags"></div>
+          <div>
+            <h3 id="detailName">Fade Up</h3>
+            <div class="detail-sub" id="detailSub">fade-up / subtle entrance / text intro</div>
+          </div>
+          <div class="detail-summary">
+            <h4 data-i18n="summaryLabel">Summary</h4>
+            <p id="detailSummary"></p>
+          </div>
+        </div>
+        <div class="section">
+          <p class="panel-title" data-i18n="mainDemoLabel">Main demo</p>
+          <div class="detail-demo" id="detailDemo" data-bg="light">
+            <div class="play-row">
+              <span data-i18n="demoControls">Replay / speed / background</span>
+              <div class="play-tabs" id="playTabs"></div>
+            </div>
+            <div class="demo-stage" id="detailStage"></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="fact-grid" id="factGrid"></div>
+        </div>
+        <div class="section columns-2" id="goodBadGrid"></div>
+        <div class="section">
+          <p class="panel-title" data-i18n="promptLabel">AI prompt</p>
+          <div class="prompt-modes" id="promptModes"></div>
+          <div class="prompt-box" id="promptBox"></div>
+          <div class="inline-actions" style="margin-top:10px;">
+            <button class="btn primary" id="copyPromptBtn" type="button" data-i18n="copyPrompt">基本依頼文をコピー</button>
+            <button class="btn soft" id="copyCodeBtn" type="button" data-i18n="copyCode">簡易コードをコピー</button>
+          </div>
+          <pre class="code-box" id="codeBox"></pre>
+        </div>
+        <div class="section">
+          <p class="panel-title" data-i18n="implementationLabel">Implementation notes</p>
+          <div class="micro-box" id="implementationBox"></div>
+        </div>
+      </aside>
+    </main>
+
+    <section class="panel compare-panel" aria-label="compare tray">
+      <div class="compare-head">
+        <div>
+          <h3 data-i18n="compareTitle">Compare tray</h3>
+          <div class="compare-sub" data-i18n="compareSub">無料は2件比較まで。3〜4件比較や保存はPro想定の導線です。</div>
+        </div>
+        <button class="btn soft" id="clearCompareBtn" type="button" data-i18n="clearCompare">比較をクリア</button>
+      </div>
+      <div class="compare-list" id="compareList"></div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中） / ad-bottom</div>
+
+    <section class="faq">
+      <div class="panel">
+        <div class="section">
+          <p class="panel-title">FAQ</p>
+          <details>
+            <summary data-i18n="faq1q">なぜ「向いていない場面」も表示するのですか？</summary>
+            <p data-i18n="faq1a">動きは追加するだけではなく、やりすぎや誤用を避ける判断が重要だからです。Motion Atlas は演出ギャラリーではなく、選定支援ツールとして設計しています。</p>
+          </details>
+          <details>
+            <summary data-i18n="faq2q">reduce motion は何に使いますか？</summary>
+            <p data-i18n="faq2a">動きに敏感なユーザーや、スマホでの負荷・不快感を減らしたい場合に、動きを弱める代替案を確認するために使います。</p>
+          </details>
+          <details>
+            <summary data-i18n="faq3q">このモックで有料部分はどこですか？</summary>
+            <p data-i18n="faq3a">複数比較、保存、詳細パラメータ調整、用途別の依頼文展開、reduce motion 代替の深掘り、複数コード出力を有料想定にしています。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="donate">
+      <div class="donate-box">
+        <div>
+          <strong data-i18n="donateTitle">Niche Works を支援する</strong>
+          <p style="margin:8px 0 0;color:#374151;font-size:14px;" data-i18n="donateCopy">このモックは Niche Works の辞典系ツール群の検証用です。役に立った場合は OFUSE または Ko-fi から支援できます。</p>
+        </div>
+        <div class="donate-actions">
+          <a href="#" aria-disabled="true">OFUSE</a>
+          <a href="#" aria-disabled="true">Ko-fi</a>
+        </div>
+        <div class="foot-links">
+          <a href="/mnt/data/motion-atlas-usage.html" data-i18n="usageLink">使い方 / Usage</a>
+          <a href="#" data-i18n="proLink">Motion Atlas Pro</a>
+          <a href="#" data-i18n="aboutLink">About Niche Works</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© Niche Works — Small Web Tools for Boring Tasks</div>
+      <div data-i18n="footerLine">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Copied</div>
+
+  <script>
+    const i18n = {
+      ja: {
+        eyebrow: 'Niche Works mock / Motion Atlas',
+        heroTitle: '目的から選べて、AIにも正確に頼めるアニメーション一覧。',
+        heroCopy: 'テキスト・CTA・カード・ローディング・UI遷移に使う動きを、見本・向き不向き・派手さ・軽さ・reduce motion配慮・AI依頼文まで一体で見るためのHTMLモックです。',
+        heroPill1: '目的から探せる', heroPill2: '強さと軽さが分かる', heroPill3: 'reduce motion を確認できる', heroPill4: 'AI依頼文をコピーできる',
+        quickExplain: '見るだけで終わらず、「何に使うか」「どこでやりすぎるか」「AIにどう頼むか」まで同じ画面で判断できる構成です。無料は閲覧と基本比較、有料は詳細比較・設定調整・保存を想定しています。',
+        findMotions: '動きを探す', purposeLabel: '用途', strengthLabel: '強さ', surfaceLabel: '発火条件 / 適性', controlsLabel: '再生コントロール',
+        speedStat: '再生速度', reduceMotionLabel: 'Reduce motion', compareStat: '比較トレイ',
+        catalogTitle: 'Motion catalog', catalogSub: '用途・強さ・軽さ・モバイル向き・a11y配慮で絞りながら、動きの違いを比較できます。',
+        viewGrid: 'Grid', viewList: 'List', summaryLabel: '概要', mainDemoLabel: 'メインデモ', demoControls: 'Replay / speed / background',
+        promptLabel: 'AI依頼文', copyPrompt: '基本依頼文をコピー', copyCode: '簡易コードをコピー', implementationLabel: '実装メモ',
+        compareTitle: 'Compare tray', compareSub: '無料は2件比較まで。3〜4件比較や保存はPro想定の導線です。', clearCompare: '比較をクリア',
+        faq1q: 'なぜ「向いていない場面」も表示するのですか？', faq1a: '動きは追加するだけではなく、やりすぎや誤用を避ける判断が重要だからです。Motion Atlas は演出ギャラリーではなく、選定支援ツールとして設計しています。',
+        faq2q: 'reduce motion は何に使いますか？', faq2a: '動きに敏感なユーザーや、スマホでの負荷・不快感を減らしたい場合に、動きを弱める代替案を確認するために使います。',
+        faq3q: 'このモックで有料部分はどこですか？', faq3a: '複数比較、保存、詳細パラメータ調整、用途別の依頼文展開、reduce motion 代替の深掘り、複数コード出力を有料想定にしています。',
+        donateTitle: 'Niche Works を支援する', donateCopy: 'このモックは Niche Works の辞典系ツール群の検証用です。役に立った場合は OFUSE または Ko-fi から支援できます。',
+        usageLink: '使い方 / Usage', proLink: 'Motion Atlas Pro', aboutLink: 'About Niche Works', footerLine: '当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。'
+      },
+      en: {
+        eyebrow: 'Niche Works mock / Motion Atlas',
+        heroTitle: 'An animation catalog you can choose by purpose — and prompt AI with precision.',
+        heroCopy: 'A working HTML mock for browsing text, CTA, card, loading, and UI transition motions with demos, best / bad fit, intensity, weight, reduced-motion notes, and AI-ready prompts.',
+        heroPill1: 'Browse by purpose', heroPill2: 'See intensity & weight', heroPill3: 'Test reduced motion', heroPill4: 'Copy AI prompts',
+        quickExplain: 'This is not just a showcase. It is structured so you can judge where a motion fits, where it fails, and how to request it from AI. Free covers browsing and basic compare; Pro is framed around deeper compare, tuning, and saving.',
+        findMotions: 'Find motions', purposeLabel: 'Purpose', strengthLabel: 'Intensity', surfaceLabel: 'Trigger & fit', controlsLabel: 'Playback controls',
+        speedStat: 'Playback speed', reduceMotionLabel: 'Reduce motion', compareStat: 'Compare tray',
+        catalogTitle: 'Motion catalog', catalogSub: 'Filter by purpose, intensity, weight, mobile fit, and accessibility to compare motion choices side by side.',
+        viewGrid: 'Grid', viewList: 'List', summaryLabel: 'Summary', mainDemoLabel: 'Main demo', demoControls: 'Replay / speed / background',
+        promptLabel: 'AI prompt', copyPrompt: 'Copy base prompt', copyCode: 'Copy starter code', implementationLabel: 'Implementation notes',
+        compareTitle: 'Compare tray', compareSub: 'Free supports up to 2 items. 3–4 way compare and save are framed as Pro features.', clearCompare: 'Clear compare',
+        faq1q: 'Why do you show “bad fit” as well?', faq1a: 'Because motion selection is mostly about avoiding misuse. Motion Atlas is designed as a selection tool, not a pure showcase gallery.',
+        faq2q: 'What is reduced motion for?', faq2a: 'It helps you inspect calmer alternatives for users sensitive to motion, and reduce discomfort or device load on mobile.',
+        faq3q: 'Which parts are framed as paid?', faq3a: 'Multi-compare, saved sets, deeper parameter tuning, richer prompt variants, reduced-motion alternatives, and multiple code outputs.',
+        donateTitle: 'Support Niche Works', donateCopy: 'This mock is part of the Niche Works reference-tool series. If it is useful, support via OFUSE or Ko-fi.',
+        usageLink: 'Usage', proLink: 'Motion Atlas Pro', aboutLink: 'About Niche Works', footerLine: 'This site may contain ads. Accuracy is not guaranteed. Always verify with official sources.'
+      }
+    };
+
+    const motions = [
+      {
+        id: 'fade-up', nameJa: 'Fade Up', nameEn: 'Fade Up', alias: 'fade-up / subtle entrance',
+        category: 'text', purpose: 'headline', intensity: 'subtle', fit: ['load','mobile','a11y'],
+        weight: 'light', mobile: 'good', a11y: 'low', surface: 'text', bg: 'light', anim: 'anim-fade-up',
+        summaryJa: '無難で使いやすい導入アニメーション。見出しや短い説明文に向きます。',
+        summaryEn: 'A safe entrance motion that works well for headlines and short copy.',
+        shortJa: '下から短く現れて、静かに存在感を足す。', shortEn: 'Short upward entrance with quiet presence.',
+        bestJa: ['ヒーロー見出し','セクションタイトル','短い説明文'],
+        badJa: ['長文本文全体','大量カードの同時再生','強い演出が必要な見せ場'],
+        bestEn: ['hero headlines','section titles','short intro copy'],
+        badEn: ['long body text','many cards at once','high-drama hero moments'],
+        facts: {trigger: 'load / scroll', cost: 'very light', mobile: 'good', alt: 'opacity only'},
+        prompt: {
+          basic: '見出しを下から12〜18pxだけ移動しながらフェードインしてください。動きは控えめで、durationは500〜700ms、easingは自然なイーズアウトにしてください。',
+          lp: 'LPのヒーロー見出しに、控えめな fade-up を付けてください。情報理解を邪魔しないよう、距離は短く、1回だけ再生してください。',
+          ui: 'セクションタイトルに subtle fade-up を入れてください。派手な演出にはせず、opacity と translateY のみで構成してください。',
+          mobile: 'スマホでは移動量を小さくし、フェード主体の控えめな fade-up にしてください。動きで酔いやすくならないよう 12px 前後に抑えてください。',
+          reduced: 'reduce motion 時は移動をなくし、opacity のみの短いフェードに置き換えてください。'
+        },
+        code: '.headline { animation: fadeUp 560ms cubic-bezier(.22,1,.36,1) both; }\n@keyframes fadeUp {\n  from { opacity: 0; transform: translateY(16px); }\n  to   { opacity: 1; transform: translateY(0); }\n}',
+        implJa: 'transform + opacity 中心で軽い。スクロール連動で大量要素に同時適用すると単調になりやすいので、タイトルなど要所に限定するのが安全です。',
+        implEn: 'Built from transform + opacity, so it stays light. Best when limited to key titles rather than many simultaneous items.'
+      },
+      {
+        id: 'slide-up', nameJa: 'Slide Up', nameEn: 'Slide Up', alias: 'slide-up / stronger entrance',
+        category: 'content', purpose: 'section', intensity: 'medium', fit: ['load','scroll'], weight: 'light', mobile: 'okay', a11y: 'medium', surface: 'card', bg: 'light', anim: 'anim-slide-up',
+        summaryJa: 'Fade Up より移動感が強く、セクションやカードの登場に向く動きです。', summaryEn: 'More directional than Fade Up, suited to cards and section entrances.',
+        shortJa: '移動感を少し見せたい時の導入。', shortEn: 'An entrance with more visible motion.',
+        bestJa: ['カード導入','特徴セクション','分割レイアウトの登場'], badJa: ['モバイルの密集画面','本文の段落','常時再表示される要素'],
+        bestEn: ['card entrances','feature sections','split layouts'], badEn: ['dense mobile screens','body paragraphs','frequently rerendered items'],
+        facts: {trigger: 'load / scroll', cost: 'light', mobile: 'okay', alt: 'fade-up'},
+        prompt: {
+          basic: 'カードやセクションを下から少しスライドさせて表示してください。Fade Up より移動感は強めですが、うるさくならない程度にしてください。',
+          lp: '特徴セクションの各ブロックを順番に slide-up で出してください。視線を下に流したいので、stagger は軽く付けてください。',
+          ui: 'コンテンツブロックの導入に slide-up を使ってください。移動量は20〜28px、overshoot は不要です。',
+          mobile: 'スマホでは移動量を控えめにして、fade-up に近い軽さで見せてください。',
+          reduced: 'reduce motion 時は移動をなくすか、ごく短い 8px 程度の移動に抑えてください。'
+        },
+        code: '.card { animation: slideUp 620ms cubic-bezier(.22,1,.36,1) both; }\n@keyframes slideUp {\n  from { opacity: 0; transform: translateY(26px); }\n  to   { opacity: 1; transform: translateY(0); }\n}',
+        implJa: '滑る距離を大きくしすぎると LP でも急に古く見えます。スマホでは 16〜20px 程度に抑えるのが無難です。', implEn: 'Large travel distance quickly feels dated. Keep it closer to 16–20px on mobile.'
+      },
+      {
+        id: 'typewriter', nameJa: 'Typewriter', nameEn: 'Typewriter', alias: 'typing / character reveal',
+        category: 'text', purpose: 'hero', intensity: 'medium', fit: ['load','hero'], weight: 'medium', mobile: 'okay', a11y: 'medium', surface: 'text', bg: 'dark', anim: 'anim-typewriter',
+        summaryJa: '文字が打たれていく印象を出す見せ場向け演出。短い見出し専用で使うのが安全です。', summaryEn: 'A hero-style typing reveal. Best reserved for short display copy.',
+        shortJa: '短い見出しを見せたい時の演出系アニメ。', shortEn: 'Display-oriented text reveal for short copy.',
+        bestJa: ['短いヒーローコピー','製品名の見せ場','強い第一印象'], badJa: ['長文本文','FAQ本文','高速で切り替わるUI'],
+        bestEn: ['short hero copy','product name reveals','high-focus intros'], badEn: ['long body text','FAQ body content','fast changing UI'],
+        facts: {trigger: 'load', cost: 'medium', mobile: 'okay', alt: 'word stagger'},
+        prompt: {
+          basic: '短い見出しをタイプライター風に表示してください。本文ではなく、短いテキストに限定してください。',
+          lp: 'ヒーロー見出しだけにタイプライター風の reveal を付けてください。コピーが読み終わるまで 1.4秒以内に完了してください。',
+          ui: 'UI本体には使わず、ヒーローやキービジュアルの一部だけにタイプライター演出を使ってください。',
+          mobile: 'スマホでは文字数を短くし、再生時間を長引かせないでください。待ち時間の印象を与えないことを優先してください。',
+          reduced: 'reduce motion 時はタイプライター演出をやめて、全文を即表示するか短いフェードにしてください。'
+        },
+        code: '.hero-copy { overflow: hidden; white-space: nowrap; animation: typeReveal 1.2s steps(20,end) both; }\n@keyframes typeReveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }',
+        implJa: '本文全体に使うと読みにくく、待たされる印象が出ます。見せ場専用に限定し、reduce motion 代替を必ず用意します。', implEn: 'Using it on body text hurts readability. Reserve it for display moments and always provide a reduced-motion fallback.'
+      },
+      {
+        id: 'hover-lift', nameJa: 'Hover Lift', nameEn: 'Hover Lift', alias: 'card lift / hover rise',
+        category: 'hover', purpose: 'card', intensity: 'subtle', fit: ['hover','desktop'], weight: 'light', mobile: 'limited', a11y: 'low', surface: 'card', bg: 'light', anim: 'anim-hover-lift',
+        summaryJa: 'カードが少し浮くようなフィードバック。商品カードや機能一覧の反応付けに向きます。', summaryEn: 'A subtle lift feedback for cards and grids.',
+        shortJa: 'カードが少し浮いて触れる感を出す。', shortEn: 'A soft card-rise hover response.',
+        bestJa: ['商品カード','機能一覧','一覧画面の反応'], badJa: ['常時自動再生','密なモバイル一覧','重要警告UI'],
+        bestEn: ['product cards','feature grids','browse-heavy lists'], badEn: ['always-on autoplay','dense mobile lists','critical alerts'],
+        facts: {trigger: 'hover', cost: 'very light', mobile: 'limited', alt: 'shadow deepen'},
+        prompt: {
+          basic: 'カードに hover 時だけ少し浮くフィードバックを付けてください。移動量は4〜8px程度、影の変化は控えめにしてください。',
+          lp: '機能一覧カードに hover lift を付けて、押せそう・見られそうな感覚を少し足してください。',
+          ui: 'hover 時に translateY と shadow を少しだけ強めてください。押し込みではなく閲覧誘導のトーンでお願いします。',
+          mobile: 'スマホでは hover 前提にせず、必要なら press feedback に置き換えてください。',
+          reduced: 'reduce motion 時は移動をなくし、影の変化だけで反応を示してください。'
+        },
+        code: '.card:hover { transform: translateY(-6px); box-shadow: 0 18px 28px rgba(17,24,39,.12); transition: .18s ease; }',
+        implJa: 'hover 前提なのでスマホでは効きません。タッチ端末では押下時の軽い影変化など別の反応に置き換えるのが安全です。', implEn: 'Since it is hover-based, it does not translate to touch devices. Use press feedback on mobile.'
+      },
+      {
+        id: 'cta-pulse', nameJa: 'CTA Pulse', nameEn: 'CTA Pulse', alias: 'button pulse / CTA emphasis',
+        category: 'cta', purpose: 'cta', intensity: 'medium', fit: ['loop','cta'], weight: 'medium', mobile: 'okay', a11y: 'medium', surface: 'button', bg: 'light', anim: 'anim-cta-pulse',
+        summaryJa: 'CTAに軽い存在感を足すループ演出。常時強すぎる脈動にしないことが重要です。', summaryEn: 'A looping CTA emphasis motion. Works only when kept subtle.',
+        shortJa: '目立たせたいボタン向けの軽い脈動。', shortEn: 'Soft pulsing emphasis for CTA buttons.',
+        bestJa: ['単一の主CTA','LPの下固定CTA','待機状態が長いボタン'], badJa: ['複数CTAの同時脈動','フォーム送信中','警告や危険操作'],
+        bestEn: ['single primary CTA','sticky CTA','long-idle primary button'], badEn: ['multiple pulsing CTAs','during form submission','danger actions'],
+        facts: {trigger: 'loop', cost: 'medium', mobile: 'okay', alt: 'arrow nudge'},
+        prompt: {
+          basic: '主CTAボタンにごく控えめな pulse を付けてください。常時強く脈打たせず、存在感を少し足す程度にしてください。',
+          lp: 'LPの主要CTAだけに subtle pulse を使ってください。二次CTAには適用しないでください。',
+          ui: '押せる感覚を少し足したいので、scale は 1.02〜1.04 程度に抑えた pulse にしてください。',
+          mobile: 'スマホでは pulse を弱め、ループ間隔を長くしてください。目障りにならないことを優先してください。',
+          reduced: 'reduce motion 時は pulse をやめ、色や影の静的強調に置き換えてください。'
+        },
+        code: '.cta { animation: pulse 2.2s ease-in-out infinite; }\n@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }',
+        implJa: '複数ボタンに同時適用すると広告っぽく見えやすいです。主CTA1つに限定し、ループ間隔を長めに取るのが安全です。', implEn: 'Applying it to multiple buttons feels spammy. Restrict it to a single primary CTA with a long loop interval.'
+      },
+      {
+        id: 'underline-reveal', nameJa: 'Underline Reveal', nameEn: 'Underline Reveal', alias: 'underline sweep / text accent',
+        category: 'text', purpose: 'highlight', intensity: 'subtle', fit: ['load','hover','headline'], weight: 'light', mobile: 'good', a11y: 'low', surface: 'text', bg: 'light', anim: 'anim-underline-reveal',
+        summaryJa: '文字下に線が伸びて強調する軽量アニメ。高級感寄りにもカジュアル寄りにも振れます。', summaryEn: 'A lightweight underline motion for elegant or casual emphasis.',
+        shortJa: '線を伸ばして静かに強調する。', shortEn: 'A clean underline-based emphasis motion.',
+        bestJa: ['見出しの一部強調','ナビゲーション反応','テキストCTA'], badJa: ['大量見出しの同時再生','太い装飾色だらけの画面','長文本文'],
+        bestEn: ['headline emphasis','nav feedback','text CTAs'], badEn: ['many simultaneous titles','already busy color systems','long body text'],
+        facts: {trigger: 'load / hover', cost: 'very light', mobile: 'good', alt: 'accent sweep'},
+        prompt: {
+          basic: '文字の下線が左から右へ伸びるような控えめな underline reveal を付けてください。',
+          lp: 'ヒーロー見出しのキーワードだけを underline reveal で静かに強調してください。',
+          ui: 'タブやテキストリンクに、強すぎない underline reveal を使ってください。',
+          mobile: 'スマホでも視認性を保てるよう、線は太くしすぎず、時間も短めにしてください。',
+          reduced: 'reduce motion 時は線を静的に表示するだけにしてください。'
+        },
+        code: '.accent { background-image: linear-gradient(currentColor,currentColor); background-position: left bottom; background-repeat: no-repeat; background-size: 0% 2px; animation: underline 680ms ease both; }',
+        implJa: 'transformを使わないので軽いですが、既に装飾が多いUIでは目立ちすぎる場合があります。見出しの一部だけに絞ると上品に見えます。', implEn: 'It is light, but can feel noisy on already decorated interfaces. Restrict it to a single phrase for a cleaner effect.'
+      },
+      {
+        id: 'bottom-sheet-rise', nameJa: 'Bottom Sheet Rise', nameEn: 'Bottom Sheet Rise', alias: 'sheet rise / mobile transition',
+        category: 'transition', purpose: 'sheet', intensity: 'medium', fit: ['ui','mobile'], weight: 'light', mobile: 'good', a11y: 'medium', surface: 'sheet', bg: 'dark', anim: 'anim-sheet-rise',
+        summaryJa: 'モバイルで下からシートが現れる標準的な遷移。移動量と背景処理が重要です。', summaryEn: 'A standard mobile bottom-sheet entrance. Distance and backdrop handling matter.',
+        shortJa: 'モバイル向けの下から出る遷移。', shortEn: 'A bottom-up mobile sheet transition.',
+        bestJa: ['モバイル補助操作','フィルタシート','軽い確認'], badJa: ['破壊的確認の主役','巨大フォーム','背景スクロール放置'],
+        bestEn: ['mobile secondary actions','filter sheets','light confirmations'], badEn: ['destructive confirmations','huge forms','unlocked background scroll'],
+        facts: {trigger: 'click / open', cost: 'light', mobile: 'good', alt: 'modal fade'},
+        prompt: {
+          basic: 'モバイル向けに、ボトムシートが下から自然に上がってくる遷移を付けてください。背景には薄いオーバーレイを入れてください。',
+          lp: 'LPの詳細説明ではなく、アプリ風の補助操作としてボトムシート遷移を使ってください。',
+          ui: 'シートは下から 24〜40px 程度の短い移動で表示し、body scroll lock と backdrop を付けてください。',
+          mobile: 'スマホ前提なので、フルスクリーン寄りにせず、ドラッグで閉じる余地を残してください。',
+          reduced: 'reduce motion 時は移動距離を極小にし、フェード中心の表示に置き換えてください。'
+        },
+        code: '.sheet { transform: translateY(100%); transition: transform 280ms cubic-bezier(.22,1,.36,1); }\n.sheet.open { transform: translateY(0); }',
+        implJa: '視覚的には軽いですが、実装では body scroll lock、focus、backdrop、閉じ方をセットで考える必要があります。', implEn: 'The visual motion is light, but the implementation must also handle scroll lock, focus, backdrop, and dismissal.'
+      },
+      {
+        id: 'skeleton-shimmer', nameJa: 'Skeleton Shimmer', nameEn: 'Skeleton Shimmer', alias: 'skeleton shimmer / loading',
+        category: 'loading', purpose: 'loading', intensity: 'subtle', fit: ['loop','loading'], weight: 'light', mobile: 'good', a11y: 'low', surface: 'card', bg: 'light', anim: 'anim-skeleton',
+        summaryJa: '読み込み中UIの定番。派手ではないが、速度感と待機感のバランス調整が大切です。', summaryEn: 'A standard loading placeholder. Balanced pacing matters more than style.',
+        shortJa: '待機中の退屈さを減らす定番ローディング。', shortEn: 'A standard loading placeholder motion.',
+        bestJa: ['カード一覧の読み込み','詳細パネル待機','データ表示UI'], badJa: ['短すぎる待機','実データとの形が違いすぎる場面','常時残るUI'],
+        bestEn: ['card list loading','detail panel wait states','data-heavy UI'], badEn: ['very short waits','mismatched final shapes','permanent placeholders'],
+        facts: {trigger: 'loop while loading', cost: 'light', mobile: 'good', alt: 'spinner minimal'},
+        prompt: {
+          basic: '読み込み中はスケルトンUIに軽い shimmer を付けてください。派手な演出ではなく、待機中であることが伝わる程度にしてください。',
+          lp: 'LPよりもデータUI向けなので、カードや表の読み込み中に使ってください。',
+          ui: '最終レイアウトに近い形のスケルトンを用意し、shimmer は控えめな速度にしてください。',
+          mobile: 'スマホでは shimmer の速度を上げすぎず、明滅感を出さないようにしてください。',
+          reduced: 'reduce motion 時は shimmer をやめて、静的なスケルトンだけ表示してください。'
+        },
+        code: '.skeleton { background: linear-gradient(90deg,#eceff3 0%,#f8fafc 30%,#e6e9ee 60%,#eceff3 100%); background-size: 280px 100%; animation: shimmer 1.1s linear infinite; }',
+        implJa: 'ローディングが短いのに shimmer を見せると逆に遅く感じることがあります。データ取得時間との相性を見て採用します。', implEn: 'If loading is too short, shimmer can make the UI feel slower. Use it only when wait time warrants it.'
+      },
+      {
+        id: 'mask-reveal', nameJa: 'Mask Reveal', nameEn: 'Mask Reveal', alias: 'mask reveal / premium intro',
+        category: 'text', purpose: 'hero', intensity: 'strong', fit: ['hero','load'], weight: 'medium', mobile: 'okay', a11y: 'medium', surface: 'text', bg: 'dark', anim: 'anim-mask-reveal',
+        summaryJa: 'マスクで隠れた文字や要素が現れる見せ場向け演出。高級感は出しやすいが、使いどころを絞る必要があります。', summaryEn: 'A premium reveal with stronger staging. Good for hero moments, not for regular UI.',
+        shortJa: '見せ場専用の少し強いリビール。', shortEn: 'A stronger hero-style reveal motion.',
+        bestJa: ['ブランドの見せ場','ヒーローの短文コピー','限定的な導入演出'], badJa: ['フォームUI','通常の本文','何度も再生する領域'],
+        bestEn: ['brand hero moments','short display copy','single-use intros'], badEn: ['form UI','normal body text','repeated content areas'],
+        facts: {trigger: 'load', cost: 'medium', mobile: 'okay', alt: 'underline reveal'},
+        prompt: {
+          basic: 'マスクで隠れていた文字が現れる reveal を付けてください。高級感は欲しいですが、過剰に演出しすぎないでください。',
+          lp: 'ヒーロー見出しだけに premium な mask reveal を使ってください。本文や CTA には適用しないでください。',
+          ui: 'UI本体ではなく、ヒーローやブランド表現に限定して mask reveal を使ってください。',
+          mobile: 'スマホでは再生時間を短くし、装飾より読みやすさを優先してください。',
+          reduced: 'reduce motion 時は mask reveal を使わず、短い fade-up か静的表示にしてください。'
+        },
+        code: '.hero { clip-path: inset(0 100% 0 0); animation: maskReveal 820ms cubic-bezier(.22,1,.36,1) both; }\n@keyframes maskReveal { to { clip-path: inset(0 0 0 0); } }',
+        implJa: '演出感があるため、通常UIに混ぜると浮きやすいです。ブランドの見せ場だけに絞ると効果が出ます。', implEn: 'Because it carries stronger drama, it feels out of place in everyday UI. Restrict it to premium hero moments.'
+      }
+    ];
+
+    const filterDefs = {
+      purpose: [
+        {id:'all', ja:'すべて', en:'All'}, {id:'headline', ja:'見出し', en:'Headline'}, {id:'hero', ja:'ヒーロー', en:'Hero'},
+        {id:'cta', ja:'CTA', en:'CTA'}, {id:'card', ja:'カード', en:'Card'}, {id:'loading', ja:'ローディング', en:'Loading'},
+        {id:'sheet', ja:'シート遷移', en:'Sheet transition'}, {id:'highlight', ja:'強調', en:'Highlight'}, {id:'section', ja:'セクション', en:'Section'}
+      ],
+      intensity: [
+        {id:'all', ja:'すべて', en:'All'}, {id:'subtle', ja:'控えめ', en:'Subtle'}, {id:'medium', ja:'中程度', en:'Medium'}, {id:'strong', ja:'強い', en:'Strong'}
+      ],
+      fit: [
+        {id:'all', ja:'すべて', en:'All'}, {id:'mobile', ja:'モバイル向き', en:'Mobile-fit'}, {id:'a11y', ja:'a11y配慮', en:'A11y-aware'},
+        {id:'hover', ja:'Hover', en:'Hover'}, {id:'load', ja:'初回導入', en:'On load'}, {id:'scroll', ja:'スクロール', en:'On scroll'}, {id:'ui', ja:'UI遷移', en:'UI transition'}
+      ],
+      speed: [
+        {id:'0.8', label:'0.8×'}, {id:'1', label:'1.0×'}, {id:'1.2', label:'1.2×'}, {id:'1.5', label:'1.5×'}
+      ],
+      topics: [
+        {id:'quiet', ja:'うるさくないCTAがほしい', en:'Need a CTA that is visible but calm'},
+        {id:'hero', ja:'ヒーローに少し高級感を出したい', en:'Need a more premium hero intro'},
+        {id:'loading', ja:'ローディングを退屈にしたくない', en:'Need a better loading state'},
+        {id:'mobile', ja:'スマホで重くしたくない', en:'Need mobile-safe motion'},
+        {id:'feedback', ja:'カードに反応を付けたい', en:'Need card feedback'}
+      ]
+    };
+
+    const compare = [];
+    const state = { lang: 'ja', query: '', purpose: 'all', intensity: 'all', fit: 'all', speed: '1', reduced: false, selectedId: motions[0].id, promptMode: 'basic', detailBg: 'light', view: 'grid' };
+
+    const els = {
+      purposeChips: document.getElementById('purposeChips'), intensityChips: document.getElementById('intensityChips'), surfaceChips: document.getElementById('surfaceChips'), speedChips: document.getElementById('speedChips'), problemTopics: document.getElementById('problemTopics'),
+      motionGrid: document.getElementById('motionGrid'), resultCount: document.getElementById('resultCount'), searchInput: document.getElementById('searchInput'), suggestions: document.getElementById('suggestions'), detailTags: document.getElementById('detailTags'), detailName: document.getElementById('detailName'), detailSub: document.getElementById('detailSub'), detailSummary: document.getElementById('detailSummary'), factGrid: document.getElementById('factGrid'), goodBadGrid: document.getElementById('goodBadGrid'), promptModes: document.getElementById('promptModes'), promptBox: document.getElementById('promptBox'), codeBox: document.getElementById('codeBox'), implementationBox: document.getElementById('implementationBox'), compareList: document.getElementById('compareList'), compareCount: document.getElementById('compareCount'), reduceMotionToggle: document.getElementById('reduceMotionToggle'), speedReadout: document.getElementById('speedReadout'), detailDemo: document.getElementById('detailDemo'), detailStage: document.getElementById('detailStage'), playTabs: document.getElementById('playTabs'), toast: document.getElementById('toast')
+    };
+
+    function t(key) { return i18n[state.lang][key] || key; }
+    function text(m, keyBase) { return state.lang === 'ja' ? m[keyBase + 'Ja'] : m[keyBase + 'En']; }
+
+    function createChipGroup(container, items, stateKey) {
+      container.innerHTML = '';
+      items.forEach(item => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'chip' + (state[stateKey] === item.id ? ' active' : '');
+        btn.textContent = item[state.lang] || item.label;
+        btn.addEventListener('click', () => { state[stateKey] = item.id; renderCatalog(); });
+        container.appendChild(btn);
+      });
+    }
+
+    function renderTopicChips() {
+      els.problemTopics.innerHTML = '';
+      filterDefs.topics.forEach(topic => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'topic-chip';
+        btn.textContent = topic[state.lang];
+        btn.addEventListener('click', () => {
+          const map = { quiet:'cta', hero:'hero', loading:'loading', mobile:'mobile', feedback:'card' };
+          if (map[topic.id]) state.purpose = map[topic.id] === 'mobile' ? state.purpose : map[topic.id];
+          if (topic.id === 'mobile') state.fit = 'mobile';
+          if (topic.id === 'feedback') state.fit = 'hover';
+          if (topic.id === 'hero') state.intensity = 'medium';
+          renderCatalog();
+        });
+        els.problemTopics.appendChild(btn);
+      });
+    }
+
+    function filteredMotions() {
+      const q = state.query.trim().toLowerCase();
+      return motions.filter(m => {
+        const hay = [m.nameJa, m.nameEn, m.alias, m.summaryJa, m.summaryEn, m.shortJa, m.shortEn, ...(m.bestJa||[]), ...(m.badJa||[]), ...(m.bestEn||[]), ...(m.badEn||[])].join(' ').toLowerCase();
+        if (q && !hay.includes(q)) return false;
+        if (state.purpose !== 'all' && m.purpose !== state.purpose) return false;
+        if (state.intensity !== 'all' && m.intensity !== state.intensity) return false;
+        if (state.fit !== 'all' && !m.fit.includes(state.fit)) return false;
+        return true;
+      });
+    }
+
+    function renderSuggestions() {
+      const q = state.query.trim().toLowerCase();
+      els.suggestions.innerHTML = '';
+      if (!q) { els.suggestions.classList.remove('open'); return; }
+      const hits = motions.filter(m => [m.nameJa, m.nameEn, m.alias, m.summaryJa, m.shortJa].join(' ').toLowerCase().includes(q)).slice(0, 6);
+      if (!hits.length) { els.suggestions.classList.remove('open'); return; }
+      hits.forEach(m => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'suggestion-item';
+        item.innerHTML = `<span>${state.lang === 'ja' ? m.nameJa : m.nameEn}</span><span class="suggestion-sub">${state.lang === 'ja' ? m.shortJa : m.shortEn}</span>`;
+        item.addEventListener('click', () => {
+          state.selectedId = m.id;
+          state.query = state.lang === 'ja' ? m.nameJa : m.nameEn;
+          els.searchInput.value = state.query;
+          els.suggestions.classList.remove('open');
+          renderCatalog();
+        });
+        els.suggestions.appendChild(item);
+      });
+      els.suggestions.classList.add('open');
+    }
+
+    function createMotionTarget(m, detail=false) {
+      const surface = document.createElement('div');
+      surface.className = 'anim-surface' + ((detail ? state.detailBg : m.bg) === 'dark' ? ' dark' : '');
+      const target = document.createElement('div');
+      const surfaceClass = m.surface === 'button' ? 'button-slab' : m.surface === 'card' ? 'card-slab' : 'text-slab';
+      target.className = `motion-target ${surfaceClass} ${m.anim}`;
+      target.style.setProperty('--speed', state.speed);
+      target.textContent = state.lang === 'ja' ? m.nameJa : m.nameEn;
+      surface.appendChild(target);
+      return surface;
+    }
+
+    function renderCatalog() {
+      const items = filteredMotions();
+      els.motionGrid.innerHTML = '';
+      els.resultCount.textContent = `${items.length} motions`;
+      items.forEach(m => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">${state.lang === 'ja' ? m.nameJa : m.nameEn}</h3>
+              <p class="card-sub">${m.alias}</p>
+            </div>
+            <div class="card-tags">
+              <span class="tag accent">${labelFor('purpose', m.purpose)}</span>
+              <span class="tag ${m.intensity === 'strong' ? 'rose' : m.intensity === 'medium' ? 'violet' : 'success'}">${labelFor('intensity', m.intensity)}</span>
+              <span class="tag ${m.weight === 'light' ? 'success' : 'warn'}">${m.weight}</span>
+            </div>
+          </div>
+        `;
+        const demo = document.createElement('div');
+        demo.className = 'demo-card';
+        demo.dataset.bg = m.bg;
+        demo.innerHTML = `<span class="demo-label">${m.surface}</span>`;
+        demo.appendChild(createMotionTarget(m));
+        card.appendChild(demo);
+        const p = document.createElement('p');
+        p.className = 'card-copy';
+        p.textContent = state.lang === 'ja' ? m.shortJa : m.shortEn;
+        card.appendChild(p);
+        const box = document.createElement('div');
+        box.className = 'micro-box';
+        box.innerHTML = `<strong>${state.lang === 'ja' ? '向いている場面' : 'Best for'}</strong>${(state.lang === 'ja' ? m.bestJa : m.bestEn).slice(0,2).join(' / ')}`;
+        card.appendChild(box);
+        const actions = document.createElement('div');
+        actions.className = 'card-actions';
+        actions.innerHTML = `
+          <button class="btn primary" type="button">${state.lang === 'ja' ? '詳細を見る' : 'Open detail'}</button>
+          <button class="btn soft" type="button">${state.lang === 'ja' ? '比較に追加' : 'Add compare'}</button>
+          <button class="btn" type="button">${state.lang === 'ja' ? '短文コピー' : 'Copy prompt'}</button>
+        `;
+        const [openBtn, compareBtn, copyBtn] = actions.querySelectorAll('button');
+        openBtn.addEventListener('click', () => { state.selectedId = m.id; renderDetail(); });
+        compareBtn.addEventListener('click', () => addCompare(m.id));
+        copyBtn.addEventListener('click', () => copyText(m.prompt.basic));
+        card.appendChild(actions);
+        if (state.selectedId === m.id) card.style.outline = '2px solid #93c5fd';
+        els.motionGrid.appendChild(card);
+      });
+      renderDetail();
+      renderCompare();
+      renderSuggestions();
+    }
+
+    function labelFor(group, id) {
+      const item = filterDefs[group].find(v => v.id === id);
+      return item ? (item[state.lang] || item.label) : id;
+    }
+
+    function getSelected() { return motions.find(m => m.id === state.selectedId) || motions[0]; }
+
+    function renderDetail() {
+      const m = getSelected();
+      els.detailTags.innerHTML = `
+        <span class="tag accent">${labelFor('purpose', m.purpose)}</span>
+        <span class="tag ${m.intensity === 'strong' ? 'rose' : m.intensity === 'medium' ? 'violet' : 'success'}">${labelFor('intensity', m.intensity)}</span>
+        <span class="tag ${m.weight === 'light' ? 'success' : 'warn'}">${m.weight}</span>
+        <span class="tag">${m.mobile}</span>
+        <span class="tag">a11y ${m.a11y}</span>`;
+      els.detailName.textContent = state.lang === 'ja' ? m.nameJa : m.nameEn;
+      els.detailSub.textContent = `${m.alias} / ${m.surface} / ${m.category}`;
+      els.detailSummary.textContent = state.lang === 'ja' ? m.summaryJa : m.summaryEn;
+      els.factGrid.innerHTML = `
+        <div class="fact-row"><span>${state.lang === 'ja' ? '主な発火条件' : 'Trigger'}</span><strong>${m.facts.trigger}</strong></div>
+        <div class="fact-row"><span>${state.lang === 'ja' ? 'パフォーマンス負荷' : 'Perf cost'}</span><strong>${m.facts.cost}</strong></div>
+        <div class="fact-row"><span>${state.lang === 'ja' ? 'モバイル相性' : 'Mobile fit'}</span><strong>${m.facts.mobile}</strong></div>
+        <div class="fact-row"><span>${state.lang === 'ja' ? 'reduce motion 代替' : 'Reduced-motion alt'}</span><strong>${m.facts.alt}</strong></div>`;
+      const best = state.lang === 'ja' ? m.bestJa : m.bestEn;
+      const bad = state.lang === 'ja' ? m.badJa : m.badEn;
+      els.goodBadGrid.innerHTML = `
+        <div class="good-bad good"><h4>${state.lang === 'ja' ? '向いている場面' : 'Best fit'}</h4><ul>${best.map(v => `<li>${v}</li>`).join('')}</ul></div>
+        <div class="good-bad bad"><h4>${state.lang === 'ja' ? '向いていない場面' : 'Bad fit'}</h4><ul>${bad.map(v => `<li>${v}</li>`).join('')}</ul></div>`;
+      els.detailDemo.dataset.bg = state.detailBg;
+      els.detailStage.innerHTML = '';
+      els.detailStage.appendChild(createMotionTarget(m, true));
+      els.playTabs.innerHTML = '';
+      ['light','dark'].forEach(bg => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'play-tab' + (state.detailBg === bg ? ' active' : '');
+        btn.textContent = bg;
+        btn.addEventListener('click', () => { state.detailBg = bg; renderDetail(); });
+        els.playTabs.appendChild(btn);
+      });
+      const modes = [
+        {id:'basic', label: state.lang === 'ja' ? '基本' : 'Base'}, {id:'lp', label:'LP'}, {id:'ui', label:'UI'}, {id:'mobile', label: state.lang === 'ja' ? 'モバイル' : 'Mobile'}, {id:'reduced', label:'Reduced'}
+      ];
+      els.promptModes.innerHTML = '';
+      modes.forEach(mode => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'prompt-tab' + (state.promptMode === mode.id ? ' active' : '');
+        btn.textContent = mode.label;
+        btn.addEventListener('click', () => { state.promptMode = mode.id; renderDetail(); });
+        els.promptModes.appendChild(btn);
+      });
+      els.promptBox.textContent = m.prompt[state.promptMode] || m.prompt.basic;
+      els.codeBox.textContent = m.code;
+      els.implementationBox.textContent = state.lang === 'ja' ? m.implJa : m.implEn;
+    }
+
+    function addCompare(id) {
+      if (compare.includes(id)) return showToast(state.lang === 'ja' ? '比較に追加済み' : 'Already in compare');
+      if (compare.length >= 4) return showToast(state.lang === 'ja' ? '比較は4件までです' : 'Compare tray is full');
+      compare.push(id);
+      renderCompare();
+      showToast(state.lang === 'ja' ? '比較に追加しました' : 'Added to compare');
+    }
+
+    function renderCompare() {
+      els.compareList.innerHTML = '';
+      els.compareCount.textContent = `${compare.length} / 4`;
+      if (!compare.length) {
+        const empty = document.createElement('div');
+        empty.className = 'compare-item';
+        empty.textContent = state.lang === 'ja' ? 'まだ比較候補はありません。カードの「比較に追加」を押すとここに並びます。' : 'No compare items yet. Use “Add compare” from any card to place motions here.';
+        els.compareList.appendChild(empty);
+        return;
+      }
+      const item = document.createElement('div');
+      item.className = 'compare-item';
+      const grid = document.createElement('div');
+      grid.className = 'compare-grid';
+      compare.forEach(id => {
+        const m = motions.find(v => v.id === id);
+        const cell = document.createElement('div');
+        cell.className = 'compare-cell';
+        const demo = document.createElement('div');
+        demo.className = 'compare-demo';
+        demo.appendChild(createMotionTarget(m));
+        cell.appendChild(demo);
+        cell.innerHTML += `
+          <strong style="display:block;margin-bottom:6px;">${state.lang === 'ja' ? m.nameJa : m.nameEn}</strong>
+          <div>${state.lang === 'ja' ? '用途' : 'Purpose'}: ${labelFor('purpose', m.purpose)}</div>
+          <div>${state.lang === 'ja' ? '強さ' : 'Intensity'}: ${labelFor('intensity', m.intensity)}</div>
+          <div>${state.lang === 'ja' ? '軽さ' : 'Weight'}: ${m.weight}</div>
+          <div>${state.lang === 'ja' ? 'モバイル' : 'Mobile'}: ${m.mobile}</div>
+          <div style="margin-top:8px; color:#4b5563;">${state.lang === 'ja' ? m.shortJa : m.shortEn}</div>
+          <button class="btn soft" type="button" style="margin-top:10px; width:100%;">${state.lang === 'ja' ? '削除' : 'Remove'}</button>`;
+        cell.querySelector('button').addEventListener('click', () => {
+          const idx = compare.indexOf(id);
+          if (idx >= 0) compare.splice(idx, 1);
+          renderCompare();
+        });
+        grid.appendChild(cell);
+      });
+      item.appendChild(grid);
+      if (compare.length > 2) {
+        const note = document.createElement('div');
+        note.style.marginTop = '10px';
+        note.style.color = '#6b7280';
+        note.style.fontSize = '12px';
+        note.textContent = state.lang === 'ja' ? '3件以上の比較はPro想定です。ここではレイアウト確認用に開いています。' : '3+ compare is framed as Pro. It is shown here only for mock validation.';
+        item.appendChild(note);
+      }
+      els.compareList.appendChild(item);
+    }
+
+    function showToast(text) {
+      els.toast.textContent = text;
+      els.toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => els.toast.classList.remove('show'), 1600);
+    }
+
+    async function copyText(text) {
+      try { await navigator.clipboard.writeText(text); showToast(state.lang === 'ja' ? 'コピーしました' : 'Copied'); }
+      catch { showToast(state.lang === 'ja' ? 'コピーに失敗しました' : 'Copy failed'); }
+    }
+
+    function applyLanguage() {
+      document.documentElement.lang = state.lang === 'ja' ? 'ja' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+      document.getElementById('lang-ja').classList.toggle('active', state.lang === 'ja');
+      document.getElementById('lang-en').classList.toggle('active', state.lang === 'en');
+      els.searchInput.placeholder = state.lang === 'ja' ? '下からふわっと / 控えめ / CTAを目立たせたい' : 'subtle / from below / make CTA noticeable';
+      createChipGroup(els.purposeChips, filterDefs.purpose, 'purpose');
+      createChipGroup(els.intensityChips, filterDefs.intensity, 'intensity');
+      createChipGroup(els.surfaceChips, filterDefs.fit, 'fit');
+      els.speedReadout.textContent = `${state.speed}×`;
+      renderTopicChips();
+      renderCatalog();
+    }
+
+    function renderSpeedChips() {
+      els.speedChips.innerHTML = '';
+      filterDefs.speed.forEach(item => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'chip' + (state.speed === item.id ? ' active' : '');
+        btn.textContent = item.label;
+        btn.addEventListener('click', () => { state.speed = item.id; els.speedReadout.textContent = `${state.speed}×`; renderSpeedChips(); renderCatalog(); });
+        els.speedChips.appendChild(btn);
+      });
+    }
+
+    document.getElementById('lang-ja').addEventListener('click', () => { state.lang = 'ja'; applyLanguage(); });
+    document.getElementById('lang-en').addEventListener('click', () => { state.lang = 'en'; applyLanguage(); });
+    els.searchInput.addEventListener('input', e => { state.query = e.target.value; renderSuggestions(); renderCatalog(); });
+    document.addEventListener('click', e => { if (!els.suggestions.contains(e.target) && e.target !== els.searchInput) els.suggestions.classList.remove('open'); });
+    document.getElementById('copyPromptBtn').addEventListener('click', () => copyText(getSelected().prompt[state.promptMode] || getSelected().prompt.basic));
+    document.getElementById('copyCodeBtn').addEventListener('click', () => copyText(getSelected().code));
+    document.getElementById('clearCompareBtn').addEventListener('click', () => { compare.splice(0, compare.length); renderCompare(); });
+    els.reduceMotionToggle.addEventListener('click', () => {
+      state.reduced = !state.reduced;
+      document.body.classList.toggle('reduce-motion', state.reduced);
+      els.reduceMotionToggle.classList.toggle('active', state.reduced);
+      els.reduceMotionToggle.setAttribute('aria-pressed', String(state.reduced));
+    });
+    document.querySelectorAll('[data-view]').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-view]').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      state.view = btn.dataset.view;
+      els.motionGrid.style.gridTemplateColumns = state.view === 'list' ? '1fr' : '';
+    }));
+
+    renderSpeedChips();
+    applyLanguage();
+  </script>
+</body>
+</html>
