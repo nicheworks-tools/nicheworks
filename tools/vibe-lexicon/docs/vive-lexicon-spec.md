@@ -1,10 +1,19 @@
+# 仕様書
+
 # Vibe Lexicon
+
+**改訂版 v2 / English-primary edition**
 
 **製品区分:** 有料化可能な実用Webツール
 **運営名義:** Niche Works
-**製品カテゴリ:** Vibe Coding用語集 / 曖昧語変換辞典 / AI依頼語彙辞典
-**対応言語:** 日本語優先
-**対象:** AIでWeb制作・UI制作・改善依頼を行う個人開発者、制作者、ディレクター、初心者、ノーコード利用者
+**製品カテゴリ:** Vibe coding glossary / ambiguity-to-practical wording dictionary / AI prompting vocabulary tool
+**主言語方針:** **英語メイン、日本語補助**
+**公開方針:**
+
+* 英語版を正面入口とする
+* 日本語版は補助入口とする
+* URLは言語ごとに分離する
+* 1ページ1言語を原則とする
 
 ---
 
@@ -12,351 +21,499 @@
 
 Niche Works Vibe Lexicon は、Web制作・UI改善・LP制作・画面設計の場面で使われる
 **曖昧な依頼語 / 雰囲気語 / 評価語 / 実務語 / UI関連語**
-を整理し、次の形で実務に変換するための用語集である。
+を整理し、実務で使える形へ変換するための用語集である。
 
-1. 用語の意味が分かる
+この製品は、単なる流行語集ではない。
+単なるプロンプトテンプレ集でもない。
+単なる英単語和訳集でもない。
+
+この製品の価値は、1語ごとに次のことを完結させる点にある。
+
+1. その言葉の意味が分かる
 2. 似た言葉との違いが分かる
-3. 曖昧な言い方をより具体的な言い方に変換できる
-4. AIにそのまま渡せる依頼文に変換できる
-5. 禁止した方がよい依頼の仕方が分かる
-6. どの目的に使う語か分かる
-7. UI / LP / フォーム / コンテンツ / レスポンシブなど、文脈別に使い分けできる
-
-この製品は、単なる「Vibe Coding用語解説」ではない。
-また、単なる「プロンプトテンプレ集」でもない。
-
-**言いたいことはあるが、どう言えばAIに伝わるのか分からない人のための、実務語変換辞典**
-として設計する。
+3. 曖昧な依頼を具体語に分解できる
+4. AIにそのまま渡せる依頼文へ変換できる
+5. 悪い頼み方と良い頼み方を比較できる
+6. その語がどの用途で有効か分かる
+7. UI / LP / フォーム / ライティング / モバイルなど文脈別に使い分けできる
 
 ---
 
-## 2. 目標
+## 2. 改訂方針
 
-### 2-1. ユーザー目標
+この改訂版では、従来の「日本語優先」をやめ、以下に変更する。
 
-ユーザーはこの製品によって、次の問題を解決できること。
+### 2-1. 主な変更点
 
-* 「いい感じにして」「今っぽくして」などの曖昧語しか出てこない状態を抜けられる
-* AIに何をどう頼めば良いか分かる
-* UI改善の言語化ができる
-* チームや外注相手にテキストで意図を伝えやすくなる
-* 似た語の違いを理解して誤用を減らせる
-* 曖昧な依頼を、レイアウト・余白・視線導線・優先度・可読性などの具体要素に分解できる
-* 同じ「高級感」「ポップ」「見やすい」でも、状況別に使い分けられる
+* 英語を主言語にする
+* 日本語はローカライズ版として持つ
+* ルートURLを英語版にする
+* 日本語版は `ja/` 配下に分離する
+* 内部データの正本は英語語彙・英語説明を基準に持つ
+* SEO・OGP・共有導線は英語版を主軸にする
+* 曖昧語分解もまず英語圏の語彙体系で設計し、日本語版へ落とし込む
 
-### 2-2. 事業目標
+### 2-2. この変更を行う理由
 
-Niche Works にとっては、以下を狙う。
-
-* AI制作時代に合った、言語化支援資産の確立
-* SEOで拾われやすい「〇〇とは」「〇〇 意味」「〇〇 何て言う」「〇〇 依頼文」需要の獲得
-* SNSで共有されやすい辞典型ツールの構築
-* 無料で流入を取り、有料で変換効率・保存・深掘りを売る
-* UI Atlas やアニメーション一覧との回遊起点になる
+* “vibe coding” 自体が英語圏の制作文化と強く結びついている
+* 主要検索語が英語で流通している
+* 収益天井は英語版の方が高い
+* 日本語版も維持するが、主戦場は英語圏とする
 
 ---
 
-## 3. 非目標
+## 3. 製品の約束
 
-この製品でやらないことを明確にする。
+英語版トップで伝える製品メッセージはこれで固定する。
 
-* LLMの一般理論解説サイトにはしない
-* コーディング技法辞典そのものにはしない
-* 開発フレームワーク辞典にはしない
-* 単なる流行語まとめにはしない
-* 英単語和訳だけの用語集にはしない
-* ChatGPT向け万能プロンプト集にはしない
-* デザインスクール教材そのものにはしない
-
-この製品は、あくまで
-**Web制作とUI改善における“言葉のズレ”を埋める辞典**
-に集中する。
-
----
-
-## 4. 製品の約束
-
-トップで伝える製品メッセージはこれで固定する。
-
-**「曖昧な依頼を、AIに通る言葉へ変えるVibe Coding用語集。」**
+**“Turn vague requests into AI-ready design language.”**
 
 補助文言は以下。
 
-* 雰囲気語を実務語に分解できる
-* 似た言葉の違いが分かる
-* AIにそのまま渡せる依頼文が付いている
-* 悪い依頼の仕方も分かる
-* UI / LP / フォームなど用途別に使い分けできる
+* Break fuzzy wording into practical design actions
+* Understand the difference between similar terms
+* Copy prompts for UI, landing pages, forms, and rewrites
+* Learn what not to say
+* Translate vague taste words into buildable instructions
+
+日本語版では以下を使う。
+
+**「曖昧な依頼を、AIに通る言葉へ変えるVibe Coding用語集。」**
 
 ---
 
-## 5. 想定ユーザー
+## 4. 想定ユーザー
 
-### 5-1. 主対象
+### 4-1. 英語版の主対象
 
-1. AIでWebサイト制作を進める人
-2. 制作初心者
-3. 言いたいことはあるが用語が出てこない人
-4. LP改善やUI修正をAIに頼む人
-5. ディレクター / PM / ライターでUIの具体指示が苦手な人
-6. ノーコード / ローコード利用者
-7. 小規模受託や個人開発をしている人
+1. AI-assisted web builders
+2. Indie hackers
+3. UI / landing page improvers
+4. Founders and PMs who describe design in text
+5. Designers and frontend beginners
+6. No-code / low-code users
+7. Freelancers doing small web work
 
-### 5-2. 典型的な利用シーン
+### 4-2. 日本語版の主対象
 
-* 「今っぽくして」をもっと具体的に言いたい
-* 「ごちゃついている」を何に分解すればよいか分からない
-* 「高級感を出したい」が抽象的すぎる
-* 「スマホで見やすくして」とだけ頼んで失敗した
-* 「CTAを目立たせたい」を適切な依頼文にしたい
-* 「読みやすい」「洗練された」「ポップ」などの語を使い分けたい
+1. AIでWeb制作を進める日本語圏ユーザー
+2. 言いたいことはあるが用語が出てこない人
+3. LP改善やUI修正をAIに頼む人
+4. ディレクター / PM / ライター
+5. 制作初心者
+
+### 4-3. 典型的な利用シーン
+
+* “Make it look more modern” を具体化したい
+* “This feels cluttered” を何に分解するべきか分からない
+* “Add luxury” が抽象的すぎる
+* “Make it easier to read on mobile” を具体的依頼文にしたい
+* “Make the CTA stronger” を適切な設計語に変換したい
+* “Readable / clear / polished / premium” の違いを理解したい
 
 ---
 
-## 6. 料金設計
+## 5. 公開URL構成
 
-### 6-1. 無料プラン
+### 5-1. 英語版
 
-* 全用語の閲覧: 可
-* 一覧検索: 可
-* カテゴリ絞り込み: 可
-* 詳細閲覧: 可
-* 基本変換例: 可
-* 基本文例コピー: 可
-* 比較: 1対1のみ
-* お気に入り: 5件まで
-* 保存: 不可
-* 用途別文例の複数展開: 一部制限
-* 深い変換テーブル: 制限あり
+* `/tools/vibe-lexicon/`
+* `/tools/vibe-lexicon/terms/`
+* `/tools/vibe-lexicon/terms/[slug]/`
+* `/tools/vibe-lexicon/categories/[slug]/`
+* `/tools/vibe-lexicon/compare/`
+* `/tools/vibe-lexicon/search/`
+* `/tools/vibe-lexicon/topics/[problem]/`
+* `/tools/vibe-lexicon/pro/`
+* `/tools/vibe-lexicon/about/`
+* `/tools/vibe-lexicon/usage/`
 
-### 6-2. 有料プラン
+### 5-2. 日本語版
+
+* `/tools/vibe-lexicon/ja/`
+* `/tools/vibe-lexicon/ja/terms/`
+* `/tools/vibe-lexicon/ja/terms/[slug]/`
+* `/tools/vibe-lexicon/ja/categories/[slug]/`
+* `/tools/vibe-lexicon/ja/compare/`
+* `/tools/vibe-lexicon/ja/search/`
+* `/tools/vibe-lexicon/ja/topics/[problem]/`
+* `/tools/vibe-lexicon/ja/pro/`
+* `/tools/vibe-lexicon/ja/about/`
+* `/tools/vibe-lexicon/ja/usage/`
+
+### 5-3. 言語切替ルール
+
+* EN / JA 切替リンクを常時表示
+* 自動リダイレクトはしない
+* 初回訪問時の控えめな提案は可
+* 各ページは必ず相互言語リンクを持つ
+* 1ページ内動的切替は主方式にしない
+
+---
+
+## 6. ディレクトリ構成
+
+```txt
+/tools/
+  /vibe-lexicon/
+    index.html
+    terms/
+    categories/
+    compare/
+    search/
+    topics/
+    pro/
+    about/
+    usage/
+    styles.css
+    app.js
+    data/
+    /ja/
+      index.html
+      terms/
+      categories/
+      compare/
+      search/
+      topics/
+      pro/
+      about/
+      usage/
+      styles-ja.css
+      app-ja.js
+```
+
+### 6-1. 運用原則
+
+* 英語版を先に更新する
+* 日本語版は英語正本から翻訳・補足する
+* `slug` は英語正本基準で固定する
+* 共通アセットは `/assets/...` を参照する
+* 各ツール内にロゴやfaviconを複製しない
+
+---
+
+## 7. レイアウト方針
+
+Vibe Lexicon も**PC寄りツール**として扱う。
+理由は、検索・比較・詳細閲覧・長文理解・用途別切替が主機能だからである。共通仕様のPC寄りツール基準に合わせ、`960〜1200px` 幅を維持し、モバイルでは1カラム化と横スクロールラッパーを使う。 
+
+### 7-1. 幅方針
+
+* PC: `max-width: 960px〜1200px`
+* タブレット: 簡易2カラム
+* モバイル: 1カラム + 横スクロール対応
+
+### 7-2. 共通レイアウト
+
+* ヘッダー: ツール名 + 1行説明 + 言語切替 + 必要ならHomeリンク1つ
+* メイン上部: `ad-top`
+* 本体: 左フィルタ / 中央一覧 / 右詳細
+* 下部: FAQ / `ad-bottom` / 寄付導線 / フッター
+
+### 7-3. ロゴ運用
+
+* ヘッダーにロゴを常時表示しない
+* `/assets/...` を共通参照
+* LP風ではなく辞典・ツール風を優先する
+
+---
+
+## 8. デザイン方針
+
+### 8-1. トーン
+
+* practical
+* calm
+* text-first
+* clear
+* structured
+* tool-first
+
+### 8-2. ビジュアルルール
+
+* 白背景ベース
+* ダークモードは初期対象外
+* 曖昧語タグと実務語タグを明確に分ける
+* bad example は警告色、better example は成功色
+* 分解表は表組みを重視
+* 読み物サイトではなく、変換装置として見せる
+
+### 8-3. UIの優先順位
+
+1. 検索しやすさ
+2. 曖昧語→実務語の変換体験
+3. 比較しやすさ
+4. 文例コピーのしやすさ
+5. 回遊性
+
+---
+
+## 9. 料金設計
+
+旧仕様では無料で全用語閲覧、基本変換例、1対1比較、お気に入り5件までを開放し、Proで複数比較・詳細分解・保存・用途別文例フル解放を提供する前提でした。 
+
+### 9-1. 無料プラン
+
+* All terms viewable
+* Search
+* Category filtering
+* Detail view
+* Basic conversion examples
+* Basic prompt copy
+* 1:1 comparison
+* Favorites up to 5
+* No saved sets
+* Limited deep breakdown visibility
+
+### 9-2. 有料プラン
 
 **名称:** Vibe Lexicon Pro
-**価格案:**
 
-* 月額 480円
-* 年額 3,980円
+### 9-3. 価格
 
-### 6-3. Proで解放する機能
+* Monthly: USD 5
+* Yearly: USD 39
 
-* 用途別文例フル解放
-* 複数比較
-* 詳細な曖昧語分解表
-* NG依頼例フル閲覧
-* 保存 / 履歴 / お気に入り無制限
-* 変換セット保存
-* 「目的から引く」高度検索
-* 語群のまとめコピー
-* UI / LP / フォーム / ライティング別の依頼文切替
-* 将来の「複合変換」機能
+日本語版では参考として
 
-### 6-4. 課金の考え方
+* 月額 480円相当
+* 年額 3,980円相当
+  を併記してよいが、主課金表記は英語版基準でUSDとする。
+
+### 9-4. Proで解放するもの
+
+* Multi-term comparison
+* Full ambiguity breakdown tables
+* Full bad / better example sets
+* Unlimited favorites / history / saved sets
+* Prompt bundles for UI / LP / forms / writing
+* Goal-based advanced search
+* Batch copy of related term groups
+* Future composite transformation mode
+
+### 9-5. 収益の考え方
 
 この製品は知識課金ではなく、
-**言語化の速さ・迷いの削減・再利用性**
-に課金する。
 
-無料では意味を知れる。
-有料では**そのまま仕事や制作で使える形**になる。
+* wording speed
+* ambiguity reduction
+* reuse
+* better prompting
+* less back-and-forth with AI
+  に課金する。
 
 ---
 
-## 7. 情報設計
+## 10. 情報設計
 
-### 7-1. 最上位カテゴリ
+旧仕様では**最低250語**、かつ「雰囲気語 / 見た目調整語 / レイアウト語 / 余白・密度語 / 視線導線語 / 可読性語 / 強調・CTA語 / フォーム改善語 / 動き・反応語 / レスポンシブ語 / 情報整理語 / AI依頼変換語」の12カテゴリが定義されていました。 
 
-1. 雰囲気語
-2. 見た目調整語
-3. レイアウト語
-4. 余白・密度語
-5. 視線導線語
-6. 可読性語
-7. 強調・CTA語
-8. フォーム改善語
-9. 動き・反応語
-10. レスポンシブ語
-11. 情報整理語
-12. AI依頼変換語
+### 10-1. 最上位カテゴリ
 
-### 7-2. 収録語数
+1. Tone / vibe words
+2. Visual adjustment terms
+3. Layout terms
+4. Spacing / density terms
+5. Visual hierarchy / scan flow terms
+6. Readability terms
+7. CTA / emphasis terms
+8. Form improvement terms
+9. Motion / feedback terms
+10. Responsive terms
+11. Information organization terms
+12. AI request transformation terms
 
-完成形初期公開で**最低250語**。
-少ないと用語集として弱い。
-商用品質として「かなり拾える」水準が必要。
+### 10-2. 初期収録数
 
-### 7-3. 収録語の例
+**最低250語**
 
-#### 雰囲気語
+### 10-3. 英語版での主な収録例
 
-* 今っぽい
-* 洗練された
-* 高級感
-* ポップ
-* やわらかい
-* クール
-* ミニマル
-* スタイリッシュ
-* 親しみやすい
-* 信頼感
+#### Tone / vibe words
 
-#### 見た目調整語
+* modern
+* polished
+* premium
+* playful
+* soft
+* cool
+* minimal
+* stylish
+* approachable
+* trustworthy
 
-* コントラスト
-* 彩度
-* 明度
-* アクセントカラー
-* 角丸
-* シャドウ
-* 枠線
-* 透明度
-* 視覚的重み
-* 密度感
+#### Visual adjustment terms
 
-#### レイアウト語
+* contrast
+* saturation
+* brightness
+* accent color
+* border radius
+* shadow
+* stroke
+* opacity
+* visual weight
+* density
 
-* レイアウト
-* コンテナ
-* カラム
-* グリッド
-* セクション
-* 余白設計
-* ヒエラルキー
-* 折り返し
-* 揃え
-* 最大幅
+#### Layout terms
 
-#### 余白・密度語
+* layout
+* container
+* column
+* grid
+* section
+* spacing system
+* hierarchy
+* wrap
+* alignment
+* max width
 
-* 余白
-* 間隔
-* Gap
-* Padding
-* Margin
-* Vertical rhythm
-* 情報密度
-* スカスカ
-* 詰まり感
-* 呼吸感
+#### Spacing / density terms
 
-#### 視線導線語
+* whitespace
+* spacing
+* gap
+* padding
+* margin
+* vertical rhythm
+* information density
+* airy
+* cramped
+* breathing room
 
-* 視線誘導
-* 優先順位
-* 主従
-* 入口
-* CTA導線
-* スキャンしやすさ
-* Fパターン
-* 視覚アンカー
-* グルーピング
-* セクション区切り
+#### Visual hierarchy / scan flow terms
 
-#### 可読性語
+* visual hierarchy
+* priority
+* primary vs secondary
+* entry point
+* CTA path
+* scannability
+* F-pattern
+* visual anchor
+* grouping
+* section separation
 
-* 読みやすい
-* 判別しやすい
-* 行間
-* 字間
-* 文量
-* 見出し階層
-* 強調のしすぎ
-* ノイズ
-* 可読幅
-* 段落構造
+#### Readability terms
 
-#### 強調・CTA語
+* readable
+* legible
+* line height
+* letter spacing
+* text volume
+* heading hierarchy
+* over-emphasis
+* noise
+* readable width
+* paragraph structure
 
-* 目立たせる
+#### CTA / emphasis terms
+
+* emphasize
 * CTA
-* 優先度
-* 強調
-* 主ボタン
-* 二次行動
-* クリック誘導
-* 押したくなる
-* 行動喚起
-* フリクション低減
+* priority
+* highlight
+* primary button
+* secondary action
+* click pull
+* inviting
+* action cue
+* friction reduction
 
-#### フォーム改善語
+#### Form improvement terms
 
-* 入力しやすい
-* ステップ分割
-* バリデーション
-* 補助文
-* エラー表示
-* インラインエラー
-* フォーカス状態
-* プレースホルダ
-* ラベル明確化
-* 入力負荷
+* easy to fill
+* step split
+* validation
+* helper text
+* error messaging
+* inline error
+* focus state
+* placeholder
+* label clarity
+* input burden
 
-#### 動き・反応語
+#### Motion / feedback terms
 
-* 動きをつける
-* ホバー
-* フィードバック
-* トランジション
-* アニメーション強度
+* add motion
+* hover
+* feedback
+* transition
+* motion intensity
 * subtle
 * bounce
 * reveal
 * loading feedback
 * reduce motion
 
-#### レスポンシブ語
+#### Responsive terms
 
-* モバイルファースト
-* ブレークポイント
-* 折りたたみ
-* 再配置
-* 1カラム化
-* 固定CTA
+* mobile-first
+* breakpoint
+* collapse
+* rearrange
+* one-column
+* fixed CTA
 * safe area
-* overlow
+* overflow
 * touch target
-* スクロールしやすさ
+* scroll comfort
 
-#### AI依頼変換語
+#### AI request transformation terms
 
-* いい感じ
-* 今風
-* 見やすく
-* おしゃれに
-* 高級感を出す
-* ごちゃついている
-* 地味
-* 派手すぎる
-* スッキリさせる
-* もっと分かりやすく
+* make it feel nicer
+* make it modern
+* make it easier to read
+* make it look polished
+* add premium feel
+* it feels cluttered
+* it feels flat
+* it feels too loud
+* simplify it
+* make it clearer
+
+### 10-4. 日本語版での見せ方
+
+* 英語語彙を隠さず併記する
+* 日本語訳だけで完結させない
+* 日本語版でも英語業界語を主見出しの補助として見せる
 
 ---
 
-## 8. 各用語のデータ構造
+## 11. データ構造
 
-各用語は最低でも以下のフィールドを持つ。
+内部データの正本は英語基準で定義する。
 
-### 8-1. 基本情報
+### 11-1. 基本情報
 
 * `id`
 * `slug`
-* `term_ja`
 * `term_en`
-* `aliases`
+* `term_ja`
+* `aliases_en`
+* `aliases_ja`
 * `category_primary`
 * `category_secondary`
-* `summary_short`
-* `summary_long`
+* `summary_short_en`
+* `summary_short_ja`
+* `summary_long_en`
+* `summary_long_ja`
 
-### 8-2. 意味と位置づけ
+### 11-2. 意味と位置づけ
 
-* `definition`
-* `plain_explanation`
-* `when_people_use_it`
-* `what_it_often_means_in_practice`
-* `common_misuse`
+* `definition_en`
+* `definition_ja`
+* `plain_explanation_en`
+* `plain_explanation_ja`
+* `when_people_use_it_en`
+* `when_people_use_it_ja`
+* `what_it_often_means_in_practice_en`
+* `what_it_often_means_in_practice_ja`
+* `common_misuse_en`
+* `common_misuse_ja`
 * `difficulty_level`
 
-### 8-3. 関連関係
+### 11-3. 関連関係
 
 * `similar_terms`
 * `confused_with`
@@ -364,507 +521,483 @@ Niche Works にとっては、以下を狙う。
 * `related_ui_topics`
 * `related_layout_topics`
 
-### 8-4. 変換情報
+### 11-4. 変換情報
 
-* `vague_to_practical_map`
-* `practical_breakdown`
-* `before_after_examples`
-* `bad_request_examples`
-* `better_request_examples`
+* `vague_to_practical_map_en`
+* `vague_to_practical_map_ja`
+* `practical_breakdown_en`
+* `practical_breakdown_ja`
+* `before_after_examples_en`
+* `before_after_examples_ja`
+* `bad_request_examples_en`
+* `bad_request_examples_ja`
+* `better_request_examples_en`
+* `better_request_examples_ja`
 
-### 8-5. AI依頼補助
+### 11-5. AI依頼補助
 
-* `ai_prompt_basic`
-* `ai_prompt_detailed`
-* `ai_prompt_lp`
-* `ai_prompt_ui`
-* `ai_prompt_form`
-* `ai_prompt_mobile`
-* `prompt_keywords`
+* `ai_prompt_basic_en`
+* `ai_prompt_basic_ja`
+* `ai_prompt_detailed_en`
+* `ai_prompt_detailed_ja`
+* `ai_prompt_lp_en`
+* `ai_prompt_lp_ja`
+* `ai_prompt_ui_en`
+* `ai_prompt_ui_ja`
+* `ai_prompt_form_en`
+* `ai_prompt_form_ja`
+* `ai_prompt_mobile_en`
+* `ai_prompt_mobile_ja`
+* `prompt_keywords_en`
+* `prompt_keywords_ja`
 
-### 8-6. 実務補助
+### 11-6. 実務補助
 
-* `design_implications`
-* `content_implications`
-* `layout_implications`
-* `interaction_implications`
-* `mobile_implications`
-* `accessibility_implications`
-* `implementation_hints`
+* `design_implications_en`
+* `design_implications_ja`
+* `content_implications_en`
+* `content_implications_ja`
+* `layout_implications_en`
+* `layout_implications_ja`
+* `interaction_implications_en`
+* `interaction_implications_ja`
+* `mobile_implications_en`
+* `mobile_implications_ja`
+* `accessibility_implications_en`
+* `accessibility_implications_ja`
+* `implementation_hints_en`
+* `implementation_hints_ja`
 
-### 8-7. 編集補助
+### 11-7. 編集補助
 
-* `seo_title`
-* `seo_description`
-* `search_terms`
+* `seo_title_en`
+* `seo_title_ja`
+* `seo_description_en`
+* `seo_description_ja`
+* `search_terms_en`
+* `search_terms_ja`
 * `status`
 * `last_updated_at`
 * `editor_notes`
 
 ---
 
-## 9. 各用語ページの構成
+## 12. 各用語ページ構成
 
-1つの用語を開いた時に、毎回同じ構造で理解できることが重要。
+### 12-1. ページ上部
 
-### 9-1. ヘッダー領域
+* term
+* Japanese label
+* aliases
+* category
+* beginner-friendly tag
+* vague-word tag / practical-word tag
 
-* 用語名
-* 英語名
-* 別名
-* カテゴリ
-* 初心者向けタグ
-* 曖昧語タグ / 実務語タグ
+### 12-2. One-line summary
 
-### 9-2. 一言説明
+短く明快に、何を助ける言葉かを示す。
 
-20〜40文字程度で要点を示す。
+### 12-3. Plain explanation
 
-### 9-3. ひらたく言うと何か
+専門用語に寄りすぎず、「ひらたく言うと何か」を示す。
+旧仕様でもここは重要な要素でした。 
 
-専門用語に寄りすぎない説明。
-この製品ではここが重要。
+### 12-4. What it often means in practice
 
-### 9-4. 実際には何を意味していることが多いか
+たとえば “premium” は単なる豪華さではなく、
 
-たとえば「高級感」はただ豪華にすることではなく、
+* more whitespace
+* fewer colors
+* calmer typography
+* reduced visual noise
+  のように分解されることを示す。
 
-* 余白を広くする
-* 色数を減らす
-* 彩度を抑える
-* タイポグラフィを落ち着かせる
-  などに分解される、というように説明する。
-
-### 9-5. ありがちな誤用
+### 12-5. Common misuse
 
 必須。
-
 例:
 
-* 「今風」を、単に角丸を大きくすることだと思っている
-* 「見やすい」を、文字を大きくするだけだと思っている
-* 「高級感」を、黒金にすることだと思っている
+* “modern” を大きい角丸だけだと思っている
+* “readable” を文字サイズを上げることだけだと思っている
+* “premium” を黒金配色だけだと思っている
 
-### 9-6. 似た語との違い
+### 12-6. Similar term comparison
 
-比較表で示す。
-
+表形式で比較する。
 例:
 
-| 用語    | 近いが違う点      | 使い分け         |
-| ----- | ----------- | ------------ |
-| 洗練された | 品がありノイズが少ない | B2Bや高単価向き    |
-| 今っぽい  | 時代感・流行感を含む  | カジュアル制作でも使える |
-| ミニマル  | 要素削減の方向が強い  | 情報量が少ない場面向き  |
+* modern vs polished vs minimal
+* readable vs clear vs legible
+* premium vs elegant vs trustworthy
 
-### 9-7. 曖昧語からの分解
+### 12-7. Breakdown from vague to practical
 
-最重要。
-「その言葉を言われた時、実務では何に分解するか」を出す。
+このツールの最重要部。
+「その語を実務では何に分解するか」を具体要素で見せる。
 
-### 9-8. AIにそのまま使える依頼文
+### 12-8. AI-ready prompts
 
-用途別に複数用意する。
+* Basic
+* UI
+* LP
+* Form
+* Mobile
+* Rewrite
 
-* 基本版
-* UI改善版
-* LP改善版
-* フォーム改善版
-* モバイル版
-* リライト版
+### 12-9. Bad request examples
 
-### 9-9. 悪い依頼例
+* “make it better”
+* “make it nicer”
+* “make it modern”
+* “make it more premium”
 
-例:
+### 12-10. Better request examples
 
-* 「もっと良い感じにして」
-* 「おしゃれにしてください」
-* 「今風でお願いします」
+悪い依頼文を、具体要素を含む完成文へ変換して見せる。
 
-### 9-10. 良い依頼例
+### 12-11. Practical notes
 
-悪い依頼を、具体要素に落とした文に変換して見せる。
+* where it works best
+* what knobs change this impression
+* what breaks it
+* mobile cautions
+* overuse cautions
 
-### 9-11. 実務メモ
+### 12-12. Related terms
 
-* どの画面で効くか
-* 何を変えるとその印象になるか
-* 逆に何をやると崩れるか
-* モバイルでの注意
-* 過剰適用の危険
-
-### 9-12. 関連語
-
-回遊導線を強くする。
+* close terms
+* opposite terms
+* often compared terms
+* related UI topics
 
 ---
 
-## 10. 一覧ページ仕様
+## 13. 一覧ページ仕様
 
-### 10-1. 目的
+### 13-1. 目的
 
-一覧ページは、単なる語彙リストではなく、
-**探す・知らない語を発見する・近い言葉を比較する**ための画面。
+一覧ページは、語を眺める場所ではなく、
 
-### 10-2. 表示形式
+* 探す
+* 比較候補を見つける
+* 悩みから変換候補を発見する
+  ための画面である。
 
-* カード表示
-* リスト表示
-* 比較候補向き簡易表表示
+### 13-2. 表示形式
 
-### 10-3. カードに載せる情報
+* Grid view
+* List view
+* Compare-ready compact table
 
-* 用語名
-* 一言説明
-* カテゴリ
-* 曖昧語 / 実務語タグ
-* よく一緒に使われる語
-* 典型用途
-* AI依頼文有無
+### 13-3. カードに載せる情報
 
-### 10-4. カード操作
+* term
+* Japanese label
+* one-line summary
+* category
+* vague/practical tag
+* common use
+* AI prompt availability
+* Pro depth badge
 
-* 詳細を開く
-* 比較に追加
-* お気に入り追加
-* 基本依頼文コピー
-* 関連語へ遷移
+### 13-4. カード操作
 
----
-
-## 11. 検索仕様
-
-### 11-1. 検索対象
-
-* 用語名
-* 英語名
-* 別名
-* 一言説明
-* 曖昧語
-* 実務語
-* 典型的な悩み文
-* 使用場面
-* NG例
-* AI依頼文中のキーワード
-
-### 11-2. 検索で拾うべき例
-
-* 「今風」
-* 「見やすい」
-* 「高級感」
-* 「ごちゃついてる」
-* 「読みやすくしたい」
-* 「目立たせたい」
-* 「ポップ」
-* 「信頼感」
-* 「押したくなる」
-* 「スマホで見やすい」
-
-つまり正式用語でなくても、
-**悩みの言い方そのもの**で引ける必要がある。
-
-### 11-3. 検索結果順位
-
-1. 正式用語一致
-2. 別名一致
-3. 曖昧語マッピング一致
-4. 悩み文一致
-5. 関連語一致
-
-### 11-4. サジェスト
-
-入力途中で候補を出す。
-
-例:
-
-* 「見やすい」
-
-  * 可読性
-  * 視線導線
-  * 情報密度
-  * 見出し階層
-  * 行間
-
-* 「高級感」
-
-  * 洗練された
-  * ミニマル
-  * 彩度
-  * 余白設計
-  * タイポグラフィ
-
-### 11-5. 検索結果ゼロ時
-
-* 近い語
-* 問題から探す導線
-* 人気語
-* 曖昧語特集
-* 用途別導線
+* open detail
+* add to compare
+* add to favorites
+* copy basic prompt
+* jump to related term
 
 ---
 
-## 12. 絞り込み仕様
+## 14. 検索仕様
 
-### 12-1. 絞り込み軸
+旧仕様では、正式語だけでなく、**悩み文そのもの**で引けることが重視されていました。 
 
-* カテゴリ
-* 曖昧語 / 実務語
-* 用途
-* 初心者向け度
-* AI依頼しやすさ
-* UI向き / LP向き / フォーム向き
-* モバイル関連性
-* 誤用されやすさ
-* よく検索される度
+### 14-1. 検索対象
 
-### 12-2. 用途軸
+* `term_en`
+* `term_ja`
+* aliases
+* one-line summary
+* vague wording
+* practical wording
+* common problems
+* use cases
+* AI prompt keywords
+* bad request examples
 
-* UI改善
-* LP制作
-* 文章改善
-* CTA改善
-* フォーム改善
-* 情報整理
-* スマホ最適化
-* 見た目調整
+### 14-2. 検索で拾うべき英語例
 
-### 12-3. 難易度軸
+* make it modern
+* feels cluttered
+* needs premium feel
+* easier to read
+* make CTA stronger
+* feels too noisy
+* feels flat
+* make it clearer
+* make it more polished
+* mobile readability
 
-* 入門
-* 初中級
-* 中級以上
+### 14-3. 検索で拾うべき日本語例
 
-### 12-4. 誤用されやすさ軸
+* 今っぽくしたい
+* ごちゃついてる
+* 高級感を出したい
+* 読みやすくしたい
+* CTAを強くしたい
+* もっと分かりやすくしたい
 
-* 低
-* 中
-* 高
+### 14-4. 検索順位
 
----
+1. exact term match
+2. alias match
+3. vague wording match
+4. problem-intent match
+5. related term match
 
-## 13. 比較機能仕様
+### 14-5. サジェスト
 
-これは有料化の柱の一つになる。
+英語版例:
 
-### 13-1. 比較対象
+* “readable”
 
-2〜4語を並べて比較できる。
+  * readability
+  * legibility
+  * hierarchy
+  * line height
+  * scan flow
 
-例:
+* “premium”
 
-* 今っぽい / 洗練された / ミニマル
-* 高級感 / 上品 / クール
-* 見やすい / 読みやすい / 分かりやすい
-* 目立たせる / 強調する / 優先度を上げる
+  * premium
+  * polished
+  * elegant
+  * minimal
+  * trust-building
 
-### 13-2. 比較項目
+日本語版でも同等候補を返す。
 
-* 意味
-* 典型的な使用場面
-* 実務での分解先
-* 近いが違う点
-* 向いている対象
-* 向いていない対象
-* AI依頼への落とし込みやすさ
-* よくある誤用
-* UIとの結びつき
-* 印象の強さ
-* B2B / B2C適性
+### 14-6. ゼロ件時
 
-### 13-3. 比較画面挙動
-
-* 比較追加
-* 並べ替え
-* 差分のみ表示
-* 保存
-* 共有リンク
-* 印刷レイアウト
-
-### 13-4. 無料制限
-
-無料では2語比較まで。
-3語以上はPro。
+* close matches
+* popular terms
+* vague wording collections
+* problem-based entry points
+* related categories
 
 ---
 
-## 14. お気に入り・履歴仕様
+## 15. 絞り込み仕様
 
-### 14-1. お気に入り
+### 15-1. 軸
 
-* 無料: 5件
-* Pro: 無制限
+* Category
+* Vague vs practical
+* Use case
+* Beginner-friendliness
+* AI-prompt readiness
+* UI / LP / Form / Writing
+* Mobile relevance
+* Misuse risk
+* Search popularity
 
-### 14-2. 履歴
+### 15-2. 用途軸
 
-* 見た語の履歴
-* 比較履歴
-* コピーした依頼文履歴
-* 最近使った変換語履歴
+* UI improvement
+* Landing page improvement
+* Writing improvement
+* CTA improvement
+* Form improvement
+* Information organization
+* Mobile optimization
+* Visual tuning
 
-### 14-3. 用途
+### 15-3. 難易度
 
-ユーザーが「前に見た便利な言い回し」を再発見できるようにする。
+* Intro
+* Beginner-intermediate
+* Intermediate+
 
----
+### 15-4. 誤用リスク
 
-## 15. AI依頼文仕様
-
-ここがこの製品の最重要差別化。
-
-### 15-1. 基本版
-
-最短で使える依頼文。
-
-### 15-2. 詳細版
-
-どの観点をどう変えるかまで書かれた依頼文。
-
-### 15-3. UI改善版
-
-画面設計や部品の見せ方に寄せた文。
-
-### 15-4. LP改善版
-
-訴求、導線、CTA、視線誘導に寄せた文。
-
-### 15-5. フォーム改善版
-
-入力しやすさ、補助文、負荷軽減に寄せた文。
-
-### 15-6. モバイル版
-
-画面幅、情報密度、タップしやすさなどを含めた文。
-
-### 15-7. リライト版
-
-既存のUI / 既存のLP / 既存の文面を改善する時の依頼文。
-
-### 15-8. 禁止文例
-
-悪い頼み方を明示する。
-
-例:
-
-* 「今っぽくしてください」
-* 「もう少し洗練させて」
-* 「見やすくして」
-* 「高級感がほしい」
-
-### 15-9. 改善文例
-
-禁止文例を、具体要素に変換した完成文を出す。
+* Low
+* Medium
+* High
 
 ---
 
-## 16. 曖昧語分解仕様
+## 16. 比較機能仕様
 
-この製品独自の中核機能。
-単なる定義ではなく、曖昧語を構造分解する。
+### 16-1. 比較対象数
 
-### 16-1. 分解対象の例
+* Free: 2 terms
+* Pro: 3〜4 terms
 
-* 今っぽい
-* 高級感
-* 見やすい
-* スッキリ
-* ポップ
-* 地味
-* ごちゃつく
-* 分かりやすい
-* 押したくなる
-* 洗練された
+### 16-2. 比較項目
 
-### 16-2. 分解結果の形式
+* meaning
+* common use case
+* practical breakdown
+* close but different point
+* best-fit audience
+* bad-fit audience
+* AI-promptability
+* misuse risk
+* related UI implication
+* tone strength
+* B2B / B2C suitability
 
-例えば「今っぽい」であれば、以下のように出す。
+### 16-3. 比較画面挙動
 
-* 余白を広くする
-* 装飾を減らす
-* 色数を抑える
-* CTAを絞る
-* 影を弱くする
-* 角丸を統一する
-* 情報密度を下げる
-* モバイルで1カラム化する
-
-### 16-3. 表示形式
-
-* 短文箇条書き
-* 用途別タブ
-* 変換後の完成依頼文
-* 逆にやると崩れる要素
+* add / remove
+* reorder
+* highlight differences only
+* save compare set
+* generate share link
+* print layout
 
 ---
 
-## 17. 実務メモ仕様
+## 17. お気に入り・履歴
 
-### 17-1. 深さ
+### 17-1. お気に入り
 
-コード実装が主役ではないが、
-**どの観点をいじればその印象が出るか**
-を十分に理解できる深さを持たせる。
+* Free: 5
+* Pro: unlimited
 
-### 17-2. 含める項目
+### 17-2. 履歴
 
-* レイアウト面への影響
-* 配色面への影響
-* タイポグラフィ面への影響
-* UI選定面への影響
-* CTA配置面への影響
-* モバイル面への影響
-* やりすぎると起きる問題
-* 別語に変えた方が良い場面
+* viewed terms
+* compared terms
+* copied prompts
+* recently used transformations
 
----
+### 17-3. 目的
 
-## 18. デザイン仕様
-
-この製品自体の見た目が弱いと説得力が落ちる。
-
-### 18-1. デザイン方針
-
-* 言葉が主役
-* しかし固すぎず、読みやすい
-* 比較しやすい
-* 曖昧語 / 実務語の違いが視覚的に分かる
-* 用途別タブが使いやすい
-* 長文でも疲れにくい
-
-### 18-2. トーン
-
-Niche Worksらしく、
-
-* 実用
-* 落ち着き
-* ツール感
-* 学習サイトすぎない
-* 軽量
-
-### 18-3. 視覚上の重要要素
-
-* 曖昧語には目立つタグ
-* 実務語には別のタグ
-* 悪い例は警告色
-* 良い例は成功色
-* 分解表は見やすい表形式
-* 比較表は差分強調
+“前に見た便利な言い回し” を再発見できるようにする。
 
 ---
 
-## 19. レスポンシブ仕様
+## 18. AI依頼文仕様
 
-### 19-1. モバイル
+旧仕様では、用途別に **基本 / 詳細 / UI改善 / LP改善 / フォーム改善 / モバイル / リライト** を用意する前提でした。 
 
-* 一覧は1列または2列
+### 18-1. 種類
+
+* Basic
+* Detailed
+* UI
+* LP
+* Form
+* Mobile
+* Rewrite
+
+### 18-2. 悪い依頼例
+
+英語版例:
+
+* “make it nicer”
+* “make it modern”
+* “make it polished”
+* “make it easier to read”
+* “give it premium feel”
+
+日本語版例:
+
+* もっと良い感じにして
+* 今風にして
+* 洗練させて
+* 見やすくして
+* 高級感を出して
+
+### 18-3. 良い依頼例の方針
+
+* change target
+* specific visual or structural change
+* priority
+* scope
+* mobile context
+* tone guardrails
+  まで含める。
+
+---
+
+## 19. 曖昧語分解仕様
+
+これはこの製品独自の中核機能である。
+
+### 19-1. 主要分解対象
+
+* modern
+* premium
+* readable
+* polished
+* playful
+* clean
+* cluttered
+* flat
+* clear
+* stronger CTA
+
+### 19-2. 分解結果の形式
+
+例えば “modern” なら、
+
+* increase whitespace
+* reduce visual noise
+* use fewer accent colors
+* soften shadows
+* unify corner radius
+* reduce information density
+* simplify CTA hierarchy
+* favor one-column on small screens
+
+### 19-3. 表示形式
+
+* short bullet list
+* use-case tabs
+* transformed full request
+* what breaks the intended tone
+
+---
+
+## 20. 実務メモ仕様
+
+### 20-1. 含める内容
+
+* layout implications
+* color implications
+* typography implications
+* UI implications
+* CTA implications
+* mobile implications
+* overuse risks
+* when to switch to a different term
+
+### 20-2. 深さ
+
+コード実装の深掘りではなく、
+**その印象や改善方向を何で作るか**
+が分かる深さを持たせる。
+
+---
+
+## 21. レスポンシブ仕様
+
+### 21-1. モバイル
+
+* 1〜2列一覧
 * 詳細は全画面シート
 * 比較は横スクロール表
 * フィルタはボトムシート
 
-### 19-2. タブレット
+### 21-2. タブレット
 
-* 左一覧 + 右詳細の分割可
+* 左一覧 + 右詳細 可
 
-### 19-3. デスクトップ
+### 21-3. デスクトップ
 
 * 左フィルタ
 * 中央一覧
@@ -872,310 +1005,320 @@ Niche Worksらしく、
 
 ---
 
-## 20. アクセシビリティ仕様
+## 22. アクセシビリティ仕様
 
-### 20-1. 必須要件
+### 22-1. 必須
 
-* キーボードだけで主要操作可能
-* フォーカス可視
-* 色だけに頼らないタグ識別
-* 比較表が意味構造を持つ
-* 長文の見出し階層が適切
-* 検索 / フィルタの関係が分かる
+* keyboard reachable
+* visible focus
+* no color-only distinction
+* semantic compare tables
+* proper heading hierarchy
+* search / filter relation clarity
 
-### 20-2. 読みやすさ
+### 22-2. 読みやすさ
 
-この製品は文章量が多いため、
+このツールは文章量が多いため、
 
-* 行間
-* 段落分割
-* 強調のやりすぎ防止
-* 表と文章のバランス
-  が重要。
+* readable line height
+* stable paragraph spacing
+* restrained emphasis
+* balanced table/text flow
+  を重視する。
 
 ---
 
-## 21. SEO仕様
+## 23. SEO仕様
 
-### 21-1. 対象ページ
+### 23-1. 主対象ページ
 
-* トップ
-* 一覧
-* 各用語ページ
-* 比較ページ
-* 曖昧語特集ページ
-* 問題別導線ページ
+英語版:
 
-### 21-2. 個別ページSEOタイトル例
+* top
+* term pages
+* compare pages
+* vague-word collections
+* problem pages
+
+日本語版:
+
+* 同構造を維持するが、英語版を主軸にする
+
+### 23-2. 英語版タイトル例
+
+* What does “modern” mean in web design? Practical breakdown and AI-ready prompts
+* What does “premium” mean in UI design? Common misuse, breakdown, and better requests
+* What is the difference between readable, clear, and legible?
+
+### 23-3. 日本語版タイトル例
 
 * 「今っぽい」とは？AIに伝わる具体化・言い換え・依頼文例
 * 「高級感」とは？Webデザインでの意味・分解・よくある誤用
 * 「見やすい」とは？可読性・視線導線・情報密度への落とし込み方
 
-### 21-3. 狙う検索意図
+### 23-4. 狙う検索意図
+
+英語主軸:
+
+* what does [term] mean in design
+* [term] UI meaning
+* [term] prompt
+* [term] wording
+* [term] design difference
+* how to describe [tone] to AI
+
+日本語補助:
 
 * 〇〇 意味
-* 〇〇 とは
 * 〇〇 言い換え
 * 〇〇 AI
 * 〇〇 依頼文
-* 〇〇 何て言う
 * 〇〇 デザイン
-* 〇〇 UI
 
-### 21-4. 構造化
+### 23-5. 構造化
 
 * FAQ schema
 * Breadcrumb schema
-* Article / TechArticle整理
-* 比較ページはテーブル構造を持つ
+* Article / TechArticle
+* compare pages with structured comparison blocks
+* hreflang pairing between EN and JA
 
 ---
 
-## 22. SNS共有仕様
+## 24. SNS共有仕様
 
-### 22-1. 各用語
+### 24-1. 英語版OGP
 
-* OGP画像を個別生成
-* 用語と一言変換が見える
+* term
+* short practical transformation angle
+* clear tagline
+* readable structure
 
-### 22-2. 比較ページ
+### 24-2. 日本語版OGP
 
-* 「今っぽい vs 洗練された」などの比較OGP
-* 差分が一目で分かる簡易表サマリー
+* 日本語タイトル
+* 必要に応じて英語用語併記
+* 変換の要点を一目で見せる
 
-### 22-3. 共有時文言
+### 24-3. 比較ページOGP
 
-* 曖昧語をAIに通る言葉に変えられる
-* 誤用しやすい言葉の違いが分かる
-* そのまま使える依頼文がある
-
----
-
-## 23. 導線仕様
-
-### 23-1. トップからの主導線
-
-* 用語から探す
-* 悩みから探す
-* 曖昧語から具体化する
-* 似た言葉を比較する
-
-### 23-2. 悩みから探す
-
-これは重要な導線。
-
-例:
-
-* なんとなく古く見える
-* ごちゃついている
-* 読みにくい
-* 目立たない
-* 高級感が出ない
-* スマホだと見づらい
-* 押したくならない
-* 雰囲気だけの指示しかできない
-
-ここから、関連用語群へ遷移できるようにする。
-
-### 23-3. 回遊導線
-
-各用語末尾に、
-
-* 近い語
-* 逆の語
-* 一緒に見られている語
-* 関連するUI用語
-  を出す。
+* “modern vs polished”
+* “readable vs clear vs legible”
+* 差分が見える構図
 
 ---
 
-## 24. 管理画面・運営仕様
+## 25. 導線仕様
 
-### 24-1. 管理者機能
+### 25-1. トップからの主導線
 
-* 用語追加
-* 下書き
-* 公開予約
-* 曖昧語マッピング編集
-* 比較関係の設定
-* SEO編集
-* OGP生成
-* 更新履歴管理
-* 用途別テンプレ管理
+* Search by term
+* Search by problem
+* Transform vague wording
+* Compare similar terms
 
-### 24-2. 編集ルール
+### 25-2. 問題導線例
 
-各用語は以下を必須とする。
+* It feels outdated
+* It feels cluttered
+* It’s hard to read
+* CTA is too weak
+* It doesn’t feel premium
+* It feels too noisy
+* Mobile feels cramped
+* I can’t describe what I want
 
-* 一言説明
-* 長文説明
+日本語版でも同等の悩み導線を持つ。
+
+### 25-3. 回遊導線
+
+* close terms
+* opposite terms
+* often-compared terms
+* related UI topics
+
+---
+
+## 26. 管理画面・運営仕様
+
+### 26-1. 管理機能
+
+* add term
+* draft
+* schedule publish
+* edit mappings
+* set comparisons
+* SEO input
+* OGP generation
+* update log
+* manage use-case prompt variants
+
+### 26-2. 編集必須項目
+
+* English short summary
+* English long summary
+* Japanese short summary
+* Japanese long summary
 * plain explanation
-* 実務での意味
-* 曖昧語分解
-* AI依頼文2種以上
-* NG例
-* 比較対象1語以上
-* 検索用別名5個以上
+* practical meaning
+* ambiguity breakdown
+* at least 2 prompt variants
+* bad example
+* compare target
+* at least 5 search aliases in English
+* at least 3 search aliases in Japanese
+
+### 26-3. 更新優先順位
+
+1. 英語版正本更新
+2. 日本語版追従
+3. OGP / SEO / internal links 更新
 
 ---
 
-## 25. 品質基準
+## 27. 品質基準
 
-### 25-1. 用語品質
+### 27-1. 項目品質
 
-* 説明が抽象に逃げていない
-* 実務で何を指すかが書かれている
-* 似た語との差が明確
-* AI依頼文が使える
-* NG例がある
-* 曖昧語分解がある
-* モバイル観点が抜けていない
+* meaning is clear
+* practice meaning is explicit
+* difference from similar terms is clear
+* AI prompts are usable
+* bad examples exist
+* ambiguity breakdown exists
+* mobile perspective exists
+* misuse is warned
 
-### 25-2. サイト品質
+### 27-2. サイト品質
 
-* 検索が速い
-* 曖昧語で引ける
-* 比較が分かりやすい
-* 長文でも読みにくくない
-* 無料でも価値がある
-* 有料理由が明確
-
----
-
-## 26. 技術方針
-
-### 26-1. 要件
-
-* 高速静的配信が可能
-* JSON等で語彙データ管理しやすい
-* 個別ページ量産が容易
-* OGP個別生成が可能
-* 比較や検索が軽い
-* 将来の有料化機能に対応しやすい
-
-### 26-2. 避けること
-
-* 重いCMS依存
-* 用語ごとの表現ゆれ放置
-* 検索が正式名称依存
-* 更新運用が手間すぎる構成
+* fast search
+* vague problem wording works
+* comparison is clear
+* reading experience is stable
+* Pro value is obvious
+* English version stands on its own
+* Japanese version is not low-quality translation
 
 ---
 
-## 27. 主要ページ一覧
+## 28. 技術方針
 
-### 一般公開
+### 28-1. 方針
 
-* `/`
-* `/terms`
-* `/terms/[slug]`
-* `/categories/[slug]`
-* `/compare`
-* `/topics/[problem]`
-* `/pro`
-* `/about`
-* `/search`
+* static-first
+* fast loading
+* data-driven
+* no framework requirement
+* minimal JS
+* client-side interaction only
+* no user text sent to server
 
-### ユーザー用
+### 28-2. 共通仕様準拠
 
-* `/favorites`
-* `/history`
-* `/saved-compares`
+* `tools/` 配下で運用
+* 共通ロゴアセット参照
+* `ad-top` 必須
+* `ad-bottom` 推奨
+* 寄付導線は広告と分離
+* 横断ナビは原則置かない
+* GA4 / Cloudflare analytics 維持
 
-### 管理用
+### 28-3. 禁止
 
-* `/admin`
-* `/admin/terms`
-* `/admin/mappings`
-* `/admin/seo`
-
----
-
-## 28. 完成形で必須の初期ページ
-
-* トップ
-* 用語一覧
-* 個別用語ページ
-* 比較ページ
-* 曖昧語特集ページ
-* 問題別導線ページ
-* Pro説明ページ
+* 600px固定
+* PC幅の不必要な縮小
+* 1ページ内動的言語切替を主方式にすること
+* 日本語版のみ更新して英語版を止めること
+* 各ツール内にロゴ複製を置くこと
 
 ---
 
-## 29. 無料と有料の境界設計
+## 29. 必須ページ
 
-### 無料で十分できること
+### 英語版
 
-* 言葉の意味を知る
-* 基本的な違いを知る
-* 簡単な依頼文を使う
-* 曖昧語の大枠を理解する
+* top
+* terms list
+* term detail
+* category pages
+* compare
+* problem pages
+* pro
+* about
+* usage
 
-### 有料で速く深くできること
+### 日本語版
 
-* 細かい変換をする
-* 複数語比較をする
-* 用途別文例を使い分ける
-* 保存して再利用する
-* 仕事で何度も使う
-
-つまり、有料は
-**知るための課金ではなく、言語化作業の効率課金**
-であるべき。
+* 上記と同構造で維持
 
 ---
 
-## 30. 初期収録で最優先の目玉比較
+## 30. 無料と有料の境界
 
-完成形で刺さる比較テーマを最初から持つ。
+### 無料
 
-* 今っぽい vs 洗練された
-* 高級感 vs 上品
-* 見やすい vs 読みやすい vs 分かりやすい
-* 目立たせる vs 強調する
-* ポップ vs 親しみやすい
-* ミニマル vs スッキリ
-* クール vs 信頼感
-* ごちゃつく vs 情報密度が高い
-* 地味 vs 視覚的重みが弱い
-* 動きをつける vs フィードバックを増やす
+* discover
+* read
+* search
+* basic compare
+* copy short prompts
+
+### 有料
+
+* deep compare
+* save
+* reuse
+* access longer prompt bundles
+* access full ambiguity breakdown
+* access full bad/better example sets
 
 ---
 
-## 31. 失敗条件
+## 31. 初期目玉比較
 
-以下に当てはまると、この製品は弱い。
+* modern vs polished
+* premium vs elegant
+* readable vs clear vs legible
+* emphasize vs prioritize
+* playful vs approachable
+* minimal vs clean
+* cluttered vs high-density
+* flat vs low visual weight
+* noisy vs over-emphasized
+* add motion vs add feedback
 
-* 説明がただの和訳
-* 曖昧語分解がない
-* AI依頼文が弱い
-* 比較が薄い
-* 悩みから引けない
-* 検索が正式用語依存
-* NG例がない
-* 有料理由が弱い
+---
+
+## 32. 失敗条件
+
+* 日本語版の方が厚い
+* 英語SEOが弱い
+* 比較が浅い
+* vague problem wording が拾えない
+* Pro理由が弱い
+* AI prompt が表面的
+* bad example が薄い
 * 更新が止まる
 
 ---
 
-## 32. この製品で金を取れる理由
+## 33. この製品で金を取れる理由
 
 この製品が売るものは、用語知識そのものではない。
 
 売るのは、
 
-* うまく言えない時間
-* AIに言い直す時間
-* 語の違いで迷う時間
-* 同じ表現を毎回考える時間
-* 制作指示がズレる時間
+* wording friction
+* ambiguity reduction time
+* prompt rewriting time
+* comparison time
+* repeated lookup cost
+* communication mismatch cost
 
 の削減である。
 
-つまり、
-**Web制作における“言語化の摩擦”を減らすための有料道具**
+つまりこの製品は、
+**glossary ではなく wording decision tool**
 として成立させる。
 
 ---
