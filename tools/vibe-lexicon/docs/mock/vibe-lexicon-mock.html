@@ -1,0 +1,1387 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vibe Lexicon Mock | Niche Works</title>
+  <meta name="description" content="Niche Works Vibe Lexicon mock — 曖昧な依頼をAIに通る言葉へ変えるVibe Coding用語集のHTMLモック">
+  <style>
+    :root {
+      --bg: #f6f6f3;
+      --panel: #ffffff;
+      --line: #e5e7eb;
+      --line-strong: #d1d5db;
+      --text: #111827;
+      --muted: #6b7280;
+      --soft: #f3f4f6;
+      --chip: #eef2ff;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --warn: #92400e;
+      --warn-soft: #fef3c7;
+      --success: #166534;
+      --success-soft: #dcfce7;
+      --rose: #be185d;
+      --rose-soft: #fce7f3;
+      --shadow: 0 10px 24px rgba(17,24,39,.06);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1380px;
+      --left: 300px;
+      --right: 390px;
+      --content: minmax(0,1fr);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font); }
+    body { line-height: 1.55; }
+    button, input, select { font: inherit; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .page { max-width: var(--max); margin: 0 auto; padding: 18px 16px 48px; }
+    .nw-lang-switch { text-align: center; margin: 6px 0 10px; font-size: 11px; color: var(--muted); }
+    .nw-lang-switch button {
+      border: none; background: transparent; padding: 0 2px; cursor: pointer; font-size: 11px; color: #4b5563;
+    }
+    .nw-lang-switch button.active { font-weight: 700; text-decoration: underline; }
+
+    .hero {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 18px 20px 16px; box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted);
+      background: #fafafa; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px;
+    }
+    h1 { margin: 14px 0 8px; font-size: clamp(28px, 4vw, 40px); line-height: 1.08; }
+    .hero-copy { max-width: 900px; color: #374151; font-size: 15px; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .hero-points .pill {
+      padding: 8px 11px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); font-size: 12px; color: #374151;
+    }
+
+    .ad-slot {
+      margin: 18px 0 16px; min-height: 94px; border-radius: var(--radius); border: 1px dashed var(--line-strong);
+      background: linear-gradient(180deg,#ffffff,#fafafa); display: grid; place-items: center; color: var(--muted); font-size: 14px; text-align: center;
+    }
+
+    .quick-explain {
+      margin: 12px 0 20px; padding: 14px 16px; border-radius: var(--radius); background: #fcfcfb; border: 1px solid var(--line); color: #374151; font-size: 14px;
+    }
+
+    .dashboard { display: grid; grid-template-columns: var(--left) var(--content) var(--right); gap: 16px; align-items: start; }
+    .panel {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow);
+    }
+    .panel .section { padding: 16px; border-top: 1px solid var(--line); }
+    .panel .section:first-child { border-top: none; }
+    .panel-title { margin: 0 0 10px; font-size: 13px; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); }
+
+    .filters { position: sticky; top: 14px; overflow: hidden; }
+    .search-wrap { position: relative; }
+    .search-wrap input {
+      width: 100%; border: 1px solid var(--line-strong); border-radius: 14px; padding: 12px 14px; background: #fff;
+    }
+    .suggestions {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 40; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; display: none;
+    }
+    .suggestions.open { display: block; }
+    .suggestion-item {
+      display: flex; justify-content: space-between; gap: 8px; padding: 11px 12px; cursor: pointer; border-top: 1px solid var(--line); font-size: 14px;
+    }
+    .suggestion-item:first-child { border-top: none; }
+    .suggestion-item:hover, .suggestion-item:focus-visible { background: var(--soft); outline: none; }
+    .suggestion-sub { color: var(--muted); font-size: 12px; }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 8px 10px; border: 1px solid var(--line); background: #fff; border-radius: 999px; cursor: pointer; color: #374151; font-size: 12px;
+    }
+    .chip.active { background: var(--accent-soft); border-color: #93c5fd; color: #1d4ed8; }
+
+    .mini-stack { display: grid; gap: 8px; }
+    .mini-stat {
+      display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; font-size: 13px; background: #fff;
+    }
+    .mini-stat strong { font-size: 16px; }
+
+    .catalog { min-width: 0; }
+    .catalog-head {
+      display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; padding: 16px 18px 8px;
+    }
+    .catalog-head h2 { margin: 0 0 6px; font-size: 24px; }
+    .catalog-sub { color: var(--muted); font-size: 14px; max-width: 720px; }
+    .toolbar { padding: 0 18px 14px; display: grid; gap: 10px; }
+    .toolbar-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .toolbar-row .count { color: var(--muted); font-size: 13px; margin-right: auto; }
+    .topic-scroller { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+    .topic-chip {
+      white-space: nowrap; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 9px 12px; font-size: 12px; cursor: pointer;
+    }
+    .topic-chip:hover { background: var(--soft); }
+
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; padding: 0 18px 18px; }
+    .card {
+      border: 1px solid var(--line); border-radius: 18px; background: #fff; padding: 14px; display: grid; gap: 12px; min-width: 0;
+    }
+    .card-head { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
+    .card-title { margin: 0; font-size: 17px; }
+    .card-sub { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px; color: #374151; background: var(--soft); border: 1px solid var(--line); padding: 4px 8px; border-radius: 999px;
+    }
+    .tag.accent { background: var(--accent-soft); border-color: #bfdbfe; color: #1d4ed8; }
+    .tag.warn { background: var(--warn-soft); border-color: #fcd34d; color: var(--warn); }
+    .tag.success { background: var(--success-soft); border-color: #bbf7d0; color: var(--success); }
+    .tag.rose { background: var(--rose-soft); border-color: #f9a8d4; color: var(--rose); }
+
+    .tone-box {
+      border-radius: 16px; border: 1px solid var(--line); background: linear-gradient(180deg,#fbfbfb,#f6f7fb); padding: 14px; min-height: 120px; display: grid; gap: 10px; align-content: start;
+    }
+    .tone-head { display: flex; justify-content: space-between; gap: 8px; }
+    .tone-bars { display: grid; gap: 7px; }
+    .tone-bar { height: 10px; border-radius: 999px; background: #d1d5db; }
+    .tone-bar.dark { background: #4b5563; }
+    .tone-bar.accent { background: #93c5fd; }
+    .tone-bar.soft { background: #e5e7eb; }
+    .tone-bar.narrow { width: 54%; }
+    .tone-bar.medium { width: 74%; }
+    .tone-bar.wide { width: 88%; }
+
+    .decompose-list { display: grid; gap: 7px; }
+    .decompose-item {
+      display: flex; gap: 8px; align-items: start; border: 1px solid var(--line); border-radius: 12px; padding: 9px 10px; font-size: 13px; background: #fff;
+    }
+    .decompose-dot { width: 18px; height: 18px; border-radius: 999px; display: inline-grid; place-items: center; background: var(--accent-soft); color: #1d4ed8; font-size: 11px; flex: 0 0 18px; }
+
+    .card-copy { margin: 0; color: #374151; font-size: 14px; }
+    .micro-box {
+      border: 1px solid var(--line); border-radius: 12px; padding: 10px 11px; background: #fff; font-size: 12px; color: #374151;
+    }
+    .micro-box strong { display: block; margin-bottom: 4px; }
+
+    .card-actions, .inline-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn {
+      border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; background: #fff; cursor: pointer; color: #111827;
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.ghost { background: #fff; }
+    .btn.soft { background: var(--soft); }
+
+    .detail { position: sticky; top: 14px; overflow: hidden; }
+    .detail-head { padding: 16px 16px 10px; display: grid; gap: 8px; border-bottom: 1px solid var(--line); }
+    .detail-head h3 { margin: 0; font-size: 26px; line-height: 1.08; }
+    .detail-sub { color: var(--muted); font-size: 13px; }
+    .detail-summary {
+      border: 1px solid var(--line); border-radius: 16px; background: #fcfcfd; padding: 14px;
+    }
+    .detail-summary h4 { margin: 0 0 6px; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .02em; }
+    .detail-summary p { margin: 0; font-size: 14px; color: #374151; }
+
+    .fact-grid { display: grid; gap: 8px; }
+    .fact-row {
+      display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; font-size: 13px;
+    }
+    .fact-row strong { text-align: right; }
+
+    .columns-2 { display: grid; gap: 10px; }
+    .good-bad {
+      border-radius: 14px; padding: 12px; border: 1px solid var(--line); background: #fff;
+    }
+    .good-bad.bad { background: #fffaf3; border-color: #fde68a; }
+    .good-bad.good { background: #f4fff7; border-color: #bbf7d0; }
+    .good-bad h4 { margin: 0 0 8px; font-size: 13px; }
+    .good-bad p { margin: 0; font-size: 13px; color: #374151; }
+
+    .prompt-modes { display: flex; flex-wrap: wrap; gap: 8px; }
+    .prompt-tab {
+      border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; background: #fff; cursor: pointer; font-size: 12px;
+    }
+    .prompt-tab.active { background: var(--accent-soft); border-color: #93c5fd; color: #1d4ed8; }
+    .prompt-box {
+      margin-top: 10px; border-radius: 16px; border: 1px solid var(--line); background: #0f172a; color: #f8fafc; padding: 14px; font-size: 13px;
+    }
+
+    .compare-panel { margin-top: 18px; }
+    .compare-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 18px 8px;
+    }
+    .compare-head h3 { margin: 0; font-size: 20px; }
+    .compare-sub { color: var(--muted); font-size: 13px; }
+    .compare-list { display: grid; gap: 12px; padding: 0 18px 18px; }
+    .compare-item {
+      border: 1px solid var(--line); border-radius: 18px; background: #fff; padding: 14px;
+    }
+    .compare-item-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-bottom: 10px; }
+    .compare-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .compare-cell {
+      border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; background: #fcfcfd; font-size: 13px;
+    }
+    .compare-cell strong { display: block; margin-bottom: 5px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .02em; }
+
+    .pro-box {
+      border-radius: 20px; border: 1px solid #bfdbfe; background: linear-gradient(180deg,#eff6ff,#f8fbff); padding: 16px;
+    }
+    .pro-box h4 { margin: 0 0 6px; font-size: 18px; }
+    .pro-box p { margin: 0 0 10px; color: #374151; font-size: 14px; }
+
+    .donate-box {
+      margin-top: 18px; border-radius: 20px; border: 1px solid var(--line); background: #fff; padding: 16px;
+    }
+    .donate-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+    .faq, footer { margin-top: 18px; }
+    .faq .panel { padding: 0; }
+    .faq-item { border-top: 1px solid var(--line); padding: 14px 16px; }
+    .faq-item:first-child { border-top: none; }
+    .faq-item h4 { margin: 0 0 6px; font-size: 15px; }
+    .faq-item p { margin: 0; color: #374151; font-size: 14px; }
+
+    footer {
+      text-align: center; color: var(--muted); font-size: 12px; padding: 20px 10px 10px;
+    }
+    footer p { margin: 6px 0; }
+
+    .toast {
+      position: fixed; right: 16px; bottom: 16px; z-index: 80; background: #111827; color: #fff; padding: 12px 14px; border-radius: 12px; box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); pointer-events: none; transition: .18s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1120px) {
+      .dashboard { grid-template-columns: 1fr; }
+      .filters, .detail { position: static; }
+      .grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .columns-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 720px) {
+      .page { padding-left: 12px; padding-right: 12px; }
+      .grid, .compare-grid, .columns-2 { grid-template-columns: 1fr; }
+      .catalog-head, .toolbar-row, .compare-item-top { flex-direction: column; align-items: stretch; }
+      .card-actions, .inline-actions, .donate-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .hero-points { gap: 8px; }
+      h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="nw-lang-switch" aria-label="language switch">
+      <span data-i18n="ja">Language:</span><span data-i18n="en" hidden>Language:</span>
+      <button type="button" data-lang="ja" class="active">JP</button>
+      <span>/</span>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+
+    <header class="hero panel">
+      <div class="eyebrow">
+        <span data-i18n="ja">Niche Works 実用辞典シリーズ</span>
+        <span data-i18n="en" hidden>Niche Works practical reference series</span>
+      </div>
+      <h1 data-i18n="ja">Vibe Lexicon</h1>
+      <h1 data-i18n="en" hidden>Vibe Lexicon</h1>
+      <p class="hero-copy" data-i18n="ja">
+        曖昧な依頼を、AIに通る言葉へ変える Vibe Coding 用語集。<br>
+        「今っぽくして」「見やすくして」「高級感を出したい」を、具体的な改善要素とそのまま使える依頼文に変換します。
+      </p>
+      <p class="hero-copy" data-i18n="en" hidden>
+        A Vibe Coding lexicon that turns vague requests into language AI can execute.<br>
+        Convert phrases like “make it modern,” “make it clearer,” or “add premium feel” into concrete design moves and ready-to-paste prompts.
+      </p>
+      <div class="hero-points">
+        <span class="pill" data-i18n="ja">曖昧語 → 実務語</span>
+        <span class="pill" data-i18n="en" hidden>vague → practical</span>
+        <span class="pill" data-i18n="ja">悪い依頼例 → 良い依頼例</span>
+        <span class="pill" data-i18n="en" hidden>bad request → better request</span>
+        <span class="pill" data-i18n="ja">UI / LP / フォーム別文例</span>
+        <span class="pill" data-i18n="en" hidden>UI / LP / form prompts</span>
+        <span class="pill" data-i18n="ja">比較・保存・Pro導線</span>
+        <span class="pill" data-i18n="en" hidden>compare, save, Pro path</span>
+      </div>
+    </header>
+
+    <div class="ad-slot ad-top">
+      <div>
+        <strong>ad-top</strong><br>
+        広告枠（準備中） / Ad slot placeholder
+      </div>
+    </div>
+
+    <div class="quick-explain">
+      <span data-i18n="ja">このモックでは、検索・曖昧語の分解・比較・短文コピー・用途別依頼文切替の流れを確認できます。無料モック想定のため、比較は2語まで、お気に入りは5件までです。</span>
+      <span data-i18n="en" hidden>This mock demonstrates search, vague-term decomposition, compare flow, short-copy actions, and prompt mode switching. As a free-tier mock, compare is limited to 2 terms and favorites to 5 items.</span>
+    </div>
+
+    <div class="dashboard">
+      <aside class="panel filters" aria-label="filters">
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">検索</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Search</h2>
+          <div class="search-wrap">
+            <label class="sr-only" for="searchInput">Search</label>
+            <input id="searchInput" type="search" placeholder="今っぽい / ごちゃついている / CTAを目立たせたい">
+            <div id="suggestions" class="suggestions" role="listbox" aria-label="search suggestions"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">カテゴリ</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Category</h2>
+          <div id="categoryChips" class="chip-row"></div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">用途</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Use case</h2>
+          <div id="useChips" class="chip-row"></div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">語のタイプ</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Term type</h2>
+          <div id="typeChips" class="chip-row"></div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">クイック統計</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Quick stats</h2>
+          <div class="mini-stack">
+            <div class="mini-stat"><span data-i18n="ja">収録語</span><span data-i18n="en" hidden>Terms</span><strong id="statTotal">0</strong></div>
+            <div class="mini-stat"><span data-i18n="ja">比較中</span><span data-i18n="en" hidden>In compare</span><strong id="statCompare">0</strong></div>
+            <div class="mini-stat"><span data-i18n="ja">お気に入り</span><span data-i18n="en" hidden>Favorites</span><strong id="statFav">0</strong></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <button id="resetFiltersBtn" type="button" class="btn ghost" style="width:100%;">
+            <span data-i18n="ja">条件をリセット</span>
+            <span data-i18n="en" hidden>Reset filters</span>
+          </button>
+        </div>
+      </aside>
+
+      <section class="panel catalog" aria-label="catalog">
+        <div class="catalog-head">
+          <div>
+            <h2 data-i18n="ja">曖昧語・実務語カタログ</h2>
+            <h2 data-i18n="en" hidden>Vague-to-practical term catalog</h2>
+            <p class="catalog-sub" data-i18n="ja">悩み文や雰囲気語で探し、分解結果とそのまま使えるAI依頼文を確認できます。</p>
+            <p class="catalog-sub" data-i18n="en" hidden>Search by feelings, vague requests, or practical terms. Review decomposition and ready-to-paste AI prompts.</p>
+          </div>
+          <div class="inline-actions">
+            <a class="btn ghost" href="/tools/vibe-lexicon/pro.html">Vibe Lexicon Pro</a>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-row">
+            <span class="count" id="resultCount">0 件表示</span>
+            <button class="btn ghost" id="clearCompareBtn" type="button">
+              <span data-i18n="ja">比較を空にする</span>
+              <span data-i18n="en" hidden>Clear compare</span>
+            </button>
+          </div>
+          <div class="topic-scroller" id="topicScroller"></div>
+        </div>
+
+        <div id="grid" class="grid"></div>
+      </section>
+
+      <aside class="panel detail" aria-label="detail panel">
+        <div class="detail-head">
+          <div class="card-tags">
+            <span class="tag accent" id="detailTypeTag">曖昧語</span>
+            <span class="tag" id="detailCategoryTag">雰囲気語</span>
+            <span class="tag success" id="detailUseTag">UI改善</span>
+          </div>
+          <div>
+            <h3 id="detailTitle">今っぽい</h3>
+            <div class="detail-sub" id="detailSub">modern / current · 曖昧語</div>
+          </div>
+          <div class="inline-actions">
+            <button id="favoriteBtn" class="btn ghost" type="button">お気に入り</button>
+            <button id="addCompareBtn" class="btn ghost" type="button">比較に追加</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="detail-summary">
+            <h4 data-i18n="ja">ひらたく言うと</h4>
+            <h4 data-i18n="en" hidden>Plainly put</h4>
+            <p id="detailPlain"></p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">実務では何を指すことが多いか</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>What it often means in practice</h2>
+          <div id="detailFacts" class="fact-grid"></div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">曖昧語からの分解</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Breakdown</h2>
+          <div id="detailBreakdown" class="decompose-list"></div>
+        </div>
+
+        <div class="section columns-2">
+          <div class="good-bad bad">
+            <h4 data-i18n="ja">悪い依頼例</h4>
+            <h4 data-i18n="en" hidden>Bad request</h4>
+            <p id="detailBad"></p>
+          </div>
+          <div class="good-bad good">
+            <h4 data-i18n="ja">良い依頼例</h4>
+            <h4 data-i18n="en" hidden>Better request</h4>
+            <p id="detailGood"></p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">AIにそのまま使える依頼文</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Ready-to-paste AI prompt</h2>
+          <div id="promptModes" class="prompt-modes"></div>
+          <div id="promptBox" class="prompt-box"></div>
+          <div class="inline-actions" style="margin-top:10px;">
+            <button id="copyPromptBtn" class="btn primary" type="button">
+              <span data-i18n="ja">短文コピー</span>
+              <span data-i18n="en" hidden>Copy prompt</span>
+            </button>
+            <button class="btn ghost" type="button">
+              <span data-i18n="ja">詳細版はPro</span>
+              <span data-i18n="en" hidden>Detailed prompts in Pro</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="panel-title" data-i18n="ja">関連語</h2>
+          <h2 class="panel-title" data-i18n="en" hidden>Related terms</h2>
+          <div id="detailRelated" class="chip-row"></div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="panel compare-panel" aria-label="compare tray">
+      <div class="compare-head">
+        <div>
+          <h3 data-i18n="ja">比較トレイ</h3>
+          <h3 data-i18n="en" hidden>Compare tray</h3>
+          <div class="compare-sub" data-i18n="ja">無料モックでは2語まで比較できます。3語以上、保存、用途別の深い比較はPro想定です。</div>
+          <div class="compare-sub" data-i18n="en" hidden>Free mock supports up to 2 terms. Deeper compare, save, and 3+ items belong to Pro.</div>
+        </div>
+      </div>
+      <div id="compareList" class="compare-list"></div>
+      <div id="compareEmpty" class="compare-list" style="padding-top:0;">
+        <div class="compare-item">
+          <p style="margin:0; color:#374151; font-size:14px;">
+            <span data-i18n="ja">まだ比較対象がありません。「比較に追加」を押すと、ここに差分サマリーが並びます。</span>
+            <span data-i18n="en" hidden>No compare items yet. Use “Add compare” to build a quick side-by-side summary here.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">
+      <div>
+        <strong>ad-bottom</strong><br>
+        広告枠（準備中） / Ad slot placeholder
+      </div>
+    </div>
+
+    <section class="panel pro-box" aria-label="pro plan">
+      <h4>Vibe Lexicon Pro</h4>
+      <p data-i18n="ja">用途別文例のフル解放、複数比較、曖昧語分解の深掘り、保存、履歴、語群まとめコピーを想定しています。</p>
+      <p data-i18n="en" hidden>Unlock full use-case prompt variants, deeper decomposition, 3+ compare, saved sets, history, and bundle copy actions.</p>
+      <div class="inline-actions">
+        <a class="btn primary" href="/tools/vibe-lexicon/pro.html">Pro を見る</a>
+        <a class="btn ghost" href="/tools/vibe-lexicon/usage.html">Usage</a>
+      </div>
+    </section>
+
+    <section class="panel faq" aria-label="faq">
+      <div class="faq-item">
+        <h4 data-i18n="ja">これは辞書ですか、プロンプトツールですか？</h4>
+        <h4 data-i18n="en" hidden>Is this a dictionary or a prompt tool?</h4>
+        <p data-i18n="ja">両方です。意味を知るだけでなく、曖昧な依頼を分解し、そのままAIに渡せるところまでを主目的にしています。</p>
+        <p data-i18n="en" hidden>Both. It explains meanings, but its main job is to decompose vague requests and turn them into prompts you can actually use.</p>
+      </div>
+      <div class="faq-item">
+        <h4 data-i18n="ja">無料でも使えますか？</h4>
+        <h4 data-i18n="en" hidden>Can I use it for free?</h4>
+        <p data-i18n="ja">意味確認、検索、基本比較、短文コピーまでは無料想定です。保存や深い文例展開はPro想定です。</p>
+        <p data-i18n="en" hidden>Yes. Search, meaning checks, basic compare, and short-copy actions fit the free tier. Save, deep variants, and advanced compare are for Pro.</p>
+      </div>
+      <div class="faq-item">
+        <h4 data-i18n="ja">Usageページはどこですか？</h4>
+        <h4 data-i18n="en" hidden>Where is the usage page?</h4>
+        <p>
+          <a href="/mnt/data/vibe-lexicon-usage.html">Usage / 使い方ページを見る</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="donate-box panel" aria-label="donation">
+      <strong data-i18n="ja">このツールが役立った場合</strong>
+      <strong data-i18n="en" hidden>If this tool helped</strong>
+      <p data-i18n="ja" style="margin:8px 0 0; color:#374151; font-size:14px;">Niche Works の継続公開のため、OFUSE または Ko-fi での支援導線をここに置く想定です。広告とは分離して表示します。</p>
+      <p data-i18n="en" hidden style="margin:8px 0 0; color:#374151; font-size:14px;">Support links for OFUSE and Ko-fi would live here, visually separate from ads.</p>
+      <div class="donate-actions">
+        <a href="#" class="btn ghost">OFUSE</a>
+        <a href="#" class="btn ghost">Ko-fi</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© Niche Works — Small Web Tools for Boring Tasks</p>
+      <p>当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+      <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const terms = [
+      {
+        id: 'modern',
+        termJa: '今っぽい',
+        termEn: 'Modern',
+        category: '雰囲気語',
+        type: '曖昧語',
+        use: 'UI改善',
+        aliases: ['今風', 'モダン', 'current', 'fresh', 'new'],
+        issues: ['古く見える', '時代遅れ', '今っぽくしたい'],
+        summaryJa: '流行感や現代的な整理感を求める時に使われがちな曖昧語。',
+        summaryEn: 'A vague term often used when someone wants a current, updated feel.',
+        plainJa: 'だいたいは「余白を増やす」「情報密度を下げる」「装飾を減らす」のまとめ言葉です。',
+        plainEn: 'Usually shorthand for more whitespace, less clutter, and more restrained styling.',
+        factsJa: [
+          ['典型的な分解先', '余白 / 情報密度 / CTAの絞り込み'],
+          ['近い語', '洗練された / ミニマル'],
+          ['誤用されやすさ', '高'],
+          ['向いている場面', 'LP、SaaS管理画面、ポートフォリオの再整理']
+        ],
+        breakdownJa: ['セクション間の余白を増やす', '色数を減らす', 'カードの影を弱める', 'CTAを1つに絞る', 'モバイルで1カラム化する'],
+        badJa: '「全体を今っぽくしてください」',
+        goodJa: '全体をより現代的で整理された印象にしてください。セクション間の余白を増やし、色数を減らし、CTAは主ボタン1つに絞ってください。',
+        prompts: {
+          ui: '管理画面全体をより現代的で整理された印象にしてください。余白を広げ、カードの影は控えめにし、主CTAだけを最も目立たせてください。',
+          lp: 'LPを今っぽい印象に寄せたいです。情報密度を下げ、見出しとCTAの階層を明確にし、装飾色は最小限にしてください。',
+          form: 'フォームをより現代的で軽く見せたいです。ラベルと入力欄の余白を増やし、補助文は簡潔にし、不要な枠線を減らしてください。',
+          mobile: 'モバイルでは特に今っぽさより整理感を優先し、1カラム化、余白増、CTAの単純化を行ってください。'
+        },
+        related: ['refined', 'minimal', 'readable']
+      },
+      {
+        id: 'refined',
+        termJa: '洗練された',
+        termEn: 'Refined',
+        category: '雰囲気語',
+        type: '曖昧語',
+        use: 'LP改善',
+        aliases: ['上質', '上品', 'refined', 'polished'],
+        issues: ['安っぽい', '雑に見える', '上品にしたい'],
+        summaryJa: 'ノイズを減らし、品を上げたい時に使う語。高級感と近いが、誇張より整え方が主です。',
+        summaryEn: 'A term for raising perceived quality by reducing noise and sharpening hierarchy.',
+        plainJa: '派手にするのではなく、整えることで上質に見せたい時の言葉です。',
+        plainEn: 'Not louder—more controlled, more deliberate, and more orderly.',
+        factsJa: [
+          ['典型的な分解先', 'タイポ整理 / 色の節度 / 余白の統一'],
+          ['近い語', '高級感 / 今っぽい'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', '高単価商材、B2B、ブランド訴求']
+        ],
+        breakdownJa: ['見出し階層を明確化する', '装飾色を抑える', '字間や行間を整える', '境界線の強さを揃える', '要素の整列を徹底する'],
+        badJa: '「もっと洗練させてください」',
+        goodJa: '全体をより洗練された印象にしたいです。見出し階層を明確にし、色数と装飾色を絞り、余白と整列のルールを揃えてください。',
+        prompts: {
+          ui: 'UI全体をより洗練された印象にしてください。境界線と余白のルールを統一し、強い装飾色は削って、タイポグラフィの階層をはっきりさせてください。',
+          lp: 'LPをより洗練された印象にしたいです。見出しと本文の関係を整理し、不要な装飾を減らし、整列と余白の一貫性を高めてください。',
+          form: 'フォームを洗練された印象にしてください。ラベルと補助文の見せ方を簡潔にし、線や影は最小限にしてください。',
+          mobile: 'モバイルでは要素数を減らし、余白と階層で洗練感を出してください。無理に装飾で演出しないでください。'
+        },
+        related: ['modern', 'premium', 'minimal']
+      },
+      {
+        id: 'premium',
+        termJa: '高級感',
+        termEn: 'Premium feel',
+        category: '雰囲気語',
+        type: '曖昧語',
+        use: 'LP改善',
+        aliases: ['高級', 'ラグジュアリー', 'premium', 'luxury'],
+        issues: ['安く見える', '単価が低く見える', '高級感を出したい'],
+        summaryJa: '単価や品位を引き上げたい時に使うが、黒金にするだけでは成立しない。',
+        summaryEn: 'Often used to increase perceived value, but it’s more than just black-and-gold styling.',
+        plainJa: '色よりも余白・タイポ・情報の絞り込みで出すことが多い言葉です。',
+        plainEn: 'More often created through spacing, restraint, and typography than flashy color choices.',
+        factsJa: [
+          ['典型的な分解先', '余白 / 彩度抑制 / 上質なタイポ'],
+          ['近い語', '洗練された / 上品'],
+          ['誤用されやすさ', '高'],
+          ['向いている場面', '美容、ホテル、ブランド、単価の高いサービス']
+        ],
+        breakdownJa: ['彩度を抑える', '余白を広くする', '強い装飾を減らす', 'タイポグラフィを落ち着かせる', 'CTAの数を絞る'],
+        badJa: '「黒と金にして高級感を出してください」',
+        goodJa: '高級感を出したいです。彩度は抑えめにし、余白を広く取り、タイポグラフィを落ち着かせて、情報量を絞ってください。',
+        prompts: {
+          ui: '高級感を出したいので、彩度を抑え、余白を広く取り、影や装飾は控えめにしてください。視覚的なノイズを減らしてください。',
+          lp: 'LP全体をより高級感のある印象にしてください。情報量を絞り、余白を広めにし、見出しのタイポグラフィに落ち着きを持たせてください。',
+          form: 'フォームは高級感を優先し、枠線や補助装飾を減らし、余白と整列で上質さを出してください。',
+          mobile: 'モバイルでは特に情報量を絞り、行間と余白で高級感を出してください。派手な色は避けてください。'
+        },
+        related: ['refined', 'minimal', 'trust']
+      },
+      {
+        id: 'readable',
+        termJa: '読みやすい',
+        termEn: 'Readable',
+        category: '可読性語',
+        type: '実務語',
+        use: '文章改善',
+        aliases: ['可読性', 'readable', 'legible text'],
+        issues: ['読みにくい', '長文がつらい', '本文が重い'],
+        summaryJa: '文字の追いやすさ・理解しやすさに関わる実務語。単に大きくすればよいわけではない。',
+        summaryEn: 'A practical term tied to text comfort and legibility, not just bigger font size.',
+        plainJa: '文章やテキストUIを無理なく追える状態を指します。',
+        plainEn: 'It describes text that can be followed comfortably without strain.',
+        factsJa: [
+          ['典型的な分解先', '行間 / 文字サイズ / 可読幅 / 見出し階層'],
+          ['近い語', '見やすい / 分かりやすい'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', '説明文、記事、フォーム補助文']
+        ],
+        breakdownJa: ['行間を広げる', '1行の文字数を減らす', '見出し階層を明確にする', '段落を短く切る', '強調の頻度を抑える'],
+        badJa: '「文章を読みやすくしてください」',
+        goodJa: '文章の可読性を上げたいです。行間を少し広げ、1行の文字数を抑え、段落を短く切り、見出し階層を明確にしてください。',
+        prompts: {
+          ui: 'テキストの可読性を高めたいです。本文の行間を広げ、見出し階層を明確にし、補助文のコントラストを不足させないでください。',
+          lp: 'LP本文を読みやすくしたいです。1セクションあたりの文量を減らし、段落を短くし、見出しとの関係を明確にしてください。',
+          form: 'フォーム補助文とエラーメッセージを読みやすくしてください。行間を確保し、説明文を長くしすぎないでください。',
+          mobile: 'モバイルでは特に可読幅を狭く保ち、行間を十分に確保して、本文を長くしすぎないでください。'
+        },
+        related: ['clear', 'visible', 'modern']
+      },
+      {
+        id: 'clear',
+        termJa: '分かりやすい',
+        termEn: 'Clear',
+        category: '情報整理語',
+        type: '実務語',
+        use: 'UI改善',
+        aliases: ['clear', 'understandable', '理解しやすい'],
+        issues: ['何をすればいいか分からない', '情報が散っている'],
+        summaryJa: '意味や導線が理解しやすいこと。可読性よりも構造や優先度の問題に寄る。',
+        summaryEn: 'About clarity of structure and action, more than raw text legibility.',
+        plainJa: '見れば何が重要で、次に何をすべきか分かる状態です。',
+        plainEn: 'When users can immediately understand what matters and what to do next.',
+        factsJa: [
+          ['典型的な分解先', '優先順位 / CTA導線 / 情報整理'],
+          ['近い語', '見やすい / 読みやすい'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', 'LP、オンボーディング、設定画面']
+        ],
+        breakdownJa: ['主CTAを1つに絞る', '情報ブロックを整理する', '見出しに役割を持たせる', '補助情報を後ろに回す', '視線導線を左上から自然に流す'],
+        badJa: '「もっと分かりやすくしてください」',
+        goodJa: 'ページをより分かりやすくしたいです。主CTAを1つに絞り、重要情報を先頭に置き、補足情報は後ろへ回してください。',
+        prompts: {
+          ui: '設定画面をより分かりやすくしてください。主操作を先に配置し、補足情報は後ろに寄せ、見出しごとに役割を明確にしてください。',
+          lp: 'LPをより分かりやすくしたいです。主訴求とCTAを最初に見せ、比較的弱い情報は下部へ移動してください。',
+          form: 'フォームを分かりやすくしたいです。入力順序を明確にし、必須項目と任意項目をひと目で判別できるようにしてください。',
+          mobile: 'モバイルでは分かりやすさを優先し、主導線を上部に集約し、補足説明は折りたたみか後半へ移してください。'
+        },
+        related: ['readable', 'visible', 'emphasize']
+      },
+      {
+        id: 'emphasize',
+        termJa: '目立たせる',
+        termEn: 'Emphasize',
+        category: '強調・CTA語',
+        type: '実務語',
+        use: 'CTA改善',
+        aliases: ['強調', '目立つ', 'highlight', 'emphasize'],
+        issues: ['CTAが弱い', 'ボタンが埋もれる'],
+        summaryJa: '何を目立たせるかと、何と比べて目立たせるかをセットで考える語。',
+        summaryEn: 'A practical term that requires context: what should stand out, and against what.',
+        plainJa: '単体で派手にするより、他を引いて差を作ることが多いです。',
+        plainEn: 'Often achieved by calming other elements, not only making one thing louder.',
+        factsJa: [
+          ['典型的な分解先', 'コントラスト / 優先度 / 色 / 余白'],
+          ['近い語', '強調する / 優先度を上げる'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', 'CTA、価格、主要なステータス']
+        ],
+        breakdownJa: ['主ボタンだけ色を変える', '周辺要素を静かにする', '余白を追加して孤立させる', '文言を短くする', '視線導線の終点に置く'],
+        badJa: '「ボタンをもっと目立たせて」',
+        goodJa: '主CTAだけを目立たせたいです。周辺要素の色や装飾は抑え、主ボタンにだけ強いコントラストと十分な余白を与えてください。',
+        prompts: {
+          ui: '主CTAを目立たせたいです。主ボタンだけに強い色を使い、周辺の二次ボタンや補助リンクは静かにしてください。',
+          lp: 'LPで申込みボタンを目立たせたいです。主CTAだけが視線の終点になるよう、前後の要素を落ち着かせて余白を多めに取ってください。',
+          form: '送信ボタンを目立たせたいです。フォーム内で最も視線が集まる位置に置き、色と余白で優先度を明確にしてください。',
+          mobile: 'モバイルでは主CTAを下部固定または視線終点に置き、周辺情報は簡潔にして主CTAを目立たせてください。'
+        },
+        related: ['clear', 'visible', 'modern']
+      },
+      {
+        id: 'cluttered',
+        termJa: 'ごちゃついている',
+        termEn: 'Cluttered',
+        category: 'AI依頼変換語',
+        type: '曖昧語',
+        use: 'UI改善',
+        aliases: ['ごちゃごちゃ', '散らかっている', 'cluttered', 'busy'],
+        issues: ['うるさい', '密度が高い', '落ち着かない'],
+        summaryJa: '要素数・余白不足・階層不足などが混ざって起こる曖昧な不満語。',
+        summaryEn: 'A vague complaint usually caused by density, hierarchy problems, or too many competing elements.',
+        plainJa: 'たいていは「情報が多い」よりも「整理ルールが弱い」状態です。',
+        plainEn: 'Often less about pure quantity and more about weak organization rules.',
+        factsJa: [
+          ['典型的な分解先', '余白 / 優先度 / グルーピング / 色数'],
+          ['近い語', '情報密度が高い / ノイズが多い'],
+          ['誤用されやすさ', '高'],
+          ['向いている場面', '既存画面のリファクタ依頼']
+        ],
+        breakdownJa: ['主従関係を整理する', '要素をグルーピングする', '色数を減らす', '余白を増やす', '同じレベルの強調を減らす'],
+        badJa: '「画面がごちゃついているので直してください」',
+        goodJa: '画面の主従関係が弱く、ごちゃついて見えます。余白を増やし、関連要素をグルーピングし、同じ強さの色や装飾を減らしてください。',
+        prompts: {
+          ui: '画面がごちゃついて見えるので、余白を増やし、関連要素をグルーピングし、同じ強さの装飾や色を減らしてください。',
+          lp: 'LPがごちゃついて見えるので、訴求の優先順位を整理し、セクションごとの役割を明確にしてください。',
+          form: 'フォームがごちゃついて見えるので、補助文を簡潔にし、必須情報だけを先に出し、余白とグルーピングを改善してください。',
+          mobile: 'モバイルで特にごちゃついて見えるため、1画面あたりの情報量を減らし、折りたたみや順序整理を行ってください。'
+        },
+        related: ['modern', 'clear', 'minimal']
+      },
+      {
+        id: 'minimal',
+        termJa: 'ミニマル',
+        termEn: 'Minimal',
+        category: '雰囲気語',
+        type: '実務語',
+        use: 'UI改善',
+        aliases: ['minimal', '削ぎ落とす', '少ない'],
+        issues: ['要素を減らしたい', '静かにしたい'],
+        summaryJa: '要素を減らす方向の実務語。今っぽいと近いが、削る方向性がより強い。',
+        summaryEn: 'A practical term pointing toward deliberate reduction and restraint.',
+        plainJa: '「足す」より「削る」ことで印象を作る言葉です。',
+        plainEn: 'It creates impression through subtraction more than addition.',
+        factsJa: [
+          ['典型的な分解先', '要素削減 / 色削減 / 情報の厳選'],
+          ['近い語', '今っぽい / 洗練された'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', 'SaaS、ポートフォリオ、ブランドサイト']
+        ],
+        breakdownJa: ['不要な装飾を消す', '色数を減らす', '主情報だけ残す', '余白を多く取る', 'CTAの数を減らす'],
+        badJa: '「もっとミニマルにして」',
+        goodJa: '画面をよりミニマルにしたいです。不要な装飾や補助要素を減らし、主情報だけが残るように整理してください。',
+        prompts: {
+          ui: 'よりミニマルなUIにしてください。装飾色や補助パーツを減らし、主情報だけが残るように整理してください。',
+          lp: 'LPをよりミニマルにしたいです。訴求数を絞り、色と装飾を抑え、余白で強弱をつけてください。',
+          form: 'フォームをミニマルにしたいです。不要な補助文や視覚装飾を減らし、入力の主導線をはっきりさせてください。',
+          mobile: 'モバイルでは特にミニマルさを優先し、1画面あたりの情報を絞ってください。'
+        },
+        related: ['modern', 'refined', 'cluttered']
+      },
+      {
+        id: 'friendly',
+        termJa: '親しみやすい',
+        termEn: 'Friendly',
+        category: '雰囲気語',
+        type: '曖昧語',
+        use: 'LP改善',
+        aliases: ['やさしい', 'フレンドリー', 'friendly', 'approachable'],
+        issues: ['固い', '冷たい', 'とっつきにくい'],
+        summaryJa: '信頼感を残しつつ、距離感を縮めたい時に使う語。',
+        summaryEn: 'Used when you want warmth and accessibility without losing trust.',
+        plainJa: '少し柔らかく、話しかけやすい印象を作りたい時の言葉です。',
+        plainEn: 'About adding warmth and approachability without becoming childish.',
+        factsJa: [
+          ['典型的な分解先', '文体 / 角丸 / 彩度 / イラスト'],
+          ['近い語', 'ポップ / やわらかい'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', '教育、予約、生活系サービス']
+        ],
+        breakdownJa: ['文言を少しやわらかくする', '角丸を少し増やす', '彩度を中程度にする', 'イラストや補助説明を足す', '強すぎる直線的レイアウトを緩める'],
+        badJa: '「もっと親しみやすくしてください」',
+        goodJa: '親しみやすい印象にしたいです。文言をやわらかくし、角丸と余白を少し増やし、強すぎる緊張感を下げてください。',
+        prompts: {
+          ui: '親しみやすいUIにしたいです。角丸と余白を少し増やし、補助文をやわらかい文体にしてください。',
+          lp: 'LPをより親しみやすくしたいです。強すぎる硬質さを減らし、見出しと本文の文体を少し柔らかくしてください。',
+          form: 'フォームを親しみやすい印象にしたいです。エラーメッセージや補助文をやわらかい表現にしてください。',
+          mobile: 'モバイルでは親しみやすさを優先し、文量を抑えつつ補助文をやさしいトーンにしてください。'
+        },
+        related: ['pop', 'trust', 'refined']
+      },
+      {
+        id: 'pop',
+        termJa: 'ポップ',
+        termEn: 'Pop',
+        category: '雰囲気語',
+        type: '曖昧語',
+        use: 'LP改善',
+        aliases: ['明るい', '賑やか', 'pop', 'playful'],
+        issues: ['地味', '若々しさがない'],
+        summaryJa: '明るさ・軽さ・楽しさを足したい時に使うが、安っぽさとも隣り合わせ。',
+        summaryEn: 'Used to add energy and playfulness, but can quickly feel cheap if overdone.',
+        plainJa: '色・形・言葉でテンションを少し上げる方向です。',
+        plainEn: 'Usually means a bit more color, playfulness, and emotional energy.',
+        factsJa: [
+          ['典型的な分解先', '色 / 形 / 文体 / イラスト'],
+          ['近い語', '親しみやすい / にぎやか'],
+          ['誤用されやすさ', '高'],
+          ['向いている場面', '若年層向け、キャンペーン、エンタメ系']
+        ],
+        breakdownJa: ['彩度を少し上げる', '角丸を増やす', 'CTA文言を軽くする', 'イラストや補助ビジュアルを使う', '色の対比をはっきりさせる'],
+        badJa: '「もっとポップにしてください」',
+        goodJa: '少しポップな印象にしたいです。彩度をやや上げ、CTAや見出しの文体を軽くし、補助ビジュアルで楽しさを加えてください。',
+        prompts: {
+          ui: 'UIを少しポップにしたいです。彩度をやや上げ、角丸や補助色を使って軽い楽しさを出してください。',
+          lp: 'LPをよりポップにしたいです。見出しとCTAを少し軽い言い回しにし、補助ビジュアルで明るさを加えてください。',
+          form: 'フォームを少しポップにしてください。入力補助や完了メッセージに軽い親しみを持たせてください。',
+          mobile: 'モバイルではポップさを出しつつ、うるさくならないよう色数は増やしすぎないでください。'
+        },
+        related: ['friendly', 'modern', 'cluttered']
+      },
+      {
+        id: 'trust',
+        termJa: '信頼感',
+        termEn: 'Trustworthy',
+        category: '雰囲気語',
+        type: '曖昧語',
+        use: 'LP改善',
+        aliases: ['安心感', '信頼', 'trustworthy', 'reliable'],
+        issues: ['怪しく見える', '不安がある'],
+        summaryJa: '安心して使えそう、任せられそうに見せたい時の語。',
+        summaryEn: 'Used when you want people to feel safe, credible, and comfortable proceeding.',
+        plainJa: '派手さより、秩序・整合性・情報の誠実さで作ることが多いです。',
+        plainEn: 'Often created through order, consistency, and honest information rather than flashiness.',
+        factsJa: [
+          ['典型的な分解先', '整列 / 情報の透明性 / 語調 / 社会的証明'],
+          ['近い語', '親しみやすい / 高級感'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', '金融、医療、B2B、申込み導線']
+        ],
+        breakdownJa: ['情報を整理する', '社会的証明を置く', '誇張表現を減らす', '文体を安定させる', '不安を減らす補足を入れる'],
+        badJa: '「信頼感を出してください」',
+        goodJa: '信頼感を高めたいです。情報の整列を改善し、誇張表現を減らし、実績や安心材料を適切な位置に配置してください。',
+        prompts: {
+          ui: 'UIに信頼感を持たせたいです。整列と余白を安定させ、説明不足の部分を補い、誇張した装飾は避けてください。',
+          lp: 'LPの信頼感を高めたいです。安心材料や実績を見つけやすく配置し、表現は誇張しすぎず、全体を整理してください。',
+          form: '申込みフォームの信頼感を高めたいです。セキュリティや入力後の流れを明示し、不安を減らす補助文を入れてください。',
+          mobile: 'モバイルでは特に不安を減らすため、重要説明を省きすぎず、申込み前の安心材料を見つけやすくしてください。'
+        },
+        related: ['friendly', 'premium', 'clear']
+      },
+      {
+        id: 'visible',
+        termJa: '見やすい',
+        termEn: 'Easy to scan',
+        category: '可読性語',
+        type: '実務語',
+        use: 'UI改善',
+        aliases: ['見やすい', 'scanable', 'easy to view'],
+        issues: ['ぱっと見で把握しづらい', '視線が迷う'],
+        summaryJa: 'ぱっと見の把握しやすさに寄る語で、読みやすいとは少し違う。',
+        summaryEn: 'More about first-glance scanability than long-form text readability.',
+        plainJa: '文字の読みやすさだけではなく、視線が迷わないことも含みます。',
+        plainEn: 'It includes scan flow and layout comprehension, not just typographic comfort.',
+        factsJa: [
+          ['典型的な分解先', '優先順位 / コントラスト / 視線導線'],
+          ['近い語', '読みやすい / 分かりやすい'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', '一覧画面、管理画面、価格表']
+        ],
+        breakdownJa: ['重要情報を上に置く', '強弱を明確にする', '視線の流れを揃える', 'コントラストを確保する', '関連要素を近づける'],
+        badJa: '「もっと見やすくしてください」',
+        goodJa: '一覧画面をより見やすくしたいです。情報の優先順位を整理し、重要な項目を上に置き、視線の流れが左上から自然に追えるようにしてください。',
+        prompts: {
+          ui: '画面をより見やすくしたいです。重要情報を先頭に置き、関連要素を近づけ、強調のルールを整理してください。',
+          lp: 'LPの見やすさを上げたいです。主メッセージとCTAの位置関係を整理し、視線が迷わないようにしてください。',
+          form: 'フォームを見やすくしたいです。入力欄、ラベル、補助文の距離を整理し、必須情報がすぐ分かるようにしてください。',
+          mobile: 'モバイルで見やすくするため、縦方向の視線導線をシンプルにし、重要要素を最初に見せてください。'
+        },
+        related: ['readable', 'clear', 'emphasize']
+      },
+      {
+        id: 'soft',
+        termJa: 'やわらかい',
+        termEn: 'Soft',
+        category: '雰囲気語',
+        type: '曖昧語',
+        use: 'UI改善',
+        aliases: ['soft', 'gentle', 'やさしい'],
+        issues: ['硬い', '冷たい', '圧が強い'],
+        summaryJa: '緊張感や冷たさを下げたい時に使う曖昧語。親しみやすさと近い。',
+        summaryEn: 'A vague term for reducing harshness or stiffness in the interface.',
+        plainJa: '硬い印象を少し緩めたい時の言葉です。',
+        plainEn: 'Used when the design feels too harsh, sharp, or emotionally distant.',
+        factsJa: [
+          ['典型的な分解先', '角丸 / 彩度 / 文体 / コントラスト調整'],
+          ['近い語', '親しみやすい / ポップ'],
+          ['誤用されやすさ', '中'],
+          ['向いている場面', '予約、教育、生活支援、入力導線']
+        ],
+        breakdownJa: ['角丸を少し増やす', '鋭いコントラストを弱める', '文言をやわらかくする', '余白にゆとりを持たせる', '補助説明を安心寄りにする'],
+        badJa: '「もっとやわらかい感じにしてください」',
+        goodJa: '全体をやわらかい印象にしたいです。角丸と余白を少し増やし、強いコントラストを和らげて、文言も少し優しいトーンにしてください。',
+        prompts: {
+          ui: 'UIをやわらかい印象にしたいです。角丸と余白を少し増やし、強い線やコントラストを和らげてください。',
+          lp: 'LPをやわらかい印象に寄せたいです。強すぎる主張を抑え、文体や色の緊張感を少し下げてください。',
+          form: 'フォームをやわらかい印象にしたいです。エラーメッセージや補助文を優しいトーンにし、線の圧を少し弱めてください。',
+          mobile: 'モバイルでは特に圧が強く見えやすいので、余白と文体でやわらかさを出してください。'
+        },
+        related: ['friendly', 'pop', 'trust']
+      }
+    ];
+
+    const labels = {
+      categories: ['すべて', '雰囲気語', '可読性語', '強調・CTA語', 'AI依頼変換語', '情報整理語'],
+      uses: ['すべて', 'UI改善', 'LP改善', 'フォーム改善', 'CTA改善', '文章改善'],
+      types: ['すべて', '曖昧語', '実務語'],
+      promptModes: {
+        ui: ['UI改善', 'UI'],
+        lp: ['LP改善', 'LP'],
+        form: ['フォーム改善', 'Form'],
+        mobile: ['モバイル', 'Mobile']
+      },
+      topics: [
+        ['古く見える', 'modern'],
+        ['高級感を出したい', 'premium'],
+        ['ごちゃついている', 'cluttered'],
+        ['CTAが弱い', 'emphasize'],
+        ['読みにくい', 'readable'],
+        ['信頼感がほしい', 'trust']
+      ]
+    };
+
+    const state = {
+      lang: 'ja',
+      search: '',
+      category: 'すべて',
+      use: 'すべて',
+      type: 'すべて',
+      compare: [],
+      favorites: new Set(),
+      selectedId: 'modern',
+      promptMode: 'ui'
+    };
+
+    const el = {
+      searchInput: document.getElementById('searchInput'),
+      suggestions: document.getElementById('suggestions'),
+      categoryChips: document.getElementById('categoryChips'),
+      useChips: document.getElementById('useChips'),
+      typeChips: document.getElementById('typeChips'),
+      topicScroller: document.getElementById('topicScroller'),
+      grid: document.getElementById('grid'),
+      resultCount: document.getElementById('resultCount'),
+      statTotal: document.getElementById('statTotal'),
+      statCompare: document.getElementById('statCompare'),
+      statFav: document.getElementById('statFav'),
+      detailTitle: document.getElementById('detailTitle'),
+      detailSub: document.getElementById('detailSub'),
+      detailPlain: document.getElementById('detailPlain'),
+      detailFacts: document.getElementById('detailFacts'),
+      detailBreakdown: document.getElementById('detailBreakdown'),
+      detailBad: document.getElementById('detailBad'),
+      detailGood: document.getElementById('detailGood'),
+      detailRelated: document.getElementById('detailRelated'),
+      detailTypeTag: document.getElementById('detailTypeTag'),
+      detailCategoryTag: document.getElementById('detailCategoryTag'),
+      detailUseTag: document.getElementById('detailUseTag'),
+      promptModes: document.getElementById('promptModes'),
+      promptBox: document.getElementById('promptBox'),
+      favoriteBtn: document.getElementById('favoriteBtn'),
+      addCompareBtn: document.getElementById('addCompareBtn'),
+      copyPromptBtn: document.getElementById('copyPromptBtn'),
+      compareList: document.getElementById('compareList'),
+      compareEmpty: document.getElementById('compareEmpty'),
+      toast: document.getElementById('toast'),
+      clearCompareBtn: document.getElementById('clearCompareBtn'),
+      resetFiltersBtn: document.getElementById('resetFiltersBtn')
+    };
+
+    function t(ja, en) { return state.lang === 'ja' ? ja : en; }
+
+    function showToast(text) {
+      el.toast.textContent = text;
+      el.toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => el.toast.classList.remove('show'), 1800);
+    }
+
+    function buildChips(container, values, key) {
+      container.innerHTML = '';
+      values.forEach((value) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'chip' + (state[key] === value ? ' active' : '');
+        button.textContent = value;
+        button.addEventListener('click', () => {
+          state[key] = value;
+          render();
+        });
+        container.appendChild(button);
+      });
+    }
+
+    function buildTopics() {
+      el.topicScroller.innerHTML = '';
+      labels.topics.forEach(([label, id]) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'topic-chip';
+        button.textContent = label;
+        button.addEventListener('click', () => {
+          state.selectedId = id;
+          state.search = label;
+          el.searchInput.value = label;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        el.topicScroller.appendChild(button);
+      });
+    }
+
+    function searchPool(item) {
+      return [
+        item.termJa, item.termEn, item.category, item.type, item.use,
+        ...item.aliases, ...item.issues, item.summaryJa, item.summaryEn, item.plainJa, item.plainEn,
+        ...item.breakdownJa, item.badJa, item.goodJa
+      ].join(' ').toLowerCase();
+    }
+
+    function getFiltered() {
+      return terms.filter((item) => {
+        const matchesSearch = !state.search || searchPool(item).includes(state.search.toLowerCase());
+        const matchesCategory = state.category === 'すべて' || item.category === state.category;
+        const matchesUse = state.use === 'すべて' || item.use === state.use;
+        const matchesType = state.type === 'すべて' || item.type === state.type;
+        return matchesSearch && matchesCategory && matchesUse && matchesType;
+      });
+    }
+
+    function getSuggestions(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return [];
+      return terms
+        .map((item) => {
+          const bag = [item.termJa, item.termEn, ...item.aliases, ...item.issues];
+          const hit = bag.find((x) => x.toLowerCase().includes(q));
+          return hit ? { item, hit } : null;
+        })
+        .filter(Boolean)
+        .slice(0, 6);
+    }
+
+    function renderSuggestions() {
+      const items = getSuggestions(state.search);
+      el.suggestions.innerHTML = '';
+      if (!items.length) {
+        el.suggestions.classList.remove('open');
+        return;
+      }
+      items.forEach(({ item, hit }) => {
+        const row = document.createElement('button');
+        row.type = 'button';
+        row.className = 'suggestion-item';
+        row.innerHTML = `
+          <span>${state.lang === 'ja' ? item.termJa : item.termEn}</span>
+          <span class="suggestion-sub">${hit}</span>
+        `;
+        row.addEventListener('click', () => {
+          state.search = hit;
+          el.searchInput.value = hit;
+          state.selectedId = item.id;
+          el.suggestions.classList.remove('open');
+          render();
+        });
+        el.suggestions.appendChild(row);
+      });
+      el.suggestions.classList.add('open');
+    }
+
+    function closeSuggestions() { el.suggestions.classList.remove('open'); }
+
+    function tagClass(type) {
+      if (type === '曖昧語') return 'tag warn';
+      if (type === '実務語') return 'tag success';
+      return 'tag';
+    }
+
+    function previewMarkup(item) {
+      const lines = item.breakdownJa.slice(0, 4).map((text, index) => `<div class="decompose-item"><span class="decompose-dot">${index + 1}</span><span>${text}</span></div>`).join('');
+      return `
+        <div class="tone-box">
+          <div class="tone-head">
+            <div class="card-tags">
+              <span class="${tagClass(item.type)}">${item.type}</span>
+              <span class="tag rose">${item.use}</span>
+            </div>
+            <span class="tag">${item.category}</span>
+          </div>
+          <div class="tone-bars">
+            <div class="tone-bar dark wide"></div>
+            <div class="tone-bar medium"></div>
+            <div class="tone-bar accent narrow"></div>
+            <div class="tone-bar soft wide"></div>
+          </div>
+          <div class="decompose-list">${lines}</div>
+        </div>
+      `;
+    }
+
+    function toggleFavorite(id) {
+      if (state.favorites.has(id)) {
+        state.favorites.delete(id);
+        showToast(t('お気に入りから外しました', 'Removed from favorites'));
+      } else {
+        if (state.favorites.size >= 5) {
+          showToast(t('無料モックではお気に入りは5件までです', 'Free mock supports up to 5 favorites'));
+          return;
+        }
+        state.favorites.add(id);
+        showToast(t('お気に入りに追加しました', 'Added to favorites'));
+      }
+      render();
+    }
+
+    function toggleCompare(id) {
+      if (state.compare.includes(id)) {
+        state.compare = state.compare.filter(x => x !== id);
+        showToast(t('比較トレイから外しました', 'Removed from compare tray'));
+      } else {
+        if (state.compare.length >= 2) {
+          showToast(t('無料モックでは比較は2語までです', 'Free mock supports up to 2 compare items'));
+          return;
+        }
+        state.compare.push(id);
+        showToast(t('比較トレイに追加しました', 'Added to compare tray'));
+      }
+      render();
+    }
+
+    function renderGrid() {
+      const items = getFiltered();
+      el.grid.innerHTML = '';
+      el.resultCount.textContent = t(`${items.length} 件表示`, `${items.length} results`);
+
+      if (!items.length) {
+        const empty = document.createElement('div');
+        empty.className = 'card';
+        empty.style.gridColumn = '1 / -1';
+        empty.innerHTML = `
+          <h3>${t('結果がありません', 'No results')}</h3>
+          <p class="card-copy">${t('近い候補として「今っぽい」「ごちゃついている」「信頼感」などを試してください。', 'Try nearby terms such as “Modern,” “Cluttered,” or “Trustworthy.”')}</p>
+        `;
+        el.grid.appendChild(empty);
+        return;
+      }
+
+      items.forEach((item) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">${state.lang === 'ja' ? item.termJa : item.termEn}</h3>
+              <p class="card-sub">${item.termEn} · ${item.category}</p>
+            </div>
+            <div class="card-tags">
+              <span class="${tagClass(item.type)}">${item.type}</span>
+            </div>
+          </div>
+          ${previewMarkup(item)}
+          <div class="card-tags">
+            <span class="tag rose">${item.use}</span>
+            ${item.related.slice(0, 2).map((term) => `<span class="tag">${terms.find(x => x.id === term)?.termJa || term}</span>`).join('')}
+          </div>
+          <p class="card-copy">${state.lang === 'ja' ? item.summaryJa : item.summaryEn}</p>
+          <div class="micro-box">
+            <strong>${t('悪い依頼例', 'Bad request')}</strong>
+            ${item.badJa}
+          </div>
+          <div class="card-actions">
+            <button class="btn primary" data-open="${item.id}">${t('詳細を見る', 'Open detail')}</button>
+            <button class="btn ghost" data-compare="${item.id}">${state.compare.includes(item.id) ? t('比較から外す', 'Remove compare') : t('比較に追加', 'Add compare')}</button>
+            <button class="btn ghost" data-copy="${item.id}">${t('短文コピー', 'Copy prompt')}</button>
+          </div>
+        `;
+        el.grid.appendChild(card);
+      });
+
+      el.grid.querySelectorAll('[data-open]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.selectedId = btn.dataset.open;
+          state.promptMode = 'ui';
+          renderDetail();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+      el.grid.querySelectorAll('[data-compare]').forEach((btn) => {
+        btn.addEventListener('click', () => toggleCompare(btn.dataset.compare));
+      });
+      el.grid.querySelectorAll('[data-copy]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const item = terms.find(x => x.id === btn.dataset.copy);
+          await navigator.clipboard.writeText(item.prompts.ui);
+          showToast(t('短文プロンプトをコピーしました', 'Prompt copied'));
+        });
+      });
+    }
+
+    function renderPromptModes(item) {
+      el.promptModes.innerHTML = '';
+      Object.entries(labels.promptModes).forEach(([key, [ja, en]]) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'prompt-tab' + (state.promptMode === key ? ' active' : '');
+        button.textContent = state.lang === 'ja' ? ja : en;
+        button.addEventListener('click', () => {
+          state.promptMode = key;
+          renderDetail();
+        });
+        el.promptModes.appendChild(button);
+      });
+      el.promptBox.textContent = item.prompts[state.promptMode];
+    }
+
+    function renderDetail() {
+      const item = terms.find(x => x.id === state.selectedId) || terms[0];
+      el.detailTitle.textContent = state.lang === 'ja' ? item.termJa : item.termEn;
+      el.detailSub.textContent = `${item.termEn} · ${item.category}`;
+      el.detailPlain.textContent = state.lang === 'ja' ? item.plainJa : item.plainEn;
+      el.detailTypeTag.textContent = item.type;
+      el.detailTypeTag.className = tagClass(item.type);
+      el.detailCategoryTag.textContent = item.category;
+      el.detailUseTag.textContent = item.use;
+      el.detailFacts.innerHTML = item.factsJa.map(([label, value]) => `<div class="fact-row"><span>${label}</span><strong>${value}</strong></div>`).join('');
+      el.detailBreakdown.innerHTML = item.breakdownJa.map((text, index) => `<div class="decompose-item"><span class="decompose-dot">${index + 1}</span><span>${text}</span></div>`).join('');
+      el.detailBad.textContent = item.badJa;
+      el.detailGood.textContent = item.goodJa;
+      el.detailRelated.innerHTML = item.related.map((id) => {
+        const rel = terms.find(x => x.id === id);
+        return `<button class="chip" data-related="${rel.id}">${state.lang === 'ja' ? rel.termJa : rel.termEn}</button>`;
+      }).join('');
+      el.favoriteBtn.textContent = state.favorites.has(item.id) ? t('お気に入り済み', 'Favorited') : t('お気に入り', 'Favorite');
+      el.addCompareBtn.textContent = state.compare.includes(item.id) ? t('比較から外す', 'Remove compare') : t('比較に追加', 'Add compare');
+
+      renderPromptModes(item);
+
+      el.favoriteBtn.onclick = () => toggleFavorite(item.id);
+      el.addCompareBtn.onclick = () => toggleCompare(item.id);
+      el.copyPromptBtn.onclick = async () => {
+        await navigator.clipboard.writeText(item.prompts[state.promptMode]);
+        showToast(t('短文プロンプトをコピーしました', 'Prompt copied'));
+      };
+
+      el.detailRelated.querySelectorAll('[data-related]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.selectedId = btn.dataset.related;
+          state.promptMode = 'ui';
+          renderDetail();
+        });
+      });
+    }
+
+    function renderCompare() {
+      el.compareList.innerHTML = '';
+      el.compareEmpty.style.display = state.compare.length ? 'none' : 'block';
+
+      state.compare.forEach((id) => {
+        const item = terms.find(x => x.id === id);
+        const div = document.createElement('div');
+        div.className = 'compare-item';
+        div.innerHTML = `
+          <div class="compare-item-top">
+            <div>
+              <strong>${state.lang === 'ja' ? item.termJa : item.termEn}</strong>
+              <div class="card-tags" style="margin-top:6px;">
+                <span class="${tagClass(item.type)}">${item.type}</span>
+                <span class="tag rose">${item.use}</span>
+                <span class="tag">${item.category}</span>
+              </div>
+            </div>
+            <button class="btn ghost" data-remove-compare="${item.id}">${t('外す', 'Remove')}</button>
+          </div>
+          <div class="compare-grid">
+            <div class="compare-cell"><strong>${t('何が問題か', 'Problem')}</strong>${item.issues[0]}</div>
+            <div class="compare-cell"><strong>${t('典型的な分解先', 'Typical breakdown')}</strong>${item.factsJa[0][1]}</div>
+            <div class="compare-cell"><strong>${t('悪い依頼例', 'Bad request')}</strong>${item.badJa}</div>
+            <div class="compare-cell"><strong>${t('向いている場面', 'Best context')}</strong>${item.factsJa[3][1]}</div>
+          </div>
+        `;
+        el.compareList.appendChild(div);
+      });
+
+      el.compareList.querySelectorAll('[data-remove-compare]').forEach((btn) => {
+        btn.addEventListener('click', () => toggleCompare(btn.dataset.removeCompare));
+      });
+    }
+
+    function applyLang(lang) {
+      state.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        node.hidden = node.dataset.i18n !== lang;
+      });
+      document.querySelectorAll('.nw-lang-switch button').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      render();
+    }
+
+    function renderStats() {
+      el.statTotal.textContent = String(terms.length);
+      el.statCompare.textContent = String(state.compare.length);
+      el.statFav.textContent = String(state.favorites.size);
+    }
+
+    function render() {
+      buildChips(el.categoryChips, labels.categories, 'category');
+      buildChips(el.useChips, labels.uses, 'use');
+      buildChips(el.typeChips, labels.types, 'type');
+      buildTopics();
+      renderGrid();
+      renderDetail();
+      renderCompare();
+      renderStats();
+    }
+
+    el.searchInput.addEventListener('input', (e) => {
+      state.search = e.target.value;
+      renderSuggestions();
+      renderGrid();
+    });
+    el.searchInput.addEventListener('focus', renderSuggestions);
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-wrap')) closeSuggestions();
+    });
+    document.querySelectorAll('.nw-lang-switch button').forEach((btn) => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+    el.clearCompareBtn.addEventListener('click', () => {
+      state.compare = [];
+      render();
+      showToast(t('比較トレイを空にしました', 'Compare tray cleared'));
+    });
+    el.resetFiltersBtn.addEventListener('click', () => {
+      state.search = '';
+      state.category = 'すべて';
+      state.use = 'すべて';
+      state.type = 'すべて';
+      el.searchInput.value = '';
+      closeSuggestions();
+      render();
+    });
+
+    applyLang(state.lang);
+  </script>
+</body>
+</html>
