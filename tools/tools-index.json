@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-25T13:50:31.651Z",
-  "total": 72,
+  "generatedAt": "2026-03-25T13:53:23.245Z",
+  "total": 73,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -550,6 +550,14 @@
       "slug": "url-title-collector",
       "title_en": "url-title-collector",
       "title_ja": "url-title-collector",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "vibe-lexicon",
+      "title_en": "vibe-lexicon",
+      "title_ja": "vibe-lexicon",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
