@@ -1,5 +1,3 @@
-# 仕様書
-
 # Vibe Lexicon
 
 **改訂版 v2 / English-primary edition**
