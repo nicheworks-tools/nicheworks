@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vibe Lexicon | Home | Niche Works</title>
-  <meta name="description" content="English-primary vibe coding glossary scaffold for Niche Works.">
+  <title>Vibe Lexicon | Vague wording to practical AI-ready wording</title>
+  <meta name="description" content="Turn vague wording into practical wording, compare similar terms, and copy AI-ready requests in the free Vibe Lexicon.">
   <link rel="canonical" href="https://nicheworks.app/tools/vibe-lexicon/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/vibe-lexicon/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/vibe-lexicon/ja/">
@@ -15,44 +15,79 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body data-tool="vibe-lexicon" data-page="index" data-lang="en">
-  <header class="nw-header">
-    <p class="nw-eyebrow">Niche Works Tool Series</p>
+<div class="page">
+  <div class="top-links">
+    <span>Language: English</span>
+    <nav aria-label="site links"><a href="ja/">日本語</a><a href="usage/">Usage</a><a href="about/">About</a><a href="pro/">Pro</a></nav>
+  </div>
+
+  <header class="hero panel">
+    <div class="eyebrow">Niche Works practical reference series</div>
     <h1>Vibe Lexicon</h1>
-    <p class="nw-tagline">Turn vague requests into AI-ready design language.</p>
-    <div class="nw-lang-switch">
-      <a href="ja/">日本語</a>
+    <p class="hero-copy">Turn vague requests into practical wording AI can execute. Compare neighboring terms, inspect bad vs better requests, and copy short AI-ready prompts from a free first product shell.</p>
+    <div class="hero-points">
+      <span class="pill">vague wording → practical wording</span><span class="pill">compare similar terms</span><span class="pill">bad request → better request</span><span class="pill">copy AI-ready wording</span><span class="pill">local favorites & local history (free)</span>
     </div>
-    <nav class="nw-nav" aria-label="Tool page navigation">
-      <a href="">Home</a><a href="usage/">Usage</a><a href="about/">About</a><a href="pro/">Pro</a>
-    </nav>
   </header>
 
-  <main class="nw-main">
-    <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
+  <div class="ad-slot ad-top"><div><strong>ad-top</strong><br>Ad slot placeholder</div></div>
+  <div class="quick-explain">Search using rough wording, then convert it into concrete intent wording and use-case-ready prompt lines. Free mode includes 2-term compare, local favorites, and local recent history.</div>
 
-    <section class="nw-card">
-      <h2>Home</h2>
-      <p>Base structure prepared. Tool-specific logic will be added incrementally.</p>
+  <div class="dashboard">
+    <aside class="panel filters" aria-label="left filters">
+      <div class="section">
+        <h2 class="panel-title">Search</h2>
+        <div class="search-wrap"><label class="sr-only" for="searchInput">Search term</label><input id="searchInput" type="search" placeholder="modern / cluttered / readable / premium"><div id="suggestions" class="suggestions"></div></div>
+      </div>
+      <div class="section"><h2 class="panel-title">Category</h2><div id="categoryChips" class="chip-row"></div></div>
+      <div class="section"><h2 class="panel-title">Use case</h2><div id="useChips" class="chip-row"></div></div>
+      <div class="section"><h2 class="panel-title">Term type</h2><div id="typeChips" class="chip-row"></div></div>
+      <div class="section">
+        <h2 class="panel-title">Quick stats</h2>
+        <div class="mini-stack">
+          <div class="mini-stat"><span>Terms</span><strong id="statTotal">0</strong></div>
+          <div class="mini-stat"><span>In compare</span><strong id="statCompare">0</strong></div>
+          <div class="mini-stat"><span>Favorites</span><strong id="statFav">0</strong></div>
+        </div>
+      </div>
+      <div class="section"><button id="resetFiltersBtn" class="btn" type="button" style="width:100%">Reset filters</button></div>
+    </aside>
+
+    <section class="panel catalog" aria-label="center result list">
+      <div class="catalog-head"><div><h2>Vague-to-practical catalog</h2><p class="catalog-sub">Browse terms by wording, then inspect plain explanation, practical intent, bad vs better requests, and short prompts.</p></div></div>
+      <div class="toolbar"><div class="toolbar-row"><span class="count" id="resultCount">0 results</span><button id="clearCompareBtn" class="btn" type="button">Clear compare</button></div><div class="topic-scroller" id="topicScroller"></div></div>
+      <div id="grid" class="grid"></div>
     </section>
 
-    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom, optional)</section>
+    <aside class="panel detail" aria-label="right detail panel">
+      <div class="detail-head">
+        <div class="card-tags"><span class="tag accent" id="detailTypeTag"></span><span class="tag" id="detailCategoryTag"></span><span class="tag success" id="detailUseTag"></span></div>
+        <div><h3 id="detailTitle"></h3><div class="detail-sub" id="detailSub"></div></div>
+        <div class="inline-actions"><button id="favoriteBtn" class="btn" type="button">Favorite</button><button id="addCompareBtn" class="btn" type="button">Add compare</button></div>
+      </div>
+      <div class="section"><div class="detail-summary"><h4>Plainly put</h4><p id="detailPlain"></p></div></div>
+      <div class="section"><h2 class="panel-title">Practical intent & usage</h2><div id="detailFacts" class="fact-grid"></div></div>
+      <div class="section"><h2 class="panel-title">Vague → practical breakdown</h2><div id="detailBreakdown" class="decompose-list"></div></div>
+      <div class="section columns-2"><div class="good-bad bad"><h4>Bad request</h4><p id="detailBad"></p></div><div class="good-bad good"><h4>Better request</h4><p id="detailGood"></p></div></div>
+      <div class="section"><h2 class="panel-title">Short AI-ready wording</h2><div id="promptModes" class="chip-row"></div><div id="promptBox" class="prompt-box"></div><div class="inline-actions" style="margin-top:10px"><button id="copyPromptBtn" class="btn primary" type="button">Copy prompt</button></div></div>
+      <div class="section"><h2 class="panel-title">Related terms</h2><div id="detailRelated" class="chip-row"></div></div>
+    </aside>
+  </div>
 
-    <section class="nw-donate" aria-label="support">
-      <h2>Support this project</h2>
-      <p>Free-first policy: core features stay publicly available.</p>
-      <p class="donation-links">
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a>
-      </p>
-    </section>
-  </main>
+  <section class="panel compare-panel" aria-label="compare tray"><div class="compare-head"><h3>Compare tray</h3><div class="compare-sub">Free mode compares up to 2 terms.</div></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">No compare terms yet. Add terms from cards or detail panel.</div></div></section>
 
-  <footer class="nw-footer">
-    <p>© Niche Works — Small Web Tools for Boring Tasks</p>
-    <p>This site may include ads. Verify important decisions with official information.</p>
-    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p>
-  </footer>
+  <section class="panel favorites-wrap" aria-label="favorites and recent"><div class="compare-head"><h3>Favorites & recent</h3><div class="compare-sub">Stored locally in your browser (free).</div></div><div id="favoritesList" class="favorites-grid"></div><div id="recentList" class="favorites-grid"></div></section>
 
-  <script src="app.js" defer></script>
+  <section class="panel faq" aria-label="faq"><div class="faq-item"><h4>Is this free?</h4><p>Yes. Core lookup, compare, and copy actions are free. Pro pages are informational placeholders only.</p></div><div class="faq-item"><h4>Can I compare similar terms?</h4><p>Yes. Add terms to compare tray and see side-by-side practical differences.</p></div><div class="faq-item"><h4>Where are usage details?</h4><p><a href="usage/">Open usage page</a></p></div></section>
+
+  <div class="ad-slot ad-bottom"><div><strong>ad-bottom</strong><br>Ad slot placeholder</div></div>
+
+  <section class="donate-box" aria-label="donation"><strong>If this tool helped</strong><p>Support Niche Works ongoing free tool publishing.</p><div class="donate-actions"><a href="https://ofuse.me/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">OFUSE</a><a href="https://ko-fi.com/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">Ko-fi</a></div></section>
+
+  <footer><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>This site may include ads. Verify important decisions with official information.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="data/terms.js"></script>
+<script src="app.js" defer></script>
 </body>
 </html>
