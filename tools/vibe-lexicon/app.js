@@ -2,12 +2,271 @@
   const root = document.body;
   if (!root) return;
 
-  // Tiny shared helper pattern across atlas tools (kept intentionally small).
-  const tool = root.dataset.tool || 'unknown-tool';
+  const tool = root.dataset.tool || 'vibe-lexicon';
   const page = root.dataset.page || 'index';
   const lang = root.dataset.lang || 'en';
 
   document.documentElement.dataset.tool = tool;
   document.documentElement.dataset.page = page;
   document.documentElement.dataset.lang = lang;
+
+  if (page !== 'index') return;
+
+  const terms = Array.isArray(window.VIBE_LEXICON_TERMS) ? window.VIBE_LEXICON_TERMS : [];
+  const maxCompare = 2;
+  const state = {
+    query: '',
+    category: null,
+    useCase: null,
+    termType: null,
+    selectedId: terms[0]?.id || null,
+    compare: [],
+    favorites: readArray('nw-vl-favorites'),
+    recent: readArray('nw-vl-recent'),
+    promptMode: 'ui'
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const els = {
+    searchInput: $('searchInput'), suggestions: $('suggestions'), categoryChips: $('categoryChips'), useChips: $('useChips'), typeChips: $('typeChips'),
+    statTotal: $('statTotal'), statCompare: $('statCompare'), statFav: $('statFav'), resetFiltersBtn: $('resetFiltersBtn'), resultCount: $('resultCount'),
+    topicScroller: $('topicScroller'), grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detailCategoryTag'), detailUseTag: $('detailUseTag'),
+    detailTitle: $('detailTitle'), detailSub: $('detailSub'), favoriteBtn: $('favoriteBtn'), addCompareBtn: $('addCompareBtn'), detailPlain: $('detailPlain'),
+    detailFacts: $('detailFacts'), detailBreakdown: $('detailBreakdown'), detailBad: $('detailBad'), detailGood: $('detailGood'), promptModes: $('promptModes'),
+    promptBox: $('promptBox'), copyPromptBtn: $('copyPromptBtn'), detailRelated: $('detailRelated'), clearCompareBtn: $('clearCompareBtn'),
+    compareList: $('compareList'), compareEmpty: $('compareEmpty'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast')
+  };
+
+  if (!els.grid) return;
+
+  const uiText = lang === 'ja'
+    ? { results: '件表示', noResults: '条件に一致する語がありません。', addCompare: '比較に追加', compared: '比較中', favorite: 'お気に入り', favorited: 'お気に入り済み', favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', compareLimit: '無料版は2語まで比較できます。' }
+    : { results: 'results', noResults: 'No terms match current filters.', addCompare: 'Add compare', compared: 'In compare', favorite: 'Favorite', favorited: 'Favorited', favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', compareLimit: 'Free version supports up to 2 compare terms.' };
+
+  function readArray(key) {
+    try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; }
+  }
+  function writeArray(key, arr) {
+    localStorage.setItem(key, JSON.stringify(arr));
+  }
+  function localized(value) {
+    return value?.[lang] ?? value?.en ?? '';
+  }
+  function byId(id) {
+    return terms.find((t) => t.id === id);
+  }
+  function showToast(message) {
+    if (!els.toast) return;
+    els.toast.textContent = message;
+    els.toast.classList.add('show');
+    setTimeout(() => els.toast.classList.remove('show'), 1400);
+  }
+
+  function setRecent(id) {
+    state.recent = [id, ...state.recent.filter((x) => x !== id)].slice(0, 6);
+    writeArray('nw-vl-recent', state.recent);
+  }
+
+  function filteredTerms() {
+    const q = state.query.trim().toLowerCase();
+    return terms.filter((t) => {
+      const name = localized(t.term).toLowerCase();
+      const aliases = (localized(t.aliases) || []).join(' ').toLowerCase();
+      const summary = localized(t.plainExplanation).toLowerCase();
+      const matchQ = !q || name.includes(q) || aliases.includes(q) || summary.includes(q);
+      const matchCategory = !state.category || localized(t.category) === state.category;
+      const matchUse = !state.useCase || localized(t.useCase) === state.useCase;
+      const matchType = !state.termType || localized(t.termType) === state.termType;
+      return matchQ && matchCategory && matchUse && matchType;
+    });
+  }
+
+  function renderChips(target, values, key) {
+    target.innerHTML = '';
+    values.forEach((value) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `chip${state[key] === value ? ' active' : ''}`;
+      btn.textContent = value;
+      btn.addEventListener('click', () => {
+        state[key] = state[key] === value ? null : value;
+        render();
+      });
+      target.appendChild(btn);
+    });
+  }
+
+  function renderGrid(list) {
+    els.grid.innerHTML = '';
+    if (!list.length) {
+      els.grid.innerHTML = `<div class="card"><p class="card-copy">${uiText.noResults}</p></div>`;
+      return;
+    }
+    list.forEach((term) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      const compareActive = state.compare.includes(term.id);
+      card.innerHTML = `
+        <div class="card-head">
+          <div><h3 class="card-title">${localized(term.term)}</h3><p class="card-sub">${(localized(term.aliases) || []).join(' / ')}</p></div>
+        </div>
+        <div class="card-tags"><span class="tag accent">${localized(term.termType)}</span><span class="tag">${localized(term.category)}</span><span class="tag success">${localized(term.useCase)}</span></div>
+        <p class="card-copy">${localized(term.beginner)}</p>
+        <div class="decompose-list">${localized(term.vagueToPractical).slice(0, 2).map((x) => `<div class="decompose-item">${x}</div>`).join('')}</div>
+        <div class="card-actions"><button class="btn" data-select="${term.id}">Details</button><button class="btn" data-compare="${term.id}">${compareActive ? uiText.compared : uiText.addCompare}</button></div>
+      `;
+      els.grid.appendChild(card);
+    });
+  }
+
+  function renderDetail(term) {
+    if (!term) return;
+    state.selectedId = term.id;
+    setRecent(term.id);
+
+    els.detailTypeTag.textContent = localized(term.termType);
+    els.detailCategoryTag.textContent = localized(term.category);
+    els.detailUseTag.textContent = localized(term.useCase);
+    els.detailTitle.textContent = localized(term.term);
+    els.detailSub.textContent = `${(localized(term.aliases) || []).join(' / ')} · ${localized(term.termType)}`;
+    els.detailPlain.textContent = localized(term.plainExplanation);
+    els.detailBad.textContent = localized(term.badRequest);
+    els.detailGood.textContent = localized(term.betterRequest);
+    els.favoriteBtn.textContent = state.favorites.includes(term.id) ? uiText.favorited : uiText.favorite;
+    els.addCompareBtn.textContent = state.compare.includes(term.id) ? uiText.compared : uiText.addCompare;
+
+    els.detailFacts.innerHTML = [
+      [lang === 'ja' ? '初心者向け' : 'Beginner wording', localized(term.beginner)],
+      [lang === 'ja' ? '実務意図' : 'Practical intent', localized(term.practicalIntent)],
+      [lang === 'ja' ? '使いどころ' : 'Use case wording', localized(term.practicalUseCase)],
+      [lang === 'ja' ? 'よくある誤用' : 'Common misuse', localized(term.commonMisuse)]
+    ].map(([k, v]) => `<div class="fact-row">${k}<strong>${v}</strong></div>`).join('');
+
+    els.detailBreakdown.innerHTML = localized(term.vagueToPractical).map((x) => `<div class="decompose-item">${x}</div>`).join('');
+
+    const modes = Object.keys(term.shortPrompt[lang] || {});
+    if (!modes.includes(state.promptMode)) state.promptMode = modes[0] || 'ui';
+    els.promptModes.innerHTML = modes.map((mode) => `<button class="prompt-tab ${mode === state.promptMode ? 'active' : ''}" data-mode="${mode}" type="button">${mode.toUpperCase()}</button>`).join('');
+    els.promptBox.textContent = term.shortPrompt[lang]?.[state.promptMode] || '';
+
+    els.detailRelated.innerHTML = (term.compareRelationships || []).map((id) => {
+      const rel = byId(id);
+      if (!rel) return '';
+      return `<button class="chip" type="button" data-related="${rel.id}">${localized(rel.term)}</button>`;
+    }).join('');
+  }
+
+  function renderCompare() {
+    els.compareList.innerHTML = '';
+    els.compareEmpty.style.display = state.compare.length ? 'none' : 'grid';
+    state.compare.forEach((id) => {
+      const term = byId(id);
+      if (!term) return;
+      const item = document.createElement('article');
+      item.className = 'compare-item';
+      item.innerHTML = `
+        <strong>${localized(term.term)}</strong>
+        <div class="compare-grid">
+          <div class="compare-cell"><strong>${lang === 'ja' ? '実務意図' : 'Practical intent'}</strong>${localized(term.practicalIntent)}</div>
+          <div class="compare-cell"><strong>${lang === 'ja' ? '良い依頼' : 'Better request'}</strong>${localized(term.betterRequest)}</div>
+        </div>
+      `;
+      els.compareList.appendChild(item);
+    });
+  }
+
+  function renderSaved() {
+    const f = state.favorites.map(byId).filter(Boolean);
+    const r = state.recent.map(byId).filter(Boolean);
+    els.favoritesList.innerHTML = `<div class="favorite-row"><strong>${uiText.favorites}</strong><button class="btn" type="button" data-clear="fav">${uiText.clear}</button></div>` +
+      (f.length ? f.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">Open</button></div>`).join('') : '');
+    els.recentList.innerHTML = `<div class="favorite-row"><strong>${uiText.recent}</strong><button class="btn" type="button" data-clear="recent">${uiText.clear}</button></div>` +
+      (r.length ? r.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">Open</button></div>`).join('') : '');
+  }
+
+  function renderSuggestions(list) {
+    const q = state.query.trim().toLowerCase();
+    if (!q) { els.suggestions.classList.remove('open'); els.suggestions.innerHTML = ''; return; }
+    const top = list.slice(0, 5);
+    els.suggestions.innerHTML = top.map((t) => `<div class="suggestion-item" data-select="${t.id}"><span>${localized(t.term)}</span><span class="suggestion-sub">${localized(t.category)}</span></div>`).join('');
+    els.suggestions.classList.toggle('open', top.length > 0);
+  }
+
+  function render() {
+    const list = filteredTerms();
+    const selected = byId(state.selectedId) || list[0] || terms[0];
+    renderChips(els.categoryChips, [...new Set(terms.map((t) => localized(t.category)))], 'category');
+    renderChips(els.useChips, [...new Set(terms.map((t) => localized(t.useCase)))], 'useCase');
+    renderChips(els.typeChips, [...new Set(terms.map((t) => localized(t.termType)))], 'termType');
+
+    els.statTotal.textContent = String(terms.length);
+    els.statCompare.textContent = String(state.compare.length);
+    els.statFav.textContent = String(state.favorites.length);
+    els.resultCount.textContent = `${list.length} ${uiText.results}`;
+
+    els.topicScroller.innerHTML = [...new Set(list.map((t) => localized(t.term)))].map((name) => `<button class="topic-chip" type="button">${name}</button>`).join('');
+
+    renderGrid(list);
+    renderDetail(selected);
+    renderCompare();
+    renderSaved();
+    renderSuggestions(list);
+  }
+
+  document.addEventListener('click', (event) => {
+    const selectId = event.target.closest('[data-select]')?.dataset.select;
+    const compareId = event.target.closest('[data-compare]')?.dataset.compare;
+    const relatedId = event.target.closest('[data-related]')?.dataset.related;
+    const openId = event.target.closest('[data-open]')?.dataset.open;
+    const clearType = event.target.closest('[data-clear]')?.dataset.clear;
+    const mode = event.target.closest('[data-mode]')?.dataset.mode;
+
+    if (selectId || relatedId || openId) {
+      state.selectedId = selectId || relatedId || openId;
+      render();
+      return;
+    }
+    if (compareId) {
+      const has = state.compare.includes(compareId);
+      if (has) state.compare = state.compare.filter((x) => x !== compareId);
+      else if (state.compare.length >= maxCompare) showToast(uiText.compareLimit);
+      else state.compare.push(compareId);
+      render();
+      return;
+    }
+    if (clearType === 'fav') { state.favorites = []; writeArray('nw-vl-favorites', []); render(); return; }
+    if (clearType === 'recent') { state.recent = []; writeArray('nw-vl-recent', []); render(); return; }
+    if (mode) { state.promptMode = mode; renderDetail(byId(state.selectedId)); return; }
+  });
+
+  els.searchInput?.addEventListener('input', (event) => { state.query = event.target.value; render(); });
+  els.resetFiltersBtn?.addEventListener('click', () => {
+    state.query = ''; state.category = null; state.useCase = null; state.termType = null;
+    if (els.searchInput) els.searchInput.value = '';
+    render();
+  });
+  els.favoriteBtn?.addEventListener('click', () => {
+    const id = state.selectedId;
+    if (!id) return;
+    state.favorites = state.favorites.includes(id) ? state.favorites.filter((x) => x !== id) : [id, ...state.favorites].slice(0, 10);
+    writeArray('nw-vl-favorites', state.favorites);
+    render();
+  });
+  els.addCompareBtn?.addEventListener('click', () => {
+    const id = state.selectedId;
+    if (!id) return;
+    if (state.compare.includes(id)) state.compare = state.compare.filter((x) => x !== id);
+    else if (state.compare.length >= maxCompare) showToast(uiText.compareLimit);
+    else state.compare.push(id);
+    render();
+  });
+  els.clearCompareBtn?.addEventListener('click', () => { state.compare = []; render(); });
+  els.copyPromptBtn?.addEventListener('click', async () => {
+    const term = byId(state.selectedId);
+    const text = term?.shortPrompt?.[lang]?.[state.promptMode] || '';
+    if (!text) return;
+    try { await navigator.clipboard.writeText(text); showToast(uiText.copied); } catch { showToast(text); }
+  });
+
+  render();
 })();

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vibe Lexicon | ホーム | Niche Works</title>
-  <meta name="description" content="Niche Works の英語主軸 Vibe Coding 用語集の土台です。">
+  <title>Vibe Lexicon | 曖昧語を実務語へ変換</title>
+  <meta name="description" content="曖昧な依頼を実務で通る言葉へ変換し、類語比較・悪い依頼と良い依頼・AI向け短文コピーまで使える無料版Vibe Lexicon。">
   <link rel="canonical" href="https://nicheworks.app/tools/vibe-lexicon/ja/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/vibe-lexicon/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/vibe-lexicon/ja/">
@@ -15,44 +15,79 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body data-tool="vibe-lexicon" data-page="index" data-lang="ja">
-  <header class="nw-header">
-    <p class="nw-eyebrow">Niche Works Tool Series</p>
+<div class="page">
+  <div class="top-links">
+    <span>Language: 日本語</span>
+    <nav aria-label="サイトリンク"><a href="../">English</a><a href="usage/">使い方</a><a href="about/">このツールについて</a><a href="pro/">Pro</a></nav>
+  </div>
+
+  <header class="hero panel">
+    <div class="eyebrow">Niche Works 実用辞典シリーズ</div>
     <h1>Vibe Lexicon</h1>
-    <p class="nw-tagline">曖昧な依頼を、AIに通る言葉へ変えるVibe Coding用語集。</p>
-    <div class="nw-lang-switch">
-      <a href="../">English</a>
+    <p class="hero-copy">曖昧な依頼を、AIが実行しやすい実務語へ変換する辞典です。近い言葉を比較し、悪い依頼と良い依頼を見比べ、AIにそのまま使える短文を無料でコピーできます。</p>
+    <div class="hero-points">
+      <span class="pill">曖昧語 → 実務語</span><span class="pill">近い語の比較</span><span class="pill">悪い依頼 → 良い依頼</span><span class="pill">AI向け短文コピー</span><span class="pill">お気に入り・履歴をローカル保存</span>
     </div>
-    <nav class="nw-nav" aria-label="ページ内ナビゲーション">
-      <a href="../">ホーム</a><a href="../usage/">使い方</a><a href="../about/">このツールについて</a><a href="../pro/">Pro（準備中）</a>
-    </nav>
   </header>
 
-  <main class="nw-main">
-    <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
+  <div class="ad-slot ad-top"><div><strong>ad-top</strong><br>広告枠プレースホルダー</div></div>
+  <div class="quick-explain">悩みの言葉で検索し、平易説明・実務意図・用途別依頼文へ落とし込みます。無料版では2語比較、お気に入り、最近見た語のローカル履歴が使えます。</div>
 
-    <section class="nw-card">
-      <h2>ホーム</h2>
-      <p>共通のベース構造を準備済みです。ツール固有ロジックは段階的に追加します。</p>
+  <div class="dashboard">
+    <aside class="panel filters" aria-label="左フィルター">
+      <div class="section">
+        <h2 class="panel-title">検索</h2>
+        <div class="search-wrap"><label class="sr-only" for="searchInput">検索語</label><input id="searchInput" type="search" placeholder="今っぽい / 洗練 / 読みやすい / 高級感"><div id="suggestions" class="suggestions"></div></div>
+      </div>
+      <div class="section"><h2 class="panel-title">カテゴリ</h2><div id="categoryChips" class="chip-row"></div></div>
+      <div class="section"><h2 class="panel-title">用途</h2><div id="useChips" class="chip-row"></div></div>
+      <div class="section"><h2 class="panel-title">語タイプ</h2><div id="typeChips" class="chip-row"></div></div>
+      <div class="section">
+        <h2 class="panel-title">クイック統計</h2>
+        <div class="mini-stack">
+          <div class="mini-stat"><span>語数</span><strong id="statTotal">0</strong></div>
+          <div class="mini-stat"><span>比較中</span><strong id="statCompare">0</strong></div>
+          <div class="mini-stat"><span>お気に入り</span><strong id="statFav">0</strong></div>
+        </div>
+      </div>
+      <div class="section"><button id="resetFiltersBtn" class="btn" type="button" style="width:100%">条件リセット</button></div>
+    </aside>
+
+    <section class="panel catalog" aria-label="中央結果リスト">
+      <div class="catalog-head"><div><h2>曖昧語→実務語カタログ</h2><p class="catalog-sub">悩みワードから検索し、平易説明・実務意図・悪い依頼/良い依頼・短文プロンプトを確認できます。</p></div></div>
+      <div class="toolbar"><div class="toolbar-row"><span class="count" id="resultCount">0件</span><button id="clearCompareBtn" class="btn" type="button">比較を空にする</button></div><div class="topic-scroller" id="topicScroller"></div></div>
+      <div id="grid" class="grid"></div>
     </section>
 
-    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom, optional)</section>
+    <aside class="panel detail" aria-label="右詳細パネル">
+      <div class="detail-head">
+        <div class="card-tags"><span class="tag accent" id="detailTypeTag"></span><span class="tag" id="detailCategoryTag"></span><span class="tag success" id="detailUseTag"></span></div>
+        <div><h3 id="detailTitle"></h3><div class="detail-sub" id="detailSub"></div></div>
+        <div class="inline-actions"><button id="favoriteBtn" class="btn" type="button">お気に入り</button><button id="addCompareBtn" class="btn" type="button">比較に追加</button></div>
+      </div>
+      <div class="section"><div class="detail-summary"><h4>ひらたく言うと</h4><p id="detailPlain"></p></div></div>
+      <div class="section"><h2 class="panel-title">実務意図と使いどころ</h2><div id="detailFacts" class="fact-grid"></div></div>
+      <div class="section"><h2 class="panel-title">曖昧 → 実務 分解</h2><div id="detailBreakdown" class="decompose-list"></div></div>
+      <div class="section columns-2"><div class="good-bad bad"><h4>悪い依頼</h4><p id="detailBad"></p></div><div class="good-bad good"><h4>良い依頼</h4><p id="detailGood"></p></div></div>
+      <div class="section"><h2 class="panel-title">AI向け短文</h2><div id="promptModes" class="chip-row"></div><div id="promptBox" class="prompt-box"></div><div class="inline-actions" style="margin-top:10px"><button id="copyPromptBtn" class="btn primary" type="button">短文コピー</button></div></div>
+      <div class="section"><h2 class="panel-title">関連語</h2><div id="detailRelated" class="chip-row"></div></div>
+    </aside>
+  </div>
 
-    <section class="nw-donate" aria-label="support">
-      <h2>このプロジェクトを支援</h2>
-      <p>無料ファースト方針: コア機能は公開状態を維持します。</p>
-      <p class="donation-links">
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a>
-      </p>
-    </section>
-  </main>
+  <section class="panel compare-panel" aria-label="比較トレイ"><div class="compare-head"><h3>比較トレイ</h3><div class="compare-sub">無料版は2語まで比較できます。</div></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">比較対象はまだありません。カードまたは詳細から追加してください。</div></div></section>
 
-  <footer class="nw-footer">
-    <p>© Niche Works — Small Web Tools for Boring Tasks</p>
-    <p>このサイトには広告が含まれる場合があります。重要な判断は必ず公式情報をご確認ください。</p>
-    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p>
-  </footer>
+  <section class="panel favorites-wrap" aria-label="お気に入りと履歴"><div class="compare-head"><h3>お気に入り・最近見た語</h3><div class="compare-sub">ブラウザのローカル保存（無料）</div></div><div id="favoritesList" class="favorites-grid"></div><div id="recentList" class="favorites-grid"></div></section>
 
-  <script src="../app.js" defer></script>
+  <section class="panel faq" aria-label="faq"><div class="faq-item"><h4>無料で使えますか？</h4><p>はい。検索・比較・短文コピーは無料です。Proページは現時点では案内のみです。</p></div><div class="faq-item"><h4>近い語を比べられますか？</h4><p>比較トレイに追加すると、実務差分を並べて確認できます。</p></div><div class="faq-item"><h4>使い方はどこですか？</h4><p><a href="usage/">使い方ページを見る</a></p></div></section>
+
+  <div class="ad-slot ad-bottom"><div><strong>ad-bottom</strong><br>広告枠プレースホルダー</div></div>
+
+  <section class="donate-box" aria-label="寄付"><strong>役に立ったら</strong><p>Niche Works の無料公開継続への支援リンクです。</p><div class="donate-actions"><a href="https://ofuse.me/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">OFUSE</a><a href="https://ko-fi.com/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">Ko-fi</a></div></section>
+
+  <footer><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>このサイトには広告が含まれる場合があります。重要な判断は公式情報をご確認ください。</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="../data/terms.js"></script>
+<script src="../app.js" defer></script>
 </body>
 </html>
