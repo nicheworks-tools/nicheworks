@@ -20,7 +20,7 @@
         "トップビジュアル",
         "冒頭セクション"
       ],
-      "category": "Page structure",
+      "category": "disclosure",
       "summary_short_en": "Top section that quickly explains value and gives one clear first action.",
       "summary_short_ja": "ページ冒頭で価値を一目で伝え、最初の行動を1つに絞って示す領域です。",
       "best_for_en": "Landing pages, product intros, campaigns, and app home screens.",
@@ -35,7 +35,10 @@
       "short_prompt_en": "Create a clean hero with headline, supporting text, primary CTA, and trust indicator.",
       "short_prompt_ja": "見出し・補足文・主要CTA・信頼要素を含む、分かりやすいヒーローを作成してください。",
       "short_impl_note_en": "Keep one primary CTA, responsive image, and clear heading hierarchy.",
-      "short_impl_note_ja": "主要CTAは1つに絞り、画像のレスポンシブ対応と見出し階層を明確にします。"
+      "short_impl_note_ja": "主要CTAは1つに絞り、画像のレスポンシブ対応と見出し階層を明確にします。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P002",
@@ -52,7 +55,7 @@
         "強み紹介",
         "ベネフィット枠"
       ],
-      "category": "Page structure",
+      "category": "disclosure",
       "summary_short_en": "Structured block that explains key features in digestible chunks.",
       "summary_short_ja": "主要機能を小さな単位で整理して伝える説明ブロックです。",
       "best_for_en": "SaaS marketing pages, product pages, and onboarding overviews.",
@@ -67,7 +70,10 @@
       "short_prompt_en": "Build a feature section with 3 to 6 items, each with icon, title, and practical benefit.",
       "short_prompt_ja": "3〜6項目で、アイコン・見出し・実務的な利点を示す機能紹介セクションを作ってください。",
       "short_impl_note_en": "Use consistent card heights and concise copy for scanning.",
-      "short_impl_note_ja": "カード高さを揃え、短い文で一覧性を高めます。"
+      "short_impl_note_ja": "カード高さを揃え、短い文で一覧性を高めます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P003",
@@ -84,7 +90,7 @@
         "申込導線",
         "アクション枠"
       ],
-      "category": "Conversion / action",
+      "category": "disclosure",
       "summary_short_en": "Focused area that pushes one decision with minimal distraction.",
       "summary_short_ja": "迷いを減らし、1つの意思決定を促す集中導線です。",
       "best_for_en": "Trial signup, lead capture, and checkout next-step prompts.",
@@ -99,7 +105,10 @@
       "short_prompt_en": "Design a CTA section with one main button, optional secondary link, and short urgency cue.",
       "short_prompt_ja": "主ボタン1つ、補助リンク、短い後押し文を含むCTAセクションを設計してください。",
       "short_impl_note_en": "Avoid competing button styles and keep supporting text under two lines.",
-      "short_impl_note_ja": "ボタンの競合を避け、補足文は2行以内に抑えます。"
+      "short_impl_note_ja": "ボタンの競合を避け、補足文は2行以内に抑えます。",
+      "purpose": "quick-action",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P004",
@@ -116,7 +125,7 @@
         "質問集",
         "Q&A"
       ],
-      "category": "Support UI",
+      "category": "disclosure",
       "summary_short_en": "Question-answer list that removes purchase and usage uncertainty.",
       "summary_short_ja": "導入前や利用時の不安を減らすための質問と回答の一覧です。",
       "best_for_en": "Pricing pages, onboarding docs, and pre-sales pages.",
@@ -131,7 +140,10 @@
       "short_prompt_en": "Generate an FAQ section with 6 concise questions for first-time users.",
       "short_prompt_ja": "初めての利用者向けに、簡潔な質問6件のFAQを生成してください。",
       "short_impl_note_en": "Use accordion behavior for long answers and keep plain language.",
-      "short_impl_note_ja": "長文回答はアコーディオン化し、専門用語を避けた表現にします。"
+      "short_impl_note_ja": "長文回答はアコーディオン化し、専門用語を避けた表現にします。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P005",
@@ -148,7 +160,7 @@
         "料金プラン",
         "価格比較表"
       ],
-      "category": "Conversion / action",
+      "category": "disclosure",
       "summary_short_en": "Side-by-side plan comparison that helps users pick quickly.",
       "summary_short_ja": "プランを横並びで比較し、選択を早めるための表です。",
       "best_for_en": "SaaS products with multiple plans and clear feature tiers.",
@@ -163,7 +175,10 @@
       "short_prompt_en": "Create a 3-column pricing table with featured plan emphasis and clear CTA buttons.",
       "short_prompt_ja": "注目プランを強調し、CTAボタンを明示した3列の料金表を作成してください。",
       "short_impl_note_en": "Keep feature rows aligned and mark differences with simple labels.",
-      "short_impl_note_ja": "機能行の対応を揃え、差分は短いラベルで示します。"
+      "short_impl_note_ja": "機能行の対応を揃え、差分は短いラベルで示します。",
+      "purpose": "confirmation",
+      "mobile_fit": "low",
+      "difficulty": "medium"
     },
     {
       "id": "P006",
@@ -180,7 +195,7 @@
         "ヘッダーナビ",
         "グローバルナビ"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Primary top navigation for key routes and brand orientation.",
       "summary_short_ja": "主要ページへ迷わず移動するための上部ナビゲーションです。",
       "best_for_en": "Web apps and sites with repeat navigation needs.",
@@ -195,7 +210,10 @@
       "short_prompt_en": "Design a responsive navbar with logo area, 4 links, and a right-side CTA.",
       "short_prompt_ja": "ロゴ領域・4リンク・右側CTAを備えたレスポンシブなナビバーを設計してください。",
       "short_impl_note_en": "Set clear active states and collapse non-critical links on small screens.",
-      "short_impl_note_ja": "現在地表示を明確にし、小画面では優先度の低いリンクを畳みます。"
+      "short_impl_note_ja": "現在地表示を明確にし、小画面では優先度の低いリンクを畳みます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P007",
@@ -212,7 +230,7 @@
         "折りたたみナビ",
         "メニューアイコン"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Compact menu trigger used when horizontal space is limited.",
       "summary_short_ja": "横幅が限られる場面で使う、省スペースのメニュー起点です。",
       "best_for_en": "Mobile nav and dense app headers.",
@@ -227,7 +245,10 @@
       "short_prompt_en": "Create a hamburger menu button that opens a full-height navigation drawer.",
       "short_prompt_ja": "全高のナビドロワーを開くハンバーガーボタンを作成してください。",
       "short_impl_note_en": "Animate icon state, lock body scroll, and return focus on close.",
-      "short_impl_note_ja": "アイコン状態を切替え、表示中は背景スクロールを止め、閉じる際はフォーカスを戻します。"
+      "short_impl_note_ja": "アイコン状態を切替え、表示中は背景スクロールを止め、閉じる際はフォーカスを戻します。",
+      "purpose": "quick-action",
+      "mobile_fit": "high",
+      "difficulty": "medium"
     },
     {
       "id": "P008",
@@ -244,7 +265,7 @@
         "オフキャンバス",
         "引き出しメニュー"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Panel that slides in from screen edge to reveal secondary content.",
       "summary_short_ja": "画面端から出現し、補助ナビや設定を表示するパネルです。",
       "best_for_en": "Mobile navigation, filters, and contextual settings.",
@@ -259,7 +280,10 @@
       "short_prompt_en": "Build a left-side drawer with grouped links and optional account area.",
       "short_prompt_ja": "リンクをグループ化し、必要ならアカウント領域を持つ左ドロワーを作ってください。",
       "short_impl_note_en": "Support ESC close, backdrop click close, and focus trap.",
-      "short_impl_note_ja": "Esc・背景クリックで閉じられるようにし、フォーカストラップを実装します。"
+      "short_impl_note_ja": "Esc・背景クリックで閉じられるようにし、フォーカストラップを実装します。",
+      "purpose": "quick-action",
+      "mobile_fit": "high",
+      "difficulty": "hard"
     },
     {
       "id": "P009",
@@ -276,7 +300,7 @@
         "左レール",
         "サイドナビ"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Persistent side area for navigation, filters, or utility controls.",
       "summary_short_ja": "ナビやフィルタ、補助操作を常時配置する側面領域です。",
       "best_for_en": "Dashboards, admin tools, and multi-step workflows.",
@@ -291,7 +315,10 @@
       "short_prompt_en": "Create a sidebar with section labels, icons, and active route highlighting.",
       "short_prompt_ja": "セクション見出し・アイコン・現在地強調を備えたサイドバーを作成してください。",
       "short_impl_note_en": "Keep width consistent and provide collapsed icon-only mode.",
-      "short_impl_note_ja": "幅を固定し、折りたたみ時はアイコンのみ表示に対応します。"
+      "short_impl_note_ja": "幅を固定し、折りたたみ時はアイコンのみ表示に対応します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "low",
+      "difficulty": "medium"
     },
     {
       "id": "P010",
@@ -308,7 +335,7 @@
         "現在地パス",
         "パンくず"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Shows current position in hierarchy and allows quick step-back navigation.",
       "summary_short_ja": "階層内の現在地を示し、上位階層へ戻りやすくする導線です。",
       "best_for_en": "Knowledge bases, ecommerce categories, and nested settings.",
@@ -323,7 +350,10 @@
       "short_prompt_en": "Add a breadcrumb trail with clickable ancestors and plain current page label.",
       "short_prompt_ja": "上位階層はリンク、現在ページはテキスト表示のパンくずを追加してください。",
       "short_impl_note_en": "Use list semantics and shorten long labels with ellipsis.",
-      "short_impl_note_ja": "リスト構造で実装し、長いラベルは省略表示を検討します。"
+      "short_impl_note_ja": "リスト構造で実装し、長いラベルは省略表示を検討します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P011",
@@ -340,7 +370,7 @@
         "タブパネル",
         "セクションタブ"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Lets users switch related content in-place without page reload.",
       "summary_short_ja": "関連コンテンツをページ遷移なしで切り替えるUIです。",
       "best_for_en": "Settings pages, product details, and compact dashboards.",
@@ -355,7 +385,10 @@
       "short_prompt_en": "Create accessible tabs with keyboard navigation and panel switching.",
       "short_prompt_ja": "キーボード操作対応のアクセシブルなタブ切替を作成してください。",
       "short_impl_note_en": "Support arrow key movement and aria-selected states.",
-      "short_impl_note_ja": "矢印キー移動とaria-selectedの状態管理を実装します。"
+      "short_impl_note_ja": "矢印キー移動とaria-selectedの状態管理を実装します。",
+      "purpose": "mode-switch",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P012",
@@ -372,7 +405,7 @@
         "表示切替ボタン",
         "セグメント"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Compact chooser for a few mutually exclusive view modes.",
       "summary_short_ja": "少数の排他的な選択肢を素早く切り替える小型UIです。",
       "best_for_en": "List/grid toggles, time range switches, and mode pickers.",
@@ -387,7 +420,10 @@
       "short_prompt_en": "Build a segmented control with 3 options and clear selected styling.",
       "short_prompt_ja": "3択で選択状態が明確なセグメントコントロールを作成してください。",
       "short_impl_note_en": "Use button group semantics and keep labels short.",
-      "short_impl_note_ja": "ボタングループとして実装し、ラベルは短く保ちます。"
+      "short_impl_note_ja": "ボタングループとして実装し、ラベルは短く保ちます。",
+      "purpose": "mode-switch",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P013",
@@ -404,7 +440,7 @@
         "ページ番号ナビ",
         "ページャー"
       ],
-      "category": "Navigation",
+      "category": "navigation",
       "summary_short_en": "Splits long lists into pages to keep performance and scanning manageable.",
       "summary_short_ja": "長い一覧を分割し、表示負荷と閲覧しやすさを保つ仕組みです。",
       "best_for_en": "Search results, admin tables, and archive views.",
@@ -419,7 +455,10 @@
       "short_prompt_en": "Create pagination with previous/next buttons and compact page number display.",
       "short_prompt_ja": "前後ボタンと簡潔なページ番号表示を持つページネーションを作成してください。",
       "short_impl_note_en": "Preserve filters in URL query params between pages.",
-      "short_impl_note_ja": "ページ移動時も絞り込み条件をURLパラメータで維持します。"
+      "short_impl_note_ja": "ページ移動時も絞り込み条件をURLパラメータで維持します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "medium"
     },
     {
       "id": "P014",
@@ -436,7 +475,7 @@
         "タイル",
         "カードUI"
       ],
-      "category": "Content display",
+      "category": "disclosure",
       "summary_short_en": "Self-contained content unit with title, metadata, and optional actions.",
       "summary_short_ja": "見出し・補足情報・操作をまとめた独立表示ユニットです。",
       "best_for_en": "Dashboards, product lists, and article previews.",
@@ -451,7 +490,10 @@
       "short_prompt_en": "Design a reusable card with title, short description, tag, and action button.",
       "short_prompt_ja": "タイトル・短い説明・タグ・操作ボタンを備えた再利用カードを設計してください。",
       "short_impl_note_en": "Standardize spacing and keep action area in a consistent position.",
-      "short_impl_note_ja": "余白を統一し、操作エリアの位置を揃えます。"
+      "short_impl_note_ja": "余白を統一し、操作エリアの位置を揃えます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P015",
@@ -468,7 +510,7 @@
         "ポップアップ",
         "オーバーレイ"
       ],
-      "category": "Support UI",
+      "category": "disclosure",
       "summary_short_en": "Overlay dialog that forces attention for a focused task or decision.",
       "summary_short_ja": "背景操作を止めて、特定の作業や確認に集中させる重ね表示です。",
       "best_for_en": "Confirmation, short forms, and critical warnings.",
@@ -483,7 +525,10 @@
       "short_prompt_en": "Create a modal with title, body text, primary and secondary actions.",
       "short_prompt_ja": "タイトル・本文・主/副アクションを備えたモーダルを作成してください。",
       "short_impl_note_en": "Trap focus, close on ESC, and restore focus to trigger element.",
-      "short_impl_note_ja": "フォーカスを閉じ込め、Escで閉じ、トリガー要素へフォーカスを戻します。"
+      "short_impl_note_ja": "フォーカスを閉じ込め、Escで閉じ、トリガー要素へフォーカスを戻します。",
+      "purpose": "confirmation",
+      "mobile_fit": "medium",
+      "difficulty": "hard"
     },
     {
       "id": "P016",
@@ -500,7 +545,7 @@
         "下から出るパネル",
         "スライドアップ"
       ],
-      "category": "Mobile-specific patterns",
+      "category": "disclosure",
       "summary_short_en": "Mobile-first panel emerging from bottom for actions or contextual details.",
       "summary_short_ja": "モバイルで下部から表示し、行動選択や詳細確認に使うパネルです。",
       "best_for_en": "Action menus, filter settings, and lightweight forms on mobile.",
@@ -515,7 +560,10 @@
       "short_prompt_en": "Build a draggable bottom sheet with snap points and close gesture.",
       "short_prompt_ja": "ドラッグで段階展開でき、スワイプで閉じられるボトムシートを作成してください。",
       "short_impl_note_en": "Respect safe-area insets and prevent background scrolling.",
-      "short_impl_note_ja": "セーフエリアを考慮し、表示中は背面スクロールを抑制します。"
+      "short_impl_note_ja": "セーフエリアを考慮し、表示中は背面スクロールを抑制します。",
+      "purpose": "quick-action",
+      "mobile_fit": "high",
+      "difficulty": "medium"
     },
     {
       "id": "P017",
@@ -532,7 +580,7 @@
         "折りたたみ",
         "展開パネル"
       ],
-      "category": "Content display",
+      "category": "disclosure",
       "summary_short_en": "Expandable list that reveals details on demand.",
       "summary_short_ja": "必要なときだけ詳細を開いて見せる折りたたみ表示です。",
       "best_for_en": "FAQs, settings groups, and compact long-form content.",
@@ -547,7 +595,10 @@
       "short_prompt_en": "Create an accordion list with one expanded item at a time.",
       "short_prompt_ja": "同時に1項目のみ展開するアコーディオンを作成してください。",
       "short_impl_note_en": "Use button semantics and animate height with reduced-motion support.",
-      "short_impl_note_ja": "ボタン要素で実装し、アニメーションは低モーション設定に配慮します。"
+      "short_impl_note_ja": "ボタン要素で実装し、アニメーションは低モーション設定に配慮します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P018",
@@ -564,7 +615,7 @@
         "説明チップ",
         "ヘルプ吹き出し"
       ],
-      "category": "Support UI",
+      "category": "disclosure",
       "summary_short_en": "Tiny contextual hint shown on hover or focus.",
       "summary_short_ja": "ホバーやフォーカス時に短い補足を示す小さなヒントです。",
       "best_for_en": "Icon-only controls and uncommon settings labels.",
@@ -579,7 +630,10 @@
       "short_prompt_en": "Add an accessible tooltip for icon buttons with short helper text.",
       "short_prompt_ja": "アイコンボタン向けに、短い補足文を表示するアクセシブルなツールチップを追加してください。",
       "short_impl_note_en": "Trigger on focus as well as hover; keep text under one sentence.",
-      "short_impl_note_ja": "ホバーだけでなくフォーカスでも表示し、文は1文以内に収めます。"
+      "short_impl_note_ja": "ホバーだけでなくフォーカスでも表示し、文は1文以内に収めます。",
+      "purpose": "quick-action",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P019",
@@ -596,7 +650,7 @@
         "文脈メニュー",
         "アンカー表示"
       ],
-      "category": "Support UI",
+      "category": "disclosure",
       "summary_short_en": "Anchored floating container for richer context than a tooltip.",
       "summary_short_ja": "ツールチップより情報量を持たせられる、要素起点の浮動パネルです。",
       "best_for_en": "Quick settings, inline actions, and rich hints.",
@@ -611,7 +665,10 @@
       "short_prompt_en": "Create a popover attached to a button with title, text, and action links.",
       "short_prompt_ja": "ボタンに紐づく、タイトル・説明・操作リンク付きのポップオーバーを作成してください。",
       "short_impl_note_en": "Handle outside click and viewport collision repositioning.",
-      "short_impl_note_ja": "外側クリックで閉じ、画面端で位置調整できるようにします。"
+      "short_impl_note_ja": "外側クリックで閉じ、画面端で位置調整できるようにします。",
+      "purpose": "quick-action",
+      "mobile_fit": "medium",
+      "difficulty": "hard"
     },
     {
       "id": "P020",
@@ -628,7 +685,7 @@
         "一時通知",
         "完了通知"
       ],
-      "category": "Feedback / states",
+      "category": "disclosure",
       "summary_short_en": "Temporary feedback message that does not block user flow.",
       "summary_short_ja": "操作を止めずに結果だけを短時間伝える軽量通知です。",
       "best_for_en": "Save success, undo option, and background action updates.",
@@ -643,7 +700,10 @@
       "short_prompt_en": "Implement toast notifications with success, warning, and error styles.",
       "short_prompt_ja": "成功・警告・エラーを表現できるトースト通知を実装してください。",
       "short_impl_note_en": "Auto-dismiss with pause on hover/focus and keep a11y live region.",
-      "short_impl_note_ja": "自動消去に加え、ホバー/フォーカス時は停止し、live regionで通知します。"
+      "short_impl_note_ja": "自動消去に加え、ホバー/フォーカス時は停止し、live regionで通知します。",
+      "purpose": "confirmation",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P021",
@@ -660,7 +720,7 @@
         "テキストフィールド",
         "1行入力"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Basic field for short user-entered text such as names or emails.",
       "summary_short_ja": "氏名やメールなど短い文字を入力する基本フォーム部品です。",
       "best_for_en": "Login forms, profile fields, and search inputs.",
@@ -675,7 +735,10 @@
       "short_prompt_en": "Create labeled text inputs with placeholder, help text, and error state.",
       "short_prompt_ja": "ラベル・プレースホルダー・補助文・エラー表示を備えたテキスト入力を作成してください。",
       "short_impl_note_en": "Always keep visible labels and pair errors with aria-describedby.",
-      "short_impl_note_ja": "ラベルは常時表示し、エラー文はaria-describedbyで紐づけます。"
+      "short_impl_note_ja": "ラベルは常時表示し、エラー文はaria-describedbyで紐づけます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P022",
@@ -692,7 +755,7 @@
         "選択ボックス",
         "候補選択"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Control for choosing one option from a predefined list.",
       "summary_short_ja": "決まった候補から1つ選ぶための基本選択UIです。",
       "best_for_en": "Country lists, category pickers, and settings choices.",
@@ -707,7 +770,10 @@
       "short_prompt_en": "Build a select field with placeholder option and validation message.",
       "short_prompt_ja": "初期案内と検証メッセージを備えたセレクトボックスを作成してください。",
       "short_impl_note_en": "Prefer native select for accessibility unless custom behavior is required.",
-      "short_impl_note_ja": "特別な要件がなければアクセシビリティ面でネイティブ実装を優先します。"
+      "short_impl_note_ja": "特別な要件がなければアクセシビリティ面でネイティブ実装を優先します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "medium"
     },
     {
       "id": "P023",
@@ -724,7 +790,7 @@
         "オートコンプリート",
         "入力候補"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Input-plus-list control that filters options as users type.",
       "summary_short_ja": "入力しながら候補を絞り込める、入力と選択を兼ねたUIです。",
       "best_for_en": "Large option sets like tags, cities, and member search.",
@@ -739,7 +805,10 @@
       "short_prompt_en": "Implement a combobox with async search, keyboard support, and highlighted matches.",
       "short_prompt_ja": "非同期検索・キーボード操作・一致箇所強調に対応したコンボボックスを実装してください。",
       "short_impl_note_en": "Announce result counts and maintain active descendant for screen readers.",
-      "short_impl_note_ja": "候補件数を通知し、active descendantで読み上げ対象を管理します。"
+      "short_impl_note_ja": "候補件数を通知し、active descendantで読み上げ対象を管理します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "hard"
     },
     {
       "id": "P024",
@@ -756,7 +825,7 @@
         "複数選択",
         "同意チェック"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Binary control that can be used alone or as part of multi-select groups.",
       "summary_short_ja": "単独のON/OFFや複数選択に使える基本選択部品です。",
       "best_for_en": "Preferences, terms consent, and bulk list actions.",
@@ -771,7 +840,10 @@
       "short_prompt_en": "Create checkbox group with helper text and inline validation.",
       "short_prompt_ja": "補助説明とインライン検証を備えたチェックボックス群を作成してください。",
       "short_impl_note_en": "Expand click target via label wrapping and support indeterminate state when needed.",
-      "short_impl_note_ja": "ラベル込みでタップ領域を広げ、必要に応じて中間状態を扱います。"
+      "short_impl_note_ja": "ラベル込みでタップ領域を広げ、必要に応じて中間状態を扱います。",
+      "purpose": "content-discovery",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P025",
@@ -788,7 +860,7 @@
         "ラジオ選択",
         "1択入力"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Lets users pick exactly one option from a visible set.",
       "summary_short_ja": "表示された候補から1つだけ選ぶための入力部品です。",
       "best_for_en": "Plan selection, shipping methods, and mode choices.",
@@ -803,7 +875,10 @@
       "short_prompt_en": "Build a radio group with clear default and optional description per option.",
       "short_prompt_ja": "初期選択が分かり、各選択肢に補足説明を付けられるラジオグループを作成してください。",
       "short_impl_note_en": "Use fieldset and legend for grouped context.",
-      "short_impl_note_ja": "グループ文脈を伝えるためfieldsetとlegendを使用します。"
+      "short_impl_note_ja": "グループ文脈を伝えるためfieldsetとlegendを使用します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P026",
@@ -820,7 +895,7 @@
         "オンオフ切替",
         "設定スイッチ"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Instant on/off control for settings that apply immediately.",
       "summary_short_ja": "設定を即時反映するON/OFF切替に適した部品です。",
       "best_for_en": "Preferences, notifications, and quick feature toggles.",
@@ -835,7 +910,10 @@
       "short_prompt_en": "Implement a labeled switch component with description and disabled state.",
       "short_prompt_ja": "ラベル・説明文・無効状態を備えたスイッチコンポーネントを実装してください。",
       "short_impl_note_en": "Expose checked state to assistive tech and avoid color-only state cues.",
-      "short_impl_note_ja": "状態を支援技術へ伝え、色だけに依存しない表示にします。"
+      "short_impl_note_ja": "状態を支援技術へ伝え、色だけに依存しない表示にします。",
+      "purpose": "mode-switch",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P027",
@@ -852,7 +930,7 @@
         "ワンタイムコード",
         "PIN入力"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Multi-cell input optimized for short verification codes.",
       "summary_short_ja": "短い認証コードを入力しやすくする分割入力UIです。",
       "best_for_en": "2FA login, phone verification, and secure confirmation flows.",
@@ -867,7 +945,10 @@
       "short_prompt_en": "Create a 6-digit OTP input with auto-advance and paste support.",
       "short_prompt_ja": "6桁の自動移動・貼り付け対応OTP入力を作成してください。",
       "short_impl_note_en": "Handle backspace navigation and allow full-code paste into first cell.",
-      "short_impl_note_ja": "バックスペース移動と先頭セルへの一括貼り付けをサポートします。"
+      "short_impl_note_ja": "バックスペース移動と先頭セルへの一括貼り付けをサポートします。",
+      "purpose": "quick-action",
+      "mobile_fit": "high",
+      "difficulty": "hard"
     },
     {
       "id": "P028",
@@ -884,7 +965,7 @@
         "空画面",
         "初期状態"
       ],
-      "category": "Feedback / states",
+      "category": "disclosure",
       "summary_short_en": "Guides users when no content exists yet or search returns nothing.",
       "summary_short_ja": "データ未作成時や検索0件時に、次の行動を案内する状態表示です。",
       "best_for_en": "New accounts, filtered lists, and first-time workflows.",
@@ -899,7 +980,10 @@
       "short_prompt_en": "Design an empty state with simple illustration, explanation, and next-step CTA.",
       "short_prompt_ja": "簡単なイラスト・説明文・次アクションCTAを備えた空状態を設計してください。",
       "short_impl_note_en": "Use action-oriented wording like 'Create your first project'.",
-      "short_impl_note_ja": "「最初のプロジェクトを作成」のように、行動を促す文言にします。"
+      "short_impl_note_ja": "「最初のプロジェクトを作成」のように、行動を促す文言にします。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P029",
@@ -916,7 +1000,7 @@
         "ローディング骨組み",
         "ゴーストUI"
       ],
-      "category": "Feedback / states",
+      "category": "disclosure",
       "summary_short_en": "Placeholder structure that previews layout while content loads.",
       "summary_short_ja": "読み込み中に最終レイアウトの形を先に見せる待機表示です。",
       "best_for_en": "Cards, feeds, and dashboard modules with variable loading time.",
@@ -931,7 +1015,10 @@
       "short_prompt_en": "Create skeleton placeholders matching card list layout with shimmer effect.",
       "short_prompt_ja": "カード一覧の形に合わせた、シマー付きスケルトン表示を作成してください。",
       "short_impl_note_en": "Match final content dimensions to reduce layout shift.",
-      "short_impl_note_ja": "最終表示と寸法を揃え、レイアウトずれを抑えます。"
+      "short_impl_note_ja": "最終表示と寸法を揃え、レイアウトずれを抑えます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P030",
@@ -948,7 +1035,7 @@
         "完了率表示",
         "進捗表示"
       ],
-      "category": "Feedback / states",
+      "category": "disclosure",
       "summary_short_en": "Visual indicator of task progress toward completion.",
       "summary_short_ja": "処理の進み具合を割合で伝える進行表示です。",
       "best_for_en": "Uploads, onboarding steps, and long-running operations.",
@@ -963,7 +1050,10 @@
       "short_prompt_en": "Add a progress bar with percentage label and success completion state.",
       "short_prompt_ja": "割合表示と完了状態を持つ進捗バーを追加してください。",
       "short_impl_note_en": "Expose aria-valuenow and clarify determinate vs indeterminate mode.",
-      "short_impl_note_ja": "aria-valuenowを設定し、確定/不確定進捗を明確に分けます。"
+      "short_impl_note_ja": "aria-valuenowを設定し、確定/不確定進捗を明確に分けます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P031",
@@ -980,7 +1070,7 @@
         "警告表示",
         "お知らせバー"
       ],
-      "category": "Feedback / states",
+      "category": "disclosure",
       "summary_short_en": "Prominent inline message for important status or warnings.",
       "summary_short_ja": "重要な状態変化や注意喚起を目立たせる横幅メッセージです。",
       "best_for_en": "System incidents, billing notices, and migration reminders.",
@@ -995,7 +1085,10 @@
       "short_prompt_en": "Create an alert banner with severity icon, concise message, and action link.",
       "short_prompt_ja": "重要度アイコン・短文メッセージ・対応リンクを備えたアラートバナーを作成してください。",
       "short_impl_note_en": "Use distinct styles for info, warning, and error.",
-      "short_impl_note_ja": "情報・警告・エラーで視覚スタイルを明確に分けます。"
+      "short_impl_note_ja": "情報・警告・エラーで視覚スタイルを明確に分けます。",
+      "purpose": "confirmation",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P032",
@@ -1012,7 +1105,7 @@
         "複数列レイアウト",
         "グリッド表示"
       ],
-      "category": "Layout",
+      "category": "disclosure",
       "summary_short_en": "Two-dimensional layout system for consistent item alignment.",
       "summary_short_ja": "複数要素を整列しやすくする2次元レイアウト方式です。",
       "best_for_en": "Card catalogs, galleries, and dashboard widgets.",
@@ -1027,7 +1120,10 @@
       "short_prompt_en": "Build a responsive CSS grid with 1, 2, and 4-column breakpoints.",
       "short_prompt_ja": "1列・2列・4列に切替わるレスポンシブCSSグリッドを作ってください。",
       "short_impl_note_en": "Use minmax for flexible tracks and equal gaps.",
-      "short_impl_note_ja": "minmaxを使って柔軟な列幅と均等なギャップを保ちます。"
+      "short_impl_note_ja": "minmaxを使って柔軟な列幅と均等なギャップを保ちます。",
+      "purpose": "mode-switch",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P033",
@@ -1044,7 +1140,7 @@
         "固定パネル",
         "サイド固定"
       ],
-      "category": "Layout",
+      "category": "navigation",
       "summary_short_en": "Sidebar that stays visible while main content scrolls.",
       "summary_short_ja": "本文をスクロールしても視界に残る追従型サイドバーです。",
       "best_for_en": "Filter-heavy catalogs, docs TOCs, and checkout summaries.",
@@ -1059,7 +1155,10 @@
       "short_prompt_en": "Add a sticky sidebar containing filters and quick jump links.",
       "short_prompt_ja": "フィルタとジャンプリンクを持つ固定サイドバーを追加してください。",
       "short_impl_note_en": "Set top offset for header height and prevent overflow clipping.",
-      "short_impl_note_ja": "ヘッダー分の上余白を確保し、はみ出し時の表示崩れを防ぎます。"
+      "short_impl_note_ja": "ヘッダー分の上余白を確保し、はみ出し時の表示崩れを防ぎます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "low",
+      "difficulty": "medium"
     },
     {
       "id": "P034",
@@ -1076,7 +1175,7 @@
         "クイック追加ボタン",
         "フローティングCTA"
       ],
-      "category": "Mobile-specific patterns",
+      "category": "disclosure",
       "summary_short_en": "Floating button for high-priority, frequent actions on mobile.",
       "summary_short_ja": "モバイルで頻繁に使う主要操作をすぐ実行できる浮動ボタンです。",
       "best_for_en": "Create/add actions in lists, messages, and task apps.",
@@ -1091,7 +1190,10 @@
       "short_prompt_en": "Implement a mobile FAB with icon, optional label, and elevation shadow.",
       "short_prompt_ja": "アイコン・任意ラベル・浮き上がり表現を持つモバイルFABを実装してください。",
       "short_impl_note_en": "Avoid overlap with bottom nav and support safe-area spacing.",
-      "short_impl_note_ja": "下部ナビと重ならない位置にし、セーフエリア分を確保します。"
+      "short_impl_note_ja": "下部ナビと重ならない位置にし、セーフエリア分を確保します。",
+      "purpose": "quick-action",
+      "mobile_fit": "high",
+      "difficulty": "medium"
     },
     {
       "id": "P035",
@@ -1108,7 +1210,7 @@
         "横スワイプ表示",
         "回転表示"
       ],
-      "category": "Content display",
+      "category": "disclosure",
       "summary_short_en": "Horizontally browsable sequence of items in limited space.",
       "summary_short_ja": "限られた領域で項目を横方向に切り替えて見せる表示です。",
       "best_for_en": "Featured items, media galleries, and testimonial highlights.",
@@ -1123,7 +1225,10 @@
       "short_prompt_en": "Create a swipe-enabled carousel with visible next item peek and dot indicators.",
       "short_prompt_ja": "スワイプ対応で次項目が少し見える、ドット付きカルーセルを作成してください。",
       "short_impl_note_en": "Provide keyboard controls and pause autoplay on interaction.",
-      "short_impl_note_ja": "キーボード操作を用意し、操作時は自動再生を停止します。"
+      "short_impl_note_ja": "キーボード操作を用意し、操作時は自動再生を停止します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "high",
+      "difficulty": "hard"
     },
     {
       "id": "P036",
@@ -1140,7 +1245,7 @@
         "履歴ライン",
         "出来事一覧"
       ],
-      "category": "Data display",
+      "category": "disclosure",
       "summary_short_en": "Ordered view of events over time with clear sequence cues.",
       "summary_short_ja": "出来事を時系列で並べ、順序を理解しやすくする表示です。",
       "best_for_en": "Project history, shipment tracking, and changelogs.",
@@ -1155,7 +1260,10 @@
       "short_prompt_en": "Build a vertical timeline with date labels, status tags, and event details.",
       "short_prompt_ja": "日付ラベル・状態タグ・詳細文を持つ縦型タイムラインを作成してください。",
       "short_impl_note_en": "Use semantic list markup and emphasize current step.",
-      "short_impl_note_ja": "リスト構造で実装し、現在位置を強調表示します。"
+      "short_impl_note_ja": "リスト構造で実装し、現在位置を強調表示します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "low",
+      "difficulty": "medium"
     },
     {
       "id": "P037",
@@ -1172,7 +1280,7 @@
         "データ表",
         "行列表示"
       ],
-      "category": "Data display",
+      "category": "disclosure",
       "summary_short_en": "Structured row-column display for precise data comparison.",
       "summary_short_ja": "行と列で情報を揃え、正確な比較をしやすくする表示です。",
       "best_for_en": "Admin data, reports, and sortable records.",
@@ -1187,7 +1295,10 @@
       "short_prompt_en": "Create a responsive table with sticky header and sortable columns.",
       "short_prompt_ja": "ヘッダー固定と列ソートに対応したレスポンシブテーブルを作成してください。",
       "short_impl_note_en": "Use proper table semantics and include row hover/focus states.",
-      "short_impl_note_ja": "適切なtable要素を使い、行のホバー/フォーカス状態を用意します。"
+      "short_impl_note_ja": "適切なtable要素を使い、行のホバー/フォーカス状態を用意します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "low",
+      "difficulty": "medium"
     },
     {
       "id": "P038",
@@ -1204,7 +1315,7 @@
         "一覧表示",
         "行表示"
       ],
-      "category": "Content display",
+      "category": "disclosure",
       "summary_short_en": "Linear display optimized for scanning many similar items quickly.",
       "summary_short_ja": "似た項目を縦に並べ、素早く見比べるための表示方式です。",
       "best_for_en": "Email inboxes, tasks, search results, and logs.",
@@ -1219,7 +1330,10 @@
       "short_prompt_en": "Design a list view item with title, metadata, status, and inline actions.",
       "short_prompt_ja": "タイトル・補足情報・状態・行内操作を備えたリスト項目を設計してください。",
       "short_impl_note_en": "Keep row height predictable and separate primary vs secondary actions.",
-      "short_impl_note_ja": "行の高さを一定に保ち、主操作と補助操作を分離します。"
+      "short_impl_note_ja": "行の高さを一定に保ち、主操作と補助操作を分離します。",
+      "purpose": "mode-switch",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P039",
@@ -1236,7 +1350,7 @@
         "マスター詳細",
         "左右分割"
       ],
-      "category": "Layout",
+      "category": "disclosure",
       "summary_short_en": "Two-pane layout showing list/navigation and details simultaneously.",
       "summary_short_ja": "一覧と詳細を同時表示し、行き来を減らす2分割レイアウトです。",
       "best_for_en": "Mail clients, file browsers, and compare-heavy dashboards.",
@@ -1251,7 +1365,10 @@
       "short_prompt_en": "Build a split view with resizable panes and mobile fallback to stacked view.",
       "short_prompt_ja": "可変幅ペインとモバイル時の縦積み切替を備えた分割ビューを作成してください。",
       "short_impl_note_en": "Persist pane width preferences and manage focus between panes.",
-      "short_impl_note_ja": "ペイン幅設定を保持し、ペイン間のフォーカス遷移を整えます。"
+      "short_impl_note_ja": "ペイン幅設定を保持し、ペイン間のフォーカス遷移を整えます。",
+      "purpose": "mode-switch",
+      "mobile_fit": "low",
+      "difficulty": "hard"
     },
     {
       "id": "P040",
@@ -1268,7 +1385,7 @@
         "下部追従CTA",
         "ボトムCTA"
       ],
-      "category": "Mobile-specific patterns",
+      "category": "disclosure",
       "summary_short_en": "Bottom-fixed action area that stays accessible during scrolling.",
       "summary_short_ja": "スクロール中でも主要操作をすぐ押せる下部固定導線です。",
       "best_for_en": "Checkout, reservation, and mobile signup flows.",
@@ -1283,7 +1400,10 @@
       "short_prompt_en": "Create a sticky bottom CTA bar with price summary and primary button.",
       "short_prompt_ja": "価格要約と主ボタンを備えた下部固定CTAバーを作成してください。",
       "short_impl_note_en": "Reserve bottom padding for content and adapt when virtual keyboard opens.",
-      "short_impl_note_ja": "本文が隠れない下余白を確保し、キーボード表示時の位置調整を行います。"
+      "short_impl_note_ja": "本文が隠れない下余白を確保し、キーボード表示時の位置調整を行います。",
+      "purpose": "quick-action",
+      "mobile_fit": "high",
+      "difficulty": "easy"
     },
     {
       "id": "P041",
@@ -1300,7 +1420,7 @@
         "長文入力欄",
         "コメント欄"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Input field for paragraphs, feedback, and descriptive user text.",
       "summary_short_ja": "説明文やコメントなど、複数行の入力に使うフォーム部品です。",
       "best_for_en": "Support forms, issue reports, and profile bios.",
@@ -1315,7 +1435,10 @@
       "short_prompt_en": "Create an auto-resizing textarea with character counter and validation hint.",
       "short_prompt_ja": "自動拡張・文字数カウンタ・検証ヒント付きのテキストエリアを作成してください。",
       "short_impl_note_en": "Set max length guidance and keep helper text visible before errors occur.",
-      "short_impl_note_ja": "最大文字数の目安を示し、エラー前から補助説明を見せます。"
+      "short_impl_note_ja": "最大文字数の目安を示し、エラー前から補助説明を見せます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P042",
@@ -1332,7 +1455,7 @@
         "ウィザード形式",
         "ステップ入力"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Breaks long forms into manageable steps to reduce drop-off.",
       "summary_short_ja": "長い入力を段階化して離脱を減らすフォーム構成です。",
       "best_for_en": "Onboarding, checkout, and loan/application flows.",
@@ -1347,7 +1470,10 @@
       "short_prompt_en": "Build a 3-step form with progress indicator and back/next controls.",
       "short_prompt_ja": "進捗表示と前へ/次へ操作を持つ3ステップフォームを作成してください。",
       "short_impl_note_en": "Validate each step before advancing and preserve entered values.",
-      "short_impl_note_ja": "各ステップで検証し、戻っても入力値を保持します。"
+      "short_impl_note_ja": "各ステップで検証し、戻っても入力値を保持します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "hard"
     },
     {
       "id": "P043",
@@ -1364,7 +1490,7 @@
         "カレンダー入力",
         "日程ピッカー"
       ],
-      "category": "Forms",
+      "category": "selection",
       "summary_short_en": "Calendar-based input that prevents date format mistakes.",
       "summary_short_ja": "日付形式の入力ミスを減らせるカレンダー選択UIです。",
       "best_for_en": "Booking forms, reports, and scheduling workflows.",
@@ -1379,7 +1505,10 @@
       "short_prompt_en": "Create a date picker with keyboard navigation and disabled unavailable dates.",
       "short_prompt_ja": "キーボード操作対応で、選択不可日を無効化した日付ピッカーを作成してください。",
       "short_impl_note_en": "Support locale date formatting and clear timezone assumptions.",
-      "short_impl_note_ja": "ロケール表記に対応し、タイムゾーン前提を明示します。"
+      "short_impl_note_ja": "ロケール表記に対応し、タイムゾーン前提を明示します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "hard"
     },
     {
       "id": "P044",
@@ -1396,7 +1525,7 @@
         "連絡先セクション",
         "相談導線"
       ],
-      "category": "Page structure",
+      "category": "disclosure",
       "summary_short_en": "Dedicated page block that helps users ask questions or request support.",
       "summary_short_ja": "質問や相談につなげるための連絡導線をまとめたセクションです。",
       "best_for_en": "Service sites, agencies, and B2B lead generation pages.",
@@ -1411,7 +1540,10 @@
       "short_prompt_en": "Design a contact section with simple form, response expectation, and fallback email.",
       "short_prompt_ja": "簡易フォーム・返信目安・代替連絡先を含む問い合わせセクションを設計してください。",
       "short_impl_note_en": "Set clear response SLA text and anti-spam validation.",
-      "short_impl_note_ja": "返信目安を明記し、スパム対策の検証を入れます。"
+      "short_impl_note_ja": "返信目安を明記し、スパム対策の検証を入れます。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "medium"
     },
     {
       "id": "P045",
@@ -1428,7 +1560,7 @@
         "横並び比較",
         "比較マトリクス"
       ],
-      "category": "Data display",
+      "category": "disclosure",
       "summary_short_en": "Matrix that highlights differences between options or products.",
       "summary_short_ja": "選択肢間の違いを明確に示す比較マトリクスです。",
       "best_for_en": "Plan selection, tool evaluations, and vendor comparisons.",
@@ -1443,7 +1575,10 @@
       "short_prompt_en": "Create a comparison table with sticky first column and highlighted recommended option.",
       "short_prompt_ja": "先頭列固定と推奨項目強調を備えた比較表を作成してください。",
       "short_impl_note_en": "Use concise yes/no icons and provide text labels for accessibility.",
-      "short_impl_note_ja": "可否アイコンだけでなく、読み上げ用テキストも併記します。"
+      "short_impl_note_ja": "可否アイコンだけでなく、読み上げ用テキストも併記します。",
+      "purpose": "confirmation",
+      "mobile_fit": "low",
+      "difficulty": "hard"
     },
     {
       "id": "P046",
@@ -1460,7 +1595,7 @@
         "レビュー引用",
         "実績コメント"
       ],
-      "category": "Page structure",
+      "category": "disclosure",
       "summary_short_en": "Social proof block using real customer outcomes and quotes.",
       "summary_short_ja": "実利用者の声や成果で信頼性を補強する証拠セクションです。",
       "best_for_en": "Landing pages, SaaS marketing, and consultant service pages.",
@@ -1475,7 +1610,10 @@
       "short_prompt_en": "Build a testimonial section with customer quote, role, and measurable result.",
       "short_prompt_ja": "コメント、肩書き、数値成果を含む導入事例セクションを作成してください。",
       "short_impl_note_en": "Prefer specific outcomes over generic praise.",
-      "short_impl_note_ja": "抽象的な賛辞より、具体的な成果指標を優先します。"
+      "short_impl_note_ja": "抽象的な賛辞より、具体的な成果指標を優先します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P047",
@@ -1492,7 +1630,7 @@
         "下部リンク",
         "法務フッター"
       ],
-      "category": "Page structure",
+      "category": "disclosure",
       "summary_short_en": "Bottom section for utility links, legal info, and secondary navigation.",
       "summary_short_ja": "補助リンク、法務情報、補助導線をまとめるページ下部領域です。",
       "best_for_en": "Most websites and tools requiring policy and support links.",
@@ -1507,7 +1645,10 @@
       "short_prompt_en": "Create a compact footer with legal links, contact, and secondary navigation groups.",
       "short_prompt_ja": "法務リンク・連絡先・補助ナビをまとめた簡潔なフッターを作成してください。",
       "short_impl_note_en": "Keep contrast high and avoid overloading with primary CTAs.",
-      "short_impl_note_ja": "可読コントラストを確保し、主CTAを詰め込みすぎないようにします。"
+      "short_impl_note_ja": "可読コントラストを確保し、主CTAを詰め込みすぎないようにします。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     },
     {
       "id": "P048",
@@ -1524,7 +1665,7 @@
         "モバイルタブ",
         "アプリタブバー"
       ],
-      "category": "Mobile-specific patterns",
+      "category": "navigation",
       "summary_short_en": "Persistent bottom navigation for primary mobile app destinations.",
       "summary_short_ja": "モバイルアプリの主要遷移先を固定表示する下部ナビです。",
       "best_for_en": "Apps with 3-5 top-level destinations used repeatedly.",
@@ -1539,7 +1680,10 @@
       "short_prompt_en": "Design a mobile tab bar with 4 items, active icon state, and labels.",
       "short_prompt_ja": "4項目・アクティブ状態・ラベル付きのモバイルタブバーを設計してください。",
       "short_impl_note_en": "Keep labels short and reserve center slot if FAB overlaps.",
-      "short_impl_note_ja": "ラベルは短くし、FAB併用時は中央スロット設計を調整します。"
+      "short_impl_note_ja": "ラベルは短くし、FAB併用時は中央スロット設計を調整します。",
+      "purpose": "mode-switch",
+      "mobile_fit": "high",
+      "difficulty": "medium"
     },
     {
       "id": "P049",
@@ -1556,7 +1700,7 @@
         "くるくる表示",
         "スピナー"
       ],
-      "category": "Feedback / states",
+      "category": "disclosure",
       "summary_short_en": "Simple activity indicator when duration is unknown.",
       "summary_short_ja": "処理時間が読めない場面で使う簡易アクティビティ表示です。",
       "best_for_en": "Short async actions and compact inline loading states.",
@@ -1571,7 +1715,10 @@
       "short_prompt_en": "Add an inline loading spinner with accessible status text.",
       "short_prompt_ja": "アクセシブルな状態文を備えたインラインスピナーを追加してください。",
       "short_impl_note_en": "Pair animation with text for screen readers and reduced-motion users.",
-      "short_impl_note_ja": "読み上げ向け文言を併記し、低モーション環境にも配慮します。"
+      "short_impl_note_ja": "読み上げ向け文言を併記し、低モーション環境にも配慮します。",
+      "purpose": "content-discovery",
+      "mobile_fit": "medium",
+      "difficulty": "medium"
     },
     {
       "id": "P050",
@@ -1588,7 +1735,7 @@
         "項目単位エラー表示",
         "リアルタイム検証"
       ],
-      "category": "Feedback / states",
+      "category": "disclosure",
       "summary_short_en": "Immediate field feedback that helps users fix input before submit.",
       "summary_short_ja": "送信前に入力ミスを修正できる、項目単位の即時フィードバックです。",
       "best_for_en": "Signup, payment forms, and high-error input fields.",
@@ -1603,7 +1750,10 @@
       "short_prompt_en": "Implement inline validation with clear success/error messages per field.",
       "short_prompt_ja": "項目ごとに成功/エラーを分かりやすく表示するインライン検証を実装してください。",
       "short_impl_note_en": "Delay validation until blur or meaningful input length.",
-      "short_impl_note_ja": "入力直後に過剰反応せず、blur時や一定文字数で判定します。"
+      "short_impl_note_ja": "入力直後に過剰反応せず、blur時や一定文字数で判定します。",
+      "purpose": "confirmation",
+      "mobile_fit": "medium",
+      "difficulty": "easy"
     }
   ]
 }

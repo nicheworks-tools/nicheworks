@@ -24,10 +24,18 @@
       noFavorites: 'No favorites yet.',
       noRecent: 'No recent views yet.',
       compareDiff: 'Key differences',
-      open: 'Open',
       purpose: 'Purpose',
       mobile: 'Mobile fit',
-      difficulty: 'Difficulty'
+      difficulty: 'Difficulty',
+      openDetail: 'Open detail',
+      addCompare: 'Add compare',
+      categoryNames: {
+        disclosure: 'Disclosure',
+        navigation: 'Navigation',
+        selection: 'Selection'
+      },
+      mobileNames: { high: 'High', medium: 'Medium', low: 'Low' },
+      difficultyNames: { easy: 'Easy', medium: 'Medium', hard: 'Hard' }
     },
     ja: {
       shown: (count) => `${count} 件表示`,
@@ -40,10 +48,18 @@
       noFavorites: 'お気に入りはまだありません。',
       noRecent: '最近見た項目はまだありません。',
       compareDiff: '主要差分',
-      open: '開く',
       purpose: '用途',
       mobile: 'モバイル適性',
-      difficulty: '実装難易度'
+      difficulty: '実装難易度',
+      openDetail: '詳細',
+      addCompare: '比較に追加',
+      categoryNames: {
+        disclosure: '展開/開示',
+        navigation: 'ナビゲーション',
+        selection: '選択'
+      },
+      mobileNames: { high: '高い', medium: '中', low: '低い' },
+      difficultyNames: { easy: '易しい', medium: '中', hard: '難しい' }
     }
   };
   const t = labels[lang] || labels.en;
@@ -51,7 +67,7 @@
   const search = app.querySelector('[data-search]');
   const categoryChips = Array.from(app.querySelectorAll('[data-filter-group="category"]'));
   const selectFilters = Array.from(app.querySelectorAll('[data-select-filter]'));
-  const cards = Array.from(app.querySelectorAll('[data-card]'));
+  const gridEl = app.querySelector('.result-grid');
   const countEl = app.querySelector('[data-count]');
   const compareList = app.querySelector('[data-compare-list]');
   const compareEmpty = app.querySelector('[data-compare-empty]');
@@ -59,7 +75,6 @@
   const favoritesList = app.querySelector('[data-favorites-list]');
   const recentList = app.querySelector('[data-recent-list]');
   const copyState = app.querySelector('[data-copy-state]');
-  const detailPanel = app.querySelector('[data-detail-panel]');
 
   const detailEls = {
     title: app.querySelector('[data-detail-title]'),
@@ -93,7 +108,74 @@
   let favorites = safeJsonParse(localStorage.getItem(storage.favorites), []);
   let recent = safeJsonParse(localStorage.getItem(storage.recent), []);
 
-  const byId = new Map(cards.map((card) => [card.dataset.id, card]));
+  let cards = [];
+  let records = [];
+  let byId = new Map();
+  let slugToName = new Map();
+
+  function normalizeRecord(pattern) {
+    const useJa = lang === 'ja';
+    return {
+      id: pattern.id,
+      slug: pattern.slug,
+      name: useJa ? pattern.name_ja : pattern.name_en,
+      nameJa: pattern.name_ja,
+      aliases: [...(pattern.aliases_en || []), ...(pattern.aliases_ja || [])].join(', '),
+      novice: '',
+      usecase: '',
+      summary: useJa ? pattern.summary_short_ja : pattern.summary_short_en,
+      best: useJa ? pattern.best_for_ja : pattern.best_for_en,
+      notFor: useJa ? pattern.not_for_ja : pattern.not_for_en,
+      similar: (pattern.similar_patterns || []).join(', '),
+      prompt: useJa ? pattern.short_prompt_ja : pattern.short_prompt_en,
+      notes: useJa ? pattern.short_impl_note_ja : pattern.short_impl_note_en,
+      category: pattern.category,
+      purpose: pattern.purpose,
+      mobileFit: pattern.mobile_fit,
+      difficulty: pattern.difficulty,
+      displayCategory: t.categoryNames[pattern.category] || pattern.category,
+      displayMobile: t.mobileNames[pattern.mobile_fit] || pattern.mobile_fit,
+      displayDifficulty: t.difficultyNames[pattern.difficulty] || pattern.difficulty,
+      similarSlugs: pattern.similar_patterns || []
+    };
+  }
+
+  function createCard(record) {
+    const article = document.createElement('article');
+    article.className = 'pattern-card';
+    article.dataset.card = '';
+    article.dataset.id = record.id;
+    article.dataset.name = record.name;
+    article.dataset.nameJa = record.nameJa;
+    article.dataset.aliases = record.aliases;
+    article.dataset.novice = record.novice;
+    article.dataset.usecase = record.usecase;
+    article.dataset.category = record.category;
+    article.dataset.purpose = record.purpose;
+    article.dataset.mobileFit = record.mobileFit;
+    article.dataset.difficulty = record.difficulty;
+    article.dataset.summary = record.summary;
+    article.dataset.best = record.best;
+    article.dataset.notFor = record.notFor;
+    article.dataset.similar = record.similar;
+    article.dataset.prompt = record.prompt;
+    article.dataset.notes = record.notes;
+
+    article.innerHTML = `
+      <h3>${record.name}</h3>
+      <p>${record.summary}</p>
+      <div class="card-meta">
+        <span class="meta-tag">${record.displayCategory}</span>
+        <span class="meta-tag">${t.mobile}: ${record.displayMobile}</span>
+        <span class="meta-tag">${t.difficulty}: ${record.displayDifficulty}</span>
+      </div>
+      <div class="card-actions">
+        <button class="btn" data-open-detail type="button">${t.openDetail}</button>
+        <button class="btn primary" data-add-compare type="button">${t.addCompare}</button>
+      </div>
+    `;
+    return article;
+  }
 
   function cardData(card) {
     return {
@@ -235,7 +317,15 @@
     detailEls.summary.textContent = data.summary;
     detailEls.best.textContent = data.best;
     detailEls.notFor.textContent = data.notFor;
-    detailEls.similar.textContent = data.similar;
+
+    const matched = records.find((item) => item.id === data.id);
+    if (matched && matched.similarSlugs.length) {
+      const similarNames = matched.similarSlugs.map((slug) => slugToName.get(slug) || slug).join(', ');
+      detailEls.similar.textContent = similarNames;
+    } else {
+      detailEls.similar.textContent = data.similar;
+    }
+
     detailEls.prompt.textContent = data.prompt;
     detailEls.notes.textContent = data.notes;
     setFavoriteButtonState(currentId);
@@ -291,7 +381,7 @@
     let visible = 0;
     cards.forEach((card) => {
       const data = cardData(card);
-      const haystack = [data.name, data.nameJa, data.aliases, data.novice, data.usecase, data.summary]
+      const haystack = [data.name, data.nameJa, data.aliases, data.summary]
         .join(' ')
         .toLowerCase();
       const categoryOk = activeCategory === 'all' || data.category === activeCategory;
@@ -304,6 +394,42 @@
       if (show) visible += 1;
     });
     updateCount(visible);
+  }
+
+  function attachCardEvents() {
+    cards.forEach((card) => {
+      card.querySelector('[data-open-detail]')?.addEventListener('click', function () {
+        openDetail(card);
+      });
+      card.querySelector('[data-add-compare]')?.addEventListener('click', function () {
+        toggleCompare(card);
+      });
+    });
+  }
+
+  async function loadDataset() {
+    const dataUrl = lang === 'ja' ? '../data/patterns.free.v1.json' : 'data/patterns.free.v1.json';
+    const response = await fetch(dataUrl);
+    if (!response.ok) throw new Error(`Dataset load failed: ${response.status}`);
+    const payload = await response.json();
+    const source = Array.isArray(payload.patterns) ? payload.patterns : [];
+    records = source.map(normalizeRecord);
+    slugToName = new Map(records.map((record) => [record.slug, record.name]));
+    if (!gridEl) return;
+
+    gridEl.innerHTML = '';
+    records.forEach((record) => {
+      const card = createCard(record);
+      gridEl.appendChild(card);
+    });
+
+    cards = Array.from(app.querySelectorAll('[data-card]'));
+    byId = new Map(cards.map((card) => [card.dataset.id, card]));
+    attachCardEvents();
+    applyFilters();
+    renderCompare();
+    renderFavorites();
+    renderRecents();
   }
 
   categoryChips.forEach((chip) => {
@@ -324,16 +450,6 @@
   });
 
   search?.addEventListener('input', applyFilters);
-
-  cards.forEach((card) => {
-    card.querySelector('[data-open-detail]')?.addEventListener('click', function () {
-      openDetail(card);
-    });
-    card.querySelector('[data-add-compare]')?.addEventListener('click', function () {
-      toggleCompare(card);
-    });
-  });
-
   detailEls.favBtn?.addEventListener('click', toggleFavorite);
   app.querySelector('[data-copy-prompt]')?.addEventListener('click', copyPrompt);
   app.querySelector('[data-close-detail]')?.addEventListener('click', function () {
@@ -343,8 +459,10 @@
     app.classList.toggle('filters-open');
   });
 
-  applyFilters();
-  renderCompare();
-  renderFavorites();
-  renderRecents();
+  loadDataset().catch(() => {
+    updateCount(0);
+    renderCompare();
+    renderFavorites();
+    renderRecents();
+  });
 })();

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UI Atlas | UIパターン辞典（無料版土台）| Niche Works</title>
-  <meta name="description" content="UI Atlas無料版土台。実用的な検索・絞り込み・詳細・2件比較・ローカルお気に入り・閲覧履歴を利用できます。">
+  <title>UI Atlas | UIパターン辞典（無料）| Niche Works</title>
+  <meta name="description" content="UI Atlas無料版。豊富なUIパターンを対象に、実用的な検索・絞り込み・詳細・2件比較・ローカルお気に入り・閲覧履歴を利用できます。">
   <link rel="canonical" href="https://nicheworks.app/tools/ui-atlas/ja/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/">
@@ -23,7 +23,7 @@
       <span class="pill">検索 + 実務ワード</span>
       <span class="pill">一覧 + 詳細 + 比較トレイ</span>
       <span class="pill">ローカルお気に入り + 履歴</span>
-      <span class="pill">無料土台を本番導線で公開</span>
+      <span class="pill">50件のシードカタログを収録</span>
     </div>
     <div class="nw-lang-switch"><a href="../">English</a></div>
     <nav class="nw-nav" aria-label="Tool page navigation">
@@ -33,8 +33,8 @@
 
   <main class="nw-main" data-ui-atlas-root>
     <section class="nw-intro">
-      <h2>公開中の無料版土台</h2>
-      <p>承認済みモックの密度を維持し、左フィルター・中央一覧・右詳細・比較トレイ・ローカル記憶ブロックを本番ページへ反映しています。</p>
+      <h2>公開中の無料カタログ</h2>
+      <p>承認済みモックの密度を維持しつつ、左フィルター・中央一覧・右詳細・比較トレイ・ローカル記憶ブロックを実データで運用できる構成にしています。</p>
     </section>
 
     <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
@@ -84,28 +84,8 @@
 
       <section class="panel results">
         <h2>パターン一覧</h2>
-        <div class="results-toolbar"><span data-count>0 件表示</span><span>無料比較トレイは2件まで</span></div>
+        <div class="results-toolbar"><span data-count>0 件表示</span><span>比較トレイは2件まで</span></div>
         <div class="result-grid">
-          <article class="pattern-card" data-card data-id="modal" data-name="Modal" data-name-ja="モーダル" data-aliases="dialog, popup, pop-up, confirmation dialog" data-novice="画面を止めるメッセージボックス" data-usecase="削除確認, 強制確認, 危険操作" data-category="disclosure" data-purpose="confirmation" data-mobile-fit="medium" data-difficulty="medium" data-summary="重要な判断に集中させる背景遮断UI。" data-best="重大な確認や必須分岐。" data-not-for="軽い補足や通常説明。" data-similar="Bottom Sheet, Alert Dialog" data-prompt="危険操作の確認用アクセシブルなモーダルを作成。フォーカストラップとESC閉じる対応。" data-notes="role=dialogと背景スクロール抑止、閉じた後のフォーカス復帰を実装。">
-            <h3>Modal</h3><p>背景を遮る集中ダイアログ。</p>
-            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">モバイル: 中</span><span class="meta-tag">難易度: 中</span></div>
-            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
-          </article>
-          <article class="pattern-card" data-card data-id="bottom-sheet" data-name="Bottom Sheet" data-name-ja="ボトムシート" data-aliases="action sheet, slide-up panel" data-novice="スマホ下から出るメニュー" data-usecase="スマホの即時操作, 文脈内選択, 短い入力" data-category="disclosure" data-purpose="quick-action" data-mobile-fit="high" data-difficulty="medium" data-summary="画面文脈を保ったまま下から出るモバイル向けUI。" data-best="モバイルでの短い操作と選択。" data-not-for="長いPC向け多段フロー。" data-similar="Modal, Drawer" data-prompt="ドラッグハンドルとスナップ位置を持つモバイル用ボトムシートを実装。" data-notes="親指で届く範囲に主要操作を配置し、セーフエリアを確保。">
-            <h3>Bottom Sheet</h3><p>下から出るモバイル重視UI。</p>
-            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">モバイル: 高</span><span class="meta-tag">難易度: 中</span></div>
-            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
-          </article>
-          <article class="pattern-card" data-card data-id="accordion" data-name="Accordion" data-name-ja="アコーディオン" data-aliases="collapsible list, expand collapse" data-novice="faqを開閉する一覧" data-usecase="faq, ヘルプ記事, 補足情報" data-category="navigation" data-purpose="content-discovery" data-mobile-fit="high" data-difficulty="easy" data-summary="長い情報を段階的に開いて読むための定番UI。" data-best="FAQやQ&Aの一覧閲覧。" data-not-for="複数項目を同時比較したい場面。" data-similar="Tabs, Disclosure" data-prompt="FAQ向けアコーディオンをキーボード操作付きで実装。1項目のみ開くモードに対応。" data-notes="button+aria-expandedを使い、見出し階層を崩さない。">
-            <h3>Accordion</h3><p>見出し単位で開閉する構造。</p>
-            <div class="card-meta"><span class="meta-tag">ナビゲーション</span><span class="meta-tag">モバイル: 高</span><span class="meta-tag">難易度: 易</span></div>
-            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
-          </article>
-          <article class="pattern-card" data-card data-id="segmented-control" data-name="Segmented Control" data-name-ja="セグメントコントロール" data-aliases="segment switch, pill tabs" data-novice="小さいタブ切替" data-usecase="一覧/グリッド切替, モード切替" data-category="selection" data-purpose="mode-switch" data-mobile-fit="high" data-difficulty="easy" data-summary="同格の表示モードを少数で素早く切り替えるUI。" data-best="2〜5件の表示切替。" data-not-for="選択肢が多いフィルター。" data-similar="Tabs, Toggle Group" data-prompt="選択状態が明確でキーボード操作可能なセグメントコントロールを作成。" data-notes="各セグメントの視覚ウェイトを揃え、タップ領域を確保。">
-            <h3>Segmented Control</h3><p>少数モードの高速切替UI。</p>
-            <div class="card-meta"><span class="meta-tag">選択</span><span class="meta-tag">モバイル: 高</span><span class="meta-tag">難易度: 易</span></div>
-            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
-          </article>
         </div>
 
         <section class="compare-tray">
@@ -150,9 +130,9 @@
     <section class="nw-card">
       <h2>FAQ</h2>
       <ul class="faq-list">
-        <li>データは完成版ですか？ いいえ。現在は無料公開用の土台リリースです。</li>
+        <li>現在のカタログ規模は？ 無料版でも実務向けの50パターンを検索・比較できます。</li>
         <li>無料で使える範囲は？ 検索・絞り込み・詳細・2件比較の基本導線は利用できます。</li>
-        <li>お気に入り/履歴は同期されますか？ この段階ではブラウザ内ローカル保存のみです。</li>
+        <li>お気に入り/履歴は同期されますか？ 現在はブラウザ内ローカル保存のみです。</li>
       </ul>
     </section>
 
