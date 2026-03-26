@@ -107,14 +107,50 @@
   function filteredTerms() {
     const q = normalize(state.query);
     const qTokens = q.split(' ').filter(Boolean);
-    return terms.filter((t) => {
-      const corpus = termSearchCorpus(t);
-      const matchQ = !q || qTokens.every((token) => corpus.includes(token));
-      const matchCategory = !state.category || localized(t.category) === state.category;
-      const matchUse = !state.useCase || localized(t.useCase) === state.useCase;
-      const matchType = !state.termType || localized(t.termType) === state.termType;
-      return matchQ && matchCategory && matchUse && matchType;
-    });
+    return terms
+      .map((t) => {
+        const corpus = termSearchCorpus(t);
+        return { term: t, score: searchScore(t, q, qTokens, corpus) };
+      })
+      .filter(({ term, score }) => {
+        const matchQ = !q || score > 0;
+        const matchCategory = !state.category || localized(term.category) === state.category;
+        const matchUse = !state.useCase || localized(term.useCase) === state.useCase;
+        const matchType = !state.termType || localized(term.termType) === state.termType;
+        return matchQ && matchCategory && matchUse && matchType;
+      })
+      .sort((a, b) => b.score - a.score)
+      .map(({ term }) => term);
+  }
+
+  function searchScore(term, q, qTokens, corpus) {
+    if (!q) return 1;
+
+    const name = normalize(localized(term.term));
+    const aliases = localizedArray(term.aliases).map(normalize);
+    const searchPhrases = localizedArray(term.searchPhrases).map(normalize);
+    const practicalBits = [
+      normalize(localized(term.practicalIntent)),
+      normalize(localized(term.practicalUseCase)),
+      normalize(localized(term.badRequest)),
+      normalize(localized(term.betterRequest))
+    ];
+
+    const tokenHits = qTokens.filter((token) => corpus.includes(token)).length;
+    const tokenRatio = qTokens.length ? tokenHits / qTokens.length : 0;
+
+    let score = tokenHits;
+    if (name.includes(q)) score += 12;
+    if (aliases.some((x) => x.includes(q))) score += 9;
+    if (searchPhrases.some((x) => x.includes(q))) score += 8;
+    if (practicalBits.some((x) => x.includes(q))) score += 6;
+    if (corpus.includes(q)) score += 4;
+
+    const goodPartialMatch = tokenHits >= 2 || tokenRatio >= 0.6;
+    const hasPhraseSignal = searchPhrases.some((x) => q.includes(x) || x.includes(q));
+    if (!goodPartialMatch && !hasPhraseSignal && score < 8) return 0;
+
+    return score;
   }
 
   function renderChips(target, values, key) {
