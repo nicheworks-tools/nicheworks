@@ -20,7 +20,7 @@
         "トップビジュアル",
         "冒頭セクション"
       ],
-      "category": "disclosure",
+      "category": "acquisition",
       "summary_short_en": "Top section that quickly explains value and gives one clear first action.",
       "summary_short_ja": "ページ冒頭で価値を一目で伝え、最初の行動を1つに絞って示す領域です。",
       "best_for_en": "Landing pages, product intros, campaigns, and app home screens.",
@@ -66,7 +66,7 @@
         "強み紹介",
         "ベネフィット枠"
       ],
-      "category": "disclosure",
+      "category": "acquisition",
       "summary_short_en": "Structured block that explains key features in digestible chunks.",
       "summary_short_ja": "主要機能を小さな単位で整理して伝える説明ブロックです。",
       "best_for_en": "SaaS marketing pages, product pages, and onboarding overviews.",
@@ -112,7 +112,7 @@
         "申込導線",
         "アクション枠"
       ],
-      "category": "disclosure",
+      "category": "acquisition",
       "summary_short_en": "Focused area that pushes one decision with minimal distraction.",
       "summary_short_ja": "迷いを減らし、1つの意思決定を促す集中導線です。",
       "best_for_en": "Trial signup, lead capture, and checkout next-step prompts.",
@@ -158,7 +158,7 @@
         "質問集",
         "Q&A"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Question-answer list that removes purchase and usage uncertainty.",
       "summary_short_ja": "導入前や利用時の不安を減らすための質問と回答の一覧です。",
       "best_for_en": "Pricing pages, onboarding docs, and pre-sales pages.",
@@ -204,7 +204,7 @@
         "料金プラン",
         "価格比較表"
       ],
-      "category": "disclosure",
+      "category": "acquisition",
       "summary_short_en": "Side-by-side plan comparison that helps users pick quickly.",
       "summary_short_ja": "プランを横並びで比較し、選択を早めるための表です。",
       "best_for_en": "SaaS products with multiple plans and clear feature tiers.",
@@ -220,7 +220,7 @@
       "short_prompt_ja": "注目プランを強調し、CTAボタンを明示した3列の料金表を作成してください。",
       "short_impl_note_en": "Keep feature rows aligned and mark differences with simple labels.",
       "short_impl_note_ja": "機能行の対応を揃え、差分は短いラベルで示します。",
-      "purpose": "confirmation",
+      "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "medium",
       "use_case_en": "confirm destructive changes, ask before delete/publish",
@@ -603,7 +603,7 @@
         "タイル",
         "カードUI"
       ],
-      "category": "disclosure",
+      "category": "data-display",
       "summary_short_en": "Self-contained content unit with title, metadata, and optional actions.",
       "summary_short_ja": "見出し・補足情報・操作をまとめた独立表示ユニットです。",
       "best_for_en": "Dashboards, product lists, and article previews.",
@@ -649,7 +649,7 @@
         "ポップアップ",
         "オーバーレイ"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Overlay dialog that forces attention for a focused task or decision.",
       "summary_short_ja": "背景操作を止めて、特定の作業や確認に集中させる重ね表示です。",
       "best_for_en": "Confirmation, short forms, and critical warnings.",
@@ -693,7 +693,7 @@
         "下から出るパネル",
         "スライドアップ"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Mobile-first panel emerging from bottom for actions or contextual details.",
       "summary_short_ja": "モバイルで下部から表示し、行動選択や詳細確認に使うパネルです。",
       "best_for_en": "Action menus, filter settings, and lightweight forms on mobile.",
@@ -737,7 +737,7 @@
         "折りたたみ",
         "展開パネル"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Expandable list that reveals details on demand.",
       "summary_short_ja": "必要なときだけ詳細を開いて見せる折りたたみ表示です。",
       "best_for_en": "FAQs, settings groups, and compact long-form content.",
@@ -783,7 +783,7 @@
         "説明チップ",
         "ヘルプ吹き出し"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Tiny contextual hint shown on hover or focus.",
       "summary_short_ja": "ホバーやフォーカス時に短い補足を示す小さなヒントです。",
       "best_for_en": "Icon-only controls and uncommon settings labels.",
@@ -826,7 +826,7 @@
         "文脈メニュー",
         "アンカー表示"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Anchored floating container for richer context than a tooltip.",
       "summary_short_ja": "ツールチップより情報量を持たせられる、要素起点の浮動パネルです。",
       "best_for_en": "Quick settings, inline actions, and rich hints.",
@@ -870,7 +870,7 @@
         "一時通知",
         "完了通知"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Temporary feedback message that does not block user flow.",
       "summary_short_ja": "操作を止めずに結果だけを短時間伝える軽量通知です。",
       "best_for_en": "Save success, undo option, and background action updates.",
@@ -914,7 +914,7 @@
         "テキストフィールド",
         "1行入力"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Basic field for short user-entered text such as names or emails.",
       "summary_short_ja": "氏名やメールなど短い文字を入力する基本フォーム部品です。",
       "best_for_en": "Login forms, profile fields, and search inputs.",
@@ -958,7 +958,7 @@
         "選択ボックス",
         "候補選択"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Control for choosing one option from a predefined list.",
       "summary_short_ja": "決まった候補から1つ選ぶための基本選択UIです。",
       "best_for_en": "Country lists, category pickers, and settings choices.",
@@ -1002,7 +1002,7 @@
         "オートコンプリート",
         "入力候補"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Input-plus-list control that filters options as users type.",
       "summary_short_ja": "入力しながら候補を絞り込める、入力と選択を兼ねたUIです。",
       "best_for_en": "Large option sets like tags, cities, and member search.",
@@ -1045,7 +1045,7 @@
         "複数選択",
         "同意チェック"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Binary control that can be used alone or as part of multi-select groups.",
       "summary_short_ja": "単独のON/OFFや複数選択に使える基本選択部品です。",
       "best_for_en": "Preferences, terms consent, and bulk list actions.",
@@ -1088,7 +1088,7 @@
         "ラジオ選択",
         "1択入力"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Lets users pick exactly one option from a visible set.",
       "summary_short_ja": "表示された候補から1つだけ選ぶための入力部品です。",
       "best_for_en": "Plan selection, shipping methods, and mode choices.",
@@ -1132,7 +1132,7 @@
         "オンオフ切替",
         "設定スイッチ"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Instant on/off control for settings that apply immediately.",
       "summary_short_ja": "設定を即時反映するON/OFF切替に適した部品です。",
       "best_for_en": "Preferences, notifications, and quick feature toggles.",
@@ -1176,7 +1176,7 @@
         "ワンタイムコード",
         "PIN入力"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Multi-cell input optimized for short verification codes.",
       "summary_short_ja": "短い認証コードを入力しやすくする分割入力UIです。",
       "best_for_en": "2FA login, phone verification, and secure confirmation flows.",
@@ -1219,7 +1219,7 @@
         "空画面",
         "初期状態"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Guides users when no content exists yet or search returns nothing.",
       "summary_short_ja": "データ未作成時や検索0件時に、次の行動を案内する状態表示です。",
       "best_for_en": "New accounts, filtered lists, and first-time workflows.",
@@ -1263,7 +1263,7 @@
         "ローディング骨組み",
         "ゴーストUI"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Placeholder structure that previews layout while content loads.",
       "summary_short_ja": "読み込み中に最終レイアウトの形を先に見せる待機表示です。",
       "best_for_en": "Cards, feeds, and dashboard modules with variable loading time.",
@@ -1307,7 +1307,7 @@
         "完了率表示",
         "進捗表示"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Visual indicator of task progress toward completion.",
       "summary_short_ja": "処理の進み具合を割合で伝える進行表示です。",
       "best_for_en": "Uploads, onboarding steps, and long-running operations.",
@@ -1351,7 +1351,7 @@
         "警告表示",
         "お知らせバー"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Prominent inline message for important status or warnings.",
       "summary_short_ja": "重要な状態変化や注意喚起を目立たせる横幅メッセージです。",
       "best_for_en": "System incidents, billing notices, and migration reminders.",
@@ -1395,7 +1395,7 @@
         "複数列レイアウト",
         "グリッド表示"
       ],
-      "category": "disclosure",
+      "category": "layout-structure",
       "summary_short_en": "Two-dimensional layout system for consistent item alignment.",
       "summary_short_ja": "複数要素を整列しやすくする2次元レイアウト方式です。",
       "best_for_en": "Card catalogs, galleries, and dashboard widgets.",
@@ -1482,7 +1482,7 @@
         "クイック追加ボタン",
         "フローティングCTA"
       ],
-      "category": "disclosure",
+      "category": "layout-structure",
       "summary_short_en": "Floating button for high-priority, frequent actions on mobile.",
       "summary_short_ja": "モバイルで頻繁に使う主要操作をすぐ実行できる浮動ボタンです。",
       "best_for_en": "Create/add actions in lists, messages, and task apps.",
@@ -1526,7 +1526,7 @@
         "横スワイプ表示",
         "回転表示"
       ],
-      "category": "disclosure",
+      "category": "data-display",
       "summary_short_en": "Horizontally browsable sequence of items in limited space.",
       "summary_short_ja": "限られた領域で項目を横方向に切り替えて見せる表示です。",
       "best_for_en": "Featured items, media galleries, and testimonial highlights.",
@@ -1570,7 +1570,7 @@
         "履歴ライン",
         "出来事一覧"
       ],
-      "category": "disclosure",
+      "category": "data-display",
       "summary_short_en": "Ordered view of events over time with clear sequence cues.",
       "summary_short_ja": "出来事を時系列で並べ、順序を理解しやすくする表示です。",
       "best_for_en": "Project history, shipment tracking, and changelogs.",
@@ -1614,7 +1614,7 @@
         "データ表",
         "行列表示"
       ],
-      "category": "disclosure",
+      "category": "data-display",
       "summary_short_en": "Structured row-column display for precise data comparison.",
       "summary_short_ja": "行と列で情報を揃え、正確な比較をしやすくする表示です。",
       "best_for_en": "Admin data, reports, and sortable records.",
@@ -1658,7 +1658,7 @@
         "一覧表示",
         "行表示"
       ],
-      "category": "disclosure",
+      "category": "data-display",
       "summary_short_en": "Linear display optimized for scanning many similar items quickly.",
       "summary_short_ja": "似た項目を縦に並べ、素早く見比べるための表示方式です。",
       "best_for_en": "Email inboxes, tasks, search results, and logs.",
@@ -1702,7 +1702,7 @@
         "マスター詳細",
         "左右分割"
       ],
-      "category": "disclosure",
+      "category": "layout-structure",
       "summary_short_en": "Two-pane layout showing list/navigation and details simultaneously.",
       "summary_short_ja": "一覧と詳細を同時表示し、行き来を減らす2分割レイアウトです。",
       "best_for_en": "Mail clients, file browsers, and compare-heavy dashboards.",
@@ -1746,7 +1746,7 @@
         "下部追従CTA",
         "ボトムCTA"
       ],
-      "category": "disclosure",
+      "category": "acquisition",
       "summary_short_en": "Bottom-fixed action area that stays accessible during scrolling.",
       "summary_short_ja": "スクロール中でも主要操作をすぐ押せる下部固定導線です。",
       "best_for_en": "Checkout, reservation, and mobile signup flows.",
@@ -1790,7 +1790,7 @@
         "長文入力欄",
         "コメント欄"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Input field for paragraphs, feedback, and descriptive user text.",
       "summary_short_ja": "説明文やコメントなど、複数行の入力に使うフォーム部品です。",
       "best_for_en": "Support forms, issue reports, and profile bios.",
@@ -1834,7 +1834,7 @@
         "ウィザード形式",
         "ステップ入力"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Breaks long forms into manageable steps to reduce drop-off.",
       "summary_short_ja": "長い入力を段階化して離脱を減らすフォーム構成です。",
       "best_for_en": "Onboarding, checkout, and loan/application flows.",
@@ -1850,7 +1850,7 @@
       "short_prompt_ja": "進捗表示と前へ/次へ操作を持つ3ステップフォームを作成してください。",
       "short_impl_note_en": "Validate each step before advancing and preserve entered values.",
       "short_impl_note_ja": "各ステップで検証し、戻っても入力値を保持します。",
-      "purpose": "content-discovery",
+      "purpose": "mode-switch",
       "mobile_fit": "medium",
       "difficulty": "hard",
       "use_case_en": "scan, browse, and discover content structure",
@@ -1878,7 +1878,7 @@
         "カレンダー入力",
         "日程ピッカー"
       ],
-      "category": "selection",
+      "category": "inputs-forms",
       "summary_short_en": "Calendar-based input that prevents date format mistakes.",
       "summary_short_ja": "日付形式の入力ミスを減らせるカレンダー選択UIです。",
       "best_for_en": "Booking forms, reports, and scheduling workflows.",
@@ -1922,7 +1922,7 @@
         "連絡先セクション",
         "相談導線"
       ],
-      "category": "disclosure",
+      "category": "acquisition",
       "summary_short_en": "Dedicated page block that helps users ask questions or request support.",
       "summary_short_ja": "質問や相談につなげるための連絡導線をまとめたセクションです。",
       "best_for_en": "Service sites, agencies, and B2B lead generation pages.",
@@ -1966,7 +1966,7 @@
         "横並び比較",
         "比較マトリクス"
       ],
-      "category": "disclosure",
+      "category": "data-display",
       "summary_short_en": "Matrix that highlights differences between options or products.",
       "summary_short_ja": "選択肢間の違いを明確に示す比較マトリクスです。",
       "best_for_en": "Plan selection, tool evaluations, and vendor comparisons.",
@@ -1982,7 +1982,7 @@
       "short_prompt_ja": "先頭列固定と推奨項目強調を備えた比較表を作成してください。",
       "short_impl_note_en": "Use concise yes/no icons and provide text labels for accessibility.",
       "short_impl_note_ja": "可否アイコンだけでなく、読み上げ用テキストも併記します。",
-      "purpose": "confirmation",
+      "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "hard",
       "use_case_en": "confirm destructive changes, ask before delete/publish",
@@ -2010,7 +2010,7 @@
         "レビュー引用",
         "実績コメント"
       ],
-      "category": "disclosure",
+      "category": "acquisition",
       "summary_short_en": "Social proof block using real customer outcomes and quotes.",
       "summary_short_ja": "実利用者の声や成果で信頼性を補強する証拠セクションです。",
       "best_for_en": "Landing pages, SaaS marketing, and consultant service pages.",
@@ -2054,7 +2054,7 @@
         "下部リンク",
         "法務フッター"
       ],
-      "category": "disclosure",
+      "category": "layout-structure",
       "summary_short_en": "Bottom section for utility links, legal info, and secondary navigation.",
       "summary_short_ja": "補助リンク、法務情報、補助導線をまとめるページ下部領域です。",
       "best_for_en": "Most websites and tools requiring policy and support links.",
@@ -2142,7 +2142,7 @@
         "くるくる表示",
         "スピナー"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Simple activity indicator when duration is unknown.",
       "summary_short_ja": "処理時間が読めない場面で使う簡易アクティビティ表示です。",
       "best_for_en": "Short async actions and compact inline loading states.",
@@ -2186,7 +2186,7 @@
         "項目単位エラー表示",
         "リアルタイム検証"
       ],
-      "category": "disclosure",
+      "category": "disclosure-feedback",
       "summary_short_en": "Immediate field feedback that helps users fix input before submit.",
       "summary_short_ja": "送信前に入力ミスを修正できる、項目単位の即時フィードバックです。",
       "best_for_en": "Signup, payment forms, and high-error input fields.",
