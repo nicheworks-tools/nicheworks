@@ -88,6 +88,17 @@
     }
   };
   const t = labels[lang] || labels.en;
+  const sampleFallbackText = {
+    en: {
+      cardNote: 'Sample preview is temporarily unavailable.',
+      detailNote: 'Sample preview is temporarily unavailable. Detail guidance below remains available.'
+    },
+    ja: {
+      cardNote: 'サンプルプレビューを一時的に表示できません。',
+      detailNote: 'サンプルプレビューを一時的に表示できません。下の詳細テキストは引き続き確認できます。'
+    }
+  };
+  const sampleFallback = sampleFallbackText[lang] || sampleFallbackText.en;
 
   const search = app.querySelector('[data-search]');
   const categoryChips = Array.from(app.querySelectorAll('[data-filter-group="category"]'));
@@ -312,6 +323,29 @@
     wireSampleInteractions(container);
   }
 
+  function renderSampleFallback(container, record, large) {
+    if (!container || !record) return;
+    const fallbackNote = large ? sampleFallback.detailNote : sampleFallback.cardNote;
+    container.innerHTML = `
+      <div class="sample-shell ${large ? 'sample-large' : 'sample-mini'} sample-fallback-shell">
+        <div class="sample-fallback" role="status" aria-live="polite">
+          <strong>${record.name}</strong>
+          <p>${fallbackNote}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSampleSafely(container, record, large) {
+    try {
+      renderSample(container, record, large);
+      return true;
+    } catch (_error) {
+      renderSampleFallback(container, record, large);
+      return false;
+    }
+  }
+
   function createCard(record) {
     const article = document.createElement('article');
     article.className = 'pattern-card';
@@ -353,7 +387,7 @@
         <button class="btn primary" data-add-compare type="button">${t.addCompare}</button>
       </div>
     `;
-    renderSample(article.querySelector('[data-card-sample]'), record, false);
+    renderSampleSafely(article.querySelector('[data-card-sample]'), record, false);
     return article;
   }
 
@@ -496,8 +530,9 @@
     detailEls.implementation.textContent = data.notes;
     setFavoriteButtonState(currentId);
     addRecent(currentId);
-    if (matched) renderSample(detailEls.sample, matched, true);
     app.classList.add('detail-open');
+    if (matched) renderSampleSafely(detailEls.sample, matched, true);
+    else renderSampleFallback(detailEls.sample, data, true);
   }
 
   async function copyPrompt() {
@@ -553,9 +588,21 @@
   }
 
   function attachCardEvents() {
-    cards.forEach((card) => {
-      card.querySelector('[data-open-detail]')?.addEventListener('click', () => openDetail(card));
-      card.querySelector('[data-add-compare]')?.addEventListener('click', () => toggleCompare(card));
+    if (!gridEl) return;
+    gridEl.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const detailButton = target.closest('[data-open-detail]');
+      if (detailButton) {
+        const card = detailButton.closest('[data-card]');
+        if (card instanceof HTMLElement) openDetail(card);
+        return;
+      }
+      const compareButton = target.closest('[data-add-compare]');
+      if (compareButton) {
+        const card = compareButton.closest('[data-card]');
+        if (card instanceof HTMLElement) toggleCompare(card);
+      }
     });
   }
 
@@ -573,7 +620,6 @@
 
     cards = Array.from(app.querySelectorAll('[data-card]'));
     byId = new Map(cards.map((card) => [card.dataset.id, card]));
-    attachCardEvents();
     applyFilters();
     renderCompare();
     renderFavorites();
@@ -605,6 +651,7 @@
     }
   });
 
+  attachCardEvents();
   loadDataset().catch(() => {
     updateCount(0);
     renderCompare();
