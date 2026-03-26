@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UI Atlas | ホーム | Niche Works</title>
-  <meta name="description" content="Niche Works の英語主軸 UI パターン辞典の土台です。">
+  <title>UI Atlas | UIパターン辞典（無料版土台）| Niche Works</title>
+  <meta name="description" content="英語主軸のUI Atlas無料版土台。検索・絞り込み・詳細・2件比較のプレースホルダーを公開しています。">
   <link rel="canonical" href="https://nicheworks.app/tools/ui-atlas/ja/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/">
@@ -19,31 +19,92 @@
     <p class="nw-eyebrow">Niche Works Tool Series</p>
     <h1>UI Atlas</h1>
     <p class="nw-tagline">名前が分かるだけで終わらない。AIに正確に依頼できるUI辞典。</p>
-    <div class="nw-lang-switch">
-      <a href="../">English</a>
-    </div>
-    <nav class="nw-nav" aria-label="ページ内ナビゲーション">
-      <a href="../">ホーム</a><a href="../usage/">使い方</a><a href="../about/">このツールについて</a><a href="../pro/">Pro（準備中）</a>
+    <div class="nw-lang-switch"><a href="../">English</a></div>
+    <nav class="nw-nav" aria-label="Tool page navigation">
+      <a href="./">ホーム</a><a href="usage/">使い方</a><a href="about/">このツールについて</a><a href="pro/">Pro</a>
     </nav>
   </header>
 
-  <main class="nw-main">
-    <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
-
-    <section class="nw-card">
-      <h2>ホーム</h2>
-      <p>共通のベース構造を準備済みです。ツール固有ロジックは段階的に追加します。</p>
+  <main class="nw-main" data-ui-atlas-root>
+    <section class="nw-card nw-intro">
+      <h2>公開中の無料版土台</h2>
+      <p>UI Atlas の公開ベースです。パターン閲覧、2件比較、AI依頼文の下準備を無料で試せます。現段階では有料ゲートは実装していません。</p>
     </section>
 
-    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom, optional)</section>
+    <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
+
+    <section class="workspace" aria-label="UI Atlas workspace">
+      <aside class="panel filters">
+        <h2>フィルター</h2>
+        <label for="atlas-search-ja">検索</label>
+        <input id="atlas-search-ja" class="search-input" data-search type="search" placeholder="例: modal, FAQ, メニュー">
+        <h3>カテゴリ</h3>
+        <div class="chip-group">
+          <button type="button" class="filter-chip active" data-filter="all">すべて</button>
+          <button type="button" class="filter-chip" data-filter="disclosure">展開/開示</button>
+          <button type="button" class="filter-chip" data-filter="navigation">ナビゲーション</button>
+          <button type="button" class="filter-chip" data-filter="selection">選択</button>
+        </div>
+      </aside>
+
+      <section class="panel results">
+        <h2>パターン一覧</h2>
+        <div class="results-toolbar"><span data-count>0 件表示</span><span>比較トレイは2件まで</span></div>
+        <div class="result-grid">
+          <article class="pattern-card" data-card data-name="Modal" data-category="disclosure" data-summary="確認や分岐を強制するフォーカス型UI。" data-best="重要確認・必須操作の分岐。" data-avoid="通常説明や軽い補足を毎回止める場面。">
+            <h3>Modal</h3><p>背景を遮る集中ダイアログ。</p>
+            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">PC+モバイル</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
+          </article>
+          <article class="pattern-card" data-card data-name="Bottom Sheet" data-category="disclosure" data-summary="画面文脈を保ったまま下から出すモバイル向けパネル。" data-best="モバイルの短い操作や選択。" data-avoid="長文入力を伴う複雑な手順。">
+            <h3>Bottom Sheet</h3><p>下から出るモバイル重視UI。</p>
+            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">モバイル</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
+          </article>
+          <article class="pattern-card" data-card data-name="Accordion" data-category="navigation" data-summary="長いFAQを段階的に開いて読むための定番。" data-best="Q&A一覧や補足情報の整理。" data-avoid="複数項目を同時比較したい画面。">
+            <h3>Accordion</h3><p>見出し単位で開閉する構造。</p>
+            <div class="card-meta"><span class="meta-tag">ナビゲーション</span><span class="meta-tag">FAQ</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
+          </article>
+          <article class="pattern-card" data-card data-name="Segmented Control" data-category="selection" data-summary="同格の表示モードを少数切替するための横並び選択。" data-best="2〜5件のビュー切替。" data-avoid="選択肢が多い条件フィルター。">
+            <h3>Segmented Control</h3><p>少数モードの高速切替UI。</p>
+            <div class="card-meta"><span class="meta-tag">選択</span><span class="meta-tag">コンパクト</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
+          </article>
+        </div>
+
+        <section class="compare-tray">
+          <h3>比較トレイ</h3>
+          <p data-compare-empty>まだ追加されていません。2件まで追加して見比べできます。</p>
+          <div class="compare-list" data-compare-list></div>
+        </section>
+      </section>
+
+      <aside class="panel detail">
+        <h2 data-detail-title>Modal</h2>
+        <p class="detail-body" data-detail-text>確認や分岐を強制するフォーカス型UI。</p>
+        <h3>向いている場面</h3>
+        <ul class="detail-list"><li data-detail-best>重要確認・必須操作の分岐。</li></ul>
+        <h3>避けたい場面</h3>
+        <ul class="detail-list"><li data-detail-avoid>通常説明や軽い補足を毎回止める場面。</li></ul>
+      </aside>
+    </section>
+
+    <section class="nw-card">
+      <h2>FAQ</h2>
+      <ul class="faq-list">
+        <li>データは完成版ですか？ いいえ。現在は無料公開用の土台リリースです。</li>
+        <li>無料で使える範囲は？ 閲覧・絞り込み・2件比較の基本導線は利用できます。</li>
+        <li>Proで今の機能は制限されますか？ いいえ。現段階は説明ページのみです。</li>
+      </ul>
+    </section>
+
+    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom)</section>
 
     <section class="nw-donate" aria-label="support">
       <h2>このプロジェクトを支援</h2>
       <p>無料ファースト方針: コア機能は公開状態を維持します。</p>
-      <p class="donation-links">
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a>
-      </p>
+      <p class="donation-links"><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p>
     </section>
   </main>
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UI Atlas | Home | Niche Works</title>
-  <meta name="description" content="English-primary UI pattern dictionary scaffold for Niche Works.">
+  <title>UI Atlas | UI Pattern Dictionary (Free Foundation) | Niche Works</title>
+  <meta name="description" content="English-first UI Atlas free foundation: practical search, filter, detail, and compare placeholders for UI patterns.">
   <link rel="canonical" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/">
@@ -19,31 +19,95 @@
     <p class="nw-eyebrow">Niche Works Tool Series</p>
     <h1>UI Atlas</h1>
     <p class="nw-tagline">More than names. A UI pattern atlas you can actually use with AI.</p>
-    <div class="nw-lang-switch">
-      <a href="ja/">日本語</a>
-    </div>
+    <div class="nw-lang-switch"><a href="ja/">日本語</a></div>
     <nav class="nw-nav" aria-label="Tool page navigation">
-      <a href="">Home</a><a href="usage/">Usage</a><a href="about/">About</a><a href="pro/">Pro</a>
+      <a href="./">Home</a><a href="usage/">Usage</a><a href="about/">About</a><a href="pro/">Pro</a>
     </nav>
   </header>
 
-  <main class="nw-main">
-    <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
-
-    <section class="nw-card">
-      <h2>Home</h2>
-      <p>Base structure prepared. Tool-specific logic will be added incrementally.</p>
+  <main class="nw-main" data-ui-atlas-root>
+    <section class="nw-card nw-intro">
+      <h2>Free foundation (public)</h2>
+      <p>This is the public base for UI Atlas: browse patterns, compare up to two, and prepare AI-ready wording. No paid gating is applied in this phase.</p>
     </section>
 
-    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom, optional)</section>
+    <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
+
+    <section class="workspace" aria-label="UI Atlas workspace">
+      <aside class="panel filters">
+        <h2>Filters</h2>
+        <label for="atlas-search">Search</label>
+        <input id="atlas-search" class="search-input" data-search type="search" placeholder="e.g. modal, mobile menu, FAQ">
+        <h3>Category</h3>
+        <div class="chip-group">
+          <button type="button" class="filter-chip active" data-filter="all">All</button>
+          <button type="button" class="filter-chip" data-filter="disclosure">Disclosure</button>
+          <button type="button" class="filter-chip" data-filter="navigation">Navigation</button>
+          <button type="button" class="filter-chip" data-filter="selection">Selection</button>
+        </div>
+      </aside>
+
+      <section class="panel results">
+        <h2>Pattern results</h2>
+        <div class="results-toolbar">
+          <span data-count>0 patterns shown</span>
+          <span>Compare tray supports up to 2</span>
+        </div>
+        <div class="result-grid">
+          <article class="pattern-card" data-card data-name="Modal" data-category="disclosure" data-summary="Focused interruption for confirmations and critical branching." data-best="Critical confirmation or mandatory response." data-avoid="Routine details that can stay inline.">
+            <h3>Modal</h3><p>Focused interruption with backdrop.</p>
+            <div class="card-meta"><span class="meta-tag">Disclosure</span><span class="meta-tag">Desktop+Mobile</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
+          </article>
+          <article class="pattern-card" data-card data-name="Bottom Sheet" data-category="disclosure" data-summary="Context-preserving mobile-first panel from the bottom edge." data-best="Mobile contextual actions or short forms." data-avoid="Long multi-step desktop flow.">
+            <h3>Bottom Sheet</h3><p>Mobile-friendly layered panel.</p>
+            <div class="card-meta"><span class="meta-tag">Disclosure</span><span class="meta-tag">Mobile</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
+          </article>
+          <article class="pattern-card" data-card data-name="Accordion" data-category="navigation" data-summary="Progressive reveal for grouped answers and long FAQ lists." data-best="FAQ and secondary sections with scanning." data-avoid="When users must compare multiple open items.">
+            <h3>Accordion</h3><p>Expandable section stack.</p>
+            <div class="card-meta"><span class="meta-tag">Navigation</span><span class="meta-tag">FAQ</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
+          </article>
+          <article class="pattern-card" data-card data-name="Segmented Control" data-category="selection" data-summary="Switch between a small set of equivalent views without leaving context." data-best="2-5 mode switching in one surface." data-avoid="Many options or very long labels.">
+            <h3>Segmented Control</h3><p>Compact view/mode switch.</p>
+            <div class="card-meta"><span class="meta-tag">Selection</span><span class="meta-tag">Compact</span></div>
+            <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
+          </article>
+        </div>
+
+        <section class="compare-tray">
+          <h3>Compare tray</h3>
+          <p data-compare-empty>Nothing added yet. Add up to two patterns for quick side-by-side checking.</p>
+          <div class="compare-list" data-compare-list></div>
+        </section>
+      </section>
+
+      <aside class="panel detail">
+        <h2 data-detail-title>Modal</h2>
+        <p class="detail-body" data-detail-text>Focused interruption for confirmations and critical branching.</p>
+        <h3>Best for</h3>
+        <ul class="detail-list"><li data-detail-best>Critical confirmation or mandatory response.</li></ul>
+        <h3>Avoid when</h3>
+        <ul class="detail-list"><li data-detail-avoid>Routine details that can stay inline.</li></ul>
+      </aside>
+    </section>
+
+    <section class="nw-card">
+      <h2>FAQ</h2>
+      <ul class="faq-list">
+        <li>Is the dataset complete? Not yet. This release is a free foundation with representative placeholders.</li>
+        <li>Can I use everything for free now? Yes. Browsing and basic compare are open.</li>
+        <li>Does Pro block current features? No. Pro is informational only at this stage.</li>
+      </ul>
+    </section>
+
+    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom)</section>
 
     <section class="nw-donate" aria-label="support">
       <h2>Support this project</h2>
-      <p>Free-first policy: core features stay publicly available.</p>
-      <p class="donation-links">
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a>
-      </p>
+      <p>Free-first policy: core features remain publicly available.</p>
+      <p class="donation-links"><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p>
     </section>
   </main>
 

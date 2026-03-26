@@ -1,11 +1,11 @@
-/* Niche Works tool-series base alignment (Task 00) */
 :root {
-  --nw-bg: #f5f7fb;
+  --nw-bg: #f4f6fb;
   --nw-card: #ffffff;
-  --nw-text: #1f2937;
+  --nw-text: #111827;
   --nw-muted: #4b5563;
   --nw-border: #d9dfeb;
   --nw-accent: #1e40af;
+  --nw-accent-soft: #e0e7ff;
 }
 * { box-sizing: border-box; }
 body {
@@ -17,32 +17,102 @@ body {
 }
 a { color: var(--nw-accent); }
 .nw-header, .nw-main, .nw-footer {
-  width: min(1100px, 94vw);
+  width: min(1240px, 95vw);
   margin: 0 auto;
 }
 .nw-header { padding: 1.25rem 0 0.5rem; }
-.nw-eyebrow { margin: 0; color: var(--nw-muted); font-size: 0.9rem; }
-h1 { margin: 0.25rem 0; font-size: clamp(1.5rem, 3vw, 2rem); }
-.nw-tagline { margin: 0.25rem 0 0.75rem; color: var(--nw-muted); }
-.nw-lang-switch { margin-bottom: 0.5rem; }
-.nw-nav { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 0.8rem; }
+.nw-eyebrow { margin: 0; color: var(--nw-muted); font-size: 0.88rem; }
+h1 { margin: 0.2rem 0; font-size: clamp(1.6rem, 3.5vw, 2.1rem); }
+.nw-tagline, .nw-intro p { margin: 0.25rem 0; color: var(--nw-muted); }
+.nw-lang-switch { margin: 0.45rem 0 0.55rem; }
+.nw-nav { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 0.85rem; }
 .nw-main { padding-bottom: 1rem; }
-.nw-card, .ad-slot, .nw-donate {
+.nw-card, .ad-slot, .nw-donate, .panel {
   background: var(--nw-card);
   border: 1px solid var(--nw-border);
   border-radius: 12px;
   padding: 1rem;
   margin: 0 0 1rem;
 }
+.nw-intro p { margin: 0; }
 .ad-slot { text-align: center; color: var(--nw-muted); }
-.nw-donate h2, .nw-card h2 { margin-top: 0; }
+.workspace {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 320px;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.panel h2, .panel h3, .nw-card h2, .nw-donate h2 { margin-top: 0; }
+.filters .search-input {
+  width: 100%;
+  border: 1px solid var(--nw-border);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 0.8rem;
+}
+.chip-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filter-chip {
+  border: 1px solid var(--nw-border);
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.filter-chip.active { background: var(--nw-accent-soft); border-color: #a5b4fc; }
+.results-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: var(--nw-muted);
+  font-size: 0.9rem;
+}
+.result-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.pattern-card {
+  border: 1px solid var(--nw-border);
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: #fff;
+}
+.pattern-card h3 { margin: 0 0 0.15rem; font-size: 1rem; }
+.pattern-card p { margin: 0 0 0.45rem; color: var(--nw-muted); font-size: 0.88rem; }
+.card-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+.meta-tag { font-size: 0.75rem; border: 1px solid var(--nw-border); border-radius: 999px; padding: 0.2rem 0.55rem; }
+.card-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.btn {
+  border-radius: 999px;
+  border: 1px solid var(--nw-border);
+  background: #fff;
+  color: var(--nw-text);
+  padding: 0.4rem 0.72rem;
+  cursor: pointer;
+  font-size: 0.76rem;
+}
+.btn.primary { background: var(--nw-accent); color: #fff; border-color: var(--nw-accent); }
+.detail .detail-body { font-size: 0.9rem; color: var(--nw-muted); }
+.detail-list { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+.compare-tray .compare-list { display: grid; gap: 0.5rem; margin-top: 0.6rem; }
+.compare-item {
+  border: 1px solid var(--nw-border);
+  border-radius: 9px;
+  padding: 0.55rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  align-items: center;
+  background: #fff;
+}
+.faq-list { margin: 0; padding-left: 1.1rem; }
 .donation-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 .nw-footer {
   padding: 0.25rem 0 1.5rem;
   color: var(--nw-muted);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 .nw-footer p { margin: 0.25rem 0; }
-@media (max-width: 720px) {
-  .nw-nav { gap: 0.5rem 0.75rem; }
+@media (max-width: 1080px) {
+  .workspace { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr; }
 }
