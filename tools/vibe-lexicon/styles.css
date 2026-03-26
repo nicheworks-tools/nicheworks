@@ -1,0 +1,48 @@
+/* Niche Works tool-series base alignment (Task 00) */
+:root {
+  --nw-bg: #f5f7fb;
+  --nw-card: #ffffff;
+  --nw-text: #1f2937;
+  --nw-muted: #4b5563;
+  --nw-border: #d9dfeb;
+  --nw-accent: #1e40af;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--nw-text);
+  background: var(--nw-bg);
+  line-height: 1.6;
+}
+a { color: var(--nw-accent); }
+.nw-header, .nw-main, .nw-footer {
+  width: min(1100px, 94vw);
+  margin: 0 auto;
+}
+.nw-header { padding: 1.25rem 0 0.5rem; }
+.nw-eyebrow { margin: 0; color: var(--nw-muted); font-size: 0.9rem; }
+h1 { margin: 0.25rem 0; font-size: clamp(1.5rem, 3vw, 2rem); }
+.nw-tagline { margin: 0.25rem 0 0.75rem; color: var(--nw-muted); }
+.nw-lang-switch { margin-bottom: 0.5rem; }
+.nw-nav { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 0.8rem; }
+.nw-main { padding-bottom: 1rem; }
+.nw-card, .ad-slot, .nw-donate {
+  background: var(--nw-card);
+  border: 1px solid var(--nw-border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0 0 1rem;
+}
+.ad-slot { text-align: center; color: var(--nw-muted); }
+.nw-donate h2, .nw-card h2 { margin-top: 0; }
+.donation-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.nw-footer {
+  padding: 0.25rem 0 1.5rem;
+  color: var(--nw-muted);
+  font-size: 0.92rem;
+}
+.nw-footer p { margin: 0.25rem 0; }
+@media (max-width: 720px) {
+  .nw-nav { gap: 0.5rem 0.75rem; }
+}
