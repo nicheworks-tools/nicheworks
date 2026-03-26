@@ -174,10 +174,18 @@
   function sampleMarkup(record, large) {
     const compact = large ? '' : 'mini';
     const p = (a, b) => (lang === 'ja' ? b : a);
+    const cfg = record.sampleConfig || {};
+    const c = (key, fallbackEn, fallbackJa) => {
+      const localized = cfg[`${key}_${lang}`];
+      if (typeof localized === 'string' && localized.trim()) return localized.trim();
+      const raw = cfg[key];
+      if (typeof raw === 'string' && raw.trim()) return raw.trim();
+      return p(fallbackEn, fallbackJa);
+    };
     let core = '';
     switch (record.sampleType) {
-      case 'modal': core = `<button class="mini-btn" data-sample-open="modal">${p('Open modal', 'モーダルを開く')}</button><div class="sample-modal" data-sample-modal><div class="sample-modal-card"><h4>${p('Confirm publish', '公開確認')}</h4><p>${p('This is a working modal sample.', '実際に動くモーダルサンプルです。')}</p><button class="mini-btn" data-sample-close>${p('Close', '閉じる')}</button></div></div>`; break;
-      case 'bottom-sheet': core = `<button class="mini-btn" data-sample-open="sheet">${p('Open sheet', 'シートを開く')}</button><div class="sample-sheet" data-sample-sheet><div class="sheet-handle"></div><p>${p('Bottom sheet content', 'ボトムシート内容')}</p><button class="mini-btn" data-sample-close>${p('Done', '閉じる')}</button></div>`; break;
+      case 'modal': core = `<button class="mini-btn" data-sample-open="modal">${c('trigger', 'Open modal', 'モーダルを開く')}</button><div class="sample-modal" data-sample-modal><div class="sample-modal-card"><h4>${c('title', 'Confirm publish', '公開確認')}</h4><p>${c('body', 'This is a working modal sample.', '実際に動くモーダルサンプルです。')}</p><button class="mini-btn" data-sample-close>${c('close', 'Close', '閉じる')}</button></div></div>`; break;
+      case 'bottom-sheet': core = `<button class="mini-btn" data-sample-open="sheet">${c('trigger', 'Open sheet', 'シートを開く')}</button><div class="sample-sheet" data-sample-sheet><div class="sheet-handle"></div><p>${c('body', 'Bottom sheet content', 'ボトムシート内容')}</p><button class="mini-btn" data-sample-close>${c('close', 'Done', '閉じる')}</button></div>`; break;
       case 'accordion': core = `<div class="sample-acc"><button data-sample-acc>${p('Why use this?', 'なぜ使う?')}</button><div>${p('Shows and hides content interactively.', '内容を開閉して表示できます。')}</div><button data-sample-acc>${p('Mobile behavior', 'モバイル挙動')}</button><div>${p('Tap again to collapse.', '再タップで閉じます。')}</div></div>`; break;
       case 'tabs': core = `<div class="sample-tabs"><div><button data-tab="a" class="is-on">${p('Overview', '概要')}</button><button data-tab="b">${p('Specs', '仕様')}</button></div><p data-tab-panel>${p('Overview content', '概要コンテンツ')}</p></div>`; break;
       case 'segmented': core = `<div class="sample-segmented"><button class="is-on">A</button><button>B</button><button>C</button></div>`; break;
@@ -191,10 +199,10 @@
       case 'otp': core = `<div class="otp">${'<input maxlength="1" inputmode="numeric">'.repeat(6)}</div>`; break;
       case 'pricing': core = `<div class="sample-pricing"><article><h4>Free</h4><strong>$0</strong></article><article class="is-on"><h4>Pro</h4><strong>$19</strong></article><article><h4>Team</h4><strong>$49</strong></article></div>`; break;
       case 'comparison': core = `<table class="sample-table"><tr><th>Feature</th><th>A</th><th>B</th></tr><tr><td>Export</td><td>✓</td><td>✓</td></tr><tr><td>Team</td><td>-</td><td>✓</td></tr></table>`; break;
-      case 'hero': core = `<section class="sample-hero"><h4>Launch faster</h4><p>${p('Ship with confidence.', '安心して公開。')}</p><button class="mini-btn">${p('Start now', '始める')}</button></section>`; break;
+      case 'hero': core = `<section class="sample-hero"><h4>${c('title', 'Launch faster', 'より速く立ち上げ')}</h4><p>${c('body', 'Ship with confidence.', '安心して公開。')}</p><button class="mini-btn">${c('cta', 'Start now', '始める')}</button></section>`; break;
       case 'feature-list': core = `<ul class="sample-features"><li>${badge('⚡')} Fast setup</li><li>${badge('🔒')} Secure defaults</li><li>${badge('📈')} Better metrics</li></ul>`; break;
-      case 'cta': core = `<div class="sample-cta"><p>${p('Ready to improve conversion?', 'コンバージョンを改善しますか?')}</p><button class="mini-btn">${p('Try free', '無料で試す')}</button></div>`; break;
-      case 'empty-state': core = `<div class="sample-empty"><strong>${p('No items yet', 'データがありません')}</strong><button class="mini-btn">${p('Create one', '作成')}</button></div>`; break;
+      case 'cta': core = `<div class="sample-cta"><p>${c('body', 'Ready to improve conversion?', 'コンバージョンを改善しますか?')}</p><button class="mini-btn">${c('cta', 'Try free', '無料で試す')}</button></div>`; break;
+      case 'empty-state': core = `<div class="sample-empty"><strong>${c('title', 'No items yet', 'データがありません')}</strong><button class="mini-btn">${c('cta', 'Create one', '作成')}</button></div>`; break;
       case 'skeleton': core = `<div class="sample-skeleton"><span></span><span></span><span></span></div>`; break;
       case 'progress': core = `<div class="sample-progress"><div style="width:${large ? 62 : 45}%"></div></div>`; break;
       case 'alert': core = `<p class="sample-alert">${p('Warning: Unsaved changes', '警告: 未保存の変更があります')}</p>`; break;
@@ -220,6 +228,7 @@
       case 'timeline': core = `<ol class="sample-timeline"><li><strong>Plan</strong></li><li><strong>Build</strong></li><li><strong>Ship</strong></li></ol>`; break;
       case 'table': core = `<table class="sample-table"><tr><th>User</th><th>Role</th></tr><tr><td>Ana</td><td>Admin</td></tr><tr><td>Ken</td><td>Editor</td></tr></table>`; break;
       case 'list-view': core = `<ul class="sample-list"><li>Alpha</li><li>Bravo</li><li>Charlie</li></ul>`; break;
+      case 'card-list': core = `<div class="sample-grid"><span>${c('mini_label', 'Card A', 'カードA')}</span><span>${p('Card B', 'カードB')}</span><span>${p('Card C', 'カードC')}</span><span>${p('Card D', 'カードD')}</span></div>`; break;
       case 'grid-layout': core = `<div class="sample-grid"><span></span><span></span><span></span><span></span></div>`; break;
       case 'split-view': core = `<div class="sample-split"><aside>${p('Folders', 'フォルダ')}</aside><section>${p('Preview pane', 'プレビュー')}</section></div>`; break;
       case 'sticky-sidebar': core = `<div class="sample-sticky"><main>${p('Long article', '長文本文')}</main><aside>${p('Sticky TOC', '固定目次')}</aside></div>`; break;
@@ -228,7 +237,7 @@
         core = `<div class="sample-spinner ${compact}"></div>`;
     }
     if (!large) return core;
-    return `<div class="sample-detail-guide"><p><strong>${p('Scenario', '想定シーン')}</strong>: ${record.usecase}</p><p><strong>${p('Watch for', '確認ポイント')}</strong>: ${record.practicalIntent}</p></div>${core}<p class="sample-detail-tip">${p('Tip: interact with this sample to see practical behavior.', 'ヒント: このサンプルを操作して、実務での動きを確認してください。')}</p>`;
+    return `<div class="sample-detail-guide"><p><strong>${p('Scenario', '想定シーン')}</strong>: ${c('context', record.usecase, record.usecase)}</p><p><strong>${p('Watch for', '確認ポイント')}</strong>: ${c('focus', record.practicalIntent, record.practicalIntent)}</p></div>${core}<p class="sample-detail-tip">${p('Tip: interact with this sample to see practical behavior.', 'ヒント: このサンプルを操作して、実務での動きを確認してください。')}</p>`;
   }
 
   function wireSampleInteractions(host) {
@@ -420,13 +429,22 @@
       const mobileRight = t.mobileNames[right.mobileFit] || right.mobileFit;
       const diffLeft = t.difficultyNames[left.difficulty] || left.difficulty;
       const diffRight = t.difficultyNames[right.difficulty] || right.difficulty;
-      const chooseLeft = left.mobileFit === 'high' && right.mobileFit !== 'high';
-      const chooseRight = right.mobileFit === 'high' && left.mobileFit !== 'high';
-      const decisionLine = chooseLeft
-        ? `${t.compareChoose(left.name)} ${left.best}`
-        : chooseRight
-          ? `${t.compareChoose(right.name)} ${right.best}`
-          : `${t.compareChoose(left.name)} ${left.best} / ${t.compareInstead(left.name)} ${left.notFor}`;
+      const score = (item, other) => {
+        let points = 0;
+        if (item.mobileFit === 'high') points += 2;
+        else if (item.mobileFit === 'medium') points += 1;
+        if (item.difficulty === 'easy') points += 2;
+        else if (item.difficulty === 'medium') points += 1;
+        if (item.purpose === other.purpose) points += 1;
+        return points;
+      };
+      const leftScore = score(left, right);
+      const rightScore = score(right, left);
+      const decisionLine = leftScore === rightScore
+        ? `${t.compareChoose(left.name)} ${left.best} / ${t.compareChoose(right.name)} ${right.best}`
+        : leftScore > rightScore
+          ? `${t.compareChoose(left.name)} ${left.best}`
+          : `${t.compareChoose(right.name)} ${right.best}`;
       compareDiff.hidden = false;
       compareDiff.innerHTML = `
         <h4>${t.compareDiff}: ${left.name} × ${right.name}</h4>
@@ -435,6 +453,7 @@
           <li><strong>${t.compareInstead(left.name)}</strong> ${left.notFor}</li>
           <li><strong>${t.compareChoose(right.name)}</strong> ${right.best}</li>
           <li><strong>${t.compareInstead(right.name)}</strong> ${right.notFor}</li>
+          <li><strong>${t.purpose}</strong>: ${left.name} ${(t.purposeNames[left.purpose] || left.purpose)} / ${right.name} ${(t.purposeNames[right.purpose] || right.purpose)}</li>
           <li><strong>${t.mobile}</strong>: ${left.name} ${mobileLeft} / ${right.name} ${mobileRight}</li>
           <li><strong>${t.difficulty}</strong>: ${left.name} ${diffLeft} / ${right.name} ${diffRight}</li>
           <li><strong>${t.compareDecision}</strong>: ${decisionLine}</li>

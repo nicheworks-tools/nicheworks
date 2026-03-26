@@ -13,12 +13,15 @@
       "aliases_en": [
         "above the fold",
         "top visual section",
-        "masthead"
+        "masthead",
+        "landing hero example",
+        "above the fold section"
       ],
       "aliases_ja": [
         "ファーストビュー",
         "トップビジュアル",
-        "冒頭セクション"
+        "冒頭セクション",
+        "ランディングヒーロー"
       ],
       "category": "acquisition",
       "summary_short_en": "Top section that quickly explains value and gives one clear first action.",
@@ -28,9 +31,9 @@
       "not_for_en": "Dense docs pages where users already know what they need.",
       "not_for_ja": "目的が明確なドキュメント閲覧ページには不向きです。",
       "similar_patterns": [
-        "feature-section",
         "cta-section",
-        "sticky-bottom-cta"
+        "feature-section",
+        "testimonial"
       ],
       "short_prompt_en": "Create a clean hero with headline, supporting text, primary CTA, and trust indicator.",
       "short_prompt_ja": "見出し・補足文・主要CTA・信頼要素を含む、分かりやすいヒーローを作成してください。",
@@ -39,16 +42,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "explain value and route first-time visitors to one primary action",
+      "use_case_ja": "初回訪問ユーザーに価値を伝え、最初の行動へ導く時",
+      "novice_wording_en": "new visitors decide faster when headline, proof, and CTA are visible together",
+      "novice_wording_ja": "見出し・根拠・CTAが同時に見えると初見ユーザーも判断しやすいです",
+      "practical_intent_en": "improve above-the-fold clarity and reduce bounce before first click",
+      "practical_intent_ja": "ファーストビューで離脱を減らし最初のクリックにつなげる",
       "sample_type": "hero",
       "sample_variant": "product",
       "sample_config": {
-        "variant": "product"
+        "variant": "product",
+        "context_en": "explain value and route first-time visitors to one primary action",
+        "context_ja": "初回訪問ユーザーに価値を伝え、最初の行動へ導く時",
+        "focus_en": "improve above-the-fold clarity and reduce bounce before first click",
+        "focus_ja": "ファーストビューで離脱を減らし最初のクリックにつなげる",
+        "mini_label_en": "above the fold",
+        "mini_label_ja": "ファーストビュー"
       }
     },
     {
@@ -59,12 +68,16 @@
       "aliases_en": [
         "benefits block",
         "feature grid",
-        "value highlights"
+        "value highlights",
+        "benefits section",
+        "why choose us block"
       ],
       "aliases_ja": [
         "機能一覧",
         "強み紹介",
-        "ベネフィット枠"
+        "ベネフィット枠",
+        "機能紹介セクション",
+        "強み一覧"
       ],
       "category": "acquisition",
       "summary_short_en": "Structured block that explains key features in digestible chunks.",
@@ -75,8 +88,8 @@
       "not_for_ja": "単一アクションのみの極めてシンプルなページには過剰です。",
       "similar_patterns": [
         "hero",
-        "card",
-        "grid"
+        "comparison-table",
+        "testimonial"
       ],
       "short_prompt_en": "Build a feature section with 3 to 6 items, each with icon, title, and practical benefit.",
       "short_prompt_ja": "3〜6項目で、アイコン・見出し・実務的な利点を示す機能紹介セクションを作ってください。",
@@ -85,16 +98,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "show product strengths quickly after hero to support purchase confidence",
+      "use_case_ja": "ヒーロー直後で強みを整理し、導入判断を後押しする時",
+      "novice_wording_en": "people trust features more when each point has a short benefit statement",
+      "novice_wording_ja": "各項目に「何が良いか」を短く添えると理解しやすくなります",
+      "practical_intent_en": "turn abstract claims into scannable proof points",
+      "practical_intent_ja": "抽象的な訴求を比較しやすい根拠に変える",
       "sample_type": "feature-list",
       "sample_variant": "default",
       "sample_config": {
-        "columns": 3
+        "columns": 3,
+        "context_en": "show product strengths quickly after hero to support purchase confidence",
+        "context_ja": "ヒーロー直後で強みを整理し、導入判断を後押しする時",
+        "focus_en": "turn abstract claims into scannable proof points",
+        "focus_ja": "抽象的な訴求を比較しやすい根拠に変える",
+        "mini_label_en": "benefits block",
+        "mini_label_ja": "機能一覧"
       }
     },
     {
@@ -105,12 +124,15 @@
       "aliases_en": [
         "call-to-action block",
         "conversion block",
-        "action panel"
+        "action panel",
+        "final call to action"
       ],
       "aliases_ja": [
         "行動喚起セクション",
         "申込導線",
-        "アクション枠"
+        "アクション枠",
+        "申込誘導",
+        "最後の行動喚起"
       ],
       "category": "acquisition",
       "summary_short_en": "Focused area that pushes one decision with minimal distraction.",
@@ -122,7 +144,7 @@
       "similar_patterns": [
         "hero",
         "sticky-bottom-cta",
-        "alert-banner"
+        "pricing-table"
       ],
       "short_prompt_en": "Design a CTA section with one main button, optional secondary link, and short urgency cue.",
       "short_prompt_ja": "主ボタン1つ、補助リンク、短い後押し文を含むCTAセクションを設計してください。",
@@ -131,16 +153,22 @@
       "purpose": "quick-action",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "trigger sign-up or trial after users read enough context",
+      "use_case_ja": "説明を読んだ直後に登録・申込へ進ませたい時",
+      "novice_wording_en": "one clear button and one short reason lowers hesitation",
+      "novice_wording_ja": "ボタンを1つに絞り理由を短く添えると迷いにくいです",
+      "practical_intent_en": "convert warmed traffic with explicit next step",
+      "practical_intent_ja": "検討済みユーザーを明確な次アクションへ送る",
       "sample_type": "cta",
       "sample_variant": "default",
       "sample_config": {
-        "style": "banner"
+        "style": "banner",
+        "context_en": "trigger sign-up or trial after users read enough context",
+        "context_ja": "説明を読んだ直後に登録・申込へ進ませたい時",
+        "focus_en": "convert warmed traffic with explicit next step",
+        "focus_ja": "検討済みユーザーを明確な次アクションへ送る",
+        "mini_label_en": "call-to-action block",
+        "mini_label_ja": "行動喚起セクション"
       }
     },
     {
@@ -151,7 +179,8 @@
       "aliases_en": [
         "common questions",
         "help Q&A",
-        "customer questions"
+        "customer questions",
+        "support faq list"
       ],
       "aliases_ja": [
         "よくある質問",
@@ -167,8 +196,8 @@
       "not_for_ja": "個別対応が必要なリアルタイム問い合わせには不向きです。",
       "similar_patterns": [
         "accordion",
-        "alert-banner",
-        "empty-state"
+        "tooltip",
+        "contact-section"
       ],
       "short_prompt_en": "Generate an FAQ section with 6 concise questions for first-time users.",
       "short_prompt_ja": "初めての利用者向けに、簡潔な質問6件のFAQを生成してください。",
@@ -177,16 +206,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "answer repeated pre-sales or setup questions without long support chat",
+      "use_case_ja": "購入前や導入時によくある質問を自己解決させたい時",
+      "novice_wording_en": "question-style labels help beginners find concerns in their own words",
+      "novice_wording_ja": "質問文の見出しにすると初心者が自分の悩みを見つけやすいです",
+      "practical_intent_en": "remove objections near conversion points",
+      "practical_intent_ja": "申し込み直前の不安を減らす",
       "sample_type": "accordion",
       "sample_variant": "default",
       "sample_config": {
-        "items": 3
+        "items": 3,
+        "context_en": "answer repeated pre-sales or setup questions without long support chat",
+        "context_ja": "購入前や導入時によくある質問を自己解決させたい時",
+        "focus_en": "remove objections near conversion points",
+        "focus_ja": "申し込み直前の不安を減らす",
+        "mini_label_en": "common questions",
+        "mini_label_ja": "よくある質問"
       }
     },
     {
@@ -197,12 +232,16 @@
       "aliases_en": [
         "plans table",
         "subscription comparison",
-        "price tiers"
+        "price tiers",
+        "subscription pricing",
+        "plan cards"
       ],
       "aliases_ja": [
         "プラン比較",
         "料金プラン",
-        "価格比較表"
+        "価格比較表",
+        "料金比較",
+        "プラン表"
       ],
       "category": "acquisition",
       "summary_short_en": "Side-by-side plan comparison that helps users pick quickly.",
@@ -212,9 +251,9 @@
       "not_for_en": "Single-price products or services with custom-only quotes.",
       "not_for_ja": "単一料金や個別見積もりのみの商材では効果が薄いです。",
       "similar_patterns": [
-        "table",
         "comparison-table",
-        "cta-section"
+        "cta-section",
+        "radio-button"
       ],
       "short_prompt_en": "Create a 3-column pricing table with featured plan emphasis and clear CTA buttons.",
       "short_prompt_ja": "注目プランを強調し、CTAボタンを明示した3列の料金表を作成してください。",
@@ -223,16 +262,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "medium",
-      "use_case_en": "confirm destructive changes, ask before delete/publish",
-      "use_case_ja": "削除や公開前の確認を取りたい時",
-      "novice_wording_en": "good when beginners worry about accidental taps",
-      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
-      "practical_intent_en": "reduce risky mistakes before final action",
-      "practical_intent_ja": "重大操作のミスを減らす",
+      "use_case_en": "compare plan tiers and guide users toward a suitable paid option",
+      "use_case_ja": "料金プランの違いを示し、最適なプラン選択を促す時",
+      "novice_wording_en": "highlighting one recommended plan helps unsure users choose quickly",
+      "novice_wording_ja": "おすすめ列を1つ示すと迷っているユーザーも選びやすいです",
+      "practical_intent_en": "increase plan selection confidence before checkout",
+      "practical_intent_ja": "決済前のプラン選択ミスを減らす",
       "sample_type": "pricing",
       "sample_variant": "default",
       "sample_config": {
-        "plans": 3
+        "plans": 3,
+        "context_en": "compare plan tiers and guide users toward a suitable paid option",
+        "context_ja": "料金プランの違いを示し、最適なプラン選択を促す時",
+        "focus_en": "increase plan selection confidence before checkout",
+        "focus_ja": "決済前のプラン選択ミスを減らす",
+        "mini_label_en": "plans table",
+        "mini_label_ja": "プラン比較"
       }
     },
     {
@@ -243,12 +288,15 @@
       "aliases_en": [
         "top nav",
         "header nav",
-        "global nav"
+        "global nav",
+        "top navigation",
+        "header menu"
       ],
       "aliases_ja": [
         "上部ナビ",
         "ヘッダーナビ",
-        "グローバルナビ"
+        "グローバルナビ",
+        "ヘッダーメニュー"
       ],
       "category": "navigation",
       "summary_short_en": "Primary top navigation for key routes and brand orientation.",
@@ -258,8 +306,8 @@
       "not_for_en": "Single-screen tools with no internal navigation.",
       "not_for_ja": "ページ遷移がない単一画面ツールには不要です。",
       "similar_patterns": [
+        "tab-bar",
         "hamburger-menu",
-        "sidebar",
         "breadcrumb"
       ],
       "short_prompt_en": "Design a responsive navbar with logo area, 4 links, and a right-side CTA.",
@@ -269,16 +317,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "provide persistent top-level routes for desktop browsing flows",
+      "use_case_ja": "PC中心の閲覧で主要導線を常に示したい時",
+      "novice_wording_en": "short labels with predictable order reduce navigation errors",
+      "novice_wording_ja": "短いラベルを一定順で並べると迷いにくくなります",
+      "practical_intent_en": "support fast section switching without losing page context",
+      "practical_intent_ja": "ページ文脈を保ったままセクション移動を速くする",
       "sample_type": "navbar",
       "sample_variant": "default",
       "sample_config": {
-        "mobile": false
+        "mobile": false,
+        "context_en": "provide persistent top-level routes for desktop browsing flows",
+        "context_ja": "PC中心の閲覧で主要導線を常に示したい時",
+        "focus_en": "support fast section switching without losing page context",
+        "focus_ja": "ページ文脈を保ったままセクション移動を速くする",
+        "mini_label_en": "top nav",
+        "mini_label_ja": "上部ナビ"
       }
     },
     {
@@ -289,12 +343,16 @@
       "aliases_en": [
         "menu icon nav",
         "collapsed nav",
-        "three-line menu"
+        "three-line menu",
+        "mobile menu icon",
+        "off-canvas menu"
       ],
       "aliases_ja": [
         "三本線メニュー",
         "折りたたみナビ",
-        "メニューアイコン"
+        "メニューアイコン",
+        "ハンバーガーアイコン",
+        "モバイルメニュー"
       ],
       "category": "navigation",
       "summary_short_en": "Compact menu trigger used when horizontal space is limited.",
@@ -306,7 +364,7 @@
       "similar_patterns": [
         "drawer",
         "navbar",
-        "sidebar"
+        "tab-bar"
       ],
       "short_prompt_en": "Create a hamburger menu button that opens a full-height navigation drawer.",
       "short_prompt_ja": "全高のナビドロワーを開くハンバーガーボタンを作成してください。",
@@ -315,15 +373,22 @@
       "purpose": "quick-action",
       "mobile_fit": "high",
       "difficulty": "medium",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "hide secondary routes on narrow screens and reveal on demand",
+      "use_case_ja": "狭い画面で補助導線を畳み、必要時に展開する時",
+      "novice_wording_en": "too many hidden levels confuse users, keep menu shallow",
+      "novice_wording_ja": "階層を増やしすぎると迷うため浅い構造が安全です",
+      "practical_intent_en": "save header space while preserving access to less-used pages",
+      "practical_intent_ja": "ヘッダーを圧迫せず補助ページへの到達性を保つ",
       "sample_type": "hamburger",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "hide secondary routes on narrow screens and reveal on demand",
+        "context_ja": "狭い画面で補助導線を畳み、必要時に展開する時",
+        "focus_en": "save header space while preserving access to less-used pages",
+        "focus_ja": "ヘッダーを圧迫せず補助ページへの到達性を保つ",
+        "mini_label_en": "menu icon nav",
+        "mini_label_ja": "三本線メニュー"
+      }
     },
     {
       "id": "P008",
@@ -333,12 +398,14 @@
       "aliases_en": [
         "slide panel",
         "off-canvas menu",
-        "side panel"
+        "side panel",
+        "slide drawer"
       ],
       "aliases_ja": [
         "スライドパネル",
         "オフキャンバス",
-        "引き出しメニュー"
+        "引き出しメニュー",
+        "サイドドロワー"
       ],
       "category": "navigation",
       "summary_short_en": "Panel that slides in from screen edge to reveal secondary content.",
@@ -348,9 +415,9 @@
       "not_for_en": "Critical content that must remain always visible.",
       "not_for_ja": "常時表示すべき重要情報の置き場には向きません。",
       "similar_patterns": [
-        "sidebar",
         "bottom-sheet",
-        "modal"
+        "hamburger-menu",
+        "sidebar"
       ],
       "short_prompt_en": "Build a left-side drawer with grouped links and optional account area.",
       "short_prompt_ja": "リンクをグループ化し、必要ならアカウント領域を持つ左ドロワーを作ってください。",
@@ -359,15 +426,22 @@
       "purpose": "quick-action",
       "mobile_fit": "high",
       "difficulty": "hard",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "show contextual navigation or settings without full page transition",
+      "use_case_ja": "ページ遷移せずに補助ナビや設定を出したい時",
+      "novice_wording_en": "label close action clearly so beginners can recover quickly",
+      "novice_wording_ja": "閉じる操作を明示すると初心者も戻りやすいです",
+      "practical_intent_en": "keep primary screen visible while exposing secondary controls",
+      "practical_intent_ja": "主画面を保ったまま補助操作を提供する",
       "sample_type": "drawer",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "show contextual navigation or settings without full page transition",
+        "context_ja": "ページ遷移せずに補助ナビや設定を出したい時",
+        "focus_en": "keep primary screen visible while exposing secondary controls",
+        "focus_ja": "主画面を保ったまま補助操作を提供する",
+        "mini_label_en": "slide panel",
+        "mini_label_ja": "スライドパネル"
+      }
     },
     {
       "id": "P009",
@@ -377,12 +451,15 @@
       "aliases_en": [
         "side navigation",
         "left rail",
-        "navigation rail"
+        "navigation rail",
+        "left navigation",
+        "app sidebar"
       ],
       "aliases_ja": [
         "側面ナビ",
         "左レール",
-        "サイドナビ"
+        "サイドナビ",
+        "左カラムメニュー"
       ],
       "category": "navigation",
       "summary_short_en": "Persistent side area for navigation, filters, or utility controls.",
@@ -392,9 +469,9 @@
       "not_for_en": "Very small screens without collapse behavior.",
       "not_for_ja": "折りたたみなしで小画面に置くと圧迫しやすいです。",
       "similar_patterns": [
-        "navbar",
-        "drawer",
-        "sticky-sidebar"
+        "sticky-sidebar",
+        "split-view",
+        "drawer"
       ],
       "short_prompt_en": "Create a sidebar with section labels, icons, and active route highlighting.",
       "short_prompt_ja": "セクション見出し・アイコン・現在地強調を備えたサイドバーを作成してください。",
@@ -403,15 +480,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "keep section links and tools visible in content-heavy desktop workflows",
+      "use_case_ja": "情報量の多い画面で補助導線を常時表示したい時",
+      "novice_wording_en": "group links by task, not by internal org structure",
+      "novice_wording_ja": "組織都合ではなく作業単位でグループ化すると分かりやすいです",
+      "practical_intent_en": "reduce back-and-forth navigation in dense apps",
+      "practical_intent_ja": "高密度画面での行き来回数を減らす",
       "sample_type": "sidebar",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "keep section links and tools visible in content-heavy desktop workflows",
+        "context_ja": "情報量の多い画面で補助導線を常時表示したい時",
+        "focus_en": "reduce back-and-forth navigation in dense apps",
+        "focus_ja": "高密度画面での行き来回数を減らす",
+        "mini_label_en": "side navigation",
+        "mini_label_ja": "側面ナビ"
+      }
     },
     {
       "id": "P010",
@@ -421,12 +505,14 @@
       "aliases_en": [
         "path navigation",
         "location trail",
-        "hierarchy trail"
+        "hierarchy trail",
+        "path trail"
       ],
       "aliases_ja": [
         "階層ナビ",
         "現在地パス",
-        "パンくず"
+        "パンくず",
+        "階層パス"
       ],
       "category": "navigation",
       "summary_short_en": "Shows current position in hierarchy and allows quick step-back navigation.",
@@ -437,8 +523,8 @@
       "not_for_ja": "階層が浅いサイトでは冗長になりやすいです。",
       "similar_patterns": [
         "navbar",
-        "tabs",
-        "pagination"
+        "pagination",
+        "sidebar"
       ],
       "short_prompt_en": "Add a breadcrumb trail with clickable ancestors and plain current page label.",
       "short_prompt_ja": "上位階層はリンク、現在ページはテキスト表示のパンくずを追加してください。",
@@ -447,15 +533,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "show current location inside deep information hierarchy",
+      "use_case_ja": "深い階層内で現在地を短く示したい時",
+      "novice_wording_en": "explicit parent names help users undo wrong navigation quickly",
+      "novice_wording_ja": "親階層名が見えると戻る判断がしやすいです",
+      "practical_intent_en": "improve orientation and lightweight backtracking",
+      "practical_intent_ja": "現在地把握と戻り操作を簡単にする",
       "sample_type": "breadcrumb",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "show current location inside deep information hierarchy",
+        "context_ja": "深い階層内で現在地を短く示したい時",
+        "focus_en": "improve orientation and lightweight backtracking",
+        "focus_ja": "現在地把握と戻り操作を簡単にする",
+        "mini_label_en": "path navigation",
+        "mini_label_ja": "階層ナビ"
+      }
     },
     {
       "id": "P011",
@@ -465,12 +558,15 @@
       "aliases_en": [
         "tabbed navigation",
         "tab panel",
-        "section tabs"
+        "section tabs",
+        "tabbed interface",
+        "content tabs"
       ],
       "aliases_ja": [
         "タブ切替",
         "タブパネル",
-        "セクションタブ"
+        "セクションタブ",
+        "タブUI"
       ],
       "category": "navigation",
       "summary_short_en": "Lets users switch related content in-place without page reload.",
@@ -482,7 +578,7 @@
       "similar_patterns": [
         "segmented-control",
         "accordion",
-        "split-view"
+        "pagination"
       ],
       "short_prompt_en": "Create accessible tabs with keyboard navigation and panel switching.",
       "short_prompt_ja": "キーボード操作対応のアクセシブルなタブ切替を作成してください。",
@@ -491,15 +587,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "switch modes or contexts without leaving page",
-      "use_case_ja": "表示モードや文脈を切り替えたい時",
-      "novice_wording_en": "beginners need visible selected state and simple labels",
-      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
-      "practical_intent_en": "change context while keeping user orientation",
-      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "use_case_en": "switch between peer content sections without leaving the page",
+      "use_case_ja": "同階層コンテンツをページ遷移なしで切り替える時",
+      "novice_wording_en": "keep tab labels noun-based and avoid ambiguous verbs",
+      "novice_wording_ja": "タブ名は動詞より名詞中心の方が誤解が少ないです",
+      "practical_intent_en": "support comparison of related sections in-place",
+      "practical_intent_ja": "関連情報の見比べをその場で行えるようにする",
       "sample_type": "tabs",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "switch between peer content sections without leaving the page",
+        "context_ja": "同階層コンテンツをページ遷移なしで切り替える時",
+        "focus_en": "support comparison of related sections in-place",
+        "focus_ja": "関連情報の見比べをその場で行えるようにする",
+        "mini_label_en": "tabbed navigation",
+        "mini_label_ja": "タブ切替"
+      }
     },
     {
       "id": "P012",
@@ -509,12 +612,14 @@
       "aliases_en": [
         "pill switcher",
         "option segment",
-        "view switch"
+        "view switch",
+        "mode chips"
       ],
       "aliases_ja": [
         "分割トグル",
         "表示切替ボタン",
-        "セグメント"
+        "セグメント",
+        "モード切替ボタン"
       ],
       "category": "navigation",
       "summary_short_en": "Compact chooser for a few mutually exclusive view modes.",
@@ -535,15 +640,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "switch modes or contexts without leaving page",
-      "use_case_ja": "表示モードや文脈を切り替えたい時",
-      "novice_wording_en": "beginners need visible selected state and simple labels",
-      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
-      "practical_intent_en": "change context while keeping user orientation",
-      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "use_case_en": "switch compact modes such as period, status, or channel filters",
+      "use_case_ja": "期間・状態・表示モードなどを素早く切り替える時",
+      "novice_wording_en": "2-4 mutually exclusive options are easiest to scan",
+      "novice_wording_ja": "2〜4個の排他選択に絞ると理解しやすいです",
+      "practical_intent_en": "speed up mode switches for frequent repeat actions",
+      "practical_intent_ja": "繰り返しのモード切替を最短化する",
       "sample_type": "segmented",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "switch compact modes such as period, status, or channel filters",
+        "context_ja": "期間・状態・表示モードなどを素早く切り替える時",
+        "focus_en": "speed up mode switches for frequent repeat actions",
+        "focus_ja": "繰り返しのモード切替を最短化する",
+        "mini_label_en": "pill switcher",
+        "mini_label_ja": "分割トグル"
+      }
     },
     {
       "id": "P013",
@@ -553,12 +665,14 @@
       "aliases_en": [
         "page navigator",
         "pager",
-        "page numbers"
+        "page numbers",
+        "paged list"
       ],
       "aliases_ja": [
         "ページ送り",
         "ページ番号ナビ",
-        "ページャー"
+        "ページャー",
+        "ページネーション"
       ],
       "category": "navigation",
       "summary_short_en": "Splits long lists into pages to keep performance and scanning manageable.",
@@ -569,7 +683,8 @@
       "not_for_ja": "件数が少ない一覧では過剰です。",
       "similar_patterns": [
         "list-view",
-        "table"
+        "table",
+        "grid"
       ],
       "short_prompt_en": "Create pagination with previous/next buttons and compact page number display.",
       "short_prompt_ja": "前後ボタンと簡潔なページ番号表示を持つページネーションを作成してください。",
@@ -578,15 +693,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "navigate large result sets where users need page-level control",
+      "use_case_ja": "件数が多い一覧でページ単位の移動が必要な時",
+      "novice_wording_en": "show current page strongly to prevent accidental jumps",
+      "novice_wording_ja": "現在ページの強調で移動ミスを防ぎやすくなります",
+      "practical_intent_en": "balance performance and findability in long lists",
+      "practical_intent_ja": "長い一覧で性能と探しやすさを両立する",
       "sample_type": "pagination",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "navigate large result sets where users need page-level control",
+        "context_ja": "件数が多い一覧でページ単位の移動が必要な時",
+        "focus_en": "balance performance and findability in long lists",
+        "focus_ja": "長い一覧で性能と探しやすさを両立する",
+        "mini_label_en": "page navigator",
+        "mini_label_ja": "ページ送り"
+      }
     },
     {
       "id": "P014",
@@ -596,12 +718,16 @@
       "aliases_en": [
         "content card",
         "tile",
-        "info block"
+        "info block",
+        "preview card",
+        "content tile"
       ],
       "aliases_ja": [
         "情報カード",
         "タイル",
-        "カードUI"
+        "カードUI",
+        "プレビューカード",
+        "カード一覧"
       ],
       "category": "data-display",
       "summary_short_en": "Self-contained content unit with title, metadata, and optional actions.",
@@ -611,8 +737,8 @@
       "not_for_en": "Highly comparable data better shown in tables.",
       "not_for_ja": "厳密比較が必要なデータ表示には不向きです。",
       "similar_patterns": [
-        "list-view",
         "grid",
+        "list-view",
         "table"
       ],
       "short_prompt_en": "Design a reusable card with title, short description, tag, and action button.",
@@ -622,16 +748,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "present mixed media items with quick actions in discovery feeds",
+      "use_case_ja": "一覧内で要約情報と操作をセットで見せたい時",
+      "novice_wording_en": "consistent card heights make scanning easier for first-time users",
+      "novice_wording_ja": "高さを揃えると初見でも比較しやすくなります",
+      "practical_intent_en": "make each item actionable without entering detail page",
+      "practical_intent_ja": "詳細ページへ行かずに項目判断と操作を可能にする",
       "sample_type": "card-list",
       "sample_variant": "default",
       "sample_config": {
-        "items": 3
+        "items": 3,
+        "context_en": "present mixed media items with quick actions in discovery feeds",
+        "context_ja": "一覧内で要約情報と操作をセットで見せたい時",
+        "focus_en": "make each item actionable without entering detail page",
+        "focus_ja": "詳細ページへ行かずに項目判断と操作を可能にする",
+        "mini_label_en": "content card",
+        "mini_label_ja": "情報カード"
       }
     },
     {
@@ -642,12 +774,16 @@
       "aliases_en": [
         "dialog",
         "popup dialog",
-        "overlay dialog"
+        "overlay dialog",
+        "confirmation dialog",
+        "blocking dialog"
       ],
       "aliases_ja": [
         "ダイアログ",
         "ポップアップ",
-        "オーバーレイ"
+        "オーバーレイ",
+        "確認ダイアログ",
+        "ブロッキング表示"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Overlay dialog that forces attention for a focused task or decision.",
@@ -657,9 +793,9 @@
       "not_for_en": "Long workflows that deserve a full page.",
       "not_for_ja": "手順が長い作業を詰め込む用途には不向きです。",
       "similar_patterns": [
-        "popover",
         "bottom-sheet",
-        "toast"
+        "popover",
+        "alert-banner"
       ],
       "short_prompt_en": "Create a modal with title, body text, primary and secondary actions.",
       "short_prompt_ja": "タイトル・本文・主/副アクションを備えたモーダルを作成してください。",
@@ -668,15 +804,22 @@
       "purpose": "confirmation",
       "mobile_fit": "medium",
       "difficulty": "hard",
-      "use_case_en": "confirm destructive changes, ask before delete/publish",
-      "use_case_ja": "削除や公開前の確認を取りたい時",
-      "novice_wording_en": "good when beginners worry about accidental taps",
-      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
-      "practical_intent_en": "reduce risky mistakes before final action",
-      "practical_intent_ja": "重大操作のミスを減らす",
+      "use_case_en": "pause background flow and require explicit confirmation for risky actions",
+      "use_case_ja": "重大操作前に背景操作を止めて明示確認を取りたい時",
+      "novice_wording_en": "clear primary/secondary labels prevent accidental destructive clicks",
+      "novice_wording_ja": "主操作と副操作を明確に分けると誤操作を減らせます",
+      "practical_intent_en": "enforce deliberate decisions on high-impact actions",
+      "practical_intent_ja": "影響の大きい操作で意図確認を徹底する",
       "sample_type": "modal",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "pause background flow and require explicit confirmation for risky actions",
+        "context_ja": "重大操作前に背景操作を止めて明示確認を取りたい時",
+        "focus_en": "enforce deliberate decisions on high-impact actions",
+        "focus_ja": "影響の大きい操作で意図確認を徹底する",
+        "mini_label_en": "dialog",
+        "mini_label_ja": "ダイアログ"
+      }
     },
     {
       "id": "P016",
@@ -703,7 +846,7 @@
       "similar_patterns": [
         "drawer",
         "modal",
-        "fab"
+        "segmented-control"
       ],
       "short_prompt_en": "Build a draggable bottom sheet with snap points and close gesture.",
       "short_prompt_ja": "ドラッグで段階展開でき、スワイプで閉じられるボトムシートを作成してください。",
@@ -720,7 +863,14 @@
       "practical_intent_ja": "頻繁な操作を最短で終える",
       "sample_type": "bottom-sheet",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "run quick actions with minimal steps",
+        "context_ja": "短い操作を素早く完了させたい時",
+        "focus_en": "complete frequent tasks with less friction",
+        "focus_ja": "頻繁な操作を最短で終える",
+        "mini_label_en": "mobile sheet",
+        "mini_label_ja": "下部シート"
+      }
     },
     {
       "id": "P017",
@@ -730,12 +880,15 @@
       "aliases_en": [
         "expand/collapse",
         "disclosure list",
-        "folding panel"
+        "folding panel",
+        "expand collapse panel",
+        "foldout"
       ],
       "aliases_ja": [
         "開閉リスト",
         "折りたたみ",
-        "展開パネル"
+        "展開パネル",
+        "折り畳みUI"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Expandable list that reveals details on demand.",
@@ -756,16 +909,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "compress long explanatory content while preserving section-level scanning",
+      "use_case_ja": "長文説明を畳みつつ節単位で素早く確認したい時",
+      "novice_wording_en": "default-open one important item so users understand interaction instantly",
+      "novice_wording_ja": "重要項目を1つ開いた状態にすると使い方が伝わりやすいです",
+      "practical_intent_en": "reduce visual overload without hiding essential structure",
+      "practical_intent_ja": "構造を保ちながら情報過多を抑える",
       "sample_type": "accordion",
       "sample_variant": "default",
       "sample_config": {
-        "items": 3
+        "items": 3,
+        "context_en": "compress long explanatory content while preserving section-level scanning",
+        "context_ja": "長文説明を畳みつつ節単位で素早く確認したい時",
+        "focus_en": "reduce visual overload without hiding essential structure",
+        "focus_ja": "構造を保ちながら情報過多を抑える",
+        "mini_label_en": "expand/collapse",
+        "mini_label_ja": "開閉リスト"
       }
     },
     {
@@ -781,7 +940,9 @@
       "aliases_ja": [
         "補足ヒント",
         "説明チップ",
-        "ヘルプ吹き出し"
+        "ヘルプ吹き出し",
+        "ホバーヒント",
+        "補足チップ"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Tiny contextual hint shown on hover or focus.",
@@ -792,7 +953,8 @@
       "not_for_ja": "常時見せるべき重要説明の置き場には不向きです。",
       "similar_patterns": [
         "popover",
-        "toast"
+        "inline-validation",
+        "faq"
       ],
       "short_prompt_en": "Add an accessible tooltip for icon buttons with short helper text.",
       "short_prompt_ja": "アイコンボタン向けに、短い補足文を表示するアクセシブルなツールチップを追加してください。",
@@ -801,15 +963,22 @@
       "purpose": "quick-action",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "add brief hints near controls without occupying persistent layout space",
+      "use_case_ja": "常時表示せずに操作近くで短い補足を出したい時",
+      "novice_wording_en": "tooltips should clarify labels, not replace missing labels",
+      "novice_wording_ja": "ラベルの代替ではなく補足として使うのが安全です",
+      "practical_intent_en": "provide contextual help while keeping interface compact",
+      "practical_intent_ja": "画面を増やさず文脈依存の補足を提供する",
       "sample_type": "tooltip",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "add brief hints near controls without occupying persistent layout space",
+        "context_ja": "常時表示せずに操作近くで短い補足を出したい時",
+        "focus_en": "provide contextual help while keeping interface compact",
+        "focus_ja": "画面を増やさず文脈依存の補足を提供する",
+        "mini_label_en": "hover hint",
+        "mini_label_ja": "補足ヒント"
+      }
     },
     {
       "id": "P019",
@@ -824,7 +993,9 @@
       "aliases_ja": [
         "浮動パネル",
         "文脈メニュー",
-        "アンカー表示"
+        "アンカー表示",
+        "フローティングパネル",
+        "コンテキストポップ"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Anchored floating container for richer context than a tooltip.",
@@ -836,7 +1007,7 @@
       "similar_patterns": [
         "tooltip",
         "modal",
-        "select"
+        "bottom-sheet"
       ],
       "short_prompt_en": "Create a popover attached to a button with title, text, and action links.",
       "short_prompt_ja": "ボタンに紐づく、タイトル・説明・操作リンク付きのポップオーバーを作成してください。",
@@ -845,15 +1016,22 @@
       "purpose": "quick-action",
       "mobile_fit": "medium",
       "difficulty": "hard",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "show anchored mini panel for contextual actions and short details",
+      "use_case_ja": "要素に紐づく短い操作や詳細をその場で見せる時",
+      "novice_wording_en": "close-on-outside-click behavior must be predictable",
+      "novice_wording_ja": "外側クリックで閉じる挙動を一貫させると安心です",
+      "practical_intent_en": "avoid full modal interruption for lightweight context",
+      "practical_intent_ja": "軽い確認に全画面中断を使わず済ませる",
       "sample_type": "popover",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "show anchored mini panel for contextual actions and short details",
+        "context_ja": "要素に紐づく短い操作や詳細をその場で見せる時",
+        "focus_en": "avoid full modal interruption for lightweight context",
+        "focus_ja": "軽い確認に全画面中断を使わず済ませる",
+        "mini_label_en": "floating panel",
+        "mini_label_ja": "浮動パネル"
+      }
     },
     {
       "id": "P020",
@@ -863,7 +1041,8 @@
       "aliases_en": [
         "snackbar",
         "transient message",
-        "status toast"
+        "status toast",
+        "temporary notification"
       ],
       "aliases_ja": [
         "スナックバー",
@@ -889,15 +1068,22 @@
       "purpose": "confirmation",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "confirm destructive changes, ask before delete/publish",
-      "use_case_ja": "削除や公開前の確認を取りたい時",
-      "novice_wording_en": "good when beginners worry about accidental taps",
-      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
-      "practical_intent_en": "reduce risky mistakes before final action",
-      "practical_intent_ja": "重大操作のミスを減らす",
+      "use_case_en": "confirm background success/failure without interrupting current task",
+      "use_case_ja": "作業を止めずに成功/失敗を短く通知したい時",
+      "novice_wording_en": "include action labels like Undo when consequence matters",
+      "novice_wording_ja": "影響がある通知は「元に戻す」を添えると親切です",
+      "practical_intent_en": "provide immediate feedback and keep task momentum",
+      "practical_intent_ja": "即時フィードバックで作業の流れを維持する",
       "sample_type": "toast",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "confirm background success/failure without interrupting current task",
+        "context_ja": "作業を止めずに成功/失敗を短く通知したい時",
+        "focus_en": "provide immediate feedback and keep task momentum",
+        "focus_ja": "即時フィードバックで作業の流れを維持する",
+        "mini_label_en": "snackbar",
+        "mini_label_ja": "スナックバー"
+      }
     },
     {
       "id": "P021",
@@ -907,12 +1093,14 @@
       "aliases_en": [
         "single-line input",
         "text field",
-        "input box"
+        "input box",
+        "single line field"
       ],
       "aliases_ja": [
         "入力欄",
         "テキストフィールド",
-        "1行入力"
+        "1行入力",
+        "テキスト欄"
       ],
       "category": "inputs-forms",
       "summary_short_en": "Basic field for short user-entered text such as names or emails.",
@@ -922,9 +1110,9 @@
       "not_for_en": "Multi-line comments or constrained option selection.",
       "not_for_ja": "長文入力や選択式入力には向きません。",
       "similar_patterns": [
+        "inline-validation",
         "textarea",
-        "combobox",
-        "otp-input"
+        "combobox"
       ],
       "short_prompt_en": "Create labeled text inputs with placeholder, help text, and error state.",
       "short_prompt_ja": "ラベル・プレースホルダー・補助文・エラー表示を備えたテキスト入力を作成してください。",
@@ -933,15 +1121,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "collect short free-text fields such as email, title, or keyword",
+      "use_case_ja": "メール・件名・キーワードなど短文入力を集める時",
+      "novice_wording_en": "placeholder is not enough; keep visible label and helper text",
+      "novice_wording_ja": "プレースホルダーだけでなく常設ラベルを置くと分かりやすいです",
+      "practical_intent_en": "increase completion rate for essential single-line fields",
+      "practical_intent_ja": "必須の1行入力を迷わず完了させる",
       "sample_type": "text-input",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "collect short free-text fields such as email, title, or keyword",
+        "context_ja": "メール・件名・キーワードなど短文入力を集める時",
+        "focus_en": "increase completion rate for essential single-line fields",
+        "focus_ja": "必須の1行入力を迷わず完了させる",
+        "mini_label_en": "single-line input",
+        "mini_label_ja": "入力欄"
+      }
     },
     {
       "id": "P022",
@@ -951,12 +1146,14 @@
       "aliases_en": [
         "dropdown select",
         "picker",
-        "option list"
+        "option list",
+        "option picker"
       ],
       "aliases_ja": [
         "プルダウン",
         "選択ボックス",
-        "候補選択"
+        "候補選択",
+        "選択ドロップダウン"
       ],
       "category": "inputs-forms",
       "summary_short_en": "Control for choosing one option from a predefined list.",
@@ -977,15 +1174,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "offer finite options when users should pick one known value",
+      "use_case_ja": "候補が決まっている選択肢から1つ選ばせる時",
+      "novice_wording_en": "sort options logically to reduce open-and-scan effort",
+      "novice_wording_ja": "選択肢を意味順に並べると探す負荷が下がります",
+      "practical_intent_en": "prevent invalid values while keeping form compact",
+      "practical_intent_ja": "不正値入力を防ぎつつフォームを簡潔に保つ",
       "sample_type": "select",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "offer finite options when users should pick one known value",
+        "context_ja": "候補が決まっている選択肢から1つ選ばせる時",
+        "focus_en": "prevent invalid values while keeping form compact",
+        "focus_ja": "不正値入力を防ぎつつフォームを簡潔に保つ",
+        "mini_label_en": "dropdown select",
+        "mini_label_ja": "プルダウン"
+      }
     },
     {
       "id": "P023",
@@ -995,7 +1199,9 @@
       "aliases_en": [
         "searchable select",
         "autocomplete",
-        "typeahead"
+        "typeahead",
+        "autocomplete select",
+        "searchable dropdown"
       ],
       "aliases_ja": [
         "検索付き選択",
@@ -1011,7 +1217,8 @@
       "not_for_ja": "候補が少ない固定リストでは過剰です。",
       "similar_patterns": [
         "select",
-        "text-input"
+        "text-input",
+        "date-picker"
       ],
       "short_prompt_en": "Implement a combobox with async search, keyboard support, and highlighted matches.",
       "short_prompt_ja": "非同期検索・キーボード操作・一致箇所強調に対応したコンボボックスを実装してください。",
@@ -1020,15 +1227,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "hard",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "let users type to narrow large option sets before selecting",
+      "use_case_ja": "候補数が多い中から入力補助で絞って選ばせる時",
+      "novice_wording_en": "show recent or common options to help users start typing",
+      "novice_wording_ja": "よく使う候補を先に見せると入力開始しやすいです",
+      "practical_intent_en": "reduce time-to-selection in long lists",
+      "practical_intent_ja": "候補が多い選択の所要時間を短縮する",
       "sample_type": "combobox",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "let users type to narrow large option sets before selecting",
+        "context_ja": "候補数が多い中から入力補助で絞って選ばせる時",
+        "focus_en": "reduce time-to-selection in long lists",
+        "focus_ja": "候補が多い選択の所要時間を短縮する",
+        "mini_label_en": "searchable select",
+        "mini_label_ja": "検索付き選択"
+      }
     },
     {
       "id": "P024",
@@ -1038,12 +1252,15 @@
       "aliases_en": [
         "multi-select checkbox",
         "tick box",
-        "check field"
+        "check field",
+        "multi select boxes",
+        "tick boxes"
       ],
       "aliases_ja": [
         "チェック項目",
         "複数選択",
-        "同意チェック"
+        "同意チェック",
+        "チェックボックス群"
       ],
       "category": "inputs-forms",
       "summary_short_en": "Binary control that can be used alone or as part of multi-select groups.",
@@ -1054,7 +1271,8 @@
       "not_for_ja": "排他的な1択にはラジオボタンの方が適切です。",
       "similar_patterns": [
         "radio-button",
-        "switch"
+        "switch",
+        "select"
       ],
       "short_prompt_en": "Create checkbox group with helper text and inline validation.",
       "short_prompt_ja": "補助説明とインライン検証を備えたチェックボックス群を作成してください。",
@@ -1063,15 +1281,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "capture independent yes/no preferences where multiple items can be chosen",
+      "use_case_ja": "複数同時選択できる設定項目を取る時",
+      "novice_wording_en": "wrap label text with control so entire row becomes tappable",
+      "novice_wording_ja": "行全体をタップ可能にすると押し間違いが減ります",
+      "practical_intent_en": "make multi-select settings explicit and reversible",
+      "practical_intent_ja": "複数選択設定を分かりやすく変更可能にする",
       "sample_type": "checkbox",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "capture independent yes/no preferences where multiple items can be chosen",
+        "context_ja": "複数同時選択できる設定項目を取る時",
+        "focus_en": "make multi-select settings explicit and reversible",
+        "focus_ja": "複数選択設定を分かりやすく変更可能にする",
+        "mini_label_en": "multi-select checkbox",
+        "mini_label_ja": "チェック項目"
+      }
     },
     {
       "id": "P025",
@@ -1081,12 +1306,15 @@
       "aliases_en": [
         "single choice control",
         "option radio",
-        "exclusive select"
+        "exclusive select",
+        "single choice list",
+        "radio options"
       ],
       "aliases_ja": [
         "単一選択",
         "ラジオ選択",
-        "1択入力"
+        "1択入力",
+        "ラジオ選択肢"
       ],
       "category": "inputs-forms",
       "summary_short_en": "Lets users pick exactly one option from a visible set.",
@@ -1098,7 +1326,7 @@
       "similar_patterns": [
         "select",
         "segmented-control",
-        "checkbox"
+        "pricing-table"
       ],
       "short_prompt_en": "Build a radio group with clear default and optional description per option.",
       "short_prompt_ja": "初期選択が分かり、各選択肢に補足説明を付けられるラジオグループを作成してください。",
@@ -1107,15 +1335,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "force one choice among few mutually exclusive options",
+      "use_case_ja": "少数の排他選択から1つだけ選ばせる時",
+      "novice_wording_en": "keep each option sentence parallel to ease comparison",
+      "novice_wording_ja": "選択肢文を同じ粒度で並べると比較しやすいです",
+      "practical_intent_en": "support clear trade-off decisions without hidden states",
+      "practical_intent_ja": "選択結果を可視化して迷いを減らす",
       "sample_type": "radio",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "force one choice among few mutually exclusive options",
+        "context_ja": "少数の排他選択から1つだけ選ばせる時",
+        "focus_en": "support clear trade-off decisions without hidden states",
+        "focus_ja": "選択結果を可視化して迷いを減らす",
+        "mini_label_en": "single choice control",
+        "mini_label_ja": "単一選択"
+      }
     },
     {
       "id": "P026",
@@ -1125,12 +1360,15 @@
       "aliases_en": [
         "toggle switch",
         "on-off toggle",
-        "setting toggle"
+        "setting toggle",
+        "on off toggle"
       ],
       "aliases_ja": [
         "トグル",
         "オンオフ切替",
-        "設定スイッチ"
+        "設定スイッチ",
+        "トグルスイッチ",
+        "ON/OFF切替"
       ],
       "category": "inputs-forms",
       "summary_short_en": "Instant on/off control for settings that apply immediately.",
@@ -1151,15 +1389,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "switch modes or contexts without leaving page",
-      "use_case_ja": "表示モードや文脈を切り替えたい時",
-      "novice_wording_en": "beginners need visible selected state and simple labels",
-      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
-      "practical_intent_en": "change context while keeping user orientation",
-      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "use_case_en": "toggle immediate on/off settings that apply instantly",
+      "use_case_ja": "即時反映するON/OFF設定を切り替える時",
+      "novice_wording_en": "pair switch with state text (On/Off) for accessibility clarity",
+      "novice_wording_ja": "状態テキストを併記すると意味が伝わりやすくなります",
+      "practical_intent_en": "enable fast preference changes with clear current state",
+      "practical_intent_ja": "現在状態を示しながら素早く設定変更できるようにする",
       "sample_type": "switch",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "toggle immediate on/off settings that apply instantly",
+        "context_ja": "即時反映するON/OFF設定を切り替える時",
+        "focus_en": "enable fast preference changes with clear current state",
+        "focus_ja": "現在状態を示しながら素早く設定変更できるようにする",
+        "mini_label_en": "toggle switch",
+        "mini_label_ja": "トグル"
+      }
     },
     {
       "id": "P027",
@@ -1169,7 +1414,9 @@
       "aliases_en": [
         "verification code input",
         "one-time code",
-        "pin entry"
+        "pin entry",
+        "verification code field",
+        "2fa code input"
       ],
       "aliases_ja": [
         "認証コード入力",
@@ -1185,7 +1432,8 @@
       "not_for_ja": "通常の数値入力に使うと操作が煩雑になります。",
       "similar_patterns": [
         "text-input",
-        "step-form"
+        "inline-validation",
+        "toast"
       ],
       "short_prompt_en": "Create a 6-digit OTP input with auto-advance and paste support.",
       "short_prompt_ja": "6桁の自動移動・貼り付け対応OTP入力を作成してください。",
@@ -1194,15 +1442,22 @@
       "purpose": "quick-action",
       "mobile_fit": "high",
       "difficulty": "hard",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "capture short one-time verification codes with per-digit focus",
+      "use_case_ja": "認証コードを桁ごとに素早く入力させたい時",
+      "novice_wording_en": "auto-advance and paste support are critical for beginners",
+      "novice_wording_ja": "自動フォーカス移動と貼り付け対応が使いやすさに直結します",
+      "practical_intent_en": "reduce verification drop-off during sign-in",
+      "practical_intent_ja": "ログイン認証中の離脱を減らす",
       "sample_type": "otp",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "capture short one-time verification codes with per-digit focus",
+        "context_ja": "認証コードを桁ごとに素早く入力させたい時",
+        "focus_en": "reduce verification drop-off during sign-in",
+        "focus_ja": "ログイン認証中の離脱を減らす",
+        "mini_label_en": "verification code input",
+        "mini_label_ja": "認証コード入力"
+      }
     },
     {
       "id": "P028",
@@ -1212,12 +1467,15 @@
       "aliases_en": [
         "no data state",
         "blank state",
-        "zero state"
+        "zero state",
+        "no data screen"
       ],
       "aliases_ja": [
         "データなし表示",
         "空画面",
-        "初期状態"
+        "初期状態",
+        "ゼロステート",
+        "空状態"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Guides users when no content exists yet or search returns nothing.",
@@ -1229,7 +1487,7 @@
       "similar_patterns": [
         "skeleton-loader",
         "alert-banner",
-        "step-form"
+        "cta-section"
       ],
       "short_prompt_en": "Design an empty state with simple illustration, explanation, and next-step CTA.",
       "short_prompt_ja": "簡単なイラスト・説明文・次アクションCTAを備えた空状態を設計してください。",
@@ -1238,15 +1496,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "guide first action when a list, dashboard, or inbox has no data yet",
+      "use_case_ja": "一覧や受信箱が空の時に次の行動を示したい時",
+      "novice_wording_en": "state why it is empty and what users can do next",
+      "novice_wording_ja": "空である理由と次アクションをセットで示すと親切です",
+      "practical_intent_en": "turn dead-end screens into guided onboarding moments",
+      "practical_intent_ja": "行き止まり画面を行動導線に変える",
       "sample_type": "empty-state",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "guide first action when a list, dashboard, or inbox has no data yet",
+        "context_ja": "一覧や受信箱が空の時に次の行動を示したい時",
+        "focus_en": "turn dead-end screens into guided onboarding moments",
+        "focus_ja": "行き止まり画面を行動導線に変える",
+        "mini_label_en": "no data state",
+        "mini_label_ja": "データなし表示"
+      }
     },
     {
       "id": "P029",
@@ -1256,12 +1521,15 @@
       "aliases_en": [
         "content placeholder",
         "loading skeleton",
-        "ghost UI"
+        "ghost UI",
+        "placeholder shimmer"
       ],
       "aliases_ja": [
         "プレースホルダー表示",
         "ローディング骨組み",
-        "ゴーストUI"
+        "ゴーストUI",
+        "スケルトン表示",
+        "読み込みプレースホルダー"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Placeholder structure that previews layout while content loads.",
@@ -1271,8 +1539,8 @@
       "not_for_en": "Very short load operations where spinner is enough.",
       "not_for_ja": "待機が短い処理では過剰になる場合があります。",
       "similar_patterns": [
-        "progress-bar",
         "loading-spinner",
+        "progress-bar",
         "empty-state"
       ],
       "short_prompt_en": "Create skeleton placeholders matching card list layout with shimmer effect.",
@@ -1282,15 +1550,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "reserve layout while async content loads to reduce perceived wait",
+      "use_case_ja": "非同期読み込み中にレイアウトを維持して待ち時間を和らげる時",
+      "novice_wording_en": "match skeleton shape to final content for trust and stability",
+      "novice_wording_ja": "最終表示に近い骨組みにすると違和感が減ります",
+      "practical_intent_en": "avoid layout shift and reassure users that loading is active",
+      "practical_intent_ja": "レイアウト崩れを防ぎ読み込み中であることを伝える",
       "sample_type": "skeleton",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "reserve layout while async content loads to reduce perceived wait",
+        "context_ja": "非同期読み込み中にレイアウトを維持して待ち時間を和らげる時",
+        "focus_en": "avoid layout shift and reassure users that loading is active",
+        "focus_ja": "レイアウト崩れを防ぎ読み込み中であることを伝える",
+        "mini_label_en": "content placeholder",
+        "mini_label_ja": "プレースホルダー表示"
+      }
     },
     {
       "id": "P030",
@@ -1300,12 +1575,14 @@
       "aliases_en": [
         "loading progress",
         "completion bar",
-        "status bar"
+        "status bar",
+        "task progress indicator"
       ],
       "aliases_ja": [
         "進行バー",
         "完了率表示",
-        "進捗表示"
+        "進捗表示",
+        "進捗バー"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Visual indicator of task progress toward completion.",
@@ -1315,9 +1592,9 @@
       "not_for_en": "Instant operations where no progress context is needed.",
       "not_for_ja": "即時完了する処理では不要です。",
       "similar_patterns": [
-        "skeleton-loader",
         "step-form",
-        "toast"
+        "loading-spinner",
+        "skeleton-loader"
       ],
       "short_prompt_en": "Add a progress bar with percentage label and success completion state.",
       "short_prompt_ja": "割合表示と完了状態を持つ進捗バーを追加してください。",
@@ -1326,15 +1603,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "show measurable progress in uploads, setup, and multistep tasks",
+      "use_case_ja": "アップロードや設定など進捗量を見せたい時",
+      "novice_wording_en": "display remaining step/count to make waiting tolerable",
+      "novice_wording_ja": "残りステップを見せると待機ストレスを減らせます",
+      "practical_intent_en": "set expectation for time and completion confidence",
+      "practical_intent_ja": "完了見込みを示して不安を減らす",
       "sample_type": "progress",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "show measurable progress in uploads, setup, and multistep tasks",
+        "context_ja": "アップロードや設定など進捗量を見せたい時",
+        "focus_en": "set expectation for time and completion confidence",
+        "focus_ja": "完了見込みを示して不安を減らす",
+        "mini_label_en": "loading progress",
+        "mini_label_ja": "進行バー"
+      }
     },
     {
       "id": "P031",
@@ -1349,7 +1633,9 @@
       "aliases_ja": [
         "通知バナー",
         "警告表示",
-        "お知らせバー"
+        "お知らせバー",
+        "警告バナー",
+        "ステータス通知"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Prominent inline message for important status or warnings.",
@@ -1361,7 +1647,7 @@
       "similar_patterns": [
         "toast",
         "modal",
-        "faq"
+        "inline-validation"
       ],
       "short_prompt_en": "Create an alert banner with severity icon, concise message, and action link.",
       "short_prompt_ja": "重要度アイコン・短文メッセージ・対応リンクを備えたアラートバナーを作成してください。",
@@ -1370,15 +1656,22 @@
       "purpose": "confirmation",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "confirm destructive changes, ask before delete/publish",
-      "use_case_ja": "削除や公開前の確認を取りたい時",
-      "novice_wording_en": "good when beginners worry about accidental taps",
-      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
-      "practical_intent_en": "reduce risky mistakes before final action",
-      "practical_intent_ja": "重大操作のミスを減らす",
+      "use_case_en": "announce critical status changes that require attention soon",
+      "use_case_ja": "重要な状態変化を目立つ形で知らせたい時",
+      "novice_wording_en": "use clear severity labels (info/warn/error) to avoid panic",
+      "novice_wording_ja": "重要度ラベルを明記すると過剰反応を防げます",
+      "practical_intent_en": "surface urgent context before users make mistakes",
+      "practical_intent_ja": "誤操作前に重要文脈を先に伝える",
       "sample_type": "alert",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "announce critical status changes that require attention soon",
+        "context_ja": "重要な状態変化を目立つ形で知らせたい時",
+        "focus_en": "surface urgent context before users make mistakes",
+        "focus_ja": "誤操作前に重要文脈を先に伝える",
+        "mini_label_en": "inline alert",
+        "mini_label_ja": "通知バナー"
+      }
     },
     {
       "id": "P032",
@@ -1388,12 +1681,15 @@
       "aliases_en": [
         "card grid",
         "tile layout",
-        "multi-column layout"
+        "multi-column layout",
+        "tile grid",
+        "card grid layout"
       ],
       "aliases_ja": [
         "タイル配置",
         "複数列レイアウト",
-        "グリッド表示"
+        "グリッド表示",
+        "グリッド一覧"
       ],
       "category": "layout-structure",
       "summary_short_en": "Two-dimensional layout system for consistent item alignment.",
@@ -1404,7 +1700,8 @@
       "not_for_ja": "時系列や文章中心で縦読みが基本の内容には不向きです。",
       "similar_patterns": [
         "card",
-        "list-view"
+        "list-view",
+        "carousel"
       ],
       "short_prompt_en": "Build a responsive CSS grid with 1, 2, and 4-column breakpoints.",
       "short_prompt_ja": "1列・2列・4列に切替わるレスポンシブCSSグリッドを作ってください。",
@@ -1413,15 +1710,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "switch modes or contexts without leaving page",
-      "use_case_ja": "表示モードや文脈を切り替えたい時",
-      "novice_wording_en": "beginners need visible selected state and simple labels",
-      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
-      "practical_intent_en": "change context while keeping user orientation",
-      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "use_case_en": "display many peer items in compact visual cards",
+      "use_case_ja": "同格項目を高密度で並べて見せたい時",
+      "novice_wording_en": "keep card width stable to preserve scan rhythm",
+      "novice_wording_ja": "カード幅を揃えると視線移動が安定します",
+      "practical_intent_en": "maximize visible options per viewport for discovery",
+      "practical_intent_ja": "1画面で見える候補数を増やす",
       "sample_type": "grid-layout",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "display many peer items in compact visual cards",
+        "context_ja": "同格項目を高密度で並べて見せたい時",
+        "focus_en": "maximize visible options per viewport for discovery",
+        "focus_ja": "1画面で見える候補数を増やす",
+        "mini_label_en": "card grid",
+        "mini_label_ja": "タイル配置"
+      }
     },
     {
       "id": "P033",
@@ -1431,14 +1735,17 @@
       "aliases_en": [
         "pinned sidebar",
         "sticky panel",
-        "fixed side rail"
+        "fixed side rail",
+        "fixed side toc",
+        "sticky aside"
       ],
       "aliases_ja": [
         "追従サイドバー",
         "固定パネル",
-        "サイド固定"
+        "サイド固定",
+        "固定サイド目次"
       ],
-      "category": "navigation",
+      "category": "layout-structure",
       "summary_short_en": "Sidebar that stays visible while main content scrolls.",
       "summary_short_ja": "本文をスクロールしても視界に残る追従型サイドバーです。",
       "best_for_en": "Filter-heavy catalogs, docs TOCs, and checkout summaries.",
@@ -1447,8 +1754,8 @@
       "not_for_ja": "ページが短い場合は効果が薄いです。",
       "similar_patterns": [
         "sidebar",
-        "sticky-bottom-cta",
-        "split-view"
+        "split-view",
+        "breadcrumb"
       ],
       "short_prompt_en": "Add a sticky sidebar containing filters and quick jump links.",
       "short_prompt_ja": "フィルタとジャンプリンクを持つ固定サイドバーを追加してください。",
@@ -1457,15 +1764,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "pin table-of-contents or tools beside long content on desktop",
+      "use_case_ja": "長文ページで目次や補助操作を固定表示したい時",
+      "novice_wording_en": "sticky areas should never cover core content on small screens",
+      "novice_wording_ja": "小画面では本文を覆わない配置にするのが重要です",
+      "practical_intent_en": "keep navigation aids available during deep reading",
+      "practical_intent_ja": "長文読解中も補助導線へ即アクセスできるようにする",
       "sample_type": "sticky-sidebar",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "pin table-of-contents or tools beside long content on desktop",
+        "context_ja": "長文ページで目次や補助操作を固定表示したい時",
+        "focus_en": "keep navigation aids available during deep reading",
+        "focus_ja": "長文読解中も補助導線へ即アクセスできるようにする",
+        "mini_label_en": "pinned sidebar",
+        "mini_label_ja": "追従サイドバー"
+      }
     },
     {
       "id": "P034",
@@ -1480,9 +1794,11 @@
       "aliases_ja": [
         "浮動ボタン",
         "クイック追加ボタン",
-        "フローティングCTA"
+        "フローティングCTA",
+        "フローティングボタン",
+        "追加ボタン"
       ],
-      "category": "layout-structure",
+      "category": "navigation",
       "summary_short_en": "Floating button for high-priority, frequent actions on mobile.",
       "summary_short_ja": "モバイルで頻繁に使う主要操作をすぐ実行できる浮動ボタンです。",
       "best_for_en": "Create/add actions in lists, messages, and task apps.",
@@ -1492,7 +1808,7 @@
       "similar_patterns": [
         "sticky-bottom-cta",
         "bottom-sheet",
-        "toast"
+        "tab-bar"
       ],
       "short_prompt_en": "Implement a mobile FAB with icon, optional label, and elevation shadow.",
       "short_prompt_ja": "アイコン・任意ラベル・浮き上がり表現を持つモバイルFABを実装してください。",
@@ -1501,15 +1817,22 @@
       "purpose": "quick-action",
       "mobile_fit": "high",
       "difficulty": "medium",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "expose one high-priority action that should always be reachable",
+      "use_case_ja": "常に押せる主要アクションを目立たせたい時",
+      "novice_wording_en": "single-action FAB works best; avoid turning it into hidden menu",
+      "novice_wording_ja": "基本は単一用途にすると初心者でも理解しやすいです",
+      "practical_intent_en": "shorten path to frequent creation or capture actions",
+      "practical_intent_ja": "作成・追加など頻出操作までの距離を縮める",
       "sample_type": "fab",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "expose one high-priority action that should always be reachable",
+        "context_ja": "常に押せる主要アクションを目立たせたい時",
+        "focus_en": "shorten path to frequent creation or capture actions",
+        "focus_ja": "作成・追加など頻出操作までの距離を縮める",
+        "mini_label_en": "floating action button",
+        "mini_label_ja": "浮動ボタン"
+      }
     },
     {
       "id": "P035",
@@ -1524,7 +1847,8 @@
       "aliases_ja": [
         "スライダー",
         "横スワイプ表示",
-        "回転表示"
+        "回転表示",
+        "カルーセル表示"
       ],
       "category": "data-display",
       "summary_short_en": "Horizontally browsable sequence of items in limited space.",
@@ -1535,7 +1859,7 @@
       "not_for_ja": "必読情報を入れると見落とされやすく不向きです。",
       "similar_patterns": [
         "grid",
-        "tabs",
+        "card",
         "timeline"
       ],
       "short_prompt_en": "Create a swipe-enabled carousel with visible next item peek and dot indicators.",
@@ -1545,15 +1869,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "high",
       "difficulty": "hard",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "highlight a small set of featured items in limited horizontal space",
+      "use_case_ja": "限られた横幅で注目項目を順に見せたい時",
+      "novice_wording_en": "avoid hiding critical information beyond first slide",
+      "novice_wording_ja": "重要情報を2枚目以降だけに置かないのが安全です",
+      "practical_intent_en": "rotate featured content without extending page length",
+      "practical_intent_ja": "ページを長くせず注目項目を順番に見せる",
       "sample_type": "carousel",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "highlight a small set of featured items in limited horizontal space",
+        "context_ja": "限られた横幅で注目項目を順に見せたい時",
+        "focus_en": "rotate featured content without extending page length",
+        "focus_ja": "ページを長くせず注目項目を順番に見せる",
+        "mini_label_en": "slider",
+        "mini_label_ja": "スライダー"
+      }
     },
     {
       "id": "P036",
@@ -1563,12 +1894,16 @@
       "aliases_en": [
         "chronological list",
         "event timeline",
-        "history view"
+        "history view",
+        "roadmap timeline",
+        "milestone flow"
       ],
       "aliases_ja": [
         "時系列表示",
         "履歴ライン",
-        "出来事一覧"
+        "出来事一覧",
+        "タイムライン表示",
+        "工程履歴"
       ],
       "category": "data-display",
       "summary_short_en": "Ordered view of events over time with clear sequence cues.",
@@ -1578,9 +1913,9 @@
       "not_for_en": "Data without time-based meaning.",
       "not_for_ja": "時間順の意味がないデータには不向きです。",
       "similar_patterns": [
-        "list-view",
-        "table",
-        "progress-bar"
+        "step-form",
+        "progress-bar",
+        "table"
       ],
       "short_prompt_en": "Build a vertical timeline with date labels, status tags, and event details.",
       "short_prompt_ja": "日付ラベル・状態タグ・詳細文を持つ縦型タイムラインを作成してください。",
@@ -1589,15 +1924,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "present chronological milestones, rollout phases, or process history",
+      "use_case_ja": "時系列の進行や履歴を順に示したい時",
+      "novice_wording_en": "date + short label pairs are easier than long paragraph events",
+      "novice_wording_ja": "日付と短い見出しの組み合わせが理解しやすいです",
+      "practical_intent_en": "make sequence and progress dependencies visible",
+      "practical_intent_ja": "順序関係と進行状況を可視化する",
       "sample_type": "timeline",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "present chronological milestones, rollout phases, or process history",
+        "context_ja": "時系列の進行や履歴を順に示したい時",
+        "focus_en": "make sequence and progress dependencies visible",
+        "focus_ja": "順序関係と進行状況を可視化する",
+        "mini_label_en": "chronological list",
+        "mini_label_ja": "時系列表示"
+      }
     },
     {
       "id": "P037",
@@ -1607,12 +1949,15 @@
       "aliases_en": [
         "data table",
         "tabular view",
-        "rows and columns"
+        "rows and columns",
+        "row column grid"
       ],
       "aliases_ja": [
         "表形式",
         "データ表",
-        "行列表示"
+        "行列表示",
+        "データテーブル",
+        "表形式一覧"
       ],
       "category": "data-display",
       "summary_short_en": "Structured row-column display for precise data comparison.",
@@ -1622,9 +1967,9 @@
       "not_for_en": "Small-screen-first experiences without responsive strategy.",
       "not_for_ja": "モバイル対応方針なしでは閲覧性が落ちやすいです。",
       "similar_patterns": [
+        "comparison-table",
         "list-view",
-        "pricing-table",
-        "grid"
+        "card"
       ],
       "short_prompt_en": "Create a responsive table with sticky header and sortable columns.",
       "short_prompt_ja": "ヘッダー固定と列ソートに対応したレスポンシブテーブルを作成してください。",
@@ -1633,15 +1978,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "compare many rows with consistent columns and precise values",
+      "use_case_ja": "列軸を揃えて複数行を正確に比較したい時",
+      "novice_wording_en": "sticky header and zebra rows improve readability quickly",
+      "novice_wording_ja": "ヘッダー固定と行の視認性改善で読み違いを減らせます",
+      "practical_intent_en": "support analytical decisions with structured data",
+      "practical_intent_ja": "構造化データで判断精度を高める",
       "sample_type": "table",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "compare many rows with consistent columns and precise values",
+        "context_ja": "列軸を揃えて複数行を正確に比較したい時",
+        "focus_en": "support analytical decisions with structured data",
+        "focus_ja": "構造化データで判断精度を高める",
+        "mini_label_en": "data table",
+        "mini_label_ja": "表形式"
+      }
     },
     {
       "id": "P038",
@@ -1656,7 +2008,9 @@
       "aliases_ja": [
         "縦リスト",
         "一覧表示",
-        "行表示"
+        "行表示",
+        "リスト表示",
+        "行一覧"
       ],
       "category": "data-display",
       "summary_short_en": "Linear display optimized for scanning many similar items quickly.",
@@ -1668,7 +2022,7 @@
       "similar_patterns": [
         "table",
         "card",
-        "timeline"
+        "pagination"
       ],
       "short_prompt_en": "Design a list view item with title, metadata, status, and inline actions.",
       "short_prompt_ja": "タイトル・補足情報・状態・行内操作を備えたリスト項目を設計してください。",
@@ -1677,15 +2031,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "switch modes or contexts without leaving page",
-      "use_case_ja": "表示モードや文脈を切り替えたい時",
-      "novice_wording_en": "beginners need visible selected state and simple labels",
-      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
-      "practical_intent_en": "change context while keeping user orientation",
-      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "use_case_en": "scan many text-heavy records where order and metadata matter",
+      "use_case_ja": "文字情報中心の項目を順序付きで確認したい時",
+      "novice_wording_en": "show one dominant line then secondary metadata for each row",
+      "novice_wording_ja": "主情報1行+補足情報で並べると読みやすいです",
+      "practical_intent_en": "optimize vertical scanning and quick row actions",
+      "practical_intent_ja": "縦スクロールで素早く項目確認できるようにする",
       "sample_type": "list-view",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "scan many text-heavy records where order and metadata matter",
+        "context_ja": "文字情報中心の項目を順序付きで確認したい時",
+        "focus_en": "optimize vertical scanning and quick row actions",
+        "focus_ja": "縦スクロールで素早く項目確認できるようにする",
+        "mini_label_en": "vertical list",
+        "mini_label_ja": "縦リスト"
+      }
     },
     {
       "id": "P039",
@@ -1695,7 +2056,9 @@
       "aliases_en": [
         "master-detail",
         "dual pane",
-        "two-panel layout"
+        "two-panel layout",
+        "two pane layout",
+        "master detail"
       ],
       "aliases_ja": [
         "2ペイン",
@@ -1711,8 +2074,8 @@
       "not_for_ja": "小画面では折りたたみ設計がないと使いにくくなります。",
       "similar_patterns": [
         "sidebar",
-        "tabs",
-        "sticky-sidebar"
+        "sticky-sidebar",
+        "table"
       ],
       "short_prompt_en": "Build a split view with resizable panes and mobile fallback to stacked view.",
       "short_prompt_ja": "可変幅ペインとモバイル時の縦積み切替を備えた分割ビューを作成してください。",
@@ -1721,15 +2084,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "low",
       "difficulty": "hard",
-      "use_case_en": "switch modes or contexts without leaving page",
-      "use_case_ja": "表示モードや文脈を切り替えたい時",
-      "novice_wording_en": "beginners need visible selected state and simple labels",
-      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
-      "practical_intent_en": "change context while keeping user orientation",
-      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "use_case_en": "edit or browse in one pane while previewing details in another",
+      "use_case_ja": "一覧と詳細、編集とプレビューを同時表示したい時",
+      "novice_wording_en": "default pane widths should favor the primary task pane",
+      "novice_wording_ja": "主作業ペインを広めに取ると迷いにくいです",
+      "practical_intent_en": "reduce context switching between list and detail",
+      "practical_intent_ja": "一覧と詳細の往復コストを下げる",
       "sample_type": "split-view",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "edit or browse in one pane while previewing details in another",
+        "context_ja": "一覧と詳細、編集とプレビューを同時表示したい時",
+        "focus_en": "reduce context switching between list and detail",
+        "focus_ja": "一覧と詳細の往復コストを下げる",
+        "mini_label_en": "master-detail",
+        "mini_label_ja": "2ペイン"
+      }
     },
     {
       "id": "P040",
@@ -1739,12 +2109,14 @@
       "aliases_en": [
         "fixed bottom action",
         "sticky action bar",
-        "bottom conversion bar"
+        "bottom conversion bar",
+        "fixed bottom cta"
       ],
       "aliases_ja": [
         "固定アクションバー",
         "下部追従CTA",
-        "ボトムCTA"
+        "ボトムCTA",
+        "追従CTA"
       ],
       "category": "acquisition",
       "summary_short_en": "Bottom-fixed action area that stays accessible during scrolling.",
@@ -1756,7 +2128,7 @@
       "similar_patterns": [
         "cta-section",
         "fab",
-        "sticky-sidebar"
+        "navbar"
       ],
       "short_prompt_en": "Create a sticky bottom CTA bar with price summary and primary button.",
       "short_prompt_ja": "価格要約と主ボタンを備えた下部固定CTAバーを作成してください。",
@@ -1765,15 +2137,22 @@
       "purpose": "quick-action",
       "mobile_fit": "high",
       "difficulty": "easy",
-      "use_case_en": "run quick actions with minimal steps",
-      "use_case_ja": "短い操作を素早く完了させたい時",
-      "novice_wording_en": "easy for beginners when labels are short and explicit",
-      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
-      "practical_intent_en": "complete frequent tasks with less friction",
-      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "use_case_en": "keep purchase or submit action reachable while users scroll long pages",
+      "use_case_ja": "長いページ閲覧中も申込ボタンを常時見せたい時",
+      "novice_wording_en": "show concise value note beside CTA so bar feels helpful, not pushy",
+      "novice_wording_ja": "押し売り感を避けるため補足理由を短く添えると良いです",
+      "practical_intent_en": "capture intent at the moment users are ready to act",
+      "practical_intent_ja": "行動したい瞬間を逃さずコンバージョンへつなげる",
       "sample_type": "sticky-cta",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "keep purchase or submit action reachable while users scroll long pages",
+        "context_ja": "長いページ閲覧中も申込ボタンを常時見せたい時",
+        "focus_en": "capture intent at the moment users are ready to act",
+        "focus_ja": "行動したい瞬間を逃さずコンバージョンへつなげる",
+        "mini_label_en": "fixed bottom action",
+        "mini_label_ja": "固定アクションバー"
+      }
     },
     {
       "id": "P041",
@@ -1783,7 +2162,8 @@
       "aliases_en": [
         "multi-line input",
         "long text field",
-        "comment box"
+        "comment box",
+        "multi line input"
       ],
       "aliases_ja": [
         "複数行入力",
@@ -1800,7 +2180,7 @@
       "similar_patterns": [
         "text-input",
         "inline-validation",
-        "step-form"
+        "contact-section"
       ],
       "short_prompt_en": "Create an auto-resizing textarea with character counter and validation hint.",
       "short_prompt_ja": "自動拡張・文字数カウンタ・検証ヒント付きのテキストエリアを作成してください。",
@@ -1809,15 +2189,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "collect multi-line comments, notes, and support descriptions",
+      "use_case_ja": "補足説明や問い合わせ内容など複数行入力を受ける時",
+      "novice_wording_en": "show character guidance and autosize to reduce anxiety",
+      "novice_wording_ja": "文字数目安と自動拡張があると入力しやすくなります",
+      "practical_intent_en": "improve quality of descriptive user input",
+      "practical_intent_ja": "説明入力の質と完了率を高める",
       "sample_type": "textarea",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "collect multi-line comments, notes, and support descriptions",
+        "context_ja": "補足説明や問い合わせ内容など複数行入力を受ける時",
+        "focus_en": "improve quality of descriptive user input",
+        "focus_ja": "説明入力の質と完了率を高める",
+        "mini_label_en": "multi-line input",
+        "mini_label_ja": "複数行入力"
+      }
     },
     {
       "id": "P042",
@@ -1827,12 +2214,15 @@
       "aliases_en": [
         "multi-step form",
         "wizard form",
-        "progressive form"
+        "progressive form",
+        "multi step form"
       ],
       "aliases_ja": [
         "段階入力フォーム",
         "ウィザード形式",
-        "ステップ入力"
+        "ステップ入力",
+        "ステップフォーム",
+        "ウィザード入力"
       ],
       "category": "inputs-forms",
       "summary_short_en": "Breaks long forms into manageable steps to reduce drop-off.",
@@ -1843,8 +2233,8 @@
       "not_for_ja": "入力項目が少ないフォームには過剰です。",
       "similar_patterns": [
         "progress-bar",
-        "otp-input",
-        "accordion"
+        "inline-validation",
+        "otp-input"
       ],
       "short_prompt_en": "Build a 3-step form with progress indicator and back/next controls.",
       "short_prompt_ja": "進捗表示と前へ/次へ操作を持つ3ステップフォームを作成してください。",
@@ -1853,15 +2243,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "medium",
       "difficulty": "hard",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "break long onboarding into manageable steps with progress context",
+      "use_case_ja": "長い入力フローを段階分割して完了させたい時",
+      "novice_wording_en": "one question cluster per step keeps cognitive load low",
+      "novice_wording_ja": "1ステップ1論点にすると負荷が下がります",
+      "practical_intent_en": "raise completion rate on longer forms",
+      "practical_intent_ja": "長いフォームの離脱率を下げる",
       "sample_type": "step-form",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "break long onboarding into manageable steps with progress context",
+        "context_ja": "長い入力フローを段階分割して完了させたい時",
+        "focus_en": "raise completion rate on longer forms",
+        "focus_ja": "長いフォームの離脱率を下げる",
+        "mini_label_en": "multi-step form",
+        "mini_label_ja": "段階入力フォーム"
+      }
     },
     {
       "id": "P043",
@@ -1876,7 +2273,8 @@
       "aliases_ja": [
         "日付選択",
         "カレンダー入力",
-        "日程ピッカー"
+        "日程ピッカー",
+        "日付セレクタ"
       ],
       "category": "inputs-forms",
       "summary_short_en": "Calendar-based input that prevents date format mistakes.",
@@ -1888,7 +2286,7 @@
       "similar_patterns": [
         "text-input",
         "step-form",
-        "segmented-control"
+        "inline-validation"
       ],
       "short_prompt_en": "Create a date picker with keyboard navigation and disabled unavailable dates.",
       "short_prompt_ja": "キーボード操作対応で、選択不可日を無効化した日付ピッカーを作成してください。",
@@ -1897,15 +2295,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "hard",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "capture date values accurately with calendar assistance",
+      "use_case_ja": "日付入力を誤りなく取得したい時",
+      "novice_wording_en": "preselect sensible default (today, next week) when possible",
+      "novice_wording_ja": "適切な初期日付を置くと入力負荷が下がります",
+      "practical_intent_en": "avoid format confusion and invalid date entries",
+      "practical_intent_ja": "日付形式の混乱や入力ミスを防ぐ",
       "sample_type": "date-picker",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "capture date values accurately with calendar assistance",
+        "context_ja": "日付入力を誤りなく取得したい時",
+        "focus_en": "avoid format confusion and invalid date entries",
+        "focus_ja": "日付形式の混乱や入力ミスを防ぐ",
+        "mini_label_en": "calendar picker",
+        "mini_label_ja": "日付選択"
+      }
     },
     {
       "id": "P044",
@@ -1915,12 +2320,16 @@
       "aliases_en": [
         "contact block",
         "support contact",
-        "reach us section"
+        "reach us section",
+        "contact form block",
+        "inquiry section"
       ],
       "aliases_ja": [
         "お問い合わせ枠",
         "連絡先セクション",
-        "相談導線"
+        "相談導線",
+        "問い合わせセクション",
+        "連絡フォーム"
       ],
       "category": "acquisition",
       "summary_short_en": "Dedicated page block that helps users ask questions or request support.",
@@ -1932,7 +2341,7 @@
       "similar_patterns": [
         "cta-section",
         "faq",
-        "footer"
+        "textarea"
       ],
       "short_prompt_en": "Design a contact section with simple form, response expectation, and fallback email.",
       "short_prompt_ja": "簡易フォーム・返信目安・代替連絡先を含む問い合わせセクションを設計してください。",
@@ -1941,15 +2350,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "provide low-friction contact path for undecided or high-touch prospects",
+      "use_case_ja": "迷っている見込み客に相談導線を用意したい時",
+      "novice_wording_en": "limit required fields to increase first contact completion",
+      "novice_wording_ja": "必須項目を絞ると最初の送信率が上がります",
+      "practical_intent_en": "convert uncertainty into conversation opportunities",
+      "practical_intent_ja": "検討中ユーザーを相談行動へ変える",
       "sample_type": "contact",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "provide low-friction contact path for undecided or high-touch prospects",
+        "context_ja": "迷っている見込み客に相談導線を用意したい時",
+        "focus_en": "convert uncertainty into conversation opportunities",
+        "focus_ja": "検討中ユーザーを相談行動へ変える",
+        "mini_label_en": "contact block",
+        "mini_label_ja": "お問い合わせ枠"
+      }
     },
     {
       "id": "P045",
@@ -1959,12 +2375,16 @@
       "aliases_en": [
         "feature comparison",
         "side-by-side table",
-        "options matrix"
+        "options matrix",
+        "plan comparison chart",
+        "feature matrix"
       ],
       "aliases_ja": [
         "機能比較表",
         "横並び比較",
-        "比較マトリクス"
+        "比較マトリクス",
+        "比較表",
+        "機能マトリクス"
       ],
       "category": "data-display",
       "summary_short_en": "Matrix that highlights differences between options or products.",
@@ -1976,7 +2396,7 @@
       "similar_patterns": [
         "pricing-table",
         "table",
-        "card"
+        "feature-section"
       ],
       "short_prompt_en": "Create a comparison table with sticky first column and highlighted recommended option.",
       "short_prompt_ja": "先頭列固定と推奨項目強調を備えた比較表を作成してください。",
@@ -1985,15 +2405,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "low",
       "difficulty": "hard",
-      "use_case_en": "confirm destructive changes, ask before delete/publish",
-      "use_case_ja": "削除や公開前の確認を取りたい時",
-      "novice_wording_en": "good when beginners worry about accidental taps",
-      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
-      "practical_intent_en": "reduce risky mistakes before final action",
-      "practical_intent_ja": "重大操作のミスを減らす",
+      "use_case_en": "help users choose between plans or products using side-by-side criteria",
+      "use_case_ja": "プランや製品を項目別に横比較させたい時",
+      "novice_wording_en": "sort rows by decision-critical criteria first",
+      "novice_wording_ja": "判断に直結する項目を上に置くと選びやすいです",
+      "practical_intent_en": "reduce analysis paralysis during selection",
+      "practical_intent_ja": "選択時の比較疲れを減らす",
       "sample_type": "comparison",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "help users choose between plans or products using side-by-side criteria",
+        "context_ja": "プランや製品を項目別に横比較させたい時",
+        "focus_en": "reduce analysis paralysis during selection",
+        "focus_ja": "選択時の比較疲れを減らす",
+        "mini_label_en": "feature comparison",
+        "mini_label_ja": "機能比較表"
+      }
     },
     {
       "id": "P046",
@@ -2003,12 +2430,15 @@
       "aliases_en": [
         "social proof quote",
         "customer voice",
-        "review snippet"
+        "review snippet",
+        "customer quote",
+        "social proof block"
       ],
       "aliases_ja": [
         "お客様の声",
         "レビュー引用",
-        "実績コメント"
+        "実績コメント",
+        "導入事例コメント"
       ],
       "category": "acquisition",
       "summary_short_en": "Social proof block using real customer outcomes and quotes.",
@@ -2020,7 +2450,7 @@
       "similar_patterns": [
         "feature-section",
         "hero",
-        "cta-section"
+        "comparison-table"
       ],
       "short_prompt_en": "Build a testimonial section with customer quote, role, and measurable result.",
       "short_prompt_ja": "コメント、肩書き、数値成果を含む導入事例セクションを作成してください。",
@@ -2029,15 +2459,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "add social proof from customers near conversion sections",
+      "use_case_ja": "申込導線付近で利用者の実感を示したい時",
+      "novice_wording_en": "specific outcomes beat generic praise for credibility",
+      "novice_wording_ja": "抽象的な称賛より具体成果の方が信頼されます",
+      "practical_intent_en": "increase trust by proving real-world results",
+      "practical_intent_ja": "実利用の成果を示して信頼を高める",
       "sample_type": "testimonial",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "add social proof from customers near conversion sections",
+        "context_ja": "申込導線付近で利用者の実感を示したい時",
+        "focus_en": "increase trust by proving real-world results",
+        "focus_ja": "実利用の成果を示して信頼を高める",
+        "mini_label_en": "social proof quote",
+        "mini_label_ja": "お客様の声"
+      }
     },
     {
       "id": "P047",
@@ -2047,12 +2484,16 @@
       "aliases_en": [
         "site footer",
         "bottom links",
-        "legal footer"
+        "legal footer",
+        "site footer links",
+        "legal links block"
       ],
       "aliases_ja": [
         "ページ下部",
         "下部リンク",
-        "法務フッター"
+        "法務フッター",
+        "フッターリンク",
+        "下部ユーティリティ"
       ],
       "category": "layout-structure",
       "summary_short_en": "Bottom section for utility links, legal info, and secondary navigation.",
@@ -2063,8 +2504,8 @@
       "not_for_ja": "遷移先がほぼない単機能画面では冗長になりやすいです。",
       "similar_patterns": [
         "navbar",
-        "contact-section",
-        "faq"
+        "breadcrumb",
+        "contact-section"
       ],
       "short_prompt_en": "Create a compact footer with legal links, contact, and secondary navigation groups.",
       "short_prompt_ja": "法務リンク・連絡先・補助ナビをまとめた簡潔なフッターを作成してください。",
@@ -2073,15 +2514,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "surface legal links and utility routes without competing with primary content",
+      "use_case_ja": "主要コンテンツを邪魔せず補助導線をまとめたい時",
+      "novice_wording_en": "keep footer groups short so users find utility links quickly",
+      "novice_wording_ja": "グループを短く保つと目的リンクを見つけやすいです",
+      "practical_intent_en": "provide predictable end-of-page utilities and trust signals",
+      "practical_intent_ja": "ページ末尾での補助導線と信頼情報を整える",
       "sample_type": "footer",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "surface legal links and utility routes without competing with primary content",
+        "context_ja": "主要コンテンツを邪魔せず補助導線をまとめたい時",
+        "focus_en": "provide predictable end-of-page utilities and trust signals",
+        "focus_ja": "ページ末尾での補助導線と信頼情報を整える",
+        "mini_label_en": "site footer",
+        "mini_label_ja": "ページ下部"
+      }
     },
     {
       "id": "P048",
@@ -2091,12 +2539,16 @@
       "aliases_en": [
         "bottom nav bar",
         "mobile tab navigation",
-        "app tab bar"
+        "app tab bar",
+        "bottom navigation",
+        "mobile tab bar"
       ],
       "aliases_ja": [
         "下部タブナビ",
         "モバイルタブ",
-        "アプリタブバー"
+        "アプリタブバー",
+        "ボトムナビ",
+        "下部タブ"
       ],
       "category": "navigation",
       "summary_short_en": "Persistent bottom navigation for primary mobile app destinations.",
@@ -2117,15 +2569,22 @@
       "purpose": "mode-switch",
       "mobile_fit": "high",
       "difficulty": "medium",
-      "use_case_en": "switch modes or contexts without leaving page",
-      "use_case_ja": "表示モードや文脈を切り替えたい時",
-      "novice_wording_en": "beginners need visible selected state and simple labels",
-      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
-      "practical_intent_en": "change context while keeping user orientation",
-      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "use_case_en": "provide thumb-reachable primary navigation for mobile apps",
+      "use_case_ja": "モバイルで親指操作しやすい主要ナビを置く時",
+      "novice_wording_en": "keep 3-5 destinations and show active state clearly",
+      "novice_wording_ja": "3〜5項目に抑え現在地表示を強くすると分かりやすいです",
+      "practical_intent_en": "support frequent section switching on phones",
+      "practical_intent_ja": "スマホでの頻繁な画面移動を素早くする",
       "sample_type": "tab-bar",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "provide thumb-reachable primary navigation for mobile apps",
+        "context_ja": "モバイルで親指操作しやすい主要ナビを置く時",
+        "focus_en": "support frequent section switching on phones",
+        "focus_ja": "スマホでの頻繁な画面移動を素早くする",
+        "mini_label_en": "bottom nav bar",
+        "mini_label_ja": "下部タブナビ"
+      }
     },
     {
       "id": "P049",
@@ -2135,12 +2594,15 @@
       "aliases_en": [
         "busy indicator",
         "loading wheel",
-        "spinner"
+        "spinner",
+        "loading indicator",
+        "busy spinner"
       ],
       "aliases_ja": [
         "読み込み中表示",
         "くるくる表示",
-        "スピナー"
+        "スピナー",
+        "ローディング表示"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Simple activity indicator when duration is unknown.",
@@ -2152,7 +2614,7 @@
       "similar_patterns": [
         "skeleton-loader",
         "progress-bar",
-        "empty-state"
+        "toast"
       ],
       "short_prompt_en": "Add an inline loading spinner with accessible status text.",
       "short_prompt_ja": "アクセシブルな状態文を備えたインラインスピナーを追加してください。",
@@ -2161,15 +2623,22 @@
       "purpose": "content-discovery",
       "mobile_fit": "medium",
       "difficulty": "medium",
-      "use_case_en": "scan, browse, and discover content structure",
-      "use_case_ja": "情報を見つけやすく整理して見せたい時",
-      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
-      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
-      "practical_intent_en": "help users find the next meaningful item",
-      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "use_case_en": "indicate unknown-length loading when exact progress is unavailable",
+      "use_case_ja": "進捗率が出せない待機状態を示したい時",
+      "novice_wording_en": "always pair spinner with status text if wait exceeds a moment",
+      "novice_wording_ja": "待機が長い場合は説明文を併記すると安心です",
+      "practical_intent_en": "prevent uncertainty during brief asynchronous waits",
+      "practical_intent_ja": "短い待機中の不安を減らす",
       "sample_type": "spinner",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "indicate unknown-length loading when exact progress is unavailable",
+        "context_ja": "進捗率が出せない待機状態を示したい時",
+        "focus_en": "prevent uncertainty during brief asynchronous waits",
+        "focus_ja": "短い待機中の不安を減らす",
+        "mini_label_en": "busy indicator",
+        "mini_label_ja": "読み込み中表示"
+      }
     },
     {
       "id": "P050",
@@ -2179,12 +2648,15 @@
       "aliases_en": [
         "field-level validation",
         "real-time form feedback",
-        "input validation hint"
+        "input validation hint",
+        "real-time validation",
+        "field error hint"
       ],
       "aliases_ja": [
         "入力時検証",
         "項目単位エラー表示",
-        "リアルタイム検証"
+        "リアルタイム検証",
+        "入力エラー表示"
       ],
       "category": "disclosure-feedback",
       "summary_short_en": "Immediate field feedback that helps users fix input before submit.",
@@ -2195,8 +2667,8 @@
       "not_for_ja": "送信後にしか判定できない項目では効果が限定的です。",
       "similar_patterns": [
         "text-input",
-        "alert-banner",
-        "toast"
+        "step-form",
+        "alert-banner"
       ],
       "short_prompt_en": "Implement inline validation with clear success/error messages per field.",
       "short_prompt_ja": "項目ごとに成功/エラーを分かりやすく表示するインライン検証を実装してください。",
@@ -2205,15 +2677,22 @@
       "purpose": "confirmation",
       "mobile_fit": "medium",
       "difficulty": "easy",
-      "use_case_en": "confirm destructive changes, ask before delete/publish",
-      "use_case_ja": "削除や公開前の確認を取りたい時",
-      "novice_wording_en": "good when beginners worry about accidental taps",
-      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
-      "practical_intent_en": "reduce risky mistakes before final action",
-      "practical_intent_ja": "重大操作のミスを減らす",
+      "use_case_en": "show field-level errors or confirmations as users type",
+      "use_case_ja": "入力中に項目単位でエラーや成功条件を示す時",
+      "novice_wording_en": "speak in plain language and include how to fix the error",
+      "novice_wording_ja": "エラー理由だけでなく修正方法まで示すと親切です",
+      "practical_intent_en": "reduce form submission errors before final submit",
+      "practical_intent_ja": "送信前に入力ミスを減らして再入力負荷を下げる",
       "sample_type": "validation",
       "sample_variant": "default",
-      "sample_config": {}
+      "sample_config": {
+        "context_en": "show field-level errors or confirmations as users type",
+        "context_ja": "入力中に項目単位でエラーや成功条件を示す時",
+        "focus_en": "reduce form submission errors before final submit",
+        "focus_ja": "送信前に入力ミスを減らして再入力負荷を下げる",
+        "mini_label_en": "field-level validation",
+        "mini_label_ja": "入力時検証"
+      }
     }
   ]
 }
