@@ -280,12 +280,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "text feels dense",
         "people skip paragraphs",
-        "hard to read on mobile"
+        "hard to read on mobile",
+        "rewrite this so non-designers can read it quickly",
+        "the copy feels like a wall of text"
       ],
       "ja": [
         "文字が詰まって読みにくい",
         "文章を飛ばし読みされる",
-        "スマホで読みづらい"
+        "スマホで読みづらい",
+        "非デザイナーでもすぐ読める文章にしたい",
+        "テキストの壁になっていて離脱される"
       ]
     },
     "category": {
@@ -364,7 +368,33 @@ window.VIBE_LEXICON_TERMS = [
       "scannable",
       "visual-hierarchy",
       "minimal"
-    ]
+    ],
+    "compareGuides": {
+      "scannable": {
+        "en": {
+          "difference": "Readable optimizes sentence comfort; Scannable optimizes retrieval speed.",
+          "whenToUse": "Use Readable for dense explanations, Scannable for decision pages users skim.",
+          "practicality": "Scannable is often more practical for busy audiences because it enforces chunked structure."
+        },
+        "ja": {
+          "difference": "読みやすいは文章快適性、流し読みしやすいは情報到達速度を最適化します。",
+          "whenToUse": "密度の高い説明文は読みやすい、要点判断ページは流し読みしやすいを使います。",
+          "practicality": "短時間閲覧が前提なら、構造を強制できる流し読みしやすいの方が実務的です。"
+        }
+      },
+      "visual-hierarchy": {
+        "en": {
+          "difference": "Readable is typography and text flow; Visual hierarchy is overall attention order.",
+          "whenToUse": "Use Visual hierarchy when users miss actions, Readable when users struggle with long text.",
+          "practicality": "Visual hierarchy is more cross-page practical, while Readable is strongest in text-heavy blocks."
+        },
+        "ja": {
+          "difference": "読みやすいは文字組み中心、視覚階層は画面全体の視線順序です。",
+          "whenToUse": "導線見落としは視覚階層、長文理解の詰まりは読みやすいを使います。",
+          "practicality": "ページ横断では視覚階層、本文改善では読みやすいが実務で効きます。"
+        }
+      }
+    }
   },
   {
     "id": "scannable",
@@ -388,12 +418,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "users do not read everything",
         "need quick glance understanding",
-        "too much text wall"
+        "too much text wall",
+        "make key points visible in 5 seconds",
+        "executives only skim this page"
       ],
       "ja": [
         "全部読まれない",
         "パッと見で理解させたい",
-        "文章の壁になっている"
+        "文章の壁になっている",
+        "5秒で要点が分かる構成にしたい",
+        "役員が流し読みしても要点を掴めるようにしたい"
       ]
     },
     "category": {
@@ -471,7 +505,33 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "readable",
       "visual-hierarchy"
-    ]
+    ],
+    "compareGuides": {
+      "readable": {
+        "en": {
+          "difference": "Readable optimizes sentence comfort; Scannable optimizes retrieval speed.",
+          "whenToUse": "Use Readable for dense explanations, Scannable for decision pages users skim.",
+          "practicality": "Scannable is often more practical for busy audiences because it enforces chunked structure."
+        },
+        "ja": {
+          "difference": "読みやすいは文章快適性、流し読みしやすいは情報到達速度を最適化します。",
+          "whenToUse": "密度の高い説明文は読みやすい、要点判断ページは流し読みしやすいを使います。",
+          "practicality": "短時間閲覧が前提なら、構造を強制できる流し読みしやすいの方が実務的です。"
+        }
+      },
+      "visual-hierarchy": {
+        "en": {
+          "difference": "Scannable organizes content chunks; Visual hierarchy weights elements by importance.",
+          "whenToUse": "Use Scannable for copy restructuring, hierarchy for emphasis and CTA prominence.",
+          "practicality": "Scannable is more practical for content teams; hierarchy is more practical for UI/layout teams."
+        },
+        "ja": {
+          "difference": "流し読みしやすいは情報分割、視覚階層は強調配分の設計です。",
+          "whenToUse": "文章再構成は流し読み、強弱設計は視覚階層を使います。",
+          "practicality": "コンテンツ運用は流し読み、画面設計は視覚階層が実務向きです。"
+        }
+      }
+    }
   },
   {
     "id": "visual-hierarchy",
@@ -495,12 +555,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "users do not know where to look",
         "everything feels equally loud",
-        "main action is buried"
+        "main action is buried",
+        "users miss the main action button",
+        "everything competes for attention"
       ],
       "ja": [
         "どこを見ればいいか分からない",
         "全部同じ強さに見える",
-        "主導線が埋もれている"
+        "主導線が埋もれている",
+        "主ボタンが埋もれて押されない",
+        "全部が主張して視線が散る"
       ]
     },
     "category": {
@@ -579,7 +643,21 @@ window.VIBE_LEXICON_TERMS = [
       "modern",
       "scannable",
       "clear-cta"
-    ]
+    ],
+    "compareGuides": {
+      "clear-cta": {
+        "en": {
+          "difference": "Visual hierarchy sets overall scan order; Clear CTA decides the single action endpoint.",
+          "whenToUse": "Use hierarchy first when page feels noisy, then Clear CTA to finalize the action path.",
+          "practicality": "Clear CTA is more directly practical for conversion experiments because success is measurable."
+        },
+        "ja": {
+          "difference": "視覚階層は視線順序、CTA明確化は最終行動の一本化です。",
+          "whenToUse": "画面ノイズが強いなら先に視覚階層、導線最適化はCTA明確化で仕上げます。",
+          "practicality": "A/B検証では成果指標を取りやすいCTA明確化の方が実務に直結します。"
+        }
+      }
+    }
   },
   {
     "id": "clear-cta",
@@ -603,12 +681,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "users do not click",
         "too many buttons",
-        "main action unclear"
+        "main action unclear",
+        "too many equal buttons on this page",
+        "users ask what to do next"
       ],
       "ja": [
         "ボタンが押されない",
         "ボタンが多すぎる",
-        "次に何をすべきか分からない"
+        "次に何をすべきか分からない",
+        "同格ボタンが多くて次の行動が分からない",
+        "ユーザーが次に何をすべきか迷う"
       ]
     },
     "category": {
@@ -628,8 +710,8 @@ window.VIBE_LEXICON_TERMS = [
       "ja": "ユーザーの次アクションを迷わせず、実行しやすくする語です。"
     },
     "practicalIntent": {
-      "en": "Reduce CTA competition and align each button label with user intent.",
-      "ja": "CTA競合を減らし、ボタン文言を利用者意図に合わせる。"
+      "en": "Define one primary action per screen, reduce competing CTAs, and align button labels with user intent stage.",
+      "ja": "画面ごとに主アクションを1つ定義し、競合CTAを減らし、ボタン文言をユーザーの検討段階に合わせる。"
     },
     "practicalUseCase": {
       "en": "Useful for landing pages, pricing pages, and onboarding completion steps.",
@@ -640,8 +722,8 @@ window.VIBE_LEXICON_TERMS = [
       "ja": "CTA明確化は色を派手にすることではなく、選択構造を明瞭化することです。"
     },
     "commonMisuse": {
-      "en": "Adding more buttons and expecting higher conversion.",
-      "ja": "ボタン数を増やしてCV改善を狙うこと。"
+      "en": "Renaming button text only, while leaving multiple equally-emphasized actions on the same screen.",
+      "ja": "ボタン文言だけ変えて、同格の行動導線を同じ強さで並べ続けること。"
     },
     "vagueToPractical": {
       "en": [
@@ -666,8 +748,8 @@ window.VIBE_LEXICON_TERMS = [
       "ja": "CTAを明確化するため、各セクションの主アクションを1つにし、ボタン文言を成果ベースに書き換え、副導線の強度を下げてください。"
     },
     "badBetterWhy": {
-      "en": "The better request defines both content and hierarchy changes, which directly impact click behavior.",
-      "ja": "良い依頼は文言変更と視覚階層変更を同時指定し、クリック行動に直結します。"
+      "en": "The better request specifies CTA count, placement, and wording role. That gives AI a conversion-oriented decision rule instead of cosmetic edits.",
+      "ja": "良い依頼はCTA数・配置・文言役割を指定しており、見た目調整ではなく転換導線としてAIが判断できます。"
     },
     "shortPrompt": {
       "en": {
@@ -686,7 +768,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "conversion-focused",
       "visual-hierarchy"
-    ]
+    ],
+    "compareGuides": {
+      "conversion-focused": {
+        "en": {
+          "difference": "Clear CTA improves action clarity at interaction level; Conversion-focused optimizes the whole funnel.",
+          "whenToUse": "Use Clear CTA for page-level ambiguity, Conversion-focused for end-to-end drop-off.",
+          "practicality": "Clear CTA is a quick tactical fix; Conversion-focused is more strategic and data-dependent."
+        },
+        "ja": {
+          "difference": "CTA明確化は画面単位、転換重視は導線全体の最適化です。",
+          "whenToUse": "ページ内の迷い解消はCTA明確化、全体離脱改善は転換重視を使います。",
+          "practicality": "短期改善はCTA明確化、継続改善はデータ前提の転換重視が有効です。"
+        }
+      }
+    }
   },
   {
     "id": "conversion-focused",
@@ -710,12 +806,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "improve signup rate",
         "more demo bookings",
-        "too many drop-offs before submit"
+        "too many drop-offs before submit",
+        "improve signup completion without dark patterns",
+        "traffic is fine but conversion is weak"
       ],
       "ja": [
         "登録率を上げたい",
         "問い合わせ完了率を上げたい",
-        "途中離脱が多い"
+        "途中離脱が多い",
+        "ダークパターンなしで登録完了率を上げたい",
+        "流入はあるのにCVRが低い"
       ]
     },
     "category": {
@@ -739,12 +839,12 @@ window.VIBE_LEXICON_TERMS = [
       "ja": "価値訴求・根拠・行動導線を揃え、CVの摩擦を減らす。"
     },
     "practicalUseCase": {
-      "en": "Use for SaaS trial signup pages, lead-gen LPs, and checkout pre-step pages.",
-      "ja": "SaaS体験登録、リード獲得LP、購入前導線で有効です。"
+      "en": "Use on signup, checkout, demo booking, and lead forms where drop-off is measurable.",
+      "ja": "登録・決済・デモ予約・問い合わせフォームなど、離脱率を計測できる導線で使います。"
     },
     "plainExplanation": {
-      "en": "Conversion-focused wording makes every section support one business goal.",
-      "ja": "CV重視は、各セクションを1つの成果に向けて整列させる考え方です。"
+      "en": "Conversion-focused means optimizing the path from intent to completion, not aggressively pushing clicks.",
+      "ja": "転換重視とは、押し売りではなく「意図→完了」までの障壁を減らす設計です。"
     },
     "commonMisuse": {
       "en": "Forcing urgency everywhere and reducing trust.",
@@ -793,7 +893,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "clear-cta",
       "premium"
-    ]
+    ],
+    "compareGuides": {
+      "clear-cta": {
+        "en": {
+          "difference": "Clear CTA improves action clarity at interaction level; Conversion-focused optimizes the whole funnel.",
+          "whenToUse": "Use Clear CTA for page-level ambiguity, Conversion-focused for end-to-end drop-off.",
+          "practicality": "Clear CTA is a quick tactical fix; Conversion-focused is more strategic and data-dependent."
+        },
+        "ja": {
+          "difference": "CTA明確化は画面単位、転換重視は導線全体の最適化です。",
+          "whenToUse": "ページ内の迷い解消はCTA明確化、全体離脱改善は転換重視を使います。",
+          "practicality": "短期改善はCTA明確化、継続改善はデータ前提の転換重視が有効です。"
+        }
+      }
+    }
   },
   {
     "id": "balanced-spacing",
@@ -817,12 +931,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "layout feels cramped",
         "sections are too close",
-        "cards feel crowded"
+        "cards feel crowded",
+        "sections feel cramped and uneven",
+        "spacing rhythm is inconsistent"
       ],
       "ja": [
         "レイアウトが詰まっている",
         "セクション間隔が狭い",
-        "カードが窮屈"
+        "カードが窮屈",
+        "要素間隔が詰まり気味で不揃い",
+        "余白のリズムがバラバラ"
       ]
     },
     "category": {
@@ -900,7 +1018,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "minimal",
       "visual-hierarchy"
-    ]
+    ],
+    "compareGuides": {
+      "minimal": {
+        "en": {
+          "difference": "Balanced spacing tunes rhythm and breathing room; Minimal reduces elements and decorative load.",
+          "whenToUse": "Use Balanced spacing when content is right but feels cramped, Minimal when interface is overly busy.",
+          "practicality": "Balanced spacing is often safer because it improves clarity without deleting information."
+        },
+        "ja": {
+          "difference": "余白バランスは配置リズム調整、ミニマルは要素削減が中心です。",
+          "whenToUse": "情報は適切だが窮屈なら余白バランス、要素過多ならミニマルを使います。",
+          "practicality": "情報を落とさず改善できるため、実務では余白バランスの方が安全に使えます。"
+        }
+      }
+    }
   },
   {
     "id": "minimal",
@@ -924,12 +1056,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "too many elements",
         "looks busy",
-        "need cleaner screen"
+        "need cleaner screen",
+        "remove visual noise but keep clarity",
+        "clean up UI without hiding important info"
       ],
       "ja": [
         "要素が多すぎる",
         "画面がうるさい",
-        "もっとシンプルにしたい"
+        "もっとシンプルにしたい",
+        "必要情報は残しつつノイズを減らしたい",
+        "重要情報を消さずに整理したい"
       ]
     },
     "category": {
@@ -1008,7 +1144,21 @@ window.VIBE_LEXICON_TERMS = [
       "modern",
       "balanced-spacing",
       "readable"
-    ]
+    ],
+    "compareGuides": {
+      "balanced-spacing": {
+        "en": {
+          "difference": "Balanced spacing tunes rhythm and breathing room; Minimal reduces elements and decorative load.",
+          "whenToUse": "Use Balanced spacing when content is right but feels cramped, Minimal when interface is overly busy.",
+          "practicality": "Balanced spacing is often safer because it improves clarity without deleting information."
+        },
+        "ja": {
+          "difference": "余白バランスは配置リズム調整、ミニマルは要素削減が中心です。",
+          "whenToUse": "情報は適切だが窮屈なら余白バランス、要素過多ならミニマルを使います。",
+          "practicality": "情報を落とさず改善できるため、実務では余白バランスの方が安全に使えます。"
+        }
+      }
+    }
   },
   {
     "id": "premium",
@@ -1032,12 +1182,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "looks cheap",
         "need more trust before pricing",
-        "higher-value brand feel"
+        "higher-value brand feel",
+        "make this feel trustworthy at a higher price point",
+        "design should justify enterprise pricing"
       ],
       "ja": [
         "安っぽく見える",
         "価格に見合う印象にしたい",
-        "信頼感を上げたい"
+        "信頼感を上げたい",
+        "高価格でも納得感のある見た目にしたい",
+        "エンタープライズ価格に見合う信頼感を出したい"
       ]
     },
     "category": {
@@ -1115,7 +1269,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "refined",
       "conversion-focused"
-    ]
+    ],
+    "compareGuides": {
+      "refined": {
+        "en": {
+          "difference": "Premium signals value and trust positioning; Refined ensures execution precision.",
+          "whenToUse": "Use Premium when price perception matters, Refined when UI quality consistency is the issue.",
+          "practicality": "Refined is more practical for design tickets; Premium is more practical for brand strategy alignment."
+        },
+        "ja": {
+          "difference": "プレミアムは価値訴求、洗練は実装精度の統一です。",
+          "whenToUse": "価格印象の改善はプレミアム、UI品質の統一は洗練を使います。",
+          "practicality": "制作チケットでは洗練、ブランド整合ではプレミアムが実務的です。"
+        }
+      }
+    }
   },
   {
     "id": "concise-form",
@@ -1139,12 +1307,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "form abandonment is high",
         "too many questions",
-        "users give up halfway"
+        "users give up halfway",
+        "the form asks too much too early",
+        "reduce abandonment in long forms"
       ],
       "ja": [
         "フォーム離脱が多い",
         "質問が多すぎる",
-        "途中で入力をやめる"
+        "途中で入力をやめる",
+        "最初から質問が多すぎて離脱される",
+        "長いフォームの離脱率を下げたい"
       ]
     },
     "category": {
@@ -1164,16 +1336,16 @@ window.VIBE_LEXICON_TERMS = [
       "ja": "不要項目を削り、必須入力の理由を明確化する語です。"
     },
     "practicalIntent": {
-      "en": "Lower completion friction while preserving required business data.",
-      "ja": "必要データを維持しつつ、入力摩擦を下げる。"
+      "en": "Shorten initial fields, defer optional questions, and explain why each required field exists.",
+      "ja": "初期入力項目を絞り、任意質問は後段へ回し、必須項目の理由を明示する。"
     },
     "practicalUseCase": {
       "en": "Use for inquiry, signup, and onboarding forms with drop-off issues.",
       "ja": "問い合わせ、登録、オンボーディングフォームの離脱対策に有効です。"
     },
     "plainExplanation": {
-      "en": "Concise forms ask less, explain better, and complete faster.",
-      "ja": "簡潔なフォームは「聞く量を減らし、説明を明確にし、完了を早くする」設計です。"
+      "en": "Concise form design asks only what is necessary at each step, so users keep momentum.",
+      "ja": "簡潔フォームは、各段階で必要最小限だけ尋ねて入力の勢いを止めない設計です。"
     },
     "commonMisuse": {
       "en": "Removing required fields without updating business process.",
@@ -1222,7 +1394,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "inline-validation",
       "conversion-focused"
-    ]
+    ],
+    "compareGuides": {
+      "inline-validation": {
+        "en": {
+          "difference": "Concise form reduces how much users must enter; Inline validation reduces error recovery cost.",
+          "whenToUse": "Use Concise form to cut abandonment, Inline validation to cut resubmission frustration.",
+          "practicality": "Applying both is ideal, but Concise form usually has bigger first-order impact."
+        },
+        "ja": {
+          "difference": "簡潔フォームは入力量削減、インライン検証は修正コスト削減です。",
+          "whenToUse": "離脱抑制は簡潔フォーム、再入力ストレス削減はインライン検証を使います。",
+          "practicality": "両方有効ですが、初期効果は入力量を減らす簡潔フォームが出やすいです。"
+        }
+      }
+    }
   },
   {
     "id": "inline-validation",
@@ -1246,12 +1432,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "users fail on submit",
         "error message is unclear",
-        "form feels frustrating"
+        "form feels frustrating",
+        "users submit and then see many errors",
+        "catch mistakes while typing"
       ],
       "ja": [
         "送信時にエラーが多い",
         "エラーメッセージが分かりにくい",
-        "フォーム体験がストレス"
+        "フォーム体験がストレス",
+        "送信後に大量エラーが出てしまう",
+        "入力中にミスを気づかせたい"
       ]
     },
     "category": {
@@ -1279,12 +1469,12 @@ window.VIBE_LEXICON_TERMS = [
       "ja": "登録/決済フォームなど、送信失敗がCVに直結する場面で有効です。"
     },
     "plainExplanation": {
-      "en": "Good validation says what is wrong, why, and how to fix it immediately.",
-      "ja": "良い検証は「何が」「なぜ」「どう直すか」を即時に示します。"
+      "en": "Inline validation gives immediate, local feedback so users fix errors before frustration accumulates.",
+      "ja": "インライン検証は、その場で修正できるフィードバックを返し、失敗体験の蓄積を防ぎます。"
     },
     "commonMisuse": {
-      "en": "Showing red errors from first keystroke and increasing anxiety.",
-      "ja": "入力開始直後から赤エラーを連発して不安を増やすこと。"
+      "en": "Showing red errors on every keystroke before users finish typing.",
+      "ja": "入力途中の1文字ごとに赤エラーを出し続け、入力体験を妨げること。"
     },
     "vagueToPractical": {
       "en": [
@@ -1329,7 +1519,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "concise-form",
       "readable"
-    ]
+    ],
+    "compareGuides": {
+      "concise-form": {
+        "en": {
+          "difference": "Concise form reduces how much users must enter; Inline validation reduces error recovery cost.",
+          "whenToUse": "Use Concise form to cut abandonment, Inline validation to cut resubmission frustration.",
+          "practicality": "Applying both is ideal, but Concise form usually has bigger first-order impact."
+        },
+        "ja": {
+          "difference": "簡潔フォームは入力量削減、インライン検証は修正コスト削減です。",
+          "whenToUse": "離脱抑制は簡潔フォーム、再入力ストレス削減はインライン検証を使います。",
+          "practicality": "両方有効ですが、初期効果は入力量を減らす簡潔フォームが出やすいです。"
+        }
+      }
+    }
   },
   {
     "id": "mobile-first",
@@ -1353,12 +1557,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "desktop looks fine but mobile breaks",
         "too hard to tap on phone",
-        "mobile bounce is high"
+        "mobile bounce is high",
+        "desktop layout shrunk to mobile is unusable",
+        "mobile users cannot complete key task quickly"
       ],
       "ja": [
         "PCは良いがスマホで崩れる",
         "スマホで押しにくい",
-        "モバイル離脱が高い"
+        "モバイル離脱が高い",
+        "PC版の縮小表示でスマホ操作しづらい",
+        "スマホで主要タスクをすぐ完了できない"
       ]
     },
     "category": {
@@ -1436,7 +1644,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "responsive",
       "concise-form"
-    ]
+    ],
+    "compareGuides": {
+      "responsive": {
+        "en": {
+          "difference": "Mobile-first prioritizes core tasks for small screens first; Responsive adapts layout across sizes.",
+          "whenToUse": "Use Mobile-first when most traffic is mobile, Responsive when multi-device consistency is the priority.",
+          "practicality": "Mobile-first is more practical for task completion gains on smartphone-heavy products."
+        },
+        "ja": {
+          "difference": "モバイルファーストは小画面起点、レスポンシブは全画面適応の設計です。",
+          "whenToUse": "スマホ流入が中心ならモバイルファースト、端末横断整合ならレスポンシブを使います。",
+          "practicality": "スマホ比率が高いサービスでは、モバイルファーストの方が成果に直結しやすいです。"
+        }
+      }
+    }
   },
   {
     "id": "responsive",
@@ -1460,12 +1682,16 @@ window.VIBE_LEXICON_TERMS = [
       "en": [
         "layout breaks at tablet size",
         "desktop and mobile feel like different products",
-        "components jump between breakpoints"
+        "components jump between breakpoints",
+        "tablet layout breaks between breakpoints",
+        "content jumps awkwardly on resize"
       ],
       "ja": [
         "タブレット幅で崩れる",
         "PCとスマホで別物に見える",
-        "ブレークポイントで要素が飛ぶ"
+        "ブレークポイントで要素が飛ぶ",
+        "タブレット幅でレイアウトが崩れる",
+        "画面幅変更で要素が不自然に飛ぶ"
       ]
     },
     "category": {
@@ -1543,7 +1769,21 @@ window.VIBE_LEXICON_TERMS = [
     "compareRelationships": [
       "mobile-first",
       "visual-hierarchy"
-    ]
+    ],
+    "compareGuides": {
+      "mobile-first": {
+        "en": {
+          "difference": "Mobile-first prioritizes core tasks for small screens first; Responsive adapts layout across sizes.",
+          "whenToUse": "Use Mobile-first when most traffic is mobile, Responsive when multi-device consistency is the priority.",
+          "practicality": "Mobile-first is more practical for task completion gains on smartphone-heavy products."
+        },
+        "ja": {
+          "difference": "モバイルファーストは小画面起点、レスポンシブは全画面適応の設計です。",
+          "whenToUse": "スマホ流入が中心ならモバイルファースト、端末横断整合ならレスポンシブを使います。",
+          "practicality": "スマホ比率が高いサービスでは、モバイルファーストの方が成果に直結しやすいです。"
+        }
+      }
+    }
   },
   {
     "id": "tone-consistent",
