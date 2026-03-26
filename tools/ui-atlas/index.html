@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UI Atlas | UI Pattern Dictionary (Free Foundation) | Niche Works</title>
-  <meta name="description" content="English-first UI Atlas free foundation: practical search, filter, detail, and compare placeholders for UI patterns.">
+  <meta name="description" content="English-first UI Atlas free foundation: practical search, filter, detail, compare, favorites, and recent history for UI patterns.">
   <link rel="canonical" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/">
@@ -28,22 +28,51 @@
   <main class="nw-main" data-ui-atlas-root>
     <section class="nw-card nw-intro">
       <h2>Free foundation (public)</h2>
-      <p>This is the public base for UI Atlas: browse patterns, compare up to two, and prepare AI-ready wording. No paid gating is applied in this phase.</p>
+      <p>Search practical wording, filter by intent, open detail guidance, compare up to two patterns, and keep local favorites/history.</p>
     </section>
 
     <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
 
     <section class="workspace" aria-label="UI Atlas workspace">
-      <aside class="panel filters">
-        <h2>Filters</h2>
-        <label for="atlas-search">Search</label>
-        <input id="atlas-search" class="search-input" data-search type="search" placeholder="e.g. modal, mobile menu, FAQ">
-        <h3>Category</h3>
-        <div class="chip-group">
-          <button type="button" class="filter-chip active" data-filter="all">All</button>
-          <button type="button" class="filter-chip" data-filter="disclosure">Disclosure</button>
-          <button type="button" class="filter-chip" data-filter="navigation">Navigation</button>
-          <button type="button" class="filter-chip" data-filter="selection">Selection</button>
+      <aside class="panel filters" data-filters>
+        <button type="button" class="mobile-filter-toggle" data-toggle-filters>Filters</button>
+        <div class="filters-body" data-filters-body>
+          <h2>Filters</h2>
+          <label for="atlas-search">Search</label>
+          <input id="atlas-search" class="search-input" data-search type="search" placeholder="e.g. drawer menu, FAQ, confirmation dialog">
+
+          <h3>Category</h3>
+          <div class="chip-group">
+            <button type="button" class="filter-chip active" data-filter-group="category" data-filter="all">All</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="disclosure">Disclosure</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="navigation">Navigation</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="selection">Selection</button>
+          </div>
+
+          <label for="purpose-filter">Purpose</label>
+          <select id="purpose-filter" data-select-filter="purpose">
+            <option value="all">All purposes</option>
+            <option value="confirmation">Confirmation / risky action</option>
+            <option value="quick-action">Quick action</option>
+            <option value="content-discovery">Content discovery</option>
+            <option value="mode-switch">Mode switch</option>
+          </select>
+
+          <label for="mobile-filter">Mobile fit</label>
+          <select id="mobile-filter" data-select-filter="mobileFit">
+            <option value="all">All</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+
+          <label for="difficulty-filter">Implementation difficulty</label>
+          <select id="difficulty-filter" data-select-filter="difficulty">
+            <option value="all">All</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
         </div>
       </aside>
 
@@ -51,45 +80,67 @@
         <h2>Pattern results</h2>
         <div class="results-toolbar">
           <span data-count>0 patterns shown</span>
-          <span>Compare tray supports up to 2</span>
+          <span>Free compare tray supports up to 2</span>
         </div>
         <div class="result-grid">
-          <article class="pattern-card" data-card data-name="Modal" data-category="disclosure" data-summary="Focused interruption for confirmations and critical branching." data-best="Critical confirmation or mandatory response." data-avoid="Routine details that can stay inline.">
+          <article class="pattern-card" data-card data-id="modal" data-name="Modal" data-name-ja="モーダル" data-aliases="dialog, popup, pop-up, confirmation dialog" data-novice="message box that blocks screen" data-usecase="confirm delete, force decision, dangerous action" data-category="disclosure" data-purpose="confirmation" data-mobile-fit="medium" data-difficulty="medium" data-summary="Focused interruption with backdrop for high-priority decisions." data-best="Critical confirmation and mandatory branching." data-not-for="Routine information that can stay inline." data-similar="Bottom Sheet, Alert Dialog" data-prompt="Create an accessible modal for destructive confirmation with focus trap and ESC close." data-notes="Use role=dialog, lock background scroll, and return focus to trigger.">
             <h3>Modal</h3><p>Focused interruption with backdrop.</p>
-            <div class="card-meta"><span class="meta-tag">Disclosure</span><span class="meta-tag">Desktop+Mobile</span></div>
+            <div class="card-meta"><span class="meta-tag">Disclosure</span><span class="meta-tag">Mobile: Medium</span><span class="meta-tag">Diff: Medium</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
           </article>
-          <article class="pattern-card" data-card data-name="Bottom Sheet" data-category="disclosure" data-summary="Context-preserving mobile-first panel from the bottom edge." data-best="Mobile contextual actions or short forms." data-avoid="Long multi-step desktop flow.">
+          <article class="pattern-card" data-card data-id="bottom-sheet" data-name="Bottom Sheet" data-name-ja="ボトムシート" data-aliases="action sheet, slide-up panel" data-novice="menu from bottom of phone" data-usecase="mobile quick actions, contextual picker, short form" data-category="disclosure" data-purpose="quick-action" data-mobile-fit="high" data-difficulty="medium" data-summary="Context-preserving panel that slides from the bottom on mobile." data-best="Mobile contextual actions and short forms." data-not-for="Long desktop-first multi-step journeys." data-similar="Modal, Drawer" data-prompt="Build a mobile bottom sheet with drag handle, snap points, and safe-area spacing." data-notes="Keep primary action reachable by thumb and respect iOS safe-area.">
             <h3>Bottom Sheet</h3><p>Mobile-friendly layered panel.</p>
-            <div class="card-meta"><span class="meta-tag">Disclosure</span><span class="meta-tag">Mobile</span></div>
+            <div class="card-meta"><span class="meta-tag">Disclosure</span><span class="meta-tag">Mobile: High</span><span class="meta-tag">Diff: Medium</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
           </article>
-          <article class="pattern-card" data-card data-name="Accordion" data-category="navigation" data-summary="Progressive reveal for grouped answers and long FAQ lists." data-best="FAQ and secondary sections with scanning." data-avoid="When users must compare multiple open items.">
+          <article class="pattern-card" data-card data-id="accordion" data-name="Accordion" data-name-ja="アコーディオン" data-aliases="collapsible list, expand collapse" data-novice="faq open close list" data-usecase="faq, long help section, policy disclosure" data-category="navigation" data-purpose="content-discovery" data-mobile-fit="high" data-difficulty="easy" data-summary="Progressive reveal for grouped content like FAQ and help docs." data-best="Scanning long Q&A collections." data-not-for="Side-by-side comparison of many open sections." data-similar="Tabs, Disclosure" data-prompt="Implement an accordion for FAQ with keyboard support and one-open-at-a-time mode." data-notes="Use button+aria-expanded and keep heading hierarchy consistent.">
             <h3>Accordion</h3><p>Expandable section stack.</p>
-            <div class="card-meta"><span class="meta-tag">Navigation</span><span class="meta-tag">FAQ</span></div>
+            <div class="card-meta"><span class="meta-tag">Navigation</span><span class="meta-tag">Mobile: High</span><span class="meta-tag">Diff: Easy</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
           </article>
-          <article class="pattern-card" data-card data-name="Segmented Control" data-category="selection" data-summary="Switch between a small set of equivalent views without leaving context." data-best="2-5 mode switching in one surface." data-avoid="Many options or very long labels.">
+          <article class="pattern-card" data-card data-id="segmented-control" data-name="Segmented Control" data-name-ja="セグメントコントロール" data-aliases="segment switch, pill tabs" data-novice="small tab switch" data-usecase="list/grid toggle, mode toggle, compact switch" data-category="selection" data-purpose="mode-switch" data-mobile-fit="high" data-difficulty="easy" data-summary="Quickly switch between a small set of equivalent views." data-best="2-5 mode switches in one surface." data-not-for="Large option sets or long labels." data-similar="Tabs, Toggle Group" data-prompt="Create a segmented control with clear selected state and full keyboard navigation." data-notes="Maintain equal visual weight for each segment and minimum touch target size.">
             <h3>Segmented Control</h3><p>Compact view/mode switch.</p>
-            <div class="card-meta"><span class="meta-tag">Selection</span><span class="meta-tag">Compact</span></div>
+            <div class="card-meta"><span class="meta-tag">Selection</span><span class="meta-tag">Mobile: High</span><span class="meta-tag">Diff: Easy</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">Open detail</button><button class="btn primary" data-add-compare type="button">Add compare</button></div>
           </article>
         </div>
 
         <section class="compare-tray">
           <h3>Compare tray</h3>
-          <p data-compare-empty>Nothing added yet. Add up to two patterns for quick side-by-side checking.</p>
+          <p data-compare-empty>Nothing added yet. Add up to two patterns for quick key-difference checks.</p>
           <div class="compare-list" data-compare-list></div>
+          <div class="compare-diff" data-compare-diff hidden></div>
+        </section>
+
+        <section class="local-blocks">
+          <section class="local-box">
+            <h3>Favorites (local)</h3>
+            <div data-favorites-list class="mini-list"></div>
+          </section>
+          <section class="local-box">
+            <h3>Recent views (local)</h3>
+            <div data-recent-list class="mini-list"></div>
+          </section>
         </section>
       </section>
 
-      <aside class="panel detail">
-        <h2 data-detail-title>Modal</h2>
-        <p class="detail-body" data-detail-text>Focused interruption for confirmations and critical branching.</p>
+      <aside class="panel detail" data-detail-panel>
+        <button type="button" class="detail-close" data-close-detail>Close</button>
+        <h2 data-detail-title>Select a pattern</h2>
+        <p class="detail-body" data-detail-summary>Choose a card to inspect practical usage guidance.</p>
         <h3>Best for</h3>
-        <ul class="detail-list"><li data-detail-best>Critical confirmation or mandatory response.</li></ul>
-        <h3>Avoid when</h3>
-        <ul class="detail-list"><li data-detail-avoid>Routine details that can stay inline.</li></ul>
+        <p class="detail-body" data-detail-best>-</p>
+        <h3>Not for</h3>
+        <p class="detail-body" data-detail-not-for>-</p>
+        <h3>Similar patterns</h3>
+        <p class="detail-body" data-detail-similar>-</p>
+        <h3>Short AI prompt</h3>
+        <p class="detail-body" data-detail-prompt>-</p>
+        <button class="btn" type="button" data-copy-prompt>Copy short prompt</button>
+        <p class="copy-state" data-copy-state aria-live="polite"></p>
+        <h3>Short implementation notes</h3>
+        <p class="detail-body" data-detail-notes>-</p>
+        <button class="btn" type="button" data-toggle-favorite>☆ Favorite</button>
       </aside>
     </section>
 
@@ -97,8 +148,8 @@
       <h2>FAQ</h2>
       <ul class="faq-list">
         <li>Is the dataset complete? Not yet. This release is a free foundation with representative placeholders.</li>
-        <li>Can I use everything for free now? Yes. Browsing and basic compare are open.</li>
-        <li>Does Pro block current features? No. Pro is informational only at this stage.</li>
+        <li>Can I use everything for free now? Yes. Search, filtering, details, and 2-item compare are open.</li>
+        <li>Can favorites/history sync across devices? Not in this phase. They stay in local browser storage.</li>
       </ul>
     </section>
 
