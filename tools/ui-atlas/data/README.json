@@ -1,5 +1,13 @@
 {
-  "status": "scaffold",
-  "version": 1,
-  "notes": "Placeholder data file for upcoming public dictionary content."
+  "status": "free-seed-ready",
+  "version": 2,
+  "dataset": {
+    "file": "patterns.free.v1.json",
+    "id": "ui-atlas-free-seed",
+    "total_patterns": 50,
+    "source_language": "en",
+    "localized_languages": ["ja"],
+    "updated_at": "2026-03-26"
+  },
+  "notes": "First production-usable free seed dataset with compare-ready relationships and novice-friendly wording. English is source of truth; Japanese entries are localized."
 }

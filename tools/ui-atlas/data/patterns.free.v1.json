@@ -1,0 +1,1609 @@
+{
+  "dataset": "ui-atlas-free-seed",
+  "version": "1.0.0",
+  "language_source": "en",
+  "total_patterns": 50,
+  "updated_at": "2026-03-26",
+  "patterns": [
+    {
+      "id": "P001",
+      "slug": "hero",
+      "name_en": "Hero",
+      "name_ja": "ヒーローセクション",
+      "aliases_en": [
+        "above the fold",
+        "top visual section",
+        "masthead"
+      ],
+      "aliases_ja": [
+        "ファーストビュー",
+        "トップビジュアル",
+        "冒頭セクション"
+      ],
+      "category": "Page structure",
+      "summary_short_en": "Top section that quickly explains value and gives one clear first action.",
+      "summary_short_ja": "ページ冒頭で価値を一目で伝え、最初の行動を1つに絞って示す領域です。",
+      "best_for_en": "Landing pages, product intros, campaigns, and app home screens.",
+      "best_for_ja": "LP、製品紹介、キャンペーンページ、アプリのホーム導入に向いています。",
+      "not_for_en": "Dense docs pages where users already know what they need.",
+      "not_for_ja": "目的が明確なドキュメント閲覧ページには不向きです。",
+      "similar_patterns": [
+        "feature-section",
+        "cta-section",
+        "sticky-bottom-cta"
+      ],
+      "short_prompt_en": "Create a clean hero with headline, supporting text, primary CTA, and trust indicator.",
+      "short_prompt_ja": "見出し・補足文・主要CTA・信頼要素を含む、分かりやすいヒーローを作成してください。",
+      "short_impl_note_en": "Keep one primary CTA, responsive image, and clear heading hierarchy.",
+      "short_impl_note_ja": "主要CTAは1つに絞り、画像のレスポンシブ対応と見出し階層を明確にします。"
+    },
+    {
+      "id": "P002",
+      "slug": "feature-section",
+      "name_en": "Feature section",
+      "name_ja": "機能紹介セクション",
+      "aliases_en": [
+        "benefits block",
+        "feature grid",
+        "value highlights"
+      ],
+      "aliases_ja": [
+        "機能一覧",
+        "強み紹介",
+        "ベネフィット枠"
+      ],
+      "category": "Page structure",
+      "summary_short_en": "Structured block that explains key features in digestible chunks.",
+      "summary_short_ja": "主要機能を小さな単位で整理して伝える説明ブロックです。",
+      "best_for_en": "SaaS marketing pages, product pages, and onboarding overviews.",
+      "best_for_ja": "SaaSの紹介ページ、製品ページ、オンボーディング概要に最適です。",
+      "not_for_en": "Very simple single-purpose pages with only one action.",
+      "not_for_ja": "単一アクションのみの極めてシンプルなページには過剰です。",
+      "similar_patterns": [
+        "hero",
+        "card",
+        "grid"
+      ],
+      "short_prompt_en": "Build a feature section with 3 to 6 items, each with icon, title, and practical benefit.",
+      "short_prompt_ja": "3〜6項目で、アイコン・見出し・実務的な利点を示す機能紹介セクションを作ってください。",
+      "short_impl_note_en": "Use consistent card heights and concise copy for scanning.",
+      "short_impl_note_ja": "カード高さを揃え、短い文で一覧性を高めます。"
+    },
+    {
+      "id": "P003",
+      "slug": "cta-section",
+      "name_en": "CTA section",
+      "name_ja": "CTAセクション",
+      "aliases_en": [
+        "call-to-action block",
+        "conversion block",
+        "action panel"
+      ],
+      "aliases_ja": [
+        "行動喚起セクション",
+        "申込導線",
+        "アクション枠"
+      ],
+      "category": "Conversion / action",
+      "summary_short_en": "Focused area that pushes one decision with minimal distraction.",
+      "summary_short_ja": "迷いを減らし、1つの意思決定を促す集中導線です。",
+      "best_for_en": "Trial signup, lead capture, and checkout next-step prompts.",
+      "best_for_ja": "無料登録、リード獲得、購入導線の次アクション提示に向いています。",
+      "not_for_en": "Early discovery pages where users still need broad context.",
+      "not_for_ja": "比較検討初期で情報探索が必要な段階には不向きです。",
+      "similar_patterns": [
+        "hero",
+        "sticky-bottom-cta",
+        "alert-banner"
+      ],
+      "short_prompt_en": "Design a CTA section with one main button, optional secondary link, and short urgency cue.",
+      "short_prompt_ja": "主ボタン1つ、補助リンク、短い後押し文を含むCTAセクションを設計してください。",
+      "short_impl_note_en": "Avoid competing button styles and keep supporting text under two lines.",
+      "short_impl_note_ja": "ボタンの競合を避け、補足文は2行以内に抑えます。"
+    },
+    {
+      "id": "P004",
+      "slug": "faq",
+      "name_en": "FAQ",
+      "name_ja": "よくある質問（FAQ）",
+      "aliases_en": [
+        "common questions",
+        "help Q&A",
+        "customer questions"
+      ],
+      "aliases_ja": [
+        "よくある質問",
+        "質問集",
+        "Q&A"
+      ],
+      "category": "Support UI",
+      "summary_short_en": "Question-answer list that removes purchase and usage uncertainty.",
+      "summary_short_ja": "導入前や利用時の不安を減らすための質問と回答の一覧です。",
+      "best_for_en": "Pricing pages, onboarding docs, and pre-sales pages.",
+      "best_for_ja": "料金ページ、導入案内、購入前ページで効果的です。",
+      "not_for_en": "Real-time support scenarios needing personalized answers.",
+      "not_for_ja": "個別対応が必要なリアルタイム問い合わせには不向きです。",
+      "similar_patterns": [
+        "accordion",
+        "alert-banner",
+        "empty-state"
+      ],
+      "short_prompt_en": "Generate an FAQ section with 6 concise questions for first-time users.",
+      "short_prompt_ja": "初めての利用者向けに、簡潔な質問6件のFAQを生成してください。",
+      "short_impl_note_en": "Use accordion behavior for long answers and keep plain language.",
+      "short_impl_note_ja": "長文回答はアコーディオン化し、専門用語を避けた表現にします。"
+    },
+    {
+      "id": "P005",
+      "slug": "pricing-table",
+      "name_en": "Pricing table",
+      "name_ja": "料金表",
+      "aliases_en": [
+        "plans table",
+        "subscription comparison",
+        "price tiers"
+      ],
+      "aliases_ja": [
+        "プラン比較",
+        "料金プラン",
+        "価格比較表"
+      ],
+      "category": "Conversion / action",
+      "summary_short_en": "Side-by-side plan comparison that helps users pick quickly.",
+      "summary_short_ja": "プランを横並びで比較し、選択を早めるための表です。",
+      "best_for_en": "SaaS products with multiple plans and clear feature tiers.",
+      "best_for_ja": "複数プランを持つSaaSや機能差が明確なサービスに適しています。",
+      "not_for_en": "Single-price products or services with custom-only quotes.",
+      "not_for_ja": "単一料金や個別見積もりのみの商材では効果が薄いです。",
+      "similar_patterns": [
+        "table",
+        "comparison-table",
+        "cta-section"
+      ],
+      "short_prompt_en": "Create a 3-column pricing table with featured plan emphasis and clear CTA buttons.",
+      "short_prompt_ja": "注目プランを強調し、CTAボタンを明示した3列の料金表を作成してください。",
+      "short_impl_note_en": "Keep feature rows aligned and mark differences with simple labels.",
+      "short_impl_note_ja": "機能行の対応を揃え、差分は短いラベルで示します。"
+    },
+    {
+      "id": "P006",
+      "slug": "navbar",
+      "name_en": "Navbar",
+      "name_ja": "ナビゲーションバー",
+      "aliases_en": [
+        "top nav",
+        "header nav",
+        "global nav"
+      ],
+      "aliases_ja": [
+        "上部ナビ",
+        "ヘッダーナビ",
+        "グローバルナビ"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Primary top navigation for key routes and brand orientation.",
+      "summary_short_ja": "主要ページへ迷わず移動するための上部ナビゲーションです。",
+      "best_for_en": "Web apps and sites with repeat navigation needs.",
+      "best_for_ja": "継続的にページ移動するWebアプリやサイトに向いています。",
+      "not_for_en": "Single-screen tools with no internal navigation.",
+      "not_for_ja": "ページ遷移がない単一画面ツールには不要です。",
+      "similar_patterns": [
+        "hamburger-menu",
+        "sidebar",
+        "breadcrumb"
+      ],
+      "short_prompt_en": "Design a responsive navbar with logo area, 4 links, and a right-side CTA.",
+      "short_prompt_ja": "ロゴ領域・4リンク・右側CTAを備えたレスポンシブなナビバーを設計してください。",
+      "short_impl_note_en": "Set clear active states and collapse non-critical links on small screens.",
+      "short_impl_note_ja": "現在地表示を明確にし、小画面では優先度の低いリンクを畳みます。"
+    },
+    {
+      "id": "P007",
+      "slug": "hamburger-menu",
+      "name_en": "Hamburger menu",
+      "name_ja": "ハンバーガーメニュー",
+      "aliases_en": [
+        "menu icon nav",
+        "collapsed nav",
+        "three-line menu"
+      ],
+      "aliases_ja": [
+        "三本線メニュー",
+        "折りたたみナビ",
+        "メニューアイコン"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Compact menu trigger used when horizontal space is limited.",
+      "summary_short_ja": "横幅が限られる場面で使う、省スペースのメニュー起点です。",
+      "best_for_en": "Mobile nav and dense app headers.",
+      "best_for_ja": "モバイルナビや情報量の多いヘッダーに適しています。",
+      "not_for_en": "Desktop-first sites where top-level routes must stay visible.",
+      "not_for_ja": "主要導線を常時見せたいPC中心サイトには不向きです。",
+      "similar_patterns": [
+        "drawer",
+        "navbar",
+        "sidebar"
+      ],
+      "short_prompt_en": "Create a hamburger menu button that opens a full-height navigation drawer.",
+      "short_prompt_ja": "全高のナビドロワーを開くハンバーガーボタンを作成してください。",
+      "short_impl_note_en": "Animate icon state, lock body scroll, and return focus on close.",
+      "short_impl_note_ja": "アイコン状態を切替え、表示中は背景スクロールを止め、閉じる際はフォーカスを戻します。"
+    },
+    {
+      "id": "P008",
+      "slug": "drawer",
+      "name_en": "Drawer",
+      "name_ja": "ドロワー",
+      "aliases_en": [
+        "slide panel",
+        "off-canvas menu",
+        "side panel"
+      ],
+      "aliases_ja": [
+        "スライドパネル",
+        "オフキャンバス",
+        "引き出しメニュー"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Panel that slides in from screen edge to reveal secondary content.",
+      "summary_short_ja": "画面端から出現し、補助ナビや設定を表示するパネルです。",
+      "best_for_en": "Mobile navigation, filters, and contextual settings.",
+      "best_for_ja": "モバイルのメニュー、絞り込み、補助設定に使いやすいです。",
+      "not_for_en": "Critical content that must remain always visible.",
+      "not_for_ja": "常時表示すべき重要情報の置き場には向きません。",
+      "similar_patterns": [
+        "sidebar",
+        "bottom-sheet",
+        "modal"
+      ],
+      "short_prompt_en": "Build a left-side drawer with grouped links and optional account area.",
+      "short_prompt_ja": "リンクをグループ化し、必要ならアカウント領域を持つ左ドロワーを作ってください。",
+      "short_impl_note_en": "Support ESC close, backdrop click close, and focus trap.",
+      "short_impl_note_ja": "Esc・背景クリックで閉じられるようにし、フォーカストラップを実装します。"
+    },
+    {
+      "id": "P009",
+      "slug": "sidebar",
+      "name_en": "Sidebar",
+      "name_ja": "サイドバー",
+      "aliases_en": [
+        "side navigation",
+        "left rail",
+        "navigation rail"
+      ],
+      "aliases_ja": [
+        "側面ナビ",
+        "左レール",
+        "サイドナビ"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Persistent side area for navigation, filters, or utility controls.",
+      "summary_short_ja": "ナビやフィルタ、補助操作を常時配置する側面領域です。",
+      "best_for_en": "Dashboards, admin tools, and multi-step workflows.",
+      "best_for_ja": "ダッシュボード、管理画面、工程の多いツールに適しています。",
+      "not_for_en": "Very small screens without collapse behavior.",
+      "not_for_ja": "折りたたみなしで小画面に置くと圧迫しやすいです。",
+      "similar_patterns": [
+        "navbar",
+        "drawer",
+        "sticky-sidebar"
+      ],
+      "short_prompt_en": "Create a sidebar with section labels, icons, and active route highlighting.",
+      "short_prompt_ja": "セクション見出し・アイコン・現在地強調を備えたサイドバーを作成してください。",
+      "short_impl_note_en": "Keep width consistent and provide collapsed icon-only mode.",
+      "short_impl_note_ja": "幅を固定し、折りたたみ時はアイコンのみ表示に対応します。"
+    },
+    {
+      "id": "P010",
+      "slug": "breadcrumb",
+      "name_en": "Breadcrumb",
+      "name_ja": "パンくずリスト",
+      "aliases_en": [
+        "path navigation",
+        "location trail",
+        "hierarchy trail"
+      ],
+      "aliases_ja": [
+        "階層ナビ",
+        "現在地パス",
+        "パンくず"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Shows current position in hierarchy and allows quick step-back navigation.",
+      "summary_short_ja": "階層内の現在地を示し、上位階層へ戻りやすくする導線です。",
+      "best_for_en": "Knowledge bases, ecommerce categories, and nested settings.",
+      "best_for_ja": "ナレッジベース、ECカテゴリ、階層の深い設定画面で有効です。",
+      "not_for_en": "Flat single-level navigation structures.",
+      "not_for_ja": "階層が浅いサイトでは冗長になりやすいです。",
+      "similar_patterns": [
+        "navbar",
+        "tabs",
+        "pagination"
+      ],
+      "short_prompt_en": "Add a breadcrumb trail with clickable ancestors and plain current page label.",
+      "short_prompt_ja": "上位階層はリンク、現在ページはテキスト表示のパンくずを追加してください。",
+      "short_impl_note_en": "Use list semantics and shorten long labels with ellipsis.",
+      "short_impl_note_ja": "リスト構造で実装し、長いラベルは省略表示を検討します。"
+    },
+    {
+      "id": "P011",
+      "slug": "tabs",
+      "name_en": "Tabs",
+      "name_ja": "タブ",
+      "aliases_en": [
+        "tabbed navigation",
+        "tab panel",
+        "section tabs"
+      ],
+      "aliases_ja": [
+        "タブ切替",
+        "タブパネル",
+        "セクションタブ"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Lets users switch related content in-place without page reload.",
+      "summary_short_ja": "関連コンテンツをページ遷移なしで切り替えるUIです。",
+      "best_for_en": "Settings pages, product details, and compact dashboards.",
+      "best_for_ja": "設定画面、商品詳細、コンパクトな管理画面に向いています。",
+      "not_for_en": "Too many sections where discoverability suffers.",
+      "not_for_ja": "項目数が多すぎると見つけにくくなるため不向きです。",
+      "similar_patterns": [
+        "segmented-control",
+        "accordion",
+        "split-view"
+      ],
+      "short_prompt_en": "Create accessible tabs with keyboard navigation and panel switching.",
+      "short_prompt_ja": "キーボード操作対応のアクセシブルなタブ切替を作成してください。",
+      "short_impl_note_en": "Support arrow key movement and aria-selected states.",
+      "short_impl_note_ja": "矢印キー移動とaria-selectedの状態管理を実装します。"
+    },
+    {
+      "id": "P012",
+      "slug": "segmented-control",
+      "name_en": "Segmented control",
+      "name_ja": "セグメントコントロール",
+      "aliases_en": [
+        "pill switcher",
+        "option segment",
+        "view switch"
+      ],
+      "aliases_ja": [
+        "分割トグル",
+        "表示切替ボタン",
+        "セグメント"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Compact chooser for a few mutually exclusive view modes.",
+      "summary_short_ja": "少数の排他的な選択肢を素早く切り替える小型UIです。",
+      "best_for_en": "List/grid toggles, time range switches, and mode pickers.",
+      "best_for_ja": "一覧/グリッド切替、期間切替、表示モード選択に適しています。",
+      "not_for_en": "Long labels or more than five options.",
+      "not_for_ja": "長い文言や選択肢が多いケースには不向きです。",
+      "similar_patterns": [
+        "tabs",
+        "switch",
+        "radio-button"
+      ],
+      "short_prompt_en": "Build a segmented control with 3 options and clear selected styling.",
+      "short_prompt_ja": "3択で選択状態が明確なセグメントコントロールを作成してください。",
+      "short_impl_note_en": "Use button group semantics and keep labels short.",
+      "short_impl_note_ja": "ボタングループとして実装し、ラベルは短く保ちます。"
+    },
+    {
+      "id": "P013",
+      "slug": "pagination",
+      "name_en": "Pagination",
+      "name_ja": "ページネーション",
+      "aliases_en": [
+        "page navigator",
+        "pager",
+        "page numbers"
+      ],
+      "aliases_ja": [
+        "ページ送り",
+        "ページ番号ナビ",
+        "ページャー"
+      ],
+      "category": "Navigation",
+      "summary_short_en": "Splits long lists into pages to keep performance and scanning manageable.",
+      "summary_short_ja": "長い一覧を分割し、表示負荷と閲覧しやすさを保つ仕組みです。",
+      "best_for_en": "Search results, admin tables, and archive views.",
+      "best_for_ja": "検索結果、管理テーブル、アーカイブ一覧で有効です。",
+      "not_for_en": "Short feeds where infinite scroll is simpler.",
+      "not_for_ja": "件数が少ない一覧では過剰です。",
+      "similar_patterns": [
+        "list-view",
+        "table",
+        "list-view"
+      ],
+      "short_prompt_en": "Create pagination with previous/next buttons and compact page number display.",
+      "short_prompt_ja": "前後ボタンと簡潔なページ番号表示を持つページネーションを作成してください。",
+      "short_impl_note_en": "Preserve filters in URL query params between pages.",
+      "short_impl_note_ja": "ページ移動時も絞り込み条件をURLパラメータで維持します。"
+    },
+    {
+      "id": "P014",
+      "slug": "card",
+      "name_en": "Card",
+      "name_ja": "カード",
+      "aliases_en": [
+        "content card",
+        "tile",
+        "info block"
+      ],
+      "aliases_ja": [
+        "情報カード",
+        "タイル",
+        "カードUI"
+      ],
+      "category": "Content display",
+      "summary_short_en": "Self-contained content unit with title, metadata, and optional actions.",
+      "summary_short_ja": "見出し・補足情報・操作をまとめた独立表示ユニットです。",
+      "best_for_en": "Dashboards, product lists, and article previews.",
+      "best_for_ja": "ダッシュボード、商品一覧、記事プレビューに向いています。",
+      "not_for_en": "Highly comparable data better shown in tables.",
+      "not_for_ja": "厳密比較が必要なデータ表示には不向きです。",
+      "similar_patterns": [
+        "list-view",
+        "grid",
+        "table"
+      ],
+      "short_prompt_en": "Design a reusable card with title, short description, tag, and action button.",
+      "short_prompt_ja": "タイトル・短い説明・タグ・操作ボタンを備えた再利用カードを設計してください。",
+      "short_impl_note_en": "Standardize spacing and keep action area in a consistent position.",
+      "short_impl_note_ja": "余白を統一し、操作エリアの位置を揃えます。"
+    },
+    {
+      "id": "P015",
+      "slug": "modal",
+      "name_en": "Modal",
+      "name_ja": "モーダル",
+      "aliases_en": [
+        "dialog",
+        "popup dialog",
+        "overlay dialog"
+      ],
+      "aliases_ja": [
+        "ダイアログ",
+        "ポップアップ",
+        "オーバーレイ"
+      ],
+      "category": "Support UI",
+      "summary_short_en": "Overlay dialog that forces attention for a focused task or decision.",
+      "summary_short_ja": "背景操作を止めて、特定の作業や確認に集中させる重ね表示です。",
+      "best_for_en": "Confirmation, short forms, and critical warnings.",
+      "best_for_ja": "確認操作、短い入力、重要警告の提示に適しています。",
+      "not_for_en": "Long workflows that deserve a full page.",
+      "not_for_ja": "手順が長い作業を詰め込む用途には不向きです。",
+      "similar_patterns": [
+        "popover",
+        "bottom-sheet",
+        "toast"
+      ],
+      "short_prompt_en": "Create a modal with title, body text, primary and secondary actions.",
+      "short_prompt_ja": "タイトル・本文・主/副アクションを備えたモーダルを作成してください。",
+      "short_impl_note_en": "Trap focus, close on ESC, and restore focus to trigger element.",
+      "short_impl_note_ja": "フォーカスを閉じ込め、Escで閉じ、トリガー要素へフォーカスを戻します。"
+    },
+    {
+      "id": "P016",
+      "slug": "bottom-sheet",
+      "name_en": "Bottom sheet",
+      "name_ja": "ボトムシート",
+      "aliases_en": [
+        "mobile sheet",
+        "bottom panel",
+        "slide-up panel"
+      ],
+      "aliases_ja": [
+        "下部シート",
+        "下から出るパネル",
+        "スライドアップ"
+      ],
+      "category": "Mobile-specific patterns",
+      "summary_short_en": "Mobile-first panel emerging from bottom for actions or contextual details.",
+      "summary_short_ja": "モバイルで下部から表示し、行動選択や詳細確認に使うパネルです。",
+      "best_for_en": "Action menus, filter settings, and lightweight forms on mobile.",
+      "best_for_ja": "モバイルのアクションメニュー、絞り込み設定、軽い入力に最適です。",
+      "not_for_en": "Desktop-heavy workflows needing wide content area.",
+      "not_for_ja": "横幅が必要なPC中心の作業には向きません。",
+      "similar_patterns": [
+        "drawer",
+        "modal",
+        "fab"
+      ],
+      "short_prompt_en": "Build a draggable bottom sheet with snap points and close gesture.",
+      "short_prompt_ja": "ドラッグで段階展開でき、スワイプで閉じられるボトムシートを作成してください。",
+      "short_impl_note_en": "Respect safe-area insets and prevent background scrolling.",
+      "short_impl_note_ja": "セーフエリアを考慮し、表示中は背面スクロールを抑制します。"
+    },
+    {
+      "id": "P017",
+      "slug": "accordion",
+      "name_en": "Accordion",
+      "name_ja": "アコーディオン",
+      "aliases_en": [
+        "expand/collapse",
+        "disclosure list",
+        "folding panel"
+      ],
+      "aliases_ja": [
+        "開閉リスト",
+        "折りたたみ",
+        "展開パネル"
+      ],
+      "category": "Content display",
+      "summary_short_en": "Expandable list that reveals details on demand.",
+      "summary_short_ja": "必要なときだけ詳細を開いて見せる折りたたみ表示です。",
+      "best_for_en": "FAQs, settings groups, and compact long-form content.",
+      "best_for_ja": "FAQ、設定グループ、長文情報の省スペース表示に向いています。",
+      "not_for_en": "Short content where hidden state adds unnecessary clicks.",
+      "not_for_ja": "情報量が少ない場面では操作が増えるだけになります。",
+      "similar_patterns": [
+        "faq",
+        "tabs",
+        "popover"
+      ],
+      "short_prompt_en": "Create an accordion list with one expanded item at a time.",
+      "short_prompt_ja": "同時に1項目のみ展開するアコーディオンを作成してください。",
+      "short_impl_note_en": "Use button semantics and animate height with reduced-motion support.",
+      "short_impl_note_ja": "ボタン要素で実装し、アニメーションは低モーション設定に配慮します。"
+    },
+    {
+      "id": "P018",
+      "slug": "tooltip",
+      "name_en": "Tooltip",
+      "name_ja": "ツールチップ",
+      "aliases_en": [
+        "hover hint",
+        "info tip",
+        "helper bubble"
+      ],
+      "aliases_ja": [
+        "補足ヒント",
+        "説明チップ",
+        "ヘルプ吹き出し"
+      ],
+      "category": "Support UI",
+      "summary_short_en": "Tiny contextual hint shown on hover or focus.",
+      "summary_short_ja": "ホバーやフォーカス時に短い補足を示す小さなヒントです。",
+      "best_for_en": "Icon-only controls and uncommon settings labels.",
+      "best_for_ja": "アイコンのみの操作や分かりにくい項目名の補足に有効です。",
+      "not_for_en": "Important instructions users must always see.",
+      "not_for_ja": "常時見せるべき重要説明の置き場には不向きです。",
+      "similar_patterns": [
+        "popover",
+        "toast",
+        "popover"
+      ],
+      "short_prompt_en": "Add an accessible tooltip for icon buttons with short helper text.",
+      "short_prompt_ja": "アイコンボタン向けに、短い補足文を表示するアクセシブルなツールチップを追加してください。",
+      "short_impl_note_en": "Trigger on focus as well as hover; keep text under one sentence.",
+      "short_impl_note_ja": "ホバーだけでなくフォーカスでも表示し、文は1文以内に収めます。"
+    },
+    {
+      "id": "P019",
+      "slug": "popover",
+      "name_en": "Popover",
+      "name_ja": "ポップオーバー",
+      "aliases_en": [
+        "floating panel",
+        "context popover",
+        "anchored overlay"
+      ],
+      "aliases_ja": [
+        "浮動パネル",
+        "文脈メニュー",
+        "アンカー表示"
+      ],
+      "category": "Support UI",
+      "summary_short_en": "Anchored floating container for richer context than a tooltip.",
+      "summary_short_ja": "ツールチップより情報量を持たせられる、要素起点の浮動パネルです。",
+      "best_for_en": "Quick settings, inline actions, and rich hints.",
+      "best_for_ja": "クイック設定、文脈アクション、補足説明に使いやすいです。",
+      "not_for_en": "Critical blocking confirmations needing modal behavior.",
+      "not_for_ja": "強制確認が必要な場面ではモーダルの方が適切です。",
+      "similar_patterns": [
+        "tooltip",
+        "modal",
+        "select"
+      ],
+      "short_prompt_en": "Create a popover attached to a button with title, text, and action links.",
+      "short_prompt_ja": "ボタンに紐づく、タイトル・説明・操作リンク付きのポップオーバーを作成してください。",
+      "short_impl_note_en": "Handle outside click and viewport collision repositioning.",
+      "short_impl_note_ja": "外側クリックで閉じ、画面端で位置調整できるようにします。"
+    },
+    {
+      "id": "P020",
+      "slug": "toast",
+      "name_en": "Toast",
+      "name_ja": "トースト通知",
+      "aliases_en": [
+        "snackbar",
+        "transient message",
+        "status toast"
+      ],
+      "aliases_ja": [
+        "スナックバー",
+        "一時通知",
+        "完了通知"
+      ],
+      "category": "Feedback / states",
+      "summary_short_en": "Temporary feedback message that does not block user flow.",
+      "summary_short_ja": "操作を止めずに結果だけを短時間伝える軽量通知です。",
+      "best_for_en": "Save success, undo option, and background action updates.",
+      "best_for_ja": "保存完了、取り消し案内、非同期処理の結果通知に向いています。",
+      "not_for_en": "Errors that require immediate user decision.",
+      "not_for_ja": "即時対応が必要な重大エラーには不向きです。",
+      "similar_patterns": [
+        "alert-banner",
+        "modal",
+        "inline-validation"
+      ],
+      "short_prompt_en": "Implement toast notifications with success, warning, and error styles.",
+      "short_prompt_ja": "成功・警告・エラーを表現できるトースト通知を実装してください。",
+      "short_impl_note_en": "Auto-dismiss with pause on hover/focus and keep a11y live region.",
+      "short_impl_note_ja": "自動消去に加え、ホバー/フォーカス時は停止し、live regionで通知します。"
+    },
+    {
+      "id": "P021",
+      "slug": "text-input",
+      "name_en": "Text input",
+      "name_ja": "テキスト入力",
+      "aliases_en": [
+        "single-line input",
+        "text field",
+        "input box"
+      ],
+      "aliases_ja": [
+        "入力欄",
+        "テキストフィールド",
+        "1行入力"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Basic field for short user-entered text such as names or emails.",
+      "summary_short_ja": "氏名やメールなど短い文字を入力する基本フォーム部品です。",
+      "best_for_en": "Login forms, profile fields, and search inputs.",
+      "best_for_ja": "ログイン、プロフィール、検索入力など幅広く使えます。",
+      "not_for_en": "Multi-line comments or constrained option selection.",
+      "not_for_ja": "長文入力や選択式入力には向きません。",
+      "similar_patterns": [
+        "textarea",
+        "combobox",
+        "otp-input"
+      ],
+      "short_prompt_en": "Create labeled text inputs with placeholder, help text, and error state.",
+      "short_prompt_ja": "ラベル・プレースホルダー・補助文・エラー表示を備えたテキスト入力を作成してください。",
+      "short_impl_note_en": "Always keep visible labels and pair errors with aria-describedby.",
+      "short_impl_note_ja": "ラベルは常時表示し、エラー文はaria-describedbyで紐づけます。"
+    },
+    {
+      "id": "P022",
+      "slug": "select",
+      "name_en": "Select",
+      "name_ja": "セレクトボックス",
+      "aliases_en": [
+        "dropdown select",
+        "picker",
+        "option list"
+      ],
+      "aliases_ja": [
+        "プルダウン",
+        "選択ボックス",
+        "候補選択"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Control for choosing one option from a predefined list.",
+      "summary_short_ja": "決まった候補から1つ選ぶための基本選択UIです。",
+      "best_for_en": "Country lists, category pickers, and settings choices.",
+      "best_for_ja": "国選択、カテゴリ指定、設定項目の選択に適しています。",
+      "not_for_en": "Large searchable datasets where combobox is better.",
+      "not_for_ja": "候補が多く検索が必要な場合は不向きです。",
+      "similar_patterns": [
+        "combobox",
+        "radio-button",
+        "segmented-control"
+      ],
+      "short_prompt_en": "Build a select field with placeholder option and validation message.",
+      "short_prompt_ja": "初期案内と検証メッセージを備えたセレクトボックスを作成してください。",
+      "short_impl_note_en": "Prefer native select for accessibility unless custom behavior is required.",
+      "short_impl_note_ja": "特別な要件がなければアクセシビリティ面でネイティブ実装を優先します。"
+    },
+    {
+      "id": "P023",
+      "slug": "combobox",
+      "name_en": "Combobox",
+      "name_ja": "コンボボックス",
+      "aliases_en": [
+        "searchable select",
+        "autocomplete",
+        "typeahead"
+      ],
+      "aliases_ja": [
+        "検索付き選択",
+        "オートコンプリート",
+        "入力候補"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Input-plus-list control that filters options as users type.",
+      "summary_short_ja": "入力しながら候補を絞り込める、入力と選択を兼ねたUIです。",
+      "best_for_en": "Large option sets like tags, cities, and member search.",
+      "best_for_ja": "候補が多いタグ選択、都市選択、ユーザー検索に向いています。",
+      "not_for_en": "Very small fixed lists where simple select is faster.",
+      "not_for_ja": "候補が少ない固定リストでは過剰です。",
+      "similar_patterns": [
+        "select",
+        "text-input",
+        "select"
+      ],
+      "short_prompt_en": "Implement a combobox with async search, keyboard support, and highlighted matches.",
+      "short_prompt_ja": "非同期検索・キーボード操作・一致箇所強調に対応したコンボボックスを実装してください。",
+      "short_impl_note_en": "Announce result counts and maintain active descendant for screen readers.",
+      "short_impl_note_ja": "候補件数を通知し、active descendantで読み上げ対象を管理します。"
+    },
+    {
+      "id": "P024",
+      "slug": "checkbox",
+      "name_en": "Checkbox",
+      "name_ja": "チェックボックス",
+      "aliases_en": [
+        "multi-select checkbox",
+        "tick box",
+        "check field"
+      ],
+      "aliases_ja": [
+        "チェック項目",
+        "複数選択",
+        "同意チェック"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Binary control that can be used alone or as part of multi-select groups.",
+      "summary_short_ja": "単独のON/OFFや複数選択に使える基本選択部品です。",
+      "best_for_en": "Preferences, terms consent, and bulk list actions.",
+      "best_for_ja": "設定選択、規約同意、一覧の一括選択に適しています。",
+      "not_for_en": "Mutually exclusive choices where radio buttons fit better.",
+      "not_for_ja": "排他的な1択にはラジオボタンの方が適切です。",
+      "similar_patterns": [
+        "radio-button",
+        "switch",
+        "checkbox"
+      ],
+      "short_prompt_en": "Create checkbox group with helper text and inline validation.",
+      "short_prompt_ja": "補助説明とインライン検証を備えたチェックボックス群を作成してください。",
+      "short_impl_note_en": "Expand click target via label wrapping and support indeterminate state when needed.",
+      "short_impl_note_ja": "ラベル込みでタップ領域を広げ、必要に応じて中間状態を扱います。"
+    },
+    {
+      "id": "P025",
+      "slug": "radio-button",
+      "name_en": "Radio button",
+      "name_ja": "ラジオボタン",
+      "aliases_en": [
+        "single choice control",
+        "option radio",
+        "exclusive select"
+      ],
+      "aliases_ja": [
+        "単一選択",
+        "ラジオ選択",
+        "1択入力"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Lets users pick exactly one option from a visible set.",
+      "summary_short_ja": "表示された候補から1つだけ選ぶための入力部品です。",
+      "best_for_en": "Plan selection, shipping methods, and mode choices.",
+      "best_for_ja": "配送方法、プラン選択、モード選択で使いやすいです。",
+      "not_for_en": "Long lists where compact select controls are better.",
+      "not_for_ja": "候補が多い場合は一覧が長くなり不向きです。",
+      "similar_patterns": [
+        "select",
+        "segmented-control",
+        "checkbox"
+      ],
+      "short_prompt_en": "Build a radio group with clear default and optional description per option.",
+      "short_prompt_ja": "初期選択が分かり、各選択肢に補足説明を付けられるラジオグループを作成してください。",
+      "short_impl_note_en": "Use fieldset and legend for grouped context.",
+      "short_impl_note_ja": "グループ文脈を伝えるためfieldsetとlegendを使用します。"
+    },
+    {
+      "id": "P026",
+      "slug": "switch",
+      "name_en": "Switch",
+      "name_ja": "スイッチ",
+      "aliases_en": [
+        "toggle switch",
+        "on-off toggle",
+        "setting toggle"
+      ],
+      "aliases_ja": [
+        "トグル",
+        "オンオフ切替",
+        "設定スイッチ"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Instant on/off control for settings that apply immediately.",
+      "summary_short_ja": "設定を即時反映するON/OFF切替に適した部品です。",
+      "best_for_en": "Preferences, notifications, and quick feature toggles.",
+      "best_for_ja": "通知設定、機能有効化、即時設定変更に向いています。",
+      "not_for_en": "Choices that require submit confirmation or multiple states.",
+      "not_for_ja": "送信確定が必要な入力や多段階選択には不向きです。",
+      "similar_patterns": [
+        "checkbox",
+        "segmented-control",
+        "radio-button"
+      ],
+      "short_prompt_en": "Implement a labeled switch component with description and disabled state.",
+      "short_prompt_ja": "ラベル・説明文・無効状態を備えたスイッチコンポーネントを実装してください。",
+      "short_impl_note_en": "Expose checked state to assistive tech and avoid color-only state cues.",
+      "short_impl_note_ja": "状態を支援技術へ伝え、色だけに依存しない表示にします。"
+    },
+    {
+      "id": "P027",
+      "slug": "otp-input",
+      "name_en": "OTP input",
+      "name_ja": "OTP入力",
+      "aliases_en": [
+        "verification code input",
+        "one-time code",
+        "pin entry"
+      ],
+      "aliases_ja": [
+        "認証コード入力",
+        "ワンタイムコード",
+        "PIN入力"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Multi-cell input optimized for short verification codes.",
+      "summary_short_ja": "短い認証コードを入力しやすくする分割入力UIです。",
+      "best_for_en": "2FA login, phone verification, and secure confirmation flows.",
+      "best_for_ja": "二段階認証、電話認証、本人確認フローに適しています。",
+      "not_for_en": "General numeric entry where standard input is sufficient.",
+      "not_for_ja": "通常の数値入力に使うと操作が煩雑になります。",
+      "similar_patterns": [
+        "text-input",
+        "text-input",
+        "step-form"
+      ],
+      "short_prompt_en": "Create a 6-digit OTP input with auto-advance and paste support.",
+      "short_prompt_ja": "6桁の自動移動・貼り付け対応OTP入力を作成してください。",
+      "short_impl_note_en": "Handle backspace navigation and allow full-code paste into first cell.",
+      "short_impl_note_ja": "バックスペース移動と先頭セルへの一括貼り付けをサポートします。"
+    },
+    {
+      "id": "P028",
+      "slug": "empty-state",
+      "name_en": "Empty state",
+      "name_ja": "空状態（Empty state）",
+      "aliases_en": [
+        "no data state",
+        "blank state",
+        "zero state"
+      ],
+      "aliases_ja": [
+        "データなし表示",
+        "空画面",
+        "初期状態"
+      ],
+      "category": "Feedback / states",
+      "summary_short_en": "Guides users when no content exists yet or search returns nothing.",
+      "summary_short_ja": "データ未作成時や検索0件時に、次の行動を案内する状態表示です。",
+      "best_for_en": "New accounts, filtered lists, and first-time workflows.",
+      "best_for_ja": "新規アカウント、絞り込み結果0件、初回利用導線で効果的です。",
+      "not_for_en": "Error conditions that need explicit failure messaging.",
+      "not_for_ja": "通信失敗などのエラー表示と混同する用途には不向きです。",
+      "similar_patterns": [
+        "skeleton-loader",
+        "alert-banner",
+        "step-form"
+      ],
+      "short_prompt_en": "Design an empty state with simple illustration, explanation, and next-step CTA.",
+      "short_prompt_ja": "簡単なイラスト・説明文・次アクションCTAを備えた空状態を設計してください。",
+      "short_impl_note_en": "Use action-oriented wording like 'Create your first project'.",
+      "short_impl_note_ja": "「最初のプロジェクトを作成」のように、行動を促す文言にします。"
+    },
+    {
+      "id": "P029",
+      "slug": "skeleton-loader",
+      "name_en": "Skeleton loader",
+      "name_ja": "スケルトンローダー",
+      "aliases_en": [
+        "content placeholder",
+        "loading skeleton",
+        "ghost UI"
+      ],
+      "aliases_ja": [
+        "プレースホルダー表示",
+        "ローディング骨組み",
+        "ゴーストUI"
+      ],
+      "category": "Feedback / states",
+      "summary_short_en": "Placeholder structure that previews layout while content loads.",
+      "summary_short_ja": "読み込み中に最終レイアウトの形を先に見せる待機表示です。",
+      "best_for_en": "Cards, feeds, and dashboard modules with variable loading time.",
+      "best_for_ja": "カード一覧、フィード、ダッシュボードの読込待機に向いています。",
+      "not_for_en": "Very short load operations where spinner is enough.",
+      "not_for_ja": "待機が短い処理では過剰になる場合があります。",
+      "similar_patterns": [
+        "progress-bar",
+        "loading-spinner",
+        "empty-state"
+      ],
+      "short_prompt_en": "Create skeleton placeholders matching card list layout with shimmer effect.",
+      "short_prompt_ja": "カード一覧の形に合わせた、シマー付きスケルトン表示を作成してください。",
+      "short_impl_note_en": "Match final content dimensions to reduce layout shift.",
+      "short_impl_note_ja": "最終表示と寸法を揃え、レイアウトずれを抑えます。"
+    },
+    {
+      "id": "P030",
+      "slug": "progress-bar",
+      "name_en": "Progress bar",
+      "name_ja": "進捗バー",
+      "aliases_en": [
+        "loading progress",
+        "completion bar",
+        "status bar"
+      ],
+      "aliases_ja": [
+        "進行バー",
+        "完了率表示",
+        "進捗表示"
+      ],
+      "category": "Feedback / states",
+      "summary_short_en": "Visual indicator of task progress toward completion.",
+      "summary_short_ja": "処理の進み具合を割合で伝える進行表示です。",
+      "best_for_en": "Uploads, onboarding steps, and long-running operations.",
+      "best_for_ja": "アップロード、初期設定、長時間処理の進捗案内に適しています。",
+      "not_for_en": "Instant operations where no progress context is needed.",
+      "not_for_ja": "即時完了する処理では不要です。",
+      "similar_patterns": [
+        "skeleton-loader",
+        "step-form",
+        "toast"
+      ],
+      "short_prompt_en": "Add a progress bar with percentage label and success completion state.",
+      "short_prompt_ja": "割合表示と完了状態を持つ進捗バーを追加してください。",
+      "short_impl_note_en": "Expose aria-valuenow and clarify determinate vs indeterminate mode.",
+      "short_impl_note_ja": "aria-valuenowを設定し、確定/不確定進捗を明確に分けます。"
+    },
+    {
+      "id": "P031",
+      "slug": "alert-banner",
+      "name_en": "Alert banner",
+      "name_ja": "アラートバナー",
+      "aliases_en": [
+        "inline alert",
+        "status banner",
+        "notice bar"
+      ],
+      "aliases_ja": [
+        "通知バナー",
+        "警告表示",
+        "お知らせバー"
+      ],
+      "category": "Feedback / states",
+      "summary_short_en": "Prominent inline message for important status or warnings.",
+      "summary_short_ja": "重要な状態変化や注意喚起を目立たせる横幅メッセージです。",
+      "best_for_en": "System incidents, billing notices, and migration reminders.",
+      "best_for_ja": "障害告知、請求通知、移行案内など重要連絡に適しています。",
+      "not_for_en": "Minor feedback better suited to toast notifications.",
+      "not_for_ja": "軽微な完了通知には大きすぎる場合があります。",
+      "similar_patterns": [
+        "toast",
+        "modal",
+        "faq"
+      ],
+      "short_prompt_en": "Create an alert banner with severity icon, concise message, and action link.",
+      "short_prompt_ja": "重要度アイコン・短文メッセージ・対応リンクを備えたアラートバナーを作成してください。",
+      "short_impl_note_en": "Use distinct styles for info, warning, and error.",
+      "short_impl_note_ja": "情報・警告・エラーで視覚スタイルを明確に分けます。"
+    },
+    {
+      "id": "P032",
+      "slug": "grid",
+      "name_en": "Grid",
+      "name_ja": "グリッドレイアウト",
+      "aliases_en": [
+        "card grid",
+        "tile layout",
+        "multi-column layout"
+      ],
+      "aliases_ja": [
+        "タイル配置",
+        "複数列レイアウト",
+        "グリッド表示"
+      ],
+      "category": "Layout",
+      "summary_short_en": "Two-dimensional layout system for consistent item alignment.",
+      "summary_short_ja": "複数要素を整列しやすくする2次元レイアウト方式です。",
+      "best_for_en": "Card catalogs, galleries, and dashboard widgets.",
+      "best_for_ja": "カード一覧、ギャラリー、ダッシュボード配置に向いています。",
+      "not_for_en": "Strictly sequential content that reads top to bottom.",
+      "not_for_ja": "時系列や文章中心で縦読みが基本の内容には不向きです。",
+      "similar_patterns": [
+        "card",
+        "list-view",
+        "grid"
+      ],
+      "short_prompt_en": "Build a responsive CSS grid with 1, 2, and 4-column breakpoints.",
+      "short_prompt_ja": "1列・2列・4列に切替わるレスポンシブCSSグリッドを作ってください。",
+      "short_impl_note_en": "Use minmax for flexible tracks and equal gaps.",
+      "short_impl_note_ja": "minmaxを使って柔軟な列幅と均等なギャップを保ちます。"
+    },
+    {
+      "id": "P033",
+      "slug": "sticky-sidebar",
+      "name_en": "Sticky sidebar",
+      "name_ja": "固定サイドバー",
+      "aliases_en": [
+        "pinned sidebar",
+        "sticky panel",
+        "fixed side rail"
+      ],
+      "aliases_ja": [
+        "追従サイドバー",
+        "固定パネル",
+        "サイド固定"
+      ],
+      "category": "Layout",
+      "summary_short_en": "Sidebar that stays visible while main content scrolls.",
+      "summary_short_ja": "本文をスクロールしても視界に残る追従型サイドバーです。",
+      "best_for_en": "Filter-heavy catalogs, docs TOCs, and checkout summaries.",
+      "best_for_ja": "絞り込み一覧、ドキュメント目次、購入サマリーに向いています。",
+      "not_for_en": "Short pages where sticky behavior offers no value.",
+      "not_for_ja": "ページが短い場合は効果が薄いです。",
+      "similar_patterns": [
+        "sidebar",
+        "sticky-bottom-cta",
+        "split-view"
+      ],
+      "short_prompt_en": "Add a sticky sidebar containing filters and quick jump links.",
+      "short_prompt_ja": "フィルタとジャンプリンクを持つ固定サイドバーを追加してください。",
+      "short_impl_note_en": "Set top offset for header height and prevent overflow clipping.",
+      "short_impl_note_ja": "ヘッダー分の上余白を確保し、はみ出し時の表示崩れを防ぎます。"
+    },
+    {
+      "id": "P034",
+      "slug": "fab",
+      "name_en": "FAB",
+      "name_ja": "FAB（浮動アクションボタン）",
+      "aliases_en": [
+        "floating action button",
+        "primary floating button",
+        "quick add button"
+      ],
+      "aliases_ja": [
+        "浮動ボタン",
+        "クイック追加ボタン",
+        "フローティングCTA"
+      ],
+      "category": "Mobile-specific patterns",
+      "summary_short_en": "Floating button for high-priority, frequent actions on mobile.",
+      "summary_short_ja": "モバイルで頻繁に使う主要操作をすぐ実行できる浮動ボタンです。",
+      "best_for_en": "Create/add actions in lists, messages, and task apps.",
+      "best_for_ja": "一覧画面での新規作成や追加操作に適しています。",
+      "not_for_en": "Screens already crowded with persistent bottom actions.",
+      "not_for_ja": "下部固定操作が多い画面では干渉しやすく不向きです。",
+      "similar_patterns": [
+        "sticky-bottom-cta",
+        "bottom-sheet",
+        "toast"
+      ],
+      "short_prompt_en": "Implement a mobile FAB with icon, optional label, and elevation shadow.",
+      "short_prompt_ja": "アイコン・任意ラベル・浮き上がり表現を持つモバイルFABを実装してください。",
+      "short_impl_note_en": "Avoid overlap with bottom nav and support safe-area spacing.",
+      "short_impl_note_ja": "下部ナビと重ならない位置にし、セーフエリア分を確保します。"
+    },
+    {
+      "id": "P035",
+      "slug": "carousel",
+      "name_en": "Carousel",
+      "name_ja": "カルーセル",
+      "aliases_en": [
+        "slider",
+        "content rotator",
+        "image carousel"
+      ],
+      "aliases_ja": [
+        "スライダー",
+        "横スワイプ表示",
+        "回転表示"
+      ],
+      "category": "Content display",
+      "summary_short_en": "Horizontally browsable sequence of items in limited space.",
+      "summary_short_ja": "限られた領域で項目を横方向に切り替えて見せる表示です。",
+      "best_for_en": "Featured items, media galleries, and testimonial highlights.",
+      "best_for_ja": "注目項目、画像ギャラリー、事例紹介に向いています。",
+      "not_for_en": "Critical information users may miss if hidden in slides.",
+      "not_for_ja": "必読情報を入れると見落とされやすく不向きです。",
+      "similar_patterns": [
+        "grid",
+        "tabs",
+        "timeline"
+      ],
+      "short_prompt_en": "Create a swipe-enabled carousel with visible next item peek and dot indicators.",
+      "short_prompt_ja": "スワイプ対応で次項目が少し見える、ドット付きカルーセルを作成してください。",
+      "short_impl_note_en": "Provide keyboard controls and pause autoplay on interaction.",
+      "short_impl_note_ja": "キーボード操作を用意し、操作時は自動再生を停止します。"
+    },
+    {
+      "id": "P036",
+      "slug": "timeline",
+      "name_en": "Timeline",
+      "name_ja": "タイムライン",
+      "aliases_en": [
+        "chronological list",
+        "event timeline",
+        "history view"
+      ],
+      "aliases_ja": [
+        "時系列表示",
+        "履歴ライン",
+        "出来事一覧"
+      ],
+      "category": "Data display",
+      "summary_short_en": "Ordered view of events over time with clear sequence cues.",
+      "summary_short_ja": "出来事を時系列で並べ、順序を理解しやすくする表示です。",
+      "best_for_en": "Project history, shipment tracking, and changelogs.",
+      "best_for_ja": "進捗履歴、配送追跡、更新履歴の表示に適しています。",
+      "not_for_en": "Data without time-based meaning.",
+      "not_for_ja": "時間順の意味がないデータには不向きです。",
+      "similar_patterns": [
+        "list-view",
+        "table",
+        "progress-bar"
+      ],
+      "short_prompt_en": "Build a vertical timeline with date labels, status tags, and event details.",
+      "short_prompt_ja": "日付ラベル・状態タグ・詳細文を持つ縦型タイムラインを作成してください。",
+      "short_impl_note_en": "Use semantic list markup and emphasize current step.",
+      "short_impl_note_ja": "リスト構造で実装し、現在位置を強調表示します。"
+    },
+    {
+      "id": "P037",
+      "slug": "table",
+      "name_en": "Table",
+      "name_ja": "テーブル",
+      "aliases_en": [
+        "data table",
+        "tabular view",
+        "rows and columns"
+      ],
+      "aliases_ja": [
+        "表形式",
+        "データ表",
+        "行列表示"
+      ],
+      "category": "Data display",
+      "summary_short_en": "Structured row-column display for precise data comparison.",
+      "summary_short_ja": "行と列で情報を揃え、正確な比較をしやすくする表示です。",
+      "best_for_en": "Admin data, reports, and sortable records.",
+      "best_for_ja": "管理データ、レポート、並べ替えが必要な記録表示に向いています。",
+      "not_for_en": "Small-screen-first experiences without responsive strategy.",
+      "not_for_ja": "モバイル対応方針なしでは閲覧性が落ちやすいです。",
+      "similar_patterns": [
+        "list-view",
+        "pricing-table",
+        "grid"
+      ],
+      "short_prompt_en": "Create a responsive table with sticky header and sortable columns.",
+      "short_prompt_ja": "ヘッダー固定と列ソートに対応したレスポンシブテーブルを作成してください。",
+      "short_impl_note_en": "Use proper table semantics and include row hover/focus states.",
+      "short_impl_note_ja": "適切なtable要素を使い、行のホバー/フォーカス状態を用意します。"
+    },
+    {
+      "id": "P038",
+      "slug": "list-view",
+      "name_en": "List view",
+      "name_ja": "リスト表示",
+      "aliases_en": [
+        "vertical list",
+        "feed list",
+        "row list"
+      ],
+      "aliases_ja": [
+        "縦リスト",
+        "一覧表示",
+        "行表示"
+      ],
+      "category": "Content display",
+      "summary_short_en": "Linear display optimized for scanning many similar items quickly.",
+      "summary_short_ja": "似た項目を縦に並べ、素早く見比べるための表示方式です。",
+      "best_for_en": "Email inboxes, tasks, search results, and logs.",
+      "best_for_ja": "メール一覧、タスク、検索結果、ログ表示に適しています。",
+      "not_for_en": "Visual-heavy showcases where grid gives better impact.",
+      "not_for_ja": "ビジュアル重視の見せ方にはグリッドの方が適しています。",
+      "similar_patterns": [
+        "table",
+        "card",
+        "timeline"
+      ],
+      "short_prompt_en": "Design a list view item with title, metadata, status, and inline actions.",
+      "short_prompt_ja": "タイトル・補足情報・状態・行内操作を備えたリスト項目を設計してください。",
+      "short_impl_note_en": "Keep row height predictable and separate primary vs secondary actions.",
+      "short_impl_note_ja": "行の高さを一定に保ち、主操作と補助操作を分離します。"
+    },
+    {
+      "id": "P039",
+      "slug": "split-view",
+      "name_en": "Split view",
+      "name_ja": "分割ビュー",
+      "aliases_en": [
+        "master-detail",
+        "dual pane",
+        "two-panel layout"
+      ],
+      "aliases_ja": [
+        "2ペイン",
+        "マスター詳細",
+        "左右分割"
+      ],
+      "category": "Layout",
+      "summary_short_en": "Two-pane layout showing list/navigation and details simultaneously.",
+      "summary_short_ja": "一覧と詳細を同時表示し、行き来を減らす2分割レイアウトです。",
+      "best_for_en": "Mail clients, file browsers, and compare-heavy dashboards.",
+      "best_for_ja": "メールUI、ファイル管理、比較重視の画面に向いています。",
+      "not_for_en": "Small screens unless adaptive collapse behavior exists.",
+      "not_for_ja": "小画面では折りたたみ設計がないと使いにくくなります。",
+      "similar_patterns": [
+        "sidebar",
+        "tabs",
+        "sticky-sidebar"
+      ],
+      "short_prompt_en": "Build a split view with resizable panes and mobile fallback to stacked view.",
+      "short_prompt_ja": "可変幅ペインとモバイル時の縦積み切替を備えた分割ビューを作成してください。",
+      "short_impl_note_en": "Persist pane width preferences and manage focus between panes.",
+      "short_impl_note_ja": "ペイン幅設定を保持し、ペイン間のフォーカス遷移を整えます。"
+    },
+    {
+      "id": "P040",
+      "slug": "sticky-bottom-cta",
+      "name_en": "Sticky bottom CTA",
+      "name_ja": "下部固定CTA",
+      "aliases_en": [
+        "fixed bottom action",
+        "sticky action bar",
+        "bottom conversion bar"
+      ],
+      "aliases_ja": [
+        "固定アクションバー",
+        "下部追従CTA",
+        "ボトムCTA"
+      ],
+      "category": "Mobile-specific patterns",
+      "summary_short_en": "Bottom-fixed action area that stays accessible during scrolling.",
+      "summary_short_ja": "スクロール中でも主要操作をすぐ押せる下部固定導線です。",
+      "best_for_en": "Checkout, reservation, and mobile signup flows.",
+      "best_for_ja": "購入、予約、モバイル登録導線で特に有効です。",
+      "not_for_en": "Screens with heavy bottom navigation or keyboard overlap risk.",
+      "not_for_ja": "下部UIが多い画面では干渉しやすく注意が必要です。",
+      "similar_patterns": [
+        "cta-section",
+        "fab",
+        "sticky-sidebar"
+      ],
+      "short_prompt_en": "Create a sticky bottom CTA bar with price summary and primary button.",
+      "short_prompt_ja": "価格要約と主ボタンを備えた下部固定CTAバーを作成してください。",
+      "short_impl_note_en": "Reserve bottom padding for content and adapt when virtual keyboard opens.",
+      "short_impl_note_ja": "本文が隠れない下余白を確保し、キーボード表示時の位置調整を行います。"
+    },
+    {
+      "id": "P041",
+      "slug": "textarea",
+      "name_en": "Textarea",
+      "name_ja": "テキストエリア",
+      "aliases_en": [
+        "multi-line input",
+        "long text field",
+        "comment box"
+      ],
+      "aliases_ja": [
+        "複数行入力",
+        "長文入力欄",
+        "コメント欄"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Input field for paragraphs, feedback, and descriptive user text.",
+      "summary_short_ja": "説明文やコメントなど、複数行の入力に使うフォーム部品です。",
+      "best_for_en": "Support forms, issue reports, and profile bios.",
+      "best_for_ja": "問い合わせ、障害報告、プロフィール記述に向いています。",
+      "not_for_en": "Structured short values like phone numbers or ZIP codes.",
+      "not_for_ja": "電話番号など短い定型入力には不向きです。",
+      "similar_patterns": [
+        "text-input",
+        "inline-validation",
+        "step-form"
+      ],
+      "short_prompt_en": "Create an auto-resizing textarea with character counter and validation hint.",
+      "short_prompt_ja": "自動拡張・文字数カウンタ・検証ヒント付きのテキストエリアを作成してください。",
+      "short_impl_note_en": "Set max length guidance and keep helper text visible before errors occur.",
+      "short_impl_note_ja": "最大文字数の目安を示し、エラー前から補助説明を見せます。"
+    },
+    {
+      "id": "P042",
+      "slug": "step-form",
+      "name_en": "Step form",
+      "name_ja": "ステップフォーム",
+      "aliases_en": [
+        "multi-step form",
+        "wizard form",
+        "progressive form"
+      ],
+      "aliases_ja": [
+        "段階入力フォーム",
+        "ウィザード形式",
+        "ステップ入力"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Breaks long forms into manageable steps to reduce drop-off.",
+      "summary_short_ja": "長い入力を段階化して離脱を減らすフォーム構成です。",
+      "best_for_en": "Onboarding, checkout, and loan/application flows.",
+      "best_for_ja": "会員登録、購入手続き、申込フローに適しています。",
+      "not_for_en": "Very short forms with only a few required fields.",
+      "not_for_ja": "入力項目が少ないフォームには過剰です。",
+      "similar_patterns": [
+        "progress-bar",
+        "otp-input",
+        "accordion"
+      ],
+      "short_prompt_en": "Build a 3-step form with progress indicator and back/next controls.",
+      "short_prompt_ja": "進捗表示と前へ/次へ操作を持つ3ステップフォームを作成してください。",
+      "short_impl_note_en": "Validate each step before advancing and preserve entered values.",
+      "short_impl_note_ja": "各ステップで検証し、戻っても入力値を保持します。"
+    },
+    {
+      "id": "P043",
+      "slug": "date-picker",
+      "name_en": "Date picker",
+      "name_ja": "日付ピッカー",
+      "aliases_en": [
+        "calendar picker",
+        "date selector",
+        "calendar input"
+      ],
+      "aliases_ja": [
+        "日付選択",
+        "カレンダー入力",
+        "日程ピッカー"
+      ],
+      "category": "Forms",
+      "summary_short_en": "Calendar-based input that prevents date format mistakes.",
+      "summary_short_ja": "日付形式の入力ミスを減らせるカレンダー選択UIです。",
+      "best_for_en": "Booking forms, reports, and scheduling workflows.",
+      "best_for_ja": "予約、レポート期間指定、スケジュール入力に適しています。",
+      "not_for_en": "Rough time estimates where month-only input is enough.",
+      "not_for_ja": "月単位の概算入力など精密日付が不要な場面では不向きです。",
+      "similar_patterns": [
+        "text-input",
+        "step-form",
+        "segmented-control"
+      ],
+      "short_prompt_en": "Create a date picker with keyboard navigation and disabled unavailable dates.",
+      "short_prompt_ja": "キーボード操作対応で、選択不可日を無効化した日付ピッカーを作成してください。",
+      "short_impl_note_en": "Support locale date formatting and clear timezone assumptions.",
+      "short_impl_note_ja": "ロケール表記に対応し、タイムゾーン前提を明示します。"
+    },
+    {
+      "id": "P044",
+      "slug": "contact-section",
+      "name_en": "Contact section",
+      "name_ja": "問い合わせセクション",
+      "aliases_en": [
+        "contact block",
+        "support contact",
+        "reach us section"
+      ],
+      "aliases_ja": [
+        "お問い合わせ枠",
+        "連絡先セクション",
+        "相談導線"
+      ],
+      "category": "Page structure",
+      "summary_short_en": "Dedicated page block that helps users ask questions or request support.",
+      "summary_short_ja": "質問や相談につなげるための連絡導線をまとめたセクションです。",
+      "best_for_en": "Service sites, agencies, and B2B lead generation pages.",
+      "best_for_ja": "サービスサイト、受託系サイト、B2Bリード獲得ページで有効です。",
+      "not_for_en": "Apps that rely only on in-product ticket systems.",
+      "not_for_ja": "アプリ内問い合わせのみで完結する設計には不要です。",
+      "similar_patterns": [
+        "cta-section",
+        "faq",
+        "footer"
+      ],
+      "short_prompt_en": "Design a contact section with simple form, response expectation, and fallback email.",
+      "short_prompt_ja": "簡易フォーム・返信目安・代替連絡先を含む問い合わせセクションを設計してください。",
+      "short_impl_note_en": "Set clear response SLA text and anti-spam validation.",
+      "short_impl_note_ja": "返信目安を明記し、スパム対策の検証を入れます。"
+    },
+    {
+      "id": "P045",
+      "slug": "comparison-table",
+      "name_en": "Comparison table",
+      "name_ja": "比較表",
+      "aliases_en": [
+        "feature comparison",
+        "side-by-side table",
+        "options matrix"
+      ],
+      "aliases_ja": [
+        "機能比較表",
+        "横並び比較",
+        "比較マトリクス"
+      ],
+      "category": "Data display",
+      "summary_short_en": "Matrix that highlights differences between options or products.",
+      "summary_short_ja": "選択肢間の違いを明確に示す比較マトリクスです。",
+      "best_for_en": "Plan selection, tool evaluations, and vendor comparisons.",
+      "best_for_ja": "プラン選定、ツール評価、ベンダー比較に向いています。",
+      "not_for_en": "Single-option products where no comparison is needed.",
+      "not_for_ja": "比較対象がない単一商品には不要です。",
+      "similar_patterns": [
+        "pricing-table",
+        "table",
+        "card"
+      ],
+      "short_prompt_en": "Create a comparison table with sticky first column and highlighted recommended option.",
+      "short_prompt_ja": "先頭列固定と推奨項目強調を備えた比較表を作成してください。",
+      "short_impl_note_en": "Use concise yes/no icons and provide text labels for accessibility.",
+      "short_impl_note_ja": "可否アイコンだけでなく、読み上げ用テキストも併記します。"
+    },
+    {
+      "id": "P046",
+      "slug": "testimonial",
+      "name_en": "Testimonial",
+      "name_ja": "導入事例・口コミ",
+      "aliases_en": [
+        "social proof quote",
+        "customer voice",
+        "review snippet"
+      ],
+      "aliases_ja": [
+        "お客様の声",
+        "レビュー引用",
+        "実績コメント"
+      ],
+      "category": "Page structure",
+      "summary_short_en": "Social proof block using real customer outcomes and quotes.",
+      "summary_short_ja": "実利用者の声や成果で信頼性を補強する証拠セクションです。",
+      "best_for_en": "Landing pages, SaaS marketing, and consultant service pages.",
+      "best_for_ja": "LP、SaaS紹介、コンサル系サービス紹介で効果的です。",
+      "not_for_en": "Products without verifiable customer evidence.",
+      "not_for_ja": "裏付けできる実績がない場合は逆効果になり得ます。",
+      "similar_patterns": [
+        "feature-section",
+        "hero",
+        "cta-section"
+      ],
+      "short_prompt_en": "Build a testimonial section with customer quote, role, and measurable result.",
+      "short_prompt_ja": "コメント、肩書き、数値成果を含む導入事例セクションを作成してください。",
+      "short_impl_note_en": "Prefer specific outcomes over generic praise.",
+      "short_impl_note_ja": "抽象的な賛辞より、具体的な成果指標を優先します。"
+    },
+    {
+      "id": "P047",
+      "slug": "footer",
+      "name_en": "Footer",
+      "name_ja": "フッター",
+      "aliases_en": [
+        "site footer",
+        "bottom links",
+        "legal footer"
+      ],
+      "aliases_ja": [
+        "ページ下部",
+        "下部リンク",
+        "法務フッター"
+      ],
+      "category": "Page structure",
+      "summary_short_en": "Bottom section for utility links, legal info, and secondary navigation.",
+      "summary_short_ja": "補助リンク、法務情報、補助導線をまとめるページ下部領域です。",
+      "best_for_en": "Most websites and tools requiring policy and support links.",
+      "best_for_ja": "規約やサポート導線が必要なほぼ全てのWebページに有効です。",
+      "not_for_en": "Ultra-minimal single-task interfaces with no additional destinations.",
+      "not_for_ja": "遷移先がほぼない単機能画面では冗長になりやすいです。",
+      "similar_patterns": [
+        "navbar",
+        "contact-section",
+        "faq"
+      ],
+      "short_prompt_en": "Create a compact footer with legal links, contact, and secondary navigation groups.",
+      "short_prompt_ja": "法務リンク・連絡先・補助ナビをまとめた簡潔なフッターを作成してください。",
+      "short_impl_note_en": "Keep contrast high and avoid overloading with primary CTAs.",
+      "short_impl_note_ja": "可読コントラストを確保し、主CTAを詰め込みすぎないようにします。"
+    },
+    {
+      "id": "P048",
+      "slug": "tab-bar",
+      "name_en": "Tab bar",
+      "name_ja": "タブバー",
+      "aliases_en": [
+        "bottom nav bar",
+        "mobile tab navigation",
+        "app tab bar"
+      ],
+      "aliases_ja": [
+        "下部タブナビ",
+        "モバイルタブ",
+        "アプリタブバー"
+      ],
+      "category": "Mobile-specific patterns",
+      "summary_short_en": "Persistent bottom navigation for primary mobile app destinations.",
+      "summary_short_ja": "モバイルアプリの主要遷移先を固定表示する下部ナビです。",
+      "best_for_en": "Apps with 3-5 top-level destinations used repeatedly.",
+      "best_for_ja": "主要機能が3〜5個程度のモバイルアプリに最適です。",
+      "not_for_en": "Deep hierarchical sites needing many nested links.",
+      "not_for_ja": "階層が深く遷移先が多い構造には不向きです。",
+      "similar_patterns": [
+        "navbar",
+        "hamburger-menu",
+        "fab"
+      ],
+      "short_prompt_en": "Design a mobile tab bar with 4 items, active icon state, and labels.",
+      "short_prompt_ja": "4項目・アクティブ状態・ラベル付きのモバイルタブバーを設計してください。",
+      "short_impl_note_en": "Keep labels short and reserve center slot if FAB overlaps.",
+      "short_impl_note_ja": "ラベルは短くし、FAB併用時は中央スロット設計を調整します。"
+    },
+    {
+      "id": "P049",
+      "slug": "loading-spinner",
+      "name_en": "Loading spinner",
+      "name_ja": "ローディングスピナー",
+      "aliases_en": [
+        "busy indicator",
+        "loading wheel",
+        "spinner"
+      ],
+      "aliases_ja": [
+        "読み込み中表示",
+        "くるくる表示",
+        "スピナー"
+      ],
+      "category": "Feedback / states",
+      "summary_short_en": "Simple activity indicator when duration is unknown.",
+      "summary_short_ja": "処理時間が読めない場面で使う簡易アクティビティ表示です。",
+      "best_for_en": "Short async actions and compact inline loading states.",
+      "best_for_ja": "短時間の非同期処理や小さな読み込み表示に適しています。",
+      "not_for_en": "Long waits where progress percentage should be shown.",
+      "not_for_ja": "長時間待機で進捗率を示すべき場面には不向きです。",
+      "similar_patterns": [
+        "skeleton-loader",
+        "progress-bar",
+        "empty-state"
+      ],
+      "short_prompt_en": "Add an inline loading spinner with accessible status text.",
+      "short_prompt_ja": "アクセシブルな状態文を備えたインラインスピナーを追加してください。",
+      "short_impl_note_en": "Pair animation with text for screen readers and reduced-motion users.",
+      "short_impl_note_ja": "読み上げ向け文言を併記し、低モーション環境にも配慮します。"
+    },
+    {
+      "id": "P050",
+      "slug": "inline-validation",
+      "name_en": "Inline validation",
+      "name_ja": "インラインバリデーション",
+      "aliases_en": [
+        "field-level validation",
+        "real-time form feedback",
+        "input validation hint"
+      ],
+      "aliases_ja": [
+        "入力時検証",
+        "項目単位エラー表示",
+        "リアルタイム検証"
+      ],
+      "category": "Feedback / states",
+      "summary_short_en": "Immediate field feedback that helps users fix input before submit.",
+      "summary_short_ja": "送信前に入力ミスを修正できる、項目単位の即時フィードバックです。",
+      "best_for_en": "Signup, payment forms, and high-error input fields.",
+      "best_for_ja": "会員登録、決済フォーム、入力ミスが起きやすい項目で有効です。",
+      "not_for_en": "Fields validated only server-side after final submission.",
+      "not_for_ja": "送信後にしか判定できない項目では効果が限定的です。",
+      "similar_patterns": [
+        "text-input",
+        "alert-banner",
+        "toast"
+      ],
+      "short_prompt_en": "Implement inline validation with clear success/error messages per field.",
+      "short_prompt_ja": "項目ごとに成功/エラーを分かりやすく表示するインライン検証を実装してください。",
+      "short_impl_note_en": "Delay validation until blur or meaningful input length.",
+      "short_impl_note_ja": "入力直後に過剰反応せず、blur時や一定文字数で判定します。"
+    }
+  ]
+}
