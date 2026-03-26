@@ -32,16 +32,24 @@
     statTotal: $('statTotal'), statCompare: $('statCompare'), statFav: $('statFav'), resetFiltersBtn: $('resetFiltersBtn'), resultCount: $('resultCount'),
     topicScroller: $('topicScroller'), grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detailCategoryTag'), detailUseTag: $('detailUseTag'),
     detailTitle: $('detailTitle'), detailSub: $('detailSub'), favoriteBtn: $('favoriteBtn'), addCompareBtn: $('addCompareBtn'), detailPlain: $('detailPlain'),
-    detailFacts: $('detailFacts'), detailBreakdown: $('detailBreakdown'), detailBad: $('detailBad'), detailGood: $('detailGood'), promptModes: $('promptModes'),
+    detailFacts: $('detailFacts'), detailBreakdown: $('detailBreakdown'), detailBad: $('detailBad'), detailGood: $('detailGood'), detailWhyBetter: $('detailWhyBetter'), promptModes: $('promptModes'),
     promptBox: $('promptBox'), copyPromptBtn: $('copyPromptBtn'), detailRelated: $('detailRelated'), clearCompareBtn: $('clearCompareBtn'),
-    compareList: $('compareList'), compareEmpty: $('compareEmpty'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast')
+    compareList: $('compareList'), compareEmpty: $('compareEmpty'), compareInsight: $('compareInsight'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast')
   };
 
   if (!els.grid) return;
 
   const uiText = lang === 'ja'
-    ? { results: '件表示', noResults: '条件に一致する語がありません。', addCompare: '比較に追加', compared: '比較中', favorite: 'お気に入り', favorited: 'お気に入り済み', favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', compareLimit: '無料版は2語まで比較できます。' }
-    : { results: 'results', noResults: 'No terms match current filters.', addCompare: 'Add compare', compared: 'In compare', favorite: 'Favorite', favorited: 'Favorited', favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', compareLimit: 'Free version supports up to 2 compare terms.' };
+    ? {
+      results: '件表示', noResults: '条件に一致する語がありません。', addCompare: '比較に追加', compared: '比較中', favorite: 'お気に入り', favorited: 'お気に入り済み',
+      favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', compareLimit: '無料版は2語まで比較できます。',
+      details: '詳細', open: '開く', compareHint: '2語を選ぶと、違い・使い分け・実務性の比較が表示されます。'
+    }
+    : {
+      results: 'results', noResults: 'No terms match current filters.', addCompare: 'Add compare', compared: 'In compare', favorite: 'Favorite', favorited: 'Favorited',
+      favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', compareLimit: 'Free version supports up to 2 compare terms.',
+      details: 'Details', open: 'Open', compareHint: 'Select 2 terms to see difference, when-to-use guidance, and practicality comparison.'
+    };
 
   function readArray(key) {
     try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; }
@@ -51,6 +59,10 @@
   }
   function localized(value) {
     return value?.[lang] ?? value?.en ?? '';
+  }
+  function localizedArray(value) {
+    const v = localized(value);
+    return Array.isArray(v) ? v : [];
   }
   function byId(id) {
     return terms.find((t) => t.id === id);
@@ -67,13 +79,37 @@
     writeArray('nw-vl-recent', state.recent);
   }
 
+  function normalize(text) {
+    return String(text || '').toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  function termSearchCorpus(term) {
+    const parts = [
+      localized(term.term),
+      ...localizedArray(term.aliases),
+      ...localizedArray(term.searchPhrases),
+      localized(term.category),
+      localized(term.termType),
+      localized(term.useCase),
+      localized(term.beginner),
+      localized(term.practicalIntent),
+      localized(term.practicalUseCase),
+      localized(term.plainExplanation),
+      localized(term.commonMisuse),
+      ...localizedArray(term.vagueToPractical),
+      localized(term.badRequest),
+      localized(term.betterRequest),
+      localized(term.badBetterWhy)
+    ];
+    return normalize(parts.join(' | '));
+  }
+
   function filteredTerms() {
-    const q = state.query.trim().toLowerCase();
+    const q = normalize(state.query);
+    const qTokens = q.split(' ').filter(Boolean);
     return terms.filter((t) => {
-      const name = localized(t.term).toLowerCase();
-      const aliases = (localized(t.aliases) || []).join(' ').toLowerCase();
-      const summary = localized(t.plainExplanation).toLowerCase();
-      const matchQ = !q || name.includes(q) || aliases.includes(q) || summary.includes(q);
+      const corpus = termSearchCorpus(t);
+      const matchQ = !q || qTokens.every((token) => corpus.includes(token));
       const matchCategory = !state.category || localized(t.category) === state.category;
       const matchUse = !state.useCase || localized(t.useCase) === state.useCase;
       const matchType = !state.termType || localized(t.termType) === state.termType;
@@ -108,12 +144,12 @@
       const compareActive = state.compare.includes(term.id);
       card.innerHTML = `
         <div class="card-head">
-          <div><h3 class="card-title">${localized(term.term)}</h3><p class="card-sub">${(localized(term.aliases) || []).join(' / ')}</p></div>
+          <div><h3 class="card-title">${localized(term.term)}</h3><p class="card-sub">${localizedArray(term.aliases).slice(0, 3).join(' / ')}</p></div>
         </div>
         <div class="card-tags"><span class="tag accent">${localized(term.termType)}</span><span class="tag">${localized(term.category)}</span><span class="tag success">${localized(term.useCase)}</span></div>
         <p class="card-copy">${localized(term.beginner)}</p>
-        <div class="decompose-list">${localized(term.vagueToPractical).slice(0, 2).map((x) => `<div class="decompose-item">${x}</div>`).join('')}</div>
-        <div class="card-actions"><button class="btn" data-select="${term.id}">Details</button><button class="btn" data-compare="${term.id}">${compareActive ? uiText.compared : uiText.addCompare}</button></div>
+        <div class="decompose-list">${localizedArray(term.vagueToPractical).slice(0, 2).map((x) => `<div class="decompose-item">${x}</div>`).join('')}</div>
+        <div class="card-actions"><button class="btn" data-select="${term.id}">${uiText.details}</button><button class="btn" data-compare="${term.id}">${compareActive ? uiText.compared : uiText.addCompare}</button></div>
       `;
       els.grid.appendChild(card);
     });
@@ -128,10 +164,11 @@
     els.detailCategoryTag.textContent = localized(term.category);
     els.detailUseTag.textContent = localized(term.useCase);
     els.detailTitle.textContent = localized(term.term);
-    els.detailSub.textContent = `${(localized(term.aliases) || []).join(' / ')} · ${localized(term.termType)}`;
+    els.detailSub.textContent = `${localizedArray(term.aliases).join(' / ')} · ${localized(term.termType)}`;
     els.detailPlain.textContent = localized(term.plainExplanation);
     els.detailBad.textContent = localized(term.badRequest);
     els.detailGood.textContent = localized(term.betterRequest);
+    if (els.detailWhyBetter) els.detailWhyBetter.textContent = localized(term.badBetterWhy);
     els.favoriteBtn.textContent = state.favorites.includes(term.id) ? uiText.favorited : uiText.favorite;
     els.addCompareBtn.textContent = state.compare.includes(term.id) ? uiText.compared : uiText.addCompare;
 
@@ -142,7 +179,7 @@
       [lang === 'ja' ? 'よくある誤用' : 'Common misuse', localized(term.commonMisuse)]
     ].map(([k, v]) => `<div class="fact-row">${k}<strong>${v}</strong></div>`).join('');
 
-    els.detailBreakdown.innerHTML = localized(term.vagueToPractical).map((x) => `<div class="decompose-item">${x}</div>`).join('');
+    els.detailBreakdown.innerHTML = localizedArray(term.vagueToPractical).map((x) => `<div class="decompose-item">${x}</div>`).join('');
 
     const modes = Object.keys(term.shortPrompt[lang] || {});
     if (!modes.includes(state.promptMode)) state.promptMode = modes[0] || 'ui';
@@ -154,6 +191,16 @@
       if (!rel) return '';
       return `<button class="chip" type="button" data-related="${rel.id}">${localized(rel.term)}</button>`;
     }).join('');
+  }
+
+  function pairInsight(a, b) {
+    const guide = a.compareGuides?.[b.id]?.[lang] || b.compareGuides?.[a.id]?.[lang];
+    if (guide) return guide;
+    return {
+      difference: lang === 'ja' ? `${localized(a.term)}は${localized(a.category)}寄り、${localized(b.term)}は${localized(b.category)}寄りです。` : `${localized(a.term)} leans toward ${localized(a.category)} while ${localized(b.term)} leans toward ${localized(b.category)}.`,
+      whenToUse: lang === 'ja' ? `${localized(a.term)}は「${localized(a.useCase)}」の改善時、${localized(b.term)}は「${localized(b.useCase)}」の改善時に使い分けます。` : `Use ${localized(a.term)} when improving ${localized(a.useCase)}, and ${localized(b.term)} when improving ${localized(b.useCase)}.`,
+      practicality: lang === 'ja' ? `${localized(a.termType)} / ${localized(b.termType)} の組み合わせです。実務語の方が実装指示として具体的です。` : `This pair is ${localized(a.termType)} vs ${localized(b.termType)}. Practical terms are usually easier to execute.`
+    };
   }
 
   function renderCompare() {
@@ -168,26 +215,50 @@
         <strong>${localized(term.term)}</strong>
         <div class="compare-grid">
           <div class="compare-cell"><strong>${lang === 'ja' ? '実務意図' : 'Practical intent'}</strong>${localized(term.practicalIntent)}</div>
+          <div class="compare-cell"><strong>${lang === 'ja' ? '使い分けの目安' : 'Use when'}</strong>${localized(term.practicalUseCase)}</div>
+          <div class="compare-cell"><strong>${lang === 'ja' ? '悪い依頼' : 'Bad request'}</strong>${localized(term.badRequest)}</div>
           <div class="compare-cell"><strong>${lang === 'ja' ? '良い依頼' : 'Better request'}</strong>${localized(term.betterRequest)}</div>
         </div>
       `;
       els.compareList.appendChild(item);
     });
+
+    if (els.compareInsight) {
+      if (state.compare.length === 2) {
+        const a = byId(state.compare[0]);
+        const b = byId(state.compare[1]);
+        if (a && b) {
+          const insight = pairInsight(a, b);
+          els.compareInsight.innerHTML = `
+            <h4>${localized(a.term)} ↔ ${localized(b.term)}</h4>
+            <div class="compare-insight-grid">
+              <div class="compare-cell"><strong>${lang === 'ja' ? '違い' : 'Difference'}</strong>${insight.difference}</div>
+              <div class="compare-cell"><strong>${lang === 'ja' ? '使い分け' : 'When to use which'}</strong>${insight.whenToUse}</div>
+              <div class="compare-cell"><strong>${lang === 'ja' ? '実務性の比較' : 'Practical vs vague'}</strong>${insight.practicality}</div>
+            </div>
+          `;
+          els.compareInsight.style.display = 'block';
+          return;
+        }
+      }
+      els.compareInsight.style.display = 'block';
+      els.compareInsight.innerHTML = `<p class="card-copy">${uiText.compareHint}</p>`;
+    }
   }
 
   function renderSaved() {
     const f = state.favorites.map(byId).filter(Boolean);
     const r = state.recent.map(byId).filter(Boolean);
     els.favoritesList.innerHTML = `<div class="favorite-row"><strong>${uiText.favorites}</strong><button class="btn" type="button" data-clear="fav">${uiText.clear}</button></div>` +
-      (f.length ? f.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">Open</button></div>`).join('') : '');
+      (f.length ? f.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('') : '');
     els.recentList.innerHTML = `<div class="favorite-row"><strong>${uiText.recent}</strong><button class="btn" type="button" data-clear="recent">${uiText.clear}</button></div>` +
-      (r.length ? r.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">Open</button></div>`).join('') : '');
+      (r.length ? r.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('') : '');
   }
 
   function renderSuggestions(list) {
-    const q = state.query.trim().toLowerCase();
+    const q = normalize(state.query);
     if (!q) { els.suggestions.classList.remove('open'); els.suggestions.innerHTML = ''; return; }
-    const top = list.slice(0, 5);
+    const top = list.slice(0, 6);
     els.suggestions.innerHTML = top.map((t) => `<div class="suggestion-item" data-select="${t.id}"><span>${localized(t.term)}</span><span class="suggestion-sub">${localized(t.category)}</span></div>`).join('');
     els.suggestions.classList.toggle('open', top.length > 0);
   }
