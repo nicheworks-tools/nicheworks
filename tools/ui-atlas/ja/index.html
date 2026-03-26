@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UI Atlas | UIパターン辞典（無料版土台）| Niche Works</title>
-  <meta name="description" content="英語主軸のUI Atlas無料版土台。検索・絞り込み・詳細・2件比較のプレースホルダーを公開しています。">
+  <meta name="description" content="UI Atlas無料版土台。実用的な検索・絞り込み・詳細・2件比較・ローカルお気に入り・閲覧履歴を利用できます。">
   <link rel="canonical" href="https://nicheworks.app/tools/ui-atlas/ja/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/">
@@ -28,65 +28,116 @@
   <main class="nw-main" data-ui-atlas-root>
     <section class="nw-card nw-intro">
       <h2>公開中の無料版土台</h2>
-      <p>UI Atlas の公開ベースです。パターン閲覧、2件比較、AI依頼文の下準備を無料で試せます。現段階では有料ゲートは実装していません。</p>
+      <p>実務で使える語句検索、意図別フィルター、詳細ガイド、2件比較、ローカルお気に入り・履歴を無料で利用できます。</p>
     </section>
 
     <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
 
     <section class="workspace" aria-label="UI Atlas workspace">
-      <aside class="panel filters">
-        <h2>フィルター</h2>
-        <label for="atlas-search-ja">検索</label>
-        <input id="atlas-search-ja" class="search-input" data-search type="search" placeholder="例: modal, FAQ, メニュー">
-        <h3>カテゴリ</h3>
-        <div class="chip-group">
-          <button type="button" class="filter-chip active" data-filter="all">すべて</button>
-          <button type="button" class="filter-chip" data-filter="disclosure">展開/開示</button>
-          <button type="button" class="filter-chip" data-filter="navigation">ナビゲーション</button>
-          <button type="button" class="filter-chip" data-filter="selection">選択</button>
+      <aside class="panel filters" data-filters>
+        <button type="button" class="mobile-filter-toggle" data-toggle-filters>フィルター</button>
+        <div class="filters-body" data-filters-body>
+          <h2>フィルター</h2>
+          <label for="atlas-search-ja">検索</label>
+          <input id="atlas-search-ja" class="search-input" data-search type="search" placeholder="例: faq 開閉, スマホ下メニュー, 確認ダイアログ">
+
+          <h3>カテゴリ</h3>
+          <div class="chip-group">
+            <button type="button" class="filter-chip active" data-filter-group="category" data-filter="all">すべて</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="disclosure">展開/開示</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="navigation">ナビゲーション</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="selection">選択</button>
+          </div>
+
+          <label for="purpose-filter-ja">用途</label>
+          <select id="purpose-filter-ja" data-select-filter="purpose">
+            <option value="all">すべて</option>
+            <option value="confirmation">確認・リスク操作</option>
+            <option value="quick-action">短い操作</option>
+            <option value="content-discovery">情報探索</option>
+            <option value="mode-switch">モード切替</option>
+          </select>
+
+          <label for="mobile-filter-ja">モバイル適性</label>
+          <select id="mobile-filter-ja" data-select-filter="mobileFit">
+            <option value="all">すべて</option>
+            <option value="high">高い</option>
+            <option value="medium">中</option>
+            <option value="low">低い</option>
+          </select>
+
+          <label for="difficulty-filter-ja">実装難易度</label>
+          <select id="difficulty-filter-ja" data-select-filter="difficulty">
+            <option value="all">すべて</option>
+            <option value="easy">易しい</option>
+            <option value="medium">中</option>
+            <option value="hard">難しい</option>
+          </select>
         </div>
       </aside>
 
       <section class="panel results">
         <h2>パターン一覧</h2>
-        <div class="results-toolbar"><span data-count>0 件表示</span><span>比較トレイは2件まで</span></div>
+        <div class="results-toolbar"><span data-count>0 件表示</span><span>無料比較トレイは2件まで</span></div>
         <div class="result-grid">
-          <article class="pattern-card" data-card data-name="Modal" data-category="disclosure" data-summary="確認や分岐を強制するフォーカス型UI。" data-best="重要確認・必須操作の分岐。" data-avoid="通常説明や軽い補足を毎回止める場面。">
+          <article class="pattern-card" data-card data-id="modal" data-name="Modal" data-name-ja="モーダル" data-aliases="dialog, popup, pop-up, confirmation dialog" data-novice="画面を止めるメッセージボックス" data-usecase="削除確認, 強制確認, 危険操作" data-category="disclosure" data-purpose="confirmation" data-mobile-fit="medium" data-difficulty="medium" data-summary="重要な判断に集中させる背景遮断UI。" data-best="重大な確認や必須分岐。" data-not-for="軽い補足や通常説明。" data-similar="Bottom Sheet, Alert Dialog" data-prompt="危険操作の確認用アクセシブルなモーダルを作成。フォーカストラップとESC閉じる対応。" data-notes="role=dialogと背景スクロール抑止、閉じた後のフォーカス復帰を実装。">
             <h3>Modal</h3><p>背景を遮る集中ダイアログ。</p>
-            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">PC+モバイル</span></div>
+            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">モバイル: 中</span><span class="meta-tag">難易度: 中</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
           </article>
-          <article class="pattern-card" data-card data-name="Bottom Sheet" data-category="disclosure" data-summary="画面文脈を保ったまま下から出すモバイル向けパネル。" data-best="モバイルの短い操作や選択。" data-avoid="長文入力を伴う複雑な手順。">
+          <article class="pattern-card" data-card data-id="bottom-sheet" data-name="Bottom Sheet" data-name-ja="ボトムシート" data-aliases="action sheet, slide-up panel" data-novice="スマホ下から出るメニュー" data-usecase="スマホの即時操作, 文脈内選択, 短い入力" data-category="disclosure" data-purpose="quick-action" data-mobile-fit="high" data-difficulty="medium" data-summary="画面文脈を保ったまま下から出るモバイル向けUI。" data-best="モバイルでの短い操作と選択。" data-not-for="長いPC向け多段フロー。" data-similar="Modal, Drawer" data-prompt="ドラッグハンドルとスナップ位置を持つモバイル用ボトムシートを実装。" data-notes="親指で届く範囲に主要操作を配置し、セーフエリアを確保。">
             <h3>Bottom Sheet</h3><p>下から出るモバイル重視UI。</p>
-            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">モバイル</span></div>
+            <div class="card-meta"><span class="meta-tag">展開/開示</span><span class="meta-tag">モバイル: 高</span><span class="meta-tag">難易度: 中</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
           </article>
-          <article class="pattern-card" data-card data-name="Accordion" data-category="navigation" data-summary="長いFAQを段階的に開いて読むための定番。" data-best="Q&A一覧や補足情報の整理。" data-avoid="複数項目を同時比較したい画面。">
+          <article class="pattern-card" data-card data-id="accordion" data-name="Accordion" data-name-ja="アコーディオン" data-aliases="collapsible list, expand collapse" data-novice="faqを開閉する一覧" data-usecase="faq, ヘルプ記事, 補足情報" data-category="navigation" data-purpose="content-discovery" data-mobile-fit="high" data-difficulty="easy" data-summary="長い情報を段階的に開いて読むための定番UI。" data-best="FAQやQ&Aの一覧閲覧。" data-not-for="複数項目を同時比較したい場面。" data-similar="Tabs, Disclosure" data-prompt="FAQ向けアコーディオンをキーボード操作付きで実装。1項目のみ開くモードに対応。" data-notes="button+aria-expandedを使い、見出し階層を崩さない。">
             <h3>Accordion</h3><p>見出し単位で開閉する構造。</p>
-            <div class="card-meta"><span class="meta-tag">ナビゲーション</span><span class="meta-tag">FAQ</span></div>
+            <div class="card-meta"><span class="meta-tag">ナビゲーション</span><span class="meta-tag">モバイル: 高</span><span class="meta-tag">難易度: 易</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
           </article>
-          <article class="pattern-card" data-card data-name="Segmented Control" data-category="selection" data-summary="同格の表示モードを少数切替するための横並び選択。" data-best="2〜5件のビュー切替。" data-avoid="選択肢が多い条件フィルター。">
+          <article class="pattern-card" data-card data-id="segmented-control" data-name="Segmented Control" data-name-ja="セグメントコントロール" data-aliases="segment switch, pill tabs" data-novice="小さいタブ切替" data-usecase="一覧/グリッド切替, モード切替" data-category="selection" data-purpose="mode-switch" data-mobile-fit="high" data-difficulty="easy" data-summary="同格の表示モードを少数で素早く切り替えるUI。" data-best="2〜5件の表示切替。" data-not-for="選択肢が多いフィルター。" data-similar="Tabs, Toggle Group" data-prompt="選択状態が明確でキーボード操作可能なセグメントコントロールを作成。" data-notes="各セグメントの視覚ウェイトを揃え、タップ領域を確保。">
             <h3>Segmented Control</h3><p>少数モードの高速切替UI。</p>
-            <div class="card-meta"><span class="meta-tag">選択</span><span class="meta-tag">コンパクト</span></div>
+            <div class="card-meta"><span class="meta-tag">選択</span><span class="meta-tag">モバイル: 高</span><span class="meta-tag">難易度: 易</span></div>
             <div class="card-actions"><button class="btn" data-open-detail type="button">詳細</button><button class="btn primary" data-add-compare type="button">比較に追加</button></div>
           </article>
         </div>
 
         <section class="compare-tray">
           <h3>比較トレイ</h3>
-          <p data-compare-empty>まだ追加されていません。2件まで追加して見比べできます。</p>
+          <p data-compare-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。</p>
           <div class="compare-list" data-compare-list></div>
+          <div class="compare-diff" data-compare-diff hidden></div>
+        </section>
+
+        <section class="local-blocks">
+          <section class="local-box">
+            <h3>お気に入り（ローカル）</h3>
+            <div data-favorites-list class="mini-list"></div>
+          </section>
+          <section class="local-box">
+            <h3>最近見た項目（ローカル）</h3>
+            <div data-recent-list class="mini-list"></div>
+          </section>
         </section>
       </section>
 
-      <aside class="panel detail">
-        <h2 data-detail-title>Modal</h2>
-        <p class="detail-body" data-detail-text>確認や分岐を強制するフォーカス型UI。</p>
+      <aside class="panel detail" data-detail-panel>
+        <button type="button" class="detail-close" data-close-detail>閉じる</button>
+        <h2 data-detail-title>項目を選択</h2>
+        <p class="detail-body" data-detail-summary>カードを選んで実践的な使い分けを確認できます。</p>
         <h3>向いている場面</h3>
-        <ul class="detail-list"><li data-detail-best>重要確認・必須操作の分岐。</li></ul>
-        <h3>避けたい場面</h3>
-        <ul class="detail-list"><li data-detail-avoid>通常説明や軽い補足を毎回止める場面。</li></ul>
+        <p class="detail-body" data-detail-best>-</p>
+        <h3>向いていない場面</h3>
+        <p class="detail-body" data-detail-not-for>-</p>
+        <h3>類似パターン</h3>
+        <p class="detail-body" data-detail-similar>-</p>
+        <h3>短文AIプロンプト</h3>
+        <p class="detail-body" data-detail-prompt>-</p>
+        <button class="btn" type="button" data-copy-prompt>短文プロンプトをコピー</button>
+        <p class="copy-state" data-copy-state aria-live="polite"></p>
+        <h3>短い実装メモ</h3>
+        <p class="detail-body" data-detail-notes>-</p>
+        <button class="btn" type="button" data-toggle-favorite>☆ お気に入り</button>
       </aside>
     </section>
 
@@ -94,8 +145,8 @@
       <h2>FAQ</h2>
       <ul class="faq-list">
         <li>データは完成版ですか？ いいえ。現在は無料公開用の土台リリースです。</li>
-        <li>無料で使える範囲は？ 閲覧・絞り込み・2件比較の基本導線は利用できます。</li>
-        <li>Proで今の機能は制限されますか？ いいえ。現段階は説明ページのみです。</li>
+        <li>無料で使える範囲は？ 検索・絞り込み・詳細・2件比較の基本導線は利用できます。</li>
+        <li>お気に入り/履歴は同期されますか？ この段階ではブラウザ内ローカル保存のみです。</li>
       </ul>
     </section>
 
