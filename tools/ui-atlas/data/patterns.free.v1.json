@@ -1,6 +1,6 @@
 {
   "dataset": "ui-atlas-free-seed",
-  "version": "1.0.0",
+  "version": "1.1",
   "language_source": "en",
   "total_patterns": 50,
   "updated_at": "2026-03-26",
@@ -38,7 +38,18 @@
       "short_impl_note_ja": "主要CTAは1つに絞り、画像のレスポンシブ対応と見出し階層を明確にします。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "hero",
+      "sample_variant": "product",
+      "sample_config": {
+        "variant": "product"
+      }
     },
     {
       "id": "P002",
@@ -73,7 +84,18 @@
       "short_impl_note_ja": "カード高さを揃え、短い文で一覧性を高めます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "feature-list",
+      "sample_variant": "default",
+      "sample_config": {
+        "columns": 3
+      }
     },
     {
       "id": "P003",
@@ -108,7 +130,18 @@
       "short_impl_note_ja": "ボタンの競合を避け、補足文は2行以内に抑えます。",
       "purpose": "quick-action",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "cta",
+      "sample_variant": "default",
+      "sample_config": {
+        "style": "banner"
+      }
     },
     {
       "id": "P004",
@@ -143,7 +176,18 @@
       "short_impl_note_ja": "長文回答はアコーディオン化し、専門用語を避けた表現にします。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "accordion",
+      "sample_variant": "default",
+      "sample_config": {
+        "items": 3
+      }
     },
     {
       "id": "P005",
@@ -178,7 +222,18 @@
       "short_impl_note_ja": "機能行の対応を揃え、差分は短いラベルで示します。",
       "purpose": "confirmation",
       "mobile_fit": "low",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "confirm destructive changes, ask before delete/publish",
+      "use_case_ja": "削除や公開前の確認を取りたい時",
+      "novice_wording_en": "good when beginners worry about accidental taps",
+      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
+      "practical_intent_en": "reduce risky mistakes before final action",
+      "practical_intent_ja": "重大操作のミスを減らす",
+      "sample_type": "pricing",
+      "sample_variant": "default",
+      "sample_config": {
+        "plans": 3
+      }
     },
     {
       "id": "P006",
@@ -213,7 +268,18 @@
       "short_impl_note_ja": "現在地表示を明確にし、小画面では優先度の低いリンクを畳みます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "navbar",
+      "sample_variant": "default",
+      "sample_config": {
+        "mobile": false
+      }
     },
     {
       "id": "P007",
@@ -248,7 +314,16 @@
       "short_impl_note_ja": "アイコン状態を切替え、表示中は背景スクロールを止め、閉じる際はフォーカスを戻します。",
       "purpose": "quick-action",
       "mobile_fit": "high",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "hamburger",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P008",
@@ -283,7 +358,16 @@
       "short_impl_note_ja": "Esc・背景クリックで閉じられるようにし、フォーカストラップを実装します。",
       "purpose": "quick-action",
       "mobile_fit": "high",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "drawer",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P009",
@@ -318,7 +402,16 @@
       "short_impl_note_ja": "幅を固定し、折りたたみ時はアイコンのみ表示に対応します。",
       "purpose": "content-discovery",
       "mobile_fit": "low",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "sidebar",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P010",
@@ -353,7 +446,16 @@
       "short_impl_note_ja": "リスト構造で実装し、長いラベルは省略表示を検討します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "breadcrumb",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P011",
@@ -388,7 +490,16 @@
       "short_impl_note_ja": "矢印キー移動とaria-selectedの状態管理を実装します。",
       "purpose": "mode-switch",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "switch modes or contexts without leaving page",
+      "use_case_ja": "表示モードや文脈を切り替えたい時",
+      "novice_wording_en": "beginners need visible selected state and simple labels",
+      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
+      "practical_intent_en": "change context while keeping user orientation",
+      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "sample_type": "tabs",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P012",
@@ -423,7 +534,16 @@
       "short_impl_note_ja": "ボタングループとして実装し、ラベルは短く保ちます。",
       "purpose": "mode-switch",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "switch modes or contexts without leaving page",
+      "use_case_ja": "表示モードや文脈を切り替えたい時",
+      "novice_wording_en": "beginners need visible selected state and simple labels",
+      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
+      "practical_intent_en": "change context while keeping user orientation",
+      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "sample_type": "segmented",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P013",
@@ -449,8 +569,7 @@
       "not_for_ja": "件数が少ない一覧では過剰です。",
       "similar_patterns": [
         "list-view",
-        "table",
-        "list-view"
+        "table"
       ],
       "short_prompt_en": "Create pagination with previous/next buttons and compact page number display.",
       "short_prompt_ja": "前後ボタンと簡潔なページ番号表示を持つページネーションを作成してください。",
@@ -458,7 +577,16 @@
       "short_impl_note_ja": "ページ移動時も絞り込み条件をURLパラメータで維持します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "pagination",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P014",
@@ -493,7 +621,18 @@
       "short_impl_note_ja": "余白を統一し、操作エリアの位置を揃えます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "card-list",
+      "sample_variant": "default",
+      "sample_config": {
+        "items": 3
+      }
     },
     {
       "id": "P015",
@@ -528,7 +667,16 @@
       "short_impl_note_ja": "フォーカスを閉じ込め、Escで閉じ、トリガー要素へフォーカスを戻します。",
       "purpose": "confirmation",
       "mobile_fit": "medium",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "confirm destructive changes, ask before delete/publish",
+      "use_case_ja": "削除や公開前の確認を取りたい時",
+      "novice_wording_en": "good when beginners worry about accidental taps",
+      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
+      "practical_intent_en": "reduce risky mistakes before final action",
+      "practical_intent_ja": "重大操作のミスを減らす",
+      "sample_type": "modal",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P016",
@@ -563,7 +711,16 @@
       "short_impl_note_ja": "セーフエリアを考慮し、表示中は背面スクロールを抑制します。",
       "purpose": "quick-action",
       "mobile_fit": "high",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "bottom-sheet",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P017",
@@ -598,7 +755,18 @@
       "short_impl_note_ja": "ボタン要素で実装し、アニメーションは低モーション設定に配慮します。",
       "purpose": "content-discovery",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "accordion",
+      "sample_variant": "default",
+      "sample_config": {
+        "items": 3
+      }
     },
     {
       "id": "P018",
@@ -624,8 +792,7 @@
       "not_for_ja": "常時見せるべき重要説明の置き場には不向きです。",
       "similar_patterns": [
         "popover",
-        "toast",
-        "popover"
+        "toast"
       ],
       "short_prompt_en": "Add an accessible tooltip for icon buttons with short helper text.",
       "short_prompt_ja": "アイコンボタン向けに、短い補足文を表示するアクセシブルなツールチップを追加してください。",
@@ -633,7 +800,16 @@
       "short_impl_note_ja": "ホバーだけでなくフォーカスでも表示し、文は1文以内に収めます。",
       "purpose": "quick-action",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "tooltip",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P019",
@@ -668,7 +844,16 @@
       "short_impl_note_ja": "外側クリックで閉じ、画面端で位置調整できるようにします。",
       "purpose": "quick-action",
       "mobile_fit": "medium",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "popover",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P020",
@@ -703,7 +888,16 @@
       "short_impl_note_ja": "自動消去に加え、ホバー/フォーカス時は停止し、live regionで通知します。",
       "purpose": "confirmation",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "confirm destructive changes, ask before delete/publish",
+      "use_case_ja": "削除や公開前の確認を取りたい時",
+      "novice_wording_en": "good when beginners worry about accidental taps",
+      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
+      "practical_intent_en": "reduce risky mistakes before final action",
+      "practical_intent_ja": "重大操作のミスを減らす",
+      "sample_type": "toast",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P021",
@@ -738,7 +932,16 @@
       "short_impl_note_ja": "ラベルは常時表示し、エラー文はaria-describedbyで紐づけます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "text-input",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P022",
@@ -773,7 +976,16 @@
       "short_impl_note_ja": "特別な要件がなければアクセシビリティ面でネイティブ実装を優先します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "select",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P023",
@@ -799,8 +1011,7 @@
       "not_for_ja": "候補が少ない固定リストでは過剰です。",
       "similar_patterns": [
         "select",
-        "text-input",
-        "select"
+        "text-input"
       ],
       "short_prompt_en": "Implement a combobox with async search, keyboard support, and highlighted matches.",
       "short_prompt_ja": "非同期検索・キーボード操作・一致箇所強調に対応したコンボボックスを実装してください。",
@@ -808,7 +1019,16 @@
       "short_impl_note_ja": "候補件数を通知し、active descendantで読み上げ対象を管理します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "combobox",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P024",
@@ -834,8 +1054,7 @@
       "not_for_ja": "排他的な1択にはラジオボタンの方が適切です。",
       "similar_patterns": [
         "radio-button",
-        "switch",
-        "checkbox"
+        "switch"
       ],
       "short_prompt_en": "Create checkbox group with helper text and inline validation.",
       "short_prompt_ja": "補助説明とインライン検証を備えたチェックボックス群を作成してください。",
@@ -843,7 +1062,16 @@
       "short_impl_note_ja": "ラベル込みでタップ領域を広げ、必要に応じて中間状態を扱います。",
       "purpose": "content-discovery",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "checkbox",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P025",
@@ -878,7 +1106,16 @@
       "short_impl_note_ja": "グループ文脈を伝えるためfieldsetとlegendを使用します。",
       "purpose": "content-discovery",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "radio",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P026",
@@ -913,7 +1150,16 @@
       "short_impl_note_ja": "状態を支援技術へ伝え、色だけに依存しない表示にします。",
       "purpose": "mode-switch",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "switch modes or contexts without leaving page",
+      "use_case_ja": "表示モードや文脈を切り替えたい時",
+      "novice_wording_en": "beginners need visible selected state and simple labels",
+      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
+      "practical_intent_en": "change context while keeping user orientation",
+      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "sample_type": "switch",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P027",
@@ -939,7 +1185,6 @@
       "not_for_ja": "通常の数値入力に使うと操作が煩雑になります。",
       "similar_patterns": [
         "text-input",
-        "text-input",
         "step-form"
       ],
       "short_prompt_en": "Create a 6-digit OTP input with auto-advance and paste support.",
@@ -948,7 +1193,16 @@
       "short_impl_note_ja": "バックスペース移動と先頭セルへの一括貼り付けをサポートします。",
       "purpose": "quick-action",
       "mobile_fit": "high",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "otp",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P028",
@@ -983,7 +1237,16 @@
       "short_impl_note_ja": "「最初のプロジェクトを作成」のように、行動を促す文言にします。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "empty-state",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P029",
@@ -1018,7 +1281,16 @@
       "short_impl_note_ja": "最終表示と寸法を揃え、レイアウトずれを抑えます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "skeleton",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P030",
@@ -1053,7 +1325,16 @@
       "short_impl_note_ja": "aria-valuenowを設定し、確定/不確定進捗を明確に分けます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "progress",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P031",
@@ -1088,7 +1369,16 @@
       "short_impl_note_ja": "情報・警告・エラーで視覚スタイルを明確に分けます。",
       "purpose": "confirmation",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "confirm destructive changes, ask before delete/publish",
+      "use_case_ja": "削除や公開前の確認を取りたい時",
+      "novice_wording_en": "good when beginners worry about accidental taps",
+      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
+      "practical_intent_en": "reduce risky mistakes before final action",
+      "practical_intent_ja": "重大操作のミスを減らす",
+      "sample_type": "alert",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P032",
@@ -1114,8 +1404,7 @@
       "not_for_ja": "時系列や文章中心で縦読みが基本の内容には不向きです。",
       "similar_patterns": [
         "card",
-        "list-view",
-        "grid"
+        "list-view"
       ],
       "short_prompt_en": "Build a responsive CSS grid with 1, 2, and 4-column breakpoints.",
       "short_prompt_ja": "1列・2列・4列に切替わるレスポンシブCSSグリッドを作ってください。",
@@ -1123,7 +1412,16 @@
       "short_impl_note_ja": "minmaxを使って柔軟な列幅と均等なギャップを保ちます。",
       "purpose": "mode-switch",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "switch modes or contexts without leaving page",
+      "use_case_ja": "表示モードや文脈を切り替えたい時",
+      "novice_wording_en": "beginners need visible selected state and simple labels",
+      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
+      "practical_intent_en": "change context while keeping user orientation",
+      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "sample_type": "grid-layout",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P033",
@@ -1158,7 +1456,16 @@
       "short_impl_note_ja": "ヘッダー分の上余白を確保し、はみ出し時の表示崩れを防ぎます。",
       "purpose": "content-discovery",
       "mobile_fit": "low",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "sticky-sidebar",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P034",
@@ -1193,7 +1500,16 @@
       "short_impl_note_ja": "下部ナビと重ならない位置にし、セーフエリア分を確保します。",
       "purpose": "quick-action",
       "mobile_fit": "high",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "fab",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P035",
@@ -1228,7 +1544,16 @@
       "short_impl_note_ja": "キーボード操作を用意し、操作時は自動再生を停止します。",
       "purpose": "content-discovery",
       "mobile_fit": "high",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "carousel",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P036",
@@ -1263,7 +1588,16 @@
       "short_impl_note_ja": "リスト構造で実装し、現在位置を強調表示します。",
       "purpose": "content-discovery",
       "mobile_fit": "low",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "timeline",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P037",
@@ -1298,7 +1632,16 @@
       "short_impl_note_ja": "適切なtable要素を使い、行のホバー/フォーカス状態を用意します。",
       "purpose": "content-discovery",
       "mobile_fit": "low",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "table",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P038",
@@ -1333,7 +1676,16 @@
       "short_impl_note_ja": "行の高さを一定に保ち、主操作と補助操作を分離します。",
       "purpose": "mode-switch",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "switch modes or contexts without leaving page",
+      "use_case_ja": "表示モードや文脈を切り替えたい時",
+      "novice_wording_en": "beginners need visible selected state and simple labels",
+      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
+      "practical_intent_en": "change context while keeping user orientation",
+      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "sample_type": "list-view",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P039",
@@ -1368,7 +1720,16 @@
       "short_impl_note_ja": "ペイン幅設定を保持し、ペイン間のフォーカス遷移を整えます。",
       "purpose": "mode-switch",
       "mobile_fit": "low",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "switch modes or contexts without leaving page",
+      "use_case_ja": "表示モードや文脈を切り替えたい時",
+      "novice_wording_en": "beginners need visible selected state and simple labels",
+      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
+      "practical_intent_en": "change context while keeping user orientation",
+      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "sample_type": "split-view",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P040",
@@ -1403,7 +1764,16 @@
       "short_impl_note_ja": "本文が隠れない下余白を確保し、キーボード表示時の位置調整を行います。",
       "purpose": "quick-action",
       "mobile_fit": "high",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "run quick actions with minimal steps",
+      "use_case_ja": "短い操作を素早く完了させたい時",
+      "novice_wording_en": "easy for beginners when labels are short and explicit",
+      "novice_wording_ja": "ラベルを短くすると初心者にも扱いやすいです",
+      "practical_intent_en": "complete frequent tasks with less friction",
+      "practical_intent_ja": "頻繁な操作を最短で終える",
+      "sample_type": "sticky-cta",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P041",
@@ -1438,7 +1808,16 @@
       "short_impl_note_ja": "最大文字数の目安を示し、エラー前から補助説明を見せます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "textarea",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P042",
@@ -1473,7 +1852,16 @@
       "short_impl_note_ja": "各ステップで検証し、戻っても入力値を保持します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "step-form",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P043",
@@ -1508,7 +1896,16 @@
       "short_impl_note_ja": "ロケール表記に対応し、タイムゾーン前提を明示します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "date-picker",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P044",
@@ -1543,7 +1940,16 @@
       "short_impl_note_ja": "返信目安を明記し、スパム対策の検証を入れます。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "contact",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P045",
@@ -1578,7 +1984,16 @@
       "short_impl_note_ja": "可否アイコンだけでなく、読み上げ用テキストも併記します。",
       "purpose": "confirmation",
       "mobile_fit": "low",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "use_case_en": "confirm destructive changes, ask before delete/publish",
+      "use_case_ja": "削除や公開前の確認を取りたい時",
+      "novice_wording_en": "good when beginners worry about accidental taps",
+      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
+      "practical_intent_en": "reduce risky mistakes before final action",
+      "practical_intent_ja": "重大操作のミスを減らす",
+      "sample_type": "comparison",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P046",
@@ -1613,7 +2028,16 @@
       "short_impl_note_ja": "抽象的な賛辞より、具体的な成果指標を優先します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "testimonial",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P047",
@@ -1648,7 +2072,16 @@
       "short_impl_note_ja": "可読コントラストを確保し、主CTAを詰め込みすぎないようにします。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "footer",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P048",
@@ -1683,7 +2116,16 @@
       "short_impl_note_ja": "ラベルは短くし、FAB併用時は中央スロット設計を調整します。",
       "purpose": "mode-switch",
       "mobile_fit": "high",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "switch modes or contexts without leaving page",
+      "use_case_ja": "表示モードや文脈を切り替えたい時",
+      "novice_wording_en": "beginners need visible selected state and simple labels",
+      "novice_wording_ja": "選択中状態を見せると初心者にも分かりやすいです",
+      "practical_intent_en": "change context while keeping user orientation",
+      "practical_intent_ja": "文脈を保ったまま切り替える",
+      "sample_type": "tab-bar",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P049",
@@ -1718,7 +2160,16 @@
       "short_impl_note_ja": "読み上げ向け文言を併記し、低モーション環境にも配慮します。",
       "purpose": "content-discovery",
       "mobile_fit": "medium",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "use_case_en": "scan, browse, and discover content structure",
+      "use_case_ja": "情報を見つけやすく整理して見せたい時",
+      "novice_wording_en": "beginners can orient quickly with clear hierarchy",
+      "novice_wording_ja": "情報の階層が見えると初心者でも迷いにくいです",
+      "practical_intent_en": "help users find the next meaningful item",
+      "practical_intent_ja": "次に見るべき情報を見つけやすくする",
+      "sample_type": "spinner",
+      "sample_variant": "default",
+      "sample_config": {}
     },
     {
       "id": "P050",
@@ -1753,7 +2204,16 @@
       "short_impl_note_ja": "入力直後に過剰反応せず、blur時や一定文字数で判定します。",
       "purpose": "confirmation",
       "mobile_fit": "medium",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "use_case_en": "confirm destructive changes, ask before delete/publish",
+      "use_case_ja": "削除や公開前の確認を取りたい時",
+      "novice_wording_en": "good when beginners worry about accidental taps",
+      "novice_wording_ja": "誤操作が不安な初心者にも説明しやすいです",
+      "practical_intent_en": "reduce risky mistakes before final action",
+      "practical_intent_ja": "重大操作のミスを減らす",
+      "sample_type": "validation",
+      "sample_variant": "default",
+      "sample_config": {}
     }
   ]
 }
