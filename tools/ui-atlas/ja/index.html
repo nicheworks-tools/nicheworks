@@ -50,9 +50,12 @@
           <h3>カテゴリ</h3>
           <div class="chip-group">
             <button type="button" class="filter-chip active" data-filter-group="category" data-filter="all">すべて</button>
-            <button type="button" class="filter-chip" data-filter-group="category" data-filter="disclosure">展開/開示</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="acquisition">集客・CV</button>
             <button type="button" class="filter-chip" data-filter-group="category" data-filter="navigation">ナビゲーション</button>
-            <button type="button" class="filter-chip" data-filter-group="category" data-filter="selection">選択</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="disclosure-feedback">開示・フィードバック</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="inputs-forms">入力フォーム</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="data-display">情報表示</button>
+            <button type="button" class="filter-chip" data-filter-group="category" data-filter="layout-structure">レイアウト構成</button>
           </div>
 
           <label for="purpose-filter-ja">用途</label>
@@ -112,19 +115,26 @@
         <h2 data-detail-title>項目を選択</h2>
         <h3>ライブサンプル</h3>
         <div class="detail-sample" data-detail-sample aria-label="ライブサンプル"></div>
-        <p class="detail-body" data-detail-summary>カードを選んで実践的な使い分けを確認できます。</p>
+        <h3>これは何か</h3>
+        <p class="detail-body" data-detail-what>カードを選んで実践的な使い分けを確認できます。</p>
+        <h3>よくある利用場面</h3>
+        <p class="detail-body" data-detail-use-case>-</p>
         <h3>向いている場面</h3>
         <p class="detail-body" data-detail-best>-</p>
         <h3>向いていない場面</h3>
         <p class="detail-body" data-detail-not-for>-</p>
         <h3>類似パターン</h3>
         <p class="detail-body" data-detail-similar>-</p>
+        <h3>実務意図</h3>
+        <p class="detail-body" data-detail-practical-intent>-</p>
+        <h3>初心者向けの言い換え</h3>
+        <p class="detail-body" data-detail-novice>-</p>
         <h3>短文AIプロンプト</h3>
         <p class="detail-body" data-detail-prompt>-</p>
         <button class="btn" type="button" data-copy-prompt>短文プロンプトをコピー</button>
         <p class="copy-state" data-copy-state aria-live="polite"></p>
-        <h3>短い実装メモ</h3>
-        <p class="detail-body" data-detail-notes>-</p>
+        <h3>実装メモ</h3>
+        <p class="detail-body" data-detail-implementation>-</p>
         <button class="btn" type="button" data-toggle-favorite>☆ お気に入り</button>
       </aside>
     </section>
