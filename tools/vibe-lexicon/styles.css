@@ -111,6 +111,9 @@ h1 { margin: 14px 0 8px; font-size: clamp(28px, 4vw, 40px); line-height: 1.08; }
 .compare-head { padding: 16px 18px 8px; }
 .compare-head h3 { margin: 0; font-size: 20px; }
 .compare-sub { color: var(--muted); font-size: 13px; }
+.compare-insight { margin: 0 18px 12px; border: 1px solid var(--line); border-radius: 16px; background: #f8fafc; padding: 12px; }
+.compare-insight h4 { margin: 0 0 10px; font-size: 15px; }
+.compare-insight-grid { display: grid; gap: 10px; }
 .compare-list { display: grid; gap: 12px; padding: 0 18px 18px; }
 .compare-item { border: 1px solid var(--line); border-radius: 18px; background: #fff; padding: 14px; }
 .compare-grid { display: grid; gap: 10px; grid-template-columns: repeat(2,minmax(0,1fr)); }

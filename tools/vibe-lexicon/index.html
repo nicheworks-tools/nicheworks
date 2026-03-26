@@ -24,14 +24,14 @@
   <header class="hero panel">
     <div class="eyebrow">Niche Works practical reference series</div>
     <h1>Vibe Lexicon</h1>
-    <p class="hero-copy">Turn vague requests into practical wording AI can execute. Compare neighboring terms, inspect bad vs better requests, and copy short AI-ready prompts from a free first product shell.</p>
+    <p class="hero-copy">Turn vague requests into practical wording AI can execute. Compare neighboring terms, inspect bad vs better requests, and copy AI-ready prompt lines you can use immediately in real work.</p>
     <div class="hero-points">
       <span class="pill">vague wording → practical wording</span><span class="pill">compare similar terms</span><span class="pill">bad request → better request</span><span class="pill">copy AI-ready wording</span><span class="pill">local favorites & local history (free)</span>
     </div>
   </header>
 
   <div class="ad-slot ad-top"><div><strong>ad-top</strong><br>Ad slot placeholder</div></div>
-  <div class="quick-explain">Search using rough wording, then convert it into concrete intent wording and use-case-ready prompt lines. Free mode includes 2-term compare, local favorites, and local recent history.</div>
+  <div class="quick-explain">Search using rough wording, then convert it into concrete intent wording and use-case-ready prompt lines. Free mode includes 2-term compare, local favorites, and local recent history with no signup required.</div>
 
   <div class="dashboard">
     <aside class="panel filters" aria-label="left filters">
@@ -69,12 +69,13 @@
       <div class="section"><h2 class="panel-title">Practical intent & usage</h2><div id="detailFacts" class="fact-grid"></div></div>
       <div class="section"><h2 class="panel-title">Vague → practical breakdown</h2><div id="detailBreakdown" class="decompose-list"></div></div>
       <div class="section columns-2"><div class="good-bad bad"><h4>Bad request</h4><p id="detailBad"></p></div><div class="good-bad good"><h4>Better request</h4><p id="detailGood"></p></div></div>
+      <div class="section"><h2 class="panel-title">Why this rewrite works</h2><div class="detail-summary"><p id="detailWhyBetter"></p></div></div>
       <div class="section"><h2 class="panel-title">Short AI-ready wording</h2><div id="promptModes" class="chip-row"></div><div id="promptBox" class="prompt-box"></div><div class="inline-actions" style="margin-top:10px"><button id="copyPromptBtn" class="btn primary" type="button">Copy prompt</button></div></div>
       <div class="section"><h2 class="panel-title">Related terms</h2><div id="detailRelated" class="chip-row"></div></div>
     </aside>
   </div>
 
-  <section class="panel compare-panel" aria-label="compare tray"><div class="compare-head"><h3>Compare tray</h3><div class="compare-sub">Free mode compares up to 2 terms.</div></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">No compare terms yet. Add terms from cards or detail panel.</div></div></section>
+  <section class="panel compare-panel" aria-label="compare tray"><div class="compare-head"><h3>Compare tray</h3><div class="compare-sub">Free mode compares up to 2 terms.</div></div><div id="compareInsight" class="compare-insight"></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">No compare terms yet. Add terms from cards or detail panel.</div></div></section>
 
   <section class="panel favorites-wrap" aria-label="favorites and recent"><div class="compare-head"><h3>Favorites & recent</h3><div class="compare-sub">Stored locally in your browser (free).</div></div><div id="favoritesList" class="favorites-grid"></div><div id="recentList" class="favorites-grid"></div></section>
 

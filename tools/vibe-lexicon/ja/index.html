@@ -24,14 +24,14 @@
   <header class="hero panel">
     <div class="eyebrow">Niche Works 実用辞典シリーズ</div>
     <h1>Vibe Lexicon</h1>
-    <p class="hero-copy">曖昧な依頼を、AIが実行しやすい実務語へ変換する辞典です。近い言葉を比較し、悪い依頼と良い依頼を見比べ、AIにそのまま使える短文を無料でコピーできます。</p>
+    <p class="hero-copy">曖昧な依頼を、AIが実行しやすい実務語へ変換する辞典です。近い言葉を比較し、悪い依頼と良い依頼を見比べ、AIにそのまま使える短文を無料でコピーでき、実務でそのまま使えます。</p>
     <div class="hero-points">
       <span class="pill">曖昧語 → 実務語</span><span class="pill">近い語の比較</span><span class="pill">悪い依頼 → 良い依頼</span><span class="pill">AI向け短文コピー</span><span class="pill">お気に入り・履歴をローカル保存</span>
     </div>
   </header>
 
   <div class="ad-slot ad-top"><div><strong>ad-top</strong><br>広告枠プレースホルダー</div></div>
-  <div class="quick-explain">悩みの言葉で検索し、平易説明・実務意図・用途別依頼文へ落とし込みます。無料版では2語比較、お気に入り、最近見た語のローカル履歴が使えます。</div>
+  <div class="quick-explain">悩みの言葉で検索し、平易説明・実務意図・用途別依頼文へ落とし込みます。無料版では2語比較、お気に入り、最近見た語のローカル履歴を、登録不要で使えます。</div>
 
   <div class="dashboard">
     <aside class="panel filters" aria-label="左フィルター">
@@ -69,12 +69,13 @@
       <div class="section"><h2 class="panel-title">実務意図と使いどころ</h2><div id="detailFacts" class="fact-grid"></div></div>
       <div class="section"><h2 class="panel-title">曖昧 → 実務 分解</h2><div id="detailBreakdown" class="decompose-list"></div></div>
       <div class="section columns-2"><div class="good-bad bad"><h4>悪い依頼</h4><p id="detailBad"></p></div><div class="good-bad good"><h4>良い依頼</h4><p id="detailGood"></p></div></div>
+      <div class="section"><h2 class="panel-title">なぜこの書き換えが有効か</h2><div class="detail-summary"><p id="detailWhyBetter"></p></div></div>
       <div class="section"><h2 class="panel-title">AI向け短文</h2><div id="promptModes" class="chip-row"></div><div id="promptBox" class="prompt-box"></div><div class="inline-actions" style="margin-top:10px"><button id="copyPromptBtn" class="btn primary" type="button">短文コピー</button></div></div>
       <div class="section"><h2 class="panel-title">関連語</h2><div id="detailRelated" class="chip-row"></div></div>
     </aside>
   </div>
 
-  <section class="panel compare-panel" aria-label="比較トレイ"><div class="compare-head"><h3>比較トレイ</h3><div class="compare-sub">無料版は2語まで比較できます。</div></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">比較対象はまだありません。カードまたは詳細から追加してください。</div></div></section>
+  <section class="panel compare-panel" aria-label="比較トレイ"><div class="compare-head"><h3>比較トレイ</h3><div class="compare-sub">無料版は2語まで比較できます。</div></div><div id="compareInsight" class="compare-insight"></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">比較対象はまだありません。カードまたは詳細から追加してください。</div></div></section>
 
   <section class="panel favorites-wrap" aria-label="お気に入りと履歴"><div class="compare-head"><h3>お気に入り・最近見た語</h3><div class="compare-sub">ブラウザのローカル保存（無料）</div></div><div id="favoritesList" class="favorites-grid"></div><div id="recentList" class="favorites-grid"></div></section>
 
