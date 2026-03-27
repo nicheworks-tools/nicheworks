@@ -34,10 +34,12 @@
     detailTitle: $('detailTitle'), detailSub: $('detailSub'), favoriteBtn: $('favoriteBtn'), addCompareBtn: $('addCompareBtn'), detailPlain: $('detailPlain'),
     detailFacts: $('detailFacts'), detailBreakdown: $('detailBreakdown'), detailBad: $('detailBad'), detailGood: $('detailGood'), detailWhyBetter: $('detailWhyBetter'), promptModes: $('promptModes'),
     promptBox: $('promptBox'), copyPromptBtn: $('copyPromptBtn'), detailRelated: $('detailRelated'), clearCompareBtn: $('clearCompareBtn'),
-    compareList: $('compareList'), compareEmpty: $('compareEmpty'), compareInsight: $('compareInsight'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast')
+    compareList: $('compareList'), compareEmpty: $('compareEmpty'), compareInsight: $('compareInsight'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast'),
+    openFiltersBtn: $('openFiltersBtn'), closeFiltersBtn: $('closeFiltersBtn'), openDetailBtn: $('openDetailBtn'), closeDetailBtn: $('closeDetailBtn')
   };
 
   if (!els.grid) return;
+  const mobileQuery = window.matchMedia('(max-width: 720px)');
 
   const uiText = lang === 'ja'
     ? {
@@ -72,6 +74,31 @@
     els.toast.textContent = message;
     els.toast.classList.add('show');
     setTimeout(() => els.toast.classList.remove('show'), 1400);
+  }
+  function isMobileViewport() {
+    return mobileQuery.matches;
+  }
+  function openFilters() {
+    if (!isMobileViewport()) return;
+    root.classList.add('filters-open');
+    root.classList.remove('detail-open');
+  }
+  function closeFilters() {
+    root.classList.remove('filters-open');
+  }
+  function openDetail() {
+    if (!isMobileViewport()) return;
+    root.classList.add('detail-open');
+    root.classList.remove('filters-open');
+  }
+  function closeDetail() {
+    root.classList.remove('detail-open');
+  }
+  function syncDesktopState() {
+    if (!isMobileViewport()) {
+      root.classList.remove('filters-open');
+      root.classList.remove('detail-open');
+    }
   }
 
   function setRecent(id) {
@@ -285,10 +312,14 @@
   function renderSaved() {
     const f = state.favorites.map(byId).filter(Boolean);
     const r = state.recent.map(byId).filter(Boolean);
-    els.favoritesList.innerHTML = `<div class="favorite-row"><strong>${uiText.favorites}</strong><button class="btn" type="button" data-clear="fav">${uiText.clear}</button></div>` +
-      (f.length ? f.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('') : '');
-    els.recentList.innerHTML = `<div class="favorite-row"><strong>${uiText.recent}</strong><button class="btn" type="button" data-clear="recent">${uiText.clear}</button></div>` +
-      (r.length ? r.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('') : '');
+    els.favoritesList.innerHTML = `<div class="favorite-row favorite-row-head"><strong>${uiText.favorites}</strong><button class="btn btn-compact" type="button" data-clear="fav">${uiText.clear}</button></div>` +
+      (f.length
+        ? f.map((t) => `<div class="favorite-row"><div class="favorite-main"><span class="favorite-term">${localized(t.term)}</span><small>${localized(t.category)} · ${localized(t.termType)}</small></div><button class="btn btn-compact" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('')
+        : `<div class="favorite-row favorite-empty">${lang === 'ja' ? 'お気に入りはまだありません。' : 'No favorites yet.'}</div>`);
+    els.recentList.innerHTML = `<div class="favorite-row favorite-row-head"><strong>${uiText.recent}</strong><button class="btn btn-compact" type="button" data-clear="recent">${uiText.clear}</button></div>` +
+      (r.length
+        ? r.map((t) => `<div class="favorite-row"><div class="favorite-main"><span class="favorite-term">${localized(t.term)}</span><small>${localized(t.useCase)} · ${localized(t.termType)}</small></div><button class="btn btn-compact" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('')
+        : `<div class="favorite-row favorite-empty">${lang === 'ja' ? '最近見た語はまだありません。' : 'No recent terms yet.'}</div>`);
   }
 
   function renderSuggestions(list) {
@@ -331,6 +362,7 @@
     if (selectId || relatedId || openId) {
       state.selectedId = selectId || relatedId || openId;
       render();
+      openDetail();
       return;
     }
     if (compareId) {
@@ -374,6 +406,12 @@
     if (!text) return;
     try { await navigator.clipboard.writeText(text); showToast(uiText.copied); } catch { showToast(text); }
   });
+  els.openFiltersBtn?.addEventListener('click', openFilters);
+  els.closeFiltersBtn?.addEventListener('click', closeFilters);
+  els.openDetailBtn?.addEventListener('click', openDetail);
+  els.closeDetailBtn?.addEventListener('click', closeDetail);
+  mobileQuery.addEventListener('change', syncDesktopState);
 
+  syncDesktopState();
   render();
 })();
