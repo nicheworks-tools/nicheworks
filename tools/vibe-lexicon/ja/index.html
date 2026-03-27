@@ -30,18 +30,21 @@
     </div>
   </header>
 
-  <div class="ad-slot ad-top"><div><strong>ad-top</strong><br>広告枠プレースホルダー</div></div>
+  <div class="ad-slot ad-top" aria-label="広告枠プレースホルダー"><div class="ad-placeholder-copy">広告スペース（準備中）</div></div>
   <div class="quick-explain">悩みの言葉で検索し、平易説明・実務意図・用途別の依頼文へ落とし込みます。無料版では2語比較、お気に入り、最近見た語のローカル履歴を登録不要で利用できます。</div>
+  <div class="mobile-ia-actions"><button id="openFiltersBtn" class="btn" type="button">フィルター</button><button id="openDetailBtn" class="btn" type="button">詳細を開く</button></div>
+  <div id="mobileCompareBar" class="mobile-compare-bar" aria-live="polite"><span id="mobileCompareText"></span><button id="mobileCompareJumpBtn" class="btn btn-compact" type="button">比較を見る</button></div>
 
   <div class="dashboard">
     <aside class="panel filters" aria-label="左フィルター">
+      <div class="mobile-panel-head"><h2>フィルター</h2><button id="closeFiltersBtn" class="btn btn-compact" type="button">閉じる</button></div>
       <div class="section">
         <h2 class="panel-title">検索</h2>
         <div class="search-wrap"><label class="sr-only" for="searchInput">検索語</label><input id="searchInput" type="search" placeholder="今っぽい / 洗練 / 読みやすい / 高級感"><div id="suggestions" class="suggestions"></div></div>
       </div>
-      <div class="section"><h2 class="panel-title">カテゴリ</h2><div id="categoryChips" class="chip-row"></div></div>
-      <div class="section"><h2 class="panel-title">用途</h2><div id="useChips" class="chip-row"></div></div>
-      <div class="section"><h2 class="panel-title">語タイプ</h2><div id="typeChips" class="chip-row"></div></div>
+      <div class="section"><h2 class="panel-title">カテゴリ</h2><div id="categoryChips" class="chip-row"></div><button id="categoryToggleBtn" class="chip-toggle" type="button">もっと見る</button></div>
+      <div class="section"><h2 class="panel-title">用途</h2><div id="useChips" class="chip-row"></div><button id="useToggleBtn" class="chip-toggle" type="button">もっと見る</button></div>
+      <div class="section"><h2 class="panel-title">語タイプ</h2><div id="typeChips" class="chip-row"></div><button id="typeToggleBtn" class="chip-toggle" type="button">もっと見る</button></div>
       <div class="section">
         <h2 class="panel-title">クイック統計</h2>
         <div class="mini-stack">
@@ -60,6 +63,7 @@
     </section>
 
     <aside class="panel detail" aria-label="右詳細パネル">
+      <div class="mobile-panel-head"><h2>語の詳細</h2><button id="closeDetailBtn" class="btn btn-compact" type="button">閉じる</button></div>
       <div class="detail-head">
         <div class="card-tags"><span class="tag accent" id="detailTypeTag"></span><span class="tag" id="detailCategoryTag"></span><span class="tag success" id="detailUseTag"></span></div>
         <div><h3 id="detailTitle"></h3><div class="detail-sub" id="detailSub"></div></div>
@@ -75,13 +79,13 @@
     </aside>
   </div>
 
-  <section class="panel compare-panel" aria-label="比較トレイ"><div class="compare-head"><h3>比較トレイ</h3><div class="compare-sub">無料版は2語まで比較できます。</div></div><div id="compareInsight" class="compare-insight"></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">比較対象はまだありません。カードまたは詳細から追加してください。</div></div></section>
+  <section class="panel compare-panel" id="compareTray" aria-label="比較トレイ"><div class="compare-head"><h3>比較トレイ</h3><div class="compare-sub">無料版は2語まで比較できます。</div></div><div id="compareInsight" class="compare-insight"></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">比較対象はまだありません。カードまたは詳細から追加してください。</div></div></section>
 
   <section class="panel favorites-wrap" aria-label="お気に入りと履歴"><div class="compare-head"><h3>お気に入り・最近見た語</h3><div class="compare-sub">ブラウザのローカル保存（無料）</div></div><div id="favoritesList" class="favorites-grid"></div><div id="recentList" class="favorites-grid"></div></section>
 
   <section class="panel faq" aria-label="faq"><div class="faq-item"><h4>無料で使えますか？</h4><p>はい。公開カタログの検索・比較・短文コピーは無料で利用できます。</p></div><div class="faq-item"><h4>近い語を比べられますか？</h4><p>はい。比較トレイに2語まで追加し、実務での使い分けを並べて確認できます。</p></div><div class="faq-item"><h4>使い方はどこですか？</h4><p><a href="usage/">使い方ページを見る</a></p></div></section>
 
-  <div class="ad-slot ad-bottom"><div><strong>ad-bottom</strong><br>広告枠プレースホルダー</div></div>
+  <div class="ad-slot ad-bottom" aria-label="広告枠プレースホルダー"><div class="ad-placeholder-copy">広告スペース（準備中）</div></div>
 
   <section class="donate-box" aria-label="寄付"><strong>役に立ったら</strong><p>Niche Works の無料公開継続への支援リンクです。</p><div class="donate-actions"><a href="https://ofuse.me/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">OFUSE</a><a href="https://ko-fi.com/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">Ko-fi</a></div></section>
 

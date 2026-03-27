@@ -23,7 +23,8 @@
     compare: [],
     favorites: readArray('nw-vl-favorites'),
     recent: readArray('nw-vl-recent'),
-    promptMode: 'ui'
+    promptMode: 'ui',
+    filterExpanded: { category: false, useCase: false, termType: false }
   };
 
   const $ = (id) => document.getElementById(id);
@@ -34,21 +35,28 @@
     detailTitle: $('detailTitle'), detailSub: $('detailSub'), favoriteBtn: $('favoriteBtn'), addCompareBtn: $('addCompareBtn'), detailPlain: $('detailPlain'),
     detailFacts: $('detailFacts'), detailBreakdown: $('detailBreakdown'), detailBad: $('detailBad'), detailGood: $('detailGood'), detailWhyBetter: $('detailWhyBetter'), promptModes: $('promptModes'),
     promptBox: $('promptBox'), copyPromptBtn: $('copyPromptBtn'), detailRelated: $('detailRelated'), clearCompareBtn: $('clearCompareBtn'),
-    compareList: $('compareList'), compareEmpty: $('compareEmpty'), compareInsight: $('compareInsight'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast')
+    compareList: $('compareList'), compareEmpty: $('compareEmpty'), compareInsight: $('compareInsight'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast'),
+    openFiltersBtn: $('openFiltersBtn'), closeFiltersBtn: $('closeFiltersBtn'), openDetailBtn: $('openDetailBtn'), closeDetailBtn: $('closeDetailBtn'),
+    categoryToggleBtn: $('categoryToggleBtn'), useToggleBtn: $('useToggleBtn'), typeToggleBtn: $('typeToggleBtn'),
+    mobileCompareBar: $('mobileCompareBar'), mobileCompareText: $('mobileCompareText'), mobileCompareJumpBtn: $('mobileCompareJumpBtn'),
+    compareTray: $('compareTray')
   };
 
   if (!els.grid) return;
+  const mobileQuery = window.matchMedia('(max-width: 720px)');
 
   const uiText = lang === 'ja'
     ? {
       results: '件表示', noResults: '条件に一致する語がありません。', addCompare: '比較に追加', compared: '比較中', favorite: 'お気に入り', favorited: 'お気に入り済み',
       favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', compareLimit: '無料版は2語まで比較できます。',
-      details: '詳細', open: '開く', compareHint: '2語を選ぶと、違い・使い分け・実務性の比較が表示されます。'
+      details: '詳細', open: '開く', compareHint: '2語を選ぶと、違い・使い分け・実務性の比較が表示されます。',
+      showMore: 'もっと見る', showLess: '閉じる', compareStatus: '比較中'
     }
     : {
       results: 'results', noResults: 'No terms match current filters.', addCompare: 'Add compare', compared: 'In compare', favorite: 'Favorite', favorited: 'Favorited',
       favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', compareLimit: 'Free version supports up to 2 compare terms.',
-      details: 'Details', open: 'Open', compareHint: 'Select 2 terms to see difference, when-to-use guidance, and practicality comparison.'
+      details: 'Details', open: 'Open', compareHint: 'Select 2 terms to see difference, when-to-use guidance, and practicality comparison.',
+      showMore: 'Show more', showLess: 'Show less', compareStatus: 'In compare'
     };
 
   function readArray(key) {
@@ -72,6 +80,31 @@
     els.toast.textContent = message;
     els.toast.classList.add('show');
     setTimeout(() => els.toast.classList.remove('show'), 1400);
+  }
+  function isMobileViewport() {
+    return mobileQuery.matches;
+  }
+  function openFilters() {
+    if (!isMobileViewport()) return;
+    root.classList.add('filters-open');
+    root.classList.remove('detail-open');
+  }
+  function closeFilters() {
+    root.classList.remove('filters-open');
+  }
+  function openDetail() {
+    if (!isMobileViewport()) return;
+    root.classList.add('detail-open');
+    root.classList.remove('filters-open');
+  }
+  function closeDetail() {
+    root.classList.remove('detail-open');
+  }
+  function syncDesktopState() {
+    if (!isMobileViewport()) {
+      root.classList.remove('filters-open');
+      root.classList.remove('detail-open');
+    }
   }
 
   function setRecent(id) {
@@ -166,6 +199,15 @@
       });
       target.appendChild(btn);
     });
+  }
+  function renderFilterToggle(groupKey, chipsEl, toggleEl, limit) {
+    if (!chipsEl || !toggleEl) return;
+    const chipCount = chipsEl.children.length;
+    const expanded = Boolean(state.filterExpanded[groupKey]);
+    const shouldClamp = isMobileViewport() && chipCount > limit;
+    chipsEl.classList.toggle('chips-clamped', shouldClamp && !expanded);
+    toggleEl.hidden = !shouldClamp;
+    toggleEl.textContent = expanded ? uiText.showLess : uiText.showMore;
   }
 
   function renderGrid(list) {
@@ -285,10 +327,22 @@
   function renderSaved() {
     const f = state.favorites.map(byId).filter(Boolean);
     const r = state.recent.map(byId).filter(Boolean);
-    els.favoritesList.innerHTML = `<div class="favorite-row"><strong>${uiText.favorites}</strong><button class="btn" type="button" data-clear="fav">${uiText.clear}</button></div>` +
-      (f.length ? f.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('') : '');
-    els.recentList.innerHTML = `<div class="favorite-row"><strong>${uiText.recent}</strong><button class="btn" type="button" data-clear="recent">${uiText.clear}</button></div>` +
-      (r.length ? r.map((t) => `<div class="favorite-row"><span>${localized(t.term)}</span><button class="btn" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('') : '');
+    els.favoritesList.innerHTML = `<div class="favorite-row favorite-row-head"><strong>${uiText.favorites}</strong><button class="btn btn-compact" type="button" data-clear="fav">${uiText.clear}</button></div>` +
+      (f.length
+        ? f.map((t) => `<div class="favorite-row"><div class="favorite-main"><span class="favorite-term">${localized(t.term)}</span><small>${localized(t.category)} · ${localized(t.termType)}</small></div><button class="btn btn-compact" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('')
+        : `<div class="favorite-row favorite-empty">${lang === 'ja' ? 'お気に入りはまだありません。' : 'No favorites yet.'}</div>`);
+    els.recentList.innerHTML = `<div class="favorite-row favorite-row-head"><strong>${uiText.recent}</strong><button class="btn btn-compact" type="button" data-clear="recent">${uiText.clear}</button></div>` +
+      (r.length
+        ? r.map((t) => `<div class="favorite-row"><div class="favorite-main"><span class="favorite-term">${localized(t.term)}</span><small>${localized(t.useCase)} · ${localized(t.termType)}</small></div><button class="btn btn-compact" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('')
+        : `<div class="favorite-row favorite-empty">${lang === 'ja' ? '最近見た語はまだありません。' : 'No recent terms yet.'}</div>`);
+  }
+  function renderMobileCompareBar() {
+    if (!els.mobileCompareBar || !els.mobileCompareText) return;
+    const compareCount = state.compare.length;
+    const active = isMobileViewport() && compareCount > 0;
+    els.mobileCompareBar.classList.toggle('show', active);
+    if (!active) return;
+    els.mobileCompareText.textContent = `${uiText.compareStatus}: ${compareCount}/${maxCompare}`;
   }
 
   function renderSuggestions(list) {
@@ -305,6 +359,9 @@
     renderChips(els.categoryChips, [...new Set(terms.map((t) => localized(t.category)))], 'category');
     renderChips(els.useChips, [...new Set(terms.map((t) => localized(t.useCase)))], 'useCase');
     renderChips(els.typeChips, [...new Set(terms.map((t) => localized(t.termType)))], 'termType');
+    renderFilterToggle('category', els.categoryChips, els.categoryToggleBtn, 6);
+    renderFilterToggle('useCase', els.useChips, els.useToggleBtn, 4);
+    renderFilterToggle('termType', els.typeChips, els.typeToggleBtn, 4);
 
     els.statTotal.textContent = String(terms.length);
     els.statCompare.textContent = String(state.compare.length);
@@ -316,6 +373,7 @@
     renderGrid(list);
     renderDetail(selected);
     renderCompare();
+    renderMobileCompareBar();
     renderSaved();
     renderSuggestions(list);
   }
@@ -331,6 +389,7 @@
     if (selectId || relatedId || openId) {
       state.selectedId = selectId || relatedId || openId;
       render();
+      openDetail();
       return;
     }
     if (compareId) {
@@ -374,6 +433,19 @@
     if (!text) return;
     try { await navigator.clipboard.writeText(text); showToast(uiText.copied); } catch { showToast(text); }
   });
+  els.openFiltersBtn?.addEventListener('click', openFilters);
+  els.closeFiltersBtn?.addEventListener('click', closeFilters);
+  els.openDetailBtn?.addEventListener('click', openDetail);
+  els.closeDetailBtn?.addEventListener('click', closeDetail);
+  mobileQuery.addEventListener('change', syncDesktopState);
+  els.categoryToggleBtn?.addEventListener('click', () => { state.filterExpanded.category = !state.filterExpanded.category; render(); });
+  els.useToggleBtn?.addEventListener('click', () => { state.filterExpanded.useCase = !state.filterExpanded.useCase; render(); });
+  els.typeToggleBtn?.addEventListener('click', () => { state.filterExpanded.termType = !state.filterExpanded.termType; render(); });
+  els.mobileCompareJumpBtn?.addEventListener('click', () => {
+    if (!els.compareTray) return;
+    els.compareTray.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
+  syncDesktopState();
   render();
 })();
