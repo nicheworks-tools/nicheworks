@@ -30,9 +30,10 @@
     </div>
   </header>
 
-  <div class="ad-slot ad-top" aria-label="Ad space placeholder"><div class="ad-placeholder-copy">Ad space</div></div>
+  <div class="ad-slot ad-top" aria-label="Sponsored space placeholder"><div class="ad-placeholder-copy">Sponsored space reserved</div></div>
   <div class="quick-explain">Start with rough wording, then translate it into practical intent and use-case-ready request lines. Free mode includes 2-term compare, local favorites, and local recent history with no signup required.</div>
   <div class="mobile-ia-actions"><button id="openFiltersBtn" class="btn" type="button">Filters</button><button id="openDetailBtn" class="btn" type="button">Open detail</button></div>
+  <div id="mobileCompareBar" class="mobile-compare-bar" aria-live="polite"><span id="mobileCompareText"></span><button id="mobileCompareJumpBtn" class="btn btn-compact" type="button">View compare</button></div>
 
   <div class="dashboard">
     <aside class="panel filters" aria-label="left filters">
@@ -41,9 +42,9 @@
         <h2 class="panel-title">Search</h2>
         <div class="search-wrap"><label class="sr-only" for="searchInput">Search term</label><input id="searchInput" type="search" placeholder="modern / cluttered / readable / premium"><div id="suggestions" class="suggestions"></div></div>
       </div>
-      <div class="section"><h2 class="panel-title">Category</h2><div id="categoryChips" class="chip-row"></div></div>
-      <div class="section"><h2 class="panel-title">Use case</h2><div id="useChips" class="chip-row"></div></div>
-      <div class="section"><h2 class="panel-title">Term type</h2><div id="typeChips" class="chip-row"></div></div>
+      <div class="section"><h2 class="panel-title">Category</h2><div id="categoryChips" class="chip-row"></div><button id="categoryToggleBtn" class="chip-toggle" type="button">Show more</button></div>
+      <div class="section"><h2 class="panel-title">Use case</h2><div id="useChips" class="chip-row"></div><button id="useToggleBtn" class="chip-toggle" type="button">Show more</button></div>
+      <div class="section"><h2 class="panel-title">Term type</h2><div id="typeChips" class="chip-row"></div><button id="typeToggleBtn" class="chip-toggle" type="button">Show more</button></div>
       <div class="section">
         <h2 class="panel-title">Quick stats</h2>
         <div class="mini-stack">
@@ -78,13 +79,13 @@
     </aside>
   </div>
 
-  <section class="panel compare-panel" aria-label="compare tray"><div class="compare-head"><h3>Compare tray</h3><div class="compare-sub">Free mode compares up to 2 terms.</div></div><div id="compareInsight" class="compare-insight"></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">No compare terms yet. Add terms from cards or detail panel.</div></div></section>
+  <section class="panel compare-panel" id="compareTray" aria-label="compare tray"><div class="compare-head"><h3>Compare tray</h3><div class="compare-sub">Free mode compares up to 2 terms.</div></div><div id="compareInsight" class="compare-insight"></div><div id="compareList" class="compare-list"></div><div id="compareEmpty" class="compare-list"><div class="compare-item">No compare terms yet. Add terms from cards or detail panel.</div></div></section>
 
   <section class="panel favorites-wrap" aria-label="favorites and recent"><div class="compare-head"><h3>Favorites & recent</h3><div class="compare-sub">Stored locally in your browser (free).</div></div><div id="favoritesList" class="favorites-grid"></div><div id="recentList" class="favorites-grid"></div></section>
 
   <section class="panel faq" aria-label="faq"><div class="faq-item"><h4>Is this free?</h4><p>Yes. Core lookup, compare, and copy actions are free in the public catalog.</p></div><div class="faq-item"><h4>Can I compare similar terms?</h4><p>Yes. Add up to two terms to the compare tray and review practical differences side by side.</p></div><div class="faq-item"><h4>Where are usage details?</h4><p><a href="usage/">Open usage page</a></p></div></section>
 
-  <div class="ad-slot ad-bottom" aria-label="Ad space placeholder"><div class="ad-placeholder-copy">Ad space</div></div>
+  <div class="ad-slot ad-bottom" aria-label="Sponsored space placeholder"><div class="ad-placeholder-copy">Sponsored space reserved</div></div>
 
   <section class="donate-box" aria-label="donation"><strong>If this tool helped</strong><p>Support Niche Works ongoing free tool publishing.</p><div class="donate-actions"><a href="https://ofuse.me/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">OFUSE</a><a href="https://ko-fi.com/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">Ko-fi</a></div></section>
 
