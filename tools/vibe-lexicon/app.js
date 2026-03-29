@@ -24,6 +24,7 @@
     favorites: readArray('nw-vl-favorites'),
     recent: readArray('nw-vl-recent'),
     promptMode: 'ui',
+    mobileVisibleCount: 10,
     filterExpanded: { category: false, useCase: false, termType: false }
   };
 
@@ -31,15 +32,15 @@
   const els = {
     searchInput: $('searchInput'), suggestions: $('suggestions'), categoryChips: $('categoryChips'), useChips: $('useChips'), typeChips: $('typeChips'),
     statTotal: $('statTotal'), statCompare: $('statCompare'), statFav: $('statFav'), resetFiltersBtn: $('resetFiltersBtn'), resultCount: $('resultCount'),
-    topicScroller: $('topicScroller'), grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detailCategoryTag'), detailUseTag: $('detailUseTag'),
+grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detailCategoryTag'), detailUseTag: $('detailUseTag'),
     detailTitle: $('detailTitle'), detailSub: $('detailSub'), favoriteBtn: $('favoriteBtn'), addCompareBtn: $('addCompareBtn'), detailPlain: $('detailPlain'),
     detailFacts: $('detailFacts'), detailBreakdown: $('detailBreakdown'), detailBad: $('detailBad'), detailGood: $('detailGood'), detailWhyBetter: $('detailWhyBetter'), promptModes: $('promptModes'),
     promptBox: $('promptBox'), copyPromptBtn: $('copyPromptBtn'), detailRelated: $('detailRelated'), clearCompareBtn: $('clearCompareBtn'),
     compareList: $('compareList'), compareEmpty: $('compareEmpty'), compareInsight: $('compareInsight'), favoritesList: $('favoritesList'), recentList: $('recentList'), toast: $('toast'),
     openFiltersBtn: $('openFiltersBtn'), closeFiltersBtn: $('closeFiltersBtn'), openDetailBtn: $('openDetailBtn'), closeDetailBtn: $('closeDetailBtn'),
     categoryToggleBtn: $('categoryToggleBtn'), useToggleBtn: $('useToggleBtn'), typeToggleBtn: $('typeToggleBtn'),
-    mobileCompareBar: $('mobileCompareBar'), mobileCompareText: $('mobileCompareText'), mobileCompareJumpBtn: $('mobileCompareJumpBtn'),
-    compareTray: $('compareTray')
+    mobileCompareBar: $('mobileCompareBar'), mobileCompareText: $('mobileCompareText'), mobileCompareJumpBtn: $('mobileCompareJumpBtn'), mobileCompareClearBtn: $('mobileCompareClearBtn'),
+    compareTray: $('compareTray'), mobileResultsActions: $('mobileResultsActions')
   };
 
   if (!els.grid) return;
@@ -105,6 +106,10 @@
       root.classList.remove('filters-open');
       root.classList.remove('detail-open');
     }
+  }
+
+  function resetMobileVisibleCount() {
+    state.mobileVisibleCount = 10;
   }
 
   function setRecent(id) {
@@ -195,6 +200,7 @@
       btn.textContent = value;
       btn.addEventListener('click', () => {
         state[key] = state[key] === value ? null : value;
+        resetMobileVisibleCount();
         render();
       });
       target.appendChild(btn);
@@ -212,11 +218,16 @@
 
   function renderGrid(list) {
     els.grid.innerHTML = '';
-    if (!list.length) {
+    const mobileLimit = state.mobileVisibleCount || 10;
+    const visibleList = isMobileViewport() ? list.slice(0, mobileLimit) : list;
+
+    if (!visibleList.length) {
       els.grid.innerHTML = `<div class="card"><p class="card-copy">${uiText.noResults}</p></div>`;
+      if (els.mobileResultsActions) els.mobileResultsActions.innerHTML = '';
       return;
     }
-    list.forEach((term) => {
+
+    visibleList.forEach((term) => {
       const card = document.createElement('article');
       card.className = 'card';
       const compareActive = state.compare.includes(term.id);
@@ -224,13 +235,30 @@
         <div class="card-head">
           <div><h3 class="card-title">${localized(term.term)}</h3><p class="card-sub">${localizedArray(term.aliases).slice(0, 3).join(' / ')}</p></div>
         </div>
-        <div class="card-tags"><span class="tag accent">${localized(term.termType)}</span><span class="tag">${localized(term.category)}</span><span class="tag success">${localized(term.useCase)}</span></div>
+        <div class="card-tags">
+          <span class="tag accent">${localized(term.termType)}</span>
+          <span class="tag">${localized(term.category)}</span>
+          <span class="tag success">${localized(term.useCase)}</span>
+        </div>
         <p class="card-copy">${localized(term.beginner)}</p>
-        <div class="decompose-list">${localizedArray(term.vagueToPractical).slice(0, 2).map((x) => `<div class="decompose-item">${x}</div>`).join('')}</div>
-        <div class="card-actions"><button class="btn" data-select="${term.id}">${uiText.details}</button><button class="btn" data-compare="${term.id}">${compareActive ? uiText.compared : uiText.addCompare}</button></div>
+        <div class="card-actions">
+          <button class="btn" data-select="${term.id}">${uiText.details}</button>
+          <button class="btn" data-compare="${term.id}">${compareActive ? uiText.compared : uiText.addCompare}</button>
+        </div>
       `;
       els.grid.appendChild(card);
     });
+
+    if (els.mobileResultsActions) {
+      if (isMobileViewport() && list.length > visibleList.length) {
+        const remaining = list.length - visibleList.length;
+        const step = Math.min(10, remaining);
+        const label = lang === 'ja' ? `さらに${step}件表示` : `Show ${step} more`;
+        els.mobileResultsActions.innerHTML = `<button class="btn" type="button" data-show-more-results="1">${label}</button>`;
+      } else {
+        els.mobileResultsActions.innerHTML = '';
+      }
+    }
   }
 
   function renderDetail(term) {
@@ -340,6 +368,7 @@
     if (!els.mobileCompareBar || !els.mobileCompareText) return;
     const compareCount = state.compare.length;
     const active = isMobileViewport() && compareCount > 0;
+    root.classList.toggle('mobile-no-compare', isMobileViewport() && compareCount === 0);
     els.mobileCompareBar.classList.toggle('show', active);
     if (!active) return;
     els.mobileCompareText.textContent = `${uiText.compareStatus}: ${compareCount}/${maxCompare}`;
@@ -367,8 +396,6 @@
     els.statCompare.textContent = String(state.compare.length);
     els.statFav.textContent = String(state.favorites.length);
     els.resultCount.textContent = `${list.length} ${uiText.results}`;
-
-    els.topicScroller.innerHTML = [...new Set(list.map((t) => localized(t.term)))].map((name) => `<button class="topic-chip" type="button">${name}</button>`).join('');
 
     renderGrid(list);
     renderDetail(selected);
@@ -403,11 +430,17 @@
     if (clearType === 'fav') { state.favorites = []; writeArray('nw-vl-favorites', []); render(); return; }
     if (clearType === 'recent') { state.recent = []; writeArray('nw-vl-recent', []); render(); return; }
     if (mode) { state.promptMode = mode; renderDetail(byId(state.selectedId)); return; }
+    if (event.target.closest('[data-show-more-results]')) {
+      state.mobileVisibleCount += 10;
+      render();
+      return;
+    }
   });
 
-  els.searchInput?.addEventListener('input', (event) => { state.query = event.target.value; render(); });
+  els.searchInput?.addEventListener('input', (event) => { state.query = event.target.value; resetMobileVisibleCount(); render(); });
   els.resetFiltersBtn?.addEventListener('click', () => {
     state.query = ''; state.category = null; state.useCase = null; state.termType = null;
+    resetMobileVisibleCount();
     if (els.searchInput) els.searchInput.value = '';
     render();
   });
@@ -435,7 +468,6 @@
   });
   els.openFiltersBtn?.addEventListener('click', openFilters);
   els.closeFiltersBtn?.addEventListener('click', closeFilters);
-  els.openDetailBtn?.addEventListener('click', openDetail);
   els.closeDetailBtn?.addEventListener('click', closeDetail);
   mobileQuery.addEventListener('change', syncDesktopState);
   els.categoryToggleBtn?.addEventListener('click', () => { state.filterExpanded.category = !state.filterExpanded.category; render(); });
@@ -444,6 +476,10 @@
   els.mobileCompareJumpBtn?.addEventListener('click', () => {
     if (!els.compareTray) return;
     els.compareTray.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  els.mobileCompareClearBtn?.addEventListener('click', () => {
+    state.compare = [];
+    render();
   });
 
   syncDesktopState();

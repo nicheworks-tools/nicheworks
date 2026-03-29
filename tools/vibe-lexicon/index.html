@@ -18,7 +18,7 @@
 <div class="page">
   <div class="top-links">
     <span>Language: English</span>
-    <nav aria-label="site links"><a href="ja/">日本語</a><a href="usage/">Usage</a><a href="about/">About</a><a href="pro/">Pro</a></nav>
+    <nav aria-label="site links"><a href="ja/" class="vl-top-link">日本語</a><a href="usage/" class="vl-top-link vl-usage-link">Guide</a><a href="about/" class="vl-top-link">About</a><a href="pro/" class="vl-top-link">Pro</a></nav>
   </div>
 
   <header class="hero panel">
@@ -30,10 +30,10 @@
     </div>
   </header>
 
-  <div class="ad-slot ad-top" aria-label="Sponsored space placeholder"><div class="ad-placeholder-copy">Sponsored space reserved</div></div>
+  <div class="ad-slot ad-top" aria-label="Sponsored space placeholder"><div class="ad-placeholder-copy">Ad space</div></div>
   <div class="quick-explain">Start with rough wording, then translate it into practical intent and use-case-ready request lines. Free mode includes 2-term compare, local favorites, and local recent history with no signup required.</div>
-  <div class="mobile-ia-actions"><button id="openFiltersBtn" class="btn" type="button">Filters</button><button id="openDetailBtn" class="btn" type="button">Open detail</button></div>
-  <div id="mobileCompareBar" class="mobile-compare-bar" aria-live="polite"><span id="mobileCompareText"></span><button id="mobileCompareJumpBtn" class="btn btn-compact" type="button">View compare</button></div>
+  <div class="mobile-ia-actions"><button id="openFiltersBtn" class="btn" type="button">Filters</button></div>
+  <div id="mobileCompareBar" class="mobile-compare-bar" aria-live="polite"><span id="mobileCompareText"></span><div class="mobile-compare-actions"><button id="mobileCompareClearBtn" class="btn btn-compact" type="button">Clear</button><button id="mobileCompareJumpBtn" class="btn btn-compact" type="button">View compare</button></div></div></div></div>
 
   <div class="dashboard">
     <aside class="panel filters" aria-label="left filters">
@@ -60,6 +60,7 @@
       <div class="catalog-head"><div><h2>Vague-to-practical catalog</h2><p class="catalog-sub">Browse terms by wording, then inspect plain explanation, practical intent, bad vs better requests, and short prompts.</p></div></div>
       <div class="toolbar"><div class="toolbar-row"><span class="count" id="resultCount">0 results</span><button id="clearCompareBtn" class="btn" type="button">Clear compare</button></div><div class="topic-scroller" id="topicScroller"></div></div>
       <div id="grid" class="grid"></div>
+      <div id="mobileResultsActions" class="mobile-results-actions"></div>
     </section>
 
     <aside class="panel detail" aria-label="right detail panel">
@@ -83,13 +84,13 @@
 
   <section class="panel favorites-wrap" aria-label="favorites and recent"><div class="compare-head"><h3>Favorites & recent</h3><div class="compare-sub">Stored locally in your browser (free).</div></div><div id="favoritesList" class="favorites-grid"></div><div id="recentList" class="favorites-grid"></div></section>
 
-  <section class="panel faq" aria-label="faq"><div class="faq-item"><h4>Is this free?</h4><p>Yes. Core lookup, compare, and copy actions are free in the public catalog.</p></div><div class="faq-item"><h4>Can I compare similar terms?</h4><p>Yes. Add up to two terms to the compare tray and review practical differences side by side.</p></div><div class="faq-item"><h4>Where are usage details?</h4><p><a href="usage/">Open usage page</a></p></div></section>
+  <section class="panel faq" aria-label="faq"><div class="faq-item"><h4>Is this free?</h4><p>Yes. Core lookup, compare, and copy actions are free in the public catalog.</p></div><div class="faq-item"><h4>Can I compare similar terms?</h4><p>Yes. Add up to two terms to the compare tray and review practical differences side by side.</p></div><div class="faq-item"><h4>Where are usage details?</h4><p><a href="usage/" class="vl-usage-link">See the usage guide</a></p></div></section>
 
-  <div class="ad-slot ad-bottom" aria-label="Sponsored space placeholder"><div class="ad-placeholder-copy">Sponsored space reserved</div></div>
+  <div class="ad-slot ad-bottom" aria-label="Sponsored space placeholder"><div class="ad-placeholder-copy">Ad space</div></div>
 
-  <section class="donate-box" aria-label="donation"><strong>If this tool helped</strong><p>Support Niche Works ongoing free tool publishing.</p><div class="donate-actions"><a href="https://ofuse.me/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">OFUSE</a><a href="https://ko-fi.com/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">Ko-fi</a></div></section>
+  <section class="donate-box" aria-label="donation"><strong>If this tool helped</strong><p>Support Niche Works ongoing free tool publishing.</p><div class="donate-actions"><a href="https://ofuse.me/nicheworks" class="btn vl-donate-btn vl-donate-ofuse" target="_blank" rel="noopener noreferrer">OFUSE</a><a class="nw-donate-btn nw-donate-kofi vl-donate-btn vl-donate-kofi" href="https://ko-fi.com/nicheworks" class="btn" target="_blank" rel="noopener noreferrer">Ko-fi</a></div></section>
 
-  <footer><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>This site may include ads. Verify important decisions with official information.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p></footer>
+  <footer><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>This site may include ads. Verify important decisions with official information.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer" class="vl-footer-link">nicheworks.app</a></p></footer>
 </div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script src="data/terms.js"></script>
