@@ -1097,3 +1097,103 @@ a[href*="/tools/vibe-lexicon/pro"]:focus-visible {
     border-radius: 12px;
   }
 }
+
+/* static support pages (about / usage / pro) */
+.vl-static-page {
+  max-width: 1160px;
+}
+
+.vl-page-hero {
+  margin-bottom: 16px;
+}
+
+.vl-content-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.vl-section {
+  padding: 22px;
+}
+
+.vl-section h2 {
+  margin: 0 0 10px;
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.vl-section h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.vl-section p,
+.vl-section li {
+  color: #374151;
+  font-size: 15px;
+}
+
+.vl-section p {
+  margin: 0 0 10px;
+}
+
+.vl-section p:last-child {
+  margin-bottom: 0;
+}
+
+.vl-section ul {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 7px;
+}
+
+.vl-two-col {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 12px 0;
+}
+
+.vl-note {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f9fafb;
+  padding: 14px;
+}
+
+.vl-note-good {
+  background: #f4fff7;
+  border-color: #bbf7d0;
+}
+
+.vl-muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.vl-status-block {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+}
+
+@media (max-width: 900px) {
+  .vl-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .vl-section {
+    padding: 16px;
+  }
+
+  .vl-section h2 {
+    font-size: 20px;
+  }
+
+  .vl-section p,
+  .vl-section li {
+    font-size: 14px;
+  }
+}

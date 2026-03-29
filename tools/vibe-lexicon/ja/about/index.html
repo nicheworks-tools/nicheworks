@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vibe Lexicon | このツールについて | Niche Works</title>
-  <meta name="description" content="Niche Works の英語主軸 Vibe Coding 用語集の土台です。">
+  <meta name="description" content="Vibe Lexiconの目的、対象ユーザー、無料版の現在地と将来のPro方向を整理したページです。">
   <link rel="canonical" href="https://nicheworks.app/tools/vibe-lexicon/ja/about/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/vibe-lexicon/about/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/vibe-lexicon/ja/about/">
@@ -15,44 +15,91 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body data-tool="vibe-lexicon" data-page="about" data-lang="ja">
-  <header class="nw-header">
-    <p class="nw-eyebrow">Niche Works Tool Series</p>
-    <h1>Vibe Lexicon</h1>
-    <p class="nw-tagline">曖昧な依頼を、AIに通る言葉へ変えるVibe Coding用語集。</p>
-    <div class="nw-lang-switch">
-      <a href="../../about/">English</a>
+<div class="page vl-static-page">
+  <div class="top-links">
+    <span>Language: 日本語</span>
+    <nav aria-label="Vibe Lexiconページ"><a href="../../about/">English</a><a href="../">ツール本体</a><a href="../usage/" class="vl-usage-link">使い方</a><a href="../pro/">Pro</a></nav>
+  </div>
+
+  <header class="hero panel vl-page-hero">
+    <div class="eyebrow">プロダクト解説</div>
+    <h1>Vibe Lexicon について</h1>
+    <p class="hero-copy">Vibe Lexicon は「なんとなくこうしたい」を、設計と実装に使える言葉へ変換するための表現判断ツールです。曖昧な依頼を、実務で伝わる指示文に近づけます。</p>
+    <div class="hero-points">
+      <span class="pill">曖昧な依頼 → 実務で使える表現</span>
+      <span class="pill">UI改善の言語化</span>
+      <span class="pill">現場で再利用できる基礎辞書</span>
     </div>
-    <nav class="nw-nav" aria-label="ページ内ナビゲーション">
-      <a href="../">ホーム</a><a href="../usage/">使い方</a><a href="../about/">このツールについて</a><a href="../pro/">Pro（準備中）</a>
-    </nav>
   </header>
 
-  <main class="nw-main">
-    <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
-
-    <section class="nw-card">
-      <h2>このツールについて</h2>
-      <p>このプロジェクトは英語主軸で、/ja/ に日本語ページを持つ公開ツールです。</p>
+  <main class="vl-content-grid">
+    <section class="panel vl-section">
+      <h2>このツールは何をするのか</h2>
+      <p>Vibe Lexicon は単なる用語辞典ではありません。たとえば「モダンにしたい」「読みやすくしたい」「CTAをわかりやすくしたい」といった曖昧な要望を、情報設計やUI実装で使える実践的な言葉へ落とし込むための参照ツールです。</p>
     </section>
 
-    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom, optional)</section>
+    <section class="panel vl-section">
+      <h2>誰に向いているか</h2>
+      <ul>
+        <li>抽象的な要望を具体化してからデザインしたい人。</li>
+        <li>レビュー指示を実装可能な文に整えたい開発者。</li>
+        <li>「高級感」「洗練」「可読性」などの言葉をチームで揃えたい担当者。</li>
+        <li>短いAIプロンプトを現実的なUI改善に使いたい人。</li>
+      </ul>
+    </section>
 
-    <section class="nw-donate" aria-label="support">
-      <h2>このプロジェクトを支援</h2>
-      <p>無料ファースト方針: コア機能は公開状態を維持します。</p>
-      <p class="donation-links">
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a>
-      </p>
+    <section class="panel vl-section">
+      <h2>解決したい表現のズレ</h2>
+      <div class="vl-two-col">
+        <article class="vl-note">
+          <h3>ありがちな依頼</h3>
+          <p>「今っぽくして」「フォームを改善して」「モバイルを見やすくして」</p>
+        </article>
+        <article class="vl-note vl-note-good">
+          <h3>実務向けの言い換え</h3>
+          <p>「余白リズムを整え、補助ラベルを整理し、CTAの視認性を上げて初見スキャン性を改善する」</p>
+        </article>
+      </div>
+      <p class="vl-muted">主な対象は modern / polished / premium / readable / CTA clarity / clutter reduction / mobile readability / form clarity です。</p>
+    </section>
+
+    <section class="panel vl-section">
+      <h2>一般的な用語集やプロンプト集との違い</h2>
+      <p>意味説明だけで終わらず、実務での使いどころ・悪い依頼と良い依頼の差・短い再利用文までを一体で確認できます。雰囲気語をそのまま投げるのではなく、具体的な設計意図へ変換することを重視しています。</p>
+    </section>
+
+    <section class="panel vl-section">
+      <h2>現在の無料版でできること</h2>
+      <ul>
+        <li>用語の検索・フィルタ・参照。</li>
+        <li>詳細での平易説明と分解表示。</li>
+        <li>基本的な比較表示。</li>
+        <li>短いプロンプト文のコピー。</li>
+        <li>お気に入り・最近見た項目（ブラウザローカル保存）。</li>
+      </ul>
+    </section>
+
+    <section class="panel vl-section">
+      <h2>今後の方向</h2>
+      <p>将来的には、より深い比較や継続利用向けの機能を Pro 側で拡張予定です。現時点での方針は <a href="../pro/">Proページ</a> で公開しています。</p>
+      <p><a href="../" class="vl-usage-link">ツール本体に戻る</a></p>
     </section>
   </main>
 
-  <footer class="nw-footer">
+  <div class="ad-slot ad-bottom" aria-label="Sponsored space placeholder"><div class="ad-placeholder-copy">Ad space</div></div>
+
+  <section class="donate-box" aria-label="donation">
+    <strong>このツールが役立ったら</strong>
+    <p>Niche Works の無料ツール継続公開を支援できます。</p>
+    <div class="donate-actions"><a href="https://ofuse.me/nicheworks" class="btn vl-donate-btn vl-donate-ofuse" target="_blank" rel="noopener noreferrer">OFUSE</a><a href="https://ko-fi.com/nicheworks" class="btn vl-donate-btn vl-donate-kofi" target="_blank" rel="noopener noreferrer">Ko-fi</a></div>
+  </section>
+
+  <footer>
     <p>© Niche Works — Small Web Tools for Boring Tasks</p>
     <p>このサイトには広告が含まれる場合があります。重要な判断は必ず公式情報をご確認ください。</p>
-    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p>
+    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer" class="vl-footer-link">nicheworks.app</a></p>
   </footer>
-
-  <script src="../../app.js" defer></script>
+</div>
+<script src="../../app.js" defer></script>
 </body>
 </html>
