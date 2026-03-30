@@ -94,6 +94,20 @@
         <div class="result-grid">
         </div>
 
+        <button type="button" class="mobile-compare-bar" data-mobile-compare-bar hidden>
+          <span data-mobile-compare-label>Compare (0/2)</span>
+        </button>
+
+        <section class="compare-sheet" data-compare-sheet aria-modal="true" aria-label="Compare patterns">
+          <div class="compare-sheet-header">
+            <h3>Compare patterns</h3>
+            <button type="button" class="detail-close" data-close-compare>Close</button>
+          </div>
+          <p data-compare-sheet-empty>Nothing added yet. Add up to two patterns for quick key-difference checks.</p>
+          <div class="compare-list" data-compare-sheet-list></div>
+          <div class="compare-diff" data-compare-sheet-diff hidden></div>
+        </section>
+
         <section class="compare-tray">
           <h3>Compare tray</h3>
           <p data-compare-empty>Nothing added yet. Add up to two patterns for quick key-difference checks.</p>
@@ -114,8 +128,10 @@
       </section>
 
       <aside class="panel detail" data-detail-panel>
-        <button type="button" class="detail-close" data-close-detail>Close</button>
-        <h2 data-detail-title>Select a pattern</h2>
+        <div class="detail-sheet-header">
+          <h2 data-detail-title>Select a pattern</h2>
+          <button type="button" class="detail-close" data-close-detail>Close</button>
+        </div>
         <h3>Live sample</h3>
         <div class="detail-sample" data-detail-sample aria-label="Live pattern sample"></div>
         <h3>What it is</h3>
@@ -128,16 +144,16 @@
         <p class="detail-body" data-detail-not-for>-</p>
         <h3>Similar patterns</h3>
         <p class="detail-body" data-detail-similar>-</p>
-        <h3>Practical intent</h3>
-        <p class="detail-body" data-detail-practical-intent>-</p>
-        <h3>Beginner wording</h3>
-        <p class="detail-body" data-detail-novice>-</p>
         <h3>Short AI prompt</h3>
         <p class="detail-body" data-detail-prompt>-</p>
         <button class="btn" type="button" data-copy-prompt>Copy short prompt</button>
         <p class="copy-state" data-copy-state aria-live="polite"></p>
         <h3>Implementation note</h3>
         <p class="detail-body" data-detail-implementation>-</p>
+        <h3>Practical intent</h3>
+        <p class="detail-body" data-detail-practical-intent>-</p>
+        <h3>Beginner wording</h3>
+        <p class="detail-body" data-detail-novice>-</p>
         <button class="btn" type="button" data-toggle-favorite>☆ Favorite</button>
       </aside>
     </section>

@@ -25,6 +25,8 @@
       difficulty: 'Difficulty',
       openDetail: 'Open detail',
       addCompare: 'Add compare',
+      addedCompare: 'Added to compare',
+      compareBar: (count) => `Compare (${count}/2)`,
       sample: 'Live sample',
       compareBetter: 'Best for',
       compareAvoid: 'Avoid when',
@@ -64,6 +66,8 @@
       difficulty: '実装難易度',
       openDetail: '詳細',
       addCompare: '比較に追加',
+      addedCompare: '比較に追加済み',
+      compareBar: (count) => `比較 (${count}/2)`,
       sample: 'ライブサンプル',
       compareBetter: '向いている場面',
       compareAvoid: '避けたい場面',
@@ -108,6 +112,12 @@
   const compareList = app.querySelector('[data-compare-list]');
   const compareEmpty = app.querySelector('[data-compare-empty]');
   const compareDiff = app.querySelector('[data-compare-diff]');
+  const mobileCompareBar = app.querySelector('[data-mobile-compare-bar]');
+  const mobileCompareLabel = app.querySelector('[data-mobile-compare-label]');
+  const compareSheet = app.querySelector('[data-compare-sheet]');
+  const compareSheetList = app.querySelector('[data-compare-sheet-list]');
+  const compareSheetEmpty = app.querySelector('[data-compare-sheet-empty]');
+  const compareSheetDiff = app.querySelector('[data-compare-sheet-diff]');
   const favoritesList = app.querySelector('[data-favorites-list]');
   const recentList = app.querySelector('[data-recent-list]');
   const copyState = app.querySelector('[data-copy-state]');
@@ -145,6 +155,9 @@
   let activeFilters = { purpose: 'all', mobileFit: 'all', difficulty: 'all' };
   let compareIds = [];
   let currentId = null;
+  let listScrollY = 0;
+  let detailOpen = false;
+  let compareSheetOpen = false;
   let favorites = safeJsonParse(localStorage.getItem(storage.favorites), []);
   let recent = safeJsonParse(localStorage.getItem(storage.recent), []);
 
@@ -154,6 +167,8 @@
   let bySlug = new Map();
 
   const badge = (text) => `<span class="mini-badge">${text}</span>`;
+  const mobileQuery = window.matchMedia('(max-width: 820px)');
+  const isMobileLayout = () => mobileQuery.matches;
 
   function normalizeRecord(pattern) {
     const useJa = lang === 'ja';
@@ -384,7 +399,7 @@
       </div>
       <div class="card-actions">
         <button class="btn" data-open-detail type="button">${t.openDetail}</button>
-        <button class="btn primary" data-add-compare type="button">${t.addCompare}</button>
+        <button class="btn compare-btn" data-add-compare type="button">${t.addCompare}</button>
       </div>
     `;
     renderSampleSafely(article.querySelector('[data-card-sample]'), record, false);
@@ -434,17 +449,98 @@
   function renderFavorites() { renderMiniList(favoritesList, favorites, t.noFavorites); }
   function renderRecents() { renderMiniList(recentList, recent, t.noRecent); }
 
-  function renderCompare() {
-    if (!compareList || !compareEmpty || !compareDiff) return;
-    compareList.innerHTML = '';
+  function lockBodyScroll() {
+    if (!isMobileLayout()) return;
+    listScrollY = window.scrollY;
+    root.classList.add('ui-atlas-lock-scroll');
+    root.style.top = `-${listScrollY}px`;
+  }
+
+  function unlockBodyScroll() {
+    if (!root.classList.contains('ui-atlas-lock-scroll')) return;
+    root.classList.remove('ui-atlas-lock-scroll');
+    root.style.top = '';
+    window.scrollTo(0, listScrollY);
+  }
+
+  function openDetailSheet() {
+    if (detailOpen) return;
+    detailOpen = true;
+    app.classList.add('detail-open');
+    lockBodyScroll();
+  }
+
+  function closeDetailSheet() {
+    if (!detailOpen) return;
+    detailOpen = false;
+    app.classList.remove('detail-open');
+    unlockBodyScroll();
+  }
+
+  function openCompareSheet() {
+    if (!compareSheet || !compareIds.length) return;
+    if (detailOpen) closeDetailSheet();
+    compareSheetOpen = true;
+    app.classList.add('compare-open');
+    lockBodyScroll();
+  }
+
+  function closeCompareSheet() {
+    if (!compareSheetOpen) return;
+    compareSheetOpen = false;
+    app.classList.remove('compare-open');
+    unlockBodyScroll();
+  }
+
+  function compareMarkup() {
+    if (compareIds.length !== 2) return '';
+    const left = cardData(byId.get(compareIds[0]));
+    const right = cardData(byId.get(compareIds[1]));
+    const mobileLeft = t.mobileNames[left.mobileFit] || left.mobileFit;
+    const mobileRight = t.mobileNames[right.mobileFit] || right.mobileFit;
+    const diffLeft = t.difficultyNames[left.difficulty] || left.difficulty;
+    const diffRight = t.difficultyNames[right.difficulty] || right.difficulty;
+    const score = (item, other) => {
+      let points = 0;
+      if (item.mobileFit === 'high') points += 2;
+      else if (item.mobileFit === 'medium') points += 1;
+      if (item.difficulty === 'easy') points += 2;
+      else if (item.difficulty === 'medium') points += 1;
+      if (item.purpose === other.purpose) points += 1;
+      return points;
+    };
+    const leftScore = score(left, right);
+    const rightScore = score(right, left);
+    const decisionLine = leftScore === rightScore
+      ? `${t.compareChoose(left.name)} ${left.best} / ${t.compareChoose(right.name)} ${right.best}`
+      : leftScore > rightScore
+        ? `${t.compareChoose(left.name)} ${left.best}`
+        : `${t.compareChoose(right.name)} ${right.best}`;
+    return `
+      <h4>${t.compareDiff}: ${left.name} × ${right.name}</h4>
+      <ul>
+        <li><strong>${t.compareChoose(left.name)}</strong> ${left.best}</li>
+        <li><strong>${t.compareInstead(left.name)}</strong> ${left.notFor}</li>
+        <li><strong>${t.compareChoose(right.name)}</strong> ${right.best}</li>
+        <li><strong>${t.compareInstead(right.name)}</strong> ${right.notFor}</li>
+        <li><strong>${t.purpose}</strong>: ${left.name} ${(t.purposeNames[left.purpose] || left.purpose)} / ${right.name} ${(t.purposeNames[right.purpose] || right.purpose)}</li>
+        <li><strong>${t.mobile}</strong>: ${left.name} ${mobileLeft} / ${right.name} ${mobileRight}</li>
+        <li><strong>${t.difficulty}</strong>: ${left.name} ${diffLeft} / ${right.name} ${diffRight}</li>
+        <li><strong>${t.compareDecision}</strong>: ${decisionLine}</li>
+      </ul>
+    `;
+  }
+
+  function renderCompareInto(targetList, targetEmpty, targetDiff) {
+    if (!targetList || !targetEmpty || !targetDiff) return;
+    targetList.innerHTML = '';
     if (!compareIds.length) {
-      compareEmpty.hidden = false;
-      compareDiff.hidden = true;
-      compareDiff.innerHTML = '';
+      targetEmpty.hidden = false;
+      targetDiff.hidden = true;
+      targetDiff.innerHTML = '';
       return;
     }
-
-    compareEmpty.hidden = true;
+    targetEmpty.hidden = true;
     compareIds.forEach((id) => {
       const card = byId.get(id);
       if (!card) return;
@@ -453,61 +549,40 @@
       item.className = 'compare-item';
       item.innerHTML = `<strong>${data.name}</strong><button class="btn" type="button">${t.remove}</button>`;
       item.querySelector('button')?.addEventListener('click', () => toggleCompare(card));
-      compareList.appendChild(item);
+      targetList.appendChild(item);
     });
-
     if (compareIds.length === 2) {
-      const left = cardData(byId.get(compareIds[0]));
-      const right = cardData(byId.get(compareIds[1]));
-      const mobileLeft = t.mobileNames[left.mobileFit] || left.mobileFit;
-      const mobileRight = t.mobileNames[right.mobileFit] || right.mobileFit;
-      const diffLeft = t.difficultyNames[left.difficulty] || left.difficulty;
-      const diffRight = t.difficultyNames[right.difficulty] || right.difficulty;
-      const score = (item, other) => {
-        let points = 0;
-        if (item.mobileFit === 'high') points += 2;
-        else if (item.mobileFit === 'medium') points += 1;
-        if (item.difficulty === 'easy') points += 2;
-        else if (item.difficulty === 'medium') points += 1;
-        if (item.purpose === other.purpose) points += 1;
-        return points;
-      };
-      const leftScore = score(left, right);
-      const rightScore = score(right, left);
-      const decisionLine = leftScore === rightScore
-        ? `${t.compareChoose(left.name)} ${left.best} / ${t.compareChoose(right.name)} ${right.best}`
-        : leftScore > rightScore
-          ? `${t.compareChoose(left.name)} ${left.best}`
-          : `${t.compareChoose(right.name)} ${right.best}`;
-      compareDiff.hidden = false;
-      compareDiff.innerHTML = `
-        <h4>${t.compareDiff}: ${left.name} × ${right.name}</h4>
-        <ul>
-          <li><strong>${t.compareChoose(left.name)}</strong> ${left.best}</li>
-          <li><strong>${t.compareInstead(left.name)}</strong> ${left.notFor}</li>
-          <li><strong>${t.compareChoose(right.name)}</strong> ${right.best}</li>
-          <li><strong>${t.compareInstead(right.name)}</strong> ${right.notFor}</li>
-          <li><strong>${t.purpose}</strong>: ${left.name} ${(t.purposeNames[left.purpose] || left.purpose)} / ${right.name} ${(t.purposeNames[right.purpose] || right.purpose)}</li>
-          <li><strong>${t.mobile}</strong>: ${left.name} ${mobileLeft} / ${right.name} ${mobileRight}</li>
-          <li><strong>${t.difficulty}</strong>: ${left.name} ${diffLeft} / ${right.name} ${diffRight}</li>
-          <li><strong>${t.compareDecision}</strong>: ${decisionLine}</li>
-        </ul>
-      `;
-    } else {
-      compareDiff.hidden = true;
-      compareDiff.innerHTML = '';
+      targetDiff.hidden = false;
+      targetDiff.innerHTML = compareMarkup();
+      return;
     }
+    targetDiff.hidden = true;
+    targetDiff.innerHTML = '';
+  }
+
+  function renderCompare() {
+    renderCompareInto(compareList, compareEmpty, compareDiff);
+    renderCompareInto(compareSheetList, compareSheetEmpty, compareSheetDiff);
+    if (mobileCompareBar && mobileCompareLabel) {
+      mobileCompareBar.hidden = compareIds.length === 0;
+      mobileCompareLabel.textContent = t.compareBar(compareIds.length);
+    }
+    if (!compareIds.length) closeCompareSheet();
   }
 
   function refreshCompareButtons() {
     cards.forEach((card) => {
       const btn = card.querySelector('[data-add-compare]');
       if (!btn) return;
-      btn.classList.toggle('active', compareIds.includes(card.dataset.id || ''));
+      const active = compareIds.includes(card.dataset.id || '');
+      btn.classList.toggle('active', active);
+      btn.textContent = active ? t.addedCompare : t.addCompare;
+      btn.setAttribute('aria-pressed', String(active));
     });
   }
 
   function openDetail(card) {
+    if (compareSheetOpen) closeCompareSheet();
     const data = cardData(card);
     currentId = data.id;
     detailEls.title.textContent = data.name;
@@ -530,7 +605,7 @@
     detailEls.implementation.textContent = data.notes;
     setFavoriteButtonState(currentId);
     addRecent(currentId);
-    app.classList.add('detail-open');
+    openDetailSheet();
     if (matched) renderSampleSafely(detailEls.sample, matched, true);
     else renderSampleFallback(detailEls.sample, data, true);
   }
@@ -642,11 +717,24 @@
   search?.addEventListener('input', applyFilters);
   detailEls.favBtn?.addEventListener('click', toggleFavorite);
   app.querySelector('[data-copy-prompt]')?.addEventListener('click', copyPrompt);
-  app.querySelector('[data-close-detail]')?.addEventListener('click', () => app.classList.remove('detail-open'));
+  app.querySelector('[data-close-detail]')?.addEventListener('click', closeDetailSheet);
+  app.querySelector('[data-close-compare]')?.addEventListener('click', closeCompareSheet);
+  mobileCompareBar?.addEventListener('click', openCompareSheet);
   app.querySelector('[data-toggle-filters]')?.addEventListener('click', () => app.classList.toggle('filters-open'));
+  mobileQuery.addEventListener('change', () => {
+    if (!isMobileLayout()) {
+      closeDetailSheet();
+      closeCompareSheet();
+      mobileCompareBar && (mobileCompareBar.hidden = true);
+    } else {
+      renderCompare();
+    }
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+      closeDetailSheet();
+      closeCompareSheet();
       app.querySelectorAll('.sample-modal.is-open,.sample-sheet.is-open,.sample-drawer.is-open,.sample-ham.is-open').forEach((el) => el.classList.remove('is-open'));
     }
   });
