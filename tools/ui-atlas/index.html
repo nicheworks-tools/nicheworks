@@ -86,16 +86,25 @@
       </aside>
 
       <section class="panel results">
-        <h2>Pattern catalog</h2>
+        <div class="results-header">
+          <h2>Pattern catalog</h2>
+          <section class="compare-dock compare-dock-desktop" data-compare-dock aria-live="polite">
+            <p class="compare-dock-text" data-compare-dock-text>Compare (0/2)</p>
+            <div class="compare-dock-actions">
+              <button type="button" class="btn" data-compare-jump>Open compare</button>
+              <button type="button" class="btn compare-clear-btn" data-compare-clear-inline hidden>Clear</button>
+            </div>
+          </section>
+        </div>
         <div class="results-toolbar">
           <span data-count>0 patterns shown</span>
           <span>Compare tray supports up to 2</span>
         </div>
-        <section class="compare-dock" data-compare-dock aria-live="polite">
-          <p class="compare-dock-text" data-compare-dock-text>Compare (0/2)</p>
+        <section class="compare-dock compare-dock-mobile" data-compare-dock-mobile aria-live="polite" hidden>
+          <p class="compare-dock-text" data-compare-dock-text-mobile>Compare (0/2)</p>
           <div class="compare-dock-actions">
-            <button type="button" class="btn" data-compare-jump>Open compare</button>
-            <button type="button" class="btn compare-clear-btn" data-compare-clear-inline hidden>Clear</button>
+            <button type="button" class="btn" data-compare-jump-mobile>Open compare</button>
+            <button type="button" class="btn compare-clear-btn" data-compare-clear-mobile hidden>Clear</button>
           </div>
         </section>
         <div class="result-grid">
@@ -128,6 +137,15 @@
         <div class="detail-sheet-header">
           <h2 data-detail-title>Select a pattern</h2>
           <button type="button" class="detail-close" data-close-detail>Close</button>
+        </div>
+        <div class="detail-empty-intro" data-detail-empty>
+          <p class="detail-empty-kicker">Ready</p>
+          <p class="detail-empty-title">Choose a card to load an interactive review panel.</p>
+          <ul>
+            <li>Live sample with real interactions</li>
+            <li>Best fit / avoid fit / implementation notes</li>
+            <li>Local favorite + recent history controls stay available</li>
+          </ul>
         </div>
         <h3>Live sample</h3>
         <div class="detail-sample" data-detail-sample aria-label="Live pattern sample"></div>
