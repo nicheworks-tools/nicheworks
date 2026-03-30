@@ -24,65 +24,70 @@
   <header class="hero panel vl-page-hero">
     <div class="eyebrow">プロダクト解説</div>
     <h1>Vibe Lexicon について</h1>
-    <p class="hero-copy">Vibe Lexicon は「なんとなくこうしたい」を、設計と実装に使える言葉へ変換するための表現判断ツールです。曖昧な依頼を、実務で伝わる指示文に近づけます。</p>
+    <p class="hero-copy">Vibe Lexicon は、曖昧な依頼を実務で使える設計言語に変換するための表現判断ツールです。「なんとなく良くしたい」を、実装とレビューで共有できる具体表現へ近づけます。</p>
     <div class="hero-points">
       <span class="pill">曖昧な依頼 → 実務で使える表現</span>
-      <span class="pill">UI改善の言語化</span>
-      <span class="pill">現場で再利用できる基礎辞書</span>
+      <span class="pill">デザイン・実装・レビューの共通言語</span>
+      <span class="pill">現場で再利用できる判断基盤</span>
     </div>
   </header>
 
   <main class="vl-content-grid">
     <section class="panel vl-section">
-      <h2>このツールは何をするのか</h2>
-      <p>Vibe Lexicon は単なる用語辞典ではありません。たとえば「モダンにしたい」「読みやすくしたい」「CTAをわかりやすくしたい」といった曖昧な要望を、情報設計やUI実装で使える実践的な言葉へ落とし込むための参照ツールです。</p>
+      <h2>このツールの役割</h2>
+      <p>Vibe Lexicon は、modern / polished / premium のような雰囲気語を、CTAの明瞭化・可読性改善・フォーム説明・情報整理といった実行可能な言葉へ落とし込むための参照レイヤーです。UIの「方向性はあるが言語化が弱い」状態を減らすことを目的にしています。</p>
     </section>
 
-    <section class="panel vl-section">
-      <h2>誰に向いているか</h2>
-      <ul>
-        <li>抽象的な要望を具体化してからデザインしたい人。</li>
-        <li>レビュー指示を実装可能な文に整えたい開発者。</li>
-        <li>「高級感」「洗練」「可読性」などの言葉をチームで揃えたい担当者。</li>
-        <li>短いAIプロンプトを現実的なUI改善に使いたい人。</li>
-      </ul>
-    </section>
+    <aside class="vl-sidebar" aria-label="要点">
+      <section class="panel vl-section">
+        <h2>向いている人</h2>
+        <ul>
+          <li>抽象レビューを具体に変換してから設計したい人。</li>
+          <li>曖昧な修正依頼を実装タスクへ落としたい開発者。</li>
+          <li>チーム内の語彙差を減らしたいPM・運用担当。</li>
+        </ul>
+      </section>
+      <section class="panel vl-section">
+        <h2>主な活用領域</h2>
+        <div class="vl-kv-grid">
+          <div class="vl-kv-item"><strong>トーン調整</strong><br>modern / polished / premium</div>
+          <div class="vl-kv-item"><strong>読みやすさ</strong><br>可読性・階層・モバイル視認性</div>
+          <div class="vl-kv-item"><strong>行動導線</strong><br>CTA明瞭化・フォームの迷い削減</div>
+        </div>
+      </section>
+    </aside>
 
-    <section class="panel vl-section">
-      <h2>解決したい表現のズレ</h2>
-      <div class="vl-two-col">
-        <article class="vl-note">
-          <h3>ありがちな依頼</h3>
-          <p>「今っぽくして」「フォームを改善して」「モバイルを見やすくして」</p>
+    <section class="panel vl-section vl-wide-section">
+      <h2>用語集・プロンプト集との違い</h2>
+      <div class="vl-value-grid">
+        <article class="vl-value-item">
+          <h3>意味説明で終わらない</h3>
+          <p>単語の定義だけでなく、実務意図と依頼文の言い換えに重心を置いています。抽象語をそのまま投げず、意思決定しやすい形に整えます。</p>
         </article>
-        <article class="vl-note vl-note-good">
-          <h3>実務向けの言い換え</h3>
-          <p>「余白リズムを整え、補助ラベルを整理し、CTAの視認性を上げて初見スキャン性を改善する」</p>
+        <article class="vl-value-item">
+          <h3>雰囲気だけのAI用途に寄せない</h3>
+          <p>短いプロンプト例は、実際のUI改善を前提にした内容です。見た目の流行語収集ではなく、改善実装の会話を進めるための設計です。</p>
         </article>
       </div>
-      <p class="vl-muted">主な対象は modern / polished / premium / readable / CTA clarity / clutter reduction / mobile readability / form clarity です。</p>
-    </section>
-
-    <section class="panel vl-section">
-      <h2>一般的な用語集やプロンプト集との違い</h2>
-      <p>意味説明だけで終わらず、実務での使いどころ・悪い依頼と良い依頼の差・短い再利用文までを一体で確認できます。雰囲気語をそのまま投げるのではなく、具体的な設計意図へ変換することを重視しています。</p>
+      <p class="vl-muted">Vibe Lexicon は「言葉の辞典」ではなく「判断の辞典」です。</p>
     </section>
 
     <section class="panel vl-section">
       <h2>現在の無料版でできること</h2>
       <ul>
-        <li>用語の検索・フィルタ・参照。</li>
-        <li>詳細での平易説明と分解表示。</li>
-        <li>基本的な比較表示。</li>
+        <li>公開語彙の検索・フィルタ・参照。</li>
+        <li>詳細説明と分解表示（曖昧→具体）。</li>
+        <li>近接語の基本比較。</li>
         <li>短いプロンプト文のコピー。</li>
         <li>お気に入り・最近見た項目（ブラウザローカル保存）。</li>
       </ul>
     </section>
 
-    <section class="panel vl-section">
+    <section class="panel vl-section vl-status-block">
       <h2>今後の方向</h2>
-      <p>将来的には、より深い比較や継続利用向けの機能を Pro 側で拡張予定です。現時点での方針は <a href="../pro/">Proページ</a> で公開しています。</p>
-      <p><a href="../" class="vl-usage-link">ツール本体に戻る</a></p>
+      <p>無料版は実用基盤として維持しつつ、Pro側では深い比較と再利用性（保存セット等）を段階的に拡張する方針です。未実装機能を「すでに使える」ようには見せません。</p>
+      <p class="vl-link-line"><a href="../pro/" class="vl-text-link">Pro方針ページを見る</a></p>
+      <p class="vl-link-line"><a href="../" class="vl-text-link">ツール本体に戻る</a></p>
     </section>
   </main>
 

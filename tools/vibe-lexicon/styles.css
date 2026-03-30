@@ -1197,3 +1197,209 @@ a[href*="/tools/vibe-lexicon/pro"]:focus-visible {
     font-size: 14px;
   }
 }
+
+/* ===== Static support pages polish (scoped) ===== */
+.vl-static-page {
+  --static-max: 1140px;
+  max-width: var(--static-max);
+  padding-top: 22px;
+}
+
+.vl-static-page .top-links {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.vl-static-page .top-links nav a {
+  color: #475569 !important;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+
+.vl-static-page .top-links nav a:hover,
+.vl-static-page .top-links nav a:focus-visible,
+.vl-static-page .top-links nav a.vl-usage-link {
+  color: #0f172a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+.vl-page-hero {
+  padding: 28px 32px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.vl-page-hero h1 {
+  margin-bottom: 12px;
+}
+
+.vl-page-hero .hero-copy {
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 900px;
+}
+
+.vl-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.vl-content-grid .vl-section {
+  padding: 20px 22px;
+}
+
+.vl-content-grid .vl-section h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.vl-content-grid .vl-section h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.vl-content-grid .vl-section p,
+.vl-content-grid .vl-section li {
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.vl-content-grid .vl-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.vl-content-grid .vl-section p:last-child,
+.vl-content-grid .vl-section ul:last-child {
+  margin-bottom: 0;
+}
+
+.vl-wide-section {
+  grid-column: 1 / -1;
+}
+
+.vl-sidebar {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.vl-kv-grid,
+.vl-step-grid,
+.vl-value-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.vl-kv-item,
+.vl-step,
+.vl-value-item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 13px;
+  background: #f8fafc;
+}
+
+.vl-step .vl-step-label {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.vl-muted {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.vl-status-block {
+  border-color: #bfdbfe;
+  background: #f8fbff;
+}
+
+.vl-honesty {
+  border: 1px solid #fde68a;
+  background: #fffbeb;
+  border-radius: 14px;
+  padding: 12px 13px;
+}
+
+.vl-link-line {
+  margin-top: 12px;
+}
+
+.vl-link-line a,
+.vl-footer-link-line a,
+.vl-text-link {
+  color: var(--accent) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+.vl-link-list {
+  display: grid;
+  gap: 8px;
+  padding-left: 18px;
+  margin: 0;
+}
+
+.vl-static-page .ad-slot {
+  margin-top: 16px;
+}
+
+.vl-static-page .donate-box {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+@media (max-width: 980px) {
+  .vl-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vl-sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .vl-static-page {
+    padding-top: 12px;
+  }
+
+  .vl-static-page .top-links {
+    padding: 10px 12px;
+  }
+
+  .vl-page-hero {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .vl-page-hero .hero-copy {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .vl-content-grid .vl-section {
+    padding: 16px 14px;
+  }
+
+  .vl-content-grid .vl-section h2 {
+    font-size: 19px;
+  }
+
+  .vl-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
