@@ -152,7 +152,8 @@
     prompt: app.querySelector('[data-detail-prompt]'),
     implementation: app.querySelector('[data-detail-implementation]'),
     favBtn: app.querySelector('[data-toggle-favorite]'),
-    emptyIntro: app.querySelector('[data-detail-empty]')
+    emptyIntro: app.querySelector('[data-detail-empty]'),
+    content: app.querySelector('[data-detail-content]')
   };
 
   const storage = {
@@ -565,6 +566,7 @@
       compareDockMobile.hidden = compareIds.length === 0;
       compareDockMobile.classList.toggle('has-items', compareIds.length > 0);
     }
+    app.classList.toggle('has-compare-items', compareIds.length > 0);
 
     compareEmpty.textContent = t.compareHint;
     compareEmpty.hidden = compareIds.length > 0;
@@ -594,7 +596,6 @@
       const btn = card.querySelector('[data-add-compare]');
       if (!btn) return;
       const active = compareIds.includes(card.dataset.id || '');
-      btn.classList.toggle('active', active);
       btn.classList.toggle('is-selected', active);
       btn.textContent = active ? t.addedCompare : t.addCompare;
       btn.setAttribute('aria-pressed', String(active));
@@ -624,6 +625,7 @@
     detailEls.novice.textContent = data.novice;
     detailEls.implementation.textContent = data.notes;
     if (detailEls.emptyIntro) detailEls.emptyIntro.hidden = true;
+    if (detailEls.content) detailEls.content.hidden = false;
     setFavoriteButtonState(currentId);
     addRecent(currentId);
     openDetailSheet();
@@ -781,6 +783,7 @@
 
   attachCardEvents();
   if (detailEls.emptyIntro) detailEls.emptyIntro.hidden = false;
+  if (detailEls.content) detailEls.content.hidden = true;
   loadDataset().catch(() => {
     updateCount(0);
     renderCompare();
