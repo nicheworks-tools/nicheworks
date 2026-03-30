@@ -86,13 +86,22 @@
       </aside>
 
       <section class="panel results">
-        <h2>パターン一覧</h2>
+        <div class="results-header">
+          <h2>パターン一覧</h2>
+          <section class="compare-dock compare-dock-desktop" data-compare-dock aria-live="polite">
+            <p class="compare-dock-text" data-compare-dock-text>比較 (0/2)</p>
+            <div class="compare-dock-actions">
+              <button type="button" class="btn" data-compare-jump>比較を開く</button>
+              <button type="button" class="btn compare-clear-btn" data-compare-clear-inline hidden>クリア</button>
+            </div>
+          </section>
+        </div>
         <div class="results-toolbar"><span data-count>0 件表示</span><span>比較トレイは2件まで</span></div>
-        <section class="compare-dock" data-compare-dock aria-live="polite">
-          <p class="compare-dock-text" data-compare-dock-text>比較 (0/2)</p>
+        <section class="compare-dock compare-dock-mobile" data-compare-dock-mobile aria-live="polite" hidden>
+          <p class="compare-dock-text" data-compare-dock-text-mobile>比較 (0/2)</p>
           <div class="compare-dock-actions">
-            <button type="button" class="btn" data-compare-jump>比較を開く</button>
-            <button type="button" class="btn compare-clear-btn" data-compare-clear-inline hidden>クリア</button>
+            <button type="button" class="btn" data-compare-jump-mobile>比較を開く</button>
+            <button type="button" class="btn compare-clear-btn" data-compare-clear-mobile hidden>クリア</button>
           </div>
         </section>
         <div class="result-grid">
@@ -125,6 +134,15 @@
         <div class="detail-sheet-header">
           <h2 data-detail-title>項目を選択</h2>
           <button type="button" class="detail-close" data-close-detail>閉じる</button>
+        </div>
+        <div class="detail-empty-intro" data-detail-empty>
+          <p class="detail-empty-kicker">準備完了</p>
+          <p class="detail-empty-title">カードを選ぶと、実用レビューをこのパネルに表示します。</p>
+          <ul>
+            <li>ライブサンプルを実際に操作できます</li>
+            <li>向き不向き・実装メモをまとめて確認できます</li>
+            <li>ローカルお気に入り・履歴もここから扱えます</li>
+          </ul>
         </div>
         <h3>ライブサンプル</h3>
         <div class="detail-sample" data-detail-sample aria-label="ライブサンプル"></div>

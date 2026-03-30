@@ -127,10 +127,14 @@
   const compareHeading = app.querySelector('[data-compare-heading]');
   const compareClear = app.querySelector('[data-compare-clear]');
   const compareClearInline = app.querySelector('[data-compare-clear-inline]');
+  const compareClearMobile = app.querySelector('[data-compare-clear-mobile]');
   const compareStatus = app.querySelector('[data-compare-status]');
   const compareDock = app.querySelector('[data-compare-dock]');
+  const compareDockMobile = app.querySelector('[data-compare-dock-mobile]');
   const compareDockText = app.querySelector('[data-compare-dock-text]');
+  const compareDockTextMobile = app.querySelector('[data-compare-dock-text-mobile]');
   const compareJump = app.querySelector('[data-compare-jump]');
+  const compareJumpMobile = app.querySelector('[data-compare-jump-mobile]');
   const favoritesList = app.querySelector('[data-favorites-list]');
   const recentList = app.querySelector('[data-recent-list]');
   const copyState = app.querySelector('[data-copy-state]');
@@ -147,7 +151,8 @@
     novice: app.querySelector('[data-detail-novice]'),
     prompt: app.querySelector('[data-detail-prompt]'),
     implementation: app.querySelector('[data-detail-implementation]'),
-    favBtn: app.querySelector('[data-toggle-favorite]')
+    favBtn: app.querySelector('[data-toggle-favorite]'),
+    emptyIntro: app.querySelector('[data-detail-empty]')
   };
 
   const storage = {
@@ -410,7 +415,7 @@
         <span class="meta-tag">${t.difficulty}: ${t.difficultyNames[record.difficulty] || record.difficulty}</span>
       </div>
       <div class="card-actions">
-        <button class="btn primary" data-open-detail type="button">${t.openDetail}</button>
+        <button class="btn primary detail-btn" data-open-detail type="button">${t.openDetail}</button>
         <button class="btn compare-btn" data-add-compare type="button">${t.addCompare}</button>
       </div>
     `;
@@ -543,11 +548,23 @@
       compareClearInline.hidden = compareIds.length === 0;
       compareClearInline.textContent = t.clearCompare;
     }
+    if (compareClearMobile) {
+      compareClearMobile.hidden = compareIds.length === 0;
+      compareClearMobile.textContent = t.clearCompare;
+    }
     if (compareJump) compareJump.textContent = t.compareJump;
+    if (compareJumpMobile) compareJumpMobile.textContent = t.compareJump;
     if (compareDockText) {
       compareDockText.textContent = compareIds.length === 0 ? t.compareDockQuiet : t.compareDockActive(compareIds.length);
     }
+    if (compareDockTextMobile) {
+      compareDockTextMobile.textContent = compareIds.length === 0 ? t.compareDockQuiet : t.compareDockActive(compareIds.length);
+    }
     if (compareDock) compareDock.classList.toggle('has-items', compareIds.length > 0);
+    if (compareDockMobile) {
+      compareDockMobile.hidden = compareIds.length === 0;
+      compareDockMobile.classList.toggle('has-items', compareIds.length > 0);
+    }
 
     compareEmpty.textContent = t.compareHint;
     compareEmpty.hidden = compareIds.length > 0;
@@ -606,6 +623,7 @@
     detailEls.practicalIntent.textContent = data.practicalIntent;
     detailEls.novice.textContent = data.novice;
     detailEls.implementation.textContent = data.notes;
+    if (detailEls.emptyIntro) detailEls.emptyIntro.hidden = true;
     setFavoriteButtonState(currentId);
     addRecent(currentId);
     openDetailSheet();
@@ -743,7 +761,9 @@
   app.querySelector('[data-close-detail]')?.addEventListener('click', closeDetailSheet);
   compareClear?.addEventListener('click', clearCompare);
   compareClearInline?.addEventListener('click', clearCompare);
+  compareClearMobile?.addEventListener('click', clearCompare);
   compareJump?.addEventListener('click', jumpToCompare);
+  compareJumpMobile?.addEventListener('click', jumpToCompare);
   app.querySelector('[data-toggle-filters]')?.addEventListener('click', () => app.classList.toggle('filters-open'));
   mobileQuery.addEventListener('change', () => {
     if (!isMobileLayout()) {
@@ -760,6 +780,7 @@
   });
 
   attachCardEvents();
+  if (detailEls.emptyIntro) detailEls.emptyIntro.hidden = false;
   loadDataset().catch(() => {
     updateCount(0);
     renderCompare();
