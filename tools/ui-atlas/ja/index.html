@@ -91,6 +91,20 @@
         <div class="result-grid">
         </div>
 
+        <button type="button" class="mobile-compare-bar" data-mobile-compare-bar hidden>
+          <span data-mobile-compare-label>比較 (0/2)</span>
+        </button>
+
+        <section class="compare-sheet" data-compare-sheet aria-modal="true" aria-label="比較">
+          <div class="compare-sheet-header">
+            <h3>比較</h3>
+            <button type="button" class="detail-close" data-close-compare>閉じる</button>
+          </div>
+          <p data-compare-sheet-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。</p>
+          <div class="compare-list" data-compare-sheet-list></div>
+          <div class="compare-diff" data-compare-sheet-diff hidden></div>
+        </section>
+
         <section class="compare-tray">
           <h3>比較トレイ</h3>
           <p data-compare-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。</p>
@@ -111,8 +125,10 @@
       </section>
 
       <aside class="panel detail" data-detail-panel>
-        <button type="button" class="detail-close" data-close-detail>閉じる</button>
-        <h2 data-detail-title>項目を選択</h2>
+        <div class="detail-sheet-header">
+          <h2 data-detail-title>項目を選択</h2>
+          <button type="button" class="detail-close" data-close-detail>閉じる</button>
+        </div>
         <h3>ライブサンプル</h3>
         <div class="detail-sample" data-detail-sample aria-label="ライブサンプル"></div>
         <h3>これは何か</h3>
@@ -125,16 +141,16 @@
         <p class="detail-body" data-detail-not-for>-</p>
         <h3>類似パターン</h3>
         <p class="detail-body" data-detail-similar>-</p>
-        <h3>実務意図</h3>
-        <p class="detail-body" data-detail-practical-intent>-</p>
-        <h3>初心者向けの言い換え</h3>
-        <p class="detail-body" data-detail-novice>-</p>
         <h3>短文AIプロンプト</h3>
         <p class="detail-body" data-detail-prompt>-</p>
         <button class="btn" type="button" data-copy-prompt>短文プロンプトをコピー</button>
         <p class="copy-state" data-copy-state aria-live="polite"></p>
         <h3>実装メモ</h3>
         <p class="detail-body" data-detail-implementation>-</p>
+        <h3>実務意図</h3>
+        <p class="detail-body" data-detail-practical-intent>-</p>
+        <h3>初心者向けの言い換え</h3>
+        <p class="detail-body" data-detail-novice>-</p>
         <button class="btn" type="button" data-toggle-favorite>☆ お気に入り</button>
       </aside>
     </section>
