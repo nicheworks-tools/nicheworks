@@ -1,24 +1,93 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UI Atlas | Usage | Niche Works</title>
-  <meta name="description" content="How to use UI Atlas workflows.">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI Atlas | Usage Guide | Niche Works</title>
+  <meta name="description" content="Practical usage guide for UI Atlas: search, filters, detail, compare, and local favorites/history in the free edition.">
   <link rel="canonical" href="https://nicheworks.app/tools/ui-atlas/usage/">
-  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/usage/"><link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/usage/"><link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/ui-atlas/">
-  <link rel="icon" href="/assets/favicon.ico"><link rel="stylesheet" href="../styles.css">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/usage/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/usage/">
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/ui-atlas/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="../styles.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body data-tool="ui-atlas" data-page="usage" data-lang="en">
-<header class="nw-header"><p class="nw-eyebrow">Niche Works Tool Series</p><h1>UI Atlas</h1><p class="nw-tagline">More than names. A UI pattern atlas you can actually use with AI.</p><div class="nw-lang-switch"><a href="../ja/usage/">日本語</a></div><nav class="nw-nav" aria-label="Tool page navigation"><a href="../">Home</a><a href="../usage/">Usage</a><a href="../about/">About</a><a href="../pro/">Pro</a></nav></header>
-<main class="nw-main">
-<section class="nw-card nw-intro"><h2>Usage flow (free edition)</h2><p>1) Search with natural wording. 2) Narrow by category. 3) Open detail. 4) Add two items to compare. 5) Draft AI request text from detail insights.</p></section>
-<section class="ad-slot ad-top">Ad slot (top)</section>
-<section class="workspace"><aside class="panel"><h2>Left filters</h2><p>Use search + chips to narrow candidate patterns.</p></aside><section class="panel"><h2>Center results</h2><p>Open a card, then move uncertain candidates into the compare tray.</p><section class="compare-tray"><h3>Compare tray</h3><p>Max two items.</p></section></section><aside class="panel"><h2>Right detail panel</h2><p>Review best-fit and avoid-fit notes before implementing.</p></aside></section>
-<section class="nw-card"><h2>FAQ</h2><ul class="faq-list"><li>Is this complete usage documentation? Not yet; this is the public baseline.</li><li>Can I access core screens now? Yes, from Home.</li></ul></section>
-<section class="ad-slot ad-bottom">Ad slot (bottom)</section>
-<section class="nw-donate"><h2>Support this project</h2><p>Free-first policy: core features stay publicly available.</p><p class="donation-links"><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p></section>
-</main>
-<footer class="nw-footer"><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>This site may include ads. Verify important decisions with official information.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p></footer>
-<script src="../app.js" defer></script>
-</body></html>
+  <header class="nw-header">
+    <p class="nw-eyebrow">Niche Works practical reference series</p>
+    <h1>UI Atlas</h1>
+    <p class="nw-tagline">How to use browse + compare + understand + prompt workflows in the free edition.</p>
+    <div class="nw-lang-switch"><a href="../ja/usage/">日本語</a></div>
+    <nav class="nw-nav" aria-label="Tool page navigation"><a href="../">Home</a><a href="../usage/">Usage</a><a href="../about/">About</a><a href="../pro/">Pro</a></nav>
+  </header>
+
+  <main class="nw-main">
+    <section class="nw-intro">
+      <h2>Usage reference (free edition)</h2>
+      <p>UI Atlas is meant for fast practical decisions: find candidates, inspect realistic fit, compare up to two, then turn the final choice into implementation-ready prompt text.</p>
+    </section>
+
+    <section class="nw-card">
+      <h2>1) Search that matches real wording</h2>
+      <ul class="faq-list">
+        <li>Use plain terms like “drawer menu”, “pricing table”, “confirm dialog”, or “FAQ accordion”.</li>
+        <li>Search checks names, aliases, short summaries, practical intent, beginner wording, and purpose terms.</li>
+        <li>If results are broad, add one context term (for example: “mobile checkout confirmation”).</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>2) Filters narrow options before detail review</h2>
+      <ul class="faq-list">
+        <li><strong>Category</strong> is best for broad direction (navigation, forms, data display, etc.).</li>
+        <li><strong>Purpose</strong> helps separate risky actions, quick actions, discovery, and mode switching.</li>
+        <li><strong>Mobile fit + difficulty</strong> is a practical pair for balancing UX and implementation constraints.</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>3) Detail view: decide with confidence</h2>
+      <ul class="faq-list">
+        <li>Open detail from any card to inspect the larger live sample.</li>
+        <li>Use <em>Best for / Not for</em> and implementation notes to avoid pattern misuse.</li>
+        <li>Copy the short AI prompt and adapt it with your product context.</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>4) Compare flow (max 2 in free)</h2>
+      <ul class="faq-list">
+        <li>Add up to two patterns from cards, then review readable differences and a decision hint.</li>
+        <li>The compare limit is intentionally two so trade-offs stay fast and concrete.</li>
+        <li>Clear is always available when at least one item is selected.</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>5) Favorites and recent views are local</h2>
+      <ul class="faq-list">
+        <li>Favorites help pin repeatedly used patterns in your current browser.</li>
+        <li>Recent views keep your latest reading trail so you can return quickly.</li>
+        <li>Both are stored locally and currently do not sync across devices.</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2>What is free right now</h2>
+      <p>Search, filtering, detail, live samples, local favorites/history, and 2-item compare are all available in the current free release.</p>
+      <p><a href="../">Back to UI Atlas Home and start browsing patterns</a>.</p>
+    </section>
+
+    <section class="nw-donate" aria-label="support">
+      <h2>Support this project</h2>
+      <p>Free-first policy: core features remain publicly available.</p>
+      <p class="donation-links"><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p>
+    </section>
+  </main>
+
+  <footer class="nw-footer"><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>This site may include ads. Verify important decisions with official information.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p></footer>
+  <script src="../app.js" defer></script>
+</body>
+</html>

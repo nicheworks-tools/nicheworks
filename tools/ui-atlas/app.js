@@ -28,6 +28,9 @@
       addedCompare: 'Added to compare',
       compareHeading: (count) => `Compare (${count}/2)`,
       compareHint: 'Add up to two patterns for quick key-difference checks.',
+      compareDockQuiet: 'Compare (0/2)',
+      compareDockActive: (count) => `${count} selected • Compare (${count}/2)`,
+      compareJump: 'Open compare',
       compareOneSelected: 'Selected pattern',
       clearCompare: 'Clear',
       sample: 'Live sample',
@@ -72,6 +75,9 @@
       addedCompare: '比較に追加済み',
       compareHeading: (count) => `比較 (${count}/2)`,
       compareHint: '2件まで追加して主要差分を確認できます。',
+      compareDockQuiet: '比較 (0/2)',
+      compareDockActive: (count) => `${count}件選択中 • 比較 (${count}/2)`,
+      compareJump: '比較を開く',
       compareOneSelected: '選択中のパターン',
       clearCompare: 'クリア',
       sample: 'ライブサンプル',
@@ -120,7 +126,11 @@
   const compareDiff = app.querySelector('[data-compare-diff]');
   const compareHeading = app.querySelector('[data-compare-heading]');
   const compareClear = app.querySelector('[data-compare-clear]');
+  const compareClearInline = app.querySelector('[data-compare-clear-inline]');
   const compareStatus = app.querySelector('[data-compare-status]');
+  const compareDock = app.querySelector('[data-compare-dock]');
+  const compareDockText = app.querySelector('[data-compare-dock-text]');
+  const compareJump = app.querySelector('[data-compare-jump]');
   const favoritesList = app.querySelector('[data-favorites-list]');
   const recentList = app.querySelector('[data-recent-list]');
   const copyState = app.querySelector('[data-copy-state]');
@@ -400,7 +410,7 @@
         <span class="meta-tag">${t.difficulty}: ${t.difficultyNames[record.difficulty] || record.difficulty}</span>
       </div>
       <div class="card-actions">
-        <button class="btn" data-open-detail type="button">${t.openDetail}</button>
+        <button class="btn primary" data-open-detail type="button">${t.openDetail}</button>
         <button class="btn compare-btn" data-add-compare type="button">${t.addCompare}</button>
       </div>
     `;
@@ -529,6 +539,15 @@
       compareClear.hidden = compareIds.length === 0;
       compareClear.textContent = t.clearCompare;
     }
+    if (compareClearInline) {
+      compareClearInline.hidden = compareIds.length === 0;
+      compareClearInline.textContent = t.clearCompare;
+    }
+    if (compareJump) compareJump.textContent = t.compareJump;
+    if (compareDockText) {
+      compareDockText.textContent = compareIds.length === 0 ? t.compareDockQuiet : t.compareDockActive(compareIds.length);
+    }
+    if (compareDock) compareDock.classList.toggle('has-items', compareIds.length > 0);
 
     compareEmpty.textContent = t.compareHint;
     compareEmpty.hidden = compareIds.length > 0;
@@ -559,6 +578,7 @@
       if (!btn) return;
       const active = compareIds.includes(card.dataset.id || '');
       btn.classList.toggle('active', active);
+      btn.classList.toggle('is-selected', active);
       btn.textContent = active ? t.addedCompare : t.addCompare;
       btn.setAttribute('aria-pressed', String(active));
       btn.disabled = !active && atLimit;
@@ -628,6 +648,12 @@
     if (compareStatus) compareStatus.textContent = '';
     refreshCompareButtons();
     renderCompare();
+  }
+
+  function jumpToCompare() {
+    const tray = app.querySelector('.compare-tray');
+    if (!tray) return;
+    tray.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function toggleFavorite() {
@@ -716,6 +742,8 @@
   app.querySelector('[data-copy-prompt]')?.addEventListener('click', copyPrompt);
   app.querySelector('[data-close-detail]')?.addEventListener('click', closeDetailSheet);
   compareClear?.addEventListener('click', clearCompare);
+  compareClearInline?.addEventListener('click', clearCompare);
+  compareJump?.addEventListener('click', jumpToCompare);
   app.querySelector('[data-toggle-filters]')?.addEventListener('click', () => app.classList.toggle('filters-open'));
   mobileQuery.addEventListener('change', () => {
     if (!isMobileLayout()) {
