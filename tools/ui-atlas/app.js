@@ -26,7 +26,10 @@
       openDetail: 'Open detail',
       addCompare: 'Add compare',
       addedCompare: 'Added to compare',
-      compareBar: (count) => `Compare (${count}/2)`,
+      compareHeading: (count) => `Compare (${count}/2)`,
+      compareHint: 'Add up to two patterns for quick key-difference checks.',
+      compareOneSelected: 'Selected pattern',
+      clearCompare: 'Clear',
       sample: 'Live sample',
       compareBetter: 'Best for',
       compareAvoid: 'Avoid when',
@@ -67,7 +70,10 @@
       openDetail: '詳細',
       addCompare: '比較に追加',
       addedCompare: '比較に追加済み',
-      compareBar: (count) => `比較 (${count}/2)`,
+      compareHeading: (count) => `比較 (${count}/2)`,
+      compareHint: '2件まで追加して主要差分を確認できます。',
+      compareOneSelected: '選択中のパターン',
+      clearCompare: 'クリア',
       sample: 'ライブサンプル',
       compareBetter: '向いている場面',
       compareAvoid: '避けたい場面',
@@ -112,12 +118,9 @@
   const compareList = app.querySelector('[data-compare-list]');
   const compareEmpty = app.querySelector('[data-compare-empty]');
   const compareDiff = app.querySelector('[data-compare-diff]');
-  const mobileCompareBar = app.querySelector('[data-mobile-compare-bar]');
-  const mobileCompareLabel = app.querySelector('[data-mobile-compare-label]');
-  const compareSheet = app.querySelector('[data-compare-sheet]');
-  const compareSheetList = app.querySelector('[data-compare-sheet-list]');
-  const compareSheetEmpty = app.querySelector('[data-compare-sheet-empty]');
-  const compareSheetDiff = app.querySelector('[data-compare-sheet-diff]');
+  const compareHeading = app.querySelector('[data-compare-heading]');
+  const compareClear = app.querySelector('[data-compare-clear]');
+  const compareStatus = app.querySelector('[data-compare-status]');
   const favoritesList = app.querySelector('[data-favorites-list]');
   const recentList = app.querySelector('[data-recent-list]');
   const copyState = app.querySelector('[data-copy-state]');
@@ -157,7 +160,6 @@
   let currentId = null;
   let listScrollY = 0;
   let detailOpen = false;
-  let compareSheetOpen = false;
   let favorites = safeJsonParse(localStorage.getItem(storage.favorites), []);
   let recent = safeJsonParse(localStorage.getItem(storage.recent), []);
 
@@ -477,21 +479,6 @@
     unlockBodyScroll();
   }
 
-  function openCompareSheet() {
-    if (!compareSheet || !compareIds.length) return;
-    if (detailOpen) closeDetailSheet();
-    compareSheetOpen = true;
-    app.classList.add('compare-open');
-    lockBodyScroll();
-  }
-
-  function closeCompareSheet() {
-    if (!compareSheetOpen) return;
-    compareSheetOpen = false;
-    app.classList.remove('compare-open');
-    unlockBodyScroll();
-  }
-
   function compareMarkup() {
     if (compareIds.length !== 2) return '';
     const left = cardData(byId.get(compareIds[0]));
@@ -531,46 +518,42 @@
     `;
   }
 
-  function renderCompareInto(targetList, targetEmpty, targetDiff) {
-    if (!targetList || !targetEmpty || !targetDiff) return;
-    targetList.innerHTML = '';
-    if (!compareIds.length) {
-      targetEmpty.hidden = false;
-      targetDiff.hidden = true;
-      targetDiff.innerHTML = '';
-      return;
+  function renderCompare() {
+    if (!compareList || !compareEmpty || !compareDiff) return;
+    compareList.innerHTML = '';
+    compareDiff.hidden = true;
+    compareDiff.innerHTML = '';
+
+    compareHeading && (compareHeading.textContent = t.compareHeading(compareIds.length));
+    if (compareClear) {
+      compareClear.hidden = compareIds.length === 0;
+      compareClear.textContent = t.clearCompare;
     }
-    targetEmpty.hidden = true;
+
+    compareEmpty.textContent = t.compareHint;
+    compareEmpty.hidden = compareIds.length > 0;
+    app.classList.toggle('compare-empty', compareIds.length === 0);
+
     compareIds.forEach((id) => {
       const card = byId.get(id);
       if (!card) return;
       const data = cardData(card);
       const item = document.createElement('div');
       item.className = 'compare-item';
-      item.innerHTML = `<strong>${data.name}</strong><button class="btn" type="button">${t.remove}</button>`;
+      const label = compareIds.length === 1 ? `<span class="compare-item-label">${t.compareOneSelected}</span>` : '';
+      item.innerHTML = `<div class="compare-item-main">${label}<strong>${data.name}</strong></div><button class="btn" type="button">${t.remove}</button>`;
       item.querySelector('button')?.addEventListener('click', () => toggleCompare(card));
-      targetList.appendChild(item);
+      compareList.appendChild(item);
     });
-    if (compareIds.length === 2) {
-      targetDiff.hidden = false;
-      targetDiff.innerHTML = compareMarkup();
-      return;
-    }
-    targetDiff.hidden = true;
-    targetDiff.innerHTML = '';
-  }
 
-  function renderCompare() {
-    renderCompareInto(compareList, compareEmpty, compareDiff);
-    renderCompareInto(compareSheetList, compareSheetEmpty, compareSheetDiff);
-    if (mobileCompareBar && mobileCompareLabel) {
-      mobileCompareBar.hidden = compareIds.length === 0;
-      mobileCompareLabel.textContent = t.compareBar(compareIds.length);
+    if (compareIds.length === 2) {
+      compareDiff.hidden = false;
+      compareDiff.innerHTML = compareMarkup();
     }
-    if (!compareIds.length) closeCompareSheet();
   }
 
   function refreshCompareButtons() {
+    const atLimit = compareIds.length >= 2;
     cards.forEach((card) => {
       const btn = card.querySelector('[data-add-compare]');
       if (!btn) return;
@@ -578,11 +561,11 @@
       btn.classList.toggle('active', active);
       btn.textContent = active ? t.addedCompare : t.addCompare;
       btn.setAttribute('aria-pressed', String(active));
+      btn.disabled = !active && atLimit;
     });
   }
 
   function openDetail(card) {
-    if (compareSheetOpen) closeCompareSheet();
     const data = cardData(card);
     currentId = data.id;
     detailEls.title.textContent = data.name;
@@ -626,9 +609,23 @@
   function toggleCompare(card) {
     const id = card.dataset.id || '';
     if (!id) return;
-    if (compareIds.includes(id)) compareIds = compareIds.filter((item) => item !== id);
+    const alreadyAdded = compareIds.includes(id);
+    if (alreadyAdded) compareIds = compareIds.filter((item) => item !== id);
     else if (compareIds.length < 2) compareIds.push(id);
-    else { if (copyState) copyState.textContent = t.compareFull; return; }
+    else {
+      if (compareStatus) compareStatus.textContent = t.compareFull;
+      if (copyState) copyState.textContent = t.compareFull;
+      return;
+    }
+    if (compareStatus) compareStatus.textContent = '';
+    refreshCompareButtons();
+    renderCompare();
+  }
+
+  function clearCompare() {
+    if (!compareIds.length) return;
+    compareIds = [];
+    if (compareStatus) compareStatus.textContent = '';
     refreshCompareButtons();
     renderCompare();
   }
@@ -718,23 +715,18 @@
   detailEls.favBtn?.addEventListener('click', toggleFavorite);
   app.querySelector('[data-copy-prompt]')?.addEventListener('click', copyPrompt);
   app.querySelector('[data-close-detail]')?.addEventListener('click', closeDetailSheet);
-  app.querySelector('[data-close-compare]')?.addEventListener('click', closeCompareSheet);
-  mobileCompareBar?.addEventListener('click', openCompareSheet);
+  compareClear?.addEventListener('click', clearCompare);
   app.querySelector('[data-toggle-filters]')?.addEventListener('click', () => app.classList.toggle('filters-open'));
   mobileQuery.addEventListener('change', () => {
     if (!isMobileLayout()) {
       closeDetailSheet();
-      closeCompareSheet();
-      mobileCompareBar && (mobileCompareBar.hidden = true);
-    } else {
-      renderCompare();
     }
+    renderCompare();
   });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       closeDetailSheet();
-      closeCompareSheet();
       app.querySelectorAll('.sample-modal.is-open,.sample-sheet.is-open,.sample-drawer.is-open,.sample-ham.is-open').forEach((el) => el.classList.remove('is-open'));
     }
   });

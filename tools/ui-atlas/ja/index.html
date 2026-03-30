@@ -91,23 +91,13 @@
         <div class="result-grid">
         </div>
 
-        <button type="button" class="mobile-compare-bar" data-mobile-compare-bar hidden>
-          <span data-mobile-compare-label>比較 (0/2)</span>
-        </button>
-
-        <section class="compare-sheet" data-compare-sheet aria-modal="true" aria-label="比較">
-          <div class="compare-sheet-header">
-            <h3>比較</h3>
-            <button type="button" class="detail-close" data-close-compare>閉じる</button>
-          </div>
-          <p data-compare-sheet-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。</p>
-          <div class="compare-list" data-compare-sheet-list></div>
-          <div class="compare-diff" data-compare-sheet-diff hidden></div>
-        </section>
-
         <section class="compare-tray">
-          <h3>比較トレイ</h3>
-          <p data-compare-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。</p>
+          <div class="compare-tray-header">
+            <h3 data-compare-heading>比較 (0/2)</h3>
+            <button type="button" class="btn compare-clear-btn" data-compare-clear hidden>クリア</button>
+          </div>
+          <p class="compare-hint" data-compare-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。</p>
+          <p class="compare-status" data-compare-status aria-live="polite"></p>
           <div class="compare-list" data-compare-list></div>
           <div class="compare-diff" data-compare-diff hidden></div>
         </section>

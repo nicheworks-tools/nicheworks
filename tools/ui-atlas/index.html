@@ -94,23 +94,13 @@
         <div class="result-grid">
         </div>
 
-        <button type="button" class="mobile-compare-bar" data-mobile-compare-bar hidden>
-          <span data-mobile-compare-label>Compare (0/2)</span>
-        </button>
-
-        <section class="compare-sheet" data-compare-sheet aria-modal="true" aria-label="Compare patterns">
-          <div class="compare-sheet-header">
-            <h3>Compare patterns</h3>
-            <button type="button" class="detail-close" data-close-compare>Close</button>
-          </div>
-          <p data-compare-sheet-empty>Nothing added yet. Add up to two patterns for quick key-difference checks.</p>
-          <div class="compare-list" data-compare-sheet-list></div>
-          <div class="compare-diff" data-compare-sheet-diff hidden></div>
-        </section>
-
         <section class="compare-tray">
-          <h3>Compare tray</h3>
-          <p data-compare-empty>Nothing added yet. Add up to two patterns for quick key-difference checks.</p>
+          <div class="compare-tray-header">
+            <h3 data-compare-heading>Compare (0/2)</h3>
+            <button type="button" class="btn compare-clear-btn" data-compare-clear hidden>Clear</button>
+          </div>
+          <p class="compare-hint" data-compare-empty>Nothing added yet. Add up to two patterns for quick key-difference checks.</p>
+          <p class="compare-status" data-compare-status aria-live="polite"></p>
           <div class="compare-list" data-compare-list></div>
           <div class="compare-diff" data-compare-diff hidden></div>
         </section>
