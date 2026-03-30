@@ -136,37 +136,40 @@
           <button type="button" class="detail-close" data-close-detail>閉じる</button>
         </div>
         <div class="detail-empty-intro" data-detail-empty>
-          <p class="detail-empty-kicker">準備完了</p>
+          <p class="detail-empty-kicker">ワークスペース準備完了</p>
           <p class="detail-empty-title">カードを選ぶと、実用レビューをこのパネルに表示します。</p>
+          <p class="detail-empty-copy">ライブサンプル、向き不向き、実装メモを同じ場所で確認できる作業面として利用できます。</p>
           <ul>
             <li>ライブサンプルを実際に操作できます</li>
             <li>向き不向き・実装メモをまとめて確認できます</li>
             <li>ローカルお気に入り・履歴もここから扱えます</li>
           </ul>
         </div>
-        <h3>ライブサンプル</h3>
-        <div class="detail-sample" data-detail-sample aria-label="ライブサンプル"></div>
-        <h3>これは何か</h3>
-        <p class="detail-body" data-detail-what>カードを選んで実践的な使い分けを確認できます。</p>
-        <h3>よくある利用場面</h3>
-        <p class="detail-body" data-detail-use-case>-</p>
-        <h3>向いている場面</h3>
-        <p class="detail-body" data-detail-best>-</p>
-        <h3>向いていない場面</h3>
-        <p class="detail-body" data-detail-not-for>-</p>
-        <h3>類似パターン</h3>
-        <p class="detail-body" data-detail-similar>-</p>
-        <h3>短文AIプロンプト</h3>
-        <p class="detail-body" data-detail-prompt>-</p>
-        <button class="btn" type="button" data-copy-prompt>短文プロンプトをコピー</button>
-        <p class="copy-state" data-copy-state aria-live="polite"></p>
-        <h3>実装メモ</h3>
-        <p class="detail-body" data-detail-implementation>-</p>
-        <h3>実務意図</h3>
-        <p class="detail-body" data-detail-practical-intent>-</p>
-        <h3>初心者向けの言い換え</h3>
-        <p class="detail-body" data-detail-novice>-</p>
-        <button class="btn" type="button" data-toggle-favorite>☆ お気に入り</button>
+        <div class="detail-content" data-detail-content hidden>
+          <h3>ライブサンプル</h3>
+          <div class="detail-sample" data-detail-sample aria-label="ライブサンプル"></div>
+          <h3>これは何か</h3>
+          <p class="detail-body" data-detail-what>カードを選んで実践的な使い分けを確認できます。</p>
+          <h3>よくある利用場面</h3>
+          <p class="detail-body" data-detail-use-case>-</p>
+          <h3>向いている場面</h3>
+          <p class="detail-body" data-detail-best>-</p>
+          <h3>向いていない場面</h3>
+          <p class="detail-body" data-detail-not-for>-</p>
+          <h3>類似パターン</h3>
+          <p class="detail-body" data-detail-similar>-</p>
+          <h3>短文AIプロンプト</h3>
+          <p class="detail-body" data-detail-prompt>-</p>
+          <button class="btn" type="button" data-copy-prompt>短文プロンプトをコピー</button>
+          <p class="copy-state" data-copy-state aria-live="polite"></p>
+          <h3>実装メモ</h3>
+          <p class="detail-body" data-detail-implementation>-</p>
+          <h3>実務意図</h3>
+          <p class="detail-body" data-detail-practical-intent>-</p>
+          <h3>初心者向けの言い換え</h3>
+          <p class="detail-body" data-detail-novice>-</p>
+          <button class="btn" type="button" data-toggle-favorite>☆ お気に入り</button>
+        </div>
       </aside>
     </section>
 
@@ -184,7 +187,7 @@
     <section class="nw-donate" aria-label="support">
       <h2>このプロジェクトを支援</h2>
       <p>無料ファースト方針: コア機能は公開状態を維持します。</p>
-      <p class="donation-links"><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p>
+      <p class="donation-links"><a class="support-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a class="support-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p>
     </section>
   </main>
 
