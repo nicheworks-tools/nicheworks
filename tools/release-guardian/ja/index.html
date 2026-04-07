@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Release Guardian｜Codex向け公開前チェック解説 | NicheWorks</title>
+  <meta name="description" content="Release Guardian の日本語解説ページ。Codex向けの release preflight と safe-fix の考え方、4モード、チェック内容、CLI、自己検証の位置づけをまとめています。" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="canonical" href="https://nicheworks.app/tools/release-guardian/ja/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/release-guardian/" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/release-guardian/ja/" />
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/release-guardian/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Release Guardian｜Codex向け公開前チェック解説 | NicheWorks" />
+  <meta property="og:description" content="Release Guardian の日本語解説ページ。Codex向けの release preflight と safe-fix の考え方、4モード、チェック内容、CLI、自己検証の位置づけをまとめています。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/release-guardian/ja/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Release Guardian｜Codex向け公開前チェック解説 | NicheWorks" />
+  <meta name="twitter:description" content="Release Guardian の日本語解説ページ。Codex向けの release preflight と safe-fix の考え方、4モード、チェック内容、CLI、自己検証の位置づけをまとめています。" />
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Release Guardian",
+      "url": "https://nicheworks.app/tools/release-guardian/ja/",
+      "applicationCategory": "UtilityApplication",
+      "description": "Release Guardian の日本語解説ページ。Codex向けの release preflight と safe-fix の考え方、4モード、チェック内容、CLI、自己検証の位置づけをまとめています。",
+      "operatingSystem": "All",
+      "inLanguage": "ja"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Release Guardian は単なるチェックリストですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "違います。実際のリポジトリ読解を前提にした Codex 向けの repository asset で、instructions、templates、helper scripts、self-tests を含みます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "何をするリポジトリですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "対象リポジトリを inspect し、公開前の実務的な抜け漏れをチェックし、必要に応じて narrow な safe-fix を行い、構造化された verdict を返します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ローカルで実行できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "できます。ローカル entry script と、report-only・safe-fix・blocker-first・release-report の self-tests が含まれています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "safe-fix は何を直しますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "meta description placeholder、favicon reference、robots.txt、sitemap.xml など、公開前の狭い低リスク領域だけを対象にします。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "これはセキュリティ監査ツールですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "違います。release-preflight guard であり、完全な security、legal、compliance audit を置き換えるものではありません。"
+          }
+        }
+      ]
+    }
+  </script>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap site-head-inner">
+      <a class="brand" href="https://nicheworks.app/">NicheWorks</a>
+      <nav class="head-links" aria-label="ページリンク">
+        <a href="https://nicheworks.app/">Home</a>
+        <a href="/tools/release-guardian/">View in English</a>
+        <a href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Release preflight guide</p>
+        <h1 id="page-title">Release Guardian</h1>
+        <p class="lead">Codex 向けの release preflight と safe-fix を扱う解説ページです。リポジトリ読解、safe checks、狭い low-risk fix、そして構造化された verdict までを repository-first に整理します。</p>
+        <div class="meta-row">
+          <span>公開元: <a href="https://nicheworks.app/">NicheWorks</a></span>
+          <span><a href="/tools/release-guardian/">View in English</a></span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">GitHub リポジトリを見る</a>
+          <a class="btn btn-secondary" href="#how-to-use">使い方を見る</a>
+          <a class="btn btn-secondary" href="#support">このプロジェクトを支援する</a>
+        </div>
+
+        <div class="quick-grid" aria-label="クイック情報">
+          <div class="card quick-card">
+            <p class="quick-card-title">Current status</p>
+            <strong>公開版リポジトリあり</strong>
+            <span>docs、templates、helper scripts、self-tests を含んだ状態で公開されています。</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Core workflow</p>
+            <strong>inspect → classify → optional safe-fix → report</strong>
+            <span>公開直前の最終パスを、実務的なチェックと明示的な出力で扱います。</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Modes</p>
+            <strong>4つの主要モード</strong>
+            <span>report-only、safe-fix、blocker-first、release-report の4モードを含み、self-test で確認できます。</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Repository</p>
+            <strong>GitHub で公開中</strong>
+            <span>instructions、examples、templates、scripts、tests を一つのリポジトリにまとめています。</span>
+          </div>
+        </div>
+
+        <div class="quick-nav" aria-label="このページの目次">
+          <strong>このページの目次</strong>
+          <div class="quick-nav-links">
+            <a href="#what-it-is">これは何か</a>
+            <a href="#who-its-for">誰向けか</a>
+            <a href="#checks">何をチェックするか</a>
+            <a href="#modes">モード</a>
+            <a href="#included">含まれているもの</a>
+            <a href="#how-to-use">使い方</a>
+            <a href="#cli">CLI</a>
+            <a href="#faq">FAQ</a>
+            <a href="#support">支援</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="nw-donate" aria-labelledby="support-top-title">
+        <h2 id="support-top-title">今後の保守や実例追加を支援する</h2>
+        <p>このページやリポジトリが役立った場合、今後の更新、追加実例、継続的な保守を支援いただけます。</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section id="what-it-is">
+        <h2>これは何か</h2>
+        <p>Release Guardian は、Codex を使った repository work に向けた practical な release-preflight asset です。目的は、公開直前にありがちな曖昧な最終確認を、repeatable な実務フローに変えることです。</p>
+        <p>その段階で起きやすい問題には、title や description の欠落、crawl 系ファイルの不足、public-facing basics の弱さ、 accidental <code>noindex</code>、README drift、deploy assumption の曖昧さなどがあります。</p>
+        <p>このリポジトリは、それらを「とりあえず見る」ではなく、repo を inspect し、safe checks を走らせ、blocker と warning を分け、必要な場合だけ狭い safe-fix を行い、最後に verdict を返す形に整理します。</p>
+      </section>
+
+      <section id="who-its-for">
+        <h2>誰向けか</h2>
+        <p>このプロジェクトは、public-facing repository を公開する前に、もう少し厳密な最終確認をしたい人に向いています。特に、抽象的な安心感ではなく、blocker と warning が明確に分かれた ship / no-ship 判定を求める人には相性がよいです。</p>
+        <ul>
+          <li>小規模 web tool や utility repo を公開する個人開発者。</li>
+          <li>Codex や agent-assisted repository workflow を使う人。</li>
+          <li>公開直前の確認を構造化したい maintainer。</li>
+          <li>broad automatic edit ではなく narrow safe-fix を求める人。</li>
+          <li>release basics をその場の感覚で済ませたくない人。</li>
+        </ul>
+        <p>逆に、full security audit、legal review、infra governance、完全自動リリース bot を探している場合は方向が違います。</p>
+      </section>
+
+      <section id="checks">
+        <h2>何をチェックするか</h2>
+        <p>現在のリポジトリは、web repository 向けの public-release basics を中心に扱います。</p>
+        <h3>Universal checks</h3>
+        <ul>
+          <li>README の有無と明瞭性</li>
+          <li>LICENSE の有無</li>
+          <li>favicon の有無</li>
+          <li>title と meta description</li>
+          <li>OGP や social metadata の基本</li>
+          <li>canonical の基本</li>
+          <li><code>robots.txt</code></li>
+          <li><code>sitemap.xml</code></li>
+          <li>404 handling</li>
+          <li>accidental <code>noindex</code></li>
+          <li>obvious docs drift</li>
+          <li>support、contact、disclaimer などの public-facing basics</li>
+        </ul>
+        <h3>Framework-oriented checks</h3>
+        <p>実装では、static HTML repo、Vite 系、React 系、Next.js に近い metadata entry 構造も inspect できます。</p>
+        <h3>Release-readiness checks</h3>
+        <p>repo-defined script がある場合、build、lint、typecheck、test などを practical に実行し、結果を blocker / warning として分類します。</p>
+      </section>
+
+      <section id="modes">
+        <h2>モード</h2>
+        <div class="flow-list">
+          <div class="flow-step"><strong>1. Report-only</strong>リポジトリを inspect し、必要な safe check を走らせ、ファイルは編集せずに findings を返します。</div>
+          <div class="flow-step"><strong>2. Safe-fix</strong>meta description placeholder、favicon reference、robots.txt、sitemap.xml など、狭い low-risk 領域だけを自動補完します。</div>
+          <div class="flow-step"><strong>3. Blocker-first</strong>公開を止める可能性が高い問題だけに集中し、重大 blocker が確定したら余計な続行を避けます。</div>
+          <div class="flow-step"><strong>4. Release-report</strong>PR、issue、release note、launch review に貼りやすい形の clean な report を返します。</div>
+        </div>
+      </section>
+
+      <section id="included">
+        <h2>含まれているもの</h2>
+        <p>このリポジトリは、一枚の prompt ではなく、再利用しやすい package として構成されています。</p>
+        <h3>Core instructions</h3>
+        <p><code>README.md</code>、<code>SKILL.md</code>、<code>AGENTS.md</code>、<code>DISCLAIMER.md</code>、<code>LICENSE</code>。</p>
+        <h3>Documentation</h3>
+        <p><code>docs/</code> に checks、modes、stack support、safety boundary、output format、examples、quality bar を収録しています。</p>
+        <h3>Examples and templates</h3>
+        <p><code>examples/</code> と <code>templates/</code> に、starter prompt、sample output、PR comment、issue、AGENTS snippet などを収録しています。</p>
+        <h3>Scripts and tests</h3>
+        <p><code>scripts/release_guardian.py</code> が main entry point です。helper scripts は stack detection、file checks、signal collection、report rendering、build checks を補助し、<code>tests/selftest_release_guardian.py</code> が4モードを synthetic repo で検証します。</p>
+      </section>
+
+      <section id="how-to-use">
+        <h2>使い方</h2>
+        <p>このリポジトリは、documented skill repo と runnable local utility の両方として読むと分かりやすいです。</p>
+        <ol>
+          <li><strong>まず <code>README.md</code> を読む。</strong> 公開上の位置づけと boundary を掴みます。</li>
+          <li><strong><code>SKILL.md</code> を読む。</strong> operational behavior、safety default、workflow、output contract を確認します。</li>
+          <li><strong><code>AGENTS.md</code> と <code>docs/</code> を開く。</strong> maintenance rules、check coverage、stack support、safety policy を把握します。</li>
+          <li><strong><code>examples/</code> と <code>templates/</code> を見る。</strong> report shape と intended usage がかなり見やすくなります。</li>
+          <li><strong>最後に script を target repo に対して実行する。</strong> 実務で使うならここが本番です。</li>
+        </ol>
+        <p>全体像だけ知りたいなら README と examples で十分です。実務で使うなら CLI と self-test まで見るのが自然です。</p>
+      </section>
+
+      <section id="cli">
+        <h2>CLI</h2>
+        <p>ローカルで実行できる main entry point が含まれています。</p>
+        <pre><code>python3 scripts/release_guardian.py /path/to/target-repo --mode report-only
+python3 scripts/release_guardian.py /path/to/target-repo --mode safe-fix
+python3 scripts/release_guardian.py /path/to/target-repo --mode blocker-first
+python3 scripts/release_guardian.py /path/to/target-repo --mode release-report --md-out /tmp/release-report.md</code></pre>
+        <p><code>--skip-commands</code>、<code>--json-out</code>、<code>--md-out</code> といった flag も使えます。</p>
+      </section>
+
+      <section id="why-nicheworks">
+        <h2>なぜ NicheWorks が公開するのか</h2>
+        <p>NicheWorks は、実務で使える小さなツールや workflow asset を公開するラインです。Release Guardian もその一つで、現実に困りやすい「公開直前の雑な最終確認」を狭く扱う repository asset として公開されています。</p>
+        <p>万能監査を名乗るのではなく、examples、tests、release discipline を少しずつ積み上げていく working asset として置かれています。</p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Release Guardian は単なるチェックリストですか？</h3>
+            <p>違います。実際のリポジトリ読解を前提にした Codex 向けの repository asset で、instructions、templates、helper scripts、self-tests を含みます。</p>
+          </div>
+          <div class="faq-item">
+            <h3>何をするリポジトリですか？</h3>
+            <p>対象リポジトリを inspect し、公開前の practical な抜け漏れをチェックし、必要に応じて narrow な safe-fix を行い、構造化された verdict を返します。</p>
+          </div>
+          <div class="faq-item">
+            <h3>ローカルで実行できますか？</h3>
+            <p>できます。local entry script と、report-only、safe-fix、blocker-first、release-report の self-tests が含まれています。</p>
+          </div>
+          <div class="faq-item">
+            <h3>safe-fix は何を直しますか？</h3>
+            <p>meta description placeholder、favicon reference、robots.txt、sitemap.xml など、公開前の狭い low-risk 領域だけを対象にします。</p>
+          </div>
+          <div class="faq-item">
+            <h3>これはセキュリティ監査ツールですか？</h3>
+            <p>違います。release-preflight guard であり、完全な security、legal、compliance audit を置き換えるものではありません。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="links">
+        <h2>関連リンク</h2>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">GitHub リポジトリを開く</a>
+          <a class="btn btn-secondary" href="https://nicheworks.app/">NicheWorks を見る</a>
+          <a class="btn btn-secondary" href="/tools/release-guardian/">View in English</a>
+        </div>
+      </section>
+
+      <div class="nw-donate" id="support" aria-labelledby="support-title">
+        <h2 id="support-title">このプロジェクトを支援する</h2>
+        <p>このページやリポジトリが役立った場合、今後の保守、ドキュメント更新、追加実例の公開を支援いただけます。</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section class="disclaimer" aria-labelledby="disclaimer-title">
+        <h2 id="disclaimer-title">免責事項</h2>
+        <p>このページおよびリンク先のリポジトリは、情報提供と practical workflow の整理を目的として公開されています。内容の完全性、特定目的への適合性、公開の成功は保証されません。実際の release 判断には最終的な human review が必要です。</p>
+      </section>
+
+      <div class="nw-links" aria-label="関連ツール">
+        <span>関連ツール</span>
+        <a href="https://nicheworks.app/tools/codex-work-os/">Codex Work OS</a>
+        <a href="https://nicheworks.app/tools/codex-product-shipping-playbooks/">Codex Product Shipping Playbooks</a>
+        <a href="https://github.com/nicheworks-tools/repo-audit/tree/main" target="_blank" rel="noopener">repo-audit</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>公開元: <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/release-guardian/">View in English</a> · <a href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <a class="floating-support" href="#support" aria-label="支援セクションへ移動">支援する</a>
+</body>
+</html>
