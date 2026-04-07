@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-30T16:03:23.903Z",
-  "total": 74,
+  "generatedAt": "2026-04-07T14:49:10.277Z",
+  "total": 75,
   "items": [
     {
       "slug": "analytics-privacy-kit",
@@ -470,6 +470,14 @@
       "slug": "redirect-unwrapper",
       "title_en": "redirect-unwrapper",
       "title_ja": "redirect-unwrapper",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "release-guardian",
+      "title_en": "release-guardian",
+      "title_ja": "release-guardian",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
