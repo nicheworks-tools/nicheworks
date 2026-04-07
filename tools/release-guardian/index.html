@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Release Guardian｜Codex Release Preflight Guide | NicheWorks</title>
+  <meta name="description" content="A Codex-native release preflight and safe-fix guide for checking whether a web repo is ready to ship, with report-only, safe-fix, blocker-first, and release-report modes." />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="canonical" href="https://nicheworks.app/tools/release-guardian/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/release-guardian/" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/release-guardian/ja/" />
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/release-guardian/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Release Guardian｜Codex Release Preflight Guide | NicheWorks" />
+  <meta property="og:description" content="A Codex-native release preflight and safe-fix guide for checking whether a web repo is ready to ship, with report-only, safe-fix, blocker-first, and release-report modes." />
+  <meta property="og:url" content="https://nicheworks.app/tools/release-guardian/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Release Guardian｜Codex Release Preflight Guide | NicheWorks" />
+  <meta name="twitter:description" content="A Codex-native release preflight and safe-fix guide for checking whether a web repo is ready to ship, with report-only, safe-fix, blocker-first, and release-report modes." />
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Release Guardian",
+      "url": "https://nicheworks.app/tools/release-guardian/",
+      "applicationCategory": "UtilityApplication",
+      "description": "A Codex-native release preflight and safe-fix guide for checking whether a web repo is ready to ship, with report-only, safe-fix, blocker-first, and release-report modes.",
+      "operatingSystem": "All",
+      "inLanguage": "en"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Release Guardian just a checklist?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It is built as a Codex-native repository asset with operational instructions, helper scripts, templates, and self-tests, not only as a static checklist."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does it actually do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It inspects a target repository, checks practical release-preflight basics, optionally applies narrow safe fixes, and returns a structured verdict."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it actually run locally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The repository includes a local entry script and self-tests for report-only, safe-fix, blocker-first, and release-report."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does safe-fix change?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only narrow, low-risk public-release basics such as missing meta description placeholders, favicon references, robots.txt, and sitemap.xml scaffolds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this a security audit tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It is a release-preflight guard, not a full security, legal, or compliance audit system."
+          }
+        }
+      ]
+    }
+  </script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap site-head-inner">
+      <a class="brand" href="https://nicheworks.app/">NicheWorks</a>
+      <nav class="head-links" aria-label="Page links">
+        <a href="https://nicheworks.app/">Home</a>
+        <a href="/tools/release-guardian/ja/">日本語版を見る</a>
+        <a href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Release preflight guide</p>
+        <h1 id="page-title">Release Guardian</h1>
+        <p class="lead">A Codex-native release preflight and safe-fix guide for checking whether a web repo is ready to ship, with a repository-first flow built around inspection, safe checks, narrow fixes, and structured verdicts.</p>
+        <div class="meta-row">
+          <span>Published by <a href="https://nicheworks.app/">NicheWorks</a></span>
+          <span><a href="/tools/release-guardian/ja/">View this page in Japanese</a></span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">View on GitHub</a>
+          <a class="btn btn-secondary" href="#how-to-use">How to use it</a>
+          <a class="btn btn-secondary" href="#support">Support this project</a>
+        </div>
+
+        <div class="quick-grid" aria-label="Quick facts">
+          <div class="card quick-card">
+            <p class="quick-card-title">Current status</p>
+            <strong>Public release published</strong>
+            <span>Docs, templates, helper scripts, and self-tests are included in the current repository.</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Core workflow</p>
+            <strong>Inspect → classify → optionally safe-fix → report</strong>
+            <span>A release-preflight path built around repository reading, practical checks, and structured output.</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Modes</p>
+            <strong>4 main operating modes</strong>
+            <span>Report-only, safe-fix, blocker-first, and release-report are all included and tested.</span>
+          </div>
+          <div class="card quick-card">
+            <p class="quick-card-title">Repository</p>
+            <strong>Open on GitHub</strong>
+            <span>Instructions, examples, templates, scripts, and self-tests are published in one repository.</span>
+          </div>
+        </div>
+
+        <div class="quick-nav" aria-label="On this page">
+          <strong>On this page</strong>
+          <div class="quick-nav-links">
+            <a href="#what-it-is">What it is</a>
+            <a href="#who-its-for">Who it is for</a>
+            <a href="#checks">What it checks</a>
+            <a href="#modes">Modes</a>
+            <a href="#included">What’s included</a>
+            <a href="#how-to-use">How to use it</a>
+            <a href="#cli">CLI usage</a>
+            <a href="#faq">FAQ</a>
+            <a href="#support">Support</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="nw-donate" aria-labelledby="support-top-title">
+        <h2 id="support-top-title">Support future maintenance and examples</h2>
+        <p>If this page or repository is useful, you can support future updates, expanded examples, and continued maintenance.</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section id="what-it-is">
+        <h2>What it is</h2>
+        <p>Release Guardian is a practical release-preflight repository asset for Codex-style repository work. It is designed for the final pass before launch, when a project may technically run but still be weak as a public release.</p>
+        <p>Typical problems at that stage include missing title or description metadata, missing crawl files, weak public-facing basics, accidental <code>noindex</code>, README drift, unclear deploy assumptions, or a vague sense that a repo is “probably ready” without a structured verdict.</p>
+        <p>This repository exists to turn that vague final pass into a repeatable workflow: inspect the repo, run safe checks, classify blockers vs warnings, optionally apply only narrow low-risk fixes, and return a consistent release-readiness result.</p>
+      </section>
+
+      <section id="who-its-for">
+        <h2>Who it is for</h2>
+        <p>This project is a good fit for people shipping public-facing repositories and wanting a more disciplined last-mile release check. It is especially useful if you work inside real repositories instead of abstract examples and want a practical release verdict with explicit boundaries.</p>
+        <ul>
+          <li>Individual builders shipping small web tools or public utility repos.</li>
+          <li>People using Codex or agent-assisted repository workflows.</li>
+          <li>Maintainers who want a cleaner ship / no-ship style check.</li>
+          <li>Teams that want narrow safe-fix behavior instead of broad automatic edits.</li>
+          <li>Anyone who wants practical release basics to be explicit, not improvised.</li>
+        </ul>
+        <p>It is a worse fit if you are looking for a full security audit suite, legal review system, infrastructure governance framework, or highly autonomous release bot.</p>
+      </section>
+
+      <section id="checks">
+        <h2>What it checks</h2>
+        <p>The current repository focuses on practical public-release basics for web repositories.</p>
+        <h3>Universal checks</h3>
+        <ul>
+          <li>README presence and clarity</li>
+          <li>LICENSE presence</li>
+          <li>favicon presence</li>
+          <li>title and meta description</li>
+          <li>OGP and social metadata basics</li>
+          <li>canonical basics</li>
+          <li><code>robots.txt</code></li>
+          <li><code>sitemap.xml</code></li>
+          <li>404 handling</li>
+          <li>accidental <code>noindex</code></li>
+          <li>obvious docs drift</li>
+          <li>public-facing support, contact, and disclaimer basics</li>
+        </ul>
+        <h3>Framework-oriented checks</h3>
+        <p>The implementation can inspect common public web-app shapes including static HTML repos, Vite-style repos, React-style repos, and Next.js-like metadata entry structures.</p>
+        <h3>Release-readiness checks</h3>
+        <p>When repo-defined scripts exist, the CLI can run practical checks such as build, lint, typecheck, and test, then classify the results as blockers or warnings.</p>
+      </section>
+
+      <section id="modes">
+        <h2>Modes</h2>
+        <div class="flow-list">
+          <div class="flow-step"><strong>1. Report-only</strong>Inspect the repository, run safe checks when appropriate, and report findings without editing files.</div>
+          <div class="flow-step"><strong>2. Safe-fix</strong>Apply only narrow, low-risk corrections such as missing meta description placeholders, favicon references, robots.txt, and sitemap.xml scaffolds.</div>
+          <div class="flow-step"><strong>3. Blocker-first</strong>Focus only on the issues most likely to stop or delay launch, and stop early when a serious blocker has already been confirmed.</div>
+          <div class="flow-step"><strong>4. Release-report</strong>Return a clean, handoff-friendly report shape for PR comments, issues, release notes, or launch review.</div>
+        </div>
+      </section>
+
+      <section id="included">
+        <h2>What’s included</h2>
+        <p>The repository is organized as a practical, reusable package rather than a single prompt file.</p>
+        <h3>Core instructions</h3>
+        <p><code>README.md</code>, <code>SKILL.md</code>, <code>AGENTS.md</code>, <code>DISCLAIMER.md</code>, and <code>LICENSE</code>.</p>
+        <h3>Documentation</h3>
+        <p><code>docs/</code> covers checks, modes, stack support, safety boundaries, output format, examples, and quality bar.</p>
+        <h3>Examples and templates</h3>
+        <p><code>examples/</code> and <code>templates/</code> show starter prompts, sample outputs, PR comment shapes, issue shapes, and AGENTS snippets.</p>
+        <h3>Scripts and tests</h3>
+        <p><code>scripts/release_guardian.py</code> is the main local entry point. Helper scripts support stack detection, file checks, signal collection, report rendering, and build-check execution. <code>tests/selftest_release_guardian.py</code> verifies the main four modes against synthetic repositories.</p>
+      </section>
+
+      <section id="how-to-use">
+        <h2>How to use it</h2>
+        <p>The easiest way to approach the repository is to treat it as both a documented skill repo and a runnable local utility.</p>
+        <ol>
+          <li><strong>Start with <code>README.md</code>.</strong> This gives the public positioning and the intended boundaries.</li>
+          <li><strong>Read <code>SKILL.md</code>.</strong> This describes the operational behavior, safety defaults, workflow, and output contract.</li>
+          <li><strong>Open <code>AGENTS.md</code> and <code>docs/</code>.</strong> These clarify maintenance rules, check coverage, stack support, and safety policy.</li>
+          <li><strong>Use <code>examples/</code> and <code>templates/</code>.</strong> These make the reporting shape and intended usage much easier to see.</li>
+          <li><strong>Run the local script on a target repository.</strong> This is the practical path if you want to use it in real repo work.</li>
+        </ol>
+        <p>If you only want the high-level concept, the README and examples are enough. If you want to use it in real work, the CLI and self-tests matter too.</p>
+      </section>
+
+      <section id="cli">
+        <h2>CLI usage</h2>
+        <p>The repository includes a working local entry point for practical audits.</p>
+        <pre><code>python3 scripts/release_guardian.py /path/to/target-repo --mode report-only
+python3 scripts/release_guardian.py /path/to/target-repo --mode safe-fix
+python3 scripts/release_guardian.py /path/to/target-repo --mode blocker-first
+python3 scripts/release_guardian.py /path/to/target-repo --mode release-report --md-out /tmp/release-report.md</code></pre>
+        <p>Useful flags include <code>--skip-commands</code>, <code>--json-out</code>, and <code>--md-out</code>.</p>
+      </section>
+
+      <section id="why-nicheworks">
+        <h2>Why NicheWorks publishes it</h2>
+        <p>NicheWorks publishes small, practical tools and workflow assets that are meant to be used in real work. Release Guardian fits that model: it is a narrowly scoped repository asset for a real operational problem, the rushed and inconsistent final pass before shipping.</p>
+        <p>It is not positioned as a magic auditor. It is positioned as a useful working asset that can keep improving through better examples, better tests, and tighter release discipline over time.</p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Is Release Guardian just a checklist?</h3>
+            <p>No. It is built as a Codex-native repository asset with operational instructions, helper scripts, templates, and self-tests, not only as a static checklist.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What does it actually do?</h3>
+            <p>It inspects a target repository, checks practical release-preflight basics, optionally applies narrow safe fixes, and returns a structured verdict.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Does it actually run locally?</h3>
+            <p>Yes. The repository includes a local entry script and self-tests for report-only, safe-fix, blocker-first, and release-report.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What does safe-fix change?</h3>
+            <p>Only narrow, low-risk public-release basics such as missing meta description placeholders, favicon references, robots.txt, and sitemap.xml scaffolds.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is this a security audit tool?</h3>
+            <p>No. It is a release-preflight guard, not a full security, legal, or compliance audit system.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="links">
+        <h2>Links</h2>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">Open the repository</a>
+          <a class="btn btn-secondary" href="https://nicheworks.app/">Visit NicheWorks</a>
+          <a class="btn btn-secondary" href="/tools/release-guardian/ja/">日本語版を見る</a>
+        </div>
+      </section>
+
+      <div class="nw-donate" id="support" aria-labelledby="support-title">
+        <h2 id="support-title">Support this project</h2>
+        <p>If this page or repository helps your workflow, you can support future maintenance, documentation updates, and expanded examples through the links below.</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section class="disclaimer" aria-labelledby="disclaimer-title">
+        <h2 id="disclaimer-title">Disclaimer</h2>
+        <p>This page and the linked repository are provided for informational and practical workflow use. They are offered as-is, without warranty of completeness, fitness for a particular purpose, or guaranteed launch success. Real release decisions still require human review.</p>
+      </section>
+
+      <div class="nw-links" aria-label="Related tools">
+        <span>Related tools</span>
+        <a href="https://nicheworks.app/tools/codex-work-os/">Codex Work OS</a>
+        <a href="https://nicheworks.app/tools/codex-product-shipping-playbooks/">Codex Product Shipping Playbooks</a>
+        <a href="https://github.com/nicheworks-tools/repo-audit/tree/main" target="_blank" rel="noopener">repo-audit</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>Published by <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/release-guardian/ja/">日本語版を見る</a> · <a href="https://github.com/nicheworks-tools/release-guardian/tree/main" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <a class="floating-support" href="#support" aria-label="Jump to support section">Support</a>
+</body>
+</html>
