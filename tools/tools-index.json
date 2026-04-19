@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-08T00:58:57.908Z",
-  "total": 76,
+  "generatedAt": "2026-04-19T12:31:40.968Z",
+  "total": 77,
   "items": [
     {
       "slug": "ai-project-pack",
@@ -470,6 +470,14 @@
       "slug": "pdf2csv-local",
       "title_en": "pdf2csv-local",
       "title_ja": "pdf2csv-local",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
+    {
+      "slug": "product-founder-os",
+      "title_en": "product-founder-os",
+      "title_ja": "product-founder-os",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
