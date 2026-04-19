@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>product-founder-os｜GPT / Codex向けプロダクト運用リポジトリ解説 | NicheWorks</title>
+  <meta name="description" content="GPT や Codex と一緒に、曖昧な『作りたいもの』を仕様・計画・実装・変更管理までつないで進めるためのリポジトリです。product-founder-os の役割、使い方、構成、補助スクリプトを日本語で整理しています。">
+  <link rel="canonical" href="https://nicheworks.app/tools/product-founder-os/ja/">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/product-founder-os/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/product-founder-os/ja/">
+
+  <meta property="og:title" content="product-founder-os｜GPT / Codex向けプロダクト運用リポジトリ解説 | NicheWorks">
+  <meta property="og:description" content="曖昧な『作りたいもの』を、仕様・計画・実装・変更管理まで切れ目なくつなぐためのリポジトリです。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.app/tools/product-founder-os/ja/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="product-founder-os｜GPT / Codex向けプロダクト運用リポジトリ解説 | NicheWorks">
+  <meta name="twitter:description" content="曖昧な『作りたいもの』を、仕様・計画・実装・変更管理まで切れ目なくつなぐためのリポジトリです。">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "product-founder-os",
+    "url": "https://nicheworks.app/tools/product-founder-os/ja/",
+    "description": "GPT や Codex と一緒に、曖昧な『作りたいもの』を仕様・計画・実装・変更管理までつないで進めるためのリポジトリです。"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "product-founder-os は単なるプロンプト集ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "違います。README、SKILL、AGENTS、core docs、examples、helper scripts を含んだ、プロダクト開発のための運用リポジトリです。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "GPT だけでも使えますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "使えます。企画整理、仕様化、計画作成までは GPT だけでも進められます。実装編集まで強く進めたい場合は Codex と組み合わせると相性がよいです。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "bootstrap_new_product.py を使えば完成版まで自動で作れますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。作られるのは seed、brief、spec、roadmap などの叩き台です。そこから先は人間と assistant が内容を詰める前提です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "この repo は公開成功やプロダクト成功を保証しますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "保証しません。これは作業の土台と進め方を整えるためのリポジトリであり、product-market fit、法務、セキュリティ、公開成功そのものを保証するものではありません。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap site-head-inner">
+      <a class="brand" href="https://nicheworks.app/">NicheWorks</a>
+      <nav class="head-links" aria-label="ページリンク">
+        <a href="https://nicheworks.app/">Home</a>
+        <a href="/tools/product-founder-os/">View in English</a>
+        <a href="https://github.com/nicheworks-tools/product-founder-os/tree/main" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Product workflow repository asset</p>
+        <h1 id="page-title">product-founder-os</h1>
+        <p class="lead">
+          GPT や Codex と一緒に、曖昧な「作りたいもの」を、
+          仕様・計画・実装・変更管理まで切れ目なくつないで進めるためのリポジトリです。
+        </p>
+
+        <div class="meta-row">
+          <span>公開元: <a href="https://nicheworks.app/">NicheWorks</a></span>
+          <span><a href="/tools/product-founder-os/">View in English</a></span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/product-founder-os/tree/main" target="_blank" rel="noopener">GitHub リポジトリを見る</a>
+          <a class="btn btn-secondary" href="#how-to-use">使い方を見る</a>
+          <a class="btn btn-secondary" href="#support">このプロジェクトを支援する</a>
+        </div>
+
+        <div class="quick-grid" aria-label="要点">
+          <div class="card quick-card">
+            <p class="quick-card-title">Current status</p>
+            <strong>公開版リポジトリあり</strong>
+            <span>README、SKILL、AGENTS、core docs、examples、helper scripts を含む状態で公開されています。</span>
+          </div>
+
+          <div class="card quick-card">
+            <p class="quick-card-title">Core workflow</p>
+            <strong>discover → define → plan → build → adjust → ship</strong>
+            <span>会話だけで流さず、repo 上の source of truth を保ちながら進める前提の流れです。</span>
+          </div>
+
+          <div class="card quick-card">
+            <p class="quick-card-title">Modes</p>
+            <strong>6つの主要モード</strong>
+            <span>discover、define、plan、build、adjust、ship を一つのリポジトリの中で扱います。</span>
+          </div>
+
+          <div class="card quick-card">
+            <p class="quick-card-title">Repository</p>
+            <strong>GitHub で公開中</strong>
+            <span>docs、examples、templates、scripts を一つの実用リポジトリとしてまとめています。</span>
+          </div>
+        </div>
+
+        <div class="quick-nav" aria-label="このページの目次">
+          <strong>このページの目次</strong>
+          <div class="quick-nav-links">
+            <a href="#what-it-is">これは何か</a>
+            <a href="#who-its-for">誰向けか</a>
+            <a href="#what-it-does">何ができるか</a>
+            <a href="#modes">モード</a>
+            <a href="#included">含まれているもの</a>
+            <a href="#how-to-use">使い方</a>
+            <a href="#bootstrap">Bootstrap helper</a>
+            <a href="#why-nicheworks">なぜ公開するのか</a>
+            <a href="#faq">FAQ</a>
+            <a href="#support">支援</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="nw-donate" aria-labelledby="support-top-title">
+        <h2 id="support-top-title">今後の保守や実例追加を支援する</h2>
+        <p>このページやリポジトリが役立った場合、今後の更新、追加実例、継続的な保守をご支援いただけます。</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <section id="what-it-is">
+        <h2>これは何か</h2>
+        <p>
+          <code>product-founder-os</code> は、GPT や Codex と一緒にプロダクト開発を進めるための運用リポジトリです。
+          役割は、曖昧なアイデアをその場で処理して終わるのではなく、
+          「何を作るのか」「今どこまで進んでいるのか」「何を変えたのか」を repo の中で追える状態に保つことです。
+        </p>
+        <p>
+          AI と一緒に開発していると、コードに入るのが早すぎたり、
+          仕様が会話の中だけで変わって docs に残らなかったり、
+          「できたつもり」のまま次へ進んでしまったりしがちです。
+          このリポジトリは、そうした崩れ方を減らすために、
+          project seed、product brief、functional spec、roadmap、current sprint、change request、done definition
+          といった中核ファイルを source of truth として扱います。
+        </p>
+      </section>
+
+      <section id="who-its-for">
+        <h2>誰向けか</h2>
+        <p>このリポジトリは、GPT や Codex を使って、複数回のやり取りをまたぎながらプロダクトを形にしていきたい人向けです。</p>
+        <ul>
+          <li>アイデアはあるが、まだ仕様が固まり切っていない個人開発者</li>
+          <li>small SaaS や static tool を、企画から整理しながら進めたい人</li>
+          <li>コードはあるが、何を作っているかの定義が弱い repo を立て直したい人</li>
+          <li>複数セッションで作業を継続するたびに、毎回話をやり直したくない人</li>
+          <li>要件変更を repo 上で明示的に管理したい人</li>
+        </ul>
+        <p>
+          逆に、単発の小さな script を今すぐ1本だけ書きたい場合や、
+          企画整理を飛ばしてコードだけ進めたい場合には向きません。
+        </p>
+      </section>
+
+      <section id="what-it-does">
+        <h2>何ができるか</h2>
+
+        <h3>作るものを言語化する</h3>
+        <p>project seed、product brief、target user、problem、scope、non-goals を整理し、アイデアを「作業できる形」にします。</p>
+
+        <h3>仕様と計画をつなぐ</h3>
+        <p>functional spec、roadmap、task backlog、current sprint、done definition を作り、実装の前提を repo に残します。</p>
+
+        <h3>変更を明示する</h3>
+        <p><code>change-requests.md</code> を使って要件変更を記録し、docs を先に更新してから実装側を変える流れを取りやすくします。</p>
+
+        <h3>基礎の破損を見つける</h3>
+        <p>baseline docs の不足、markdown link の切れ、placeholder の残り、code fence の崩れなどを helper script で確認できます。</p>
+      </section>
+
+      <section id="modes">
+        <h2>モード</h2>
+
+        <h3>Discover</h3>
+        <p>何を作るのかを確認し、project seed と assumptions を作る段階です。</p>
+
+        <h3>Define</h3>
+        <p>product brief、spec、scope、success criteria を固める段階です。</p>
+
+        <h3>Plan</h3>
+        <p>roadmap、task backlog、current sprint を作り、今どこを進めるかを明確にする段階です。</p>
+
+        <h3>Build</h3>
+        <p>current sprint を基準に implementation、または implementation guidance を進める段階です。</p>
+
+        <h3>Adjust</h3>
+        <p>要件変更を change request と source-of-truth docs に反映してから方向転換する段階です。</p>
+
+        <h3>Ship</h3>
+        <p>done definition、acceptance criteria、handoff docs を見ながら、現在の区切りが本当に完了かを確認する段階です。</p>
+      </section>
+
+      <section id="included">
+        <h2>含まれているもの</h2>
+
+        <h3>Core instructions</h3>
+        <p><code>README.md</code>、<code>SKILL.md</code>、<code>AGENTS.md</code>、<code>DISCLAIMER.md</code>、<code>LICENSE</code> を含みます。</p>
+
+        <h3>Documentation</h3>
+        <p><code>docs/</code> に intake、definition、spec、design、planning、execution、quality、handoff を収録しています。</p>
+
+        <h3>Examples and templates</h3>
+        <p><code>examples/</code> と <code>templates/</code> に worked example、starter example、template files を収録しています。</p>
+
+        <h3>Scripts</h3>
+        <p><code>create_project_docs.py</code>、<code>check_doc_links.py</code>、<code>validate_foundation.py</code>、<code>bootstrap_new_product.py</code> を含みます。</p>
+      </section>
+
+      <section id="how-to-use">
+        <h2>使い方</h2>
+        <p>このリポジトリは、文書置き場として読むより、「プロダクト作業の進め方を固定する repo」として使うと分かりやすいです。</p>
+        <ol>
+          <li>まず <code>README.md</code> を読み、repo 全体の位置づけと workflow を把握する。</li>
+          <li><code>SKILL.md</code> を読み、assistant がどう動くべきかを確認する。</li>
+          <li><code>AGENTS.md</code> と core docs を開き、source of truth の優先順位と current state を把握する。</li>
+          <li>product が未定義なら、何を作るかを先に聞き、project seed と brief を固める。</li>
+          <li><code>roadmap.md</code>、<code>task-backlog.md</code>、<code>current-sprint.md</code> を更新する。</li>
+          <li>その後で implementation を current sprint ベースで進める。</li>
+          <li>要件変更が入ったら <code>change-requests.md</code> を更新し、そのあとで方向転換する。</li>
+        </ol>
+        <p>
+          全体像だけ知りたいなら README と worked example を見るだけでも十分です。
+          実際に使うなら validation scripts と bootstrap helper まで見るのが自然です。
+        </p>
+      </section>
+
+      <section id="bootstrap">
+        <h2>Bootstrap helper</h2>
+        <p>新しいプロダクト案の叩き台を一気に作りたい場合は、次の helper を使えます。</p>
+<pre><code>python3 scripts/bootstrap_new_product.py "Your Product Name" --one-line "One-line description" --user "target user"</code></pre>
+        <p>
+          これにより、starter seed / brief / spec / roadmap / sprint / done definition をまとめて生成できます。
+          ただし、完成版を自動生成するものではなく、最初の土台を作るための補助です。
+        </p>
+      </section>
+
+      <section id="why-nicheworks">
+        <h2>なぜ NicheWorks が公開するのか</h2>
+        <p>
+          NicheWorks は、実務で使える小さな tool や workflow asset を公開するラインです。
+          <code>product-founder-os</code> もその一つで、AI と一緒にプロダクトを進める時に崩れやすい部分を、
+          repo structure と docs workflow で整えるための asset として公開されています。
+        </p>
+        <p>
+          これは万能な product generator を名乗るものではありません。
+          むしろ、「何を作っているのか」「何が変わったのか」「今どこまで終わっているのか」を repo 上で見失わないための、地味でも役立つ土台として置かれています。
+        </p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>product-founder-os は単なる prompt 集ですか？</h3>
+            <p>違います。README、SKILL、AGENTS、core docs、examples、scripts を含んだ repository operating system です。</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>GPT だけでも使えますか？</h3>
+            <p>使えます。企画整理や計画作成は GPT だけでも進められます。実装編集まで強く進めたい場合は Codex と組み合わせると相性がよいです。</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>bootstrap_new_product.py を使えば完成版まで自動で作れますか？</h3>
+            <p>いいえ。作れるのは starter docs の叩き台までです。その後は人間と assistant が内容を詰める必要があります。</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>この repo は公開成功やプロダクト成功を保証しますか？</h3>
+            <p>保証しません。これは作業の土台と進め方を整えるための repo であり、product-market fit、法務、セキュリティ、公開成功そのものを保証するものではありません。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="links">
+        <h2>関連リンク</h2>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/product-founder-os/tree/main" target="_blank" rel="noopener">GitHub リポジトリを開く</a>
+          <a class="btn btn-secondary" href="https://nicheworks.app/">NicheWorks を見る</a>
+          <a class="btn btn-secondary" href="/tools/product-founder-os/">View in English</a>
+        </div>
+      </section>
+
+      <div class="nw-donate" id="support" aria-labelledby="support-title">
+        <h2 id="support-title">このプロジェクトを支援する</h2>
+        <p>このページやリポジトリが役立った場合、今後の保守、ドキュメント更新、追加実例の公開をご支援いただけます。</p>
+        <div class="nw-donate-links">
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+
+      <div class="nw-links" aria-label="関連ツール">
+        <span>関連ツール</span>
+        <a href="https://nicheworks.app/tools/codex-work-os/">Codex Work OS</a>
+        <a href="https://nicheworks.app/tools/codex-product-shipping-playbooks/">Codex Product Shipping Playbooks</a>
+        <a href="https://nicheworks.app/tools/release-guardian/ja/">Release Guardian</a>
+      </div>
+
+      <section id="disclaimer">
+        <h2>免責事項</h2>
+        <p>
+          このページおよびリンク先のリポジトリは、情報提供と practical workflow の整理を目的として公開されています。
+          内容の完全性、特定目的への適合性、プロダクトの成功は保証されません。
+          実際の product decision や implementation の最終判断には human review が必要です。
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>公開元: <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/product-founder-os/">View in English</a> · <a href="https://github.com/nicheworks-tools/product-founder-os/tree/main" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <a class="floating-support" href="#support" aria-label="支援セクションへ移動">支援する</a>
+</body>
+</html>
