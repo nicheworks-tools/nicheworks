@@ -7,6 +7,7 @@ const sitemapPath = path.join(root, 'sitemap.xml');
 const indexPath = path.join(root, 'tools', 'tools-index.json');
 const metaPath = path.join(root, 'tools', 'tools-meta.json');
 const siteBase = 'https://nicheworks.app';
+const strict = process.argv.includes('--strict');
 
 const read = (p) => fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
 const exists = (p) => fs.existsSync(p);
@@ -131,7 +132,7 @@ const fail = allRows.filter((r) => r.status === 'FAIL').length;
 const warn = allRows.filter((r) => r.status === 'WARN').length;
 const ok = allRows.filter((r) => r.status === 'OK').length;
 
-console.log(`SEO audit: ${ok} OK / ${warn} WARN / ${fail} FAIL / ${allRows.length} checks`);
+console.log(`SEO audit: ${ok} OK / ${warn} WARN / ${fail} FAIL / ${allRows.length} checks${strict ? ' (strict)' : ''}`);
 console.table(allRows);
 
-if (fail > 0) process.exitCode = 1;
+if (fail > 0 || (strict && warn > 0)) process.exitCode = 1;
