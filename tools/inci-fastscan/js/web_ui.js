@@ -35,6 +35,10 @@ const RESULT_TEXT = {
     ja: "日本語名候補",
     en: "Japanese names"
   },
+  category: {
+    ja: "分類",
+    en: "Category"
+  },
   defaultNote: {
     ja: "辞書に一致しました。アレルギーや肌トラブルがある場合は公式情報を確認してください。",
     en: "Dictionary match. Check official information if you have allergies or skin concerns."
@@ -121,6 +125,7 @@ function renderResults(container, results, lang = "ja") {
         </div>
         <div class="small">${escapeHtml(rt("input", uiLang))}: ${escapeHtml(r.input)}</div>
         ${Array.isArray(r.jp) && r.jp.length ? `<div class="small">${escapeHtml(rt("jpNames", uiLang))}: ${escapeHtml(r.jp.join(" / "))}</div>` : ""}
+        ${r.category ? `<div class="small">${escapeHtml(rt("category", uiLang))}: ${escapeHtml(r.category)}</div>` : ""}
         <div class="result-note">${escapeHtml(r.note_short || rt("defaultNote", uiLang))}</div>
       `;
     } else {
