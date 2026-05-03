@@ -1,24 +1,15 @@
-/* =========================================================
-   PDF Page Tools Mini
-   PPTM-14: エラー設計（コード別に文言統一）
-   - unsupported_file / too_large_or_memory / extract_syntax_error / empty_result
-   - すべて「短文＋復旧策」で統一
-   - PPTM-13まで統合（Download/Extract/Undo/DnD/Thumb/Rotate preview）
-   ========================================================= */
-
+/* PDF Page Tools Mini - browser-only PDF page editor */
 (function(){
-  function $all(sel){ return Array.from(document.querySelectorAll(sel)); }
-  function $(sel){ return document.querySelector(sel); }
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
   const els = {
-    langBtns: $all(".nw-lang-switch button"),
-    i18nNodes: $all("[data-i18n]"),
-
+    langBtns: $$(".nw-lang-switch button"),
+    i18nNodes: $$("[data-i18n]"),
     fileInput: $("#fileInput"),
     btnPick: $("#btnPick"),
     dropzone: $("#dropzone"),
     loading: $("#loading"),
-
     panelAfterLoad: $("#panelAfterLoad"),
     btnAddMore: $("#btnAddMore"),
     btnReset: $("#btnReset"),
@@ -26,58 +17,32 @@
     btnSave: $("#btnSave"),
     extractRange: $("#extractRange"),
     btnExtract: $("#btnExtract"),
-
     fileList: $("#fileList"),
     pageList: $("#pageList"),
-
     statusBox: $("#statusBox"),
     statusText: $("#statusText"),
     btnStatusClose: $("#btnStatusClose"),
   };
 
-  // ---------------- i18n ----------------
-  const browserLang = (navigator.language || "").toLowerCase();
-  let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
+  const state = {
+    files: [],
+    pages: [],
+    nextId: 1,
+  };
+  const undo = { lastDelete: null };
+  let isBusy = false;
+  let currentLang = ((navigator.language || "").toLowerCase().startsWith("ja")) ? "ja" : "en";
+  let summaryBox = null;
+  let thumbObserver = null;
 
-  function applyLang(lang){
-    els.i18nNodes.forEach(el => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
-    });
-    els.langBtns.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
-    currentLang = lang;
-  }
-  els.langBtns.forEach(btn => btn.addEventListener("click", () => {
-    applyLang(btn.dataset.lang);
-    renderFileList();
-    renderPageList();
-    scheduleThumbScan();
-    syncUndoUI();
-    syncExtractUI();
-  }));
-
-  function msg(ja, en){ return (currentLang === "ja") ? ja : en; }
-
-  // ---------------- status ----------------
-  function showStatus(text){
-    if(!els.statusBox || !els.statusText) return;
-    els.statusText.textContent = text;
-    els.statusBox.hidden = false;
-  }
-  function hideStatus(){
-    if(!els.statusBox) return;
-    els.statusBox.hidden = true;
-  }
-  if(els.btnStatusClose) els.btnStatusClose.addEventListener("click", hideStatus);
-
-  // ---------------- error messages (PPTM-14) ----------------
   const ERR = {
     unsupported_file: {
       ja: "このファイルはPDFとして読み込めませんでした。別のPDFを試してください。",
       en: "This file could not be read as a PDF. Please try another PDF."
     },
     too_large_or_memory: {
-      ja: "処理に失敗しました（端末のメモリ不足の可能性）。ページ数を減らすか、分割してお試しください。",
-      en: "Failed to process (possible memory issue). Try fewer pages, split the PDF, or use another browser."
+      ja: "処理に失敗しました。ページ数を減らす、先に分割する、PCブラウザや別ブラウザで試してください。",
+      en: "Processing failed. Reduce pages, split the PDF first, or try a desktop browser or another browser."
     },
     extract_syntax_error: {
       ja: "範囲の書き方が正しくありません（例: 1-3,5,8-10）。",
@@ -89,444 +54,59 @@
     },
     missing_pdfjs: {
       ja: "PDF表示ライブラリ（pdf.js）の読み込みに失敗しました。ページを再読み込みしてください。",
-      en: "Failed to load PDF library (pdf.js). Please reload this page."
+      en: "PDF display library (pdf.js) failed to load. Please reload this page."
     },
     missing_pdflib: {
-      ja: "PDF書き出しライブラリ（pdf-lib）が読み込めませんでした。/assets/vendor/pdf-lib.min.js を確認してください。",
-      en: "PDF export library (pdf-lib) is missing. Check /assets/vendor/pdf-lib.min.js."
+      ja: "PDF書き出しライブラリ（pdf-lib）が読み込めませんでした。ページを再読み込みしてください。",
+      en: "PDF export library (pdf-lib) failed to load. Please reload this page."
+    },
+    password_or_special_pdf: {
+      ja: "このPDFは読み込めませんでした。パスワード付きPDF、破損PDF、一部の特殊PDFは非対応です。",
+      en: "This PDF could not be loaded. Password-protected, corrupted, or some special PDFs are not supported."
     }
   };
 
+  function uid(prefix){
+    return `${prefix}-${state.nextId++}`;
+  }
+  function msg(ja, en){
+    return currentLang === "ja" ? ja : en;
+  }
+  function showStatus(text){
+    if(!els.statusBox || !els.statusText) return;
+    els.statusText.textContent = text;
+    els.statusBox.hidden = false;
+  }
+  function hideStatus(){
+    if(els.statusBox) els.statusBox.hidden = true;
+  }
   function showError(code){
     const e = ERR[code] || ERR.too_large_or_memory;
     showStatus(currentLang === "ja" ? e.ja : e.en);
   }
-
-  // ---------------- state ----------------
-  const state = {
-    files: [], // {id, name, size, buffer, pageCount, pdfDocPromise}
-    pages: [], // {id, fileId, fileName, srcPage, rotation, thumbUrl}
-    _id: 0,
-  };
-  function uid(prefix){
-    state._id += 1;
-    return prefix + "-" + String(state._id);
-  }
-
-  // ---------------- editor enable/disable ----------------
-  let isBusy = false;
-
-  function setBusy(on){
-    isBusy = on;
-    if(els.loading) els.loading.hidden = !on;
-
-    if(els.btnPick) els.btnPick.disabled = on;
-    if(els.btnAddMore) els.btnAddMore.disabled = on;
-
-    if(els.btnReset) els.btnReset.disabled = on || state.pages.length === 0;
-    if(els.btnSave)  els.btnSave.disabled  = on || state.pages.length === 0;
-
-    if(els.extractRange) els.extractRange.disabled = on || state.pages.length === 0;
-
-    syncExtractUI();
-
-    if(els.btnUndo) els.btnUndo.disabled = on || !undo.lastDelete;
-
-    if(els.panelAfterLoad){
-      els.panelAfterLoad.classList.toggle("is-busy", on);
-      els.panelAfterLoad.setAttribute("aria-busy", on ? "true" : "false");
-    }
-  }
-
-  function setEditorEnabled(on){
-    const disabled = !on;
-    if(els.btnAddMore) els.btnAddMore.disabled = disabled;
-    if(els.btnReset) els.btnReset.disabled = disabled;
-    if(els.btnSave) els.btnSave.disabled = disabled;
-    if(els.extractRange) els.extractRange.disabled = disabled;
-    if(els.btnExtract) els.btnExtract.disabled = disabled;
-
-    if(els.panelAfterLoad){
-      els.panelAfterLoad.classList.toggle("is-disabled", disabled);
-      els.panelAfterLoad.setAttribute("aria-disabled", disabled ? "true" : "false");
-    }
-  }
-
-  setEditorEnabled(false);
-  setBusy(false);
-
-  // ---------------- undo ----------------
-  const undo = { lastDelete: null };
-  function clearUndo(){
-    undo.lastDelete = null;
-    syncUndoUI();
-  }
-  function syncUndoUI(){
-    if(!els.btnUndo) return;
-    els.btnUndo.disabled = isBusy || !undo.lastDelete;
-  }
-
-  function isPdfLike(f){
-    const n = (f.name || "").toLowerCase();
-    const t = (f.type || "").toLowerCase();
-    return t === "application/pdf" || n.endsWith(".pdf");
-  }
-
-  function syncEditorEnabled(){
-    if(state.pages.length > 0){
-      setEditorEnabled(true);
-      if(!isBusy) setBusy(false);
-    }else{
-      setEditorEnabled(false);
-      setBusy(false);
-    }
-    syncUndoUI();
-    syncExtractUI();
-  }
-
-  // ---------------- render: file list ----------------
-  function renderFileList(){
-    if(!els.fileList) return;
-    els.fileList.innerHTML = "";
-
-    if(state.files.length === 0){
-      const li = document.createElement("li");
-      li.className = "muted";
-      li.textContent = msg("（まだ読み込まれていません）", "(No PDFs loaded yet)");
-      els.fileList.appendChild(li);
-      return;
-    }
-
-    state.files.forEach(f => {
-      const li = document.createElement("li");
-      li.className = "file-item";
-
-      const left = document.createElement("div");
-      left.className = "file-left";
-      left.textContent = `${f.name} (${String(f.pageCount)}p)`;
-
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "file-remove";
-      btn.textContent = msg("×このPDFを外す", "Remove");
-      btn.addEventListener("click", () => removeFile(f.id));
-
-      li.appendChild(left);
-      li.appendChild(btn);
-      els.fileList.appendChild(li);
+  function applyLang(lang){
+    currentLang = lang;
+    els.i18nNodes.forEach((el) => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
+    els.langBtns.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
+    renderAll();
   }
 
-  // ---------------- thumbs (on-demand) ----------------
-  let io = null;
-  let thumbScanScheduled = false;
-
-  function ensureObserver(){
-    if(io) return;
-    io = new IntersectionObserver(async (entries) => {
-      for(const e of entries){
-        if(!e.isIntersecting) continue;
-        const el = e.target;
-        io.unobserve(el);
-
-        const pid = el.getAttribute("data-page-id");
-        if(!pid) continue;
-        const p = state.pages.find(x => x.id === pid);
-        if(!p) continue;
-
-        if(p.thumbUrl){
-          const img = el.querySelector("img");
-          if(img && img.getAttribute("src") !== p.thumbUrl) img.src = p.thumbUrl;
-          el.classList.remove("thumb-loading");
-          continue;
-        }
-
-        try{
-          el.classList.add("thumb-loading");
-          const url = await buildThumbForPage(p);
-          if(url){
-            p.thumbUrl = url;
-            const img = el.querySelector("img");
-            if(img) img.src = url;
-          }
-        }catch(err){
-          console.warn("thumb failed", err);
-        }finally{
-          el.classList.remove("thumb-loading");
-        }
-      }
-    }, { root: null, rootMargin: "200px 0px", threshold: 0.01 });
-  }
-
-  function scheduleThumbScan(){
-    if(thumbScanScheduled) return;
-    thumbScanScheduled = true;
-    requestAnimationFrame(() => {
-      thumbScanScheduled = false;
-      if(!els.pageList) return;
-      ensureObserver();
-      const cards = Array.from(els.pageList.querySelectorAll(".page-card[data-page-id]"));
-      for(const c of cards){
-        const pid = c.getAttribute("data-page-id");
-        const p = state.pages.find(x => x.id === pid);
-        if(!p) continue;
-        if(p.thumbUrl){
-          const img = c.querySelector("img");
-          if(img && img.getAttribute("src") !== p.thumbUrl) img.src = p.thumbUrl;
-          continue;
-        }
-        io.observe(c);
-      }
-    });
-  }
-
-  async function buildThumbForPage(page){
-    const f = state.files.find(x => x.id === page.fileId);
-    if(!f) return null;
-    if(!window.pdfjsLib) return null;
-
-    if(!f.pdfDocPromise){
-      f.pdfDocPromise = window.pdfjsLib.getDocument({ data: f.buffer }).promise;
-    }
-    const pdf = await f.pdfDocPromise;
-
-    const pg = await pdf.getPage(page.srcPage);
-    const viewport0 = pg.getViewport({ scale: 1.0 });
-    const targetW = 180;
-    const scale = Math.min(1.0, targetW / Math.max(1, viewport0.width));
-    const viewport = pg.getViewport({ scale });
-
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d", { alpha: false });
-
-    canvas.width = Math.max(1, Math.floor(viewport.width));
-    canvas.height = Math.max(1, Math.floor(viewport.height));
-
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    await pg.render({ canvasContext: ctx, viewport }).promise;
-    return canvas.toDataURL("image/jpeg", 0.72);
-  }
-
-  // ---------------- DnD reorder ----------------
-  function dndEnabled(){
-    try{
-      return window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    }catch(_){
-      return false;
-    }
-  }
-
-  function attachDndHandlers(card, idx){
-    if(!dndEnabled()) return;
-
-    card.setAttribute("draggable", "true");
-    card.classList.add("dnd");
-
-    let fromIndex = null;
-
-    card.addEventListener("dragstart", (e) => {
-      if(isBusy) return;
-      fromIndex = idx;
-      card.classList.add("dragging");
-      try{
-        e.dataTransfer.effectAllowed = "move";
-        e.dataTransfer.setData("text/plain", String(idx));
-      }catch(_){}
-    });
-
-    card.addEventListener("dragend", () => {
-      card.classList.remove("dragging");
-      cleanupDndVisuals();
-      fromIndex = null;
-    });
-
-    card.addEventListener("dragover", (e) => {
-      if(isBusy) return;
-      e.preventDefault();
-      card.classList.add("dragover");
-    });
-
-    card.addEventListener("dragleave", () => {
-      card.classList.remove("dragover");
-    });
-
-    card.addEventListener("drop", (e) => {
-      if(isBusy) return;
-      e.preventDefault();
-      cleanupDndVisuals();
-      const from = fromIndex;
-      const to = idx;
-      if(from == null) return;
-      if(from === to) return;
-      movePage(from, to);
-      showStatus(msg("並べ替えました。", "Reordered."));
-    });
-  }
-
-  function cleanupDndVisuals(){
-    if(!els.pageList) return;
-    els.pageList.querySelectorAll(".page-card.dragover").forEach(x => x.classList.remove("dragover"));
-    els.pageList.querySelectorAll(".page-card.dragging").forEach(x => x.classList.remove("dragging"));
-  }
-
-  // ---------------- render: page list (rotate preview) ----------------
-  function renderPageList(){
-    if(!els.pageList) return;
-    els.pageList.innerHTML = "";
-
-    if(state.pages.length === 0){
-      const div = document.createElement("div");
-      div.className = "muted";
-      div.textContent = msg("（ページがありません）", "(No pages)");
-      els.pageList.appendChild(div);
-      scheduleThumbScan();
-      return;
-    }
-
-    state.pages.forEach((p, idx) => {
-      const card = document.createElement("div");
-      card.className = "page-card";
-      card.setAttribute("data-page-id", p.id);
-
-      const top = document.createElement("div");
-      top.className = "page-top";
-      top.textContent = `#${idx+1}  ${p.fileName}  p${p.srcPage}`;
-
-      const thumb = document.createElement("div");
-      thumb.className = "thumb-box";
-      const img = document.createElement("img");
-      img.alt = "thumbnail";
-      img.loading = "lazy";
-      img.decoding = "async";
-      img.src = p.thumbUrl ? p.thumbUrl : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-      img.style.transform = `rotate(${p.rotation}deg)`;
-      img.style.transformOrigin = "center center";
-      thumb.appendChild(img);
-
-      const meta = document.createElement("div");
-      meta.className = "page-meta";
-      meta.textContent = msg(`回転: ${p.rotation}°`, `Rotation: ${p.rotation}°`);
-
-      const ops = document.createElement("div");
-      ops.className = "page-ops";
-
-      const rotL = document.createElement("button");
-      rotL.type = "button";
-      rotL.className = "op";
-      rotL.textContent = "⟲";
-      rotL.title = "Rotate -90";
-      rotL.addEventListener("click", () => {
-        p.rotation = (p.rotation + 270) % 360;
-        renderPageList();
-        scheduleThumbScan();
-        syncExtractUI();
-      });
-
-      const rotR = document.createElement("button");
-      rotR.type = "button";
-      rotR.className = "op";
-      rotR.textContent = "⟳";
-      rotR.title = "Rotate +90";
-      rotR.addEventListener("click", () => {
-        p.rotation = (p.rotation + 90) % 360;
-        renderPageList();
-        scheduleThumbScan();
-        syncExtractUI();
-      });
-
-      const del = document.createElement("button");
-      del.type = "button";
-      del.className = "op danger";
-      del.textContent = "🗑";
-      del.title = msg("削除", "Delete");
-      del.addEventListener("click", () => deletePageAt(idx));
-
-      const up = document.createElement("button");
-      up.type = "button";
-      up.className = "op";
-      up.textContent = msg("↑ 上へ", "↑ Up");
-      up.addEventListener("click", () => movePage(idx, idx-1));
-
-      const down = document.createElement("button");
-      down.type = "button";
-      down.className = "op";
-      down.textContent = msg("↓ 下へ", "↓ Down");
-      down.addEventListener("click", () => movePage(idx, idx+1));
-
-      ops.appendChild(rotL);
-      ops.appendChild(rotR);
-      ops.appendChild(del);
-      ops.appendChild(up);
-      ops.appendChild(down);
-
-      card.appendChild(top);
-      card.appendChild(thumb);
-      card.appendChild(meta);
-      card.appendChild(ops);
-
-      attachDndHandlers(card, idx);
-
-      els.pageList.appendChild(card);
-    });
-
-    scheduleThumbScan();
-  }
-
-  // ---------------- delete + undo ----------------
-  function deletePageAt(index){
-    if(isBusy) return;
-    if(index < 0 || index >= state.pages.length) return;
-
-    const page = state.pages[index];
-    undo.lastDelete = { page: { ...page }, index };
-    syncUndoUI();
-
-    state.pages.splice(index, 1);
-    syncEditorEnabled();
-    renderPageList();
-    scheduleThumbScan();
-    syncExtractUI();
-
-    showStatus(msg("ページを削除しました。Undo（1回）で戻せます。", "Page deleted. You can undo once."));
-  }
-
-  function undoDelete(){
-    if(isBusy) return;
-    if(!undo.lastDelete) return;
-
-    const { page, index } = undo.lastDelete;
-    const insertAt = Math.max(0, Math.min(index, state.pages.length));
-    state.pages.splice(insertAt, 0, page);
-
-    undo.lastDelete = null;
-    syncUndoUI();
-
-    syncEditorEnabled();
-    renderPageList();
-    scheduleThumbScan();
-    syncExtractUI();
-
-    showStatus(msg("Undoしました（直前の削除を戻しました）。", "Undo complete (restored last deleted page)."));
-  }
-  if(els.btnUndo) els.btnUndo.addEventListener("click", undoDelete);
-
-  // ---------------- naming + download helpers ----------------
-  function ymd_hm(){
-    const d = new Date();
-    const pad = (n)=> String(n).padStart(2,"0");
-    return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}`;
-  }
   function safeName(name){
-    return (name || "pdf").replace(/[\\\/:*?"<>|]+/g, "_");
+    return String(name || "pdf").replace(/[\\/:*?"<>|]+/g, "_");
   }
-  function buildOutputName(prefix){
+  function timestamp(){
+    const d = new Date();
+    const p = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}`;
+  }
+  function buildOutputName(kind){
     if(state.files.length === 1){
       const base = state.files[0].name.replace(/\.pdf$/i, "");
-      return `${safeName(base)}_${prefix}.pdf`;
+      return `${safeName(base)}_${kind}.pdf`;
     }
-    return `pdf-page-tools-mini_${prefix}_${ymd_hm()}.pdf`;
+    return `pdf-page-tools-mini_${kind}_${timestamp()}.pdf`;
   }
   function downloadBlob(blob, filename){
     const url = URL.createObjectURL(blob);
@@ -536,300 +116,492 @@
     document.body.appendChild(a);
     a.click();
     a.remove();
-    setTimeout(()=> URL.revokeObjectURL(url), 2000);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
   }
 
-  // ---------------- Extract parsing ----------------
+  function ensureSummaryBox(){
+    if(summaryBox) return summaryBox;
+    summaryBox = document.createElement("div");
+    summaryBox.id = "summaryBox";
+    summaryBox.className = "status summary-box";
+    const pages = $(".pages");
+    if(pages) pages.insertBefore(summaryBox, pages.firstChild);
+    return summaryBox;
+  }
+  function updateSummary(){
+    const box = ensureSummaryBox();
+    if(!box) return;
+    const pdfCount = state.files.length;
+    const pageCount = state.pages.length;
+    const rotated = state.pages.filter((p) => ((p.rotation % 360) + 360) % 360 !== 0).length;
+    const originalPages = state.files.reduce((sum, f) => sum + (f.pageCount || 0), 0);
+    const deleted = Math.max(0, originalPages - pageCount);
+
+    if(pageCount === 0){
+      box.textContent = msg("現在の出力予定：ページはありません。", "Current output: no pages.");
+      return;
+    }
+    box.textContent = msg(
+      `現在の出力予定：PDF数 ${pdfCount} / ページ数 ${pageCount} / 回転あり ${rotated} / 削除済み ${deleted}`,
+      `Current output: ${pdfCount} PDF(s) / ${pageCount} page(s) / ${rotated} rotated / ${deleted} deleted`
+    );
+  }
+
+  function setBusy(on){
+    isBusy = on;
+    if(els.loading) els.loading.hidden = !on;
+    syncUi();
+  }
+  function syncUi(){
+    const hasPages = state.pages.length > 0;
+    if(els.btnPick) els.btnPick.disabled = isBusy;
+    if(els.btnAddMore) els.btnAddMore.disabled = isBusy;
+    if(els.btnReset) els.btnReset.disabled = isBusy || !hasPages;
+    if(els.btnSave) els.btnSave.disabled = isBusy || !hasPages;
+    if(els.extractRange) els.extractRange.disabled = isBusy || !hasPages;
+    if(els.btnUndo) els.btnUndo.disabled = isBusy || !undo.lastDelete;
+    syncExtractUi();
+    if(els.panelAfterLoad){
+      els.panelAfterLoad.classList.toggle("is-disabled", !hasPages);
+      els.panelAfterLoad.classList.toggle("is-busy", isBusy);
+      els.panelAfterLoad.setAttribute("aria-disabled", hasPages ? "false" : "true");
+      els.panelAfterLoad.setAttribute("aria-busy", isBusy ? "true" : "false");
+    }
+    updateSummary();
+  }
+
+  function isPdfLike(file){
+    const name = (file.name || "").toLowerCase();
+    const type = (file.type || "").toLowerCase();
+    return type === "application/pdf" || name.endsWith(".pdf");
+  }
+
+  function renderFileList(){
+    if(!els.fileList) return;
+    els.fileList.innerHTML = "";
+    if(state.files.length === 0){
+      const li = document.createElement("li");
+      li.className = "muted";
+      li.textContent = msg("（まだ読み込まれていません）", "(No PDFs loaded yet)");
+      els.fileList.appendChild(li);
+      return;
+    }
+    for(const f of state.files){
+      const li = document.createElement("li");
+      li.className = "file-item";
+      const left = document.createElement("div");
+      left.className = "file-left";
+      left.textContent = `${f.name} (${f.pageCount}p)`;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "file-remove";
+      btn.textContent = msg("×このPDFを外す", "Remove");
+      btn.addEventListener("click", () => removeFile(f.id));
+      li.append(left, btn);
+      els.fileList.appendChild(li);
+    }
+  }
+
+  function renderPageList(){
+    if(!els.pageList) return;
+    els.pageList.innerHTML = "";
+    if(state.pages.length === 0){
+      const div = document.createElement("div");
+      div.className = "muted";
+      div.textContent = msg("（ページがありません）", "(No pages)");
+      els.pageList.appendChild(div);
+      updateSummary();
+      return;
+    }
+    state.pages.forEach((page, index) => {
+      const card = document.createElement("div");
+      card.className = "page-card";
+      card.dataset.pageId = page.id;
+      if(canDrag()) card.draggable = true;
+
+      const top = document.createElement("div");
+      top.className = "page-top";
+      top.textContent = `#${index + 1}  ${page.fileName}  p${page.srcPage}`;
+
+      const thumb = document.createElement("div");
+      thumb.className = "thumb-box thumb-loading";
+      const img = document.createElement("img");
+      img.alt = msg("PDFページのサムネイル", "PDF page thumbnail");
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.src = page.thumbUrl || "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      img.style.transform = `rotate(${page.rotation}deg)`;
+      img.style.transformOrigin = "center center";
+      thumb.appendChild(img);
+
+      const meta = document.createElement("div");
+      meta.className = "page-meta";
+      meta.textContent = msg(`回転: ${page.rotation}°`, `Rotation: ${page.rotation}°`);
+
+      const ops = document.createElement("div");
+      ops.className = "page-ops";
+      ops.append(
+        opButton("⟲", "Rotate -90", () => rotatePage(index, -90)),
+        opButton("⟳", "Rotate +90", () => rotatePage(index, 90)),
+        opButton("🗑", msg("削除", "Delete"), () => deletePageAt(index), "danger"),
+        opButton(msg("↑ 上へ", "↑ Up"), msg("上へ", "Up"), () => movePage(index, index - 1)),
+        opButton(msg("↓ 下へ", "↓ Down"), msg("下へ", "Down"), () => movePage(index, index + 1))
+      );
+
+      card.append(top, thumb, meta, ops);
+      attachDnd(card, index);
+      els.pageList.appendChild(card);
+    });
+    observeThumbs();
+    updateSummary();
+  }
+
+  function opButton(text, title, handler, extraClass){
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = extraClass ? `op ${extraClass}` : "op";
+    btn.textContent = text;
+    btn.title = title;
+    btn.addEventListener("click", handler);
+    return btn;
+  }
+
+  function canDrag(){
+    try{
+      return window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    }catch(_){
+      return false;
+    }
+  }
+  function attachDnd(card, index){
+    if(!canDrag()) return;
+    card.classList.add("dnd");
+    card.addEventListener("dragstart", (e) => {
+      if(isBusy) return;
+      card.classList.add("dragging");
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", String(index));
+    });
+    card.addEventListener("dragend", () => {
+      card.classList.remove("dragging");
+      $$(".page-card.dragover").forEach((el) => el.classList.remove("dragover"));
+    });
+    card.addEventListener("dragover", (e) => {
+      if(isBusy) return;
+      e.preventDefault();
+      card.classList.add("dragover");
+    });
+    card.addEventListener("dragleave", () => card.classList.remove("dragover"));
+    card.addEventListener("drop", (e) => {
+      if(isBusy) return;
+      e.preventDefault();
+      card.classList.remove("dragover");
+      const from = Number(e.dataTransfer.getData("text/plain"));
+      if(Number.isInteger(from)) movePage(from, index);
+    });
+  }
+
+  function observeThumbs(){
+    if(!els.pageList || !window.IntersectionObserver) return;
+    if(thumbObserver) thumbObserver.disconnect();
+    thumbObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(!entry.isIntersecting) return;
+        thumbObserver.unobserve(entry.target);
+        const page = state.pages.find((p) => p.id === entry.target.dataset.pageId);
+        if(page) renderThumb(page, entry.target);
+      });
+    }, { rootMargin: "200px 0px", threshold: 0.01 });
+    $$(".page-card[data-page-id]", els.pageList).forEach((card) => thumbObserver.observe(card));
+  }
+
+  async function renderThumb(page, card){
+    if(page.thumbUrl){
+      const img = $("img", card);
+      if(img) img.src = page.thumbUrl;
+      card.classList.remove("thumb-loading");
+      return;
+    }
+    try{
+      if(!window.pdfjsLib) return;
+      const file = state.files.find((f) => f.id === page.fileId);
+      if(!file) return;
+      if(!file.pdfDocPromise){
+        file.pdfDocPromise = window.pdfjsLib.getDocument({ data: file.buffer }).promise;
+      }
+      const pdf = await file.pdfDocPromise;
+      const pdfPage = await pdf.getPage(page.srcPage);
+      const viewportBase = pdfPage.getViewport({ scale: 1 });
+      const scale = Math.min(1, 180 / Math.max(1, viewportBase.width));
+      const viewport = pdfPage.getViewport({ scale });
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d", { alpha: false });
+      canvas.width = Math.max(1, Math.floor(viewport.width));
+      canvas.height = Math.max(1, Math.floor(viewport.height));
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await pdfPage.render({ canvasContext: ctx, viewport }).promise;
+      page.thumbUrl = canvas.toDataURL("image/jpeg", 0.72);
+      const img = $("img", card);
+      if(img) img.src = page.thumbUrl;
+    }catch(err){
+      console.warn("thumbnail failed", err);
+    }finally{
+      card.classList.remove("thumb-loading");
+    }
+  }
+
+  function renderAll(){
+    renderFileList();
+    renderPageList();
+    syncUi();
+  }
+
+  function rotatePage(index, delta){
+    if(isBusy) return;
+    const page = state.pages[index];
+    if(!page) return;
+    page.rotation = (page.rotation + delta + 360) % 360;
+    renderPageList();
+    syncExtractUi();
+  }
+  function movePage(from, to){
+    if(isBusy || from === to || to < 0 || to >= state.pages.length) return;
+    const [page] = state.pages.splice(from, 1);
+    state.pages.splice(to, 0, page);
+    renderPageList();
+    showStatus(msg("並べ替えました。", "Reordered."));
+  }
+  function deletePageAt(index){
+    if(isBusy || index < 0 || index >= state.pages.length) return;
+    const [page] = state.pages.splice(index, 1);
+    undo.lastDelete = { page: { ...page }, index };
+    renderPageList();
+    syncUi();
+    showStatus(msg("ページを削除しました。Undo（1回）で戻せます。", "Page deleted. You can undo once."));
+  }
+  function undoDelete(){
+    if(isBusy || !undo.lastDelete) return;
+    const insertAt = Math.max(0, Math.min(undo.lastDelete.index, state.pages.length));
+    state.pages.splice(insertAt, 0, undo.lastDelete.page);
+    undo.lastDelete = null;
+    renderPageList();
+    syncUi();
+    showStatus(msg("Undoしました（直前の削除を戻しました）。", "Undo complete (restored last deleted page)."));
+  }
+  function removeFile(fileId){
+    if(isBusy) return;
+    state.files = state.files.filter((f) => f.id !== fileId);
+    state.pages = state.pages.filter((p) => p.fileId !== fileId);
+    undo.lastDelete = null;
+    renderAll();
+    showStatus(state.files.length ? msg("このPDFを外しました。", "Removed the PDF.") : msg("すべてクリアしました。", "Cleared."));
+  }
+  function resetAll(){
+    if(isBusy) return;
+    state.files = [];
+    state.pages = [];
+    undo.lastDelete = null;
+    if(els.extractRange) els.extractRange.value = "";
+    hideStatus();
+    renderAll();
+    showStatus(msg("リセットしました。PDFを追加してください。", "Reset. Please add PDFs."));
+  }
+
   function parseRangeText(text, max){
-    const raw = String(text || "").trim();
-    if(raw.length === 0) return { ok:false };
-
-    const s = raw.replace(/\s+/g, "");
-    if(!/^[0-9,\-]+$/.test(s)) return { ok:false };
-
-    const parts = s.split(",").filter(Boolean);
-    if(parts.length === 0) return { ok:false };
-
+    const s = String(text || "").replace(/\s+/g, "");
+    if(!s || !/^[0-9,\-]+$/.test(s)) return { ok:false };
     const out = [];
     const seen = new Set();
-
-    for(const part of parts){
+    for(const part of s.split(",").filter(Boolean)){
       if(part.includes("-")){
-        const seg = part.split("-");
-        if(seg.length !== 2) return { ok:false };
-        const a = seg[0], b = seg[1];
-        if(a === "" || b === "") return { ok:false };
-
-        const start = Number(a), end = Number(b);
-        if(!Number.isInteger(start) || !Number.isInteger(end)) return { ok:false };
-        if(start < 1 || end < 1) return { ok:false };
-        if(start > end) return { ok:false };
-        if(start > max || end > max) return { ok:false };
-
-        for(let i=start;i<=end;i++){
-          if(!seen.has(i)){ seen.add(i); out.push(i); }
+        const bits = part.split("-");
+        if(bits.length !== 2 || !bits[0] || !bits[1]) return { ok:false };
+        const a = Number(bits[0]);
+        const b = Number(bits[1]);
+        if(!Number.isInteger(a) || !Number.isInteger(b) || a < 1 || b < 1 || a > b || b > max) return { ok:false };
+        for(let n = a; n <= b; n++){
+          if(!seen.has(n)){ seen.add(n); out.push(n); }
         }
       }else{
         const n = Number(part);
-        if(!Number.isInteger(n)) return { ok:false };
-        if(n < 1 || n > max) return { ok:false };
+        if(!Number.isInteger(n) || n < 1 || n > max) return { ok:false };
         if(!seen.has(n)){ seen.add(n); out.push(n); }
       }
     }
-
-    if(out.length === 0) return { ok:false };
-    return { ok:true, list: out };
+    return out.length ? { ok:true, list:out } : { ok:false };
   }
-
-  function syncExtractUI(){
+  function syncExtractUi(){
     if(!els.btnExtract || !els.extractRange) return;
-    if(isBusy || state.pages.length === 0){ els.btnExtract.disabled = true; return; }
-    const r = parseRangeText(els.extractRange.value, state.pages.length);
-    els.btnExtract.disabled = !r.ok;
-  }
-  if(els.extractRange){
-    els.extractRange.addEventListener("input", syncExtractUI);
-    els.extractRange.addEventListener("change", syncExtractUI);
-  }
-
-  // ---------------- export core ----------------
-  async function exportPagesToPdf(pagesToExport, filename){
-    if(!window.PDFLib || !window.PDFLib.PDFDocument){
-      showError("missing_pdflib");
-      return { ok:false, code:"missing_pdflib" };
+    if(isBusy || state.pages.length === 0){
+      els.btnExtract.disabled = true;
+      return;
     }
-    const { PDFDocument, degrees } = window.PDFLib;
-
-    const out = await PDFDocument.create();
-    const loaded = new Map(); // fileId -> PDFDocument
-
-    for(const p of pagesToExport){
-      let srcDoc = loaded.get(p.fileId);
-      if(!srcDoc){
-        const f = state.files.find(x => x.id === p.fileId);
-        if(!f) continue;
-        srcDoc = await PDFDocument.load(f.buffer);
-        loaded.set(p.fileId, srcDoc);
-      }
-
-      const idx0 = Math.max(0, (p.srcPage|0) - 1);
-      const copied = await out.copyPages(srcDoc, [idx0]);
-      const page = copied[0];
-
-      const rot = ((p.rotation % 360) + 360) % 360;
-      if(rot !== 0) page.setRotation(degrees(rot));
-      out.addPage(page);
-    }
-
-    if(out.getPageCount() === 0){
-      showError("empty_result");
-      return { ok:false, code:"empty_result" };
-    }
-
-    const bytes = await out.save();
-    const blob = new Blob([bytes], { type: "application/pdf" });
-    downloadBlob(blob, filename);
-    return { ok:true };
+    els.btnExtract.disabled = !parseRangeText(els.extractRange.value, state.pages.length).ok;
   }
 
-  async function exportCurrentPdf(){
-    if(isBusy) return;
-    if(state.pages.length === 0){ showError("empty_result"); return; }
-
-    setBusy(true);
-    hideStatus();
-    showStatus(msg("処理中…（PDFを書き出しています）", "Processing… (exporting PDF)"));
-
-    try{
-      const r = await exportPagesToPdf(state.pages, buildOutputName("edited"));
-      if(r.ok){
-        showStatus(msg("保存しました。ダウンロードを確認してください。", "Saved. Check your downloads."));
-      }
-    }catch(err){
-      console.error(err);
-      showError("too_large_or_memory");
-    }finally{
-      setBusy(false);
-    }
-  }
-  if(els.btnSave) els.btnSave.addEventListener("click", exportCurrentPdf);
-
-  async function exportExtractedPdf(){
-    if(isBusy) return;
-    if(state.pages.length === 0){ showError("empty_result"); return; }
-
-    const r0 = parseRangeText(els.extractRange ? els.extractRange.value : "", state.pages.length);
-    if(!r0.ok){ showError("extract_syntax_error"); return; }
-
-    const pagesToExport = r0.list.map(i => state.pages[i-1]).filter(Boolean);
-    if(pagesToExport.length === 0){ showError("empty_result"); return; }
-
-    setBusy(true);
-    hideStatus();
-    showStatus(msg("処理中…（抽出してPDFを書き出しています）", "Processing… (extracting PDF)"));
-
-    try{
-      const r = await exportPagesToPdf(pagesToExport, buildOutputName("extracted"));
-      if(r.ok){
-        showStatus(msg("抽出して保存しました。ダウンロードを確認してください。", "Extracted and saved. Check your downloads."));
-      }
-    }catch(err){
-      console.error(err);
-      showError("too_large_or_memory");
-    }finally{
-      setBusy(false);
-    }
-  }
-  if(els.btnExtract) els.btnExtract.addEventListener("click", exportExtractedPdf);
-
-  // ---------------- actions: load PDFs ----------------
-  function openPicker(){
-    if(!els.fileInput || isBusy) return;
-    els.fileInput.value = "";
-    els.fileInput.click();
-  }
-  if(els.btnPick) els.btnPick.addEventListener("click", openPicker);
-  if(els.btnAddMore) els.btnAddMore.addEventListener("click", openPicker);
-
-  function onDragOver(e){
-    e.preventDefault();
-    e.dataTransfer.dropEffect = "copy";
-    if(els.dropzone) els.dropzone.classList.add("is-dragover");
-  }
-  function onDragLeave(){
-    if(els.dropzone) els.dropzone.classList.remove("is-dragover");
-  }
-  async function onDrop(e){
-    e.preventDefault();
-    onDragLeave();
-    if(isBusy) return;
-    const dt = e.dataTransfer;
-    if(!dt) return;
-    const files = Array.from(dt.files || []);
-    await handleFiles(files);
-  }
-
-  if(els.dropzone){
-    els.dropzone.addEventListener("dragover", onDragOver);
-    els.dropzone.addEventListener("dragleave", onDragLeave);
-    els.dropzone.addEventListener("drop", onDrop);
-    els.dropzone.addEventListener("click", openPicker);
-    els.dropzone.addEventListener("keydown", (e) => {
-      if(e.key === "Enter" || e.key === " ") { e.preventDefault(); openPicker(); }
-    });
-  }
-
-  if(els.fileInput){
-    els.fileInput.addEventListener("change", async () => {
-      const files = els.fileInput.files ? Array.from(els.fileInput.files) : [];
-      await handleFiles(files);
-    });
-  }
-
-  async function handleFiles(files){
-    if(!files || files.length === 0) return;
-
-    const pdfs = files.filter(isPdfLike);
+  async function addFiles(files){
+    const incoming = Array.from(files || []);
+    if(incoming.length === 0) return;
+    const pdfs = incoming.filter(isPdfLike);
     if(pdfs.length === 0){ showError("unsupported_file"); return; }
     if(!window.pdfjsLib){ showError("missing_pdfjs"); return; }
 
     setBusy(true);
     hideStatus();
-
     try{
-      for(const f of pdfs){
-        await addOnePdfFile(f);
+      for(const file of pdfs){
+        await addOnePdf(file);
       }
-      clearUndo();
-      renderFileList();
-      renderPageList();
-      syncEditorEnabled();
+      undo.lastDelete = null;
+      renderAll();
       showStatus(msg("読み込み完了。ページを編集して保存できます。", "Loaded. You can edit pages and download."));
     }catch(err){
       console.error(err);
-      showError("too_large_or_memory");
+      showError(err && err.name === "PasswordException" ? "password_or_special_pdf" : "too_large_or_memory");
     }finally{
       setBusy(false);
     }
   }
-
-  async function addOnePdfFile(file){
-    const buf = await file.arrayBuffer();
-
-    const loadingTask = window.pdfjsLib.getDocument({ data: buf });
-    const pdf = await loadingTask.promise;
-    const pageCount = pdf.numPages;
-
+  async function addOnePdf(file){
+    const buffer = await file.arrayBuffer();
+    let pdf;
+    try{
+      pdf = await window.pdfjsLib.getDocument({ data: buffer }).promise;
+    }catch(err){
+      console.error(err);
+      throw err;
+    }
     const fileId = uid("f");
     state.files.push({
       id: fileId,
       name: file.name,
       size: file.size,
-      buffer: buf,
-      pageCount,
+      buffer,
+      pageCount: pdf.numPages,
       pdfDocPromise: Promise.resolve(pdf)
     });
-
-    for(let i=1;i<=pageCount;i++){
+    for(let p = 1; p <= pdf.numPages; p++){
       state.pages.push({
         id: uid("p"),
         fileId,
         fileName: file.name,
-        srcPage: i,
+        srcPage: p,
         rotation: 0,
         thumbUrl: null
       });
     }
   }
 
-  function removeFile(fileId){
+  async function exportPagesToPdf(pages, filename){
+    if(!window.PDFLib || !window.PDFLib.PDFDocument){
+      showError("missing_pdflib");
+      return false;
+    }
+    if(!pages || pages.length === 0){
+      showError("empty_result");
+      return false;
+    }
+    const { PDFDocument, degrees } = window.PDFLib;
+    const out = await PDFDocument.create();
+    const loaded = new Map();
+    for(const pageInfo of pages){
+      let srcDoc = loaded.get(pageInfo.fileId);
+      if(!srcDoc){
+        const file = state.files.find((f) => f.id === pageInfo.fileId);
+        if(!file) continue;
+        srcDoc = await PDFDocument.load(file.buffer);
+        loaded.set(pageInfo.fileId, srcDoc);
+      }
+      const [copiedPage] = await out.copyPages(srcDoc, [Math.max(0, pageInfo.srcPage - 1)]);
+      const rot = ((pageInfo.rotation % 360) + 360) % 360;
+      if(rot !== 0) copiedPage.setRotation(degrees(rot));
+      out.addPage(copiedPage);
+    }
+    if(out.getPageCount() === 0){
+      showError("empty_result");
+      return false;
+    }
+    const bytes = await out.save();
+    downloadBlob(new Blob([bytes], { type: "application/pdf" }), filename);
+    return true;
+  }
+  async function saveCurrent(){
     if(isBusy) return;
-    clearUndo();
-
-    state.pages = state.pages.filter(p => p.fileId !== fileId);
-    state.files = state.files.filter(f => f.id !== fileId);
-
-    renderFileList();
-    renderPageList();
-    syncEditorEnabled();
-
-    showStatus(state.files.length === 0 ? msg("すべてクリアしました。", "Cleared.") : msg("このPDFを外しました。", "Removed the PDF."));
+    const filename = buildOutputName("edited");
+    setBusy(true);
+    hideStatus();
+    showStatus(msg("処理中…（PDFを書き出しています）", "Processing… (exporting PDF)"));
+    try{
+      const ok = await exportPagesToPdf(state.pages, filename);
+      if(ok) showStatus(msg(`保存しました：${filename}。元のPDFは変更されていません。ダウンロードフォルダを確認してください。`, `Saved: ${filename}. Original PDFs were not changed. Check your downloads folder.`));
+    }catch(err){
+      console.error(err);
+      showError("too_large_or_memory");
+    }finally{
+      setBusy(false);
+    }
+  }
+  async function saveExtracted(){
+    if(isBusy) return;
+    const parsed = parseRangeText(els.extractRange ? els.extractRange.value : "", state.pages.length);
+    if(!parsed.ok){ showError("extract_syntax_error"); return; }
+    const pages = parsed.list.map((n) => state.pages[n - 1]).filter(Boolean);
+    const filename = buildOutputName("extracted");
+    setBusy(true);
+    hideStatus();
+    showStatus(msg("処理中…（抽出してPDFを書き出しています）", "Processing… (extracting PDF)"));
+    try{
+      const ok = await exportPagesToPdf(pages, filename);
+      if(ok) showStatus(msg(`抽出して保存しました：${filename}。元のPDFは変更されていません。`, `Extracted and saved: ${filename}. Original PDFs were not changed.`));
+    }catch(err){
+      console.error(err);
+      showError("too_large_or_memory");
+    }finally{
+      setBusy(false);
+    }
   }
 
-  function movePage(from, to){
-    if(isBusy) return;
-    if(to < 0 || to >= state.pages.length) return;
-
-    const [x] = state.pages.splice(from, 1);
-    state.pages.splice(to, 0, x);
-
-    renderPageList();
-    scheduleThumbScan();
-    syncExtractUI();
+  function openPicker(){
+    if(isBusy || !els.fileInput) return;
+    els.fileInput.value = "";
+    els.fileInput.click();
   }
 
-  if(els.btnReset){
-    els.btnReset.addEventListener("click", () => {
-      if(isBusy) return;
-      clearUndo();
-
-      state.files = [];
-      state.pages = [];
-      renderFileList();
-      renderPageList();
-      setEditorEnabled(false);
-
-      if(els.extractRange) els.extractRange.value = "";
-      syncExtractUI();
-
-      showStatus(msg("リセットしました。PDFを追加してください。", "Reset. Please add PDFs."));
+  els.langBtns.forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+  if(els.btnStatusClose) els.btnStatusClose.addEventListener("click", hideStatus);
+  if(els.btnPick) els.btnPick.addEventListener("click", openPicker);
+  if(els.btnAddMore) els.btnAddMore.addEventListener("click", openPicker);
+  if(els.btnReset) els.btnReset.addEventListener("click", resetAll);
+  if(els.btnUndo) els.btnUndo.addEventListener("click", undoDelete);
+  if(els.btnSave) els.btnSave.addEventListener("click", saveCurrent);
+  if(els.btnExtract) els.btnExtract.addEventListener("click", saveExtracted);
+  if(els.extractRange) els.extractRange.addEventListener("input", syncExtractUi);
+  if(els.fileInput) els.fileInput.addEventListener("change", () => addFiles(els.fileInput.files));
+  if(els.dropzone){
+    els.dropzone.addEventListener("click", (e) => {
+      if(e.target && e.target.closest("button")) return;
+      openPicker();
+    });
+    els.dropzone.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        openPicker();
+      }
+    });
+    els.dropzone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      els.dropzone.classList.add("is-dragover");
+      e.dataTransfer.dropEffect = "copy";
+    });
+    els.dropzone.addEventListener("dragleave", () => els.dropzone.classList.remove("is-dragover"));
+    els.dropzone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      els.dropzone.classList.remove("is-dragover");
+      addFiles(e.dataTransfer ? e.dataTransfer.files : []);
     });
   }
 
-  // init
   applyLang(currentLang);
-  renderFileList();
-  renderPageList();
-  syncUndoUI();
-  syncExtractUI();
+  renderAll();
 })();
