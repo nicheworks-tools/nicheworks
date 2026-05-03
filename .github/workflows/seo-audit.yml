@@ -10,6 +10,7 @@ on:
       - 'en/**'
       - 'tools/**'
       - 'scripts/audit-seo.mjs'
+      - 'scripts/repair-seo-foundation.mjs'
       - 'sitemap.xml'
       - '.github/workflows/seo-audit.yml'
   push:
@@ -23,6 +24,7 @@ on:
       - 'en/**'
       - 'tools/**'
       - 'scripts/audit-seo.mjs'
+      - 'scripts/repair-seo-foundation.mjs'
       - 'sitemap.xml'
       - '.github/workflows/seo-audit.yml'
 
