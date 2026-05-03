@@ -7,124 +7,100 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>JP Postal Lite（郵便番号検索） | NicheWorks</title>
-
-  <!-- 日本語 description -->
-  <meta
-    name="description"
-    content="日本の郵便番号から住所を検索できるツール。軽量で直感的に使えます。"
-  >
-
-  <!-- ファビコン -->
+  <title>住所から郵便番号逆引き｜JP Postal Lite | NicheWorks</title>
+  <meta name="description" content="日本の住所の一部から郵便番号を逆引き検索し、必要な行を出力リストに追加してCSV保存できる軽量ツールです。ブラウザ内で動作します。">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- canonical -->
   <link rel="canonical" href="https://nicheworks.app/tools/jp-postal-lite/">
-
-  <!-- CSS（共通 + ツール固有） -->
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="./style.css">
 
-  <!-- OGP 日本語 -->
-  <meta property="og:title" content="JP Postal Lite（郵便番号検索） | NicheWorks">
-  <meta
-    property="og:description"
-    content="日本の郵便番号から住所を検索できるツール。軽量で直感的に使えます。"
-  >
+  <meta property="og:title" content="住所から郵便番号逆引き｜JP Postal Lite | NicheWorks">
+  <meta property="og:description" content="住所の一部から郵便番号を逆引きし、必要な行だけCSV保存できる軽量ツールです。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/jp-postal-lite/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="JP Postal Lite | NicheWorks">
-  <meta
-    property="og:description:en"
-    content="A tool to search Japanese addresses from postal codes. Lightweight and intuitive."
-  >
-
-  <!-- Twitter 日本語 -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title"
-    content="JP Postal Lite（郵便番号検索） | NicheWorks">
-  <meta name="twitter:description"
-    content="日本の郵便番号から住所を検索できるツール。軽量で直感的に使えます。">
+  <meta name="twitter:title" content="住所から郵便番号逆引き｜JP Postal Lite | NicheWorks">
+  <meta name="twitter:description" content="住所の一部から郵便番号を逆引きし、必要な行だけCSV保存できる軽量ツールです。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="JP Postal Lite | NicheWorks">
-  <meta
-    name="twitter:description:en"
-    content="A tool to search Japanese addresses from postal codes. Lightweight and intuitive."
-  >
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <!-- JSON-LD 日本語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JP Postal Lite（郵便番号検索）",
-    "url": "https://nicheworks.app/tools/jp-postal-lite/",
-    "description": "日本の郵便番号から住所を検索できるツール。軽量で直感的に使えます。",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks"
-    }
-  }
-  </script>
-
-  <!-- JSON-LD 英語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "JP Postal Lite",
     "url": "https://nicheworks.app/tools/jp-postal-lite/",
-    "description": "A tool to search Japanese addresses from postal codes. Lightweight and intuitive.",
-    "inLanguage": "en",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks"
-    }
+    "applicationCategory": "UtilityApplication",
+    "description": "日本の住所の一部から郵便番号を逆引き検索し、必要な行をCSV保存できる軽量ツールです。",
+    "operatingSystem": "All",
+    "inLanguage": "ja"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "住所から郵便番号を検索できますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "はい。対応済み都府県を選び、住所の一部を2文字以上入力すると郵便番号を逆引きできます。"}
+      },
+      {
+        "@type": "Question",
+        "name": "全都道府県に対応していますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "現時点の対応範囲はページ内のデータについてに表示しています。未対応の都道府県は準備中として選択できない表示にしています。"}
+      },
+      {
+        "@type": "Question",
+        "name": "CSVに保存できますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "はい。必要な行を出力リストに追加し、postal_code,address形式のCSVとして保存できます。"}
+      },
+      {
+        "@type": "Question",
+        "name": "郵便番号データは公式ですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "NicheWorks側で整形した軽量データです。重要な用途では日本郵便公式情報も確認してください。"}
+      }
+    ]
   }
   </script>
 
-  <!-- Google Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Analytics -->
-  
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
-
 <body>
   <main class="page">
     <header class="hero">
-      <p class="eyebrow">JP Address ↔ Postal Code Lite</p>
-      <h1 class="title">住所から郵便番号をすばやく逆引きする軽量ツール</h1>
-      <p class="lede">都道府県を選んで住所の一部を入力すると、該当する郵便番号を素早く検索できます。必要な行だけ出力リストに追加し、最後にCSVで一括ダウンロードできます。</p>
+      <p class="eyebrow">JP Postal Lite</p>
+      <h1 class="title">住所から郵便番号を逆引きする軽量ツール</h1>
+      <p class="lede">都道府県を選び、住所の一部を入力すると郵便番号を検索できます。必要な行だけ出力リストへ追加し、最後にCSVで保存できます。</p>
     </header>
+
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="card compact" id="data-section">
+      <div class="section-head">
+        <h2>データについて</h2>
+        <p class="sub">対応済みの都府県だけを選択できます。未対応エリアは準備中として表示します。</p>
+      </div>
+      <dl class="data-facts">
+        <div><dt>現在の対応範囲</dt><dd><span id="supported-pref-count">-</span>：<span id="supported-pref-list">読み込み中</span></dd></div>
+        <div><dt>データ確認日</dt><dd id="data-checked-date">-</dd></div>
+        <div><dt>公式確認の目安</dt><dd id="official-reference-date">-</dd></div>
+      </dl>
+      <p class="note strong-note">郵便番号や住所は変更される場合があります。重要な用途では日本郵便公式情報をご確認ください。</p>
+    </section>
 
     <section class="card" id="search-section">
       <div class="section-head">
         <h2>検索</h2>
-        <p class="sub">2文字以上で検索できます。入力すると自動で絞り込みます。</p>
+        <p class="sub">住所の一部を2文字以上入力すると検索できます。</p>
       </div>
       <div class="form-grid">
         <label class="field">
@@ -133,12 +109,16 @@
         </label>
         <label class="field">
           <span class="field-label">住所の一部</span>
-          <input type="text" id="query" placeholder="例：渋谷区宇田川町 / 福岡市天神" aria-label="住所検索入力">
+          <input type="text" id="query" placeholder="例：渋谷区 / 西新宿 / 丸の内" aria-label="住所検索入力" autocomplete="off">
         </label>
       </div>
+      <div class="example-area">
+        <p class="example-label">検索例</p>
+        <div class="chips" id="example-chips"></div>
+      </div>
       <div class="actions">
-        <button id="search-btn" class="primary">検索する</button>
-        <p class="note">都道府県を選択後、住所の一部を入力してください。</p>
+        <button id="search-btn" class="primary" type="button">検索する</button>
+        <p class="note">検索結果は最大50件まで表示します。</p>
       </div>
       <div id="load-error" class="inline-alert" role="alert" aria-live="polite"></div>
     </section>
@@ -146,28 +126,61 @@
     <section class="card" id="results-section">
       <div class="section-head">
         <h2 id="results-title">検索結果（0件）</h2>
-        <p class="sub">新しい検索をするとこのリストは更新されます。出力リストは保持されます。</p>
+        <p class="sub">結果の「⋯」からコピーや出力リスト追加ができます。</p>
       </div>
-      <div id="results" class="list empty">該当する住所が見つかりませんでした。入力内容をご確認ください。</div>
+      <p class="limit-note" id="result-limit-note" hidden>最大50件まで表示しています。結果が多すぎる場合は住所をもう少し詳しく入力してください。</p>
+      <div id="results" class="list empty">都道府県を選択し、住所の一部を2文字以上入力してください。</div>
     </section>
 
     <section class="card" id="output-section">
       <div class="section-head">
         <h2 id="output-title">出力リスト（0件）</h2>
-        <p class="sub">検索結果の「⋯」メニューから「出力リストに追加」を選ぶとここに表示されます。</p>
+        <p class="sub">追加済み：<span id="output-count">0件</span>。CSV保存前に不要な行を削除できます。</p>
       </div>
       <div id="output-list" class="list empty">出力リストが空です。必要な行を追加してください。</div>
       <div class="actions">
-        <button id="download-btn" class="primary" disabled>CSVをダウンロード</button>
-        <p class="note">postal_code,address の形式でダウンロードします。</p>
+        <button id="download-btn" class="primary" type="button" disabled>CSVをダウンロード</button>
+        <button id="clear-output-btn" type="button" disabled>出力リストを全削除</button>
+        <p class="note">postal_code,address のCSV形式で保存します。</p>
       </div>
     </section>
 
+    <section class="card faq" id="faq">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p class="sub">対応範囲・出力・データ確認について。</p>
+      </div>
+      <details><summary>住所から郵便番号を検索できますか？</summary><p>はい。対応済み都府県を選び、住所の一部を2文字以上入力すると郵便番号を逆引きできます。</p></details>
+      <details><summary>全都道府県に対応していますか？</summary><p>現時点の対応範囲は「データについて」に表示しています。未対応の都道府県は準備中として選択できません。</p></details>
+      <details><summary>CSVに保存できますか？</summary><p>はい。必要な行を出力リストに追加し、postal_code,address形式で保存できます。</p></details>
+      <details><summary>郵便番号データは公式ですか？</summary><p>NicheWorks側で整形した軽量データです。重要な用途では日本郵便公式情報も確認してください。</p></details>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <div class="nw-links" aria-label="関連ツール">
+      <a href="/tools/csv-tidy/">CSV Tidy</a> /
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
+      <a href="/tools/manual-finder/">ManualFinder</a> /
+      <a href="/tools/moving-checklist-generator/">Moving Checklist</a>
+    </div>
+
     <footer class="footer">
-      <p class="donation">このツールが役に立ったら、<a href="https://ofuse.me/nicheworks" aria-label="OFUSEで支援" target="_blank" rel="noopener">OFUSE</a> / <a href="https://ko-fi.com/nicheworks" aria-label="Ko-fiで支援" target="_blank" rel="noopener">Ko-fi</a> でのご支援もぜひご検討ください。</p>
+      <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+      <p>当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+      <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
     </footer>
   </main>
 
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="./app.js" defer></script>
 </body>
 </html>
