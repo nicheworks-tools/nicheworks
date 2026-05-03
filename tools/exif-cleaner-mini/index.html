@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EXIF削除｜EXIF Cleaner Mini | NicheWorks</title>
-  <meta name="description" content="写真のGPS位置・撮影日時・端末情報などのEXIFメタデータを、ブラウザ上だけで削除できる無料ツールです。画像はサーバーに送信されません。">
+  <title>写真の位置情報・EXIF削除｜EXIF Cleaner Mini | NicheWorks</title>
+  <meta name="description" content="写真に含まれるGPS位置情報、撮影日時、端末名などのEXIFメタデータをブラウザ内で削除する無料ツールです。画像はサーバーに送信されません。">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/exif-cleaner-mini/">
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -13,13 +13,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="EXIF削除｜EXIF Cleaner Mini | NicheWorks">
-  <meta property="og:description" content="写真のGPS位置・撮影日時・端末情報などのEXIFメタデータを、ブラウザ上だけで削除できます。">
+  <meta property="og:title" content="写真の位置情報・EXIF削除｜EXIF Cleaner Mini | NicheWorks">
+  <meta property="og:description" content="写真のGPS位置情報、撮影日時、端末名などのEXIFメタデータをブラウザ内で削除します。画像はサーバーに送信されません。">
   <meta property="og:url" content="https://nicheworks.app/tools/exif-cleaner-mini/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EXIF Cleaner Mini | NicheWorks">
-  <meta name="twitter:description" content="Remove GPS, timestamp, and device metadata from images in your browser.">
+  <meta name="twitter:title" content="写真の位置情報・EXIF削除｜EXIF Cleaner Mini | NicheWorks">
+  <meta name="twitter:description" content="Remove GPS, timestamp, and device metadata from images in your browser. No upload required.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
@@ -39,9 +39,49 @@
     "url": "https://nicheworks.app/tools/exif-cleaner-mini/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "写真のGPS位置・撮影日時・端末情報などのEXIFメタデータを、ブラウザ上だけで削除できる無料ツールです。",
+    "description": "写真に含まれるGPS位置情報、撮影日時、端末名などのEXIFメタデータをブラウザ内で削除する無料ツールです。",
     "inLanguage": ["ja", "en"],
     "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "画像はサーバーに送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。処理はブラウザ内で行われ、画像はサーバーに送信されません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "GPS位置情報は削除されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Canvasで画像を再生成するため、多くの場合GPS情報は引き継がれません。ただし、すべてのメタデータ削除を保証するものではありません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "EXIFが見つからない画像でも処理する意味はありますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "あります。アプリによってはEXIF以外の情報が含まれる場合があるため、共有前に画像を再生成しておく用途があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "HEICに対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "現時点ではJPEG、PNG、WebPを対象にしています。HEICは先にJPEGまたはPNGへ変換してください。"
+        }
+      }
+    ]
   }
   </script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
@@ -53,8 +93,8 @@
   <h1 data-i18n="ja">EXIF Cleaner Mini</h1>
   <h1 data-i18n="en">EXIF Cleaner Mini</h1>
 
-  <p class="subtitle" data-i18n="ja">写真のGPS・撮影日時・端末情報を、ブラウザ上だけで安全に削除します。</p>
-  <p class="subtitle" data-i18n="en">Safely remove GPS, timestamp, and device metadata from photos — fully in your browser.</p>
+  <p class="subtitle" data-i18n="ja">写真のGPS・撮影日時・端末情報を、ブラウザ上だけで削除します。</p>
+  <p class="subtitle" data-i18n="en">Remove GPS, timestamp, and device metadata from photos — fully in your browser.</p>
 </header>
 
 <main class="nw-main">
@@ -66,6 +106,13 @@
     <button data-lang="en">EN</button>
   </div>
 
+  <section class="intro-block">
+    <p data-i18n="ja">共有前の写真をブラウザ内で再生成し、EXIFメタデータを引き継がない画像として保存します。</p>
+    <p data-i18n="en">Regenerate a photo in your browser and save a new image that does not carry over most EXIF metadata.</p>
+    <p class="intro-note" data-i18n="ja">対応形式：JPEG / PNG / WebP。画像はサーバーに送信されません。</p>
+    <p class="intro-note" data-i18n="en">Supported formats: JPEG / PNG / WebP. Images are not uploaded.</p>
+  </section>
+
   <section class="tool-container">
     <p class="label" data-i18n="ja">画像をアップロード</p>
     <p class="label" data-i18n="en">Upload Image</p>
@@ -73,12 +120,13 @@
     <div id="drop-area" class="drop-area">
       <p data-i18n="ja">ここに画像をドラッグ＆ドロップ<br>またはクリックして選択</p>
       <p data-i18n="en">Drag & drop image here<br>or click to select</p>
-      <input type="file" id="file-input" accept="image/*">
+      <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp">
     </div>
 
     <img id="preview" class="preview hidden" alt="preview">
 
     <p id="exif-status" class="status"></p>
+    <p id="status-note" class="status-note"></p>
     <p id="output-format" class="status output-format"></p>
 
     <div id="format-controls" class="format-controls hidden">
@@ -88,8 +136,12 @@
         <option value="keep">元の形式を保持 (Keep format)</option>
         <option value="jpeg">JPEGに変換 (Convert to JPEG)</option>
       </select>
-      <p class="format-note" data-i18n="ja">JPEGに変換する場合、.jpg で保存されます。</p>
-      <p class="format-note" data-i18n="en">When converting to JPEG, the file will be saved as .jpg.</p>
+      <div class="format-help">
+        <p data-i18n="ja">元の形式を保持：PNGやWebPとして保存します。画質劣化を避けたい場合に向いています。</p>
+        <p data-i18n="en">Keep format: saves as PNG or WebP. Useful when you want to avoid quality loss.</p>
+        <p data-i18n="ja">JPEGに変換：ファイルサイズを小さくしたい場合に向いています。透明部分は失われる場合があります。</p>
+        <p data-i18n="en">Convert to JPEG: useful for smaller files. Transparent areas may be lost.</p>
+      </div>
     </div>
 
     <div class="quality-control">
@@ -99,19 +151,42 @@
         <span id="quality-value" class="quality-value">0.90</span>
       </div>
       <input type="range" id="quality-slider" min="0.7" max="0.95" step="0.01" value="0.9">
-      <p class="quality-note" data-i18n="ja">JPEGとして保存する場合にのみ適用されます。</p>
-      <p class="quality-note" data-i18n="en">Applied only when saving as JPEG.</p>
+      <p class="quality-note" data-i18n="ja">JPEG保存時のみ適用されます。数値を下げるとファイルサイズは小さくなりますが、画質が落ちます。</p>
+      <p class="quality-note" data-i18n="en">Applied only when saving as JPEG. Lower values reduce file size but also reduce image quality.</p>
     </div>
 
     <button id="clean-btn-ja" class="clean-btn" data-i18n="ja" disabled>EXIFを削除して保存</button>
     <button id="clean-btn-en" class="clean-btn" data-i18n="en" disabled>Clean EXIF & Download</button>
 
-    <p id="done-msg-ja" class="done-msg hidden" data-i18n="ja">EXIFを削除した画像を保存しました。</p>
-    <p id="done-msg-en" class="done-msg hidden" data-i18n="en">EXIF-free image saved.</p>
+    <div id="result-panel" class="result-panel hidden">
+      <p id="done-msg-ja" class="done-msg" data-i18n="ja">保存しました。</p>
+      <p id="done-msg-en" class="done-msg" data-i18n="en">Saved.</p>
+      <p class="result-note" data-i18n="ja">画像はブラウザ内で再生成されました。</p>
+      <p class="result-note" data-i18n="en">The image was regenerated in your browser.</p>
+      <p class="result-title" data-i18n="ja">次にできること</p>
+      <p class="result-title" data-i18n="en">Next actions</p>
+      <div class="result-actions">
+        <button type="button" id="reset-btn" class="secondary-btn" data-i18n="ja">別の画像を処理する</button>
+        <button type="button" id="reset-btn-en" class="secondary-btn" data-i18n="en">Process another image</button>
+        <a href="/tools/image-redact/" data-i18n="ja">画像の一部を隠す</a>
+        <a href="/tools/image-redact/" data-i18n="en">Redact part of an image</a>
+        <a href="/tools/filetype-sniffer/" data-i18n="ja">ファイル形式を確認する</a>
+        <a href="/tools/filetype-sniffer/" data-i18n="en">Check file type</a>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <p class="label" data-i18n="ja">このツールの仕組み</p>
+      <p class="label" data-i18n="en">How this tool works</p>
+      <p data-i18n="ja">画像をブラウザ内でCanvasに描き直し、新しい画像ファイルとして保存します。その過程で多くのEXIFメタデータは引き継がれません。</p>
+      <p data-i18n="en">This tool redraws the image in a browser canvas and saves it as a new image file. Most EXIF metadata is not carried over during this process.</p>
+      <p class="info-note" data-i18n="ja">ただし、すべてのアプリ独自メタデータやファイル構造情報の削除を保証するものではありません。</p>
+      <p class="info-note" data-i18n="en">It does not guarantee removal of every app-specific metadata field or file-level trace.</p>
+    </div>
 
     <div class="info-block">
       <p class="label" data-i18n="ja">削除される可能性のある情報</p>
-      <p class="label" data-i18n="en">What will be removed</p>
+      <p class="label" data-i18n="en">Metadata that may be removed</p>
       <ul class="info-list">
         <li data-i18n="ja">GPS位置情報</li>
         <li data-i18n="en">GPS location data</li>
@@ -122,12 +197,45 @@
         <li data-i18n="ja">レンズ/ソフト情報</li>
         <li data-i18n="en">Lens / software information</li>
       </ul>
-      <p class="info-note" data-i18n="ja">※ 本ツールはマルウェア検査ではありません。メタデータのみを削除します。</p>
-      <p class="info-note" data-i18n="en">* This is not malware scanning; it only removes metadata.</p>
+      <p class="info-note" data-i18n="ja">※ 本ツールはマルウェア検査ではありません。メタデータ削除用の簡易ツールです。</p>
+      <p class="info-note" data-i18n="en">* This is not malware scanning. It is a simple metadata-cleaning tool.</p>
     </div>
 
     <p class="disclaimer" data-i18n="ja">※ すべての処理はブラウザ内で実行されます（画像は送信されません）。</p>
     <p class="disclaimer" data-i18n="en">* All processing runs locally in your browser. No images are uploaded.</p>
+  </section>
+
+  <section class="faq-block" aria-labelledby="faq-title-ja">
+    <h2 id="faq-title-ja" data-i18n="ja">よくある質問</h2>
+    <h2 data-i18n="en">FAQ</h2>
+
+    <div class="faq-item">
+      <h3 data-i18n="ja">画像はサーバーに送信されますか？</h3>
+      <h3 data-i18n="en">Are images uploaded to a server?</h3>
+      <p data-i18n="ja">いいえ。処理はブラウザ内で行われます。</p>
+      <p data-i18n="en">No. Processing runs in your browser.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 data-i18n="ja">GPS位置情報は削除されますか？</h3>
+      <h3 data-i18n="en">Does it remove GPS location data?</h3>
+      <p data-i18n="ja">Canvasで画像を再生成するため、多くの場合GPS情報は引き継がれません。ただし完全保証ではありません。</p>
+      <p data-i18n="en">Because the image is regenerated through canvas, GPS data is usually not carried over. This is not a full guarantee.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 data-i18n="ja">EXIFが見つからない画像でも処理する意味はありますか？</h3>
+      <h3 data-i18n="en">Is it useful even if no EXIF is detected?</h3>
+      <p data-i18n="ja">あります。アプリによってはEXIF以外の情報が含まれる場合があるため、共有前に再生成しておく用途があります。</p>
+      <p data-i18n="en">Yes. Some apps may add non-EXIF metadata, so regenerating the image before sharing can still be useful.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 data-i18n="ja">HEICに対応していますか？</h3>
+      <h3 data-i18n="en">Does it support HEIC?</h3>
+      <p data-i18n="ja">現時点では JPEG / PNG / WebP を対象にします。HEICは先にJPEGまたはPNGへ変換してください。</p>
+      <p data-i18n="en">Currently it supports JPEG, PNG, and WebP. Convert HEIC to JPEG or PNG first.</p>
+    </div>
   </section>
 
   <div class="ad-slot ad-bottom">広告枠（準備中）</div>
@@ -142,9 +250,10 @@
   </div>
 
   <div class="nw-links">
-    <a href="/tools/inci-fastscan/">INCI FastScan</a> /
     <a href="/tools/image-redact/">Image Redact</a> /
-    <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
+    <a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a> /
+    <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
+    <a href="/tools/webp-avif-converter/">WebP / AVIF Converter</a>
   </div>
 
 </main>
