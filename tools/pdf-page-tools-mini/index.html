@@ -4,31 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- =========================================================
-       PPTM-02: head 完成（canonical/OGP/favicon/AdSense/GA4/JSON-LD）
-       ※共通仕様 v3 準拠：ID変更/削除禁止
-       ========================================================= -->
-
-  <title>PDFページ操作ミニ - NicheWorks</title>
-  <meta name="description" content="PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。" />
-
+  <title>PDFページ抽出・結合・並べ替え｜PDF Page Tools Mini | NicheWorks</title>
+  <meta name="description" content="PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができる無料ツールです。ブラウザ内で処理し、元PDFは変更しません。" />
   <link rel="canonical" href="https://nicheworks.app/tools/pdf-page-tools-mini/" />
 
-  <!-- OGP (共通assets参照。ツール内複製禁止) -->
-  <meta property="og:title" content="PDFページ操作ミニ" />
-  <meta property="og:description" content="PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PDFページ抽出・結合・並べ替え｜PDF Page Tools Mini" />
+  <meta property="og:description" content="PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができる無料ツールです。" />
   <meta property="og:url" content="https://nicheworks.app/tools/pdf-page-tools-mini/" />
-  <meta property="og:image" content="https://nicheworks.app/assets/og-default.png" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- favicon (共通assets参照) -->
   <link rel="icon" href="/assets/favicon.ico" />
   <link rel="shortcut icon" href="/assets/favicon.ico" />
 
-  <!-- AdSense (必須 / client ID変更禁止 / 削除禁止) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- GA4 (必須 / ID変更禁止 / head固定) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -37,39 +28,77 @@
     gtag('config', 'G-57QT78M3JB');
   </script>
 
-  <!-- JSON-LD: WebApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "PDFページ操作ミニ",
+    "name": "PDF Page Tools Mini",
     "url": "https://nicheworks.app/tools/pdf-page-tools-mini/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Web",
-    "description": "PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。"
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができる無料ツールです。ブラウザ内で処理し、元PDFは変更しません。"
+  }
+  </script>
+  <script type="application/ld+json" id="faq-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ファイルはアップロードされますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。PDFの読み込み、ページ操作、書き出しはブラウザ内で処理されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "パスワード付きPDFは使えますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "非対応です。パスワード解除や回避は行いません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "大きいPDFで失敗する場合は？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ページ数を減らす、先に分割する、別ブラウザやPCで試してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "圧縮はできますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "できません。このツールはページ操作、結合、抽出、削除、並べ替え、回転を目的にしています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "元のPDFは変更されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。編集後のPDFを別ファイルとして保存します。"
+        }
+      }
+    ]
   }
   </script>
 
   <link rel="stylesheet" href="/assets/nw-base.css" />
   <link rel="stylesheet" href="./style.css" />
-  <!-- PPTM-04: local vendor libs (no CDN) -->
   <script defer src="./vendor/pdf-lib/pdf-lib.min.js"></script>
   <script type="module" src="./vendor/pdfjs/pdfjs-setup.mjs"></script>
   <script defer src="./app.js"></script>
-  <script type="application/ld+json" id="faq-schema">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ファイルはアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。PDFの読み込み・編集・書き出しは端末内（ブラウザ）で完結します。"}},{"@type":"Question","name":"うまく保存できない／落ちます","acceptedAnswer":{"@type":"Answer","text":"端末のメモリ不足の可能性があります。ページ数を減らす／分割する／別ブラウザで試してください。"}},{"@type":"Question","name":"パスワード付きPDFは対応していますか？","acceptedAnswer":{"@type":"Answer","text":"非対応です（解除は行いません）。"}},{"@type":"Question","name":"圧縮はできますか？","acceptedAnswer":{"@type":"Answer","text":"できません。このツールはページ操作（結合・抽出・削除・並べ替え・回転）のみ対応します。"}}]}
-  </script>
-  <meta property="og:type" content="website" />
 </head>
 
 <body>
-  <!-- =========================================================
-       PPTM-01: 共通レイアウト（土台）
-       ========================================================= -->
-
   <header class="nw-header">
     <h1 class="nw-title">
-      <span data-i18n="ja">PDFページ操作ミニ</span>
+      <span data-i18n="ja">PDFページ抽出・結合・並べ替え</span>
       <span data-i18n="en">PDF Page Tools Mini</span>
     </h1>
 
@@ -78,39 +107,56 @@
       <button data-lang="en" type="button">EN</button>
     </div>
 
-    <p class="nw-subtitle" data-i18n="ja">PDFをアップロードせずに、結合・抽出・並べ替え・回転ができます。</p>
-    <section class="nw-card nw-usage-link">
+    <p class="nw-subtitle" data-i18n="ja">PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができます。</p>
+    <p class="nw-subtitle" data-i18n="en">Extract, merge, delete, reorder, rotate, and save PDF pages without uploading your files.</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="nw-section">
+      <p data-i18n="ja">追加したPDFをページ単位で整理し、編集後PDFを別ファイルとして保存できます。処理はブラウザ内で完結し、元のPDFは変更されません。</p>
+      <p data-i18n="en">Add PDFs, organize pages, and save the edited result as a separate file. Processing stays in your browser, and the original PDFs are not changed.</p>
       <p class="nw-muted">
-        <span data-i18n="ja">迷ったら：</span>
-        <span data-i18n="en" style="display:none;">If you’re unsure:</span>
         <a class="nw-link" href="./usage.html">
-          <span data-i18n="ja">使い方（usage）を見る</span>
-          <span data-i18n="en" style="display:none;">Read the usage guide</span>
+          <span data-i18n="ja">使い方はこちら</span>
+          <span data-i18n="en">Read the usage guide</span>
         </a>
       </p>
     </section>
 
-    <p class="nw-subtitle" data-i18n="en">Merge, extract, reorder, and rotate PDF pages — no upload.</p>
-  </header>
+    <section class="nw-card pptm-steps">
+      <h2 class="nw-h2">
+        <span data-i18n="ja">使い方</span>
+        <span data-i18n="en">How to use</span>
+      </h2>
+      <ol>
+        <li data-i18n="ja">PDFを追加する</li>
+        <li data-i18n="en">Add one or more PDFs.</li>
+        <li data-i18n="ja">ページを削除・並べ替え・回転、または範囲抽出する</li>
+        <li data-i18n="en">Delete, reorder, rotate, or extract selected page ranges.</li>
+        <li data-i18n="ja">編集後PDFを保存する</li>
+        <li data-i18n="en">Download the edited PDF.</li>
+      </ol>
+    </section>
 
-  <main class="nw-main">
-    <!-- ad-top (required) -->
-    <div class="nw-ad" id="ad-top" aria-label="ad top"></div>
-
-    <!-- 上部広告枠（必須） -->
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
-
-    <section class="nw-section">
-      <p data-i18n="ja">追加したPDFをページ単位で整理し、そのまま保存できます（アップロードなし）。</p>
-      <p data-i18n="en">Organize PDFs by page and save the result — everything stays in your browser (no upload).</p>
-
-      <div class="notice">
-        <p data-i18n="ja">大きいPDFは端末によって重くなる場合があります。</p>
-        <p data-i18n="en">Large PDFs may be slow depending on your device.</p>
+    <section class="nw-card pptm-notes" aria-label="PDF limitations">
+      <h2 class="nw-h2">
+        <span data-i18n="ja">対応できないPDF・重いPDFについて</span>
+        <span data-i18n="en">Unsupported and heavy PDFs</span>
+      </h2>
+      <div data-i18n="ja">
+        <p>パスワード付きPDFは非対応です。パスワード解除や回避は行いません。</p>
+        <p>破損PDF、一部の特殊PDF、画像が多いPDF、100ページ以上のPDF、数十MB以上のPDFは、端末によって読み込みや保存に失敗する場合があります。</p>
+        <p>失敗する場合は、ページ数を減らす、先に分割する、PCブラウザや別ブラウザで試してください。</p>
+      </div>
+      <div data-i18n="en">
+        <p>Password-protected PDFs are not supported. This tool does not unlock or bypass passwords.</p>
+        <p>Corrupted PDFs, some special PDFs, image-heavy PDFs, PDFs over 100 pages, or PDFs of several dozen MB may fail depending on your device.</p>
+        <p>If it fails, reduce the page count, split the PDF first, or try a desktop browser or another browser.</p>
       </div>
     </section>
 
-    <!-- PPTM-01: 初期UI枠（未読込時は操作disabled） -->
     <section class="nw-section">
       <h2 class="nw-h2">
         <span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span>
@@ -130,6 +176,8 @@
           <div class="dz-notes">
             <div data-i18n="ja">- ファイルは端末内で処理されます（アップロードなし）</div>
             <div data-i18n="en">- Processed locally in your browser (no upload)</div>
+            <div data-i18n="ja">- 元PDFは変更されません</div>
+            <div data-i18n="en">- Original PDFs are not changed</div>
             <div data-i18n="ja">- 大きいPDFは重くなる場合があります</div>
             <div data-i18n="en">- Large PDFs may be heavy</div>
           </div>
@@ -142,7 +190,6 @@
       </div>
     </section>
 
-    <!-- ここから下は、PPTM-03で「未読込時はdisabled」にする -->
     <section class="nw-section panel" id="panelAfterLoad" aria-label="Editor Panel">
       <div class="toolbar pptm-actions">
         <button id="btnAddMore" type="button" class="btn">
@@ -151,11 +198,10 @@
         <button id="btnReset" type="button" class="btn">
           <span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span>
         </button>
-        
         <button id="btnUndo" type="button" class="btn" disabled>
           <span data-i18n="ja">Undo（1回）</span><span data-i18n="en">Undo (1)</span>
         </button>
-<div class="spacer"></div>
+        <div class="spacer"></div>
         <button id="btnSave" type="button" class="btn-primary">
           <span data-i18n="ja">保存してダウンロード</span><span data-i18n="en">Download PDF</span>
         </button>
@@ -203,7 +249,6 @@
       </div>
     </section>
 
-    <!-- エラー/状態表示（完成版では常設） -->
     <section class="nw-section">
       <div id="statusBox" class="status" hidden role="alert">
         <div id="statusText"></div>
@@ -211,10 +256,8 @@
       </div>
     </section>
 
-    <!-- 下部広告枠（推奨） -->
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
-    <!-- 寄付導線（標準A：1箇所） -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p>
@@ -224,30 +267,51 @@
       </div>
     </div>
 
-    <!-- 内部リンク（仮置き：後で実在slugに合わせる） -->
+    <section class="nw-faq" aria-label="FAQ">
+      <h2 class="nw-h2">FAQ</h2>
+      <div class="faq-item">
+        <h3 data-i18n="ja">Q. ファイルはアップロードされますか？</h3>
+        <h3 data-i18n="en">Q. Are files uploaded?</h3>
+        <p data-i18n="ja">いいえ。PDFの読み込み・編集・書き出しはブラウザ内で処理されます。</p>
+        <p data-i18n="en">No. Reading, editing, and exporting PDFs are handled in your browser.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">Q. パスワード付きPDFは使えますか？</h3>
+        <h3 data-i18n="en">Q. Are password-protected PDFs supported?</h3>
+        <p data-i18n="ja">非対応です。パスワード解除や回避は行いません。</p>
+        <p data-i18n="en">No. This tool does not unlock or bypass password protection.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">Q. 大きいPDFで失敗する場合は？</h3>
+        <h3 data-i18n="en">Q. What if a large PDF fails?</h3>
+        <p data-i18n="ja">ページ数を減らす、先に分割する、別ブラウザやPCで試してください。</p>
+        <p data-i18n="en">Reduce the page count, split the PDF first, or try another browser or a desktop browser.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">Q. 圧縮はできますか？</h3>
+        <h3 data-i18n="en">Q. Can this compress PDFs?</h3>
+        <p data-i18n="ja">できません。このツールはページ操作、結合、抽出、削除、並べ替え、回転を目的にしています。</p>
+        <p data-i18n="en">No. This tool is for page operations: merge, extract, delete, reorder, and rotate.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">Q. 元のPDFは変更されますか？</h3>
+        <h3 data-i18n="en">Q. Are original PDFs changed?</h3>
+        <p data-i18n="ja">いいえ。編集後のPDFを別ファイルとして保存します。</p>
+        <p data-i18n="en">No. The edited PDF is saved as a separate file.</p>
+      </div>
+    </section>
+
     <div class="nw-links">
       <div class="nw-links-title" data-i18n="ja">関連ツール</div>
       <div class="nw-links-title" data-i18n="en">Related tools</div>
       <ul class="nw-links-list">
-        <li><a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a></li>
+        <li><a href="/tools/pdf2csv-local/">PDF2CSV Local</a></li>
+        <li><a href="/tools/pdf-link-extractor-pro/">PDF Link Extractor Pro</a></li>
         <li><a href="/tools/filetype-sniffer/">FileType Sniffer</a></li>
-        <li><a href="/tools/contract-cleaner/">Contract Cleaner</a></li>
+        <li><a href="/tools/csv-tidy/">CSV Tidy</a></li>
       </ul>
-      <p class="muted" data-i18n="ja">※リンク先が存在しない場合は後で差し替えます。</p>
-      <p class="muted" data-i18n="en">*If any link 404s, we will replace it later.</p>
     </div>
-
-    <!-- FAQ（完成版で入れる。今は箱だけ） -->
-    <div class="nw-faq">
-      <h2 class="nw-h2">FAQ</h2>
-      <div class="muted" data-i18n="ja">（完成版で追記）</div>
-      <div class="muted" data-i18n="en">(To be added in final)</div>
-    </div>
-  
-    <!-- ad-bottom (recommended) -->
-    <div class="nw-ad" id="ad-bottom" aria-label="ad bottom"></div>
-
-</main>
+  </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
