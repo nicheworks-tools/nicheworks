@@ -3,11 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NicheWorks</title>
-  <link rel="stylesheet" href="./style.css">
-
+  <title>無料ブラウザツール集｜NicheWorks</title>
+  <meta name="description" content="NicheWorksは、PDF、画像、CSV、JSON、文章整形、開発補助などをブラウザだけで使える無料の軽量Webツール集です。入力データは原則ローカル処理で保存しません。">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./style.css?v=20260503-seo-foundation">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="無料ブラウザツール集｜NicheWorks">
+  <meta property="og:description" content="PDF、画像、CSV、JSON、文章整形、開発補助などをブラウザだけで使える無料の軽量Webツール集。入力データは原則ローカル処理です。">
   <meta property="og:url" content="https://nicheworks.app/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="無料ブラウザツール集｜NicheWorks">
+  <meta name="twitter:description" content="保存なし・匿名利用前提で使える、ブラウザ完結の小さなWebツール集です。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <!-- Google tag (gtag.js) -->
@@ -18,6 +31,49 @@
     gtag('js', new Date());
     gtag('config', 'G-57QT78M3JB');
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NicheWorks",
+    "url": "https://nicheworks.app/",
+    "description": "PDF、画像、CSV、JSON、文章整形、開発補助などをブラウザだけで使える無料の軽量Webツール集です。",
+    "inLanguage": ["ja", "en"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NicheWorks",
+    "url": "https://nicheworks.app/",
+    "logo": "https://nicheworks.app/assets/nicheworks-logo.png",
+    "sameAs": [
+      "https://ofuse.me/nicheworks",
+      "https://ko-fi.com/nicheworks"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "NicheWorks tools",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"旧字体一覧・旧字新字対応表","url":"https://nicheworks.app/tools/old-kanji-reference/"},
+      {"@type":"ListItem","position":2,"name":"JSON Repair","url":"https://nicheworks.app/tools/json-repair/"},
+      {"@type":"ListItem","position":3,"name":"PDF to CSV Local","url":"https://nicheworks.app/tools/pdf2csv-local/"},
+      {"@type":"ListItem","position":4,"name":"CSV Tidy","url":"https://nicheworks.app/tools/csv-tidy/"},
+      {"@type":"ListItem","position":5,"name":"EXIF Cleaner Mini","url":"https://nicheworks.app/tools/exif-cleaner-mini/"},
+      {"@type":"ListItem","position":6,"name":"Image Redact","url":"https://nicheworks.app/tools/image-redact/"},
+      {"@type":"ListItem","position":7,"name":"API Key Token Redactor","url":"https://nicheworks.app/tools/api-key-token-redactor/"},
+      {"@type":"ListItem","position":8,"name":"Command Safety Checker","url":"https://nicheworks.app/tools/command-safety-checker/"},
+      {"@type":"ListItem","position":9,"name":"ManualFinder","url":"https://nicheworks.app/tools/manual-finder/"},
+      {"@type":"ListItem","position":10,"name":"TrashNavi","url":"https://nicheworks.app/tools/trashnavi/"}
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -27,7 +83,7 @@
         <h1>NicheWorks</h1>
       </div>
 
-      <p class="subtitle">ブラウザだけで使える軽量ツール集。入力データは保存しません（原則ローカル処理）。</p>
+      <p class="subtitle">ブラウザだけで使える無料の軽量ツール集。入力データは保存しません（原則ローカル処理）。</p>
 
       <nav class="nav-inline" aria-label="Site navigation">
         <a href="./index.html">Home</a>
@@ -44,16 +100,36 @@
 
     <main>
       <section class="block">
-        <h2>NicheWorks とは</h2>
+        <h2>無料ブラウザツール集</h2>
         <p class="category-desc">
-          “静かに便利に”。その場で使って終わる、保存なし・匿名利用前提の小さなツール群です。
+          NicheWorks は、PDF、画像、CSV、JSON、文章整形、開発補助などの小さな作業を、インストールなしで処理するためのWebツール集です。
+          多くのツールはブラウザ内で処理し、入力内容をサーバーに保存しません。
         </p>
       </section>
 
-      <section class="block">
-        <h2>ツール</h2>
+      <section class="block" aria-labelledby="featured-tools-title">
+        <h2 id="featured-tools-title">主要ツール</h2>
+        <p class="category-desc">検索エンジンと利用者の両方がたどれるよう、主要ツールへのリンクをHTML内にも固定表示しています。</p>
+        <ul class="list compact">
+          <li><strong><a href="/tools/old-kanji-reference/">旧字体一覧・旧字新字対応表</a></strong><div class="small muted">旧字体と新字体の対応を検索・確認できるリファレンス。</div></li>
+          <li><strong><a href="/tools/json-repair/">JSON Repair</a></strong><div class="small muted">壊れたJSONを修正候補つきで整えるブラウザ完結ツール。</div></li>
+          <li><strong><a href="/tools/json2mermaid/">JSON to Mermaid</a></strong><div class="small muted">JSON構造をMermaid図へ変換して把握しやすくします。</div></li>
+          <li><strong><a href="/tools/pdf2csv-local/">PDF to CSV Local</a></strong><div class="small muted">PDF内の表データをCSV化するローカル処理向けツール。</div></li>
+          <li><strong><a href="/tools/pdf-page-tools-mini/">PDF Page Tools Mini</a></strong><div class="small muted">PDFページの分割・並べ替え・削除などを行う軽量ツール。</div></li>
+          <li><strong><a href="/tools/csv-tidy/">CSV Tidy</a></strong><div class="small muted">CSVの列整理、ヘッダ名変更、空白トリムなどの整形を行います。</div></li>
+          <li><strong><a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a></strong><div class="small muted">画像のEXIFなど共有前に消したいメタデータを確認・削除します。</div></li>
+          <li><strong><a href="/tools/image-redact/">Image Redact</a></strong><div class="small muted">スクリーンショットや画像の一部を黒塗り・ぼかしで隠します。</div></li>
+          <li><strong><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a></strong><div class="small muted">貼り付け前のテキストからAPIキーやトークンらしき値を検出・マスクします。</div></li>
+          <li><strong><a href="/tools/command-safety-checker/">Command Safety Checker</a></strong><div class="small muted">実行前のコマンドに危険操作が含まれていないか確認します。</div></li>
+          <li><strong><a href="/tools/manual-finder/">ManualFinder</a></strong><div class="small muted">製品名などから公式マニュアル検索を補助します。</div></li>
+          <li><strong><a href="/tools/trashnavi/">TrashNavi</a></strong><div class="small muted">自治体のごみ分別・粗大ごみ情報への到達を補助します。</div></li>
+        </ul>
+      </section>
+
+      <section class="block" id="tools">
+        <h2>ツール一覧</h2>
         <p class="category-desc">
-          検索してすぐ開けるように、カテゴリで短くまとめています。全件は下の「全ツール一覧（長い）」を開いてください。
+          カテゴリ別に短く表示します。全件は下の「全ツール一覧」を開いて確認できます。
         </p>
 
         <div class="tool-search">
@@ -63,28 +139,28 @@
           </div>
         </div>
 
-        <!-- よく使う（短く） -->
         <div class="tool-pins" id="nw-tool-pins" aria-label="よく使う">
           <span class="small muted">読み込み中...</span>
         </div>
 
-        <!-- カテゴリカード（短く） -->
         <div id="nw-tool-cats" class="tool-cat-grid">
           <div class="small muted">読み込み中...</div>
         </div>
 
-        <!-- 全件（長い）= 折りたたみ＋開いた時だけ描画 -->
         <details class="tool-all" id="nw-tool-all-wrap">
-          <summary>全ツール一覧（長い）を開く</summary>
+          <summary>全ツール一覧を開く</summary>
           <div id="nw-tool-all" class="tool-grid">
             <div class="small muted">（未表示）</div>
           </div>
         </details>
 
+        <noscript>
+          <p class="small muted">JavaScriptが無効な場合は、上の主要ツールリンクまたは <a href="/sitemap.xml">sitemap.xml</a> から各ツールを開けます。</p>
+        </noscript>
+
         <script>
         (async function () {
           const $ = (id) => document.getElementById(id);
-
           const qEl = $("nw-tool-q");
           const pinsEl = $("nw-tool-pins");
           const catsEl = $("nw-tool-cats");
@@ -100,36 +176,33 @@
             .replaceAll("'", "&#39;");
 
           const normalize = (it) => {
-            const name = (it.title_ja && it.title_ja !== it.slug) ? it.title_ja : it.slug;
-            const desc = (it.desc_ja || "").trim();
+            const name = (it.title_ja && it.title_ja !== it.slug) ? it.title_ja : (it.title_en || it.slug);
+            const desc = (it.desc_ja || it.desc_en || "").trim();
             return { ...it, name, desc };
           };
 
-          // 上に出す（短く）
           const PINNED = [
-            "construction-tools-atlas",
+            "old-kanji-reference",
+            "json-repair",
             "pdf2csv-local",
+            "csv-tidy",
+            "exif-cleaner-mini",
+            "image-redact",
             "api-key-token-redactor",
             "command-safety-checker",
-            "contract-cleaner",
-            "exif-cleaner-mini",
-            "filetype-sniffer",
-            "image-compression-inspector",
-            "color-replace",
-            "json2mermaid",
-            "jp-postal-lite",
-            "wifi-meter",
+            "manual-finder",
+            "trashnavi",
+            "construction-tools-atlas",
             "weatherdiff"
           ];
 
-          // カテゴリは “短く” まとめる（定義順で表示）
           const CATS = [
-            { key: "PDF/書類", hint: "PDF/CSV/明細など", match: (s) => /pdf|csv|xlsx|invoice|receipt|statement/.test(s) },
-            { key: "画像/ファイル", hint: "画像/EXIF/変換/圧縮など", match: (s) => /image|exif|webp|avif|color|compress|resize|png|jpg|filetype|sniffer/.test(s) },
-            { key: "文章/作業", hint: "文章整形/テンプレ/契約など", match: (s) => /contract|cover-letter|linebreak|message|rename|log|text|paste|doc/.test(s) },
-            { key: "開発/安全", hint: "JSON/コマンド/キー/プライバシー", match: (s) => /json|mermaid|token|api|key|format|privacy|risk|sql/.test(s) },
-            { key: "生活", hint: "郵便/天気/Wi-Fi/家事など", match: (s) => /postal|wifi|weather|laundry|trash|manual/.test(s) },
-            { key: "建設", hint: "建設/現場の辞典", match: (s) => /construction/.test(s) },
+            { key: "PDF/書類", hint: "PDF/CSV/明細/書類", match: (s) => /pdf|csv|invoice|receipt|statement|contract|document|page/.test(s) },
+            { key: "画像/ファイル", hint: "画像/EXIF/圧縮/変換", match: (s) => /image|exif|webp|avif|color|compress|resize|png|jpg|filetype|sniffer|redact|screenshot|metadata/.test(s) },
+            { key: "JSON/開発", hint: "JSON/コマンド/キー/DB/図解", match: (s) => /json|mermaid|token|api|key|command|sql|db|privacy|deploy|codex|release|project/.test(s) },
+            { key: "文章/仕事", hint: "文章整形/テンプレ/運用", match: (s) => /cover|letter|linebreak|message|rename|log|text|paste|newsletter|ops|minutes|outsource|sponsor|lp|weekly|requirement|ats/.test(s) },
+            { key: "生活", hint: "郵便/天気/Wi-Fi/引越し/家事", match: (s) => /postal|wifi|weather|laundry|trash|manual|moving|habit|money|sukima|size|unit/.test(s) },
+            { key: "辞典/参照", hint: "旧字体/建設/用語集", match: (s) => /kanji|construction|atlas|lexicon|reference|motion|ui/.test(s) },
             { key: "その他", hint: "その他", match: (_) => true }
           ];
 
@@ -137,44 +210,15 @@
             const name = escapeHtml(it.name);
             const desc = escapeHtml(it.desc);
             const href = `/tools/${it.slug}/`;
-            return `<li>
-              <strong><a href="${href}" target="_blank" rel="noopener">${name}</a></strong>
-              ${desc ? `<div class="small muted">${desc}</div>` : ``}
-            </li>`;
+            return `<li><strong><a href="${href}">${name}</a></strong>${desc ? `<div class="small muted">${desc}</div>` : ``}</li>`;
           };
 
-          const pill = (it) => {
-            const name = escapeHtml(it.name);
-            const href = `/tools/${it.slug}/`;
-            return `<a class="pill" href="${href}" target="_blank" rel="noopener">${name}</a>`;
-          };
+          const pill = (it) => `<a class="pill" href="/tools/${escapeHtml(it.slug)}/">${escapeHtml(it.name)}</a>`;
 
-          const card = (catKey, hint, list) => {
-            const LIMIT = 6;
-            const shown = list.slice(0, LIMIT);
-            const hidden = list.slice(LIMIT);
-            const id = "cat_" + catKey.replaceAll(/[^a-zA-Z0-9]+/g, "_");
-
-            return `<section class="tool-cat-card" data-cat="${escapeHtml(catKey)}">
-              <div class="tool-cat-top">
-                <div class="tool-cat-head">
-                  <div class="tool-cat-title">${escapeHtml(catKey)} <span class="tool-cat-count">(${list.length})</span></div>
-                  <div class="tool-cat-hint">${escapeHtml(hint)}</div>
-                </div>
-                ${hidden.length ? `<button class="tool-more" type="button" data-target="${escapeHtml(id)}">もっと見る</button>` : ``}
-              </div>
-
-              <ul class="list compact">
-                ${shown.map(toolLink).join("")}
-              </ul>
-
-              ${hidden.length ? `
-                <div id="${escapeHtml(id)}" class="tool-hidden" hidden>
-                  <ul class="list compact">
-                    ${hidden.map(toolLink).join("")}
-                  </ul>
-                </div>` : ``}
-            </section>`;
+          const filterItems = (items, q) => {
+            const query = (q || "").trim().toLowerCase();
+            if (!query) return items;
+            return items.filter(it => `${it.slug} ${it.name} ${it.desc} ${(it.tags||[]).join(" ")}`.toLowerCase().includes(query));
           };
 
           const byCategory = (items) => {
@@ -185,44 +229,37 @@
               if (!buckets.has(cat)) buckets.set(cat, []);
               buckets.get(cat).push(it);
             }
-            const ordered = [];
-            for (const c of CATS) {
-              if (buckets.has(c.key)) ordered.push([c.key, c.hint, buckets.get(c.key)]);
-            }
-            return ordered;
+            return CATS.filter(c => buckets.has(c.key)).map(c => [c.key, c.hint, buckets.get(c.key)]);
+          };
+
+          const card = (catKey, hint, list) => {
+            const LIMIT = 6;
+            const shown = list.slice(0, LIMIT);
+            const hidden = list.slice(LIMIT);
+            const id = "cat_" + catKey.replaceAll(/[^a-zA-Z0-9]+/g, "_");
+            return `<section class="tool-cat-card">
+              <div class="tool-cat-top">
+                <div class="tool-cat-head"><div class="tool-cat-title">${escapeHtml(catKey)} <span class="tool-cat-count">(${list.length})</span></div><div class="tool-cat-hint">${escapeHtml(hint)}</div></div>
+                ${hidden.length ? `<button class="tool-more" type="button" data-target="${escapeHtml(id)}">もっと見る</button>` : ``}
+              </div>
+              <ul class="list compact">${shown.map(toolLink).join("")}</ul>
+              ${hidden.length ? `<div id="${escapeHtml(id)}" class="tool-hidden" hidden><ul class="list compact">${hidden.map(toolLink).join("")}</ul></div>` : ``}
+            </section>`;
           };
 
           const renderPinned = (items) => {
             const map = new Map(items.map(it => [it.slug, it]));
             const pinned = PINNED.map(slug => map.get(slug)).filter(Boolean);
-            pinsEl.innerHTML = pinned.length
-              ? pinned.map(pill).join("")
-              : `<span class="small muted">（ピン留めなし）</span>`;
-          };
-
-          const filterItems = (items, q) => {
-            const query = (q || "").trim().toLowerCase();
-            if (!query) return items;
-            return items.filter(it => {
-              const hay = `${it.slug} ${it.name} ${it.desc} ${(it.tags||[]).join(" ")}`.toLowerCase();
-              return hay.includes(query);
-            });
+            pinsEl.innerHTML = pinned.length ? pinned.map(pill).join("") : `<span class="small muted">（ピン留めなし）</span>`;
           };
 
           const renderCats = (items, q) => {
             const filtered = filterItems(items, q);
             const groups = byCategory(filtered);
-
-            catsEl.innerHTML = groups
-              .filter(([_, __, list]) => list.length)
-              .map(([catKey, hint, list]) => card(catKey, hint, list))
-              .join("") || `<div class="small muted">該当なし</div>`;
-
-            // “もっと見る”
+            catsEl.innerHTML = groups.filter(([_, __, list]) => list.length).map(([catKey, hint, list]) => card(catKey, hint, list)).join("") || `<div class="small muted">該当なし</div>`;
             catsEl.querySelectorAll(".tool-more").forEach(btn => {
               btn.addEventListener("click", () => {
-                const id = btn.getAttribute("data-target");
-                const box = document.getElementById(id);
+                const box = document.getElementById(btn.getAttribute("data-target"));
                 if (box) box.hidden = false;
                 btn.remove();
               }, { once: true });
@@ -231,16 +268,7 @@
 
           const renderAll = (items, q) => {
             const filtered = filterItems(items, q);
-            allEl.innerHTML = filtered.map(it => {
-              const name = escapeHtml(it.name);
-              const desc = escapeHtml(it.desc);
-              const href = `/tools/${it.slug}/`;
-              return `<a class="tool-card" href="${href}" target="_blank" rel="noopener">
-                <div class="tool-card-title">${name}</div>
-                ${desc ? `<div class="tool-card-desc">${desc}</div>` : `<div class="tool-card-desc muted">（説明なし）</div>`}
-                <div class="tool-card-meta">${escapeHtml(it.slug)}</div>
-              </a>`;
-            }).join("") || `<div class="small muted">該当なし</div>`;
+            allEl.innerHTML = filtered.map(it => `<a class="tool-card" href="/tools/${escapeHtml(it.slug)}/"><div class="tool-card-title">${escapeHtml(it.name)}</div><div class="tool-card-desc">${escapeHtml(it.desc || "説明を準備中です。")}</div><div class="tool-card-meta">${escapeHtml(it.slug)}</div></a>`).join("") || `<div class="small muted">該当なし</div>`;
           };
 
           let data;
@@ -250,18 +278,14 @@
           } catch (e) {
             pinsEl.innerHTML = `<span class="small muted">読み込み失敗</span>`;
             catsEl.innerHTML = `<div class="small muted">読み込み失敗</div>`;
-            allEl.innerHTML = `<div class="small muted">読み込み失敗</div>`;
             return;
           }
 
           const items = (data.items || []).map(normalize);
           countEl.textContent = String(data.total || items.length);
-
           renderPinned(items);
           renderCats(items, "");
 
-          // 全件は「開いた時だけ」描画
-          allEl.innerHTML = `<div class="small muted">（未表示）</div>`;
           allWrapEl.addEventListener("toggle", () => {
             if (allWrapEl.open && allEl.dataset.rendered !== "1") {
               renderAll(items, qEl.value);
@@ -281,8 +305,8 @@
         <h2>運営サポート</h2>
         <p class="category-desc">もし役に立ったら、サポート（寄付）で応援できます。</p>
         <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" rel="noopener">☕ OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" rel="noopener">❤️ Ko-fi</a>
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
         </div>
       </section>
 
