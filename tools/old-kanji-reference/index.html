@@ -11,16 +11,14 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
-  
 
   <title>旧字体一覧（Old Kanji Reference）| NicheWorks</title>
-  <meta name="description" content="旧字体の一覧を検索できるリファレンス。旧字と現代表記を並べて閲覧し、即時フィルターとコピーが可能です。">
+  <meta name="description" content="旧字体と新字体の対応を検索できる一覧です。名前・戸籍・地名・古い文献などで見かける旧字を、現代表記と見比べてコピーできます。">
   <link rel="canonical" href="https://nicheworks.app/tools/old-kanji-reference/">
 
   <meta property="og:type" content="website">
@@ -34,40 +32,18 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?v=20260503-okj-plan">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "旧字体一覧（Old Kanji Reference）",
-    "url": "https://nicheworks.app/tools/old-kanji-reference/",
-    "description": "旧字体と現代表記を検索できる旧漢字リファレンスページです。旧字と新字のペアを一覧表示し、コピーにも対応。",
-    "inLanguage": "ja"
-  }
-  </script>
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="旧字体一覧（Old Kanji Reference）| NicheWorks">
-  <meta property="og:description:en" content="The description is pending and will be updated later.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.app/tools/old-kanji-reference/">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="旧字体一覧（Old Kanji Reference）| NicheWorks">
-  <meta name="twitter:description:en" content="The description is pending and will be updated later.">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <!-- JSON-LD 英語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "旧字体一覧（Old Kanji Reference）| NicheWorks",
+    "name": "旧字体一覧（Old Kanji Reference）",
     "url": "https://nicheworks.app/tools/old-kanji-reference/",
-    "description": "The description is pending and will be updated later.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "applicationCategory": "UtilityApplication",
+    "description": "旧字体と現代表記を検索できる旧漢字リファレンスページです。旧字と新字のペアを一覧表示し、コピーにも対応。",
+    "operatingSystem": "All",
+    "inLanguage": ["ja", "en"]
   }
   </script>
 <script defer
@@ -89,8 +65,8 @@
     </h1>
 
     <p class="nw-subtitle">
-      <span data-i18n="ja">旧字体と現代表記を読みやすく整理したリファレンスです。旧字・新字どちらからでも検索できます。</span>
-      <span data-i18n="en">A readable, searchable reference of old kanji and their modern forms. Filter instantly and copy with one tap.</span>
+      <span data-i18n="ja">旧字体と現代表記を検索できる一覧です。名前・戸籍・地名・古い文献などで見かける旧字を、現代表記と見比べられます。</span>
+      <span data-i18n="en">A searchable reference for old Japanese kanji forms and their modern equivalents. Useful for names, places, records, and older texts.</span>
     </p>
 
     <p class="nw-count" data-i18n="ja">収録件数：<span data-count="old"></span> 件</p>
@@ -115,16 +91,29 @@
         data-placeholder-ja="旧字体・現代表記どちらでも検索できます" data-placeholder-en="Search by old or modern form">
     </section>
 
+    <section class="popular-panel">
+      <h2 class="section-title">
+        <span data-i18n="ja">よく使われる旧字体</span>
+        <span data-i18n="en">Common Old Forms</span>
+      </h2>
+      <p class="section-desc">
+        <span data-i18n="ja">人名・地名・古い文献などで見かけやすい旧字体を先に表示します。</span>
+        <span data-i18n="en">Frequently seen old forms in names, places, and older documents.</span>
+      </p>
+      <div id="popularContainer" class="popular-container" aria-live="polite"></div>
+    </section>
+
     <section class="group-wrapper">
       <h2 class="section-title">
         <span data-i18n="ja">旧字体一覧</span>
         <span data-i18n="en">All Entries</span>
       </h2>
       <p class="section-desc">
-        <span data-i18n="ja">Unicode ブロック単位で並べています。旧字をクリックしてコピーできます。</span>
-        <span data-i18n="en">Grouped by Unicode block for clarity. Click to copy the old form.</span>
+        <span data-i18n="ja">分類ボタンと検索を組み合わせて、旧字・新字の対応を絞り込めます。</span>
+        <span data-i18n="en">Combine filters and search to narrow down old and modern kanji pairs.</span>
       </p>
 
+      <div id="filterButtons" class="filter-buttons" aria-label="filters"></div>
       <div id="statusMessage" class="status-message" role="status"></div>
       <div id="groupContainer" class="group-container" aria-live="polite"></div>
       <p id="emptyMessage" class="empty-message" hidden>
@@ -156,13 +145,9 @@
 
   <footer class="nw-footer">
     <p>© 2025 NicheWorks</p>
-    <p>
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">
-        nicheworks.app
-      </a>
-    </p>
+    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
-  <script src="./app.js"></script>
+  <script src="./app.js?v=20260503-okj-plan"></script>
 </body>
 </html>
