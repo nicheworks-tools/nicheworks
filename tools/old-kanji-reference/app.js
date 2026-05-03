@@ -10,7 +10,7 @@
       loadError: "辞書データの読み込みに失敗しました。時間を置いて再度お試しください。",
       copiedOld: "旧字体をコピーしました",
       copiedNew: "現代表記をコピーしました",
-      placeholder: "旧字体・現代表記・読みで検索できます",
+      placeholder: "旧字体・現代表記・一部の読み/意味で検索できます",
       noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。",
       showing: "表示中",
       searchResults: "検索結果",
@@ -21,8 +21,8 @@
       loadError: "Failed to load dictionary. Please try again later.",
       copiedOld: "Copied old form",
       copiedNew: "Copied modern form",
-      placeholder: "Search by old form, modern form, or reading",
-      noMatch: "No matching entries found. Try another kanji, reading, or modern form.",
+      placeholder: "Search by old form, modern form, or selected readings/meanings",
+      noMatch: "No matching entries found. Try another kanji, selected reading, or modern form.",
       showing: "Showing",
       searchResults: "Search results",
       total: "total"
@@ -44,26 +44,88 @@
   const documentOld = new Set(["舊", "學", "體", "會", "國", "縣", "營", "驛", "關", "戰", "廳", "敎", "數", "證", "讀", "觀", "嚴", "鐵", "藝", "靈", "讓", "爲", "據", "覽", "歸", "歷", "畫", "寶", "價", "傳", "圖", "團", "從", "應", "斷", "滿", "稱", "繪", "聲", "號", "譯", "轉", "輕", "驗", "黃", "黑"]);
 
   const metadata = {
-    "國": { readingJa: "こく・くに", readingEn: "koku / kuni", category: "popular", usageJa: "国の旧字体。古い文書・団体名・地名表記で見かけます。", usageEn: "Old form of 国. Seen in older documents, organization names, and place names." },
-    "體": { readingJa: "たい・からだ", readingEn: "tai / karada", category: "popular", usageJa: "体の旧字体。古い書籍や旧字表記で見かけます。", usageEn: "Old form of 体. Seen in older books and old-style writing." },
-    "舊": { readingJa: "きゅう", readingEn: "kyu", category: "popular", usageJa: "旧の旧字体。『舊字』『舊字体』などで見かけます。", usageEn: "Old form of 旧. Seen in old-style words such as 舊字." },
-    "學": { readingJa: "がく・まなぶ", readingEn: "gaku / manabu", category: "popular", usageJa: "学の旧字体。学校名・記念碑・古い文献で見かけます。", usageEn: "Old form of 学. Seen in school names, monuments, and older texts." },
-    "會": { readingJa: "かい・あう", readingEn: "kai / au", category: "popular", usageJa: "会の旧字体。会社名・団体名・古い文書で見かけます。", usageEn: "Old form of 会. Seen in company names, associations, and older documents." },
-    "廣": { readingJa: "こう・ひろい", readingEn: "ko / hiroi", category: "name", usageJa: "広の旧字体。人名・地名・屋号で見かけます。", usageEn: "Old form of 広. Seen in names, places, and shop names." },
-    "澤": { readingJa: "たく・さわ", readingEn: "taku / sawa", category: "name", usageJa: "沢の旧字体。人名・地名で現在も見かけます。", usageEn: "Old form of 沢. Still seen in personal and place names." },
-    "邊": { readingJa: "へん・べ・あたり", readingEn: "hen / be / atari", category: "name", usageJa: "辺の旧字体。人名で見かけます。", usageEn: "Old form of 辺. Seen in personal names." },
-    "邉": { readingJa: "へん・べ・あたり", readingEn: "hen / be / atari", category: "name", usageJa: "辺の異体字・旧字系表記。人名で見かけます。", usageEn: "Variant old-style form related to 辺. Seen in personal names." },
-    "齋": { readingJa: "さい・いつき", readingEn: "sai / itsuki", category: "name", usageJa: "斎の旧字体。人名・屋号・寺社名などで見かけます。", usageEn: "Old form of 斎. Seen in names, shop names, and shrine or temple names." },
-    "濱": { readingJa: "ひん・はま", readingEn: "hin / hama", category: "name", usageJa: "浜の旧字体。人名・地名で見かけます。", usageEn: "Old form of 浜. Seen in personal and place names." },
-    "﨑": { readingJa: "さき", readingEn: "saki", category: "name", usageJa: "崎の異体字。人名・地名で見かけます。", usageEn: "Variant form of 崎. Seen in personal and place names." },
-    "德": { readingJa: "とく", readingEn: "toku", category: "name", usageJa: "徳の旧字体。人名・寺社名・古い文書で見かけます。", usageEn: "Old form of 徳. Seen in names, shrine or temple names, and older documents." },
-    "榮": { readingJa: "えい・さかえる", readingEn: "ei / sakaeru", category: "name", usageJa: "栄の旧字体。人名・屋号・古い表記で見かけます。", usageEn: "Old form of 栄. Seen in names, shop names, and older writing." },
-    "壽": { readingJa: "じゅ・ことぶき", readingEn: "ju / kotobuki", category: "name", usageJa: "寿の旧字体。人名・祝い事・屋号などで見かけます。", usageEn: "Old form of 寿. Seen in names, celebratory contexts, and shop names." },
-    "區": { readingJa: "く", readingEn: "ku", category: "common", usageJa: "区の旧字体。行政・地名・古い資料で見かけます。", usageEn: "Old form of 区. Seen in administrative, place-name, and older records." },
-    "驛": { readingJa: "えき", readingEn: "eki", category: "common", usageJa: "駅の旧字体。古い地図・駅名標・文献で見かけます。", usageEn: "Old form of 駅. Seen in older maps, station signs, and documents." },
-    "醫": { readingJa: "い", readingEn: "i", category: "common", usageJa: "医の旧字体。病院名・古い医学文献で見かけます。", usageEn: "Old form of 医. Seen in hospital names and older medical texts." },
-    "鐵": { readingJa: "てつ", readingEn: "tetsu", category: "common", usageJa: "鉄の旧字体。鉄道・会社名・古い表記で見かけます。", usageEn: "Old form of 鉄. Seen in railway, company, and older writing contexts." },
-    "戀": { readingJa: "れん・こい", readingEn: "ren / koi", category: "common", usageJa: "恋の旧字体。文学作品・古い歌詞・装飾的な表記で見かけます。", usageEn: "Old form of 恋. Seen in literature, older lyrics, and decorative writing." }
+    "亞": { readingJa: "あ", readingEn: "a", meaningJa: "次ぐ・第二の・アジアの音訳など。", meaningEn: "next to, secondary; also used in Asia-related transliterations.", category: "common" },
+    "惡": { readingJa: "あく・わるい", readingEn: "aku / warui", meaningJa: "悪いこと・よくない状態。", meaningEn: "bad, evil, undesirable state.", category: "common" },
+    "壓": { readingJa: "あつ・おす", readingEn: "atsu / osu", meaningJa: "押しつける・圧力をかける。", meaningEn: "to press; pressure.", category: "common" },
+    "醫": { readingJa: "い", readingEn: "i", meaningJa: "病気を治すこと・医療。", meaningEn: "medicine; medical treatment.", category: "common", usageJa: "病院名・古い医学文献で見かけます。", usageEn: "Seen in hospital names and older medical texts." },
+    "隱": { readingJa: "いん・かくれる", readingEn: "in / kakureru", meaningJa: "隠れる・見えなくする。", meaningEn: "to hide; conceal.", category: "common" },
+    "營": { readingJa: "えい・いとなむ", readingEn: "ei / itonamu", meaningJa: "営む・事業や生活を行う。", meaningEn: "to operate, manage, conduct.", category: "common" },
+    "驛": { readingJa: "えき", readingEn: "eki", meaningJa: "駅・交通や宿駅の拠点。", meaningEn: "station; transport post.", category: "common", usageJa: "古い地図・駅名標・文献で見かけます。", usageEn: "Seen in older maps, station signs, and documents." },
+    "應": { readingJa: "おう・こたえる", readingEn: "o / kotaeru", meaningJa: "応じる・こたえる・ふさわしく合わせる。", meaningEn: "to respond, answer, correspond to.", category: "common", usageJa: "古い文書・団体名・学校名などで見かけることがあります。", usageEn: "Seen in older documents, organization names, and school names." },
+    "歐": { readingJa: "おう", readingEn: "o", meaningJa: "欧州・ヨーロッパを表す字。", meaningEn: "Europe; European.", category: "common" },
+    "奧": { readingJa: "おう・おく", readingEn: "o / oku", meaningJa: "奥・深いところ。", meaningEn: "inner part, depth.", category: "common" },
+    "樂": { readingJa: "がく・らく・たのしい", readingEn: "gaku / raku / tanoshii", meaningJa: "音楽・楽しむ・楽であること。", meaningEn: "music; enjoyment; ease.", category: "common" },
+    "學": { readingJa: "がく・まなぶ", readingEn: "gaku / manabu", meaningJa: "学ぶこと・知識・学問。", meaningEn: "learning, study, scholarship.", category: "popular", usageJa: "学校名・記念碑・古い文献で見かけます。", usageEn: "Seen in school names, monuments, and older texts." },
+    "關": { readingJa: "かん・せき", readingEn: "kan / seki", meaningJa: "関所・関係する・かかわる。", meaningEn: "barrier; relation; to be connected.", category: "common" },
+    "觀": { readingJa: "かん・みる", readingEn: "kan / miru", meaningJa: "見る・考え方・ものの見方。", meaningEn: "to observe; view; perspective.", category: "common" },
+    "舊": { readingJa: "きゅう", readingEn: "kyu", meaningJa: "古い・以前の・昔の。", meaningEn: "old, former, previous.", category: "popular", usageJa: "『舊字』『舊字体』などの表記で見かけます。", usageEn: "Seen in old-style words such as 舊字." },
+    "區": { readingJa: "く", readingEn: "ku", meaningJa: "区切る・区域・行政区画。", meaningEn: "district, section, division.", category: "common", usageJa: "行政・地名・古い資料で見かけます。", usageEn: "Seen in administrative, place-name, and older records." },
+    "輕": { readingJa: "けい・かるい", readingEn: "kei / karui", meaningJa: "軽い・重くない。", meaningEn: "light; not heavy.", category: "common" },
+    "藝": { readingJa: "げい", readingEn: "gei", meaningJa: "技芸・芸術・身につけた技。", meaningEn: "art, skill, craft.", category: "common" },
+    "儉": { readingJa: "けん", readingEn: "ken", meaningJa: "つつましい・倹約する。", meaningEn: "frugal, thrifty.", category: "common" },
+    "劍": { readingJa: "けん・つるぎ", readingEn: "ken / tsurugi", meaningJa: "剣・刀剣。", meaningEn: "sword, blade.", category: "common" },
+    "嚴": { readingJa: "げん・きびしい", readingEn: "gen / kibishii", meaningJa: "厳しい・おごそか。", meaningEn: "strict, solemn, severe.", category: "common" },
+    "廣": { readingJa: "こう・ひろい", readingEn: "ko / hiroi", meaningJa: "広い・範囲が大きい。", meaningEn: "wide, broad, spacious.", category: "name", usageJa: "人名・地名・屋号で見かけます。", usageEn: "Seen in names, places, and shop names." },
+    "國": { readingJa: "こく・くに", readingEn: "koku / kuni", meaningJa: "国・国家・土地。", meaningEn: "country, nation, land.", category: "popular", usageJa: "古い文書・団体名・地名表記で見かけます。", usageEn: "Seen in older documents, organization names, and place names." },
+    "齋": { readingJa: "さい・いつき", readingEn: "sai / itsuki", meaningJa: "斎む・清める・斎場や名に使われる字。", meaningEn: "purification; ritual abstinence; used in names.", category: "name", usageJa: "人名・屋号・寺社名などで見かけます。", usageEn: "Seen in names, shop names, and shrine or temple names." },
+    "參": { readingJa: "さん・まいる", readingEn: "san / mairu", meaningJa: "参加する・参る・三の大字的表記。", meaningEn: "to participate; to visit; formal form associated with three.", category: "common" },
+    "兒": { readingJa: "じ・こ", readingEn: "ji / ko", meaningJa: "児・こども。", meaningEn: "child.", category: "common" },
+    "實": { readingJa: "じつ・み", readingEn: "jitsu / mi", meaningJa: "実・中身・まこと。", meaningEn: "truth, reality, fruit, substance.", category: "name" },
+    "壽": { readingJa: "じゅ・ことぶき", readingEn: "ju / kotobuki", meaningJa: "長生き・祝い・めでたいこと。", meaningEn: "longevity, celebration, felicity.", category: "name", usageJa: "人名・祝い事・屋号などで見かけます。", usageEn: "Seen in names, celebratory contexts, and shop names." },
+    "從": { readingJa: "じゅう・したがう", readingEn: "ju / shitagau", meaningJa: "従う・つき従う。", meaningEn: "to follow, obey.", category: "common" },
+    "處": { readingJa: "しょ・ところ", readingEn: "sho / tokoro", meaningJa: "場所・ところ・処理する。", meaningEn: "place; to deal with or process.", category: "common" },
+    "將": { readingJa: "しょう・まさに", readingEn: "sho / masani", meaningJa: "将来・率いる・まさに。", meaningEn: "general; future; about to.", category: "common" },
+    "證": { readingJa: "しょう・あかし", readingEn: "sho / akashi", meaningJa: "証明・あかし。", meaningEn: "proof, evidence, certificate.", category: "common" },
+    "讓": { readingJa: "じょう・ゆずる", readingEn: "jo / yuzuru", meaningJa: "譲る・ゆずり渡す。", meaningEn: "to transfer, yield, give way.", category: "common" },
+    "眞": { readingJa: "しん・まこと", readingEn: "shin / makoto", meaningJa: "真実・まこと。", meaningEn: "truth, reality.", category: "common" },
+    "圖": { readingJa: "ず・と", readingEn: "zu / to", meaningJa: "図・絵・計画。", meaningEn: "diagram, drawing, plan.", category: "common" },
+    "數": { readingJa: "すう・かず", readingEn: "su / kazu", meaningJa: "数・数量。", meaningEn: "number, quantity.", category: "common" },
+    "聲": { readingJa: "せい・こえ", readingEn: "sei / koe", meaningJa: "声・音。", meaningEn: "voice, sound.", category: "common" },
+    "靜": { readingJa: "せい・しずか", readingEn: "sei / shizuka", meaningJa: "静か・動きが少ない。", meaningEn: "quiet, calm, still.", category: "common" },
+    "專": { readingJa: "せん・もっぱら", readingEn: "sen / moppara", meaningJa: "専ら・ひとつに集中する。", meaningEn: "exclusive, specialized, devoted to.", category: "common" },
+    "戰": { readingJa: "せん・たたかう", readingEn: "sen / tatakau", meaningJa: "戦う・戦争。", meaningEn: "war, battle, to fight.", category: "common" },
+    "爭": { readingJa: "そう・あらそう", readingEn: "so / arasou", meaningJa: "争う・競う。", meaningEn: "to dispute, compete, fight.", category: "common" },
+    "總": { readingJa: "そう・すべて", readingEn: "so / subete", meaningJa: "総じて・すべてをまとめる。", meaningEn: "whole, total, general.", category: "common" },
+    "體": { readingJa: "たい・からだ", readingEn: "tai / karada", meaningJa: "体・からだ・形。", meaningEn: "body, form, substance.", category: "popular", usageJa: "古い書籍や旧字表記で見かけます。", usageEn: "Seen in older books and old-style writing." },
+    "對": { readingJa: "たい・つい", readingEn: "tai / tsui", meaningJa: "向かい合う・対応する。", meaningEn: "opposite, pair, correspond to.", category: "common" },
+    "擔": { readingJa: "たん・になう", readingEn: "tan / ninau", meaningJa: "担う・背負う・担当する。", meaningEn: "to carry, bear, take charge.", category: "common" },
+    "團": { readingJa: "だん", readingEn: "dan", meaningJa: "団体・まとまり。", meaningEn: "group, association, mass.", category: "common" },
+    "斷": { readingJa: "だん・たつ", readingEn: "dan / tatsu", meaningJa: "断つ・判断する・切る。", meaningEn: "to cut off; decide; judge.", category: "common" },
+    "廳": { readingJa: "ちょう", readingEn: "cho", meaningJa: "庁・役所。", meaningEn: "government office, agency.", category: "common" },
+    "聽": { readingJa: "ちょう・きく", readingEn: "cho / kiku", meaningJa: "聴く・聞き取る。", meaningEn: "to listen, hear attentively.", category: "common" },
+    "鐵": { readingJa: "てつ", readingEn: "tetsu", meaningJa: "鉄・金属の鉄。", meaningEn: "iron, steel.", category: "common", usageJa: "鉄道・会社名・古い表記で見かけます。", usageEn: "Seen in railway, company, and older writing contexts." },
+    "點": { readingJa: "てん", readingEn: "ten", meaningJa: "点・しるし・一点。", meaningEn: "point, dot, mark.", category: "common" },
+    "轉": { readingJa: "てん・ころがる", readingEn: "ten / korogaru", meaningJa: "転がる・移る・変わる。", meaningEn: "to roll, transfer, change.", category: "common" },
+    "傳": { readingJa: "でん・つたえる", readingEn: "den / tsutaeru", meaningJa: "伝える・受け継ぐ。", meaningEn: "to transmit, convey, inherit.", category: "common" },
+    "燈": { readingJa: "とう・ひ", readingEn: "to / hi", meaningJa: "灯り・ともしび。", meaningEn: "lamp, light.", category: "common" },
+    "德": { readingJa: "とく", readingEn: "toku", meaningJa: "徳・人としてのよさ・道徳的な力。", meaningEn: "virtue, moral excellence.", category: "name", usageJa: "人名・寺社名・古い文書で見かけます。", usageEn: "Seen in names, shrine or temple names, and older documents." },
+    "讀": { readingJa: "どく・よむ", readingEn: "doku / yomu", meaningJa: "読む・読み取る。", meaningEn: "to read.", category: "common" },
+    "腦": { readingJa: "のう", readingEn: "no", meaningJa: "脳・頭の中枢。", meaningEn: "brain.", category: "common" },
+    "廢": { readingJa: "はい・すたれる", readingEn: "hai / sutareru", meaningJa: "廃れる・やめる・使わなくなる。", meaningEn: "to abolish, discontinue, fall into disuse.", category: "common" },
+    "賣": { readingJa: "ばい・うる", readingEn: "bai / uru", meaningJa: "売る・販売する。", meaningEn: "to sell.", category: "common" },
+    "發": { readingJa: "はつ・ほつ", readingEn: "hatsu / hotsu", meaningJa: "発する・出る・始まる。", meaningEn: "to emit, depart, begin.", category: "common" },
+    "髮": { readingJa: "はつ・かみ", readingEn: "hatsu / kami", meaningJa: "髪・頭髪。", meaningEn: "hair of the head.", category: "common" },
+    "祕": { readingJa: "ひ・ひめる", readingEn: "hi / himeru", meaningJa: "秘密・隠す。", meaningEn: "secret, hidden.", category: "common" },
+    "濱": { readingJa: "ひん・はま", readingEn: "hin / hama", meaningJa: "浜・水辺。", meaningEn: "beach, shore, waterside.", category: "name", usageJa: "人名・地名で見かけます。", usageEn: "Seen in personal and place names." },
+    "變": { readingJa: "へん・かわる", readingEn: "hen / kawaru", meaningJa: "変わる・変える。", meaningEn: "to change; unusual.", category: "common" },
+    "邊": { readingJa: "へん・べ・あたり", readingEn: "hen / be / atari", meaningJa: "あたり・周辺・端。", meaningEn: "edge, vicinity, side.", category: "name", usageJa: "人名で見かけます。", usageEn: "Seen in personal names." },
+    "邉": { readingJa: "へん・べ・あたり", readingEn: "hen / be / atari", meaningJa: "あたり・周辺・端。", meaningEn: "edge, vicinity, side.", category: "name", usageJa: "辺の異体字・旧字系表記。人名で見かけます。", usageEn: "Variant old-style form related to 辺. Seen in personal names." },
+    "寶": { readingJa: "ほう・たから", readingEn: "ho / takara", meaningJa: "宝・大切なもの。", meaningEn: "treasure, precious thing.", category: "common" },
+    "豐": { readingJa: "ほう・ゆたか", readingEn: "ho / yutaka", meaningJa: "豊か・多い・満ちている。", meaningEn: "abundant, rich, plentiful.", category: "common" },
+    "滿": { readingJa: "まん・みちる", readingEn: "man / michiru", meaningJa: "満ちる・いっぱいになる。", meaningEn: "to be full, satisfied.", category: "common" },
+    "藥": { readingJa: "やく・くすり", readingEn: "yaku / kusuri", meaningJa: "薬・治療に使うもの。", meaningEn: "medicine, drug.", category: "common" },
+    "豫": { readingJa: "よ・あらかじめ", readingEn: "yo / arakajime", meaningJa: "予め・前もって。", meaningEn: "beforehand, in advance.", category: "common" },
+    "餘": { readingJa: "よ・あまり", readingEn: "yo / amari", meaningJa: "余り・残り。", meaningEn: "remainder, excess.", category: "common" },
+    "樣": { readingJa: "よう・さま", readingEn: "yo / sama", meaningJa: "様子・形式・敬称。", meaningEn: "manner, form, honorific title.", category: "common" },
+    "來": { readingJa: "らい・くる", readingEn: "rai / kuru", meaningJa: "来る・これから。", meaningEn: "to come; future.", category: "common" },
+    "覽": { readingJa: "らん・みる", readingEn: "ran / miru", meaningJa: "一覧する・見る。", meaningEn: "to look over, view, inspect.", category: "common" },
+    "龍": { readingJa: "りゅう・たつ", readingEn: "ryu / tatsu", meaningJa: "竜・伝説上の生き物。", meaningEn: "dragon, mythical creature.", category: "name" },
+    "禮": { readingJa: "れい", readingEn: "rei", meaningJa: "礼・作法・敬意。", meaningEn: "courtesy, ritual, respect.", category: "common" },
+    "靈": { readingJa: "れい・たま", readingEn: "rei / tama", meaningJa: "霊・魂・不思議な力。", meaningEn: "spirit, soul, supernatural force.", category: "common" },
+    "齡": { readingJa: "れい・よわい", readingEn: "rei / yowai", meaningJa: "年齢・年。", meaningEn: "age, years.", category: "common" },
+    "歷": { readingJa: "れき", readingEn: "reki", meaningJa: "歴史・経過。", meaningEn: "history, passage of time.", category: "common" },
+    "戀": { readingJa: "れん・こい", readingEn: "ren / koi", meaningJa: "恋・慕う気持ち。", meaningEn: "love, longing.", category: "common", usageJa: "文学作品・古い歌詞・装飾的な表記で見かけます。", usageEn: "Seen in literature, older lyrics, and decorative writing." },
+    "勞": { readingJa: "ろう・いたわる", readingEn: "ro / itawaru", meaningJa: "労働・苦労・いたわる。", meaningEn: "labor, toil, care.", category: "common" }
   };
 
   const blockRanges = [
@@ -104,40 +166,11 @@
     return found ? found[currentLang] : filters[filters.length - 1][currentLang];
   }
 
-  function getDefaultUsage(category, oldChar, newText) {
-    if (category === "name") {
-      return {
-        usageJa: `旧字体「${oldChar}」は現代表記「${newText}」に対応します。人名・地名で見かけることがあります。`,
-        usageEn: `Old form ${oldChar} corresponds to modern form ${newText}. It may appear in personal or place names.`
-      };
-    }
-    if (category === "common") {
-      return {
-        usageJa: `旧字体「${oldChar}」は現代表記「${newText}」に対応します。旧常用漢字・古い文書で見かけることがあります。`,
-        usageEn: `Old form ${oldChar} corresponds to modern form ${newText}. It may appear in older common-use writing or documents.`
-      };
-    }
-    if (category === "document") {
-      return {
-        usageJa: `旧字体「${oldChar}」は現代表記「${newText}」に対応します。文献・古文書・古い資料で見かけることがあります。`,
-        usageEn: `Old form ${oldChar} corresponds to modern form ${newText}. It may appear in older books, records, or historical documents.`
-      };
-    }
-    return {
-      usageJa: `旧字体・異体字「${oldChar}」は現代表記「${newText}」に対応します。字種により用途が異なるため参考として確認してください。`,
-      usageEn: `Old or variant form ${oldChar} corresponds to modern form ${newText}. Usage varies by character, so treat it as a reference entry.`
-    };
-  }
-
   function switchLang(lang) {
     currentLang = lang === "en" ? "en" : "ja";
     document.documentElement.lang = currentLang;
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
-    });
-    document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.lang === currentLang);
-    });
+    document.querySelectorAll("[data-i18n]").forEach(el => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; });
+    document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => { btn.classList.toggle("active", btn.dataset.lang === currentLang); });
     const searchInput = document.getElementById("searchInput");
     if (searchInput) {
       const ja = searchInput.dataset.placeholderJa || messages.ja.placeholder;
@@ -171,30 +204,35 @@
     if (el) el.textContent = text || "";
   }
 
-  function setStatus(messageKey) {
-    const text = messageKey ? (messages[currentLang][messageKey] || "") : "";
-    setStatusText(text);
-  }
+  function setStatus(messageKey) { setStatusText(messageKey ? (messages[currentLang][messageKey] || "") : ""); }
 
   function buildEntries(dict) {
     entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => {
       const newText = getNewText(newChar);
-      const category = getCategory(oldChar);
-      const usage = getDefaultUsage(category, oldChar, newText);
       const meta = metadata[oldChar] || {};
       return {
         oldChar,
         newText,
         block: getBlockName(oldChar),
-        category,
-        readingJa: meta.readingJa || "語による",
-        readingEn: meta.readingEn || "varies by word",
-        usageJa: meta.usageJa || usage.usageJa,
-        usageEn: meta.usageEn || usage.usageEn
+        category: getCategory(oldChar),
+        readingJa: meta.readingJa || "",
+        readingEn: meta.readingEn || "",
+        meaningJa: meta.meaningJa || "",
+        meaningEn: meta.meaningEn || "",
+        usageJa: meta.usageJa || "",
+        usageEn: meta.usageEn || ""
       };
     });
     entriesCache.sort((a, b) => a.oldChar.localeCompare(b.oldChar, "ja"));
     return entriesCache;
+  }
+
+  function addI18nLine(parent, className, jaLabel, enLabel, jaText, enText) {
+    if (!jaText && !enText) return;
+    const p = document.createElement("p");
+    p.className = className;
+    p.innerHTML = `<span data-i18n="ja">${jaLabel}：${jaText}</span><span data-i18n="en">${enLabel}: ${enText || jaText}</span>`;
+    parent.appendChild(p);
   }
 
   function createCopyButton(value, kind) {
@@ -203,9 +241,7 @@
     btn.className = "copy-btn";
     btn.dataset.copyValue = value;
     btn.dataset.copyKind = kind;
-    btn.innerHTML = kind === "new"
-      ? '<span data-i18n="ja">新字をコピー</span><span data-i18n="en">Copy modern</span>'
-      : '<span data-i18n="ja">旧字をコピー</span><span data-i18n="en">Copy old</span>';
+    btn.innerHTML = kind === "new" ? '<span data-i18n="ja">新字をコピー</span><span data-i18n="en">Copy modern</span>' : '<span data-i18n="ja">旧字をコピー</span><span data-i18n="en">Copy old</span>';
     return btn;
   }
 
@@ -220,28 +256,21 @@
     const pair = document.createElement("div");
     pair.className = "kanji-pair";
     pair.innerHTML = `<div class="kanji-old">${entry.oldChar}</div><div class="kanji-arrow" aria-hidden="true">→</div><div class="kanji-new">${entry.newText}</div>`;
+    card.appendChild(pair);
 
-    const reading = document.createElement("p");
-    reading.className = "kanji-reading";
-    reading.innerHTML = `<span data-i18n="ja">読み：${entry.readingJa}</span><span data-i18n="en">Reading: ${entry.readingEn}</span>`;
-
-    const usage = document.createElement("p");
-    usage.className = "kanji-usage";
-    usage.innerHTML = `<span data-i18n="ja">用途：${entry.usageJa}</span><span data-i18n="en">Usage: ${entry.usageEn}</span>`;
+    addI18nLine(card, "kanji-reading", "読み", "Reading", entry.readingJa, entry.readingEn);
+    addI18nLine(card, "kanji-meaning", "意味", "Meaning", entry.meaningJa, entry.meaningEn);
+    if (!compact) addI18nLine(card, "kanji-usage", "用途", "Usage", entry.usageJa, entry.usageEn);
 
     const meta = document.createElement("p");
     meta.className = "kanji-meta";
     meta.innerHTML = `<span data-i18n="ja">分類：${labelForCategory(entry.category)}</span><span data-i18n="en">Category: ${labelForCategory(entry.category)}</span>`;
+    card.appendChild(meta);
 
     const actions = document.createElement("div");
     actions.className = "copy-actions";
     actions.appendChild(createCopyButton(entry.oldChar, "old"));
     actions.appendChild(createCopyButton(entry.newText, "new"));
-
-    card.appendChild(pair);
-    card.appendChild(reading);
-    if (!compact) card.appendChild(usage);
-    card.appendChild(meta);
     card.appendChild(actions);
     return card;
   }
@@ -273,7 +302,7 @@
     const q = currentQuery.trim().toLowerCase();
     return entriesCache.filter(entry => {
       const matchesFilter = currentFilter === "all" || entry.category === currentFilter || (currentFilter === "popular" && popularOld.has(entry.oldChar));
-      const haystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.usageJa} ${entry.usageEn} ${labelForCategory(entry.category)}`.toLowerCase();
+      const haystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn} ${labelForCategory(entry.category)}`.toLowerCase();
       return matchesFilter && (!q || haystack.includes(q));
     });
   }
@@ -313,9 +342,7 @@
   function updateStatus(visibleCount) {
     const total = entriesCache.length;
     const isSearch = currentQuery.trim().length > 0 || currentFilter !== "all";
-    setStatusText(currentLang === "en"
-      ? `${isSearch ? messages.en.searchResults : messages.en.showing}: ${visibleCount} / ${total}`
-      : `${isSearch ? messages.ja.searchResults : messages.ja.showing}：${visibleCount}件 / ${messages.ja.total}${total}件`);
+    setStatusText(currentLang === "en" ? `${isSearch ? messages.en.searchResults : messages.en.showing}: ${visibleCount} / ${total}` : `${isSearch ? messages.ja.searchResults : messages.ja.showing}：${visibleCount}件 / ${messages.ja.total}${total}件`);
   }
 
   function renderAll() {
@@ -352,17 +379,10 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => {
-      btn.addEventListener("click", () => { currentLang = btn.dataset.lang === "en" ? "en" : "ja"; renderAll(); });
-    });
+    document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => { btn.addEventListener("click", () => { currentLang = btn.dataset.lang === "en" ? "en" : "ja"; renderAll(); }); });
     const searchInput = document.getElementById("searchInput");
-    if (searchInput) {
-      searchInput.addEventListener("input", () => { currentQuery = searchInput.value || ""; renderAll(); });
-    }
-    document.addEventListener("click", ev => {
-      const target = ev.target.closest(".copy-btn");
-      if (target) handleCopy(target);
-    });
+    if (searchInput) searchInput.addEventListener("input", () => { currentQuery = searchInput.value || ""; renderAll(); });
+    document.addEventListener("click", ev => { const target = ev.target.closest(".copy-btn"); if (target) handleCopy(target); });
     switchLang(currentLang);
     setStatus("loading");
     loadDict().then(dict => { setCounts(dict); buildEntries(dict); renderAll(); }).catch(() => setStatus("loadError"));
