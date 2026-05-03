@@ -38,6 +38,49 @@
   font-weight: 600;
 }
 
+.old-kanji-tool-links {
+  margin: 16px 0 24px;
+}
+
+.tool-link-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px;
+}
+
+.tool-link-title {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tool-link-desc {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.tool-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tool-link-button:hover {
+  color: #fff;
+  opacity: 0.9;
+}
+
 @media (max-width: 480px) {
   .kanji-meaning {
     font-size: 0.84rem;
@@ -48,5 +91,22 @@
   .verified-badge {
     font-size: 0.74rem;
     padding: 2px 7px;
+  }
+
+  .tool-link-card {
+    padding: 12px;
+  }
+
+  .tool-link-button {
+    width: 100%;
+  }
+
+  .group-wrapper .kanji-card-basic {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .group-wrapper .kanji-card-basic .copy-actions {
+    margin-top: 2px;
   }
 }
