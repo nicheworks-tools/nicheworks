@@ -1,9 +1,13 @@
-.intro,.faq,.nw-donate,.nw-links,.nw-footer{border:1px solid var(--line);background:var(--card);border-radius:16px;}
+.intro,.faq,.nw-donate,.nw-links,.nw-footer,.popularSearches{border:1px solid var(--line);background:var(--card);border-radius:16px;}
 .intro{margin:8px 0 12px;padding:14px;}
 .intro__eyebrow{margin:0 0 6px;font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
 .intro h1{margin:0;font-size:22px;line-height:1.25;letter-spacing:.01em;}
 .intro p{margin:8px 0 0;color:var(--text);line-height:1.65;font-size:14px;}
 .intro .intro__privacy{color:var(--muted);font-size:12px;}
+.popularSearches{margin:0 0 12px;padding:12px;}
+.popularSearches__title{font-size:12px;font-weight:900;color:var(--muted);margin:0 0 8px;}
+.popularSearches__chips{display:flex;flex-wrap:wrap;gap:8px;}
+.popularSearches__chips .pillbtn{min-height:34px;font-size:12px;}
 .faq{margin:18px 0 14px;padding:14px;}
 .faq h2{margin:0 0 10px;font-size:16px;}
 .faq details{border-top:1px solid var(--line);padding:10px 0;}
@@ -23,4 +27,4 @@
 .menuGroup__label{display:flex;gap:8px;align-items:center;font-weight:900;color:var(--text);}
 .menuGroup__actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
 .menuGroup__actions .pillbtn{min-height:40px;}
-@media (max-width:480px){.intro{margin-top:6px;padding:12px;}.intro h1{font-size:19px;}.nw-donate-links,.nw-links,.menuGroup__actions{flex-direction:column;align-items:stretch;}.nw-donate-links a,.nw-links a,.menuGroup__actions .pillbtn{width:100%;}.nw-footer{margin-left:12px;margin-right:12px;}}
+@media (max-width:480px){.intro{margin-top:6px;padding:12px;}.intro h1{font-size:19px;}.nw-donate-links,.nw-links,.menuGroup__actions{flex-direction:column;align-items:stretch;}.nw-donate-links a,.nw-links a,.menuGroup__actions .pillbtn{width:100%;}.popularSearches__chips{display:grid;grid-template-columns:1fr 1fr;}.nw-footer{margin-left:12px;margin-right:12px;}}
