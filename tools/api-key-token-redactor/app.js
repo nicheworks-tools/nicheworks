@@ -1,18 +1,28 @@
 const el = (id) => document.getElementById(id);
 
+let currentLang = "ja";
+let lastResult = null;
+
 const defaultLang = () => {
   const lang = (navigator.language || "").toLowerCase();
   return lang.startsWith("ja") ? "ja" : "en";
 };
 
+const t = (ja, en) => (currentLang === "ja" ? ja : en);
+
 const applyLang = (lang) => {
+  currentLang = lang || defaultLang();
   const nodes = document.querySelectorAll("[data-i18n]");
   nodes.forEach((node) => {
-    node.style.display = node.dataset.i18n === lang ? "" : "none";
+    node.style.display = node.dataset.i18n === currentLang ? "" : "none";
   });
   document.querySelectorAll(".nw-lang-switch button").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.lang === lang);
+    btn.classList.toggle("active", btn.dataset.lang === currentLang);
   });
+  if (lastResult) {
+    renderFindings(lastResult.findings);
+    updateSafetySummary(lastResult.findings);
+  }
 };
 
 const placeholderFor = (text, useKeepLength, placeholder) => {
@@ -22,74 +32,207 @@ const placeholderFor = (text, useKeepLength, placeholder) => {
   return placeholder;
 };
 
+const lineNumberFor = (text, index) => text.slice(0, index).split(/\r\n|\r|\n/).length;
+
+const previewFor = (text, start, end) => {
+  const lineStart = text.lastIndexOf("\n", start - 1) + 1;
+  const nextBreak = text.indexOf("\n", end);
+  const lineEnd = nextBreak === -1 ? text.length : nextBreak;
+  const raw = text.slice(lineStart, lineEnd).replace(/\s+/g, " ").trim();
+  if (!raw) return text.slice(start, end).replace(/\s+/g, " ").slice(0, 90);
+  return raw.length > 120 ? `${raw.slice(0, 117)}...` : raw;
+};
+
+const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (ch) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+}[ch]));
+
+const severityRank = { high: 3, medium: 2, low: 1 };
+
 const redactContent = (text, options) => {
-  const counts = {
+  const findings = [];
+
+  const hasOverlap = (start, end) => findings.some((item) => start < item.end && end > item.start);
+
+  const addFinding = ({ match, value, valueIndex, type, label, severity }) => {
+    if (!match || !value) return;
+    const localOffset = typeof valueIndex === "number" ? valueIndex : match[0].indexOf(value);
+    if (localOffset < 0) return;
+    const start = match.index + localOffset;
+    const end = start + value.length;
+    if (start < 0 || end <= start || hasOverlap(start, end)) return;
+    findings.push({
+      type,
+      label,
+      severity,
+      line: lineNumberFor(text, start),
+      preview: previewFor(text, match.index, match.index + match[0].length),
+      start,
+      end,
+    });
+  };
+
+  const scanWhole = (regex, type, label, severity) => {
+    regex.lastIndex = 0;
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+      addFinding({ match, value: match[0], valueIndex: 0, type, label, severity });
+      if (match[0].length === 0) regex.lastIndex += 1;
+    }
+  };
+
+  const scanGroup = (regex, groupIndex, type, label, severity) => {
+    regex.lastIndex = 0;
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+      const value = match[groupIndex];
+      addFinding({ match, value, type, label, severity });
+      if (match[0].length === 0) regex.lastIndex += 1;
+    }
+  };
+
+  if (options.modePrivateKey) {
+    scanWhole(/-----BEGIN [^-]*PRIVATE KEY-----[\s\S]*?-----END [^-]*PRIVATE KEY-----/g, "privateKey", "Private key block", "high");
+  }
+
+  if (options.modeBearer) {
+    scanGroup(/(Authorization\s*:\s*Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Authorization Bearer token", "high");
+    scanGroup(/\b(Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Bearer token", "high");
+    scanGroup(/(Authorization\s*:\s*)(?!Bearer\s+)([^\r\n]{8,})/gi, 2, "header", "Authorization header", "high");
+  }
+
+  if (options.modeJwt) {
+    scanWhole(/\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/g, "jwt", "JWT", "high");
+  }
+
+  if (options.modeApiKeys) {
+    scanWhole(/\bsk-proj-[A-Za-z0-9_-]{12,}\b/g, "apiKeys", "OpenAI project key", "high");
+    scanWhole(/\bsk-[A-Za-z0-9]{16,}\b/g, "apiKeys", "OpenAI API key", "high");
+    scanWhole(/\bsk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", "Stripe secret key", "high");
+    scanWhole(/\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, "apiKeys", "GitHub fine-grained token", "high");
+    scanWhole(/\bgh[opuslr]_[A-Za-z0-9]{20,}\b/g, "apiKeys", "GitHub token", "high");
+    scanWhole(/\b(?:xox[baprs]|xapp)-[A-Za-z0-9-]{10,}\b/g, "apiKeys", "Slack token", "high");
+    scanWhole(/\bAIza[0-9A-Za-z_-]{20,}\b/g, "apiKeys", "Google API key", "high");
+    scanWhole(/\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "SendGrid API key", "high");
+    scanWhole(/\bglpat-[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "GitLab token", "high");
+    scanWhole(/\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g, "apiKeys", "AWS access key ID", "high");
+  }
+
+  if (options.modeGenericSecret) {
+    const secretKeys = "api[_-]?key|apikey|token|secret|password|passwd|pwd|client[_-]?secret|access[_-]?token|refresh[_-]?token|auth[_-]?token|private[_-]?key|aws[_-]?secret[_-]?access[_-]?key|secretAccessKey";
+    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)(["'])([^"'\\r\\n]{8,})(["'])`, "gi"), 3, "genericSecret", "Quoted secret value", "medium");
+    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)([^\\s"',}\\]]{8,})`, "gi"), 2, "genericSecret", "Labeled secret value", "medium");
+    scanGroup(/([?&](?:token|api_key|apikey|access_token|refresh_token|auth_token|client_secret)=)([^&#\s]{8,})/gi, 2, "urlQuery", "URL query secret", "medium");
+    scanGroup(/(Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Cookie header", "medium");
+  }
+
+  findings.sort((a, b) => a.start - b.start || severityRank[b.severity] - severityRank[a.severity]);
+
+  let output = "";
+  let cursor = 0;
+  findings.forEach((item) => {
+    output += text.slice(cursor, item.start);
+    output += placeholderFor(text.slice(item.start, item.end), options.keepLength, options.placeholder);
+    cursor = item.end;
+  });
+  output += text.slice(cursor);
+
+  const counts = findings.reduce((acc, item) => {
+    acc[item.type] = (acc[item.type] || 0) + 1;
+    acc[item.severity] = (acc[item.severity] || 0) + 1;
+    acc.total += 1;
+    return acc;
+  }, {
     apiKeys: 0,
     bearer: 0,
     jwt: 0,
     privateKey: 0,
     genericSecret: 0,
-  };
+    header: 0,
+    urlQuery: 0,
+    cookie: 0,
+    high: 0,
+    medium: 0,
+    low: 0,
+    total: 0,
+  });
 
-  let output = text;
+  return { output, counts, findings };
+};
 
-  const replaceWhole = (regex, type) => {
-    output = output.replace(regex, (match) => {
-      counts[type] += 1;
-      return placeholderFor(match, options.keepLength, options.placeholder);
-    });
-  };
-
-  const replaceToken = (regex, type) => {
-    output = output.replace(regex, (match, token) => {
-      counts[type] += 1;
-      return match.replace(token, placeholderFor(token, options.keepLength, options.placeholder));
-    });
-  };
-
-  const replaceValueGroup = (regex, type) => {
-    output = output.replace(regex, (match, label, value) => {
-      counts[type] += 1;
-      return match.replace(value, placeholderFor(value, options.keepLength, options.placeholder));
-    });
-  };
-
-  if (options.modePrivateKey) {
-    replaceWhole(/-----BEGIN [^-]+ PRIVATE KEY-----[\s\S]*?-----END [^-]+ PRIVATE KEY-----/g, "privateKey");
-  }
-
-  if (options.modeBearer) {
-    replaceToken(/Authorization:\s*Bearer\s+([A-Za-z0-9\-\._~\+\/]+=*)/gi, "bearer");
-    replaceToken(/\bBearer\s+([A-Za-z0-9\-\._~\+\/]+=*)/gi, "bearer");
-  }
-
-  if (options.modeJwt) {
-    replaceWhole(/\beyJ[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\b/g, "jwt");
-  }
-
-  if (options.modeApiKeys) {
-    replaceWhole(/\bsk-[A-Za-z0-9]{16,}\b/g, "apiKeys");
-    replaceWhole(/\bsk_(live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys");
-    replaceWhole(/\bghp_[A-Za-z0-9]{20,}\b/g, "apiKeys");
-    replaceWhole(/\bAKIA[0-9A-Z]{16}\b/g, "apiKeys");
-  }
-
-  if (options.modeGenericSecret) {
-    replaceValueGroup(/(api[_-]?key|token|secret|password)\s*[:=]\s*([^\s'\"]{8,})/gi, "genericSecret");
-  }
-
-  return { output, counts };
+const setText = (id, value) => {
+  const node = el(id);
+  if (node) node.textContent = String(value);
 };
 
 const updateSummary = (counts) => {
-  const total = Object.values(counts).reduce((sum, value) => sum + value, 0);
-  el("countApiKeys").textContent = String(counts.apiKeys);
-  el("countBearer").textContent = String(counts.bearer);
-  el("countJwt").textContent = String(counts.jwt);
-  el("countPrivateKey").textContent = String(counts.privateKey);
-  el("countGeneric").textContent = String(counts.genericSecret);
-  el("countTotal").textContent = String(total);
+  setText("countApiKeys", counts.apiKeys || 0);
+  setText("countBearer", counts.bearer || 0);
+  setText("countJwt", counts.jwt || 0);
+  setText("countPrivateKey", counts.privateKey || 0);
+  setText("countGeneric", counts.genericSecret || 0);
+  setText("countHeaders", (counts.header || 0) + (counts.cookie || 0));
+  setText("countUrlQuery", counts.urlQuery || 0);
+  setText("countHigh", counts.high || 0);
+  setText("countMedium", counts.medium || 0);
+  setText("countTotal", counts.total || 0);
 };
+
+const renderFindings = (findings = []) => {
+  const list = el("findingsList");
+  if (!list) return;
+  if (!findings.length) {
+    list.innerHTML = `<p class="empty-state">${escapeHtml(t("検出結果はまだありません。検出0件でも、共有前に目視確認してください。", "No findings yet. Even with zero detections, review manually before sharing."))}</p>`;
+    return;
+  }
+  list.innerHTML = findings.map((item) => `
+    <article class="finding-item severity-${escapeHtml(item.severity)}">
+      <div class="finding-main">
+        <span class="severity-pill">${escapeHtml(item.severity.toUpperCase())}</span>
+        <strong>${escapeHtml(item.label)}</strong>
+        <span class="finding-line">${escapeHtml(t("行", "Line"))} ${escapeHtml(item.line)}</span>
+      </div>
+      <code>${escapeHtml(item.preview)}</code>
+    </article>
+  `).join("");
+};
+
+const updateSafetySummary = (findings = []) => {
+  const box = el("safetySummary");
+  if (!box) return;
+  const high = findings.filter((item) => item.severity === "high").length;
+  const medium = findings.filter((item) => item.severity === "medium").length;
+  const privateKeys = findings.filter((item) => item.type === "privateKey").length;
+  const headers = findings.filter((item) => item.type === "bearer" || item.type === "header" || item.type === "cookie").length;
+  if (!findings.length) {
+    box.textContent = t("検出なし。ただし、独自形式の秘密情報・Cookie・URLパラメータ・メールアドレス・IPなどは残る可能性があります。", "No findings. Custom secrets, cookies, URL parameters, emails, or IP addresses may still remain.");
+    box.className = "safety-summary warning";
+    return;
+  }
+  box.textContent = t(
+    `検出結果：${findings.length}件 / High：${high}件 / Medium：${medium}件 / 秘密鍵：${privateKeys}件 / ヘッダー系：${headers}件。共有前に出力を再確認してください。`,
+    `Findings: ${findings.length} / High: ${high} / Medium: ${medium} / Private keys: ${privateKeys} / Headers: ${headers}. Review the output before sharing.`
+  );
+  box.className = high > 0 ? "safety-summary danger" : "safety-summary warning";
+};
+
+const emptyCounts = () => ({
+  apiKeys: 0,
+  bearer: 0,
+  jwt: 0,
+  privateKey: 0,
+  genericSecret: 0,
+  header: 0,
+  urlQuery: 0,
+  cookie: 0,
+  high: 0,
+  medium: 0,
+  low: 0,
+  total: 0,
+});
 
 const showToast = (msg) => {
   const toast = el("copyToast");
@@ -99,7 +242,7 @@ const showToast = (msg) => {
   clearTimeout(showToast.timer);
   showToast.timer = setTimeout(() => {
     toast.hidden = true;
-  }, 1200);
+  }, 1600);
 };
 
 const downloadText = (filename, text) => {
@@ -112,6 +255,30 @@ const downloadText = (filename, text) => {
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
+};
+
+const samples = {
+  env: `OPENAI_API_KEY="sk-proj-demo1234567890abcdef"
+GITHUB_TOKEN=github_pat_demo_1234567890abcdef123456
+SLACK_BOT_TOKEN=xoxb-123456789012-123456789012-demoTOKEN
+AWS_ACCESS_KEY_ID=AKIA1234567890ABCDEF
+AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"`,
+  json: `{
+  "apiKey": "AIzaSyDemoKey1234567890abcdefABCDE",
+  "client_secret": "demo-client-secret-1234567890",
+  "sendgrid": "SG.demo1234567890.demo1234567890",
+  "gitlab": "glpat-demo1234567890abcd"
+}`,
+  curl: `curl https://api.example.com/v1/items \\
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.demoPayload123456.demoSignature123456" \\
+  -H "Cookie: sessionid=abc123def456ghi789; token=hiddenvalue123456"`,
+  log: `2026-05-03T20:10:00Z GET /callback?access_token=abc123def456ghi789&user=demo 200
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+password="should-not-be-shared-12345"`,
+  privateKey: `-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCdemoDemoDemo1234567890
+this-is-a-fake-private-key-block-for-redaction-testing-only
+-----END PRIVATE KEY-----`,
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -128,41 +295,60 @@ document.addEventListener("DOMContentLoaded", () => {
   const copyBtn = el("copyBtn");
   const downloadBtn = el("downloadBtn");
 
-  updateSummary({ apiKeys: 0, bearer: 0, jwt: 0, privateKey: 0, genericSecret: 0 });
+  const getOptions = () => ({
+    modeApiKeys: el("modeApiKeys").checked,
+    modeBearer: el("modeBearer").checked,
+    modeJwt: el("modeJwt").checked,
+    modePrivateKey: el("modePrivateKey").checked,
+    modeGenericSecret: el("modeGenericSecret").checked,
+    placeholder: el("placeholderStyle").value,
+    keepLength: el("keepLengthToggle").checked,
+  });
 
-  redactBtn.addEventListener("click", () => {
-    const options = {
-      modeApiKeys: el("modeApiKeys").checked,
-      modeBearer: el("modeBearer").checked,
-      modeJwt: el("modeJwt").checked,
-      modePrivateKey: el("modePrivateKey").checked,
-      modeGenericSecret: el("modeGenericSecret").checked,
-      placeholder: el("placeholderStyle").value,
-      keepLength: el("keepLengthToggle").checked,
-    };
-
+  const runRedaction = () => {
     const text = input.value || "";
-    const result = redactContent(text, options);
+    const result = redactContent(text, getOptions());
     output.value = result.output;
+    lastResult = result;
     updateSummary(result.counts);
+    renderFindings(result.findings);
+    updateSafetySummary(result.findings);
+  };
+
+  updateSummary(emptyCounts());
+  renderFindings([]);
+  updateSafetySummary([]);
+
+  redactBtn.addEventListener("click", runRedaction);
+
+  document.querySelectorAll("[data-sample]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const sample = samples[button.dataset.sample];
+      if (!sample) return;
+      input.value = sample;
+      runRedaction();
+    });
   });
 
   clearBtn.addEventListener("click", () => {
     input.value = "";
     output.value = "";
-    updateSummary({ apiKeys: 0, bearer: 0, jwt: 0, privateKey: 0, genericSecret: 0 });
+    lastResult = null;
+    updateSummary(emptyCounts());
+    renderFindings([]);
+    updateSafetySummary([]);
     input.focus();
   });
 
   copyBtn.addEventListener("click", async () => {
     const text = output.value || "";
-    if (!text) {
-      showToast("Empty");
+    if (!text.trim()) {
+      showToast(t("伏字済みテキストがありません", "No redacted text to copy"));
       return;
     }
     try {
       await navigator.clipboard.writeText(text);
-      showToast("Copied");
+      showToast(t("伏字済みテキストをコピーしました", "Copied redacted text"));
     } catch {
       const textarea = document.createElement("textarea");
       textarea.value = text;
@@ -170,13 +356,18 @@ document.addEventListener("DOMContentLoaded", () => {
       textarea.select();
       document.execCommand("copy");
       textarea.remove();
-      showToast("Copied");
+      showToast(t("伏字済みテキストをコピーしました", "Copied redacted text"));
     }
   });
 
   downloadBtn.addEventListener("click", () => {
     const text = output.value || "";
-    const filename = `redacted-${new Date().toISOString().slice(0, 10)}.txt`;
+    if (!text.trim()) {
+      showToast(t("保存する伏字済みテキストがありません", "No redacted text to save"));
+      return;
+    }
+    const filename = `redacted-secrets-${new Date().toISOString().slice(0, 10)}.txt`;
     downloadText(filename, text);
+    showToast(t("TXTを保存しました", "TXT saved"));
   });
 });
