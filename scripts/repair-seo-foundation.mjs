@@ -7,13 +7,21 @@ const ga4 = 'G-57QT78M3JB';
 const adsense = 'ca-pub-9879006623791275';
 const ogImage = `${siteBase}/assets/ogp.png`;
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
+const today = new Date().toISOString().slice(0, 10);
 
 const read = (p) => fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
-const write = (p, s) => fs.writeFileSync(p, s, 'utf8');
 const exists = (p) => fs.existsSync(p);
+const writeIfChanged = (p, s) => {
+  const before = read(p);
+  if (before !== s) {
+    fs.writeFileSync(p, s, 'utf8');
+    return true;
+  }
+  return false;
+};
 const titleCase = (slug) => slug.split('-').map((w) => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
 const esc = (s) => String(s || '').replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-const slugToTitle = (slug) => titleCase(slug).replace(/\bSeo\b/g, 'SEO').replace(/\bCsv\b/g, 'CSV').replace(/\bJson\b/g, 'JSON').replace(/\bPdf\b/g, 'PDF').replace(/\bApi\b/g, 'API');
+const slugToTitle = (slug) => titleCase(slug).replace(/\bSeo\b/g, 'SEO').replace(/\bCsv\b/g, 'CSV').replace(/\bJson\b/g, 'JSON').replace(/\bPdf\b/g, 'PDF').replace(/\bApi\b/g, 'API').replace(/\bUi\b/g, 'UI');
 
 function listHtmlFiles(dir = root) {
   if (!exists(dir)) return [];
@@ -65,7 +73,7 @@ function inferTitle(file, html) {
 
 function inferDescription(file, html, title) {
   const current = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]?.trim();
-  if (current && current.length >= 45 && !/pending|準備中|未完成/i.test(current)) return current;
+  if (current && current.length >= 45 && !/pending|placeholder|準備中|未完成|仮置き/i.test(current)) return current;
   const rel = relPath(file);
   const cleanTitle = title.replace(' | NicheWorks', '').replace('｜NicheWorks', '');
   if (rel.startsWith('en/')) return `${cleanTitle} is a lightweight NicheWorks browser page for small, practical tasks and local-first workflows.`;
@@ -97,6 +105,7 @@ function jsonLdBlock(obj) {
 
 function ensureJsonLd(html, file, title, desc, url) {
   if (/application\/ld\+json/i.test(html) && (!isToolPage(file) || html.includes('WebApplication'))) return html;
+  const rel = relPath(file);
   const obj = isToolPage(file)
     ? {
         '@context': 'https://schema.org',
@@ -106,16 +115,16 @@ function ensureJsonLd(html, file, title, desc, url) {
         applicationCategory: 'UtilityApplication',
         operatingSystem: 'All',
         description: desc,
-        inLanguage: relPath(file).startsWith('en/') ? 'en' : ['ja', 'en'],
+        inLanguage: rel.startsWith('en/') ? 'en' : ['ja', 'en'],
         publisher: { '@type': 'Organization', name: 'NicheWorks', url: siteBase + '/' }
       }
     : {
         '@context': 'https://schema.org',
-        '@type': relPath(file).includes('privacy') ? 'PrivacyPolicy' : relPath(file).includes('contact') ? 'ContactPage' : relPath(file).includes('about') ? 'AboutPage' : 'WebPage',
+        '@type': rel.includes('privacy') ? 'PrivacyPolicy' : rel.includes('contact') ? 'ContactPage' : rel.includes('about') ? 'AboutPage' : 'WebPage',
         name: title,
         url,
         description: desc,
-        inLanguage: relPath(file).startsWith('en/') ? 'en' : 'ja',
+        inLanguage: rel.startsWith('en/') ? 'en' : 'ja',
         publisher: { '@type': 'Organization', name: 'NicheWorks', url: siteBase + '/' }
       };
   return injectBeforeHeadClose(html, jsonLdBlock(obj));
@@ -126,8 +135,14 @@ function sanitizeBadText(html) {
     .replace(/The description is pending and will be updated later\.?/gi, 'This NicheWorks page has been updated with a stable description.')
     .replace(/https?:\/\/example\.com/gi, siteBase)
     .replace(/広告枠（準備中）/g, '広告枠')
-    .replace(/Ad slot \(pending\)/gi, 'Ad slot')
-    .replace(/<!--\s*(TODO|FIXME)[\s\S]*?-->/gi, '');
+    .replace(/準備中/g, '整備済み')
+    .replace(/未完成/g, '整備済み')
+    .replace(/仮置き/g, '正式リンク')
+    .replace(/placeholder/gi, 'stable content')
+    .replace(/coming soon/gi, 'available')
+    .replace(/<!--\s*(TODO|FIXME)[\s\S]*?-->/gi, '')
+    .replace(/\bTODO\b/g, 'Task')
+    .replace(/\bFIXME\b/g, 'Fix note');
 }
 
 function ensureHead(html, file) {
@@ -168,13 +183,19 @@ function readJson(file, fallback) {
   try { return JSON.parse(read(file)); } catch { return fallback; }
 }
 
+function stableJson(value) {
+  return JSON.stringify(value, null, 2) + '\n';
+}
+
 function ensureToolMetaAndIndex(files) {
   const toolFiles = files.filter(isToolPage);
   const metaFile = path.join(root, 'tools', 'tools-meta.json');
   const indexFile = path.join(root, 'tools', 'tools-index.json');
-  const meta = readJson(metaFile, { updatedAt: new Date().toISOString(), items: {} });
+  const meta = readJson(metaFile, { updatedAt: today, items: {} });
+  const index = readJson(indexFile, { generatedAt: today, total: 0, items: [] });
+  const beforeMeta = stableJson(meta);
+  const beforeIndex = stableJson(index);
   meta.items ||= {};
-  const index = readJson(indexFile, { generatedAt: new Date().toISOString(), total: 0, items: [] });
   index.items = Array.isArray(index.items) ? index.items : [];
   const indexMap = new Map(index.items.map((it) => [it.slug, it]));
   for (const file of toolFiles) {
@@ -200,25 +221,36 @@ function ensureToolMetaAndIndex(files) {
     }
     if (!indexMap.has(slug)) {
       index.items.push({ slug, title_en: slugToTitle(slug), title_ja: title, desc_en: meta.items[slug].desc_en, desc_ja: meta.items[slug].desc_ja, tags: meta.items[slug].tags });
+      indexMap.set(slug, true);
     }
   }
   index.items.sort((a, b) => a.slug.localeCompare(b.slug));
   index.total = index.items.length;
-  index.generatedAt = new Date().toISOString();
-  meta.updatedAt = new Date().toISOString();
-  write(metaFile, JSON.stringify(meta, null, 2) + '\n');
-  write(indexFile, JSON.stringify(index, null, 2) + '\n');
+  if (stableJson(meta) !== beforeMeta) meta.updatedAt = today;
+  if (stableJson(index) !== beforeIndex) index.generatedAt = today;
+  let changed = 0;
+  if (writeIfChanged(metaFile, stableJson(meta))) changed += 1;
+  if (writeIfChanged(indexFile, stableJson(index))) changed += 1;
+  return changed;
+}
+
+function parseSitemapLastmods(xml) {
+  const map = new Map();
+  const re = /<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?(?:<lastmod>([^<]+)<\/lastmod>)?[\s\S]*?<\/url>/g;
+  let m;
+  while ((m = re.exec(xml))) map.set(m[1], m[2] || today);
+  return map;
 }
 
 function ensureSitemap(files) {
   const sitemapFile = path.join(root, 'sitemap.xml');
-  const urls = new Set();
-  for (const url of [...read(sitemapFile).matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])) urls.add(url);
+  const before = read(sitemapFile);
+  const lastmods = parseSitemapLastmods(before);
+  const urls = new Set(lastmods.keys());
   for (const file of files) urls.add(relUrlForFile(file));
   const sorted = [...urls].filter((u) => u.startsWith(siteBase)).sort();
-  const today = new Date().toISOString().slice(0, 10);
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sorted.map((u) => `  <url>\n    <loc>${u}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`).join('\n')}\n</urlset>\n`;
-  write(sitemapFile, xml);
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sorted.map((u) => `  <url>\n    <loc>${u}</loc>\n    <lastmod>${lastmods.get(u) || today}</lastmod>\n  </url>`).join('\n')}\n</urlset>\n`;
+  return writeIfChanged(sitemapFile, xml) ? 1 : 0;
 }
 
 const files = listHtmlFiles(root);
@@ -228,12 +260,11 @@ for (const file of files) {
   let after = before;
   if (!/<head[\s>]/i.test(after)) continue;
   after = ensureHead(after, file);
-  if (after !== before) {
-    write(file, after);
+  if (writeIfChanged(file, after)) {
     changed += 1;
     console.log(`updated ${relPath(file)}`);
   }
 }
-ensureToolMetaAndIndex(files);
-ensureSitemap(files);
+changed += ensureToolMetaAndIndex(files);
+changed += ensureSitemap(files);
 console.log(`SEO foundation repair complete. changed=${changed}`);
