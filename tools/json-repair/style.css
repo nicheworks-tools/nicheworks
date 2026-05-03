@@ -433,3 +433,16 @@ a:hover{ opacity:.85; }
   padding:10px;
   background:#fff;
 }
+
+.jr-validate-extra{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+}
+.jr-validate-extra .jr-mini{
+  margin-top:6px;
+  line-height:1.6;
+}
+.jr-diff-note{
+  margin-top:8px;
+}
