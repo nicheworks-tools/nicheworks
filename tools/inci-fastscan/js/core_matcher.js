@@ -15,7 +15,15 @@ function matchOne(name, dict) {
 }
 
 function normalize(s) {
-  return String(s || "").toLowerCase().trim();
+  return String(s || "")
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, "-")
+    .replace(/[\s_]+/g, " ")
+    .replace(/[()（）［］\[\]{}]/g, "")
+    .replace(/，/g, ",")
+    .replace(/\s*,\s*/g, ",")
+    .trim();
 }
 
 function found(item, input) {
@@ -26,6 +34,7 @@ function found(item, input) {
     jp: item.jp || [],
     alias: item.alias || [],
     safety: item.safety,
+    category: item.category || "general",
     note_short: item.note_short
   };
 }
