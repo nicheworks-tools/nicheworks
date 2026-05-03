@@ -21,7 +21,7 @@ body {
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 12px 32px; /* ← 下に余白追加（footer衝突防止） */
+  padding: 0 12px 32px;
 }
 
 /* Language Switch */
@@ -223,7 +223,7 @@ body {
 .nw-links {
   text-align: center;
   font-size: 12px;
-  margin: 20px 0 24px; /* ← footer との余白を確保 */
+  margin: 20px 0 24px;
   color: #6b7280;
 }
 .nw-links a {
@@ -236,7 +236,7 @@ body {
 
 /* Footer */
 .nw-footer {
-  margin-top: 32px; /* ← main と競合しないため拡張 */
+  margin-top: 32px;
   padding: 16px 8px 12px;
   border-top: 1px solid #e5e7eb;
   font-size: 11px;
@@ -246,4 +246,135 @@ body {
 }
 .nw-footer-line {
   margin: 2px 0;
+}
+
+/* EXIF Cleaner Mini content polish */
+.intro-block,
+.info-block,
+.faq-block,
+.result-panel {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.intro-block {
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+.intro-block p,
+.info-block p {
+  margin: 0 0 6px;
+}
+.intro-note,
+.status-note,
+.format-help,
+.result-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+.status-note {
+  max-width: 640px;
+  margin: 6px auto 0;
+}
+.format-help {
+  max-width: 640px;
+  margin: 8px auto 0;
+  text-align: left;
+}
+.format-help p {
+  margin: 2px 0;
+}
+.result-panel {
+  margin-top: 16px;
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+.result-panel .done-msg {
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+.result-title {
+  margin: 8px 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #14532d;
+}
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.result-actions a,
+.secondary-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #111827;
+  font-size: 12px;
+  text-decoration: none;
+}
+.secondary-btn {
+  cursor: pointer;
+}
+.faq-block {
+  max-width: 760px;
+  margin-top: 28px;
+  margin-bottom: 22px;
+}
+.faq-block h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  text-align: center;
+}
+.faq-item {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.faq-item:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.faq-item h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #111827;
+}
+.faq-item p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+@media (max-width: 480px) {
+  .nw-main {
+    padding: 0 10px 28px;
+  }
+  .drop-area {
+    padding: 22px 10px;
+  }
+  .result-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .result-actions a,
+  .secondary-btn,
+  .clean-btn {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
 }
