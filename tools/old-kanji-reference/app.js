@@ -156,8 +156,8 @@
         const meaning = document.createElement("p");
         meaning.className = "kanji-meaning";
         meaning.innerHTML = `
-          <span data-i18n="ja">意味：準備中</span>
-          <span data-i18n="en">Meaning: placeholder</span>
+          <span data-i18n="ja">旧字体と現代表記の対応</span>
+          <span data-i18n="en">Old and modern kanji pair</span>
         `;
 
         const copyBtn = document.createElement("button");
@@ -179,6 +179,8 @@
       groupSection.appendChild(grid);
       container.appendChild(groupSection);
     });
+
+    switchLang(currentLang);
   }
 
   function filterCards(query) {
