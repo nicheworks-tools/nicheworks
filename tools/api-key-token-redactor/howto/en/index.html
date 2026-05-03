@@ -50,25 +50,27 @@
     <section class="card">
       <h2 style="margin:0 0 8px">30-second guide</h2>
       <ol>
-        <li>Paste logs, .env files, JSON, curl commands, or config snippets into the tool.</li>
+        <li>Paste logs, environment files, JSON, curl commands, or config snippets into the tool.</li>
         <li>Click “Redact” and review the findings list and safety summary.</li>
         <li>Copy or download only the redacted output before sharing.</li>
       </ol>
-      <p class="muted" style="margin:0">Tip: search for sk-, github_pat_, xoxb-, AIza, AKIA, Authorization, or Cookie before posting.</p>
+      <p class="muted" style="margin:0">Tip: search for common key prefixes, Authorization, Cookie, registry tokens, or bot tokens before posting.</p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">Supported patterns</h2>
       <ul>
-        <li>OpenAI: <code>sk-</code>, <code>sk-proj-</code></li>
-        <li>GitHub: <code>github_pat_</code>, <code>ghp_</code>, <code>gho_</code>, <code>ghu_</code>, <code>ghs_</code>, <code>ghr_</code></li>
-        <li>Slack: <code>xoxb-</code>, <code>xoxp-</code>, <code>xapp-</code></li>
-        <li>Google API keys: <code>AIza...</code> / SendGrid: <code>SG....</code> / GitLab: <code>glpat-</code></li>
-        <li>AWS: <code>AKIA...</code>, <code>ASIA...</code>, <code>aws_secret_access_key=</code></li>
-        <li>Bearer / Authorization headers, JWTs (<code>eyJ...</code>), and Cookie headers</li>
-        <li>PEM private keys (BEGIN/END PRIVATE KEY)</li>
-        <li>.env / JSON values labeled <code>api_key</code>, <code>token</code>, <code>secret</code>, <code>password</code>, <code>client_secret</code>, <code>access_token</code>, and similar names</li>
-        <li>URL query values such as <code>?token=</code>, <code>?api_key=</code>, and <code>?access_token=</code></li>
+        <li>OpenAI-style project and secret keys</li>
+        <li>GitHub classic, OAuth, app, and fine-grained tokens</li>
+        <li>Slack app, bot, user, and workspace tokens</li>
+        <li>Google API keys, SendGrid keys, GitLab tokens, and AWS access key IDs</li>
+        <li>Stripe secret and restricted keys</li>
+        <li>npm and registry auth tokens</li>
+        <li>Telegram bot tokens and Discord-style tokens</li>
+        <li>Bearer / Authorization headers, JWTs, and Cookie / Set-Cookie headers</li>
+        <li>PEM private keys</li>
+        <li>Environment and JSON values labeled like api key, token, secret, password, client secret, access token, or database URL</li>
+        <li>URL query values such as token, api key, access token, client secret, or signature parameters</li>
       </ul>
     </section>
 
@@ -78,6 +80,7 @@
         <li><strong>High</strong>: private keys, Bearer tokens, JWTs, and major API keys.</li>
         <li><strong>Medium</strong>: labeled secrets, URL tokens, cookies, and values that need manual review.</li>
         <li><strong>Line</strong>: the approximate line number in the original text. Long single-line logs still need manual review.</li>
+        <li>Finding previews partially mask secret values. Full secret values are not shown in the findings list.</li>
       </ul>
     </section>
 
