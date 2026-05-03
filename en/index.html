@@ -3,24 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NicheWorks</title>
-  <link rel="stylesheet" href="../style.css">
-  
-  <!-- Favicon -->
+  <title>Free Browser Tools | NicheWorks</title>
+  <meta name="description" content="NicheWorks is a collection of free lightweight browser tools for PDF, images, CSV, JSON, text cleanup, privacy, and small daily tasks. Most tools run locally in your browser.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/en/">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="../style.css">
 
-  <link rel="canonical" href="https://nicheworks.app/en/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Free Browser Tools | NicheWorks">
+  <meta property="og:description" content="Free lightweight browser tools for PDF, images, CSV, JSON, text cleanup, privacy, and daily utility tasks.">
   <meta property="og:url" content="https://nicheworks.app/en/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Browser Tools | NicheWorks">
+  <meta name="twitter:description" content="Local-first lightweight tools for boring but necessary tasks.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"NicheWorks","url":"https://nicheworks.app/en/","description":"A collection of free lightweight browser tools for PDF, images, CSV, JSON, text cleanup, privacy, and daily utility tasks.","inLanguage":"en"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/","logo":"https://nicheworks.app/assets/nicheworks-logo.png","sameAs":["https://ofuse.me/nicheworks","https://ko-fi.com/nicheworks"]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ItemList","name":"NicheWorks tools","itemListElement":[{"@type":"ListItem","position":1,"name":"JSON Repair","url":"https://nicheworks.app/tools/json-repair/"},{"@type":"ListItem","position":2,"name":"PDF to CSV Local","url":"https://nicheworks.app/tools/pdf2csv-local/"},{"@type":"ListItem","position":3,"name":"CSV Tidy","url":"https://nicheworks.app/tools/csv-tidy/"},{"@type":"ListItem","position":4,"name":"EXIF Cleaner Mini","url":"https://nicheworks.app/tools/exif-cleaner-mini/"},{"@type":"ListItem","position":5,"name":"Image Redact","url":"https://nicheworks.app/tools/image-redact/"},{"@type":"ListItem","position":6,"name":"API Key Token Redactor","url":"https://nicheworks.app/tools/api-key-token-redactor/"},{"@type":"ListItem","position":7,"name":"Command Safety Checker","url":"https://nicheworks.app/tools/command-safety-checker/"},{"@type":"ListItem","position":8,"name":"ManualFinder","url":"https://nicheworks.app/tools/manual-finder/"},{"@type":"ListItem","position":9,"name":"Construction Tools Atlas","url":"https://nicheworks.app/tools/construction-tools-atlas/"},{"@type":"ListItem","position":10,"name":"FileType Sniffer","url":"https://nicheworks.app/tools/filetype-sniffer/"}]}
   </script>
 </head>
 <body>
@@ -34,245 +52,99 @@
       <p class="subtitle">Lightweight tools that run in your browser. No input data is stored (local-first).</p>
 
       <nav class="nav-inline" aria-label="Site navigation">
-        <a href="/en/">Home</a>
-        <span class="sep">/</span>
-        <a href="/en/about.html">About</a>
-        <span class="sep">/</span>
-        <a href="/en/privacy.html">Privacy</a>
-        <span class="sep">/</span>
-        <a href="/en/contact.html">Contact</a>
-        <span class="sep">/</span>
+        <a href="/en/">Home</a><span class="sep">/</span>
+        <a href="/en/about.html">About</a><span class="sep">/</span>
+        <a href="/en/privacy.html">Privacy</a><span class="sep">/</span>
+        <a href="/en/contact.html">Contact</a><span class="sep">/</span>
         <a href="/">JA</a>
       </nav>
     </header>
 
     <main>
       <section class="block">
-        <h2>About NicheWorks</h2>
-        <p class="category-desc">
-          Quietly useful. Small tools you can use and leave—no accounts, no storage, no tracking by default.
-        </p>
+        <h2>Free browser tools</h2>
+        <p class="category-desc">NicheWorks is a collection of small tools for PDF, images, CSV, JSON, text cleanup, privacy checks, and everyday work. Many tools run locally in your browser without storing your input.</p>
       </section>
 
-      <section class="block">
+      <section class="block" aria-labelledby="featured-tools-title">
+        <h2 id="featured-tools-title">Featured tools</h2>
+        <p class="category-desc">These fixed links are kept in the HTML so both users and search engines can reach the main tools even before JavaScript renders the full list.</p>
+        <ul class="list compact">
+          <li><strong><a href="/tools/json-repair/">JSON Repair</a></strong><div class="small muted">Repair, validate, and format broken JSON locally in your browser.</div></li>
+          <li><strong><a href="/tools/pdf2csv-local/">PDF to CSV Local</a></strong><div class="small muted">Extract table-like PDF data into CSV-style output locally.</div></li>
+          <li><strong><a href="/tools/csv-tidy/">CSV Tidy</a></strong><div class="small muted">Reorder, rename, trim, and clean CSV columns in the browser.</div></li>
+          <li><strong><a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a></strong><div class="small muted">Remove image metadata before sharing photos or screenshots.</div></li>
+          <li><strong><a href="/tools/image-redact/">Image Redact</a></strong><div class="small muted">Hide sensitive parts of screenshots with blur, mosaic, or black boxes.</div></li>
+          <li><strong><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a></strong><div class="small muted">Detect and mask API keys, tokens, and secrets before sharing text or logs.</div></li>
+          <li><strong><a href="/tools/command-safety-checker/">Command Safety Checker</a></strong><div class="small muted">Check shell commands for risky operations before running them.</div></li>
+          <li><strong><a href="/tools/manual-finder/">ManualFinder</a></strong><div class="small muted">Find official manuals and support pages from product or brand names.</div></li>
+          <li><strong><a href="/tools/construction-tools-atlas/">Construction Tools Atlas</a></strong><div class="small muted">Browse construction tools, aliases, uses, and work categories.</div></li>
+          <li><strong><a href="/tools/filetype-sniffer/">FileType Sniffer</a></strong><div class="small muted">Inspect file signatures and estimate file types locally.</div></li>
+        </ul>
+      </section>
+
+      <section class="block" id="tools">
         <h2>Tools</h2>
-        <p class="category-desc">
-          Categories are kept short so you can open tools quickly. For the full list, open “All tools (long list)” below.
-        </p>
+        <p class="category-desc">Categories are kept short so you can open tools quickly. For the full list, open “All tools (long list)” below.</p>
 
         <div class="tool-search">
           <input id="nw-tool-q" class="input" type="search" placeholder="Search tools / keywords (e.g. pdf / image / contract / construction)" autocomplete="off">
-          <div class="tool-search-meta">
-            <div class="small muted">Total: <span id="nw-tool-count">...</span></div>
-          </div>
+          <div class="tool-search-meta"><div class="small muted">Total: <span id="nw-tool-count">...</span></div></div>
         </div>
 
-        <!-- Pinned (short) -->
-        <div class="tool-pins" id="nw-tool-pins" aria-label="Pinned tools">
-          <span class="small muted">Loading...</span>
-        </div>
+        <div class="tool-pins" id="nw-tool-pins" aria-label="Pinned tools"><span class="small muted">Loading...</span></div>
+        <div id="nw-tool-cats" class="tool-cat-grid"><div class="small muted">Loading...</div></div>
 
-        <!-- Category cards (short) -->
-        <div id="nw-tool-cats" class="tool-cat-grid">
-          <div class="small muted">Loading...</div>
-        </div>
-
-        <!-- All (long) -->
         <details class="tool-all" id="nw-tool-all-wrap">
           <summary>Open all tools (long list)</summary>
-          <div id="nw-tool-all" class="tool-grid">
-            <div class="small muted">(not rendered)</div>
-          </div>
+          <div id="nw-tool-all" class="tool-grid"><div class="small muted">(not rendered)</div></div>
         </details>
+
+        <noscript><p class="small muted">JavaScript is disabled. Use the featured links above or <a href="/sitemap.xml">sitemap.xml</a> to open tools.</p></noscript>
 
         <script>
         (async function () {
           const $ = (id) => document.getElementById(id);
-
-          const qEl = $("nw-tool-q");
-          const pinsEl = $("nw-tool-pins");
-          const catsEl = $("nw-tool-cats");
-          const countEl = $("nw-tool-count");
-          const allWrapEl = $("nw-tool-all-wrap");
-          const allEl = $("nw-tool-all");
-
-          const escapeHtml = (s) => String(s || "")
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#39;");
-
+          const qEl = $("nw-tool-q"), pinsEl = $("nw-tool-pins"), catsEl = $("nw-tool-cats"), countEl = $("nw-tool-count"), allWrapEl = $("nw-tool-all-wrap"), allEl = $("nw-tool-all");
+          const escapeHtml = (s) => String(s || "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+          const titleCase = (slug) => slug.split("-").map(w => w ? w[0].toUpperCase() + w.slice(1) : w).join(" ");
+          const fallbackDesc = (slug) => `${titleCase(slug)} is a local-first NicheWorks browser tool.`;
+          const mergeMeta = (it, metaMap) => ({ ...it, ...(metaMap[it.slug] || {}) });
           const normalize = (it) => {
-            const name = (it.title_en && it.title_en !== it.slug) ? it.title_en : it.slug;
-            const desc = (it.desc_en || "").trim();
+            const name = (it.title_en && it.title_en !== it.slug) ? it.title_en : (it.title_ja && it.title_ja !== it.slug ? it.title_ja : titleCase(it.slug));
+            const desc = (it.desc_en || it.desc_ja || fallbackDesc(it.slug)).trim();
             return { ...it, name, desc };
           };
-
-          const PINNED = [
-            "construction-tools-atlas",
-            "pdf2csv-local",
-            "api-key-token-redactor",
-            "command-safety-checker",
-            "contract-cleaner",
-            "exif-cleaner-mini",
-            "filetype-sniffer",
-            "image-compression-inspector",
-            "color-replace",
-            "json2mermaid",
-            "jp-postal-lite",
-            "wifi-meter",
-            "weatherdiff"
-          ];
-
+          const PINNED = ["json-repair","pdf2csv-local","csv-tidy","exif-cleaner-mini","image-redact","api-key-token-redactor","command-safety-checker","manual-finder","construction-tools-atlas","filetype-sniffer","weatherdiff","wifi-meter"];
           const CATS = [
-            { key: "PDF / Docs", hint: "PDF/CSV/statements", match: (s) => /pdf|csv|xlsx|invoice|receipt|statement/.test(s) },
-            { key: "Images / Files", hint: "EXIF/convert/compress", match: (s) => /image|exif|webp|avif|color|compress|resize|png|jpg|filetype|sniffer/.test(s) },
-            { key: "Writing / Work", hint: "text/format/templates", match: (s) => /contract|cover-letter|linebreak|message|rename|log|text|paste|doc/.test(s) },
-            { key: "Dev / Safety", hint: "JSON/commands/keys", match: (s) => /json|mermaid|token|api|key|format|privacy|risk|sql/.test(s) },
-            { key: "Daily", hint: "postal/weather/Wi-Fi", match: (s) => /postal|wifi|weather|laundry|trash|manual/.test(s) },
-            { key: "Construction", hint: "construction glossary", match: (s) => /construction/.test(s) },
+            { key: "PDF / Docs", hint: "PDF/CSV/statements", match: (s) => /pdf|csv|xlsx|invoice|receipt|statement|contract|document|page/.test(s) },
+            { key: "Images / Files", hint: "EXIF/convert/compress", match: (s) => /image|exif|webp|avif|color|compress|resize|png|jpg|filetype|sniffer|redact|screenshot|metadata/.test(s) },
+            { key: "Dev / Safety", hint: "JSON/commands/keys", match: (s) => /json|mermaid|token|api|key|command|sql|db|privacy|deploy|codex|release|project/.test(s) },
+            { key: "Writing / Work", hint: "text/format/templates", match: (s) => /cover|letter|linebreak|message|rename|log|text|paste|newsletter|ops|minutes|outsource|sponsor|lp|weekly|requirement|ats/.test(s) },
+            { key: "Daily", hint: "postal/weather/Wi-Fi", match: (s) => /postal|wifi|weather|laundry|trash|manual|moving|habit|money|sukima|size|unit/.test(s) },
+            { key: "Reference", hint: "glossaries and references", match: (s) => /construction|kanji|atlas|lexicon|reference|motion|ui/.test(s) },
             { key: "Other", hint: "misc", match: (_) => true }
           ];
-
-          const toolLink = (it) => {
-            const name = escapeHtml(it.name);
-            const desc = escapeHtml(it.desc);
-            const href = `/tools/${it.slug}/`;
-            return `<li>
-              <strong><a href="${href}" target="_blank" rel="noopener">${name}</a></strong>
-              ${desc ? `<div class="small muted">${desc}</div>` : ``}
-            </li>`;
-          };
-
-          const pill = (it) => {
-            const name = escapeHtml(it.name);
-            const href = `/tools/${it.slug}/`;
-            return `<a class="pill" href="${href}" target="_blank" rel="noopener">${name}</a>`;
-          };
-
-          const card = (catKey, hint, list) => {
-            const LIMIT = 6;
-            const shown = list.slice(0, LIMIT);
-            const hidden = list.slice(LIMIT);
-            const id = "cat_" + catKey.replaceAll(/[^a-zA-Z0-9]+/g, "_");
-
-            return `<section class="tool-cat-card" data-cat="${escapeHtml(catKey)}">
-              <div class="tool-cat-top">
-                <div class="tool-cat-head">
-                  <div class="tool-cat-title">${escapeHtml(catKey)} <span class="tool-cat-count">(${list.length})</span></div>
-                  <div class="tool-cat-hint">${escapeHtml(hint)}</div>
-                </div>
-                ${hidden.length ? `<button class="tool-more" type="button" data-target="${escapeHtml(id)}">More</button>` : ``}
-              </div>
-
-              <ul class="list compact">
-                ${shown.map(toolLink).join("")}
-              </ul>
-
-              ${hidden.length ? `
-                <div id="${escapeHtml(id)}" class="tool-hidden" hidden>
-                  <ul class="list compact">
-                    ${hidden.map(toolLink).join("")}
-                  </ul>
-                </div>` : ``}
-            </section>`;
-          };
-
-          const byCategory = (items) => {
-            const buckets = new Map();
-            for (const it of items) {
-              const s = `${it.slug} ${it.name} ${it.desc} ${(it.tags || []).join(" ")}`.toLowerCase();
-              const cat = (CATS.find(c => c.match(s)) || CATS[CATS.length - 1]).key;
-              if (!buckets.has(cat)) buckets.set(cat, []);
-              buckets.get(cat).push(it);
-            }
-            const ordered = [];
-            for (const c of CATS) {
-              if (buckets.has(c.key)) ordered.push([c.key, c.hint, buckets.get(c.key)]);
-            }
-            return ordered;
-          };
-
-          const renderPinned = (items) => {
-            const map = new Map(items.map(it => [it.slug, it]));
-            const pinned = PINNED.map(slug => map.get(slug)).filter(Boolean);
-            pinsEl.innerHTML = pinned.length
-              ? pinned.map(pill).join("")
-              : `<span class="small muted">(no pinned tools)</span>`;
-          };
-
-          const filterItems = (items, q) => {
-            const query = (q || "").trim().toLowerCase();
-            if (!query) return items;
-            return items.filter(it => {
-              const hay = `${it.slug} ${it.name} ${it.desc} ${(it.tags||[]).join(" ")}`.toLowerCase();
-              return hay.includes(query);
-            });
-          };
-
-          const renderCats = (items, q) => {
-            const filtered = filterItems(items, q);
-            const groups = byCategory(filtered);
-
-            catsEl.innerHTML = groups
-              .filter(([_, __, list]) => list.length)
-              .map(([catKey, hint, list]) => card(catKey, hint, list))
-              .join("") || `<div class="small muted">No matches</div>`;
-
-            catsEl.querySelectorAll(".tool-more").forEach(btn => {
-              btn.addEventListener("click", () => {
-                const id = btn.getAttribute("data-target");
-                const box = document.getElementById(id);
-                if (box) box.hidden = false;
-                btn.remove();
-              }, { once: true });
-            });
-          };
-
-          const renderAll = (items, q) => {
-            const filtered = filterItems(items, q);
-            allEl.innerHTML = filtered.map(it => {
-              const name = escapeHtml(it.name);
-              const desc = escapeHtml(it.desc);
-              const href = `/tools/${it.slug}/`;
-              return `<a class="tool-card" href="${href}" target="_blank" rel="noopener">
-                <div class="tool-card-title">${name}</div>
-                ${desc ? `<div class="tool-card-desc">${desc}</div>` : `<div class="tool-card-desc muted">(no description)</div>`}
-                <div class="tool-card-meta">${escapeHtml(it.slug)}</div>
-              </a>`;
-            }).join("") || `<div class="small muted">No matches</div>`;
-          };
-
-          let data;
+          const toolLink = (it) => `<li><strong><a href="/tools/${escapeHtml(it.slug)}/">${escapeHtml(it.name)}</a></strong><div class="small muted">${escapeHtml(it.desc)}</div></li>`;
+          const pill = (it) => `<a class="pill" href="/tools/${escapeHtml(it.slug)}/">${escapeHtml(it.name)}</a>`;
+          const filterItems = (items, q) => { const query = (q || "").trim().toLowerCase(); if (!query) return items; return items.filter(it => `${it.slug} ${it.name} ${it.desc} ${(it.tags||[]).join(" ")}`.toLowerCase().includes(query)); };
+          const byCategory = (items) => { const buckets = new Map(); for (const it of items) { const s = `${it.slug} ${it.name} ${it.desc} ${(it.tags || []).join(" ")}`.toLowerCase(); const cat = (CATS.find(c => c.match(s)) || CATS[CATS.length - 1]).key; if (!buckets.has(cat)) buckets.set(cat, []); buckets.get(cat).push(it); } return CATS.filter(c => buckets.has(c.key)).map(c => [c.key, c.hint, buckets.get(c.key)]); };
+          const card = (catKey, hint, list) => { const LIMIT = 6; const shown = list.slice(0, LIMIT); const hidden = list.slice(LIMIT); const id = "cat_" + catKey.replaceAll(/[^a-zA-Z0-9]+/g, "_"); return `<section class="tool-cat-card"><div class="tool-cat-top"><div class="tool-cat-head"><div class="tool-cat-title">${escapeHtml(catKey)} <span class="tool-cat-count">(${list.length})</span></div><div class="tool-cat-hint">${escapeHtml(hint)}</div></div>${hidden.length ? `<button class="tool-more" type="button" data-target="${escapeHtml(id)}">More</button>` : ``}</div><ul class="list compact">${shown.map(toolLink).join("")}</ul>${hidden.length ? `<div id="${escapeHtml(id)}" class="tool-hidden" hidden><ul class="list compact">${hidden.map(toolLink).join("")}</ul></div>` : ``}</section>`; };
+          const renderPinned = (items) => { const map = new Map(items.map(it => [it.slug, it])); const pinned = PINNED.map(slug => map.get(slug)).filter(Boolean); pinsEl.innerHTML = pinned.length ? pinned.map(pill).join("") : `<span class="small muted">(no pinned tools)</span>`; };
+          const renderCats = (items, q) => { const groups = byCategory(filterItems(items, q)); catsEl.innerHTML = groups.filter(([_, __, list]) => list.length).map(([catKey, hint, list]) => card(catKey, hint, list)).join("") || `<div class="small muted">No matches</div>`; catsEl.querySelectorAll(".tool-more").forEach(btn => btn.addEventListener("click", () => { const box = document.getElementById(btn.getAttribute("data-target")); if (box) box.hidden = false; btn.remove(); }, { once: true })); };
+          const renderAll = (items, q) => { const filtered = filterItems(items, q); allEl.innerHTML = filtered.map(it => `<a class="tool-card" href="/tools/${escapeHtml(it.slug)}/"><div class="tool-card-title">${escapeHtml(it.name)}</div><div class="tool-card-desc">${escapeHtml(it.desc)}</div><div class="tool-card-meta">${escapeHtml(it.slug)}</div></a>`).join("") || `<div class="small muted">No matches</div>`; };
+          let data, meta;
           try {
-            const res = await fetch("/tools/tools-index.json", { cache: "no-store" });
-            data = await res.json();
-          } catch (e) {
-            pinsEl.innerHTML = `<span class="small muted">Failed to load</span>`;
-            catsEl.innerHTML = `<div class="small muted">Failed to load</div>`;
-            allEl.innerHTML = `<div class="small muted">Failed to load</div>`;
-            return;
-          }
-
-          const items = (data.items || []).map(normalize);
+            const [indexRes, metaRes] = await Promise.all([fetch("/tools/tools-index.json", { cache: "no-store" }), fetch("/tools/tools-meta.json", { cache: "no-store" }).catch(() => null)]);
+            data = await indexRes.json();
+            meta = metaRes && metaRes.ok ? await metaRes.json() : { items: {} };
+          } catch (e) { pinsEl.innerHTML = `<span class="small muted">Failed to load</span>`; catsEl.innerHTML = `<div class="small muted">Failed to load</div>`; return; }
+          const metaMap = meta.items || {};
+          const items = (data.items || []).map(it => normalize(mergeMeta(it, metaMap)));
           countEl.textContent = String(data.total || items.length);
-
-          renderPinned(items);
-          renderCats(items, "");
-
-          allEl.innerHTML = `<div class="small muted">(not rendered)</div>`;
-          allWrapEl.addEventListener("toggle", () => {
-            if (allWrapEl.open && allEl.dataset.rendered !== "1") {
-              renderAll(items, qEl.value);
-              allEl.dataset.rendered = "1";
-            }
-          });
-
-          qEl.addEventListener("input", () => {
-            renderCats(items, qEl.value);
-            if (allWrapEl.open) renderAll(items, qEl.value);
-          });
+          renderPinned(items); renderCats(items, "");
+          allWrapEl.addEventListener("toggle", () => { if (allWrapEl.open && allEl.dataset.rendered !== "1") { renderAll(items, qEl.value); allEl.dataset.rendered = "1"; } });
+          qEl.addEventListener("input", () => { renderCats(items, qEl.value); if (allWrapEl.open) renderAll(items, qEl.value); });
         })();
         </script>
       </section>
@@ -281,19 +153,14 @@
         <h2>Support</h2>
         <p class="category-desc">If this helped you, you can support the project with a small donation.</p>
         <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" rel="noopener">☕ OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" rel="noopener">❤️ Ko-fi</a>
+          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">☕ OFUSE</a>
+          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">❤️ Ko-fi</a>
         </div>
       </section>
 
       <footer>
         <div class="small">
-          <p class="small">
-            <a href="/en/">Home</a> /
-            <a href="/en/about.html">About</a> /
-            <a href="/en/privacy.html">Privacy</a> /
-            <a href="/en/contact.html">Contact</a>
-          </p>
+          <p class="small"><a href="/en/">Home</a> / <a href="/en/about.html">About</a> / <a href="/en/privacy.html">Privacy</a> / <a href="/en/contact.html">Contact</a></p>
           <p class="small">Owner: NicheWorks</p>
           <p class="small muted">Some tools may show ads to support operations.</p>
         </div>
