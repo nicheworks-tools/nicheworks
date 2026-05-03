@@ -1,12 +1,8 @@
 /* =========================================================
    FileType Sniffer 専用 style.css
-   PCファースト（960px）＋スマホ480px変形対応
-   NicheWorks 共通仕様 v2（2025-11）
+   スマホ寄り単一入力ツール＋480px変形対応
 ========================================================= */
 
-/* -----------------------------
-   ベースレイアウト
------------------------------ */
 body {
   margin: 0;
   padding: 0;
@@ -31,12 +27,12 @@ body {
   color: #6b7280;
 }
 
-/* 言語切替 */
 .nw-lang-switch {
   margin-top: 6px;
   font-size: 11px;
   color: #6b7280;
 }
+.nw-lang-switch a,
 .nw-lang-switch button {
   border: none;
   background: transparent;
@@ -44,22 +40,20 @@ body {
   padding: 0 4px;
   font-size: 11px;
   color: #4b5563;
+  text-decoration: none;
 }
+.nw-lang-switch .active,
 .nw-lang-switch button.active {
   font-weight: 600;
   text-decoration: underline;
 }
 
-/* メイン領域（PC幅：960px） */
 .nw-main {
-  max-width: 960px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 0 12px;
 }
 
-/* -----------------------------
-   広告枠（共通仕様）
------------------------------ */
 .ad-slot {
   margin: 12px 0 16px;
   padding: 10px;
@@ -70,17 +64,54 @@ body {
   min-height: 60px;
 }
 
-/* -----------------------------
-   ツールUIブロック
------------------------------ */
+.intro-card,
+.notice-card,
 .tool-container {
   background: #ffffff;
   padding: 16px;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
+  margin-top: 16px;
 }
 
-/* ドラッグ＆ドロップ領域 */
+.intro-card h2,
+.notice-card h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #111827;
+}
+
+.intro-card p,
+.notice-card p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.notice-card {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+.notice-card h2 {
+  color: #92400e;
+}
+.notice-card p {
+  color: #78350f;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .drop-zone {
   border: 2px dashed #cbd5e1;
   border-radius: 12px;
@@ -90,34 +121,45 @@ body {
   margin-bottom: 16px;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
-.drop-zone.dragover {
+.drop-zone.dragover,
+.drop-zone.has-file {
   border-color: #111827;
   background: #f9fafb;
 }
-.drop-zone p {
+.drop-zone-title {
   margin: 4px 0;
   font-size: 15px;
+  font-weight: 600;
+}
+.drop-zone-sub {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #4b5563;
+  word-break: break-all;
+}
+.drop-zone.has-file .drop-zone-sub {
+  color: #111827;
+  font-weight: 600;
 }
 
-/* ファイル選択ボタン */
 .file-input-area {
   text-align: center;
   margin: 12px 0 16px;
 }
 #fileInput {
+  max-width: 100%;
   font-size: 14px;
   padding: 6px;
 }
 
-/* 注意書き */
 .note {
   text-align: center;
   font-size: 12px;
   color: #6b7280;
   margin: 8px 0 14px;
+  line-height: 1.6;
 }
 
-/* 実行ボタン */
 .primary-btn {
   display: block;
   width: 100%;
@@ -141,7 +183,6 @@ body {
   transform: scale(0.98);
 }
 
-/* プログレスバー */
 .progress {
   width: 100%;
   height: 6px;
@@ -157,9 +198,6 @@ body {
   transition: width 0.2s ease;
 }
 
-/* -----------------------------
-   結果エリア
------------------------------ */
 .result-box {
   margin-top: 24px;
   padding: 16px;
@@ -174,17 +212,10 @@ body {
   color: #111827;
 }
 
-#resultContent {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-top: 12px;
-  word-break: break-word;
-}
-
 .result-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .result-card {
@@ -200,17 +231,36 @@ body {
   color: #111827;
 }
 
+.result-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 6px 0;
+  word-break: break-word;
+}
+
 .result-actions {
   margin-top: 8px;
 }
 
-/* 結果内の項目名 */
 .result-label {
   font-weight: 600;
   color: #374151;
 }
 
-/* リセットボタン */
+.risk-line {
+  color: #991b1b;
+}
+
+.next-steps {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.next-steps ul {
+  margin: 6px 0 0 18px;
+  padding: 0;
+}
+
 .secondary-btn {
   margin-top: 16px;
   display: block;
@@ -233,18 +283,6 @@ body {
   background: #f3f4f6;
 }
 
-/* エラー表示 */
-.error-box {
-  background: #fee2e2;
-  border: 1px solid #fca5a5;
-  color: #991b1b;
-  padding: 12px;
-  border-radius: 8px;
-  margin: 12px 0;
-  font-size: 14px;
-}
-
-/* 警告表示 */
 .warning-box {
   background: #fef3c7;
   border: 1px solid #f59e0b;
@@ -254,6 +292,7 @@ body {
   margin: 12px 0 16px;
   font-size: 13px;
   font-weight: 600;
+  line-height: 1.6;
 }
 
 .code-block {
@@ -264,6 +303,7 @@ body {
   color: #f9fafb;
   font-size: 12px;
   overflow-x: auto;
+  white-space: pre;
 }
 
 .safety-note {
@@ -272,9 +312,11 @@ body {
   color: #6b7280;
 }
 
-/* -----------------------------
-   寄付導線（共通仕様）
------------------------------ */
+.faq-section p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .nw-donate {
   text-align: center;
   margin: 24px 0 16px;
@@ -286,6 +328,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .nw-donate-links a {
   padding: 8px 14px;
@@ -302,10 +345,9 @@ body {
   transform: translateY(-1px);
 }
 
-/* usageリンク */
 .usage-link {
   text-align: center;
-  margin: 28px 0 12px;
+  margin: 12px 0 0;
   font-size: 14px;
 }
 .usage-link a {
@@ -313,9 +355,21 @@ body {
   text-decoration: underline;
 }
 
-/* -----------------------------
-   フッター
------------------------------ */
+.nw-links {
+  text-align: center;
+  margin: 24px 0 32px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.nw-links a {
+  color: #4b5563;
+  text-decoration: none;
+  margin: 0 4px;
+}
+.nw-links a:hover {
+  text-decoration: underline;
+}
+
 .nw-footer {
   margin-top: 20px;
   padding: 16px 8px 12px;
@@ -325,44 +379,41 @@ body {
   text-align: center;
   line-height: 1.6;
 }
-
-.nw-links {
-  text-align: center;
-  margin: 16px 0 32px;
-  font-size: 12px;
-}
-.nw-links a {
+.nw-footer a {
   color: #4b5563;
-  text-decoration: none;
-  margin: 0 6px;
-}
-.nw-links a:hover {
-  text-decoration: underline;
 }
 
-/* -----------------------------
-   レスポンシブ変形（重要）
------------------------------ */
 @media (max-width: 480px) {
+  .nw-main {
+    padding: 0 10px;
+  }
+
+  .intro-card,
+  .notice-card,
+  .tool-container,
+  .result-box {
+    padding: 12px;
+  }
+
   .primary-btn,
   .secondary-btn {
     padding: 14px 0;
     font-size: 15px;
   }
 
+  .secondary-btn.small {
+    width: 100%;
+  }
+
   .drop-zone {
     padding: 28px 10px;
   }
 
-  .tool-container {
-    padding: 12px;
-  }
-
-  #resultContent {
-    font-size: 13px;
-  }
-
   .result-grid {
     grid-template-columns: 1fr;
+  }
+
+  .nw-donate-links {
+    flex-direction: column;
   }
 }
