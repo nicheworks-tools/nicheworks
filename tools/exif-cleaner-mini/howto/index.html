@@ -1,35 +1,39 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>EXIF削除｜EXIF Cleaner Mini ガイド | NicheWorks</title>
-  <meta name="description" content="写真のGPS位置・撮影日時・端末情報などのEXIFメタデータを、ブラウザ上だけで削除できる軽量ツール。スマホ対応・保存なし。" />
+  <title>写真の位置情報・EXIF削除ガイド｜EXIF Cleaner Mini | NicheWorks</title>
+  <meta name="description" content="EXIF Cleaner Miniの使い方ガイド。写真のGPS位置情報、撮影日時、端末名などのEXIFメタデータをブラウザ内で削除する手順と注意点を説明します。" />
   <link rel="canonical" href="https://nicheworks.app/tools/exif-cleaner-mini/howto/" />
-
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/exif-cleaner-mini/howto/" />
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/exif-cleaner-mini/howto/en/" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="写真の位置情報・EXIF削除ガイド｜EXIF Cleaner Mini | NicheWorks">
+  <meta property="og:description" content="写真のGPS位置情報や撮影日時を共有前に減らすための、EXIF Cleaner Miniの使い方と注意点。">
+  <meta property="og:url" content="https://nicheworks.app/tools/exif-cleaner-mini/howto/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
   <style>
     :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.7}
     .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
-    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
-    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+    .nw-main{max-width:860px;margin:0 auto;padding:18px 16px 40px}
+    .ad-slot{margin:12px 0 18px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
     .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
     .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
     .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
@@ -42,8 +46,7 @@
     .nw-footer a{color:inherit}
     code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
   </style>
-
-  <meta property="og:url" content="https://nicheworks.app/tools/exif-cleaner-mini/howto/">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 
 <body>
@@ -52,8 +55,8 @@
       <a href="./en/">EN</a>
       <a href="../">Tool</a>
     </div>
-    <h1 style="margin:10px 0 6px">EXIF Cleaner Mini：使い方</h1>
-    <p class="muted" style="margin:0">写真の位置情報や撮影情報（EXIF）を、アップロードせずに削除してから共有できます。</p>
+    <h1 style="margin:10px 0 6px">EXIF Cleaner Mini：使い方ガイド</h1>
+    <p class="muted" style="margin:0">写真のGPS位置情報・撮影日時・端末名などを、共有前に減らすためのブラウザ完結ツールです。</p>
   </header>
 
   <main class="nw-main">
@@ -62,44 +65,44 @@
     <section class="card">
       <h2 style="margin:0 0 8px">このツールでできること</h2>
       <ul>
-        <li>写真に含まれる EXIF メタデータ（GPS / 撮影日時 / 端末情報など）を削除</li>
-        <li>ブラウザ内で処理（外部送信なし想定）</li>
-        <li>スマホでも使いやすい軽量版</li>
+        <li>JPEG / PNG / WebP画像をブラウザ内で再生成します。</li>
+        <li>Canvasに描き直して保存することで、多くのEXIFメタデータを引き継がない画像を作ります。</li>
+        <li>画像はサーバーへ送信されません。</li>
       </ul>
       <div class="btns">
         <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="../usage.html">詳しい注意点を見る</a>
         <a class="btn" href="./en/">English guide</a>
       </div>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">こんなときに使う</h2>
-      <ul>
-        <li>SNSやメッセージで写真を送る前に、位置情報が入っていないか不安</li>
-        <li>仕事で写真を共有するが、端末情報や撮影日時は不要</li>
-        <li>家の周辺で撮った写真を公開したいが、GPSが怖い</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        関連キーワード：EXIF 削除 / 写真 位置情報 消す / GPS metadata remover / remove photo metadata
-      </p>
-    </section>
-
-    <section class="card">
       <h2 style="margin:0 0 8px">使い方</h2>
       <ol>
-        <li>ツールを開き、写真ファイルを選択（またはドラッグ）</li>
-        <li>プレビューや表示が出たら、EXIF削除を実行</li>
-        <li>保存された画像（EXIFなし）をダウンロードして共有する</li>
+        <li>ツールを開き、JPEG / PNG / WebP画像を選択します。</li>
+        <li>簡易チェック結果を確認します。この判定はGPS有無の詳細解析ではありません。</li>
+        <li>必要に応じて出力形式やJPEG画質を選びます。</li>
+        <li>「EXIFを削除して保存」を押します。</li>
+        <li><code>-cleaned</code> が付いた保存後画像を共有用として使います。</li>
       </ol>
-      <p class="muted" style="margin:0">コツ：共有前に、別の端末/アプリで位置情報が消えているか確認するとさらに安心。</p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <h2 style="margin:0 0 8px">注意点</h2>
       <ul>
-        <li>EXIF以外の情報（画像そのものの写り込み・背景の住所など）は消えません。</li>
-        <li>一部形式/特殊なメタデータは完全に削除できない場合があります。</li>
-        <li>編集後の画像は別名保存されるため、元画像（EXIFあり）はそのまま残ります。</li>
+        <li>すべてのアプリ独自メタデータやファイル構造情報の削除を保証するものではありません。</li>
+        <li>写真の中に写っている住所、顔、注文番号、画面上の名前などは消えません。</li>
+        <li>HEIC、TIFF、RAW、PDF、動画には対応していません。</li>
+        <li>元画像は変更されません。必要なら自分で元画像を削除してください。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">あわせて使うツール</h2>
+      <ul>
+        <li><a href="/tools/image-redact/">Image Redact</a>：画像内の名前・住所・番号などを黒塗りします。</li>
+        <li><a href="/tools/filetype-sniffer/">FileType Sniffer</a>：実際のファイル形式を確認します。</li>
+        <li><a href="/tools/webp-avif-converter/">WebP / AVIF Converter</a>：画像形式を変換します。</li>
       </ul>
     </section>
 
@@ -108,7 +111,7 @@
 
   <footer class="nw-footer">
     <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p>当サイトには広告が含まれる場合があります。</p>
+    <p>当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p>
     <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 </body>
