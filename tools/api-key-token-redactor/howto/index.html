@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>APIキー・トークン伏字ツールの使い方 | NicheWorks</title>
-  <meta name="description" content="APIキー・トークン伏字ツールの30秒ガイド、対応パターン、できないこと、プライバシーについて。">
+  <meta name="description" content="APIキー・トークン伏字ツールの30秒ガイド、対応パターン、検出結果の見方、できないこと、プライバシーについて。">
   <link rel="canonical" href="https://nicheworks.app/tools/api-key-token-redactor/howto/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/api-key-token-redactor/howto/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/api-key-token-redactor/howto/en/">
@@ -43,28 +43,41 @@
       <a href="../">ツールへ戻る</a>
     </div>
     <h1 style="margin:10px 0 6px">APIキー・トークン伏字ツールの使い方</h1>
-    <p class="muted" style="margin:0">30秒ガイド、対応パターン、注意点をまとめています。</p>
+    <p class="muted" style="margin:0">30秒ガイド、対応パターン、検出結果の見方、注意点をまとめています。</p>
   </header>
 
   <main class="nw-main">
     <section class="card">
       <h2 style="margin:0 0 8px">30秒ガイド</h2>
       <ol>
-        <li>ログや設定ファイルをコピーしてツールに貼り付けます。</li>
-        <li>「伏字にする」を押して出力を確認します。</li>
-        <li>出力だけを共有（GitHub/Discord/フォームなど）します。</li>
+        <li>ログ、.env、JSON、curlコマンド、設定ファイルをツールに貼り付けます。</li>
+        <li>「伏字にする」を押し、検出結果リストと安全サマリーを確認します。</li>
+        <li>出力だけをコピーまたはTXT保存して共有します。</li>
       </ol>
-      <p class="muted" style="margin:0">共有前に検索（Ctrl+F）で sk- や AKIA などを確認すると安心です。</p>
+      <p class="muted" style="margin:0">共有前に Ctrl+F で sk-, github_pat_, xoxb-, AIza, AKIA, Authorization, Cookie などを再確認すると安全です。</p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">対応パターン</h2>
       <ul>
-        <li>Bearer トークン（Authorization ヘッダー / Bearer プレフィックス）</li>
-        <li>JWT（<code>eyJ...</code> 形式）</li>
+        <li>OpenAI: <code>sk-</code>, <code>sk-proj-</code></li>
+        <li>GitHub: <code>github_pat_</code>, <code>ghp_</code>, <code>gho_</code>, <code>ghu_</code>, <code>ghs_</code>, <code>ghr_</code></li>
+        <li>Slack: <code>xoxb-</code>, <code>xoxp-</code>, <code>xapp-</code></li>
+        <li>Google API key: <code>AIza...</code> / SendGrid: <code>SG....</code> / GitLab: <code>glpat-</code></li>
+        <li>AWS: <code>AKIA...</code>, <code>ASIA...</code>, <code>aws_secret_access_key=</code></li>
+        <li>Bearer / Authorization ヘッダー、JWT（<code>eyJ...</code> 形式）、Cookie ヘッダー</li>
         <li>PEM形式の秘密鍵（BEGIN/END PRIVATE KEY）</li>
-        <li>APIキー例: <code>sk-</code>, <code>sk_live_</code>, <code>ghp_</code>, <code>AKIA</code></li>
-        <li>ラベル付きシークレット（<code>api_key=</code>, <code>token:</code>, <code>password=</code> など）</li>
+        <li>.env / JSON の <code>api_key</code>, <code>token</code>, <code>secret</code>, <code>password</code>, <code>client_secret</code>, <code>access_token</code> など</li>
+        <li>URLクエリ内の <code>?token=</code>, <code>?api_key=</code>, <code>?access_token=</code> など</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">検出結果の見方</h2>
+      <ul>
+        <li><strong>High</strong>: 秘密鍵、Bearer、JWT、主要APIキーなど、漏えい時の危険度が高いもの。</li>
+        <li><strong>Medium</strong>: ラベル付きsecret、URL内token、Cookieなど、手動確認が必要なもの。</li>
+        <li><strong>Line</strong>: 元テキスト内のおおよその行番号です。長い1行ログでは行全体も確認してください。</li>
       </ul>
     </section>
 
@@ -74,6 +87,7 @@
         <li>伏字漏れゼロの保証はできません。</li>
         <li>画像やスクリーンショット内の情報は検出できません。</li>
         <li>トークンの有効性チェックや無効化は行いません。</li>
+        <li>メールアドレス、IP、ユーザーID、URL全体などの個人情報・識別子を完全に除去するツールではありません。</li>
       </ul>
     </section>
 
