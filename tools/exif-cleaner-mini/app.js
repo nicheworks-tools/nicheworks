@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     current = lang;
-    updateOutputFormatText();
+    renderDynamicMessages();
   };
 
   buttons.forEach((btn) =>
@@ -47,6 +47,8 @@ const resetBtnEn = document.getElementById("reset-btn-en");
 
 let inputFormat = null;
 let outputFormat = null;
+let latestStatus = { en: "", ja: "" };
+let latestStatusNote = { en: "", ja: "" };
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 
@@ -54,7 +56,7 @@ dropArea.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", handleFile);
 formatSelect.addEventListener("change", () => {
   updateOutputFormat();
-  updateOutputFormatText();
+  renderDynamicMessages();
   updateQualityControl();
 });
 qualitySlider.addEventListener("input", () => {
@@ -231,7 +233,7 @@ function setupFormatControls() {
     formatSelect.value = "keep";
     outputFormat = inputFormat;
   }
-  updateOutputFormatText();
+  renderDynamicMessages();
   updateQualityControl();
 }
 
@@ -244,13 +246,31 @@ function updateOutputFormat() {
   outputFormat = formatSelect.value === "jpeg" ? "jpeg" : inputFormat;
 }
 
+function renderDynamicMessages() {
+  renderStatus();
+  renderStatusNote();
+  updateOutputFormatText();
+}
+
+function renderStatus() {
+  if (!statusEl) return;
+  const lang = getCurrentLang();
+  statusEl.textContent = lang === "en" ? latestStatus.en : latestStatus.ja;
+}
+
+function renderStatusNote() {
+  if (!statusNoteEl) return;
+  const lang = getCurrentLang();
+  statusNoteEl.textContent = lang === "en" ? latestStatusNote.en : latestStatusNote.ja;
+}
+
 function updateOutputFormatText() {
   if (!outputFormatEl) return;
   if (!outputFormat) {
     outputFormatEl.textContent = "";
     return;
   }
-  const lang = document.documentElement.lang === "en" ? "en" : "ja";
+  const lang = getCurrentLang();
   const formatLabelMap = {
     jpeg: "JPEG (.jpg)",
     png: "PNG (.png)",
@@ -385,12 +405,15 @@ function resetMessages() {
 }
 
 function setStatus(enText, jaText) {
-  const lang = document.documentElement.lang === "en" ? "en" : "ja";
-  statusEl.textContent = lang === "en" ? enText : jaText;
+  latestStatus = { en: enText, ja: jaText };
+  renderStatus();
 }
 
 function setStatusNote(enText, jaText) {
-  if (!statusNoteEl) return;
-  const lang = document.documentElement.lang === "en" ? "en" : "ja";
-  statusNoteEl.textContent = lang === "en" ? enText : jaText;
+  latestStatusNote = { en: enText, ja: jaText };
+  renderStatusNote();
+}
+
+function getCurrentLang() {
+  return document.documentElement.lang === "en" ? "en" : "ja";
 }
