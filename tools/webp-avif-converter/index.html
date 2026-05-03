@@ -1,221 +1,209 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebP・AVIF画像変換｜WebP / AVIF Converter | NicheWorks</title>
+  <meta name="description" content="WebPやAVIF画像をPNGまたはJPEGへブラウザ内で変換できる無料ツールです。画像はサーバーに送信されません。AVIFの読み込みはブラウザ対応に依存します。">
+  <meta name="robots" content="index,follow">
 
-  <title>WebP / AVIF → PNG・JPEG 変換 | NicheWorks</title>
-
-  <!-- 日本語 description -->
-  <meta name="description" content="WebPやAVIFをPNG・JPEGへ一括変換できる軽量ツール。ブラウザだけで高速変換。画像はサーバーに送信されません。">
-
-  <!-- favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- canonical -->
   <link rel="canonical" href="https://nicheworks.app/tools/webp-avif-converter/">
-
-  <!-- CSS（共通 + ローカル） -->
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="style.css">
 
-  <!-- OGP 日本語 -->
-  <meta property="og:title" content="WebP / AVIF → PNG・JPEG 変換 | NicheWorks">
-  <meta property="og:description" content="WebPやAVIFをPNG・JPEGへ一括変換できる軽量ツール。ブラウザだけで高速変換。画像はサーバーに送信されません。">
+  <meta property="og:site_name" content="NicheWorks">
   <meta property="og:type" content="website">
+  <meta property="og:title" content="WebP・AVIF画像変換｜WebP / AVIF Converter | NicheWorks">
+  <meta property="og:description" content="WebPやAVIF画像をPNGまたはJPEGへブラウザ内で変換できる無料ツールです。画像はサーバーに送信されません。AVIFの読み込みはブラウザ対応に依存します。">
   <meta property="og:url" content="https://nicheworks.app/tools/webp-avif-converter/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="WebP / AVIF Converter | NicheWorks">
-  <meta property="og:description:en"
-        content="Convert WebP or AVIF images to PNG or JPEG directly in your browser. Fast, lightweight, and fully local.">
-
-  <!-- Twitter 日本語 -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="WebP / AVIF → PNG・JPEG 変換 | NicheWorks">
-  <meta name="twitter:description" content="WebPやAVIFをPNG・JPEGへ一括変換できる軽量ツール。ブラウザだけで高速変換。画像はサーバーに送信されません。">
+  <meta name="twitter:title" content="WebP・AVIF画像変換｜WebP / AVIF Converter | NicheWorks">
+  <meta name="twitter:description" content="WebPやAVIF画像をPNGまたはJPEGへブラウザ内で変換できる無料ツールです。画像はサーバーに送信されません。AVIFの読み込みはブラウザ対応に依存します。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="WebP / AVIF Converter | NicheWorks">
-  <meta name="twitter:description:en"
-        content="Convert WebP or AVIF images to PNG or JPEG directly in your browser. Fast and secure.">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <!-- JSON-LD 日本語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "WebP / AVIF → PNG・JPEG 変換",
-    "url": "https://nicheworks.app/tools/webp-avif-converter/",
-    "description": "WebPやAVIFをPNG・JPEGへ一括変換できる軽量ツール。ブラウザだけで高速変換。画像はサーバーに送信されません。",
-    "inLanguage": "ja",
-    "publisher": { "@type": "Organization", "name": "NicheWorks" }
-  }
-  </script>
-
-  <!-- JSON-LD 英語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "WebP / AVIF Converter",
     "url": "https://nicheworks.app/tools/webp-avif-converter/",
-    "description": "Convert WebP or AVIF images to PNG or JPEG directly in your browser. Fast, lightweight, and fully local.",
-    "inLanguage": "en",
+    "applicationCategory": "UtilityApplication",
+    "description": "WebPやAVIF画像をPNGまたはJPEGへブラウザ内で変換できる無料ツールです。画像はサーバーに送信されません。AVIFの読み込みはブラウザ対応に依存します。",
+    "operatingSystem": "All",
     "publisher": { "@type": "Organization", "name": "NicheWorks" }
   }
   </script>
 
-  <!-- Google Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "画像はサーバーに送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。画像はブラウザ内で処理され、サーバーには送信されません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "AVIFが読み込めません。なぜですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AVIFの読み込みはブラウザの画像デコード対応に依存します。最新版のChrome、Edge、Firefoxなどを試してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JPEGにすると透明部分はどうなりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JPEGは透過に対応していないため、透明部分は白背景として保存されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "複数画像を一括変換できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "現時点では1枚ずつの変換に対応しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "EXIF情報は保持されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Canvasで画像を再生成するため多くのメタデータは引き継がれませんが、完全なメタデータ削除を保証するものではありません。"
+        }
+      }
+    ]
+  }
+  </script>
 
-  <!-- Cloudflare Analytics -->
-  
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 
-
 <body>
-
-<!-- ===========================
-     HEADER（仕様書フル準拠）
-=========================== -->
 <header class="nw-header">
   <div class="nw-header-inner">
-    <h1 class="nw-title">WebP / AVIF → PNG・JPEG 変換ツール</h1>
-    <p class="nw-subtitle">
-      ブラウザだけでWebP・AVIF画像をPNG/JPEGへ安全変換。<br>
-      サーバー送信なし・スマホ対応の軽量コンバータ。
-    </p>
+    <h1 class="nw-title" data-i18n-key="title">WebP / AVIF → PNG・JPEG 変換ツール</h1>
+    <p class="nw-subtitle" data-i18n-key="subtitle">WebP・AVIF画像をPNGまたはJPEGへブラウザ内で変換します。画像はサーバーに送信されません。</p>
 
-    <!-- 言語切替（任意仕様だがA版では採用） -->
-    <div class="nw-lang-switch">
-      <button class="nw-lang-btn active" data-lang="ja">JA</button>
-      <button class="nw-lang-btn" data-lang="en">EN</button>
+    <div class="nw-lang-switch" aria-label="Language switcher">
+      <button class="nw-lang-btn active" type="button" data-lang="ja">JA</button>
+      <button class="nw-lang-btn" type="button" data-lang="en">EN</button>
     </div>
   </div>
 </header>
 
-
-<!-- ===========================
-     MAIN
-=========================== -->
 <main class="nw-main">
+  <div class="ad-slot ad-top">広告枠（自動）</div>
 
-  <!-- 注意文（12-3：推奨） -->
-  <p class="nw-note">⏳ この処理は1〜3秒かかる場合があります。</p>
+  <p class="nw-lead" data-i18n-key="lead">WebP / AVIF画像を選び、PNGまたはJPEGに変換して保存できます。現在は1枚ずつの変換です。</p>
+  <p class="nw-note" data-i18n-key="note">AVIFの読み込みはブラウザ対応に依存します。大きすぎる画像は端末メモリ不足で失敗する場合があります。</p>
 
-  <!-- アップロード領域（12-6 stable contentルール対応） -->
-  <div id="drop-zone" class="drop-zone">
-    <p>ここに画像をドロップ<br>またはタップして選択</p>
-    <p class="drop-hint">対応形式：WebP / AVIF</p>
-    <input type="file" id="file-input" accept=".webp,.avif" hidden>
+  <section class="format-note" aria-label="format notes">
+    <h2 data-i18n-key="formatTitle">出力形式の違い</h2>
+    <ul>
+      <li data-i18n-key="formatPng">PNG：透過を維持しやすく、画質劣化を避けたい場合に向いています。</li>
+      <li data-i18n-key="formatJpeg">JPEG：ファイルサイズを小さくしやすいですが、透過は白背景になります。</li>
+    </ul>
+  </section>
+
+  <div id="drop-zone" class="drop-zone" role="button" tabindex="0">
+    <p class="drop-main" data-i18n-key="dropText">ここに画像をドロップ
+またはタップして選択</p>
+    <p class="drop-hint" data-i18n-key="dropHint">対応形式：WebP / AVIF（1枚ずつ）</p>
+    <input type="file" id="file-input" accept="image/webp,image/avif,.webp,.avif" hidden>
   </div>
 
-  <!-- エラーブロック（12-5） -->
   <div id="error" class="error-box" style="display:none;"></div>
+  <div id="file-info" class="file-info" style="display:none;"></div>
 
-  <!-- プログレスバー（12-1） -->
   <div id="progress" class="progress-bar" style="display:none;">
     <div class="progress-inner"></div>
   </div>
 
-  <!-- ボタン -->
   <div class="btn-row">
-    <button id="convert-btn" class="btn primary" disabled>PNGに変換</button>
-    <button id="convert-jpeg-btn" class="btn" disabled>JPEGに変換</button>
+    <button id="convert-btn" class="btn primary" type="button" disabled data-i18n-key="convertPng">PNGに変換</button>
+    <button id="convert-jpeg-btn" class="btn" type="button" disabled data-i18n-key="convertJpeg">JPEGに変換</button>
   </div>
 
-  <!-- 結果（12-2：結果表示→リセットが必須） -->
   <div id="result" class="result" style="display:none;">
-    <h2 class="result-title">変換結果</h2>
-
+    <h2 class="result-title" data-i18n-key="resultTitle">変換結果</h2>
     <img id="preview-img" class="preview-img" alt="converted image">
-
     <p class="size-info"><span id="size-info"></span></p>
-
-    <button id="download-btn" class="btn primary">ダウンロード</button>
-
-    <button id="reset-btn" class="btn reset-btn">リセット</button>
+    <button id="download-btn" class="btn primary" type="button" data-i18n-key="download">ダウンロード</button>
+    <button id="reset-btn" class="btn reset-btn" type="button" data-i18n-key="reset">リセット</button>
   </div>
 
-  <!-- FAQ（仕様書：任意だがA版では採用） -->
   <section class="faq-section">
-    <h3 class="faq-title">FAQ</h3>
+    <h2 class="faq-title" data-i18n-key="faqTitle">FAQ</h2>
 
     <div class="faq-item">
-      <p class="faq-q">Q：画像はサーバーに送信されますか？</p>
-      <p class="faq-a">A：送信されません。すべてブラウザ内で完結します。</p>
+      <p class="faq-q" data-i18n-key="faqLocalQ">Q. 画像はサーバーに送信されますか？</p>
+      <p class="faq-a" data-i18n-key="faqLocalA">A. いいえ。ブラウザ内で処理されます。</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Q：画質が劣化することはありますか？</p>
-      <p class="faq-a">A：WebP/AVIF → JPEG 変換時は再圧縮のため劣化する可能性があります。</p>
+      <p class="faq-q" data-i18n-key="faqAvifQ">Q. AVIFが読み込めません。</p>
+      <p class="faq-a" data-i18n-key="faqAvifA">A. AVIFの読み込みはブラウザ対応に依存します。別ブラウザや最新版で試してください。</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Q：アニメーションWebPは対応していますか？</p>
-      <p class="faq-a">A：静止画のみ対応しています。</p>
+      <p class="faq-q" data-i18n-key="faqJpegQ">Q. JPEGにすると透明部分はどうなりますか？</p>
+      <p class="faq-a" data-i18n-key="faqJpegA">A. 透明部分は失われ、白背景として保存されます。</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" data-i18n-key="faqBatchQ">Q. 複数画像を一括変換できますか？</p>
+      <p class="faq-a" data-i18n-key="faqBatchA">A. 現時点では1枚ずつの変換です。</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q" data-i18n-key="faqMetaQ">Q. EXIF情報は保持されますか？</p>
+      <p class="faq-a" data-i18n-key="faqMetaA">A. Canvasで再生成するため多くのメタデータは引き継がれませんが、完全な削除保証ではありません。</p>
     </div>
   </section>
 
+  <div class="ad-slot ad-bottom">広告枠（自動）</div>
+
+  <div class="nw-donate">
+    <p data-i18n-key="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+    <div class="nw-donate-links">
+      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+    </div>
+  </div>
 </main>
 
-
-<!-- ===========================
-     FOOTER（仕様書フル準拠）
-=========================== -->
 <footer class="nw-footer">
   <div class="nw-footer-inner">
-
-    <!-- 内部リンク（推奨） -->
     <div class="nw-links">
-      <a href="/tools/exif-cleaner/">EXIF Cleaner Mini</a>｜
-      <a href="/tools/linebreak-doctor/">LineBreak Doctor</a>｜
-      <a href="/tools/url-title-collector/">URL Title Collector</a>
+      <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a>｜
+      <a href="/tools/image-redact/">Image Redact</a>｜
+      <a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a>｜
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
     </div>
-
-    <!-- Usageリンク -->
-    <div class="nw-usage">
-      <a href="/usage/">このツールの使い方（Usage）を見る</a>
-    </div>
-
-    <!-- 寄付リンク -->
-    <div class="nw-donate">
-      <p>🫶 応援はこちら</p>
-      <div class="nw-donate-links">
-        <a href="https://ko-fi.com/nicheworks" target="_blank">Ko-fi</a>
-        <a href="https://ofuse.me/nicheworks" target="_blank">OFUSE</a>
-      </div>
-    </div>
-
-    <!-- コピーライト＋免責 -->
-    <p class="nw-footer-copy">© 2025 NicheWorks</p>
-    <p class="nw-footer-note">本ツールはブラウザ上のみで処理され、画像は一切送信されません。</p>
-
+    <p class="nw-footer-copy">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-note" data-i18n-key="footerNote">本ツールはブラウザ上のみで処理され、画像は一切送信されません。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </div>
 </footer>
 
