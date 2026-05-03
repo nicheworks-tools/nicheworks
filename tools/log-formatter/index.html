@@ -44,6 +44,46 @@
     "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ログはサーバーに送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。貼り付けたログはブラウザ内で処理され、NicheWorksのサーバーには送信されません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "どのログ形式に対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "主にNginx combined access log形式を想定しています。形式が違う行は未解析行として表示し、通常のコピーやTXT保存には含めます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "4xxや5xxだけ確認できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。ステータス抽出ボタンで2xx、3xx、4xx、5xx、4xx+5xxを切り替えられます。4xx/5xxだけをコピーすることもできます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "機密情報を含むログを貼っても大丈夫ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ログはブラウザ内で処理されますが、共有や保存の前にIP、Cookie、Authorizationヘッダー、メールアドレス、トークンなどが含まれていないか確認してください。"
+        }
+      }
+    ]
+  }
+  </script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body>
@@ -146,8 +186,28 @@
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
+    <section class="faq-section" aria-label="LogFormatter FAQ">
+      <h2>FAQ</h2>
+      <details open>
+        <summary>ログはサーバーに送信されますか？ / Are logs sent to a server?</summary>
+        <p>いいえ。貼り付けたログはブラウザ内で処理され、NicheWorksのサーバーには送信されません。 / No. The pasted logs are processed in your browser and are not sent to NicheWorks servers.</p>
+      </details>
+      <details>
+        <summary>どのログ形式に対応していますか？ / Which log format is supported?</summary>
+        <p>主にNginx combined access log形式を想定しています。形式が違う行は未解析行として表示し、通常のコピーやTXT保存には含めます。 / It is mainly designed for Nginx combined access logs. Unsupported lines are shown as unparsed and still included in normal copy and TXT export.</p>
+      </details>
+      <details>
+        <summary>4xxや5xxだけ確認できますか？ / Can I check only 4xx or 5xx errors?</summary>
+        <p>はい。ステータス抽出ボタンで2xx、3xx、4xx、5xx、4xx+5xxを切り替えられます。4xx/5xxだけをコピーすることもできます。 / Yes. Use the status shortcut buttons to filter 2xx, 3xx, 4xx, 5xx, or 4xx+5xx. You can also copy only 4xx/5xx lines.</p>
+      </details>
+      <details>
+        <summary>機密情報を含むログを貼っても大丈夫ですか？ / Is it safe to paste sensitive logs?</summary>
+        <p>ログはブラウザ内で処理されますが、共有や保存の前にIP、Cookie、Authorizationヘッダー、メールアドレス、トークンなどが含まれていないか確認してください。 / Processing is local, but before sharing or saving logs, check for IP addresses, cookies, Authorization headers, emails, tokens, and other sensitive data.</p>
+      </details>
+    </section>
+
     <div class="nw-donate">
-      <p class="nw-donate-text">このツールが役に立ったら、開発継続のためご支援いただけると嬉しいです。</p>
+      <p class="nw-donate-text">このツールが役に立ったら、開発継続のためご支援いただけると嬉しいです。 / If this tool helped, support helps keep NicheWorks running.</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
@@ -164,7 +224,7 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。 / This site may contain ads. Accuracy is not guaranteed; always verify important information with official sources.</p>
     <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
