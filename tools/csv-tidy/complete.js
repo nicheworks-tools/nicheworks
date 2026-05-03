@@ -19,11 +19,13 @@
   function qs(sel, root){ return (root || document).querySelector(sel); }
   function qsa(sel, root){ return Array.from((root || document).querySelectorAll(sel)); }
 
-  function lang(){
+  function currentLang(){
     const active = qs('.nw-lang-switch button.active');
     if (active && active.dataset.lang) return active.dataset.lang;
     return (navigator.language || '').toLowerCase().startsWith('ja') ? 'ja' : 'en';
   }
+
+  function t(ja, en){ return currentLang() === 'en' ? en : ja; }
 
   function applyOptionLabels(nextLang){
     const l = nextLang === 'en' ? 'en' : 'ja';
@@ -37,23 +39,47 @@
     return new File([sample.text], sample.filename, { type: 'text/csv;charset=utf-8' });
   }
 
+  function setLoadHint(message){
+    const hint = qs('#loadHint');
+    if (hint) hint.textContent = message || '';
+  }
+
   function loadSample(kind){
     const sample = samples[kind];
     const input = qs('#fileInput');
     if (!sample || !input) return;
 
     const file = makeFile(sample);
+    let assigned = false;
+
     try {
       const transfer = new DataTransfer();
       transfer.items.add(file);
       input.files = transfer.files;
+      assigned = input.files && input.files.length > 0;
     } catch (err) {
-      // Browsers without DataTransfer support can still fall back to the old sample download button.
+      assigned = false;
     }
 
-    input.dispatchEvent(new Event('change', { bubbles:true }));
-    setTimeout(renderSummary, 160);
-    setTimeout(renderSummary, 500);
+    if (assigned) {
+      input.dispatchEvent(new Event('change', { bubbles:true }));
+      setLoadHint(t('サンプルCSVを読み込みました。列編集と出力確認を試せます。', 'Sample CSV loaded. You can now test column editing and output preview.'));
+      setTimeout(renderSummary, 160);
+      setTimeout(renderSummary, 500);
+      return;
+    }
+
+    // Fallback for strict browsers: download the sample instead of silently failing.
+    const blob = new Blob([sample.text], { type:'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = sample.filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    setLoadHint(t('このブラウザでは画面内投入に制限があるため、サンプルCSVをダウンロードしました。', 'This browser blocked in-page sample loading, so the sample CSV was downloaded.'));
   }
 
   function visibleRows(){ return qsa('#previewTable tbody tr').filter(function(tr){ return tr.offsetParent !== null; }); }
@@ -97,7 +123,7 @@
     const box = qs('#csvTidyOutputSummary');
     if (!box) return;
 
-    const l = lang();
+    const l = currentLang();
     const cols = Math.max(headerCells().length, colItems().length);
     const rows = visibleRows().length;
     const excluded = excludedNames();
@@ -142,7 +168,7 @@
   function confirmExcluded(ev){
     const excluded = excludedNames();
     if (!excluded.length) return;
-    const msg = lang() === 'en'
+    const msg = currentLang() === 'en'
       ? 'Some columns are excluded from output:\n' + excluded.join(', ') + '\n\nContinue saving?'
       : '除外される列があります:\n' + excluded.join(', ') + '\n\nこのまま保存しますか？';
     if (!window.confirm(msg)) {
@@ -152,7 +178,7 @@
   }
 
   function install(){
-    applyOptionLabels(lang());
+    applyOptionLabels(currentLang());
 
     qsa('.nw-lang-switch button[data-lang]').forEach(function(button){
       button.addEventListener('click', function(){
