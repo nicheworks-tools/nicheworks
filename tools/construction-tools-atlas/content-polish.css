@@ -1,4 +1,4 @@
-.intro,.faq,.nw-donate,.nw-links,.nw-footer,.popularSearches{border:1px solid var(--line);background:var(--card);border-radius:16px;}
+.intro,.faq,.nw-donate,.nw-links,.nw-footer,.popularSearches,.emptySearchHelp{border:1px solid var(--line);background:var(--card);border-radius:16px;}
 .intro{margin:8px 0 12px;padding:14px;}
 .intro__eyebrow{margin:0 0 6px;font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
 .intro h1{margin:0;font-size:22px;line-height:1.25;letter-spacing:.01em;}
@@ -8,6 +8,9 @@
 .popularSearches__title{font-size:12px;font-weight:900;color:var(--muted);margin:0 0 8px;}
 .popularSearches__chips{display:flex;flex-wrap:wrap;gap:8px;}
 .popularSearches__chips .pillbtn{min-height:34px;font-size:12px;}
+.emptySearchHelp{margin:10px 0 12px;padding:12px;color:var(--text);}
+.emptySearchHelp strong{display:block;font-size:13px;margin:0 0 6px;}
+.emptySearchHelp ul{margin:0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.55;}
 .faq{margin:18px 0 14px;padding:14px;}
 .faq h2{margin:0 0 10px;font-size:16px;}
 .faq details{border-top:1px solid var(--line);padding:10px 0;}
