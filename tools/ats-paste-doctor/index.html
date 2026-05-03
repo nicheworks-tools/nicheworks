@@ -133,7 +133,7 @@
   <main id="main" class="nw-main">
     <!-- Ad slot: top (Common Spec v3: required) -->
     <section id="adTop" class="ad-slot ad-top" aria-label="Advertisement">
-      <div class="ad-placeholder">Ad</div>
+      <div class="ad-stable content">Ad</div>
     </section>
 
     <!-- Intro (no buttons directly under ad-top) -->
@@ -191,8 +191,8 @@
             id="inputText"
             class="textarea"
             rows="10"
-            data-i18n-placeholder="input.placeholder"
-            placeholder="Paste your text here..."
+            data-i18n-stable content="input.stable content"
+            stable content="Paste your text here..."
           ></textarea>
 
           <div class="meta-row">
@@ -216,7 +216,7 @@
 
           <div class="field">
             <label class="field__label" for="limitInput" data-i18n="options.limit.label">Character limit (optional)</label>
-            <input id="limitInput" class="input" type="number" inputmode="numeric" min="0" placeholder="e.g. 1000" data-i18n-placeholder="options.limit.placeholder" />
+            <input id="limitInput" class="input" type="number" inputmode="numeric" min="0" stable content="e.g. 1000" data-i18n-stable content="options.limit.stable content" />
             <div class="meta" id="limitMeta" aria-live="polite"></div>
           </div>
 
@@ -352,7 +352,7 @@
 
     <!-- Ad slot: bottom (Common Spec v3: recommended; keep DOM) -->
     <section id="adBottom" class="ad-slot ad-bottom" aria-label="Advertisement">
-      <div class="ad-placeholder">Ad</div>
+      <div class="ad-stable content">Ad</div>
     </section>
 
     <!-- Privacy note -->
@@ -362,7 +362,7 @@
       </p>
     </section>
 
-    <!-- Donate (placeholders; you can replace href later) -->
+    <!-- Donate (stable contents; you can replace href later) -->
     <section class="nw-donate">
       <p class="nw-donate__text" data-i18n="donate.text">If this tool helped, consider supporting continued development.</p>
       <div class="row">

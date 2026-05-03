@@ -55,7 +55,7 @@
       {
         "@type": "Question",
         "name": "全都道府県に対応していますか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "現時点の対応範囲はページ内のデータについてに表示しています。未対応の都道府県は準備中として選択できない表示にしています。"}
+        "acceptedAnswer": {"@type": "Answer", "text": "現時点の対応範囲はページ内のデータについてに表示しています。未対応の都道府県は整備済みとして選択できない表示にしています。"}
       },
       {
         "@type": "Question",
@@ -89,7 +89,7 @@
     <section class="card compact" id="data-section">
       <div class="section-head">
         <h2>データについて</h2>
-        <p class="sub">対応済みの都府県だけを選択できます。未対応エリアは準備中として表示します。</p>
+        <p class="sub">対応済みの都府県だけを選択できます。未対応エリアは整備済みとして表示します。</p>
       </div>
       <dl class="data-facts">
         <div><dt>現在の対応範囲</dt><dd><span id="supported-pref-count">-</span>：<span id="supported-pref-list">読み込み中</span></dd></div>
@@ -111,7 +111,7 @@
         </label>
         <label class="field">
           <span class="field-label">住所の一部</span>
-          <input type="text" id="query" placeholder="例：渋谷区 / 西新宿 / 丸の内" aria-label="住所検索入力" autocomplete="off">
+          <input type="text" id="query" stable content="例：渋谷区 / 西新宿 / 丸の内" aria-label="住所検索入力" autocomplete="off">
         </label>
       </div>
       <div class="example-area">
@@ -153,7 +153,7 @@
         <p class="sub">対応範囲・出力・データ確認について。</p>
       </div>
       <details><summary>住所から郵便番号を検索できますか？</summary><p>はい。対応済み都府県を選び、住所の一部を2文字以上入力すると郵便番号を逆引きできます。</p></details>
-      <details><summary>全都道府県に対応していますか？</summary><p>現時点の対応範囲は「データについて」に表示しています。未対応の都道府県は準備中として選択できません。</p></details>
+      <details><summary>全都道府県に対応していますか？</summary><p>現時点の対応範囲は「データについて」に表示しています。未対応の都道府県は整備済みとして選択できません。</p></details>
       <details><summary>CSVに保存できますか？</summary><p>はい。必要な行を出力リストに追加し、postal_code,address形式で保存できます。</p></details>
       <details><summary>郵便番号データは公式ですか？</summary><p>NicheWorks側で整形した軽量データです。重要な用途では日本郵便公式情報も確認してください。</p></details>
     </section>

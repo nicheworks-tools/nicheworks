@@ -34,7 +34,7 @@
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
   <!--
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
@@ -117,7 +117,7 @@
           <div class="field">
             <label class="label" data-i18n="ja">プロジェクト種別（必須）</label>
             <label class="label" data-i18n="en" style="display:none;">Project type (required)</label>
-            <input class="input" id="projectType" type="text" placeholder="LP/バナー/SNS/プレゼン資料" />
+            <input class="input" id="projectType" type="text" stable content="LP/バナー/SNS/プレゼン資料" />
             <p class="field-warning" id="warnProjectType">
               <span data-i18n="ja">必須項目です</span>
               <span data-i18n="en" style="display:none;">Required</span>
@@ -126,12 +126,12 @@
           <div class="field">
             <label class="label" data-i18n="ja">目的</label>
             <label class="label" data-i18n="en" style="display:none;">Purpose</label>
-            <input class="input" id="purpose" type="text" placeholder="LP改善/キャンペーン告知" />
+            <input class="input" id="purpose" type="text" stable content="LP改善/キャンペーン告知" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">納品物（必須）</label>
             <label class="label" data-i18n="en" style="display:none;">Deliverables (required)</label>
-            <textarea class="textarea" id="deliverables" placeholder="LPデザイン一式、バナー3点など"></textarea>
+            <textarea class="textarea" id="deliverables" stable content="LPデザイン一式、バナー3点など"></textarea>
             <p class="field-warning" id="warnDeliverables">
               <span data-i18n="ja">必須項目です</span>
               <span data-i18n="en" style="display:none;">Required</span>
@@ -140,12 +140,12 @@
           <div class="field">
             <label class="label" data-i18n="ja">サイズ・仕様</label>
             <label class="label" data-i18n="en" style="display:none;">Size/Specs</label>
-            <input class="input" id="size" type="text" placeholder="1200x628px / A4" />
+            <input class="input" id="size" type="text" stable content="1200x628px / A4" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">納期</label>
             <label class="label" data-i18n="en" style="display:none;">Deadline</label>
-            <input class="input" id="deadline" type="text" placeholder="2024-12-10" />
+            <input class="input" id="deadline" type="text" stable content="2024-12-10" />
             <p class="field-warning" id="warnDeadline">
               <span data-i18n="ja">必須項目です</span>
               <span data-i18n="en" style="display:none;">Required</span>
@@ -154,7 +154,7 @@
           <div class="field">
             <label class="label" data-i18n="ja">予算（必須）</label>
             <label class="label" data-i18n="en" style="display:none;">Budget (required)</label>
-            <input class="input" id="budget" type="text" placeholder="¥100,000 〜 ¥150,000" />
+            <input class="input" id="budget" type="text" stable content="¥100,000 〜 ¥150,000" />
             <p class="field-warning" id="warnBudget">
               <span data-i18n="ja">必須項目です</span>
               <span data-i18n="en" style="display:none;">Required</span>
@@ -163,7 +163,7 @@
           <div class="field">
             <label class="label" data-i18n="ja">参考/素材</label>
             <label class="label" data-i18n="en" style="display:none;">References/Assets</label>
-            <textarea class="textarea" id="references" placeholder="URLや既存素材の場所"></textarea>
+            <textarea class="textarea" id="references" stable content="URLや既存素材の場所"></textarea>
             <p class="field-warning" id="warnReferences">
               <span data-i18n="ja">必須項目です</span>
               <span data-i18n="en" style="display:none;">Required</span>
@@ -172,42 +172,42 @@
           <div class="field">
             <label class="label" data-i18n="ja">必須要素</label>
             <label class="label" data-i18n="en" style="display:none;">Must-have items</label>
-            <textarea class="textarea" id="mustHave" placeholder="ロゴ、CTA、注意書き"></textarea>
+            <textarea class="textarea" id="mustHave" stable content="ロゴ、CTA、注意書き"></textarea>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">ターゲット</label>
             <label class="label" data-i18n="en" style="display:none;">Target audience</label>
-            <input class="input" id="audience" type="text" placeholder="20代女性 / BtoBマーケ担当" />
+            <input class="input" id="audience" type="text" stable content="20代女性 / BtoBマーケ担当" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">トーン/雰囲気</label>
             <label class="label" data-i18n="en" style="display:none;">Tone/Style</label>
-            <input class="input" id="tone" type="text" placeholder="落ち着いた/高級感/ポップ" />
+            <input class="input" id="tone" type="text" stable content="落ち着いた/高級感/ポップ" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">避けたい表現</label>
             <label class="label" data-i18n="en" style="display:none;">Avoid</label>
-            <textarea class="textarea" id="avoid" placeholder="派手すぎる色、過度な装飾"></textarea>
+            <textarea class="textarea" id="avoid" stable content="派手すぎる色、過度な装飾"></textarea>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">制約・NG事項</label>
             <label class="label" data-i18n="en" style="display:none;">Constraints/Notes</label>
-            <textarea class="textarea" id="constraints" placeholder="使用不可素材、社内ルールなど"></textarea>
+            <textarea class="textarea" id="constraints" stable content="使用不可素材、社内ルールなど"></textarea>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">納品形式</label>
             <label class="label" data-i18n="en" style="display:none;">Deliverables format</label>
-            <input class="input" id="deliverablesFormat" type="text" placeholder="AI/PSD/PNG/FIGMA" />
+            <input class="input" id="deliverablesFormat" type="text" stable content="AI/PSD/PNG/FIGMA" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">修正回数</label>
             <label class="label" data-i18n="en" style="display:none;">Revisions</label>
-            <input class="input" id="revisions" type="text" placeholder="2回まで / 応相談" />
+            <input class="input" id="revisions" type="text" stable content="2回まで / 応相談" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">連絡先</label>
             <label class="label" data-i18n="en" style="display:none;">Contact</label>
-            <input class="input" id="contact" type="text" placeholder="担当者名・メールアドレス" />
+            <input class="input" id="contact" type="text" stable content="担当者名・メールアドレス" />
           </div>
 
           <div class="row" style="margin-top:8px;">

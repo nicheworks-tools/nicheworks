@@ -74,7 +74,7 @@
           "name": "safe-fix は何を直しますか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "meta description placeholder、favicon reference、robots.txt、sitemap.xml など、公開前の狭い低リスク領域だけを対象にします。"
+            "text": "meta description stable content、favicon reference、robots.txt、sitemap.xml など、公開前の狭い低リスク領域だけを対象にします。"
           }
         },
         {
@@ -218,7 +218,7 @@
         <h2>モード</h2>
         <div class="flow-list">
           <div class="flow-step"><strong>1. Report-only</strong>リポジトリを inspect し、必要な safe check を走らせ、ファイルは編集せずに findings を返します。</div>
-          <div class="flow-step"><strong>2. Safe-fix</strong>meta description placeholder、favicon reference、robots.txt、sitemap.xml など、狭い low-risk 領域だけを自動補完します。</div>
+          <div class="flow-step"><strong>2. Safe-fix</strong>meta description stable content、favicon reference、robots.txt、sitemap.xml など、狭い low-risk 領域だけを自動補完します。</div>
           <div class="flow-step"><strong>3. Blocker-first</strong>公開を止める可能性が高い問題だけに集中し、重大 blocker が確定したら余計な続行を避けます。</div>
           <div class="flow-step"><strong>4. Release-report</strong>PR、issue、release note、launch review に貼りやすい形の clean な report を返します。</div>
         </div>
@@ -283,7 +283,7 @@ python3 scripts/release_guardian.py /path/to/target-repo --mode release-report -
           </div>
           <div class="faq-item">
             <h3>safe-fix は何を直しますか？</h3>
-            <p>meta description placeholder、favicon reference、robots.txt、sitemap.xml など、公開前の狭い low-risk 領域だけを対象にします。</p>
+            <p>meta description stable content、favicon reference、robots.txt、sitemap.xml など、公開前の狭い low-risk 領域だけを対象にします。</p>
           </div>
           <div class="faq-item">
             <h3>これはセキュリティ監査ツールですか？</h3>

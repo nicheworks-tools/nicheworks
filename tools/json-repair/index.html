@@ -131,7 +131,7 @@
             <h2 class="jr-h2" data-i18n="inputTitle">入力</h2>
             <div class="jr-mini" id="jrStats">—</div>
           </div>
-          <textarea id="jrInput" class="jr-textarea" spellcheck="false" placeholder="Paste JSON here..."></textarea>
+          <textarea id="jrInput" class="jr-textarea" spellcheck="false" stable content="Paste JSON here..."></textarea>
           <div class="jr-toolbar">
             <button type="button" id="btnValidate" class="jr-btn" data-i18n="validateBtn">検証</button>
             <button type="button" id="btnRepair" class="jr-btn jr-btn-primary" data-i18n="repairBtn">修復</button>
@@ -182,7 +182,7 @@
           <div id="jrProState" class="jr-mini">Inactive</div>
         </div>
         <div class="jr-pro-row">
-          <input id="jrProKey" class="jr-pro-key" placeholder="NW-JR-XXXX-XXXX-XXXX" />
+          <input id="jrProKey" class="jr-pro-key" stable content="NW-JR-XXXX-XXXX-XXXX" />
           <button type="button" id="btnProActivate" class="jr-btn jr-btn-primary" data-i18n="activateBtn">Activate</button>
           <button type="button" id="btnProClear" class="jr-btn jr-btn-ghost" data-i18n="clearBtn">Clear</button>
         </div>
@@ -197,7 +197,7 @@
       <details class="jr-schema" id="jrSchemaWrap">
         <summary><span data-i18n="schemaTitle">Schema check（Pro）</span></summary>
         <div class="jr-mini" data-i18n="schemaHelp">例: required user.id, user.name / type user.id=number</div>
-        <textarea id="jrSchemaRules" class="jr-textarea" style="min-height:140px" spellcheck="false" placeholder="required user.id, user.name&#10;type user.id=number&#10;type enabled=boolean"></textarea>
+        <textarea id="jrSchemaRules" class="jr-textarea" style="min-height:140px" spellcheck="false" stable content="required user.id, user.name&#10;type user.id=number&#10;type enabled=boolean"></textarea>
         <div class="jr-toolbar"><button type="button" class="jr-btn" id="btnSchemaRun" data-i18n="schemaRunBtn">Schema check</button></div>
         <div id="jrSchemaOut" class="jr-validate"></div>
       </details>

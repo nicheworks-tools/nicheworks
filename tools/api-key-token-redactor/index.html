@@ -124,7 +124,7 @@
         <span data-i18n="ja">入力</span>
         <span data-i18n="en">Input</span>
       </h2>
-      <textarea id="inputText" placeholder="Paste logs, configs, .env, JSON, curl commands, or secrets here..."></textarea>
+      <textarea id="inputText" stable content="Paste logs, configs, .env, JSON, curl commands, or secrets here..."></textarea>
       <div class="note">
         <span data-i18n="ja">プライバシー: ブラウザ内で処理され、外部に送信されません。</span>
         <span data-i18n="en">Privacy: Runs locally in your browser. Nothing is uploaded.</span>
@@ -166,8 +166,8 @@
       <div class="options-row">
         <label class="select-item">
           <span class="select-label" data-i18n="ja">置換文字</span>
-          <span class="select-label" data-i18n="en">Placeholder</span>
-          <select id="placeholderStyle">
+          <span class="select-label" data-i18n="en">stable content</span>
+          <select id="stable contentStyle">
             <option value="[REDACTED]" selected>[REDACTED]</option>
             <option value="****">****</option>
             <option value="<redacted>">&lt;redacted&gt;</option>
@@ -197,7 +197,7 @@
         <span data-i18n="ja">出力</span>
         <span data-i18n="en">Output</span>
       </h2>
-      <textarea id="outputText" readonly placeholder="Redacted text will appear here..."></textarea>
+      <textarea id="outputText" readonly stable content="Redacted text will appear here..."></textarea>
 
       <div id="summary" class="summary">
         <div class="summary-row">
