@@ -85,6 +85,13 @@ body {
   font-size: 12px;
 }
 .intro-panel p { margin: 0; }
+.usage-link {
+  display: inline-block;
+  margin-left: 8px;
+  color: #111827;
+  text-decoration: underline;
+  font-weight: 600;
+}
 
 .panel {
   background: #fff;
@@ -267,6 +274,15 @@ input[type="text"]:focus, select:focus {
   padding-left: 16px;
   margin: 4px 0 0;
 }
+.faq-panel h3 {
+  margin: 12px 0 2px;
+  font-size: 13px;
+}
+.faq-panel p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 12px;
+}
 
 .nw-donate {
   text-align: center;
@@ -354,4 +370,5 @@ input[type="text"]:focus, select:focus {
   .controls { grid-template-columns: 1fr; }
   .quick-buttons button { flex: 1 1 auto; }
   .card-list { grid-template-columns: 1fr; }
+  .usage-link { display: block; margin: 6px 0 0; }
 }
