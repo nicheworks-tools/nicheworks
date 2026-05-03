@@ -1,90 +1,126 @@
-/* =========================================================
-   PDF Page Tools Mini — styles
-   PPTM-18: 480px最適化 / ページカード操作2行 / 抽出パネル統一
-   - 共通のnw-base.cssを前提（色・タイポはそちら）
-   ========================================================= */
-
 :root{
   --pptm-gap: 12px;
-  --pptm-gap-sm: 10px;
   --pptm-radius: 12px;
 }
 
-.nw-main{ max-width: 1100px; }
+.nw-main{
+  max-width: 1100px;
+}
 
-/* ---- Ads placeholders ---- */
-.nw-ad{
+.ad-slot{
   min-height: 90px;
-  border: 1px dashed rgba(0,0,0,.12);
+  border: 1px dashed rgba(0,0,0,.16);
   border-radius: var(--pptm-radius);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.nw-ad::before{
-  content:"Ad";
-  opacity:.45;
-  font-size:14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  background: rgba(249,250,251,.7);
+  margin: 16px 0;
 }
 
-/* ---- Dropzone ---- */
+.pptm-steps ol{
+  margin: 0;
+  padding-left: 1.4rem;
+}
+.pptm-steps li{
+  margin: 6px 0;
+}
+
+.pptm-notes p{
+  margin: 8px 0;
+}
+
 #dropzone{
   border: 2px dashed rgba(0,0,0,.16);
   border-radius: var(--pptm-radius);
   padding: 18px;
   cursor: pointer;
-  user-select:none;
+  user-select: none;
 }
 #dropzone.is-dragover{
   border-color: rgba(0,0,0,.35);
+  background: rgba(249,250,251,.9);
 }
-
-/* ---- Loading ---- */
+#fileInput{
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.dropzone-inner{
+  display: grid;
+  gap: 10px;
+}
+.dz-row{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dz-hint,
+.dz-notes{
+  color: #6b7280;
+  font-size: 14px;
+}
 #loading{
   margin-top: 10px;
 }
 
-/* ---- After load panel ---- */
 #panelAfterLoad.is-disabled{
-  opacity: .55;
+  opacity: .56;
   pointer-events: none;
 }
 #panelAfterLoad.is-busy{
+  opacity: .82;
   pointer-events: none;
-  opacity: .85;
 }
 
-/* ---- Top actions row ---- */
 .pptm-actions{
-  display:flex;
+  display: flex;
   gap: var(--pptm-gap);
-  align-items:center;
+  align-items: center;
   flex-wrap: wrap;
 }
-.pptm-actions .nw-btn,
 .pptm-actions button{
   white-space: nowrap;
 }
+.pptm-actions .spacer{
+  flex: 1 1 auto;
+}
 
-/* ---- File list ---- */
+.files,
+.extract,
+.pages{
+  margin-top: 18px;
+}
+.files-title,
+.extract-title,
+.pages-title{
+  font-weight: 700;
+  margin-bottom: 8px;
+}
 #fileList{
   margin: 0;
   padding-left: 18px;
 }
 .file-item{
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
   padding: 6px 0;
+}
+.file-left{
+  word-break: break-word;
 }
 .file-remove{
   flex: 0 0 auto;
 }
 
-/* ---- Extract panel ---- */
 .pptm-extract{
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   gap: var(--pptm-gap);
   align-items: end;
@@ -95,7 +131,7 @@
   min-width: 220px;
 }
 .pptm-extract label{
-  display:block;
+  display: block;
   font-weight: 600;
   margin-bottom: 6px;
 }
@@ -105,45 +141,53 @@
   border-radius: 10px;
   border: 1px solid rgba(0,0,0,.18);
 }
-.pptm-extract .pptm-hint{
-  margin-top: 6px;
-  opacity: .7;
-  font-size: 13px;
-}
 
-/* ---- Status box ---- */
-#statusBox{
+.status,
+#statusBox,
+.summary-box{
   border-radius: var(--pptm-radius);
   border: 1px solid rgba(0,0,0,.12);
-  padding: 12px 12px;
+  padding: 12px;
+  background: rgba(249,250,251,.8);
+}
+#statusBox{
   margin-top: 12px;
-  display:flex;
+  display: flex;
   gap: 10px;
-  align-items:flex-start;
+  align-items: flex-start;
   justify-content: space-between;
 }
 #statusText{
-  margin:0;
-  line-height:1.5;
+  margin: 0;
+  line-height: 1.5;
+}
+.status-close{
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+.summary-box{
+  margin-bottom: 12px;
+  color: #374151;
+  font-size: 14px;
 }
 
-/* ---- Page list ---- */
 #pageList{
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--pptm-gap);
   margin-top: 12px;
 }
-
-/* ---- Page card ---- */
 .page-card{
   border: 1px solid rgba(0,0,0,.12);
   border-radius: var(--pptm-radius);
   padding: 10px;
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 8px;
-  background: rgba(255,255,255,.6);
+  background: rgba(255,255,255,.75);
   position: relative;
 }
 .page-card.dnd{
@@ -156,46 +200,45 @@
   outline: 2px solid rgba(0,0,0,.25);
   outline-offset: 2px;
 }
-
 .page-top{
   font-size: 13px;
-  opacity: .75;
+  color: #6b7280;
   word-break: break-word;
 }
-
 .thumb-box{
   border-radius: 10px;
-  overflow:hidden;
+  overflow: hidden;
   border: 1px solid rgba(0,0,0,.08);
-  background: rgba(255,255,255,.9);
+  background: #fff;
   min-height: 140px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .thumb-box img{
-  display:block;
+  display: block;
   max-width: 100%;
   max-height: 200px;
 }
-
+.page-card.thumb-loading .thumb-box,
+.thumb-box.thumb-loading{
+  opacity: .65;
+}
 .page-meta{
   font-size: 13px;
-  opacity: .75;
+  color: #6b7280;
 }
-
-/* ---- Operations: 2-row layout ready ---- */
 .page-ops{
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
 }
 .page-ops .op{
-  padding: 10px 10px;
+  padding: 10px;
   border-radius: 10px;
   border: 1px solid rgba(0,0,0,.15);
-  background: rgba(255,255,255,.85);
-  cursor:pointer;
+  background: rgba(255,255,255,.92);
+  cursor: pointer;
   font-size: 14px;
 }
 .page-ops .op:disabled{
@@ -203,51 +246,72 @@
   cursor: not-allowed;
 }
 .page-ops .op.danger{
-  border-color: rgba(0,0,0,.22);
+  border-color: rgba(185,28,28,.35);
 }
-
-/* first row: rotateL rotateR delete
-   second row: up down (spans 3 columns feel) -> we fake by making up/down wider in mobile */
 .page-ops .op:nth-child(4),
 .page-ops .op:nth-child(5){
   font-size: 13px;
 }
 
-/* ---- Utility blocks inserted by tasks ---- */
-.nw-usage-link{ margin-top: 12px; }
-.nw-internal-links ul{ margin: 0; padding-left: 18px; }
-.nw-donate .nw-btn{ display:inline-flex; }
-
-/* =========================================================
-   Responsive rules
-   ========================================================= */
-
-/* 960–1200 desktop is fine; tighten at medium */
-@media (max-width: 900px){
-  #pageList{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .thumb-box{ min-height: 120px; }
+.nw-faq{
+  margin-top: 28px;
+}
+.faq-item{
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding: 14px 0;
+}
+.faq-item h3{
+  font-size: 1rem;
+  margin: 0 0 6px;
+}
+.faq-item p{
+  margin: 0;
+}
+.nw-links{
+  margin-top: 28px;
+}
+.nw-links-list{
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+.nw-donate .nw-donate-links{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* Mobile: <=480px — MUST be usable */
-@media (max-width: 480px){
-  .pptm-actions{
-    flex-direction: column;
-    align-items: stretch;
+@media (max-width: 900px){
+  #pageList{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .pptm-actions .nw-btn,
-  .pptm-actions button{
-    width: 100%;
+  .thumb-box{
+    min-height: 120px;
   }
+}
 
+@media (max-width: 480px){
+  .pptm-actions,
+  .dz-row,
   .pptm-extract{
     flex-direction: column;
     align-items: stretch;
   }
-  .pptm-extract .pptm-field{ width:100%; }
-
-  #pageList{ grid-template-columns: 1fr; }
-
-  /* operations: 2 rows (3 + 2 buttons) */
+  .pptm-actions button,
+  .dz-row button,
+  .pptm-extract button,
+  .pptm-extract .pptm-field{
+    width: 100%;
+  }
+  #pageList{
+    grid-template-columns: 1fr;
+  }
+  .file-item{
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .file-remove{
+    width: 100%;
+  }
   .page-ops{
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -255,9 +319,4 @@
   .page-ops .op:nth-child(5){
     grid-column: span 3;
   }
-}
-
-/* Small visual feedback for thumb loading */
-.page-card.thumb-loading .thumb-box{
-  opacity: .65;
 }
