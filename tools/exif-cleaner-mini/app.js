@@ -31,6 +31,7 @@ const dropArea = document.getElementById("drop-area");
 const fileInput = document.getElementById("file-input");
 const preview = document.getElementById("preview");
 const statusEl = document.getElementById("exif-status");
+const statusNoteEl = document.getElementById("status-note");
 const outputFormatEl = document.getElementById("output-format");
 const formatControls = document.getElementById("format-controls");
 const formatSelect = document.getElementById("format-select");
@@ -38,11 +39,16 @@ const qualitySlider = document.getElementById("quality-slider");
 const qualityValue = document.getElementById("quality-value");
 const cleanBtnJa = document.getElementById("clean-btn-ja");
 const cleanBtnEn = document.getElementById("clean-btn-en");
+const resultPanel = document.getElementById("result-panel");
 const doneMsgJa = document.getElementById("done-msg-ja");
 const doneMsgEn = document.getElementById("done-msg-en");
+const resetBtn = document.getElementById("reset-btn");
+const resetBtnEn = document.getElementById("reset-btn-en");
 
 let inputFormat = null;
 let outputFormat = null;
+
+const MAX_FILE_BYTES = 25 * 1024 * 1024;
 
 dropArea.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", handleFile);
@@ -54,6 +60,9 @@ formatSelect.addEventListener("change", () => {
 qualitySlider.addEventListener("input", () => {
   qualityValue.textContent = Number(qualitySlider.value).toFixed(2);
 });
+
+if (resetBtn) resetBtn.addEventListener("click", resetTool);
+if (resetBtnEn) resetBtnEn.addEventListener("click", resetTool);
 
 dropArea.addEventListener("dragover", (e) => e.preventDefault());
 dropArea.addEventListener("drop", (e) => {
@@ -70,7 +79,26 @@ async function handleFile() {
 
   resetMessages();
   setStatus("Loading image...", "画像を読み込んでいます...");
+  setStatusNote("", "");
   setButtonsDisabled(true);
+
+  if (file.size === 0) {
+    setStatus("This file is empty.", "ファイルが空です。");
+    setStatusNote(
+      "Please choose a JPEG, PNG, or WebP image.",
+      "JPEG / PNG / WebP 形式の画像を選択してください。"
+    );
+    return;
+  }
+
+  if (file.size > MAX_FILE_BYTES) {
+    setStatus("This image is very large.", "画像ファイルが大きすぎます。");
+    setStatusNote(
+      "Try a smaller image. Very large files may fail in the browser.",
+      "ブラウザ内処理のため、より小さい画像でお試しください。"
+    );
+    return;
+  }
 
   try {
     const [dataUrl, arrayBuffer] = await Promise.all([
@@ -78,23 +106,32 @@ async function handleFile() {
       readFileAsArrayBuffer(file),
     ]);
 
-    preview.src = dataUrl;
-    preview.classList.remove("hidden");
-
     inputFormat = detectInputFormat(file, arrayBuffer);
     if (!inputFormat) {
+      preview.classList.add("hidden");
       setStatus(
         "Unsupported image format.",
         "対応していない画像形式です。"
       );
+      setStatusNote(
+        "Supported formats: JPEG / PNG / WebP. Convert HEIC to JPEG or PNG first.",
+        "対応形式：JPEG / PNG / WebP。HEICなどは先にJPEGまたはPNGへ変換してください。"
+      );
       return;
     }
+
+    preview.src = dataUrl;
+    preview.classList.remove("hidden");
 
     setupFormatControls();
     detectExif(dataUrl);
   } catch (error) {
     console.error(error);
     setStatus("Failed to load the image.", "画像の読み込みに失敗しました。");
+    setStatusNote(
+      "Please try another JPEG, PNG, or WebP file.",
+      "別のJPEG / PNG / WebP画像でお試しください。"
+    );
   }
 }
 
@@ -103,8 +140,16 @@ function detectExif(dataUrl) {
   const hasExif = binary.includes("Exif") || binary.includes("EXIF");
 
   setStatus(
-    hasExif ? "EXIF metadata detected" : "No EXIF metadata found",
-    hasExif ? "EXIFメタデータが検出されました" : "EXIFメタデータは見つかりませんでした"
+    hasExif
+      ? "Quick check: EXIF-like metadata was detected."
+      : "Quick check: no EXIF-like string was found.",
+    hasExif
+      ? "簡易チェック：EXIFらしきメタデータを検出しました。"
+      : "簡易チェック：EXIFらしき文字列は見つかりませんでした。"
+  );
+  setStatusNote(
+    "This is a simple check, not a full GPS or metadata analysis. You can now clean and save the image.",
+    "この判定は簡易チェックです。GPSの有無や全メタデータの詳細解析ではありません。削除して保存できます。"
   );
 
   setButtonsDisabled(false);
@@ -119,6 +164,7 @@ async function cleanExif() {
 
   resetMessages();
   setStatus("Processing image...", "画像を処理中...");
+  setStatusNote("", "");
   setButtonsDisabled(true);
 
   try {
@@ -150,17 +196,26 @@ async function cleanExif() {
     a.click();
     URL.revokeObjectURL(blobUrl);
 
-    doneMsgJa.classList.remove("hidden");
-    doneMsgEn.classList.remove("hidden");
+    if (doneMsgJa) doneMsgJa.textContent = `保存しました：${downloadName}`;
+    if (doneMsgEn) doneMsgEn.textContent = `Saved: ${downloadName}`;
+    if (resultPanel) resultPanel.classList.remove("hidden");
     setStatus(
       `Saved as ${downloadName}`,
       `${downloadName} として保存しました`
+    );
+    setStatusNote(
+      "The saved file was regenerated in the browser.",
+      "保存された画像はブラウザ内で再生成されました。"
     );
   } catch (error) {
     console.error(error);
     setStatus(
       "Failed to clean the image. Please try another file.",
       "画像の処理に失敗しました。別の画像でお試しください。"
+    );
+    setStatusNote(
+      "Some files may not be decodable by the browser even if the extension looks supported.",
+      "拡張子が対応形式でも、ブラウザで読み込めない画像は処理できない場合があります。"
     );
   } finally {
     setButtonsDisabled(false);
@@ -199,7 +254,7 @@ function updateOutputFormatText() {
   const formatLabelMap = {
     jpeg: "JPEG (.jpg)",
     png: "PNG (.png)",
-    webp: "WEBP (.webp)",
+    webp: "WebP (.webp)",
   };
   const formatLabel = formatLabelMap[outputFormat] || outputFormat.toUpperCase();
   outputFormatEl.textContent =
@@ -212,6 +267,20 @@ function updateQualityControl() {
   const isJpeg = outputFormat === "jpeg";
   qualitySlider.disabled = !isJpeg;
   qualitySlider.setAttribute("aria-disabled", String(!isJpeg));
+}
+
+function resetTool() {
+  fileInput.value = "";
+  preview.removeAttribute("src");
+  preview.classList.add("hidden");
+  inputFormat = null;
+  outputFormat = null;
+  formatControls.classList.add("hidden");
+  outputFormatEl.textContent = "";
+  setStatus("", "");
+  setStatusNote("", "");
+  resetMessages();
+  setButtonsDisabled(true);
 }
 
 function readFileAsDataURL(file) {
@@ -301,7 +370,7 @@ function canvasToBlob(canvas, type, quality) {
 }
 
 function buildDownloadName(originalName, format) {
-  const base = originalName.replace(/\.[^/.]+$/, "");
+  const base = originalName.replace(/\.[^/.]+$/, "") || "image";
   const extension = format === "jpeg" ? ".jpg" : `.${format}`;
   return `${base}-cleaned${extension}`;
 }
@@ -312,11 +381,16 @@ function setButtonsDisabled(disabled) {
 }
 
 function resetMessages() {
-  doneMsgJa.classList.add("hidden");
-  doneMsgEn.classList.add("hidden");
+  if (resultPanel) resultPanel.classList.add("hidden");
 }
 
 function setStatus(enText, jaText) {
   const lang = document.documentElement.lang === "en" ? "en" : "ja";
   statusEl.textContent = lang === "en" ? enText : jaText;
+}
+
+function setStatusNote(enText, jaText) {
+  if (!statusNoteEl) return;
+  const lang = document.documentElement.lang === "en" ? "en" : "ja";
+  statusNoteEl.textContent = lang === "en" ? enText : jaText;
 }
