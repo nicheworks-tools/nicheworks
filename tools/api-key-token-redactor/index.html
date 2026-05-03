@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>APIキー・トークン伏字ツール | NicheWorks</title>
-  <meta name="description" content="APIキーやトークンを貼り付けて、ブラウザ内で伏字に変換する無料ツール。ローカル処理でアップロードなし。">
+  <title>APIキー・トークン伏字化｜API Key Token Redactor | NicheWorks</title>
+  <meta name="description" content="APIキー、Bearerトークン、JWT、秘密鍵、.envやJSON内のシークレットをブラウザ内で検出し、共有用に伏字化する無料ツールです。外部送信なし。">
   <link rel="canonical" href="https://nicheworks.app/tools/api-key-token-redactor/">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="APIキー・トークン伏字ツール | NicheWorks">
-  <meta property="og:description" content="貼る前チェックに。APIキーやトークンをブラウザ内で伏字化。">
+  <meta property="og:title" content="APIキー・トークン伏字化｜API Key Token Redactor | NicheWorks">
+  <meta property="og:description" content="ログ、.env、JSON、curlヘッダーに含まれるAPIキーやトークンをブラウザ内で検出し、伏字化します。">
   <meta property="og:url" content="https://nicheworks.app/tools/api-key-token-redactor/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -18,23 +18,75 @@
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "API Key Token Redactor",
+    "url": "https://nicheworks.app/tools/api-key-token-redactor/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "description": "APIキー、Bearerトークン、JWT、秘密鍵、.envやJSON内のシークレットをブラウザ内で検出し、共有用に伏字化する無料ツールです。"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "入力したテキストは送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。入力内容はブラウザ内で処理され、外部サーバーには送信されません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "すべての秘密情報を検出できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。一般的なAPIキー、トークン、秘密鍵、ラベル付きシークレットを検出しますが、独自形式や短い値は検出できない場合があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": ".env や JSON に対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。api_key、token、secret、password、client_secret、access_token などのキー名をもとに、quoted value も検出します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "伏字後のテキストは安全に共有できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "完全保証ではありません。共有前にURL、Cookie、Authorizationヘッダー、メールアドレス、IPなどを目視確認してください。"
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="./style.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-57QT78M3JB');
-</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 </head>
 
 <body>
   <header class="nw-header">
     <div class="header-row">
       <h1>
-        <span data-i18n="ja">APIキー・トークン伏字ツール</span>
+        <span data-i18n="ja">APIキー・トークン伏字化</span>
         <span data-i18n="en">API Key &amp; Token Redactor</span>
       </h1>
       <div class="nw-lang-switch">
@@ -43,21 +95,53 @@
       </div>
     </div>
     <p>
-      <span data-i18n="ja">貼り付けたテキストから秘密情報を検出して伏字化します。</span>
-      <span data-i18n="en">Paste text, detect secrets, and redact them locally in your browser.</span>
+      <span data-i18n="ja">ログ、.env、JSON、curlコマンドに含まれる秘密情報らしき文字列を検出し、共有用に伏字化します。</span>
+      <span data-i18n="en">Detect likely secrets in logs, .env files, JSON, and curl commands, then redact them locally.</span>
     </p>
   </header>
 
   <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠（準備中）</div>
+
+    <section class="tool-note">
+      <p data-i18n="ja">このツールは、APIキー、Bearerトークン、JWT、秘密鍵、Cookie、URL内トークンなどをブラウザ内で検出し、外部送信なしで伏字化します。</p>
+      <p data-i18n="en">This tool detects API keys, Bearer tokens, JWTs, private keys, cookies, and URL tokens in your browser without uploading your text.</p>
+      <p class="usage-link">
+        <a href="./howto/">
+          <span data-i18n="ja">詳しい使い方と検出パターン</span>
+          <span data-i18n="en">Full guide and supported patterns</span>
+        </a>
+      </p>
+    </section>
+
     <section class="tool-card">
       <h2>
         <span data-i18n="ja">入力</span>
         <span data-i18n="en">Input</span>
       </h2>
-      <textarea id="inputText" placeholder="Paste logs, configs, or secrets here..."></textarea>
+      <textarea id="inputText" placeholder="Paste logs, configs, .env, JSON, curl commands, or secrets here..."></textarea>
       <div class="note">
         <span data-i18n="ja">プライバシー: ブラウザ内で処理され、外部に送信されません。</span>
         <span data-i18n="en">Privacy: Runs locally in your browser. Nothing is uploaded.</span>
+      </div>
+      <div class="sample-area" aria-label="Sample inputs">
+        <p class="sample-title">
+          <span data-i18n="ja">サンプル入力</span>
+          <span data-i18n="en">Sample inputs</span>
+        </p>
+        <div class="sample-grid">
+          <button type="button" class="btn-ghost" data-sample="env">.env</button>
+          <button type="button" class="btn-ghost" data-sample="json">JSON</button>
+          <button type="button" class="btn-ghost" data-sample="curl">curl</button>
+          <button type="button" class="btn-ghost" data-sample="log">
+            <span data-i18n="ja">ログ</span>
+            <span data-i18n="en">Log</span>
+          </button>
+          <button type="button" class="btn-ghost" data-sample="privateKey">
+            <span data-i18n="ja">秘密鍵</span>
+            <span data-i18n="en">Private key</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -68,10 +152,10 @@
       </h2>
       <div class="options-grid">
         <label class="check-item"><input type="checkbox" id="modeApiKeys" checked> <span>API keys</span></label>
-        <label class="check-item"><input type="checkbox" id="modeBearer" checked> <span>Bearer tokens</span></label>
+        <label class="check-item"><input type="checkbox" id="modeBearer" checked> <span>Bearer / Authorization</span></label>
         <label class="check-item"><input type="checkbox" id="modeJwt" checked> <span>JWT</span></label>
         <label class="check-item"><input type="checkbox" id="modePrivateKey" checked> <span>Private keys (PEM)</span></label>
-        <label class="check-item"><input type="checkbox" id="modeGenericSecret" checked> <span>Generic secrets</span></label>
+        <label class="check-item"><input type="checkbox" id="modeGenericSecret" checked> <span>Generic / JSON / .env / URL / Cookie</span></label>
       </div>
 
       <div class="options-row">
@@ -126,10 +210,7 @@
           <span class="summary-value" id="countBearer">0</span>
         </div>
         <div class="summary-row">
-          <span class="summary-label">
-            <span data-i18n="ja">JWT</span>
-            <span data-i18n="en">JWT</span>
-          </span>
+          <span class="summary-label">JWT</span>
           <span class="summary-value" id="countJwt">0</span>
         </div>
         <div class="summary-row">
@@ -141,10 +222,32 @@
         </div>
         <div class="summary-row">
           <span class="summary-label">
-            <span data-i18n="ja">ラベル付きシークレット</span>
+            <span data-i18n="ja">ラベル付きsecret</span>
             <span data-i18n="en">Labeled secrets</span>
           </span>
           <span class="summary-value" id="countGeneric">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">ヘッダー系</span>
+            <span data-i18n="en">Headers</span>
+          </span>
+          <span class="summary-value" id="countHeaders">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">URL内token</span>
+            <span data-i18n="en">URL tokens</span>
+          </span>
+          <span class="summary-value" id="countUrlQuery">0</span>
+        </div>
+        <div class="summary-row severity-count">
+          <span class="summary-label">High</span>
+          <span class="summary-value" id="countHigh">0</span>
+        </div>
+        <div class="summary-row severity-count">
+          <span class="summary-label">Medium</span>
+          <span class="summary-value" id="countMedium">0</span>
         </div>
         <div class="summary-row summary-total">
           <span class="summary-label">
@@ -157,39 +260,112 @@
 
       <div class="btn-row">
         <button type="button" id="copyBtn" class="btn-ghost">
-          <span data-i18n="ja">コピー</span>
-          <span data-i18n="en">Copy</span>
+          <span data-i18n="ja">伏字済みテキストをコピー</span>
+          <span data-i18n="en">Copy redacted text</span>
         </button>
         <button type="button" id="downloadBtn" class="btn-ghost">
           <span data-i18n="ja">TXTダウンロード</span>
           <span data-i18n="en">Download TXT</span>
         </button>
       </div>
-      <p class="note">
-        <span data-i18n="ja">※ 完全な検出は保証されません。共有前に再確認してください。</span>
-        <span data-i18n="en">No detector is perfect. Review before sharing.</span>
-      </p>
+    </section>
+
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">検出結果</span>
+        <span data-i18n="en">Findings</span>
+      </h2>
+      <div id="findingsList" class="findings-list"></div>
     </section>
 
     <section class="tool-card compact">
       <h2>
-        <span data-i18n="ja">使い方</span>
-        <span data-i18n="en">How it works</span>
+        <span data-i18n="ja">安全サマリー</span>
+        <span data-i18n="en">Safety summary</span>
       </h2>
-      <p>
-        <span data-i18n="ja">30秒ガイド: 1) テキストを貼る 2) 伏字にする 3) 出力をコピーして共有。</span>
-        <span data-i18n="en">30-sec guide: 1) Paste text 2) Redact 3) Copy the output.</span>
-      </p>
-      <a class="link" href="./howto/">
-        <span data-i18n="ja">詳しい使い方と検出パターン</span>
-        <span data-i18n="en">Full guide and supported patterns</span>
-      </a>
+      <p id="safetySummary" class="safety-summary warning"></p>
+      <ul class="safe-checklist">
+        <li data-i18n="ja">検出できない形式の秘密情報が残る可能性があります。</li>
+        <li data-i18n="en">Some custom secret formats may remain undetected.</li>
+        <li data-i18n="ja">共有前に、URL、Cookie、Authorizationヘッダー、メールアドレス、IP、URLパラメータを確認してください。</li>
+        <li data-i18n="en">Before sharing, review URLs, cookies, Authorization headers, emails, IP addresses, and query parameters.</li>
+      </ul>
     </section>
+
+    <section class="tool-card compact">
+      <h2>
+        <span data-i18n="ja">このツールでできること</span>
+        <span data-i18n="en">What this tool does</span>
+      </h2>
+      <p data-i18n="ja">ログ、.env、JSON、curlコマンド、設定ファイルに含まれる秘密情報らしき文字列を検出して伏字化します。</p>
+      <p data-i18n="en">It detects and redacts likely secrets in logs, .env files, JSON, curl commands, and config snippets.</p>
+      <p data-i18n="ja">注意：検出は完全ではありません。独自形式・短すぎる値・画像内の情報は検出できない場合があります。</p>
+      <p data-i18n="en">Note: detection is not perfect. Custom formats, very short values, and secrets inside images may not be detected.</p>
+    </section>
+
+    <section class="tool-card faq-card">
+      <h2>FAQ</h2>
+      <details>
+        <summary>
+          <span data-i18n="ja">入力したテキストは送信されますか？</span>
+          <span data-i18n="en">Is my pasted text uploaded?</span>
+        </summary>
+        <p data-i18n="ja">いいえ。処理はブラウザ内で行われ、外部に送信されません。</p>
+        <p data-i18n="en">No. Processing runs in your browser and your text is not uploaded.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">すべての秘密情報を検出できますか？</span>
+          <span data-i18n="en">Can it detect every secret?</span>
+        </summary>
+        <p data-i18n="ja">いいえ。一般的なパターンを検出しますが、独自形式や短い値は検出できない場合があります。</p>
+        <p data-i18n="en">No. It covers common patterns, but custom formats or short values can be missed.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">.env や JSON に対応していますか？</span>
+          <span data-i18n="en">Does it support .env and JSON?</span>
+        </summary>
+        <p data-i18n="ja">はい。api_key、token、secret、password、client_secret、access_token などのキー名をもとに検出します。</p>
+        <p data-i18n="en">Yes. It detects values labeled as api_key, token, secret, password, client_secret, access_token, and similar names.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">伏字後のテキストは安全に共有できますか？</span>
+          <span data-i18n="en">Is the redacted output always safe to share?</span>
+        </summary>
+        <p data-i18n="ja">完全保証ではありません。共有前に必ず出力を目視確認してください。</p>
+        <p data-i18n="en">It is not guaranteed. Always review the output manually before sharing.</p>
+      </details>
+    </section>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text">
+        <span data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</span>
+        <span data-i18n="en">If this tool helped, support keeps these small utilities maintained.</span>
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <div class="nw-links" aria-label="Related tools">
+      <a href="/tools/json-repair/">JSON Repair</a>
+      <a href="/tools/log-formatter/">LogFormatter</a>
+      <a href="/tools/command-safety-checker/">Command Safety Checker</a>
+      <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a>
+    </div>
+
+    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">Privacy: Runs locally in your browser. Nothing is uploaded.</p>
+    <p class="nw-footer-line">
+      <span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</span>
+      <span data-i18n="en">This site may contain ads. Accuracy is not guaranteed. Always confirm with official sources.</span>
+    </p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
     </p>
