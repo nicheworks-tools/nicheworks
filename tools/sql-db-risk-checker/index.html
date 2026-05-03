@@ -28,11 +28,11 @@
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:url" content="https://nicheworks.app/tools/sql-db-risk-checker/">
   <meta property="og:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-  <meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
+  <meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、全件操作、危険なDDLなどをブラウザ内で検出する無料チェックツールです。SQLは送信されません。">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-  <meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
+  <meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、全件操作、危険なDDLなどをブラウザ内で検出する無料チェックツールです。SQLは送信されません。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script type="application/ld+json">
@@ -113,7 +113,7 @@
     <section class="tool">
       <div class="card">
         <h2 class="h2" data-i18n="sqlInputTitle">SQL入力</h2>
-        <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-placeholder="sqlPlaceholder"></textarea>
+        <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-stable content="sqlstable content"></textarea>
 
         <div class="options">
           <div class="opt">
@@ -202,7 +202,7 @@
       </div>
 
       <details class="card probox" id="proBox">
-        <summary><strong data-i18n="proTitle">追加機能案（準備中）</strong></summary>
+        <summary><strong data-i18n="proTitle">追加機能案（整備済み）</strong></summary>
         <p class="note" data-i18n="proLockedNote">購入リンク未設定のため、現在は無料チェック機能のみを主役にしています。</p>
         <ul class="prolist" data-i18n-list="proList">
           <li>安全実行テンプレの保存</li>
