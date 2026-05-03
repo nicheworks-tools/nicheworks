@@ -1,6 +1,17 @@
 (() => {
   "use strict";
 
+  const originalFetch = window.fetch ? window.fetch.bind(window) : null;
+  if (originalFetch) {
+    window.fetch = (input, init) => {
+      const url = typeof input === "string" ? input : (input && input.url) || "";
+      if (/tools\.basic\.json(?:$|[?#])/.test(url)) {
+        return originalFetch("./data/tools.priority.json", init);
+      }
+      return originalFetch(input, init);
+    };
+  }
+
   const $ = (q, el = document) => el.querySelector(q);
   const $$ = (q, el = document) => Array.from(el.querySelectorAll(q));
 
