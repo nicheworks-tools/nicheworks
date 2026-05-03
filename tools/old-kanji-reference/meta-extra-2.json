@@ -1,5 +1,5 @@
 {
-  "version": "2026-05-03-okj-extra-2",
+  "version": "2026-05-03-okj-extra-3",
   "entries": {
     "廳": { "modern": "庁", "readingJa": "ちょう", "readingEn": "cho", "meaningJa": "庁・役所・行政機関。", "meaningEn": "government office, agency.", "category": "common", "verified": true },
     "遲": { "modern": "遅", "readingJa": "ち・おそい", "readingEn": "chi / osoi", "meaningJa": "遅い・時間がかかる。", "meaningEn": "late, slow, delayed.", "category": "common", "verified": true },
@@ -36,6 +36,25 @@
     "靈": { "modern": "霊", "readingJa": "れい・たま", "readingEn": "rei / tama", "meaningJa": "霊・魂・不思議な力。", "meaningEn": "spirit, soul, supernatural force.", "category": "common", "verified": true },
     "齡": { "modern": "齢", "readingJa": "れい・よわい", "readingEn": "rei / yowai", "meaningJa": "年齢・年。", "meaningEn": "age, years.", "category": "common", "verified": true },
     "歷": { "modern": "歴", "readingJa": "れき", "readingEn": "reki", "meaningJa": "歴史・経過。", "meaningEn": "history, passage of time.", "category": "common", "verified": true },
-    "勞": { "modern": "労", "readingJa": "ろう・いたわる", "readingEn": "ro / itawaru", "meaningJa": "労働・苦労・いたわる。", "meaningEn": "labor, toil, care.", "category": "common", "verified": true }
+    "勞": { "modern": "労", "readingJa": "ろう・いたわる", "readingEn": "ro / itawaru", "meaningJa": "労働・苦労・いたわる。", "meaningEn": "labor, toil, care.", "category": "common", "verified": true },
+    "縣": { "modern": "県", "readingJa": "けん", "readingEn": "ken", "meaningJa": "県・行政区画。", "meaningEn": "prefecture, administrative division.", "category": "document", "verified": true },
+    "敎": { "modern": "教", "readingJa": "きょう・おしえる", "readingEn": "kyo / oshieru", "meaningJa": "教える・教え・教育。", "meaningEn": "to teach, teaching, education.", "category": "document", "verified": true },
+    "據": { "modern": "拠", "readingJa": "きょ・よる", "readingEn": "kyo / yoru", "meaningJa": "よりどころ・根拠にする。", "meaningEn": "basis, ground, to rely on.", "category": "document", "verified": true },
+    "歸": { "modern": "帰", "readingJa": "き・かえる", "readingEn": "ki / kaeru", "meaningJa": "帰る・もとへ戻る。", "meaningEn": "to return, go back.", "category": "document", "verified": true },
+    "畫": { "modern": "画", "readingJa": "が・かく", "readingEn": "ga / kaku", "meaningJa": "絵・区切る・計画する。", "meaningEn": "picture; to draw; plan; divide.", "category": "document", "verified": true },
+    "價": { "modern": "価", "readingJa": "か・あたい", "readingEn": "ka / atai", "meaningJa": "値段・価値。", "meaningEn": "price, value.", "category": "document", "verified": true },
+    "稱": { "modern": "称", "readingJa": "しょう・となえる", "readingEn": "sho / tonaeru", "meaningJa": "となえる・呼ぶ・名乗る。", "meaningEn": "to call, name, refer to.", "category": "document", "verified": true },
+    "繪": { "modern": "絵", "readingJa": "かい・え", "readingEn": "kai / e", "meaningJa": "絵・描かれたもの。", "meaningEn": "picture, drawing, painting.", "category": "document", "verified": true },
+    "號": { "modern": "号", "readingJa": "ごう", "readingEn": "go", "meaningJa": "番号・呼び名・称号。", "meaningEn": "number, name, title.", "category": "document", "verified": true },
+    "譯": { "modern": "訳", "readingJa": "やく・わけ", "readingEn": "yaku / wake", "meaningJa": "訳す・理由・事情。", "meaningEn": "to translate; reason; circumstance.", "category": "document", "verified": true },
+    "驗": { "modern": "験", "readingJa": "けん・しるし", "readingEn": "ken / shirushi", "meaningJa": "試す・しるし・効き目。", "meaningEn": "test, effect, sign.", "category": "document", "verified": true },
+    "黃": { "modern": "黄", "readingJa": "こう・き", "readingEn": "ko / ki", "meaningJa": "黄色・黄土色。", "meaningEn": "yellow.", "category": "document", "verified": true },
+    "黑": { "modern": "黒", "readingJa": "こく・くろ", "readingEn": "koku / kuro", "meaningJa": "黒い色。", "meaningEn": "black color.", "category": "document", "verified": true },
+    "莊": { "modern": "荘", "readingJa": "そう・しょう", "readingEn": "so / sho", "meaningJa": "おごそか・立派・荘園や屋号にも使われる字。", "meaningEn": "solemn, grand; used in villa/manor/shop names.", "category": "common", "verified": true },
+    "屬": { "modern": "属", "readingJa": "ぞく・つく", "readingEn": "zoku / tsuku", "meaningJa": "属する・つき従う・仲間に入る。", "meaningEn": "to belong, be affiliated with.", "category": "common", "verified": true },
+    "擇": { "modern": "択", "readingJa": "たく・えらぶ", "readingEn": "taku / erabu", "meaningJa": "選ぶ・えらび取る。", "meaningEn": "to choose, select.", "category": "common", "verified": true },
+    "惱": { "modern": "悩", "readingJa": "のう・なやむ", "readingEn": "no / nayamu", "meaningJa": "悩む・苦しむ。", "meaningEn": "to suffer, be troubled.", "category": "common", "verified": true },
+    "腦": { "modern": "脳", "readingJa": "のう", "readingEn": "no", "meaningJa": "脳・頭の中枢。", "meaningEn": "brain.", "category": "common", "verified": true },
+    "廢": { "modern": "廃", "readingJa": "はい・すたれる", "readingEn": "hai / sutareru", "meaningJa": "廃れる・やめる・使わなくなる。", "meaningEn": "to abolish, discontinue, fall into disuse.", "category": "common", "verified": true }
   }
 }
