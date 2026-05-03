@@ -1,6 +1,9 @@
 let DICT = [];
 let dictReady = false;
 let currentLang = "ja";
+let lastDictionaryStatus = "loading";
+let lastFastResults = null;
+let lastJbResults = null;
 
 const FALLBACK_DICT = [
   {
@@ -83,7 +86,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 function setupLanguageSwitch() {
-  const saved = localStorage.getItem("inci-fastscan-lang");
+  const saved = safeStorageGet("inci-fastscan-lang");
   const browserLang = (navigator.language || "").toLowerCase();
   const initial = saved || (browserLang.startsWith("ja") ? "ja" : "en");
   applyLanguage(initial);
@@ -96,7 +99,7 @@ function setupLanguageSwitch() {
 function applyLanguage(lang) {
   currentLang = lang === "en" ? "en" : "ja";
   document.documentElement.lang = currentLang;
-  localStorage.setItem("inci-fastscan-lang", currentLang);
+  safeStorageSet("inci-fastscan-lang", currentLang);
 
   document.querySelectorAll("[data-lang-text]").forEach(el => {
     const value = currentLang === "ja" ? el.dataset.ja : el.dataset.en;
@@ -110,22 +113,46 @@ function applyLanguage(lang) {
   document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(button => {
     button.classList.toggle("active", button.dataset.lang === currentLang);
   });
+
+  refreshLanguageDependentUi();
 }
 
-function t(key) {
+function refreshLanguageDependentUi() {
+  refreshDictionaryStatus();
+  if (lastFastResults) renderResults(document.getElementById("fast-results"), lastFastResults, currentLang);
+  if (lastJbResults) renderResults(document.getElementById("jb-results"), lastJbResults, currentLang);
+}
+
+function refreshDictionaryStatus() {
+  const status = document.getElementById("dict-status");
+  if (!status) return;
+
+  if (lastDictionaryStatus === "loaded") {
+    status.className = "status-note status-ok";
+    status.textContent = getText("dictLoaded", DICT.length);
+  } else if (lastDictionaryStatus === "fallback") {
+    status.className = "status-note status-warn";
+    status.textContent = getText("dictFallback");
+  } else {
+    status.className = "status-note";
+    status.textContent = getText("dictLoading");
+  }
+}
+
+function getText(key, ...args) {
   const item = UI_TEXT[key];
   if (!item) return "";
   const value = item[currentLang] || item.ja || item.en;
-  return typeof value === "function" ? value : value;
+  return typeof value === "function" ? value(...args) : value;
 }
 
 async function loadDictionary() {
   const status = document.getElementById("dict-status");
+  lastDictionaryStatus = "loading";
   setCheckButtonsDisabled(true);
   if (status) {
     status.hidden = false;
-    status.className = "status-note";
-    status.textContent = t("dictLoading");
+    refreshDictionaryStatus();
   }
 
   try {
@@ -135,18 +162,14 @@ async function loadDictionary() {
     if (!Array.isArray(data)) throw new Error("Dictionary is not an array");
     DICT = data;
     dictReady = true;
-    if (status) {
-      status.className = "status-note status-ok";
-      status.textContent = t("dictLoaded")(DICT.length);
-    }
+    lastDictionaryStatus = "loaded";
+    refreshDictionaryStatus();
   } catch (error) {
     console.error(error);
     DICT = FALLBACK_DICT;
     dictReady = true;
-    if (status) {
-      status.className = "status-note status-warn";
-      status.textContent = t("dictFallback");
-    }
+    lastDictionaryStatus = "fallback";
+    refreshDictionaryStatus();
   } finally {
     setCheckButtonsDisabled(false);
   }
@@ -185,14 +208,15 @@ function setupFastCheck() {
     const text = document.getElementById("fast-input").value;
     if (!dictReady) return;
     const analysis = await coreAnalyzeIngredients(text, DICT);
-    renderResults(document.getElementById("fast-results"), analysis.results, currentLang);
+    lastFastResults = analysis.results;
+    renderResults(document.getElementById("fast-results"), lastFastResults, currentLang);
   };
 
   document.getElementById("btn-ocr-run-fast").onclick = async () => {
     const file = document.getElementById("ocr-file-fast").files[0];
     const status = document.getElementById("fast-ocr-status");
     if (!file) {
-      setStatus(status, t("chooseImage"), "status-warn");
+      setStatus(status, getText("chooseImage"), "status-warn");
       return;
     }
 
@@ -200,16 +224,16 @@ function setupFastCheck() {
     const prev = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Running...";
-    setStatus(status, t("ocrRunning"), "");
+    setStatus(status, getText("ocrRunning"), "");
 
     try {
       const text = await runOCR(file, "eng");
       const processed = postProcessOcrText(text, { langHint: "en" });
       document.getElementById("fast-input").value = processed;
-      setStatus(status, t("ocrDone"), "status-ok");
+      setStatus(status, getText("ocrDone"), "status-ok");
     } catch (e) {
       console.error(e);
-      setStatus(status, t("ocrFailed"), "status-warn");
+      setStatus(status, getText("ocrFailed"), "status-warn");
     } finally {
       btn.disabled = false;
       btn.textContent = prev;
@@ -222,14 +246,15 @@ function setupJBTranslator() {
     const text = document.getElementById("jb-input").value;
     if (!dictReady) return;
     const analysis = await coreAnalyzeIngredients(text, DICT);
-    renderResults(document.getElementById("jb-results"), analysis.results, currentLang);
+    lastJbResults = analysis.results;
+    renderResults(document.getElementById("jb-results"), lastJbResults, currentLang);
   };
 
   document.getElementById("btn-ocr-run").onclick = async () => {
     const file = document.getElementById("ocr-file").files[0];
     const status = document.getElementById("jb-ocr-status");
     if (!file) {
-      setStatus(status, t("chooseImage"), "status-warn");
+      setStatus(status, getText("chooseImage"), "status-warn");
       return;
     }
 
@@ -237,16 +262,16 @@ function setupJBTranslator() {
     const prev = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Running...";
-    setStatus(status, t("ocrRunningJp"), "");
+    setStatus(status, getText("ocrRunningJp"), "");
 
     try {
       const text = await runOCR(file, "jpn+eng");
       const processed = postProcessOcrText(text, { langHint: "jp" });
       document.getElementById("jb-input").value = processed;
-      setStatus(status, t("ocrDoneJp"), "status-ok");
+      setStatus(status, getText("ocrDoneJp"), "status-ok");
     } catch (e) {
       console.error(e);
-      setStatus(status, t("ocrFailed"), "status-warn");
+      setStatus(status, getText("ocrFailed"), "status-warn");
     } finally {
       btn.disabled = false;
       btn.textContent = prev;
@@ -285,6 +310,7 @@ function setupResets() {
       if (results) results.innerHTML = "";
       if (file) file.value = "";
       if (status) status.hidden = true;
+      lastFastResults = null;
       if (ocrBtn) {
         ocrBtn.disabled = false;
         ocrBtn.textContent = "Run OCR (EN)";
@@ -305,6 +331,7 @@ function setupResets() {
       if (results) results.innerHTML = "";
       if (file) file.value = "";
       if (status) status.hidden = true;
+      lastJbResults = null;
       if (ocrBtn) {
         ocrBtn.disabled = false;
         ocrBtn.textContent = "Run OCR (JP)";
@@ -318,4 +345,20 @@ function setStatus(el, text, modifier) {
   el.hidden = false;
   el.className = `status-note ${modifier || ""}`.trim();
   el.textContent = text;
+}
+
+function safeStorageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (error) {
+    return null;
+  }
+}
+
+function safeStorageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (error) {
+    // Ignore storage errors in private/restricted browsing modes.
+  }
 }
