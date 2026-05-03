@@ -17,13 +17,13 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
-  <title>旧字体一覧（Old Kanji Reference）| NicheWorks</title>
-  <meta name="description" content="旧字体と新字体の対応を検索できる一覧です。名前・戸籍・地名・古い文献などで見かける旧字を、現代表記と見比べてコピーできます。">
+  <title>旧字体一覧・旧字新字対応表｜Old Kanji Reference | NicheWorks</title>
+  <meta name="description" content="旧字体と新字体の対応を検索できる一覧です。名前・戸籍・地名・古い文献・看板などで見かける旧字を、読み・用途・分類つきで現代表記と見比べてコピーできます。">
   <link rel="canonical" href="https://nicheworks.app/tools/old-kanji-reference/">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="旧字体一覧（Old Kanji Reference）| NicheWorks">
-  <meta property="og:description" content="旧字体と現代表記を見やすく一覧表示。即時検索とコピーに対応した旧字体リファレンス。">
+  <meta property="og:title" content="旧字体一覧・旧字新字対応表｜Old Kanji Reference | NicheWorks">
+  <meta property="og:description" content="旧字体と現代表記を見やすく一覧表示。読み・用途・分類・即時検索・コピーに対応した旧字体リファレンス。">
   <meta property="og:url" content="https://nicheworks.app/tools/old-kanji-reference/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -32,7 +32,7 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=20260503-okj-plan">
+  <link rel="stylesheet" href="./style.css?v=20260503-okj-full">
 
   <script type="application/ld+json">
   {
@@ -41,9 +41,38 @@
     "name": "旧字体一覧（Old Kanji Reference）",
     "url": "https://nicheworks.app/tools/old-kanji-reference/",
     "applicationCategory": "UtilityApplication",
-    "description": "旧字体と現代表記を検索できる旧漢字リファレンスページです。旧字と新字のペアを一覧表示し、コピーにも対応。",
+    "description": "旧字体と現代表記を検索できる旧漢字リファレンスページです。旧字と新字のペアを一覧表示し、読み・用途・分類・コピーにも対応。",
     "operatingSystem": "All",
     "inLanguage": ["ja", "en"]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "旧字体とは何ですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "現在一般的に使われる新字体に対して、戦前の文書や古い表記、人名・地名などで見られる古い字体・旧字系の表記です。"}
+      },
+      {
+        "@type": "Question",
+        "name": "新字体と旧字体は必ず一対一で対応しますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "必ずしも一対一ではありません。同じ新字体に複数の旧字体・異体字が対応する場合があります。"}
+      },
+      {
+        "@type": "Question",
+        "name": "名前に使われる旧字体も探せますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "人名・地名で見かけやすい旧字体を分類し、検索やフィルタで探せるようにしています。"}
+      },
+      {
+        "@type": "Question",
+        "name": "この一覧は変換ツールとして使えますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "一文字ごとの旧字・新字対応を確認するための一覧です。文章全体の自動変換には別途変換ツールを使ってください。"}
+      }
+    ]
   }
   </script>
 <script defer
@@ -65,8 +94,8 @@
     </h1>
 
     <p class="nw-subtitle">
-      <span data-i18n="ja">旧字体と現代表記を検索できる一覧です。名前・戸籍・地名・古い文献などで見かける旧字を、現代表記と見比べられます。</span>
-      <span data-i18n="en">A searchable reference for old Japanese kanji forms and their modern equivalents. Useful for names, places, records, and older texts.</span>
+      <span data-i18n="ja">旧字体と新字体の対応を検索できる一覧です。名前・戸籍・地名・古い文献・看板などで見かける旧字を、読み・用途・分類つきで現代表記と見比べられます。</span>
+      <span data-i18n="en">A searchable reference for old Japanese kanji forms and their modern equivalents, with readings, usage notes, categories, and copy buttons.</span>
     </p>
 
     <p class="nw-count" data-i18n="ja">収録件数：<span data-count="old"></span> 件</p>
@@ -82,13 +111,13 @@
         <span data-i18n="en">Search Old Kanji</span>
       </h2>
       <p class="section-desc">
-        <span data-i18n="ja">旧字体・現代表記どちらでも検索できます。入力に応じて即時フィルターされます。</span>
-        <span data-i18n="en">Type either the old or modern form to filter the list instantly.</span>
+        <span data-i18n="ja">旧字体・現代表記・読みのいずれでも検索できます。入力に応じて即時フィルターされます。</span>
+        <span data-i18n="en">Search by old form, modern form, or reading. The list filters instantly as you type.</span>
       </p>
 
       <label class="sr-only" for="searchInput">Search</label>
       <input id="searchInput" type="search" class="search-input" aria-label="検索"
-        data-placeholder-ja="旧字体・現代表記どちらでも検索できます" data-placeholder-en="Search by old or modern form">
+        data-placeholder-ja="旧字体・現代表記・読みで検索できます" data-placeholder-en="Search by old form, modern form, or reading">
     </section>
 
     <section class="popular-panel">
@@ -122,6 +151,33 @@
       </p>
     </section>
 
+    <section class="faq-section">
+      <h2 class="section-title">
+        <span data-i18n="ja">よくある質問</span>
+        <span data-i18n="en">FAQ</span>
+      </h2>
+      <details>
+        <summary><span data-i18n="ja">旧字体とは何ですか？</span><span data-i18n="en">What are old kanji forms?</span></summary>
+        <p data-i18n="ja">現在一般的に使われる新字体に対して、戦前の文書や古い表記、人名・地名などで見られる古い字体・旧字系の表記です。</p>
+        <p data-i18n="en">They are older character forms seen in historical documents, older writing, names, and place names.</p>
+      </details>
+      <details>
+        <summary><span data-i18n="ja">新字体と旧字体は必ず一対一で対応しますか？</span><span data-i18n="en">Are old and modern forms always one-to-one?</span></summary>
+        <p data-i18n="ja">必ずしも一対一ではありません。同じ新字体に複数の旧字体・異体字が対応する場合があります。</p>
+        <p data-i18n="en">Not always. Multiple old or variant forms may correspond to the same modern form.</p>
+      </details>
+      <details>
+        <summary><span data-i18n="ja">名前に使われる旧字体も探せますか？</span><span data-i18n="en">Can I search old forms used in names?</span></summary>
+        <p data-i18n="ja">人名・地名で見かけやすい旧字体を分類し、検索やフィルタで探せるようにしています。</p>
+        <p data-i18n="en">Yes. Old forms often seen in names and places are grouped so they can be found by search and filters.</p>
+      </details>
+      <details>
+        <summary><span data-i18n="ja">この一覧は変換ツールとして使えますか？</span><span data-i18n="en">Is this a full text conversion tool?</span></summary>
+        <p data-i18n="ja">一文字ごとの旧字・新字対応を確認するための一覧です。文章全体の自動変換には別途変換ツールを使ってください。</p>
+        <p data-i18n="en">This is a per-character reference. For full sentence conversion, use a dedicated conversion tool.</p>
+      </details>
+    </section>
+
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
@@ -137,8 +193,8 @@
     </div>
 
     <div class="nw-links">
+      <a href="/tools/kanji-modernizer/">旧字体変換</a> /
       <a href="/tools/rename-wizard/">Rename Wizard</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a> /
       <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
     </div>
   </main>
@@ -148,6 +204,6 @@
     <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
-  <script src="./app.js?v=20260503-okj-plan"></script>
+  <script src="./app.js?v=20260503-okj-full"></script>
 </body>
 </html>
