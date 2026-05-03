@@ -54,7 +54,7 @@
         <li>「伏字にする」を押し、検出結果リストと安全サマリーを確認します。</li>
         <li>出力だけをコピーまたはTXT保存して共有します。</li>
       </ol>
-      <p class="muted" style="margin:0">共有前に Ctrl+F で sk-, github_pat_, xoxb-, AIza, AKIA, Authorization, Cookie などを再確認すると安全です。</p>
+      <p class="muted" style="margin:0">共有前に Ctrl+F で sk-, github_pat_, xoxb-, AIza, AKIA, Authorization, Cookie, npm_, bot token などを再確認すると安全です。</p>
     </section>
 
     <section class="card">
@@ -65,10 +65,13 @@
         <li>Slack: <code>xoxb-</code>, <code>xoxp-</code>, <code>xapp-</code></li>
         <li>Google API key: <code>AIza...</code> / SendGrid: <code>SG....</code> / GitLab: <code>glpat-</code></li>
         <li>AWS: <code>AKIA...</code>, <code>ASIA...</code>, <code>aws_secret_access_key=</code></li>
-        <li>Bearer / Authorization ヘッダー、JWT（<code>eyJ...</code> 形式）、Cookie ヘッダー</li>
+        <li>Stripe: <code>sk_live_</code>, <code>sk_test_</code>, <code>rk_live_</code>, <code>rk_test_</code></li>
+        <li>npm / registry: <code>npm_...</code>, <code>//registry.npmjs.org/:_authToken=...</code></li>
+        <li>Telegram bot token、Discord風トークン</li>
+        <li>Bearer / Authorization ヘッダー、JWT（<code>eyJ...</code> 形式）、Cookie / Set-Cookie ヘッダー</li>
         <li>PEM形式の秘密鍵（BEGIN/END PRIVATE KEY）</li>
-        <li>.env / JSON の <code>api_key</code>, <code>token</code>, <code>secret</code>, <code>password</code>, <code>client_secret</code>, <code>access_token</code> など</li>
-        <li>URLクエリ内の <code>?token=</code>, <code>?api_key=</code>, <code>?access_token=</code> など</li>
+        <li>.env / JSON の <code>api_key</code>, <code>token</code>, <code>secret</code>, <code>password</code>, <code>client_secret</code>, <code>access_token</code>, <code>database_url</code> など</li>
+        <li>URLクエリ内の <code>?token=</code>, <code>?api_key=</code>, <code>?access_token=</code>, <code>?signature=</code> など</li>
       </ul>
     </section>
 
@@ -78,6 +81,7 @@
         <li><strong>High</strong>: 秘密鍵、Bearer、JWT、主要APIキーなど、漏えい時の危険度が高いもの。</li>
         <li><strong>Medium</strong>: ラベル付きsecret、URL内token、Cookieなど、手動確認が必要なもの。</li>
         <li><strong>Line</strong>: 元テキスト内のおおよその行番号です。長い1行ログでは行全体も確認してください。</li>
+        <li>検出結果のプレビューは秘密値を一部マスクして表示します。完全な値は表示しません。</li>
       </ul>
     </section>
 
