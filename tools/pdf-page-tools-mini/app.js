@@ -19,20 +19,16 @@
     btnExtract: $("#btnExtract"),
     fileList: $("#fileList"),
     pageList: $("#pageList"),
+    summaryBox: $("#summaryBox"),
     statusBox: $("#statusBox"),
     statusText: $("#statusText"),
     btnStatusClose: $("#btnStatusClose"),
   };
 
-  const state = {
-    files: [],
-    pages: [],
-    nextId: 1,
-  };
+  const state = { files: [], pages: [], nextId: 1 };
   const undo = { lastDelete: null };
   let isBusy = false;
   let currentLang = ((navigator.language || "").toLowerCase().startsWith("ja")) ? "ja" : "en";
-  let summaryBox = null;
   let thumbObserver = null;
 
   const ERR = {
@@ -60,42 +56,48 @@
       ja: "PDF書き出しライブラリ（pdf-lib）が読み込めませんでした。ページを再読み込みしてください。",
       en: "PDF export library (pdf-lib) failed to load. Please reload this page."
     },
-    password_or_special_pdf: {
-      ja: "このPDFは読み込めませんでした。パスワード付きPDF、破損PDF、一部の特殊PDFは非対応です。",
-      en: "This PDF could not be loaded. Password-protected, corrupted, or some special PDFs are not supported."
+    protected_or_special_pdf: {
+      ja: "このPDFは読み込めませんでした。保護されたPDF、破損PDF、一部の特殊PDFは非対応です。",
+      en: "This PDF could not be loaded. Protected, corrupted, or some special PDFs are not supported."
     }
   };
 
-  function uid(prefix){
-    return `${prefix}-${state.nextId++}`;
-  }
-  function msg(ja, en){
-    return currentLang === "ja" ? ja : en;
-  }
+  function uid(prefix){ return `${prefix}-${state.nextId++}`; }
+  function msg(ja, en){ return currentLang === "ja" ? ja : en; }
   function showStatus(text){
     if(!els.statusBox || !els.statusText) return;
     els.statusText.textContent = text;
     els.statusBox.hidden = false;
   }
-  function hideStatus(){
-    if(els.statusBox) els.statusBox.hidden = true;
-  }
+  function hideStatus(){ if(els.statusBox) els.statusBox.hidden = true; }
   function showError(code){
     const e = ERR[code] || ERR.too_large_or_memory;
     showStatus(currentLang === "ja" ? e.ja : e.en);
   }
+  function isProtectionError(err){
+    const name = String(err && err.name || "").toLowerCase();
+    const message = String(err && err.message || "").toLowerCase();
+    return name.includes("password") || name.includes("encrypted") || message.includes("password") || message.includes("encrypted");
+  }
+  function sleep(ms){ return new Promise((resolve) => setTimeout(resolve, ms)); }
+  async function waitForLib(check, ms){
+    const start = Date.now();
+    while(Date.now() - start < ms){
+      if(check()) return true;
+      await sleep(40);
+    }
+    return !!check();
+  }
+
   function applyLang(lang){
     currentLang = lang;
-    els.i18nNodes.forEach((el) => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
+    document.documentElement.lang = lang;
+    els.i18nNodes.forEach((el) => { el.style.display = el.dataset.i18n === lang ? "" : "none"; });
     els.langBtns.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
     renderAll();
   }
 
-  function safeName(name){
-    return String(name || "pdf").replace(/[\\/:*?"<>|]+/g, "_");
-  }
+  function safeName(name){ return String(name || "pdf").replace(/[\\/:*?"<>|]+/g, "_"); }
   function timestamp(){
     const d = new Date();
     const p = (n) => String(n).padStart(2, "0");
@@ -119,32 +121,20 @@
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   }
 
-  function ensureSummaryBox(){
-    if(summaryBox) return summaryBox;
-    summaryBox = document.createElement("div");
-    summaryBox.id = "summaryBox";
-    summaryBox.className = "status summary-box";
-    const pages = $(".pages");
-    if(pages) pages.insertBefore(summaryBox, pages.firstChild);
-    return summaryBox;
-  }
   function updateSummary(){
-    const box = ensureSummaryBox();
+    const box = els.summaryBox || $("#summaryBox");
     if(!box) return;
     const pdfCount = state.files.length;
     const pageCount = state.pages.length;
     const rotated = state.pages.filter((p) => ((p.rotation % 360) + 360) % 360 !== 0).length;
     const originalPages = state.files.reduce((sum, f) => sum + (f.pageCount || 0), 0);
     const deleted = Math.max(0, originalPages - pageCount);
-
-    if(pageCount === 0){
-      box.textContent = msg("現在の出力予定：ページはありません。", "Current output: no pages.");
-      return;
-    }
-    box.textContent = msg(
-      `現在の出力予定：PDF数 ${pdfCount} / ページ数 ${pageCount} / 回転あり ${rotated} / 削除済み ${deleted}`,
-      `Current output: ${pdfCount} PDF(s) / ${pageCount} page(s) / ${rotated} rotated / ${deleted} deleted`
-    );
+    box.textContent = pageCount === 0
+      ? msg("現在の出力予定：ページはありません。", "Current output: no pages.")
+      : msg(
+          `現在の出力予定：PDF数 ${pdfCount} / ページ数 ${pageCount} / 回転あり ${rotated} / 削除済み ${deleted}`,
+          `Current output: ${pdfCount} PDF(s) / ${pageCount} page(s) / ${rotated} rotated / ${deleted} deleted`
+        );
   }
 
   function setBusy(on){
@@ -247,7 +237,6 @@
         opButton(msg("↑ 上へ", "↑ Up"), msg("上へ", "Up"), () => movePage(index, index - 1)),
         opButton(msg("↓ 下へ", "↓ Down"), msg("下へ", "Down"), () => movePage(index, index + 1))
       );
-
       card.append(top, thumb, meta, ops);
       attachDnd(card, index);
       els.pageList.appendChild(card);
@@ -265,13 +254,9 @@
     btn.addEventListener("click", handler);
     return btn;
   }
-
   function canDrag(){
-    try{
-      return window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    }catch(_){
-      return false;
-    }
+    try{ return window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches; }
+    catch(_){ return false; }
   }
   function attachDnd(card, index){
     if(!canDrag()) return;
@@ -327,7 +312,7 @@
       const file = state.files.find((f) => f.id === page.fileId);
       if(!file) return;
       if(!file.pdfDocPromise){
-        file.pdfDocPromise = window.pdfjsLib.getDocument({ data: file.buffer }).promise;
+        file.pdfDocPromise = window.pdfjsLib.getDocument({ data: new Uint8Array(file.pdfBuffer.slice(0)) }).promise;
       }
       const pdf = await file.pdfDocPromise;
       const pdfPage = await pdf.getPage(page.srcPage);
@@ -351,12 +336,7 @@
     }
   }
 
-  function renderAll(){
-    renderFileList();
-    renderPageList();
-    syncUi();
-  }
-
+  function renderAll(){ renderFileList(); renderPageList(); syncUi(); }
   function rotatePage(index, delta){
     if(isBusy) return;
     const page = state.pages[index];
@@ -391,6 +371,10 @@
   }
   function removeFile(fileId){
     if(isBusy) return;
+    const removed = state.files.find((f) => f.id === fileId);
+    if(removed && removed.pdfDocPromise){
+      removed.pdfDocPromise.then((pdf) => pdf && pdf.destroy && pdf.destroy()).catch(() => {});
+    }
     state.files = state.files.filter((f) => f.id !== fileId);
     state.pages = state.pages.filter((p) => p.fileId !== fileId);
     undo.lastDelete = null;
@@ -399,6 +383,9 @@
   }
   function resetAll(){
     if(isBusy) return;
+    state.files.forEach((f) => {
+      if(f.pdfDocPromise) f.pdfDocPromise.then((pdf) => pdf && pdf.destroy && pdf.destroy()).catch(() => {});
+    });
     state.files = [];
     state.pages = [];
     undo.lastDelete = null;
@@ -433,10 +420,7 @@
   }
   function syncExtractUi(){
     if(!els.btnExtract || !els.extractRange) return;
-    if(isBusy || state.pages.length === 0){
-      els.btnExtract.disabled = true;
-      return;
-    }
+    if(isBusy || state.pages.length === 0){ els.btnExtract.disabled = true; return; }
     els.btnExtract.disabled = !parseRangeText(els.extractRange.value, state.pages.length).ok;
   }
 
@@ -445,29 +429,29 @@
     if(incoming.length === 0) return;
     const pdfs = incoming.filter(isPdfLike);
     if(pdfs.length === 0){ showError("unsupported_file"); return; }
-    if(!window.pdfjsLib){ showError("missing_pdfjs"); return; }
+    const ready = await waitForLib(() => window.pdfjsLib && window.pdfjsLib.getDocument, 1600);
+    if(!ready){ showError("missing_pdfjs"); return; }
 
     setBusy(true);
     hideStatus();
     try{
-      for(const file of pdfs){
-        await addOnePdf(file);
-      }
+      for(const file of pdfs){ await addOnePdf(file); }
       undo.lastDelete = null;
       renderAll();
       showStatus(msg("読み込み完了。ページを編集して保存できます。", "Loaded. You can edit pages and download."));
     }catch(err){
       console.error(err);
-      showError(err && err.name === "PasswordException" ? "password_or_special_pdf" : "too_large_or_memory");
+      showError(isProtectionError(err) ? "protected_or_special_pdf" : "too_large_or_memory");
     }finally{
       setBusy(false);
     }
   }
   async function addOnePdf(file){
-    const buffer = await file.arrayBuffer();
+    const exportBuffer = await file.arrayBuffer();
+    const pdfBuffer = exportBuffer.slice(0);
     let pdf;
     try{
-      pdf = await window.pdfjsLib.getDocument({ data: buffer }).promise;
+      pdf = await window.pdfjsLib.getDocument({ data: new Uint8Array(pdfBuffer) }).promise;
     }catch(err){
       console.error(err);
       throw err;
@@ -477,31 +461,20 @@
       id: fileId,
       name: file.name,
       size: file.size,
-      buffer,
+      exportBuffer,
+      pdfBuffer,
       pageCount: pdf.numPages,
       pdfDocPromise: Promise.resolve(pdf)
     });
     for(let p = 1; p <= pdf.numPages; p++){
-      state.pages.push({
-        id: uid("p"),
-        fileId,
-        fileName: file.name,
-        srcPage: p,
-        rotation: 0,
-        thumbUrl: null
-      });
+      state.pages.push({ id: uid("p"), fileId, fileName: file.name, srcPage: p, rotation: 0, thumbUrl: null });
     }
   }
 
   async function exportPagesToPdf(pages, filename){
-    if(!window.PDFLib || !window.PDFLib.PDFDocument){
-      showError("missing_pdflib");
-      return false;
-    }
-    if(!pages || pages.length === 0){
-      showError("empty_result");
-      return false;
-    }
+    const ready = await waitForLib(() => window.PDFLib && window.PDFLib.PDFDocument, 1600);
+    if(!ready){ showError("missing_pdflib"); return false; }
+    if(!pages || pages.length === 0){ showError("empty_result"); return false; }
     const { PDFDocument, degrees } = window.PDFLib;
     const out = await PDFDocument.create();
     const loaded = new Map();
@@ -510,7 +483,7 @@
       if(!srcDoc){
         const file = state.files.find((f) => f.id === pageInfo.fileId);
         if(!file) continue;
-        srcDoc = await PDFDocument.load(file.buffer);
+        srcDoc = await PDFDocument.load(file.exportBuffer.slice(0));
         loaded.set(pageInfo.fileId, srcDoc);
       }
       const [copiedPage] = await out.copyPages(srcDoc, [Math.max(0, pageInfo.srcPage - 1)]);
@@ -518,10 +491,7 @@
       if(rot !== 0) copiedPage.setRotation(degrees(rot));
       out.addPage(copiedPage);
     }
-    if(out.getPageCount() === 0){
-      showError("empty_result");
-      return false;
-    }
+    if(out.getPageCount() === 0){ showError("empty_result"); return false; }
     const bytes = await out.save();
     downloadBlob(new Blob([bytes], { type: "application/pdf" }), filename);
     return true;
@@ -579,27 +549,11 @@
   if(els.extractRange) els.extractRange.addEventListener("input", syncExtractUi);
   if(els.fileInput) els.fileInput.addEventListener("change", () => addFiles(els.fileInput.files));
   if(els.dropzone){
-    els.dropzone.addEventListener("click", (e) => {
-      if(e.target && e.target.closest("button")) return;
-      openPicker();
-    });
-    els.dropzone.addEventListener("keydown", (e) => {
-      if(e.key === "Enter" || e.key === " "){
-        e.preventDefault();
-        openPicker();
-      }
-    });
-    els.dropzone.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      els.dropzone.classList.add("is-dragover");
-      e.dataTransfer.dropEffect = "copy";
-    });
+    els.dropzone.addEventListener("click", (e) => { if(!(e.target && e.target.closest("button"))) openPicker(); });
+    els.dropzone.addEventListener("keydown", (e) => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openPicker(); } });
+    els.dropzone.addEventListener("dragover", (e) => { e.preventDefault(); els.dropzone.classList.add("is-dragover"); e.dataTransfer.dropEffect = "copy"; });
     els.dropzone.addEventListener("dragleave", () => els.dropzone.classList.remove("is-dragover"));
-    els.dropzone.addEventListener("drop", (e) => {
-      e.preventDefault();
-      els.dropzone.classList.remove("is-dragover");
-      addFiles(e.dataTransfer ? e.dataTransfer.files : []);
-    });
+    els.dropzone.addEventListener("drop", (e) => { e.preventDefault(); els.dropzone.classList.remove("is-dragover"); addFiles(e.dataTransfer ? e.dataTransfer.files : []); });
   }
 
   applyLang(currentLang);
