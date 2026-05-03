@@ -1,5 +1,6 @@
 let DICT = [];
 let dictReady = false;
+let currentLang = "ja";
 
 const FALLBACK_DICT = [
   {
@@ -32,7 +33,47 @@ const FALLBACK_DICT = [
   }
 ];
 
+const UI_TEXT = {
+  dictLoading: {
+    ja: "成分辞書を読み込み中です...",
+    en: "Loading ingredient dictionary..."
+  },
+  dictLoaded: {
+    ja: count => `成分辞書を読み込みました。${count}件`,
+    en: count => `Dictionary loaded: ${count} items.`
+  },
+  dictFallback: {
+    ja: "成分辞書の読み込みに失敗したため、最低限のフォールバック辞書で動作しています。正確な確認にはページを再読み込みしてください。",
+    en: "Dictionary loading failed, so this page is using a small fallback dictionary. Reload the page for a more complete check."
+  },
+  chooseImage: {
+    ja: "画像を選択してください。",
+    en: "Choose an image first."
+  },
+  ocrRunning: {
+    ja: "OCR実行中です。画像の状態によって時間がかかります。",
+    en: "Running OCR. This may take time depending on the image."
+  },
+  ocrRunningJp: {
+    ja: "OCR実行中です。日本語OCRは時間がかかる場合があります。",
+    en: "Running OCR. Japanese OCR may take longer."
+  },
+  ocrDone: {
+    ja: "OCR結果を入力欄に入れました。誤認識がないか確認してからチェックしてください。",
+    en: "OCR text was added to the input. Review it before checking ingredients."
+  },
+  ocrDoneJp: {
+    ja: "OCR結果を入力欄に入れました。文字化け・途中切れがないか確認してください。",
+    en: "OCR text was added to the input. Check for broken or missing characters."
+  },
+  ocrFailed: {
+    ja: "OCRに失敗しました。画像を変更するか、成分表示を手入力してください。",
+    en: "OCR failed. Try another image or paste the ingredient text manually."
+  }
+};
+
 window.addEventListener("DOMContentLoaded", async () => {
+  setupLanguageSwitch();
   setupTabs();
   setupFastCheck();
   setupJBTranslator();
@@ -41,13 +82,50 @@ window.addEventListener("DOMContentLoaded", async () => {
   await loadDictionary();
 });
 
+function setupLanguageSwitch() {
+  const saved = localStorage.getItem("inci-fastscan-lang");
+  const browserLang = (navigator.language || "").toLowerCase();
+  const initial = saved || (browserLang.startsWith("ja") ? "ja" : "en");
+  applyLanguage(initial);
+
+  document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(button => {
+    button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+  });
+}
+
+function applyLanguage(lang) {
+  currentLang = lang === "en" ? "en" : "ja";
+  document.documentElement.lang = currentLang;
+  localStorage.setItem("inci-fastscan-lang", currentLang);
+
+  document.querySelectorAll("[data-lang-text]").forEach(el => {
+    const value = currentLang === "ja" ? el.dataset.ja : el.dataset.en;
+    if (value !== undefined) el.innerHTML = value;
+  });
+
+  document.querySelectorAll("[data-placeholder-ja][data-placeholder-en]").forEach(el => {
+    el.placeholder = currentLang === "ja" ? el.dataset.placeholderJa : el.dataset.placeholderEn;
+  });
+
+  document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(button => {
+    button.classList.toggle("active", button.dataset.lang === currentLang);
+  });
+}
+
+function t(key) {
+  const item = UI_TEXT[key];
+  if (!item) return "";
+  const value = item[currentLang] || item.ja || item.en;
+  return typeof value === "function" ? value : value;
+}
+
 async function loadDictionary() {
   const status = document.getElementById("dict-status");
   setCheckButtonsDisabled(true);
   if (status) {
     status.hidden = false;
     status.className = "status-note";
-    status.textContent = "成分辞書を読み込み中です... / Loading ingredient dictionary...";
+    status.textContent = t("dictLoading");
   }
 
   try {
@@ -59,7 +137,7 @@ async function loadDictionary() {
     dictReady = true;
     if (status) {
       status.className = "status-note status-ok";
-      status.textContent = `成分辞書を読み込みました。${DICT.length}件 / Dictionary loaded: ${DICT.length} items.`;
+      status.textContent = t("dictLoaded")(DICT.length);
     }
   } catch (error) {
     console.error(error);
@@ -67,7 +145,7 @@ async function loadDictionary() {
     dictReady = true;
     if (status) {
       status.className = "status-note status-warn";
-      status.textContent = "成分辞書の読み込みに失敗したため、最低限のフォールバック辞書で動作しています。正確な確認にはページを再読み込みしてください。";
+      status.textContent = t("dictFallback");
     }
   } finally {
     setCheckButtonsDisabled(false);
@@ -107,14 +185,14 @@ function setupFastCheck() {
     const text = document.getElementById("fast-input").value;
     if (!dictReady) return;
     const analysis = await coreAnalyzeIngredients(text, DICT);
-    renderResults(document.getElementById("fast-results"), analysis.results);
+    renderResults(document.getElementById("fast-results"), analysis.results, currentLang);
   };
 
   document.getElementById("btn-ocr-run-fast").onclick = async () => {
     const file = document.getElementById("ocr-file-fast").files[0];
     const status = document.getElementById("fast-ocr-status");
     if (!file) {
-      setStatus(status, "画像を選択してください。 / Choose an image first.", "status-warn");
+      setStatus(status, t("chooseImage"), "status-warn");
       return;
     }
 
@@ -122,16 +200,16 @@ function setupFastCheck() {
     const prev = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Running...";
-    setStatus(status, "OCR実行中です。画像の状態によって時間がかかります。 / Running OCR...", "");
+    setStatus(status, t("ocrRunning"), "");
 
     try {
       const text = await runOCR(file, "eng");
       const processed = postProcessOcrText(text, { langHint: "en" });
       document.getElementById("fast-input").value = processed;
-      setStatus(status, "OCR結果を入力欄に入れました。誤認識がないか確認してからチェックしてください。", "status-ok");
+      setStatus(status, t("ocrDone"), "status-ok");
     } catch (e) {
       console.error(e);
-      setStatus(status, "OCRに失敗しました。画像を変更するか、成分表示を手入力してください。", "status-warn");
+      setStatus(status, t("ocrFailed"), "status-warn");
     } finally {
       btn.disabled = false;
       btn.textContent = prev;
@@ -144,14 +222,14 @@ function setupJBTranslator() {
     const text = document.getElementById("jb-input").value;
     if (!dictReady) return;
     const analysis = await coreAnalyzeIngredients(text, DICT);
-    renderResults(document.getElementById("jb-results"), analysis.results);
+    renderResults(document.getElementById("jb-results"), analysis.results, currentLang);
   };
 
   document.getElementById("btn-ocr-run").onclick = async () => {
     const file = document.getElementById("ocr-file").files[0];
     const status = document.getElementById("jb-ocr-status");
     if (!file) {
-      setStatus(status, "画像を選択してください。 / Choose an image first.", "status-warn");
+      setStatus(status, t("chooseImage"), "status-warn");
       return;
     }
 
@@ -159,16 +237,16 @@ function setupJBTranslator() {
     const prev = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Running...";
-    setStatus(status, "OCR実行中です。日本語OCRは時間がかかる場合があります。 / Running OCR...", "");
+    setStatus(status, t("ocrRunningJp"), "");
 
     try {
       const text = await runOCR(file, "jpn+eng");
       const processed = postProcessOcrText(text, { langHint: "jp" });
       document.getElementById("jb-input").value = processed;
-      setStatus(status, "OCR結果を入力欄に入れました。文字化け・途中切れがないか確認してください。", "status-ok");
+      setStatus(status, t("ocrDoneJp"), "status-ok");
     } catch (e) {
       console.error(e);
-      setStatus(status, "OCRに失敗しました。画像を変更するか、成分表示を手入力してください。", "status-warn");
+      setStatus(status, t("ocrFailed"), "status-warn");
     } finally {
       btn.disabled = false;
       btn.textContent = prev;
