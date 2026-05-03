@@ -44,46 +44,11 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "ファイルはアップロードされますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。PDFの読み込み、ページ操作、書き出しはブラウザ内で処理されます。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "パスワード付きPDFは使えますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "非対応です。パスワード解除や回避は行いません。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "大きいPDFで失敗する場合は？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ページ数を減らす、先に分割する、別ブラウザやPCで試してください。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "圧縮はできますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "できません。このツールはページ操作、結合、抽出、削除、並べ替え、回転を目的にしています。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "元のPDFは変更されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。編集後のPDFを別ファイルとして保存します。"
-        }
-      }
+      {"@type":"Question","name":"ファイルはアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。PDFの読み込み、ページ操作、書き出しはブラウザ内で処理されます。"}},
+      {"@type":"Question","name":"パスワード付きPDFは使えますか？","acceptedAnswer":{"@type":"Answer","text":"非対応です。保護されたPDFは読み込めない場合があります。"}},
+      {"@type":"Question","name":"大きいPDFで失敗する場合は？","acceptedAnswer":{"@type":"Answer","text":"ページ数を減らす、先に分割する、別ブラウザやPCで試してください。"}},
+      {"@type":"Question","name":"圧縮はできますか？","acceptedAnswer":{"@type":"Answer","text":"できません。このツールはページ操作、結合、抽出、削除、並べ替え、回転を目的にしています。"}},
+      {"@type":"Question","name":"元のPDFは変更されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。編集後のPDFを別ファイルとして保存します。"}}
     ]
   }
   </script>
@@ -101,12 +66,10 @@
       <span data-i18n="ja">PDFページ抽出・結合・並べ替え</span>
       <span data-i18n="en">PDF Page Tools Mini</span>
     </h1>
-
     <div class="nw-lang-switch" aria-label="Language switch">
       <button data-lang="ja" type="button">JP</button> /
       <button data-lang="en" type="button">EN</button>
     </div>
-
     <p class="nw-subtitle" data-i18n="ja">PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができます。</p>
     <p class="nw-subtitle" data-i18n="en">Extract, merge, delete, reorder, rotate, and save PDF pages without uploading your files.</p>
   </header>
@@ -117,19 +80,11 @@
     <section class="nw-section">
       <p data-i18n="ja">追加したPDFをページ単位で整理し、編集後PDFを別ファイルとして保存できます。処理はブラウザ内で完結し、元のPDFは変更されません。</p>
       <p data-i18n="en">Add PDFs, organize pages, and save the edited result as a separate file. Processing stays in your browser, and the original PDFs are not changed.</p>
-      <p class="nw-muted">
-        <a class="nw-link" href="./usage.html">
-          <span data-i18n="ja">使い方はこちら</span>
-          <span data-i18n="en">Read the usage guide</span>
-        </a>
-      </p>
+      <p class="nw-muted"><a class="nw-link" href="./usage.html"><span data-i18n="ja">使い方はこちら</span><span data-i18n="en">Read the usage guide</span></a></p>
     </section>
 
     <section class="nw-card pptm-steps">
-      <h2 class="nw-h2">
-        <span data-i18n="ja">使い方</span>
-        <span data-i18n="en">How to use</span>
-      </h2>
+      <h2 class="nw-h2"><span data-i18n="ja">使い方</span><span data-i18n="en">How to use</span></h2>
       <ol>
         <li data-i18n="ja">PDFを追加する</li>
         <li data-i18n="en">Add one or more PDFs.</li>
@@ -141,38 +96,29 @@
     </section>
 
     <section class="nw-card pptm-notes" aria-label="PDF limitations">
-      <h2 class="nw-h2">
-        <span data-i18n="ja">対応できないPDF・重いPDFについて</span>
-        <span data-i18n="en">Unsupported and heavy PDFs</span>
-      </h2>
+      <h2 class="nw-h2"><span data-i18n="ja">対応できないPDF・重いPDFについて</span><span data-i18n="en">Unsupported and heavy PDFs</span></h2>
       <div data-i18n="ja">
-        <p>パスワード付きPDFは非対応です。パスワード解除や回避は行いません。</p>
+        <p>パスワード付きPDFや保護されたPDFは非対応です。</p>
         <p>破損PDF、一部の特殊PDF、画像が多いPDF、100ページ以上のPDF、数十MB以上のPDFは、端末によって読み込みや保存に失敗する場合があります。</p>
         <p>失敗する場合は、ページ数を減らす、先に分割する、PCブラウザや別ブラウザで試してください。</p>
       </div>
       <div data-i18n="en">
-        <p>Password-protected PDFs are not supported. This tool does not unlock or bypass passwords.</p>
+        <p>Password-protected or protected PDFs are not supported.</p>
         <p>Corrupted PDFs, some special PDFs, image-heavy PDFs, PDFs over 100 pages, or PDFs of several dozen MB may fail depending on your device.</p>
         <p>If it fails, reduce the page count, split the PDF first, or try a desktop browser or another browser.</p>
       </div>
     </section>
 
     <section class="nw-section">
-      <h2 class="nw-h2">
-        <span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span>
-      </h2>
-
+      <h2 class="nw-h2"><span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span></h2>
       <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add PDF">
         <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple />
         <div class="dropzone-inner">
           <div class="dz-row">
-            <button id="btnPick" type="button" class="btn-primary">
-              <span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span>
-            </button>
+            <button id="btnPick" type="button" class="btn-primary"><span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span></button>
             <span class="dz-hint" data-i18n="ja">ドラッグ&ドロップ可</span>
             <span class="dz-hint" data-i18n="en">Drag & drop supported</span>
           </div>
-
           <div class="dz-notes">
             <div data-i18n="ja">- ファイルは端末内で処理されます（アップロードなし）</div>
             <div data-i18n="en">- Processed locally in your browser (no upload)</div>
@@ -181,124 +127,59 @@
             <div data-i18n="ja">- 大きいPDFは重くなる場合があります</div>
             <div data-i18n="en">- Large PDFs may be heavy</div>
           </div>
-
-          <div class="loading" id="loading" hidden>
-            <span class="spinner" aria-hidden="true"></span>
-            <span data-i18n="ja">読み込み中…</span><span data-i18n="en">Loading…</span>
-          </div>
+          <div class="loading" id="loading" hidden><span class="spinner" aria-hidden="true"></span><span data-i18n="ja">読み込み中…</span><span data-i18n="en">Loading…</span></div>
         </div>
       </div>
     </section>
 
     <section class="nw-section panel" id="panelAfterLoad" aria-label="Editor Panel">
       <div class="toolbar pptm-actions">
-        <button id="btnAddMore" type="button" class="btn">
-          <span data-i18n="ja">追加</span><span data-i18n="en">Add</span>
-        </button>
-        <button id="btnReset" type="button" class="btn">
-          <span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span>
-        </button>
-        <button id="btnUndo" type="button" class="btn" disabled>
-          <span data-i18n="ja">Undo（1回）</span><span data-i18n="en">Undo (1)</span>
-        </button>
+        <button id="btnAddMore" type="button" class="btn"><span data-i18n="ja">追加</span><span data-i18n="en">Add</span></button>
+        <button id="btnReset" type="button" class="btn"><span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span></button>
+        <button id="btnUndo" type="button" class="btn" disabled><span data-i18n="ja">Undo（1回）</span><span data-i18n="en">Undo (1)</span></button>
         <div class="spacer"></div>
-        <button id="btnSave" type="button" class="btn-primary">
-          <span data-i18n="ja">保存してダウンロード</span><span data-i18n="en">Download PDF</span>
-        </button>
+        <button id="btnSave" type="button" class="btn-primary"><span data-i18n="ja">保存してダウンロード</span><span data-i18n="en">Download PDF</span></button>
       </div>
 
       <div class="files">
-        <div class="files-title">
-          <span data-i18n="ja">入力PDF</span><span data-i18n="en">Input PDFs</span>
-        </div>
-        <ul id="fileList" class="file-list">
-          <li class="muted" data-i18n="ja">（まだ読み込まれていません）</li>
-          <li class="muted" data-i18n="en">(No PDFs loaded yet)</li>
-        </ul>
+        <div class="files-title"><span data-i18n="ja">入力PDF</span><span data-i18n="en">Input PDFs</span></div>
+        <ul id="fileList" class="file-list"><li class="muted" data-i18n="ja">（まだ読み込まれていません）</li><li class="muted" data-i18n="en">(No PDFs loaded yet)</li></ul>
       </div>
 
       <div class="extract">
-        <div class="extract-title">
-          <span data-i18n="ja">抽出（範囲指定）</span><span data-i18n="en">Extract (range)</span>
-        </div>
-
+        <div class="extract-title"><span data-i18n="ja">抽出（範囲指定）</span><span data-i18n="en">Extract (range)</span></div>
         <div class="extract-row pptm-extract">
-          <label class="label" for="extractRange">
-            <span data-i18n="ja">範囲</span><span data-i18n="en">Range</span>
-          </label>
+          <label class="label" for="extractRange"><span data-i18n="ja">範囲</span><span data-i18n="en">Range</span></label>
           <input id="extractRange" class="input pptm-field" type="text" placeholder="1-3,5,8-10" />
-          <button id="btnExtract" type="button" class="btn">
-            <span data-i18n="ja">抽出してダウンロード</span><span data-i18n="en">Extract & Download</span>
-          </button>
+          <button id="btnExtract" type="button" class="btn"><span data-i18n="ja">抽出してダウンロード</span><span data-i18n="en">Extract & Download</span></button>
         </div>
-
-        <p class="muted">
-          <span data-i18n="ja">例: 1-3,5,8-10（正しい時のみ実行できます）</span>
-          <span data-i18n="en">Example: 1-3,5,8-10 (enabled only when valid)</span>
-        </p>
+        <p class="muted"><span data-i18n="ja">例: 1-3,5,8-10（正しい時のみ実行できます）</span><span data-i18n="en">Example: 1-3,5,8-10 (enabled only when valid)</span></p>
       </div>
 
       <div class="pages">
-        <div class="pages-title">
-          <span data-i18n="ja">ページ一覧（結合後）</span><span data-i18n="en">Pages (merged view)</span>
-        </div>
-        <div id="pageList" class="page-list">
-          <div class="muted" data-i18n="ja">（ページがありません）</div>
-          <div class="muted" data-i18n="en">(No pages)</div>
-        </div>
+        <div class="pages-title"><span data-i18n="ja">ページ一覧（結合後）</span><span data-i18n="en">Pages (merged view)</span></div>
+        <div id="summaryBox" class="status summary-box" aria-live="polite"><span data-i18n="ja">現在の出力予定：ページはありません。</span><span data-i18n="en">Current output: no pages.</span></div>
+        <div id="pageList" class="page-list"><div class="muted" data-i18n="ja">（ページがありません）</div><div class="muted" data-i18n="en">(No pages)</div></div>
       </div>
     </section>
 
-    <section class="nw-section">
-      <div id="statusBox" class="status" hidden role="alert">
-        <div id="statusText"></div>
-        <button id="btnStatusClose" type="button" class="status-close" aria-label="Close">×</button>
-      </div>
-    </section>
+    <section class="nw-section"><div id="statusBox" class="status" hidden role="alert"><div id="statusText"></div><button id="btnStatusClose" type="button" class="status-close" aria-label="Close">×</button></div></section>
 
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
+      <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
 
     <section class="nw-faq" aria-label="FAQ">
       <h2 class="nw-h2">FAQ</h2>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Q. ファイルはアップロードされますか？</h3>
-        <h3 data-i18n="en">Q. Are files uploaded?</h3>
-        <p data-i18n="ja">いいえ。PDFの読み込み・編集・書き出しはブラウザ内で処理されます。</p>
-        <p data-i18n="en">No. Reading, editing, and exporting PDFs are handled in your browser.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Q. パスワード付きPDFは使えますか？</h3>
-        <h3 data-i18n="en">Q. Are password-protected PDFs supported?</h3>
-        <p data-i18n="ja">非対応です。パスワード解除や回避は行いません。</p>
-        <p data-i18n="en">No. This tool does not unlock or bypass password protection.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Q. 大きいPDFで失敗する場合は？</h3>
-        <h3 data-i18n="en">Q. What if a large PDF fails?</h3>
-        <p data-i18n="ja">ページ数を減らす、先に分割する、別ブラウザやPCで試してください。</p>
-        <p data-i18n="en">Reduce the page count, split the PDF first, or try another browser or a desktop browser.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Q. 圧縮はできますか？</h3>
-        <h3 data-i18n="en">Q. Can this compress PDFs?</h3>
-        <p data-i18n="ja">できません。このツールはページ操作、結合、抽出、削除、並べ替え、回転を目的にしています。</p>
-        <p data-i18n="en">No. This tool is for page operations: merge, extract, delete, reorder, and rotate.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Q. 元のPDFは変更されますか？</h3>
-        <h3 data-i18n="en">Q. Are original PDFs changed?</h3>
-        <p data-i18n="ja">いいえ。編集後のPDFを別ファイルとして保存します。</p>
-        <p data-i18n="en">No. The edited PDF is saved as a separate file.</p>
-      </div>
+      <div class="faq-item"><h3 data-i18n="ja">Q. ファイルはアップロードされますか？</h3><h3 data-i18n="en">Q. Are files uploaded?</h3><p data-i18n="ja">いいえ。PDFの読み込み・編集・書き出しはブラウザ内で処理されます。</p><p data-i18n="en">No. Reading, editing, and exporting PDFs are handled in your browser.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">Q. パスワード付きPDFは使えますか？</h3><h3 data-i18n="en">Q. Are password-protected PDFs supported?</h3><p data-i18n="ja">非対応です。保護されたPDFは読み込めない場合があります。</p><p data-i18n="en">No. Protected PDFs may not load in this tool.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">Q. 大きいPDFで失敗する場合は？</h3><h3 data-i18n="en">Q. What if a large PDF fails?</h3><p data-i18n="ja">ページ数を減らす、先に分割する、別ブラウザやPCで試してください。</p><p data-i18n="en">Reduce the page count, split the PDF first, or try another browser or a desktop browser.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">Q. 圧縮はできますか？</h3><h3 data-i18n="en">Q. Can this compress PDFs?</h3><p data-i18n="ja">できません。このツールはページ操作、結合、抽出、削除、並べ替え、回転を目的にしています。</p><p data-i18n="en">No. This tool is for page operations: merge, extract, delete, reorder, and rotate.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">Q. 元のPDFは変更されますか？</h3><h3 data-i18n="en">Q. Are original PDFs changed?</h3><p data-i18n="ja">いいえ。編集後のPDFを別ファイルとして保存します。</p><p data-i18n="en">No. The edited PDF is saved as a separate file.</p></div>
     </section>
 
     <div class="nw-links">
@@ -306,7 +187,6 @@
       <div class="nw-links-title" data-i18n="en">Related tools</div>
       <ul class="nw-links-list">
         <li><a href="/tools/pdf2csv-local/">PDF2CSV Local</a></li>
-        <li><a href="/tools/pdf-link-extractor-pro/">PDF Link Extractor Pro</a></li>
         <li><a href="/tools/filetype-sniffer/">FileType Sniffer</a></li>
         <li><a href="/tools/csv-tidy/">CSV Tidy</a></li>
       </ul>
@@ -316,9 +196,7 @@
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 </body>
 </html>
