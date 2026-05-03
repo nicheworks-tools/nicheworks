@@ -12,6 +12,8 @@
     ja: {
       title: "スクショ縦結合・長い画像作成",
       lead: "複数のスクリーンショットを縦に結合し、長い画像として保存できます。処理はブラウザ内だけで行い、画像は外部送信しません。",
+      usageLink: "詳しい使い方はこちら",
+      usageEnLink: "English guide",
       donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。",
       donateText2: "このツールが役立った場合は、次の改善のためのご支援をご検討ください。",
       inputTitle: "1. 画像を追加",
@@ -42,6 +44,15 @@
       splitExport: "分割ZIP出力",
       localOnly: "処理はブラウザ内のみ。画像データは外部送信しません。",
       previewTitle: "3. プレビュー",
+      faqTitle: "FAQ",
+      faqPrivacyQ: "画像はサーバーに送信されますか？",
+      faqPrivacyA: "いいえ。画像の結合、プレビュー生成、保存処理はブラウザ内で行われます。",
+      faqHeicQ: "HEICに対応していますか？",
+      faqHeicA: "現時点では PNG / JPEG / WebP を対象にしています。HEICは先に対応形式へ変換してください。",
+      faqLongQ: "長すぎる画像は保存できますか？",
+      faqLongA: "ブラウザや端末によって失敗する場合があります。高さが大きい場合は分割ZIP出力を使ってください。",
+      faqRedactQ: "スクショ内の個人情報も自動で隠せますか？",
+      faqRedactA: "いいえ。このツールは結合用です。個人情報を隠す場合は Image Redact などのマスク用ツールを併用してください。",
       disclaimer: "本ツールの出力結果は必ず最終確認してください。",
       noItems: "画像を追加してください。",
       building: "プレビューを生成しています…",
@@ -54,6 +65,7 @@
       warnPixels: "注意: 総ピクセル数が大きいため、スマホでは失敗する可能性があります。",
       fail: "処理に失敗しました。設定や枚数を減らして再試行してください。",
       pasted: "クリップボード画像を追加しました。",
+      addedFiles: "{count}件の画像を追加しました。",
       skippedPrefix: "対応していない形式をスキップしました",
       supportedTypes: "対応形式：PNG / JPEG / WebP。HEICは先に変換してください。",
       settingsChanged: "設定が変わりました。再度プレビューを生成してください。",
@@ -64,6 +76,8 @@
     en: {
       title: "Screenshot Stitcher",
       lead: "Combine multiple screenshots vertically and save them as one long image. Everything runs locally in your browser with no image upload.",
+      usageLink: "Detailed guide",
+      usageEnLink: "English guide",
       donateText: "If this tool helps, optional support keeps improvements going.",
       donateText2: "If useful, please consider supporting future improvements.",
       inputTitle: "1. Add images",
@@ -94,6 +108,15 @@
       splitExport: "Split ZIP export",
       localOnly: "All processing stays in your browser. No image upload.",
       previewTitle: "3. Preview",
+      faqTitle: "FAQ",
+      faqPrivacyQ: "Are images uploaded to a server?",
+      faqPrivacyA: "No. Stitching, preview generation, and saving run inside your browser.",
+      faqHeicQ: "Does it support HEIC?",
+      faqHeicA: "Currently it supports PNG, JPEG, and WebP. Convert HEIC files first.",
+      faqLongQ: "Can I save very long images?",
+      faqLongA: "It depends on the browser and device. For very tall output, use Split ZIP export.",
+      faqRedactQ: "Can it automatically hide personal information?",
+      faqRedactA: "No. This is a stitching tool. Use a redaction tool such as Image Redact before sharing sensitive screenshots.",
       disclaimer: "Please verify output before sharing.",
       noItems: "Please add images first.",
       building: "Building preview...",
@@ -106,6 +129,7 @@
       warnPixels: "Note: total pixels are high, so mobile devices may fail.",
       fail: "Rendering failed. Try fewer images or lower width.",
       pasted: "Added image(s) from clipboard.",
+      addedFiles: "Added {count} image(s).",
       skippedPrefix: "Skipped unsupported files",
       supportedTypes: "Supported formats: PNG / JPEG / WebP. Convert HEIC first.",
       settingsChanged: "Settings changed. Build the preview again before saving.",
@@ -151,6 +175,7 @@
   function revokeItemUrl(item) {
     if (item?.url) {
       URL.revokeObjectURL(item.url);
+      item.url = "";
     }
   }
 
@@ -193,7 +218,7 @@
         const decoded = await decodeFile(file);
         state.items.push({
           id: makeId(),
-          name: file.name,
+          name: file.name || "image",
           w: decoded.img.width,
           h: decoded.img.height,
           img: decoded.img,
@@ -210,7 +235,7 @@
     invalidateRender();
 
     const messages = [];
-    if (added > 0) messages.push(`${added} file${added === 1 ? "" : "s"} added.`);
+    if (added > 0) messages.push(text("addedFiles").replace("{count}", String(added)));
     if (skipped.length) {
       messages.push(`${text("skippedPrefix")}：${skipped.join(", ")}`);
       messages.push(text("supportedTypes"));
@@ -219,6 +244,7 @@
 
     const input = $("fileInput");
     if (input) input.value = "";
+    return { added, skipped };
   }
 
   function renderList() {
@@ -652,7 +678,9 @@
     document.addEventListener("paste", (e) => {
       const files = Array.from(e.clipboardData?.files || []);
       if (files.length) {
-        addFiles(files).then(() => setStatus(text("pasted")));
+        addFiles(files).then((result) => {
+          if (result.added > 0 && result.skipped.length === 0) setStatus(text("pasted"));
+        });
       }
     });
 
