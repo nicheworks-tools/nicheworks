@@ -47,6 +47,20 @@ function hasStableMeta(slug) {
   );
 }
 
+function extractInternalToolLinks(html) {
+  const links = [];
+  const re = /href=["'](\/tools\/([^/"'#?]+)\/?[^"']*)["']/gi;
+  let m;
+  while ((m = re.exec(html))) links.push({ href: m[1], slug: m[2] });
+  return links;
+}
+
+function missingInternalToolLinks(html) {
+  return extractInternalToolLinks(html)
+    .filter((l) => l.slug && l.slug !== '..' && !exists(path.join(toolsDir, l.slug, 'index.html')))
+    .map((l) => l.href);
+}
+
 function checkPage({ slug, file }) {
   const html = read(file);
   const url = `https://nicheworks.app/tools/${slug}/`;
@@ -54,6 +68,7 @@ function checkPage({ slug, file }) {
   const description = metaContent(html, 'description');
   const issues = [];
   const warnings = [];
+  const brokenLinks = missingInternalToolLinks(html);
 
   if (!title) issues.push('missing title');
   else if (title === 'NicheWorks' || title === slug) warnings.push('weak title');
@@ -69,6 +84,7 @@ function checkPage({ slug, file }) {
   if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
   if (!toolIndex.has(slug)) warnings.push('not in tools-index.json');
   if (!hasStableMeta(slug)) warnings.push('missing tools-meta.json SEO metadata');
+  if (brokenLinks.length) warnings.push(`broken internal tool links: ${brokenLinks.join(', ')}`);
 
   return { slug, status: issues.length ? 'FAIL' : warnings.length ? 'WARN' : 'OK', issues: issues.join('; '), warnings: warnings.join('; ') };
 }
