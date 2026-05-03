@@ -5,6 +5,7 @@ const root = process.cwd();
 const toolsDir = path.join(root, 'tools');
 const sitemapPath = path.join(root, 'sitemap.xml');
 const indexPath = path.join(root, 'tools', 'tools-index.json');
+const metaPath = path.join(root, 'tools', 'tools-meta.json');
 
 const read = (p) => fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
 const exists = (p) => fs.existsSync(p);
@@ -15,9 +16,14 @@ const propContent = (html, prop) => html.match(new RegExp(`<meta[^>]+property=["
 
 const sitemap = read(sitemapPath);
 let toolIndex = new Set();
+let toolMeta = {};
 try {
   const parsed = JSON.parse(read(indexPath));
   toolIndex = new Set((parsed.items || []).map((it) => it.slug));
+} catch {}
+try {
+  const parsed = JSON.parse(read(metaPath));
+  toolMeta = parsed.items || {};
 } catch {}
 
 function listToolPages() {
@@ -26,6 +32,19 @@ function listToolPages() {
     .filter((d) => d.isDirectory())
     .map((d) => ({ slug: d.name, file: path.join(toolsDir, d.name, 'index.html') }))
     .filter((it) => exists(it.file));
+}
+
+function hasStableMeta(slug) {
+  const meta = toolMeta[slug];
+  return !!(
+    meta &&
+    meta.title_ja &&
+    meta.title_en &&
+    meta.desc_ja &&
+    meta.desc_en &&
+    Array.isArray(meta.tags) &&
+    meta.tags.length >= 2
+  );
 }
 
 function checkPage({ slug, file }) {
@@ -49,6 +68,7 @@ function checkPage({ slug, file }) {
   if (!has(html, /application\/ld\+json/i) || !html.includes('WebApplication')) warnings.push('missing WebApplication JSON-LD');
   if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
   if (!toolIndex.has(slug)) warnings.push('not in tools-index.json');
+  if (!hasStableMeta(slug)) warnings.push('missing tools-meta.json SEO metadata');
 
   return { slug, status: issues.length ? 'FAIL' : warnings.length ? 'WARN' : 'OK', issues: issues.join('; '), warnings: warnings.join('; ') };
 }
