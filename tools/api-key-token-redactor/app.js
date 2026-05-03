@@ -34,13 +34,23 @@ const placeholderFor = (text, useKeepLength, placeholder) => {
 
 const lineNumberFor = (text, index) => text.slice(0, index).split(/\r\n|\r|\n/).length;
 
-const previewFor = (text, start, end) => {
-  const lineStart = text.lastIndexOf("\n", start - 1) + 1;
-  const nextBreak = text.indexOf("\n", end);
+const maskForPreview = (value) => {
+  const clean = String(value || "").replace(/\s+/g, " ").trim();
+  if (!clean) return "[REDACTED]";
+  if (clean.length <= 8) return `${clean.slice(0, 2)}…`;
+  return `${clean.slice(0, 6)}…${clean.slice(-4)}`;
+};
+
+const previewFor = (text, matchStart, matchEnd, secretStart, secretEnd) => {
+  const lineStart = text.lastIndexOf("\n", matchStart - 1) + 1;
+  const nextBreak = text.indexOf("\n", matchEnd);
   const lineEnd = nextBreak === -1 ? text.length : nextBreak;
-  const raw = text.slice(lineStart, lineEnd).replace(/\s+/g, " ").trim();
-  if (!raw) return text.slice(start, end).replace(/\s+/g, " ").slice(0, 90);
-  return raw.length > 120 ? `${raw.slice(0, 117)}...` : raw;
+  const before = text.slice(lineStart, Math.max(lineStart, secretStart));
+  const secret = text.slice(secretStart, secretEnd);
+  const after = text.slice(Math.min(secretEnd, lineEnd), lineEnd);
+  const raw = `${before}${maskForPreview(secret)}${after}`.replace(/\s+/g, " ").trim();
+  if (!raw) return maskForPreview(secret);
+  return raw.length > 140 ? `${raw.slice(0, 137)}...` : raw;
 };
 
 const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (ch) => ({
@@ -69,7 +79,7 @@ const redactContent = (text, options) => {
       label,
       severity,
       line: lineNumberFor(text, start),
-      preview: previewFor(text, match.index, match.index + match[0].length),
+      preview: previewFor(text, match.index, match.index + match[0].length, start, end),
       start,
       end,
     });
@@ -102,6 +112,7 @@ const redactContent = (text, options) => {
     scanGroup(/(Authorization\s*:\s*Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Authorization Bearer token", "high");
     scanGroup(/\b(Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Bearer token", "high");
     scanGroup(/(Authorization\s*:\s*)(?!Bearer\s+)([^\r\n]{8,})/gi, 2, "header", "Authorization header", "high");
+    scanGroup(/(-H\s+["']Authorization\s*:\s*Bearer\s+)([^"'\r\n]{12,})/gi, 2, "bearer", "curl Authorization Bearer token", "high");
   }
 
   if (options.modeJwt) {
@@ -112,21 +123,27 @@ const redactContent = (text, options) => {
     scanWhole(/\bsk-proj-[A-Za-z0-9_-]{12,}\b/g, "apiKeys", "OpenAI project key", "high");
     scanWhole(/\bsk-[A-Za-z0-9]{16,}\b/g, "apiKeys", "OpenAI API key", "high");
     scanWhole(/\bsk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", "Stripe secret key", "high");
+    scanWhole(/\brk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", "Stripe restricted key", "high");
     scanWhole(/\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, "apiKeys", "GitHub fine-grained token", "high");
     scanWhole(/\bgh[opuslr]_[A-Za-z0-9]{20,}\b/g, "apiKeys", "GitHub token", "high");
     scanWhole(/\b(?:xox[baprs]|xapp)-[A-Za-z0-9-]{10,}\b/g, "apiKeys", "Slack token", "high");
     scanWhole(/\bAIza[0-9A-Za-z_-]{20,}\b/g, "apiKeys", "Google API key", "high");
     scanWhole(/\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "SendGrid API key", "high");
     scanWhole(/\bglpat-[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "GitLab token", "high");
+    scanWhole(/\bnpm_[A-Za-z0-9]{24,}\b/g, "apiKeys", "npm token", "high");
     scanWhole(/\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g, "apiKeys", "AWS access key ID", "high");
+    scanWhole(/\b\d{8,12}:[A-Za-z0-9_-]{30,}\b/g, "apiKeys", "Telegram bot token", "high");
+    scanWhole(/\b[A-Za-z0-9_-]{23,28}\.[A-Za-z0-9_-]{6,8}\.[A-Za-z0-9_-]{27,}\b/g, "apiKeys", "Discord-style token", "high");
   }
 
   if (options.modeGenericSecret) {
-    const secretKeys = "api[_-]?key|apikey|token|secret|password|passwd|pwd|client[_-]?secret|access[_-]?token|refresh[_-]?token|auth[_-]?token|private[_-]?key|aws[_-]?secret[_-]?access[_-]?key|secretAccessKey";
+    const secretKeys = "_?auth[_-]?token|api[_-]?key|apikey|token|secret|password|passwd|pwd|client[_-]?secret|access[_-]?token|refresh[_-]?token|auth[_-]?token|private[_-]?key|npm[_-]?token|vercel[_-]?token|database[_-]?url|db[_-]?password|aws[_-]?secret[_-]?access[_-]?key|secretAccessKey";
     scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)(["'])([^"'\\r\\n]{8,})(["'])`, "gi"), 3, "genericSecret", "Quoted secret value", "medium");
     scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)([^\\s"',}\\]]{8,})`, "gi"), 2, "genericSecret", "Labeled secret value", "medium");
-    scanGroup(/([?&](?:token|api_key|apikey|access_token|refresh_token|auth_token|client_secret)=)([^&#\s]{8,})/gi, 2, "urlQuery", "URL query secret", "medium");
+    scanGroup(/([?&](?:token|api_key|apikey|key|access_token|refresh_token|auth_token|client_secret|signature|sig)=)([^&#\s]{8,})/gi, 2, "urlQuery", "URL query secret", "medium");
     scanGroup(/(Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Cookie header", "medium");
+    scanGroup(/(Set-Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Set-Cookie header", "medium");
+    scanGroup(/(\/\/registry\.npmjs\.org\/:_authToken=)([^\s\r\n]{8,})/gi, 2, "genericSecret", "npm auth token", "high");
   }
 
   findings.sort((a, b) => a.start - b.start || severityRank[b.severity] - severityRank[a.severity]);
@@ -213,8 +230,8 @@ const updateSafetySummary = (findings = []) => {
     return;
   }
   box.textContent = t(
-    `検出結果：${findings.length}件 / High：${high}件 / Medium：${medium}件 / 秘密鍵：${privateKeys}件 / ヘッダー系：${headers}件。共有前に出力を再確認してください。`,
-    `Findings: ${findings.length} / High: ${high} / Medium: ${medium} / Private keys: ${privateKeys} / Headers: ${headers}. Review the output before sharing.`
+    `検出結果：${findings.length}件 / High：${high}件 / Medium：${medium}件 / 秘密鍵：${privateKeys}件 / ヘッダー系：${headers}件。検出結果のプレビューは一部マスク済みです。共有前に出力を再確認してください。`,
+    `Findings: ${findings.length} / High: ${high} / Medium: ${medium} / Private keys: ${privateKeys} / Headers: ${headers}. Finding previews are partially masked. Review the output before sharing.`
   );
   box.className = high > 0 ? "safety-summary danger" : "safety-summary warning";
 };
@@ -262,17 +279,19 @@ const samples = {
 GITHUB_TOKEN=github_pat_demo_1234567890abcdef123456
 SLACK_BOT_TOKEN=xoxb-123456789012-123456789012-demoTOKEN
 AWS_ACCESS_KEY_ID=AKIA1234567890ABCDEF
-AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"`,
+AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+NPM_TOKEN=npm_demo1234567890abcdef1234567890`,
   json: `{
   "apiKey": "AIzaSyDemoKey1234567890abcdefABCDE",
   "client_secret": "demo-client-secret-1234567890",
   "sendgrid": "SG.demo1234567890.demo1234567890",
-  "gitlab": "glpat-demo1234567890abcd"
+  "gitlab": "glpat-demo1234567890abcd",
+  "database_url": "postgres://user:password@example.com:5432/app"
 }`,
   curl: `curl https://api.example.com/v1/items \\
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.demoPayload123456.demoSignature123456" \\
   -H "Cookie: sessionid=abc123def456ghi789; token=hiddenvalue123456"`,
-  log: `2026-05-03T20:10:00Z GET /callback?access_token=abc123def456ghi789&user=demo 200
+  log: `2026-05-03T20:10:00Z GET /callback?access_token=abc123def456ghi789&signature=abcdef1234567890 200
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 password="should-not-be-shared-12345"`,
   privateKey: `-----BEGIN PRIVATE KEY-----
