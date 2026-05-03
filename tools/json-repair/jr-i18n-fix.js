@@ -25,7 +25,15 @@
       faq3q: "すべてのJSONを自動修復できますか？",
       faq3a: "いいえ。意味が曖昧な壊れ方や大きく崩れたJSONは修復できない場合があります。",
       faq4q: "元データは変更されますか？",
-      faq4a: "いいえ。入力欄の内容は残り、修復結果は出力欄に表示されます。"
+      faq4a: "いいえ。入力欄の内容は残り、修復結果は出力欄に表示されます。",
+      scopeTitle: "修復できる範囲",
+      scopeFree: "無料：末尾カンマ、コメント除去、一部のログ混在JSON、検証、Pretty、Minify、コピー、JSON保存、差分確認。",
+      scopeExtra: "追加機能：シングルクォート、未クォートキー、Python風 True / False / None、JSON候補抽出、Schema check、ローカル履歴。",
+      howTitle: "使い方",
+      how1: "1. 壊れたJSONやログ混在テキストを入力欄に貼り付ける。",
+      how2: "2. まず Validate で状態を確認する。",
+      how3: "3. Safe または Standard を選んで Repair を押す。",
+      how4: "4. 修復ログと差分を確認してからコピーまたは保存する。"
     },
     en: {
       freeTitle: "What you can do for free",
@@ -50,7 +58,15 @@
       faq3q: "Can it repair every broken JSON automatically?",
       faq3a: "No. Ambiguous or heavily damaged JSON may not be repairable automatically.",
       faq4q: "Will the original input be changed?",
-      faq4a: "No. The input remains in the input box and the repaired JSON appears in the output box."
+      faq4a: "No. The input remains in the input box and the repaired JSON appears in the output box.",
+      scopeTitle: "Repair scope",
+      scopeFree: "Free: trailing commas, comment removal, some JSON mixed into logs, validation, Pretty, Minify, copy, JSON save, and diff check.",
+      scopeExtra: "Extra: single quotes, unquoted keys, Python-like True / False / None, JSON candidate extraction, schema check, and local history.",
+      howTitle: "How to use",
+      how1: "1. Paste broken JSON or log-mixed text into the input box.",
+      how2: "2. Use Validate first to see the current state.",
+      how3: "3. Select Safe or Standard, then press Repair.",
+      how4: "4. Check the repair log and diff before copying or saving."
     }
   };
 
@@ -58,7 +74,22 @@
     return (document.documentElement.lang || navigator.language || "ja").toLowerCase().indexOf("ja") === 0 ? "ja" : "en";
   }
 
+  function insertGuide(){
+    if (document.querySelector(".jr-scope-guide")) return;
+    var free = document.querySelector("section[aria-label='Free features']");
+    if (!free || !free.parentNode) return;
+    var guide = document.createElement("section");
+    guide.className = "jr-pro jr-scope-guide";
+    guide.innerHTML = '<div class="jr-pro-head"><h2 class="jr-h2" data-i18n="scopeTitle"></h2><div class="jr-mini">Free / Extra</div></div>' +
+      '<div class="jr-pro-note" data-i18n="scopeFree"></div>' +
+      '<div class="jr-pro-note" data-i18n="scopeExtra"></div>' +
+      '<div class="jr-pro-head jr-how-head"><h2 class="jr-h2" data-i18n="howTitle"></h2></div>' +
+      '<ol class="jr-how-list"><li data-i18n="how1"></li><li data-i18n="how2"></li><li data-i18n="how3"></li><li data-i18n="how4"></li></ol>';
+    free.insertAdjacentElement("afterend", guide);
+  }
+
   function apply(){
+    insertGuide();
     var map = D[currentLang()] || D.ja;
     document.querySelectorAll("[data-i18n]").forEach(function(el){
       var key = el.getAttribute("data-i18n");
