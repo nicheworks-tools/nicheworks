@@ -1,4 +1,7 @@
 (function () {
+  const isEnglishPath = /\/manual-finder\/en\/?/.test(window.location.pathname);
+  const DATA_URL = isEnglishPath ? "../data/manuals.json" : "./data/manuals.json";
+
   const FALLBACK_MANUALS = [
     {
       brand: "Apple",
@@ -140,7 +143,7 @@
   const state = {
     manuals: [],
     filtered: [],
-    lang: "ja",
+    lang: isEnglishPath ? "en" : "ja",
     status: "loading",
     statusMessageJa: "データを読み込み中です...",
     statusMessageEn: "Loading manual directory..."
@@ -233,9 +236,6 @@
     els.loadStatus.classList.toggle("is-error", state.status === "error");
   }
 
-  // ==============================
-  // 言語切替
-  // ==============================
   function applyLang(lang) {
     state.lang = lang;
 
@@ -260,7 +260,7 @@
       : null;
 
     const navLang = (navigator.language || "").toLowerCase();
-    const initial = saved || (navLang.startsWith("ja") ? "ja" : "en");
+    const initial = isEnglishPath ? "en" : (saved || (navLang.startsWith("ja") ? "ja" : "en"));
 
     applyLang(initial);
 
@@ -276,13 +276,10 @@
     });
   }
 
-  // ==============================
-  // データ読み込み
-  // ==============================
   function loadManuals() {
     setStatus("loading", "データを読み込み中です...", "Loading manual directory...");
 
-    fetch("./data/manuals.json", { cache: "no-store" })
+    fetch(DATA_URL, { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error("failed to load manuals.json");
         return res.json();
@@ -307,9 +304,6 @@
       });
   }
 
-  // ==============================
-  // フィルタ処理
-  // ==============================
   function applyFilter(forcedKeyword) {
     const keywordRaw = normalizeText(els.searchInput ? els.searchInput.value : "");
     const keyword = forcedKeyword ? normalizeText(forcedKeyword) : keywordRaw;
@@ -329,9 +323,6 @@
     render();
   }
 
-  // ==============================
-  // 描画
-  // ==============================
   function render() {
     if (!els.results || !els.resultCount) return;
 
@@ -432,9 +423,6 @@
     els.results.appendChild(frag);
   }
 
-  // ==============================
-  // イベント設定
-  // ==============================
   function bindEvents() {
     if (els.searchInput) {
       els.searchInput.addEventListener("input", () => applyFilter());
@@ -466,9 +454,6 @@
     }
   }
 
-  // ==============================
-  // init
-  // ==============================
   document.addEventListener("DOMContentLoaded", () => {
     initLang();
     bindEvents();
