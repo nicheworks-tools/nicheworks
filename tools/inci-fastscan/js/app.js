@@ -5,12 +5,23 @@ let lastDictionaryStatus = "loading";
 let lastFastResults = null;
 let lastJbResults = null;
 
+const DICTIONARY_FILES = [
+  "data/ingredients.json",
+  "data/ingredients-extra-1.json",
+  "data/ingredients-extra-2.json",
+  "data/ingredients-extra-3.json",
+  "data/ingredients-extra-4.json",
+  "data/ingredients-extra-5.json",
+  "data/ingredients-extra-6.json"
+];
+
 const FALLBACK_DICT = [
   {
     en: "Water",
     jp: ["水"],
     alias: ["Aqua"],
     safety: "safe",
+    category: "solvent",
     note_short: "Common solvent/base ingredient."
   },
   {
@@ -18,6 +29,7 @@ const FALLBACK_DICT = [
     jp: ["グリセリン"],
     alias: [],
     safety: "safe",
+    category: "humectant",
     note_short: "Common humectant used for moisturizing support."
   },
   {
@@ -25,6 +37,7 @@ const FALLBACK_DICT = [
     jp: ["ナイアシンアミド"],
     alias: [],
     safety: "safe",
+    category: "active",
     note_short: "Common skin-conditioning ingredient; some users may feel irritation."
   },
   {
@@ -32,6 +45,7 @@ const FALLBACK_DICT = [
     jp: ["香料"],
     alias: ["Parfum"],
     safety: "caution",
+    category: "fragrance",
     note_short: "Review if you are sensitive to fragrance or have known allergies."
   }
 ];
@@ -44,6 +58,10 @@ const UI_TEXT = {
   dictLoaded: {
     ja: count => `成分辞書を読み込みました。${count}件`,
     en: count => `Dictionary loaded: ${count} items.`
+  },
+  dictPartial: {
+    ja: count => `一部の補助辞書は読めませんでしたが、${count}件の辞書で動作しています。`,
+    en: count => `Some supplemental dictionaries failed to load, but ${count} dictionary items are available.`
   },
   dictFallback: {
     ja: "成分辞書の読み込みに失敗したため、最低限のフォールバック辞書で動作しています。正確な確認にはページを再読み込みしてください。",
@@ -130,6 +148,9 @@ function refreshDictionaryStatus() {
   if (lastDictionaryStatus === "loaded") {
     status.className = "status-note status-ok";
     status.textContent = getText("dictLoaded", DICT.length);
+  } else if (lastDictionaryStatus === "partial") {
+    status.className = "status-note status-warn";
+    status.textContent = getText("dictPartial", DICT.length);
   } else if (lastDictionaryStatus === "fallback") {
     status.className = "status-note status-warn";
     status.textContent = getText("dictFallback");
@@ -156,13 +177,25 @@ async function loadDictionary() {
   }
 
   try {
-    const response = await fetch("data/ingredients.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(`Dictionary HTTP ${response.status}`);
-    const data = await response.json();
-    if (!Array.isArray(data)) throw new Error("Dictionary is not an array");
-    DICT = data;
+    const results = await Promise.allSettled(
+      DICTIONARY_FILES.map(async file => {
+        const response = await fetch(file, { cache: "no-store" });
+        if (!response.ok) throw new Error(`${file} HTTP ${response.status}`);
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error(`${file} is not an array`);
+        return data;
+      })
+    );
+
+    const loaded = results
+      .filter(result => result.status === "fulfilled")
+      .flatMap(result => result.value);
+
+    if (!loaded.length) throw new Error("No dictionary files loaded");
+
+    DICT = dedupeDictionary(loaded);
     dictReady = true;
-    lastDictionaryStatus = "loaded";
+    lastDictionaryStatus = results.some(result => result.status === "rejected") ? "partial" : "loaded";
     refreshDictionaryStatus();
   } catch (error) {
     console.error(error);
@@ -173,6 +206,19 @@ async function loadDictionary() {
   } finally {
     setCheckButtonsDisabled(false);
   }
+}
+
+function dedupeDictionary(items) {
+  const seen = new Set();
+  const output = [];
+  for (const item of items) {
+    if (!item || !item.en) continue;
+    const key = String(item.id || item.en).toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    output.push(item);
+  }
+  return output;
 }
 
 function setCheckButtonsDisabled(disabled) {
