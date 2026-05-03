@@ -88,7 +88,8 @@ a:hover { color: var(--accent); }
 
 .search-panel,
 .popular-panel,
-.group-wrapper {
+.group-wrapper,
+.faq-section {
   margin: 24px 0;
   padding: 16px;
   border: 1px solid var(--border);
@@ -203,11 +204,16 @@ a:hover { color: var(--accent); }
   color: var(--muted);
 }
 
-.kanji-meaning,
+.kanji-reading,
+.kanji-usage,
 .kanji-meta {
   margin: 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.kanji-usage {
+  line-height: 1.65;
 }
 
 .copy-actions {
@@ -228,6 +234,25 @@ a:hover { color: var(--accent); }
 }
 
 .copy-btn:hover { border-color: var(--accent); }
+
+.faq-section details {
+  border-top: 1px solid var(--border);
+  padding: 10px 0;
+}
+
+.faq-section details:first-of-type {
+  border-top: 0;
+}
+
+.faq-section summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.faq-section p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
 
 .toast {
   position: fixed;
@@ -321,17 +346,28 @@ a:hover { color: var(--accent); }
   .nw-main { padding: 12px; }
   .search-panel,
   .popular-panel,
-  .group-wrapper { padding: 12px; border-radius: 10px; }
+  .group-wrapper,
+  .faq-section { padding: 12px; border-radius: 10px; }
   .filter-buttons { display: grid; grid-template-columns: 1fr 1fr; }
   .filter-btn { width: 100%; padding: 8px 6px; font-size: 0.85rem; }
   .popular-container { grid-template-columns: 1fr; }
   .group-section { padding: 10px; }
   .kanji-grid { gap: 8px; }
-  .kanji-card { padding: 10px; gap: 6px; }
-  .kanji-pair { grid-template-columns: 2.1em 1em minmax(2.1em, 1fr); gap: 6px; }
+  .kanji-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 5px;
+  }
+  .kanji-pair {
+    grid-template-columns: 2.1em 1em minmax(2.1em, 1fr);
+    gap: 6px;
+    min-width: 0;
+  }
   .kanji-old { font-size: 1.35rem; }
   .kanji-new { font-size: 1.1rem; }
-  .kanji-meaning { font-size: 0.86rem; line-height: 1.55; }
+  .kanji-reading { font-size: 0.86rem; line-height: 1.45; }
+  .kanji-usage { font-size: 0.84rem; line-height: 1.5; }
   .kanji-meta { font-size: 0.82rem; }
   .copy-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .copy-btn { width: 100%; font-size: 0.82rem; padding: 7px 6px; }
