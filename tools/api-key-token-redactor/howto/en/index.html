@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>API Key & Token Redactor Guide | NicheWorks</title>
-  <meta name="description" content="30-second usage guide, supported patterns, limitations, and privacy notes for the API Key & Token Redactor.">
+  <meta name="description" content="30-second usage guide, supported patterns, findings list, limitations, and privacy notes for the API Key & Token Redactor.">
   <link rel="canonical" href="https://nicheworks.app/tools/api-key-token-redactor/howto/en/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/api-key-token-redactor/howto/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/api-key-token-redactor/howto/en/">
@@ -43,28 +43,41 @@
       <a href="../../">Back to tool</a>
     </div>
     <h1 style="margin:10px 0 6px">API Key & Token Redactor Guide</h1>
-    <p class="muted" style="margin:0">Quick usage, supported patterns, limitations, and privacy notes.</p>
+    <p class="muted" style="margin:0">Quick usage, supported patterns, findings, limitations, and privacy notes.</p>
   </header>
 
   <main class="nw-main">
     <section class="card">
       <h2 style="margin:0 0 8px">30-second guide</h2>
       <ol>
-        <li>Copy logs or configuration text and paste into the tool.</li>
-        <li>Click “Redact” and review the output.</li>
-        <li>Share only the redacted output.</li>
+        <li>Paste logs, .env files, JSON, curl commands, or config snippets into the tool.</li>
+        <li>Click “Redact” and review the findings list and safety summary.</li>
+        <li>Copy or download only the redacted output before sharing.</li>
       </ol>
-      <p class="muted" style="margin:0">Tip: run a quick search for sk- or AKIA before posting.</p>
+      <p class="muted" style="margin:0">Tip: search for sk-, github_pat_, xoxb-, AIza, AKIA, Authorization, or Cookie before posting.</p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">Supported patterns</h2>
       <ul>
-        <li>Bearer tokens (Authorization header / Bearer prefix)</li>
-        <li>JWTs (<code>eyJ...</code> format)</li>
+        <li>OpenAI: <code>sk-</code>, <code>sk-proj-</code></li>
+        <li>GitHub: <code>github_pat_</code>, <code>ghp_</code>, <code>gho_</code>, <code>ghu_</code>, <code>ghs_</code>, <code>ghr_</code></li>
+        <li>Slack: <code>xoxb-</code>, <code>xoxp-</code>, <code>xapp-</code></li>
+        <li>Google API keys: <code>AIza...</code> / SendGrid: <code>SG....</code> / GitLab: <code>glpat-</code></li>
+        <li>AWS: <code>AKIA...</code>, <code>ASIA...</code>, <code>aws_secret_access_key=</code></li>
+        <li>Bearer / Authorization headers, JWTs (<code>eyJ...</code>), and Cookie headers</li>
         <li>PEM private keys (BEGIN/END PRIVATE KEY)</li>
-        <li>API key examples: <code>sk-</code>, <code>sk_live_</code>, <code>ghp_</code>, <code>AKIA</code></li>
-        <li>Labeled secrets like <code>api_key=</code>, <code>token:</code>, or <code>password=</code></li>
+        <li>.env / JSON values labeled <code>api_key</code>, <code>token</code>, <code>secret</code>, <code>password</code>, <code>client_secret</code>, <code>access_token</code>, and similar names</li>
+        <li>URL query values such as <code>?token=</code>, <code>?api_key=</code>, and <code>?access_token=</code></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">How to read findings</h2>
+      <ul>
+        <li><strong>High</strong>: private keys, Bearer tokens, JWTs, and major API keys.</li>
+        <li><strong>Medium</strong>: labeled secrets, URL tokens, cookies, and values that need manual review.</li>
+        <li><strong>Line</strong>: the approximate line number in the original text. Long single-line logs still need manual review.</li>
       </ul>
     </section>
 
@@ -74,6 +87,7 @@
         <li>No guarantee of catching every secret.</li>
         <li>Doesn’t scan images or screenshots.</li>
         <li>Doesn’t validate or revoke tokens.</li>
+        <li>Doesn’t fully remove personal identifiers such as emails, IPs, user IDs, or full URLs.</li>
       </ul>
     </section>
 
