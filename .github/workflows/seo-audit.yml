@@ -40,5 +40,13 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Verify SEO repair script has nothing to change
+        run: |
+          node scripts/repair-seo-foundation.mjs
+          if ! git diff --exit-code; then
+            echo "SEO repair script changed files. Commit the repaired SEO foundations."
+            exit 1
+          fi
+
       - name: Run SEO audit strict mode
         run: node scripts/audit-seo.mjs --strict
