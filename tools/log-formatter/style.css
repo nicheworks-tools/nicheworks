@@ -155,12 +155,13 @@ body.dark-mode .ad-slot {
 }
 
 .ad-bottom {
-  margin-bottom: 8px;
+  margin: 18px 0 20px;
 }
 
 .tool-intro,
 .input-panel,
 .output-panel,
+.faq-section,
 .nw-donate,
 .nw-links {
   border: 1px solid var(--border);
@@ -168,12 +169,14 @@ body.dark-mode .ad-slot {
   background: var(--bg-soft);
 }
 
-.tool-intro {
+.tool-intro,
+.faq-section {
   padding: 12px;
   margin-bottom: 12px;
 }
 
-.tool-intro h2 {
+.tool-intro h2,
+.faq-section h2 {
   margin: 0 0 6px;
   font-size: 15px;
 }
@@ -543,6 +546,33 @@ body.dark-mode .log-line .url {
   font-style: italic;
 }
 
+.faq-section {
+  margin-top: 18px;
+}
+
+.faq-section details {
+  border-top: 1px solid var(--border);
+  padding: 8px 0;
+}
+
+.faq-section details:first-of-type {
+  border-top: none;
+}
+
+.faq-section summary {
+  cursor: pointer;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.faq-section p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
 .nw-donate {
   margin: 18px 0 10px;
   padding: 12px;
@@ -552,6 +582,7 @@ body.dark-mode .log-line .url {
 .nw-donate-text {
   margin: 0 0 8px;
   font-size: 13px;
+  line-height: 1.6;
   color: var(--text);
 }
 
@@ -652,7 +683,8 @@ body.dark-mode .log-line .url {
 
   .tool-intro,
   .input-panel,
-  .output-panel {
+  .output-panel,
+  .faq-section {
     padding: 9px;
   }
 
