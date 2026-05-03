@@ -13,20 +13,7 @@ on:
       - 'scripts/repair-seo-foundation.mjs'
       - 'sitemap.xml'
       - '.github/workflows/seo-audit.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'index.html'
-      - 'about.html'
-      - 'privacy.html'
-      - 'contact.html'
-      - 'en/**'
-      - 'tools/**'
-      - 'scripts/audit-seo.mjs'
-      - 'scripts/repair-seo-foundation.mjs'
-      - 'sitemap.xml'
-      - '.github/workflows/seo-audit.yml'
+      - '.github/workflows/seo-auto-repair.yml'
 
 jobs:
   seo-audit:
@@ -43,10 +30,7 @@ jobs:
       - name: Verify SEO repair script has nothing to change
         run: |
           node scripts/repair-seo-foundation.mjs
-          if ! git diff --exit-code; then
-            echo "SEO repair script changed files. Commit the repaired SEO foundations."
-            exit 1
-          fi
+          git diff --exit-code
 
       - name: Run SEO audit strict mode
         run: node scripts/audit-seo.mjs --strict
