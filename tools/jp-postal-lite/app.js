@@ -8,14 +8,7 @@ const PREFS = [
   "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"
 ];
 
-const DATA_FILES = {
-  "東京都": "東京都.json",
-  "神奈川県": "神奈川県.json",
-  "千葉県": "千葉県.json",
-  "大阪府": "大阪府.json",
-  "福岡県": "福岡県.json"
-};
-
+const DATA_FILES = Object.fromEntries(PREFS.map((pref) => [pref, `${pref}.json`]));
 const DATA_CHECKED_DATE = "2026-05-03";
 const OFFICIAL_REFERENCE_DATE = "2026-04-30";
 const LIMIT = 50;
@@ -47,34 +40,25 @@ let toastTimer = null;
 let searchRun = 0;
 
 const examples = [
+  ["北海道", "札幌市中央区"],
   ["東京都", "渋谷区"],
   ["東京都", "新宿区西新宿"],
-  ["東京都", "千代田区丸の内"],
   ["神奈川県", "横浜市中区"],
   ["千葉県", "千葉市中央区"],
   ["大阪府", "大阪市北区"],
   ["福岡県", "福岡市博多区"]
 ];
 
-function supported(pref) {
-  return Boolean(DATA_FILES[pref]);
-}
-
 function initPrefs() {
   prefSelect.appendChild(new Option("選択してください", ""));
   const frag = document.createDocumentFragment();
-  PREFS.forEach((pref) => {
-    const option = new Option(supported(pref) ? pref : `${pref}（準備中）`, pref);
-    option.disabled = !supported(pref);
-    frag.appendChild(option);
-  });
+  PREFS.forEach((pref) => frag.appendChild(new Option(pref, pref)));
   prefSelect.appendChild(frag);
 }
 
 function initInfo() {
-  const prefs = Object.keys(DATA_FILES);
-  if (supportedPrefCount) supportedPrefCount.textContent = `${prefs.length}都府県`;
-  if (supportedPrefList) supportedPrefList.textContent = prefs.join(" / ");
+  if (supportedPrefCount) supportedPrefCount.textContent = "47都道府県";
+  if (supportedPrefList) supportedPrefList.textContent = "全国47都道府県のJSONファイルを読み込み対象にしています。";
   if (dataCheckedDate) dataCheckedDate.textContent = DATA_CHECKED_DATE;
   if (officialReferenceDate) officialReferenceDate.textContent = OFFICIAL_REFERENCE_DATE;
 }
@@ -96,13 +80,21 @@ function initExamples() {
 }
 
 async function loadData(pref) {
-  if (!supported(pref)) throw new Error("unsupported");
-  if (cache.has(pref)) return cache.get(pref);
   const file = DATA_FILES[pref];
+  if (!file) throw new Error("unsupported");
+  if (cache.has(pref)) return cache.get(pref);
+
   const response = await fetch(`./data/${encodeURIComponent(file)}`);
-  if (!response.ok) throw new Error("load_failed");
-  const data = await response.json();
-  if (!Array.isArray(data) || data.length === 0) throw new Error("invalid_data");
+  if (!response.ok) throw new Error("missing_file");
+
+  let data;
+  try {
+    data = await response.json();
+  } catch (error) {
+    throw new Error("invalid_json");
+  }
+
+  if (!Array.isArray(data) || data.length === 0) throw new Error("empty_data");
   cache.set(pref, data);
   return data;
 }
@@ -115,7 +107,7 @@ function setAlert(message, kind = "error") {
 }
 
 function setEmpty(message) {
-  results.innerHTML = message;
+  results.textContent = message;
   results.classList.add("empty");
   resultsTitle.textContent = "検索結果（0件）";
   if (resultLimitNote) resultLimitNote.hidden = true;
@@ -293,11 +285,7 @@ async function handleSearch() {
   const query = queryInput.value;
   setAlert("");
   if (!pref) return setEmpty("都道府県を選択してください。");
-  if (!supported(pref)) {
-    setAlert("この都道府県はまだ未対応です。対応済みの都府県を選択してください。", "warn");
-    return setEmpty("未対応の都道府県です。");
-  }
-  if (query.trim().length < 2) return setEmpty("2文字以上で検索できます。例：渋谷区 / 西新宿 / 丸の内");
+  if (query.trim().length < 2) return setEmpty("2文字以上で検索できます。例：札幌市 / 渋谷区 / 西新宿 / 丸の内");
   setEmpty(`${pref}のデータを読み込み中...`);
   try {
     const data = await loadData(pref);
@@ -307,7 +295,10 @@ async function handleSearch() {
     else renderResults(found.rows, found.total);
   } catch (error) {
     if (currentRun !== searchRun) return;
-    setAlert("データファイルの読み込みに失敗しました。時間をおいて再読み込みしてください。", "error");
+    const reason = error.message === "empty_data"
+      ? "この都道府県のデータファイルが空です。データ生成をやり直してください。"
+      : "データファイルの読み込みに失敗しました。ファイル名・配置・JSON形式を確認してください。";
+    setAlert(reason, "error");
     setEmpty("データの読み込みに失敗しました。");
   }
 }
