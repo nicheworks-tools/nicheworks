@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Screenshot Stitcher の使い方 | NicheWorks</title>
+  <meta name="description" content="Screenshot Stitcher の使い方。複数スクリーンショットの追加、幅揃え、余白トリム、分割ZIP出力、保存前の注意点を説明します。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/screenshot-stitcher/usage.html" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <style>
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;line-height:1.7;color:#1f2937;background:#fff}main{max-width:720px;margin:0 auto;padding:24px 16px}h1{font-size:1.6rem;margin:0 0 12px}h2{font-size:1.15rem;margin:28px 0 8px}p,li{color:#374151}.muted{color:#6b7280}.back{margin-top:28px}.back a,a{color:#1d4ed8}.note{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px}.warn{background:#fff7ed;border-color:#fed7aa;color:#9a3412}.nw-footer{text-align:center;color:#6b7280;font-size:.92rem;border-top:1px solid #e5e7eb;margin-top:28px;padding:16px}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Screenshot Stitcher の使い方</h1>
+    <p class="muted">複数のスクリーンショットを縦につなげて、1枚の長い画像として保存するためのブラウザ完結ツールです。</p>
+
+    <h2>1. このツールでできること</h2>
+    <ul>
+      <li>PNG / JPEG / WebP 画像を複数追加する</li>
+      <li>画像の幅を最大幅・最小幅・指定幅に揃える</li>
+      <li>上下の単色に近い余白を自動トリムする</li>
+      <li>PNG / WebP / JPEG で保存する</li>
+      <li>長すぎる画像を指定高さごとに分割し、ZIPで保存する</li>
+    </ul>
+
+    <h2>2. 使い方の手順</h2>
+    <ol>
+      <li>「画像を追加」にスクリーンショットをドロップ、またはクリックして選択します。</li>
+      <li>必要に応じて「幅揃えモード」「指定幅」「画像間余白」「背景」「出力形式」を調整します。</li>
+      <li>余白を削りたい場合だけ「上下の単色余白を自動トリム」を有効にします。</li>
+      <li>「プレビュー生成」を押して、結合結果を確認します。</li>
+      <li>問題なければ「ダウンロード」または「分割ZIP出力」を押します。</li>
+    </ol>
+
+    <h2>3. 対応 / 非対応</h2>
+    <p>対応形式は PNG / JPEG / WebP です。HEIC、BMP、TIFF、PDF には対応していません。</p>
+    <p class="note">HEIC画像は、先に WebP / AVIF Converter などで PNG / JPEG / WebP に変換してから使ってください。</p>
+
+    <h2>4. エラーと警告について</h2>
+    <ul>
+      <li>高さが 20000px を超える場合は、分割出力を推奨します。</li>
+      <li>高さが 30000px を超える場合は、分割ZIP出力を強く推奨します。</li>
+      <li>総ピクセル数が大きい場合、スマホや古いブラウザでは失敗することがあります。</li>
+      <li>非対応形式を選んだ場合、そのファイルはスキップされます。</li>
+    </ul>
+
+    <h2>5. 出力形式の説明</h2>
+    <ul>
+      <li>PNG：文字やUIのスクショ向け。画質劣化が少ない代わりにファイルサイズが大きくなりやすいです。</li>
+      <li>WebP：ファイルサイズを抑えやすい形式です。対応していない古い環境では開けない場合があります。</li>
+      <li>JPEG：写真向けです。文字やUIの細部は少しにじむ場合があります。</li>
+    </ul>
+
+    <h2>6. 分割ZIPの使いどころ</h2>
+    <p>長すぎる画像は、一部SNS・ブラウザ・画像ビューアで開けないことがあります。分割高さを指定すると、指定pxごとに画像を分けてZIP保存できます。</p>
+    <p class="note">おすすめの分割高さは 12000〜18000px です。</p>
+
+    <h2>7. 余白トリムの注意</h2>
+    <p class="note warn">余白トリムは、単色に近い上下余白を削る機能です。白いヘッダー、ナビ、余白まで削られる場合があります。必ずプレビューで確認してください。</p>
+
+    <h2>8. FAQ</h2>
+    <h3>画像はサーバーに送信されますか？</h3>
+    <p>いいえ。画像処理はブラウザ内で行われます。</p>
+    <h3>個人情報は自動で隠せますか？</h3>
+    <p>いいえ。結合ツールです。必要な場合は Image Redact で隠してから共有してください。</p>
+    <h3>設定を変えた後、そのまま保存できますか？</h3>
+    <p>いいえ。設定変更後は古いプレビューが無効になります。再度プレビューを生成してください。</p>
+
+    <h2>9. 免責</h2>
+    <p>出力結果は必ず利用者自身で確認してください。共有前に、個人情報・アカウント名・住所・通知内容などが残っていないか確認してください。</p>
+
+    <p class="back"><a href="./">Screenshot Stitcher に戻る</a> / <a href="./usage-en.html">English guide</a></p>
+  </main>
+  <footer class="nw-footer">© NicheWorks — Small Web Tools for Boring Tasks</footer>
+</body>
+</html>
