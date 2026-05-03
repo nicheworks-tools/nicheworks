@@ -55,6 +55,38 @@
     "publisher": { "@type": "Organization", "name": "NicheWorks" }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ManualFinderで取扱説明書PDFを直接ダウンロードできますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。ManualFinderはPDFを再配布せず、メーカー公式の取扱説明書・サポートページへ案内するリンク集です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "型番が分からない場合はどう探せばいいですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "本体ラベル、箱、保証書、購入履歴を確認し、メーカー公式ページで製品名やシリーズ名から絞り込んでください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "掲載リンクは公式サイトですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "各カードはメーカー公式のマニュアルページまたはサポートページへのリンクを前提にしています。最新情報はリンク先の公式サイトで確認してください。"
+        }
+      }
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="./style.css">
   <script src="./app.js" defer></script>
@@ -95,9 +127,11 @@
     <section class="intro-panel">
       <p data-i18n="ja">
         このツールでできること：メーカー名やカテゴリ名で絞り込み、公式サポート・取扱説明書ページへ移動できます。実際のマニュアルはリンク先で型番やシリーズ名を入力して探してください。
+        <a class="usage-link" href="./howto/">詳しい探し方を見る</a>
       </p>
       <p data-i18n="en" hidden>
         Use this tool to filter by brand or category and open official support or manual pages. Search the destination site by model number or product series.
+        <a class="usage-link" href="./howto/en/">Read the guide</a>
       </p>
     </section>
 
@@ -189,6 +223,27 @@
         <li>Search by product name, model number, or series name on the destination site.</li>
         <li>We cannot guarantee accuracy. Always confirm the latest information on the official website.</li>
       </ul>
+    </section>
+
+    <section class="panel faq-panel">
+      <h2 class="panel-title" data-i18n="ja">よくある質問</h2>
+      <h2 class="panel-title" data-i18n="en" hidden>FAQ</h2>
+      <div data-i18n="ja">
+        <h3>PDFをこのサイトで配布していますか？</h3>
+        <p>配布していません。メーカー公式の取扱説明書ページへ案内します。</p>
+        <h3>型番が分からない場合は？</h3>
+        <p>本体ラベル、箱、保証書、購入履歴を確認し、リンク先の公式ページで製品名やシリーズ名から探してください。</p>
+        <h3>リンク切れの場合は？</h3>
+        <p>メーカー側のURL変更の可能性があります。関連するサポートTOPボタンから辿ってください。</p>
+      </div>
+      <div data-i18n="en" hidden>
+        <h3>Does this site host manual PDFs?</h3>
+        <p>No. ManualFinder points you to official manufacturer manual or support pages.</p>
+        <h3>What if I do not know the model number?</h3>
+        <p>Check the product label, box, warranty card, or order history, then search by product name or series on the official site.</p>
+        <h3>What if a link is broken?</h3>
+        <p>The manufacturer may have changed the URL. Use the support portal button to find the current manual page.</p>
+      </div>
     </section>
 
     <div class="ad-slot ad-bottom">
