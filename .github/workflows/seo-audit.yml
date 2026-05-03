@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - 'index.html'
+      - 'about.html'
+      - 'privacy.html'
+      - 'contact.html'
+      - 'en/**'
       - 'tools/**'
       - 'scripts/audit-seo.mjs'
       - 'sitemap.xml'
@@ -13,6 +17,10 @@ on:
       - main
     paths:
       - 'index.html'
+      - 'about.html'
+      - 'privacy.html'
+      - 'contact.html'
+      - 'en/**'
       - 'tools/**'
       - 'scripts/audit-seo.mjs'
       - 'sitemap.xml'
@@ -30,5 +38,5 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Run SEO audit
-        run: node scripts/audit-seo.mjs
+      - name: Run SEO audit strict mode
+        run: node scripts/audit-seo.mjs --strict
