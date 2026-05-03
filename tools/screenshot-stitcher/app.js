@@ -10,12 +10,12 @@
 
   const t = {
     ja: {
-      title: "スクショ縦結合",
-      lead: "画像を追加して縦に1枚化。ブラウザ内だけで処理し、外部送信しません。",
-      donateText: "継続的な改善のため、任意でご支援いただけると助かります。",
+      title: "スクショ縦結合・長い画像作成",
+      lead: "複数のスクリーンショットを縦に結合し、長い画像として保存できます。処理はブラウザ内だけで行い、画像は外部送信しません。",
+      donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。",
       donateText2: "このツールが役立った場合は、次の改善のためのご支援をご検討ください。",
       inputTitle: "1. 画像を追加",
-      inputLead: "ドラッグ&ドロップ / クリック選択 / ペースト（Ctrl/Cmd+V）に対応。",
+      inputLead: "ドラッグ&ドロップ / クリック選択 / ペースト（Ctrl/Cmd+V）に対応。PNG / JPEG / WebP を追加できます。",
       dropLabel: "ここに画像をドロップ",
       dropSub: "またはクリックして選択（PNG/JPEG/WebP）",
       clear: "全削除",
@@ -27,6 +27,7 @@
       customWidth: "指定幅 (px)",
       trimEnable: "上下の単色余白を自動トリム",
       trimThreshold: "トリム閾値 (0-40)",
+      trimNote: "単色に近い上下余白を削ります。白いヘッダーやナビまで削られる場合があるため、必ずプレビューで確認してください。",
       gap: "画像間余白 (px)",
       bg: "背景",
       bgWhite: "白",
@@ -34,6 +35,8 @@
       format: "出力形式",
       quality: "画質(0.1-1)",
       split: "分割高さ (px / 0で分割なし)",
+      splitNote: "長すぎる画像は一部SNS・ブラウザ・ビューアで開けない場合があります。分割ZIPは指定pxごとに画像を分けて保存します。おすすめ：12000〜18000px。",
+      estimateEmpty: "画像を追加すると、推定出力サイズを表示します。",
       preview: "プレビュー生成",
       download: "ダウンロード",
       splitExport: "分割ZIP出力",
@@ -44,19 +47,27 @@
       building: "プレビューを生成しています…",
       done: "プレビュー生成完了。",
       readyDownload: "先にプレビューを生成してください。",
-      zipDone: "分割ZIPを作成しました。",
+      zipDone: "保存しました：screenshot-stitcher-split.zip。共有前に個人情報が残っていないか確認してください。",
       notNeeded: "分割指定が不要です。分割高さを設定してください。",
       warnHeight: "警告: 高さが20000pxを超えています。分割出力を推奨します。",
+      warnStrongHeight: "強い警告: 高さが30000pxを超えています。分割ZIP出力を強く推奨します。",
+      warnPixels: "注意: 総ピクセル数が大きいため、スマホでは失敗する可能性があります。",
       fail: "処理に失敗しました。設定や枚数を減らして再試行してください。",
-      pasted: "クリップボード画像を追加しました。"
+      pasted: "クリップボード画像を追加しました。",
+      skippedPrefix: "対応していない形式をスキップしました",
+      supportedTypes: "対応形式：PNG / JPEG / WebP。HEICは先に変換してください。",
+      settingsChanged: "設定が変わりました。再度プレビューを生成してください。",
+      downloadDone: "保存しました：{name}。結合画像はブラウザ内で作成されました。共有前に個人情報が残っていないか確認してください。",
+      estimateLabel: "推定出力サイズ",
+      totalPixels: "総ピクセル数"
     },
     en: {
       title: "Screenshot Stitcher",
-      lead: "Combine images vertically in your browser only. No external upload.",
+      lead: "Combine multiple screenshots vertically and save them as one long image. Everything runs locally in your browser with no image upload.",
       donateText: "If this tool helps, optional support keeps improvements going.",
       donateText2: "If useful, please consider supporting future improvements.",
       inputTitle: "1. Add images",
-      inputLead: "Supports drag/drop, file chooser, and paste (Ctrl/Cmd+V).",
+      inputLead: "Supports drag/drop, file chooser, and paste (Ctrl/Cmd+V). You can add PNG, JPEG, and WebP images.",
       dropLabel: "Drop images here",
       dropSub: "or click to choose files (PNG/JPEG/WebP)",
       clear: "Clear all",
@@ -68,6 +79,7 @@
       customWidth: "Custom width (px)",
       trimEnable: "Auto trim solid top/bottom margins",
       trimThreshold: "Trim threshold (0-40)",
+      trimNote: "This removes near-solid top and bottom margins. White headers or navigation areas may also be removed, so always check the preview.",
       gap: "Gap between images (px)",
       bg: "Background",
       bgWhite: "White",
@@ -75,6 +87,8 @@
       format: "Output format",
       quality: "Quality(0.1-1)",
       split: "Split height (px / 0 = off)",
+      splitNote: "Very long images may fail in some social apps, browsers, or viewers. Split ZIP saves separate image parts at the specified height. Recommended: 12000–18000px.",
+      estimateEmpty: "Add images to see the estimated output size.",
       preview: "Build preview",
       download: "Download",
       splitExport: "Split ZIP export",
@@ -85,11 +99,19 @@
       building: "Building preview...",
       done: "Preview is ready.",
       readyDownload: "Build preview first.",
-      zipDone: "Split ZIP generated.",
+      zipDone: "Saved: screenshot-stitcher-split.zip. Check for personal information before sharing.",
       notNeeded: "Split is not set. Enter split height first.",
       warnHeight: "Warning: output height exceeds 20000px. Split export is recommended.",
+      warnStrongHeight: "Strong warning: output height exceeds 30000px. Split ZIP export is strongly recommended.",
+      warnPixels: "Note: total pixels are high, so mobile devices may fail.",
       fail: "Rendering failed. Try fewer images or lower width.",
-      pasted: "Added image(s) from clipboard."
+      pasted: "Added image(s) from clipboard.",
+      skippedPrefix: "Skipped unsupported files",
+      supportedTypes: "Supported formats: PNG / JPEG / WebP. Convert HEIC first.",
+      settingsChanged: "Settings changed. Build the preview again before saving.",
+      downloadDone: "Saved: {name}. The stitched image was created in your browser. Check for personal information before sharing.",
+      estimateLabel: "Estimated output size",
+      totalPixels: "Total pixels"
     }
   };
 
@@ -100,6 +122,7 @@
   function setLang(lang) {
     state.lang = lang === "en" ? "en" : "ja";
     document.documentElement.lang = state.lang;
+    document.documentElement.setAttribute("data-lang-mode", state.lang);
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const k = el.getAttribute("data-i18n");
       if (t[state.lang][k]) {
@@ -110,47 +133,102 @@
       btn.classList.toggle("active", btn.getAttribute("data-lang") === state.lang);
     });
     renderList();
+    updateEstimate();
   }
 
   function setStatus(msg) {
-    $("status").textContent = msg;
+    const node = $("status");
+    if (node) node.textContent = msg;
+  }
+
+  function makeId() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return window.crypto.randomUUID();
+    }
+    return `img_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  }
+
+  function revokeItemUrl(item) {
+    if (item?.url) {
+      URL.revokeObjectURL(item.url);
+    }
+  }
+
+  function isSupportedImage(file) {
+    return /^image\/(png|jpeg|webp)$/.test(file.type || "");
   }
 
   async function decodeFile(file) {
+    const url = URL.createObjectURL(file);
     const img = new Image();
-    const src = URL.createObjectURL(file);
-    img.src = src;
-    await img.decode();
-    URL.revokeObjectURL(src);
-    return img;
+    img.src = url;
+    try {
+      await img.decode();
+      return { img, url };
+    } catch (err) {
+      URL.revokeObjectURL(url);
+      throw err;
+    }
+  }
+
+  function invalidateRender(message) {
+    state.renderedBlob = null;
+    state.renderedCanvas = null;
+    updateDownloadState();
+    updateEstimate();
+    if (message) setStatus(message);
   }
 
   async function addFiles(fileList) {
     const files = Array.from(fileList || []);
+    const skipped = [];
+    let added = 0;
+
     for (const file of files) {
-      if (!/^image\/(png|jpeg|webp)$/.test(file.type)) continue;
-      const img = await decodeFile(file);
-      state.items.push({
-        id: crypto.randomUUID(),
-        name: file.name,
-        w: img.width,
-        h: img.height,
-        img
-      });
+      if (!isSupportedImage(file)) {
+        skipped.push(file.name || "unknown");
+        continue;
+      }
+      try {
+        const decoded = await decodeFile(file);
+        state.items.push({
+          id: makeId(),
+          name: file.name,
+          w: decoded.img.width,
+          h: decoded.img.height,
+          img: decoded.img,
+          url: decoded.url
+        });
+        added += 1;
+      } catch (err) {
+        console.error(err);
+        skipped.push(file.name || "unknown");
+      }
     }
+
     renderList();
-    setStatus("-");
-    state.renderedBlob = null;
-    updateDownloadState();
+    invalidateRender();
+
+    const messages = [];
+    if (added > 0) messages.push(`${added} file${added === 1 ? "" : "s"} added.`);
+    if (skipped.length) {
+      messages.push(`${text("skippedPrefix")}：${skipped.join(", ")}`);
+      messages.push(text("supportedTypes"));
+    }
+    setStatus(messages.length ? messages.join(" ") : "-");
+
+    const input = $("fileInput");
+    if (input) input.value = "";
   }
 
   function renderList() {
     const ul = $("itemList");
+    if (!ul) return;
     ul.innerHTML = "";
     state.items.forEach((item, idx) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        <img src="${item.img.src}" alt="" />
+        <img src="${escapeAttr(item.url)}" alt="" />
         <div>
           <div>${escapeHtml(item.name)}</div>
           <small class="muted">${item.w} × ${item.h}</small>
@@ -173,24 +251,25 @@
     if (to < 0 || to >= state.items.length) return;
     const target = state.items.splice(from, 1)[0];
     state.items.splice(to, 0, target);
-    state.renderedBlob = null;
-    updateDownloadState();
+    invalidateRender();
     renderList();
   }
 
   function deleteItem(i) {
-    state.items.splice(i, 1);
-    state.renderedBlob = null;
-    updateDownloadState();
+    const removed = state.items.splice(i, 1)[0];
+    revokeItemUrl(removed);
+    invalidateRender();
     renderList();
   }
 
   function clearAll() {
+    state.items.forEach(revokeItemUrl);
     state.items = [];
     state.renderedBlob = null;
     state.renderedCanvas = null;
     updateDownloadState();
     renderList();
+    updateEstimate();
     const canvas = $("previewCanvas");
     canvas.width = 10;
     canvas.height = 10;
@@ -203,6 +282,66 @@
     if (mode === "custom") return custom;
     if (mode === "min") return Math.min(...widths);
     return Math.max(...widths);
+  }
+
+  function getSettings() {
+    return {
+      fitMode: $("fitMode").value,
+      customWidth: Math.max(64, Number($("customWidth").value || 1080)),
+      trimEnabled: $("trimEnabled").checked,
+      trimThreshold: Math.max(0, Math.min(40, Number($("trimThreshold").value || 12))),
+      gap: Math.max(0, Math.min(200, Number($("gap").value || 0))),
+      background: $("background").value,
+      format: $("format").value,
+      quality: Number($("quality").value || 0.92),
+      splitHeight: Math.max(0, Number($("splitHeight").value || 0))
+    };
+  }
+
+  function estimateOutputSize() {
+    if (!state.items.length) return null;
+    const settings = getSettings();
+    const widths = state.items.map((it) => it.w);
+    const targetW = pickTargetWidth(settings.fitMode, settings.customWidth, widths);
+    const heights = state.items.map((item) => Math.max(1, Math.round(item.h * (targetW / item.w))));
+    const totalH = heights.reduce((acc, h) => acc + h, 0) + settings.gap * Math.max(0, heights.length - 1);
+    return {
+      width: targetW,
+      height: totalH,
+      megapixels: (targetW * totalH) / 1000000
+    };
+  }
+
+  function buildWarnings(size) {
+    if (!size) return [];
+    const warnings = [];
+    if (size.height > 30000) {
+      warnings.push(text("warnStrongHeight"));
+    } else if (size.height > 20000) {
+      warnings.push(text("warnHeight"));
+    }
+    if (size.megapixels > 40) {
+      warnings.push(text("warnPixels"));
+    }
+    return warnings;
+  }
+
+  function updateEstimate() {
+    const box = $("estimateBox");
+    if (!box) return;
+    const size = estimateOutputSize();
+    if (!size) {
+      box.className = "estimate";
+      box.textContent = text("estimateEmpty");
+      return;
+    }
+    const warnings = buildWarnings(size);
+    box.className = `estimate${warnings.length ? " warn" : ""}`;
+    box.innerHTML = `
+      <strong>${text("estimateLabel")}：</strong>
+      ${size.width} × ${size.height}px / ${text("totalPixels")} ${size.megapixels.toFixed(1)}MP
+      ${warnings.length ? `<ul>${warnings.map((w) => `<li>${escapeHtml(w)}</li>`).join("")}</ul>` : ""}
+    `;
   }
 
   function findTrimBounds(canvas, threshold) {
@@ -236,17 +375,14 @@
       return null;
     }
 
-    const fitMode = $("fitMode").value;
-    const customWidth = Math.max(64, Number($("customWidth").value || 1080));
-    const trimEnabled = $("trimEnabled").checked;
-    const threshold = Math.max(0, Math.min(40, Number($("trimThreshold").value || 12)));
-    const gap = Math.max(0, Math.min(200, Number($("gap").value || 0)));
-    const background = $("background").value;
+    const settings = getSettings();
+    const estimate = estimateOutputSize();
+    const preWarnings = buildWarnings(estimate);
 
-    setStatus(text("building"));
+    setStatus(preWarnings.length ? `${text("building")} ${preWarnings.join(" ")}` : text("building"));
 
     const widths = state.items.map((it) => it.w);
-    const targetW = pickTargetWidth(fitMode, customWidth, widths);
+    const targetW = pickTargetWidth(settings.fitMode, settings.customWidth, widths);
 
     const prepared = [];
     for (const item of state.items) {
@@ -256,7 +392,7 @@
       off.width = targetW;
       off.height = scaledH;
       const octx = off.getContext("2d");
-      if (background === "white") {
+      if (settings.background === "white") {
         octx.fillStyle = "#ffffff";
         octx.fillRect(0, 0, off.width, off.height);
       }
@@ -266,22 +402,22 @@
 
       let top = 0;
       let bottom = off.height - 1;
-      if (trimEnabled) {
-        const b = findTrimBounds(off, threshold);
+      if (settings.trimEnabled) {
+        const b = findTrimBounds(off, settings.trimThreshold);
         top = b.top;
         bottom = b.bottom;
       }
       prepared.push({ canvas: off, top, bottom, height: Math.max(1, bottom - top + 1) });
     }
 
-    const totalH = prepared.reduce((acc, cur) => acc + cur.height, 0) + gap * Math.max(0, prepared.length - 1);
+    const totalH = prepared.reduce((acc, cur) => acc + cur.height, 0) + settings.gap * Math.max(0, prepared.length - 1);
     const canvas = $("previewCanvas");
     canvas.width = targetW;
     canvas.height = totalH;
 
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (background === "white") {
+    if (settings.background === "white") {
       ctx.fillStyle = "#fff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
@@ -290,15 +426,12 @@
     for (const unit of prepared) {
       const sourceHeight = unit.bottom - unit.top + 1;
       ctx.drawImage(unit.canvas, 0, unit.top, unit.canvas.width, sourceHeight, 0, y, unit.canvas.width, sourceHeight);
-      y += sourceHeight + gap;
+      y += sourceHeight + settings.gap;
     }
 
     $("previewMeta").textContent = `${canvas.width} × ${canvas.height}px`;
-    if (canvas.height > 20000) {
-      setStatus(`${text("done")} ${text("warnHeight")}`);
-    } else {
-      setStatus(text("done"));
-    }
+    const postWarnings = buildWarnings({ width: canvas.width, height: canvas.height, megapixels: (canvas.width * canvas.height) / 1000000 });
+    setStatus(postWarnings.length ? `${text("done")} ${postWarnings.join(" ")}` : text("done"));
 
     return canvas;
   }
@@ -317,11 +450,10 @@
     try {
       const canvas = await buildRenderResult();
       if (!canvas) return;
-      const format = $("format").value;
-      const quality = Number($("quality").value || 0.92);
-      state.renderedBlob = await canvasToBlob(canvas, format, quality);
+      const settings = getSettings();
+      state.renderedBlob = await canvasToBlob(canvas, settings.format, settings.quality);
       state.renderedCanvas = canvas;
-      state.renderedExt = format === "jpeg" ? "jpg" : format;
+      state.renderedExt = settings.format === "jpeg" ? "jpg" : settings.format;
       updateDownloadState();
     } catch (err) {
       console.error(err);
@@ -439,7 +571,9 @@
       setStatus(text("readyDownload"));
       return;
     }
-    triggerDownload(state.renderedBlob, `screenshot-stitcher.${state.renderedExt}`);
+    const fileName = `screenshot-stitcher.${state.renderedExt}`;
+    triggerDownload(state.renderedBlob, fileName);
+    setStatus(text("downloadDone").replace("{name}", fileName));
   }
 
   async function handleSplitZip() {
@@ -448,22 +582,22 @@
         setStatus(text("readyDownload"));
         return;
       }
-      const splitHeight = Math.max(0, Number($("splitHeight").value || 0));
-      if (splitHeight <= 0) {
+      const settings = getSettings();
+      if (settings.splitHeight <= 0) {
         setStatus(text("notNeeded"));
         return;
       }
 
       const canvas = state.renderedCanvas;
       const segments = [];
-      for (let y = 0, idx = 1; y < canvas.height; y += splitHeight, idx += 1) {
-        const h = Math.min(splitHeight, canvas.height - y);
+      for (let y = 0, idx = 1; y < canvas.height; y += settings.splitHeight, idx += 1) {
+        const h = Math.min(settings.splitHeight, canvas.height - y);
         const part = document.createElement("canvas");
         part.width = canvas.width;
         part.height = h;
         const pctx = part.getContext("2d");
         pctx.drawImage(canvas, 0, y, canvas.width, h, 0, 0, canvas.width, h);
-        const blob = await canvasToBlob(part, $("format").value, Number($("quality").value || 0.92));
+        const blob = await canvasToBlob(part, settings.format, settings.quality);
         segments.push({
           name: `screenshot-stitcher-${String(idx).padStart(3, "0")}.${state.renderedExt}`,
           blob
@@ -489,6 +623,19 @@
     })[c]);
   }
 
+  function escapeAttr(v) {
+    return escapeHtml(v).replace(/`/g, "&#96;");
+  }
+
+  function bindSettingsInvalidation() {
+    ["fitMode", "customWidth", "trimEnabled", "trimThreshold", "gap", "background", "format", "quality", "splitHeight"].forEach((id) => {
+      const el = $(id);
+      if (!el) return;
+      const evt = el.tagName === "SELECT" || el.type === "checkbox" ? "change" : "input";
+      el.addEventListener(evt, () => invalidateRender(text("settingsChanged")));
+    });
+  }
+
   function initEvents() {
     $("fileInput").addEventListener("change", () => addFiles($("fileInput").files));
     $("dropzone").addEventListener("dragover", (e) => {
@@ -505,14 +652,15 @@
     document.addEventListener("paste", (e) => {
       const files = Array.from(e.clipboardData?.files || []);
       if (files.length) {
-        addFiles(files);
-        setStatus(text("pasted"));
+        addFiles(files).then(() => setStatus(text("pasted")));
       }
     });
 
     document.querySelectorAll(".lang-switch button").forEach((btn) => {
       btn.addEventListener("click", () => setLang(btn.getAttribute("data-lang")));
     });
+
+    bindSettingsInvalidation();
 
     $("clearBtn").addEventListener("click", clearAll);
     $("previewBtn").addEventListener("click", handlePreview);
@@ -525,7 +673,12 @@
     setLang((navigator.language || "ja").startsWith("ja") ? "ja" : "en");
     setStatus("-");
     updateDownloadState();
+    updateEstimate();
   }
+
+  window.addEventListener("beforeunload", () => {
+    state.items.forEach(revokeItemUrl);
+  });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
