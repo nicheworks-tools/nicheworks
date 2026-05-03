@@ -683,7 +683,7 @@
       setStatus("error", { message: state.error?.message || String(state.error) });
       return;
     }
-    if (!hasActiveFilters()) {
+    if (!state.entries.length) {
       setStatus("initial");
       return;
     }
