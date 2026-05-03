@@ -4,382 +4,48 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>画像ぼかし・黒塗り｜Image Redact | NicheWorks</title>
-  <meta name="description" content="スクリーンショットや写真の個人情報（氏名・住所・番号・顔・QRなど）を、黒塗り・ぼかし・モザイクで隠してPNG保存できる無料ツール。外部送信なし・ブラウザ内処理。">
-
-  <link rel="canonical" href="https://nicheworks.app/tools/image-redact/">
-
-  <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="画像ぼかし・黒塗り｜Image Redact | NicheWorks">
-  <meta property="og:description" content="スクリーンショットや写真の個人情報（氏名・住所・番号・顔・QRなど）を、黒塗り・ぼかし・モザイクで隠してPNG保存できる無料ツール。外部送信なし・ブラウザ内処理。">
-  <meta property="og:url" content="https://nicheworks.app/tools/image-redact/">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- AdSense (must be in head; do not change client) -->
+  <meta name="description" content="スクリーンショットや写真の個人情報（氏名・住所・番号・顔・QRなど）を、黒塗り・ぼかし・モザイクで隠してPNG保存できる無料ツール。外部送信なし・ブラウザ内処理。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/image-redact/" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="画像ぼかし・黒塗り｜Image Redact | NicheWorks" />
+  <meta property="og:description" content="Mask sensitive info on images with solid, blur, or pixelate, then export PNG. No upload. All in-browser." />
+  <meta property="og:url" content="https://nicheworks.app/tools/image-redact/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="robots" content="index,follow" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-57QT78M3JB');
-  </script>
-
-  <!-- Common CSS -->
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./image-redact-safety.css" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Image Redact / 画像ぼかし・黒塗り",
-    "url": "https://nicheworks.app/tools/image-redact/",
-    "applicationCategory": "UtilityApplication",
-    "description": "画像の一部を黒塗り・ぼかし・モザイクで隠してPNG保存するブラウザ完結ツールです。",
-    "operatingSystem": "All"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "画像はサーバーに送信されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。画像の読み込み、マスク、プレビュー、PNG保存はブラウザ内で処理されます。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "黒塗り・ぼかし・モザイクのどれが安全ですか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "重要情報には黒塗りを推奨します。ぼかしやモザイクは強度が弱いと判読される可能性があります。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "EXIFなどのメタデータも削除されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "このツールは画像の見た目を加工するツールです。メタデータ削除を重視する場合はEXIF Cleaner Miniも併用してください。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "HEICに対応していますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "現時点ではPNG、JPG、WebPの読み込みを想定しています。HEICは必要に応じて先に変換してください。"
-        }
-      }
-    ]
-  }
-  </script>
-  <meta name="robots" content="index,follow">
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta name="twitter:title" content="画像ぼかし・黒塗り｜Image Redact | NicheWorks">
-  <meta name="twitter:description" content="スクリーンショットや写真の個人情報（氏名・住所・番号・顔・QRなど）を、黒塗り・ぼかし・モザイクで隠してPNG保存できる無料ツール。外部送信なし・ブラウザ内処理。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Image Redact / 画像ぼかし・黒塗り","url":"https://nicheworks.app/tools/image-redact/","applicationCategory":"UtilityApplication","description":"画像の一部を黒塗り・ぼかし・モザイクで隠してPNG保存するブラウザ完結ツールです。","operatingSystem":"All"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"画像はサーバーに送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。画像の読み込み、マスク、プレビュー、PNG保存はブラウザ内で処理されます。"}},{"@type":"Question","name":"黒塗り・ぼかし・モザイクのどれが安全ですか？","acceptedAnswer":{"@type":"Answer","text":"重要情報には黒塗りを推奨します。ぼかしやモザイクは強度が弱いと判読される可能性があります。"}},{"@type":"Question","name":"EXIFなどのメタデータも削除されますか？","acceptedAnswer":{"@type":"Answer","text":"このツールは画像の見た目を加工するツールです。メタデータ削除を重視する場合はEXIF Cleaner Miniも併用してください。"}},{"@type":"Question","name":"HEICに対応していますか？","acceptedAnswer":{"@type":"Answer","text":"現時点ではPNG、JPG、WebPの読み込みを想定しています。HEICは必要に応じて先に変換してください。"}}]}</script>
 </head>
-
 <body>
-  <header class="nw-header">
-    <div class="nw-title">
-      <h1 data-i18n="ja">画像ぼかし・黒塗り（Image Redact）</h1>
-      <h1 data-i18n="en">Image Redact (Blur / Pixelate / Blackout)</h1>
-
-      <p class="nw-sub" data-i18n="ja">共有前に、氏名・住所・番号・顔・QRなどを隠すブラウザ完結ツールです。</p>
-      <p class="nw-sub" data-i18n="en">Redact names, addresses, numbers, faces, QR codes, and other sensitive areas before sharing.</p>
-
-      <div class="nw-lang-switch" aria-label="Language switch">
-        <button type="button" data-lang="ja">JP</button> /
-        <button type="button" data-lang="en">EN</button>
-      </div>
-    </div>
-  </header>
-
+  <header class="nw-header"><div class="nw-title"><h1 data-i18n="ja">画像ぼかし・黒塗り（Image Redact）</h1><h1 data-i18n="en">Image Redact (Blur / Pixelate / Blackout)</h1><p class="nw-sub" data-i18n="ja">共有前に、氏名・住所・番号・顔・QRなどを隠すブラウザ完結ツールです。</p><p class="nw-sub" data-i18n="en">Redact names, addresses, numbers, faces, QR codes, and other sensitive areas before sharing.</p><div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div></div></header>
   <main class="nw-main nw-main-narrow">
-    <!-- ad-top (required) -->
     <div class="ad-slot ad-top">広告枠（準備中）</div>
-
-    <!-- brief description (required) -->
-    <section class="nw-brief">
-      <p data-i18n="ja">
-        画像を読み込み、隠したい範囲を複数指定して、黒塗り・ぼかし・モザイクでPNGに書き出します。画像はサーバーに送信されません。
-      </p>
-      <p data-i18n="en">
-        Load an image, add multiple redaction rectangles, choose solid/blur/pixelate, and export PNG. Your image is never uploaded.
-      </p>
-
-      <p class="nw-usage-link">
-        <a href="./usage.html" data-i18n="ja">使い方・注意点（詳細）</a>
-        <a href="./usage-en.html" data-i18n="en">How to use & notes</a>
-      </p>
-    </section>
-
-    <section class="redact-steps" aria-label="Image Redact quick steps">
-      <h2 data-i18n="ja">使い方</h2>
-      <h2 data-i18n="en">How to use</h2>
-      <ol data-i18n="ja">
-        <li>画像を読み込む</li>
-        <li>Addで隠したい場所をドラッグして囲む</li>
-        <li>保存前チェック後、PNGで保存する</li>
-      </ol>
-      <ol data-i18n="en">
-        <li>Load an image</li>
-        <li>Use Add and drag over sensitive areas</li>
-        <li>Run the safety checklist, then save PNG</li>
-      </ol>
-      <p class="redact-step-note" data-i18n="ja">スマホでは Add＝範囲追加、Edit＝選択・移動、Pan＝表示位置の移動です。</p>
-      <p class="redact-step-note" data-i18n="en">On mobile: Add creates masks, Edit selects/moves masks, and Pan moves the view.</p>
-    </section>
-
-    <!-- tool UI -->
+    <section class="nw-brief"><p data-i18n="ja">画像を読み込み、隠したい範囲を複数指定して、黒塗り・ぼかし・モザイクでPNGに書き出します。画像はサーバーに送信されません。</p><p data-i18n="en">Load an image, add multiple redaction rectangles, choose solid/blur/pixelate, and export PNG. Your image is never uploaded.</p><p class="nw-usage-link"><a href="./usage.html" data-i18n="ja">使い方・注意点（詳細）</a><a href="./usage-en.html" data-i18n="en">How to use & notes</a></p></section>
+    <section class="redact-steps" aria-label="Image Redact quick steps"><h2 data-i18n="ja">使い方</h2><h2 data-i18n="en">How to use</h2><ol data-i18n="ja"><li>画像を読み込む</li><li>Addで隠したい場所をドラッグして囲む</li><li>保存前チェック後、PNGで保存する</li></ol><ol data-i18n="en"><li>Load an image</li><li>Use Add and drag over sensitive areas</li><li>Run the safety checklist, then save PNG</li></ol><p class="redact-step-note" data-i18n="ja">スマホでは Add＝範囲追加、Edit＝選択・移動、Pan＝表示位置の移動です。</p><p class="redact-step-note" data-i18n="en">On mobile: Add creates masks, Edit selects/moves masks, and Pan moves the view.</p></section>
     <section class="tool-wrap" aria-label="Image redactor">
-      <div class="panel panel-upload">
-        <div class="upload-row">
-          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" />
-          <button id="btnClearAll" type="button" class="btn btn-muted">Reset all</button>
-        </div>
-
-        <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Drop image here">
-          <p class="dz-title" data-i18n="ja">ここに画像をドロップ（または上で選択）</p>
-          <p class="dz-title" data-i18n="en">Drop an image here (or use file picker)</p>
-          <p class="dz-meta" data-i18n="ja">読み込み：PNG / JPG / WebP ・出力：PNG ・外部送信なし</p>
-          <p class="dz-meta" data-i18n="en">Input: PNG / JPG / WebP ・Output: PNG ・No upload</p>
-        </div>
-
-        <div class="format-note">
-          <p data-i18n="ja">HEICは未対応です。大きすぎる画像はブラウザ保護のため縮小処理される場合があります。</p>
-          <p data-i18n="en">HEIC is not supported. Very large images may be downscaled to protect the browser.</p>
-        </div>
-      </div>
-
-      <div class="panel panel-canvas">
-        <div class="canvas-wrap">
-          <canvas id="canvas" width="800" height="450" aria-label="Editor canvas"></canvas>
-          <div id="emptyHint" class="canvas-hint" data-i18n="ja">まず画像を読み込んでください</div>
-          <div id="emptyHintEn" class="canvas-hint" data-i18n="en">Load an image to start</div>
-        </div>
-
-        <div class="controls">
-          <button id="qaBtn" class="btn btn-safety" type="button" title="保存前チェック / Safety checklist">
-            <span data-i18n="ja">保存前チェック</span>
-            <span data-i18n="en">Safety checklist</span>
-          </button>
-
-          <div class="ctrl-row">
-            <div class="ctrl-group">
-              <span class="ctrl-label">View</span>
-              <button id="btnFit" type="button" class="btn">Fit</button>
-              <button id="btn100" type="button" class="btn">100%</button>
-            </div>
-
-            <div class="ctrl-group">
-              <span class="ctrl-label">Zoom</span>
-              <button id="btnZoomOut" type="button" class="btn">-</button>
-              <input id="zoomRange" type="range" min="25" max="400" value="100" />
-              <button id="btnZoomIn" type="button" class="btn">+</button>
-              <span id="zoomLabel" class="mono">100%</span>
-            </div>
-          </div>
-
-          <div class="ctrl-row">
-            <div class="ctrl-group mode-help-wrap">
-              <span class="ctrl-label">Mode</span>
-              <button id="modeAdd" type="button" class="btn">Add</button>
-              <button id="modeEdit" type="button" class="btn">Edit</button>
-              <button id="modePan" type="button" class="btn">Pan</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel panel-mask">
-        <h2 class="panel-title">Mask</h2>
-
-        <div class="mask-type">
-          <label><input type="radio" name="maskType" value="solid" checked /> <span>Solid</span></label>
-          <label><input type="radio" name="maskType" value="blur" /> <span>Blur</span></label>
-          <label><input type="radio" name="maskType" value="pixelate" /> <span>Pixelate</span></label>
-        </div>
-
-        <div class="mask-help">
-          <dl data-i18n="ja">
-            <dt>Solid</dt><dd>最も安全寄り。氏名・住所・番号・QR・顔に推奨。</dd>
-            <dt>Blur</dt><dd>見た目は自然。ただし弱いと読める可能性あり。</dd>
-            <dt>Pixelate</dt><dd>見た目を崩す用途。ただし弱いと読める可能性あり。</dd>
-          </dl>
-          <dl data-i18n="en">
-            <dt>Solid</dt><dd>Safest option. Recommended for names, addresses, IDs, QR codes, and faces.</dd>
-            <dt>Blur</dt><dd>Looks natural, but weak blur may remain readable.</dd>
-            <dt>Pixelate</dt><dd>Distorts the area, but weak pixelation may remain readable.</dd>
-          </dl>
-        </div>
-
-        <div class="mask-strength">
-          <div class="strength-row">
-            <span class="ctrl-label">Strength</span>
-            <input id="strengthRange" type="range" min="6" max="32" value="16" />
-            <span id="strengthLabel" class="mono">16</span>
-          </div>
-          <p class="hint" data-i18n="ja">重要情報は Solid（黒塗り）推奨。Blur / Pixelate は推奨16以上です。</p>
-          <p class="hint" data-i18n="en">Use Solid for critical info. For Blur / Pixelate, 16+ is recommended.</p>
-        </div>
-
-        <div class="mask-actions">
-          <button id="btnDeleteMask" type="button" class="btn btn-danger">Delete</button>
-          <button id="btnDuplicateMask" type="button" class="btn">Duplicate</button>
-          <button id="btnClearMasks" type="button" class="btn btn-muted">Clear masks</button>
-        </div>
-
-        <div class="mask-list">
-          <div class="mask-list-head">
-            <span class="ctrl-label">Masks</span>
-            <span id="maskCount" class="mono">0</span>
-          </div>
-          <div id="maskChips" class="chips" aria-label="Mask list"></div>
-        </div>
-      </div>
-
-      <div class="panel panel-export">
-        <h2 class="panel-title">Export</h2>
-        <button id="btnPreview" type="button" class="btn btn-wide">Preview (lock)</button>
-        <button id="btnSavePng" type="button" class="btn btn-wide btn-primary">Save PNG</button>
-        <div id="saveStatus" class="save-status" role="status" aria-live="polite"></div>
-      </div>
+      <div class="panel panel-upload"><div class="upload-row"><input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" /><button id="btnClearAll" type="button" class="btn btn-muted">Reset all</button></div><div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Drop image here"><p class="dz-title" data-i18n="ja">ここに画像をドロップ（または上で選択）</p><p class="dz-title" data-i18n="en">Drop an image here (or use file picker)</p><p class="dz-meta" data-i18n="ja">読み込み：PNG / JPG / WebP ・出力：PNG ・外部送信なし</p><p class="dz-meta" data-i18n="en">Input: PNG / JPG / WebP ・Output: PNG ・No upload</p></div><div class="format-note"><p data-i18n="ja">HEICは未対応です。大きすぎる画像はブラウザ保護のため縮小処理される場合があります。</p><p data-i18n="en">HEIC is not supported. Very large images may be downscaled to protect the browser.</p></div></div>
+      <div class="panel panel-canvas"><div class="canvas-wrap"><canvas id="canvas" width="800" height="450" aria-label="Editor canvas"></canvas><div id="emptyHint" class="canvas-hint" data-i18n="ja">まず画像を読み込んでください</div><div id="emptyHintEn" class="canvas-hint" data-i18n="en">Load an image to start</div></div><div class="controls"><button id="qaBtn" class="btn btn-safety" type="button" title="保存前チェック / Safety checklist"><span data-i18n="ja">保存前チェック</span><span data-i18n="en">Safety checklist</span></button><div class="ctrl-row"><div class="ctrl-group"><span class="ctrl-label">View</span><button id="btnFit" type="button" class="btn">Fit</button><button id="btn100" type="button" class="btn">100%</button></div><div class="ctrl-group"><span class="ctrl-label">Zoom</span><button id="btnZoomOut" type="button" class="btn">-</button><input id="zoomRange" type="range" min="25" max="400" value="100" /><button id="btnZoomIn" type="button" class="btn">+</button><span id="zoomLabel" class="mono">100%</span></div></div><div class="ctrl-row"><div class="ctrl-group mode-help-wrap"><span class="ctrl-label">Mode</span><button id="modeAdd" type="button" class="btn">Add</button><button id="modeEdit" type="button" class="btn">Edit</button><button id="modePan" type="button" class="btn">Pan</button></div></div></div></div>
+      <div class="panel panel-mask"><h2 class="panel-title">Mask</h2><div class="mask-type"><label><input type="radio" name="maskType" value="solid" checked /> <span>Solid</span></label><label><input type="radio" name="maskType" value="blur" /> <span>Blur</span></label><label><input type="radio" name="maskType" value="pixelate" /> <span>Pixelate</span></label></div><div class="mask-help"><dl data-i18n="ja"><dt>Solid</dt><dd>最も安全寄り。氏名・住所・番号・QR・顔に推奨。</dd><dt>Blur</dt><dd>見た目は自然。ただし弱いと読める可能性あり。</dd><dt>Pixelate</dt><dd>見た目を崩す用途。ただし弱いと読める可能性あり。</dd></dl><dl data-i18n="en"><dt>Solid</dt><dd>Safest option. Recommended for names, addresses, IDs, QR codes, and faces.</dd><dt>Blur</dt><dd>Looks natural, but weak blur may remain readable.</dd><dt>Pixelate</dt><dd>Distorts the area, but weak pixelation may remain readable.</dd></dl></div><div class="mask-strength"><div class="strength-row"><span class="ctrl-label">Strength</span><input id="strengthRange" type="range" min="6" max="32" value="16" /><span id="strengthLabel" class="mono">16</span></div><p class="hint" data-i18n="ja">重要情報は Solid（黒塗り）推奨。Blur / Pixelate は推奨16以上です。</p><p class="hint" data-i18n="en">Use Solid for critical info. For Blur / Pixelate, 16+ is recommended.</p></div><div class="mask-actions"><button id="btnDeleteMask" type="button" class="btn btn-danger">Delete</button><button id="btnDuplicateMask" type="button" class="btn">Duplicate</button><button id="btnClearMasks" type="button" class="btn btn-muted">Clear masks</button></div><div class="mask-list"><div class="mask-list-head"><span class="ctrl-label">Masks</span><span id="maskCount" class="mono">0</span></div><div id="maskChips" class="chips" aria-label="Mask list"></div></div></div>
+      <div class="panel panel-export"><h2 class="panel-title">Export</h2><button id="btnPreview" type="button" class="btn btn-wide">Preview (lock)</button><button id="btnSavePng" type="button" class="btn btn-wide btn-primary">Save PNG</button><div id="saveStatus" class="save-status" role="status" aria-live="polite"></div></div>
     </section>
-
-    <section id="safetyChecklist" class="safety-checklist" tabindex="-1" aria-label="Safety checklist">
-      <h2 data-i18n="ja">保存前チェック</h2>
-      <h2 data-i18n="en">Safety checklist</h2>
-      <p data-i18n="ja">PNG保存前に、下の項目を拡大プレビューで確認してください。</p>
-      <p data-i18n="en">Before saving PNG, zoom into the preview and check these items.</p>
-      <ul data-i18n="ja">
-        <li>氏名、住所、電話番号、メールアドレスが残っていないか</li>
-        <li>注文番号、会員番号、チケット番号が残っていないか</li>
-        <li>QRコード、バーコード、顔、車のナンバーが残っていないか</li>
-        <li>位置が分かる背景や画面名が残っていないか</li>
-        <li>Blur / Pixelate の強度が弱すぎないか</li>
-        <li>EXIFなどのメタデータも消したい場合は EXIF Cleaner Mini も使う</li>
-      </ul>
-      <ul data-i18n="en">
-        <li>No names, addresses, phone numbers, or email addresses remain</li>
-        <li>No order IDs, member IDs, or ticket numbers remain</li>
-        <li>No QR codes, barcodes, faces, or license plates remain</li>
-        <li>No background clues or screen titles reveal location/context</li>
-        <li>Blur / Pixelate strength is not too weak</li>
-        <li>Use EXIF Cleaner Mini as well if you need metadata removal</li>
-      </ul>
-      <p class="safety-links">
-        <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a> /
-        <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
-      </p>
-    </section>
-
-    <!-- ad-bottom (recommended) -->
+    <section id="safetyChecklist" class="safety-checklist" tabindex="-1" aria-label="Safety checklist"><h2 data-i18n="ja">保存前チェック</h2><h2 data-i18n="en">Safety checklist</h2><p data-i18n="ja">PNG保存前に、下の項目を拡大プレビューで確認してください。</p><p data-i18n="en">Before saving PNG, zoom into the preview and check these items.</p><ul data-i18n="ja"><li>氏名、住所、電話番号、メールアドレスが残っていないか</li><li>注文番号、会員番号、チケット番号が残っていないか</li><li>QRコード、バーコード、顔、車のナンバーが残っていないか</li><li>位置が分かる背景や画面名が残っていないか</li><li>Blur / Pixelate の強度が弱すぎないか</li><li>EXIFなどのメタデータも消したい場合は EXIF Cleaner Mini も使う</li></ul><ul data-i18n="en"><li>No names, addresses, phone numbers, or email addresses remain</li><li>No order IDs, member IDs, or ticket numbers remain</li><li>No QR codes, barcodes, faces, or license plates remain</li><li>No background clues or screen titles reveal location/context</li><li>Blur / Pixelate strength is not too weak</li><li>Use EXIF Cleaner Mini as well if you need metadata removal</li></ul><p class="safety-links"><a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a> / <a href="/tools/filetype-sniffer/">FileType Sniffer</a></p></section>
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
-
-    <section class="nw-faq" aria-label="FAQ">
-      <h2 data-i18n="ja">よくある質問</h2>
-      <h2 data-i18n="en">FAQ</h2>
-
-      <details>
-        <summary data-i18n="ja">画像はサーバーに送信されますか？</summary>
-        <summary data-i18n="en">Is my image uploaded to a server?</summary>
-        <p data-i18n="ja">いいえ。画像の読み込み、マスク、プレビュー、PNG保存はブラウザ内で処理されます。</p>
-        <p data-i18n="en">No. Loading, masking, previewing, and PNG export are processed in your browser.</p>
-      </details>
-
-      <details>
-        <summary data-i18n="ja">黒塗り・ぼかし・モザイクのどれが安全ですか？</summary>
-        <summary data-i18n="en">Which is safer: solid, blur, or pixelate?</summary>
-        <p data-i18n="ja">重要情報にはSolid（黒塗り）を推奨します。Blur / Pixelate は弱いと判読される可能性があります。</p>
-        <p data-i18n="en">Use Solid for sensitive information. Weak Blur / Pixelate may remain readable.</p>
-      </details>
-
-      <details>
-        <summary data-i18n="ja">EXIFなどのメタデータも削除されますか？</summary>
-        <summary data-i18n="en">Does this remove EXIF metadata?</summary>
-        <p data-i18n="ja">このツールは画像の見た目を加工するツールです。メタデータ削除を重視する場合はEXIF Cleaner Miniも併用してください。</p>
-        <p data-i18n="en">This tool edits visible pixels. If metadata removal matters, use EXIF Cleaner Mini too.</p>
-      </details>
-
-      <details>
-        <summary data-i18n="ja">HEICに対応していますか？</summary>
-        <summary data-i18n="en">Is HEIC supported?</summary>
-        <p data-i18n="ja">現時点ではPNG / JPG / WebPの読み込みを想定しています。HEICは先に変換してください。</p>
-        <p data-i18n="en">Currently, PNG / JPG / WebP are expected. Convert HEIC first if needed.</p>
-      </details>
-    </section>
-
-    <!-- donate (pattern A) -->
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
-      <p class="nw-donate-text" data-i18n="en">If this tool helps, your support keeps it improving.</p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
-    </div>
-
-    <!-- internal links (3-4) -->
-    <div class="nw-links">
-      <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a> /
-      <a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a> /
-      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
-      <a href="/tools/webp-avif-converter/">WebP / AVIF Converter</a>
-    </div>
-
-    <!-- preview modal (hidden; wired in JS later) -->
-    <div id="previewModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Preview">
-      <div class="modal-card">
-        <div class="modal-head">
-          <div class="modal-title" data-i18n="ja">プレビュー（編集ロック）</div>
-          <div class="modal-title" data-i18n="en">Preview (editing locked)</div>
-          <button id="btnClosePreview" type="button" class="btn btn-muted">×</button>
-        </div>
-
-        <div class="modal-body">
-          <canvas id="previewCanvas" width="800" height="450" aria-label="Preview canvas"></canvas>
-          <div class="modal-controls">
-            <button id="btnPreview100" type="button" class="btn">100%</button>
-            <button id="btnPreviewFit" type="button" class="btn">Fit</button>
-            <button id="btnSavePng2" type="button" class="btn btn-primary">Save PNG</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Legacy export IDs retained for the existing app.js wiring. Do not remove until app.js is refactored. -->
-    <div class="legacy-export-compat" hidden aria-hidden="true">
-      <button id="btnExport" type="button">Export PNG</button>
-      <button id="btnDownload" type="button">Download PNG</button>
-      <a id="downloadLink" href="#" download="image-redacted.png">Download</a>
-    </div>
+    <section class="nw-faq" aria-label="FAQ"><h2 data-i18n="ja">よくある質問</h2><h2 data-i18n="en">FAQ</h2><details><summary data-i18n="ja">画像はサーバーに送信されますか？</summary><summary data-i18n="en">Is my image uploaded to a server?</summary><p data-i18n="ja">いいえ。画像の読み込み、マスク、プレビュー、PNG保存はブラウザ内で処理されます。</p><p data-i18n="en">No. Loading, masking, previewing, and PNG export are processed in your browser.</p></details><details><summary data-i18n="ja">黒塗り・ぼかし・モザイクのどれが安全ですか？</summary><summary data-i18n="en">Which is safer: solid, blur, or pixelate?</summary><p data-i18n="ja">重要情報にはSolid（黒塗り）を推奨します。Blur / Pixelate は弱いと判読される可能性があります。</p><p data-i18n="en">Use Solid for sensitive information. Weak Blur / Pixelate may remain readable.</p></details><details><summary data-i18n="ja">EXIFなどのメタデータも削除されますか？</summary><summary data-i18n="en">Does this remove EXIF metadata?</summary><p data-i18n="ja">このツールは画像の見た目を加工するツールです。メタデータ削除を重視する場合はEXIF Cleaner Miniも併用してください。</p><p data-i18n="en">This tool edits visible pixels. If metadata removal matters, use EXIF Cleaner Mini too.</p></details><details><summary data-i18n="ja">HEICに対応していますか？</summary><summary data-i18n="en">Is HEIC supported?</summary><p data-i18n="ja">現時点ではPNG / JPG / WebPの読み込みを想定しています。HEICは先に変換してください。</p><p data-i18n="en">Currently, PNG / JPG / WebP are expected. Convert HEIC first if needed.</p></details></section>
+    <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helps, your support keeps it improving.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+    <div class="nw-links"><a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a> / <a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a> / <a href="/tools/filetype-sniffer/">FileType Sniffer</a> / <a href="/tools/webp-avif-converter/">WebP / AVIF Converter</a></div>
+    <div id="previewModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Preview"><div class="modal-card"><div class="modal-head"><div class="modal-title" data-i18n="ja">プレビュー（編集ロック）</div><div class="modal-title" data-i18n="en">Preview (editing locked)</div><button id="btnClosePreview" type="button" class="btn btn-muted">×</button></div><div class="modal-body"><canvas id="previewCanvas" width="800" height="450" aria-label="Preview canvas"></canvas><div class="modal-controls"><button id="btnPreview100" type="button" class="btn">100%</button><button id="btnPreviewFit" type="button" class="btn">Fit</button><button id="btnSavePng2" type="button" class="btn btn-primary">Save PNG</button></div></div></div></div>
   </main>
-
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
-  </footer>
-
-  <script src="./app.js"></script>
-  <script src="./image-redact-safety.js"></script>
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+  <script src="./app-final.js"></script>
 </body>
 </html>
