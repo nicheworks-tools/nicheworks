@@ -12,7 +12,9 @@ const DICTIONARY_FILES = [
   "data/ingredients-extra-3.json",
   "data/ingredients-extra-4.json",
   "data/ingredients-extra-5.json",
-  "data/ingredients-extra-6.json"
+  "data/ingredients-extra-6.json",
+  "data/ingredients-extra-7.json",
+  "data/ingredients-extra-8.json"
 ];
 
 const FALLBACK_DICT = [
