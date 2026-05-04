@@ -11,108 +11,119 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ファイル名一括整形｜Rename Wizard | NicheWorks</title>
-  <meta name="description" content="全角→半角、空白→アンダースコア、禁止文字の除去/置換などをまとめて適用してファイル名を一括整形。ブラウザ内で完結し、データは送信しません。">
+  <title>ファイル名一括整形・リネーム候補作成｜Rename Wizard | NicheWorks</title>
+  <meta name="description" content="複数ファイルの名前をブラウザ内で読み取り、全角半角、空白、禁止文字、拡張子小文字化、重複名などを整理したリネーム候補リストを作成する無料ツールです。実ファイルは変更しません。">
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://nicheworks.app/tools/rename-wizard/">
-
-  <!-- hreflang -->
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/rename-wizard/" />
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/rename-wizard/howto/en/" />
 
-  <!-- favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./extra.css" />
 
-  <!-- OGP -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="ファイル名一括整形｜Rename Wizard | NicheWorks">
-  <meta property="og:description" content="全角→半角、空白→アンダースコア、禁止文字の除去/置換などをまとめて適用してファイル名を一括整形。ブラウザ内で完結し、データは送信しません。">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="ファイル名一括整形・リネーム候補作成｜Rename Wizard | NicheWorks">
+  <meta property="og:description" content="複数ファイルの名前をブラウザ内で読み取り、全角半角、空白、禁止文字、拡張子小文字化、重複名などを整理したリネーム候補リストを作成する無料ツールです。実ファイルは変更しません。">
   <meta property="og:url" content="https://nicheworks.app/tools/rename-wizard/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ファイル名一括整形｜Rename Wizard | NicheWorks">
-  <meta name="twitter:description" content="全角→半角、空白→アンダースコア、禁止文字の除去/置換などをまとめて適用してファイル名を一括整形。ブラウザ内で完結し、データは送信しません。">
+  <meta name="twitter:title" content="ファイル名一括整形・リネーム候補作成｜Rename Wizard | NicheWorks">
+  <meta name="twitter:description" content="複数ファイルの名前をブラウザ内で読み取り、全角半角、空白、禁止文字、拡張子小文字化、重複名などを整理したリネーム候補リストを作成する無料ツールです。実ファイルは変更しません。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Rename Wizard",
     "url": "https://nicheworks.app/tools/rename-wizard/",
-    "description": "Batch-clean filenames with common rules (full-width to half-width, spaces to underscores, forbidden character removal). Runs locally in the browser.",
+    "description": "複数ファイルの名前をブラウザ内で読み取り、全角半角、空白、禁止文字、拡張子小文字化、重複名などを整理したリネーム候補リストを作成する無料ツールです。実ファイルは変更しません。",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "inLanguage": ["ja","en"],
+    "inLanguage": ["ja", "en"],
     "publisher": { "@type": "Organization", "name": "NicheWorks" }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "実際のファイル名は変更されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。このツールはブラウザ内でリネーム候補リストを作るだけで、実ファイル名は変更しません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ファイルはアップロードされますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。ファイル名だけをブラウザ内で参照し、ファイル内容は読み取りません。サーバーへのアップロードも行いません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "重複するファイル名は検出できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。整形後に同じ名前になる候補を検出し、必要に応じて _2 や _3 を付けられます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Windowsで使えない名前も検出できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CON、PRN、AUX、NUL、COM1、LPT1 などの予約名や、長すぎる名前、先頭ドット、末尾ドット、末尾スペースを警告します。"
+        }
+      }
+    ]
+  }
+  </script>
 
-  <!-- AdSense (required) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Web Analytics -->
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
   <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
 </head>
 
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
       <div class="nw-header-top">
-        <a href="/" class="nw-logo-link">
-          <img src="/nicheworks-logo.png" alt="NicheWorks" class="nw-logo" />
-        </a>
         <div class="nw-header-titles">
           <h1 class="nw-title">Rename Wizard</h1>
-          <p class="nw-subtitle">
-            ファイル名の「めんどくさい整形」をブラウザだけで一括処理。
-          </p>
+          <p class="nw-subtitle">ファイル名の整形候補をブラウザ内で一括作成します。実ファイルは変更しません。</p>
         </div>
         <div class="nw-lang-switch">
-          日本語 | <a href="/en/">English</a>
+          <span>日本語</span> / <a href="/tools/rename-wizard/howto/en/">English guide</a>
         </div>
       </div>
     </div>
   </header>
 
-  <nav class="nw-nav">
-    <div class="nw-nav-inner">
-      <a href="https://nicheworks.app/">Home</a>
-      <a href="https://manual-finder.nicheworks.app/">ManualFinder</a>
-      <a href="https://trash-navi.nicheworks.app/">TrashNavi</a>
-      <a href="https://cancel-navi.nicheworks.app/">解約どこナビ</a>
-      <span class="nw-nav-current">Rename Wizard</span>
-    </div>
-  </nav>
-
   <main class="nw-main">
-    <!-- 上部広告枠（必須） -->
-    <div class="ad-slot ad-top">
-      広告枠
-      <!-- 審査通過後に広告コード -->
-    </div>
+    <div class="ad-slot ad-top">広告枠</div>
+
+    <section class="tool-card notice-card">
+      <h2 class="section-title">重要な仕様</h2>
+      <p class="notice-strong">このツールは実ファイル名を変更しません。</p>
+      <p class="section-desc">ブラウザ内で新しいファイル名候補を作り、元名→候補名のリストを表示・コピー・CSV保存するだけです。ファイル内容は読み取らず、アップロードもしません。</p>
+    </section>
 
     <section class="tool-card">
       <h2 class="section-title">1. ファイルを選択 / ドロップ</h2>
-      <p class="section-desc">
-        処理はすべてこのブラウザ内で完結し、ファイル名のみを参照します。サーバーへアップロードされることはありません。
-      </p>
+      <p class="section-desc">複数ファイルの名前だけを読み取り、整形ルールを適用します。</p>
 
       <div id="dropzone" class="dropzone">
         <p class="drop-main">ここにファイルをドラッグ＆ドロップ</p>
@@ -122,54 +133,32 @@
       </div>
 
       <div class="options">
-        <h3 class="options-title">整形ルール（Rename Rules）</h3>
-        <label class="option-item">
-          <input type="checkbox" id="optNormalizeWidth" checked />
-          全角英数字・記号を半角に統一（Unicode NFKC）
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="optSpaceToUnderscore" checked />
-          空白類をアンダースコアに変換
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="optLowercaseExt" checked />
-          拡張子を小文字に統一（.JPG → .jpg）
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="optLowercaseBase" />
-          ベース名も小文字に統一
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="optCollapseUnderscore" checked />
-          連続する区切り文字（__ / -- / .. など）を1つに圧縮
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="optTrimEdge" checked />
-          先頭・末尾の . _ - を削除
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="optRemoveForbidden" checked />
-          禁止文字 / \ : * ? " &lt; &gt; | を削除（または置換）
-        </label>
+        <h3 class="options-title">整形ルール</h3>
+        <label class="option-item"><input type="checkbox" id="optNormalizeWidth" checked />全角英数字・記号を半角に統一（Unicode NFKC）</label>
+        <label class="option-item"><input type="checkbox" id="optSpaceToUnderscore" checked />空白類をアンダースコアに変換</label>
+        <label class="option-item"><input type="checkbox" id="optLowercaseExt" checked />拡張子を小文字に統一（.JPG → .jpg）</label>
+        <label class="option-item"><input type="checkbox" id="optLowercaseBase" />ベース名も小文字に統一</label>
+        <label class="option-item"><input type="checkbox" id="optCollapseUnderscore" checked />連続する区切り文字（__ / -- / .. など）を1つに圧縮</label>
+        <label class="option-item"><input type="checkbox" id="optTrimEdge" checked />先頭・末尾の . _ - を削除</label>
+        <label class="option-item"><input type="checkbox" id="optRemoveForbidden" checked />禁止文字 / \ : * ? &quot; &lt; &gt; | を _ に置換</label>
+        <label class="option-item"><input type="checkbox" id="optDeduplicate" checked />整形後に重複する名前へ _2, _3 を付ける</label>
       </div>
 
       <div class="actions">
         <button id="runButton" class="btn btn-primary">ファイル名を整形する</button>
-        <button id="copyButton" class="btn btn-ghost" disabled>整形後リストをコピー</button>
+        <button id="copyTsvButton" class="btn btn-ghost" disabled>TSVコピー</button>
+        <button id="downloadCsvButton" class="btn btn-ghost" disabled>CSV保存</button>
         <button id="clearButton" class="btn btn-ghost">リセット</button>
       </div>
     </section>
 
     <section class="tool-card">
       <h2 class="section-title">2. プレビュー</h2>
-      <p class="section-desc">
-        元のファイル名と整形後ファイル名のマッピングを一覧表示します。このツールは実ファイルを自動リネームしません。
-        一覧をコピーして、お好みのスクリプトやバッチ処理に適用してください。
-      </p>
+      <p class="section-desc">元のファイル名と整形後ファイル名の対応表です。リネーム前に重複・警告を確認してください。</p>
 
-      <div id="noFilesMessage" class="empty-state">
-        ファイルがまだ選択されていません。
-      </div>
+      <div id="summaryBox" class="summary-box">選択ファイル数：0件</div>
+
+      <div id="noFilesMessage" class="empty-state">ファイルがまだ選択されていません。</div>
 
       <div id="resultWrapper" class="table-wrapper hidden">
         <table class="result-table">
@@ -178,7 +167,8 @@
               <th>#</th>
               <th>元のファイル名</th>
               <th>整形後ファイル名</th>
-              <th>変更</th>
+              <th>状態</th>
+              <th>警告</th>
             </tr>
           </thead>
           <tbody id="resultBody"></tbody>
@@ -187,17 +177,38 @@
       <div id="copyStatus" class="copy-status" aria-live="polite"></div>
     </section>
 
-    <!-- 下部広告枠（任意。短めページでは推奨） -->
-    <div class="ad-slot ad-bottom">
-      広告枠
-      <!-- 審査通過後に広告コード -->
+    <div class="ad-slot ad-bottom">広告枠</div>
+
+    <section class="tool-card faq-card" aria-labelledby="faqTitle">
+      <h2 id="faqTitle" class="section-title">よくある質問</h2>
+      <details>
+        <summary>実際のファイル名は変更されますか？</summary>
+        <p>いいえ。候補リストを作るだけで、実ファイルは変更しません。</p>
+      </details>
+      <details>
+        <summary>ファイルはアップロードされますか？</summary>
+        <p>いいえ。ブラウザ内でファイル名だけを参照します。ファイル内容は読み取りません。</p>
+      </details>
+      <details>
+        <summary>重複するファイル名は検出できますか？</summary>
+        <p>検出できます。自動連番オプションを有効にすると、_2、_3 のような候補名にできます。</p>
+      </details>
+      <details>
+        <summary>一括リネーム用のコマンドは生成しますか？</summary>
+        <p>初期版ではTSVコピーとCSV保存のみです。実行コマンド生成は誤操作リスクがあるため、後回しにします。</p>
+      </details>
+    </section>
+
+    <div class="nw-links" aria-label="関連ツール">
+      <span>関連ツール：</span>
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
+      <a href="/tools/csv-tidy/">CSV Tidy</a> /
+      <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a> /
+      <a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a>
     </div>
 
-    <!-- 寄付導線（パターンB：2ボタンのみ） -->
     <div class="nw-donate">
-      <p class="nw-donate-text">
-      このツールが役に立ったら、コーヒー1杯ぶんのご支援も検討してもらえると嬉しいです。
-      </p>
+      <p class="nw-donate-text">このツールが役に立ったら、コーヒー1杯ぶんのご支援も検討してもらえると嬉しいです。</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
@@ -207,17 +218,10 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">
-      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
-    </p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">
-        nicheworks.app
-      </a>
-    </p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
   <script src="./app.js"></script>
-  
 </body>
 </html>
