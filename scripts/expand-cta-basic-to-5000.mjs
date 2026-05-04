@@ -114,3 +114,4 @@ while (data.length < TARGET) {
 
 fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
 console.log(`tools.basic.json expanded to ${data.length} entries`);
+// trigger: 2026-05-04T00:00:00Z
