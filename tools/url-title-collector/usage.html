@@ -1,126 +1,69 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>使い方 | URL Title Collector</title>
-
-  <!-- canonical -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使い方｜URL Title Collector | NicheWorks</title>
+  <meta name="description" content="URL Title Collectorの使い方、対応URL、取得失敗の理由、CSV/TSV出力、外部WorkerへURLを送信する際の注意点を説明します。">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/usage.html">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- OGP -->
-  <meta property="og:title" content="使い方 | URL Title Collector">
-  <meta property="og:description" content="使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="使い方｜URL Title Collector | NicheWorks">
+  <meta property="og:description" content="URL Title Collectorの使い方、対応URL、取得失敗の理由、CSV/TSV出力、外部WorkerへURLを送信する際の注意点を説明します。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/url-title-collector/usage.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <style>
-    body {
-      background: #ffffff;
-      color: #111;
-      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      margin: 0;
-      padding: 24px 16px;
-      line-height: 1.7;
-    }
-    main {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-    h2 {
-      font-size: 18px;
-      margin-top: 28px;
-      margin-bottom: 8px;
-    }
-    p, li {
-      font-size: 15px;
-      color: #333;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    a {
-      color: #0366d6;
-      text-decoration: underline;
-    }
-    .lang-switch {
-      text-align: right;
-      font-size: 13px;
-      margin-bottom: 12px;
-      color: #666;
-    }
-    .lang-switch a {
-      color: #666;
-      text-decoration: none;
-    }
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-    }
-    footer a {
-      color: #666;
-      text-decoration: none;
-    }
-    .back {
-      margin-top: 32px;
-      text-align: center;
-    }
-  </style>
-
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-  <meta name="description" content="使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
-  <meta name="robots" content="index,follow">
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="使い方 | URL Title Collector">
-  <meta name="twitter:description" content="使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="twitter:title" content="使い方｜URL Title Collector | NicheWorks">
+  <meta name="twitter:description" content="URL Title Collectorの使い方、対応URL、取得失敗の理由、CSV/TSV出力、外部WorkerへURLを送信する際の注意点を説明します。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "使い方 | URL Title Collector",
+    "name": "使い方｜URL Title Collector",
     "url": "https://nicheworks.app/tools/url-title-collector/usage.html",
-    "description": "使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
+    "description": "URL Title Collectorの使い方、対応URL、取得失敗の理由、CSV/TSV出力、外部WorkerへURLを送信する際の注意点を説明します。",
+    "inLanguage": "ja"
   }
   </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <style>
+    body { background:#fff; color:#111; font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif; margin:0; padding:24px 16px; line-height:1.7; }
+    main { max-width:600px; margin:0 auto; }
+    h1 { font-size:22px; margin-bottom:16px; }
+    h2 { font-size:18px; margin-top:28px; margin-bottom:8px; }
+    p, li { font-size:15px; color:#333; }
+    ul { padding-left:20px; }
+    a { color:#0366d6; text-decoration:underline; }
+    .lang-switch { text-align:right; font-size:13px; margin-bottom:12px; color:#666; }
+    .lang-switch a { color:#666; text-decoration:none; }
+    .notice { background:#fff7ed; border:1px solid #fed7aa; border-radius:12px; padding:14px; }
+    .back { margin-top:32px; text-align:center; }
+    .nw-links { margin:32px 0 16px; text-align:center; font-size:14px; color:#666; }
+    .nw-links a { color:#666; text-decoration:none; padding:0 4px; }
+    footer { margin-top:40px; text-align:center; font-size:14px; color:#666; }
+    footer a { color:#666; text-decoration:none; }
+  </style>
 </head>
 <body>
-
 <main>
-
-  <!-- 言語切替 -->
   <div class="lang-switch">
     <a href="./usage.html">JP</a> |
     <a href="./en/usage.html">EN</a>
@@ -128,89 +71,61 @@
 
   <h1>URL Title Collector の使い方</h1>
 
-  <p>
-    URL Title Collector は、複数のURLをまとめて貼り付けるだけで、
-    <strong>&lt;title&gt; タグを高速取得できる超軽量ツール</strong>です。
-  </p>
+  <p>URL Title Collector は、複数URLを1行ずつ貼り付け、各ページの <strong>&lt;title&gt; タグ</strong> を取得して一覧化する軽量ツールです。</p>
+
+  <div class="notice">
+    <strong>重要：</strong>タイトル取得にはNicheWorksの外部Workerを使用します。入力したURLはWorkerへ送信されます。機密URL、社内URL、ログイン後ページ、個人情報を含むURLは入力しないでください。
+  </div>
 
   <h2>1. 使い方（3ステップ）</h2>
   <ul>
-    <li>① テキストエリアに URL を 1 行ずつ貼り付けます</li>
-    <li>② 「タイトルを取得する」を押します</li>
-    <li>③ URL とタイトル・ステータスが一覧で表示されます</li>
+    <li>テキストエリアに URL を 1 行ずつ貼り付けます</li>
+    <li>「タイトルを取得する」を押します</li>
+    <li>URL・タイトル・ステータスが一覧で表示されます</li>
   </ul>
 
-  <p>結果は CSV / TSV 形式でコピーできます。リセットボタンで初期状態に戻ります。</p>
+  <h2>2. 入力ルール</h2>
+  <ul>
+    <li>処理対象は <code>http:</code> / <code>https:</code> のURLのみです</li>
+    <li>最大50件まで処理します</li>
+    <li>重複URL、不正URL、<code>javascript:</code> / <code>data:</code> / <code>file:</code> などはWorkerへ送信しません</li>
+    <li>短縮URLや不審なURLは、先に <a href="/tools/redirect-unwrapper/">Redirect Unwrapper</a> で確認してください</li>
+  </ul>
 
-  <h2>2. ステータスの種類</h2>
+  <h2>3. ステータスの種類</h2>
   <ul>
     <li><strong>success</strong>：タイトル取得に成功</li>
-    <li><strong>no-title</strong>：ページ取得は成功したが &lt;title&gt; が存在しない</li>
-    <li><strong>http-error</strong>：HTTPエラー（404 / 500 など）</li>
-    <li><strong>network-error</strong>：CORS / DNS などネットワーク側の問題</li>
+    <li><strong>no-title</strong>：ページ取得は成功したが &lt;title&gt; が見つからない</li>
+    <li><strong>http-error</strong>：404 / 500 などのHTTPエラー</li>
+    <li><strong>network-error</strong>：通信・DNS・Worker側取得などの失敗</li>
+    <li><strong>timeout</strong>：10秒以内に取得できなかった</li>
+    <li><strong>invalid-url / invalid-scheme / duplicate / skipped-limit</strong>：Workerへ送信せずスキップ</li>
   </ul>
 
-  <h2>3. 対応しているケース</h2>
-  <ul>
-    <li>通常のHTMLページ</li>
-    <li>ニュースサイト・ブログなどの静的なページ</li>
-    <li>&lt;title&gt; タグを持つページ</li>
-  </ul>
-
-  <h2>4. 非対応のケース</h2>
-  <ul>
-    <li>ログインが必要なページ</li>
-    <li>PDF / JSON / XML など HTMLでないURL</li>
-    <li>CSP（Content Security Policy）が非常に強いページ</li>
-    <li>JavaScriptで動的に &lt;title&gt; を変更するサイト</li>
-  </ul>
+  <h2>4. 対応 / 非対応</h2>
+  <p>通常のHTMLページやブログ、ニュース記事などに対応します。PDF、JSON、XML、ログイン必須ページ、JavaScriptで後からタイトルを書き換えるページは取得できない場合があります。</p>
 
   <h2>5. CSV / TSV 出力</h2>
-  <p>
-    結果テーブルはそのまま  
-    <strong>CSV（カンマ）</strong> / <strong>TSV（タブ）</strong> 形式でコピーできます。  
-    Excel / Google Sheets / Notion などに貼り付け可能です。
-  </p>
+  <p>結果は <strong>url / title / status</strong> の3列で、CSVまたはTSVとしてコピーできます。CSVはExcel等で扱いやすいようCRLF改行で出力します。</p>
 
-  <h2>6. よくある質問（FAQ）</h2>
-  <p><strong>Q：404でもタイトルが返ることがある？</strong><br>
-    独自の404ページ（Not Found HTML）が返され、そのHTML内の &lt;title&gt; を取得しているためです。
-  </p>
-
-  <p><strong>Q：海外サイトで失敗しやすい理由は？</strong><br>
-    CORS / CSP が強く、Worker 経由でも本文を取得できないためです。
-  </p>
-
-  <p><strong>Q：大量URLの上限は？</strong><br>
-    ブラウザ動作のため、100〜300件程度が安全です（端末性能に依存）。
-  </p>
+  <h2>6. FAQ</h2>
+  <p><strong>Q. 入力したURLは送信されますか？</strong><br>はい。ページタイトル取得のため、入力URLはNicheWorksのWorkerへ送信されます。</p>
+  <p><strong>Q. ページ本文も保存されますか？</strong><br>このページではタイトル抽出結果だけを表示します。ただしWorker側でURL取得が行われます。</p>
+  <p><strong>Q. 取得できないURLがあるのはなぜですか？</strong><br>相手サイトの制限、非HTMLレスポンス、通信失敗、タイムアウトなどが原因です。</p>
 
   <h2>7. 免責</h2>
-  <p>
-    本ツールはブラウザ内と Cloudflare Worker 上で動作します。  
-    入力URL・結果は保存されません。  
-    取得できないURLが存在する場合があります。
-  </p>
+  <p>本ツールは取得結果の正確性を保証しません。機密URLや非公開URLの入力は避け、必要に応じて公式情報をご確認ください。</p>
 
-  <div class="back">
-    <a href="./index.html">← ツールに戻る</a>
-  </div>
-
+  <div class="back"><a href="./index.html">← ツールに戻る</a></div>
 </main>
 
 <div class="nw-links">
-  <a href="/tools/manual-finder/">ManualFinder</a> /
+  <a href="/tools/redirect-unwrapper/">Redirect Unwrapper</a> /
+  <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> /
   <a href="/tools/log-formatter/">LogFormatter</a> /
-  <a href="/tools/exif-cleaner-mini/">MetaCleaner Mini</a>
+  <a href="/tools/csv-tidy/">CSV Tidy</a>
 </div>
 
-
-<footer>
-  <p><a href="https://nicheworks.app/">NicheWorks Home</a></p>
-</footer>
-
-<!-- Cloudflare Analytics -->
-
-
+<footer><p><a href="https://nicheworks.app/">NicheWorks Home</a></p></footer>
 </body>
 </html>
