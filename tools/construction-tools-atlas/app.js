@@ -707,22 +707,13 @@
   }
 
   function openDetail(id){
-    try {
-      const e = state.entries.find(x => x.id === id);
-      if (!e || !els.detailSheet) return;
-      state.current = e;
-      renderDetailContent(state.current);
-      setActiveTab("meaning");
-      openSheet(els.detailSheet);
-    } catch (err) {
-      console.error("openDetail failed", err);
-      state.current = null;
-      closeAllSheets();
-    }
-  }
-
-  function safeList(v){
-    return Array.isArray(v) ? v : [];
+    const e = state.entries.find(x => x.id === id);
+    if (!e) return;
+    if (!els.detailSheet) return;
+    state.current = e;
+    renderDetailContent(state.current);
+    setActiveTab("meaning");
+    openSheet(els.detailSheet);
   }
 
   function renderDetailContent(e){
@@ -732,7 +723,8 @@
     if (els.detailStar) els.detailStar.textContent = state.favs.has(e.id) ? "★" : "☆";
 
     // chips (categories/tasks/type)
-    if (els.detailChips) els.detailChips.innerHTML = "";
+    if (!els.detailChips || !els.detailTerms || !els.detailDesc) return;
+    els.detailChips.innerHTML = "";
     const chipTexts = []
       .concat(e.type ? [e.type] : [])
       .concat(safeList(e.categories))
@@ -795,9 +787,9 @@
       <div class="kv"><div class="kv__k">EN aliases/related</div><div class="kv__v">${ae}</div></div>
     `;
 
-    const cats = safeList(e.categories).join(", ") || "—";
-    const tasks = safeList(e.tasks).join(", ") || "—";
-    const region = safeList(e.region).join(", ") || "—";
+    const cats = (e.categories||[]).join(", ") || "—";
+    const tasks = (e.tasks||[]).join(", ") || "—";
+    const region = (e.region||[]).join(", ") || "—";
     if (els.tabMeta) els.tabMeta.innerHTML = `
       <div class="kv"><div class="kv__k">id</div><div class="kv__v">${escapeHtml(e.id)}</div></div>
       <div class="kv"><div class="kv__k">type</div><div class="kv__v">${escapeHtml(e.type || "—")}</div></div>
