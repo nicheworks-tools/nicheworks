@@ -17,6 +17,8 @@
   <title>コールドメール要件チェック｜Cold Email Requirement Checker | NicheWorks</title>
   <meta name="description" content="コールドメールや営業メールの下書きをブラウザ内でチェックし、挨拶、自己紹介、相手言及、連絡理由、CTA、署名、過度な表現などの確認ポイントを整理する無料ツールです。">
   <link rel="canonical" href="https://nicheworks.app/tools/cold-email-requirement-checker/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/cold-email-requirement-checker/">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/cold-email-requirement-checker/">
   <meta name="robots" content="index,follow">
 
   <meta property="og:type" content="website">
@@ -43,7 +45,7 @@
     "name": "Cold Email Requirement Checker",
     "url": "https://nicheworks.app/tools/cold-email-requirement-checker/",
     "applicationCategory": "UtilityApplication",
-    "description": "A free browser-based checklist for reviewing cold email drafts, including greeting, introduction, recipient mention, outreach reason, CTA, signature, link count, and overly promotional wording.",
+    "description": "A free browser-based checklist for reviewing cold email drafts, including greeting, introduction, recipient mention, outreach reason, CTA, signature, sender information, opt-out path, link count, and overly promotional wording.",
     "operatingSystem": "All"
   }
   </script>
@@ -52,46 +54,11 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "このツールは法令適合性を保証しますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。文章構成の簡易チェックであり、法令適合性、同意要件、配信停止表示、送信者情報の正確性は保証しません。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "入力したメール文は送信されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。本文チェックはブラウザ内で行います。入力内容を外部へ送信しません。ただしページ表示のため広告や解析タグは読み込まれます。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "スコアが高ければ送ってよいですか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。スコアは文章構成の目安です。対象国・地域の法令、相手との関係、配信停止表示、送信者情報などを別途確認してください。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "日本語メールにも対応していますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "対応します。ただし簡易的なルールベース判定であり、文脈や業界ごとの慣習を完全に判断するものではありません。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "返信率を予測できますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "できません。このツールは到達率、返信率、商談化率、成果を予測または保証しません。"
-        }
-      }
+      {"@type":"Question","name":"このツールは法令適合性を保証しますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。文章構成の簡易チェックであり、法令適合性、同意要件、配信停止表示、送信者情報の正確性は保証しません。"}},
+      {"@type":"Question","name":"入力したメール文は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。本文チェックはブラウザ内で行います。入力内容を外部へ送信しません。ただしページ表示のため広告や解析タグは読み込まれます。"}},
+      {"@type":"Question","name":"スコアが高ければ送ってよいですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。スコアは文章構成の目安です。対象国・地域の法令、相手との関係、配信停止表示、送信者情報などを別途確認してください。"}},
+      {"@type":"Question","name":"日本語メールにも対応していますか？","acceptedAnswer":{"@type":"Answer","text":"対応します。ただし簡易的なルールベース判定であり、文脈や業界ごとの慣習を完全に判断するものではありません。"}},
+      {"@type":"Question","name":"返信率を予測できますか？","acceptedAnswer":{"@type":"Answer","text":"できません。このツールは到達率、返信率、商談化率、成果を予測または保証しません。"}}
     ]
   }
   </script>
@@ -119,6 +86,9 @@
     <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
     <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
 
+    <p class="usage-link" data-i18n="ja"><a href="./howto/">30秒ガイド</a> / <a href="./usage.html">詳しい使い方</a></p>
+    <p class="usage-link" data-i18n="en" style="display:none;"><a href="./howto/en/">30-second guide</a> / <a href="./usage-en.html">Full usage</a></p>
+
     <section class="nw-note warning" aria-labelledby="legalNoticeJa" data-i18n="ja">
       <strong id="legalNoticeJa">重要な注意</strong>
       <p>このツールはメール本文の構成を確認するための簡易ツールです。法令適合性、同意要件、配信停止表示、送信者情報の正確性、到達率・返信率を保証しません。</p>
@@ -135,10 +105,7 @@
         <h2 class="card-title" data-i18n="ja">入力</h2>
         <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
       </div>
-
-      <div class="card-bd">
-        <div id="toolRoot"></div>
-      </div>
+      <div class="card-bd"><div id="toolRoot"></div></div>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠</div>
@@ -156,50 +123,20 @@
       <h2 id="faqTitle" class="faq-title" data-i18n="ja">よくある質問</h2>
       <h2 class="faq-title" data-i18n="en" style="display:none;">FAQ</h2>
 
-      <div class="faq-item" data-i18n="ja">
-        <h3>このツールは法令適合性を保証しますか？</h3>
-        <p>いいえ。文章構成の簡易チェックであり、法令適合性、同意要件、配信停止表示、送信者情報の正確性は保証しません。</p>
-      </div>
-      <div class="faq-item" data-i18n="en" style="display:none;">
-        <h3>Does this tool guarantee legal compliance?</h3>
-        <p>No. It is a simple draft-structure checklist and does not guarantee legal compliance, consent requirements, opt-out wording, or sender identity accuracy.</p>
-      </div>
+      <div class="faq-item" data-i18n="ja"><h3>このツールは法令適合性を保証しますか？</h3><p>いいえ。文章構成の簡易チェックであり、法令適合性、同意要件、配信停止表示、送信者情報の正確性は保証しません。</p></div>
+      <div class="faq-item" data-i18n="en" style="display:none;"><h3>Does this tool guarantee legal compliance?</h3><p>No. It is a simple draft-structure checklist and does not guarantee legal compliance, consent requirements, opt-out wording, or sender identity accuracy.</p></div>
 
-      <div class="faq-item" data-i18n="ja">
-        <h3>入力したメール文は送信されますか？</h3>
-        <p>いいえ。本文チェックはブラウザ内で行います。入力内容を外部へ送信しません。ただしページ表示のため広告・解析タグは読み込まれます。</p>
-      </div>
-      <div class="faq-item" data-i18n="en" style="display:none;">
-        <h3>Is my email draft sent anywhere?</h3>
-        <p>No. The checklist runs in your browser and does not send your draft elsewhere. Ads and analytics tags may load for the page itself.</p>
-      </div>
+      <div class="faq-item" data-i18n="ja"><h3>入力したメール文は送信されますか？</h3><p>いいえ。本文チェックはブラウザ内で行います。入力内容を外部へ送信しません。ただしページ表示のため広告・解析タグは読み込まれます。</p></div>
+      <div class="faq-item" data-i18n="en" style="display:none;"><h3>Is my email draft sent anywhere?</h3><p>No. The checklist runs in your browser and does not send your draft elsewhere. Ads and analytics tags may load for the page itself.</p></div>
 
-      <div class="faq-item" data-i18n="ja">
-        <h3>スコアが高ければ送ってよいですか？</h3>
-        <p>いいえ。スコアは構成の目安です。対象国の法令、相手との関係、配信停止表示、送信者情報などを確認してください。</p>
-      </div>
-      <div class="faq-item" data-i18n="en" style="display:none;">
-        <h3>Can I send the email if the score is high?</h3>
-        <p>No. The score is only a structure signal. Check laws, relationship context, opt-out wording, sender information, and platform rules separately.</p>
-      </div>
+      <div class="faq-item" data-i18n="ja"><h3>スコアが高ければ送ってよいですか？</h3><p>いいえ。スコアは構成の目安です。対象国の法令、相手との関係、配信停止表示、送信者情報などを確認してください。</p></div>
+      <div class="faq-item" data-i18n="en" style="display:none;"><h3>Can I send the email if the score is high?</h3><p>No. The score is only a structure signal. Check laws, relationship context, opt-out wording, sender information, and platform rules separately.</p></div>
 
-      <div class="faq-item" data-i18n="ja">
-        <h3>日本語メールにも対応していますか？</h3>
-        <p>対応します。ただし簡易的なルールベース判定です。</p>
-      </div>
-      <div class="faq-item" data-i18n="en" style="display:none;">
-        <h3>Does it support Japanese email drafts?</h3>
-        <p>Yes, but the checks are simple rule-based signals.</p>
-      </div>
+      <div class="faq-item" data-i18n="ja"><h3>日本語メールにも対応していますか？</h3><p>対応します。ただし簡易的なルールベース判定です。</p></div>
+      <div class="faq-item" data-i18n="en" style="display:none;"><h3>Does it support Japanese email drafts?</h3><p>Yes, but the checks are simple rule-based signals.</p></div>
 
-      <div class="faq-item" data-i18n="ja">
-        <h3>返信率を予測できますか？</h3>
-        <p>できません。到達率・返信率・成果は保証しません。</p>
-      </div>
-      <div class="faq-item" data-i18n="en" style="display:none;">
-        <h3>Can it predict reply rates?</h3>
-        <p>No. It does not predict or guarantee deliverability, reply rates, or business outcomes.</p>
-      </div>
+      <div class="faq-item" data-i18n="ja"><h3>返信率を予測できますか？</h3><p>できません。到達率・返信率・成果は保証しません。</p></div>
+      <div class="faq-item" data-i18n="en" style="display:none;"><h3>Can it predict reply rates?</h3><p>No. It does not predict or guarantee deliverability, reply rates, or business outcomes.</p></div>
     </section>
 
     <section class="nw-other">
@@ -217,9 +154,7 @@
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
   <script src="./app.js"></script>
