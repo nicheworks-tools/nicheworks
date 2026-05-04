@@ -28,7 +28,6 @@
   line-height: 1.6;
 }
 
-/* 言語切替 */
 .nw-lang-switch {
   text-align: center;
   margin: 8px 0 12px;
@@ -50,9 +49,6 @@
   text-decoration: underline;
 }
 
-/* ---------------------------------------
-   広告枠
------------------------------------------ */
 .ad-slot {
   margin: 14px 0 18px;
   padding: 10px;
@@ -65,17 +61,9 @@
   border-radius: 6px;
 }
 
-.ad-top {
-  margin-top: 4px;
-}
+.ad-top { margin-top: 4px; }
+.ad-bottom { margin-bottom: 8px; }
 
-.ad-bottom {
-  margin-bottom: 8px;
-}
-
-/* ---------------------------------------
-   説明・入力
------------------------------------------ */
 .intro-box,
 .input-area,
 .result-card,
@@ -94,22 +82,26 @@
   font-size: 14px;
 }
 
-.intro-box p {
-  margin: 0 0 8px;
-}
-
-.intro-box p:last-child {
-  margin-bottom: 0;
-}
+.intro-box p { margin: 0 0 8px; }
+.intro-box p:last-child { margin-bottom: 0; }
 
 .caution-text {
   color: #92400e;
   font-weight: 600;
 }
 
-.input-area {
-  margin-top: 8px;
+.usage-link {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: #4b5563;
 }
+
+.usage-link a {
+  color: #374151;
+  text-decoration: underline;
+}
+
+.input-area { margin-top: 8px; }
 
 .input-label {
   display: block;
@@ -133,9 +125,7 @@
   word-break: break-all;
 }
 
-.button-row {
-  margin-top: 12px;
-}
+.button-row { margin-top: 12px; }
 
 .main-btn {
   padding: 12px 22px;
@@ -176,16 +166,9 @@
   font-size: 12px;
 }
 
-.sample-area button:hover {
-  background: #f9fafb;
-}
+.sample-area button:hover { background: #f9fafb; }
 
-/* ---------------------------------------
-   解析結果
------------------------------------------ */
-#results {
-  margin-top: 18px;
-}
+#results { margin-top: 18px; }
 
 .result-card h2,
 .faq-section h2 {
@@ -208,9 +191,7 @@
   line-height: 1.6;
 }
 
-.result-block {
-  margin-top: 16px;
-}
+.result-block { margin-top: 16px; }
 
 .result-row {
   display: grid;
@@ -252,9 +233,7 @@
   font-size: 12px;
 }
 
-.warning-list li {
-  color: #7f1d1d;
-}
+.warning-list li { color: #7f1d1d; }
 
 .result-error {
   border: 1px solid #fca5a5;
@@ -283,47 +262,15 @@
   transition: all 0.2s;
 }
 
-.copy-btn:hover:not(:disabled) {
-  background: #f9fafb;
-}
+.copy-btn:hover:not(:disabled) { background: #f9fafb; }
+.copy-btn:disabled { color: #9ca3af; cursor: not-allowed; }
 
-.copy-btn:disabled {
-  color: #9ca3af;
-  cursor: not-allowed;
-}
+.faq-section { margin-top: 24px; }
+.faq-section details { border-top: 1px solid #e5e7eb; padding: 10px 0; }
+.faq-section details:first-of-type { border-top: none; }
+.faq-section summary { cursor: pointer; font-weight: 600; color: #111827; }
+.faq-section p { margin: 8px 0 0; color: #4b5563; line-height: 1.7; font-size: 14px; }
 
-/* ---------------------------------------
-   FAQ
------------------------------------------ */
-.faq-section {
-  margin-top: 24px;
-}
-
-.faq-section details {
-  border-top: 1px solid #e5e7eb;
-  padding: 10px 0;
-}
-
-.faq-section details:first-of-type {
-  border-top: none;
-}
-
-.faq-section summary {
-  cursor: pointer;
-  font-weight: 600;
-  color: #111827;
-}
-
-.faq-section p {
-  margin: 8px 0 0;
-  color: #4b5563;
-  line-height: 1.7;
-  font-size: 14px;
-}
-
-/* ---------------------------------------
-   寄付導線
------------------------------------------ */
 .nw-donate {
   text-align: center;
   margin: 22px 0 10px;
@@ -332,9 +279,7 @@
   padding: 6px 0;
 }
 
-.nw-donate-text {
-  margin: 4px 0 6px;
-}
+.nw-donate-text { margin: 4px 0 6px; }
 
 .nw-donate-links {
   display: flex;
@@ -361,9 +306,6 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* ---------------------------------------
-   内部リンク・フッター
------------------------------------------ */
 .nw-links {
   text-align: center;
   font-size: 13px;
@@ -372,14 +314,8 @@
   line-height: 1.8;
 }
 
-.nw-links a {
-  text-decoration: none;
-  color: #4b5563;
-}
-
-.nw-links a:hover {
-  text-decoration: underline;
-}
+.nw-links a { text-decoration: none; color: #4b5563; }
+.nw-links a:hover { text-decoration: underline; }
 
 .nw-footer {
   margin-top: 24px;
@@ -391,50 +327,16 @@
   line-height: 1.6;
 }
 
-.nw-footer-line {
-  margin: 2px 0;
-}
+.nw-footer-line { margin: 2px 0; }
+.nw-footer a { color: #6b7280; text-decoration: underline; }
 
-.nw-footer a {
-  color: #6b7280;
-  text-decoration: underline;
-}
-
-/* ---------------------------------------
-   レスポンシブ
------------------------------------------ */
 @media (max-width: 640px) {
-  .nw-main {
-    max-width: 600px;
-    padding: 0 10px;
-  }
-
-  .nw-header h1 {
-    font-size: 24px;
-  }
-
+  .nw-main { max-width: 600px; padding: 0 10px; }
+  .nw-header h1 { font-size: 24px; }
   .main-btn,
-  .copy-btn {
-    width: 100%;
-  }
-
-  .result-row {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-
-  .result-actions {
-    flex-direction: column;
-  }
-
-  .sample-area button {
-    width: 100%;
-    margin-right: 0;
-    border-radius: 8px;
-  }
-
-  .nw-donate-links {
-    flex-direction: row;
-    gap: 8px;
-  }
+  .copy-btn { width: 100%; }
+  .result-row { grid-template-columns: 1fr; gap: 4px; }
+  .result-actions { flex-direction: column; }
+  .sample-area button { width: 100%; margin-right: 0; border-radius: 8px; }
+  .nw-donate-links { flex-direction: row; gap: 8px; }
 }
