@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./content-polish.css">
 </head>
 <body>
-  <div id="overlay" hidden></div>
+  <div id="overlay" class="overlay" hidden></div>
 
   <header class="topbar">
     <div class="topbar__row">
@@ -65,26 +65,39 @@
 
   <div class="donation-data" data-ofuse="https://ofuse.me/nicheworks" data-kofi="https://ko-fi.com/nicheworks" hidden></div>
 
-  <aside id="detailSheet" class="sheet" hidden>
-    <button id="detailClose" class="iconbtn" type="button">×</button>
-    <h2 id="detailTitle">Detail</h2>
-    <button id="detailStar" class="starbtn" type="button">☆</button>
-    <label><input id="favsOnly" type="checkbox"> <span id="favsOnlyLabel">★ お気に入りのみ</span></label>
-    <div id="favsNote" class="muted"></div>
-    <button id="exportFavsBtn" class="pillbtn" type="button">Export</button>
-    <button id="importFavsBtn" class="pillbtn" type="button">Import</button>
-    <div id="detailChips"></div>
-    <div id="detailTerms"></div>
-    <div id="detailDesc"></div>
-    <ul id="detailBullets"></ul>
-    <div id="detailTabs">
-      <button class="tab" data-tab="meaning" type="button">Meaning</button>
-      <button class="tab" data-tab="examples" type="button">Examples</button>
-      <button class="tab" data-tab="aliases" type="button">Aliases</button>
-      <button class="tab" data-tab="meta" type="button">Meta</button>
+  <aside id="detailSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top">
+      <button id="detailClose" class="iconbtn" type="button">×</button>
+      <h2 id="detailTitle" class="sheet__title">Detail</h2>
+      <button id="detailStar" class="starbtn" type="button">☆</button>
     </div>
-    <div id="tabMeaning"></div><div id="tabExamples" hidden></div><div id="tabAliases" hidden></div><div id="tabMeta" hidden></div>
-    <button id="supportInlineBtn" class="pillbtn" type="button">Support</button>
+    <div class="sheet__body sheet__body--compact">
+      <label><input id="favsOnly" type="checkbox"> <span id="favsOnlyLabel">★ お気に入りのみ</span></label>
+      <div id="favsNote" class="muted"></div>
+      <div class="pillwrap">
+        <button id="exportFavsBtn" class="pillbtn" type="button">Export</button>
+        <button id="importFavsBtn" class="pillbtn" type="button">Import</button>
+      </div>
+      <section class="termblock">
+        <div id="detailChips" class="termblock__chiprow"></div>
+        <div id="detailTerms" class="termblock__terms"></div>
+        <div id="detailDesc" class="termblock__desc"></div>
+        <ul id="detailBullets" class="termblock__bullets"></ul>
+      </section>
+      <div id="detailTabs" class="tabs">
+        <button class="tab tab--active" data-tab="meaning" type="button">Meaning</button>
+        <button class="tab" data-tab="examples" type="button">Examples</button>
+        <button class="tab" data-tab="aliases" type="button">Aliases</button>
+        <button class="tab" data-tab="meta" type="button">Meta</button>
+      </div>
+      <div id="tabMeaning" class="tabpanel"></div>
+      <div id="tabExamples" class="tabpanel" hidden></div>
+      <div id="tabAliases" class="tabpanel" hidden></div>
+      <div id="tabMeta" class="tabpanel" hidden></div>
+      <div class="supportInline">
+        <button id="supportInlineBtn" class="pillbtn" type="button">Support</button>
+      </div>
+    </div>
   </aside>
 
   <aside id="supportSheet" class="sheet" hidden><button id="supportClose" class="iconbtn" type="button">×</button><h2 class="sheet__title">Support</h2><a id="ofuseLink" class="pillbtn" href="#">OFUSE</a><a id="kofiLink" class="pillbtn" href="#">Ko-fi</a><p id="supportNote"></p></aside>
