@@ -59,23 +59,17 @@ const UI_TEXT = {
   }
 };
 
-const DESTINATION_PARAM_KEYS = new Set([
-  "url", "u", "q", "target", "target_url", "redirect", "redirect_url", "redir",
-  "dest", "destination", "to", "continue", "next", "return", "return_url", "r", "link"
-]);
-
-const TRACKING_PARAM_KEYS = new Set([
-  "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id",
-  "fbclid", "gclid", "dclid", "msclkid", "igshid", "mc_cid", "mc_eid",
-  "yclid", "ref", "ref_src", "spm", "src", "campaign", "feature"
-]);
-
+const DESTINATION_PARAM_KEYS = new Set(["url", "u", "q", "target", "target_url", "redirect", "redirect_url", "redir", "dest", "destination", "to", "continue", "next", "return", "return_url", "r", "link"]);
+const TRACKING_PARAM_KEYS = new Set(["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id", "fbclid", "gclid", "dclid", "msclkid", "igshid", "mc_cid", "mc_eid", "yclid", "ref", "ref_src", "spm", "src", "campaign", "feature"]);
 const DANGEROUS_SCHEMES = new Set(["javascript:", "data:", "file:", "blob:", "vbscript:"]);
+const EXAMPLE_URL = "https://example.com/?url=https%3A%2F%2Fdestination.example%2Fpage";
 
 let currentLang = "ja";
 let lastAnalysis = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+  const urlInput = document.getElementById("urlInput");
+  urlInput.setAttribute("placeholder", EXAMPLE_URL);
   setupLanguage();
   setupEvents();
 });
@@ -88,22 +82,12 @@ function setupLanguage() {
   const applyLang = (lang) => {
     currentLang = lang;
     document.documentElement.lang = lang;
-
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
-
-    langButtons.forEach((button) => {
-      button.classList.toggle("active", button.dataset.lang === lang);
-    });
-
+    document.querySelectorAll("[data-i18n]").forEach((el) => { el.style.display = el.dataset.i18n === lang ? "" : "none"; });
+    langButtons.forEach((button) => { button.classList.toggle("active", button.dataset.lang === lang); });
     if (lastAnalysis) renderAnalysis(lastAnalysis);
   };
 
-  langButtons.forEach((button) => {
-    button.addEventListener("click", () => applyLang(button.dataset.lang));
-  });
-
+  langButtons.forEach((button) => { button.addEventListener("click", () => applyLang(button.dataset.lang)); });
   applyLang(currentLang);
 }
 
@@ -114,28 +98,10 @@ function setupEvents() {
   const copySummaryBtn = document.getElementById("copySummaryBtn");
 
   analyzeBtn.addEventListener("click", startAnalysis);
-
-  urlInput.addEventListener("keydown", (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") startAnalysis();
-  });
-
-  document.querySelectorAll("[data-sample]").forEach((button) => {
-    button.addEventListener("click", () => {
-      urlInput.value = button.dataset.sample;
-      startAnalysis();
-    });
-  });
-
-  copyCandidatesBtn.addEventListener("click", () => {
-    if (!lastAnalysis) return;
-    const text = lastAnalysis.candidates.map((candidate) => candidate.url).join("\n");
-    copyText(text || UI_TEXT[currentLang].noCandidates, copyCandidatesBtn);
-  });
-
-  copySummaryBtn.addEventListener("click", () => {
-    if (!lastAnalysis) return;
-    copyText(buildPlainSummary(lastAnalysis), copySummaryBtn);
-  });
+  urlInput.addEventListener("keydown", (event) => { if ((event.ctrlKey || event.metaKey) && event.key === "Enter") startAnalysis(); });
+  document.querySelectorAll("[data-sample]").forEach((button) => { button.addEventListener("click", () => { urlInput.value = button.dataset.sample; startAnalysis(); }); });
+  copyCandidatesBtn.addEventListener("click", () => { if (!lastAnalysis) return; const text = lastAnalysis.candidates.map((candidate) => candidate.url).join("\n"); copyText(text || UI_TEXT[currentLang].noCandidates, copyCandidatesBtn); });
+  copySummaryBtn.addEventListener("click", () => { if (!lastAnalysis) return; copyText(buildPlainSummary(lastAnalysis), copySummaryBtn); });
 }
 
 function startAnalysis() {
@@ -143,12 +109,7 @@ function startAnalysis() {
   const errorEl = document.getElementById("errorBox");
   errorEl.hidden = true;
   errorEl.textContent = "";
-
-  if (!input) {
-    showError(UI_TEXT[currentLang].enterUrl);
-    return;
-  }
-
+  if (!input) { showError(UI_TEXT[currentLang].enterUrl); return; }
   try {
     const analysis = analyzeUrlString(input);
     lastAnalysis = analysis;
@@ -169,16 +130,10 @@ function showError(message) {
 function analyzeUrlString(input) {
   const normalized = normalizeUrl(input);
   const parsed = new URL(normalized);
-  const queryParams = Array.from(parsed.searchParams.entries()).map(([key, value]) => ({
-    key,
-    value,
-    decodedValue: decodeRepeated(value)
-  }));
-
+  const queryParams = Array.from(parsed.searchParams.entries()).map(([key, value]) => ({ key, value, decodedValue: decodeRepeated(value) }));
   const trackingParams = queryParams.filter((param) => isTrackingParam(param.key));
   const candidates = extractEmbeddedUrls(parsed, queryParams);
   const warnings = buildWarnings(parsed, queryParams, candidates);
-
   return { input, normalized: parsed.href, scheme: parsed.protocol, host: parsed.hostname, path: parsed.pathname, queryParams, trackingParams, candidates, warnings };
 }
 
@@ -196,9 +151,7 @@ function decodeRepeated(value, max = 4) {
       const next = decodeURIComponent(current);
       if (next === current) break;
       current = next;
-    } catch (_) {
-      break;
-    }
+    } catch (_) { break; }
   }
   return current;
 }
@@ -206,16 +159,10 @@ function decodeRepeated(value, max = 4) {
 function extractEmbeddedUrls(parsed, queryParams) {
   const candidates = [];
   const seen = new Set();
-
   queryParams.forEach((param) => {
     const key = param.key.toLowerCase();
-    const decoded = param.decodedValue;
-    addCandidatesFromText(candidates, seen, decoded, {
-      source: DESTINATION_PARAM_KEYS.has(key) ? UI_TEXT[currentLang].destinationParam : UI_TEXT[currentLang].embeddedUrl,
-      key: param.key
-    });
+    addCandidatesFromText(candidates, seen, param.decodedValue, { source: DESTINATION_PARAM_KEYS.has(key) ? UI_TEXT[currentLang].destinationParam : UI_TEXT[currentLang].embeddedUrl, key: param.key });
   });
-
   addCandidatesFromText(candidates, seen, decodeRepeated(parsed.pathname), { source: "path", key: "" });
   addCandidatesFromText(candidates, seen, decodeRepeated(parsed.hash), { source: "hash", key: "" });
   return candidates;
@@ -248,7 +195,6 @@ function buildWarnings(parsed, queryParams, candidates) {
   const warnings = new Set();
   const t = UI_TEXT[currentLang].warnings;
   warnings.add(t.externalNotChecked);
-
   if (parsed.protocol === "http:") warnings.add(t.insecureHttp);
   if (DANGEROUS_SCHEMES.has(parsed.protocol)) warnings.add(t.dangerousScheme);
   else if (!["http:", "https:"].includes(parsed.protocol)) warnings.add(t.unsupportedScheme);
@@ -260,13 +206,11 @@ function buildWarnings(parsed, queryParams, candidates) {
   if (candidates.some((candidate) => candidate.host && candidate.host !== parsed.hostname)) warnings.add(t.hostMismatch);
   if (queryParams.filter((param) => isTrackingParam(param.key)).length >= 3) warnings.add(t.manyTrackers);
   if (findHttpUrls(parsed.pathname).length > 0) warnings.add(t.urlInPath);
-
   candidates.forEach((candidate) => {
     if (candidate.scheme === "http:") warnings.add(`${t.insecureHttp} (${candidate.host})`);
     if (isIpAddress(candidate.host)) warnings.add(`${t.ipHost} (${candidate.host})`);
     if (isPunycodeHost(candidate.host)) warnings.add(`${t.punycode} (${candidate.host})`);
   });
-
   return Array.from(warnings);
 }
 
@@ -286,10 +230,8 @@ function renderAnalysis(analysis) {
   const candidates = document.getElementById("candidateList");
   const warnings = document.getElementById("warningList");
   const copyCandidatesBtn = document.getElementById("copyCandidatesBtn");
-
   results.hidden = false;
   summary.textContent = analysis.candidates.length > 0 ? UI_TEXT[currentLang].candidateFound : `${UI_TEXT[currentLang].noCandidates} ${UI_TEXT[currentLang].notRedirectTracker}`;
-
   details.innerHTML = "";
   appendDetail(details, "Input", analysis.input);
   appendDetail(details, "Normalized", analysis.normalized);
@@ -297,7 +239,6 @@ function renderAnalysis(analysis) {
   appendDetail(details, "Host", analysis.host || "-");
   appendDetail(details, "Path", analysis.path || "/");
   appendDetail(details, "Tracking parameters", analysis.trackingParams.map((param) => param.key).join(", ") || "-");
-
   candidates.innerHTML = "";
   if (analysis.candidates.length === 0) {
     const item = document.createElement("li");
@@ -316,7 +257,6 @@ function renderAnalysis(analysis) {
       candidates.appendChild(item);
     });
   }
-
   warnings.innerHTML = "";
   const warningItems = analysis.warnings.length > 0 ? analysis.warnings : [UI_TEXT[currentLang].noWarnings];
   warningItems.forEach((warning) => {
@@ -324,7 +264,6 @@ function renderAnalysis(analysis) {
     item.textContent = warning;
     warnings.appendChild(item);
   });
-
   copyCandidatesBtn.disabled = analysis.candidates.length === 0;
 }
 
@@ -343,21 +282,7 @@ function appendDetail(container, label, value) {
 }
 
 function buildPlainSummary(analysis) {
-  return [
-    "Redirect Unwrapper result",
-    `Input: ${analysis.input}`,
-    `Normalized: ${analysis.normalized}`,
-    `Scheme: ${analysis.scheme || "-"}`,
-    `Host: ${analysis.host || "-"}`,
-    `Path: ${analysis.path || "/"}`,
-    `Tracking parameters: ${analysis.trackingParams.map((param) => param.key).join(", ") || "-"}`,
-    "",
-    "Candidates:",
-    ...(analysis.candidates.length > 0 ? analysis.candidates.map((candidate, index) => `${index + 1}. ${candidate.url}`) : [`- ${UI_TEXT[currentLang].noCandidates}`]),
-    "",
-    "Warnings:",
-    ...(analysis.warnings.length > 0 ? analysis.warnings.map((warning) => `- ${warning}`) : [`- ${UI_TEXT[currentLang].noWarnings}`])
-  ].join("\n");
+  return ["Redirect Unwrapper result", `Input: ${analysis.input}`, `Normalized: ${analysis.normalized}`, `Scheme: ${analysis.scheme || "-"}`, `Host: ${analysis.host || "-"}`, `Path: ${analysis.path || "/"}`, `Tracking parameters: ${analysis.trackingParams.map((param) => param.key).join(", ") || "-"}`, "", "Candidates:", ...(analysis.candidates.length > 0 ? analysis.candidates.map((candidate, index) => `${index + 1}. ${candidate.url}`) : [`- ${UI_TEXT[currentLang].noCandidates}`]), "", "Warnings:", ...(analysis.warnings.length > 0 ? analysis.warnings.map((warning) => `- ${warning}`) : [`- ${UI_TEXT[currentLang].noWarnings}`])].join("\n");
 }
 
 async function copyText(text, button) {
@@ -369,12 +294,9 @@ async function copyText(text, button) {
   } catch (_) {
     button.textContent = UI_TEXT[currentLang].copyFailed;
   }
-
   setTimeout(() => {
     button.innerHTML = originalHtml;
-    button.querySelectorAll("[data-i18n]").forEach((el) => {
-      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
-    });
+    button.querySelectorAll("[data-i18n]").forEach((el) => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; });
   }, 1200);
 }
 
