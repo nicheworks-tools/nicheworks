@@ -733,13 +733,13 @@
       const s = document.createElement("span");
       s.className = "chip";
       s.textContent = String(t);
-      els.detailChips.appendChild(s);
+      if (els.detailChips) els.detailChips.appendChild(s);
     });
 
     // term block
-    els.detailTerms.textContent = `${(e.termJa||"—")} / ${(e.termEn||"—")}`;
+    if (els.detailTerms) els.detailTerms.textContent = `${(e.termJa||"—")} / ${(e.termEn||"—")}`;
     const best = getDetailText(e);
-    els.detailDesc.textContent = best || (state.uiLang === "ja" ? "詳細情報準備中" : "Details coming soon");
+    if (els.detailDesc) els.detailDesc.textContent = best || (state.uiLang === "ja" ? "詳細情報準備中" : "Details coming soon");
 
     if (els.detailBullets) {
       const bullets = state.uiLang === "ja" ? (e.bulletsJa || []) : (e.bulletsEn || []);
