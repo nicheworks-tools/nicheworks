@@ -108,8 +108,8 @@
         </p>
 
         <textarea id="contractText" class="input-area"
-          data-i18n-placeholder="ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"
-          data-i18n-placeholder-en="Paste contract or terms text here. Direct PDF upload and OCR are not supported."
+          data-i18n-stable content="ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"
+          data-i18n-stable content-en="Paste contract or terms text here. Direct PDF upload and OCR are not supported."
         ></textarea>
 
         <div class="panel-buttons">
@@ -228,13 +228,13 @@
           title: "契約書の注意語・確認ポイント検出（Contract Cleaner）",
           subtitle: "危険条文を断定せず、注意が必要な可能性のある表現をブラウザ内で整理します（AI不使用）。",
           inputDesc: "PDFファイルの直接読み込みには対応していません。本文をコピーできるPDFは、テキストとして貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。",
-          placeholder: "ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"
+          stable content: "ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"
         },
         en: {
           title: "Contract term and review-point checker (Contract Cleaner)",
           subtitle: "Find terms that may need review. This rule-based tool does not decide legal risk.",
           inputDesc: "Direct PDF upload is not supported. If text can be copied from a PDF, paste it as text. Scanned or image-based PDFs are not OCRed here.",
-          placeholder: "Paste contract or terms text here. Direct PDF upload and OCR are not supported."
+          stable content: "Paste contract or terms text here. Direct PDF upload and OCR are not supported."
         }
       };
       const applyStableCopy = () => {
@@ -247,7 +247,7 @@
         if (title) title.textContent = dict.title;
         if (subtitle) subtitle.textContent = dict.subtitle;
         if (inputDesc) inputDesc.textContent = dict.inputDesc;
-        if (textarea) textarea.placeholder = dict.placeholder;
+        if (textarea) textarea.stable content = dict.stable content;
       };
       document.addEventListener("DOMContentLoaded", () => {
         applyStableCopy();
