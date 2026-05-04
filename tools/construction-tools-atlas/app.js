@@ -727,8 +727,8 @@
     els.detailChips.innerHTML = "";
     const chipTexts = []
       .concat(e.type ? [e.type] : [])
-      .concat(e.categories || [])
-      .concat(e.tasks || []);
+      .concat(safeList(e.categories))
+      .concat(safeList(e.tasks));
     chipTexts.slice(0, 8).forEach(t => {
       const s = document.createElement("span");
       s.className = "chip";
@@ -742,7 +742,7 @@
     if (els.detailDesc) els.detailDesc.textContent = best || (state.uiLang === "ja" ? "詳細情報準備中" : "Details coming soon");
 
     if (els.detailBullets) {
-      const bullets = state.uiLang === "ja" ? (e.bulletsJa || []) : (e.bulletsEn || []);
+      const bullets = state.uiLang === "ja" ? safeList(e.bulletsJa) : safeList(e.bulletsEn);
       els.detailBullets.innerHTML = "";
       if (bullets.length) {
         bullets.forEach((item) => {
@@ -767,8 +767,8 @@
       <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${escapeHtml(enText)}</div></div>
     `;
 
-    const exampleJa = (e.examplesJa || []).filter(Boolean);
-    const exampleEn = (e.examplesEn || []).filter(Boolean);
+    const exampleJa = safeList(e.examplesJa).filter(Boolean);
+    const exampleEn = safeList(e.examplesEn).filter(Boolean);
     const exampleList = (items) => items.length
       ? `<ul class="exampleList">${items.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
       : `<span class="muted">—</span>`;
@@ -778,8 +778,8 @@
       <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${exampleList(exampleEn)}</div></div>
     `;
 
-    const ajList = [...new Set([...(e.aliasesJa||[]), ...(e.relatedJa||[])])];
-    const aeList = [...new Set([...(e.aliasesEn||[]), ...(e.relatedEn||[])])];
+    const ajList = [...new Set([...safeList(e.aliasesJa), ...safeList(e.relatedJa)])];
+    const aeList = [...new Set([...safeList(e.aliasesEn), ...safeList(e.relatedEn)])];
     const aj = ajList.length ? ajList.map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ") : `<span class="muted">—</span>`;
     const ae = aeList.length ? aeList.map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ") : `<span class="muted">—</span>`;
     if (els.tabAliases) els.tabAliases.innerHTML = `
