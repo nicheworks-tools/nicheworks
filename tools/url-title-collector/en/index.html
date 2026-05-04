@@ -1,49 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
-  gtag('config', 'G-57QT78M3JB');
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk URL Title Fetcher and CSV/TSV Copy｜URL Title Collector | NicheWorks</title>
+  <meta name="description" content="Fetch page titles from multiple URLs and copy the results as CSV or TSV. This tool uses an external NicheWorks Worker, so do not enter private, internal, login-only, or sensitive URLs.">
+  <meta name="robots" content="index,follow">
 
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>URL Title Collector | NicheWorks</title>
-
-  <!-- canonical -->
   <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/en/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="../style.css">
 
-  <!-- OGP -->
-  <meta property="og:title" content="URL Title Collector | NicheWorks">
-  <meta property="og:description" content="URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。"> from multiple URLs at once.">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Bulk URL Title Fetcher and CSV/TSV Copy｜URL Title Collector | NicheWorks">
+  <meta property="og:description" content="Fetch page titles from multiple URLs and copy the results as CSV or TSV. This tool uses an external NicheWorks Worker, so do not enter private, internal, login-only, or sensitive URLs.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/url-title-collector/en/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <link rel="stylesheet" href="../style.css" />
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <meta name="description" content="URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
-  <meta name="robots" content="index,follow">
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="URL Title Collector | NicheWorks">
-  <meta name="twitter:description" content="URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="twitter:title" content="Bulk URL Title Fetcher and CSV/TSV Copy｜URL Title Collector | NicheWorks">
+  <meta name="twitter:description" content="Fetch page titles from multiple URLs and copy the results as CSV or TSV. This tool uses an external NicheWorks Worker, so do not enter private, internal, login-only, or sensitive URLs.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,92 +40,117 @@
     "url": "https://nicheworks.app/tools/url-title-collector/en/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
-    "inLanguage": [
-      "ja",
-      "en"
-    ],
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
+    "description": "Fetch page titles from multiple URLs and copy the results as CSV or TSV. This tool uses an external NicheWorks Worker."
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are entered URLs sent anywhere?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. Entered URLs are sent to a NicheWorks Worker so it can fetch the page title."}
+      },
+      {
+        "@type": "Question",
+        "name": "Can I enter internal or login-only URLs?",
+        "acceptedAnswer": {"@type": "Answer", "text": "No. Do not enter private, internal, login-only, or sensitive URLs."}
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool unwrap short URLs?",
+        "acceptedAnswer": {"@type": "Answer", "text": "This tool is for title fetching. Use Redirect Unwrapper to inspect short links or tracking redirects."}
+      }
+    ]
+  }
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body>
-
   <header>
-
-    <!-- Language Switch -->
-    <div class="lang-switch" style="text-align:right; font-size:13px; color:#666;">
-      <a href="../index.html" style="color:#666;">JP</a> |
-      <a href="./index.html" style="color:#666;">EN</a>
+    <div class="lang-switch" aria-label="Language switch">
+      <a href="../index.html">JP</a> |
+      <a href="./index.html">EN</a>
     </div>
 
     <h1>URL Title Collector</h1>
-    <p class="sub">Fetch &lt;title&gt; tags from multiple URLs at once</p>
+    <p class="sub">Fetch page titles from multiple URLs and copy them as CSV/TSV</p>
 
-    <!-- Usage link -->
-    <p class="usage-link">
-      <a href="./usage.html">How to use</a>
-    </p>
-
-    <!-- Ad -->
     <div class="ad-area">
-      <div class="ad-stable content">AD</div>
+      <div class="ad-placeholder">Ad space</div>
     </div>
 
+    <p class="usage-link"><a href="./usage.html">How to use</a></p>
   </header>
 
   <main>
+    <section class="intro-card" aria-label="Overview">
+      <p>Paste one URL per line to fetch each page's <code>&lt;title&gt;</code>. You can copy the results as CSV or TSV.</p>
+    </section>
 
-    <label for="urlInput" class="label">List of URLs (one per line)</label>
-    <textarea id="urlInput" stable content="https://nicheworks.app&#10;https://nicheworks.app"></textarea>
+    <section class="notice-card" aria-label="Important notice">
+      <h2>Important notice</h2>
+      <p>This tool sends entered URLs to a NicheWorks Worker to fetch page titles. Do not enter private URLs, internal URLs, login-only pages, or URLs containing personal information.</p>
+      <p>For short links or suspicious URLs, check them with <a href="/tools/redirect-unwrapper/">Redirect Unwrapper</a> first.</p>
+    </section>
 
-    <button id="fetchBtn">Fetch Titles</button>
+    <label for="urlInput" class="label">URL list (one per line, max 50)</label>
+    <textarea id="urlInput" placeholder="https://example.com&#10;https://example.org"></textarea>
+    <p class="input-help">Only http / https URLs are processed. Invalid or duplicate URLs are not sent to the Worker and are shown with a skip reason.</p>
 
-    <!-- Progress -->
-    <div id="progressWrap" class="progress-wrap hidden">
+    <div class="button-row">
+      <button id="fetchBtn">Fetch Titles</button>
+      <button id="sampleBtn" type="button" class="secondary-btn">Load sample</button>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <div id="progressWrap" class="progress-wrap hidden" aria-label="Progress">
       <div id="progressBar" class="progress-bar"></div>
     </div>
 
-    <!-- Count -->
     <div id="countArea" class="count-area hidden">
       <span id="countTotal">Total: 0</span>
       <span id="countSuccess">Success: 0</span>
       <span id="countFail">Failed: 0</span>
+      <span id="countSkip">Skipped: 0</span>
     </div>
 
-    <!-- Results -->
-    <div id="results"></div>
+    <div id="results" class="results-wrap"></div>
 
-    <!-- Export -->
     <div id="exportArea" class="export-area hidden">
       <button id="copyCsvBtn">Copy CSV</button>
       <button id="copyTsvBtn">Copy TSV</button>
       <button id="resetBtn" class="reset-btn">Reset</button>
     </div>
 
+    <section class="faq-section" aria-label="FAQ">
+      <h2>FAQ</h2>
+      <h3>Are entered URLs sent anywhere?</h3>
+      <p>Yes. Entered URLs are sent to a NicheWorks Worker so it can fetch the page title.</p>
+      <h3>Can I enter internal or login-only URLs?</h3>
+      <p>No. Do not enter private, internal, login-only, or sensitive URLs.</p>
+      <h3>Can fetches still fail?</h3>
+      <p>Yes. The Worker may fail when the target site blocks access, times out, or returns a non-HTML response.</p>
+      <h3>Does this tool unwrap short URLs?</h3>
+      <p>This tool is for title fetching. Use Redirect Unwrapper to inspect short links or tracking redirects.</p>
+    </section>
+
+    <div class="nw-links">
+      <a href="/tools/redirect-unwrapper/">Redirect Unwrapper</a> /
+      <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a> /
+      <a href="/tools/csv-tidy/">CSV Tidy</a>
+    </div>
   </main>
 
-  <div class="nw-links">
-  <a href="/tools/manual-finder/">ManualFinder</a> /
-  <a href="/tools/log-formatter/">LogFormatter</a> /
-  <a href="/tools/exif-cleaner-mini/">MetaCleaner Mini</a>
-</div>
-
-
   <footer>
-    <p class="copy">
-      <a href="https://nicheworks.app/" style="color:#666; text-decoration:none;">
-        NicheWorks Home
-      </a>
-    </p>
+    <p class="copy"><a href="https://nicheworks.app/">NicheWorks Home</a></p>
   </footer>
-
-  <!-- Cloudflare Analytics -->
-  
 
   <script src="../app.js"></script>
 </body>
