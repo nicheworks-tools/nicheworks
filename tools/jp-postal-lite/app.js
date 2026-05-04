@@ -12,6 +12,16 @@ const DATA_FILES = Object.fromEntries(PREFS.map((pref) => [pref, `${pref}.json`]
 const DATA_CHECKED_DATE = "2026-05-03";
 const OFFICIAL_REFERENCE_DATE = "2026-04-30";
 const LIMIT = 50;
+const HOKKAIDO_REMOTE_PREFIXES = [
+  "001", "002", "003", "004", "005", "006", "007", "008", "009",
+  "040", "041", "042", "043", "044", "045", "046", "047", "048", "049",
+  "050", "051", "052", "053", "054", "055", "056", "057", "058", "059",
+  "060", "061", "062", "063", "064", "065", "066", "067", "068", "069",
+  "070", "071", "072", "073", "074", "075", "076", "077", "078", "079",
+  "080", "081", "082", "083", "084", "085", "086", "087", "088", "089",
+  "090", "091", "092", "093", "094", "095", "096", "097", "098", "099"
+];
+const HOKKAIDO_REMOTE_BASE = "https://raw.githubusercontent.com/stayforge/japan-postal-code/main/datasets";
 
 const $ = (id) => document.getElementById(id);
 const prefSelect = $("prefecture");
@@ -58,7 +68,7 @@ function initPrefs() {
 
 function initInfo() {
   if (supportedPrefCount) supportedPrefCount.textContent = "47都道府県";
-  if (supportedPrefList) supportedPrefList.textContent = "全国47都道府県のJSONファイルを読み込み対象にしています。";
+  if (supportedPrefList) supportedPrefList.textContent = "全国47都道府県のJSONファイルを読み込み対象にしています。北海道ローカルデータが空の場合は静的バックアップJSONから補完します。";
   if (dataCheckedDate) dataCheckedDate.textContent = DATA_CHECKED_DATE;
   if (officialReferenceDate) officialReferenceDate.textContent = OFFICIAL_REFERENCE_DATE;
 }
@@ -84,6 +94,22 @@ async function loadData(pref) {
   if (!file) throw new Error("unsupported");
   if (cache.has(pref)) return cache.get(pref);
 
+  try {
+    const localData = await loadLocalData(file);
+    cache.set(pref, localData);
+    return localData;
+  } catch (error) {
+    if (pref !== "北海道" || !["empty_data", "invalid_json", "missing_file"].includes(error.message)) {
+      throw error;
+    }
+    const remoteData = await loadRemoteHokkaidoData();
+    cache.set(pref, remoteData);
+    setAlert("北海道はローカルデータが空だったため、静的バックアップJSONから補完して検索しています。", "warn");
+    return remoteData;
+  }
+}
+
+async function loadLocalData(file) {
   const response = await fetch(`./data/${encodeURIComponent(file)}`);
   if (!response.ok) throw new Error("missing_file");
 
@@ -95,8 +121,53 @@ async function loadData(pref) {
   }
 
   if (!Array.isArray(data) || data.length === 0) throw new Error("empty_data");
-  cache.set(pref, data);
   return data;
+}
+
+async function loadRemoteHokkaidoData() {
+  const chunks = [];
+  const batchSize = 8;
+
+  for (let i = 0; i < HOKKAIDO_REMOTE_PREFIXES.length; i += batchSize) {
+    const batch = HOKKAIDO_REMOTE_PREFIXES.slice(i, i + batchSize);
+    const settled = await Promise.allSettled(batch.map(loadRemotePrefix));
+    settled.forEach((result) => {
+      if (result.status === "fulfilled") chunks.push(...result.value);
+    });
+  }
+
+  const converted = [];
+  const seen = new Set();
+  chunks.forEach((item) => {
+    if (item.prefecture_name !== "北海道") return;
+    const postalCode = String(item.postal_code || "").padStart(7, "0");
+    if (!/^\d{7}$/.test(postalCode)) return;
+    const city = item.city_name || "";
+    const rawTown = item.town_name || "";
+    const town = rawTown === "以下に掲載がない場合" ? "" : rawTown;
+    const key = `${postalCode}|${city}|${town}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    converted.push({
+      postal_code: postalCode,
+      postal_hyphen: `${postalCode.slice(0, 3)}-${postalCode.slice(3)}`,
+      pref: "北海道",
+      city,
+      town,
+      full: `北海道${city}${town}`
+    });
+  });
+
+  converted.sort((a, b) => a.postal_code.localeCompare(b.postal_code) || a.full.localeCompare(b.full, "ja"));
+  if (converted.length === 0) throw new Error("remote_empty");
+  return converted;
+}
+
+async function loadRemotePrefix(prefix) {
+  const response = await fetch(`${HOKKAIDO_REMOTE_BASE}/${prefix}.json`, { cache: "force-cache" });
+  if (!response.ok) return [];
+  const data = await response.json();
+  return Array.isArray(data) ? data : [];
 }
 
 function setAlert(message, kind = "error") {
@@ -295,8 +366,8 @@ async function handleSearch() {
     else renderResults(found.rows, found.total);
   } catch (error) {
     if (currentRun !== searchRun) return;
-    const reason = error.message === "empty_data"
-      ? "この都道府県のデータファイルが空です。データ生成をやり直してください。"
+    const reason = error.message === "remote_empty"
+      ? "北海道バックアップデータの読み込みに失敗しました。時間をおいて再読み込みしてください。"
       : "データファイルの読み込みに失敗しました。ファイル名・配置・JSON形式を確認してください。";
     setAlert(reason, "error");
     setEmpty("データの読み込みに失敗しました。");
