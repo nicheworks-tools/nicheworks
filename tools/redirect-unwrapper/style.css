@@ -2,7 +2,6 @@
    NicheWorks 共通ベースレイアウト
 ----------------------------------------- */
 
-/* メインラッパー */
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
@@ -10,25 +9,33 @@
   box-sizing: border-box;
 }
 
-/* ヘッダー（タイトル＋説明） */
 .nw-header {
   text-align: center;
   padding: 20px 12px 8px;
 }
-.nw-desc {
-  margin-top: 4px;
-  font-size: 14px;
-  color: #4b5563;
-  line-height: 1.5;
+
+.nw-header h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.25;
 }
 
-/* 言語切替（v2仕様） */
+.nw-desc {
+  margin: 8px auto 0;
+  max-width: 760px;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* 言語切替 */
 .nw-lang-switch {
   text-align: center;
   margin: 8px 0 12px;
   font-size: 12px;
   color: #6b7280;
 }
+
 .nw-lang-switch button {
   border: none;
   background: transparent;
@@ -37,14 +44,14 @@
   font-size: 12px;
   color: #4b5563;
 }
+
 .nw-lang-switch button.active {
   font-weight: 600;
   text-decoration: underline;
 }
 
 /* ---------------------------------------
-   広告枠（ad-top / ad-bottom / ad-inline）
-   ※ フローティング禁止
+   広告枠
 ----------------------------------------- */
 .ad-slot {
   margin: 14px 0 18px;
@@ -57,30 +64,80 @@
   min-height: 60px;
   border-radius: 6px;
 }
-.ad-top { margin-top: 4px; }
-.ad-bottom { margin-bottom: 8px; }
-.ad-inline { margin: 24px 0; }
+
+.ad-top {
+  margin-top: 4px;
+}
+
+.ad-bottom {
+  margin-bottom: 8px;
+}
 
 /* ---------------------------------------
-   入力フォーム
+   説明・入力
 ----------------------------------------- */
+.intro-box,
+.input-area,
+.result-card,
+.faq-section {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.intro-box {
+  margin: 0 0 16px;
+  line-height: 1.7;
+  color: #374151;
+  font-size: 14px;
+}
+
+.intro-box p {
+  margin: 0 0 8px;
+}
+
+.intro-box p:last-child {
+  margin-bottom: 0;
+}
+
+.caution-text {
+  color: #92400e;
+  font-weight: 600;
+}
+
 .input-area {
   margin-top: 8px;
-  text-align: center;
 }
+
+.input-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
 .input-area textarea {
   width: 100%;
   max-width: 100%;
+  min-height: 110px;
   padding: 12px;
   font-size: 14px;
+  line-height: 1.6;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   resize: vertical;
   box-sizing: border-box;
   background: #ffffff;
+  word-break: break-all;
 }
-.main-btn {
+
+.button-row {
   margin-top: 12px;
+}
+
+.main-btn {
   padding: 12px 22px;
   font-size: 15px;
   color: #ffffff;
@@ -90,40 +147,115 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 .main-btn:hover {
   background: #1f2937;
   transform: translateY(-1px);
 }
 
+.sample-area {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sample-title {
+  margin: 0 0 8px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.sample-area button {
+  margin: 4px 4px 0 0;
+  padding: 7px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.sample-area button:hover {
+  background: #f9fafb;
+}
+
 /* ---------------------------------------
-   解析結果カード
+   解析結果
 ----------------------------------------- */
 #results {
-  margin-top: 22px;
+  margin-top: 18px;
 }
-.result-card {
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  padding: 16px;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+
+.result-card h2,
+.faq-section h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
 }
+
+.result-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #111827;
+}
+
+.result-summary {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.result-block {
+  margin-top: 16px;
+}
+
 .result-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) 1fr;
+  gap: 10px;
   margin: 8px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f3f4f6;
 }
+
 .result-label {
   font-size: 13px;
   color: #6b7280;
 }
+
 .result-value {
   font-size: 14px;
   color: #111827;
   word-break: break-all;
-  margin-top: 2px;
 }
 
-/* エラー表示 */
+.candidate-list,
+.warning-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.candidate-list li,
+.warning-list li {
+  margin: 8px 0;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.candidate-meta {
+  display: block;
+  margin-top: 2px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.warning-list li {
+  color: #7f1d1d;
+}
+
 .result-error {
   border: 1px solid #fca5a5;
   background: #fef2f2;
@@ -131,26 +263,66 @@
   padding: 12px;
   border-radius: 8px;
   font-size: 13px;
-  margin-bottom: 16px;
+  margin: 16px 0;
 }
 
-/* コピーUI */
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
 .copy-btn {
-  margin-top: 8px;
-  padding: 6px 10px;
-  font-size: 12px;
+  padding: 8px 12px;
+  font-size: 13px;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border-radius: 8px;
   background: #ffffff;
   cursor: pointer;
   transition: all 0.2s;
 }
-.copy-btn:hover {
+
+.copy-btn:hover:not(:disabled) {
   background: #f9fafb;
 }
 
+.copy-btn:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
 /* ---------------------------------------
-   寄付導線（v2標準パターンA）
+   FAQ
+----------------------------------------- */
+.faq-section {
+  margin-top: 24px;
+}
+
+.faq-section details {
+  border-top: 1px solid #e5e7eb;
+  padding: 10px 0;
+}
+
+.faq-section details:first-of-type {
+  border-top: none;
+}
+
+.faq-section summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #111827;
+}
+
+.faq-section p {
+  margin: 8px 0 0;
+  color: #4b5563;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* ---------------------------------------
+   寄付導線
 ----------------------------------------- */
 .nw-donate {
   text-align: center;
@@ -159,15 +331,18 @@
   color: #6b7280;
   padding: 6px 0;
 }
+
 .nw-donate-text {
   margin: 4px 0 6px;
 }
+
 .nw-donate-links {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin-top: 4px;
 }
+
 .nw-donate-links a {
   display: inline-block;
   padding: 8px 14px;
@@ -179,6 +354,7 @@
   text-decoration: none;
   transition: all 0.2s ease;
 }
+
 .nw-donate-links a:hover {
   background: #f9fafb;
   transform: translateY(-1px);
@@ -186,25 +362,25 @@
 }
 
 /* ---------------------------------------
-   内部リンク（フッター直前）
+   内部リンク・フッター
 ----------------------------------------- */
 .nw-links {
   text-align: center;
   font-size: 13px;
   margin: 18px 0 10px;
   color: #4b5563;
+  line-height: 1.8;
 }
+
 .nw-links a {
   text-decoration: none;
   color: #4b5563;
 }
+
 .nw-links a:hover {
   text-decoration: underline;
 }
 
-/* ---------------------------------------
-   フッター（共通仕様）
------------------------------------------ */
 .nw-footer {
   margin-top: 24px;
   padding: 16px 8px 12px;
@@ -214,25 +390,49 @@
   text-align: center;
   line-height: 1.6;
 }
+
 .nw-footer-line {
   margin: 2px 0;
 }
+
 .nw-footer a {
   color: #6b7280;
   text-decoration: underline;
 }
 
 /* ---------------------------------------
-   レスポンシブ（スマホ優先）
+   レスポンシブ
 ----------------------------------------- */
 @media (max-width: 640px) {
   .nw-main {
     max-width: 600px;
     padding: 0 10px;
   }
-  .main-btn {
+
+  .nw-header h1 {
+    font-size: 24px;
+  }
+
+  .main-btn,
+  .copy-btn {
     width: 100%;
   }
+
+  .result-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+  }
+
+  .sample-area button {
+    width: 100%;
+    margin-right: 0;
+    border-radius: 8px;
+  }
+
   .nw-donate-links {
     flex-direction: row;
     gap: 8px;
