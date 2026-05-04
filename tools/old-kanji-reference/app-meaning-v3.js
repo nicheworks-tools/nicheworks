@@ -81,7 +81,7 @@
     const [dict, meta, extra2] = await Promise.all([
       fetchJson("./dict.json"),
       fetchJson("./meta.json?v=20260503-okj-meta-3"),
-      fetchJson("./meta-extra-2.json?v=20260503-okj-extra-2").catch(() => ({ entries: {} }))
+      fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} }))
     ]);
     metaCache = {
       popularOrder: meta.popularOrder || [],
