@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (state.lastErrorKey) {
       showError(state.lastErrorKey);
     }
+    if (state.file && state.outputBlob) {
+      updateCompressionAdvice(state.outputBlob.size, state.file.size);
+      updateTransparencyText();
+    }
   };
 
   buttons.forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
@@ -40,10 +44,15 @@ const formatSelect = document.getElementById("format-select");
 const qualityRange = document.getElementById("quality-range");
 const qualityValue = document.getElementById("quality-value");
 const downloadBtn = document.getElementById("download-btn");
+const resetBtn = document.getElementById("reset-btn");
 const previewImage = document.getElementById("preview-image");
 const warningJa = document.getElementById("format-warning");
 const warningEn = document.getElementById("format-warning-en");
 const errorMessage = document.getElementById("error-message");
+const fileNameEl = document.getElementById("file-name");
+const pixelCountEl = document.getElementById("pixel-count");
+const transparencyEl = document.getElementById("transparency");
+const compressionAdviceEl = document.getElementById("compression-advice");
 
 const state = {
   file: null,
@@ -59,22 +68,27 @@ const messages = {
     ja: "ファイルが大きすぎます（最大20MB）。",
     en: "File too large (max 20MB).",
   },
+  unsupportedType: {
+    ja: "この形式は対応外です。PNG / JPEG / WebP の静止画像を選択してください。",
+    en: "This format is not supported. Choose a static PNG, JPEG, or WebP image.",
+  },
   loadFail: {
-    ja: "画像の読み込みに失敗しました。",
-    en: "Failed to load image.",
+    ja: "画像の読み込みに失敗しました。HEIC / RAW / SVG / 破損画像 / ブラウザ非対応形式の可能性があります。",
+    en: "Failed to load the image. It may be HEIC, RAW, SVG, corrupted, or unsupported by this browser.",
   },
   hugeImage: {
-    ja: "画像サイズが大きすぎるため処理できません。",
-    en: "Image dimensions are too large to process.",
+    ja: "画像サイズが大きすぎるため処理できません（最大40MP）。",
+    en: "Image dimensions are too large to process (max 40MP).",
   },
   outputFail: {
-    ja: "圧縮データの生成に失敗しました。",
-    en: "Failed to generate the compressed output.",
+    ja: "圧縮データの生成に失敗しました。別の形式や品質設定で試してください。",
+    en: "Failed to generate the compressed output. Try another format or quality setting.",
   },
 };
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024;
 const MAX_PIXELS = 40_000_000;
+const SUPPORTED_INPUT_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
 let compressTimer = null;
 
 uploadArea.addEventListener("click", () => fileInput.click());
@@ -98,15 +112,19 @@ fileInput.addEventListener("change", () => {
   handleFile(file);
 });
 
-// --------------------
-// ファイル処理
-// --------------------
 function handleFile(file) {
   if (!file) return;
 
-  // 20MB制限
+  clearError();
+  resetOutputState();
+
   if (file.size > MAX_FILE_SIZE) {
     showError("fileTooLarge");
+    return;
+  }
+
+  if (file.type && !SUPPORTED_INPUT_TYPES.has(file.type)) {
+    showError("unsupportedType");
     return;
   }
 
@@ -117,39 +135,34 @@ function handleFile(file) {
     img.onerror = () => showError("loadFail");
     img.src = e.target.result;
   };
+  reader.onerror = () => showError("loadFail");
   reader.readAsDataURL(file);
 }
 
-// --------------------
-// 画像解析（MVP）
-// --------------------
 function processImage(file, img) {
   clearError();
   state.file = file;
   state.img = img;
   state.hasTransparency = detectTransparency(img);
 
-  if (img.naturalWidth * img.naturalHeight > MAX_PIXELS) {
+  const totalPixels = img.naturalWidth * img.naturalHeight;
+  if (totalPixels > MAX_PIXELS) {
     showError("hugeImage");
     return;
   }
 
   resetOutputState();
 
-  // 元フォーマット
+  fileNameEl.textContent = file.name || "-";
   document.getElementById("format").textContent = file.type || "unknown";
-
-  // ファイルサイズ
-  document.getElementById("size").textContent =
-    (file.size / 1024).toFixed(1) + " KB";
-
-  // 解像度
+  document.getElementById("size").textContent = formatBytes(file.size);
   document.getElementById("resolution").textContent =
     img.naturalWidth + " x " + img.naturalHeight;
+  pixelCountEl.textContent = totalPixels.toLocaleString();
+  updateTransparencyText();
 
-  // 結果表示
-  document.getElementById("result-content").classList.remove("hidden");
-  document.querySelectorAll(".no-result").forEach((n) => (n.style.display = "none"));
+  resultContent.classList.remove("hidden");
+  setNoResultVisible(false);
   updateWarning();
   updateCompression();
 }
@@ -168,6 +181,13 @@ function detectTransparency(img) {
     }
   }
   return false;
+}
+
+function updateTransparencyText() {
+  const lang = currentLang();
+  transparencyEl.textContent = state.hasTransparency
+    ? lang === "ja" ? "あり" : "Yes"
+    : lang === "ja" ? "なし" : "No";
 }
 
 function updateWarning() {
@@ -214,6 +234,7 @@ function generateCompressedOutput(quality) {
       outputSizeEl.textContent = formatBytes(blob.size);
       reductionEl.textContent = formatReduction(blob.size, state.file.size);
       outputFormatEl.textContent = formatLabel(format);
+      updateCompressionAdvice(blob.size, state.file.size);
       updatePreview(blob);
       downloadBtn.disabled = false;
       clearError();
@@ -231,6 +252,29 @@ function updatePreview(blob) {
   previewImage.src = state.outputUrl;
 }
 
+function updateCompressionAdvice(outputBytes, originalBytes) {
+  const ratio = (1 - outputBytes / originalBytes) * 100;
+  const lang = currentLang();
+
+  if (ratio >= 30) {
+    compressionAdviceEl.textContent = lang === "ja"
+      ? "おすすめ：圧縮効果があります。表示品質を確認して問題なければ使えます。"
+      : "Recommendation: compression is effective. Check the visual quality before using it.";
+    return;
+  }
+
+  if (ratio >= 0) {
+    compressionAdviceEl.textContent = lang === "ja"
+      ? "おすすめ：軽い圧縮です。品質を下げるか、元画像のまま使うか比較してください。"
+      : "Recommendation: light reduction. Compare this with the original or lower the quality if needed.";
+    return;
+  }
+
+  compressionAdviceEl.textContent = lang === "ja"
+    ? "注意：元画像より大きくなっています。元画像のまま使う方が軽い可能性があります。"
+    : "Note: the generated file is larger than the original. The original may be the lighter option.";
+}
+
 function formatBytes(bytes) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -239,8 +283,7 @@ function formatBytes(bytes) {
 
 function formatReduction(outputBytes, originalBytes) {
   const ratio = (1 - outputBytes / originalBytes) * 100;
-  const sign = ratio >= 0 ? "" : "-";
-  return `${sign}${Math.abs(ratio).toFixed(1)}%`;
+  return `${ratio.toFixed(1)}%`;
 }
 
 function formatLabel(format) {
@@ -253,6 +296,12 @@ function currentLang() {
   return document.documentElement.dataset.lang || "ja";
 }
 
+function setNoResultVisible(visible) {
+  document.querySelectorAll(".no-result").forEach((node) => {
+    node.classList.toggle("hidden", !visible);
+  });
+}
+
 function showError(key) {
   state.lastErrorKey = key;
   resetOutputState();
@@ -260,7 +309,7 @@ function showError(key) {
   errorMessage.textContent = messages[key][lang] || messages[key].en;
   errorMessage.classList.remove("hidden");
   resultContent.classList.remove("hidden");
-  document.querySelectorAll(".no-result").forEach((n) => (n.style.display = "none"));
+  setNoResultVisible(false);
   downloadBtn.disabled = true;
 }
 
@@ -274,6 +323,8 @@ function resetOutputState() {
   outputSizeEl.textContent = "-";
   reductionEl.textContent = "-";
   outputFormatEl.textContent = formatLabel(formatSelect.value);
+  compressionAdviceEl.textContent = "";
+  state.outputBlob = null;
   downloadBtn.disabled = true;
   if (state.outputUrl) {
     URL.revokeObjectURL(state.outputUrl);
@@ -282,8 +333,33 @@ function resetOutputState() {
   previewImage.removeAttribute("src");
 }
 
+function resetTool() {
+  if (compressTimer) {
+    window.clearTimeout(compressTimer);
+    compressTimer = null;
+  }
+  resetOutputState();
+  state.file = null;
+  state.img = null;
+  state.hasTransparency = false;
+  state.lastErrorKey = "";
+  fileInput.value = "";
+  fileNameEl.textContent = "";
+  document.getElementById("format").textContent = "";
+  document.getElementById("size").textContent = "";
+  document.getElementById("resolution").textContent = "";
+  pixelCountEl.textContent = "";
+  transparencyEl.textContent = "";
+  warningJa.classList.add("hidden");
+  warningEn.classList.add("hidden");
+  clearError();
+  resultContent.classList.add("hidden");
+  setNoResultVisible(true);
+}
+
 qualityRange.addEventListener("input", updateCompression);
 formatSelect.addEventListener("change", updateCompression);
+resetBtn.addEventListener("click", resetTool);
 
 downloadBtn.addEventListener("click", () => {
   if (!state.outputBlob || !state.file) return;
@@ -295,4 +371,10 @@ downloadBtn.addEventListener("click", () => {
   link.href = state.outputUrl;
   link.download = filename;
   link.click();
+});
+
+window.addEventListener("beforeunload", () => {
+  if (state.outputUrl) {
+    URL.revokeObjectURL(state.outputUrl);
+  }
 });

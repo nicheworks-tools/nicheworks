@@ -11,32 +11,31 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks</title>
-  <meta name="description" content="画像をアップロードして圧縮率・解像度・最適フォーマットを自動判定する無料ツール。PNG/JPEG/WebPの診断に対応し、SNS投稿前の最適化に役立ちます。">
+  <title>画像圧縮サイズ比較・JPEG/WebP変換｜Image Compression Inspector | NicheWorks</title>
+  <meta name="description" content="画像をブラウザ内でJPEGまたはWebPに再圧縮し、生成後サイズ・削減率・解像度を確認できる無料ツールです。PNG/JPEG/WebPなどの画像をサーバー送信なしで確認できます。">
+  <meta name="robots" content="index,follow">
 
   <link rel="canonical" href="https://nicheworks.app/tools/image-compression-inspector/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks">
-  <meta property="og:description" content="画像をアップロードして圧縮率・解像度・最適フォーマットを自動判定する無料ツール。PNG/JPEG/WebPの診断に対応し、SNS投稿前の最適化に役立ちます。">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="画像圧縮サイズ比較・JPEG/WebP変換｜Image Compression Inspector | NicheWorks">
+  <meta property="og:description" content="画像をブラウザ内でJPEGまたはWebPに再圧縮し、生成後サイズ・削減率・解像度を確認できる無料ツールです。">
   <meta property="og:url" content="https://nicheworks.app/tools/image-compression-inspector/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- favicon -->
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta name="twitter:title" content="画像圧縮サイズ比較・JPEG/WebP変換｜Image Compression Inspector | NicheWorks">
+  <meta name="twitter:description" content="画像をブラウザ内でJPEGまたはWebPに再圧縮し、生成後サイズ・削減率・解像度を確認できる無料ツールです。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <!-- AdSense（必須） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Analytics -->
-  
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -46,69 +45,76 @@
     "name": "Image Compression Inspector",
     "url": "https://nicheworks.app/tools/image-compression-inspector/",
     "applicationCategory": "UtilityApplication",
-    "description": "画像をアップロードして圧縮率・解像度・最適フォーマットを診断する無料ツール。",
+    "description": "画像をブラウザ内でJPEGまたはWebPに再圧縮し、生成後サイズ・削減率・解像度を確認できる無料ツールです。",
     "operatingSystem": "All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "画像はサーバーに送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。画像の読み込み、再圧縮、サイズ確認はブラウザ内で処理されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "PNGを圧縮できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PNGを読み込んでJPEGまたはWebPに変換し、生成後サイズを比較できます。PNGの可逆圧縮出力は行いません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JPEGにすると透明部分はどうなりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JPEGは透過に対応しないため、このツールでは透明部分を白背景として保存します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "生成後サイズが元画像より大きくなることはありますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "あります。元画像がすでに十分圧縮されている場合、JPEGやWebPに再変換しても大きくなることがあります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "HEICやRAWに対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "対応していません。PNG、JPEG、WebPなど、ブラウザで読み込める静止画像を対象にしています。"
+        }
+      }
+    ]
   }
   </script>
 
   <link rel="stylesheet" href="/tools/image-compression-inspector/style.css">
 
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks">
-  <meta property="og:description:en" content="This NicheWorks page has been updated with a stable description.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.app/tools/image-compression-inspector/">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks">
-  <meta name="twitter:description:en" content="This NicheWorks page has been updated with a stable description.">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <!-- JSON-LD 日本語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "画像圧縮率チェッカー｜Image Compression Inspector",
-    "url": "https://nicheworks.app/tools/image-compression-inspector/",
-    "description": "画像をアップロードして圧縮率・解像度・最適フォーマットを自動判定する無料ツール。PNG/JPEG/WebPの診断に対応し、SNS投稿前の最適化に役立ちます。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
-  }
-  </script>
-  <!-- JSON-LD 英語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks",
-    "url": "https://nicheworks.app/tools/image-compression-inspector/",
-    "description": "This NicheWorks page has been updated with a stable description.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
-  }
-  </script>
 <script defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
 </script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="画像圧縮率チェッカー｜Image Compression Inspector | NicheWorks">
-  <meta name="twitter:description" content="画像をアップロードして圧縮率・解像度・最適フォーマットを自動判定する無料ツール。PNG/JPEG/WebPの診断に対応し、SNS投稿前の最適化に役立ちます。">
 </head>
 
 <body>
 
 <header class="nw-header">
-  <h1 data-i18n="ja">画像圧縮率チェッカー</h1>
+  <h1 data-i18n="ja">画像圧縮サイズ比較</h1>
   <h1 data-i18n="en">Image Compression Inspector</h1>
 
-  <p data-i18n="ja">画像をアップロードして、圧縮率・最適フォーマット・解像度をすぐ確認できます。</p>
-  <p data-i18n="en">Upload an image to instantly check compression ratio, optimal format, and resolution.</p>
+  <p data-i18n="ja">画像をJPEGまたはWebPに再圧縮し、生成後サイズ・削減率・解像度を確認できます。</p>
+  <p data-i18n="en">Re-compress an image as JPEG or WebP and check the generated size, reduction, and resolution.</p>
 
-  <!-- 言語切替UI -->
   <div class="nw-lang-switch">
     <button data-lang="ja">JP</button> /
     <button data-lang="en">EN</button>
@@ -117,21 +123,26 @@
 
 <main class="nw-main">
 
-  <!-- 上部広告枠（必須） -->
   <div class="ad-slot ad-top">広告枠</div>
 
-  <!-- アップロード UI -->
+  <section class="intro-box">
+    <p data-i18n="ja">画像を選ぶと、元サイズとJPEG/WebP変換後のサイズをブラウザ内で比較できます。サーバー送信は行いません。</p>
+    <p data-i18n="en">Select an image to compare the original file size with JPEG/WebP output generated in your browser. Nothing is uploaded to a server.</p>
+  </section>
+
   <div id="upload-area" class="upload-box">
     <p data-i18n="ja">ここに画像をドラッグ＆ドロップ、またはクリックして選択</p>
     <p data-i18n="en">Drag & drop an image here, or click to upload</p>
-    <input type="file" id="file-input" accept="image/*" hidden>
+    <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp" hidden>
   </div>
 
-  <!-- 対応形式 -->
-  <p class="helper-text" data-i18n="ja">対応形式：PNG / JPEG / WebP（最大 20MB）。RAW・HEIC は非対応です。</p>
-  <p class="helper-text" data-i18n="en">Supported formats: PNG / JPEG / WebP (up to 20MB). RAW/HEIC are not supported.</p>
+  <div class="helper-box">
+    <p data-i18n="ja">入力：PNG / JPEG / WebP などブラウザで読み込める静止画像。出力：JPEG / WebP。</p>
+    <p data-i18n="en">Input: static images your browser can read, such as PNG, JPEG, and WebP. Output: JPEG or WebP.</p>
+    <p data-i18n="ja">非対応：RAW / HEIC / SVG / 一部AVIF / アニメーション画像の全フレーム処理。形式が不明な場合は FileType Sniffer も使えます。</p>
+    <p data-i18n="en">Not supported: RAW, HEIC, SVG, some AVIF files, and full-frame processing for animated images. Use FileType Sniffer if the format is unclear.</p>
+  </div>
 
-  <!-- 結果出力 -->
   <section id="result-section" class="result-section">
     <h2 data-i18n="ja">解析結果</h2>
     <h2 data-i18n="en">Analysis Result</h2>
@@ -144,17 +155,21 @@
         <div class="result-card">
           <h3 data-i18n="ja">元データ</h3>
           <h3 data-i18n="en">Original</h3>
+          <p><strong data-i18n="ja">ファイル名：</strong><strong data-i18n="en">File name:</strong> <span id="file-name"></span></p>
           <p><strong data-i18n="ja">形式：</strong><strong data-i18n="en">Format:</strong> <span id="format"></span></p>
-          <p><strong data-i18n="ja">ファイルサイズ：</strong><strong data-i18n="en">File Size:</strong> <span id="size"></span></p>
+          <p><strong data-i18n="ja">ファイルサイズ：</strong><strong data-i18n="en">File size:</strong> <span id="size"></span></p>
           <p><strong data-i18n="ja">解像度：</strong><strong data-i18n="en">Resolution:</strong> <span id="resolution"></span></p>
+          <p><strong data-i18n="ja">総ピクセル数：</strong><strong data-i18n="en">Total pixels:</strong> <span id="pixel-count"></span></p>
+          <p><strong data-i18n="ja">透過：</strong><strong data-i18n="en">Transparency:</strong> <span id="transparency"></span></p>
         </div>
 
         <div class="result-card">
-          <h3 data-i18n="ja">圧縮後</h3>
-          <h3 data-i18n="en">Compressed</h3>
-          <p><strong data-i18n="ja">推定サイズ：</strong><strong data-i18n="en">Estimated Size:</strong> <span id="output-size">-</span></p>
+          <h3 data-i18n="ja">生成後</h3>
+          <h3 data-i18n="en">Generated</h3>
+          <p><strong data-i18n="ja">生成後サイズ：</strong><strong data-i18n="en">Generated size:</strong> <span id="output-size">-</span></p>
           <p><strong data-i18n="ja">削減率：</strong><strong data-i18n="en">Reduction:</strong> <span id="reduction">-</span></p>
           <p><strong data-i18n="ja">形式：</strong><strong data-i18n="en">Format:</strong> <span id="output-format">-</span></p>
+          <p id="compression-advice" class="advice"></p>
         </div>
       </div>
 
@@ -175,32 +190,79 @@
           <span id="quality-value">0.80</span>
         </label>
 
-        <p id="format-warning" class="warning hidden" data-i18n="ja">※ 元画像に透明部分があります。JPEG は背景色が変わる場合があります。</p>
-        <p id="format-warning-en" class="warning hidden" data-i18n="en">* This image has transparency. JPEG may change the background color.</p>
+        <div class="format-help">
+          <p data-i18n="ja"><strong>JPEG：</strong>写真向け。透過は保持できず、このツールでは白背景になります。</p>
+          <p data-i18n="en"><strong>JPEG:</strong> Good for photos. Transparency cannot be kept, so this tool saves transparent areas on a white background.</p>
+          <p data-i18n="ja"><strong>WebP：</strong>写真・イラストの両方で小さくなる場合があります。PNGの可逆圧縮は行いません。</p>
+          <p data-i18n="en"><strong>WebP:</strong> Can be smaller for photos and illustrations. This tool does not perform lossless PNG optimization.</p>
+        </div>
 
-        <button id="download-btn" class="download-btn" disabled>
-          <span data-i18n="ja">圧縮してダウンロード</span>
-          <span data-i18n="en">Compress & Download</span>
-        </button>
+        <p id="format-warning" class="warning hidden" data-i18n="ja">※ JPEGは透過を保持できません。このツールでは白背景として保存します。</p>
+        <p id="format-warning-en" class="warning hidden" data-i18n="en">* JPEG cannot preserve transparency. This tool saves transparent areas on a white background.</p>
+
+        <div class="button-row">
+          <button id="download-btn" class="download-btn" disabled>
+            <span data-i18n="ja">生成画像をダウンロード</span>
+            <span data-i18n="en">Download generated image</span>
+          </button>
+          <button id="reset-btn" class="download-btn secondary" type="button">
+            <span data-i18n="ja">リセット</span>
+            <span data-i18n="en">Reset</span>
+          </button>
+        </div>
       </div>
 
       <div class="preview-area">
-        <h3 data-i18n="ja">圧縮プレビュー</h3>
-        <h3 data-i18n="en">Compressed Preview</h3>
-        <img id="preview-image" alt="Compressed preview" loading="lazy">
+        <h3 data-i18n="ja">生成プレビュー</h3>
+        <h3 data-i18n="en">Generated Preview</h3>
+        <img id="preview-image" alt="Generated image preview" loading="lazy">
       </div>
 
       <p id="error-message" class="error hidden"></p>
 
-      <p class="note" data-i18n="ja">※ 推定サイズは現在の品質設定に基づきます。実際の保存結果と同等です。</p>
-      <p class="note" data-i18n="en">* Estimated size is based on the current quality setting and matches the exported file.</p>
+      <p class="note" data-i18n="ja">※ 生成後サイズは、現在の品質設定でブラウザ内生成した出力サイズです。</p>
+      <p class="note" data-i18n="en">* Generated size is the output size created in your browser with the current quality setting.</p>
     </div>
   </section>
 
-  <!-- 下部広告枠 -->
+  <section class="faq-section" aria-labelledby="faq-title">
+    <h2 id="faq-title" data-i18n="ja">よくある質問</h2>
+    <h2 data-i18n="en">FAQ</h2>
+
+    <div class="faq-item">
+      <h3 data-i18n="ja">画像はサーバーに送信されますか？</h3>
+      <h3 data-i18n="en">Are images uploaded to a server?</h3>
+      <p data-i18n="ja">いいえ。画像の読み込み、再圧縮、サイズ確認はブラウザ内で処理されます。</p>
+      <p data-i18n="en">No. Loading, re-compression, and size checks are handled in your browser.</p>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="ja">PNGを圧縮できますか？</h3>
+      <h3 data-i18n="en">Can this compress PNG files?</h3>
+      <p data-i18n="ja">PNGを読み込んでJPEGまたはWebPに変換し、生成後サイズを比較できます。PNGの可逆圧縮出力は行いません。</p>
+      <p data-i18n="en">You can load a PNG and compare JPEG/WebP output sizes. Lossless PNG optimization is not supported.</p>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="ja">JPEGにすると透明部分はどうなりますか？</h3>
+      <h3 data-i18n="en">What happens to transparent areas when using JPEG?</h3>
+      <p data-i18n="ja">JPEGは透過に対応しないため、このツールでは透明部分を白背景として保存します。</p>
+      <p data-i18n="en">JPEG does not support transparency, so this tool saves transparent areas on a white background.</p>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="ja">生成後サイズが元画像より大きくなることはありますか？</h3>
+      <h3 data-i18n="en">Can the generated file become larger than the original?</h3>
+      <p data-i18n="ja">あります。元画像がすでに十分圧縮されている場合、再変換で大きくなることがあります。</p>
+      <p data-i18n="en">Yes. If the original is already well compressed, re-compression can create a larger file.</p>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="ja">HEICやRAWに対応していますか？</h3>
+      <h3 data-i18n="en">Are HEIC and RAW supported?</h3>
+      <p data-i18n="ja">対応していません。PNG、JPEG、WebPなど、ブラウザで読み込める静止画像を対象にしています。</p>
+      <p data-i18n="en">No. This tool targets static images your browser can read, such as PNG, JPEG, and WebP.</p>
+    </div>
+  </section>
+
   <div class="ad-slot ad-bottom">広告枠</div>
 
-  <!-- 寄付導線 -->
   <div class="nw-donate">
     <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためにご支援いただけると嬉しいです。</p>
     <p class="nw-donate-text" data-i18n="en">If this tool is helpful, your support keeps the development going.</p>
@@ -222,16 +284,18 @@
     <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
   </p>
 
-  <!-- 内部リンク -->
   <div class="nw-links">
-    <a href="/tools/manual-finder/" data-i18n="ja">ManualFinder（公式マニュアル検索）</a>
-    <a href="/tools/manual-finder/" data-i18n="en">ManualFinder (Manual Search)</a>
+    <a href="/tools/webp-avif-converter/" data-i18n="ja">WebP / AVIF Converter</a>
+    <a href="/tools/webp-avif-converter/" data-i18n="en">WebP / AVIF Converter</a>
 
-    <a href="/tools/trashnavi/" data-i18n="ja">TrashNavi（ごみ分別リンク）</a>
-    <a href="/tools/trashnavi/" data-i18n="en">TrashNavi (Waste Guide)</a>
+    <a href="/tools/exif-cleaner-mini/" data-i18n="ja">EXIF Cleaner Mini</a>
+    <a href="/tools/exif-cleaner-mini/" data-i18n="en">EXIF Cleaner Mini</a>
 
-    <a href="/tools/log-formatter/" data-i18n="ja">LogFormatter（ログ整形）</a>
-    <a href="/tools/log-formatter/" data-i18n="en">LogFormatter (Log Formatter)</a>
+    <a href="/tools/image-redact/" data-i18n="ja">Image Redact</a>
+    <a href="/tools/image-redact/" data-i18n="en">Image Redact</a>
+
+    <a href="/tools/filetype-sniffer/" data-i18n="ja">FileType Sniffer</a>
+    <a href="/tools/filetype-sniffer/" data-i18n="en">FileType Sniffer</a>
   </div>
 </footer>
 
