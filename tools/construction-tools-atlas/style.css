@@ -320,9 +320,17 @@ body.is-locked{
 .sheet{
   position:fixed;
   left:0; right:0;
+  bottom:0;
+  width:100%;
+  max-height:min(82dvh, calc(100dvh - 56px));
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
   z-index:1300;
   background:var(--card);
   border:1px solid var(--line);
+  border-top-left-radius:18px;
+  border-top-right-radius:18px;
   box-shadow:var(--shadow);
 }
 .sheet__top{
@@ -341,6 +349,10 @@ body.is-locked{
 }
 .sheet__body{padding:12px}
 .sheet__body--compact{padding:12px 12px 18px}
+.sheet__body--compact .pillbtn{
+  margin-right:8px;
+  margin-bottom:8px;
+}
 
 .sheet--bottom{
   bottom:0;
