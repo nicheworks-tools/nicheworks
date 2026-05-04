@@ -22,6 +22,7 @@ let sourceUrl = null;
 let previewUrl = null;
 let currentOutputExt = "png";
 let currentLang = "ja";
+let isConverting = false;
 
 const I18N = {
   ja: {
@@ -52,9 +53,11 @@ const I18N = {
     faqMetaA: "A. Canvasで再生成するため多くのメタデータは引き継がれませんが、完全な削除保証ではありません。",
     donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。",
     footerNote: "本ツールはブラウザ上のみで処理され、画像は一切送信されません。",
-    unsupported: "対応形式ではありません。WebPまたはAVIF画像を選択してください。拡張子が正しいか不明な場合は FileType Sniffer で確認できます。",
-    loadFailed: "画像の読み込みに失敗しました。AVIF非対応ブラウザ、破損ファイル、拡張子偽装の可能性があります。FileType Snifferで形式を確認してください。",
+    unsupported: "対応形式ではありません。WebPまたはAVIF画像を選択してください。",
+    tooManyFiles: "現在は1枚ずつの変換です。1枚だけ選択してください。",
+    loadFailed: "画像の読み込みに失敗しました。AVIF非対応ブラウザ、破損ファイル、拡張子偽装の可能性があります。",
     convertFailed: "変換中にエラーが発生しました。画像が大きすぎる、またはブラウザが形式に対応していない可能性があります。",
+    snifferHelp: "FileType Snifferで形式を確認する",
     selected: "選択中",
     original: "変換元",
     converted: "変換後",
@@ -88,9 +91,11 @@ const I18N = {
     faqMetaA: "A. The image is regenerated through Canvas, so much metadata is not carried over. This is not a guaranteed metadata cleaner.",
     donateText: "If this tool helped, support helps keep NicheWorks running.",
     footerNote: "This tool runs in your browser and does not upload images.",
-    unsupported: "Unsupported file type. Please choose a WebP or AVIF image. If the extension looks wrong, check it with FileType Sniffer.",
-    loadFailed: "The image could not be loaded. The browser may not support AVIF, the file may be broken, or the extension may be wrong. Check it with FileType Sniffer.",
+    unsupported: "Unsupported file type. Please choose a WebP or AVIF image.",
+    tooManyFiles: "This tool currently converts one image at a time. Choose one file only.",
+    loadFailed: "The image could not be loaded. The browser may not support AVIF, the file may be broken, or the extension may be wrong.",
     convertFailed: "Conversion failed. The image may be too large, or your browser may not support this format.",
+    snifferHelp: "Check the file with FileType Sniffer",
     selected: "Selected",
     original: "Original",
     converted: "Converted",
@@ -112,8 +117,18 @@ function formatBytes(bytes) {
   return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
 }
 
-function showError(msg) {
-  errorBox.innerHTML = `${msg} <a href="/tools/filetype-sniffer/">FileType Sniffer</a>`;
+function showError(msg, includeSnifferLink = false) {
+  errorBox.textContent = msg;
+
+  if (includeSnifferLink) {
+    const space = document.createTextNode(" ");
+    const link = document.createElement("a");
+    link.href = "/tools/filetype-sniffer/";
+    link.textContent = t("snifferHelp");
+    errorBox.appendChild(space);
+    errorBox.appendChild(link);
+  }
+
   errorBox.style.display = "block";
   hideProgress();
 }
@@ -183,14 +198,31 @@ function updateFileInfo(extra = "") {
 }
 
 function setButtonsEnabled(enabled) {
-  convertBtn.disabled = !enabled;
-  convertJpegBtn.disabled = !enabled;
+  const usable = Boolean(enabled && loadedFile && !isConverting);
+  convertBtn.disabled = !usable;
+  convertJpegBtn.disabled = !usable;
+}
+
+function setStoredLang(lang) {
+  try {
+    localStorage.setItem("webpAvifConverterLang", lang);
+  } catch (e) {
+    // Storage can be unavailable in some privacy modes. The UI still works.
+  }
+}
+
+function getStoredLang() {
+  try {
+    return localStorage.getItem("webpAvifConverterLang");
+  } catch (e) {
+    return null;
+  }
 }
 
 function setLang(lang) {
   currentLang = I18N[lang] ? lang : "ja";
   document.documentElement.lang = currentLang;
-  localStorage.setItem("webpAvifConverterLang", currentLang);
+  setStoredLang(currentLang);
 
   document.querySelectorAll("[data-i18n-key]").forEach((el) => {
     const value = t(el.dataset.i18nKey);
@@ -232,14 +264,27 @@ dropZone.addEventListener("dragleave", () => {
 dropZone.addEventListener("drop", (e) => {
   e.preventDefault();
   dropZone.classList.remove("dragover");
-  handleFile(e.dataTransfer.files[0]);
+  handleFileList(e.dataTransfer.files);
 });
 
 fileInput.addEventListener("change", (e) => {
-  handleFile(e.target.files[0]);
+  handleFileList(e.target.files);
 });
 
+function handleFileList(files) {
+  if (!files || files.length === 0) return;
+  if (files.length > 1) {
+    clearError();
+    hideProgress();
+    showError(t("tooManyFiles"));
+    return;
+  }
+  handleFile(files[0]);
+}
+
 function handleFile(file) {
+  if (isConverting) return;
+
   clearError();
   hideProgress();
   revokeUrls();
@@ -250,7 +295,7 @@ function handleFile(file) {
   if (!file) return;
 
   if (!isSupportedImage(file)) {
-    showError(t("unsupported"));
+    showError(t("unsupported"), true);
     fileInput.value = "";
     return;
   }
@@ -276,11 +321,13 @@ async function loadImageFromFile(file) {
 }
 
 async function convertImage(type = "png") {
-  if (!loadedFile) return;
+  if (!loadedFile || isConverting) return;
 
   clearError();
   showProgress();
   resetResultOnly();
+  isConverting = true;
+  setButtonsEnabled(false);
 
   try {
     const img = await loadImageFromFile(loadedFile);
@@ -289,6 +336,7 @@ async function convertImage(type = "png") {
     canvas.height = img.naturalHeight || img.height;
 
     const ctx = canvas.getContext("2d", { alpha: type !== "jpeg" });
+    if (!ctx) throw new Error("canvas context failed");
 
     if (type === "jpeg") {
       ctx.fillStyle = "#fff";
@@ -309,13 +357,16 @@ async function convertImage(type = "png") {
     resultBlock.style.display = "block";
     resultBlock.scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (e) {
-    showError(e && e.message === "image load failed" ? t("loadFailed") : t("convertFailed"));
+    const isLoadError = e && e.message === "image load failed";
+    showError(isLoadError ? t("loadFailed") : t("convertFailed"), isLoadError);
   } finally {
     hideProgress();
     if (sourceUrl) {
       URL.revokeObjectURL(sourceUrl);
       sourceUrl = null;
     }
+    isConverting = false;
+    setButtonsEnabled(Boolean(loadedFile));
   }
 }
 
@@ -339,6 +390,7 @@ downloadBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   loadedFile = null;
   convertedBlob = null;
+  isConverting = false;
   revokeUrls();
 
   fileInput.value = "";
@@ -361,6 +413,6 @@ document.querySelectorAll(".nw-lang-btn").forEach((btn) => {
   btn.addEventListener("click", () => setLang(btn.dataset.lang));
 });
 
-const savedLang = localStorage.getItem("webpAvifConverterLang");
+const savedLang = getStoredLang();
 const browserLang = (navigator.language || "").toLowerCase();
 setLang(savedLang || (browserLang.startsWith("ja") ? "ja" : "en"));
