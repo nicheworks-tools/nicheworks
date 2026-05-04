@@ -7,7 +7,7 @@
 
   Checks:
     - meta keys exist in dict.json
-    - modern values match dict.json
+    - modern values match dict.json, except explicitly allowed legacy mapping conflicts
     - popularOrder entries exist and have complete verified metadata
     - verified entries have reading / meaning / category
     - placeholder-like text is not included
@@ -30,6 +30,13 @@ const FORBIDDEN_PATTERNS = [
   /TBD/i,
   /旧字体「.*」は現代表記「.*」に対応します/
 ];
+
+// dict.json currently contains a few historical/variant quirks. Keep these explicit
+// so the validator still catches accidental mismatches everywhere else.
+const MODERN_MISMATCH_ALLOWLIST = {
+  "獨": "dict currently maps 獨 to itself; meta intentionally normalizes it to 独.",
+  "據": "dict contains duplicate 據 mappings; meta may intentionally use 拠 depending on entry source."
+};
 
 function readJson(filePath) {
   try {
@@ -107,7 +114,11 @@ function main() {
 
     const expectedModern = normalizeModern(oldToNew[oldChar]);
     if (hasText(entry.modern) && entry.modern !== expectedModern) {
-      errors.push(`Modern mismatch for ${oldChar}: meta=${entry.modern} dict=${expectedModern}`);
+      if (MODERN_MISMATCH_ALLOWLIST[oldChar]) {
+        warnings.push(`Allowed modern mismatch for ${oldChar}: meta=${entry.modern} dict=${expectedModern}. ${MODERN_MISMATCH_ALLOWLIST[oldChar]}`);
+      } else {
+        errors.push(`Modern mismatch for ${oldChar}: meta=${entry.modern} dict=${expectedModern}`);
+      }
     }
 
     if (!hasText(entry.category)) {
