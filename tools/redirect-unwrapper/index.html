@@ -50,34 +50,22 @@
           {
             "@type": "Question",
             "name": "このツールはURLを開きますか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "いいえ。URL文字列を解析し、埋め込まれた転送先候補を抽出します。"
-            }
+            "acceptedAnswer": {"@type": "Answer", "text": "いいえ。URL文字列を解析し、埋め込まれた転送先候補を抽出します。"}
           },
           {
             "@type": "Question",
             "name": "bit.ly や t.co の最終URLを完全に追跡できますか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "いいえ。サーバー側リダイレクトの完全追跡は行いません。"
-            }
+            "acceptedAnswer": {"@type": "Answer", "text": "いいえ。サーバー側リダイレクトの完全追跡は行いません。"}
           },
           {
             "@type": "Question",
             "name": "表示された候補URLは安全ですか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "安全性は保証しません。不明なリンクは開かないでください。"
-            }
+            "acceptedAnswer": {"@type": "Answer", "text": "安全性は保証しません。不明なリンクは開かないでください。"}
           },
           {
             "@type": "Question",
             "name": "URLはサーバーに送信されますか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "入力URLの解析はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"
-            }
+            "acceptedAnswer": {"@type": "Answer", "text": "入力URLの解析はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}
           }
         ]
       }
@@ -85,14 +73,8 @@
   }
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -102,184 +84,70 @@
       <span data-i18n="ja">Redirect Unwrapper（追跡リンク解析）</span>
       <span data-i18n="en">Redirect Unwrapper</span>
     </h1>
-
     <p class="nw-desc">
       <span data-i18n="ja">SNSリンク・メール配信リンク・追跡URLの中に埋め込まれた転送先URL候補を、リンクを開かずに抽出します。</span>
       <span data-i18n="en">Extract embedded destination URL candidates from social, email, and tracking links without opening them.</span>
     </p>
-
-    <div class="nw-lang-switch">
-      <button data-lang="ja">JP</button> /
-      <button data-lang="en">EN</button>
-    </div>
+    <div class="nw-lang-switch"><button data-lang="ja">JP</button> / <button data-lang="en">EN</button></div>
   </header>
 
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠</div>
 
     <section class="intro-box">
-      <p data-i18n="ja">
-        このツールはURLを開かず、入力された文字列だけをブラウザ内で解析します。短縮URLのサーバー側301/302リダイレクトを完全追跡するものではありません。
-      </p>
-      <p data-i18n="en">
-        This tool analyzes the URL string locally in your browser without opening it. It does not fully follow server-side 301/302 redirects from short URLs.
-      </p>
-      <p class="caution-text" data-i18n="ja">
-        表示された候補URLが安全であることは保証しません。不明なリンクは開かないでください。
-      </p>
-      <p class="caution-text" data-i18n="en">
-        Extracted candidates are not guaranteed to be safe. Do not open unknown links.
-      </p>
+      <p data-i18n="ja">このツールはURLを開かず、入力された文字列だけをブラウザ内で解析します。短縮URLのサーバー側301/302リダイレクトを完全追跡するものではありません。</p>
+      <p data-i18n="en">This tool analyzes the URL string locally in your browser without opening it. It does not fully follow server-side 301/302 redirects from short URLs.</p>
+      <p class="caution-text" data-i18n="ja">表示された候補URLが安全であることは保証しません。不明なリンクは開かないでください。</p>
+      <p class="caution-text" data-i18n="en">Extracted candidates are not guaranteed to be safe. Do not open unknown links.</p>
     </section>
 
     <section class="input-area">
       <label for="urlInput" class="input-label">
-        <span data-i18n="ja">解析したいURL</span>
-        <span data-i18n="en">URL to analyze</span>
+        <span data-i18n="ja">解析したいURL</span><span data-i18n="en">URL to analyze</span>
       </label>
-
-      <textarea
-        id="urlInput"
-        rows="4"
-        spellcheck="false"
-        autocomplete="off"
-        data-stable content-ja="https://nicheworks.app/?url=https%3A%2F%2Fdestination.example%2Fpage"
-        data-stable content-en="https://nicheworks.app/?url=https%3A%2F%2Fdestination.example%2Fpage"></textarea>
+      <textarea id="urlInput" rows="4" spellcheck="false" autocomplete="off" placeholder="https://example.com/?url=https%3A%2F%2Fdestination.example%2Fpage"></textarea>
 
       <div class="button-row">
-        <button id="analyzeBtn" class="main-btn" type="button">
-          <span data-i18n="ja">解析する</span>
-          <span data-i18n="en">Analyze</span>
-        </button>
+        <button id="analyzeBtn" class="main-btn" type="button"><span data-i18n="ja">解析する</span><span data-i18n="en">Analyze</span></button>
       </div>
 
       <div class="sample-area" aria-label="Sample URLs">
-        <p class="sample-title">
-          <span data-i18n="ja">サンプル</span>
-          <span data-i18n="en">Samples</span>
-        </p>
-        <button type="button" data-sample="https://www.google.com/url?q=https%3A%2F%2Fnicheworks.app%2Ftools%2Fredirect-unwrapper%2F&amp;sa=D">
-          Google redirect
-        </button>
-        <button type="button" data-sample="https://social.example/share?u=https%253A%252F%252Fnicheworks.app%252Ftools%252Ffiletype-sniffer%252F">
-          SNS share
-        </button>
-        <button type="button" data-sample="https://mail.example/click?redirect_url=https%3A%2F%2Fnicheworks.app%2Ftools%2Fapi-key-token-redactor%2F&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=test">
-          Mail tracking
-        </button>
-        <button type="button" data-sample="https://nicheworks.app/tools/redirect-unwrapper/?utm_source=x&amp;utm_medium=social&amp;utm_campaign=demo">
-          UTM only
-        </button>
+        <p class="sample-title"><span data-i18n="ja">サンプル</span><span data-i18n="en">Samples</span></p>
+        <button type="button" data-sample="https://www.google.com/url?q=https%3A%2F%2Fnicheworks.app%2Ftools%2Fredirect-unwrapper%2F&amp;sa=D">Google redirect</button>
+        <button type="button" data-sample="https://social.example/share?u=https%253A%252F%252Fnicheworks.app%252Ftools%252Ffiletype-sniffer%252F">SNS share</button>
+        <button type="button" data-sample="https://mail.example/click?redirect_url=https%3A%2F%2Fnicheworks.app%2Ftools%2Fapi-key-token-redactor%2F&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=test">Mail tracking</button>
+        <button type="button" data-sample="https://nicheworks.app/tools/redirect-unwrapper/?utm_source=x&amp;utm_medium=social&amp;utm_campaign=demo">UTM only</button>
       </div>
     </section>
 
     <div id="errorBox" class="result-error" hidden></div>
 
     <section id="results" class="result-card" hidden>
-      <h2>
-        <span data-i18n="ja">解析結果</span>
-        <span data-i18n="en">Analysis result</span>
-      </h2>
-
+      <h2><span data-i18n="ja">解析結果</span><span data-i18n="en">Analysis result</span></h2>
       <p id="resultSummary" class="result-summary"></p>
-
-      <div class="result-block">
-        <h3>
-          <span data-i18n="ja">URL分解</span>
-          <span data-i18n="en">URL details</span>
-        </h3>
-        <div id="resultDetails"></div>
-      </div>
-
-      <div class="result-block">
-        <h3>
-          <span data-i18n="ja">抽出された転送先候補</span>
-          <span data-i18n="en">Extracted destination candidates</span>
-        </h3>
-        <ol id="candidateList" class="candidate-list"></ol>
-      </div>
-
-      <div class="result-block">
-        <h3>
-          <span data-i18n="ja">警告・確認ポイント</span>
-          <span data-i18n="en">Warnings and checks</span>
-        </h3>
-        <ul id="warningList" class="warning-list"></ul>
-      </div>
-
+      <div class="result-block"><h3><span data-i18n="ja">URL分解</span><span data-i18n="en">URL details</span></h3><div id="resultDetails"></div></div>
+      <div class="result-block"><h3><span data-i18n="ja">抽出された転送先候補</span><span data-i18n="en">Extracted destination candidates</span></h3><ol id="candidateList" class="candidate-list"></ol></div>
+      <div class="result-block"><h3><span data-i18n="ja">警告・確認ポイント</span><span data-i18n="en">Warnings and checks</span></h3><ul id="warningList" class="warning-list"></ul></div>
       <div class="result-actions">
-        <button id="copyCandidatesBtn" class="copy-btn" type="button">
-          <span data-i18n="ja">候補URLをコピー</span>
-          <span data-i18n="en">Copy candidates</span>
-        </button>
-        <button id="copySummaryBtn" class="copy-btn" type="button">
-          <span data-i18n="ja">解析結果をコピー</span>
-          <span data-i18n="en">Copy summary</span>
-        </button>
+        <button id="copyCandidatesBtn" class="copy-btn" type="button"><span data-i18n="ja">候補URLをコピー</span><span data-i18n="en">Copy candidates</span></button>
+        <button id="copySummaryBtn" class="copy-btn" type="button"><span data-i18n="ja">解析結果をコピー</span><span data-i18n="en">Copy summary</span></button>
       </div>
     </section>
 
     <section class="faq-section">
       <h2>FAQ</h2>
-
-      <details>
-        <summary>
-          <span data-i18n="ja">このツールはURLを開きますか？</span>
-          <span data-i18n="en">Does this tool open the URL?</span>
-        </summary>
-        <p>
-          <span data-i18n="ja">いいえ。URL文字列を解析し、埋め込まれた転送先候補を抽出します。</span>
-          <span data-i18n="en">No. It analyzes the URL string and extracts embedded destination candidates.</span>
-        </p>
-      </details>
-
-      <details>
-        <summary>
-          <span data-i18n="ja">bit.ly や t.co の最終URLを完全に追跡できますか？</span>
-          <span data-i18n="en">Can it fully resolve bit.ly or t.co final URLs?</span>
-        </summary>
-        <p>
-          <span data-i18n="ja">いいえ。サーバー側リダイレクトの完全追跡は行いません。</span>
-          <span data-i18n="en">No. It does not follow server-side redirects.</span>
-        </p>
-      </details>
-
-      <details>
-        <summary>
-          <span data-i18n="ja">表示された候補URLは安全ですか？</span>
-          <span data-i18n="en">Are extracted candidates safe?</span>
-        </summary>
-        <p>
-          <span data-i18n="ja">安全性は保証しません。不明なリンクは開かないでください。</span>
-          <span data-i18n="en">Safety is not guaranteed. Do not open unknown links.</span>
-        </p>
-      </details>
-
-      <details>
-        <summary>
-          <span data-i18n="ja">URLはサーバーに送信されますか？</span>
-          <span data-i18n="en">Is the URL sent to a server?</span>
-        </summary>
-        <p>
-          <span data-i18n="ja">入力URLの解析はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</span>
-          <span data-i18n="en">The entered URL is analyzed in the browser. Ads and analytics scripts may still load for the page itself.</span>
-        </p>
-      </details>
+      <details><summary><span data-i18n="ja">このツールはURLを開きますか？</span><span data-i18n="en">Does this tool open the URL?</span></summary><p><span data-i18n="ja">いいえ。URL文字列を解析し、埋め込まれた転送先候補を抽出します。</span><span data-i18n="en">No. It analyzes the URL string and extracts embedded destination candidates.</span></p></details>
+      <details><summary><span data-i18n="ja">bit.ly や t.co の最終URLを完全に追跡できますか？</span><span data-i18n="en">Can it fully resolve bit.ly or t.co final URLs?</span></summary><p><span data-i18n="ja">いいえ。サーバー側リダイレクトの完全追跡は行いません。</span><span data-i18n="en">No. It does not follow server-side redirects.</span></p></details>
+      <details><summary><span data-i18n="ja">表示された候補URLは安全ですか？</span><span data-i18n="en">Are extracted candidates safe?</span></summary><p><span data-i18n="ja">安全性は保証しません。不明なリンクは開かないでください。</span><span data-i18n="en">Safety is not guaranteed. Do not open unknown links.</span></p></details>
+      <details><summary><span data-i18n="ja">URLはサーバーに送信されますか？</span><span data-i18n="en">Is the URL sent to a server?</span></summary><p><span data-i18n="ja">入力URLの解析はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</span><span data-i18n="en">The entered URL is analyzed in the browser. Ads and analytics scripts may still load for the page itself.</span></p></details>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠</div>
 
     <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">
-        このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
-      </p>
-      <p class="nw-donate-text" data-i18n="en">
-        If this tool was helpful, your support helps keep the development going.
-      </p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool was helpful, your support helps keep the development going.</p>
+      <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
 
     <div class="nw-links">
@@ -292,15 +160,9 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line" data-i18n="ja">
-      当サイトには広告が含まれる場合があります。掲載内容の正確性は保証しません。公式情報もあわせてご確認ください。
-    </p>
-    <p class="nw-footer-line" data-i18n="en">
-      Ads may be displayed on this site. Information is not guaranteed to be accurate. Please verify with official sources.
-    </p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
+    <p class="nw-footer-line" data-i18n="ja">当サイトには広告が含まれる場合があります。掲載内容の正確性は保証しません。公式情報もあわせてご確認ください。</p>
+    <p class="nw-footer-line" data-i18n="en">Ads may be displayed on this site. Information is not guaranteed to be accurate. Please verify with official sources.</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
   <script src="app.js"></script>
