@@ -169,6 +169,7 @@
     state.uiLang = state.uiLang === "ja" ? "en" : "ja";
     localStorage.setItem(LS.uiLang, state.uiLang);
     if (hasSupportElements()) applySupportLinks();
+    initHowto();
     render();
     if (els.detailSheet && !els.detailSheet.hidden && state.current) {
       renderDetailContent(state.current);
@@ -276,6 +277,29 @@
     els.supportBtn.addEventListener("click", () => openSheet(els.supportSheet));
     els.supportClose.addEventListener("click", closeAllSheets);
     els.supportInlineBtn.addEventListener("click", () => openSheet(els.supportSheet));
+  }
+
+  function initHowto(){
+    if (!els.howtoList) return;
+    const items = state.uiLang === "ja"
+      ? [
+          "検索欄に日本語または英語を入力します。",
+          "一覧の行をタップすると詳細（意味・例・別名）を表示できます。",
+          "☆でお気に入り登録、★ お気に入りのみで絞り込みできます。",
+          "絞り込みボタンで Action / Category / Task を指定できます。",
+        ]
+      : [
+          "Type Japanese or English keywords in the search box.",
+          "Tap a row to open details (meaning, examples, aliases).",
+          "Use ☆ to favorite terms and ★ favorites-only to filter.",
+          "Use Filter to narrow by Action / Category / Task.",
+        ];
+    els.howtoList.innerHTML = "";
+    items.forEach((text) => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      els.howtoList.appendChild(li);
+    });
   }
 
   // ---- Data loading (tries multiple likely paths) ----
@@ -991,6 +1015,7 @@
 
   async function init(){
     bind();
+    initHowto();
     state.isLoading = true;
     state.error = null;
     setStatus("loading");
