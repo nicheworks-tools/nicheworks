@@ -16,8 +16,6 @@ const UI_TEXT = {
     noWarnings: "強い警告はありません。ただし安全性を保証するものではありません。",
     destinationParam: "転送先らしいパラメータ",
     embeddedUrl: "URL文字列内の埋め込みURL",
-    originalUrl: "元URL",
-    candidateUrl: "候補URL",
     warnings: {
       externalNotChecked: "このツールはURLを開かず、外部サイトへアクセスしません。表示結果は文字列解析です。",
       insecureHttp: "HTTP URLです。暗号化されていない可能性があります。",
@@ -44,8 +42,6 @@ const UI_TEXT = {
     noWarnings: "No strong warnings were detected, but this does not guarantee safety.",
     destinationParam: "Likely destination parameter",
     embeddedUrl: "Embedded URL in the string",
-    originalUrl: "Original URL",
-    candidateUrl: "Candidate URL",
     warnings: {
       externalNotChecked: "This tool does not open the URL or access external sites. Results are based on string analysis.",
       insecureHttp: "This is an HTTP URL. It may not be encrypted.",
@@ -64,55 +60,17 @@ const UI_TEXT = {
 };
 
 const DESTINATION_PARAM_KEYS = new Set([
-  "url",
-  "u",
-  "q",
-  "target",
-  "target_url",
-  "redirect",
-  "redirect_url",
-  "redir",
-  "dest",
-  "destination",
-  "to",
-  "continue",
-  "next",
-  "return",
-  "return_url",
-  "r",
-  "link"
+  "url", "u", "q", "target", "target_url", "redirect", "redirect_url", "redir",
+  "dest", "destination", "to", "continue", "next", "return", "return_url", "r", "link"
 ]);
 
 const TRACKING_PARAM_KEYS = new Set([
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_term",
-  "utm_content",
-  "utm_id",
-  "fbclid",
-  "gclid",
-  "dclid",
-  "msclkid",
-  "igshid",
-  "mc_cid",
-  "mc_eid",
-  "yclid",
-  "ref",
-  "ref_src",
-  "spm",
-  "src",
-  "campaign",
-  "feature"
+  "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id",
+  "fbclid", "gclid", "dclid", "msclkid", "igshid", "mc_cid", "mc_eid",
+  "yclid", "ref", "ref_src", "spm", "src", "campaign", "feature"
 ]);
 
-const DANGEROUS_SCHEMES = new Set([
-  "javascript:",
-  "data:",
-  "file:",
-  "blob:",
-  "vbscript:"
-]);
+const DANGEROUS_SCHEMES = new Set(["javascript:", "data:", "file:", "blob:", "vbscript:"]);
 
 let currentLang = "ja";
 let lastAnalysis = null;
@@ -135,24 +93,11 @@ function setupLanguage() {
       el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
 
-    document.querySelectorAll("[data-i18n-key]").forEach((el) => {
-      const key = el.dataset.i18nKey;
-      if (key && UI_TEXT[lang][key]) {
-        el.textContent = UI_TEXT[lang][key];
-      }
-    });
-
-    document.querySelectorAll("[data-placeholder-ja]").forEach((el) => {
-      el.placeholder = el.dataset[`placeholder${lang === "ja" ? "Ja" : "En"}`] || "";
-    });
-
     langButtons.forEach((button) => {
       button.classList.toggle("active", button.dataset.lang === lang);
     });
 
-    if (lastAnalysis) {
-      renderAnalysis(lastAnalysis);
-    }
+    if (lastAnalysis) renderAnalysis(lastAnalysis);
   };
 
   langButtons.forEach((button) => {
@@ -171,9 +116,7 @@ function setupEvents() {
   analyzeBtn.addEventListener("click", startAnalysis);
 
   urlInput.addEventListener("keydown", (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
-      startAnalysis();
-    }
+    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") startAnalysis();
   });
 
   document.querySelectorAll("[data-sample]").forEach((button) => {
@@ -198,7 +141,6 @@ function setupEvents() {
 function startAnalysis() {
   const input = document.getElementById("urlInput").value.trim();
   const errorEl = document.getElementById("errorBox");
-
   errorEl.hidden = true;
   errorEl.textContent = "";
 
@@ -211,7 +153,7 @@ function startAnalysis() {
     const analysis = analyzeUrlString(input);
     lastAnalysis = analysis;
     renderAnalysis(analysis);
-  } catch (error) {
+  } catch (_) {
     lastAnalysis = null;
     document.getElementById("results").hidden = true;
     showError(UI_TEXT[currentLang].invalidUrl);
@@ -237,36 +179,18 @@ function analyzeUrlString(input) {
   const candidates = extractEmbeddedUrls(parsed, queryParams);
   const warnings = buildWarnings(parsed, queryParams, candidates);
 
-  return {
-    input,
-    normalized: parsed.href,
-    scheme: parsed.protocol,
-    host: parsed.hostname,
-    path: parsed.pathname,
-    queryParams,
-    trackingParams,
-    candidates,
-    warnings
-  };
+  return { input, normalized: parsed.href, scheme: parsed.protocol, host: parsed.hostname, path: parsed.pathname, queryParams, trackingParams, candidates, warnings };
 }
 
 function normalizeUrl(input) {
   let value = input.trim();
-
-  if (value.startsWith("//")) {
-    value = `https:${value}`;
-  }
-
-  if (!/^[a-z][a-z0-9+.-]*:/i.test(value)) {
-    value = `https://${value}`;
-  }
-
+  if (value.startsWith("//")) value = `https:${value}`;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(value)) value = `https://${value}`;
   return value;
 }
 
 function decodeRepeated(value, max = 4) {
   let current = String(value || "").replace(/\+/g, "%20");
-
   for (let i = 0; i < max; i += 1) {
     try {
       const next = decodeURIComponent(current);
@@ -276,7 +200,6 @@ function decodeRepeated(value, max = 4) {
       break;
     }
   }
-
   return current;
 }
 
@@ -287,54 +210,26 @@ function extractEmbeddedUrls(parsed, queryParams) {
   queryParams.forEach((param) => {
     const key = param.key.toLowerCase();
     const decoded = param.decodedValue;
-
-    if (DESTINATION_PARAM_KEYS.has(key)) {
-      addCandidatesFromText(candidates, seen, decoded, {
-        source: UI_TEXT[currentLang].destinationParam,
-        key: param.key
-      });
-    } else {
-      addCandidatesFromText(candidates, seen, decoded, {
-        source: UI_TEXT[currentLang].embeddedUrl,
-        key: param.key
-      });
-    }
+    addCandidatesFromText(candidates, seen, decoded, {
+      source: DESTINATION_PARAM_KEYS.has(key) ? UI_TEXT[currentLang].destinationParam : UI_TEXT[currentLang].embeddedUrl,
+      key: param.key
+    });
   });
 
-  addCandidatesFromText(candidates, seen, decodeRepeated(parsed.pathname), {
-    source: "path",
-    key: ""
-  });
-
-  addCandidatesFromText(candidates, seen, decodeRepeated(parsed.hash), {
-    source: "hash",
-    key: ""
-  });
-
+  addCandidatesFromText(candidates, seen, decodeRepeated(parsed.pathname), { source: "path", key: "" });
+  addCandidatesFromText(candidates, seen, decodeRepeated(parsed.hash), { source: "hash", key: "" });
   return candidates;
 }
 
 function addCandidatesFromText(candidates, seen, text, meta) {
-  const matches = findHttpUrls(text);
-
-  matches.forEach((rawUrl) => {
+  findHttpUrls(text).forEach((rawUrl) => {
     try {
       const parsedCandidate = new URL(rawUrl);
       const normalizedCandidate = parsedCandidate.href;
-
       if (seen.has(normalizedCandidate)) return;
       seen.add(normalizedCandidate);
-
-      candidates.push({
-        url: normalizedCandidate,
-        host: parsedCandidate.hostname,
-        scheme: parsedCandidate.protocol,
-        source: meta.source,
-        key: meta.key
-      });
-    } catch (_) {
-      // Ignore malformed embedded URL-looking strings.
-    }
+      candidates.push({ url: normalizedCandidate, host: parsedCandidate.hostname, scheme: parsedCandidate.protocol, source: meta.source, key: meta.key });
+    } catch (_) {}
   });
 }
 
@@ -352,62 +247,24 @@ function isTrackingParam(key) {
 function buildWarnings(parsed, queryParams, candidates) {
   const warnings = new Set();
   const t = UI_TEXT[currentLang].warnings;
-
   warnings.add(t.externalNotChecked);
 
-  if (parsed.protocol === "http:") {
-    warnings.add(t.insecureHttp);
-  }
-
-  if (DANGEROUS_SCHEMES.has(parsed.protocol)) {
-    warnings.add(t.dangerousScheme);
-  } else if (!["http:", "https:"].includes(parsed.protocol)) {
-    warnings.add(t.unsupportedScheme);
-  }
-
-  if (isIpAddress(parsed.hostname)) {
-    warnings.add(t.ipHost);
-  }
-
-  if (isPunycodeHost(parsed.hostname)) {
-    warnings.add(t.punycode);
-  }
-
-  if (parsed.username || parsed.password) {
-    warnings.add(t.hasCredentials);
-  }
-
-  if (candidates.length > 0) {
-    warnings.add(t.hasEmbedded);
-  }
-
-  if (candidates.length > 1) {
-    warnings.add(t.multiEmbedded);
-  }
-
-  if (candidates.some((candidate) => candidate.host && candidate.host !== parsed.hostname)) {
-    warnings.add(t.hostMismatch);
-  }
-
-  const trackingCount = queryParams.filter((param) => isTrackingParam(param.key)).length;
-  if (trackingCount >= 3) {
-    warnings.add(t.manyTrackers);
-  }
-
-  if (findHttpUrls(parsed.pathname).length > 0) {
-    warnings.add(t.urlInPath);
-  }
+  if (parsed.protocol === "http:") warnings.add(t.insecureHttp);
+  if (DANGEROUS_SCHEMES.has(parsed.protocol)) warnings.add(t.dangerousScheme);
+  else if (!["http:", "https:"].includes(parsed.protocol)) warnings.add(t.unsupportedScheme);
+  if (isIpAddress(parsed.hostname)) warnings.add(t.ipHost);
+  if (isPunycodeHost(parsed.hostname)) warnings.add(t.punycode);
+  if (parsed.username || parsed.password) warnings.add(t.hasCredentials);
+  if (candidates.length > 0) warnings.add(t.hasEmbedded);
+  if (candidates.length > 1) warnings.add(t.multiEmbedded);
+  if (candidates.some((candidate) => candidate.host && candidate.host !== parsed.hostname)) warnings.add(t.hostMismatch);
+  if (queryParams.filter((param) => isTrackingParam(param.key)).length >= 3) warnings.add(t.manyTrackers);
+  if (findHttpUrls(parsed.pathname).length > 0) warnings.add(t.urlInPath);
 
   candidates.forEach((candidate) => {
-    if (candidate.scheme === "http:") {
-      warnings.add(`${t.insecureHttp} (${candidate.host})`);
-    }
-    if (isIpAddress(candidate.host)) {
-      warnings.add(`${t.ipHost} (${candidate.host})`);
-    }
-    if (isPunycodeHost(candidate.host)) {
-      warnings.add(`${t.punycode} (${candidate.host})`);
-    }
+    if (candidate.scheme === "http:") warnings.add(`${t.insecureHttp} (${candidate.host})`);
+    if (isIpAddress(candidate.host)) warnings.add(`${t.ipHost} (${candidate.host})`);
+    if (isPunycodeHost(candidate.host)) warnings.add(`${t.punycode} (${candidate.host})`);
   });
 
   return Array.from(warnings);
@@ -415,9 +272,7 @@ function buildWarnings(parsed, queryParams, candidates) {
 
 function isIpAddress(hostname) {
   if (!hostname) return false;
-  const ipv4 = /^(?:\d{1,3}\.){3}\d{1,3}$/.test(hostname);
-  const ipv6 = hostname.includes(":");
-  return ipv4 || ipv6;
+  return /^(?:\d{1,3}\.){3}\d{1,3}$/.test(hostname) || hostname.includes(":");
 }
 
 function isPunycodeHost(hostname) {
@@ -433,9 +288,7 @@ function renderAnalysis(analysis) {
   const copyCandidatesBtn = document.getElementById("copyCandidatesBtn");
 
   results.hidden = false;
-  summary.textContent = analysis.candidates.length > 0
-    ? UI_TEXT[currentLang].candidateFound
-    : `${UI_TEXT[currentLang].noCandidates} ${UI_TEXT[currentLang].notRedirectTracker}`;
+  summary.textContent = analysis.candidates.length > 0 ? UI_TEXT[currentLang].candidateFound : `${UI_TEXT[currentLang].noCandidates} ${UI_TEXT[currentLang].notRedirectTracker}`;
 
   details.innerHTML = "";
   appendDetail(details, "Input", analysis.input);
@@ -443,11 +296,7 @@ function renderAnalysis(analysis) {
   appendDetail(details, "Scheme", analysis.scheme || "-");
   appendDetail(details, "Host", analysis.host || "-");
   appendDetail(details, "Path", analysis.path || "/");
-
-  const trackingText = analysis.trackingParams.length > 0
-    ? analysis.trackingParams.map((param) => param.key).join(", ")
-    : "-";
-  appendDetail(details, "Tracking parameters", trackingText);
+  appendDetail(details, "Tracking parameters", analysis.trackingParams.map((param) => param.key).join(", ") || "-");
 
   candidates.innerHTML = "";
   if (analysis.candidates.length === 0) {
@@ -469,10 +318,7 @@ function renderAnalysis(analysis) {
   }
 
   warnings.innerHTML = "";
-  const warningItems = analysis.warnings.length > 0
-    ? analysis.warnings
-    : [UI_TEXT[currentLang].noWarnings];
-
+  const warningItems = analysis.warnings.length > 0 ? analysis.warnings : [UI_TEXT[currentLang].noWarnings];
   warningItems.forEach((warning) => {
     const item = document.createElement("li");
     item.textContent = warning;
@@ -485,22 +331,19 @@ function renderAnalysis(analysis) {
 function appendDetail(container, label, value) {
   const row = document.createElement("div");
   row.className = "result-row";
-
   const labelEl = document.createElement("div");
   labelEl.className = "result-label";
   labelEl.textContent = label;
-
   const valueEl = document.createElement("div");
   valueEl.className = "result-value";
   valueEl.textContent = value;
-
   row.appendChild(labelEl);
   row.appendChild(valueEl);
   container.appendChild(row);
 }
 
 function buildPlainSummary(analysis) {
-  const lines = [
+  return [
     "Redirect Unwrapper result",
     `Input: ${analysis.input}`,
     `Normalized: ${analysis.normalized}`,
@@ -510,26 +353,18 @@ function buildPlainSummary(analysis) {
     `Tracking parameters: ${analysis.trackingParams.map((param) => param.key).join(", ") || "-"}`,
     "",
     "Candidates:",
-    ...(analysis.candidates.length > 0
-      ? analysis.candidates.map((candidate, index) => `${index + 1}. ${candidate.url}`)
-      : [`- ${UI_TEXT[currentLang].noCandidates}`]),
+    ...(analysis.candidates.length > 0 ? analysis.candidates.map((candidate, index) => `${index + 1}. ${candidate.url}`) : [`- ${UI_TEXT[currentLang].noCandidates}`]),
     "",
     "Warnings:",
     ...(analysis.warnings.length > 0 ? analysis.warnings.map((warning) => `- ${warning}`) : [`- ${UI_TEXT[currentLang].noWarnings}`])
-  ];
-
-  return lines.join("\n");
+  ].join("\n");
 }
 
 async function copyText(text, button) {
   const originalHtml = button.innerHTML;
-
   try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      fallbackCopy(text);
-    }
+    if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
+    else fallbackCopy(text);
     button.textContent = UI_TEXT[currentLang].copied;
   } catch (_) {
     button.textContent = UI_TEXT[currentLang].copyFailed;
