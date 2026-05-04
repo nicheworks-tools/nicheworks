@@ -49,31 +49,11 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "法的助言ですか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "いいえ。注意語を機械的に検出する簡易ツールです。契約判断や条文修正の正しさは保証しません。"}
-      },
-      {
-        "@type": "Question",
-        "name": "契約書テキストは送信されますか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "本文解析はブラウザ内で行います。入力内容をサーバーへ送信する処理はありません。ただし広告・解析タグは読み込まれます。"}
-      },
-      {
-        "@type": "Question",
-        "name": "検出されなければ安全ですか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "いいえ。検出漏れがあります。重要な契約は弁護士・専門家・社内法務に確認してください。"}
-      },
-      {
-        "@type": "Question",
-        "name": "PDFに対応していますか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "直接読み込みには対応していません。本文をコピーできるPDFはテキスト化して貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。"}
-      },
-      {
-        "@type": "Question",
-        "name": "Contract Risk Highlighterとの違いは？",
-        "acceptedAnswer": {"@type": "Answer", "text": "Contract Cleanerはキーワードと確認ポイント整理に寄せた軽量ツールです。Contract Risk Highlighterは条項パターンごとの説明に寄せたツールです。"}
-      }
+      {"@type":"Question","name":"法的助言ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。注意語を機械的に検出する簡易ツールです。契約判断や条文修正の正しさは保証しません。"}},
+      {"@type":"Question","name":"契約書テキストは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"本文解析はブラウザ内で行います。入力内容をサーバーへ送信する処理はありません。ただし広告・解析タグは読み込まれます。"}},
+      {"@type":"Question","name":"検出されなければ安全ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。検出漏れがあります。重要な契約は弁護士・専門家・社内法務に確認してください。"}},
+      {"@type":"Question","name":"PDFに対応していますか？","acceptedAnswer":{"@type":"Answer","text":"直接読み込みには対応していません。本文をコピーできるPDFはテキスト化して貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。"}},
+      {"@type":"Question","name":"Contract Risk Highlighterとの違いは？","acceptedAnswer":{"@type":"Answer","text":"Contract Cleanerはキーワードと確認ポイント整理に寄せた軽量ツールです。Contract Risk Highlighterは条項パターンごとの説明に寄せたツールです。"}}
     ]
   }
   </script>
@@ -116,7 +96,7 @@
         <p class="panel-desc" data-i18n="input_desc">PDFファイルの直接読み込みには対応していません。本文をコピーできるPDFは、テキストとして貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。</p>
         <p class="local-only" data-i18n="local_only">本文解析はブラウザ内で行います。入力テキストは送信しません。ただし広告・解析タグは読み込まれます。</p>
 
-        <textarea id="contractText" class="input-area" data-i18n-stable content="stable content" stable content="ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"></textarea>
+        <textarea id="contractText" class="input-area"></textarea>
 
         <div class="panel-buttons">
           <button id="analyzeBtn" class="btn-primary" type="button" data-i18n="scan_btn">確認ポイントを検出</button>
@@ -135,7 +115,6 @@
 
       <div class="result-panel">
         <h2 class="panel-title" data-i18n="result_title">確認ポイント</h2>
-
         <div class="summary-row">
           <div class="summary-card"><span data-i18n="total_hits">合計ヒット</span><strong id="totalHits">0</strong></div>
           <div class="summary-card"><span data-i18n="category_hits">該当カテゴリ</span><strong id="categoryCount">0</strong></div>
@@ -144,33 +123,17 @@
           <div class="summary-card severity-card severity-low"><span data-i18n="severity_low">Low</span><strong id="lowCount">0 / 0</strong></div>
         </div>
         <p class="hint severity-help" data-i18n="severity_help">High / Medium / Low は確認の優先度目安です。法的な危険度を断定するものではありません。</p>
-
         <div class="priority-panel">
           <h3 data-i18n="priority_title">優先確認カテゴリ</h3>
           <div id="priorityCategories" class="priority-empty" data-i18n="priority_empty">本文を貼り付けると、優先確認カテゴリを表示します。</div>
         </div>
-
         <div class="filter-row">
-          <label class="toggle">
-            <input type="checkbox" id="onlyMatchedToggle" checked />
-            <span data-i18n="only_matched">該当カテゴリのみ表示</span>
-          </label>
+          <label class="toggle"><input type="checkbox" id="onlyMatchedToggle" checked /><span data-i18n="only_matched">該当カテゴリのみ表示</span></label>
           <p class="hint" data-i18n="summary_hint">カテゴリ別に「確認ポイント」と該当箇所を表示します。</p>
         </div>
-
         <div id="categoryList" class="category-list"></div>
-
-        <div class="questions-panel">
-          <h3 data-i18n="questions_title">確認したい点（プレビュー）</h3>
-          <pre id="questionsPreview" class="questions-preview"></pre>
-        </div>
-
-        <div class="highlight-view">
-          <h3 data-i18n="highlight_title">ハイライト表示</h3>
-          <p data-i18n="highlight_desc">入力テキスト中の該当箇所を色付きで表示します。</p>
-          <div id="highlightPreview" class="highlight-box"></div>
-          <p id="highlightNote" class="hint"></p>
-        </div>
+        <div class="questions-panel"><h3 data-i18n="questions_title">確認したい点（プレビュー）</h3><pre id="questionsPreview" class="questions-preview"></pre></div>
+        <div class="highlight-view"><h3 data-i18n="highlight_title">ハイライト表示</h3><p data-i18n="highlight_desc">入力テキスト中の該当箇所を色付きで表示します。</p><div id="highlightPreview" class="highlight-box"></div><p id="highlightNote" class="hint"></p></div>
       </div>
     </section>
 
@@ -197,19 +160,11 @@
 
     <div class="donation-box bottom">
       <span data-i18n="donate_ftr">開発継続のためのご支援をいただけると嬉しいです。</span>
-      <div class="donation-links">
-        <a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
+      <div class="donation-links"><a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
   </main>
 
-  <footer class="nw-footer">
-    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p data-i18n="footer_disclaimer">当サイトには広告が含まれる場合があります。情報の正確性は保証されません。</p>
-    <p><a href="https://nicheworks.app" target="_blank" rel="noopener">nicheworks.app</a></p>
-  </footer>
-
+  <footer class="nw-footer"><p>© NicheWorks — Small Web Tools for Boring Tasks</p><p data-i18n="footer_disclaimer">当サイトには広告が含まれる場合があります。情報の正確性は保証されません。</p><p><a href="https://nicheworks.app" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
   <div id="copyToast" class="copy-toast" role="status" aria-live="polite"></div>
   <script type="module" src="app.js"></script>
 </body>
