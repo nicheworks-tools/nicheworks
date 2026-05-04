@@ -1,174 +1,157 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URLタイトル一括取得・CSV/TSVコピー｜URL Title Collector | NicheWorks</title>
+  <meta name="description" content="複数URLのページタイトルをまとめて取得し、CSV/TSV形式でコピーできる軽量ツールです。タイトル取得には外部Workerを使用するため、機密URLや非公開URLは入力しないでください。">
+  <meta name="robots" content="index,follow">
 
-  <title>URL Title Collector | NicheWorks</title>
-
-  <!-- 日本語 description -->
-  <meta name="description" content="複数URLのタイトル（&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;title&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
-
-  <!-- 共通 favicon -->
+  <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- canonical -->
-  <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 
-  <!-- OGP 日本語 -->
-  <meta property="og:title" content="URL Title Collector | NicheWorks">
-  <meta property="og:description" content="複数URLのタイトル（&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;title&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="URLタイトル一括取得・CSV/TSVコピー｜URL Title Collector | NicheWorks">
+  <meta property="og:description" content="複数URLのページタイトルをまとめて取得し、CSV/TSV形式でコピーできる軽量ツールです。タイトル取得には外部Workerを使用するため、機密URLや非公開URLは入力しないでください。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/url-title-collector/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="URL Title Collector | NicheWorks">
-  <meta property="og:description:en"
-        content="A lightweight tool that fetches webpage titles from multiple URLs at once. Fully browser-based and secure.">
-
-  <!-- Twitter 日本語 -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="URL Title Collector | NicheWorks">
-  <meta name="twitter:description" content="複数URLのタイトル（&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;title&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
+  <meta name="twitter:title" content="URLタイトル一括取得・CSV/TSVコピー｜URL Title Collector | NicheWorks">
+  <meta name="twitter:description" content="複数URLのページタイトルをまとめて取得し、CSV/TSV形式でコピーできる軽量ツールです。タイトル取得には外部Workerを使用するため、機密URLや非公開URLは入力しないでください。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="URL Title Collector | NicheWorks">
-  <meta name="twitter:description:en"
-        content="A lightweight tool that fetches webpage titles from multiple URLs at once.">
-
-  <!-- JSON-LD 日本語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "URL Title Collector",
     "url": "https://nicheworks.app/tools/url-title-collector/",
-    "description": "複数URLの<title>を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "複数URLのページタイトルをまとめて取得し、CSV/TSV形式でコピーできる軽量ツールです。タイトル取得には外部Workerを使用します。"
   }
   </script>
-
-  <!-- JSON-LD 英語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "URL Title Collector",
-    "url": "https://nicheworks.app/tools/url-title-collector/",
-    "description": "A lightweight tool that fetches webpage titles from multiple URLs at once. Fully browser-based and secure.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "入力したURLは送信されますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "はい。ページタイトル取得のため、入力URLはNicheWorksのWorkerへ送信されます。"}
+      },
+      {
+        "@type": "Question",
+        "name": "社内URLやログイン後ページを入れてもよいですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "推奨しません。機密URL、社内URL、ログイン後ページ、個人情報を含むURLは入力しないでください。"}
+      },
+      {
+        "@type": "Question",
+        "name": "短縮URLの最終URLも分かりますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "このツールはタイトル取得が目的です。短縮URLや追跡リンクの確認にはRedirect Unwrapperを使ってください。"}
+      }
+    ]
   }
   </script>
 
-  <!-- Google Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Analytics -->
-  
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
-
 <body>
-
   <header>
-
-    <!-- 言語切替（右上） -->
-    <div class="lang-switch" style="text-align:right; font-size:13px; color:#666;">
-      <a href="./index.html" style="color:#666;">JP</a> |
-      <a href="./en/index.html" style="color:#666;">EN</a>
+    <div class="lang-switch" aria-label="Language switch">
+      <a href="./index.html">JP</a> |
+      <a href="./en/index.html">EN</a>
     </div>
 
     <h1>URL Title Collector</h1>
-    <p class="sub">複数URLの&lt;title&gt;を高速で一括取得できます</p>
+    <p class="sub">複数URLのページタイトルをまとめて取得し、CSV/TSVでコピーできます</p>
 
-    <!-- 使い方リンク（広告より上） -->
-    <p class="usage-link">
-      <a href="./usage.html">使い方はこちら</a>
-    </p>
-
-    <!-- 広告 -->
     <div class="ad-area">
-      <div class="ad-stable content">広告</div>
+      <div class="ad-placeholder">広告枠（準備中）</div>
     </div>
 
+    <p class="usage-link"><a href="./usage.html">使い方はこちら</a></p>
   </header>
 
   <main>
+    <section class="intro-card" aria-label="概要">
+      <p>URLを1行ずつ貼り付けると、各ページの <code>&lt;title&gt;</code> を取得して一覧化します。結果はCSV/TSV形式でコピーできます。</p>
+    </section>
 
-    <label for="urlInput" class="label">URL一覧（1行1つ）</label>
-    <textarea id="urlInput" stable content="https://nicheworks.app&#10;https://nicheworks.app"></textarea>
+    <section class="notice-card" aria-label="重要な注意">
+      <h2>重要な注意</h2>
+      <p>このツールはページタイトル取得のため、入力したURLをNicheWorksのWorkerへ送信します。機密URL、社内URL、ログイン後ページ、個人情報を含むURLは入力しないでください。</p>
+      <p>短縮URLや不審なURLは、先に <a href="/tools/redirect-unwrapper/">Redirect Unwrapper</a> で確認することを推奨します。</p>
+    </section>
 
-    <button id="fetchBtn">タイトルを取得する</button>
+    <label for="urlInput" class="label">URL一覧（1行1つ・最大50件）</label>
+    <textarea id="urlInput" placeholder="https://example.com&#10;https://example.org"></textarea>
+    <p class="input-help">http / https のURLのみ処理します。重複URLや不正URLはWorkerへ送信せず、結果に理由を表示します。</p>
 
-    <!-- プログレスバー -->
-    <div id="progressWrap" class="progress-wrap hidden">
+    <div class="button-row">
+      <button id="fetchBtn">タイトルを取得する</button>
+      <button id="sampleBtn" type="button" class="secondary-btn">サンプル入力</button>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <div id="progressWrap" class="progress-wrap hidden" aria-label="進捗">
       <div id="progressBar" class="progress-bar"></div>
     </div>
 
-    <!-- 件数 -->
     <div id="countArea" class="count-area hidden">
       <span id="countTotal">合計: 0</span>
       <span id="countSuccess">成功: 0</span>
       <span id="countFail">失敗: 0</span>
+      <span id="countSkip">スキップ: 0</span>
     </div>
 
-    <!-- 結果 -->
-    <div id="results"></div>
+    <div id="results" class="results-wrap"></div>
 
-    <!-- CSV/TSV/Reset -->
     <div id="exportArea" class="export-area hidden">
       <button id="copyCsvBtn">CSVコピー</button>
       <button id="copyTsvBtn">TSVコピー</button>
       <button id="resetBtn" class="reset-btn">リセット</button>
     </div>
 
+    <section class="faq-section" aria-label="FAQ">
+      <h2>FAQ</h2>
+      <h3>入力したURLは送信されますか？</h3>
+      <p>はい。ページタイトル取得のため、入力URLはNicheWorksのWorkerへ送信されます。</p>
+      <h3>社内URLやログイン後ページを入れてもよいですか？</h3>
+      <p>推奨しません。機密URL、社内URL、ログイン後ページ、個人情報を含むURLは入力しないでください。</p>
+      <h3>CORSエラーは起きますか？</h3>
+      <p>ブラウザから直接ではなくWorker経由で取得しますが、相手サイトの制限・遮断・タイムアウトにより失敗する場合があります。</p>
+      <h3>短縮URLの最終URLも分かりますか？</h3>
+      <p>このツールはタイトル取得が目的です。追跡リンクや短縮URLの確認はRedirect Unwrapperを使ってください。</p>
+    </section>
+
+    <div class="nw-links">
+      <a href="/tools/redirect-unwrapper/">Redirect Unwrapper</a> /
+      <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a> /
+      <a href="/tools/csv-tidy/">CSV Tidy</a>
+    </div>
   </main>
 
-  <div class="nw-links">
-  <a href="/tools/manual-finder/">ManualFinder</a> /
-  <a href="/tools/log-formatter/">LogFormatter</a> /
-  <a href="/tools/exif-cleaner-mini/">MetaCleaner Mini</a>
-</div>
-
-
   <footer>
-    <p class="copy">
-      <a href="https://nicheworks.app/" style="color:#666; text-decoration:none;">
-        NicheWorks Home
-      </a>
-    </p>
+    <p class="copy"><a href="https://nicheworks.app/">NicheWorks Home</a></p>
   </footer>
-
-  <!-- Cloudflare Analytics -->
-  
 
   <script src="./app.js"></script>
 </body>
