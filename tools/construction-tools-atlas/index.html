@@ -140,9 +140,38 @@
     </div>
   </aside>
 
-  <aside id="supportSheet" class="sheet" hidden><button id="supportClose" class="iconbtn" type="button">×</button><h2 class="sheet__title">Support</h2><a id="ofuseLink" class="pillbtn" href="#">OFUSE</a><a id="kofiLink" class="pillbtn" href="#">Ko-fi</a><p id="supportNote"></p></aside>
-  <aside id="menuSheet" class="sheet" hidden><button id="menuClose" class="iconbtn" type="button">×</button><h2 class="sheet__title">Menu</h2><a id="howtoOpen" href="#">How to use</a></aside>
-  <aside id="howtoSheet" class="sheet" hidden><button id="howtoClose" class="iconbtn" type="button">×</button><h2 class="sheet__title">How to use</h2><ul id="howtoList"></ul></aside>
+  <aside id="supportSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top">
+      <button id="supportClose" class="iconbtn" type="button">×</button>
+      <h2 class="sheet__title">Support</h2>
+      <span aria-hidden="true"></span>
+    </div>
+    <div class="sheet__body sheet__body--compact">
+      <a id="ofuseLink" class="pillbtn" href="#">OFUSE</a>
+      <a id="kofiLink" class="pillbtn" href="#">Ko-fi</a>
+      <p id="supportNote" class="muted"></p>
+    </div>
+  </aside>
+  <aside id="menuSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top">
+      <button id="menuClose" class="iconbtn" type="button">×</button>
+      <h2 class="sheet__title">Menu</h2>
+      <span aria-hidden="true"></span>
+    </div>
+    <div class="sheet__body sheet__body--compact">
+      <a id="howtoOpen" class="menuLink" href="#">How to use</a>
+    </div>
+  </aside>
+  <aside id="howtoSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top">
+      <button id="howtoClose" class="iconbtn" type="button">×</button>
+      <h2 class="sheet__title">How to use</h2>
+      <span aria-hidden="true"></span>
+    </div>
+    <div class="sheet__body sheet__body--compact">
+      <ul id="howtoList" class="howtoList"></ul>
+    </div>
+  </aside>
 
   <aside id="filterSheet" class="sheet" hidden>
     <button id="filterClose" class="iconbtn" type="button">×</button>
