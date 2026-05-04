@@ -1,143 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="robots" content="index,follow">
   <title>How to Use｜FileType Sniffer | NicheWorks</title>
-  <meta name="description" content="How to use FileType Sniffer. Learn how Magic Numbers help identify a file">
-
+  <meta name="description" content="How to use FileType Sniffer. Learn about Magic Number detection, supported formats, ZIP container notes, and safety limitations.">
   <link rel="canonical" href="https://nicheworks.app/tools/filetype-sniffer/en/usage.html">
-
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <style>
-    body {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px 14px 60px;
-      background: #ffffff;
-      color: #111827;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.7;
-    }
-
-    h1 {
-      font-size: 24px;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-
-    h2 {
-      font-size: 20px;
-      margin-top: 28px;
-      margin-bottom: 10px;
-      border-left: 4px solid #111827;
-      padding-left: 8px;
-    }
-
-    p, li {
-      font-size: 15px;
-      margin: 10px 0;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    a {
-      color: #1f2937;
-      text-decoration: underline;
-    }
-
-    .back-link {
-      margin-top: 40px;
-      font-size: 15px;
-      text-align: center;
-    }
-  </style>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-
-  <meta property="og:url" content="https://nicheworks.app/tools/filetype-sniffer/en/usage.html">
-  <meta name="robots" content="index,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="How to Use｜FileType Sniffer | NicheWorks">
-  <meta property="og:description" content="How to use FileType Sniffer. Learn how Magic Numbers help identify a file">
+  <meta property="og:description" content="How to use FileType Sniffer. Learn about Magic Number detection, supported formats, ZIP container notes, and safety limitations.">
+  <meta property="og:url" content="https://nicheworks.app/tools/filetype-sniffer/en/usage.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="How to Use｜FileType Sniffer | NicheWorks">
-  <meta name="twitter:description" content="How to use FileType Sniffer. Learn how Magic Numbers help identify a file">
+  <meta name="twitter:description" content="How to use FileType Sniffer. Learn about Magic Number detection, supported formats, ZIP container notes, and safety limitations.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "How to Use｜FileType Sniffer | NicheWorks",
-    "url": "https://nicheworks.app/tools/filetype-sniffer/en/usage.html",
-    "description": "How to use FileType Sniffer. Learn how Magic Numbers help identify a file",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
-  }
-  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"How to Use｜FileType Sniffer | NicheWorks","url":"https://nicheworks.app/tools/filetype-sniffer/en/usage.html","description":"How to use FileType Sniffer. Learn about Magic Number detection, supported formats, ZIP container notes, and safety limitations.","inLanguage":"en"}</script>
+  <style>body{max-width:680px;margin:0 auto;padding:20px 14px 60px;background:#fff;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.7}h1{font-size:24px;margin-bottom:4px;font-weight:600}h2{font-size:20px;margin-top:28px;margin-bottom:10px;border-left:4px solid #111827;padding-left:8px}p,li{font-size:15px;margin:10px 0}ul{padding-left:20px}.note{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:10px 12px;color:#78350f}.back-link{margin-top:40px;text-align:center}a{color:#1f2937;text-decoration:underline}</style>
 </head>
-
 <body>
-
   <h1>FileType Sniffer — How to Use</h1>
-  <p>This page explains how FileType Sniffer works and how to interpret its results and errors.</p>
+  <p>FileType Sniffer is a free browser-based tool that reads file Magic Numbers and estimates the real file format.</p>
+  <p class="note">This tool estimates file format only. It does not verify safety or whether a file is okay to open. Avoid opening files from unknown sources.</p>
 
-  <!-- 1. Purpose -->
   <h2>1. What this tool does</h2>
-  <p>
-    FileType Sniffer analyzes the first bytes of a file — known as
-    <strong>Magic Numbers</strong> — to estimate the file’s <strong>true format</strong>.
-    This is useful for checking extension mismatches and inspecting suspicious or corrupted files.
-  </p>
+  <ul><li>Estimates a file format from its first bytes.</li><li>Warns when the extension and detected format do not match.</li><li>Adds notes for ZIP-based containers such as DOCX, XLSX, PPTX, APK, JAR, and EPUB.</li><li>Shows stronger caution for executable or installable formats such as EXE, ELF, Mach-O, APK, and JAR.</li></ul>
 
-  <!-- 2. How to Use -->
   <h2>2. Steps to use</h2>
-  <ul>
-    <li>① Drag & drop a file, or select it manually.</li>
-    <li>② Press the “Analyze” button.</li>
-    <li>③ The tool reads the Magic Number and shows the estimated format.</li>
-    <li>④ If detection fails, “Unknown” will be shown.</li>
-  </ul>
+  <ul><li>Drag and drop a file, or select one manually.</li><li>The tool analyzes it automatically. Press “Analyze” again if needed.</li><li>Check the summary and JSON output for detected format, MIME type, confidence, and matched bytes.</li><li>If a mismatch or executable warning appears, avoid opening files from unknown sources.</li></ul>
 
-  <!-- 3. Supported / Unsupported -->
   <h2>3. Supported / Unsupported</h2>
-  <p><strong>Supported formats include:</strong></p>
-  <ul>
-    <li>PNG / JPEG / GIF / WebP</li>
-    <li>PDF</li>
-    <li>ZIP / RAR / 7Z</li>
-    <li>MP4 / MOV / AVI / MKV</li>
-    <li>BMP / TIFF / ICO</li>
-    <li>WAV / MP3</li>
-    <li>EXE / ELF</li>
-  </ul>
+  <p><strong>Main supported formats:</strong></p>
+  <ul><li>PDF / PNG / JPEG / GIF / WebP / AVIF / HEIC / HEIF</li><li>ZIP / 7Z / GZIP / RAR</li><li>MP3 / WAV / MP4 / MOV / WebM / MKV</li><li>BMP / TIFF / ICO</li><li>EXE / ELF / Mach-O</li></ul>
+  <p><strong>Limitations:</strong></p>
+  <ul><li>The tool does not inspect full file contents or verify safety.</li><li>ZIP-based container notes are mainly extension-based; full ZIP internal filename inspection is not performed.</li><li>Encrypted, custom-header, or heavily corrupted files may be shown as Unknown.</li></ul>
 
-  <p><strong>Unsupported cases:</strong></p>
-  <ul>
-    <li>Very large files (1GB+)</li>
-    <
+  <h2>4. Error types</h2>
+  <ul><li>No file selected: choose a file first.</li><li>Read error: the browser could not read the selected file.</li><li>Unknown: the file did not match known Magic Number patterns.</li></ul>
+
+  <h2>5. Output format</h2>
+  <ul><li>Bytes read: only the first 4096 bytes are read.</li><li>Detected type: estimated from Magic Number patterns.</li><li>MIME type: representative MIME for the detected format.</li><li>Match: relationship between the filename extension and estimated format.</li><li>What to check next: practical caution before handling the file.</li></ul>
+
+  <h2>6. FAQ</h2>
+  <p><strong>Q. Can this tool perform a security scan?</strong><br>A. No. It estimates the file format only and cannot determine whether a file is safe.</p>
+  <p><strong>Q. Why are DOCX or XLSX files treated as ZIP?</strong><br>A. Some Office documents use a ZIP-based container structure.</p>
+  <p><strong>Q. Are files uploaded?</strong><br>A. No. The tool reads only the first bytes inside your browser.</p>
+
+  <h2>7. Disclaimer</h2>
+  <p>This tool only estimates file formats based on Magic Numbers. Results and safety are not guaranteed. Verify important or unknown files through trusted methods.</p>
+
+  <p class="back-link"><a href="./">← Back to FileType Sniffer</a></p>
+</body>
+</html>
