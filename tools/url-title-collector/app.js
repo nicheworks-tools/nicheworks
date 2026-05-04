@@ -3,229 +3,340 @@
 // ===============================
 
 const fetchBtn = document.getElementById("fetchBtn");
+const sampleBtn = document.getElementById("sampleBtn");
 const urlInput = document.getElementById("urlInput");
 const resultsDiv = document.getElementById("results");
 const progressWrap = document.getElementById("progressWrap");
 const progressBar = document.getElementById("progressBar");
+const toast = document.getElementById("toast");
 
 const countArea = document.getElementById("countArea");
 const countTotal = document.getElementById("countTotal");
 const countSuccess = document.getElementById("countSuccess");
 const countFail = document.getElementById("countFail");
+const countSkip = document.getElementById("countSkip");
 
 const exportArea = document.getElementById("exportArea");
 const resetBtn = document.getElementById("resetBtn");
 const copyCsvBtn = document.getElementById("copyCsvBtn");
 const copyTsvBtn = document.getElementById("copyTsvBtn");
 
-// Worker（CORS回避）URL
 const WORKER_URL = "https://floral-voice-bfc0.nicheworks-tools.workers.dev/?url=";
+const MAX_URLS = 50;
+const FETCH_TIMEOUT_MS = 10000;
+const SAMPLE_URLS = [
+  "https://nicheworks.app/",
+  "https://example.com/",
+  "https://example.com/",
+  "not-a-url",
+  "javascript:alert(1)"
+].join("\n");
 
+let latestResults = [];
 
-// ===============================
-// メイン処理
-// ===============================
-fetchBtn.addEventListener("click", async () => {
-  const urls = urlInput.value
-    .split("\n")
-    .map(u => u.trim())
-    .filter(u => u.length > 0);
+fetchBtn.addEventListener("click", handleFetch);
+copyCsvBtn.addEventListener("click", () => copyResults("csv"));
+copyTsvBtn.addEventListener("click", () => copyResults("tsv"));
+resetBtn.addEventListener("click", resetTool);
 
-  if (urls.length === 0) {
-    alert("URLを入力してください。");
+if (sampleBtn) {
+  sampleBtn.addEventListener("click", () => {
+    urlInput.value = SAMPLE_URLS;
+    showToast("サンプルURLを入力しました。 / Sample URLs loaded.");
+  });
+}
+
+async function handleFetch() {
+  const parsed = parseInputUrls(urlInput.value);
+
+  if (parsed.length === 0) {
+    showToast("URLを入力してください。 / Enter at least one URL.");
     return;
   }
 
-  // 初期化
+  latestResults = [];
   resultsDiv.innerHTML = "";
   progressWrap.classList.remove("hidden");
   countArea.classList.remove("hidden");
   exportArea.classList.add("hidden");
-
   progressBar.style.width = "0%";
+  setCounts(parsed.length, 0, 0, 0);
+  fetchBtn.disabled = true;
 
-  countTotal.textContent = `合計: ${urls.length}`;
-  let successCount = 0;
-  let failCount = 0;
+  let success = 0;
+  let fail = 0;
+  let skip = 0;
 
-  const results = [];
+  for (let i = 0; i < parsed.length; i += 1) {
+    const item = parsed[i];
+    let result;
 
-  for (let i = 0; i < urls.length; i++) {
-    const url = urls[i];
-    const res = await fetchTitle(url);
-    results.push(res);
+    if (item.status !== "ready") {
+      result = {
+        raw: item.raw,
+        url: item.url || item.raw,
+        title: "",
+        status: item.status
+      };
+    } else {
+      result = await fetchTitle(item.url);
+    }
 
-    if (res.status === "success") successCount++;
-    else failCount++;
+    latestResults.push(result);
 
-    // update counts
-    countSuccess.textContent = `成功: ${successCount}`;
-    countFail.textContent = `失敗: ${failCount}`;
+    if (result.status === "success") success += 1;
+    else if (isSkipStatus(result.status)) skip += 1;
+    else fail += 1;
 
-    // update progress
-    const percent = Math.round(((i + 1) / urls.length) * 100);
-    progressBar.style.width = percent + "%";
+    setCounts(parsed.length, success, fail, skip);
+    progressBar.style.width = `${Math.round(((i + 1) / parsed.length) * 100)}%`;
   }
 
-  // 結果テーブル表示
-  renderResults(results);
-
-  // エクスポートエリア表示
+  renderResults(latestResults);
   exportArea.classList.remove("hidden");
-});
+  fetchBtn.disabled = false;
+  showToast("処理が完了しました。 / Done.");
+}
 
+function parseInputUrls(text) {
+  const seen = new Set();
+  const lines = text.split("\n");
+  const results = [];
+  let acceptedCount = 0;
 
-// ===============================
-// タイトル取得ロジック
-// status: success / no-title / http-error / network-error
-// ===============================
+  for (const line of lines) {
+    const raw = cleanRawUrl(line);
+    if (!raw) continue;
+
+    if (acceptedCount >= MAX_URLS) {
+      results.push({ raw, status: "skipped-limit" });
+      continue;
+    }
+
+    try {
+      const url = new URL(raw);
+      if (!["http:", "https:"].includes(url.protocol)) {
+        results.push({ raw, status: "invalid-scheme" });
+        acceptedCount += 1;
+        continue;
+      }
+
+      const normalized = url.href;
+      if (seen.has(normalized)) {
+        results.push({ raw, url: normalized, status: "duplicate" });
+        acceptedCount += 1;
+        continue;
+      }
+
+      seen.add(normalized);
+      results.push({ raw, url: normalized, status: "ready" });
+      acceptedCount += 1;
+    } catch {
+      results.push({ raw, status: "invalid-url" });
+      acceptedCount += 1;
+    }
+  }
+
+  return results;
+}
+
+function cleanRawUrl(line) {
+  return line
+    .trim()
+    .replace(/^[<「『\"']+/, "")
+    .replace(/[>」』\"']+$/, "")
+    .trim();
+}
+
 async function fetchTitle(url) {
   try {
-    const encoded = WORKER_URL + encodeURIComponent(url);
-    const response = await fetch(encoded);
-
-    // fetch OK 判定（HTTP 2xx）
-    let httpOk = response.ok;
-
+    const response = await fetchWithTimeout(WORKER_URL + encodeURIComponent(url), FETCH_TIMEOUT_MS);
     const text = await response.text();
-
-    // HTTP エラー系
-    if (!httpOk) {
-      // 404, 500 など
-      const title = extractTitle(text);
-      return {
-        url,
-        title: title || "",
-        status: "http-error"
-      };
-    }
-
-    // 2xx の場合、タイトル抽出
     const title = extractTitle(text);
 
-    if (!title) {
-      return {
-        url,
-        title: "",
-        status: "no-title"
-      };
+    if (!response.ok) {
+      return { url, title: title || "", status: "http-error" };
     }
 
-    return {
-      url,
-      title,
-      status: "success"
-    };
+    if (!title) {
+      return { url, title: "", status: "no-title" };
+    }
 
-  } catch (e) {
-    // ネットワークエラー（CORS / DNS / 接続不可）
+    return { url, title: decodeHtmlEntities(title), status: "success" };
+  } catch (error) {
     return {
       url,
       title: "",
-      status: "network-error"
+      status: error.name === "AbortError" ? "timeout" : "network-error"
     };
   }
 }
 
-
-// ===============================
-// HTMLから<title>抽出
-// ===============================
-function extractTitle(html) {
-  const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-  if (!match) return "";
-  return match[1].trim();
+async function fetchWithTimeout(url, ms) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), ms);
+  try {
+    return await fetch(url, { signal: controller.signal });
+  } finally {
+    window.clearTimeout(timer);
+  }
 }
 
+function extractTitle(html) {
+  const match = String(html || "").match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  if (!match) return "";
+  return match[1].replace(/\s+/g, " ").trim();
+}
 
-// ===============================
-// 結果レンダリング
-// ===============================
+function decodeHtmlEntities(text) {
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = text;
+  return textarea.value;
+}
+
 function renderResults(results) {
-  let html = `
-    <table>
-      <tr>
-        <th>URL</th>
-        <th>Title</th>
-        <th>Status</th>
-      </tr>
-  `;
+  resultsDiv.innerHTML = "";
 
-  results.forEach(r => {
-    const cls = statusClass(r.status);
+  if (!results.length) return;
 
-    html += `
-      <tr>
-        <td>${escapeHtml(r.url)}</td>
-        <td>${escapeHtml(r.title)}</td>
-        <td class="${cls}">${r.status}</td>
-      </tr>
-    `;
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  ["URL", "Title", "Status"].forEach((label) => {
+    const th = document.createElement("th");
+    th.textContent = label;
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  results.forEach((result) => {
+    const tr = document.createElement("tr");
+    const urlTd = document.createElement("td");
+    const titleTd = document.createElement("td");
+    const statusTd = document.createElement("td");
+
+    urlTd.textContent = result.url || result.raw || "";
+    titleTd.textContent = result.title || "";
+    titleTd.title = result.title || "";
+    statusTd.textContent = result.status;
+    statusTd.className = statusClass(result.status);
+
+    tr.append(urlTd, titleTd, statusTd);
+    tbody.appendChild(tr);
   });
 
-  html += `</table>`;
-  resultsDiv.innerHTML = html;
+  table.appendChild(tbody);
+  resultsDiv.appendChild(table);
 }
 
-
-// ステータス → CSSクラス
 function statusClass(status) {
   switch (status) {
     case "success": return "status-success";
+    case "duplicate":
+    case "invalid-url":
+    case "invalid-scheme":
+    case "skipped-limit": return "status-skipped";
     case "no-title": return "status-no-title";
     case "http-error": return "status-http-error";
-    case "network-error": return "status-network-error";
+    case "network-error":
+    case "worker-error":
+    case "timeout": return "status-network-error";
     default: return "";
   }
 }
 
-
-// HTMLエスケープ
-function escapeHtml(str) {
-  if (!str) return "";
-  return str.replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
+function isSkipStatus(status) {
+  return ["duplicate", "invalid-url", "invalid-scheme", "skipped-limit"].includes(status);
 }
 
+function setCounts(total, success, fail, skip) {
+  const isEnglish = document.documentElement.lang === "en";
+  countTotal.textContent = `${isEnglish ? "Total" : "合計"}: ${total}`;
+  countSuccess.textContent = `${isEnglish ? "Success" : "成功"}: ${success}`;
+  countFail.textContent = `${isEnglish ? "Failed" : "失敗"}: ${fail}`;
+  if (countSkip) countSkip.textContent = `${isEnglish ? "Skipped" : "スキップ"}: ${skip}`;
+}
 
-// ===============================
-// CSV・TSVコピー
-// ===============================
-copyCsvBtn.addEventListener("click", () => {
-  copyTable("csv");
-});
-copyTsvBtn.addEventListener("click", () => {
-  copyTable("tsv");
-});
+async function copyResults(type) {
+  if (!latestResults.length) {
+    showToast("コピーする結果がありません。 / No results to copy.");
+    return;
+  }
 
-function copyTable(type) {
-  const rows = [...resultsDiv.querySelectorAll("table tr")];
+  const text = buildExportText(latestResults, type);
+  const ok = await copyToClipboard(text);
+  if (ok) {
+    showToast(`${type.toUpperCase()} をコピーしました。 / ${type.toUpperCase()} copied.`);
+  } else {
+    showToast("コピーに失敗しました。結果を選択して手動でコピーしてください。 / Copy failed.");
+  }
+}
+
+function buildExportText(results, type) {
   const sep = type === "csv" ? "," : "\t";
-
-  const lines = rows.map(tr => {
-    const cells = [...tr.querySelectorAll("td, th")];
-    return cells.map(td => `"${td.innerText.replace(/"/g, '""')}"`).join(sep);
-  });
-
-  const text = lines.join("\n");
-  navigator.clipboard.writeText(text);
-
-  alert(type.toUpperCase() + " をコピーしました。");
+  const newline = type === "csv" ? "\r\n" : "\n";
+  const header = ["url", "title", "status"];
+  const rows = results.map((result) => [result.url || result.raw || "", result.title || "", result.status]);
+  return [header, ...rows]
+    .map((row) => row.map((cell) => type === "csv" ? csvCell(cell) : tsvCell(cell)).join(sep))
+    .join(newline);
 }
 
+function csvCell(value) {
+  return `"${String(value ?? "").replace(/"/g, '""')}"`;
+}
 
-// ===============================
-// リセットボタン
-// ===============================
-resetBtn.addEventListener("click", () => {
+function tsvCell(value) {
+  return String(value ?? "").replace(/[\t\r\n]+/g, " ");
+}
+
+async function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // fallback below
+    }
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    return document.execCommand("copy");
+  } catch {
+    return false;
+  } finally {
+    document.body.removeChild(textarea);
+  }
+}
+
+function resetTool() {
   urlInput.value = "";
+  latestResults = [];
   resultsDiv.innerHTML = "";
   progressWrap.classList.add("hidden");
   countArea.classList.add("hidden");
   exportArea.classList.add("hidden");
   progressBar.style.width = "0%";
-  countTotal.textContent = "合計: 0";
-  countSuccess.textContent = "成功: 0";
-  countFail.textContent = "失敗: 0";
-});
+  setCounts(0, 0, 0, 0);
+  showToast("リセットしました。 / Reset complete.");
+}
+
+let toastTimer;
+function showToast(message) {
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => toast.classList.add("hidden"), 2600);
+}
