@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-57QT78M3JB');
 </script>
 
@@ -18,28 +17,20 @@
   <link rel="canonical" href="https://nicheworks.app/tools/contract-cleaner/">
   <meta name="robots" content="index,follow">
 
-  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="契約書の注意語・確認ポイント検出｜Contract Cleaner | NicheWorks">
   <meta property="og:description" content="契約書・利用規約などの本文から、損害賠償、解除、支払、知財、秘密保持などの注意語をブラウザ内で検出し、確認ポイントを整理する無料ツールです。法的助言ではありません。">
   <meta property="og:url" content="https://nicheworks.app/tools/contract-cleaner/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="契約書の注意語・確認ポイント検出｜Contract Cleaner | NicheWorks">
   <meta name="twitter:description" content="契約書・利用規約などの本文から、損害賠償、解除、支払、知財、秘密保持などの注意語をブラウザ内で検出し、確認ポイントを整理する無料ツールです。法的助言ではありません。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- AdSense（必須） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Base CSS -->
   <link rel="stylesheet" href="style.css" />
 
   <script type="application/ld+json">
@@ -53,156 +44,159 @@
     "operatingSystem": "All"
   }
   </script>
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "法的助言ですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "いいえ。注意語を機械的に検出する簡易ツールです。契約判断や条文修正の正しさは保証しません。"}
+      },
+      {
+        "@type": "Question",
+        "name": "契約書テキストは送信されますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "本文解析はブラウザ内で行います。入力内容をサーバーへ送信する処理はありません。ただし広告・解析タグは読み込まれます。"}
+      },
+      {
+        "@type": "Question",
+        "name": "検出されなければ安全ですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "いいえ。検出漏れがあります。重要な契約は弁護士・専門家・社内法務に確認してください。"}
+      },
+      {
+        "@type": "Question",
+        "name": "PDFに対応していますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "直接読み込みには対応していません。本文をコピーできるPDFはテキスト化して貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。"}
+      },
+      {
+        "@type": "Question",
+        "name": "Contract Risk Highlighterとの違いは？",
+        "acceptedAnswer": {"@type": "Answer", "text": "Contract Cleanerはキーワードと確認ポイント整理に寄せた軽量ツールです。Contract Risk Highlighterは条項パターンごとの説明に寄せたツールです。"}
+      }
+    ]
+  }
   </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
       <div class="nw-title-block">
-        <h1 class="nw-title" data-i18n="title_main_ja" data-i18n-en="title_main_en">
-          契約書の注意語・確認ポイント検出（Contract Cleaner）
-        </h1>
-        <p class="nw-subtitle" data-i18n="subtitle_ja" data-i18n-en="subtitle_en">
-          危険条文を断定せず、注意が必要な可能性のある表現をブラウザ内で整理します（AI不使用）。
-        </p>
+        <h1 class="nw-title" data-i18n="title_main">契約書の注意語・確認ポイント検出（Contract Cleaner）</h1>
+        <p class="nw-subtitle" data-i18n="subtitle">契約書・利用規約の本文から、注意が必要な可能性のある表現をブラウザ内で整理します（AI不使用）。</p>
       </div>
-
-      <div class="nw-lang-switch">
-        <button class="lang-btn active" data-lang="ja">JP</button>
-        <button class="lang-btn" data-lang="en">EN</button>
+      <div class="nw-lang-switch" aria-label="Language switcher">
+        <button class="lang-btn active" type="button" data-lang="ja">JP</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
       </div>
     </div>
   </header>
 
   <main class="nw-main">
-    <!-- 上部広告 -->
     <div class="ad-slot ad-top">広告枠（自動広告ON時に表示）</div>
 
-    <!-- 寄付導線（ヘッダー直下） -->
     <div class="donation-box">
-      <span data-i18n="donate_hdr_ja" data-i18n-en="donate_hdr_en">
-        このツールが役に立ったら、開発継続のご支援をいただけると嬉しいです。
-      </span>
+      <span data-i18n="donate_hdr">このツールが役に立ったら、開発継続のご支援をいただけると嬉しいです。</span>
       <div class="donation-links">
         <a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
 
+    <section class="important-notice" aria-labelledby="noticeTitle">
+      <h2 id="noticeTitle" data-i18n="notice_title">重要な注意</h2>
+      <p data-i18n="notice_body">このツールは危険条文を断定するものではありません。契約書内の注意語・確認候補を機械的に抽出するだけです。契約可否、条文修正の正しさ、法的リスクの有無は判断しません。重要な契約は弁護士・専門家・社内法務に確認してください。機密契約書や個人情報は貼り付けないでください。</p>
+    </section>
+
     <section class="tool-wrapper">
-      <!-- 入力ペイン -->
       <div class="input-panel">
-        <h2 class="panel-title" data-i18n="input_title_ja" data-i18n-en="input_title_en">
-          契約書・規約の本文
-        </h2>
+        <h2 class="panel-title" data-i18n="input_title">契約書・規約の本文</h2>
+        <p class="panel-desc" data-i18n="input_desc">PDFファイルの直接読み込みには対応していません。本文をコピーできるPDFは、テキストとして貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。</p>
+        <p class="local-only" data-i18n="local_only">本文解析はブラウザ内で行います。入力テキストは送信しません。ただし広告・解析タグは読み込まれます。</p>
 
-        <p class="panel-desc" data-i18n="input_desc_ja" data-i18n-en="input_desc_en">
-          PDFファイルの直接読み込みには対応していません。本文をコピーできるPDFは、テキストとして貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。
-        </p>
-        <p class="local-only" data-i18n="local_only_ja" data-i18n-en="local_only_en">
-          Runs in your browser. No text is uploaded.
-        </p>
-
-        <textarea id="contractText" class="input-area"
-          data-i18n-stable content="ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"
-          data-i18n-stable content-en="Paste contract or terms text here. Direct PDF upload and OCR are not supported."
-        ></textarea>
+        <textarea id="contractText" class="input-area" data-i18n-placeholder="placeholder" placeholder="ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"></textarea>
 
         <div class="panel-buttons">
-          <button id="analyzeBtn" class="btn-primary" data-i18n="scan_btn_ja" data-i18n-en="scan_btn_en">
-            スキャンする
-          </button>
-          <button id="clearBtn" class="btn-secondary" data-i18n="clear_btn_ja" data-i18n-en="clear_btn_en">
-            クリア
-          </button>
-          <button id="exampleBtn" class="btn-ghost" data-i18n="example_btn_ja" data-i18n-en="example_btn_en">
-            例文
-          </button>
+          <button id="analyzeBtn" class="btn-primary" type="button" data-i18n="scan_btn">確認ポイントを検出</button>
+          <button id="clearBtn" class="btn-secondary" type="button" data-i18n="clear_btn">クリア</button>
+          <button id="exampleBtn" class="btn-ghost" type="button" data-i18n="example_btn">例文</button>
         </div>
 
         <div class="panel-buttons">
-          <button id="copySummaryBtn" class="btn-secondary" data-i18n="copy_summary_ja" data-i18n-en="copy_summary_en">
-            要約をコピー
-          </button>
-          <button id="copyQuestionsBtn" class="btn-secondary" data-i18n="copy_questions_ja" data-i18n-en="copy_questions_en">
-            質問テンプレをコピー
-          </button>
-          <button id="downloadBtn" class="btn-secondary" data-i18n="download_btn_ja" data-i18n-en="download_btn_en">
-            txtを保存
-          </button>
+          <button id="copySummaryBtn" class="btn-secondary" type="button" data-i18n="copy_summary">要約をコピー</button>
+          <button id="copyQuestionsBtn" class="btn-secondary" type="button" data-i18n="copy_questions">質問テンプレをコピー</button>
+          <button id="downloadBtn" class="btn-secondary" type="button" data-i18n="download_btn">txtを保存</button>
         </div>
 
-        <div class="disclaimer" data-i18n="disclaimer_ja" data-i18n-en="disclaimer_en">
-          本ツールは注意喚起目的の補助ツールであり、法的助言ではありません。
-        </div>
+        <div class="disclaimer" data-i18n="disclaimer">検出されない＝安全ではありません。これは法的助言ではなく、注意語の機械的な抽出です。</div>
       </div>
 
-      <!-- 結果ペイン -->
       <div class="result-panel">
-        <h2 class="panel-title" data-i18n="result_title_ja" data-i18n-en="result_title_en">
-          検出結果
-        </h2>
+        <h2 class="panel-title" data-i18n="result_title">確認ポイント</h2>
 
         <div class="summary-row">
-          <div class="summary-card">
-            <span data-i18n="total_hits_ja" data-i18n-en="total_hits_en">合計ヒット</span>
-            <strong id="totalHits">0</strong>
-          </div>
-          <div class="summary-card">
-            <span data-i18n="category_hits_ja" data-i18n-en="category_hits_en">カテゴリ数</span>
-            <strong id="categoryCount">0</strong>
-          </div>
+          <div class="summary-card"><span data-i18n="total_hits">合計ヒット</span><strong id="totalHits">0</strong></div>
+          <div class="summary-card"><span data-i18n="category_hits">該当カテゴリ</span><strong id="categoryCount">0</strong></div>
+          <div class="summary-card severity-card severity-high"><span data-i18n="severity_high">High</span><strong id="highCount">0 / 0</strong></div>
+          <div class="summary-card severity-card severity-medium"><span data-i18n="severity_medium">Medium</span><strong id="mediumCount">0 / 0</strong></div>
+          <div class="summary-card severity-card severity-low"><span data-i18n="severity_low">Low</span><strong id="lowCount">0 / 0</strong></div>
+        </div>
+        <p class="hint severity-help" data-i18n="severity_help">High / Medium / Low は確認の優先度目安です。法的な危険度を断定するものではありません。</p>
+
+        <div class="priority-panel">
+          <h3 data-i18n="priority_title">優先確認カテゴリ</h3>
+          <div id="priorityCategories" class="priority-empty" data-i18n="priority_empty">本文を貼り付けると、優先確認カテゴリを表示します。</div>
         </div>
 
         <div class="filter-row">
           <label class="toggle">
             <input type="checkbox" id="onlyMatchedToggle" checked />
-            <span data-i18n="only_matched_ja" data-i18n-en="only_matched_en">該当カテゴリのみ表示</span>
+            <span data-i18n="only_matched">該当カテゴリのみ表示</span>
           </label>
-          <p class="hint" data-i18n="summary_hint_ja" data-i18n-en="summary_hint_en">
-            カテゴリ別に「確認ポイント」と該当箇所を表示します。
-          </p>
+          <p class="hint" data-i18n="summary_hint">カテゴリ別に「確認ポイント」と該当箇所を表示します。</p>
         </div>
 
         <div id="categoryList" class="category-list"></div>
 
         <div class="questions-panel">
-          <h3 data-i18n="questions_title_ja" data-i18n-en="questions_title_en">確認したい点（プレビュー）</h3>
+          <h3 data-i18n="questions_title">確認したい点（プレビュー）</h3>
           <pre id="questionsPreview" class="questions-preview"></pre>
         </div>
 
         <div class="highlight-view">
-          <h3 data-i18n="highlight_title_ja" data-i18n-en="highlight_title_en">
-            ハイライト表示
-          </h3>
-          <p data-i18n="highlight_desc_ja" data-i18n-en="highlight_desc_en">
-            入力テキスト中の該当箇所を色付きで表示します。
-          </p>
+          <h3 data-i18n="highlight_title">ハイライト表示</h3>
+          <p data-i18n="highlight_desc">入力テキスト中の該当箇所を色付きで表示します。</p>
           <div id="highlightPreview" class="highlight-box"></div>
           <p id="highlightNote" class="hint"></p>
         </div>
       </div>
     </section>
 
-    <!-- 下部広告 -->
     <div class="ad-slot ad-bottom">広告枠（自動広告ON時に表示）</div>
 
-    <!-- 内部リンク -->
-    <div class="related-links">
-      <a href="https://nicheworks.app/tools/manualfinder/">ManualFinder</a>
-      <a href="https://nicheworks.app/tools/trashnavi/">TrashNavi</a>
-      <a href="https://nicheworks.app/tools/logformatter/">LogFormatter</a>
-    </div>
+    <section class="faq-section" aria-labelledby="faqTitle">
+      <h2 id="faqTitle" data-i18n="faq_title">よくある質問</h2>
+      <details><summary data-i18n="faq_legal_q">法的助言ですか？</summary><p data-i18n="faq_legal_a">いいえ。注意語を機械的に検出する簡易ツールです。契約判断や条文修正の正しさは保証しません。</p></details>
+      <details><summary data-i18n="faq_privacy_q">契約書テキストは送信されますか？</summary><p data-i18n="faq_privacy_a">本文解析はブラウザ内で行います。入力内容をサーバーへ送信する処理はありません。ただし広告・解析タグは読み込まれます。</p></details>
+      <details><summary data-i18n="faq_safe_q">検出されなければ安全ですか？</summary><p data-i18n="faq_safe_a">いいえ。検出漏れがあります。重要な契約は弁護士・専門家・社内法務に確認してください。</p></details>
+      <details><summary data-i18n="faq_pdf_q">PDFに対応していますか？</summary><p data-i18n="faq_pdf_a">直接読み込みには対応していません。本文をコピーできるPDFはテキスト化して貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。</p></details>
+      <details><summary data-i18n="faq_diff_q">Contract Risk Highlighterとの違いは？</summary><p data-i18n="faq_diff_a">Contract Cleanerはキーワードと確認ポイント整理に寄せた軽量ツールです。Contract Risk Highlighterは条項パターンごとの説明に寄せたツールです。</p></details>
+    </section>
 
-    <!-- 寄付導線（フッター直前） -->
+    <section class="related-section" aria-labelledby="relatedTitle">
+      <h2 id="relatedTitle" data-i18n="related_title">関連ツール</h2>
+      <div class="related-links">
+        <a href="/tools/contract-risk-highlighter/">Contract Risk Highlighter</a>
+        <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a>
+        <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a>
+        <a href="/tools/log-formatter/">LogFormatter</a>
+      </div>
+    </section>
+
     <div class="donation-box bottom">
-      <span data-i18n="donate_ftr_ja" data-i18n-en="donate_ftr_en">
-        開発継続のためのご支援をいただけると嬉しいです。
-      </span>
+      <span data-i18n="donate_ftr">開発継続のためのご支援をいただけると嬉しいです。</span>
       <div class="donation-links">
         <a href="https://ofuse.me/nicheworks" class="don-btn ofuse" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" class="don-btn kofi" target="_blank" rel="noopener">☕ Ko-fi</a>
@@ -212,50 +206,11 @@
 
   <footer class="nw-footer">
     <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p data-i18n="footer_disclaimer_ja" data-i18n-en="footer_disclaimer_en">
-      当サイトには広告が含まれる場合があります。情報の正確性は保証されません。
-    </p>
+    <p data-i18n="footer_disclaimer">当サイトには広告が含まれる場合があります。情報の正確性は保証されません。</p>
     <p><a href="https://nicheworks.app" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
   <div id="copyToast" class="copy-toast" role="status" aria-live="polite"></div>
-
   <script type="module" src="app.js"></script>
-  <script>
-    (() => {
-      const copy = {
-        ja: {
-          title: "契約書の注意語・確認ポイント検出（Contract Cleaner）",
-          subtitle: "危険条文を断定せず、注意が必要な可能性のある表現をブラウザ内で整理します（AI不使用）。",
-          inputDesc: "PDFファイルの直接読み込みには対応していません。本文をコピーできるPDFは、テキストとして貼り付けてください。スキャンPDF・画像PDFのOCRは行いません。",
-          stable content: "ここに契約書・利用規約の本文を貼り付けてください。PDFの直接読み込みやOCRには対応していません。"
-        },
-        en: {
-          title: "Contract term and review-point checker (Contract Cleaner)",
-          subtitle: "Find terms that may need review. This rule-based tool does not decide legal risk.",
-          inputDesc: "Direct PDF upload is not supported. If text can be copied from a PDF, paste it as text. Scanned or image-based PDFs are not OCRed here.",
-          stable content: "Paste contract or terms text here. Direct PDF upload and OCR are not supported."
-        }
-      };
-      const applyStableCopy = () => {
-        const lang = document.querySelector(".lang-btn.active")?.dataset.lang === "en" ? "en" : "ja";
-        const dict = copy[lang];
-        const title = document.querySelector("[data-i18n='title_main_ja']");
-        const subtitle = document.querySelector("[data-i18n='subtitle_ja']");
-        const inputDesc = document.querySelector("[data-i18n='input_desc_ja']");
-        const textarea = document.getElementById("contractText");
-        if (title) title.textContent = dict.title;
-        if (subtitle) subtitle.textContent = dict.subtitle;
-        if (inputDesc) inputDesc.textContent = dict.inputDesc;
-        if (textarea) textarea.stable content = dict.stable content;
-      };
-      document.addEventListener("DOMContentLoaded", () => {
-        applyStableCopy();
-        document.querySelectorAll(".lang-btn").forEach((button) => {
-          button.addEventListener("click", () => window.setTimeout(applyStableCopy, 0));
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
