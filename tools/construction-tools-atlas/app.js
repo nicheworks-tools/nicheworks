@@ -169,6 +169,7 @@
     state.uiLang = state.uiLang === "ja" ? "en" : "ja";
     localStorage.setItem(LS.uiLang, state.uiLang);
     if (hasSupportElements()) applySupportLinks();
+    initHowto();
     render();
     if (els.detailSheet && !els.detailSheet.hidden && state.current) {
       renderDetailContent(state.current);
@@ -208,6 +209,7 @@
     }
   }
   function showOverlay(show){
+    if (!els.overlay) return;
     els.overlay.hidden = !show;
   }
   function openSheet(sheetEl){
@@ -275,6 +277,29 @@
     els.supportBtn.addEventListener("click", () => openSheet(els.supportSheet));
     els.supportClose.addEventListener("click", closeAllSheets);
     els.supportInlineBtn.addEventListener("click", () => openSheet(els.supportSheet));
+  }
+
+  function initHowto(){
+    if (!els.howtoList) return;
+    const items = state.uiLang === "ja"
+      ? [
+          "検索欄に日本語または英語を入力します。",
+          "一覧の行をタップすると詳細（意味・例・別名）を表示できます。",
+          "☆でお気に入り登録、★ お気に入りのみで絞り込みできます。",
+          "絞り込みボタンで Action / Category / Task を指定できます。",
+        ]
+      : [
+          "Type Japanese or English keywords in the search box.",
+          "Tap a row to open details (meaning, examples, aliases).",
+          "Use ☆ to favorite terms and ★ favorites-only to filter.",
+          "Use Filter to narrow by Action / Category / Task.",
+        ];
+    els.howtoList.innerHTML = "";
+    items.forEach((text) => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      els.howtoList.appendChild(li);
+    });
   }
 
   // ---- Data loading (tries multiple likely paths) ----
@@ -695,48 +720,61 @@
   }
 
   function setActiveTab(name){
+    if (!els.detailTabs) return;
     $$(".tab", els.detailTabs).forEach(btn => {
       btn.classList.toggle("tab--active", btn.dataset.tab === name);
     });
-    els.tabMeaning.hidden = name !== "meaning";
-    els.tabExamples.hidden = name !== "examples";
-    els.tabAliases.hidden = name !== "aliases";
-    els.tabMeta.hidden = name !== "meta";
+    if (els.tabMeaning) els.tabMeaning.hidden = name !== "meaning";
+    if (els.tabExamples) els.tabExamples.hidden = name !== "examples";
+    if (els.tabAliases) els.tabAliases.hidden = name !== "aliases";
+    if (els.tabMeta) els.tabMeta.hidden = name !== "meta";
   }
 
   function openDetail(id){
-    const e = state.entries.find(x => x.id === id);
-    if (!e) return;
-    state.current = e;
-    renderDetailContent(state.current);
-    setActiveTab("meaning");
-    openSheet(els.detailSheet);
+    try {
+      const e = state.entries.find(x => x.id === id);
+      if (!e || !els.detailSheet) return;
+      state.current = e;
+      renderDetailContent(state.current);
+      setActiveTab("meaning");
+      openSheet(els.detailSheet);
+    } catch (err) {
+      console.error("openDetail failed", err);
+      state.current = null;
+      closeAllSheets();
+    }
+  }
+
+  function safeList(v){
+    return Array.isArray(v) ? v : [];
   }
 
   function renderDetailContent(e){
-    els.detailTitle.textContent = state.uiLang === "ja" ? "詳細" : "Detail";
-    els.detailStar.textContent = state.favs.has(e.id) ? "★" : "☆";
+    if (!e) return;
+    if (!els.detailSheet) return;
+    if (els.detailTitle) els.detailTitle.textContent = state.uiLang === "ja" ? "詳細" : "Detail";
+    if (els.detailStar) els.detailStar.textContent = state.favs.has(e.id) ? "★" : "☆";
 
     // chips (categories/tasks/type)
-    els.detailChips.innerHTML = "";
+    if (els.detailChips) els.detailChips.innerHTML = "";
     const chipTexts = []
       .concat(e.type ? [e.type] : [])
-      .concat(e.categories || [])
-      .concat(e.tasks || []);
+      .concat(safeList(e.categories))
+      .concat(safeList(e.tasks));
     chipTexts.slice(0, 8).forEach(t => {
       const s = document.createElement("span");
       s.className = "chip";
       s.textContent = String(t);
-      els.detailChips.appendChild(s);
+      if (els.detailChips) els.detailChips.appendChild(s);
     });
 
     // term block
-    els.detailTerms.textContent = `${(e.termJa||"—")} / ${(e.termEn||"—")}`;
+    if (els.detailTerms) els.detailTerms.textContent = `${(e.termJa||"—")} / ${(e.termEn||"—")}`;
     const best = getDetailText(e);
-    els.detailDesc.textContent = best || (state.uiLang === "ja" ? "詳細情報準備中" : "Details coming soon");
+    if (els.detailDesc) els.detailDesc.textContent = best || (state.uiLang === "ja" ? "詳細情報準備中" : "Details coming soon");
 
     if (els.detailBullets) {
-      const bullets = state.uiLang === "ja" ? (e.bulletsJa || []) : (e.bulletsEn || []);
+      const bullets = state.uiLang === "ja" ? safeList(e.bulletsJa) : safeList(e.bulletsEn);
       els.detailBullets.innerHTML = "";
       if (bullets.length) {
         bullets.forEach((item) => {
@@ -756,35 +794,35 @@
     const jpText = ja || "—";
     const enText = en || "—";
 
-    els.tabMeaning.innerHTML = `
+    if (els.tabMeaning) els.tabMeaning.innerHTML = `
       <div class="kv"><div class="kv__k">JP</div><div class="kv__v">${escapeHtml(jpText)}</div></div>
       <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${escapeHtml(enText)}</div></div>
     `;
 
-    const exampleJa = (e.examplesJa || []).filter(Boolean);
-    const exampleEn = (e.examplesEn || []).filter(Boolean);
+    const exampleJa = safeList(e.examplesJa).filter(Boolean);
+    const exampleEn = safeList(e.examplesEn).filter(Boolean);
     const exampleList = (items) => items.length
       ? `<ul class="exampleList">${items.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
       : `<span class="muted">—</span>`;
 
-    els.tabExamples.innerHTML = `
+    if (els.tabExamples) els.tabExamples.innerHTML = `
       <div class="kv"><div class="kv__k">JP</div><div class="kv__v">${exampleList(exampleJa)}</div></div>
       <div class="kv"><div class="kv__k">EN</div><div class="kv__v">${exampleList(exampleEn)}</div></div>
     `;
 
-    const ajList = [...new Set([...(e.aliasesJa||[]), ...(e.relatedJa||[])])];
-    const aeList = [...new Set([...(e.aliasesEn||[]), ...(e.relatedEn||[])])];
+    const ajList = [...new Set([...safeList(e.aliasesJa), ...safeList(e.relatedJa)])];
+    const aeList = [...new Set([...safeList(e.aliasesEn), ...safeList(e.relatedEn)])];
     const aj = ajList.length ? ajList.map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ") : `<span class="muted">—</span>`;
     const ae = aeList.length ? aeList.map(x=>`<span class="chip">${escapeHtml(x)}</span>`).join(" ") : `<span class="muted">—</span>`;
-    els.tabAliases.innerHTML = `
+    if (els.tabAliases) els.tabAliases.innerHTML = `
       <div class="kv"><div class="kv__k">JP aliases/related</div><div class="kv__v">${aj}</div></div>
       <div class="kv"><div class="kv__k">EN aliases/related</div><div class="kv__v">${ae}</div></div>
     `;
 
-    const cats = (e.categories||[]).join(", ") || "—";
-    const tasks = (e.tasks||[]).join(", ") || "—";
-    const region = (e.region||[]).join(", ") || "—";
-    els.tabMeta.innerHTML = `
+    const cats = safeList(e.categories).join(", ") || "—";
+    const tasks = safeList(e.tasks).join(", ") || "—";
+    const region = safeList(e.region).join(", ") || "—";
+    if (els.tabMeta) els.tabMeta.innerHTML = `
       <div class="kv"><div class="kv__k">id</div><div class="kv__v">${escapeHtml(e.id)}</div></div>
       <div class="kv"><div class="kv__k">type</div><div class="kv__v">${escapeHtml(e.type || "—")}</div></div>
       <div class="kv"><div class="kv__k">categories</div><div class="kv__v">${escapeHtml(cats)}</div></div>
@@ -907,11 +945,11 @@
   function bind(){
     setTheme(state.theme);
 
-    els.themeBtn.addEventListener("click", toggleTheme);
-    els.langBtn.addEventListener("click", toggleLang);
+    if (els.themeBtn) els.themeBtn.addEventListener("click", toggleTheme);
+    if (els.langBtn) els.langBtn.addEventListener("click", toggleLang);
 
-    els.menuBtn.addEventListener("click", () => openSheet(els.menuSheet));
-    els.menuClose.addEventListener("click", closeAllSheets);
+    if (els.menuBtn) els.menuBtn.addEventListener("click", () => openSheet(els.menuSheet));
+    if (els.menuClose) els.menuClose.addEventListener("click", closeAllSheets);
     if (els.howtoOpen) {
       els.howtoOpen.addEventListener("click", (event) => {
         event.preventDefault();
@@ -924,8 +962,8 @@
 
     initSupport();
 
-    els.detailClose.addEventListener("click", closeAllSheets);
-    els.detailStar.addEventListener("click", () => {
+    if (els.detailClose) els.detailClose.addEventListener("click", closeAllSheets);
+    if (els.detailStar) els.detailStar.addEventListener("click", () => {
       if (!state.current) return;
       const id = state.current.id;
       if (state.favs.has(id)) state.favs.delete(id);
@@ -941,28 +979,30 @@
   if (els.favsOnly) els.favsOnly.addEventListener("change", () => { render(); });
   if (els.exportFavsBtn) els.exportFavsBtn.addEventListener("click", exportFavs);
   if (els.importFavsBtn) els.importFavsBtn.addEventListener("click", importFavs);
-    els.overlay.addEventListener("click", closeAllSheets);
+    if (els.overlay) els.overlay.addEventListener("click", closeAllSheets);
 
-    els.detailTabs.addEventListener("click", (ev) => {
-      const btn = ev.target.closest(".tab");
-      if (!btn) return;
-      setActiveTab(btn.dataset.tab);
-    });
+    if (els.detailTabs) {
+      els.detailTabs.addEventListener("click", (ev) => {
+        const btn = ev.target.closest(".tab");
+        if (!btn) return;
+        setActiveTab(btn.dataset.tab);
+      });
+    }
 
     if (els.filterOpenBtn) {
       els.filterOpenBtn.addEventListener("click", openFilterSheet);
     }
-    els.categoryBtn.addEventListener("click", openFilterSheet);
-    els.taskBtn.addEventListener("click", openFilterSheet);
-    els.filterClose.addEventListener("click", closeAllSheets);
-    els.filterApplyBtn.addEventListener("click", applyFilterDraft);
-    els.filterResetBtn.addEventListener("click", resetFilters);
+    if (els.categoryBtn) els.categoryBtn.addEventListener("click", openFilterSheet);
+    if (els.taskBtn) els.taskBtn.addEventListener("click", openFilterSheet);
+    if (els.filterClose) els.filterClose.addEventListener("click", closeAllSheets);
+    if (els.filterApplyBtn) els.filterApplyBtn.addEventListener("click", applyFilterDraft);
+    if (els.filterResetBtn) els.filterResetBtn.addEventListener("click", resetFilters);
 
-    els.searchInput.addEventListener("input", () => {
+    if (els.searchInput) els.searchInput.addEventListener("input", () => {
       state.q = els.searchInput.value || "";
       render();
     });
-    els.clearBtn.addEventListener("click", () => {
+    if (els.clearBtn && els.searchInput) els.clearBtn.addEventListener("click", () => {
       els.searchInput.value = "";
       state.q = "";
       els.searchInput.focus();
@@ -983,6 +1023,7 @@
 
   async function init(){
     bind();
+    initHowto();
     state.isLoading = true;
     state.error = null;
     setStatus("loading");
