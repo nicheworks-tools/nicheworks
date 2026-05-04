@@ -40,6 +40,26 @@ hr{ border:none; border-top:1px solid var(--bd); margin:12px 0; }
 .nw-footer__inner{ max-width:var(--w); margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
 .nw-doc a{ border-bottom: 1px dotted #999; text-decoration:none; }
 .nw-toast{ position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); background:#111; color:#fff; padding:10px 12px; border-radius:12px; font-size:13px; display:none; max-width: calc(100% - 24px); }
-.nw-acc details{ border:1px solid var(--bd); border-radius:12px; padding:10px 12px; background:#fff; }
+.nw-acc details{ border:1px solid var(--bd); border-radius:12px; padding:10px 12px; background:#fff; margin-top:8px; }
 .nw-acc summary{ cursor:pointer; font-weight:800; }
 .nw-acc p{ margin:8px 0 0; color:#222; }
+.ad-slot{ border:1px dashed #ccc; border-radius:14px; padding:12px; color:var(--muted); background:#fafafa; text-align:center; font-size:13px; }
+.notice-card{ border:1px solid #e0c36a; background:#fffaf0; border-radius:14px; padding:12px 14px; margin-bottom:16px; }
+.notice-card h2{ margin:0 0 8px; font-size:16px; }
+.notice-card p{ margin:6px 0; }
+.risk-why{ white-space:pre-line; }
+.finding__cat{ display:inline-block; margin-top:6px; padding:2px 8px; border:1px solid #ddd; border-radius:999px; color:var(--muted); font-size:12px; background:#fafafa; }
+.nw-donate-text{ margin:0 0 10px; color:#333; }
+.nw-donate-links{ display:flex; gap:10px; flex-wrap:wrap; }
+.nw-donate-links a{ display:inline-block; padding:8px 12px; border:1px solid var(--bd); border-radius:999px; text-decoration:none; background:#fff; font-weight:700; }
+.nw-links a{ text-decoration:none; border-bottom:1px dotted #999; }
+@media (max-width:480px){
+  .nw-main{ padding:12px; }
+  .nw-header__inner{ align-items:flex-start; }
+  .nw-nav{ display:flex; flex-wrap:wrap; gap:8px; }
+  .nw-nav a{ margin-left:0; }
+  .action-row{ flex-direction:column; align-items:stretch; }
+  .action-row button{ width:100%; }
+  textarea{ min-height:180px; }
+  .nw-pill{ border-radius:12px; align-items:flex-start; }
+}
