@@ -1,67 +1,64 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <title>Pdf2csv Local | NicheWorks</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title data-i18n-key="meta.faq.title">FAQ｜PDF2CSV Local | NicheWorks</title>
-  <meta name="description" content="PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。">
-
+  <title>FAQ｜PDF2CSV Local | NicheWorks</title>
+  <meta name="description" content="PDF2CSV LocalのFAQ。テキストPDF表抽出、OCR非対応、外部送信なし、抽出精度、Excel保存、CSV文字化けについて回答します。">
   <link rel="canonical" href="https://nicheworks.app/tools/pdf2csv-local/faq.html">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pdf2csv Local | NicheWorks">
-  <meta property="og:description" content="PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="FAQ｜PDF2CSV Local | NicheWorks">
+  <meta property="og:description" content="PDF2CSV LocalのFAQ。テキストPDF表抽出、OCR非対応、外部送信なし、抽出精度、Excel保存、CSV文字化けについて回答します。">
   <meta property="og:url" content="https://nicheworks.app/tools/pdf2csv-local/faq.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ｜PDF2CSV Local | NicheWorks">
+  <meta name="twitter:description" content="PDF2CSV LocalのFAQ。テキストPDF表抽出、OCR非対応、外部送信なし、抽出精度、Excel保存、CSV文字化けについて回答します。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="robots" content="index,follow">
 
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- AdSense（仕様：削除禁止） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- Cloudflare Web Analytics -->
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "PDF2CSV Local",
-    "url": "https://nicheworks.app/tools/pdf2csv-local/faq.html",
-    "applicationCategory": "UtilityApplication",
-    "description": "PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。",
-    "operatingSystem": "All"
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"画像スキャンPDFをCSVにできますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。OCRには対応していません。文字を選択できるPDFが対象です。"}},
+      {"@type":"Question","name":"PDFはサーバーに送信されますか？","acceptedAnswer":{"@type":"Answer","text":"PDF内容は外部送信されません。ブラウザ内で処理します。ただしPDF解析ライブラリの読み込みに外部CDNを使用する場合があります。"}},
+      {"@type":"Question","name":"抽出結果は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"PDFのレイアウトに依存します。列ズレ、行ズレ、空欄、重複が起きる場合があるため、必ずプレビューを確認してください。"}},
+      {"@type":"Question","name":"Excel形式で保存できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。抽出結果をXLSX形式で保存できます。ただしPDFの見た目を完全再現するものではありません。"}},
+      {"@type":"Question","name":"CSVが文字化けします。","acceptedAnswer":{"@type":"Answer","text":"Excelで開く場合はCSV BOMをONにしてください。"}}
+    ]
   }
   </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-57QT78M3JB');
-</script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="Pdf2csv Local | NicheWorks">
-  <meta name="twitter:description" content="PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 </head>
 
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
-      <h1 class="nw-title" data-i18n-key="faq.title">FAQ</h1>
-      <p class="nw-subtitle" data-i18n-key="faq.subtitle">よくある質問と回答をまとめます。</p>
+      <div data-p2c-lang="ja">
+        <h1 class="nw-title">FAQ</h1>
+        <p class="nw-subtitle">PDF2CSV Localの対応範囲と注意点をまとめます。</p>
+      </div>
+      <div data-p2c-lang="en">
+        <h1 class="nw-title">FAQ</h1>
+        <p class="nw-subtitle">Scope and limitations of PDF2CSV Local.</p>
+      </div>
       <div class="nw-lang-switch" aria-label="Language switch">
         <button type="button" data-lang="ja" class="active">JP</button> /
         <button type="button" data-lang="en">EN</button>
@@ -71,36 +68,47 @@
 
   <main class="doc-main">
     <section class="doc-card">
-      <h2 data-i18n-key="faq.section.title">よくある質問</h2>
-      <dl class="faq-list">
-        <dt data-i18n-key="faq.q1">Q. PDFは外部に送信されますか？</dt>
-        <dd data-i18n-key="faq.a1">A. 送信されません。処理はブラウザ内で完結し、PDFはローカルでのみ扱います。</dd>
-
-        <dt data-i18n-key="faq.q2">Q. 画像スキャンのPDFは対応していますか？</dt>
-        <dd data-i18n-key="faq.a2">A. 文字情報が埋め込まれていない画像スキャンPDFには対応していません。</dd>
-
-        <dt data-i18n-key="faq.q3">Q. 抽出精度はどのくらいですか？</dt>
-        <dd data-i18n-key="faq.a3">A. PDFのレイアウトに依存します。Autoで合わない場合はManualで範囲指定してください。</dd>
-
-        <dt data-i18n-key="faq.q4">Q. 会社PCで使っても大丈夫？</dt>
-        <dd data-i18n-key="faq.a4">A. ブラウザ内で処理されますが、社内ルールに従ってご利用ください。</dd>
-
-        <dt data-i18n-key="faq.q5">Q. CSVが文字化けします。</dt>
-        <dd data-i18n-key="faq.a5">A. Excelで開く場合はBOMを付与したCSVを推奨します。区切り文字も必要に応じて変更してください。</dd>
-      </dl>
-
-      <p class="doc-back"><a href="./index.html" data-i18n-key="faq.back">← ツール本体へ戻る</a></p>
+      <div data-p2c-lang="ja">
+        <h2>よくある質問</h2>
+        <dl class="faq-list">
+          <dt>画像スキャンPDFをCSVにできますか？</dt>
+          <dd>いいえ。OCRには対応していません。文字を選択できるPDFが対象です。</dd>
+          <dt>PDFは外部に送信されますか？</dt>
+          <dd>PDF内容は外部送信されません。ブラウザ内で処理します。ただしPDF解析ライブラリの読み込みに外部CDNを使用する場合があります。</dd>
+          <dt>抽出結果は正確ですか？</dt>
+          <dd>保証しません。PDFのレイアウトによって、列ズレ・行ズレ・空欄・重複が起きる場合があります。必ずプレビューを確認してください。</dd>
+          <dt>Excel形式で保存できますか？</dt>
+          <dd>はい。抽出結果をXLSX形式で保存できます。ただしPDFの見た目を完全再現するものではありません。</dd>
+          <dt>CSVが文字化けします。</dt>
+          <dd>Excelで開く場合はCSV BOMをONにしてください。必要に応じてタブ区切りも試してください。</dd>
+        </dl>
+      </div>
+      <div data-p2c-lang="en">
+        <h2>FAQ</h2>
+        <dl class="faq-list">
+          <dt>Can this convert scanned image PDFs to CSV?</dt>
+          <dd>No. OCR is not supported. Use PDFs with selectable text.</dd>
+          <dt>Are PDFs uploaded anywhere?</dt>
+          <dd>No PDF contents are uploaded. Processing runs in your browser. The PDF parsing library may be loaded from an external CDN.</dd>
+          <dt>Is extraction accurate?</dt>
+          <dd>Accuracy is not guaranteed. PDF layout can cause shifted columns, shifted rows, blanks, or duplicates. Always review the preview.</dd>
+          <dt>Can I save as Excel?</dt>
+          <dd>Yes. It saves the extracted result as XLSX, but it does not recreate the original PDF layout.</dd>
+          <dt>The CSV is garbled in Excel.</dt>
+          <dd>Turn on CSV BOM. You can also try tab-delimited output.</dd>
+        </dl>
+      </div>
+      <p class="doc-back"><a href="./index.html">← ツール本体へ戻る / Back to the tool</a></p>
     </section>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line" data-i18n-key="common.footer.disclaimer">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
   <script src="./app.js"></script>
+  <script src="./copy-fix.js"></script>
 </body>
 </html>
