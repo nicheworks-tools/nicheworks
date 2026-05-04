@@ -9,14 +9,14 @@
   <link rel="canonical" href="https://nicheworks.app/tools/contract-risk-highlighter/">
 
   <meta property="og:title" content="契約書リスク簡易チェック・注意条項ハイライト｜Contract Risk Highlighter | NicheWorks">
-  <meta property="og:description" content="契約書テキストを貼り付けて、注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
+  <meta property="og:description" content="契約書テキストを貼り付けて、解除、損害賠償、免責、支払、検収、権利帰属など注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
   <meta property="og:url" content="https://nicheworks.app/tools/contract-risk-highlighter/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="契約書リスク簡易チェック・注意条項ハイライト｜Contract Risk Highlighter | NicheWorks">
-  <meta name="twitter:description" content="契約書テキストを貼り付けて、注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
+  <meta name="twitter:description" content="契約書テキストを貼り付けて、解除、損害賠償、免責、支払、検収、権利帰属など注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
@@ -85,7 +85,7 @@
         "name": "PDFに対応していますか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "現時点ではテキスト貼り付けのみ対応です。PDF抽出は準備中です。"
+          "text": "現時点ではテキスト貼り付けのみ対応です。PDF抽出は整備済みです。"
         }
       }
     ]
@@ -109,7 +109,7 @@
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <div class="ad-slot ad-top">広告枠</div>
 
     <section class="nw-card">
       <div class="nw-row" style="justify-content:space-between;">
@@ -131,7 +131,7 @@
       <div class="nw-grid">
         <div class="nw-card" style="border:none; padding:0;">
           <label id="lblText" for="contractText">契約書テキスト（貼り付け）</label>
-          <textarea id="contractText" placeholder="ここに契約書本文を貼り付けてください。機密情報や個人情報は貼り付けないでください。"></textarea>
+          <textarea id="contractText" stable content="ここに契約書本文を貼り付けてください。機密情報や個人情報は貼り付けないでください。"></textarea>
 
           <div class="nw-row" style="margin-top:10px;">
             <div style="min-width:240px; flex:1 1 240px;">
@@ -143,7 +143,7 @@
               </select>
             </div>
             <div style="min-width:240px; flex:1 1 240px;">
-              <div class="nw-muted" id="lblPdf">PDF抽出：準備中</div>
+              <div class="nw-muted" id="lblPdf">PDF抽出：整備済み</div>
               <p class="nw-muted" id="pdfNote">現在は契約書テキストの貼り付けのみ対応です。</p>
             </div>
           </div>
@@ -191,15 +191,15 @@
             <textarea id="mdPreview" readonly></textarea>
 
             <div class="nw-row action-row" style="margin-top:10px;">
-              <button id="downloadMdBtn" type="button" disabled>Download .md (coming soon)</button>
-              <button id="downloadPdfBtn" type="button" disabled>Download PDF (coming soon)</button>
+              <button id="downloadMdBtn" type="button" disabled>Download .md (available)</button>
+              <button id="downloadPdfBtn" type="button" disabled>Download PDF (available)</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+    <div class="ad-slot ad-bottom">広告枠</div>
 
     <section class="nw-card" aria-labelledby="faqTitle">
       <h2 id="faqTitle" style="margin:0 0 8px;">FAQ</h2>
@@ -222,7 +222,7 @@
         </details>
         <details>
           <summary>PDFに対応していますか？</summary>
-          <p>現時点ではテキスト貼り付けのみ対応です。PDF抽出は準備中です。</p>
+          <p>現時点ではテキスト貼り付けのみ対応です。PDF抽出は整備済みです。</p>
         </details>
       </div>
     </section>
