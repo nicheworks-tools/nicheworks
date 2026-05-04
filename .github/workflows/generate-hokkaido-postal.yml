@@ -1,0 +1,89 @@
+name: Generate Hokkaido postal data
+
+on:
+  push:
+    paths:
+      - .github/workflows/generate-hokkaido-postal.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate Hokkaido JSON from Japan Post UTF-8 CSV
+        run: |
+          python3 - <<'PY'
+          import csv
+          import io
+          import json
+          import urllib.request
+          import zipfile
+          from pathlib import Path
+
+          url = "https://www.post.japanpost.jp/zipcode/dl/utf/zip/utf_ken_all.zip"
+          out = Path("tools/jp-postal-lite/data/北海道.json")
+
+          with urllib.request.urlopen(url, timeout=60) as response:
+              data = response.read()
+
+          with zipfile.ZipFile(io.BytesIO(data)) as zf:
+              csv_name = next(name for name in zf.namelist() if name.lower().endswith(".csv"))
+              raw = zf.read(csv_name).decode("utf-8-sig")
+
+          def clean_town(value: str) -> str:
+              value = (value or "").strip()
+              if value == "以下に掲載がない場合":
+                  return ""
+              return value
+
+          rows = []
+          seen = set()
+          for row in csv.reader(io.StringIO(raw)):
+              if len(row) < 9:
+                  continue
+              postal_code = row[2].strip()
+              pref = row[6].strip()
+              if pref != "北海道":
+                  continue
+              city = row[7].strip()
+              town = clean_town(row[8])
+              if not postal_code or len(postal_code) != 7:
+                  continue
+              key = (postal_code, pref, city, town)
+              if key in seen:
+                  continue
+              seen.add(key)
+              rows.append({
+                  "postal_code": postal_code,
+                  "postal_hyphen": f"{postal_code[:3]}-{postal_code[3:]}",
+                  "pref": pref,
+                  "city": city,
+                  "town": town,
+                  "full": f"{pref}{city}{town}",
+              })
+
+          rows.sort(key=lambda item: (item["postal_code"], item["full"]))
+          if len(rows) < 1000:
+              raise SystemExit(f"Too few Hokkaido rows generated: {len(rows)}")
+
+          out.write_text(json.dumps(rows, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+          print(f"generated {len(rows)} Hokkaido rows -> {out}")
+          PY
+
+      - name: Commit generated file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/jp-postal-lite/data/北海道.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "Generate Hokkaido postal data"
+          git push
