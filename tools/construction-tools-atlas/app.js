@@ -723,7 +723,8 @@
     if (els.detailStar) els.detailStar.textContent = state.favs.has(e.id) ? "★" : "☆";
 
     // chips (categories/tasks/type)
-    if (els.detailChips) els.detailChips.innerHTML = "";
+    if (!els.detailChips || !els.detailTerms || !els.detailDesc) return;
+    els.detailChips.innerHTML = "";
     const chipTexts = []
       .concat(e.type ? [e.type] : [])
       .concat(e.categories || [])
