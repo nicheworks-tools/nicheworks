@@ -36,39 +36,13 @@
   {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "WebApplication",
-        "name": "Redirect Unwrapper",
-        "url": "https://nicheworks.app/tools/redirect-unwrapper/",
-        "applicationCategory": "UtilityApplication",
-        "description": "SNSリンク、メール配信リンク、追跡URLに含まれる転送先URL候補をブラウザ内で抽出する無料ツールです。URLを開かずに文字列を解析します。",
-        "operatingSystem": "All"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "このツールはURLを開きますか？",
-            "acceptedAnswer": {"@type": "Answer", "text": "いいえ。URL文字列を解析し、埋め込まれた転送先候補を抽出します。"}
-          },
-          {
-            "@type": "Question",
-            "name": "bit.ly や t.co の最終URLを完全に追跡できますか？",
-            "acceptedAnswer": {"@type": "Answer", "text": "いいえ。サーバー側リダイレクトの完全追跡は行いません。"}
-          },
-          {
-            "@type": "Question",
-            "name": "表示された候補URLは安全ですか？",
-            "acceptedAnswer": {"@type": "Answer", "text": "安全性は保証しません。不明なリンクは開かないでください。"}
-          },
-          {
-            "@type": "Question",
-            "name": "URLはサーバーに送信されますか？",
-            "acceptedAnswer": {"@type": "Answer", "text": "入力URLの解析はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}
-          }
-        ]
-      }
+      {"@type":"WebApplication","name":"Redirect Unwrapper","url":"https://nicheworks.app/tools/redirect-unwrapper/","applicationCategory":"UtilityApplication","description":"SNSリンク、メール配信リンク、追跡URLに含まれる転送先URL候補をブラウザ内で抽出する無料ツールです。URLを開かずに文字列を解析します。","operatingSystem":"All"},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"このツールはURLを開きますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。URL文字列を解析し、埋め込まれた転送先候補を抽出します。"}},
+        {"@type":"Question","name":"bit.ly や t.co の最終URLを完全に追跡できますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。サーバー側リダイレクトの完全追跡は行いません。"}},
+        {"@type":"Question","name":"表示された候補URLは安全ですか？","acceptedAnswer":{"@type":"Answer","text":"安全性は保証しません。不明なリンクは開かないでください。"}},
+        {"@type":"Question","name":"URLはサーバーに送信されますか？","acceptedAnswer":{"@type":"Answer","text":"入力URLの解析はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}}
+      ]}
     ]
   }
   </script>
@@ -80,14 +54,8 @@
 
 <body>
   <header class="nw-header">
-    <h1>
-      <span data-i18n="ja">Redirect Unwrapper（追跡リンク解析）</span>
-      <span data-i18n="en">Redirect Unwrapper</span>
-    </h1>
-    <p class="nw-desc">
-      <span data-i18n="ja">SNSリンク・メール配信リンク・追跡URLの中に埋め込まれた転送先URL候補を、リンクを開かずに抽出します。</span>
-      <span data-i18n="en">Extract embedded destination URL candidates from social, email, and tracking links without opening them.</span>
-    </p>
+    <h1><span data-i18n="ja">Redirect Unwrapper（追跡リンク解析）</span><span data-i18n="en">Redirect Unwrapper</span></h1>
+    <p class="nw-desc"><span data-i18n="ja">SNSリンク・メール配信リンク・追跡URLの中に埋め込まれた転送先URL候補を、リンクを開かずに抽出します。</span><span data-i18n="en">Extract embedded destination URL candidates from social, email, and tracking links without opening them.</span></p>
     <div class="nw-lang-switch"><button data-lang="ja">JP</button> / <button data-lang="en">EN</button></div>
   </header>
 
@@ -99,18 +67,13 @@
       <p data-i18n="en">This tool analyzes the URL string locally in your browser without opening it. It does not fully follow server-side 301/302 redirects from short URLs.</p>
       <p class="caution-text" data-i18n="ja">表示された候補URLが安全であることは保証しません。不明なリンクは開かないでください。</p>
       <p class="caution-text" data-i18n="en">Extracted candidates are not guaranteed to be safe. Do not open unknown links.</p>
+      <p class="usage-link"><a href="./usage.html" data-i18n="ja">使い方・非対応範囲を見る</a><a href="./usage-en.html" data-i18n="en">Read usage and limitations</a></p>
     </section>
 
     <section class="input-area">
-      <label for="urlInput" class="input-label">
-        <span data-i18n="ja">解析したいURL</span><span data-i18n="en">URL to analyze</span>
-      </label>
-      <textarea id="urlInput" rows="4" spellcheck="false" autocomplete="off" stable content="https://nicheworks.app/?url=https%3A%2F%2Fdestination.example%2Fpage"></textarea>
-
-      <div class="button-row">
-        <button id="analyzeBtn" class="main-btn" type="button"><span data-i18n="ja">解析する</span><span data-i18n="en">Analyze</span></button>
-      </div>
-
+      <label for="urlInput" class="input-label"><span data-i18n="ja">解析したいURL</span><span data-i18n="en">URL to analyze</span></label>
+      <textarea id="urlInput" rows="4" spellcheck="false" autocomplete="off" placeholder="https://example.com/?url=https%3A%2F%2Fdestination.example%2Fpage"></textarea>
+      <div class="button-row"><button id="analyzeBtn" class="main-btn" type="button"><span data-i18n="ja">解析する</span><span data-i18n="en">Analyze</span></button></div>
       <div class="sample-area" aria-label="Sample URLs">
         <p class="sample-title"><span data-i18n="ja">サンプル</span><span data-i18n="en">Samples</span></p>
         <button type="button" data-sample="https://www.google.com/url?q=https%3A%2F%2Fnicheworks.app%2Ftools%2Fredirect-unwrapper%2F&amp;sa=D">Google redirect</button>
@@ -150,12 +113,7 @@
       <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
 
-    <div class="nw-links">
-      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
-      <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> /
-      <a href="/tools/command-safety-checker/">Command Safety Checker</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a>
-    </div>
+    <div class="nw-links"><a href="/tools/filetype-sniffer/">FileType Sniffer</a> / <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/command-safety-checker/">Command Safety Checker</a> / <a href="/tools/log-formatter/">LogFormatter</a></div>
   </main>
 
   <footer class="nw-footer">
