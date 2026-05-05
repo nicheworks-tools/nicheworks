@@ -32,54 +32,27 @@
 
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- AdSense (required in every tool page) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
   <link rel="stylesheet" href="./style.css" />
 
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebApplication",
-    "name":"Moving Checklist Generator",
-    "url":"https://nicheworks.app/tools/moving-checklist-generator/",
-    "applicationCategory":"UtilityApplication",
-    "description":"引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。",
-    "operatingSystem":"All"
-  }
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Moving Checklist Generator","url":"https://nicheworks.app/tools/moving-checklist-generator/","applicationCategory":"UtilityApplication","description":"引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。","operatingSystem":"All"}
   </script>
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"チェック状態はどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"このブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。"}},
-      {"@type":"Question","name":"PDFとして保存できますか？","acceptedAnswer":{"@type":"Answer","text":"ブラウザの印刷画面からPDFとして保存を選ぶことで保存できます。"}},
-      {"@type":"Question","name":"すべての引っ越し手続きを網羅していますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。一般的な参考リストです。自治体、管理会社、契約先の公式情報を必ず確認してください。"}},
-      {"@type":"Question","name":"住所や個人情報を入力する必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"必須ではありません。印刷用メモも任意で、個人情報は入力しないことを推奨します。"}}
-    ]
-  }
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"チェック状態はどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"このブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。"}},{"@type":"Question","name":"PDFとして保存できますか？","acceptedAnswer":{"@type":"Answer","text":"ブラウザの印刷画面からPDFとして保存を選ぶことで保存できます。"}},{"@type":"Question","name":"すべての引っ越し手続きを網羅していますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。一般的な参考リストです。自治体、管理会社、契約先の公式情報を必ず確認してください。"}},{"@type":"Question","name":"住所や個人情報を入力する必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"必須ではありません。印刷用メモも任意で、個人情報は入力しないことを推奨します。"}}]}
   </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 
 <body>
   <header class="nw-header">
     <h1 class="tool-title" data-i18n="title">引っ越しやることチェックリスト</h1>
     <p class="tool-sub" data-i18n="subtitle">引っ越し日と条件を入れるだけで、30日前〜引越し後のやることを時系列で整理します。</p>
-
     <div class="nw-lang-switch" aria-label="Language switch">
       <button data-lang="ja" class="active">JP</button> /
       <button data-lang="en">EN</button>
     </div>
-
-    <p class="usage-link">
-      <a id="usageLink" href="./usage.html" data-i18n="usageLink">使い方はこちら</a>
-    </p>
+    <p class="usage-link"><a id="usageLink" href="./usage.html" data-i18n="usageLink">使い方はこちら</a></p>
   </header>
 
   <main class="nw-main">
@@ -91,31 +64,10 @@
 
     <section class="panel no-print" aria-label="Generator form">
       <div class="form-grid">
-        <label class="field">
-          <span class="label" data-i18n="movingDate">引っ越し日</span>
-          <input id="moveDate" type="date" />
-        </label>
-
-        <label class="field">
-          <span class="label" data-i18n="household">家族構成</span>
-          <select id="household">
-            <option value="solo" data-i18n="solo">単身</option>
-            <option value="family" data-i18n="family">家族</option>
-          </select>
-        </label>
-
-        <label class="field">
-          <span class="label" data-i18n="homeType">住居タイプ</span>
-          <select id="homeType">
-            <option value="rental" data-i18n="rental">賃貸</option>
-            <option value="owned" data-i18n="owned">持ち家</option>
-          </select>
-        </label>
-
-        <label class="field">
-          <span class="label" data-i18n="printNote">（任意）印刷用メモ</span>
-          <input id="printNote" type="text" maxlength="40" stable content="例：○○家 / 部屋番号など" />
-        </label>
+        <label class="field"><span class="label" data-i18n="movingDate">引っ越し日</span><input id="moveDate" type="date" /></label>
+        <label class="field"><span class="label" data-i18n="household">家族構成</span><select id="household"><option value="solo" data-i18n="solo">単身</option><option value="family" data-i18n="family">家族</option></select></label>
+        <label class="field"><span class="label" data-i18n="homeType">住居タイプ</span><select id="homeType"><option value="rental" data-i18n="rental">賃貸</option><option value="owned" data-i18n="owned">持ち家</option></select></label>
+        <label class="field"><span class="label" data-i18n="printNote">（任意）印刷用メモ</span><input id="printNote" type="text" maxlength="40" /></label>
       </div>
 
       <div class="actions">
@@ -129,94 +81,42 @@
 
       <div id="confirmPanel" class="confirm-panel" hidden>
         <p data-i18n="confirmResetInline">入力欄だけをリセットします。チェック状態は条件ごとに保存されたままです。</p>
-        <div class="confirm-actions">
-          <button id="btnConfirmReset" type="button" data-i18n="btnConfirmReset">リセットする</button>
-          <button id="btnCancelReset" type="button" data-i18n="btnCancelReset">キャンセル</button>
-        </div>
+        <div class="confirm-actions"><button id="btnConfirmReset" type="button" data-i18n="btnConfirmReset">リセットする</button><button id="btnCancelReset" type="button" data-i18n="btnCancelReset">キャンセル</button></div>
       </div>
-
       <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-
-      <p class="hint" data-i18n="hint">
-        保存されるのはチェック状態のみです。別端末・別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。
-      </p>
-      <p class="hint" data-i18n="printHint">
-        PDF保存はブラウザの印刷ダイアログから「PDFとして保存」を選んでください。
-      </p>
+      <p class="hint" data-i18n="hint">保存されるのはチェック状態のみです。別端末・別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。</p>
+      <p class="hint" data-i18n="printHint">PDF保存はブラウザの印刷ダイアログから「PDFとして保存」を選んでください。</p>
     </section>
 
-    <section class="panel print-header only-print" aria-label="Print header">
-      <div class="print-title">
-        <div class="print-title-main" data-i18n="printTitle">引っ越しチェックリスト</div>
-        <div class="print-title-sub" id="printMeta">—</div>
-      </div>
-    </section>
+    <section class="panel print-header only-print" aria-label="Print header"><div class="print-title"><div class="print-title-main" data-i18n="printTitle">引っ越しチェックリスト</div><div class="print-title-sub" id="printMeta">—</div></div></section>
 
     <section class="panel" aria-label="Checklist result">
-      <div class="result-head">
-        <h2 class="result-title" data-i18n="resultTitle">チェックリスト</h2>
-        <div class="result-meta" id="resultMeta" aria-live="polite"></div>
-      </div>
-
+      <div class="result-head"><h2 class="result-title" data-i18n="resultTitle">チェックリスト</h2><div class="result-meta" id="resultMeta" aria-live="polite"></div></div>
       <div class="progress-summary" id="progressSummary" aria-live="polite" hidden></div>
-      <div class="empty" id="emptyState" data-i18n="emptyState">
-        引っ越し日を入れて「チェックリストを生成」を押してください。
-      </div>
+      <div class="empty" id="emptyState" data-i18n="emptyState">引っ越し日を入れて「チェックリストを生成」を押してください。</div>
       <div id="checklist" class="checklist"></div>
-
-      <div class="disclaimer" data-i18n="disclaimer">
-        本ツールは一般的な引っ越し作業を元にした参考リストです。自治体・管理会社・契約先の公式情報を必ず確認してください。
-      </div>
+      <div class="disclaimer" data-i18n="disclaimer">本ツールは一般的な引っ越し作業を元にした参考リストです。自治体・管理会社・契約先の公式情報を必ず確認してください。</div>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠</div>
 
     <section class="panel faq-panel" aria-label="FAQ">
       <h2 class="result-title" data-i18n="faqTitle">よくある質問</h2>
-      <details>
-        <summary data-i18n="faqQ1">チェック状態はどこに保存されますか？</summary>
-        <p class="hint" data-i18n="faqA1">このブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。</p>
-      </details>
-      <details>
-        <summary data-i18n="faqQ2">PDFとして保存できますか？</summary>
-        <p class="hint" data-i18n="faqA2">ブラウザの印刷画面から「PDFとして保存」を選んでください。</p>
-      </details>
-      <details>
-        <summary data-i18n="faqQ3">すべての手続きを網羅していますか？</summary>
-        <p class="hint" data-i18n="faqA3">いいえ。一般的な参考リストです。自治体・管理会社・契約内容を必ず確認してください。</p>
-      </details>
-      <details>
-        <summary data-i18n="faqQ4">住所や個人情報を入力する必要はありますか？</summary>
-        <p class="hint" data-i18n="faqA4">ありません。印刷用メモも任意です。個人情報は入力しないことを推奨します。</p>
-      </details>
+      <details><summary data-i18n="faqQ1">チェック状態はどこに保存されますか？</summary><p class="hint" data-i18n="faqA1">このブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。</p></details>
+      <details><summary data-i18n="faqQ2">PDFとして保存できますか？</summary><p class="hint" data-i18n="faqA2">ブラウザの印刷画面から「PDFとして保存」を選んでください。</p></details>
+      <details><summary data-i18n="faqQ3">すべての手続きを網羅していますか？</summary><p class="hint" data-i18n="faqA3">いいえ。一般的な参考リストです。自治体・管理会社・契約内容を必ず確認してください。</p></details>
+      <details><summary data-i18n="faqQ4">住所や個人情報を入力する必要はありますか？</summary><p class="hint" data-i18n="faqA4">ありません。印刷用メモも任意です。個人情報は入力しないことを推奨します。</p></details>
     </section>
 
-    <div class="nw-links" aria-label="Related tools">
-      <a href="/tools/jp-postal-lite/">JP Postal Lite</a>
-      <a href="/tools/pdf-page-tools-mini/">PDF Page Tools Mini</a>
-      <a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a>
-      <a href="/tools/rename-wizard/">Rename Wizard</a>
-    </div>
+    <div class="nw-links" aria-label="Related tools"><a href="/tools/jp-postal-lite/">JP Postal Lite</a><a href="/tools/pdf-page-tools-mini/">PDF Page Tools Mini</a><a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a><a href="/tools/rename-wizard/">Rename Wizard</a></div>
 
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="donateText">
-        このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。
-      </p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
-    </div>
+    <div class="nw-donate"><p class="nw-donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">
-      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
-    </p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
   <script src="./app.js"></script>
