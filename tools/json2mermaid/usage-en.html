@@ -1,209 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Usage Guide｜JSON2Mermaid Lite | NicheWorks</title>
-  <meta name="description" content="Usage guide for JSON2Mermaid Lite — Convert JSON to Mermaid.js flowchart syntax easily.">
-
+  <meta name="description" content="Usage guide for JSON2Mermaid Lite. Learn how to convert JSON into Mermaid.js flowchart syntax, including input limits, array truncation, and external preview cautions.">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/json2mermaid/usage-en.html">
-
-  <!-- OGP -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="Usage Guide｜JSON2Mermaid Lite | NicheWorks">
-  <meta property="og:description" content="Usage guide for JSON2Mermaid Lite — Convert JSON to Mermaid.js flowchart syntax easily.">
+  <meta property="og:description" content="Usage guide for JSON2Mermaid Lite. Learn how to convert JSON into Mermaid.js flowchart syntax, including input limits, array truncation, and external preview cautions.">
   <meta property="og:url" content="https://nicheworks.app/tools/json2mermaid/usage-en.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-
+  <meta name="twitter:title" content="Usage Guide｜JSON2Mermaid Lite | NicheWorks">
+  <meta name="twitter:description" content="Usage guide for JSON2Mermaid Lite. Learn how to convert JSON into Mermaid.js flowchart syntax, including input limits, array truncation, and external preview cautions.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      background: #ffffff;
-      color: #1f2937;
-      line-height: 1.7;
-    }
-    .wrap {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #111827;
-      text-align: center;
-    }
-    h2 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 28px;
-      margin-bottom: 8px;
-      color: #111827;
-    }
-    p, li {
-      font-size: 15px;
-      margin: 6px 0;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    pre {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 13px;
-      overflow-x: auto;
-    }
-    .back-link {
-      margin-top: 32px;
-      text-align: center;
-    }
-    .back-link a {
-      color: #3b82f6;
-      text-decoration: none;
-      font-size: 15px;
-    }
-    .back-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="Usage Guide｜JSON2Mermaid Lite | NicheWorks">
-  <meta name="twitter:description" content="Usage guide for JSON2Mermaid Lite — Convert JSON to Mermaid.js flowchart syntax easily.">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <style>
+    body{margin:0;padding:16px;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:#fff;color:#1f2937;line-height:1.7}.wrap{max-width:600px;margin:0 auto}h1{font-size:24px;font-weight:600;margin-bottom:12px;color:#111827;text-align:center}h2{font-size:18px;font-weight:600;margin-top:28px;margin-bottom:8px;color:#111827}p,li{font-size:15px;margin:6px 0}ul{padding-left:20px}pre{background:#f9fafb;border:1px solid #e5e7eb;padding:12px;border-radius:6px;font-size:13px;overflow-x:auto}.note{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px}.back-link{margin-top:32px;text-align:center}.back-link a{color:#3b82f6;text-decoration:none;font-size:15px}.back-link a:hover{text-decoration:underline}
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Usage Guide｜JSON2Mermaid Lite | NicheWorks",
     "url": "https://nicheworks.app/tools/json2mermaid/usage-en.html",
-    "description": "Usage guide for JSON2Mermaid Lite — Convert JSON to Mermaid.js flowchart syntax easily.",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
+    "description": "Usage guide for JSON2Mermaid Lite. Learn how to convert JSON into Mermaid.js flowchart syntax, including input limits, array truncation, and external preview cautions.",
+    "inLanguage": "en",
+    "publisher": {"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}
   }
   </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
-
 <body>
 <div class="wrap">
-
   <h1>JSON2Mermaid Lite｜Usage Guide</h1>
 
-  <!-- 1. Purpose -->
   <h2>1. Purpose</h2>
-  <p>
-    JSON2Mermaid Lite automatically converts JSON structures into
-    Mermaid.js <code>flowchart TD</code> syntax.
-  </p>
-  <p>
-    Simply paste your JSON and the tool will generate a diagram-friendly
-    representation that you can directly use in Mermaid Live Editor.
-  </p>
+  <p>JSON2Mermaid Lite converts pasted JSON into Mermaid.js <code>flowchart TD</code> syntax.</p>
+  <p>You can copy the generated code into Mermaid-compatible Markdown or Mermaid Live Editor to inspect the structure visually.</p>
 
-  <!-- 2. How to Use -->
   <h2>2. How to Use</h2>
   <ul>
-    <li>① Paste your JSON into the input area.</li>
-    <li>② Click the “Convert” button.</li>
-    <li>③ Mermaid syntax will be generated below.</li>
-    <li>④ Use the “Copy” button to save it to clipboard.</li>
-    <li>⑤ Paste it into Mermaid Live Editor to visualize the structure.</li>
+    <li>Paste JSON into the input area.</li>
+    <li>Use a preset if you want to try a sample.</li>
+    <li>Click “Convert”.</li>
+    <li>Copy the generated Mermaid syntax, or save it as <code>.mmd</code> / <code>.txt</code>.</li>
+    <li>Paste it into a Mermaid-compatible tool when you want to preview the diagram.</li>
   </ul>
 
-  <!-- 3. Supported -->
   <h2>3. Supported / Unsupported</h2>
-  <p><strong>Supported:</strong></p>
+  <p><strong>Supported</strong></p>
   <ul>
-    <li>Objects (including nested structures)</li>
-    <li>Arrays (index values used as node labels)</li>
-    <li>Primitive values (string / number / boolean)</li>
+    <li>Standard JSON objects</li>
+    <li>Arrays</li>
+    <li>Strings / numbers / booleans / null</li>
+    <li>Nested structures up to 12 levels deep</li>
+  </ul>
+  <p><strong>Limits and unsupported cases</strong></p>
+  <ul>
+    <li>The input limit is 300KB.</li>
+    <li>The depth limit is 12 levels. Deeper branches are shown as omitted.</li>
+    <li>Arrays are expanded up to 50 items. Extra items are replaced with an omitted-items node.</li>
+    <li>Invalid JSON text cannot be converted.</li>
+    <li>This page does not preview the Mermaid diagram directly.</li>
   </ul>
 
-  <p><strong>Unsupported:</strong></p>
-  <ul>
-    <li>Circular references</li>
-    <li>Special object types (Date, Function, Symbol, etc.)</li>
-    <li>Extremely large JSON (browser-dependent)</li>
-  </ul>
-
-  <!-- 4. Errors -->
   <h2>4. Error Handling</h2>
-  <p>
-    If your JSON contains syntax errors,
-    an “Invalid JSON format” message will appear.
-  </p>
-  <p>
-    Very large JSON structures may take some time to process.
-  </p>
+  <p>If the JSON has a syntax error, the tool shows an approximate line and column.</p>
+  <p>If your input is over 300KB, split it into smaller pieces before converting.</p>
 
-  <!-- 5. Output -->
   <h2>5. Output Format</h2>
-  <p>
-    Output is Mermaid.js <code>flowchart TD</code> syntax.
-  </p>
-
-<pre>
-flowchart TD
+  <p>The output is Mermaid.js <code>flowchart TD</code> syntax.</p>
+<pre>flowchart TD
   node_0["root"]
   node_1["user"]
-  node_0 --> node_1
+  node_0 --&gt; node_1
   node_2["name"]
-  node_1 --> node_2
-</pre>
+  node_1 --&gt; node_2</pre>
 
-  <!-- 6. FAQ -->
-  <h2>6. FAQ</h2>
+  <h2>6. Using Mermaid Live Editor</h2>
+  <p>You can preview the generated code in external tools such as Mermaid Live Editor.</p>
+  <p class="note">When you paste code into an external site, that site handles the content. Do not paste confidential JSON or code generated from confidential JSON.</p>
 
-  <p><strong>Q. Is my data sent anywhere?</strong></p>
-  <p>A. Everything is processed locally and never uploaded.</p>
+  <h2>7. FAQ</h2>
+  <p><strong>Q. Is my data sent to a server?</strong></p>
+  <p>A. The conversion itself runs in your browser. This page may still load ad and analytics tags.</p>
+  <p><strong>Q. Can it convert large JSON?</strong></p>
+  <p>A. The current limit is 300KB. Split large JSON before converting.</p>
+  <p><strong>Q. Are all array items displayed?</strong></p>
+  <p>A. Arrays are expanded up to 50 items. Additional items are omitted.</p>
 
-  <p><strong>Q. Where can I use the Mermaid syntax?</strong></p>
-  <p>A. Mermaid Live Editor and documentation tools.</p>
+  <h2>8. Disclaimer</h2>
+  <p>Diagram completeness and readability are not guaranteed. Always review generated output manually for important structures.</p>
 
-  <p><strong>Q. What happens with very large JSON?</strong></p>
-  <p>A. It may take longer to convert depending on your device.</p>
-
-  <!-- 7. Disclaimer -->
-  <h2>7. Disclaimer</h2>
-  <p>
-    Accuracy of converted diagrams is not guaranteed.
-    Always verify critical structures manually.
-  </p>
-
-  <!-- 8. Return -->
-  <div class="back-link">
-    <a href="./index.html">← Back to Tool</a>
-  </div>
-
+  <div class="back-link"><a href="./index.html">← Back to Tool</a></div>
 </div>
 </body>
 </html>
