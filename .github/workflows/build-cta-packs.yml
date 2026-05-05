@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - scripts/build-cta-packs.mjs
+      - scripts/build-cta-packs-trigger.txt
 
 permissions:
   contents: write
