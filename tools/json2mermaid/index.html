@@ -53,85 +53,37 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "JSONはサーバーに送信されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。変換処理はブラウザ内で行います。ただし広告や解析タグは読み込まれる場合があります。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Mermaidの図をこのページで表示できますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "初期版ではMermaidコード生成が中心です。表示確認はMermaid Live Editorなどを使ってください。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "大きいJSONに対応していますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "入力上限は300KB、深さ制限は12階層を目安にしています。大きいJSONや深いネストは分割してください。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "配列はどう扱われますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "配列はindex付きノードとして展開します。大きすぎる配列は最大50件まで展開し、それ以上は省略します。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Mermaid Live Editorに貼っても安全ですか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "外部サイトへ貼り付けることになるため、機密情報を含むコードは貼らないでください。"
-        }
-      }
+      {"@type":"Question","name":"JSONはサーバーに送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。変換処理はブラウザ内で行います。ただし広告や解析タグは読み込まれる場合があります。"}},
+      {"@type":"Question","name":"Mermaidの図をこのページで表示できますか？","acceptedAnswer":{"@type":"Answer","text":"初期版ではMermaidコード生成が中心です。表示確認はMermaid Live Editorなどを使ってください。"}},
+      {"@type":"Question","name":"大きいJSONに対応していますか？","acceptedAnswer":{"@type":"Answer","text":"入力上限は300KB、深さ制限は12階層を目安にしています。大きいJSONや深いネストは分割してください。"}},
+      {"@type":"Question","name":"配列はどう扱われますか？","acceptedAnswer":{"@type":"Answer","text":"配列はindex付きノードとして展開します。大きすぎる配列は最大50件まで展開し、それ以上は省略します。"}},
+      {"@type":"Question","name":"Mermaid Live Editorに貼っても安全ですか？","acceptedAnswer":{"@type":"Answer","text":"外部サイトへ貼り付けることになるため、機密情報を含むコードは貼らないでください。"}}
     ]
   }
   </script>
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 
 <body>
   <header class="nw-header">
     <h1 class="tool-title">JSON2Mermaid Lite</h1>
-
     <p class="tool-sub" data-i18n="ja">JSON構造をMermaid.jsのフローチャート記法に自動変換する軽量ツール</p>
     <p class="tool-sub" data-i18n="en">Convert JSON structures into Mermaid.js flowchart syntax</p>
-
-    <div class="nw-lang-switch">
-      <button data-lang="ja" class="active">JP</button> /
-      <button data-lang="en">EN</button>
-    </div>
+    <div class="nw-lang-switch"><button data-lang="ja" class="active">JP</button> / <button data-lang="en">EN</button></div>
   </header>
 
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠</div>
-
     <section class="intro-block">
       <p data-i18n="ja">JSONを貼り付けると、Mermaid対応MarkdownやMermaid Live Editorで使える <code>flowchart TD</code> 記法を生成します。処理はブラウザ内で行います。</p>
       <p data-i18n="en">Paste JSON to generate <code>flowchart TD</code> syntax for Mermaid-compatible Markdown or Mermaid Live Editor. The conversion runs in your browser.</p>
       <p class="limit-note" data-i18n="ja">入力上限：300KB / 深さ制限：12階層 / 配列は最大50件まで展開。大きいJSONや深いネストは分割してください。</p>
       <p class="limit-note" data-i18n="en">Limits: 300KB input / 12 levels deep / up to 50 array items. Split large or deeply nested JSON before converting.</p>
-      <p class="usage-link-top">
-        <a href="./usage.html" data-i18n="ja">使い方ガイドはこちら</a>
-        <a href="./usage-en.html" data-i18n="en">See Usage Guide</a>
-      </p>
+      <p class="usage-link-top"><a href="./usage.html" data-i18n="ja">使い方ガイドはこちら</a><a href="./usage-en.html" data-i18n="en">See Usage Guide</a></p>
     </section>
 
     <div class="preset-block">
-      <p class="section-label preset-label" data-i18n="ja">プリセット</p>
-      <p class="section-label preset-label" data-i18n="en">Presets</p>
+      <p class="section-label preset-label" data-i18n="ja">プリセット</p><p class="section-label preset-label" data-i18n="en">Presets</p>
       <div class="preset-buttons">
         <button class="btn-secondary preset-btn" data-preset="simple-tree" data-i18n-key="presetSimple">シンプルツリー</button>
         <button class="btn-secondary preset-btn" data-preset="nested-object" data-i18n-key="presetNested">ネストオブジェクト</button>
@@ -139,113 +91,39 @@
       </div>
     </div>
 
-    <label class="section-label" for="jsonInput" data-i18n="ja">JSON（入力）</label>
-    <label class="section-label" for="jsonInput" data-i18n="en">JSON Input</label>
+    <label class="section-label" for="jsonInput" data-i18n="ja">JSON（入力）</label><label class="section-label" for="jsonInput" data-i18n="en">JSON Input</label>
+    <textarea id="jsonInput" class="code-input" placeholder='{&quot;user&quot;: {&quot;name&quot;: &quot;Alice&quot;}}'></textarea>
 
-    <textarea id="jsonInput" class="code-input" stable content='{"user": {"name": "Alice"}}'></textarea>
+    <div class="btn-area"><button id="convertBtn" class="btn-primary" data-i18n-key="convert">変換する</button><button id="copyBtn" class="btn-secondary" data-i18n-key="copy">コピー</button><button id="resetBtn" class="btn-secondary" data-i18n-key="reset">リセット</button></div>
+    <div id="progress" class="progress hidden"><div class="progress-bar"></div></div>
+    <div id="warningBox" class="warning-box hidden"></div><div id="errorBox" class="error-box hidden"></div>
 
-    <div class="btn-area">
-      <button id="convertBtn" class="btn-primary" data-i18n-key="convert">変換する</button>
-      <button id="copyBtn" class="btn-secondary" data-i18n-key="copy">コピー</button>
-      <button id="resetBtn" class="btn-secondary" data-i18n-key="reset">リセット</button>
-    </div>
-
-    <div id="progress" class="progress hidden">
-      <div class="progress-bar"></div>
-    </div>
-
-    <div id="warningBox" class="warning-box hidden"></div>
-    <div id="errorBox" class="error-box hidden"></div>
-
-    <label class="section-label" for="mermaidOutput" data-i18n="ja">Mermaid記法（出力）</label>
-    <label class="section-label" for="mermaidOutput" data-i18n="en">Mermaid Output</label>
-
+    <label class="section-label" for="mermaidOutput" data-i18n="ja">Mermaid記法（出力）</label><label class="section-label" for="mermaidOutput" data-i18n="en">Mermaid Output</label>
     <textarea id="mermaidOutput" class="code-output" readonly></textarea>
-
-    <div class="btn-area export-area">
-      <button id="downloadMmd" class="btn-secondary" data-i18n-key="downloadMmd">.mmdで保存</button>
-      <button id="downloadTxt" class="btn-secondary" data-i18n-key="downloadTxt">.txtで保存</button>
-    </div>
+    <div class="btn-area export-area"><button id="downloadMmd" class="btn-secondary" data-i18n-key="downloadMmd">.mmdで保存</button><button id="downloadTxt" class="btn-secondary" data-i18n-key="downloadTxt">.txtで保存</button></div>
 
     <section class="next-step-box">
-      <h2 data-i18n="ja">生成後の確認</h2>
-      <h2 data-i18n="en">Check the generated code</h2>
-      <p data-i18n="ja">生成したMermaidコードは、コピーしてMermaid対応Markdownや外部のMermaid Live Editorで確認できます。</p>
-      <p data-i18n="en">Copy the generated Mermaid code into Mermaid-compatible Markdown or Mermaid Live Editor to preview it.</p>
-      <p>
-        <a href="https://mermaid.live/" target="_blank" rel="noopener" data-i18n="ja">Mermaid Live Editorで確認</a>
-        <a href="https://mermaid.live/" target="_blank" rel="noopener" data-i18n="en">Open Mermaid Live Editor</a>
-      </p>
-      <p class="external-note" data-i18n="ja">外部サイトへ貼り付ける場合は、そのサイト側で処理されます。機密JSON由来の内容は貼り付けないでください。</p>
-      <p class="external-note" data-i18n="en">When you paste code into an external site, that site handles the content. Do not paste code derived from confidential JSON.</p>
+      <h2 data-i18n="ja">生成後の確認</h2><h2 data-i18n="en">Check the generated code</h2>
+      <p data-i18n="ja">生成したMermaidコードは、コピーしてMermaid対応Markdownや外部のMermaid Live Editorで確認できます。</p><p data-i18n="en">Copy the generated Mermaid code into Mermaid-compatible Markdown or Mermaid Live Editor to preview it.</p>
+      <p><a href="https://mermaid.live/" target="_blank" rel="noopener" data-i18n="ja">Mermaid Live Editorで確認</a><a href="https://mermaid.live/" target="_blank" rel="noopener" data-i18n="en">Open Mermaid Live Editor</a></p>
+      <p class="external-note" data-i18n="ja">外部サイトへ貼り付ける場合は、そのサイト側で処理されます。機密JSON由来の内容は貼り付けないでください。</p><p class="external-note" data-i18n="en">When you paste code into an external site, that site handles the content. Do not paste code derived from confidential JSON.</p>
     </section>
 
     <section class="faq-section">
-      <h2 data-i18n="ja">よくある質問</h2>
-      <h2 data-i18n="en">FAQ</h2>
-
-      <div class="faq-row">
-        <p class="faq-q" data-i18n="ja">Q. JSONはサーバーに送信されますか？</p>
-        <p class="faq-q" data-i18n="en">Q. Is my JSON sent to a server?</p>
-        <p class="faq-a" data-i18n="ja">いいえ。変換処理はブラウザ内で行います。ただし広告・解析タグは読み込まれる場合があります。</p>
-        <p class="faq-a" data-i18n="en">No. Conversion runs in your browser. Ad and analytics tags may still be loaded.</p>
-      </div>
-
-      <div class="faq-row">
-        <p class="faq-q" data-i18n="ja">Q. Mermaidの図をこのページで表示できますか？</p>
-        <p class="faq-q" data-i18n="en">Q. Can this page preview the Mermaid diagram?</p>
-        <p class="faq-a" data-i18n="ja">初期版ではMermaidコード生成が中心です。表示確認はMermaid Live Editorなどを使ってください。</p>
-        <p class="faq-a" data-i18n="en">This version focuses on code generation. Use Mermaid Live Editor or a Mermaid-compatible Markdown viewer for previewing.</p>
-      </div>
-
-      <div class="faq-row">
-        <p class="faq-q" data-i18n="ja">Q. 大きいJSONに対応していますか？</p>
-        <p class="faq-q" data-i18n="en">Q. Does it support large JSON?</p>
-        <p class="faq-a" data-i18n="ja">300KBまでを目安にしています。大きいJSONや深いネストは分割してください。</p>
-        <p class="faq-a" data-i18n="en">The current input limit is 300KB. Split large or deeply nested JSON before converting.</p>
-      </div>
-
-      <div class="faq-row">
-        <p class="faq-q" data-i18n="ja">Q. 配列はどう扱われますか？</p>
-        <p class="faq-q" data-i18n="en">Q. How are arrays handled?</p>
-        <p class="faq-a" data-i18n="ja">index付きノードとして展開します。大きい配列は最大50件まで展開し、それ以上は省略します。</p>
-        <p class="faq-a" data-i18n="en">Arrays are expanded as index nodes. Large arrays are expanded up to 50 items, then omitted with a notice.</p>
-      </div>
-
-      <div class="faq-row">
-        <p class="faq-q" data-i18n="ja">Q. Mermaid Live Editorに貼っても安全ですか？</p>
-        <p class="faq-q" data-i18n="en">Q. Is it safe to paste into Mermaid Live Editor?</p>
-        <p class="faq-a" data-i18n="ja">外部サイトへ貼り付けることになるため、機密情報を含むコードは貼らないでください。</p>
-        <p class="faq-a" data-i18n="en">It is an external site, so do not paste code that contains or was generated from confidential information.</p>
-      </div>
+      <h2 data-i18n="ja">よくある質問</h2><h2 data-i18n="en">FAQ</h2>
+      <div class="faq-row"><p class="faq-q" data-i18n="ja">Q. JSONはサーバーに送信されますか？</p><p class="faq-q" data-i18n="en">Q. Is my JSON sent to a server?</p><p class="faq-a" data-i18n="ja">いいえ。変換処理はブラウザ内で行います。ただし広告・解析タグは読み込まれる場合があります。</p><p class="faq-a" data-i18n="en">No. Conversion runs in your browser. Ad and analytics tags may still be loaded.</p></div>
+      <div class="faq-row"><p class="faq-q" data-i18n="ja">Q. Mermaidの図をこのページで表示できますか？</p><p class="faq-q" data-i18n="en">Q. Can this page preview the Mermaid diagram?</p><p class="faq-a" data-i18n="ja">初期版ではMermaidコード生成が中心です。表示確認はMermaid Live Editorなどを使ってください。</p><p class="faq-a" data-i18n="en">This version focuses on code generation. Use Mermaid Live Editor or a Mermaid-compatible Markdown viewer for previewing.</p></div>
+      <div class="faq-row"><p class="faq-q" data-i18n="ja">Q. 大きいJSONに対応していますか？</p><p class="faq-q" data-i18n="en">Q. Does it support large JSON?</p><p class="faq-a" data-i18n="ja">300KBまでを目安にしています。大きいJSONや深いネストは分割してください。</p><p class="faq-a" data-i18n="en">The current input limit is 300KB. Split large or deeply nested JSON before converting.</p></div>
+      <div class="faq-row"><p class="faq-q" data-i18n="ja">Q. 配列はどう扱われますか？</p><p class="faq-q" data-i18n="en">Q. How are arrays handled?</p><p class="faq-a" data-i18n="ja">index付きノードとして展開します。大きい配列は最大50件まで展開し、それ以上は省略します。</p><p class="faq-a" data-i18n="en">Arrays are expanded as index nodes. Large arrays are expanded up to 50 items, then omitted with a notice.</p></div>
+      <div class="faq-row"><p class="faq-q" data-i18n="ja">Q. Mermaid Live Editorに貼っても安全ですか？</p><p class="faq-q" data-i18n="en">Q. Is it safe to paste into Mermaid Live Editor?</p><p class="faq-a" data-i18n="ja">外部サイトへ貼り付けることになるため、機密情報を含むコードは貼らないでください。</p><p class="faq-a" data-i18n="en">It is an external site, so do not paste code that contains or was generated from confidential information.</p></div>
     </section>
 
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、応援いただけると嬉しいです。</p>
-      <p class="nw-donate-text" data-i18n="en">If this tool helped you, consider supporting the development.</p>
-
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
-    </div>
-
-    <div class="nw-links">
-      <a href="/tools/json-repair/">JSON Repair</a> /
-      <a href="/tools/csv-tidy/">CSV Tidy</a> /
-      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a>
-    </div>
-
+    <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、応援いただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped you, consider supporting the development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+    <div class="nw-links"><a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/csv-tidy/">CSV Tidy</a> / <a href="/tools/filetype-sniffer/">FileType Sniffer</a> / <a href="/tools/log-formatter/">LogFormatter</a></div>
     <div id="toastBox" class="toast hidden" role="status" aria-live="polite"></div>
   </main>
 
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
-  </footer>
-
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
   <script src="./app.js"></script>
 </body>
 </html>
