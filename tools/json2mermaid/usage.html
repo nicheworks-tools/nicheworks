@@ -1,205 +1,111 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>使い方｜JSON2Mermaid Lite | NicheWorks</title>
-  <meta name="description" content="JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法に変換する方法を初心者向けに解説。">
-
+  <meta name="description" content="JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法へ変換する手順、入力上限、配列省略、外部サイト利用時の注意を説明します。">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/json2mermaid/usage.html">
-
-  <!-- OGP -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="使い方｜JSON2Mermaid Lite | NicheWorks">
-  <meta property="og:description" content="JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法に変換する方法を初心者向けに解説。">
+  <meta property="og:description" content="JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法へ変換する手順、入力上限、配列省略、外部サイト利用時の注意を説明します。">
   <meta property="og:url" content="https://nicheworks.app/tools/json2mermaid/usage.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-
+  <meta name="twitter:title" content="使い方｜JSON2Mermaid Lite | NicheWorks">
+  <meta name="twitter:description" content="JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法へ変換する手順、入力上限、配列省略、外部サイト利用時の注意を説明します。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      background: #ffffff;
-      color: #1f2937;
-      line-height: 1.7;
-    }
-    .wrap {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #111827;
-      text-align: center;
-    }
-    h2 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 28px;
-      margin-bottom: 8px;
-      color: #111827;
-    }
-    p, li {
-      font-size: 15px;
-      margin: 6px 0;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    pre {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 13px;
-      overflow-x: auto;
-    }
-    .back-link {
-      margin-top: 32px;
-      text-align: center;
-    }
-    .back-link a {
-      color: #3b82f6;
-      text-decoration: none;
-      font-size: 15px;
-    }
-    .back-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="使い方｜JSON2Mermaid Lite | NicheWorks">
-  <meta name="twitter:description" content="JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法に変換する方法を初心者向けに解説。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <style>
+    body{margin:0;padding:16px;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:#fff;color:#1f2937;line-height:1.7}.wrap{max-width:600px;margin:0 auto}h1{font-size:24px;font-weight:600;margin-bottom:12px;color:#111827;text-align:center}h2{font-size:18px;font-weight:600;margin-top:28px;margin-bottom:8px;color:#111827}p,li{font-size:15px;margin:6px 0}ul{padding-left:20px}pre{background:#f9fafb;border:1px solid #e5e7eb;padding:12px;border-radius:6px;font-size:13px;overflow-x:auto}.note{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px}.back-link{margin-top:32px;text-align:center}.back-link a{color:#3b82f6;text-decoration:none;font-size:15px}.back-link a:hover{text-decoration:underline}
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "使い方｜JSON2Mermaid Lite | NicheWorks",
     "url": "https://nicheworks.app/tools/json2mermaid/usage.html",
-    "description": "JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法に変換する方法を初心者向けに解説。",
+    "description": "JSON2Mermaid Liteの使い方ガイド。JSONをMermaid.jsのflowchart記法へ変換する手順、入力上限、配列省略、外部サイト利用時の注意を説明します。",
     "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
+    "publisher": {"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}
   }
   </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
-
 <body>
 <div class="wrap">
-
   <h1>JSON2Mermaid Lite｜使い方ガイド</h1>
 
-  <!-- 1. Purpose -->
-  <h2>1. このツールでできること（Purpose）</h2>
-  <p>
-    JSONを貼るだけで、その構造を自動解析し、
-    Mermaid.js の <code>flowchart TD</code> 記法として出力するツールです。
-  </p>
-  <p>
-    Mermaid Live Editor やドキュメントツールへコピペするだけで、
-    JSON構造を視覚的に確認できます。
-  </p>
+  <h2>1. このツールでできること</h2>
+  <p>JSONを貼り付けるだけで、構造を Mermaid.js の <code>flowchart TD</code> 記法へ変換します。</p>
+  <p>生成したコードは、Mermaid対応Markdownや Mermaid Live Editor で図として確認できます。</p>
 
-  <!-- 2. How to Use -->
-  <h2>2. 使い方（How to Use）</h2>
+  <h2>2. 使い方</h2>
   <ul>
-    <li>① JSON入力欄に解析したいJSONを貼り付けます。</li>
-    <li>② 「変換する」ボタンを押します。</li>
-    <li>③ 下部にMermaid記法が自動生成されます。</li>
-    <li>④ 「コピー」でクリップボードに保存できます。</li>
-    <li>⑤ Mermaid Live Editor に貼り付ければ図を確認できます。</li>
+    <li>JSON入力欄にJSONを貼り付けます。</li>
+    <li>必要ならプリセットでサンプルを入力します。</li>
+    <li>「変換する」を押します。</li>
+    <li>出力されたMermaid記法をコピー、または <code>.mmd</code> / <code>.txt</code> として保存します。</li>
+    <li>図として確認したい場合は、Mermaid対応ツールへ貼り付けます。</li>
   </ul>
 
-  <!-- 3. Supported -->
-  <h2>3. 対応 / 非対応（Supported / Unsupported）</h2>
+  <h2>3. 対応 / 非対応</h2>
   <p><strong>対応しているもの</strong></p>
   <ul>
-    <li>オブジェクト（入れ子対応）</li>
-    <li>配列（indexをノードとして扱う）</li>
-    <li>プリミティブ（文字列 / 数値 / 真偽値）</li>
+    <li>通常のJSONオブジェクト</li>
+    <li>配列</li>
+    <li>文字列 / 数値 / 真偽値 / null</li>
+    <li>12階層までのネスト</li>
   </ul>
-
-  <p><strong>対応していないもの</strong></p>
+  <p><strong>制限・非対応</strong></p>
   <ul>
-    <li>循環参照を含むJSON</li>
-    <li>特殊型（Date / Function / Symbolなど）</li>
-    <li>極端に巨大なJSON（ブラウザ性能に依存）</li>
+    <li>入力上限は300KBです。</li>
+    <li>深さは12階層までです。超えた部分は省略表示されます。</li>
+    <li>配列は最大50件まで展開し、それ以上は省略ノードを表示します。</li>
+    <li>JSONとして無効なテキストは変換できません。</li>
+    <li>Mermaid図のプレビューはこのページ内では行いません。</li>
   </ul>
 
-  <!-- 4. Error -->
-  <h2>4. エラーについて（Error Types）</h2>
-  <p>
-    JSON構文エラーがある場合、「JSONの構文が正しくありません」と表示されます。
-  </p>
-  <p>
-    大きいJSONの場合、変換に時間がかかることがあります。
-  </p>
+  <h2>4. エラーについて</h2>
+  <p>JSON構文エラーがある場合は、行・列の目安を表示します。</p>
+  <p>入力サイズが300KBを超える場合は、JSONを小さく分割してから変換してください。</p>
 
-  <!-- 5. Output -->
-  <h2>5. 出力形式（Output Format）</h2>
+  <h2>5. 出力形式</h2>
   <p>出力は Mermaid.js の <code>flowchart TD</code> 形式です。</p>
-
-<pre>
-flowchart TD
+<pre>flowchart TD
   node_0["root"]
   node_1["user"]
-  node_0 --> node_1
+  node_0 --&gt; node_1
   node_2["name"]
-  node_1 --> node_2
-</pre>
+  node_1 --&gt; node_2</pre>
 
-  <!-- 6. FAQ -->
-  <h2>6. よくある質問（FAQ）</h2>
+  <h2>6. Mermaid Live Editorを使う場合</h2>
+  <p>生成したコードは、Mermaid Live Editorなどの外部サイトで確認できます。</p>
+  <p class="note">外部サイトへ貼り付けると、そのサイト側で内容が処理されます。機密情報を含むJSON、または機密JSONから生成したコードは貼り付けないでください。</p>
 
+  <h2>7. よくある質問</h2>
   <p><strong>Q. データはサーバーに送られますか？</strong></p>
-  <p>A. すべてブラウザ内で処理され、外部送信は一切ありません。</p>
+  <p>A. 変換処理自体はブラウザ内で行います。ただし、ページには広告やアクセス解析タグが含まれる場合があります。</p>
+  <p><strong>Q. 大きいJSONも変換できますか？</strong></p>
+  <p>A. 300KBまでを目安にしています。大きいJSONは分割してください。</p>
+  <p><strong>Q. 配列は全部表示されますか？</strong></p>
+  <p>A. 最大50件まで展開し、それ以上は省略します。</p>
 
-  <p><strong>Q. Mermaid記法はどこで使えますか？</strong></p>
-  <p>A. Mermaid Live Editor（公式）や技術ブログで利用できます。</p>
+  <h2>8. 免責</h2>
+  <p>出力結果の完全性や図としての見やすさは保証しません。重要な構造確認では、生成結果を必ず手動で確認してください。</p>
 
-  <p><strong>Q. JSONが大きすぎるとどうなりますか？</strong></p>
-  <p>A. 変換に時間がかかり、ブラウザが一時停止する場合があります。</p>
-
-  <!-- 7. Disclaimer -->
-  <h2>7. 免責（Disclaimer）</h2>
-  <p>
-    本ツールの出力結果の正確性は保証できません。重要な文書作成に使用する場合は必ず検証してください。
-  </p>
-
-  <!-- 8. Return -->
-  <div class="back-link">
-    <a href="./index.html">← ツールに戻る</a>
-  </div>
-
+  <div class="back-link"><a href="./index.html">← ツールに戻る</a></div>
 </div>
 </body>
 </html>
