@@ -10,6 +10,9 @@
   --muted:#6b7280;
   --muted2:#9ca3af;
   --accent:#111827;
+  --warning-bg:#fff7ed;
+  --warning-border:#fed7aa;
+  --warning-text:#9a3412;
 }
 
 *{ box-sizing:border-box; }
@@ -75,6 +78,12 @@ body{
 .ad-top{ margin-top:4px; }
 .ad-bottom{ margin-bottom:8px; }
 
+.nw-intro{
+  margin:0 0 10px;
+  font-size:13px;
+  color:#374151;
+}
+
 .nw-note{
   margin:0 0 10px;
   padding:8px 10px;
@@ -83,6 +92,19 @@ body{
   border-radius:10px;
   font-size:12px;
   color:var(--muted);
+}
+
+.nw-warning{
+  background:var(--warning-bg);
+  border-color:var(--warning-border);
+  color:var(--warning-text);
+}
+.nw-warning h2{
+  margin:0 0 6px;
+  font-size:13px;
+}
+.nw-warning p{
+  margin:6px 0 0;
 }
 
 .card{
@@ -126,11 +148,20 @@ body{
 }
 .textarea{ min-height:110px; resize:vertical; }
 
+.help-text{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
+}
+
 .row{
   display:flex;
   gap:8px;
   align-items:center;
   flex-wrap:wrap;
+}
+.action-row{
+  margin-top:12px;
 }
 
 .btn{
@@ -168,6 +199,7 @@ body{
 
 .out{
   width:100%;
+  min-height:140px;
   padding:10px 10px;
   border:1px solid var(--border);
   border-radius:10px;
@@ -182,6 +214,28 @@ body{
   border:none;
   border-top:1px solid var(--border);
   margin:12px 0;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%) translateY(12px);
+  z-index:20;
+  max-width:min(520px, calc(100vw - 24px));
+  padding:9px 12px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#111827;
+  color:#fff;
+  font-size:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease, transform .18s ease;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
 
 .nw-donate{
@@ -210,8 +264,30 @@ body{
   text-decoration:none;
 }
 
+.faq-section{
+  margin:22px 0 0;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+.faq-section h2{
+  margin:0 0 10px;
+  font-size:15px;
+}
+.faq-item{
+  margin:12px 0;
+}
+.faq-item h3{
+  margin:0 0 4px;
+  font-size:13px;
+}
+.faq-item p{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
+}
+
 .nw-other{
-  margin:10px 0 0;
+  margin:18px 0 0;
   padding:10px 0 0;
   border-top:1px solid var(--border);
   text-align:center;
@@ -250,4 +326,8 @@ body{
   .nw-main{ padding:10px 10px 18px; }
   .row{ flex-direction:column; align-items:stretch; }
   .btn{ width:100%; }
+  .toast{
+    border-radius:12px;
+    text-align:center;
+  }
 }
