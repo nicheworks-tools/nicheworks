@@ -1,1 +1,28 @@
-{"version":1,"base":"../tools.basic.json","totalTarget":5000,"packSize":230,"files":["pack-001.json","pack-002.json","pack-003.json","pack-004.json","pack-005.json","pack-006.json","pack-007.json","pack-008.json","pack-009.json","pack-010.json","pack-011.json","pack-012.json","pack-013.json","pack-014.json","pack-015.json","pack-016.json","pack-017.json","pack-018.json","pack-019.json","pack-020.json"]}
+{
+  "version": 1,
+  "base": "../tools.basic.json",
+  "totalTarget": 5000,
+  "packSize": 240,
+  "files": [
+    "pack-001.json",
+    "pack-002.json",
+    "pack-003.json",
+    "pack-004.json",
+    "pack-005.json",
+    "pack-006.json",
+    "pack-007.json",
+    "pack-008.json",
+    "pack-009.json",
+    "pack-010.json",
+    "pack-011.json",
+    "pack-012.json",
+    "pack-013.json",
+    "pack-014.json",
+    "pack-015.json",
+    "pack-016.json",
+    "pack-017.json",
+    "pack-018.json",
+    "pack-019.json",
+    "pack-020.json"
+  ]
+}

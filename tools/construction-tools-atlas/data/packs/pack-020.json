@@ -1,0 +1,3522 @@
+[
+  {
+    "id": "pack_carpentry_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "大工小型はしご",
+      "en": "compact Carpentry ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "大工はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Carpentry ladder"
+      ]
+    },
+    "description": {
+      "ja": "大工小型はしごは、大工まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Carpentry ladder cut term is a construction reference term used around carpentry work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "carpentry",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "carpentry"
+    ],
+    "fuzzy": [
+      "大工",
+      "Carpentry",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "大工小型はしご",
+      "compact Carpentry ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "大工小型はしご：大工の切る作業に関する現場用語",
+    "summary_en": "compact Carpentry ladder cut term: a carpentry term related to cut work.",
+    "detail_ja": "大工小型はしごは、大工まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Carpentry ladder cut term is a construction reference term used around carpentry work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "大工小型はしごを使う場面を確認する。",
+        "大工作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Carpentry ladder cut term is used.",
+        "Confirm ladder conditions during carpentry work."
+      ]
+    },
+    "summary": {
+      "ja": "大工小型はしご：大工の切る作業に関する現場用語",
+      "en": "compact Carpentry ladder cut term: a carpentry term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_interior_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "内装小型はしご",
+      "en": "compact Interior ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "内装はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Interior ladder"
+      ]
+    },
+    "description": {
+      "ja": "内装小型はしごは、内装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Interior ladder cut term is a construction reference term used around interior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "interior",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "interior"
+    ],
+    "fuzzy": [
+      "内装",
+      "Interior",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "内装小型はしご",
+      "compact Interior ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "内装小型はしご：内装の切る作業に関する現場用語",
+    "summary_en": "compact Interior ladder cut term: a interior term related to cut work.",
+    "detail_ja": "内装小型はしごは、内装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Interior ladder cut term is a construction reference term used around interior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "内装小型はしごを使う場面を確認する。",
+        "内装作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Interior ladder cut term is used.",
+        "Confirm ladder conditions during interior work."
+      ]
+    },
+    "summary": {
+      "ja": "内装小型はしご：内装の切る作業に関する現場用語",
+      "en": "compact Interior ladder cut term: a interior term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_exterior_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "外装小型はしご",
+      "en": "compact Exterior ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "外装はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Exterior ladder"
+      ]
+    },
+    "description": {
+      "ja": "外装小型はしごは、外装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Exterior ladder cut term is a construction reference term used around exterior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "exterior",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "exterior"
+    ],
+    "fuzzy": [
+      "外装",
+      "Exterior",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "外装小型はしご",
+      "compact Exterior ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "外装小型はしご：外装の切る作業に関する現場用語",
+    "summary_en": "compact Exterior ladder cut term: a exterior term related to cut work.",
+    "detail_ja": "外装小型はしごは、外装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Exterior ladder cut term is a construction reference term used around exterior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "外装小型はしごを使う場面を確認する。",
+        "外装作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Exterior ladder cut term is used.",
+        "Confirm ladder conditions during exterior work."
+      ]
+    },
+    "summary": {
+      "ja": "外装小型はしご：外装の切る作業に関する現場用語",
+      "en": "compact Exterior ladder cut term: a exterior term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_plastering_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "左官小型はしご",
+      "en": "compact Plastering ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "左官はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Plastering ladder"
+      ]
+    },
+    "description": {
+      "ja": "左官小型はしごは、左官まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Plastering ladder cut term is a construction reference term used around plastering work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "plastering",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "plastering"
+    ],
+    "fuzzy": [
+      "左官",
+      "Plastering",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "左官小型はしご",
+      "compact Plastering ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "左官小型はしご：左官の切る作業に関する現場用語",
+    "summary_en": "compact Plastering ladder cut term: a plastering term related to cut work.",
+    "detail_ja": "左官小型はしごは、左官まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Plastering ladder cut term is a construction reference term used around plastering work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "左官小型はしごを使う場面を確認する。",
+        "左官作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Plastering ladder cut term is used.",
+        "Confirm ladder conditions during plastering work."
+      ]
+    },
+    "summary": {
+      "ja": "左官小型はしご：左官の切る作業に関する現場用語",
+      "en": "compact Plastering ladder cut term: a plastering term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_painting_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "塗装小型はしご",
+      "en": "compact Painting ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "塗装はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Painting ladder"
+      ]
+    },
+    "description": {
+      "ja": "塗装小型はしごは、塗装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Painting ladder cut term is a construction reference term used around painting work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "painting",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "painting"
+    ],
+    "fuzzy": [
+      "塗装",
+      "Painting",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "塗装小型はしご",
+      "compact Painting ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "塗装小型はしご：塗装の切る作業に関する現場用語",
+    "summary_en": "compact Painting ladder cut term: a painting term related to cut work.",
+    "detail_ja": "塗装小型はしごは、塗装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Painting ladder cut term is a construction reference term used around painting work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "塗装小型はしごを使う場面を確認する。",
+        "塗装作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Painting ladder cut term is used.",
+        "Confirm ladder conditions during painting work."
+      ]
+    },
+    "summary": {
+      "ja": "塗装小型はしご：塗装の切る作業に関する現場用語",
+      "en": "compact Painting ladder cut term: a painting term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_electrical_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "電気小型はしご",
+      "en": "compact Electrical ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "電気はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Electrical ladder"
+      ]
+    },
+    "description": {
+      "ja": "電気小型はしごは、電気まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Electrical ladder cut term is a construction reference term used around electrical work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "electrical",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "electrical"
+    ],
+    "fuzzy": [
+      "電気",
+      "Electrical",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "電気小型はしご",
+      "compact Electrical ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "電気小型はしご：電気の切る作業に関する現場用語",
+    "summary_en": "compact Electrical ladder cut term: a electrical term related to cut work.",
+    "detail_ja": "電気小型はしごは、電気まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Electrical ladder cut term is a construction reference term used around electrical work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "電気小型はしごを使う場面を確認する。",
+        "電気作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Electrical ladder cut term is used.",
+        "Confirm ladder conditions during electrical work."
+      ]
+    },
+    "summary": {
+      "ja": "電気小型はしご：電気の切る作業に関する現場用語",
+      "en": "compact Electrical ladder cut term: a electrical term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_mep_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "設備小型はしご",
+      "en": "compact MEP ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "設備はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "MEP ladder"
+      ]
+    },
+    "description": {
+      "ja": "設備小型はしごは、設備まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact MEP ladder cut term is a construction reference term used around mep work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "mep",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "mep"
+    ],
+    "fuzzy": [
+      "設備",
+      "MEP",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "設備小型はしご",
+      "compact MEP ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "設備小型はしご：設備の切る作業に関する現場用語",
+    "summary_en": "compact MEP ladder cut term: a mep term related to cut work.",
+    "detail_ja": "設備小型はしごは、設備まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact MEP ladder cut term is a construction reference term used around mep work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "設備小型はしごを使う場面を確認する。",
+        "設備作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact MEP ladder cut term is used.",
+        "Confirm ladder conditions during mep work."
+      ]
+    },
+    "summary": {
+      "ja": "設備小型はしご：設備の切る作業に関する現場用語",
+      "en": "compact MEP ladder cut term: a mep term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_plumbing_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "配管小型はしご",
+      "en": "compact Plumbing ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "配管はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Plumbing ladder"
+      ]
+    },
+    "description": {
+      "ja": "配管小型はしごは、配管まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Plumbing ladder cut term is a construction reference term used around plumbing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "plumbing",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "plumbing"
+    ],
+    "fuzzy": [
+      "配管",
+      "Plumbing",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "配管小型はしご",
+      "compact Plumbing ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "配管小型はしご：配管の切る作業に関する現場用語",
+    "summary_en": "compact Plumbing ladder cut term: a plumbing term related to cut work.",
+    "detail_ja": "配管小型はしごは、配管まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Plumbing ladder cut term is a construction reference term used around plumbing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "配管小型はしごを使う場面を確認する。",
+        "配管作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Plumbing ladder cut term is used.",
+        "Confirm ladder conditions during plumbing work."
+      ]
+    },
+    "summary": {
+      "ja": "配管小型はしご：配管の切る作業に関する現場用語",
+      "en": "compact Plumbing ladder cut term: a plumbing term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_hvac_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "空調小型はしご",
+      "en": "compact HVAC ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "空調はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "HVAC ladder"
+      ]
+    },
+    "description": {
+      "ja": "空調小型はしごは、空調まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact HVAC ladder cut term is a construction reference term used around hvac work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "hvac",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "hvac"
+    ],
+    "fuzzy": [
+      "空調",
+      "HVAC",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "空調小型はしご",
+      "compact HVAC ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "空調小型はしご：空調の切る作業に関する現場用語",
+    "summary_en": "compact HVAC ladder cut term: a hvac term related to cut work.",
+    "detail_ja": "空調小型はしごは、空調まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact HVAC ladder cut term is a construction reference term used around hvac work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "空調小型はしごを使う場面を確認する。",
+        "空調作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact HVAC ladder cut term is used.",
+        "Confirm ladder conditions during hvac work."
+      ]
+    },
+    "summary": {
+      "ja": "空調小型はしご：空調の切る作業に関する現場用語",
+      "en": "compact HVAC ladder cut term: a hvac term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_waterproofing_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "防水小型はしご",
+      "en": "compact Waterproofing ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "防水はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Waterproofing ladder"
+      ]
+    },
+    "description": {
+      "ja": "防水小型はしごは、防水まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Waterproofing ladder cut term is a construction reference term used around waterproofing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "waterproofing",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "waterproofing"
+    ],
+    "fuzzy": [
+      "防水",
+      "Waterproofing",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "防水小型はしご",
+      "compact Waterproofing ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "防水小型はしご：防水の切る作業に関する現場用語",
+    "summary_en": "compact Waterproofing ladder cut term: a waterproofing term related to cut work.",
+    "detail_ja": "防水小型はしごは、防水まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Waterproofing ladder cut term is a construction reference term used around waterproofing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "防水小型はしごを使う場面を確認する。",
+        "防水作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Waterproofing ladder cut term is used.",
+        "Confirm ladder conditions during waterproofing work."
+      ]
+    },
+    "summary": {
+      "ja": "防水小型はしご：防水の切る作業に関する現場用語",
+      "en": "compact Waterproofing ladder cut term: a waterproofing term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_roofing_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "屋根小型はしご",
+      "en": "compact Roofing ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "屋根はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Roofing ladder"
+      ]
+    },
+    "description": {
+      "ja": "屋根小型はしごは、屋根まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Roofing ladder cut term is a construction reference term used around roofing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "roofing",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "roofing"
+    ],
+    "fuzzy": [
+      "屋根",
+      "Roofing",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "屋根小型はしご",
+      "compact Roofing ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "屋根小型はしご：屋根の切る作業に関する現場用語",
+    "summary_en": "compact Roofing ladder cut term: a roofing term related to cut work.",
+    "detail_ja": "屋根小型はしごは、屋根まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Roofing ladder cut term is a construction reference term used around roofing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "屋根小型はしごを使う場面を確認する。",
+        "屋根作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Roofing ladder cut term is used.",
+        "Confirm ladder conditions during roofing work."
+      ]
+    },
+    "summary": {
+      "ja": "屋根小型はしご：屋根の切る作業に関する現場用語",
+      "en": "compact Roofing ladder cut term: a roofing term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_scaffolding_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "足場小型はしご",
+      "en": "compact Scaffolding ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "足場はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Scaffolding ladder"
+      ]
+    },
+    "description": {
+      "ja": "足場小型はしごは、足場まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Scaffolding ladder cut term is a construction reference term used around scaffolding work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "scaffolding",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "scaffolding"
+    ],
+    "fuzzy": [
+      "足場",
+      "Scaffolding",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "足場小型はしご",
+      "compact Scaffolding ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "足場小型はしご：足場の切る作業に関する現場用語",
+    "summary_en": "compact Scaffolding ladder cut term: a scaffolding term related to cut work.",
+    "detail_ja": "足場小型はしごは、足場まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Scaffolding ladder cut term is a construction reference term used around scaffolding work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "足場小型はしごを使う場面を確認する。",
+        "足場作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Scaffolding ladder cut term is used.",
+        "Confirm ladder conditions during scaffolding work."
+      ]
+    },
+    "summary": {
+      "ja": "足場小型はしご：足場の切る作業に関する現場用語",
+      "en": "compact Scaffolding ladder cut term: a scaffolding term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_formwork_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "型枠小型はしご",
+      "en": "compact Formwork ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "型枠はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Formwork ladder"
+      ]
+    },
+    "description": {
+      "ja": "型枠小型はしごは、型枠まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Formwork ladder cut term is a construction reference term used around formwork work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "formwork",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "formwork"
+    ],
+    "fuzzy": [
+      "型枠",
+      "Formwork",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "型枠小型はしご",
+      "compact Formwork ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "型枠小型はしご：型枠の切る作業に関する現場用語",
+    "summary_en": "compact Formwork ladder cut term: a formwork term related to cut work.",
+    "detail_ja": "型枠小型はしごは、型枠まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Formwork ladder cut term is a construction reference term used around formwork work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "型枠小型はしごを使う場面を確認する。",
+        "型枠作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Formwork ladder cut term is used.",
+        "Confirm ladder conditions during formwork work."
+      ]
+    },
+    "summary": {
+      "ja": "型枠小型はしご：型枠の切る作業に関する現場用語",
+      "en": "compact Formwork ladder cut term: a formwork term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_rebar_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "鉄筋小型はしご",
+      "en": "compact Rebar ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "鉄筋はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Rebar ladder"
+      ]
+    },
+    "description": {
+      "ja": "鉄筋小型はしごは、鉄筋まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Rebar ladder cut term is a construction reference term used around rebar work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "rebar",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "rebar"
+    ],
+    "fuzzy": [
+      "鉄筋",
+      "Rebar",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "鉄筋小型はしご",
+      "compact Rebar ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "鉄筋小型はしご：鉄筋の切る作業に関する現場用語",
+    "summary_en": "compact Rebar ladder cut term: a rebar term related to cut work.",
+    "detail_ja": "鉄筋小型はしごは、鉄筋まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Rebar ladder cut term is a construction reference term used around rebar work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "鉄筋小型はしごを使う場面を確認する。",
+        "鉄筋作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Rebar ladder cut term is used.",
+        "Confirm ladder conditions during rebar work."
+      ]
+    },
+    "summary": {
+      "ja": "鉄筋小型はしご：鉄筋の切る作業に関する現場用語",
+      "en": "compact Rebar ladder cut term: a rebar term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_concrete_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "コンクリート小型はしご",
+      "en": "compact Concrete ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "コンクリートはしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Concrete ladder"
+      ]
+    },
+    "description": {
+      "ja": "コンクリート小型はしごは、コンクリートまわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Concrete ladder cut term is a construction reference term used around concrete work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "concrete",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "concrete"
+    ],
+    "fuzzy": [
+      "コンクリート",
+      "Concrete",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "コンクリート小型はしご",
+      "compact Concrete ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "コンクリート小型はしご：コンクリートの切る作業に関する現場用語",
+    "summary_en": "compact Concrete ladder cut term: a concrete term related to cut work.",
+    "detail_ja": "コンクリート小型はしごは、コンクリートまわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Concrete ladder cut term is a construction reference term used around concrete work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "コンクリート小型はしごを使う場面を確認する。",
+        "コンクリート作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Concrete ladder cut term is used.",
+        "Confirm ladder conditions during concrete work."
+      ]
+    },
+    "summary": {
+      "ja": "コンクリート小型はしご：コンクリートの切る作業に関する現場用語",
+      "en": "compact Concrete ladder cut term: a concrete term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_earthwork_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "土工小型はしご",
+      "en": "compact Earthwork ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "土工はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Earthwork ladder"
+      ]
+    },
+    "description": {
+      "ja": "土工小型はしごは、土工まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Earthwork ladder cut term is a construction reference term used around earthwork work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "earthwork",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "earthwork"
+    ],
+    "fuzzy": [
+      "土工",
+      "Earthwork",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "土工小型はしご",
+      "compact Earthwork ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "土工小型はしご：土工の切る作業に関する現場用語",
+    "summary_en": "compact Earthwork ladder cut term: a earthwork term related to cut work.",
+    "detail_ja": "土工小型はしごは、土工まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Earthwork ladder cut term is a construction reference term used around earthwork work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "土工小型はしごを使う場面を確認する。",
+        "土工作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Earthwork ladder cut term is used.",
+        "Confirm ladder conditions during earthwork work."
+      ]
+    },
+    "summary": {
+      "ja": "土工小型はしご：土工の切る作業に関する現場用語",
+      "en": "compact Earthwork ladder cut term: a earthwork term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_demolition_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "解体小型はしご",
+      "en": "compact Demolition ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "解体はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Demolition ladder"
+      ]
+    },
+    "description": {
+      "ja": "解体小型はしごは、解体まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Demolition ladder cut term is a construction reference term used around demolition work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "demolition",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "demolition"
+    ],
+    "fuzzy": [
+      "解体",
+      "Demolition",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "解体小型はしご",
+      "compact Demolition ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "解体小型はしご：解体の切る作業に関する現場用語",
+    "summary_en": "compact Demolition ladder cut term: a demolition term related to cut work.",
+    "detail_ja": "解体小型はしごは、解体まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Demolition ladder cut term is a construction reference term used around demolition work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "解体小型はしごを使う場面を確認する。",
+        "解体作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Demolition ladder cut term is used.",
+        "Confirm ladder conditions during demolition work."
+      ]
+    },
+    "summary": {
+      "ja": "解体小型はしご：解体の切る作業に関する現場用語",
+      "en": "compact Demolition ladder cut term: a demolition term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_surveying_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "測量小型はしご",
+      "en": "compact Surveying ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "測量はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Surveying ladder"
+      ]
+    },
+    "description": {
+      "ja": "測量小型はしごは、測量まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Surveying ladder cut term is a construction reference term used around surveying work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "surveying",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "surveying"
+    ],
+    "fuzzy": [
+      "測量",
+      "Surveying",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "測量小型はしご",
+      "compact Surveying ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "測量小型はしご：測量の切る作業に関する現場用語",
+    "summary_en": "compact Surveying ladder cut term: a surveying term related to cut work.",
+    "detail_ja": "測量小型はしごは、測量まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Surveying ladder cut term is a construction reference term used around surveying work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "測量小型はしごを使う場面を確認する。",
+        "測量作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Surveying ladder cut term is used.",
+        "Confirm ladder conditions during surveying work."
+      ]
+    },
+    "summary": {
+      "ja": "測量小型はしご：測量の切る作業に関する現場用語",
+      "en": "compact Surveying ladder cut term: a surveying term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_layout_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "墨出し小型はしご",
+      "en": "compact Layout ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "墨出しはしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Layout ladder"
+      ]
+    },
+    "description": {
+      "ja": "墨出し小型はしごは、墨出しまわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Layout ladder cut term is a construction reference term used around layout work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "layout",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "layout"
+    ],
+    "fuzzy": [
+      "墨出し",
+      "Layout",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "墨出し小型はしご",
+      "compact Layout ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "墨出し小型はしご：墨出しの切る作業に関する現場用語",
+    "summary_en": "compact Layout ladder cut term: a layout term related to cut work.",
+    "detail_ja": "墨出し小型はしごは、墨出しまわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Layout ladder cut term is a construction reference term used around layout work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "墨出し小型はしごを使う場面を確認する。",
+        "墨出し作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Layout ladder cut term is used.",
+        "Confirm ladder conditions during layout work."
+      ]
+    },
+    "summary": {
+      "ja": "墨出し小型はしご：墨出しの切る作業に関する現場用語",
+      "en": "compact Layout ladder cut term: a layout term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_safety_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "安全小型はしご",
+      "en": "compact Safety ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "安全はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Safety ladder"
+      ]
+    },
+    "description": {
+      "ja": "安全小型はしごは、安全まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Safety ladder cut term is a construction reference term used around safety work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "safety",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "safety"
+    ],
+    "fuzzy": [
+      "安全",
+      "Safety",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "安全小型はしご",
+      "compact Safety ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "安全小型はしご：安全の切る作業に関する現場用語",
+    "summary_en": "compact Safety ladder cut term: a safety term related to cut work.",
+    "detail_ja": "安全小型はしごは、安全まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Safety ladder cut term is a construction reference term used around safety work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "安全小型はしごを使う場面を確認する。",
+        "安全作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Safety ladder cut term is used.",
+        "Confirm ladder conditions during safety work."
+      ]
+    },
+    "summary": {
+      "ja": "安全小型はしご：安全の切る作業に関する現場用語",
+      "en": "compact Safety ladder cut term: a safety term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_joinery_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "建具小型はしご",
+      "en": "compact Joinery ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "建具はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Joinery ladder"
+      ]
+    },
+    "description": {
+      "ja": "建具小型はしごは、建具まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Joinery ladder cut term is a construction reference term used around joinery work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "joinery",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "joinery"
+    ],
+    "fuzzy": [
+      "建具",
+      "Joinery",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "建具小型はしご",
+      "compact Joinery ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "建具小型はしご：建具の切る作業に関する現場用語",
+    "summary_en": "compact Joinery ladder cut term: a joinery term related to cut work.",
+    "detail_ja": "建具小型はしごは、建具まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Joinery ladder cut term is a construction reference term used around joinery work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "建具小型はしごを使う場面を確認する。",
+        "建具作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Joinery ladder cut term is used.",
+        "Confirm ladder conditions during joinery work."
+      ]
+    },
+    "summary": {
+      "ja": "建具小型はしご：建具の切る作業に関する現場用語",
+      "en": "compact Joinery ladder cut term: a joinery term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_flooring_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "床小型はしご",
+      "en": "compact Flooring ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "床はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Flooring ladder"
+      ]
+    },
+    "description": {
+      "ja": "床小型はしごは、床まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Flooring ladder cut term is a construction reference term used around flooring work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "flooring",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "flooring"
+    ],
+    "fuzzy": [
+      "床",
+      "Flooring",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "床小型はしご",
+      "compact Flooring ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "床小型はしご：床の切る作業に関する現場用語",
+    "summary_en": "compact Flooring ladder cut term: a flooring term related to cut work.",
+    "detail_ja": "床小型はしごは、床まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Flooring ladder cut term is a construction reference term used around flooring work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "床小型はしごを使う場面を確認する。",
+        "床作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Flooring ladder cut term is used.",
+        "Confirm ladder conditions during flooring work."
+      ]
+    },
+    "summary": {
+      "ja": "床小型はしご：床の切る作業に関する現場用語",
+      "en": "compact Flooring ladder cut term: a flooring term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_ceiling_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "天井小型はしご",
+      "en": "compact Ceiling ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "天井はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Ceiling ladder"
+      ]
+    },
+    "description": {
+      "ja": "天井小型はしごは、天井まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Ceiling ladder cut term is a construction reference term used around ceiling work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "ceiling",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "ceiling"
+    ],
+    "fuzzy": [
+      "天井",
+      "Ceiling",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "天井小型はしご",
+      "compact Ceiling ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "天井小型はしご：天井の切る作業に関する現場用語",
+    "summary_en": "compact Ceiling ladder cut term: a ceiling term related to cut work.",
+    "detail_ja": "天井小型はしごは、天井まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Ceiling ladder cut term is a construction reference term used around ceiling work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "天井小型はしごを使う場面を確認する。",
+        "天井作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Ceiling ladder cut term is used.",
+        "Confirm ladder conditions during ceiling work."
+      ]
+    },
+    "summary": {
+      "ja": "天井小型はしご：天井の切る作業に関する現場用語",
+      "en": "compact Ceiling ladder cut term: a ceiling term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_wall_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "壁小型はしご",
+      "en": "compact Wall ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "壁はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Wall ladder"
+      ]
+    },
+    "description": {
+      "ja": "壁小型はしごは、壁まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Wall ladder cut term is a construction reference term used around wall work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "wall",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "wall"
+    ],
+    "fuzzy": [
+      "壁",
+      "Wall",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "壁小型はしご",
+      "compact Wall ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "壁小型はしご：壁の切る作業に関する現場用語",
+    "summary_en": "compact Wall ladder cut term: a wall term related to cut work.",
+    "detail_ja": "壁小型はしごは、壁まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Wall ladder cut term is a construction reference term used around wall work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "壁小型はしごを使う場面を確認する。",
+        "壁作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Wall ladder cut term is used.",
+        "Confirm ladder conditions during wall work."
+      ]
+    },
+    "summary": {
+      "ja": "壁小型はしご：壁の切る作業に関する現場用語",
+      "en": "compact Wall ladder cut term: a wall term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_foundation_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "基礎小型はしご",
+      "en": "compact Foundation ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "基礎はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Foundation ladder"
+      ]
+    },
+    "description": {
+      "ja": "基礎小型はしごは、基礎まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Foundation ladder cut term is a construction reference term used around foundation work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "foundation",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "foundation"
+    ],
+    "fuzzy": [
+      "基礎",
+      "Foundation",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "基礎小型はしご",
+      "compact Foundation ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "基礎小型はしご：基礎の切る作業に関する現場用語",
+    "summary_en": "compact Foundation ladder cut term: a foundation term related to cut work.",
+    "detail_ja": "基礎小型はしごは、基礎まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Foundation ladder cut term is a construction reference term used around foundation work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "基礎小型はしごを使う場面を確認する。",
+        "基礎作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Foundation ladder cut term is used.",
+        "Confirm ladder conditions during foundation work."
+      ]
+    },
+    "summary": {
+      "ja": "基礎小型はしご：基礎の切る作業に関する現場用語",
+      "en": "compact Foundation ladder cut term: a foundation term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_paving_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "舗装小型はしご",
+      "en": "compact Paving ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "舗装はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Paving ladder"
+      ]
+    },
+    "description": {
+      "ja": "舗装小型はしごは、舗装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Paving ladder cut term is a construction reference term used around paving work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "paving",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "paving"
+    ],
+    "fuzzy": [
+      "舗装",
+      "Paving",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "舗装小型はしご",
+      "compact Paving ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "舗装小型はしご：舗装の切る作業に関する現場用語",
+    "summary_en": "compact Paving ladder cut term: a paving term related to cut work.",
+    "detail_ja": "舗装小型はしごは、舗装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Paving ladder cut term is a construction reference term used around paving work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "舗装小型はしごを使う場面を確認する。",
+        "舗装作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Paving ladder cut term is used.",
+        "Confirm ladder conditions during paving work."
+      ]
+    },
+    "summary": {
+      "ja": "舗装小型はしご：舗装の切る作業に関する現場用語",
+      "en": "compact Paving ladder cut term: a paving term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_landscaping_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "造園小型はしご",
+      "en": "compact Landscaping ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "造園はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Landscaping ladder"
+      ]
+    },
+    "description": {
+      "ja": "造園小型はしごは、造園まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Landscaping ladder cut term is a construction reference term used around landscaping work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "landscaping",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "landscaping"
+    ],
+    "fuzzy": [
+      "造園",
+      "Landscaping",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "造園小型はしご",
+      "compact Landscaping ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "造園小型はしご：造園の切る作業に関する現場用語",
+    "summary_en": "compact Landscaping ladder cut term: a landscaping term related to cut work.",
+    "detail_ja": "造園小型はしごは、造園まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Landscaping ladder cut term is a construction reference term used around landscaping work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "造園小型はしごを使う場面を確認する。",
+        "造園作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Landscaping ladder cut term is used.",
+        "Confirm ladder conditions during landscaping work."
+      ]
+    },
+    "summary": {
+      "ja": "造園小型はしご：造園の切る作業に関する現場用語",
+      "en": "compact Landscaping ladder cut term: a landscaping term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_metalwork_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "金属小型はしご",
+      "en": "compact Metalwork ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "金属はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Metalwork ladder"
+      ]
+    },
+    "description": {
+      "ja": "金属小型はしごは、金属まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Metalwork ladder cut term is a construction reference term used around metalwork work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "metalwork",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "metalwork"
+    ],
+    "fuzzy": [
+      "金属",
+      "Metalwork",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "金属小型はしご",
+      "compact Metalwork ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "金属小型はしご：金属の切る作業に関する現場用語",
+    "summary_en": "compact Metalwork ladder cut term: a metalwork term related to cut work.",
+    "detail_ja": "金属小型はしごは、金属まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Metalwork ladder cut term is a construction reference term used around metalwork work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "金属小型はしごを使う場面を確認する。",
+        "金属作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Metalwork ladder cut term is used.",
+        "Confirm ladder conditions during metalwork work."
+      ]
+    },
+    "summary": {
+      "ja": "金属小型はしご：金属の切る作業に関する現場用語",
+      "en": "compact Metalwork ladder cut term: a metalwork term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_welding_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "溶接小型はしご",
+      "en": "compact Welding ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "溶接はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Welding ladder"
+      ]
+    },
+    "description": {
+      "ja": "溶接小型はしごは、溶接まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Welding ladder cut term is a construction reference term used around welding work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "welding",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "welding"
+    ],
+    "fuzzy": [
+      "溶接",
+      "Welding",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "溶接小型はしご",
+      "compact Welding ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "溶接小型はしご：溶接の切る作業に関する現場用語",
+    "summary_en": "compact Welding ladder cut term: a welding term related to cut work.",
+    "detail_ja": "溶接小型はしごは、溶接まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Welding ladder cut term is a construction reference term used around welding work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "溶接小型はしごを使う場面を確認する。",
+        "溶接作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Welding ladder cut term is used.",
+        "Confirm ladder conditions during welding work."
+      ]
+    },
+    "summary": {
+      "ja": "溶接小型はしご：溶接の切る作業に関する現場用語",
+      "en": "compact Welding ladder cut term: a welding term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_cleaning_compact_ladder_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "清掃小型はしご",
+      "en": "compact Cleaning ladder cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型はしご",
+        "清掃はしご"
+      ],
+      "en": [
+        "compact ladder",
+        "Cleaning ladder"
+      ]
+    },
+    "description": {
+      "ja": "清掃小型はしごは、清掃まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Cleaning ladder cut term is a construction reference term used around cleaning work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "cleaning",
+      "ladder",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "cleaning"
+    ],
+    "fuzzy": [
+      "清掃",
+      "Cleaning",
+      "はしご",
+      "ladder",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "清掃小型はしご",
+      "compact Cleaning ladder cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "清掃小型はしご：清掃の切る作業に関する現場用語",
+    "summary_en": "compact Cleaning ladder cut term: a cleaning term related to cut work.",
+    "detail_ja": "清掃小型はしごは、清掃まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Cleaning ladder cut term is a construction reference term used around cleaning work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "清掃小型はしごを使う場面を確認する。",
+        "清掃作業ではしごの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Cleaning ladder cut term is used.",
+        "Confirm ladder conditions during cleaning work."
+      ]
+    },
+    "summary": {
+      "ja": "清掃小型はしご：清掃の切る作業に関する現場用語",
+      "en": "compact Cleaning ladder cut term: a cleaning term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_carpentry_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "大工小型タッカー",
+      "en": "compact Carpentry stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "大工タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Carpentry stapler"
+      ]
+    },
+    "description": {
+      "ja": "大工小型タッカーは、大工まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Carpentry stapler cut term is a construction reference term used around carpentry work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "carpentry",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "carpentry"
+    ],
+    "fuzzy": [
+      "大工",
+      "Carpentry",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "大工小型タッカー",
+      "compact Carpentry stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "大工小型タッカー：大工の切る作業に関する現場用語",
+    "summary_en": "compact Carpentry stapler cut term: a carpentry term related to cut work.",
+    "detail_ja": "大工小型タッカーは、大工まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Carpentry stapler cut term is a construction reference term used around carpentry work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "大工小型タッカーを使う場面を確認する。",
+        "大工作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Carpentry stapler cut term is used.",
+        "Confirm stapler conditions during carpentry work."
+      ]
+    },
+    "summary": {
+      "ja": "大工小型タッカー：大工の切る作業に関する現場用語",
+      "en": "compact Carpentry stapler cut term: a carpentry term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_interior_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "内装小型タッカー",
+      "en": "compact Interior stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "内装タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Interior stapler"
+      ]
+    },
+    "description": {
+      "ja": "内装小型タッカーは、内装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Interior stapler cut term is a construction reference term used around interior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "interior",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "interior"
+    ],
+    "fuzzy": [
+      "内装",
+      "Interior",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "内装小型タッカー",
+      "compact Interior stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "内装小型タッカー：内装の切る作業に関する現場用語",
+    "summary_en": "compact Interior stapler cut term: a interior term related to cut work.",
+    "detail_ja": "内装小型タッカーは、内装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Interior stapler cut term is a construction reference term used around interior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "内装小型タッカーを使う場面を確認する。",
+        "内装作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Interior stapler cut term is used.",
+        "Confirm stapler conditions during interior work."
+      ]
+    },
+    "summary": {
+      "ja": "内装小型タッカー：内装の切る作業に関する現場用語",
+      "en": "compact Interior stapler cut term: a interior term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_exterior_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "外装小型タッカー",
+      "en": "compact Exterior stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "外装タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Exterior stapler"
+      ]
+    },
+    "description": {
+      "ja": "外装小型タッカーは、外装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Exterior stapler cut term is a construction reference term used around exterior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "exterior",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "exterior"
+    ],
+    "fuzzy": [
+      "外装",
+      "Exterior",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "外装小型タッカー",
+      "compact Exterior stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "外装小型タッカー：外装の切る作業に関する現場用語",
+    "summary_en": "compact Exterior stapler cut term: a exterior term related to cut work.",
+    "detail_ja": "外装小型タッカーは、外装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Exterior stapler cut term is a construction reference term used around exterior work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "外装小型タッカーを使う場面を確認する。",
+        "外装作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Exterior stapler cut term is used.",
+        "Confirm stapler conditions during exterior work."
+      ]
+    },
+    "summary": {
+      "ja": "外装小型タッカー：外装の切る作業に関する現場用語",
+      "en": "compact Exterior stapler cut term: a exterior term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_plastering_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "左官小型タッカー",
+      "en": "compact Plastering stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "左官タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Plastering stapler"
+      ]
+    },
+    "description": {
+      "ja": "左官小型タッカーは、左官まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Plastering stapler cut term is a construction reference term used around plastering work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "plastering",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "plastering"
+    ],
+    "fuzzy": [
+      "左官",
+      "Plastering",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "左官小型タッカー",
+      "compact Plastering stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "左官小型タッカー：左官の切る作業に関する現場用語",
+    "summary_en": "compact Plastering stapler cut term: a plastering term related to cut work.",
+    "detail_ja": "左官小型タッカーは、左官まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Plastering stapler cut term is a construction reference term used around plastering work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "左官小型タッカーを使う場面を確認する。",
+        "左官作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Plastering stapler cut term is used.",
+        "Confirm stapler conditions during plastering work."
+      ]
+    },
+    "summary": {
+      "ja": "左官小型タッカー：左官の切る作業に関する現場用語",
+      "en": "compact Plastering stapler cut term: a plastering term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_painting_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "塗装小型タッカー",
+      "en": "compact Painting stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "塗装タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Painting stapler"
+      ]
+    },
+    "description": {
+      "ja": "塗装小型タッカーは、塗装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Painting stapler cut term is a construction reference term used around painting work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "painting",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "painting"
+    ],
+    "fuzzy": [
+      "塗装",
+      "Painting",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "塗装小型タッカー",
+      "compact Painting stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "塗装小型タッカー：塗装の切る作業に関する現場用語",
+    "summary_en": "compact Painting stapler cut term: a painting term related to cut work.",
+    "detail_ja": "塗装小型タッカーは、塗装まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Painting stapler cut term is a construction reference term used around painting work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "塗装小型タッカーを使う場面を確認する。",
+        "塗装作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Painting stapler cut term is used.",
+        "Confirm stapler conditions during painting work."
+      ]
+    },
+    "summary": {
+      "ja": "塗装小型タッカー：塗装の切る作業に関する現場用語",
+      "en": "compact Painting stapler cut term: a painting term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_electrical_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "電気小型タッカー",
+      "en": "compact Electrical stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "電気タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Electrical stapler"
+      ]
+    },
+    "description": {
+      "ja": "電気小型タッカーは、電気まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Electrical stapler cut term is a construction reference term used around electrical work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "electrical",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "electrical"
+    ],
+    "fuzzy": [
+      "電気",
+      "Electrical",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "電気小型タッカー",
+      "compact Electrical stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "電気小型タッカー：電気の切る作業に関する現場用語",
+    "summary_en": "compact Electrical stapler cut term: a electrical term related to cut work.",
+    "detail_ja": "電気小型タッカーは、電気まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Electrical stapler cut term is a construction reference term used around electrical work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "電気小型タッカーを使う場面を確認する。",
+        "電気作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Electrical stapler cut term is used.",
+        "Confirm stapler conditions during electrical work."
+      ]
+    },
+    "summary": {
+      "ja": "電気小型タッカー：電気の切る作業に関する現場用語",
+      "en": "compact Electrical stapler cut term: a electrical term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_mep_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "設備小型タッカー",
+      "en": "compact MEP stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "設備タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "MEP stapler"
+      ]
+    },
+    "description": {
+      "ja": "設備小型タッカーは、設備まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact MEP stapler cut term is a construction reference term used around mep work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "mep",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "mep"
+    ],
+    "fuzzy": [
+      "設備",
+      "MEP",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "設備小型タッカー",
+      "compact MEP stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "設備小型タッカー：設備の切る作業に関する現場用語",
+    "summary_en": "compact MEP stapler cut term: a mep term related to cut work.",
+    "detail_ja": "設備小型タッカーは、設備まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact MEP stapler cut term is a construction reference term used around mep work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "設備小型タッカーを使う場面を確認する。",
+        "設備作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact MEP stapler cut term is used.",
+        "Confirm stapler conditions during mep work."
+      ]
+    },
+    "summary": {
+      "ja": "設備小型タッカー：設備の切る作業に関する現場用語",
+      "en": "compact MEP stapler cut term: a mep term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_plumbing_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "配管小型タッカー",
+      "en": "compact Plumbing stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "配管タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Plumbing stapler"
+      ]
+    },
+    "description": {
+      "ja": "配管小型タッカーは、配管まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Plumbing stapler cut term is a construction reference term used around plumbing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "plumbing",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "plumbing"
+    ],
+    "fuzzy": [
+      "配管",
+      "Plumbing",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "配管小型タッカー",
+      "compact Plumbing stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "配管小型タッカー：配管の切る作業に関する現場用語",
+    "summary_en": "compact Plumbing stapler cut term: a plumbing term related to cut work.",
+    "detail_ja": "配管小型タッカーは、配管まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Plumbing stapler cut term is a construction reference term used around plumbing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "配管小型タッカーを使う場面を確認する。",
+        "配管作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Plumbing stapler cut term is used.",
+        "Confirm stapler conditions during plumbing work."
+      ]
+    },
+    "summary": {
+      "ja": "配管小型タッカー：配管の切る作業に関する現場用語",
+      "en": "compact Plumbing stapler cut term: a plumbing term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_hvac_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "空調小型タッカー",
+      "en": "compact HVAC stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "空調タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "HVAC stapler"
+      ]
+    },
+    "description": {
+      "ja": "空調小型タッカーは、空調まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact HVAC stapler cut term is a construction reference term used around hvac work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "hvac",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "hvac"
+    ],
+    "fuzzy": [
+      "空調",
+      "HVAC",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "空調小型タッカー",
+      "compact HVAC stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "空調小型タッカー：空調の切る作業に関する現場用語",
+    "summary_en": "compact HVAC stapler cut term: a hvac term related to cut work.",
+    "detail_ja": "空調小型タッカーは、空調まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact HVAC stapler cut term is a construction reference term used around hvac work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "空調小型タッカーを使う場面を確認する。",
+        "空調作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact HVAC stapler cut term is used.",
+        "Confirm stapler conditions during hvac work."
+      ]
+    },
+    "summary": {
+      "ja": "空調小型タッカー：空調の切る作業に関する現場用語",
+      "en": "compact HVAC stapler cut term: a hvac term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  },
+  {
+    "id": "pack_waterproofing_compact_stapler_cutting_1",
+    "type": "generated_term",
+    "term": {
+      "ja": "防水小型タッカー",
+      "en": "compact Waterproofing stapler cut term"
+    },
+    "aliases": {
+      "ja": [
+        "小型タッカー",
+        "防水タッカー"
+      ],
+      "en": [
+        "compact stapler",
+        "Waterproofing stapler"
+      ]
+    },
+    "description": {
+      "ja": "防水小型タッカーは、防水まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+      "en": "compact Waterproofing stapler cut term is a construction reference term used around waterproofing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together."
+    },
+    "categories": [
+      "waterproofing",
+      "stapler",
+      "compact"
+    ],
+    "tasks": [
+      "cutting",
+      "waterproofing"
+    ],
+    "fuzzy": [
+      "防水",
+      "Waterproofing",
+      "タッカー",
+      "stapler",
+      "小型",
+      "compact",
+      "切る",
+      "cut",
+      "cutting",
+      "防水小型タッカー",
+      "compact Waterproofing stapler cut term"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "防水小型タッカー：防水の切る作業に関する現場用語",
+    "summary_en": "compact Waterproofing stapler cut term: a waterproofing term related to cut work.",
+    "detail_ja": "防水小型タッカーは、防水まわりの切る作業で確認される現場用語です。用途、材料、周辺部材、施工条件、安全条件を合わせて確認します。",
+    "detail_en": "compact Waterproofing stapler cut term is a construction reference term used around waterproofing work. Check purpose, material, adjacent components, installation conditions, and safety requirements together.",
+    "bullets_ja": [
+      "用途と施工条件を確認する。",
+      "安全上の注意点を確認する。"
+    ],
+    "bullets_en": [
+      "Confirm purpose and installation conditions.",
+      "Check relevant safety points."
+    ],
+    "examples": {
+      "ja": [
+        "防水小型タッカーを使う場面を確認する。",
+        "防水作業でタッカーの状態を確認する。"
+      ],
+      "en": [
+        "Check when compact Waterproofing stapler cut term is used.",
+        "Confirm stapler conditions during waterproofing work."
+      ]
+    },
+    "summary": {
+      "ja": "防水小型タッカー：防水の切る作業に関する現場用語",
+      "en": "compact Waterproofing stapler cut term: a waterproofing term related to cut work."
+    },
+    "bullets": {
+      "ja": [
+        "用途と施工条件を確認する。",
+        "安全上の注意点を確認する。"
+      ],
+      "en": [
+        "Confirm purpose and installation conditions.",
+        "Check relevant safety points."
+      ]
+    },
+    "meta": {
+      "generated": true,
+      "batch": "split-pack-5000"
+    }
+  }
+]
