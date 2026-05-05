@@ -11,6 +11,12 @@ const statusEl = document.getElementById("status");
 const charCountEl = document.getElementById("charCount");
 const toastEl = document.getElementById("toast");
 
+if (inputEl) {
+  inputEl.removeAttribute("stable");
+  inputEl.removeAttribute("content");
+  inputEl.setAttribute("placeholder", "ここに整形したい文章を貼り付けてください");
+}
+
 let toastTimer = null;
 
 function setStatus(message, isError = false) {
