@@ -40,6 +40,21 @@
     };
   }
 
+  async function loadOnePack(file) {
+    try {
+      const res = await originalFetch(`./data/packs/${file}`, { cache: "no-store" });
+      if (!res.ok) {
+        console.warn(`CTA pack skipped: ${file} ${res.status}`);
+        return [];
+      }
+      const raw = await res.json();
+      return Array.isArray(raw) ? raw.map(normalizePackItem) : [];
+    } catch (error) {
+      console.warn(`CTA pack skipped: ${file}`, error);
+      return [];
+    }
+  }
+
   async function loadPacks() {
     if (packCache) return packCache;
     try {
@@ -47,12 +62,7 @@
       if (!manifestRes.ok) throw new Error(`manifest ${manifestRes.status}`);
       const manifest = await manifestRes.json();
       const files = Array.isArray(manifest.files) ? manifest.files : [];
-      const chunks = await Promise.all(files.map(async (file) => {
-        const res = await originalFetch(`./data/packs/${file}`, { cache: "no-store" });
-        if (!res.ok) throw new Error(`${file} ${res.status}`);
-        const raw = await res.json();
-        return Array.isArray(raw) ? raw.map(normalizePackItem) : [];
-      }));
+      const chunks = await Promise.all(files.map(loadOnePack));
       packCache = chunks.flat();
       return packCache;
     } catch (error) {
@@ -79,7 +89,11 @@
       }
       return new Response(JSON.stringify(merged), {
         status: 200,
-        headers: { "Content-Type": "application/json; charset=utf-8", "X-CTA-Pack-Count": String(packs.length), "X-CTA-Merged-Count": String(merged.length) }
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "X-CTA-Pack-Count": String(packs.length),
+          "X-CTA-Merged-Count": String(merged.length)
+        }
       });
     } catch (error) {
       console.warn("CTA base merge failed", error);
