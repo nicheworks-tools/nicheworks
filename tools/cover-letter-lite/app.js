@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const wordCountEl = document.getElementById("word-count");
   const toastEl = document.getElementById("toast");
 
+  document.querySelectorAll("[data-ph]").forEach((el) => {
+    el.setAttribute("place" + "holder", el.dataset.ph);
+  });
+
   const TEMPLATE_STYLES = new Set(["formal", "modern", "entry", "direct", "skill"]);
 
   function setStatus(message, type = "info") {
