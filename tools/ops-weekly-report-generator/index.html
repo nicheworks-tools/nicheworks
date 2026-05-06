@@ -1,46 +1,40 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
 
-  <title>運用週次レポート生成｜Ops Weekly Report Generator | NicheWorks</title>
-  <meta name="description" content="KPI・変化点・結果・次アクションを入力して週次レポートをJP/ENで生成。運用報告のテンプレ作成に便利。">
-  <link rel="canonical" href="https://nicheworks.app/tools/ops-weekly-report-generator/">
+  <title>週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks</title>
+  <meta name="description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。社内報告や定例資料の下書きに使えます。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/ops-weekly-report-generator/" />
 
-  <!-- OGP -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="運用週次レポート生成｜Ops Weekly Report Generator | NicheWorks">
-  <meta property="og:description" content="KPI・変化点・結果・次アクションを入力して週次レポートをJP/ENで生成。運用報告のテンプレ作成に便利。">
-  <meta property="og:url" content="https://nicheworks.app/tools/ops-weekly-report-generator/">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks" />
+  <meta property="og:description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/ops-weekly-report-generator/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks" />
+  <meta name="twitter:description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。" />
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
 
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
-  <!--
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
-  -->
-
-  <!-- JSON-LD (WebApplication) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,26 +42,69 @@
     "name": "Ops Weekly Report Generator",
     "url": "https://nicheworks.app/tools/ops-weekly-report-generator/",
     "applicationCategory": "UtilityApplication",
-    "description": "Generate a weekly ops report template in JP/EN.",
+    "description": "KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。",
     "operatingSystem": "All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "入力内容は送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "レポート生成処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "社外秘KPIを入力してよいですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "推奨しません。未公開KPI、売上、顧客名、社内施策、個人情報などは必要に応じて伏せてください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "レポートはそのまま提出できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "このツールの出力はたたき台です。数値の確定/暫定、前提条件、未解決事項を確認してから利用してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "英語レポートも作れますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JP/ENの下書きを生成できます。翻訳品質、社内用語、固有名詞は必ず確認してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "保存できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "生成後にJP TXT、EN TXT、Markdown形式で保存できます。"
+        }
+      }
+    ]
   }
   </script>
 
   <link rel="stylesheet" href="./style.css" />
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="運用週次レポート生成｜Ops Weekly Report Generator | NicheWorks">
-  <meta name="twitter:description" content="KPI・変化点・結果・次アクションを入力して週次レポートをJP/ENで生成。運用報告のテンプレ作成に便利。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 
 <body>
   <header class="nw-header">
-    <h1 class="nw-title" data-i18n="ja">運用週次レポート生成</h1>
+    <h1 class="nw-title" data-i18n="ja">週次運用レポート作成</h1>
     <h1 class="nw-title" data-i18n="en" style="display:none;">Ops Weekly Report Generator</h1>
 
-    <p class="nw-lead" data-i18n="ja">週次の運用報告をテンプレ化します。</p>
-    <p class="nw-lead" data-i18n="en" style="display:none;">Create a weekly ops report template.</p>
+    <p class="nw-lead" data-i18n="ja">KPI、結果、リスク、次アクションを整理して、週次報告の下書きを作ります。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Create a weekly ops report draft from KPIs, results, risks, and next actions.</p>
 
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
@@ -76,14 +113,14 @@
   </header>
 
   <main class="nw-main">
-    <!-- Top Ad (required) -->
     <div class="ad-slot ad-top">広告枠</div>
 
-    <!-- Privacy note (recommended for text tools) -->
-    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
-    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+    <div class="nw-note" data-i18n="ja">対象期間、KPI、変化点、結果、リスク、次アクションを入力すると、社内報告向けのJP/EN週次レポート下書きを生成します。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Enter the report period, KPIs, changes, results, risks, and next actions to generate a JP/EN weekly ops report draft.</div>
 
-    <!-- Tool UI -->
+    <div class="nw-note caution" data-i18n="ja">レポート生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。未公開KPI、売上、顧客名、社内施策、個人情報などは必要に応じて伏せてください。数値は確定値/暫定値を分けて記載してください。</div>
+    <div class="nw-note caution" data-i18n="en" style="display:none;">Report generation runs in your browser. However, ads and analytics tags are loaded for the page. Mask unpublished KPIs, revenue, customer names, internal initiatives, and personal information as needed. Separate confirmed figures from provisional figures.</div>
+
     <section class="card">
       <div class="card-hd">
         <h2 class="card-title" data-i18n="ja">入力</h2>
@@ -93,53 +130,133 @@
       <div class="card-bd">
         <div id="toolRoot">
           <div class="field">
-            <label class="label" data-i18n="ja">KPI（数値/指標）</label>
-            <label class="label" data-i18n="en" style="display:none;">KPI metrics</label>
-            <textarea class="textarea" id="kpi" stable content="例: MAU 12,340 (+5%)"></textarea>
-          </div>
-          <div class="field">
-            <label class="label" data-i18n="ja">変化点</label>
-            <label class="label" data-i18n="en" style="display:none;">What changed</label>
-            <textarea class="textarea" id="changes" stable content="例: 広告施策の変更、UI改善"></textarea>
-          </div>
-          <div class="field">
-            <label class="label" data-i18n="ja">結果/影響</label>
-            <label class="label" data-i18n="en" style="display:none;">Results/impact</label>
-            <textarea class="textarea" id="results" stable content="例: CVRが改善"></textarea>
-          </div>
-          <div class="field">
-            <label class="label" data-i18n="ja">次アクション</label>
-            <label class="label" data-i18n="en" style="display:none;">Next actions</label>
-            <textarea class="textarea" id="nextActions" stable content="例: クリエイティブ差し替え"></textarea>
+            <label class="label" for="period" data-i18n="ja">対象期間 <span class="req">必須</span></label>
+            <label class="label" for="period" data-i18n="en" style="display:none;">Report period <span class="req">Required</span></label>
+            <input class="input" id="period" placeholder="例: 2026年5月1日〜5月7日 / 2026-W19" />
           </div>
 
-          <div class="row" style="margin-top:8px;">
+          <div class="field">
+            <label class="label" for="team" data-i18n="ja">担当/チーム</label>
+            <label class="label" for="team" data-i18n="en" style="display:none;">Owner / team</label>
+            <input class="input" id="team" placeholder="例: Growth Ops / Support Team" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="kpi" data-i18n="ja">KPI（数値/指標）</label>
+            <label class="label" for="kpi" data-i18n="en" style="display:none;">KPI metrics</label>
+            <textarea class="textarea" id="kpi" placeholder="例: MAU 12,340（前週比 +5% / 暫定値）"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="changes" data-i18n="ja">変化点</label>
+            <label class="label" for="changes" data-i18n="en" style="display:none;">What changed</label>
+            <textarea class="textarea" id="changes" placeholder="例: 広告施策の変更、UI改善、配信条件の見直し"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="results" data-i18n="ja">結果/影響</label>
+            <label class="label" for="results" data-i18n="en" style="display:none;">Results / impact</label>
+            <textarea class="textarea" id="results" placeholder="例: CVRが改善。問い合わせ数は横ばい。"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="goodThings" data-i18n="ja">良かったこと</label>
+            <label class="label" for="goodThings" data-i18n="en" style="display:none;">Wins</label>
+            <textarea class="textarea" id="goodThings" placeholder="例: FAQ導線の改善後、同種問い合わせが減少"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="risks" data-i18n="ja">問題/リスク</label>
+            <label class="label" for="risks" data-i18n="en" style="display:none;">Issues / risks</label>
+            <textarea class="textarea" id="risks" placeholder="例: 一部数値が未確定。来週の配信量低下リスクあり。"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="openItems" data-i18n="ja">未解決事項</label>
+            <label class="label" for="openItems" data-i18n="en" style="display:none;">Open items</label>
+            <textarea class="textarea" id="openItems" placeholder="例: 原因調査中の数値差分、関係部署への確認待ち"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="nextActions" data-i18n="ja">次アクション</label>
+            <label class="label" for="nextActions" data-i18n="en" style="display:none;">Next actions</label>
+            <textarea class="textarea" id="nextActions" placeholder="例: クリエイティブ差し替え、未確定KPIの再集計、FAQ追記"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="focusNext" data-i18n="ja">来週の重点</label>
+            <label class="label" for="focusNext" data-i18n="en" style="display:none;">Focus for next week</label>
+            <textarea class="textarea" id="focusNext" placeholder="例: CVR改善施策の継続検証、離脱ポイントの確認"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="label" for="decisions" data-i18n="ja">意思決定が必要なこと</label>
+            <label class="label" for="decisions" data-i18n="en" style="display:none;">Decisions needed</label>
+            <textarea class="textarea" id="decisions" placeholder="例: 追加予算の可否、次週の優先施策の選定"></textarea>
+          </div>
+
+          <p class="hint" data-i18n="ja">最低限、対象期間と、KPI/結果/次アクション/リスクなどのいずれかを入力してください。空欄項目は出力から省略されます。</p>
+          <p class="hint" data-i18n="en" style="display:none;">Enter at least the report period and one of KPI, results, next actions, risks, or related fields. Blank sections are omitted.</p>
+
+          <div class="row actions" style="margin-top:8px;">
             <button class="btn primary" id="btnBuild" type="button">
               <span data-i18n="ja">レポート生成</span>
               <span data-i18n="en" style="display:none;">Generate</span>
             </button>
-            <button class="btn" id="btnCopyJa" type="button">Copy JP</button>
-            <button class="btn" id="btnCopyEn" type="button">Copy EN</button>
+            <button class="btn" id="btnCopyJa" type="button" disabled>Copy JP</button>
+            <button class="btn" id="btnCopyEn" type="button" disabled>Copy EN</button>
+            <button class="btn" id="btnSaveJa" type="button" disabled>Save JP TXT</button>
+            <button class="btn" id="btnSaveEn" type="button" disabled>Save EN TXT</button>
+            <button class="btn" id="btnSaveMd" type="button" disabled>Save Markdown</button>
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja">JP出力</label>
             <label class="label" data-i18n="en" style="display:none;">JP Output</label>
-            <pre class="out" id="outputJa">-</pre>
+            <pre class="out" id="outputJa">入力後に「レポート生成」を押してください。</pre>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">EN出力</label>
             <label class="label" data-i18n="en" style="display:none;">EN Output</label>
-            <pre class="out" id="outputEn">-</pre>
+            <pre class="out" id="outputEn">Enter your inputs, then click Generate.</pre>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bottom Ad (recommended) -->
     <div class="ad-slot ad-bottom">広告枠</div>
 
-    <!-- Donate (1–2 placements max) -->
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" data-i18n="ja">FAQ</h2>
+      <h2 id="faq-title-en" data-i18n="en" style="display:none;">FAQ</h2>
+
+      <div data-i18n="ja">
+        <h3>入力内容は送信されますか？</h3>
+        <p>レポート生成処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。</p>
+        <h3>社外秘KPIを入力してよいですか？</h3>
+        <p>推奨しません。未公開KPI、売上、顧客名、社内施策、個人情報などは必要に応じて伏せてください。</p>
+        <h3>レポートはそのまま提出できますか？</h3>
+        <p>たたき台です。数値の確定/暫定、前提条件、未解決事項を確認してください。</p>
+        <h3>英語レポートも作れますか？</h3>
+        <p>JP/ENの下書きを生成できますが、翻訳品質や社内用語は必ず確認してください。</p>
+        <h3>保存できますか？</h3>
+        <p>生成後にJP TXT、EN TXT、Markdown形式で保存できます。</p>
+      </div>
+
+      <div data-i18n="en" style="display:none;">
+        <h3>Is my input sent anywhere?</h3>
+        <p>The report generation itself runs in your browser. Ads and analytics tags are still loaded for the page.</p>
+        <h3>Should I enter confidential KPIs?</h3>
+        <p>It is not recommended. Mask unpublished KPIs, revenue, customer names, internal plans, and personal information as needed.</p>
+        <h3>Can I submit the report as-is?</h3>
+        <p>Use it as a draft. Confirm whether figures are final or provisional, and review assumptions and open items.</p>
+        <h3>Can it generate an English report?</h3>
+        <p>It generates JP/EN drafts, but you should review translation quality, internal terms, and proper nouns.</p>
+        <h3>Can I save the report?</h3>
+        <p>After generating a report, you can save it as JP TXT, EN TXT, or Markdown.</p>
+      </div>
+    </section>
+
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
@@ -149,14 +266,14 @@
       </div>
     </div>
 
-    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
     <section class="nw-other">
-      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
-      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <h3 class="nw-other-title" data-i18n="ja">関連ツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Related tools</h3>
       <div class="nw-other-links">
+        <a href="/tools/incident-update-generator/">Incident Update Generator</a>
+        <a href="/tools/minutes-to-ops/">Minutes to Ops</a>
         <a href="/tools/log-formatter/">LogFormatter</a>
-        <a href="/tools/rename-wizard/">Rename Wizard</a>
-        <a href="/tools/manual-finder/">ManualFinder</a>
+        <a href="/tools/csv-tidy/">CSV Tidy</a>
       </div>
     </section>
   </main>
@@ -169,6 +286,7 @@
     </p>
   </footer>
 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./app.js"></script>
 </body>
 </html>
