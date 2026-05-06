@@ -11,45 +11,73 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>デザイン依頼文ビルダー｜Design Request Builder | NicheWorks</title>
-  <meta name="description" content="目的・サイズ・期限などを入力するとデザイン依頼文をJP/ENで生成。抜け漏れを防ぐ無料テンプレ作成ツール。" />
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/design-request-builder/" />
+  <title>デザイン依頼文・制作ブリーフ作成｜Design Request Builder | NicheWorks</title>
+  <meta name="description" content="LP、バナー、SNS画像、資料デザインなどの依頼に必要な目的、納品物、サイズ、納期、予算、参考素材、修正回数を整理し、JP/ENの制作ブリーフを作成する無料ツールです。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/design-request-builder/" />
 
-  <!-- OGP -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="デザイン依頼文ビルダー｜Design Request Builder | NicheWorks" />
-  <meta property="og:description" content="入力するだけで依頼文テンプレを生成します。" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/design-request-builder/" />
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
+  <meta property="og:title" content="デザイン依頼文・制作ブリーフ作成｜Design Request Builder | NicheWorks" />
+  <meta property="og:description" content="LP、バナー、SNS画像、資料デザインなどの依頼に必要な情報を整理し、JP/ENの制作ブリーフを作成する無料ツールです。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/design-request-builder/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta property="og:site_name" content="NicheWorks" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="デザイン依頼文・制作ブリーフ作成｜Design Request Builder | NicheWorks" />
+  <meta name="twitter:description" content="目的、納品物、納期、予算、修正回数などを整理して、デザイン依頼用の制作ブリーフを作成します。" />
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="robots" content="index,follow" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   <link rel="apple-touch-icon" href="/assets/favicon.ico" />
 
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
-  <!--
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
-  -->
-
-  <!-- JSON-LD (WebApplication) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Design Request Builder",
-    "url": "https://nicheworks.pages.dev/tools/design-request-builder/",
+    "url": "https://nicheworks.app/tools/design-request-builder/",
     "applicationCategory": "UtilityApplication",
-    "description": "Generate a design request brief in JP/EN.",
+    "description": "LP、バナー、SNS画像、資料デザインなどの依頼に必要な項目を整理し、JP/ENの制作ブリーフを作成する無料ツールです。",
     "operatingSystem": "All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "この依頼文をそのまま送ってよいですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "たたき台です。納品形式、修正回数、権利、素材利用条件、追加費用を必ず確認してください。"}
+      },
+      {
+        "@type": "Question",
+        "name": "入力内容は送信されますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "依頼文生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}
+      },
+      {
+        "@type": "Question",
+        "name": "著作権や商用利用条件も決められますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "いいえ。確認項目として整理できますが、契約条件の確定は当事者間で行ってください。"}
+      },
+      {
+        "@type": "Question",
+        "name": "英語依頼文も作れますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "JP/ENの出力を作れます。ただし翻訳品質や契約表現の正確性は保証しません。"}
+      },
+      {
+        "@type": "Question",
+        "name": "参考素材URLを入れてもよいですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "機密URLや非公開素材の場所は必要に応じて伏せてください。"}
+      }
+    ]
   }
   </script>
 
@@ -58,11 +86,11 @@
 
 <body>
   <header class="nw-header">
-    <h1 class="nw-title" data-i18n="ja">デザイン依頼文ビルダー</h1>
+    <h1 class="nw-title" data-i18n="ja">デザイン依頼文・制作ブリーフ作成</h1>
     <h1 class="nw-title" data-i18n="en" style="display:none;">Design Request Builder</h1>
 
-    <p class="nw-lead" data-i18n="ja">依頼に必要な情報を整理して文面化します。</p>
-    <p class="nw-lead" data-i18n="en" style="display:none;">Turn key requirements into a concise brief.</p>
+    <p class="nw-lead" data-i18n="ja">目的、納品物、納期、予算を整理して、デザイン依頼文のたたき台を作ります。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Create a practical design request brief from goals, deliverables, deadline and budget.</p>
 
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
@@ -71,14 +99,14 @@
   </header>
 
   <main class="nw-main">
-    <!-- Top Ad (required) -->
     <div class="ad-slot ad-top">広告枠（準備中）</div>
 
-    <!-- Privacy note (recommended for text tools) -->
-    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
-    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+    <div class="nw-note" data-i18n="ja">依頼文生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。未公開案件名、社名、担当者名、メールアドレス、機密URL、未公開素材の場所などは必要に応じて伏せてください。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Brief generation runs in your browser. However, ads and analytics tags are loaded for the page. Mask unpublished project names, company names, names, email addresses, confidential URLs and private asset locations when needed.</div>
 
-    <!-- Tool UI -->
+    <div class="nw-note legal-note" data-i18n="ja">このツールは依頼文のたたき台を作る簡易ツールです。契約条件、著作権、素材利用許諾、商用利用範囲、追加費用、実績公開可否を確定するものではありません。発注前に条件を相手と確認してください。</div>
+    <div class="nw-note legal-note" data-i18n="en" style="display:none;">This is a simple drafting tool. It does not finalize contract terms, copyright, asset permissions, commercial usage scope, extra fees or portfolio/publication permission. Confirm conditions with the other party before ordering.</div>
+
     <section class="card">
       <div class="card-hd">
         <h2 class="card-title" data-i18n="ja">入力</h2>
@@ -90,185 +118,142 @@
           <div class="status-banner not-ready" id="readyBanner">
             <div class="status-title">
               <span data-i18n="ja">未入力があります</span>
-              <span data-i18n="en" style="display:none;">Not ready to send</span>
+              <span data-i18n="en" style="display:none;">Required fields missing</span>
             </div>
             <p class="status-detail">
               <span id="readyDetailJa" data-i18n="ja"></span>
               <span id="readyDetailEn" data-i18n="en" style="display:none;"></span>
             </p>
             <ul class="status-list" id="missingList"></ul>
+            <p class="recommended-fields" id="recommendedFields"></p>
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja">出力の長さ</label>
             <label class="label" data-i18n="en" style="display:none;">Output tier</label>
             <select class="select" id="outputTier">
-              <option value="short" data-label-ja="短い" data-label-en="Short">Short</option>
-              <option value="standard" data-label-ja="標準" data-label-en="Standard" selected>Standard</option>
-              <option value="detailed" data-label-ja="詳細" data-label-en="Detailed">Detailed</option>
+              <option value="short" data-label-ja="短い" data-label-en="Short">短い</option>
+              <option value="standard" data-label-ja="標準" data-label-en="Standard" selected>標準</option>
+              <option value="detailed" data-label-ja="詳細" data-label-en="Detailed">詳細</option>
             </select>
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja">プロジェクト種別（必須）</label>
             <label class="label" data-i18n="en" style="display:none;">Project type (required)</label>
-            <input class="input" id="projectType" type="text" placeholder="LP/バナー/SNS/プレゼン資料" />
-            <p class="field-warning" id="warnProjectType">
-              <span data-i18n="ja">必須項目です</span>
-              <span data-i18n="en" style="display:none;">Required</span>
-            </p>
+            <input class="input" id="projectType" type="text" data-placeholder-ja="LP/バナー/SNS画像/プレゼン資料" data-placeholder-en="Landing page / banner / social image / slide design" />
+            <p class="field-warning" id="warnProjectType"><span data-i18n="ja">必須項目です</span><span data-i18n="en" style="display:none;">Required</span></p>
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">目的</label>
-            <label class="label" data-i18n="en" style="display:none;">Purpose</label>
-            <input class="input" id="purpose" type="text" placeholder="LP改善/キャンペーン告知" />
+            <label class="label" data-i18n="ja">目的（必須）</label>
+            <label class="label" data-i18n="en" style="display:none;">Purpose (required)</label>
+            <input class="input" id="purpose" type="text" data-placeholder-ja="LP改善/キャンペーン告知/資料の見やすさ改善" data-placeholder-en="Improve a landing page / promote a campaign / make slides clearer" />
+            <p class="field-warning" id="warnPurpose"><span data-i18n="ja">必須項目です</span><span data-i18n="en" style="display:none;">Required</span></p>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">納品物（必須）</label>
             <label class="label" data-i18n="en" style="display:none;">Deliverables (required)</label>
-            <textarea class="textarea" id="deliverables" placeholder="LPデザイン一式、バナー3点など"></textarea>
-            <p class="field-warning" id="warnDeliverables">
-              <span data-i18n="ja">必須項目です</span>
-              <span data-i18n="en" style="display:none;">Required</span>
-            </p>
+            <textarea class="textarea" id="deliverables" data-placeholder-ja="LPデザイン一式、バナー3点など" data-placeholder-en="Full landing page design, three banners, etc."></textarea>
+            <p class="field-warning" id="warnDeliverables"><span data-i18n="ja">必須項目です</span><span data-i18n="en" style="display:none;">Required</span></p>
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">サイズ・仕様</label>
-            <label class="label" data-i18n="en" style="display:none;">Size/Specs</label>
-            <input class="input" id="size" type="text" placeholder="1200x628px / A4" />
+            <label class="label" data-i18n="ja">サイズ・仕様（推奨）</label>
+            <label class="label" data-i18n="en" style="display:none;">Size/Specs (recommended)</label>
+            <input class="input" id="size" type="text" data-placeholder-ja="1200x628px / A4 / Figma幅1440px" data-placeholder-en="1200x628px / A4 / 1440px Figma frame" />
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">納期</label>
-            <label class="label" data-i18n="en" style="display:none;">Deadline</label>
-            <input class="input" id="deadline" type="text" placeholder="2024-12-10" />
-            <p class="field-warning" id="warnDeadline">
-              <span data-i18n="ja">必須項目です</span>
-              <span data-i18n="en" style="display:none;">Required</span>
-            </p>
+            <label class="label" data-i18n="ja">納期（必須）</label>
+            <label class="label" data-i18n="en" style="display:none;">Deadline (required)</label>
+            <input class="input" id="deadline" type="text" data-placeholder-ja="2026-06-10 初稿、2026-06-17 納品" data-placeholder-en="First draft by 2026-06-10, final by 2026-06-17" />
+            <p class="field-warning" id="warnDeadline"><span data-i18n="ja">必須項目です</span><span data-i18n="en" style="display:none;">Required</span></p>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">予算（必須）</label>
             <label class="label" data-i18n="en" style="display:none;">Budget (required)</label>
-            <input class="input" id="budget" type="text" placeholder="¥100,000 〜 ¥150,000" />
-            <p class="field-warning" id="warnBudget">
-              <span data-i18n="ja">必須項目です</span>
-              <span data-i18n="en" style="display:none;">Required</span>
-            </p>
+            <input class="input" id="budget" type="text" data-placeholder-ja="¥100,000〜¥150,000" data-placeholder-en="JPY 100,000–150,000 / USD 800–1,200" />
+            <p class="field-warning" id="warnBudget"><span data-i18n="ja">必須項目です</span><span data-i18n="en" style="display:none;">Required</span></p>
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">参考/素材</label>
-            <label class="label" data-i18n="en" style="display:none;">References/Assets</label>
-            <textarea class="textarea" id="references" placeholder="URLや既存素材の場所"></textarea>
-            <p class="field-warning" id="warnReferences">
-              <span data-i18n="ja">必須項目です</span>
-              <span data-i18n="en" style="display:none;">Required</span>
-            </p>
+            <label class="label" data-i18n="ja">参考/素材（推奨）</label>
+            <label class="label" data-i18n="en" style="display:none;">References/Assets (recommended)</label>
+            <textarea class="textarea" id="references" data-placeholder-ja="公開可能な参考URL、使用許諾済み素材、既存ロゴなど" data-placeholder-en="Public reference URLs, licensed assets, existing logos, etc."></textarea>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">必須要素</label>
             <label class="label" data-i18n="en" style="display:none;">Must-have items</label>
-            <textarea class="textarea" id="mustHave" placeholder="ロゴ、CTA、注意書き"></textarea>
+            <textarea class="textarea" id="mustHave" data-placeholder-ja="ロゴ、CTA、キャンペーン文言、注意書き" data-placeholder-en="Logo, CTA, campaign copy, disclaimers"></textarea>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">ターゲット</label>
             <label class="label" data-i18n="en" style="display:none;">Target audience</label>
-            <input class="input" id="audience" type="text" placeholder="20代女性 / BtoBマーケ担当" />
+            <input class="input" id="audience" type="text" data-placeholder-ja="20代女性 / BtoBマーケ担当 / 既存顧客" data-placeholder-en="Women in their 20s / B2B marketers / existing customers" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">トーン/雰囲気</label>
             <label class="label" data-i18n="en" style="display:none;">Tone/Style</label>
-            <input class="input" id="tone" type="text" placeholder="落ち着いた/高級感/ポップ" />
+            <input class="input" id="tone" type="text" data-placeholder-ja="落ち着いた/高級感/ポップ/信頼感" data-placeholder-en="Calm / premium / playful / trustworthy" />
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">避けたい表現</label>
             <label class="label" data-i18n="en" style="display:none;">Avoid</label>
-            <textarea class="textarea" id="avoid" placeholder="派手すぎる色、過度な装飾"></textarea>
+            <textarea class="textarea" id="avoid" data-placeholder-ja="派手すぎる色、過度な装飾、競合に似た表現" data-placeholder-en="Overly bright colors, excessive decoration, competitor-like visuals"></textarea>
           </div>
           <div class="field">
             <label class="label" data-i18n="ja">制約・NG事項</label>
             <label class="label" data-i18n="en" style="display:none;">Constraints/Notes</label>
-            <textarea class="textarea" id="constraints" placeholder="使用不可素材、社内ルールなど"></textarea>
+            <textarea class="textarea" id="constraints" data-placeholder-ja="使用不可素材、社内ルール、法務確認が必要な表現" data-placeholder-en="Prohibited assets, internal rules, legally sensitive wording"></textarea>
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">納品形式</label>
-            <label class="label" data-i18n="en" style="display:none;">Deliverables format</label>
-            <input class="input" id="deliverablesFormat" type="text" placeholder="AI/PSD/PNG/FIGMA" />
+            <label class="label" data-i18n="ja">納品形式（推奨）</label>
+            <label class="label" data-i18n="en" style="display:none;">Deliverables format (recommended)</label>
+            <input class="input" id="deliverablesFormat" type="text" data-placeholder-ja="Figma / AI / PSD / PNG / PDF" data-placeholder-en="Figma / AI / PSD / PNG / PDF" />
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">修正回数</label>
-            <label class="label" data-i18n="en" style="display:none;">Revisions</label>
-            <input class="input" id="revisions" type="text" placeholder="2回まで / 応相談" />
+            <label class="label" data-i18n="ja">修正回数（推奨）</label>
+            <label class="label" data-i18n="en" style="display:none;">Revisions (recommended)</label>
+            <input class="input" id="revisions" type="text" data-placeholder-ja="2回まで / 軽微な修正のみ / 応相談" data-placeholder-en="Up to two rounds / minor changes only / negotiable" />
           </div>
           <div class="field">
-            <label class="label" data-i18n="ja">連絡先</label>
-            <label class="label" data-i18n="en" style="display:none;">Contact</label>
-            <input class="input" id="contact" type="text" placeholder="担当者名・メールアドレス" />
+            <label class="label" data-i18n="ja">連絡先（推奨）</label>
+            <label class="label" data-i18n="en" style="display:none;">Contact (recommended)</label>
+            <input class="input" id="contact" type="text" data-placeholder-ja="担当者名・返信先。公開前は伏せてもOK" data-placeholder-en="Contact name and reply address. Mask it before sharing if needed." />
           </div>
 
           <div class="row" style="margin-top:8px;">
-            <button class="btn primary" id="btnBuild" type="button">
-              <span data-i18n="ja">依頼文を生成</span>
-              <span data-i18n="en" style="display:none;">Generate</span>
-            </button>
-            <button class="btn" id="btnDownloadJa" type="button">
-              <span data-i18n="ja">JPをTXT保存</span>
-              <span data-i18n="en" style="display:none;">Download JP</span>
-            </button>
-            <button class="btn" id="btnDownloadEn" type="button">
-              <span data-i18n="ja">ENをTXT保存</span>
-              <span data-i18n="en" style="display:none;">Download EN</span>
-            </button>
+            <button class="btn primary" id="btnBuild" type="button"><span data-i18n="ja">依頼文を生成</span><span data-i18n="en" style="display:none;">Generate</span></button>
+            <button class="btn" id="btnDownloadJa" type="button"><span data-i18n="ja">JPをTXT保存</span><span data-i18n="en" style="display:none;">Download JP</span></button>
+            <button class="btn" id="btnDownloadEn" type="button"><span data-i18n="ja">ENをTXT保存</span><span data-i18n="en" style="display:none;">Download EN</span></button>
           </div>
 
           <div class="row">
-            <button class="btn" id="btnCopyJaFull" type="button">
-              <span data-i18n="ja">JP全文をコピー</span>
-              <span data-i18n="en" style="display:none;">Copy JP: Full</span>
-            </button>
-            <button class="btn" id="btnCopyJaKey" type="button">
-              <span data-i18n="ja">JP要点をコピー</span>
-              <span data-i18n="en" style="display:none;">Copy JP: Key points</span>
-            </button>
+            <button class="btn" id="btnCopyJaFull" type="button"><span data-i18n="ja">JP全文をコピー</span><span data-i18n="en" style="display:none;">Copy JP: Full</span></button>
+            <button class="btn" id="btnCopyJaKey" type="button"><span data-i18n="ja">JP要点をコピー</span><span data-i18n="en" style="display:none;">Copy JP: Key points</span></button>
           </div>
           <div class="row">
-            <button class="btn" id="btnCopyEnFull" type="button">
-              <span data-i18n="ja">EN全文をコピー</span>
-              <span data-i18n="en" style="display:none;">Copy EN: Full</span>
-            </button>
-            <button class="btn" id="btnCopyEnKey" type="button">
-              <span data-i18n="ja">EN要点をコピー</span>
-              <span data-i18n="en" style="display:none;">Copy EN: Key points</span>
-            </button>
+            <button class="btn" id="btnCopyEnFull" type="button"><span data-i18n="ja">EN全文をコピー</span><span data-i18n="en" style="display:none;">Copy EN: Full</span></button>
+            <button class="btn" id="btnCopyEnKey" type="button"><span data-i18n="ja">EN要点をコピー</span><span data-i18n="en" style="display:none;">Copy EN: Key points</span></button>
           </div>
 
-          <div class="field">
-            <label class="label" data-i18n="ja">JP出力（全文）</label>
-            <label class="label" data-i18n="en" style="display:none;">JP Output (Full)</label>
-            <pre class="out" id="outputJa">-</pre>
-          </div>
-          <div class="field">
-            <label class="label" data-i18n="ja">JP出力（要点）</label>
-            <label class="label" data-i18n="en" style="display:none;">JP Output (Key points)</label>
-            <pre class="out" id="outputJaKey">-</pre>
-          </div>
-          <div class="field">
-            <label class="label" data-i18n="ja">EN出力（全文）</label>
-            <label class="label" data-i18n="en" style="display:none;">EN Output (Full)</label>
-            <pre class="out" id="outputEn">-</pre>
-          </div>
-          <div class="field">
-            <label class="label" data-i18n="ja">EN出力（要点）</label>
-            <label class="label" data-i18n="en" style="display:none;">EN Output (Key points)</label>
-            <pre class="out" id="outputEnKey">-</pre>
-          </div>
+          <div class="field"><label class="label" data-i18n="ja">JP出力（全文）</label><label class="label" data-i18n="en" style="display:none;">JP Output (Full)</label><pre class="out" id="outputJa">入力後に生成してください</pre></div>
+          <div class="field"><label class="label" data-i18n="ja">JP出力（要点）</label><label class="label" data-i18n="en" style="display:none;">JP Output (Key points)</label><pre class="out" id="outputJaKey">入力後に生成してください</pre></div>
+          <div class="field"><label class="label" data-i18n="ja">EN出力（全文）</label><label class="label" data-i18n="en" style="display:none;">EN Output (Full)</label><pre class="out" id="outputEn">Generate after entering the required fields.</pre></div>
+          <div class="field"><label class="label" data-i18n="ja">EN出力（要点）</label><label class="label" data-i18n="en" style="display:none;">EN Output (Key points)</label><pre class="out" id="outputEnKey">Generate after entering the required fields.</pre></div>
         </div>
       </div>
     </section>
 
-    <!-- Bottom Ad (recommended) -->
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" data-i18n="ja">よくある質問</h2>
+      <h2 id="faq-title-en" data-i18n="en" style="display:none;">FAQ</h2>
+      <details><summary data-i18n="ja">この依頼文をそのまま送ってよいですか？</summary><summary data-i18n="en" style="display:none;">Can I send the generated brief as-is?</summary><p data-i18n="ja">たたき台です。納品形式、修正回数、権利、素材利用条件、追加費用を必ず確認してください。</p><p data-i18n="en" style="display:none;">Use it as a draft. Confirm formats, revision rounds, rights, asset usage conditions and extra fees before sending.</p></details>
+      <details><summary data-i18n="ja">入力内容は送信されますか？</summary><summary data-i18n="en" style="display:none;">Is my input sent anywhere?</summary><p data-i18n="ja">依頼文生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p><p data-i18n="en" style="display:none;">Brief generation runs in your browser, but ads and analytics tags are loaded for the page.</p></details>
+      <details><summary data-i18n="ja">著作権や商用利用条件も決められますか？</summary><summary data-i18n="en" style="display:none;">Can this decide copyright or commercial usage terms?</summary><p data-i18n="ja">いいえ。確認項目として整理できますが、契約条件の確定は当事者間で行ってください。</p><p data-i18n="en" style="display:none;">No. It can organize check items, but final terms must be agreed by the parties.</p></details>
+      <details><summary data-i18n="ja">英語依頼文も作れますか？</summary><summary data-i18n="en" style="display:none;">Can it create an English brief?</summary><p data-i18n="ja">JP/ENの出力を作れます。ただし翻訳品質や契約表現の正確性は保証しません。</p><p data-i18n="en" style="display:none;">It creates JP/EN output, but translation quality and contractual wording accuracy are not guaranteed.</p></details>
+      <details><summary data-i18n="ja">参考素材URLを入れてもよいですか？</summary><summary data-i18n="en" style="display:none;">Can I enter reference asset URLs?</summary><p data-i18n="ja">機密URLや非公開素材の場所は必要に応じて伏せてください。</p><p data-i18n="en" style="display:none;">Mask confidential URLs and private asset locations when needed.</p></details>
+    </section>
+
     <div class="ad-slot ad-bottom">広告枠（準備中）</div>
 
-    <!-- Donate (1–2 placements max) -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
@@ -278,14 +263,14 @@
       </div>
     </div>
 
-    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
     <section class="nw-other">
-      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
-      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <h3 class="nw-other-title" data-i18n="ja">関連ツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Related tools</h3>
       <div class="nw-other-links">
-        <a href="/tools/log-formatter/">LogFormatter</a>
-        <a href="/tools/rename-wizard/">Rename Wizard</a>
-        <a href="/tools/manual-finder/">ManualFinder</a>
+        <a href="/tools/outsource-spec-generator/">Outsource Spec Generator</a>
+        <a href="/tools/lp-skeleton-generator/">LP Skeleton Generator</a>
+        <a href="/tools/contract-cleaner/">Contract Cleaner</a>
+        <a href="/tools/image-redact/">Image Redact</a>
       </div>
     </section>
   </main>
@@ -293,11 +278,10 @@
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
-    </p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./app.js"></script>
 </body>
 </html>
