@@ -25,6 +25,12 @@ html[data-theme="light"] {
   --border: #e5e5e5;
   --accent: #111111;
   --error-bg: #ffe5e5;
+  --warning-bg: #fff7ed;
+  --warning-border: #fed7aa;
+  --warning-fg: #7c2d12;
+  --privacy-bg: #eff6ff;
+  --privacy-border: #bfdbfe;
+  --privacy-fg: #1e3a8a;
 }
 
 /* ダークテーマ */
@@ -35,6 +41,12 @@ html[data-theme="dark"] {
   --border: #444444;
   --accent: #ffffff;
   --error-bg: #552222;
+  --warning-bg: #3b2615;
+  --warning-border: #7c4a1d;
+  --warning-fg: #fed7aa;
+  --privacy-bg: #14233b;
+  --privacy-border: #29476f;
+  --privacy-fg: #bfdbfe;
 }
 
 /* --------------------------------------------------
@@ -94,11 +106,22 @@ button:disabled {
 }
 
 /* --------------------------------------------------
-   説明テキスト
+   広告・説明・注意
 -------------------------------------------------- */
 
+.ad-slot {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+  color: var(--fg);
+  opacity: 0.72;
+  font-size: 0.9rem;
+}
+
 .intro-text {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   padding: 12px;
   background: var(--card-bg);
   border-radius: 10px;
@@ -109,6 +132,103 @@ button:disabled {
   margin: 0;
 }
 
+.sub-note,
+.usage-link {
+  margin-top: 8px !important;
+  opacity: 0.86;
+  font-size: 0.95em;
+}
+
+.notice-card,
+.tool-note,
+.faq-section,
+.nw-other-links {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.notice-card h2,
+.faq-section h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.notice-card p,
+.tool-note p,
+.faq-section p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.notice-card p + p,
+.tool-note p + p {
+  margin-top: 8px;
+}
+
+.notice-card.warning {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+  color: var(--warning-fg);
+}
+
+.notice-card.privacy {
+  background: var(--privacy-bg);
+  border-color: var(--privacy-border);
+  color: var(--privacy-fg);
+}
+
+.tool-note code {
+  padding: 2px 5px;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.faq-section details {
+  border-top: 1px solid var(--border);
+  padding: 10px 0;
+}
+
+.faq-section details:first-of-type {
+  border-top: 0;
+}
+
+.faq-section summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq-section p {
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+.nw-other-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nw-other-links a {
+  color: var(--fg);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--bg);
+  font-size: 0.9rem;
+}
+
+.field-help {
+  margin: -4px 0 2px;
+  font-size: 0.84rem;
+  opacity: 0.78;
+  line-height: 1.5;
+}
+
 /* --------------------------------------------------
    CSVボタン
 -------------------------------------------------- */
@@ -116,10 +236,11 @@ button:disabled {
 .csv-actions {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
-.csv-btn {
+.csv-btn,
+.ghost-btn {
   flex: 1;
   padding: 10px;
   background: var(--card-bg);
@@ -171,6 +292,7 @@ button:disabled {
 .input-card select,
 .input-card textarea {
   width: 100%;
+  box-sizing: border-box;
   padding: 10px;
   border: 1px solid var(--border);
   background: var(--bg);
@@ -464,9 +586,16 @@ button:disabled {
 }
 
 @media (max-width: 560px) {
+  .csv-actions,
   .ocr-preview-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .csv-btn,
+  .ghost-btn {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .ocr-preview-actions-left {
