@@ -1,15 +1,6 @@
-/* ================================
- * NicheWorks tool template app.js
- * - JP/EN toggle (data-i18n)
- * - Utilities: copy, downloadText, debounce
- * ================================ */
-
 (() => {
   "use strict";
 
-  // ----------------------------
-  // i18n (required)
-  // ----------------------------
   const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
 
@@ -20,11 +11,16 @@
 
   const applyLang = (lang) => {
     i18nNodes().forEach((el) => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
-    langButtons().forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    langButtons().forEach((button) => {
+      button.classList.toggle("active", button.dataset.lang === lang);
+    });
     document.documentElement.lang = lang;
-    try { localStorage.setItem("nw_lang", lang); } catch (_) {}
+    try {
+      localStorage.setItem("nw_lang", lang);
+    } catch (_) {}
+    window.dispatchEvent(new CustomEvent("nw:lang", { detail: { lang } }));
   };
 
   const initLang = () => {
@@ -33,32 +29,30 @@
       const saved = localStorage.getItem("nw_lang");
       if (saved === "ja" || saved === "en") lang = saved;
     } catch (_) {}
-    langButtons().forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+    langButtons().forEach((button) => {
+      button.addEventListener("click", () => applyLang(button.dataset.lang));
+    });
     applyLang(lang);
   };
 
-  // ----------------------------
-  // Utilities
-  // ----------------------------
   const copyToClipboard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
       return true;
     } catch (_) {
-      // Fallback
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
       try {
-        document.execCommand("copy");
-        return true;
-      } catch (e) {
+        return document.execCommand("copy");
+      } catch (error) {
         return false;
       } finally {
-        document.body.removeChild(ta);
+        document.body.removeChild(textarea);
       }
     }
   };
@@ -66,150 +60,234 @@
   const downloadText = (filename, text) => {
     const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = filename;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 500);
   };
 
-  const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
-    };
-  };
-
-  // Expose minimal helpers for tool scripts (Codex can reuse)
   window.NW = {
     applyLang,
     copyToClipboard,
     downloadText,
-    debounce,
     hasPro: () => {
-      try { return !!localStorage.getItem("nw_pro_key"); } catch (_) { return false; }
+      try {
+        return Boolean(localStorage.getItem("nw_pro_key"));
+      } catch (_) {
+        return false;
+      }
     }
   };
 
-  // ----------------------------
-  // Boot
-  // ----------------------------
-  document.addEventListener("DOMContentLoaded", () => {
-    initLang();
-
-    // Tool-specific init should be appended below by Codex per tool.
-    // Example:
-    // initTool();
-  });
+  document.addEventListener("DOMContentLoaded", initLang);
 })();
 
-// ----------------------------
-// Tool: Membership Offer Builder
-// ----------------------------
 const initMembershipOffer = () => {
   const root = document.getElementById("toolRoot");
-  if (!root) return;
+  const output = document.getElementById("offerOutput");
+  const buildButton = document.getElementById("buildOfferBtn");
+  const copyButton = document.getElementById("copyOfferBtn");
+  const toast = document.getElementById("toast");
 
-  root.innerHTML = `
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">テーマ/専門分野</span>
-        <span data-i18n="en" style="display:none;">Topic / Expertise</span>
-      </label>
-      <input id="topicInput" class="input" type="text" placeholder="例: B2Bマーケ/デザイン/開発" />
-    </div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">提供内容</span>
-        <span data-i18n="en" style="display:none;">Deliverables</span>
-      </label>
-      <input id="deliverablesInput" class="input" type="text" placeholder="例: 月次相談会/限定記事/レビュー" />
-    </div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">提供頻度</span>
-        <span data-i18n="en" style="display:none;">Frequency</span>
-      </label>
-      <input id="frequencyInput" class="input" type="text" placeholder="例: 月2回/週1回" />
-    </div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">確保できる時間</span>
-        <span data-i18n="en" style="display:none;">Time available</span>
-      </label>
-      <input id="timeInput" class="input" type="text" placeholder="例: 週3時間" />
-    </div>
-    <div class="row">
-      <button id="buildOffer" class="btn primary" type="button" data-i18n="ja">提案を作成</button>
-      <button id="buildOfferEn" class="btn primary" type="button" data-i18n="en" style="display:none;">Build offer</button>
-      <button id="copyOffer" class="btn" type="button" data-i18n="ja">コピー</button>
-      <button id="copyOfferEn" class="btn" type="button" data-i18n="en" style="display:none;">Copy</button>
-    </div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">出力</span>
-        <span data-i18n="en" style="display:none;">Output</span>
-      </label>
-      <div id="offerOutput" class="out" aria-live="polite"></div>
-    </div>
-  `;
+  if (!root || !output || !buildButton || !copyButton) return;
 
-  const topicInput = root.querySelector("#topicInput");
-  const deliverablesInput = root.querySelector("#deliverablesInput");
-  const frequencyInput = root.querySelector("#frequencyInput");
-  const timeInput = root.querySelector("#timeInput");
-  const output = root.querySelector("#offerOutput");
-  const buildButtons = [root.querySelector("#buildOffer"), root.querySelector("#buildOfferEn")];
-  const copyButtons = [root.querySelector("#copyOffer"), root.querySelector("#copyOfferEn")];
+  let hasGenerated = false;
+  let toastTimer = null;
 
-  const estimateRange = (time) => {
-    if (!time) return "¥3,000 - ¥12,000";
-    if (time.includes("10") || time.includes("15")) return "¥12,000 - ¥30,000";
-    if (time.includes("5") || time.includes("6") || time.includes("7")) return "¥6,000 - ¥18,000";
-    return "¥3,000 - ¥12,000";
+  const currentLang = () => document.documentElement.lang === "en" ? "en" : "ja";
+
+  const text = {
+    initial: {
+      ja: "入力後に「提案を作成」を押してください。",
+      en: "Fill in the fields, then click “Build offer”."
+    },
+    copyFirst: {
+      ja: "先に提案を生成してください。",
+      en: "Build an offer before copying."
+    },
+    copied: {
+      ja: "コピーしました。",
+      en: "Copied."
+    },
+    copyFailed: {
+      ja: "コピーに失敗しました。",
+      en: "Copy failed."
+    },
+    notProvided: {
+      ja: "未入力",
+      en: "Not provided"
+    },
+    undecidedPrice: {
+      ja: "価格は要検討",
+      en: "Pricing to be decided"
+    }
   };
 
-  const buildOffer = () => {
-    const topic = topicInput.value.trim() || "(テーマ未入力)";
-    const deliverables = deliverablesInput.value.trim() || "(提供内容未入力)";
-    const frequency = frequencyInput.value.trim() || "(頻度未入力)";
-    const time = timeInput.value.trim() || "(時間未入力)";
-    const priceRange = estimateRange(time);
-
-    const jp = `【JP】\n` +
-      `■ 提案概要\n${topic}に関するメンバーシップ。${deliverables}を${frequency}で提供。\n\n` +
-      `■ 価格帯（目安）\n${priceRange}/月\n\n` +
-      `■ オンボーディング\n` +
-      `- 参加直後に目標ヒアリング\n- 初回ガイド（${topic}の基礎）\n\n` +
-      `■ 継続施策\n` +
-      `- 月次まとめレポート\n- 参加者の成果共有\n- 次月テーマの投票\n`;
-
-    const en = `【EN】\n` +
-      `■ Offer summary\nMembership about ${topic}. Provide ${deliverables} at ${frequency}.\n\n` +
-      `■ Pricing range (estimate)\n${priceRange}/month\n\n` +
-      `■ Onboarding\n` +
-      `- Quick goal survey after joining\n- Starter guide for ${topic}\n\n` +
-      `■ Retention ideas\n` +
-      `- Monthly recap report\n- Share member wins\n- Vote on next topics\n`;
-
-    return `${jp}\n\n${en}`;
+  const showToast = (message) => {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.hidden = true;
+    }, 2200);
   };
 
-  const render = () => {
-    output.textContent = buildOffer();
+  const valueOf = (id, fallback) => {
+    const element = document.getElementById(id);
+    const value = element ? element.value.trim() : "";
+    return value || fallback;
   };
 
-  buildButtons.forEach((btn) => btn.addEventListener("click", render));
-  copyButtons.forEach((btn) => btn.addEventListener("click", async () => {
-    const ok = await window.NW.copyToClipboard(output.textContent || "");
-    if (!ok) alert("Copy failed");
-  }));
+  const getInputs = () => {
+    const lang = currentLang();
+    const missing = text.notProvided[lang];
+    return {
+      topic: valueOf("topicInput", missing),
+      audience: valueOf("audienceInput", missing),
+      deliverables: valueOf("deliverablesInput", missing),
+      frequency: valueOf("frequencyInput", missing),
+      time: valueOf("timeInput", missing),
+      price: valueOf("priceInput", text.undecidedPrice[lang]),
+      planCount: valueOf("planCountInput", missing),
+      notIncluded: valueOf("notIncludedInput", missing),
+      cancelRefund: valueOf("cancelRefundInput", missing),
+      firstMonth: valueOf("firstMonthInput", missing),
+      retention: valueOf("retentionInput", missing),
+      community: valueOf("communityInput", missing),
+      workloadLimit: valueOf("workloadLimitInput", missing)
+    };
+  };
 
-  render();
-  window.NW.applyLang(document.documentElement.lang || "ja");
+  const buildJapanese = (input) => [
+    "# メンバーシップ提案案",
+    "",
+    "■ 提案概要",
+    `${input.topic}をテーマに、${input.audience}向けのメンバーシップとして設計します。主な提供内容は ${input.deliverables} です。`,
+    "",
+    "■ 対象メンバー",
+    input.audience,
+    "",
+    "■ 提供内容",
+    input.deliverables,
+    "",
+    "■ 提供頻度",
+    input.frequency,
+    "",
+    "■ 価格案（たたき台）",
+    `- 入力価格: ${input.price}`,
+    "- 調整観点: 提供工数、競合価格、決済手数料、継続率、返金対応",
+    "",
+    "■ プラン構成",
+    input.planCount,
+    "",
+    "■ 初月オンボーディング",
+    input.firstMonth,
+    "",
+    "■ 継続施策",
+    input.retention,
+    "",
+    "■ コミュニティ設計",
+    input.community,
+    "",
+    "■ 提供しないこと",
+    input.notIncluded,
+    "",
+    "■ 解約/返金条件",
+    input.cancelRefund,
+    "",
+    "■ 運営負荷メモ",
+    `確保できる時間: ${input.time}`,
+    `運営負荷上限: ${input.workloadLimit}`,
+    "",
+    "■ 公開前チェック",
+    "- 提供頻度を継続できるか",
+    "- 解約条件が明確か",
+    "- 返金条件が明確か",
+    "- 特商法表示が必要な場合に用意されているか",
+    "- 決済サービスの手数料と規約を確認したか",
+    "- プラットフォーム規約に違反していないか"
+  ].join("\n");
+
+  const buildEnglish = (input) => [
+    "# Membership offer draft",
+    "",
+    "■ Offer summary",
+    `Design a membership about ${input.topic} for ${input.audience}. The main member benefits are ${input.deliverables}.`,
+    "",
+    "■ Target members",
+    input.audience,
+    "",
+    "■ What members receive",
+    input.deliverables,
+    "",
+    "■ Delivery frequency",
+    input.frequency,
+    "",
+    "■ Pricing draft",
+    `- Input price: ${input.price}`,
+    "- Adjustment points: workload, competitor pricing, payment fees, retention rate, refund handling",
+    "",
+    "■ Plan structure",
+    input.planCount,
+    "",
+    "■ First-month onboarding",
+    input.firstMonth,
+    "",
+    "■ Retention actions",
+    input.retention,
+    "",
+    "■ Community setup",
+    input.community,
+    "",
+    "■ Not included",
+    input.notIncluded,
+    "",
+    "■ Cancellation / refund terms",
+    input.cancelRefund,
+    "",
+    "■ Workload note",
+    `Time available: ${input.time}`,
+    `Workload limit: ${input.workloadLimit}`,
+    "",
+    "■ Pre-launch checklist",
+    "- Can you keep the promised delivery frequency?",
+    "- Are cancellation terms clear?",
+    "- Are refund terms clear?",
+    "- Have you prepared required seller/legal notices where applicable?",
+    "- Have you checked payment fees and service terms?",
+    "- Does the offer comply with the platform rules?"
+  ].join("\n");
+
+  const renderOffer = () => {
+    const input = getInputs();
+    output.value = `${buildJapanese(input)}\n\n---\n\n${buildEnglish(input)}`;
+    hasGenerated = true;
+  };
+
+  const copyOffer = async () => {
+    const lang = currentLang();
+    if (!hasGenerated || !output.value.trim()) {
+      showToast(text.copyFirst[lang]);
+      return;
+    }
+    const ok = await window.NW.copyToClipboard(output.value);
+    showToast(ok ? text.copied[lang] : text.copyFailed[lang]);
+  };
+
+  const setInitialMessage = () => {
+    if (hasGenerated) return;
+    output.value = text.initial[currentLang()];
+  };
+
+  buildButton.addEventListener("click", renderOffer);
+  copyButton.addEventListener("click", copyOffer);
+  window.addEventListener("nw:lang", setInitialMessage);
+
+  setInitialMessage();
 };
 
 document.addEventListener("DOMContentLoaded", initMembershipOffer);
