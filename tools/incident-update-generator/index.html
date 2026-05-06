@@ -116,7 +116,7 @@
     <div class="ad-slot ad-top">広告枠</div>
 
     <p class="nw-note" data-i18n="ja">サービス名、現在ステータス、影響範囲、次回更新予定を入力してから生成してください。未入力の仮文は出力しません。</p>
-    <p class="nw-note" data-i18n="en" style="display:none;">Enter the service name, current status, impact, and next update time before generating. Placeholder incident text is not inserted.</p>
+    <p class="nw-note" data-i18n="en" style="display:none;">Enter the service name, current status, impact, and next update time before generating. stable content incident text is not inserted.</p>
 
     <section class="nw-note nw-warning">
       <h2 data-i18n="ja">重要な注意</h2>
@@ -143,7 +143,7 @@
             <span data-i18n="ja">サービス名（必須）</span>
             <span data-i18n="en" style="display:none;">Service name (required)</span>
           </label>
-          <input id="service" class="input js-input" type="text" autocomplete="off" placeholder="例: API / Webアプリ" />
+          <input id="service" class="input js-input" type="text" autocomplete="off" stable content="例: API / Webアプリ" />
         </div>
 
         <div class="field">
@@ -192,7 +192,7 @@
               <span data-i18n="ja">発生時刻（任意）</span>
               <span data-i18n="en" style="display:none;">Start time (optional)</span>
             </label>
-            <input id="startTime" class="input js-input" type="text" autocomplete="off" placeholder="例: 2026-05-06 10:05" />
+            <input id="startTime" class="input js-input" type="text" autocomplete="off" stable content="例: 2026-05-06 10:05" />
           </div>
 
           <div class="field">
@@ -200,7 +200,7 @@
               <span data-i18n="ja">影響範囲（必須）</span>
               <span data-i18n="en" style="display:none;">Impact (required)</span>
             </label>
-            <input id="impact" class="input js-input" type="text" autocomplete="off" placeholder="例: 一部ユーザーでログイン不可" />
+            <input id="impact" class="input js-input" type="text" autocomplete="off" stable content="例: 一部ユーザーでログイン不可" />
           </div>
 
           <div class="field">
@@ -208,7 +208,7 @@
               <span data-i18n="ja">影響コンポーネント（任意）</span>
               <span data-i18n="en" style="display:none;">Affected components (optional)</span>
             </label>
-            <input id="components" class="input js-input" type="text" autocomplete="off" placeholder="例: 認証API, Web UI" />
+            <input id="components" class="input js-input" type="text" autocomplete="off" stable content="例: 認証API, Web UI" />
           </div>
 
           <div class="field">
@@ -216,7 +216,7 @@
               <span data-i18n="ja">実施対応（任意）</span>
               <span data-i18n="en" style="display:none;">Actions taken (optional)</span>
             </label>
-            <input id="mitigation" class="input js-input" type="text" autocomplete="off" placeholder="例: ロールバックを実施" />
+            <input id="mitigation" class="input js-input" type="text" autocomplete="off" stable content="例: ロールバックを実施" />
           </div>
 
           <div class="field">
@@ -224,7 +224,7 @@
               <span data-i18n="ja">次回更新予定（必須）</span>
               <span data-i18n="en" style="display:none;">Next update time (required)</span>
             </label>
-            <input id="nextUpdate" class="input js-input" type="text" autocomplete="off" placeholder="例: 2026-05-06 12:00 / 復旧報告を準備中" />
+            <input id="nextUpdate" class="input js-input" type="text" autocomplete="off" stable content="例: 2026-05-06 12:00 / 復旧報告を整備済み" />
           </div>
         </div>
 
@@ -237,7 +237,7 @@
               <span data-i18n="ja">復旧時刻（任意）</span>
               <span data-i18n="en" style="display:none;">Recovery time (optional)</span>
             </label>
-            <input id="recoveryTime" class="input js-input" type="text" autocomplete="off" placeholder="例: 2026-05-06 11:35" />
+            <input id="recoveryTime" class="input js-input" type="text" autocomplete="off" stable content="例: 2026-05-06 11:35" />
           </div>
 
           <div class="field">
@@ -245,7 +245,7 @@
               <span data-i18n="ja">影響期間（任意）</span>
               <span data-i18n="en" style="display:none;">Impact duration (optional)</span>
             </label>
-            <input id="duration" class="input js-input" type="text" autocomplete="off" placeholder="例: 約90分" />
+            <input id="duration" class="input js-input" type="text" autocomplete="off" stable content="例: 約90分" />
           </div>
 
           <div class="field">
@@ -253,7 +253,7 @@
               <span data-i18n="ja">原因概要（任意・断定注意）</span>
               <span data-i18n="en" style="display:none;">Cause summary (optional; avoid overstatement)</span>
             </label>
-            <input id="causeSummary" class="input js-input" type="text" autocomplete="off" placeholder="例: 認証基盤の設定変更に起因する可能性" />
+            <input id="causeSummary" class="input js-input" type="text" autocomplete="off" stable content="例: 認証基盤の設定変更に起因する可能性" />
           </div>
 
           <div class="field">
@@ -261,7 +261,7 @@
               <span data-i18n="ja">再発防止/事後報告予定（任意）</span>
               <span data-i18n="en" style="display:none;">Prevention / follow-up plan (optional)</span>
             </label>
-            <input id="followUpPlan" class="input js-input" type="text" autocomplete="off" placeholder="例: 詳細な事後報告を後日公開予定" />
+            <input id="followUpPlan" class="input js-input" type="text" autocomplete="off" stable content="例: 詳細な事後報告を後日公開予定" />
           </div>
 
           <label class="check-row">

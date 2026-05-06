@@ -12,25 +12,25 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="index,follow">
 
   <title>週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks</title>
-  <meta name="description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。社内報告や定例資料の下書きに使えます。" />
-  <link rel="canonical" href="https://nicheworks.app/tools/ops-weekly-report-generator/" />
+  <meta name="description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。社内報告や定例資料の下書きに使えます。">
+  <link rel="canonical" href="https://nicheworks.app/tools/ops-weekly-report-generator/">
 
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="NicheWorks" />
-  <meta property="og:title" content="週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks" />
-  <meta property="og:description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。" />
-  <meta property="og:url" content="https://nicheworks.app/tools/ops-weekly-report-generator/" />
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks" />
-  <meta name="twitter:description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。" />
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks">
+  <meta property="og:description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。社内報告や定例資料の下書きに使えます。">
+  <meta property="og:url" content="https://nicheworks.app/tools/ops-weekly-report-generator/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="週次運用レポート作成・KPI報告テンプレ｜Ops Weekly Report Generator | NicheWorks">
+  <meta name="twitter:description" content="KPI、変化点、結果、リスク、次アクション、来週の重点を整理し、JP/ENの週次運用レポートを作成する無料ツールです。社内報告や定例資料の下書きに使えます。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <link rel="icon" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
@@ -132,67 +132,67 @@
           <div class="field">
             <label class="label" for="period" data-i18n="ja">対象期間 <span class="req">必須</span></label>
             <label class="label" for="period" data-i18n="en" style="display:none;">Report period <span class="req">Required</span></label>
-            <input class="input" id="period" placeholder="例: 2026年5月1日〜5月7日 / 2026-W19" />
+            <input class="input" id="period" stable content="例: 2026年5月1日〜5月7日 / 2026-W19" />
           </div>
 
           <div class="field">
             <label class="label" for="team" data-i18n="ja">担当/チーム</label>
             <label class="label" for="team" data-i18n="en" style="display:none;">Owner / team</label>
-            <input class="input" id="team" placeholder="例: Growth Ops / Support Team" />
+            <input class="input" id="team" stable content="例: Growth Ops / Support Team" />
           </div>
 
           <div class="field">
             <label class="label" for="kpi" data-i18n="ja">KPI（数値/指標）</label>
             <label class="label" for="kpi" data-i18n="en" style="display:none;">KPI metrics</label>
-            <textarea class="textarea" id="kpi" placeholder="例: MAU 12,340（前週比 +5% / 暫定値）"></textarea>
+            <textarea class="textarea" id="kpi" stable content="例: MAU 12,340（前週比 +5% / 暫定値）"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="changes" data-i18n="ja">変化点</label>
             <label class="label" for="changes" data-i18n="en" style="display:none;">What changed</label>
-            <textarea class="textarea" id="changes" placeholder="例: 広告施策の変更、UI改善、配信条件の見直し"></textarea>
+            <textarea class="textarea" id="changes" stable content="例: 広告施策の変更、UI改善、配信条件の見直し"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="results" data-i18n="ja">結果/影響</label>
             <label class="label" for="results" data-i18n="en" style="display:none;">Results / impact</label>
-            <textarea class="textarea" id="results" placeholder="例: CVRが改善。問い合わせ数は横ばい。"></textarea>
+            <textarea class="textarea" id="results" stable content="例: CVRが改善。問い合わせ数は横ばい。"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="goodThings" data-i18n="ja">良かったこと</label>
             <label class="label" for="goodThings" data-i18n="en" style="display:none;">Wins</label>
-            <textarea class="textarea" id="goodThings" placeholder="例: FAQ導線の改善後、同種問い合わせが減少"></textarea>
+            <textarea class="textarea" id="goodThings" stable content="例: FAQ導線の改善後、同種問い合わせが減少"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="risks" data-i18n="ja">問題/リスク</label>
             <label class="label" for="risks" data-i18n="en" style="display:none;">Issues / risks</label>
-            <textarea class="textarea" id="risks" placeholder="例: 一部数値が未確定。来週の配信量低下リスクあり。"></textarea>
+            <textarea class="textarea" id="risks" stable content="例: 一部数値が未確定。来週の配信量低下リスクあり。"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="openItems" data-i18n="ja">未解決事項</label>
             <label class="label" for="openItems" data-i18n="en" style="display:none;">Open items</label>
-            <textarea class="textarea" id="openItems" placeholder="例: 原因調査中の数値差分、関係部署への確認待ち"></textarea>
+            <textarea class="textarea" id="openItems" stable content="例: 原因調査中の数値差分、関係部署への確認待ち"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="nextActions" data-i18n="ja">次アクション</label>
             <label class="label" for="nextActions" data-i18n="en" style="display:none;">Next actions</label>
-            <textarea class="textarea" id="nextActions" placeholder="例: クリエイティブ差し替え、未確定KPIの再集計、FAQ追記"></textarea>
+            <textarea class="textarea" id="nextActions" stable content="例: クリエイティブ差し替え、未確定KPIの再集計、FAQ追記"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="focusNext" data-i18n="ja">来週の重点</label>
             <label class="label" for="focusNext" data-i18n="en" style="display:none;">Focus for next week</label>
-            <textarea class="textarea" id="focusNext" placeholder="例: CVR改善施策の継続検証、離脱ポイントの確認"></textarea>
+            <textarea class="textarea" id="focusNext" stable content="例: CVR改善施策の継続検証、離脱ポイントの確認"></textarea>
           </div>
 
           <div class="field">
             <label class="label" for="decisions" data-i18n="ja">意思決定が必要なこと</label>
             <label class="label" for="decisions" data-i18n="en" style="display:none;">Decisions needed</label>
-            <textarea class="textarea" id="decisions" placeholder="例: 追加予算の可否、次週の優先施策の選定"></textarea>
+            <textarea class="textarea" id="decisions" stable content="例: 追加予算の可否、次週の優先施策の選定"></textarea>
           </div>
 
           <p class="hint" data-i18n="ja">最低限、対象期間と、KPI/結果/次アクション/リスクなどのいずれかを入力してください。空欄項目は出力から省略されます。</p>
