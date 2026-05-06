@@ -1,15 +1,6 @@
-/* ================================
- * NicheWorks tool template app.js
- * - JP/EN toggle (data-i18n)
- * - Utilities: copy, downloadText, debounce
- * ================================ */
-
 (() => {
   "use strict";
 
-  // ----------------------------
-  // i18n (required)
-  // ----------------------------
   const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
 
@@ -37,15 +28,22 @@
     applyLang(lang);
   };
 
-  // ----------------------------
-  // Utilities
-  // ----------------------------
+  const toast = (message) => {
+    const el = document.getElementById("toast");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add("show");
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => {
+      el.classList.remove("show");
+    }, 2200);
+  };
+
   const copyToClipboard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
       return true;
     } catch (_) {
-      // Fallback
       const ta = document.createElement("textarea");
       ta.value = text;
       ta.style.position = "fixed";
@@ -63,8 +61,8 @@
     }
   };
 
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const downloadText = (filename, text, type = "text/plain;charset=utf-8") => {
+    const blob = new Blob([text], { type });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -75,64 +73,73 @@
     setTimeout(() => URL.revokeObjectURL(url), 500);
   };
 
-  const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
-    };
-  };
-
-  // Expose minimal helpers for tool scripts (Codex can reuse)
-  window.NW = {
-    applyLang,
-    copyToClipboard,
-    downloadText,
-    debounce,
-    hasPro: () => {
-      try { return !!localStorage.getItem("nw_pro_key"); } catch (_) { return false; }
-    }
-  };
-
   const toBullets = (value) => value
     .split(/\n|,|、/)
     .map((v) => v.trim())
     .filter(Boolean);
 
-  const getValue = (id) => document.getElementById(id).value.trim();
+  const getValue = (id) => {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+  };
+
+  const fallback = (value, ja, en, lang) => value || (lang === "ja" ? ja : en);
+
+  const bulletBlock = (items, fallbackText) => {
+    if (items.length) return items.map((item) => `- ${item}`).join("\n");
+    return `- ${fallbackText}`;
+  };
 
   const buildJobPost = (lang) => {
-    const role = getValue("role") || (lang === "ja" ? "未入力" : "Not specified");
+    const role = fallback(getValue("role"), "未入力", "Not specified", lang);
+    const contractType = fallback(getValue("contractType"), "要確認", "To be confirmed", lang);
+    const compensation = fallback(getValue("compensation"), "要確認", "To be confirmed", lang);
+    const workload = fallback(getValue("workload"), "要確認", "To be confirmed", lang);
+    const responsibilities = toBullets(getValue("responsibilities"));
     const requirements = toBullets(getValue("requirements"));
+    const preferred = toBullets(getValue("preferred"));
     const conditions = toBullets(getValue("conditions"));
     const process = toBullets(getValue("process"));
-    const location = getValue("location") || (lang === "ja" ? "未入力" : "Not specified");
+    const location = fallback(getValue("location"), "要確認", "To be confirmed", lang);
+    const applyMethod = fallback(getValue("applyMethod"), "ポートフォリオや実績、希望報酬を添えてご応募ください", "Apply with your portfolio, relevant work samples, and expected compensation", lang);
 
     if (lang === "ja") {
       return [
         "【募集職種】",
         role,
         "",
-        "【仕事内容】",
-        "- 業務内容と成果物を明確化し、関係者と連携して推進",
+        "【契約形態 / 雇用形態】",
+        contractType,
+        "",
+        "【報酬】",
+        compensation,
+        "",
+        "【稼働時間】",
+        workload,
+        "",
+        "【業務内容】",
+        bulletBlock(responsibilities, "業務内容、成果物、確認方法を明確にして追記してください"),
         "",
         "【必須要件】",
-        requirements.length ? requirements.map((item) => `- ${item}`).join("\n") : "- 例: 類似業務の経験 / 週10時間対応",
+        bulletBlock(requirements, "類似業務の経験、稼働条件、必要スキルを追記してください"),
         "",
         "【歓迎要件】",
-        "- コミュニケーションの速さ / 自走力",
+        bulletBlock(preferred, "コミュニケーションの速さ、改善提案、自走力など"),
         "",
-        "【勤務条件】",
-        conditions.length ? conditions.map((item) => `- ${item}`).join("\n") : "- 例: 時給/固定報酬、稼働時間相談",
+        "【勤務条件・補足】",
+        bulletBlock(conditions, "定例頻度、連絡手段、納品形式などを追記してください"),
         "",
-        "【勤務地/働き方】",
+        "【勤務地 / 働き方】",
         location,
         "",
         "【選考プロセス】",
-        process.length ? process.map((item) => `- ${item}`).join("\n") : "- 書類選考 → 面談 → トライアル",
+        bulletBlock(process, "書類選考 → 面談 → 必要に応じてトライアル"),
         "",
         "【応募方法】",
-        "- ポートフォリオや実績をご共有ください",
+        `- ${applyMethod}`,
+        "",
+        "【公開前チェック】",
+        "- 労働条件、契約形態、最低賃金、差別的表現、求人媒体ルールを確認してください。",
       ].join("\n");
     }
 
@@ -140,221 +147,220 @@
       "[Role]",
       role,
       "",
+      "[Contract / Employment Type]",
+      contractType,
+      "",
+      "[Compensation]",
+      compensation,
+      "",
+      "[Expected Workload]",
+      workload,
+      "",
       "[Responsibilities]",
-      "- Clarify deliverables and drive tasks with stakeholders",
+      bulletBlock(responsibilities, "Add concrete tasks, deliverables, and review methods"),
       "",
       "[Required Qualifications]",
-      requirements.length ? requirements.map((item) => `- ${item}`).join("\n") : "- e.g. relevant experience / 10 hours per week",
+      bulletBlock(requirements, "Add relevant experience, availability, and required skills"),
       "",
-      "[Preferred]",
-      "- Fast communication / proactive ownership",
+      "[Preferred Qualifications]",
+      bulletBlock(preferred, "Fast communication, improvement suggestions, proactive ownership"),
       "",
-      "[Working Conditions]",
-      conditions.length ? conditions.map((item) => `- ${item}`).join("\n") : "- e.g. hourly or fixed fee, flexible schedule",
+      "[Working Conditions / Notes]",
+      bulletBlock(conditions, "Add meeting cadence, communication channel, and delivery format"),
       "",
       "[Location / Remote]",
       location,
       "",
       "[Hiring Process]",
-      process.length ? process.map((item) => `- ${item}`).join("\n") : "- Resume → Interview → Trial task",
+      bulletBlock(process, "Application review → Interview → Trial task if needed"),
       "",
       "[How to Apply]",
-      "- Share your portfolio or relevant work samples",
+      `- ${applyMethod}`,
+      "",
+      "[Pre-publish Check]",
+      "- Review labor conditions, contract type, minimum wage rules, discriminatory wording, and job board policies.",
     ].join("\n");
   };
 
   const buildQuestions = (lang) => {
     const role = getValue("role") || (lang === "ja" ? "この職種" : "this role");
+    const contractType = getValue("contractType") || (lang === "ja" ? "想定する契約形態" : "the expected contract type");
+    const compensation = getValue("compensation") || (lang === "ja" ? "想定報酬" : "the expected compensation");
+
     if (lang === "ja") {
       return [
         "【スクリーニング質問】",
-        `1. ${role}に関する直近の実績を教えてください。`,
-        "2. 週あたりの稼働可能時間と連絡可能な時間帯は？",
-        "3. 必須要件で不安な点があれば教えてください。",
-        "4. 納期遅延のリスクがある場合の対応方針は？",
-        "5. 参考になる成果物やURLを共有してください。",
+        `1. ${role}に関する直近の類似実績を教えてください。`,
+        "2. 参考になるポートフォリオ、成果物、URLを共有してください。",
+        "3. 週あたりの稼働可能時間と連絡可能な時間帯を教えてください。",
+        `4. ${compensation}について、希望報酬や最低条件があれば教えてください。`,
+        `5. ${contractType}で進める場合の懸念点があれば教えてください。`,
+        "6. 小さなトライアルやテストタスクに対応できますか？対応可能な範囲も教えてください。",
+        "7. 主なコミュニケーション手段と、返信しやすい時間帯を教えてください。",
       ].join("\n");
     }
 
     return [
       "[Screening Questions]",
-      `1. What recent achievements do you have related to ${role}?`,
-      "2. How many hours per week are you available, and when are you reachable?",
-      "3. Are there any required qualifications you are unsure about?",
-      "4. How do you handle risks of missing deadlines?",
-      "5. Share relevant work samples or URLs.",
+      `1. What recent work experience do you have related to ${role}?`,
+      "2. Share relevant portfolio items, work samples, or URLs.",
+      "3. How many hours per week are you available, and when are you reachable?",
+      `4. For ${compensation}, what is your expected or minimum compensation?`,
+      `5. Do you have any concerns about working under ${contractType}?`,
+      "6. Are you open to a small trial task? If so, what scope is reasonable?",
+      "7. What communication channels do you prefer, and when do you usually respond?",
     ].join("\n");
   };
+
+  const buildKit = (lang) => `${buildJobPost(lang)}\n\n${buildQuestions(lang)}`;
 
   const buildSheetColumns = (lang) => {
     if (lang === "ja") {
-      return "氏名,メール,ポートフォリオ,質問1,質問2,ステータス,メモ";
-    }
-    return "Name,Email,Portfolio,Q1,Q2,Status,Notes";
-  };
-
-  const buildVariants = (lang) => {
-    if (lang === "ja") {
       return [
-        "【バリエーション例】",
-        "- スピード重視: 週次で進捗共有できる方歓迎",
-        "- 品質重視: レビュー・改善提案が得意な方歓迎",
-        "- 長期支援: 3ヶ月以上の伴走に前向きな方",
-      ].join("\n");
+        "応募日",
+        "氏名",
+        "メール",
+        "ポートフォリオ",
+        "類似実績",
+        "希望報酬",
+        "稼働可能時間",
+        "契約形態確認",
+        "トライアル可否",
+        "コミュニケーション手段",
+        "ステータス",
+        "次アクション",
+        "メモ",
+      ].join(",");
     }
     return [
-      "[Variant Options]",
-      "- Speed-focused: weekly updates and quick turnaround",
-      "- Quality-focused: strong review and improvement mindset",
-      "- Long-term: open to 3+ month engagement",
+      "Application Date",
+      "Name",
+      "Email",
+      "Portfolio",
+      "Relevant Experience",
+      "Expected Compensation",
+      "Availability",
+      "Contract Type Check",
+      "Trial Task Availability",
+      "Communication Channel",
+      "Status",
+      "Next Action",
+      "Notes",
+    ].join(",");
+  };
+
+  const buildCsvDownload = (lang) => `\uFEFF${buildSheetColumns(lang)}\r\n`;
+
+  const buildVariants = (lang) => {
+    const role = getValue("role") || (lang === "ja" ? "この職種" : "this role");
+    if (lang === "ja") {
+      return [
+        "【文面バリエーション】",
+        `- スピード重視: ${role}として、短いサイクルで確認・改善を進められる方を歓迎します。`,
+        `- 品質重視: ${role}として、成果物の精度だけでなく改善提案まで行える方を歓迎します。`,
+        `- 長期支援: ${role}として、初回トライアル後に継続的な伴走ができる方を歓迎します。`,
+        "",
+        "【注意表現チェック】",
+        "- 年齢、性別、国籍、家庭状況など、職務と関係の薄い条件を書いていないか確認してください。",
+        "- 業務委託なのに勤務時間や指揮命令が強すぎる表現になっていないか確認してください。",
+      ].join("\n");
+    }
+
+    return [
+      "[Wording Variants]",
+      `- Speed-focused: We welcome someone who can work as ${role} with short review and improvement cycles.`,
+      `- Quality-focused: We welcome someone who can improve both deliverable quality and the process for ${role}.`,
+      `- Long-term: We welcome someone who can start with a trial and continue supporting ${role} over time.`,
+      "",
+      "[Wording Check]",
+      "- Check that the post does not include conditions unrelated to the work, such as age, gender, nationality, or family status.",
+      "- If this is contractor work, check that the wording does not imply excessive control over working hours or direct supervision.",
     ].join("\n");
   };
 
-  const initTool = () => {
-    const root = document.getElementById("toolRoot");
-    root.innerHTML = `
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">募集職種</span>
-          <span data-i18n="en" style="display:none;">Role</span>
-        </label>
-        <input id="role" class="input" type="text" placeholder="例: UI/UXデザイナー" />
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">必須要件</span>
-          <span data-i18n="en" style="display:none;">Requirements</span>
-        </label>
-        <textarea id="requirements" class="textarea" placeholder="例: Figma経験、週10時間"></textarea>
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">勤務条件</span>
-          <span data-i18n="en" style="display:none;">Conditions</span>
-        </label>
-        <textarea id="conditions" class="textarea" placeholder="例: 週2回定例、月10万円"></textarea>
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">選考プロセス</span>
-          <span data-i18n="en" style="display:none;">Process</span>
-        </label>
-        <textarea id="process" class="textarea" placeholder="例: 書類選考→面談→トライアル"></textarea>
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">勤務地/リモート</span>
-          <span data-i18n="en" style="display:none;">Location / Remote</span>
-        </label>
-        <input id="location" class="input" type="text" placeholder="例: フルリモート / 東京" />
-      </div>
+  const currentLang = () => document.documentElement.lang === "ja" ? "ja" : "en";
 
-      <div class="row" style="margin-top:12px;">
-        <button class="btn primary" id="generateBtn" type="button">
-          <span data-i18n="ja">求人キットを生成</span>
-          <span data-i18n="en" style="display:none;">Generate kit</span>
-        </button>
-        <button class="btn" id="copyBtn" type="button">
-          <span data-i18n="ja">コピー</span>
-          <span data-i18n="en" style="display:none;">Copy</span>
-        </button>
-      </div>
+  const getCurrentOutput = () => {
+    const lang = currentLang();
+    const el = document.getElementById(lang === "ja" ? "outputJa" : "outputEn");
+    return el ? el.textContent.trim() : "";
+  };
 
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">出力</span>
-          <span data-i18n="en" style="display:none;">Output</span>
-        </label>
-        <pre id="outputJa" class="out" data-i18n="ja"></pre>
-        <pre id="outputEn" class="out" data-i18n="en" style="display:none;"></pre>
-      </div>
-
-      <hr class="hr" />
-
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">Pro拡張</span>
-          <span data-i18n="en" style="display:none;">Pro add-ons</span>
-        </label>
-        <div id="proNotice" class="nw-note" style="display:none;">
-          <span data-i18n="ja">Pro機能です。無料でも求人票と質問は使えます。</span>
-          <span data-i18n="en" style="display:none;">Pro feature. Job post + questions remain free.</span>
-        </div>
-      </div>
-
-      <div class="row">
-        <button class="btn" id="exportBtn" type="button">
-          <span data-i18n="ja">シート列CSV</span>
-          <span data-i18n="en" style="display:none;">Sheet columns CSV</span>
-        </button>
-        <button class="btn" id="variantBtn" type="button">
-          <span data-i18n="ja">バリエーション生成</span>
-          <span data-i18n="en" style="display:none;">Generate variants</span>
-        </button>
-      </div>
-
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">Pro出力</span>
-          <span data-i18n="en" style="display:none;">Pro output</span>
-        </label>
-        <pre id="proOutputJa" class="out" data-i18n="ja"></pre>
-        <pre id="proOutputEn" class="out" data-i18n="en" style="display:none;"></pre>
-      </div>
-    `;
-
+  const refresh = () => {
     const outputJa = document.getElementById("outputJa");
     const outputEn = document.getElementById("outputEn");
-    const proOutputJa = document.getElementById("proOutputJa");
-    const proOutputEn = document.getElementById("proOutputEn");
-    const hasPro = window.NW.hasPro();
+    if (outputJa) outputJa.textContent = buildKit("ja");
+    if (outputEn) outputEn.textContent = buildKit("en");
+  };
 
-    const refresh = () => {
-      outputJa.textContent = `${buildJobPost("ja")}\n\n${buildQuestions("ja")}`;
-      outputEn.textContent = `${buildJobPost("en")}\n\n${buildQuestions("en")}`;
-    };
+  const initTool = () => {
+    const outputJa = document.getElementById("outputJa");
+    const outputEn = document.getElementById("outputEn");
+    const extraOutputJa = document.getElementById("extraOutputJa");
+    const extraOutputEn = document.getElementById("extraOutputEn");
 
-    document.getElementById("generateBtn").addEventListener("click", refresh);
-    document.getElementById("copyBtn").addEventListener("click", async () => {
-      const lang = document.documentElement.lang === "ja" ? "ja" : "en";
-      const text = lang === "ja" ? outputJa.textContent : outputEn.textContent;
-      await window.NW.copyToClipboard(text);
+    if (!outputJa || !outputEn || !extraOutputJa || !extraOutputEn) return;
+
+    document.getElementById("generateBtn").addEventListener("click", () => {
+      refresh();
+      toast(currentLang() === "ja" ? "求人キットを生成しました。" : "Generated the job kit.");
     });
 
-    document.getElementById("exportBtn").addEventListener("click", () => {
-      if (!hasPro) return;
-      const lang = document.documentElement.lang === "ja" ? "ja" : "en";
-      const text = buildSheetColumns(lang);
-      window.NW.downloadText(`job-sheet-columns-${lang}.csv`, text);
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      refresh();
+      const text = getCurrentOutput();
+      if (!text) {
+        toast(currentLang() === "ja" ? "先に生成してください。" : "Generate the output first.");
+        return;
+      }
+      const ok = await copyToClipboard(text);
+      toast(ok
+        ? (currentLang() === "ja" ? "コピーしました。" : "Copied.")
+        : (currentLang() === "ja" ? "コピーに失敗しました。" : "Copy failed."));
+    });
+
+    document.getElementById("saveTxtBtn").addEventListener("click", () => {
+      refresh();
+      const text = getCurrentOutput();
+      if (!text) {
+        toast(currentLang() === "ja" ? "先に生成してください。" : "Generate the output first.");
+        return;
+      }
+      downloadText("niche-job-starter-kit.txt", text);
+      toast(currentLang() === "ja" ? "TXTを保存しました。" : "Saved TXT.");
+    });
+
+    document.getElementById("copyCsvBtn").addEventListener("click", async () => {
+      const text = buildSheetColumns(currentLang());
+      const ok = await copyToClipboard(text);
+      extraOutputJa.textContent = buildSheetColumns("ja");
+      extraOutputEn.textContent = buildSheetColumns("en");
+      toast(ok
+        ? (currentLang() === "ja" ? "CSV列をコピーしました。" : "Copied CSV columns.")
+        : (currentLang() === "ja" ? "CSV列のコピーに失敗しました。" : "Failed to copy CSV columns."));
+    });
+
+    document.getElementById("saveCsvBtn").addEventListener("click", () => {
+      const lang = currentLang();
+      extraOutputJa.textContent = buildSheetColumns("ja");
+      extraOutputEn.textContent = buildSheetColumns("en");
+      downloadText("candidate-sheet-columns.csv", buildCsvDownload(lang), "text/csv;charset=utf-8");
+      toast(lang === "ja" ? "CSVを保存しました。" : "Saved CSV.");
     });
 
     document.getElementById("variantBtn").addEventListener("click", () => {
-      if (!hasPro) return;
-      proOutputJa.textContent = buildVariants("ja");
-      proOutputEn.textContent = buildVariants("en");
+      extraOutputJa.textContent = buildVariants("ja");
+      extraOutputEn.textContent = buildVariants("en");
+      toast(currentLang() === "ja" ? "バリエーションを生成しました。" : "Generated variants.");
     });
 
-    if (!hasPro) {
-      document.getElementById("proNotice").style.display = "";
-      document.getElementById("exportBtn").disabled = true;
-      document.getElementById("variantBtn").disabled = true;
-      proOutputJa.textContent = "(Pro機能)";
-      proOutputEn.textContent = "(Pro feature)";
-    } else {
-      proOutputJa.textContent = buildVariants("ja");
-      proOutputEn.textContent = buildVariants("en");
-    }
-
     refresh();
+    extraOutputJa.textContent = buildSheetColumns("ja");
+    extraOutputEn.textContent = buildSheetColumns("en");
   };
 
-  // ----------------------------
-  // Boot
-  // ----------------------------
   document.addEventListener("DOMContentLoaded", () => {
     initLang();
-
-    // Tool-specific init should be appended below by Codex per tool.
     initTool();
   });
 })();
