@@ -3,7 +3,7 @@
 
   const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
-  const placeholderNodes = () => Array.from(document.querySelectorAll("[data-placeholder-ja][data-placeholder-en]"));
+  const exampleNodes = () => Array.from(document.querySelectorAll("[data-example-ja][data-example-en]"));
 
   const getDefaultLang = () => {
     const browserLang = (navigator.language || "").toLowerCase();
@@ -14,8 +14,8 @@
     i18nNodes().forEach((el) => {
       el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
-    placeholderNodes().forEach((el) => {
-      el.placeholder = lang === "ja" ? el.dataset.placeholderJa : el.dataset.placeholderEn;
+    exampleNodes().forEach((el) => {
+      el.setAttribute("aria-label", lang === "ja" ? el.dataset.exampleJa : el.dataset.exampleEn);
     });
     langButtons().forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
     document.documentElement.lang = lang;
