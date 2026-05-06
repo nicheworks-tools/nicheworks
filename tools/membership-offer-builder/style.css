@@ -1,7 +1,3 @@
-/* ================================
- * NicheWorks Base (smartphone-first tools)
- * ================================ */
-
 :root{
   --bg:#ffffff;
   --bg-soft:#f9fafb;
@@ -10,10 +6,13 @@
   --muted:#6b7280;
   --muted2:#9ca3af;
   --accent:#111827;
+  --warning-bg:#fff7ed;
+  --warning-border:#fed7aa;
+  --warning-text:#9a3412;
 }
 
 *{ box-sizing:border-box; }
-html,body{ height:100%; }
+html,body{ min-height:100%; }
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -33,7 +32,8 @@ body{
   letter-spacing:.2px;
 }
 .nw-lead{
-  margin:6px 0 0;
+  margin:6px auto 0;
+  max-width:720px;
   font-size:12px;
   color:var(--muted);
 }
@@ -58,7 +58,7 @@ body{
 }
 
 .nw-main{
-  max-width:600px; /* smartphone-first tools allowed by spec */
+  max-width:760px;
   margin:0 auto;
   padding:10px 12px 18px;
 }
@@ -75,14 +75,36 @@ body{
 .ad-top{ margin-top:4px; }
 .ad-bottom{ margin-bottom:8px; }
 
+.nw-intro{
+  margin:0 0 10px;
+  font-size:13px;
+  color:#374151;
+}
+
 .nw-note{
   margin:0 0 10px;
-  padding:8px 10px;
+  padding:10px 12px;
   border:1px solid var(--border);
   background:var(--bg-soft);
   border-radius:10px;
   font-size:12px;
   color:var(--muted);
+}
+.nw-note h2{
+  margin:0 0 6px;
+  font-size:13px;
+  color:var(--text);
+}
+.nw-note p{
+  margin:6px 0 0;
+}
+.nw-warning{
+  background:var(--warning-bg);
+  border-color:var(--warning-border);
+  color:var(--warning-text);
+}
+.nw-warning h2{
+  color:var(--warning-text);
 }
 
 .card{
@@ -123,14 +145,26 @@ body{
   border-radius:10px;
   font-size:14px;
   outline:none;
+  background:#fff;
 }
-.textarea{ min-height:110px; resize:vertical; }
+.input:focus,
+.textarea:focus{
+  border-color:#9ca3af;
+  box-shadow:0 0 0 3px rgba(156,163,175,.18);
+}
+.textarea{
+  min-height:88px;
+  resize:vertical;
+}
 
 .row{
   display:flex;
   gap:8px;
   align-items:center;
   flex-wrap:wrap;
+}
+.action-row{
+  margin:14px 0 10px;
 }
 
 .btn{
@@ -158,35 +192,49 @@ body{
   border-color:var(--accent);
 }
 .btn.primary:hover{ background:#000; }
-.btn.danger{
-  border-color:#ef4444;
-  color:#ef4444;
-}
-.btn.danger:hover{
-  background:#fff5f5;
-}
 
 .out{
   width:100%;
+  min-height:420px;
   padding:10px 10px;
   border:1px solid var(--border);
   border-radius:10px;
   background:var(--bg-soft);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size:12px;
+  line-height:1.55;
   white-space:pre-wrap;
   word-break:break-word;
+  resize:vertical;
 }
 
-.hr{
-  border:none;
-  border-top:1px solid var(--border);
-  margin:12px 0;
+.faq-card{
+  margin-top:18px;
+}
+.faq-list{
+  display:grid;
+  gap:8px;
+}
+.faq-list details{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:9px 10px;
+  background:#fff;
+}
+.faq-list summary{
+  cursor:pointer;
+  font-size:13px;
+  font-weight:600;
+}
+.faq-list p{
+  margin:8px 0 0;
+  font-size:12px;
+  color:var(--muted);
 }
 
 .nw-donate{
   text-align:center;
-  margin:16px 0 8px;
+  margin:18px 0 8px;
   padding:8px 0;
   font-size:12px;
   color:var(--muted);
@@ -211,7 +259,7 @@ body{
 }
 
 .nw-other{
-  margin:10px 0 0;
+  margin:16px 0 0;
   padding:10px 0 0;
   border-top:1px solid var(--border);
   text-align:center;
@@ -245,9 +293,25 @@ body{
 .nw-footer-line{ margin:2px 0; }
 .nw-footer a{ color:var(--muted); text-decoration:underline; }
 
-/* Responsive transform: <=480px */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:20;
+  max-width:calc(100vw - 24px);
+  padding:10px 14px;
+  border-radius:999px;
+  background:#111827;
+  color:#fff;
+  font-size:13px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+.toast[hidden]{ display:none; }
+
 @media (max-width:480px){
   .nw-main{ padding:10px 10px 18px; }
   .row{ flex-direction:column; align-items:stretch; }
   .btn{ width:100%; }
+  .out{ min-height:360px; }
 }
