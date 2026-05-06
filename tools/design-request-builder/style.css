@@ -84,6 +84,11 @@ body{
   font-size:12px;
   color:var(--muted);
 }
+.legal-note{
+  background:#fff7ed;
+  border-color:#fed7aa;
+  color:#7c2d12;
+}
 
 .status-banner{
   border:1px solid #f97316;
@@ -108,6 +113,10 @@ body{
 .status-list{
   margin:0;
   padding-left:18px;
+  color:var(--muted);
+}
+.recommended-fields{
+  margin:6px 0 0;
   color:var(--muted);
 }
 
@@ -210,6 +219,33 @@ body{
   word-break:break-word;
 }
 
+.faq{
+  margin:24px 0 20px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+.faq h2{
+  margin:0 0 10px;
+  font-size:15px;
+}
+.faq details{
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+  padding:9px 10px;
+  margin:8px 0;
+}
+.faq summary{
+  cursor:pointer;
+  font-size:13px;
+  font-weight:600;
+}
+.faq p{
+  margin:8px 0 0;
+  font-size:12px;
+  color:var(--muted);
+}
+
 .hr{
   border:none;
   border-top:1px solid var(--border);
@@ -263,6 +299,27 @@ body{
   font-size:12px;
   color:#4b5563;
   text-decoration:underline;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translate(-50%, 12px);
+  max-width:min(92vw, 420px);
+  padding:10px 14px;
+  border-radius:999px;
+  background:#111827;
+  color:#fff;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease, transform .18s ease;
+  z-index:20;
+}
+.toast.is-visible{
+  opacity:1;
+  transform:translate(-50%, 0);
 }
 
 .nw-footer{
