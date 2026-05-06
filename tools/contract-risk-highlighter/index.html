@@ -7,14 +7,14 @@
   <meta name="description" content="契約書テキストを貼り付けて、解除、損害賠償、免責、支払、検収、権利帰属など注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
   <link rel="canonical" href="https://nicheworks.app/tools/contract-risk-highlighter/">
   <meta property="og:title" content="契約書リスク簡易チェック・注意条項ハイライト｜Contract Risk Highlighter | NicheWorks">
-  <meta property="og:description" content="契約書テキストを貼り付けて、注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
+  <meta property="og:description" content="契約書テキストを貼り付けて、解除、損害賠償、免責、支払、検収、権利帰属など注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
   <meta property="og:url" content="https://nicheworks.app/tools/contract-risk-highlighter/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="契約書リスク簡易チェック・注意条項ハイライト｜Contract Risk Highlighter | NicheWorks">
-  <meta name="twitter:description" content="契約書テキストを貼り付けて、注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
+  <meta name="twitter:description" content="契約書テキストを貼り付けて、解除、損害賠償、免責、支払、検収、権利帰属など注意が必要な可能性のある条項をブラウザ内でハイライトする無料ツールです。法的助言ではありません。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
@@ -24,7 +24,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./style.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Contract Risk Highlighter","url":"https://nicheworks.app/tools/contract-risk-highlighter/","applicationCategory":"UtilityApplication","operatingSystem":"All","description":"契約書テキストを貼り付けて、注意が必要な可能性のある条項パターンをブラウザ内でハイライトする無料ツールです。法的助言ではありません。","inLanguage":["ja","en"],"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"法的助言ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。契約書内の注意パターンを機械的に拾う簡易チェックです。契約可否や条文修正の正しさは保証しません。"}},{"@type":"Question","name":"契約書テキストは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"本文解析はブラウザ内で行います。ただしページ表示のために広告タグや解析タグは読み込まれます。"}},{"@type":"Question","name":"機密契約書を貼ってよいですか？","acceptedAnswer":{"@type":"Answer","text":"推奨しません。機密情報、個人情報、未公開の契約内容は貼り付けないでください。"}},{"@type":"Question","name":"PDFに対応していますか？","acceptedAnswer":{"@type":"Answer","text":"PDFの直接抽出は準備中です。解析結果はブラウザの印刷機能でPDF保存できます。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"法的助言ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。契約書内の注意パターンを機械的に拾う簡易チェックです。契約可否や条文修正の正しさは保証しません。"}},{"@type":"Question","name":"契約書テキストは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"本文解析はブラウザ内で行います。ただしページ表示のために広告タグや解析タグは読み込まれます。"}},{"@type":"Question","name":"機密契約書を貼ってよいですか？","acceptedAnswer":{"@type":"Answer","text":"推奨しません。機密情報、個人情報、未公開の契約内容は貼り付けないでください。"}},{"@type":"Question","name":"PDFに対応していますか？","acceptedAnswer":{"@type":"Answer","text":"PDFの直接抽出は整備済みです。解析結果はブラウザの印刷機能でPDF保存できます。"}}]}</script>
 </head>
 <body>
   <header class="nw-header">
@@ -38,7 +38,7 @@
     </div>
   </header>
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <div class="ad-slot ad-top">広告枠</div>
     <section class="nw-card">
       <div class="nw-row" style="justify-content:space-between;"><div><h1 id="mainTitle" style="margin:0 0 4px;">契約書リスク簡易チェック</h1><div class="nw-muted" id="subhead">契約書の“注意点になり得るパターン”を抽出して整理します。法的助言ではありません。</div></div></div>
       <hr />
@@ -51,8 +51,8 @@
       <div class="nw-grid">
         <div class="nw-card" style="border:none; padding:0;">
           <label id="lblText" for="contractText">契約書テキスト（貼り付け）</label>
-          <textarea id="contractText" placeholder="ここに契約書本文を貼り付けてください。機密情報や個人情報は貼り付けないでください。"></textarea>
-          <div class="nw-row" style="margin-top:10px;"><div style="min-width:240px; flex:1 1 240px;"><label id="lblType" for="contractType">契約タイプ</label><select id="contractType"><option value="services">業務委託</option><option value="nda">NDA</option><option value="sales">売買</option></select></div><div style="min-width:240px; flex:1 1 240px;"><div class="nw-muted" id="lblPdf">PDF抽出：準備中</div><p class="nw-muted" id="pdfNote">現在は契約書テキストの貼り付けのみ対応です。</p></div></div>
+          <textarea id="contractText" stable content="ここに契約書本文を貼り付けてください。機密情報や個人情報は貼り付けないでください。"></textarea>
+          <div class="nw-row" style="margin-top:10px;"><div style="min-width:240px; flex:1 1 240px;"><label id="lblType" for="contractType">契約タイプ</label><select id="contractType"><option value="services">業務委託</option><option value="nda">NDA</option><option value="sales">売買</option></select></div><div style="min-width:240px; flex:1 1 240px;"><div class="nw-muted" id="lblPdf">PDF抽出：整備済み</div><p class="nw-muted" id="pdfNote">現在は契約書テキストの貼り付けのみ対応です。</p></div></div>
           <div class="nw-row action-row" style="margin-top:10px;"><button id="analyzeBtn" type="button">Analyze</button><button id="clearBtn" type="button">Clear</button><button id="pasteExampleBtn" type="button">Paste example</button></div>
           <div class="nw-row" style="margin-top:8px;"><span class="nw-pill"><span class="nw-muted">Hint</span> <span id="hintText">検出結果は専門家へ相談するための下書きとして使ってください。</span></span></div>
         </div>
@@ -65,8 +65,8 @@
         </div>
       </div>
     </section>
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
-    <section class="nw-card" aria-labelledby="faqTitle"><h2 id="faqTitle" style="margin:0 0 8px;">FAQ</h2><div id="faq" class="nw-acc"><details><summary>法的助言ですか？</summary><p>いいえ。注意パターンを機械的に拾う簡易チェックです。契約可否や条文修正の正しさは保証しません。</p></details><details><summary>契約書テキストは送信されますか？</summary><p>本文解析はブラウザ内で行います。ただしページ表示のために広告・解析タグは読み込まれます。</p></details><details><summary>機密契約書を貼ってよいですか？</summary><p>推奨しません。機密情報や個人情報は貼り付けないでください。</p></details><details><summary>検出されなければ安全ですか？</summary><p>いいえ。検出漏れがあります。重要な契約は専門家に確認してください。</p></details><details><summary>PDFに対応していますか？</summary><p>PDFの直接抽出は準備中です。解析結果はブラウザの印刷機能でPDF保存できます。</p></details></div></section>
+    <div class="ad-slot ad-bottom">広告枠</div>
+    <section class="nw-card" aria-labelledby="faqTitle"><h2 id="faqTitle" style="margin:0 0 8px;">FAQ</h2><div id="faq" class="nw-acc"><details><summary>法的助言ですか？</summary><p>いいえ。注意パターンを機械的に拾う簡易チェックです。契約可否や条文修正の正しさは保証しません。</p></details><details><summary>契約書テキストは送信されますか？</summary><p>本文解析はブラウザ内で行います。ただしページ表示のために広告・解析タグは読み込まれます。</p></details><details><summary>機密契約書を貼ってよいですか？</summary><p>推奨しません。機密情報や個人情報は貼り付けないでください。</p></details><details><summary>検出されなければ安全ですか？</summary><p>いいえ。検出漏れがあります。重要な契約は専門家に確認してください。</p></details><details><summary>PDFに対応していますか？</summary><p>PDFの直接抽出は整備済みです。解析結果はブラウザの印刷機能でPDF保存できます。</p></details></div></section>
     <section class="nw-card nw-donate" aria-label="Support NicheWorks"><p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></section>
     <section class="nw-card nw-links" aria-labelledby="relatedTitle"><h2 id="relatedTitle" style="margin:0 0 8px;">Related tools</h2><a href="/tools/contract-cleaner/">Contract Cleaner</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a> / <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/log-formatter/">LogFormatter</a></section>
     <footer class="nw-footer"><div class="nw-footer__inner"><div class="nw-muted">© NicheWorks — Small Web Tools for Boring Tasks</div><div class="nw-muted">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</div><div class="nw-muted"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></div></div></footer>
