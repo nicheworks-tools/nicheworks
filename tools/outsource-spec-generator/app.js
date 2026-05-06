@@ -1,70 +1,81 @@
-/* ================================
- * NicheWorks tool template app.js
- * - JP/EN toggle (data-i18n)
- * - Utilities: copy, downloadText, debounce
- * ================================ */
-
 (() => {
   "use strict";
 
-  // ----------------------------
-  // i18n (required)
-  // ----------------------------
-  const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
+  const $ = (id) => document.getElementById(id);
+  const nodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
+  const langNow = () => (document.documentElement.lang === "en" ? "en" : "ja");
 
-  const getDefaultLang = () => {
-    const browserLang = (navigator.language || "").toLowerCase();
-    return browserLang.startsWith("ja") ? "ja" : "en";
+  const msg = {
+    ja: {
+      initial: "入力後に「仕様書を生成」を押してください。",
+      packInitial: "必要に応じて成果物パックを生成できます。",
+      required: "必須項目を入力してください: ",
+      generated: "仕様書を生成しました。",
+      generateFirst: "先に仕様書を生成してください。",
+      copied: "コピーしました。",
+      copyFailed: "コピーに失敗しました。手動で選択してください。",
+      packGenerated: "成果物パックを生成しました。",
+      saved: "Markdownを保存しました。",
+      none: "未指定"
+    },
+    en: {
+      initial: "Fill in the fields, then press Generate spec.",
+      packInitial: "Generate a deliverable pack if needed.",
+      required: "Fill in required fields: ",
+      generated: "Spec generated.",
+      generateFirst: "Generate the spec first.",
+      copied: "Copied.",
+      copyFailed: "Copy failed. Please select the text manually.",
+      packGenerated: "Deliverable pack generated.",
+      saved: "Markdown saved.",
+      none: "Not specified"
+    }
   };
 
-  const applyLang = (lang) => {
-    i18nNodes().forEach((el) => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
-    });
+  const required = ["workType", "deliverables", "deadline", "budget", "acceptanceMethod"];
+  const labels = {
+    ja: { workType: "作業種別", deliverables: "成果物・範囲", deadline: "納期", budget: "予算", acceptanceMethod: "検収方法" },
+    en: { workType: "Work type", deliverables: "Deliverables / scope", deadline: "Deadline", budget: "Budget", acceptanceMethod: "Acceptance method" }
+  };
+  let hasGenerated = false;
+
+  function applyLang(lang) {
+    nodes().forEach((el) => { el.style.display = el.dataset.i18n === lang ? "" : "none"; });
     langButtons().forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
     document.documentElement.lang = lang;
     try { localStorage.setItem("nw_lang", lang); } catch (_) {}
-  };
+  }
 
-  const initLang = () => {
-    let lang = getDefaultLang();
+  function initLang() {
+    let lang = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
     try {
       const saved = localStorage.getItem("nw_lang");
       if (saved === "ja" || saved === "en") lang = saved;
     } catch (_) {}
-    langButtons().forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+    langButtons().forEach((button) => button.addEventListener("click", () => applyLang(button.dataset.lang)));
     applyLang(lang);
-  };
+  }
 
-  // ----------------------------
-  // Utilities
-  // ----------------------------
-  const copyToClipboard = async (text) => {
+  async function copyText(text) {
     try {
       await navigator.clipboard.writeText(text);
       return true;
     } catch (_) {
-      // Fallback
       const ta = document.createElement("textarea");
       ta.value = text;
       ta.style.position = "fixed";
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try {
-        document.execCommand("copy");
-        return true;
-      } catch (e) {
-        return false;
-      } finally {
-        document.body.removeChild(ta);
-      }
+      try { return document.execCommand("copy"); }
+      catch (e) { return false; }
+      finally { document.body.removeChild(ta); }
     }
-  };
+  }
 
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  function download(filename, text) {
+    const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -73,275 +84,174 @@
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 500);
-  };
+  }
 
-  const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
+  window.NW = { applyLang, copyToClipboard: copyText, downloadText: download };
+
+  function value(id) { return ($(id)?.value || "").trim(); }
+  function none(v, lang) { return v || msg[lang].none; }
+  function list(text) { return text.split(/\n|,|、/).map((v) => v.trim()).filter(Boolean); }
+  function bullets(items, fallback) { return items.length ? items.map((v) => `- ${v}`).join("\n") : `- ${fallback}`; }
+
+  function toast(text) {
+    const el = $("toast");
+    if (!el) return;
+    el.textContent = text;
+    el.hidden = false;
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => { el.hidden = true; }, 2400);
+  }
+
+  function setRequiredHint(missing, lang) {
+    const el = $("requiredHint");
+    if (!el) return;
+    if (!missing.length) { el.hidden = true; el.textContent = ""; return; }
+    el.textContent = msg[lang].required + missing.map((id) => labels[lang][id]).join(" / ");
+    el.hidden = false;
+  }
+
+  function validate(lang) {
+    const missing = required.filter((id) => !value(id));
+    setRequiredHint(missing, lang);
+    if (missing.length) toast(msg[lang].required + missing.map((id) => labels[lang][id]).join(" / "));
+    return missing.length === 0;
+  }
+
+  function form() {
+    return {
+      workType: value("workType"), purpose: value("purpose"), deliverables: list(value("deliverables")),
+      outOfScope: list(value("outOfScope")), deadline: value("deadline"), budget: value("budget"),
+      deliveryFormat: value("deliveryFormat"), acceptanceMethod: value("acceptanceMethod"), acceptancePeriod: value("acceptancePeriod"),
+      communication: value("communication"), revisionRounds: value("revisionRounds"), paymentTerms: value("paymentTerms"),
+      rightsUsage: value("rightsUsage"), portfolioPermission: value("portfolioPermission"), confidentiality: value("confidentiality"),
+      mustHave: list(value("mustHave")), references: list(value("references"))
     };
-  };
+  }
 
-  // Expose minimal helpers for tool scripts (Codex can reuse)
-  window.NW = {
-    applyLang,
-    copyToClipboard,
-    downloadText,
-    debounce,
-    hasPro: () => {
-      try { return !!localStorage.getItem("nw_pro_key"); } catch (_) { return false; }
-    }
-  };
-
-  const toBullets = (value) => value
-    .split(/\n|,|、/)
-    .map((v) => v.trim())
-    .filter(Boolean);
-
-  const getValue = (id) => document.getElementById(id).value.trim();
-
-  const buildSpec = (lang) => {
-    const workType = getValue("workType") || (lang === "ja" ? "未入力" : "Not specified");
-    const deliverables = toBullets(getValue("deliverables"));
-    const deadline = getValue("deadline") || (lang === "ja" ? "未入力" : "Not specified");
-    const budget = getValue("budget") || (lang === "ja" ? "未入力" : "Not specified");
-    const mustHave = toBullets(getValue("mustHave"));
-    const references = toBullets(getValue("references"));
-
+  function buildSpec(lang) {
+    const d = form();
     if (lang === "ja") {
       return [
-        "【外注仕様書】",
-        `作業種別: ${workType}`,
-        "成果物/範囲:",
-        deliverables.length ? deliverables.map((item) => `- ${item}`).join("\n") : "- 例: デザイン一式 / 記事3本 / UI実装",
-        `納期: ${deadline}`,
-        `予算: ${budget}`,
-        "必須条件:",
-        mustHave.length ? mustHave.map((item) => `- ${item}`).join("\n") : "- 例: 修正対応2回 / ガイドライン遵守",
-        "参考資料:",
-        references.length ? references.map((item) => `- ${item}`).join("\n") : "- 例: 参考URL / 共有ドキュメント",
-        "",
-        "【受入基準】",
-        "- 指定された成果物がすべて揃っている",
-        "- 仕様・形式・サイズが要件に合致している",
-        "- 不明点は納品前に確認されている",
-        "",
-        "【修正ルール】",
-        "- 初回提出後の軽微修正は2回まで",
-        "- 大幅な方向性変更は別途相談",
-        "- 最終確定後の追加修正は見積もり",
+        "# 外注仕様書ドラフト", "",
+        "## 1. 基本情報",
+        `- 作業種別: ${none(d.workType, lang)}`,
+        `- 目的: ${none(d.purpose, lang)}`,
+        `- 納期: ${none(d.deadline, lang)}`,
+        `- 予算: ${none(d.budget, lang)}`,
+        `- 連絡方法: ${none(d.communication, lang)}`, "",
+        "## 2. 成果物・作業範囲", bullets(d.deliverables, "成果物を入力してください"), "",
+        "## 3. 対象外範囲", bullets(d.outOfScope, "未指定。必要に応じて対象外範囲を明記してください"), "",
+        "## 4. 納品形式", `- ${none(d.deliveryFormat, lang)}`, "",
+        "## 5. 必須条件", bullets(d.mustHave, "未指定"), "",
+        "## 6. 参考資料", bullets(d.references, "未指定。機密URLや共有URLは必要に応じて伏せてください"), "",
+        "## 7. 受入基準・検収方法",
+        d.deliverables.length ? d.deliverables.map((item) => `- 「${item}」が納品物に含まれている`).join("\n") : "- 指定された成果物がすべて揃っている",
+        `- 納品形式が「${none(d.deliveryFormat, lang)}」に合っている`,
+        `- 検収方法: ${none(d.acceptanceMethod, lang)}`,
+        `- 検収期間: ${none(d.acceptancePeriod, lang)}`,
+        d.outOfScope.length ? `- 対象外範囲（${d.outOfScope.join("、")}）が追加作業として混入していない` : "- 対象外範囲がある場合は、追加作業として別途確認する", "",
+        "## 8. 修正ルール",
+        `- 修正回数: ${none(d.revisionRounds, lang)}`,
+        "- 大幅な方向性変更、成果物追加、対象外作業は別途相談する",
+        `- 追加費用・支払い条件: ${none(d.paymentTerms, lang)}`, "",
+        "## 9. 権利・公開・秘密保持",
+        `- 権利/利用範囲: ${none(d.rightsUsage, lang)}`,
+        `- 実績公開可否: ${none(d.portfolioPermission, lang)}`,
+        `- 秘密保持: ${none(d.confidentiality, lang)}`, "",
+        "## 10. 注意",
+        "- この出力は契約書ではありません。",
+        "- 修正回数、追加費用、権利、秘密保持、検収条件は、契約書や発注書で別途合意してください。"
       ].join("\n");
     }
-
     return [
-      "[Outsource Specification]",
-      `Work type: ${workType}`,
-      "Deliverables/Scope:",
-      deliverables.length ? deliverables.map((item) => `- ${item}`).join("\n") : "- e.g. design set / 3 articles / UI implementation",
-      `Deadline: ${deadline}`,
-      `Budget: ${budget}`,
-      "Must-have requirements:",
-      mustHave.length ? mustHave.map((item) => `- ${item}`).join("\n") : "- e.g. 2 revision rounds / follow style guide",
-      "References:",
-      references.length ? references.map((item) => `- ${item}`).join("\n") : "- e.g. reference URLs / shared docs",
-      "",
-      "[Acceptance Criteria]",
-      "- All listed deliverables are included",
-      "- Specs, formats, and sizes match requirements",
-      "- Open questions are confirmed before delivery",
-      "",
-      "[Revision Rules]",
-      "- Up to two minor revision rounds after first delivery",
-      "- Major direction changes require a new scope discussion",
-      "- Additional changes after final approval are quoted",
+      "# Outsourcing Specification Draft", "",
+      "## 1. Basic information",
+      `- Work type: ${none(d.workType, lang)}`,
+      `- Purpose: ${none(d.purpose, lang)}`,
+      `- Deadline: ${none(d.deadline, lang)}`,
+      `- Budget: ${none(d.budget, lang)}`,
+      `- Communication: ${none(d.communication, lang)}`, "",
+      "## 2. Deliverables and scope", bullets(d.deliverables, "Enter the deliverables"), "",
+      "## 3. Out of scope", bullets(d.outOfScope, "Not specified. Add exclusions if needed"), "",
+      "## 4. Delivery format", `- ${none(d.deliveryFormat, lang)}`, "",
+      "## 5. Must-have requirements", bullets(d.mustHave, "Not specified"), "",
+      "## 6. References", bullets(d.references, "Not specified. Mask private URLs as needed"), "",
+      "## 7. Acceptance criteria and method",
+      d.deliverables.length ? d.deliverables.map((item) => `- “${item}” is included in the delivery`).join("\n") : "- All listed deliverables are included",
+      `- Delivery format matches “${none(d.deliveryFormat, lang)}”`,
+      `- Acceptance method: ${none(d.acceptanceMethod, lang)}`,
+      `- Acceptance period: ${none(d.acceptancePeriod, lang)}`,
+      d.outOfScope.length ? `- Out-of-scope items (${d.outOfScope.join(", ")}) are not included as unapproved extra work` : "- Any out-of-scope work is confirmed separately", "",
+      "## 8. Revision rules",
+      `- Revision rounds: ${none(d.revisionRounds, lang)}`,
+      "- Major direction changes, added deliverables, or out-of-scope work require a separate discussion",
+      `- Additional fees / payment terms: ${none(d.paymentTerms, lang)}`, "",
+      "## 9. Rights, portfolio use, and confidentiality",
+      `- Rights / usage scope: ${none(d.rightsUsage, lang)}`,
+      `- Portfolio permission: ${none(d.portfolioPermission, lang)}`,
+      `- Confidentiality: ${none(d.confidentiality, lang)}`, "",
+      "## 10. Notice",
+      "- This output is not a contract.",
+      "- Revision limits, additional fees, rights, confidentiality, and acceptance conditions should be agreed separately in a contract or purchase order."
     ].join("\n");
-  };
+  }
 
-  const buildPack = (lang, type) => {
+  function buildPack(lang, type) {
     const packs = {
-      web: {
-        ja: ["サイト構成案", "ワイヤーフレーム", "UIデザイン", "実装仕様書", "検収チェックリスト"],
-        en: ["Sitemap", "Wireframes", "UI design", "Implementation specs", "QA checklist"],
-      },
-      design: {
-        ja: ["ブランドガイド", "メインビジュアル", "バナー3種", "デザインデータ一式", "納品用書き出し"],
-        en: ["Brand guide", "Key visual", "3 banner sizes", "Source files", "Exported assets"],
-      },
-      writing: {
-        ja: ["構成案", "本文", "SEOタイトル/説明", "校正メモ", "入稿用テキスト"],
-        en: ["Outline", "Draft copy", "SEO title/description", "Editing notes", "Ready-to-publish text"],
-      },
+      web: { ja: ["サイト構成案", "ワイヤーフレーム", "UIデザイン", "実装仕様書", "検収チェックリスト", "納品データ一式"], en: ["Sitemap", "Wireframes", "UI design", "Implementation notes", "QA checklist", "Delivery assets"] },
+      design: { ja: ["ブランドガイド", "メインビジュアル", "バナー3種", "編集可能デザインデータ", "納品用書き出し", "利用範囲メモ"], en: ["Brand guide", "Key visual", "3 banner sizes", "Editable source files", "Exported assets", "Usage scope notes"] },
+      writing: { ja: ["構成案", "本文", "SEOタイトル/説明", "校正メモ", "入稿用テキスト", "参考資料リスト"], en: ["Outline", "Draft copy", "SEO title/description", "Editing notes", "Ready-to-publish text", "Reference list"] }
     };
-    const selected = packs[type] || packs.web;
-    const title = lang === "ja" ? "【成果物パック】" : "[Deliverable Pack]";
-    const items = lang === "ja" ? selected.ja : selected.en;
-    return [title, items.map((item) => `- ${item}`).join("\n")].join("\n");
-  };
+    const p = packs[type] || packs.web;
+    const items = lang === "ja" ? p.ja : p.en;
+    return [lang === "ja" ? "# 成果物パック" : "# Deliverable Pack", "", items.map((item) => `- ${item}`).join("\n")].join("\n");
+  }
 
-  const initTool = () => {
-    const root = document.getElementById("toolRoot");
-    root.innerHTML = `
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">作業種別</span>
-          <span data-i18n="en" style="display:none;">Work type</span>
-        </label>
-        <input id="workType" class="input" type="text" placeholder="例: LP制作 / 記事執筆" />
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">成果物・範囲</span>
-          <span data-i18n="en" style="display:none;">Deliverables / scope</span>
-        </label>
-        <textarea id="deliverables" class="textarea" placeholder="例: デザイン一式、HTML/CSS、記事3本"></textarea>
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">納期</span>
-          <span data-i18n="en" style="display:none;">Deadline</span>
-        </label>
-        <input id="deadline" class="input" type="text" placeholder="例: 2024/09/30" />
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">予算</span>
-          <span data-i18n="en" style="display:none;">Budget</span>
-        </label>
-        <input id="budget" class="input" type="text" placeholder="例: 15万円" />
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">必須条件</span>
-          <span data-i18n="en" style="display:none;">Must-have requirements</span>
-        </label>
-        <textarea id="mustHave" class="textarea" placeholder="例: 修正2回まで、ガイドライン遵守"></textarea>
-      </div>
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">参考資料</span>
-          <span data-i18n="en" style="display:none;">References</span>
-        </label>
-        <textarea id="references" class="textarea" placeholder="例: 参考URL、共有ドキュメント"></textarea>
-      </div>
+  function stamp() {
+    const d = new Date();
+    return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
+  }
 
-      <div class="row" style="margin-top:12px;">
-        <button class="btn primary" id="generateBtn" type="button">
-          <span data-i18n="ja">仕様書を生成</span>
-          <span data-i18n="en" style="display:none;">Generate spec</span>
-        </button>
-        <button class="btn" id="copyBtn" type="button">
-          <span data-i18n="ja">コピー</span>
-          <span data-i18n="en" style="display:none;">Copy</span>
-        </button>
-      </div>
+  function initTool() {
+    $("outputJa").textContent = msg.ja.initial;
+    $("outputEn").textContent = msg.en.initial;
+    $("proOutputJa").textContent = msg.ja.packInitial;
+    $("proOutputEn").textContent = msg.en.packInitial;
 
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">出力</span>
-          <span data-i18n="en" style="display:none;">Output</span>
-        </label>
-        <pre id="outputJa" class="out" data-i18n="ja"></pre>
-        <pre id="outputEn" class="out" data-i18n="en" style="display:none;"></pre>
-      </div>
-
-      <hr class="hr" />
-
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">成果物パック (Pro)</span>
-          <span data-i18n="en" style="display:none;">Deliverable pack (Pro)</span>
-        </label>
-        <select id="packType" class="select">
-          <option value="web">Web / UI</option>
-          <option value="design">Design</option>
-          <option value="writing">Writing</option>
-        </select>
-        <div id="proNotice" class="nw-note" style="display:none;">
-          <span data-i18n="ja">Pro機能です。無料でも仕様書の生成は利用できます。</span>
-          <span data-i18n="en" style="display:none;">Pro feature. You can still generate specs for free.</span>
-        </div>
-      </div>
-
-      <div class="row">
-        <button class="btn" id="packBtn" type="button">
-          <span data-i18n="ja">パックを生成</span>
-          <span data-i18n="en" style="display:none;">Generate pack</span>
-        </button>
-        <button class="btn" id="exportBtn" type="button">
-          <span data-i18n="ja">Markdown出力</span>
-          <span data-i18n="en" style="display:none;">Export Markdown</span>
-        </button>
-      </div>
-
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">Pro出力</span>
-          <span data-i18n="en" style="display:none;">Pro output</span>
-        </label>
-        <pre id="proOutputJa" class="out" data-i18n="ja"></pre>
-        <pre id="proOutputEn" class="out" data-i18n="en" style="display:none;"></pre>
-      </div>
-    `;
-
-    const outputJa = document.getElementById("outputJa");
-    const outputEn = document.getElementById("outputEn");
-    const proOutputJa = document.getElementById("proOutputJa");
-    const proOutputEn = document.getElementById("proOutputEn");
-    const hasPro = window.NW.hasPro();
-
-    const refresh = () => {
-      outputJa.textContent = buildSpec("ja");
-      outputEn.textContent = buildSpec("en");
-    };
-
-    const refreshPack = () => {
-      const packType = document.getElementById("packType").value;
-      proOutputJa.textContent = buildPack("ja", packType);
-      proOutputEn.textContent = buildPack("en", packType);
-    };
-
-    document.getElementById("generateBtn").addEventListener("click", refresh);
-    document.getElementById("copyBtn").addEventListener("click", async () => {
-      const lang = document.documentElement.lang === "ja" ? "ja" : "en";
-      const text = lang === "ja" ? outputJa.textContent : outputEn.textContent;
-      await window.NW.copyToClipboard(text);
+    $("generateBtn").addEventListener("click", () => {
+      const lang = langNow();
+      if (!validate(lang)) return;
+      $("outputJa").textContent = buildSpec("ja");
+      $("outputEn").textContent = buildSpec("en");
+      hasGenerated = true;
+      setRequiredHint([], lang);
+      toast(msg[lang].generated);
     });
 
-    document.getElementById("packBtn").addEventListener("click", () => {
-      if (!hasPro) return;
-      refreshPack();
+    $("copyBtn").addEventListener("click", async () => {
+      const lang = langNow();
+      if (!hasGenerated) return toast(msg[lang].generateFirst);
+      const text = lang === "ja" ? $("outputJa").textContent : $("outputEn").textContent;
+      toast(await copyText(text) ? msg[lang].copied : msg[lang].copyFailed);
     });
 
-    document.getElementById("exportBtn").addEventListener("click", () => {
-      if (!hasPro) return;
-      const lang = document.documentElement.lang === "ja" ? "ja" : "en";
-      const base = lang === "ja" ? outputJa.textContent : outputEn.textContent;
-      const pack = lang === "ja" ? proOutputJa.textContent : proOutputEn.textContent;
-      const text = `${base}\n\n${pack}`.trim();
-      window.NW.downloadText(`outsource-spec-${lang}.md`, text);
+    $("packBtn").addEventListener("click", () => {
+      const type = $("packType").value;
+      $("proOutputJa").textContent = buildPack("ja", type);
+      $("proOutputEn").textContent = buildPack("en", type);
+      toast(msg[langNow()].packGenerated);
     });
 
-    if (!hasPro) {
-      document.getElementById("proNotice").style.display = "";
-      document.getElementById("packBtn").disabled = true;
-      document.getElementById("exportBtn").disabled = true;
-      proOutputJa.textContent = "(Pro機能)";
-      proOutputEn.textContent = "(Pro feature)";
-    } else {
-      refreshPack();
-    }
+    $("exportBtn").addEventListener("click", () => {
+      const lang = langNow();
+      if (!hasGenerated) return toast(msg[lang].generateFirst);
+      const spec = lang === "ja" ? $("outputJa").textContent : $("outputEn").textContent;
+      const pack = lang === "ja" ? $("proOutputJa").textContent : $("proOutputEn").textContent;
+      const withPack = pack && pack !== msg[lang].packInitial;
+      download(`outsource-spec-${lang}-${stamp()}.md`, withPack ? `${spec}\n\n${pack}` : spec);
+      toast(msg[lang].saved);
+    });
+  }
 
-    refresh();
-  };
-
-  // ----------------------------
-  // Boot
-  // ----------------------------
-  document.addEventListener("DOMContentLoaded", () => {
-    initLang();
-
-    // Tool-specific init should be appended below by Codex per tool.
-    initTool();
-  });
+  document.addEventListener("DOMContentLoaded", () => { initLang(); initTool(); });
 })();
