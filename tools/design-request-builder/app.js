@@ -1,135 +1,16 @@
-/* ================================
- * NicheWorks tool template app.js
- * - JP/EN toggle (data-i18n)
- * - Utilities: copy, downloadText, debounce
- * ================================ */
-
 (() => {
   "use strict";
 
-  // ----------------------------
-  // i18n (required)
-  // ----------------------------
-  const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
-  const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
+  const $ = (id) => document.getElementById(id);
+  const all = (sel) => Array.from(document.querySelectorAll(sel));
+  const lang = () => (document.documentElement.lang === "en" ? "en" : "ja");
 
-  const getDefaultLang = () => {
-    const browserLang = (navigator.language || "").toLowerCase();
-    return browserLang.startsWith("ja") ? "ja" : "en";
-  };
-
-  const applyLang = (lang) => {
-    i18nNodes().forEach((el) => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
-    });
-    langButtons().forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-    document.documentElement.lang = lang;
-    try { localStorage.setItem("nw_lang", lang); } catch (_) {}
-  };
-
-  const initLang = () => {
-    let lang = getDefaultLang();
-    try {
-      const saved = localStorage.getItem("nw_lang");
-      if (saved === "ja" || saved === "en") lang = saved;
-    } catch (_) {}
-    langButtons().forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
-    applyLang(lang);
-  };
-
-  // ----------------------------
-  // Utilities
-  // ----------------------------
-  const copyToClipboard = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch (_) {
-      // Fallback
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand("copy");
-        return true;
-      } catch (e) {
-        return false;
-      } finally {
-        document.body.removeChild(ta);
-      }
-    }
-  };
-
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 500);
-  };
-
-  const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
-    };
-  };
-
-  // Expose minimal helpers for tool scripts (Codex can reuse)
-  window.NW = {
-    applyLang,
-    copyToClipboard,
-    downloadText,
-    debounce,
-    hasPro: () => {
-      try { return !!localStorage.getItem("nw_pro_key"); } catch (_) { return false; }
-    }
-  };
-
-  // ----------------------------
-  // Boot
-  // ----------------------------
-  document.addEventListener("DOMContentLoaded", () => {
-    initLang();
-
-    // Tool-specific init should be appended below by Codex per tool.
-    // Example:
-    // initTool();
-  });
-})();
-
-(() => {
-  "use strict";
-
-  const TEXT = {
+  const L = {
     ja: {
-      titles: {
-        full: "デザイン依頼文（送付用）",
-        key: "要点まとめ"
-      },
-      sections: {
-        summary: "Summary（概要）",
-        deliverables: "Deliverables（納品物）",
-        specs: "Specs（仕様）",
-        timeline: "Timeline（スケジュール）",
-        budget: "Budget（予算）",
-        references: "References（参考）",
-        constraints: "Constraints/NG（制約/NG）",
-        format: "Deliverables format（納品形式）",
-        revisions: "Revisions（修正）",
-        contact: "Contact（連絡先）",
-        assumptions: "Assumptions（未提供項目）",
-        keyPoints: "Key points（要点）"
-      },
-      labels: {
+      full: "デザイン依頼文（制作ブリーフ）",
+      key: "要点まとめ",
+      tier: { short: "短い", standard: "標準", detailed: "詳細" },
+      label: {
         projectType: "プロジェクト種別",
         purpose: "目的",
         deliverables: "納品物",
@@ -146,43 +27,42 @@
         revisions: "修正回数",
         contact: "連絡先"
       },
-      messages: {
-        notReadyTitle: "未入力があります",
-        readyTitle: "送信準備OK ✅",
-        notReadyDetail: "必須項目を入力してください。",
-        readyDetail: "必須項目はすべて入力済みです。"
+      section: {
+        summary: "概要",
+        deliverables: "納品物",
+        specs: "仕様・必須要素",
+        timeline: "スケジュール",
+        budget: "予算",
+        references: "参考素材",
+        constraints: "制約・NG事項",
+        format: "納品形式",
+        revisions: "修正回数",
+        contact: "連絡先",
+        missing: "未提供の推奨項目",
+        before: "送付前の確認事項",
+        key: "要点"
       },
-      placeholders: {
-        missing: "(未記入)",
-        dash: "—",
-        notProvided: "未提供"
+      msg: {
+        missingTitle: "未入力があります",
+        readyTitle: "必要項目は入力済み",
+        missingDetail: "必須項目を入力してから生成してください。",
+        readyDetail: "送信前に権利、納品形式、修正回数、素材利用可否を確認してください。",
+        recommended: "強く推奨：サイズ・仕様 / 参考素材 / 納品形式 / 修正回数 / 連絡先",
+        initial: "入力後に生成してください",
+        generateFirst: "先に出力を生成してください",
+        fillRequired: "必須項目を入力してください",
+        copied: "コピーしました",
+        copyFailed: "コピーに失敗しました",
+        downloaded: "TXTを保存しました"
       },
-      tierLabels: {
-        short: "短い",
-        standard: "標準",
-        detailed: "詳細"
-      }
+      mark: { blank: "(未記入)", dash: "—", none: "未提供" },
+      checks: ["納品形式", "修正回数", "商用利用範囲", "素材・フォント・画像の権利", "追加費用が発生する条件", "実績公開の可否"]
     },
     en: {
-      titles: {
-        full: "Design Request Brief (Send-ready)",
-        key: "Key Points"
-      },
-      sections: {
-        summary: "Summary",
-        deliverables: "Deliverables",
-        specs: "Specs",
-        timeline: "Timeline",
-        budget: "Budget",
-        references: "References",
-        constraints: "Constraints/NG",
-        format: "Deliverables format",
-        revisions: "Revisions",
-        contact: "Contact",
-        assumptions: "Assumptions",
-        keyPoints: "Key points"
-      },
-      labels: {
+      full: "Design Request Brief",
+      key: "Key Points",
+      tier: { short: "Short", standard: "Standard", detailed: "Detailed" },
+      label: {
         projectType: "Project type",
         purpose: "Purpose",
         deliverables: "Deliverables",
@@ -199,335 +79,304 @@
         revisions: "Revisions",
         contact: "Contact"
       },
-      messages: {
-        notReadyTitle: "Not ready to send",
-        readyTitle: "Ready to send ✅",
-        notReadyDetail: "Please complete the required fields.",
-        readyDetail: "All required fields are filled."
+      section: {
+        summary: "Summary",
+        deliverables: "Deliverables",
+        specs: "Specs / Must-have items",
+        timeline: "Timeline",
+        budget: "Budget",
+        references: "References / Assets",
+        constraints: "Constraints / NG",
+        format: "Deliverables format",
+        revisions: "Revisions",
+        contact: "Contact",
+        missing: "Recommended items not provided",
+        before: "Before sending",
+        key: "Key points"
       },
-      placeholders: {
-        missing: "(missing)",
-        dash: "—",
-        notProvided: "Not provided"
+      msg: {
+        missingTitle: "Required fields missing",
+        readyTitle: "Required fields filled",
+        missingDetail: "Complete the required fields before generating.",
+        readyDetail: "Before sending, confirm rights, formats, revisions and asset use.",
+        recommended: "Strongly recommended: size/specs / references / deliverables format / revisions / contact",
+        initial: "Generate after entering the required fields.",
+        generateFirst: "Generate the output first",
+        fillRequired: "Complete the required fields first",
+        copied: "Copied",
+        copyFailed: "Copy failed",
+        downloaded: "TXT saved"
       },
-      tierLabels: {
-        short: "Short",
-        standard: "Standard",
-        detailed: "Detailed"
-      }
+      mark: { blank: "(missing)", dash: "—", none: "Not provided" },
+      checks: ["File format", "Revision rounds", "Usage scope", "Asset, font and image rights", "When extra fees apply", "Portfolio use"]
     }
   };
 
-  const REQUIRED_FIELDS = [
-    { key: "projectType", warnId: "warnProjectType" },
-    { key: "deliverables", warnId: "warnDeliverables" },
-    { key: "deadline", warnId: "warnDeadline" },
-    { key: "budget", warnId: "warnBudget" },
-    { key: "references", warnId: "warnReferences" }
+  const req = [
+    ["projectType", "warnProjectType"],
+    ["purpose", "warnPurpose"],
+    ["deliverables", "warnDeliverables"],
+    ["deadline", "warnDeadline"],
+    ["budget", "warnBudget"]
   ];
+  const opt = ["size", "references", "deliverablesFormat", "revisions", "contact", "mustHave", "audience", "tone", "avoid", "constraints"];
+  const ids = ["projectType", "purpose", "deliverables", "size", "deadline", "budget", "references", "mustHave", "audience", "tone", "avoid", "constraints", "deliverablesFormat", "revisions", "contact"];
 
-  const OPTIONAL_FIELDS = [
-    "purpose",
-    "size",
-    "mustHave",
-    "audience",
-    "tone",
-    "avoid",
-    "constraints",
-    "deliverablesFormat",
-    "revisions",
-    "contact"
-  ];
+  const isReq = (key) => req.some(([id]) => id === key);
+  const val = (key, data, t) => data[key] || (isReq(key) ? t.mark.blank : t.mark.dash);
+  const linesOf = (text) => text.split(/\n+/).map((v) => v.trim()).filter(Boolean);
 
-  const formatValue = (value, fallback) => (value ? value : fallback);
-
-  const getFieldValue = (key, data, t) => {
-    const isRequired = REQUIRED_FIELDS.some((field) => field.key === key);
-    const fallback = isRequired ? t.placeholders.missing : t.placeholders.dash;
-    return formatValue(data[key], fallback);
-  };
-
-  const splitToLines = (value) => {
-    const parts = value.split(/\n+/).map((item) => item.trim()).filter(Boolean);
-    return parts.length > 0 ? parts : [value];
-  };
-
-  const buildFullOutput = (lang, data, tier, optionalMissing) => {
-    const t = TEXT[lang];
-    const lines = [];
-
-    lines.push(`${t.titles.full} [${t.tierLabels[tier]}]`);
-    lines.push("");
-
-    const renderSection = (fields) => {
-      if (tier === "short") {
-        const compact = fields
-          .map((key) => `${t.labels[key]}: ${getFieldValue(key, data, t)}`)
-          .join(" / ");
-        lines.push(compact);
-        return;
-      }
-
-      if (tier === "standard") {
-        fields.forEach((key) => {
-          lines.push(`${t.labels[key]}: ${getFieldValue(key, data, t)}`);
-        });
-        return;
-      }
-
-      fields.forEach((key) => {
-        lines.push(`${t.labels[key]}:`);
-        splitToLines(getFieldValue(key, data, t)).forEach((item) => {
-          lines.push(`- ${item}`);
-        });
-      });
+  const debounce = (fn, ms = 150) => {
+    let timer = null;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), ms);
     };
-
-    lines.push(`■ ${t.sections.summary}`);
-    renderSection(["projectType", "purpose", "audience", "tone"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.deliverables}`);
-    renderSection(["deliverables"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.specs}`);
-    renderSection(["size", "mustHave"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.timeline}`);
-    renderSection(["deadline"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.budget}`);
-    renderSection(["budget"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.references}`);
-    renderSection(["references"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.constraints}`);
-    renderSection(["avoid", "constraints"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.format}`);
-    renderSection(["deliverablesFormat"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.revisions}`);
-    renderSection(["revisions"]);
-
-    lines.push("");
-    lines.push(`■ ${t.sections.contact}`);
-    renderSection(["contact"]);
-
-    if (optionalMissing.length > 0) {
-      lines.push("");
-      lines.push(`■ ${t.sections.assumptions}`);
-      optionalMissing.forEach((fieldKey) => {
-        lines.push(`- ${t.labels[fieldKey]}: ${t.placeholders.notProvided}`);
-      });
-    }
-
-    return lines.join("\n");
   };
 
-  const buildKeyPoints = (lang, data) => {
-    const t = TEXT[lang];
-    return [
-      `${t.titles.key}`,
-      "",
-      `■ ${t.sections.keyPoints}`,
-      `- ${t.labels.projectType}: ${getFieldValue("projectType", data, t)}`,
-      `- ${t.labels.deliverables}: ${getFieldValue("deliverables", data, t)}`,
-      `- ${t.labels.deadline}: ${getFieldValue("deadline", data, t)}`,
-      `- ${t.labels.budget}: ${getFieldValue("budget", data, t)}`,
-      `- ${t.labels.references}: ${getFieldValue("references", data, t)}`,
-      `- ${t.labels.contact}: ${getFieldValue("contact", data, t)}`
-    ].join("\n");
+  const copyText = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (_) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { return document.execCommand("copy"); }
+      catch (e) { return false; }
+      finally { document.body.removeChild(ta); }
+    }
+  };
+
+  const saveText = (name, text) => {
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 500);
+  };
+
+  const applyLang = (next) => {
+    all("[data-i18n]").forEach((el) => {
+      el.style.display = el.dataset.i18n === next ? "" : "none";
+    });
+    all(".nw-lang-switch button").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.lang === next);
+    });
+    all("[data-placeholder-ja][data-placeholder-en]").forEach((el) => {
+      el.placeholder = el.dataset[next === "ja" ? "placeholderJa" : "placeholderEn"] || "";
+    });
+    document.documentElement.lang = next;
+    try { localStorage.setItem("nw_lang", next); } catch (_) {}
+  };
+
+  const initLang = () => {
+    let current = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
+    try {
+      const saved = localStorage.getItem("nw_lang");
+      if (saved === "ja" || saved === "en") current = saved;
+    } catch (_) {}
+    all(".nw-lang-switch button").forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+    applyLang(current);
+  };
+
+  const clear = (node) => {
+    while (node.firstChild) node.removeChild(node.firstChild);
+  };
+
+  const addChecks = (out, t) => {
+    out.push("", `■ ${t.section.before}`);
+    t.checks.forEach((item) => out.push(`- ${item}`));
+  };
+
+  const fullText = (locale, data, tier, missingOpt) => {
+    const t = L[locale];
+    const out = [`${t.full} [${t.tier[tier]}]`, ""];
+    const section = (title, keys) => {
+      out.push(`■ ${title}`);
+      if (tier === "short") {
+        out.push(keys.map((key) => `${t.label[key]}: ${val(key, data, t)}`).join(" / "));
+        out.push("");
+        return;
+      }
+      keys.forEach((key) => {
+        if (tier === "detailed") {
+          out.push(`${t.label[key]}:`);
+          linesOf(val(key, data, t)).forEach((item) => out.push(`- ${item}`));
+        } else {
+          out.push(`${t.label[key]}: ${val(key, data, t)}`);
+        }
+      });
+      out.push("");
+    };
+    section(t.section.summary, ["projectType", "purpose", "audience", "tone"]);
+    section(t.section.deliverables, ["deliverables"]);
+    section(t.section.specs, ["size", "mustHave"]);
+    section(t.section.timeline, ["deadline"]);
+    section(t.section.budget, ["budget"]);
+    section(t.section.references, ["references"]);
+    section(t.section.constraints, ["avoid", "constraints"]);
+    section(t.section.format, ["deliverablesFormat"]);
+    section(t.section.revisions, ["revisions"]);
+    section(t.section.contact, ["contact"]);
+    if (missingOpt.length) {
+      out.push(`■ ${t.section.missing}`);
+      missingOpt.forEach((key) => out.push(`- ${t.label[key]}: ${t.mark.none}`));
+    }
+    addChecks(out, t);
+    return out.join("\n").replace(/\n{3,}/g, "\n\n");
+  };
+
+  const keyText = (locale, data) => {
+    const t = L[locale];
+    const out = [t.key, "", `■ ${t.section.key}`];
+    ["projectType", "purpose", "deliverables", "deadline", "budget", "references", "deliverablesFormat", "revisions", "contact"].forEach((key) => {
+      out.push(`- ${t.label[key]}: ${val(key, data, t)}`);
+    });
+    addChecks(out, t);
+    return out.join("\n");
   };
 
   const initTool = () => {
-    const outputTier = document.getElementById("outputTier");
-    const projectType = document.getElementById("projectType");
-    const purpose = document.getElementById("purpose");
-    const deliverables = document.getElementById("deliverables");
-    const size = document.getElementById("size");
-    const deadline = document.getElementById("deadline");
-    const budget = document.getElementById("budget");
-    const references = document.getElementById("references");
-    const mustHave = document.getElementById("mustHave");
-    const audience = document.getElementById("audience");
-    const tone = document.getElementById("tone");
-    const avoid = document.getElementById("avoid");
-    const constraints = document.getElementById("constraints");
-    const deliverablesFormat = document.getElementById("deliverablesFormat");
-    const revisions = document.getElementById("revisions");
-    const contact = document.getElementById("contact");
-    const outputJa = document.getElementById("outputJa");
-    const outputJaKey = document.getElementById("outputJaKey");
-    const outputEn = document.getElementById("outputEn");
-    const outputEnKey = document.getElementById("outputEnKey");
-    const readyBanner = document.getElementById("readyBanner");
-    const readyDetailJa = document.getElementById("readyDetailJa");
-    const readyDetailEn = document.getElementById("readyDetailEn");
-    const missingList = document.getElementById("missingList");
-    const btnBuild = document.getElementById("btnBuild");
-    const btnCopyJaFull = document.getElementById("btnCopyJaFull");
-    const btnCopyJaKey = document.getElementById("btnCopyJaKey");
-    const btnCopyEnFull = document.getElementById("btnCopyEnFull");
-    const btnCopyEnKey = document.getElementById("btnCopyEnKey");
-    const btnDownloadJa = document.getElementById("btnDownloadJa");
-    const btnDownloadEn = document.getElementById("btnDownloadEn");
+    initLang();
 
-    const inputs = [
-      outputTier,
-      projectType,
-      purpose,
-      deliverables,
-      size,
-      deadline,
-      budget,
-      references,
-      mustHave,
-      audience,
-      tone,
-      avoid,
-      constraints,
-      deliverablesFormat,
-      revisions,
-      contact
-    ];
+    const tier = $("outputTier");
+    const field = Object.fromEntries(ids.map((id) => [id, $(id)]));
+    const output = {
+      jaFull: $("outputJa"),
+      jaKey: $("outputJaKey"),
+      enFull: $("outputEn"),
+      enKey: $("outputEnKey")
+    };
+    const banner = $("readyBanner");
+    const missingList = $("missingList");
+    const recommend = $("recommendedFields");
+    const toast = $("toast");
+    let generated = false;
+
+    const showToast = (message) => {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("is-visible"), 2200);
+    };
+
+    const data = () => Object.fromEntries(ids.map((id) => [id, field[id].value.trim()]));
+    const missingReq = (d) => req.filter(([id]) => !d[id]);
+    const missingOpt = (d) => opt.filter((id) => !d[id]);
 
     const updateTierLabels = () => {
-      const lang = document.documentElement.lang || "ja";
-      outputTier.querySelectorAll("option").forEach((option) => {
-        const label = option.dataset[`label${lang === "ja" ? "Ja" : "En"}`];
-        if (label) option.textContent = label;
+      const current = lang();
+      tier.querySelectorAll("option").forEach((option) => {
+        option.textContent = option.dataset[current === "ja" ? "labelJa" : "labelEn"] || option.textContent;
       });
     };
 
-    const getMissingRequired = (data) => {
-      return REQUIRED_FIELDS.filter((field) => !data[field.key]);
-    };
-
-    const getOptionalMissing = (data) => {
-      return OPTIONAL_FIELDS.filter((key) => !data[key]);
-    };
-
-    const updateWarnings = (missingRequired) => {
-      const missingKeys = new Set(missingRequired.map((field) => field.key));
-      REQUIRED_FIELDS.forEach((field) => {
-        const warning = document.getElementById(field.warnId);
-        if (!warning) return;
-        warning.classList.toggle("is-hidden", !missingKeys.has(field.key));
+    const validate = () => {
+      const current = lang();
+      const d = data();
+      const missing = missingReq(d);
+      const ready = missing.length === 0;
+      const titles = banner.querySelectorAll(".status-title [data-i18n]");
+      titles.forEach((node) => {
+        const text = L[node.dataset.i18n].msg;
+        node.textContent = ready ? text.readyTitle : text.missingTitle;
       });
-    };
-
-    const updateBanner = (missingRequired) => {
-      const titleJa = readyBanner.querySelector(".status-title [data-i18n='ja']");
-      const titleEn = readyBanner.querySelector(".status-title [data-i18n='en']");
-      const isReady = missingRequired.length === 0;
-
-      readyBanner.classList.toggle("ready", isReady);
-      readyBanner.classList.toggle("not-ready", !isReady);
-
-      titleJa.textContent = isReady ? TEXT.ja.messages.readyTitle : TEXT.ja.messages.notReadyTitle;
-      titleEn.textContent = isReady ? TEXT.en.messages.readyTitle : TEXT.en.messages.notReadyTitle;
-      readyDetailJa.textContent = isReady ? TEXT.ja.messages.readyDetail : TEXT.ja.messages.notReadyDetail;
-      readyDetailEn.textContent = isReady ? TEXT.en.messages.readyDetail : TEXT.en.messages.notReadyDetail;
-
-      missingList.innerHTML = "";
-      if (!isReady) {
-        const lang = document.documentElement.lang || "ja";
-        missingRequired.forEach((field) => {
-          const item = document.createElement("li");
-          item.textContent = TEXT[lang].labels[field.key];
-          missingList.appendChild(item);
-        });
-        missingList.classList.remove("is-hidden");
-      } else {
-        missingList.classList.add("is-hidden");
-      }
+      $("readyDetailJa").textContent = ready ? L.ja.msg.readyDetail : L.ja.msg.missingDetail;
+      $("readyDetailEn").textContent = ready ? L.en.msg.readyDetail : L.en.msg.missingDetail;
+      recommend.textContent = L[current].msg.recommended;
+      banner.classList.toggle("ready", ready);
+      banner.classList.toggle("not-ready", !ready);
+      clear(missingList);
+      missingList.classList.toggle("is-hidden", ready);
+      missing.forEach(([id]) => {
+        const item = document.createElement("li");
+        item.textContent = L[current].label[id];
+        missingList.appendChild(item);
+      });
+      req.forEach(([id, warn]) => {
+        const node = $(warn);
+        if (node) node.classList.toggle("is-hidden", !!d[id]);
+      });
+      return { d, missing, optMissing: missingOpt(d) };
     };
 
     const render = () => {
-      const data = {
-        projectType: projectType.value.trim(),
-        purpose: purpose.value.trim(),
-        deliverables: deliverables.value.trim(),
-        size: size.value.trim(),
-        deadline: deadline.value.trim(),
-        budget: budget.value.trim(),
-        references: references.value.trim(),
-        mustHave: mustHave.value.trim(),
-        audience: audience.value.trim(),
-        tone: tone.value.trim(),
-        avoid: avoid.value.trim(),
-        constraints: constraints.value.trim(),
-        deliverablesFormat: deliverablesFormat.value.trim(),
-        revisions: revisions.value.trim(),
-        contact: contact.value.trim()
-      };
-      const tier = outputTier.value;
-      const missingRequired = getMissingRequired(data);
-      const optionalMissing = getOptionalMissing(data);
-
+      const checked = validate();
       updateTierLabels();
-      updateWarnings(missingRequired);
-      updateBanner(missingRequired);
-
-      outputJa.textContent = buildFullOutput("ja", data, tier, optionalMissing);
-      outputJaKey.textContent = buildKeyPoints("ja", data);
-      outputEn.textContent = buildFullOutput("en", data, tier, optionalMissing);
-      outputEnKey.textContent = buildKeyPoints("en", data);
+      if (checked.missing.length) return false;
+      output.jaFull.textContent = fullText("ja", checked.d, tier.value, checked.optMissing);
+      output.jaKey.textContent = keyText("ja", checked.d);
+      output.enFull.textContent = fullText("en", checked.d, tier.value, checked.optMissing);
+      output.enKey.textContent = keyText("en", checked.d);
+      generated = true;
+      return true;
     };
 
-    const flashButton = (button, ok) => {
-      if (!ok) return;
-      button.classList.add("primary");
-      setTimeout(() => button.classList.remove("primary"), 600);
-    };
-
-    btnBuild.addEventListener("click", render);
-    inputs.forEach((input) => {
-      input.addEventListener("input", window.NW.debounce(render, 150));
-      if (input.tagName === "SELECT") {
-        input.addEventListener("change", render);
+    const canUseOutput = () => {
+      const current = lang();
+      const checked = validate();
+      if (checked.missing.length) {
+        showToast(L[current].msg.fillRequired);
+        return false;
       }
-    });
+      if (!generated) {
+        showToast(L[current].msg.generateFirst);
+        return false;
+      }
+      return true;
+    };
 
-    btnCopyJaFull.addEventListener("click", async () => {
-      const ok = await window.NW.copyToClipboard(outputJa.textContent.trim());
-      flashButton(btnCopyJaFull, ok);
-    });
-    btnCopyJaKey.addEventListener("click", async () => {
-      const ok = await window.NW.copyToClipboard(outputJaKey.textContent.trim());
-      flashButton(btnCopyJaKey, ok);
-    });
-    btnCopyEnFull.addEventListener("click", async () => {
-      const ok = await window.NW.copyToClipboard(outputEn.textContent.trim());
-      flashButton(btnCopyEnFull, ok);
-    });
-    btnCopyEnKey.addEventListener("click", async () => {
-      const ok = await window.NW.copyToClipboard(outputEnKey.textContent.trim());
-      flashButton(btnCopyEnKey, ok);
-    });
+    const copyOutput = async (node) => {
+      if (!canUseOutput()) return;
+      const ok = await copyText(node.textContent.trim());
+      showToast(ok ? L[lang()].msg.copied : L[lang()].msg.copyFailed);
+    };
 
-    btnDownloadJa.addEventListener("click", () => {
-      const tier = outputTier.value;
-      window.NW.downloadText(`design-request-ja-${tier}.txt`, outputJa.textContent.trim());
-    });
-    btnDownloadEn.addEventListener("click", () => {
-      const tier = outputTier.value;
-      window.NW.downloadText(`design-request-en-${tier}.txt`, outputEn.textContent.trim());
-    });
+    const saveOutput = (locale, node) => {
+      if (!canUseOutput()) return;
+      saveText(`design-request-${locale}-${tier.value}.txt`, node.textContent.trim());
+      showToast(L[lang()].msg.downloaded);
+    };
 
-    const langObserver = new MutationObserver(() => render());
-    langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    $("btnBuild").addEventListener("click", () => {
+      if (!render()) showToast(L[lang()].msg.fillRequired);
+    });
+    [tier, ...Object.values(field)].forEach((node) => {
+      const update = debounce(() => {
+        validate();
+        if (generated) render();
+      });
+      node.addEventListener("input", update);
+      node.addEventListener("change", update);
+    });
+    $("btnCopyJaFull").addEventListener("click", () => copyOutput(output.jaFull));
+    $("btnCopyJaKey").addEventListener("click", () => copyOutput(output.jaKey));
+    $("btnCopyEnFull").addEventListener("click", () => copyOutput(output.enFull));
+    $("btnCopyEnKey").addEventListener("click", () => copyOutput(output.enKey));
+    $("btnDownloadJa").addEventListener("click", () => saveOutput("ja", output.jaFull));
+    $("btnDownloadEn").addEventListener("click", () => saveOutput("en", output.enFull));
 
-    render();
+    new MutationObserver(() => {
+      updateTierLabels();
+      validate();
+      if (generated) render();
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+
+    output.jaFull.textContent = L.ja.msg.initial;
+    output.jaKey.textContent = L.ja.msg.initial;
+    output.enFull.textContent = L.en.msg.initial;
+    output.enKey.textContent = L.en.msg.initial;
+    updateTierLabels();
+    validate();
   };
 
   document.addEventListener("DOMContentLoaded", initTool);
