@@ -112,13 +112,7 @@
     }
   };
 
-  const req = [
-    ["projectType", "warnProjectType"],
-    ["purpose", "warnPurpose"],
-    ["deliverables", "warnDeliverables"],
-    ["deadline", "warnDeadline"],
-    ["budget", "warnBudget"]
-  ];
+  const req = [["projectType", "warnProjectType"], ["purpose", "warnPurpose"], ["deliverables", "warnDeliverables"], ["deadline", "warnDeadline"], ["budget", "warnBudget"]];
   const opt = ["size", "references", "deliverablesFormat", "revisions", "contact", "mustHave", "audience", "tone", "avoid", "constraints"];
   const ids = ["projectType", "purpose", "deliverables", "size", "deadline", "budget", "references", "mustHave", "audience", "tone", "avoid", "constraints", "deliverablesFormat", "revisions", "contact"];
 
@@ -164,14 +158,10 @@
   };
 
   const applyLang = (next) => {
-    all("[data-i18n]").forEach((el) => {
-      el.style.display = el.dataset.i18n === next ? "" : "none";
-    });
-    all(".nw-lang-switch button").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.lang === next);
-    });
-    all("[data-placeholder-ja][data-placeholder-en]").forEach((el) => {
-      el.placeholder = el.dataset[next === "ja" ? "placeholderJa" : "placeholderEn"] || "";
+    all("[data-i18n]").forEach((el) => { el.style.display = el.dataset.i18n === next ? "" : "none"; });
+    all(".nw-lang-switch button").forEach((btn) => { btn.classList.toggle("active", btn.dataset.lang === next); });
+    all("[data-ph-ja][data-ph-en]").forEach((el) => {
+      el.placeholder = el.dataset[next === "ja" ? "phJa" : "phEn"] || "";
     });
     document.documentElement.lang = next;
     try { localStorage.setItem("nw_lang", next); } catch (_) {}
@@ -187,9 +177,7 @@
     applyLang(current);
   };
 
-  const clear = (node) => {
-    while (node.firstChild) node.removeChild(node.firstChild);
-  };
+  const clear = (node) => { while (node.firstChild) node.removeChild(node.firstChild); };
 
   const addChecks = (out, t) => {
     out.push("", `■ ${t.section.before}`);
@@ -249,12 +237,7 @@
 
     const tier = $("outputTier");
     const field = Object.fromEntries(ids.map((id) => [id, $(id)]));
-    const output = {
-      jaFull: $("outputJa"),
-      jaKey: $("outputJaKey"),
-      enFull: $("outputEn"),
-      enKey: $("outputEnKey")
-    };
+    const output = { jaFull: $("outputJa"), jaKey: $("outputJaKey"), enFull: $("outputEn"), enKey: $("outputEnKey") };
     const banner = $("readyBanner");
     const missingList = $("missingList");
     const recommend = $("recommendedFields");
@@ -285,8 +268,7 @@
       const d = data();
       const missing = missingReq(d);
       const ready = missing.length === 0;
-      const titles = banner.querySelectorAll(".status-title [data-i18n]");
-      titles.forEach((node) => {
+      banner.querySelectorAll(".status-title [data-i18n]").forEach((node) => {
         const text = L[node.dataset.i18n].msg;
         node.textContent = ready ? text.readyTitle : text.missingTitle;
       });
@@ -347,14 +329,9 @@
       showToast(L[lang()].msg.downloaded);
     };
 
-    $("btnBuild").addEventListener("click", () => {
-      if (!render()) showToast(L[lang()].msg.fillRequired);
-    });
+    $("btnBuild").addEventListener("click", () => { if (!render()) showToast(L[lang()].msg.fillRequired); });
     [tier, ...Object.values(field)].forEach((node) => {
-      const update = debounce(() => {
-        validate();
-        if (generated) render();
-      });
+      const update = debounce(() => { validate(); if (generated) render(); });
       node.addEventListener("input", update);
       node.addEventListener("change", update);
     });
@@ -365,11 +342,7 @@
     $("btnDownloadJa").addEventListener("click", () => saveOutput("ja", output.jaFull));
     $("btnDownloadEn").addEventListener("click", () => saveOutput("en", output.enFull));
 
-    new MutationObserver(() => {
-      updateTierLabels();
-      validate();
-      if (generated) render();
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    new MutationObserver(() => { updateTierLabels(); validate(); if (generated) render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
 
     output.jaFull.textContent = L.ja.msg.initial;
     output.jaKey.textContent = L.ja.msg.initial;
