@@ -10,6 +10,9 @@
   --muted:#6b7280;
   --muted2:#9ca3af;
   --accent:#111827;
+  --warn-bg:#fff7ed;
+  --warn-border:#fed7aa;
+  --warn-text:#9a3412;
 }
 
 *{ box-sizing:border-box; }
@@ -58,7 +61,7 @@ body{
 }
 
 .nw-main{
-  max-width:600px; /* smartphone-first tools allowed by spec */
+  max-width:600px;
   margin:0 auto;
   padding:10px 12px 18px;
 }
@@ -84,6 +87,18 @@ body{
   font-size:12px;
   color:var(--muted);
 }
+.nw-note p{ margin:6px 0 0; }
+.nw-note h2{
+  margin:0;
+  font-size:13px;
+  color:var(--text);
+}
+.nw-warning{
+  border-color:var(--warn-border);
+  background:var(--warn-bg);
+  color:var(--warn-text);
+}
+.nw-warning h2{ color:var(--warn-text); }
 
 .card{
   border:1px solid var(--border);
@@ -116,6 +131,11 @@ body{
   font-size:12px;
   color:var(--muted);
 }
+.help{
+  margin:0;
+  font-size:11px;
+  color:var(--muted);
+}
 .input, .textarea, .select{
   width:100%;
   padding:10px 10px;
@@ -123,8 +143,10 @@ body{
   border-radius:10px;
   font-size:14px;
   outline:none;
+  background:#fff;
 }
 .textarea{ min-height:110px; resize:vertical; }
+.textarea.small{ min-height:76px; }
 
 .row{
   display:flex;
@@ -132,6 +154,7 @@ body{
   align-items:center;
   flex-wrap:wrap;
 }
+.action-row{ margin-top:12px; }
 
 .btn{
   display:inline-flex;
@@ -158,16 +181,10 @@ body{
   border-color:var(--accent);
 }
 .btn.primary:hover{ background:#000; }
-.btn.danger{
-  border-color:#ef4444;
-  color:#ef4444;
-}
-.btn.danger:hover{
-  background:#fff5f5;
-}
 
 .out{
   width:100%;
+  min-height:180px;
   padding:10px 10px;
   border:1px solid var(--border);
   border-radius:10px;
@@ -178,10 +195,43 @@ body{
   word-break:break-word;
 }
 
-.hr{
-  border:none;
+.toast{
+  display:none;
+  margin:10px 0 0;
+  padding:8px 10px;
+  border:1px solid #bfdbfe;
+  border-radius:10px;
+  background:#eff6ff;
+  color:#1e3a8a;
+  font-size:12px;
+}
+.toast.show{ display:block; }
+.toast.is-error{
+  border-color:#fecaca;
+  background:#fef2f2;
+  color:#991b1b;
+}
+
+.faq{
+  margin:22px 0 0;
+  padding-top:14px;
   border-top:1px solid var(--border);
-  margin:12px 0;
+}
+.faq h2{
+  margin:0 0 10px;
+  font-size:14px;
+}
+.faq-item{
+  margin:0 0 12px;
+}
+.faq-item h3{
+  margin:0 0 4px;
+  font-size:13px;
+}
+.faq-item p{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
 }
 
 .nw-donate{
@@ -211,7 +261,7 @@ body{
 }
 
 .nw-other{
-  margin:10px 0 0;
+  margin:18px 0 0;
   padding:10px 0 0;
   border-top:1px solid var(--border);
   text-align:center;
@@ -245,7 +295,6 @@ body{
 .nw-footer-line{ margin:2px 0; }
 .nw-footer a{ color:var(--muted); text-decoration:underline; }
 
-/* Responsive transform: <=480px */
 @media (max-width:480px){
   .nw-main{ padding:10px 10px 18px; }
   .row{ flex-direction:column; align-items:stretch; }
