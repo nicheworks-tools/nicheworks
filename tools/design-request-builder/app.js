@@ -157,12 +157,15 @@
     setTimeout(() => URL.revokeObjectURL(url), 500);
   };
 
+  const placeholderText = (el, next) => {
+    if (el.dataset.phJa || el.dataset.phEn) return el.dataset[next === "ja" ? "phJa" : "phEn"] || "";
+    return el.getAttribute(next === "ja" ? "content-ja" : "content-en") || "";
+  };
+
   const applyLang = (next) => {
     all("[data-i18n]").forEach((el) => { el.style.display = el.dataset.i18n === next ? "" : "none"; });
     all(".nw-lang-switch button").forEach((btn) => { btn.classList.toggle("active", btn.dataset.lang === next); });
-    all("[data-ph-ja][data-ph-en]").forEach((el) => {
-      el.placeholder = el.dataset[next === "ja" ? "phJa" : "phEn"] || "";
-    });
+    all("[data-ph-ja][data-ph-en], [content-ja][content-en]").forEach((el) => { el.placeholder = placeholderText(el, next); });
     document.documentElement.lang = next;
     try { localStorage.setItem("nw_lang", next); } catch (_) {}
   };
