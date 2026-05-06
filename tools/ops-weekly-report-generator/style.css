@@ -84,6 +84,11 @@ body{
   font-size:12px;
   color:var(--muted);
 }
+.nw-note.caution{
+  border-color:#fde68a;
+  background:#fffbeb;
+  color:#78350f;
+}
 
 .card{
   border:1px solid var(--border);
@@ -116,6 +121,21 @@ body{
   font-size:12px;
   color:var(--muted);
 }
+.req{
+  display:inline-block;
+  margin-left:4px;
+  padding:1px 5px;
+  border-radius:999px;
+  background:#f3f4f6;
+  color:#374151;
+  font-size:10px;
+  font-weight:600;
+}
+.hint{
+  margin:10px 0 0;
+  font-size:12px;
+  color:var(--muted);
+}
 .input, .textarea, .select{
   width:100%;
   padding:10px 10px;
@@ -124,13 +144,16 @@ body{
   font-size:14px;
   outline:none;
 }
-.textarea{ min-height:110px; resize:vertical; }
+.textarea{ min-height:96px; resize:vertical; }
 
 .row{
   display:flex;
   gap:8px;
   align-items:center;
   flex-wrap:wrap;
+}
+.row.actions{
+  align-items:stretch;
 }
 
 .btn{
@@ -145,12 +168,18 @@ body{
   border-radius:10px;
   cursor:pointer;
   font-size:13px;
-  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease, opacity .12s ease;
 }
 .btn:hover{
   background:var(--bg-soft);
   transform:translateY(-1px);
   box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+.btn:disabled{
+  cursor:not-allowed;
+  opacity:.45;
+  transform:none;
+  box-shadow:none;
 }
 .btn.primary{
   background:var(--accent);
@@ -176,6 +205,25 @@ body{
   font-size:12px;
   white-space:pre-wrap;
   word-break:break-word;
+}
+
+.faq{
+  margin:18px 0 0;
+  padding:14px 0 4px;
+  border-top:1px solid var(--border);
+}
+.faq h2{
+  margin:0 0 10px;
+  font-size:15px;
+}
+.faq h3{
+  margin:12px 0 4px;
+  font-size:13px;
+}
+.faq p{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
 }
 
 .hr{
@@ -245,9 +293,32 @@ body{
 .nw-footer-line{ margin:2px 0; }
 .nw-footer a{ color:var(--muted); text-decoration:underline; }
 
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  z-index:20;
+  max-width:min(92vw, 420px);
+  padding:10px 14px;
+  border-radius:999px;
+  background:#111827;
+  color:#fff;
+  font-size:13px;
+  text-align:center;
+  transform:translate(-50%, 16px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .16s ease, transform .16s ease;
+}
+.toast.show{
+  opacity:1;
+  transform:translate(-50%, 0);
+}
+
 /* Responsive transform: <=480px */
 @media (max-width:480px){
   .nw-main{ padding:10px 10px 18px; }
   .row{ flex-direction:column; align-items:stretch; }
   .btn{ width:100%; }
+  .toast{ bottom:10px; border-radius:12px; }
 }
