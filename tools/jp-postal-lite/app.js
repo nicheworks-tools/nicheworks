@@ -9,19 +9,9 @@ const PREFS = [
 ];
 
 const DATA_FILES = Object.fromEntries(PREFS.map((pref) => [pref, `${pref}.json`]));
-const DATA_CHECKED_DATE = "2026-05-03";
+const DATA_CHECKED_DATE = "2026-05-06";
 const OFFICIAL_REFERENCE_DATE = "2026-04-30";
 const LIMIT = 50;
-const HOKKAIDO_REMOTE_PREFIXES = [
-  "001", "002", "003", "004", "005", "006", "007", "008", "009",
-  "040", "041", "042", "043", "044", "045", "046", "047", "048", "049",
-  "050", "051", "052", "053", "054", "055", "056", "057", "058", "059",
-  "060", "061", "062", "063", "064", "065", "066", "067", "068", "069",
-  "070", "071", "072", "073", "074", "075", "076", "077", "078", "079",
-  "080", "081", "082", "083", "084", "085", "086", "087", "088", "089",
-  "090", "091", "092", "093", "094", "095", "096", "097", "098", "099"
-];
-const HOKKAIDO_REMOTE_BASE = "https://raw.githubusercontent.com/stayforge/japan-postal-code/main/datasets";
 
 const $ = (id) => document.getElementById(id);
 const prefSelect = $("prefecture");
@@ -48,6 +38,8 @@ let outputRows = [];
 let activeMenu = null;
 let toastTimer = null;
 let searchRun = 0;
+let clearConfirmTimer = null;
+let clearConfirmArmed = false;
 
 const examples = [
   ["北海道", "札幌市中央区"],
@@ -68,9 +60,15 @@ function initPrefs() {
 
 function initInfo() {
   if (supportedPrefCount) supportedPrefCount.textContent = "47都道府県";
-  if (supportedPrefList) supportedPrefList.textContent = "全国47都道府県のJSONファイルを読み込み対象にしています。北海道ローカルデータが空の場合は静的バックアップJSONから補完します。";
-  if (dataCheckedDate) dataCheckedDate.textContent = DATA_CHECKED_DATE;
-  if (officialReferenceDate) officialReferenceDate.textContent = OFFICIAL_REFERENCE_DATE;
+  if (supportedPrefList) {
+    supportedPrefList.textContent = "全国47都道府県の自サイト内JSON（./data/*.json）のみを読み込みます。外部バックアップJSONへの自動取得は行いません。";
+  }
+  if (dataCheckedDate) {
+    dataCheckedDate.textContent = `${DATA_CHECKED_DATE}（NicheWorks側でJSONの読み込み方針を確認した日）`;
+  }
+  if (officialReferenceDate) {
+    officialReferenceDate.textContent = `${OFFICIAL_REFERENCE_DATE}（元データ確認時点の参考日。住所変更の反映日は保証しません）`;
+  }
 }
 
 function initExamples() {
@@ -94,19 +92,9 @@ async function loadData(pref) {
   if (!file) throw new Error("unsupported");
   if (cache.has(pref)) return cache.get(pref);
 
-  try {
-    const localData = await loadLocalData(file);
-    cache.set(pref, localData);
-    return localData;
-  } catch (error) {
-    if (pref !== "北海道" || !["empty_data", "invalid_json", "missing_file"].includes(error.message)) {
-      throw error;
-    }
-    const remoteData = await loadRemoteHokkaidoData();
-    cache.set(pref, remoteData);
-    setAlert("北海道はローカルデータが空だったため、静的バックアップJSONから補完して検索しています。", "warn");
-    return remoteData;
-  }
+  const localData = await loadLocalData(file);
+  cache.set(pref, localData);
+  return localData;
 }
 
 async function loadLocalData(file) {
@@ -124,52 +112,6 @@ async function loadLocalData(file) {
   return data;
 }
 
-async function loadRemoteHokkaidoData() {
-  const chunks = [];
-  const batchSize = 8;
-
-  for (let i = 0; i < HOKKAIDO_REMOTE_PREFIXES.length; i += batchSize) {
-    const batch = HOKKAIDO_REMOTE_PREFIXES.slice(i, i + batchSize);
-    const settled = await Promise.allSettled(batch.map(loadRemotePrefix));
-    settled.forEach((result) => {
-      if (result.status === "fulfilled") chunks.push(...result.value);
-    });
-  }
-
-  const converted = [];
-  const seen = new Set();
-  chunks.forEach((item) => {
-    if (item.prefecture_name !== "北海道") return;
-    const postalCode = String(item.postal_code || "").padStart(7, "0");
-    if (!/^\d{7}$/.test(postalCode)) return;
-    const city = item.city_name || "";
-    const rawTown = item.town_name || "";
-    const town = rawTown === "以下に掲載がない場合" ? "" : rawTown;
-    const key = `${postalCode}|${city}|${town}`;
-    if (seen.has(key)) return;
-    seen.add(key);
-    converted.push({
-      postal_code: postalCode,
-      postal_hyphen: `${postalCode.slice(0, 3)}-${postalCode.slice(3)}`,
-      pref: "北海道",
-      city,
-      town,
-      full: `北海道${city}${town}`
-    });
-  });
-
-  converted.sort((a, b) => a.postal_code.localeCompare(b.postal_code) || a.full.localeCompare(b.full, "ja"));
-  if (converted.length === 0) throw new Error("remote_empty");
-  return converted;
-}
-
-async function loadRemotePrefix(prefix) {
-  const response = await fetch(`${HOKKAIDO_REMOTE_BASE}/${prefix}.json`, { cache: "force-cache" });
-  if (!response.ok) return [];
-  const data = await response.json();
-  return Array.isArray(data) ? data : [];
-}
-
 function setAlert(message, kind = "error") {
   if (!loadError) return;
   loadError.textContent = message;
@@ -181,11 +123,20 @@ function setEmpty(message) {
   results.textContent = message;
   results.classList.add("empty");
   resultsTitle.textContent = "検索結果（0件）";
-  if (resultLimitNote) resultLimitNote.hidden = true;
+  if (resultLimitNote) {
+    resultLimitNote.hidden = true;
+    resultLimitNote.textContent = "";
+  }
 }
 
 function normalize(value) {
-  return String(value || "").trim().toLowerCase().replace(/\s+/g, "");
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[０-９]/g, (d) => String.fromCharCode(d.charCodeAt(0) - 0xFEE0))
+    .replace(/[　\s]+/g, "")
+    .replace(/[‐‑‒–—―ー－]/g, "-")
+    .replace(/ヶ/g, "ケ");
 }
 
 function filterData(data, query) {
@@ -208,8 +159,15 @@ function filterData(data, query) {
 function renderResults(rows, total) {
   results.innerHTML = "";
   results.classList.remove("empty");
-  resultsTitle.textContent = `検索結果（${rows.length}件）`;
-  if (resultLimitNote) resultLimitNote.hidden = total <= rows.length;
+  resultsTitle.textContent = total > rows.length
+    ? `検索結果（${rows.length}件表示 / 該当${total}件）`
+    : `検索結果（${rows.length}件）`;
+  if (resultLimitNote) {
+    resultLimitNote.hidden = total <= rows.length;
+    resultLimitNote.textContent = total > rows.length
+      ? `該当${total}件中、先頭${rows.length}件を表示しています。結果が多すぎる場合は住所をもう少し詳しく入力してください。`
+      : "";
+  }
   rows.forEach((item) => results.appendChild(resultRow(item)));
 }
 
@@ -239,8 +197,8 @@ function resultRow(item) {
   const menu = document.createElement("div");
   menu.className = "menu";
   menu.append(
-    menuButton("コピー（郵便番号＋住所）", () => copyText(`〒${item.postal_hyphen} ${item.full}`, tag)),
-    menuButton("郵便番号だけコピー", () => copyText(`〒${item.postal_hyphen}`, tag)),
+    menuButton("コピー（郵便番号＋住所）", async () => copyText(`〒${item.postal_hyphen} ${item.full}`, tag)),
+    menuButton("郵便番号だけコピー", async () => copyText(`〒${item.postal_hyphen}`, tag)),
     menuButton("出力リストに追加", () => addOutput(item, tag))
   );
   kebab.addEventListener("click", (event) => {
@@ -258,8 +216,8 @@ function menuButton(label, onClick) {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.textContent = label;
-  btn.addEventListener("click", () => {
-    onClick();
+  btn.addEventListener("click", async () => {
+    await onClick();
     closeMenu();
   });
   return btn;
@@ -271,21 +229,40 @@ function closeMenu() {
 }
 
 async function copyText(text, tag) {
+  let ok = false;
   try {
     if (!navigator.clipboard || !window.isSecureContext) throw new Error("fallback");
     await navigator.clipboard.writeText(text);
+    ok = true;
   } catch (error) {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.setAttribute("readonly", "");
-    ta.style.position = "fixed";
-    ta.style.left = "-9999px";
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    ta.remove();
+    ok = copyTextFallback(text);
   }
-  flash(tag, "Copied!");
+
+  if (ok) {
+    flash(tag, "Copied!");
+  } else {
+    flash(tag, "失敗");
+    showToast("コピーに失敗しました。手動で選択してコピーしてください。");
+  }
+  return ok;
+}
+
+function copyTextFallback(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.left = "-9999px";
+  document.body.appendChild(ta);
+  ta.select();
+  let ok = false;
+  try {
+    ok = document.execCommand("copy");
+  } catch (error) {
+    ok = false;
+  }
+  ta.remove();
+  return ok;
 }
 
 function flash(tag, text) {
@@ -321,7 +298,10 @@ function renderOutput() {
   if (outputCount) outputCount.textContent = `${outputRows.length}件`;
   outputTitle.textContent = `出力リスト（${outputRows.length}件）`;
   downloadBtn.disabled = outputRows.length === 0;
-  if (clearOutputBtn) clearOutputBtn.disabled = outputRows.length === 0;
+  if (clearOutputBtn) {
+    clearOutputBtn.disabled = outputRows.length === 0;
+    if (outputRows.length === 0) resetClearConfirm();
+  }
   if (outputRows.length === 0) {
     outputListEl.textContent = "出力リストが空です。必要な行を追加してください。";
     outputListEl.classList.add("empty");
@@ -357,7 +337,7 @@ async function handleSearch() {
   setAlert("");
   if (!pref) return setEmpty("都道府県を選択してください。");
   if (query.trim().length < 2) return setEmpty("2文字以上で検索できます。例：札幌市 / 渋谷区 / 西新宿 / 丸の内");
-  setEmpty(`${pref}のデータを読み込み中...`);
+  setEmpty(`${pref}の自サイト内データを読み込み中...`);
   try {
     const data = await loadData(pref);
     if (currentRun !== searchRun) return;
@@ -366,10 +346,13 @@ async function handleSearch() {
     else renderResults(found.rows, found.total);
   } catch (error) {
     if (currentRun !== searchRun) return;
-    const reason = error.message === "remote_empty"
-      ? "北海道バックアップデータの読み込みに失敗しました。時間をおいて再読み込みしてください。"
-      : "データファイルの読み込みに失敗しました。ファイル名・配置・JSON形式を確認してください。";
-    setAlert(reason, "error");
+    const messages = {
+      missing_file: "自サイト内のデータファイルが見つかりません。./data/ 配下のJSON配置を確認してください。",
+      invalid_json: "自サイト内のデータファイルがJSONとして読めません。ファイル内容を確認してください。",
+      empty_data: "自サイト内のデータファイルが空です。外部補完は行わないため、データを配置してください。",
+      unsupported: "未対応の都道府県です。"
+    };
+    setAlert(messages[error.message] || "データファイルの読み込みに失敗しました。", "error");
     setEmpty("データの読み込みに失敗しました。");
   }
 }
@@ -397,7 +380,24 @@ function downloadCSV() {
   showToast("CSVを保存しました");
 }
 
+function resetClearConfirm() {
+  clearTimeout(clearConfirmTimer);
+  clearConfirmTimer = null;
+  clearConfirmArmed = false;
+  if (clearOutputBtn) clearOutputBtn.textContent = "出力リストを全削除";
+}
+
 function clearOutput() {
+  if (outputRows.length === 0) return;
+  if (!clearConfirmArmed) {
+    clearConfirmArmed = true;
+    clearOutputBtn.textContent = "もう一度押すと全削除";
+    showToast("もう一度押すと出力リストを全削除します");
+    clearConfirmTimer = setTimeout(resetClearConfirm, 3500);
+    return;
+  }
+
+  resetClearConfirm();
   outputRows = [];
   renderOutput();
   showToast("出力リストを全削除しました");
