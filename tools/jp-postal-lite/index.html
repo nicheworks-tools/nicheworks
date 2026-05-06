@@ -12,8 +12,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>住所から郵便番号逆引き｜JP Postal Lite | NicheWorks</title>
-  <meta name="description" content="日本全国47都道府県の住所の一部から郵便番号を逆引き検索し、必要な行を出力リストに追加してCSV保存できる軽量ツールです。ブラウザ内で動作します。">
+  <title>住所から郵便番号逆引き・CSV保存｜JP Postal Lite | NicheWorks</title>
+  <meta name="description" content="都道府県と住所の一部から郵便番号を逆引きし、必要な行を出力リストに追加してCSV保存できる軽量ツールです。重要な用途では日本郵便公式情報も確認してください。">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="./style.css">
 
-  <meta property="og:title" content="住所から郵便番号逆引き｜JP Postal Lite | NicheWorks">
-  <meta property="og:description" content="日本全国47都道府県の住所の一部から郵便番号を逆引き検索し、必要な行を出力リストに追加してCSV保存できる軽量ツールです。ブラウザ内で動作します。">
+  <meta property="og:title" content="住所から郵便番号逆引き・CSV保存｜JP Postal Lite | NicheWorks">
+  <meta property="og:description" content="都道府県と住所の一部から郵便番号を逆引きし、必要な行を出力リストに追加してCSV保存できる軽量ツールです。重要な用途では日本郵便公式情報も確認してください。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/jp-postal-lite/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="住所から郵便番号逆引き｜JP Postal Lite | NicheWorks">
-  <meta name="twitter:description" content="日本全国47都道府県の住所の一部から郵便番号を逆引き検索し、必要な行を出力リストに追加してCSV保存できる軽量ツールです。ブラウザ内で動作します。">
+  <meta name="twitter:title" content="住所から郵便番号逆引き・CSV保存｜JP Postal Lite | NicheWorks">
+  <meta name="twitter:description" content="都道府県と住所の一部から郵便番号を逆引きし、必要な行を出力リストに追加してCSV保存できる軽量ツールです。重要な用途では日本郵便公式情報も確認してください。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script type="application/ld+json">
@@ -39,7 +39,7 @@
     "name": "JP Postal Lite",
     "url": "https://nicheworks.app/tools/jp-postal-lite/",
     "applicationCategory": "UtilityApplication",
-    "description": "日本全国47都道府県の住所の一部から郵便番号を逆引き検索し、必要な行をCSV保存できる軽量ツールです。",
+    "description": "都道府県と住所の一部から郵便番号を逆引きし、必要な行をCSV保存できる軽量ツールです。重要な用途では日本郵便公式情報も確認してください。",
     "operatingSystem": "All",
     "inLanguage": "ja"
   }
@@ -51,23 +51,23 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "住所から郵便番号を検索できますか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "はい。都道府県を選び、住所の一部を2文字以上入力すると郵便番号を逆引きできます。"}
+        "name": "この郵便番号は公式情報として使えますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "いいえ。JP Postal Liteは郵便番号検索の補助ツールです。発送、請求、契約、本人確認など重要な用途では、日本郵便公式情報や送付先本人の確認を優先してください。"}
       },
       {
         "@type": "Question",
-        "name": "全都道府県に対応していますか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "全国47都道府県のJSONファイルを読み込み対象にしています。データファイルが空または破損している場合は、読み込み失敗として画面に表示します。"}
+        "name": "検索内容は送信されますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "検索処理と出力リスト作成はブラウザ内で行います。ただしページ表示のため、Google Analytics、AdSense、Cloudflare Analyticsなどの広告・解析タグは読み込まれます。"}
       },
       {
         "@type": "Question",
-        "name": "CSVに保存できますか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "はい。必要な行を出力リストに追加し、postal_code,address形式のCSVとして保存できます。"}
+        "name": "北海道だけ外部バックアップ取得がありますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "いいえ。現在は北海道を含め、./data/配下の自サイト内JSONのみを読み込みます。外部バックアップJSONへの自動取得は行いません。"}
       },
       {
         "@type": "Question",
-        "name": "郵便番号データは公式ですか？",
-        "acceptedAnswer": {"@type": "Answer", "text": "NicheWorks側で整形した軽量データです。重要な用途では日本郵便公式情報も確認してください。"}
+        "name": "データ確認日とは何ですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "NicheWorks側でJSONデータの読み込み方針を確認した日です。住所変更の公式反映日を保証するものではありません。"}
       }
     ]
   }
@@ -86,23 +86,32 @@
 
     <div class="ad-slot ad-top">広告枠</div>
 
+    <section class="card warning" id="important-note">
+      <div class="section-head">
+        <h2>重要な注意</h2>
+      </div>
+      <p>
+        このツールは郵便番号検索の補助です。発送、請求、契約、本人確認など重要な用途では、日本郵便公式情報や送付先本人の確認を優先してください。
+      </p>
+    </section>
+
     <section class="card compact" id="data-section">
       <div class="section-head">
         <h2>データについて</h2>
-        <p class="sub">全国47都道府県のJSONファイルを読み込み対象にしています。空ファイルや破損データは読み込み失敗として表示します。</p>
+        <p class="sub">全国47都道府県の自サイト内JSONを読み込み対象にしています。空ファイルや破損データは読み込み失敗として表示します。</p>
       </div>
       <dl class="data-facts">
         <div><dt>現在の対応範囲</dt><dd><span id="supported-pref-count">-</span>：<span id="supported-pref-list">読み込み中</span></dd></div>
         <div><dt>データ確認日</dt><dd id="data-checked-date">-</dd></div>
         <div><dt>公式確認の目安</dt><dd id="official-reference-date">-</dd></div>
       </dl>
-      <p class="note strong-note">郵便番号や住所は変更される場合があります。重要な用途では日本郵便公式情報をご確認ください。</p>
+      <p class="note strong-note">検索処理と出力リスト作成はブラウザ内で行います。ただしページ表示のため、広告・解析タグは読み込まれます。データは <code>./data/*.json</code> のみを読み込み、外部バックアップJSONへの自動取得は行いません。</p>
     </section>
 
     <section class="card" id="search-section">
       <div class="section-head">
         <h2>検索</h2>
-        <p class="sub">住所の一部を2文字以上入力すると検索できます。</p>
+        <p class="sub">住所の一部を2文字以上入力すると検索できます。全角数字、全角スペース、ハイフン類のゆれは軽く吸収します。</p>
       </div>
       <div class="form-grid">
         <label class="field">
@@ -111,7 +120,7 @@
         </label>
         <label class="field">
           <span class="field-label">住所の一部</span>
-          <input type="text" id="query" stable content="例：札幌市 / 渋谷区 / 西新宿" aria-label="住所検索入力" autocomplete="off">
+          <input type="text" id="query" placeholder="例：札幌市 / 渋谷区 / 西新宿" aria-label="住所検索入力" autocomplete="off">
         </label>
       </div>
       <div class="example-area">
@@ -130,7 +139,7 @@
         <h2 id="results-title">検索結果（0件）</h2>
         <p class="sub">結果の「⋯」からコピーや出力リスト追加ができます。</p>
       </div>
-      <p class="limit-note" id="result-limit-note" hidden>最大50件まで表示しています。結果が多すぎる場合は住所をもう少し詳しく入力してください。</p>
+      <p class="limit-note" id="result-limit-note" hidden></p>
       <div id="results" class="list empty">都道府県を選択し、住所の一部を2文字以上入力してください。</div>
     </section>
 
@@ -152,10 +161,10 @@
         <h2>FAQ</h2>
         <p class="sub">対応範囲・出力・データ確認について。</p>
       </div>
-      <details><summary>住所から郵便番号を検索できますか？</summary><p>はい。都道府県を選び、住所の一部を2文字以上入力すると郵便番号を逆引きできます。</p></details>
-      <details><summary>全都道府県に対応していますか？</summary><p>全国47都道府県のJSONファイルを読み込み対象にしています。データファイルが空または破損している場合は、読み込み失敗として表示します。</p></details>
-      <details><summary>CSVに保存できますか？</summary><p>はい。必要な行を出力リストに追加し、postal_code,address形式で保存できます。</p></details>
-      <details><summary>郵便番号データは公式ですか？</summary><p>NicheWorks側で整形した軽量データです。重要な用途では日本郵便公式情報も確認してください。</p></details>
+      <details><summary>この郵便番号は公式情報として使えますか？</summary><p>いいえ。JP Postal Liteは郵便番号検索の補助ツールです。発送、請求、契約、本人確認など重要な用途では、日本郵便公式情報や送付先本人の確認を優先してください。</p></details>
+      <details><summary>検索内容は送信されますか？</summary><p>検索処理と出力リスト作成はブラウザ内で行います。ただしページ表示のため、Google Analytics、AdSense、Cloudflare Analyticsなどの広告・解析タグは読み込まれます。</p></details>
+      <details><summary>北海道だけ外部バックアップ取得がありますか？</summary><p>いいえ。現在は北海道を含め、<code>./data/</code> 配下の自サイト内JSONのみを読み込みます。外部バックアップJSONへの自動取得は行いません。</p></details>
+      <details><summary>データ確認日とは何ですか？</summary><p>NicheWorks側でJSONデータの読み込み方針を確認した日です。住所変更の公式反映日を保証するものではありません。</p></details>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠</div>
@@ -169,10 +178,10 @@
     </div>
 
     <div class="nw-links" aria-label="関連ツール">
-      <a href="/tools/csv-tidy/">CSV Tidy</a> /
-      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
-      <a href="/tools/manual-finder/">ManualFinder</a> /
-      <a href="/tools/moving-checklist-generator/">Moving Checklist</a>
+      <a href="/tools/moving-checklist-generator/">Moving Checklist Generator</a> /
+      <a href="/tools/moving-lease-final-check/">Moving / Lease Final Check</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a> /
+      <a href="/tools/csv-tidy/">CSV Tidy</a>
     </div>
 
     <footer class="footer">
