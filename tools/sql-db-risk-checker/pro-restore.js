@@ -4,8 +4,8 @@
   const PRO_KEY = "nw_sql_pro";
   const PRO_RETURN_PARAM = "pro";
 
-  // Set the real Stripe Payment Link or another external checkout URL here.
-  const PRO_PAYMENT_URL = "";
+  // Stripe Payment Link for SQL DB Risk Checker Pro unlock.
+  const PRO_PAYMENT_URL = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
 
   const $ = (id) => document.getElementById(id);
 
