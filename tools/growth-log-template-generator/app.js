@@ -1,17 +1,10 @@
-/* ================================
- * NicheWorks tool template app.js
- * - JP/EN toggle (data-i18n)
- * - Utilities: copy, downloadText, debounce
- * ================================ */
-
 (() => {
   "use strict";
 
-  // ----------------------------
-  // i18n (required)
-  // ----------------------------
   const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
+  let currentLang = "ja";
+  let toastTimer = null;
 
   const getDefaultLang = () => {
     const browserLang = (navigator.language || "").toLowerCase();
@@ -19,12 +12,16 @@
   };
 
   const applyLang = (lang) => {
+    currentLang = lang === "en" ? "en" : "ja";
     i18nNodes().forEach((el) => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
+      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
     });
-    langButtons().forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-    document.documentElement.lang = lang;
-    try { localStorage.setItem("nw_lang", lang); } catch (_) {}
+    langButtons().forEach((button) => {
+      button.classList.toggle("active", button.dataset.lang === currentLang);
+    });
+    document.documentElement.lang = currentLang;
+    try { localStorage.setItem("nw_lang", currentLang); } catch (_) {}
+    document.dispatchEvent(new CustomEvent("nw:langchange", { detail: { lang: currentLang } }));
   };
 
   const initLang = () => {
@@ -33,85 +30,72 @@
       const saved = localStorage.getItem("nw_lang");
       if (saved === "ja" || saved === "en") lang = saved;
     } catch (_) {}
-    langButtons().forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
+    langButtons().forEach((button) => {
+      button.addEventListener("click", () => applyLang(button.dataset.lang));
+    });
     applyLang(lang);
   };
 
-  // ----------------------------
-  // Utilities
-  // ----------------------------
   const copyToClipboard = async (text) => {
+    if (!text) return false;
     try {
       await navigator.clipboard.writeText(text);
       return true;
     } catch (_) {
-      // Fallback
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+
       try {
-        document.execCommand("copy");
-        return true;
-      } catch (e) {
+        return document.execCommand("copy");
+      } catch (error) {
         return false;
       } finally {
-        document.body.removeChild(ta);
+        document.body.removeChild(textarea);
       }
     }
   };
 
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const downloadText = (filename, text, mime = "text/plain;charset=utf-8") => {
+    const blob = new Blob([text], { type: mime });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 500);
   };
 
-  const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
-    };
+  const showToast = (message) => {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
   };
 
-  // Expose minimal helpers for tool scripts (Codex can reuse)
   window.NW = {
     applyLang,
+    getLang: () => currentLang,
     copyToClipboard,
     downloadText,
-    debounce,
-    hasPro: () => {
-      try { return !!localStorage.getItem("nw_pro_key"); } catch (_) { return false; }
-    }
+    showToast
   };
 
-  // ----------------------------
-  // Boot
-  // ----------------------------
-  document.addEventListener("DOMContentLoaded", () => {
-    initLang();
-
-    // Tool-specific init should be appended below by Codex per tool.
-    // Example:
-    // initTool();
-  });
+  document.addEventListener("DOMContentLoaded", initLang);
 })();
 
-// ----------------------------
-// Tool: Growth Log Template Generator
-// ----------------------------
 const initGrowthLog = () => {
   const root = document.getElementById("toolRoot");
-  if (!root) return;
+  if (!root || !window.NW) return;
 
   const PRESETS = {
     seo: {
@@ -188,99 +172,56 @@ const initGrowthLog = () => {
     }
   };
 
-  let currentPreset = "seo";
-
-  root.innerHTML = `
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">プリセット</span>
-        <span data-i18n="en" style="display:none;">Preset</span>
-      </label>
-      <select id="presetSelect" class="select">
-        <option value="seo">SEO</option>
-        <option value="product">Product</option>
-        <option value="sales">Sales</option>
-        <option value="content">Content</option>
-      </select>
-    </div>
-    <div id="presetFields" class="field-group"></div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">仮説</span>
-        <span data-i18n="en" style="display:none;">Hypothesis</span>
-      </label>
-      <textarea id="hypothesisInput" class="textarea" placeholder="例: CTA文言を変えるとCTRが改善する"></textarea>
-    </div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">学び</span>
-        <span data-i18n="en" style="display:none;">Learnings</span>
-      </label>
-      <textarea id="learningsInput" class="textarea" placeholder="例: 価格訴求よりも用途訴求の方が反応が良かった"></textarea>
-    </div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">メモ</span>
-        <span data-i18n="en" style="display:none;">Notes</span>
-      </label>
-      <textarea id="notesInput" class="textarea" placeholder="例: トップページのCTAを改善"></textarea>
-    </div>
-    <div class="row">
-      <label class="label">
-        <input id="anonToggle" type="checkbox" />
-        <span data-i18n="ja">数値を匿名化</span>
-        <span data-i18n="en" style="display:none;">Anonymize numbers</span>
-      </label>
-    </div>
-    <div class="row">
-      <button id="generateLog" class="btn primary" type="button">
-        <span data-i18n="ja">ログ生成</span>
-        <span data-i18n="en" style="display:none;">Generate log</span>
-      </button>
-      <button id="copyLog" class="btn" type="button">
-        <span data-i18n="ja">コピー</span>
-        <span data-i18n="en" style="display:none;">Copy</span>
-      </button>
-      <button id="downloadLogMd" class="btn" type="button">
-        <span data-i18n="ja">Markdown保存</span>
-        <span data-i18n="en" style="display:none;">Download MD</span>
-      </button>
-      <button id="downloadLogTxt" class="btn" type="button">
-        <span data-i18n="ja">TXT保存</span>
-        <span data-i18n="en" style="display:none;">Download TXT</span>
-      </button>
-      <button id="insertExample" class="btn" type="button">
-        <span data-i18n="ja">例を挿入</span>
-        <span data-i18n="en" style="display:none;">Insert example</span>
-      </button>
-      <button id="exampleOnly" class="btn" type="button">
-        <span data-i18n="ja">例ログのみ生成</span>
-        <span data-i18n="en" style="display:none;">Generate example log only</span>
-      </button>
-    </div>
-    <div class="field">
-      <label class="label">
-        <span data-i18n="ja">出力</span>
-        <span data-i18n="en" style="display:none;">Output</span>
-      </label>
-      <div id="logOutput" class="out" aria-live="polite"></div>
-    </div>
-  `;
-
   const presetSelect = root.querySelector("#presetSelect");
   const presetFields = root.querySelector("#presetFields");
   const hypothesisInput = root.querySelector("#hypothesisInput");
   const learningsInput = root.querySelector("#learningsInput");
   const notesInput = root.querySelector("#notesInput");
   const anonToggle = root.querySelector("#anonToggle");
+  const bilingualToggle = root.querySelector("#bilingualToggle");
   const output = root.querySelector("#logOutput");
+  const generateButton = root.querySelector("#generateLog");
+  const copyButton = root.querySelector("#copyLog");
+  const downloadMdButton = root.querySelector("#downloadLogMd");
+  const downloadTxtButton = root.querySelector("#downloadLogTxt");
   const insertExampleButton = root.querySelector("#insertExample");
   const exampleOnlyButton = root.querySelector("#exampleOnly");
 
+  let currentPreset = presetSelect?.value || "seo";
+  let hasGenerated = false;
+  let lastText = "";
+  let lastWasExample = false;
+
+  const t = (ja, en) => window.NW.getLang() === "ja" ? ja : en;
+
+  const setInitialMessage = () => {
+    output.textContent = t(
+      "数値とメモを入力してログ生成してください。",
+      "Enter metrics and notes, then generate a log."
+    );
+    output.classList.add("empty");
+  };
+
+  const showToast = (ja, en) => window.NW.showToast(t(ja, en));
+
+  const setTextareaPlaceholders = () => {
+    [hypothesisInput, learningsInput, notesInput].forEach((textarea) => {
+      if (!textarea) return;
+      textarea.placeholder = window.NW.getLang() === "ja"
+        ? textarea.dataset.placeholderJa || ""
+        : textarea.dataset.placeholderEn || "";
+    });
+  };
+
   const parseNumber = (value) => {
     if (!value) return null;
-    const cleaned = value.toString().replace(/[%¥$,+=]/g, "").replace(/,/g, "").trim();
-    const num = parseFloat(cleaned);
+    const normalized = value
+      .toString()
+      .trim()
+      .replace(/[¥$€£,%\s]/g, "")
+      .replace(/,/g, "");
+    if (!/^[-+]?\d+(\.\d+)?$/.test(normalized)) return null;
+    const num = parseFloat(normalized);
     return Number.isNaN(num) ? null : num;
   };
 
@@ -289,49 +230,96 @@ const initGrowthLog = () => {
     return anonToggle.checked ? "XXX" : value;
   };
 
+  const appendI18nText = (parent, tagName, text, lang, hidden = false) => {
+    const node = document.createElement(tagName);
+    node.dataset.i18n = lang;
+    node.textContent = text;
+    if (hidden) node.style.display = "none";
+    parent.appendChild(node);
+    return node;
+  };
+
   const renderPresetFields = () => {
     const preset = PRESETS[currentPreset];
-    presetFields.innerHTML = preset.fields.map((field) => `
-      <div class="field">
-        <label class="label">
-          <span data-i18n="ja">${field.label.ja}</span>
-          <span data-i18n="en" style="display:none;">${field.label.en}</span>
-          ${field.required ? `<span class="required" data-i18n="ja">必須</span><span class="required" data-i18n="en" style="display:none;">Required</span>` : ""}
-        </label>
-        <input id="field-${field.key}" class="input" type="text" placeholder="${field.placeholder.ja}" data-placeholder-en="${field.placeholder.en}" />
-      </div>
-    `).join("");
+    presetFields.replaceChildren();
 
-    window.NW.applyLang(document.documentElement.lang || "ja");
+    preset.fields.forEach((field) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "field";
+
+      const label = document.createElement("label");
+      label.className = "label";
+      label.setAttribute("for", `field-${field.key}`);
+      appendI18nText(label, "span", field.label.ja, "ja");
+      appendI18nText(label, "span", field.label.en, "en", true);
+
+      if (field.required) {
+        const requiredJa = appendI18nText(label, "span", "必須", "ja");
+        requiredJa.className = "required";
+        const requiredEn = appendI18nText(label, "span", "Required", "en", true);
+        requiredEn.className = "required";
+      }
+
+      const input = document.createElement("input");
+      input.id = `field-${field.key}`;
+      input.className = "input";
+      input.type = "text";
+      input.autocomplete = "off";
+      input.dataset.key = field.key;
+      input.placeholder = window.NW.getLang() === "ja" ? field.placeholder.ja : field.placeholder.en;
+
+      wrapper.appendChild(label);
+      wrapper.appendChild(input);
+      presetFields.appendChild(wrapper);
+    });
+
+    window.NW.applyLang(window.NW.getLang());
     updatePlaceholders();
   };
 
   const updatePlaceholders = () => {
     const preset = PRESETS[currentPreset];
-    const lang = document.documentElement.lang || "ja";
     presetFields.querySelectorAll("input").forEach((input) => {
-      const field = preset.fields.find((item) => `field-${item.key}` === input.id);
+      const field = preset.fields.find((item) => item.key === input.dataset.key);
       if (!field) return;
-      input.placeholder = lang === "ja" ? field.placeholder.ja : field.placeholder.en;
+      input.placeholder = window.NW.getLang() === "ja" ? field.placeholder.ja : field.placeholder.en;
     });
+    setTextareaPlaceholders();
   };
 
-  const getFieldValues = (source) => {
+  const getFieldValues = (source = null) => {
     const preset = PRESETS[currentPreset];
     const values = {};
     preset.fields.forEach((field) => {
-      const key = field.key;
-      if (source && source[key] !== undefined) {
-        values[key] = source[key];
+      if (source && source[field.key] !== undefined) {
+        values[field.key] = source[field.key];
         return;
       }
-      const input = root.querySelector(`#field-${key}`);
-      values[key] = input ? input.value.trim() : "";
+      const input = root.querySelector(`#field-${field.key}`);
+      values[field.key] = input ? input.value.trim() : "";
     });
     values.hypothesis = source?.hypothesis ?? hypothesisInput.value.trim();
     values.learnings = source?.learnings ?? learningsInput.value.trim();
     values.notes = source?.notes ?? notesInput.value.trim();
     return values;
+  };
+
+  const validateRequired = (values) => {
+    const missing = PRESETS[currentPreset].fields.filter((field) => {
+      return field.required && !String(values[field.key] || "").trim();
+    });
+
+    if (missing.length > 0) {
+      return {
+        ok: false,
+        message: t(
+          `必須指標を入力してください: ${missing.map((field) => field.label.ja).join(" / ")}`,
+          `Enter required metrics: ${missing.map((field) => field.label.en).join(" / ")}`
+        )
+      };
+    }
+
+    return { ok: true, message: "" };
   };
 
   const deriveNextActions = (values) => {
@@ -351,249 +339,258 @@ const initGrowthLog = () => {
 
     if (pv !== null && pv < 1000) {
       actions.push({
-        ja: "流入が少ないため、検索面の新規KW追加とSNS再配信を優先。",
-        en: "Traffic is low; prioritize new SEO keywords and re-distribution on socials."
+        ja: "流入が少ないため、検索面の新規KW追加とSNS再配信を優先候補にする。",
+        en: "Traffic is low; consider new SEO keywords and social redistribution."
       });
     }
     if (ctr !== null && ctr < 1.5) {
       actions.push({
-        ja: "CTRが低いため、タイトル/サムネ/CTAを2案以上でABテスト。",
-        en: "CTR is low; A/B test at least 2 headline/thumbnail/CTA variants."
+        ja: "CTRが低めのため、タイトル/サムネ/CTAを2案以上で検証する。",
+        en: "CTR looks low; test at least two headline, thumbnail, or CTA variants."
       });
     }
     if (avgPosition !== null && avgPosition > 10) {
       actions.push({
-        ja: "掲載順位が低いので、H2構成と内部リンクを改善し順位改善を狙う。",
-        en: "Average position is low; improve H2 structure and internal links."
+        ja: "掲載順位が低めのため、H2構成と内部リンクを見直す。",
+        en: "Average position looks weak; review H2 structure and internal links."
       });
     }
     if (activationRate !== null && activationRate < 20) {
       actions.push({
-        ja: "アクティベーション率が低いため、オンボーディングの初期導線を短縮。",
-        en: "Activation rate is low; shorten onboarding steps to first value."
+        ja: "アクティベーション率が低めのため、初回価値までの導線を短縮する。",
+        en: "Activation looks low; shorten the path to first value."
       });
     }
     if (retentionRate !== null && retentionRate < 30) {
       actions.push({
-        ja: "継続率が低いので、1週間以内のリマインドと価値提示を強化。",
-        en: "Retention is low; reinforce reminders and value messaging within 1 week."
+        ja: "継続率が低めのため、1週間以内のリマインドと価値提示を見直す。",
+        en: "Retention looks low; review reminders and value messaging within one week."
       });
     }
     if (churnRate !== null && churnRate > 5) {
       actions.push({
-        ja: "解約率が高いので、解約理由のヒアリングと対策メールを実施。",
-        en: "Churn is high; collect churn reasons and send mitigation emails."
+        ja: "解約率が高めのため、解約理由の確認と対策メールを検討する。",
+        en: "Churn looks high; check churn reasons and consider mitigation emails."
       });
     }
     if (leads !== null && leads < 20) {
       actions.push({
-        ja: "リードが少ないので、LPの資料DL導線とCTA配置を見直す。",
-        en: "Leads are low; review lead magnet CTA placement on the landing page."
+        ja: "リードが少なめのため、LPの資料DL導線とCTA配置を見直す。",
+        en: "Leads look low; review lead magnet CTA placement on the landing page."
       });
     }
     if (mql !== null && leads !== null && mql / Math.max(leads, 1) < 0.3) {
       actions.push({
-        ja: "MQL比率が低いため、スコアリング条件とセグメントを再設計。",
-        en: "MQL rate is low; revisit scoring criteria and lead segmentation."
+        ja: "MQL比率が低めのため、スコアリング条件とセグメントを再確認する。",
+        en: "MQL rate looks low; revisit scoring criteria and lead segmentation."
       });
     }
     if (pipeline !== null && pipeline < 5) {
       actions.push({
-        ja: "商談化が不足しているため、既存リードへの再接触を強化。",
-        en: "Opportunities are low; re-engage existing leads with targeted outreach."
+        ja: "商談化が少なめのため、既存リードへの再接触を検討する。",
+        en: "Opportunities look low; consider re-engaging existing leads."
       });
     }
     if (revenue !== null && revenue < 100000) {
       actions.push({
-        ja: "売上が伸び悩むため、アップセル/バンドル提案をテスト。",
-        en: "Revenue is soft; test upsell or bundle offers."
+        ja: "売上が小さい場合は、アップセル/バンドル提案の検証を候補にする。",
+        en: "If revenue is still small, consider testing upsells or bundles."
       });
     }
     if (pieces !== null && pieces < 4) {
       actions.push({
-        ja: "公開本数が少ないため、週次の制作枠を確保して更新頻度を増やす。",
-        en: "Publishing volume is low; secure weekly production slots."
+        ja: "公開本数が少なめのため、週次の制作枠を確保する。",
+        en: "Publishing volume looks low; secure weekly production slots."
       });
     }
     if (subscribers !== null && subscribers < 50) {
       actions.push({
-        ja: "購読者増が鈍いので、記事内の登録CTAとオファーを強化。",
-        en: "Subscriber growth is slow; strengthen in-article signup CTA and offer."
+        ja: "購読者増が鈍い場合は、記事内の登録CTAとオファーを見直す。",
+        en: "If subscriber growth is slow, review in-article signup CTA and offer."
       });
     }
 
     const fallback = {
       seo: [
-        { ja: "上位表示できているKWの共通点を抽出して次記事に反映。", en: "Identify patterns in top-ranking keywords and apply to next articles." },
-        { ja: "Search Consoleのクエリ別に改善対象をピックアップ。", en: "Review Search Console queries to select optimization targets." },
-        { ja: "競合記事の構成を比較して不足セクションを補強。", en: "Compare competitor outlines and add missing sections." }
+        { ja: "上位表示できているKWの共通点を抽出して次記事に反映する。", en: "Identify patterns in top-ranking keywords and apply them to the next articles." },
+        { ja: "Search Consoleのクエリ別に改善対象をピックアップする。", en: "Review Search Console queries to select optimization targets." },
+        { ja: "競合記事の構成を比較して不足セクションを補強する。", en: "Compare competitor outlines and add missing sections." }
       ],
       product: [
-        { ja: "主要機能の利用頻度を分解してボトルネックを特定。", en: "Break down feature usage to find activation bottlenecks." },
-        { ja: "アクティブユーザーの定性ヒアリングを2件実施。", en: "Run 2 qualitative interviews with active users." },
-        { ja: "最初の成功体験までの導線を1画面で完結させる。", en: "Make the path to first success fit in a single screen." }
+        { ja: "主要機能の利用頻度を分解してボトルネックを特定する。", en: "Break down feature usage to find activation bottlenecks." },
+        { ja: "アクティブユーザーの定性ヒアリングを2件実施する。", en: "Run two qualitative interviews with active users." },
+        { ja: "最初の成功体験までの導線を1画面で説明できる形にする。", en: "Make the path to first success explainable in one screen." }
       ],
       sales: [
-        { ja: "失注理由を3件レビューして改善メッセージを準備。", en: "Review 3 lost-deal reasons and update messaging." },
-        { ja: "商談化率が高いチャネルを優先して投入。", en: "Prioritize channels with higher opportunity conversion." },
-        { ja: "導入事例を1本追加して信頼性を補強。", en: "Add one case study to reinforce credibility." }
+        { ja: "失注理由を3件レビューして改善メッセージを準備する。", en: "Review three lost-deal reasons and update messaging." },
+        { ja: "商談化率が高いチャネルを優先して投入する。", en: "Prioritize channels with higher opportunity conversion." },
+        { ja: "導入事例を1本追加して信頼性を補強する。", en: "Add one case study to reinforce credibility." }
       ],
       content: [
-        { ja: "反応が良い記事の構成をテンプレ化。", en: "Template the structure of high-performing posts." },
+        { ja: "反応が良い記事の構成をテンプレ化する。", en: "Template the structure of high-performing posts." },
         { ja: "配信チャネルごとのCTRを比較してリライト計画を立てる。", en: "Compare CTR by channel and plan rewrites." },
-        { ja: "上位3記事に内部リンクを集中させて回遊を増やす。", en: "Add internal links to top 3 posts to boost recirculation." }
+        { ja: "上位3記事に内部リンクを集中させて回遊を増やす。", en: "Add internal links to the top three posts to boost recirculation." }
       ]
     };
 
-    const combined = [...actions];
-    fallback[currentPreset].forEach((item) => combined.push(item));
-
     const unique = [];
-    combined.forEach((item) => {
-      if (!unique.some((existing) => existing.ja === item.ja)) {
-        unique.push(item);
-      }
+    [...actions, ...fallback[currentPreset]].forEach((item) => {
+      if (!unique.some((existing) => existing.ja === item.ja)) unique.push(item);
     });
 
     return unique.slice(0, 5);
   };
 
-  const buildLog = (values) => {
+  const buildLogForLang = (values, lang, options = {}) => {
     const date = new Date().toISOString().slice(0, 10);
     const preset = PRESETS[currentPreset];
     const metrics = preset.fields.map((field) => ({
-      label: field.label,
+      label: field.label[lang],
       value: formatValue(values[field.key])
     }));
-
     const hypothesis = values.hypothesis || "-";
     const learnings = values.learnings || "-";
     const notes = values.notes || "-";
     const nextActions = deriveNextActions(values);
     const mainAction = nextActions[0] || {
-      ja: "次回の最優先施策を1つ決めて実行する。",
-      en: "Pick one highest-priority action and execute it."
+      ja: "次回の優先候補を1つ決めて実行する。",
+      en: "Pick one priority candidate and execute it."
     };
 
-    const jp = `# 成長ログ（${preset.label.ja}）
-` +
-      `更新日: ${date}
-` +
-      `
-## 仮説
-` +
-      `- ${hypothesis}
-` +
-      `
+    if (lang === "ja") {
+      return `${options.example ? "# サンプル成長ログ" : `# 成長ログ（${preset.label.ja}）`}
+更新日: ${date}
+
+${anonToggle.checked ? "※数値は匿名化済みです。公開前に、必要に応じて丸める・伏せる・削除する確認をしてください。\n\n" : ""}## 仮説
+- ${hypothesis}
+
 ## 結果
-` +
-      `### ${preset.resultHeading.ja}
-` +
-      metrics.map((item) => `- ${item.label.ja}: ${item.value}`).join("
-") + "
-" +
-      `
+### ${preset.resultHeading.ja}
+${metrics.map((item) => `- ${item.label}: ${item.value}`).join("\n")}
+
 ## 学び
-` +
-      `- ${learnings}
-` +
-      `
+- ${learnings}
+
 ## 次のアクション
-` +
-      nextActions.map((item) => `- ${item.ja}`).join("
-") + "
-" +
-      `- **もし1つだけやるなら**: ${mainAction.ja}
-` +
-      `
+${nextActions.map((item) => `- ${item.ja}`).join("\n")}
+- **優先候補**: ${mainAction.ja}
+
 ## メモ
-` +
-      `- ${notes}
-`;
+- ${notes}
 
-    const en = `# Growth Log (${preset.label.en})
-` +
-      `Date: ${date}
-` +
-      `
-## Hypothesis
-` +
-      `- ${hypothesis}
-` +
-      `
+## 注意
+- Next actions は簡易ルールによる案です。業種、流入元、プロダクト段階、規模、計測条件によって適切な判断は変わります。
+- 公開前に、売上、CV、DAU/WAU、広告指標、顧客情報、社内施策、競合上不利な情報が含まれていないか確認してください。`;
+    }
+
+    return `${options.example ? "# Sample Growth Log" : `# Growth Log (${preset.label.en})`}
+Date: ${date}
+
+${anonToggle.checked ? "Note: numbers have been anonymized. Before publishing, check whether values should be rounded, hidden, or removed.\n\n" : ""}## Hypothesis
+- ${hypothesis}
+
 ## Result
-` +
-      `### ${preset.resultHeading.en}
-` +
-      metrics.map((item) => `- ${item.label.en}: ${item.value}`).join("
-") + "
-" +
-      `
+### ${preset.resultHeading.en}
+${metrics.map((item) => `- ${item.label}: ${item.value}`).join("\n")}
+
 ## Learnings
-` +
-      `- ${learnings}
-` +
-      `
+- ${learnings}
+
 ## Next actions
-` +
-      nextActions.map((item) => `- ${item.en}`).join("
-") + "
-" +
-      `- **If you do only 1 thing:** ${mainAction.en}
-` +
-      `
+${nextActions.map((item) => `- ${item.en}`).join("\n")}
+- **Priority candidate:** ${mainAction.en}
+
 ## Notes
-` +
-      `- ${notes}
-`;
+- ${notes}
 
-    return `${jp}
-
-${en}`;
+## Caution
+- Next actions are simple rule-based suggestions. The right decision depends on industry, traffic source, product stage, scale, and measurement conditions.
+- Before publishing, check for revenue, conversions, DAU/WAU, ad metrics, customer information, internal initiatives, or competitive information.`;
   };
 
-  const render = (source) => {
+  const buildLog = (values, options = {}) => {
+    if (bilingualToggle.checked) {
+      return `${buildLogForLang(values, "ja", options)}\n\n---\n\n${buildLogForLang(values, "en", options)}`;
+    }
+    return buildLogForLang(values, window.NW.getLang(), options);
+  };
+
+  const render = (source = null, options = {}) => {
     const values = getFieldValues(source);
-    output.textContent = buildLog(values);
+    const validation = options.skipValidation ? { ok: true } : validateRequired(values);
+    if (!validation.ok) {
+      hasGenerated = false;
+      lastText = "";
+      lastWasExample = false;
+      setInitialMessage();
+      window.NW.showToast(validation.message);
+      return;
+    }
+
+    lastText = buildLog(values, options);
+    lastWasExample = !!options.example;
+    hasGenerated = true;
+    output.textContent = lastText;
+    output.classList.remove("empty");
   };
 
-  const generateButton = root.querySelector("#generateLog");
-  const copyButton = root.querySelector("#copyLog");
-  const downloadMdButton = root.querySelector("#downloadLogMd");
-  const downloadTxtButton = root.querySelector("#downloadLogTxt");
+  const requireGeneratedText = () => {
+    if (!hasGenerated || !lastText.trim()) {
+      showToast("先にログを生成してください。", "Generate a log first.");
+      return null;
+    }
+    return lastText;
+  };
 
-  generateButton.addEventListener("click", () => render());
+  const getDateStamp = () => new Date().toISOString().slice(0, 10).replace(/-/g, "");
+  const getOutputLangTag = () => bilingualToggle.checked ? "both" : window.NW.getLang();
+  const getFileName = (ext) => {
+    const suffix = lastWasExample ? "-sample" : "";
+    return `growth-log-${currentPreset}-${getOutputLangTag()}-${getDateStamp()}${suffix}.${ext}`;
+  };
+
+  generateButton.addEventListener("click", () => {
+    render();
+  });
+
   copyButton.addEventListener("click", async () => {
-    const ok = await window.NW.copyToClipboard(output.textContent || "");
-    if (!ok) alert("Copy failed");
+    const text = requireGeneratedText();
+    if (!text) return;
+    const ok = await window.NW.copyToClipboard(text);
+    showToast(ok ? "コピーしました。" : "コピーに失敗しました。", ok ? "Copied." : "Copy failed.");
   });
+
   downloadMdButton.addEventListener("click", () => {
-    const text = output.textContent || buildLog(getFieldValues());
-    window.NW.downloadText("growth-log.md", text);
+    const text = requireGeneratedText();
+    if (!text) return;
+    window.NW.downloadText(getFileName("md"), text, "text/markdown;charset=utf-8");
+    showToast("Markdownを保存しました。", "Markdown saved.");
   });
+
   downloadTxtButton.addEventListener("click", () => {
-    const text = output.textContent || buildLog(getFieldValues());
-    window.NW.downloadText("growth-log.txt", text);
+    const text = requireGeneratedText();
+    if (!text) return;
+    window.NW.downloadText(getFileName("txt"), text);
+    showToast("TXTを保存しました。", "TXT saved.");
   });
 
   presetSelect.addEventListener("change", (event) => {
     currentPreset = event.target.value;
+    hasGenerated = false;
+    lastText = "";
+    lastWasExample = false;
     renderPresetFields();
-    render();
-  });
-
-  document.querySelectorAll(".nw-lang-switch button").forEach((button) => {
-    button.addEventListener("click", updatePlaceholders);
+    setInitialMessage();
   });
 
   insertExampleButton.addEventListener("click", () => {
     const example = {
       ...PRESETS[currentPreset].example,
-      hypothesis: "CTA文言変更でクリック率が上がるはず。",
-      learnings: "比較軸を明示するとクリックが増えた。",
-      notes: "同日のSNS投稿もクリック増に寄与。"
+      hypothesis: t("CTA文言変更でクリック率が上がるはず。", "Changing CTA copy may increase click-through rate."),
+      learnings: t("比較軸を明示するとクリックが増えた。", "Clear comparison points increased clicks."),
+      notes: t("同日のSNS投稿もクリック増に寄与。", "Same-day social posting may also have contributed.")
     };
-    renderPresetFields();
+
     Object.entries(example).forEach(([key, value]) => {
       const input = root.querySelector(`#field-${key}`);
       if (input) input.value = value;
@@ -601,22 +598,43 @@ ${en}`;
     hypothesisInput.value = example.hypothesis;
     learningsInput.value = example.learnings;
     notesInput.value = example.notes;
-    render();
+    hasGenerated = false;
+    lastText = "";
+    lastWasExample = false;
+    setInitialMessage();
+    showToast("サンプル値を入力しました。ログ生成を押してください。", "Sample values inserted. Press Generate log.");
   });
 
   exampleOnlyButton.addEventListener("click", () => {
     const example = {
       ...PRESETS[currentPreset].example,
-      hypothesis: "見出し改善でCTRが上がるはず。",
-      learnings: "比較表を追加すると滞在時間が伸びた。",
-      notes: "来週はFAQセクションも追加する。"
+      hypothesis: t("見出し改善でCTRが上がるはず。", "Improving headlines may increase CTR."),
+      learnings: t("比較表を追加すると滞在時間が伸びた。", "Adding comparison tables increased time on page."),
+      notes: t("来週はFAQセクションも追加する。", "Next week, add an FAQ section as well.")
     };
-    output.textContent = buildLog(example);
+    render(example, { example: true, skipValidation: true });
+    showToast("サンプルログを生成しました。", "Sample log generated.");
+  });
+
+  bilingualToggle.addEventListener("change", () => {
+    if (hasGenerated) render(null, { example: lastWasExample, skipValidation: false });
+  });
+
+  anonToggle.addEventListener("change", () => {
+    if (hasGenerated) render(null, { example: lastWasExample, skipValidation: false });
+  });
+
+  document.addEventListener("nw:langchange", () => {
+    updatePlaceholders();
+    if (hasGenerated && !bilingualToggle.checked) {
+      render(null, { example: lastWasExample, skipValidation: false });
+    } else if (!hasGenerated) {
+      setInitialMessage();
+    }
   });
 
   renderPresetFields();
-  render();
-  window.NW.applyLang(document.documentElement.lang || "ja");
+  setInitialMessage();
 };
 
 document.addEventListener("DOMContentLoaded", initGrowthLog);
