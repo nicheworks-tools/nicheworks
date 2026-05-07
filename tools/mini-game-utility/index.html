@@ -11,36 +11,31 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>ミニゲームユーティリティ｜Mini Game Utility | NicheWorks</title>
-  <meta name="description" content="ミニゲーム向けのタイマーとスコア記録をまとめた無料ユーティリティ。履歴保存とCSV出力にも対応。">
+  <title>ミニゲーム用タイマー・スコア記録｜Mini Game Utility | NicheWorks</title>
+  <meta name="description" content="ミニゲーム用のタイマーと簡易スコア記録を無料で使えるユーティリティ。履歴保存とCSV出力に対応しますが、大会運営の厳密集計向けではありません。">
   <link rel="canonical" href="https://nicheworks.app/tools/mini-game-utility/">
 
-  <!-- OGP -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="ミニゲームユーティリティ｜Mini Game Utility | NicheWorks">
-  <meta property="og:description" content="ミニゲーム向けのタイマーとスコア記録をまとめた無料ユーティリティ。履歴保存とCSV出力にも対応。">
+  <meta property="og:title" content="ミニゲーム用タイマー・スコア記録｜Mini Game Utility | NicheWorks">
+  <meta property="og:description" content="ミニゲーム用のタイマーと簡易スコア記録を無料で使えるユーティリティ。履歴保存とCSV出力に対応しますが、大会運営の厳密集計向けではありません。">
   <meta property="og:url" content="https://nicheworks.app/tools/mini-game-utility/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ミニゲーム用タイマー・スコア記録｜Mini Game Utility | NicheWorks">
+  <meta name="twitter:description" content="ミニゲーム用のタイマーと簡易スコア記録を無料で使えるユーティリティ。履歴保存とCSV出力に対応しますが、大会運営の厳密集計向けではありません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="robots" content="index,follow">
 
-  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
-  <!--
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
-  -->
-
-  <!-- JSON-LD (WebApplication) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,17 +43,52 @@
     "name": "Mini Game Utility",
     "url": "https://nicheworks.app/tools/mini-game-utility/",
     "applicationCategory": "UtilityApplication",
-    "description": "Timer and score logger for mini games.",
+    "description": "A free mini game timer and lightweight score logger with browser history and CSV export. It is not intended for strict tournament operations.",
     "operatingSystem": "All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "スコア履歴は保存されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "スコア履歴はこのブラウザのlocalStorageに保存されます。別端末には同期されず、ブラウザデータを削除すると消えます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "入力内容は送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "タイマーとスコア記録処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "CSV出力できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。履歴をCSVとして保存またはコピーできます。表計算ソフトで開いて確認してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "複数人・チーム戦に使えますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "簡易スコア記録には使えますが、大会運営用の厳密な集計機能ではありません。"
+        }
+      }
+    ]
   }
   </script>
 
   <link rel="stylesheet" href="./style.css" />
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="ミニゲームユーティリティ｜Mini Game Utility | NicheWorks">
-  <meta name="twitter:description" content="ミニゲーム向けのタイマーとスコア記録をまとめた無料ユーティリティ。履歴保存とCSV出力にも対応。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 
 <body>
@@ -66,8 +96,8 @@
     <h1 class="nw-title" data-i18n="ja">ミニゲームユーティリティ</h1>
     <h1 class="nw-title" data-i18n="en" style="display:none;">Mini Game Utility</h1>
 
-    <p class="nw-lead" data-i18n="ja">タイマーとスコア履歴をまとめて管理。</p>
-    <p class="nw-lead" data-i18n="en" style="display:none;">Manage timer and score history in one place.</p>
+    <p class="nw-lead" data-i18n="ja">タイマー、簡易スコア記録、履歴保存、CSV出力をまとめて使えます。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Use a timer, lightweight score log, history, and CSV export in one place.</p>
 
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
@@ -76,14 +106,17 @@
   </header>
 
   <main class="nw-main">
-    <!-- Top Ad (required) -->
     <div class="ad-slot ad-top">広告枠</div>
 
-    <!-- Privacy note (recommended for text tools) -->
-    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
-    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+    <div class="nw-note">
+      <p data-i18n="ja">タイマーとスコア記録処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。</p>
+      <p data-i18n="en" style="display:none;">Timer and score logging run in your browser. Ads and analytics tags may still load for page display.</p>
+      <p data-i18n="ja">スコア履歴はこのブラウザのlocalStorage（<code>nw_mini_game_scores</code>）に保存されます。別端末には同期されず、ブラウザデータを削除すると消えます。</p>
+      <p data-i18n="en" style="display:none;">Score history is saved in this browser's localStorage (<code>nw_mini_game_scores</code>). It is not synced to other devices and disappears if browser data is cleared.</p>
+      <p data-i18n="ja">本名、学校名、イベント内部情報などは必要に応じて伏せてください。</p>
+      <p data-i18n="en" style="display:none;">Avoid entering real names, school names, or internal event information when not needed.</p>
+    </div>
 
-    <!-- Tool UI -->
     <section class="card">
       <div class="card-hd">
         <h2 class="card-title" data-i18n="ja">タイマー</h2>
@@ -95,7 +128,7 @@
           <div class="field">
             <label class="label" data-i18n="ja">タイマー表示</label>
             <label class="label" data-i18n="en" style="display:none;">Timer display</label>
-            <div class="out" id="timerDisplay">00:00</div>
+            <div class="out timer-out" id="timerDisplay">00:00</div>
           </div>
           <div class="row">
             <button class="btn primary" id="btnStart" type="button">
@@ -117,8 +150,10 @@
           <div class="field">
             <label class="label" data-i18n="ja">スコア記録</label>
             <label class="label" data-i18n="en" style="display:none;">Score entry</label>
-            <input class="input" id="playerName" type="text" stable content="Player / チーム名" />
-            <input class="input" id="scoreValue" type="number" stable content="Score" />
+            <input class="input" id="playerName" type="text" placeholder="Player / チーム名" autocomplete="off" />
+            <input class="input" id="scoreValue" type="number" placeholder="Score" inputmode="numeric" min="0" step="1" />
+            <p class="hint" data-i18n="ja">名前を空にすると Player 1 / Player 2 のように自動で連番を付けます。0点は明示入力時だけ記録できます。</p>
+            <p class="hint" data-i18n="en" style="display:none;">Leave the name empty to auto-number entries like Player 1 / Player 2. A zero score is saved only when explicitly entered.</p>
           </div>
 
           <div class="row">
@@ -127,25 +162,52 @@
               <span data-i18n="en" style="display:none;">Add score</span>
             </button>
             <button class="btn" id="btnExport" type="button">Export CSV</button>
+            <button class="btn" id="btnCopyCsv" type="button">
+              <span data-i18n="ja">CSVコピー</span>
+              <span data-i18n="en" style="display:none;">Copy CSV</span>
+            </button>
+            <button class="btn" id="btnCopyHistory" type="button">
+              <span data-i18n="ja">履歴コピー</span>
+              <span data-i18n="en" style="display:none;">Copy history</span>
+            </button>
             <button class="btn danger" id="btnClear" type="button">
               <span data-i18n="ja">履歴クリア</span>
               <span data-i18n="en" style="display:none;">Clear history</span>
             </button>
           </div>
 
+          <div class="status" id="statusMessage" role="status" aria-live="polite"></div>
+
           <div class="field">
             <label class="label" data-i18n="ja">履歴</label>
             <label class="label" data-i18n="en" style="display:none;">History</label>
-            <pre class="out" id="history">-</pre>
+            <div class="out" id="historyEmpty">-</div>
+            <div class="table-wrap" id="historyTableWrap" hidden>
+              <table class="score-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th data-i18n="ja">名前</th>
+                    <th data-i18n="en" style="display:none;">Name</th>
+                    <th>Score</th>
+                    <th data-i18n="ja">記録時刻</th>
+                    <th data-i18n="en" style="display:none;">Saved at</th>
+                    <th data-i18n="ja">経過</th>
+                    <th data-i18n="en" style="display:none;">Elapsed</th>
+                    <th data-i18n="ja">操作</th>
+                    <th data-i18n="en" style="display:none;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="historyBody"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bottom Ad (recommended) -->
     <div class="ad-slot ad-bottom">広告枠</div>
 
-    <!-- Donate (1–2 placements max) -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
@@ -155,14 +217,44 @@
       </div>
     </div>
 
-    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-faq" aria-labelledby="faqTitle">
+      <h2 id="faqTitle" class="nw-faq-title" data-i18n="ja">FAQ</h2>
+      <h2 class="nw-faq-title" data-i18n="en" style="display:none;">FAQ</h2>
+
+      <details>
+        <summary data-i18n="ja">スコア履歴は保存されますか？</summary>
+        <summary data-i18n="en" style="display:none;">Is score history saved?</summary>
+        <p data-i18n="ja">このブラウザのlocalStorageに保存されます。別端末には同期されず、ブラウザデータ削除で消えます。</p>
+        <p data-i18n="en" style="display:none;">It is saved in this browser's localStorage. It is not synced to other devices and is removed when browser data is cleared.</p>
+      </details>
+      <details>
+        <summary data-i18n="ja">入力内容は送信されますか？</summary>
+        <summary data-i18n="en" style="display:none;">Is entered data sent anywhere?</summary>
+        <p data-i18n="ja">タイマーとスコア記録処理はブラウザ内で行います。ただし広告・解析タグは読み込まれます。</p>
+        <p data-i18n="en" style="display:none;">Timer and score logging run in the browser. Ads and analytics tags may still load.</p>
+      </details>
+      <details>
+        <summary data-i18n="ja">CSV出力できますか？</summary>
+        <summary data-i18n="en" style="display:none;">Can I export CSV?</summary>
+        <p data-i18n="ja">はい。履歴をCSVとして保存またはコピーできます。表計算ソフトで開いて確認してください。</p>
+        <p data-i18n="en" style="display:none;">Yes. You can save or copy the history as CSV and open it in a spreadsheet app.</p>
+      </details>
+      <details>
+        <summary data-i18n="ja">複数人・チーム戦に使えますか？</summary>
+        <summary data-i18n="en" style="display:none;">Can I use this for teams or multiple players?</summary>
+        <p data-i18n="ja">簡易スコア記録には使えますが、大会運営用の厳密な集計機能ではありません。</p>
+        <p data-i18n="en" style="display:none;">It works for lightweight score logging, but it is not a strict tournament management system.</p>
+      </details>
+    </section>
+
     <section class="nw-other">
       <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
       <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
       <div class="nw-other-links">
-        <a href="/tools/log-formatter/">LogFormatter</a>
-        <a href="/tools/rename-wizard/">Rename Wizard</a>
-        <a href="/tools/manual-finder/">ManualFinder</a>
+        <a href="/tools/tiny-audio-meter/">Tiny Audio Meter</a>
+        <a href="/tools/wifi-meter/">WiFi Meter</a>
+        <a href="/tools/unitmaster/">UnitMaster</a>
+        <a href="/tools/og-image-maker/">OG Image Maker</a>
       </div>
     </section>
   </main>
