@@ -3,240 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Usage | Codex Usage Forecaster | NicheWorks</title>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=tools/money-template-checker/index.html:G-57QT78M3JB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'tools/money-template-checker/index.html:G-57QT78M3JB');
-  </script>
-
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tools/codex-usage-forecaster/usage.html:ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="./style.css" />
-
+  <title>使い方｜Codex Usage Forecaster | NicheWorks</title>
+  <meta name="description" content="Codex Usage Forecasterの使い方、保存内容、予測の限界、Export/Importの注意点を説明します。予測は手入力ログからの簡易推定です。">
   <link rel="canonical" href="https://nicheworks.app/tools/codex-usage-forecaster/usage.html">
-  <meta property="og:url" content="https://nicheworks.app/tools/codex-usage-forecaster/usage.html">
-  <meta name="description" content="Usage | Codex Usage Forecaster は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="Usage | Codex Usage Forecaster | NicheWorks">
-  <meta property="og:description" content="Usage | Codex Usage Forecaster は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Usage | Codex Usage Forecaster | NicheWorks">
-  <meta name="twitter:description" content="Usage | Codex Usage Forecaster は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Usage | Codex Usage Forecaster | NicheWorks",
-    "url": "https://nicheworks.app/tools/codex-usage-forecaster/usage.html",
-    "description": "Usage | Codex Usage Forecaster は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
-  }
-  </script>
+  <meta property="og:type" content="website"><meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="使い方｜Codex Usage Forecaster | NicheWorks"><meta property="og:description" content="Codex Usage Forecasterの使い方、保存内容、予測の限界、Export/Importの注意点を説明します。予測は手入力ログからの簡易推定です。"><meta property="og:url" content="https://nicheworks.app/tools/codex-usage-forecaster/usage.html"><meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="使い方｜Codex Usage Forecaster | NicheWorks"><meta name="twitter:description" content="Codex Usage Forecasterの使い方、保存内容、予測の限界、Export/Importの注意点を説明します。予測は手入力ログからの簡易推定です。"><meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"使い方｜Codex Usage Forecaster | NicheWorks","url":"https://nicheworks.app/tools/codex-usage-forecaster/usage.html","description":"Codex Usage Forecasterの使い方、保存内容、予測の限界、Export/Importの注意点を説明します。予測は手入力ログからの簡易推定です。","inLanguage":"ja"}</script>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="topbar">
-        <div class="brand">
-          <div class="logo">◉</div>
-          <div class="titles">
-            <h1>Codex Usage Forecaster</h1>
-            <p class="tagline">燃費で枠を予測する</p>
-          </div>
-        </div>
-        <div class="actions">
-          <div class="lang">
-            <a href="./usage.html" aria-current="page">JA</a>
-            <span>·</span>
-            <a href="./en/usage.html">EN</a>
-          </div>
-          <button class="themeBtn" type="button" id="themeToggle" aria-label="Toggle theme">☾</button>
-        </div>
-      </div>
-
-      <nav class="nav">
-        <a href="./index.html">Dashboard</a>
-        <a href="./usage.html" aria-current="page">Usage</a>
-        <a href="./howto.html">HowTo</a>
-      </nav>
-    </header>
-
-    <section class="ad" aria-label="広告">
-      <p class="label">Ad</p>
-      <div class="box"></div>
-    </section>
-
-    <main>
-      <section class="card">
-        <h2>これは何？</h2>
-        <p class="muted">
-          Codex（または同等のコーディング支援）の「使用率%」を自分で記録して、
-          その増加ペース（燃費）から <strong>枠がいつ尽きそうか</strong> を推定するツール。
-          <br/>
-          公式の上限数値が非公開でも、体感を “数値化” してペース配分できるのが目的。
-        </p>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>基本の使い方（最短）</h2>
-        <ol class="muted" style="line-height:1.7;">
-          <li>Dashboardで <strong>5h%</strong> / <strong>週%</strong> を入力して「保存」</li>
-          <li>2回以上ログを取る（例：朝と夜）</li>
-          <li>燃費（%/時・%/日）と、枯渇ETAが出る</li>
-        </ol>
-
-        <p class="small muted" style="margin-top:10px;">
-          ※ 週枠が厄介なら「週%だけ」でもOK。5h%は空欄でも保存できる。
-        </p>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>燃費プロファイル（フィルタの考え方）</h2>
-        <p class="muted">
-          使用状況によって燃費が変わる（例：大規模PRは重い、軽微修正は軽い）。
-          <br/>
-          そこでログに <strong>mode / status / model / note</strong> を付け、
-          フィルタで “今の状況だけ” を抽出して予測できる。
-        </p>
-        <ul class="muted" style="line-height:1.7;">
-          <li><strong>mode</strong>：cloud / cli / local / other（あなたの運用区分）</li>
-          <li><strong>status</strong>：unknown / ok / warn / limited / cooldown（体感メモでもOK）</li>
-          <li><strong>model</strong>：mini/high など、分かる範囲で</li>
-          <li><strong>note</strong>：PR・検索多め・修正だけ等</li>
-        </ul>
-        <p class="small muted" style="margin-top:10px;">
-          「Forecast uses filters」を <strong>yes</strong> にすると、今見ている絞り込みログだけで予測する。
-          <br/>
-          燃費が荒れるなら、ここを使って “燃費の揺れ” を減らす。
-        </p>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>リセット（枠更新）の考え方</h2>
-        <p class="muted">
-          枠は途中で更新されるので、<strong>枯渇ETAより先にリセットが来る</strong> ことがある。
-          その場合、サブ行に「枠更新が先に来そう」が出る。
-        </p>
-
-        <div class="muted" style="line-height:1.7; margin-top:10px;">
-          <p><strong>自動推定（auto）</strong>：ログ内の “%が下がった瞬間” を検出して周期から次を推定</p>
-          <p><strong>手動指定（manual）</strong>：次のリセット日時が分かるなら、それを入れるのが最強</p>
-        </div>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>Profiles（保存）</h2>
-        <p class="muted">
-          今のフィルタ状態（mode/status/model/note + affectsForecast）を名前付き保存する機能。
-          <br/>
-          よく使う状況（例：cloud+mini、cli+heavy）をワンクリック切替できる。
-        </p>
-        <p class="small muted" style="margin-top:10px;">
-          ※ 同名プロファイルは上書き（増殖しない）
-        </p>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>FAQ</h2>
-
-        <div class="muted" style="line-height:1.8;">
-          <p><strong>Q. 公式の「上限数値」が分からないのに意味ある？</strong><br/>
-            A. ある。重要なのは「今の作業が何%/時間（何%/日）で消費してるか」。
-            上限が非公開でも、燃費が分かれば “今週どれくらい作業できそうか” の判断ができる。
-          </p>
-
-          <p><strong>Q. 5時間枠と週枠、どっちを入れるべき？</strong><br/>
-            A. 週枠が厄介なら週だけでOK。短期の作業配分を見るなら5h%もあると強い。
-          </p>
-
-          <p><strong>Q. statusって公式の何か？</strong><br/>
-            A. ここでは “あなたの体感メモ” でも良い。warn/limited/cooldown を残すと、
-            後で「あの状態は燃費が悪かった」みたいな切り分けに使える。
-          </p>
-
-          <p><strong>Q. 予測がズレる</strong><br/>
-            A. ①ログが少ない（最低2件、できれば5件以上） ②燃費が混ざっている（フィルタ未活用） ③リセット日時がズレている（manual pin推奨）  
-          </p>
-
-          <p><strong>Q. データは外に送られる？</strong><br/>
-            A. ログ/プロファイル/設定はブラウザのlocalStorageに保存。サーバーにアップロードしない。
-            （アクセス解析/広告のタグはページ表示の計測用途）
-          </p>
-        </div>
-      </section>
-
-      <section class="card" style="margin-top:12px;">
-        <h2>既知の限界（重要）</h2>
-        <ul class="muted" style="line-height:1.7;">
-          <li>これは公式の上限を当てるツールではなく、<strong>燃費からの推定</strong></li>
-          <li>ログが少ないと燃費は荒れる（最低2件、推奨5件+）</li>
-          <li>急に燃費が変わる（モデル切替・作業内容・検索量など）と外れる</li>
-          <li>リセット推定はヒューリスティック。分かるなら手動指定が強い</li>
-          <li>localStorageなので、端末/ブラウザを変えるとデータは移らない（Export/Import推奨）</li>
-        </ul>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="row">
-        <span>Donate:</span>
-        <a href="https://nicheworks.app/support/">Ko-fi</a>
-        <a href="https://nicheworks.app/support/">OFUSE</a>
-        <span>·</span>
-        <a href="https://nicheworks.app/">Other tools</a>
-      </div>
-      <div class="row" style="margin-top:6px;">
-        <span>© NicheWorks</span>
-        <span>·</span>
-        <span>Local-only (no uploads)</span>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    // theme only (do not load app.js on usage/howto)
-    (function(){
-      const KEY="nw_theme";
-      const root=document.documentElement;
-      function pref(){
-        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v; }catch(e){}
-        const d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
-        return d?"dark":"light";
-      }
-      function apply(t){
-        root.setAttribute("data-theme", t);
-        const b=document.getElementById("themeToggle");
-        if(b){ b.textContent = t==="dark" ? "☀" : "☾"; }
-      }
-      apply(pref());
-      const btn=document.getElementById("themeToggle");
-      if(btn){
-        btn.addEventListener("click", function(){
-          const cur=root.getAttribute("data-theme")==="dark"?"dark":"light";
-          const next=cur==="dark"?"light":"dark";
-          apply(next);
-          try{ localStorage.setItem(KEY,next); }catch(e){}
-        });
-      }
-    })();
-  </script>
-</body>
-</html>
+<body><div class="container">
+<header><div class="topbar"><div class="brand"><div class="logo">◉</div><div class="titles"><h1>Codex Usage Forecaster</h1><p class="tagline">燃費で枠を予測する</p></div></div><div class="actions"><div class="lang"><a href="./usage.html" aria-current="page">JA</a><span>·</span><a href="./en/usage.html">EN</a></div><button class="themeBtn" type="button" id="themeToggle">☾</button></div></div><nav class="nav"><a href="./index.html">Dashboard</a><a href="./usage.html" aria-current="page">Usage</a><a href="./howto.html">HowTo</a></nav></header>
+<section class="ad" aria-label="広告"><p class="label">Ad</p><div class="box"></div></section>
+<main>
+<section class="card"><h2>このツールでできること</h2><p class="muted">Codexなどの表示上の使用率%を手入力で記録し、5時間枠・週枠の燃費と枠切れ時刻を簡易推定します。公式の上限やリセット仕様を判定するものではありません。</p></section>
+<section class="card warning" style="margin-top:12px;"><h2>重要な注意</h2><p class="muted">実際の使用上限、リセット時刻、残量表示、制限条件は保証しません。サービス側の表示や公式情報を優先してください。</p></section>
+<section class="card" style="margin-top:12px;"><h2>基本の使い方</h2><ol class="muted" style="line-height:1.7;"><li>Dashboardで週%または5h%を入力して保存します。</li><li>最低2回、できれば5回以上ログを取ります。</li><li>燃費と枠切れETAを目安として確認します。</li><li>作業の重さが違う場合は、noteやmodeで分けてフィルタします。</li></ol></section>
+<section class="card" style="margin-top:12px;"><h2>保存されるデータ</h2><p class="muted">使用率ログ、フィルタプロファイル、手動リセット設定、テーマ設定がlocalStorageに保存されます。別端末・別ブラウザには自動で引き継がれません。ブラウザデータを削除すると消えます。</p><p class="small muted">ログ保存と予測処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。</p></section>
+<section class="card" style="margin-top:12px;"><h2>Export / Import</h2><p class="muted">Export JSONにはログ、プロファイル、手動リセット設定が入ります。ImportはこのツールのExport JSONのみを想定し、読み込み後は現在データを上書きします。</p><p class="small muted">Importや全削除の前に、必要なら先にExportしてください。</p></section>
+<section class="card" style="margin-top:12px;"><h2>FAQ</h2><p class="muted"><strong>Q. 予測は正確ですか？</strong><br>いいえ。手入力ログからの簡易推定であり、実際の上限やリセット時刻は保証しません。</p><p class="muted"><strong>Q. 5h%と週%の両方が必要ですか？</strong><br>片方だけでも保存できます。</p><p class="muted"><strong>Q. データは送信されますか？</strong><br>ログ保存と予測処理はブラウザ内で行います。広告・解析タグはページ表示のため読み込まれます。</p></section>
+</main><footer class="footer"><div class="row"><span>支援:</span><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a><span>·</span><a href="/tools/release-guardian/">Release Guardian</a><a href="/tools/microtool-launch-checklist/">Microtool Launch Checklist</a><a href="/tools/ops-weekly-report-generator/">Ops Weekly Report Generator</a><a href="/tools/money-template-checker/">Money Template Checker</a></div><div class="row" style="margin-top:6px;"><span>© NicheWorks</span><span>·</span><span>保存・予測処理はブラウザ内。広告・解析タグは読み込まれます。</span></div></footer></div>
+<script>(function(){const KEY='nw_theme';const root=document.documentElement;function pref(){try{const v=localStorage.getItem(KEY);if(v==='dark'||v==='light')return v;}catch(e){}return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}function apply(t){root.setAttribute('data-theme',t);const b=document.getElementById('themeToggle');if(b)b.textContent=t==='dark'?'☀':'☾';}apply(pref());const btn=document.getElementById('themeToggle');if(btn)btn.addEventListener('click',function(){const cur=root.getAttribute('data-theme')==='dark'?'dark':'light';const next=cur==='dark'?'light':'dark';apply(next);try{localStorage.setItem(KEY,next);}catch(e){}});})();</script>
+</body></html>
