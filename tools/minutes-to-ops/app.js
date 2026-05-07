@@ -1,179 +1,24 @@
-(function(){
-  const TOOL = "minutes-to-ops";
-  const $ = (id)=>document.getElementById(id);
-  const els = {
-    uiJA: $("uiJA"), uiEN: $("uiEN"), title: $("title"), subhead: $("subhead"),
-    notes: $("notes"), meetingTitle: $("meetingTitle"), meetingDate: $("meetingDate"), participants: $("participants"),
-    gen: $("genBtn"), clear: $("clearBtn"), pasteExample: $("pasteExampleBtn"),
-    todoBody: $("todoBody"), todoMeta: $("todoMeta"), decisions: $("decisions"), sop: $("sop"),
-    csvPreview: $("csvPreview"), mdPreview: $("mdPreview"), dlCsv: $("dlCsvBtn"), dlMd: $("dlMdBtn"),
-    exportState: $("exportState"), copyMd: $("copyMdBtn"), copySop: $("copySopBtn"), faq: $("faq"), faqFallback: $("faqFallback"), toast: $("toast"),
-    hTodo: $("hTodo"), hDec: $("hDec"), hSop: $("hSop"), hExport: $("hExport"),
-    lblNotes: $("lblNotes"), lblMeeting: $("lblMeeting"), lblDate: $("lblDate"), lblParts: $("lblParts"), lblCsvPreview: $("lblCsvPreview"), lblMdPreview: $("lblMdPreview"),
-    privacyNote: $("privacyNote"), ruleNote: $("ruleNote"), langNote: $("langNote")
-  };
-
-  const TXT = {
-    JA: {
-      title:"議事録→ToDo→決定事項→SOP", subhead:"議事録を“運用成果物”に整形（ルールベース / 翻訳なし）",
-      lblNotes:"議事録（貼り付け）", lblMeeting:"会議名", lblDate:"日付", lblParts:"参加者",
-      phNotes:"議事録を貼り付けてください", phMeeting:"例: 週次MTG / Sprint planning", phDate:"例: 2026-02-03", phParts:"例: A, B, C",
-      gen:"生成", clear:"クリア", pasteExample:"例を入れる", hTodo:"ToDo", hDec:"決定事項", hSop:"SOPドラフト", hExport:"Export",
-      exportState:"CSV / Markdown保存は無料です", copyMd:"Markdownをコピー", copySop:"SOPをコピー", dlCsv:"CSVを保存", dlMd:"Markdownを保存",
-      privacyNote:"議事録本文の抽出処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。機密情報、個人情報、顧客情報、未公開の議事録は貼り付けないでください。",
-      ruleNote:"このツールはAI要約ではありません。TODO / 担当 / 期限 / 決定 / 合意 などの語をもとに、ルールベースで抽出します。重要な内容は必ず原文と照合してください。",
-      langNote:"UIだけ切り替えます。議事録本文は翻訳しません。出力見出しは入力言語を推定して切り替えます。",
-      pasteFirst:"議事録を貼り付けてください", examplePasted:"例を入力しました", csvSaved:"CSVを保存しました", mdSaved:"Markdownを保存しました", mdCopied:"Markdownをコピーしました", sopCopied:"SOPをコピーしました", copyEmpty:"コピーする内容がありません", copyFailed:"コピーに失敗しました。手動で選択してコピーしてください。"
-    },
-    EN: {
-      title:"Minutes → ToDos → Decisions → SOP", subhead:"Turn minutes into operational artifacts (rule-based / no translation)",
-      lblNotes:"Meeting notes (paste)", lblMeeting:"Meeting title", lblDate:"Date", lblParts:"Participants",
-      phNotes:"Paste meeting notes here", phMeeting:"Example: Weekly sync / Sprint planning", phDate:"Example: 2026-02-03", phParts:"Example: A, B, C",
-      gen:"Generate", clear:"Clear", pasteExample:"Paste example", hTodo:"ToDos", hDec:"Decisions", hSop:"SOP draft", hExport:"Export",
-      exportState:"CSV / Markdown downloads are free", copyMd:"Copy Markdown", copySop:"Copy SOP", dlCsv:"Download CSV", dlMd:"Download Markdown",
-      privacyNote:"Text extraction runs in your browser. Ads and analytics scripts may still load for page display. Do not paste confidential, personal, customer, or unpublished meeting notes.",
-      ruleNote:"This is not AI summarization. It uses rule-based extraction from words such as TODO, Owner, Due, Decision, and Agreed. Always compare important items with the original notes.",
-      langNote:"The UI language changes only labels. Meeting notes are not translated. Output headings are inferred from the input language.",
-      pasteFirst:"Paste notes first", examplePasted:"Example pasted", csvSaved:"CSV downloaded", mdSaved:"Markdown downloaded", mdCopied:"Markdown copied", sopCopied:"SOP copied", copyEmpty:"Nothing to copy", copyFailed:"Copy failed. Select the text manually and copy it."
-    }
-  };
-
-  const FAQ = {
-    JA: [["AI要約ですか？","いいえ。キーワードとテンプレートによるルールベース抽出です。"],["議事録本文は送信されますか？","抽出処理はブラウザ内で行います。ただし広告・解析タグは読み込まれます。"],["機密議事録を貼ってよいですか？","推奨しません。個人情報、顧客情報、未公開情報は貼り付けないでください。"],["翻訳できますか？","できません。UI表示だけ切り替わり、本文は翻訳しません。"],["CSV/Markdownは無料で保存できますか？","初期版では無料保存を基本にします。PDF出力などは将来拡張です。"]],
-    EN: [["Is this AI summarization?","No. It is rule-based extraction using keywords and templates."],["Are meeting notes uploaded?","Extraction runs in your browser. Ads and analytics scripts may still load for page display."],["Can I paste confidential minutes?","Not recommended. Do not paste personal, customer, confidential, or unpublished information."],["Can it translate notes?","No. The UI labels can switch languages, but the pasted notes are not translated."],["Are CSV and Markdown downloads free?","Yes. CSV and Markdown downloads are free in the initial version. PDF export is a future extension."]]
-  };
-
-  let UI = "JA";
-  let currentTodos = [];
-  let currentMarkdown = "";
-  let currentSop = "";
-
-  function gtagSafe(name, params){ try{ if(typeof window.gtag==="function") window.gtag("event", name, params||{}); }catch(_){} }
-  function toast(msg){ const t=els.toast; if(!t) return; t.textContent=msg; t.style.display="block"; clearTimeout(toast._tm); toast._tm=setTimeout(()=>{t.style.display="none";},1800); }
-  function setText(el, text){ if(el) el.textContent = text; }
-  function setPH(el, text){ if(el) el.setAttribute("placeholder", text); }
-
-  function setUI(lang){
-    UI = lang;
-    const t = TXT[lang];
-    if(els.uiJA) els.uiJA.disabled = lang === "JA";
-    if(els.uiEN) els.uiEN.disabled = lang === "EN";
-    document.documentElement.lang = lang === "JA" ? "ja" : "en";
-    ["title","subhead","lblNotes","lblMeeting","lblDate","lblParts","gen","clear","pasteExample","hTodo","hDec","hSop","hExport","exportState","copyMd","copySop","dlCsv","dlMd","privacyNote","ruleNote","langNote"].forEach(k=>setText(els[k], t[k]));
-    setText(els.lblCsvPreview, "CSV preview");
-    setText(els.lblMdPreview, "Markdown preview");
-    setPH(els.notes, t.phNotes); setPH(els.meetingTitle, t.phMeeting); setPH(els.meetingDate, t.phDate); setPH(els.participants, t.phParts);
-    renderFAQ(FAQ[lang]);
-    gtagSafe("tool_open", { tool_slug: TOOL, lang: UI });
-  }
-
-  function detectJA(text){ const s=text||""; const ja=(s.match(/[\u3040-\u30ff\u4e00-\u9faf]/g)||[]).length; return ja/Math.max(1,s.length)>0.08; }
-  function parseLines(text){ return (text||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean); }
-  function dedupe(arr){ const seen=new Set(); const out=[]; for(const x of arr){ const k=String(x).toLowerCase().replace(/\s+/g," "); if(!seen.has(k)){seen.add(k); out.push(x);} } return out; }
-  function dedupeByKey(arr, fn){ const seen=new Set(); const out=[]; for(const x of arr){ const k=fn(x); if(!seen.has(k)){seen.add(k); out.push(x);} } return out; }
-
-  function extractTodos(lines){
-    const out=[];
-    const todoReJA=/(TODO|ToDo|やる|対応|確認|作る|修正|送る|依頼|担当|期限)/i;
-    const todoReEN=/(TODO|Action|We will|Need to|Follow up|Owner:|Due:)/i;
-    for(const line of lines){
-      if(!(todoReJA.test(line)||todoReEN.test(line))) continue;
-      const owner=(line.match(/(?:担当|Owner)\s*[:：]\s*([A-Za-z0-9_\-ぁ-んァ-ン一-龥@]+)/)||[])[1]||"";
-      const due=(line.match(/(?:期限|Due)\s*[:：]\s*([0-9]{4}[-/][0-9]{1,2}[-/][0-9]{1,2}|[0-9]{1,2}\/[0-9]{1,2}|[A-Za-z]{3,9}\s+\d{1,2})/)||[])[1]||"";
-      const pr=(line.match(/(?:優先|Priority)\s*[:：]\s*(High|Med|Low|P0|P1|P2)/i)||[])[1]||"";
-      out.push({task:line, owner, due, priority:pr, status:""});
-      if(out.length>=30) break;
-    }
-    return dedupeByKey(out, x=>x.task.toLowerCase().replace(/\s+/g," "));
-  }
-
-  function extractDecisions(lines){ const out=[]; const reJA=/(決定|合意|方針|採用|却下)/; const reEN=/(Decision|Agreed|We decided|Conclusion)/i; for(const line of lines){ if(reJA.test(line)||reEN.test(line)) out.push(line); if(out.length>=20) break; } return dedupe(out); }
-
-  function buildSOP(meta, todos, decisions, rawText){
-    const ja=detectJA(rawText);
-    const title=meta.title || (ja ? "（会議名未入力）" : "(No meeting title)");
-    const date=meta.date || (ja ? "（日付未入力）" : "(No date)");
-    const parts=meta.participants || (ja ? "（参加者未入力）" : "(No participants)");
-    const risks=parseLines(rawText).filter(l=>/(リスク|懸念|課題|blocker|risk|issue)/i.test(l)).slice(0,6);
-    const steps=todos.slice(0,10).map((x,i)=>`${i+1}. ${x.task}${x.owner?` (${x.owner})`:""}${x.due?` [${x.due}]`:""}`);
-    if(ja) return ["# SOPドラフト","## 目的",`${title} の決定事項とToDoを運用手順に落とし込む。`,"","## 範囲",`対象: ${parts} / 日付: ${date}`,"","## 手順",steps.length?steps.join("\n"):"（ToDoが見つかりませんでした。TODO/担当/期限 を含めると抽出しやすいです）","","## チェック",decisions.length?decisions.map(x=>`- ${x}`).join("\n"):"- （決定事項なし）","","## 例外・リスク",risks.length?risks.map(x=>`- ${x}`).join("\n"):"- （記載なし）","","## 次回改善","- 次回は ToDo 行に「担当: / 期限:」を付ける"].join("\n");
-    return ["# SOP Draft","## Purpose",`Turn outcomes of \"${title}\" into executable steps.`,"","## Scope",`Participants: ${parts} / Date: ${date}`,"","## Procedure",steps.length?steps.join("\n"):"(No ToDos found. Add TODO/Owner/Due markers for better extraction.)","","## Checklist",decisions.length?decisions.map(x=>`- ${x}`).join("\n"):"- (No decisions found)","","## Exceptions / Risks",risks.length?risks.map(x=>`- ${x}`).join("\n"):"- (none)","","## Next iteration","- Add Owner/Due in the same line for each action item"].join("\n");
-  }
-
-  function renderEmptyTodos(){ if(!els.todoBody) return; els.todoBody.textContent=""; const tr=document.createElement("tr"); const td=document.createElement("td"); td.colSpan=5; td.className="nw-muted"; td.textContent="—"; tr.appendChild(td); els.todoBody.appendChild(tr); }
-  function renderTodos(todos){ if(!els.todoBody) return; els.todoBody.textContent=""; if(!todos.length){ renderEmptyTodos(); return; } for(const item of todos){ const tr=document.createElement("tr"); ["task","owner","due","priority","status"].forEach(key=>{ const td=document.createElement("td"); td.textContent=item[key]||""; tr.appendChild(td); }); els.todoBody.appendChild(tr); } }
-
-  function csvCell(x){ const s=String(x||""); return /[,"\r\n]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s; }
-  function toCSV(todos, opt){ const o=Object.assign({bom:false,newline:"\n"}, opt||{}); const rows=[["task","owner","due","priority","status"].join(",")]; for(const t of todos) rows.push([t.task,t.owner,t.due,t.priority,t.status].map(csvCell).join(",")); return (o.bom?"\uFEFF":"") + rows.join(o.newline); }
-  function pipe(s){ return String(s||"").replace(/\|/g,"\\|").replace(/\r?\n/g," "); }
-  function toMarkdown(meta, todos, decisions, sop, rawText){
-    const ja=detectJA(rawText);
-    const lines=["# Minutes to Ops",`- Timestamp: ${new Date().toLocaleString()}`,`- Title: ${meta.title||"-"}`,`- Date: ${meta.date||"-"}`,`- Participants: ${meta.participants||"-"}`,`- Headings: ${ja?"JA":"EN"} (content not translated)`,"- Extraction: rule-based keyword/template extraction, not AI summarization","- Note: Original full notes are not included in this export. Check important items against the source text.","","## Decisions",decisions.length?decisions.map(x=>`- ${x}`).join("\n"):"- (none)","","## ToDos"];
-    if(todos.length){ lines.push("| Task | Owner | Due | Priority | Status |","|---|---|---|---|---|"); for(const t of todos) lines.push(`| ${pipe(t.task)} | ${pipe(t.owner)} | ${pipe(t.due)} | ${pipe(t.priority)} | ${pipe(t.status)} |`); } else lines.push("- (none)");
-    lines.push("","## SOP","```",sop,"```");
-    return lines.join("\n");
-  }
-  function stamp(){ const d=new Date(); return `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`; }
-  function download(filename, content, mime){ const blob=new Blob([content],{type:mime||"text/plain;charset=utf-8"}); const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=filename; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},0); }
-  function meta(){ return { title:(els.meetingTitle?.value||"").trim(), date:(els.meetingDate?.value||"").trim(), participants:(els.participants?.value||"").trim() }; }
-
-  function generate(opts){
-    const silent=opts&&opts.silent;
-    const raw=(els.notes?.value||"").trim();
-    gtagSafe("tool_run", { tool_slug: TOOL, lang: UI });
-    if(!raw){ clearAll(); if(!silent) toast(TXT[UI].pasteFirst); return false; }
-    const lines=parseLines(raw);
-    const todos=extractTodos(lines);
-    const decisions=extractDecisions(lines);
-    const m=meta();
-    const sop=buildSOP(m,todos,decisions,raw);
-    const md=toMarkdown(m,todos,decisions,sop,raw);
-    currentTodos=todos; currentSop=sop; currentMarkdown=md;
-    renderTodos(todos);
-    setText(els.todoMeta, `${todos.length} todos / ${decisions.length} decisions`);
-    setText(els.decisions, decisions.length?decisions.map(x=>`- ${x}`).join("\n"):"—");
-    setText(els.sop, sop);
-    const csv=toCSV(todos,{bom:false,newline:"\n"});
-    if(els.csvPreview){ const rows=csv.split("\n"); els.csvPreview.value=rows.slice(0,21).join("\n") + (rows.length>21?"\n...":""); }
-    if(els.mdPreview) els.mdPreview.value=md;
-    return true;
-  }
-  function ensureGenerated(){ if(!(els.notes?.value||"").trim()) return false; return currentMarkdown || generate({silent:true}); }
-
-  async function copyText(value, okMsg){
-    const text=String(value||"");
-    if(!text.trim()){ toast(TXT[UI].copyEmpty); return; }
-    try{ if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); toast(okMsg); return; } }catch(_){}
-    const ta=document.createElement("textarea"); ta.value=text; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.left="-9999px"; document.body.appendChild(ta); ta.focus(); ta.select();
-    try{ toast(document.execCommand("copy") ? okMsg : TXT[UI].copyFailed); }catch(_){ toast(TXT[UI].copyFailed); } finally{ ta.remove(); }
-  }
-
-  function renderFAQ(items){ if(!els.faq) return; els.faq.textContent=""; for(const item of items){ const details=document.createElement("details"); const summary=document.createElement("summary"); const p=document.createElement("p"); summary.textContent=item[0]; p.textContent=item[1]; details.appendChild(summary); details.appendChild(p); els.faq.appendChild(details); } if(els.faqFallback) els.faqFallback.style.display="none"; }
-  function clearAll(){ currentTodos=[]; currentMarkdown=""; currentSop=""; renderEmptyTodos(); setText(els.todoMeta,"—"); setText(els.decisions,"—"); setText(els.sop,"—"); if(els.csvPreview) els.csvPreview.value=""; if(els.mdPreview) els.mdPreview.value=""; }
-
-  const EX_JA=`週次MTG
-決定: 次スプリントはP0を優先
-TODO: LPの見出し修正 担当: A 期限: 2026-02-05
-TODO: GA4イベント確認 担当: B 期限: 2026-02-06
-懸念: モバイルで一覧が長すぎる
-決定: 詳細は全画面シートにする`;
-  const EX_EN=`Weekly sync
-Decision: Prioritise P0 items next sprint
-TODO: Fix landing page headline Owner: A Due: Feb 5
-Action: Verify GA4 events Owner: B Due: Feb 6
-Risk: Mobile list view is too long
-Agreed: Use full-screen sheet for details`;
-
-  els.uiJA?.addEventListener("click",()=>setUI("JA"));
-  els.uiEN?.addEventListener("click",()=>setUI("EN"));
-  els.gen?.addEventListener("click",()=>generate());
-  els.clear?.addEventListener("click",()=>{ if(els.notes) els.notes.value=""; if(els.meetingTitle) els.meetingTitle.value=""; if(els.meetingDate) els.meetingDate.value=""; if(els.participants) els.participants.value=""; clearAll(); });
-  els.pasteExample?.addEventListener("click",()=>{ if(els.notes) els.notes.value=UI==="JA"?EX_JA:EX_EN; toast(TXT[UI].examplePasted); });
-  els.dlCsv?.addEventListener("click",()=>{ if(!ensureGenerated()){ toast(TXT[UI].pasteFirst); return; } gtagSafe("export_click",{tool_slug:TOOL,kind:"csv"}); download(`minutes-to-ops-todos-${stamp()}.csv`, toCSV(currentTodos,{bom:true,newline:"\r\n"}), "text/csv;charset=utf-8"); toast(TXT[UI].csvSaved); });
-  els.dlMd?.addEventListener("click",()=>{ if(!ensureGenerated()){ toast(TXT[UI].pasteFirst); return; } gtagSafe("export_click",{tool_slug:TOOL,kind:"md"}); download(`minutes-to-ops-${stamp()}.md`, currentMarkdown, "text/markdown;charset=utf-8"); toast(TXT[UI].mdSaved); });
-  els.copyMd?.addEventListener("click",()=>{ if(!ensureGenerated()){ toast(TXT[UI].pasteFirst); return; } copyText(currentMarkdown || els.mdPreview?.value, TXT[UI].mdCopied); });
-  els.copySop?.addEventListener("click",()=>{ if(!ensureGenerated()){ toast(TXT[UI].pasteFirst); return; } copyText(currentSop || els.sop?.textContent, TXT[UI].sopCopied); });
-
-  setUI("JA");
-  clearAll();
+(()=>{
+  const TOOL="minutes-to-ops",HKEY="nw_mto_history_v1",$=id=>document.getElementById(id);
+  const e={uiJA:$("uiJA"),uiEN:$("uiEN"),title:$("title"),subhead:$("subhead"),notes:$("notes"),meetingTitle:$("meetingTitle"),meetingDate:$("meetingDate"),participants:$("participants"),gen:$("genBtn"),clear:$("clearBtn"),paste:$("pasteExampleBtn"),todoBody:$("todoBody"),todoMeta:$("todoMeta"),decisions:$("decisions"),sop:$("sop"),csvPreview:$("csvPreview"),mdPreview:$("mdPreview"),dlCsv:$("dlCsvBtn"),dlMd:$("dlMdBtn"),exportState:$("exportState"),copyMd:$("copyMdBtn"),copySop:$("copySopBtn"),faq:$("faq"),faqFallback:$("faqFallback"),toast:$("toast"),hTodo:$("hTodo"),hDec:$("hDec"),hSop:$("hSop"),hExport:$("hExport"),lblNotes:$("lblNotes"),lblMeeting:$("lblMeeting"),lblDate:$("lblDate"),lblParts:$("lblParts"),lblCsvPreview:$("lblCsvPreview"),lblMdPreview:$("lblMdPreview"),privacyNote:$("privacyNote"),ruleNote:$("ruleNote"),langNote:$("langNote")};
+  const L={JA:{title:"議事録→ToDo→決定事項→SOP",subhead:"議事録を“運用成果物”に整形（ルールベース / 翻訳なし）",lblNotes:"議事録（貼り付け）",lblMeeting:"会議名",lblDate:"日付",lblParts:"参加者",phNotes:"議事録を貼り付けてください",phMeeting:"例: 週次MTG / Sprint planning",phDate:"例: 2026-02-03",phParts:"例: A, B, C",gen:"生成",clear:"クリア",pasteExample:"例を入れる",hTodo:"ToDo",hDec:"決定事項",hSop:"SOPドラフト",hExport:"Export",exportState:"CSV / Markdown保存は無料。Proでは履歴保存・比較・出力パックが使えます。",copyMd:"Markdownをコピー",copySop:"SOPをコピー",dlCsv:"CSVを保存",dlMd:"Markdownを保存",privacyNote:"抽出処理はブラウザ内で行います。ただし広告・解析タグは読み込まれます。公開前の重要情報は貼り付けないでください。",ruleNote:"AI要約ではありません。Task / 担当 / 期限 / 決定 / 合意 などの語をもとにルールベースで抽出します。",langNote:"UIだけ切り替えます。本文は翻訳しません。",pasteFirst:"議事録を貼り付けてください",examplePasted:"例を入力しました",csvSaved:"CSVを保存しました",mdSaved:"Markdownを保存しました",mdCopied:"Markdownをコピーしました",sopCopied:"SOPをコピーしました",copyEmpty:"コピーする内容がありません",copyFailed:"コピーに失敗しました",proTitle:"Pro",proLocked:"Pro機能は有料ユーザー向けです。購入または復元後、この画面で使えます。",proOn:"Pro有効：履歴保存・比較・出力パックが使えます。",buyPro:"Proを購入",restorePro:"購入を復元",paymentMissing:"購入リンクが未設定です",restored:"Proを復元しました",notRestored:"復元できる購入情報が見つかりません",saveHistory:"履歴に保存",compareHistory:"直近2件を比較",downloadPack:"Pro出力パックを保存",historyTitle:"保存履歴",noHistory:"保存履歴はありません",proNeeded:"Proが必要です",historySaved:"履歴に保存しました",needTwo:"比較には履歴が2件以上必要です",packSaved:"Pro出力パックを保存しました"},EN:{title:"Minutes → ToDos → Decisions → SOP",subhead:"Turn minutes into operational artifacts (rule-based / no translation)",lblNotes:"Meeting notes (paste)",lblMeeting:"Meeting title",lblDate:"Date",lblParts:"Participants",phNotes:"Paste meeting notes here",phMeeting:"Example: Weekly sync / Sprint planning",phDate:"Example: 2026-02-03",phParts:"Example: A, B, C",gen:"Generate",clear:"Clear",pasteExample:"Paste example",hTodo:"ToDos",hDec:"Decisions",hSop:"SOP draft",hExport:"Export",exportState:"CSV / Markdown downloads are free. Pro adds history, comparison, and export packs.",copyMd:"Copy Markdown",copySop:"Copy SOP",dlCsv:"Download CSV",dlMd:"Download Markdown",privacyNote:"Extraction runs in your browser. Ads and analytics scripts may still load. Do not paste unpublished important information.",ruleNote:"This is not AI summarization. It uses rule-based extraction from words such as Task, Owner, Due, Decision, and Agreed.",langNote:"The UI changes labels only. Notes are not translated.",pasteFirst:"Paste notes first",examplePasted:"Example pasted",csvSaved:"CSV downloaded",mdSaved:"Markdown downloaded",mdCopied:"Markdown copied",sopCopied:"SOP copied",copyEmpty:"Nothing to copy",copyFailed:"Copy failed",proTitle:"Pro",proLocked:"Pro features are for paid users. After purchase or restore, they work directly on this page.",proOn:"Pro active: history, comparison, and export packs are available.",buyPro:"Buy Pro",restorePro:"Restore purchase",paymentMissing:"Payment link is not configured",restored:"Pro restored",notRestored:"No purchase entitlement found",saveHistory:"Save to history",compareHistory:"Compare latest two",downloadPack:"Download Pro export pack",historyTitle:"Saved history",noHistory:"No saved history",proNeeded:"Pro is required",historySaved:"Saved to history",needTwo:"At least two history items are required",packSaved:"Pro export pack downloaded"}};
+  const F={JA:[["AI要約ですか？","いいえ。キーワードとテンプレートによるルールベース抽出です。"],["翻訳できますか？","できません。UI表示だけ切り替わり、本文は翻訳しません。"],["無料とProの違いは？","無料は生成・プレビュー・CSV/Markdown保存です。Proは履歴保存、履歴比較、出力パック保存を使えます。"]],EN:[["Is this AI summarization?","No. It is rule-based extraction using keywords and templates."],["Can it translate notes?","No. The UI labels can switch languages, but pasted notes are not translated."],["What is free vs Pro?","Free includes generation, preview, and CSV/Markdown downloads. Pro adds history, comparison, and export packs."]]};
+  let UI="JA",todos=[],decs=[],md="",sop="";const proKeys=["nw_pro_minutes-to-ops","nw_pro_minutes_to_ops","nw_paid_minutes-to-ops","nw_paid_minutes_to_ops"];
+  function payUrl(){try{return window.NW_MTO_PRO_PAYMENT_URL||(window.NW&&window.NW.payments&&(NW.payments[TOOL]||NW.payments.minutesToOps))||document.body?.dataset?.mtoProPaymentUrl||document.querySelector('meta[name="nw:mto:payment-url"]')?.content||""}catch(_){return""}}
+  function hasPro(){try{return !!(window.NW&&((typeof NW.hasPro==="function"&&NW.hasPro(TOOL))||(typeof NW.hasEntitlement==="function"&&NW.hasEntitlement(TOOL))||(Array.isArray(NW.entitlements)&&NW.entitlements.includes(TOOL))))||proKeys.some(k=>localStorage.getItem(k)==="1"||localStorage.getItem(k)==="true")}catch(_){return false}}
+  function activatePro(){proKeys.forEach(k=>localStorage.setItem(k,"1"));proPanel()}
+  function consumeReturn(){const u=new URL(location.href),v=[u.searchParams.get("pro"),u.searchParams.get("tool"),u.searchParams.get("entitlement"),u.searchParams.get("nw_pro"),u.searchParams.get("mto_pro")].filter(Boolean).join(" ");if(/minutes-to-ops|minutes_to_ops|mto|1|true/i.test(v)&&(u.searchParams.has("pro")||u.searchParams.has("entitlement")||u.searchParams.has("nw_pro")||u.searchParams.has("mto_pro"))){activatePro();["pro","tool","entitlement","nw_pro","mto_pro","session_id"].forEach(k=>u.searchParams.delete(k));history.replaceState(null,"",u.pathname+(u.searchParams.toString()?"?"+u.searchParams.toString():"")+u.hash)}}
+  function toast(s){if(!e.toast)return;e.toast.textContent=s;e.toast.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.toast.style.display="none",1800)}function ev(n,p){try{if(typeof gtag==="function")gtag("event",n,p||{})}catch(_){}}function txt(el,s){if(el)el.textContent=s}function ph(el,s){if(el){el.placeholder=s;el.removeAttribute("stable");el.removeAttribute("content")}}
+  function setUI(l){UI=l;const t=L[l];if(e.uiJA)e.uiJA.disabled=l==="JA";if(e.uiEN)e.uiEN.disabled=l==="EN";document.documentElement.lang=l==="JA"?"ja":"en";["title","subhead","lblNotes","lblMeeting","lblDate","lblParts","gen","clear","paste","hTodo","hDec","hSop","hExport","exportState","copyMd","copySop","dlCsv","dlMd","privacyNote","ruleNote","langNote"].forEach(k=>txt(e[k],t[k==="paste"?"pasteExample":k]));txt(e.lblCsvPreview,"CSV preview");txt(e.lblMdPreview,"Markdown preview");ph(e.notes,t.phNotes);ph(e.meetingTitle,t.phMeeting);ph(e.meetingDate,t.phDate);ph(e.participants,t.phParts);faq();proPanel();ev("tool_open",{tool_slug:TOOL,lang:UI})}
+  function faq(){if(!e.faq)return;e.faq.textContent="";(F[UI]||[]).forEach(a=>{const d=document.createElement("details"),s=document.createElement("summary"),p=document.createElement("p");s.textContent=a[0];p.textContent=a[1];d.append(s,p);e.faq.appendChild(d)});if(e.faqFallback)e.faqFallback.style.display="none"}
+  function proPanel(){const t=L[UI];let c=$("proPanel");if(!c){const x=e.mdPreview&&e.mdPreview.closest(".nw-card");if(!x||!x.parentNode)return;c=document.createElement("div");c.id="proPanel";c.className="nw-card nw-pro-panel";c.style.marginTop="12px";x.parentNode.insertBefore(c,x.nextSibling)}c.textContent="";const h=document.createElement("div"),p=document.createElement("p"),sales=document.createElement("div"),features=document.createElement("div"),box=document.createElement("div"),url=payUrl(),pro=hasPro();h.style.fontWeight="800";h.textContent=t.proTitle;p.className="nw-muted";p.textContent=pro?t.proOn:t.proLocked;sales.className="nw-row";features.className="nw-row";const buy=btn(t.buyPro,()=>{if(!url)return toast(t.paymentMissing);ev("pro_purchase_click",{tool_slug:TOOL});location.href=url},pro||!url),restore=btn(t.restorePro,()=>{if(hasPro()){toast(t.restored);proPanel()}else toast(t.notRestored)},false);sales.append(buy,restore);[[t.saveHistory,saveHist],[t.compareHistory,compareHist],[t.downloadPack,pack]].forEach(([label,fn])=>features.appendChild(btn(label,fn,!pro)));box.id="proHistory";box.className="nw-pre";box.style.marginTop="10px";c.append(h,p,sales,features,box);renderHist()}
+  function btn(label,fn,disabled){const b=document.createElement("button");b.type="button";b.textContent=label;b.disabled=!!disabled;b.onclick=fn;return b}function hist(){try{return JSON.parse(localStorage.getItem(HKEY)||"[]").filter(Boolean)}catch(_){return[]}}function setHist(a){localStorage.setItem(HKEY,JSON.stringify(a.slice(0,20)))}function snap(){const m=meta();return{id:Date.now(),savedAt:new Date().toISOString(),title:m.title||"Untitled",date:m.date||"",participants:m.participants||"",todos,decisions:decs,sop,markdown:md,csv:csv(todos,{bom:false,nl:"\n"})}}function needPro(){if(hasPro())return true;toast(L[UI].proNeeded);return false}
+  function saveHist(){if(!needPro())return;if(!ensure())return toast(L[UI].pasteFirst);setHist([snap(),...hist()]);renderHist();ev("pro_feature_use",{tool_slug:TOOL,feature:"history_save"});toast(L[UI].historySaved)}function compareHist(){if(!needPro())return;const h=hist();if(h.length<2)return toast(L[UI].needTwo);const[a,b]=h,A=new Set((a.todos||[]).map(x=>x.task)),B=new Set((b.todos||[]).map(x=>x.task)),add=[...A].filter(x=>!B.has(x)),rem=[...B].filter(x=>!A.has(x)),out=[`Compare: ${a.title} ← ${b.title}`,`Saved: ${a.savedAt} ← ${b.savedAt}`,`ToDos: ${(a.todos||[]).length} ← ${(b.todos||[]).length}`,`Decisions: ${(a.decisions||[]).length} ← ${(b.decisions||[]).length}`,"","Added tasks:",add.length?add.map(x=>`+ ${x}`).join("\n"):"- none","","Removed tasks:",rem.length?rem.map(x=>`- ${x}`).join("\n"):"- none"].join("\n");const box=$("proHistory");if(box)box.textContent=out;ev("pro_feature_use",{tool_slug:TOOL,feature:"history_compare"})}function pack(){if(!needPro())return;if(!ensure())return toast(L[UI].pasteFirst);dl(`minutes-to-ops-pro-pack-${stamp()}.json`,JSON.stringify(snap(),null,2),"application/json;charset=utf-8");ev("pro_feature_use",{tool_slug:TOOL,feature:"export_pack"});toast(L[UI].packSaved)}function renderHist(){const b=$("proHistory");if(!b)return;const h=hist();b.textContent=h.length?[L[UI].historyTitle,...h.slice(0,8).map((x,i)=>`${i+1}. ${x.title} / ${x.date||"-"} / ${(x.todos||[]).length} todos / ${(x.decisions||[]).length} decisions`)].join("\n"):L[UI].noHistory}
+  function ja(s){return((s||"").match(/[\u3040-\u30ff\u4e00-\u9faf]/g)||[]).length/Math.max(1,(s||"").length)>.08}function lines(s){return(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}function uniq(a,k=x=>String(x).toLowerCase().replace(/\s+/g," ")){const S=new Set,o=[];for(const x of a){const y=k(x);if(!S.has(y)){S.add(y);o.push(x)}}return o}function getTodos(ls){const out=[];for(const line of ls){if(!/(TODO|ToDo|Task|Action|We will|Need to|Follow up|Owner:|Due:|やる|対応|確認|作る|修正|送る|依頼|担当|期限)/i.test(line))continue;out.push({task:line,owner:(line.match(/(?:担当|Owner)\s*[:：]\s*([^\s]+)/)||[])[1]||"",due:(line.match(/(?:期限|Due)\s*[:：]\s*([0-9]{4}[-/][0-9]{1,2}[-/][0-9]{1,2}|[0-9]{1,2}\/[0-9]{1,2}|[A-Za-z]{3,9}\s+\d{1,2})/)||[])[1]||"",priority:(line.match(/(?:優先|Priority)\s*[:：]\s*(High|Med|Low|P0|P1|P2)/i)||[])[1]||"",status:""});if(out.length>=30)break}return uniq(out,x=>x.task.toLowerCase().replace(/\s+/g," "))}function getDecs(ls){return uniq(ls.filter(x=>/(決定|合意|方針|採用|却下|Decision|Agreed|We decided|Conclusion)/i.test(x)).slice(0,20))}
+  function buildSop(m,td,dc,raw){const is=ja(raw),title=m.title||(is?"（会議名未入力）":"(No meeting title)"),date=m.date||(is?"（日付未入力）":"(No date)"),parts=m.participants||(is?"（参加者未入力）":"(No participants)"),risk=lines(raw).filter(l=>/(リスク|懸念|課題|blocker|risk|issue)/i.test(l)).slice(0,6),steps=td.slice(0,10).map((x,i)=>`${i+1}. ${x.task}${x.owner?` (${x.owner})`:""}${x.due?` [${x.due}]`:""}`);return is?["# SOPドラフト","## 目的",`${title} の決定事項とToDoを運用手順に落とし込む。`,"","## 範囲",`対象: ${parts} / 日付: ${date}`,"","## 手順",steps.length?steps.join("\n"):"（ToDoが見つかりませんでした）","","## チェック",dc.length?dc.map(x=>`- ${x}`).join("\n"):"- （決定事項なし）","","## 例外・リスク",risk.length?risk.map(x=>`- ${x}`).join("\n"):"- （記載なし）"].join("\n"): ["# SOP Draft","## Purpose",`Turn outcomes of \"${title}\" into executable steps.`,"","## Scope",`Participants: ${parts} / Date: ${date}`,"","## Procedure",steps.length?steps.join("\n"):"(No ToDos found.)","","## Checklist",dc.length?dc.map(x=>`- ${x}`).join("\n"):"- (No decisions found)","","## Exceptions / Risks",risk.length?risk.map(x=>`- ${x}`).join("\n"):"- (none)"].join("\n")}function renderTodos(a){if(!e.todoBody)return;e.todoBody.textContent="";if(!a.length){const tr=document.createElement("tr"),td=document.createElement("td");td.colSpan=5;td.className="nw-muted";td.textContent="—";tr.appendChild(td);e.todoBody.appendChild(tr);return}a.forEach(x=>{const tr=document.createElement("tr");["task","owner","due","priority","status"].forEach(k=>{const td=document.createElement("td");td.textContent=x[k]||"";tr.appendChild(td)});e.todoBody.appendChild(tr)})}
+  function cell(s){s=String(s||"");return /[,"\r\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s}function csv(a,o={}){const nl=o.nl||"\n",rows=[["task","owner","due","priority","status"].join(",")];a.forEach(x=>rows.push([x.task,x.owner,x.due,x.priority,x.status].map(cell).join(",")));return(o.bom?"\uFEFF":"")+rows.join(nl)}function pipe(s){return String(s||"").replace(/\|/g,"\\|").replace(/\r?\n/g," ")}function markdown(m,td,dc,sp,raw){const out=["# Minutes to Ops",`- Timestamp: ${new Date().toLocaleString()}`,`- Title: ${m.title||"-"}`,`- Date: ${m.date||"-"}`,`- Participants: ${m.participants||"-"}`,`- Headings: ${ja(raw)?"JA":"EN"} (content not translated)`,"- Extraction: rule-based keyword/template extraction, not AI summarization","","## Decisions",dc.length?dc.map(x=>`- ${x}`).join("\n"):"- (none)","","## ToDos"];if(td.length){out.push("| Task | Owner | Due | Priority | Status |","|---|---|---|---|---|");td.forEach(x=>out.push(`| ${pipe(x.task)} | ${pipe(x.owner)} | ${pipe(x.due)} | ${pipe(x.priority)} | ${pipe(x.status)} |`))}else out.push("- (none)");out.push("","## SOP","```",sp,"```");return out.join("\n")}function stamp(){const d=new Date();return`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`}function dl(n,c,m){const b=new Blob([c],{type:m||"text/plain;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},0)}function meta(){return{title:(e.meetingTitle?.value||"").trim(),date:(e.meetingDate?.value||"").trim(),participants:(e.participants?.value||"").trim()}}
+  function generate(silent){const raw=(e.notes?.value||"").trim();ev("tool_run",{tool_slug:TOOL,lang:UI});if(!raw){clearAll();if(!silent)toast(L[UI].pasteFirst);return false}const ls=lines(raw),m=meta();todos=getTodos(ls);decs=getDecs(ls);sop=buildSop(m,todos,decs,raw);md=markdown(m,todos,decs,sop,raw);renderTodos(todos);txt(e.todoMeta,`${todos.length} todos / ${decs.length} decisions`);txt(e.decisions,decs.length?decs.map(x=>`- ${x}`).join("\n"):"—");txt(e.sop,sop);if(e.csvPreview){const rows=csv(todos).split("\n");e.csvPreview.value=rows.slice(0,21).join("\n")+(rows.length>21?"\n...":"")}if(e.mdPreview)e.mdPreview.value=md;return true}function ensure(){return(e.notes?.value||"").trim()&&(md||generate(true))}async function copy(v,msg){v=String(v||"");if(!v.trim())return toast(L[UI].copyEmpty);try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(v);return toast(msg)}}catch(_){}const t=document.createElement("textarea");t.value=v;t.readOnly=true;t.style.position="fixed";t.style.left="-9999px";document.body.appendChild(t);t.select();try{toast(document.execCommand("copy")?msg:L[UI].copyFailed)}finally{t.remove()}}function clearAll(){todos=[];decs=[];md="";sop="";renderTodos([]);txt(e.todoMeta,"—");txt(e.decisions,"—");txt(e.sop,"—");if(e.csvPreview)e.csvPreview.value="";if(e.mdPreview)e.mdPreview.value=""}
+  const EX_JA="週次MTG\n決定: 次スプリントはP0を優先\nTask: LPの見出し修正 担当: A 期限: 2026-02-05\nTask: GA4イベント確認 担当: B 期限: 2026-02-06\n懸念: モバイルで一覧が長すぎる\n決定: 詳細は全画面シートにする",EX_EN="Weekly sync\nDecision: Prioritise P0 items next sprint\nTask: Fix landing page headline Owner: A Due: Feb 5\nAction: Verify GA4 events Owner: B Due: Feb 6\nRisk: Mobile list view is too long\nAgreed: Use full-screen sheet for details";
+  e.uiJA?.addEventListener("click",()=>setUI("JA"));e.uiEN?.addEventListener("click",()=>setUI("EN"));e.gen?.addEventListener("click",()=>generate(false));e.clear?.addEventListener("click",()=>{[e.notes,e.meetingTitle,e.meetingDate,e.participants].forEach(x=>{if(x)x.value=""});clearAll()});e.paste?.addEventListener("click",()=>{if(e.notes)e.notes.value=UI==="JA"?EX_JA:EX_EN;toast(L[UI].examplePasted)});e.dlCsv?.addEventListener("click",()=>{if(!ensure())return toast(L[UI].pasteFirst);dl(`minutes-to-ops-todos-${stamp()}.csv`,csv(todos,{bom:true,nl:"\r\n"}),"text/csv;charset=utf-8");toast(L[UI].csvSaved)});e.dlMd?.addEventListener("click",()=>{if(!ensure())return toast(L[UI].pasteFirst);dl(`minutes-to-ops-${stamp()}.md`,md,"text/markdown;charset=utf-8");toast(L[UI].mdSaved)});e.copyMd?.addEventListener("click",()=>{if(!ensure())return toast(L[UI].pasteFirst);copy(md,L[UI].mdCopied)});e.copySop?.addEventListener("click",()=>{if(!ensure())return toast(L[UI].pasteFirst);copy(sop,L[UI].sopCopied)});
+  consumeReturn();setUI("JA");clearAll();
 })();
