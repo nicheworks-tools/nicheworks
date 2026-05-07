@@ -55,34 +55,22 @@
       {
         "@type": "Question",
         "name": "Notion上にデータベースを自動作成できますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。このツールはNotionデータベースの設計案を作るだけです。実際のページ、データベース、フォーム、権限設定はNotion側で行ってください。"
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "いいえ。このツールはNotionデータベースの設計案を作るだけです。実際のページ、データベース、フォーム、権限設定はNotion側で行ってください。" }
       },
       {
         "@type": "Question",
         "name": "個人情報を扱うフォームにも使えますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "設計のたたき台には使えますが、共有範囲、権限、外部公開設定、保存期間、削除ルール、プライバシーポリシーを必ず確認してください。"
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "設計のたたき台には使えますが、共有範囲、権限、外部公開設定、保存期間、削除ルール、プライバシーポリシーを必ず確認してください。" }
       },
       {
         "@type": "Question",
         "name": "入力内容は送信されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "設計案生成処理はブラウザ内で行います。ただしページ表示のため、広告タグやアクセス解析タグは読み込まれます。"
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "設計案生成処理はブラウザ内で行います。ただしページ表示のため、広告タグやアクセス解析タグは読み込まれます。" }
       },
       {
         "@type": "Question",
         "name": "Notionの仕様変更に対応していますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Notion側の仕様は変わる可能性があります。実際に設定する前にNotion公式情報を確認してください。"
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "Notion側の仕様は変わる可能性があります。実際に設定する前にNotion公式情報を確認してください。" }
       }
     ]
   }
@@ -95,14 +83,9 @@
   <header class="nw-header">
     <h1 class="nw-title" data-i18n="ja">Notionフォーム設計キット</h1>
     <h1 class="nw-title" data-i18n="en" style="display:none;">Notion Form Design Kit</h1>
-
     <p class="nw-lead" data-i18n="ja">Notion DBの項目設計、ステータス、通知文面のたたき台を作成します。</p>
     <p class="nw-lead" data-i18n="en" style="display:none;">Create draft Notion DB properties, status workflows, and notification messages.</p>
-
-    <div class="nw-lang-switch" aria-label="Language switch">
-      <button type="button" data-lang="ja">JP</button> /
-      <button type="button" data-lang="en">EN</button>
-    </div>
+    <div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div>
   </header>
 
   <main class="nw-main">
@@ -112,8 +95,7 @@
     <p class="nw-intro" data-i18n="en" style="display:none;">Use this to draft a Notion database structure for inquiries, applications, recruiting intake, bug reports, and creative requests.</p>
 
     <section class="nw-note nw-warning">
-      <h2 data-i18n="ja">重要な注意</h2>
-      <h2 data-i18n="en" style="display:none;">Important note</h2>
+      <h2 data-i18n="ja">重要な注意</h2><h2 data-i18n="en" style="display:none;">Important note</h2>
       <p data-i18n="ja">このツールはNotionデータベースの設計案と通知文面のたたき台を作る簡易ツールです。Notion上にページ、データベース、フォーム、権限設定を自動作成するものではありません。</p>
       <p data-i18n="en" style="display:none;">This tool only drafts a Notion database design and message templates. It does not automatically create Notion pages, databases, forms, or permission settings.</p>
       <p data-i18n="ja">実際に利用する前に、Notion側の仕様、共有範囲、権限設定、保存期間、個人情報の扱いを確認してください。</p>
@@ -124,17 +106,15 @@
     <div class="nw-note" data-i18n="en" style="display:none;">The design draft is generated in your browser. However, ad and analytics tags may load for page display. Mask customer names, email addresses, internal URLs, unreleased project names, and personal data when needed. The language setting may be saved in localStorage.</div>
 
     <section class="card">
-      <div class="card-hd">
-        <h2 class="card-title" data-i18n="ja">入力</h2>
-        <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
-      </div>
-
+      <div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none;">Input</h2></div>
       <div class="card-bd">
         <div id="toolRoot">
           <div class="field">
             <label class="label" data-i18n="ja" for="useCase">用途</label>
             <label class="label" data-i18n="en" for="useCase" style="display:none;">Use case</label>
-            <input class="input" id="useCase" type="text" stable content="例：問い合わせ管理" />
+            <input class="input" id="useCase" type="text" />
+            <p class="field-hint" data-i18n="ja">例：問い合わせ管理</p>
+            <p class="field-hint" data-i18n="en" style="display:none;">Example: inquiry management</p>
           </div>
 
           <div class="field">
@@ -152,8 +132,7 @@
           </div>
 
           <div class="field">
-            <div class="label" data-i18n="ja">必要項目</div>
-            <div class="label" data-i18n="en" style="display:none;">Fields to include</div>
+            <div class="label" data-i18n="ja">必要項目</div><div class="label" data-i18n="en" style="display:none;">Fields to include</div>
             <div class="row check-row">
               <label><input type="checkbox" class="field-check" value="name" checked> <span data-i18n="ja">名前</span><span data-i18n="en" style="display:none;">Name</span></label>
               <label><input type="checkbox" class="field-check" value="email" checked> <span data-i18n="ja">メール</span><span data-i18n="en" style="display:none;">Email</span></label>
@@ -172,23 +151,9 @@
             <button class="btn" type="button" id="saveTxt">Save TXT</button>
           </div>
 
-          <div class="field">
-            <label class="label" data-i18n="ja" for="properties">プロパティ設計</label>
-            <label class="label" data-i18n="en" for="properties" style="display:none;">Property design</label>
-            <textarea class="out" id="properties" readonly></textarea>
-          </div>
-
-          <div class="field">
-            <label class="label" data-i18n="ja" for="pipeline">ステータスパイプライン</label>
-            <label class="label" data-i18n="en" for="pipeline" style="display:none;">Status pipeline</label>
-            <textarea class="out" id="pipeline" readonly></textarea>
-          </div>
-
-          <div class="field">
-            <label class="label" data-i18n="ja" for="messages">通知テンプレ</label>
-            <label class="label" data-i18n="en" for="messages" style="display:none;">Message templates</label>
-            <textarea class="out" id="messages" readonly></textarea>
-          </div>
+          <div class="field"><label class="label" data-i18n="ja" for="properties">プロパティ設計</label><label class="label" data-i18n="en" for="properties" style="display:none;">Property design</label><textarea class="out" id="properties" readonly></textarea></div>
+          <div class="field"><label class="label" data-i18n="ja" for="pipeline">ステータスパイプライン</label><label class="label" data-i18n="en" for="pipeline" style="display:none;">Status pipeline</label><textarea class="out" id="pipeline" readonly></textarea></div>
+          <div class="field"><label class="label" data-i18n="ja" for="messages">通知テンプレ</label><label class="label" data-i18n="en" for="messages" style="display:none;">Message templates</label><textarea class="out" id="messages" readonly></textarea></div>
         </div>
       </div>
     </section>
@@ -198,60 +163,21 @@
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
+      <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
 
     <section class="nw-faq" aria-labelledby="faqTitleJa">
-      <h2 id="faqTitleJa" data-i18n="ja">よくある質問</h2>
-      <h2 data-i18n="en" style="display:none;">FAQ</h2>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Notion上にデータベースを自動作成できますか？</h3>
-        <h3 data-i18n="en" style="display:none;">Can this automatically create a Notion database?</h3>
-        <p data-i18n="ja">いいえ。設計案を作るだけです。実際のページ、データベース、フォーム、権限設定はNotion側で行ってください。</p>
-        <p data-i18n="en" style="display:none;">No. It only creates a draft design. Create the actual page, database, form, and permission settings in Notion.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">個人情報を扱うフォームにも使えますか？</h3>
-        <h3 data-i18n="en" style="display:none;">Can I use it for forms that contain personal data?</h3>
-        <p data-i18n="ja">たたき台には使えますが、共有範囲、権限、外部公開設定、保存期間、削除ルール、プライバシーポリシーを確認してください。</p>
-        <p data-i18n="en" style="display:none;">You can use it as a draft, but check sharing scope, permissions, public access, retention, deletion rules, and your privacy policy.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">入力内容は送信されますか？</h3>
-        <h3 data-i18n="en" style="display:none;">Is my input sent anywhere?</h3>
-        <p data-i18n="ja">設計案生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
-        <p data-i18n="en" style="display:none;">The draft generation runs in your browser. However, ad and analytics tags may load for page display.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Notionの仕様変更に対応していますか？</h3>
-        <h3 data-i18n="en" style="display:none;">Does it track Notion specification changes?</h3>
-        <p data-i18n="ja">Notion側の仕様は変わる可能性があります。実際に設定する前にNotion公式情報を確認してください。</p>
-        <p data-i18n="en" style="display:none;">Notion's behavior can change. Check Notion's official information before configuring the design.</p>
-      </div>
+      <h2 id="faqTitleJa" data-i18n="ja">よくある質問</h2><h2 data-i18n="en" style="display:none;">FAQ</h2>
+      <div class="faq-item"><h3 data-i18n="ja">Notion上にデータベースを自動作成できますか？</h3><h3 data-i18n="en" style="display:none;">Can this automatically create a Notion database?</h3><p data-i18n="ja">いいえ。設計案を作るだけです。実際のページ、データベース、フォーム、権限設定はNotion側で行ってください。</p><p data-i18n="en" style="display:none;">No. It only creates a draft design. Create the actual page, database, form, and permission settings in Notion.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">個人情報を扱うフォームにも使えますか？</h3><h3 data-i18n="en" style="display:none;">Can I use it for forms that contain personal data?</h3><p data-i18n="ja">たたき台には使えますが、共有範囲、権限、外部公開設定、保存期間、削除ルール、プライバシーポリシーを確認してください。</p><p data-i18n="en" style="display:none;">You can use it as a draft, but check sharing scope, permissions, public access, retention, deletion rules, and your privacy policy.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">入力内容は送信されますか？</h3><h3 data-i18n="en" style="display:none;">Is my input sent anywhere?</h3><p data-i18n="ja">設計案生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p><p data-i18n="en" style="display:none;">The draft generation runs in your browser. However, ad and analytics tags may load for page display.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">Notionの仕様変更に対応していますか？</h3><h3 data-i18n="en" style="display:none;">Does it track Notion specification changes?</h3><p data-i18n="ja">Notion側の仕様は変わる可能性があります。実際に設定する前にNotion公式情報を確認してください。</p><p data-i18n="en" style="display:none;">Notion's behavior can change. Check Notion's official information before configuring the design.</p></div>
     </section>
 
-    <section class="nw-other">
-      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
-      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
-      <div class="nw-other-links">
-        <a href="/tools/form-tool-selector/">Form Tool Selector</a>
-        <a href="/tools/message-generator/">Message Generator</a>
-        <a href="/tools/ops-weekly-report-generator/">Ops Weekly Report Generator</a>
-        <a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a>
-      </div>
-    </section>
+    <section class="nw-other"><h3 class="nw-other-title" data-i18n="ja">他のツール</h3><h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3><div class="nw-other-links"><a href="/tools/form-tool-selector/">Form Tool Selector</a><a href="/tools/message-generator/">Message Generator</a><a href="/tools/ops-weekly-report-generator/">Ops Weekly Report Generator</a><a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a></div></section>
   </main>
 
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
-  </footer>
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./app.js"></script>
