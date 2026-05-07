@@ -2,690 +2,473 @@
 (() => {
   "use strict";
 
-  // ---------- helpers ----------
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
   const STORAGE_KEY = "nw_drymeter_v1";
+  const LANG_KEY = "nw_lang";
 
-  const round1 = (n) => Math.round(n * 10) / 10;
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const round1 = (value) => Math.round(value * 10) / 10;
 
-  // ---------- elements ----------
-  const langButtons = $$(".nw-lang-switch button");
-
-  const tempEl = $("#temp");
-  const humidityEl = $("#humidity");
-  const windEl = $("#wind");
-
-  const tempOut = $("#tempOut");
-  const humidityOut = $("#humidityOut");
-  const windOut = $("#windOut");
-
-  const resultCard = $("#resultCard");
-  const scoreNum = $("#scoreNum");
-  const riskEmoji = $("#riskEmoji");
-  const riskLabel = $("#riskLabel");
-  const riskTitle = $("#riskTitle");
-  const reasonsList = $("#reasonsList");
-  const suggestionText = $("#suggestionText");
-  const breakdownList = $("#breakdownList");
-  const whyText = $("#whyText");
-  const validationMsg = $("#validationMsg");
-  const copyBtn = $("#copyBtn");
-  const copyStatus = $("#copyStatus");
-  const wxMini = $("#wxMini");
-
-  const targetBtns = $$(".segmented .seg[data-target]");
-  const dryBtns = $$(".segmented .seg[data-dry]");
-  const presetBtns = $$(".preset-btn");
-  const manualApplyBtn = $("#manualApplyBtn");
-
-  // ---------- state ----------
   const defaultState = {
-    lang: null,            // auto
-    target: "laundry",     // laundry | thick | bedding
-    drying: "outdoor",     // outdoor | indoor
+    target: "laundry",
+    drying: "outdoor",
     temp: 22,
     humidity: 58,
     wind: 3.2
   };
 
+  const labels = {
+    target: {
+      laundry: { ja: "普通の洗濯物", en: "Laundry" },
+      thick: { ja: "厚手", en: "Thick items" },
+      bedding: { ja: "布団", en: "Bedding" }
+    },
+    drying: {
+      outdoor: { ja: "外干し", en: "Outdoor" },
+      indoor: { ja: "部屋干し", en: "Indoor" }
+    },
+    bands: {
+      good: {
+        emoji: "🟢",
+        label: { ja: "乾きやすい", en: "Easier to dry" },
+        suggestion: {
+          outdoor: { ja: "外干しの目安としては良好です。干す間隔と取り込み時間には注意してください。", en: "Conditions look good for outdoor drying. Keep spacing wide and watch retrieval timing." },
+          indoor: { ja: "部屋干しでも比較的乾きやすい目安です。送風を併用すると安定します。", en: "Indoor drying should be relatively easy. Airflow helps keep it stable." }
+        }
+      },
+      ok: {
+        emoji: "🟡",
+        label: { ja: "普通", en: "Average" },
+        suggestion: {
+          outdoor: { ja: "乾く可能性はありますが、厚手や布団は仕上げの送風を前提にしてください。", en: "Drying may work, but thick items and bedding may need airflow finishing." },
+          indoor: { ja: "部屋干しは換気・除湿・送風の併用がおすすめです。", en: "Indoor drying should use ventilation, dehumidification and airflow together." }
+        }
+      },
+      bad: {
+        emoji: "🔴",
+        label: { ja: "乾きにくい", en: "Hard to dry" },
+        suggestion: {
+          outdoor: { ja: "外干しだけで乾かすには不向きな目安です。部屋干し・乾燥機・除湿を検討してください。", en: "Outdoor drying alone looks unsuitable. Consider indoor drying, a dryer, or dehumidification." },
+          indoor: { ja: "部屋干しでも臭い・カビに注意が必要です。除湿と強めの送風を使ってください。", en: "Indoor drying still needs odor and mold caution. Use dehumidification and stronger airflow." }
+        }
+      }
+    }
+  };
+
   let state = { ...defaultState };
+  let currentLang = "ja";
+  let lastResult = null;
+
+  function detectLang() {
+    const stored = localStorage.getItem(LANG_KEY);
+    if (stored === "ja" || stored === "en") return stored;
+
+    try {
+      const legacy = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      if (legacy.lang === "ja" || legacy.lang === "en") return legacy.lang;
+    } catch {
+      // ignore legacy parse errors
+    }
+
+    return (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
+  }
 
   function loadState() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw);
-
-      // whitelist keys
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
       state = {
-        ...state,
-        lang: typeof parsed.lang === "string" ? parsed.lang : null,
-        target: ["laundry", "thick", "bedding"].includes(parsed.target) ? parsed.target : "laundry",
-        drying: parsed.drying === "indoor" ? "indoor" : "outdoor",
-        temp: clamp(Number(parsed.temp ?? state.temp), 0, 40),
-        humidity: clamp(Number(parsed.humidity ?? state.humidity), 30, 100),
-        wind: clamp(Number(parsed.wind ?? state.wind), 0, 10)
+        target: ["laundry", "thick", "bedding"].includes(parsed.target) ? parsed.target : defaultState.target,
+        drying: parsed.drying === "indoor" ? "indoor" : defaultState.drying,
+        temp: clamp(Number(parsed.temp ?? defaultState.temp), -10, 45),
+        humidity: clamp(Number(parsed.humidity ?? defaultState.humidity), 0, 100),
+        wind: round1(clamp(Number(parsed.wind ?? defaultState.wind), 0, 15))
       };
-      // normalize wind to 0.1 step
-      state.wind = round1(state.wind);
     } catch {
-      // ignore
+      state = { ...defaultState };
     }
   }
 
   function saveState() {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        target: state.target,
+        drying: state.drying,
+        temp: state.temp,
+        humidity: state.humidity,
+        wind: state.wind
+      }));
     } catch {
-      // ignore
+      // ignore storage errors
     }
-  }
-
-  // ---------- i18n ----------
-  function detectLang() {
-    const browser = (navigator.language || "").toLowerCase();
-    return browser.startsWith("ja") ? "ja" : "en";
   }
 
   function applyLang(lang) {
-    $$("[data-i18n]").forEach((el) => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
-    });
-    langButtons.forEach((b) => {
-      b.classList.toggle("active", b.dataset.lang === lang);
-    });
-    state.lang = lang;
-    saveState();
-  }
+    currentLang = lang === "en" ? "en" : "ja";
+    document.documentElement.lang = currentLang;
+    try {
+      localStorage.setItem(LANG_KEY, currentLang);
+    } catch {
+      // ignore storage errors
+    }
 
-  // ---------- segmented controls ----------
-  function setActive(btns, matchFn) {
-    btns.forEach((b) => {
-      const on = matchFn(b);
-      b.classList.toggle("active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
+    $$('[data-i18n]').forEach((el) => {
+      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
+    });
+    $$('.nw-lang-switch button').forEach((button) => {
+      button.classList.toggle('active', button.dataset.lang === currentLang);
     });
   }
 
-  function applySegmentedUI() {
-    setActive(targetBtns, (b) => b.dataset.target === state.target);
-    setActive(dryBtns, (b) => b.dataset.dry === state.drying);
+  function text(pair) {
+    return pair[currentLang] || pair.ja || pair.en || "";
   }
 
-  // ---------- inputs UI ----------
-  function applyInputsUI() {
-    tempEl.value = String(state.temp);
-    humidityEl.value = String(state.humidity);
-    windEl.value = String(state.wind);
-
-    tempOut.textContent = String(state.temp);
-    humidityOut.textContent = String(state.humidity);
-    // keep one decimal for wind
-    windOut.textContent = (Math.round(state.wind) === state.wind) ? String(state.wind) : state.wind.toFixed(1);
+  function setText(selector, value) {
+    const el = typeof selector === "string" ? $(selector) : selector;
+    if (el) el.textContent = value;
   }
 
-  // ---------- scoring logic ----------
-  function computeDryScore({ temp, humidity, wind, target, drying }) {
-    // base scoring (0–100)
-    const tempScore = clamp(((temp - 5) / 25) * 40, 0, 40);
-    const humidityScore = clamp(((100 - humidity) / 70) * 40, 0, 40);
-    const windScore = clamp((wind / 5) * 20, 0, 20);
+  function createI18nSpan(pair) {
+    const span = document.createElement("span");
+    span.textContent = text(pair);
+    return span;
+  }
 
-    const tempNeutral = 20;
-    const humidityNeutral = 20;
-    const windNeutral = 10;
+  function computeDryScore(input) {
+    const { temp, humidity, wind, target, drying } = input;
+    const tempAdjust = clamp((temp - 15) * 1.25, -25, 25);
+    const humidityAdjust = clamp((55 - humidity) * 0.65, -35, 35);
+    const windAdjust = clamp(wind * 3.2, 0, 28);
 
-    let score = tempScore + humidityScore + windScore;
+    const targetAdjust = target === "bedding" ? -16 : target === "thick" ? -9 : 0;
+    const dryingAdjust = drying === "indoor" ? -8 : 0;
 
-    // target adjustment
-    let targetAdjust = 0;
-    if (target === "bedding") targetAdjust = -15;
-    if (target === "thick") targetAdjust = -8;
-    score += targetAdjust;
-
-    // drying method adjustment
-    const dryingAdjust = drying === "indoor" ? -10 : 0;
-    score += dryingAdjust;
-
-    score = Math.round(clamp(score, 0, 100));
-
-    let band = "bad";
-    if (score >= 70) band = "good";
-    else if (score >= 40) band = "ok";
+    const score = Math.round(clamp(50 + tempAdjust + humidityAdjust + windAdjust + targetAdjust + dryingAdjust, 0, 100));
+    const band = score >= 70 ? "good" : score >= 40 ? "ok" : "bad";
 
     const breakdown = [
-      {
-        key: "temp",
-        value: Math.round(tempScore - tempNeutral),
-        label: { ja: "気温", en: "Temperature" }
-      },
-      {
-        key: "humidity",
-        value: Math.round(humidityScore - humidityNeutral),
-        label: { ja: "湿度", en: "Humidity" }
-      },
-      {
-        key: "wind",
-        value: Math.round(windScore - windNeutral),
-        label: { ja: "風", en: "Wind" }
-      }
-    ];
-
-    if (targetAdjust !== 0) {
-      const targetLabel = target === "bedding"
-        ? { ja: "対象：布団", en: "Target: bedding" }
-        : { ja: "対象：厚手", en: "Target: thick" };
-      breakdown.push({ key: "target", value: targetAdjust, label: targetLabel });
-    }
-
-    if (dryingAdjust !== 0) {
-      breakdown.push({
-        key: "drying",
-        value: dryingAdjust,
-        label: { ja: "干し方：室内", en: "Method: indoor" }
-      });
-    }
+      { label: { ja: "気温", en: "Temperature" }, value: Math.round(tempAdjust) },
+      { label: { ja: "湿度", en: "Humidity" }, value: Math.round(humidityAdjust) },
+      { label: { ja: "風速", en: "Wind" }, value: Math.round(windAdjust) },
+      { label: labels.target[target], value: targetAdjust },
+      { label: labels.drying[drying], value: dryingAdjust }
+    ].filter((item) => item.value !== 0);
 
     return { score, band, breakdown };
   }
 
-  function labelsForBand(band, lang) {
-    const ja = {
-      good: { status: "よく乾く", outdoor: "今日は外干し向きです。", indoor: "部屋干しでも乾きやすいです。" },
-      ok:   { status: "普通",     outdoor: "工夫すれば乾きます。",     indoor: "部屋干しは工夫が必要です。" },
-      bad:  { status: "乾きにくい", outdoor: "乾燥には不向きです。",   indoor: "部屋干しは避けた方が無難です。" }
-    };
-    const en = {
-      good: { status: "Dries well", outdoor: "Great day for outdoor drying.", indoor: "Drying indoors should be fine." },
-      ok:   { status: "Average",    outdoor: "Drying is possible with care.",  indoor: "Indoor drying may need help." },
-      bad:  { status: "Hard to dry",outdoor: "Not suitable for drying today.", indoor: "Indoor drying is not recommended." }
-    };
-    return (lang === "ja" ? ja : en)[band];
+  function buildReasons() {
+    const reasons = [];
+
+    reasons.push({
+      ja: `湿度 ${state.humidity}%：${state.humidity >= 80 ? "かなり乾きにくい" : state.humidity >= 65 ? "やや乾きにくい" : state.humidity <= 40 ? "乾きやすい" : "標準的"}`,
+      en: `Humidity ${state.humidity}%: ${state.humidity >= 80 ? "very hard to dry" : state.humidity >= 65 ? "somewhat hard to dry" : state.humidity <= 40 ? "easier to dry" : "moderate"}`
+    });
+
+    reasons.push({
+      ja: `気温 ${state.temp}℃：${state.temp <= 5 ? "低温で乾きにくい" : state.temp >= 25 ? "乾きやすい" : "標準的"}`,
+      en: `Temperature ${state.temp}°C: ${state.temp <= 5 ? "low and slower" : state.temp >= 25 ? "helps drying" : "moderate"}`
+    });
+
+    reasons.push({
+      ja: `風速 ${state.wind}m/s：${state.wind >= 6 ? "風が乾燥を助ける" : state.wind <= 1 ? "風が弱い" : "ほどほど"}`,
+      en: `Wind ${state.wind} m/s: ${state.wind >= 6 ? "helps drying" : state.wind <= 1 ? "weak" : "moderate"}`
+    });
+
+    if (state.target === "bedding") {
+      reasons.push({ ja: "布団は厚みと素材で乾き残りが出やすいです。", en: "Bedding can retain moisture depending on thickness and material." });
+    } else if (state.target === "thick") {
+      reasons.push({ ja: "厚手は普通の洗濯物より乾燥に時間がかかります。", en: "Thick items take longer than regular laundry." });
+    }
+
+    if (state.drying === "indoor") {
+      reasons.push({ ja: "部屋干しは部屋の広さ、換気、除湿、送風で結果が大きく変わります。", en: "Indoor drying depends heavily on room size, ventilation, dehumidification and airflow." });
+    }
+
+    return reasons;
   }
 
-  function formatSigned(value) {
-    return `${value > 0 ? "+" : ""}${value}`;
+  function buildWhyText(breakdown) {
+    if (!breakdown.length) {
+      return currentLang === "ja" ? "大きな補正要因はなく、標準に近い条件です。" : "No major adjustment factors; conditions are close to average.";
+    }
+    const sorted = [...breakdown].sort((a, b) => Math.abs(b.value) - Math.abs(a.value));
+    const top = sorted[0];
+    const direction = top.value > 0
+      ? { ja: "プラス", en: "positive" }
+      : { ja: "マイナス", en: "negative" };
+    return currentLang === "ja"
+      ? `${text(top.label)}が${Math.abs(top.value)}点の${direction.ja}要因です。`
+      : `${text(top.label)} is the strongest ${direction.en} factor (${Math.abs(top.value)} points).`;
   }
 
-  function updateI18nText(el, jaText, enText) {
-    if (!el) return;
-    const jaSpan = $(`[data-i18n="ja"]`, el);
-    const enSpan = $(`[data-i18n="en"]`, el);
-    if (jaSpan) jaSpan.textContent = jaText;
-    if (enSpan) enSpan.textContent = enText;
-  }
-
-  function normalizeState() {
-    const messagesJa = [];
-    const messagesEn = [];
-
-    const tempValue = Number(state.temp);
-    if (!Number.isFinite(tempValue)) {
-      state.temp = defaultState.temp;
-      messagesJa.push("気温が数値ではありません。");
-      messagesEn.push("Temperature is not a valid number.");
-    } else if (tempValue < 0 || tempValue > 40) {
-      state.temp = clamp(tempValue, 0, 40);
-      messagesJa.push("気温は0〜40℃の範囲で入力してください。");
-      messagesEn.push("Temperature must be between 0–40°C.");
-    }
-
-    const humidityValue = Number(state.humidity);
-    if (!Number.isFinite(humidityValue)) {
-      state.humidity = defaultState.humidity;
-      messagesJa.push("湿度が数値ではありません。");
-      messagesEn.push("Humidity is not a valid number.");
-    } else if (humidityValue < 30 || humidityValue > 100) {
-      state.humidity = clamp(humidityValue, 30, 100);
-      messagesJa.push("湿度は30〜100%の範囲で入力してください。");
-      messagesEn.push("Humidity must be between 30–100%.");
-    }
-
-    const windValue = Number(state.wind);
-    if (!Number.isFinite(windValue)) {
-      state.wind = defaultState.wind;
-      messagesJa.push("風速が数値ではありません。");
-      messagesEn.push("Wind speed is not a valid number.");
-    } else if (windValue < 0 || windValue > 10) {
-      state.wind = clamp(windValue, 0, 10);
-      messagesJa.push("風速は0〜10m/sの範囲で入力してください。");
-      messagesEn.push("Wind speed must be between 0–10 m/s.");
-    }
-
-    updateI18nText(validationMsg, messagesJa.join(" "), messagesEn.join(" "));
-  }
-
-  function buildWhyText(breakdown, lang) {
-    const positives = breakdown.filter((item) => item.value > 0);
-    const negatives = breakdown.filter((item) => item.value < 0);
-
-    const strongestPositive = positives.sort((a, b) => b.value - a.value)[0];
-    const strongestNegative = negatives.sort((a, b) => a.value - b.value)[0];
-
-    if (strongestPositive && strongestNegative) {
-      if (lang === "ja") {
-        return `${strongestNegative.label.ja}が${Math.abs(strongestNegative.value)}点のマイナスで下げ、${strongestPositive.label.ja}が${strongestPositive.value}点のプラスで補っています。`;
-      }
-      return `${strongestNegative.label.en} reduced the score by ${Math.abs(strongestNegative.value)} points, while ${strongestPositive.label.en} added ${strongestPositive.value} points.`;
-    }
-
-    if (strongestNegative) {
-      if (lang === "ja") {
-        return `${strongestNegative.label.ja}の影響が大きく、スコアが下がっています。`;
-      }
-      return `The score is mainly held back by ${strongestNegative.label.en.toLowerCase()}.`;
-    }
-
-    if (strongestPositive) {
-      if (lang === "ja") {
-        return `${strongestPositive.label.ja}が追い風になり、乾きやすさを押し上げています。`;
-      }
-      return `${strongestPositive.label.en} is the main factor boosting the score.`;
-    }
-
-    return lang === "ja"
-      ? "大きなプラス・マイナス要因はなく、全体的に平均的です。"
-      : "No strong positive or negative factors; conditions are fairly balanced.";
-  }
-
-  function getAdviceTexts(useCase, score, { temp, humidity, wind }) {
-    const highHumidity = humidity >= 75;
-    const veryHumid = humidity >= 85;
-    const lowTemp = temp <= 10;
-    const warm = temp >= 22;
-    const strongWind = wind >= 5;
-    const weakWind = wind <= 1.2;
-
+  function adviceFor(score) {
+    const humid = state.humidity >= 75;
+    const veryHumid = state.humidity >= 85;
+    const cold = state.temp <= 8;
+    const weakWind = state.wind <= 1;
     const good = score >= 70;
-    const ok = score >= 40;
+    const bad = score < 40;
 
-    if (useCase === "laundry") {
-      if (veryHumid || !ok) {
-        return {
-          ja: {
-            do: "外干しは避け、室内で除湿＋送風に切り替える。",
-            avoid: "密集して干す／厚手を長時間外に置く。",
-            help: "除湿機・サーキュレーター"
-          },
-          en: {
-            do: "Skip outdoor drying and switch to indoor drying with dehumidification.",
-            avoid: "Overlapping items or leaving thick items outside for long.",
-            help: "Dehumidifier, air circulator"
-          }
-        };
-      }
-      if (highHumidity || lowTemp) {
-        return {
-          ja: {
-            do: "外干しは短時間＋間隔を広く。取り込み後は送風で仕上げる。",
-            avoid: "夕方まで放置する／日陰に密集させる。",
-            help: "扇風機・浴室乾燥"
-          },
-          en: {
-            do: "Dry outdoors briefly with wide spacing, then finish with airflow.",
-            avoid: "Leaving items out until evening or crowding in shade.",
-            help: "Fan, bathroom dryer"
-          }
-        };
-      }
-      if (good) {
-        return {
-          ja: {
-            do: "朝〜昼の外干しでOK。裏返して風通しを確保。",
-            avoid: "厚手を重ねる／軒下の風が弱い場所。",
-            help: strongWind ? "特になし（風が十分）" : "物干し位置の調整"
-          },
-          en: {
-            do: "Outdoor drying is great from morning to noon. Flip items for airflow.",
-            avoid: "Stacking thick items or drying in windless corners.",
-            help: strongWind ? "None (wind is sufficient)" : "Adjust rack position"
-          }
-        };
-      }
-      return {
-        ja: {
-          do: "外干しは可能だが、風通し確保＋取り込み後の送風がおすすめ。",
-          avoid: "部屋の奥で乾かし切る／厚手を一緒に干す。",
-          help: "扇風機・サーキュレーター"
-        },
-        en: {
-          do: "Outdoor drying is possible; ensure airflow and finish with a fan.",
-          avoid: "Letting items finish in a closed room or mixing thick items.",
-          help: "Fan, air circulator"
-        }
-      };
-    }
-
-    if (useCase === "bedding") {
-      if (veryHumid || score < 45) {
-        return {
-          ja: {
-            do: "今日は見送り推奨。室内で除湿乾燥や布団乾燥機を使う。",
-            avoid: "長時間の外干し／湿ったまま収納。",
-            help: "布団乾燥機・除湿機"
-          },
-          en: {
-            do: "Better to skip today. Use indoor dehumidifying or a bedding dryer.",
-            avoid: "Long outdoor drying or storing while damp.",
-            help: "Bedding dryer, dehumidifier"
-          }
-        };
-      }
-      if (highHumidity || lowTemp) {
-        return {
-          ja: {
-            do: "短時間の日光＋こまめな裏返し。仕上げは室内送風。",
-            avoid: "夕方まで放置／片面だけ干す。",
-            help: "扇風機・布団乾燥機"
-          },
-          en: {
-            do: "Short outdoor sun with frequent flipping, then finish indoors.",
-            avoid: "Leaving out until evening or drying only one side.",
-            help: "Fan, bedding dryer"
-          }
-        };
-      }
-      if (good) {
-        return {
-          ja: {
-            do: "外干しでしっかり乾燥。途中で裏返してムラを防ぐ。",
-            avoid: "日陰に長時間置く／取り込み直後に収納。",
-            help: strongWind ? "特になし（風が十分）" : "送風で仕上げ"
-          },
-          en: {
-            do: "Outdoor drying works well; flip mid-way to avoid uneven drying.",
-            avoid: "Keeping it in shade or storing right after bringing in.",
-            help: strongWind ? "None (wind is sufficient)" : "Finish with airflow"
-          }
-        };
-      }
-      return {
-        ja: {
-          do: "外干し＋室内仕上げの併用が安心。",
-          avoid: "湿度の高い時間帯に長く干す。",
-          help: "サーキュレーター・布団乾燥機"
-        },
-        en: {
-          do: "Combine brief outdoor drying with indoor finishing.",
-          avoid: "Long drying during the most humid hours.",
-          help: "Air circulator, bedding dryer"
-        }
-      };
-    }
-
-    if (veryHumid) {
-      return {
-        ja: {
-          do: "窓は閉め、除湿＋送風で乾燥。浴室乾燥が使えるなら活用。",
-          avoid: "外気を入れる／狭い場所に密集。",
-          help: "除湿機・サーキュレーター"
-        },
-        en: {
-          do: "Keep windows closed and use dehumidifying airflow.",
-          avoid: "Letting humid outside air in or drying in tight spaces.",
-          help: "Dehumidifier, air circulator"
-        }
-      };
-    }
-    if (warm && humidity < 60) {
-      return {
-        ja: {
-          do: "換気＋送風で十分。間隔を広めに干す。",
-          avoid: "重ね干し／扉を閉め切る。",
-          help: weakWind ? "扇風機" : "特になし"
-        },
-        en: {
-          do: "Ventilation and airflow are enough; keep spacing wide.",
-          avoid: "Overlapping items or keeping doors closed.",
-          help: weakWind ? "Fan" : "None needed"
-        }
-      };
-    }
     return {
-      ja: {
-        do: "暖房や送風を併用し、空気の通り道を作る。",
-        avoid: "洗濯物を壁際に寄せる／換気ゼロ。",
-        help: "暖房・サーキュレーター"
+      laundry: {
+        do: {
+          ja: bad || veryHumid ? "外干しだけに頼らず、除湿＋送風に切り替える。" : good ? "朝〜昼に外干しし、間隔を広めに取る。" : "外干し後に室内送風で仕上げる。",
+          en: bad || veryHumid ? "Do not rely on outdoor drying alone; use dehumidification and airflow." : good ? "Dry outdoors from morning to noon with wide spacing." : "Finish with indoor airflow after outdoor drying."
+        },
+        avoid: {
+          ja: humid || cold ? "密集干し、夕方までの放置、厚手との混在。" : "重ね干し、風の弱い場所、取り込み忘れ。",
+          en: humid || cold ? "Crowding, leaving until evening, and mixing with thick items." : "Overlapping, windless spots, and forgetting retrieval."
+        }
       },
-      en: {
-        do: "Use heating plus airflow and create a clear air path.",
-        avoid: "Pushing items against walls or zero ventilation.",
-        help: "Heater, air circulator"
+      bedding: {
+        do: {
+          ja: score < 45 ? "今日は見送り、布団乾燥機や除湿仕上げを優先する。" : "短時間で裏返しながら干し、取り込み後に湿りを確認する。",
+          en: score < 45 ? "Skip outdoor drying today and use a bedding dryer or dehumidifying finish." : "Dry briefly, flip during drying, and check for dampness after retrieval."
+        },
+        avoid: {
+          ja: "湿ったまま収納する、片面だけ干す、夕方まで外に置く。",
+          en: "Storing while damp, drying only one side, or leaving outside until evening."
+        }
+      },
+      room: {
+        do: {
+          ja: veryHumid ? "窓を閉めて除湿＋強めの送風を使う。" : weakWind ? "サーキュレーターで空気の通り道を作る。" : "換気と送風を併用し、洗濯物の間隔を広げる。",
+          en: veryHumid ? "Close windows and use dehumidification with stronger airflow." : weakWind ? "Use an air circulator to create an airflow path." : "Combine ventilation and airflow, and keep spacing wide."
+        },
+        avoid: {
+          ja: "部屋の奥で密集させる、換気ゼロ、湿ったまま長時間放置。",
+          en: "Crowding in the back of a room, zero ventilation, or leaving damp items for long."
+        }
       }
     };
   }
 
-  function applyAdvice(useCase, score, inputs) {
-    const advice = getAdviceTexts(useCase, score, inputs);
-    const mapping = {
-      laundry: ["actionLaundryDo", "actionLaundryAvoid", "actionLaundryHelp"],
-      bedding: ["actionBeddingDo", "actionBeddingAvoid", "actionBeddingHelp"],
-      room: ["actionRoomDo", "actionRoomAvoid", "actionRoomHelp"]
-    };
-    const [doId, avoidId, helpId] = mapping[useCase];
-    updateI18nText($(`#${doId}`), advice.ja.do, advice.en.do);
-    updateI18nText($(`#${avoidId}`), advice.ja.avoid, advice.en.avoid);
-    updateI18nText($(`#${helpId}`), advice.ja.help, advice.en.help);
+  function renderList(container, items, className) {
+    container.textContent = "";
+    items.forEach((item) => {
+      const li = document.createElement("li");
+      if (className) li.className = className(item);
+      const label = document.createElement("span");
+      label.textContent = text(item.label || item);
+      li.append(label);
+      if (typeof item.value === "number") {
+        const value = document.createElement("span");
+        value.textContent = `${item.value > 0 ? "+" : ""}${item.value}`;
+        li.append(value);
+      }
+      container.appendChild(li);
+    });
+  }
+
+  function updateInputs() {
+    const tempEl = $("#temp");
+    const humidityEl = $("#humidity");
+    const windEl = $("#wind");
+    if (tempEl) tempEl.value = String(state.temp);
+    if (humidityEl) humidityEl.value = String(state.humidity);
+    if (windEl) windEl.value = String(state.wind);
+    setText("#tempOut", String(state.temp));
+    setText("#humidityOut", String(state.humidity));
+    setText("#windOut", Number.isInteger(state.wind) ? String(state.wind) : state.wind.toFixed(1));
+  }
+
+  function updateSegments() {
+    $$('[data-target]').forEach((button) => {
+      const active = button.dataset.target === state.target;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    $$('[data-dry]').forEach((button) => {
+      const active = button.dataset.dry === state.drying;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function updateWarnings() {
+    const warnings = [];
+    if (state.temp <= -5 || state.temp >= 40 || state.wind >= 12) {
+      warnings.push({ ja: "極端な値では参考度が下がります。通常の生活環境向けの目安として見てください。", en: "Extreme values reduce reliability. Treat this as a guide for normal living conditions." });
+    }
+    if (state.humidity >= 85) {
+      warnings.push({ ja: "高湿度時は、部屋干しでも臭い・カビに注意してください。", en: "High humidity can still increase odor and mold risk indoors." });
+    }
+    setText("#validationMsg", warnings.map(text).join(" "));
   }
 
   function renderResult() {
-    normalizeState();
-    applyInputsUI();
-    if (copyStatus) copyStatus.textContent = "";
-    const { score, band, breakdown } = computeDryScore(state);
-    scoreNum.textContent = String(score);
+    updateInputs();
+    updateSegments();
+    updateWarnings();
 
-    // update card class
-    resultCard.classList.remove("status-good", "status-ok", "status-bad");
-    resultCard.classList.add(band === "good" ? "status-good" : band === "ok" ? "status-ok" : "status-bad");
+    const result = computeDryScore(state);
+    lastResult = result;
+    const band = labels.bands[result.band];
+    const suggestion = band.suggestion[state.drying];
 
-    const lang = state.lang || detectLang();
+    setText("#scoreNum", String(result.score));
+    setText("#riskEmoji", band.emoji);
+    setText("#riskLabel", text(band.label));
+    setText("#riskTitle", text(band.label));
+    setText("#suggestionText", text(suggestion));
+    setText("#whyText", buildWhyText(result.breakdown));
 
-    const key = state.drying === "indoor" ? "indoor" : "outdoor";
-
-    updateI18nText(riskTitle, labelsForBand(band, "ja").status, labelsForBand(band, "en").status);
-    updateI18nText(riskLabel, labelsForBand(band, "ja").status, labelsForBand(band, "en").status);
-    updateI18nText(suggestionText, labelsForBand(band, "ja")[key], labelsForBand(band, "en")[key]);
-
-    if (riskEmoji) {
-      riskEmoji.textContent = band === "good" ? "🟢" : band === "ok" ? "🟡" : "🔴";
+    const card = $("#resultCard");
+    if (card) {
+      card.classList.remove("status-good", "status-ok", "status-bad");
+      card.classList.add(`status-${result.band}`);
     }
 
-    if (reasonsList) {
-      reasonsList.innerHTML = "";
-      const reasons = [
-        {
-          ja: `湿度 ${state.humidity}%（${state.humidity >= 75 ? "乾きにくい" : "許容範囲"}）`,
-          en: `Humidity ${state.humidity}% (${state.humidity >= 75 ? "slows drying" : "acceptable"})`
-        },
-        {
-          ja: `気温 ${state.temp}℃（${state.temp <= 10 ? "低め" : state.temp >= 22 ? "高め" : "普通"}）`,
-          en: `Temperature ${state.temp}°C (${state.temp <= 10 ? "low" : state.temp >= 22 ? "warm" : "moderate"})`
-        },
-        {
-          ja: `風 ${state.wind}m/s（${state.wind >= 5 ? "風あり" : state.wind <= 1.2 ? "弱い" : "ほどほど"}）`,
-          en: `Wind ${state.wind} m/s (${state.wind >= 5 ? "strong" : state.wind <= 1.2 ? "light" : "moderate"})`
-        }
-      ];
-      reasons.forEach((reason) => {
-        const li = document.createElement("li");
-        const jaSpan = document.createElement("span");
-        jaSpan.dataset.i18n = "ja";
-        jaSpan.textContent = reason.ja;
-        const enSpan = document.createElement("span");
-        enSpan.dataset.i18n = "en";
-        enSpan.textContent = reason.en;
-        li.append(jaSpan, enSpan);
-        reasonsList.appendChild(li);
-      });
-    }
+    const reasonsList = $("#reasonsList");
+    if (reasonsList) renderList(reasonsList, buildReasons());
 
+    const breakdownList = $("#breakdownList");
     if (breakdownList) {
-      breakdownList.innerHTML = "";
-      breakdown.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = `breakdown-item ${item.value > 0 ? "positive" : item.value < 0 ? "negative" : "neutral"}`;
-        const label = document.createElement("span");
-        const value = document.createElement("span");
-        const jaSpan = document.createElement("span");
-        const enSpan = document.createElement("span");
-        jaSpan.dataset.i18n = "ja";
-        enSpan.dataset.i18n = "en";
-        jaSpan.textContent = item.label.ja;
-        enSpan.textContent = item.label.en;
-        label.append(jaSpan, enSpan);
-        value.textContent = formatSigned(item.value);
-        li.append(label, value);
-        breakdownList.appendChild(li);
-      });
+      renderList(breakdownList, result.breakdown, (item) => `breakdown-item ${item.value > 0 ? "positive" : item.value < 0 ? "negative" : "neutral"}`);
     }
 
-    updateI18nText(whyText, buildWhyText(breakdown, "ja"), buildWhyText(breakdown, "en"));
+    const advice = adviceFor(result.score);
+    setText("#actionLaundryDo", text(advice.laundry.do));
+    setText("#actionLaundryAvoid", text(advice.laundry.avoid));
+    setText("#actionBeddingDo", text(advice.bedding.do));
+    setText("#actionBeddingAvoid", text(advice.bedding.avoid));
+    setText("#actionRoomDo", text(advice.room.do));
+    setText("#actionRoomAvoid", text(advice.room.avoid));
 
-    applyAdvice("laundry", score, state);
-    applyAdvice("bedding", score, state);
-    applyAdvice("room", score, state);
-
-    if (wxMini) {
-      updateI18nText(
-        wxMini,
-        `気温 ${state.temp}℃ / 湿度 ${state.humidity}% / 風 ${state.wind}m/s`,
-        `Temp ${state.temp}°C / Humidity ${state.humidity}% / Wind ${state.wind} m/s`
-      );
-    }
-
-    applyLang(lang);
-
-    // persist
     saveState();
+    applyLang(currentLang);
   }
 
-  // ---------- events ----------
-  function bindEvents() {
-    // language
-    langButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        applyLang(btn.dataset.lang);
-        renderResult();
-      });
-    });
+  function buildCopyText() {
+    const result = lastResult || computeDryScore(state);
+    const band = labels.bands[result.band];
+    const advice = adviceFor(result.score);
+    const mainAdvice = state.target === "bedding" ? advice.bedding.do : state.drying === "indoor" ? advice.room.do : advice.laundry.do;
+    const reasons = buildReasons().slice(0, 3).map(text).join(" / ");
 
-    // segmented: target
-    targetBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        state.target = ["laundry", "thick", "bedding"].includes(btn.dataset.target)
-          ? btn.dataset.target
-          : "laundry";
-        applySegmentedUI();
-        renderResult();
-      });
-    });
-
-    // segmented: drying
-    dryBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        state.drying = btn.dataset.dry === "indoor" ? "indoor" : "outdoor";
-        applySegmentedUI();
-        renderResult();
-      });
-    });
-
-    // sliders
-    tempEl.addEventListener("input", () => {
-      state.temp = clamp(parseInt(tempEl.value, 10), 0, 40);
-      tempOut.textContent = String(state.temp);
-      renderResult();
-    });
-
-    humidityEl.addEventListener("input", () => {
-      state.humidity = clamp(parseInt(humidityEl.value, 10), 30, 100);
-      humidityOut.textContent = String(state.humidity);
-      renderResult();
-    });
-
-    windEl.addEventListener("input", () => {
-      state.wind = round1(clamp(parseFloat(windEl.value), 0, 10));
-      windOut.textContent = (Math.round(state.wind) === state.wind) ? String(state.wind) : state.wind.toFixed(1);
-      renderResult();
-    });
-
-    if (manualApplyBtn) {
-      manualApplyBtn.addEventListener("click", () => {
-        renderResult();
-      });
+    if (currentLang === "ja") {
+      return [
+        `Dry Score（参考）: ${result.score}/100（${text(band.label)}）`,
+        `対象: ${text(labels.target[state.target])}`,
+        `干し方: ${text(labels.drying[state.drying])}`,
+        `条件: 気温 ${state.temp}℃ / 湿度 ${state.humidity}% / 風速 ${state.wind}m/s`,
+        `主な理由: ${reasons}`,
+        `おすすめ行動: ${text(mainAdvice)}`,
+        "注意: 気温・湿度・風速だけの簡易目安です。雨、降水確率、日照、素材、干し方、時間帯は結果に影響します。"
+      ].join("\n");
     }
 
-    presetBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const preset = btn.dataset.preset;
+    return [
+      `Dry Score (reference): ${result.score}/100 (${text(band.label)})`,
+      `Target: ${text(labels.target[state.target])}`,
+      `Method: ${text(labels.drying[state.drying])}`,
+      `Conditions: ${state.temp}°C / humidity ${state.humidity}% / wind ${state.wind} m/s`,
+      `Main reasons: ${reasons}`,
+      `Recommended action: ${text(mainAdvice)}`,
+      "Note: This is a simple guide based only on temperature, humidity and wind. Rain, precipitation probability, sunlight, material, drying method and time of day can affect results."
+    ].join("\n");
+  }
+
+  async function copyText(value) {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+
+    const textarea = document.createElement("textarea");
+    textarea.value = value;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    const ok = document.execCommand("copy");
+    textarea.remove();
+    if (!ok) throw new Error("copy_failed");
+  }
+
+  function bindEvents() {
+    $$('.nw-lang-switch button').forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLang(button.dataset.lang);
+        renderResult();
+      });
+    });
+
+    $$('[data-target]').forEach((button) => {
+      button.addEventListener("click", () => {
+        state.target = ["laundry", "thick", "bedding"].includes(button.dataset.target) ? button.dataset.target : "laundry";
+        renderResult();
+      });
+    });
+
+    $$('[data-dry]').forEach((button) => {
+      button.addEventListener("click", () => {
+        state.drying = button.dataset.dry === "indoor" ? "indoor" : "outdoor";
+        renderResult();
+      });
+    });
+
+    const tempEl = $("#temp");
+    const humidityEl = $("#humidity");
+    const windEl = $("#wind");
+
+    tempEl?.addEventListener("input", () => {
+      state.temp = clamp(parseInt(tempEl.value, 10), -10, 45);
+      renderResult();
+    });
+
+    humidityEl?.addEventListener("input", () => {
+      state.humidity = clamp(parseInt(humidityEl.value, 10), 0, 100);
+      renderResult();
+    });
+
+    windEl?.addEventListener("input", () => {
+      state.wind = round1(clamp(parseFloat(windEl.value), 0, 15));
+      renderResult();
+    });
+
+    $$('.preset-btn').forEach((button) => {
+      button.addEventListener("click", () => {
+        const preset = button.dataset.preset;
         if (preset === "winter-indoor") {
-          state.temp = 8;
+          state.temp = 5;
           state.humidity = 55;
-          state.wind = 1.0;
+          state.wind = 1;
           state.drying = "indoor";
-        }
-        if (preset === "rainy-day") {
+        } else if (preset === "rainy-day") {
           state.temp = 18;
           state.humidity = 88;
-          state.wind = 2.0;
+          state.wind = 2;
           state.drying = "indoor";
-        }
-        if (preset === "sunny-breezy") {
+        } else if (preset === "sunny-breezy") {
           state.temp = 26;
           state.humidity = 45;
           state.wind = 5.5;
           state.drying = "outdoor";
         }
-        applySegmentedUI();
-        applyInputsUI();
         renderResult();
       });
     });
 
-    if (copyBtn) {
-      copyBtn.addEventListener("click", async () => {
-        const lang = state.lang || detectLang();
-        const { score, band } = computeDryScore(state);
-        const headline = labelsForBand(band, lang).status;
-        const keyCase = state.target === "bedding" ? "bedding" : state.target === "thick" ? "laundry" : "laundry";
-        const advice = getAdviceTexts(keyCase, score, state);
-        const line = lang === "ja"
-          ? `Dry Score ${score}/100（${headline}）｜おすすめ: ${advice.ja.do}`
-          : `Dry Score ${score}/100 (${headline}) | Recommendation: ${advice.en.do}`;
-
-        try {
-          if (navigator.clipboard?.writeText) {
-            await navigator.clipboard.writeText(line);
-          } else {
-            const textarea = document.createElement("textarea");
-            textarea.value = line;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand("copy");
-            textarea.remove();
-          }
-          copyStatus.textContent = lang === "ja" ? "コピーしました。" : "Copied.";
-        } catch {
-          copyStatus.textContent = lang === "ja" ? "コピーに失敗しました。" : "Copy failed.";
-        }
-      });
-    }
+    $("#copyBtn")?.addEventListener("click", async () => {
+      const status = $("#copyStatus");
+      try {
+        await copyText(buildCopyText());
+        setText(status, currentLang === "ja" ? "コピーしました。" : "Copied.");
+      } catch {
+        setText(status, currentLang === "ja" ? "コピーに失敗しました。" : "Copy failed.");
+      }
+    });
   }
 
-  // ---------- init ----------
   document.addEventListener("DOMContentLoaded", () => {
     loadState();
-
-    // initial lang: stored or auto
-    const initialLang = (state.lang === "ja" || state.lang === "en") ? state.lang : detectLang();
-    applyLang(initialLang);
-
-    applySegmentedUI();
-    applyInputsUI();
+    currentLang = detectLang();
+    applyLang(currentLang);
     bindEvents();
     renderResult();
   });
