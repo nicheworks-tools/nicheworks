@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro有効化｜Logistics Compliance Kit JP | NicheWorks</title>
+  <meta name="description" content="Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./style.css" />
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Pro有効化｜Logistics Compliance Kit JP | NicheWorks">
+  <meta property="og:description" content="Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。">
+  <meta property="og:url" content="https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pro有効化｜Logistics Compliance Kit JP | NicheWorks">
+  <meta name="twitter:description" content="Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pro有効化｜Logistics Compliance Kit JP",
+    "url": "https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html",
+    "description": "Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。",
+    "inLanguage": "ja",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="nw-doc__header">
+    <div class="nw-doc">
+      <h1>Logistics Compliance Kit JP Pro</h1>
+      <p class="nw-lead">Markdown保存などのPro機能を、この端末で有効化・復元するページです。</p>
+      <nav>
+        <a class="nw-link" href="./">← ツールに戻る</a>
+        <span class="nw-dot">•</span>
+        <a class="nw-link" href="./usage.html">使い方</a>
+        <span class="nw-dot">•</span>
+        <a class="nw-link" href="/">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="nw-doc">
+    <section class="nw-doc__section">
+      <div class="nw-doc__ad">広告枠（準備中）</div>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>Proで使える機能</h2>
+      <ul>
+        <li>Markdownプレビューの内容を <b>.md ファイルとして保存</b></li>
+        <li>今後追加予定：PDF出力</li>
+      </ul>
+      <p class="nw-note">判定とMarkdownプレビューは無料範囲です。保存・PDF出力などの持ち出し系機能をPro範囲として扱います。</p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>Pro状態</h2>
+      <p id="pro-state" class="nw-note">確認中です。</p>
+      <div class="lck-actions">
+        <button class="nw-btn" id="btn-enable-pro" type="button">この端末でProを有効化</button>
+        <button class="nw-btn nw-btn--ghost" id="btn-disable-pro" type="button">Proを無効化</button>
+      </div>
+      <p class="nw-note">この初期版は、購入後ページまたは復元ページとしてのローカル有効化方式です。別端末では再度有効化が必要です。</p>
+    </section>
+
+    <section class="nw-doc__section nw-warning">
+      <h2>重要な注意</h2>
+      <p>Proを有効化しても、このツールは法令対応、行政提出、契約義務、荷主責任の有無を判定するものではありません。</p>
+      <p>制度対応や法的判断は、公式情報、専門家、社内法務・物流部門に確認してください。</p>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <div class="nw-doc">
+      <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+      <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+      <p class="nw-footer-line"><a class="nw-link" href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      "use strict";
+      var PRO_KEY = "nw_pro_logistics-compliance-kit-jp";
+      var state = document.getElementById("pro-state");
+      var enable = document.getElementById("btn-enable-pro");
+      var disable = document.getElementById("btn-disable-pro");
+
+      function isPro(){
+        try{ return localStorage.getItem(PRO_KEY) === "1"; }catch(e){ return false; }
+      }
+      function render(){
+        if(!state) return;
+        state.textContent = isPro()
+          ? "状態：この端末でProが有効です。ツールに戻るとMarkdown保存が使えます。"
+          : "状態：この端末ではProがまだ有効ではありません。";
+      }
+      if(enable){
+        enable.addEventListener("click", function(){
+          try{ localStorage.setItem(PRO_KEY, "1"); }catch(e){}
+          render();
+          alert("この端末でProを有効化しました。");
+        });
+      }
+      if(disable){
+        disable.addEventListener("click", function(){
+          try{ localStorage.removeItem(PRO_KEY); }catch(e){}
+          render();
+          alert("この端末のProを無効化しました。");
+        });
+      }
+      render();
+    })();
+  </script>
+</body>
+</html>
