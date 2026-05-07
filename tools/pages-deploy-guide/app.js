@@ -83,9 +83,12 @@
 (() => {
   "use strict";
 
+  const PRO_KEY = "pdg_pro_key";
   let hasGenerated = false;
+  let hasPro = false;
+  let latestFreeText = "";
+  let latestProText = "";
   let latestMarkdown = "";
-  let latestCopyText = "";
 
   const $ = (id) => document.getElementById(id);
   const currentLang = () => document.documentElement.lang === "en" ? "en" : "ja";
@@ -93,22 +96,62 @@
   const labels = {
     cloudflare: "Cloudflare Pages",
     github: "GitHub Pages",
-    repository: {
-      ja: "Repository / Folder",
-      en: "Repository / Folder"
-    },
-    static: {
-      ja: "Build output / Static files",
-      en: "Build output / Static files"
-    },
+    repository: { ja: "Repository / Folder", en: "Repository / Folder" },
+    static: { ja: "Build output / Static files", en: "Build output / Static files" },
     root: "/ (root)",
     dist: "dist",
     public: "public",
     docs: "docs"
   };
 
+  const t = (ja, en) => currentLang() === "en" ? en : ja;
   const lineList = (items) => items.map((item, index) => `${index + 1}. ${item}`).join("\n");
   const bullets = (items) => items.map((item) => `- ${item}`).join("\n");
+
+  const checksum97 = (value) => {
+    let sum = 0;
+    for (let i = 0; i < value.length; i += 1) {
+      sum = (sum + value.charCodeAt(i)) % 97;
+    }
+    return sum;
+  };
+
+  const normalizeKey = (value) => String(value || "").toUpperCase().replace(/\s+/g, "").trim();
+
+  const validProKey = (value) => {
+    const key = normalizeKey(value);
+    const match = /^NW-PDG-([A-Z0-9]{4})-([A-Z0-9]{4})-([A-Z0-9]{2})$/.exec(key);
+    if (!match) return null;
+    const expected = checksum97(`${match[1]}${match[2]}PDG`).toString(36).toUpperCase().padStart(2, "0").slice(-2);
+    return match[3] === expected ? key : null;
+  };
+
+  const loadPro = () => {
+    try {
+      hasPro = !!validProKey(localStorage.getItem(PRO_KEY));
+    } catch (_) {
+      hasPro = false;
+    }
+  };
+
+  const setPro = (enabled, key = "") => {
+    if (enabled) {
+      const valid = validProKey(key);
+      if (!valid) {
+        window.NW.toast(t("Proキーが無効です。", "Invalid Pro key."));
+        return;
+      }
+      try { localStorage.setItem(PRO_KEY, valid); } catch (_) {}
+      hasPro = true;
+      window.NW.toast(t("Proを有効化しました。", "Pro activated."));
+    } else {
+      try { localStorage.removeItem(PRO_KEY); } catch (_) {}
+      hasPro = false;
+      window.NW.toast(t("Proを解除しました。", "Pro cleared."));
+    }
+    renderProState();
+    if (hasGenerated) render();
+  };
 
   const getSelections = () => ({
     platform: $("platform").value,
@@ -186,6 +229,62 @@
     return items;
   };
 
+  const diagnosisJa = (platform) => [
+    "症状: ビルドが失敗する",
+    "- build command、package manager、Node/runtime version、lockfile、environment variablesを確認",
+    "- ローカルのビルド結果とホスティング側ログを比較",
+    "",
+    "症状: デプロイは成功したがトップが404",
+    "- output directoryとindex.htmlの配置を確認",
+    "- source branch/folderまたはdeployment artifactを確認",
+    "",
+    "症状: 白画面になる",
+    "- ブラウザコンソールを開く",
+    "- base path、asset path、runtime errorを確認",
+    "",
+    "症状: CSS/JSが読み込めない",
+    "- 絶対パスと相対パスを確認",
+    "- ビルド済みassetが公開フォルダ内に存在するか確認",
+    "- ハードリロードとキャッシュ削除を試す",
+    "",
+    "症状: SPAの下層ルートだけ404",
+    "- 平台のfallback対応を確認",
+    platform === "cloudflare" ? "- Cloudflare Pagesでは _redirects / routing / Functions の競合を確認" : "- GitHub Pagesでは404.html fallbackの限界を前提に確認",
+    "",
+    "症状: カスタムドメイン/SSLがpending",
+    "- DNSレコード種別と向き先を確認",
+    "- CNAMEファイルまたは平台側ドメイン紐付けを確認",
+    "- 設定ミスを潰してからTTL反映待ちと判断する"
+  ].join("\n");
+
+  const diagnosisEn = (platform) => [
+    "Symptom: build fails",
+    "- Check build command, package manager, Node/runtime version, lockfile, and environment variables",
+    "- Compare local build output with hosting logs",
+    "",
+    "Symptom: deployment succeeds but the top page is 404",
+    "- Check output directory and index.html placement",
+    "- Confirm source branch/folder or deployment artifact",
+    "",
+    "Symptom: blank page",
+    "- Open the browser console",
+    "- Check base path, asset path, and runtime errors",
+    "",
+    "Symptom: CSS/JS does not load",
+    "- Check absolute vs relative paths",
+    "- Confirm built asset files exist in the published directory",
+    "- Hard refresh and clear cache",
+    "",
+    "Symptom: nested SPA route is 404",
+    "- Confirm platform fallback support",
+    platform === "cloudflare" ? "- On Cloudflare Pages, check _redirects, routing, and Functions conflicts" : "- On GitHub Pages, account for 404.html fallback limitations",
+    "",
+    "Symptom: custom domain or SSL is pending",
+    "- Check DNS record type and target",
+    "- Check CNAME file or platform-side domain mapping",
+    "- Wait for TTL only after configuration mistakes are ruled out"
+  ].join("\n");
+
   const buildGuide = () => {
     const selections = getSelections();
     const platformName = labels[selections.platform];
@@ -216,36 +315,21 @@
         "Old content keeps appearing: purge hosting cache, hard refresh, and confirm that the latest commit/deployment is active"
       ];
 
-      const diagnosis = [
-        "Symptom: build fails",
-        "- Check build command, package manager, Node/runtime version, lockfile, and environment variables",
-        "- Compare local build output with hosting logs",
+      const proPack = [
+        `Platform: ${platformName}`,
+        `Source: ${sourceName}`,
+        `Output directory: ${outputName}`,
         "",
-        "Symptom: deployment succeeds but the top page is 404",
-        "- Check output directory and index.html placement",
-        "- Confirm source branch/folder or deployment artifact",
-        "",
-        "Symptom: blank page",
-        "- Open the browser console",
-        "- Check base path, asset path, and runtime errors",
-        "",
-        "Symptom: CSS/JS does not load",
-        "- Check absolute vs relative paths",
-        "- Confirm built asset files exist in the published directory",
-        "- Hard refresh and clear cache",
-        "",
-        "Symptom: nested SPA route is 404",
-        "- Confirm platform fallback support",
-        "- For Cloudflare Pages, check redirects/routing",
-        "- For GitHub Pages, check 404.html fallback limitations",
-        "",
-        "Symptom: custom domain or SSL is pending",
-        "- Check DNS record type and target",
-        "- Check CNAME file or platform-side domain mapping",
-        "- Wait for TTL only after configuration mistakes are ruled out"
+        "Handoff pack:",
+        "- Capture the final build command and output directory in the release note",
+        "- Save the latest deploy URL, commit SHA, and production domain together",
+        "- Record required environment variables by name only; do not paste secret values",
+        "- Keep DNS record type, target, SSL status, and verification date in the launch memo",
+        "- After deployment, check top page, nested pages, mobile width, OGP preview, robots.txt, sitemap.xml, GA4, and AdSense",
+        "- If a rollback is needed, identify the previous good deployment or commit before changing DNS"
       ].join("\n");
 
-      return buildResult({ platformName, checklist, errors, diagnosis, lang: "en" });
+      return buildResult({ platformName, checklist, errors, diagnosis: diagnosisEn(selections.platform), proPack, lang: "en" });
     }
 
     const checklist = [
@@ -271,44 +355,30 @@
       "古い内容が出る: ホスティングキャッシュ、ハードリロード、最新commit/deploymentの反映を確認"
     ];
 
-    const diagnosis = [
-      "症状: ビルドが失敗する",
-      "- build command、package manager、Node/runtime version、lockfile、environment variablesを確認",
-      "- ローカルのビルド結果とホスティング側ログを比較",
+    const proPack = [
+      `平台: ${platformName}`,
+      `ソース: ${sourceName}`,
+      `公開フォルダ: ${outputName}`,
       "",
-      "症状: デプロイは成功したがトップが404",
-      "- output directoryとindex.htmlの配置を確認",
-      "- source branch/folderまたはdeployment artifactを確認",
-      "",
-      "症状: 白画面になる",
-      "- ブラウザコンソールを開く",
-      "- base path、asset path、runtime errorを確認",
-      "",
-      "症状: CSS/JSが読み込めない",
-      "- 絶対パスと相対パスを確認",
-      "- ビルド済みassetが公開フォルダ内に存在するか確認",
-      "- ハードリロードとキャッシュ削除を試す",
-      "",
-      "症状: SPAの下層ルートだけ404",
-      "- 平台のfallback対応を確認",
-      "- Cloudflare Pagesではredirects/routingを確認",
-      "- GitHub Pagesでは404.html fallbackの限界を前提に確認",
-      "",
-      "症状: カスタムドメイン/SSLがpending",
-      "- DNSレコード種別と向き先を確認",
-      "- CNAMEファイルまたは平台側ドメイン紐付けを確認",
-      "- 設定ミスを潰してからTTL反映待ちと判断する"
+      "引き継ぎパック:",
+      "- 最終build commandとoutput directoryをリリースメモに残す",
+      "- 最新deploy URL、commit SHA、本番ドメインをセットで記録する",
+      "- environment variablesは名前だけ記録し、secret値は貼り付けない",
+      "- DNSレコード種別、向き先、SSL状態、確認日をローンチメモに残す",
+      "- 公開後にトップ、下層、スマホ幅、OGP preview、robots.txt、sitemap.xml、GA4、AdSenseを確認する",
+      "- rollbackが必要な場合、DNS変更前に直前の正常deploymentまたはcommitを特定する"
     ].join("\n");
 
-    return buildResult({ platformName, checklist, errors, diagnosis, lang: "ja" });
+    return buildResult({ platformName, checklist, errors, diagnosis: diagnosisJa(selections.platform), proPack, lang: "ja" });
   };
 
-  const buildResult = ({ platformName, checklist, errors, diagnosis, lang }) => {
+  const buildResult = ({ platformName, checklist, errors, diagnosis, proPack, lang }) => {
     const checklistText = lineList(checklist);
     const errorsText = bullets(errors);
     const headingChecklist = lang === "en" ? "Checklist" : "チェックリスト";
     const headingErrors = lang === "en" ? "Common errors" : "よくあるエラー";
-    const headingDiagnosis = lang === "en" ? "Diagnosis tree" : "症状別診断ツリー";
+    const headingDiagnosis = lang === "en" ? "Diagnosis tree (Pro)" : "症状別診断ツリー（Pro）";
+    const headingPack = lang === "en" ? "Deployment handoff pack (Pro)" : "デプロイ引き継ぎパック（Pro）";
 
     const markdown = [
       `# ${platformName} Deploy Guide`,
@@ -320,16 +390,29 @@
       bullets(errors),
       "",
       `## ${headingDiagnosis}`,
-      diagnosis
+      diagnosis,
+      "",
+      `## ${headingPack}`,
+      proPack
     ].join("\n");
 
     return {
       checklist: checklistText,
       errors: errorsText,
       diagnosis,
+      proPack,
       markdown,
-      copyText: [
+      freeText: [
         `# ${platformName} Deploy Guide`,
+        "",
+        `## ${headingChecklist}`,
+        checklistText,
+        "",
+        `## ${headingErrors}`,
+        errorsText
+      ].join("\n"),
+      proText: [
+        `# ${platformName} Deploy Guide Pro`,
         "",
         `## ${headingChecklist}`,
         checklistText,
@@ -338,7 +421,10 @@
         errorsText,
         "",
         `## ${headingDiagnosis}`,
-        diagnosis
+        diagnosis,
+        "",
+        `## ${headingPack}`,
+        proPack
       ].join("\n")
     };
   };
@@ -357,46 +443,87 @@
     const message = "条件を選んで『生成する』を押してください。\nSelect conditions and click Generate.";
     $("output").value = message;
     $("errors").value = message;
-    $("diagnosis").value = message;
+    $("diagnosis").value = t("Pro解除後、生成すると症状別診断ツリーが表示されます。", "After Pro unlock, generate to show the diagnosis tree.");
+    $("proPack").value = t("Pro解除後、生成すると引き継ぎパックが表示されます。", "After Pro unlock, generate to show the handoff pack.");
   };
 
   const render = () => {
     const data = buildGuide();
     $("output").value = data.checklist;
     $("errors").value = data.errors;
-    $("diagnosis").value = data.diagnosis;
+    latestFreeText = data.freeText;
+    latestProText = data.proText;
     latestMarkdown = data.markdown;
-    latestCopyText = data.copyText;
     hasGenerated = true;
+
+    if (hasPro) {
+      $("diagnosis").value = data.diagnosis;
+      $("proPack").value = data.proPack;
+    } else {
+      $("diagnosis").value = t("Pro解除後に表示されます。", "Visible after Pro unlock.");
+      $("proPack").value = t("Pro解除後に表示されます。", "Visible after Pro unlock.");
+    }
   };
 
-  const handleCopy = async () => {
+  const renderProState = () => {
+    const state = $("proState");
+    if (state) {
+      state.textContent = hasPro ? "Pro Active" : "Pro Inactive";
+      state.className = `pro-status ${hasPro ? "active" : "inactive"}`;
+    }
+    const locked = $("proLocked");
+    const area = $("proArea");
+    if (locked) locked.style.display = hasPro ? "none" : "";
+    if (area) area.style.display = hasPro ? "" : "none";
+  };
+
+  const handleCopyFree = async () => {
     if (!hasGenerated) {
-      window.NW.toast(currentLang() === "en" ? "Generate a checklist first." : "先に生成してください。");
+      window.NW.toast(t("先に生成してください。", "Generate a checklist first."));
       return;
     }
-    const ok = await window.NW.copyToClipboard(latestCopyText);
-    window.NW.toast(ok
-      ? (currentLang() === "en" ? "Copied." : "コピーしました。")
-      : (currentLang() === "en" ? "Copy failed." : "コピーに失敗しました。")
-    );
+    const ok = await window.NW.copyToClipboard(latestFreeText);
+    window.NW.toast(ok ? t("コピーしました。", "Copied.") : t("コピーに失敗しました。", "Copy failed."));
+  };
+
+  const handleCopyPro = async () => {
+    if (!hasPro) {
+      window.NW.toast(t("Pro解除後に使えます。", "Available after Pro unlock."));
+      return;
+    }
+    if (!hasGenerated) {
+      window.NW.toast(t("先に生成してください。", "Generate a checklist first."));
+      return;
+    }
+    const ok = await window.NW.copyToClipboard(latestProText);
+    window.NW.toast(ok ? t("Pro出力をコピーしました。", "Copied Pro output.") : t("コピーに失敗しました。", "Copy failed."));
   };
 
   const handleDownload = () => {
+    if (!hasPro) {
+      window.NW.toast(t("Markdown出力はPro解除後に使えます。", "Markdown export is available after Pro unlock."));
+      return;
+    }
     if (!hasGenerated) {
-      window.NW.toast(currentLang() === "en" ? "Generate a checklist first." : "先に生成してください。");
+      window.NW.toast(t("先に生成してください。", "Generate a checklist first."));
       return;
     }
     const filename = `pages-deploy-guide-${platformSlug()}-${today()}.md`;
     window.NW.downloadText(filename, latestMarkdown);
-    window.NW.toast(currentLang() === "en" ? "Markdown saved." : "Markdownを保存しました。");
+    window.NW.toast(t("Markdownを保存しました。", "Markdown saved."));
   };
 
   const initTool = () => {
+    loadPro();
     setInitialState();
+    renderProState();
+
     $("generate").addEventListener("click", render);
-    $("copyAll").addEventListener("click", handleCopy);
+    $("copyAll").addEventListener("click", handleCopyFree);
+    $("copyPro").addEventListener("click", handleCopyPro);
     $("downloadMd").addEventListener("click", handleDownload);
+    $("activatePro").addEventListener("click", () => setPro(true, $("proKey").value));
+    $("clearPro").addEventListener("click", () => setPro(false));
 
     ["platform", "sourceType", "customDomain", "outputFolder"].forEach((id) => {
       $(id).addEventListener("change", () => {
