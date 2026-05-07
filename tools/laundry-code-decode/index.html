@@ -16,14 +16,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks</title>
-  <meta name="description" content="衣類タグの洗濯記号をタップするだけで、洗濯・乾燥・アイロン・漂白の意味を日本語と英語で即表示。完全ローカル動作の無料ツール。">
+  <meta name="description" content="衣類タグの洗濯記号を選ぶと、洗濯・漂白・乾燥・アイロン・クリーニングの意味を日本語と英語で確認できる無料ツールです。衣類タグやメーカー表示を優先してください。">
 
   <link rel="canonical" href="https://nicheworks.app/tools/laundry-code-decode/">
 
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks">
-  <meta property="og:description" content="衣類タグの洗濯記号をタップするだけで、洗濯・乾燥・アイロン・漂白の意味を日本語と英語で即表示。完全ローカル動作の無料ツール。">
+  <meta property="og:description" content="衣類タグの洗濯記号を選ぶと、洗濯・漂白・乾燥・アイロン・クリーニングの意味を日本語と英語で確認できる無料ツールです。衣類タグやメーカー表示を優先してください。">
   <meta property="og:url" content="https://nicheworks.app/tools/laundry-code-decode/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -48,7 +48,7 @@
     "name": "Laundry Code Decode",
     "url": "https://nicheworks.app/tools/laundry-code-decode/",
     "applicationCategory": "UtilityApplication",
-    "description": "洗濯記号の意味を日本語・英語で即座に解読する無料ツール。",
+    "description": "洗濯記号の意味を日本語・英語で即座に確認する無料ツール。衣類タグやメーカー表示を優先してください。",
     "operatingSystem": "All"
   }
   </script>
@@ -59,7 +59,7 @@
   <meta name="robots" content="index,follow">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:title" content="洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks">
-  <meta name="twitter:description" content="衣類タグの洗濯記号をタップするだけで、洗濯・乾燥・アイロン・漂白の意味を日本語と英語で即表示。完全ローカル動作の無料ツール。">
+  <meta name="twitter:description" content="衣類タグの洗濯記号を選ぶと、洗濯・漂白・乾燥・アイロン・クリーニングの意味を日本語と英語で確認できる無料ツールです。衣類タグやメーカー表示を優先してください。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 
@@ -81,6 +81,8 @@
     <section class="symbol-picker">
       <p data-i18n="ja">カテゴリを選んで、洗濯記号をタップしてください</p>
       <p data-i18n="en">Choose a category, then tap a symbol</p>
+      <p class="privacy-note" data-i18n="ja">記号の検索・候補表示はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+      <p class="privacy-note" data-i18n="en">Symbol search and candidate display run in your browser, but ads and analytics tags are loaded to display this page.</p>
 
       <!-- Category tabs -->
       <div class="cat-tabs" role="tablist" aria-label="Laundry categories">
@@ -93,7 +95,7 @@
 
       <!-- Search -->
       <div class="search-row">
-        <input id="q" type="search" stable content="Search / 検索（例: 30 / bleach / 手洗い）" autocomplete="off">
+        <input id="q" type="search" placeholder="Search / 検索（例: 30 / bleach / 手洗い）" autocomplete="off">
         <label class="search-all">
           <input id="searchAll" type="checkbox">
           <span data-i18n="ja">全カテゴリ</span>
