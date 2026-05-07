@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pro有効化｜Logistics Compliance Kit JP | NicheWorks</title>
-  <meta name="description" content="Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。">
+  <title>Pro購入・復元｜Logistics Compliance Kit JP | NicheWorks</title>
+  <meta name="description" content="Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html">
   <link rel="icon" href="/assets/favicon.ico">
@@ -13,13 +13,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="Pro有効化｜Logistics Compliance Kit JP | NicheWorks">
-  <meta property="og:description" content="Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。">
+  <meta property="og:title" content="Pro購入・復元｜Logistics Compliance Kit JP | NicheWorks">
+  <meta property="og:description" content="Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。">
   <meta property="og:url" content="https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pro有効化｜Logistics Compliance Kit JP | NicheWorks">
-  <meta name="twitter:description" content="Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。">
+  <meta name="twitter:title" content="Pro購入・復元｜Logistics Compliance Kit JP | NicheWorks">
+  <meta name="twitter:description" content="Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
@@ -35,9 +35,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Pro有効化｜Logistics Compliance Kit JP",
+    "name": "Pro購入・復元｜Logistics Compliance Kit JP",
     "url": "https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html",
-    "description": "Logistics Compliance Kit JP Pro の有効化・復元ページです。Markdown保存などのPro機能をこの端末で有効化します。",
+    "description": "Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。",
     "inLanguage": "ja",
     "publisher": {
       "@type": "Organization",
@@ -51,7 +51,7 @@
   <header class="nw-doc__header">
     <div class="nw-doc">
       <h1>Logistics Compliance Kit JP Pro</h1>
-      <p class="nw-lead">Markdown保存などのPro機能を、この端末で有効化・復元するページです。</p>
+      <p class="nw-lead">Markdown保存を使うためのPro購入・復元ページです。</p>
       <nav>
         <a class="nw-link" href="./">← ツールに戻る</a>
         <span class="nw-dot">•</span>
@@ -64,7 +64,7 @@
 
   <main class="nw-doc">
     <section class="nw-doc__section">
-      <div class="nw-doc__ad">広告枠</div>
+      <div class="nw-doc__ad">広告枠（準備中）</div>
     </section>
 
     <section class="nw-doc__section">
@@ -77,18 +77,19 @@
     </section>
 
     <section class="nw-doc__section">
-      <h2>Pro状態</h2>
+      <h2>購入・復元</h2>
       <p id="pro-state" class="nw-note">確認中です。</p>
       <div class="lck-actions">
-        <button class="nw-btn" id="btn-enable-pro" type="button">この端末でProを有効化</button>
-        <button class="nw-btn nw-btn--ghost" id="btn-disable-pro" type="button">Proを無効化</button>
+        <a class="nw-btn" id="btn-buy-pro" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209">Proを購入する（Stripe）</a>
+        <a class="nw-btn nw-btn--ghost" href="/pro/unlock/?tool=logistics-compliance-kit-jp">購入済みの方：この端末でProを有効化</a>
+        <button class="nw-btn nw-btn--ghost" id="btn-disable-pro" type="button">この端末のProを解除</button>
       </div>
-      <p class="nw-note">この初期版は、購入後ページまたは復元ページとしてのローカル有効化方式です。別端末では再度有効化が必要です。</p>
+      <p class="nw-note">Stripeの支払い完了後、Pro有効化ページに移動します。別端末・別ブラウザでは再度有効化が必要です。</p>
     </section>
 
     <section class="nw-doc__section nw-warning">
       <h2>重要な注意</h2>
-      <p>Proを有効化しても、このツールは法令対応、行政提出、契約義務、荷主責任の有無を判定するものではありません。</p>
+      <p>Proを購入しても、このツールは法令対応、行政提出、契約義務、荷主責任の有無を判定するものではありません。</p>
       <p>制度対応や法的判断は、公式情報、専門家、社内法務・物流部門に確認してください。</p>
     </section>
   </main>
@@ -106,7 +107,6 @@
       "use strict";
       var PRO_KEY = "nw_pro_logistics-compliance-kit-jp";
       var state = document.getElementById("pro-state");
-      var enable = document.getElementById("btn-enable-pro");
       var disable = document.getElementById("btn-disable-pro");
 
       function isPro(){
@@ -118,18 +118,11 @@
           ? "状態：この端末でProが有効です。ツールに戻るとMarkdown保存が使えます。"
           : "状態：この端末ではProがまだ有効ではありません。";
       }
-      if(enable){
-        enable.addEventListener("click", function(){
-          try{ localStorage.setItem(PRO_KEY, "1"); }catch(e){}
-          render();
-          alert("この端末でProを有効化しました。");
-        });
-      }
       if(disable){
         disable.addEventListener("click", function(){
           try{ localStorage.removeItem(PRO_KEY); }catch(e){}
           render();
-          alert("この端末のProを無効化しました。");
+          alert("この端末のProを解除しました。");
         });
       }
       render();
