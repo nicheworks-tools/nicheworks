@@ -1,70 +1,382 @@
-/* ================================
- * NicheWorks tool template app.js
- * - JP/EN toggle (data-i18n)
- * - Utilities: copy, downloadText, debounce
- * ================================ */
-
 (() => {
   "use strict";
 
-  // ----------------------------
-  // i18n (required)
-  // ----------------------------
-  const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
+  const requirementDefs = [
+    {
+      key: "upload",
+      tag: "upload",
+      weight: 3,
+      label: { ja: "ファイルアップロード", en: "File upload" },
+      caution: {
+        ja: "容量上限、保存先、アクセス権限、マルウェア対策、個人情報混入、保存期間を確認してください。",
+        en: "Check file size limits, storage location, access control, malware handling, personal data exposure, and retention period."
+      }
+    },
+    {
+      key: "payments",
+      tag: "payments",
+      weight: 3,
+      label: { ja: "決済/請求", en: "Payments/Billing" },
+      caution: {
+        ja: "決済手数料、返金、領収書、税、特商法表示、プラットフォーム規約を確認してください。",
+        en: "Check payment fees, refunds, receipts, tax handling, required legal notices, and platform terms."
+      }
+    },
+    {
+      key: "notify",
+      tag: "notify",
+      weight: 2,
+      label: { ja: "通知/連携（Slack等）", en: "Notifications/Integrations" },
+      caution: {
+        ja: "通知漏れ、連携権限、連携先チャンネル、担当者、ログ保存の扱いを確認してください。",
+        en: "Check missed notifications, integration permissions, destination channels, owners, and log retention."
+      }
+    },
+    {
+      key: "multi",
+      tag: "multi",
+      weight: 2,
+      label: { ja: "多言語フォーム", en: "Multilingual forms" },
+      caution: {
+        ja: "フォーム文言だけでなく、自動返信、サポート対応、規約、プライバシー説明の言語も確認してください。",
+        en: "Check not only form text, but also auto-replies, support language, terms, and privacy notices."
+      }
+    },
+    {
+      key: "free",
+      tag: "free",
+      weight: 1,
+      label: { ja: "無料から試したい", en: "Free-first" },
+      caution: {
+        ja: "無料枠の回答数、保存期間、広告表示、エクスポート制限、有料移行時の料金を確認してください。",
+        en: "Check free-tier response limits, retention, ads, export limits, and paid-plan pricing."
+      }
+    },
+    {
+      key: "privacy",
+      tag: "privacy",
+      weight: 2,
+      label: { ja: "プライバシー重視", en: "Privacy-first" },
+      caution: {
+        ja: "保存先の国/地域、データ保持期間、アクセス権限、外部共有設定、削除依頼対応、DPA/委託先、添付ファイル保存先を確認してください。",
+        en: "Check storage region, retention period, access permissions, sharing settings, deletion handling, DPA/subprocessors, and attachment storage."
+      }
+    }
+  ];
+
+  const toolList = [
+    {
+      key: "simple",
+      name: { ja: "シンプル収集フォーム", en: "Simple collection form" },
+      tags: ["free"],
+      reasons: {
+        ja: "無料枠から始めやすく、問い合わせ・アンケート・小規模な申込受付に向きます。",
+        en: "Easy to start from a free tier and suited for inquiries, surveys, and small intake forms."
+      },
+      avoid: {
+        ja: "決済、ファイル回収、厳密な権限管理、複雑な通知連携が必要な場合は不足しやすいです。",
+        en: "Likely insufficient for payments, file collection, strict permissions, or complex notification workflows."
+      }
+    },
+    {
+      key: "upload",
+      name: { ja: "ファイル回収向けフォーム", en: "File collection form" },
+      tags: ["upload"],
+      reasons: {
+        ja: "応募書類、画像、確認資料など、添付ファイルの提出を前提にした運用に向きます。",
+        en: "Suited for workflows that require resumes, images, verification files, or other attachments."
+      },
+      avoid: {
+        ja: "大容量ファイル、機密資料、ウイルス対策、長期保存が必要な場合は専用ストレージ運用も比較してください。",
+        en: "For large files, confidential documents, malware controls, or long-term retention, compare dedicated storage workflows too."
+      }
+    },
+    {
+      key: "payments",
+      name: { ja: "決済連携フォーム", en: "Payment-ready form" },
+      tags: ["payments"],
+      reasons: {
+        ja: "申込、予約、注文、チケットなど、回答と支払いを同時に扱うケースに向きます。",
+        en: "Suited for signups, bookings, orders, tickets, and other flows that combine submission and payment."
+      },
+      avoid: {
+        ja: "返金、領収書、税、特商法表示、決済規約、手数料まで含めて確認しないと実運用で詰まりやすいです。",
+        en: "Can fail in production if refunds, receipts, taxes, legal notices, payment terms, and fees are not checked."
+      }
+    },
+    {
+      key: "automation",
+      name: { ja: "通知・自動連携フォーム", en: "Automation & notification form" },
+      tags: ["notify"],
+      reasons: {
+        ja: "Slack、メール、スプレッドシート、CRMなどへ回答後すぐ流したい用途に向きます。",
+        en: "Suited for sending submissions to Slack, email, spreadsheets, CRMs, or similar systems quickly."
+      },
+      avoid: {
+        ja: "承認フローや条件分岐が多い場合は、フォーム単体ではなく自動化基盤との組み合わせを検討してください。",
+        en: "If approvals or branching rules are complex, compare form-plus-automation setups rather than form-only setups."
+      }
+    },
+    {
+      key: "multilang",
+      name: { ja: "多言語フォーム", en: "Multilingual form" },
+      tags: ["multi"],
+      reasons: {
+        ja: "日本語/英語など複数言語で、同じ受付導線を使いたいケースに向きます。",
+        en: "Suited for sharing one intake flow across Japanese, English, or other languages."
+      },
+      avoid: {
+        ja: "翻訳だけでなく、自動返信、規約、問い合わせ対応まで多言語化できないと運用負担が増えます。",
+        en: "Operational load increases if auto-replies, terms, and support are not multilingual too."
+      }
+    },
+    {
+      key: "privacy",
+      name: { ja: "プライバシー重視フォーム", en: "Privacy-first form" },
+      tags: ["privacy"],
+      reasons: {
+        ja: "個人情報、社内情報、顧客情報など、保存先や権限を慎重に確認したい用途に向きます。",
+        en: "Suited for personal, internal, or customer data where storage and permissions need careful review."
+      },
+      avoid: {
+        ja: "外部サービスに預けられない情報なら、フォームサービスではなく自前運用や契約済み基盤を検討してください。",
+        en: "If data cannot be stored in an external service, consider self-hosting or an already-approved platform instead."
+      }
+    }
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const nodesByLang = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
 
   const getDefaultLang = () => {
-    const browserLang = (navigator.language || "").toLowerCase();
-    return browserLang.startsWith("ja") ? "ja" : "en";
+    try {
+      const saved = localStorage.getItem("nw_lang");
+      if (saved === "ja" || saved === "en") return saved;
+    } catch (_) {}
+    return (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
   };
 
   const applyLang = (lang) => {
-    i18nNodes().forEach((el) => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
+    nodesByLang().forEach((el) => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
-    langButtons().forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    langButtons().forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
     document.documentElement.lang = lang;
     try { localStorage.setItem("nw_lang", lang); } catch (_) {}
   };
 
-  const initLang = () => {
-    let lang = getDefaultLang();
-    try {
-      const saved = localStorage.getItem("nw_lang");
-      if (saved === "ja" || saved === "en") lang = saved;
-    } catch (_) {}
-    langButtons().forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
-    applyLang(lang);
+  const getSelections = () => ({
+    upload: $("reqUpload").checked,
+    payments: $("reqPayments").checked,
+    notify: $("reqNotify").checked,
+    multi: $("reqMulti").checked,
+    free: $("reqFree").checked,
+    privacy: $("reqPrivacy").checked
+  });
+
+  const selectedDefs = (req) => requirementDefs.filter((def) => req[def.key]);
+  const hasAnySelection = (req) => selectedDefs(req).length > 0;
+
+  const scoreTool = (tool, req) => requirementDefs.reduce((total, def) => {
+    if (!req[def.key]) return total;
+    return total + (tool.tags.includes(def.tag) ? def.weight : 0);
+  }, 0);
+
+  const buildRecommendationData = (lang) => {
+    const req = getSelections();
+    return toolList
+      .map((tool) => ({ tool, score: scoreTool(tool, req) }))
+      .filter((pick) => pick.score > 0)
+      .sort((a, b) => b.score - a.score || a.tool.key.localeCompare(b.tool.key))
+      .slice(0, 3)
+      .map((pick) => {
+        const tool = pick.tool;
+        const matched = requirementDefs
+          .filter((def) => req[def.key] && tool.tags.includes(def.tag))
+          .map((def) => def.label[lang]);
+        const missing = requirementDefs
+          .filter((def) => req[def.key] && !tool.tags.includes(def.tag))
+          .map((def) => lang === "ja" ? `未対応: ${def.label.ja}` : `Missing: ${def.label.en}`);
+        return {
+          key: tool.key,
+          name: tool.name[lang],
+          bestFor: tool.reasons[lang],
+          score: pick.score,
+          matched,
+          tradeoffs: [
+            ...missing,
+            lang === "ja" ? `注意: ${tool.avoid.ja}` : `Note: ${tool.avoid.en}`
+          ]
+        };
+      });
   };
 
-  // ----------------------------
-  // Utilities
-  // ----------------------------
-  const copyToClipboard = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch (_) {
-      // Fallback
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand("copy");
-        return true;
-      } catch (e) {
-        return false;
-      } finally {
-        document.body.removeChild(ta);
-      }
+  const buildRequirementCautions = (lang) => {
+    const req = getSelections();
+    return selectedDefs(req).map((def) => ({
+      label: def.label[lang],
+      caution: def.caution[lang]
+    }));
+  };
+
+  const makeText = (lang, recommendations) => {
+    const lines = [];
+    lines.push(lang === "ja" ? "候補タイプ（参考）" : "Candidate form types");
+    lines.push("-");
+    recommendations.forEach((rec, idx) => {
+      lines.push(`${idx + 1}. ${rec.name}`);
+      lines.push(`   - ${lang === "ja" ? "用途" : "Use case"}: ${rec.bestFor}`);
+      lines.push(`   - ${lang === "ja" ? "一致条件" : "Matched"}: ${rec.matched.join(", ") || (lang === "ja" ? "該当なし" : "None")}`);
+      lines.push(`   - ${lang === "ja" ? "未一致/注意" : "Missing / notes"}: ${rec.tradeoffs.join("; ")}`);
+    });
+    lines.push("-");
+    lines.push(lang === "ja"
+      ? "この結果はフォーム種別の整理であり、特定サービスの推奨や適合保証ではありません。料金、保存先、利用規約、個人情報の扱い、アップロード容量、決済条件、通知連携を必ず確認してください。"
+      : "This result organizes form-type candidates only. It is not a recommendation or fit guarantee for a specific service. Always check pricing, storage location, terms, personal data handling, upload limits, payment conditions, and integrations."
+    );
+    lines.push("");
+    lines.push(lang === "ja" ? "要件別の確認事項" : "Requirement-specific checks");
+    buildRequirementCautions(lang).forEach((item) => {
+      lines.push(`- ${item.label}: ${item.caution}`);
+    });
+    return lines.join("\n");
+  };
+
+  const makeMemo = (lang, recommendations) => {
+    const req = getSelections();
+    const selected = selectedDefs(req).map((def) => def.label[lang]);
+    const top = recommendations[0];
+    const cautions = buildRequirementCautions(lang);
+    const today = new Date();
+    const nextReview = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+
+    if (lang === "ja") {
+      return [
+        "Decision memo",
+        `候補タイプ: ${top.name}`,
+        `比較候補数: ${recommendations.length}件`,
+        "選定理由:",
+        ...top.matched.map((item) => `- ${item}`),
+        "選択した要件:",
+        ...selected.map((item) => `- ${item}`),
+        "確認すべき未決事項:",
+        "- 具体サービスごとの料金、無料枠、保存先、利用規約",
+        "- 回答データと添付ファイルの保存期間・削除方法",
+        "- 管理者/閲覧者/通知先の権限",
+        "- 決済、領収書、返金、税、特商法表示の要否",
+        "試作フォームで検証する項目:",
+        "- 回答送信から通知までの到達確認",
+        "- スマホ入力、必須項目、エラー表示、控えメール",
+        "- CSV/スプレッドシート/CRMへの出力確認",
+        "個人情報/決済/ファイルの注意:",
+        ...cautions.map((item) => `- ${item.label}: ${item.caution}`),
+        "次回確認日:",
+        `- ${nextReview}`,
+        "オーナー/担当者:",
+        "- 未設定",
+        "備考:",
+        "- このメモは候補タイプ整理用です。特定サービスの適合保証ではありません。"
+      ].join("\n");
     }
+
+    return [
+      "Decision memo",
+      `Candidate type: ${top.name}`,
+      `Number of candidates compared: ${recommendations.length}`,
+      "Selection reasons:",
+      ...top.matched.map((item) => `- ${item}`),
+      "Selected requirements:",
+      ...selected.map((item) => `- ${item}`),
+      "Open items to verify:",
+      "- Pricing, free tier, storage location, and terms for each service",
+      "- Retention and deletion process for submissions and attachments",
+      "- Permissions for admins, viewers, notification channels, and owners",
+      "- Payment, receipt, refund, tax, and legal notice requirements",
+      "Prototype checks:",
+      "- Confirm submission-to-notification delivery",
+      "- Test mobile input, required fields, errors, and confirmation emails",
+      "- Confirm CSV/spreadsheet/CRM export path",
+      "Personal data / payment / file cautions:",
+      ...cautions.map((item) => `- ${item.label}: ${item.caution}`),
+      "Next review date:",
+      `- ${nextReview}`,
+      "Owner:",
+      "- Not set",
+      "Notes:",
+      "- This memo organizes candidate form types only. It does not guarantee fit for any specific service."
+    ].join("\n");
   };
 
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const toMarkdown = (lang, recommendations, memo) => {
+    const title = lang === "ja" ? "# フォーム候補タイプ整理" : "# Form candidate type memo";
+    return [title, "", makeText(lang, recommendations), "", "## Decision memo", "", memo].join("\n");
+  };
+
+  const appendText = (parent, tag, className, text) => {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    el.textContent = text;
+    parent.appendChild(el);
+    return el;
+  };
+
+  const buildStateCard = (message) => {
+    const card = document.createElement("div");
+    card.className = "result-card state-card";
+    appendText(card, "p", "result-best", message);
+    return card;
+  };
+
+  const buildRecommendationCards = (recommendations, lang) => recommendations.map((rec, idx) => {
+    const card = document.createElement("div");
+    card.className = "result-card";
+    appendText(card, "p", "result-rank", `${lang === "ja" ? "候補" : "Candidate"} ${idx + 1}`);
+    appendText(card, "h3", "result-name", rec.name);
+    appendText(card, "p", "result-best", `${lang === "ja" ? "用途" : "Use case"}: ${rec.bestFor}`);
+    appendText(card, "p", "result-section-title", lang === "ja" ? "一致した要件" : "Matched requirements");
+    const matchedList = document.createElement("ul");
+    (rec.matched.length ? rec.matched : [lang === "ja" ? "該当なし" : "None"]).forEach((item) => appendText(matchedList, "li", "", item));
+    card.appendChild(matchedList);
+    appendText(card, "p", "result-section-title", lang === "ja" ? "未一致/注意" : "Missing / notes");
+    const tradeList = document.createElement("ul");
+    rec.tradeoffs.forEach((item) => appendText(tradeList, "li", "", item));
+    card.appendChild(tradeList);
+    return card;
+  });
+
+  const buildCautionList = (items, lang) => {
+    const wrap = document.createElement("div");
+    wrap.className = "caution-box";
+    appendText(wrap, "p", "result-section-title", lang === "ja" ? "要件別の確認事項" : "Requirement-specific checks");
+    const list = document.createElement("ul");
+    items.forEach((item) => appendText(list, "li", "", `${item.label}: ${item.caution}`));
+    wrap.appendChild(list);
+    return wrap;
+  };
+
+  const copyText = async (text) => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {}
+    }
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
+    ta.remove();
+    return ok;
+  };
+
+  const downloadText = (filename, text, type = "text/plain;charset=utf-8") => {
+    const blob = new Blob([text], { type });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -75,471 +387,140 @@
     setTimeout(() => URL.revokeObjectURL(url), 500);
   };
 
-  const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
-    };
+  const showToast = (message) => {
+    const toast = $("toast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove("show"), 1800);
   };
 
-  // Expose minimal helpers for tool scripts (Codex can reuse)
-  window.NW = {
-    applyLang,
-    copyToClipboard,
-    downloadText,
-    debounce,
-    hasPro: () => {
-      try { return !!localStorage.getItem("nw_pro_key"); } catch (_) { return false; }
-    }
+  const messages = {
+    initial: {
+      ja: "要件を1つ以上選んでから、候補タイプを出してください。",
+      en: "Select at least one requirement, then generate candidate form types."
+    },
+    noSelection: {
+      ja: "要件を1つ以上選んでください。未選択では候補を出しません。",
+      en: "Select at least one requirement. No candidates are shown without requirements."
+    },
+    copyBlocked: {
+      ja: "まだ結果がありません。要件を選んで生成してください。",
+      en: "No results yet. Select requirements and generate first."
+    },
+    copyOk: { ja: "コピーしました。", en: "Copied." },
+    copyFail: { ja: "コピーに失敗しました。", en: "Copy failed." },
+    saveOk: { ja: "保存しました。", en: "Saved." }
   };
-
-  // ----------------------------
-  // Boot
-  // ----------------------------
-  document.addEventListener("DOMContentLoaded", () => {
-    initLang();
-
-    // Tool-specific init should be appended below by Codex per tool.
-    // Example:
-    // initTool();
-  });
-})();
-
-(() => {
-  "use strict";
-
-  const requirementDefs = [
-    {
-      key: "upload",
-      tag: "upload",
-      weight: 3,
-      label: { ja: "ファイルアップロード", en: "File upload" }
-    },
-    {
-      key: "payments",
-      tag: "payments",
-      weight: 3,
-      label: { ja: "決済/請求", en: "Payments/Billing" }
-    },
-    {
-      key: "notify",
-      tag: "notify",
-      weight: 2,
-      label: { ja: "通知/連携（Slack等）", en: "Notifications/Integrations" }
-    },
-    {
-      key: "multi",
-      tag: "multi",
-      weight: 2,
-      label: { ja: "多言語フォーム", en: "Multilingual forms" }
-    },
-    {
-      key: "free",
-      tag: "free",
-      weight: 1,
-      label: { ja: "無料から試したい", en: "Free-first" }
-    },
-    {
-      key: "privacy",
-      tag: "privacy",
-      weight: 2,
-      label: { ja: "プライバシー重視", en: "Privacy-first" }
-    }
-  ];
-
-  const toolList = [
-    {
-      key: "simple",
-      nameJa: "シンプル収集フォーム",
-      nameEn: "Simple collection form",
-      tags: ["free"],
-      reasons: {
-        ja: "無料から始めたい・回答数が少ない用途に向きます。",
-        en: "Best for free-first and low-volume collection."
-      },
-      avoid: {
-        ja: "決済や複雑な自動化が必要な場合は不向き。",
-        en: "Not ideal if you need payments or complex automation."
-      }
-    },
-    {
-      key: "upload",
-      nameJa: "ファイル回収向けフォーム",
-      nameEn: "File collection form",
-      tags: ["upload"],
-      reasons: {
-        ja: "ファイル提出が必須の時に安心。",
-        en: "Suited for workflows that require file submission."
-      },
-      avoid: {
-        ja: "ファイル容量や権限管理に厳密さが必要なら専用運用を検討。",
-        en: "Avoid if you need strict storage governance and large file handling."
-      }
-    },
-    {
-      key: "payments",
-      nameJa: "決済連携フォーム",
-      nameEn: "Payment-ready form",
-      tags: ["payments"],
-      reasons: {
-        ja: "申込と支払いを同時に行うケース向け。",
-        en: "Great for collecting orders and payments together."
-      },
-      avoid: {
-        ja: "領収書発行や税計算が必要なら専用決済と併用を。",
-        en: "Not enough if you need invoicing or tax workflows."
-      }
-    },
-    {
-      key: "automation",
-      nameJa: "通知・自動連携フォーム",
-      nameEn: "Automation & notification form",
-      tags: ["notify"],
-      reasons: {
-        ja: "Slack/メール通知や連携を重視する場合に便利。",
-        en: "Useful when notifications and integrations are critical."
-      },
-      avoid: {
-        ja: "ワークフローが複雑ならフォーム専用より自動化ツール連携を検討。",
-        en: "Avoid if your workflow requires heavy custom logic."
-      }
-    },
-    {
-      key: "multilang",
-      nameJa: "多言語フォーム",
-      nameEn: "Multilingual form",
-      tags: ["multi"],
-      reasons: {
-        ja: "多言語表示や言語切替が必要な場合に最適。",
-        en: "Fits use cases requiring language switching."
-      },
-      avoid: {
-        ja: "単一言語で十分なら運用コストが増える可能性。",
-        en: "Overkill for single-language use."
-      }
-    },
-    {
-      key: "privacy",
-      nameJa: "プライバシー重視フォーム",
-      nameEn: "Privacy-first form",
-      tags: ["privacy"],
-      reasons: {
-        ja: "個人情報取り扱いが厳しいケース向け。",
-        en: "Designed for sensitive data handling."
-      },
-      avoid: {
-        ja: "外部サービスに委ねたくない場合は自前運用を検討。",
-        en: "Avoid if you require full self-hosted control."
-      }
-    }
-  ];
-
-  const getSelections = () => ({
-    upload: document.getElementById("reqUpload").checked,
-    payments: document.getElementById("reqPayments").checked,
-    notify: document.getElementById("reqNotify").checked,
-    multi: document.getElementById("reqMulti").checked,
-    free: document.getElementById("reqFree").checked,
-    privacy: document.getElementById("reqPrivacy").checked
-  });
-
-  const hasAnySelection = (req) => Object.values(req).some(Boolean);
-
-  const scoreTool = (tool, req) => {
-    return requirementDefs.reduce((total, def) => {
-      if (req[def.key] && tool.tags.includes(def.tag)) {
-        return total + def.weight;
-      }
-      return total;
-    }, 0);
-  };
-
-  const buildRecommendationData = (lang) => {
-    const req = getSelections();
-    const picks = toolList
-      .map((tool) => ({ tool, score: scoreTool(tool, req) }))
-      .filter((pick) => pick.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3);
-
-    return picks.map((pick) => {
-      const tool = pick.tool;
-      const name = lang === "ja" ? tool.nameJa : tool.nameEn;
-      const bestFor = lang === "ja" ? tool.reasons.ja : tool.reasons.en;
-      const matched = requirementDefs
-        .filter((def) => req[def.key] && tool.tags.includes(def.tag))
-        .map((def) => def.label[lang]);
-      const missing = requirementDefs
-        .filter((def) => req[def.key] && !tool.tags.includes(def.tag))
-        .map((def) => lang === "ja" ? `未対応: ${def.label.ja}` : `Missing: ${def.label.en}`);
-      const tradeoffs = [
-        ...missing,
-        lang === "ja" ? `注意: ${tool.avoid.ja}` : `Note: ${tool.avoid.en}`
-      ];
-
-      return {
-        name,
-        bestFor,
-        matched,
-        tradeoffs
-      };
-    });
-  };
-
-  const buildResultsText = (lang, recommendations) => {
-    const bestLabel = lang === "ja" ? "おすすめ用途" : "Best for";
-    const lines = [];
-    lines.push(lang === "ja" ? "おすすめタイプ（上位3）" : "Top 3 recommendation types");
-    lines.push("-");
-
-    recommendations.forEach((rec, idx) => {
-      const matchedText = rec.matched.length
-        ? rec.matched.join(", ")
-        : (lang === "ja" ? "該当なし" : "None");
-      const tradeoffText = rec.tradeoffs.length
-        ? rec.tradeoffs.join("; ")
-        : (lang === "ja" ? "特になし" : "None");
-      lines.push(`${idx + 1}. ${rec.name}`);
-      lines.push(`   - ${bestLabel}: ${rec.bestFor}`);
-      lines.push(`   - ${lang === "ja" ? "一致条件" : "Matched"}: ${matchedText}`);
-      lines.push(`   - ${lang === "ja" ? "未一致/トレードオフ" : "Not matched / tradeoffs"}: ${tradeoffText}`);
-    });
-
-    lines.push("-");
-    lines.push(lang === "ja"
-      ? "※具体的なサービス名は要件に合わせて比較検討してください（例: Google Forms / Tally / Typeform など）。"
-      : "Choose the actual service based on your constraints (e.g., Google Forms / Tally / Typeform)."
-    );
-
-    return lines.join("\n");
-  };
-
-  const buildMemoText = (lang, topRec) => {
-    const matched = topRec.matched.length
-      ? topRec.matched
-      : [lang === "ja" ? "該当なし" : "None"];
-    const tradeoffs = topRec.tradeoffs.length
-      ? topRec.tradeoffs
-      : [lang === "ja" ? "特になし" : "None"];
-
-    if (lang === "ja") {
-      return [
-        "Decision memo",
-        `選定ツール: ${topRec.name}`,
-        "理由:",
-        ...matched.map((item) => `- ${item}`),
-        "リスク/懸念:",
-        ...tradeoffs.map((item) => `- ${item}`),
-        "次のアクション:",
-        "- 候補サービスを2〜3件比較（料金、容量、通知/連携、決済の対応可否）",
-        "- 試作フォームで回答〜通知までの動線を検証",
-        "- 法務/セキュリティ観点でプライバシーポリシーと保存期間を確認",
-        "事前に用意するもの:",
-        "- 質問項目一覧（必須/任意）",
-        "- 想定回答数・ファイル容量・決済条件",
-        "- 通知先（メール/Slack）と担当者"
-      ].join("\n");
-    }
-
-    return [
-      "Decision memo",
-      `Chosen tool: ${topRec.name}`,
-      "Reasons:",
-      ...matched.map((item) => `- ${item}`),
-      "Risks / tradeoffs:",
-      ...tradeoffs.map((item) => `- ${item}`),
-      "Next steps:",
-      "- Compare 2–3 services (pricing, storage limits, notifications, payment support).",
-      "- Build a prototype form to validate submission-to-notification flow.",
-      "- Review privacy policy and data retention with security/legal.",
-      "What to prepare:",
-      "- Question list (required/optional).",
-      "- Expected volume, file size limits, payment terms.",
-      "- Notification channels and owners."
-    ].join("\n");
-  };
-
-  const buildRecommendationCards = (recommendations, lang) => {
-    const bestLabel = lang === "ja" ? "おすすめ用途" : "Best for";
-    return recommendations.map((rec, idx) => {
-      const card = document.createElement("div");
-      card.className = "result-card";
-
-      const rank = document.createElement("p");
-      rank.className = "result-rank";
-      rank.textContent = `${lang === "ja" ? "順位" : "Rank"} ${idx + 1}`;
-
-      const name = document.createElement("h3");
-      name.className = "result-name";
-      name.textContent = rec.name;
-
-      const best = document.createElement("p");
-      best.className = "result-best";
-      best.textContent = `${bestLabel}: ${rec.bestFor}`;
-
-      const matchedTitle = document.createElement("p");
-      matchedTitle.className = "result-section-title";
-      matchedTitle.textContent = lang === "ja" ? "一致した要件" : "Matched requirements";
-
-      const matchedList = document.createElement("ul");
-      (rec.matched.length ? rec.matched : [lang === "ja" ? "該当なし" : "None"])
-        .forEach((item) => {
-          const li = document.createElement("li");
-          li.textContent = item;
-          matchedList.appendChild(li);
-        });
-
-      const tradeTitle = document.createElement("p");
-      tradeTitle.className = "result-section-title";
-      tradeTitle.textContent = lang === "ja" ? "未一致/トレードオフ" : "Not matched / tradeoffs";
-
-      const tradeList = document.createElement("ul");
-      (rec.tradeoffs.length ? rec.tradeoffs : [lang === "ja" ? "特になし" : "None"])
-        .forEach((item) => {
-          const li = document.createElement("li");
-          li.textContent = item;
-          tradeList.appendChild(li);
-        });
-
-      card.append(rank, name, best, matchedTitle, matchedList, tradeTitle, tradeList);
-      return card;
-    });
-  };
-
-  const buildStateCard = (message) => {
-    const card = document.createElement("div");
-    card.className = "result-card";
-
-    const p = document.createElement("p");
-    p.className = "result-best";
-    p.textContent = message;
-
-    card.appendChild(p);
-    return card;
-  };
-
-  const getInitialMessage = (lang) => lang === "ja"
-    ? "要件を1つ以上選んでから、おすすめを出してください。"
-    : "Select at least one requirement, then generate candidate form types.";
-
-  const getCopyBlockedMessage = (lang) => lang === "ja"
-    ? "まだ結果がありません。要件を選んで生成してください。"
-    : "No results yet. Select requirements and generate first.";
 
   const initTool = () => {
-    const btnSelect = document.getElementById("btnSelect");
-    const btnQuickStart = document.getElementById("btnQuickStart");
-    const btnCopyResults = document.getElementById("btnCopyResults");
-    const btnCopyMemo = document.getElementById("btnCopyMemo");
-    const resultList = document.getElementById("resultList");
-    const memoOutput = document.getElementById("memoOutput");
-    const langButtons = Array.from(document.querySelectorAll(".nw-lang-switch button"));
+    const resultList = $("resultList");
+    const memoOutput = $("memoOutput");
+    const copyResults = $("btnCopyResults");
+    const copyMemo = $("btnCopyMemo");
+    const saveTxt = $("btnSaveTxt");
+    const saveMd = $("btnSaveMd");
     let resultsText = "";
     let memoText = "";
+    let markdownText = "";
     let hasGenerated = false;
 
-    const currentLang = () => document.documentElement.lang || "ja";
+    const lang = () => document.documentElement.lang || "ja";
 
-    const setCopyEnabled = (enabled) => {
-      btnCopyResults.disabled = !enabled;
-      btnCopyMemo.disabled = !enabled;
-      btnCopyResults.setAttribute("aria-disabled", String(!enabled));
-      btnCopyMemo.setAttribute("aria-disabled", String(!enabled));
+    const setOutputActions = (enabled) => {
+      [copyResults, copyMemo, saveTxt, saveMd].forEach((btn) => {
+        btn.disabled = !enabled;
+        btn.setAttribute("aria-disabled", String(!enabled));
+      });
     };
 
-    const showState = (message, memoMessage = "-") => {
-      resultList.innerHTML = "";
-      resultList.appendChild(buildStateCard(message));
-      memoOutput.textContent = memoMessage;
-    };
-
-    const showInitialState = () => {
-      const lang = currentLang();
+    const showInitial = () => {
       resultsText = "";
       memoText = "";
+      markdownText = "";
       hasGenerated = false;
-      setCopyEnabled(false);
-      showState(getInitialMessage(lang), "-");
-    };
-
-    const showNoSelectionState = () => {
-      const lang = currentLang();
-      resultsText = "";
-      memoText = "";
-      hasGenerated = false;
-      setCopyEnabled(false);
-      showState(getInitialMessage(lang), getCopyBlockedMessage(lang));
+      setOutputActions(false);
+      resultList.replaceChildren(buildStateCard(messages.initial[lang()]));
+      memoOutput.textContent = "-";
     };
 
     const render = () => {
-      const lang = currentLang();
+      const current = lang();
       const req = getSelections();
       if (!hasAnySelection(req)) {
-        showNoSelectionState();
-        return;
-      }
-
-      const recommendations = buildRecommendationData(lang);
-      if (!recommendations.length) {
         resultsText = "";
         memoText = "";
+        markdownText = "";
         hasGenerated = false;
-        setCopyEnabled(false);
-        showState(
-          lang === "ja" ? "一致する候補がありません。要件を見直してください。" : "No matching candidate types. Adjust the requirements.",
-          "-"
-        );
+        setOutputActions(false);
+        resultList.replaceChildren(buildStateCard(messages.noSelection[current]));
+        memoOutput.textContent = messages.copyBlocked[current];
+        showToast(messages.noSelection[current]);
         return;
       }
 
-      resultsText = buildResultsText(lang, recommendations);
-      memoText = buildMemoText(lang, recommendations[0]);
+      const recommendations = buildRecommendationData(current);
+      resultsText = makeText(current, recommendations);
+      memoText = makeMemo(current, recommendations);
+      markdownText = toMarkdown(current, recommendations, memoText);
       hasGenerated = true;
-      setCopyEnabled(true);
+      setOutputActions(true);
 
-      resultList.innerHTML = "";
-      buildRecommendationCards(recommendations, lang).forEach((card) => resultList.appendChild(card));
+      const cards = buildRecommendationCards(recommendations, current);
+      cards.push(buildCautionList(buildRequirementCautions(current), current));
+      resultList.replaceChildren(...cards);
       memoOutput.textContent = memoText;
     };
 
-    btnSelect.addEventListener("click", render);
-    btnQuickStart.addEventListener("click", () => {
-      document.getElementById("reqUpload").checked = true;
-      document.getElementById("reqPayments").checked = false;
-      document.getElementById("reqNotify").checked = true;
-      document.getElementById("reqMulti").checked = false;
-      document.getElementById("reqFree").checked = true;
-      document.getElementById("reqPrivacy").checked = false;
+    const ensureGenerated = () => {
+      if (hasGenerated) return true;
+      showToast(messages.copyBlocked[lang()]);
+      return false;
+    };
+
+    $("btnSelect").addEventListener("click", render);
+    $("btnQuickStart").addEventListener("click", () => {
+      $("reqUpload").checked = true;
+      $("reqPayments").checked = false;
+      $("reqNotify").checked = true;
+      $("reqMulti").checked = false;
+      $("reqFree").checked = true;
+      $("reqPrivacy").checked = false;
       render();
     });
-    btnCopyResults.addEventListener("click", async () => {
-      if (!hasGenerated || !resultsText.trim()) {
-        showState(getCopyBlockedMessage(currentLang()), memoOutput.textContent || "-");
-        return;
-      }
-      const ok = await window.NW.copyToClipboard(resultsText.trim());
-      if (ok) btnCopyResults.classList.add("primary");
-      setTimeout(() => btnCopyResults.classList.remove("primary"), 600);
-    });
-    btnCopyMemo.addEventListener("click", async () => {
-      if (!hasGenerated || !memoText.trim()) {
-        showState(getCopyBlockedMessage(currentLang()), memoOutput.textContent || "-");
-        return;
-      }
-      const ok = await window.NW.copyToClipboard(memoText.trim());
-      if (ok) btnCopyMemo.classList.add("primary");
-      setTimeout(() => btnCopyMemo.classList.remove("primary"), 600);
-    });
-    langButtons.forEach((btn) => btn.addEventListener("click", () => {
-      if (hasGenerated) {
-        render();
-      } else {
-        showInitialState();
-      }
-    }));
 
-    showInitialState();
+    copyResults.addEventListener("click", async () => {
+      if (!ensureGenerated()) return;
+      showToast((await copyText(resultsText)) ? messages.copyOk[lang()] : messages.copyFail[lang()]);
+    });
+    copyMemo.addEventListener("click", async () => {
+      if (!ensureGenerated()) return;
+      showToast((await copyText(memoText)) ? messages.copyOk[lang()] : messages.copyFail[lang()]);
+    });
+    saveTxt.addEventListener("click", () => {
+      if (!ensureGenerated()) return;
+      const date = new Date().toISOString().slice(0, 10);
+      downloadText(`form-tool-selector-${date}.txt`, `${resultsText}\n\n${memoText}`);
+      showToast(messages.saveOk[lang()]);
+    });
+    saveMd.addEventListener("click", () => {
+      if (!ensureGenerated()) return;
+      const date = new Date().toISOString().slice(0, 10);
+      downloadText(`form-tool-selector-${date}.md`, markdownText, "text/markdown;charset=utf-8");
+      showToast(messages.saveOk[lang()]);
+    });
+
+    langButtons().forEach((btn) => {
+      btn.addEventListener("click", () => {
+        applyLang(btn.dataset.lang);
+        if (hasGenerated) render();
+        else showInitial();
+      });
+    });
+
+    applyLang(getDefaultLang());
+    showInitial();
   };
 
   document.addEventListener("DOMContentLoaded", initTool);
