@@ -1,9 +1,8 @@
 /* ATS Paste Doctor public hardening
- * Removes unfinished Pro surface, adds copy fallback, localizes diagnostics,
- * and weakens ATS guarantee wording without touching the MVP processor.
+ * Pro is NOT removed here. This file only disables unfinished payment hrefs,
+ * adds copy/download fallback, localizes diagnostics, and weakens ATS guarantee wording.
  */
 (() => {
-  const PRO_KEY = "nw_pro_ats_paste_doctor";
   const $ = (id) => document.getElementById(id);
 
   const texts = {
@@ -21,6 +20,8 @@
       copied: "Copied",
       copyFailed: "Copy failed. Select the output manually and copy it.",
       downloaded: "TXT downloaded",
+      paymentNotReady: "Payment link is not connected yet. Pro features and the existing local unlock flow remain intact.",
+      buyDisabled: "Payment link not connected",
       faqQ1: "Will this always display correctly in every ATS?",
       faqA1: "No. ATS and job forms differ. Use this as a plain-text cleanup aid and confirm the result inside the actual form before submitting.",
       faqQ2: "Is my pasted text uploaded?",
@@ -30,13 +31,13 @@
       faqQ4: "What is ATS-friendly plain text?",
       faqA4: "It reduces special spacing, fragile bullet formatting, and hidden characters so the text is easier to paste and review in application forms.",
       faqQ5: "Is text history saved?",
-      faqA5: "The public version does not intentionally save your pasted text history. If a future history feature is added, it should be opt-in and stored only on the device.",
+      faqA5: "The main cleanup flow does not upload text. Pro templates/history, when used, are saved only in this browser on this device.",
       relatedTitle: "Related tools",
       usage: "Usage",
       cover: "Cover Letter Lite",
       cold: "Cold Email Requirement Checker",
       redactor: "API Key Token Redactor",
-      linebreak: "LineBreak Doctor",
+      linebreak: "LineBreak Doctor"
     },
     ja: {
       subtitle: "応募フォーム貼り付け前に、改行崩れ・箇条書き・不可視文字・文字数を確認します。",
@@ -52,6 +53,8 @@
       copied: "コピーしました",
       copyFailed: "コピーできませんでした。出力欄を選択して手動でコピーしてください。",
       downloaded: "TXTを保存しました",
+      paymentNotReady: "決済リンクはまだ未接続です。Pro機能と既存の端末内解放フローは残しています。",
+      buyDisabled: "決済リンク未接続",
       faqQ1: "この出力ならATSで必ず崩れませんか？",
       faqA1: "いいえ。応募フォームやATSごとに仕様が異なるため、送信前に実際のフォームで確認してください。",
       faqQ2: "入力した文章は送信されますか？",
@@ -61,14 +64,14 @@
       faqQ4: "ATS向け簡易整形とは何ですか？",
       faqA4: "特殊な空白、崩れやすい箇条書き、不可視文字などを減らし、応募フォームに貼りやすいプレーンテキストへ寄せる処理です。",
       faqQ5: "履歴は保存されますか？",
-      faqA5: "公開初期版では本文履歴を意図的に保存しません。将来追加する場合は、初期値は保存しない設定にし、この端末内保存であることを明記します。",
+      faqA5: "通常の整形処理では本文はアップロードされません。Proのテンプレ・履歴を使った場合のみ、このブラウザのlocalStorageに保存されます。",
       relatedTitle: "関連ツール",
       usage: "使い方",
       cover: "Cover Letter Lite",
       cold: "Cold Email Requirement Checker",
       redactor: "API Key Token Redactor",
-      linebreak: "LineBreak Doctor",
-    },
+      linebreak: "LineBreak Doctor"
+    }
   };
 
   function lang() {
@@ -118,40 +121,22 @@
 
     const safeBtn = $("modeSafe");
     if (safeBtn) safeBtn.textContent = t("modeSafe");
+    sanitizePaymentLink();
     translateDiagnostics();
   }
 
-  function removeUnfinishedProSurface() {
-    try {
-      localStorage.removeItem(PRO_KEY);
-    } catch (_) {}
-
-    const url = new URL(window.location.href);
-    if (url.searchParams.has("pro")) {
-      url.searchParams.delete("pro");
-      window.history.replaceState({}, "", url.toString());
-    }
-
+  function sanitizePaymentLink() {
     const buy = $("buyProLink");
-    if (buy) {
+    if (!buy) return;
+    const href = buy.getAttribute("href") || "";
+    if (!href || href.includes("example.com") || href.includes("stripe-payment-link")) {
       buy.removeAttribute("href");
       buy.setAttribute("aria-disabled", "true");
       buy.setAttribute("tabindex", "-1");
+      buy.textContent = t("buyDisabled");
+      const note = buy.parentElement?.querySelector(".meta");
+      if (note) note.textContent = t("paymentNotReady");
     }
-
-    [$("proCard"), $("proTools")].forEach((el) => {
-      if (!el) return;
-      el.hidden = true;
-      el.setAttribute("aria-hidden", "true");
-    });
-
-    document.querySelectorAll("[data-pro-only]").forEach((el) => {
-      if ("disabled" in el) el.disabled = true;
-      el.setAttribute("aria-hidden", "true");
-      el.setAttribute("tabindex", "-1");
-    });
-
-    document.body.classList.remove("is-pro");
   }
 
   function showToast(message) {
@@ -255,7 +240,7 @@
       ["No newlines", "改行除外"],
       ["Lines", "行数"],
       ["Paragraphs", "段落数"],
-      ["Bullet lines", "箇条書き行"],
+      ["Bullet lines", "箇条書き行"]
     ]);
     document.querySelectorAll("#countsGrid .check__k").forEach((el) => {
       const next = countMap.get(el.textContent.trim());
@@ -293,24 +278,24 @@
   }
 
   function init() {
-    removeUnfinishedProSurface();
     applyPublicTexts();
     interceptCopyAndDownload();
     observeDiagnostics();
+    sanitizePaymentLink();
 
     [$("langJa"), $("langEn")].forEach((button) => {
       button?.addEventListener("click", () => {
         window.setTimeout(() => {
-          removeUnfinishedProSurface();
           applyPublicTexts();
+          sanitizePaymentLink();
         }, 0);
       });
     });
 
     document.addEventListener("input", () => window.setTimeout(translateDiagnostics, 0));
     document.addEventListener("click", () => window.setTimeout(() => {
-      removeUnfinishedProSurface();
       applyPublicTexts();
+      sanitizePaymentLink();
     }, 0));
   }
 
