@@ -4,253 +4,111 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-57QT78M3JB');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-57QT78M3JB');
 </script>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks</title>
-  <meta name="description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、全件操作、危険なDDLなどをブラウザ内で検出する無料チェックツールです。SQLは送信されません。">
-  <link rel="canonical" href="https://nicheworks.app/tools/sql-db-risk-checker/">
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta name="robots" content="index,follow">
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="./style.css" />
-
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:url" content="https://nicheworks.app/tools/sql-db-risk-checker/">
-  <meta property="og:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-  <meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-  <meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "SQL DB Risk Checker",
-    "url": "https://nicheworks.app/tools/sql-db-risk-checker/",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "All",
-    "description": "SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出する無料チェックツールです。SQLは送信されません。",
-    "inLanguage": ["ja", "en"],
-    "publisher": { "@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/" }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "このツールはSQLの安全性を保証しますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。危険パターンを検出する補助ツールです。最終判断は必ず利用者が行ってください。" } },
-      { "@type": "Question", "name": "SQLはサーバーに送信されますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。入力されたSQLはブラウザ内で処理され、サーバーへ送信されません。" } },
-      { "@type": "Question", "name": "WHEREなしのUPDATEやDELETEは必ず危険ですか？", "acceptedAnswer": { "@type": "Answer", "text": "多くの場合は危険ですが、意図的な全件処理もあります。影響行数、バックアップ、ロールバック手順を確認してください。" } },
-      { "@type": "Question", "name": "SQLを自動修正しますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。SQLの自動修正は行わず、警告、理由、確認方法、確認SQL例を表示します。" } }
-    ]
-  }
-  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks</title>
+<meta name="description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。Proでは安全実行テンプレを利用できます。">
+<link rel="canonical" href="https://nicheworks.app/tools/sql-db-risk-checker/">
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/favicon.ico">
+<meta name="robots" content="index,follow">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="./style.css" />
+<link rel="stylesheet" href="./pro-restore.css" />
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NicheWorks">
+<meta property="og:url" content="https://nicheworks.app/tools/sql-db-risk-checker/">
+<meta property="og:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
+<meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
+<meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
+<meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
+<meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SQL DB Risk Checker","url":"https://nicheworks.app/tools/sql-db-risk-checker/","applicationCategory":"UtilityApplication","operatingSystem":"All","description":"SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。","inLanguage":["ja","en"],"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
 </head>
-
 <body>
-  <header class="tool-hero">
-    <div class="tool-hero-inner">
-      <div class="tool-hero-main">
-        <p class="tool-kicker">NicheWorks • Dev Safety</p>
-        <h1 class="tool-title" data-i18n="title">SQL実行前チェック・DB事故防止</h1>
-        <p class="tool-desc" data-i18n="desc">SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。</p>
-        <p class="tool-mini-note" data-i18n="miniNote">Browser-only / No data is sent. SQLの自動修正は行いません。</p>
+<header class="tool-hero">
+  <div class="tool-hero-inner">
+    <div class="tool-hero-main">
+      <p class="tool-kicker">NicheWorks • Dev Safety</p>
+      <h1 class="tool-title" data-i18n="title">SQL実行前チェック・DB事故防止</h1>
+      <p class="tool-desc" data-i18n="desc">SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。</p>
+      <p class="tool-mini-note" data-i18n="miniNote">Browser-only / No data is sent. SQLの自動修正は行いません。</p>
+    </div>
+    <div class="tool-hero-side"><div class="lang-toggle" role="group" aria-label="Language"><button type="button" class="lang-btn" data-lang-btn="ja">JA</button><button type="button" class="lang-btn" data-lang-btn="en">EN</button></div></div>
+  </div>
+</header>
+<main class="page">
+  <div class="ad-slot ad-top">広告枠</div>
+  <section class="intro">
+    <div class="intro-grid">
+      <div class="panel">
+        <h2 class="h2" data-i18n="freeTitle">無料でできること</h2>
+        <ul class="steps" data-i18n-list="freeList"><li>DROP / TRUNCATE / ALTER / DROP COLUMN などの危険DDL検出</li><li>WHEREなしUPDATE/DELETEや全件操作の可能性を文単位で警告</li><li>Postgres / MySQL / SQLite の代表的な注意点を追加表示</li><li>結果サマリー・レビュー用テキスト・チェックリストをコピー</li></ul>
+        <p class="note" data-i18n="howNote">完璧なSQLパーサーではありません。WHEREなし判定などは“危険の可能性”として扱ってください。</p>
       </div>
-      <div class="tool-hero-side">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" class="lang-btn" data-lang-btn="ja">JA</button>
-          <button type="button" class="lang-btn" data-lang-btn="en">EN</button>
-        </div>
+      <div class="panel pro-mini-panel">
+        <h2 class="h2">Pro</h2>
+        <p class="note">Proでは安全実行テンプレ、DB別注意点、レビュー用出力を解放します。購入リンクを設定すればそのまま販売導線として使えます。</p>
+        <p class="note">¥200 買い切り想定 / 外部決済リンク対応 / 復元ボタンあり</p>
       </div>
     </div>
-  </header>
-
-  <main class="page">
-    <div class="ad-slot ad-top">広告枠</div>
-
-    <section class="intro">
-      <div class="intro-grid">
-        <div class="panel">
-          <h2 class="h2" data-i18n="freeTitle">無料でできること</h2>
-          <ul class="steps" data-i18n-list="freeList">
-            <li>DROP / TRUNCATE / ALTER / DROP COLUMN などの危険DDL検出</li>
-            <li>WHEREなしUPDATE/DELETEや全件操作の可能性を文単位で警告</li>
-            <li>Postgres / MySQL / SQLite の代表的な注意点を追加表示</li>
-            <li>結果サマリー・レビュー用テキスト・チェックリストをコピー</li>
-          </ul>
-          <p class="note" data-i18n="howNote">完璧なSQLパーサーではありません。WHEREなし判定などは“危険の可能性”として扱ってください。</p>
-        </div>
-
-        <div class="panel">
-          <h2 class="h2" data-i18n="howTitle">簡易的な使い方</h2>
-          <ol class="steps" data-i18n-list="howSteps">
-            <li>SQLを貼り付け（複数文OK）</li>
-            <li>対象環境・DB種別・読み取り専用モードを選択</li>
-            <li>リスクチェック → 警告理由・確認SQL・プレビューを確認</li>
-          </ol>
-          <div class="usage-link">
-            <a href="./usage.html" class="link" data-i18n="usageLink">詳しい使い方（Usage）を見る →</a>
-          </div>
-        </div>
+  </section>
+  <section class="tool">
+    <div class="card">
+      <h2 class="h2" data-i18n="sqlInputTitle">SQL入力</h2>
+      <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-placeholder="sqlPlaceholder"></textarea>
+      <div class="options">
+        <div class="opt"><label class="label" for="envSelect" data-i18n="envLabel">対象環境</label><select id="envSelect" class="select"><option value="unknown">Unknown</option><option value="dev">Dev</option><option value="staging">Staging</option><option value="prod">Prod</option></select><p class="help" data-i18n="envHelp">※自己申告です。実際の接続先は判定しません。</p></div>
+        <div class="opt"><label class="label" for="dbSelect" data-i18n="dbLabel">DB種別</label><select id="dbSelect" class="select"><option value="generic">Generic</option><option value="postgres">Postgres</option><option value="mysql">MySQL</option><option value="sqlite">SQLite</option></select></div>
+        <div class="opt"><label class="label" for="readOnlyToggle" data-i18n="roLabel">読み取り専用モード</label><div class="switch-row"><label class="switch"><input id="readOnlyToggle" type="checkbox" /><span class="slider" aria-hidden="true"></span></label><p class="help" data-i18n="roHelp">ONにするとSELECT以外を強く警告します。</p></div></div>
       </div>
-    </section>
-
-    <section class="tool">
-      <div class="card">
-        <h2 class="h2" data-i18n="sqlInputTitle">SQL入力</h2>
-        <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-placeholder="sqlPlaceholder"></textarea>
-
-        <div class="options">
-          <div class="opt">
-            <label class="label" for="envSelect" data-i18n="envLabel">対象環境</label>
-            <select id="envSelect" class="select">
-              <option value="unknown">Unknown</option>
-              <option value="dev">Dev</option>
-              <option value="staging">Staging</option>
-              <option value="prod">Prod</option>
-            </select>
-            <p class="help" data-i18n="envHelp">※自己申告です。実際の接続先は判定しません。</p>
-          </div>
-
-          <div class="opt">
-            <label class="label" for="dbSelect" data-i18n="dbLabel">DB種別</label>
-            <select id="dbSelect" class="select">
-              <option value="generic">Generic</option>
-              <option value="postgres">Postgres</option>
-              <option value="mysql">MySQL</option>
-              <option value="sqlite">SQLite</option>
-            </select>
-          </div>
-
-          <div class="opt">
-            <label class="label" for="readOnlyToggle" data-i18n="roLabel">読み取り専用モード</label>
-            <div class="switch-row">
-              <label class="switch">
-                <input id="readOnlyToggle" type="checkbox" />
-                <span class="slider" aria-hidden="true"></span>
-              </label>
-              <p class="help" data-i18n="roHelp">ONにするとSELECT以外を強く警告します。</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="prod-notice" id="prodNotice" hidden data-i18n="prodNotice">本番環境としてチェック中です。バックアップ、影響行数、ロールバック手順、権限を必ず確認してください。</div>
-
-        <div class="actions">
-          <button id="checkBtn" class="btn btn-primary" type="button" data-i18n="checkBtn">リスクチェック</button>
-          <button id="clearBtn" class="btn btn-ghost" type="button" data-i18n="clearBtn">クリア</button>
-          <button id="copyRiskSummaryBtn" class="btn btn-ghost" type="button" data-i18n="copyRiskSummaryBtn">結果をコピー</button>
-          <button id="copyChecklistBtn" class="btn btn-ghost" type="button" data-i18n="copyChecklistBtn">チェックリストをコピー</button>
-          <div class="badge-wrap">
-            <span class="badge-label" data-i18n="riskLabel">リスク判定</span>
-            <span id="riskBadge" class="risk-badge risk-low">Low（低）</span>
-          </div>
-        </div>
+      <div class="prod-notice" id="prodNotice" hidden data-i18n="prodNotice">本番環境としてチェック中です。バックアップ、影響行数、ロールバック手順、権限を必ず確認してください。</div>
+      <div class="actions"><button id="checkBtn" class="btn btn-primary" type="button" data-i18n="checkBtn">リスクチェック</button><button id="clearBtn" class="btn btn-ghost" type="button" data-i18n="clearBtn">クリア</button><button id="copyRiskSummaryBtn" class="btn btn-ghost" type="button" data-i18n="copyRiskSummaryBtn">結果をコピー</button><button id="copyChecklistBtn" class="btn btn-ghost" type="button" data-i18n="copyChecklistBtn">チェックリストをコピー</button><div class="badge-wrap"><span class="badge-label" data-i18n="riskLabel">リスク判定</span><span id="riskBadge" class="risk-badge risk-low">Low（低）</span></div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card"><h2 class="h2" data-i18n="sumTitle">検出サマリー</h2><div class="summary summary-5"><div class="sum-item"><span data-i18n="sumStatements">文数</span><strong id="sumStatements">0</strong></div><div class="sum-item"><span data-i18n="sumWrites">書き込み系操作</span><strong id="sumWrites">0</strong></div><div class="sum-item"><span data-i18n="sumKeywords">警告数</span><strong id="sumKeywords">0</strong></div><div class="sum-item"><span data-i18n="sumDb">DB</span><strong id="sumDb">-</strong></div><div class="sum-item"><span data-i18n="sumEnv">環境</span><strong id="sumEnv">-</strong></div></div><h2 class="h2" data-i18n="warnTitle">警告一覧</h2><ul id="warningsList" class="warnings"><li class="empty" data-i18n="emptyWarn">まだ結果はありません。SQLを入力して「リスクチェック」を押してください。</li></ul></div>
+      <div class="card"><h2 class="h2" data-i18n="previewTitle">SQLプレビュー</h2><pre id="sqlPreview" class="preview"><code data-i18n="previewEmpty">ここに解析結果が表示されます</code></pre></div>
+    </div>
+    <div class="card probox" id="proBox">
+      <div class="probox-head"><h2 class="h2">Pro機能（買い切り）</h2><span class="tag" id="proStateTag">Locked</span></div>
+      <div class="pro-locked" id="proLocked">
+        <p class="note">Proを購入すると、より安全な「実行手順テンプレ」やDB別プリセット表示が使えます。SQLの自動修正は行いません。</p>
+        <div class="pro-meta"><div class="pro-price-line"><span class="label">価格</span><strong class="value">¥200（買い切り）</strong></div><p class="pro-mini">決済は外部ページで行います。購入後にこのページへ戻ると復元できます。</p><p class="pro-pending-note" id="proPendingNote">現在は決済リンク未設定です。pro-restore.js の PRO_PAYMENT_URL にStripe Payment Link等を入れると購入ボタンが有効になります。</p></div>
+        <div class="pro-price"><div class="pro-price-main"><div class="pro-price-amount">¥200</div><div class="pro-price-sub">買い切り / このブラウザで解放</div></div><div class="pro-actions"><button class="btn btn-primary" type="button" id="buyProBtn">Proを購入</button><button class="btn btn-ghost" type="button" id="restoreProBtn">購入済みを復元</button></div></div>
+        <ul class="prolist"><li>安全実行テンプレの提示（トランザクション手順）</li><li>DB種別ごとの注意点表示</li><li>ルールプリセット（Read-only強制 / Migrationモード）</li><li>レビュー用サマリーの強化</li></ul>
       </div>
+      <div class="pro-unlocked" id="proUnlocked" hidden><p class="note">Proが解放されています。下のテンプレを「手順」として使ってください（自動修正はしません）。</p><h3 class="h2">安全実行テンプレ（例）</h3><div class="codebox"><code id="proTemplateCode">BEGIN;
+-- 1) 影響行数の事前確認
+SELECT COUNT(*) FROM your_table WHERE ...;
 
-      <div class="grid-2">
-        <div class="card">
-          <h2 class="h2" data-i18n="sumTitle">検出サマリー</h2>
-          <div class="summary summary-5">
-            <div class="sum-item"><span data-i18n="sumStatements">文数</span><strong id="sumStatements">0</strong></div>
-            <div class="sum-item"><span data-i18n="sumWrites">書き込み系操作</span><strong id="sumWrites">0</strong></div>
-            <div class="sum-item"><span data-i18n="sumKeywords">警告数</span><strong id="sumKeywords">0</strong></div>
-            <div class="sum-item"><span data-i18n="sumDb">DB</span><strong id="sumDb">-</strong></div>
-            <div class="sum-item"><span data-i18n="sumEnv">環境</span><strong id="sumEnv">-</strong></div>
-          </div>
+-- 2) 対象行のサンプル確認
+SELECT * FROM your_table WHERE ... LIMIT 20;
 
-          <h2 class="h2" data-i18n="warnTitle">警告一覧</h2>
-          <ul id="warningsList" class="warnings">
-            <li class="empty" data-i18n="emptyWarn">まだ結果はありません。SQLを入力して「リスクチェック」を押してください。</li>
-          </ul>
-        </div>
+-- 3) 実行
+-- UPDATE/DELETE ... WHERE ...;
 
-        <div class="card">
-          <h2 class="h2" data-i18n="previewTitle">SQLプレビュー</h2>
-          <pre id="sqlPreview" class="preview"><code data-i18n="previewEmpty">ここに解析結果が表示されます</code></pre>
-        </div>
-      </div>
-
-      <div class="card checklist-card">
-        <h2 class="h2" data-i18n="checkTitle">実行前チェックリスト</h2>
-        <ul class="checklist" id="preChecklist">
-          <li><label><input type="checkbox"><span data-i18n="c1">対象DBが本番か確認した</span></label></li>
-          <li><label><input type="checkbox"><span data-i18n="c2">バックアップ／ロールバック手段を確認した</span></label></li>
-          <li><label><input type="checkbox"><span data-i18n="c3">影響行数をSELECT COUNTで確認した</span></label></li>
-          <li><label><input type="checkbox"><span data-i18n="c4">実行権限が最小限であることを確認した</span></label></li>
-          <li><label><input type="checkbox"><span data-i18n="c5">必要ならBEGIN / ROLLBACKで事前確認する</span></label></li>
-        </ul>
-        <div class="check-actions">
-          <button class="btn btn-ghost" type="button" id="checkAllBtn" data-i18n="checkAll">全部チェック</button>
-          <button class="btn btn-ghost" type="button" id="clearAllBtn" data-i18n="clearAll">全部外す</button>
-        </div>
-      </div>
-
-      <details class="card probox" id="proBox">
-        <summary><strong data-i18n="proTitle">追加機能案（準備中）</strong></summary>
-        <p class="note" data-i18n="proLockedNote">購入リンク未設定のため、現在は無料チェック機能のみを主役にしています。</p>
-        <ul class="prolist" data-i18n-list="proList">
-          <li>安全実行テンプレの保存</li>
-          <li>DB別プリセット</li>
-          <li>Migrationレビュー用の出力強化</li>
-        </ul>
-      </details>
-
-      <div class="card">
-        <p class="disclaimer" data-i18n="disclaimer">このツールはSQLの安全性を保証しません。本番環境では必ず社内レビュー、バックアップ、権限、トランザクション、ロールバック手順を確認してください。</p>
-      </div>
-
-      <section class="faq card" aria-labelledby="faq-title">
-        <h2 class="h2" id="faq-title" data-i18n="faqTitle">FAQ</h2>
-        <details open><summary>このツールはSQLの安全性を保証しますか？</summary><p>いいえ。危険パターンを検出する補助ツールです。最終判断は必ず利用者が行ってください。</p></details>
-        <details><summary>SQLはサーバーに送信されますか？</summary><p>いいえ。入力されたSQLはブラウザ内で処理され、サーバーへ送信されません。</p></details>
-        <details><summary>WHEREなしのUPDATEやDELETEは必ず危険ですか？</summary><p>多くの場合は危険ですが、意図的な全件処理もあります。影響行数、バックアップ、ロールバック手順を確認してください。</p></details>
-        <details><summary>SQLを自動修正しますか？</summary><p>いいえ。SQLの自動修正は行わず、警告、理由、確認方法、確認SQL例を表示します。</p></details>
-      </section>
-
-      <div class="donate">
-        <p class="donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。</p>
-        <div class="donate-links">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-        </div>
-      </div>
-
-      <nav class="nw-links" aria-label="Related tools">
-        <strong data-i18n="relatedTitle">関連ツール</strong>
-        <a href="/tools/command-safety-checker/">Command Safety Checker</a>
-        <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a>
-        <a href="/tools/log-formatter/">LogFormatter</a>
-        <a href="/tools/json-repair/">JSON Repair</a>
-      </nav>
-    </section>
-
-    <div class="ad-slot ad-bottom">広告枠</div>
-  </main>
-
-  <div id="toast" class="toast" hidden></div>
-
-  <footer class="footer">
-    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p>Ads may be displayed. Accuracy not guaranteed. Verify with official sources.</p>
-    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
-  </footer>
-
-  <script src="./app-sdrc.js" defer></script>
+-- 4) まずはROLLBACKで確認 → 問題なければCOMMIT
+ROLLBACK;
+-- COMMIT;</code></div><div class="pro-actions unlocked-actions"><button class="btn btn-ghost" type="button" id="copyTemplateBtn">テンプレをコピー</button><button class="btn btn-ghost" type="button" id="lockProBtn">Proをロック（テスト用）</button></div></div>
+    </div>
+    <div class="card checklist-card"><h2 class="h2" data-i18n="checkTitle">実行前チェックリスト</h2><ul class="checklist" id="preChecklist"><li><label><input type="checkbox"><span data-i18n="c1">対象DBが本番か確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c2">バックアップ／ロールバック手段を確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c3">影響行数をSELECT COUNTで確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c4">実行権限が最小限であることを確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c5">必要ならBEGIN / ROLLBACKで事前確認する</span></label></li></ul><div class="check-actions"><button class="btn btn-ghost" type="button" id="checkAllBtn" data-i18n="checkAll">全部チェック</button><button class="btn btn-ghost" type="button" id="clearAllBtn" data-i18n="clearAll">全部外す</button></div></div>
+    <div class="card"><p class="disclaimer" data-i18n="disclaimer">このツールはSQLの安全性を保証しません。本番環境では必ず社内レビュー、バックアップ、権限、トランザクション、ロールバック手順を確認してください。</p></div>
+    <section class="faq card" aria-labelledby="faq-title"><h2 class="h2" id="faq-title" data-i18n="faqTitle">FAQ</h2><details open><summary>このツールはSQLの安全性を保証しますか？</summary><p>いいえ。危険パターンを検出する補助ツールです。最終判断は必ず利用者が行ってください。</p></details><details><summary>SQLはサーバーに送信されますか？</summary><p>いいえ。入力されたSQLはブラウザ内で処理され、サーバーへ送信されません。</p></details><details><summary>WHEREなしのUPDATEやDELETEは必ず危険ですか？</summary><p>多くの場合は危険ですが、意図的な全件処理もあります。影響行数、バックアップ、ロールバック手順を確認してください。</p></details><details><summary>SQLを自動修正しますか？</summary><p>いいえ。SQLの自動修正は行わず、警告、理由、確認方法、確認SQL例を表示します。</p></details></section>
+    <div class="donate"><p class="donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。</p><div class="donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+    <nav class="nw-links" aria-label="Related tools"><strong data-i18n="relatedTitle">関連ツール</strong><a href="/tools/command-safety-checker/">Command Safety Checker</a><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a><a href="/tools/log-formatter/">LogFormatter</a><a href="/tools/json-repair/">JSON Repair</a></nav>
+  </section>
+  <div class="ad-slot ad-bottom">広告枠</div>
+</main>
+<div id="toast" class="toast" hidden></div>
+<footer class="footer"><p>© NicheWorks — Small Web Tools for Boring Tasks</p><p>Ads may be displayed. Accuracy not guaranteed. Verify with official sources.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+<script src="./app-sdrc.js" defer></script>
+<script src="./pro-restore.js" defer></script>
 </body>
 </html>
