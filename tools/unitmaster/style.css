@@ -12,6 +12,10 @@
   --button-bg: var(--fg);
   --button-fg: var(--bg);
   --accent-bg: var(--card-bg);
+  --warning-bg: #fff7e6;
+  --warning-border: #f3d48a;
+  --error-bg: #fff1f1;
+  --error-border: #f1a5a5;
 }
 
 html.dark {
@@ -20,6 +24,10 @@ html.dark {
   --sub: #aaa;
   --border: #333;
   --card-bg: #1a1a1a;
+  --warning-bg: #2a2315;
+  --warning-border: #6c5520;
+  --error-bg: #2b1717;
+  --error-border: #7b3434;
 }
 
 * {
@@ -42,7 +50,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* コンテナ：スマホ基準 */
 .container {
   width: 100%;
   max-width: 720px;
@@ -51,7 +58,7 @@ a:hover {
 }
 
 /* ============================================
-   Header（スマホ基準 → PC拡張）
+   Header
 ============================================ */
 
 .nw-header {
@@ -84,12 +91,12 @@ a:hover {
   gap: 8px;
 }
 
-
 .lang-btn {
   padding: 6px 12px;
   border: 1px solid var(--border);
   background: var(--accent-bg);
   border-radius: 6px;
+  color: var(--fg);
   cursor: pointer;
   font-size: 0.9rem;
 }
@@ -102,6 +109,7 @@ a:hover {
 .theme-toggle {
   border: 1px solid var(--border);
   background: var(--accent-bg);
+  color: var(--fg);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -118,33 +126,52 @@ a:hover {
 }
 
 /* ============================================
-   使い方
+   Guide / Notes
 ============================================ */
 
-.howto {
+.howto,
+.notice-card,
+.storage-note,
+.faq {
   margin-top: 20px;
   margin-bottom: 24px;
 }
 
-.howto h2 {
+.howto h2,
+.notice-card h2,
+.storage-note h2,
+.faq h2 {
   margin: 0 0 8px 0;
   font-size: 1.2rem;
 }
 
-.howto ol {
+.howto ol,
+.notice-card ul {
   padding-left: 20px;
   margin: 0;
 }
 
-.howto li {
+.howto li,
+.notice-card li {
   margin-bottom: 4px;
   line-height: 1.5;
 }
 
+.notice-card,
+.storage-note {
+  padding: 14px;
+  border: 1px solid var(--warning-border);
+  border-radius: 10px;
+  background: var(--warning-bg);
+}
+
+.storage-note p {
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* ============================================
-   カテゴリ
-   スマホ：ドロップダウン
-   PC：横タブ
+   Category
 ============================================ */
 
 .category-mobile {
@@ -164,9 +191,10 @@ a:hover {
   font-size: 1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
 }
 
-/* PCタブ（デフォルト非表示） */
 .category-desktop {
   display: none;
   text-align: center;
@@ -180,6 +208,7 @@ a:hover {
   border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--accent-bg);
+  color: var(--fg);
   cursor: pointer;
   font-size: 0.9rem;
 }
@@ -190,7 +219,7 @@ a:hover {
 }
 
 /* ============================================
-   入力エリア
+   Input area
 ============================================ */
 
 .convert-box {
@@ -217,11 +246,9 @@ a:hover {
   font-size: 1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
 }
-
-/* ============================================
-   自動計算 / 計算ボタン
-============================================ */
 
 .autocalc-row {
   margin: 0;
@@ -263,17 +290,28 @@ a:hover {
 }
 
 /* ============================================
-   結果表示
+   Result / Accordion
 ============================================ */
 
 .result-box {
   margin-top: 8px;
   padding: 18px;
   background: var(--card-bg);
+  border: 1px solid transparent;
   border-radius: 10px;
   min-height: 40px;
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.result-box.is-warning {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+}
+
+.result-box.is-error {
+  background: var(--error-bg);
+  border-color: var(--error-border);
 }
 
 .accordion {
@@ -303,11 +341,6 @@ a:hover {
 
 .accordion-icon {
   font-weight: bold;
-  transition: transform 0.2s ease;
-}
-
-.accordion-toggle[aria-expanded="true"] .accordion-icon {
-  transform: none;
 }
 
 .accordion-content {
@@ -324,6 +357,27 @@ a:hover {
   margin: 4px 0;
   font-size: 0.95rem;
   word-break: break-word;
+}
+
+.bulk-source {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.history-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.clear-history-btn {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
 }
 
 .history-item {
@@ -349,8 +403,40 @@ a:hover {
 }
 
 /* ============================================
-   寄付導線
+   Ads / FAQ / Donate / Links
 ============================================ */
+
+.ad-slot {
+  margin: 28px 0;
+  padding: 14px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  color: var(--sub);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.faq details {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--accent-bg);
+}
+
+.faq details + details {
+  margin-top: 8px;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.faq p {
+  margin: 8px 0 0;
+  color: var(--sub);
+  line-height: 1.6;
+}
 
 .donate-box {
   margin: 28px 0;
@@ -366,29 +452,12 @@ a:hover {
   font-weight: bold;
 }
 
-/* ============================================
-   内部リンク
-============================================ */
-
 .nw-links {
   text-align: center;
   margin: 26px 0;
   font-size: 0.95rem;
+  line-height: 1.8;
 }
-
-/* ============================================
-   母艦リンク
-============================================ */
-
-.home-link {
-  text-align: center;
-  font-size: 0.95rem;
-  margin-bottom: 24px;
-}
-
-/* ============================================
-   Footer
-============================================ */
 
 .nw-footer {
   padding: 20px;
@@ -399,23 +468,14 @@ a:hover {
 }
 
 /* ============================================
-   PCレイアウト（768px〜）
+   Responsive
 ============================================ */
 
 @media (min-width: 768px) {
-
-  /* JA/EN は右上へ */
-/*  .nw-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }  */
-
   .lang-switch {
     margin-top: 0;
   }
 
-  /* カテゴリ：PCでタブ表示 */
   .category-mobile {
     display: none;
   }
@@ -424,5 +484,29 @@ a:hover {
     display: flex;
     justify-content: center;
   }
+}
 
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  .lang-switch,
+  .lang-buttons {
+    width: 100%;
+  }
+
+  .lang-switch {
+    flex-direction: column;
+  }
+
+  .lang-btn,
+  .calc-btn {
+    width: 100%;
+  }
+
+  .notice-card,
+  .storage-note {
+    padding: 12px;
+  }
 }
