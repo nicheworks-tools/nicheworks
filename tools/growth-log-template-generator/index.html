@@ -105,14 +105,14 @@
   <script src="./app.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const syncTextAreaPlaceholders = () => {
+      const syncTextAreastable contents = () => {
         const lang = document.documentElement.lang === "en" ? "en" : "ja";
         document.querySelectorAll("textarea[data-ph-ja][data-ph-en]").forEach((el) => {
-          el.placeholder = lang === "ja" ? el.dataset.phJa : el.dataset.phEn;
+          el.stable content = lang === "ja" ? el.dataset.phJa : el.dataset.phEn;
         });
       };
-      syncTextAreaPlaceholders();
-      document.addEventListener("nw:langchange", syncTextAreaPlaceholders);
+      syncTextAreastable contents();
+      document.addEventListener("nw:langchange", syncTextAreastable contents);
     });
   </script>
 </body>
