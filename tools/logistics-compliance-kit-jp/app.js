@@ -2,6 +2,7 @@
   "use strict";
 
   var TOOL_SLUG = "logistics-compliance-kit-jp";
+  var PRO_KEY = "nw_pro_" + TOOL_SLUG;
 
   function gtagSafe(){
     try{
@@ -9,6 +10,14 @@
         window.gtag.apply(null, arguments);
       }
     }catch(e){}
+  }
+
+  function isPro(){
+    try{
+      return localStorage.getItem(PRO_KEY) === "1";
+    }catch(e){
+      return false;
+    }
   }
 
   function renderTopNav(){
@@ -20,7 +29,7 @@
     var usage = document.createElement("a");
     usage.className = "nw-link";
     usage.href = "./usage.html";
-    usage.textContent = "Usage";
+    usage.textContent = "使い方";
 
     var dot = document.createElement("span");
     dot.className = "nw-dot";
@@ -39,6 +48,12 @@
   function render(){
     var main = document.getElementById("tool-main");
     if(!main) return;
+
+    var pro = isPro();
+    var mdDisabled = pro ? "" : " disabled";
+    var proNote = pro
+      ? "Pro有効：Markdown保存を利用できます。PDF出力は今後の追加予定です。"
+      : "無料版では判定とMarkdownプレビューまで利用できます。Markdown保存とPDF出力はPro機能として扱います。";
 
     main.innerHTML = [
       '<h2>セルフ判定フォーム</h2>',
@@ -63,12 +78,14 @@
       '<div id="results" aria-live="polite"></div>',
       '<div class="lck-export">',
         '<h3>エクスポート</h3>',
+        '<p class="nw-note">' + proNote + '</p>',
         '<label for="md-preview">Markdown プレビュー（無料）</label>',
         '<textarea id="md-preview" rows="10" readonly></textarea>',
         '<div class="lck-actions">',
-          '<button class="nw-btn" id="btn-md-download" type="button">Download .md</button>',
+          '<button class="nw-btn" id="btn-md-download" type="button"' + mdDisabled + '>Markdown保存（Pro）</button>',
+          '<button class="nw-btn nw-btn--ghost" id="btn-pdf-download" type="button" disabled>PDF出力（Pro予定）</button>',
         '</div>',
-        '<p class="nw-note">PDF export は初期版では未提供です。必要な場合はMarkdownを保存してからPDF化してください。</p>',
+        '<p class="nw-note">Pro決済導線は未設定のため、購入ボタンはまだ表示していません。手動有効化ボタンも公開画面には置きません。</p>',
       '</div>'
     ].join("");
 
@@ -85,8 +102,14 @@
 
     var mdDl = document.getElementById("btn-md-download");
     if(mdDl) mdDl.addEventListener("click", function(){
+      if(!isPro()) return;
       gtagSafe("event", "export_click", {tool_slug: TOOL_SLUG, type: "md"});
       downloadMD();
+    });
+
+    var pdfDl = document.getElementById("btn-pdf-download");
+    if(pdfDl) pdfDl.addEventListener("click", function(){
+      gtagSafe("event", "export_click", {tool_slug: TOOL_SLUG, type: "pdf_planned"});
     });
 
     loadFAQ();
@@ -99,9 +122,9 @@
       '<div class="lck-field">',
         '<label for="' + id + '">' + label + '</label>',
         '<select id="' + id + '">',
-          '<option value="unknown">Unknown</option>',
-          '<option value="yes">Yes</option>',
-          '<option value="no">No</option>',
+          '<option value="unknown">不明</option>',
+          '<option value="yes">はい</option>',
+          '<option value="no">いいえ</option>',
         '</select>',
       '</div>'
     ].join("");
