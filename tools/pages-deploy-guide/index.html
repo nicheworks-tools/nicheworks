@@ -11,36 +11,31 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Pagesデプロイガイド｜Pages Deploy Guide | NicheWorks</title>
-  <meta name="description" content="Cloudflare Pages / GitHub Pagesのデプロイ手順と注意点を整理します。">
+  <title>Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks</title>
+  <meta name="description" content="Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、アセットパス、カスタムドメイン、SSL、DNS、OGP、robots、sitemapを確認するチェックリスト生成ツールです。">
   <link rel="canonical" href="https://nicheworks.app/tools/pages-deploy-guide/">
+  <meta name="robots" content="index,follow">
 
-  <!-- OGP -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pagesデプロイガイド｜Pages Deploy Guide | NicheWorks">
-  <meta property="og:description" content="Cloudflare Pages / GitHub Pagesのデプロイ手順と注意点を整理します。">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
+  <meta property="og:description" content="Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認するチェックリスト生成ツールです。">
   <meta property="og:url" content="https://nicheworks.app/tools/pages-deploy-guide/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
+  <meta name="twitter:description" content="Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認するチェックリスト生成ツールです。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
-  <!--
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
-  -->
-
-  <!-- JSON-LD (WebApplication) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,17 +43,60 @@
     "name": "Pages Deploy Guide",
     "url": "https://nicheworks.app/tools/pages-deploy-guide/",
     "applicationCategory": "UtilityApplication",
-    "description": "Checklist guide for deploying to Cloudflare Pages or GitHub Pages.",
+    "description": "Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、アセットパス、カスタムドメイン、SSL、DNS、OGP、robots、sitemapを確認するチェックリスト生成ツールです。",
     "operatingSystem": "All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "このチェックだけでデプロイ成功を保証できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。公開前確認の補助です。実際のビルドログ、表示、DNS/SSL、公式ドキュメントを確認してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "入力内容は送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "チェックリスト生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cloudflare PagesとGitHub Pagesは同じですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。build command、output directory、ドメイン設定、SPA対応などで確認点が異なります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "カスタムドメインが反映されない場合は？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DNSレコード、SSL状態、CNAME、TTL、プラットフォーム側のドメイン設定を確認してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "白画面やCSS読み込み失敗は何を見ればよいですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "base path、相対パス、output directory、ビルド後のファイル配置、ブラウザコンソールを確認してください。"
+        }
+      }
+    ]
   }
   </script>
 
   <link rel="stylesheet" href="./style.css" />
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="Pagesデプロイガイド｜Pages Deploy Guide | NicheWorks">
-  <meta name="twitter:description" content="Cloudflare Pages / GitHub Pagesのデプロイ手順と注意点を整理します。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 
 <body>
@@ -66,8 +104,8 @@
     <h1 class="nw-title" data-i18n="ja">Pagesデプロイガイド</h1>
     <h1 class="nw-title" data-i18n="en" style="display:none;">Pages Deploy Guide</h1>
 
-    <p class="nw-lead" data-i18n="ja">Cloudflare/GitHub Pagesのデプロイ手順をチェックリスト化します。</p>
-    <p class="nw-lead" data-i18n="en" style="display:none;">Checklist and guide for Pages deployments.</p>
+    <p class="nw-lead" data-i18n="ja">Cloudflare Pages / GitHub Pagesの公開前チェックリストを作ります。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Create a pre-deploy checklist for Cloudflare Pages or GitHub Pages.</p>
 
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
@@ -76,14 +114,11 @@
   </header>
 
   <main class="nw-main">
-    <!-- Top Ad (required) -->
     <div class="ad-slot ad-top">広告枠</div>
 
-    <!-- Privacy note (recommended for text tools) -->
-    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
-    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+    <div class="nw-note" data-i18n="ja">チェックリスト生成処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。未公開のリポジトリ名、内部URL、顧客名、DNS情報、APIキーなどは入力しないでください。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Checklist generation runs in your browser. Advertising and analytics tags may still load for page display. Do not enter private repository names, internal URLs, customer names, DNS details, API keys, or other secrets.</div>
 
-    <!-- Tool UI -->
     <section class="card">
       <div class="card-hd">
         <h2 class="card-title" data-i18n="ja">入力</h2>
@@ -96,17 +131,17 @@
             <label class="label" data-i18n="ja" for="platform">プラットフォーム</label>
             <label class="label" data-i18n="en" for="platform" style="display:none;">Platform</label>
             <select class="select" id="platform">
-              <option value="Cloudflare Pages">Cloudflare Pages</option>
-              <option value="GitHub Pages">GitHub Pages</option>
+              <option value="cloudflare">Cloudflare Pages</option>
+              <option value="github">GitHub Pages</option>
             </select>
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja" for="sourceType">ソース</label>
-            <label class="label" data-i18n="en" for="sourceType" style="display:none;">Source</label>
+            <label class="label" data-i18n="ja" for="sourceType">ソース種別</label>
+            <label class="label" data-i18n="en" for="sourceType" style="display:none;">Source type</label>
             <select class="select" id="sourceType">
-              <option value="folder">フォルダ / Folder</option>
-              <option value="zip">ZIP / Archive</option>
+              <option value="repository">Repository / Folder</option>
+              <option value="static">Build output / Static files</option>
             </select>
           </div>
 
@@ -120,18 +155,20 @@
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja" for="outputFolder">公開フォルダ</label>
-            <label class="label" data-i18n="en" for="outputFolder" style="display:none;">Output folder</label>
+            <label class="label" data-i18n="ja" for="outputFolder">公開フォルダ / Output directory</label>
+            <label class="label" data-i18n="en" for="outputFolder" style="display:none;">Output directory</label>
             <select class="select" id="outputFolder">
               <option value="root">/ (root)</option>
               <option value="dist">dist</option>
               <option value="public">public</option>
+              <option value="docs">docs</option>
             </select>
           </div>
 
           <div class="row">
             <button class="btn primary" type="button" id="generate">生成する / Generate</button>
             <button class="btn" type="button" id="copyAll">Copy</button>
+            <button class="btn" type="button" id="downloadMd">Markdown出力</button>
           </div>
 
           <div class="field">
@@ -146,27 +183,17 @@
             <textarea class="out" id="errors" readonly></textarea>
           </div>
 
-          <div class="field" data-pro-lock>
-            <div class="nw-note" data-i18n="ja">Proで診断ツリーとMarkdown出力が解放されます。</div>
-            <div class="nw-note" data-i18n="en" style="display:none;">Pro unlocks diagnosis tree and Markdown export.</div>
-          </div>
-
-          <div class="field" data-pro-only style="display:none;">
+          <div class="field">
             <label class="label" data-i18n="ja" for="diagnosis">症状別診断ツリー</label>
             <label class="label" data-i18n="en" for="diagnosis" style="display:none;">Diagnosis tree</label>
             <textarea class="out" id="diagnosis" readonly></textarea>
-            <div class="row">
-              <button class="btn" type="button" id="downloadMd">Markdown出力</button>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bottom Ad (recommended) -->
     <div class="ad-slot ad-bottom">広告枠</div>
 
-    <!-- Donate (1–2 placements max) -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
@@ -176,14 +203,50 @@
       </div>
     </div>
 
-    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="faq-section" aria-labelledby="faqTitle">
+      <h2 id="faqTitle" class="section-title" data-i18n="ja">よくある質問</h2>
+      <h2 class="section-title" data-i18n="en" style="display:none;">FAQ</h2>
+
+      <details>
+        <summary data-i18n="ja">このチェックだけでデプロイ成功を保証できますか？</summary>
+        <summary data-i18n="en" style="display:none;">Does this checklist guarantee a successful deployment?</summary>
+        <p data-i18n="ja">いいえ。公開前確認の補助です。実際のビルドログ、表示、DNS/SSL、公式ドキュメントを確認してください。</p>
+        <p data-i18n="en" style="display:none;">No. It is a pre-deploy aid. Always check actual build logs, rendered pages, DNS/SSL status, and official documentation.</p>
+      </details>
+      <details>
+        <summary data-i18n="ja">入力内容は送信されますか？</summary>
+        <summary data-i18n="en" style="display:none;">Is my input sent anywhere?</summary>
+        <p data-i18n="ja">チェックリスト生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+        <p data-i18n="en" style="display:none;">Checklist generation runs in your browser. Advertising and analytics tags may still load for page display.</p>
+      </details>
+      <details>
+        <summary data-i18n="ja">Cloudflare PagesとGitHub Pagesは同じですか？</summary>
+        <summary data-i18n="en" style="display:none;">Are Cloudflare Pages and GitHub Pages the same?</summary>
+        <p data-i18n="ja">いいえ。build command、output directory、ドメイン設定、SPA対応などで確認点が異なります。</p>
+        <p data-i18n="en" style="display:none;">No. Build command, output directory, domain setup, and SPA handling differ.</p>
+      </details>
+      <details>
+        <summary data-i18n="ja">カスタムドメインが反映されない場合は？</summary>
+        <summary data-i18n="en" style="display:none;">What should I check when a custom domain does not work?</summary>
+        <p data-i18n="ja">DNSレコード、SSL状態、CNAME、TTL、プラットフォーム側のドメイン設定を確認してください。</p>
+        <p data-i18n="en" style="display:none;">Check DNS records, SSL status, CNAME, TTL, and the platform-side domain setting.</p>
+      </details>
+      <details>
+        <summary data-i18n="ja">白画面やCSS読み込み失敗は何を見ればよいですか？</summary>
+        <summary data-i18n="en" style="display:none;">What should I check for a blank page or missing CSS?</summary>
+        <p data-i18n="ja">base path、相対パス、output directory、ビルド後のファイル配置、ブラウザコンソールを確認してください。</p>
+        <p data-i18n="en" style="display:none;">Check the base path, relative paths, output directory, built file layout, and browser console.</p>
+      </details>
+    </section>
+
     <section class="nw-other">
-      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
-      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <h3 class="nw-other-title" data-i18n="ja">関連ツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Related tools</h3>
       <div class="nw-other-links">
-        <a href="/tools/log-formatter/">LogFormatter</a>
-        <a href="/tools/rename-wizard/">Rename Wizard</a>
-        <a href="/tools/manual-finder/">ManualFinder</a>
+        <a href="/tools/microtool-launch-checklist/">Microtool Launch Checklist</a>
+        <a href="/tools/release-guardian/">Release Guardian</a>
+        <a href="/tools/codex-product-shipping-playbooks/">Codex Product Shipping Playbooks</a>
+        <a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a>
       </div>
     </section>
   </main>
@@ -196,6 +259,7 @@
     </p>
   </footer>
 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./app.js"></script>
 </body>
 </html>
