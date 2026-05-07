@@ -14,6 +14,7 @@
 
   const terms = Array.isArray(window.VIBE_LEXICON_TERMS) ? window.VIBE_LEXICON_TERMS : [];
   const maxCompare = 2;
+  const confirmTimers = new Map();
   const state = {
     query: '',
     category: null,
@@ -32,7 +33,7 @@
   const els = {
     searchInput: $('searchInput'), suggestions: $('suggestions'), categoryChips: $('categoryChips'), useChips: $('useChips'), typeChips: $('typeChips'),
     statTotal: $('statTotal'), statCompare: $('statCompare'), statFav: $('statFav'), resetFiltersBtn: $('resetFiltersBtn'), resultCount: $('resultCount'),
-grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detailCategoryTag'), detailUseTag: $('detailUseTag'),
+    grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detailCategoryTag'), detailUseTag: $('detailUseTag'),
     detailTitle: $('detailTitle'), detailSub: $('detailSub'), favoriteBtn: $('favoriteBtn'), addCompareBtn: $('addCompareBtn'), detailPlain: $('detailPlain'),
     detailFacts: $('detailFacts'), detailBreakdown: $('detailBreakdown'), detailBad: $('detailBad'), detailGood: $('detailGood'), detailWhyBetter: $('detailWhyBetter'), promptModes: $('promptModes'),
     promptBox: $('promptBox'), copyPromptBtn: $('copyPromptBtn'), detailRelated: $('detailRelated'), clearCompareBtn: $('clearCompareBtn'),
@@ -49,15 +50,21 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
   const uiText = lang === 'ja'
     ? {
       results: '件表示', noResults: '条件に一致する語がありません。', addCompare: '比較に追加', compared: '比較中', favorite: 'お気に入り', favorited: 'お気に入り済み',
-      favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', compareLimit: '無料版は2語まで比較できます。',
+      favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', copyFailed: 'コピーに失敗しました。手動でコピーしてください。', compareLimit: '無料版は2語まで比較できます。',
       details: '詳細', open: '開く', compareHint: '2語を選ぶと、違い・使い分け・実務性の比較が表示されます。',
-      showMore: 'もっと見る', showLess: '閉じる', compareStatus: '比較中'
+      showMore: 'もっと見る', showLess: '閉じる', compareStatus: '比較中', confirmClear: 'もう一度押すと削除します', cleared: '削除しました',
+      noFavorites: 'お気に入りはまだありません。', noRecent: '最近見た語はまだありません。', showMoreResults: (n) => `さらに${n}件表示`,
+      beginner: '初心者向け', practicalIntent: '実務意図', useCaseWording: '使いどころ', commonMisuse: 'よくある誤用',
+      difference: '違い', whenToUseWhich: '使い分け', practicalVsVague: '実務性の比較', useWhen: '使い分けの目安', badRequest: '悪い依頼', betterRequest: '良い依頼'
     }
     : {
       results: 'results', noResults: 'No terms match current filters.', addCompare: 'Add compare', compared: 'In compare', favorite: 'Favorite', favorited: 'Favorited',
-      favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', compareLimit: 'Free version supports up to 2 compare terms.',
+      favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', copyFailed: 'Copy failed. Please copy manually.', compareLimit: 'Free version supports up to 2 compare terms.',
       details: 'Details', open: 'Open', compareHint: 'Select 2 terms to see difference, when-to-use guidance, and practicality comparison.',
-      showMore: 'Show more', showLess: 'Show less', compareStatus: 'In compare'
+      showMore: 'Show more', showLess: 'Show less', compareStatus: 'In compare', confirmClear: 'Press again to clear', cleared: 'Cleared',
+      noFavorites: 'No favorites yet.', noRecent: 'No recent terms yet.', showMoreResults: (n) => `Show ${n} more`,
+      beginner: 'Beginner wording', practicalIntent: 'Practical intent', useCaseWording: 'Use case wording', commonMisuse: 'Common misuse',
+      difference: 'Difference', whenToUseWhich: 'When to use which', practicalVsVague: 'Practical vs vague', useWhen: 'Use when', badRequest: 'Bad request', betterRequest: 'Better request'
     };
 
   function readArray(key) {
@@ -75,6 +82,22 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
   }
   function byId(id) {
     return terms.find((t) => t.id === id);
+  }
+  function clearNode(node) {
+    if (!node) return;
+    while (node.firstChild) node.removeChild(node.firstChild);
+  }
+  function createEl(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined && text !== null) node.textContent = String(text);
+    return node;
+  }
+  function createButton(className, text, dataset, type = 'button') {
+    const btn = createEl('button', className, text);
+    btn.type = type;
+    Object.entries(dataset || {}).forEach(([key, value]) => { btn.dataset[key] = value; });
+    return btn;
   }
   function showToast(message) {
     if (!els.toast) return;
@@ -192,12 +215,9 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
   }
 
   function renderChips(target, values, key) {
-    target.innerHTML = '';
+    clearNode(target);
     values.forEach((value) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = `chip${state[key] === value ? ' active' : ''}`;
-      btn.textContent = value;
+      const btn = createButton(`chip${state[key] === value ? ' active' : ''}`, value);
       btn.addEventListener('click', () => {
         state[key] = state[key] === value ? null : value;
         resetMobileVisibleCount();
@@ -217,46 +237,48 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
   }
 
   function renderGrid(list) {
-    els.grid.innerHTML = '';
+    clearNode(els.grid);
     const mobileLimit = state.mobileVisibleCount || 10;
     const visibleList = isMobileViewport() ? list.slice(0, mobileLimit) : list;
 
     if (!visibleList.length) {
-      els.grid.innerHTML = `<div class="card"><p class="card-copy">${uiText.noResults}</p></div>`;
-      if (els.mobileResultsActions) els.mobileResultsActions.innerHTML = '';
+      const emptyCard = createEl('div', 'card');
+      emptyCard.appendChild(createEl('p', 'card-copy', uiText.noResults));
+      els.grid.appendChild(emptyCard);
+      clearNode(els.mobileResultsActions);
       return;
     }
 
     visibleList.forEach((term) => {
-      const card = document.createElement('article');
-      card.className = 'card';
+      const card = createEl('article', 'card');
       const compareActive = state.compare.includes(term.id);
-      card.innerHTML = `
-        <div class="card-head">
-          <div><h3 class="card-title">${localized(term.term)}</h3><p class="card-sub">${localizedArray(term.aliases).slice(0, 3).join(' / ')}</p></div>
-        </div>
-        <div class="card-tags">
-          <span class="tag accent">${localized(term.termType)}</span>
-          <span class="tag">${localized(term.category)}</span>
-          <span class="tag success">${localized(term.useCase)}</span>
-        </div>
-        <p class="card-copy">${localized(term.beginner)}</p>
-        <div class="card-actions">
-          <button class="btn" data-select="${term.id}">${uiText.details}</button>
-          <button class="btn" data-compare="${term.id}">${compareActive ? uiText.compared : uiText.addCompare}</button>
-        </div>
-      `;
+      const cardHead = createEl('div', 'card-head');
+      const titleWrap = createEl('div');
+      titleWrap.appendChild(createEl('h3', 'card-title', localized(term.term)));
+      titleWrap.appendChild(createEl('p', 'card-sub', localizedArray(term.aliases).slice(0, 3).join(' / ')));
+      cardHead.appendChild(titleWrap);
+      card.appendChild(cardHead);
+
+      const tags = createEl('div', 'card-tags');
+      tags.appendChild(createEl('span', 'tag accent', localized(term.termType)));
+      tags.appendChild(createEl('span', 'tag', localized(term.category)));
+      tags.appendChild(createEl('span', 'tag success', localized(term.useCase)));
+      card.appendChild(tags);
+      card.appendChild(createEl('p', 'card-copy', localized(term.beginner)));
+
+      const actions = createEl('div', 'card-actions');
+      actions.appendChild(createButton('btn', uiText.details, { select: term.id }));
+      actions.appendChild(createButton('btn', compareActive ? uiText.compared : uiText.addCompare, { compare: term.id }));
+      card.appendChild(actions);
       els.grid.appendChild(card);
     });
 
     if (els.mobileResultsActions) {
+      clearNode(els.mobileResultsActions);
       if (isMobileViewport() && list.length > visibleList.length) {
         const remaining = list.length - visibleList.length;
         const step = Math.min(10, remaining);
-        const label = lang === 'ja' ? `さらに${step}件表示` : `Show ${step} more`;
-        els.mobileResultsActions.innerHTML = `<button class="btn" type="button" data-show-more-results="1">${label}</button>`;
-      } else {
-        els.mobileResultsActions.innerHTML = '';
+        els.mobileResultsActions.appendChild(createButton('btn', uiText.showMoreResults(step), { showMoreResults: '1' }));
       }
     }
   }
@@ -278,25 +300,37 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
     els.favoriteBtn.textContent = state.favorites.includes(term.id) ? uiText.favorited : uiText.favorite;
     els.addCompareBtn.textContent = state.compare.includes(term.id) ? uiText.compared : uiText.addCompare;
 
-    els.detailFacts.innerHTML = [
-      [lang === 'ja' ? '初心者向け' : 'Beginner wording', localized(term.beginner)],
-      [lang === 'ja' ? '実務意図' : 'Practical intent', localized(term.practicalIntent)],
-      [lang === 'ja' ? '使いどころ' : 'Use case wording', localized(term.practicalUseCase)],
-      [lang === 'ja' ? 'よくある誤用' : 'Common misuse', localized(term.commonMisuse)]
-    ].map(([k, v]) => `<div class="fact-row">${k}<strong>${v}</strong></div>`).join('');
+    clearNode(els.detailFacts);
+    [
+      [uiText.beginner, localized(term.beginner)],
+      [uiText.practicalIntent, localized(term.practicalIntent)],
+      [uiText.useCaseWording, localized(term.practicalUseCase)],
+      [uiText.commonMisuse, localized(term.commonMisuse)]
+    ].forEach(([key, value]) => {
+      const row = createEl('div', 'fact-row', key);
+      row.appendChild(createEl('strong', null, value));
+      els.detailFacts.appendChild(row);
+    });
 
-    els.detailBreakdown.innerHTML = localizedArray(term.vagueToPractical).map((x) => `<div class="decompose-item">${x}</div>`).join('');
+    clearNode(els.detailBreakdown);
+    localizedArray(term.vagueToPractical).forEach((item) => {
+      els.detailBreakdown.appendChild(createEl('div', 'decompose-item', item));
+    });
 
     const modes = Object.keys(term.shortPrompt[lang] || {});
     if (!modes.includes(state.promptMode)) state.promptMode = modes[0] || 'ui';
-    els.promptModes.innerHTML = modes.map((mode) => `<button class="prompt-tab ${mode === state.promptMode ? 'active' : ''}" data-mode="${mode}" type="button">${mode.toUpperCase()}</button>`).join('');
+    clearNode(els.promptModes);
+    modes.forEach((mode) => {
+      els.promptModes.appendChild(createButton(`prompt-tab ${mode === state.promptMode ? 'active' : ''}`, mode.toUpperCase(), { mode }));
+    });
     els.promptBox.textContent = term.shortPrompt[lang]?.[state.promptMode] || '';
 
-    els.detailRelated.innerHTML = (term.compareRelationships || []).map((id) => {
+    clearNode(els.detailRelated);
+    (term.compareRelationships || []).forEach((id) => {
       const rel = byId(id);
-      if (!rel) return '';
-      return `<button class="chip" type="button" data-related="${rel.id}">${localized(rel.term)}</button>`;
-    }).join('');
+      if (!rel) return;
+      els.detailRelated.appendChild(createButton('chip', localized(rel.term), { related: rel.id }));
+    });
   }
 
   function pairInsight(a, b) {
@@ -309,60 +343,79 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
     };
   }
 
+  function createCompareCell(label, value) {
+    const cell = createEl('div', 'compare-cell');
+    cell.appendChild(createEl('strong', null, label));
+    cell.appendChild(document.createTextNode(value || ''));
+    return cell;
+  }
+
   function renderCompare() {
-    els.compareList.innerHTML = '';
+    clearNode(els.compareList);
     els.compareEmpty.style.display = state.compare.length ? 'none' : 'grid';
     state.compare.forEach((id) => {
       const term = byId(id);
       if (!term) return;
-      const item = document.createElement('article');
-      item.className = 'compare-item';
-      item.innerHTML = `
-        <strong>${localized(term.term)}</strong>
-        <div class="compare-grid">
-          <div class="compare-cell"><strong>${lang === 'ja' ? '実務意図' : 'Practical intent'}</strong>${localized(term.practicalIntent)}</div>
-          <div class="compare-cell"><strong>${lang === 'ja' ? '使い分けの目安' : 'Use when'}</strong>${localized(term.practicalUseCase)}</div>
-          <div class="compare-cell"><strong>${lang === 'ja' ? '悪い依頼' : 'Bad request'}</strong>${localized(term.badRequest)}</div>
-          <div class="compare-cell"><strong>${lang === 'ja' ? '良い依頼' : 'Better request'}</strong>${localized(term.betterRequest)}</div>
-        </div>
-      `;
+      const item = createEl('article', 'compare-item');
+      item.appendChild(createEl('strong', null, localized(term.term)));
+      const grid = createEl('div', 'compare-grid');
+      grid.appendChild(createCompareCell(uiText.practicalIntent, localized(term.practicalIntent)));
+      grid.appendChild(createCompareCell(uiText.useWhen, localized(term.practicalUseCase)));
+      grid.appendChild(createCompareCell(uiText.badRequest, localized(term.badRequest)));
+      grid.appendChild(createCompareCell(uiText.betterRequest, localized(term.betterRequest)));
+      item.appendChild(grid);
       els.compareList.appendChild(item);
     });
 
     if (els.compareInsight) {
+      clearNode(els.compareInsight);
+      els.compareInsight.style.display = 'block';
       if (state.compare.length === 2) {
         const a = byId(state.compare[0]);
         const b = byId(state.compare[1]);
         if (a && b) {
           const insight = pairInsight(a, b);
-          els.compareInsight.innerHTML = `
-            <h4>${localized(a.term)} ↔ ${localized(b.term)}</h4>
-            <div class="compare-insight-grid">
-              <div class="compare-cell"><strong>${lang === 'ja' ? '違い' : 'Difference'}</strong>${insight.difference}</div>
-              <div class="compare-cell"><strong>${lang === 'ja' ? '使い分け' : 'When to use which'}</strong>${insight.whenToUse}</div>
-              <div class="compare-cell"><strong>${lang === 'ja' ? '実務性の比較' : 'Practical vs vague'}</strong>${insight.practicality}</div>
-            </div>
-          `;
-          els.compareInsight.style.display = 'block';
+          els.compareInsight.appendChild(createEl('h4', null, `${localized(a.term)} ↔ ${localized(b.term)}`));
+          const grid = createEl('div', 'compare-insight-grid');
+          grid.appendChild(createCompareCell(uiText.difference, insight.difference));
+          grid.appendChild(createCompareCell(uiText.whenToUseWhich, insight.whenToUse));
+          grid.appendChild(createCompareCell(uiText.practicalVsVague, insight.practicality));
+          els.compareInsight.appendChild(grid);
           return;
         }
       }
-      els.compareInsight.style.display = 'block';
-      els.compareInsight.innerHTML = `<p class="card-copy">${uiText.compareHint}</p>`;
+      els.compareInsight.appendChild(createEl('p', 'card-copy', uiText.compareHint));
+    }
+  }
+
+  function createSavedRow(term, subText) {
+    const row = createEl('div', 'favorite-row');
+    const main = createEl('div', 'favorite-main');
+    main.appendChild(createEl('span', 'favorite-term', localized(term.term)));
+    main.appendChild(createEl('small', null, subText));
+    row.appendChild(main);
+    row.appendChild(createButton('btn btn-compact', uiText.open, { open: term.id }));
+    return row;
+  }
+
+  function renderSavedGroup(target, title, clearType, items, emptyText, subTextFor) {
+    clearNode(target);
+    const head = createEl('div', 'favorite-row favorite-row-head');
+    head.appendChild(createEl('strong', null, title));
+    head.appendChild(createButton('btn btn-compact', uiText.clear, { clear: clearType }));
+    target.appendChild(head);
+    if (items.length) {
+      items.forEach((term) => target.appendChild(createSavedRow(term, subTextFor(term))));
+    } else {
+      target.appendChild(createEl('div', 'favorite-row favorite-empty', emptyText));
     }
   }
 
   function renderSaved() {
     const f = state.favorites.map(byId).filter(Boolean);
     const r = state.recent.map(byId).filter(Boolean);
-    els.favoritesList.innerHTML = `<div class="favorite-row favorite-row-head"><strong>${uiText.favorites}</strong><button class="btn btn-compact" type="button" data-clear="fav">${uiText.clear}</button></div>` +
-      (f.length
-        ? f.map((t) => `<div class="favorite-row"><div class="favorite-main"><span class="favorite-term">${localized(t.term)}</span><small>${localized(t.category)} · ${localized(t.termType)}</small></div><button class="btn btn-compact" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('')
-        : `<div class="favorite-row favorite-empty">${lang === 'ja' ? 'お気に入りはまだありません。' : 'No favorites yet.'}</div>`);
-    els.recentList.innerHTML = `<div class="favorite-row favorite-row-head"><strong>${uiText.recent}</strong><button class="btn btn-compact" type="button" data-clear="recent">${uiText.clear}</button></div>` +
-      (r.length
-        ? r.map((t) => `<div class="favorite-row"><div class="favorite-main"><span class="favorite-term">${localized(t.term)}</span><small>${localized(t.useCase)} · ${localized(t.termType)}</small></div><button class="btn btn-compact" type="button" data-open="${t.id}">${uiText.open}</button></div>`).join('')
-        : `<div class="favorite-row favorite-empty">${lang === 'ja' ? '最近見た語はまだありません。' : 'No recent terms yet.'}</div>`);
+    renderSavedGroup(els.favoritesList, uiText.favorites, 'fav', f, uiText.noFavorites, (t) => `${localized(t.category)} · ${localized(t.termType)}`);
+    renderSavedGroup(els.recentList, uiText.recent, 'recent', r, uiText.noRecent, (t) => `${localized(t.useCase)} · ${localized(t.termType)}`);
   }
   function renderMobileCompareBar() {
     if (!els.mobileCompareBar || !els.mobileCompareText) return;
@@ -376,9 +429,16 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
 
   function renderSuggestions(list) {
     const q = normalize(state.query);
-    if (!q) { els.suggestions.classList.remove('open'); els.suggestions.innerHTML = ''; return; }
+    clearNode(els.suggestions);
+    if (!q) { els.suggestions.classList.remove('open'); return; }
     const top = list.slice(0, 6);
-    els.suggestions.innerHTML = top.map((t) => `<div class="suggestion-item" data-select="${t.id}"><span>${localized(t.term)}</span><span class="suggestion-sub">${localized(t.category)}</span></div>`).join('');
+    top.forEach((term) => {
+      const item = createEl('div', 'suggestion-item');
+      item.dataset.select = term.id;
+      item.appendChild(createEl('span', null, localized(term.term)));
+      item.appendChild(createEl('span', 'suggestion-sub', localized(term.category)));
+      els.suggestions.appendChild(item);
+    });
     els.suggestions.classList.toggle('open', top.length > 0);
   }
 
@@ -405,6 +465,60 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
     renderSuggestions(list);
   }
 
+  function requestClear(type) {
+    const timerKey = `clear:${type}`;
+    const targetButton = document.querySelector(`[data-clear="${type}"]`);
+    if (!confirmTimers.has(timerKey)) {
+      if (targetButton) targetButton.textContent = uiText.confirmClear;
+      showToast(uiText.confirmClear);
+      const timer = setTimeout(() => {
+        confirmTimers.delete(timerKey);
+        renderSaved();
+      }, 3500);
+      confirmTimers.set(timerKey, timer);
+      return;
+    }
+
+    clearTimeout(confirmTimers.get(timerKey));
+    confirmTimers.delete(timerKey);
+    if (type === 'fav') {
+      state.favorites = [];
+      writeArray('nw-vl-favorites', []);
+    }
+    if (type === 'recent') {
+      state.recent = [];
+      writeArray('nw-vl-recent', []);
+    }
+    showToast(uiText.cleared);
+    render();
+  }
+
+  async function copyText(text) {
+    if (!text) return false;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    } catch {
+      // Fall through to textarea fallback.
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    textarea.style.top = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    document.body.removeChild(textarea);
+    return ok;
+  }
+
   document.addEventListener('click', (event) => {
     const selectId = event.target.closest('[data-select]')?.dataset.select;
     const compareId = event.target.closest('[data-compare]')?.dataset.compare;
@@ -427,8 +541,7 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
       render();
       return;
     }
-    if (clearType === 'fav') { state.favorites = []; writeArray('nw-vl-favorites', []); render(); return; }
-    if (clearType === 'recent') { state.recent = []; writeArray('nw-vl-recent', []); render(); return; }
+    if (clearType === 'fav' || clearType === 'recent') { requestClear(clearType); return; }
     if (mode) { state.promptMode = mode; renderDetail(byId(state.selectedId)); return; }
     if (event.target.closest('[data-show-more-results]')) {
       state.mobileVisibleCount += 10;
@@ -464,7 +577,9 @@ grid: $('grid'), detailTypeTag: $('detailTypeTag'), detailCategoryTag: $('detail
     const term = byId(state.selectedId);
     const text = term?.shortPrompt?.[lang]?.[state.promptMode] || '';
     if (!text) return;
-    try { await navigator.clipboard.writeText(text); showToast(uiText.copied); } catch { showToast(text); }
+    const ok = await copyText(text);
+    if (ok) showToast(uiText.copied);
+    else showToast(uiText.copyFailed);
   });
   els.openFiltersBtn?.addEventListener('click', openFilters);
   els.closeFiltersBtn?.addEventListener('click', closeFilters);
