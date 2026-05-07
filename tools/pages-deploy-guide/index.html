@@ -22,12 +22,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
-  <meta property="og:description" content="Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認するチェックリスト生成ツールです。">
+  <meta property="og:description" content="Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、アセットパス、カスタムドメイン、SSL、DNS、OGP、robots、sitemapを確認するチェックリスト生成ツールです。Proでは診断ツリーとMarkdown引き継ぎパックも使えます。">
   <meta property="og:url" content="https://nicheworks.app/tools/pages-deploy-guide/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
-  <meta name="twitter:description" content="Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認するチェックリスト生成ツールです。">
+  <meta name="twitter:description" content="Cloudflare Pages / GitHub Pages の公開前に、build command、output directory、404、アセットパス、カスタムドメイン、SSL、DNS、OGP、robots、sitemapを確認するチェックリスト生成ツールです。Proでは診断ツリーとMarkdown引き継ぎパックも使えます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <link rel="icon" href="/assets/favicon.ico">
@@ -208,7 +208,7 @@
         <div class="field">
           <label class="label" data-i18n="ja" for="proKey">Proキー</label>
           <label class="label" data-i18n="en" for="proKey" style="display:none;">Pro key</label>
-          <input class="input" id="proKey" type="text" autocomplete="off" placeholder="NW-PDG-XXXX-XXXX-XX">
+          <input class="input" id="proKey" type="text" autocomplete="off" stable content="NW-PDG-XXXX-XXXX-XX">
           <div class="row">
             <button class="btn primary" type="button" id="activatePro">Activate Pro</button>
             <button class="btn" type="button" id="clearPro">Clear Pro</button>
