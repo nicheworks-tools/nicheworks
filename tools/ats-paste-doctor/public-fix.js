@@ -1,5 +1,5 @@
 (() => {
-  const STRIPE = 'https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208';
+  const STRIPE = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
   const KEY = 'nw_pro_ats_paste_doctor';
   const $ = (id) => document.getElementById(id);
   const lang = () => document.documentElement.lang === 'ja' ? 'ja' : 'en';
@@ -9,7 +9,7 @@
   function status(){
     document.body.classList.toggle('is-pro', isPro());
     const buy=$('buyProLink');
-    if(buy){ buy.href=STRIPE; buy.removeAttribute('aria-disabled'); buy.removeAttribute('tabindex'); buy.textContent=isPro()?'Pro active / Pro解放済み':'Unlock Pro / Proを購入'; }
+    if(buy){ buy.href=STRIPE; buy.target='_blank'; buy.rel='noopener noreferrer'; buy.removeAttribute('aria-disabled'); buy.removeAttribute('tabindex'); buy.textContent=isPro()?'Pro active / Pro解放済み':'Unlock Pro / Proを購入'; }
     ['proCard','proTools'].forEach(id=>{ const el=$(id); if(el){ el.hidden=false; el.removeAttribute('aria-hidden'); }});
     document.querySelectorAll('[data-pro-only]').forEach(el=>{ if('disabled' in el) el.disabled=!isPro(); el.setAttribute('aria-hidden', isPro()?'false':'true'); });
     const note=$('proToolsNote'); if(note) note.textContent=isPro()?'Pro tools are unlocked on this device.':'Pro tools are locked until purchase. After payment, open this page with ?pro=1.';
