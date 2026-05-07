@@ -95,10 +95,8 @@
   <header class="nw-header">
     <h1 class="nw-title" data-i18n="ja">成長ログテンプレ生成</h1>
     <h1 class="nw-title" data-i18n="en" style="display:none;">Growth Log Template Generator</h1>
-
     <p class="nw-lead" data-i18n="ja">PV/CTR/売上などのKPIとメモから、公開用または社内用の成長ログを作ります。</p>
     <p class="nw-lead" data-i18n="en" style="display:none;">Create a growth log draft from KPIs such as PV, CTR, revenue, and notes.</p>
-
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
       <button type="button" data-lang="en">EN</button>
@@ -108,182 +106,65 @@
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠</div>
 
-    <div class="nw-note" data-i18n="ja">
-      成長ログの生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。未公開KPI、売上、顧客名、広告ID、社内施策、個人情報は必要に応じて伏せてください。
-    </div>
-    <div class="nw-note" data-i18n="en" style="display:none;">
-      Growth log generation runs in your browser. However, ads and analytics tags may load for the page itself. Hide unpublished KPIs, revenue, customer names, ad IDs, internal initiatives, and personal information when needed.
-    </div>
+    <div class="nw-note" data-i18n="ja">成長ログの生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。未公開KPI、売上、顧客名、広告ID、社内施策、個人情報は必要に応じて伏せてください。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Growth log generation runs in your browser. However, ads and analytics tags may load for the page itself. Hide unpublished KPIs, revenue, customer names, ad IDs, internal initiatives, and personal information when needed.</div>
 
     <section class="card">
       <div class="card-hd">
         <h2 class="card-title" data-i18n="ja">入力</h2>
         <h2 class="card-title" data-i18n="en" style="display:none;">Input</h2>
       </div>
-
       <div class="card-bd" id="toolRoot">
         <div class="field">
-          <label class="label" for="presetSelect">
-            <span data-i18n="ja">プリセット</span>
-            <span data-i18n="en" style="display:none;">Preset</span>
-          </label>
-          <select id="presetSelect" class="select">
-            <option value="seo">SEO</option>
-            <option value="product">Product</option>
-            <option value="sales">Sales</option>
-            <option value="content">Content</option>
-          </select>
+          <label class="label" for="presetSelect"><span data-i18n="ja">プリセット</span><span data-i18n="en" style="display:none;">Preset</span></label>
+          <select id="presetSelect" class="select"><option value="seo">SEO</option><option value="product">Product</option><option value="sales">Sales</option><option value="content">Content</option></select>
         </div>
-
         <div id="presetFields" class="field-group"></div>
-
         <div class="field">
-          <label class="label" for="hypothesisInput">
-            <span data-i18n="ja">仮説</span>
-            <span data-i18n="en" style="display:none;">Hypothesis</span>
-          </label>
-          <textarea id="hypothesisInput" class="textarea" data-stable content-ja="例: CTA文言を変えるとCTRが改善する" data-stable content-en="e.g. Changing the CTA copy may improve CTR"></textarea>
+          <label class="label" for="hypothesisInput"><span data-i18n="ja">仮説</span><span data-i18n="en" style="display:none;">Hypothesis</span></label>
+          <textarea id="hypothesisInput" class="textarea" data-ph-ja="例: CTA文言を変えるとCTRが改善する" data-ph-en="e.g. Changing the CTA copy may improve CTR"></textarea>
         </div>
-
         <div class="field">
-          <label class="label" for="learningsInput">
-            <span data-i18n="ja">学び</span>
-            <span data-i18n="en" style="display:none;">Learnings</span>
-          </label>
-          <textarea id="learningsInput" class="textarea" data-stable content-ja="例: 価格訴求よりも用途訴求の方が反応が良かった" data-stable content-en="e.g. Use-case messaging worked better than price messaging"></textarea>
+          <label class="label" for="learningsInput"><span data-i18n="ja">学び</span><span data-i18n="en" style="display:none;">Learnings</span></label>
+          <textarea id="learningsInput" class="textarea" data-ph-ja="例: 価格訴求よりも用途訴求の方が反応が良かった" data-ph-en="e.g. Use-case messaging worked better than price messaging"></textarea>
         </div>
-
         <div class="field">
-          <label class="label" for="notesInput">
-            <span data-i18n="ja">メモ</span>
-            <span data-i18n="en" style="display:none;">Notes</span>
-          </label>
-          <textarea id="notesInput" class="textarea" data-stable content-ja="例: トップページのCTAを改善" data-stable content-en="e.g. Updated the top page CTA"></textarea>
+          <label class="label" for="notesInput"><span data-i18n="ja">メモ</span><span data-i18n="en" style="display:none;">Notes</span></label>
+          <textarea id="notesInput" class="textarea" data-ph-ja="例: トップページのCTAを改善" data-ph-en="e.g. Updated the top page CTA"></textarea>
         </div>
-
         <div class="option-grid">
-          <label class="check-label">
-            <input id="anonToggle" type="checkbox" />
-            <span data-i18n="ja">数値を匿名化（XXXに置換）</span>
-            <span data-i18n="en" style="display:none;">Anonymize numbers (replace with XXX)</span>
-          </label>
-          <label class="check-label">
-            <input id="bilingualToggle" type="checkbox" />
-            <span data-i18n="ja">日英併記で出力</span>
-            <span data-i18n="en" style="display:none;">Output both JP and EN</span>
-          </label>
+          <label class="check-label"><input id="anonToggle" type="checkbox" /><span data-i18n="ja">数値を匿名化（XXXに置換）</span><span data-i18n="en" style="display:none;">Anonymize numbers (replace with XXX)</span></label>
+          <label class="check-label"><input id="bilingualToggle" type="checkbox" /><span data-i18n="ja">日英併記で出力</span><span data-i18n="en" style="display:none;">Output both JP and EN</span></label>
         </div>
-
         <div class="tool-actions">
-          <button id="generateLog" class="btn primary" type="button">
-            <span data-i18n="ja">ログ生成</span>
-            <span data-i18n="en" style="display:none;">Generate log</span>
-          </button>
-          <button id="copyLog" class="btn" type="button">
-            <span data-i18n="ja">コピー</span>
-            <span data-i18n="en" style="display:none;">Copy</span>
-          </button>
-          <button id="downloadLogMd" class="btn" type="button">
-            <span data-i18n="ja">Markdown保存</span>
-            <span data-i18n="en" style="display:none;">Download MD</span>
-          </button>
-          <button id="downloadLogTxt" class="btn" type="button">
-            <span data-i18n="ja">TXT保存</span>
-            <span data-i18n="en" style="display:none;">Download TXT</span>
-          </button>
-          <button id="insertExample" class="btn" type="button">
-            <span data-i18n="ja">例を挿入</span>
-            <span data-i18n="en" style="display:none;">Insert example</span>
-          </button>
-          <button id="exampleOnly" class="btn" type="button">
-            <span data-i18n="ja">サンプルログ生成</span>
-            <span data-i18n="en" style="display:none;">Generate sample log</span>
-          </button>
+          <button id="generateLog" class="btn primary" type="button"><span data-i18n="ja">ログ生成</span><span data-i18n="en" style="display:none;">Generate log</span></button>
+          <button id="copyLog" class="btn" type="button"><span data-i18n="ja">コピー</span><span data-i18n="en" style="display:none;">Copy</span></button>
+          <button id="downloadLogMd" class="btn" type="button"><span data-i18n="ja">Markdown保存</span><span data-i18n="en" style="display:none;">Download MD</span></button>
+          <button id="downloadLogTxt" class="btn" type="button"><span data-i18n="ja">TXT保存</span><span data-i18n="en" style="display:none;">Download TXT</span></button>
+          <button id="insertExample" class="btn" type="button"><span data-i18n="ja">例を挿入</span><span data-i18n="en" style="display:none;">Insert example</span></button>
+          <button id="exampleOnly" class="btn" type="button"><span data-i18n="ja">サンプルログ生成</span><span data-i18n="en" style="display:none;">Generate sample log</span></button>
         </div>
-
-        <div class="field">
-          <label class="label" for="logOutput">
-            <span data-i18n="ja">出力</span>
-            <span data-i18n="en" style="display:none;">Output</span>
-          </label>
-          <div id="logOutput" class="out empty" aria-live="polite"></div>
-        </div>
-
+        <div class="field"><label class="label" for="logOutput"><span data-i18n="ja">出力</span><span data-i18n="en" style="display:none;">Output</span></label><div id="logOutput" class="out empty" aria-live="polite"></div></div>
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
       </div>
     </section>
 
-    <section class="nw-note caution">
-      <h2 data-i18n="ja">公開前の確認</h2>
-      <h2 data-i18n="en" style="display:none;">Before publishing</h2>
-      <p data-i18n="ja">このツールは成長ログの下書き用です。公開前に、売上、CV、DAU/WAU、広告指標、顧客情報、社内施策、競合上不利な情報を含めていないか確認してください。数値は確定値/暫定値を分け、必要に応じて丸める・匿名化してください。</p>
-      <p data-i18n="en" style="display:none;">This tool creates a draft. Before publishing, check for revenue, conversions, DAU/WAU, ad metrics, customer information, internal initiatives, or competitive information. Separate confirmed and tentative numbers, and round or anonymize values when needed.</p>
-    </section>
+    <section class="nw-note caution"><h2 data-i18n="ja">公開前の確認</h2><h2 data-i18n="en" style="display:none;">Before publishing</h2><p data-i18n="ja">このツールは成長ログの下書き用です。公開前に、売上、CV、DAU/WAU、広告指標、顧客情報、社内施策、競合上不利な情報を含めていないか確認してください。数値は確定値/暫定値を分け、必要に応じて丸める・匿名化してください。</p><p data-i18n="en" style="display:none;">This tool creates a draft. Before publishing, check for revenue, conversions, DAU/WAU, ad metrics, customer information, internal initiatives, or competitive information. Separate confirmed and tentative numbers, and round or anonymize values when needed.</p></section>
 
     <section class="faq" aria-labelledby="faqTitle">
-      <h2 id="faqTitle" data-i18n="ja">FAQ</h2>
-      <h2 data-i18n="en" style="display:none;">FAQ</h2>
-
-      <details>
-        <summary data-i18n="ja">公開用の成長ログにそのまま使えますか？</summary>
-        <summary data-i18n="en" style="display:none;">Can I publish the generated growth log as-is?</summary>
-        <p data-i18n="ja">たたき台です。売上、CV、顧客名、社内施策、広告ID、未確定KPIを含めないよう確認してください。</p>
-        <p data-i18n="en" style="display:none;">Use it as a draft. Check that it does not include revenue, conversions, customer names, internal initiatives, ad IDs, or unconfirmed KPIs.</p>
-      </details>
-
-      <details>
-        <summary data-i18n="ja">匿名化すると安全ですか？</summary>
-        <summary data-i18n="en" style="display:none;">Does anonymization make it safe?</summary>
-        <p data-i18n="ja">完全な安全は保証しません。必要に応じて数値を丸める、変化率だけにする、項目ごと削除してください。</p>
-        <p data-i18n="en" style="display:none;">No guarantee. Round values, use only rates of change, or remove sensitive items when needed.</p>
-      </details>
-
-      <details>
-        <summary data-i18n="ja">Next actions は正確ですか？</summary>
-        <summary data-i18n="en" style="display:none;">Are the next actions accurate?</summary>
-        <p data-i18n="ja">簡易ルールによる案です。業種、流入元、規模、計測条件によって判断は変わります。</p>
-        <p data-i18n="en" style="display:none;">They are simple rule-based suggestions. The right decision depends on industry, traffic source, scale, and measurement conditions.</p>
-      </details>
-
-      <details>
-        <summary data-i18n="ja">入力内容は送信されますか？</summary>
-        <summary data-i18n="en" style="display:none;">Is my input sent anywhere?</summary>
-        <p data-i18n="ja">ログ生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
-        <p data-i18n="en" style="display:none;">The log generation runs in your browser. However, ads and analytics tags may load for the page itself.</p>
-      </details>
+      <h2 id="faqTitle" data-i18n="ja">FAQ</h2><h2 data-i18n="en" style="display:none;">FAQ</h2>
+      <details><summary data-i18n="ja">公開用の成長ログにそのまま使えますか？</summary><summary data-i18n="en" style="display:none;">Can I publish the generated growth log as-is?</summary><p data-i18n="ja">たたき台です。売上、CV、顧客名、社内施策、広告ID、未確定KPIを含めないよう確認してください。</p><p data-i18n="en" style="display:none;">Use it as a draft. Check that it does not include revenue, conversions, customer names, internal initiatives, ad IDs, or unconfirmed KPIs.</p></details>
+      <details><summary data-i18n="ja">匿名化すると安全ですか？</summary><summary data-i18n="en" style="display:none;">Does anonymization make it safe?</summary><p data-i18n="ja">完全な安全は保証しません。必要に応じて数値を丸める、変化率だけにする、項目ごと削除してください。</p><p data-i18n="en" style="display:none;">No guarantee. Round values, use only rates of change, or remove sensitive items when needed.</p></details>
+      <details><summary data-i18n="ja">Next actions は正確ですか？</summary><summary data-i18n="en" style="display:none;">Are the next actions accurate?</summary><p data-i18n="ja">簡易ルールによる案です。業種、流入元、規模、計測条件によって判断は変わります。</p><p data-i18n="en" style="display:none;">They are simple rule-based suggestions. The right decision depends on industry, traffic source, scale, and measurement conditions.</p></details>
+      <details><summary data-i18n="ja">入力内容は送信されますか？</summary><summary data-i18n="en" style="display:none;">Is my input sent anywhere?</summary><p data-i18n="ja">ログ生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p><p data-i18n="en" style="display:none;">The log generation runs in your browser. However, ads and analytics tags may load for the page itself.</p></details>
     </section>
 
     <div class="ad-slot ad-bottom">広告枠</div>
-
-    <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
-      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
-    </div>
-
-    <section class="nw-other">
-      <h3 class="nw-other-title" data-i18n="ja">関連ツール</h3>
-      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Related tools</h3>
-      <div class="nw-other-links">
-        <a href="/tools/ops-weekly-report-generator/">Ops Weekly Report Generator</a>
-        <a href="/tools/microtool-launch-checklist/">Microtool Launch Checklist</a>
-        <a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a>
-        <a href="/tools/newsletter-kit-generator/">Newsletter Kit Generator</a>
-      </div>
-    </section>
+    <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+    <section class="nw-other"><h3 class="nw-other-title" data-i18n="ja">関連ツール</h3><h3 class="nw-other-title" data-i18n="en" style="display:none;">Related tools</h3><div class="nw-other-links"><a href="/tools/ops-weekly-report-generator/">Ops Weekly Report Generator</a><a href="/tools/microtool-launch-checklist/">Microtool Launch Checklist</a><a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a><a href="/tools/newsletter-kit-generator/">Newsletter Kit Generator</a></div></section>
   </main>
 
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
-  </footer>
-
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
   <script src="./app.js"></script>
 </body>
 </html>
