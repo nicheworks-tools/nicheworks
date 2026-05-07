@@ -1,759 +1,451 @@
-/* ==========================================================
-   UnitMaster - 世界標準ユニットコンバータ（A構成）
-   JA/EN 完全対応版（subtitle対応）
-========================================================== */
+const HISTORY_KEY = "unitmaster_history";
+const THEME_KEY = "unitmaster_theme";
+const LANG_KEY = "unitmaster_lang";
+const MAX_ABS_VALUE = 1e100;
+const HISTORY_DEBOUNCE_MS = 900;
 
-/* ----------------------------
-  i18n（全UI文言）
----------------------------- */
-const i18n = {
+const labels = {
   ja: {
     title: "UnitMaster",
-    subtitle: "長さ・重さ・温度・体積・面積・速度・圧力などの世界標準単位を変換・計算するツールです。",
-
+    subtitle: "長さ・重さ・温度・体積・面積・速度・圧力の単位を相互変換するツールです。",
+    howto_title: "使い方",
+    howto_1: "カテゴリを選択します。",
+    howto_2: "数値を入力します。",
+    howto_3: "変換元と変換先の単位を選択します。",
+    howto_4: "自動計算ON/OFFを切り替えます。",
+    howto_5: "OFF時は「計算する」ボタンで実行します。",
+    notice_title: "計算結果について",
+    notice_general: "このツールは一般的な換算係数に基づく目安です。",
+    notice_professional: "医療、工業設計、建築、契約、取引、法規制、研究用途では、公式規格・専門資料・測定条件を確認してください。",
+    notice_traditional: "尺貫法・伝統単位は、時代・地域・用途により値が異なる場合があります。このページでは代表的な近似値として扱います。",
+    notice_rounding: "表示桁数の都合で端数処理・丸め誤差が生じる場合があります。",
+    storage_title: "保存について",
+    storage_body: "変換履歴5件、テーマ設定、言語設定はこのブラウザのlocalStorageに保存されます。別端末には同期されず、ブラウザデータを削除すると消えます。",
     category_label: "カテゴリ",
-    dd_category_label: "カテゴリ",
-
-    howto_title: "【使い方】",
-    howto_1: "カテゴリを選択（スマホではドロップダウン）",
-    howto_2: "数値を入力",
-    howto_3: "変換元（from）と変換先（to）の単位を選択",
-    howto_4: "「自動計算」ON／OFFを切り替え",
-    howto_5: "OFF時は「計算する」ボタンで実行",
-
     label_value: "数値",
     label_from: "変換元",
     label_to: "変換先",
-
     auto: "自動計算",
     btn_calc: "計算する",
-
     bulk_title: "一括変換",
     history_title: "履歴（5件）",
     history_empty: "履歴がまだありません",
-
-    result: (v, f, r, t) => `${v} ${f} = ${r} ${t}`,
-
+    history_clear: "履歴をクリア",
+    prompt_value: "数値を入力してください。",
+    invalid_number: "有効な数値を入力してください。",
+    extreme_number: "値が大きすぎます。桁数を減らして入力してください。",
+    below_absolute_zero: "絶対零度未満の温度は変換できません。",
     donate_line1: "💗 このツールが役に立ったら支援お願いします",
-
-    // categories
-    cat_length: "長さ",
-    cat_weight: "重さ",
-    cat_temp: "温度",
-    cat_volume: "体積",
-    cat_area: "面積",
-    cat_speed: "速度",
-    cat_pressure: "圧力",
-
-    // mobile dropdown labels
-    dd_length: "長さ",
-    dd_weight: "重さ",
-    dd_temp: "温度",
-    dd_volume: "体積",
-    dd_area: "面積",
-    dd_speed: "速度",
-    dd_pressure: "圧力",
-
-    footer_home: "NicheWorks Tools 一覧へ戻る",
-
-    // 単位ラベル（表示用）
-    units: {
-      length: {
-        // 日本伝統単位（漢字のみ）
-        shaku: "尺",
-        sun: "寸",
-        bu_length: "分",
-        ken: "間",
-        ri: "里",
-        tsubo_length: "坪",
-
-        // 欧米古典（カタカナ＋英語併記）
-        furlong: "ハロン (furlong)",
-        chain: "チェーン (chain)",
-        league: "リーグ (league)",
-
-        // 科学系（英語表記）
-        angstrom: "オングストローム (angstrom)",
-        micrometer: "マイクロメートル (micrometer)",
-        parsec: "パーセク (parsec)",
-        lightyear: "光年 (lightyear)"
-      },
-      weight: {
-        monme: "匁",
-        kin: "斤",
-        kan: "貫",
-
-        dram: "ドラム (dram)",
-        grain: "グレイン (grain)"
-      },
-      volume: {
-        gou: "合",
-        shou: "升",
-        to: "斗"
-      },
-      area: {
-        tsubo_area: "坪",
-        tan: "反",
-        se: "畝",
-        cho: "町"
-      },
-      speed: {
-        knot: "ノット (knot)",
-        league_per_hour: "リーグ毎時 (league/h)"
-      },
-      pressure: {
-        torr: "トル (torr)",
-        psi: "psi"
-      }
-    }
+    faq_title: "よくある質問",
+    faq_q1: "計算結果は正確ですか？",
+    faq_a1: "一般的な換算係数に基づく目安です。専門用途では公式規格や専門資料を確認してください。",
+    faq_q2: "伝統単位も正確ですか？",
+    faq_a2: "尺貫法などは時代・地域・用途で値が異なる場合があります。このツールでは代表的な近似値を使います。",
+    faq_q3: "履歴は保存されますか？",
+    faq_a3: "直近5件の変換履歴、テーマ設定、言語設定はこのブラウザのlocalStorageに保存されます。",
+    faq_q4: "入力内容は送信されますか？",
+    faq_a4: "単位変換処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。",
+    cat_length: "長さ", cat_weight: "重さ", cat_temp: "温度", cat_volume: "体積", cat_area: "面積", cat_speed: "速度", cat_pressure: "圧力"
   },
-
   en: {
     title: "UnitMaster",
-    subtitle: "Convert and calculate global standard units — length, weight, temperature, volume, area, speed, pressure, and more.",
-
+    subtitle: "Convert length, weight, temperature, volume, area, speed, and pressure units.",
+    howto_title: "How to Use",
+    howto_1: "Choose a category.",
+    howto_2: "Enter a value.",
+    howto_3: "Select the source and target units.",
+    howto_4: "Toggle auto calculation on or off.",
+    howto_5: "When auto calculation is off, press Calculate.",
+    notice_title: "About the results",
+    notice_general: "This tool provides estimates based on common conversion factors.",
+    notice_professional: "For medical, industrial design, construction, contracts, trade, legal, regulatory, or research use, check official standards, specialist references, and measurement conditions.",
+    notice_traditional: "Traditional units may vary by era, region, and use case. This page uses representative approximations.",
+    notice_rounding: "Rounding and display precision may cause small differences.",
+    storage_title: "Storage",
+    storage_body: "The latest 5 conversion history items, theme setting, and language setting are stored in this browser's localStorage. They are not synced to other devices and disappear when browser data is deleted.",
     category_label: "Category",
-    dd_category_label: "Category",
-
-    howto_title: "【How to Use】",
-    howto_1: "Choose a category (dropdown on mobile)",
-    howto_2: "Enter a value",
-    howto_3: "Select units for From / To",
-    howto_4: "Toggle Auto Calculation ON/OFF",
-    howto_5: "If OFF, press the Calculate button",
-
     label_value: "Value",
     label_from: "From",
     label_to: "To",
-
     auto: "Auto Calc",
     btn_calc: "Calculate",
-
     bulk_title: "Bulk Convert",
     history_title: "History (5)",
     history_empty: "No history yet",
-
-    result: (v, f, r, t) => `${v} ${f} = ${r} ${t}`,
-
+    history_clear: "Clear history",
+    prompt_value: "Enter a value.",
+    invalid_number: "Enter a valid number.",
+    extreme_number: "The value is too large. Please reduce the number of digits.",
+    below_absolute_zero: "Temperature below absolute zero cannot be converted.",
     donate_line1: "💗 If this tool helps you, please support us!",
-
-    cat_length: "Length",
-    cat_weight: "Weight",
-    cat_temp: "Temperature",
-    cat_volume: "Volume",
-    cat_area: "Area",
-    cat_speed: "Speed",
-    cat_pressure: "Pressure",
-
-    dd_length: "Length",
-    dd_weight: "Weight",
-    dd_temp: "Temperature",
-    dd_volume: "Volume",
-    dd_area: "Area",
-    dd_speed: "Speed",
-    dd_pressure: "Pressure",
-
-    footer_home: "Back to NicheWorks Tools",
-
-    units: {
-      length: {
-        // 日本伝統（漢字＋アルファベット併記）
-        shaku: "尺(Shaku)",
-        sun: "寸(Sun)",
-        bu_length: "分(Bu)",
-        ken: "間(Ken)",
-        ri: "里(Ri)",
-        tsubo_length: "坪(Tsubo)",
-
-        // 欧米古典（英語）
-        furlong: "Furlong",
-        chain: "Chain",
-        league: "League",
-
-        // 科学系（英語のみ）
-        angstrom: "Angstrom",
-        micrometer: "Micrometer",
-        parsec: "Parsec",
-        lightyear: "Lightyear"
-      },
-      weight: {
-        monme: "匁(Monme)",
-        kin: "斤(Kin)",
-        kan: "貫(Kan)",
-
-        dram: "Dram",
-        grain: "Grain"
-      },
-      volume: {
-        gou: "合(Gou)",
-        shou: "升(Shou)",
-        to: "斗(To)"
-      },
-      area: {
-        tsubo_area: "坪(Tsubo)",
-        tan: "反(Tan)",
-        se: "畝(Se)",
-        cho: "町(Cho)"
-      },
-      speed: {
-        knot: "Knot",
-        league_per_hour: "League/h"
-      },
-      pressure: {
-        torr: "Torr",
-        psi: "psi"
-      }
-    }
+    faq_title: "FAQ",
+    faq_q1: "Are the results exact?",
+    faq_a1: "They are estimates based on common conversion factors. For professional use, check official standards or specialist references.",
+    faq_q2: "Are traditional units exact?",
+    faq_a2: "Traditional units may vary by era, region, and use case. This tool uses representative approximations.",
+    faq_q3: "Is history saved?",
+    faq_a3: "The latest 5 conversion history items, theme setting, and language setting are stored in this browser's localStorage.",
+    faq_q4: "Is my input sent anywhere?",
+    faq_a4: "Conversion runs in the browser. Advertising and analytics tags may still load for page display.",
+    cat_length: "Length", cat_weight: "Weight", cat_temp: "Temperature", cat_volume: "Volume", cat_area: "Area", cat_speed: "Speed", cat_pressure: "Pressure"
   }
 };
 
-/* ----------------------------
-  単位辞書（換算用）
----------------------------- */
+const unitLabels = {
+  ja: {
+    length: { shaku: "尺", sun: "寸", bu_length: "分", ken: "間", ri: "里", tsubo_length: "坪", furlong: "ハロン (furlong)", chain: "チェーン (chain)", league: "リーグ (league)", angstrom: "オングストローム (angstrom)", micrometer: "マイクロメートル (micrometer)", parsec: "パーセク (parsec)", lightyear: "光年 (lightyear)" },
+    weight: { monme: "匁", kin: "斤", kan: "貫", dram: "ドラム (dram)", grain: "グレイン (grain)" },
+    volume: { gou: "合", shou: "升", to: "斗" },
+    area: { tsubo_area: "坪", tan: "反", se: "畝", cho: "町" },
+    speed: { knot: "ノット (knot)", league_per_hour: "リーグ毎時 (league/h)" },
+    pressure: { torr: "トル (torr)", psi: "psi" }
+  },
+  en: {
+    length: { shaku: "Shaku", sun: "Sun", bu_length: "Bu", ken: "Ken", ri: "Ri", tsubo_length: "Tsubo", furlong: "Furlong", chain: "Chain", league: "League", angstrom: "Angstrom", micrometer: "Micrometer", parsec: "Parsec", lightyear: "Light-year" },
+    weight: { monme: "Monme", kin: "Kin", kan: "Kan", dram: "Dram", grain: "Grain" },
+    volume: { gou: "Gou", shou: "Shou", to: "To" },
+    area: { tsubo_area: "Tsubo", tan: "Tan", se: "Se", cho: "Cho" },
+    speed: { knot: "Knot", league_per_hour: "League/h" },
+    pressure: { torr: "Torr", psi: "psi" }
+  }
+};
+
 const units = {
-  length: {
-    mm: 0.001,
-    cm: 0.01,
-    m: 1,
-    km: 1000,
-    inch: 0.0254,
-    ft: 0.3048,
-    yard: 0.9144,
-    mile: 1609.344,
-
-    // 日本伝統
-    shaku: 0.303,
-    sun: 0.0303,
-    bu_length: 0.00303,
-    ken: 1.818,
-    ri: 3927,
-    tsubo_length: 3.306,
-
-    // 欧米古典
-    furlong: 201.168,
-    chain: 20.1168,
-    league: 4828.032,
-
-    // 科学
-    angstrom: 1e-10,
-    micrometer: 1e-6,
-    parsec: 3.0857e16,
-    lightyear: 9.4607e15
-  },
-  weight: {
-    g: 1,
-    kg: 1000,
-    lb: 453.59237,
-    oz: 28.3495231,
-
-    // 日本伝統
-    monme: 3.75,
-    kin: 600,
-    kan: 3750,
-
-    // 欧米古典
-    dram: 1.771845,
-    grain: 0.06479891
-  },
+  length: { mm: 0.001, cm: 0.01, m: 1, km: 1000, inch: 0.0254, ft: 0.3048, yard: 0.9144, mile: 1609.344, shaku: 0.303, sun: 0.0303, bu_length: 0.00303, ken: 1.818, ri: 3927, tsubo_length: 3.306, furlong: 201.168, chain: 20.1168, league: 4828.032, angstrom: 1e-10, micrometer: 1e-6, parsec: 3.0857e16, lightyear: 9.4607e15 },
+  weight: { g: 1, kg: 1000, lb: 453.59237, oz: 28.3495231, monme: 3.75, kin: 600, kan: 3750, dram: 1.771845, grain: 0.06479891 },
   temp: ["c", "f", "k"],
-  volume: {
-    ml: 0.001,
-    l: 1,
-    cup: 0.24,
-
-    gou: 0.18039,
-    shou: 1.8039,
-    to: 18.039
-  },
-  area: {
-    mm2: 1e-6,
-    cm2: 1e-4,
-    m2: 1,
-    km2: 1e6,
-
-    tsubo_area: 3.305785,
-    tan: 991.736,
-    se: 99.1736,
-    cho: 9917.36
-  },
-  speed: {
-    "m/s": 1,
-    "km/h": 0.277778,
-    mph: 0.44704,
-    knot: 0.514444,
-    league_per_hour: 1.34112
-  },
-  pressure: {
-    pa: 1,
-    hpa: 100,
-    bar: 100000,
-    atm: 101325,
-    torr: 133.322,
-    psi: 6894.76
-  }
+  volume: { ml: 0.001, l: 1, cup: 0.24, gou: 0.18039, shou: 1.8039, to: 18.039 },
+  area: { mm2: 1e-6, cm2: 1e-4, m2: 1, km2: 1e6, tsubo_area: 3.305785, tan: 991.736, se: 99.1736, cho: 9917.36 },
+  speed: { "m/s": 1, "km/h": 0.277778, mph: 0.44704, knot: 0.514444, league_per_hour: 1.34112 },
+  pressure: { pa: 1, hpa: 100, bar: 100000, atm: 101325, torr: 133.322, psi: 6894.76 }
 };
 
-/* ----------------------------
-  DOM参照
----------------------------- */
-const categorySelect = document.getElementById("categorySelect");
-const categoryLabel = document.querySelector('label[for="categorySelect"]');
-
+const categoryKeys = ["length", "weight", "temp", "volume", "area", "speed", "pressure"];
+const $ = (id) => document.getElementById(id);
+const categorySelect = $("categorySelect");
+const fromSel = $("fromUnit");
+const toSel = $("toUnit");
+const inputValue = $("inputValue");
+const autoCalc = $("autoCalc");
+const calcBtn = $("calcBtn");
+const resultBox = $("resultBox");
+const bulkBox = $("bulkBox");
+const historyBox = $("historyBox");
+const themeToggle = $("themeToggle");
 const tabs = document.querySelectorAll(".tab");
-const fromSel = document.getElementById("fromUnit");
-const toSel = document.getElementById("toUnit");
-const inputValue = document.getElementById("inputValue");
-const autoCalc = document.getElementById("autoCalc");
-const calcBtn = document.getElementById("calcBtn");
-const resultBox = document.getElementById("resultBox");
-const bulkBox = document.getElementById("bulkBox");
-const historyBox = document.getElementById("historyBox");
-
 const langBtns = document.querySelectorAll(".lang-btn");
-const donateP = document.querySelector(".donate-box p");
-const footerHome = document.querySelector(".home-link a");
-const subtitleEl = document.getElementById("subtitle");
-const bulkLabel = document.getElementById("bulkLabel");
-const historyLabel = document.getElementById("historyLabel");
 const accordionToggles = document.querySelectorAll(".accordion-toggle");
-const themeToggle = document.getElementById("themeToggle");
 const htmlEl = document.documentElement;
-const HISTORY_KEY = "unitmaster_history";
-const THEME_KEY = "unitmaster_theme";
-let historyReady = false;
+let currentLang = loadSavedLang() || detectInitialLang();
+let latestValidResult = null;
+let historyTimer = null;
 
-function getCategoryTextMap(t) {
-  return {
-    length: t.dd_length,
-    weight: t.dd_weight,
-    temp: t.dd_temp,
-    volume: t.dd_volume,
-    area: t.dd_area,
-    speed: t.dd_speed,
-    pressure: t.dd_pressure
-  };
+function detectInitialLang() {
+  return (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
 }
 
-function syncCategoryDropdownText(t) {
-  const ddMap = getCategoryTextMap(t);
-  if (categorySelect) {
-    Array.from(categorySelect.options).forEach(o => {
-      if (ddMap[o.value]) o.textContent = ddMap[o.value];
-    });
+function loadSavedLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY) || localStorage.getItem("nw_lang");
+    return saved === "ja" || saved === "en" ? saved : null;
+  } catch (e) {
+    return null;
   }
 }
 
-function getUnitLabel(cat, unit, t) {
-  const unitsMap = t.units || {};
-  const catMap = unitsMap[cat] || {};
-  return catMap[unit] || unit;
+function saveLang(lang) {
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
 }
 
-/* ----------------------------
-  テーマ切替
----------------------------- */
+function text(key) {
+  return (labels[currentLang] && labels[currentLang][key]) || labels.ja[key] || key;
+}
+
+function unitLabel(cat, unit) {
+  if (cat === "temp") return unit.toUpperCase();
+  return (unitLabels[currentLang][cat] && unitLabels[currentLang][cat][unit]) || unit;
+}
+
+function categoryLabel(cat) {
+  return text(`cat_${cat}`);
+}
+
+function createTextElement(tag, className, value) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  el.textContent = value;
+  return el;
+}
+
 function applyTheme(theme) {
   const isDark = theme === "dark";
-  if (isDark) htmlEl.classList.add("dark");
-  else htmlEl.classList.remove("dark");
-
+  htmlEl.classList.toggle("dark", isDark);
   if (themeToggle) {
     themeToggle.textContent = isDark ? "☀️" : "🌙";
     themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
   }
 }
 
-const savedTheme = localStorage.getItem(THEME_KEY);
-applyTheme(savedTheme === "dark" ? "dark" : "light");
+function applySavedTheme() {
+  let theme = "light";
+  try { theme = localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light"; } catch (e) {}
+  applyTheme(theme);
+}
 
-/* ----------------------------
-  言語適用
----------------------------- */
-let currentLang = "ja";
-
-function applyLanguage(lang) {
-  currentLang = lang;
-  const t = i18n[lang];
-
-  // タイトル
-  const titleEl = document.querySelector(".title");
-  if (titleEl) titleEl.textContent = t.title;
-
-  // サブタイトル
-  if (subtitleEl) subtitleEl.textContent = t.subtitle;
-
-  // カテゴリラベル
-  if (categoryLabel) categoryLabel.textContent = t.dd_category_label || t.category_label;
-
-  // 使い方
-  const howtoTitle = document.querySelector(".howto h2");
-  if (howtoTitle) howtoTitle.textContent = t.howto_title;
-
-  const steps = document.querySelectorAll(".howto li");
-  if (steps.length >= 5) {
-    steps[0].textContent = t.howto_1;
-    steps[1].textContent = t.howto_2;
-    steps[2].textContent = t.howto_3;
-    steps[3].textContent = t.howto_4;
-    steps[4].textContent = t.howto_5;
-  }
-
-  // 入力ラベル
-  const inputLabels = document.querySelectorAll(".convert-box .input-block label");
-  if (inputLabels.length >= 3) {
-    inputLabels[0].textContent = t.label_value;
-    inputLabels[1].textContent = t.label_from;
-    inputLabels[2].textContent = t.label_to;
-  }
-
-  // 自動計算ラベル
-  const autoLabel = document.querySelector(".autocalc-row label");
-  if (autoLabel) {
-    const nodes = Array.from(autoLabel.childNodes);
-    let textNode = nodes.find(n => n.nodeType === Node.TEXT_NODE);
-    if (textNode) textNode.nodeValue = " " + t.auto;
-    else autoLabel.append(" " + t.auto);
-  }
-
-  // 計算ボタン
-  if (calcBtn) calcBtn.textContent = t.btn_calc;
-
-  // PCタブ
-  const tabList = [
-    t.cat_length, t.cat_weight, t.cat_temp,
-    t.cat_volume, t.cat_area, t.cat_speed, t.cat_pressure
-  ];
-  tabs.forEach((el, idx) => {
-    if (tabList[idx]) el.textContent = tabList[idx];
+function updateStaticText() {
+  const title = document.querySelector(".title");
+  if (title) title.textContent = text("title");
+  document.querySelectorAll("[data-text-key]").forEach((el) => {
+    const key = el.getAttribute("data-text-key");
+    if (labels[currentLang][key]) el.textContent = labels[currentLang][key];
   });
+  Array.from(categorySelect.options).forEach((option) => {
+    option.textContent = categoryLabel(option.value);
+  });
+  tabs.forEach((tab) => {
+    tab.textContent = categoryLabel(tab.dataset.cat);
+  });
+}
 
-  // モバイルドロップダウン
-  syncCategoryDropdownText(t);
-
-  // 寄付文
-  if (donateP) donateP.textContent = t.donate_line1;
-
-  // フッター
-  if (footerHome) footerHome.textContent = t.footer_home;
-
-  // アコーディオンラベル
-  if (bulkLabel) bulkLabel.textContent = t.bulk_title;
-  if (historyLabel) historyLabel.textContent = t.history_title;
-
-  // 再計算 & 履歴
-  calculate();
+function applyLanguage(lang, persist = true) {
+  currentLang = lang === "en" ? "en" : "ja";
+  htmlEl.lang = currentLang;
+  updateStaticText();
+  langBtns.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === currentLang));
+  if (persist) saveLang(currentLang);
+  applyCategory(categorySelect.value || "length", true, false);
+  calculate(false);
   loadHistory();
-  applyCategory(categorySelect.value);
 }
 
-/* ----------------------------
-  PCタブ切替
----------------------------- */
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    historyReady = true;
-    const cat = tab.dataset.cat;
-    categorySelect.value = cat;
-    applyCategory(cat);
-  });
-});
-
-/* ----------------------------
-  スマホカテゴリ切替
----------------------------- */
-if (categorySelect) {
-  categorySelect.addEventListener("change", () => {
-    historyReady = true;
-    applyCategory(categorySelect.value);
-  });
+function clearOptions(select) {
+  select.replaceChildren();
 }
 
-/* ----------------------------
-  カテゴリ適用
----------------------------- */
-function applyCategory(cat) {
-  tabs.forEach(t => t.classList.remove("active"));
-  const activeTab = document.querySelector(`.tab[data-cat="${cat}"]`);
-  if (activeTab) activeTab.classList.add("active");
+function addOption(select, value, label) {
+  const option = document.createElement("option");
+  option.value = value;
+  option.textContent = label;
+  select.appendChild(option);
+}
 
-  fromSel.innerHTML = "";
-  toSel.innerHTML = "";
+function applyCategory(cat, preserveUnits = false, saveAutoHistory = true) {
+  const safeCat = categoryKeys.includes(cat) ? cat : "length";
+  const prevFrom = fromSel.value;
+  const prevTo = toSel.value;
+  categorySelect.value = safeCat;
+  tabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.cat === safeCat));
+  clearOptions(fromSel);
+  clearOptions(toSel);
+  const keys = safeCat === "temp" ? units.temp : Object.keys(units[safeCat]);
+  keys.forEach((unit) => {
+    addOption(fromSel, unit, unitLabel(safeCat, unit));
+    addOption(toSel, unit, unitLabel(safeCat, unit));
+  });
+  if (preserveUnits) {
+    if (keys.includes(prevFrom)) fromSel.value = prevFrom;
+    if (keys.includes(prevTo)) toSel.value = prevTo;
+  } else if (keys.length > 1) {
+    toSel.value = keys[1];
+  }
+  calculate(false);
+  if (saveAutoHistory && autoCalc.checked && latestValidResult) scheduleHistorySave();
+}
 
-  const t = i18n[currentLang];
+function convertTemperature(value, from, to) {
+  let c = value;
+  if (from === "f") c = (value - 32) * 5 / 9;
+  if (from === "k") c = value - 273.15;
+  if (to === "f") return c * 9 / 5 + 32;
+  if (to === "k") return c + 273.15;
+  return c;
+}
 
-  // option（単位）
+function validateInput() {
+  const raw = inputValue.value.trim();
+  if (raw === "") return { ok: false, message: text("prompt_value"), state: "warning" };
+  const value = Number(raw);
+  if (!Number.isFinite(value)) return { ok: false, message: text("invalid_number"), state: "error" };
+  if (Math.abs(value) > MAX_ABS_VALUE) return { ok: false, message: text("extreme_number"), state: "error" };
+  if (categorySelect.value === "temp") {
+    if ((fromSel.value === "k" && value < 0) || (fromSel.value === "c" && value < -273.15) || (fromSel.value === "f" && value < -459.67)) {
+      return { ok: false, message: text("below_absolute_zero"), state: "error" };
+    }
+  }
+  return { ok: true, value, raw };
+}
+
+function formatNumber(value) {
+  if (!Number.isFinite(value)) return "-";
+  if (value === 0) return "0";
+  const abs = Math.abs(value);
+  if (abs >= 1e9 || abs < 0.0001) return value.toExponential(6);
+  return Number(value.toFixed(6)).toString();
+}
+
+function setResult(message, state) {
+  resultBox.textContent = message;
+  resultBox.classList.toggle("is-warning", state === "warning");
+  resultBox.classList.toggle("is-error", state === "error");
+}
+
+function buildResult(value) {
+  const cat = categorySelect.value;
   if (cat === "temp") {
-    ["c", "f", "k"].forEach(u => {
-      fromSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
-      toSel.innerHTML += `<option value="${u}">${u.toUpperCase()}</option>`;
+    const result = convertTemperature(value, fromSel.value, toSel.value);
+    return labels[currentLang].result
+      ? labels[currentLang].result(formatNumber(value), unitLabel(cat, fromSel.value), formatNumber(result), unitLabel(cat, toSel.value))
+      : `${formatNumber(value)} ${unitLabel(cat, fromSel.value)} = ${formatNumber(result)} ${unitLabel(cat, toSel.value)}`;
+  }
+  const dict = units[cat];
+  const result = value * dict[fromSel.value] / dict[toSel.value];
+  return `${formatNumber(value)} ${unitLabel(cat, fromSel.value)} = ${formatNumber(result)} ${unitLabel(cat, toSel.value)}`;
+}
+
+function generateBulkList(validation) {
+  if (!validation.ok) {
+    bulkBox.replaceChildren();
+    return;
+  }
+  const cat = categorySelect.value;
+  const fragment = document.createDocumentFragment();
+  fragment.appendChild(createTextElement("div", "bulk-line bulk-source", `${formatNumber(validation.value)} ${unitLabel(cat, fromSel.value)}`));
+  if (cat === "temp") {
+    units.temp.forEach((unit) => {
+      if (unit !== fromSel.value) fragment.appendChild(createTextElement("div", "bulk-line", `= ${formatNumber(convertTemperature(validation.value, fromSel.value, unit))} ${unitLabel(cat, unit)}`));
     });
   } else {
     const dict = units[cat];
-    for (const u in dict) {
-      const label = getUnitLabel(cat, u, t);
-      fromSel.innerHTML += `<option value="${u}">${label}</option>`;
-      toSel.innerHTML += `<option value="${u}">${label}</option>`;
-    }
-  }
-
-  // モバイルカテゴリドロップダウンのラベル更新
-  syncCategoryDropdownText(t);
-
-  calculate();
-}
-
-/* ----------------------------
-  温度変換
----------------------------- */
-function convertTemperature(value, from, to) {
-  let c;
-  if (from === "c") c = value;
-  if (from === "f") c = (value - 32) * 5 / 9;
-  if (from === "k") c = value - 273.15;
-
-  if (to === "c") return c;
-  if (to === "f") return c * 9 / 5 + 32;
-  if (to === "k") return c + 273.15;
-
-  return value;
-}
-
-function formatUnitLabel(cat, unit) {
-  return cat === "temp" ? unit.toUpperCase() : unit;
-}
-
-function generateBulkList() {
-  if (!bulkBox) return;
-  const rawValue = inputValue.value || "0";
-  const v = parseFloat(rawValue || "0");
-  const cat = categorySelect.value;
-
-  if (!Number.isFinite(v)) {
-    bulkBox.innerHTML = "";
-    return;
-  }
-
-  const t = i18n[currentLang];
-  const dict = units[cat];
-
-  const lines = [
-    `${rawValue} ${
-      cat === "temp"
-        ? formatUnitLabel(cat, fromSel.value)
-        : getUnitLabel(cat, fromSel.value, t)
-    }`
-  ];
-
-  if (cat === "temp") {
-    ["c", "f", "k"].forEach(u => {
-      if (u === fromSel.value) return;
-      const res = convertTemperature(v, fromSel.value, u);
-      lines.push(`= ${res.toFixed(4)} ${u.toUpperCase()}`);
+    const base = validation.value * dict[fromSel.value];
+    Object.keys(dict).forEach((unit) => {
+      if (unit !== fromSel.value) fragment.appendChild(createTextElement("div", "bulk-line", `= ${formatNumber(base / dict[unit])} ${unitLabel(cat, unit)}`));
     });
-  } else {
-    const vBase = v * dict[fromSel.value];
-    for (const u in dict) {
-      if (u === fromSel.value) continue;
-      const r = vBase / dict[u];
-      const label = getUnitLabel(cat, u, t);
-      lines.push(`= ${r.toFixed(4)} ${label}`);
-    }
   }
-
-  bulkBox.innerHTML = lines
-    .map(l => `<div class="bulk-line">${l}</div>`)
-    .join("");
+  bulkBox.replaceChildren(fragment);
 }
 
-function saveHistory(resultText) {
-  let list = [];
+function readHistory() {
   try {
-    const stored = localStorage.getItem(HISTORY_KEY);
-    if (stored) list = JSON.parse(stored);
-    if (!Array.isArray(list)) list = [];
+    const list = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+    return Array.isArray(list) ? list : [];
   } catch (e) {
-    list = [];
+    return [];
   }
+}
 
-  list.unshift({
-    value: inputValue.value || "0",
-    from: fromSel.value,
-    to: toSel.value,
-    result: resultText,
-    category: categorySelect.value
-  });
+function writeHistory(list) {
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(list.slice(0, 5))); } catch (e) {}
+}
 
-  list = list.slice(0, 5);
+function historyKey(item) {
+  return [item.category, item.value, item.from, item.to, item.result].join("|");
+}
 
-  try {
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
-  } catch (e) {
-    // ignore storage errors
-  }
+function saveHistory(result) {
+  if (!latestValidResult) return;
+  const item = { value: latestValidResult.value, from: fromSel.value, to: toSel.value, result, category: categorySelect.value };
+  const list = readHistory();
+  if (list[0] && historyKey(list[0]) === historyKey(item)) return;
+  writeHistory([item, ...list.filter((old) => historyKey(old) !== historyKey(item))]);
+  loadHistory();
+}
 
+function scheduleHistorySave() {
+  clearTimeout(historyTimer);
+  historyTimer = setTimeout(() => latestValidResult && saveHistory(latestValidResult.result), HISTORY_DEBOUNCE_MS);
+}
+
+function clearHistory() {
+  try { localStorage.removeItem(HISTORY_KEY); } catch (e) {}
   loadHistory();
 }
 
 function loadHistory() {
-  if (!historyBox) return;
-
-  let list = [];
-  try {
-    const stored = localStorage.getItem(HISTORY_KEY);
-    if (stored) list = JSON.parse(stored);
-    if (!Array.isArray(list)) list = [];
-  } catch (e) {
-    list = [];
-  }
-
-  const t = i18n[currentLang];
-
+  const list = readHistory();
+  const fragment = document.createDocumentFragment();
   if (list.length === 0) {
-    historyBox.innerHTML = `<p class="history-empty">${t.history_empty}</p>`;
+    fragment.appendChild(createTextElement("p", "history-empty", text("history_empty")));
+    historyBox.replaceChildren(fragment);
     return;
   }
-
-  const catMap = getCategoryTextMap(t);
-
-  historyBox.innerHTML = list
-    .map(item => {
-      const catLabel = catMap[item.category] || item.category;
-
-      let fromLabel = item.from;
-      let toLabel = item.to;
-
-      if (item.category === "temp") {
-        fromLabel = item.from.toUpperCase();
-        toLabel = item.to.toUpperCase();
-      } else {
-        fromLabel = getUnitLabel(item.category, item.from, t);
-        toLabel = getUnitLabel(item.category, item.to, t);
-      }
-
-      const resultLine =
-        item.result ||
-        t.result(item.value, fromLabel, "-", toLabel);
-
-      return `<div class="history-item">
-        <div>${resultLine}</div>
-        <div class="history-meta">${item.value} ${fromLabel} → ${toLabel} | ${catLabel}</div>
-      </div>`;
-    })
-    .join("");
+  const actions = document.createElement("div");
+  actions.className = "history-actions";
+  const clearButton = document.createElement("button");
+  clearButton.type = "button";
+  clearButton.className = "clear-history-btn";
+  clearButton.textContent = text("history_clear");
+  clearButton.addEventListener("click", clearHistory);
+  actions.appendChild(clearButton);
+  fragment.appendChild(actions);
+  list.forEach((item) => {
+    const wrap = document.createElement("div");
+    wrap.className = "history-item";
+    wrap.appendChild(createTextElement("div", "", item.result || "-"));
+    wrap.appendChild(createTextElement("div", "history-meta", `${item.value} ${unitLabel(item.category, item.from)} → ${unitLabel(item.category, item.to)} | ${categoryLabel(item.category)}`));
+    fragment.appendChild(wrap);
+  });
+  historyBox.replaceChildren(fragment);
 }
 
-/* ----------------------------
-  通常変換
----------------------------- */
-function calculate() {
-  const v = parseFloat(inputValue.value || "0");
-  const cat = categorySelect.value;
-
-  const t = i18n[currentLang];
-
-  let resultText = "";
-
-  if (cat === "temp") {
-    const rTemp = convertTemperature(v, fromSel.value, toSel.value);
-    resultText = t.result(
-      v,
-      fromSel.value.toUpperCase(),
-      rTemp.toFixed(4),
-      toSel.value.toUpperCase()
-    );
-  } else {
-    const dict = units[cat];
-    const vBase = v * dict[fromSel.value];
-    const r = vBase / dict[toSel.value];
-
-    const fromLabel = getUnitLabel(cat, fromSel.value, t);
-    const toLabel = getUnitLabel(cat, toSel.value, t);
-
-    resultText = t.result(
-      v,
-      fromLabel,
-      r.toFixed(4),
-      toLabel
-    );
+function calculate(shouldSave) {
+  const validation = validateInput();
+  if (!validation.ok) {
+    latestValidResult = null;
+    setResult(validation.message, validation.state);
+    generateBulkList(validation);
+    loadHistory();
+    return;
   }
-
-  resultBox.textContent = resultText;
-  generateBulkList();
-  if (historyReady) saveHistory(resultText);
+  const result = buildResult(validation.value);
+  latestValidResult = { value: validation.raw, result };
+  setResult(result, "neutral");
+  generateBulkList(validation);
+  if (shouldSave) saveHistory(result);
   else loadHistory();
 }
 
-/* ----------------------------
-  自動計算
----------------------------- */
-inputValue.addEventListener("input", () => {
-  historyReady = true;
-  if (autoCalc.checked) calculate();
-});
-fromSel.addEventListener("change", () => {
-  historyReady = true;
-  if (autoCalc.checked) calculate();
-});
-toSel.addEventListener("change", () => {
-  historyReady = true;
-  if (autoCalc.checked) calculate();
-});
-
-autoCalc.addEventListener("change", () => {
-  if (autoCalc.checked) {
-    calcBtn.classList.add("hidden");
-    calculate();
-  } else {
-    calcBtn.classList.remove("hidden");
-  }
-});
-
-calcBtn.addEventListener("click", () => {
-  historyReady = true;
-  calculate();
-});
-
-/* ----------------------------
-  アコーディオン
----------------------------- */
-accordionToggles.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const target = document.getElementById(btn.dataset.target);
-    const expanded = btn.getAttribute("aria-expanded") === "true";
-    const nextState = !expanded;
-    btn.setAttribute("aria-expanded", nextState ? "true" : "false");
-
-    const icon = btn.querySelector(".accordion-icon");
-    if (icon) icon.textContent = nextState ? "−" : "+";
-
-    if (target) target.classList.toggle("open", nextState);
+tabs.forEach((tab) => tab.addEventListener("click", () => applyCategory(tab.dataset.cat)));
+categorySelect.addEventListener("change", () => applyCategory(categorySelect.value));
+[inputValue, fromSel, toSel].forEach((el) => {
+  el.addEventListener(el === inputValue ? "input" : "change", () => {
+    if (autoCalc.checked) {
+      calculate(false);
+      if (latestValidResult) scheduleHistorySave();
+    }
   });
 });
-
-/* ----------------------------
-  テーマ切替トグル
----------------------------- */
+autoCalc.addEventListener("change", () => {
+  calcBtn.classList.toggle("hidden", autoCalc.checked);
+  if (autoCalc.checked) {
+    calculate(false);
+    if (latestValidResult) scheduleHistorySave();
+  } else {
+    clearTimeout(historyTimer);
+  }
+});
+calcBtn.addEventListener("click", () => {
+  clearTimeout(historyTimer);
+  calculate(true);
+});
+accordionToggles.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const target = document.getElementById(btn.dataset.target);
+    const next = btn.getAttribute("aria-expanded") !== "true";
+    btn.setAttribute("aria-expanded", next ? "true" : "false");
+    const icon = btn.querySelector(".accordion-icon");
+    if (icon) icon.textContent = next ? "−" : "+";
+    if (target) target.classList.toggle("open", next);
+  });
+});
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
     const next = htmlEl.classList.contains("dark") ? "light" : "dark";
     applyTheme(next);
-    localStorage.setItem(THEME_KEY, next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
   });
 }
+langBtns.forEach((btn) => btn.addEventListener("click", () => applyLanguage(btn.dataset.lang)));
 
-/* ----------------------------
-  言語切替
----------------------------- */
-langBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    langBtns.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    applyLanguage(btn.dataset.lang);
-  });
-});
-
-/* ----------------------------
-  初期表示
----------------------------- */
-applyCategory("length");
-applyLanguage("ja");
+applySavedTheme();
+applyCategory("length", false, false);
+applyLanguage(currentLang, false);
