@@ -82,8 +82,8 @@
        Language Switch
   =============================== -->
   <div class="nw-lang-switch">
-    <button data-lang-switch="ja">JP</button>
-    <button data-lang-switch="en">EN</button>
+    <button type="button" data-lang-switch="ja">JP</button>
+    <button type="button" data-lang-switch="en">EN</button>
   </div>
 
   <!-- ===============================
@@ -110,10 +110,17 @@
   =============================== -->
   <section class="meter-section">
 
-    <button id="micButton" class="primary-btn">
+    <button id="micButton" class="primary-btn" type="button">
       <span data-i18n="ja">マイクを許可</span>
       <span data-i18n="en">Enable Mic</span>
     </button>
+
+    <button id="stopMicButton" class="secondary-btn hidden" type="button" disabled>
+      <span data-i18n="ja">マイクを停止</span>
+      <span data-i18n="en">Stop Mic</span>
+    </button>
+
+    <p id="micStatus" class="mic-status hidden" role="status" aria-live="polite"></p>
 
     <!-- ===============================
          Voice Activity Effect
@@ -173,7 +180,7 @@
     <!-- ===============================
          Snapshot
     =============================== -->
-    <button id="snapshotButton" class="secondary-btn">
+    <button id="snapshotButton" class="secondary-btn" type="button">
       📸
       <span data-i18n="ja">スナップショット</span>
       <span data-i18n="en">Snapshot</span>
@@ -188,7 +195,7 @@
       <div id="snapshotItems">
         <!-- snapshots injected -->
       </div>
-      <button id="clearSnapshots" class="link-btn">
+      <button id="clearSnapshots" class="link-btn" type="button">
         <span data-i18n="ja">全削除</span>
         <span data-i18n="en">Clear All</span>
       </button>
@@ -205,11 +212,11 @@
       </h2>
 
       <div class="segment-controls">
-        <button id="segmentStart">
+        <button id="segmentStart" type="button">
           <span data-i18n="ja">計測開始</span>
           <span data-i18n="en">Start</span>
         </button>
-        <button id="segmentStop" disabled>
+        <button id="segmentStop" type="button" disabled>
           <span data-i18n="ja">停止</span>
           <span data-i18n="en">Stop</span>
         </button>
@@ -221,7 +228,7 @@
 
     </section>
 
-    <button id="resetButton" class="link-btn hidden">
+    <button id="resetButton" class="link-btn hidden" type="button">
       <span data-i18n="ja">リセット</span>
       <span data-i18n="en">Reset</span>
     </button>
