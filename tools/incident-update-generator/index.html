@@ -7,19 +7,39 @@
 <meta name="description" content="障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでMarkdownパック保存に対応します。">
 <link rel="canonical" href="https://nicheworks.app/tools/incident-update-generator/">
 <meta name="robots" content="index,follow">
-<meta property="og:type" content="website"><meta property="og:site_name" content="NicheWorks"><meta property="og:title" content="障害報告・インシデント更新文作成｜Incident Update Generator | NicheWorks"><meta property="og:description" content="顧客向け・社内向け・SNS向けの更新文を作成します。"><meta property="og:url" content="https://nicheworks.app/tools/incident-update-generator/"><meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Incident Update Generator | NicheWorks"><meta name="twitter:description" content="Create customer, internal, and social incident updates."><meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NicheWorks"><meta property="og:title" content="障害報告・インシデント更新文作成｜Incident Update Generator | NicheWorks"><meta property="og:description" content="障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでMarkdownパック保存に対応します。"><meta property="og:url" content="https://nicheworks.app/tools/incident-update-generator/"><meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="障害報告・インシデント更新文作成｜Incident Update Generator | NicheWorks"><meta name="twitter:description" content="障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでMarkdownパック保存に対応します。"><meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 <link rel="icon" href="/assets/favicon.ico"><link rel="apple-touch-icon" href="/assets/favicon.ico">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "障害報告・インシデント更新文作成｜Incident Update Generator",
+    "url": "https://nicheworks.app/tools/incident-update-generator/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでMarkdownパック保存に対応します。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
 </head>
 <body>
 <header class="nw-header"><h1 class="nw-title" data-i18n="ja">障害報告・インシデント更新文作成</h1><h1 class="nw-title" data-i18n="en" style="display:none;">Incident Update Generator</h1><p class="nw-lead" data-i18n="ja">顧客向け・社内向け・SNS向けの障害更新文を、ステータス別に作成します。</p><p class="nw-lead" data-i18n="en" style="display:none;">Create customer, internal, and social updates by status.</p><div class="nw-lang-switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div></header>
 <main class="nw-main"><div class="ad-slot ad-top">広告枠</div>
 <section class="nw-note nw-warning"><h2 data-i18n="ja">重要な注意</h2><h2 data-i18n="en" style="display:none;">Important note</h2><p data-i18n="ja">このツールは更新文のたたき台です。外部公開前に事実確認、責任者、法務、広報、セキュリティ担当の確認を行ってください。</p><p data-i18n="en" style="display:none;">This tool creates draft updates only. Review facts and wording with responsible, legal, PR, and security owners before publishing.</p></section>
 <section class="card"><div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none;">Input</h2></div><div class="card-bd"><div id="formError" class="form-error"></div>
-<div class="field"><label class="label" for="service">Service / サービス名</label><input id="service" class="input js-input" type="text" placeholder="API / Web app"></div>
+<div class="field"><label class="label" for="service">Service / サービス名</label><input id="service" class="input js-input" type="text" stable content="API / Web app"></div>
 <div class="field"><label class="label" for="status">Status</label><select id="status" class="select js-input"><option value="Investigating">Investigating</option><option value="Identified">Identified</option><option value="Monitoring">Monitoring</option><option value="Resolved">Resolved</option></select></div>
 <div class="field"><label class="label" for="tone">Tone</label><select id="tone" class="select js-input"><option value="short">Short</option><option value="standard" selected>Standard</option><option value="polite">Polite</option></select></div>
 <div class="field"><label class="label" for="audience">Download audience</label><select id="audience" class="select"><option value="customer">Customer</option><option value="internal">Internal</option><option value="social">Social</option></select></div>
