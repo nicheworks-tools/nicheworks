@@ -244,6 +244,8 @@
     privacy: document.getElementById("reqPrivacy").checked
   });
 
+  const hasAnySelection = (req) => Object.values(req).some(Boolean);
+
   const scoreTool = (tool, req) => {
     return requirementDefs.reduce((total, def) => {
       if (req[def.key] && tool.tags.includes(def.tag)) {
@@ -257,6 +259,7 @@
     const req = getSelections();
     const picks = toolList
       .map((tool) => ({ tool, score: scoreTool(tool, req) }))
+      .filter((pick) => pick.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 3);
 
@@ -404,6 +407,26 @@
     });
   };
 
+  const buildStateCard = (message) => {
+    const card = document.createElement("div");
+    card.className = "result-card";
+
+    const p = document.createElement("p");
+    p.className = "result-best";
+    p.textContent = message;
+
+    card.appendChild(p);
+    return card;
+  };
+
+  const getInitialMessage = (lang) => lang === "ja"
+    ? "要件を1つ以上選んでから、おすすめを出してください。"
+    : "Select at least one requirement, then generate candidate form types.";
+
+  const getCopyBlockedMessage = (lang) => lang === "ja"
+    ? "まだ結果がありません。要件を選んで生成してください。"
+    : "No results yet. Select requirements and generate first.";
+
   const initTool = () => {
     const btnSelect = document.getElementById("btnSelect");
     const btnQuickStart = document.getElementById("btnQuickStart");
@@ -412,14 +435,68 @@
     const resultList = document.getElementById("resultList");
     const memoOutput = document.getElementById("memoOutput");
     const langButtons = Array.from(document.querySelectorAll(".nw-lang-switch button"));
-    let resultsText = "-";
-    let memoText = "-";
+    let resultsText = "";
+    let memoText = "";
+    let hasGenerated = false;
+
+    const currentLang = () => document.documentElement.lang || "ja";
+
+    const setCopyEnabled = (enabled) => {
+      btnCopyResults.disabled = !enabled;
+      btnCopyMemo.disabled = !enabled;
+      btnCopyResults.setAttribute("aria-disabled", String(!enabled));
+      btnCopyMemo.setAttribute("aria-disabled", String(!enabled));
+    };
+
+    const showState = (message, memoMessage = "-") => {
+      resultList.innerHTML = "";
+      resultList.appendChild(buildStateCard(message));
+      memoOutput.textContent = memoMessage;
+    };
+
+    const showInitialState = () => {
+      const lang = currentLang();
+      resultsText = "";
+      memoText = "";
+      hasGenerated = false;
+      setCopyEnabled(false);
+      showState(getInitialMessage(lang), "-");
+    };
+
+    const showNoSelectionState = () => {
+      const lang = currentLang();
+      resultsText = "";
+      memoText = "";
+      hasGenerated = false;
+      setCopyEnabled(false);
+      showState(getInitialMessage(lang), getCopyBlockedMessage(lang));
+    };
 
     const render = () => {
-      const lang = document.documentElement.lang || "ja";
+      const lang = currentLang();
+      const req = getSelections();
+      if (!hasAnySelection(req)) {
+        showNoSelectionState();
+        return;
+      }
+
       const recommendations = buildRecommendationData(lang);
+      if (!recommendations.length) {
+        resultsText = "";
+        memoText = "";
+        hasGenerated = false;
+        setCopyEnabled(false);
+        showState(
+          lang === "ja" ? "一致する候補がありません。要件を見直してください。" : "No matching candidate types. Adjust the requirements.",
+          "-"
+        );
+        return;
+      }
+
       resultsText = buildResultsText(lang, recommendations);
       memoText = buildMemoText(lang, recommendations[0]);
+      hasGenerated = true;
+      setCopyEnabled(true);
 
       resultList.innerHTML = "";
       buildRecommendationCards(recommendations, lang).forEach((card) => resultList.appendChild(card));
@@ -437,18 +514,32 @@
       render();
     });
     btnCopyResults.addEventListener("click", async () => {
+      if (!hasGenerated || !resultsText.trim()) {
+        showState(getCopyBlockedMessage(currentLang()), memoOutput.textContent || "-");
+        return;
+      }
       const ok = await window.NW.copyToClipboard(resultsText.trim());
       if (ok) btnCopyResults.classList.add("primary");
       setTimeout(() => btnCopyResults.classList.remove("primary"), 600);
     });
     btnCopyMemo.addEventListener("click", async () => {
+      if (!hasGenerated || !memoText.trim()) {
+        showState(getCopyBlockedMessage(currentLang()), memoOutput.textContent || "-");
+        return;
+      }
       const ok = await window.NW.copyToClipboard(memoText.trim());
       if (ok) btnCopyMemo.classList.add("primary");
       setTimeout(() => btnCopyMemo.classList.remove("primary"), 600);
     });
-    langButtons.forEach((btn) => btn.addEventListener("click", render));
+    langButtons.forEach((btn) => btn.addEventListener("click", () => {
+      if (hasGenerated) {
+        render();
+      } else {
+        showInitialState();
+      }
+    }));
 
-    render();
+    showInitialState();
   };
 
   document.addEventListener("DOMContentLoaded", initTool);
