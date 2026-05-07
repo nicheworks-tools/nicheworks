@@ -1,7 +1,7 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
-  const STRIPE = 'https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208';
+  const STRIPE = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
   const KEY = 'nw_pro_outsource_spec_generator';
   let generated = false;
   const lang = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
