@@ -31,9 +31,18 @@
     usage.href = "./usage.html";
     usage.textContent = "使い方";
 
-    var dot = document.createElement("span");
-    dot.className = "nw-dot";
-    dot.textContent = "•";
+    var dot1 = document.createElement("span");
+    dot1.className = "nw-dot";
+    dot1.textContent = "•";
+
+    var pro = document.createElement("a");
+    pro.className = "nw-link";
+    pro.href = "./pro.html";
+    pro.textContent = "Pro";
+
+    var dot2 = document.createElement("span");
+    dot2.className = "nw-dot";
+    dot2.textContent = "•";
 
     var home = document.createElement("a");
     home.className = "nw-link";
@@ -41,7 +50,9 @@
     home.textContent = "Home";
 
     nav.appendChild(usage);
-    nav.appendChild(dot);
+    nav.appendChild(dot1);
+    nav.appendChild(pro);
+    nav.appendChild(dot2);
     nav.appendChild(home);
   }
 
@@ -84,8 +95,9 @@
         '<div class="lck-actions">',
           '<button class="nw-btn" id="btn-md-download" type="button"' + mdDisabled + '>Markdown保存（Pro）</button>',
           '<button class="nw-btn nw-btn--ghost" id="btn-pdf-download" type="button" disabled>PDF出力（Pro予定）</button>',
+          '<a class="nw-btn nw-btn--ghost" href="./pro.html">Pro有効化・復元</a>',
         '</div>',
-        '<p class="nw-note">Pro決済導線は未設定のため、購入ボタンはまだ表示していません。手動有効化ボタンも公開画面には置きません。</p>',
+        '<p class="nw-note">Proページでこの端末のPro状態を有効化・復元できます。購入決済リンクを設定する場合も、この導線を使います。</p>',
       '</div>'
     ].join("");
 
