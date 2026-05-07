@@ -16,31 +16,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>LP骨子作成｜LP Skeleton Generator | NicheWorks</title>
-  <meta name="description" content="LP骨子作成｜LP Skeleton Generator は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="description" content="LPの構成とコピー骨子をブラウザ内で作成します。ProでMarkdown/HTMLエクスポートに対応します。">
   <link rel="canonical" href="https://nicheworks.app/tools/lp-skeleton-generator/">
 
-  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="LP骨子作成｜LP Skeleton Generator | NicheWorks">
-  <meta property="og:description" content="LP骨子作成｜LP Skeleton Generator は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta property="og:description" content="LPの構成とコピー骨子を作成します。ProでMarkdown/HTMLエクスポートに対応します。">
   <meta property="og:url" content="https://nicheworks.app/tools/lp-skeleton-generator/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
-  <!--
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
-  -->
-
-  <!-- JSON-LD (WebApplication) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,7 +38,7 @@
     "name": "LP Skeleton Generator",
     "url": "https://nicheworks.app/tools/lp-skeleton-generator/",
     "applicationCategory": "UtilityApplication",
-    "description": "Generate landing page skeletons and copy suggestions.",
+    "description": "Generate landing page skeletons and copy suggestions. Pro unlocks Markdown and HTML exports.",
     "operatingSystem": "All"
   }
   </script>
@@ -57,7 +47,7 @@
   <meta name="robots" content="index,follow">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:title" content="LP骨子作成｜LP Skeleton Generator | NicheWorks">
-  <meta name="twitter:description" content="LP骨子作成｜LP Skeleton Generator は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="twitter:description" content="LPの構成とコピー骨子を作成します。ProでMarkdown/HTMLエクスポートに対応します。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 
@@ -76,14 +66,11 @@
   </header>
 
   <main class="nw-main">
-    <!-- Top Ad (required) -->
     <div class="ad-slot ad-top">広告枠</div>
 
-    <!-- Privacy note (recommended for text tools) -->
     <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
     <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
 
-    <!-- Tool UI -->
     <section class="card">
       <div class="card-hd">
         <h2 class="card-title" data-i18n="ja">入力</h2>
@@ -95,37 +82,37 @@
           <div class="field">
             <label class="label" data-i18n="ja" for="productName">商品・サービス名</label>
             <label class="label" data-i18n="en" for="productName" style="display:none;">Product name</label>
-            <input class="input" id="productName" type="text" stable content="NicheWorks Suite" />
+            <input class="input" id="productName" type="text" placeholder="NicheWorks Suite" />
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja" for="target">ターゲット</label>
             <label class="label" data-i18n="en" for="target" style="display:none;">Target audience</label>
-            <input class="input" id="target" type="text" stable content="小規模チームの運用担当" />
+            <input class="input" id="target" type="text" placeholder="小規模チームの運用担当" />
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja" for="benefits">ベネフィット（箇条書き）</label>
             <label class="label" data-i18n="en" for="benefits" style="display:none;">Benefits (bullets)</label>
-            <textarea class="textarea" id="benefits" stable content="作業時間を50%削減\nレポートが自動化"></textarea>
+            <textarea class="textarea" id="benefits" placeholder="作業時間を50%削減&#10;レポートが自動化"></textarea>
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja" for="price">価格（任意）</label>
             <label class="label" data-i18n="en" for="price" style="display:none;">Price (optional)</label>
-            <input class="input" id="price" type="text" stable content="¥3,000/月" />
+            <input class="input" id="price" type="text" placeholder="¥3,000/月" />
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja" for="proof">実績・証拠（任意）</label>
             <label class="label" data-i18n="en" for="proof" style="display:none;">Proof (optional)</label>
-            <input class="input" id="proof" type="text" stable content="導入30社、継続率95%" />
+            <input class="input" id="proof" type="text" placeholder="導入30社、継続率95%" />
           </div>
 
           <div class="field">
             <label class="label" data-i18n="ja" for="cta">CTA</label>
             <label class="label" data-i18n="en" for="cta" style="display:none;">CTA</label>
-            <input class="input" id="cta" type="text" stable content="無料トライアルを始める" />
+            <input class="input" id="cta" type="text" placeholder="無料トライアルを始める" />
           </div>
 
           <div class="row">
@@ -152,10 +139,8 @@
       </div>
     </section>
 
-    <!-- Bottom Ad (recommended) -->
     <div class="ad-slot ad-bottom">広告枠</div>
 
-    <!-- Donate (1–2 placements max) -->
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
@@ -165,7 +150,6 @@
       </div>
     </div>
 
-    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
     <section class="nw-other">
       <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
       <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
@@ -186,5 +170,6 @@
   </footer>
 
   <script src="./app.js"></script>
+  <script src="./pro-addon.js"></script>
 </body>
 </html>
