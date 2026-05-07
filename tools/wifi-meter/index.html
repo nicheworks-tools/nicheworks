@@ -11,122 +11,134 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>WiFi 混雑度チェッカー｜WiFi Congestion Meter | NicheWorks</title>
-  <meta name="description" content="ブラウザが返す推定値をもとにWiFi混雑度を可視化する軽量ツール。安全・接続不要・個人情報アクセスなし。">
+  <title>通信状態チェック｜WiFi Meter | NicheWorks</title>
+  <meta name="description" content="Network Information APIが返す推定RTT・推定帯域をもとに、通信状態の目安を表示する無料ツールです。WiFi診断や速度測定の正確な代替ではありません。">
   <link rel="canonical" href="https://nicheworks.app/tools/wifi-meter/">
+  <meta name="robots" content="index,follow">
 
-  <!-- OGP -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="WiFi 混雑度チェッカー｜WiFi Congestion Meter | NicheWorks">
-  <meta property="og:description" content="ブラウザが返す推定値をもとにWiFi混雑度を可視化する軽量ツール。安全・接続不要・個人情報アクセスなし。">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="通信状態チェック｜WiFi Meter | NicheWorks">
+  <meta property="og:description" content="Network Information APIが返す推定RTT・推定帯域をもとに、通信状態の目安を表示する無料ツールです。WiFi診断や速度測定の正確な代替ではありません。">
   <meta property="og:url" content="https://nicheworks.app/tools/wifi-meter/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="通信状態チェック｜WiFi Meter | NicheWorks">
+  <meta name="twitter:description" content="Network Information APIが返す推定RTT・推定帯域をもとに、通信状態の目安を表示する無料ツールです。WiFi診断や速度測定の正確な代替ではありません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- AdSense -->
+  <!-- AdSense: keep auto ads script. Manual ad slots are placeholders until a real slot ID is assigned. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Analytics -->
-  
-
   <link rel="stylesheet" href="style.css" />
 
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="WiFi 混雑度チェッカー | NicheWorks">
-  <meta property="og:description:en" content="This NicheWorks page has been updated with a stable description.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.app/tools/wifi-meter/">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="WiFi 混雑度チェッカー | NicheWorks">
-  <meta name="twitter:description:en" content="This NicheWorks page has been updated with a stable description.">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <!-- JSON-LD 日本語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "WiFi 混雑度チェッカー｜WiFi Congestion Meter",
-    "url": "https://nicheworks.app/tools/wifi-meter/",
-    "description": "ブラウザが返す推定値をもとにWiFi混雑度を可視化する軽量ツール。安全・接続不要・個人情報アクセスなし。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
-  }
-  </script>
-  <!-- JSON-LD 英語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "WiFi 混雑度チェッカー | NicheWorks",
-    "url": "https://nicheworks.app/tools/wifi-meter/",
-    "description": "This NicheWorks page has been updated with a stable description.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "WiFi Meter",
+        "url": "https://nicheworks.app/tools/wifi-meter/",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "All",
+        "description": "Network Information APIが返す推定RTT・推定帯域をもとに、通信状態の目安を表示する無料ツールです。WiFi診断や速度測定の正確な代替ではありません。",
+        "inLanguage": ["ja", "en"],
+        "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "WiFiのSSIDやパスワードを取得しますか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "いいえ。SSID、パスワード、周辺WiFi一覧、接続先一覧にはアクセスしません。"}
+          },
+          {
+            "@type": "Question",
+            "name": "正確な速度測定ですか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "いいえ。Network Information APIが返す推定RTT・推定帯域の目安です。速度測定サイトやping診断の代替ではありません。"}
+          },
+          {
+            "@type": "Question",
+            "name": "どのブラウザでも使えますか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "いいえ。一部ブラウザではNetwork Information APIが使えず、RTTや推定帯域が表示されない場合があります。"}
+          },
+          {
+            "@type": "Question",
+            "name": "ページ上で外部通信はありますか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "ツールの入力値は送信しませんが、ページ表示のためGA4、AdSense、Cloudflare Analyticsなどが読み込まれます。"}
+          }
+        ]
+      }
+    ]
   }
   </script>
 <script defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
 </script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="WiFi 混雑度チェッカー｜WiFi Congestion Meter | NicheWorks">
-  <meta name="twitter:description" content="ブラウザが返す推定値をもとにWiFi混雑度を可視化する軽量ツール。安全・接続不要・個人情報アクセスなし。">
 </head>
 
 <body>
 
 <header class="nw-header">
-  <h1 data-lang="ja">WiFi 混雑度チェッカー</h1>
-  <h1 data-lang="en">WiFi Congestion Meter</h1>
+  <h1 data-lang="ja">WiFi Meter｜通信状態の目安</h1>
+  <h1 data-lang="en">WiFi Meter｜Connection Estimate</h1>
 
   <p class="nw-desc" data-lang="ja">
-    ブラウザが返す推定値からWiFi混雑度を可視化する安全な軽量ツールです。
+    Network Information APIが返す推定RTT・推定帯域をもとに、通信状態の目安を表示します。
   </p>
   <p class="nw-desc" data-lang="en">
-    A safe, lightweight tool that visualizes WiFi congestion based on browser-estimated values.
+    Shows a connection estimate based on RTT and downlink values reported by the Network Information API.
   </p>
 
   <p class="nw-small" data-lang="ja">
-    ※ このツールはSensitive情報には一切アクセスしません。
+    WiFi診断・速度測定・ping診断の正確な代替ではありません。
   </p>
   <p class="nw-small" data-lang="en">
-    ※ This tool does not access any sensitive data.
+    This is not a precise replacement for WiFi diagnostics, speed tests, or ping tools.
   </p>
 
   <a class="nw-link" href="usage.html#data-section" data-lang="ja">詳しい技術説明はこちら</a>
   <a class="nw-link" href="usage.html#data-section" data-lang="en">See technical details here</a>
 
-  <div class="lang-switch">
+  <div class="lang-switch" aria-label="Language switch">
     <button data-setlang="ja">JP</button>
     <button data-setlang="en">EN</button>
   </div>
 </header>
 
-<!-- ad-top -->
-<div class="nw-ad-top">
-  <ins class="adsbygoogle"
-    style="display:block"
-   
-    data-ad-slot="1234567890"
-    data-ad-format="auto"></ins>
+<div class="ad-slot nw-ad-top ad-top" aria-label="Advertisement placeholder">
+  <span data-lang="ja">広告枠（準備中）</span>
+  <span data-lang="en">Ad space (preparing)</span>
 </div>
 
 <main class="nw-main">
 
-  <!-- Start / Stop -->
+  <section class="nw-card nw-notice" aria-label="Important notes">
+    <p data-lang="ja">
+      このツールはWiFiのSSID、パスワード、接続先一覧、周辺WiFi一覧にはアクセスしません。ただしページ表示のため、GA4・AdSense・Cloudflare Analyticsなどの広告/解析タグは読み込まれます。
+    </p>
+    <p data-lang="en">
+      This tool does not access WiFi SSIDs, passwords, connected-network lists, or nearby WiFi lists. However, GA4, AdSense, Cloudflare Analytics, and similar page scripts may load for ads and analytics.
+    </p>
+    <p data-lang="ja">
+      一部ブラウザではNetwork Information APIが利用できません。非対応の場合、RTTや推定帯域は表示されません。Safari/iOSでは取得できない場合があります。
+    </p>
+    <p data-lang="en">
+      Some browsers do not support the Network Information API. When unsupported, RTT and estimated bandwidth will not be available. Safari/iOS may not provide these values.
+    </p>
+  </section>
+
   <section class="nw-controls">
     <div class="nw-controls-row">
       <button class="start-btn nw-btn-primary" data-lang="ja">Start 計測開始</button>
@@ -135,70 +147,68 @@
       <button class="stop-btn nw-btn-secondary hidden" data-lang="ja">Stop 停止</button>
       <button class="stop-btn nw-btn-secondary hidden" data-lang="en">Stop</button>
     </div>
-    <div id="indicator" class="nw-indicator hidden">
+    <div id="indicator" class="nw-indicator hidden" aria-live="polite">
       ● <span data-lang="ja">計測中…</span><span data-lang="en">Measuring…</span>
     </div>
+    <p id="statusMessage" class="nw-small nw-status" aria-live="polite"></p>
   </section>
 
-  <!-- Congestion Level -->
-  <section class="nw-card level-card" id="levelCard">
-    <h2 class="level-text" data-lang="ja">混雑レベル： ---</h2>
-    <h2 class="level-text" data-lang="en">Congestion Level: ---</h2>
+  <section class="nw-card level-card" id="levelCard" aria-live="polite">
+    <h2 class="level-text" data-lang="ja">通信状態の目安： ---</h2>
+    <h2 class="level-text" data-lang="en">Connection Estimate: ---</h2>
   </section>
 
-  <!-- Values -->
-  <section class="nw-values">
+  <section class="nw-values" aria-label="Latest estimated values">
     <p>
-      <span data-lang="ja">RTT（推定）：</span>
-      <span data-lang="en">Est. RTT: </span>
+      <span data-lang="ja">RTT（ブラウザ推定）：</span>
+      <span data-lang="en">Browser-estimated RTT: </span>
       <span id="rttValue">---</span> ms
     </p>
     <p>
-      <span data-lang="ja">変動幅：</span>
+      <span data-lang="ja">変動幅（推定RTT差分）：</span>
       <span data-lang="en">Fluctuation: </span>
       <span id="fluctValue">---</span> ms
     </p>
     <p>
-      <span data-lang="ja">帯域推定：</span>
-      <span data-lang="en">Est. Bandwidth: </span>
+      <span data-lang="ja">推定帯域：</span>
+      <span data-lang="en">Estimated downlink: </span>
       <span id="bwValue">---</span> Mbps
     </p>
+    <p class="nw-small" data-lang="ja">表示値はブラウザ推定値であり、実際の通信速度・遅延・WiFi電波状況とは異なる場合があります。</p>
+    <p class="nw-small" data-lang="en">Values are browser estimates and may differ from actual speed, latency, or WiFi signal conditions.</p>
   </section>
 
-  <!-- Graph -->
   <section class="nw-graph-box">
-    <canvas id="graphCanvas"></canvas>
+    <canvas id="graphCanvas" role="img" aria-label="RTT trend graph based on browser-estimated values"></canvas>
   </section>
 
-  <!-- Reset -->
   <div class="nw-reset-row">
     <button class="reset-btn nw-btn-secondary hidden" data-lang="ja">Reset 結果クリア</button>
     <button class="reset-btn nw-btn-secondary hidden" data-lang="en">Reset</button>
   </div>
 
-  <!-- FAQ -->
   <section class="nw-faq">
     <h2 data-lang="ja">FAQ</h2>
     <h2 data-lang="en">FAQ</h2>
 
     <div class="faq-item">
-      <p data-lang="ja"><strong>Q. 何を取得していますか？</strong><br>ブラウザAPIの推定値だけです。</p>
-      <p data-lang="en"><strong>Q. What data is read?</strong><br>Only browser-estimated values.</p>
+      <p data-lang="ja"><strong>Q. WiFiのSSIDやパスワードを取得しますか？</strong><br>いいえ。SSID、パスワード、接続先一覧、周辺WiFi一覧にはアクセスしません。</p>
+      <p data-lang="en"><strong>Q. Does this read WiFi SSIDs or passwords?</strong><br>No. It does not access SSIDs, passwords, connected-network lists, or nearby WiFi lists.</p>
     </div>
 
     <div class="faq-item">
-      <p data-lang="ja"><strong>Q. WiFiに接続しますか？</strong><br>接続しません。</p>
-      <p data-lang="en"><strong>Q. Does it connect to WiFi?</strong><br>No.</p>
+      <p data-lang="ja"><strong>Q. 正確な速度測定ですか？</strong><br>いいえ。Network Information APIが返す推定RTT・推定帯域の目安です。速度測定サイトやping診断の代替ではありません。</p>
+      <p data-lang="en"><strong>Q. Is this an accurate speed test?</strong><br>No. It shows estimated RTT and downlink values from the Network Information API, not a replacement for speed tests or ping diagnostics.</p>
     </div>
 
     <div class="faq-item">
-      <p data-lang="ja"><strong>Q. 安全ですか？</strong><br>危険情報は技術的に取得不可能です。</p>
-      <p data-lang="en"><strong>Q. Is it safe?</strong><br>It cannot access sensitive data.</p>
+      <p data-lang="ja"><strong>Q. どのブラウザでも使えますか？</strong><br>いいえ。一部ブラウザではNetwork Information APIが使えず、値が表示されない場合があります。</p>
+      <p data-lang="en"><strong>Q. Does it work in every browser?</strong><br>No. Some browsers do not support the Network Information API, so values may not be shown.</p>
     </div>
 
     <div class="faq-item">
-      <p data-lang="ja"><strong>Q. 正確ですか？</strong><br>あくまで“目安”です。</p>
-      <p data-lang="en"><strong>Q. How accurate?</strong><br>Values are approximate.</p>
+      <p data-lang="ja"><strong>Q. ページ上で外部通信はありますか？</strong><br>ツールの入力値は送信しませんが、ページ表示のためGA4、AdSense、Cloudflare Analyticsなどが読み込まれます。</p>
+      <p data-lang="en"><strong>Q. Does the page make external requests?</strong><br>The tool does not upload user-entered data, but GA4, AdSense, Cloudflare Analytics, and similar page scripts may load.</p>
     </div>
 
     <a class="nw-link" href="usage.html#data-section" data-lang="ja">さらに詳しく → データ取得と免責</a>
@@ -207,13 +217,9 @@
 
 </main>
 
-<!-- ad-bottom -->
-<div class="nw-ad-bottom">
-  <ins class="adsbygoogle"
-    style="display:block"
-   
-    data-ad-slot="1234567890"
-    data-ad-format="auto"></ins>
+<div class="ad-slot nw-ad-bottom ad-bottom" aria-label="Advertisement placeholder">
+  <span data-lang="ja">広告枠（準備中）</span>
+  <span data-lang="en">Ad space (preparing)</span>
 </div>
 
 <footer class="nw-footer">
@@ -229,18 +235,18 @@
     </p>
 
     <div class="nw-donate-buttons">
-      <!-- URL は後で差し替え -->
-      <a href="https://ofuse.me/nicheworks" class="nw-btn-donate">💌 OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" class="nw-btn-donate">☕ Ko-fi</a>
+      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer" class="nw-btn-donate">💌 OFUSE</a>
+      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer" class="nw-btn-donate">☕ Ko-fi</a>
     </div>
   </div>
 
   <div class="nw-links">
     <h3>NicheWorks Tools</h3>
     <ul>
-      <li><a href="/tools/webp-avif-converter/">WebP/AVIF → PNG・JPEG</a></li>
-      <li><a href="/tools/unitmaster/">UnitMaster</a></li>
+      <li><a href="/tools/light-check/">Light Check</a></li>
+      <li><a href="/tools/tiny-audio-meter/">Tiny Audio Meter</a></li>
       <li><a href="/tools/weatherdiff/">WeatherDiff</a></li>
+      <li><a href="/tools/unitmaster/">UnitMaster</a></li>
     </ul>
     <p>
       <a href="https://nicheworks.app/" class="nw-link">
@@ -250,7 +256,6 @@
   </div>
 
 </footer>
-
 
 <script src="app.js"></script>
 
