@@ -6,7 +6,12 @@
     "./data/tools.quality-002.json",
     "./data/tools.quality-003.json",
     "./data/tools.quality-004.json",
-    "./data/tools.quality-005.json"
+    "./data/tools.quality-005.json",
+    "./data/tools.quality-006.json",
+    "./data/tools.quality-007.json",
+    "./data/tools.quality-008.json",
+    "./data/tools.quality-009.json",
+    "./data/tools.quality-010.json"
   ];
   const originalFetch = window.fetch.bind(window);
 
