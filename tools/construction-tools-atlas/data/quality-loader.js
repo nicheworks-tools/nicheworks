@@ -1,7 +1,13 @@
 (() => {
   "use strict";
 
-  const QUALITY_FILES = ["./data/tools.quality-001.json"];
+  const QUALITY_FILES = [
+    "./data/tools.quality-001.json",
+    "./data/tools.quality-002.json",
+    "./data/tools.quality-003.json",
+    "./data/tools.quality-004.json",
+    "./data/tools.quality-005.json"
+  ];
   const originalFetch = window.fetch.bind(window);
 
   function isBasicData(url) {
