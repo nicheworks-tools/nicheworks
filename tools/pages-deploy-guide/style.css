@@ -145,6 +145,7 @@ body{
   border-radius:10px;
   cursor:pointer;
   font-size:13px;
+  text-decoration:none;
   transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
 .btn:hover{
@@ -184,6 +185,59 @@ body{
   border:none;
   border-top:1px solid var(--border);
   margin:12px 0;
+}
+
+.pro-card{
+  border-color:#d1d5db;
+}
+.pro-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.pro-sub{
+  margin:4px 0 0;
+  font-size:12px;
+  color:var(--muted);
+}
+.pro-status{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  font-size:11px;
+  white-space:nowrap;
+}
+.pro-status.active{
+  border-color:#15803d;
+  color:#15803d;
+  background:#f0fdf4;
+}
+.pro-status.inactive{
+  border-color:#9ca3af;
+  color:#6b7280;
+  background:#f9fafb;
+}
+.pro-locked{
+  margin:0 0 10px;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fffbeb;
+  font-size:12px;
+  color:#374151;
+}
+.pro-locked p{
+  margin:0 0 8px;
+}
+.pro-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
 .nw-donate{
@@ -297,6 +351,9 @@ body{
 
 @media (max-width:480px){
   .nw-main{ padding:10px 10px 18px; }
-  .row{ flex-direction:column; align-items:stretch; }
+  .row,
+  .pro-head,
+  .pro-actions{ flex-direction:column; align-items:stretch; }
   .btn{ width:100%; }
+  .pro-status{ align-self:flex-start; }
 }
