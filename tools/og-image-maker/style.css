@@ -124,7 +124,22 @@ body{
   font-size:14px;
   outline:none;
 }
+.input[aria-invalid="true"]{
+  border-color:#dc2626;
+  background:#fff7f7;
+}
 .textarea{ min-height:110px; resize:vertical; }
+.field-help{
+  margin:0;
+  font-size:11px;
+  color:var(--muted);
+}
+.error-text{
+  min-height:16px;
+  margin:0;
+  font-size:11px;
+  color:#dc2626;
+}
 
 .row{
   display:flex;
@@ -145,6 +160,7 @@ body{
   border-radius:10px;
   cursor:pointer;
   font-size:13px;
+  text-decoration:none;
   transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
 .btn:hover{
@@ -182,6 +198,59 @@ body{
   border:none;
   border-top:1px solid var(--border);
   margin:12px 0;
+}
+
+.pro-card{
+  padding:10px;
+  border:1px solid #dbeafe;
+  background:#eff6ff;
+  border-radius:12px;
+}
+.pro-card strong{
+  font-size:13px;
+}
+.pro-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.pro-actions .input{
+  flex:1 1 180px;
+}
+
+.toast{
+  min-height:20px;
+  margin-top:8px;
+  font-size:12px;
+  color:var(--muted);
+  opacity:0;
+  transition:opacity .16s ease;
+}
+.toast.show{
+  opacity:1;
+}
+
+.nw-faq{
+  margin:20px 0 12px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+.nw-faq h2{
+  margin:0 0 10px;
+  font-size:15px;
+}
+.faq-item{
+  margin:10px 0;
+}
+.faq-item h3{
+  margin:0 0 4px;
+  font-size:13px;
+}
+.faq-item p{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
 }
 
 .nw-donate{
@@ -253,9 +322,9 @@ body{
   background:#fff;
 }
 
-/* Responsive transform: <=480px */
 @media (max-width:480px){
   .nw-main{ padding:10px 10px 18px; }
-  .row{ flex-direction:column; align-items:stretch; }
+  .row, .pro-actions{ flex-direction:column; align-items:stretch; }
   .btn{ width:100%; }
+  .pro-actions .input{ flex-basis:auto; }
 }
