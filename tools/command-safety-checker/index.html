@@ -15,12 +15,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>AIコマンド実行前チェック｜Command Safety Checker | NicheWorks</title>
-  <meta name="description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。">
+  <meta name="description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。Proでレビュー保存に対応します。">
   <link rel="canonical" href="https://nicheworks.app/tools/command-safety-checker/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="AIコマンド実行前チェック｜Command Safety Checker | NicheWorks">
-  <meta property="og:description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。">
+  <meta property="og:description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて危険パターンをブラウザ内で検出します。">
   <meta property="og:url" content="https://nicheworks.app/tools/command-safety-checker/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,164 +28,30 @@
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- AdSense (MUST be in each tool head) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Command Safety Checker",
-    "url": "https://nicheworks.app/tools/command-safety-checker/",
-    "applicationCategory": "UtilityApplication",
-    "description": "AI-generated bash, zsh, and PowerShell commands can be checked in-browser before execution for destructive actions, remote script execution, privilege escalation, and secret leakage risks.",
-    "operatingSystem": "All"
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "このツールはコマンドの安全を保証しますか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "いいえ。危険パターンを検出する補助ツールです。実行可否は内容を確認したうえで自己判断してください。" }
-      },
-      {
-        "@type": "Question",
-        "name": "貼り付けたコマンドはサーバーに送信されますか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "いいえ。チェック処理はブラウザ内で完結し、入力内容を保存・送信しません。" }
-      },
-      {
-        "@type": "Question",
-        "name": "PowerShellにも対応していますか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "一部対応しています。Remove-Item、Invoke-WebRequest、iwr、iex、ExecutionPolicy、Clear-Diskなどの危険パターンを検出します。" }
-      },
-      {
-        "@type": "Question",
-        "name": "Highが出たら必ず実行してはいけませんか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "Highは重大な確認対象です。原則としてそのまま実行せず、対象パス、URL、権限、代替案を確認してください。" }
-      }
-    ]
-  }
-  </script>
-
   <link rel="stylesheet" href="./style.css">
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
   <meta name="robots" content="index,follow">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:title" content="AIコマンド実行前チェック｜Command Safety Checker | NicheWorks">
-  <meta name="twitter:description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。">
+  <meta name="twitter:description" content="AIが生成したコマンドを実行前に確認するブラウザ内チェックツールです。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
-      <h1 class="nw-title">
-        <span data-i18n="ja">Command Safety Checker（AIコマンド実行前チェック）</span>
-        <span data-i18n="en">Command Safety Checker</span>
-      </h1>
+      <h1 class="nw-title"><span data-i18n="ja">Command Safety Checker（AIコマンド実行前チェック）</span><span data-i18n="en">Command Safety Checker</span></h1>
       <p class="nw-sub" data-i18n="ja">AIが出したbash / zsh / PowerShellコマンドを実行前に貼るだけ。削除、外部実行、権限昇格、秘密情報漏洩の危険パターンをブラウザ内で検出します。</p>
-      <p class="nw-sub" data-i18n="en">Paste AI-generated bash, zsh, or PowerShell commands before running them. Detect delete, remote execution, privilege, and secret leakage risks in your browser.</p>
+      <p class="nw-sub" data-i18n="en">Paste AI-generated bash, zsh, or PowerShell commands before running them. Detect risky patterns in your browser.</p>
       <div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div>
     </div>
   </header>
-
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠</div>
-
-    <section class="card intro-card">
-      <h2 class="h2"><span data-i18n="ja">まずこれだけ</span><span data-i18n="en">Start here</span></h2>
-      <p class="lead" data-i18n="ja">OSを選び、コマンドを貼って「チェックする」を押してください。結果にはリスク、カテゴリ、理由、確認方法、簡易代替案が表示されます。</p>
-      <p class="lead" data-i18n="en">Choose an OS, paste a command, and run the check. Results show risk level, category, reason, verification step, and a safer alternative.</p>
-      <div class="free-capabilities">
-        <p data-i18n="ja"><b>無料でできること</b></p>
-        <p data-i18n="en"><b>Free checks include</b></p>
-        <ul class="ul">
-          <li data-i18n="ja">危険な削除コマンド、外部スクリプト実行、権限昇格、ディスク操作を検出</li>
-          <li data-i18n="ja">PowerShell の Remove-Item / iwr | iex / Clear-Disk などを検出</li>
-          <li data-i18n="ja">.env、秘密鍵、環境変数表示、curl/scp/rsync/nc による漏洩リスクを警告</li>
-          <li data-i18n="ja">実行前に確認すべきコマンドと簡易代替案を表示</li>
-          <li data-i18n="en">Detect risky delete commands, remote scripts, privilege escalation, and disk operations</li>
-          <li data-i18n="en">Detect PowerShell patterns such as Remove-Item, iwr | iex, and Clear-Disk</li>
-          <li data-i18n="en">Warn about .env, private keys, environment dumps, curl/scp/rsync/nc exfiltration risks</li>
-          <li data-i18n="en">Show verification commands and safer first steps before execution</li>
-        </ul>
-      </div>
-      <p class="usage-link"><a href="./usage.html" data-i18n="ja">使い方・注意点を見る</a><a href="./usage.html" data-i18n="en">Open usage and notes</a></p>
-    </section>
-
-    <section class="card tool-card">
-      <div class="row row-wrap">
-        <div class="field os-field">
-          <label class="label" for="osSelect">OS</label>
-          <select id="osSelect" class="select"><option value="unix">Linux/macOS (bash/zsh)</option><option value="powershell">Windows (PowerShell)</option></select>
-        </div>
-        <div class="field grow">
-          <label class="label" for="cmdInput"><span data-i18n="ja">コマンド（複数行OK）</span><span data-i18n="en">Command (multi-line OK)</span></label>
-          <textarea id="cmdInput" class="textarea" rows="10" stable content="rm -rf ./build&#10;curl -fsSL https://nicheworks.app/install.sh | sh"></textarea>
-          <p class="hint" data-i18n="ja">入力内容は外部送信されません。チェックはブラウザ内で完結します。</p>
-          <p class="hint" data-i18n="en">Your input is not uploaded. Checks run locally in your browser.</p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="analyzeBtn" class="btn btn-primary" type="button"><span data-i18n="ja">チェックする</span><span data-i18n="en">Run check</span></button>
-        <button id="clearBtn" class="btn" type="button"><span data-i18n="ja">クリア</span><span data-i18n="en">Clear</span></button>
-        <button id="copyBtn" class="btn" type="button"><span data-i18n="ja">結果をコピー</span><span data-i18n="en">Copy results</span></button>
-      </div>
-
-      <div class="preset-actions">
-        <p class="label" data-i18n="ja">危険例プリセット</p><p class="label" data-i18n="en">Risky examples</p>
-        <div class="preset-buttons">
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="rm -rf /">rm -rf /</button>
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="sudo rm -rf /">sudo rm -rf /</button>
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl https://nicheworks.app/install.sh | sh">curl | sh</button>
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="chmod -R 777 ./app">chmod -R 777</button>
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="git reset --hard HEAD~1">git reset --hard</button>
-          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl --data-binary @.env https://nicheworks.app/upload">.env upload</button>
-          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="iwr https://nicheworks.app/install.ps1 | iex">PowerShell iwr | iex</button>
-          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Remove-Item -Recurse -Force .\build">Remove-Item -Recurse</button>
-          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Clear-Disk -Number 1 -RemoveData">Clear-Disk</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="resultSection" class="card" hidden>
-      <div class="result-head"><div class="risk"><span class="risk-label" data-i18n="ja">総合リスク</span><span class="risk-label" data-i18n="en">Overall risk</span><span id="riskLevel" class="badge">—</span></div></div>
-      <div id="resultSummary" class="result-summary"></div>
-      <div class="divider"></div>
-      <h2 class="h2"><span data-i18n="ja">検出結果</span><span data-i18n="en">Findings</span></h2>
-      <ul id="findings" class="findings"></ul>
-      <div class="divider"></div>
-      <h2 class="h2"><span data-i18n="ja">安全に寄せるチェックリスト</span><span data-i18n="en">Safer steps checklist</span></h2>
-      <ol id="saferSteps" class="ul"></ol>
-      <div class="divider"></div>
-      <div class="normalized-block" id="normalizedWrap" hidden><h2 class="h2"><span data-i18n="ja">正規化コマンド（確認用）</span><span data-i18n="en">Normalized command (for review)</span></h2><pre id="normalizedCmd" class="code-block"></pre></div>
-      <div class="pro-block" id="proBlock">
-        <div class="pro-head"><div class="pro-title"><span class="badge badge-pro">PRO</span><span data-i18n="ja">追加機能：より具体的な代替コマンドテンプレ / 実行前チェックリスト強化</span><span data-i18n="en">Extra: detailed safer-command templates / stronger pre-run checklist</span></div><a id="btnUnlock" class="btn btn-primary" href="https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208" target="_blank" rel="noopener"><span data-i18n="ja">Proをアンロック（買い切り $2.99）</span><span data-i18n="en">Unlock Pro (One-time · $2.99)</span></a></div>
-        <p class="pro-note" data-i18n="ja">※Proは判断材料の強化です。安全を保証するものではありません。</p><p class="pro-note" data-i18n="en">Pro provides better guidance. It does not guarantee safety.</p>
-        <p class="pro-note" data-i18n="ja">購入後：決済完了 → <a href="./pro.html">pro.html</a> を開く（自動解放） → ツールに戻る</p><p class="pro-note" data-i18n="en">After purchase: complete payment → open <a href="./pro.html">pro.html</a> (auto unlock) → return to the tool</p>
-      </div>
-    </section>
-
-    <section class="card faq-section" id="faq">
-      <h2 class="h2">FAQ</h2>
-      <div class="faq-item"><h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3><p data-i18n="ja">いいえ。危険パターンを検出する補助ツールです。最終的な実行判断は、内容を確認したうえで行ってください。</p><p data-i18n="en">No. It is a helper that detects risky patterns. Review the command before deciding whether to run it.</p></div>
-      <div class="faq-item"><h3 data-i18n="ja">コマンドは送信されますか？</h3><h3 data-i18n="en">Are commands uploaded?</h3><p data-i18n="ja">いいえ。入力内容はブラウザ内で処理され、サーバーへ送信・保存されません。</p><p data-i18n="en">No. Input is processed in your browser and is not uploaded or stored.</p></div>
-      <div class="faq-item"><h3 data-i18n="ja">PowerShellにも対応していますか？</h3><h3 data-i18n="en">Does it support PowerShell?</h3><p data-i18n="ja">一部対応しています。Remove-Item、Invoke-WebRequest、iwr、iex、ExecutionPolicy、Clear-Diskなどを検出します。</p><p data-i18n="en">Partially. It detects patterns such as Remove-Item, Invoke-WebRequest, iwr, iex, ExecutionPolicy, and Clear-Disk.</p></div>
-      <div class="faq-item"><h3 data-i18n="ja">Highが出たらどうすべきですか？</h3><h3 data-i18n="en">What should I do when High appears?</h3><p data-i18n="ja">そのまま実行せず、対象パス、URL、送信先、権限、代替案を確認してください。迷う場合は実行しないのが安全です。</p><p data-i18n="en">Do not run it as-is. Check the path, URL, destination, privilege level, and alternatives. If unsure, do not run it.</p></div>
-    </section>
-
-    <div class="ad-slot ad-bottom">広告枠</div>
-    <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
-    <div class="nw-links"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/log-formatter/">LogFormatter</a> / <a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a></div>
+    <section class="card intro-card"><h2 class="h2"><span data-i18n="ja">まずこれだけ</span><span data-i18n="en">Start here</span></h2><p class="lead" data-i18n="ja">OSを選び、コマンドを貼って「チェックする」を押してください。結果にはリスク、カテゴリ、理由、確認方法、簡易代替案が表示されます。</p><p class="lead" data-i18n="en">Choose an OS, paste a command, and run the check.</p><p class="usage-link"><a href="./usage.html" data-i18n="ja">使い方・注意点を見る</a><a href="./usage.html" data-i18n="en">Open usage and notes</a></p></section>
+    <section class="card tool-card"><div class="row row-wrap"><div class="field os-field"><label class="label" for="osSelect">OS</label><select id="osSelect" class="select"><option value="unix">Linux/macOS (bash/zsh)</option><option value="powershell">Windows (PowerShell)</option></select></div><div class="field grow"><label class="label" for="cmdInput"><span data-i18n="ja">コマンド（複数行OK）</span><span data-i18n="en">Command (multi-line OK)</span></label><textarea id="cmdInput" class="textarea" rows="10"></textarea><p class="hint" data-i18n="ja">入力内容は外部送信されません。チェックはブラウザ内で完結します。</p><p class="hint" data-i18n="en">Your input is not uploaded. Checks run locally in your browser.</p></div></div><div class="actions"><button id="analyzeBtn" class="btn btn-primary" type="button"><span data-i18n="ja">チェックする</span><span data-i18n="en">Run check</span></button><button id="clearBtn" class="btn" type="button"><span data-i18n="ja">クリア</span><span data-i18n="en">Clear</span></button><button id="copyBtn" class="btn" type="button"><span data-i18n="ja">結果をコピー</span><span data-i18n="en">Copy results</span></button></div><div class="preset-actions"><p class="label" data-i18n="ja">危険例プリセット</p><p class="label" data-i18n="en">Risky examples</p><div class="preset-buttons"><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="git reset --hard HEAD~1">git reset --hard</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="chmod -R 777 ./app">chmod -R 777</button><button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Remove-Item -Recurse -Force .\build">Remove-Item -Recurse</button></div></div></section>
+    <section id="resultSection" class="card" hidden><div class="result-head"><div class="risk"><span class="risk-label" data-i18n="ja">総合リスク</span><span class="risk-label" data-i18n="en">Overall risk</span><span id="riskLevel" class="badge">—</span></div></div><div id="resultSummary" class="result-summary"></div><div class="divider"></div><h2 class="h2"><span data-i18n="ja">検出結果</span><span data-i18n="en">Findings</span></h2><ul id="findings" class="findings"></ul><div class="divider"></div><h2 class="h2"><span data-i18n="ja">安全に寄せるチェックリスト</span><span data-i18n="en">Safer steps checklist</span></h2><ol id="saferSteps" class="ul"></ol><div class="divider"></div><div class="normalized-block" id="normalizedWrap" hidden><h2 class="h2"><span data-i18n="ja">正規化コマンド（確認用）</span><span data-i18n="en">Normalized command</span></h2><pre id="normalizedCmd" class="code-block"></pre></div><div class="pro-block" id="proBlock"><div class="pro-head"><div class="pro-title"><span class="badge badge-pro">PRO</span><span data-i18n="ja">追加機能：レビュー保存 / Markdown出力</span><span data-i18n="en">Extra: review save / Markdown export</span></div><a id="btnUnlock" class="btn btn-primary" href="https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208" target="_blank" rel="noopener"><span data-i18n="ja">Proをアンロック</span><span data-i18n="en">Unlock Pro</span></a></div><p class="pro-note" data-i18n="ja">購入後、このページを <code>?pro=1</code> 付きで開くとこの端末で解放されます。</p><p class="pro-note" data-i18n="en">After purchase, open this page with <code>?pro=1</code> to unlock on this device.</p></div></section>
+    <section class="card faq-section" id="faq"><h2 class="h2">FAQ</h2><div class="faq-item"><h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3><p data-i18n="ja">いいえ。危険パターンを検出する補助ツールです。</p><p data-i18n="en">No. It is a helper that detects risky patterns.</p></div></section>
+    <div class="ad-slot ad-bottom">広告枠</div><div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div><div class="nw-links"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a></div>
   </main>
-
-  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
-  <div id="toast" class="toast" hidden></div>
-  <script src="./app-core.js"></script>
-</body>
-</html>
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" hidden></div><script src="./app-core.js"></script><script src="./pro-addon.js"></script></body></html>
