@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const STRIPE_URL = 'https://buy.stripe.com/bJe14p2QV1M13dz5kjcV208';
+  const STRIPE_URL = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
   const slug = location.pathname.split('/tools/')[1]?.split('/')[0] || 'tool';
   const key = 'nw_pro_' + slug.replace(/-/g, '_');
   const $ = (id) => document.getElementById(id);
