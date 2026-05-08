@@ -24,11 +24,11 @@ gtag('config', 'G-57QT78M3JB');
 <meta property="og:site_name" content="NicheWorks">
 <meta property="og:url" content="https://nicheworks.app/tools/sql-db-risk-checker/">
 <meta property="og:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-<meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。Proでは安全実行テンプレを利用できます。">
+<meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
 <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-<meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。Proでは安全実行テンプレを利用できます。">
+<meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
 <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SQL DB Risk Checker","url":"https://nicheworks.app/tools/sql-db-risk-checker/","applicationCategory":"UtilityApplication","operatingSystem":"All","description":"SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。","inLanguage":["ja","en"],"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
 </head>
@@ -55,15 +55,15 @@ gtag('config', 'G-57QT78M3JB');
       </div>
       <div class="panel pro-mini-panel">
         <h2 class="h2">Pro</h2>
-        <p class="note">Proでは安全実行テンプレ、DB別注意点、レビュー用出力を解放します。購入リンクを設定すればそのまま販売導線として使えます。</p>
-        <p class="note">¥200 買い切り想定 / 外部決済リンク対応 / 復元ボタンあり</p>
+        <p class="note">Proでは安全実行テンプレ、DB別注意点、レビュー用出力を解放します。</p>
+        <p class="note">$2.99 one-time / 外部決済リンク対応 / 復元ボタンあり</p>
       </div>
     </div>
   </section>
   <section class="tool">
     <div class="card">
       <h2 class="h2" data-i18n="sqlInputTitle">SQL入力</h2>
-      <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-stable content="sqlstable content"></textarea>
+      <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-placeholder="sqlPlaceholder"></textarea>
       <div class="options">
         <div class="opt"><label class="label" for="envSelect" data-i18n="envLabel">対象環境</label><select id="envSelect" class="select"><option value="unknown">Unknown</option><option value="dev">Dev</option><option value="staging">Staging</option><option value="prod">Prod</option></select><p class="help" data-i18n="envHelp">※自己申告です。実際の接続先は判定しません。</p></div>
         <div class="opt"><label class="label" for="dbSelect" data-i18n="dbLabel">DB種別</label><select id="dbSelect" class="select"><option value="generic">Generic</option><option value="postgres">Postgres</option><option value="mysql">MySQL</option><option value="sqlite">SQLite</option></select></div>
@@ -77,11 +77,11 @@ gtag('config', 'G-57QT78M3JB');
       <div class="card"><h2 class="h2" data-i18n="previewTitle">SQLプレビュー</h2><pre id="sqlPreview" class="preview"><code data-i18n="previewEmpty">ここに解析結果が表示されます</code></pre></div>
     </div>
     <div class="card probox" id="proBox">
-      <div class="probox-head"><h2 class="h2">Pro機能（買い切り）</h2><span class="tag" id="proStateTag">Locked</span></div>
+      <div class="probox-head"><h2 class="h2">Pro機能（one-time）</h2><span class="tag" id="proStateTag">Locked</span></div>
       <div class="pro-locked" id="proLocked">
         <p class="note">Proを購入すると、より安全な「実行手順テンプレ」やDB別プリセット表示が使えます。SQLの自動修正は行いません。</p>
-        <div class="pro-meta"><div class="pro-price-line"><span class="label">価格</span><strong class="value">¥200（買い切り）</strong></div><p class="pro-mini">決済は外部ページで行います。購入後にこのページへ戻ると復元できます。</p><p class="pro-pending-note" id="proPendingNote">販売前に pro-restore.js の PRO_PAYMENT_URL にStripe Payment Link等を設定してください。</p></div>
-        <div class="pro-price"><div class="pro-price-main"><div class="pro-price-amount">¥200</div><div class="pro-price-sub">買い切り / このブラウザで解放</div></div><div class="pro-actions"><button class="btn btn-primary" type="button" id="buyProBtn">Proを購入</button><button class="btn btn-ghost" type="button" id="restoreProBtn">購入済みを復元</button></div></div>
+        <div class="pro-meta"><div class="pro-price-line"><span class="label">価格</span><strong class="value">$2.99（one-time）</strong></div><p class="pro-mini">決済はStripeの外部ページで行います。購入後にこのページへ戻ると復元できます。</p><p class="pro-pending-note" id="proPendingNote">Stripe決済リンク設定済みです。</p></div>
+        <div class="pro-price"><div class="pro-price-main"><div class="pro-price-amount">$2.99</div><div class="pro-price-sub">one-time / このブラウザで解放</div></div><div class="pro-actions"><button class="btn btn-primary" type="button" id="buyProBtn">Proを購入</button><button class="btn btn-ghost" type="button" id="restoreProBtn">購入済みを復元</button></div></div>
         <ul class="prolist"><li>安全実行テンプレの提示（トランザクション手順）</li><li>DB種別ごとの注意点表示</li><li>ルールプリセット（Read-only強制 / Migrationモード）</li><li>レビュー用サマリーの強化</li></ul>
       </div>
       <div class="pro-unlocked" id="proUnlocked" hidden><p class="note">Proが解放されています。下のテンプレを「手順」として使ってください（自動修正はしません）。</p><h3 class="h2">安全実行テンプレ（例）</h3><div class="codebox"><code id="proTemplateCode">BEGIN;
