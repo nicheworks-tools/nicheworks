@@ -14,8 +14,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index,follow">
   <title>洗濯物の乾きやすさ判定｜Dry Meter | NicheWorks</title>
-  <meta name="description" content="現在地または緯度経度から天気データを取得し、気温・湿度・風速・降水・雲量をもとに洗濯物や布団の乾きやすさをDry Scoreで簡易判定する無料ツールです。" />
-  <link rel="canonical" href="https://nicheworks.app/tools/dry-meter/" />
+  <meta name="description" content="現在地または緯度経度から天気データを取得し、気温・湿度・風速・降水・雲量をもとに洗濯物や布団の乾きやすさをDry Scoreで簡易判定する無料ツールです。">
+  <link rel="canonical" href="https://nicheworks.app/tools/dry-meter/">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
@@ -92,8 +92,8 @@
             <button type="button" id="fetchCoordsBtn"><span data-i18n="ja">緯度経度で取得</span><span data-i18n="en">Fetch by coordinates</span></button>
           </div>
           <div class="coord-grid">
-            <label><span data-i18n="ja">緯度</span><span data-i18n="en">Latitude</span><input id="latInput" inputmode="decimal" placeholder="35.68" autocomplete="off" /></label>
-            <label><span data-i18n="ja">経度</span><span data-i18n="en">Longitude</span><input id="lonInput" inputmode="decimal" placeholder="139.76" autocomplete="off" /></label>
+            <label><span data-i18n="ja">緯度</span><span data-i18n="en">Latitude</span><input id="latInput" inputmode="decimal" stable content="35.68" autocomplete="off" /></label>
+            <label><span data-i18n="ja">経度</span><span data-i18n="en">Longitude</span><input id="lonInput" inputmode="decimal" stable content="139.76" autocomplete="off" /></label>
           </div>
           <p class="status-line" id="weatherStatus" role="status">—</p>
           <p class="mini-note" data-i18n="ja">現在地を使う場合はブラウザの位置情報許可が必要です。緯度・経度は天気取得のためOpen-Meteoへ送信されます。</p>
