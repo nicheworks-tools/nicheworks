@@ -1,69 +1,72 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-57QT78M3JB');
-</script>
-
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>洗濯物の乾きやすさ判定｜Dry Meter | NicheWorks</title>
+  <meta name="description" content="気温・湿度・風速を入力して、洗濯物や布団の乾きやすさをDry Scoreで簡易判定する無料ツールです。実際の乾燥結果や天気変化を保証するものではありません。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/dry-meter/" />
 
-  <title>洗濯物・布団の外干し判定｜DryMeter | NicheWorks</title>
-  <meta name="description" content="現在地の天気（雨・湿度・風・気温）から洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示します。">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="洗濯物の乾きやすさ判定｜Dry Meter | NicheWorks" />
+  <meta property="og:description" content="気温・湿度・風速を入力して、洗濯物や布団の乾きやすさをDry Scoreで簡易判定する無料ツールです。実際の乾燥結果や天気変化を保証するものではありません。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/dry-meter/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="洗濯物の乾きやすさ判定｜Dry Meter | NicheWorks" />
+  <meta name="twitter:description" content="気温・湿度・風速を入力して、洗濯物や布団の乾きやすさをDry Scoreで簡易判定する無料ツールです。実際の乾燥結果や天気変化を保証するものではありません。" />
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png" />
 
-  <link rel="canonical" href="https://nicheworks.app/tools/dry-meter/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="洗濯物・布団の外干し判定｜DryMeter | NicheWorks">
-  <meta property="og:description" content="現在地の天気（雨・湿度・風・気温）から洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示します。">
-  <meta property="og:url" content="https://nicheworks.app/tools/dry-meter/">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <link rel="icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
 
   <!-- AdSense（共通仕様：各ツールの head に必須。削除/改変しない） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="./style.css" />
 
-  <!-- Cloudflare Web Analytics（共通トークンに差し替え） -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "DryMeter（乾き予報）",
+    "name": "Dry Meter",
     "url": "https://nicheworks.app/tools/dry-meter/",
     "applicationCategory": "UtilityApplication",
-    "description": "現在地の天気から洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定する無料ツール。",
+    "description": "気温・湿度・風速を入力して、洗濯物や布団の乾きやすさをDry Scoreで簡易判定する無料ツールです。実際の乾燥結果や天気変化を保証するものではありません。",
     "operatingSystem": "All"
   }
   </script>
-  <meta name="robots" content="index,follow">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="洗濯物・布団の外干し判定｜DryMeter | NicheWorks">
-  <meta name="twitter:description" content="現在地の天気（雨・湿度・風・気温）から洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示します。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"実際に乾くか保証できますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。Dry Meterは気温・湿度・風速からの簡易目安です。日照、雨、素材、干し方、時間帯で結果は変わります。"}},
+      {"@type":"Question","name":"雨や降水確率も見ていますか？","acceptedAnswer":{"@type":"Answer","text":"初期版では見ていません。手動入力した気温・湿度・風速だけを使います。"}},
+      {"@type":"Question","name":"入力内容は保存されますか？","acceptedAnswer":{"@type":"Answer","text":"対象、干し方、気温、湿度、風速はこのブラウザのlocalStorageに保存されます。別端末には同期されず、ブラウザデータ削除で消えます。"}},
+      {"@type":"Question","name":"部屋干しにも使えますか？","acceptedAnswer":{"@type":"Answer","text":"目安には使えますが、部屋の広さ、換気、除湿機、サーキュレーター、洗濯物量で結果は変わります。"}}
+    ]
+  }
+  </script>
 </head>
 
 <body>
   <header class="nw-header">
-    <h1 class="nw-title" data-i18n="ja">乾き予報（DryMeter）</h1>
-    <h1 class="nw-title" data-i18n="en">DryMeter</h1>
-
-    <p class="nw-subtitle" data-i18n="ja">雨・湿度・風・気温から「外干しして失敗するか？」を即判定</p>
-    <p class="nw-subtitle" data-i18n="en">Instant “Outdoor drying risk” check from rain, humidity, wind and temperature.</p>
-
+    <h1 class="nw-title" data-i18n="ja">乾きやすさ判定（Dry Meter）</h1>
+    <h1 class="nw-title" data-i18n="en">Dry Meter</h1>
+    <p class="nw-subtitle" data-i18n="ja">気温・湿度・風速から、洗濯物や布団の乾きやすさを手動入力で簡易チェックします。</p>
+    <p class="nw-subtitle" data-i18n="en">A simple manual check for laundry and bedding drying conditions using temperature, humidity and wind.</p>
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
       <button type="button" data-lang="en">EN</button>
@@ -73,357 +76,136 @@
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠</div>
 
-    <section class="panel" aria-label="Controls">
-      <!-- Location -->
-      <div class="location" aria-label="Location">
-        <p class="label" data-i18n="ja">地域</p>
-        <p class="label" data-i18n="en">Location</p>
+    <section class="intro-card" aria-label="Tool notes">
+      <p data-i18n="ja">このページは、手動入力した気温・湿度・風速をもとにブラウザ内でDry Scoreを計算します。現在地取得や天気API取得は初期版では使っていません。</p>
+      <p data-i18n="en">This page calculates a Dry Score in your browser from manually entered temperature, humidity and wind. Location and weather API fetching are not used in this initial version.</p>
+      <p data-i18n="ja">雨、降水確率、日照、花粉、黄砂、PM2.5、取り込み時間は未考慮です。実際の乾燥結果を保証するものではありません。</p>
+      <p data-i18n="en">Rain, precipitation probability, sunlight, pollen, dust, PM2.5 and retrieval timing are not considered. Actual drying results are not guaranteed.</p>
+    </section>
 
-        <div class="location-row">
-          <button type="button" id="geoBtn">
-            <span data-i18n="ja">現在地を取得</span>
-            <span data-i18n="en">Use current location</span>
-          </button>
-
-          <button type="button" id="refreshBtn">
-            <span data-i18n="ja">更新</span>
-            <span data-i18n="en">Refresh</span>
-          </button>
-        </div>
-
-        <div class="location-row">
-          <label class="location-field">
-            <span data-i18n="ja">緯度</span><span data-i18n="en">Lat</span>
-            <input id="latInput" inputmode="decimal" stable content="35.68" />
-          </label>
-
-          <label class="location-field">
-            <span data-i18n="ja">経度</span><span data-i18n="en">Lon</span>
-            <input id="lonInput" inputmode="decimal" stable content="139.76" />
-          </label>
-
-          <button type="button" id="applyManualBtn">
-            <span data-i18n="ja">手動適用</span>
-            <span data-i18n="en">Apply</span>
-          </button>
-        </div>
-
-        <p class="location-status" id="locationStatus">
-          <span data-i18n="ja">未取得（現在地を取得、または緯度経度を入力）</span>
-          <span data-i18n="en">Not set (use current location or enter lat/lon)</span>
-        </p>
-
-        <p class="location-status" id="fetchStatus">
-          <span data-i18n="ja">天気データ：未取得</span>
-          <span data-i18n="en">Weather: not loaded</span>
-        </p>
-      </div>
-
-      <hr class="divider" />
-
-      <!-- Target & Drying controls -->
-      <div class="controls">
-        <div class="control-group">
-          <p class="label" data-i18n="ja">対象</p>
-          <p class="label" data-i18n="en">Target</p>
-          <div class="segmented" role="tablist" aria-label="Target">
-            <button type="button" class="seg active" data-target="laundry">
-              <span data-i18n="ja">普通</span><span data-i18n="en">Laundry</span>
-            </button>
-            <button type="button" class="seg" data-target="thick">
-              <span data-i18n="ja">厚手</span><span data-i18n="en">Thick</span>
-            </button>
-            <button type="button" class="seg" data-target="bedding">
-              <span data-i18n="ja">布団</span><span data-i18n="en">Bedding</span>
-            </button>
+    <section class="tool-grid" aria-label="Dry meter tool">
+      <div class="panel" aria-label="Controls">
+        <div class="controls">
+          <div class="control-group">
+            <p class="label" data-i18n="ja">対象</p>
+            <p class="label" data-i18n="en">Target</p>
+            <div class="segmented" role="group" aria-label="Target">
+              <button type="button" class="seg active" data-target="laundry"><span data-i18n="ja">普通の洗濯物</span><span data-i18n="en">Laundry</span></button>
+              <button type="button" class="seg" data-target="thick"><span data-i18n="ja">厚手</span><span data-i18n="en">Thick items</span></button>
+              <button type="button" class="seg" data-target="bedding"><span data-i18n="ja">布団</span><span data-i18n="en">Bedding</span></button>
+            </div>
+          </div>
+          <div class="control-group">
+            <p class="label" data-i18n="ja">干し方</p>
+            <p class="label" data-i18n="en">Drying method</p>
+            <div class="segmented" role="group" aria-label="Drying method">
+              <button type="button" class="seg active" data-dry="outdoor"><span data-i18n="ja">外干し</span><span data-i18n="en">Outdoor</span></button>
+              <button type="button" class="seg" data-dry="indoor"><span data-i18n="ja">部屋干し</span><span data-i18n="en">Indoor</span></button>
+            </div>
           </div>
         </div>
-
-        <div class="control-group">
-          <p class="label" data-i18n="ja">干し方（判定の参考）</p>
-          <p class="label" data-i18n="en">Drying method (for advice)</p>
-          <div class="segmented" role="tablist" aria-label="Drying method">
-            <button type="button" class="seg active" data-dry="outdoor">
-              <span data-i18n="ja">外干し</span><span data-i18n="en">Outdoor</span>
-            </button>
-            <button type="button" class="seg" data-dry="indoor">
-              <span data-i18n="ja">部屋干し</span><span data-i18n="en">Indoor</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Manual sliders (fallback / optional tweak) -->
-      <details class="manual-box" id="manualBox">
-        <summary>
-          <span data-i18n="ja">手動モード（任意）</span>
-          <span data-i18n="en">Manual mode (optional)</span>
-        </summary>
 
         <div class="preset-box" aria-label="Quick presets">
           <p class="label" data-i18n="ja">クイックプリセット</p>
           <p class="label" data-i18n="en">Quick presets</p>
           <div class="preset-buttons">
-            <button type="button" class="preset-btn" data-preset="winter-indoor">
-              <span data-i18n="ja">冬の室内</span><span data-i18n="en">Winter indoor</span>
-            </button>
-            <button type="button" class="preset-btn" data-preset="rainy-day">
-              <span data-i18n="ja">雨の日</span><span data-i18n="en">Rainy day</span>
-            </button>
-            <button type="button" class="preset-btn" data-preset="sunny-breezy">
-              <span data-i18n="ja">晴れ＋風あり</span><span data-i18n="en">Sunny & breezy</span>
-            </button>
+            <button type="button" class="preset-btn" data-preset="winter-indoor"><span data-i18n="ja">冬の室内</span><span data-i18n="en">Winter indoor</span></button>
+            <button type="button" class="preset-btn" data-preset="humid-day"><span data-i18n="ja">高湿度の日</span><span data-i18n="en">High humidity</span></button>
+            <button type="button" class="preset-btn" data-preset="dry-breezy"><span data-i18n="ja">乾きやすい日</span><span data-i18n="en">Easy drying</span></button>
           </div>
         </div>
 
         <div class="inputs" aria-label="Manual inputs">
           <div class="input-row">
-            <div class="input-head">
-              <label class="input-label" for="temp">
-                <span data-i18n="ja">気温（℃）</span><span data-i18n="en">Temperature (°C)</span>
-              </label>
-              <output id="tempOut" class="input-value">22</output>
-            </div>
-            <input id="temp" type="range" min="0" max="40" step="1" value="22" />
+            <div class="input-head"><label class="input-label" for="temp"><span data-i18n="ja">気温（℃）</span><span data-i18n="en">Temperature (°C)</span></label><output id="tempOut" class="input-value">22</output></div>
+            <input id="temp" type="range" min="-10" max="45" step="1" value="22" />
           </div>
-
           <div class="input-row">
-            <div class="input-head">
-              <label class="input-label" for="humidity">
-                <span data-i18n="ja">湿度（%）</span><span data-i18n="en">Humidity (%)</span>
-              </label>
-              <output id="humidityOut" class="input-value">58</output>
-            </div>
-            <input id="humidity" type="range" min="30" max="100" step="1" value="58" />
+            <div class="input-head"><label class="input-label" for="humidity"><span data-i18n="ja">湿度（%）</span><span data-i18n="en">Humidity (%)</span></label><output id="humidityOut" class="input-value">58</output></div>
+            <input id="humidity" type="range" min="0" max="100" step="1" value="58" />
           </div>
-
           <div class="input-row">
-            <div class="input-head">
-              <label class="input-label" for="wind">
-                <span data-i18n="ja">風速（m/s）</span><span data-i18n="en">Wind (m/s)</span>
-              </label>
-              <output id="windOut" class="input-value">3.2</output>
-            </div>
-            <input id="wind" type="range" min="0" max="10" step="0.1" value="3.2" />
+            <div class="input-head"><label class="input-label" for="wind"><span data-i18n="ja">風速（m/s）</span><span data-i18n="en">Wind (m/s)</span></label><output id="windOut" class="input-value">3.2</output></div>
+            <input id="wind" type="range" min="0" max="15" step="0.1" value="3.2" />
           </div>
-
-          <button type="button" id="manualApplyBtn">
-            <span data-i18n="ja">この数値で判定（手動）</span>
-            <span data-i18n="en">Run check with these values</span>
-          </button>
         </div>
-      </details>
+        <p class="validation-msg" id="validationMsg" role="status"></p>
+      </div>
 
-      <p class="validation-msg" id="validationMsg" role="alert">
-        <span data-i18n="ja"></span>
-        <span data-i18n="en"></span>
-      </p>
+      <section class="result-wrap" aria-label="Result">
+        <div class="result-card status-ok" id="resultCard">
+          <div class="result-head">
+            <div class="result-title"><span data-i18n="ja">乾きやすさの目安</span><span data-i18n="en">Drying guide</span></div>
+            <div class="risk-badge"><span id="riskEmoji">🟡</span><span id="riskLabel">普通</span></div>
+          </div>
+          <p class="result-status" id="riskTitle">普通</p>
+          <div class="dryscore">
+            <p class="score-label" data-i18n="ja">Dry Score（参考）</p>
+            <p class="score-label" data-i18n="en">Dry Score (reference)</p>
+            <div class="result-score"><span id="scoreNum">--</span><span class="score-denom">/100</span></div>
+            <p class="result-tip" data-i18n="ja">70以上：乾きやすい / 40〜69：普通 / 39以下：乾きにくい</p>
+            <p class="result-tip" data-i18n="en">70+: easier / 40–69: average / 39 or less: hard to dry</p>
+          </div>
+          <p class="suggestion" id="suggestionText">—</p>
+          <ul class="reasons" id="reasonsList"></ul>
+          <div class="breakdown">
+            <h2 class="section-title"><span data-i18n="ja">内訳</span><span data-i18n="en">Breakdown</span></h2>
+            <p class="breakdown-note" data-i18n="ja">基準50点に、気温・湿度・風速・対象・干し方の補正を加えています。</p>
+            <p class="breakdown-note" data-i18n="en">The score starts at 50 and is adjusted by temperature, humidity, wind, target and drying method.</p>
+            <ul class="breakdown-list" id="breakdownList"></ul>
+            <p class="why-label" data-i18n="ja">主な理由</p>
+            <p class="why-label" data-i18n="en">Main reason</p>
+            <p class="why-text" id="whyText">—</p>
+          </div>
+          <div class="action-blocks">
+            <h2 class="section-title"><span data-i18n="ja">用途別アクション</span><span data-i18n="en">Actionable advice</span></h2>
+            <div class="action-grid">
+              <article class="action-card"><h3><span data-i18n="ja">洗濯物</span><span data-i18n="en">Laundry</span></h3><p class="action-label" data-i18n="ja">おすすめ</p><p class="action-label" data-i18n="en">Recommended</p><p class="action-text" id="actionLaundryDo">—</p><p class="action-label" data-i18n="ja">避けたいこと</p><p class="action-label" data-i18n="en">Avoid</p><p class="action-text" id="actionLaundryAvoid">—</p></article>
+              <article class="action-card"><h3><span data-i18n="ja">布団</span><span data-i18n="en">Bedding</span></h3><p class="action-label" data-i18n="ja">おすすめ</p><p class="action-label" data-i18n="en">Recommended</p><p class="action-text" id="actionBeddingDo">—</p><p class="action-label" data-i18n="ja">避けたいこと</p><p class="action-label" data-i18n="en">Avoid</p><p class="action-text" id="actionBeddingAvoid">—</p></article>
+              <article class="action-card"><h3><span data-i18n="ja">部屋干し</span><span data-i18n="en">Indoor drying</span></h3><p class="action-label" data-i18n="ja">おすすめ</p><p class="action-label" data-i18n="en">Recommended</p><p class="action-text" id="actionRoomDo">—</p><p class="action-label" data-i18n="ja">避けたいこと</p><p class="action-label" data-i18n="en">Avoid</p><p class="action-text" id="actionRoomAvoid">—</p></article>
+            </div>
+          </div>
+          <div class="result-actions"><button type="button" class="copy-btn" id="copyBtn"><span data-i18n="ja">結果をコピー</span><span data-i18n="en">Copy summary</span></button><span class="copy-status" id="copyStatus" aria-live="polite"></span></div>
+        </div>
+      </section>
     </section>
 
-    <section class="result-wrap" aria-label="Result">
-      <div class="result-card status-ok" id="resultCard">
-        <div class="result-head">
-          <div class="result-title">
-            <span data-i18n="ja">外干し失敗リスク</span>
-            <span data-i18n="en">Outdoor Drying Risk</span>
-          </div>
+    <section class="note-card" aria-label="Privacy and storage">
+      <h2 data-i18n="ja">データ処理と保存</h2><h2 data-i18n="en">Data handling and storage</h2>
+      <p data-i18n="ja">入力した気温・湿度・風速は、判定のためにこのブラウザ内で処理されます。ページ表示のため、広告・解析タグは読み込まれる場合があります。</p>
+      <p data-i18n="en">Your temperature, humidity and wind inputs are processed in this browser for the check. Ads and analytics tags may load for page operation.</p>
+      <p data-i18n="ja"><code>nw_drymeter_v1</code> には対象・干し方・気温・湿度・風速を保存します。言語設定は共通キー <code>nw_lang</code> に保存します。別端末には同期されず、ブラウザデータ削除で消えます。</p>
+      <p data-i18n="en"><code>nw_drymeter_v1</code> stores target, drying method, temperature, humidity and wind. Language is stored in the shared <code>nw_lang</code> key. They do not sync across devices and are removed when browser data is cleared.</p>
+    </section>
 
-          <div class="risk-badge" id="riskBadge">
-            <span id="riskEmoji">🟡</span>
-            <span id="riskLabel">
-              <span data-i18n="ja">微妙</span>
-              <span data-i18n="en">Maybe</span>
-            </span>
-          </div>
-        </div>
+    <section class="note-card" aria-label="Drying caveats">
+      <h2 data-i18n="ja">部屋干し・布団の注意</h2><h2 data-i18n="en">Indoor drying and bedding notes</h2>
+      <p data-i18n="ja">部屋干し結果は、部屋の広さ、換気、除湿機、サーキュレーター、洗濯物の量、干す間隔で変わります。高湿度時はカビ・臭いのリスクにも注意してください。</p>
+      <p data-i18n="en">Indoor drying depends on room size, ventilation, dehumidifiers, air circulators, load size and spacing. High humidity can increase mold and odor risk.</p>
+      <p data-i18n="ja">布団は素材、厚み、干す面、取り込み時間で変わります。湿ったまま収納しないでください。</p>
+      <p data-i18n="en">Bedding depends on material, thickness, which side is exposed and retrieval time. Do not store bedding while it is still damp.</p>
+    </section>
 
-        <p class="result-status" id="riskTitle">
-          <span data-i18n="ja">条件次第でいける</span>
-          <span data-i18n="en">Possible with care</span>
-        </p>
-
-        <ul class="reasons" id="reasonsList">
-          <li>
-            <span data-i18n="ja">天気データを読み込み中…</span>
-            <span data-i18n="en">Loading weather…</span>
-          </li>
-        </ul>
-
-        <p class="suggestion" id="suggestionText">
-          <span data-i18n="ja">地域を設定すると判定できます。</span>
-          <span data-i18n="en">Set your location to run the check.</span>
-        </p>
-
-        <div class="result-actions">
-          <button type="button" class="copy-btn" id="copyBtn">
-            <span data-i18n="ja">結果をコピー</span>
-            <span data-i18n="en">Copy summary</span>
-          </button>
-          <span class="copy-status" id="copyStatus" aria-live="polite"></span>
-        </div>
-
-        <div class="breakdown" aria-label="Score breakdown">
-          <h3 class="section-title">
-            <span data-i18n="ja">内訳（Breakdown）</span>
-            <span data-i18n="en">Breakdown</span>
-          </h3>
-          <p class="breakdown-note" id="breakdownNote">
-            <span data-i18n="ja">※各項目は平均条件からの増減（合計 + 基準50点）</span>
-            <span data-i18n="en">Each item is shown as a delta from average conditions (sum + base 50).</span>
-          </p>
-          <ul class="breakdown-list" id="breakdownList"></ul>
-          <p class="why-label">
-            <span data-i18n="ja">このスコアになった理由</span>
-            <span data-i18n="en">Why this score</span>
-          </p>
-          <p class="why-text" id="whyText">
-            <span data-i18n="ja">—</span>
-            <span data-i18n="en">—</span>
-          </p>
-        </div>
-
-        <div class="action-blocks" aria-label="Actionable advice">
-          <h3 class="section-title">
-            <span data-i18n="ja">用途別アクション</span>
-            <span data-i18n="en">Actionable advice</span>
-          </h3>
-          <div class="action-grid">
-            <div class="action-card" data-usecase="laundry">
-              <h4>
-                <span data-i18n="ja">洗濯物</span>
-                <span data-i18n="en">Laundry</span>
-              </h4>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">おすすめ行動</p>
-                <p class="action-label" data-i18n="en">Recommended action</p>
-                <p class="action-text" id="actionLaundryDo">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">避けたいこと</p>
-                <p class="action-label" data-i18n="en">What to avoid</p>
-                <p class="action-text" id="actionLaundryAvoid">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">あれば便利</p>
-                <p class="action-label" data-i18n="en">Optional helpers</p>
-                <p class="action-text" id="actionLaundryHelp">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-            </div>
-
-            <div class="action-card" data-usecase="bedding">
-              <h4>
-                <span data-i18n="ja">布団</span>
-                <span data-i18n="en">Bedding</span>
-              </h4>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">おすすめ行動</p>
-                <p class="action-label" data-i18n="en">Recommended action</p>
-                <p class="action-text" id="actionBeddingDo">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">避けたいこと</p>
-                <p class="action-label" data-i18n="en">What to avoid</p>
-                <p class="action-text" id="actionBeddingAvoid">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">あれば便利</p>
-                <p class="action-label" data-i18n="en">Optional helpers</p>
-                <p class="action-text" id="actionBeddingHelp">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-            </div>
-
-            <div class="action-card" data-usecase="room">
-              <h4>
-                <span data-i18n="ja">部屋干し</span>
-                <span data-i18n="en">Room drying</span>
-              </h4>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">おすすめ行動</p>
-                <p class="action-label" data-i18n="en">Recommended action</p>
-                <p class="action-text" id="actionRoomDo">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">避けたいこと</p>
-                <p class="action-label" data-i18n="en">What to avoid</p>
-                <p class="action-text" id="actionRoomAvoid">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-              <div class="action-item">
-                <p class="action-label" data-i18n="ja">あれば便利</p>
-                <p class="action-label" data-i18n="en">Optional helpers</p>
-                <p class="action-text" id="actionRoomHelp">
-                  <span data-i18n="ja">—</span><span data-i18n="en">—</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <details class="details" id="detailsBox">
-          <summary>
-            <span data-i18n="ja">参考：Dry Score</span>
-            <span data-i18n="en">Reference: Dry Score</span>
-          </summary>
-          <div class="dryscore">
-            <div class="result-score">
-              <span id="scoreNum">--</span><span class="score-denom">/100</span>
-            </div>
-            <p class="result-tip" id="tipText">
-              <span data-i18n="ja">目安：70+ = 乾きやすい / 40–69 = 普通 / 0–39 = 乾きにくい</span>
-              <span data-i18n="en">Guide: 70+ easy / 40–69 average / 0–39 hard to dry</span>
-            </p>
-            <div class="wx-mini" id="wxMini">—</div>
-          </div>
-        </details>
-      </div>
+    <section class="faq" aria-label="FAQ">
+      <h2 data-i18n="ja">よくある質問</h2><h2 data-i18n="en">FAQ</h2>
+      <details><summary><span data-i18n="ja">実際に乾くか保証できますか？</span><span data-i18n="en">Can this guarantee actual drying?</span></summary><p data-i18n="ja">いいえ。気温・湿度・風速からの簡易目安です。日照、雨、素材、干し方、時間帯で変わります。</p><p data-i18n="en">No. It is a simple guide based on temperature, humidity and wind. Sunlight, rain, material, drying method and time of day can change the result.</p></details>
+      <details><summary><span data-i18n="ja">雨や降水確率も見ていますか？</span><span data-i18n="en">Does it check rain or precipitation probability?</span></summary><p data-i18n="ja">初期版では見ていません。手動入力した気温・湿度・風速だけを使います。</p><p data-i18n="en">Not in this initial version. It only uses manually entered temperature, humidity and wind.</p></details>
+      <details><summary><span data-i18n="ja">入力内容は保存されますか？</span><span data-i18n="en">Are inputs saved?</span></summary><p data-i18n="ja">対象、干し方、気温、湿度、風速はこのブラウザのlocalStorageに保存されます。別端末には同期されず、ブラウザデータ削除で消えます。</p><p data-i18n="en">Target, drying method, temperature, humidity and wind are saved in this browser's localStorage. They do not sync across devices and are removed when browser data is cleared.</p></details>
+      <details><summary><span data-i18n="ja">部屋干しにも使えますか？</span><span data-i18n="en">Can I use it for indoor drying?</span></summary><p data-i18n="ja">目安には使えますが、部屋の広さ、換気、除湿機、サーキュレーター、洗濯物量で結果は変わります。</p><p data-i18n="en">It can be used as a guide, but room size, ventilation, dehumidifiers, air circulators and laundry volume can change the result.</p></details>
     </section>
 
     <div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en">If this tool helped, your support keeps it maintained.</p>
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
+      <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
 
-    <div class="nw-links" aria-label="Internal links">
-      <a href="/tools/laundry-code-decode/">Laundry Code Decode</a> /
-      <a href="/tools/size-converter/">Size Converter</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a>
-    </div>
-
-    <div class="disclaimer" role="note">
-      <p data-i18n="ja">※ 本ツールは気象条件からの簡易推定です。実際の乾燥結果を保証するものではありません。</p>
-      <p data-i18n="en">This tool is a rough estimate and does not guarantee actual drying results.</p>
-    </div>
-
+    <div class="nw-links" aria-label="Internal links"><a href="/tools/laundry-code-decode/">Laundry Code Decode</a> / <a href="/tools/light-check/">Light Check</a> / <a href="/tools/weatherdiff/">WeatherDiff</a> / <a href="/tools/unitmaster/">UnitMaster</a></div>
+    <div class="disclaimer" role="note"><p data-i18n="ja">※ 本ツールは気温・湿度・風速からの簡易推定です。実際の乾燥結果、天気変化、衣類や布団の状態を保証するものではありません。</p><p data-i18n="en">This tool is a rough estimate from temperature, humidity and wind. It does not guarantee actual drying results, weather changes, or item condition.</p></div>
     <div class="ad-slot ad-bottom">広告枠</div>
   </main>
 
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
-    </p>
-  </footer>
-
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
   <script src="./app.js"></script>
 </body>
 </html>
