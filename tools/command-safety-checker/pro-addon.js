@@ -12,6 +12,15 @@
     }
   }
 
+  function setProFromKey(key) {
+    const cleaned = String(key || '').trim();
+    if (!/^NW-[A-Z0-9-]{8,}$/.test(cleaned)) return false;
+    localStorage.setItem(GLOBAL_KEY, cleaned);
+    localStorage.setItem(TOOL_KEY, '1');
+    localStorage.setItem(LEGACY_KEY, '1');
+    return true;
+  }
+
   function activate() {
     const u = new URL(location.href);
     if (u.searchParams.get('pro') === '1') {
@@ -39,8 +48,8 @@
   function needPro() {
     if (isPro()) return true;
     toast(lang() === 'ja'
-      ? 'Pro限定機能です。購入後にProを有効化してください。'
-      : 'Pro feature locked. Enable Pro after purchase.');
+      ? 'Pro限定機能です。購入後にProキーを入力してください。'
+      : 'Pro feature locked. Enter your Pro key after purchase.');
     render();
     return false;
   }
@@ -94,8 +103,27 @@
     const div = document.createElement('div');
     div.id = 'cscProAddon';
     div.className = 'pro-addon';
-    div.innerHTML = '<p id="cscProState"></p><div class="actions"><button id="cscCopyPro" class="btn" type="button">Pro: Copy review report</button><button id="cscSavePro" class="btn" type="button">Pro: Save Markdown report</button></div>';
+    div.innerHTML = [
+      '<p id="cscProState"></p>',
+      '<div id="cscKeyArea" class="actions">',
+      '<input id="cscProKey" class="select" type="text" inputmode="text" autocomplete="off" placeholder="Paste Pro key / Proキーを貼り付け">',
+      '<button id="cscActivatePro" class="btn" type="button">Activate Pro / Proを有効化</button>',
+      '</div>',
+      '<div class="actions">',
+      '<button id="cscCopyPro" class="btn" type="button">Pro: Copy review report</button>',
+      '<button id="cscSavePro" class="btn" type="button">Pro: Save Markdown report</button>',
+      '</div>'
+    ].join('');
     block.appendChild(div);
+
+    $('cscActivatePro').addEventListener('click', () => {
+      if (setProFromKey($('cscProKey')?.value || '')) {
+        toast(lang() === 'ja' ? 'Proを有効化しました' : 'Pro activated');
+        render();
+      } else {
+        toast(lang() === 'ja' ? 'Proキーを確認してください' : 'Check the Pro key');
+      }
+    });
     $('cscCopyPro').addEventListener('click', () => { if (!needPro()) return; copy(report()); });
     $('cscSavePro').addEventListener('click', () => { if (!needPro()) return; download('command-safety-pro-review.md', report()); });
   }
@@ -105,11 +133,13 @@
     build();
     document.body.classList.toggle('is-pro', isPro());
     const state = $('cscProState');
+    const keyArea = $('cscKeyArea');
     if (state) {
       state.textContent = isPro()
         ? 'Pro active: review copy and Markdown export are unlocked. / Pro解放済み。'
-        : 'Pro locks review copy and Markdown export. / Proでレビュー保存を解放。';
+        : 'Pro locked: paste the key from the Pro Unlock page to enable review copy and Markdown export. / Proキーでレビュー保存を解放。';
     }
+    if (keyArea) keyArea.hidden = isPro();
   }
 
   function init() {
