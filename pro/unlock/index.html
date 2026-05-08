@@ -51,11 +51,7 @@
     "url": "https://nicheworks.app/pro/unlock/",
     "description": "NicheWorks Pro購入後に、この端末で対応ツールのPro機能を有効化するページです。",
     "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
+    "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
   }
   </script>
 </head>
@@ -90,20 +86,13 @@
     (function(){
       "use strict";
       var params = new URLSearchParams(location.search);
-      var tool = params.get("tool") || "logistics-compliance-kit-jp";
+      var tool = params.get("tool") || "vibe-lexicon";
       var tools = {
-        "logistics-compliance-kit-jp": {
-          label: "Logistics Compliance Kit JP",
-          key: "nw_pro_logistics-compliance-kit-jp",
-          back: "/tools/logistics-compliance-kit-jp/"
-        },
-        "json-repair": {
-          label: "JSON Repair",
-          key: "nw_json_repair_pro_enabled_v1",
-          back: "/tools/json-repair/"
-        }
+        "vibe-lexicon": { label: "Vibe Lexicon", key: "nw_pro_vibe-lexicon", back: "/tools/vibe-lexicon/" },
+        "logistics-compliance-kit-jp": { label: "Logistics Compliance Kit JP", key: "nw_pro_logistics-compliance-kit-jp", back: "/tools/logistics-compliance-kit-jp/" },
+        "json-repair": { label: "JSON Repair", key: "nw_json_repair_pro_enabled_v1", back: "/tools/json-repair/" }
       };
-      var config = tools[tool] || tools["logistics-compliance-kit-jp"];
+      var config = tools[tool] || tools["vibe-lexicon"];
       var state = document.getElementById("state");
       var toolName = document.getElementById("tool-name");
       var unlock = document.getElementById("btn-unlock");
