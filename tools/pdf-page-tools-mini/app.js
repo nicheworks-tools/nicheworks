@@ -32,34 +32,13 @@
   let thumbObserver = null;
 
   const ERR = {
-    unsupported_file: {
-      ja: "このファイルはPDFとして読み込めませんでした。別のPDFを試してください。",
-      en: "This file could not be read as a PDF. Please try another PDF."
-    },
-    too_large_or_memory: {
-      ja: "処理に失敗しました。ページ数を減らす、先に分割する、PCブラウザや別ブラウザで試してください。",
-      en: "Processing failed. Reduce pages, split the PDF first, or try a desktop browser or another browser."
-    },
-    extract_syntax_error: {
-      ja: "範囲の書き方が正しくありません（例: 1-3,5,8-10）。",
-      en: "Range format is invalid (e.g., 1-3,5,8-10)."
-    },
-    empty_result: {
-      ja: "出力するページがありません。削除を戻すか、PDFを追加してください。",
-      en: "No pages to export. Undo deletion or add PDFs."
-    },
-    missing_pdfjs: {
-      ja: "PDF表示ライブラリ（pdf.js）の読み込みに失敗しました。ページを再読み込みしてください。",
-      en: "PDF display library (pdf.js) failed to load. Please reload this page."
-    },
-    missing_pdflib: {
-      ja: "PDF書き出しライブラリ（pdf-lib）が読み込めませんでした。ページを再読み込みしてください。",
-      en: "PDF export library (pdf-lib) failed to load. Please reload this page."
-    },
-    protected_or_special_pdf: {
-      ja: "このPDFは読み込めませんでした。保護されたPDF、破損PDF、一部の特殊PDFは非対応です。",
-      en: "This PDF could not be loaded. Protected, corrupted, or some special PDFs are not supported."
-    }
+    unsupported_file: { ja: "このファイルはPDFとして読み込めませんでした。別のPDFを試してください。", en: "This file could not be read as a PDF. Please try another PDF." },
+    too_large_or_memory: { ja: "処理に失敗しました。ページ数を減らす、先に分割する、PCブラウザや別ブラウザで試してください。", en: "Processing failed. Reduce pages, split the PDF first, or try a desktop browser or another browser." },
+    extract_syntax_error: { ja: "範囲の書き方が正しくありません（例: 1-3,5,8-10）。", en: "Range format is invalid (e.g., 1-3,5,8-10)." },
+    empty_result: { ja: "出力するページがありません。削除を戻すか、PDFを追加してください。", en: "No pages to export. Undo deletion or add PDFs." },
+    missing_pdfjs: { ja: "PDF表示ライブラリ（pdf.js）の読み込みに失敗しました。ページを再読み込みしてください。", en: "PDF display library (pdf.js) failed to load. Please reload this page." },
+    missing_pdflib: { ja: "PDF書き出しライブラリ（pdf-lib）が読み込めませんでした。ページを再読み込みしてください。", en: "PDF export library (pdf-lib) failed to load. Please reload this page." },
+    protected_or_special_pdf: { ja: "このPDFは読み込めませんでした。保護されたPDF、破損PDF、一部の特殊PDFは非対応です。", en: "This PDF could not be loaded. Protected, corrupted, or some special PDFs are not supported." }
   };
 
   function uid(prefix){ return `${prefix}-${state.nextId++}`; }
@@ -131,10 +110,7 @@
     const deleted = Math.max(0, originalPages - pageCount);
     box.textContent = pageCount === 0
       ? msg("現在の出力予定：ページはありません。", "Current output: no pages.")
-      : msg(
-          `現在の出力予定：PDF数 ${pdfCount} / ページ数 ${pageCount} / 回転あり ${rotated} / 削除済み ${deleted}`,
-          `Current output: ${pdfCount} PDF(s) / ${pageCount} page(s) / ${rotated} rotated / ${deleted} deleted`
-        );
+      : msg(`現在の出力予定：PDF数 ${pdfCount} / ページ数 ${pageCount} / 回転あり ${rotated} / 削除済み ${deleted}`, `Current output: ${pdfCount} PDF(s) / ${pageCount} page(s) / ${rotated} rotated / ${deleted} deleted`);
   }
 
   function setBusy(on){
@@ -152,6 +128,7 @@
     if(els.btnUndo) els.btnUndo.disabled = isBusy || !undo.lastDelete;
     syncExtractUi();
     if(els.panelAfterLoad){
+      els.panelAfterLoad.hidden = !hasPages;
       els.panelAfterLoad.classList.toggle("is-disabled", !hasPages);
       els.panelAfterLoad.classList.toggle("is-busy", isBusy);
       els.panelAfterLoad.setAttribute("aria-disabled", hasPages ? "false" : "true");
@@ -208,11 +185,9 @@
       card.className = "page-card";
       card.dataset.pageId = page.id;
       if(canDrag()) card.draggable = true;
-
       const top = document.createElement("div");
       top.className = "page-top";
       top.textContent = `#${index + 1}  ${page.fileName}  p${page.srcPage}`;
-
       const thumb = document.createElement("div");
       thumb.className = "thumb-box thumb-loading";
       const img = document.createElement("img");
@@ -223,11 +198,9 @@
       img.style.transform = `rotate(${page.rotation}deg)`;
       img.style.transformOrigin = "center center";
       thumb.appendChild(img);
-
       const meta = document.createElement("div");
       meta.className = "page-meta";
       meta.textContent = msg(`回転: ${page.rotation}°`, `Rotation: ${page.rotation}°`);
-
       const ops = document.createElement("div");
       ops.className = "page-ops";
       ops.append(
@@ -254,36 +227,15 @@
     btn.addEventListener("click", handler);
     return btn;
   }
-  function canDrag(){
-    try{ return window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches; }
-    catch(_){ return false; }
-  }
+  function canDrag(){ try{ return window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches; } catch(_){ return false; } }
   function attachDnd(card, index){
     if(!canDrag()) return;
     card.classList.add("dnd");
-    card.addEventListener("dragstart", (e) => {
-      if(isBusy) return;
-      card.classList.add("dragging");
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.setData("text/plain", String(index));
-    });
-    card.addEventListener("dragend", () => {
-      card.classList.remove("dragging");
-      $$(".page-card.dragover").forEach((el) => el.classList.remove("dragover"));
-    });
-    card.addEventListener("dragover", (e) => {
-      if(isBusy) return;
-      e.preventDefault();
-      card.classList.add("dragover");
-    });
+    card.addEventListener("dragstart", (e) => { if(isBusy) return; card.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", String(index)); });
+    card.addEventListener("dragend", () => { card.classList.remove("dragging"); $$(".page-card.dragover").forEach((el) => el.classList.remove("dragover")); });
+    card.addEventListener("dragover", (e) => { if(isBusy) return; e.preventDefault(); card.classList.add("dragover"); });
     card.addEventListener("dragleave", () => card.classList.remove("dragover"));
-    card.addEventListener("drop", (e) => {
-      if(isBusy) return;
-      e.preventDefault();
-      card.classList.remove("dragover");
-      const from = Number(e.dataTransfer.getData("text/plain"));
-      if(Number.isInteger(from)) movePage(from, index);
-    });
+    card.addEventListener("drop", (e) => { if(isBusy) return; e.preventDefault(); card.classList.remove("dragover"); const from = Number(e.dataTransfer.getData("text/plain")); if(Number.isInteger(from)) movePage(from, index); });
   }
 
   function observeThumbs(){
@@ -311,9 +263,7 @@
       if(!window.pdfjsLib) return;
       const file = state.files.find((f) => f.id === page.fileId);
       if(!file) return;
-      if(!file.pdfDocPromise){
-        file.pdfDocPromise = window.pdfjsLib.getDocument({ data: new Uint8Array(file.pdfBuffer.slice(0)) }).promise;
-      }
+      if(!file.pdfDocPromise){ file.pdfDocPromise = window.pdfjsLib.getDocument({ data: new Uint8Array(file.pdfBuffer.slice(0)) }).promise; }
       const pdf = await file.pdfDocPromise;
       const pdfPage = await pdf.getPage(page.srcPage);
       const viewportBase = pdfPage.getViewport({ scale: 1 });
@@ -329,52 +279,19 @@
       page.thumbUrl = canvas.toDataURL("image/jpeg", 0.72);
       const img = $("img", card);
       if(img) img.src = page.thumbUrl;
-    }catch(err){
-      console.warn("thumbnail failed", err);
-    }finally{
-      card.classList.remove("thumb-loading");
-    }
+    }catch(err){ console.warn("thumbnail failed", err); }
+    finally{ card.classList.remove("thumb-loading"); }
   }
 
   function renderAll(){ renderFileList(); renderPageList(); syncUi(); }
-  function rotatePage(index, delta){
-    if(isBusy) return;
-    const page = state.pages[index];
-    if(!page) return;
-    page.rotation = (page.rotation + delta + 360) % 360;
-    renderPageList();
-    syncExtractUi();
-  }
-  function movePage(from, to){
-    if(isBusy || from === to || to < 0 || to >= state.pages.length) return;
-    const [page] = state.pages.splice(from, 1);
-    state.pages.splice(to, 0, page);
-    renderPageList();
-    showStatus(msg("並べ替えました。", "Reordered."));
-  }
-  function deletePageAt(index){
-    if(isBusy || index < 0 || index >= state.pages.length) return;
-    const [page] = state.pages.splice(index, 1);
-    undo.lastDelete = { page: { ...page }, index };
-    renderPageList();
-    syncUi();
-    showStatus(msg("ページを削除しました。Undo（1回）で戻せます。", "Page deleted. You can undo once."));
-  }
-  function undoDelete(){
-    if(isBusy || !undo.lastDelete) return;
-    const insertAt = Math.max(0, Math.min(undo.lastDelete.index, state.pages.length));
-    state.pages.splice(insertAt, 0, undo.lastDelete.page);
-    undo.lastDelete = null;
-    renderPageList();
-    syncUi();
-    showStatus(msg("Undoしました（直前の削除を戻しました）。", "Undo complete (restored last deleted page)."));
-  }
+  function rotatePage(index, delta){ if(isBusy) return; const page = state.pages[index]; if(!page) return; page.rotation = (page.rotation + delta + 360) % 360; renderPageList(); syncExtractUi(); }
+  function movePage(from, to){ if(isBusy || from === to || to < 0 || to >= state.pages.length) return; const [page] = state.pages.splice(from, 1); state.pages.splice(to, 0, page); renderPageList(); showStatus(msg("並べ替えました。", "Reordered.")); }
+  function deletePageAt(index){ if(isBusy || index < 0 || index >= state.pages.length) return; const [page] = state.pages.splice(index, 1); undo.lastDelete = { page: { ...page }, index }; renderPageList(); syncUi(); showStatus(msg("ページを削除しました。Undo（1回）で戻せます。", "Page deleted. You can undo once.")); }
+  function undoDelete(){ if(isBusy || !undo.lastDelete) return; const insertAt = Math.max(0, Math.min(undo.lastDelete.index, state.pages.length)); state.pages.splice(insertAt, 0, undo.lastDelete.page); undo.lastDelete = null; renderPageList(); syncUi(); showStatus(msg("Undoしました（直前の削除を戻しました）。", "Undo complete (restored last deleted page).")); }
   function removeFile(fileId){
     if(isBusy) return;
     const removed = state.files.find((f) => f.id === fileId);
-    if(removed && removed.pdfDocPromise){
-      removed.pdfDocPromise.then((pdf) => pdf && pdf.destroy && pdf.destroy()).catch(() => {});
-    }
+    if(removed && removed.pdfDocPromise){ removed.pdfDocPromise.then((pdf) => pdf && pdf.destroy && pdf.destroy()).catch(() => {}); }
     state.files = state.files.filter((f) => f.id !== fileId);
     state.pages = state.pages.filter((p) => p.fileId !== fileId);
     undo.lastDelete = null;
@@ -383,9 +300,7 @@
   }
   function resetAll(){
     if(isBusy) return;
-    state.files.forEach((f) => {
-      if(f.pdfDocPromise) f.pdfDocPromise.then((pdf) => pdf && pdf.destroy && pdf.destroy()).catch(() => {});
-    });
+    state.files.forEach((f) => { if(f.pdfDocPromise) f.pdfDocPromise.then((pdf) => pdf && pdf.destroy && pdf.destroy()).catch(() => {}); });
     state.files = [];
     state.pages = [];
     undo.lastDelete = null;
@@ -404,12 +319,9 @@
       if(part.includes("-")){
         const bits = part.split("-");
         if(bits.length !== 2 || !bits[0] || !bits[1]) return { ok:false };
-        const a = Number(bits[0]);
-        const b = Number(bits[1]);
+        const a = Number(bits[0]); const b = Number(bits[1]);
         if(!Number.isInteger(a) || !Number.isInteger(b) || a < 1 || b < 1 || a > b || b > max) return { ok:false };
-        for(let n = a; n <= b; n++){
-          if(!seen.has(n)){ seen.add(n); out.push(n); }
-        }
+        for(let n = a; n <= b; n++){ if(!seen.has(n)){ seen.add(n); out.push(n); } }
       }else{
         const n = Number(part);
         if(!Number.isInteger(n) || n < 1 || n > max) return { ok:false };
@@ -418,11 +330,7 @@
     }
     return out.length ? { ok:true, list:out } : { ok:false };
   }
-  function syncExtractUi(){
-    if(!els.btnExtract || !els.extractRange) return;
-    if(isBusy || state.pages.length === 0){ els.btnExtract.disabled = true; return; }
-    els.btnExtract.disabled = !parseRangeText(els.extractRange.value, state.pages.length).ok;
-  }
+  function syncExtractUi(){ if(!els.btnExtract || !els.extractRange) return; if(isBusy || state.pages.length === 0){ els.btnExtract.disabled = true; return; } els.btnExtract.disabled = !parseRangeText(els.extractRange.value, state.pages.length).ok; }
 
   async function addFiles(files){
     const incoming = Array.from(files || []);
@@ -431,7 +339,6 @@
     if(pdfs.length === 0){ showError("unsupported_file"); return; }
     const ready = await waitForLib(() => window.pdfjsLib && window.pdfjsLib.getDocument, 1600);
     if(!ready){ showError("missing_pdfjs"); return; }
-
     setBusy(true);
     hideStatus();
     try{
@@ -439,36 +346,18 @@
       undo.lastDelete = null;
       renderAll();
       showStatus(msg("読み込み完了。ページを編集して保存できます。", "Loaded. You can edit pages and download."));
-    }catch(err){
-      console.error(err);
-      showError(isProtectionError(err) ? "protected_or_special_pdf" : "too_large_or_memory");
-    }finally{
-      setBusy(false);
-    }
+    }catch(err){ console.error(err); showError(isProtectionError(err) ? "protected_or_special_pdf" : "too_large_or_memory"); }
+    finally{ setBusy(false); }
   }
   async function addOnePdf(file){
     const exportBuffer = await file.arrayBuffer();
     const pdfBuffer = exportBuffer.slice(0);
     let pdf;
-    try{
-      pdf = await window.pdfjsLib.getDocument({ data: new Uint8Array(pdfBuffer) }).promise;
-    }catch(err){
-      console.error(err);
-      throw err;
-    }
+    try{ pdf = await window.pdfjsLib.getDocument({ data: new Uint8Array(pdfBuffer) }).promise; }
+    catch(err){ console.error(err); throw err; }
     const fileId = uid("f");
-    state.files.push({
-      id: fileId,
-      name: file.name,
-      size: file.size,
-      exportBuffer,
-      pdfBuffer,
-      pageCount: pdf.numPages,
-      pdfDocPromise: Promise.resolve(pdf)
-    });
-    for(let p = 1; p <= pdf.numPages; p++){
-      state.pages.push({ id: uid("p"), fileId, fileName: file.name, srcPage: p, rotation: 0, thumbUrl: null });
-    }
+    state.files.push({ id:fileId, name:file.name, size:file.size, exportBuffer, pdfBuffer, pageCount:pdf.numPages, pdfDocPromise:Promise.resolve(pdf) });
+    for(let p = 1; p <= pdf.numPages; p++){ state.pages.push({ id:uid("p"), fileId, fileName:file.name, srcPage:p, rotation:0, thumbUrl:null }); }
   }
 
   async function exportPagesToPdf(pages, filename){
@@ -496,47 +385,10 @@
     downloadBlob(new Blob([bytes], { type: "application/pdf" }), filename);
     return true;
   }
-  async function saveCurrent(){
-    if(isBusy) return;
-    const filename = buildOutputName("edited");
-    setBusy(true);
-    hideStatus();
-    showStatus(msg("処理中…（PDFを書き出しています）", "Processing… (exporting PDF)"));
-    try{
-      const ok = await exportPagesToPdf(state.pages, filename);
-      if(ok) showStatus(msg(`保存しました：${filename}。元のPDFは変更されていません。ダウンロードフォルダを確認してください。`, `Saved: ${filename}. Original PDFs were not changed. Check your downloads folder.`));
-    }catch(err){
-      console.error(err);
-      showError("too_large_or_memory");
-    }finally{
-      setBusy(false);
-    }
-  }
-  async function saveExtracted(){
-    if(isBusy) return;
-    const parsed = parseRangeText(els.extractRange ? els.extractRange.value : "", state.pages.length);
-    if(!parsed.ok){ showError("extract_syntax_error"); return; }
-    const pages = parsed.list.map((n) => state.pages[n - 1]).filter(Boolean);
-    const filename = buildOutputName("extracted");
-    setBusy(true);
-    hideStatus();
-    showStatus(msg("処理中…（抽出してPDFを書き出しています）", "Processing… (extracting PDF)"));
-    try{
-      const ok = await exportPagesToPdf(pages, filename);
-      if(ok) showStatus(msg(`抽出して保存しました：${filename}。元のPDFは変更されていません。`, `Extracted and saved: ${filename}. Original PDFs were not changed.`));
-    }catch(err){
-      console.error(err);
-      showError("too_large_or_memory");
-    }finally{
-      setBusy(false);
-    }
-  }
+  async function saveCurrent(){ if(isBusy) return; const filename = buildOutputName("edited"); setBusy(true); hideStatus(); showStatus(msg("処理中…（PDFを書き出しています）", "Processing… (exporting PDF)")); try{ const ok = await exportPagesToPdf(state.pages, filename); if(ok) showStatus(msg(`保存しました：${filename}。元のPDFは変更されていません。ダウンロードフォルダを確認してください。`, `Saved: ${filename}. Original PDFs were not changed. Check your downloads folder.`)); }catch(err){ console.error(err); showError("too_large_or_memory"); }finally{ setBusy(false); } }
+  async function saveExtracted(){ if(isBusy) return; const parsed = parseRangeText(els.extractRange ? els.extractRange.value : "", state.pages.length); if(!parsed.ok){ showError("extract_syntax_error"); return; } const pages = parsed.list.map((n) => state.pages[n - 1]).filter(Boolean); const filename = buildOutputName("extracted"); setBusy(true); hideStatus(); showStatus(msg("処理中…（抽出してPDFを書き出しています）", "Processing… (extracting PDF)")); try{ const ok = await exportPagesToPdf(pages, filename); if(ok) showStatus(msg(`抽出して保存しました：${filename}。元のPDFは変更されていません。`, `Extracted and saved: ${filename}. Original PDFs were not changed.`)); }catch(err){ console.error(err); showError("too_large_or_memory"); }finally{ setBusy(false); } }
 
-  function openPicker(){
-    if(isBusy || !els.fileInput) return;
-    els.fileInput.value = "";
-    els.fileInput.click();
-  }
+  function openPicker(){ if(isBusy || !els.fileInput) return; els.fileInput.value = ""; els.fileInput.click(); }
 
   els.langBtns.forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
   if(els.btnStatusClose) els.btnStatusClose.addEventListener("click", hideStatus);
@@ -556,6 +408,7 @@
     els.dropzone.addEventListener("drop", (e) => { e.preventDefault(); els.dropzone.classList.remove("is-dragover"); addFiles(e.dataTransfer ? e.dataTransfer.files : []); });
   }
 
+  if(els.loading) els.loading.hidden = true;
   applyLang(currentLang);
   renderAll();
 })();
