@@ -15,19 +15,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>引っ越しやることチェックリスト・印刷用｜Moving Checklist Generator | NicheWorks</title>
-  <meta name="description" content="引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。チェック状態はブラウザ内に保存でき、印刷やPDF保存にも使えます。">
+  <meta name="description" content="引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。チェック状態と条件識別用の設定はこのブラウザに保存できます。">
   <link rel="canonical" href="https://nicheworks.app/tools/moving-checklist-generator/">
   <meta name="robots" content="index,follow">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="引っ越しやることチェックリスト・印刷用｜Moving Checklist Generator | NicheWorks">
-  <meta property="og:description" content="引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。チェック状態はブラウザ内に保存でき、印刷やPDF保存にも使えます。">
+  <meta property="og:description" content="引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。チェック状態と条件識別用の設定はこのブラウザに保存できます。">
   <meta property="og:url" content="https://nicheworks.app/tools/moving-checklist-generator/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="引っ越しやることチェックリスト・印刷用｜Moving Checklist Generator | NicheWorks">
-  <meta name="twitter:description" content="引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。チェック状態はブラウザ内に保存でき、印刷やPDF保存にも使えます。">
+  <meta name="twitter:description" content="引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。チェック状態と条件識別用の設定はこのブラウザに保存できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <link rel="icon" href="/assets/favicon.ico">
@@ -39,7 +39,7 @@
   {"@context":"https://schema.org","@type":"WebApplication","name":"Moving Checklist Generator","url":"https://nicheworks.app/tools/moving-checklist-generator/","applicationCategory":"UtilityApplication","description":"引っ越し日、家族構成、住居タイプを入力して、引っ越し前後のやることを時系列チェックリストで整理する無料ツールです。","operatingSystem":"All"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"チェック状態はどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"このブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。"}},{"@type":"Question","name":"PDFとして保存できますか？","acceptedAnswer":{"@type":"Answer","text":"ブラウザの印刷画面からPDFとして保存を選ぶことで保存できます。"}},{"@type":"Question","name":"すべての引っ越し手続きを網羅していますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。一般的な参考リストです。自治体、管理会社、契約先の公式情報を必ず確認してください。"}},{"@type":"Question","name":"住所や個人情報を入力する必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"必須ではありません。印刷用メモも任意で、個人情報は入力しないことを推奨します。"}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"チェック状態はどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"チェック状態と、条件識別用の引っ越し日・家族構成・住居タイプがこのブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。"}},{"@type":"Question","name":"PDFとして保存できますか？","acceptedAnswer":{"@type":"Answer","text":"ブラウザの印刷画面からPDFとして保存を選ぶことで保存できます。印刷用メモに入力した内容は印刷やPDFに出る場合があります。"}},{"@type":"Question","name":"すべての引っ越し手続きを網羅していますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。一般的な参考リストです。自治体、管理会社、契約先の公式情報を必ず確認してください。"}},{"@type":"Question","name":"住所や個人情報を入力する必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"必須ではありません。印刷用メモは保存しませんが、印刷やPDFに出る場合があるため、個人情報は入力しないことを推奨します。"}}]}
   </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
@@ -84,7 +84,7 @@
         <div class="confirm-actions"><button id="btnConfirmReset" type="button" data-i18n="btnConfirmReset">リセットする</button><button id="btnCancelReset" type="button" data-i18n="btnCancelReset">キャンセル</button></div>
       </div>
       <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-      <p class="hint" data-i18n="hint">保存されるのはチェック状態のみです。別端末・別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。</p>
+      <p class="hint" data-i18n="hint">チェック状態と、条件識別用の引っ越し日・家族構成・住居タイプがこのブラウザのlocalStorageに保存されます。印刷用メモは保存しません。別端末・別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。</p>
       <p class="hint" data-i18n="printHint">PDF保存はブラウザの印刷ダイアログから「PDFとして保存」を選んでください。</p>
     </section>
 
@@ -102,10 +102,10 @@
 
     <section class="panel faq-panel" aria-label="FAQ">
       <h2 class="result-title" data-i18n="faqTitle">よくある質問</h2>
-      <details><summary data-i18n="faqQ1">チェック状態はどこに保存されますか？</summary><p class="hint" data-i18n="faqA1">このブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。</p></details>
+      <details><summary data-i18n="faqQ1">チェック状態はどこに保存されますか？</summary><p class="hint" data-i18n="faqA1">チェック状態と、条件識別用の引っ越し日・家族構成・住居タイプがこのブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。</p></details>
       <details><summary data-i18n="faqQ2">PDFとして保存できますか？</summary><p class="hint" data-i18n="faqA2">ブラウザの印刷画面から「PDFとして保存」を選んでください。</p></details>
       <details><summary data-i18n="faqQ3">すべての手続きを網羅していますか？</summary><p class="hint" data-i18n="faqA3">いいえ。一般的な参考リストです。自治体・管理会社・契約内容を必ず確認してください。</p></details>
-      <details><summary data-i18n="faqQ4">住所や個人情報を入力する必要はありますか？</summary><p class="hint" data-i18n="faqA4">ありません。印刷用メモも任意です。個人情報は入力しないことを推奨します。</p></details>
+      <details><summary data-i18n="faqQ4">住所や個人情報を入力する必要はありますか？</summary><p class="hint" data-i18n="faqA4">ありません。印刷用メモも任意で保存しません。印刷やPDFに出る場合があるため、個人情報は入力しないことを推奨します。</p></details>
     </section>
 
     <div class="nw-links" aria-label="Related tools"><a href="/tools/jp-postal-lite/">JP Postal Lite</a><a href="/tools/pdf-page-tools-mini/">PDF Page Tools Mini</a><a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a><a href="/tools/rename-wizard/">Rename Wizard</a></div>
