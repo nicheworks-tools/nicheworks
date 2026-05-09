@@ -5,119 +5,54 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>NicheWorks Pro Unlock</title>
   <meta name="description" content="NicheWorks Pro購入後に、この端末で対応ツールのPro機能を有効化するページです。">
-  <meta name="robots" content="index,follow">
+  <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://nicheworks.app/pro/unlock/">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <style>
-    :root{--fg:#111;--muted:#666;--line:#ddd;--soft:#f6f6f6;--warn:#fff7ed;--warnline:#fed7aa;--link:#0b57d0;--radius:14px;}
+    :root{--fg:#111;--muted:#666;--line:#ddd;--soft:#f6f6f6;--ok:#ecfdf5;--okline:#a7f3d0;--link:#0b57d0;--radius:14px;}
     html,body{margin:0;background:#fff;color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans JP",sans-serif;}
-    a{color:var(--link)}
-    .wrap{max-width:840px;margin:0 auto;padding:18px;}
-    header{border-bottom:1px solid var(--line);}
-    section{border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:14px 0;background:#fff;}
-    .lead,.note{color:var(--muted);line-height:1.7;}
-    .note{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px;}
-    .warn{background:var(--warn);border-color:var(--warnline);}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
-    .btn{appearance:none;border:1px solid var(--line);background:#111;color:#fff;border-radius:12px;padding:10px 12px;text-decoration:none;cursor:pointer;font-size:16px;display:inline-block;}
-    .btn.secondary{background:#fff;color:#111;}
-    code{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:2px 6px;}
-    @media(max-width:520px){.actions{flex-direction:column}.btn{text-align:center}}
+    a{color:var(--link)}.wrap{max-width:840px;margin:0 auto;padding:18px;}header{border-bottom:1px solid var(--line);}section{border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:14px 0;background:#fff;}.lead,.note{color:var(--muted);line-height:1.7;}.note{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px;}.ok{background:var(--ok);border-color:var(--okline);}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}.btn{appearance:none;border:1px solid var(--line);background:#111;color:#fff;border-radius:12px;padding:10px 12px;text-decoration:none;cursor:pointer;font-size:16px;display:inline-block;}.btn.secondary{background:#fff;color:#111;}code{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:2px 6px;}@media(max-width:520px){.actions{flex-direction:column}.btn{text-align:center}}
   </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-57QT78M3JB');
-  </script>
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="NicheWorks Pro Unlock">
-  <meta property="og:description" content="NicheWorks Pro購入後に、この端末で対応ツールのPro機能を有効化するページです。">
-  <meta property="og:url" content="https://nicheworks.app/pro/unlock/">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NicheWorks Pro Unlock">
-  <meta name="twitter:description" content="NicheWorks Pro購入後に、この端末で対応ツールのPro機能を有効化するページです。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "NicheWorks Pro Unlock",
-    "url": "https://nicheworks.app/pro/unlock/",
-    "description": "NicheWorks Pro購入後に、この端末で対応ツールのPro機能を有効化するページです。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
-  }
-  </script>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <h1>NicheWorks Pro Unlock</h1>
-      <p class="lead">Stripe決済後に、この端末で対応ツールのPro機能を有効化します。</p>
-    </div>
-  </header>
-
+  <header><div class="wrap"><h1>NicheWorks Pro Unlock</h1><p class="lead">Stripe決済後に、この端末で対応ツールのPro機能を有効化します。</p></div></header>
   <main class="wrap">
-    <section>
+    <section class="ok">
       <h2>Pro有効化</h2>
-      <p id="tool-name" class="note">対象ツールを確認中です。</p>
       <p id="state" class="note">状態を確認中です。</p>
       <div class="actions">
         <button class="btn" id="btn-unlock" type="button">この端末でProを有効化</button>
-        <a class="btn secondary" id="btn-back" href="/">ツールに戻る</a>
-        <a class="btn secondary" id="btn-purchase" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" rel="noopener">購入ページを開く</a>
+        <a class="btn secondary" href="/">NicheWorks Home</a>
+        <a class="btn secondary" href="/tools/command-safety-checker/">Command Safety Checker</a>
+        <a class="btn secondary" href="/tools/ats-paste-doctor/">ATS Paste Doctor</a>
       </div>
-      <p class="note">この解除状態はブラウザのlocalStorageに保存されます。別端末・別ブラウザでは再度有効化が必要です。</p>
+      <p class="note">この解除状態はブラウザのlocalStorageに <code>nw_pro_key</code> として保存されます。別端末・別ブラウザでは再度このページを開いて有効化してください。</p>
     </section>
-
-    <section class="warn">
-      <h2>注意</h2>
-      <p>Proを有効化しても、各ツールの結果は法的・専門的判断を代替しません。重要な判断は公式情報や専門家に確認してください。</p>
-    </section>
+    <section><h2>注意</h2><p>Proを有効化しても、各ツールの結果は法的・専門的判断を代替しません。重要な判断は公式情報や専門家に確認してください。</p></section>
   </main>
-
   <script>
     (function(){
-      "use strict";
-      var params = new URLSearchParams(location.search);
-      var tool = params.get("tool") || "vibe-lexicon";
-      var tools = {
-        "vibe-lexicon": { label: "Vibe Lexicon", key: "nw_pro_vibe-lexicon", back: "/tools/vibe-lexicon/" },
-        "logistics-compliance-kit-jp": { label: "Logistics Compliance Kit JP", key: "nw_pro_logistics-compliance-kit-jp", back: "/tools/logistics-compliance-kit-jp/" },
-        "json-repair": { label: "JSON Repair", key: "nw_json_repair_pro_enabled_v1", back: "/tools/json-repair/" }
-      };
-      var config = tools[tool] || tools["vibe-lexicon"];
-      var state = document.getElementById("state");
-      var toolName = document.getElementById("tool-name");
-      var unlock = document.getElementById("btn-unlock");
-      var back = document.getElementById("btn-back");
-
-      if(toolName) toolName.textContent = "対象ツール：" + config.label;
-      if(back) back.href = config.back;
-
-      function isPro(){
-        try{ return localStorage.getItem(config.key) === "1"; }catch(e){ return false; }
+      'use strict';
+      var KEY = 'nw_pro_key';
+      var state = document.getElementById('state');
+      var button = document.getElementById('btn-unlock');
+      function isPro(){ try { return !!localStorage.getItem(KEY); } catch(e) { return false; } }
+      function unlock(){
+        try {
+          localStorage.setItem(KEY, '1');
+          localStorage.setItem('nw_pro_unlocked_at', new Date().toISOString());
+        } catch(e) {}
+        render();
       }
       function render(){
-        if(!state) return;
+        if (!state) return;
         state.textContent = isPro()
-          ? "状態：この端末でProが有効です。ツールに戻ってPro機能を使えます。"
-          : "状態：まだこの端末ではProが有効ではありません。下のボタンで有効化してください。";
+          ? '状態：この端末でNicheWorks Proが有効です。対応ツールに戻ってPro機能を使えます。'
+          : '状態：まだこの端末ではNicheWorks Proが有効ではありません。下のボタンで有効化してください。';
       }
-      if(unlock){
-        unlock.addEventListener("click", function(){
-          try{ localStorage.setItem(config.key, "1"); }catch(e){}
-          render();
-          alert("この端末でProを有効化しました。");
-        });
-      }
-      render();
+      if (button) button.addEventListener('click', unlock);
+      unlock();
     })();
   </script>
 </body>
