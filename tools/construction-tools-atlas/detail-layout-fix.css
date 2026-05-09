@@ -16,6 +16,9 @@
   margin-right: auto;
 }
 
+#detailSheet #detailChips,
+#detailSheet #detailDesc,
+#detailSheet #detailBullets,
 #detailSheet .termblock__chiprow[hidden],
 #detailSheet .termblock__desc[hidden],
 #detailSheet .termblock__bullets[hidden] {
