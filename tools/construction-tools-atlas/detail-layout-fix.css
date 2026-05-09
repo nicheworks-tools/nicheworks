@@ -1,0 +1,78 @@
+#detailSheet .sheet__body {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#detailSheet .termblock {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#detailSheet .tabpanel {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#detailSheet .termblock__chiprow[hidden],
+#detailSheet .termblock__desc[hidden],
+#detailSheet .termblock__bullets[hidden] {
+  display: none !important;
+}
+
+#detailSheet .termblock__title {
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+#detailSheet .termblock__sub {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.5;
+  color: var(--muted, #6b7280);
+}
+
+#detailSheet .dictionaryBlock {
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+#detailSheet .dictionaryBlock__label {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--muted, #6b7280);
+}
+
+#detailSheet .dictionaryBlock__text {
+  margin: 0;
+  line-height: 1.75;
+}
+
+#detailSheet .dictionaryBlock__list {
+  margin: 0;
+  padding-left: 1.25em;
+  line-height: 1.7;
+}
+
+#detailSheet .dictionaryBlock--definition .dictionaryBlock__text {
+  font-weight: 600;
+}
+
+#detailSheet .dictionaryBlock--meta .termblock__chiprow {
+  margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+  #detailSheet .sheet__body,
+  #detailSheet .termblock,
+  #detailSheet .tabpanel {
+    max-width: none;
+  }
+
+  #detailSheet .termblock__title {
+    font-size: 20px;
+  }
+}
