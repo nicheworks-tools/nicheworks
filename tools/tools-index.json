@@ -1,7 +1,17 @@
 {
-  "generatedAt": "2026-05-09T00:57:07.451Z",
-  "total": 77,
+  "generatedAt": "2026-05-09",
+  "total": 78,
   "items": [
+    {
+      "slug": "_template",
+      "title_en": "_template",
+      "title_ja": "{MAIN_KEYWORD}｜{TOOL_SHORT_NAME}",
+      "desc_en": "_template is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "desc_ja": "{MAIN_KEYWORD}｜{TOOL_SHORT_NAME} は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
+      "tags": [
+        "_template"
+      ]
+    },
     {
       "slug": "ai-project-pack",
       "title_en": "ai-project-pack",
