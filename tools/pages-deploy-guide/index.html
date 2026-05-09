@@ -11,73 +11,25 @@
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NicheWorks">
-<meta property="og:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
-<meta property="og:description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認できます。">
+<meta property="og:title" content="Pages Deploy Guide | NicheWorks">
+<meta property="og:description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。">
 <meta property="og:url" content="https://nicheworks.app/tools/pages-deploy-guide/">
 <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
-<meta name="twitter:description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認できます。">
-<meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 <link rel="icon" href="/assets/favicon.ico">
 <link rel="apple-touch-icon" href="/assets/favicon.ico">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide",
-    "url": "https://nicheworks.app/tools/pages-deploy-guide/",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "All",
-    "description": "Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認できます。",
-    "inLanguage": [
-      "ja",
-      "en"
-    ],
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
-  }
-  </script>
 </head>
 <body>
-<header class="nw-header">
-<h1 class="nw-title" data-i18n="ja">Pagesデプロイガイド</h1>
-<h1 class="nw-title" data-i18n="en" style="display:none">Pages Deploy Guide</h1>
-<p class="nw-lead" data-i18n="ja">Cloudflare Pages / GitHub Pagesの公開前チェックリストを作ります。</p>
-<p class="nw-lead" data-i18n="en" style="display:none">Create a pre-deploy checklist for Cloudflare Pages or GitHub Pages.</p>
-<div class="nw-lang-switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div>
-</header>
+<header class="nw-header"><h1 class="nw-title" data-i18n="ja">Pagesデプロイガイド</h1><h1 class="nw-title" data-i18n="en" style="display:none">Pages Deploy Guide</h1><p class="nw-lead" data-i18n="ja">Cloudflare Pages / GitHub Pagesの公開前チェックリストを作ります。</p><p class="nw-lead" data-i18n="en" style="display:none">Create a pre-deploy checklist for Cloudflare Pages or GitHub Pages.</p><div class="nw-lang-switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div></header>
 <main class="nw-main">
 <div class="ad-slot ad-top">広告枠</div>
-<div class="nw-note" data-i18n="ja">生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。未公開のリポジトリ名、内部URL、顧客名、DNS情報などは入力しないでください。</div>
-<div class="nw-note" data-i18n="en" style="display:none">Generation runs in your browser. Advertising and analytics tags may load for page display. Do not enter private repository names, internal URLs, customer names, or DNS details.</div>
-<section class="card">
-<div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none">Input</h2></div>
-<div class="card-bd" id="toolRoot">
-<div class="field"><label class="label" for="platform">Platform</label><select class="select" id="platform"><option value="cloudflare">Cloudflare Pages</option><option value="github">GitHub Pages</option></select></div>
-<div class="field"><label class="label" for="sourceType">Source type</label><select class="select" id="sourceType"><option value="repository">Repository / Folder</option><option value="static">Build output / Static files</option></select></div>
-<div class="field"><label class="label" for="customDomain">Custom domain</label><select class="select" id="customDomain"><option value="no">なし / No</option><option value="yes">あり / Yes</option></select></div>
-<div class="field"><label class="label" for="outputFolder">Output directory</label><select class="select" id="outputFolder"><option value="root">/ (root)</option><option value="dist">dist</option><option value="public">public</option><option value="docs">docs</option></select></div>
-<div class="row"><button class="btn primary" type="button" id="generate">生成する / Generate</button><button class="btn" type="button" id="copyAll">Copy Free</button></div>
-<div class="field"><label class="label" data-i18n="ja" for="output">無料チェックリスト</label><label class="label" data-i18n="en" for="output" style="display:none">Free checklist</label><textarea class="out" id="output" readonly></textarea></div>
-<div class="field"><label class="label" data-i18n="ja" for="errors">無料：よくあるエラー</label><label class="label" data-i18n="en" for="errors" style="display:none">Free: common errors</label><textarea class="out" id="errors" readonly></textarea></div>
-</div>
-</section>
-<section class="card pro-card">
-<div class="card-hd pro-head"><div><h2 class="card-title">Pages Deploy Guide Pro</h2><p class="pro-sub" data-i18n="ja">症状別診断ツリー、Markdown出力、引き継ぎパックを使えます。</p><p class="pro-sub" data-i18n="en" style="display:none">Unlock diagnosis tree, Markdown export, and deployment handoff pack.</p></div><span id="proState" class="pro-status inactive">Pro Inactive</span></div>
-<div class="card-bd">
-<div id="proLocked" class="pro-locked"><p data-i18n="ja">無料版は基本チェックリストとよくあるエラーまで使えます。Pro購入は決済リンク、寄付は下部のKo-fi / OFUSEからお願いします。</p><p data-i18n="en" style="display:none">The free version includes the basic checklist and common errors. Use the purchase link for Pro; donation links are below.</p><div class="pro-actions" aria-label="Pro purchase"></div></div>
-<div class="field"><label class="label" data-i18n="ja" for="proKey">Proコード</label><label class="label" data-i18n="en" for="proKey" style="display:none">Pro code</label><input class="input" id="proKey" type="text" autocomplete="off" aria-label="Pro code" stable content="NW-PDG-XXXX-XXXX-XX"><div class="row"><button class="btn primary" type="button" id="activatePro">Activate Pro</button><button class="btn" type="button" id="clearPro">Clear Pro</button></div></div>
-<div id="proArea" style="display:none"><div class="field"><label class="label" data-i18n="ja" for="diagnosis">Pro：症状別診断ツリー</label><label class="label" data-i18n="en" for="diagnosis" style="display:none">Pro: diagnosis tree</label><textarea class="out" id="diagnosis" readonly></textarea></div><div class="field"><label class="label" data-i18n="ja" for="proPack">Pro：デプロイ引き継ぎパック</label><label class="label" data-i18n="en" for="proPack" style="display:none">Pro: deployment handoff pack</label><textarea class="out" id="proPack" readonly></textarea></div><div class="row"><button class="btn" type="button" id="copyPro">Copy Pro</button><button class="btn" type="button" id="downloadMd">Markdown出力</button></div></div>
-</div>
-</section>
+<div class="nw-note" data-i18n="ja">生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。未公開のリポジトリ名、内部URL、顧客名、DNS情報などは入力しないでください。</div><div class="nw-note" data-i18n="en" style="display:none">Generation runs in your browser. Advertising and analytics tags may load for page display. Do not enter private repository names, internal URLs, customer names, or DNS details.</div>
+<section class="card"><div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none">Input</h2></div><div class="card-bd" id="toolRoot"><div class="field"><label class="label" for="platform">Platform</label><select class="select" id="platform"><option value="cloudflare">Cloudflare Pages</option><option value="github">GitHub Pages</option></select></div><div class="field"><label class="label" for="sourceType">Source type</label><select class="select" id="sourceType"><option value="repository">Repository / Folder</option><option value="static">Build output / Static files</option></select></div><div class="field"><label class="label" for="customDomain">Custom domain</label><select class="select" id="customDomain"><option value="no">なし / No</option><option value="yes">あり / Yes</option></select></div><div class="field"><label class="label" for="outputFolder">Output directory</label><select class="select" id="outputFolder"><option value="root">/ (root)</option><option value="dist">dist</option><option value="public">public</option><option value="docs">docs</option></select></div><div class="row"><button class="btn primary" type="button" id="generate">生成する / Generate</button><button class="btn" type="button" id="copyAll">Copy Free</button></div><div class="field"><label class="label" data-i18n="ja" for="output">無料チェックリスト</label><label class="label" data-i18n="en" for="output" style="display:none">Free checklist</label><textarea class="out" id="output" readonly></textarea></div><div class="field"><label class="label" data-i18n="ja" for="errors">無料：よくあるエラー</label><label class="label" data-i18n="en" for="errors" style="display:none">Free: common errors</label><textarea class="out" id="errors" readonly></textarea></div></div></section>
+<section class="card pro-card"><div class="card-hd pro-head"><div><h2 class="card-title">Pages Deploy Guide Pro</h2><p class="pro-sub" data-i18n="ja">症状別診断ツリー、Markdown出力、引き継ぎパックを使えます。</p><p class="pro-sub" data-i18n="en" style="display:none">Unlock diagnosis tree, Markdown export, and deployment handoff pack.</p></div><span id="proState" class="pro-status inactive">Pro Inactive</span></div><div class="card-bd"><div id="proLocked" class="pro-locked"><p data-i18n="ja">無料版は基本チェックリストとよくあるエラーまで使えます。Pro購入は決済リンク、寄付は下部の支援リンクからお願いします。</p><p data-i18n="en" style="display:none">The free version includes the basic checklist and common errors. Use the purchase link for Pro; donation links are below.</p><div class="pro-actions" aria-label="Pro purchase"></div></div><div class="field"><label class="label" data-i18n="ja" for="proKey">Proコード</label><label class="label" data-i18n="en" for="proKey" style="display:none">Pro code</label><input class="input" id="proKey" type="text" autocomplete="off" aria-label="Pro code"><div class="row"><button class="btn primary" type="button" id="activatePro">Activate Pro</button><button class="btn" type="button" id="clearPro">Clear Pro</button></div></div><div id="proArea" style="display:none"><div class="field"><label class="label" data-i18n="ja" for="diagnosis">Pro：症状別診断ツリー</label><label class="label" data-i18n="en" for="diagnosis" style="display:none">Pro: diagnosis tree</label><textarea class="out" id="diagnosis" readonly></textarea></div><div class="field"><label class="label" data-i18n="ja" for="proPack">Pro：デプロイ引き継ぎパック</label><label class="label" data-i18n="en" for="proPack" style="display:none">Pro: deployment handoff pack</label><textarea class="out" id="proPack" readonly></textarea></div><div class="row"><button class="btn" type="button" id="copyPro">Copy Pro</button><button class="btn" type="button" id="downloadMd">Markdown出力</button></div></div></div></section>
 <div class="ad-slot ad-bottom">広告枠</div>
-<div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en" style="display:none">If this tool helps, please consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+<div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en" style="display:none">If this tool helps, please consider supporting development.</p><div class="nw-donate-links" id="donateLinks"></div></div>
 <section class="faq-section"><h2 class="section-title">FAQ</h2><details><summary>このチェックだけでデプロイ成功を保証できますか？</summary><p>いいえ。公開前確認の補助です。実際のビルドログ、表示、DNS/SSL、公式ドキュメントを確認してください。</p></details><details><summary>Proでは何が使えますか？</summary><p>症状別診断ツリー、Markdown出力、デプロイ引き継ぎパック、Pro出力コピーが使えます。</p></details></section>
 <section class="nw-other"><h3 class="nw-other-title">関連ツール</h3><div class="nw-other-links"><a href="/tools/microtool-launch-checklist/">Microtool Launch Checklist</a><a href="/tools/release-guardian/">Release Guardian</a><a href="/tools/codex-product-shipping-playbooks/">Codex Product Shipping Playbooks</a><a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a></div></section>
 </main>
