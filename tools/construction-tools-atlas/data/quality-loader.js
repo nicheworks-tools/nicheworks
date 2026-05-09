@@ -1,61 +1,80 @@
 (() => {
   "use strict";
 
-  const QUALITY_FILES = [
-    "./data/tools.quality-001.json",
-    "./data/tools.quality-002.json",
-    "./data/tools.quality-003.json",
-    "./data/tools.quality-004.json",
-    "./data/tools.quality-005.json",
-    "./data/tools.quality-006.json",
-    "./data/tools.quality-007.json",
-    "./data/tools.quality-008.json",
-    "./data/tools.quality-009.json",
-    "./data/tools.quality-010.json"
-  ];
   const originalFetch = window.fetch.bind(window);
+  const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
+  const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
 
-  function isBasicData(url) {
-    return /tools\.basic\.json(?:$|[?#])/.test(String(url || ""));
+  function asEntries(raw) {
+    if (Array.isArray(raw)) return raw;
+    if (Array.isArray(raw?.entries)) return raw.entries;
+    if (Array.isArray(raw?.data)) return raw.data;
+    return [];
   }
 
-  async function fetchQuality() {
-    const chunks = await Promise.all(QUALITY_FILES.map(async (path) => {
-      try {
-        const res = await originalFetch(path, { cache: "no-store" });
-        if (!res.ok) return [];
-        const data = await res.json();
-        return Array.isArray(data) ? data : [];
-      } catch (err) {
-        console.warn("quality data skipped", path, err);
-        return [];
-      }
-    }));
-    return chunks.flat();
+  function packPath(item) {
+    if (typeof item === "string") return item.trim();
+    if (item && typeof item.path === "string") return item.path.trim();
+    return "";
   }
 
-  window.fetch = async (input, init) => {
-    const url = typeof input === "string" ? input : (input && input.url) || "";
-    const response = await originalFetch(input, init);
-    if (!isBasicData(url)) return response;
+  async function fetchJson(path) {
+    if (!path) return null;
     try {
-      const base = await response.clone().json();
-      const arr = Array.isArray(base) ? base : Array.isArray(base?.entries) ? base.entries : Array.isArray(base?.data) ? base.data : [];
-      const quality = await fetchQuality();
-      const seen = new Set();
-      const merged = [];
-      for (const item of quality.concat(arr)) {
-        if (!item || !item.id || seen.has(item.id)) continue;
-        seen.add(item.id);
-        merged.push(item);
-      }
-      return new Response(JSON.stringify(merged), {
-        status: 200,
-        headers: { "Content-Type": "application/json; charset=utf-8" }
-      });
-    } catch (err) {
-      console.warn("quality merge failed", err);
-      return response;
+      const response = await originalFetch(path, { cache: "no-store" });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (_) {
+      return null;
     }
+  }
+
+  function manifestPaths(manifest) {
+    const packs = Array.isArray(manifest?.packs) ? manifest.packs : [];
+    const paths = [];
+    const seen = new Set();
+
+    packs.forEach((pack) => {
+      const path = packPath(pack);
+      if (!path || seen.has(path)) return;
+      seen.add(path);
+      paths.push(path);
+    });
+
+    return paths;
+  }
+
+  function addUnique(merged, seen, entries) {
+    asEntries(entries).forEach((entry) => {
+      const id = typeof entry?.id === "string" ? entry.id.trim() : "";
+      if (!id || seen.has(id)) return;
+      seen.add(id);
+      merged.push(entry);
+    });
+  }
+
+  async function loadEntries(options = {}) {
+    const manifestPath = options.manifestPath || DEFAULT_MANIFEST_PATH;
+    const basePaths = Array.isArray(options.basePaths) ? options.basePaths : DEFAULT_BASE_PATHS;
+    const manifest = await fetchJson(manifestPath);
+    const packPaths = manifestPaths(manifest);
+    const merged = [];
+    const seen = new Set();
+
+    for (const path of packPaths) {
+      const pack = await fetchJson(path);
+      addUnique(merged, seen, pack);
+    }
+
+    for (const path of basePaths) {
+      const base = await fetchJson(path);
+      addUnique(merged, seen, base);
+    }
+
+    return merged;
+  }
+
+  window.CTA_DATA_LOADER = {
+    loadEntries,
   };
 })();
