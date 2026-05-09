@@ -33,19 +33,7 @@
     gtag('config', 'G-57QT78M3JB');
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "NicheWorks Pro Unlock",
-    "url": "https://nicheworks.app/pro/unlock/",
-    "description": "NicheWorks Pro購入後に、この端末で対応ツールのPro機能を有効化するページです。",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
-  }
+  {"@context":"https://schema.org","@type":"WebPage","name":"NicheWorks Pro Unlock","url":"https://nicheworks.app/pro/unlock/","description":"NicheWorks Pro購入後に、この端末で対応ツールのPro機能を有効化するページです。","inLanguage":"ja","publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}
   </script>
 </head>
 <body>
@@ -53,40 +41,54 @@
   <main class="wrap">
     <section class="ok">
       <h2>Pro有効化</h2>
+      <p id="tool-name" class="note">対象ツールを確認中です。</p>
       <p id="state" class="note">状態を確認中です。</p>
       <div class="actions">
         <button class="btn" id="btn-unlock" type="button">この端末でProを有効化</button>
+        <a class="btn secondary" id="btn-back" href="/tools/sql-db-risk-checker/">SQL DB Risk Checker に戻る</a>
         <a class="btn secondary" href="/">NicheWorks Home</a>
         <a class="btn secondary" href="/tools/command-safety-checker/">Command Safety Checker</a>
         <a class="btn secondary" href="/tools/json-repair/">JSON Repair</a>
-        <a class="btn secondary" href="/tools/ats-paste-doctor/">ATS Paste Doctor</a>
       </div>
-      <p class="note">この解除状態はブラウザのlocalStorageに保存されます。Command Safety Checkerではレビュー用レポートコピーとMarkdown保存が解放されます。別端末・別ブラウザでは再度このページを開いて有効化してください。</p>
+      <p class="note">この解除状態はブラウザのlocalStorageに保存されます。別端末・別ブラウザでは再度このページを開いて有効化してください。</p>
     </section>
-    <section><h2>注意</h2><p>Proを有効化しても、各ツールの結果は法的・専門的判断を代替しません。Command Safety Checkerもコマンドの安全を保証しません。重要な判断は公式情報や専門家に確認してください。</p></section>
+    <section><h2>注意</h2><p>Proを有効化しても、各ツールの結果は法的・専門的判断を代替しません。重要な判断は公式情報や専門家に確認してください。</p></section>
   </main>
   <script>
     (function(){
       'use strict';
+      var params = new URLSearchParams(location.search);
+      var tool = params.get('tool') || 'sql-db-risk-checker';
+      var tools = {
+        'sql-db-risk-checker': { label: 'SQL DB Risk Checker', key: 'nw_sql_pro', back: '/tools/sql-db-risk-checker/' },
+        'command-safety-checker': { label: 'Command Safety Checker', key: 'nw_command_safety_pro_enabled_v1', back: '/tools/command-safety-checker/' },
+        'json-repair': { label: 'JSON Repair', key: 'nw_json_repair_pro_enabled_v1', back: '/tools/json-repair/' },
+        'ats-paste-doctor': { label: 'ATS Paste Doctor', key: 'nw_pro_ats-paste-doctor', back: '/tools/ats-paste-doctor/' }
+      };
+      var config = tools[tool] || tools['sql-db-risk-checker'];
       var GLOBAL_KEY = 'nw_pro_key';
       var state = document.getElementById('state');
+      var toolName = document.getElementById('tool-name');
       var button = document.getElementById('btn-unlock');
-      function isPro(){ try { return !!localStorage.getItem(GLOBAL_KEY); } catch(e) { return false; } }
+      var back = document.getElementById('btn-back');
+      if (toolName) toolName.textContent = '対象ツール：' + config.label;
+      if (back) { back.href = config.back; back.textContent = config.label + ' に戻る'; }
+      function isPro(){ try { return localStorage.getItem(config.key) === '1'; } catch(e) { return false; } }
       function unlock(){
         try {
           localStorage.setItem(GLOBAL_KEY, '1');
+          localStorage.setItem(config.key, '1');
           localStorage.setItem('nw_pro_unlocked_at', new Date().toISOString());
-          localStorage.setItem('nw_command_safety_pro_enabled_v1', '1');
-          localStorage.setItem('nw_pro_command_safety_checker', '1');
-          localStorage.setItem('nw_json_repair_pro_enabled_v1', '1');
+          localStorage.setItem('nw_last_pro_tool', tool);
+          if (tool === 'command-safety-checker') localStorage.setItem('nw_pro_command_safety_checker', '1');
         } catch(e) {}
         render();
       }
       function render(){
         if (!state) return;
         state.textContent = isPro()
-          ? '状態：この端末でNicheWorks Proが有効です。対応ツールに戻ってPro機能を使えます。'
-          : '状態：まだこの端末ではNicheWorks Proが有効ではありません。下のボタンで有効化してください。';
+          ? '状態：この端末で' + config.label + 'のProが有効です。ツールに戻ってPro機能を使えます。'
+          : '状態：まだこの端末では' + config.label + 'のProが有効ではありません。下のボタンで有効化してください。';
       }
       if (button) button.addEventListener('click', unlock);
       unlock();
