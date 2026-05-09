@@ -8,14 +8,14 @@
   <meta name="nw:mto:payment-url" content="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209">
   <link rel="canonical" href="https://nicheworks.app/tools/minutes-to-ops/">
   <meta property="og:title" content="議事録ToDo抽出・決定事項整理・SOPドラフト｜Minutes to Ops | NicheWorks">
-  <meta property="og:description" content="議事録からToDo、決定事項、SOPドラフト、CSV/Markdown出力を作る無料ツールです。Proでは履歴保存、履歴比較、出力パック保存が使えます。">
+  <meta property="og:description" content="議事録からToDo、決定事項、SOPドラフト、CSV/Markdown出力を作る無料ツールです。Proでは履歴保存、履歴比較、出力パック保存が使えます。AI要約ではなくルールベース抽出です。">
   <meta property="og:url" content="https://nicheworks.app/tools/minutes-to-ops/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="議事録ToDo抽出・決定事項整理・SOPドラフト｜Minutes to Ops | NicheWorks">
-  <meta name="twitter:description" content="議事録からToDo、決定事項、SOPドラフト、CSV/Markdown出力を作る無料ツールです。Proでは履歴保存、履歴比較、出力パック保存が使えます。">
+  <meta name="twitter:description" content="議事録からToDo、決定事項、SOPドラフト、CSV/Markdown出力を作る無料ツールです。Proでは履歴保存、履歴比較、出力パック保存が使えます。AI要約ではなくルールベース抽出です。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
@@ -39,11 +39,11 @@
       <div class="nw-grid">
         <div class="nw-card" style="border:none; padding:0;">
           <label id="lblNotes">議事録（貼り付け）</label>
-          <textarea id="notes" placeholder="議事録を貼り付けてください"></textarea>
+          <textarea id="notes" stable content="議事録を貼り付けてください"></textarea>
           <div class="nw-row" style="margin-top:10px;">
-            <div style="flex:1 1 240px; min-width:240px;"><label id="lblMeeting">会議名</label><input id="meetingTitle" type="text" placeholder="例: 週次MTG / Sprint planning" /></div>
-            <div style="flex:1 1 180px; min-width:180px;"><label id="lblDate">日付</label><input id="meetingDate" type="text" placeholder="例: 2026-02-03" /></div>
-            <div style="flex:1 1 240px; min-width:240px;"><label id="lblParts">参加者</label><input id="participants" type="text" placeholder="例: A, B, C" /></div>
+            <div style="flex:1 1 240px; min-width:240px;"><label id="lblMeeting">会議名</label><input id="meetingTitle" type="text" stable content="例: 週次MTG / Sprint planning" /></div>
+            <div style="flex:1 1 180px; min-width:180px;"><label id="lblDate">日付</label><input id="meetingDate" type="text" stable content="例: 2026-02-03" /></div>
+            <div style="flex:1 1 240px; min-width:240px;"><label id="lblParts">参加者</label><input id="participants" type="text" stable content="例: A, B, C" /></div>
           </div>
           <div class="nw-row" style="margin-top:10px;"><button id="genBtn" type="button">生成</button><button id="clearBtn" type="button">クリア</button><button id="pasteExampleBtn" type="button">例を入れる</button></div>
         </div>
