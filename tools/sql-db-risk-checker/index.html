@@ -24,11 +24,11 @@ gtag('config', 'G-57QT78M3JB');
 <meta property="og:site_name" content="NicheWorks">
 <meta property="og:url" content="https://nicheworks.app/tools/sql-db-risk-checker/">
 <meta property="og:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-<meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
+<meta property="og:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。Proでは安全実行テンプレを利用できます。">
 <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SQL実行前チェック・DB事故防止｜SQL DB Risk Checker | NicheWorks">
-<meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出します。SQLは送信されません。">
+<meta name="twitter:description" content="SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。Proでは安全実行テンプレを利用できます。">
 <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SQL DB Risk Checker","url":"https://nicheworks.app/tools/sql-db-risk-checker/","applicationCategory":"UtilityApplication","operatingSystem":"All","description":"SQLを実行前に貼り付け、DROP、TRUNCATE、WHEREなしUPDATE/DELETE、危険なDDLなどをブラウザ内で検出するチェックツールです。SQLは送信されません。","inLanguage":["ja","en"],"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
 </head>
@@ -63,7 +63,7 @@ gtag('config', 'G-57QT78M3JB');
   <section class="tool">
     <div class="card">
       <h2 class="h2" data-i18n="sqlInputTitle">SQL入力</h2>
-      <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-placeholder="sqlPlaceholder"></textarea>
+      <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-stable content="sqlstable content"></textarea>
       <div class="options">
         <div class="opt"><label class="label" for="envSelect" data-i18n="envLabel">対象環境</label><select id="envSelect" class="select"><option value="unknown">Unknown</option><option value="dev">Dev</option><option value="staging">Staging</option><option value="prod">Prod</option></select><p class="help" data-i18n="envHelp">※自己申告です。実際の接続先は判定しません。</p></div>
         <div class="opt"><label class="label" for="dbSelect" data-i18n="dbLabel">DB種別</label><select id="dbSelect" class="select"><option value="generic">Generic</option><option value="postgres">Postgres</option><option value="mysql">MySQL</option><option value="sqlite">SQLite</option></select></div>
