@@ -11,18 +11,38 @@
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NicheWorks">
-<meta property="og:title" content="Pages Deploy Guide | NicheWorks">
-<meta property="og:description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。">
+<meta property="og:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
+<meta property="og:description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認できます。">
 <meta property="og:url" content="https://nicheworks.app/tools/pages-deploy-guide/">
 <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Pages Deploy Guide | NicheWorks">
-<meta name="twitter:description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。">
+<meta name="twitter:title" content="Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks">
+<meta name="twitter:description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認できます。">
 <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 <link rel="icon" href="/assets/favicon.ico">
 <link rel="apple-touch-icon" href="/assets/favicon.ico">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide",
+    "url": "https://nicheworks.app/tools/pages-deploy-guide/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Cloudflare Pages / GitHub Pages の公開前チェックリスト生成ツールです。build command、output directory、404、DNS、SSL、OGP、robots、sitemapを確認できます。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
 </head>
 <body>
 <header class="nw-header">
@@ -52,7 +72,7 @@
 <div class="card-hd pro-head"><div><h2 class="card-title">Pages Deploy Guide Pro</h2><p class="pro-sub" data-i18n="ja">症状別診断ツリー、Markdown出力、引き継ぎパックを使えます。</p><p class="pro-sub" data-i18n="en" style="display:none">Unlock diagnosis tree, Markdown export, and deployment handoff pack.</p></div><span id="proState" class="pro-status inactive">Pro Inactive</span></div>
 <div class="card-bd">
 <div id="proLocked" class="pro-locked"><p data-i18n="ja">無料版は基本チェックリストとよくあるエラーまで使えます。Pro購入は決済リンク、寄付は下部のKo-fi / OFUSEからお願いします。</p><p data-i18n="en" style="display:none">The free version includes the basic checklist and common errors. Use the purchase link for Pro; donation links are below.</p><div class="pro-actions" aria-label="Pro purchase"></div></div>
-<div class="field"><label class="label" data-i18n="ja" for="proKey">Proコード</label><label class="label" data-i18n="en" for="proKey" style="display:none">Pro code</label><input class="input" id="proKey" type="text" autocomplete="off" aria-label="Pro code" placeholder="NW-PDG-XXXX-XXXX-XX"><div class="row"><button class="btn primary" type="button" id="activatePro">Activate Pro</button><button class="btn" type="button" id="clearPro">Clear Pro</button></div></div>
+<div class="field"><label class="label" data-i18n="ja" for="proKey">Proコード</label><label class="label" data-i18n="en" for="proKey" style="display:none">Pro code</label><input class="input" id="proKey" type="text" autocomplete="off" aria-label="Pro code" stable content="NW-PDG-XXXX-XXXX-XX"><div class="row"><button class="btn primary" type="button" id="activatePro">Activate Pro</button><button class="btn" type="button" id="clearPro">Clear Pro</button></div></div>
 <div id="proArea" style="display:none"><div class="field"><label class="label" data-i18n="ja" for="diagnosis">Pro：症状別診断ツリー</label><label class="label" data-i18n="en" for="diagnosis" style="display:none">Pro: diagnosis tree</label><textarea class="out" id="diagnosis" readonly></textarea></div><div class="field"><label class="label" data-i18n="ja" for="proPack">Pro：デプロイ引き継ぎパック</label><label class="label" data-i18n="en" for="proPack" style="display:none">Pro: deployment handoff pack</label><textarea class="out" id="proPack" readonly></textarea></div><div class="row"><button class="btn" type="button" id="copyPro">Copy Pro</button><button class="btn" type="button" id="downloadMd">Markdown出力</button></div></div>
 </div>
 </section>
