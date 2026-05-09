@@ -55,6 +55,7 @@
     };
   }
   function title(e) { return `${e.term.en || "—"} / ${e.term.ja || "—"}`; }
+  function aliasLine(e) { return [...e.aliases.ja, ...e.aliases.en].filter(Boolean).join(" / "); }
   function hay(e) { return [e.id,e.type,e.term.ja,e.term.en,e.description.ja,e.description.en,e.summary.ja,e.summary.en,e.detail.ja,e.detail.en,...e.aliases.ja,...e.aliases.en,...e.categories,...e.tasks,...e.fuzzy,...e.region].join("\n").toLowerCase(); }
   function matchQuery(e) { const q = state.q.trim().toLowerCase(); if (!q) return true; const h = hay(e); return q.split(/\s+/).every((p) => h.includes(p)); }
   function actionMatch(e) { const a = ACTIONS.find((x) => x.id === state.action) || ACTIONS[0]; if (!a.tokens.length) return true; const h = hay(e); return a.tokens.some((t) => h.includes(String(t).toLowerCase())); }
@@ -105,21 +106,36 @@
   }
   function tab(name) { $$(".tab", els.detailTabs || document).forEach((b) => b.classList.toggle("tab--active", b.dataset.tab === name)); if (els.tabMeaning) els.tabMeaning.hidden = name !== "meaning"; if (els.tabExamples) els.tabExamples.hidden = name !== "examples"; if (els.tabAliases) els.tabAliases.hidden = name !== "aliases"; if (els.tabMeta) els.tabMeta.hidden = name !== "meta"; }
   function labeled(parent, label, body, cls) { if (!parent || !body) return; const wrap = div("", cls || "dictionaryBlock"); wrap.appendChild(div(label, "tabpanel__label")); wrap.appendChild(div(body, "tabpanel__text")); parent.appendChild(wrap); }
+  function reorderDetailTop() {
+    const block = els.detailTerms?.parentElement;
+    if (!block) return;
+    if (els.detailTerms) block.appendChild(els.detailTerms);
+    if (els.detailDesc) block.appendChild(els.detailDesc);
+    if (els.detailBullets) block.appendChild(els.detailBullets);
+    if (els.detailChips) block.appendChild(els.detailChips);
+  }
   function renderDetail(e) {
     if (!e) return;
+    reorderDetailTop();
     if (els.detailTitle) els.detailTitle.textContent = state.lang === "ja" ? "詳細" : "Detail";
     if (els.detailStar) els.detailStar.textContent = state.favs.has(e.id) ? "★" : "☆";
-    clear(els.detailChips); [e.type,...e.categories,...e.tasks].forEach((x) => chip(els.detailChips, x));
-    clear(els.detailTerms); els.detailTerms?.appendChild(div(title(e), "termblock__title")); const aliases = [...e.aliases.ja,...e.aliases.en].filter(Boolean); if (aliases.length) els.detailTerms?.appendChild(div(aliases.join(" / "), "termblock__sub"));
     const definition = pick(e.description) || pick(e.summary);
     const note = pick(e.detail);
+    const aliases = aliasLine(e);
+
+    clear(els.detailTerms);
+    els.detailTerms?.appendChild(div(title(e), "termblock__title"));
+    if (aliases) els.detailTerms?.appendChild(div(aliases, "termblock__sub"));
     if (els.detailDesc) els.detailDesc.textContent = definition;
     ul(els.detailBullets, state.lang === "ja" ? e.bullets.ja : e.bullets.en, "");
+    clear(els.detailChips);
+    [e.type,...e.categories,...e.tasks].forEach((x) => chip(els.detailChips, x));
+
     clear(els.tabMeaning);
     labeled(els.tabMeaning, state.lang === "ja" ? "意味" : "Meaning", definition, "dictionaryBlock dictionaryBlock--definition");
     if (note && note !== definition) labeled(els.tabMeaning, state.lang === "ja" ? "使い方・注意" : "Use / notes", note, "dictionaryBlock dictionaryBlock--notes");
     ul(els.tabExamples, state.lang === "ja" ? e.examples.ja : e.examples.en, state.lang === "ja" ? "例はまだありません。" : "No examples yet.");
-    ul(els.tabAliases, aliases, state.lang === "ja" ? "別名はまだありません。" : "No aliases yet.");
+    ul(els.tabAliases, [...e.aliases.ja,...e.aliases.en].filter(Boolean), state.lang === "ja" ? "別名はまだありません。" : "No aliases yet.");
     ul(els.tabMeta, [`id: ${e.id}`,`type: ${e.type}`,`categories: ${e.categories.join(", ")}`,`tasks: ${e.tasks.join(", ")}`,`region: ${e.region.join(", ")}`,`quality_batch: ${e.meta?.quality_batch || ""}`], "");
   }
   function openDetail(id) { const e = state.entries.find((x) => x.id === id); if (!e) return; state.current = e; renderDetail(e); tab("meaning"); openSheet(els.detailSheet); }
