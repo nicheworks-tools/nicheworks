@@ -39,11 +39,11 @@
       <div class="nw-grid">
         <div class="nw-card" style="border:none; padding:0;">
           <label id="lblNotes">議事録（貼り付け）</label>
-          <textarea id="notes" placeholder="議事録を貼り付けてください"></textarea>
+          <textarea id="notes" stable content="議事録を貼り付けてください"></textarea>
           <div class="nw-row" style="margin-top:10px;">
-            <div style="flex:1 1 240px; min-width:240px;"><label id="lblMeeting">会議名</label><input id="meetingTitle" type="text" placeholder="例: 週次MTG / Sprint planning" /></div>
-            <div style="flex:1 1 180px; min-width:180px;"><label id="lblDate">日付</label><input id="meetingDate" type="text" placeholder="例: 2026-02-03" /></div>
-            <div style="flex:1 1 240px; min-width:240px;"><label id="lblParts">参加者</label><input id="participants" type="text" placeholder="例: A, B, C" /></div>
+            <div style="flex:1 1 240px; min-width:240px;"><label id="lblMeeting">会議名</label><input id="meetingTitle" type="text" stable content="例: 週次MTG / Sprint planning" /></div>
+            <div style="flex:1 1 180px; min-width:180px;"><label id="lblDate">日付</label><input id="meetingDate" type="text" stable content="例: 2026-02-03" /></div>
+            <div style="flex:1 1 240px; min-width:240px;"><label id="lblParts">参加者</label><input id="participants" type="text" stable content="例: A, B, C" /></div>
           </div>
           <div class="nw-row" style="margin-top:10px;"><button id="genBtn" type="button">生成</button><button id="clearBtn" type="button">クリア</button><button id="pasteExampleBtn" type="button">例を入れる</button></div>
         </div>
