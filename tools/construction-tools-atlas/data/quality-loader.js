@@ -5,8 +5,71 @@
   const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
 
+  function safeText(value) {
+    return typeof value === "string" ? value.trim() : "";
+  }
+
+  function safeArray(value) {
+    if (Array.isArray(value)) return value.filter(Boolean).map(String);
+    if (typeof value === "string" && value.trim()) return [value.trim()];
+    return [];
+  }
+
+  function compactToFull(row, qualityBatch) {
+    const id = safeText(row?.id);
+    const type = safeText(row?.t || row?.type);
+    const ja = safeText(row?.ja || row?.term?.ja);
+    const en = safeText(row?.en || row?.term?.en);
+    const cat = safeText(row?.c || row?.category);
+    const task = safeText(row?.task || row?.tsk);
+    const descJa = safeText(row?.dj || row?.description_ja || row?.summary_ja);
+    const descEn = safeText(row?.de || row?.description_en || row?.summary_en);
+    const detailJa = safeText(row?.nj || row?.detail_ja) || `${ja}は仕様、下地条件、周辺部材との取り合いを確認して使う。施工前後の確認を省くと不具合や手戻りの原因になる。`;
+    const detailEn = safeText(row?.ne || row?.detail_en) || `Use ${en} after checking the specification, substrate, and adjacent details. Missing checks can cause defects or rework.`;
+    const bulletsJa = safeArray(row?.bj || row?.bullets_ja);
+    const bulletsEn = safeArray(row?.be || row?.bullets_en);
+    const finalBulletsJa = bulletsJa.length ? bulletsJa : ["仕様と下地条件を確認する。", "周辺部材との取り合いを確認する。"];
+    const finalBulletsEn = bulletsEn.length ? bulletsEn : ["Check the specification and substrate conditions.", "Confirm adjacent details before finishing."];
+    const aliasesJa = safeArray(row?.aj || row?.aliases_ja);
+    const aliasesEn = safeArray(row?.ae || row?.aliases_en);
+    const categories = safeArray(row?.categories || cat);
+    const tasks = safeArray(row?.tasks || task);
+    const fuzzy = safeArray(row?.fuzzy).concat([ja, en, cat, task]).filter(Boolean);
+    const examplesJa = safeArray(row?.ej || row?.examples_ja);
+    const examplesEn = safeArray(row?.ee || row?.examples_en);
+
+    return {
+      id,
+      type,
+      term: { ja, en },
+      aliases: { ja: aliasesJa, en: aliasesEn },
+      description: { ja: descJa, en: descEn },
+      categories,
+      tasks,
+      fuzzy: [...new Set(fuzzy)],
+      region: safeArray(row?.region).length ? safeArray(row.region) : ["global", "jp"],
+      summary_ja: descJa,
+      summary_en: descEn,
+      detail_ja: detailJa,
+      detail_en: detailEn,
+      bullets_ja: finalBulletsJa,
+      bullets_en: finalBulletsEn,
+      examples: {
+        ja: examplesJa.length ? examplesJa : [`${ja}を使う前に寸法と仕様を確認する。`],
+        en: examplesEn.length ? examplesEn : [`Check dimensions and specifications before using ${en}.`],
+      },
+      summary: { ja: descJa, en: descEn },
+      bullets: { ja: finalBulletsJa, en: finalBulletsEn },
+      meta: { quality_batch: safeText(row?.quality_batch || qualityBatch) },
+    };
+  }
+
   function asEntries(raw) {
     if (Array.isArray(raw)) return raw;
+    if (raw?.schema === "cta-compact-v1" && Array.isArray(raw?.rows)) {
+      const qualityBatch = safeText(raw?.quality_batch);
+      return raw.rows.map((row) => compactToFull(row, qualityBatch));
+    }
     if (Array.isArray(raw?.entries)) return raw.entries;
     if (Array.isArray(raw?.data)) return raw.data;
     return [];
