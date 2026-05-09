@@ -118,7 +118,7 @@
         このツールは複数の天気APIの予報を比較してズレを確認できるツールです。
       </p>
       <p class="wd-usage-link">
-        <a id="usageLink" href="/tools/weatherdiff/usage.html" target="_blank">くわしい使い方はこちら →</a>
+        <a id="usageLink" href="/tools/weatherdiff/usage.html" target="_blank" rel="noopener noreferrer">くわしい使い方はこちら →</a>
       </p>
     </div>
 
@@ -130,7 +130,7 @@
       <input
         id="locationInput"
         type="text"
-        stable content="東京都千代田区 / Shibuya / New York"
+        placeholder="東京都千代田区 / 渋谷 / 札幌"
         autocomplete="off"
       />
       <button id="btnCompare" class="wd-btn primary">比較</button>
@@ -265,12 +265,12 @@
       <h3 class="wd-card-title" id="otherServicesTitle">他のサービスで詳しく見る</h3>
 
       <div class="wd-links-grid">
-        <a id="linkGoogleWeather" href="https://www.google.com/search?q=weather" target="_blank">Google Weather</a>
-        <a id="linkWeatherCom" href="https://weather.com" target="_blank">Weather.com</a>
-        <a id="linkAccuWeather" href="https://www.accuweather.com" target="_blank">AccuWeather</a>
-        <a id="linkJma" href="https://www.jma.go.jp/bosai/forecast/" target="_blank">気象庁</a>
-        <a id="linkTenki" href="https://tenki.jp" target="_blank">tenki.jp</a>
-        <a id="linkYahoo" href="https://weather.yahoo.co.jp/weather/" target="_blank">Yahoo天気</a>
+        <a id="linkGoogleWeather" href="https://www.google.com/search?q=weather" target="_blank" rel="noopener noreferrer">Google Weather</a>
+        <a id="linkWeatherCom" href="https://weather.com" target="_blank" rel="noopener noreferrer">Weather.com</a>
+        <a id="linkAccuWeather" href="https://www.accuweather.com" target="_blank" rel="noopener noreferrer">AccuWeather</a>
+        <a id="linkJma" href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener noreferrer">気象庁</a>
+        <a id="linkTenki" href="https://tenki.jp" target="_blank" rel="noopener noreferrer">tenki.jp</a>
+        <a id="linkYahoo" href="https://weather.yahoo.co.jp/weather/" target="_blank" rel="noopener noreferrer">Yahoo天気</a>
       </div>
     </section>
 
@@ -288,8 +288,8 @@
   </p>
 
   <div class="wd-donate-buttons">
-    <a class="wd-donate-btn" href="https://ofuse.me/nicheworks" target="_blank">🧡 OFUSE</a>
-    <a class="wd-donate-btn" href="https://ko-fi.com/nicheworks" target="_blank">☕ Ko-fi</a>
+    <a class="wd-donate-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">🧡 OFUSE</a>
+    <a class="wd-donate-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>
   </div>
 
   <div class="wd-footer-links">
@@ -307,5 +307,6 @@
 </footer>
 
 <script src="app.js"></script>
+<script src="wd03-geolocation-guard.js"></script>
 </body>
 </html>
