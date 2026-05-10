@@ -25,7 +25,14 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout main
+      - name: Checkout PR head
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Checkout main after auto repair
+        if: ${{ github.event_name == 'workflow_run' }}
         uses: actions/checkout@v4
         with:
           ref: main
