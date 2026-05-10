@@ -1,19 +1,33 @@
 #detailSheet .sheet__body {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
+  width: min(960px, calc(100% - 32px)) !important;
+  max-width: 960px !important;
+  min-height: 420px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+
+#detailSheet .termblock,
+#detailSheet .tabs,
+#detailSheet .tabpanel {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
 }
 
 #detailSheet .termblock {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 12px !important;
+}
+
+#detailSheet .tabs {
+  min-height: 42px;
 }
 
 #detailSheet .tabpanel {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
+  min-height: 190px;
 }
 
 #detailSheet #detailChips,
@@ -40,18 +54,21 @@
 #detailSheet .detailImagePilot {
   display: grid;
   gap: 8px;
-  max-width: 360px;
+  width: min(420px, 100%);
+  max-width: 420px;
   margin: 14px 0 18px;
   padding: 10px;
   border: 1px solid var(--border, #e5e7eb);
   border-radius: 14px;
   background: var(--surface, #fff);
+  box-sizing: border-box;
 }
 
 #detailSheet .detailImagePilot[hidden] {
   display: none !important;
 }
 
+#detailSheet .detailImagePilot svg,
 #detailSheet .detailImagePilot img {
   display: block;
   width: 100%;
@@ -71,25 +88,29 @@
   padding: 0;
 }
 
-#detailSheet .dictionaryBlock__label {
+#detailSheet .dictionaryBlock__label,
+#detailSheet .tabpanel__label {
   margin: 0 0 6px;
   font-size: 14px;
   font-weight: 800;
   color: var(--muted, #6b7280);
 }
 
-#detailSheet .dictionaryBlock__text {
+#detailSheet .dictionaryBlock__text,
+#detailSheet .tabpanel__text {
   margin: 0;
   line-height: 1.75;
 }
 
-#detailSheet .dictionaryBlock__list {
+#detailSheet .dictionaryBlock__list,
+#detailSheet .tabpanel ul {
   margin: 0;
   padding-left: 1.25em;
   line-height: 1.7;
 }
 
-#detailSheet .dictionaryBlock--definition .dictionaryBlock__text {
+#detailSheet .dictionaryBlock--definition .dictionaryBlock__text,
+#detailSheet .dictionaryBlock--definition .tabpanel__text {
   font-weight: 600;
 }
 
@@ -98,10 +119,10 @@
 }
 
 @media (max-width: 480px) {
-  #detailSheet .sheet__body,
-  #detailSheet .termblock,
-  #detailSheet .tabpanel {
-    max-width: none;
+  #detailSheet .sheet__body {
+    width: calc(100% - 24px) !important;
+    max-width: none !important;
+    min-height: 420px;
   }
 
   #detailSheet .termblock__title {
@@ -109,6 +130,7 @@
   }
 
   #detailSheet .detailImagePilot {
+    width: 100%;
     max-width: none;
   }
 }
