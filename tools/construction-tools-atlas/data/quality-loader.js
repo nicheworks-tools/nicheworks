@@ -137,7 +137,34 @@
     return merged;
   }
 
+  function fixSearchInput() {
+    const input = document.getElementById("searchInput");
+    if (!input) return;
+    const example = input.getAttribute("content") || input.getAttribute("stable") || "例：インパクト / 石膏ボード / 床レベラー / torque wrench";
+    input.removeAttribute("stable");
+    input.removeAttribute("content");
+    input.setAttribute("placeholder", example);
+  }
+
+  function loadLatestImageHotfix() {
+    try {
+      if (document.querySelector('script[data-cta-image-hotfix="20260510-image-3"]')) return;
+      const script = document.createElement("script");
+      script.src = "./detail-image-hotfix.js?v=20260510-image-3";
+      script.defer = true;
+      script.dataset.ctaImageHotfix = "20260510-image-3";
+      document.head.appendChild(script);
+    } catch (_) {
+      // Optional image pilot must not stop the dictionary.
+    }
+  }
+
   window.CTA_DATA_LOADER = {
     loadEntries,
   };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fixSearchInput();
+    loadLatestImageHotfix();
+  });
 })();
