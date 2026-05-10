@@ -35,6 +35,7 @@
   function div(text, cls) { const el = document.createElement("div"); if (cls) el.className = cls; el.textContent = text || ""; return el; }
   function chip(parent, text) { const t = str(text); if (!parent || !t) return; const s = document.createElement("span"); s.className = "chip"; s.textContent = t; parent.appendChild(s); }
   function ul(parent, items, empty) { clear(parent); if (!parent) return; const values = arr(items); if (!values.length) { if (empty) parent.appendChild(div(empty, "muted")); return; } const list = document.createElement("ul"); values.forEach((v) => { const li = document.createElement("li"); li.textContent = v; list.appendChild(li); }); parent.appendChild(list); }
+  function norm(v) { return String(v || "").trim().toLowerCase(); }
 
   function normalize(raw, i) {
     const description = loc(raw?.description, raw?.description_ja, raw?.description_en);
@@ -57,7 +58,50 @@
   function title(e) { return `${e.term.en || "—"} / ${e.term.ja || "—"}`; }
   function aliasLine(e) { return [...e.aliases.ja, ...e.aliases.en].filter(Boolean).join(" / "); }
   function hay(e) { return [e.id,e.type,e.term.ja,e.term.en,e.description.ja,e.description.en,e.summary.ja,e.summary.en,e.detail.ja,e.detail.en,...e.aliases.ja,...e.aliases.en,...e.categories,...e.tasks,...e.fuzzy,...e.region].join("\n").toLowerCase(); }
-  function matchQuery(e) { const q = state.q.trim().toLowerCase(); if (!q) return true; const h = hay(e); return q.split(/\s+/).every((p) => h.includes(p)); }
+  function queryParts() { return norm(state.q).split(/\s+/).filter(Boolean); }
+  function matchQuery(e) { const parts = queryParts(); if (!parts.length) return true; const h = hay(e); return parts.every((p) => h.includes(p)); }
+  function scoreField(value, part, exact, starts, includes) {
+    const v = norm(value);
+    if (!v || !part) return 0;
+    if (v === part) return exact;
+    if (v.startsWith(part)) return starts;
+    if (v.includes(part)) return includes;
+    return 0;
+  }
+  function queryScore(e) {
+    const parts = queryParts();
+    if (!parts.length) return 0;
+    let score = 0;
+    const termFields = [e.term.ja, e.term.en];
+    const aliasFields = [...e.aliases.ja, ...e.aliases.en];
+    const taxonomyFields = [e.type, ...e.categories, ...e.tasks];
+    const fuzzyFields = [...e.fuzzy, ...e.region];
+    const bodyFields = [e.summary.ja, e.summary.en, e.description.ja, e.description.en, e.detail.ja, e.detail.en];
+    const fullQuery = norm(state.q);
+
+    termFields.forEach((f) => { if (norm(f) === fullQuery) score += 5000; });
+    aliasFields.forEach((f) => { if (norm(f) === fullQuery) score += 4200; });
+    termFields.forEach((f) => { if (norm(f).includes(fullQuery)) score += 1800; });
+    aliasFields.forEach((f) => { if (norm(f).includes(fullQuery)) score += 1400; });
+
+    parts.forEach((p) => {
+      termFields.forEach((f) => { score += scoreField(f, p, 1200, 950, 750); });
+      aliasFields.forEach((f) => { score += scoreField(f, p, 1000, 800, 620); });
+      taxonomyFields.forEach((f) => { score += scoreField(f, p, 420, 320, 240); });
+      fuzzyFields.forEach((f) => { score += scoreField(f, p, 320, 240, 180); });
+      bodyFields.forEach((f) => { score += scoreField(f, p, 120, 80, 45); });
+      score += scoreField(e.id, p, 80, 60, 30);
+    });
+    return score;
+  }
+  function compareResult(a, b) {
+    const q = norm(state.q);
+    if (q) {
+      const scoreDiff = queryScore(b) - queryScore(a);
+      if (scoreDiff !== 0) return scoreDiff;
+    }
+    return title(a).localeCompare(title(b), state.lang === "ja" ? "ja" : "en");
+  }
   function actionMatch(e) { const a = ACTIONS.find((x) => x.id === state.action) || ACTIONS[0]; if (!a.tokens.length) return true; const h = hay(e); return a.tokens.some((t) => h.includes(String(t).toLowerCase())); }
 
   function openSheet(sheet) { if (!sheet) return; [els.detailSheet,els.supportSheet,els.menuSheet,els.howtoSheet,els.filterSheet].forEach((x) => { if (x) x.hidden = true; }); if (els.overlay) els.overlay.hidden = false; sheet.hidden = false; }
@@ -74,7 +118,7 @@
       if (state.category !== "all" && !e.categories.includes(state.category)) return false;
       if (state.task !== "all" && !e.tasks.includes(state.task)) return false;
       return true;
-    });
+    }).sort(compareResult);
   }
   function renderActions() {
     clear(els.actionChips);
