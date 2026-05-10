@@ -1,5 +1,7 @@
 # NicheWorks SEO audit workflow
 
+Verification marker: 2026-05-10 strict SEO rerun after repair simplification.
+
 Run this before publishing SEO-related changes:
 
 ```bash
