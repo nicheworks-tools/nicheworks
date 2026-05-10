@@ -63,6 +63,7 @@
       <span class="pill">一覧 + 詳細 + 比較トレイ</span>
       <span class="pill">ローカルお気に入り + 履歴</span>
       <span class="pill">50件のライブサンプルを収録</span>
+      <span class="pill">Pro判断パックあり</span>
     </div>
     <div class="nw-lang-switch"><a href="../">English</a></div>
     <nav class="nw-nav" aria-label="Tool page navigation">
@@ -74,6 +75,16 @@
     <section class="nw-intro">
       <h2>実際に触れるUIパターン集</h2>
       <p>カード上のミニライブプレビューと詳細側の拡大サンプルで、見た目と挙動を確認しながら検索・比較・お気に入り管理まで行えます。</p>
+    </section>
+
+    <section class="nw-card pro-callout" aria-label="UI Atlas Pro">
+      <h2>Proは判断と引き継ぎのための層です</h2>
+      <p>無料版UI Atlasは、UIパターンを探して比較するための辞典です。UI Atlas Proは、その選択を実装依頼や仕様メモに変えるための追加パックです。判断メモ、拡張比較チェックリスト、実装チェックリスト、再利用できるプロンプト文を用意します。</p>
+      <ul class="faq-list">
+        <li><strong>無料版:</strong> 50件のパターン例、検索、絞り込み、詳細表示、ローカルお気に入り、最近見た項目、2件比較。</li>
+        <li><strong>Pro:</strong> 判断メモテンプレート、拡張比較チェックリスト、引き継ぎ用プロンプト、アクセシビリティ確認観点、仕様書に貼れる文面。</li>
+      </ul>
+      <p class="donation-links"><a class="support-btn" href="pro/">Proの詳細を見る</a></p>
     </section>
 
     <section class="ad-slot ad-top" aria-label="advertisement">Ad slot (top)</section>
@@ -135,7 +146,7 @@
             </div>
           </section>
         </div>
-        <div class="results-toolbar"><span data-count>0 件表示</span><span>比較トレイは2件まで</span></div>
+        <div class="results-toolbar"><span data-count>0 件表示</span><span>比較トレイは2件まで・Proは引き継ぎテンプレートを追加</span></div>
         <section class="compare-dock compare-dock-mobile" data-compare-dock-mobile aria-live="polite" hidden>
           <p class="compare-dock-text" data-compare-dock-text-mobile>比較 (0/2)</p>
           <div class="compare-dock-actions">
@@ -151,7 +162,7 @@
             <h3 data-compare-heading>比較 (0/2)</h3>
             <button type="button" class="btn compare-clear-btn" data-compare-clear hidden>クリア</button>
           </div>
-          <p class="compare-hint" data-compare-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。</p>
+          <p class="compare-hint" data-compare-empty>まだ追加されていません。2件まで追加して主要差分を確認できます。Proでは判断メモと引き継ぎ用テンプレートを追加します。</p>
           <p class="compare-status" data-compare-status aria-live="polite"></p>
           <div class="compare-list" data-compare-list></div>
           <div class="compare-diff" data-compare-diff hidden></div>
@@ -183,6 +194,7 @@
             <li>向き不向き・実装メモをまとめて確認できます</li>
             <li>ローカルお気に入り・履歴もここから扱えます</li>
           </ul>
+          <p><a href="pro/">判断メモや引き継ぎプロンプトが必要な場合はProを確認</a></p>
         </div>
         <div class="detail-content" data-detail-content hidden>
           <h3>ライブサンプル</h3>
@@ -212,11 +224,22 @@
       </aside>
     </section>
 
+    <section class="nw-card" aria-label="Pro feature preview">
+      <h2>Proでこの辞典に追加されるもの</h2>
+      <ul class="faq-list">
+        <li><strong>判断メモ:</strong> なぜそのUIを選ぶのか、何を避けたのか、何を検証すべきかをそのまま貼れる文面にします。</li>
+        <li><strong>拡張比較チェック:</strong> アクセシビリティリスク、モバイル適性、文量リスク、実装コスト、誤用注意を確認できます。</li>
+        <li><strong>引き継ぎプロンプト:</strong> 選んだUIパターンを実装依頼に変えるための再利用プロンプトを用意します。</li>
+        <li><strong>仕様書向け文面:</strong> Issue、仕様書、デザインメモに貼れる形で整理します。</li>
+      </ul>
+      <p class="donation-links"><a class="support-btn" href="pro/">Proページを開く</a></p>
+    </section>
+
     <section class="nw-card">
       <h2>FAQ</h2>
       <ul class="faq-list">
         <li>現在のカタログ規模は？ 無料版でも実務向けの50パターンを検索・比較できます。</li>
-        <li>無料で使える範囲は？ 検索・絞り込み・詳細・2件比較の基本導線は利用できます。</li>
+        <li>無料で使える範囲は？ 検索・絞り込み・詳細・お気に入り・履歴・2件比較は無料です。Proは判断と引き継ぎ用の追加資料です。</li>
         <li>お気に入り/履歴は同期されますか？ 現在はブラウザ内ローカル保存のみです。</li>
       </ul>
     </section>
