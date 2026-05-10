@@ -3,6 +3,7 @@
   --muted: #555;
   --border: #e5e5e5;
   --bg: #ffffff;
+  --soft: #fafafa;
   --accent: #111;
 }
 
@@ -15,46 +16,96 @@ body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Noto Serif JP", serif;
+  font-family: Georgia, "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   line-height: 1.85;
   letter-spacing: 0.02em;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
 a:hover {
   color: var(--accent);
 }
 
-main.page {
-  max-width: 720px;
+.nw-header,
+main.page,
+.nw-main {
+  max-width: 760px;
   margin: 0 auto;
-  padding: 24px 20px 12px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
+.nw-header {
+  padding-top: 26px;
+  padding-bottom: 8px;
+}
+
+main.page,
+.nw-main {
+  padding-top: 8px;
+  padding-bottom: 12px;
+}
+
+.nw-title,
 .page-title {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   font-size: 1.9rem;
   font-weight: 600;
+  line-height: 1.35;
 }
 
+.nw-subtitle,
 .page-desc {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   color: var(--muted);
 }
 
-.policy-box {
-  margin: 18px 0 12px;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.intro-box,
+.policy-box,
+.faq-section {
+  margin: 18px 0 14px;
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: #fafafa;
+  background: var(--soft);
 }
 
-.policy-title {
+.intro-box p,
+.policy-box p,
+.faq-section p {
+  margin: 0 0 8px;
+}
+
+.usage-link {
+  font-size: 0.95rem;
+}
+
+.usage-link a,
+.km-sibling a,
+.nw-links a {
+  font-weight: 600;
+  color: #2558b8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.policy-title,
+.faq-section h2 {
   margin: 0 0 8px;
   font-size: 1.05rem;
   font-weight: 600;
@@ -72,30 +123,34 @@ main.page {
 }
 
 .count-text {
-  margin: 4px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
   font-size: 0.95rem;
 }
 
-.lang-switch {
+.lang-switch,
+.nw-lang-switch {
   display: flex;
   gap: 10px;
   margin: 10px 0 6px;
 }
 
-button.lang-btn {
+button.lang-btn,
+.nw-lang-switch button {
   border: 1px solid #ccc;
   padding: 4px 12px;
   border-radius: 20px;
   background: #fff;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-button.lang-btn.active {
+button.lang-btn.active,
+.nw-lang-switch button.active {
   background: #111;
   color: #fff;
+  border-color: #111;
 }
 
 .section {
@@ -113,6 +168,7 @@ button.lang-btn.active {
 }
 
 .field-label {
+  display: block;
   margin: 0 0 6px;
   font-weight: 600;
   font-size: 1rem;
@@ -130,15 +186,17 @@ button.lang-btn.active {
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background: #fafafa;
-  font-family: "Noto Serif JP", serif;
+  background: var(--soft);
+  font-family: Georgia, "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: 1rem;
   line-height: 1.85;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .text-input {
   resize: vertical;
+  min-height: 180px;
 }
 
 .direction {
@@ -147,7 +205,7 @@ button.lang-btn.active {
   margin: 16px 0 12px;
   border: none;
   padding: 0;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.95rem;
 }
 
@@ -160,9 +218,9 @@ button.lang-btn.active {
 
 .toggle {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.95rem;
   color: var(--muted);
 }
@@ -170,6 +228,8 @@ button.lang-btn.active {
 .toggle input {
   width: 16px;
   height: 16px;
+  margin-top: 5px;
+  flex: 0 0 auto;
 }
 
 .action-row {
@@ -180,17 +240,34 @@ button.lang-btn.active {
 }
 
 button {
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .btn-primary {
   background: #111;
   color: #fff;
   border: 1px solid #111;
-  border-radius: 12px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 600;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--border);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
 }
 
 .btn-small {
@@ -201,26 +278,6 @@ button {
 .btn-primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.btn-secondary {
-  background: #fff;
-  color: #111;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 600;
 }
 
 .btn-primary:hover,
@@ -258,6 +315,7 @@ button {
   100% { left: 100%; }
 }
 
+.message-box,
 .error-box {
   margin-top: 10px;
   padding: 10px 12px;
@@ -268,17 +326,20 @@ button {
   font-size: 0.95rem;
 }
 
+.message-box.notice,
 .error-box.notice {
   border-color: #cfe0ff;
   background: #eef5ff;
   color: #1b3a72;
 }
 
+.message-text,
 .error-message {
   margin: 0 0 6px;
   font-weight: 600;
 }
 
+.message-note,
 .error-note {
   margin: 0 0 10px;
   color: inherit;
@@ -294,7 +355,6 @@ button {
   color: #b40000;
   padding: 1px 2px;
   border-radius: 3px;
-  font-family: "Noto Serif JP";
 }
 
 .ad-slot {
@@ -305,7 +365,7 @@ button {
   color: var(--muted);
   font-size: 0.95rem;
   border-radius: 10px;
-  background: #fafafa;
+  background: var(--soft);
 }
 
 .nw-donate {
@@ -314,21 +374,26 @@ button {
   color: var(--muted);
 }
 
+.nw-donate p {
+  margin: 0 0 8px;
+}
+
 .nw-donate-links {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
-.nw-donate a,
-.nw-links a {
+.nw-donate a {
   font-weight: 600;
 }
 
 .nw-links {
   text-align: center;
   margin: 0 0 28px;
+  color: var(--muted);
 }
 
 .nw-footer {
@@ -337,6 +402,11 @@ button {
   padding: 18px 12px 28px;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.nw-footer-line,
+.nw-footer p {
+  margin: 0 0 6px;
 }
 
 .replacement-block {
@@ -377,7 +447,7 @@ button {
 }
 
 .replacement-table th {
-  background: #fafafa;
+  background: var(--soft);
   font-weight: 600;
 }
 
@@ -391,15 +461,22 @@ button {
   font-size: 0.95rem;
 }
 
-@media (max-width: 640px) {
-  .action-row button {
-    width: 100%;
-  }
+.faq-section details {
+  border-top: 1px solid var(--border);
+  padding: 10px 0;
+}
+
+.faq-section details:first-of-type {
+  border-top: none;
+}
+
+.faq-section summary {
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .km-sibling {
-  margin: 6px 0 22px;
-  font-family: "Noto Serif JP", serif;
+  margin: 8px 0 22px;
   color: #444;
 }
 
@@ -416,11 +493,60 @@ button {
   margin: 0;
 }
 
-.km-sibling a {
-  color: #3366cc;
-  text-decoration: none;
+.usage-back,
+.nw-back a {
+  display: inline-block;
+  margin: 0 0 16px;
+  color: #2558b8;
+  font-weight: 600;
 }
 
-.km-sibling a:hover {
-  text-decoration: underline;
+.usage-section {
+  margin: 24px 0;
+}
+
+.usage-section h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.usage-section p,
+.usage-section li {
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .nw-header,
+  main.page,
+  .nw-main {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .nw-title,
+  .page-title {
+    font-size: 1.55rem;
+  }
+
+  .direction,
+  .action-row,
+  .nw-donate-links {
+    flex-direction: column;
+  }
+
+  .direction {
+    gap: 8px;
+  }
+
+  .action-row button,
+  .nw-donate-links a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .intro-box,
+  .policy-box,
+  .faq-section {
+    padding: 12px;
+  }
 }
