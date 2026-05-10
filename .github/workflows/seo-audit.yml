@@ -14,13 +14,21 @@ on:
       - 'sitemap.xml'
       - '.github/workflows/seo-audit.yml'
       - '.github/workflows/seo-auto-repair.yml'
+  workflow_run:
+    workflows:
+      - SEO auto repair
+    types:
+      - completed
 
 jobs:
   seo-audit:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Setup Node
         uses: actions/setup-node@v4
