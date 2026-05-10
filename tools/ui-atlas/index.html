@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UI Atlas | UI Pattern Dictionary (Free) | Niche Works</title>
-  <meta name="description" content="UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, and 50 interactive pattern examples.">
+  <meta name="description" content="UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, 50 interactive pattern examples, and 40 extended UI examples.">
   <link rel="canonical" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ui-atlas/">
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ui-atlas/ja/">
@@ -18,12 +18,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="UI Atlas | UI Pattern Dictionary (Free) | Niche Works">
-  <meta property="og:description" content="UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, and 50 interactive pattern examples.">
+  <meta property="og:description" content="UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, 50 interactive pattern examples, and 40 extended UI examples.">
   <meta property="og:url" content="https://nicheworks.app/tools/ui-atlas/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="UI Atlas | UI Pattern Dictionary (Free) | Niche Works">
-  <meta name="twitter:description" content="UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, and 50 interactive pattern examples.">
+  <meta name="twitter:description" content="UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, 50 interactive pattern examples, and 40 extended UI examples.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
@@ -40,16 +40,9 @@
     "url": "https://nicheworks.app/tools/ui-atlas/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, and 50 interactive pattern examples.",
-    "inLanguage": [
-      "ja",
-      "en"
-    ],
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
+    "description": "UI Atlas is a practical UI pattern dictionary with search, filters, detail views, compare, local favorites, recent history, 50 interactive pattern examples, and 40 extended UI examples.",
+    "inLanguage": ["ja", "en"],
+    "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
   }
   </script>
 </head>
@@ -62,7 +55,8 @@
       <span class="pill">Search + practical wording</span>
       <span class="pill">Grid + detail + compare tray</span>
       <span class="pill">Local favorites + local history</span>
-      <span class="pill">50 interactive pattern examples</span>
+      <span class="pill">50 interactive examples</span>
+      <span class="pill">40 extended examples</span>
       <span class="pill">Pro decision pack available</span>
     </div>
     <div class="nw-lang-switch"><a href="ja/">日本語</a></div>
@@ -74,14 +68,14 @@
   <main class="nw-main" data-ui-atlas-root>
     <section class="nw-intro">
       <h2>Interactive UI pattern catalog</h2>
-      <p>Explore each pattern with live mini previews on cards, an expanded interactive sample in detail view, practical search terms, and side-by-side comparison in the same desktop-first workspace.</p>
+      <p>Explore 50 interactive patterns with live mini previews, then use the extended example bank and Pro previews to turn pattern choices into build-ready decisions.</p>
     </section>
 
     <section class="nw-card pro-callout" aria-label="UI Atlas Pro">
       <h2>Pro adds the handoff layer</h2>
       <p>Free UI Atlas helps you find and compare UI patterns. UI Atlas Pro is for turning that choice into a practical handoff: decision memo, expanded comparison checklist, implementation checklist, and reusable prompt templates.</p>
       <ul class="faq-list">
-        <li><strong>Free:</strong> 50 pattern examples, search, filters, detail view, local favorites, recent history, and 2-item quick compare.</li>
+        <li><strong>Free:</strong> 50 interactive pattern examples, 40 extended examples, search, filters, detail view, local favorites, recent history, and 2-item quick compare.</li>
         <li><strong>Pro:</strong> decision memo templates, advanced compare checklist, handoff prompts, accessibility review points, and export-ready wording.</li>
       </ul>
       <p class="donation-links"><a class="support-btn" href="pro/">View Pro details</a></p>
@@ -96,7 +90,6 @@
           <h2>Filters</h2>
           <label for="atlas-search">Search</label>
           <input id="atlas-search" class="search-input" data-search type="search" title="e.g. drawer menu, FAQ, confirmation dialog" autocomplete="off">
-
           <h3>Category</h3>
           <div class="chip-group">
             <button type="button" class="filter-chip active" data-filter-group="category" data-filter="all">All</button>
@@ -107,31 +100,14 @@
             <button type="button" class="filter-chip" data-filter-group="category" data-filter="data-display">Data display</button>
             <button type="button" class="filter-chip" data-filter-group="category" data-filter="layout-structure">Layout &amp; structure</button>
           </div>
-
           <label for="purpose-filter">Purpose</label>
           <select id="purpose-filter" data-select-filter="purpose">
-            <option value="all">All purposes</option>
-            <option value="confirmation">Confirmation / risky action</option>
-            <option value="quick-action">Quick action</option>
-            <option value="content-discovery">Content discovery</option>
-            <option value="mode-switch">Mode switch</option>
+            <option value="all">All purposes</option><option value="confirmation">Confirmation / risky action</option><option value="quick-action">Quick action</option><option value="content-discovery">Content discovery</option><option value="mode-switch">Mode switch</option>
           </select>
-
           <label for="mobile-filter">Mobile fit</label>
-          <select id="mobile-filter" data-select-filter="mobileFit">
-            <option value="all">All</option>
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-
+          <select id="mobile-filter" data-select-filter="mobileFit"><option value="all">All</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select>
           <label for="difficulty-filter">Implementation difficulty</label>
-          <select id="difficulty-filter" data-select-filter="difficulty">
-            <option value="all">All</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
+          <select id="difficulty-filter" data-select-filter="difficulty"><option value="all">All</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select>
         </div>
       </aside>
 
@@ -140,128 +116,81 @@
           <h2>Pattern catalog</h2>
           <section class="compare-dock compare-dock-desktop" data-compare-dock aria-live="polite">
             <p class="compare-dock-text" data-compare-dock-text>Compare (0/2)</p>
-            <div class="compare-dock-actions">
-              <button type="button" class="btn" data-compare-jump>Open compare</button>
-              <button type="button" class="btn compare-clear-btn" data-compare-clear-inline hidden>Clear</button>
-            </div>
+            <div class="compare-dock-actions"><button type="button" class="btn" data-compare-jump>Open compare</button><button type="button" class="btn compare-clear-btn" data-compare-clear-inline hidden>Clear</button></div>
           </section>
         </div>
-        <div class="results-toolbar">
-          <span data-count>0 patterns shown</span>
-          <span>Compare tray supports up to 2 • Pro adds handoff templates</span>
-        </div>
+        <div class="results-toolbar"><span data-count>0 patterns shown</span><span>Compare tray supports up to 2 • Pro adds handoff templates</span></div>
         <section class="compare-dock compare-dock-mobile" data-compare-dock-mobile aria-live="polite" hidden>
           <p class="compare-dock-text" data-compare-dock-text-mobile>Compare (0/2)</p>
-          <div class="compare-dock-actions">
-            <button type="button" class="btn" data-compare-jump-mobile>Open compare</button>
-            <button type="button" class="btn compare-clear-btn" data-compare-clear-mobile hidden>Clear</button>
-          </div>
+          <div class="compare-dock-actions"><button type="button" class="btn" data-compare-jump-mobile>Open compare</button><button type="button" class="btn compare-clear-btn" data-compare-clear-mobile hidden>Clear</button></div>
         </section>
-        <div class="result-grid">
-        </div>
-
+        <div class="result-grid"></div>
         <section class="compare-tray">
-          <div class="compare-tray-header">
-            <h3 data-compare-heading>Compare (0/2)</h3>
-            <button type="button" class="btn compare-clear-btn" data-compare-clear hidden>Clear</button>
-          </div>
+          <div class="compare-tray-header"><h3 data-compare-heading>Compare (0/2)</h3><button type="button" class="btn compare-clear-btn" data-compare-clear hidden>Clear</button></div>
           <p class="compare-hint" data-compare-empty>Nothing added yet. Add up to two patterns for quick key-difference checks. Pro adds decision memo and handoff templates.</p>
           <p class="compare-status" data-compare-status aria-live="polite"></p>
-          <div class="compare-list" data-compare-list></div>
-          <div class="compare-diff" data-compare-diff hidden></div>
+          <div class="compare-list" data-compare-list></div><div class="compare-diff" data-compare-diff hidden></div>
         </section>
-
-        <section class="local-blocks">
-          <section class="local-box">
-            <h3>Favorites (local)</h3>
-            <div data-favorites-list class="mini-list"></div>
-          </section>
-          <section class="local-box">
-            <h3>Recent views (local)</h3>
-            <div data-recent-list class="mini-list"></div>
-          </section>
-        </section>
+        <section class="local-blocks"><section class="local-box"><h3>Favorites (local)</h3><div data-favorites-list class="mini-list"></div></section><section class="local-box"><h3>Recent views (local)</h3><div data-recent-list class="mini-list"></div></section></section>
       </section>
 
       <aside class="panel detail" data-detail-panel>
-        <div class="detail-sheet-header">
-          <h2 data-detail-title>Select a pattern</h2>
-          <button type="button" class="detail-close" data-close-detail>Close</button>
-        </div>
+        <div class="detail-sheet-header"><h2 data-detail-title>Select a pattern</h2><button type="button" class="detail-close" data-close-detail>Close</button></div>
         <div class="detail-empty-intro" data-detail-empty>
-          <p class="detail-empty-kicker">Workspace ready</p>
-          <p class="detail-empty-title">Pick any card to open an interactive pattern review.</p>
-          <p class="detail-empty-copy">This panel becomes your focused work area: live sample, fit checks, and practical implementation guidance in one place.</p>
-          <ul>
-            <li>Live sample with real interactions</li>
-            <li>Best fit / avoid fit / implementation notes</li>
-            <li>Local favorite + recent history controls stay available</li>
-          </ul>
+          <p class="detail-empty-kicker">Workspace ready</p><p class="detail-empty-title">Pick any card to open an interactive pattern review.</p><p class="detail-empty-copy">This panel becomes your focused work area: live sample, fit checks, and practical implementation guidance in one place.</p>
+          <ul><li>Live sample with real interactions</li><li>Best fit / avoid fit / implementation notes</li><li>Local favorite + recent history controls stay available</li></ul>
           <p><a href="pro/">Need decision memos and handoff prompts? Open Pro.</a></p>
         </div>
         <div class="detail-content" data-detail-content hidden>
-          <h3>Live sample</h3>
-          <div class="detail-sample" data-detail-sample aria-label="Live pattern sample"></div>
-          <h3>What it is</h3>
-          <p class="detail-body" data-detail-what>Choose a card to inspect practical usage guidance.</p>
-          <h3>Common use case</h3>
-          <p class="detail-body" data-detail-use-case>-</p>
-          <h3>Best for</h3>
-          <p class="detail-body" data-detail-best>-</p>
-          <h3>Not for</h3>
-          <p class="detail-body" data-detail-not-for>-</p>
-          <h3>Similar patterns</h3>
-          <p class="detail-body" data-detail-similar>-</p>
-          <h3>Short AI prompt</h3>
-          <p class="detail-body" data-detail-prompt>-</p>
-          <button class="btn" type="button" data-copy-prompt>Copy short prompt</button>
-          <p class="copy-state" data-copy-state aria-live="polite"></p>
-          <h3>Implementation note</h3>
-          <p class="detail-body" data-detail-implementation>-</p>
-          <h3>Practical intent</h3>
-          <p class="detail-body" data-detail-practical-intent>-</p>
-          <h3>Beginner wording</h3>
-          <p class="detail-body" data-detail-novice>-</p>
-          <button class="btn" type="button" data-toggle-favorite>☆ Favorite</button>
+          <h3>Live sample</h3><div class="detail-sample" data-detail-sample aria-label="Live pattern sample"></div>
+          <h3>What it is</h3><p class="detail-body" data-detail-what>Choose a card to inspect practical usage guidance.</p>
+          <h3>Common use case</h3><p class="detail-body" data-detail-use-case>-</p>
+          <h3>Best for</h3><p class="detail-body" data-detail-best>-</p>
+          <h3>Not for</h3><p class="detail-body" data-detail-not-for>-</p>
+          <h3>Similar patterns</h3><p class="detail-body" data-detail-similar>-</p>
+          <h3>Short AI prompt</h3><p class="detail-body" data-detail-prompt>-</p><button class="btn" type="button" data-copy-prompt>Copy short prompt</button><p class="copy-state" data-copy-state aria-live="polite"></p>
+          <h3>Implementation note</h3><p class="detail-body" data-detail-implementation>-</p>
+          <h3>Practical intent</h3><p class="detail-body" data-detail-practical-intent>-</p>
+          <h3>Beginner wording</h3><p class="detail-body" data-detail-novice>-</p><button class="btn" type="button" data-toggle-favorite>☆ Favorite</button>
         </div>
       </aside>
     </section>
 
+    <section class="nw-card" aria-label="Pro output preview">
+      <h2>Pro output preview</h2>
+      <p>This is the kind of output Pro is for: copy-ready decision material, not just another list of names.</p>
+      <div class="local-blocks">
+        <section class="local-box"><h3>Decision memo</h3><p><strong>Selected pattern:</strong> Confirmation dialog for destructive account deletion.</p><p><strong>Reason:</strong> The action is irreversible, so the UI must force explicit intent before execution.</p><p><strong>Rejected:</strong> Toast-only warning, inline warning, or passive banner because they can be missed.</p></section>
+        <section class="local-box"><h3>Implementation checklist</h3><ul class="faq-list"><li>Dialog title states the action clearly.</li><li>Consequence copy explains what will be lost.</li><li>Cancel remains available and visually neutral.</li><li>Destructive action is visually distinct.</li><li>Keyboard focus is trapped and restored.</li><li>Screen reader label and Escape behavior are handled.</li></ul></section>
+        <section class="local-box"><h3>AI/Codex handoff prompt</h3><p>Implement a confirmation dialog for a destructive account deletion flow. Include clear consequence copy, accessible focus handling, Escape/cancel behavior, disabled loading state after submit, and responsive mobile layout. Do not use a toast as the only confirmation.</p></section>
+      </div>
+      <p><a class="support-btn" href="pro/">Open Pro page</a></p>
+    </section>
+
+    <section class="nw-card" aria-label="Extended UI example bank">
+      <h2>Extended example bank: 40 more UI cases</h2>
+      <p>These additional cases expand the practical reference surface beyond the 50 interactive cards. They are grouped by real product situations so the catalog is not just a tiny pattern list.</p>
+      <div class="local-blocks">
+        <section class="local-box"><h3>Onboarding / activation</h3><ul class="faq-list"><li>Welcome checklist</li><li>Setup progress tracker</li><li>Empty dashboard first action</li><li>Guided tour coachmark</li><li>Permission request explainer</li><li>Import data wizard</li><li>First project template picker</li><li>Activation milestone banner</li></ul></section>
+        <section class="local-box"><h3>Search / discovery</h3><ul class="faq-list"><li>Command palette</li><li>Saved search</li><li>Recent search chips</li><li>Filter summary bar</li><li>No result recovery</li><li>Facet count list</li><li>Sort + relevance explanation</li><li>Search suggestions with categories</li></ul></section>
+        <section class="local-box"><h3>Dashboard / data</h3><ul class="faq-list"><li>KPI card row</li><li>Trend delta badge</li><li>Drilldown side panel</li><li>Data freshness indicator</li><li>Inline chart annotation</li><li>Segment comparison table</li><li>Export status notice</li><li>Alert threshold editor</li></ul></section>
+        <section class="local-box"><h3>AI / automation UI</h3><ul class="faq-list"><li>AI suggestion card</li><li>Review-before-apply queue</li><li>Generated draft diff</li><li>Confidence explanation block</li><li>Undo automation action</li><li>Prompt template picker</li><li>Agent activity timeline</li><li>Human approval gate</li></ul></section>
+        <section class="local-box"><h3>Account / checkout</h3><ul class="faq-list"><li>Plan comparison sticky CTA</li><li>Upgrade reason banner</li><li>Usage limit meter</li><li>Billing history table</li><li>Payment failure recovery</li><li>Cancel flow feedback step</li><li>Team invite permission matrix</li><li>Security settings checklist</li></ul></section>
+      </div>
+    </section>
+
     <section class="nw-card" aria-label="Pro feature preview">
       <h2>What Pro adds to this catalog</h2>
-      <ul class="faq-list">
-        <li><strong>Decision memo:</strong> copy-ready wording for why a pattern was chosen, what was rejected, and what must be tested.</li>
-        <li><strong>Advanced compare checklist:</strong> accessibility risk, mobile fit, content-length risk, implementation cost, and misuse warnings.</li>
-        <li><strong>Handoff prompts:</strong> reusable prompts for turning selected UI patterns into implementation requests.</li>
-        <li><strong>Export wording:</strong> text you can paste into issues, specs, or design docs.</li>
-      </ul>
+      <ul class="faq-list"><li><strong>Decision memo:</strong> copy-ready wording for why a pattern was chosen, what was rejected, and what must be tested.</li><li><strong>Advanced compare checklist:</strong> accessibility risk, mobile fit, content-length risk, implementation cost, and misuse warnings.</li><li><strong>Handoff prompts:</strong> reusable prompts for turning selected UI patterns into implementation requests.</li><li><strong>Export wording:</strong> text you can paste into issues, specs, or design docs.</li></ul>
       <p class="donation-links"><a class="support-btn" href="pro/">Open Pro page</a></p>
     </section>
 
-    <section class="nw-card">
-      <h2>FAQ</h2>
-      <ul class="faq-list">
-        <li>How large is the current catalog? The free release includes 50 practical patterns for search/filter/compare workflows.</li>
-        <li>Can I use everything for free now? Search, filtering, details, favorites, recent history, and 2-item compare are free. Pro is for decision and handoff materials.</li>
-        <li>Can favorites/history sync across devices? Currently they stay in local browser storage.</li>
-      </ul>
-    </section>
-
+    <section class="nw-card"><h2>FAQ</h2><ul class="faq-list"><li>How large is the current catalog? The free release includes 50 interactive examples plus 40 extended example cases.</li><li>Can I use everything for free now? Search, filtering, details, favorites, recent history, and 2-item compare are free. Pro is for decision and handoff materials.</li><li>Can favorites/history sync across devices? Currently they stay in local browser storage.</li></ul></section>
     <section class="ad-slot ad-bottom" aria-label="advertisement">Ad slot (bottom)</section>
-
-    <section class="nw-donate" aria-label="support">
-      <h2>Support this project</h2>
-      <p>Free-first policy: core features remain publicly available.</p>
-      <p class="donation-links"><a class="support-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a class="support-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p>
-    </section>
+    <section class="nw-donate" aria-label="support"><h2>Support this project</h2><p>Free-first policy: core features remain publicly available.</p><p class="donation-links"><a class="support-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">Ko-fi</a><a class="support-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">OFUSE</a></p></section>
   </main>
 
-  <footer class="nw-footer">
-    <p>© Niche Works — Small Web Tools for Boring Tasks</p>
-    <p>This site may include ads. Verify important decisions with official information.</p>
-    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p>
-  </footer>
-
+  <footer class="nw-footer"><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>This site may include ads. Verify important decisions with official information.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p></footer>
   <script src="app.js" defer></script>
 </body>
 </html>
