@@ -28,7 +28,7 @@ const decodeOnce = (s) => String(s || '')
   .replace(/&amp;/g, '&');
 const normalizeText = (s) => {
   let prev = String(s || '');
-  for (let i = 0; i < 10; i += 1) {
+  for (let i = 0; i < 10000; i += 1) {
     const next = decodeOnce(prev);
     if (next === prev) return next;
     prev = next;
@@ -112,8 +112,7 @@ function replaceOrAddLink(html, rel, href) {
   const tag = `<link rel="${rel}" href="${esc(href)}">`;
   if (re.test(html)) return html.replace(re, tag);
   return injectBeforeHeadClose(html, `  ${tag}`);
-}
-
+}\n
 function jsonLdBlock(obj) {
   return `  <script type="application/ld+json">\n${JSON.stringify(obj, null, 2).split('\n').map((line) => `  ${line}`).join('\n')}\n  </script>`;
 }
