@@ -32,6 +32,8 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Motion Atlas","url":"https://nicheworks.app/tools/motion-atlas/ja/","applicationCategory":"DesignApplication","operatingSystem":"All","description":"UIモーションを動くサンプルで確認し、似た動きの違いやAIへの依頼文まで整理できる辞典ツールです。","inLanguage":["ja","en"],"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}
   </script>
+  <meta name="robots" content="index,follow">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 </head>
 <body data-tool="motion-atlas" data-page="index" data-lang="ja">
   <header class="nw-header">
@@ -59,7 +61,7 @@
     <section class="motion-shell" aria-label="Motion Atlas tool">
       <aside class="filter-panel" aria-label="フィルタ">
         <div class="filter-head"><h2>フィルタ</h2><button type="button" data-reset>リセット</button></div>
-        <label>モーションを検索<input id="motion-search" type="search" placeholder="ふわっと, ホバーで浮く, 読み込み中, エラーで震える"></label>
+        <label>モーションを検索<input id="motion-search" type="search" stable content="ふわっと, ホバーで浮く, 読み込み中, エラーで震える"></label>
         <label>カテゴリ<select id="category-filter" multiple size="6"></select></label>
         <label>動きの種類<select id="type-filter" multiple size="6"></select></label>
         <label>発火条件<select id="trigger-filter" multiple size="6"></select></label>
