@@ -5,6 +5,19 @@
   const byId = new Map();
   let ready = false;
 
+  const IMAGE_PILOT = new Map([
+    ["q011_torque_wrench", { ja: "トルクレンチ", en: "Torque wrench", caption_ja: "指定トルクで締付確認する工具。", caption_en: "Tool used to tighten to a specified torque." }],
+    ["q011_anchor_bolt", { ja: "アンカーボルト", en: "Anchor bolt", caption_ja: "基礎やコンクリートに部材を固定するボルト。", caption_en: "Bolt used to fix members to concrete or foundations." }],
+    ["q011_gypsum_board", { ja: "石膏ボード", en: "Gypsum board", caption_ja: "壁や天井の下地に使う板材。", caption_en: "Board used for wall and ceiling lining." }],
+    ["q011_floor_leveler", { ja: "床レベラー", en: "Floor leveler", caption_ja: "床の不陸をならす下地調整材。", caption_en: "Material used to level uneven floors." }],
+    ["q011_laser_level", { ja: "レーザー墨出し器", en: "Laser level", caption_ja: "水平・垂直の基準線を投影する工具。", caption_en: "Tool that projects level and plumb reference lines." }],
+    ["q011_caulking_gun", { ja: "コーキングガン", en: "Caulking gun", caption_ja: "シーリング材を目地へ押し出す工具。", caption_en: "Tool used to dispense sealant into joints." }],
+    ["q013_scaffold_clamp", { ja: "クランプ", en: "Scaffold clamp", caption_ja: "単管同士を固定する足場用金具。", caption_en: "Clamp used to connect scaffold pipes." }],
+    ["q015_cable_tray", { ja: "ケーブルトレイ", en: "Cable tray", caption_ja: "ケーブルをまとめて敷設する受け材。", caption_en: "Tray used to support and organize cable runs." }],
+    ["q014_window_sash", { ja: "サッシ", en: "Window sash", caption_ja: "ガラスを納める窓の枠・可動部材。", caption_en: "Window frame or operable unit that holds glazing." }],
+    ["q016_safety_glasses", { ja: "保護メガネ", en: "Safety glasses", caption_ja: "切粉や粉じんから目を守る保護具。", caption_en: "Eye protection used against chips and dust." }],
+  ]);
+
   const UI_TEXT = {
     ja: {
       brandTitle: "建設工具・現場用語辞典",
@@ -152,6 +165,94 @@
   function termTitle(entry) { return `${entry.term.en || "—"} / ${entry.term.ja || "—"}`; }
   function aliasLine(entry) { return [...entry.aliases.ja, ...entry.aliases.en].filter(Boolean).join(" / "); }
 
+  function createSvgNode(name) {
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 320 180");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", name);
+
+    const bg = document.createElementNS(ns, "rect");
+    bg.setAttribute("width", "320");
+    bg.setAttribute("height", "180");
+    bg.setAttribute("rx", "18");
+    bg.setAttribute("fill", "#f7f7f4");
+    svg.appendChild(bg);
+
+    const card = document.createElementNS(ns, "rect");
+    card.setAttribute("x", "42");
+    card.setAttribute("y", "54");
+    card.setAttribute("width", "236");
+    card.setAttribute("height", "76");
+    card.setAttribute("rx", "12");
+    card.setAttribute("fill", "#ffffff");
+    card.setAttribute("stroke", "#d4d7dd");
+    card.setAttribute("stroke-width", "3");
+    svg.appendChild(card);
+
+    const line1 = document.createElementNS(ns, "path");
+    line1.setAttribute("d", "M76 88h168");
+    line1.setAttribute("stroke", "#20242a");
+    line1.setAttribute("stroke-width", "10");
+    line1.setAttribute("stroke-linecap", "round");
+    svg.appendChild(line1);
+
+    const line2 = document.createElementNS(ns, "path");
+    line2.setAttribute("d", "M98 112h124");
+    line2.setAttribute("stroke", "#737a84");
+    line2.setAttribute("stroke-width", "6");
+    line2.setAttribute("stroke-linecap", "round");
+    svg.appendChild(line2);
+
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", "30");
+    label.setAttribute("y", "35");
+    label.setAttribute("font-family", "Arial, sans-serif");
+    label.setAttribute("font-size", "16");
+    label.setAttribute("fill", "#20242a");
+    label.textContent = name;
+    svg.appendChild(label);
+
+    return svg;
+  }
+
+  function ensureImageSlot() {
+    const terms = byDomId("detailTerms");
+    if (!terms) return null;
+    let slot = byDomId("detailImagePilot");
+    if (!slot) {
+      slot = document.createElement("figure");
+      slot.id = "detailImagePilot";
+      slot.className = "detailImagePilot";
+      terms.insertAdjacentElement("afterend", slot);
+    }
+    return slot;
+  }
+
+  function renderPilotImage(entry) {
+    const slot = ensureImageSlot();
+    if (!slot) return;
+    clear(slot);
+    slot.hidden = true;
+    const item = IMAGE_PILOT.get(entry?.id || "");
+    if (!item) return;
+    const current = lang();
+    const label = current === "ja" ? item.ja : item.en;
+    const captionText = current === "ja" ? item.caption_ja : item.caption_en;
+    slot.appendChild(createSvgNode(label));
+    const caption = document.createElement("figcaption");
+    caption.textContent = captionText;
+    slot.appendChild(caption);
+    slot.hidden = false;
+  }
+
+  function hidePilotImage() {
+    const slot = byDomId("detailImagePilot");
+    if (!slot) return;
+    clear(slot);
+    slot.hidden = true;
+  }
+
   function renderMeta(entry) {
     const meta = $("#tabMeta");
     if (!meta) return;
@@ -183,7 +284,7 @@
   function applyDictionaryLayout() {
     if (!ready) return;
     const id = selectedId();
-    if (!id || !byId.has(id)) { hideTopMeta(); return; }
+    if (!id || !byId.has(id)) { hideTopMeta(); hidePilotImage(); return; }
     const entry = byId.get(id);
     const definition = pick(entry.description);
     const note = pick(entry.detail);
@@ -206,6 +307,7 @@
       }
     }
     hideTopMeta();
+    renderPilotImage(entry);
 
     const meaning = byDomId("tabMeaning");
     if (meaning) {
