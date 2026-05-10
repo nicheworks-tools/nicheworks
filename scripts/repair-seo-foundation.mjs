@@ -9,43 +9,63 @@ const ogImage = `${siteBase}/assets/ogp.png`;
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
 const today = new Date().toISOString().slice(0, 10);
 
-const read = (p) => fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
-const exists = (p) => fs.existsSync(p);
-const writeIfChanged = (p, s) => {
-  const before = read(p);
-  if (before !== s) {
-    fs.writeFileSync(p, s, 'utf8');
-    return true;
-  }
-  return false;
+const read = (file) => fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+const exists = (file) => fs.existsSync(file);
+const writeIfChanged = (file, content) => {
+  if (read(file) === content) return false;
+  fs.writeFileSync(file, content, 'utf8');
+  return true;
 };
-const titleCase = (slug) => slug.split('-').map((w) => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
-const decodeOnce = (s) => String(s || '')
-  .replace(/&quot;/g, '"')
-  .replace(/&#39;/g, "'")
-  .replace(/&lt;/g, '<')
-  .replace(/&gt;/g, '>')
-  .replace(/&amp;/g, '&');
-const normalizeText = (s) => {
-  let prev = String(s || '');
+
+function decodeOnce(value) {
+  return String(value || '')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
+}
+
+function normalizeText(value) {
+  let prev = String(value || '');
   for (let i = 0; i < 10000; i += 1) {
     const next = decodeOnce(prev);
     if (next === prev) return next;
     prev = next;
   }
   return prev;
-};
-const esc = (s) => normalizeText(s).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-const slugToTitle = (slug) => titleCase(slug).replace(/\bSeo\b/g, 'SEO').replace(/\bCsv\b/g, 'CSV').replace(/\bJson\b/g, 'JSON').replace(/\bPdf\b/g, 'PDF').replace(/\bApi\b/g, 'API').replace(/\bUi\b/g, 'UI');
+}
+
+function escapeAttr(value) {
+  return normalizeText(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
+function titleCase(slug) {
+  return slug
+    .split('-')
+    .filter(Boolean)
+    .map((word) => word[0]?.toUpperCase() + word.slice(1))
+    .join(' ')
+    .replace(/\bSeo\b/g, 'SEO')
+    .replace(/\bCsv\b/g, 'CSV')
+    .replace(/\bJson\b/g, 'JSON')
+    .replace(/\bPdf\b/g, 'PDF')
+    .replace(/\bApi\b/g, 'API')
+    .replace(/\bUi\b/g, 'UI');
+}
 
 function listHtmlFiles(dir = root) {
   if (!exists(dir)) return [];
   const out = [];
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
     if (SKIP_DIRS.has(ent.name)) continue;
-    const p = path.join(dir, ent.name);
-    if (ent.isDirectory()) out.push(...listHtmlFiles(p));
-    else if (ent.isFile() && ent.name.endsWith('.html')) out.push(p);
+    const file = path.join(dir, ent.name);
+    if (ent.isDirectory()) out.push(...listHtmlFiles(file));
+    if (ent.isFile() && ent.name.endsWith('.html')) out.push(file);
   }
   return out;
 }
@@ -54,14 +74,14 @@ function relPath(file) {
   return path.relative(root, file).split(path.sep).join('/');
 }
 
-function relUrlForFile(file) {
+function urlForFile(file) {
   const rel = relPath(file);
   if (rel === 'index.html') return `${siteBase}/`;
   if (rel.endsWith('/index.html')) return `${siteBase}/${rel.slice(0, -'index.html'.length)}`;
   return `${siteBase}/${rel}`;
 }
 
-function pageSlug(file) {
+function slugForFile(file) {
   const rel = relPath(file);
   if (rel.startsWith('tools/') && rel.endsWith('/index.html')) return rel.split('/')[1];
   if (rel === 'index.html') return 'home';
@@ -71,7 +91,8 @@ function pageSlug(file) {
 
 function isToolPage(file) {
   const rel = relPath(file);
-  return rel.startsWith('tools/') && rel.endsWith('/index.html');
+  const slug = slugForFile(file);
+  return rel.startsWith('tools/') && rel.endsWith('/index.html') && !slug.startsWith('_');
 }
 
 function inferTitle(file, html) {
@@ -80,68 +101,32 @@ function inferTitle(file, html) {
   const rel = relPath(file);
   if (rel === 'index.html') return '無料ブラウザツール集｜NicheWorks';
   if (rel === 'en/index.html') return 'Free Browser Tools | NicheWorks';
-  if (isToolPage(file)) return `${slugToTitle(pageSlug(file))} | NicheWorks`;
-  const parts = rel.split('/').filter(Boolean);
-  const slug = parts[parts.length - 2] || parts[parts.length - 1].replace(/\.html$/, '');
-  return `${slugToTitle(slug)} | NicheWorks`;
+  return `${titleCase(slugForFile(file).replaceAll('__', '-'))} | NicheWorks`;
 }
 
 function inferDescription(file, html, title) {
   const current = normalizeText(html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]?.trim() || '');
   if (current && current.length >= 45 && !/pending|placeholder|準備中|未完成|仮置き/i.test(current)) return current;
-  const rel = relPath(file);
   const cleanTitle = title.replace(' | NicheWorks', '').replace('｜NicheWorks', '');
-  if (rel.startsWith('en/')) return `${cleanTitle} is a lightweight NicheWorks browser page for small, practical tasks and local-first workflows.`;
+  if (relPath(file).startsWith('en/')) return `${cleanTitle} is a lightweight NicheWorks browser page for small, practical tasks and local-first workflows.`;
   if (isToolPage(file)) return `${cleanTitle} は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。`;
   return `${cleanTitle} は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツール集に関する情報を掲載しています。`;
 }
 
-function injectBeforeHeadClose(html, block) {
-  return html.replace(/<\/head>/i, `${block}\n</head>`);
-}
-
 function replaceOrAddMeta(html, attrName, attrValue, content) {
-  const re = new RegExp(`<meta\\b[^>]*${attrName}=["']${attrValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i');
-  const tag = `<meta ${attrName}="${attrValue}" content="${esc(content)}">`;
+  const safeValue = attrValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`<meta\\b[^>]*${attrName}=["']${safeValue}["'][^>]*>`, 'i');
+  const tag = `<meta ${attrName}="${attrValue}" content="${escapeAttr(content)}">`;
   if (re.test(html)) return html.replace(re, tag);
-  return injectBeforeHeadClose(html, `  ${tag}`);
+  return html.replace(/<\/head>/i, `  ${tag}\n</head>`);
 }
 
 function replaceOrAddLink(html, rel, href) {
-  const re = new RegExp(`<link\\b[^>]*rel=["']${rel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i');
-  const tag = `<link rel="${rel}" href="${esc(href)}">`;
+  const safeRel = rel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`<link\\b[^>]*rel=["']${safeRel}["'][^>]*>`, 'i');
+  const tag = `<link rel="${rel}" href="${escapeAttr(href)}">`;
   if (re.test(html)) return html.replace(re, tag);
-  return injectBeforeHeadClose(html, `  ${tag}`);
-}\n
-function jsonLdBlock(obj) {
-  return `  <script type="application/ld+json">\n${JSON.stringify(obj, null, 2).split('\n').map((line) => `  ${line}`).join('\n')}\n  </script>`;
-}
-
-function ensureJsonLd(html, file, title, desc, url) {
-  if (/application\/ld\+json/i.test(html) && (!isToolPage(file) || html.includes('WebApplication'))) return html;
-  const rel = relPath(file);
-  const obj = isToolPage(file)
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: title.replace(' | NicheWorks', '').replace('｜NicheWorks', ''),
-        url,
-        applicationCategory: 'UtilityApplication',
-        operatingSystem: 'All',
-        description: desc,
-        inLanguage: rel.startsWith('en/') ? 'en' : ['ja', 'en'],
-        publisher: { '@type': 'Organization', name: 'NicheWorks', url: siteBase + '/' }
-      }
-    : {
-        '@context': 'https://schema.org',
-        '@type': rel.includes('privacy') ? 'PrivacyPolicy' : rel.includes('contact') ? 'ContactPage' : rel.includes('about') ? 'AboutPage' : 'WebPage',
-        name: title,
-        url,
-        description: desc,
-        inLanguage: rel.startsWith('en/') ? 'en' : 'ja',
-        publisher: { '@type': 'Organization', name: 'NicheWorks', url: siteBase + '/' }
-      };
-  return injectBeforeHeadClose(html, jsonLdBlock(obj));
+  return html.replace(/<\/head>/i, `  ${tag}\n</head>`);
 }
 
 function sanitizeBadText(html) {
@@ -159,20 +144,50 @@ function sanitizeBadText(html) {
     .replace(/\bFIXME\b/g, 'Fix note');
 }
 
-function ensureHead(html, file) {
-  const url = relUrlForFile(file);
-  const title = inferTitle(file, html);
-  const desc = inferDescription(file, html, title);
-  const lang = relPath(file).startsWith('en/') ? 'en' : 'ja';
+function ensureJsonLd(html, file, title, description, url) {
+  if (/application\/ld\+json/i.test(html) && (!isToolPage(file) || html.includes('WebApplication'))) return html;
+  const rel = relPath(file);
+  const object = isToolPage(file)
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: title.replace(' | NicheWorks', '').replace('｜NicheWorks', ''),
+        url,
+        applicationCategory: 'UtilityApplication',
+        operatingSystem: 'All',
+        description,
+        inLanguage: rel.startsWith('en/') ? 'en' : ['ja', 'en'],
+        publisher: { '@type': 'Organization', name: 'NicheWorks', url: `${siteBase}/` }
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': rel.includes('privacy') ? 'PrivacyPolicy' : rel.includes('contact') ? 'ContactPage' : rel.includes('about') ? 'AboutPage' : 'WebPage',
+        name: title,
+        url,
+        description,
+        inLanguage: rel.startsWith('en/') ? 'en' : 'ja',
+        publisher: { '@type': 'Organization', name: 'NicheWorks', url: `${siteBase}/` }
+      };
+  const json = JSON.stringify(object, null, 2).split('\n').map((line) => `  ${line}`).join('\n');
+  return html.replace(/<\/head>/i, `  <script type="application/ld+json">\n${json}\n  </script>\n</head>`);
+}
 
+function ensureHead(html, file) {
+  if (!/<head[\s>]/i.test(html)) return html;
   html = sanitizeBadText(html);
+  const rel = relPath(file);
+  const lang = rel.startsWith('en/') ? 'en' : 'ja';
+  const url = urlForFile(file);
+  const title = inferTitle(file, html);
+  const description = inferDescription(file, html, title);
+
   if (!/<html\b[^>]*lang=["'][^"']+["']/i.test(html)) html = html.replace(/<html\b([^>]*)>/i, `<html$1 lang="${lang}">`);
   if (!/<meta\b[^>]*charset=/i.test(html)) html = html.replace(/<head[^>]*>/i, (m) => `${m}\n  <meta charset="utf-8">`);
   if (!/<meta\b[^>]*name=["']viewport["']/i.test(html)) html = html.replace(/<meta\b[^>]*charset=[^>]*>/i, (m) => `${m}\n  <meta name="viewport" content="width=device-width, initial-scale=1">`);
-  if (/<title>[\s\S]*?<\/title>/i.test(html)) html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
-  else html = html.replace(/<head[^>]*>/i, (m) => `${m}\n  <title>${esc(title)}</title>`);
+  if (/<title>[\s\S]*?<\/title>/i.test(html)) html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeAttr(title)}</title>`);
+  else html = html.replace(/<head[^>]*>/i, (m) => `${m}\n  <title>${escapeAttr(title)}</title>`);
 
-  html = replaceOrAddMeta(html, 'name', 'description', desc);
+  html = replaceOrAddMeta(html, 'name', 'description', description);
   html = replaceOrAddMeta(html, 'name', 'robots', 'index,follow');
   html = replaceOrAddLink(html, 'canonical', url);
   html = replaceOrAddLink(html, 'icon', '/assets/favicon.ico');
@@ -180,17 +195,17 @@ function ensureHead(html, file) {
   html = replaceOrAddMeta(html, 'property', 'og:type', 'website');
   html = replaceOrAddMeta(html, 'property', 'og:site_name', 'NicheWorks');
   html = replaceOrAddMeta(html, 'property', 'og:title', title);
-  html = replaceOrAddMeta(html, 'property', 'og:description', desc);
+  html = replaceOrAddMeta(html, 'property', 'og:description', description);
   html = replaceOrAddMeta(html, 'property', 'og:url', url);
   html = replaceOrAddMeta(html, 'property', 'og:image', ogImage);
   html = replaceOrAddMeta(html, 'name', 'twitter:card', 'summary_large_image');
   html = replaceOrAddMeta(html, 'name', 'twitter:title', title);
-  html = replaceOrAddMeta(html, 'name', 'twitter:description', desc);
+  html = replaceOrAddMeta(html, 'name', 'twitter:description', description);
   html = replaceOrAddMeta(html, 'name', 'twitter:image', ogImage);
-  if (!html.includes(adsense)) html = injectBeforeHeadClose(html, `  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense}" crossorigin="anonymous"></script>`);
-  if (!html.includes(ga4)) html = injectBeforeHeadClose(html, `  <script async src="https://www.googletagmanager.com/gtag/js?id=${ga4}"></script>\n  <script>\n    window.dataLayer = window.dataLayer || [];\n    function gtag(){dataLayer.push(arguments);}\n    gtag('js', new Date());\n    gtag('config', '${ga4}');\n  </script>`);
-  html = ensureJsonLd(html, file, title, desc, url);
-  return html;
+
+  if (!html.includes(adsense)) html = html.replace(/<\/head>/i, `  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense}" crossorigin="anonymous"></script>\n</head>`);
+  if (!html.includes(ga4)) html = html.replace(/<\/head>/i, `  <script async src="https://www.googletagmanager.com/gtag/js?id=${ga4}"></script>\n  <script>\n    window.dataLayer = window.dataLayer || [];\n    function gtag(){dataLayer.push(arguments);}\n    gtag('js', new Date());\n    gtag('config', '${ga4}');\n  </script>\n</head>`);
+  return ensureJsonLd(html, file, title, description, url);
 }
 
 function readJson(file, fallback) {
@@ -211,33 +226,27 @@ function ensureToolMetaAndIndex(files) {
   const beforeIndex = stableJson(index);
   meta.items ||= {};
   index.items = Array.isArray(index.items) ? index.items : [];
-  const indexMap = new Map(index.items.map((it) => [it.slug, it]));
+  const indexMap = new Map(index.items.map((item) => [item.slug, item]));
+
   for (const file of toolFiles) {
-    const slug = pageSlug(file);
+    const slug = slugForFile(file);
     const html = read(file);
     const title = inferTitle(file, html).replace(' | NicheWorks', '').replace('｜NicheWorks', '');
-    const desc = inferDescription(file, html, title);
-    if (!meta.items[slug]) {
-      meta.items[slug] = {
-        title_ja: title,
-        title_en: slugToTitle(slug),
-        desc_ja: desc,
-        desc_en: `${slugToTitle(slug)} is a lightweight NicheWorks browser tool for small, practical tasks.`,
-        tags: slug.split('-').filter(Boolean).slice(0, 6)
-      };
-    } else {
-      const m = meta.items[slug];
-      m.title_ja ||= title;
-      m.title_en ||= slugToTitle(slug);
-      m.desc_ja ||= desc;
-      m.desc_en ||= `${slugToTitle(slug)} is a lightweight NicheWorks browser tool for small, practical tasks.`;
-      if (!Array.isArray(m.tags) || m.tags.length < 2) m.tags = slug.split('-').filter(Boolean).slice(0, 6);
-    }
+    const description = inferDescription(file, html, title);
+    if (!meta.items[slug]) meta.items[slug] = {};
+    const item = meta.items[slug];
+    item.title_ja ||= title;
+    item.title_en ||= titleCase(slug);
+    item.desc_ja ||= description;
+    item.desc_en ||= `${titleCase(slug)} is a lightweight NicheWorks browser tool for small, practical tasks.`;
+    if (!Array.isArray(item.tags) || item.tags.length < 2) item.tags = slug.split('-').filter(Boolean).slice(0, 6);
+
     if (!indexMap.has(slug)) {
-      index.items.push({ slug, title_en: slugToTitle(slug), title_ja: title, desc_en: meta.items[slug].desc_en, desc_ja: meta.items[slug].desc_ja, tags: meta.items[slug].tags });
+      index.items.push({ slug, title_en: item.title_en, title_ja: item.title_ja, desc_en: item.desc_en, desc_ja: item.desc_ja, tags: item.tags });
       indexMap.set(slug, true);
     }
   }
+
   index.items.sort((a, b) => a.slug.localeCompare(b.slug));
   index.total = index.items.length;
   if (stableJson(meta) !== beforeMeta) meta.updatedAt = today;
@@ -248,33 +257,22 @@ function ensureToolMetaAndIndex(files) {
   return changed;
 }
 
-function parseSitemapLastmods(xml) {
-  const map = new Map();
-  const re = /<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?(?:<lastmod>([^<]+)<\/lastmod>)?[\s\S]*?<\/url>/g;
-  let m;
-  while ((m = re.exec(xml))) map.set(m[1], m[2] || today);
-  return map;
-}
-
 function ensureSitemap(files) {
   const sitemapFile = path.join(root, 'sitemap.xml');
-  const before = read(sitemapFile);
-  const lastmods = parseSitemapLastmods(before);
-  const urls = new Set(lastmods.keys());
-  for (const file of files) urls.add(relUrlForFile(file));
-  const sorted = [...urls].filter((u) => u.startsWith(siteBase)).sort();
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sorted.map((u) => `  <url>\n    <loc>${u}</loc>\n    <lastmod>${lastmods.get(u) || today}</lastmod>\n  </url>`).join('\n')}\n</urlset>\n`;
+  const current = read(sitemapFile);
+  const lastmodMap = new Map([...current.matchAll(/<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?(?:<lastmod>([^<]+)<\/lastmod>)?[\s\S]*?<\/url>/g)].map((match) => [match[1], match[2] || today]));
+  const urls = new Set(lastmodMap.keys());
+  for (const file of files) urls.add(urlForFile(file));
+  const sorted = [...urls].filter((url) => url.startsWith(siteBase)).sort();
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sorted.map((url) => `  <url>\n    <loc>${url}</loc>\n    <lastmod>${lastmodMap.get(url) || today}</lastmod>\n  </url>`).join('\n')}\n</urlset>\n`;
   return writeIfChanged(sitemapFile, xml) ? 1 : 0;
 }
 
 const files = listHtmlFiles(root);
 let changed = 0;
 for (const file of files) {
-  const before = read(file);
-  let after = before;
-  if (!/<head[\s>]/i.test(after)) continue;
-  after = ensureHead(after, file);
-  if (writeIfChanged(file, after)) {
+  const next = ensureHead(read(file), file);
+  if (writeIfChanged(file, next)) {
     changed += 1;
     console.log(`updated ${relPath(file)}`);
   }
