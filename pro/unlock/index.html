@@ -29,7 +29,8 @@
       <p id="state" class="note">状態を確認中です。</p>
       <div class="actions">
         <button class="btn" id="btn-unlock" type="button">この端末でProを再有効化</button>
-        <a class="btn secondary" id="btn-back" href="/tools/logistics-compliance-kit-jp/">ツールに戻る</a>
+        <a class="btn secondary" id="btn-back" href="/tools/vibe-lexicon/">ツールに戻る</a>
+        <a class="btn secondary" href="/tools/vibe-lexicon/">Vibe Lexicon</a>
         <a class="btn secondary" href="/tools/logistics-compliance-kit-jp/">Logistics Compliance Kit JP</a>
         <a class="btn secondary" href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a>
         <a class="btn secondary" href="/tools/command-safety-checker/">Command Safety Checker</a>
@@ -43,15 +44,16 @@
     (function(){
       'use strict';
       var params = new URLSearchParams(location.search);
-      var tool = params.get('tool') || 'logistics-compliance-kit-jp';
+      var tool = params.get('tool') || 'vibe-lexicon';
       var tools = {
+        'vibe-lexicon': { label: 'Vibe Lexicon', key: 'nw_pro_vibe-lexicon', back: '/tools/vibe-lexicon/' },
         'logistics-compliance-kit-jp': { label: 'Logistics Compliance Kit JP', key: 'nw_pro_logistics-compliance-kit-jp', back: '/tools/logistics-compliance-kit-jp/' },
         'sql-db-risk-checker': { label: 'SQL DB Risk Checker', key: 'nw_sql_pro', back: '/tools/sql-db-risk-checker/' },
         'command-safety-checker': { label: 'Command Safety Checker', key: 'nw_command_safety_pro_enabled_v1', back: '/tools/command-safety-checker/' },
         'json-repair': { label: 'JSON Repair', key: 'nw_json_repair_pro_enabled_v1', back: '/tools/json-repair/' },
         'ats-paste-doctor': { label: 'ATS Paste Doctor', key: 'nw_pro_ats-paste-doctor', back: '/tools/ats-paste-doctor/' }
       };
-      var config = tools[tool] || tools['logistics-compliance-kit-jp'];
+      var config = tools[tool] || tools['vibe-lexicon'];
       var GLOBAL_KEY = 'nw_pro_key';
       var state = document.getElementById('state');
       var toolName = document.getElementById('tool-name');
