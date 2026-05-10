@@ -1,0 +1,17 @@
+[
+  {"id":"entrance","label_en":"Entrance","label_ja":"登場"},
+  {"id":"exit","label_en":"Exit","label_ja":"退場"},
+  {"id":"emphasis","label_en":"Emphasis","label_ja":"強調"},
+  {"id":"hover","label_en":"Hover","label_ja":"ホバー"},
+  {"id":"focus","label_en":"Focus","label_ja":"フォーカス"},
+  {"id":"scroll-reveal","label_en":"Scroll reveal","label_ja":"スクロール表示"},
+  {"id":"loading","label_en":"Loading","label_ja":"読み込み"},
+  {"id":"state-change","label_en":"State change","label_ja":"状態変化"},
+  {"id":"text-animation","label_en":"Text animation","label_ja":"文字アニメーション"},
+  {"id":"list-stagger","label_en":"List / stagger","label_ja":"リスト順次表示"},
+  {"id":"modal-sheet-drawer","label_en":"Modal / sheet / drawer","label_ja":"モーダル/シート/ドロワー"},
+  {"id":"cta-micro-interaction","label_en":"CTA micro interaction","label_ja":"CTAマイクロインタラクション"},
+  {"id":"navigation-transition","label_en":"Navigation transition","label_ja":"画面遷移"},
+  {"id":"feedback","label_en":"Feedback","label_ja":"フィードバック"},
+  {"id":"layout-transition","label_en":"Layout transition","label_ja":"レイアウト遷移"}
+]
