@@ -20,7 +20,22 @@ const writeIfChanged = (p, s) => {
   return false;
 };
 const titleCase = (slug) => slug.split('-').map((w) => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
-const esc = (s) => String(s || '').replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const decodeOnce = (s) => String(s || '')
+  .replace(/&quot;/g, '"')
+  .replace(/&#39;/g, "'")
+  .replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>')
+  .replace(/&amp;/g, '&');
+const normalizeText = (s) => {
+  let prev = String(s || '');
+  for (let i = 0; i < 10; i += 1) {
+    const next = decodeOnce(prev);
+    if (next === prev) return next;
+    prev = next;
+  }
+  return prev;
+};
+const esc = (s) => normalizeText(s).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const slugToTitle = (slug) => titleCase(slug).replace(/\bSeo\b/g, 'SEO').replace(/\bCsv\b/g, 'CSV').replace(/\bJson\b/g, 'JSON').replace(/\bPdf\b/g, 'PDF').replace(/\bApi\b/g, 'API').replace(/\bUi\b/g, 'UI');
 
 function listHtmlFiles(dir = root) {
@@ -60,7 +75,7 @@ function isToolPage(file) {
 }
 
 function inferTitle(file, html) {
-  const current = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
+  const current = normalizeText(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() || '');
   if (current && current !== 'NicheWorks' && current.length >= 8) return current;
   const rel = relPath(file);
   if (rel === 'index.html') return '無料ブラウザツール集｜NicheWorks';
@@ -72,7 +87,7 @@ function inferTitle(file, html) {
 }
 
 function inferDescription(file, html, title) {
-  const current = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]?.trim();
+  const current = normalizeText(html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]?.trim() || '');
   if (current && current.length >= 45 && !/pending|placeholder|準備中|未完成|仮置き/i.test(current)) return current;
   const rel = relPath(file);
   const cleanTitle = title.replace(' | NicheWorks', '').replace('｜NicheWorks', '');
