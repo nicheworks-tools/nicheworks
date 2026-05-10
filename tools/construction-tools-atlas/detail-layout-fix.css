@@ -37,6 +37,35 @@
   color: var(--muted, #6b7280);
 }
 
+#detailSheet .detailImagePilot {
+  display: grid;
+  gap: 8px;
+  max-width: 360px;
+  margin: 14px 0 18px;
+  padding: 10px;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 14px;
+  background: var(--surface, #fff);
+}
+
+#detailSheet .detailImagePilot[hidden] {
+  display: none !important;
+}
+
+#detailSheet .detailImagePilot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+#detailSheet .detailImagePilot figcaption {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted, #6b7280);
+}
+
 #detailSheet .dictionaryBlock {
   margin: 0 0 14px;
   padding: 0;
@@ -77,5 +106,9 @@
 
   #detailSheet .termblock__title {
     font-size: 20px;
+  }
+
+  #detailSheet .detailImagePilot {
+    max-width: none;
   }
 }
