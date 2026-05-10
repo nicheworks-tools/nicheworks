@@ -1,3 +1,4 @@
+// SEO strict verification rerun marker: 2026-05-10 full entity repair
 import fs from 'node:fs';
 import path from 'node:path';
 
