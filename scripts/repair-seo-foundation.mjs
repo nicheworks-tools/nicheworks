@@ -20,7 +20,21 @@ const writeIfChanged = (p, s) => {
   return false;
 };
 const titleCase = (slug) => slug.split('-').map((w) => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
-const esc = (s) => String(s || '').replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+function decodeBasicEntities(value) {
+  let s = String(value || '');
+  let previous = '';
+  while (s !== previous) {
+    previous = s;
+    s = s
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
+  }
+  return s;
+}
+const esc = (s) => decodeBasicEntities(s).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const slugToTitle = (slug) => titleCase(slug).replace(/\bSeo\b/g, 'SEO').replace(/\bCsv\b/g, 'CSV').replace(/\bJson\b/g, 'JSON').replace(/\bPdf\b/g, 'PDF').replace(/\bApi\b/g, 'API').replace(/\bUi\b/g, 'UI');
 
 function listHtmlFiles(dir = root) {
@@ -61,7 +75,7 @@ function isToolPage(file) {
 
 function inferTitle(file, html) {
   const current = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
-  if (current && current !== 'NicheWorks' && current.length >= 8) return current;
+  if (current && current !== 'NicheWorks' && current.length >= 8) return decodeBasicEntities(current);
   const rel = relPath(file);
   if (rel === 'index.html') return '無料ブラウザツール集｜NicheWorks';
   if (rel === 'en/index.html') return 'Free Browser Tools | NicheWorks';
@@ -73,7 +87,7 @@ function inferTitle(file, html) {
 
 function inferDescription(file, html, title) {
   const current = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]?.trim();
-  if (current && current.length >= 45 && !/pending|placeholder|準備中|未完成|仮置き/i.test(current)) return current;
+  if (current && current.length >= 45 && !/pending|placeholder|準備中|未完成|仮置き/i.test(current)) return decodeBasicEntities(current);
   const rel = relPath(file);
   const cleanTitle = title.replace(' | NicheWorks', '').replace('｜NicheWorks', '');
   if (rel.startsWith('en/')) return `${cleanTitle} is a lightweight NicheWorks browser page for small, practical tasks and local-first workflows.`;
@@ -88,14 +102,14 @@ function injectBeforeHeadClose(html, block) {
 function replaceOrAddMeta(html, attrName, attrValue, content) {
   const re = new RegExp(`<meta\\b[^>]*${attrName}=["']${attrValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i');
   const tag = `<meta ${attrName}="${attrValue}" content="${esc(content)}">`;
-  if (re.test(html)) return html.replace(re, tag);
+  if (re.test(html)) return html;
   return injectBeforeHeadClose(html, `  ${tag}`);
 }
 
 function replaceOrAddLink(html, rel, href) {
   const re = new RegExp(`<link\\b[^>]*rel=["']${rel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i');
   const tag = `<link rel="${rel}" href="${esc(href)}">`;
-  if (re.test(html)) return html.replace(re, tag);
+  if (re.test(html)) return html;
   return injectBeforeHeadClose(html, `  ${tag}`);
 }
 
@@ -134,15 +148,7 @@ function sanitizeBadText(html) {
   return html
     .replace(/The description is pending and will be updated later\.?/gi, 'This NicheWorks page has been updated with a stable description.')
     .replace(/https?:\/\/example\.com/gi, siteBase)
-    .replace(/広告枠（準備中）/g, '広告枠')
-    .replace(/準備中/g, '整備済み')
-    .replace(/未完成/g, '整備済み')
-    .replace(/仮置き/g, '正式リンク')
-    .replace(/placeholder/gi, 'stable content')
-    .replace(/coming soon/gi, 'available')
-    .replace(/<!--\s*(TODO|FIXME)[\s\S]*?-->/gi, '')
-    .replace(/\bTODO\b/g, 'Task')
-    .replace(/\bFIXME\b/g, 'Fix note');
+    .replace(/<!--\s*(TODO|FIXME)[\s\S]*?-->/gi, '');
 }
 
 function ensureHead(html, file) {
@@ -155,8 +161,7 @@ function ensureHead(html, file) {
   if (!/<html\b[^>]*lang=["'][^"']+["']/i.test(html)) html = html.replace(/<html\b([^>]*)>/i, `<html$1 lang="${lang}">`);
   if (!/<meta\b[^>]*charset=/i.test(html)) html = html.replace(/<head[^>]*>/i, (m) => `${m}\n  <meta charset="utf-8">`);
   if (!/<meta\b[^>]*name=["']viewport["']/i.test(html)) html = html.replace(/<meta\b[^>]*charset=[^>]*>/i, (m) => `${m}\n  <meta name="viewport" content="width=device-width, initial-scale=1">`);
-  if (/<title>[\s\S]*?<\/title>/i.test(html)) html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
-  else html = html.replace(/<head[^>]*>/i, (m) => `${m}\n  <title>${esc(title)}</title>`);
+  if (!/<title>[\s\S]*?<\/title>/i.test(html)) html = html.replace(/<head[^>]*>/i, (m) => `${m}\n  <title>${esc(title)}</title>`);
 
   html = replaceOrAddMeta(html, 'name', 'description', desc);
   html = replaceOrAddMeta(html, 'name', 'robots', 'index,follow');
