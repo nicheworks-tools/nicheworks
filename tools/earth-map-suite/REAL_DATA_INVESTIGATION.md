@@ -245,6 +245,50 @@ Too-large bbox for `preset=mid`:
 
 EMS-RD-03 should deploy this JSON-only endpoint to a Cloudflare Pages preview, verify live collection/item/PRECIP asset responses from the Wasabi STAC host, record the exact asset schema and license field returned by production-like infrastructure, then prototype a small COG range-read sampler only if it can be done without large binary dependencies or synthetic fallback values.
 
+## EMS-RD-03 Cloudflare deployment verification
+
+Date: 2026-05-11
+Scope: deployed `/api/earth-map-suite/precipitation` checks from this Codex environment plus documentation only. The public Earth Map Suite UI remains disconnected from real data.
+
+### Deployed URL tested
+
+Production base URL selected from the existing public canonical domain: `https://nicheworks.app`. The intended deployed endpoint URLs were:
+
+1. Valid small bbox:
+   `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low`
+2. Invalid bbox:
+   `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,139.0,35.9&start=2025-08-01&end=2025-08-03&preset=low`
+3. Too-large date range:
+   `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-20&preset=low`
+
+### Exact deployed check results
+
+The deployed endpoint could not be reached from this Codex execution environment because outbound HTTPS CONNECT requests to both `nicheworks.app` and `nicheworks.pages.dev` were blocked by the environment proxy before the request reached Cloudflare. A proxy-level `403 Forbidden` was returned by Envoy, not by the NicheWorks endpoint. DNS resolution also failed when bypassing the proxy. Therefore these rows record the exact attempted deployed checks without fabricating endpoint payloads.
+
+| Case | Tested URL | HTTP status observed from Codex | data_type | status | error_code | item_count | asset_count | matched_dates | sampling_status | source/license/attribution present | Cloudflare reachability to `s3.ap-northeast-1.wasabisys.com` | Classification |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Valid small bbox | `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low` | Not available from deployed endpoint; local `curl` failed before Cloudflare with `CONNECT tunnel failed, response 403`. | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not verified | Deployment verification blocked by agent network; do not proceed to UI connection from this run |
+| Invalid bbox | `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,139.0,35.9&start=2025-08-01&end=2025-08-03&preset=low` | Not available from deployed endpoint; local `curl` failed before Cloudflare with `CONNECT tunnel failed, response 403`. | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not verified | Expected validation error remains unverified on deployment |
+| Too-large date range | `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-20&preset=low` | Not available from deployed endpoint; local `curl` failed before Cloudflare with `CONNECT tunnel failed, response 403`. | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not observed | Not verified | Expected limit error remains unverified on deployment |
+
+### Local code-path expectations for the two validation cases
+
+These are code-path expectations from `functions/api/earth-map-suite/precipitation.js`, not deployed endpoint observations:
+
+- Invalid bbox should return HTTP `400`, `data_type: "unavailable"`, `status: "error"`, and `error_code: "invalid_bbox"` because `minLon >= maxLon` is rejected before any upstream fetch.
+- Too-large date range should return HTTP `400`, `data_type: "unavailable"`, `status: "error"`, and `error_code: "limit_exceeded"` because `preset=low` allows a maximum of 14 days and the requested range is 20 days.
+
+### RD-03 decision
+
+Cloudflare metadata reachability is **not verified** by this run. The valid request is not classified as `metadata reachable`, `upstream unreachable`, `STAC path wrong`, or `PRECIP asset missing` because no deployed JSON response was observable from the agent environment. No public UI real-data claims were added, no raster sampling was added, and no synthetic fallback was added to the real endpoint.
+
+### Recommended next task
+
+Repeat EMS-RD-03 from an environment that can directly reach `https://nicheworks.app` or the Cloudflare Pages preview URL, capture the three JSON responses above, and only then decide on EMS-RD-04. Do **not** connect the storm UI to the metadata endpoint until the valid deployed response is observed as either:
+
+- `data_type: "real_observation_metadata"`, `status: "ok"`, `sampling_status: "metadata_only"`; or
+- a concrete deployed error such as `upstream_fail`, `no_items`, `asset_missing`, or `timeout` that can be corrected before UI connection.
+
 ## Previous RD-01 recommended next task
 
 Create a separate implementation task for a server-side, JSON-only GSMaP daily sampler:

@@ -21,6 +21,7 @@ Earth Map Suite is a static tool scaffold for organizing map view requirements a
 - It validates `bbox`, `start`, `end`, and `preset`, fetches JAXA/EORC GSMaP STAC collection/item metadata, and discovers `PRECIP` COG assets when upstream data is reachable.
 - Raster values are not sampled yet; successful responses use `sampling_status: "metadata_only"` with null summary statistics.
 - The public Earth Map Suite UI remains placeholder/synthetic and is not connected to this endpoint yet.
+- RD-03 deployment verification attempted the production endpoint on 2026-05-11, but this Codex environment was blocked by an outbound proxy before reaching Cloudflare; Cloudflare-to-Wasabi metadata reachability is still unverified and the UI should remain disconnected until a direct deployed JSON response is captured.
 
 ## Commercial Use Notice (JAXA)
 
