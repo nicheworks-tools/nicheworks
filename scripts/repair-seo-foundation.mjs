@@ -151,7 +151,6 @@ function sanitizeBadText(html) {
     .replace(/準備中/g, '整備済み')
     .replace(/未完成/g, '整備済み')
     .replace(/仮置き/g, '正式リンク')
-    .replace(/placeholder/gi, 'stable content')
     .replace(/coming soon/gi, 'available')
     .replace(/<!--\s*(TODO|FIXME)[\s\S]*?-->/gi, '')
     .replace(/\bTODO\b/g, 'Task')

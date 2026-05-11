@@ -24,7 +24,7 @@
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
   <!--
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
@@ -67,7 +67,7 @@
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">Ads stable content</div>
+    <div class="ad-slot ad-top">Ad slot</div>
 
     <section class="card">
       <div class="card-hd">
@@ -121,7 +121,21 @@
           <li>compare: A/B/diff cards and CSV outputs appear.</li>
           <li>card: a point preview and a mini time-series chart appear.</li>
         </ul>
-        <p class="hint">All outputs are stable contents for planning, not observed data.</p>
+        <p class="hint">Preview data: synthetic/placeholders only. The public UI output is for planning, not observed data.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">4a. Data status</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>Preview data: synthetic/placeholders only for storm / compare / card output in the public UI.</li>
+          <li>The <code>/api/earth-map-suite/precipitation</code> endpoint exists as a metadata-only GSMaP sampler.</li>
+          <li>Raster precipitation values are not sampled yet.</li>
+          <li>Synthetic values are never returned as real data, and JAXA/EORC observed values are not shown in the public UI yet.</li>
+        </ul>
       </div>
     </section>
 
@@ -221,7 +235,7 @@ Note: confirm night mode readability</pre>
       </div>
       <div class="card-bd">
         <p class="hint">Ad slots are in preparation and planned for top/bottom placement only.</p>
-        <p class="hint">A support page is available (currently a stable content).</p>
+        <p class="hint">A support page is available for voluntary donations.</p>
       </div>
     </section>
 
@@ -247,12 +261,12 @@ Note: confirm night mode readability</pre>
       </div>
     </section>
 
-    <div class="ad-slot ad-bottom">Ads stable content</div>
+    <div class="ad-slot ad-bottom">Ad slot</div>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">Preview data: synthetic/stable contents only (JAXA Earth API investigation not enabled in public UI)</p>
+    <p class="nw-footer-line">Preview data: synthetic/placeholders only</p>
     <p class="nw-footer-line">Real-data license: not enabled / pending verification</p>
     <p class="nw-footer-line">Disclaimer: Data accuracy is not guaranteed. Always verify official sources.</p>
     <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>

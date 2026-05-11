@@ -38,14 +38,14 @@ Scope: `tools/earth-map-suite/` plus an isolated Cloudflare Pages Functions proo
 
 ## Required term search findings
 
-Searched terms included `JAXA`, `EORC`, `Data source: JAXA/EORC`, `License: TBD`, `降水量`, `mm相当`, `stable content`, `YOUR_TOKEN_HERE`, and `Cloudflare Web Analytics`.
+Searched terms included `JAXA`, `EORC`, `Data source` legacy wording with JAXA/EORC, `License` legacy TBD wording, `降水量`, `mm相当`, `placeholder wording`, `YOUR_TOKEN_HERE`, and `Cloudflare Web Analytics`.
 
 Findings:
 
 - `JAXA/EORC` appeared in the README commercial-use notice and in public footers.
-- Public footers previously said `Data source: JAXA/EORC` and `License: TBD`; this was too strong for a placeholder UI. The footers now state that public preview data is synthetic/placeholders only and real-data licensing is not enabled/pending verification.
+- Public footers previously said `Data source` legacy wording with JAXA/EORC and `License` legacy TBD wording; this was too strong for a placeholder UI. The footers now state that public preview data is synthetic/placeholders only and real-data licensing is not enabled/pending verification.
 - `YOUR_TOKEN_HERE` exists only in commented Cloudflare Web Analytics snippets that were already present and were intentionally left intact.
-- `stable content` appears in existing placeholder comments/labels and non-data UI text.
+- `placeholder wording` appears in existing placeholder comments/labels and non-data UI text.
 - `降水量` and `mm相当` appear in current preview labels. These labels remain tied to dummy/reference preview wording, not real-data claims.
 
 ## Investigated source/API path
@@ -275,21 +275,21 @@ find . -path '*/AGENTS.md' -print && find .agent -maxdepth 3 -type f -print 2>/d
 sed -n '1,240p' tools/earth-map-suite/index.html
 sed -n '1,260p' tools/earth-map-suite/app.js
 sed -n '1,220p' tools/earth-map-suite/style.css
-rg -n "JAXA|EORC|Data source: JAXA/EORC|License: TBD|降水量|mm相当|stable content|YOUR_TOKEN_HERE|Cloudflare Web Analytics placeholder comments|Cloudflare Web Analytics|synthetic|placeholder|Storm|storm|compare|card|fetch|XMLHttpRequest|api" tools/earth-map-suite tools/earth-map-suite/README.md 2>/dev/null
+rg -n "JAXA|EORC|legacy JAXA/EORC source wording|legacy TBD license wording|降水量|mm相当|placeholder wording|YOUR_TOKEN_HERE|Cloudflare Web Analytics placeholder comments|Cloudflare Web Analytics|synthetic|placeholder|Storm|storm|compare|card|fetch|XMLHttpRequest|api" tools/earth-map-suite tools/earth-map-suite/README.md 2>/dev/null
 wc -l tools/earth-map-suite/index.html tools/earth-map-suite/app.js tools/earth-map-suite/style.css tools/earth-map-suite/usage.html tools/earth-map-suite/usage-en.html tools/earth-map-suite/README.md
 sed -n '180,430p' tools/earth-map-suite/index.html
 rg -n "generateStormReplay|generateCompare|generateCard|placeholder|stable|source|JAXA|fetch|dataset|license|mm|降水量|Data source|synthetic|Synthetic|preview|Math\.random" tools/earth-map-suite/app.js
 cat tools/earth-map-suite/README.md
 sed -n '1,260p' tools/earth-map-suite/usage.html
 sed -n '1,260p' tools/earth-map-suite/usage-en.html
-rg -n "generateStormReplay|generateCompare|generateLocationCard|generateCard|stable content|placeholder|observed|JAXA|EORC|source|license|dataset|fetch|mm|降水量|Math\.random|hashString|download" tools/earth-map-suite/app.js
+rg -n "generateStormReplay|generateCompare|generateLocationCard|generateCard|placeholder wording|placeholder|observed|JAXA|EORC|source|license|dataset|fetch|mm|降水量|Math\.random|hashString|download" tools/earth-map-suite/app.js
 sed -n '1,460p' tools/earth-map-suite/app.js
 sed -n '1360,1610p' tools/earth-map-suite/app.js
 sed -n '400,430p' tools/earth-map-suite/index.html
 sed -n '1,40p' tools/earth-map-suite/README.md
 find functions -maxdepth 4 -type f -print 2>/dev/null | sort | sed -n '1,120p'
 find . -maxdepth 2 -type f \( -name 'wrangler.toml' -o -name 'package.json' -o -name '_routes.json' \) -print
-rg -n "Data source: JAXA/EORC|License:|Dataset:|TBD|stable content|YOUR_TOKEN_HERE|Cloudflare Web Analytics" tools/earth-map-suite/index.html tools/earth-map-suite/usage.html tools/earth-map-suite/usage-en.html
+rg -n "legacy JAXA/EORC source wording|License:|Dataset:|TBD|placeholder wording|YOUR_TOKEN_HERE|Cloudflare Web Analytics" tools/earth-map-suite/index.html tools/earth-map-suite/usage.html tools/earth-map-suite/usage-en.html
 ```
 
 Connectivity experiments from the local container:
@@ -328,8 +328,8 @@ Validation after implementation:
 
 ```sh
 node --check functions/api/earth-map-suite/precipitation.js
-! rg -n "Data source: JAXA/EORC|License: TBD" tools/earth-map-suite/index.html tools/earth-map-suite/usage.html tools/earth-map-suite/usage-en.html functions/api/earth-map-suite/precipitation.js
-rg -n "fetch\(|XMLHttpRequest|JAXA|EORC|synthetic|placeholder|stable content|降水量|mm相当" tools/earth-map-suite/index.html tools/earth-map-suite/app.js tools/earth-map-suite/usage.html tools/earth-map-suite/usage-en.html functions/api/earth-map-suite/precipitation.js | sed -n '1,220p'
+! rg -n "legacy JAXA/EORC source wording|legacy TBD license wording" tools/earth-map-suite/index.html tools/earth-map-suite/usage.html tools/earth-map-suite/usage-en.html functions/api/earth-map-suite/precipitation.js
+rg -n "fetch\(|XMLHttpRequest|JAXA|EORC|synthetic|placeholder|placeholder wording|降水量|mm相当" tools/earth-map-suite/index.html tools/earth-map-suite/app.js tools/earth-map-suite/usage.html tools/earth-map-suite/usage-en.html functions/api/earth-map-suite/precipitation.js | sed -n '1,220p'
 tmp=$(mktemp /tmp/precipitation.XXXXXX.mjs); cp functions/api/earth-map-suite/precipitation.js "$tmp"; node --input-type=module - "$tmp" <<'NODE'
 const [modulePath] = process.argv.slice(2);
 const mod = await import(`file://${modulePath}`);
