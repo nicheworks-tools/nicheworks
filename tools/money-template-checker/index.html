@@ -14,19 +14,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>家計バランス簡易チェック・支出テンプレ作成｜Money Template Checker | NicheWorks</title>
-  <meta name="description" content="月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。金融助言・税務助言ではありません。">
+  <meta name="description" content="月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。日本円ベースの目安で、金融助言・税務助言ではありません。">
   <link rel="canonical" href="https://nicheworks.app/tools/money-template-checker/">
   <meta name="robots" content="index,follow">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="家計バランス簡易チェック・支出テンプレ作成｜Money Template Checker | NicheWorks">
-  <meta property="og:description" content="月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。金融助言・税務助言ではありません。">
+  <meta property="og:description" content="月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。日本円ベースの目安で、金融助言・税務助言ではありません。">
   <meta property="og:url" content="https://nicheworks.app/tools/money-template-checker/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="家計バランス簡易チェック・支出テンプレ作成｜Money Template Checker | NicheWorks">
-  <meta name="twitter:description" content="月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。金融助言・税務助言ではありません。">
+  <meta name="twitter:description" content="月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。日本円ベースの目安で、金融助言・税務助言ではありません。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <link rel="icon" href="/assets/favicon.ico">
@@ -42,7 +42,7 @@
     "name": "Money Template Checker",
     "url": "https://nicheworks.app/tools/money-template-checker/",
     "applicationCategory": "UtilityApplication",
-    "description": "月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。金融助言・税務助言ではありません。",
+    "description": "月収、固定費、変動費、貯蓄目標から家計バランスを簡易チェックし、支出カテゴリの抜けやテンプレを整理する無料ツールです。日本円ベースの目安で、金融助言・税務助言ではありません。",
     "operatingSystem": "All"
   }
   </script>
@@ -53,42 +53,34 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "この結果は家計診断や金融助言ですか？",
+        "name": "通貨は選べますか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "いいえ。一般的な簡易計算です。金融助言、投資助言、税務助言、債務整理、保険見直しなどの専門判断ではありません。"
+          "text": "現在は日本円ベースの簡易テンプレです。英語表示でも金額はJPYとして扱います。"
         }
       },
       {
         "@type": "Question",
-        "name": "入力内容は送信されますか？",
+        "name": "入力した金額は保存されますか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "家計チェックの計算処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。"
+          "text": "入力金額や結果は保存しません。言語設定のみこのブラウザのlocalStorageに保存されます。計算処理はブラウザ内で行いますが、ページ表示のため広告・解析タグは読み込まれます。"
         }
       },
       {
         "@type": "Question",
-        "name": "固定費60%などの基準は絶対ですか？",
+        "name": "月収0円でも使えますか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "いいえ。一般的な目安です。地域、家族構成、住宅費、医療費、借入状況などにより適切な割合は変わります。"
+          "text": "残額の確認には使えますが、割合判定はできません。収入が不安定な場合は月平均などで確認してください。"
         }
       },
       {
         "@type": "Question",
-        "name": "口座情報やカード情報を入力してよいですか？",
+        "name": "この結果で支出削減や投資判断をしてよいですか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "入力しないでください。金額の合計だけを入れる前提の簡易ツールです。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "CSVは何に使えますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ExcelやGoogle Sheetsで家計テンプレの初期行として使えます。"
+          "text": "いいえ。一般的な家計整理の目安です。金融、税務、債務、保険、投資に関わる判断は専門家や公式情報を確認してください。"
         }
       }
     ]
@@ -120,9 +112,14 @@
       <p data-i18n="en" style="display:none;">Enter monthly income, fixed costs, variable costs, and a savings target to check remaining balance, warnings, and missing categories.</p>
     </section>
 
+    <section class="nw-note currency-note">
+      <p data-i18n="ja">このツールは日本円ベースの簡易テンプレです。入力例・出力・保存ファイルの金額は JPY として扱います。</p>
+      <p data-i18n="en" style="display:none;">This tool currently formats amounts as JPY. Input examples, results, and exported files are treated as Japanese yen amounts.</p>
+    </section>
+
     <section class="nw-note">
-      <p data-i18n="ja">家計チェックの計算処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。実際の口座情報、カード番号、勤務先、個人情報、詳細な負債情報は入力しないでください。</p>
-      <p data-i18n="en" style="display:none;">The budget calculation runs in your browser. However, ad and analytics tags are loaded for page display. Do not enter bank account details, card numbers, employer information, personal identifiers, or detailed debt information.</p>
+      <p data-i18n="ja">計算処理はブラウザ内で行います。入力金額や結果は保存しません。言語設定のみ <code>nw_lang</code> としてlocalStorageに保存されます。ただしページ表示のため広告・解析タグは読み込まれます。実際の口座情報、カード番号、勤務先、個人情報、詳細な負債情報は入力しないでください。</p>
+      <p data-i18n="en" style="display:none;">The calculation runs in your browser. Input amounts and results are not stored. Only the language setting is saved in localStorage as <code>nw_lang</code>. However, ad and analytics tags are loaded for page display. Do not enter bank account details, card numbers, employer information, personal identifiers, or detailed debt information.</p>
     </section>
 
     <section class="nw-note nw-warning">
@@ -145,22 +142,22 @@
           <div class="field">
             <label class="label" for="income" data-i18n="ja">月収（手取り・必須）</label>
             <label class="label" for="income" data-i18n="en" style="display:none;">Monthly income, net required</label>
-            <input class="input" id="income" type="number" min="0" inputmode="decimal" data-example-ja="例：300000" data-example-en="Example: 300000" />
+            <input class="input" id="income" type="number" min="0" max="999999999" inputmode="decimal" data-label-ja="月収（手取り・必須）" data-label-en="Monthly income, net required" data-example-ja="例：300000" data-example-en="Example: 300000 JPY" />
           </div>
           <div class="field">
             <label class="label" for="fixed" data-i18n="ja">固定費合計（任意）</label>
             <label class="label" for="fixed" data-i18n="en" style="display:none;">Fixed costs total optional</label>
-            <input class="input" id="fixed" type="number" min="0" inputmode="decimal" data-example-ja="例：120000" data-example-en="Example: 120000" />
+            <input class="input" id="fixed" type="number" min="0" max="999999999" inputmode="decimal" data-label-ja="固定費合計（任意）" data-label-en="Fixed costs total optional" data-example-ja="例：120000" data-example-en="Example: 120000 JPY" />
           </div>
           <div class="field">
             <label class="label" for="variable" data-i18n="ja">変動費合計（任意）</label>
             <label class="label" for="variable" data-i18n="en" style="display:none;">Variable costs total optional</label>
-            <input class="input" id="variable" type="number" min="0" inputmode="decimal" data-example-ja="例：80000" data-example-en="Example: 80000" />
+            <input class="input" id="variable" type="number" min="0" max="999999999" inputmode="decimal" data-label-ja="変動費合計（任意）" data-label-en="Variable costs total optional" data-example-ja="例：80000" data-example-en="Example: 80000 JPY" />
           </div>
           <div class="field">
             <label class="label" for="savings" data-i18n="ja">貯蓄目標（任意）</label>
             <label class="label" for="savings" data-i18n="en" style="display:none;">Savings target optional</label>
-            <input class="input" id="savings" type="number" min="0" inputmode="decimal" data-example-ja="例：50000" data-example-en="Example: 50000" />
+            <input class="input" id="savings" type="number" min="0" max="999999999" inputmode="decimal" data-label-ja="貯蓄目標（任意）" data-label-en="Savings target optional" data-example-ja="例：50000" data-example-en="Example: 50000 JPY" />
           </div>
 
           <div class="row" style="margin-top:8px;">
@@ -192,8 +189,8 @@
           <section class="nw-note benchmark-note">
             <h3 data-i18n="ja">判定基準について</h3>
             <h3 data-i18n="en" style="display:none;">About the reference thresholds</h3>
-            <p data-i18n="ja">固定費60%超、変動費50%超、貯蓄目標30%超は一般的な目安です。地域、家族構成、住宅費、医療費、借入、扶養状況により適切な割合は変わります。</p>
-            <p data-i18n="en" style="display:none;">Fixed costs over 60%, variable costs over 50%, and savings targets over 30% are only broad reference thresholds. Suitable ratios vary by location, household, housing costs, medical costs, debt, and dependents.</p>
+            <p data-i18n="ja">固定費60%超、変動費50%超、貯蓄目標30%超は一般的な目安です。月収0円では割合判定はできません。地域、家族構成、住宅費、医療費、借入、扶養状況により適切な割合は変わります。</p>
+            <p data-i18n="en" style="display:none;">Fixed costs over 60%, variable costs over 50%, and savings targets over 30% are only broad reference thresholds. Percentage checks are unavailable when income is 0. Suitable ratios vary by location, household, housing costs, medical costs, debt, and dependents.</p>
           </section>
         </div>
       </div>
@@ -205,34 +202,36 @@
       <h2 id="faqTitleJa" data-i18n="ja">よくある質問</h2>
       <h2 data-i18n="en" style="display:none;">FAQ</h2>
       <details>
-        <summary data-i18n="ja">この結果は家計診断や金融助言ですか？</summary>
-        <summary data-i18n="en" style="display:none;">Is this a household diagnosis or financial advice?</summary>
-        <p data-i18n="ja">いいえ。一般的な簡易計算です。重要な判断は専門家に相談してください。</p>
-        <p data-i18n="en" style="display:none;">No. It is only a general calculation helper. Consult a professional for important decisions.</p>
+        <summary>
+          <span data-i18n="ja">通貨は選べますか？</span>
+          <span data-i18n="en" style="display:none;">Can I choose a currency?</span>
+        </summary>
+        <p data-i18n="ja">現在は日本円ベースの簡易テンプレです。英語表示でも金額はJPYとして扱います。</p>
+        <p data-i18n="en" style="display:none;">No. This is currently a JPY-based simple template. Amounts are treated as JPY even when the UI is in English.</p>
       </details>
       <details>
-        <summary data-i18n="ja">入力内容は送信されますか？</summary>
-        <summary data-i18n="en" style="display:none;">Is my input sent anywhere?</summary>
-        <p data-i18n="ja">家計チェックの計算処理はブラウザ内で行います。ただし広告・解析タグは読み込まれます。</p>
-        <p data-i18n="en" style="display:none;">The calculation runs in your browser, but ad and analytics tags are loaded for the page.</p>
+        <summary>
+          <span data-i18n="ja">入力した金額は保存されますか？</span>
+          <span data-i18n="en" style="display:none;">Are entered amounts stored?</span>
+        </summary>
+        <p data-i18n="ja">入力金額や結果は保存しません。言語設定のみこのブラウザのlocalStorageに保存されます。計算処理はブラウザ内で行いますが、ページ表示のため広告・解析タグは読み込まれます。</p>
+        <p data-i18n="en" style="display:none;">Entered amounts and results are not stored. Only the language setting is saved in this browser's localStorage. Calculation runs in your browser, but ad and analytics tags are loaded for the page.</p>
       </details>
       <details>
-        <summary data-i18n="ja">固定費60%などの基準は絶対ですか？</summary>
-        <summary data-i18n="en" style="display:none;">Are thresholds like 60% fixed costs absolute?</summary>
-        <p data-i18n="ja">いいえ。地域、家族構成、住宅費、医療費、借入状況により変わります。</p>
-        <p data-i18n="en" style="display:none;">No. Suitable ratios vary by region, household, housing costs, medical costs, and debt.</p>
+        <summary>
+          <span data-i18n="ja">月収0円でも使えますか？</span>
+          <span data-i18n="en" style="display:none;">Can I use it with 0 income?</span>
+        </summary>
+        <p data-i18n="ja">残額の確認には使えますが、割合判定はできません。収入が不安定な場合は月平均などで確認してください。</p>
+        <p data-i18n="en" style="display:none;">You can check the remaining balance, but percentage-based checks are unavailable. If income is unstable, consider using a monthly average.</p>
       </details>
       <details>
-        <summary data-i18n="ja">口座情報やカード情報を入力してよいですか？</summary>
-        <summary data-i18n="en" style="display:none;">Can I enter account or card details?</summary>
-        <p data-i18n="ja">入力しないでください。金額の合計だけを入れる前提です。</p>
-        <p data-i18n="en" style="display:none;">No. Enter only rough monthly totals.</p>
-      </details>
-      <details>
-        <summary data-i18n="ja">CSVは何に使えますか？</summary>
-        <summary data-i18n="en" style="display:none;">What can I use the CSV for?</summary>
-        <p data-i18n="ja">ExcelやGoogle Sheetsで家計テンプレの初期行として使えます。</p>
-        <p data-i18n="en" style="display:none;">Use it as starter rows in Excel or Google Sheets.</p>
+        <summary>
+          <span data-i18n="ja">この結果で支出削減や投資判断をしてよいですか？</span>
+          <span data-i18n="en" style="display:none;">Can I use this result for spending cuts or investment decisions?</span>
+        </summary>
+        <p data-i18n="ja">いいえ。一般的な家計整理の目安です。金融、税務、債務、保険、投資に関わる判断は専門家や公式情報を確認してください。</p>
+        <p data-i18n="en" style="display:none;">No. It is only a general household budget reference. For financial, tax, debt, insurance, or investment decisions, check official information or consult a qualified professional.</p>
       </details>
     </section>
 
@@ -240,8 +239,8 @@
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
       <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>
       </div>
     </div>
 
@@ -251,8 +250,8 @@
       <div class="nw-other-links">
         <a href="/tools/sukima-baito-income/">Sukima Baito Income</a>
         <a href="/tools/moving-checklist-generator/">Moving Checklist Generator</a>
+        <a href="/tools/unitmaster/">UnitMaster</a>
         <a href="/tools/contract-cleaner/">Contract Cleaner</a>
-        <a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a>
       </div>
     </section>
   </main>
@@ -261,7 +260,7 @@
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
     <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a>
     </p>
   </footer>
 
