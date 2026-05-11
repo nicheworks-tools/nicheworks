@@ -117,11 +117,11 @@
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>storm: a frame slider and cumulative view appear.</li>
+          <li>storm: a GSMaP real metadata status panel appears, followed by a separate synthetic frame slider and cumulative view.</li>
           <li>compare: A/B/diff cards and CSV outputs appear.</li>
           <li>card: a point preview and a mini time-series chart appear.</li>
         </ul>
-        <p class="hint">Preview data: synthetic/placeholders only. The public UI output is for planning, not observed data.</p>
+        <p class="hint">The storm metadata status can report real GSMaP metadata reachability, but the visible storm map preview is synthetic. Raster precipitation values are not sampled yet.</p>
       </div>
     </section>
 
@@ -131,10 +131,10 @@
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>Preview data: synthetic/placeholders only for storm / compare / card output in the public UI.</li>
-          <li>The <code>/api/earth-map-suite/precipitation</code> endpoint exists as a metadata-only GSMaP sampler.</li>
-          <li>Raster precipitation values are not sampled yet.</li>
-          <li>Synthetic values are never returned as real data, and JAXA/EORC observed values are not shown in the public UI yet.</li>
+          <li>Storm mode calls <code>/api/earth-map-suite/precipitation</code> and shows real GSMaP metadata reachability.</li>
+          <li>The panel displays transparency fields such as dataset, license, source, matched_dates, item_count, asset_count, and sampling_status.</li>
+          <li>Raster precipitation values are not sampled yet; summary mean/max/min are not shown as real values.</li>
+          <li>The storm map preview, CSV frame values, compare, and card remain synthetic placeholders and are not observed precipitation.</li>
         </ul>
       </div>
     </section>
@@ -147,9 +147,9 @@
         <div class="example-grid">
           <div class="example-card">
             <h3 class="example-title">storm example</h3>
-            <pre class="example-code">BBox: 139.60,35.50,139.95,35.80
-Range: 2024-08-18 → 2024-08-20
-Preset: mid
+            <pre class="example-code">BBox: 139.5,35.4,140.0,35.9
+Range: 2025-08-01 → 2025-08-03
+Preset: low
 Frames: 24
 Target area: Tokyo coastal ward</pre>
           </div>
@@ -266,7 +266,7 @@ Note: confirm night mode readability</pre>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">Preview data: synthetic/placeholders only</p>
+    <p class="nw-footer-line">Preview data: storm metadata status can show real GSMaP metadata reachability; map previews remain synthetic/placeholders and not observed precipitation</p>
     <p class="nw-footer-line">Real-data license: not enabled / pending verification</p>
     <p class="nw-footer-line">Disclaimer: Data accuracy is not guaranteed. Always verify official sources.</p>
     <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>

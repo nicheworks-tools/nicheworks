@@ -20,8 +20,8 @@ Earth Map Suite is a static tool scaffold for organizing map view requirements a
 - `/api/earth-map-suite/precipitation` is a JSON-only GSMaP daily precipitation metadata sampler for RD-02.
 - It validates `bbox`, `start`, `end`, and `preset`, fetches JAXA/EORC GSMaP STAC collection/item metadata, and discovers `PRECIP` COG assets when upstream data is reachable.
 - Raster values are not sampled yet; successful responses use `sampling_status: "metadata_only"` with null summary statistics.
-- The public Earth Map Suite UI remains placeholder/synthetic and is not connected to this endpoint yet.
-- RD-03 deployment verification attempted the production endpoint on 2026-05-11, but this Codex environment was blocked by an outbound proxy before reaching Cloudflare; Cloudflare-to-Wasabi metadata reachability is still unverified and the UI should remain disconnected until a direct deployed JSON response is captured.
+- Storm mode is connected to the endpoint as a metadata-only status panel, while the visible storm replay remains a synthetic preview; compare/card are still placeholder/synthetic and are not connected.
+- RD-03 production metadata reachability is verified by a human browser test for the small Tokyo-area bbox/date example: the endpoint returned `data_type: "real_observation_metadata"`, `status: "ok"`, dataset `JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily`, `asset_count: 3`, matched dates `2025-08-01` through `2025-08-03`, and `sampling_status: "metadata_only"`. This Codex environment is still blocked by an outbound proxy before reaching Cloudflare, so agent-side deployed rechecks remain an environment limitation.
 
 ## Commercial Use Notice (JAXA)
 
