@@ -74,6 +74,16 @@ function relPath(file) {
   return path.relative(root, file).split(path.sep).join('/');
 }
 
+function isIndexableFile(file) {
+  const rel = relPath(file);
+  if (!rel.endsWith('.html')) return false;
+  if (rel.startsWith('_archive/')) return false;
+  if (rel.startsWith('templates/')) return false;
+  if (rel.startsWith('tools/_template/')) return false;
+  if (rel.includes('/mock/')) return false;
+  return true;
+}
+
 function urlForFile(file) {
   const rel = relPath(file);
   if (rel === 'index.html') return `${siteBase}/`;
@@ -261,8 +271,8 @@ function ensureSitemap(files) {
   const sitemapFile = path.join(root, 'sitemap.xml');
   const current = read(sitemapFile);
   const lastmodMap = new Map([...current.matchAll(/<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?(?:<lastmod>([^<]+)<\/lastmod>)?[\s\S]*?<\/url>/g)].map((match) => [match[1], match[2] || today]));
-  const urls = new Set(lastmodMap.keys());
-  for (const file of files) urls.add(urlForFile(file));
+  const urls = new Set();
+  for (const file of files.filter(isIndexableFile)) urls.add(urlForFile(file));
   const sorted = [...urls].filter((url) => url.startsWith(siteBase)).sort();
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sorted.map((url) => `  <url>\n    <loc>${url}</loc>\n    <lastmod>${lastmodMap.get(url) || today}</lastmod>\n  </url>`).join('\n')}\n</urlset>\n`;
   return writeIfChanged(sitemapFile, xml) ? 1 : 0;
