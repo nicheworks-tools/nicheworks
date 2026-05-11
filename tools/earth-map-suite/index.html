@@ -23,7 +23,7 @@
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
   <!--
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
@@ -121,12 +121,12 @@
           <div class="field">
             <label class="label" for="latInput" data-i18n="ja">緯度（lat）</label>
             <label class="label" for="latInput" data-i18n="en" style="display:none;">Latitude (lat)</label>
-            <input class="input" id="latInput" type="number" step="0.0001" stable content="例：35.68" />
+            <input class="input" id="latInput" type="number" step="0.0001" placeholder="例：35.68" />
           </div>
           <div class="field">
             <label class="label" for="lonInput" data-i18n="ja">経度（lon）</label>
             <label class="label" for="lonInput" data-i18n="en" style="display:none;">Longitude (lon)</label>
-            <input class="input" id="lonInput" type="number" step="0.0001" stable content="例：139.76" />
+            <input class="input" id="lonInput" type="number" step="0.0001" placeholder="例：139.76" />
           </div>
         </div>
         <div class="field card-only" hidden>
@@ -139,7 +139,7 @@
         <div class="field non-card-only">
           <label class="label" for="bboxInput" data-i18n="ja">BBox（緯度経度）</label>
           <label class="label" for="bboxInput" data-i18n="en" style="display:none;">BBox (lat/long)</label>
-          <input class="input" id="bboxInput" type="text" stable content="例：139.60,35.50,139.95,35.80" />
+          <input class="input" id="bboxInput" type="text" placeholder="例：139.60,35.50,139.95,35.80" />
           <p class="hint" data-i18n="ja">storm/compareモードで使用します。</p>
           <p class="hint" data-i18n="en" style="display:none;">Used in storm/compare modes.</p>
         </div>
@@ -170,29 +170,29 @@
         <div class="field">
           <label class="label" for="presetInput" data-i18n="ja">プリセット</label>
           <label class="label" for="presetInput" data-i18n="en" style="display:none;">Preset</label>
-          <input class="input" id="presetInput" type="text" stable content="例：low" />
+          <input class="input" id="presetInput" type="text" placeholder="例：low" />
         </div>
         <div class="field storm-only">
           <label class="label" for="framesInput" data-i18n="ja">フレーム数（stormのみ）</label>
           <label class="label" for="framesInput" data-i18n="en" style="display:none;">Frames (storm only)</label>
-          <input class="input" id="framesInput" type="number" min="1" stable content="例：24" />
+          <input class="input" id="framesInput" type="number" min="1" placeholder="例：24" />
           <p class="hint" data-i18n="ja">stormモード時は必須。48を超える場合は自動的に間引きます。</p>
           <p class="hint" data-i18n="en" style="display:none;">Required for storm mode. Over 48 frames will be thinned automatically.</p>
         </div>
         <div class="field">
           <label class="label" for="focusArea" data-i18n="ja">対象エリア</label>
           <label class="label" for="focusArea" data-i18n="en" style="display:none;">Target area</label>
-          <input class="input" id="focusArea" type="text" stable content="例：東京23区・沿岸部" />
+          <input class="input" id="focusArea" type="text" placeholder="例：東京23区・沿岸部" />
         </div>
         <div class="field">
           <label class="label" for="layers" data-i18n="ja">確認したいレイヤー</label>
           <label class="label" for="layers" data-i18n="en" style="display:none;">Layers to verify</label>
-          <textarea class="textarea" id="layers" stable content="例：地形 / 交通 / 標高 / 避難所"></textarea>
+          <textarea class="textarea" id="layers" placeholder="例：地形 / 交通 / 標高 / 避難所"></textarea>
         </div>
         <div class="field">
           <label class="label" for="notes" data-i18n="ja">補足メモ</label>
           <label class="label" for="notes" data-i18n="en" style="display:none;">Notes</label>
-          <textarea class="textarea" id="notes" stable content="例：夜間モードで視認性を確認"></textarea>
+          <textarea class="textarea" id="notes" placeholder="例：夜間モードで視認性を確認"></textarea>
         </div>
         <div class="row">
           <button class="btn" type="button" data-example-mode="storm" data-i18n="ja">storm例</button>
@@ -222,7 +222,7 @@
             <h3 class="compare-title" data-i18n="ja">compare結果サマリー（降水量・参考値）</h3>
             <h3 class="compare-title" data-i18n="en" style="display:none;">Compare summary (precipitation, reference only)</h3>
             <p class="compare-note" data-i18n="ja">本結果はダミーのプレースホルダです。実測値ではありません。</p>
-            <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic stable contents and not observed data.</p>
+            <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic preview values and not observed data.</p>
             <dl class="compare-metrics" id="compareMetrics"></dl>
           </div>
           <div class="compare-cards">
@@ -298,7 +298,7 @@
             <h3 class="card-output-title" data-i18n="ja">Location Card（降水量のポイント時系列）</h3>
             <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (point precipitation series)</h3>
             <p class="card-output-note" data-i18n="ja">カード表示は参考値のプレースホルダです。</p>
-            <p class="card-output-note" data-i18n="en" style="display:none;">The card shows stable content values for reference.</p>
+            <p class="card-output-note" data-i18n="en" style="display:none;">The card shows synthetic preview values for reference.</p>
           </div>
           <div class="card-output-grid">
             <div class="card-output-panel">
@@ -371,7 +371,7 @@
           <dt>Q. Is my data saved?</dt>
           <dd>A. No. Please copy anything you want to keep.</dd>
           <dt>Q. Are the outputs real observations?</dt>
-          <dd>A. No. storm / compare / card outputs are stable contents for planning.</dd>
+          <dd>A. No. storm / compare / card outputs are synthetic previews for planning.</dd>
           <dt>Q. When will ads or support go live?</dt>
           <dd>A. Ad slots are in preparation and planned only for top/bottom areas. A support page is available.</dd>
         </dl>

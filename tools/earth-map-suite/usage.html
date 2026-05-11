@@ -24,7 +24,7 @@
   <!-- AdSense (MUST) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
   <!--
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
@@ -122,6 +122,20 @@
           <li>card：ポイント位置と時系列チャートのカードが出ます。</li>
         </ul>
         <p class="hint">出力はすべて確認用のプレースホルダです。実測値ではありません。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">4a. データの状態</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>プレビューデータ：公開UIの storm / compare / card 出力は合成/プレースホルダのみです。</li>
+          <li><code>/api/earth-map-suite/precipitation</code> エンドポイントは、GSMaP のメタデータ確認用サンプラーとして存在します。</li>
+          <li>ラスタの降水量値はまだサンプリングしていません。</li>
+          <li>合成値を実データとして返すことはなく、JAXA/EORC由来の観測値は公開UIにはまだ表示していません。</li>
+        </ul>
       </div>
     </section>
 
