@@ -86,13 +86,13 @@
           <li>地図ビューの目的・対象地域を整理</li>
           <li>表示したいレイヤーや注釈をメモ化</li>
           <li>確認事項をチーム共有用に整形</li>
-          <li>storm / compare / card の出力イメージを確認</li>
+          <li>storm / compare / card の合成プレビューを確認（実測データではありません）</li>
         </ul>
         <ul class="bullet" data-i18n="en" style="display:none;">
           <li>Summarize the map view purpose and target area.</li>
           <li>List layers, annotations, and points of interest.</li>
           <li>Format a shareable checklist for teams.</li>
-          <li>Preview the expected output for storm / compare / card.</li>
+          <li>Preview synthetic storm / compare / card output. It is not observed data.</li>
         </ul>
       </div>
     </section>
@@ -219,10 +219,10 @@
         <div class="out" id="resultOutput" aria-live="polite"></div>
         <div class="compare-output" id="compareOutput" hidden>
           <div class="compare-summary">
-            <h3 class="compare-title" data-i18n="ja">compare結果サマリー（降水量・参考値）</h3>
-            <h3 class="compare-title" data-i18n="en" style="display:none;">Compare summary (precipitation, reference only)</h3>
-            <p class="compare-note" data-i18n="ja">本結果はダミーのプレースホルダです。実測値ではありません。</p>
-            <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic stable contents and not observed data.</p>
+            <h3 class="compare-title" data-i18n="ja">compare結果サマリー（合成プレビュー・参考値）</h3>
+            <h3 class="compare-title" data-i18n="en" style="display:none;">Compare summary (synthetic preview, sample values)</h3>
+            <p class="compare-note" data-i18n="ja">本結果は合成データ/プレースホルダです。JAXA/EORC等の実データには未接続で、実測値ではありません。</p>
+            <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic placeholders. JAXA/EORC and other observed datasets are not connected.</p>
             <dl class="compare-metrics" id="compareMetrics"></dl>
           </div>
           <div class="compare-cards">
@@ -295,10 +295,10 @@
         </div>
         <div class="card-output" id="cardOutput" hidden>
           <div class="card-output-header">
-            <h3 class="card-output-title" data-i18n="ja">Location Card（降水量のポイント時系列）</h3>
-            <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (point precipitation series)</h3>
-            <p class="card-output-note" data-i18n="ja">カード表示は参考値のプレースホルダです。</p>
-            <p class="card-output-note" data-i18n="en" style="display:none;">The card shows stable content values for reference.</p>
+            <h3 class="card-output-title" data-i18n="ja">Location Card（合成ポイント時系列）</h3>
+            <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (synthetic point series)</h3>
+            <p class="card-output-note" data-i18n="ja">カード表示は合成データ/プレースホルダです。JAXA/EORC等の実データには未接続で、実測値ではありません。</p>
+            <p class="card-output-note" data-i18n="en" style="display:none;">The card shows synthetic placeholder values. JAXA/EORC and other observed datasets are not connected.</p>
           </div>
           <div class="card-output-grid">
             <div class="card-output-panel">
@@ -308,9 +308,9 @@
               <div class="card-output-meta" id="cardMapMeta">Lat: - , Lon: -</div>
             </div>
             <div class="card-output-panel">
-              <div class="card-output-label" data-i18n="ja">降水量ミニチャート</div>
-              <div class="card-output-label" data-i18n="en" style="display:none;">Precip mini chart</div>
-              <canvas id="cardChart" width="320" height="160" aria-label="Precipitation chart"></canvas>
+              <div class="card-output-label" data-i18n="ja">合成値ミニチャート</div>
+              <div class="card-output-label" data-i18n="en" style="display:none;">Synthetic value mini chart</div>
+              <canvas id="cardChart" width="320" height="160" aria-label="Synthetic preview chart"></canvas>
             </div>
             <div class="card-output-panel">
               <div class="card-output-label" data-i18n="ja">サマリー</div>
@@ -333,14 +333,14 @@
       </div>
       <div class="card-bd">
         <ul class="bullet" data-i18n="ja">
-          <li>実際の地図表示は行いません。</li>
+          <li>現在のプレビューは合成データ/プレースホルダです。実測データやライブ地図表示ではありません。</li>
+          <li>JAXA/EORC等の実データは未接続です。実データ接続前にデータセット名、利用条件、ライセンス、出典表記を確定してください。</li>
           <li>共有や保存はコピー＆ペーストで行ってください。</li>
-          <li>入力内容はブラウザにのみ残ります。</li>
         </ul>
         <ul class="bullet" data-i18n="en" style="display:none;">
-          <li>No live map rendering is included.</li>
+          <li>The current preview uses synthetic placeholder data. It is not observed data or a live map display.</li>
+          <li>JAXA/EORC and other observed datasets are not connected. Dataset name, terms, license, and attribution must be confirmed before connecting real data.</li>
           <li>Share or save by copying the preview text.</li>
-          <li>Inputs stay only in your browser.</li>
         </ul>
       </div>
     </section>
@@ -359,9 +359,9 @@
           <dt>Q. データは保存されますか？</dt>
           <dd>A. 保存されません。必要なら手動でコピーしてください。</dd>
           <dt>Q. 出力は実測データですか？</dt>
-          <dd>A. いいえ。storm / compare / card の出力は確認用のプレースホルダです。</dd>
-          <dt>Q. 広告や支援ページはいつ公開されますか？</dt>
-          <dd>A. 広告枠は整備済みで、公開後もページ上下のみを想定しています。支援ページは近日公開予定です。</dd>
+          <dd>A. いいえ。storm / compare / card の出力は合成データ/プレースホルダです。JAXA/EORC等の実データには未接続です。</dd>
+          <dt>Q. JAXA/EORCデータを使っていますか？</dt>
+          <dd>A. 現状では使っていません。実データを使う場合は、データセット名・出典・ライセンスを明記します。</dd>
         </dl>
         <dl class="faq" data-i18n="en" style="display:none;">
           <dt>Q. What is this for?</dt>
@@ -371,9 +371,9 @@
           <dt>Q. Is my data saved?</dt>
           <dd>A. No. Please copy anything you want to keep.</dd>
           <dt>Q. Are the outputs real observations?</dt>
-          <dd>A. No. storm / compare / card outputs are stable contents for planning.</dd>
-          <dt>Q. When will ads or support go live?</dt>
-          <dd>A. Ad slots are in preparation and planned only for top/bottom areas. A support page is available.</dd>
+          <dd>A. No. storm / compare / card outputs are synthetic placeholders. JAXA/EORC and other observed datasets are not connected.</dd>
+          <dt>Q. Does it use JAXA/EORC data?</dt>
+          <dd>A. Not currently. If real datasets are connected later, the dataset name, source, and license must be clearly stated.</dd>
         </dl>
       </div>
     </section>
@@ -409,8 +409,8 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">Data source: JAXA/EORC（Dataset: <span data-dataset-name>未設定</span>）</p>
-    <p class="nw-footer-line">License: <span data-dataset-license>TBD</span></p>
+    <p class="nw-footer-line">現在のプレビューは合成データ/プレースホルダです。JAXA/EORC等の実データは未接続です。</p>
+    <p class="nw-footer-line">実データ接続前に、データセット名・利用条件・ライセンス・出典表記を確定してください。</p>
     <p class="nw-footer-line">免責：データの正確性は保証しません。必ず公式情報をご確認ください。</p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
