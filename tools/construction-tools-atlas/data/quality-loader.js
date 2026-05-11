@@ -96,14 +96,12 @@
     const packs = Array.isArray(manifest?.packs) ? manifest.packs : [];
     const paths = [];
     const seen = new Set();
-
     packs.forEach((pack) => {
       const path = packPath(pack);
       if (!path || seen.has(path)) return;
       seen.add(path);
       paths.push(path);
     });
-
     return paths;
   }
 
@@ -123,17 +121,14 @@
     const packPaths = manifestPaths(manifest);
     const merged = [];
     const seen = new Set();
-
     for (const path of packPaths) {
       const pack = await fetchJson(path);
       addUnique(merged, seen, pack);
     }
-
     for (const path of basePaths) {
       const base = await fetchJson(path);
       addUnique(merged, seen, base);
     }
-
     return merged;
   }
 
@@ -148,20 +143,18 @@
 
   function loadLatestImageHotfix() {
     try {
-      if (document.querySelector('script[data-cta-image-hotfix="20260510-image-3"]')) return;
+      if (document.querySelector('script[data-cta-image-hotfix="20260510-image-4"]')) return;
       const script = document.createElement("script");
-      script.src = "./detail-image-hotfix.js?v=20260510-image-3";
+      script.src = "./detail-image-hotfix.js?v=20260510-image-4";
       script.defer = true;
-      script.dataset.ctaImageHotfix = "20260510-image-3";
+      script.dataset.ctaImageHotfix = "20260510-image-4";
       document.head.appendChild(script);
     } catch (_) {
       // Optional image pilot must not stop the dictionary.
     }
   }
 
-  window.CTA_DATA_LOADER = {
-    loadEntries,
-  };
+  window.CTA_DATA_LOADER = { loadEntries };
 
   document.addEventListener("DOMContentLoaded", () => {
     fixSearchInput();
