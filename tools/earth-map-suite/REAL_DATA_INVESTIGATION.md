@@ -170,7 +170,82 @@ Important limitation: this endpoint proves metadata reachability only. It does n
 5. Does NicheWorks need explicit JAXA/EORC prior notice before any ad-supported public UI displays real GSMaP values?
 6. What attribution text should be shown in the footer/result cards once real data is enabled?
 
-## Recommended next task
+## EMS-RD-02 update — JSON-only GSMaP daily sampler
+
+Date: 2026-05-11
+Scope: `functions/api/earth-map-suite/precipitation.js` and documentation only. The public Earth Map Suite UI remains disconnected from real data.
+
+### Verified / implemented endpoint details
+
+- Endpoint: `/api/earth-map-suite/precipitation`
+- Method: `GET` only.
+- Query parameters accepted: `bbox`, `start`, `end`, `preset`. Any other query parameter is rejected with JSON.
+- Dataset ID: `JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily`.
+- Band: `PRECIP`.
+- STAC collection endpoint used by the function:
+  - `https://s3.ap-northeast-1.wasabisys.com/je-pds/cog/v1/JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily/collection.json`
+- Daily STAC item URL pattern used by the function:
+  - `https://s3.ap-northeast-1.wasabisys.com/je-pds/cog/v1/JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily/YYYY-MM/DD/1/E090.00-E180.00/N00.00-N90.00.json`
+  - For other bboxes, the function derives 90-degree longitude/latitude tile names such as `E000.00-E090.00/N00.00-N90.00.json`. Negative longitudes are converted to the JAXA 0..360 east-longitude tile convention.
+
+### STAC traversal status
+
+- The Pages Function now fetches the collection JSON first and then traverses derived daily item URLs for every requested date and intersecting 90-degree tile.
+- Local syntax and mocked integration checks confirm that valid requests return `data_type: "real_observation_metadata"` when collection/item JSON contains a `PRECIP` asset.
+- Live local container access to `s3.ap-northeast-1.wasabisys.com` was blocked during this task by the environment (`CONNECT tunnel failed, response 403` via `curl`, and `fetch failed` / DNS retry from Node). Therefore production/preview Cloudflare reachability must still be checked after deployment.
+
+### PRECIP asset discovery status
+
+- The function identifies PRECIP COG assets from STAC item `assets` by matching `PRECIP` against the asset key, title, description, roles, or href.
+- If items are found but no matching asset is discovered, the endpoint returns `data_type: "unavailable"`, `status: "error"`, and `error_code: "asset_missing"`; it does not create fallback values.
+- Asset discovery is verified with mocked STAC items. Live asset naming remains pending Cloudflare preview/production verification because the local container could not reach the Wasabi STAC host.
+
+### Raster sampling status
+
+- COG raster sampling remains **metadata-only** in RD-02.
+- The endpoint returns `sampling_status: "metadata_only"` and `summary.mean/max/min: null`.
+- No synthetic precipitation values are returned as real data.
+- Raster sampling was not implemented because Cloudflare Pages Functions have no existing GeoTIFF/COG dependency in this repo, and adding a heavy binary or raster dependency is outside RD-02. A follow-up task should evaluate a lightweight range-read GeoTIFF parser, JAXA JS API server feasibility, or a separate no-fixed-cost sampler strategy.
+
+### Current known limitations
+
+- Production Cloudflare network reachability to the Wasabi-backed STAC/COG host is not yet verified by this local run.
+- License text is passed through from the STAC collection when present; if absent, the endpoint reports `license_status: "needs_review"`.
+- The endpoint summarizes metadata only and cannot yet calculate precipitation mean/max/min.
+- Date ranges and bbox sizes are intentionally small: `preset=low` allows up to 14 days and 2.0 degrees per axis; `preset=mid` allows up to 7 days and 1.0 degree per axis.
+- The public `storm`, `compare`, and `card` UI flows remain placeholder/synthetic and should not be relabeled as observed precipitation.
+
+### Manual test URLs
+
+Valid small bbox + short date range:
+
+```text
+/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low
+```
+
+Invalid bbox (`minLon >= maxLon`):
+
+```text
+/api/earth-map-suite/precipitation?bbox=139.5,35.4,139.0,35.9&start=2025-08-01&end=2025-08-03&preset=low
+```
+
+Too-large date range for `preset=low`:
+
+```text
+/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-20&preset=low
+```
+
+Too-large bbox for `preset=mid`:
+
+```text
+/api/earth-map-suite/precipitation?bbox=139.0,35.0,140.5,36.5&start=2025-08-01&end=2025-08-03&preset=mid
+```
+
+### Recommended next task
+
+EMS-RD-03 should deploy this JSON-only endpoint to a Cloudflare Pages preview, verify live collection/item/PRECIP asset responses from the Wasabi STAC host, record the exact asset schema and license field returned by production-like infrastructure, then prototype a small COG range-read sampler only if it can be done without large binary dependencies or synthetic fallback values.
+
+## Previous RD-01 recommended next task
 
 Create a separate implementation task for a server-side, JSON-only GSMaP daily sampler:
 
