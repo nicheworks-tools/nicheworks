@@ -52,3 +52,5 @@ jobs:
 
       - name: Run strict SEO audit
         run: node scripts/audit-seo.mjs --strict
+
+# trigger: clean sitemap after generator update
