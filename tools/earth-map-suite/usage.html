@@ -117,11 +117,11 @@
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>storm：フレームスライダーと累積表示が出ます。</li>
+          <li>storm：GSMaP実データのメタデータ状態パネルと、別枠の合成フレームスライダー/累積表示が出ます。</li>
           <li>compare：期間A/B/差分のカードとCSV出力が出ます。</li>
           <li>card：ポイント位置と時系列チャートのカードが出ます。</li>
         </ul>
-        <p class="hint">出力はすべて確認用のプレースホルダです。実測値ではありません。</p>
+        <p class="hint">stormのメタデータ状態は実GSMaPメタデータの到達性を示しますが、表示されるstorm地図プレビューは合成表示です。ラスター降水量値はまだサンプリングしていません。</p>
       </div>
     </section>
 
@@ -131,10 +131,10 @@
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>プレビューデータ：公開UIの storm / compare / card 出力は合成/プレースホルダのみです。</li>
-          <li><code>/api/earth-map-suite/precipitation</code> エンドポイントは、GSMaP のメタデータ確認用サンプラーとして存在します。</li>
-          <li>ラスタの降水量値はまだサンプリングしていません。</li>
-          <li>合成値を実データとして返すことはなく、JAXA/EORC由来の観測値は公開UIにはまだ表示していません。</li>
+          <li>stormモードは <code>/api/earth-map-suite/precipitation</code> を呼び出し、GSMaP の実メタデータ到達性を表示します。</li>
+          <li>表示項目は dataset / license / source / matched_dates / item_count / asset_count / sampling_status などの透明性情報です。</li>
+          <li>ラスタの降水量値はまだサンプリングしていません。summary.mean/max/min は実値として表示しません。</li>
+          <li>storm地図プレビュー、CSVのフレーム値、compare / card は合成/プレースホルダであり、観測降水量ではありません。</li>
         </ul>
       </div>
     </section>
@@ -266,7 +266,7 @@ BBox: 135.45,34.55,135.70,34.75
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">プレビューデータ：合成/プレースホルダのみ（JAXA Earth API調査中・公開UIでは未接続）</p>
+    <p class="nw-footer-line">プレビューデータ：stormのメタデータ状態のみ実GSMaP到達性を表示。地図プレビューは合成/プレースホルダで観測降水量ではありません</p>
     <p class="nw-footer-line">実データライセンス：未有効化 / 要確認</p>
     <p class="nw-footer-line">免責：データの正確性は保証しません。必ず公式情報をご確認ください。</p>
     <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>

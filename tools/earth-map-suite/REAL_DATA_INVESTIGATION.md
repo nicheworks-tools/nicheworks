@@ -278,16 +278,44 @@ These are code-path expectations from `functions/api/earth-map-suite/precipitati
 - Invalid bbox should return HTTP `400`, `data_type: "unavailable"`, `status: "error"`, and `error_code: "invalid_bbox"` because `minLon >= maxLon` is rejected before any upstream fetch.
 - Too-large date range should return HTTP `400`, `data_type: "unavailable"`, `status: "error"`, and `error_code: "limit_exceeded"` because `preset=low` allows a maximum of 14 days and the requested range is 20 days.
 
+### Human browser verification after PR #270
+
+After PR #270, a human browser test reached the production endpoint successfully. The earlier Codex environment failure note remains valid for this local agent environment, but it is no longer the final RD-03 verification state. The public Earth Map Suite UI was still synthetic/placeholder at the time of this verification and remained disconnected from real precipitation values.
+
+| Case | Tested URL | Observed result | RD-03 interpretation |
+| --- | --- | --- | --- |
+| Valid small bbox | `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low` | `data_type: "real_observation_metadata"`, `status: "ok"`, `dataset_id: "JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily"`, `band: "PRECIP"`, `source: "JAXA Earth API / EORC GSMaP STAC COG"`, `license: "proprietary"`, `license_status: "verified"`, `asset_count: 3`, `matched_dates: ["2025-08-01", "2025-08-02", "2025-08-03"]`, `sampling_status: "metadata_only"`, `summary.mean/max/min: null`. | Cloudflare production metadata reachability is verified for this bbox/date range. The response is metadata-only and does not contain sampled raster precipitation values. |
+| Invalid bbox | `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,139.0,35.9&start=2025-08-01&end=2025-08-03&preset=low` | Rechecked from this Codex environment with `curl`, but the request was still blocked before Cloudflare with `CONNECT tunnel failed, response 403`. The current code path was rechecked locally and returns HTTP `400`, `data_type: "unavailable"`, `status: "error"`, `error_code: "invalid_bbox"`. | No deployed invalid-bbox JSON body was observable from Codex. The repository code validates `preset=low` and then correctly rejects `minLon >= maxLon` as `invalid_bbox`; no validation bug was confirmed in the checked code. |
+| Too-large date range | `https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-20&preset=low` | Rechecked from this Codex environment with `curl`, but the request was still blocked before Cloudflare with `CONNECT tunnel failed, response 403`. The current code path was rechecked locally and returns HTTP `400`, `data_type: "unavailable"`, `status: "error"`, `error_code: "limit_exceeded"`. | No deployed too-large-range JSON body was observable from Codex. The repository code keeps the existing `preset=low` 14-day limit and returns `limit_exceeded` for the 20-day range. |
+
+Final RD-03 classification after the human browser verification:
+
+- Cloudflare metadata reachability: **verified** for the recorded valid production request.
+- Raster sampling: **not implemented**; `sampling_status` remains `metadata_only` and `summary.mean/max/min` remain `null`.
+- Public UI: **still disconnected** at RD-03 completion; public previews were synthetic/placeholder and not observed precipitation.
+- Next task: **EMS-RD-04 metadata-only storm UI connection** may proceed, limited to transparent real metadata status and without raster precipitation values.
+
 ### RD-03 decision
 
-Cloudflare metadata reachability is **not verified** by this run. The valid request is not classified as `metadata reachable`, `upstream unreachable`, `STAC path wrong`, or `PRECIP asset missing` because no deployed JSON response was observable from the agent environment. No public UI real-data claims were added, no raster sampling was added, and no synthetic fallback was added to the real endpoint.
+Cloudflare metadata reachability is **verified by the human browser test** for the recorded valid production request. This Codex environment still cannot reach the deployed endpoint directly, so its proxy failure is retained as an environment limitation rather than the final RD-03 classification. No raster sampling was added, no public UI raster precipitation values were enabled, and no synthetic fallback was added to the real endpoint.
 
 ### Recommended next task
 
-Repeat EMS-RD-03 from an environment that can directly reach `https://nicheworks.app` or the Cloudflare Pages preview URL, capture the three JSON responses above, and only then decide on EMS-RD-04. Do **not** connect the storm UI to the metadata endpoint until the valid deployed response is observed as either:
+Proceed to EMS-RD-04 by connecting storm mode to the metadata endpoint as a clearly labeled metadata-only status panel. The next UI task must keep the visible storm preview separate as synthetic, must not claim a real precipitation map, and must not fabricate or sample raster precipitation values.
 
-- `data_type: "real_observation_metadata"`, `status: "ok"`, `sampling_status: "metadata_only"`; or
-- a concrete deployed error such as `upstream_fail`, `no_items`, `asset_missing`, or `timeout` that can be corrected before UI connection.
+## EMS-RD-04 metadata-only storm UI connection
+
+Date: 2026-05-11
+
+Storm mode now calls `/api/earth-map-suite/precipitation` after local input validation and displays a dedicated **Real data metadata status** panel. This UI connection is metadata-only:
+
+- Success is shown only when the endpoint returns `data_type: "real_observation_metadata"`, `status: "ok"`, and `sampling_status: "metadata_only"`.
+- The panel displays dataset, band, source, license, license_status, attribution, matched_dates, item_count, asset_count, and sampling_status for transparency.
+- Endpoint errors are displayed as unavailable metadata with `error_code`, message, and guidance. They are not hidden and are not replaced with fake real data.
+- The visible storm replay remains labeled as **Synthetic preview / not observed precipitation**.
+- Storm CSV exports mark rows as `data_type: synthetic_preview` and include `real_metadata_status`, `dataset_id` when reachable, and `sampling_status: metadata_only`; CSV frame totals remain synthetic preview values.
+- `compare` and `card` remain disconnected from the real metadata endpoint.
+- Raster precipitation sampling is still not implemented; no summary mean/max/min precipitation values are fabricated.
 
 ## Previous RD-01 recommended next task
 

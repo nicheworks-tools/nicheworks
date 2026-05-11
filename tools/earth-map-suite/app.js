@@ -8,6 +8,7 @@
   const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
   const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
   const TOOL_NAME = "earth-map-suite";
+  const PRECIPITATION_ENDPOINT = "/api/earth-map-suite/precipitation";
 
   const trackEvent = (name, params = {}) => {
     if (typeof window.gtag !== "function") {
@@ -55,6 +56,8 @@
     no_data: "no_data",
     upstream_fail: "upstream_fail",
     timeout: "timeout",
+    invalid_bbox: "invalid_bbox",
+    invalid_preset: "invalid_preset",
     unknown: "unknown"
   };
 
@@ -574,6 +577,8 @@
     const cardMapMeta = document.getElementById("cardMapMeta");
     const cardChart = document.getElementById("cardChart");
     const cardSummary = document.getElementById("cardSummary");
+    const stormMetadataPanel = document.getElementById("stormMetadataPanel");
+    const stormMetadataBody = document.getElementById("stormMetadataBody");
     const stormReplay = document.getElementById("stormReplay");
     const stormStatus = document.getElementById("stormStatus");
     const stormPrev = document.getElementById("stormPrev");
@@ -628,6 +633,7 @@
 
     const getDefaultMode = () => "storm";
     let stormState = null;
+    let stormMetadataRequestId = 0;
     let compareState = null;
     let cardState = null;
     const compareOnlyNodes = Array.from(document.querySelectorAll(".compare-only"));
@@ -738,23 +744,23 @@
       storm: {
         ja: {
           mode: "storm",
-          bbox: "139.60,35.50,139.95,35.80",
-          start: "2024-04-01",
-          end: "2024-04-30",
+          bbox: "139.5,35.4,140.0,35.9",
+          start: "2025-08-01",
+          end: "2025-08-03",
           preset: "low",
           frames: "24",
-          area: "関東地方・沿岸部",
+          area: "関東地方・東京周辺",
           layers: "地形 / 主要道路 / 避難所",
           notes: "夜間モードでの視認性を確認"
         },
         en: {
           mode: "storm",
-          bbox: "139.60,35.50,139.95,35.80",
-          start: "2024-04-01",
-          end: "2024-04-30",
+          bbox: "139.5,35.4,140.0,35.9",
+          start: "2025-08-01",
+          end: "2025-08-03",
           preset: "low",
           frames: "24",
-          area: "Coastal area around Kanto",
+          area: "Tokyo-area Kanto bbox",
           layers: "Terrain / main roads / shelters",
           notes: "Check readability in night mode"
         }
@@ -1297,6 +1303,141 @@
       }
     };
 
+    const joinList = (value) => Array.isArray(value) ? value.join(", ") : (value || "-");
+
+    const stormMetadataCsvStatus = (metadata) => {
+      if (metadata?.reachable) return "reachable";
+      if (metadata?.status === "loading") return "pending";
+      return "unavailable";
+    };
+
+    const buildMetadataUrl = ({ bbox, start, end, preset }) => {
+      const params = new URLSearchParams({ bbox, start, end, preset: (preset || "low").toLowerCase() });
+      return `${PRECIPITATION_ENDPOINT}?${params.toString()}`;
+    };
+
+    const renderMetadataRows = (rows) => rows.map(([label, value]) => `
+      <dt>${escapeHTML(label)}</dt>
+      <dd>${escapeHTML(value ?? "-")}</dd>
+    `).join("");
+
+    const getMetadataCopy = (lang) => ({
+      loadingTitle: lang === "ja" ? "GSMaPメタデータ確認中" : "Checking GSMaP metadata",
+      loadingBody: lang === "ja" ? "実データのメタデータ到達性を確認しています。ラスター降水量値は取得しません。" : "Checking real-data metadata reachability. Raster precipitation values are not fetched.",
+      okTitle: "Status: GSMaP metadata reachable",
+      okBody: lang === "ja" ? "メタデータは実データ由来です。ただし、ラスター降水量の値はまだサンプリングしていません。下のstorm表示は合成プレビューで、観測降水量ではありません。" : "Metadata is real. Raster precipitation values are not sampled yet; the storm map below remains a synthetic preview and not observed precipitation.",
+      errorTitle: "Real metadata unavailable",
+      errorBody: lang === "ja" ? "エンドポイントのエラーを表示しています。合成プレビューを実データとして扱わないでください。" : "Endpoint error is shown below. Do not treat the synthetic preview as real data.",
+      labels: {
+        dataset: "dataset_id",
+        band: "band",
+        license: "license",
+        licenseStatus: "license_status",
+        source: "source",
+        attribution: "attribution",
+        matchedDates: "matched_dates",
+        itemCount: "item_count",
+        assetCount: "asset_count",
+        samplingStatus: "sampling_status",
+        dataType: "data_type",
+        errorCode: "error_code",
+        message: "message",
+        guidance: "guidance"
+      }
+    });
+
+    const showStormMetadataLoading = (lang) => {
+      if (!stormMetadataPanel || !stormMetadataBody) return;
+      const copy = getMetadataCopy(lang);
+      stormMetadataPanel.hidden = false;
+      stormMetadataPanel.classList.remove("metadata-ok", "metadata-error");
+      stormMetadataPanel.classList.add("metadata-loading");
+      stormMetadataBody.innerHTML = `
+        <div class="storm-metadata-state">${escapeHTML(copy.loadingTitle)}</div>
+        <p>${escapeHTML(copy.loadingBody)}</p>
+      `;
+    };
+
+    const renderStormMetadata = (metadata, lang) => {
+      if (!stormMetadataPanel || !stormMetadataBody) return;
+      const copy = getMetadataCopy(lang);
+      const labels = copy.labels;
+      stormMetadataPanel.hidden = false;
+      stormMetadataPanel.classList.remove("metadata-loading", "metadata-ok", "metadata-error");
+      stormMetadataPanel.classList.add(metadata.reachable ? "metadata-ok" : "metadata-error");
+      if (metadata.reachable) {
+        const rows = [
+          [labels.dataset, metadata.dataset_id],
+          [labels.band, metadata.band],
+          [labels.license, metadata.license],
+          [labels.licenseStatus, metadata.license_status],
+          [labels.source, metadata.source],
+          [labels.attribution, metadata.attribution],
+          [labels.matchedDates, joinList(metadata.matched_dates)],
+          [labels.itemCount, metadata.item_count],
+          [labels.assetCount, metadata.asset_count],
+          [labels.samplingStatus, metadata.sampling_status]
+        ];
+        stormMetadataBody.innerHTML = `
+          <div class="storm-metadata-state">${escapeHTML(copy.okTitle)}</div>
+          <p>${escapeHTML(copy.okBody)}</p>
+          <dl class="storm-metadata-list">${renderMetadataRows(rows)}</dl>
+        `;
+        return;
+      }
+      const rows = [
+        [labels.dataType, metadata.data_type || "unavailable"],
+        [labels.errorCode, metadata.error_code || "unknown"],
+        [labels.message, metadata.message || "-"],
+        [labels.guidance, metadata.guidance || "-"]
+      ];
+      stormMetadataBody.innerHTML = `
+        <div class="storm-metadata-state">${escapeHTML(copy.errorTitle)}</div>
+        <p>${escapeHTML(copy.errorBody)}</p>
+        <dl class="storm-metadata-list">${renderMetadataRows(rows)}</dl>
+      `;
+    };
+
+    const trackMetadataStatus = ({ metadata, start, end, bbox }) => {
+      trackEvent("earth_metadata_status", {
+        mode: "storm",
+        status: metadata?.status || "error",
+        data_type: metadata?.data_type || "unavailable",
+        sampling_status: metadata?.sampling_status || "metadata_only",
+        date_span_days: getDateSpanDays(start, end) || 0,
+        bbox_area_bucket: getBBoxAreaBucket(bbox)
+      });
+    };
+
+    const loadStormMetadataStatus = async ({ bbox, start, end, preset }, lang, requestId) => {
+      if (!stormState || requestId !== stormMetadataRequestId) return;
+      showStormMetadataLoading(lang);
+      try {
+        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { headers: { accept: "application/json" } });
+        const payload = await response.json();
+        const reachable = response.ok && payload?.data_type === "real_observation_metadata" && payload?.status === "ok" && payload?.sampling_status === "metadata_only";
+        const metadata = { ...payload, reachable, http_status: response.status, status: payload?.status || (response.ok ? "ok" : "error") };
+        if (!stormState || requestId !== stormMetadataRequestId) return;
+        stormState.realMetadata = metadata;
+        renderStormMetadata(metadata, lang);
+        trackMetadataStatus({ metadata, start, end, bbox });
+      } catch (error) {
+        const metadata = {
+          reachable: false,
+          data_type: "unavailable",
+          status: "error",
+          sampling_status: "metadata_only",
+          error_code: error?.name === "AbortError" ? ERROR_CODES.timeout : ERROR_CODES.upstream_fail,
+          message: error?.message || "Failed to retrieve GSMaP metadata.",
+          guidance: lang === "ja" ? "通信状況を確認して再実行してください。合成プレビューを実データとして扱わないでください。" : "Check connectivity and run again. Do not treat the synthetic preview as real data."
+        };
+        if (!stormState || requestId !== stormMetadataRequestId) return;
+        stormState.realMetadata = metadata;
+        renderStormMetadata(metadata, lang);
+        trackMetadataStatus({ metadata, start, end, bbox });
+      }
+    };
+
     const setStormStatus = ({ rawFrames, frames, thinningStep, lang }) => {
       if (!stormStatus) return;
       if (!rawFrames || !frames) {
@@ -1315,12 +1456,28 @@
         : `Frames: ${frames} (from ${rawFrames})`;
     };
 
-    const buildCsvContent = (timestamps, frameTotals, cumulativeTotals) => {
-      const lines = ["timestamp,frame_index,frame_total,cumulative_total"];
+    const csvEscape = (value) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+
+    const buildCsvContent = (timestamps, frameTotals, cumulativeTotals, metadata = {}) => {
+      const lines = [
+        "data_type,real_metadata_status,dataset_id,sampling_status,timestamp,frame_index,synthetic_frame_total,synthetic_cumulative_total"
+      ];
+      const realMetadataStatus = stormMetadataCsvStatus(metadata);
+      const datasetId = metadata?.reachable ? metadata.dataset_id : "";
+      const samplingStatus = metadata?.sampling_status || "metadata_only";
       timestamps.forEach((timestamp, idx) => {
         const frameTotal = frameTotals[idx] ?? 0;
         const cumulativeTotal = cumulativeTotals[idx] ?? 0;
-        lines.push(`${timestamp},${idx + 1},${frameTotal.toFixed(4)},${cumulativeTotal.toFixed(4)}`);
+        lines.push([
+          "synthetic_preview",
+          realMetadataStatus,
+          csvEscape(datasetId),
+          samplingStatus,
+          timestamp,
+          idx + 1,
+          frameTotal.toFixed(4),
+          cumulativeTotal.toFixed(4)
+        ].join(","));
       });
       return lines.join("\n");
     };
@@ -1394,10 +1551,13 @@
         stormCache.set(key, data);
       }
       const cumulativeFrames = buildCumulativeFrames(data.frames);
+      stormMetadataRequestId += 1;
+      const requestId = stormMetadataRequestId;
       stormState = {
         ...data,
         cumulativeFrames,
-        index: 0
+        index: 0,
+        realMetadata: { status: "loading", reachable: false }
       };
       stormReplay.hidden = false;
       if (stormSlider) {
@@ -1411,9 +1571,17 @@
         lang
       });
       updateStormView();
+      loadStormMetadataStatus({ bbox, start, end, preset }, lang, requestId);
     };
 
     const resetStormReplay = () => {
+      stormMetadataRequestId += 1;
+      if (stormMetadataPanel) {
+        stormMetadataPanel.hidden = true;
+      }
+      if (stormMetadataBody) {
+        stormMetadataBody.innerHTML = "";
+      }
       if (stormReplay) {
         stormReplay.hidden = true;
       }
@@ -1840,7 +2008,7 @@
     downloadCsvButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         if (!stormState) return;
-        const csv = buildCsvContent(stormState.timestamps, stormState.frameTotals, stormState.cumulativeTotals);
+        const csv = buildCsvContent(stormState.timestamps, stormState.frameTotals, stormState.cumulativeTotals, stormState.realMetadata);
         const filename = "storm-timeseries.csv";
         downloadBlob(csv, filename, "text/csv;charset=utf-8;");
       });

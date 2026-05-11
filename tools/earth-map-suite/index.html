@@ -253,7 +253,22 @@
             <button class="btn" type="button" id="downloadCompareCsvEn" data-i18n="en" style="display:none;">Download compare CSV</button>
           </div>
         </div>
+        <div class="storm-metadata" id="stormMetadataPanel" role="status" aria-live="polite" hidden>
+          <div class="storm-metadata-header">
+            <h3 class="storm-metadata-title" data-i18n="ja">Real data metadata status</h3>
+            <h3 class="storm-metadata-title" data-i18n="en" style="display:none;">Real data metadata status</h3>
+            <p class="storm-metadata-note" data-i18n="ja">GSMaP のメタデータ到達性のみを確認します。ラスター降水量の値はまだサンプリングしません。</p>
+            <p class="storm-metadata-note" data-i18n="en" style="display:none;">Checks only GSMaP metadata reachability. Raster precipitation values are not sampled yet.</p>
+          </div>
+          <div class="storm-metadata-body" id="stormMetadataBody"></div>
+        </div>
         <div class="storm-replay" id="stormReplay" hidden>
+          <div class="storm-preview-banner">
+            <strong data-i18n="ja">Synthetic preview</strong>
+            <strong data-i18n="en" style="display:none;">Synthetic preview</strong>
+            <span data-i18n="ja">観測降水量ではありません。上の実データメタデータ状態とは別表示です。</span>
+            <span data-i18n="en" style="display:none;">Not observed precipitation. Separate from the real metadata status above.</span>
+          </div>
           <div class="storm-status" id="stormStatus" role="status" aria-live="polite"></div>
           <div class="storm-toolbar">
             <div class="storm-controls">
@@ -274,13 +289,13 @@
           </div>
           <div class="storm-canvases">
             <div class="storm-panel">
-              <div class="storm-panel-title" data-i18n="ja">現在フレーム</div>
-              <div class="storm-panel-title" data-i18n="en" style="display:none;">Current frame</div>
+              <div class="storm-panel-title" data-i18n="ja">現在フレーム（Synthetic preview / 観測値ではありません）</div>
+              <div class="storm-panel-title" data-i18n="en" style="display:none;">Current frame (Synthetic preview / not observed precipitation)</div>
               <canvas id="stormFrameCanvas" width="320" height="200" aria-label="Storm frame visualization"></canvas>
             </div>
             <div class="storm-panel" id="stormCumulativePanel">
-              <div class="storm-panel-title" data-i18n="ja">累積フレーム</div>
-              <div class="storm-panel-title" data-i18n="en" style="display:none;">Cumulative frame</div>
+              <div class="storm-panel-title" data-i18n="ja">累積フレーム（Synthetic preview / 観測値ではありません）</div>
+              <div class="storm-panel-title" data-i18n="en" style="display:none;">Cumulative frame (Synthetic preview / not observed precipitation)</div>
               <canvas id="stormCumulativeCanvas" width="320" height="200" aria-label="Storm cumulative visualization"></canvas>
             </div>
           </div>
@@ -333,11 +348,13 @@
       </div>
       <div class="card-bd">
         <ul class="bullet" data-i18n="ja">
+          <li>stormモードではGSMaP実データのメタデータ到達性を表示できますが、ラスター降水量値は未サンプリングです。</li>
           <li>実際の地図表示は行いません。</li>
           <li>共有や保存はコピー＆ペーストで行ってください。</li>
           <li>入力内容はブラウザにのみ残ります。</li>
         </ul>
         <ul class="bullet" data-i18n="en" style="display:none;">
+          <li>Storm mode can show GSMaP real-data metadata reachability, but raster precipitation values are not sampled.</li>
           <li>No live map rendering is included.</li>
           <li>Share or save by copying the preview text.</li>
           <li>Inputs stay only in your browser.</li>
@@ -359,7 +376,7 @@
           <dt>Q. データは保存されますか？</dt>
           <dd>A. 保存されません。必要なら手動でコピーしてください。</dd>
           <dt>Q. 出力は実測データですか？</dt>
-          <dd>A. いいえ。storm / compare / card の出力は確認用のプレースホルダです。</dd>
+          <dd>A. stormでは実データのメタデータ状態を表示できますが、地図プレビューは確認用の合成表示で観測降水量ではありません。compare / card もプレースホルダです。</dd>
           <dt>Q. 広告や支援ページはいつ公開されますか？</dt>
           <dd>A. 広告枠は整備済みで、公開後もページ上下のみを想定しています。支援ページは近日公開予定です。</dd>
         </dl>
@@ -371,7 +388,7 @@
           <dt>Q. Is my data saved?</dt>
           <dd>A. No. Please copy anything you want to keep.</dd>
           <dt>Q. Are the outputs real observations?</dt>
-          <dd>A. No. storm / compare / card outputs are synthetic previews for planning.</dd>
+          <dd>A. Storm can show real metadata status, but the visible storm map remains a synthetic preview and not observed precipitation. compare / card are also placeholders.</dd>
           <dt>Q. When will ads or support go live?</dt>
           <dd>A. Ad slots are in preparation and planned only for top/bottom areas. A support page is available.</dd>
         </dl>
@@ -409,8 +426,8 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">プレビューデータ：合成/プレースホルダのみ（JAXA Earth API調査中・公開UIでは未接続）</p>
-    <p class="nw-footer-line">実データライセンス：未有効化 / 要確認</p>
+    <p class="nw-footer-line">プレビューデータ：stormのメタデータ状態のみ実GSMaP到達性を表示。地図プレビューは合成/プレースホルダで観測降水量ではありません</p>
+    <p class="nw-footer-line">実データライセンス：メタデータ応答の dataset / license / source を透明性のため表示。ラスター値は未サンプリング</p>
     <p class="nw-footer-line">免責：データの正確性は保証しません。必ず公式情報をご確認ください。</p>
     <p class="nw-footer-line">
       <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
