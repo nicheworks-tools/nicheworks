@@ -45,6 +45,7 @@
     bboxMaxSpan: 5,
     dateSpanDays: 31,
     presets: ["low", "mid", "detail"],
+    stormFramesDefault: 24,
     stormFramesMax: 48
   };
 
@@ -560,6 +561,13 @@
     const startInputB = document.getElementById("startInputB");
     const endInputB = document.getElementById("endInputB");
     const presetInput = document.getElementById("presetInput");
+    const compareBboxInput = document.getElementById("compareBboxInput");
+    const compareStartInput = document.getElementById("compareStartInput");
+    const compareEndInput = document.getElementById("compareEndInput");
+    const comparePresetInput = document.getElementById("comparePresetInput");
+    const cardStartInput = document.getElementById("cardStartInput");
+    const cardEndInput = document.getElementById("cardEndInput");
+    const cardPresetInput = document.getElementById("cardPresetInput");
     const framesInput = document.getElementById("framesInput");
     const areaInput = document.getElementById("focusArea");
     const layersInput = document.getElementById("layers");
@@ -625,10 +633,22 @@
     ].filter(Boolean);
 
     const exampleButtons = Array.from(document.querySelectorAll("[data-example-mode]"));
+    const modeTabButtons = Array.from(document.querySelectorAll("[data-mode-tab]"));
+    const inputPanels = Array.from(document.querySelectorAll("[data-input-mode]"));
+    const resultPanels = Array.from(document.querySelectorAll("[data-result-mode]"));
+    const setupSummaries = {
+      storm: document.getElementById("stormSetupSummary"),
+      compare: document.getElementById("compareSetupSummary"),
+      card: document.getElementById("cardSetupSummary")
+    };
 
     const runButtons = [
       document.getElementById("runBtn"),
-      document.getElementById("runBtnEn")
+      document.getElementById("runBtnEn"),
+      document.getElementById("runCompareBtn"),
+      document.getElementById("runCompareBtnEn"),
+      document.getElementById("runCardBtn"),
+      document.getElementById("runCardBtnEn")
     ].filter(Boolean);
 
     const getDefaultMode = () => "storm";
@@ -636,10 +656,6 @@
     let stormMetadataRequestId = 0;
     let compareState = null;
     let cardState = null;
-    const compareOnlyNodes = Array.from(document.querySelectorAll(".compare-only"));
-    const cardOnlyNodes = Array.from(document.querySelectorAll(".card-only"));
-    const stormOnlyNodes = Array.from(document.querySelectorAll(".storm-only"));
-    const nonCardNodes = Array.from(document.querySelectorAll(".non-card-only"));
 
     const readUrlState = () => {
       const params = new URLSearchParams(window.location.search);
@@ -667,77 +683,102 @@
       };
     };
 
+    const getModeValues = (mode = modeSelect.value || getDefaultMode()) => {
+      if (mode === "compare") {
+        return {
+          mode,
+          bbox: compareBboxInput?.value.trim() || "",
+          lat: "",
+          lon: "",
+          start: compareStartInput?.value || "",
+          end: compareEndInput?.value || "",
+          startB: startInputB?.value || "",
+          endB: endInputB?.value || "",
+          preset: comparePresetInput?.value.trim() || "",
+          frames: "",
+          area: "",
+          layers: "",
+          notes: ""
+        };
+      }
+      if (mode === "card") {
+        return {
+          mode,
+          bbox: "",
+          lat: latInput?.value.trim() || "",
+          lon: lonInput?.value.trim() || "",
+          start: cardStartInput?.value || "",
+          end: cardEndInput?.value || "",
+          startB: "",
+          endB: "",
+          preset: cardPresetInput?.value.trim() || "",
+          frames: "",
+          area: "",
+          layers: "",
+          notes: ""
+        };
+      }
+      return {
+        mode: "storm",
+        bbox: bboxInput.value.trim(),
+        lat: "",
+        lon: "",
+        start: startInput.value,
+        end: endInput.value,
+        startB: "",
+        endB: "",
+        preset: presetInput.value.trim(),
+        frames: framesInput.value.trim(),
+        area: areaInput.value.trim(),
+        layers: layersInput.value.trim(),
+        notes: notesInput.value.trim()
+      };
+    };
+
+    const updateSetupSummaries = () => {
+      const lang = document.documentElement.lang || "ja";
+      const summarize = (mode) => {
+        const values = getModeValues(mode);
+        if (mode === "card") {
+          return lang === "ja"
+            ? `lat/lon: ${values.lat || "-"}, ${values.lon || "-"} | ${values.start || "-"} → ${values.end || "-"} | ${values.preset || "-"}`
+            : `lat/lon: ${values.lat || "-"}, ${values.lon || "-"} | ${values.start || "-"} to ${values.end || "-"} | ${values.preset || "-"}`;
+        }
+        if (mode === "compare") {
+          return `bbox: ${values.bbox || "-"} | A: ${values.start || "-"} → ${values.end || "-"} | B: ${values.startB || "-"} → ${values.endB || "-"} | ${values.preset || "-"}`;
+        }
+        return `bbox: ${values.bbox || "-"} | ${values.start || "-"} → ${values.end || "-"} | ${values.preset || "-"} | frames: ${values.frames || "-"}`;
+      };
+      Object.entries(setupSummaries).forEach(([mode, node]) => {
+        if (node) node.textContent = summarize(mode);
+      });
+    };
+
     const updateUrlState = () => {
       const params = new URLSearchParams(window.location.search);
-      const mode = modeSelect.value || getDefaultMode();
-      params.set("mode", mode);
+      const values = getModeValues(modeSelect.value || getDefaultMode());
+      params.set("mode", values.mode);
 
-      const bbox = bboxInput.value.trim();
-      const lat = latInput?.value.trim() || "";
-      const lon = lonInput?.value.trim() || "";
-      const start = startInput.value;
-      const end = endInput.value;
-      const startB = startInputB?.value || "";
-      const endB = endInputB?.value || "";
-      const preset = presetInput.value.trim();
-      const frames = framesInput.value.trim();
+      const entries = [
+        ["bbox", values.bbox],
+        ["lat", values.lat],
+        ["lon", values.lon],
+        ["start", values.start],
+        ["end", values.end],
+        ["startB", values.startB],
+        ["endB", values.endB],
+        ["preset", values.preset],
+        ["frames", values.frames]
+      ];
+      entries.forEach(([key, value]) => {
+        if (value) params.set(key, value);
+        else params.delete(key);
+      });
 
-      if (bbox) {
-        params.set("bbox", bbox);
-      } else {
-        params.delete("bbox");
-      }
-
-      if (lat) {
-        params.set("lat", lat);
-      } else {
-        params.delete("lat");
-      }
-
-      if (lon) {
-        params.set("lon", lon);
-      } else {
-        params.delete("lon");
-      }
-
-      if (start) {
-        params.set("start", start);
-      } else {
-        params.delete("start");
-      }
-
-      if (end) {
-        params.set("end", end);
-      } else {
-        params.delete("end");
-      }
-
-      if (startB) {
-        params.set("startB", startB);
-      } else {
-        params.delete("startB");
-      }
-
-      if (endB) {
-        params.set("endB", endB);
-      } else {
-        params.delete("endB");
-      }
-
-      if (preset) {
-        params.set("preset", preset);
-      } else {
-        params.delete("preset");
-      }
-
-      if (frames) {
-        params.set("frames", frames);
-      } else {
-        params.delete("frames");
-      }
-
-      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      const query = params.toString();
+      const newUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
       window.history.replaceState({}, "", newUrl);
+      updateSetupSummaries();
     };
 
     const examplePresets = {
@@ -827,22 +868,30 @@
       const preset = examplePresets[mode] || examplePresets.storm;
       const copy = preset[lang] || preset.ja;
       modeSelect.value = copy.mode;
-      bboxInput.value = copy.bbox;
-      if (latInput && lonInput) {
-        latInput.value = copy.lat || "";
-        lonInput.value = copy.lon || "";
+      if (copy.mode === "storm") {
+        bboxInput.value = copy.bbox || "";
+        startInput.value = copy.start || "";
+        endInput.value = copy.end || "";
+        presetInput.value = copy.preset || "";
+        framesInput.value = copy.frames || String(LIMITS.stormFramesDefault);
+        areaInput.value = copy.area || "";
+        layersInput.value = copy.layers || "";
+        notesInput.value = copy.notes || "";
+      } else if (copy.mode === "compare") {
+        if (compareBboxInput) compareBboxInput.value = copy.bbox || "";
+        if (compareStartInput) compareStartInput.value = copy.start || "";
+        if (compareEndInput) compareEndInput.value = copy.end || "";
+        if (startInputB) startInputB.value = copy.startB || "";
+        if (endInputB) endInputB.value = copy.endB || "";
+        if (comparePresetInput) comparePresetInput.value = copy.preset || "";
+      } else if (copy.mode === "card") {
+        if (latInput) latInput.value = copy.lat || "";
+        if (lonInput) lonInput.value = copy.lon || "";
+        if (cardStartInput) cardStartInput.value = copy.start || "";
+        if (cardEndInput) cardEndInput.value = copy.end || "";
+        if (cardPresetInput) cardPresetInput.value = copy.preset || "";
       }
-      startInput.value = copy.start;
-      endInput.value = copy.end;
-      if (startInputB && endInputB) {
-        startInputB.value = copy.startB || "";
-        endInputB.value = copy.endB || "";
-      }
-      presetInput.value = copy.preset;
-      framesInput.value = copy.frames || "";
-      areaInput.value = copy.area;
-      layersInput.value = copy.layers;
-      notesInput.value = copy.notes;
+      updateSetupSummaries();
     };
 
     const parseBBox = (value) => {
@@ -937,30 +986,26 @@
 
     const getEventContext = () => {
       const lang = document.documentElement.lang || "ja";
-      const bboxValue = bboxInput.value.trim();
-      const startValue = startInput.value;
-      const endValue = endInput.value;
-      const presetValue = presetInput.value.trim();
-      const framesValue = framesInput.value.trim();
+      const values = getModeValues(modeSelect.value || getDefaultMode());
 
       const context = {
         tool_name: TOOL_NAME,
-        tool_mode: modeSelect.value || getDefaultMode(),
+        tool_mode: values.mode,
         lang,
-        bbox_area_bucket: getBBoxAreaBucket(bboxValue)
+        bbox_area_bucket: values.bbox ? getBBoxAreaBucket(values.bbox) : "point_or_none"
       };
 
-      const dateSpanDays = getDateSpanDays(startValue, endValue);
+      const dateSpanDays = getDateSpanDays(values.start, values.end);
       if (dateSpanDays !== null) {
         context.date_span_days = dateSpanDays;
       }
 
-      if (presetValue) {
-        context.preset = presetValue.toLowerCase();
+      if (values.preset) {
+        context.preset = values.preset.toLowerCase();
       }
 
-      if (framesValue) {
-        const framesNumber = Number(framesValue);
+      if (values.frames) {
+        const framesNumber = Number(values.frames);
         if (Number.isFinite(framesNumber)) {
           context.frames = framesNumber;
         }
@@ -969,38 +1014,46 @@
       return context;
     };
 
-    const validateInputs = ({ mode, bbox, start, end, startB, endB, preset, frames }) => {
+    const validateInputs = ({ mode, bbox, lat, lon, start, end, startB, endB, preset, frames }) => {
       const warnings = [];
       const missingFields = [];
+      const isStorm = mode === "storm";
+      const isCompare = mode === "compare";
       const isCard = mode === "card";
-      if (!bbox && !isCard) missingFields.push("bbox");
-      if (isCard) {
-        if (!latInput?.value) missingFields.push("lat");
-        if (!lonInput?.value) missingFields.push("lon");
+
+      if (isStorm || isCompare) {
+        if (!bbox) missingFields.push("bbox");
       }
-      if (!start) missingFields.push("start");
-      if (!end) missingFields.push("end");
-      if (mode === "compare") {
+      if (isCard) {
+        if (!lat) missingFields.push("lat");
+        if (!lon) missingFields.push("lon");
+      }
+      if (isStorm || isCompare || isCard) {
+        if (!start) missingFields.push("start");
+        if (!end) missingFields.push("end");
+        if (!preset) missingFields.push("preset");
+      }
+      if (isCompare) {
         if (!startB) missingFields.push("startB");
         if (!endB) missingFields.push("endB");
       }
-      if (!preset) missingFields.push("preset");
-      if (mode === "storm" && !frames) missingFields.push("frames");
+      if (isStorm && !frames) missingFields.push("frames");
       if (missingFields.length) {
         return { error: { code: ERROR_CODES.missing_params, field: "missing", detail: { missingFields } } };
       }
 
-      if (!isCard) {
+      if (isStorm || isCompare) {
         const bboxResult = parseBBox(bbox);
         if (bboxResult.error) return { error: bboxResult.error };
-      } else {
-        const latlonResult = parseLatLon(latInput?.value, lonInput?.value);
+      }
+      if (isCard) {
+        const latlonResult = parseLatLon(lat, lon);
         if (latlonResult.error) return { error: latlonResult.error };
       }
 
       const dateResult = parseDateRange(start, end);
       if (dateResult.error) return { error: dateResult.error };
-      if (mode === "compare") {
+      if (isCompare) {
         const dateResultB = parseDateRange(startB, endB);
         if (dateResultB.error) return { error: dateResultB.error };
       }
@@ -1016,7 +1069,7 @@
         };
       }
 
-      if (mode === "storm") {
+      if (isStorm) {
         const frameValue = Number(frames);
         if (!Number.isFinite(frameValue) || frameValue < 1) {
           return { error: { code: ERROR_CODES.missing_params, field: "frames" } };
@@ -1215,21 +1268,7 @@
       }
     };
 
-    const buildPreviewText = (lang) => formatPreview({
-      mode: modeSelect.value,
-      bbox: bboxInput.value.trim(),
-      lat: latInput?.value.trim() || "",
-      lon: lonInput?.value.trim() || "",
-      start: startInput.value,
-      end: endInput.value,
-      startB: startInputB?.value || "",
-      endB: endInputB?.value || "",
-      preset: presetInput.value.trim(),
-      frames: framesInput.value.trim(),
-      area: areaInput.value.trim(),
-      layers: layersInput.value.trim(),
-      notes: notesInput.value.trim()
-    }, lang);
+    const buildPreviewText = (lang) => formatPreview(getModeValues(modeSelect.value || getDefaultMode()), lang);
 
     let currentStatus = "idle";
 
@@ -1789,6 +1828,66 @@
       resultOutput.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
+    const runSelectedMode = ({ lang, shouldTrackResult = true } = {}) => {
+      const activeLang = lang || document.documentElement.lang || "ja";
+      const values = getModeValues(modeSelect.value || getDefaultMode());
+      const validation = validateInputs(values);
+      if (validation.error) {
+        setErrorStatus(validation.error, activeLang);
+        trackEvent("tool_error", {
+          ...getEventContext(),
+          error_code: validation.error.code || ERROR_CODES.unknown,
+          error_field: validation.error.field || "unknown"
+        });
+        return false;
+      }
+
+      setSuccessStatus(activeLang);
+      if (values.mode === "storm") {
+        loadStormReplay({
+          bbox: values.bbox,
+          start: values.start,
+          end: values.end,
+          preset: values.preset,
+          frames: values.frames
+        }, activeLang);
+        resetCompareOutput();
+        resetCardOutput();
+      } else if (values.mode === "compare") {
+        loadCompareOutput({
+          bbox: values.bbox,
+          startA: values.start,
+          endA: values.end,
+          startB: values.startB,
+          endB: values.endB,
+          preset: values.preset
+        }, activeLang);
+        resetStormReplay();
+        resetCardOutput();
+      } else if (values.mode === "card") {
+        const lat = Number(values.lat);
+        const lon = Number(values.lon);
+        loadCardOutput({
+          lat,
+          lon,
+          start: values.start,
+          end: values.end,
+          preset: values.preset
+        }, activeLang);
+        resetStormReplay();
+        resetCompareOutput();
+      } else {
+        resetStormReplay();
+        resetCompareOutput();
+        resetCardOutput();
+      }
+
+      if (shouldTrackResult) {
+        trackEvent("tool_result", getEventContext());
+      }
+      return true;
+    };
+
     exampleButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const lang = document.documentElement.lang || "ja";
@@ -1800,87 +1899,7 @@
         updateUrlState();
         setLoadingStatus(lang);
         scrollToResults();
-        if (modeSelect.value === "storm") {
-          const validation = validateInputs({
-            mode: modeSelect.value,
-            bbox: bboxInput.value.trim(),
-            start: startInput.value,
-            end: endInput.value,
-            startB: startInputB?.value || "",
-            endB: endInputB?.value || "",
-            preset: presetInput.value.trim(),
-            frames: framesInput.value.trim()
-          });
-          if (validation.error) {
-            setErrorStatus(validation.error, lang);
-          } else {
-            setSuccessStatus(lang);
-            loadStormReplay({
-              bbox: bboxInput.value.trim(),
-              start: startInput.value,
-              end: endInput.value,
-              preset: presetInput.value.trim(),
-              frames: framesInput.value.trim()
-            }, lang);
-          }
-          resetCompareOutput();
-        } else if (modeSelect.value === "compare") {
-          const validation = validateInputs({
-            mode: modeSelect.value,
-            bbox: bboxInput.value.trim(),
-            start: startInput.value,
-            end: endInput.value,
-            startB: startInputB?.value || "",
-            endB: endInputB?.value || "",
-            preset: presetInput.value.trim(),
-            frames: framesInput.value.trim()
-          });
-          if (validation.error) {
-            setErrorStatus(validation.error, lang);
-          } else {
-            setSuccessStatus(lang);
-            loadCompareOutput({
-              bbox: bboxInput.value.trim(),
-              startA: startInput.value,
-              endA: endInput.value,
-              startB: startInputB?.value || "",
-              endB: endInputB?.value || "",
-              preset: presetInput.value.trim()
-            }, lang);
-          }
-          resetStormReplay();
-        } else if (modeSelect.value === "card") {
-          const validation = validateInputs({
-            mode: modeSelect.value,
-            bbox: bboxInput.value.trim(),
-            start: startInput.value,
-            end: endInput.value,
-            startB: startInputB?.value || "",
-            endB: endInputB?.value || "",
-            preset: presetInput.value.trim(),
-            frames: framesInput.value.trim()
-          });
-          if (validation.error) {
-            setErrorStatus(validation.error, lang);
-          } else {
-            setSuccessStatus(lang);
-            const lat = Number(latInput?.value);
-            const lon = Number(lonInput?.value);
-            loadCardOutput({
-              lat,
-              lon,
-              start: startInput.value,
-              end: endInput.value,
-              preset: presetInput.value.trim()
-            }, lang);
-          }
-          resetStormReplay();
-          resetCompareOutput();
-        } else {
-          resetStormReplay();
-          resetCompareOutput();
-          resetCardOutput();
-        }
+        runSelectedMode({ lang, shouldTrackResult: false });
         trackEvent("tool_example_apply", {
           tool_name: TOOL_NAME,
           tool_mode: mode,
@@ -1898,65 +1917,7 @@
         const lang = document.documentElement.lang || "ja";
         setLoadingStatus(lang);
         scrollToResults();
-        const validation = validateInputs({
-          mode: modeSelect.value,
-          bbox: bboxInput.value.trim(),
-          start: startInput.value,
-          end: endInput.value,
-          startB: startInputB?.value || "",
-          endB: endInputB?.value || "",
-          preset: presetInput.value.trim(),
-          frames: framesInput.value.trim()
-        });
-        if (validation.error) {
-          setErrorStatus(validation.error, lang);
-          trackEvent("tool_error", {
-            ...getEventContext(),
-            error_code: validation.error.code || ERROR_CODES.unknown,
-            error_field: validation.error.field || "unknown"
-          });
-          return;
-        }
-        setSuccessStatus(lang);
-        if (modeSelect.value === "storm") {
-          loadStormReplay({
-            bbox: bboxInput.value.trim(),
-            start: startInput.value,
-            end: endInput.value,
-            preset: presetInput.value.trim(),
-            frames: framesInput.value.trim()
-          }, lang);
-          resetCompareOutput();
-          resetCardOutput();
-        } else if (modeSelect.value === "compare") {
-          loadCompareOutput({
-            bbox: bboxInput.value.trim(),
-            startA: startInput.value,
-            endA: endInput.value,
-            startB: startInputB?.value || "",
-            endB: endInputB?.value || "",
-            preset: presetInput.value.trim()
-          }, lang);
-          resetStormReplay();
-          resetCardOutput();
-        } else if (modeSelect.value === "card") {
-          const lat = Number(latInput?.value);
-          const lon = Number(lonInput?.value);
-          loadCardOutput({
-            lat,
-            lon,
-            start: startInput.value,
-            end: endInput.value,
-            preset: presetInput.value.trim()
-          }, lang);
-          resetStormReplay();
-          resetCompareOutput();
-        } else {
-          resetStormReplay();
-          resetCompareOutput();
-          resetCardOutput();
-        }
-        trackEvent("tool_result", getEventContext());
+        runSelectedMode({ lang });
       });
     });
 
@@ -2067,64 +2028,78 @@
 
     const urlState = readUrlState();
     modeSelect.value = urlState.mode || getDefaultMode();
+    const initialFrames = urlState.frames || (modeSelect.value === "storm" ? String(LIMITS.stormFramesDefault) : "");
     bboxInput.value = urlState.bbox;
+    startInput.value = urlState.start;
+    endInput.value = urlState.end;
+    presetInput.value = urlState.preset;
+    framesInput.value = initialFrames;
+    if (compareBboxInput) compareBboxInput.value = urlState.bbox;
+    if (compareStartInput) compareStartInput.value = urlState.start;
+    if (compareEndInput) compareEndInput.value = urlState.end;
+    if (startInputB) startInputB.value = urlState.startB;
+    if (endInputB) endInputB.value = urlState.endB;
+    if (comparePresetInput) comparePresetInput.value = urlState.preset;
     if (latInput && lonInput) {
       latInput.value = urlState.lat;
       lonInput.value = urlState.lon;
     }
-    startInput.value = urlState.start;
-    endInput.value = urlState.end;
-    if (startInputB && endInputB) {
-      startInputB.value = urlState.startB;
-      endInputB.value = urlState.endB;
-    }
-    presetInput.value = urlState.preset;
-    framesInput.value = urlState.frames;
+    if (cardStartInput) cardStartInput.value = urlState.start;
+    if (cardEndInput) cardEndInput.value = urlState.end;
+    if (cardPresetInput) cardPresetInput.value = urlState.preset;
 
     let previousMode = modeSelect.value || getDefaultMode();
 
     const updateModeVisibility = (mode) => {
-      const isCompare = mode === "compare";
-      const isStorm = mode === "storm";
-      const isCard = mode === "card";
-      compareOnlyNodes.forEach((node) => {
-        node.hidden = !isCompare;
+      const currentMode = ["storm", "compare", "card"].includes(mode) ? mode : getDefaultMode();
+      document.documentElement.dataset.currentMode = currentMode;
+      inputPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.inputMode !== currentMode;
       });
-      stormOnlyNodes.forEach((node) => {
-        node.hidden = !isStorm;
+      resultPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.resultMode !== currentMode;
       });
-      cardOnlyNodes.forEach((node) => {
-        node.hidden = !isCard;
+      modeTabButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.modeTab === currentMode);
+        button.setAttribute("aria-pressed", button.dataset.modeTab === currentMode ? "true" : "false");
       });
-      nonCardNodes.forEach((node) => {
-        node.hidden = isCard;
-      });
-      if (!isCompare) {
+      if (modeSelect.value !== currentMode) {
+        modeSelect.value = currentMode;
+      }
+      if (currentMode !== "compare") {
         resetCompareOutput();
       }
-      if (!isStorm) {
+      if (currentMode !== "storm") {
         resetStormReplay();
       }
-      if (!isCard) {
+      if (currentMode !== "card") {
         resetCardOutput();
       }
+      updateSetupSummaries();
     };
 
     const inputsToWatch = [
       modeSelect,
       bboxInput,
+      compareBboxInput,
       latInput,
       lonInput,
       startInput,
       endInput,
+      compareStartInput,
+      compareEndInput,
+      cardStartInput,
+      cardEndInput,
       startInputB,
       endInputB,
       presetInput,
+      comparePresetInput,
+      cardPresetInput,
       framesInput,
       areaInput,
       layersInput,
       notesInput
-    ];
+    ].filter(Boolean);
 
     inputsToWatch.forEach((input) => {
       input.addEventListener("input", () => {
@@ -2224,8 +2199,26 @@
       }
     });
 
+    modeTabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!button.dataset.modeTab) return;
+        modeSelect.value = button.dataset.modeTab;
+        updateModeVisibility(modeSelect.value);
+        clearError();
+        updateUrlState();
+        setIdleStatus(document.documentElement.lang || "ja");
+      });
+    });
+
     updateModeVisibility(modeSelect.value || getDefaultMode());
     updateUrlState();
-    setIdleStatus(document.documentElement.lang || "ja");
+    const initialLang = document.documentElement.lang || "ja";
+    const hasStormMetadataQuery = modeSelect.value === "storm" && Boolean(urlState.bbox && urlState.start && urlState.end && urlState.preset);
+    if (hasStormMetadataQuery) {
+      setLoadingStatus(initialLang);
+      runSelectedMode({ lang: initialLang, shouldTrackResult: false });
+    } else {
+      setIdleStatus(initialLang);
+    }
   });
 })();
