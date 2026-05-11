@@ -100,244 +100,361 @@
     <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
     <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
 
-    <section class="card">
-      <div class="card-hd">
-        <h2 class="card-title" data-i18n="ja">入力パネル</h2>
-        <h2 class="card-title" data-i18n="en" style="display:none;">Input panel</h2>
-      </div>
-      <div class="card-bd">
-        <div class="field">
-          <label class="label" for="modeSelect" data-i18n="ja">モード</label>
-          <label class="label" for="modeSelect" data-i18n="en" style="display:none;">Mode</label>
-          <select class="input" id="modeSelect">
+    <section class="ems-workspace" aria-labelledby="emsModeTitle">
+      <div class="ems-modebar">
+        <div>
+          <h2 class="card-title" id="emsModeTitle" data-i18n="ja">Earth Map Suite モード</h2>
+          <h2 class="card-title" data-i18n="en" style="display:none;">Earth Map Suite mode</h2>
+          <p class="hint" id="modeHint" data-i18n="ja">実データメタデータと合成プレビューを、選択中モードだけに絞って表示します。</p>
+          <p class="hint" id="modeHintEn" data-i18n="en" style="display:none;">Show only the selected mode, keeping real metadata separate from synthetic previews.</p>
+        </div>
+        <div class="ems-mode-controls">
+          <label class="sr-only" for="modeSelect">Mode</label>
+          <select class="input ems-mode-select" id="modeSelect">
             <option value="storm">storm</option>
             <option value="compare">compare</option>
             <option value="card">card</option>
           </select>
-          <p class="hint" id="modeHint" data-i18n="ja">storm: 単一条件の確認 / compare: 条件比較 / card: カード表示</p>
-          <p class="hint" id="modeHintEn" data-i18n="en" style="display:none;">storm: single condition / compare: compare conditions / card: card view</p>
-        </div>
-        <div class="row card-only" hidden>
-          <div class="field">
-            <label class="label" for="latInput" data-i18n="ja">緯度（lat）</label>
-            <label class="label" for="latInput" data-i18n="en" style="display:none;">Latitude (lat)</label>
-            <input class="input" id="latInput" type="number" step="0.0001" placeholder="例：35.68" />
-          </div>
-          <div class="field">
-            <label class="label" for="lonInput" data-i18n="ja">経度（lon）</label>
-            <label class="label" for="lonInput" data-i18n="en" style="display:none;">Longitude (lon)</label>
-            <input class="input" id="lonInput" type="number" step="0.0001" placeholder="例：139.76" />
+          <div class="ems-mode-tabs" aria-label="Mode tabs">
+            <button class="btn" type="button" data-mode-tab="storm">Storm</button>
+            <button class="btn" type="button" data-mode-tab="compare">Compare</button>
+            <button class="btn" type="button" data-mode-tab="card">Card</button>
           </div>
         </div>
-        <div class="field card-only" hidden>
-          <label class="label" data-i18n="ja">ポイント指定（クリックで反映）</label>
-          <label class="label" data-i18n="en" style="display:none;">Point picker (click to set)</label>
-          <canvas class="card-map-picker" id="cardMapPicker" width="320" height="180" aria-label="Point picker map"></canvas>
-          <p class="hint" data-i18n="ja">クリック位置の緯度経度を自動入力します。</p>
-          <p class="hint" data-i18n="en" style="display:none;">Click to fill in latitude/longitude.</p>
-        </div>
-        <div class="field non-card-only">
-          <label class="label" for="bboxInput" data-i18n="ja">BBox（緯度経度）</label>
-          <label class="label" for="bboxInput" data-i18n="en" style="display:none;">BBox (lat/long)</label>
-          <input class="input" id="bboxInput" type="text" placeholder="例：139.60,35.50,139.95,35.80" />
-          <p class="hint" data-i18n="ja">storm/compareモードで使用します。</p>
-          <p class="hint" data-i18n="en" style="display:none;">Used in storm/compare modes.</p>
-        </div>
-        <div class="field">
-          <label class="label" for="startInput" data-i18n="ja">開始日</label>
-          <label class="label" for="startInput" data-i18n="en" style="display:none;">Start date</label>
-          <input class="input" id="startInput" type="date" />
-          <p class="hint compare-only" data-i18n="ja" hidden>compareモード時は期間Aの開始日</p>
-          <p class="hint compare-only" data-i18n="en" hidden>Compare mode: period A start date</p>
-        </div>
-        <div class="field">
-          <label class="label" for="endInput" data-i18n="ja">終了日</label>
-          <label class="label" for="endInput" data-i18n="en" style="display:none;">End date</label>
-          <input class="input" id="endInput" type="date" />
-          <p class="hint compare-only" data-i18n="ja" hidden>compareモード時は期間Aの終了日</p>
-          <p class="hint compare-only" data-i18n="en" hidden>Compare mode: period A end date</p>
-        </div>
-        <div class="field compare-only" hidden>
-          <label class="label" for="startInputB" data-i18n="ja">期間B 開始日</label>
-          <label class="label" for="startInputB" data-i18n="en" style="display:none;">Period B start date</label>
-          <input class="input" id="startInputB" type="date" />
-        </div>
-        <div class="field compare-only" hidden>
-          <label class="label" for="endInputB" data-i18n="ja">期間B 終了日</label>
-          <label class="label" for="endInputB" data-i18n="en" style="display:none;">Period B end date</label>
-          <input class="input" id="endInputB" type="date" />
-        </div>
-        <div class="field">
-          <label class="label" for="presetInput" data-i18n="ja">プリセット</label>
-          <label class="label" for="presetInput" data-i18n="en" style="display:none;">Preset</label>
-          <input class="input" id="presetInput" type="text" placeholder="例：low" />
-        </div>
-        <div class="field storm-only">
-          <label class="label" for="framesInput" data-i18n="ja">フレーム数（stormのみ）</label>
-          <label class="label" for="framesInput" data-i18n="en" style="display:none;">Frames (storm only)</label>
-          <input class="input" id="framesInput" type="number" min="1" placeholder="例：24" />
-          <p class="hint" data-i18n="ja">stormモード時は必須。48を超える場合は自動的に間引きます。</p>
-          <p class="hint" data-i18n="en" style="display:none;">Required for storm mode. Over 48 frames will be thinned automatically.</p>
-        </div>
-        <div class="field">
-          <label class="label" for="focusArea" data-i18n="ja">対象エリア</label>
-          <label class="label" for="focusArea" data-i18n="en" style="display:none;">Target area</label>
-          <input class="input" id="focusArea" type="text" placeholder="例：東京23区・沿岸部" />
-        </div>
-        <div class="field">
-          <label class="label" for="layers" data-i18n="ja">確認したいレイヤー</label>
-          <label class="label" for="layers" data-i18n="en" style="display:none;">Layers to verify</label>
-          <textarea class="textarea" id="layers" placeholder="例：地形 / 交通 / 標高 / 避難所"></textarea>
-        </div>
-        <div class="field">
-          <label class="label" for="notes" data-i18n="ja">補足メモ</label>
-          <label class="label" for="notes" data-i18n="en" style="display:none;">Notes</label>
-          <textarea class="textarea" id="notes" placeholder="例：夜間モードで視認性を確認"></textarea>
-        </div>
-        <div class="row">
-          <button class="btn" type="button" data-example-mode="storm" data-i18n="ja">storm例</button>
-          <button class="btn" type="button" data-example-mode="compare" data-i18n="ja">compare例</button>
-          <button class="btn" type="button" data-example-mode="card" data-i18n="ja">card例</button>
-          <button class="btn" type="button" data-example-mode="storm" data-i18n="en" style="display:none;">Storm example</button>
-          <button class="btn" type="button" data-example-mode="compare" data-i18n="en" style="display:none;">Compare example</button>
-          <button class="btn" type="button" data-example-mode="card" data-i18n="en" style="display:none;">Card example</button>
-          <button class="btn primary" type="button" id="runBtn" data-i18n="ja">プレビューを作成</button>
-          <button class="btn primary" type="button" id="runBtnEn" data-i18n="en" style="display:none;">Generate preview</button>
-        </div>
-        <p class="hint" data-i18n="ja"><a class="nw-link" href="./usage.html">使い方はこちら</a></p>
-        <p class="hint" data-i18n="en" style="display:none;"><a class="nw-link" href="./usage-en.html">See usage guide</a></p>
       </div>
-    </section>
 
-    <section class="card">
-      <div class="card-hd">
-        <h2 class="card-title" data-i18n="ja">結果プレビュー</h2>
-        <h2 class="card-title" data-i18n="en" style="display:none;">Result preview</h2>
-      </div>
-      <div class="card-bd">
+      <div class="ems-status-row">
         <div class="out" id="errorOutput" role="alert" aria-live="assertive" hidden></div>
         <div class="out" id="resultOutput" aria-live="polite"></div>
-        <div class="compare-output" id="compareOutput" hidden>
-          <div class="compare-summary">
-            <h3 class="compare-title" data-i18n="ja">compare結果サマリー（降水量・参考値）</h3>
-            <h3 class="compare-title" data-i18n="en" style="display:none;">Compare summary (precipitation, reference only)</h3>
-            <p class="compare-note" data-i18n="ja">本結果はダミーのプレースホルダです。実測値ではありません。</p>
-            <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic preview values and not observed data.</p>
-            <dl class="compare-metrics" id="compareMetrics"></dl>
+      </div>
+
+      <aside class="ems-column ems-input-column" aria-label="Active mode inputs">
+        <div class="ems-section-label" data-i18n="ja">Inputs</div>
+        <div class="ems-section-label" data-i18n="en" style="display:none;">Inputs</div>
+
+        <div class="input-panel" data-input-mode="storm">
+          <div class="panel-head">
+            <h3 data-i18n="ja">Storm setup</h3>
+            <h3 data-i18n="en" style="display:none;">Storm setup</h3>
+            <p class="hint" data-i18n="ja">GSMaPメタデータ確認 + 合成stormプレビュー。</p>
+            <p class="hint" data-i18n="en" style="display:none;">GSMaP metadata check + synthetic storm preview.</p>
           </div>
-          <div class="compare-cards">
-            <div class="compare-card">
-              <div class="compare-card-title" data-i18n="ja">期間A（mm相当）</div>
-              <div class="compare-card-title" data-i18n="en" style="display:none;">Period A (mm equivalent)</div>
-              <canvas id="compareCanvasA" width="320" height="200" aria-label="Compare period A output"></canvas>
+          <div class="setup-summary" id="stormSetupSummary"></div>
+          <details class="input-editor" open>
+            <summary>Edit inputs</summary>
+            <div class="field">
+              <label class="label" for="bboxInput" data-i18n="ja">BBox</label>
+              <label class="label" for="bboxInput" data-i18n="en" style="display:none;">BBox</label>
+              <input class="input" id="bboxInput" type="text" placeholder="139.5,35.4,140.0,35.9" />
+              <p class="hint" data-i18n="ja">経度,緯度,経度,緯度（storm必須）</p>
+              <p class="hint" data-i18n="en" style="display:none;">lon,lat,lon,lat (required for storm)</p>
             </div>
-            <div class="compare-card">
-              <div class="compare-card-title" data-i18n="ja">期間B（mm相当）</div>
-              <div class="compare-card-title" data-i18n="en" style="display:none;">Period B (mm equivalent)</div>
-              <canvas id="compareCanvasB" width="320" height="200" aria-label="Compare period B output"></canvas>
+            <div class="row">
+              <div class="field">
+                <label class="label" for="startInput" data-i18n="ja">Start</label>
+                <label class="label" for="startInput" data-i18n="en" style="display:none;">Start</label>
+                <input class="input" id="startInput" type="date" />
+              </div>
+              <div class="field">
+                <label class="label" for="endInput" data-i18n="ja">End</label>
+                <label class="label" for="endInput" data-i18n="en" style="display:none;">End</label>
+                <input class="input" id="endInput" type="date" />
+              </div>
             </div>
-            <div class="compare-card">
-              <div class="compare-card-title" data-i18n="ja">差分 (A - B, mm相当)</div>
-              <div class="compare-card-title" data-i18n="en" style="display:none;">Diff (A - B, mm equivalent)</div>
-              <canvas id="compareCanvasDiff" width="320" height="200" aria-label="Compare diff output"></canvas>
+            <div class="row">
+              <div class="field">
+                <label class="label" for="presetInput" data-i18n="ja">Preset</label>
+                <label class="label" for="presetInput" data-i18n="en" style="display:none;">Preset</label>
+                <input class="input" id="presetInput" type="text" placeholder="low" />
+              </div>
+              <div class="field">
+                <label class="label" for="framesInput" data-i18n="ja">Frames</label>
+                <label class="label" for="framesInput" data-i18n="en" style="display:none;">Frames</label>
+                <input class="input" id="framesInput" type="number" min="1" placeholder="24" />
+              </div>
             </div>
+            <div class="field">
+              <label class="label" for="focusArea" data-i18n="ja">対象エリア / Focus</label>
+              <label class="label" for="focusArea" data-i18n="en" style="display:none;">Focus area</label>
+              <input class="input" id="focusArea" type="text" placeholder="東京周辺" />
+            </div>
+            <div class="field">
+              <label class="label" for="layers" data-i18n="ja">確認したいレイヤー</label>
+              <label class="label" for="layers" data-i18n="en" style="display:none;">Layers to verify</label>
+              <textarea class="textarea" id="layers" placeholder="地形 / 主要道路 / 避難所"></textarea>
+            </div>
+            <div class="field">
+              <label class="label" for="notes" data-i18n="ja">補足メモ</label>
+              <label class="label" for="notes" data-i18n="en" style="display:none;">Notes</label>
+              <textarea class="textarea" id="notes" placeholder="Synthetic preview / not observed precipitation"></textarea>
+            </div>
+          </details>
+          <div class="actions">
+            <button class="btn" type="button" data-example-mode="storm" data-i18n="ja">storm例</button>
+            <button class="btn" type="button" data-example-mode="storm" data-i18n="en" style="display:none;">Storm example</button>
+            <button class="btn primary" type="button" id="runBtn" data-i18n="ja">Run storm</button>
+            <button class="btn primary" type="button" id="runBtnEn" data-i18n="en" style="display:none;">Run storm</button>
           </div>
-          <div class="compare-actions">
-            <button class="btn" type="button" id="downloadCompareA" data-i18n="ja">期間A PNG</button>
-            <button class="btn" type="button" id="downloadCompareAEn" data-i18n="en" style="display:none;">Download A PNG</button>
-            <button class="btn" type="button" id="downloadCompareB" data-i18n="ja">期間B PNG</button>
-            <button class="btn" type="button" id="downloadCompareBEn" data-i18n="en" style="display:none;">Download B PNG</button>
-            <button class="btn" type="button" id="downloadCompareDiff" data-i18n="ja">差分 PNG</button>
-            <button class="btn" type="button" id="downloadCompareDiffEn" data-i18n="en" style="display:none;">Download diff PNG</button>
-            <button class="btn" type="button" id="downloadCompareCsv" data-i18n="ja">compare CSV</button>
-            <button class="btn" type="button" id="downloadCompareCsvEn" data-i18n="en" style="display:none;">Download compare CSV</button>
+          <p class="hint" data-i18n="ja"><a class="nw-link" href="./usage.html">使い方はこちら</a></p>
+          <p class="hint" data-i18n="en" style="display:none;"><a class="nw-link" href="./usage-en.html">See usage guide</a></p>
+        </div>
+
+        <div class="input-panel" data-input-mode="compare">
+          <div class="panel-head">
+            <h3 data-i18n="ja">Compare setup</h3>
+            <h3 data-i18n="en" style="display:none;">Compare setup</h3>
+            <p class="hint" data-i18n="ja">A/B期間の合成比較プレビュー。実メタデータ接続は未実装です。</p>
+            <p class="hint" data-i18n="en" style="display:none;">Synthetic A/B comparison preview. Real metadata is not connected here yet.</p>
+          </div>
+          <div class="setup-summary" id="compareSetupSummary"></div>
+          <details class="input-editor" open>
+            <summary>Edit compare inputs</summary>
+            <div class="field">
+              <label class="label" for="compareBboxInput">BBox</label>
+              <input class="input" id="compareBboxInput" type="text" placeholder="135.35,34.55,135.70,34.85" />
+            </div>
+            <div class="row">
+              <div class="field">
+                <label class="label" for="compareStartInput" data-i18n="ja">期間A Start</label>
+                <label class="label" for="compareStartInput" data-i18n="en" style="display:none;">Period A start</label>
+                <input class="input" id="compareStartInput" type="date" />
+              </div>
+              <div class="field">
+                <label class="label" for="compareEndInput" data-i18n="ja">期間A End</label>
+                <label class="label" for="compareEndInput" data-i18n="en" style="display:none;">Period A end</label>
+                <input class="input" id="compareEndInput" type="date" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label class="label" for="startInputB" data-i18n="ja">期間B Start</label>
+                <label class="label" for="startInputB" data-i18n="en" style="display:none;">Period B start</label>
+                <input class="input" id="startInputB" type="date" />
+              </div>
+              <div class="field">
+                <label class="label" for="endInputB" data-i18n="ja">期間B End</label>
+                <label class="label" for="endInputB" data-i18n="en" style="display:none;">Period B end</label>
+                <input class="input" id="endInputB" type="date" />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="comparePresetInput">Preset</label>
+              <input class="input" id="comparePresetInput" type="text" placeholder="mid" />
+            </div>
+          </details>
+          <div class="actions">
+            <button class="btn" type="button" data-example-mode="compare" data-i18n="ja">compare例</button>
+            <button class="btn" type="button" data-example-mode="compare" data-i18n="en" style="display:none;">Compare example</button>
+            <button class="btn primary" type="button" id="runCompareBtn" data-i18n="ja">Run compare</button>
+            <button class="btn primary" type="button" id="runCompareBtnEn" data-i18n="en" style="display:none;">Run compare</button>
           </div>
         </div>
-        <div class="storm-metadata" id="stormMetadataPanel" role="status" aria-live="polite" hidden>
-          <div class="storm-metadata-header">
-            <h3 class="storm-metadata-title" data-i18n="ja">Real data metadata status</h3>
-            <h3 class="storm-metadata-title" data-i18n="en" style="display:none;">Real data metadata status</h3>
-            <p class="storm-metadata-note" data-i18n="ja">GSMaP のメタデータ到達性のみを確認します。ラスター降水量の値はまだサンプリングしません。</p>
-            <p class="storm-metadata-note" data-i18n="en" style="display:none;">Checks only GSMaP metadata reachability. Raster precipitation values are not sampled yet.</p>
+
+        <div class="input-panel" data-input-mode="card">
+          <div class="panel-head">
+            <h3 data-i18n="ja">Card setup</h3>
+            <h3 data-i18n="en" style="display:none;">Card setup</h3>
+            <p class="hint" data-i18n="ja">地点カードの合成プレビュー。実メタデータ接続は未実装です。</p>
+            <p class="hint" data-i18n="en" style="display:none;">Synthetic point-card preview. Real metadata is not connected here yet.</p>
           </div>
-          <div class="storm-metadata-body" id="stormMetadataBody"></div>
-        </div>
-        <div class="storm-replay" id="stormReplay" hidden>
-          <div class="storm-preview-banner">
-            <strong data-i18n="ja">Synthetic preview</strong>
-            <strong data-i18n="en" style="display:none;">Synthetic preview</strong>
-            <span data-i18n="ja">観測降水量ではありません。上の実データメタデータ状態とは別表示です。</span>
-            <span data-i18n="en" style="display:none;">Not observed precipitation. Separate from the real metadata status above.</span>
-          </div>
-          <div class="storm-status" id="stormStatus" role="status" aria-live="polite"></div>
-          <div class="storm-toolbar">
-            <div class="storm-controls">
-              <button class="btn" type="button" id="stormPrev" aria-label="Previous frame">◀</button>
-              <input class="storm-slider" id="stormSlider" type="range" min="0" max="0" value="0" step="1" />
-              <button class="btn" type="button" id="stormNext" aria-label="Next frame">▶</button>
+          <div class="setup-summary" id="cardSetupSummary"></div>
+          <details class="input-editor" open>
+            <summary>Edit card inputs</summary>
+            <div class="row">
+              <div class="field">
+                <label class="label" for="latInput" data-i18n="ja">緯度（lat）</label>
+                <label class="label" for="latInput" data-i18n="en" style="display:none;">Latitude (lat)</label>
+                <input class="input" id="latInput" type="number" step="0.0001" placeholder="38.32" />
+              </div>
+              <div class="field">
+                <label class="label" for="lonInput" data-i18n="ja">経度（lon）</label>
+                <label class="label" for="lonInput" data-i18n="en" style="display:none;">Longitude (lon)</label>
+                <input class="input" id="lonInput" type="number" step="0.0001" placeholder="141.50" />
+              </div>
             </div>
-            <div class="storm-meta">
-              <span class="storm-label" data-i18n="ja">日時:</span>
-              <span class="storm-label" data-i18n="en" style="display:none;">Timestamp:</span>
-              <strong id="stormTimestamp">-</strong>
+            <div class="field">
+              <label class="label" data-i18n="ja">ポイント指定（クリックで反映）</label>
+              <label class="label" data-i18n="en" style="display:none;">Point picker (click to set)</label>
+              <canvas class="card-map-picker" id="cardMapPicker" width="320" height="180" aria-label="Point picker map"></canvas>
             </div>
-            <label class="storm-toggle">
-              <input type="checkbox" id="stormCumulativeToggle" checked />
-              <span data-i18n="ja">累積表示</span>
-              <span data-i18n="en" style="display:none;">Show cumulative</span>
-            </label>
-          </div>
-          <div class="storm-canvases">
-            <div class="storm-panel">
-              <div class="storm-panel-title" data-i18n="ja">現在フレーム（Synthetic preview / 観測値ではありません）</div>
-              <div class="storm-panel-title" data-i18n="en" style="display:none;">Current frame (Synthetic preview / not observed precipitation)</div>
-              <canvas id="stormFrameCanvas" width="320" height="200" aria-label="Storm frame visualization"></canvas>
+            <div class="row">
+              <div class="field">
+                <label class="label" for="cardStartInput">Start</label>
+                <input class="input" id="cardStartInput" type="date" />
+              </div>
+              <div class="field">
+                <label class="label" for="cardEndInput">End</label>
+                <input class="input" id="cardEndInput" type="date" />
+              </div>
             </div>
-            <div class="storm-panel" id="stormCumulativePanel">
-              <div class="storm-panel-title" data-i18n="ja">累積フレーム（Synthetic preview / 観測値ではありません）</div>
-              <div class="storm-panel-title" data-i18n="en" style="display:none;">Cumulative frame (Synthetic preview / not observed precipitation)</div>
-              <canvas id="stormCumulativeCanvas" width="320" height="200" aria-label="Storm cumulative visualization"></canvas>
+            <div class="field">
+              <label class="label" for="cardPresetInput">Preset</label>
+              <input class="input" id="cardPresetInput" type="text" placeholder="detail" />
             </div>
-          </div>
-          <div class="storm-actions">
-            <button class="btn" type="button" id="downloadFramePng" data-i18n="ja">現在フレームPNG</button>
-            <button class="btn" type="button" id="downloadFramePngEn" data-i18n="en" style="display:none;">Download frame PNG</button>
-            <button class="btn" type="button" id="downloadCumulativePng" data-i18n="ja">累積PNG</button>
-            <button class="btn" type="button" id="downloadCumulativePngEn" data-i18n="en" style="display:none;">Download cumulative PNG</button>
-            <button class="btn" type="button" id="downloadCsv" data-i18n="ja">CSVダウンロード</button>
-            <button class="btn" type="button" id="downloadCsvEn" data-i18n="en" style="display:none;">Download CSV</button>
+          </details>
+          <div class="actions">
+            <button class="btn" type="button" data-example-mode="card" data-i18n="ja">card例</button>
+            <button class="btn" type="button" data-example-mode="card" data-i18n="en" style="display:none;">Card example</button>
+            <button class="btn primary" type="button" id="runCardBtn" data-i18n="ja">Run card</button>
+            <button class="btn primary" type="button" id="runCardBtnEn" data-i18n="en" style="display:none;">Run card</button>
           </div>
         </div>
-        <div class="card-output" id="cardOutput" hidden>
-          <div class="card-output-header">
-            <h3 class="card-output-title" data-i18n="ja">Location Card（降水量のポイント時系列）</h3>
-            <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (point precipitation series)</h3>
-            <p class="card-output-note" data-i18n="ja">カード表示は参考値のプレースホルダです。</p>
-            <p class="card-output-note" data-i18n="en" style="display:none;">The card shows synthetic preview values for reference.</p>
-          </div>
-          <div class="card-output-grid">
-            <div class="card-output-panel">
-              <div class="card-output-label" data-i18n="ja">ポイントプレビュー</div>
-              <div class="card-output-label" data-i18n="en" style="display:none;">Point preview</div>
-              <canvas id="cardMapPreview" width="320" height="200" aria-label="Location preview map"></canvas>
-              <div class="card-output-meta" id="cardMapMeta">Lat: - , Lon: -</div>
+      </aside>
+
+      <div class="results-root" id="resultsRoot">
+        <section class="result-panel result-panel-storm" data-result-mode="storm" aria-label="Storm result panel">
+          <div class="ems-main-panel">
+            <div class="storm-replay" id="stormReplay" hidden>
+              <div class="storm-preview-banner">
+                <strong data-i18n="ja">Synthetic preview</strong>
+                <strong data-i18n="en" style="display:none;">Synthetic preview</strong>
+                <span data-i18n="ja">Not observed precipitation / 観測降水量ではありません。Real metadataとは別表示です。</span>
+                <span data-i18n="en" style="display:none;">Not observed precipitation. Separate from real metadata.</span>
+              </div>
+              <div class="storm-status" id="stormStatus" role="status" aria-live="polite"></div>
+              <div class="storm-toolbar">
+                <div class="storm-controls">
+                  <button class="btn" type="button" id="stormPrev" aria-label="Previous frame">◀</button>
+                  <input class="storm-slider" id="stormSlider" type="range" min="0" max="0" value="0" step="1" />
+                  <button class="btn" type="button" id="stormNext" aria-label="Next frame">▶</button>
+                </div>
+                <div class="storm-meta">
+                  <span class="storm-label" data-i18n="ja">日時:</span>
+                  <span class="storm-label" data-i18n="en" style="display:none;">Timestamp:</span>
+                  <strong id="stormTimestamp">-</strong>
+                </div>
+                <label class="storm-toggle">
+                  <input type="checkbox" id="stormCumulativeToggle" checked />
+                  <span data-i18n="ja">累積表示</span>
+                  <span data-i18n="en" style="display:none;">Show cumulative</span>
+                </label>
+              </div>
+              <div class="storm-canvases">
+                <div class="storm-panel">
+                  <div class="storm-panel-title" data-i18n="ja">現在フレーム（Synthetic preview / Not observed precipitation）</div>
+                  <div class="storm-panel-title" data-i18n="en" style="display:none;">Current frame (Synthetic preview / Not observed precipitation)</div>
+                  <canvas id="stormFrameCanvas" width="320" height="200" aria-label="Storm frame visualization"></canvas>
+                </div>
+                <div class="storm-panel" id="stormCumulativePanel">
+                  <div class="storm-panel-title" data-i18n="ja">累積フレーム（Synthetic preview / Not observed precipitation）</div>
+                  <div class="storm-panel-title" data-i18n="en" style="display:none;">Cumulative frame (Synthetic preview / Not observed precipitation)</div>
+                  <canvas id="stormCumulativeCanvas" width="320" height="200" aria-label="Storm cumulative visualization"></canvas>
+                </div>
+              </div>
             </div>
-            <div class="card-output-panel">
-              <div class="card-output-label" data-i18n="ja">降水量ミニチャート</div>
-              <div class="card-output-label" data-i18n="en" style="display:none;">Precip mini chart</div>
-              <canvas id="cardChart" width="320" height="160" aria-label="Precipitation chart"></canvas>
+          </div>
+          <aside class="ems-side-panel">
+            <div class="storm-metadata" id="stormMetadataPanel" role="status" aria-live="polite" hidden>
+              <div class="storm-metadata-header">
+                <h3 class="storm-metadata-title" data-i18n="ja">Real data metadata status</h3>
+                <h3 class="storm-metadata-title" data-i18n="en" style="display:none;">Real data metadata status</h3>
+                <p class="storm-metadata-note" data-i18n="ja">GSMaP metadata only。ラスター降水量値は未サンプリングです。</p>
+                <p class="storm-metadata-note" data-i18n="en" style="display:none;">GSMaP metadata only. Raster precipitation values are not sampled yet.</p>
+              </div>
+              <div class="storm-metadata-body" id="stormMetadataBody"></div>
             </div>
-            <div class="card-output-panel">
-              <div class="card-output-label" data-i18n="ja">サマリー</div>
-              <div class="card-output-label" data-i18n="en" style="display:none;">Summary</div>
-              <dl class="card-summary" id="cardSummary"></dl>
+            <div class="download-card">
+              <h3 data-i18n="ja">Downloads</h3>
+              <h3 data-i18n="en" style="display:none;">Downloads</h3>
+              <p class="hint" data-i18n="ja">CSVは synthetic_preview です。実降水量として扱わないでください。</p>
+              <p class="hint" data-i18n="en" style="display:none;">CSV is synthetic_preview. Do not treat it as real precipitation.</p>
+              <div class="storm-actions">
+                <button class="btn" type="button" id="downloadCsv" data-i18n="ja">CSV synthetic</button>
+                <button class="btn" type="button" id="downloadCsvEn" data-i18n="en" style="display:none;">CSV synthetic</button>
+                <button class="btn" type="button" id="downloadFramePng" data-i18n="ja">PNG current</button>
+                <button class="btn" type="button" id="downloadFramePngEn" data-i18n="en" style="display:none;">PNG current</button>
+                <button class="btn" type="button" id="downloadCumulativePng" data-i18n="ja">PNG cumulative</button>
+                <button class="btn" type="button" id="downloadCumulativePngEn" data-i18n="en" style="display:none;">PNG cumulative</button>
+              </div>
+            </div>
+            <div class="note-card">
+              <h3 data-i18n="ja">Notes / limits</h3>
+              <h3 data-i18n="en" style="display:none;">Notes / limits</h3>
+              <ul class="bullet" data-i18n="ja">
+                <li>Metadata only</li>
+                <li>Synthetic preview</li>
+                <li>Not observed precipitation</li>
+              </ul>
+              <ul class="bullet" data-i18n="en" style="display:none;">
+                <li>Metadata only</li>
+                <li>Synthetic preview</li>
+                <li>Not observed precipitation</li>
+              </ul>
+            </div>
+          </aside>
+        </section>
+
+        <section class="result-panel" data-result-mode="compare" aria-label="Compare result panel">
+          <div class="compare-output" id="compareOutput" hidden>
+            <div class="compare-summary">
+              <h3 class="compare-title" data-i18n="ja">compare結果サマリー（合成プレビュー）</h3>
+              <h3 class="compare-title" data-i18n="en" style="display:none;">Compare summary (synthetic preview)</h3>
+              <p class="compare-note" data-i18n="ja">本結果は合成プレースホルダです。実測値ではありません。</p>
+              <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic preview values and not observed data.</p>
+              <dl class="compare-metrics" id="compareMetrics"></dl>
+            </div>
+            <div class="compare-cards">
+              <div class="compare-card">
+                <div class="compare-card-title" data-i18n="ja">期間A（mm相当）</div>
+                <div class="compare-card-title" data-i18n="en" style="display:none;">Period A (mm equivalent)</div>
+                <canvas id="compareCanvasA" width="320" height="200" aria-label="Compare period A output"></canvas>
+              </div>
+              <div class="compare-card">
+                <div class="compare-card-title" data-i18n="ja">期間B（mm相当）</div>
+                <div class="compare-card-title" data-i18n="en" style="display:none;">Period B (mm equivalent)</div>
+                <canvas id="compareCanvasB" width="320" height="200" aria-label="Compare period B output"></canvas>
+              </div>
+              <div class="compare-card">
+                <div class="compare-card-title" data-i18n="ja">差分 (A - B, mm相当)</div>
+                <div class="compare-card-title" data-i18n="en" style="display:none;">Diff (A - B, mm equivalent)</div>
+                <canvas id="compareCanvasDiff" width="320" height="200" aria-label="Compare diff output"></canvas>
+              </div>
+            </div>
+            <div class="compare-actions download-card">
+              <button class="btn" type="button" id="downloadCompareA" data-i18n="ja">期間A PNG</button>
+              <button class="btn" type="button" id="downloadCompareAEn" data-i18n="en" style="display:none;">Download A PNG</button>
+              <button class="btn" type="button" id="downloadCompareB" data-i18n="ja">期間B PNG</button>
+              <button class="btn" type="button" id="downloadCompareBEn" data-i18n="en" style="display:none;">Download B PNG</button>
+              <button class="btn" type="button" id="downloadCompareDiff" data-i18n="ja">差分 PNG</button>
+              <button class="btn" type="button" id="downloadCompareDiffEn" data-i18n="en" style="display:none;">Download diff PNG</button>
+              <button class="btn" type="button" id="downloadCompareCsv" data-i18n="ja">compare CSV</button>
+              <button class="btn" type="button" id="downloadCompareCsvEn" data-i18n="en" style="display:none;">Download compare CSV</button>
             </div>
           </div>
-          <div class="card-actions">
-            <button class="btn" type="button" id="downloadCardCsv" data-i18n="ja">カードCSV</button>
-            <button class="btn" type="button" id="downloadCardCsvEn" data-i18n="en" style="display:none;">Download card CSV</button>
+        </section>
+
+        <section class="result-panel" data-result-mode="card" aria-label="Card result panel">
+          <div class="card-output" id="cardOutput" hidden>
+            <div class="card-output-header">
+              <h3 class="card-output-title" data-i18n="ja">Location Card（合成ポイント時系列）</h3>
+              <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (synthetic point series)</h3>
+              <p class="card-output-note" data-i18n="ja">カード表示は合成プレビューです。実測値ではありません。</p>
+              <p class="card-output-note" data-i18n="en" style="display:none;">The card shows synthetic preview values, not observed data.</p>
+            </div>
+            <div class="card-output-grid">
+              <div class="card-output-panel">
+                <div class="card-output-label" data-i18n="ja">ポイントプレビュー</div>
+                <div class="card-output-label" data-i18n="en" style="display:none;">Point preview</div>
+                <canvas id="cardMapPreview" width="320" height="200" aria-label="Location preview map"></canvas>
+                <div class="card-output-meta" id="cardMapMeta">Lat: - , Lon: -</div>
+              </div>
+              <div class="card-output-panel">
+                <div class="card-output-label" data-i18n="ja">ミニチャート（合成値）</div>
+                <div class="card-output-label" data-i18n="en" style="display:none;">Mini chart (synthetic)</div>
+                <canvas id="cardChart" width="320" height="160" aria-label="Synthetic chart"></canvas>
+              </div>
+              <div class="card-output-panel">
+                <div class="card-output-label" data-i18n="ja">サマリー</div>
+                <div class="card-output-label" data-i18n="en" style="display:none;">Summary</div>
+                <dl class="card-summary" id="cardSummary"></dl>
+              </div>
+            </div>
+            <div class="card-actions download-card">
+              <button class="btn" type="button" id="downloadCardCsv" data-i18n="ja">カードCSV</button>
+              <button class="btn" type="button" id="downloadCardCsvEn" data-i18n="en" style="display:none;">Download card CSV</button>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </section>
 
