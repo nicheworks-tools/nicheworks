@@ -1,7 +1,15 @@
 {
-  "generatedAt": "2026-05-11T12:00:10.491Z",
-  "total": 77,
+  "generatedAt": "2026-05-11T12:00:41.147Z",
+  "total": 78,
   "items": [
+    {
+      "slug": "ai-interaction-atlas",
+      "title_en": "ai-interaction-atlas",
+      "title_ja": "ai-interaction-atlas",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
+    },
     {
       "slug": "ai-project-pack",
       "title_en": "ai-project-pack",
