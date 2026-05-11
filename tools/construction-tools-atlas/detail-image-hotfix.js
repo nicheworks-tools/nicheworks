@@ -6,7 +6,7 @@
     { keys: ["トルクレンチ", "torque wrench"], ja: "トルクレンチ", en: "Torque wrench", src: "./images/pilot/torque-wrench.svg?v=20260510-asset-1", caption_ja: "指定トルクで締付確認する工具。", caption_en: "Tool used to tighten to a specified torque." },
     { keys: ["アンカーボルト", "anchor bolt", "concrete anchor", "コンクリートアンカー"], ja: "アンカーボルト", en: "Anchor bolt", src: "./images/pilot/concrete-anchor.svg?v=20260510-asset-1", caption_ja: "基礎やコンクリートに部材を固定する金物。", caption_en: "Fixing used to secure members to concrete or foundations." },
     { keys: ["床レベラー", "floor leveler", "floor leveller"], ja: "床レベラー", en: "Floor leveler", src: "./images/pilot/floor-leveler.svg?v=20260510-asset-1", caption_ja: "床の不陸をならす下地調整材。", caption_en: "Material used to level uneven floors." },
-    { keys: ["レーザー墨出し", "laser level"], ja: "レーザー墨出し器", en: "Laser level", src: "./images/pilot/laser-level.svg?v=20260510-asset-1", caption_ja: "水平・垂直の基準線を投影する工具。", caption_en: "Tool that projects level and plumb reference lines." },
+    { keys: ["レーザー墨出し", "レーザー墨出し器", "laser level"], ja: "レーザー墨出し器", en: "Laser level", src: "./images/pilot/laser-level.svg?v=20260510-asset-1", caption_ja: "水平・垂直の基準線を投影する工具。", caption_en: "Tool that projects level and plumb reference lines." },
     { keys: ["コーキングガン", "caulking gun"], ja: "コーキングガン", en: "Caulking gun", src: "./images/pilot/caulking-gun.svg?v=20260510-asset-1", caption_ja: "シーリング材を目地へ押し出す工具。", caption_en: "Tool used to dispense sealant into joints." },
     { keys: ["クランプ", "scaffold clamp"], ja: "クランプ", en: "Scaffold clamp", src: "./images/pilot/scaffold-clamp.svg?v=20260510-asset-1", caption_ja: "単管同士を固定する足場用金具。", caption_en: "Clamp used to connect scaffold pipes." },
     { keys: ["ケーブルトレイ", "cable tray"], ja: "ケーブルトレイ", en: "Cable tray", src: "./images/pilot/cable-tray.svg?v=20260510-asset-1", caption_ja: "ケーブルをまとめて敷設する受け材。", caption_en: "Tray used to support and organize cable runs." },
@@ -18,22 +18,35 @@
     return document.documentElement.lang === "en" ? "en" : "ja";
   }
 
+  function normalize(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[（）()［］\[\]【】]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   function clear(node) {
     if (!node) return;
     while (node.firstChild) node.removeChild(node.firstChild);
   }
 
-  function currentText() {
-    const title = document.getElementById("detailTerms")?.textContent || "";
-    const meta = document.getElementById("tabMeta")?.textContent || "";
+  function currentTokens() {
+    const terms = document.getElementById("detailTerms");
+    const title = terms?.querySelector(".termblock__title")?.textContent || "";
+    const sub = terms?.querySelector(".termblock__sub")?.textContent || "";
     const aliases = document.getElementById("tabAliases")?.textContent || "";
-    return `${title}\n${meta}\n${aliases}`.toLowerCase();
+    const raw = `${title}\n${sub}\n${aliases}`;
+    return raw
+      .split(/[\/\n,、]+/)
+      .map(normalize)
+      .filter(Boolean);
   }
 
   function matchPilot() {
-    const hay = currentText();
-    if (!hay.trim()) return null;
-    return PILOTS.find((item) => item.keys.some((key) => hay.includes(String(key).toLowerCase()))) || null;
+    const tokens = new Set(currentTokens());
+    if (!tokens.size) return null;
+    return PILOTS.find((item) => item.keys.some((key) => tokens.has(normalize(key)))) || null;
   }
 
   function ensureSlot() {
