@@ -80,6 +80,10 @@ function isIndexableFile(file) {
   if (rel.startsWith('_archive/')) return false;
   if (rel.startsWith('templates/')) return false;
   if (rel.startsWith('tools/_template/')) return false;
+  if (rel.startsWith('apps/')) return false;
+  if (rel.startsWith('pro/unlock/')) return false;
+  if (rel.endsWith('/404.html') || rel === '404.html') return false;
+  if (rel.includes('/howto/howto/')) return false;
   if (rel.includes('/mock/')) return false;
   return true;
 }
