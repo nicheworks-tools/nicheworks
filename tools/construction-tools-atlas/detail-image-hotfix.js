@@ -11,7 +11,18 @@
     { keys: ["クランプ", "scaffold clamp"], ja: "クランプ", en: "Scaffold clamp", src: "./images/pilot/scaffold-clamp.svg?v=20260510-asset-1", caption_ja: "単管同士を固定する足場用金具。", caption_en: "Clamp used to connect scaffold pipes." },
     { keys: ["ケーブルトレイ", "cable tray"], ja: "ケーブルトレイ", en: "Cable tray", src: "./images/pilot/cable-tray.svg?v=20260510-asset-1", caption_ja: "ケーブルをまとめて敷設する受け材。", caption_en: "Tray used to support and organize cable runs." },
     { keys: ["サッシ", "window sash"], ja: "サッシ", en: "Window sash", src: "./images/pilot/window-sash.svg?v=20260510-asset-1", caption_ja: "ガラスを納める窓の枠・可動部材。", caption_en: "Window frame or operable unit that holds glazing." },
-    { keys: ["保護メガネ", "safety glasses", "ppe eyewear"], ja: "保護メガネ", en: "Safety glasses", src: "./images/pilot/ppe-eyewear.svg?v=20260510-asset-1", caption_ja: "切粉や粉じんから目を守る保護具。", caption_en: "Eye protection used against chips and dust." }
+    { keys: ["保護メガネ", "safety glasses", "ppe eyewear"], ja: "保護メガネ", en: "Safety glasses", src: "./images/pilot/ppe-eyewear.svg?v=20260510-asset-1", caption_ja: "切粉や粉じんから目を守る保護具。", caption_en: "Eye protection used against chips and dust." },
+
+    { keys: ["インパクトドライバー", "インパクト", "impact driver"], ja: "インパクトドライバー", en: "Impact driver", src: "./images/pilot/impact-driver.svg?v=20260510-asset-2", caption_ja: "ビスやボルトを強いトルクで締める電動工具。", caption_en: "Power tool used for high-torque fastening." },
+    { keys: ["ドリルドライバー", "drill driver"], ja: "ドリルドライバー", en: "Drill driver", src: "./images/pilot/drill-driver.svg?v=20260510-asset-2", caption_ja: "穴あけと軽いねじ締めに使う電動工具。", caption_en: "Power tool used for drilling and screw driving." },
+    { keys: ["振動ドリル", "hammer drill"], ja: "振動ドリル", en: "Hammer drill", src: "./images/pilot/hammer-drill.svg?v=20260510-asset-2", caption_ja: "モルタルやブロックなどの穴あけに使う振動機能付きドリル。", caption_en: "Drill with hammer action used for masonry drilling." },
+    { keys: ["脚立", "stepladder"], ja: "脚立", en: "Stepladder", src: "./images/pilot/stepladder.svg?v=20260510-asset-2", caption_ja: "一時的な高所作業や点検に使う自立式の昇降具。", caption_en: "Self-supporting access tool used for temporary work at height." },
+    { keys: ["足場", "scaffold", "scaffolding"], ja: "足場", en: "Scaffold", src: "./images/pilot/scaffold.svg?v=20260510-asset-2", caption_ja: "高所作業のために組み立てる仮設の作業床・支持構造。", caption_en: "Temporary work platform and support structure for work at height." },
+    { keys: ["水準器", "水平器", "spirit level", "level"], ja: "水準器", en: "Spirit level", src: "./images/pilot/spirit-level.svg?v=20260510-asset-2", caption_ja: "水平や垂直を確認する測定工具。", caption_en: "Measuring tool used to check level and plumb." },
+    { keys: ["コンベックス", "巻尺", "tape measure"], ja: "コンベックス", en: "Tape measure", src: "./images/pilot/tape-measure.svg?v=20260510-asset-2", caption_ja: "長さや位置を測る巻き取り式の測定工具。", caption_en: "Retractable measuring tool used to measure length and layout positions." },
+    { keys: ["配管支持金物", "pipe support"], ja: "配管支持金物", en: "Pipe support", src: "./images/pilot/pipe-support.svg?v=20260510-asset-2", caption_ja: "配管を所定位置に保持する支持部材。", caption_en: "Support hardware used to hold piping in position." },
+    { keys: ["ダクト", "duct"], ja: "ダクト", en: "Duct", src: "./images/pilot/duct.svg?v=20260510-asset-2", caption_ja: "換気や空調の空気を通す通風路。", caption_en: "Air passage used for ventilation or HVAC airflow." },
+    { keys: ["一輪車", "wheelbarrow"], ja: "一輪車", en: "Wheelbarrow", src: "./images/pilot/wheelbarrow.svg?v=20260510-asset-2", caption_ja: "土砂、モルタル、廃材などを運ぶ一輪の運搬具。", caption_en: "One-wheeled cart used to move soil, mortar, or debris." }
   ];
 
   function lang() {
