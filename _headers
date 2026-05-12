@@ -17,6 +17,33 @@
   Cache-Control: public, max-age=0, must-revalidate
   Content-Type: application/x-gzip
 
+/tools/*/usage.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/usage-en.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/howto.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/howto-en.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/howto/*
+  X-Robots-Tag: noindex, follow
+
+/tools/*/en/usage.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/en/howto.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/pro.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/pro/*
+  X-Robots-Tag: noindex, follow
+
 /tools/earth-map-suite/*
   X-Robots-Tag: noindex, follow
 
@@ -41,6 +68,9 @@
 /tools/ai-interaction-atlas/topics/*
   X-Robots-Tag: noindex, follow
 
+/tools/ai-interaction-atlas/patterns/*
+  X-Robots-Tag: noindex, follow
+
 /tools/ai-interaction-atlas/usage/*
   X-Robots-Tag: noindex, follow
 
@@ -62,6 +92,9 @@
 /tools/ai-interaction-atlas/ja/topics/*
   X-Robots-Tag: noindex, follow
 
+/tools/ai-interaction-atlas/ja/patterns/*
+  X-Robots-Tag: noindex, follow
+
 /tools/ai-interaction-atlas/ja/usage/*
   X-Robots-Tag: noindex, follow
 
@@ -72,7 +105,4 @@
   X-Robots-Tag: noindex, follow
 
 /tools/motion-atlas/ja/pro/*
-  X-Robots-Tag: noindex, follow
-
-/tools/*/pro.html
   X-Robots-Tag: noindex, follow
