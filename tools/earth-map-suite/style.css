@@ -125,8 +125,10 @@ canvas{max-width:100%;height:auto;display:block;background:#fff;border-radius:10
 .storm-metadata-list{margin:8px 0 0;display:grid;grid-template-columns:minmax(94px,auto) minmax(0,1fr);gap:6px;font-size:12px;}
 .storm-metadata-list dt{font-weight:800;color:var(--text);}
 .storm-metadata-list dd{margin:0;color:var(--muted);overflow-wrap:anywhere;word-break:break-word;}
-.storm-metadata-body:empty::before{content:"Metadata status will appear after Run storm.";font-size:12px;color:var(--muted);}
-html[lang="ja"] .storm-metadata-body:empty::before{content:"Run storm後にメタデータ状態を表示します。";}
+#stormMetadataBody:empty::before{content:"Metadata status will appear after Run storm.";font-size:12px;color:var(--muted);}
+html[lang="ja"] #stormMetadataBody:empty::before{content:"Run storm後にメタデータ状態を表示します。";}
+#compareMetadataBody:empty::before{content:"Run compare to show GSMaP metadata status for Period A and Period B.";font-size:12px;color:var(--muted);}
+html[lang="ja"] #compareMetadataBody:empty::before{content:"Run compare後にA/B期間のGSMaP metadata状態を表示します。";}
 .compare-metadata{border-color:#bfdbfe;background:#eff6ff;}
 .compare-metadata-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px;}
 .compare-metadata-period{border:1px solid var(--border);border-radius:12px;padding:10px;background:rgba(255,255,255,.72);min-width:0;}

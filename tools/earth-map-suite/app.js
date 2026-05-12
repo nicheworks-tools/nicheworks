@@ -654,12 +654,22 @@
     ].filter(Boolean);
 
     const getDefaultMode = () => "storm";
-    const STORM_VALID_EXAMPLE = {
-      mode: "storm",
+    const COMPARE_VALID_EXAMPLE = {
+      mode: "compare",
       bbox: "139.5,35.4,140.0,35.9",
       start: "2025-08-01",
       end: "2025-08-03",
+      startB: "2025-08-04",
+      endB: "2025-08-06",
       preset: "low",
+      frames: ""
+    };
+    const STORM_VALID_EXAMPLE = {
+      mode: "storm",
+      bbox: COMPARE_VALID_EXAMPLE.bbox,
+      start: COMPARE_VALID_EXAMPLE.start,
+      end: COMPARE_VALID_EXAMPLE.end,
+      preset: COMPARE_VALID_EXAMPLE.preset,
       frames: "24"
     };
     const LEGACY_STORM_BBOX_VALUES = [139.6, 35.5, 140 - 0.05, 35.8];
@@ -670,13 +680,22 @@
       .filter((part) => Number.isFinite(part));
     const isSameBBoxValues = (value, expected) => {
       const parts = normalizeBBoxValues(value);
-      return parts.length === expected.length && parts.every((part, index) => part === expected[index]);
+      return parts.length === expected.length && parts.every((part, index) => Math.abs(part - expected[index]) < 0.000001);
     };
     const isLegacyStormDefault = ({ bbox, start, end, preset }) =>
       isSameBBoxValues(bbox, LEGACY_STORM_BBOX_VALUES) &&
       start === legacyStormDate(1) &&
       end === legacyStormDate(30) &&
       preset === "low";
+    const LEGACY_COMPARE_BBOX_VALUES = [135 + 0.35, 35 - 0.45, 135 + 0.70, 35 - 0.15];
+    const legacyCompareDate = (monthOffset, day) => [2024, String(4 + monthOffset).padStart(2, "0"), String(day).padStart(2, "0")].join("-");
+    const isLegacyCompareDefault = ({ bbox, start, end, startB, endB, preset }) =>
+      isSameBBoxValues(bbox, LEGACY_COMPARE_BBOX_VALUES) &&
+      start === legacyCompareDate(1, 10) &&
+      end === legacyCompareDate(1, 20) &&
+      startB === legacyCompareDate(2, 10) &&
+      endB === legacyCompareDate(2, 20) &&
+      (preset || "").toLowerCase() === "mid";
     let stormState = null;
     let stormMetadataRequestId = 0;
     let compareMetadataRequestId = 0;
@@ -708,11 +727,18 @@
         frames: frames || ""
       };
       const hasExplicitStormParams = Boolean(bbox || start || end || preset || frames);
+      const hasExplicitCompareParams = Boolean(bbox || start || end || startB || endB || preset);
       if (!state.mode && !hasExplicitStormParams) {
         return { ...state, ...STORM_VALID_EXAMPLE };
       }
+      if (state.mode === "compare" && !hasExplicitCompareParams) {
+        return { ...state, ...COMPARE_VALID_EXAMPLE };
+      }
       if ((state.mode === "storm" || !state.mode) && isLegacyStormDefault(state)) {
         return { ...state, ...STORM_VALID_EXAMPLE };
+      }
+      if (state.mode === "compare" && isLegacyCompareDefault(state)) {
+        return { ...state, ...COMPARE_VALID_EXAMPLE };
       }
       return state;
     };
@@ -832,27 +858,13 @@
       },
       compare: {
         ja: {
-          mode: "compare",
-          bbox: "139.5,35.4,140.0,35.9",
-          start: "2025-08-01",
-          end: "2025-08-03",
-          startB: "2025-08-04",
-          endB: "2025-08-06",
-          preset: "low",
-          frames: "",
+          ...COMPARE_VALID_EXAMPLE,
           area: "東京周辺",
           layers: "GSMaP metadata-only / synthetic preview",
           notes: "compareのA/B/Diffは合成プレビューです。metadata到達性だけを確認します。"
         },
         en: {
-          mode: "compare",
-          bbox: "139.5,35.4,140.0,35.9",
-          start: "2025-08-01",
-          end: "2025-08-03",
-          startB: "2025-08-04",
-          endB: "2025-08-06",
-          preset: "low",
-          frames: "",
+          ...COMPARE_VALID_EXAMPLE,
           area: "Tokyo area",
           layers: "GSMaP metadata-only / synthetic preview",
           notes: "A/B/Diff remain synthetic preview; only metadata reachability is checked."
@@ -1554,7 +1566,8 @@
         validationBody: lang === "ja" ? "compare入力だけを検証しました。storm/card入力は検証していません。" : "Only compare fields were validated. Storm/card fields were not validated.",
         periodStatus: (period) => `${period} status`,
         reachable: "reachable",
-        unavailable: "unavailable"
+        unavailable: "unavailable",
+        idlePrompt: lang === "ja" ? "Run compare後にA/B期間のGSMaP metadata状態を表示します。" : "Run compare to show GSMaP metadata status for Period A and Period B."
       };
     };
 
@@ -1616,6 +1629,14 @@
           [copy.labels.guidance, errorMetadata.guidance],
           [copy.labels.samplingStatus, errorMetadata.sampling_status]
         ]));
+        return;
+      }
+
+      const idle = metadataA?.status === "idle" && metadataB?.status === "idle";
+      if (idle) {
+        compareMetadataPanel.classList.add("metadata-loading", "status-loading");
+        appendText(compareMetadataBody, "div", copy.idlePrompt, "storm-metadata-state");
+        appendText(compareMetadataBody, "p", copy.subtitle);
         return;
       }
 
@@ -1863,6 +1884,16 @@
         compareMetadataBody.innerHTML = "";
       }
       compareState = null;
+    };
+
+    const showCompareIdleMetadata = (lang = document.documentElement.lang || "ja") => {
+      if (!compareOutput) return;
+      compareOutput.hidden = false;
+      renderCompareMetadata({
+        metadataA: { status: "idle", reachable: false, sampling_status: "metadata_only", error_code: "run_required" },
+        metadataB: { status: "idle", reachable: false, sampling_status: "metadata_only", error_code: "run_required" },
+        lang
+      });
     };
 
     const resetCardOutput = () => {
@@ -2288,12 +2319,13 @@
     endInput.value = urlState.end;
     presetInput.value = urlState.preset;
     framesInput.value = initialFrames;
-    if (compareBboxInput) compareBboxInput.value = urlState.bbox;
-    if (compareStartInput) compareStartInput.value = urlState.start;
-    if (compareEndInput) compareEndInput.value = urlState.end;
-    if (startInputB) startInputB.value = urlState.startB;
-    if (endInputB) endInputB.value = urlState.endB;
-    if (comparePresetInput) comparePresetInput.value = urlState.preset;
+    const compareInitialState = modeSelect.value === "compare" ? urlState : COMPARE_VALID_EXAMPLE;
+    if (compareBboxInput) compareBboxInput.value = compareInitialState.bbox;
+    if (compareStartInput) compareStartInput.value = compareInitialState.start;
+    if (compareEndInput) compareEndInput.value = compareInitialState.end;
+    if (startInputB) startInputB.value = compareInitialState.startB;
+    if (endInputB) endInputB.value = compareInitialState.endB;
+    if (comparePresetInput) comparePresetInput.value = compareInitialState.preset;
     if (latInput && lonInput) {
       latInput.value = urlState.lat;
       lonInput.value = urlState.lon;
@@ -2322,6 +2354,8 @@
       }
       if (currentMode !== "compare") {
         resetCompareOutput();
+      } else if (!compareState) {
+        showCompareIdleMetadata();
       }
       if (currentMode !== "storm") {
         resetStormReplay();
@@ -2482,12 +2516,7 @@
     } else {
       setIdleStatus(initialLang);
       if (modeSelect.value === "compare") {
-        if (compareOutput) compareOutput.hidden = false;
-        renderCompareMetadata({
-          metadataA: { status: "idle", reachable: false, sampling_status: "metadata_only", error_code: "run_required", message: initialLang === "ja" ? "Run compareを押すとPeriod A/BのGSMaP metadata到達性を確認します。" : "Press Run compare to check GSMaP metadata reachability for Period A/B.", guidance: initialLang === "ja" ? "無効または長すぎるURL期間では自動実行しません。" : "Invalid or too-long URL ranges are not auto-run." },
-          metadataB: { status: "idle", reachable: false, sampling_status: "metadata_only", error_code: "run_required", message: initialLang === "ja" ? "Run compareを押すとPeriod A/BのGSMaP metadata到達性を確認します。" : "Press Run compare to check GSMaP metadata reachability for Period A/B.", guidance: initialLang === "ja" ? "無効または長すぎるURL期間では自動実行しません。" : "Invalid or too-long URL ranges are not auto-run." },
-          lang: initialLang
-        });
+        showCompareIdleMetadata(initialLang);
       }
     }
   });
