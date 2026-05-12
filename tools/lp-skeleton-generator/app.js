@@ -1,70 +1,78 @@
-/* ================================
- * NicheWorks tool template app.js
- * - JP/EN toggle (data-i18n)
- * - Utilities: copy, downloadText, debounce
- * ================================ */
-
 (() => {
   "use strict";
 
-  // ----------------------------
-  // i18n (required)
-  // ----------------------------
-  const i18nNodes = () => Array.from(document.querySelectorAll("[data-i18n]"));
-  const langButtons = () => Array.from(document.querySelectorAll(".nw-lang-switch button"));
+  const q = (s) => document.querySelector(s);
+  const qa = (s) => Array.from(document.querySelectorAll(s));
+  const value = (id) => (document.getElementById(id)?.value || "").trim();
+  const lines = (id) => (document.getElementById(id)?.value || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
 
-  const getDefaultLang = () => {
-    const browserLang = (navigator.language || "").toLowerCase();
-    return browserLang.startsWith("ja") ? "ja" : "en";
-  };
+  const escapeHtml = (input) => String(input)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 
-  const applyLang = (lang) => {
-    i18nNodes().forEach((el) => {
-      el.style.display = (el.dataset.i18n === lang) ? "" : "none";
+  const setLang = (lang) => {
+    qa("[data-i18n]").forEach((el) => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
     });
-    langButtons().forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    qa(".nw-lang-switch button").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.lang === lang);
+    });
     document.documentElement.lang = lang;
     try { localStorage.setItem("nw_lang", lang); } catch (_) {}
   };
 
   const initLang = () => {
-    let lang = getDefaultLang();
+    let lang = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
     try {
       const saved = localStorage.getItem("nw_lang");
       if (saved === "ja" || saved === "en") lang = saved;
     } catch (_) {}
-    langButtons().forEach((btn) => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
-    applyLang(lang);
+    qa(".nw-lang-switch button").forEach((btn) => {
+      btn.addEventListener("click", () => setLang(btn.dataset.lang));
+    });
+    setLang(lang);
   };
 
-  // ----------------------------
-  // Utilities
-  // ----------------------------
-  const copyToClipboard = async (text) => {
+  const toast = (message) => {
+    let el = document.getElementById("nwToast");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "nwToast";
+      el.className = "nw-toast";
+      el.setAttribute("role", "status");
+      document.body.appendChild(el);
+    }
+    el.textContent = message;
+    el.classList.add("show");
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => el.classList.remove("show"), 2200);
+  };
+
+  const copyText = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
       return true;
     } catch (_) {
-      // Fallback
       const ta = document.createElement("textarea");
       ta.value = text;
       ta.style.position = "fixed";
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try {
-        document.execCommand("copy");
-        return true;
-      } catch (e) {
-        return false;
-      } finally {
-        document.body.removeChild(ta);
-      }
+      try { return document.execCommand("copy"); }
+      catch (e) { return false; }
+      finally { document.body.removeChild(ta); }
     }
   };
 
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const downloadText = (filename, text, type) => {
+    const blob = new Blob([text], { type: type || "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -75,131 +83,167 @@
     setTimeout(() => URL.revokeObjectURL(url), 500);
   };
 
-  const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
-    };
-  };
+  const list = (items, fallback) => items.length
+    ? items.map((item) => `- ${item}`).join("\n")
+    : `- ${fallback}`;
 
-  // Expose minimal helpers for tool scripts (Codex can reuse)
-  window.NW = {
-    applyLang,
-    copyToClipboard,
-    downloadText,
-    debounce,
-    hasPro: () => {
-      try { return !!localStorage.getItem("nw_pro_key"); } catch (_) { return false; }
-    }
-  };
+  const htmlList = (items, fallback) => (items.length ? items : [fallback])
+    .map((item) => `      <li>${escapeHtml(item)}</li>`)
+    .join("\n");
 
-  // ----------------------------
-  // Boot
-  // ----------------------------
-  document.addEventListener("DOMContentLoaded", () => {
-    initLang();
-
-    // Tool-specific init should be appended below by Codex per tool.
-    // Example:
-    // initTool();
-  });
-})();
-
-(() => {
-  "use strict";
-
-  const buildOutput = () => {
-    const product = document.getElementById("productName").value.trim() || "(商品名)";
-    const target = document.getElementById("target").value.trim() || "(ターゲット)";
-    const benefits = document.getElementById("benefits").value
-      .split("\n")
-      .map((line) => line.trim())
-      .filter(Boolean);
-    const price = document.getElementById("price").value.trim();
-    const proof = document.getElementById("proof").value.trim();
-    const cta = document.getElementById("cta").value.trim() || "(CTA)";
-
-    const benefitList = benefits.length ? benefits.map((b) => `- ${b}`).join("\n") : "- ベネフィットを入力";
-    const benefitListEn = benefits.length ? benefits.map((b) => `- ${b}`).join("\n") : "- Add benefits";
+  const build = () => {
+    const product = value("productName") || "(商品・サービス名)";
+    const target = value("target") || "(ターゲット)";
+    const problem = value("problem") || "今の悩み・課題を提示";
+    const benefits = lines("benefits");
+    const differentiators = lines("differentiators");
+    const price = value("price");
+    const proof = value("proof");
+    const steps = lines("steps");
+    const faq = lines("faq");
+    const guarantee = value("guarantee");
+    const notes = value("notes");
+    const cta = value("cta") || "(CTA)";
 
     const jp = [
       `# ${product} LP骨子`,
-      "## 1. ヒーロー", "- キャッチ: " + product,
-      "- ターゲット: " + target,
-      "## 2. 課題・共感", "- 今の悩みを提示",
-      "## 3. ベネフィット", benefitList,
-      "## 4. 料金/プラン", price ? `- 価格: ${price}` : "- 価格は未入力",
-      "## 5. 実績/信頼", proof ? `- 証拠: ${proof}` : "- 実績・証拠を追加",
-      "## 6. CTA", `- ${cta}`
+      "", "## 1. Hero", `- キャッチ: ${product}`, `- ターゲット: ${target}`, `- CTA: ${cta}`,
+      "", "## 2. Problem / 課題", `- ${problem}`,
+      "", "## 3. Solution / 提案", `- ${product}で、上記の課題をどう軽くするかを説明する`,
+      "", "## 4. Benefits / ベネフィット", list(benefits, "ベネフィットを入力"),
+      "", "## 5. Differentiators / 差別化ポイント", list(differentiators, "競合との違いや選ばれる理由を入力"),
+      "", "## 6. Pricing / 料金", price ? `- 価格: ${price}` : "- 価格は未入力。公開前に税込/税別、期間、条件を確認する。",
+      "", "## 7. Proof / 信頼材料", proof ? `- 実績・証拠: ${proof}` : "- 導入事例、利用者の声、根拠資料などを追加する。数値は根拠がある場合のみ使う。",
+      "", "## 8. How it works / 導入手順", list(steps, "利用開始までの手順を入力"),
+      "", "## 9. FAQ", list(faq, "想定質問と回答を入力"),
+      "", "## 10. Guarantee / 返金・保証条件", guarantee ? `- ${guarantee}` : "- 条件がある場合のみ、対象範囲・期限・例外を明記する。",
+      "", "## 11. Notes / 対象外・注意事項", notes ? `- ${notes}` : "- 対象外、注意事項、業種規制、広告媒体ポリシー確認を記載する。",
+      "", "## 12. CTA", `- ${cta}`,
+      "", "## 公開前チェック", "- 数値実績に根拠があるか", "- 価格表示が正しいか", "- 効果効能を断定していないか", "- 比較表現に根拠があるか", "- 返金/保証条件が明確か", "- CTAの遷移先が正しいか", "- 業種規制と広告媒体ポリシーを確認したか"
     ].join("\n");
 
     const en = [
       `# ${product} LP Skeleton`,
-      "## 1. Hero", `- Headline: ${product}`,
-      `- Audience: ${target}`,
-      "## 2. Problem / Empathy", "- State the pain",
-      "## 3. Benefits", benefitListEn,
-      "## 4. Pricing", price ? `- Price: ${price}` : "- Pricing not set",
-      "## 5. Proof", proof ? `- Proof: ${proof}` : "- Add proof",
-      "## 6. CTA", `- ${cta}`
+      "", "## 1. Hero", `- Headline: ${product}`, `- Audience: ${target}`, `- CTA: ${cta}`,
+      "", "## 2. Problem", `- ${problem}`,
+      "", "## 3. Solution", `- Explain how ${product} helps reduce the problem above.`,
+      "", "## 4. Benefits", list(benefits, "Add benefits"),
+      "", "## 5. Differentiators", list(differentiators, "Add what makes this different"),
+      "", "## 6. Pricing", price ? `- Price: ${price}` : "- Pricing not set. Check tax, period, and conditions before publishing.",
+      "", "## 7. Proof", proof ? `- Proof: ${proof}` : "- Add proof only when substantiated.",
+      "", "## 8. How it works", list(steps, "Add onboarding or usage steps"),
+      "", "## 9. FAQ", list(faq, "Add expected questions and answers"),
+      "", "## 10. Guarantee / Refund terms", guarantee ? `- ${guarantee}` : "- If applicable, clarify scope, deadline, and exceptions.",
+      "", "## 11. Notes / Exclusions", notes ? `- ${notes}` : "- Add exclusions, cautions, regulations, or ad policy checks.",
+      "", "## 12. CTA", `- ${cta}`,
+      "", "## Pre-publish checklist", "- Are numerical claims substantiated?", "- Is pricing accurate?", "- Are effect or performance claims not overstated?", "- Are comparison claims supported?", "- Are refund or guarantee terms clear?", "- Does the CTA link to the correct destination?", "- Have regulations and ad policies been checked?"
     ].join("\n");
 
     const html = [
-      `<section>`,
-      `  <h1>${product}</h1>`,
-      `  <p>${target}</p>`,
-      `</section>`,
-      `<section>`,
-      `  <h2>Benefits</h2>`,
-      `  <ul>`,
-      ...benefits.map((b) => `    <li>${b}</li>`),
-      `  </ul>`,
-      `</section>`,
-      `<section>`,
-      `  <h2>CTA</h2>`,
-      `  <button>${cta}</button>`,
-      `</section>`
+      "<!doctype html>",
+      "<html lang=\"ja\">",
+      "<head>",
+      "  <meta charset=\"utf-8\">",
+      "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+      `  <title>${escapeHtml(product)} LP Skeleton</title>`,
+      "</head>",
+      "<body>",
+      "  <main>",
+      "    <section>",
+      `      <h1>${escapeHtml(product)}</h1>`,
+      `      <p>${escapeHtml(target)}</p>`,
+      `      <p><a href=\"#cta\">${escapeHtml(cta)}</a></p>`,
+      "    </section>",
+      "    <section>",
+      "      <h2>Problem</h2>",
+      `      <p>${escapeHtml(problem)}</p>`,
+      "    </section>",
+      "    <section>",
+      "      <h2>Benefits</h2>",
+      "      <ul>",
+      htmlList(benefits, "Add benefits"),
+      "      </ul>",
+      "    </section>",
+      "    <section>",
+      "      <h2>Differentiators</h2>",
+      "      <ul>",
+      htmlList(differentiators, "Add differentiators"),
+      "      </ul>",
+      "    </section>",
+      "    <section>",
+      "      <h2>Pricing / Proof</h2>",
+      `      <p>${escapeHtml(price || "Pricing not set.")}</p>`,
+      `      <p>${escapeHtml(proof || "Add proof only when substantiated.")}</p>`,
+      "    </section>",
+      "    <section>",
+      "      <h2>How it works</h2>",
+      "      <ol>",
+      htmlList(steps, "Add onboarding or usage steps"),
+      "      </ol>",
+      "    </section>",
+      "    <section>",
+      "      <h2>FAQ</h2>",
+      "      <ul>",
+      htmlList(faq, "Add expected questions and answers"),
+      "      </ul>",
+      "    </section>",
+      "    <section>",
+      "      <h2>Notes</h2>",
+      `      <p>${escapeHtml(guarantee || "Clarify guarantee or refund terms when applicable.")}</p>`,
+      `      <p>${escapeHtml(notes || "Check regulations and ad policies before publishing.")}</p>`,
+      "    </section>",
+      "    <section id=\"cta\">",
+      `      <button type=\"button\">${escapeHtml(cta)}</button>`,
+      "    </section>",
+      "  </main>",
+      "</body>",
+      "</html>"
     ].join("\n");
 
-    return { output: `${jp}\n\n---\n\n${en}`, markdown: `${jp}\n\n---\n\n${en}`, html };
+    return { text: `${jp}\n\n---\n\n${en}`, markdown: `${jp}\n\n---\n\n${en}`, html };
+  };
+
+  let generated = null;
+
+  const ensureGenerated = () => {
+    if (!generated) {
+      toast("入力後に生成してください / Click Generate first");
+      return false;
+    }
+    return true;
   };
 
   const initTool = () => {
     const output = document.getElementById("output");
-    const generate = () => {
-      const { output: text } = buildOutput();
-      output.value = text;
-    };
+    output.value = "";
 
-    const refreshPro = () => {
-      const hasPro = window.NW.hasPro();
-      document.querySelectorAll("[data-pro-only]").forEach((el) => {
-        el.style.display = hasPro ? "" : "none";
-      });
-      document.querySelectorAll("[data-pro-lock]").forEach((el) => {
-        el.style.display = hasPro ? "none" : "";
-      });
-    };
-
-    document.getElementById("generate").addEventListener("click", generate);
-    document.getElementById("copyAll").addEventListener("click", () => window.NW.copyToClipboard(output.value));
-
-    document.getElementById("downloadMd").addEventListener("click", () => {
-      if (!window.NW.hasPro()) return;
-      const { markdown } = buildOutput();
-      window.NW.downloadText("lp-skeleton.md", markdown);
+    q("#generate")?.addEventListener("click", () => {
+      generated = build();
+      output.value = generated.text;
+      toast("生成しました / Generated");
     });
 
-    document.getElementById("downloadHtml").addEventListener("click", () => {
-      if (!window.NW.hasPro()) return;
-      const { html } = buildOutput();
-      window.NW.downloadText("lp-skeleton.html", html);
+    q("#copyAll")?.addEventListener("click", async () => {
+      if (!ensureGenerated() || !output.value.trim()) return;
+      const ok = await copyText(output.value);
+      toast(ok ? "コピーしました / Copied" : "コピーに失敗しました / Copy failed");
     });
 
-    refreshPro();
-    generate();
+    q("#downloadMd")?.addEventListener("click", () => {
+      if (!ensureGenerated()) return;
+      downloadText("lp-skeleton.md", generated.markdown, "text/markdown;charset=utf-8");
+      toast("Markdownを保存しました / Markdown saved");
+    });
+
+    q("#downloadHtml")?.addEventListener("click", () => {
+      if (!ensureGenerated()) return;
+      downloadText("lp-skeleton.html", generated.html, "text/html;charset=utf-8");
+      toast("HTMLを保存しました / HTML saved");
+    });
   };
 
-  document.addEventListener("DOMContentLoaded", initTool);
+  document.addEventListener("DOMContentLoaded", () => {
+    initLang();
+    initTool();
+  });
 })();
