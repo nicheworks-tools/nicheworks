@@ -121,7 +121,7 @@
           <li>compare: A/B/diff cards and CSV outputs appear.</li>
           <li>card: a point preview and a mini time-series chart appear.</li>
         </ul>
-        <p class="hint">The storm metadata status can report real GSMaP metadata reachability, but the visible storm map preview is synthetic. Raster precipitation values are not sampled yet.</p>
+        <p class="hint">The storm metadata status can report real GSMaP metadata reachability, but the visible storm map preview is synthetic. low supports up to 14 days; mid supports up to 7 days. Raster precipitation values are not sampled yet.</p>
       </div>
     </section>
 
@@ -133,6 +133,7 @@
         <ul class="bullet">
           <li>Storm mode calls <code>/api/earth-map-suite/precipitation</code> and shows real GSMaP metadata reachability.</li>
           <li>The panel displays transparency fields such as dataset, license, source, matched_dates, item_count, asset_count, and sampling_status.</li>
+          <li>Endpoint limits are low up to 14 days and mid up to 7 days.</li>
           <li>Raster precipitation values are not sampled yet; summary mean/max/min are not shown as real values.</li>
           <li>The storm map preview, CSV frame values, compare, and card remain synthetic placeholders and are not observed precipitation.</li>
         </ul>
@@ -151,7 +152,9 @@
 Range: 2025-08-01 → 2025-08-03
 Preset: low
 Frames: 24
-Target area: Tokyo coastal ward</pre>
+Target area: Tokyo area
+Layers: Terrain / main roads / shelters
+Note: Synthetic preview / not observed precipitation</pre>
           </div>
           <div class="example-card">
             <h3 class="example-title">compare example</h3>

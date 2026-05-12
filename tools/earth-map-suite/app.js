@@ -790,9 +790,9 @@
           end: "2025-08-03",
           preset: "low",
           frames: "24",
-          area: "関東地方・東京周辺",
+          area: "東京周辺",
           layers: "地形 / 主要道路 / 避難所",
-          notes: "夜間モードでの視認性を確認"
+          notes: "Synthetic preview / not observed precipitation"
         },
         en: {
           mode: "storm",
@@ -801,9 +801,9 @@
           end: "2025-08-03",
           preset: "low",
           frames: "24",
-          area: "Tokyo-area Kanto bbox",
+          area: "Tokyo area",
           layers: "Terrain / main roads / shelters",
-          notes: "Check readability in night mode"
+          notes: "Synthetic preview / not observed precipitation"
         }
       },
       compare: {
@@ -1377,7 +1377,7 @@
       loadingTitle: lang === "ja" ? "GSMaPメタデータ確認中" : "Checking GSMaP metadata",
       loadingBody: lang === "ja" ? "実データのメタデータ到達性を確認しています。ラスター降水量値は取得しません。" : "Checking real-data metadata reachability. Raster precipitation values are not fetched.",
       okTitle: "Status: GSMaP metadata reachable",
-      okBody: lang === "ja" ? "メタデータは実データ由来です。ただし、ラスター降水量の値はまだサンプリングしていません。下のstorm表示は合成プレビューで、観測降水量ではありません。" : "Metadata is real. Raster precipitation values are not sampled yet; the storm map below remains a synthetic preview and not observed precipitation.",
+      okBody: lang === "ja" ? "メタデータは実データ由来です。preset上限は low が14日まで、mid が7日までです。ただし、ラスター降水量の値はまだサンプリングしていません。下のstorm表示は合成プレビューで、観測降水量ではありません。" : "Metadata is real. Preset limits: low up to 14 days, mid up to 7 days. Raster precipitation values are not sampled yet; the storm map below remains a synthetic preview and not observed precipitation.",
       errorTitle: "Real metadata unavailable",
       errorBody: lang === "ja" ? "エンドポイントのエラーを表示しています。合成プレビューを実データとして扱わないでください。" : "Endpoint error is shown below. Do not treat the synthetic preview as real data.",
       labels: {
