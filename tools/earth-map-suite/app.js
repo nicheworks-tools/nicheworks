@@ -908,7 +908,7 @@
       }
       const [minLon, minLat, maxLon, maxLat] = nums;
       if (minLon < -180 || maxLon > 180 || minLat < -90 || maxLat > 90 || minLon >= maxLon || minLat >= maxLat) {
-        return { error: { code: ERROR_CODES.missing_params, field: "bbox" } };
+        return { error: { code: ERROR_CODES.invalid_bbox, field: "bbox" } };
       }
       const spanLon = Math.abs(maxLon - minLon);
       const spanLat = Math.abs(maxLat - minLat);
@@ -1355,10 +1355,23 @@
       return `${PRECIPITATION_ENDPOINT}?${params.toString()}`;
     };
 
-    const renderMetadataRows = (rows) => rows.map(([label, value]) => `
-      <dt>${escapeHTML(label)}</dt>
-      <dd>${escapeHTML(value ?? "-")}</dd>
-    `).join("");
+    const appendText = (parent, tagName, text, className) => {
+      const node = document.createElement(tagName);
+      if (className) node.className = className;
+      node.textContent = text;
+      parent.appendChild(node);
+      return node;
+    };
+
+    const renderMetadataRows = (rows) => {
+      const list = document.createElement("dl");
+      list.className = "storm-metadata-list";
+      rows.forEach(([label, value]) => {
+        appendText(list, "dt", label);
+        appendText(list, "dd", value ?? "-");
+      });
+      return list;
+    };
 
     const getMetadataCopy = (lang) => ({
       loadingTitle: lang === "ja" ? "GSMaPメタデータ確認中" : "Checking GSMaP metadata",
@@ -1389,12 +1402,11 @@
       if (!stormMetadataPanel || !stormMetadataBody) return;
       const copy = getMetadataCopy(lang);
       stormMetadataPanel.hidden = false;
-      stormMetadataPanel.classList.remove("metadata-ok", "metadata-error");
-      stormMetadataPanel.classList.add("metadata-loading");
-      stormMetadataBody.innerHTML = `
-        <div class="storm-metadata-state">${escapeHTML(copy.loadingTitle)}</div>
-        <p>${escapeHTML(copy.loadingBody)}</p>
-      `;
+      stormMetadataPanel.classList.remove("metadata-ok", "metadata-error", "status-success", "status-error");
+      stormMetadataPanel.classList.add("metadata-loading", "status-loading");
+      stormMetadataBody.replaceChildren();
+      appendText(stormMetadataBody, "div", copy.loadingTitle, "storm-metadata-state");
+      appendText(stormMetadataBody, "p", copy.loadingBody);
     };
 
     const renderStormMetadata = (metadata, lang) => {
@@ -1402,8 +1414,8 @@
       const copy = getMetadataCopy(lang);
       const labels = copy.labels;
       stormMetadataPanel.hidden = false;
-      stormMetadataPanel.classList.remove("metadata-loading", "metadata-ok", "metadata-error");
-      stormMetadataPanel.classList.add(metadata.reachable ? "metadata-ok" : "metadata-error");
+      stormMetadataPanel.classList.remove("metadata-loading", "metadata-ok", "metadata-error", "status-loading", "status-success", "status-error");
+      stormMetadataPanel.classList.add(metadata.reachable ? "metadata-ok" : "metadata-error", metadata.reachable ? "status-success" : "status-error");
       if (metadata.reachable) {
         const rows = [
           [labels.dataset, metadata.dataset_id],
@@ -1417,11 +1429,10 @@
           [labels.assetCount, metadata.asset_count],
           [labels.samplingStatus, metadata.sampling_status]
         ];
-        stormMetadataBody.innerHTML = `
-          <div class="storm-metadata-state">${escapeHTML(copy.okTitle)}</div>
-          <p>${escapeHTML(copy.okBody)}</p>
-          <dl class="storm-metadata-list">${renderMetadataRows(rows)}</dl>
-        `;
+        stormMetadataBody.replaceChildren();
+        appendText(stormMetadataBody, "div", copy.okTitle, "storm-metadata-state");
+        appendText(stormMetadataBody, "p", copy.okBody);
+        stormMetadataBody.appendChild(renderMetadataRows(rows));
         return;
       }
       const rows = [
@@ -1430,11 +1441,23 @@
         [labels.message, metadata.message || "-"],
         [labels.guidance, metadata.guidance || "-"]
       ];
-      stormMetadataBody.innerHTML = `
-        <div class="storm-metadata-state">${escapeHTML(copy.errorTitle)}</div>
-        <p>${escapeHTML(copy.errorBody)}</p>
-        <dl class="storm-metadata-list">${renderMetadataRows(rows)}</dl>
-      `;
+      stormMetadataBody.replaceChildren();
+      appendText(stormMetadataBody, "div", copy.errorTitle, "storm-metadata-state");
+      appendText(stormMetadataBody, "p", copy.errorBody);
+      stormMetadataBody.appendChild(renderMetadataRows(rows));
+    };
+
+    const buildValidationMetadataError = (error, lang) => {
+      const message = buildErrorMessage(error, lang);
+      return {
+        reachable: false,
+        data_type: "unavailable",
+        status: "error",
+        sampling_status: "metadata_only",
+        error_code: error?.code || ERROR_CODES.unknown,
+        message: message.body,
+        guidance: message.fix
+      };
     };
 
     const trackMetadataStatus = ({ metadata, start, end, bbox }) => {
@@ -1834,6 +1857,13 @@
       const validation = validateInputs(values);
       if (validation.error) {
         setErrorStatus(validation.error, activeLang);
+        if (values.mode === "storm") {
+          stormMetadataRequestId += 1;
+          stormState = null;
+          if (stormReplay) stormReplay.hidden = true;
+          if (stormStatus) stormStatus.textContent = "";
+          renderStormMetadata(buildValidationMetadataError(validation.error, activeLang), activeLang);
+        }
         trackEvent("tool_error", {
           ...getEventContext(),
           error_code: validation.error.code || ERROR_CODES.unknown,
