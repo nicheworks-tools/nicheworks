@@ -119,9 +119,9 @@
         <ul class="bullet">
           <li>storm: a GSMaP real metadata status panel appears, followed by a separate synthetic frame slider and cumulative view.</li>
           <li>compare: a GSMaP metadata-only reachability panel for Period A and Period B appears separately from A/B/diff synthetic preview cards and CSV outputs.</li>
-          <li>card: a point preview and a mini time-series chart appear.</li>
+          <li>card: a GSMaP metadata reachability panel appears for a small bbox around the selected point, separately from the synthetic preview point card, mini chart, and summary.</li>
         </ul>
-        <p class="hint">The storm / compare metadata status can report real GSMaP metadata reachability, but visible map previews are synthetic. In compare, A/B/Diff remain synthetic preview; only metadata reachability is checked as real data. Raster precipitation values are not sampled yet.</p>
+        <p class="hint">The storm / compare / card metadata status can report real GSMaP metadata reachability, but visible maps, point cards, mini charts, and summaries are synthetic preview. Only metadata reachability is checked as real data. Raster precipitation values are not sampled yet.</p>
       </div>
     </section>
 
@@ -133,10 +133,11 @@
         <ul class="bullet">
           <li>Storm mode calls <code>/api/earth-map-suite/precipitation</code> once and shows real GSMaP metadata reachability.</li>
           <li>Compare mode calls the same endpoint separately for Period A and Period B and shows metadata-only reachability only.</li>
+          <li>Card mode builds a small bbox around the selected latitude/longitude, calls the same endpoint, and shows metadata-only reachability only.</li>
           <li>The panel displays transparency fields such as dataset, license, source, matched_dates, item_count, asset_count, and sampling_status.</li>
           <li>Endpoint limits are low up to 14 days and mid up to 7 days.</li>
           <li>Raster precipitation values are not sampled yet; summary mean/max/min are not shown as real values.</li>
-          <li>The storm map preview, CSV frame values, compare A/B/Diff, and card remain synthetic placeholders and are not observed precipitation.</li>
+          <li>The storm map preview, CSV frame values, compare A/B/Diff, and Card point card/mini chart/summary remain synthetic preview and are not observed precipitation.</li>
         </ul>
       </div>
     </section>
@@ -168,9 +169,10 @@ Note: A/B/Diff are synthetic preview; only metadata reachability is real-data ch
           <div class="example-card">
             <h3 class="example-title">card example</h3>
             <pre class="example-code">Lat/Lon: 35.68, 139.76
-Range: 2024-09-01 → 2024-09-05
-Preset: detail
-Note: confirm twilight display readability</pre>
+Range: 2025-08-01 → 2025-08-03
+Preset: low
+Metadata bbox approx: 139.51,35.43,140.01,35.93
+Note: point card, mini chart, and summary remain synthetic preview; only metadata reachability is real-data checked</pre>
           </div>
         </div>
       </div>

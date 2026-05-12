@@ -430,14 +430,28 @@
     return { series, total, max, avg, preset: normalizedPreset };
   };
 
-  const buildCardCsv = ({ lat, lon, start, end, preset, series }) => {
+  const buildCardCsv = ({ lat, lon, start, end, preset, series, metadata = {} }) => {
+    const escapeCsvValue = (value) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+    const realMetadataStatus = metadata?.reachable ? "reachable" : (metadata?.status === "loading" ? "pending" : "unavailable");
+    const metadataBbox = Array.isArray(metadata?.metadata_bbox) ? metadata.metadata_bbox.join(",") : (metadata?.metadata_bbox || "");
     const lines = [
-      "lat,lon,start,end,preset",
-      `${lat},${lon},${start},${end},${preset}`,
-      "date,precip_mm"
+      "lat,lon,start,end,preset,data_type,real_metadata_status,metadata_bbox,dataset_id,sampling_status",
+      [
+        lat,
+        lon,
+        start,
+        end,
+        preset,
+        "synthetic_preview",
+        realMetadataStatus,
+        escapeCsvValue(metadataBbox),
+        escapeCsvValue(metadata?.reachable ? metadata.dataset_id : ""),
+        metadata?.sampling_status || "metadata_only"
+      ].join(","),
+      "data_type,date,synthetic_preview_mm"
     ];
     series.forEach((item) => {
-      lines.push(`${item.date},${item.value.toFixed(2)}`);
+      lines.push(`synthetic_preview,${item.date},${item.value.toFixed(2)}`);
     });
     return lines.join("\n");
   };
@@ -578,6 +592,8 @@
     const compareMetrics = document.getElementById("compareMetrics");
     const compareMetadataPanel = document.getElementById("compareMetadataPanel");
     const compareMetadataBody = document.getElementById("compareMetadataBody");
+    const cardMetadataPanel = document.getElementById("cardMetadataPanel");
+    const cardMetadataBody = document.getElementById("cardMetadataBody");
     const compareCanvasA = document.getElementById("compareCanvasA");
     const compareCanvasB = document.getElementById("compareCanvasB");
     const compareCanvasDiff = document.getElementById("compareCanvasDiff");
@@ -654,6 +670,16 @@
     ].filter(Boolean);
 
     const getDefaultMode = () => "storm";
+    const CARD_VALID_EXAMPLE = {
+      mode: "card",
+      bbox: "",
+      lat: "35.68",
+      lon: "139.76",
+      start: "2025-08-01",
+      end: "2025-08-03",
+      preset: "low",
+      frames: ""
+    };
     const COMPARE_VALID_EXAMPLE = {
       mode: "compare",
       bbox: "139.5,35.4,140.0,35.9",
@@ -699,6 +725,7 @@
     let stormState = null;
     let stormMetadataRequestId = 0;
     let compareMetadataRequestId = 0;
+    let cardMetadataRequestId = 0;
     let compareState = null;
     let cardState = null;
 
@@ -728,11 +755,15 @@
       };
       const hasExplicitStormParams = Boolean(bbox || start || end || preset || frames);
       const hasExplicitCompareParams = Boolean(bbox || start || end || startB || endB || preset);
+      const hasExplicitCardParams = Boolean(lat || lon || start || end || preset);
       if (!state.mode && !hasExplicitStormParams) {
         return { ...state, ...STORM_VALID_EXAMPLE };
       }
       if (state.mode === "compare" && !hasExplicitCompareParams) {
         return { ...state, ...COMPARE_VALID_EXAMPLE };
+      }
+      if (state.mode === "card" && !hasExplicitCardParams) {
+        return { ...state, ...CARD_VALID_EXAMPLE };
       }
       if ((state.mode === "storm" || !state.mode) && isLegacyStormDefault(state)) {
         return { ...state, ...STORM_VALID_EXAMPLE };
@@ -872,30 +903,16 @@
       },
       card: {
         ja: {
-          mode: "card",
-          bbox: "",
-          lat: "38.32",
-          lon: "141.50",
-          start: "2024-06-01",
-          end: "2024-06-07",
-          preset: "detail",
-          frames: "",
-          area: "仙台湾沿岸",
-          layers: "避難所 / 防潮堤 / 高低差",
-          notes: "要点をカードで共有する想定"
+          ...CARD_VALID_EXAMPLE,
+          area: "東京周辺",
+          layers: "GSMaP metadata-only / synthetic preview",
+          notes: "Cardの地点カード/ミニチャート/サマリーは合成プレビューです。metadata到達性だけを確認します。"
         },
         en: {
-          mode: "card",
-          bbox: "",
-          lat: "38.32",
-          lon: "141.50",
-          start: "2024-06-01",
-          end: "2024-06-07",
-          preset: "detail",
-          frames: "",
-          area: "Sendai Bay coast",
-          layers: "Shelters / seawalls / elevation",
-          notes: "Share highlights in card format"
+          ...CARD_VALID_EXAMPLE,
+          area: "Tokyo area",
+          layers: "GSMaP metadata-only / synthetic preview",
+          notes: "Point card, mini chart, and summary remain synthetic preview; only metadata reachability is checked."
         }
       }
     };
@@ -1391,6 +1408,35 @@
       return `${PRECIPITATION_ENDPOINT}?${params.toString()}`;
     };
 
+    const CARD_BBOX_DELTAS = { low: 0.25, mid: 0.15, detail: 0.10 };
+
+    const formatBboxNumber = (value) => Number(value.toFixed(4)).toString();
+
+    const buildCardMetadataBbox = ({ lat, lon, preset }) => {
+      const normalizedPreset = (preset || "low").toLowerCase();
+      const delta = CARD_BBOX_DELTAS[normalizedPreset] ?? CARD_BBOX_DELTAS.low;
+      let minLon = clamp(lon - delta, -180, 180);
+      let maxLon = clamp(lon + delta, -180, 180);
+      let minLat = clamp(lat - delta, -90, 90);
+      let maxLat = clamp(lat + delta, -90, 90);
+
+      if (minLon >= maxLon) {
+        minLon = clamp(lon - 0.0001, -180, 180);
+        maxLon = clamp(lon + 0.0001, -180, 180);
+      }
+      if (minLat >= maxLat) {
+        minLat = clamp(lat - 0.0001, -90, 90);
+        maxLat = clamp(lat + 0.0001, -90, 90);
+      }
+
+      const values = [minLon, minLat, maxLon, maxLat];
+      return {
+        values,
+        bbox: values.map(formatBboxNumber).join(","),
+        area: Math.max(0, (maxLon - minLon) * (maxLat - minLat))
+      };
+    };
+
     const appendText = (parent, tagName, text, className) => {
       const node = document.createElement(tagName);
       if (className) node.className = className;
@@ -1702,6 +1748,140 @@
       trackCompareMetadataStatus({ metadataA, metadataB, startA, endA, startB, endB, bbox });
     };
 
+
+    const getCardMetadataCopy = (lang) => {
+      const base = getMetadataCopy(lang);
+      return {
+        ...base,
+        subtitle: lang === "ja"
+          ? "Card modeでは選択地点周辺のGSMaP metadata到達性だけを確認します。ラスター降水量値はまだサンプリングしていません。地点カード、ミニチャート、サマリーは合成プレビューです。"
+          : "Card mode checks GSMaP metadata reachability around the selected point. Raster precipitation values are not sampled; point chart and summary remain synthetic preview.",
+        loadingTitle: lang === "ja" ? "選択地点周辺のGSMaP metadataを確認中" : "Checking GSMaP metadata near selected point",
+        overallOk: "Status: GSMaP metadata reachable near selected point",
+        overallError: "Real metadata unavailable",
+        validationTitle: lang === "ja" ? "Card validation error" : "Card validation error",
+        validationBody: lang === "ja" ? "Card入力だけを検証しました。storm/compare入力は検証していません。" : "Only Card fields were validated. Storm/Compare fields were not validated.",
+        labels: {
+          ...base.labels,
+          overallStatus: "overall status",
+          metadataBbox: "metadata bbox used"
+        }
+      };
+    };
+
+    const renderCardMetadata = ({ metadata, lang, validationError = null }) => {
+      if (!cardMetadataPanel || !cardMetadataBody) return;
+      const copy = getCardMetadataCopy(lang);
+      const labels = copy.labels;
+      const source = validationError ? buildValidationMetadataError(validationError, lang) : (metadata || { status: "idle", reachable: false, sampling_status: "metadata_only" });
+      const loading = source.status === "loading";
+      const reachable = Boolean(source.reachable);
+      cardMetadataPanel.hidden = false;
+      cardMetadataPanel.classList.remove("metadata-loading", "metadata-ok", "metadata-error", "status-loading", "status-success", "status-error");
+      cardMetadataPanel.classList.add(
+        loading ? "metadata-loading" : (reachable ? "metadata-ok" : "metadata-error"),
+        loading ? "status-loading" : (reachable ? "status-success" : "status-error")
+      );
+      cardMetadataBody.replaceChildren();
+
+      if (validationError) {
+        appendText(cardMetadataBody, "div", copy.validationTitle, "storm-metadata-state");
+        appendText(cardMetadataBody, "p", copy.validationBody);
+        cardMetadataBody.appendChild(renderMetadataRows([
+          [labels.overallStatus, copy.overallError],
+          [labels.errorCode, source.error_code],
+          [labels.message, source.message],
+          [labels.guidance, source.guidance],
+          [labels.samplingStatus, source.sampling_status]
+        ]));
+        return;
+      }
+
+      if (loading) {
+        appendText(cardMetadataBody, "div", copy.loadingTitle, "storm-metadata-state");
+        appendText(cardMetadataBody, "p", copy.subtitle);
+        cardMetadataBody.appendChild(renderMetadataRows([
+          [labels.overallStatus, copy.loadingTitle],
+          [labels.metadataBbox, source.metadata_bbox || "-"],
+          [labels.samplingStatus, source.sampling_status || "metadata_only"]
+        ]));
+        return;
+      }
+
+      appendText(cardMetadataBody, "div", reachable ? copy.overallOk : copy.overallError, "storm-metadata-state");
+      appendText(cardMetadataBody, "p", copy.subtitle);
+      const rows = [
+        [labels.overallStatus, reachable ? "GSMaP metadata reachable near selected point" : "Real metadata unavailable"],
+        [labels.metadataBbox, source.metadata_bbox || joinList(source.bbox)],
+        [labels.dataset, source.dataset_id],
+        [labels.band, source.band],
+        [labels.source, source.source],
+        [labels.license, source.license],
+        [labels.licenseStatus, source.license_status],
+        [labels.attribution, source.attribution],
+        [labels.matchedDates, joinList(source.matched_dates)],
+        [labels.itemCount, source.item_count],
+        [labels.assetCount, source.asset_count],
+        [labels.samplingStatus, source.sampling_status || "metadata_only"]
+      ];
+      if (!reachable) {
+        rows.push(
+          [labels.errorCode, source.error_code || "unknown"],
+          [labels.message, source.message || "-"],
+          [labels.guidance, source.guidance || "-"]
+        );
+      }
+      cardMetadataBody.appendChild(renderMetadataRows(rows));
+    };
+
+    const getCardBboxAreaBucket = (area) => {
+      if (!Number.isFinite(area)) return "unknown";
+      if (area <= 0.05) return "xs";
+      if (area <= 0.15) return "s";
+      if (area <= 0.30) return "m";
+      return "l";
+    };
+
+    const trackCardMetadataStatus = ({ metadata, start, end, bboxArea }) => {
+      trackEvent("earth_metadata_status", {
+        mode: "card",
+        status: metadata?.reachable ? "ok" : "error",
+        date_span_days: getDateSpanDays(start, end) || 0,
+        bbox_area_bucket: getCardBboxAreaBucket(bboxArea)
+      });
+    };
+
+    const loadCardMetadataStatus = async ({ bbox, bboxArea, start, end, preset }, lang, requestId) => {
+      if (!cardState || requestId !== cardMetadataRequestId) return;
+      const loadingMetadata = { status: "loading", reachable: false, sampling_status: "metadata_only", metadata_bbox: bbox };
+      cardState.realMetadata = loadingMetadata;
+      renderCardMetadata({ metadata: loadingMetadata, lang });
+      try {
+        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { headers: { accept: "application/json" } });
+        const payload = await response.json();
+        const metadata = { ...normalizeMetadataPayload(payload, response.ok, response.status), metadata_bbox: bbox };
+        if (!cardState || requestId !== cardMetadataRequestId) return;
+        cardState.realMetadata = metadata;
+        renderCardMetadata({ metadata, lang });
+        trackCardMetadataStatus({ metadata, start, end, bboxArea });
+      } catch (error) {
+        const metadata = {
+          reachable: false,
+          data_type: "unavailable",
+          status: "error",
+          sampling_status: "metadata_only",
+          metadata_bbox: bbox,
+          error_code: error?.name === "AbortError" ? ERROR_CODES.timeout : ERROR_CODES.upstream_fail,
+          message: error?.message || "Failed to retrieve GSMaP metadata.",
+          guidance: lang === "ja" ? "通信状況を確認して再実行してください。Cardの地点カード/ミニチャート/サマリーは合成プレビューです。" : "Check connectivity and run again. The Card point card, mini chart, and summary remain synthetic preview."
+        };
+        if (!cardState || requestId !== cardMetadataRequestId) return;
+        cardState.realMetadata = metadata;
+        renderCardMetadata({ metadata, lang });
+        trackCardMetadataStatus({ metadata, start, end, bboxArea });
+      }
+    };
+
     const setStormStatus = ({ rawFrames, frames, thinningStep, lang }) => {
       if (!stormStatus) return;
       if (!rawFrames || !frames) {
@@ -1897,11 +2077,18 @@
     };
 
     const resetCardOutput = () => {
+      cardMetadataRequestId += 1;
       if (cardOutput) {
         cardOutput.hidden = true;
       }
       if (cardSummary) {
         cardSummary.innerHTML = "";
+      }
+      if (cardMetadataPanel) {
+        cardMetadataPanel.hidden = true;
+      }
+      if (cardMetadataBody) {
+        cardMetadataBody.innerHTML = "";
       }
       cardState = null;
     };
@@ -1980,19 +2167,19 @@
           `<dd>${escapeHTML(preset)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>観測日数</dt>",
+          "<dt>日数（合成プレビュー）</dt>",
           `<dd>${series.length} 日</dd>`,
           "</div>",
           "<div>",
-          "<dt>合計 (mm)</dt>",
+          "<dt>合成合計 (mm相当)</dt>",
           `<dd>${format(total)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>平均 (mm)</dt>",
+          "<dt>合成平均 (mm相当)</dt>",
           `<dd>${format(avg)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>最大 (mm)</dt>",
+          "<dt>合成最大 (mm相当)</dt>",
           `<dd>${format(max)}</dd>`,
           "</div>",
           "<div>",
@@ -2012,19 +2199,19 @@
         `<dd>${escapeHTML(preset)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Days</dt>",
+        "<dt>Days (synthetic preview)</dt>",
         `<dd>${series.length} days</dd>`,
         "</div>",
         "<div>",
-        "<dt>Total (mm)</dt>",
+        "<dt>Synthetic total (mm equivalent)</dt>",
         `<dd>${format(total)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Average (mm)</dt>",
+        "<dt>Synthetic average (mm equivalent)</dt>",
         `<dd>${format(avg)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Max (mm)</dt>",
+        "<dt>Synthetic max (mm equivalent)</dt>",
         `<dd>${format(max)}</dd>`,
         "</div>",
         "<div>",
@@ -2046,12 +2233,26 @@
     const loadCardOutput = ({ lat, lon, start, end, preset }, lang) => {
       if (!cardOutput || !cardChart || !cardMapPreview) return;
       const data = buildPointTimeseries({ lat, lon, start, end, preset });
-      cardState = { ...data, lat, lon, start, end, preset };
+      const bboxInfo = buildCardMetadataBbox({ lat, lon, preset });
+      cardMetadataRequestId += 1;
+      const requestId = cardMetadataRequestId;
+      cardState = {
+        ...data,
+        lat,
+        lon,
+        start,
+        end,
+        preset,
+        metadataBbox: bboxInfo.bbox,
+        realMetadata: { status: "loading", reachable: false, sampling_status: "metadata_only", metadata_bbox: bboxInfo.bbox }
+      };
       cardOutput.hidden = false;
+      renderCardMetadata({ metadata: cardState.realMetadata, lang });
       renderMiniChart(cardChart, data.series);
-      renderPointMap(cardMapPreview, lat, lon, `${start} ~ ${end}`);
+      renderPointMap(cardMapPreview, lat, lon, `${start} ~ ${end} synthetic preview`);
       updateCardMapMeta(lat, lon, lang);
       updateCardSummary({ ...data, lat, lon, start, end, preset }, lang);
+      loadCardMetadataStatus({ bbox: bboxInfo.bbox, bboxArea: bboxInfo.area, start, end, preset }, lang, requestId);
     };
 
     const updateCardPickerMap = () => {
@@ -2116,6 +2317,13 @@
           renderCompareMetadata({ lang: activeLang, validationError: validation.error });
           resetStormReplay();
           resetCardOutput();
+        }
+        if (values.mode === "card") {
+          cardMetadataRequestId += 1;
+          if (cardOutput) cardOutput.hidden = false;
+          renderCardMetadata({ lang: activeLang, validationError: validation.error });
+          resetStormReplay();
+          resetCompareOutput();
         }
         trackEvent("tool_error", {
           ...getEventContext(),
@@ -2305,7 +2513,8 @@
           start: cardState.start,
           end: cardState.end,
           preset: cardState.preset,
-          series: cardState.series
+          series: cardState.series,
+          metadata: cardState.realMetadata
         });
         downloadBlob(csv, "card-point-timeseries.csv", "text/csv;charset=utf-8;");
       });
@@ -2326,13 +2535,17 @@
     if (startInputB) startInputB.value = compareInitialState.startB;
     if (endInputB) endInputB.value = compareInitialState.endB;
     if (comparePresetInput) comparePresetInput.value = compareInitialState.preset;
-    if (latInput && lonInput) {
-      latInput.value = urlState.lat;
-      lonInput.value = urlState.lon;
+    const cardInitialState = modeSelect.value === "card" ? urlState : CARD_VALID_EXAMPLE;
+    if (modeSelect.value === "card" && latInput && lonInput) {
+      latInput.value = cardInitialState.lat;
+      lonInput.value = cardInitialState.lon;
+    } else if (latInput && lonInput) {
+      latInput.value = CARD_VALID_EXAMPLE.lat;
+      lonInput.value = CARD_VALID_EXAMPLE.lon;
     }
-    if (cardStartInput) cardStartInput.value = urlState.start;
-    if (cardEndInput) cardEndInput.value = urlState.end;
-    if (cardPresetInput) cardPresetInput.value = urlState.preset;
+    if (cardStartInput) cardStartInput.value = cardInitialState.start;
+    if (cardEndInput) cardEndInput.value = cardInitialState.end;
+    if (cardPresetInput) cardPresetInput.value = cardInitialState.preset;
 
     let previousMode = modeSelect.value || getDefaultMode();
 
@@ -2362,6 +2575,8 @@
       }
       if (currentMode !== "card") {
         resetCardOutput();
+      } else if (!latInput?.value || !lonInput?.value || !cardStartInput?.value || !cardEndInput?.value || !cardPresetInput?.value) {
+        setExample("card", document.documentElement.lang || "ja");
       }
       updateSetupSummaries();
     };

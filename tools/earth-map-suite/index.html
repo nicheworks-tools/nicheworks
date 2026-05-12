@@ -254,8 +254,8 @@
           <div class="panel-head">
             <h3 data-i18n="ja">Card setup</h3>
             <h3 data-i18n="en" style="display:none;">Card setup</h3>
-            <p class="hint" data-i18n="ja">地点カードの合成プレビュー。実メタデータ接続は未実装です。</p>
-            <p class="hint" data-i18n="en" style="display:none;">Synthetic point-card preview. Real metadata is not connected here yet.</p>
+            <p class="hint" data-i18n="ja">地点カード/ミニチャート/サマリーは合成プレビューです。実データとして確認するのはmetadata到達性だけです。</p>
+            <p class="hint" data-i18n="en" style="display:none;">Synthetic point-card, mini chart, and summary preview. Card mode checks metadata-only reachability.</p>
           </div>
           <div class="setup-summary" id="cardSetupSummary"></div>
           <details class="input-editor" open>
@@ -264,12 +264,12 @@
               <div class="field">
                 <label class="label" for="latInput" data-i18n="ja">緯度（lat）</label>
                 <label class="label" for="latInput" data-i18n="en" style="display:none;">Latitude (lat)</label>
-                <input class="input" id="latInput" type="number" step="0.0001" placeholder="38.32" />
+                <input class="input" id="latInput" type="number" step="0.0001" placeholder="35.68" />
               </div>
               <div class="field">
                 <label class="label" for="lonInput" data-i18n="ja">経度（lon）</label>
                 <label class="label" for="lonInput" data-i18n="en" style="display:none;">Longitude (lon)</label>
-                <input class="input" id="lonInput" type="number" step="0.0001" placeholder="141.50" />
+                <input class="input" id="lonInput" type="number" step="0.0001" placeholder="139.76" />
               </div>
             </div>
             <div class="field">
@@ -289,7 +289,7 @@
             </div>
             <div class="field">
               <label class="label" for="cardPresetInput">Preset</label>
-              <input class="input" id="cardPresetInput" type="text" placeholder="detail" />
+              <input class="input" id="cardPresetInput" type="text" placeholder="low" />
             </div>
           </details>
           <div class="actions">
@@ -439,10 +439,20 @@
         <section class="result-panel" data-result-mode="card" aria-label="Card result panel">
           <div class="card-output" id="cardOutput" hidden>
             <div class="card-output-header">
-              <h3 class="card-output-title" data-i18n="ja">Location Card（合成ポイント時系列）</h3>
-              <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (synthetic point series)</h3>
-              <p class="card-output-note" data-i18n="ja">カード表示は合成プレビューです。実測値ではありません。</p>
-              <p class="card-output-note" data-i18n="en" style="display:none;">The card shows synthetic preview values, not observed data.</p>
+              <h3 class="card-output-title" data-i18n="ja">Location Card（合成プレビュー地点カード）</h3>
+              <h3 class="card-output-title" data-i18n="en" style="display:none;">Location Card (synthetic preview point card)</h3>
+              <p class="card-output-note" data-i18n="ja">Cardの地点カード/ミニチャート/サマリーは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。</p>
+              <p class="card-output-note" data-i18n="en" style="display:none;">The point card, mini chart, and summary are synthetic preview. Real-data checks are metadata-only; raster precipitation values are not sampled.</p>
+            </div>
+
+            <div class="card-metadata storm-metadata" id="cardMetadataPanel" hidden>
+              <div class="storm-metadata-header">
+                <h3 class="storm-metadata-title" data-i18n="ja">Real data metadata status</h3>
+                <h3 class="storm-metadata-title" data-i18n="en" style="display:none;">Real data metadata status</h3>
+                <p class="storm-metadata-note" data-i18n="ja">Card modeでは選択地点周辺のGSMaP metadata到達性だけを確認します。ラスター降水量値はまだサンプリングしていません。地点カード、ミニチャート、サマリーは合成プレビューです。</p>
+                <p class="storm-metadata-note" data-i18n="en" style="display:none;">Card mode checks GSMaP metadata reachability around the selected point. Raster precipitation values are not sampled; point chart and summary remain synthetic preview.</p>
+              </div>
+              <div class="storm-metadata-body card-metadata-body" id="cardMetadataBody"></div>
             </div>
             <div class="card-output-grid">
               <div class="card-output-panel">
@@ -478,13 +488,13 @@
       </div>
       <div class="card-bd">
         <ul class="bullet" data-i18n="ja">
-          <li>stormモードではGSMaP実データのメタデータ到達性を表示できますが、ラスター降水量値は未サンプリングです。</li>
+          <li>storm/compare/cardモードではGSMaP実データのmetadata到達性を表示できますが、ラスター降水量値は未サンプリングです。</li>
           <li>実際の地図表示は行いません。</li>
           <li>共有や保存はコピー＆ペーストで行ってください。</li>
           <li>入力内容はブラウザにのみ残ります。</li>
         </ul>
         <ul class="bullet" data-i18n="en" style="display:none;">
-          <li>Storm mode can show GSMaP real-data metadata reachability, but raster precipitation values are not sampled.</li>
+          <li>Storm/Compare/Card modes can show GSMaP real-data metadata reachability, but raster precipitation values are not sampled.</li>
           <li>No live map rendering is included.</li>
           <li>Share or save by copying the preview text.</li>
           <li>Inputs stay only in your browser.</li>
@@ -506,7 +516,7 @@
           <dt>Q. データは保存されますか？</dt>
           <dd>A. 保存されません。必要なら手動でコピーしてください。</dd>
           <dt>Q. 出力は実測データですか？</dt>
-          <dd>A. stormでは実データのメタデータ状態を表示できますが、地図プレビューは確認用の合成表示で観測降水量ではありません。compare / card もプレースホルダです。</dd>
+          <dd>A. storm/compare/cardでは実データのmetadata到達性を表示できますが、地図・地点カード・ミニチャート・サマリーは合成プレビューで観測降水量ではありません。</dd>
           <dt>Q. 広告や支援ページはいつ公開されますか？</dt>
           <dd>A. 広告枠は整備済みで、公開後もページ上下のみを想定しています。支援ページは近日公開予定です。</dd>
         </dl>
@@ -518,7 +528,7 @@
           <dt>Q. Is my data saved?</dt>
           <dd>A. No. Please copy anything you want to keep.</dd>
           <dt>Q. Are the outputs real observations?</dt>
-          <dd>A. Storm can show real metadata status, but the visible storm map remains a synthetic preview and not observed precipitation. compare / card are also placeholders.</dd>
+          <dd>A. Storm/Compare/Card can show real metadata reachability, but visible maps, point cards, mini charts, and summaries remain synthetic preview and not observed precipitation.</dd>
           <dt>Q. When will ads or support go live?</dt>
           <dd>A. Ad slots are in preparation and planned only for top/bottom areas. A support page is available.</dd>
         </dl>
@@ -556,7 +566,7 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">プレビューデータ：stormのメタデータ状態のみ実GSMaP到達性を表示。地図プレビューは合成/プレースホルダで観測降水量ではありません</p>
+    <p class="nw-footer-line">プレビューデータ：storm/compare/cardのメタデータ状態のみ実GSMaP到達性を表示。地図・地点カード・ミニチャート・サマリーは合成プレビューで観測降水量ではありません</p>
     <p class="nw-footer-line">実データライセンス：メタデータ応答の dataset / license / source を透明性のため表示。ラスター値は未サンプリング</p>
     <p class="nw-footer-line">免責：データの正確性は保証しません。必ず公式情報をご確認ください。</p>
     <p class="nw-footer-line">
