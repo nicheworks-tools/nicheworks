@@ -17,6 +17,57 @@
   Cache-Control: public, max-age=0, must-revalidate
   Content-Type: application/x-gzip
 
+/tools/api-key-token-redactor/*
+  X-Robots-Tag: noindex, follow
+
+/tools/color-replace/*
+  X-Robots-Tag: noindex, follow
+
+/tools/command-safety-checker/*
+  X-Robots-Tag: noindex, follow
+
+/tools/csv-tidy/*
+  X-Robots-Tag: noindex, follow
+
+/tools/exif-cleaner-mini/*
+  X-Robots-Tag: noindex, follow
+
+/tools/filetype-sniffer/*
+  X-Robots-Tag: noindex, follow
+
+/tools/image-redact/*
+  X-Robots-Tag: noindex, follow
+
+/tools/json-repair/*
+  X-Robots-Tag: noindex, follow
+
+/tools/json2mermaid/*
+  X-Robots-Tag: noindex, follow
+
+/tools/kanji-modernizer/*
+  X-Robots-Tag: noindex, follow
+
+/tools/laundry-code-decode/*
+  X-Robots-Tag: noindex, follow
+
+/tools/linebreak-doctor/*
+  X-Robots-Tag: noindex, follow
+
+/tools/log-formatter/*
+  X-Robots-Tag: noindex, follow
+
+/tools/manual-finder/*
+  X-Robots-Tag: noindex, follow
+
+/tools/pdf-page-tools-mini/*
+  X-Robots-Tag: noindex, follow
+
+/tools/pdf2csv-local/*
+  X-Robots-Tag: noindex, follow
+
+/tools/unitmaster/*
+  X-Robots-Tag: noindex, follow
+
 /tools/*/usage.html
   X-Robots-Tag: noindex, follow
 
@@ -53,52 +104,7 @@
 /tools/earth-timeseries/*
   X-Robots-Tag: noindex, follow
 
-/tools/ai-interaction-atlas/about/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/categories/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/compare/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/search/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/topics/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/patterns/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/usage/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/pro/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/about/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/categories/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/compare/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/search/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/topics/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/patterns/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/usage/*
-  X-Robots-Tag: noindex, follow
-
-/tools/ai-interaction-atlas/ja/pro/*
+/tools/ai-interaction-atlas/*
   X-Robots-Tag: noindex, follow
 
 /tools/motion-atlas/pro/*
