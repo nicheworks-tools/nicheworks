@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Earth Map Suite Report Mode | NicheWorks</title>
+  <meta name="description" content="Earth Map Suiteのmetadata-only結果と合成プレビューの前提を共有用レポートとして整理するページです。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/earth-map-suite/report.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="Earth Map Suite Report Mode | NicheWorks" />
+  <meta property="og:description" content="metadata-only status と synthetic preview の前提を共有用に整理します。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/earth-map-suite/report.html" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <link rel="stylesheet" href="./style.css" />
+  <style>.report-grid{display:grid;gap:14px}.report-block{border:1px solid #e5e7eb;border-radius:14px;background:#fff;padding:14px}.report-note{white-space:pre-wrap;border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#f8fafc;font-family:ui-monospace,Menlo,monospace;font-size:12px}.ok{border-color:#bbf7d0;background:#f0fdf4}.warn{border-color:#fed7aa;background:#fff7ed}@media(min-width:960px){.report-grid{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}}</style>
+</head>
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">Earth Map Suite Report Mode</h1>
+    <p class="nw-lead">metadata-only status と synthetic preview の前提を共有用に整理します。</p>
+    <div class="nw-lang-switch"><a href="./">Back to Earth Map Suite</a></div>
+  </header>
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠</div>
+    <section class="card"><div class="card-hd"><h2 class="card-title">Report mode status</h2></div><div class="card-bd"><p class="hint">このページは Earth Map Suite v0.1 metadata-only MVP の状態を共有用に整理します。実測降水量レポートではありません。</p></div></section>
+    <div class="report-grid">
+      <section class="report-block ok"><h2>Metadata layer</h2><ul class="bullet"><li>Storm: metadata status connected</li><li>Compare: Period A/B metadata status connected</li><li>Card: point-area metadata status connected</li><li>Sampling status: metadata_only</li></ul></section>
+      <section class="report-block warn"><h2>Important limitation</h2><ul class="bullet"><li>Visible maps, charts, summaries, and CSV numeric values are synthetic preview.</li><li>Raster precipitation values are not sampled yet.</li><li>This is not a real precipitation map product.</li></ul></section>
+      <section class="report-block"><h2>Storm example</h2><pre class="report-note">bbox=139.5,35.4,140.0,35.9
+start=2025-08-01
+end=2025-08-03
+preset=low
+sampling_status=metadata_only</pre></section>
+      <section class="report-block"><h2>Compare example</h2><pre class="report-note">bbox=139.5,35.4,140.0,35.9
+A=2025-08-01 to 2025-08-03
+B=2025-08-04 to 2025-08-06
+A/B/Diff remain synthetic_preview</pre></section>
+      <section class="report-block"><h2>Card example</h2><pre class="report-note">lat=35.68
+lon=139.76
+start=2025-08-01
+end=2025-08-03
+metadata_bbox≈139.51,35.43,140.01,35.93
+point values remain synthetic_preview</pre></section>
+      <section class="report-block"><h2>Endpoint limits</h2><ul class="bullet"><li>low: up to 14 days</li><li>mid: up to 7 days</li><li>Large requests return visible errors.</li></ul></section>
+      <section class="report-block wide"><h2>Copyable note</h2><pre class="report-note" id="reportText">Earth Map Suite v0.1 metadata-only MVP
+
+This report summarizes metadata reachability, not observed precipitation values.
+
+Storm, Compare, and Card have metadata-only status checks.
+Visible maps, charts, summaries, and CSV numeric values remain synthetic preview.
+Raster precipitation values are not sampled yet.</pre><div class="actions"><button class="btn primary" id="copyReport" type="button">Copy report note</button><a class="btn" href="./">Back to tool</a><a class="btn" href="./METADATA_ONLY_MVP_STATUS.md">Status document</a></div></section>
+    </div>
+    <div class="ad-slot ad-bottom">広告枠</div>
+  </main>
+  <footer class="nw-footer"><div class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</div><div class="nw-footer-line">Report Mode is metadata-only. Synthetic previews are not observed precipitation.</div><div class="nw-footer-line"><a href="/">nicheworks.app</a></div></footer>
+  <script>document.getElementById('copyReport')?.addEventListener('click',async(e)=>{try{await navigator.clipboard.writeText(document.getElementById('reportText')?.textContent||'');e.currentTarget.textContent='Copied';}catch{e.currentTarget.textContent='Copy failed';}});</script>
+</body>
+</html>
