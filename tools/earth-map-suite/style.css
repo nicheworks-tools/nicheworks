@@ -127,6 +127,15 @@ canvas{max-width:100%;height:auto;display:block;background:#fff;border-radius:10
 .storm-metadata-list dd{margin:0;color:var(--muted);overflow-wrap:anywhere;word-break:break-word;}
 .storm-metadata-body:empty::before{content:"Metadata status will appear after Run storm.";font-size:12px;color:var(--muted);}
 html[lang="ja"] .storm-metadata-body:empty::before{content:"Run storm後にメタデータ状態を表示します。";}
+.compare-metadata{border-color:#bfdbfe;background:#eff6ff;}
+.compare-metadata-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px;}
+.compare-metadata-period{border:1px solid var(--border);border-radius:12px;padding:10px;background:rgba(255,255,255,.72);min-width:0;}
+.compare-metadata-period.metadata-ok{border-color:var(--green-bd);background:#f8fff9;}
+.compare-metadata-period.metadata-error{border-color:var(--red-bd);background:#fffafa;}
+.compare-metadata-period-title{margin:0 0 6px;font-size:13px;color:var(--text);}
+.compare-metadata-body:empty::before{content:"Run compare to check Period A/B metadata reachability.";font-size:12px;color:var(--muted);}
+html[lang="ja"] .compare-metadata-body:empty::before{content:"Run compare後にPeriod A/Bのmetadata到達性を表示します。";}
+
 .download-card,.note-card{border:1px solid var(--border);border-radius:14px;padding:12px;background:var(--bg-soft);min-width:0;}
 
 .compare-output,.card-output{margin:0;padding:12px;border:1px solid var(--border);border-radius:14px;background:#fff;display:flex!important;flex-direction:column;gap:12px;}
@@ -160,6 +169,7 @@ html[lang="ja"] .storm-metadata-body:empty::before{content:"Run storm後にメ�
   .actions,.storm-actions,.compare-actions,.card-actions{flex-direction:column;}
   .ems-mode-tabs{display:none;}
   .storm-metadata-list{grid-template-columns:1fr;}
+  .compare-metadata-grid{grid-template-columns:1fr;}
   .ems-modebar,.ems-input-column,.results-root,.storm-replay,.storm-metadata,.download-card,.note-card,.compare-output,.card-output{border-radius:12px;padding:10px;}
 }
 @media(min-width:480px){
@@ -169,6 +179,7 @@ html[lang="ja"] .storm-metadata-body:empty::before{content:"Run storm後にメ�
 }
 @media(min-width:768px){
   .storm-canvases{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .compare-metadata-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .compare-cards,.card-output-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
 }
 @media(min-width:960px){

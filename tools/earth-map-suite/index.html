@@ -203,15 +203,15 @@
           <div class="panel-head">
             <h3 data-i18n="ja">Compare setup</h3>
             <h3 data-i18n="en" style="display:none;">Compare setup</h3>
-            <p class="hint" data-i18n="ja">A/B期間の合成比較プレビュー。実メタデータ接続は未実装です。</p>
-            <p class="hint" data-i18n="en" style="display:none;">Synthetic A/B comparison preview. Real metadata is not connected here yet.</p>
+            <p class="hint" data-i18n="ja">compareのA/B/Diffは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。</p>
+            <p class="hint" data-i18n="en" style="display:none;">Synthetic A/B/Diff preview with separate metadata-only GSMaP reachability checks.</p>
           </div>
           <div class="setup-summary" id="compareSetupSummary"></div>
           <details class="input-editor" open>
             <summary>Edit compare inputs</summary>
             <div class="field">
               <label class="label" for="compareBboxInput">BBox</label>
-              <input class="input" id="compareBboxInput" type="text" placeholder="135.35,34.55,135.70,34.85" />
+              <input class="input" id="compareBboxInput" type="text" placeholder="139.5,35.4,140.0,35.9" />
             </div>
             <div class="row">
               <div class="field">
@@ -239,7 +239,7 @@
             </div>
             <div class="field">
               <label class="label" for="comparePresetInput">Preset</label>
-              <input class="input" id="comparePresetInput" type="text" placeholder="mid" />
+              <input class="input" id="comparePresetInput" type="text" placeholder="low" />
             </div>
           </details>
           <div class="actions">
@@ -393,24 +393,33 @@
             <div class="compare-summary">
               <h3 class="compare-title" data-i18n="ja">compare結果サマリー（合成プレビュー）</h3>
               <h3 class="compare-title" data-i18n="en" style="display:none;">Compare summary (synthetic preview)</h3>
-              <p class="compare-note" data-i18n="ja">本結果は合成プレースホルダです。実測値ではありません。</p>
-              <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic preview values and not observed data.</p>
+              <p class="compare-note" data-i18n="ja">compareのA/B/Diffは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。</p>
+              <p class="compare-note" data-i18n="en" style="display:none;">These values are synthetic preview values and not observed data. Real-data checks are metadata-only.</p>
               <dl class="compare-metrics" id="compareMetrics"></dl>
+            </div>
+            <div class="compare-metadata storm-metadata" id="compareMetadataPanel" hidden>
+              <div class="storm-metadata-header">
+                <h3 class="storm-metadata-title" data-i18n="ja">Real data metadata status</h3>
+                <h3 class="storm-metadata-title" data-i18n="en" style="display:none;">Real data metadata status</h3>
+                <p class="storm-metadata-note" data-i18n="ja">Compare mode checks GSMaP metadata reachability for Period A and Period B. compareのA/B/Diffは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。</p>
+                <p class="storm-metadata-note" data-i18n="en" style="display:none;">Compare mode checks GSMaP metadata reachability for Period A and Period B. Raster precipitation values are not sampled; A/B/diff maps remain synthetic preview.</p>
+              </div>
+              <div class="storm-metadata-body compare-metadata-body" id="compareMetadataBody"></div>
             </div>
             <div class="compare-cards">
               <div class="compare-card">
-                <div class="compare-card-title" data-i18n="ja">期間A（mm相当）</div>
-                <div class="compare-card-title" data-i18n="en" style="display:none;">Period A (mm equivalent)</div>
+                <div class="compare-card-title" data-i18n="ja">期間A（合成プレビュー / 観測降水量ではありません）</div>
+                <div class="compare-card-title" data-i18n="en" style="display:none;">Period A (synthetic preview / not observed precipitation)</div>
                 <canvas id="compareCanvasA" width="320" height="200" aria-label="Compare period A output"></canvas>
               </div>
               <div class="compare-card">
-                <div class="compare-card-title" data-i18n="ja">期間B（mm相当）</div>
-                <div class="compare-card-title" data-i18n="en" style="display:none;">Period B (mm equivalent)</div>
+                <div class="compare-card-title" data-i18n="ja">期間B（合成プレビュー / 観測降水量ではありません）</div>
+                <div class="compare-card-title" data-i18n="en" style="display:none;">Period B (synthetic preview / not observed precipitation)</div>
                 <canvas id="compareCanvasB" width="320" height="200" aria-label="Compare period B output"></canvas>
               </div>
               <div class="compare-card">
-                <div class="compare-card-title" data-i18n="ja">差分 (A - B, mm相当)</div>
-                <div class="compare-card-title" data-i18n="en" style="display:none;">Diff (A - B, mm equivalent)</div>
+                <div class="compare-card-title" data-i18n="ja">Diff (A - B、合成プレビュー / 観測降水量ではありません)</div>
+                <div class="compare-card-title" data-i18n="en" style="display:none;">Diff (A - B, synthetic preview / not observed precipitation)</div>
                 <canvas id="compareCanvasDiff" width="320" height="200" aria-label="Compare diff output"></canvas>
               </div>
             </div>

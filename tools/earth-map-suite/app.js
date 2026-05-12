@@ -576,6 +576,8 @@
     const errorOutput = document.getElementById("errorOutput");
     const compareOutput = document.getElementById("compareOutput");
     const compareMetrics = document.getElementById("compareMetrics");
+    const compareMetadataPanel = document.getElementById("compareMetadataPanel");
+    const compareMetadataBody = document.getElementById("compareMetadataBody");
     const compareCanvasA = document.getElementById("compareCanvasA");
     const compareCanvasB = document.getElementById("compareCanvasB");
     const compareCanvasDiff = document.getElementById("compareCanvasDiff");
@@ -677,6 +679,7 @@
       preset === "low";
     let stormState = null;
     let stormMetadataRequestId = 0;
+    let compareMetadataRequestId = 0;
     let compareState = null;
     let cardState = null;
 
@@ -830,29 +833,29 @@
       compare: {
         ja: {
           mode: "compare",
-          bbox: "135.35,34.55,135.70,34.85",
-          start: "2024-05-10",
-          end: "2024-05-20",
-          startB: "2024-06-10",
-          endB: "2024-06-20",
-          preset: "mid",
+          bbox: "139.5,35.4,140.0,35.9",
+          start: "2025-08-01",
+          end: "2025-08-03",
+          startB: "2025-08-04",
+          endB: "2025-08-06",
+          preset: "low",
           frames: "",
-          area: "大阪湾周辺",
-          layers: "河川 / 交通 / 標高",
-          notes: "降雨量の差分で比較予定"
+          area: "東京周辺",
+          layers: "GSMaP metadata-only / synthetic preview",
+          notes: "compareのA/B/Diffは合成プレビューです。metadata到達性だけを確認します。"
         },
         en: {
           mode: "compare",
-          bbox: "135.35,34.55,135.70,34.85",
-          start: "2024-05-10",
-          end: "2024-05-20",
-          startB: "2024-06-10",
-          endB: "2024-06-20",
-          preset: "mid",
+          bbox: "139.5,35.4,140.0,35.9",
+          start: "2025-08-01",
+          end: "2025-08-03",
+          startB: "2025-08-04",
+          endB: "2025-08-06",
+          preset: "low",
           frames: "",
-          area: "Osaka Bay area",
-          layers: "Rivers / transport / elevation",
-          notes: "Compare rainfall differences"
+          area: "Tokyo area",
+          layers: "GSMaP metadata-only / synthetic preview",
+          notes: "A/B/Diff remain synthetic preview; only metadata reachability is checked."
         }
       },
       card: {
@@ -1394,6 +1397,23 @@
       return list;
     };
 
+    const isReachableMetadata = (payload, responseOk = true) =>
+      responseOk && payload?.data_type === "real_observation_metadata" && payload?.status === "ok" && payload?.sampling_status === "metadata_only";
+
+    const normalizeMetadataPayload = (payload, responseOk, httpStatus) => ({
+      ...(payload || {}),
+      reachable: isReachableMetadata(payload, responseOk),
+      http_status: httpStatus,
+      status: payload?.status || (responseOk ? "ok" : "error"),
+      sampling_status: payload?.sampling_status || "metadata_only"
+    });
+
+    const metadataStatusForCsv = (metadata) => {
+      if (metadata?.reachable) return "reachable";
+      if (metadata?.status === "loading") return "pending";
+      return "unavailable";
+    };
+
     const getMetadataCopy = (lang) => ({
       loadingTitle: lang === "ja" ? "GSMaPメタデータ確認中" : "Checking GSMaP metadata",
       loadingBody: lang === "ja" ? "実データのメタデータ到達性を確認しています。ラスター降水量値は取得しません。" : "Checking real-data metadata reachability. Raster precipitation values are not fetched.",
@@ -1498,8 +1518,7 @@
       try {
         const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { headers: { accept: "application/json" } });
         const payload = await response.json();
-        const reachable = response.ok && payload?.data_type === "real_observation_metadata" && payload?.status === "ok" && payload?.sampling_status === "metadata_only";
-        const metadata = { ...payload, reachable, http_status: response.status, status: payload?.status || (response.ok ? "ok" : "error") };
+        const metadata = normalizeMetadataPayload(payload, response.ok, response.status);
         if (!stormState || requestId !== stormMetadataRequestId) return;
         stormState.realMetadata = metadata;
         renderStormMetadata(metadata, lang);
@@ -1519,6 +1538,147 @@
         renderStormMetadata(metadata, lang);
         trackMetadataStatus({ metadata, start, end, bbox });
       }
+    };
+
+    const getCompareMetadataCopy = (lang) => {
+      const base = getMetadataCopy(lang);
+      return {
+        ...base,
+        title: "Real data metadata status",
+        subtitle: lang === "ja"
+          ? "Compare mode checks GSMaP metadata reachability for Period A and Period B. compareのA/B/Diffは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。"
+          : "Compare mode checks GSMaP metadata reachability for Period A and Period B. Raster precipitation values are not sampled; A/B/diff maps remain synthetic preview.",
+        overallOk: lang === "ja" ? "GSMaP metadata reachable for both periods" : "GSMaP metadata reachable for both periods",
+        overallPartial: lang === "ja" ? "一部期間のGSMaP metadataはunavailableです" : "GSMaP metadata is unavailable for at least one period",
+        validationTitle: lang === "ja" ? "Compare validation error" : "Compare validation error",
+        validationBody: lang === "ja" ? "compare入力だけを検証しました。storm/card入力は検証していません。" : "Only compare fields were validated. Storm/card fields were not validated.",
+        periodStatus: (period) => `${period} status`,
+        reachable: "reachable",
+        unavailable: "unavailable"
+      };
+    };
+
+    const createComparePeriodBlock = ({ periodLabel, metadata, lang }) => {
+      const copy = getCompareMetadataCopy(lang);
+      const labels = copy.labels;
+      const block = document.createElement("section");
+      block.className = `compare-metadata-period ${metadata?.reachable ? "metadata-ok" : "metadata-error"}`;
+      appendText(block, "h4", copy.periodStatus(periodLabel), "compare-metadata-period-title");
+      appendText(block, "div", metadata?.reachable ? copy.reachable : copy.unavailable, "storm-metadata-state");
+
+      if (metadata?.reachable) {
+        block.appendChild(renderMetadataRows([
+          [labels.dataset, metadata.dataset_id],
+          [labels.band, metadata.band],
+          [labels.source, metadata.source],
+          [labels.license, metadata.license],
+          [labels.licenseStatus, metadata.license_status],
+          [labels.matchedDates, joinList(metadata.matched_dates)],
+          [labels.itemCount, metadata.item_count],
+          [labels.assetCount, metadata.asset_count],
+          [labels.samplingStatus, metadata.sampling_status]
+        ]));
+        return block;
+      }
+
+      block.appendChild(renderMetadataRows([
+        [labels.dataset, metadata?.dataset_id || "-"],
+        [labels.band, metadata?.band || "-"],
+        [labels.source, metadata?.source || "-"],
+        [labels.license, metadata?.license || "-"],
+        [labels.licenseStatus, metadata?.license_status || "-"],
+        [labels.matchedDates, joinList(metadata?.matched_dates)],
+        [labels.itemCount, metadata?.item_count || "-"],
+        [labels.assetCount, metadata?.asset_count || "-"],
+        [labels.samplingStatus, metadata?.sampling_status || "metadata_only"],
+        [labels.errorCode, metadata?.error_code || "unknown"],
+        [labels.message, metadata?.message || "-"],
+        [labels.guidance, metadata?.guidance || "-"]
+      ]));
+      return block;
+    };
+
+    const renderCompareMetadata = ({ metadataA, metadataB, lang, validationError = null }) => {
+      if (!compareMetadataPanel || !compareMetadataBody) return;
+      const copy = getCompareMetadataCopy(lang);
+      compareMetadataPanel.hidden = false;
+      compareMetadataPanel.classList.remove("metadata-loading", "metadata-ok", "metadata-error", "status-loading", "status-success", "status-error");
+      compareMetadataBody.replaceChildren();
+
+      if (validationError) {
+        const errorMetadata = buildValidationMetadataError(validationError, lang);
+        compareMetadataPanel.classList.add("metadata-error", "status-error");
+        appendText(compareMetadataBody, "div", copy.validationTitle, "storm-metadata-state");
+        appendText(compareMetadataBody, "p", copy.validationBody);
+        compareMetadataBody.appendChild(renderMetadataRows([
+          [copy.labels.errorCode, errorMetadata.error_code],
+          [copy.labels.message, errorMetadata.message],
+          [copy.labels.guidance, errorMetadata.guidance],
+          [copy.labels.samplingStatus, errorMetadata.sampling_status]
+        ]));
+        return;
+      }
+
+      const loading = metadataA?.status === "loading" || metadataB?.status === "loading";
+      const bothReachable = Boolean(metadataA?.reachable && metadataB?.reachable);
+      compareMetadataPanel.classList.add(
+        loading ? "metadata-loading" : (bothReachable ? "metadata-ok" : "metadata-error"),
+        loading ? "status-loading" : (bothReachable ? "status-success" : "status-error")
+      );
+      appendText(compareMetadataBody, "div", loading ? copy.loadingTitle : (bothReachable ? copy.overallOk : copy.overallPartial), "storm-metadata-state");
+      appendText(compareMetadataBody, "p", copy.subtitle);
+      const grid = document.createElement("div");
+      grid.className = "compare-metadata-grid";
+      grid.appendChild(createComparePeriodBlock({ periodLabel: "Period A", metadata: metadataA || { status: "loading", sampling_status: "metadata_only" }, lang }));
+      grid.appendChild(createComparePeriodBlock({ periodLabel: "Period B", metadata: metadataB || { status: "loading", sampling_status: "metadata_only" }, lang }));
+      compareMetadataBody.appendChild(grid);
+    };
+
+    const trackCompareMetadataStatus = ({ metadataA, metadataB, startA, endA, startB, endB, bbox }) => {
+      trackEvent("earth_metadata_status", {
+        mode: "compare",
+        status_a: metadataA?.reachable ? "ok" : "error",
+        status_b: metadataB?.reachable ? "ok" : "error",
+        date_span_a_days: getDateSpanDays(startA, endA) || 0,
+        date_span_b_days: getDateSpanDays(startB, endB) || 0,
+        bbox_area_bucket: getBBoxAreaBucket(bbox)
+      });
+    };
+
+    const fetchComparePeriodMetadata = async ({ bbox, start, end, preset }, lang) => {
+      try {
+        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { headers: { accept: "application/json" } });
+        const payload = await response.json();
+        return normalizeMetadataPayload(payload, response.ok, response.status);
+      } catch (error) {
+        return {
+          reachable: false,
+          data_type: "unavailable",
+          status: "error",
+          sampling_status: "metadata_only",
+          error_code: error?.name === "AbortError" ? ERROR_CODES.timeout : ERROR_CODES.upstream_fail,
+          message: error?.message || "Failed to retrieve GSMaP metadata.",
+          guidance: lang === "ja" ? "通信状況を確認して再実行してください。合成プレビューを実データとして扱わないでください。" : "Check connectivity and run again. Do not treat the synthetic preview as real data."
+        };
+      }
+    };
+
+    const loadCompareMetadataStatus = async ({ bbox, startA, endA, startB, endB, preset }, lang, requestId) => {
+      if (!compareState || requestId !== compareMetadataRequestId) return;
+      const loadingMetadata = { status: "loading", reachable: false, sampling_status: "metadata_only" };
+      compareState.realMetadataA = loadingMetadata;
+      compareState.realMetadataB = loadingMetadata;
+      renderCompareMetadata({ metadataA: loadingMetadata, metadataB: loadingMetadata, lang });
+
+      const [metadataA, metadataB] = await Promise.all([
+        fetchComparePeriodMetadata({ bbox, start: startA, end: endA, preset }, lang),
+        fetchComparePeriodMetadata({ bbox, start: startB, end: endB, preset }, lang)
+      ]);
+      if (!compareState || requestId !== compareMetadataRequestId) return;
+      compareState.realMetadataA = metadataA;
+      compareState.realMetadataB = metadataB;
+      renderCompareMetadata({ metadataA, metadataB, lang });
+      trackCompareMetadataStatus({ metadataA, metadataB, startA, endA, startB, endB, bbox });
     };
 
     const setStormStatus = ({ rawFrames, frames, thinningStep, lang }) => {
@@ -1565,17 +1725,31 @@
       return lines.join("\n");
     };
 
-    const buildCompareCsv = ({ bbox, startA, endA, startB, endB, preset, gridA, gridB, diffGrid }) => {
+    const buildCompareCsv = ({ bbox, startA, endA, startB, endB, preset, gridA, gridB, diffGrid, metadataA = {}, metadataB = {} }) => {
       const lines = [
-        "bbox,period_a_start,period_a_end,period_b_start,period_b_end,preset",
-        `"${bbox}",${startA},${endA},${startB},${endB},${preset}`,
-        "row,col,period_a_mm,period_b_mm,diff_mm"
+        "bbox,period_a_start,period_a_end,period_b_start,period_b_end,preset,data_type,real_metadata_status_a,real_metadata_status_b,dataset_id_a,dataset_id_b,sampling_status_a,sampling_status_b",
+        [
+          csvEscape(bbox),
+          startA,
+          endA,
+          startB,
+          endB,
+          preset,
+          "synthetic_preview",
+          metadataStatusForCsv(metadataA),
+          metadataStatusForCsv(metadataB),
+          csvEscape(metadataA?.reachable ? metadataA.dataset_id : ""),
+          csvEscape(metadataB?.reachable ? metadataB.dataset_id : ""),
+          metadataA?.sampling_status || "metadata_only",
+          metadataB?.sampling_status || "metadata_only"
+        ].join(","),
+        "data_type,row,col,period_a_synthetic_preview_mm,period_b_synthetic_preview_mm,diff_synthetic_preview_mm"
       ];
       gridA.forEach((row, rIdx) => {
         row.forEach((value, cIdx) => {
           const valueB = gridB[rIdx][cIdx];
           const diff = diffGrid[rIdx][cIdx];
-          lines.push(`${rIdx + 1},${cIdx + 1},${value.toFixed(2)},${valueB.toFixed(2)},${diff.toFixed(2)}`);
+          lines.push(`synthetic_preview,${rIdx + 1},${cIdx + 1},${value.toFixed(2)},${valueB.toFixed(2)},${diff.toFixed(2)}`);
         });
       });
       return lines.join("\n");
@@ -1675,11 +1849,18 @@
     };
 
     const resetCompareOutput = () => {
+      compareMetadataRequestId += 1;
       if (compareOutput) {
         compareOutput.hidden = true;
       }
       if (compareMetrics) {
         compareMetrics.innerHTML = "";
+      }
+      if (compareMetadataPanel) {
+        compareMetadataPanel.hidden = true;
+      }
+      if (compareMetadataBody) {
+        compareMetadataBody.innerHTML = "";
       }
       compareState = null;
     };
@@ -1700,27 +1881,27 @@
       if (lang === "ja") {
         compareMetrics.innerHTML = [
           "<div>",
-          "<dt>期間A 合計 (mm相当)</dt>",
+          "<dt>期間A 合成合計 (mm相当)</dt>",
           `<dd>${format(statsA.total)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>期間B 合計 (mm相当)</dt>",
+          "<dt>期間B 合成合計 (mm相当)</dt>",
           `<dd>${format(statsB.total)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>差分合計 (A - B, mm相当)</dt>",
+          "<dt>Diff合成合計 (A - B, mm相当)</dt>",
           `<dd>${format(statsDiff.total)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>期間A 平均 (mm相当)</dt>",
+          "<dt>期間A 合成平均 (mm相当)</dt>",
           `<dd>${format(statsA.mean)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>期間B 平均 (mm相当)</dt>",
+          "<dt>期間B 合成平均 (mm相当)</dt>",
           `<dd>${format(statsB.mean)}</dd>`,
           "</div>",
           "<div>",
-          "<dt>差分最大 (mm相当)</dt>",
+          "<dt>Diff合成最大 (mm相当)</dt>",
           `<dd>${format(statsDiff.max)}</dd>`,
           "</div>"
         ].join("");
@@ -1728,27 +1909,27 @@
       }
       compareMetrics.innerHTML = [
         "<div>",
-        "<dt>Period A total (mm equivalent)</dt>",
+        "<dt>Period A synthetic total (mm equivalent)</dt>",
         `<dd>${format(statsA.total)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Period B total (mm equivalent)</dt>",
+        "<dt>Period B synthetic total (mm equivalent)</dt>",
         `<dd>${format(statsB.total)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Diff total (A - B, mm equivalent)</dt>",
+        "<dt>Synthetic diff total (A - B, mm equivalent)</dt>",
         `<dd>${format(statsDiff.total)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Period A mean (mm equivalent)</dt>",
+        "<dt>Period A synthetic mean (mm equivalent)</dt>",
         `<dd>${format(statsA.mean)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Period B mean (mm equivalent)</dt>",
+        "<dt>Period B synthetic mean (mm equivalent)</dt>",
         `<dd>${format(statsB.mean)}</dd>`,
         "</div>",
         "<div>",
-        "<dt>Max diff (mm equivalent)</dt>",
+        "<dt>Max synthetic diff (mm equivalent)</dt>",
         `<dd>${format(statsDiff.max)}</dd>`,
         "</div>"
       ].join("");
@@ -1854,18 +2035,31 @@
     const loadCompareOutput = ({ bbox, startA, endA, startB, endB, preset }, lang) => {
       if (!compareOutput || !compareCanvasA || !compareCanvasB || !compareCanvasDiff) return;
       const data = buildCompareData({ bbox, startA, endA, startB, endB, preset });
-      compareState = { ...data, bbox, startA, endA, startB, endB };
+      compareMetadataRequestId += 1;
+      const requestId = compareMetadataRequestId;
+      compareState = {
+        ...data,
+        bbox,
+        startA,
+        endA,
+        startB,
+        endB,
+        realMetadataA: { status: "loading", reachable: false, sampling_status: "metadata_only" },
+        realMetadataB: { status: "loading", reachable: false, sampling_status: "metadata_only" }
+      };
       compareOutput.hidden = false;
       updateCompareMetrics(data, lang);
+      renderCompareMetadata({ metadataA: compareState.realMetadataA, metadataB: compareState.realMetadataB, lang });
 
       const maxAB = Math.max(data.statsA.max, data.statsB.max, 1);
       const normalizedA = normalizeGridByMax(data.gridA, maxAB);
       const normalizedB = normalizeGridByMax(data.gridB, maxAB);
       const maxAbsDiff = Math.max(Math.abs(data.statsDiff.min), Math.abs(data.statsDiff.max), 1);
 
-      renderGrid(compareCanvasA, normalizedA, `${startA} ~ ${endA}`);
-      renderGrid(compareCanvasB, normalizedB, `${startB} ~ ${endB}`);
-      renderGrid(compareCanvasDiff, data.diffGrid, "A - B", (value) => valueToDiffColor(value, maxAbsDiff));
+      renderGrid(compareCanvasA, normalizedA, `${startA} ~ ${endA} synthetic preview`);
+      renderGrid(compareCanvasB, normalizedB, `${startB} ~ ${endB} synthetic preview`);
+      renderGrid(compareCanvasDiff, data.diffGrid, "A - B synthetic preview", (value) => valueToDiffColor(value, maxAbsDiff));
+      loadCompareMetadataStatus({ bbox, startA, endA, startB, endB, preset }, lang, requestId);
     };
 
     const scrollToResults = () => {
@@ -1884,6 +2078,13 @@
           if (stormReplay) stormReplay.hidden = true;
           if (stormStatus) stormStatus.textContent = "";
           renderStormMetadata(buildValidationMetadataError(validation.error, activeLang), activeLang);
+        }
+        if (values.mode === "compare") {
+          compareMetadataRequestId += 1;
+          if (compareOutput) compareOutput.hidden = false;
+          renderCompareMetadata({ lang: activeLang, validationError: validation.error });
+          resetStormReplay();
+          resetCardOutput();
         }
         trackEvent("tool_error", {
           ...getEventContext(),
@@ -2056,7 +2257,9 @@
           preset: compareState.preset,
           gridA: compareState.gridA,
           gridB: compareState.gridB,
-          diffGrid: compareState.diffGrid
+          diffGrid: compareState.diffGrid,
+          metadataA: compareState.realMetadataA,
+          metadataB: compareState.realMetadataB
         });
         downloadBlob(csv, "compare-precipitation.csv", "text/csv;charset=utf-8;");
       });
@@ -2265,11 +2468,27 @@
     updateUrlState();
     const initialLang = document.documentElement.lang || "ja";
     const hasStormMetadataQuery = modeSelect.value === "storm" && Boolean(urlState.bbox && urlState.start && urlState.end && urlState.preset);
-    if (hasStormMetadataQuery) {
+    const hasCompareMetadataQuery = modeSelect.value === "compare" && Boolean(urlState.bbox && urlState.start && urlState.end && urlState.startB && urlState.endB && urlState.preset);
+    const compareUrlValues = hasCompareMetadataQuery ? getModeValues("compare") : null;
+    const compareUrlValidation = compareUrlValues ? validateInputs(compareUrlValues) : null;
+    const compareUrlPreset = (compareUrlValues?.preset || "").toLowerCase();
+    const compareUrlMetadataMaxDays = compareUrlPreset === "mid" ? 7 : (compareUrlPreset === "low" ? 14 : 0);
+    const compareUrlSafeForMetadata = compareUrlValues && !compareUrlValidation.error && compareUrlMetadataMaxDays > 0 &&
+      getDateSpanDays(compareUrlValues.start, compareUrlValues.end) <= compareUrlMetadataMaxDays &&
+      getDateSpanDays(compareUrlValues.startB, compareUrlValues.endB) <= compareUrlMetadataMaxDays;
+    if (hasStormMetadataQuery || compareUrlSafeForMetadata) {
       setLoadingStatus(initialLang);
       runSelectedMode({ lang: initialLang, shouldTrackResult: false });
     } else {
       setIdleStatus(initialLang);
+      if (modeSelect.value === "compare") {
+        if (compareOutput) compareOutput.hidden = false;
+        renderCompareMetadata({
+          metadataA: { status: "idle", reachable: false, sampling_status: "metadata_only", error_code: "run_required", message: initialLang === "ja" ? "Run compareを押すとPeriod A/BのGSMaP metadata到達性を確認します。" : "Press Run compare to check GSMaP metadata reachability for Period A/B.", guidance: initialLang === "ja" ? "無効または長すぎるURL期間では自動実行しません。" : "Invalid or too-long URL ranges are not auto-run." },
+          metadataB: { status: "idle", reachable: false, sampling_status: "metadata_only", error_code: "run_required", message: initialLang === "ja" ? "Run compareを押すとPeriod A/BのGSMaP metadata到達性を確認します。" : "Press Run compare to check GSMaP metadata reachability for Period A/B.", guidance: initialLang === "ja" ? "無効または長すぎるURL期間では自動実行しません。" : "Invalid or too-long URL ranges are not auto-run." },
+          lang: initialLang
+        });
+      }
     }
   });
 })();
