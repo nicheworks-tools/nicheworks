@@ -96,7 +96,7 @@ Path:
 Request shape:
 
 ```text
-/api/earth-map-suite/precipitation?bbox=139.60,35.50,139.95,35.80&start=2026-05-01&end=2026-05-01&preset=low
+/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2026-05-01&end=2026-05-01&preset=low
 ```
 
 Validation:
@@ -411,7 +411,7 @@ globalThis.fetch = async () => new Response(JSON.stringify({
   license: 'mock-license-url',
   extent: { spatial: { bbox: [[-180, -90, 180, 90]] } }
 }), { status: 200, headers: { 'content-type': 'application/json' } });
-const ok = await mod.onRequestGet({ request: new Request('https://example.test/api/earth-map-suite/precipitation?bbox=139.60,35.50,139.95,35.80&start=2026-05-01&end=2026-05-01&preset=low') });
+const ok = await mod.onRequestGet({ request: new Request('https://example.test/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2026-05-01&end=2026-05-01&preset=low') });
 const okPayload = await ok.json();
 if (ok.status !== 200 || okPayload.status !== 'ok' || okPayload.data_type !== 'metadata_connection_probe') throw new Error('expected ok metadata response');
 const bad = await mod.onRequestGet({ request: new Request('https://example.test/api/earth-map-suite/precipitation?bbox=bad&start=2026-05-01&end=2026-05-01&preset=low') });

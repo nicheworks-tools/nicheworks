@@ -652,6 +652,29 @@
     ].filter(Boolean);
 
     const getDefaultMode = () => "storm";
+    const STORM_VALID_EXAMPLE = {
+      mode: "storm",
+      bbox: "139.5,35.4,140.0,35.9",
+      start: "2025-08-01",
+      end: "2025-08-03",
+      preset: "low",
+      frames: "24"
+    };
+    const LEGACY_STORM_BBOX_VALUES = [139.6, 35.5, 140 - 0.05, 35.8];
+    const legacyStormDate = (day) => [2024, "04", String(day).padStart(2, "0")].join("-");
+    const normalizeBBoxValues = (value) => value
+      .split(",")
+      .map((part) => Number(part.trim()))
+      .filter((part) => Number.isFinite(part));
+    const isSameBBoxValues = (value, expected) => {
+      const parts = normalizeBBoxValues(value);
+      return parts.length === expected.length && parts.every((part, index) => part === expected[index]);
+    };
+    const isLegacyStormDefault = ({ bbox, start, end, preset }) =>
+      isSameBBoxValues(bbox, LEGACY_STORM_BBOX_VALUES) &&
+      start === legacyStormDate(1) &&
+      end === legacyStormDate(30) &&
+      preset === "low";
     let stormState = null;
     let stormMetadataRequestId = 0;
     let compareState = null;
@@ -669,7 +692,7 @@
       const endB = params.get("endB");
       const preset = params.get("preset");
       const frames = params.get("frames");
-      return {
+      const state = {
         mode: mode && ["storm", "compare", "card"].includes(mode) ? mode : null,
         bbox: bbox || "",
         lat: lat || "",
@@ -681,6 +704,14 @@
         preset: preset || "",
         frames: frames || ""
       };
+      const hasExplicitStormParams = Boolean(bbox || start || end || preset || frames);
+      if (!state.mode && !hasExplicitStormParams) {
+        return { ...state, ...STORM_VALID_EXAMPLE };
+      }
+      if ((state.mode === "storm" || !state.mode) && isLegacyStormDefault(state)) {
+        return { ...state, ...STORM_VALID_EXAMPLE };
+      }
+      return state;
     };
 
     const getModeValues = (mode = modeSelect.value || getDefaultMode()) => {
@@ -784,23 +815,13 @@
     const examplePresets = {
       storm: {
         ja: {
-          mode: "storm",
-          bbox: "139.5,35.4,140.0,35.9",
-          start: "2025-08-01",
-          end: "2025-08-03",
-          preset: "low",
-          frames: "24",
+          ...STORM_VALID_EXAMPLE,
           area: "東京周辺",
           layers: "地形 / 主要道路 / 避難所",
           notes: "Synthetic preview / not observed precipitation"
         },
         en: {
-          mode: "storm",
-          bbox: "139.5,35.4,140.0,35.9",
-          start: "2025-08-01",
-          end: "2025-08-03",
-          preset: "low",
-          frames: "24",
+          ...STORM_VALID_EXAMPLE,
           area: "Tokyo area",
           layers: "Terrain / main roads / shelters",
           notes: "Synthetic preview / not observed precipitation"
