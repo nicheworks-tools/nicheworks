@@ -7,12 +7,19 @@ on:
       - "tools/**"
       - "scripts/**"
       - ".github/workflows/update-tools-index.yml"
+      - "!tools/tools-index.json"
+      - "!tools/tools-index-review.json"
 
 permissions:
   contents: write
 
+concurrency:
+  group: update-tools-index-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-index:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
