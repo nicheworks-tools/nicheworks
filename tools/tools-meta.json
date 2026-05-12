@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-11",
+  "updatedAt": "2026-05-12",
   "items": {
     "ai-project-pack": {
       "title_ja": "AIプロジェクトパック",
@@ -943,6 +943,26 @@
         "ai",
         "interaction",
         "atlas"
+      ]
+    },
+    "earth-alerts": {
+      "title_ja": "Earth Alerts",
+      "title_en": "Earth Alerts",
+      "desc_ja": "Earth Alertsは、地球観測ワークフロー向けのしきい値やアラートルールを事前確認する予定の準備中ページです。通知送信やDiscord・メール連携はまだ有効ではありません。",
+      "desc_en": "Coming soon page for future threshold and alert-rule previews for Earth observation workflows.",
+      "tags": [
+        "earth",
+        "alerts"
+      ]
+    },
+    "earth-timeseries": {
+      "title_ja": "Earth Timeseries",
+      "title_en": "Earth Timeseries",
+      "desc_ja": "Earth Timeseriesは、地点ベースの地球観測メタデータやデータを時系列で整理する予定の準備中ページです。現在このページでは観測値の取得やラスター降水量のサンプリングは行いません。",
+      "desc_en": "Coming soon page for a future point-based Earth observation time-series utility.",
+      "tags": [
+        "earth",
+        "timeseries"
       ]
     }
   }

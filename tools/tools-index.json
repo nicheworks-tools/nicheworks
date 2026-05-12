@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-05-12T01:16:26.473Z",
-  "total": 78,
+  "generatedAt": "2026-05-12",
+  "total": 80,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -155,12 +155,34 @@
       "tags": []
     },
     {
+      "slug": "earth-alerts",
+      "title_en": "Earth Alerts",
+      "title_ja": "Earth Alerts",
+      "desc_en": "Coming soon page for future threshold and alert-rule previews for Earth observation workflows.",
+      "desc_ja": "Earth Alertsは、地球観測ワークフロー向けのしきい値やアラートルールを事前確認する予定の準備中ページです。通知送信やDiscord・メール連携はまだ有効ではありません。",
+      "tags": [
+        "earth",
+        "alerts"
+      ]
+    },
+    {
       "slug": "earth-map-suite",
       "title_en": "earth-map-suite",
       "title_ja": "earth-map-suite",
       "desc_en": "",
       "desc_ja": "",
       "tags": []
+    },
+    {
+      "slug": "earth-timeseries",
+      "title_en": "Earth Timeseries",
+      "title_ja": "Earth Timeseries",
+      "desc_en": "Coming soon page for a future point-based Earth observation time-series utility.",
+      "desc_ja": "Earth Timeseriesは、地点ベースの地球観測メタデータやデータを時系列で整理する予定の準備中ページです。現在このページでは観測値の取得やラスター降水量のサンプリングは行いません。",
+      "tags": [
+        "earth",
+        "timeseries"
+      ]
     },
     {
       "slug": "exif-cleaner-mini",

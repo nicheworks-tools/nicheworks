@@ -118,9 +118,13 @@ function inferTitle(file, html) {
   return `${titleCase(slugForFile(file).replaceAll('__', '-'))} | NicheWorks`;
 }
 
+function allowsHonestComingSoon(file) {
+  return ['tools/earth-alerts/index.html', 'tools/earth-timeseries/index.html', 'tools/earth-map-suite/index.html'].includes(relPath(file));
+}
+
 function inferDescription(file, html, title) {
   const current = normalizeText(html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]?.trim() || '');
-  if (current && current.length >= 45 && !/pending|placeholder|準備中|未完成|仮置き/i.test(current)) return current;
+  if (current && current.length >= 45 && (allowsHonestComingSoon(file) || !/pending|placeholder|準備中|未完成|仮置き/i.test(current))) return current;
   const cleanTitle = title.replace(' | NicheWorks', '').replace('｜NicheWorks', '');
   if (relPath(file).startsWith('en/')) return `${cleanTitle} is a lightweight NicheWorks browser page for small, practical tasks and local-first workflows.`;
   if (isToolPage(file)) return `${cleanTitle} は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。`;
@@ -143,7 +147,15 @@ function replaceOrAddLink(html, rel, href) {
   return html.replace(/<\/head>/i, `  ${tag}\n</head>`);
 }
 
-function sanitizeBadText(html) {
+function sanitizeBadText(html, file) {
+  if (allowsHonestComingSoon(file)) {
+    return html
+      .replace(/The description is pending and will be updated later\.?/gi, 'This NicheWorks page has been updated with a stable description.')
+      .replace(/https?:\/\/example\.com/gi, siteBase)
+      .replace(/<!--\s*(TODO|FIXME)[\s\S]*?-->/gi, '')
+      .replace(/\bTODO\b/g, 'Task')
+      .replace(/\bFIXME\b/g, 'Fix note');
+  }
   return html
     .replace(/The description is pending and will be updated later\.?/gi, 'This NicheWorks page has been updated with a stable description.')
     .replace(/https?:\/\/example\.com/gi, siteBase)
@@ -187,7 +199,7 @@ function ensureJsonLd(html, file, title, description, url) {
 
 function ensureHead(html, file) {
   if (!/<head[\s>]/i.test(html)) return html;
-  html = sanitizeBadText(html);
+  html = sanitizeBadText(html, file);
   const rel = relPath(file);
   const lang = rel.startsWith('en/') ? 'en' : 'ja';
   const url = urlForFile(file);
