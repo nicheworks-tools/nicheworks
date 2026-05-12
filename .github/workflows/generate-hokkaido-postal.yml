@@ -87,3 +87,5 @@ jobs:
           fi
           git commit -m "Generate Hokkaido postal data"
           git push
+
+# trigger: 2026-05-12-1
