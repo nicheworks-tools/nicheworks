@@ -1,646 +1,241 @@
 {
-  "generatedAt": "2026-05-12T07:32:09.780Z",
-  "total": 80,
+  "generatedAt": "2026-05-12T00:00:00.000Z",
+  "reviewMode": true,
+  "total": 18,
   "items": [
     {
-      "slug": "ai-interaction-atlas",
-      "title_en": "ai-interaction-atlas",
-      "title_ja": "ai-interaction-atlas",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "ai-project-pack",
-      "title_en": "ai-project-pack",
-      "title_ja": "ai-project-pack",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "analytics-privacy-kit",
-      "title_en": "analytics-privacy-kit",
-      "title_ja": "analytics-privacy-kit",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
       "slug": "api-key-token-redactor",
-      "title_en": "api-key-token-redactor",
-      "title_ja": "api-key-token-redactor",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "ats-paste-doctor",
-      "title_en": "ats-paste-doctor",
-      "title_ja": "ats-paste-doctor",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "codex-product-shipping-playbooks",
-      "title_en": "codex-product-shipping-playbooks",
-      "title_ja": "codex-product-shipping-playbooks",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "codex-usage-forecaster",
-      "title_en": "codex-usage-forecaster",
-      "title_ja": "codex-usage-forecaster",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "codex-work-os",
-      "title_en": "codex-work-os",
-      "title_ja": "codex-work-os",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "cold-email-requirement-checker",
-      "title_en": "cold-email-requirement-checker",
-      "title_ja": "cold-email-requirement-checker",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "API Key Token Redactor",
+      "title_ja": "APIキー・トークン伏せ字ツール",
+      "desc_en": "Detect and mask API keys, tokens, and secrets before sharing text or logs.",
+      "desc_ja": "共有前のテキストからAPIキーやトークンらしき値を検出してマスクします。",
+      "tags": [
+        "api",
+        "token",
+        "secret",
+        "redact"
+      ]
     },
     {
       "slug": "color-replace",
-      "title_en": "color-replace",
-      "title_ja": "color-replace",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Color Replace",
+      "title_ja": "画像カラー置換ツール",
+      "desc_en": "Replace or compare colors in simple images directly in the browser.",
+      "desc_ja": "画像内の色をブラウザ上で確認・置換します。",
+      "tags": [
+        "image",
+        "color",
+        "replace",
+        "browser"
+      ]
     },
     {
       "slug": "command-safety-checker",
-      "title_en": "command-safety-checker",
-      "title_ja": "command-safety-checker",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "construction-tools-atlas",
-      "title_en": "construction-tools-atlas",
-      "title_ja": "construction-tools-atlas",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "contract-cleaner",
-      "title_en": "contract-cleaner",
-      "title_ja": "contract-cleaner",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "contract-risk-highlighter",
-      "title_en": "contract-risk-highlighter",
-      "title_ja": "contract-risk-highlighter",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "cosmetic-ingredient-checker-lite",
-      "title_en": "cosmetic-ingredient-checker-lite",
-      "title_ja": "cosmetic-ingredient-checker-lite",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "cover-letter-lite",
-      "title_en": "cover-letter-lite",
-      "title_ja": "cover-letter-lite",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Command Safety Checker",
+      "title_ja": "コマンド安全確認ツール",
+      "desc_en": "Check shell commands for risky operations before running them.",
+      "desc_ja": "実行前のコマンドに危険操作が含まれないか確認します。",
+      "tags": [
+        "command",
+        "shell",
+        "safety",
+        "terminal"
+      ]
     },
     {
       "slug": "csv-tidy",
-      "title_en": "csv-tidy",
-      "title_ja": "csv-tidy",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "design-request-builder",
-      "title_en": "design-request-builder",
-      "title_ja": "design-request-builder",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "dry-meter",
-      "title_en": "dry-meter",
-      "title_ja": "dry-meter",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "earth-alerts",
-      "title_en": "earth-alerts",
-      "title_ja": "earth-alerts",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "earth-map-suite",
-      "title_en": "earth-map-suite",
-      "title_ja": "earth-map-suite",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "earth-timeseries",
-      "title_en": "earth-timeseries",
-      "title_ja": "earth-timeseries",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "CSV Tidy",
+      "title_ja": "CSV整形ツール",
+      "desc_en": "Reorder, rename, trim, and clean CSV columns in the browser.",
+      "desc_ja": "CSVの列並べ替え、列名変更、空白トリムを行います。",
+      "tags": [
+        "csv",
+        "tidy",
+        "columns",
+        "data"
+      ]
     },
     {
       "slug": "exif-cleaner-mini",
-      "title_en": "exif-cleaner-mini",
-      "title_ja": "exif-cleaner-mini",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "EXIF Cleaner Mini",
+      "title_ja": "EXIF削除ミニ",
+      "desc_en": "Remove image metadata before sharing photos or screenshots.",
+      "desc_ja": "写真共有前にEXIFなどのメタデータを確認・削除します。",
+      "tags": [
+        "exif",
+        "image",
+        "metadata",
+        "privacy"
+      ]
     },
     {
       "slug": "filetype-sniffer",
-      "title_en": "filetype-sniffer",
-      "title_ja": "filetype-sniffer",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "form-tool-selector",
-      "title_en": "form-tool-selector",
-      "title_ja": "form-tool-selector",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "growth-log-template-generator",
-      "title_en": "growth-log-template-generator",
-      "title_ja": "growth-log-template-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "habit-plan-generator",
-      "title_en": "habit-plan-generator",
-      "title_ja": "habit-plan-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "image-compression-inspector",
-      "title_en": "image-compression-inspector",
-      "title_ja": "image-compression-inspector",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "FileType Sniffer",
+      "title_ja": "ファイル種別判定ツール",
+      "desc_en": "Inspect file signatures and estimate file types locally.",
+      "desc_ja": "ファイルの先頭情報から種類を推定します。",
+      "tags": [
+        "file",
+        "type",
+        "sniffer",
+        "privacy"
+      ]
     },
     {
       "slug": "image-redact",
-      "title_en": "image-redact",
-      "title_ja": "image-redact",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "inci-fastscan",
-      "title_en": "inci-fastscan",
-      "title_ja": "inci-fastscan",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "incident-update-generator",
-      "title_en": "incident-update-generator",
-      "title_ja": "incident-update-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "jp-postal-lite",
-      "title_en": "jp-postal-lite",
-      "title_ja": "jp-postal-lite",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Image Redact",
+      "title_ja": "画像ぼかし・黒塗りツール",
+      "desc_en": "Hide sensitive parts of screenshots with blur, mosaic, or black boxes.",
+      "desc_ja": "スクリーンショットや画像の一部をぼかし・黒塗りで隠します。",
+      "tags": [
+        "image",
+        "redact",
+        "privacy",
+        "screenshot"
+      ]
     },
     {
       "slug": "json-repair",
-      "title_en": "json-repair",
-      "title_ja": "json-repair",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "JSON Repair",
+      "title_ja": "JSON修復ツール",
+      "desc_en": "Repair broken JSON and show safer copy-and-paste candidates.",
+      "desc_ja": "壊れたJSONを修正候補つきで整え、コピーしやすい形にします。",
+      "tags": [
+        "json",
+        "repair",
+        "developer",
+        "format"
+      ]
     },
     {
       "slug": "json2mermaid",
-      "title_en": "json2mermaid",
-      "title_ja": "json2mermaid",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "JSON to Mermaid",
+      "title_ja": "JSONからMermaid図",
+      "desc_en": "Convert JSON structures into Mermaid diagrams for documentation.",
+      "desc_ja": "JSON構造をMermaid図へ変換し、データ構造を把握しやすくします。",
+      "tags": [
+        "json",
+        "mermaid",
+        "diagram",
+        "docs"
+      ]
     },
     {
       "slug": "kanji-modernizer",
-      "title_en": "kanji-modernizer",
-      "title_ja": "kanji-modernizer",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Kanji Modernizer",
+      "title_ja": "旧字体変換ツール",
+      "desc_en": "Convert or compare old Japanese kanji forms with modern forms.",
+      "desc_ja": "旧字体と新字体を比較・変換します。",
+      "tags": [
+        "kanji",
+        "japanese",
+        "old-kanji",
+        "convert"
+      ]
     },
     {
       "slug": "laundry-code-decode",
-      "title_en": "laundry-code-decode",
-      "title_ja": "laundry-code-decode",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "light-check",
-      "title_en": "light-check",
-      "title_ja": "light-check",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Laundry Code Decode",
+      "title_ja": "洗濯表示コード読み解き",
+      "desc_en": "Decode laundry symbols and care-label notes.",
+      "desc_ja": "洗濯表示やケアラベルの意味を確認します。",
+      "tags": [
+        "laundry",
+        "clothing",
+        "symbols",
+        "life"
+      ]
     },
     {
       "slug": "linebreak-doctor",
-      "title_en": "linebreak-doctor",
-      "title_ja": "linebreak-doctor",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Linebreak Doctor",
+      "title_ja": "改行整形ドクター",
+      "desc_en": "Fix awkward line breaks in pasted text.",
+      "desc_ja": "貼り付け前の不自然な改行を整えます。",
+      "tags": [
+        "text",
+        "linebreak",
+        "format",
+        "writing"
+      ]
     },
     {
       "slug": "log-formatter",
-      "title_en": "log-formatter",
-      "title_ja": "log-formatter",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "logistics-compliance-kit-jp",
-      "title_en": "logistics-compliance-kit-jp",
-      "title_ja": "logistics-compliance-kit-jp",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "lp-skeleton-generator",
-      "title_en": "lp-skeleton-generator",
-      "title_ja": "lp-skeleton-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Log Formatter",
+      "title_ja": "ログ整形ツール",
+      "desc_en": "Format pasted logs so errors and timestamps are easier to inspect.",
+      "desc_ja": "ログを読みやすく整え、エラー確認を補助します。",
+      "tags": [
+        "log",
+        "formatter",
+        "developer",
+        "debug"
+      ]
     },
     {
       "slug": "manual-finder",
-      "title_en": "manual-finder",
-      "title_ja": "manual-finder",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "membership-offer-builder",
-      "title_en": "membership-offer-builder",
-      "title_ja": "membership-offer-builder",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "message-generator",
-      "title_en": "message-generator",
-      "title_ja": "message-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "metadatasnap",
-      "title_en": "metadatasnap",
-      "title_ja": "metadatasnap",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "microtool-launch-checklist",
-      "title_en": "microtool-launch-checklist",
-      "title_ja": "microtool-launch-checklist",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "mini-game-utility",
-      "title_en": "mini-game-utility",
-      "title_ja": "mini-game-utility",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "minutes-to-ops",
-      "title_en": "minutes-to-ops",
-      "title_ja": "minutes-to-ops",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "money-template-checker",
-      "title_en": "money-template-checker",
-      "title_ja": "money-template-checker",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "motion-atlas",
-      "title_en": "motion-atlas",
-      "title_ja": "motion-atlas",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "moving-checklist-generator",
-      "title_en": "moving-checklist-generator",
-      "title_ja": "moving-checklist-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "moving-lease-final-check",
-      "title_en": "moving-lease-final-check",
-      "title_ja": "moving-lease-final-check",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "newsletter-kit-generator",
-      "title_en": "newsletter-kit-generator",
-      "title_ja": "newsletter-kit-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "niche-job-starter-kit",
-      "title_en": "niche-job-starter-kit",
-      "title_ja": "niche-job-starter-kit",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "notion-form-design-kit",
-      "title_en": "notion-form-design-kit",
-      "title_ja": "notion-form-design-kit",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "og-image-maker",
-      "title_en": "og-image-maker",
-      "title_ja": "og-image-maker",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "ManualFinder",
+      "title_ja": "公式マニュアル検索補助",
+      "desc_en": "Help find official manuals and support pages.",
+      "desc_ja": "公式マニュアル・サポートページ探しを補助します。",
+      "tags": [
+        "manual",
+        "support",
+        "search",
+        "life"
+      ]
     },
     {
       "slug": "old-kanji-reference",
-      "title_en": "old-kanji-reference",
-      "title_ja": "old-kanji-reference",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "ops-weekly-report-generator",
-      "title_en": "ops-weekly-report-generator",
-      "title_ja": "ops-weekly-report-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "outsource-spec-generator",
-      "title_en": "outsource-spec-generator",
-      "title_ja": "outsource-spec-generator",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "pages-deploy-guide",
-      "title_en": "pages-deploy-guide",
-      "title_ja": "pages-deploy-guide",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "Old Kanji Reference",
+      "title_ja": "旧字体一覧・旧字新字対応表",
+      "desc_en": "Search old Japanese kanji forms and compare them with modern equivalents.",
+      "desc_ja": "旧字体と新字体の対応を検索できる一覧です。",
+      "tags": [
+        "kanji",
+        "old-kanji",
+        "japanese",
+        "reference"
+      ]
     },
     {
       "slug": "pdf-page-tools-mini",
-      "title_en": "pdf-page-tools-mini",
-      "title_ja": "pdf-page-tools-mini",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "PDF Page Tools Mini",
+      "title_ja": "PDFページ操作ミニ",
+      "desc_en": "Split, reorder, remove, or prepare PDF pages in the browser.",
+      "desc_ja": "PDFページの分割、並べ替え、削除などを行います。",
+      "tags": [
+        "pdf",
+        "pages",
+        "split",
+        "browser"
+      ]
     },
     {
       "slug": "pdf2csv-local",
-      "title_en": "pdf2csv-local",
-      "title_ja": "pdf2csv-local",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "product-founder-os",
-      "title_en": "product-founder-os",
-      "title_ja": "product-founder-os",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "redirect-unwrapper",
-      "title_en": "redirect-unwrapper",
-      "title_ja": "redirect-unwrapper",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "release-guardian",
-      "title_en": "release-guardian",
-      "title_ja": "release-guardian",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "rename-wizard",
-      "title_en": "rename-wizard",
-      "title_ja": "rename-wizard",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "screenshot-stitcher",
-      "title_en": "screenshot-stitcher",
-      "title_ja": "screenshot-stitcher",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "size-converter",
-      "title_en": "size-converter",
-      "title_ja": "size-converter",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "sponsor-page-builder",
-      "title_en": "sponsor-page-builder",
-      "title_ja": "sponsor-page-builder",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "sql-db-risk-checker",
-      "title_en": "sql-db-risk-checker",
-      "title_ja": "sql-db-risk-checker",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "sukima-baito-income",
-      "title_en": "sukima-baito-income",
-      "title_ja": "sukima-baito-income",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "tiny-audio-meter",
-      "title_en": "tiny-audio-meter",
-      "title_ja": "tiny-audio-meter",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "trashnavi",
-      "title_en": "trashnavi",
-      "title_ja": "trashnavi",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "ui-atlas",
-      "title_en": "ui-atlas",
-      "title_ja": "ui-atlas",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "PDF to CSV Local",
+      "title_ja": "PDF表CSV変換ローカル",
+      "desc_en": "Extract table-like PDF data into CSV-style output locally.",
+      "desc_ja": "PDF内の表データをローカル処理でCSV化します。",
+      "tags": [
+        "pdf",
+        "csv",
+        "table",
+        "local"
+      ]
     },
     {
       "slug": "unitmaster",
-      "title_en": "unitmaster",
-      "title_ja": "unitmaster",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "url-title-collector",
-      "title_en": "url-title-collector",
-      "title_ja": "url-title-collector",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "vibe-lexicon",
-      "title_en": "vibe-lexicon",
-      "title_ja": "vibe-lexicon",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "weatherdiff",
-      "title_en": "weatherdiff",
-      "title_ja": "weatherdiff",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "webp-avif-converter",
-      "title_en": "webp-avif-converter",
-      "title_ja": "webp-avif-converter",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
-    },
-    {
-      "slug": "wifi-meter",
-      "title_en": "wifi-meter",
-      "title_ja": "wifi-meter",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
+      "title_en": "UnitMaster",
+      "title_ja": "単位換算ツール",
+      "desc_en": "Convert common units such as length, weight, temperature, and volume.",
+      "desc_ja": "長さ、重さ、温度などの単位換算を行います。",
+      "tags": [
+        "unit",
+        "convert",
+        "calculator",
+        "utility"
+      ]
     }
   ]
 }
