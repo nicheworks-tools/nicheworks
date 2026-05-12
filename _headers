@@ -1,6 +1,10 @@
 /robots.txt
   Cache-Control: public, max-age=0, must-revalidate, no-transform
 
+/sitemap-review.xml
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+  Content-Type: application/xml; charset=utf-8
+
 /sitemap-index.xml
   Cache-Control: public, max-age=0, must-revalidate, no-transform
   Content-Type: application/xml; charset=utf-8
@@ -10,5 +14,65 @@
   Content-Type: application/xml; charset=utf-8
 
 /sitemap.xml.gz
-  Cache-Control: public, max-age=0, must-revalidate, no-transform
+  Cache-Control: public, max-age=0, must-revalidate
   Content-Type: application/x-gzip
+
+/tools/earth-map-suite/*
+  X-Robots-Tag: noindex, follow
+
+/tools/earth-alerts/*
+  X-Robots-Tag: noindex, follow
+
+/tools/earth-timeseries/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/about/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/categories/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/compare/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/search/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/topics/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/usage/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/pro/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/ja/about/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/ja/categories/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/ja/compare/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/ja/search/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/ja/topics/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/ja/usage/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/ja/pro/*
+  X-Robots-Tag: noindex, follow
+
+/tools/motion-atlas/pro/*
+  X-Robots-Tag: noindex, follow
+
+/tools/motion-atlas/ja/pro/*
+  X-Robots-Tag: noindex, follow
+
+/tools/*/pro.html
+  X-Robots-Tag: noindex, follow
