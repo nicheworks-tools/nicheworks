@@ -105,11 +105,31 @@
     return paths;
   }
 
-  function addUnique(merged, seen, entries) {
+  function normalizeTerm(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[\s\u3000]+/g, " ")
+      .replace(/[／]/g, "/")
+      .trim();
+  }
+
+  function termKey(entry) {
+    const ja = normalizeTerm(entry?.term?.ja || entry?.ja || entry?.summary?.ja || "");
+    const en = normalizeTerm(entry?.term?.en || entry?.en || entry?.summary?.en || "");
+    if (!ja && !en) return "";
+    return `${ja}::${en}`;
+  }
+
+  function addUnique(merged, seenIds, seenTerms, entries) {
     asEntries(entries).forEach((entry) => {
       const id = typeof entry?.id === "string" ? entry.id.trim() : "";
-      if (!id || seen.has(id)) return;
-      seen.add(id);
+      if (!id || seenIds.has(id)) return;
+
+      const key = termKey(entry);
+      if (key && seenTerms.has(key)) return;
+
+      seenIds.add(id);
+      if (key) seenTerms.add(key);
       merged.push(entry);
     });
   }
@@ -120,14 +140,15 @@
     const manifest = await fetchJson(manifestPath);
     const packPaths = manifestPaths(manifest);
     const merged = [];
-    const seen = new Set();
+    const seenIds = new Set();
+    const seenTerms = new Set();
     for (const path of packPaths) {
       const pack = await fetchJson(path);
-      addUnique(merged, seen, pack);
+      addUnique(merged, seenIds, seenTerms, pack);
     }
     for (const path of basePaths) {
       const base = await fetchJson(path);
-      addUnique(merged, seen, base);
+      addUnique(merged, seenIds, seenTerms, base);
     }
     return merged;
   }
