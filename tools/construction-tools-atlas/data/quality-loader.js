@@ -141,17 +141,22 @@
     input.setAttribute("placeholder", example);
   }
 
-  function loadLatestImageHotfix() {
+  function appendScriptOnce(src, attr, value) {
     try {
-      if (document.querySelector('script[data-cta-image-hotfix="20260510-image-6"]')) return;
+      if (document.querySelector(`script[${attr}=\"${value}\"]`)) return;
       const script = document.createElement("script");
-      script.src = "./detail-image-hotfix.js?v=20260510-image-6";
+      script.src = src;
       script.defer = true;
-      script.dataset.ctaImageHotfix = "20260510-image-6";
+      script.setAttribute(attr, value);
       document.head.appendChild(script);
     } catch (_) {
       // Optional image pilot must not stop the dictionary.
     }
+  }
+
+  function loadLatestImageHotfix() {
+    appendScriptOnce("./detail-image-hotfix.js?v=20260510-image-6", "data-cta-image-hotfix", "20260510-image-6");
+    appendScriptOnce("./detail-image-hotfix-extra.js?v=20260510-extra-1", "data-cta-image-hotfix-extra", "20260510-extra-1");
   }
 
   window.CTA_DATA_LOADER = { loadEntries };
