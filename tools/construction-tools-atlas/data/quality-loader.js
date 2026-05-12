@@ -143,11 +143,11 @@
 
   function loadLatestImageHotfix() {
     try {
-      if (document.querySelector('script[data-cta-image-hotfix="20260510-image-4"]')) return;
+      if (document.querySelector('script[data-cta-image-hotfix="20260510-image-6"]')) return;
       const script = document.createElement("script");
-      script.src = "./detail-image-hotfix.js?v=20260510-image-4";
+      script.src = "./detail-image-hotfix.js?v=20260510-image-6";
       script.defer = true;
-      script.dataset.ctaImageHotfix = "20260510-image-4";
+      script.dataset.ctaImageHotfix = "20260510-image-6";
       document.head.appendChild(script);
     } catch (_) {
       // Optional image pilot must not stop the dictionary.
