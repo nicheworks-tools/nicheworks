@@ -7,7 +7,7 @@ Scope: `tools/earth-map-suite/` plus an isolated Cloudflare Pages Functions proo
 
 ## Summary
 
-- The public Earth Map Suite UI still uses deterministic synthetic/placeholder preview generation for visible `storm`, `compare`, and `card` maps/charts; `storm` and `compare` also show metadata-only GSMaP reachability status.
+- The public Earth Map Suite UI still uses deterministic synthetic/placeholder preview generation for visible `storm`, `compare`, and `card` maps/charts/cards; `storm`, `compare`, and `card` also show metadata-only GSMaP reachability status.
 - The safest candidate for a no-fixed-cost precipitation path is JAXA Earth API / EORC GSMaP daily precipitation metadata and COG/STAC assets.
 - Candidate collection/dataset ID: `JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily`.
 - Candidate band: `PRECIP`.
@@ -32,9 +32,10 @@ Scope: `tools/earth-map-suite/` plus an isolated Cloudflare Pages Functions proo
 ### `card`
 
 - `card` uses `buildPointTimeseries` to produce deterministic point time-series values from lat/lon/date/preset inputs.
-- The UI labels the card output as a placeholder/reference value.
-- There is no external data request in the current public `card` flow.
-- Therefore `card` is synthetic/placeholder preview data, not observed precipitation.
+- The UI labels the point card, mini chart, summary, and CSV values as `synthetic_preview`.
+- The public `card` flow now builds a small bbox around the selected point and calls `/api/earth-map-suite/precipitation` to check GSMaP metadata-only reachability near that point.
+- The metadata panel displays dataset/license/source/matched_dates/item_count/asset_count/sampling_status or endpoint errors.
+- Therefore `card` visible point values remain synthetic/placeholder preview data, not observed precipitation; only metadata reachability is real-data checked.
 
 ## Required term search findings
 
@@ -445,7 +446,7 @@ Scope: `tools/earth-map-suite/` UI/documentation only. The precipitation endpoin
   - `/api/earth-map-suite/precipitation?bbox=139.5%2C35.4%2C140.0%2C35.9&start=2025-08-04&end=2025-08-06&preset=low`
 - The compare panel displays metadata-only reachability for each period, including dataset_id, band, source, license, license_status, matched_dates, item_count, asset_count, sampling_status, and per-period error details when unavailable.
 - Compare A/B/Diff maps, cards, numeric summaries, PNGs, and CSV grid values remain synthetic preview only and are explicitly not observed precipitation.
-- Card mode remains disconnected from the metadata endpoint.
+- Card mode is handled in EMS-RD-06 below and now uses the same metadata endpoint for a small point-area reachability check.
 
 ### CSV status
 
@@ -462,3 +463,25 @@ Date: 2026-05-12
 - Exact legacy restored Compare defaults are normalized to the metadata-safe example during URL/default restoration only; arbitrary manually entered invalid ranges are still sent through validation/endpoint error handling.
 - Compare metadata idle copy is Compare-specific and no longer inherits Storm placeholder text.
 - Run compare still keeps A/B/Diff maps synthetic preview only while rendering independent Period A and Period B metadata success/error details.
+
+
+## EMS-RD-06 update — Card metadata-only point status
+
+Date: 2026-05-12
+Scope: `tools/earth-map-suite/` UI/documentation only. The precipitation endpoint limits and raster behavior were not changed.
+
+### Implemented card behavior
+
+- Card mode now builds a small bbox around the selected lat/lon and calls `/api/earth-map-suite/precipitation` after Card-only validation succeeds.
+- Metadata-safe example: lat `35.68`, lon `139.76`, start `2025-08-01`, end `2025-08-03`, preset `low`.
+- The low preset uses `delta=0.25` degrees, so the example metadata bbox is approximately `139.51,35.43,140.01,35.93`.
+- The Card metadata panel displays metadata-only reachability near the selected point, including dataset_id, band, source, license, license_status, attribution, matched_dates, item_count, asset_count, sampling_status, and visible endpoint errors.
+- Card point map, mini chart, summary, and CSV point values remain `synthetic_preview`; raster precipitation values are not sampled and point values are not real observations.
+
+### CSV status
+
+Card CSV output remains `data_type=synthetic_preview` and adds `real_metadata_status`, `metadata_bbox`, `dataset_id`, and `sampling_status` fields. Point values use the `synthetic_preview_mm` column name to avoid implying observed precipitation.
+
+### Remaining limitation
+
+Raster precipitation values are still not sampled. Card verifies GSMaP metadata reachability only; it does not calculate real point precipitation values or observed point series.

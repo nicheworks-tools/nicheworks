@@ -119,9 +119,9 @@
         <ul class="bullet">
           <li>storm：GSMaP実データのメタデータ状態パネルと、別枠の合成フレームスライダー/累積表示が出ます。</li>
           <li>compare：Period A / Period B それぞれのGSMaP metadata到達性パネルと、別枠のA/B/Diff合成プレビューカード、CSV出力が出ます。</li>
-          <li>card：ポイント位置と時系列チャートのカードが出ます。</li>
+          <li>card：選択地点周辺のGSMaP metadata到達性パネルと、別枠の地点カード/ミニチャート/サマリー（合成プレビュー）が出ます。</li>
         </ul>
-        <p class="hint">storm / compare のメタデータ状態は実GSMaP metadata到達性を示しますが、表示される地図プレビューは合成表示です。compareのA/B/Diffは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。</p>
+        <p class="hint">storm / compare / card のメタデータ状態は実GSMaP metadata到達性を示しますが、表示される地図・地点カード・ミニチャート・サマリーは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。</p>
       </div>
     </section>
 
@@ -133,10 +133,11 @@
         <ul class="bullet">
           <li>stormモードは <code>/api/earth-map-suite/precipitation</code> を1回呼び出し、GSMaP の実メタデータ到達性を表示します。</li>
           <li>compareモードは同じエンドポイントをPeriod A / Period Bで別々に呼び出し、metadata-onlyの到達性だけを表示します。</li>
+          <li>cardモードは選択緯度経度の周辺bboxを作って同じエンドポイントを呼び出し、metadata-onlyの到達性だけを表示します。</li>
           <li>表示項目は dataset / license / source / matched_dates / item_count / asset_count / sampling_status などの透明性情報です。</li>
           <li>エンドポイント上限は low が14日まで、mid が7日までです。</li>
           <li>ラスタの降水量値はまだサンプリングしていません。summary.mean/max/min は実値として表示しません。</li>
-          <li>storm地図プレビュー、CSVのフレーム値、compareのA/B/Diff、card は合成プレビュー/プレースホルダであり、観測降水量ではありません。</li>
+          <li>storm地図プレビュー、CSVのフレーム値、compareのA/B/Diff、Cardの地点カード/ミニチャート/サマリーは合成プレビューであり、観測降水量ではありません。</li>
         </ul>
       </div>
     </section>
@@ -168,9 +169,10 @@
           <div class="example-card">
             <h3 class="example-title">card 例</h3>
             <pre class="example-code">緯度/経度: 35.68, 139.76
-期間: 2024-09-01 → 2024-09-05
-プリセット: detail
-メモ: 夕方表示で視認性を確認</pre>
+期間: 2025-08-01 → 2025-08-03
+プリセット: low
+metadata bbox目安: 139.51,35.43,140.01,35.93
+メモ: 地点カード/ミニチャート/サマリーは合成プレビュー、metadata到達性だけ実データ確認</pre>
           </div>
         </div>
       </div>
@@ -271,8 +273,8 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">プレビューデータ：stormのメタデータ状態のみ実GSMaP到達性を表示。地図プレビューは合成/プレースホルダで観測降水量ではありません</p>
-    <p class="nw-footer-line">実データライセンス：未有効化 / 要確認</p>
+    <p class="nw-footer-line">プレビューデータ：storm/compare/cardのメタデータ状態のみ実GSMaP到達性を表示。地図・地点カード・ミニチャート・サマリーは合成プレビューで観測降水量ではありません</p>
+    <p class="nw-footer-line">実データライセンス：メタデータ応答の dataset / license / source を透明性のため表示。ラスター値は未サンプリング</p>
     <p class="nw-footer-line">免責：データの正確性は保証しません。必ず公式情報をご確認ください。</p>
     <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
