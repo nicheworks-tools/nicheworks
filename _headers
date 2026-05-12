@@ -17,6 +17,9 @@
   Cache-Control: public, max-age=0, must-revalidate
   Content-Type: application/x-gzip
 
+/tools/construction-tools-atlas/*
+  X-Robots-Tag: noindex, follow
+
 /tools/api-key-token-redactor/*
   X-Robots-Tag: noindex, follow
 
