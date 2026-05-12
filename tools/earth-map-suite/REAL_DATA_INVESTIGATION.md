@@ -430,3 +430,27 @@ Web research sources consulted:
 - `https://data.earth.jaxa.jp/api/javascript/v2.0.0/ja/docs/documents/Overview.html`
 - `https://data.earth.jaxa.jp/api/python/v0.1.5/en/googlecolab.html`
 - `https://www.eorc.jaxa.jp/catalog/assets/sample_code_html/PRECIP_GSMaP.html`
+
+## EMS-RD-05 update — Compare metadata-only A/B status
+
+Date: 2026-05-12
+Scope: `tools/earth-map-suite/` UI/documentation only. The precipitation endpoint limits and raster behavior were not changed.
+
+### Implemented compare behavior
+
+- Compare mode now calls `/api/earth-map-suite/precipitation` separately for Period A and Period B after compare-only validation succeeds.
+- Period A URL shape:
+  - `/api/earth-map-suite/precipitation?bbox=139.5%2C35.4%2C140.0%2C35.9&start=2025-08-01&end=2025-08-03&preset=low`
+- Period B URL shape:
+  - `/api/earth-map-suite/precipitation?bbox=139.5%2C35.4%2C140.0%2C35.9&start=2025-08-04&end=2025-08-06&preset=low`
+- The compare panel displays metadata-only reachability for each period, including dataset_id, band, source, license, license_status, matched_dates, item_count, asset_count, sampling_status, and per-period error details when unavailable.
+- Compare A/B/Diff maps, cards, numeric summaries, PNGs, and CSV grid values remain synthetic preview only and are explicitly not observed precipitation.
+- Card mode remains disconnected from the metadata endpoint.
+
+### CSV status
+
+Compare CSV output remains `data_type=synthetic_preview` and adds metadata columns for A/B status, dataset IDs, and sampling statuses. Synthetic A/B/Diff grid values are labeled as synthetic preview fields, not real observations.
+
+### Remaining limitation
+
+Raster precipitation values are still not sampled. The UI verifies GSMaP metadata reachability only; it does not calculate real A/B totals, real maps, or real diffs.

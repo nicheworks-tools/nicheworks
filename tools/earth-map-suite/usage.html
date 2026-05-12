@@ -118,10 +118,10 @@
       <div class="card-bd">
         <ul class="bullet">
           <li>storm：GSMaP実データのメタデータ状態パネルと、別枠の合成フレームスライダー/累積表示が出ます。</li>
-          <li>compare：期間A/B/差分のカードとCSV出力が出ます。</li>
+          <li>compare：Period A / Period B それぞれのGSMaP metadata到達性パネルと、別枠のA/B/Diff合成プレビューカード、CSV出力が出ます。</li>
           <li>card：ポイント位置と時系列チャートのカードが出ます。</li>
         </ul>
-        <p class="hint">stormのメタデータ状態は実GSMaPメタデータの到達性を示しますが、表示されるstorm地図プレビューは合成表示です。lowは14日まで、midは7日までです。ラスター降水量値はまだサンプリングしていません。</p>
+        <p class="hint">storm / compare のメタデータ状態は実GSMaP metadata到達性を示しますが、表示される地図プレビューは合成表示です。compareのA/B/Diffは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。</p>
       </div>
     </section>
 
@@ -131,11 +131,12 @@
       </div>
       <div class="card-bd">
         <ul class="bullet">
-          <li>stormモードは <code>/api/earth-map-suite/precipitation</code> を呼び出し、GSMaP の実メタデータ到達性を表示します。</li>
+          <li>stormモードは <code>/api/earth-map-suite/precipitation</code> を1回呼び出し、GSMaP の実メタデータ到達性を表示します。</li>
+          <li>compareモードは同じエンドポイントをPeriod A / Period Bで別々に呼び出し、metadata-onlyの到達性だけを表示します。</li>
           <li>表示項目は dataset / license / source / matched_dates / item_count / asset_count / sampling_status などの透明性情報です。</li>
           <li>エンドポイント上限は low が14日まで、mid が7日までです。</li>
           <li>ラスタの降水量値はまだサンプリングしていません。summary.mean/max/min は実値として表示しません。</li>
-          <li>storm地図プレビュー、CSVのフレーム値、compare / card は合成/プレースホルダであり、観測降水量ではありません。</li>
+          <li>storm地図プレビュー、CSVのフレーム値、compareのA/B/Diff、card は合成プレビュー/プレースホルダであり、観測降水量ではありません。</li>
         </ul>
       </div>
     </section>
@@ -158,10 +159,11 @@
           </div>
           <div class="example-card">
             <h3 class="example-title">compare 例</h3>
-            <pre class="example-code">期間A: 2024-08-01 → 2024-08-07
-期間B: 2023-08-01 → 2023-08-07
-BBox: 135.45,34.55,135.70,34.75
-プリセット: low</pre>
+            <pre class="example-code">BBox: 139.5,35.4,140.0,35.9
+期間A: 2025-08-01 → 2025-08-03
+期間B: 2025-08-04 → 2025-08-06
+プリセット: low
+注: A/B/Diffは合成プレビュー、metadata到達性だけ実データ確認</pre>
           </div>
           <div class="example-card">
             <h3 class="example-title">card 例</h3>
@@ -196,8 +198,8 @@ BBox: 135.45,34.55,135.70,34.75
               </tr>
               <tr>
                 <td>期間</td>
-                <td>最大 31 日</td>
-                <td>compare は A/B それぞれ</td>
+                <td>UIプレビューは最大31日。metadata endpointは low 14日 / mid 7日</td>
+                <td>compare は A/B それぞれmetadata endpointを確認</td>
               </tr>
               <tr>
                 <td>プリセット</td>
