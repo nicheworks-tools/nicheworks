@@ -121,7 +121,7 @@
           <li>compare：期間A/B/差分のカードとCSV出力が出ます。</li>
           <li>card：ポイント位置と時系列チャートのカードが出ます。</li>
         </ul>
-        <p class="hint">stormのメタデータ状態は実GSMaPメタデータの到達性を示しますが、表示されるstorm地図プレビューは合成表示です。ラスター降水量値はまだサンプリングしていません。</p>
+        <p class="hint">stormのメタデータ状態は実GSMaPメタデータの到達性を示しますが、表示されるstorm地図プレビューは合成表示です。lowは14日まで、midは7日までです。ラスター降水量値はまだサンプリングしていません。</p>
       </div>
     </section>
 
@@ -133,6 +133,7 @@
         <ul class="bullet">
           <li>stormモードは <code>/api/earth-map-suite/precipitation</code> を呼び出し、GSMaP の実メタデータ到達性を表示します。</li>
           <li>表示項目は dataset / license / source / matched_dates / item_count / asset_count / sampling_status などの透明性情報です。</li>
+          <li>エンドポイント上限は low が14日まで、mid が7日までです。</li>
           <li>ラスタの降水量値はまだサンプリングしていません。summary.mean/max/min は実値として表示しません。</li>
           <li>storm地図プレビュー、CSVのフレーム値、compare / card は合成/プレースホルダであり、観測降水量ではありません。</li>
         </ul>
@@ -147,11 +148,13 @@
         <div class="example-grid">
           <div class="example-card">
             <h3 class="example-title">storm 例</h3>
-            <pre class="example-code">BBox: 139.60,35.50,139.95,35.80
-期間: 2024-08-18 → 2024-08-20
-プリセット: mid
+            <pre class="example-code">BBox: 139.5,35.4,140.0,35.9
+期間: 2025-08-01 → 2025-08-03
+プリセット: low
 フレーム数: 24
-対象エリア: 東京23区・沿岸部</pre>
+対象エリア: 東京周辺
+レイヤー: 地形 / 主要道路 / 避難所
+メモ: Synthetic preview / not observed precipitation</pre>
           </div>
           <div class="example-card">
             <h3 class="example-title">compare 例</h3>
