@@ -93,7 +93,7 @@ const labels = {
 
 const unitLabels = {
   ja: {
-    length: { shaku: "尺", sun: "寸", bu_length: "分", ken: "間", ri: "里", tsubo_length: "坪", furlong: "ハロン (furlong)", chain: "チェーン (chain)", league: "リーグ (league)", angstrom: "オングストローム (angstrom)", micrometer: "マイクロメートル (micrometer)", parsec: "パーセク (parsec)", lightyear: "光年 (lightyear)" },
+    length: { shaku: "尺", sun: "寸", bu_length: "分", ken: "間", ri: "里", furlong: "ハロン (furlong)", chain: "チェーン (chain)", league: "リーグ (league)", angstrom: "オングストローム (angstrom)", micrometer: "マイクロメートル (micrometer)", parsec: "パーセク (parsec)", lightyear: "光年 (lightyear)" },
     weight: { monme: "匁", kin: "斤", kan: "貫", dram: "ドラム (dram)", grain: "グレイン (grain)" },
     volume: { gou: "合", shou: "升", to: "斗" },
     area: { tsubo_area: "坪", tan: "反", se: "畝", cho: "町" },
@@ -101,7 +101,7 @@ const unitLabels = {
     pressure: { torr: "トル (torr)", psi: "psi" }
   },
   en: {
-    length: { shaku: "Shaku", sun: "Sun", bu_length: "Bu", ken: "Ken", ri: "Ri", tsubo_length: "Tsubo", furlong: "Furlong", chain: "Chain", league: "League", angstrom: "Angstrom", micrometer: "Micrometer", parsec: "Parsec", lightyear: "Light-year" },
+    length: { shaku: "Shaku", sun: "Sun", bu_length: "Bu", ken: "Ken", ri: "Ri", furlong: "Furlong", chain: "Chain", league: "League", angstrom: "Angstrom", micrometer: "Micrometer", parsec: "Parsec", lightyear: "Light-year" },
     weight: { monme: "Monme", kin: "Kin", kan: "Kan", dram: "Dram", grain: "Grain" },
     volume: { gou: "Gou", shou: "Shou", to: "To" },
     area: { tsubo_area: "Tsubo", tan: "Tan", se: "Se", cho: "Cho" },
@@ -111,7 +111,7 @@ const unitLabels = {
 };
 
 const units = {
-  length: { mm: 0.001, cm: 0.01, m: 1, km: 1000, inch: 0.0254, ft: 0.3048, yard: 0.9144, mile: 1609.344, shaku: 0.303, sun: 0.0303, bu_length: 0.00303, ken: 1.818, ri: 3927, tsubo_length: 3.306, furlong: 201.168, chain: 20.1168, league: 4828.032, angstrom: 1e-10, micrometer: 1e-6, parsec: 3.0857e16, lightyear: 9.4607e15 },
+  length: { mm: 0.001, cm: 0.01, m: 1, km: 1000, inch: 0.0254, ft: 0.3048, yard: 0.9144, mile: 1609.344, shaku: 0.303, sun: 0.0303, bu_length: 0.00303, ken: 1.818, ri: 3927, furlong: 201.168, chain: 20.1168, league: 4828.032, angstrom: 1e-10, micrometer: 1e-6, parsec: 3.0857e16, lightyear: 9.4607e15 },
   weight: { g: 1, kg: 1000, lb: 453.59237, oz: 28.3495231, monme: 3.75, kin: 600, kan: 3750, dram: 1.771845, grain: 0.06479891 },
   temp: ["c", "f", "k"],
   volume: { ml: 0.001, l: 1, cup: 0.24, gou: 0.18039, shou: 1.8039, to: 18.039 },
@@ -250,7 +250,23 @@ function generateBulkList(validation) {
   }
   bulkBox.replaceChildren(fragment);
 }
-function readHistory() { try { const list = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]"); return Array.isArray(list) ? list : []; } catch (e) { return []; } }
+function hasUnit(cat, unit) {
+  const group = units[cat];
+  if (!group) return false;
+  return Array.isArray(group) ? group.includes(unit) : Object.prototype.hasOwnProperty.call(group, unit);
+}
+function isKnownHistoryItem(item) {
+  return !!item && hasUnit(item.category, item.from) && hasUnit(item.category, item.to);
+}
+function readHistory() {
+  try {
+    const list = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+    if (!Array.isArray(list)) return [];
+    const filtered = list.filter(isKnownHistoryItem);
+    if (filtered.length !== list.length) localStorage.setItem(HISTORY_KEY, JSON.stringify(filtered.slice(0, 5)));
+    return filtered;
+  } catch (e) { return []; }
+}
 function writeHistory(list) { try { localStorage.setItem(HISTORY_KEY, JSON.stringify(list.slice(0, 5))); } catch (e) {} }
 function historyKey(item) { return [item.category, item.value, item.from, item.to, item.result].join("|"); }
 function saveHistory(result) {
