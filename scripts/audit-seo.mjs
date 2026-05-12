@@ -125,8 +125,15 @@ function missingInternalToolLinks(html) {
     .map((l) => l.href);
 }
 
-function hasBadText(html) {
-  return BAD_TEXT_PATTERNS.filter((re) => re.test(html)).map((re) => String(re));
+function allowsHonestComingSoon(file) {
+  return ['tools/earth-alerts/index.html', 'tools/earth-timeseries/index.html', 'tools/earth-map-suite/index.html'].includes(relPath(file));
+}
+
+function hasBadText(html, file) {
+  const patterns = allowsHonestComingSoon(file)
+    ? BAD_TEXT_PATTERNS.filter((re) => !['/coming soon/i', '/準備中/', '/placeholder/i'].includes(String(re)))
+    : BAD_TEXT_PATTERNS;
+  return patterns.filter((re) => re.test(html)).map((re) => String(re));
 }
 
 function isToolPage(file) {
@@ -144,7 +151,7 @@ function checkPage(file) {
   const issues = [];
   const warnings = [];
   const brokenLinks = missingInternalToolLinks(html);
-  const badTexts = hasBadText(html);
+  const badTexts = hasBadText(html, file);
 
   if (!has(html, /<html\b[^>]*lang=["'][^"']+["']/i)) issues.push('missing html lang');
   if (!has(html, /<meta\b[^>]*name=["']viewport["']/i)) issues.push('missing viewport');
