@@ -1,6 +1,8 @@
 (() => {
   const isEnglishPath = /\/manual-finder\/en\/?/.test(window.location.pathname);
-  const DATA_URL = isEnglishPath ? "../data/manuals.json" : "./data/manuals.json";
+  const basePath = isEnglishPath ? ".." : ".";
+  const DATA_URL = `${basePath}/data/manuals.json`;
+  const FULL_DATA_URL = `${basePath}/data/manuals.full.js`;
   const fallbackRows = [
     ["Apple","Apple（アップル）","Apple","PC・スマホ","Global","https://support.apple.com/ja-jp/docs","https://support.apple.com/","iPhone 型番、MacBook モデル名、iPad 世代"],
     ["Sony","ソニー","Sony","家電","Japan","https://www.sony.jp/support/manual.html","https://www.sony.jp/support/","BRAVIA 型番、ヘッドホン型番、カメラ型番"],
@@ -55,6 +57,16 @@
       if (window.localStorage) window.localStorage.setItem("manualfinder_lang", lang);
     }));
   }
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src=\"${src}\"]`)) return resolve();
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
   function collectSearchParts(item) {
     const parts = [item.brand,item.nameJa,item.nameEn,item.category,item.country,item.note,item.hint];
     if (Array.isArray(item.tags)) parts.push(item.tags.join(" "));
@@ -86,8 +98,18 @@
       return true;
     });
   }
-  function loadManuals() {
+  async function loadManuals() {
     setStatus("loading", "データを読み込み中です...", "Loading manual directory...");
+    try {
+      await loadScript(FULL_DATA_URL);
+      if (!Array.isArray(window.MANUALFINDER_FULL_RECORDS)) throw new Error("full dataset missing");
+      state.manuals = normalizeData(window.MANUALFINDER_FULL_RECORDS);
+      setStatus("ready", "", "");
+      applyFilter();
+      return;
+    } catch (fullErr) {
+      console.warn(fullErr);
+    }
     fetch(DATA_URL, { cache:"no-store" })
       .then((res) => { if (!res.ok) throw new Error("failed to load manuals.json"); return res.json(); })
       .then((data) => {
