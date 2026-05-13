@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Earth Map Suite Codegen | NicheWorks</title>
+  <meta name="description" content="Earth Map Suiteのmetadata-only endpointを安全に呼び出すためのサンプルコードを生成するページです。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/earth-map-suite/codegen.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="Earth Map Suite Codegen | NicheWorks" />
+  <meta property="og:description" content="metadata-only endpoint 用の安全なサンプルコードを整理します。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/earth-map-suite/codegen.html" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <link rel="stylesheet" href="./style.css" />
+  <style>.code-grid{display:grid;gap:14px}.code-box{border:1px solid #e5e7eb;border-radius:14px;background:#fff;padding:14px}.code-text{width:100%;min-height:220px;border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#f8fafc;font-family:ui-monospace,Menlo,monospace;font-size:12px;white-space:pre;overflow:auto}.warn{border-color:#fed7aa;background:#fff7ed}@media(min-width:960px){.code-grid{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}}</style>
+</head>
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">Earth Map Suite Codegen</h1>
+    <p class="nw-lead">metadata-only endpoint 用の安全なサンプルコードを整理します。</p>
+    <div class="nw-lang-switch"><a href="./">Tool</a> / <a href="./datasets.html">Datasets</a> / <a href="./export.html">Export</a></div>
+  </header>
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠</div>
+    <section class="card"><div class="card-hd"><h2 class="card-title">Codegen status</h2></div><div class="card-bd"><p class="hint">このページは metadata-only endpoint の呼び出し例だけを扱います。ラスター/COG pixel sampling のコードは未検証のため生成しません。</p></div></section>
+    <div class="code-grid">
+      <section class="code-box warn"><h2>Guardrails</h2><ul class="bullet"><li>metadata-only response only</li><li>do not treat synthetic preview as observed precipitation</li><li>do not generate raster sampling code here</li><li>keep endpoint errors visible</li></ul></section>
+      <section class="code-box"><h2>Endpoint</h2><pre class="code-text">/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low</pre></section>
+      <section class="code-box wide"><h2>JavaScript fetch example</h2><pre class="code-text" id="jsText">const params = new URLSearchParams({
+  bbox: '139.5,35.4,140.0,35.9',
+  start: '2025-08-01',
+  end: '2025-08-03',
+  preset: 'low'
+});
+
+const response = await fetch(`/api/earth-map-suite/precipitation?${params}`, {
+  headers: { accept: 'application/json' }
+});
+const payload = await response.json();
+
+if (response.ok && payload.status === 'ok' && payload.sampling_status === 'metadata_only') {
+  console.log('metadata reachable', payload.dataset_id, payload.matched_dates);
+} else {
+  console.warn('metadata unavailable', payload.error_code, payload.message);
+}
+</pre><div class="actions"><button class="btn primary" type="button" data-copy="jsText">Copy JS</button></div></section>
+      <section class="code-box wide"><h2>cURL example</h2><pre class="code-text" id="curlText">curl 'https://nicheworks.app/api/earth-map-suite/precipitation?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low' \
+  -H 'accept: application/json'
+</pre><div class="actions"><button class="btn primary" type="button" data-copy="curlText">Copy cURL</button></div></section>
+      <section class="code-box wide"><h2>Expected success shape</h2><pre class="code-text">{
+  "data_type": "real_observation_metadata",
+  "status": "ok",
+  "dataset_id": "JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily",
+  "band": "PRECIP",
+  "sampling_status": "metadata_only",
+  "matched_dates": ["2025-08-01", "2025-08-02", "2025-08-03"],
+  "summary": { "mean": null, "max": null, "min": null }
+}</pre></section>
+    </div>
+    <div class="ad-slot ad-bottom">広告枠</div>
+  </main>
+  <footer class="nw-footer"><div class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</div><div class="nw-footer-line">Codegen is metadata-only. Raster sampling code is not generated here.</div></footer>
+  <script>document.querySelectorAll('[data-copy]').forEach((btn)=>btn.addEventListener('click',async()=>{const id=btn.getAttribute('data-copy');const text=document.getElementById(id)?.textContent||'';try{await navigator.clipboard.writeText(text);btn.textContent='Copied';}catch{btn.textContent='Copy failed';}}));</script>
+</body>
+</html>
