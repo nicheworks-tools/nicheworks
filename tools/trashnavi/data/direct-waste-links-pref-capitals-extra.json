@@ -1,0 +1,20 @@
+[
+  {"pref":"山梨県","city":"甲府市","name":"甲府市 ごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.kofu.yamanashi.jp/genryo/kurashi/gomi/bunbetsu/index.html","lgcode":"192015"},
+  {"pref":"三重県","city":"津市","name":"津市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.info.city.tsu.mie.jp/www/contents/1001000011001/index.html","lgcode":"242012"},
+  {"pref":"滋賀県","city":"大津市","name":"大津市 ごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.otsu.lg.jp/soshiki/030/1703/g/gomi/","lgcode":"252018"},
+  {"pref":"奈良県","city":"奈良市","name":"奈良市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.nara.lg.jp/site/gomi-syusyu/","lgcode":"292010"},
+  {"pref":"和歌山県","city":"和歌山市","name":"和歌山市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.wakayama.wakayama.jp/kurashi/gomi_kankyo/1001116/index.html","lgcode":"302015"},
+  {"pref":"鳥取県","city":"鳥取市","name":"鳥取市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.tottori.lg.jp/www/genre/1000000000000/1000000000001/1000000000011/","lgcode":"312011"},
+  {"pref":"島根県","city":"松江市","name":"松江市 ごみの出し方・分別","type":"ごみ分別ページ","url":"https://www.city.matsue.lg.jp/kurashi_tetsuzuki/gomi_recycle/index.html","lgcode":"322016"},
+  {"pref":"山口県","city":"山口市","name":"山口市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.yamaguchi.lg.jp/life/1/12/","lgcode":"352039"},
+  {"pref":"徳島県","city":"徳島市","name":"徳島市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.tokushima.tokushima.jp/kurashi/recycle/gomi/","lgcode":"362018"},
+  {"pref":"香川県","city":"高松市","name":"高松市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.takamatsu.kagawa.jp/kurashi/kurashi/gomi/","lgcode":"372013"},
+  {"pref":"愛媛県","city":"松山市","name":"松山市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.matsuyama.ehime.jp/kurashi/gomi/","lgcode":"382019"},
+  {"pref":"高知県","city":"高知市","name":"高知市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.kochi.kochi.jp/soshiki/67/","lgcode":"392014"},
+  {"pref":"佐賀県","city":"佐賀市","name":"佐賀市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.saga.lg.jp/main/245.html","lgcode":"412015"},
+  {"pref":"長崎県","city":"長崎市","name":"長崎市 ごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.nagasaki.lg.jp/shimin/140000/142000/index.html","lgcode":"422011"},
+  {"pref":"大分県","city":"大分市","name":"大分市 ごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.oita.oita.jp/kurashi/gomi/","lgcode":"442011"},
+  {"pref":"宮崎県","city":"宮崎市","name":"宮崎市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.miyazaki.miyazaki.jp/life/trash/","lgcode":"452017"},
+  {"pref":"鹿児島県","city":"鹿児島市","name":"鹿児島市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.kagoshima.lg.jp/kurashi/gomi/index.html","lgcode":"462012"},
+  {"pref":"沖縄県","city":"那覇市","name":"那覇市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.naha.okinawa.jp/kurasitetuduki/gomi/","lgcode":"472018"}
+]
