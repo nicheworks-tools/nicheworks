@@ -21,5 +21,16 @@
   {"pref":"東京都","city":"練馬区","name":"練馬区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.nerima.tokyo.jp/kurashi/gomi/index.html","lgcode":"131202"},
   {"pref":"東京都","city":"足立区","name":"足立区 ごみとリサイクル","type":"ごみ分別ページ","url":"https://www.city.adachi.tokyo.jp/kurashi/kankyo/gomi/index.html","lgcode":"131211"},
   {"pref":"東京都","city":"葛飾区","name":"葛飾区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.katsushika.lg.jp/kurashi/1000048/index.html","lgcode":"131229"},
-  {"pref":"東京都","city":"江戸川区","name":"江戸川区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.edogawa.tokyo.jp/kurashi/gomi_recycle/","lgcode":"131237"}
+  {"pref":"東京都","city":"江戸川区","name":"江戸川区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.edogawa.tokyo.jp/kurashi/gomi_recycle/","lgcode":"131237"},
+  {"pref":"神奈川県","city":"横浜市","name":"横浜市 ごみの分別を調べる","type":"ごみ分別ページ","url":"https://www.city.yokohama.lg.jp/kurashi/sumai-kurashi/gomi-recycle/gomi/dashikata.html","lgcode":"141003"},
+  {"pref":"埼玉県","city":"さいたま市","name":"さいたま市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.saitama.lg.jp/001/006/010/003/p072158.html","lgcode":"111007"},
+  {"pref":"新潟県","city":"新潟市","name":"新潟市 ごみ分別百科事典・家庭ごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.niigata.lg.jp/kurashi/gomi/gomishigen/start.html","lgcode":"151009"},
+  {"pref":"静岡県","city":"静岡市","name":"静岡市 ごみの出し方・分別を調べる","type":"ごみ分別ページ","url":"https://www.city.shizuoka.lg.jp/p000102.html","lgcode":"221007"},
+  {"pref":"静岡県","city":"浜松市","name":"浜松市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.hamamatsu.shizuoka.jp/ippai/gomi/dashikata/index.html","lgcode":"221309"},
+  {"pref":"愛知県","city":"名古屋市","name":"名古屋市 家庭ごみ・資源の分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.nagoya.jp/kurashi/gomi/1012183/index.html","lgcode":"231002"},
+  {"pref":"京都府","city":"京都市","name":"京都市 ごみ出しのルール","type":"ごみ分別ページ","url":"https://www.city.kyoto.lg.jp/kankyo/page/0000309217.html","lgcode":"261009"},
+  {"pref":"大阪府","city":"大阪市","name":"大阪市 ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.osaka.lg.jp/kankyo/page/0000009337.html","lgcode":"271004"},
+  {"pref":"兵庫県","city":"神戸市","name":"神戸市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.kobe.lg.jp/a04164/kurashi/recycle/gomi/dashikata/shigen/index.html","lgcode":"281000"},
+  {"pref":"広島県","city":"広島市","name":"広島市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.hiroshima.lg.jp/living/gomi-kankyo/1021277/index.html","lgcode":"341002"},
+  {"pref":"福岡県","city":"福岡市","name":"福岡市 家庭ごみの出し方・ごみ出しルール","type":"ごみ分別ページ","url":"https://www.city.fukuoka.lg.jp/kankyo/jigyokeigomi/life/katei-bunbetsu/kateigomi-dasikata.html","lgcode":"401307"}
 ]
