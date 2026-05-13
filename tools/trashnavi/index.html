@@ -53,19 +53,20 @@
     <div class="ad-slot ad-top">広告枠</div>
 
     <section class="intro-note" aria-label="Tool summary">
-      <p data-i18n="ja">都道府県・市区町村・キーワードで絞り込み、自治体公式サイトへのリンクを表示します。ごみ分別の最終確認や粗大ごみ申込みは、必ずリンク先の公式ページで行ってください。</p>
-      <p data-i18n="en">Filter by prefecture, municipality, and keyword to find official municipal links. Always confirm final sorting rules and bulky waste applications on the linked official page.</p>
+      <p data-i18n="ja">都道府県・市区町村・リンク種別・キーワードで絞り込み、自治体公式サイトへのリンクを表示します。ごみ分別の最終確認や粗大ごみ申込みは、必ずリンク先の公式ページで行ってください。</p>
+      <p data-i18n="en">Filter by prefecture, municipality, link type, and keyword to find official municipal links. Always confirm final sorting rules and bulky waste applications on the linked official page.</p>
     </section>
 
     <section class="search-section">
       <h2 class="section-title" data-i18n="ja">自治体で探す</h2>
       <h2 class="section-title" data-i18n="en">Search by municipality</h2>
-      <p class="section-desc" data-i18n="ja">都道府県と市区町村を選ぶと、公式サイトのごみ関連ページへのリンクを表示します。</p>
-      <p class="section-desc" data-i18n="en">Pick a prefecture and municipality to see official waste-related pages.</p>
+      <p class="section-desc" data-i18n="ja">都道府県・市区町村・リンク種別を選ぶと、公式サイトのごみ関連ページへのリンクを表示します。</p>
+      <p class="section-desc" data-i18n="en">Pick a prefecture, municipality, and link type to see official waste-related pages.</p>
 
       <div class="search-form">
         <div class="field"><label for="prefSelect" data-i18n="ja">都道府県</label><label for="prefSelect" data-i18n="en">Prefecture</label><select id="prefSelect"><option value="">すべて / All</option></select></div>
         <div class="field"><label for="citySelect" data-i18n="ja">市区町村</label><label for="citySelect" data-i18n="en">Municipality</label><select id="citySelect" disabled><option value="">すべて / All</option></select></div>
+        <div class="field"><label for="typeSelect" data-i18n="ja">リンク種別</label><label for="typeSelect" data-i18n="en">Link type</label><select id="typeSelect"><option value="">すべて</option></select></div>
         <div class="field"><label for="keywordInput" data-i18n="ja">キーワード（任意）</label><label for="keywordInput" data-i18n="en">Keyword (optional)</label><input id="keywordInput" type="text" placeholder="例：分別、カレンダー、粗大ごみ" autocomplete="off"></div>
         <div class="field actions"><button type="button" id="searchButton" class="btn-primary" data-i18n-key="searchButton">検索する</button><button type="button" id="resetButton" class="btn-ghost" data-i18n-key="resetButton">条件クリア</button></div>
       </div>
@@ -79,14 +80,11 @@
     </section>
 
     <section class="data-note">
-      <h2 data-i18n="ja">掲載データについて</h2>
-      <h2 data-i18n="en">About the data</h2>
-      <p data-i18n="ja">登録自治体数：<span id="municipalityCount">読み込み中</span></p>
-      <p data-i18n="en">Registered municipalities: <span id="municipalityCountEn">Loading</span></p>
-      <p data-i18n="ja">データ更新日：2026-05-12</p>
-      <p data-i18n="en">Data updated: 2026-05-12</p>
-      <p data-i18n="ja">自サイト内の自治体URLデータを優先して読み込みます。リンク先は自治体公式ページを優先していますが、URL変更やリンク切れの可能性があります。最新の分別ルール、粗大ごみ申込み、収集日は必ず公式サイトで確認してください。</p>
-      <p data-i18n="en">The tool prioritizes a self-hosted local government URL dataset. Links prioritize official municipal pages, but URLs may change or break. Always confirm the latest sorting rules, bulky waste applications, and pickup dates on the official site.</p>
+      <h2 data-i18n="ja">掲載データについて</h2><h2 data-i18n="en">About the data</h2>
+      <p data-i18n="ja">登録リンク数：<span id="municipalityCount">読み込み中</span></p><p data-i18n="en">Registered links: <span id="municipalityCountEn">Loading</span></p>
+      <p data-i18n="ja">データ更新日：2026-05-12</p><p data-i18n="en">Data updated: 2026-05-12</p>
+      <p data-i18n="ja">自サイト内の自治体URLデータを優先して読み込みます。自治体トップページに加え、確認済みのごみ分別ページ・収集カレンダー・粗大ごみページを順次追加しています。URL変更やリンク切れの可能性があるため、最新情報は必ず公式サイトで確認してください。</p>
+      <p data-i18n="en">The tool prioritizes a self-hosted local government URL dataset. It includes municipal top pages and gradually adds verified waste sorting, pickup calendar, and bulky waste pages. URLs may change or break, so always confirm the latest information on the official site.</p>
     </section>
 
     <div class="ad-slot ad-inline">広告枠</div>
@@ -96,7 +94,7 @@
     <section class="faq-section">
       <h2 data-i18n="ja">よくある質問</h2><h2 data-i18n="en">FAQ</h2>
       <div class="faq-item"><h3 data-i18n="ja">ごみ分別ルールをこのサイトで判定できますか？</h3><h3 data-i18n="en">Can this site determine waste-sorting rules?</h3><p data-i18n="ja">いいえ。TrashNaviは自治体公式ページへのリンク集です。分別の最終確認は公式サイトで行ってください。</p><p data-i18n="en">No. TrashNavi is a directory of official municipal links. Please confirm final rules on the official site.</p></div>
-      <div class="faq-item"><h3 data-i18n="ja">すべての自治体に対応していますか？</h3><h3 data-i18n="en">Does it cover every municipality?</h3><p data-i18n="ja">対応自治体は拡充中です。登録自治体数はページ内に表示しています。</p><p data-i18n="en">Coverage is being expanded. The current number of registered municipalities is shown on the page.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">すべての自治体に対応していますか？</h3><h3 data-i18n="en">Does it cover every municipality?</h3><p data-i18n="ja">自治体トップページは全国データをもとに表示し、ごみ分別ページなどの直リンクは確認できた自治体から順次追加します。</p><p data-i18n="en">Municipal top pages are based on nationwide data. Direct waste-related links are added gradually after verification.</p></div>
       <div class="faq-item"><h3 data-i18n="ja">粗大ごみの申込みもできますか？</h3><h3 data-i18n="en">Can I apply for bulky waste pickup here?</h3><p data-i18n="ja">このサイトでは申込みできません。リンク先の自治体公式ページで確認してください。</p><p data-i18n="en">No. Please use the linked official municipal page.</p></div>
       <div class="faq-item"><h3 data-i18n="ja">検索条件は送信されますか？</h3><h3 data-i18n="en">Are search conditions sent to a server?</h3><p data-i18n="ja">絞り込み処理はブラウザ内で行います。ただし広告・解析タグはページ表示時に読み込まれます。</p><p data-i18n="en">Filtering runs in your browser. Ads and analytics tags may load when the page is displayed.</p></div>
     </section>
