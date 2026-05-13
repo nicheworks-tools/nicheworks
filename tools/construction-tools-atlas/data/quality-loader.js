@@ -120,18 +120,42 @@
     return `${ja}::${en}`;
   }
 
-  function addUnique(merged, seenIds, seenTerms, entries) {
+  function addUnique(merged, seenIds, seenTerms, entries, stats, sourcePath) {
     asEntries(entries).forEach((entry) => {
+      stats.raw += 1;
       const id = typeof entry?.id === "string" ? entry.id.trim() : "";
-      if (!id || seenIds.has(id)) return;
+      if (!id) {
+        stats.skippedMissingId += 1;
+        return;
+      }
+      if (seenIds.has(id)) {
+        stats.duplicateIds += 1;
+        stats.removed.push({ reason: "duplicate_id", id, key: "", source: sourcePath });
+        return;
+      }
 
       const key = termKey(entry);
-      if (key && seenTerms.has(key)) return;
+      if (key && seenTerms.has(key)) {
+        stats.duplicateTerms += 1;
+        stats.removed.push({ reason: "duplicate_term", id, key, source: sourcePath });
+        return;
+      }
 
       seenIds.add(id);
       if (key) seenTerms.add(key);
       merged.push(entry);
     });
+  }
+
+  function createStats() {
+    return {
+      raw: 0,
+      merged: 0,
+      skippedMissingId: 0,
+      duplicateIds: 0,
+      duplicateTerms: 0,
+      removed: []
+    };
   }
 
   async function loadEntries(options = {}) {
@@ -142,13 +166,22 @@
     const merged = [];
     const seenIds = new Set();
     const seenTerms = new Set();
+    const stats = createStats();
+
     for (const path of packPaths) {
       const pack = await fetchJson(path);
-      addUnique(merged, seenIds, seenTerms, pack);
+      addUnique(merged, seenIds, seenTerms, pack, stats, path);
     }
     for (const path of basePaths) {
       const base = await fetchJson(path);
-      addUnique(merged, seenIds, seenTerms, base);
+      addUnique(merged, seenIds, seenTerms, base, stats, path);
+    }
+
+    stats.merged = merged.length;
+    stats.removedCount = stats.raw - stats.merged;
+    window.CTA_DATA_DIAGNOSTICS = stats;
+    if (stats.removedCount > 0) {
+      console.info("Construction Tools Atlas data dedupe", stats);
     }
     return merged;
   }
