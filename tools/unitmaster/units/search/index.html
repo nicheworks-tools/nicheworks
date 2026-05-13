@@ -1,0 +1,44 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>検索できる単位一覧｜UnitMaster</title><meta name="description" content="UnitMasterで採用している単位を検索できる一覧ページです。"><link rel="canonical" href="https://nicheworks.app/tools/unitmaster/units/search/"><meta name="robots" content="index,follow"><link rel="stylesheet" href="../../style.css"><style>.wrap{max-width:1120px}.toplinks{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.panel{margin:20px 0;padding:18px;border:1px solid var(--border);border-radius:18px;background:var(--card-bg);box-shadow:0 10px 30px rgba(15,23,42,.06)}.search{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:12px;background:var(--bg);color:var(--fg);font-size:1rem}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.chip{border:1px solid var(--border);border-radius:999px;background:#fff;color:#0f172a;padding:8px 11px;font-weight:700;cursor:pointer}.chip.on{background:#e6fffb;border-color:#0f9a9a;color:#087f7f}.grid{display:grid;grid-template-columns:1fr;gap:14px}.u{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:0 10px 30px rgba(15,23,42,.06)}.u h3{margin:0 0 8px}.meta{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}.pill{border-radius:999px;padding:3px 8px;font-size:.76rem;font-weight:800;background:#f1f5f9;color:#334155}.trad{background:#fef3c7;color:#92400e}.empty{display:none;text-align:center;color:var(--sub);padding:16px;border:1px dashed var(--border);border-radius:14px}.empty.show{display:block}@media(min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1040px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:760px){.chips{flex-wrap:nowrap;overflow:auto}.chip{white-space:nowrap}}</style></head><body><header class="nw-header"><h1 class="title">検索できる単位一覧</h1><p class="subtitle">単位名・記号・用途・カテゴリで探せます。</p><div class="toplinks"><a class="primary-link" href="/tools/unitmaster/">UnitMaster本体</a><a class="primary-link" href="/tools/unitmaster/units/">通常一覧</a><a class="primary-link" href="/tools/unitmaster/units/priority/">重点単位ノート</a></div></header><main class="container wrap"><section class="notice-card"><h2>利用上の注意</h2><p>換算値は代表的な換算係数に基づく目安です。専門用途では公式規格・専門資料・測定条件を確認してください。</p></section><section class="panel"><h2>単位を探す</h2><p>例：坪、psi、タイヤ、米、真珠、宇宙、温度</p><input id="q" class="search" type="search" placeholder="単位名・記号・用途で検索"><div id="chips" class="chips"></div><p id="status" class="status"></p></section><div id="grid" class="grid"></div><p id="empty" class="empty">該当する単位がありません。</p></main><footer class="nw-footer"><p><a href="https://nicheworks.app/">NicheWorks</a> © 2025</p></footer><script>const U=`length|長さ|mm / ミリメートル|0.001m|部品、厚み、製図寸法などで使われます|部品 厚み 製図
+length|長さ|cm / センチメートル|0.01m|身長、日用品、短い距離で使われます|身長 日用品
+length|長さ|m / メートル|1m|距離、寸法、高さ、幅などの基準です|高さ 幅 距離
+length|長さ|km / キロメートル|1000m|道路距離、移動距離、地図で使われます|道路 移動 地図
+length|長さ|inch / インチ|2.54cm|画面、工具、配管、海外製品寸法で使われます|画面 工具 配管 海外製品
+length|長さ|ft / フィート|0.3048m|身長、航空高度、建築寸法で使われます|身長 航空 建築
+length|長さ|mile / マイル|1609.344m|英米圏の道路距離やmphで使われます|道路 英米圏 mph
+length|長さ|寸|約0.0303m|尺の10分の1。和裁や木工で使われます|和裁 木工 尺|1
+length|長さ|尺|約0.303m|建築、和裁、古典文献で使われます|建築 和裁 寸 間|1
+length|長さ|分|約0.00303m|寸の10分の1にあたる小さな長さ単位です|寸 尺|1
+length|長さ|間|約1.818m|建築や部屋の寸法で使われてきました|建築 和室 畳|1
+length|長さ|里|約3927m|古い地理表現や道のりで使われます|道のり 歴史|1
+weight|重さ|g / グラム|1g|食品、日用品、少量の重さに使われます|食品 日用品
+weight|重さ|kg / キログラム|1000g|体重、荷物、食品などで使われます|体重 荷物 食品
+weight|重さ|lb / ポンド|453.59237g|英米圏の体重・食品・荷物重量で使われます|英米圏 体重
+weight|重さ|oz / オンス|28.3495231g|食品、飲料、軽量物の表記で使われます|食品 飲料
+weight|重さ|匁|3.75g|真珠、貴金属、薬種で使われてきました|真珠 貴金属 薬種|1
+weight|重さ|斤|600g|食品や古い重量表現で使われます|食品 食パン|1
+weight|重さ|貫|3750g|古い商取引や体重表現で見かけます|商取引 体重|1
+temp|温度|C / 摂氏|-|日常温度、気象、料理で使われます|気温 料理
+temp|温度|F / 華氏|-|主に米国などで使われる温度目盛です|米国 料理
+temp|温度|K / ケルビン|-|絶対零度を0Kとする科学向け単位です|絶対零度 科学
+volume|体積|ml / ミリリットル|0.001L|飲料、薬液、料理で使われます|飲料 薬液 料理
+volume|体積|L / リットル|1L|飲料、燃料、容器容量で使われます|飲料 燃料 容器
+volume|体積|cup / カップ|0.24L|料理で使われます。国やレシピで差があります|料理 レシピ
+volume|体積|合|0.18039L|米や酒で使われる伝統的な体積単位です|米 酒 料理|1
+volume|体積|升|1.8039L|10合にあたる体積単位です|米 酒 枡|1
+volume|体積|斗|18.039L|10升にあたる大きな体積単位です|農産物 商取引|1
+area|面積|m² / 平方メートル|1m²|部屋、土地、建物、床面積で使われます|部屋 土地 建物
+area|面積|km² / 平方キロメートル|1000000m²|地域、森林、湖、国土面積で使われます|地域 国土
+area|面積|坪|3.305785m²|土地・建物・部屋の広さで使われます|土地 部屋 不動産 建築|1
+area|面積|畝|99.1736m²|農地などで使われる伝統的な面積単位です|農地|1
+area|面積|反|991.736m²|農地面積で使われます|農地|1
+area|面積|町|9917.36m²|大きな土地・農地面積を表します|農地 土地|1
+speed|速度|m/s|1m/s|物理、計測、風速などで使われます|風速 物理
+speed|速度|km/h|0.277778m/s|車、道路、移動速度で使われます|車 道路 移動
+speed|速度|mph|0.44704m/s|英米圏の道路速度で使われます|マイル 英米圏
+speed|速度|knot / ノット|0.514444m/s|船舶・航空で使われる速度単位です|船舶 航空 風速
+pressure|圧力|Pa / パスカル|1Pa|科学、工学、計測で使われます|科学 工学
+pressure|圧力|hPa / ヘクトパスカル|100Pa|気圧や天気予報でよく使われます|気圧 天気
+pressure|圧力|bar / バール|100000Pa|工業・気象・機器表示で見かけます|工業 気象
+pressure|圧力|atm / 標準気圧|101325Pa|標準大気圧を基準にした単位です|大気圧
+pressure|圧力|torr / トル|133.322Pa|真空や圧力表現で使われます|真空
+pressure|圧力|psi|6894.76Pa|タイヤ空気圧、機械、海外製品で使われます|タイヤ 空気圧 機械`.split('\n').map(r=>r.split('|'));const C=[['all','すべて'],['length','長さ'],['weight','重さ'],['temp','温度'],['volume','体積'],['area','面積'],['speed','速度'],['pressure','圧力'],['traditional','伝統単位']];const g=document.getElementById('grid'),c=document.getElementById('chips'),q=document.getElementById('q'),s=document.getElementById('status'),e=document.getElementById('empty');let a='all';function esc(x){return String(x).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}g.innerHTML=U.map((u,i)=>`<article class="u" data-i="${i}"><p class="meta"><span class="pill">${u[1]}</span>${u[6]?'<span class="pill trad">伝統単位</span>':''}</p><h3>${esc(u[2])}</h3><p><strong>換算値：</strong>${esc(u[3])}</p><p>${esc(u[4])}</p></article>`).join('');c.innerHTML=C.map(x=>`<button class="chip${x[0]=='all'?' on':''}" data-f="${x[0]}">${x[1]}</button>`).join('');function n(x){return String(x||'').toLowerCase().trim()}function apply(){let k=n(q.value),cnt=0;[...g.children].forEach(el=>{let u=U[el.dataset.i],ok=(!k||n(u.join(' ')).includes(k))&&(a=='all'||u[0]==a||(a=='traditional'&&u[6]));el.hidden=!ok;if(ok)cnt++});s.textContent=cnt?`${cnt}件の単位を表示中`:'該当する単位がありません。';e.classList.toggle('show',!cnt)}c.onclick=ev=>{let b=ev.target.closest('.chip');if(!b)return;a=b.dataset.f;c.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x==b));apply()};q.oninput=apply;apply();</script></body></html>
