@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>検索できる単位一覧｜UnitMaster | NicheWorks</title>
+  <meta name="description" content="UnitMasterで採用している単位を、単位名・記号・用途・カテゴリで検索できる単位一覧ページです。">
+  <link rel="canonical" href="https://nicheworks.app/tools/unitmaster/units/search/">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="検索できる単位一覧｜UnitMaster | NicheWorks">
+  <meta property="og:description" content="UnitMasterで採用している単位を、単位名・記号・用途・カテゴリで検索できる単位一覧ページです。">
+  <meta property="og:url" content="https://nicheworks.app/tools/unitmaster/units/search/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="../../style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <style>
+    .search-layout{max-width:1120px}.hero-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.unit-finder-panel{margin:20px 0 24px;padding:18px;border:1px solid var(--border);border-radius:18px;background:var(--card-bg);box-shadow:0 10px 30px rgba(15,23,42,.06)}.unit-finder-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.unit-finder-head h2{margin:0 0 6px;font-size:1.25rem}.unit-finder-head p{margin:0;color:var(--sub);line-height:1.6}.unit-priority-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border:1px solid var(--border);border-radius:12px;padding:10px 12px;color:#087f7f;font-weight:800;background:#fff}.unit-search-label{display:block;font-size:.9rem;font-weight:800;margin:16px 0 6px}.unit-search-input{width:100%;border:1px solid var(--border);border-radius:12px;padding:13px 14px;background:var(--bg);color:var(--fg);font-size:1rem}.unit-filter-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.unit-filter-chip{border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--fg);padding:8px 11px;font-weight:700;cursor:pointer}.unit-filter-chip.active{background:#e6fffb;border-color:#0f9a9a;color:#087f7f}.unit-search-status{margin:8px 0 0;color:var(--sub);font-size:.92rem}.unit-card-grid{display:grid;grid-template-columns:1fr;gap:16px}.unit-card{margin:0}.unit-card[hidden]{display:none!important}.unit-card .meta{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:.76rem;font-weight:800;background:#f1f5f9;color:#334155}.pill.traditional{background:#fef3c7;color:#92400e}.empty-state{display:none;margin:18px 0;padding:16px;border:1px dashed var(--border);border-radius:14px;color:var(--sub);text-align:center}.empty-state.show{display:block}@media(min-width:760px){.unit-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1040px){.unit-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:760px){.unit-finder-head{display:block}.unit-priority-link{margin-top:12px;width:100%}.unit-filter-chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.unit-filter-chip{white-space:nowrap;flex:0 0 auto}}
+  </style>
+</head>
+<body>
+<header class="nw-header unit-page-header">
+  <h1 class="title">検索できる単位一覧</h1>
+  <p class="subtitle">UnitMasterで使う単位を、単位名・記号・用途・カテゴリで探せます。</p>
+  <div class="hero-actions"><a class="primary-link" href="/tools/unitmaster/">UnitMaster本体に戻る</a><a class="primary-link" href="/tools/unitmaster/units/">通常の単位一覧</a><a class="primary-link" href="/tools/unitmaster/units/priority/">重点単位ノート</a></div>
+</header>
+<main class="container unit-page search-layout">
+  <section class="notice-card"><h2>利用上の注意</h2><p>換算値はUnitMaster内部の代表的な換算係数に合わせた目安です。医療、建築、工業設計、契約、取引、研究、法規制では公式規格・専門資料・測定条件を確認してください。</p></section>
+  <section class="unit-finder-panel">
+    <div class="unit-finder-head"><div><h2>単位を探す</h2><p>例：坪、psi、タイヤ、米、真珠、宇宙、温度</p></div><a class="unit-priority-link" href="/tools/unitmaster/units/priority/">重点単位ノートを見る</a></div>
+    <label class="unit-search-label" for="unitSearchInput">検索</label><input id="unitSearchInput" class="unit-search-input" type="search" placeholder="単位名・記号・用途で検索" autocomplete="off">
+    <div class="unit-filter-chips" aria-label="カテゴリ絞り込み"><button type="button" class="unit-filter-chip active" data-filter="all">すべて</button><button type="button" class="unit-filter-chip" data-filter="length">長さ</button><button type="button" class="unit-filter-chip" data-filter="weight">重さ</button><button type="button" class="unit-filter-chip" data-filter="temp">温度</button><button type="button" class="unit-filter-chip" data-filter="volume">体積</button><button type="button" class="unit-filter-chip" data-filter="area">面積</button><button type="button" class="unit-filter-chip" data-filter="speed">速度</button><button type="button" class="unit-filter-chip" data-filter="pressure">圧力</button><button type="button" class="unit-filter-chip" data-filter="traditional">伝統単位</button></div>
+    <p class="unit-search-status" id="unitSearchStatus" aria-live="polite"></p>
+  </section>
+  <div class="unit-card-grid" id="unitGrid">
+    <article class="unit-card" data-category="length" data-search="mm ミリメートル 長さ 部品 厚み 製図"><p class="meta"><span class="pill">長さ</span></p><h3>mm / ミリメートル</h3><p><strong>換算値：</strong>0.001m</p><p>細かい部品、厚み、製図寸法などで使われます。</p></article>
+    <article class="unit-card" data-category="length" data-search="cm センチメートル 長さ 身長 日用品"><p class="meta"><span class="pill">長さ</span></p><h3>cm / センチメートル</h3><p><strong>換算値：</strong>0.01m</p><p>身長、日用品、短い距離の説明でよく使われます。</p></article>
+    <article class="unit-card" data-category="length" data-search="m メートル 長さ 高さ 幅 距離"><p class="meta"><span class="pill">長さ</span></p><h3>m / メートル</h3><p><strong>換算値：</strong>1m</p><p>距離、寸法、高さ、幅などの基準になります。</p></article>
+    <article class="unit-card" data-category="length" data-search="km キロメートル 長さ 道路 移動 地図"><p class="meta"><span class="pill">長さ</span></p><h3>km / キロメートル</h3><p><strong>換算値：</strong>1000m</p><p>道路距離、移動距離、地図上の距離に使われます。</p></article>
+    <article class="unit-card" data-category="length" data-search="inch インチ 長さ 画面 工具 配管 海外製品"><p class="meta"><span class="pill">長さ</span></p><h3>inch / インチ</h3><p><strong>換算値：</strong>2.54cm</p><p>画面サイズ、工具、配管、海外製品寸法などで使われます。</p></article>
+    <article class="unit-card" data-category="length" data-search="ft フィート 長さ 身長 航空高度"><p class="meta"><span class="pill">長さ</span></p><h3>ft / フィート</h3><p><strong>換算値：</strong>0.3048m</p><p>身長、航空高度、建築寸法などで使われます。</p></article>
+    <article class="unit-card" data-category="length" data-search="mile マイル 長さ 距離 道路 英米圏 mph"><p class="meta"><span class="pill">長さ</span></p><h3>mile / マイル</h3><p><strong>換算値：</strong>1609.344m</p><p>英米圏の道路距離、移動距離、速度表記で使われます。</p></article>
+    <article class="unit-card" data-category="length" data-traditional="true" data-search="寸 伝統単位 長さ 和裁 木工 尺"><p class="meta"><span class="pill">長さ</span><span class="pill traditional">伝統単位</span></p><h3>寸</h3><p><strong>換算値：</strong>約0.0303m</p><p>尺の10分の1。和裁、木工、古い寸法表現などで使われます。</p></article>
+    <article class="unit-card" data-category="length" data-traditional="true" data-search="尺 伝統単位 長さ 建築 和裁 寸 間"><p class="meta"><span class="pill">長さ</span><span class="pill traditional">伝統単位</span></p><h3>尺</h3><p><strong>換算値：</strong>約0.303m</p><p>建築、和裁、古典文献、伝統工芸の寸法表現で使われます。</p></article>
+    <article class="unit-card" data-category="length" data-traditional="true" data-search="分 伝統単位 長さ 寸 尺"><p class="meta"><span class="pill">長さ</span><span class="pill traditional">伝統単位</span></p><h3>分</h3><p><strong>換算値：</strong>約0.00303m</p><p>寸の10分の1にあたる小さな長さ単位です。</p></article>
+    <article class="unit-card" data-category="length" data-traditional="true" data-search="間 伝統単位 長さ 建築 和室 畳"><p class="meta"><span class="pill">長さ</span><span class="pill traditional">伝統単位</span></p><h3>間</h3><p><strong>換算値：</strong>約1.818m</p><p>建築や部屋の寸法で使われてきた長さ単位です。</p></article>
+    <article class="unit-card" data-category="length" data-traditional="true" data-search="里 伝統単位 長さ 道のり 距離 歴史"><p class="meta"><span class="pill">長さ</span><span class="pill traditional">伝統単位</span></p><h3>里</h3><p><strong>換算値：</strong>約3927m</p><p>古い地理表現、道のり、歴史資料などで見かけます。</p></article>
+    <article class="unit-card" data-category="weight" data-search="g グラム 重さ 食品 日用品"><p class="meta"><span class="pill">重さ</span></p><h3>g / グラム</h3><p><strong>換算値：</strong>1g</p><p>食品、日用品、少量の重さなどで使われます。</p></article>
+    <article class="unit-card" data-category="weight" data-search="kg キログラム 重さ 体重 荷物 食品"><p class="meta"><span class="pill">重さ</span></p><h3>kg / キログラム</h3><p><strong>換算値：</strong>1000g</p><p>体重、荷物、食品、工業製品など広く使われます。</p></article>
+    <article class="unit-card" data-category="weight" data-search="lb ポンド 重さ 英米圏 体重 食品"><p class="meta"><span class="pill">重さ</span></p><h3>lb / ポンド</h3><p><strong>換算値：</strong>453.59237g</p><p>英米圏の体重・食品・荷物重量などで使われます。</p></article>
+    <article class="unit-card" data-category="weight" data-search="oz オンス 重さ 食品 飲料"><p class="meta"><span class="pill">重さ</span></p><h3>oz / オンス</h3><p><strong>換算値：</strong>28.3495231g</p><p>食品、飲料、軽量物の表記で使われます。</p></article>
+    <article class="unit-card" data-category="weight" data-traditional="true" data-search="匁 伝統単位 重さ 真珠 貴金属 薬種"><p class="meta"><span class="pill">重さ</span><span class="pill traditional">伝統単位</span></p><h3>匁</h3><p><strong>換算値：</strong>3.75g</p><p>真珠、貴金属、薬種、古い商取引表現で使われてきました。</p></article>
+    <article class="unit-card" data-category="weight" data-traditional="true" data-search="斤 伝統単位 重さ 食品 食パン"><p class="meta"><span class="pill">重さ</span><span class="pill traditional">伝統単位</span></p><h3>斤</h3><p><strong>換算値：</strong>600g</p><p>食品や古い重量表現で使われます。食パンの1斤とは一致しない場合があります。</p></article>
+    <article class="unit-card" data-category="weight" data-traditional="true" data-search="貫 伝統単位 重さ 商取引 体重"><p class="meta"><span class="pill">重さ</span><span class="pill traditional">伝統単位</span></p><h3>貫</h3><p><strong>換算値：</strong>3750g</p><p>古い商取引、体重、荷重の歴史的表現で見かけます。</p></article>
+    <article class="unit-card" data-category="temp" data-search="C 摂氏 温度 気温 料理"><p class="meta"><span class="pill">温度</span></p><h3>C / 摂氏</h3><p><strong>意味：</strong>日常温度、気象、料理、機器表示で使われます。</p></article>
+    <article class="unit-card" data-category="temp" data-search="F 華氏 温度 米国 料理"><p class="meta"><span class="pill">温度</span></p><h3>F / 華氏</h3><p><strong>意味：</strong>主に米国などで使われる温度目盛です。</p></article>
+    <article class="unit-card" data-category="temp" data-search="K ケルビン 温度 絶対零度 科学 物理"><p class="meta"><span class="pill">温度</span></p><h3>K / ケルビン</h3><p><strong>意味：</strong>絶対零度を0Kとする科学・物理向けの温度単位です。</p></article>
+    <article class="unit-card" data-category="volume" data-search="ml ミリリットル 体積 飲料 薬液 料理"><p class="meta"><span class="pill">体積</span></p><h3>ml / ミリリットル</h3><p><strong>換算値：</strong>0.001L</p><p>飲料、薬液、料理などで使われます。</p></article>
+    <article class="unit-card" data-category="volume" data-search="L リットル 体積 飲料 燃料 容器"><p class="meta"><span class="pill">体積</span></p><h3>L / リットル</h3><p><strong>換算値：</strong>1L</p><p>飲料、燃料、容器容量などで使われます。</p></article>
+    <article class="unit-card" data-category="volume" data-search="cup カップ 体積 料理 レシピ"><p class="meta"><span class="pill">体積</span></p><h3>cup / カップ</h3><p><strong>換算値：</strong>0.24L</p><p>料理などで使われる体積単位です。国やレシピで値が異なる場合があります。</p></article>
+    <article class="unit-card" data-category="volume" data-traditional="true" data-search="合 伝統単位 体積 米 酒 料理"><p class="meta"><span class="pill">体積</span><span class="pill traditional">伝統単位</span></p><h3>合</h3><p><strong>換算値：</strong>0.18039L</p><p>米や酒などで使われる日本の伝統的な体積単位です。</p></article>
+    <article class="unit-card" data-category="volume" data-traditional="true" data-search="升 伝統単位 体積 米 酒 枡"><p class="meta"><span class="pill">体積</span><span class="pill traditional">伝統単位</span></p><h3>升</h3><p><strong>換算値：</strong>1.8039L</p><p>10合にあたる体積単位です。</p></article>
+    <article class="unit-card" data-category="volume" data-traditional="true" data-search="斗 伝統単位 体積 農産物 商取引"><p class="meta"><span class="pill">体積</span><span class="pill traditional">伝統単位</span></p><h3>斗</h3><p><strong>換算値：</strong>18.039L</p><p>10升にあたる大きな体積単位です。</p></article>
+    <article class="unit-card" data-category="area" data-search="m2 平方メートル 面積 部屋 土地 建物 床面積"><p class="meta"><span class="pill">面積</span></p><h3>m² / 平方メートル</h3><p><strong>換算値：</strong>1m²</p><p>部屋、土地、建物、床面積などで使われます。</p></article>
+    <article class="unit-card" data-category="area" data-search="km2 平方キロメートル 面積 地域 国土"><p class="meta"><span class="pill">面積</span></p><h3>km² / 平方キロメートル</h3><p><strong>換算値：</strong>1,000,000m²</p><p>市区町村、森林、湖、国土面積などで使われます。</p></article>
+    <article class="unit-card" data-category="area" data-traditional="true" data-search="坪 伝統単位 面積 土地 部屋 不動産 建築"><p class="meta"><span class="pill">面積</span><span class="pill traditional">伝統単位</span></p><h3>坪</h3><p><strong>換算値：</strong>3.305785m²</p><p>土地・建物・部屋の広さで使われます。長さではなく面積の単位です。</p></article>
+    <article class="unit-card" data-category="area" data-traditional="true" data-search="畝 伝統単位 面積 農地"><p class="meta"><span class="pill">面積</span><span class="pill traditional">伝統単位</span></p><h3>畝</h3><p><strong>換算値：</strong>99.1736m²</p><p>農地などで使われる伝統的な面積単位です。</p></article>
+    <article class="unit-card" data-category="area" data-traditional="true" data-search="反 伝統単位 面積 農地"><p class="meta"><span class="pill">面積</span><span class="pill traditional">伝統単位</span></p><h3>反</h3><p><strong>換算値：</strong>991.736m²</p><p>農地面積で使われる単位です。</p></article>
+    <article class="unit-card" data-category="area" data-traditional="true" data-search="町 伝統単位 面積 農地 土地"><p class="meta"><span class="pill">面積</span><span class="pill traditional">伝統単位</span></p><h3>町</h3><p><strong>換算値：</strong>9917.36m²</p><p>大きな土地・農地面積を表す伝統的な単位です。</p></article>
+    <article class="unit-card" data-category="speed" data-search="m/s 速度 風速 物理 計測"><p class="meta"><span class="pill">速度</span></p><h3>m/s</h3><p><strong>換算値：</strong>1m/s</p><p>物理、計測、風速などで使われます。</p></article>
+    <article class="unit-card" data-category="speed" data-search="km/h 速度 車 道路 移動"><p class="meta"><span class="pill">速度</span></p><h3>km/h</h3><p><strong>換算値：</strong>0.277778m/s</p><p>車、道路、移動速度で使われます。</p></article>
+    <article class="unit-card" data-category="speed" data-search="mph 速度 マイル 英米圏 道路"><p class="meta"><span class="pill">速度</span></p><h3>mph</h3><p><strong>換算値：</strong>0.44704m/s</p><p>英米圏の道路速度でよく使われます。</p></article>
+    <article class="unit-card" data-category="speed" data-search="knot ノット 速度 船舶 航空 風速 海"><p class="meta"><span class="pill">速度</span></p><h3>knot / ノット</h3><p><strong>換算値：</strong>0.514444m/s</p><p>船舶・航空で使われる速度単位です。</p></article>
+    <article class="unit-card" data-category="pressure" data-search="Pa パスカル 圧力 科学 工学 計測"><p class="meta"><span class="pill">圧力</span></p><h3>Pa / パスカル</h3><p><strong>換算値：</strong>1Pa</p><p>科学、工学、計測で使われます。</p></article>
+    <article class="unit-card" data-category="pressure" data-search="hPa ヘクトパスカル 圧力 気圧 天気予報"><p class="meta"><span class="pill">圧力</span></p><h3>hPa / ヘクトパスカル</h3><p><strong>換算値：</strong>100Pa</p><p>気圧や天気予報でよく使われる単位です。</p></article>
+    <article class="unit-card" data-category="pressure" data-search="bar バール 圧力 工業 気象 機器"><p class="meta"><span class="pill">圧力</span></p><h3>bar / バール</h3><p><strong>換算値：</strong>100000Pa</p><p>工業・気象・機器表示などで見かけます。</p></article>
+    <article class="unit-card" data-category="pressure" data-search="atm 標準気圧 圧力 大気圧"><p class="meta"><span class="pill">圧力</span></p><h3>atm / 標準気圧</h3><p><strong>換算値：</strong>101325Pa</p><p>標準大気圧を基準にした単位です。</p></article>
+    <article class="unit-card" data-category="pressure" data-search="torr トル 圧力 真空"><p class="meta"><span class="pill">圧力</span></p><h3>torr / トル</h3><p><strong>換算値：</strong>133.322Pa</p><p>真空や圧力表現で使われる単位です。</p></article>
+    <article class="unit-card" data-category="pressure" data-search="psi 圧力 タイヤ 空気圧 機械 海外製品"><p class="meta"><span class="pill">圧力</span></p><h3>psi</h3><p><strong>換算値：</strong>6894.76Pa</p><p>タイヤ空気圧、機械、海外製品の圧力表示で使われます。</p></article>
+  </div>
+  <p id="emptyState" class="empty-state">該当する単位がありません。検索語を短くするか、カテゴリを「すべて」に戻してください。</p>
+  <section class="donate-box"><p>💗 このページが役に立ったら支援お願いします</p><p><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">💌 OFUSE</a> / <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a></p></section>
+</main>
+<footer class="nw-footer"><p><a href="https://nicheworks.app/">NicheWorks</a> © 2025</p></footer>
+<script>
+(() => {
+  const cards = Array.from(document.querySelectorAll('.unit-card'));
+  const input = document.getElementById('unitSearchInput');
+  const chips = Array.from(document.querySelectorAll('.unit-filter-chip'));
+  const status = document.getElementById('unitSearchStatus');
+  const empty = document.getElementById('emptyState');
+  let activeFilter = 'all';
+  function normalize(value){return String(value || '').trim().toLowerCase();}
+  function apply(){const q = normalize(input.value);let count = 0;cards.forEach(card => {const text = normalize(`${card.textContent} ${card.dataset.search || ''}`);const matchText = !q || text.includes(q);const matchFilter = activeFilter === 'all' || card.dataset.category === activeFilter || (activeFilter === 'traditional' && card.dataset.traditional === 'true');const visible = matchText && matchFilter;card.hidden = !visible;if(visible) count += 1;});status.textContent = count ? `${count}件の単位を表示中` : '該当する単位がありません。';empty.classList.toggle('show', count === 0);}
+  chips.forEach(chip => chip.addEventListener('click', () => {activeFilter = chip.dataset.filter || 'all';chips.forEach(item => item.classList.toggle('active', item === chip));apply();}));
+  input.addEventListener('input', apply);
+  apply();
+})();
+</script>
+</body>
+</html>
