@@ -5,6 +5,8 @@
   const mount = document.querySelector('[data-pro-generator]');
   if (!mount) return;
 
+  let commonProActive = false;
+
   function loadNWPro() {
     return new Promise((resolve) => {
       if (window.NWPro) return resolve(window.NWPro);
@@ -18,15 +20,59 @@
 
   const text = {
     en: {
-      title: 'Generate Pro handoff output', pattern: 'Selected UI pattern', goal: 'Goal / use case', risk: 'Main risk to avoid', button: 'Generate output', copy: 'Copy Markdown', copied: 'Markdown copied.', failed: 'Copy failed. Please copy manually.', placeholderPattern: 'e.g. confirmation dialog', placeholderGoal: 'e.g. prevent accidental account deletion', placeholderRisk: 'e.g. user misses the consequence copy', decision: 'Decision memo', checklist: 'Implementation checklist', prompt: 'AI/Codex handoff prompt', markdown: 'Markdown output', imported: 'Loaded values from URL parameters.', compareMode: 'Compare memo mode', singleMode: 'Single pattern memo mode', proActive: 'Common Pro status: active in this browser.', proInactive: 'Common Pro status: not active in this browser yet. You can still preview the generator output.', proUnavailable: 'Common Pro status: helper not loaded. Generator preview is still available.'
+      title: 'Generate Pro handoff output',
+      pattern: 'Selected UI pattern',
+      goal: 'Goal / use case',
+      risk: 'Main risk to avoid',
+      button: 'Generate output',
+      copy: 'Copy Markdown',
+      copyPreview: 'Copy Markdown preview',
+      copied: 'Markdown copied.',
+      copiedPreview: 'Preview Markdown copied. Full Pro status is not active in this browser yet.',
+      failed: 'Copy failed. Please copy manually.',
+      placeholderPattern: 'e.g. confirmation dialog',
+      placeholderGoal: 'e.g. prevent accidental account deletion',
+      placeholderRisk: 'e.g. user misses the consequence copy',
+      decision: 'Decision memo',
+      checklist: 'Implementation checklist',
+      prompt: 'AI/Codex handoff prompt',
+      markdown: 'Markdown output',
+      imported: 'Loaded values from URL parameters.',
+      compareMode: 'Compare memo mode',
+      singleMode: 'Single pattern memo mode',
+      proActive: 'Common Pro status: active in this browser. Pro handoff output is unlocked.',
+      proInactive: 'Common Pro status: not active in this browser yet. This is preview mode until checkout is confirmed through /pro/unlock/.',
+      proUnavailable: 'Common Pro status: helper not loaded. Generator preview is still available.'
     },
     ja: {
-      title: 'Pro引き継ぎ出力を生成', pattern: '選択したUIパターン', goal: '目的 / 利用場面', risk: '避けたい主なリスク', button: '出力を生成', copy: 'Markdownをコピー', copied: 'Markdownをコピーしました。', failed: 'コピーに失敗しました。手動でコピーしてください。', placeholderPattern: '例: 確認ダイアログ', placeholderGoal: '例: 誤ってアカウント削除しないようにする', placeholderRisk: '例: ユーザーが影響範囲を見落とす', decision: '判断メモ', checklist: '実装チェックリスト', prompt: 'AI/Codex引き継ぎプロンプト', markdown: 'Markdown出力', imported: 'URLパラメータから初期値を読み込みました。', compareMode: '比較メモモード', singleMode: '単体UIメモモード', proActive: '共通Pro状態：このブラウザでは有効です。', proInactive: '共通Pro状態：このブラウザではまだ有効ではありません。出力プレビューは利用できます。', proUnavailable: '共通Pro状態：ヘルパーを読み込めませんでした。出力プレビューは利用できます。'
+      title: 'Pro引き継ぎ出力を生成',
+      pattern: '選択したUIパターン',
+      goal: '目的 / 利用場面',
+      risk: '避けたい主なリスク',
+      button: '出力を生成',
+      copy: 'Markdownをコピー',
+      copyPreview: 'Preview Markdownをコピー',
+      copied: 'Markdownをコピーしました。',
+      copiedPreview: 'Preview Markdownをコピーしました。このブラウザではまだ共通Proは有効ではありません。',
+      failed: 'コピーに失敗しました。手動でコピーしてください。',
+      placeholderPattern: '例: 確認ダイアログ',
+      placeholderGoal: '例: 誤ってアカウント削除しないようにする',
+      placeholderRisk: '例: ユーザーが影響範囲を見落とす',
+      decision: '判断メモ',
+      checklist: '実装チェックリスト',
+      prompt: 'AI/Codex引き継ぎプロンプト',
+      markdown: 'Markdown出力',
+      imported: 'URLパラメータから初期値を読み込みました。',
+      compareMode: '比較メモモード',
+      singleMode: '単体UIメモモード',
+      proActive: '共通Pro状態：このブラウザでは有効です。Pro引き継ぎ出力が利用できます。',
+      proInactive: '共通Pro状態：このブラウザではまだ有効ではありません。/pro/unlock/ で決済確認されるまではPreviewモードです。',
+      proUnavailable: '共通Pro状態：ヘルパーを読み込めませんでした。出力プレビューは利用できます。'
     }
   }[lang];
 
   mount.innerHTML = `
-    <section class="nw-card pro-generator-card">
+    <section class="nw-card pro-generator-card" data-pro-generator-card>
       <h2>${text.title}</h2>
       <p class="copy-state" data-common-pro-state aria-live="polite">${text.proUnavailable}</p>
       <p class="copy-state" data-pro-mode-state aria-live="polite"></p>
@@ -35,7 +81,7 @@
         <label class="local-box"><strong>${text.goal}</strong><input class="search-input" data-pro-goal placeholder="${text.placeholderGoal}"></label>
         <label class="local-box"><strong>${text.risk}</strong><input class="search-input" data-pro-risk placeholder="${text.placeholderRisk}"></label>
       </div>
-      <p><button type="button" class="support-btn" data-pro-generate>${text.button}</button> <button type="button" class="support-btn" data-pro-copy>${text.copy}</button></p>
+      <p><button type="button" class="support-btn" data-pro-generate>${text.button}</button> <button type="button" class="support-btn" data-pro-copy>${text.copyPreview}</button></p>
       <p class="copy-state" data-pro-copy-state aria-live="polite"></p>
       <div class="local-blocks">
         <section class="local-box"><h3>${text.decision}</h3><p data-pro-decision></p></section>
@@ -47,13 +93,22 @@
     </section>
   `;
 
+  const cardEl = mount.querySelector('[data-pro-generator-card]');
   const commonProEl = mount.querySelector('[data-common-pro-state]');
+  const copyButton = mount.querySelector('[data-pro-copy]');
+
+  function applyProState(active, helperLoaded) {
+    commonProActive = Boolean(active);
+    if (cardEl) cardEl.dataset.commonProActive = commonProActive ? 'true' : 'false';
+    if (commonProEl) commonProEl.textContent = helperLoaded ? (commonProActive ? text.proActive : text.proInactive) : text.proUnavailable;
+    if (commonProEl) commonProEl.dataset.proActive = commonProActive ? 'true' : 'false';
+    if (copyButton) copyButton.textContent = commonProActive ? text.copy : text.copyPreview;
+  }
+
   loadNWPro().then((helper) => {
-    if (!commonProEl) return;
-    if (!helper) { commonProEl.textContent = text.proUnavailable; return; }
+    if (!helper) { applyProState(false, false); return; }
     const status = helper.getLocalStatus ? helper.getLocalStatus() : { active: false };
-    commonProEl.textContent = status.active ? text.proActive : text.proInactive;
-    commonProEl.dataset.proActive = status.active ? 'true' : 'false';
+    applyProState(status.active, true);
   });
 
   const patternEl = mount.querySelector('[data-pro-pattern]');
@@ -139,8 +194,14 @@
   });
   mount.querySelector('[data-pro-generate]').addEventListener('click', build);
   mount.querySelector('[data-pro-copy]').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(markdownEl.value); stateEl.textContent = text.copied; }
-    catch (error) { markdownEl.focus(); markdownEl.select(); stateEl.textContent = text.failed; }
+    try {
+      await navigator.clipboard.writeText(markdownEl.value);
+      stateEl.textContent = commonProActive ? text.copied : text.copiedPreview;
+    } catch (error) {
+      markdownEl.focus();
+      markdownEl.select();
+      stateEl.textContent = text.failed;
+    }
   });
   [goalEl, riskEl].forEach((el) => el.addEventListener('input', build));
   build();
