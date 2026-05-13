@@ -24,3 +24,6 @@ jobs:
 
       - name: Audit duplicate ids and exact terms
         run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs
+
+      - name: Check whether data dedupe would remove records
+        run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --dry-run --write-report
