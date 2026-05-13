@@ -6,7 +6,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, '..');
 const dataDir = path.join(root, 'data');
+const reportDir = path.join(root, 'reports');
 const manifestPath = path.join(dataDir, 'quality-manifest.json');
+const writeReport = process.argv.includes('--write-report');
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -84,6 +86,7 @@ for (const entry of all) {
 function duplicates(map) {
   return [...map.entries()]
     .filter(([, entries]) => entries.length > 1)
+    .sort((a, b) => b[1].length - a[1].length || String(a[0]).localeCompare(String(b[0])))
     .map(([key, entries]) => ({
       key,
       count: entries.length,
@@ -98,13 +101,56 @@ function duplicates(map) {
 
 const report = {
   total_entries_before_runtime_dedupe: all.length,
+  files_scanned: files,
   duplicate_ids: duplicates(byId),
   duplicate_exact_terms_ja_en: duplicates(byJaEn),
   duplicate_ja_terms_review_needed: duplicates(byJa),
   duplicate_en_terms_review_needed: duplicates(byEn),
 };
 
-console.log(JSON.stringify(report, null, 2));
+function mdSection(title, items, limit = 120) {
+  const lines = [`## ${title}`, ''];
+  if (!items.length) {
+    lines.push('None.', '');
+    return lines.join('\n');
+  }
+  items.slice(0, limit).forEach((item) => {
+    lines.push(`### ${item.key} (${item.count})`);
+    item.entries.forEach((entry) => {
+      lines.push(`- \`${entry.source}\` — \`${entry.id}\` — ${entry.en || '—'} / ${entry.ja || '—'}`);
+    });
+    lines.push('');
+  });
+  if (items.length > limit) lines.push(`_Truncated: ${items.length - limit} more groups._`, '');
+  return lines.join('\n');
+}
+
+function toMarkdown(data) {
+  return [
+    '# Construction Tools Atlas duplicate audit',
+    '',
+    `- total_entries_before_runtime_dedupe: ${data.total_entries_before_runtime_dedupe}`,
+    `- files_scanned: ${data.files_scanned.length}`,
+    `- duplicate_ids: ${data.duplicate_ids.length}`,
+    `- duplicate_exact_terms_ja_en: ${data.duplicate_exact_terms_ja_en.length}`,
+    `- duplicate_ja_terms_review_needed: ${data.duplicate_ja_terms_review_needed.length}`,
+    `- duplicate_en_terms_review_needed: ${data.duplicate_en_terms_review_needed.length}`,
+    '',
+    mdSection('Duplicate IDs', data.duplicate_ids),
+    mdSection('Duplicate exact JA+EN terms', data.duplicate_exact_terms_ja_en),
+    mdSection('JA term duplicates requiring review', data.duplicate_ja_terms_review_needed),
+    mdSection('EN term duplicates requiring review', data.duplicate_en_terms_review_needed),
+  ].join('\n');
+}
+
+const jsonText = JSON.stringify(report, null, 2);
+console.log(jsonText);
+
+if (writeReport) {
+  fs.mkdirSync(reportDir, { recursive: true });
+  fs.writeFileSync(path.join(reportDir, 'duplicate-audit.json'), jsonText + '\n');
+  fs.writeFileSync(path.join(reportDir, 'duplicate-audit.md'), toMarkdown(report) + '\n');
+}
 
 if (report.duplicate_ids.length || report.duplicate_exact_terms_ja_en.length) {
   process.exitCode = 1;
