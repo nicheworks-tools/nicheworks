@@ -7,10 +7,10 @@
 
   const text = {
     en: {
-      title: 'Generate Pro handoff output', pattern: 'Selected UI pattern', goal: 'Goal / use case', risk: 'Main risk to avoid', button: 'Generate output', copy: 'Copy Markdown', copied: 'Markdown copied.', failed: 'Copy failed. Please copy manually.', placeholderPattern: 'e.g. confirmation dialog', placeholderGoal: 'e.g. prevent accidental account deletion', placeholderRisk: 'e.g. user misses the consequence copy', decision: 'Decision memo', checklist: 'Implementation checklist', prompt: 'AI/Codex handoff prompt', markdown: 'Markdown output'
+      title: 'Generate Pro handoff output', pattern: 'Selected UI pattern', goal: 'Goal / use case', risk: 'Main risk to avoid', button: 'Generate output', copy: 'Copy Markdown', copied: 'Markdown copied.', failed: 'Copy failed. Please copy manually.', placeholderPattern: 'e.g. confirmation dialog', placeholderGoal: 'e.g. prevent accidental account deletion', placeholderRisk: 'e.g. user misses the consequence copy', decision: 'Decision memo', checklist: 'Implementation checklist', prompt: 'AI/Codex handoff prompt', markdown: 'Markdown output', imported: 'Loaded values from URL parameters.'
     },
     ja: {
-      title: 'Pro引き継ぎ出力を生成', pattern: '選択したUIパターン', goal: '目的 / 利用場面', risk: '避けたい主なリスク', button: '出力を生成', copy: 'Markdownをコピー', copied: 'Markdownをコピーしました。', failed: 'コピーに失敗しました。手動でコピーしてください。', placeholderPattern: '例: 確認ダイアログ', placeholderGoal: '例: 誤ってアカウント削除しないようにする', placeholderRisk: '例: ユーザーが影響範囲を見落とす', decision: '判断メモ', checklist: '実装チェックリスト', prompt: 'AI/Codex引き継ぎプロンプト', markdown: 'Markdown出力'
+      title: 'Pro引き継ぎ出力を生成', pattern: '選択したUIパターン', goal: '目的 / 利用場面', risk: '避けたい主なリスク', button: '出力を生成', copy: 'Markdownをコピー', copied: 'Markdownをコピーしました。', failed: 'コピーに失敗しました。手動でコピーしてください。', placeholderPattern: '例: 確認ダイアログ', placeholderGoal: '例: 誤ってアカウント削除しないようにする', placeholderRisk: '例: ユーザーが影響範囲を見落とす', decision: '判断メモ', checklist: '実装チェックリスト', prompt: 'AI/Codex引き継ぎプロンプト', markdown: 'Markdown出力', imported: 'URLパラメータから初期値を読み込みました。'
     }
   }[lang];
 
@@ -42,6 +42,20 @@
   const promptEl = mount.querySelector('[data-pro-prompt]');
   const markdownEl = mount.querySelector('[data-pro-markdown]');
   const stateEl = mount.querySelector('[data-pro-copy-state]');
+
+  const params = new URLSearchParams(window.location.search);
+  const patternParam = params.get('pattern') || params.get('ui') || params.get('slug') || '';
+  const goalParam = params.get('goal') || params.get('use_case') || '';
+  const riskParam = params.get('risk') || params.get('avoid') || '';
+  const compareParam = params.get('compare') || '';
+
+  if (patternParam) patternEl.value = decodeURIComponent(patternParam).replace(/[-_]+/g, ' ');
+  if (goalParam) goalEl.value = decodeURIComponent(goalParam).replace(/[-_]+/g, ' ');
+  if (riskParam) riskEl.value = decodeURIComponent(riskParam).replace(/[-_]+/g, ' ');
+  if (compareParam && !patternEl.value) {
+    patternEl.value = decodeURIComponent(compareParam).split(',').map((value) => value.trim().replace(/[-_]+/g, ' ')).filter(Boolean).join(' vs ');
+  }
+  if ((patternParam || goalParam || riskParam || compareParam) && stateEl) stateEl.textContent = text.imported;
 
   function val(el, fallback) { return (el.value || '').trim() || fallback; }
   function build() {
