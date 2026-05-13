@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["ラジオペンチ|needle nose pliers|long nose pliers", "ラジオペンチ", "Needle nose pliers", "./images/pilot/needle-nose-pliers.svg?v=20260513-asset-6", "細かい部品や線材をつかむ細長いペンチ。", "Pliers with long narrow jaws used to grip small parts or wires."],
+    ["ペンチ|lineman pliers|combination pliers", "ペンチ", "Lineman pliers", "./images/pilot/lineman-pliers.svg?v=20260513-asset-6", "線材の保持や切断に使う基本的な手工具。", "General hand tool used to grip and cut wire."],
+    ["ワイヤーストリッパー|wire stripper", "ワイヤーストリッパー", "Wire stripper", "./images/pilot/wire-stripper.svg?v=20260513-asset-6", "電線の被覆をむくための工具。", "Tool used to strip insulation from wire."],
+    ["絶縁ドライバー|insulated screwdriver|electrician screwdriver", "絶縁ドライバー", "Insulated screwdriver", "./images/pilot/electrician-screwdriver.svg?v=20260513-asset-6", "電気作業で感電リスクを下げるための絶縁手工具。", "Insulated hand tool used for electrical work."],
+    ["検電器|voltage tester", "検電器", "Voltage tester", "./images/pilot/voltage-tester.svg?v=20260513-asset-6", "通電の有無を確認するための確認工具。", "Tool used to check whether voltage is present."],
+    ["テスター|tester meter|multimeter", "テスター", "Tester meter", "./images/pilot/tester-meter.svg?v=20260513-asset-6", "電気値を確認するための測定器。", "Meter used to check electrical values."],
+    ["電線管ベンダー|conduit bender", "電線管ベンダー", "Conduit bender", "./images/pilot/conduit-bender.svg?v=20260513-asset-6", "電線管を現場寸法に合わせて曲げる工具。", "Tool used to bend conduit to fit site conditions."],
+    ["通線ワイヤー|fish tape", "通線ワイヤー", "Fish tape", "./images/pilot/fish-tape.svg?v=20260513-asset-6", "管内に電線を通すための呼び線。", "Wire-pulling aid used to route wires through conduit."],
+    ["ケーブルカッター|cable cutter", "ケーブルカッター", "Cable cutter", "./images/pilot/cable-cutter.svg?v=20260513-asset-6", "太めの電線やケーブルを切断する工具。", "Tool used to cut cable cleanly."],
+    ["結束工具|tie fastener tool|cable tie tool", "結束工具", "Tie fastener tool", "./images/pilot/tie-fastener-tool.svg?v=20260513-asset-6", "結束材を締め付け、余りを処理する工具。", "Tool used to tension and finish tie fasteners."]
+  ]
+}
