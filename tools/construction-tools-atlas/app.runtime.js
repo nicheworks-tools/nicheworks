@@ -36,6 +36,8 @@
   function chip(parent, text) { const t = str(text); if (!parent || !t) return; const s = document.createElement("span"); s.className = "chip"; s.textContent = t; parent.appendChild(s); }
   function ul(parent, items, empty) { clear(parent); if (!parent) return; const values = arr(items); if (!values.length) { if (empty) parent.appendChild(div(empty, "muted")); return; } const list = document.createElement("ul"); values.forEach((v) => { const li = document.createElement("li"); li.textContent = v; list.appendChild(li); }); parent.appendChild(list); }
   function norm(v) { return String(v || "").trim().toLowerCase(); }
+  function normTerm(v) { return String(v || "").toLowerCase().replace(/[\s\u3000]+/g, " ").replace(/[／]/g, "/").trim(); }
+  function entryTermKey(e) { const ja = normTerm(e?.term?.ja); const en = normTerm(e?.term?.en); return ja || en ? `${ja}::${en}` : ""; }
 
   function normalize(raw, i) {
     const description = loc(raw?.description, raw?.description_ja, raw?.description_en);
@@ -78,12 +80,10 @@
     const fuzzyFields = [...e.fuzzy, ...e.region];
     const bodyFields = [e.summary.ja, e.summary.en, e.description.ja, e.description.en, e.detail.ja, e.detail.en];
     const fullQuery = norm(state.q);
-
     termFields.forEach((f) => { if (norm(f) === fullQuery) score += 5000; });
     aliasFields.forEach((f) => { if (norm(f) === fullQuery) score += 4200; });
     termFields.forEach((f) => { if (norm(f).includes(fullQuery)) score += 1800; });
     aliasFields.forEach((f) => { if (norm(f).includes(fullQuery)) score += 1400; });
-
     parts.forEach((p) => {
       termFields.forEach((f) => { score += scoreField(f, p, 1200, 950, 750); });
       aliasFields.forEach((f) => { score += scoreField(f, p, 1000, 800, 620); });
@@ -103,13 +103,11 @@
     return title(a).localeCompare(title(b), state.lang === "ja" ? "ja" : "en");
   }
   function actionMatch(e) { const a = ACTIONS.find((x) => x.id === state.action) || ACTIONS[0]; if (!a.tokens.length) return true; const h = hay(e); return a.tokens.some((t) => h.includes(String(t).toLowerCase())); }
-
   function openSheet(sheet) { if (!sheet) return; [els.detailSheet,els.supportSheet,els.menuSheet,els.howtoSheet,els.filterSheet].forEach((x) => { if (x) x.hidden = true; }); if (els.overlay) els.overlay.hidden = false; sheet.hidden = false; }
   function closeSheets() { [els.detailSheet,els.supportSheet,els.menuSheet,els.howtoSheet,els.filterSheet].forEach((x) => { if (x) x.hidden = true; }); if (els.overlay) els.overlay.hidden = true; }
   function setTheme(theme) { state.theme = theme; document.documentElement.setAttribute("data-theme", theme); localStorage.setItem(LS.theme, theme); if (els.themeBtn) els.themeBtn.textContent = theme === "light" ? "☼" : "☾"; }
   function setLang(lang) { state.lang = lang; document.documentElement.lang = lang; localStorage.setItem(LS.lang, lang); render(); if (state.current) renderDetail(state.current); }
   function saveFavs() { localStorage.setItem(LS.favs, JSON.stringify([...state.favs])); }
-
   function filter() {
     state.filtered = state.entries.filter((e) => {
       if (els.favsOnly?.checked && !state.favs.has(e.id)) return false;
@@ -145,8 +143,11 @@
     els.resultList?.appendChild(frag);
     if (els.resultCount) els.resultCount.textContent = `Results: ${state.filtered.length}`;
     if (els.hintText) els.hintText.textContent = state.filtered.length ? "" : (state.lang === "ja" ? "一致する用語がありません" : "No matches");
-    const more = state.filtered.length > state.visibleCount; if (els.loadMoreWrap) els.loadMoreWrap.hidden = !more;
-    if (els.loadMoreHint) els.loadMoreHint.textContent = state.lang === "ja" ? `表示中: ${Math.min(state.visibleCount,state.filtered.length)} / ${state.filtered.length}` : `Showing ${Math.min(state.visibleCount,state.filtered.length)} / ${state.filtered.length}`;
+    const shown = Math.min(state.visibleCount, state.filtered.length);
+    const more = state.filtered.length > shown;
+    if (els.loadMoreWrap) els.loadMoreWrap.hidden = !more;
+    if (els.loadMoreBtn) els.loadMoreBtn.hidden = !more;
+    if (els.loadMoreHint) els.loadMoreHint.textContent = more ? (state.lang === "ja" ? `表示中: ${shown} / ${state.filtered.length}` : `Showing ${shown} / ${state.filtered.length}`) : "";
   }
   function tab(name) { $$(".tab", els.detailTabs || document).forEach((b) => b.classList.toggle("tab--active", b.dataset.tab === name)); if (els.tabMeaning) els.tabMeaning.hidden = name !== "meaning"; if (els.tabExamples) els.tabExamples.hidden = name !== "examples"; if (els.tabAliases) els.tabAliases.hidden = name !== "aliases"; if (els.tabMeta) els.tabMeta.hidden = name !== "meta"; }
   function labeled(parent, label, body, cls) { if (!parent || !body) return; const wrap = div("", cls || "dictionaryBlock"); wrap.appendChild(div(label, "tabpanel__label")); wrap.appendChild(div(body, "tabpanel__text")); parent.appendChild(wrap); }
@@ -166,7 +167,6 @@
     const definition = pick(e.description) || pick(e.summary);
     const note = pick(e.detail);
     const aliases = aliasLine(e);
-
     clear(els.detailTerms);
     els.detailTerms?.appendChild(div(title(e), "termblock__title"));
     if (aliases) els.detailTerms?.appendChild(div(aliases, "termblock__sub"));
@@ -174,7 +174,6 @@
     ul(els.detailBullets, state.lang === "ja" ? e.bullets.ja : e.bullets.en, "");
     clear(els.detailChips);
     [e.type,...e.categories,...e.tasks].forEach((x) => chip(els.detailChips, x));
-
     clear(els.tabMeaning);
     labeled(els.tabMeaning, state.lang === "ja" ? "意味" : "Meaning", definition, "dictionaryBlock dictionaryBlock--definition");
     if (note && note !== definition) labeled(els.tabMeaning, state.lang === "ja" ? "使い方・注意" : "Use / notes", note, "dictionaryBlock dictionaryBlock--notes");
@@ -194,8 +193,17 @@
   async function load() {
     if (els.statusArea) { clear(els.statusArea); els.statusArea.hidden = false; els.statusArea.appendChild(div(state.lang === "ja" ? "読み込み中" : "Loading", "status__title")); }
     try {
-      const raw = await window.CTA_DATA_LOADER?.loadEntries?.(); const seen = new Set();
-      state.entries = (Array.isArray(raw) ? raw : []).map(normalize).filter((e) => { if (!e.id || seen.has(e.id)) return false; seen.add(e.id); return true; });
+      const raw = await window.CTA_DATA_LOADER?.loadEntries?.();
+      const seenIds = new Set();
+      const seenTerms = new Set();
+      state.entries = (Array.isArray(raw) ? raw : []).map(normalize).filter((e) => {
+        if (!e.id || seenIds.has(e.id)) return false;
+        const key = entryTermKey(e);
+        if (key && seenTerms.has(key)) return false;
+        seenIds.add(e.id);
+        if (key) seenTerms.add(key);
+        return true;
+      });
       render();
     } catch (err) { console.error("CTA data load failed", err); if (els.statusArea) { clear(els.statusArea); els.statusArea.hidden = false; els.statusArea.appendChild(div(state.lang === "ja" ? "読み込みに失敗しました" : "Failed to load data", "status__title")); } }
   }
