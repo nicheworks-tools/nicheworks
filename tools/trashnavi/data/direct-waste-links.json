@@ -1,4 +1,8 @@
 [
+  {"pref":"北海道","city":"札幌市","name":"札幌市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.sapporo.jp/seiso/gomi/dashikata_menu.html","lgcode":"011002"},
+  {"pref":"宮城県","city":"仙台市","name":"仙台市 ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.sendai.jp/kurashi/machi/genryo/gomi/","lgcode":"041009"},
+  {"pref":"埼玉県","city":"さいたま市","name":"さいたま市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.saitama.lg.jp/001/006/010/003/p072158.html","lgcode":"111007"},
+  {"pref":"千葉県","city":"千葉市","name":"千葉市 ごみ分別ガイド","type":"ごみ分別ページ","url":"https://www.city.chiba.jp/kurashi/gomi/gomi/gomiguide/","lgcode":"121002"},
   {"pref":"東京都","city":"千代田区","name":"千代田区 資源とごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.chiyoda.lg.jp/koho/kurashi/gomi/wakekata/index.html","lgcode":"131016"},
   {"pref":"東京都","city":"中央区","name":"中央区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.chuo.lg.jp/kurashi/gomi/index.html","lgcode":"131024"},
   {"pref":"東京都","city":"港区","name":"港区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.minato.tokyo.jp/kurashi/gomi/","lgcode":"131032"},
@@ -23,14 +27,19 @@
   {"pref":"東京都","city":"葛飾区","name":"葛飾区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.katsushika.lg.jp/kurashi/1000048/index.html","lgcode":"131229"},
   {"pref":"東京都","city":"江戸川区","name":"江戸川区 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.edogawa.tokyo.jp/kurashi/gomi_recycle/","lgcode":"131237"},
   {"pref":"神奈川県","city":"横浜市","name":"横浜市 ごみの分別を調べる","type":"ごみ分別ページ","url":"https://www.city.yokohama.lg.jp/kurashi/sumai-kurashi/gomi-recycle/gomi/dashikata.html","lgcode":"141003"},
-  {"pref":"埼玉県","city":"さいたま市","name":"さいたま市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.saitama.lg.jp/001/006/010/003/p072158.html","lgcode":"111007"},
+  {"pref":"神奈川県","city":"川崎市","name":"川崎市 資源物とごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.kawasaki.jp/kurashi/category/261-1-10-0-0-0-0-0-0-0.html","lgcode":"141305"},
+  {"pref":"神奈川県","city":"相模原市","name":"相模原市 家庭ごみ分別サイト","type":"ごみ分別ページ","url":"https://gomi.city.sagamihara.kanagawa.jp/","lgcode":"141500"},
   {"pref":"新潟県","city":"新潟市","name":"新潟市 ごみ分別百科事典・家庭ごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.niigata.lg.jp/kurashi/gomi/gomishigen/start.html","lgcode":"151009"},
   {"pref":"静岡県","city":"静岡市","name":"静岡市 ごみの出し方・分別を調べる","type":"ごみ分別ページ","url":"https://www.city.shizuoka.lg.jp/p000102.html","lgcode":"221007"},
   {"pref":"静岡県","city":"浜松市","name":"浜松市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.hamamatsu.shizuoka.jp/ippai/gomi/dashikata/index.html","lgcode":"221309"},
   {"pref":"愛知県","city":"名古屋市","name":"名古屋市 家庭ごみ・資源の分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.nagoya.jp/kurashi/gomi/1012183/index.html","lgcode":"231002"},
   {"pref":"京都府","city":"京都市","name":"京都市 ごみ出しのルール","type":"ごみ分別ページ","url":"https://www.city.kyoto.lg.jp/kankyo/page/0000309217.html","lgcode":"261009"},
   {"pref":"大阪府","city":"大阪市","name":"大阪市 ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.osaka.lg.jp/kankyo/page/0000009337.html","lgcode":"271004"},
+  {"pref":"大阪府","city":"堺市","name":"堺市 家庭から出るごみの出し方","type":"ごみ分別ページ","url":"https://www.city.sakai.lg.jp/kurashi/gomi/gomi_recy/bunbetsu/shigen/index.html","lgcode":"271403"},
   {"pref":"兵庫県","city":"神戸市","name":"神戸市 家庭ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.kobe.lg.jp/a04164/kurashi/recycle/gomi/dashikata/shigen/index.html","lgcode":"281000"},
+  {"pref":"岡山県","city":"岡山市","name":"岡山市 ごみ分別アプリ・分別辞典案内","type":"ごみ分別ページ","url":"https://www.city.okayama.jp/kurashi/0000005082.html","lgcode":"331007"},
   {"pref":"広島県","city":"広島市","name":"広島市 ごみの分別・出し方","type":"ごみ分別ページ","url":"https://www.city.hiroshima.lg.jp/living/gomi-kankyo/1021277/index.html","lgcode":"341002"},
-  {"pref":"福岡県","city":"福岡市","name":"福岡市 家庭ごみの出し方・ごみ出しルール","type":"ごみ分別ページ","url":"https://www.city.fukuoka.lg.jp/kankyo/jigyokeigomi/life/katei-bunbetsu/kateigomi-dasikata.html","lgcode":"401307"}
+  {"pref":"福岡県","city":"北九州市","name":"北九州市 資源とごみの分け方・出し方","type":"ごみ分別ページ","url":"https://www.city.kitakyushu.lg.jp/contents/924_10025.html","lgcode":"401005"},
+  {"pref":"福岡県","city":"福岡市","name":"福岡市 家庭ごみの出し方・ごみ出しルール","type":"ごみ分別ページ","url":"https://www.city.fukuoka.lg.jp/kankyo/jigyokeigomi/life/katei-bunbetsu/kateigomi-dasikata.html","lgcode":"401307"},
+  {"pref":"熊本県","city":"熊本市","name":"熊本市 ごみ分別・ごみの出し方","type":"ごみ分別ページ","url":"https://www.city.kumamoto.jp/kankyo/list01006.html","lgcode":"431001"}
 ]
