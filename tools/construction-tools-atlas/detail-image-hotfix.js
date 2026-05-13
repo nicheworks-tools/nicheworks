@@ -12,7 +12,6 @@
     { keys: ["ケーブルトレイ", "cable tray"], ja: "ケーブルトレイ", en: "Cable tray", src: "./images/pilot/cable-tray.svg?v=20260510-asset-1", caption_ja: "ケーブルをまとめて敷設する受け材。", caption_en: "Tray used to support and organize cable runs." },
     { keys: ["サッシ", "window sash"], ja: "サッシ", en: "Window sash", src: "./images/pilot/window-sash.svg?v=20260510-asset-1", caption_ja: "ガラスを納める窓の枠・可動部材。", caption_en: "Window frame or operable unit that holds glazing." },
     { keys: ["保護メガネ", "safety glasses", "ppe eyewear"], ja: "保護メガネ", en: "Safety glasses", src: "./images/pilot/ppe-eyewear.svg?v=20260510-asset-1", caption_ja: "切粉や粉じんから目を守る保護具。", caption_en: "Eye protection used against chips and dust." },
-
     { keys: ["インパクトドライバー", "インパクト", "impact driver"], ja: "インパクトドライバー", en: "Impact driver", src: "./images/pilot/impact-driver.svg?v=20260510-asset-2", caption_ja: "ビスやボルトを強いトルクで締める電動工具。", caption_en: "Power tool used for high-torque fastening." },
     { keys: ["ドリルドライバー", "drill driver"], ja: "ドリルドライバー", en: "Drill driver", src: "./images/pilot/drill-driver.svg?v=20260510-asset-2", caption_ja: "穴あけと軽いねじ締めに使う電動工具。", caption_en: "Power tool used for drilling and screw driving." },
     { keys: ["振動ドリル", "hammer drill"], ja: "振動ドリル", en: "Hammer drill", src: "./images/pilot/hammer-drill.svg?v=20260510-asset-2", caption_ja: "モルタルやブロックなどの穴あけに使う振動機能付きドリル。", caption_en: "Drill with hammer action used for masonry drilling." },
@@ -23,7 +22,6 @@
     { keys: ["配管支持金物", "pipe support"], ja: "配管支持金物", en: "Pipe support", src: "./images/pilot/pipe-support.svg?v=20260510-asset-2", caption_ja: "配管を所定位置に保持する支持部材。", caption_en: "Support hardware used to hold piping in position." },
     { keys: ["ダクト", "duct"], ja: "ダクト", en: "Duct", src: "./images/pilot/duct.svg?v=20260510-asset-2", caption_ja: "換気や空調の空気を通す通風路。", caption_en: "Air passage used for ventilation or HVAC airflow." },
     { keys: ["一輪車", "wheelbarrow"], ja: "一輪車", en: "Wheelbarrow", src: "./images/pilot/wheelbarrow.svg?v=20260510-asset-2", caption_ja: "土砂、モルタル、廃材などを運ぶ一輪の運搬具。", caption_en: "One-wheeled cart used to move soil, mortar, or debris." },
-
     { keys: ["ハンマードリル", "ロータリーハンマー", "rotary hammer"], ja: "ハンマードリル", en: "Rotary hammer", src: "./images/pilot/rotary-hammer.svg?v=20260510-asset-3", caption_ja: "コンクリート穴あけや軽いはつりに使う強力な電動工具。", caption_en: "Power tool used for concrete drilling and light chiseling." },
     { keys: ["コアドリル", "core drill"], ja: "コアドリル", en: "Core drill", src: "./images/pilot/core-drill.svg?v=20260510-asset-3", caption_ja: "丸い貫通穴を開けるための工具。", caption_en: "Tool used to make circular penetrations." },
     { keys: ["手のこ", "手鋸", "のこぎり", "hand saw"], ja: "手のこ", en: "Hand saw", src: "./images/pilot/hand-saw.svg?v=20260510-asset-3", caption_ja: "木材や合板を手作業で切る工具。", caption_en: "Manual saw used to cut wood or panels." },
@@ -46,6 +44,8 @@
     { keys: ["仮囲い", "temporary fence"], ja: "仮囲い", en: "Temporary fence", src: "./images/pilot/temporary-fence.svg?v=20260510-asset-3", caption_ja: "工事区画を周囲から分ける仮設の囲い。", caption_en: "Temporary barrier used to separate a work area." }
   ];
 
+  const state = { lastSignature: "" };
+
   function lang() {
     return document.documentElement.lang === "en" ? "en" : "ja";
   }
@@ -63,13 +63,16 @@
     while (node.firstChild) node.removeChild(node.firstChild);
   }
 
-  function currentTokens() {
+  function currentRaw() {
     const terms = document.getElementById("detailTerms");
     const title = terms?.querySelector(".termblock__title")?.textContent || "";
     const sub = terms?.querySelector(".termblock__sub")?.textContent || "";
     const aliases = document.getElementById("tabAliases")?.textContent || "";
-    const raw = `${title}\n${sub}\n${aliases}`;
-    return raw
+    return `${title}\n${sub}\n${aliases}`;
+  }
+
+  function currentTokens() {
+    return currentRaw()
       .split(/[\/\n,、]+/)
       .map(normalize)
       .filter(Boolean);
@@ -96,17 +99,26 @@
     return slot;
   }
 
-  function render() {
+  function render(force = false) {
     const detail = document.getElementById("detailSheet");
-    const slot = ensureSlot();
-    if (!detail || detail.hidden || !slot) return;
+    if (!detail || detail.hidden) return;
 
-    clear(slot);
-    slot.hidden = true;
+    const raw = currentRaw();
+    const signature = `${document.documentElement.lang || "ja"}::${raw}`;
+    if (!force && signature === state.lastSignature) return;
+    state.lastSignature = signature;
+
+    const slot = ensureSlot();
+    if (!slot) return;
 
     const item = matchPilot();
-    if (!item || !item.src) return;
+    if (!item || !item.src) {
+      clear(slot);
+      slot.hidden = true;
+      return;
+    }
 
+    clear(slot);
     const current = lang();
     const label = current === "ja" ? item.ja : item.en;
     const caption = current === "ja" ? item.caption_ja : item.caption_en;
@@ -128,16 +140,15 @@
     slot.hidden = false;
   }
 
-  function schedule() {
-    setTimeout(render, 0);
-    setTimeout(render, 120);
-    setTimeout(render, 300);
+  function schedule(force = false) {
+    window.clearTimeout(schedule.timer);
+    schedule.timer = window.setTimeout(() => render(force), 80);
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    schedule();
-    document.addEventListener("click", schedule, true);
-    document.addEventListener("keydown", schedule, true);
-    new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
+    schedule(true);
+    document.addEventListener("click", () => schedule(false), true);
+    document.addEventListener("keydown", () => schedule(false), true);
+    document.getElementById("langBtn")?.addEventListener("click", () => schedule(true));
   });
 })();
