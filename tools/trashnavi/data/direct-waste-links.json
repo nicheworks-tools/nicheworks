@@ -1,0 +1,34 @@
+[
+  {
+    "pref": "東京都",
+    "city": "千代田区",
+    "name": "千代田区 資源とごみの分け方・出し方",
+    "type": "ごみ分別ページ",
+    "url": "https://www.city.chiyoda.lg.jp/koho/kurashi/gomi/wakekata/index.html",
+    "lgcode": "131016"
+  },
+  {
+    "pref": "東京都",
+    "city": "中央区",
+    "name": "中央区 ごみ・リサイクル",
+    "type": "ごみ分別ページ",
+    "url": "https://www.city.chuo.lg.jp/kurashi/gomi/index.html",
+    "lgcode": "131024"
+  },
+  {
+    "pref": "東京都",
+    "city": "港区",
+    "name": "港区 ごみ・リサイクル",
+    "type": "ごみ分別ページ",
+    "url": "https://www.city.minato.tokyo.jp/kurashi/gomi/",
+    "lgcode": "131032"
+  },
+  {
+    "pref": "東京都",
+    "city": "新宿区",
+    "name": "新宿区 資源・ごみ",
+    "type": "ごみ分別ページ",
+    "url": "https://www.city.shinjuku.lg.jp/living_04.html",
+    "lgcode": "131041"
+  }
+]
