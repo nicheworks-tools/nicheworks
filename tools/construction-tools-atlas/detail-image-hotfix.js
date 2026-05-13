@@ -1,7 +1,11 @@
 (() => {
   "use strict";
 
-  const MANIFEST_URL = "./data/image-pilots.json?v=20260513-asset-5";
+  const MANIFEST_URLS = [
+    "./data/image-pilots.json?v=20260513-asset-5",
+    "./data/image-pilots-002.json?v=20260513-asset-6"
+  ];
+
   const state = {
     pilots: [],
     loaded: false,
@@ -40,22 +44,44 @@
     };
   }
 
+  async function fetchManifest(url) {
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return [];
+      const json = await res.json();
+      return Array.isArray(json?.items) ? json.items : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
   async function loadPilots() {
     if (state.loaded) return state.pilots;
     if (state.loading) return state.loading;
-    state.loading = fetch(MANIFEST_URL, { cache: "no-store" })
-      .then((res) => res.ok ? res.json() : null)
-      .then((json) => {
-        const rows = Array.isArray(json?.items) ? json.items : [];
-        state.pilots = rows.map(toPilot).filter(Boolean);
-        state.loaded = true;
-        return state.pilots;
-      })
-      .catch(() => {
-        state.pilots = [];
-        state.loaded = true;
-        return state.pilots;
-      });
+    state.loading = Promise.all(MANIFEST_URLS.map(fetchManifest)).then((groups) => {
+      const seen = new Set();
+      state.pilots = groups
+        .flat()
+        .map(toPilot)
+        .filter(Boolean)
+        .filter((pilot) => {
+          const key = `${normalize(pilot.ja)}::${normalize(pilot.en)}::${pilot.src}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      state.loaded = true;
+      window.CTA_IMAGE_DIAGNOSTICS = {
+        manifests: MANIFEST_URLS.length,
+        pilots: state.pilots.length
+      };
+      return state.pilots;
+    }).catch(() => {
+      state.pilots = [];
+      state.loaded = true;
+      window.CTA_IMAGE_DIAGNOSTICS = { manifests: MANIFEST_URLS.length, pilots: 0 };
+      return state.pilots;
+    });
     return state.loading;
   }
 
