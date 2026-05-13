@@ -2,6 +2,10 @@ name: Construction Tools Atlas apply dedupe
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/construction-tools-atlas-dedupe-apply.yml'
+      - 'tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs'
 
 permissions:
   contents: write
