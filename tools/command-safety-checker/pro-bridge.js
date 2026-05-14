@@ -4,6 +4,7 @@
   const PAYMENT_LINK = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
   const ENTITLEMENT = "nicheworks_pro";
   const TOOL_ID = "command-safety-checker";
+  const FINAL_NOTE = "This report is a review aid only. It does not certify that a command is safe.";
   const STATUS = {
     preview: "Previewモード / Preview mode",
     active: "Pro解放済み / Pro unlocked",
@@ -90,11 +91,23 @@
   }
 
   function plain(text) {
-    return String(text || "").replace(/\r\n/g, "\n").trim();
+    return String(text || "").replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
   }
 
   function getResult() {
     return window.__cscLastResult || null;
+  }
+
+  function originalCommand(result) {
+    return plain(document.getElementById("cmdInput")?.value || result?.normalized || "");
+  }
+
+  function normalizedCommand(result) {
+    return plain(result?.normalized || "");
+  }
+
+  function osMode(result) {
+    return result?.os || document.getElementById("osSelect")?.value || "unknown";
   }
 
   function pickLocalized(value) {
@@ -107,12 +120,12 @@
     return {
       line: item?.line || null,
       command: item?.command || "",
-      severity: rule.severity || "",
-      category: pickLocalized(rule.category),
-      title: pickLocalized(rule.title),
-      why: pickLocalized(rule.why),
-      check: pickLocalized(rule.check),
-      alternative: pickLocalized(rule.alternative)
+      severity: rule.severity || "LOW",
+      category: pickLocalized(rule.category) || "General review",
+      title: pickLocalized(rule.title) || "Manual command review needed",
+      why: pickLocalized(rule.why) || "Review this command before execution because automated checks cannot prove it is safe.",
+      check: pickLocalized(rule.check) || "Confirm source, target paths, permissions, secrets, and expected side effects before running.",
+      alternative: pickLocalized(rule.alternative) || "Start with read-only inspection or a dry-run/WhatIf equivalent where available."
     };
   }
 
@@ -120,20 +133,72 @@
     return (result?.categories || []).map((category) => pickLocalized(category)).filter(Boolean);
   }
 
+  function severityLabel(severity) {
+    if (severity === "HIGH") return "P0";
+    if (severity === "MED") return "P1";
+    return "P2";
+  }
+
   function priorityChecklist(result) {
     const findings = (result?.findings || []).map(serializeFinding);
     if (!findings.length) {
       return [
-        "Confirm command source and expected side effects before running.",
-        "Run read-only inspection commands first when possible.",
-        "Keep backups or version-control recovery paths available."
+        "P2-1: Confirm command source, target paths, URLs, permissions, and expected side effects before running.",
+        "P2-2: Run read-only inspection commands first when possible.",
+        "P2-3: Keep backups, git commits, or another recovery path available."
       ];
     }
 
-    return findings.map((finding, index) => {
-      const label = finding.severity === "HIGH" ? "P0" : finding.severity === "MED" ? "P1" : "P2";
-      return `${label}-${index + 1}: ${finding.check || finding.title}`;
+    const counters = { P0: 0, P1: 0, P2: 0 };
+    return findings.map((finding) => {
+      const priority = severityLabel(finding.severity);
+      counters[priority] += 1;
+      return `${priority}-${counters[priority]}: ${finding.check || finding.title}`;
     });
+  }
+
+  function suggestionForFinding(finding) {
+    const text = `${finding.command} ${finding.title} ${finding.category}`.toLowerCase();
+    if (/curl|wget|invoke-webrequest|\biwr\b|\biex\b|remote/.test(text) && /\|\s*(sh|bash|zsh|iex)|iex|script/.test(text)) {
+      return "Remote installer: download to a file first, inspect it, verify checksum/signature if available, then run only after review (for example: curl -fsSL URL -o install.sh → less install.sh → shasum -a 256 install.sh).";
+    }
+    if (/rm\s+-rf|delete|destructive/.test(text)) {
+      return "Recursive delete: list the exact target first, preview one directory level, then prefer interactive deletion (for example: ls -la ./dist → find ./dist -maxdepth 1 -print → rm -ri ./dist).";
+    }
+    if (/remove-item|powershell/.test(text) && /recurse|force|delete/.test(text)) {
+      return "PowerShell delete: inspect targets before deletion and use -WhatIf when possible (for example: Get-ChildItem path → Remove-Item path -Recurse -WhatIf).";
+    }
+    if (/chmod|chown|permission|privilege|sudo|administrator/.test(text)) {
+      return "Permission change: inspect current owner/mode first, narrow the target, and avoid recursive broad grants unless explicitly required.";
+    }
+    if (/secret|\.env|token|key|exfil|upload|scp|rsync|nc\b/.test(text)) {
+      return "Secret or upload risk: redact secrets, verify destination hosts, and replace upload commands with a dry-run or local archive listing first.";
+    }
+    if (/git|reset|clean/.test(text)) {
+      return "Git destructive action: run git status, git diff, and dry-run previews such as git clean -nd before irreversible commands.";
+    }
+    if (/disk|mkfs|dd|clear-disk|format/.test(text)) {
+      return "Disk operation: list disks/partitions first, confirm identifiers out-of-band, and do not proceed without a restorable backup.";
+    }
+    return `${finding.title}: ${finding.alternative}`;
+  }
+
+  function saferCommandSuggestions(result) {
+    const findings = (result?.findings || []).map(serializeFinding);
+    const suggestions = [];
+    findings.forEach((finding) => {
+      const suggestion = suggestionForFinding(finding);
+      if (!suggestions.includes(suggestion)) suggestions.push(suggestion);
+    });
+
+    if (!suggestions.length) {
+      suggestions.push("No risky pattern matched, but start with read-only inspection, verify URLs/paths/permissions, and document residual risk before execution.");
+    }
+    return suggestions;
+  }
+
+  function generatedAt() {
+    return new Date().toISOString();
   }
 
   function codexTask(result) {
@@ -141,118 +206,153 @@
     const high = result?.counts?.HIGH ?? 0;
     const med = result?.counts?.MED ?? 0;
     const low = result?.counts?.LOW ?? 0;
-    const command = plain(result?.normalized || document.getElementById("cmdInput")?.value || "");
+    const command = normalizedCommand(result) || originalCommand(result);
     return [
-      "Please perform a Command Safety Checker review before this command is run.",
+      "Please review this command before it is run. Identify the dangerous parts and explain why they matter.",
       "",
       `Overall risk: ${risk}`,
       `Counts: High ${high}, Medium ${med}, Low ${low}`,
+      `OS mode: ${osMode(result)}`,
       `Categories: ${categories(result).join(", ") || "None detected"}`,
       "",
       "Command:",
-      "```",
+      "```sh",
       command || "(no command provided)",
       "```",
       "",
       "Review requests:",
-      "- Confirm whether each finding is expected for this task.",
-      "- Suggest safer read-only checks or dry-run commands first.",
-      "- Identify paths, URLs, secrets, or permissions that require human confirmation.",
-      "- Do not certify the command as safe; provide residual risks."
+      "- Verify URL sources, redirects, domains, and downloaded script contents before execution.",
+      "- Verify paths, glob patterns, target directories, and whether any secret values or environment files could be exposed.",
+      "- Verify privilege changes, sudo/administrator requirements, permission impact, process impact, and disk/data-loss impact.",
+      "- Propose a safer alternative, dry-run, -WhatIf, or read-only inspection flow before any destructive step.",
+      "- Do not state that the command is safe; include remaining risks and assumptions."
     ].join("\n");
   }
 
   function githubIssue(result) {
     const risk = result?.risk || "UNKNOWN";
-    const command = plain(result?.normalized || document.getElementById("cmdInput")?.value || "");
+    const command = normalizedCommand(result) || originalCommand(result);
+    const checklist = priorityChecklist(result);
     return [
       `Title: Review ${risk} command before execution`,
       "",
       "## Context",
-      "Command Safety Checker found items that should be reviewed before running this command.",
+      "Command Safety Checker found items that should be reviewed before this command is run. This issue is for pre-execution review, not a safety approval.",
       "",
       "## Command",
       "```sh",
       command || "(no command provided)",
       "```",
       "",
-      "## Findings",
+      "## Findings checklist",
       ...((result?.findings || []).length ? result.findings.map((item) => {
         const finding = serializeFinding(item);
-        return `- [ ] ${finding.severity}: ${finding.title} — ${finding.why}`;
-      }) : ["- [ ] No risky pattern detected; still perform human review."]),
+        return `- [ ] ${finding.severity} / ${finding.category} / line ${finding.line || "?"}: ${finding.title} — ${finding.why}`;
+      }) : ["- [ ] No configured risky pattern matched; still perform human review."]),
+      "",
+      "## Review checklist",
+      ...checklist.map((item) => `- [ ] ${item}`),
+      "- [ ] URL sources, target paths, secrets, permissions, and disk impact are verified.",
+      "- [ ] Safer alternative, dry-run, -WhatIf, or read-only inspection steps are documented.",
       "",
       "## Acceptance criteria",
-      "- [ ] Source URLs, target paths, and privilege requirements are verified.",
-      "- [ ] Safer alternatives or dry-run commands are considered.",
-      "- [ ] Residual risks are documented before execution."
+      "- [ ] Each finding has an owner decision: block, revise, inspect further, or accept residual risk.",
+      "- [ ] Any command to be run is copied from a reviewed source, not from an unchecked chat response.",
+      "- [ ] Residual risks and rollback/recovery steps are documented before execution.",
+      "",
+      "## Final caution",
+      FINAL_NOTE
     ].join("\n");
   }
 
   function markdownReport(result) {
-    const command = plain(document.getElementById("cmdInput")?.value || result?.normalized || "");
-    const normalized = plain(result?.normalized || "");
+    const command = originalCommand(result);
+    const normalized = normalizedCommand(result);
     const findings = (result?.findings || []).map(serializeFinding);
     const checklist = priorityChecklist(result);
+    const suggestions = saferCommandSuggestions(result);
+    const timestamp = generatedAt();
 
     const lines = [
       "# Command Safety Pro Review",
       "",
-      "## Summary",
+      "## 1. Summary",
       `- Overall risk: ${result?.risk || "UNKNOWN"}`,
-      `- High: ${result?.counts?.HIGH ?? 0}`,
-      `- Medium: ${result?.counts?.MED ?? 0}`,
-      `- Low: ${result?.counts?.LOW ?? 0}`,
-      `- Categories: ${categories(result).join(", ") || "None detected"}`,
+      `- High / Medium / Low counts: ${result?.counts?.HIGH ?? 0} / ${result?.counts?.MED ?? 0} / ${result?.counts?.LOW ?? 0}`,
+      `- Detected categories: ${categories(result).join(", ") || "None detected"}`,
+      `- OS mode: ${osMode(result)}`,
+      `- Generated at: ${timestamp}`,
+      `- Tool id: ${TOOL_ID}`,
       "",
-      "## Original command",
+      "## 2. Original command",
       "```sh",
       command || "(no command provided)",
       "```",
       "",
-      "## Normalized command",
+      "## 3. Normalized command",
       "```sh",
       normalized || "(empty)",
       "```",
       "",
-      "## Findings"
+      "## 4. Findings"
     ];
 
     if (!findings.length) {
-      lines.push("- Severity: LOW", "  - Category: None detected", "  - Why: No configured risky pattern matched. This is not a safety guarantee.", "  - Check: Review source, target paths, and expected side effects with a human reviewer.", "  - Alternative: Prefer read-only or dry-run commands first.");
+      lines.push(
+        "- Severity: LOW",
+        "  - Category: None detected",
+        "  - Line: n/a",
+        "  - Rule title: No configured risky pattern matched",
+        `  - Matched command: ${normalized || command || "(empty)"}`,
+        "  - Why this matters: Pattern matching cannot prove a command is safe.",
+        "  - What to check before running: Confirm URL, path, secret, permission, and disk impact manually.",
+        "  - Safer alternative / first step: Run read-only inspection or dry-run steps first."
+      );
     } else {
-      findings.forEach((finding) => {
-        lines.push(`- Severity: ${finding.severity}`);
-        lines.push(`  - Category: ${finding.category}`);
-        lines.push(`  - Why: ${finding.why}`);
-        lines.push(`  - Check: ${finding.check}`);
-        lines.push(`  - Alternative: ${finding.alternative}`);
+      findings.forEach((finding, index) => {
+        lines.push(
+          `### Finding ${index + 1}`,
+          `- Severity: ${finding.severity}`,
+          `- Category: ${finding.category}`,
+          `- Line: ${finding.line || "n/a"}`,
+          `- Rule title: ${finding.title}`,
+          `- Matched command: ${finding.command || "(not captured)"}`,
+          `- Why this matters: ${finding.why}`,
+          `- What to check before running: ${finding.check}`,
+          `- Safer alternative / first step: ${finding.alternative}`
+        );
       });
     }
 
     lines.push(
       "",
-      "## Pre-run checklist",
+      "## 5. Priority checklist",
       ...checklist.map((item) => `- [ ] ${item}`),
       "",
-      "## Codex safety check task",
+      "## 6. Safer command suggestions",
+      ...suggestions.map((item) => `- ${item}`),
+      "",
+      "## 7. Codex safety check task",
       codexTask(result),
       "",
-      "## GitHub Issue draft",
+      "## 8. GitHub Issue draft",
       githubIssue(result),
       "",
-      "## Final note",
-      "This report is a review aid only. It does not certify that a command is safe."
+      "## 9. Final note",
+      FINAL_NOTE
     );
 
     return lines.join("\n");
   }
 
   function jsonExport(result) {
+    const issue = githubIssue(result);
+    const task = codexTask(result);
     return JSON.stringify({
       tool_id: TOOL_ID,
       entitlement: ENTITLEMENT,
-      generated_at: new Date().toISOString(),
+      generated_at: generatedAt(),
+      os_mode: osMode(result),
       summary: {
         overall_risk: result?.risk || "UNKNOWN",
         high: result?.counts?.HIGH ?? 0,
@@ -260,13 +360,14 @@
         low: result?.counts?.LOW ?? 0,
         categories: categories(result)
       },
-      original_command: plain(document.getElementById("cmdInput")?.value || ""),
-      normalized_command: plain(result?.normalized || ""),
+      original_command: originalCommand(result),
+      normalized_command: normalizedCommand(result),
       findings: (result?.findings || []).map(serializeFinding),
-      pre_run_checklist: priorityChecklist(result),
-      codex_task: codexTask(result),
-      github_issue: githubIssue(result),
-      final_note: "This report is a review aid only. It does not certify that a command is safe."
+      priority_checklist: priorityChecklist(result),
+      safer_command_suggestions: saferCommandSuggestions(result),
+      codex_task: task,
+      github_issue: issue,
+      final_note: FINAL_NOTE
     }, null, 2);
   }
 

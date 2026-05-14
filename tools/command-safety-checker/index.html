@@ -105,13 +105,9 @@
       <p class="pro-note" data-i18n="ja">無料チェックはそのまま使えます。Proでは、検出結果を開発者・Codex・GitHub Issue・作業ログへ渡せるレビュー成果物に変換できます。</p>
       <p class="pro-note" data-i18n="en">The free checker remains available. Pro turns findings into review deliverables for developers, Codex, GitHub Issues, and work logs.</p>
       <div class="pro-preview" data-pro-preview>
-        <p><b data-i18n="ja">Pro Previewで見えるもの</b><b data-i18n="en">Pro Preview includes</b></p>
-        <ul class="ul">
-          <li data-i18n="ja">Pro Review Reportサンプル、Markdown handoffサンプル、Codex確認依頼文サンプル</li>
-          <li data-i18n="ja">GitHub Issueサンプル、優先度付き確認リストサンプル</li>
-          <li data-i18n="en">Sample Pro Review Report, Markdown handoff, and Codex safety-check task</li>
-          <li data-i18n="en">Sample GitHub Issue draft and prioritized review checklist</li>
-        </ul>
+        <p><b data-i18n="ja">Previewモード</b><b data-i18n="en">Preview mode</b></p>
+        <p data-i18n="ja">Pro未有効時は、無料チェックはそのまま使えます。Pro専用ボタンはロックされ、下のような出力サンプルだけを表示します。</p>
+        <p data-i18n="en">When Pro is not active, free checks still work. Pro-only buttons stay locked and this sample shows what active Pro exports generate.</p>
         <div class="pro-actions pro-actions-locked" aria-label="Locked Pro actions">
           <button class="btn" type="button" disabled>Copy Pro Review Report</button>
           <button class="btn" type="button" disabled>Save Markdown Review</button>
@@ -120,6 +116,30 @@
           <button class="btn" type="button" disabled>Export JSON</button>
           <button class="btn" type="button" disabled>Export Markdown</button>
         </div>
+        <pre class="code-block pro-sample-code"># Command Safety Pro Review
+
+## 1. Summary
+- Overall risk: HIGH
+- High / Medium / Low counts: 1 / 1 / 0
+- Detected categories: Remote script execution, Destructive delete
+- OS mode: unix
+- Tool id: command-safety-checker
+
+## 5. Priority checklist
+- [ ] P0-1: Inspect remote script contents before execution.
+- [ ] P1-1: Confirm target directory before recursive permission change.
+
+## 7. Codex safety check task
+Please review this command before it is run. Verify URL / path / secret / permission / disk impact, propose safer dry-run or read-only inspection steps, and include residual risks.
+
+## 8. GitHub Issue draft
+Title: Review HIGH command before execution
+- [ ] Findings checklist
+- [ ] Review checklist
+- [ ] Acceptance criteria
+
+JSON export excerpt:
+{"tool_id":"command-safety-checker","summary":{"overall_risk":"HIGH"},"final_note":"This report is a review aid only."}</pre>
       </div>
       <div class="pro-active-note" data-pro-only hidden>
         <p data-i18n="ja"><b>Pro解放済み:</b> 現在のチェック結果から、レビュー用Markdown、Codex確認依頼、GitHub Issue、JSON/Markdown exportを生成できます。</p>
@@ -158,24 +178,28 @@
             <button class="btn" type="button" disabled>Export JSON</button>
             <button class="btn" type="button" disabled>Export Markdown</button>
           </div>
-          <pre class="code-block"># Command Safety Pro Review
+          <pre class="code-block pro-sample-code">Pro Review Report sample:
+## 4. Findings
+- Severity: HIGH
+- Category: Remote script execution
+- Line: 1
+- Rule title: Remote script piped to shell
+- Matched command: curl https://example.com/install.sh | sh
+- Why this matters: Remote code may run before review.
+- What to check before running: Inspect source URL, redirects, and script contents.
+- Safer alternative / first step: curl -fsSL URL -o install.sh → less install.sh
 
-## Summary
-- Overall risk: HIGH
-- High: 1
-- Medium: 1
-- Low: 0
-- Categories: Remote script execution / Destructive delete
+Priority checklist sample:
+- [ ] P0-1: Inspect remote script contents before execution.
 
-## Codex safety check task
-Please review the command risks, verify the source, and suggest safer alternatives.
+Codex safety check task sample:
+Verify URL / path / secret / permission / disk impact and suggest dry-run/read-only alternatives.
 
-## GitHub Issue draft
-Title: Review risky setup command before execution
+GitHub Issue draft sample:
+Title: Review HIGH command before execution
 
-## Priority checklist
-1. Inspect remote script contents.
-2. Confirm target paths before delete operations.</pre>
+JSON export excerpt:
+{"tool_id":"command-safety-checker","os_mode":"unix","priority_checklist":["P0-1: ..."]}</pre>
         </div>
         <div class="pro-actions" data-pro-only hidden>
           <button class="btn" type="button" data-pro-action="copy-report">Copy Pro Review Report</button>
@@ -188,7 +212,35 @@ Title: Review risky setup command before execution
       </div>
     </section>
 
-    <section class="card faq-section" id="faq"><h2 class="h2">FAQ</h2><div class="faq-item"><h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3><p data-i18n="ja">いいえ。危険パターンを検出する補助ツールです。実行前に必ず内容を確認してください。</p><p data-i18n="en">No. It is a helper that detects risky patterns. Always review commands before running them.</p></div><div class="faq-item"><h3 data-i18n="ja">Proでは何ができますか？</h3><h3 data-i18n="en">What does Pro add?</h3><p data-i18n="ja">Pro Review Report、Markdown handoff、Codex確認依頼文、GitHub Issue下書き、優先度付き確認リスト、JSON/Markdown exportを生成できます。</p><p data-i18n="en">Pro generates review reports, Markdown handoffs, Codex review tasks, GitHub Issue drafts, prioritized checklists, and JSON/Markdown exports.</p></div><div class="faq-item"><h3 data-i18n="ja">購入後はどう有効になりますか？</h3><h3 data-i18n="en">What happens after purchase?</h3><p data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p><p data-i18n="en">After purchase, NicheWorks Pro is enabled in this browser. It usually remains after closing tabs or the browser, but another device, another browser, private browsing, or deleted site data requires activation again.</p><p><a data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">Buy Pro / Proを購入</a></p></div></section>
+    <section class="card faq-section" id="faq">
+      <h2 class="h2">FAQ</h2>
+      <div class="faq-item">
+        <h3 data-i18n="ja">無料版でできることは？</h3><h3 data-i18n="en">What can I do for free?</h3>
+        <p data-i18n="ja">コマンド貼り付け、OS別チェック、危険度・カテゴリ・理由・確認方法・簡易代替案の表示、結果コピーは無料のまま使えます。</p>
+        <p data-i18n="en">Pasting commands, OS-specific checks, risk/category/reason/check/quick alternative display, and free result copy remain available without Pro.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">Proで解放されることは？</h3><h3 data-i18n="en">What does Pro unlock?</h3>
+        <p data-i18n="ja">Pro Review Report、Markdown保存、Codex安全確認依頼文、GitHub Issue下書き、優先度付きチェックリスト、安全寄りのコマンド提案、JSON/Markdown exportを生成できます。</p>
+        <p data-i18n="en">Pro unlocks Pro Review Reports, Markdown saving, Codex safety-check tasks, GitHub Issue drafts, priority checklists, safer command suggestions, and JSON/Markdown exports.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">PreviewモードとActiveモードの違いは？</h3><h3 data-i18n="en">What is the difference between Preview and Active mode?</h3>
+        <p data-i18n="ja">Previewモードでは出力サンプルと購入ボタンを表示し、Pro専用ボタンはロックされます。Activeモードではサンプルを隠し、無料チェック実行後にPro出力ボタンを有効化します。</p>
+        <p data-i18n="en">Preview mode shows samples and the buy button while locking Pro-only buttons. Active mode hides samples and enables Pro export actions after a free check has run.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">購入後の流れと注意点は？</h3><h3 data-i18n="en">What happens after purchase?</h3>
+        <p data-i18n="ja">購入後は共通NicheWorks Proの有効化ページを経由して、このブラウザでProが有効になります。別端末・別ブラウザ・シークレットモード・サイトデータ削除後は、同じ状態が引き継がれないため再有効化が必要です。</p>
+        <p data-i18n="en">After purchase, the shared NicheWorks Pro unlock page activates Pro in this browser. Another device, another browser, private browsing, or deleted site data does not carry the same local state and requires activation again.</p>
+        <p><a data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">Buy Pro / Proを購入</a></p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3>
+        <p data-i18n="ja">いいえ。無料チェックもProレポートも実行前レビュー補助です。安全保証ではないため、URL・パス・秘密情報・権限・ディスク影響・残リスクを必ず人が確認してください。</p>
+        <p data-i18n="en">No. Free checks and Pro reports are pre-run review aids, not safety guarantees. A human must verify URLs, paths, secrets, permissions, disk impact, and residual risk.</p>
+      </div>
+    </section>
 
     <div class="ad-slot ad-bottom">広告枠</div><div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div><div class="nw-links"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/log-formatter/">LogFormatter</a> / <a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a></div>
   </main>

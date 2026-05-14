@@ -6,24 +6,24 @@
 
 ## Files to touch
 - `tools/command-safety-checker/index.html`
-- `tools/command-safety-checker/pro-bridge.js` (create or replace)
+- `tools/command-safety-checker/pro-bridge.js`
 - `tools/command-safety-checker/style.css`
-- `tools/command-safety-checker/pro.html` to remove the old tool-specific unlock page and point to shared Pro
-- `tools/command-safety-checker/functions/api/verify.js` to remove the tool-specific Stripe verification endpoint
-- `tools/command-safety-checker/howto/en/index.html` only to remove stale placeholder wording caught by residue checks
-- `tools/command-safety-checker/app-core.js` only if needed to keep free-result data available without adding Pro checks
+- `tools/command-safety-checker/pro.html`
+- `tools/command-safety-checker/app-core.js` only if needed to confirm the free result contract; no Pro gating here.
 
 ## High-level steps
-1. Inspect current Command Safety Checker structure, existing Pro addon, and free app APIs.
-2. Update `index.html` to load `/assets/nw-pro.js` and `./pro-bridge.js`, remove `pro-addon.js` from execution, and add the required `data-pro-*` UI blocks and purchase explanations.
-3. Implement `pro-bridge.js` as the sole bridge to the common `NWPro.getLocalStatus()` client, handling preview/active/fallback UI and Pro copy/export/save actions.
-4. Add minimal CSS for Pro preview/active/locked states without changing free tool behavior.
-5. Run static checks and residue searches for removed placeholders/old Pro flow strings.
-6. Commit changes and create a PR record.
+1. Inspect current Command Safety Checker structure, existing shared Pro bridge, and free app result API.
+2. Strengthen `pro-bridge.js` so active Pro exports produce a practical handoff pack: full Markdown report, priority checklist, safer command suggestions, Codex task, GitHub Issue draft, and structured JSON.
+3. Keep `/assets/nw-pro.js` + `pro-bridge.js` as the only Pro connection and keep free check behavior independent from Pro status.
+4. Update `index.html` preview, FAQ, and Pro copy so inactive users see concise samples and active users see enabled Pro actions only.
+5. Update `pro.html` with shared Pro explanation, purchase/activation notes, samples, and the safety-guarantee disclaimer.
+6. Add only minimal CSS for Pro preview/active/action/sample blocks while preserving the existing free checker UI.
+7. Run syntax checks, residue searches, and targeted static/manual verification commands, then commit changes and create a PR record.
 
 ## Manual verification for user
 - Open in private browsing and confirm Preview mode plus free checks work.
-- Confirm locked Pro buttons and common Buy Pro URL while not active.
-- Complete `/pro/unlock/?session_id=...` in a browser and confirm common Pro remains active.
-- Confirm Pro-only actions copy/export/save current report data when active.
+- Confirm Buy Pro points to `https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209` and Pro-only blocks are hidden while inactive.
+- Complete `/pro/unlock/?session_id=...` in a browser and confirm common Pro remains active via `/assets/nw-pro.js` local status.
+- Run a free check, then confirm Copy Pro Review Report, Save Markdown Review, Copy Codex Safety Check Task, Copy GitHub Issue, Export JSON, and Export Markdown work while active.
+- Confirm Pro action buttons show a toast and do not save empty files when no free check has been run.
 - Clear site data and confirm Preview mode returns.
