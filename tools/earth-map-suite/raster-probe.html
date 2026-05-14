@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Earth Map Suite Raster Probe | NicheWorks</title>
+  <meta name="description" content="Earth Map Suiteのresearch-only COG range probe endpointをブラウザで確認するページです。" />
+  <link rel="canonical" href="https://nicheworks.app/tools/earth-map-suite/raster-probe.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="Earth Map Suite Raster Probe | NicheWorks" />
+  <meta property="og:description" content="research-only COG range probe endpoint を確認します。実降水量値は返しません。" />
+  <meta property="og:url" content="https://nicheworks.app/tools/earth-map-suite/raster-probe.html" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <link rel="stylesheet" href="./style.css" />
+  <style>.probe-grid{display:grid;gap:14px}.probe-box{border:1px solid #e5e7eb;border-radius:14px;background:#fff;padding:14px}.probe-output{width:100%;min-height:320px;border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#f8fafc;font-family:ui-monospace,Menlo,monospace;font-size:12px;white-space:pre-wrap;overflow:auto}.warn{border-color:#fed7aa;background:#fff7ed}@media(min-width:960px){.probe-grid{grid-template-columns:320px 1fr}.wide{grid-column:1/-1}}</style>
+</head>
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">Earth Map Suite Raster Probe</h1>
+    <p class="nw-lead">research-only COG range probe endpoint をブラウザで確認します。</p>
+    <div class="nw-lang-switch"><a href="./">Tool</a> / <a href="./datasets.html">Datasets</a> / <a href="./codegen.html">Codegen</a></div>
+  </header>
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠</div>
+    <section class="card"><div class="card-hd"><h2 class="card-title">Raster probe status</h2></div><div class="card-bd"><p class="hint">このページは Range probe だけを実行します。GeoTIFF/COG pixel parsing は未実装で、実降水量値は返しません。</p></div></section>
+    <div class="probe-grid">
+      <section class="probe-box">
+        <h2>Probe input</h2>
+        <div class="field"><label class="label" for="bbox">BBox</label><input class="input" id="bbox" value="139.5,35.4,140.0,35.9" /></div>
+        <div class="field"><label class="label" for="start">Start</label><input class="input" id="start" type="date" value="2025-08-01" /></div>
+        <div class="field"><label class="label" for="end">End</label><input class="input" id="end" type="date" value="2025-08-03" /></div>
+        <div class="field"><label class="label" for="preset">Preset</label><input class="input" id="preset" value="low" /></div>
+        <div class="actions"><button class="btn primary" type="button" id="runProbe">Run range probe</button></div>
+      </section>
+      <section class="probe-box">
+        <h2>Probe output</h2>
+        <pre class="probe-output" id="output">Run range probe to inspect the research endpoint response.</pre>
+      </section>
+      <section class="probe-box warn wide">
+        <h2>Guardrails</h2>
+        <ul class="bullet"><li>sampling_status=range_probe_only means no raster values were sampled.</li><li>sample_status=not_sampled is expected for this research page.</li><li>Do not connect this output to public Storm/Compare/Card as real precipitation.</li></ul>
+      </section>
+    </div>
+    <div class="ad-slot ad-bottom">広告枠</div>
+  </main>
+  <footer class="nw-footer"><div class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</div><div class="nw-footer-line">Raster Probe is research-only. It does not return observed precipitation values.</div></footer>
+  <script>
+    const out = document.getElementById('output');
+    document.getElementById('runProbe')?.addEventListener('click', async () => {
+      const params = new URLSearchParams({
+        bbox: document.getElementById('bbox').value.trim(),
+        start: document.getElementById('start').value,
+        end: document.getElementById('end').value,
+        preset: document.getElementById('preset').value.trim() || 'low',
+        sample: 'probe'
+      });
+      out.textContent = 'Loading...';
+      try {
+        const res = await fetch(`/api/earth-map-suite/precipitation-sample?${params}`, { headers: { accept: 'application/json' } });
+        const json = await res.json();
+        out.textContent = JSON.stringify({ http_status: res.status, ...json }, null, 2);
+      } catch (err) {
+        out.textContent = JSON.stringify({ status: 'error', message: err?.message || String(err) }, null, 2);
+      }
+    });
+  </script>
+</body>
+</html>
