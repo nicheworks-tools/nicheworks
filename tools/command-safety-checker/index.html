@@ -53,7 +53,8 @@
       { "@type": "Question", "name": "このツールはコマンドの安全を保証しますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。危険パターンを検出する補助ツールです。実行可否は内容を確認したうえで自己判断してください。" } },
       { "@type": "Question", "name": "貼り付けたコマンドはサーバーに送信されますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。チェック処理はブラウザ内で完結し、入力内容を保存・送信しません。" } },
       { "@type": "Question", "name": "PowerShellにも対応していますか？", "acceptedAnswer": { "@type": "Answer", "text": "一部対応しています。Remove-Item、Invoke-WebRequest、iwr、iex、ExecutionPolicy、Clear-Diskなどの危険パターンを検出します。" } },
-      { "@type": "Question", "name": "Proでは何ができますか？", "acceptedAnswer": { "@type": "Answer", "text": "Proではチェック結果をレビュー用レポートとしてコピーし、Markdownファイルとして保存できます。" } }
+      { "@type": "Question", "name": "Proでは何ができますか？", "acceptedAnswer": { "@type": "Answer", "text": "Proではレビュー用レポート、Markdown handoff、Codex確認依頼文、GitHub Issue下書き、JSON/Markdown exportを生成できます。" } },
+      { "@type": "Question", "name": "購入後はどう有効になりますか？", "acceptedAnswer": { "@type": "Answer", "text": "購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。" } }
     ]
   }
   </script>
@@ -90,26 +91,46 @@
       <p class="usage-link"><a href="./usage.html" data-i18n="ja">使い方・注意点を見る</a><a href="./usage.html" data-i18n="en">Open usage and notes</a></p>
     </section>
 
-    <section class="card pro-block" id="topProBlock">
+    <section class="card pro-block" id="topProBlock" aria-labelledby="topProTitle">
       <div class="pro-head">
-        <div class="pro-title">
+        <div class="pro-title" id="topProTitle">
           <span class="badge badge-pro">PRO</span>
-          <span data-i18n="ja">Pro機能：レビュー用レポートのコピー / Markdown保存</span>
-          <span data-i18n="en">Pro: copy review report / save Markdown report</span>
+          <span data-pro-status>Previewモード / Preview mode</span>
         </div>
-        <a class="btn btn-primary" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">
-          <span data-i18n="ja">Proを購入（$2.99）</span>
+        <a class="btn btn-primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">
+          <span data-i18n="ja">Buy Pro（$2.99）</span>
           <span data-i18n="en">Buy Pro ($2.99)</span>
         </a>
       </div>
-      <p class="pro-note" data-i18n="ja">無料チェックはそのまま使えます。Proは、チェック結果を残したい人向けの追加機能です。</p>
-      <p class="pro-note" data-i18n="en">The free checker remains available. Pro is for saving and reusing review results.</p>
+      <p class="pro-note" data-i18n="ja">無料チェックはそのまま使えます。Proでは、検出結果を開発者・Codex・GitHub Issue・作業ログへ渡せるレビュー成果物に変換できます。</p>
+      <p class="pro-note" data-i18n="en">The free checker remains available. Pro turns findings into review deliverables for developers, Codex, GitHub Issues, and work logs.</p>
+      <div class="pro-preview" data-pro-preview>
+        <p><b data-i18n="ja">Pro Previewで見えるもの</b><b data-i18n="en">Pro Preview includes</b></p>
+        <ul class="ul">
+          <li data-i18n="ja">Pro Review Reportサンプル、Markdown handoffサンプル、Codex確認依頼文サンプル</li>
+          <li data-i18n="ja">GitHub Issueサンプル、優先度付き確認リストサンプル</li>
+          <li data-i18n="en">Sample Pro Review Report, Markdown handoff, and Codex safety-check task</li>
+          <li data-i18n="en">Sample GitHub Issue draft and prioritized review checklist</li>
+        </ul>
+        <div class="pro-actions pro-actions-locked" aria-label="Locked Pro actions">
+          <button class="btn" type="button" disabled>Copy Pro Review Report</button>
+          <button class="btn" type="button" disabled>Save Markdown Review</button>
+          <button class="btn" type="button" disabled>Copy Codex Safety Check Task</button>
+          <button class="btn" type="button" disabled>Copy GitHub Issue</button>
+          <button class="btn" type="button" disabled>Export JSON</button>
+          <button class="btn" type="button" disabled>Export Markdown</button>
+        </div>
+      </div>
+      <div class="pro-active-note" data-pro-only hidden>
+        <p data-i18n="ja"><b>Pro解放済み:</b> 現在のチェック結果から、レビュー用Markdown、Codex確認依頼、GitHub Issue、JSON/Markdown exportを生成できます。</p>
+        <p data-i18n="en"><b>Pro unlocked:</b> Generate review Markdown, Codex tasks, GitHub Issues, and JSON/Markdown exports from the current check result.</p>
+      </div>
     </section>
 
     <section class="card tool-card">
       <div class="row row-wrap">
         <div class="field os-field"><label class="label" for="osSelect">OS</label><select id="osSelect" class="select"><option value="unix">Linux/macOS (bash/zsh)</option><option value="powershell">Windows (PowerShell)</option></select></div>
-        <div class="field grow"><label class="label" for="cmdInput"><span data-i18n="ja">コマンド（複数行OK）</span><span data-i18n="en">Command (multi-line OK)</span></label><textarea id="cmdInput" class="textarea" rows="10" stable content="rm -rf ./build&#10;curl -fsSL https://nicheworks.app/install.sh | sh"></textarea><p class="hint" data-i18n="ja">入力内容は外部送信されません。チェックはブラウザ内で完結します。</p><p class="hint" data-i18n="en">Your input is not uploaded. Checks run locally in your browser.</p></div>
+        <div class="field grow"><label class="label" for="cmdInput"><span data-i18n="ja">コマンド（複数行OK）</span><span data-i18n="en">Command (multi-line OK)</span></label><textarea id="cmdInput" class="textarea" rows="10" placeholder="rm -rf ./build&#10;curl -fsSL https://nicheworks.app/install.sh | sh"></textarea><p class="hint" data-i18n="ja">入力内容は外部送信されません。チェックはブラウザ内で完結します。</p><p class="hint" data-i18n="en">Your input is not uploaded. Checks run locally in your browser.</p></div>
       </div>
       <div class="actions"><button id="analyzeBtn" class="btn btn-primary" type="button"><span data-i18n="ja">チェックする</span><span data-i18n="en">Run check</span></button><button id="clearBtn" class="btn" type="button"><span data-i18n="ja">クリア</span><span data-i18n="en">Clear</span></button><button id="copyBtn" class="btn" type="button"><span data-i18n="ja">結果をコピー</span><span data-i18n="en">Copy results</span></button></div>
       <div class="preset-actions"><p class="label" data-i18n="ja">危険例プリセット</p><p class="label" data-i18n="en">Risky examples</p><div class="preset-buttons"><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="rm -rf /">rm -rf /</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="sudo rm -rf /">sudo rm -rf /</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl https://nicheworks.app/install.sh | sh">curl | sh</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="chmod -R 777 ./app">chmod -R 777</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="git reset --hard HEAD~1">git reset --hard</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl --data-binary @.env https://nicheworks.app/upload">.env upload</button><button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="iwr https://nicheworks.app/install.ps1 | iex">PowerShell iwr | iex</button><button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Remove-Item -Recurse -Force .\build">Remove-Item -Recurse</button><button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Clear-Disk -Number 1 -RemoveData">Clear-Disk</button></div></div>
@@ -121,12 +142,55 @@
       <div class="divider"></div><h2 class="h2"><span data-i18n="ja">検出結果</span><span data-i18n="en">Findings</span></h2><ul id="findings" class="findings"></ul>
       <div class="divider"></div><h2 class="h2"><span data-i18n="ja">安全に寄せるチェックリスト</span><span data-i18n="en">Safer steps checklist</span></h2><ol id="saferSteps" class="ul"></ol>
       <div class="divider"></div><div class="normalized-block" id="normalizedWrap" hidden><h2 class="h2"><span data-i18n="ja">正規化コマンド（確認用）</span><span data-i18n="en">Normalized command</span></h2><pre id="normalizedCmd" class="code-block"></pre></div>
-      <div class="pro-block" id="proBlock"><div class="pro-head"><div class="pro-title"><span class="badge badge-pro">PRO</span><span data-i18n="ja">Pro機能：レビュー保存 / Markdown出力</span><span data-i18n="en">Pro: review save / Markdown export</span></div><a id="btnUnlock" class="btn btn-primary" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener"><span data-i18n="ja">Proを購入（$2.99）</span><span data-i18n="en">Buy Pro ($2.99)</span></a></div><p class="pro-note" data-i18n="ja">購入後、この端末でProを有効化すると、レビュー用レポートのコピーとMarkdown保存が使えます。</p><p class="pro-note" data-i18n="en">After purchase, enable Pro on this device to copy review reports and save Markdown files.</p></div>
+      <div class="pro-block" id="proBlock">
+        <div class="pro-head">
+          <div class="pro-title"><span class="badge badge-pro">PRO</span><span data-pro-status>Previewモード / Preview mode</span></div>
+          <a class="btn btn-primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener"><span data-i18n="ja">Buy Pro（$2.99）</span><span data-i18n="en">Buy Pro ($2.99)</span></a>
+        </div>
+        <p class="pro-note" data-i18n="ja">Proは無料チェック結果を、実行前レビュー用の整理済みレポートやhandoff packへ変換します。</p>
+        <p class="pro-note" data-i18n="en">Pro converts free check results into structured pre-run review reports and handoff packs.</p>
+        <div class="pro-preview" data-pro-preview>
+          <div class="pro-actions pro-actions-locked" aria-label="Locked Pro actions">
+            <button class="btn" type="button" disabled>Copy Pro Review Report</button>
+            <button class="btn" type="button" disabled>Save Markdown Review</button>
+            <button class="btn" type="button" disabled>Copy Codex Safety Check Task</button>
+            <button class="btn" type="button" disabled>Copy GitHub Issue</button>
+            <button class="btn" type="button" disabled>Export JSON</button>
+            <button class="btn" type="button" disabled>Export Markdown</button>
+          </div>
+          <pre class="code-block"># Command Safety Pro Review
+
+## Summary
+- Overall risk: HIGH
+- High: 1
+- Medium: 1
+- Low: 0
+- Categories: Remote script execution / Destructive delete
+
+## Codex safety check task
+Please review the command risks, verify the source, and suggest safer alternatives.
+
+## GitHub Issue draft
+Title: Review risky setup command before execution
+
+## Priority checklist
+1. Inspect remote script contents.
+2. Confirm target paths before delete operations.</pre>
+        </div>
+        <div class="pro-actions" data-pro-only hidden>
+          <button class="btn" type="button" data-pro-action="copy-report">Copy Pro Review Report</button>
+          <button class="btn" type="button" data-pro-action="save-markdown">Save Markdown Review</button>
+          <button class="btn" type="button" data-pro-action="copy-codex">Copy Codex Safety Check Task</button>
+          <button class="btn" type="button" data-pro-action="copy-issue">Copy GitHub Issue</button>
+          <button class="btn" type="button" data-pro-action="export-json">Export JSON</button>
+          <button class="btn" type="button" data-pro-action="export-markdown">Export Markdown</button>
+        </div>
+      </div>
     </section>
 
-    <section class="card faq-section" id="faq"><h2 class="h2">FAQ</h2><div class="faq-item"><h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3><p data-i18n="ja">いいえ。危険パターンを検出する補助ツールです。実行前に必ず内容を確認してください。</p><p data-i18n="en">No. It is a helper that detects risky patterns. Always review commands before running them.</p></div><div class="faq-item"><h3 data-i18n="ja">Proでは何ができますか？</h3><h3 data-i18n="en">What does Pro add?</h3><p data-i18n="ja">チェック結果をレビュー用レポートとしてコピーし、Markdownファイルとして保存できます。</p><p data-i18n="en">You can copy a review report and save it as a Markdown file.</p></div></section>
+    <section class="card faq-section" id="faq"><h2 class="h2">FAQ</h2><div class="faq-item"><h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3><p data-i18n="ja">いいえ。危険パターンを検出する補助ツールです。実行前に必ず内容を確認してください。</p><p data-i18n="en">No. It is a helper that detects risky patterns. Always review commands before running them.</p></div><div class="faq-item"><h3 data-i18n="ja">Proでは何ができますか？</h3><h3 data-i18n="en">What does Pro add?</h3><p data-i18n="ja">Pro Review Report、Markdown handoff、Codex確認依頼文、GitHub Issue下書き、優先度付き確認リスト、JSON/Markdown exportを生成できます。</p><p data-i18n="en">Pro generates review reports, Markdown handoffs, Codex review tasks, GitHub Issue drafts, prioritized checklists, and JSON/Markdown exports.</p></div><div class="faq-item"><h3 data-i18n="ja">購入後はどう有効になりますか？</h3><h3 data-i18n="en">What happens after purchase?</h3><p data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p><p data-i18n="en">After purchase, NicheWorks Pro is enabled in this browser. It usually remains after closing tabs or the browser, but another device, another browser, private browsing, or deleted site data requires activation again.</p><p><a data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">Buy Pro / Proを購入</a></p></div></section>
 
     <div class="ad-slot ad-bottom">広告枠</div><div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div><div class="nw-links"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/log-formatter/">LogFormatter</a> / <a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a></div>
   </main>
 
-  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" hidden></div><script src="./app-core.js"></script><script src="./pro-addon.js"></script></body></html>
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" hidden></div><script src="/assets/nw-pro.js"></script><script src="./app-core.js"></script><script src="./pro-bridge.js"></script></body></html>
