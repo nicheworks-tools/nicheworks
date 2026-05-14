@@ -49,3 +49,10 @@ th{ color:#333; }
   .nw-header__inner{ align-items:flex-start; }
   th,td{ min-width:96px; }
 }
+.nw-pro-card{ border-color:#d8ccff; background:#fbf9ff; }
+.nw-pro-status{ margin:8px 0 0; font-weight:700; }
+.nw-pro-buy{ display:inline-block; padding:10px 12px; border-radius:12px; border:1px solid #7c5cff; background:#111; color:#fff; text-decoration:none; font-weight:800; }
+.nw-pro-grid{ display:grid; gap:12px; margin-top:12px; }
+@media (min-width: 760px){ .nw-pro-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.nw-pro-output textarea{ min-height:180px; margin-top:10px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:12px; }
+html[data-pro-active="true"] .nw-pro-card{ border-color:#73c87b; background:#f7fff8; }
