@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["防水シート|waterproof membrane", "防水シート", "Waterproof membrane", "./images/pilot/waterproof-membrane.svg?v=20260513-asset-7", "水の侵入を防ぐために施工するシート状の防水層。", "Sheet-like waterproofing layer used to prevent water ingress."],
+    ["ブチルテープ|butyl tape", "ブチルテープ", "Butyl tape", "./images/pilot/butyl-tape.svg?v=20260513-asset-7", "目地や取り合い部の止水・気密に使う粘着テープ。", "Adhesive tape used for sealing joints and transitions."],
+    ["水切り金物|flashing", "水切り金物", "Flashing", "./images/pilot/flashing.svg?v=20260513-asset-7", "雨水を外側へ逃がすための折り曲げ金物。", "Bent metal trim used to direct water away from joints."],
+    ["ルーフィング|roofing underlayment", "ルーフィング", "Roofing underlayment", "./images/pilot/roofing-underlayment.svg?v=20260513-asset-7", "屋根仕上げ材の下に敷く防水下葺き材。", "Underlayment installed beneath roof covering materials."],
+    ["雨樋|gutter", "雨樋", "Gutter", "./images/pilot/gutter.svg?v=20260513-asset-7", "屋根から流れる雨水を集める部材。", "Channel used to collect rainwater from roof edges."],
+    ["縦樋|downspout", "縦樋", "Downspout", "./images/pilot/downspout.svg?v=20260513-asset-7", "雨樋で集めた雨水を下へ流す縦方向の樋。", "Vertical pipe that carries rainwater down from gutters."],
+    ["換気棟|roof vent", "換気棟", "Roof vent", "./images/pilot/roof-vent.svg?v=20260513-asset-7", "屋根裏や小屋裏の空気を逃がす換気部材。", "Roof component used to ventilate attic or roof space."],
+    ["サイディング|siding panel", "サイディング", "Siding panel", "./images/pilot/siding-panel.svg?v=20260513-asset-7", "外壁に張るパネル状の仕上げ材。", "Panel-type exterior wall finish."],
+    ["バックアップ材|backer rod|sealant backer rod", "バックアップ材", "Backer rod", "./images/pilot/sealant-backer-rod.svg?v=20260513-asset-7", "シーリング目地の深さを調整する丸棒状の下地材。", "Rod-shaped backing material used to set sealant depth."],
+    ["唐草|drip edge", "唐草", "Drip edge", "./images/pilot/drip-edge.svg?v=20260513-asset-7", "屋根端部で雨水を切るための金物。", "Roof edge trim used to guide water away from edges."]
+  ]
+}
