@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-pro-active="false">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>議事録ToDo抽出・決定事項整理・SOPドラフト｜Minutes to Ops | NicheWorks</title>
   <meta name="description" content="議事録からToDo、決定事項、SOPドラフト、CSV/Markdown出力を作る無料ツールです。Proでは履歴保存、履歴比較、出力パック保存が使えます。AI要約ではなくルールベース抽出です。">
+  <meta name="nw:pro:entitlement" content="nicheworks_pro">
   <meta name="nw:mto:payment-url" content="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209">
   <link rel="canonical" href="https://nicheworks.app/tools/minutes-to-ops/">
   <meta property="og:title" content="議事録ToDo抽出・決定事項整理・SOPドラフト｜Minutes to Ops | NicheWorks">
@@ -27,7 +28,15 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Minutes to Ops","url":"https://nicheworks.app/tools/minutes-to-ops/","applicationCategory":"UtilityApplication","operatingSystem":"All","description":"議事録からToDo、決定事項、SOPドラフト、CSV/Markdown出力を作る無料ツールです。Proでは履歴保存、履歴比較、出力パック保存が使えます。","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}}</script>
 </head>
 <body data-mto-pro-payment-url="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209">
-  <header class="nw-header"><div class="nw-header__inner"><div class="nw-brand">minutes-to-ops</div><nav class="nw-nav"><span class="nw-pill"><span class="nw-muted">UI</span><button id="uiJA" type="button">JA</button><button id="uiEN" type="button">EN</button></span><a href="./usage.html">Usage</a><a href="./howto.html">How-to</a><a href="./usage-en.html" class="nw-muted">Usage(EN)</a><a href="./howto-en.html" class="nw-muted">How-to(EN)</a></nav></div></header>
+  <header class="nw-header">
+    <div class="nw-header__inner">
+      <div class="nw-brand">minutes-to-ops</div>
+      <nav class="nw-nav">
+        <span class="nw-pill"><span class="nw-muted">UI</span><button id="uiJA" type="button">JA</button><button id="uiEN" type="button">EN</button></span>
+        <a href="./usage.html">Usage</a><a href="./howto.html">How-to</a><a href="./usage-en.html" class="nw-muted">Usage(EN)</a><a href="./howto-en.html" class="nw-muted">How-to(EN)</a>
+      </nav>
+    </div>
+  </header>
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠</div>
     <section class="nw-card">
@@ -38,12 +47,12 @@
       <hr />
       <div class="nw-grid">
         <div class="nw-card" style="border:none; padding:0;">
-          <label id="lblNotes">議事録（貼り付け）</label>
-          <textarea id="notes" stable content="議事録を貼り付けてください"></textarea>
+          <label id="lblNotes" for="notes">議事録（貼り付け）</label>
+          <textarea id="notes" placeholder="議事録を貼り付けてください"></textarea>
           <div class="nw-row" style="margin-top:10px;">
-            <div style="flex:1 1 240px; min-width:240px;"><label id="lblMeeting">会議名</label><input id="meetingTitle" type="text" stable content="例: 週次MTG / Sprint planning" /></div>
-            <div style="flex:1 1 180px; min-width:180px;"><label id="lblDate">日付</label><input id="meetingDate" type="text" stable content="例: 2026-02-03" /></div>
-            <div style="flex:1 1 240px; min-width:240px;"><label id="lblParts">参加者</label><input id="participants" type="text" stable content="例: A, B, C" /></div>
+            <div style="flex:1 1 240px; min-width:240px;"><label id="lblMeeting" for="meetingTitle">会議名</label><input id="meetingTitle" type="text" placeholder="例: 週次MTG / Sprint planning" /></div>
+            <div style="flex:1 1 180px; min-width:180px;"><label id="lblDate" for="meetingDate">日付</label><input id="meetingDate" type="text" placeholder="例: 2026-02-03" /></div>
+            <div style="flex:1 1 240px; min-width:240px;"><label id="lblParts" for="participants">参加者</label><input id="participants" type="text" placeholder="例: A, B, C" /></div>
           </div>
           <div class="nw-row" style="margin-top:10px;"><button id="genBtn" type="button">生成</button><button id="clearBtn" type="button">クリア</button><button id="pasteExampleBtn" type="button">例を入れる</button></div>
         </div>
@@ -51,17 +60,45 @@
           <div class="nw-card"><div class="nw-row" style="justify-content:space-between;"><div style="font-weight:800;" id="hTodo">ToDo</div><button id="copyMdBtn" type="button">Markdownをコピー</button></div><div class="nw-muted" id="todoMeta" style="margin-top:6px;">—</div><div style="overflow:auto; margin-top:10px;"><table><thead><tr><th>Task</th><th>Owner</th><th>Due</th><th>Priority</th><th>Status</th></tr></thead><tbody id="todoBody"></tbody></table></div></div>
           <div class="nw-card" style="margin-top:12px;"><div style="font-weight:800;" id="hDec">決定事項</div><div id="decisions" class="nw-pre" style="margin-top:10px;">—</div></div>
           <div class="nw-card" style="margin-top:12px;"><div class="nw-row" style="justify-content:space-between;"><div style="font-weight:800;" id="hSop">SOPドラフト</div><button id="copySopBtn" type="button">SOPをコピー</button></div><div id="sop" class="nw-pre" style="margin-top:10px;">—</div></div>
-          <div class="nw-card" style="margin-top:12px;"><div class="nw-row" style="justify-content:space-between;"><div style="font-weight:800;" id="hExport">Export</div><span id="exportState" class="nw-muted">CSV / Markdown保存は無料。Proでは履歴保存・比較・出力パックが使えます。</span></div><div class="nw-row" style="margin-top:10px;"><button id="dlCsvBtn" type="button">CSVを保存</button><button id="dlMdBtn" type="button">Markdownを保存</button></div><label id="lblCsvPreview" style="margin-top:10px;">CSV preview</label><textarea id="csvPreview" readonly></textarea><label id="lblMdPreview" style="margin-top:10px;">Markdown preview</label><textarea id="mdPreview" readonly></textarea></div>
+          <div class="nw-card" style="margin-top:12px;"><div class="nw-row" style="justify-content:space-between;"><div style="font-weight:800;" id="hExport">Export</div><span id="exportState" class="nw-muted">CSV / Markdown保存は無料。Proでは履歴保存・比較・出力パックが使えます。</span></div><div class="nw-row" style="margin-top:10px;"><button id="dlCsvBtn" type="button">CSVを保存</button><button id="dlMdBtn" type="button">Markdownを保存</button></div><label id="lblCsvPreview" for="csvPreview" style="margin-top:10px;">CSV preview</label><textarea id="csvPreview" readonly></textarea><label id="lblMdPreview" for="mdPreview" style="margin-top:10px;">Markdown preview</label><textarea id="mdPreview" readonly></textarea></div>
         </div>
       </div>
     </section>
+    <section class="nw-card nw-pro-card">
+      <div class="nw-row" style="justify-content:space-between; align-items:flex-start;">
+        <div>
+          <h2 id="proTitle" style="margin:0 0 8px;">Pro</h2>
+          <p class="nw-muted" id="proLead">履歴保存・履歴比較・Pro出力パック・GitHub Issue・Codex依頼文・SOP handoffを共通Proで解放します。</p>
+          <p class="nw-pro-status" data-pro-status>Previewモード：Pro出力サンプルは表示されます。Pro専用のcopy/exportは購入後に解放されます。</p>
+        </div>
+        <a class="nw-pro-buy" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209">Proを購入</a>
+      </div>
+      <div class="nw-note" data-pro-preview>Pro未有効でも、現在の議事録から生成されるPro出力サンプルをPreview表示します。保存・コピー・エクスポート操作はロックされています。</div>
+      <div class="nw-note" data-pro-only hidden>Pro解放済みです。Pro専用のcopy/exportと履歴機能を利用できます。</div>
+      <div class="nw-row" style="margin-top:10px;">
+        <button id="saveHistoryBtn" type="button" data-pro-only hidden>履歴保存</button>
+        <button id="compareHistoryBtn" type="button" data-pro-only hidden>履歴比較</button>
+        <button id="downloadPackBtn" type="button" data-pro-only hidden>Pro出力パック保存</button>
+      </div>
+      <div class="nw-card nw-pro-output" style="margin-top:12px;">
+        <div class="nw-row" style="justify-content:space-between;"><h3 id="historyTitle" style="margin:0;">履歴 / 比較</h3></div>
+        <div id="proHistory" class="nw-pre" style="margin-top:10px;">保存履歴はありません</div>
+      </div>
+      <div class="nw-pro-grid">
+        <div class="nw-card nw-pro-output"><div class="nw-row" style="justify-content:space-between;"><h3 id="githubTitle" style="margin:0;">GitHub Issue形式</h3><span><button id="copyGithubBtn" type="button" data-pro-only hidden>コピー</button><button id="downloadGithubBtn" type="button" data-pro-only hidden>保存</button></span></div><textarea id="githubPreview" readonly></textarea></div>
+        <div class="nw-card nw-pro-output"><div class="nw-row" style="justify-content:space-between;"><h3 id="codexTitle" style="margin:0;">Codex依頼文</h3><span><button id="copyCodexBtn" type="button" data-pro-only hidden>コピー</button><button id="downloadCodexBtn" type="button" data-pro-only hidden>保存</button></span></div><textarea id="codexPreview" readonly></textarea></div>
+        <div class="nw-card nw-pro-output"><div class="nw-row" style="justify-content:space-between;"><h3 id="handoffTitle" style="margin:0;">SOP handoff Markdown</h3><span><button id="copyHandoffBtn" type="button" data-pro-only hidden>コピー</button><button id="downloadHandoffBtn" type="button" data-pro-only hidden>保存</button></span></div><textarea id="handoffPreview" readonly></textarea></div>
+      </div>
+    </section>
     <div class="ad-slot ad-bottom">広告枠</div>
-    <section class="nw-card"><h2 style="margin:0 0 8px;">FAQ</h2><div id="faq" class="nw-acc"><details><summary>AI要約ですか？</summary><p>いいえ。キーワードとテンプレートによるルールベース抽出です。</p></details><details><summary>翻訳できますか？</summary><p>できません。UI表示だけ切り替わり、本文は翻訳しません。</p></details><details><summary>無料とProの違いは？</summary><p>無料は生成・プレビュー・CSV/Markdown保存です。Proは履歴保存、履歴比較、出力パック保存を使えます。</p></details></div><div class="nw-muted" id="faqFallback" style="display:none;">FAQ failed to load.</div></section>
+    <section class="nw-card"><h2 style="margin:0 0 8px;">FAQ</h2><div id="faq" class="nw-acc"><details><summary>AI要約ですか？</summary><p>いいえ。キーワードとテンプレートによるルールベース抽出です。</p></details><details><summary>翻訳できますか？</summary><p>できません。UI表示だけ切り替わり、本文は翻訳しません。</p></details><details><summary>無料とProの違いは？</summary><p>無料は生成・プレビュー・CSV/Markdown保存です。Proは履歴保存、履歴比較、出力パック保存を使えます。</p></details><details><summary>購入後のPro状態は維持されますか？</summary><p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。別端末、別ブラウザ、シークレットモード、サイトデータ削除後は再度有効化が必要です。</p></details></div><div class="nw-muted" id="faqFallback" style="display:none;">FAQ failed to load.</div></section>
     <section class="nw-card nw-donate"><p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></section>
     <section class="nw-card nw-links"><h2 style="margin:0 0 8px;">Other tools</h2><ul><li><a href="/tools/logistics-compliance-kit-jp/">Logistics Compliance Kit JP</a></li><li><a href="/tools/contract-cleaner/">Contract Cleaner</a></li><li><a href="/tools/cold-email-requirement-checker/">Cold Email Requirement Checker</a></li><li><a href="/tools/csv-tidy/">CSV Tidy</a></li></ul></section>
     <footer class="nw-footer"><div class="nw-footer__inner"><div class="nw-muted">© NicheWorks — Small Web Tools for Boring Tasks</div><div><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></div></div></footer>
   </main>
   <div id="toast" class="nw-toast"></div>
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
