@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["コンクリートミキサー|concrete mixer", "コンクリートミキサー", "Concrete mixer", "./images/pilot/concrete-mixer.svg?v=20260513-asset-8", "コンクリートやモルタルを混ぜるための機械。", "Machine used to mix concrete or mortar."],
+    ["コンクリートバイブレーター|concrete vibrator", "コンクリートバイブレーター", "Concrete vibrator", "./images/pilot/concrete-vibrator.svg?v=20260513-asset-8", "打設したコンクリート内部の空気を抜く締固め機械。", "Tool used to consolidate placed concrete and remove air pockets."],
+    ["スランプコーン|slump cone", "スランプコーン", "Slump cone", "./images/pilot/slump-cone.svg?v=20260513-asset-8", "コンクリートの軟らかさを確認する試験器具。", "Test cone used to check concrete workability."],
+    ["型枠パネル|formwork panel", "型枠パネル", "Formwork panel", "./images/pilot/formwork-panel.svg?v=20260513-asset-8", "コンクリートを所定形状に成形するための仮設パネル。", "Temporary panel used to shape poured concrete."],
+    ["セパレーター|form tie", "セパレーター", "Form tie", "./images/pilot/form-tie.svg?v=20260513-asset-8", "型枠の間隔を保つための金物。", "Tie used to keep formwork spacing."],
+    ["型枠クランプ|form clamp", "型枠クランプ", "Form clamp", "./images/pilot/form-clamp.svg?v=20260513-asset-8", "型枠部材を固定するためのクランプ。", "Clamp used to lock formwork panels."],
+    ["トンボ|screed board", "トンボ", "Screed board", "./images/pilot/screed-board.svg?v=20260513-asset-8", "コンクリートやモルタル面をならす道具。", "Tool used to level wet concrete or mortar."],
+    ["土間均し|bull float", "土間均し", "Bull float", "./images/pilot/bull-float.svg?v=20260513-asset-8", "土間コンクリートの表面を大きくならす道具。", "Tool used to smooth slab surfaces."],
+    ["木鏝|float trowel", "木鏝", "Float trowel", "./images/pilot/float-trowel.svg?v=20260513-asset-8", "モルタルやコンクリート表面をならす鏝。", "Trowel used to float and finish mortar or concrete."],
+    ["目地鏝|pointing trowel", "目地鏝", "Pointing trowel", "./images/pilot/pointing-trowel.svg?v=20260513-asset-8", "細い目地や狭い部分の仕上げに使う鏝。", "Trowel used for narrow joints and detail finishing."]
+  ]
+}
