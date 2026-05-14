@@ -1,0 +1,71 @@
+name: TrashNavi link report
+description: Report a missing, broken, or outdated TrashNavi municipal link
+title: "[TrashNavi] Link report: "
+labels: ["trashnavi", "data", "link-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve TrashNavi. Please do not include private personal information.
+  - type: dropdown
+    id: report_type
+    attributes:
+      label: Report type
+      options:
+        - Missing municipality link
+        - Broken link
+        - Outdated link
+        - Better official waste sorting link
+        - Bulky waste link
+        - Pickup calendar link
+    validations:
+      required: true
+  - type: input
+    id: prefecture
+    attributes:
+      label: Prefecture
+      placeholder: Tokyo / 東京都
+    validations:
+      required: true
+  - type: input
+    id: municipality
+    attributes:
+      label: Municipality
+      placeholder: Setagaya City / 世田谷区
+    validations:
+      required: true
+  - type: input
+    id: current_url
+    attributes:
+      label: Current URL shown in TrashNavi, if any
+      placeholder: https://...
+    validations:
+      required: false
+  - type: input
+    id: suggested_url
+    attributes:
+      label: Suggested official URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: dropdown
+    id: link_type
+    attributes:
+      label: Link type
+      options:
+        - Municipal official page
+        - Waste sorting page
+        - Pickup calendar
+        - Bulky waste
+        - Search page
+        - Other official page
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Notes
+      description: Add a short explanation if needed.
+      placeholder: The current link redirects / this page is the official sorting page / etc.
+    validations:
+      required: false
