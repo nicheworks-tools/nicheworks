@@ -1,0 +1,30 @@
+name: Check TrashNavi direct links
+
+on:
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: 'Fail workflow on hard broken links'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+  schedule:
+    - cron: '30 18 15 * *'
+
+jobs:
+  check-trashnavi-direct-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check direct waste links
+        env:
+          TRASHNAVI_STRICT_LINK_CHECK: ${{ github.event.inputs.strict == 'true' && '1' || '0' }}
+          TRASHNAVI_LINK_TIMEOUT_MS: '10000'
+        run: node scripts/check-trashnavi-direct-links.mjs
