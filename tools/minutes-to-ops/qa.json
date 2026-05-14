@@ -38,5 +38,15 @@
     "q": "What does Pro unlock?",
     "a": "Pro unlocks history, comparison, Pro output packs, GitHub Issue output, Codex prompts, and SOP handoff Markdown. Basic CSV/Markdown downloads remain free.",
     "lang": "en"
+  },
+  {
+    "q": "購入後のPro状態は維持されますか？",
+    "a": "購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。別端末、別ブラウザ、シークレットモード、サイトデータ削除後は再度有効化が必要です。",
+    "lang": "ja"
+  },
+  {
+    "q": "Does Pro stay active after purchase?",
+    "a": "After purchase, NicheWorks Pro becomes active in this browser. It usually remains active after closing tabs or the browser. You need to activate again on another device, another browser, private browsing, or after clearing site data.",
+    "lang": "en"
   }
 ]
