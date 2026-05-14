@@ -20,12 +20,7 @@
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-57QT78M3JB');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./ui-refresh.css" />
@@ -37,58 +32,31 @@
   <h1 class="title">UnitMaster</h1>
   <p class="subtitle" id="subtitle" data-text-key="subtitle">長さ・重さ・温度・体積・面積・速度・圧力の単位を相互変換するツールです。</p>
   <div class="lang-switch" aria-label="Language and theme settings">
-    <div class="lang-buttons">
-      <button type="button" data-lang="ja" class="lang-btn active">JA</button>
-      <button type="button" data-lang="en" class="lang-btn">EN</button>
-    </div>
+    <div class="lang-buttons"><button type="button" data-lang="ja" class="lang-btn active">JA</button><button type="button" data-lang="en" class="lang-btn">EN</button></div>
     <button type="button" id="themeToggle" class="theme-toggle" aria-pressed="false" title="Toggle dark mode">🌙</button>
   </div>
 </header>
 <main class="container">
   <div class="ad-slot ad-top">広告枠</div>
-  <section class="howto" aria-labelledby="howtoTitle">
-    <h2 id="howtoTitle" data-text-key="howto_title">使い方</h2>
-    <ol>
-      <li data-text-key="howto_1">カテゴリを選択します。</li>
-      <li data-text-key="howto_2">数値を入力します。</li>
-      <li data-text-key="howto_3">変換元と変換先の単位を選択します。</li>
-      <li data-text-key="howto_4">自動計算ON/OFFを切り替えます。</li>
-      <li data-text-key="howto_5">OFF時は「計算する」ボタンで実行します。</li>
-    </ol>
-  </section>
+  <section class="howto" aria-labelledby="howtoTitle"><h2 id="howtoTitle" data-text-key="howto_title">使い方</h2><ol><li data-text-key="howto_1">カテゴリを選択します。</li><li data-text-key="howto_2">数値を入力します。</li><li data-text-key="howto_3">変換元と変換先の単位を選択します。</li><li data-text-key="howto_4">自動計算ON/OFFを切り替えます。</li><li data-text-key="howto_5">OFF時は「計算する」ボタンで実行します。</li></ol></section>
   <div class="um-shell">
     <div class="um-main-stack">
       <section class="convert-box">
-        <div class="category-mobile">
-          <label for="categorySelect" data-text-key="category_label">カテゴリ</label>
-          <select id="categorySelect">
-            <option value="length">長さ</option><option value="weight">重さ</option><option value="temp">温度</option><option value="volume">体積</option><option value="area">面積</option><option value="speed">速度</option><option value="pressure">圧力</option>
-          </select>
-        </div>
-        <div class="category-desktop" role="tablist" aria-label="Unit categories">
-          <button type="button" class="tab active" data-cat="length" data-text-key="cat_length">長さ</button>
-          <button type="button" class="tab" data-cat="weight" data-text-key="cat_weight">重さ</button>
-          <button type="button" class="tab" data-cat="temp" data-text-key="cat_temp">温度</button>
-          <button type="button" class="tab" data-cat="volume" data-text-key="cat_volume">体積</button>
-          <button type="button" class="tab" data-cat="area" data-text-key="cat_area">面積</button>
-          <button type="button" class="tab" data-cat="speed" data-text-key="cat_speed">速度</button>
-          <button type="button" class="tab" data-cat="pressure" data-text-key="cat_pressure">圧力</button>
-        </div>
+        <div class="category-mobile"><label for="categorySelect" data-text-key="category_label">カテゴリ</label><select id="categorySelect"><option value="length">長さ</option><option value="weight">重さ</option><option value="temp">温度</option><option value="volume">体積</option><option value="area">面積</option><option value="speed">速度</option><option value="pressure">圧力</option></select></div>
+        <div class="category-desktop" role="tablist" aria-label="Unit categories"><button type="button" class="tab active" data-cat="length" data-text-key="cat_length">長さ</button><button type="button" class="tab" data-cat="weight" data-text-key="cat_weight">重さ</button><button type="button" class="tab" data-cat="temp" data-text-key="cat_temp">温度</button><button type="button" class="tab" data-cat="volume" data-text-key="cat_volume">体積</button><button type="button" class="tab" data-cat="area" data-text-key="cat_area">面積</button><button type="button" class="tab" data-cat="speed" data-text-key="cat_speed">速度</button><button type="button" class="tab" data-cat="pressure" data-text-key="cat_pressure">圧力</button></div>
         <div class="input-block"><label for="inputValue" data-text-key="label_value">数値</label><input id="inputValue" type="number" placeholder="例）100" inputmode="decimal" step="any" /></div>
         <div class="input-block"><label for="fromUnit" data-text-key="label_from">変換元</label><select id="fromUnit"></select></div>
         <div class="input-block"><label for="toUnit" data-text-key="label_to">変換先</label><select id="toUnit"></select></div>
         <div class="autocalc-row"><label><input type="checkbox" id="autoCalc" checked /><span data-text-key="auto">自動計算</span></label></div>
         <button type="button" id="calcBtn" class="calc-btn hidden" data-text-key="btn_calc">計算する</button>
         <div id="resultBox" class="result-box" aria-live="polite"></div>
-        <div class="um-inline-help" aria-label="単位解説リンク">
-          <a class="um-link-pill" href="/tools/unitmaster/units/">単位の意味を見る</a>
-          <a class="um-link-pill" href="/tools/unitmaster/units/priority/">重点単位を見る</a>
-        </div>
+        <div class="um-inline-help" aria-label="単位解説リンク"><a class="um-link-pill" href="/tools/unitmaster/units/search/">単位を検索する</a><a class="um-link-pill" href="/tools/unitmaster/units/">単位の意味を見る</a><a class="um-link-pill" href="/tools/unitmaster/units/priority/">重点単位を見る</a></div>
         <div class="accordion"><button type="button" class="accordion-toggle" id="bulkToggle" data-target="bulkBox" aria-expanded="false"><span id="bulkLabel" data-text-key="bulk_title">一括変換</span><span class="accordion-icon">+</span></button><div id="bulkBox" class="accordion-content"></div></div>
         <div class="accordion"><button type="button" class="accordion-toggle" id="historyToggle" data-target="historyBox" aria-expanded="false"><span id="historyLabel" data-text-key="history_title">履歴（5件）</span><span class="accordion-icon">+</span></button><div id="historyBox" class="accordion-content"></div></div>
       </section>
     </div>
     <aside class="um-side-stack" aria-label="補足情報">
+      <section class="um-card"><h2>単位を探す</h2><p>単位名・記号・用途から、UnitMasterで採用している単位を検索できます。</p><a class="um-action-link" href="/tools/unitmaster/units/search/">検索できる単位一覧を見る →</a></section>
       <section class="um-card"><h2>単位の意味を見る</h2><p>mm・kg・psi などの一般的な単位に加えて、寸・尺・分・間・里・匁・斤・貫・合・升・斗・坪・畝・反・町などの伝統単位も解説しています。</p><a class="um-action-link" href="/tools/unitmaster/units/">全単位の意味・換算値を見る →</a></section>
       <section class="um-card"><h2>重点単位を見る</h2><p>坪・尺・psi・knot など、よく使う単位や混同しやすい単位を詳しく確認できます。</p><a class="um-action-link" href="/tools/unitmaster/units/priority/">重点単位の詳細ノートを見る →</a></section>
       <section class="notice-card" aria-labelledby="noticeTitle"><h2 id="noticeTitle" data-text-key="notice_title">計算結果について</h2><ul><li data-text-key="notice_general">このツールは一般的な換算係数に基づく目安です。</li><li data-text-key="notice_professional">医療、工業設計、建築、契約、取引、法規制、研究用途では、公式規格・専門資料・測定条件を確認してください。</li><li data-text-key="notice_traditional">尺貫法・伝統単位は、時代・地域・用途により値が異なる場合があります。このページでは代表的な近似値として扱います。</li><li data-text-key="notice_rounding">表示桁数の都合で端数処理・丸め誤差が生じる場合があります。</li></ul></section>
