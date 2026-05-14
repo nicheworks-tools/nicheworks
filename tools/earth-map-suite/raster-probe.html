@@ -18,7 +18,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
   <link rel="stylesheet" href="./style.css" />
-  <style>.probe-grid{display:grid;gap:14px}.probe-box{border:1px solid #e5e7eb;border-radius:14px;background:#fff;padding:14px}.probe-output{width:100%;min-height:320px;border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#f8fafc;font-family:ui-monospace,Menlo,monospace;font-size:12px;white-space:pre-wrap;overflow:auto}.warn{border-color:#fed7aa;background:#fff7ed}@media(min-width:960px){.probe-grid{grid-template-columns:320px 1fr}.wide{grid-column:1/-1}}</style>
+  <style>.probe-grid{display:grid;gap:14px}.probe-box{border:1px solid #e5e7eb;border-radius:14px;background:#fff;padding:14px}.probe-output{width:100%;min-height:320px;border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#f8fafc;font-family:ui-monospace,Menlo,monospace;font-size:12px;white-space:pre-wrap;overflow:auto}.probe-url{font-size:12px;overflow-wrap:anywhere;color:#64748b}.warn{border-color:#fed7aa;background:#fff7ed}@media(min-width:960px){.probe-grid{grid-template-columns:320px 1fr}.wide{grid-column:1/-1}}</style>
 </head>
 <body>
   <header class="nw-header">
@@ -28,7 +28,7 @@
   </header>
   <main class="nw-main">
     <div class="ad-slot ad-top">広告枠</div>
-    <section class="card"><div class="card-hd"><h2 class="card-title">Raster probe status</h2></div><div class="card-bd"><p class="hint">このページは Range probe だけを実行します。GeoTIFF/COG pixel parsing は未実装で、実降水量値は返しません。</p></div></section>
+    <section class="card"><div class="card-hd"><h2 class="card-title">Raster probe status</h2></div><div class="card-bd"><p class="hint">このページは開くと自動で Range probe を実行します。GeoTIFF/COG pixel parsing は未実装で、実降水量値は返しません。</p></div></section>
     <div class="probe-grid">
       <section class="probe-box">
         <h2>Probe input</h2>
@@ -36,11 +36,12 @@
         <div class="field"><label class="label" for="start">Start</label><input class="input" id="start" type="date" value="2025-08-01" /></div>
         <div class="field"><label class="label" for="end">End</label><input class="input" id="end" type="date" value="2025-08-03" /></div>
         <div class="field"><label class="label" for="preset">Preset</label><input class="input" id="preset" value="low" /></div>
+        <p class="probe-url" id="probeUrl">Endpoint URL will appear here.</p>
         <div class="actions"><button class="btn primary" type="button" id="runProbe">Run range probe</button></div>
       </section>
       <section class="probe-box">
         <h2>Probe output</h2>
-        <pre class="probe-output" id="output">Run range probe to inspect the research endpoint response.</pre>
+        <pre class="probe-output" id="output">Auto-running range probe...</pre>
       </section>
       <section class="probe-box warn wide">
         <h2>Guardrails</h2>
@@ -52,7 +53,8 @@
   <footer class="nw-footer"><div class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</div><div class="nw-footer-line">Raster Probe is research-only. It does not return observed precipitation values.</div></footer>
   <script>
     const out = document.getElementById('output');
-    document.getElementById('runProbe')?.addEventListener('click', async () => {
+    const urlOut = document.getElementById('probeUrl');
+    async function runProbe() {
       const params = new URLSearchParams({
         bbox: document.getElementById('bbox').value.trim(),
         start: document.getElementById('start').value,
@@ -60,15 +62,19 @@
         preset: document.getElementById('preset').value.trim() || 'low',
         sample: 'probe'
       });
+      const endpoint = `/api/earth-map-suite/precipitation-sample?${params}`;
+      urlOut.textContent = endpoint;
       out.textContent = 'Loading...';
       try {
-        const res = await fetch(`/api/earth-map-suite/precipitation-sample?${params}`, { headers: { accept: 'application/json' } });
+        const res = await fetch(endpoint, { headers: { accept: 'application/json' } });
         const json = await res.json();
         out.textContent = JSON.stringify({ http_status: res.status, ...json }, null, 2);
       } catch (err) {
         out.textContent = JSON.stringify({ status: 'error', message: err?.message || String(err) }, null, 2);
       }
-    });
+    }
+    document.getElementById('runProbe')?.addEventListener('click', runProbe);
+    window.addEventListener('DOMContentLoaded', runProbe);
   </script>
 </body>
 </html>
