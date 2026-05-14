@@ -1,0 +1,25 @@
+name: Validate TrashNavi data
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/trashnavi/data/**'
+      - 'scripts/validate-trashnavi-data.mjs'
+      - '.github/workflows/validate-trashnavi-data.yml'
+  pull_request:
+    paths:
+      - 'tools/trashnavi/data/**'
+      - 'scripts/validate-trashnavi-data.mjs'
+      - '.github/workflows/validate-trashnavi-data.yml'
+
+jobs:
+  validate-trashnavi-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate TrashNavi data files
+        run: node scripts/validate-trashnavi-data.mjs
