@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+Sitemap: https://nicheworks.app/sitemap.xml
 Sitemap: https://nicheworks.app/sitemap-review.xml
+Sitemap: https://nicheworks.app/sitemap-unitmaster.xml
