@@ -63,3 +63,17 @@ hr{ border:none; border-top:1px solid var(--bd); margin:12px 0; }
   textarea{ min-height:180px; }
   .nw-pill{ border-radius:12px; align-items:flex-start; }
 }
+.btn{ display:inline-block; padding:10px 12px; border-radius:12px; border:1px solid #aaa; background:#fff; cursor:pointer; font-weight:700; text-decoration:none; }
+.pro-panel{ border:1px solid #c7d2fe; background:#f8fbff; border-radius:14px; padding:12px 14px; margin-bottom:16px; }
+.pro-panel p{ margin:8px 0; }
+.finding--locked{ background:#fafafa; color:var(--muted); font-weight:700; }
+.pro-output-grid{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px; }
+.pro-output-grid h3{ margin:0 0 8px; font-size:15px; }
+#fullReview{ min-height:260px; margin-top:12px; }
+html[data-pro-active="false"] [data-pro-only]{ display:none !important; }
+html[data-pro-active="true"] [data-pro-preview]{ display:none !important; }
+@media print{
+  .nw-header,.ad-slot,.nw-donate,.nw-links,.nw-toast,button,.btn,[data-pro-preview]{ display:none !important; }
+  .nw-main{ max-width:none; padding:0; }
+  .nw-card{ border:0; padding:8px 0; }
+}
