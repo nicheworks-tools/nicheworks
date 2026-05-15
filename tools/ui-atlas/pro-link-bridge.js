@@ -7,12 +7,12 @@
   const labels = lang === 'ja'
     ? {
         detail: 'このUIでProメモを作る',
-        compare: '比較内容でProメモを作る',
+        compare: 'この比較でProメモを作る',
         copied: 'Proメモ作成ページへ送る内容を更新しました。'
       }
     : {
         detail: 'Generate Pro memo for this UI',
-        compare: 'Generate Pro memo from compare',
+        compare: 'Create Pro compare memo',
         copied: 'Updated Pro memo handoff values.'
       };
 
@@ -25,6 +25,16 @@
 
   function proBase() {
     return lang === 'ja' ? 'pro/' : 'pro/';
+  }
+
+  function safeSlug(value) {
+    return clean(value)
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9一-龯ぁ-んァ-ンー]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 80);
   }
 
   function makeUrl(values) {
@@ -46,7 +56,12 @@
 
   function getCompareValues() {
     const items = Array.from(app.querySelectorAll('[data-compare-list] .compare-item, [data-compare-list] article'));
-    const names = items.map((item) => clean(item.querySelector('h4, h3')?.textContent || item.textContent || '')).filter(Boolean).slice(0, 2);
+    const names = items.map((item) => {
+      const stored = clean(item.getAttribute('data-compare-slug') || '');
+      if (stored) return stored;
+      const name = clean(item.getAttribute('data-compare-name') || item.querySelector('h4, h3, strong')?.textContent || item.textContent || '');
+      return safeSlug(name);
+    }).filter(Boolean).slice(0, 5);
     const compare = names.join(',');
     return {
       compare,
