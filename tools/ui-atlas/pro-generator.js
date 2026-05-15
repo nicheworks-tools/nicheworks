@@ -578,22 +578,101 @@
 
   function initFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    const patternParam = params.get('pattern') || params.get('ui') || params.get('slug') || '';
-    const goalParam = params.get('goal') || params.get('use_case') || '';
-    const riskParam = params.get('risk') || params.get('avoid') || '';
-    const compareParam = params.get('compare') || '';
-    const contextParam = params.get('context') || '';
-    const deviceParam = params.get('device') || '';
-    if (patternParam) patternEl.value = cleanParam(patternParam);
-    if (goalParam) goalEl.value = cleanParam(goalParam);
-    if (riskParam) riskEl.value = cleanParam(riskParam);
-    if (contextParam) contextEl.value = cleanParam(contextParam);
-    if (deviceParam) deviceEl.value = cleanParam(deviceParam);
-    if (compareParam) {
-      candidatesEl.value = compareParam.split(',').map(cleanParam).filter(Boolean).join('\n');
+    const extraLabels = lang === 'ja'
+      ? {
+          best_for: '向いている場面',
+          not_for: '向いていない場面',
+          mobile: 'モバイル適性',
+          difficulty: '実装難易度',
+          category: 'カテゴリ',
+          purpose: '用途',
+          similar: '近いUI',
+          short_prompt: 'Short AI prompt',
+          implementation_note: '実装メモ',
+          candidates: '比較候補'
+        }
+      : {
+          best_for: 'Best for',
+          not_for: 'Not for',
+          mobile: 'Mobile fit',
+          difficulty: 'Difficulty',
+          category: 'Category',
+          purpose: 'Purpose',
+          similar: 'Similar UI',
+          short_prompt: 'Short AI prompt',
+          implementation_note: 'Implementation note',
+          candidates: 'Candidate patterns'
+        };
+    const get = (...keys) => keys.map((key) => params.get(key)).find((value) => value) || '';
+    const labeled = (key, value) => {
+      const cleaned = cleanParam(value);
+      return cleaned ? `${extraLabels[key] || key}: ${cleaned}` : '';
+    };
+    const appendUnique = (el, additions) => {
+      const current = (el.value || '').trim();
+      const unique = additions.map(cleanParam).filter(Boolean).filter((item, index, list) => list.indexOf(item) === index);
+      const next = unique.filter((item) => !current.includes(item));
+      if (!next.length) return false;
+      el.value = current ? `${current} / ${next.join(' / ')}` : next.join(' / ');
+      return true;
+    };
+    const setIfEmpty = (el, value) => {
+      const cleaned = cleanParam(value);
+      if (!cleaned || (el.value || '').trim()) return false;
+      el.value = cleaned;
+      return true;
+    };
+
+    const patternParam = get('pattern', 'ui', 'slug');
+    const goalParam = get('goal', 'use_case');
+    const riskParam = get('risk', 'avoid');
+    const compareParam = get('compare');
+    const contextParam = get('context');
+    const deviceParam = get('device', 'mobile');
+    const bestForParam = get('best_for');
+    const notForParam = get('not_for');
+    const difficultyParam = get('difficulty');
+    const categoryParam = get('category');
+    const purposeParam = get('purpose');
+    const candidatesParam = get('candidates');
+    const similarParam = get('similar');
+    const shortPromptParam = get('short_prompt');
+    const implementationNoteParam = get('implementation_note');
+
+    let imported = false;
+    imported = setIfEmpty(patternEl, patternParam) || imported;
+    imported = setIfEmpty(goalEl, goalParam || bestForParam) || imported;
+    imported = setIfEmpty(riskEl, riskParam || notForParam) || imported;
+    imported = setIfEmpty(contextEl, contextParam) || imported;
+    imported = setIfEmpty(deviceEl, deviceParam) || imported;
+    imported = setIfEmpty(priorityEl, difficultyParam) || imported;
+
+    imported = appendUnique(contextEl, [
+      labeled('best_for', bestForParam),
+      labeled('category', categoryParam),
+      labeled('purpose', purposeParam),
+      labeled('mobile', deviceParam),
+      labeled('difficulty', difficultyParam),
+      labeled('similar', similarParam),
+      labeled('short_prompt', shortPromptParam),
+      labeled('implementation_note', implementationNoteParam)
+    ]) || imported;
+    imported = appendUnique(riskEl, [labeled('not_for', notForParam)]) || imported;
+
+    if (compareParam || candidatesParam) {
+      const candidateSource = candidatesParam || compareParam;
+      const candidates = candidateSource.split(/[\n,]+|\s+vs\s+/i).map(cleanParam).filter(Boolean).slice(0, 5);
+      if (candidates.length && !(candidatesEl.value || '').trim()) {
+        candidatesEl.value = candidates.join('\n');
+        imported = true;
+      }
       currentMode = 'compare';
     }
-    if (patternParam || goalParam || riskParam || compareParam || contextParam || deviceParam) stateEl.textContent = i18n.imported;
+    if (compareParam && !patternParam) {
+      const firstCandidate = splitCandidates(candidatesEl.value)[0] || compareParam.split(',').map(cleanParam).filter(Boolean)[0] || '';
+      imported = setIfEmpty(patternEl, firstCandidate) || imported;
+    }
+    if (imported) stateEl.textContent = i18n.imported;
   }
 
   mount.querySelectorAll('[data-pro-mode]').forEach((button) => {
