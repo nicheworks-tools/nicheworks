@@ -1,0 +1,10 @@
+[
+  {"pref":"東京都","city":"千代田区","name":"千代田区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.chiyoda.lg.jp/koho/kurashi/gomi/sodaigomi/index.html","lgcode":"131016"},
+  {"pref":"東京都","city":"中央区","name":"中央区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.chuo.lg.jp/kurashi/gomi/sodaigomi/index.html","lgcode":"131024"},
+  {"pref":"東京都","city":"港区","name":"港区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.minato.tokyo.jp/gomigenryou/kurashi/gomi/kate/sodai/index.html","lgcode":"131032"},
+  {"pref":"東京都","city":"新宿区","name":"新宿区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.shinjuku.lg.jp/seikatsu/file09_01_00001.html","lgcode":"131041"},
+  {"pref":"東京都","city":"世田谷区","name":"世田谷区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.setagaya.lg.jp/kurashi/gomi/11537.html","lgcode":"131121"},
+  {"pref":"東京都","city":"渋谷区","name":"渋谷区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.shibuya.tokyo.jp/kurashi/gomi/kateigomi/sodai.html","lgcode":"131130"},
+  {"pref":"東京都","city":"杉並区","name":"杉並区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.suginami.tokyo.jp/s104/717.html","lgcode":"131156"},
+  {"pref":"東京都","city":"練馬区","name":"練馬区 粗大ごみ","type":"粗大ごみ","url":"https://www.city.nerima.tokyo.jp/kurashi/gomi/wakekata/sodai.html","lgcode":"131202"}
+]
