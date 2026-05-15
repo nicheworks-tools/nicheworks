@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["パイプカッター|pipe cutter", "パイプカッター", "Pipe cutter", "./images/pilot/pipe-cutter.svg?v=20260513-asset-9", "配管材をきれいに切断するための工具。", "Tool used to cut pipe cleanly."],
+    ["ねじ切り機|pipe threader", "ねじ切り機", "Pipe threader", "./images/pilot/pipe-threader.svg?v=20260513-asset-9", "配管端部にねじを加工する機械。", "Machine used to cut threads on pipe ends."],
+    ["リーマー|pipe reamer", "リーマー", "Pipe reamer", "./images/pilot/pipe-reamer.svg?v=20260513-asset-9", "切断後の管内側のバリを取る工具。", "Tool used to remove internal burrs from pipe ends."],
+    ["面取り器|pipe deburrer", "面取り器", "Pipe deburrer", "./images/pilot/pipe-deburrer.svg?v=20260513-asset-9", "配管端部の面取りやバリ取りに使う工具。", "Tool used to chamfer and deburr pipe ends."],
+    ["塩ビ管|pvc pipe", "塩ビ管", "PVC pipe", "./images/pilot/pvc-pipe.svg?v=20260513-asset-9", "排水や通気などで使われる塩化ビニル製の管。", "Plastic pipe commonly used for drainage or venting."],
+    ["銅管|copper pipe", "銅管", "Copper pipe", "./images/pilot/copper-pipe.svg?v=20260513-asset-9", "給水や空調配管などで使われる金属管。", "Metal pipe used for water supply or HVAC piping."],
+    ["エルボ|pipe elbow", "エルボ", "Pipe elbow", "./images/pilot/pipe-elbow.svg?v=20260513-asset-9", "配管の向きを曲げるための継手。", "Fitting used to change pipe direction."],
+    ["チーズ|pipe tee", "チーズ", "Pipe tee", "./images/pilot/pipe-tee.svg?v=20260513-asset-9", "配管を分岐させるT字形の継手。", "T-shaped fitting used to branch pipe runs."],
+    ["ソケット|pipe coupling", "ソケット", "Pipe coupling", "./images/pilot/pipe-coupling.svg?v=20260513-asset-9", "直線上の配管同士を接続する継手。", "Fitting used to connect straight pipe sections."],
+    ["止水栓|stop valve", "止水栓", "Stop valve", "./images/pilot/stop-valve.svg?v=20260513-asset-9", "水の流れを止めたり調整したりする部材。", "Valve used to stop or control water flow."]
+  ]
+}
