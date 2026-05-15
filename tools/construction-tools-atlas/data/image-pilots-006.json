@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["ボードリフト|drywall lift", "ボードリフト", "Drywall lift", "./images/pilot/drywall-lift.svg?v=20260513-asset-10", "石膏ボードを天井や高所へ持ち上げて保持する器具。", "Lift used to hold drywall sheets at ceilings or high positions."],
+    ["石膏ボードビス|drywall screw", "石膏ボードビス", "Drywall screw", "./images/pilot/drywall-screw.svg?v=20260513-asset-10", "石膏ボードを下地に固定するための専用ビス。", "Screw used to fasten drywall to framing."],
+    ["下地探し|stud finder", "下地探し", "Stud finder", "./images/pilot/stud-finder.svg?v=20260513-asset-10", "壁内の下地位置を探すための確認工具。", "Tool used to locate studs or backing behind wall surfaces."],
+    ["軽量鉄骨下地|metal stud", "軽量鉄骨下地", "Metal stud", "./images/pilot/metal-stud.svg?v=20260513-asset-10", "間仕切り壁や天井下地に使う金属製の下地材。", "Metal framing member used for interior walls or ceilings."],
+    ["天井ランナー|ceiling runner", "天井ランナー", "Ceiling runner", "./images/pilot/ceiling-runner.svg?v=20260513-asset-10", "天井下地の周辺や受け材として使う金属部材。", "Metal runner used to support ceiling framing."],
+    ["断熱材|insulation batt", "断熱材", "Insulation batt", "./images/pilot/insulation-batt.svg?v=20260513-asset-10", "熱の出入りを抑えるために壁や天井内へ入れる材料。", "Material installed in walls or ceilings to reduce heat transfer."],
+    ["防湿シート|vapor barrier", "防湿シート", "Vapor barrier", "./images/pilot/vapor-barrier.svg?v=20260513-asset-10", "湿気の移動を抑えるために施工するシート。", "Sheet used to control moisture movement."],
+    ["吸音パネル|acoustic panel", "吸音パネル", "Acoustic panel", "./images/pilot/acoustic-panel.svg?v=20260513-asset-10", "室内の反響や音の響きを抑えるためのパネル。", "Panel used to reduce sound reflection in rooms."],
+    ["OAフロア|access floor panel", "OAフロア", "Access floor panel", "./images/pilot/access-floor-panel.svg?v=20260513-asset-10", "床下に配線空間を作るための上げ床パネル。", "Raised floor panel used to create cable space under the floor."],
+    ["巾木|baseboard trim", "巾木", "Baseboard trim", "./images/pilot/baseboard-trim.svg?v=20260513-asset-10", "壁と床の取り合い部に取り付ける見切り材。", "Trim installed at the joint between wall and floor."]
+  ]
+}
