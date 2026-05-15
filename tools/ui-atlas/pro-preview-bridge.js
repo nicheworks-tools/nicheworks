@@ -53,6 +53,7 @@
         previewGenerator: 'Pro GeneratorでPreview',
         useGenerator: 'Pro Generatorで使う',
         openProPage: 'Proサンプルバンクを開く',
+        detailsSummary: '詳細を開く',
         bestFor: '向いている場面',
         notFor: '向いていない場面',
         riskLevel: 'リスク',
@@ -79,6 +80,7 @@
         previewGenerator: 'Preview in Pro Generator',
         useGenerator: 'Use in Pro Generator',
         openProPage: 'Open Pro sample bank',
+        detailsSummary: 'Show full Pro details',
         bestFor: 'Best for',
         notFor: 'Not for',
         riskLevel: 'Risk level',
@@ -199,23 +201,23 @@
     const name = field(sample, 'name');
     const summary = field(sample, 'summary');
     const genUrl = generatorUrl(sample);
-    const proPageUrl = 'pro/#sample-bank-heading';
     const badge = active ? labels.unlockedBadge : labels.lockedBadge;
     const stateText = active ? labels.unlockedText : labels.lockedText;
     const details = active ? `
-      <dl class="pro-preview-meta">
-        <div><dt>${esc(labels.bestFor)}</dt><dd>${esc(field(sample, 'best_for'))}</dd></div>
-        <div><dt>${esc(labels.notFor)}</dt><dd>${esc(field(sample, 'not_for'))}</dd></div>
-        <div><dt>${esc(labels.riskLevel)}</dt><dd>${esc(sample.risk_level)}</dd></div>
-        <div><dt>${esc(labels.implementationCost)}</dt><dd>${esc(sample.implementation_cost)}</dd></div>
-        <div><dt>${esc(labels.maintenanceCost)}</dt><dd>${esc(sample.maintenance_cost)}</dd></div>
-      </dl>` : '';
+      <details class="pro-preview-details">
+        <summary>${esc(labels.detailsSummary)}</summary>
+        <dl class="pro-preview-meta">
+          <div><dt>${esc(labels.bestFor)}</dt><dd>${esc(field(sample, 'best_for'))}</dd></div>
+          <div><dt>${esc(labels.notFor)}</dt><dd>${esc(field(sample, 'not_for'))}</dd></div>
+          <div><dt>${esc(labels.riskLevel)}</dt><dd>${esc(sample.risk_level)}</dd></div>
+          <div><dt>${esc(labels.implementationCost)}</dt><dd>${esc(sample.implementation_cost)}</dd></div>
+          <div><dt>${esc(labels.maintenanceCost)}</dt><dd>${esc(sample.maintenance_cost)}</dd></div>
+        </dl>
+      </details>` : '';
     const inactiveActions = `
       <a class="btn primary" href="${PAYMENT_LINK}" target="_blank" rel="noopener noreferrer">${esc(labels.unlockPro)}</a>
       <a class="btn" href="${esc(genUrl)}">${esc(labels.previewGenerator)}</a>`;
-    const activeActions = `
-      <a class="btn primary" href="${esc(genUrl)}">${esc(labels.useGenerator)}</a>
-      <a class="btn" href="${esc(proPageUrl)}">${esc(labels.openProPage)}</a>`;
+    const activeActions = `<a class="btn primary" href="${esc(genUrl)}">${esc(labels.useGenerator)}</a>`;
 
     return `
       <article class="pro-preview-card ${active ? 'is-unlocked' : 'is-locked'}" data-pro-preview-card data-sample-slug="${esc(sample.slug || sample.id || '')}">
