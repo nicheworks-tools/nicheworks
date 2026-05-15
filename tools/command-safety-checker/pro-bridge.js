@@ -8,7 +8,7 @@
   const STATUS = {
     preview: "Previewモード / Preview mode",
     active: "Pro解放済み / Pro unlocked",
-    unavailable: "Pro状態を確認できませんでした。無料機能は引き続き利用できます。 / Pro status could not be checked. Free features remain available."
+    unavailable: "Error: Pro状態を確認できませんでした。無料機能は引き続き利用できます。 / Error: Pro status could not be checked. Free features remain available."
   };
 
   const $ = (selector) => document.querySelector(selector);
