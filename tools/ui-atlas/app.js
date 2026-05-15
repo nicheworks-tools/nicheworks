@@ -706,6 +706,12 @@
       const label = compareIds.length === 1 ? `<span class="compare-item-label">${t.compareOneSelected}</span>` : '';
       item.dataset.compareSlug = data.slug || data.id || data.name;
       item.dataset.compareName = data.name;
+      item.dataset.compareBest = data.best;
+      item.dataset.compareNotFor = data.notFor;
+      item.dataset.compareCategory = data.category;
+      item.dataset.comparePurpose = data.purpose;
+      item.dataset.compareMobile = data.mobileFit;
+      item.dataset.compareDifficulty = data.difficulty;
       item.innerHTML = `<div class="compare-item-main">${label}<strong>${data.name}</strong></div><button class="btn" type="button">${t.remove}</button>`;
       item.querySelector('button')?.addEventListener('click', () => toggleCompare(card));
       compareList.appendChild(item);
@@ -734,6 +740,23 @@
   function openDetail(card) {
     const data = cardData(card);
     currentId = data.id;
+    if (detailEls.content) {
+      Object.assign(detailEls.content.dataset, {
+        id: data.id,
+        slug: data.slug,
+        summary: data.summary,
+        usecase: data.usecase,
+        best: data.best,
+        notFor: data.notFor,
+        practicalIntent: data.practicalIntent,
+        prompt: data.prompt,
+        notes: data.notes,
+        category: data.category,
+        purpose: data.purpose,
+        mobileFit: data.mobileFit,
+        difficulty: data.difficulty
+      });
+    }
     detailEls.title.textContent = data.name;
     detailEls.what.textContent = data.summary;
     detailEls.useCase.textContent = data.usecase;
@@ -744,8 +767,10 @@
     if (matched?.similarSlugs.length) {
       const names = matched.similarSlugs.map((slug) => bySlug.get(slug)?.name || slug).join(', ');
       detailEls.similar.textContent = names;
+      if (detailEls.content) detailEls.content.dataset.similar = names;
     } else {
       detailEls.similar.textContent = '-';
+      if (detailEls.content) detailEls.content.dataset.similar = '';
     }
 
     detailEls.prompt.textContent = data.prompt;
