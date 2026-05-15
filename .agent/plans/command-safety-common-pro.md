@@ -27,3 +27,10 @@
 - Run a free check, then confirm Copy Pro Review Report, Save Markdown Review, Copy Codex Safety Check Task, Copy GitHub Issue, Export JSON, and Export Markdown work while active.
 - Confirm Pro action buttons show a toast and do not save empty files when no free check has been run.
 - Clear site data and confirm Preview mode returns.
+
+
+## Task 3 final QA addendum
+- Re-scan `tools/command-safety-checker/` for legacy Pro remnants and remove or correct any executable or public-facing references.
+- Confirm the tool uses only `/assets/nw-pro.js`, `NWPro.getLocalStatus()`, `pro-bridge.js`, and the shared Payment Link.
+- QA the free checker, inactive Preview mode, active Pro handoff actions, `pro.html`, SEO/FAQ JSON-LD, mobile-width CSS, and static syntax checks before release.
+- Do not add new features beyond copy/wiring cleanup needed for the final public QA pass.
