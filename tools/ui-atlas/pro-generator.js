@@ -3,6 +3,7 @@
   if (!root || root.dataset.page !== 'pro') return;
   const lang = root.dataset.lang === 'ja' ? 'ja' : 'en';
   const mount = document.querySelector('[data-pro-generator]');
+  const sampleBankMount = document.querySelector('[data-pro-sample-bank]');
   if (!mount) return;
 
   let commonProActive = false;
@@ -78,6 +79,27 @@
       fallbackDevice: 'mobile and desktop',
       fallbackPriority: 'accessibility, responsive behavior, and maintainability',
       fallbackCandidates: ['modal', 'toast', 'drawer'],
+      sampleBankTitle: 'Pro-only 50 samples',
+      sampleBankIntro: 'Browse the Pro-only bank as locked previews. Unlock Pro to see full implementation detail for each sample.',
+      lockedPreview: 'Locked preview. Unlock Pro to view full sample detail and use it in 5-way compare.',
+      unlockedPreview: 'Pro-only sample unlocked.',
+      lockedBadge: 'Locked preview',
+      unlockedBadge: 'Unlocked',
+      unlockCta: 'Unlock Pro',
+      useInGenerator: 'Use in generator',
+      bestFor: 'Best for',
+      notFor: 'Not for',
+      decisionMemo: 'Decision memo template',
+      riskLevel: 'Risk',
+      implementationCost: 'Implementation cost',
+      maintenanceCost: 'Maintenance cost',
+      acceptanceCriteria: 'Acceptance criteria',
+      a11yChecklist: 'Accessibility checklist',
+      mobileChecklist: 'Mobile checklist',
+      codexPrompt: 'Codex prompt',
+      compareCandidates: 'Compare candidates',
+      rejectedAlternatives: 'Rejected alternatives',
+      loadedSample: 'Loaded sample into the generator.',
       sectionLabels: {
         decision: 'Decision memo',
         compare: 'Compare memo',
@@ -143,6 +165,27 @@
       fallbackDevice: 'モバイルとPC',
       fallbackPriority: 'アクセシビリティ、レスポンシブ対応、保守性',
       fallbackCandidates: ['モーダル', 'トースト', 'ドロワー'],
+      sampleBankTitle: 'Pro専用50サンプル',
+      sampleBankIntro: 'Pro専用バンクをロック付きPreviewとして閲覧できます。Proを解放すると各サンプルの実装詳細を確認できます。',
+      lockedPreview: 'ロック付きPreviewです。Proを解放すると詳細表示と5件比較で利用できます。',
+      unlockedPreview: 'Pro専用サンプル解放済み。',
+      lockedBadge: 'ロック付きPreview',
+      unlockedBadge: '解放済み',
+      unlockCta: 'Proを解放',
+      useInGenerator: 'Generatorで使う',
+      bestFor: '向いている場面',
+      notFor: '向いていない場面',
+      decisionMemo: 'Decision Memoテンプレート',
+      riskLevel: 'リスク',
+      implementationCost: '実装コスト',
+      maintenanceCost: '保守コスト',
+      acceptanceCriteria: '受け入れ条件',
+      a11yChecklist: 'アクセシビリティチェック',
+      mobileChecklist: 'モバイルチェック',
+      codexPrompt: 'Codex依頼文',
+      compareCandidates: '比較候補',
+      rejectedAlternatives: '却下候補',
+      loadedSample: 'サンプルをGeneratorに読み込みました。',
       sectionLabels: {
         decision: '判断メモ',
         compare: '比較メモ',
@@ -227,6 +270,82 @@
     review: mount.querySelector('[data-pro-preview="review"]')
   };
 
+
+
+  function field(sample, key) {
+    return sample[`${key}_${lang}`] || sample[`${key}_en`] || '';
+  }
+
+  function renderList(items) {
+    return `<ul>${(items || []).map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
+  }
+
+  function sampleSummary(sample) {
+    const name = field(sample, 'name');
+    const statusText = commonProActive ? i18n.unlockedPreview : i18n.lockedPreview;
+    const badge = commonProActive ? i18n.unlockedBadge : i18n.lockedBadge;
+    const detail = commonProActive ? `
+      <details class="pro-sample-detail">
+        <summary>${esc(i18n.unlockedPreview)}</summary>
+        <dl class="pro-sample-meta">
+          <div><dt>${esc(i18n.bestFor)}</dt><dd>${esc(field(sample, 'best_for'))}</dd></div>
+          <div><dt>${esc(i18n.notFor)}</dt><dd>${esc(field(sample, 'not_for'))}</dd></div>
+          <div><dt>${esc(i18n.riskLevel)}</dt><dd>${esc(sample.risk_level)}</dd></div>
+          <div><dt>${esc(i18n.implementationCost)}</dt><dd>${esc(sample.implementation_cost)}</dd></div>
+          <div><dt>${esc(i18n.maintenanceCost)}</dt><dd>${esc(sample.maintenance_cost)}</dd></div>
+          <div><dt>${esc(i18n.decisionMemo)}</dt><dd>${esc(field(sample, 'pro_memo_template'))}</dd></div>
+        </dl>
+        <h4>${esc(i18n.acceptanceCriteria)}</h4>${renderList(field(sample, 'acceptance_criteria'))}
+        <h4>${esc(i18n.a11yChecklist)}</h4>${renderList(field(sample, 'a11y_checklist'))}
+        <h4>${esc(i18n.mobileChecklist)}</h4>${renderList(field(sample, 'mobile_checklist'))}
+        <h4>${esc(i18n.codexPrompt)}</h4><p>${esc(field(sample, 'codex_prompt'))}</p>
+        <p><strong>${esc(i18n.compareCandidates)}:</strong> ${esc((sample.compare_candidates || []).join(', ') || '-')}</p>
+        <p><strong>${esc(i18n.rejectedAlternatives)}:</strong> ${esc((sample.rejected_alternatives || []).join(', ') || '-')}</p>
+      </details>` : `<p class="pro-sample-lock-note">${esc(i18n.lockedPreview)}</p><p><a class="support-btn" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener noreferrer">${esc(i18n.unlockCta)}</a></p>`;
+    return `
+      <article class="pro-sample-card" data-pro-sample-card data-sample-slug="${esc(sample.slug)}">
+        <div class="pro-sample-card-head">
+          <h3>${esc(name)}</h3>
+          <span class="pro-sample-status" data-unlocked="${commonProActive ? 'true' : 'false'}">${esc(badge)}</span>
+        </div>
+        <p class="pro-sample-category">${esc(sample.category)}</p>
+        <p>${esc(field(sample, 'summary'))}</p>
+        <p class="pro-sample-state">${esc(statusText)}</p>
+        ${detail}
+        <button type="button" class="support-btn" data-use-pro-sample="${esc(sample.slug)}">${esc(i18n.useInGenerator)}</button>
+      </article>`;
+  }
+
+  function renderSampleBank() {
+    if (!sampleBankMount) return;
+    const samples = Array.isArray(window.UI_ATLAS_PRO_SAMPLES) ? window.UI_ATLAS_PRO_SAMPLES : [];
+    if (!samples.length) {
+      sampleBankMount.innerHTML = '';
+      return;
+    }
+    const groups = samples.reduce((acc, sample) => {
+      const category = sample.category || 'Other';
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(sample);
+      return acc;
+    }, {});
+    sampleBankMount.innerHTML = `
+      <style>
+        .pro-sample-bank{display:flex;flex-direction:column;gap:1.25rem;margin-top:1.25rem;min-width:0}.pro-sample-bank *{box-sizing:border-box}.pro-sample-bank-heading{margin:.5rem 0}.pro-sample-group{min-width:0}.pro-sample-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;min-width:0}.pro-sample-card{border:1px solid #dbe3ef;border-radius:18px;background:#fff;padding:1rem;min-width:0;overflow-wrap:anywhere;word-break:normal}.pro-sample-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}.pro-sample-card h3{margin:.15rem 0}.pro-sample-category{font-weight:700;color:#475569}.pro-sample-status{display:inline-flex;align-items:center;border-radius:999px;padding:.25rem .55rem;background:#fff7ed;color:#9a3412;font-size:.82rem;font-weight:800;white-space:nowrap}.pro-sample-status[data-unlocked="true"]{background:#ecfdf5;color:#047857}.pro-sample-lock-note,.pro-sample-state{font-weight:700}.pro-sample-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.65rem;margin:.75rem 0}.pro-sample-meta div{border:1px solid #e2e8f0;border-radius:12px;padding:.65rem;background:#f8fafc;min-width:0}.pro-sample-meta dt{font-weight:800}.pro-sample-meta dd{margin:.25rem 0 0}.pro-sample-detail summary{cursor:pointer;font-weight:800;margin:.75rem 0}.pro-sample-card ul{padding-left:1.2rem}.pro-sample-card .support-btn{margin-top:.5rem}@media(max-width:520px){.pro-sample-grid{grid-template-columns:1fr}.pro-sample-card-head{flex-direction:column}.pro-sample-card .support-btn{width:100%;text-align:center}}
+      </style>
+      <div class="pro-sample-bank" aria-label="${esc(i18n.sampleBankTitle)}">
+        <p>${esc(i18n.sampleBankIntro)}</p>
+        ${Object.entries(groups).map(([category, group]) => `
+          <section class="pro-sample-group" aria-labelledby="pro-sample-${esc(category).replace(/[^a-z0-9]+/gi, '-').toLowerCase()}">
+            <h3 class="pro-sample-bank-heading" id="pro-sample-${esc(category).replace(/[^a-z0-9]+/gi, '-').toLowerCase()}">${esc(category)} (${group.length})</h3>
+            <div class="pro-sample-grid">${group.map(sampleSummary).join('')}</div>
+          </section>`).join('')}
+      </div>`;
+    sampleBankMount.querySelectorAll('[data-use-pro-sample]').forEach((button) => {
+      button.addEventListener('click', () => useSampleInGenerator(button.dataset.useProSample));
+    });
+  }
+
   function cleanParam(value) {
     const raw = value || '';
     let decoded = raw;
@@ -270,6 +389,22 @@
 
   function lockedCandidates(candidates) {
     return commonProActive ? [] : candidates.slice(2, 5);
+  }
+
+  function useSampleInGenerator(slug) {
+    const samples = Array.isArray(window.UI_ATLAS_PRO_SAMPLES) ? window.UI_ATLAS_PRO_SAMPLES : [];
+    const sample = samples.find((item) => item.slug === slug || item.id === slug);
+    if (!sample) return;
+    patternEl.value = field(sample, 'name');
+    goalEl.value = field(sample, 'best_for');
+    contextEl.value = `${field(sample, 'summary')} ${field(sample, 'pro_memo_template')}`;
+    riskEl.value = `${sample.risk_level}: ${field(sample, 'not_for')}`;
+    candidatesEl.value = (sample.compare_candidates || []).join('\n');
+    currentMode = commonProActive ? 'full' : 'decision';
+    setMode(currentMode);
+    render();
+    stateEl.textContent = i18n.loadedSample;
+    mount.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function mdList(items, checkbox) {
@@ -401,6 +536,7 @@
     commonProEl.dataset.proActive = commonProActive ? 'true' : 'false';
     commonProEl.textContent = statusKnown ? (commonProActive ? i18n.activeStatus : i18n.inactiveStatus) : i18n.unknownStatus;
     render();
+    renderSampleBank();
   }
 
   function setMode(mode) {
@@ -481,6 +617,7 @@
   [patternEl, goalEl, contextEl, riskEl, deviceEl, priorityEl, candidatesEl].forEach((el) => el.addEventListener('input', render));
 
   initFromUrl();
+  renderSampleBank();
   setMode(currentMode);
   loadNWPro().then((helper) => {
     if (!helper || typeof helper.getLocalStatus !== 'function') {
