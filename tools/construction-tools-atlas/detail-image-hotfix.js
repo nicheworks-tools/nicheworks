@@ -5,7 +5,8 @@
     "./data/image-pilots.json?v=20260513-asset-5",
     "./data/image-pilots-002.json?v=20260513-asset-6",
     "./data/image-pilots-003.json?v=20260513-asset-7",
-    "./data/image-pilots-004.json?v=20260513-asset-8"
+    "./data/image-pilots-004.json?v=20260513-asset-8",
+    "./data/image-pilots-005.json?v=20260513-asset-9"
   ];
 
   const state = {
