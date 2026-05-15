@@ -11,7 +11,13 @@
     en: {
       shown: (count) => `${count} patterns shown`,
       remove: 'Remove',
-      compareFull: 'Compare tray is full (max 2). Remove one item first.',
+      compareFull: 'Compare tray is full. Remove one item first.',
+      compareFreeLimit: 'Free compare supports 2 patterns. Unlock Pro to compare up to 5 patterns and export a decision memo.',
+      compareProLimit: 'Pro compare supports up to 5 patterns.',
+      compareStatusFree: 'Free compare: 2 patterns. Pro unlocks 5-way compare and handoff output.',
+      compareStatusPro: 'Pro compare: up to 5 patterns.',
+      compareCheckFailed: 'Could not check Pro status. Free compare remains available.',
+      unlockPro: 'Unlock NicheWorks Pro — $2.99',
       copied: 'Prompt copied.',
       copyFailed: 'Copy failed. Please copy manually.',
       favoriteOn: '★ Favorited',
@@ -26,10 +32,10 @@
       openDetail: 'Open detail',
       addCompare: 'Add compare',
       addedCompare: 'Added to compare',
-      compareHeading: (count) => `Compare (${count}/2)`,
-      compareHint: 'Add up to two patterns for quick key-difference checks.',
-      compareDockQuiet: 'Compare (0/2)',
-      compareDockActive: (count) => `${count} selected • Compare (${count}/2)`,
+      compareHeading: (count, max) => `Compare (${count}/${max})`,
+      compareHint: (max) => max > 2 ? 'Add up to five patterns for Pro compare handoff.' : 'Add up to two patterns for quick key-difference checks.',
+      compareDockQuiet: (max) => `Compare (0/${max})`,
+      compareDockActive: (count, max) => `${count} selected • Compare (${count}/${max})`,
       compareJump: 'Open compare',
       compareOneSelected: 'Selected pattern',
       clearCompare: 'Clear',
@@ -58,7 +64,13 @@
     ja: {
       shown: (count) => `${count} 件表示`,
       remove: '削除',
-      compareFull: '比較トレイは2件までです。1件削除してから追加してください。',
+      compareFull: '比較トレイが上限です。1件削除してから追加してください。',
+      compareFreeLimit: '無料版の比較は2件までです。Proでは最大5件まで比較し、判断メモを書き出せます。',
+      compareProLimit: 'Pro比較は最大5件までです。',
+      compareStatusFree: '無料比較: 2件まで。Proでは5件比較と引き継ぎ出力を使えます。',
+      compareStatusPro: 'Pro比較: 最大5件まで。',
+      compareCheckFailed: 'Pro状態を確認できませんでした。無料比較は利用できます。',
+      unlockPro: 'NicheWorks Proを購入 — $2.99',
       copied: 'プロンプトをコピーしました。',
       copyFailed: 'コピーに失敗しました。手動でコピーしてください。',
       favoriteOn: '★ お気に入り済み',
@@ -73,10 +85,10 @@
       openDetail: '詳細',
       addCompare: '比較に追加',
       addedCompare: '比較に追加済み',
-      compareHeading: (count) => `比較 (${count}/2)`,
-      compareHint: '2件まで追加して主要差分を確認できます。',
-      compareDockQuiet: '比較 (0/2)',
-      compareDockActive: (count) => `${count}件選択中 • 比較 (${count}/2)`,
+      compareHeading: (count, max) => `比較 (${count}/${max})`,
+      compareHint: (max) => max > 2 ? 'Pro比較では最大5件まで追加して引き継ぎに使えます。' : '2件まで追加して主要差分を確認できます。',
+      compareDockQuiet: (max) => `比較 (0/${max})`,
+      compareDockActive: (count, max) => `${count}件選択中 • 比較 (${count}/${max})`,
       compareJump: '比較を開く',
       compareOneSelected: '選択中のパターン',
       clearCompare: 'クリア',
@@ -176,6 +188,10 @@
   let currentId = null;
   let listScrollY = 0;
   let detailOpen = false;
+  let commonProActive = false;
+  let proStatusCheckFailed = false;
+  let compareLimitNotice = null;
+  let compareUpgradeCta = null;
   let favorites = safeJsonParse(localStorage.getItem(storage.favorites), []);
   let recent = safeJsonParse(localStorage.getItem(storage.recent), []);
 
@@ -187,6 +203,95 @@
   const badge = (text) => `<span class="mini-badge">${text}</span>`;
   const mobileQuery = window.matchMedia('(max-width: 820px)');
   const isMobileLayout = () => mobileQuery.matches;
+  const proPaymentLink = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
+  const getCompareMax = () => (commonProActive ? 5 : 2);
+
+  function readCommonProStatus() {
+    try {
+      if (window.UIAtlasProBridge && typeof window.UIAtlasProBridge.getStatus === 'function') {
+        const status = window.UIAtlasProBridge.getStatus();
+        proStatusCheckFailed = Boolean(status.failed);
+        commonProActive = Boolean(status.active);
+        return;
+      }
+      if (window.NWPro && typeof window.NWPro.getLocalStatus === 'function') {
+        const local = window.NWPro.getLocalStatus();
+        proStatusCheckFailed = false;
+        commonProActive = Boolean(local && local.active);
+        document.documentElement.dataset.proActive = commonProActive ? 'true' : 'false';
+        return;
+      }
+      proStatusCheckFailed = true;
+      commonProActive = false;
+      document.documentElement.dataset.proActive = 'false';
+    } catch (_error) {
+      proStatusCheckFailed = true;
+      commonProActive = false;
+      document.documentElement.dataset.proActive = 'false';
+    }
+  }
+
+  function refreshProStatus() {
+    const previousMax = getCompareMax();
+    const wasActive = commonProActive;
+    readCommonProStatus();
+    const nextMax = getCompareMax();
+    if (compareIds.length > nextMax) compareIds = compareIds.slice(0, nextMax);
+    if (wasActive !== commonProActive) setCompareMessage(proStatusCheckFailed ? t.compareCheckFailed : '', false);
+    if (previousMax !== nextMax || compareLimitNotice) compareLimitNotice = null;
+    refreshCompareButtons();
+    renderCompare();
+  }
+
+  function ensureCompareLimitNotice() {
+    const tray = app.querySelector('.compare-tray');
+    if (!tray) return null;
+    if (!compareLimitNotice) {
+      compareLimitNotice = tray.querySelector('[data-compare-limit-notice]');
+    }
+    if (!compareLimitNotice) {
+      compareLimitNotice = document.createElement('p');
+      compareLimitNotice.className = 'compare-limit-notice';
+      compareLimitNotice.setAttribute('data-compare-limit-notice', 'true');
+      compareLimitNotice.setAttribute('aria-live', 'polite');
+      const header = tray.querySelector('.compare-tray-header');
+      if (header) header.insertAdjacentElement('afterend', compareLimitNotice);
+      else tray.prepend(compareLimitNotice);
+    }
+    return compareLimitNotice;
+  }
+
+  function ensureCompareUpgradeCta() {
+    const tray = app.querySelector('.compare-tray');
+    if (!tray) return null;
+    if (!compareUpgradeCta) {
+      compareUpgradeCta = tray.querySelector('[data-compare-pro-cta]');
+    }
+    if (!compareUpgradeCta) {
+      compareUpgradeCta = document.createElement('p');
+      compareUpgradeCta.className = 'compare-upgrade-cta';
+      compareUpgradeCta.setAttribute('data-compare-pro-cta', 'true');
+      compareUpgradeCta.hidden = true;
+      const link = document.createElement('a');
+      link.className = 'primary-pro-cta';
+      link.href = proPaymentLink;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = t.unlockPro;
+      compareUpgradeCta.appendChild(link);
+      if (compareStatus) compareStatus.insertAdjacentElement('afterend', compareUpgradeCta);
+      else tray.appendChild(compareUpgradeCta);
+    }
+    const link = compareUpgradeCta.querySelector('a');
+    if (link) link.textContent = t.unlockPro;
+    return compareUpgradeCta;
+  }
+
+  function setCompareMessage(message, showUpgrade) {
+    if (compareStatus) compareStatus.textContent = message || '';
+    const cta = ensureCompareUpgradeCta();
+    if (cta) cta.hidden = !showUpgrade;
+  }
 
   function normalizeRecord(pattern) {
     const useJa = lang === 'ja';
@@ -496,41 +601,53 @@
   }
 
   function compareMarkup() {
-    if (compareIds.length !== 2) return '';
-    const left = cardData(byId.get(compareIds[0]));
-    const right = cardData(byId.get(compareIds[1]));
-    const mobileLeft = t.mobileNames[left.mobileFit] || left.mobileFit;
-    const mobileRight = t.mobileNames[right.mobileFit] || right.mobileFit;
-    const diffLeft = t.difficultyNames[left.difficulty] || left.difficulty;
-    const diffRight = t.difficultyNames[right.difficulty] || right.difficulty;
-    const score = (item, other) => {
-      let points = 0;
-      if (item.mobileFit === 'high') points += 2;
-      else if (item.mobileFit === 'medium') points += 1;
-      if (item.difficulty === 'easy') points += 2;
-      else if (item.difficulty === 'medium') points += 1;
-      if (item.purpose === other.purpose) points += 1;
-      return points;
-    };
-    const leftScore = score(left, right);
-    const rightScore = score(right, left);
-    const decisionLine = leftScore === rightScore
-      ? `${t.compareChoose(left.name)} ${left.best} / ${t.compareChoose(right.name)} ${right.best}`
-      : leftScore > rightScore
-        ? `${t.compareChoose(left.name)} ${left.best}`
-        : `${t.compareChoose(right.name)} ${right.best}`;
+    if (compareIds.length < 2) return '';
+    const selected = compareIds.map((id) => byId.get(id)).filter(Boolean).map(cardData);
+    if (selected.length < 2) return '';
+    if (selected.length === 2) {
+      const left = selected[0];
+      const right = selected[1];
+      const mobileLeft = t.mobileNames[left.mobileFit] || left.mobileFit;
+      const mobileRight = t.mobileNames[right.mobileFit] || right.mobileFit;
+      const diffLeft = t.difficultyNames[left.difficulty] || left.difficulty;
+      const diffRight = t.difficultyNames[right.difficulty] || right.difficulty;
+      const score = (item, other) => {
+        let points = 0;
+        if (item.mobileFit === 'high') points += 2;
+        else if (item.mobileFit === 'medium') points += 1;
+        if (item.difficulty === 'easy') points += 2;
+        else if (item.difficulty === 'medium') points += 1;
+        if (item.purpose === other.purpose) points += 1;
+        return points;
+      };
+      const leftScore = score(left, right);
+      const rightScore = score(right, left);
+      const decisionLine = leftScore === rightScore
+        ? `${t.compareChoose(left.name)} ${left.best} / ${t.compareChoose(right.name)} ${right.best}`
+        : leftScore > rightScore
+          ? `${t.compareChoose(left.name)} ${left.best}`
+          : `${t.compareChoose(right.name)} ${right.best}`;
+      return `
+        <h4>${t.compareDiff}: ${left.name} × ${right.name}</h4>
+        <ul>
+          <li><strong>${t.compareChoose(left.name)}</strong> ${left.best}</li>
+          <li><strong>${t.compareInstead(left.name)}</strong> ${left.notFor}</li>
+          <li><strong>${t.compareChoose(right.name)}</strong> ${right.best}</li>
+          <li><strong>${t.compareInstead(right.name)}</strong> ${right.notFor}</li>
+          <li><strong>${t.purpose}</strong>: ${left.name} ${(t.purposeNames[left.purpose] || left.purpose)} / ${right.name} ${(t.purposeNames[right.purpose] || right.purpose)}</li>
+          <li><strong>${t.mobile}</strong>: ${left.name} ${mobileLeft} / ${right.name} ${mobileRight}</li>
+          <li><strong>${t.difficulty}</strong>: ${left.name} ${diffLeft} / ${right.name} ${diffRight}</li>
+          <li><strong>${t.compareDecision}</strong>: ${decisionLine}</li>
+        </ul>
+      `;
+    }
+    const names = selected.map((item) => item.name).join(' × ');
+    const rows = selected.map((item) => `
+      <li><strong>${item.name}</strong>: ${t.compareBetter} — ${item.best} / ${t.compareAvoid} — ${item.notFor} / ${t.mobile} — ${t.mobileNames[item.mobileFit] || item.mobileFit} / ${t.difficulty} — ${t.difficultyNames[item.difficulty] || item.difficulty}</li>
+    `).join('');
     return `
-      <h4>${t.compareDiff}: ${left.name} × ${right.name}</h4>
-      <ul>
-        <li><strong>${t.compareChoose(left.name)}</strong> ${left.best}</li>
-        <li><strong>${t.compareInstead(left.name)}</strong> ${left.notFor}</li>
-        <li><strong>${t.compareChoose(right.name)}</strong> ${right.best}</li>
-        <li><strong>${t.compareInstead(right.name)}</strong> ${right.notFor}</li>
-        <li><strong>${t.purpose}</strong>: ${left.name} ${(t.purposeNames[left.purpose] || left.purpose)} / ${right.name} ${(t.purposeNames[right.purpose] || right.purpose)}</li>
-        <li><strong>${t.mobile}</strong>: ${left.name} ${mobileLeft} / ${right.name} ${mobileRight}</li>
-        <li><strong>${t.difficulty}</strong>: ${left.name} ${diffLeft} / ${right.name} ${diffRight}</li>
-        <li><strong>${t.compareDecision}</strong>: ${decisionLine}</li>
-      </ul>
+      <h4>${t.compareDiff}: ${names}</h4>
+      <ul>${rows}</ul>
     `;
   }
 
@@ -540,7 +657,15 @@
     compareDiff.hidden = true;
     compareDiff.innerHTML = '';
 
-    compareHeading && (compareHeading.textContent = t.compareHeading(compareIds.length));
+    const compareMax = getCompareMax();
+    const limitNotice = ensureCompareLimitNotice();
+    if (limitNotice) {
+      limitNotice.textContent = commonProActive ? t.compareStatusPro : t.compareStatusFree;
+    }
+    if (proStatusCheckFailed && compareStatus && !compareStatus.textContent) {
+      compareStatus.textContent = t.compareCheckFailed;
+    }
+    compareHeading && (compareHeading.textContent = t.compareHeading(compareIds.length, compareMax));
     if (compareClear) {
       compareClear.hidden = compareIds.length === 0;
       compareClear.textContent = t.clearCompare;
@@ -556,10 +681,10 @@
     if (compareJump) compareJump.textContent = t.compareJump;
     if (compareJumpMobile) compareJumpMobile.textContent = t.compareJump;
     if (compareDockText) {
-      compareDockText.textContent = compareIds.length === 0 ? t.compareDockQuiet : t.compareDockActive(compareIds.length);
+      compareDockText.textContent = compareIds.length === 0 ? t.compareDockQuiet(compareMax) : t.compareDockActive(compareIds.length, compareMax);
     }
     if (compareDockTextMobile) {
-      compareDockTextMobile.textContent = compareIds.length === 0 ? t.compareDockQuiet : t.compareDockActive(compareIds.length);
+      compareDockTextMobile.textContent = compareIds.length === 0 ? t.compareDockQuiet(compareMax) : t.compareDockActive(compareIds.length, compareMax);
     }
     if (compareDock) compareDock.classList.toggle('has-items', compareIds.length > 0);
     if (compareDockMobile) {
@@ -568,7 +693,7 @@
     }
     app.classList.toggle('has-compare-items', compareIds.length > 0);
 
-    compareEmpty.textContent = t.compareHint;
+    compareEmpty.textContent = t.compareHint(compareMax);
     compareEmpty.hidden = compareIds.length > 0;
     app.classList.toggle('compare-empty', compareIds.length === 0);
 
@@ -579,19 +704,21 @@
       const item = document.createElement('div');
       item.className = 'compare-item';
       const label = compareIds.length === 1 ? `<span class="compare-item-label">${t.compareOneSelected}</span>` : '';
+      item.dataset.compareSlug = data.slug || data.id || data.name;
+      item.dataset.compareName = data.name;
       item.innerHTML = `<div class="compare-item-main">${label}<strong>${data.name}</strong></div><button class="btn" type="button">${t.remove}</button>`;
       item.querySelector('button')?.addEventListener('click', () => toggleCompare(card));
       compareList.appendChild(item);
     });
 
-    if (compareIds.length === 2) {
+    if (compareIds.length >= 2) {
       compareDiff.hidden = false;
       compareDiff.innerHTML = compareMarkup();
     }
   }
 
   function refreshCompareButtons() {
-    const atLimit = compareIds.length >= 2;
+    const atLimit = compareIds.length >= getCompareMax();
     cards.forEach((card) => {
       const btn = card.querySelector('[data-add-compare]');
       if (!btn) return;
@@ -599,7 +726,8 @@
       btn.classList.toggle('is-selected', active);
       btn.textContent = active ? t.addedCompare : t.addCompare;
       btn.setAttribute('aria-pressed', String(active));
-      btn.disabled = !active && atLimit;
+      btn.classList.toggle('is-at-compare-limit', !active && atLimit);
+      btn.disabled = false;
     });
   }
 
@@ -649,15 +777,17 @@
   function toggleCompare(card) {
     const id = card.dataset.id || '';
     if (!id) return;
+    const compareMax = getCompareMax();
     const alreadyAdded = compareIds.includes(id);
     if (alreadyAdded) compareIds = compareIds.filter((item) => item !== id);
-    else if (compareIds.length < 2) compareIds.push(id);
+    else if (compareIds.length < compareMax) compareIds.push(id);
     else {
-      if (compareStatus) compareStatus.textContent = t.compareFull;
-      if (copyState) copyState.textContent = t.compareFull;
+      const message = commonProActive ? t.compareProLimit : t.compareFreeLimit;
+      setCompareMessage(message, !commonProActive);
+      if (copyState) copyState.textContent = message;
       return;
     }
-    if (compareStatus) compareStatus.textContent = '';
+    setCompareMessage(proStatusCheckFailed ? t.compareCheckFailed : '', false);
     refreshCompareButtons();
     renderCompare();
   }
@@ -665,7 +795,7 @@
   function clearCompare() {
     if (!compareIds.length) return;
     compareIds = [];
-    if (compareStatus) compareStatus.textContent = '';
+    setCompareMessage(proStatusCheckFailed ? t.compareCheckFailed : '', false);
     refreshCompareButtons();
     renderCompare();
   }
@@ -781,6 +911,13 @@
     }
   });
 
+  window.addEventListener('ui-atlas:pro-status', refreshProStatus);
+  window.addEventListener('focus', refreshProStatus);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshProStatus();
+  });
+
+  readCommonProStatus();
   attachCardEvents();
   if (detailEls.emptyIntro) detailEls.emptyIntro.hidden = false;
   if (detailEls.content) detailEls.content.hidden = true;
