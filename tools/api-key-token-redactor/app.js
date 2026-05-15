@@ -2,6 +2,7 @@ const el = (id) => document.getElementById(id);
 
 let currentLang = "ja";
 let lastResult = null;
+let customRules = [];
 
 const defaultLang = () => {
   const lang = (navigator.language || "").toLowerCase();
@@ -18,6 +19,9 @@ const applyLang = (lang) => {
   });
   document.querySelectorAll(".nw-lang-switch button").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.lang === currentLang);
+  });
+  document.querySelectorAll("[data-howto-link]").forEach((link) => {
+    link.setAttribute("href", currentLang === "ja" ? "./howto/" : "./howto/en/");
   });
   if (lastResult) {
     renderFindings(lastResult.findings);
@@ -80,6 +84,7 @@ const redactContent = (text, options) => {
       severity,
       line: lineNumberFor(text, start),
       preview: previewFor(text, match.index, match.index + match[0].length, start, end),
+      redacted: placeholderFor(value, options.keepLength, options.placeholder),
       start,
       end,
     });
@@ -144,6 +149,16 @@ const redactContent = (text, options) => {
     scanGroup(/(Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Cookie header", "medium");
     scanGroup(/(Set-Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Set-Cookie header", "medium");
     scanGroup(/(\/\/registry\.npmjs\.org\/:_authToken=)([^\s\r\n]{8,})/gi, 2, "genericSecret", "npm auth token", "high");
+  }
+
+  if (options.proActive && Array.isArray(options.customRules)) {
+    options.customRules.forEach((rule) => {
+      if (!rule || !rule.prefix) return;
+      const escapedPrefix = rule.prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const minLength = Math.max(4, Number(rule.minLength || 12));
+      const pattern = new RegExp(`\\b${escapedPrefix}[A-Za-z0-9._~+/=-]{${minLength},}`, "g");
+      scanWhole(pattern, "customRule", rule.label || `Custom: ${rule.prefix}`, rule.severity === "medium" ? "medium" : "high");
+    });
   }
 
   findings.sort((a, b) => a.start - b.start || severityRank[b.severity] - severityRank[a.severity]);
@@ -274,6 +289,233 @@ const downloadText = (filename, text) => {
   URL.revokeObjectURL(url);
 };
 
+
+const copyText = async (text) => {
+  if (!text.trim()) return false;
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+    return true;
+  }
+};
+
+const downloadFile = (filename, text, type = "text/plain;charset=utf-8") => {
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
+
+const severityCounts = (findings = []) => ({
+  high: findings.filter((item) => item.severity === "high").length,
+  medium: findings.filter((item) => item.severity === "medium").length,
+});
+
+const selectedProfile = () => el("profileSelect")?.value || "GitHub Issue";
+
+const rotationChecklist = (findings = []) => {
+  const labels = findings.map((item) => `${item.label} ${item.type}`.toLowerCase());
+  const has = (word) => labels.some((label) => label.includes(word));
+  const rows = [
+    ["GitHub", has("github"), "Revoke the leaked PAT/token, review repository and organization audit logs, and rotate CI secrets."],
+    ["Slack", has("slack"), "Rotate bot/user tokens and inspect app installations and message exposure."],
+    ["AWS", has("aws"), "Disable the access key, rotate paired secret access key, and review CloudTrail/IAM use."],
+    ["Stripe", has("stripe"), "Roll secret/restricted keys and review dashboard events and webhook signing secrets."],
+    ["npm", has("npm"), "Revoke the automation token and check recent package publish activity."],
+    ["Google", has("google"), "Restrict or regenerate the API key and review API usage."],
+    ["GitLab", has("gitlab"), "Revoke the token and inspect project/group activity."],
+    ["Unknown generic secret", has("secret") || has("password") || has("custom"), "Identify owner, rotate at source, and confirm the old value no longer works."],
+  ];
+  return rows.map(([name, detected, note]) => `- [ ] ${name}${detected ? " (detected)" : ""}: ${note}`).join("\n");
+};
+
+const safeFindings = () => (lastResult?.findings || []).map((item) => ({
+  type: item.type,
+  label: item.label,
+  severity: item.severity,
+  line: item.line,
+  preview: item.preview,
+  redacted: item.redacted || "[REDACTED]",
+}));
+
+const currentRedactedOutput = () => el("outputText")?.value || "";
+
+const ensureResult = () => {
+  if (lastResult) return true;
+  showToast(t("先に伏字化を実行してください", "Run redaction first"));
+  return false;
+};
+
+const auditMarkdown = () => {
+  const findings = safeFindings();
+  const counts = severityCounts(findings);
+  const table = findings.length
+    ? findings.map((item) => `| ${item.severity.toUpperCase()} | ${item.type} | ${item.label} | ${item.line} | \`${item.preview.replace(/\|/g, "\\|")}\` |`).join("\n")
+    : "| - | - | No findings | - | Manual review still required |";
+  return `# Redaction Audit Report
+
+## Summary
+- Profile: ${selectedProfile()}
+- Total findings: ${findings.length}
+- Redacted output length: ${currentRedactedOutput().length} characters
+- Processing: local browser redaction only; pasted input is not uploaded by this tool.
+
+## Severity counts
+- High: ${counts.high}
+- Medium: ${counts.medium}
+
+## Finding table
+| Severity | Type | Label | Line | Masked preview |
+| --- | --- | --- | ---: | --- |
+${table}
+
+## Redaction notes
+- Finding previews and exports contain masked previews only.
+- Raw secret values are not included in this report.
+- The redacted text should still be reviewed before sharing.
+
+## Manual review checklist
+- [ ] URLs and query parameters checked
+- [ ] Cookie and Set-Cookie headers checked
+- [ ] Authorization headers checked
+- [ ] Emails, IP addresses, and internal hostnames checked
+- [ ] Provider-side token rotation considered
+
+## Remaining risks
+- Custom formats, very short values, screenshots, and binary files may not be detected.
+- A redacted value may still reveal context such as service names, endpoint paths, or account IDs.
+
+## Rotation checklist
+${rotationChecklist(findings)}
+`;
+};
+
+const githubIssueTemplate = () => `## Summary
+I need help reviewing this redacted log/config snippet. Secrets were redacted locally before sharing.
+
+## Redacted log area
+\`\`\`text
+${currentRedactedOutput() || "(Run redaction first and paste the redacted output here.)"}
+\`\`\`
+
+## What was redacted
+${safeFindings().map((item) => `- ${item.severity.toUpperCase()} line ${item.line}: ${item.label} (${item.type}) — ${item.preview}`).join("\n") || "- No automated findings. Manual review still required."}
+
+## Manual checks still needed
+- [ ] Confirm no raw tokens remain
+- [ ] Check URLs, Cookie headers, Authorization headers, emails, IPs, and internal hosts
+- [ ] Confirm this issue does not include sensitive customer data
+
+## Rotation checklist
+${rotationChecklist(safeFindings())}
+`;
+
+const supportTemplate = (target = "support") => `Hello,\n\nI redacted likely secrets locally before sharing this ${target} note. Please treat the snippet as potentially sensitive because automated detection is not perfect.\n\nRedacted output:\n\`\`\`text\n${currentRedactedOutput() || "(Run redaction first.)"}\n\`\`\`\n\nManual review warning: URLs, cookies, Authorization headers, account IDs, emails, IPs, and provider-specific tokens may still require human review.\n`;
+
+const handoffPackMarkdown = () => `${auditMarkdown()}\n\n---\n\n# GitHub Issue Template\n\n${githubIssueTemplate()}\n\n---\n\n# Support Template\n\n${supportTemplate("support")}\n\n---\n\n# Discord Template\n\n${supportTemplate("Discord")}\n`;
+
+const csvFindings = () => {
+  const rows = [["severity", "type", "label", "line", "preview"]];
+  safeFindings().forEach((item) => rows.push([item.severity, item.type, item.label, item.line, item.preview]));
+  return rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+};
+
+const renderCustomRules = () => {
+  const list = el("customRulesList");
+  if (!list) return;
+  if (!customRules.length) {
+    list.innerHTML = `<p class="empty-state">${escapeHtml(t("Custom ruleは未追加です。", "No custom rules added."))}</p>`;
+    return;
+  }
+  list.innerHTML = customRules.map((rule, index) => `
+    <div class="custom-rule-item">
+      <code>${escapeHtml(rule.label)} / ${escapeHtml(rule.prefix)} / min ${escapeHtml(rule.minLength)} / ${escapeHtml(rule.severity)}</code>
+      <button type="button" class="btn-ghost" data-remove-rule="${index}">${escapeHtml(t("削除", "Remove"))}</button>
+    </div>
+  `).join("");
+  list.querySelectorAll("[data-remove-rule]").forEach((button) => {
+    button.addEventListener("click", () => {
+      customRules.splice(Number(button.dataset.removeRule), 1);
+      renderCustomRules();
+      showToast(t("Custom ruleを削除しました", "Custom rule removed"));
+    });
+  });
+};
+
+const setupProActions = () => {
+  renderCustomRules();
+  el("addCustomRuleBtn")?.addEventListener("click", () => {
+    if (document.documentElement.dataset.proActive !== "true") {
+      showToast(t("ProでCustom ruleを追加できます", "Custom rules are available with Pro"));
+      return;
+    }
+    const label = el("customRuleLabel")?.value.trim() || "Custom secret";
+    const prefix = el("customRulePrefix")?.value.trim();
+    const minLength = Number(el("customRuleMinLength")?.value || 12);
+    const severity = el("customRuleSeverity")?.value === "medium" ? "medium" : "high";
+    if (!prefix) {
+      showToast(t("prefixを入力してください", "Enter a prefix"));
+      return;
+    }
+    customRules.push({ label, prefix, minLength: Math.max(4, minLength), severity });
+    renderCustomRules();
+    showToast(t("Custom ruleを追加しました", "Custom rule added"));
+  });
+
+  el("profileSelect")?.addEventListener("change", () => {
+    showToast(t("Profileを切り替えました", "Profile switched"));
+  });
+
+  const copyAction = (id, builder, message) => {
+    el(id)?.addEventListener("click", async () => {
+      if (!ensureResult()) return;
+      await copyText(builder());
+      showToast(message);
+    });
+  };
+
+  copyAction("copyAuditBtn", auditMarkdown, t("Audit Markdownをコピーしました", "Copied audit Markdown"));
+  copyAction("copyGithubBtn", githubIssueTemplate, t("GitHub Issueテンプレートをコピーしました", "Copied GitHub Issue template"));
+  copyAction("copySupportBtn", () => supportTemplate("support"), t("Supportテンプレートをコピーしました", "Copied support template"));
+  copyAction("copyDiscordBtn", () => supportTemplate("Discord"), t("Discordテンプレートをコピーしました", "Copied Discord template"));
+
+  el("downloadJsonBtn")?.addEventListener("click", () => {
+    if (!ensureResult()) return;
+    downloadFile(`redacted-findings-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(safeFindings(), null, 2), "application/json;charset=utf-8");
+    showToast(t("JSONを保存しました", "JSON saved"));
+  });
+  el("downloadCsvBtn")?.addEventListener("click", () => {
+    if (!ensureResult()) return;
+    downloadFile(`redacted-findings-${new Date().toISOString().slice(0, 10)}.csv`, csvFindings(), "text/csv;charset=utf-8");
+    showToast(t("CSVを保存しました", "CSV saved"));
+  });
+  el("downloadHandoffBtn")?.addEventListener("click", () => {
+    if (!ensureResult()) return;
+    downloadFile(`redaction-handoff-${new Date().toISOString().slice(0, 10)}.md`, handoffPackMarkdown(), "text/markdown;charset=utf-8");
+    showToast(t("Markdown handoff packを保存しました", "Markdown handoff pack saved"));
+  });
+};
+
+window.NWApiKeyTokenRedactor = {
+  auditMarkdown,
+  githubIssueTemplate,
+  supportTemplate,
+  handoffPackMarkdown,
+  safeFindings,
+};
+
 const samples = {
   env: `OPENAI_API_KEY="sk-proj-demo1234567890abcdef"
 GITHUB_TOKEN=github_pat_demo_1234567890abcdef123456
@@ -322,6 +564,8 @@ document.addEventListener("DOMContentLoaded", () => {
     modeGenericSecret: el("modeGenericSecret").checked,
     placeholder: el("placeholderStyle").value,
     keepLength: el("keepLengthToggle").checked,
+    proActive: document.documentElement.dataset.proActive === "true",
+    customRules,
   });
 
   const runRedaction = () => {
@@ -337,6 +581,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSummary(emptyCounts());
   renderFindings([]);
   updateSafetySummary([]);
+  setupProActions();
 
   redactBtn.addEventListener("click", runRedaction);
 
@@ -366,7 +611,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     try {
-      await navigator.clipboard.writeText(text);
+      await copyText(text);
       showToast(t("伏字済みテキストをコピーしました", "Copied redacted text"));
     } catch {
       const textarea = document.createElement("textarea");

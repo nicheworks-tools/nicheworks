@@ -511,3 +511,132 @@ button:hover,
     font-size: 13px;
   }
 }
+
+.pro-card {
+  border-color: #c7d2fe;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.pro-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pro-status {
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.pro-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.pro-preview-grid article,
+.custom-rule-box,
+.custom-rule-item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px;
+}
+
+.pro-preview-grid p,
+.custom-rule-box p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.pro-buy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4f46e5;
+  border-radius: 12px;
+  background: #4f46e5;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.pro-controls,
+.custom-rule-box {
+  margin-top: 12px;
+}
+
+.custom-rule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.custom-rule-grid label {
+  display: grid;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.custom-rule-grid input,
+.custom-rule-grid select {
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--fg);
+  background: #fff;
+}
+
+.custom-rules-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.custom-rule-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.custom-rule-item code {
+  overflow-wrap: anywhere;
+}
+
+.pro-action-row button {
+  border-color: #c7d2fe;
+}
+
+@media (max-width: 480px) {
+  .pro-buy-button {
+    width: 100%;
+  }
+
+  .custom-rule-item button {
+    width: 100%;
+  }
+}

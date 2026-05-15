@@ -112,7 +112,7 @@
       <p data-i18n="ja">このツールは、APIキー、Bearerトークン、JWT、秘密鍵、Cookie、URL内トークンなどをブラウザ内で検出し、外部送信なしで伏字化します。</p>
       <p data-i18n="en">This tool detects API keys, Bearer tokens, JWTs, private keys, cookies, and URL tokens in your browser without uploading your text.</p>
       <p class="usage-link">
-        <a href="./howto/">
+        <a href="./howto/" data-howto-link>
           <span data-i18n="ja">詳しい使い方と検出パターン</span>
           <span data-i18n="en">Full guide and supported patterns</span>
         </a>
@@ -124,7 +124,7 @@
         <span data-i18n="ja">入力</span>
         <span data-i18n="en">Input</span>
       </h2>
-      <textarea id="inputText" stable content="Paste logs, configs, .env, JSON, curl commands, or secrets here..."></textarea>
+      <textarea id="inputText" placeholder="Paste logs, configs, .env, JSON, curl commands, or secrets here..."></textarea>
       <div class="note">
         <span data-i18n="ja">プライバシー: ブラウザ内で処理され、外部に送信されません。</span>
         <span data-i18n="en">Privacy: Runs locally in your browser. Nothing is uploaded.</span>
@@ -166,8 +166,8 @@
       <div class="options-row">
         <label class="select-item">
           <span class="select-label" data-i18n="ja">置換文字</span>
-          <span class="select-label" data-i18n="en">stable content</span>
-          <select id="stable contentStyle">
+          <span class="select-label" data-i18n="en">Replacement text</span>
+          <select id="placeholderStyle">
             <option value="[REDACTED]" selected>[REDACTED]</option>
             <option value="****">****</option>
             <option value="<redacted>">&lt;redacted&gt;</option>
@@ -197,7 +197,7 @@
         <span data-i18n="ja">出力</span>
         <span data-i18n="en">Output</span>
       </h2>
-      <textarea id="outputText" readonly stable content="Redacted text will appear here..."></textarea>
+      <textarea id="outputText" readonly placeholder="Redacted text will appear here..."></textarea>
 
       <div id="summary" class="summary">
         <div class="summary-row">
@@ -297,6 +297,112 @@
       </ul>
     </section>
 
+
+
+    <section class="tool-card pro-card" aria-labelledby="proTitle">
+      <div class="pro-card-head">
+        <div>
+          <p class="eyebrow">NicheWorks Pro</p>
+          <h2 id="proTitle">
+            <span data-i18n="ja">安全確認パック</span>
+            <span data-i18n="en">Safety handoff pack</span>
+          </h2>
+        </div>
+        <span class="pro-status" data-pro-status>Preview</span>
+      </div>
+      <p class="note" data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+      <p class="note" data-i18n="en">After purchase, NicheWorks Pro is enabled in this browser. It usually stays available after closing tabs or the browser. Another device, another browser, private mode, or cleared site data requires activation again.</p>
+
+      <div class="pro-preview" data-pro-preview>
+        <h3>
+          <span data-i18n="ja">Pro Preview</span>
+          <span data-i18n="en">Pro Preview</span>
+        </h3>
+        <div class="pro-preview-grid">
+          <article>
+            <strong>Redaction Audit Report</strong>
+            <p data-i18n="ja">件数、重要度、検出表、残リスク、手動確認項目をMarkdownでまとめます。</p>
+            <p data-i18n="en">Summarizes counts, severity, finding table, remaining risks, and manual checks in Markdown.</p>
+          </article>
+          <article>
+            <strong>GitHub Issue template</strong>
+            <p data-i18n="ja">伏字済みログ、伏字内容、ローテーション確認をIssue形式に整えます。</p>
+            <p data-i18n="en">Formats redacted logs, redaction notes, and rotation checks for GitHub Issues.</p>
+          </article>
+          <article>
+            <strong>Support / Discord template</strong>
+            <p data-i18n="ja">サポート窓口やDiscordへ渡す短い説明と目視確認警告を生成します。</p>
+            <p data-i18n="en">Creates a short share note and manual-review warning for support or Discord.</p>
+          </article>
+          <article>
+            <strong>Rotation checklist</strong>
+            <p data-i18n="ja">GitHub、Slack、AWS、Stripe、npm、Google、GitLab、不明secretの確認項目です。</p>
+            <p data-i18n="en">Checklist for GitHub, Slack, AWS, Stripe, npm, Google, GitLab, and unknown secrets.</p>
+          </article>
+          <article>
+            <strong>Custom rules</strong>
+            <p data-i18n="ja">独自ラベル、prefix、最小長、重要度で追加検出できます。</p>
+            <p data-i18n="en">Add detections by custom label, prefix, minimum length, and severity.</p>
+          </article>
+          <article>
+            <strong>Redaction profile</strong>
+            <p data-i18n="ja">GitHub Issue、Discord、Support、Public paste、Codex handoff用に出力文脈を切り替えます。</p>
+            <p data-i18n="en">Switch output context for GitHub Issues, Discord, support, public paste, or Codex handoff.</p>
+          </article>
+        </div>
+        <a class="pro-buy-button" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener" data-pro-buy>
+          <span data-i18n="ja">NicheWorks Proを購入</span>
+          <span data-i18n="en">Buy NicheWorks Pro</span>
+        </a>
+      </div>
+
+      <div class="pro-only" data-pro-only hidden>
+        <div class="pro-controls">
+          <label class="select-item">
+            <span class="select-label" data-i18n="ja">Redaction profile</span>
+            <span class="select-label" data-i18n="en">Redaction profile</span>
+            <select id="profileSelect">
+              <option value="GitHub Issue">GitHub Issue</option>
+              <option value="Discord share">Discord share</option>
+              <option value="Support ticket">Support ticket</option>
+              <option value="Public paste">Public paste</option>
+              <option value="Codex handoff">Codex handoff</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="custom-rule-box">
+          <h3>
+            <span data-i18n="ja">Custom detection rules</span>
+            <span data-i18n="en">Custom detection rules</span>
+          </h3>
+          <div class="custom-rule-grid">
+            <label><span data-i18n="ja">ラベル</span><span data-i18n="en">Label</span><input id="customRuleLabel" type="text" placeholder="Internal API key"></label>
+            <label><span>Prefix</span><input id="customRulePrefix" type="text" placeholder="corp_live_"></label>
+            <label><span data-i18n="ja">最小長</span><span data-i18n="en">Minimum length</span><input id="customRuleMinLength" type="number" min="4" value="12"></label>
+            <label><span>Severity</span><select id="customRuleSeverity"><option value="high">High</option><option value="medium">Medium</option></select></label>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn-ghost" id="addCustomRuleBtn">
+              <span data-i18n="ja">Custom ruleを追加</span>
+              <span data-i18n="en">Add custom rule</span>
+            </button>
+          </div>
+          <div id="customRulesList" class="custom-rules-list"></div>
+        </div>
+
+        <div class="btn-row pro-action-row">
+          <button type="button" class="btn-ghost" id="copyAuditBtn">Copy Audit Markdown</button>
+          <button type="button" class="btn-ghost" id="copyGithubBtn">Copy GitHub Issue</button>
+          <button type="button" class="btn-ghost" id="copySupportBtn">Copy Support Template</button>
+          <button type="button" class="btn-ghost" id="copyDiscordBtn">Copy Discord Template</button>
+          <button type="button" class="btn-ghost" id="downloadJsonBtn">Download JSON findings</button>
+          <button type="button" class="btn-ghost" id="downloadCsvBtn">Download CSV findings</button>
+          <button type="button" class="btn-ghost" id="downloadHandoffBtn">Download Markdown handoff pack</button>
+        </div>
+      </div>
+    </section>
+
     <section class="tool-card compact">
       <h2>
         <span data-i18n="ja">このツールでできること</span>
@@ -333,6 +439,14 @@
         </summary>
         <p data-i18n="ja">はい。api_key、token、secret、password、client_secret、access_token などのキー名をもとに検出します。</p>
         <p data-i18n="en">Yes. It detects values labeled as api_key, token, secret, password, client_secret, access_token, and similar names.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">購入後のPro有効化はどう扱われますか？</span>
+          <span data-i18n="en">How does Pro activation work after purchase?</span>
+        </summary>
+        <p data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+        <p data-i18n="en">After purchase, NicheWorks Pro is enabled in this browser. It usually stays available after closing tabs or the browser. Another device, another browser, private mode, or cleared site data requires activation again.</p>
       </details>
       <details>
         <summary>
@@ -377,6 +491,8 @@
   </footer>
 
   <div id="copyToast" class="toast" hidden>Copied</div>
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
