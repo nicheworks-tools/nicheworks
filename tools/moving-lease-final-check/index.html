@@ -80,6 +80,11 @@
         "@type":"Question",
         "name":"PDF保存できますか？",
         "acceptedAnswer":{"@type":"Answer","text":"ブラウザの印刷機能からPDF保存できます。画面の印刷またはPDF保存を選んでください。"}
+      },
+      {
+        "@type":"Question",
+        "name":"購入後のPro有効化はどう扱われますか？",
+        "acceptedAnswer":{"@type":"Answer","text":"購入後、このブラウザではNicheWorks Proが有効になります。別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。"}
       }
     ]
   }
@@ -192,6 +197,69 @@
       </div>
     </section>
 
+    <section class="pro-card" aria-label="NicheWorks Pro">
+      <div class="pro-card-head">
+        <p class="pro-kicker">NicheWorks Pro</p>
+        <h2>Moving / Lease Final Pack</h2>
+        <p class="pro-status" data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</p>
+      </div>
+
+      <div data-pro-preview>
+        <p>Proで解放される提出・共有向けの整理パックをPreviewできます。Pro専用のコピー、保存、印刷向け表示は共通Pro有効化後に使えます。</p>
+        <ul class="pro-feature-list">
+          <li>提出・共有用チェックリスト完全版</li>
+          <li>退去立会いメモ完成版 / 管理会社連絡メモ</li>
+          <li>住所変更・解約先整理テンプレ / 写真記録リスト</li>
+          <li>家族共有用まとめ / Markdown出力</li>
+        </ul>
+        <div class="pro-sample" aria-label="Pro preview sample">
+          <h3>Pro出力サンプル</h3>
+          <p><strong>退去立会いメモ：</strong>立会い日時、担当者、鍵本数、メーター写真、確認した傷・設備、その場で共有した内容をまとめます。</p>
+          <p><strong>管理会社連絡メモ：</strong>退去日、退去後連絡先、返金先口座、書類・返却物、確認事項を整理します。</p>
+          <p><strong>住所変更・解約先整理：</strong>郵便転送、ライフライン、ネット回線、サブスク、銀行・カード・保険・勤務先を棚卸しします。</p>
+          <p><strong>写真記録リスト：</strong>室内全体、床、壁、水回り、設備、既存傷、鍵、メーター、返却物を撮影メモ化します。</p>
+          <p><strong>家族共有用まとめ：</strong>今日確認すること、担当者、未完了の連絡・解約・住所変更、当日の持ち物を共有用に整えます。</p>
+        </div>
+        <p class="pro-note">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+        <div class="locked-pro-actions" aria-label="Locked Pro actions">
+          <button type="button" disabled>Copy Pro Pack 🔒</button>
+          <button type="button" disabled>Save Pro Pack TXT 🔒</button>
+          <button type="button" disabled>Copy Markdown 🔒</button>
+          <button type="button" disabled>Print Pro Layout 🔒</button>
+        </div>
+        <a class="pro-buy" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" data-pro-buy>Buy Pro</a>
+      </div>
+
+      <div class="pro-unlocked" data-pro-only hidden>
+        <p>Pro解放済みです。下のPro専用操作で、現在の条件からMoving / Lease Final Packを生成できます。</p>
+      </div>
+
+      <div class="pro-actions" aria-label="Pro output actions">
+        <button id="btnCopyProPack" data-pro-only hidden type="button">Copy Pro Pack</button>
+        <button id="btnSaveProPack" data-pro-only hidden type="button">Save Pro Pack TXT</button>
+        <button id="btnCopyMarkdown" data-pro-only hidden type="button">Copy Markdown</button>
+        <button id="btnCopyInspectionMemo" data-pro-only hidden type="button">Copy Inspection Memo</button>
+        <button id="btnCopyAddressMemo" data-pro-only hidden type="button">Copy Address / Cancellation Memo</button>
+        <button id="btnCopyFamilyMemo" data-pro-only hidden type="button">Copy Family Share Memo</button>
+        <button id="btnPrintPro" data-pro-only hidden type="button">Print Pro Layout</button>
+      </div>
+
+      <div class="pro-output" data-pro-only hidden>
+        <h3>Pro Pack出力</h3>
+        <pre id="proPackOutput">退去日 / 引っ越し日を入力し、最終チェックを表示するとPro Packを生成できます。</pre>
+      </div>
+
+      <div class="pro-limitations">
+        <h3>制限事項</h3>
+        <ul>
+          <li>退去費用、原状回復、敷金精算、修繕費請求、法的判断を自動判定しません。</li>
+          <li>契約内容や管理会社判断を保証しません。</li>
+          <li>公式な提出書類ではなく、確認・共有・記録用の整理パックとして扱います。</li>
+          <li>最終判断は契約書、管理会社、自治体、専門窓口で確認してください。</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="faq" aria-label="FAQ">
       <h2>FAQ</h2>
       <details>
@@ -213,6 +281,10 @@
       <details>
         <summary>賃貸以外でも使えますか？</summary>
         <p>持ち家向けの簡易チェックもあります。売却、賃貸化、空き家管理などは状況に応じて別途確認してください。</p>
+      </details>
+      <details>
+        <summary>購入後のPro有効化はどう扱われますか？</summary>
+        <p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
       </details>
     </section>
 
@@ -246,6 +318,8 @@
     </p>
   </footer>
 
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
