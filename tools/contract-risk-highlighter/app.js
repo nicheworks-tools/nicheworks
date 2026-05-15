@@ -1,6 +1,8 @@
 (function(){
   const TOOL = "contract-risk-highlighter";
   const $ = (id) => document.getElementById(id);
+  const root = document.documentElement;
+  const MAX_FREE_FINDINGS = 3;
 
   const els = {
     modeJP: $("modeJP"), modeEN: $("modeEN"), mainTitle: $("mainTitle"), subhead: $("subhead"),
@@ -8,13 +10,17 @@
     lblText: $("lblText"), lblType: $("lblType"), lblPdf: $("lblPdf"), pdfNote: $("pdfNote"), hintText: $("hintText"),
     contractType: $("contractType"), text: $("contractText"), analyze: $("analyzeBtn"), clear: $("clearBtn"), pasteExample: $("pasteExampleBtn"),
     resultTitle: $("resultTitle"), riskBadge: $("riskBadge"), riskWhy: $("riskWhy"), disclaimerTitle: $("disclaimerTitle"), disclaimer: $("disclaimer"),
-    findingsTitle: $("findingsTitle"), findings: $("findings"), copyFindings: $("copyFindingsBtn"), exportTitle: $("exportTitle"), proState: $("proState"),
+    findingsTitle: $("findingsTitle"), findings: $("findings"), showAll: $("showAllBtn"), copyFindings: $("copyFindingsBtn"), exportTitle: $("exportTitle"),
     mdLabel: $("mdLabel"), mdPreview: $("mdPreview"), downloadMd: $("downloadMdBtn"), downloadPdf: $("downloadPdfBtn"),
-    faqTitle: $("faqTitle"), faq: $("faq"), relatedTitle: $("relatedTitle"), toast: $("toast")
+    faqTitle: $("faqTitle"), faq: $("faq"), relatedTitle: $("relatedTitle"), toast: $("toast"),
+    proPreview: $("proPreview"), fullReview: $("fullReview"), consultMemo: $("consultMemo"), counterpartyQuestions: $("counterpartyQuestions"),
+    missingChecklist: $("missingChecklist"), nextAction: $("nextAction"), copyFull: $("copyFullBtn"), copyConsult: $("copyConsultBtn"),
+    copyQuestions: $("copyQuestionsBtn"), copyMissing: $("copyMissingBtn")
   };
 
   let MODE = "JP";
-  let lastScore = null;
+  let last = { findings: [], score: null, type: "" };
+  let forceAll = false;
 
   const I18N = {
     JP: {
@@ -25,12 +31,13 @@
       noticeBody2: "重要な契約は、弁護士・専門家・社内法務に確認してください。機密契約書や個人情報は貼り付けないでください。",
       noticeBody3: "本文テキストは送信しません。ただしページ表示のために広告・解析タグは読み込まれます。",
       lblText: "契約書テキスト（貼り付け）", placeholder: "ここに契約書本文を貼り付けてください。機密情報や個人情報は貼り付けないでください。",
-      lblType: "契約タイプ", lblPdf: "PDF抽出：準備中", pdfNote: "現在は契約書テキストの貼り付けのみ対応です。",
-      analyze: "Analyze", clear: "Clear", pasteExample: "Paste example", hint: "検出結果は専門家へ相談するための下書きとして使ってください。",
+      lblType: "契約タイプ", lblPdf: "PDF抽出：準備中", pdfNote: "現在は契約書テキストの貼り付けのみ対応です。ProのPDFは解析結果をブラウザ印刷画面から保存する機能です。",
+      analyze: "Analyze", clear: "Clear", pasteExample: "Paste example", hint: "無料版は主要Findings最大3件とLite Markdownを確認できます。Proは成果物パックを生成します。",
       result: "Result", disclaimerTitle: "Disclaimer", disclaimer: "これは法的助言ではありません。契約可否・法的効果・条文修正の正しさは保証しません。重要な契約は専門家に確認してください。",
-      findings: "Findings", copy: "Copy markdown", exportTitle: "Export", exportState: "ダウンロード機能は準備中です。Markdownコピーを使ってください。", mdLabel: "Markdown preview (Free)",
-      empty: "契約書テキストを貼り付けて Analyze を押してください。", noFindings: "検出結果はありません。ただし安全を保証するものではありません。",
+      findings: "Findings", showAll: "Show all findings", copy: "Copy markdown", exportTitle: "Export", mdLite: "Lite Markdown preview (Free)", mdFull: "Full Review Markdown (Pro)",
+      empty: "契約書テキストを貼り付けて Analyze を押してください。", noFindings: "検出結果はありません。ただし安全を保証するものではありません。", moreLocked: "Proで全Findingsを表示できます。",
       pasteFirst: "テキストを貼り付けてください", copied: "Copied", copyFailed: "コピーに失敗しました。プレビュー欄を手動でコピーしてください。", noMarkdown: "先にAnalyzeしてください",
+      locked: "Pro Previewを表示しました。Download .md / Print / Save PDF はNicheWorks Proで解放されます。", printed: "ブラウザの印刷画面でPDF保存を選択できます。",
       faqTitle: "FAQ", relatedTitle: "Related tools",
       typeOptions: [["services_jp","業務委託"],["nda_jp","NDA"],["sales_jp","売買"]],
       scoreGuide: {
@@ -43,8 +50,8 @@
         ["法的助言ですか？", "いいえ。注意パターンを機械的に拾う簡易チェックです。契約可否や条文修正の正しさは保証しません。"],
         ["契約書テキストは送信されますか？", "本文解析はブラウザ内で行います。ただしページ表示のために広告・解析タグは読み込まれます。"],
         ["機密契約書を貼ってよいですか？", "推奨しません。機密情報や個人情報は貼り付けないでください。"],
-        ["検出されなければ安全ですか？", "いいえ。検出漏れがあります。重要な契約は専門家に確認してください。"],
-        ["PDFに対応していますか？", "現時点ではテキスト貼り付けのみ対応です。PDF抽出は準備中です。"]
+        ["NicheWorks Pro購入後はどうなりますか？", "購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。"],
+        ["PDFに対応していますか？", "PDF本文の直接抽出は準備中です。ProのPrint / Save PDFは、解析結果をブラウザ印刷画面からPDF保存する機能です。"]
       ]
     },
     EN: {
@@ -55,156 +62,225 @@
       noticeBody2: "For important agreements, consult a lawyer, specialist, or legal team. Do not paste confidential contracts or personal data.",
       noticeBody3: "The contract text is not sent to a server. However, ad and analytics tags are loaded for the page itself.",
       lblText: "Contract text (paste)", placeholder: "Paste contract text here. Do not paste confidential information or personal data.",
-      lblType: "Contract type", lblPdf: "PDF extraction: coming soon", pdfNote: "Currently this tool supports pasted text only.",
-      analyze: "Analyze", clear: "Clear", pasteExample: "Paste example", hint: "Use the findings as a draft for review or professional consultation.",
+      lblType: "Contract type", lblPdf: "PDF extraction: coming soon", pdfNote: "Currently this tool supports pasted text only. Pro PDF output means saving the analysis result through the browser print dialog.",
+      analyze: "Analyze", clear: "Clear", pasteExample: "Paste example", hint: "Free mode shows up to 3 key findings and Lite Markdown. Pro generates the full deliverable pack.",
       result: "Result", disclaimerTitle: "Disclaimer", disclaimer: "This is not legal advice. It does not guarantee legal effect, contract acceptance, or clause correctness. Consult a professional for important agreements.",
-      findings: "Findings", copy: "Copy markdown", exportTitle: "Export", exportState: "Downloads are preparing. Use Markdown copy for now.", mdLabel: "Markdown preview (Free)",
-      empty: "Paste contract text and click Analyze.", noFindings: "No findings. This does not mean the contract is safe.", pasteFirst: "Paste some text first",
-      copied: "Copied", copyFailed: "Copy failed. Copy the preview manually.", noMarkdown: "Analyze first", faqTitle: "FAQ", relatedTitle: "Related tools",
+      findings: "Findings", showAll: "Show all findings", copy: "Copy markdown", exportTitle: "Export", mdLite: "Lite Markdown preview (Free)", mdFull: "Full Review Markdown (Pro)",
+      empty: "Paste contract text and click Analyze.", noFindings: "No findings. This does not mean the contract is safe.", moreLocked: "Pro shows all findings.",
+      pasteFirst: "Paste text first", copied: "Copied", copyFailed: "Copy failed. Please copy the preview manually.", noMarkdown: "Analyze first",
+      locked: "Pro Preview is shown. Download .md / Print / Save PDF are unlocked with NicheWorks Pro.", printed: "Choose Save as PDF in the browser print dialog.",
+      faqTitle: "FAQ", relatedTitle: "Related tools",
       typeOptions: [["services_en","Services agreement"],["nda_en","NDA"],["sales_en","Sales agreement"]],
       scoreGuide: {
-        HIGH: "HIGH: Strong termination, uncapped liability, IP assignment, or multiple one-sided clauses were found.",
-        MEDIUM: "MEDIUM: Payment, acceptance, liability, or review-sensitive clauses were found.",
-        LOW: "LOW: Minor or general review points were found.",
-        UNKNOWN: "UNKNOWN: The text is too short or there is not enough signal."
+        HIGH: "HIGH: Multiple severe patterns such as immediate termination, unlimited liability, IP transfer, or one-sided terms.",
+        MEDIUM: "MEDIUM: Payment, acceptance, liability scope, or similar terms need review.",
+        LOW: "LOW: Mostly light review points or general cautions.",
+        UNKNOWN: "UNKNOWN: The text is too short or lacks enough signals."
       },
       faq: [
-        ["Is this legal advice?", "No. It is a simple pattern checker. It does not guarantee whether a contract is acceptable or how clauses should be revised."],
-        ["Is the contract text sent to a server?", "No. The text analysis runs in your browser. Ad and analytics tags are still loaded for the page."],
-        ["Can I paste confidential contracts?", "Not recommended. Do not paste confidential information or personal data."],
-        ["Does no finding mean the contract is safe?", "No. This tool can miss important issues. Consult a professional for important agreements."],
-        ["Does it support PDF?", "Not yet. Currently it supports pasted text only."]
+        ["Is this legal advice?", "No. It is a simple pattern checker and does not guarantee legal effect, contract acceptance, or clause correctness."],
+        ["Is the contract text sent to a server?", "No. Text analysis runs in your browser, but ad and analytics tags are loaded for the page."],
+        ["Can I paste confidential contracts?", "Not recommended. Do not paste confidential contracts, personal data, or non-public information."],
+        ["What happens after purchasing NicheWorks Pro?", "After purchase, NicheWorks Pro becomes active in this browser. It usually remains active after closing tabs or the browser. Re-activation may be required on another device, another browser, incognito mode, or after deleting site data."],
+        ["Does it support PDF?", "Direct PDF text extraction is coming soon. Pro Print / Save PDF means saving the analysis result through your browser print dialog."]
       ]
     }
   };
 
+  const RULES = [
+    { id:"termination", severity:"HIGH", category:"Termination", jp:/解除|無催告|直ちに終了|一方的に終了|中途解約できない/g, en:/terminate|termination|immediate termination|without notice|may not terminate/gi,
+      titleJP:"解除・中途解約の片務性", titleEN:"Termination / no-convenience exit", whyJP:"無催告解除や中途解約不可は、片方に大きい不利益が出る可能性があります。", whyEN:"Immediate termination or no-convenience exit can create one-sided operational risk.", askJP:["解除前の催告期間はあるか", "中途解約の条件と費用は妥当か"], askEN:["Is there a cure period before termination?", "Are convenience termination conditions and fees reasonable?"], suggestionJP:"解除事由、催告期間、精算方法を確認してください。", suggestionEN:"Review termination triggers, cure period, and settlement terms." },
+    { id:"liability", severity:"HIGH", category:"Liability", jp:/一切の損害|全ての損害|無制限|間接損害|逸失利益|補償|賠償/g, en:/unlimited liability|all damages|consequential damages|lost profits|indemnif|hold harmless|liabil/gi,
+      titleJP:"損害賠償・補償範囲", titleEN:"Liability / indemnity scope", whyJP:"賠償範囲や上限が広すぎると、想定外の負担になる可能性があります。", whyEN:"Broad liability or indemnity can create exposure beyond the project value.", askJP:["賠償上限はあるか", "間接損害・逸失利益は除外されるか"], askEN:["Is there a liability cap?", "Are consequential damages and lost profits excluded?"], suggestionJP:"賠償上限、除外損害、補償対象を確認してください。", suggestionEN:"Check caps, excluded damages, and indemnity triggers." },
+    { id:"payment", severity:"MED", category:"Payment", jp:/支払|報酬|検収|みなし承認|遅延損害金|返金不可/g, en:/payment|fee|acceptance|deemed accepted|late payment|non-refundable/gi,
+      titleJP:"支払・検収条件", titleEN:"Payment / acceptance terms", whyJP:"支払時期や検収基準が曖昧だと、未払い・納品トラブルにつながります。", whyEN:"Ambiguous payment or acceptance terms can cause collection and delivery disputes.", askJP:["検収期限と不合格理由は明確か", "支払期限と遅延時の扱いは妥当か"], askEN:["Are acceptance deadlines and rejection reasons clear?", "Are payment timing and late payment rules reasonable?"], suggestionJP:"検収基準、期限、支払条件を書面で確認してください。", suggestionEN:"Confirm acceptance criteria, deadlines, and payment mechanics." },
+    { id:"ip", severity:"HIGH", category:"IP / Deliverables", jp:/権利.*帰属|著作権|知的財産|著作者人格権|譲渡|成果物/g, en:/intellectual property|copyright|assign|assignment|moral rights|deliverables|work product/gi,
+      titleJP:"成果物・知的財産権", titleEN:"Deliverables / IP ownership", whyJP:"成果物やノウハウの帰属が広すぎると、再利用や実績利用に影響します。", whyEN:"Broad IP assignment can affect reuse, portfolio use, and background know-how.", askJP:["既存素材やノウハウは除外されるか", "著作者人格権不行使の範囲は妥当か"], askEN:["Are pre-existing materials and know-how excluded?", "Is the moral rights waiver scope reasonable?"], suggestionJP:"成果物、既存素材、二次利用、実績公開の扱いを分けて確認してください。", suggestionEN:"Separate deliverables, pre-existing materials, reuse, and portfolio rights." },
+    { id:"confidentiality", severity:"MED", category:"Confidentiality", jp:/秘密保持|機密|永久|競業避止|専属|独占/g, en:/confidential|confidentiality|perpetual|non-compete|exclusive|exclusivity/gi,
+      titleJP:"秘密保持・競業避止", titleEN:"Confidentiality / exclusivity", whyJP:"期間が無期限、対象が広すぎる、競業避止が強い場合は実務制約が大きくなります。", whyEN:"Perpetual or broad confidentiality, non-compete, or exclusivity terms can restrict future work.", askJP:["秘密保持期間は合理的か", "競業避止・専属の範囲は限定されているか"], askEN:["Is the confidentiality term reasonable?", "Is non-compete or exclusivity narrowly scoped?"], suggestionJP:"対象情報、期間、例外、競業制限の範囲を確認してください。", suggestionEN:"Check covered information, term, exceptions, and restriction scope." },
+    { id:"subcontract", severity:"LOW", category:"Operations", jp:/再委託|下請|第三者|個人情報|委託先/g, en:/subcontract|third party|personal data|processor|vendor/gi,
+      titleJP:"再委託・個人情報", titleEN:"Subcontracting / personal data", whyJP:"再委託可否や個人情報の扱いが曖昧だと、実務運用で支障が出ます。", whyEN:"Unclear subcontracting or personal data handling can block operations or compliance.", askJP:["再委託の承諾手続きは明確か", "個人情報の取扱範囲は明確か"], askEN:["Is subcontracting approval clear?", "Is personal data processing scope clear?"], suggestionJP:"承諾方法、責任範囲、個人情報の管理条件を確認してください。", suggestionEN:"Confirm approval flow, responsibility, and data handling safeguards." },
+    { id:"missing-law", severity:"INFO", category:"Missing clause", missing:true, jp:/準拠法|管轄|裁判所|反社会的勢力|反社/g, en:/governing law|jurisdiction|venue|anti-social|sanctions/gi,
+      titleJP:"準拠法・管轄・反社条項の不足候補", titleEN:"Possible missing governing law / venue / compliance clause", whyJP:"契約全体に紛争解決や反社条項の記載が見当たらない場合、後日の手続き確認が必要です。", whyEN:"If dispute venue or compliance clauses are absent, escalation can become unclear.", askJP:["準拠法・管轄は明記されているか", "反社条項や制裁対応は必要か"], askEN:["Are governing law and jurisdiction stated?", "Are compliance or sanctions clauses needed?"], suggestionJP:"準拠法、管轄、反社条項、制裁対応の必要性を確認してください。", suggestionEN:"Check whether governing law, venue, compliance, or sanctions terms are required." }
+  ];
+
+  const EX_JP = `【業務委託契約（抜粋例）】\n甲は、乙が本契約に違反した場合、何らの催告を要せず直ちに本契約を解除できる。\n乙は、甲に生じた一切の損害を賠償するものとし、違約金として金100万円を支払う。\n本契約は自動更新され、中途解約はできない。\n成果物に関する一切の権利は甲に帰属し、乙は著作者人格権を行使しない。\n秘密保持義務は永久とする。`;
+  const EX_EN = `Services Agreement (excerpt)\nCustomer may terminate this Agreement immediately at its sole discretion.\nSupplier shall have unlimited liability and shall indemnify and hold harmless Customer for all claims, including consequential damages and lost profits.\nThis Agreement renews automatically and Supplier may not terminate for convenience.\nSupplier assigns all intellectual property in the deliverables to Customer and waives moral rights. Confidentiality obligations are perpetual.`;
+
+  function isPro(){ return root.dataset.proActive === "true"; }
   function gtagSafe(name, params){ try{ if(typeof window.gtag === "function") window.gtag("event", name, params || {}); }catch(_){} }
-  function toast(msg){ if(!els.toast) return; els.toast.textContent = msg; els.toast.style.display = "block"; clearTimeout(toast._tm); toast._tm = setTimeout(() => { els.toast.style.display = "none"; }, 1800); }
-  function escapeHtml(s){ return String(s || "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+  function toast(msg){ if(!els.toast) return; els.toast.textContent = msg; els.toast.style.display = "block"; clearTimeout(toast.t); toast.t = setTimeout(() => { els.toast.style.display = "none"; }, 2200); }
   function setText(el, text){ if(el) el.textContent = text; }
 
   function setMode(mode){
     MODE = mode;
     const t = I18N[MODE];
-    document.documentElement.lang = MODE === "JP" ? "ja" : "en";
-    if(els.modeJP) els.modeJP.disabled = MODE === "JP";
-    if(els.modeEN) els.modeEN.disabled = MODE === "EN";
+    root.lang = MODE === "JP" ? "ja" : "en";
     setText(els.mainTitle, t.title); setText(els.subhead, t.subhead); setText(els.noticeTitle, t.noticeTitle);
     setText(els.noticeBody1, t.noticeBody1); setText(els.noticeBody2, t.noticeBody2); setText(els.noticeBody3, t.noticeBody3);
-    setText(els.lblText, t.lblText); setText(els.lblType, t.lblType); setText(els.lblPdf, t.lblPdf); setText(els.pdfNote, t.pdfNote);
-    setText(els.analyze, t.analyze); setText(els.clear, t.clear); setText(els.pasteExample, t.pasteExample); setText(els.hintText, t.hint);
-    setText(els.resultTitle, t.result); setText(els.disclaimerTitle, t.disclaimerTitle); setText(els.disclaimer, t.disclaimer);
-    setText(els.findingsTitle, t.findings); setText(els.copyFindings, t.copy); setText(els.exportTitle, t.exportTitle); setText(els.proState, t.exportState);
-    setText(els.mdLabel, t.mdLabel); setText(els.faqTitle, t.faqTitle); setText(els.relatedTitle, t.relatedTitle);
-    if(els.text) els.text.placeholder = t.placeholder;
-    if(els.contractType) els.contractType.innerHTML = t.typeOptions.map(([value,label]) => `<option value="${value}">${escapeHtml(label)}</option>`).join("");
-    renderFAQ(); clearOutputs(); gtagSafe("tool_open", { tool_slug: TOOL, lang: MODE });
+    setText(els.lblText, t.lblText); if(els.text) els.text.placeholder = t.placeholder; setText(els.lblType, t.lblType);
+    setText(els.lblPdf, t.lblPdf); setText(els.pdfNote, t.pdfNote); setText(els.analyze, t.analyze); setText(els.clear, t.clear); setText(els.pasteExample, t.pasteExample);
+    setText(els.hintText, t.hint); setText(els.resultTitle, t.result); setText(els.disclaimerTitle, t.disclaimerTitle); setText(els.disclaimer, t.disclaimer);
+    setText(els.findingsTitle, t.findings); setText(els.showAll, t.showAll); setText(els.copyFindings, t.copy); setText(els.exportTitle, t.exportTitle); setText(els.faqTitle, t.faqTitle); setText(els.relatedTitle, t.relatedTitle);
+    if(els.contractType){ els.contractType.innerHTML = t.typeOptions.map(([value, label]) => `<option value="${value}">${label}</option>`).join(""); }
+    renderFaq(); renderProPreview(); refreshOutputs(); window.NWContractRiskPro?.refresh?.();
   }
 
-  function renderFAQ(){ if(!els.faq) return; const t = I18N[MODE]; els.faq.innerHTML = t.faq.map(([q,a]) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join(""); }
-  function windowSnippet(text, idx, mlen){ if(idx < 0) return "—"; const left = Math.max(0, idx - 90); const right = Math.min(text.length, idx + (mlen || 0) + 90); let s = text.slice(left, right).replace(/\s+/g," ").trim(); if(left > 0) s = "…" + s; if(right < text.length) s += "…"; return s.slice(0, 240); }
-  function makeFinding(rule, match, text){ return { id: rule.id, title: rule.title, severity: rule.severity, category: rule.category || "General", snippet: windowSnippet(text, match.index, match.text.length), why: rule.why, questions: rule.questions || [], suggestion: rule.suggestion || "" }; }
-  function findByRule(text, rule){ const re = new RegExp(rule.re.source, rule.re.flags.includes("g") ? rule.re.flags : rule.re.flags + "g"); const match = re.exec(text); return match ? makeFinding(rule, { index: match.index, text: match[0] }, text) : null; }
-  function missingFinding(rule){ return { id: rule.id, title: rule.title, severity: rule.severity, category: rule.category || "Missing clause", snippet: "—", why: rule.why, questions: rule.questions || [], suggestion: rule.suggestion || "" }; }
+  function renderFaq(){ if(!els.faq) return; els.faq.innerHTML = I18N[MODE].faq.map(([q,a]) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join(""); }
 
-  function commonRulesJP(){ return [
-    { id:"jp_termination_penalty", category:"解除・違約金", title:"一方的/強い解除・違約金", severity:"HIGH", re:/(違約金|即時解除|直ちに解除|無催告|催告を要せず|解除権)/, why:"解除や違約金が一方に偏ると、取引継続や損害負担のリスクが増える可能性があります。", questions:["解除条件は双方対等か？","通知期間や是正期間はあるか？","違約金・賠償額は過大ではないか？"], suggestion:"解除条件、通知期間、是正期間、違約金・賠償上限を明確にしてください。" },
-    { id:"jp_exemption", category:"免責", title:"免責の範囲が広い", severity:"HIGH", re:/(一切責任を負わない|いかなる責任も負わない|免責|責任を免れる)/, why:"免責が広すぎると、損害発生時に救済が難しくなる可能性があります。", questions:["故意・重過失は免責から除外されているか？","免責対象は合理的に限定されているか？"], suggestion:"免責範囲を限定し、故意・重過失・法令違反を除外してください。" },
-    { id:"jp_uncapped_liability", category:"損害賠償", title:"損害賠償の上限が見当たらない/無制限に見える", severity:"HIGH", re:/(一切の損害|全ての損害|すべての損害|損害を賠償|賠償するものとする)/, why:"賠償範囲や上限がないと、契約金額を超える負担が発生する可能性があります。", questions:["損害賠償の上限はあるか？","間接損害・逸失利益は除外されているか？"], suggestion:"契約金額や一定月数分など、合理的な賠償上限を検討してください。" },
-    { id:"jp_consequential", category:"損害範囲", title:"間接損害・逸失利益の扱いに注意", severity:"MED", re:/(間接損害|特別損害|逸失利益|結果損害|営業損失)/, why:"間接損害や逸失利益まで負担対象になると、想定外の損害額になる可能性があります。", questions:["間接損害・逸失利益は除外されているか？","対象損害は直接通常損害に限定されているか？"], suggestion:"負担する損害範囲を直接かつ通常の損害に限定することを検討してください。" },
-    { id:"jp_payment", category:"支払", title:"支払条件・遅延条件の確認が必要", severity:"MED", re:/(支払条件|支払期日|支払サイト|月末締め|翌月|検収後|別途協議|遅延損害金|支払遅延)/, why:"支払期日や遅延時の扱いが曖昧だと、入金遅延や認識違いが起きやすくなります。", questions:["支払期日は明確か？","検収と支払の関係は明確か？","遅延損害金は過大ではないか？"], suggestion:"請求日、支払期日、検収期限、遅延時対応を明文化してください。" },
-    { id:"jp_auto_renewal", category:"契約期間", title:"自動更新・解約制限", severity:"MED", re:/(自動更新|更新される|同一条件で更新|中途解約不可|解約できない|期間満了.*更新)/, why:"自動更新や中途解約不可は、終了したい契約を止めにくくする可能性があります。", questions:["更新停止の通知期限は明確か？","中途解約や解約予告は可能か？"], suggestion:"更新停止期限、解約予告期間、中途解約条件を明確にしてください。" },
-    { id:"jp_unilateral_change", category:"変更権", title:"一方的な変更権", severity:"HIGH", re:/(一方的に変更|任意に変更|予告なく変更|当社が変更|甲が変更できる|単独の裁量)/, why:"一方だけが条件を変更できる条項は、契約内容の安定性を損なう可能性があります。", questions:["変更には事前通知や同意が必要か？","不利益変更時に解約できるか？"], suggestion:"重要条件の変更には事前通知・協議・同意を必要とする形を検討してください。" },
-    { id:"jp_ip_assignment", category:"知的財産", title:"成果物・ノウハウの権利帰属が広い", severity:"MED", re:/(一切の権利は.+に帰属|著作権.*譲渡|成果物.*帰属|ノウハウ.*譲渡|知的財産権.*譲渡)/, why:"権利譲渡が広すぎると、既存ノウハウや再利用部品まで失う可能性があります。", questions:["既存ノウハウや汎用部品は除外されているか？","実績公開や再利用は可能か？"], suggestion:"背景知財・既存ノウハウ・汎用部品の留保を明記してください。" },
-    { id:"jp_moral_rights", category:"知的財産", title:"著作者人格権不行使", severity:"MED", re:/(著作者人格権.*行使しない|著作者人格権を行使しない|人格権.*不行使)/, why:"著作者人格権不行使は、改変や表示方法への関与を制限する可能性があります。", questions:["不行使の範囲は成果物に限定されているか？","実績公開やクレジット表記は可能か？"], suggestion:"対象範囲、改変可否、実績公開・クレジット表記を確認してください。" },
-    { id:"jp_confidentiality", category:"秘密保持", title:"秘密保持が過大/永久", severity:"LOW", re:/(永久|無期限).{0,30}(秘密保持|機密|秘密情報)/, why:"過度に長い秘密保持は運用負担になる可能性があります。", questions:["期間は合理的か？","公知情報・独自開発・第三者取得の例外はあるか？"], suggestion:"合理的な期間と標準的な例外条項を入れてください。" },
-    { id:"jp_non_compete", category:"競業・専属", title:"競業避止・専属契約", severity:"HIGH", re:/(競業避止|競業禁止|専属契約|専属的|同種業務を行わない|類似業務を行わない)/, why:"競業避止や専属条項は、今後の営業・業務機会を大きく制限する可能性があります。", questions:["期間・地域・対象業務は限定されているか？","対価や合理的理由はあるか？"], suggestion:"対象範囲、期間、地域、対価の有無を必ず確認してください。" },
-    { id:"jp_subcontracting", category:"再委託", title:"再委託の制限または無制限再委託", severity:"MED", re:/(再委託|第三者に委託|外部委託|下請)/, why:"再委託の全面禁止や無制限再委託は、実務・責任分担・情報管理に影響します。", questions:["再委託には事前承諾が必要か？","再委託先の管理責任は明確か？"], suggestion:"再委託の承諾条件、管理義務、責任範囲を明確にしてください。" },
-    { id:"jp_personal_data", category:"個人情報", title:"個人情報・委託先管理", severity:"MED", re:/(個人情報|個人データ|委託先管理|安全管理措置|漏えい|第三者提供)/, why:"個人情報を扱う契約では、管理義務・委託先管理・漏えい時対応が重要です。", questions:["個人情報の取扱範囲は明確か？","漏えい時の通知・責任分担はあるか？"], suggestion:"安全管理措置、再委託管理、漏えい時対応、返還・削除を確認してください。" }
-  ]; }
-
-  function typeRulesJP(type){
-    if(type === "nda_jp") return [
-      { id:"jp_nda_purpose", category:"NDA", title:"目的外利用・秘密情報定義", severity:"MED", re:/(目的外利用|本目的以外|秘密情報|機密情報|開示情報)/, why:"NDAでは秘密情報の定義、目的外利用、例外規定が実務上重要です。", questions:["秘密情報の定義は広すぎないか？","公知情報・既知情報・独自開発の例外はあるか？"], suggestion:"秘密情報の範囲、利用目的、例外、返還・破棄を明確にしてください。" },
-      { id:"jp_nda_return_destroy", category:"NDA", title:"返還・破棄条項", severity:"LOW", re:/(返還|破棄|消去|削除).{0,40}(秘密情報|機密情報|資料|データ)/, why:"返還・破棄の方法や期限が曖昧だと、終了後の運用で揉める可能性があります。", questions:["返還・破棄の期限はあるか？","バックアップや法令保存分の扱いはあるか？"], suggestion:"終了時の返還・破棄期限と例外を明確にしてください。" }
-    ];
-    if(type === "sales_jp") return [
-      { id:"jp_sales_acceptance", category:"売買", title:"検収みなし承認・返品制限", severity:"MED", re:/(みなし承認|検収したものとみなす|返品不可|キャンセル不可|契約不適合|危険負担|所有権移転)/, why:"売買では検収、返品、契約不適合、危険負担、所有権移転の条件が重要です。", questions:["検収期限は合理的か？","契約不適合時の対応は明確か？","危険負担と所有権移転の時点は明確か？"], suggestion:"検収期限、返品条件、契約不適合責任、危険負担、所有権移転時期を確認してください。" },
-      { id:"jp_sales_delivery", category:"売買", title:"納期・遅延責任", severity:"MED", re:/(納期|納入|引渡し|遅延|遅滞|配送|出荷)/, why:"納期や遅延時の責任が曖昧だと、損害やキャンセル条件で争いになりやすくなります。", questions:["納期は確定か目安か？","遅延時の通知・解除・賠償は明確か？"], suggestion:"納期、遅延時の通知、解除条件、責任範囲を明確にしてください。" }
-    ];
-    return [
-      { id:"jp_services_acceptance", category:"業務委託", title:"検収・修補・再納品", severity:"MED", re:/(検収|修補|再納品|不具合|瑕疵|契約不適合)/, why:"業務委託では検収期限や無償修補範囲が曖昧だと、工数が膨らむ可能性があります。", questions:["検収期限はあるか？","無償修補の範囲・期間は限定されているか？"], suggestion:"検収期限、修補回数、対応範囲、対応期間を明確にしてください。" },
-      { id:"jp_services_mid_cancel", category:"業務委託", title:"中途解約・報酬精算", severity:"MED", re:/(中途解約|途中解約|解約予告|既履行|精算|報酬を支払わない)/, why:"中途解約時の精算が曖昧だと、作業済み分の報酬回収が難しくなる可能性があります。", questions:["既履行分の報酬は支払われるか？","解約予告期間はあるか？"], suggestion:"中途解約時の既履行分精算、費用負担、予告期間を確認してください。" }
-    ];
+  function renderProPreview(){
+    if(!els.proPreview) return;
+    els.proPreview.textContent = `# Contract Risk Review Memo\n\n## Important disclaimer\n${MODE === "JP" ? "法的助言ではありません。重要な契約は専門家に確認してください。" : "This is not legal advice. Consult a professional for important agreements."}\n\n## Findings by severity\n- [HIGH] Sample: Liability cap needs review\n\n## Questions to ask the counterparty\n- Please clarify termination notice and cure period.\n\n## Questions to ask lawyer / legal team\n- Is the indemnity scope acceptable for this deal?\n\n## Missing clause checklist\n- Governing law / jurisdiction\n- Personal data handling\n\n## Next action memo\n- Share high-severity points with the reviewer before signing.`;
   }
 
-  function missingRulesJP(text){ const checks = []; if(!/(準拠法|合意管轄|管轄裁判所)/.test(text)) checks.push({ id:"jp_missing_juris", category:"不足確認", title:"準拠法/合意管轄の記載が見当たらない", severity:"INFO", why:"トラブル時の手続きが不明確になり得ます。", questions:["準拠法は明記されているか？","管轄裁判所は明記されているか？"], suggestion:"準拠法と管轄裁判所を明記してください。" }); if(!/(反社会的勢力|反社|暴力団|反社会勢力)/.test(text)) checks.push({ id:"jp_missing_antisocial", category:"不足確認", title:"反社条項の記載が見当たらない", severity:"INFO", why:"取引相手の属性に関する解除・表明保証がない可能性があります。", questions:["反社会的勢力排除条項はあるか？","違反時の解除権はあるか？"], suggestion:"必要に応じて反社会的勢力排除条項を追加してください。" }); return checks.map(missingFinding); }
-
-  function commonRulesEN(){ return [
-    { id:"en_termination", category:"Termination", title:"One-sided termination", severity:"HIGH", re:/(terminate|termination).{0,80}(sole discretion|immediately|without notice|for convenience)/i, why:"One-sided termination rights can increase delivery, revenue, and continuity risk.", questions:["Are termination rights mutual?","Is notice or cure period required?"], suggestion:"Consider mutual termination rights, notice periods, and cure periods." },
-    { id:"en_uncapped", category:"Liability", title:"Unlimited or uncapped liability", severity:"HIGH", re:/(unlimited liability|uncapped|no cap|without limit|liable for all damages)/i, why:"Uncapped liability can create disproportionate downside risk.", questions:["Is there a liability cap?","Are indirect or consequential damages excluded?"], suggestion:"Consider a reasonable liability cap and exclusions for indirect damages." },
-    { id:"en_consequential", category:"Damages", title:"Consequential damages / lost profits", severity:"MED", re:/(consequential damages|indirect damages|special damages|lost profits|loss of profit)/i, why:"Consequential damages or lost profits may expand exposure beyond expected direct losses.", questions:["Are indirect damages excluded?","Is liability limited to direct damages?"], suggestion:"Clarify whether indirect damages, special damages, and lost profits are excluded." },
-    { id:"en_indemnity", category:"Indemnity", title:"Broad indemnity", severity:"MED", re:/(indemnif(?:y|ies|ication)|hold harmless|defend and hold)/i, why:"Broad indemnities may shift unexpected risk to one party.", questions:["Is the scope limited to third-party claims?","Are triggers and caps defined?"], suggestion:"Clarify scope, triggers, exclusions, and caps." },
-    { id:"en_auto_renewal", category:"Term", title:"Auto-renewal / no easy termination", severity:"MED", re:/(auto.?renew|automatic renewal|renews automatically|no termination for convenience|may not terminate)/i, why:"Auto-renewal or no convenience termination can make the contract hard to exit.", questions:["Is the opt-out deadline clear?","Is termination for convenience allowed?"], suggestion:"Define renewal notice, opt-out deadline, and termination rights." },
-    { id:"en_unilateral_change", category:"Change rights", title:"Unilateral change right", severity:"HIGH", re:/(may change|modify at .*sole discretion|unilaterally|without notice|we may update)/i, why:"One party being able to change terms unilaterally can undermine certainty.", questions:["Is advance notice required?","Can the other party terminate after adverse changes?"], suggestion:"Require notice, consent for material changes, or termination rights for adverse changes." },
-    { id:"en_payment", category:"Payment", title:"Vague or sensitive payment terms", severity:"MED", re:/(as agreed|reasonable time|promptly|payment terms|due date|late payment|interest)/i, why:"Vague payment terms can cause disputes and delays.", questions:["Is the due date clear?","Are invoicing and acceptance requirements clear?"], suggestion:"Define invoice timing, due date, acceptance, and late payment handling." },
-    { id:"en_ip_assignment", category:"IP", title:"Overly broad IP assignment", severity:"MED", re:/(assign(?:s|ment)?).{0,100}(all intellectual property|all IP|work product|deliverables)/i, why:"Overbroad IP assignment may unintentionally include pre-existing tools, know-how, or reusable materials.", questions:["Is background IP excluded?","Is there a license-back?","Can portfolio use be allowed?"], suggestion:"Carve out background IP, tools, know-how, and reusable components." },
-    { id:"en_moral_rights", category:"IP", title:"Moral rights waiver", severity:"MED", re:/(moral rights).{0,80}(waive|waiver|not assert)/i, why:"Moral rights waiver can affect attribution and control over modifications.", questions:["Is the waiver limited to deliverables?","Is attribution or portfolio use allowed?"], suggestion:"Limit the waiver scope and clarify attribution or portfolio use." },
-    { id:"en_non_compete", category:"Non-compete", title:"Non-compete / exclusivity", severity:"HIGH", re:/(non-?compete|not compete|exclusive|exclusivity|restraint of trade)/i, why:"Non-compete or exclusivity terms can restrict future work or sales opportunities.", questions:["Is the scope/time/territory limited?","Is consideration or business justification clear?"], suggestion:"Limit scope, duration, territory, and target activities." },
-    { id:"en_subcontracting", category:"Subcontracting", title:"Subcontracting restrictions or broad subcontracting", severity:"MED", re:/(subcontract|subcontractor|delegate|third party provider)/i, why:"Subcontracting terms affect delivery, confidentiality, data handling, and responsibility.", questions:["Is consent required?","Who is responsible for subcontractors?"], suggestion:"Clarify consent, flow-down obligations, and responsibility for subcontractors." },
-    { id:"en_personal_data", category:"Data", title:"Personal data / DPA issue", severity:"MED", re:/(personal data|personal information|DPA|data processing|processor|controller|data breach)/i, why:"Contracts involving personal data need clear processing roles and breach handling.", questions:["Are controller/processor roles clear?","Are breach notice and deletion rules defined?"], suggestion:"Add or review DPA, security measures, breach notice, deletion, and subprocessors." },
-    { id:"en_confidentiality", category:"Confidentiality", title:"Perpetual confidentiality without clear limits", severity:"LOW", re:/(confidential).{0,100}(perpetual|forever|in perpetuity)/i, why:"Perpetual confidentiality may be operationally heavy without standard exceptions.", questions:["Are public domain and independently developed exceptions included?","Is duration reasonable?"], suggestion:"Add standard exceptions and a reasonable term, except for trade secrets where appropriate." }
-  ]; }
-
-  function typeRulesEN(type){
-    if(type === "nda_en") return [
-      { id:"en_nda_purpose", category:"NDA", title:"Purpose and confidential information definition", severity:"MED", re:/(confidential information|purpose|permitted purpose|use.*only for)/i, why:"For NDAs, the definition of confidential information, purpose limitation, and exceptions are critical.", questions:["Is confidential information defined too broadly?","Are standard exceptions included?"], suggestion:"Clarify confidential information, permitted purpose, exceptions, and return/destruction." },
-      { id:"en_nda_return_destroy", category:"NDA", title:"Return / destruction obligations", severity:"LOW", re:/(return|destroy|delete|destruction).{0,80}(confidential|materials|information|data)/i, why:"Return/destruction procedures can be difficult without deadlines and backup exceptions.", questions:["Is the deadline clear?","Are backup/legal retention exceptions included?"], suggestion:"Define deadlines, method, and backup/legal retention exceptions." }
-    ];
-    if(type === "sales_en") return [
-      { id:"en_sales_acceptance", category:"Sales", title:"Deemed acceptance / returns / warranty", severity:"MED", re:/(deemed accepted|acceptance|no returns|non-refundable|warranty|risk of loss|title passes)/i, why:"Sales contracts need clear acceptance, returns, warranty, risk of loss, and title transfer terms.", questions:["Is deemed acceptance period reasonable?","Are warranty and return remedies clear?","When do title and risk transfer?"], suggestion:"Clarify acceptance period, return rights, warranty remedy, title, and risk transfer." },
-      { id:"en_sales_delivery", category:"Sales", title:"Delivery delay and responsibility", severity:"MED", re:/(delivery|shipment|late delivery|delay|lead time|dispatch)/i, why:"Delivery and delay terms affect cancellation, damages, and customer obligations.", questions:["Is the delivery date firm or estimated?","What happens if delivery is delayed?"], suggestion:"Define delivery timing, delay notice, cancellation rights, and responsibility." }
-    ];
-    return [
-      { id:"en_services_acceptance", category:"Services", title:"Acceptance / rework / defects", severity:"MED", re:/(acceptance|accepted|defect|bug|rework|resubmit|correction)/i, why:"Services agreements need clear acceptance criteria and limits on free rework.", questions:["Is acceptance period defined?","Is free rework limited by scope/time?"], suggestion:"Define acceptance criteria, acceptance period, rework scope, and rework limit." },
-      { id:"en_services_termination_payment", category:"Services", title:"Termination and payment for work performed", severity:"MED", re:/(termination|terminate|work performed|fees earned|no payment|refund)/i, why:"If termination payment is unclear, already performed work may go unpaid.", questions:["Is payment due for work already performed?","Are expenses reimbursed?"], suggestion:"Clarify payment for work performed, expenses, and notice period after termination." }
-    ];
+  function findSnippet(text, re){
+    re.lastIndex = 0;
+    const m = re.exec(text);
+    if(!m) return "";
+    const start = Math.max(0, m.index - 45);
+    const end = Math.min(text.length, m.index + m[0].length + 45);
+    return text.slice(start, end).replace(/\s+/g, " ").trim();
   }
 
-  function missingRulesEN(text){ const checks = []; if(!/(governing law|jurisdiction|courts of|venue)/i.test(text)) checks.push({ id:"en_missing_juris", category:"Missing clause", title:"Governing law / jurisdiction not found", severity:"INFO", why:"Dispute handling may be unclear without governing law or jurisdiction.", questions:["What is the governing law?","Which courts or venue apply?"], suggestion:"Add governing law and jurisdiction clauses." }); return checks.map(missingFinding); }
-  function rulesJP(text, type){ return [...commonRulesJP(), ...typeRulesJP(type)].map((rule) => findByRule(text, rule)).filter(Boolean).concat(missingRulesJP(text)); }
-  function rulesEN(text, type){ return [...commonRulesEN(), ...typeRulesEN(type)].map((rule) => findByRule(text, rule)).filter(Boolean).concat(missingRulesEN(text)); }
+  function analyzeRules(text){
+    const lang = MODE === "JP" ? "jp" : "en";
+    const findings = [];
+    RULES.forEach((rule) => {
+      const re = lang === "jp" ? rule.jp : rule.en;
+      re.lastIndex = 0;
+      const matched = re.test(text);
+      if((rule.missing && !matched) || (!rule.missing && matched)){
+        findings.push({
+          id: rule.id, severity: rule.severity, category: rule.category,
+          title: lang === "jp" ? rule.titleJP : rule.titleEN,
+          why: lang === "jp" ? rule.whyJP : rule.whyEN,
+          questions: lang === "jp" ? rule.askJP : rule.askEN,
+          suggestion: lang === "jp" ? rule.suggestionJP : rule.suggestionEN,
+          snippet: rule.missing ? (lang === "jp" ? "該当条項が見当たらない可能性があります。" : "No obvious matching clause found.") : findSnippet(text, re)
+        });
+      }
+    });
+    return findings;
+  }
 
   function score(findings, text){
-    const highs = findings.filter(f => f.severity === "HIGH").length;
-    const meds = findings.filter(f => f.severity === "MED").length;
-    const lows = findings.filter(f => f.severity === "LOW").length;
-    const infos = findings.filter(f => f.severity === "INFO").length;
-    let level = "UNKNOWN";
-    if(!text || text.trim().length < 80) level = "UNKNOWN";
-    else if(text.trim().length < 400 && (highs + meds + lows + infos) < 2) level = "UNKNOWN";
-    else if(highs >= 2 || (highs >= 1 && meds >= 2)) level = "HIGH";
-    else if(highs === 1 || meds >= 2) level = "MEDIUM";
-    else if(meds === 1 || lows + infos > 0) level = "LOW";
-    const lines = [I18N[MODE].scoreGuide[level]];
-    if(findings.length) lines.push(...findings.slice(0, 6).map(f => `• [${f.severity}] ${f.title}`));
-    return { level, why: lines.join("\n"), counts: { highs, meds, lows, infos } };
+    if(text.length < 40) return { level:"UNKNOWN", why:I18N[MODE].scoreGuide.UNKNOWN };
+    const high = findings.filter(f => f.severity === "HIGH").length;
+    const med = findings.filter(f => f.severity === "MED").length;
+    let level = "LOW";
+    if(high >= 2 || (high >= 1 && med >= 2)) level = "HIGH";
+    else if(high >= 1 || med >= 1) level = "MEDIUM";
+    return { level, why:I18N[MODE].scoreGuide[level] + `\n• Findings: ${findings.length} (${high} HIGH / ${med} MED)` };
   }
 
-  function badge(level){ if(!els.riskBadge) return; els.riskBadge.className = "nw-badge"; if(level === "HIGH") els.riskBadge.classList.add("nw-badge--high"); else if(level === "MEDIUM") els.riskBadge.classList.add("nw-badge--med"); else if(level === "LOW") els.riskBadge.classList.add("nw-badge--low"); else els.riskBadge.classList.add("nw-badge--unk"); els.riskBadge.textContent = level; }
-  function renderFindings(list){ if(!els.findings) return; els.findings.innerHTML = ""; if(!list.length){ els.findings.innerHTML = `<div class="nw-muted">${escapeHtml(I18N[MODE].noFindings)}</div>`; return; } for(const f of list){ const div = document.createElement("div"); div.className = "finding"; div.innerHTML = `<div class="finding__top"><div class="finding__title">${escapeHtml(f.title)}</div><div class="finding__sev sev-${escapeHtml(f.severity)}">${escapeHtml(f.severity)}</div></div><div class="finding__cat">${escapeHtml(f.category || "General")}</div><div class="nw-muted" style="margin-top:6px;">Matched</div><div class="nw-pre">${escapeHtml(f.snippet || "—")}</div><div class="nw-muted" style="margin-top:6px;">Why</div><div>${escapeHtml(f.why || "—")}</div><div class="nw-muted" style="margin-top:6px;">What to ask</div><ul>${(f.questions || []).map(q => `<li>${escapeHtml(q)}</li>`).join("")}</ul><div class="nw-muted" style="margin-top:6px;">Suggested check / rewrite direction</div><div>${escapeHtml(f.suggestion || "—")}</div>`; els.findings.appendChild(div); } }
-  function toMarkdown(meta, findings, scored){ const lines = []; lines.push("# Contract Risk Highlight (Lite)"); lines.push(`- Timestamp: ${new Date().toLocaleString()}`); lines.push(`- Mode: ${MODE}`); lines.push(`- Type: ${meta.type}`); lines.push(`- Risk: ${scored.level}`); lines.push(""); lines.push("## Important disclaimer"); lines.push(MODE === "JP" ? "この出力は法的助言ではありません。契約可否・法的効果・条文修正の正しさを保証しません。重要な契約は弁護士・専門家・社内法務に確認してください。原文全文は含めず、検出箇所の短い抜粋のみを記録しています。" : "This output is not legal advice. It does not guarantee legal effect, contract acceptance, or clause correctness. Consult a lawyer, specialist, or legal team for important agreements. The full original text is not included; only short snippets are recorded."); lines.push(""); lines.push("## Risk basis"); scored.why.split("\n").forEach(line => lines.push(line.replace(/^•\s?/, "- "))); lines.push(""); lines.push("## Findings"); if(!findings.length){ lines.push("- (none; this does not mean the contract is safe)"); }else{ for(const f of findings){ lines.push(`### [${f.severity}] ${f.title}`); lines.push(`- Category: ${f.category || "General"}`); lines.push(`- Snippet: ${f.snippet || "—"}`); lines.push(`- Why: ${f.why || "—"}`); lines.push("- What to ask:"); (f.questions || []).forEach(q => lines.push(`  - ${q}`)); lines.push(`- Suggested check / rewrite direction: ${f.suggestion || "—"}`); lines.push(""); } } return lines.join("\n"); }
+  function badge(level){
+    if(!els.riskBadge) return;
+    els.riskBadge.textContent = level;
+    els.riskBadge.className = "nw-badge " + (level === "HIGH" ? "nw-badge--high" : level === "MEDIUM" ? "nw-badge--med" : level === "LOW" ? "nw-badge--low" : "nw-badge--unk");
+  }
 
-  function clearOutputs(){ lastScore = null; badge("UNKNOWN"); if(els.riskWhy) els.riskWhy.textContent = "—"; if(els.findings) els.findings.innerHTML = `<div class="nw-muted">${escapeHtml(I18N[MODE].empty)}</div>`; if(els.mdPreview) els.mdPreview.value = ""; }
-  function analyze(){ const text = (els.text && els.text.value ? els.text.value : "").trim(); gtagSafe("tool_run", { tool_slug: TOOL, lang: MODE }); if(!text){ clearOutputs(); toast(I18N[MODE].pasteFirst); return; } const type = els.contractType ? els.contractType.value : (MODE === "JP" ? "services_jp" : "services_en"); const findings = MODE === "JP" ? rulesJP(text, type) : rulesEN(text, type); const sc = score(findings, text); lastScore = sc; badge(sc.level); if(els.riskWhy) els.riskWhy.textContent = sc.why; renderFindings(findings); if(els.mdPreview) els.mdPreview.value = toMarkdown({ type }, findings, sc); }
+  function renderFindings(){
+    if(!els.findings) return;
+    const list = (isPro() || forceAll) ? last.findings : last.findings.slice(0, MAX_FREE_FINDINGS);
+    els.findings.innerHTML = "";
+    if(!last.score){ els.findings.innerHTML = `<div class="nw-muted">${escapeHtml(I18N[MODE].empty)}</div>`; return; }
+    if(!list.length){ els.findings.innerHTML = `<div class="nw-muted">${escapeHtml(I18N[MODE].noFindings)}</div>`; return; }
+    list.forEach((f) => {
+      const div = document.createElement("div");
+      div.className = "finding";
+      div.innerHTML = `<div class="finding__top"><div class="finding__title">${escapeHtml(f.title)}</div><div class="finding__sev sev-${escapeHtml(f.severity)}">${escapeHtml(f.severity)}</div></div><div class="finding__cat">${escapeHtml(f.category)}</div><div class="nw-muted" style="margin-top:6px;">Matched</div><div class="nw-pre">${escapeHtml(f.snippet || "—")}</div><div class="nw-muted" style="margin-top:6px;">Why</div><div>${escapeHtml(f.why)}</div><div class="nw-muted" style="margin-top:6px;">What to ask</div><ul>${f.questions.map(q => `<li>${escapeHtml(q)}</li>`).join("")}</ul><div class="nw-muted" style="margin-top:6px;">Suggested check / rewrite direction</div><div>${escapeHtml(f.suggestion)}</div>`;
+      els.findings.appendChild(div);
+    });
+    if(!isPro() && last.findings.length > MAX_FREE_FINDINGS){
+      const lock = document.createElement("div");
+      lock.className = "finding finding--locked";
+      lock.textContent = `${I18N[MODE].moreLocked} (${last.findings.length - MAX_FREE_FINDINGS} more)`;
+      els.findings.appendChild(lock);
+    }
+  }
+
+  function typeLabel(){ const opt = els.contractType?.selectedOptions?.[0]; return opt ? opt.textContent : last.type; }
+  function disclaimerText(){ return MODE === "JP" ? "この出力は法的助言ではありません。契約可否、法的効果、条文修正の正しさを保証しません。重要な契約は弁護士・専門家・社内法務に確認してください。原文全文は含めず、検出箇所の短い抜粋のみを記録しています。" : "This output is not legal advice. It does not guarantee legal effect, contract acceptance, or clause correctness. Consult a lawyer, specialist, or legal team for important agreements. The full original text is not included; only short snippets are recorded."; }
+
+  function liteMarkdown(){
+    if(!last.score) return "";
+    const lines = ["# Contract Risk Highlight (Lite)", `- Timestamp: ${new Date().toLocaleString()}`, `- Mode: ${MODE}`, `- Type: ${typeLabel()}`, `- Risk: ${last.score.level}`, "", "## Important disclaimer", disclaimerText(), "", "## Risk basis"];
+    last.score.why.split("\n").forEach(line => lines.push(line.replace(/^•\s?/, "- ")));
+    lines.push("", "## Key findings (free preview)");
+    const list = last.findings.slice(0, MAX_FREE_FINDINGS);
+    if(!list.length) lines.push("- (none; this does not mean the contract is safe)");
+    list.forEach(f => { lines.push(`### [${f.severity}] ${f.title}`, `- Category: ${f.category}`, `- Snippet: ${f.snippet || "—"}`, `- Why: ${f.why}`, "- What to ask:"); f.questions.forEach(q => lines.push(`  - ${q}`)); lines.push(`- Suggested check / rewrite direction: ${f.suggestion}`, ""); });
+    if(last.findings.length > MAX_FREE_FINDINGS) lines.push(`_NicheWorks Pro shows ${last.findings.length - MAX_FREE_FINDINGS} more findings and the Full Review Pack._`);
+    return lines.join("\n");
+  }
+
+  function memoParts(){
+    const high = last.findings.filter(f => f.severity === "HIGH");
+    const questions = last.findings.flatMap(f => f.questions.map(q => `- [${f.category}] ${q}`));
+    const missing = last.findings.filter(f => f.id === "missing-law" || f.category === "Missing clause");
+    return {
+      consult: [`Risk: ${last.score?.level || "UNKNOWN"}`, "Priority findings:", ...(high.length ? high.map(f => `- ${f.title}: ${f.why}`) : ["- No HIGH findings detected; this does not mean safe."]), "Questions for legal team:", ...questions.slice(0, 8)].join("\n"),
+      counterparty: questions.length ? questions.join("\n") : "- Please confirm no additional risk allocation terms are intended.",
+      missing: [`- Governing law / jurisdiction: ${missing.length ? "review needed" : "check if present and adequate"}`, "- Liability cap and excluded damages", "- Confidentiality exceptions and term", "- Personal data / subcontracting safeguards", "- Termination cure period and settlement"].join("\n"),
+      next: [`1. Review HIGH findings first (${high.length}).`, "2. Confirm payment, acceptance, liability, and IP terms with the owner.", "3. Share counterparty questions before signing.", "4. Ask lawyer / legal team for important or high-value contracts."].join("\n")
+    };
+  }
+
+  function fullMarkdown(){
+    if(!last.score) return "";
+    const parts = memoParts();
+    const lines = ["# Contract Risk Review Memo", "", "## Important disclaimer", disclaimerText(), "", "## Contract type", typeLabel(), "", "## Overall risk", last.score.level, "", "## Risk basis", last.score.why, "", "## Findings by severity"];
+    if(!last.findings.length) lines.push("- (none; this does not mean the contract is safe)");
+    last.findings.forEach(f => { lines.push(`### [${f.severity}] ${f.title}`, `- Category: ${f.category}`, `- Snippet: ${f.snippet || "—"}`, `- Why: ${f.why}`, `- Suggested check / rewrite direction: ${f.suggestion}`, ""); });
+    lines.push("## Questions to ask the counterparty", parts.counterparty, "", "## Questions to ask lawyer / legal team", parts.consult, "", "## Missing clause checklist", parts.missing, "", "## Suggested review checklist", "- Confirm scope, deliverables, fees, acceptance, change requests, liability, IP, confidentiality, termination, governing law, and dispute venue.", "", "## Next action memo", parts.next);
+    return lines.join("\n");
+  }
+
+  function refreshOutputs(){
+    if(els.mdLabel) els.mdLabel.textContent = isPro() ? I18N[MODE].mdFull : I18N[MODE].mdLite;
+    renderFindings();
+    const md = isPro() ? fullMarkdown() : liteMarkdown();
+    if(els.mdPreview) els.mdPreview.value = md;
+    const parts = last.score ? memoParts() : { consult:"", counterparty:"", missing:"", next:"" };
+    if(els.fullReview) els.fullReview.value = isPro() ? fullMarkdown() : "";
+    setText(els.consultMemo, parts.consult); setText(els.counterpartyQuestions, parts.counterparty); setText(els.missingChecklist, parts.missing); setText(els.nextAction, parts.next);
+  }
+
+  function clearOutputs(){ last = { findings: [], score: null, type: "" }; forceAll = false; badge("UNKNOWN"); setText(els.riskWhy, "—"); refreshOutputs(); }
+  function analyze(){
+    const text = (els.text?.value || "").trim();
+    gtagSafe("tool_run", { tool_slug: TOOL, lang: MODE });
+    if(!text){ clearOutputs(); toast(I18N[MODE].pasteFirst); return; }
+    const findings = analyzeRules(text);
+    const sc = score(findings, text);
+    last = { findings, score: sc, type: els.contractType?.value || "" };
+    forceAll = false; badge(sc.level); setText(els.riskWhy, sc.why); refreshOutputs();
+  }
+
   function fallbackCopy(text){ const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.left = "-9999px"; document.body.appendChild(ta); ta.select(); let ok = false; try{ ok = document.execCommand("copy"); }catch(_){ ok = false; } ta.remove(); return ok; }
-  async function copyMarkdown(){ const text = els.mdPreview ? els.mdPreview.value : ""; if(!text.trim() || !lastScore){ toast(I18N[MODE].noMarkdown); return; } try{ if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); toast(I18N[MODE].copied); return; } }catch(_){} if(fallbackCopy(text)) toast(I18N[MODE].copied); else toast(I18N[MODE].copyFailed); }
+  async function copyText(text){ if(!text.trim()){ toast(I18N[MODE].noMarkdown); return; } try{ if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); toast(I18N[MODE].copied); return; } }catch(_){} toast(fallbackCopy(text) ? I18N[MODE].copied : I18N[MODE].copyFailed); }
+  function lockPreview(){ renderProPreview(); document.querySelector("[data-pro-preview]")?.scrollIntoView({ behavior:"smooth", block:"center" }); toast(I18N[MODE].locked); }
+  function download(name, text){ const blob = new Blob([text], { type:"text/markdown;charset=utf-8" }); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 800); }
 
-  const EX_JP = `【業務委託契約（抜粋例）】\n甲は、乙が本契約に違反した場合、何らの催告を要せず直ちに本契約を解除できる。\n乙は、甲に生じた一切の損害を賠償するものとし、違約金として金100万円を支払う。\n本契約は自動更新され、中途解約はできない。\n成果物に関する一切の権利は甲に帰属し、乙は著作者人格権を行使しない。\n秘密保持義務は永久とする。`;
-  const EX_EN = `Services Agreement (excerpt)\nCustomer may terminate this Agreement immediately at its sole discretion.\nSupplier shall have unlimited liability and shall indemnify and hold harmless Customer for all claims, including consequential damages and lost profits.\nThis Agreement renews automatically and Supplier may not terminate for convenience.\nSupplier assigns all intellectual property in the deliverables to Customer and waives moral rights. Confidentiality obligations are perpetual.`;
-
-  function wire(){ if(els.modeJP) els.modeJP.addEventListener("click", () => setMode("JP")); if(els.modeEN) els.modeEN.addEventListener("click", () => setMode("EN")); if(els.analyze) els.analyze.addEventListener("click", analyze); if(els.clear) els.clear.addEventListener("click", () => { if(els.text) els.text.value = ""; clearOutputs(); }); if(els.pasteExample) els.pasteExample.addEventListener("click", () => { if(els.text) els.text.value = MODE === "JP" ? EX_JP : EX_EN; toast("Example pasted"); }); if(els.copyFindings) els.copyFindings.addEventListener("click", copyMarkdown); if(els.downloadMd) els.downloadMd.addEventListener("click", () => toast(I18N[MODE].exportState)); if(els.downloadPdf) els.downloadPdf.addEventListener("click", () => toast(I18N[MODE].exportState)); }
+  function wire(){
+    els.modeJP?.addEventListener("click", () => setMode("JP"));
+    els.modeEN?.addEventListener("click", () => setMode("EN"));
+    els.analyze?.addEventListener("click", analyze);
+    els.clear?.addEventListener("click", () => { if(els.text) els.text.value = ""; clearOutputs(); });
+    els.pasteExample?.addEventListener("click", () => { if(els.text) els.text.value = MODE === "JP" ? EX_JP : EX_EN; toast("Example pasted"); });
+    els.showAll?.addEventListener("click", () => { forceAll = true; renderFindings(); });
+    els.copyFindings?.addEventListener("click", () => copyText(isPro() ? fullMarkdown() : liteMarkdown()));
+    els.downloadMd?.addEventListener("click", () => { if(!last.score) return toast(I18N[MODE].noMarkdown); if(!isPro()) return lockPreview(); download("contract-risk-review.md", fullMarkdown()); });
+    els.downloadPdf?.addEventListener("click", () => { if(!last.score) return toast(I18N[MODE].noMarkdown); if(!isPro()) return lockPreview(); toast(I18N[MODE].printed); window.print(); });
+    els.copyFull?.addEventListener("click", () => copyText(fullMarkdown()));
+    els.copyConsult?.addEventListener("click", () => copyText(memoParts().consult));
+    els.copyQuestions?.addEventListener("click", () => copyText(memoParts().counterparty));
+    els.copyMissing?.addEventListener("click", () => copyText(memoParts().missing));
+    window.addEventListener("nw-pro-status-change", refreshOutputs);
+  }
 
   wire();
   setMode((navigator.language || "").toLowerCase().startsWith("ja") ? "JP" : "EN");
+  clearOutputs();
 })();
