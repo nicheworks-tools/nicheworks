@@ -7,15 +7,16 @@
   const grid = app.querySelector('.result-grid');
   const search = app.querySelector('[data-search]');
   const toolbar = app.querySelector('.results-toolbar');
+  const countEl = app.querySelector('[data-count]');
   if (!grid) return;
 
   const t = lang === 'ja'
     ? {
-        showing: '表示中', of: '/', load: 'さらに表示', reset: '初期表示に戻す', all: 'すべて', searchMode: '検索中',
+        showing: '表示中', of: '/', load: 'さらに表示', reset: '初期表示に戻す', all: 'すべて', searchMode: '検索中', shownLabel: (count) => `${count} 件表示`,
         navTitle: 'カテゴリで絞る', popular: '基本', forms: 'Forms', nav: 'Navigation', ai: 'AI', dashboard: 'Dashboard', mobile: 'Mobile', admin: 'Admin', account: 'Account', system: 'System'
       }
     : {
-        showing: 'Showing', of: 'of', load: 'Load more', reset: 'Reset view', all: 'All', searchMode: 'Search mode',
+        showing: 'Showing', of: 'of', load: 'Load more', reset: 'Reset view', all: 'All', searchMode: 'Search mode', shownLabel: (count) => `${count} patterns shown`,
         navTitle: 'Browse by category', popular: 'Core', forms: 'Forms', nav: 'Navigation', ai: 'AI', dashboard: 'Dashboard', mobile: 'Mobile', admin: 'Admin', account: 'Account', system: 'System'
       };
 
@@ -113,6 +114,9 @@
     if (status) {
       const label = q ? `${t.searchMode}: ` : '';
       status.textContent = `${label}${t.showing} ${Math.min(filtered.length, effectiveLimit)} ${t.of} ${filtered.length}`;
+    }
+    if (countEl && typeof t.shownLabel === 'function') {
+      countEl.textContent = t.shownLabel(filtered.length);
     }
     if (more) more.hidden = filtered.length <= effectiveLimit;
     if (reset) reset.hidden = limit === 24 && activeCategory === 'all' && !q;
