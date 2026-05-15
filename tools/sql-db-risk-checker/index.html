@@ -19,7 +19,6 @@ gtag('config', 'G-57QT78M3JB');
 <meta name="robots" content="index,follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./style.css" />
-<link rel="stylesheet" href="./pro-restore.css" />
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NicheWorks">
 <meta property="og:url" content="https://nicheworks.app/tools/sql-db-risk-checker/">
@@ -56,20 +55,20 @@ gtag('config', 'G-57QT78M3JB');
       <div class="panel pro-mini-panel">
         <h2 class="h2">Pro</h2>
         <p class="note">Proでは安全実行テンプレ、DB別注意点、レビュー用出力を解放します。</p>
-        <p class="note">$2.99 one-time / 外部決済リンク対応 / 復元ボタンあり</p>
+        <p class="note">$2.99 one-time / 共通Pro基盤で解放 / Stripe完了URL: /pro/unlock/?session_id={CHECKOUT_SESSION_ID}</p>
       </div>
     </div>
   </section>
   <section class="tool">
     <div class="card">
       <h2 class="h2" data-i18n="sqlInputTitle">SQL入力</h2>
-      <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-stable content="sqlstable content"></textarea>
+      <textarea id="sqlInput" class="textarea" rows="10" spellcheck="false" data-i18n-placeholder="sqlPlaceholder" placeholder="ここにSQLを貼り付けてください（複数文OK / ; 区切り）&#10;例:&#10;DELETE FROM users WHERE id = 123;"></textarea>
       <div class="options">
         <div class="opt"><label class="label" for="envSelect" data-i18n="envLabel">対象環境</label><select id="envSelect" class="select"><option value="unknown">Unknown</option><option value="dev">Dev</option><option value="staging">Staging</option><option value="prod">Prod</option></select><p class="help" data-i18n="envHelp">※自己申告です。実際の接続先は判定しません。</p></div>
         <div class="opt"><label class="label" for="dbSelect" data-i18n="dbLabel">DB種別</label><select id="dbSelect" class="select"><option value="generic">Generic</option><option value="postgres">Postgres</option><option value="mysql">MySQL</option><option value="sqlite">SQLite</option></select></div>
         <div class="opt"><label class="label" for="readOnlyToggle" data-i18n="roLabel">読み取り専用モード</label><div class="switch-row"><label class="switch"><input id="readOnlyToggle" type="checkbox" /><span class="slider" aria-hidden="true"></span></label><p class="help" data-i18n="roHelp">ONにするとSELECT以外を強く警告します。</p></div></div>
       </div>
-      <div class="prod-notice" id="prodNotice" hidden data-i18n="prodNotice">本番環境としてチェック中です。バックアップ、影響行数、ロールバック手順、権限を必ず確認してください。</div>
+      <div class="prod-notice" id="prodNotice" hidden data-i18n="prodNotice">本番環境としてチェック中です。実行前にバックアップ、影響行数、ロールバック手順、権限を必ず確認してください。</div>
       <div class="actions"><button id="checkBtn" class="btn btn-primary" type="button" data-i18n="checkBtn">リスクチェック</button><button id="clearBtn" class="btn btn-ghost" type="button" data-i18n="clearBtn">クリア</button><button id="copyRiskSummaryBtn" class="btn btn-ghost" type="button" data-i18n="copyRiskSummaryBtn">結果をコピー</button><button id="copyChecklistBtn" class="btn btn-ghost" type="button" data-i18n="copyChecklistBtn">チェックリストをコピー</button><div class="badge-wrap"><span class="badge-label" data-i18n="riskLabel">リスク判定</span><span id="riskBadge" class="risk-badge risk-low">Low（低）</span></div></div>
     </div>
     <div class="grid-2">
@@ -77,30 +76,53 @@ gtag('config', 'G-57QT78M3JB');
       <div class="card"><h2 class="h2" data-i18n="previewTitle">SQLプレビュー</h2><pre id="sqlPreview" class="preview"><code data-i18n="previewEmpty">ここに解析結果が表示されます</code></pre></div>
     </div>
     <div class="card probox" id="proBox">
-      <div class="probox-head"><h2 class="h2">Pro機能（one-time）</h2><span class="tag" id="proStateTag">Locked</span></div>
-      <div class="pro-locked" id="proLocked">
-        <p class="note">Proを購入すると、より安全な「実行手順テンプレ」やDB別プリセット表示が使えます。SQLの自動修正は行いません。</p>
-        <div class="pro-meta"><div class="pro-price-line"><span class="label">価格</span><strong class="value">$2.99（one-time）</strong></div><p class="pro-mini">決済はStripeの外部ページで行います。購入後にこのページへ戻ると復元できます。</p><p class="pro-pending-note" id="proPendingNote">Stripe決済リンク設定済みです。</p></div>
-        <div class="pro-price"><div class="pro-price-main"><div class="pro-price-amount">$2.99</div><div class="pro-price-sub">one-time / このブラウザで解放</div></div><div class="pro-actions"><button class="btn btn-primary" type="button" id="buyProBtn">Proを購入</button><button class="btn btn-ghost" type="button" id="restoreProBtn">購入済みを復元</button></div></div>
-        <ul class="prolist"><li>安全実行テンプレの提示（トランザクション手順）</li><li>DB種別ごとの注意点表示</li><li>ルールプリセット（Read-only強制 / Migrationモード）</li><li>レビュー用サマリーの強化</li></ul>
-      </div>
-      <div class="pro-unlocked" id="proUnlocked" hidden><p class="note">Proが解放されています。下のテンプレを「手順」として使ってください（自動修正はしません）。</p><h3 class="h2">安全実行テンプレ（例）</h3><div class="codebox"><code id="proTemplateCode">BEGIN;
+      <div class="probox-head"><h2 class="h2">Pro Preview / Pro Active</h2><span class="tag" data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</span></div>
+      <p class="note pro-status-note">共通クライアント <code>/assets/nw-pro.js</code> の <code>NWPro.getLocalStatus()</code> で NicheWorks Pro（entitlement: <code>nicheworks_pro</code>）を確認します。localStorageは補助状態で、サーバー側D1の権限が正です。</p>
+      <div data-pro-preview>
+        <p class="note"><strong>Preview mode:</strong> Proで解放される Safe Execution Pack / Review Summary / DB-specific Checklist / Migration Review の一部サンプルを表示しています。無料チェックはこのまま利用できます。</p>
+        <div class="pro-meta"><div class="pro-price-line"><span class="label">価格</span><strong class="value">$2.99</strong></div><p class="pro-mini">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p></div>
+        <div class="pro-actions"><a class="btn btn-primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">NicheWorks Proを購入 — $2.99</a></div>
+        <div class="pro-pack-grid">
+          <div class="pro-pack"><h3>Safe Execution Pack sample</h3><pre class="codebox"><code>BEGIN;
 -- 1) 影響行数の事前確認
 SELECT COUNT(*) FROM your_table WHERE ...;
-
 -- 2) 対象行のサンプル確認
 SELECT * FROM your_table WHERE ... LIMIT 20;
-
--- 3) 実行
--- UPDATE/DELETE ... WHERE ...;
-
--- 4) まずはROLLBACKで確認 → 問題なければCOMMIT
-ROLLBACK;
--- COMMIT;</code></div><div class="pro-actions unlocked-actions"><button class="btn btn-ghost" type="button" id="copyTemplateBtn">テンプレをコピー</button><button class="btn btn-ghost" type="button" id="lockProBtn">Proをロック（テスト用）</button></div></div>
+ROLLBACK;</code></pre></div>
+          <div class="pro-pack"><h3>Review Summary sample</h3><pre class="codebox"><code>SQL DB Risk Checker Review
+Risk:
+Environment:
+DB:
+Warnings:</code></pre></div>
+          <div class="pro-pack"><h3>DB-specific checklist sample</h3><pre class="codebox"><code>Postgres: CREATE INDEX CONCURRENTLY を検討
+MySQL: FOREIGN_KEY_CHECKS=0 の戻し忘れ確認
+SQLite: DBファイルバックアップ</code></pre></div>
+          <div class="pro-pack"><h3>Migration Review sample</h3><pre class="codebox"><code>Migration Review
+Operation:
+Risk:
+Rollback difficulty:
+Possible lock:</code></pre></div>
+        </div>
+        <div class="pro-actions unlocked-actions"><button class="btn btn-ghost" type="button" data-pro-action disabled>Copy Safe Execution Pack</button><button class="btn btn-ghost" type="button" data-pro-action disabled>Copy Review Summary</button><button class="btn btn-ghost" type="button" data-pro-action disabled>Export Markdown</button></div>
+      </div>
+      <div data-pro-only hidden>
+        <p class="note"><strong>Pro unlocked:</strong> Safe Execution Pack / Review Summary / DB-specific Checklist / Migration Review / Team Handoff / Markdown Export / JSON structure が利用できます。</p>
+        <div class="pro-actions unlocked-actions">
+          <button class="btn btn-ghost" type="button" id="copySafePackBtn" data-pro-action>Copy Safe Execution Pack</button>
+          <button class="btn btn-ghost" type="button" id="copyReviewSummaryBtn" data-pro-action>Copy Review Summary</button>
+          <button class="btn btn-ghost" type="button" id="copyDbChecklistBtn" data-pro-action>Copy DB-specific Checklist</button>
+          <button class="btn btn-ghost" type="button" id="copyMigrationReviewBtn" data-pro-action>Copy Migration Review</button>
+          <button class="btn btn-ghost" type="button" id="copyTeamHandoffBtn" data-pro-action>Copy Team Handoff</button>
+          <button class="btn btn-primary" type="button" id="exportMarkdownBtn" data-pro-action>Export Markdown</button>
+          <button class="btn btn-ghost" type="button" id="exportJsonBtn" data-pro-action>Export JSON</button>
+        </div>
+        <h3 class="h2">Pro出力全文</h3>
+        <pre id="proFullOutput" class="preview"><code>SQLをチェックするとPro出力パックがここに表示されます。</code></pre>
+      </div>
     </div>
     <div class="card checklist-card"><h2 class="h2" data-i18n="checkTitle">実行前チェックリスト</h2><ul class="checklist" id="preChecklist"><li><label><input type="checkbox"><span data-i18n="c1">対象DBが本番か確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c2">バックアップ／ロールバック手段を確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c3">影響行数をSELECT COUNTで確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c4">実行権限が最小限であることを確認した</span></label></li><li><label><input type="checkbox"><span data-i18n="c5">必要ならBEGIN / ROLLBACKで事前確認する</span></label></li></ul><div class="check-actions"><button class="btn btn-ghost" type="button" id="checkAllBtn" data-i18n="checkAll">全部チェック</button><button class="btn btn-ghost" type="button" id="clearAllBtn" data-i18n="clearAll">全部外す</button></div></div>
     <div class="card"><p class="disclaimer" data-i18n="disclaimer">このツールはSQLの安全性を保証しません。本番環境では必ず社内レビュー、バックアップ、権限、トランザクション、ロールバック手順を確認してください。</p></div>
-    <section class="faq card" aria-labelledby="faq-title"><h2 class="h2" id="faq-title" data-i18n="faqTitle">FAQ</h2><details open><summary>このツールはSQLの安全性を保証しますか？</summary><p>いいえ。危険パターンを検出する補助ツールです。最終判断は必ず利用者が行ってください。</p></details><details><summary>SQLはサーバーに送信されますか？</summary><p>いいえ。入力されたSQLはブラウザ内で処理され、サーバーへ送信されません。</p></details><details><summary>WHEREなしのUPDATEやDELETEは必ず危険ですか？</summary><p>多くの場合は危険ですが、意図的な全件処理もあります。影響行数、バックアップ、ロールバック手順を確認してください。</p></details><details><summary>SQLを自動修正しますか？</summary><p>いいえ。SQLの自動修正は行わず、警告、理由、確認方法、確認SQL例を表示します。</p></details></section>
+    <section class="faq card" aria-labelledby="faq-title"><h2 class="h2" id="faq-title" data-i18n="faqTitle">FAQ</h2><details open><summary>このツールはSQLの安全性を保証しますか？</summary><p>いいえ。危険パターンを検出する補助ツールです。最終判断は必ず利用者が行ってください。</p></details><details><summary>SQLはサーバーに送信されますか？</summary><p>いいえ。入力されたSQLはブラウザ内で処理され、サーバーへ送信されません。</p></details><details><summary>WHEREなしUPDATE/DELETEは必ず危険ですか？</summary><p>多くの場合は危険ですが、意図的な全件処理もあります。影響行数、バックアップ、ロールバック手順を確認してください。</p></details><details><summary>SQLを自動修正しますか？</summary><p>いいえ。SQLの自動修正は行わず、警告、理由、確認方法、確認SQL例を表示します。</p></details><details><summary>Proでは何が増えますか？</summary><p>Safe Execution Pack、Review Summary、DB-specific Checklist、Migration Review、Team Handoff、Markdown Export、JSON構造生成、Pro詳細コピーが利用できます。</p></details><details><summary>購入後、別ブラウザでも使えますか？</summary><p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p></details><details><summary>Pro状態が消えた場合はどうしますか？</summary><p>共通Proの解除ページ <code>/pro/unlock/?session_id={CHECKOUT_SESSION_ID}</code> から再度有効化してください。無料機能はPro状態に関係なく利用できます。</p></details></section>
     <div class="donate"><p class="donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。</p><div class="donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
     <nav class="nw-links" aria-label="Related tools"><strong data-i18n="relatedTitle">関連ツール</strong><a href="/tools/command-safety-checker/">Command Safety Checker</a><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a><a href="/tools/log-formatter/">LogFormatter</a><a href="/tools/json-repair/">JSON Repair</a></nav>
   </section>
@@ -108,7 +130,8 @@ ROLLBACK;
 </main>
 <div id="toast" class="toast" hidden></div>
 <footer class="footer"><p>© NicheWorks — Small Web Tools for Boring Tasks</p><p>Ads may be displayed. Accuracy not guaranteed. Verify with official sources.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+<script src="/assets/nw-pro.js" defer></script>
+<script src="./pro-bridge.js" defer></script>
 <script src="./app-sdrc.js" defer></script>
-<script src="./pro-restore.js" defer></script>
 </body>
 </html>

@@ -24,6 +24,14 @@ const els = {
   clearAllBtn: $("clearAllBtn"),
   preChecklist: $("preChecklist"),
   toast: $("toast"),
+  proFullOutput: $("proFullOutput"),
+  copySafePackBtn: $("copySafePackBtn"),
+  copyReviewSummaryBtn: $("copyReviewSummaryBtn"),
+  copyDbChecklistBtn: $("copyDbChecklistBtn"),
+  copyMigrationReviewBtn: $("copyMigrationReviewBtn"),
+  copyTeamHandoffBtn: $("copyTeamHandoffBtn"),
+  exportMarkdownBtn: $("exportMarkdownBtn"),
+  exportJsonBtn: $("exportJsonBtn"),
 };
 
 let lastResult = null;
@@ -46,12 +54,12 @@ const I18N = {
     sqlPlaceholder: "ここにSQLを貼り付けてください（複数文OK / ; 区切り）\n例:\nDELETE FROM users WHERE id = 123;",
     envLabel: "対象環境", envHelp: "※自己申告です。実際の接続先は判定しません。", dbLabel: "DB種別", roLabel: "読み取り専用モード", roHelp: "ONにするとSELECT以外を強く警告します。",
     checkBtn: "リスクチェック", clearBtn: "クリア", copyRiskSummaryBtn: "結果をコピー", copyChecklistBtn: "チェックリストをコピー", riskLabel: "リスク判定",
-    prodNotice: "本番環境としてチェック中です。バックアップ、影響行数、ロールバック手順、権限を必ず確認してください。",
+    prodNotice: "本番環境としてチェック中です。実行前にバックアップ、影響行数、ロールバック手順、権限を必ず確認してください。",
     sumTitle: "検出サマリー", sumStatements: "文数", sumWrites: "書き込み系操作", sumKeywords: "警告数", sumDb: "DB", sumEnv: "環境",
     warnTitle: "警告一覧", emptyWarn: "まだ結果はありません。SQLを入力して「リスクチェック」を押してください。", previewTitle: "SQLプレビュー", previewEmpty: "ここに解析結果が表示されます",
     disclaimer: "このツールはSQLの安全性を保証しません。本番環境では必ず社内レビュー、バックアップ、権限、トランザクション、ロールバック手順を確認してください。",
     donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると助かります。",
-    proTitle: "追加機能案（準備中）", proLockedNote: "購入リンク未設定のため、現在は無料チェック機能のみを主役にしています。", proList: ["安全実行テンプレの保存", "DB別プリセット", "Migrationレビュー用の出力強化"],
+    proTitle: "Pro Preview / Pro Active", proLockedNote: "共通ProでSafe Execution Pack、Review Summary、Markdown Exportを解放します。", proList: ["Safe Execution Pack", "Review Summary", "Markdown Export"],
     faqTitle: "FAQ", relatedTitle: "関連ツール", copied: "コピーしました。", copyFailed: "コピーに失敗しました。", noRisk: "危険なパターンは検出されませんでした（安全性の保証ではありません）。", sqlEmpty: "SQLが空です。入力してからチェックしてください。"
   },
   en: {
@@ -69,7 +77,7 @@ const I18N = {
     sumTitle: "Detection Summary", sumStatements: "Statements", sumWrites: "Write Ops", sumKeywords: "Warnings", sumDb: "DB", sumEnv: "Env",
     warnTitle: "Warnings", emptyWarn: "No results yet. Paste SQL and click Check Risk.", previewTitle: "SQL Preview", previewEmpty: "Analysis result will appear here",
     disclaimer: "This tool does not guarantee SQL safety. In production, always verify review, backups, permissions, transactions, and rollback steps.", donateText: "If this tool helped you, consider supporting ongoing development.",
-    proTitle: "Optional features (pending)", proLockedNote: "Payment is not configured, so the free risk checker stays the main feature.", proList: ["Saved execution templates", "DB presets", "Stronger migration review output"],
+    proTitle: "Pro Preview / Pro Active", proLockedNote: "Shared Pro unlocks Safe Execution Pack, Review Summary, and Markdown Export.", proList: ["Safe Execution Pack", "Review Summary", "Markdown Export"],
     faqTitle: "FAQ", relatedTitle: "Related tools", copied: "Copied.", copyFailed: "Copy failed.", noRisk: "No risky pattern detected (not a guarantee).", sqlEmpty: "SQL is empty. Paste SQL first."
   }
 };
@@ -144,6 +152,12 @@ function classifyStatement(stmt, index, dbType, env, readOnly) {
   if (/\bdrop\s+table\b/i.test(s)) add(warnings, "crit", "DROP TABLEを検出", "DROP TABLE detected", "テーブル削除は復旧困難な事故になり得ます。", "Dropping a table can be hard to recover.", "対象テーブル名とバックアップを確認してください。", "Confirm table name and backup.", "-- Verify table name and backup first");
   if (/\btruncate\s+(table\s+)?\w+/i.test(s)) add(warnings, "crit", "TRUNCATE TABLEを検出", "TRUNCATE TABLE detected", "大量データを高速に削除する操作です。", "Fast bulk deletion operation.", "DELETEとの違い、FK、復旧手順を確認してください。", "Check FK effects and recovery steps.", "SELECT COUNT(*) FROM table_name;");
   if (/\balter\s+table\b[\s\S]*\bdrop\s+(column\s+)?\w+/i.test(s) || /\bdrop\s+column\b/i.test(s)) add(warnings, "crit", "DROP COLUMNを検出", "DROP COLUMN detected", "列とデータを削除する破壊的DDLです。", "Destructive DDL that removes a column and data.", "利用箇所、バックアップ、マイグレーション手順を確認してください。", "Check usages, backup, and migration plan.", "-- Search application references first");
+  if (/\bdrop\b/i.test(s) && !/\bdrop\s+(database|schema|table)\b/i.test(s)) add(warnings, "high", "DROPを検出", "DROP detected", "オブジェクト削除につながる可能性があります。", "May remove database objects.", "対象名と復旧手順を確認してください。", "Confirm target and recovery steps.", "-- Confirm object and backup first");
+  if (/\balter\s+table\b/i.test(s) && !/\bdrop\s+(column\s+)?\w+/i.test(s)) add(warnings, "high", "ALTER TABLEを検出", "ALTER TABLE detected", "スキーマ変更はアプリやロックに影響します。", "Schema changes may affect app compatibility or locks.", "マイグレーション手順とロールバックを確認してください。", "Confirm migration and rollback plan.", "-- Review migration plan first");
+  if (/\binsert\s+into\b/i.test(s) && !/\binsert\s+into\b[\s\S]*\bselect\b/i.test(s)) add(warnings, "med", "INSERTを検出", "INSERT detected", "データ追加により重複や制約違反が起きる可能性があります。", "May create duplicates or constraint errors.", "一意制約と対象件数を確認してください。", "Confirm uniqueness and row count.", "SELECT * FROM table_name WHERE key = ...;");
+  if (/\brename\b/i.test(s)) add(warnings, "high", "RENAMEを検出", "RENAME detected", "アプリ参照や依存オブジェクトに影響する可能性があります。", "May break application references or dependencies.", "参照箇所と戻し手順を確認してください。", "Confirm references and rollback steps.", "-- Search application references first");
+  if (/\bgrant\b/i.test(s)) add(warnings, "high", "GRANTを検出", "GRANT detected", "権限付与によりアクセス範囲が広がります。", "Expands access privileges.", "最小権限になっているか確認してください。", "Confirm least privilege.", "-- Review granted role and scope");
+  if (/\brevoke\b/i.test(s)) add(warnings, "high", "REVOKEを検出", "REVOKE detected", "権限剥奪によりアプリや運用作業が失敗する可能性があります。", "May break applications or operations.", "影響ユーザーとロールバックを確認してください。", "Confirm affected users and rollback.", "-- Confirm dependent users first");
   if (/\bcascade\b/i.test(s)) add(warnings, "high", "CASCADEを検出", "CASCADE detected", "依存オブジェクトまで連鎖削除される可能性があります。", "Dependent objects may be removed as well.", "削除対象一覧を事前に確認してください。", "List affected objects first.", "-- Inspect dependencies before running");
   if (/\bwhere\s+1\s*=\s*1\b/i.test(s)) add(warnings, "high", "WHERE 1=1を検出", "WHERE 1=1 detected", "全件操作の条件として使われることがあります。", "Often indicates a full-table operation.", "意図した全件処理か確認してください。", "Confirm that a full operation is intended.", "SELECT COUNT(*) FROM table_name WHERE 1=1;");
   if (/\b(delete|update)\b[\s\S]*\blimit\s+\d+/i.test(s)) add(warnings, "med", "UPDATE/DELETE + LIMITを検出", "UPDATE/DELETE with LIMIT", "LIMITだけでは対象行が不安定になる場合があります。", "LIMIT alone can target unstable rows.", "ORDER BYとWHERE条件を確認してください。", "Confirm ORDER BY and WHERE.", "SELECT * FROM table_name WHERE ... ORDER BY ... LIMIT 20;");
@@ -229,6 +243,7 @@ function renderResult(result) {
   els.prodNotice.hidden = result.env !== "prod";
   renderWarnings(result);
   els.sqlPreview.innerHTML = `<code>${highlightSql(result.sql)}</code>`;
+  renderProOutput();
 }
 
 function resetResultText() {
@@ -257,6 +272,180 @@ async function copyText(text) { try { await navigator.clipboard.writeText(text);
 function toast(message) { if (!els.toast) return; els.toast.textContent = message; els.toast.hidden = false; window.clearTimeout(toast.timer); toast.timer = window.setTimeout(() => { els.toast.hidden = true; }, 1800); }
 function setAllChecklist(checked) { els.preChecklist.querySelectorAll("input[type='checkbox']").forEach((box) => box.checked = checked); }
 
+function criticalWarnings(result) { return result.warnings.filter((w) => w.sev === "crit"); }
+function highWarnings(result) { return result.warnings.filter((w) => w.sev === "high"); }
+function mediumWarnings(result) { return result.warnings.filter((w) => w.sev === "med"); }
+function resultOrCurrent() { return lastResult || analyze(els.sqlInput.value || ""); }
+
+function buildSafeExecutionPack() {
+  return `BEGIN;
+
+-- 1) 影響行数の事前確認
+SELECT COUNT(*) FROM your_table WHERE ...;
+
+-- 2) 対象行のサンプル確認
+SELECT * FROM your_table WHERE ... LIMIT 20;
+
+-- 3) 実行SQL
+-- UPDATE/DELETE ... WHERE ...;
+
+-- 4) まずはROLLBACKで確認
+ROLLBACK;
+
+-- 問題なければCOMMIT
+-- COMMIT;`;
+}
+
+function warningLines(items) {
+  if (!items.length) return "- None";
+  return items.map((w) => `- ${w.sev.toUpperCase()} stmt #${w.stmt}: ${lang() === "en" ? w.titleEn : w.titleJa}`).join("\n");
+}
+
+function buildReviewSummary(result) {
+  return `SQL DB Risk Checker Review
+
+Risk: ${riskText(result.overall)}
+Environment: ${result.env}
+DB: ${result.dbType}
+Read-only: ${result.readOnly ? "ON" : "OFF"}
+Statements: ${result.statements.length}
+Write operations: ${result.perStatement.filter((x) => x.isWrite).length}
+Warnings: ${result.warnings.length}
+
+Critical items:
+${warningLines(criticalWarnings(result))}
+High items:
+${warningLines(highWarnings(result))}
+Medium items:
+${warningLines(mediumWarnings(result))}
+
+Before running:
+- Confirm affected rows
+- Confirm backup
+- Confirm rollback plan
+- Confirm least privilege
+- Confirm production approval`;
+}
+
+function buildDbChecklist(result) {
+  const common = {
+    postgres: ["CREATE INDEX CONCURRENTLY を検討", "VACUUM FULL はロック影響確認", "REINDEX は CONCURRENTLY 可否確認", "LOCK TABLE は lock_timeout 確認", "DISABLE TRIGGER は再有効化手順確認", "DROP SCHEMA CASCADE は依存関係確認"],
+    mysql: ["FOREIGN_KEY_CHECKS=0 の戻し忘れ確認", "SQL_SAFE_UPDATES=0 の戻し忘れ確認", "REPLACE INTO のDELETE+INSERT影響確認", "DROP DATABASE は対象DB名確認", "ALTER TABLE DROP COLUMN はアプリ参照確認"],
+    sqlite: ["DBファイルバックアップ", "VACUUM 前のファイルサイズ確認", "DROP TABLE 前のエクスポート確認", "DELETE / UPDATE 前の対象件数確認"],
+    generic: ["影響行数確認", "バックアップ確認", "ロールバック手順確認", "権限確認"]
+  };
+  const items = common[result.dbType] || common.generic;
+  return `DB-specific Pro Checklist (${result.dbType})\n\n${items.map((item) => `- ${item}`).join("\n")}`;
+}
+
+function buildMigrationReview(result) {
+  return `Migration Review
+
+Operation: ${result.perStatement.map((x) => x.cleaned.split(" ")[0] || "SQL").join(", ") || "SQL"}
+Risk: ${riskText(result.overall)}
+Rollback difficulty:
+Possible lock:
+Data loss risk:
+App compatibility risk:
+Pre-check:
+Rollback plan:
+Post-check:`;
+}
+
+function buildTeamHandoff(result) {
+  return `Please review this SQL before execution.
+
+Risk: ${riskText(result.overall)}
+DB: ${result.dbType}
+Environment: ${result.env}
+Detected issues: ${result.warnings.length}
+Expected impact:
+Rollback plan:
+Requested approval:`;
+}
+
+function buildMarkdownExport(result) {
+  return `# SQL DB Risk Review
+
+## Summary
+
+${buildReviewSummary(result)}
+
+## Detected Risks
+
+${warningLines(result.warnings)}
+
+## Statement Review
+
+${result.perStatement.map((item) => `### Statement #${item.index}\n\nRisk: ${riskText(item.risk)}\n\n\`\`\`sql\n${item.cleaned}\n\`\`\``).join("\n\n") || "No statements."}
+
+## DB-specific Notes
+
+${buildDbChecklist(result)}
+
+## Execution Checklist
+
+${checklistText()}
+
+## Safe Execution Template
+
+\`\`\`sql
+${buildSafeExecutionPack()}
+\`\`\`
+
+## Approval Notes
+
+- Reviewer:
+- Approval:
+- Date:`;
+}
+
+function buildJsonExport(result) {
+  return JSON.stringify({
+    tool_id: "sql-db-risk-checker",
+    risk: result.overall,
+    environment: result.env,
+    db: result.dbType,
+    read_only: result.readOnly,
+    statements: result.perStatement.map((item) => ({ index: item.index, risk: item.risk, sql: item.cleaned })),
+    warnings: result.warnings.map((w) => ({ severity: w.sev, statement: w.stmt, title: lang() === "en" ? w.titleEn : w.titleJa })),
+    packs: {
+      safe_execution: buildSafeExecutionPack(),
+      review_summary: buildReviewSummary(result),
+      db_checklist: buildDbChecklist(result),
+      migration_review: buildMigrationReview(result),
+      team_handoff: buildTeamHandoff(result),
+      markdown: buildMarkdownExport(result)
+    }
+  }, null, 2);
+}
+
+function buildFullProOutput(result) {
+  return [buildSafeExecutionPack(), buildReviewSummary(result), buildDbChecklist(result), buildMigrationReview(result), buildTeamHandoff(result), buildMarkdownExport(result)].join("\n\n---\n\n");
+}
+
+function renderProOutput() {
+  if (!els.proFullOutput) return;
+  const result = resultOrCurrent();
+  els.proFullOutput.innerHTML = `<code>${escapeHtml(buildFullProOutput(result))}</code>`;
+}
+
+function downloadText(filename, text, type) {
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function isSharedProActive() { return document.documentElement.dataset.proActive === "true"; }
+function requirePro() { if (isSharedProActive()) return true; toast("Previewモードです。Pro機能はNicheWorks Proで利用できます。"); return false; }
+function copyProText(builder) { if (!requirePro()) return; const result = resultOrCurrent(); copyText(builder(result)); renderProOutput(); }
+
 els.checkBtn.addEventListener("click", onCheck);
 els.clearBtn.addEventListener("click", () => { els.sqlInput.value = ""; lastResult = null; resetResultText(); });
 els.copyRiskSummaryBtn.addEventListener("click", () => copyText(buildSummary(lastResult || analyze(els.sqlInput.value || ""))));
@@ -266,5 +455,13 @@ els.clearAllBtn.addEventListener("click", () => setAllChecklist(false));
 els.envSelect.addEventListener("change", () => { if (lastResult) onCheck(); else els.prodNotice.hidden = els.envSelect.value !== "prod"; });
 els.dbSelect.addEventListener("change", () => { if (lastResult) onCheck(); });
 els.readOnlyToggle.addEventListener("change", () => { if (lastResult) onCheck(); });
+if (els.copySafePackBtn) els.copySafePackBtn.addEventListener("click", () => copyProText(() => buildSafeExecutionPack()));
+if (els.copyReviewSummaryBtn) els.copyReviewSummaryBtn.addEventListener("click", () => copyProText(buildReviewSummary));
+if (els.copyDbChecklistBtn) els.copyDbChecklistBtn.addEventListener("click", () => copyProText(buildDbChecklist));
+if (els.copyMigrationReviewBtn) els.copyMigrationReviewBtn.addEventListener("click", () => copyProText(buildMigrationReview));
+if (els.copyTeamHandoffBtn) els.copyTeamHandoffBtn.addEventListener("click", () => copyProText(buildTeamHandoff));
+if (els.exportMarkdownBtn) els.exportMarkdownBtn.addEventListener("click", () => { if (!requirePro()) return; const result = resultOrCurrent(); downloadText("sql-db-risk-review.md", buildMarkdownExport(result), "text/markdown"); renderProOutput(); });
+if (els.exportJsonBtn) els.exportJsonBtn.addEventListener("click", () => { if (!requirePro()) return; const result = resultOrCurrent(); downloadText("sql-db-risk-review.json", buildJsonExport(result), "application/json"); renderProOutput(); });
+window.addEventListener("nw-pro-status", renderProOutput);
 
 (function init() { setLang(localStorage.getItem("nw_lang") || ((navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en")); resetResultText(); })();
