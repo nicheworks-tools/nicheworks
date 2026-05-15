@@ -11,8 +11,11 @@ const defaultLang = () => {
 
 const t = (ja, en) => (currentLang === "ja" ? ja : en);
 
+const EXPORT_SECRET_NOTE = "Important: Automated redaction is not exhaustive. Undetected secrets may remain in exported text; review manually before sharing.";
+
 const applyLang = (lang) => {
   currentLang = lang || defaultLang();
+  document.documentElement.lang = currentLang;
   const nodes = document.querySelectorAll("[data-i18n]");
   nodes.forEach((node) => {
     node.style.display = node.dataset.i18n === currentLang ? "" : "none";
@@ -27,6 +30,7 @@ const applyLang = (lang) => {
     renderFindings(lastResult.findings);
     updateSafetySummary(lastResult.findings);
   }
+  document.dispatchEvent(new CustomEvent("nw-lang-change", { detail: { lang: currentLang } }));
 };
 
 const placeholderFor = (text, useKeepLength, placeholder) => {
@@ -371,6 +375,7 @@ const auditMarkdown = () => {
 - Total findings: ${findings.length}
 - Redacted output length: ${currentRedactedOutput().length} characters
 - Processing: local browser redaction only; pasted input is not uploaded by this tool.
+- Export caution: ${EXPORT_SECRET_NOTE}
 
 ## Severity counts
 - High: ${counts.high}
@@ -384,6 +389,7 @@ ${table}
 ## Redaction notes
 - Finding previews and exports contain masked previews only.
 - Raw secret values are not included in this report.
+- ${EXPORT_SECRET_NOTE}
 - The redacted text should still be reviewed before sharing.
 
 ## Manual review checklist
@@ -414,6 +420,7 @@ ${currentRedactedOutput() || "(Run redaction first and paste the redacted output
 ${safeFindings().map((item) => `- ${item.severity.toUpperCase()} line ${item.line}: ${item.label} (${item.type}) — ${item.preview}`).join("\n") || "- No automated findings. Manual review still required."}
 
 ## Manual checks still needed
+- [ ] ${EXPORT_SECRET_NOTE}
 - [ ] Confirm no raw tokens remain
 - [ ] Check URLs, Cookie headers, Authorization headers, emails, IPs, and internal hosts
 - [ ] Confirm this issue does not include sensitive customer data
@@ -422,9 +429,46 @@ ${safeFindings().map((item) => `- ${item.severity.toUpperCase()} line ${item.lin
 ${rotationChecklist(safeFindings())}
 `;
 
-const supportTemplate = (target = "support") => `Hello,\n\nI redacted likely secrets locally before sharing this ${target} note. Please treat the snippet as potentially sensitive because automated detection is not perfect.\n\nRedacted output:\n\`\`\`text\n${currentRedactedOutput() || "(Run redaction first.)"}\n\`\`\`\n\nManual review warning: URLs, cookies, Authorization headers, account IDs, emails, IPs, and provider-specific tokens may still require human review.\n`;
+const supportTemplate = (target = "support") => `Hello,
 
-const handoffPackMarkdown = () => `${auditMarkdown()}\n\n---\n\n# GitHub Issue Template\n\n${githubIssueTemplate()}\n\n---\n\n# Support Template\n\n${supportTemplate("support")}\n\n---\n\n# Discord Template\n\n${supportTemplate("Discord")}\n`;
+I redacted likely secrets locally before sharing this ${target} note. Please treat the snippet as potentially sensitive because automated detection is not perfect.
+
+Export caution: ${EXPORT_SECRET_NOTE}
+
+Redacted output:
+\`\`\`text
+${currentRedactedOutput() || "(Run redaction first.)"}
+\`\`\`
+
+Manual review warning: URLs, cookies, Authorization headers, account IDs, emails, IPs, provider-specific tokens, and other undetected secrets may still require human review.
+`;
+
+const handoffPackMarkdown = () => `# Redaction Handoff Pack
+
+Export caution: ${EXPORT_SECRET_NOTE}
+
+---
+
+${auditMarkdown()}
+
+---
+
+# GitHub Issue Template
+
+${githubIssueTemplate()}
+
+---
+
+# Support Template
+
+${supportTemplate("support")}
+
+---
+
+# Discord Template
+
+${supportTemplate("Discord")}
+`;
 
 const csvFindings = () => {
   const rows = [["severity", "type", "label", "line", "preview"]];
