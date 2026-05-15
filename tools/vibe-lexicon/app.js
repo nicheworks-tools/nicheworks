@@ -14,8 +14,7 @@
 
   const terms = Array.isArray(window.VIBE_LEXICON_TERMS) ? window.VIBE_LEXICON_TERMS : [];
   const maxCompare = 2;
-  const proKey = 'nw_pro_vibe-lexicon';
-  const stripeUrl = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
+  const commonProBuyUrl = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
   const confirmTimers = new Map();
 
   const state = {
@@ -62,9 +61,12 @@
       details: 'Details', open: 'Open', compareHint: 'Select 2 terms to see difference, when-to-use guidance, and practicality comparison.', showMore: 'Show more', showLess: 'Show less', compareStatus: 'In compare', confirmClear: 'Press again to clear', cleared: 'Cleared',
       noFavorites: 'No favorites yet.', noRecent: 'No recent terms yet.', showMoreResults: (n) => `Show ${n} more`, beginner: 'Beginner wording', practicalIntent: 'Practical intent', useCaseWording: 'Use case wording', commonMisuse: 'Common misuse',
       difference: 'Difference', whenToUseWhich: 'When to use which', practicalVsVague: 'Practical vs vague', useWhen: 'Use when', badRequest: 'Bad request', betterRequest: 'Better request',
-      proTitle: 'Pro outputs', proLead: 'Turn the selected term or compare tray into copy-ready work assets. Free lookup stays free; Pro unlock adds bundled outputs you can reuse across real tasks.',
-      proLocked: 'Pro locked — unlock once with Stripe or use the return page after payment.', proActive: 'Pro active on this browser.', unlock: 'Unlock Pro $2.99', alreadyPaid: 'I already paid',
-      bundle: 'Copy prompt bundle', brief: 'Copy compare brief', qa: 'Copy QA checklist', lockedToast: 'Unlock Pro first, or use “I already paid” after Stripe checkout.', selectTwo: 'Add two terms to the compare tray first.'
+      proTitle: 'NicheWorks Pro outputs', proLead: 'Free lookup, compare, favorites, recent history, and basic AI copy stay free. Pro unlocks copy/export work packs for real handoff tasks.',
+      proPreview: 'Preview mode', proUnlocked: 'Pro unlocked', buyPro: 'Buy Pro',
+      purchaseNote: 'After purchase, NicheWorks Pro is enabled in this browser. It usually remains active after closing the tab or browser. You may need to unlock again on another device, another browser, private mode, or after clearing site data.',
+      fullPrompt: 'Copy full style prompt', memo: 'Copy brand tone memo', avoid: 'Copy avoid list', handoff: 'Copy compare handoff', markdown: 'Export Markdown', json: 'Export JSON',
+      promptPack: 'AI style prompt pack', memoTitle: 'Brand tone decision memo', avoidTitle: 'NG / avoid list', usePrompts: 'Use-case prompts', handoffTitle: 'Compare handoff', exportTitle: 'Markdown / JSON export',
+      lockedToast: 'NicheWorks Pro is required for this copy/export action. Preview is visible below.', selectTwo: 'Add two terms to the compare tray first.'
     };
   }
   function jaText() {
@@ -74,15 +76,25 @@
       details: '詳細', open: '開く', compareHint: '2語を選ぶと、違い・使い分け・実務性の比較が表示されます。', showMore: 'もっと見る', showLess: '閉じる', compareStatus: '比較中', confirmClear: 'もう一度押すと削除します', cleared: '削除しました',
       noFavorites: 'お気に入りはまだありません。', noRecent: '最近見た語はまだありません。', showMoreResults: (n) => `さらに${n}件表示`, beginner: '初心者向け', practicalIntent: '実務意図', useCaseWording: '使いどころ', commonMisuse: 'よくある誤用',
       difference: '違い', whenToUseWhich: '使い分け', practicalVsVague: '実務性の比較', useWhen: '使い分けの目安', badRequest: '悪い依頼', betterRequest: '良い依頼',
-      proTitle: 'Pro出力', proLead: '選択中の語や比較トレイを、そのまま使える実務用アウトプットに変換します。無料検索は維持し、Pro解除で再利用しやすい出力を追加します。',
-      proLocked: 'Pro未解除 — Stripeで解除するか、決済後の解除ページを使ってください。', proActive: 'このブラウザでProが有効です。', unlock: 'Proを解除 $2.99', alreadyPaid: '支払い済みの方',
-      bundle: 'プロンプト束をコピー', brief: '比較ブリーフをコピー', qa: 'QAチェックリストをコピー', lockedToast: '先にProを解除してください。Stripe決済後は「支払い済みの方」から有効化できます。', selectTwo: '先に比較トレイへ2語追加してください。'
+      proTitle: 'NicheWorks Pro出力', proLead: '無料の検索・比較・お気に入り・履歴・基本AI短文コピーは維持し、Proでは実務用のcopy/exportパックを解放します。',
+      proPreview: 'Previewモード', proUnlocked: 'Pro解放済み', buyPro: 'Buy Pro',
+      purchaseNote: '購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。',
+      fullPrompt: 'Full style promptをコピー', memo: 'Brand tone memoをコピー', avoid: 'Avoid listをコピー', handoff: 'Compare handoffをコピー', markdown: 'Markdown export', json: 'JSON export',
+      promptPack: 'AI生成用style prompt pack', memoTitle: 'Brand tone decision memo', avoidTitle: 'NG表現 / avoid list', usePrompts: '用途別プロンプト', handoffTitle: '類似vibe比較handoff', exportTitle: 'Markdown / JSON export',
+      lockedToast: 'このcopy/export操作にはNicheWorks Proが必要です。Previewは下に表示しています。', selectTwo: '先に比較トレイへ2語追加してください。'
     };
   }
 
   function readArray(key) { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; } }
   function writeArray(key, arr) { try { localStorage.setItem(key, JSON.stringify(arr)); } catch {} }
-  function isPro() { try { return localStorage.getItem(proKey) === '1'; } catch { return false; } }
+  function isPro() {
+    if (document.documentElement.dataset.proActive === 'true') return true;
+    try {
+      const status = window.NWPro && typeof window.NWPro.getLocalStatus === 'function' ? window.NWPro.getLocalStatus() : null;
+      if (status && status.active) return true;
+    } catch {}
+    return false;
+  }
   function localized(value) { return value?.[lang] ?? value?.en ?? ''; }
   function localizedArray(value) { const v = localized(value); return Array.isArray(v) ? v : []; }
   function byId(id) { return terms.find((t) => t.id === id); }
@@ -108,7 +120,7 @@
     style.id = 'vl-pro-live-style';
     style.textContent = `
       .vl-pro-live-panel{margin:14px 0 18px;padding:16px 18px;border-color:#bfdbfe;background:linear-gradient(135deg,#ffffff 0%,#eff6ff 100%)}
-      .vl-pro-live-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}.vl-pro-live-head h2{margin:0 0 4px;font-size:22px}.vl-pro-live-head p{margin:0;color:#374151;font-size:14px;max-width:820px}.vl-pro-badge{display:inline-flex;align-items:center;border:1px solid #93c5fd;background:#dbeafe;color:#1d4ed8;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}.vl-pro-badge.active{background:#dcfce7;border-color:#86efac;color:#166534}.vl-pro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}.vl-pro-card{border:1px solid #dbeafe;background:#fff;border-radius:14px;padding:11px}.vl-pro-card strong{display:block;margin-bottom:4px}.vl-pro-card span{font-size:12px;color:#4b5563}.vl-pro-actions,.vl-pro-output-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.vl-pro-status{margin:10px 0 0;color:#374151;font-size:13px}.vl-pro-output-actions .btn[aria-disabled="true"]{opacity:.72;background:#f9fafb;color:#6b7280}@media(max-width:720px){.vl-pro-grid{grid-template-columns:1fr}.vl-pro-live-panel{padding:12px}.vl-pro-live-head h2{font-size:18px}.vl-pro-actions .btn,.vl-pro-output-actions .btn{width:100%}}
+      .vl-pro-live-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}.vl-pro-live-head h2{margin:0 0 4px;font-size:22px}.vl-pro-live-head p{margin:0;color:#374151;font-size:14px;max-width:840px}.vl-pro-badge{display:inline-flex;align-items:center;border:1px solid #93c5fd;background:#dbeafe;color:#1d4ed8;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}.vl-pro-badge.active{background:#dcfce7;border-color:#86efac;color:#166534}.vl-pro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}.vl-pro-card{border:1px solid #dbeafe;background:#fff;border-radius:14px;padding:11px}.vl-pro-card strong{display:block;margin-bottom:4px}.vl-pro-card span{font-size:12px;color:#4b5563}.vl-pro-actions,.vl-pro-output-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.vl-pro-status{margin:10px 0 0;color:#374151;font-size:13px}.vl-pro-note{font-size:12px;color:#4b5563;margin:8px 0 0}.vl-pro-preview-box,.vl-pro-only-box{border:1px dashed #93c5fd;background:#f8fbff;border-radius:14px;padding:12px;margin-top:12px}.vl-pro-output{white-space:pre-wrap;font-size:12px;line-height:1.5;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px;max-height:220px;overflow:auto}.vl-pro-output-actions .btn[aria-disabled="true"]{opacity:.72;background:#f9fafb;color:#6b7280}.vl-pro-output-actions .btn[aria-disabled="true"]::after{content:' 🔒'}html[data-pro-active="true"] [data-pro-preview]{display:none!important}html:not([data-pro-active="true"]) [data-pro-only]{display:none!important}@media(max-width:720px){.vl-pro-grid{grid-template-columns:1fr}.vl-pro-live-panel{padding:12px}.vl-pro-live-head h2{font-size:18px}.vl-pro-actions .btn,.vl-pro-output-actions .btn{width:100%}}
     `;
     document.head.appendChild(style);
   }
@@ -125,26 +137,31 @@
         <div><h2>${txt.proTitle}</h2><p>${txt.proLead}</p></div>
         <span id="vlProBadge" class="vl-pro-badge"></span>
       </div>
+      <p id="vlProStatus" class="vl-pro-status" data-pro-status></p>
+      <p class="vl-pro-note">${txt.purchaseNote}</p>
       <div class="vl-pro-grid">
-        <div class="vl-pro-card"><strong>${txt.bundle}</strong><span>${lang === 'ja' ? '選択語のUI/LP/form/mobile向け短文を1セットにしてコピー。' : 'Copy all UI/LP/form/mobile prompts for the selected term as one bundle.'}</span></div>
-        <div class="vl-pro-card"><strong>${txt.brief}</strong><span>${lang === 'ja' ? '2語比較を、依頼・レビューに使える短いブリーフへ変換。' : 'Turn a 2-term comparison into a short review-ready brief.'}</span></div>
-        <div class="vl-pro-card"><strong>${txt.qa}</strong><span>${lang === 'ja' ? 'AI出力を確認するための品質チェック項目を生成。' : 'Generate a QA checklist for reviewing AI output quality.'}</span></div>
+        <div class="vl-pro-card"><strong>${txt.memoTitle}</strong><span>${lang === 'ja' ? '選択語からブランド判断メモを生成します。' : 'Generate a brand decision memo from the selected term.'}</span></div>
+        <div class="vl-pro-card"><strong>${txt.promptPack}</strong><span>${lang === 'ja' ? 'LP / UI / SNS / Product Hunt / App copy向けに展開します。' : 'Expand into LP / UI / SNS / Product Hunt / App copy prompts.'}</span></div>
+        <div class="vl-pro-card"><strong>${txt.exportTitle}</strong><span>${lang === 'ja' ? 'handoffしやすいMarkdownとJSONを書き出します。' : 'Export handoff-ready Markdown and JSON.'}</span></div>
       </div>
-      <div class="vl-pro-actions"><a class="btn primary" href="${stripeUrl}" target="_blank" rel="noopener noreferrer">${txt.unlock}</a><a class="btn" href="/pro/unlock/?tool=vibe-lexicon">${txt.alreadyPaid}</a></div>
-      <div class="vl-pro-output-actions"><button class="btn" type="button" data-pro-action="bundle">${txt.bundle}</button><button class="btn" type="button" data-pro-action="brief">${txt.brief}</button><button class="btn" type="button" data-pro-action="qa">${txt.qa}</button></div>
-      <p id="vlProStatus" class="vl-pro-status"></p>
+      <div class="vl-pro-actions" data-pro-preview><a class="btn primary" href="${commonProBuyUrl}" target="_blank" rel="noopener noreferrer" data-pro-buy>${txt.buyPro}</a></div>
+      <div class="vl-pro-output-actions"><button class="btn" type="button" data-pro-action="fullPrompt">${txt.fullPrompt}</button><button class="btn" type="button" data-pro-action="memo">${txt.memo}</button><button class="btn" type="button" data-pro-action="avoid">${txt.avoid}</button><button class="btn" type="button" data-pro-action="handoff">${txt.handoff}</button><button class="btn" type="button" data-pro-action="markdown">${txt.markdown}</button><button class="btn" type="button" data-pro-action="json">${txt.json}</button></div>
+      <div class="vl-pro-preview-box" data-pro-preview><strong>${txt.proPreview}</strong><div id="vlProPreview" class="vl-pro-output"></div></div>
+      <div class="vl-pro-only-box" data-pro-only hidden><strong>${txt.proUnlocked}</strong><div id="vlProUnlockedOutput" class="vl-pro-output"></div></div>
     `;
     anchor.parentNode.insertBefore(panel, anchor);
     updateProPanel();
   }
 
   function updateProPanel() {
-    const badge = $('vlProBadge');
-    const status = $('vlProStatus');
     const active = isPro();
-    if (badge) { badge.textContent = active ? 'PRO ACTIVE' : 'PRO LOCKED'; badge.classList.toggle('active', active); }
-    if (status) status.textContent = active ? txt.proActive : txt.proLocked;
+    const badge = $('vlProBadge');
+    if (badge) { badge.textContent = active ? txt.proUnlocked : txt.proPreview; badge.classList.toggle('active', active); }
     document.querySelectorAll('[data-pro-action]').forEach((btn) => { btn.setAttribute('aria-disabled', active ? 'false' : 'true'); });
+    const preview = $('vlProPreview');
+    if (preview) preview.textContent = buildProPreview();
+    const unlocked = $('vlProUnlockedOutput');
+    if (unlocked) unlocked.textContent = active ? buildMarkdownExport() : '';
   }
 
   function termSearchCorpus(term) {
@@ -254,12 +271,46 @@
     renderGrid(list); renderDetail(selected); renderCompare(); renderMobileCompareBar(); renderSaved(); renderSuggestions(list); updateProPanel();
   }
 
-  function buildPromptBundle() { const term = currentTerm(); if (!term) return ''; const prompts = term.shortPrompt?.[lang] || term.shortPrompt?.en || {}; const lines = [`# Vibe Lexicon Pro Prompt Bundle`, `Term: ${localized(term.term)}`, `Meaning: ${localized(term.plainExplanation)}`, `Intent: ${localized(term.practicalIntent)}`, `Avoid: ${localized(term.commonMisuse)}`, '', `Bad request: ${localized(term.badRequest)}`, `Better request: ${localized(term.betterRequest)}`, '', `Prompts:`]; Object.entries(prompts).forEach(([mode, prompt]) => lines.push(`- ${mode}: ${prompt}`)); return lines.join('\n'); }
-  function buildCompareBrief() { if (state.compare.length < 2) return txt.selectTwo; const a = byId(state.compare[0]); const b = byId(state.compare[1]); if (!a || !b) return txt.selectTwo; const insight = pairInsight(a, b); return [`# Vibe Lexicon Pro Compare Brief`, `${localized(a.term)} vs ${localized(b.term)}`, '', `${txt.difference}: ${insight.difference}`, `${txt.whenToUseWhich}: ${insight.whenToUse}`, `${txt.practicalVsVague}: ${insight.practicality}`, '', `${localized(a.term)}: ${localized(a.betterRequest)}`, `${localized(b.term)}: ${localized(b.betterRequest)}`].join('\n'); }
-  function buildQaChecklist() { const term = currentTerm(); if (!term) return ''; return [`# Vibe Lexicon Pro QA Checklist`, `Term: ${localized(term.term)}`, '', `- Does the output match this intent? ${localized(term.practicalIntent)}`, `- Does it avoid this misuse? ${localized(term.commonMisuse)}`, `- Is the request more specific than: ${localized(term.badRequest)}`, `- Does it preserve the practical constraint in: ${localized(term.betterRequest)}`, `- Check audience, tone, legal/compliance constraints, and expected output before shipping.`].join('\n'); }
+  function useCasePromptPack(term) {
+    const base = localized(term.practicalIntent);
+    const use = localized(term.useCase);
+    const avoid = localized(term.commonMisuse);
+    const termName = localized(term.term);
+    if (lang === 'ja') {
+      return {
+        LP: `${use}のLPを「${termName}」に寄せて改善してください。実務基準: ${base}。避けること: ${avoid}。`,
+        UI: `このUIを「${termName}」にしてください。情報階層、余白、CTA、マイクロコピーを ${base} に沿って調整してください。`,
+        SNS: `SNS投稿案を「${termName}」なトーンで3案作ってください。誇張せず、${avoid} を避けてください。`,
+        'Product Hunt': `Product Hunt向け紹介文を「${termName}」に調整してください。価値、対象者、差分、初回行動を明確にしてください。`,
+        'App copy': `アプリ内コピーを「${termName}」に整えてください。ボタン、空状態、エラー、完了文を具体化してください。`
+      };
+    }
+    return {
+      LP: `Improve this landing page toward “${termName}”. Practical criteria: ${base}. Avoid: ${avoid}.`,
+      UI: `Make this UI feel “${termName}”. Adjust hierarchy, spacing, CTAs, and microcopy around: ${base}.`,
+      SNS: `Write 3 social post options with a “${termName}” tone. Avoid overclaiming and avoid: ${avoid}.`,
+      'Product Hunt': `Rewrite the Product Hunt launch copy toward “${termName}”. Clarify value, audience, differentiation, and first action.`,
+      'App copy': `Revise app copy toward “${termName}”. Include button labels, empty states, errors, and success messages.`
+    };
+  }
+  function buildBrandToneMemo() { const term = currentTerm(); if (!term) return ''; return [`# ${txt.memoTitle}`, `Term: ${localized(term.term)}`, `Use case: ${localized(term.useCase)}`, '', `Decision: Use this vibe when the work needs: ${localized(term.practicalIntent)}`, `Rationale: ${localized(term.plainExplanation)}`, `Do: ${localizedArray(term.vagueToPractical).join('; ')}`, `Do not: ${localized(term.commonMisuse)}`, `Better request: ${localized(term.betterRequest)}`, `Review check: Confirm the final output serves the audience, context, and compliance constraints.`].join('\n'); }
+  function buildStylePromptPack() { const term = currentTerm(); if (!term) return ''; const prompts = useCasePromptPack(term); return [`# ${txt.promptPack}`, `Term: ${localized(term.term)}`, `Intent: ${localized(term.practicalIntent)}`, ''].concat(Object.entries(prompts).map(([mode, prompt]) => `## ${mode}\n${prompt}`)).join('\n\n'); }
+  function buildAvoidList() { const term = currentTerm(); if (!term) return ''; return [`# ${txt.avoidTitle}`, `Term: ${localized(term.term)}`, '', `- ${localized(term.commonMisuse)}`, `- ${localized(term.badRequest)}`, `- Vague adjectives without a target surface, audience, constraint, or acceptance check.`, `- Decoration-only changes that do not improve readability, hierarchy, trust, or task success.`].join('\n'); }
+  function buildCompareHandoff(sampleIfMissing) { const pair = state.compare.length >= 2 ? state.compare : (sampleIfMissing ? terms.slice(0, 2).map((term) => term.id) : []); if (pair.length < 2) return txt.selectTwo; const a = byId(pair[0]); const b = byId(pair[1]); if (!a || !b) return txt.selectTwo; const insight = pairInsight(a, b); return [`# ${txt.handoffTitle}`, `${localized(a.term)} vs ${localized(b.term)}`, '', `${txt.difference}: ${insight.difference}`, `${txt.whenToUseWhich}: ${insight.whenToUse}`, `${txt.practicalVsVague}: ${insight.practicality}`, '', `Option A better request: ${localized(a.betterRequest)}`, `Option B better request: ${localized(b.betterRequest)}`, '', `Handoff note: choose one vibe before production, then review against audience, context, and conversion or usability goal.`].join('\n'); }
+  function buildMarkdownExport() { return [buildBrandToneMemo(), buildStylePromptPack(), buildAvoidList(), buildCompareHandoff()].join('\n\n---\n\n'); }
+  function buildJsonExport() { const term = currentTerm(); const prompts = term ? useCasePromptPack(term) : {}; return JSON.stringify({ tool: 'vibe-lexicon', entitlement: 'nicheworks_pro', language: lang, term: term ? { id: term.id, label: localized(term.term), useCase: localized(term.useCase), practicalIntent: localized(term.practicalIntent), avoid: localized(term.commonMisuse), betterRequest: localized(term.betterRequest) } : null, promptPack: prompts, brandToneMemo: buildBrandToneMemo(), avoidList: buildAvoidList().split('\n').filter((line) => line.startsWith('- ')).map((line) => line.slice(2)), compareHandoff: buildCompareHandoff() }, null, 2); }
+  function buildProPreview() { return [buildBrandToneMemo(), buildStylePromptPack(), buildAvoidList(), buildCompareHandoff(true), '# Markdown export sample', buildMarkdownExport().slice(0, 700) + '...', '# JSON export sample', buildJsonExport().slice(0, 700) + '...'].join('\n\n'); }
+  function downloadText(filename, mime, text) { const blob = new Blob([text], { type: mime }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
 
   async function copyText(text) { if (!text) return false; try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; } } catch {} const textarea = document.createElement('textarea'); textarea.value = text; textarea.setAttribute('readonly', ''); textarea.style.position = 'fixed'; textarea.style.left = '-9999px'; document.body.appendChild(textarea); textarea.focus(); textarea.select(); let ok = false; try { ok = document.execCommand('copy'); } catch { ok = false; } document.body.removeChild(textarea); return ok; }
-  async function handleProAction(action) { if (!isPro()) { showToast(txt.lockedToast); document.getElementById('vlProLivePanel')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; } const payload = action === 'bundle' ? buildPromptBundle() : action === 'brief' ? buildCompareBrief() : buildQaChecklist(); const ok = await copyText(payload); showToast(ok ? txt.copied : txt.copyFailed); }
+  async function handleProAction(action) {
+    if (!isPro()) { showToast(txt.lockedToast); document.getElementById('vlProLivePanel')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    if (action === 'markdown') { downloadText('vibe-lexicon-pro.md', 'text/markdown;charset=utf-8', buildMarkdownExport()); showToast(txt.copied); return; }
+    if (action === 'json') { downloadText('vibe-lexicon-pro.json', 'application/json;charset=utf-8', buildJsonExport()); showToast(txt.copied); return; }
+    const payload = action === 'memo' ? buildBrandToneMemo() : action === 'avoid' ? buildAvoidList() : action === 'handoff' ? buildCompareHandoff() : buildStylePromptPack();
+    const ok = await copyText(payload); showToast(ok ? txt.copied : txt.copyFailed);
+    const output = $('vlProUnlockedOutput'); if (output) output.textContent = payload;
+  }
   function requestClear(type) { const key = `clear:${type}`; const btn = document.querySelector(`[data-clear="${type}"]`); if (!confirmTimers.has(key)) { if (btn) btn.textContent = txt.confirmClear; showToast(txt.confirmClear); confirmTimers.set(key, setTimeout(() => { confirmTimers.delete(key); renderSaved(); }, 3500)); return; } clearTimeout(confirmTimers.get(key)); confirmTimers.delete(key); if (type === 'fav') { state.favorites = []; writeArray('nw-vl-favorites', []); } if (type === 'recent') { state.recent = []; writeArray('nw-vl-recent', []); } showToast(txt.cleared); render(); }
   function openFilters() { if (isMobileViewport()) { root.classList.add('filters-open'); root.classList.remove('detail-open'); } }
   function closeFilters() { root.classList.remove('filters-open'); }
@@ -288,6 +339,7 @@
   els.mobileCompareJumpBtn?.addEventListener('click', () => els.compareTray?.scrollIntoView({ behavior: 'smooth', block: 'start' })); els.mobileCompareClearBtn?.addEventListener('click', () => { state.compare = []; render(); });
   mobileQuery.addEventListener('change', syncDesktopState);
   window.addEventListener('storage', updateProPanel);
+  window.addEventListener('nw-pro-status-change', updateProPanel);
   syncDesktopState();
   render();
 })();
