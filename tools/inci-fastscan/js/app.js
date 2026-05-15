@@ -193,9 +193,14 @@ async function loadDictionary() {
       .filter(result => result.status === "fulfilled")
       .flatMap(result => result.value);
 
-    if (!loaded.length) throw new Error("No dictionary files loaded");
+    const generated = Array.isArray(window.NW_INCI_GENERATED_DICTIONARY)
+      ? window.NW_INCI_GENERATED_DICTIONARY
+      : [];
 
-    DICT = dedupeDictionary(loaded);
+    const merged = loaded.concat(generated);
+    if (!merged.length) throw new Error("No dictionary entries loaded");
+
+    DICT = dedupeDictionary(merged);
     dictReady = true;
     lastDictionaryStatus = results.some(result => result.status === "rejected") ? "partial" : "loaded";
     refreshDictionaryStatus();
@@ -215,12 +220,24 @@ function dedupeDictionary(items) {
   const output = [];
   for (const item of items) {
     if (!item || !item.en) continue;
-    const key = String(item.id || item.en).toLowerCase();
+    const key = normalizeDictionaryKey(item.en);
     if (seen.has(key)) continue;
     seen.add(key);
     output.push(item);
   }
   return output;
+}
+
+function normalizeDictionaryKey(value) {
+  return String(value || "")
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, "-")
+    .replace(/[\s_]+/g, " ")
+    .replace(/[()（）［］\[\]{}]/g, "")
+    .replace(/，/g, ",")
+    .replace(/\s*,\s*/g, ",")
+    .trim();
 }
 
 function setCheckButtonsDisabled(disabled) {

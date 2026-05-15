@@ -86,6 +86,7 @@
   <script defer src="js/core_ocr_post.js"></script>
   <script defer src="js/web_ui.js"></script>
   <script defer src="js/web_ocr.js"></script>
+  <script defer src="js/generated_dictionary.js"></script>
   <script defer src="js/app.js"></script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
@@ -139,7 +140,7 @@
     </section>
 
     <section id="tab-fast-panel" class="panel active">
-      <textarea id="fast-input" stable content="Paste ingredients (comma or line separated)" data-stable content-ja="INCI名をカンマ区切りまたは改行区切りで貼り付け" data-stable content-en="Paste ingredients (comma or line separated)"></textarea>
+      <textarea id="fast-input" placeholder="Paste ingredients (comma or line separated)" data-placeholder-ja="INCI名をカンマ区切りまたは改行区切りで貼り付け" data-placeholder-en="Paste ingredients (comma or line separated)"></textarea>
       <div class="sample-row" aria-label="Sample ingredients">
         <button id="btn-fast-sample" type="button" class="button-ghost" data-lang-text data-ja="英語INCIサンプルを入れる" data-en="Use EN sample">英語INCIサンプルを入れる</button>
       </div>
@@ -154,7 +155,7 @@
     </section>
 
     <section id="tab-jb-panel" class="panel">
-      <textarea id="jb-input" stable content="水、グリセリン、ナイアシンアミド、BG など" data-stable content-ja="水、グリセリン、ナイアシンアミド、BG など" data-stable content-en="Paste Japanese ingredients or run OCR"></textarea>
+      <textarea id="jb-input" placeholder="水、グリセリン、ナイアシンアミド、BG など" data-placeholder-ja="水、グリセリン、ナイアシンアミド、BG など" data-placeholder-en="Paste Japanese ingredients or run OCR"></textarea>
       <div class="sample-row" aria-label="サンプル成分">
         <button id="btn-jb-sample" type="button" class="button-ghost" data-lang-text data-ja="日本語サンプルを入れる" data-en="Use JP sample">日本語サンプルを入れる</button>
       </div>

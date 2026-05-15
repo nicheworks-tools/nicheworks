@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import vm from "node:vm";
 
 const root = new URL(".", import.meta.url).pathname;
 const dictionaryFiles = [
@@ -14,8 +15,9 @@ const dictionaryFiles = [
   "data/ingredients-extra-7.json",
   "data/ingredients-extra-8.json",
 ];
+const generatedDictionaryFile = "js/generated_dictionary.js";
 
-const minimumTotal = 500;
+const minimumTotal = 1000;
 const requiredStringFields = ["id", "en", "safety"];
 const allowedSafety = new Set(["safe", "caution", "risk"]);
 const allowedCategories = new Set([
@@ -92,6 +94,30 @@ function readJson(file) {
   }
 }
 
+function readGeneratedDictionary(file) {
+  const fullPath = path.join(root, file);
+  if (!fs.existsSync(fullPath)) {
+    errors.push(`${file}: missing file`);
+    return [];
+  }
+
+  try {
+    const code = fs.readFileSync(fullPath, "utf8");
+    const context = { window: {} };
+    vm.createContext(context);
+    vm.runInContext(code, context, { filename: file, timeout: 1000 });
+    const generated = context.window.NW_INCI_GENERATED_DICTIONARY;
+    if (!Array.isArray(generated)) {
+      errors.push(`${file}: window.NW_INCI_GENERATED_DICTIONARY must be an array`);
+      return [];
+    }
+    return generated.map((item, index) => ({ ...item, __file: file, __index: index }));
+  } catch (error) {
+    errors.push(`${file}: failed to execute generated dictionary: ${error.message}`);
+    return [];
+  }
+}
+
 function normalized(value) {
   return String(value || "")
     .normalize("NFKC")
@@ -112,6 +138,7 @@ for (const file of dictionaryFiles) {
   const items = readJson(file);
   allItems.push(...items);
 }
+allItems.push(...readGeneratedDictionary(generatedDictionaryFile));
 
 for (const item of allItems) {
   for (const field of requiredStringFields) {
@@ -163,7 +190,9 @@ if (uniqueEnCount < minimumTotal) {
 }
 
 const report = {
-  files: dictionaryFiles.length,
+  files: dictionaryFiles.length + 1,
+  staticFiles: dictionaryFiles.length,
+  generatedFile: generatedDictionaryFile,
   totalItems: totalCount,
   uniqueEnglishIngredients: uniqueEnCount,
   minimumTotal,
