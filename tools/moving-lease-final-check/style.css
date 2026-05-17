@@ -469,8 +469,15 @@ html[data-pro-active="true"] .pro-status{
 }
 .locked-pro-actions button{
   color: #6b7280;
-  cursor: not-allowed;
-  opacity: .72;
+  cursor: pointer;
+  opacity: .82;
+  position: relative;
+}
+.locked-pro-actions button:hover,
+.locked-pro-actions button:focus-visible{
+  border-color: #818cf8;
+  color: #374151;
+  background: #eef2ff;
 }
 .pro-output pre{
   max-height: 360px;
