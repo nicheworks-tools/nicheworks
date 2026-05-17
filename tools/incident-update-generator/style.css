@@ -293,3 +293,40 @@ body{
   .row{ flex-direction:column; align-items:stretch; }
   .btn{ width:100%; }
 }
+
+.pro-card{
+  border-color:#d1d5db;
+}
+.pro-status{
+  display:inline-flex;
+  align-items:center;
+  margin:0 0 8px;
+  padding:4px 8px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--bg-soft);
+  font-size:12px;
+  font-weight:600;
+}
+html[data-pro-active="true"] .pro-status{
+  border-color:#86efac;
+  background:#f0fdf4;
+  color:#166534;
+}
+.pro-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:10px 0;
+}
+.pro-preview-actions .btn:disabled,
+[data-pro-only]:disabled{
+  cursor:not-allowed;
+  opacity:.55;
+  transform:none;
+  box-shadow:none;
+}
+.nw-muted{
+  color:var(--muted);
+  font-size:12px;
+}

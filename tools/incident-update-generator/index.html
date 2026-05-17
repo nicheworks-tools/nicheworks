@@ -39,7 +39,7 @@
 <main class="nw-main"><div class="ad-slot ad-top">広告枠</div>
 <section class="nw-note nw-warning"><h2 data-i18n="ja">重要な注意</h2><h2 data-i18n="en" style="display:none;">Important note</h2><p data-i18n="ja">このツールは更新文のたたき台です。外部公開前に事実確認、責任者、法務、広報、セキュリティ担当の確認を行ってください。</p><p data-i18n="en" style="display:none;">This tool creates draft updates only. Review facts and wording with responsible, legal, PR, and security owners before publishing.</p></section>
 <section class="card"><div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none;">Input</h2></div><div class="card-bd"><div id="formError" class="form-error"></div>
-<div class="field"><label class="label" for="service">Service / サービス名</label><input id="service" class="input js-input" type="text" stable content="API / Web app"></div>
+<div class="field"><label class="label" for="service">Service / サービス名</label><input id="service" class="input js-input" type="text" placeholder="API / Web app"></div>
 <div class="field"><label class="label" for="status">Status</label><select id="status" class="select js-input"><option value="Investigating">Investigating</option><option value="Identified">Identified</option><option value="Monitoring">Monitoring</option><option value="Resolved">Resolved</option></select></div>
 <div class="field"><label class="label" for="tone">Tone</label><select id="tone" class="select js-input"><option value="short">Short</option><option value="standard" selected>Standard</option><option value="polite">Polite</option></select></div>
 <div class="field"><label class="label" for="audience">Download audience</label><select id="audience" class="select"><option value="customer">Customer</option><option value="internal">Internal</option><option value="social">Social</option></select></div>
@@ -54,9 +54,35 @@
 <div class="field"><label class="label" for="followUpPlan">Follow-up / 事後対応</label><input id="followUpPlan" class="input js-input" type="text"></div>
 <label class="check-row"><input id="includeUnknown" type="checkbox"> Mark missing optional fields as unconfirmed</label>
 <div class="row action-row"><button class="btn primary" id="generateBtn" type="button">Generate updates / 更新文を生成</button><button class="btn" id="downloadBtn" type="button" disabled>Download selected .txt</button></div></div></section>
+<section class="card pro-card" aria-labelledby="proTitle">
+  <div class="card-hd">
+    <h2 id="proTitle" class="card-title" data-i18n="ja">NicheWorks Pro</h2>
+    <h2 class="card-title" data-i18n="en" style="display:none;">NicheWorks Pro</h2>
+  </div>
+  <div class="card-bd">
+    <p class="pro-status" data-pro-status>Preview mode / Previewモード</p>
+    <div data-pro-preview>
+      <p data-i18n="ja">Previewモードです。無料版では入力した内容から顧客向け・社内向け・SNS向けの更新文生成、個別コピー、選択TXT保存が使えます。</p>
+      <p data-i18n="en" style="display:none;">Preview mode. The free version can generate customer, internal, and social updates, copy individual outputs, and save the selected TXT file.</p>
+      <p data-i18n="ja">Proでは、全出力をまとめたMarkdownパックのコピーと保存が解放されます。</p>
+      <p data-i18n="en" style="display:none;">Pro unlocks copying and saving a combined Markdown pack for all outputs.</p>
+      <div class="pro-actions pro-preview-actions" aria-hidden="true">
+        <button class="btn" type="button" disabled>Copy Markdown pack (locked)</button>
+        <button class="btn" type="button" disabled>Save Markdown pack (.md) (locked)</button>
+      </div>
+    </div>
+    <div class="pro-actions">
+      <a class="btn primary" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener" data-pro-buy>Buy Pro / Proを購入</a>
+      <button class="btn" id="copyMarkdownBtn" type="button" data-pro-only disabled>Copy Markdown pack</button>
+      <button class="btn" id="saveMarkdownBtn" type="button" data-pro-only disabled>Save Markdown pack (.md)</button>
+    </div>
+    <p class="nw-muted" data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+    <p class="nw-muted" data-i18n="en" style="display:none;">After purchase, NicheWorks Pro becomes active in this browser. It is usually kept after closing tabs or the browser, but another device, another browser, private mode, or cleared site data requires activation again.</p>
+  </div>
+</section>
 <section class="card"><div class="card-hd"><h2 class="card-title">Outputs</h2></div><div class="card-bd"><div class="output-grid">
 <div class="output-card" data-audience="customer"><div class="output-head"><div class="output-title">Customer</div><button class="btn btn-sm copy-btn" data-copy="customer" type="button" disabled>Copy</button></div><pre id="outputCustomerJa" class="out" data-i18n="ja">入力後に生成してください。</pre><pre id="outputCustomerEn" class="out" data-i18n="en" style="display:none;">Enter fields, then generate.</pre></div>
 <div class="output-card" data-audience="internal"><div class="output-head"><div class="output-title">Internal</div><button class="btn btn-sm copy-btn" data-copy="internal" type="button" disabled>Copy</button></div><pre id="outputInternalJa" class="out" data-i18n="ja">入力後に生成してください。</pre><pre id="outputInternalEn" class="out" data-i18n="en" style="display:none;">Enter fields, then generate.</pre></div>
 <div class="output-card" data-audience="social"><div class="output-head"><div class="output-title">Social</div><button class="btn btn-sm copy-btn" data-copy="social" type="button" disabled>Copy</button></div><pre id="outputSocialJa" class="out" data-i18n="ja">入力後に生成してください。</pre><pre id="outputSocialEn" class="out" data-i18n="en" style="display:none;">Enter fields, then generate.</pre></div>
 </div></div></section><div class="ad-slot ad-bottom">広告枠</div><div class="nw-donate"><p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div></main>
-<footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="./pro-app.js"></script></body></html>
+<footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="/assets/nw-pro.js"></script><script src="./app.js"></script><script src="./pro-bridge.js"></script></body></html>

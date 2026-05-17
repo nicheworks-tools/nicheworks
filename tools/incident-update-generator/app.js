@@ -53,8 +53,8 @@
     }
   };
 
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const downloadText = (filename, text, type = "text/plain;charset=utf-8") => {
+    const blob = new Blob([text], { type });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
@@ -123,6 +123,9 @@
       copyFail: "コピーに失敗しました。手動で選択してコピーしてください。",
       blocked: "先に更新文を生成してください。",
       saved: "TXTを保存しました。",
+      proBlocked: "Pro限定機能です。購入後にこのブラウザでNicheWorks Proを有効化してください。",
+      markdownCopied: "Markdownパックをコピーしました。",
+      markdownSaved: "Markdownパックを保存しました。",
       requiredNames: {
         service: "サービス名",
         status: "現在ステータス",
@@ -139,6 +142,9 @@
       copyFail: "Copy failed. Select the text and copy it manually.",
       blocked: "Generate the updates first.",
       saved: "TXT saved.",
+      proBlocked: "This is a Pro feature. Purchase and activate NicheWorks Pro in this browser.",
+      markdownCopied: "Markdown pack copied.",
+      markdownSaved: "Markdown pack saved.",
       requiredNames: {
         service: "Service name",
         status: "Current status",
@@ -339,12 +345,21 @@
     return lines.join("\n");
   };
 
+  const isProActive = () => document.documentElement.dataset.proActive === "true";
+
+  const updateProButtonState = () => {
+    document.querySelectorAll("[data-pro-only]").forEach((button) => {
+      button.disabled = !hasGenerated || !isProActive();
+    });
+  };
+
   const setGeneratedState = (generated) => {
     hasGenerated = generated;
     byId("downloadBtn").disabled = !generated;
     document.querySelectorAll("[data-copy]").forEach((button) => {
       button.disabled = !generated;
     });
+    updateProButtonState();
   };
 
   const writeOutputs = (outputs) => {
@@ -405,6 +420,37 @@
     return `${yyyy}${mm}${dd}`;
   };
 
+  const buildMarkdownPack = () => {
+    const data = getFormData();
+    const title = data.service ? `Incident Update Pack - ${data.service}` : "Incident Update Pack";
+    const sections = [
+      `# ${title}`,
+      "",
+      `- Status: ${STATUS_MAP[data.statusKey]?.en || data.statusKey}`,
+      `- Generated: ${new Date().toISOString()}`,
+      "",
+    ];
+
+    ["customer", "internal", "social"].forEach((audience) => {
+      sections.push(`## ${TITLE_MAP[audience].en} / ${TITLE_MAP[audience].ja}`, "", "### English", "", currentOutputs[audience].en || "", "", "### 日本語", "", currentOutputs[audience].ja || "", "");
+    });
+
+    return sections.join("\n");
+  };
+
+  const requireProAndGenerated = () => {
+    const lang = getLang();
+    if (!isProActive()) {
+      showToast(MESSAGES[lang].proBlocked);
+      return false;
+    }
+    if (!hasGenerated) {
+      showToast(MESSAGES[lang].blocked);
+      return false;
+    }
+    return true;
+  };
+
   const initTool = () => {
     resetOutputs("initial");
     updateAudienceFocus();
@@ -448,6 +494,29 @@
       downloadText(`incident-update-${audience}-${lang}-${formatDate()}.txt`, text);
       showToast(MESSAGES[lang].saved);
     });
+
+    const copyMarkdownBtn = byId("copyMarkdownBtn");
+    if (copyMarkdownBtn) {
+      copyMarkdownBtn.addEventListener("click", async () => {
+        const lang = getLang();
+        if (!requireProAndGenerated()) return;
+        const ok = await copyToClipboard(buildMarkdownPack());
+        showToast(ok ? MESSAGES[lang].markdownCopied : MESSAGES[lang].copyFail);
+      });
+    }
+
+    const saveMarkdownBtn = byId("saveMarkdownBtn");
+    if (saveMarkdownBtn) {
+      saveMarkdownBtn.addEventListener("click", () => {
+        const lang = getLang();
+        if (!requireProAndGenerated()) return;
+        downloadText(`incident-update-pack-${lang}-${formatDate()}.md`, buildMarkdownPack(), "text/markdown;charset=utf-8");
+        showToast(MESSAGES[lang].markdownSaved);
+      });
+    }
+
+    document.addEventListener("nw-pro-status-change", updateProButtonState);
+    updateProButtonState();
   };
 
   document.addEventListener("DOMContentLoaded", () => {
