@@ -1,3 +1,4 @@
+import { onRequestGet as runPixelProbe } from "./precipitation-pixel-probe.js";
 import { classifyProbeStatus } from "./probe-status.js";
 
 const DATASET_ID = "JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily";
@@ -100,61 +101,94 @@ const validate = (request) => {
   return { params: { bbox, start: rawStart, end: rawEnd, preset } };
 };
 
-const determineReadiness = () => classifyProbeStatus({
-  probe: {
-    data_type: "real_observation_sample_probe",
-    status: "blocked",
-    sampling_status: "range_probe_only",
-    sample_status: "not_sampled",
-    block_reason: "validated_sampling_not_ready",
-    first_pixel: null,
-  },
+const blockerForDecision = (decision) => (
+  decision?.phase === "decoder_strategy_required"
+    ? "decoder_strategy_required"
+    : "raw_pixel_read_not_confirmed"
+);
+
+const readProbePayload = async (context) => {
+  let probe = null;
+  let httpStatus = 200;
+
+  try {
+    const response = await runPixelProbe(context);
+    httpStatus = response.status;
+    probe = await response.json();
+  } catch (error) {
+    httpStatus = 502;
+    probe = {
+      data_type: null,
+      status: "error",
+      error_code: "sample_real_probe_failed",
+      message: error?.message || String(error),
+    };
+  }
+
+  const classified = classifyProbeStatus({ probe, http_status: httpStatus });
+  return { probe, httpStatus, ...classified };
+};
+
+const readinessFromDecision = (decision) => ({
+  phase: decision.phase,
+  next: decision.next,
+  reason: decision.reason,
+  can_continue_to_public_ui: decision.can_continue_to_public_ui,
 });
 
-export async function onRequestGet({ request }) {
+const commonReadinessFields = ({ readiness, blocker, probeDecision }) => ({
+  readiness,
+  readiness_blocker: blocker,
+  probe_decision: probeDecision,
+  validated_sample_ready: false,
+});
+
+export async function onRequestGet(context) {
+  const { request } = context;
   const validation = validate(request);
   if (validation.error) {
     const [code, message, guidance] = validation.error;
     return unavailable({ code, message, guidance, status: 400 });
   }
 
-  const readiness = determineReadiness();
+  const probeReadiness = await readProbePayload(context);
+  const readiness = readinessFromDecision(probeReadiness.decision);
+  const baseExtra = {
+    bbox: validation.params.bbox,
+    date_range: { start: validation.params.start, end: validation.params.end },
+    preset: validation.params.preset,
+    ...commonReadinessFields({
+      readiness,
+      blocker: blockerForDecision(probeReadiness.decision),
+      probeDecision: probeReadiness.decision,
+    }),
+    warnings: [
+      "No mean/min/max precipitation values are returned by this endpoint.",
+      "No synthetic fallback values are returned.",
+      "This endpoint is not connected to public UI.",
+      "Raw pixel access is not a validated precipitation observation until unit, scale, NoData, projection, aggregation, and license gates are complete.",
+    ],
+  };
+
+  if (probeReadiness.decision.phase === "raw_pixel_read") {
+    return json({
+      data_type: "research-only",
+      status: "ok",
+      message: "A raw pixel probe returned a finite first pixel, but validated real precipitation sampling is still unavailable.",
+      guidance: "Use debug_first_pixel only for EMS research. Do not publish it as precipitation and keep Storm, Compare, Card, and public UI disconnected.",
+      ...responseContract(),
+      ...baseExtra,
+      readiness_blocker: "unit_scale_nodata_projection_not_validated",
+      debug_first_pixel: probeReadiness.summary.first_pixel,
+    }, 200);
+  }
 
   return unavailable({
     code: "validated_sampling_not_ready",
     message: "Validated real precipitation sample validation is not complete, so this endpoint fails safely and returns no precipitation values.",
-    guidance: "Keep Storm, Compare, Card, and public UI disconnected until decoder, projection, unit, nodata, aggregation, and license validation are complete.",
+    guidance: "Keep Storm, Compare, Card, and public UI disconnected until raw pixel reading, decoder, projection, unit, nodata, aggregation, and license validation are complete.",
     status: 501,
-    extra: {
-      bbox: validation.params.bbox,
-      date_range: { start: validation.params.start, end: validation.params.end },
-      preset: validation.params.preset,
-      readiness: {
-        phase: readiness.decision.phase,
-        next: readiness.decision.next,
-        reason: readiness.decision.reason,
-        can_continue_to_public_ui: readiness.decision.can_continue_to_public_ui,
-      },
-      future_real_response_shape: {
-        data_type: "real_observation_precipitation_sample",
-        status: "ok",
-        dataset_id: DATASET_ID,
-        source: SOURCE,
-        license_status: "validated",
-        retrieved_at: "ISO-8601 timestamp",
-        processing_note: "validated decoder/projection/unit/nodata/aggregation details",
-        unit: "mm/day",
-        mean: null,
-        min: null,
-        max: null,
-        nodata_count: null,
-      },
-      warnings: [
-        "No mean/min/max precipitation values are returned by this skeleton endpoint.",
-        "No synthetic fallback values are returned.",
-        "This endpoint is not connected to public UI.",
-      ],
-    },
+    extra: baseExtra,
   });
 }
 
