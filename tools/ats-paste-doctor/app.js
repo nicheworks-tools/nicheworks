@@ -1,113 +1,126 @@
-/* ATS Paste Doctor | NicheWorks (MVP scaffold)
- * - Common Spec v3: progress + reset + red error + placeholder + ad slots kept
- * - Free flow works; Pro unlock via ?pro=1 localStorage
- */
-
 (() => {
+  "use strict";
+
   const $ = (id) => document.getElementById(id);
+  const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+  const FREE_LIMIT = 30000;
+  const PRO_LIMIT = 200000;
+  const TEMPLATE_PREFIX = "nw_ats_paste_doctor_template_";
+  const HISTORY_KEY = "nw_ats_paste_doctor_history";
+  const HISTORY_LIMIT = 10;
 
-  const inputText = $("inputText");
-  const outputText = $("outputText");
-  const previewBox = $("previewBox");
+  const el = {
+    input: $("inputText"),
+    output: $("outputText"),
+    preview: $("previewBox"),
+    process: $("processBtn"),
+    copy: $("copyBtn"),
+    download: $("downloadBtn"),
+    reset: $("resetBtn"),
+    limit: $("limitInput"),
+    limitMeta: $("limitMeta"),
+    charMeta: $("charMeta"),
+    counts: $("countsGrid"),
+    warnings: $("warningsList"),
+    error: $("errorBox"),
+    toast: $("toast"),
+    progress: $("progressWrap"),
+    proTools: $("proTools"),
+    proToolsNote: $("proToolsNote"),
+    historyList: $("historyList"),
+    langJa: $("langJa"),
+    langEn: $("langEn"),
+  };
 
-  const processBtn = $("processBtn");
-  const copyBtn = $("copyBtn");
-  const downloadBtn = $("downloadBtn");
-  const resetBtn = $("resetBtn");
-  const exportPdfBtn = $("exportPdfBtn");
-  const proTools = $("proTools");
-  const proToolsNote = $("proToolsNote");
-
-  const progressWrap = $("progressWrap");
-  const errorBox = $("errorBox");
-  const toast = $("toast");
-
-  const countsGrid = $("countsGrid");
-  const warningsList = $("warningsList");
-
-  const limitInput = $("limitInput");
-  const limitMeta = $("limitMeta");
-  const charMeta = $("charMeta");
-
-  const modeBtns = {
+  const modeButtons = {
     safe: $("modeSafe"),
     keep: $("modeKeep"),
     clean: $("modeClean"),
   };
 
-  const proCard = $("proCard");
-  const proBadge = $("proBadge");
-
-  const langJa = $("langJa");
-  const langEn = $("langEn");
-
-  const PRO_KEY = "nw_pro_ats_paste_doctor";
-  const STRIPE_LINK = "https://example.com/stripe-payment-link"; // replace later
-  $("buyProLink").setAttribute("href", STRIPE_LINK);
-
-  let currentLang = "en";
+  let currentLang = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
   let currentMode = "safe";
-  let toastTimer = null;
+  let toastTimer = 0;
 
   const messages = {
     en: {
       "app.title": "ATS Paste Doctor",
-      "app.subtitle": "Check formatting issues and invisible characters before pasting into ATS/job forms.",
-      "intro.line1": "Paste your text, pick a mode, and copy a safer version for ATS forms.",
-      "intro.line2": "Runs locally in your browser. Your text is not uploaded.",
+      "app.subtitle": "Check line breaks, bullets, invisible characters, and character counts before pasting into job forms.",
+      "intro.line1": "Paste your resume text, cover letter, or application note, then generate plain text that is easier to review before submitting.",
+      "intro.line2": "Processing runs in your browser. Ads and analytics may still load for the page itself, so redact personal details when needed.",
+      "notice.title": "Before you paste personal application text",
+      "notice.body": "This tool processes text locally in your browser and does not upload the pasted content. However, page display may load ads and analytics tags. Redact personal details when needed.",
+      "guarantee.title": "Not an ATS guarantee",
+      "guarantee.body": "ATS and job forms behave differently. Always check the actual form before submitting.",
       "steps.title": "Quick steps",
       "steps.item1": "Paste your text.",
       "steps.item2": "Pick a mode, then click Generate output.",
       "steps.item3": "Copy or download, then check the 2-line preview.",
       "freepro.title": "Free vs Pro (quick)",
       "freepro.free.title": "Free",
-      "freepro.free.item1": "Formatting fixes (ATS-safe / keep line breaks / clean)",
-      "freepro.free.item2": "Counts + warnings for risky characters",
-      "freepro.free.item3": "Copy / TXT download + 2-line preview",
+      "freepro.free.item1": "Formatting fixes, counts, warnings, 2-line preview",
+      "freepro.free.item2": "Copy output and save TXT up to 30,000 characters",
+      "freepro.free.item3": "JA/EN UI, personal-info and ATS guarantee notices",
       "freepro.pro.title": "Pro",
-      "freepro.pro.item1": "Hide ads in the UI",
-      "freepro.pro.item2": "Higher text limit",
-      "freepro.pro.item3": "Templates / history / PDF export",
+      "freepro.pro.item1": "Hide ads and raise the limit to 200,000 characters",
+      "freepro.pro.item2": "PDF, Markdown, JSON, templates, and history",
+      "freepro.pro.item3": "Full ATS output pack and pre-submit checklist",
       "input.title": "Input",
       "input.label": "Input",
       "input.placeholder": "Paste your text here (job summary, cover letter, bullets)…",
       "input.hint": "May take up to a few seconds.",
       "options.title": "Options",
       "options.mode.label": "Output mode",
-      "options.mode.safe": "ATS-safe",
+      "options.mode.safe": "ATS-friendly plain text",
       "options.mode.keep": "Keep line breaks",
       "options.mode.clean": "Clean",
       "options.limit.label": "Character limit (optional)",
       "options.limit.placeholder": "e.g. 1000",
       "actions.process": "Generate output",
+      "actions.copy": "Copy output",
+      "actions.download": "Download .txt",
+      "actions.reset": "Reset",
+      "actions.copyPack": "Copy full ATS pack",
+      "actions.copyMarkdown": "Copy Markdown pack",
+      "actions.exportJson": "Export JSON",
+      "actions.copyChecklist": "Copy checklist",
+      "actions.exportPdf": "Export PDF",
       "results.counts.title": "Counts",
       "results.warnings.title": "Warnings",
       "output.title": "Output",
       "output.label": "Output",
-      "actions.copy": "Copy output",
-      "actions.download": "Download .txt",
-      "actions.exportPdf": "Export PDF",
-      "actions.reset": "Reset",
       "progress.label": "Processing…",
       "preview.title": "ATS-style preview (2-line textbox)",
-      "preview.note": "Some ATS forms show only a tiny textbox. Check readability here.",
-      "pro.title": "Unlock Pro ($2.99 one-time)",
+      "preview.note": "This is only a small-box readability preview. It does not guarantee how every ATS or job form will display the text.",
+      "pro.title": "NicheWorks Pro",
       "pro.unlocked": "Pro unlocked",
-      "pro.desc": "Hide ads and unlock templates, history, and PDF export (stored locally only).",
-      "pro.feature.ads": "Hide ads in the UI",
-      "pro.feature.limit": "Higher text limit",
-      "pro.feature.presets": "Templates / history / PDF export",
+      "pro.desc": "Unlock PDF export, templates, history, Markdown/JSON exports, a full ATS output pack, and ad hiding through the shared NicheWorks Pro entitlement.",
+      "pro.feature.limit": "Free limit: 30,000 characters. Pro limit: 200,000 characters.",
+      "pro.feature.pack": "Pro output pack: ATS-friendly version, line-break-preserved version, Clean version, counts/warnings summary, and pre-submit memo.",
+      "pro.feature.storage": "Templates Slot 1–3 and local history save/load/delete.",
       "pro.cta": "Buy Pro",
-      "pro.priceNote": "$2.99 one-time",
-      "pro.howto": "After payment, return to this page with ?pro=1 to enable Pro on this device.",
+      "pro.shared": "Uses the shared NicheWorks Pro checkout and entitlement.",
+      "pro.afterPurchase": "After purchase, NicheWorks Pro becomes active in this browser. It usually remains active after closing tabs or the browser. Other devices, other browsers, private browsing, or cleared site data require activation again.",
+      "propreview.title": "Preview mode",
+      "propreview.body": "You can keep using the free cleaner now. The samples below show what becomes available after purchase.",
+      "propreview.pack.title": "Pro output pack sample",
+      "propreview.pdf.title": "PDF export sample",
+      "propreview.pdf.body": "A printable view opens so you can save the full output pack as PDF.",
+      "propreview.storage.title": "Templates and history",
+      "propreview.storage.body": "Save reusable templates in Slot 1–3 and keep local output history for later review.",
+      "propreview.memo.title": "Pre-submit memo sample",
+      "propreview.unlockNote": "After purchase, full copy, PDF, templates, and history are enabled.",
       "protools.title": "Pro tools",
-      "protools.note": "Available with Pro",
+      "protools.note": "Locked in Preview mode",
+      "protools.noteActive": "Pro tools are unlocked in this browser.",
+      "protools.pack.title": "Output pack",
+      "protools.pack.note": "Generate full ATS, Markdown, JSON, and checklist exports.",
       "protools.pdf.title": "PDF export",
       "protools.pdf.note": "Open a printable view to save as PDF.",
       "protools.templates.title": "Templates",
       "protools.templates.note": "Save the current output into a slot.",
       "protools.history.title": "History",
-      "protools.history.note": "Save outputs to revisit later.",
+      "protools.history.note": "Save outputs locally to revisit later.",
       "templates.slot1": "Slot 1",
       "templates.slot2": "Slot 2",
       "templates.slot3": "Slot 3",
@@ -115,739 +128,750 @@
       "templates.load": "Load",
       "history.save": "Save to history",
       "history.clear": "Clear all",
-      "history.empty": "No history yet.",
-      "history.load": "Load",
-      "history.delete": "Delete",
-      "pdf.tip": "Press Ctrl/Cmd+P to save as PDF.",
-      "error.noOutput": "Generate output first.",
-      "error.noTemplate": "This slot is empty.",
-      "privacy.note": "Runs fully in your browser. Your text is not saved or sent (only Pro status may be stored locally).",
-      "donate.text": "If this tool helped, consider supporting continued development.",
-      "donate.ofuse": "💌 OFUSE",
-      "donate.kofi": "☕ Ko-fi",
       "faq.title": "FAQ",
-      "faq.q1": "Why do line breaks or bullets break in ATS forms?",
-      "faq.a1": "Many ATS/web forms strip formatting or collapse whitespace. This tool normalizes text to safer plain text.",
-      "faq.q2": "Is my text uploaded or saved?",
-      "faq.a2": "No. Processing runs locally in your browser; only Pro status may be stored locally.",
-      "faq.q3": "What do “ATS-safe / Keep line breaks / Clean” mean?",
-      "faq.a3": "ATS-safe flattens bullets/paragraphs, Keep line breaks preserves line structure, Clean removes invisible/control characters.",
-      "faq.q4": "Why do I see warnings like invisible chars or mixed newlines?",
-      "faq.a4": "Those hidden characters can cause paste glitches. The warnings flag risky patterns so you can fix them.",
-      "faq.q5": "How do I unlock Pro ($2.99) and what persists?",
-      "faq.a5": "Complete the payment, then revisit with ?pro=1. Pro status is saved on this device only.",
-      "help.title": "Help links",
-      "help.usage": "Usage",
-      "help.howto": "How to use (guide)",
-      "help.home": "NicheWorks Home",
+      "faq.q1": "Will this always display correctly in every ATS?",
+      "faq.a1": "No. ATS and job forms differ. Use this as a plain-text cleanup aid and confirm the result inside the actual form before submitting.",
+      "faq.q2": "Is my pasted text uploaded?",
+      "faq.a2": "No. Formatting and checks run in your browser. The page may still load ads and analytics tags for site operation.",
+      "faq.q3": "Can I paste personal application details?",
+      "faq.a3": "You can, but it is safer to redact names, addresses, phone numbers, email addresses, employer names, and detailed work history when possible.",
+      "faq.q4": "What is ATS-friendly plain text?",
+      "faq.a4": "It reduces fragile formatting and hidden characters that can break when a form converts your text.",
+      "faq.q5": "What happens after purchase?",
+      "faq.a5": "After purchase, NicheWorks Pro becomes active in this browser. It usually remains active after closing tabs or the browser. Other devices, other browsers, private browsing, or cleared site data require activation again.",
+      "related.title": "Related tools",
+      "related.usage": "Usage",
+      "related.cover": "Cover Letter Lite",
+      "related.cold": "Cold Email Requirement Checker",
+      "related.redactor": "API Key Token Redactor",
+      "related.linebreak": "LineBreak Doctor",
       "footer.line1": "© NicheWorks — Small Web Tools for Boring Tasks",
-      "footer.line2": "This site may contain ads. Information accuracy is not guaranteed. Always verify official sources.",
+      "footer.line2": "This site may contain ads. Information accuracy is not guaranteed.",
       "footer.home": "nicheworks.app",
+      countTotal: "Total",
+      countNoSpaces: "No spaces",
+      countNoNewlines: "No newlines",
+      countLines: "Lines",
+      countParagraphs: "Paragraphs",
+      countBullets: "Bullet lines",
+      warnInvisible: "Invisible chars",
+      warnControl: "Control chars",
+      warnSpace: "Non-standard spaces",
+      warnMixed: "Mixed newline formats detected",
+      warnConsecutive: "Consecutive space blocks",
+      noWarnings: "No risky characters detected.",
+      emptyInput: "Input is empty. Paste your text first.",
+      emptyOutput: "Generate output first.",
+      tooLong: "Text is too long for the current plan. Free supports 30,000 characters; Pro supports 200,000 characters.",
+      copied: "Copied",
+      downloaded: "TXT downloaded",
+      copyFailed: "Copy failed. Please check browser permissions.",
+      saved: "Saved",
+      loaded: "Loaded",
+      cleared: "Cleared",
+      deleted: "Deleted",
+      noTemplate: "This slot is empty.",
+      noHistory: "No history yet.",
+      proLocked: "Pro feature locked. Preview mode remains available; use Buy Pro to unlock full copy, PDF, and save operations.",
+      pdfTip: "Press Ctrl/Cmd+P to save as PDF.",
+      storageUnavailable: "Local storage is unavailable. Free features still work, but templates/history may not be saved.",
+      remaining: "Remaining",
+      overBy: "Over by",
     },
     ja: {
       "app.title": "ATS Paste Doctor",
-      "app.subtitle": "応募フォーム貼り付け前に、改行崩れ・箇条書き崩壊・不可視文字をチェックして安全な形に整えます。",
-      "intro.line1": "文章を貼ってモードを選び、応募フォーム向けの安全な形にしてコピーします。",
-      "intro.line2": "ブラウザ内だけで動作し、入力はアップロードされません。",
+      "app.subtitle": "応募フォーム貼り付け前に、改行崩れ・箇条書き崩壊・不可視文字・文字数をチェックします。",
+      "intro.line1": "職務要約、志望動機、応募メモを貼り付け、提出前に確認しやすいプレーンテキストを生成します。",
+      "intro.line2": "処理はブラウザ内で動きます。ページ表示では広告や解析タグが読み込まれる場合があるため、必要に応じて個人情報を伏せてください。",
+      "notice.title": "個人情報を含む応募文を貼る前に",
+      "notice.body": "このツールは貼り付けた文章をブラウザ内で処理し、アップロードしません。ただしページ表示では広告や解析タグが読み込まれる場合があります。必要に応じて個人情報を伏せてください。",
+      "guarantee.title": "ATS表示を保証するものではありません",
+      "guarantee.body": "ATSや応募フォームの仕様はそれぞれ異なります。提出前に必ず実際のフォーム上で確認してください。",
       "steps.title": "クイック手順",
       "steps.item1": "文章を貼り付けます。",
       "steps.item2": "モードを選び、「出力を作る」を押します。",
       "steps.item3": "コピー/保存して、2行プレビューで確認します。",
       "freepro.title": "Free / Pro の違い（短く）",
       "freepro.free.title": "Free",
-      "freepro.free.item1": "整形（ATS安全 / 改行保持 / 毒抜き）",
-      "freepro.free.item2": "カウント + 警告で崩れリスクを確認",
-      "freepro.free.item3": "コピー / TXT保存 + 2行プレビュー",
+      "freepro.free.item1": "簡易整形、カウント、警告、2行プレビュー",
+      "freepro.free.item2": "30,000文字までの出力コピーとTXT保存",
+      "freepro.free.item3": "JA/EN UI、個人情報注意、ATS保証ではない注意",
       "freepro.pro.title": "Pro",
-      "freepro.pro.item1": "UI上の広告を非表示",
-      "freepro.pro.item2": "文字数上限アップ",
-      "freepro.pro.item3": "テンプレ/履歴/PDF出力",
+      "freepro.pro.item1": "広告非表示、上限200,000文字",
+      "freepro.pro.item2": "PDF、Markdown、JSON、テンプレ、履歴",
+      "freepro.pro.item3": "Pro出力パックと提出前チェックリスト",
       "input.title": "入力",
       "input.label": "入力",
       "input.placeholder": "ここに文章を貼り付け（職務要約・志望動機・箇条書きなど）…",
-      "input.hint": "⏳ 端末によっては数秒かかる場合があります。",
+      "input.hint": "端末によっては数秒かかる場合があります。",
       "options.title": "オプション",
       "options.mode.label": "出力モード",
-      "options.mode.safe": "ATS安全",
+      "options.mode.safe": "ATS向け簡易整形",
       "options.mode.keep": "改行保持",
       "options.mode.clean": "毒抜き",
       "options.limit.label": "文字数上限（任意）",
       "options.limit.placeholder": "例：1000",
       "actions.process": "出力を作る",
-      "results.counts.title": "カウント",
-      "results.warnings.title": "警告（事故の原因になりやすい）",
-      "output.title": "出力",
-      "output.label": "出力",
       "actions.copy": "出力をコピー",
       "actions.download": "TXTで保存",
-      "actions.exportPdf": "PDFで保存",
       "actions.reset": "リセット",
+      "actions.copyPack": "Full ATS packをコピー",
+      "actions.copyMarkdown": "Markdown packをコピー",
+      "actions.exportJson": "JSONを書き出し",
+      "actions.copyChecklist": "チェックリストをコピー",
+      "actions.exportPdf": "PDFで保存",
+      "results.counts.title": "カウント",
+      "results.warnings.title": "警告",
+      "output.title": "出力",
+      "output.label": "出力",
       "progress.label": "処理中…",
       "preview.title": "ATS風プレビュー（2行テキストボックス）",
-      "preview.note": "実際の応募フォームでは「狭い枠＋スクロール」になることがあります。壁テキスト化していないか確認してください。",
-      "pro.title": "Pro解放（買い切り $2.99）",
+      "preview.note": "狭い入力欄での読みやすさを見るための簡易プレビューです。実際のATS表示を保証しません。",
+      "pro.title": "NicheWorks Pro",
       "pro.unlocked": "Pro解放済み",
-      "pro.desc": "広告を非表示にし、テンプレ・履歴・PDF出力を使えるようにします（端末内のみ）。",
-      "pro.feature.ads": "広告をUI上で非表示",
-      "pro.feature.limit": "長文の上限アップ",
-      "pro.feature.presets": "テンプレ/履歴/PDF出力",
+      "pro.desc": "共通NicheWorks Pro entitlementで、PDF出力、テンプレ、履歴、Markdown/JSON、Pro出力パック、広告非表示を解放します。",
+      "pro.feature.limit": "Free上限: 30,000文字。Pro上限: 200,000文字。",
+      "pro.feature.pack": "Pro出力パック: ATS向け整形版、改行保持版、Clean版、文字数・警告サマリー、提出前メモ。",
+      "pro.feature.storage": "テンプレ Slot 1〜3 と履歴の保存/読込/削除。",
       "pro.cta": "Proを購入する",
-      "pro.priceNote": "$2.99 / 買い切り",
-      "pro.howto": "決済後、このページに戻る際に ?pro=1 を付けるとこの端末でProが有効になります。",
+      "pro.shared": "共通NicheWorks Proの決済リンクと権限を使います。",
+      "pro.afterPurchase": "購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。",
+      "propreview.title": "Previewモード",
+      "propreview.body": "無料の整形機能はこのまま使えます。下のサンプルで購入後に解放される内容を確認できます。",
+      "propreview.pack.title": "Pro出力パックのサンプル",
+      "propreview.pdf.title": "PDF出力サンプル説明",
+      "propreview.pdf.body": "印刷用ビューを開き、全文の出力パックをPDF保存できます。",
+      "propreview.storage.title": "テンプレ保存と履歴保存",
+      "propreview.storage.body": "よく使うテンプレをSlot 1〜3に保存し、出力履歴を後で読み込めます。",
+      "propreview.memo.title": "提出前チェックメモのサンプル",
+      "propreview.unlockNote": "購入後に全文コピー / PDF / 保存が有効になります。",
       "protools.title": "Pro機能",
-      "protools.note": "Proで利用可能",
+      "protools.note": "Previewモードではロック中",
+      "protools.noteActive": "このブラウザでPro機能が使えます。",
+      "protools.pack.title": "出力パック",
+      "protools.pack.note": "Full ATS、Markdown、JSON、チェックリストを書き出します。",
       "protools.pdf.title": "PDF出力",
       "protools.pdf.note": "印刷用の表示を開いてPDF保存します。",
       "protools.templates.title": "テンプレ",
       "protools.templates.note": "現在の出力をスロットに保存します。",
       "protools.history.title": "履歴",
-      "protools.history.note": "出力を保存して後で呼び出せます。",
-      "templates.slot1": "スロット1",
-      "templates.slot2": "スロット2",
-      "templates.slot3": "スロット3",
+      "protools.history.note": "出力を端末内に保存して後で呼び出せます。",
+      "templates.slot1": "Slot 1",
+      "templates.slot2": "Slot 2",
+      "templates.slot3": "Slot 3",
       "templates.save": "保存",
       "templates.load": "読込",
       "history.save": "履歴に保存",
       "history.clear": "全削除",
-      "history.empty": "履歴はまだありません。",
-      "history.load": "読込",
-      "history.delete": "削除",
-      "pdf.tip": "Ctrl/Cmd+P でPDF保存できます。",
-      "error.noOutput": "先に出力を作成してください。",
-      "error.noTemplate": "このスロットは空です。",
-      "privacy.note": "このツールはブラウザ内だけで動作し、入力内容は保存・送信しません（Pro状態のみ端末に保存されます）。",
-      "donate.text": "役に立ったら開発継続のご支援をいただけると助かります。",
-      "donate.ofuse": "💌 OFUSE",
-      "donate.kofi": "☕ Ko-fi",
-      "faq.title": "よくある質問",
-      "faq.q1": "ATSで改行や箇条書きが崩れるのはなぜ？",
-      "faq.a1": "ATS/応募フォームは装飾を削除し、空白や改行を詰めることが多いためです。安全なプレーンテキストに整えます。",
-      "faq.q2": "文章は送信・保存されますか？",
-      "faq.a2": "いいえ。処理はブラウザ内で完結し、Pro状態のみ端末に保存されます。",
-      "faq.q3": "「ATS安全 / 改行保持 / 毒抜き」の違いは？",
-      "faq.a3": "ATS安全は段落/箇条書きを1行化、改行保持は行構造維持、毒抜きは不可視/制御文字を除去します。",
-      "faq.q4": "不可視文字や改行混在の警告が出る理由は？",
-      "faq.a4": "貼り付け事故の原因になりやすい文字が含まれるためです。注意すべき箇所を示します。",
-      "faq.q5": "Pro($2.99)の解放方法と保存範囲は？",
-      "faq.a5": "決済後に ?pro=1 付きで戻るとこの端末で有効になります。",
-      "help.title": "ヘルプリンク",
-      "help.usage": "使い方",
-      "help.howto": "使い方ガイド",
-      "help.home": "NicheWorks ホーム",
+      "faq.title": "FAQ",
+      "faq.q1": "すべてのATSで正しく表示されますか？",
+      "faq.a1": "いいえ。ATSや応募フォームはそれぞれ仕様が異なります。プレーンテキスト化の補助として使い、提出前に実際のフォーム内で必ず確認してください。",
+      "faq.q2": "貼り付けた文章はアップロードされますか？",
+      "faq.a2": "いいえ。整形とチェックはブラウザ内で実行されます。ページ運用のため広告や解析タグが読み込まれる場合はあります。",
+      "faq.q3": "個人情報を含む応募文を貼ってもよいですか？",
+      "faq.a3": "可能ですが、氏名、住所、電話番号、メール、勤務先名、詳細な職歴などは必要に応じて伏せる方が安全です。",
+      "faq.q4": "ATS向けプレーンテキストとは何ですか？",
+      "faq.a4": "フォーム変換時に崩れやすい装飾や隠れ文字を減らしたテキストです。",
+      "faq.q5": "購入後はどうなりますか？",
+      "faq.a5": "購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。",
+      "related.title": "関連ツール",
+      "related.usage": "使い方",
+      "related.cover": "Cover Letter Lite",
+      "related.cold": "Cold Email Requirement Checker",
+      "related.redactor": "API Key Token Redactor",
+      "related.linebreak": "LineBreak Doctor",
       "footer.line1": "© NicheWorks — Small Web Tools for Boring Tasks",
-      "footer.line2": "当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。",
+      "footer.line2": "このサイトには広告が含まれる場合があります。情報の正確性は保証されません。",
       "footer.home": "nicheworks.app",
+      countTotal: "総文字数",
+      countNoSpaces: "空白除外",
+      countNoNewlines: "改行除外",
+      countLines: "行数",
+      countParagraphs: "段落数",
+      countBullets: "箇条書き行数",
+      warnInvisible: "不可視文字",
+      warnControl: "制御文字",
+      warnSpace: "通常と異なる空白",
+      warnMixed: "改行コード混在を検出",
+      warnConsecutive: "連続スペース箇所",
+      noWarnings: "危険な文字は検出されませんでした。",
+      emptyInput: "入力が空です。文章を貼り付けてから実行してください。",
+      emptyOutput: "先に出力を作成してください。",
+      tooLong: "現在のプランでは文字数が多すぎます。Freeは30,000文字、Proは200,000文字まで対応します。",
+      copied: "コピーしました",
+      downloaded: "TXTを保存しました",
+      copyFailed: "コピーできませんでした。ブラウザの権限設定をご確認ください。",
+      saved: "保存しました",
+      loaded: "読み込みました",
+      cleared: "削除しました",
+      deleted: "削除しました",
+      noTemplate: "このスロットは空です。",
+      noHistory: "履歴はまだありません。",
+      proLocked: "Pro限定機能です。Previewモードではサンプルのみ表示されます。Buy Proから全文コピー、PDF、保存操作を解放できます。",
+      pdfTip: "Ctrl/Cmd+P でPDF保存できます。",
+      storageUnavailable: "localStorageを利用できません。無料機能は使えますが、テンプレ/履歴は保存できない場合があります。",
+      remaining: "残り",
+      overBy: "超過",
     },
   };
 
+  function t(key) {
+    return messages[currentLang][key] || messages.en[key] || key;
+  }
+
+  function isProActive() {
+    return document.documentElement.dataset.proActive === "true";
+  }
+
+  function safeStorage(action, fallback) {
+    try {
+      return action(window.localStorage);
+    } catch (error) {
+      toast(t("storageUnavailable"));
+      return fallback;
+    }
+  }
+
   function setLang(lang) {
-    currentLang = (lang === "ja") ? "ja" : "en";
-    langJa.classList.toggle("is-active", currentLang === "ja");
-    langEn.classList.toggle("is-active", currentLang === "en");
+    currentLang = lang === "ja" ? "ja" : "en";
+    document.documentElement.lang = currentLang;
+    el.langJa?.classList.toggle("is-active", currentLang === "ja");
+    el.langEn?.classList.toggle("is-active", currentLang === "en");
 
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const key = el.getAttribute("data-i18n");
-      const val = messages[currentLang][key];
-      if (typeof val === "string") el.textContent = val;
+    $$('[data-i18n]').forEach((node) => {
+      const value = t(node.getAttribute("data-i18n"));
+      if (typeof value === "string") node.textContent = value;
     });
-
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-      const key = el.getAttribute("data-i18n-placeholder");
-      const val = messages[currentLang][key];
-      if (typeof val === "string") el.setAttribute("placeholder", val);
+    $$('[data-i18n-placeholder]').forEach((node) => {
+      const value = t(node.getAttribute("data-i18n-placeholder"));
+      if (typeof value === "string") node.setAttribute("placeholder", value);
     });
-
-    renderCountsAndWarnings(); // refresh labels if needed
-    updateMeta();
+    renderCountsAndWarnings();
     renderHistory();
+    syncProNote();
   }
 
   function setMode(mode) {
-    currentMode = (mode === "keep" || mode === "clean") ? mode : "safe";
-    for (const k of Object.keys(modeBtns)) {
-      const btn = modeBtns[k];
-      const active = k === currentMode;
-      btn.classList.toggle("is-active", active);
-      btn.setAttribute("aria-checked", active ? "true" : "false");
-    }
-    // No auto-processing here; user clicks process
+    currentMode = ["safe", "keep", "clean"].includes(mode) ? mode : "safe";
+    Object.entries(modeButtons).forEach(([key, button]) => {
+      if (!button) return;
+      const active = key === currentMode;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-checked", active ? "true" : "false");
+    });
   }
 
-  function showProgress(on) {
-    progressWrap.hidden = !on;
-    if (on) {
-      processBtn.disabled = true;
-      processBtn.textContent = messages[currentLang]["actions.process"] + "…";
-    } else {
-      processBtn.disabled = false;
-      processBtn.textContent = messages[currentLang]["actions.process"];
-    }
-  }
-
-  function showError(msg) {
-    errorBox.hidden = false;
-    errorBox.textContent = msg;
-  }
-
-  function clearError() {
-    errorBox.hidden = true;
-    errorBox.textContent = "";
-  }
-
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.hidden = false;
-    if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      toast.hidden = true;
-      toast.textContent = "";
-    }, 2000);
-  }
-
-  function normalizeNewlinesToLF(s) {
-    return s.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  function normalizeNewlinesToLF(value) {
+    return value.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   }
 
   function detectMixedNewlines(raw) {
-    const hasCRLF = /\r\n/.test(raw);
-    const hasLF = /(^|[^\r])\n/.test(raw); // LF not preceded by CR
-    return hasCRLF && hasLF;
+    return /\r\n/.test(raw) && /(^|[^\r])\n/.test(raw);
   }
 
-  function detectZW(raw) {
-    // ZWSP U+200B, ZWJ U+200D, ZWNJ U+200C, BOM U+FEFF
-    const m = raw.match(/[\u200B\u200C\u200D\uFEFF]/g);
-    return m ? m.length : 0;
-  }
-
-  function detectNBSP(raw) {
-    const m = raw.match(/\u00A0/g);
-    return m ? m.length : 0;
-  }
-
-  function detectControlChars(raw) {
-    // exclude \n \r \t by default
-    const m = raw.match(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g);
-    return m ? m.length : 0;
-  }
-
-  function countConsecutiveSpaces(s) {
-    const m = s.match(/ {2,}/g);
-    return m ? m.length : 0;
-  }
-
-  function countLines(sLF) {
-    if (!sLF) return 0;
-    return sLF.split("\n").length;
-  }
-
-  function countParagraphs(sLF) {
-    if (!sLF.trim()) return 0;
-    const blocks = sLF.trim().split(/\n{2,}/);
-    return blocks.filter(b => b.trim().length > 0).length;
-  }
-
-  function countBulletLines(sLF) {
-    if (!sLF) return 0;
-    const lines = sLF.split("\n");
-    const re = /^\s*([•\-\*\u2022]|・)\s+/;
-    return lines.filter(l => re.test(l)).length;
+  function metrics(raw) {
+    const sLF = normalizeNewlinesToLF(raw);
+    const lines = sLF ? sLF.split("\n") : [];
+    return {
+      total: raw.length,
+      noSpaces: raw.replace(/[\s\u00A0\u3000]/g, "").length,
+      noNewlines: raw.replace(/[\r\n]/g, "").length,
+      lines: raw ? lines.length : 0,
+      paragraphs: sLF.trim() ? sLF.trim().split(/\n{2,}/).filter((block) => block.trim()).length : 0,
+      bullets: lines.filter((line) => /^\s*([•\-*\u2022]|・)\s+/.test(line)).length,
+      invisible: (raw.match(/[\u200B\u200C\u200D\uFEFF]/g) || []).length,
+      control: (raw.match(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g) || []).length,
+      nonStandardSpaces: (raw.match(/[\u00A0\u3000]/g) || []).length,
+      mixedNewlines: detectMixedNewlines(raw),
+      consecutiveSpaces: (raw.match(/ {2,}/g) || []).length,
+    };
   }
 
   function buildATSsafe(sLF) {
-    // 1) trim line ends
-    let t = sLF.split("\n").map(l => l.replace(/[ \t]+$/g, "")).join("\n");
-    // 2) full-width space -> normal
-    t = t.replace(/\u3000/g, " ");
-    // 3) tabs -> space
-    t = t.replace(/\t/g, " ");
-    // 4) collapse multiple spaces
-    t = t.replace(/ {2,}/g, " ");
-    // 5) bullet lines -> inline with " • "
-    const lines = t.split("\n");
-    const bulletRe = /^\s*([•\-\*\u2022]|・)\s+(.*)$/;
-    let out = [];
-    for (const line of lines) {
-      const m = line.match(bulletRe);
-      if (m) out.push("• " + (m[2] || ""));
-      else if (line.trim() === "") out.push(""); // paragraph break
-      else out.push(line.trim());
-    }
-    // 6) paragraph breaks -> " / "
-    // collapse multiple blank lines to one
-    const collapsed = out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
-    return collapsed.split(/\n{2,}/).map(p => p.replace(/\n+/g, " ").trim()).filter(Boolean).join(" / ");
+    let text = sLF.split("\n").map((line) => line.replace(/[ \t]+$/g, "")).join("\n");
+    text = text.replace(/\u3000/g, " ").replace(/\t/g, " ").replace(/ {2,}/g, " ");
+    const bulletRe = /^\s*([•\-*\u2022]|・)\s+(.*)$/;
+    const lines = text.split("\n").map((line) => {
+      const match = line.match(bulletRe);
+      if (match) return `• ${match[2] || ""}`;
+      return line.trim() === "" ? "" : line.trim();
+    });
+    return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim().split(/\n{2,}/).map((paragraph) => paragraph.replace(/\n+/g, " ").trim()).filter(Boolean).join(" / ");
   }
 
   function buildKeep(sLF) {
-    let t = sLF;
-    t = t.replace(/\u3000/g, " ");
-    t = t.replace(/[ \t]+$/gm, "");
-    t = t.replace(/\n{3,}/g, "\n\n"); // collapse blank lines
-    return t.trim();
+    return sLF.replace(/\u3000/g, " ").replace(/[ \t]+$/gm, "").replace(/\n{3,}/g, "\n\n").trim();
   }
 
   function buildClean(raw) {
-    // normalize newlines, then remove invisible/control, replace nbsp
-    let t = normalizeNewlinesToLF(raw);
-    t = t.replace(/[\u200B\u200C\u200D\uFEFF]/g, "");
-    t = t.replace(/\u00A0/g, " ");
-    t = t.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
-    t = t.replace(/\u3000/g, " ");
-    t = t.replace(/\t/g, " ");
-    t = t.replace(/ {2,}/g, " ");
-    t = t.replace(/[ ]+$/gm, "");
-    t = t.replace(/\n{3,}/g, "\n\n");
-    return t.trim();
+    return normalizeNewlinesToLF(raw)
+      .replace(/[\u200B\u200C\u200D\uFEFF]/g, "")
+      .replace(/[\u00A0\u3000]/g, " ")
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+      .replace(/\t/g, " ")
+      .replace(/ {2,}/g, " ")
+      .replace(/[ ]+$/gm, "")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
   }
 
-  function buildOutput(raw) {
-    const mixed = detectMixedNewlines(raw);
+  function buildOutput(raw, mode = currentMode) {
     const sLF = normalizeNewlinesToLF(raw);
-    const out =
-      currentMode === "keep" ? buildKeep(sLF) :
-      currentMode === "clean" ? buildClean(raw) :
-      buildATSsafe(sLF);
-
-    return { out, sLF, mixed };
+    if (mode === "keep") return buildKeep(sLF);
+    if (mode === "clean") return buildClean(raw);
+    return buildATSsafe(sLF);
   }
 
   function renderCountsAndWarnings() {
-    const raw = inputText.value || "";
-    const sLF = normalizeNewlinesToLF(raw);
-
-    const total = raw.length;
-    const noSpaces = raw.replace(/[\s\u00A0\u3000]/g, "").length; // rough
-    const noNewlines = raw.replace(/[\r\n]/g, "").length;
-
-    const lines = countLines(sLF);
-    const paragraphs = countParagraphs(sLF);
-    const bullets = countBulletLines(sLF);
-
-    const zw = detectZW(raw);
-    const nbsp = detectNBSP(raw);
-    const ctrl = detectControlChars(raw);
-    const mixedNL = detectMixedNewlines(raw);
-    const multiSpaces = countConsecutiveSpaces(raw);
-
-    // Counts UI
-    const items = [
-      ["Total", total],
-      ["No spaces", noSpaces],
-      ["No newlines", noNewlines],
-      ["Lines", lines],
-      ["Paragraphs", paragraphs],
-      ["Bullet lines", bullets],
-    ];
-
-    countsGrid.innerHTML = "";
-    for (const [k, v] of items) {
-      const div = document.createElement("div");
-      div.className = "check";
-      const kk = document.createElement("div");
-      kk.className = "check__k";
-      kk.textContent = k;
-      const vv = document.createElement("div");
-      vv.className = "check__v";
-      vv.textContent = String(v);
-      div.appendChild(kk);
-      div.appendChild(vv);
-      countsGrid.appendChild(div);
+    const raw = el.input?.value || "";
+    const data = metrics(raw);
+    if (el.charMeta) el.charMeta.textContent = raw ? `${raw.length.toLocaleString()} chars / ${isProActive() ? PRO_LIMIT.toLocaleString() : FREE_LIMIT.toLocaleString()} max` : "";
+    if (el.counts) {
+      const items = [
+        [t("countTotal"), data.total],
+        [t("countNoSpaces"), data.noSpaces],
+        [t("countNoNewlines"), data.noNewlines],
+        [t("countLines"), data.lines],
+        [t("countParagraphs"), data.paragraphs],
+        [t("countBullets"), data.bullets],
+      ];
+      el.counts.innerHTML = "";
+      items.forEach(([label, value]) => {
+        const card = document.createElement("div");
+        card.className = "check";
+        const key = document.createElement("div");
+        key.className = "check__k";
+        key.textContent = label;
+        const val = document.createElement("div");
+        val.className = "check__v";
+        val.textContent = String(value);
+        card.append(key, val);
+        el.counts.appendChild(card);
+      });
     }
-
-    // Warnings UI
-    const warns = [];
-    if (zw > 0) warns.push({ key: "warn.invisible", msg: `Invisible chars: ${zw}` });
-    if (ctrl > 0) warns.push({ key: "warn.control", msg: `Control chars: ${ctrl}` });
-    if (nbsp > 0) warns.push({ key: "warn.nbsp", msg: `Non-standard spaces: ${nbsp}` });
-    if (mixedNL) warns.push({ key: "warn.mixedNewlines", msg: "Mixed newline formats detected" });
-    if (multiSpaces > 0) warns.push({ key: "warn.multiSpaces", msg: `Consecutive spaces blocks: ${multiSpaces}` });
-
-    warningsList.innerHTML = "";
-    if (warns.length === 0) {
-      const div = document.createElement("div");
-      div.className = "warn";
-      div.textContent = "—";
-      warningsList.appendChild(div);
-    } else {
-      for (const w of warns) {
-        const div = document.createElement("div");
-        div.className = "warn is-on";
-        // keep simple: show computed msg; localized label is future improvement
-        div.textContent = w.msg;
-        warningsList.appendChild(div);
-      }
+    if (el.warnings) {
+      const warnings = [];
+      if (data.invisible) warnings.push(`${t("warnInvisible")}: ${data.invisible}`);
+      if (data.control) warnings.push(`${t("warnControl")}: ${data.control}`);
+      if (data.nonStandardSpaces) warnings.push(`${t("warnSpace")}: ${data.nonStandardSpaces}`);
+      if (data.mixedNewlines) warnings.push(t("warnMixed"));
+      if (data.consecutiveSpaces) warnings.push(`${t("warnConsecutive")}: ${data.consecutiveSpaces}`);
+      el.warnings.innerHTML = "";
+      const list = warnings.length ? warnings : [t("noWarnings")];
+      list.forEach((message) => {
+        const item = document.createElement("div");
+        item.className = warnings.length ? "warn is-on" : "warn";
+        item.textContent = message;
+        el.warnings.appendChild(item);
+      });
     }
-
-    updateMeta();
+    updateLimitMeta();
   }
 
-  function updateMeta() {
-    const raw = inputText.value || "";
-    charMeta.textContent = raw ? `${raw.length.toLocaleString()} chars` : "";
-
-    const lim = Number(limitInput.value || "0");
-    if (!lim) {
-      limitMeta.textContent = "";
+  function updateLimitMeta() {
+    if (!el.limitMeta || !el.limit) return;
+    const limit = Number(el.limit.value || "0");
+    if (!limit) {
+      el.limitMeta.textContent = "";
       return;
     }
-    limitMeta.textContent = raw.length > lim ? `Over by ${raw.length - lim}` : `Remaining ${lim - raw.length}`;
+    const length = (el.input?.value || "").length;
+    el.limitMeta.textContent = length > limit ? `${t("overBy")} ${length - limit}` : `${t("remaining")} ${limit - length}`;
   }
 
-  function isProEnabled() {
-    return localStorage.getItem(PRO_KEY) === "1";
-  }
-
-  function setProControls(pro) {
-    document.querySelectorAll("[data-pro-only]").forEach((el) => {
-      if ("disabled" in el) el.disabled = !pro;
-    });
-    if (proTools) proTools.classList.toggle("is-locked", !pro);
-    if (proToolsNote) proToolsNote.hidden = pro;
-  }
-
-  function applyProUI() {
-    const pro = isProEnabled();
-    proBadge.hidden = !pro;
-    document.body.classList.toggle("is-pro", pro);
-    proCard.classList.toggle("is-pro", pro);
-    setProControls(pro);
-  }
-
-  function checkProQuery() {
-    const url = new URL(window.location.href);
-    if (url.searchParams.get("pro") === "1") {
-      localStorage.setItem(PRO_KEY, "1");
-      // Clean URL (optional)
-      url.searchParams.delete("pro");
-      window.history.replaceState({}, "", url.toString());
+  function showProgress(active) {
+    if (el.progress) el.progress.hidden = !active;
+    if (el.process) {
+      el.process.disabled = active;
+      el.process.textContent = active ? `${t("actions.process")}…` : t("actions.process");
     }
-    applyProUI();
   }
 
-  function getMaxLen() {
-    const pro = isProEnabled();
-    return pro ? 200000 : 30000;
+  function error(message) {
+    if (!el.error) return;
+    el.error.hidden = false;
+    el.error.textContent = message;
+  }
+
+  function clearError() {
+    if (!el.error) return;
+    el.error.hidden = true;
+    el.error.textContent = "";
+  }
+
+  function toast(message) {
+    if (!el.toast) return;
+    el.toast.textContent = message;
+    el.toast.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      el.toast.hidden = true;
+      el.toast.textContent = "";
+    }, 2400);
   }
 
   function process() {
     clearError();
-    const raw = inputText.value || "";
-    if (!raw.trim()) {
-      showError(currentLang === "ja"
-        ? "入力が空です。文章を貼り付けてから実行してください。"
-        : "Input is empty. Paste your text first.");
-      return;
-    }
-    const maxLen = getMaxLen();
-    if (raw.length > maxLen) {
-      showError(currentLang === "ja"
-        ? "文字数が多すぎます。短く分けて試してください。"
-        : "Text is too long. Please split it into smaller chunks.");
-      return;
-    }
-
+    const raw = el.input?.value || "";
+    if (!raw.trim()) return error(t("emptyInput"));
+    const max = isProActive() ? PRO_LIMIT : FREE_LIMIT;
+    if (raw.length > max) return error(t("tooLong"));
     showProgress(true);
-
-    // Make progress visible even if processing is fast
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        try {
-          const { out } = buildOutput(raw);
-          outputText.value = out;
-          previewBox.textContent = out;
-          renderCountsAndWarnings();
-          showProgress(false);
-        } catch (e) {
-          showProgress(false);
-          showError(currentLang === "ja"
-            ? "処理に失敗しました。入力を短くして再試行してください。"
-            : "Processing failed. Try smaller input.");
-        }
-      }, 80);
-    });
+    window.setTimeout(() => {
+      try {
+        const output = buildOutput(raw);
+        if (el.output) el.output.value = output;
+        if (el.preview) el.preview.textContent = output;
+        renderCountsAndWarnings();
+      } catch (processingError) {
+        error(currentLang === "ja" ? "処理に失敗しました。入力を短くして再試行してください。" : "Processing failed. Try smaller input.");
+      } finally {
+        showProgress(false);
+      }
+    }, 60);
   }
 
-  async function copyOutput() {
-    clearError();
-    const out = outputText.value || "";
-    if (!out) return;
+  async function copyText(text) {
     try {
-      await navigator.clipboard.writeText(out);
-      showToast(currentLang === "ja" ? "コピーしました" : "Copied");
-    } catch (e) {
-      showError(currentLang === "ja"
-        ? "コピーできませんでした。ブラウザの権限設定をご確認ください。"
-        : "Copy failed. Please check browser permissions.");
+      await navigator.clipboard.writeText(text);
+      toast(t("copied"));
+    } catch (clipboardError) {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (copyError) {
+        ok = false;
+      }
+      area.remove();
+      ok ? toast(t("copied")) : error(t("copyFailed"));
     }
+  }
+
+  function downloadFile(filename, text, type) {
+    const blob = new Blob([text], { type });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = filename;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function copyOutput() {
+    clearError();
+    const output = el.output?.value || "";
+    if (!output.trim()) return error(t("emptyOutput"));
+    copyText(output);
   }
 
   function downloadTxt() {
     clearError();
-    const out = outputText.value || "";
-    if (!out) return;
-    const blob = new Blob([out], { type: "text/plain;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "ats-paste-doctor.txt";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    const output = el.output?.value || "";
+    if (!output.trim()) return error(t("emptyOutput"));
+    downloadFile("ats-paste-doctor.txt", output, "text/plain;charset=utf-8");
+    toast(t("downloaded"));
   }
 
-  function buildPrintableWindow(out) {
-    const win = window.open("", "_blank", "noopener,noreferrer");
-    if (!win) {
-      showError(currentLang === "ja"
-        ? "新しいウィンドウを開けませんでした。ポップアップ設定をご確認ください。"
-        : "Could not open a new window. Please allow pop-ups.");
-      return null;
+  function resetAll() {
+    clearError();
+    if (el.input) el.input.value = "";
+    if (el.output) el.output.value = "";
+    if (el.preview) el.preview.textContent = "";
+    if (el.limit) el.limit.value = "";
+    setMode("safe");
+    renderCountsAndWarnings();
+  }
+
+  function summaryLines(raw) {
+    const data = metrics(raw);
+    const warnings = [];
+    if (data.invisible) warnings.push(`${t("warnInvisible")}: ${data.invisible}`);
+    if (data.control) warnings.push(`${t("warnControl")}: ${data.control}`);
+    if (data.nonStandardSpaces) warnings.push(`${t("warnSpace")}: ${data.nonStandardSpaces}`);
+    if (data.mixedNewlines) warnings.push(t("warnMixed"));
+    if (data.consecutiveSpaces) warnings.push(`${t("warnConsecutive")}: ${data.consecutiveSpaces}`);
+    return [
+      `${t("countTotal")}: ${data.total}`,
+      `${t("countLines")}: ${data.lines}`,
+      `${t("countParagraphs")}: ${data.paragraphs}`,
+      `${t("countBullets")}: ${data.bullets}`,
+      `Warnings: ${warnings.length ? warnings.join("; ") : t("noWarnings")}`,
+    ];
+  }
+
+  function checklist() {
+    return currentLang === "ja" ? [
+      "応募フォーム内で改行と箇条書きの見え方を確認する",
+      "不要な個人情報が残っていないか確認する",
+      "不可視文字・制御文字・通常と異なる空白の警告を確認する",
+      "文字数上限が応募フォーム側の制限内か確認する",
+      "提出前に実際のプレビューまたは確認画面を読む",
+    ] : [
+      "Check line breaks and bullets inside the actual application form",
+      "Confirm unnecessary personal details are removed",
+      "Review invisible/control/non-standard space warnings",
+      "Confirm the text fits the job form character limit",
+      "Read the final preview or confirmation screen before submitting",
+    ];
+  }
+
+  function ensureOutput() {
+    const raw = el.input?.value || "";
+    const current = el.output?.value || "";
+    if (current.trim()) return current;
+    if (!raw.trim()) return "";
+    const output = buildOutput(raw);
+    if (el.output) el.output.value = output;
+    if (el.preview) el.preview.textContent = output;
+    return output;
+  }
+
+  function buildPack() {
+    const raw = el.input?.value || "";
+    const output = ensureOutput();
+    if (!raw.trim() && !output.trim()) return "";
+    const safe = buildOutput(raw || output, "safe");
+    const keep = buildOutput(raw || output, "keep");
+    const clean = buildOutput(raw || output, "clean");
+    const lines = [
+      "# ATS Paste Doctor Pro Output Pack",
+      "",
+      "## ATS-friendly version",
+      safe,
+      "",
+      "## Line-break-preserved version",
+      keep,
+      "",
+      "## Clean version",
+      clean,
+      "",
+      "## Character and warning summary",
+      ...summaryLines(raw || output).map((line) => `- ${line}`),
+      "",
+      "## Pre-submit checklist memo",
+      ...checklist().map((item) => `- [ ] ${item}`),
+      "",
+      "Note: This is a preparation aid and does not guarantee ATS display.",
+    ];
+    return lines.join("\n");
+  }
+
+  function buildJsonExport() {
+    const raw = el.input?.value || "";
+    const source = raw || el.output?.value || "";
+    return JSON.stringify({
+      tool_id: "ats-paste-doctor",
+      entitlement: "nicheworks_pro",
+      generated_at: new Date().toISOString(),
+      mode: currentMode,
+      outputs: {
+        ats_friendly: buildOutput(source, "safe"),
+        line_break_preserved: buildOutput(source, "keep"),
+        clean: buildOutput(source, "clean"),
+      },
+      summary: metrics(source),
+      checklist: checklist(),
+      note: "Preparation aid only. Actual ATS display is not guaranteed.",
+    }, null, 2);
+  }
+
+  function requirePro() {
+    if (isProActive()) return true;
+    toast(t("proLocked"));
+    document.querySelector("[data-pro-buy]")?.focus?.();
+    return false;
+  }
+
+  function requireOutput() {
+    const output = ensureOutput();
+    if (!output.trim()) {
+      error(t("emptyOutput"));
+      return "";
     }
-    const doc = win.document;
-    doc.title = "ATS Paste Doctor";
-    const style = doc.createElement("style");
-    style.textContent = `
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; color: #111; }
-      h1 { font-size: 20px; margin: 0 0 8px; }
-      .meta { color: #555; font-size: 12px; margin-bottom: 12px; }
-      pre { white-space: pre-wrap; border: 1px solid #ddd; border-radius: 10px; padding: 12px; background: #fafafa; font-size: 13px; line-height: 1.5; }
-      .tip { margin-top: 12px; font-size: 12px; color: #555; }
-    `;
-    doc.head.appendChild(style);
-
-    const title = doc.createElement("h1");
-    title.textContent = "ATS Paste Doctor";
-    const meta = doc.createElement("div");
-    meta.className = "meta";
-    meta.textContent = new Date().toLocaleString(currentLang === "ja" ? "ja-JP" : "en-US");
-    const pre = doc.createElement("pre");
-    pre.textContent = out;
-    const tip = doc.createElement("div");
-    tip.className = "tip";
-    tip.textContent = messages[currentLang]["pdf.tip"];
-
-    doc.body.appendChild(title);
-    doc.body.appendChild(meta);
-    doc.body.appendChild(pre);
-    doc.body.appendChild(tip);
-    return win;
+    return output;
   }
 
   function exportPdf() {
-    if (!isProEnabled()) return;
-    clearError();
-    const out = outputText.value || "";
-    if (!out.trim()) {
-      showError(messages[currentLang]["error.noOutput"]);
-      return;
-    }
-    const win = buildPrintableWindow(out);
-    if (!win) return;
-    setTimeout(() => {
-      win.focus();
-      win.print();
-    }, 200);
+    const pack = buildPack();
+    if (!pack.trim()) return error(t("emptyOutput"));
+    const win = window.open("", "_blank", "noopener,noreferrer");
+    if (!win) return error(currentLang === "ja" ? "新しいウィンドウを開けませんでした。ポップアップ設定をご確認ください。" : "Could not open a new window. Please allow pop-ups.");
+    const safe = pack.replace(/[&<>]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[char]));
+    win.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>ATS Paste Doctor Pro Pack</title><style>body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:24px;color:#111}pre{white-space:pre-wrap;border:1px solid #ddd;border-radius:10px;padding:12px;background:#fafafa;line-height:1.5}</style></head><body><h1>ATS Paste Doctor Pro Pack</h1><pre>${safe}</pre><p>${t("pdfTip")}</p></body></html>`);
+    win.document.close();
+    toast(t("pdfTip"));
   }
 
-  const TEMPLATE_PREFIX = "nw_ats_paste_doctor_template_";
-  const HISTORY_KEY = "nw_ats_paste_doctor_history";
-  const HISTORY_LIMIT = 10;
-
   function saveTemplate(slot) {
-    if (!isProEnabled()) return;
-    clearError();
-    const out = outputText.value || "";
-    if (!out.trim()) {
-      showError(messages[currentLang]["error.noOutput"]);
-      return;
-    }
-    localStorage.setItem(`${TEMPLATE_PREFIX}${slot}`, out);
-    showToast(currentLang === "ja" ? "テンプレを保存しました" : "Template saved");
+    const output = requireOutput();
+    if (!output) return;
+    safeStorage((storage) => storage.setItem(`${TEMPLATE_PREFIX}${slot}`, output));
+    toast(t("saved"));
   }
 
   function loadTemplate(slot) {
-    if (!isProEnabled()) return;
     clearError();
-    const value = localStorage.getItem(`${TEMPLATE_PREFIX}${slot}`);
-    if (!value) {
-      showError(messages[currentLang]["error.noTemplate"]);
-      return;
-    }
-    inputText.value = value;
-    outputText.value = value;
-    previewBox.textContent = value;
+    const value = safeStorage((storage) => storage.getItem(`${TEMPLATE_PREFIX}${slot}`), "");
+    if (!value) return error(t("noTemplate"));
+    if (el.input) el.input.value = value;
+    if (el.output) el.output.value = value;
+    if (el.preview) el.preview.textContent = value;
     renderCountsAndWarnings();
-    updateMeta();
-    showToast(currentLang === "ja" ? "テンプレを読み込みました" : "Template loaded");
+    toast(t("loaded"));
   }
 
-  function loadHistory() {
-    const raw = localStorage.getItem(HISTORY_KEY);
-    if (!raw) return [];
-    try {
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
+  function getHistory() {
+    return safeStorage((storage) => {
+      try {
+        const parsed = JSON.parse(storage.getItem(HISTORY_KEY) || "[]");
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }, []);
   }
 
-  function saveHistory(items) {
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(items));
-  }
-
-  function saveToHistory() {
-    if (!isProEnabled()) return;
-    clearError();
-    const out = outputText.value || "";
-    if (!out.trim()) {
-      showError(messages[currentLang]["error.noOutput"]);
-      return;
-    }
-    const snippet = out.replace(/\s+/g, " ").trim().slice(0, 80);
-    const item = {
-      ts: Date.now(),
-      mode: currentMode,
-      snippet,
-      fullText: out,
-    };
-    const items = loadHistory();
-    items.unshift(item);
-    const trimmed = items.slice(0, HISTORY_LIMIT);
-    saveHistory(trimmed);
-    renderHistory();
-    showToast(currentLang === "ja" ? "履歴に保存しました" : "Saved to history");
-  }
-
-  function clearHistory() {
-    if (!isProEnabled()) return;
-    saveHistory([]);
-    renderHistory();
-  }
-
-  function loadHistoryItem(index) {
-    if (!isProEnabled()) return;
-    const items = loadHistory();
-    const item = items[index];
-    if (!item) return;
-    if (item.mode) setMode(item.mode);
-    inputText.value = item.fullText || "";
-    outputText.value = item.fullText || "";
-    previewBox.textContent = item.fullText || "";
-    renderCountsAndWarnings();
-    updateMeta();
-    showToast(currentLang === "ja" ? "履歴を読み込みました" : "History loaded");
-  }
-
-  function deleteHistoryItem(index) {
-    if (!isProEnabled()) return;
-    const items = loadHistory();
-    items.splice(index, 1);
-    saveHistory(items);
-    renderHistory();
+  function setHistory(items) {
+    safeStorage((storage) => storage.setItem(HISTORY_KEY, JSON.stringify(items.slice(0, HISTORY_LIMIT))));
   }
 
   function renderHistory() {
-    const historyList = $("historyList");
-    if (!historyList) return;
-    const items = loadHistory();
-    historyList.innerHTML = "";
-    if (items.length === 0) {
+    if (!el.historyList) return;
+    const items = getHistory();
+    el.historyList.innerHTML = "";
+    if (!items.length) {
       const empty = document.createElement("div");
       empty.className = "meta";
-      empty.textContent = messages[currentLang]["history.empty"];
-      historyList.appendChild(empty);
+      empty.textContent = t("noHistory");
+      el.historyList.appendChild(empty);
       return;
     }
     items.forEach((item, index) => {
       const row = document.createElement("div");
       row.className = "history-item";
-
       const meta = document.createElement("div");
       meta.className = "history-item__meta";
-      const ts = document.createElement("span");
-      ts.textContent = new Date(item.ts).toLocaleString(currentLang === "ja" ? "ja-JP" : "en-US");
-      const mode = document.createElement("span");
-      mode.textContent = item.mode ? `${item.mode}` : "";
-      meta.appendChild(ts);
-      if (mode.textContent) meta.appendChild(mode);
-
+      meta.textContent = item.date || "";
       const snippet = document.createElement("div");
       snippet.className = "history-item__snippet";
       snippet.textContent = item.snippet || "";
-
       const actions = document.createElement("div");
       actions.className = "row";
-      const loadBtn = document.createElement("button");
-      loadBtn.type = "button";
-      loadBtn.className = "btn btn-small";
-      loadBtn.textContent = messages[currentLang]["history.load"];
-      loadBtn.addEventListener("click", () => loadHistoryItem(index));
-      loadBtn.dataset.proOnly = "1";
-      const deleteBtn = document.createElement("button");
-      deleteBtn.type = "button";
-      deleteBtn.className = "btn btn-small btn-ghost";
-      deleteBtn.textContent = messages[currentLang]["history.delete"];
-      deleteBtn.addEventListener("click", () => deleteHistoryItem(index));
-      deleteBtn.dataset.proOnly = "1";
-      actions.appendChild(loadBtn);
-      actions.appendChild(deleteBtn);
-
-      row.appendChild(meta);
-      row.appendChild(snippet);
-      row.appendChild(actions);
-      historyList.appendChild(row);
+      const load = document.createElement("button");
+      load.type = "button";
+      load.className = "btn btn-small";
+      load.textContent = currentLang === "ja" ? "読込" : "Load";
+      load.disabled = !isProActive();
+      load.addEventListener("click", () => {
+        if (!requirePro()) return;
+        if (el.input) el.input.value = item.text || "";
+        if (el.output) el.output.value = item.text || "";
+        if (el.preview) el.preview.textContent = item.text || "";
+        renderCountsAndWarnings();
+        toast(t("loaded"));
+      });
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "btn btn-small btn-ghost";
+      remove.textContent = currentLang === "ja" ? "削除" : "Delete";
+      remove.disabled = !isProActive();
+      remove.addEventListener("click", () => {
+        if (!requirePro()) return;
+        setHistory(getHistory().filter((_, itemIndex) => itemIndex !== index));
+        renderHistory();
+        toast(t("deleted"));
+      });
+      actions.append(load, remove);
+      row.append(meta, snippet, actions);
+      el.historyList.appendChild(row);
     });
-    setProControls(isProEnabled());
   }
 
-  function resetAll() {
+  function saveHistory() {
+    const output = requireOutput();
+    if (!output) return;
+    const next = [{
+      date: new Date().toLocaleString(currentLang === "ja" ? "ja-JP" : "en-US"),
+      snippet: output.replace(/\s+/g, " ").trim().slice(0, 100),
+      text: output,
+    }, ...getHistory()];
+    setHistory(next);
+    renderHistory();
+    toast(t("saved"));
+  }
+
+  function clearHistory() {
+    setHistory([]);
+    renderHistory();
+    toast(t("cleared"));
+  }
+
+  function handleProAction(action, target) {
     clearError();
-    showProgress(false);
-    inputText.value = "";
-    outputText.value = "";
-    previewBox.textContent = "";
-    limitInput.value = "";
+    if (!requirePro()) return;
+    if (action === "copy-pack") {
+      const pack = buildPack();
+      if (!pack.trim()) return error(t("emptyOutput"));
+      copyText(pack);
+    }
+    if (action === "copy-markdown") {
+      const pack = buildPack();
+      if (!pack.trim()) return error(t("emptyOutput"));
+      copyText(pack);
+    }
+    if (action === "export-json") {
+      if (!requireOutput()) return;
+      downloadFile("ats-paste-doctor-pro-pack.json", buildJsonExport(), "application/json;charset=utf-8");
+      toast(t("downloaded"));
+    }
+    if (action === "copy-checklist") copyText(checklist().map((item) => `- [ ] ${item}`).join("\n"));
+    if (action === "export-pdf") exportPdf();
+    if (action === "save-template") saveTemplate(target.dataset.slot || "1");
+    if (action === "load-template") loadTemplate(target.dataset.slot || "1");
+    if (action === "save-history") saveHistory();
+    if (action === "clear-history") clearHistory();
+  }
+
+  function syncProNote() {
+    const active = isProActive();
+    if (el.proTools) el.proTools.classList.toggle("is-locked", !active);
+    if (el.proToolsNote) el.proToolsNote.textContent = active ? t("protools.noteActive") : t("protools.note");
+    renderCountsAndWarnings();
+    renderHistory();
+  }
+
+  function init() {
+    setLang(currentLang);
     setMode("safe");
     renderCountsAndWarnings();
-    updateMeta();
+    el.langJa?.addEventListener("click", () => setLang("ja"));
+    el.langEn?.addEventListener("click", () => setLang("en"));
+    Object.values(modeButtons).forEach((button) => button?.addEventListener("click", () => setMode(button.dataset.mode)));
+    el.input?.addEventListener("input", renderCountsAndWarnings);
+    el.limit?.addEventListener("input", updateLimitMeta);
+    el.process?.addEventListener("click", process);
+    el.copy?.addEventListener("click", copyOutput);
+    el.download?.addEventListener("click", downloadTxt);
+    el.reset?.addEventListener("click", resetAll);
+    document.addEventListener("click", (event) => {
+      const action = event.target.closest("[data-pro-action]");
+      if (!action) return;
+      event.preventDefault();
+      handleProAction(action.dataset.proAction, action);
+    });
+    document.addEventListener("nw-pro-status-change", syncProNote);
+    window.addEventListener("storage", syncProNote);
   }
 
-  // Events
-  langJa.addEventListener("click", () => setLang("ja"));
-  langEn.addEventListener("click", () => setLang("en"));
-
-  Object.values(modeBtns).forEach((btn) => {
-    btn.addEventListener("click", () => setMode(btn.dataset.mode));
-  });
-
-  processBtn.addEventListener("click", process);
-  copyBtn.addEventListener("click", copyOutput);
-  downloadBtn.addEventListener("click", downloadTxt);
-  exportPdfBtn.addEventListener("click", exportPdf);
-  resetBtn.addEventListener("click", resetAll);
-
-  inputText.addEventListener("input", () => {
-    renderCountsAndWarnings();
-  });
-  limitInput.addEventListener("input", updateMeta);
-
-  document.querySelectorAll(".template-save").forEach((btn) => {
-    btn.addEventListener("click", () => saveTemplate(btn.dataset.slot));
-  });
-  document.querySelectorAll(".template-load").forEach((btn) => {
-    btn.addEventListener("click", () => loadTemplate(btn.dataset.slot));
-  });
-
-  $("historySaveBtn").addEventListener("click", saveToHistory);
-  $("historyClearBtn").addEventListener("click", clearHistory);
-
-  // Init
-  const initialLang = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
-  setLang(initialLang);
-  setMode("safe");
-  renderCountsAndWarnings();
-  renderHistory();
-  checkProQuery();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();

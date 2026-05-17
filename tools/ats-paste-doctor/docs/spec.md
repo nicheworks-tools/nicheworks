@@ -77,12 +77,13 @@ Warnings:
 ## 4. Pro unlock ($2.99 one-time)
 ### 4.1 Pricing
 - Price: $2.99 (USD, one-time)
-- CTA: Stripe Payment Link (placeholder URL in code)
+- CTA: shared NicheWorks Pro Payment Link
 
-### 4.2 Unlock mechanism (MVP, no server validation)
-- If user returns with `?pro=1`, set localStorage key:
-  `nw_pro_ats_paste_doctor = "1"`
-- Pro state is stored only on the device/browser.
+### 4.2 Unlock mechanism
+- Use the shared `/assets/nw-pro.js` client and `NWPro.getLocalStatus()`.
+- The common entitlement is `nicheworks_pro`; server-side `pro_entitlements` is the source of truth.
+- Do not add an individual Stripe product, webhook, D1 table, or manual unlock flow for this tool.
+- localStorage is only helper state managed by the shared Pro client.
 
 ### 4.3 Pro features
 - Hide ads UI (ad-top/ad-bottom) via CSS/JS (DOM remains; script remains)
@@ -102,6 +103,6 @@ Warnings:
 - Works on mobile 360px
 - Common Spec v3 rules satisfied
 - Free flow works: paste -> output -> copy/download -> preview
-- Pro unlock by ?pro=1 works
+- Common Pro unlock via `/assets/nw-pro.js` works
 - Pro features work (PDF/templates/history) when Pro enabled
 - usage/howto pages exist and are linked

@@ -21,7 +21,7 @@ Tool exists already:
 Current state:
 - JP/EN toggle via data-i18n
 - Free core works: process -> output -> copy/txt -> 2-line preview -> reset
-- Pro unlock via ?pro=1 stored in localStorage (nw_pro_ats_paste_doctor)
+- Pro unlock uses shared `/assets/nw-pro.js`, `NWPro.getLocalStatus()`, and the `nicheworks_pro` entitlement
 
 Price: $2.99 one-time (USD). Keep existing CTA text.
 

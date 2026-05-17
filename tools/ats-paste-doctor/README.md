@@ -19,14 +19,11 @@ No AI writing. No server. Browser-only.
 - Do NOT hard-fix container width to 600px; use .nw-main max-width 960px.
 - No FAQ schema unless there is an actual FAQ section (only add JSON-LD when FAQ exists).
 
-## Pricing / Pro unlock (MVP)
-- Price: $2.99 (one-time)
-- Use Stripe Payment Link (placeholder URL in code).
-- Unlock mechanism (MVP):
-  - After purchase, user returns to this page with `?pro=1`
-  - Detect `pro=1` and set localStorage key `nw_pro_ats_paste_doctor = "1"`
-  - When Pro enabled: hide ad slots in UI (DOM remains), show "Pro unlocked".
-- No server-side license validation in MVP.
+## Pricing / Pro unlock
+- Price: $2.99 (one-time) through the shared NicheWorks Pro Payment Link.
+- Use the common entitlement `nicheworks_pro` through `/assets/nw-pro.js`.
+- The tool reads `NWPro.getLocalStatus()` via `pro-bridge.js`; it does not create an individual Stripe product, webhook, D1 table, or manual unlock flow.
+- When common Pro is active: hide ad slots in the UI, raise the limit, and show "Pro unlocked".
 
 ## Features (Free)
 ### Input
@@ -104,4 +101,4 @@ No build tools. No external frameworks.
 - Works on mobile 360px
 - All common spec rules satisfied
 - Free flow works: paste -> output -> copy/download -> preview
-- Pro unlock by ?pro=1 works and hides ads
+- Common Pro unlock via `/assets/nw-pro.js` works and hides ads

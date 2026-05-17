@@ -57,7 +57,7 @@
     - Templates (3) 🔒
     - History (10) 🔒
   - CTA button “Buy Pro”
-  - How-to unlock note: “Return with ?pro=1”
+  - How-to unlock note: shared NicheWorks Pro activation persists in this browser after purchase
 - State B (unlocked):
   - Show “Pro unlocked”
   - Show Pro features panels:
