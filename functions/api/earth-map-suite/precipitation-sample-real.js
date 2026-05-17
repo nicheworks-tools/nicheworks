@@ -6,6 +6,8 @@ const SOURCE = "JAXA/EORC GSMaP public COG/STAC research source";
 const DEFAULT_PRESET = "low";
 const ALLOWED_PRESETS = new Set(["low"]);
 const MAX_BBOX_SPAN_DEGREES = 0.5;
+const PUBLIC_REAL_OUTPUT_NOT_READY = "not_ready_for_public_real_output";
+const PROCESSING_NOTE_PUBLIC_BLOCKED = "Public real precipitation output remains blocked because unit, scale, offset, NoData/fill handling, and tile geolocation are not verified from authoritative metadata; no mean/min/max precipitation values are decoded or aggregated.";
 
 const json = (payload, status = 200) => new Response(JSON.stringify(payload, null, 2), {
   status,
@@ -15,12 +17,22 @@ const json = (payload, status = 200) => new Response(JSON.stringify(payload, nul
   },
 });
 
-const responseContract = () => ({
+const validationMetadata = ({ geolocationStatus = "pending_verification" } = {}) => ({
+  unit_status: "pending_verification",
+  scale_status: "pending_verification",
+  offset_status: "pending_verification",
+  nodata_status: "pending_verification",
+  geolocation_status: geolocationStatus,
+  validation_status: PUBLIC_REAL_OUTPUT_NOT_READY,
+});
+
+const responseContract = (metadataOptions = {}) => ({
   dataset_id: DATASET_ID,
   source: SOURCE,
   license_status: "not_validated_for_public_real_sampling",
   retrieved_at: new Date().toISOString(),
-  processing_note: "Validated real precipitation sample processing is not implemented yet; no raster values were decoded or aggregated.",
+  processing_note: PROCESSING_NOTE_PUBLIC_BLOCKED,
+  ...validationMetadata(metadataOptions),
   unit: null,
   mean: null,
   min: null,
@@ -34,7 +46,7 @@ const unavailable = ({ code, message, guidance, status = 400, extra = {} }) => j
   error_code: code,
   message,
   guidance,
-  ...responseContract(),
+  ...responseContract({ geolocationStatus: extra.bbox ? "pending_verification" : "not_available" }),
   ...extra,
 }, status);
 
