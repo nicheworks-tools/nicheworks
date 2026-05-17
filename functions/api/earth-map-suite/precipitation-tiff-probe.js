@@ -163,6 +163,8 @@ export async function onRequestGet({ request }) {
     const located = await locateAsset(validation.params, controller.signal);
     if (located.error) return fail(located.error.code, located.error.message, "Keep public UI metadata-only and inspect asset reachability.", located.error.status, located.error.extra);
     const tiff_probe = await probeTiffHeader(located.asset.href, controller.signal);
+    if (!tiff_probe.ok) return fail("range_failed", "Could not read TIFF header range.", "Keep public UI metadata-only and inspect upstream/range behavior.", 502, { tiff_probe });
+    if (!tiff_probe.tiff_header?.ok) return fail("tiff_parse_failed", "TIFF header probe did not recognize a supported TIFF header.", "Keep public UI metadata-only until TIFF parsing is investigated.", 502, { tiff_probe });
     return json({
       data_type: "real_observation_tiff_probe",
       status: "ok",

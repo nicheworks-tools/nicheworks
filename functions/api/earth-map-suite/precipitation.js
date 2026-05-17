@@ -70,7 +70,7 @@ const validateRequest = (request) => {
   const url = new URL(request.url);
   for (const key of url.searchParams.keys()) {
     if (!ALLOWED_PARAMS.has(key)) {
-      return { error: ["missing_params", `Unsupported query parameter: ${key}.`, "Use only bbox, start, end, and preset for this JSON endpoint."] };
+      return { error: ["missing_or_invalid_params", `Unsupported query parameter: ${key}.`, "Use only bbox, start, end, and preset for this JSON endpoint."] };
     }
   }
 
@@ -80,7 +80,7 @@ const validateRequest = (request) => {
   const preset = (url.searchParams.get("preset") || "low").toLowerCase();
 
   if (!rawBbox || !rawStart || !rawEnd) {
-    return { error: ["missing_params", "bbox, start, and end are required.", "Example: ?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low"] };
+    return { error: ["missing_or_invalid_params", "bbox, start, and end are required.", "Example: ?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-03&preset=low"] };
   }
   if (!Object.prototype.hasOwnProperty.call(PRESET_LIMITS, preset)) {
     return { error: ["limit_exceeded", "preset must be low or mid.", "Use preset=low for up to 14 days / 2 degrees, or preset=mid for up to 7 days / 1 degree."] };
@@ -88,13 +88,13 @@ const validateRequest = (request) => {
 
   const bbox = parseBbox(rawBbox);
   if (!bbox) {
-    return { error: ["invalid_bbox", "bbox must be four finite numbers in minLon,minLat,maxLon,maxLat order with valid latitude/longitude ranges.", "Use longitude -180..180, latitude -90..90, minLon < maxLon, and minLat < maxLat."] };
+    return { error: ["missing_or_invalid_params", "bbox must be four finite numbers in minLon,minLat,maxLon,maxLat order with valid latitude/longitude ranges.", "Use longitude -180..180, latitude -90..90, minLon < maxLon, and minLat < maxLat."] };
   }
 
   const start = parseDate(rawStart);
   const end = parseDate(rawEnd);
   if (!start || !end || end < start) {
-    return { error: ["invalid_date", "start and end must be real YYYY-MM-DD dates, and end must be on or after start.", "Use an ISO date such as 2025-08-01, with end on the same day or later."] };
+    return { error: ["missing_or_invalid_params", "start and end must be real YYYY-MM-DD dates, and end must be on or after start.", "Use an ISO date such as 2025-08-01, with end on the same day or later."] };
   }
 
   const limits = PRESET_LIMITS[preset];
@@ -231,7 +231,7 @@ export async function onRequestGet({ request }) {
     }
 
     if (itemResults.length === 0) {
-      return unavailable("no_items", "No GSMaP daily STAC items were found for the requested bbox/date range.", "Try a different date, confirm the dataset coverage, or inspect the candidate STAC item URL pattern documented in REAL_DATA_INVESTIGATION.md.", 404, {
+      return unavailable("asset_missing", "No GSMaP daily STAC items were found for the requested bbox/date range.", "Try a different date, confirm the dataset coverage, or inspect the candidate STAC item URL pattern documented in REAL_DATA_INVESTIGATION.md.", 404, {
         checked_item_count: itemCandidates.length,
         sample_item_urls: itemCandidates.slice(0, 6).map((candidate) => candidate.url)
       });
@@ -292,5 +292,5 @@ export async function onRequestGet({ request }) {
 }
 
 export async function onRequestPost() {
-  return unavailable("unknown", "Use GET for this JSON-only proof endpoint.", "Call /api/earth-map-suite/precipitation with bbox, start, end, and optional preset query parameters.", 405);
+  return unavailable("missing_or_invalid_params", "Use GET for this JSON-only proof endpoint.", "Call /api/earth-map-suite/precipitation with bbox, start, end, and optional preset query parameters.", 405);
 }

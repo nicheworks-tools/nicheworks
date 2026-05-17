@@ -94,14 +94,14 @@ const validate = (request) => {
   const rawEnd = url.searchParams.get("end");
   const preset = (url.searchParams.get("preset") || "low").toLowerCase();
   const sample = (url.searchParams.get("sample") || "probe").toLowerCase();
-  if (!rawBbox || !rawStart || !rawEnd) return { error: ["missing_params", "bbox, start, and end are required.", "Use a tiny bbox and a 1-3 day range for the research probe."] };
+  if (!rawBbox || !rawStart || !rawEnd) return { error: ["missing_or_invalid_params", "bbox, start, and end are required.", "Use a tiny bbox and a 1-3 day range for the research probe."] };
   if (!Object.prototype.hasOwnProperty.call(LIMITS, preset)) return { error: ["limit_exceeded", "preset must be low or mid for the research probe.", "Use preset=low or preset=mid."] };
-  if (sample !== "probe") return { error: ["unsupported_sample", "Only sample=probe is enabled.", "This research endpoint does not parse raster values yet."] };
+  if (sample !== "probe") return { error: ["missing_or_invalid_params", "Only sample=probe is enabled.", "This research endpoint does not parse raster values yet."] };
   const bbox = parseBbox(rawBbox);
-  if (!bbox) return { error: ["invalid_bbox", "bbox must be valid minLon,minLat,maxLon,maxLat.", "Use a tiny bbox such as 139.5,35.4,140.0,35.9."] };
+  if (!bbox) return { error: ["missing_or_invalid_params", "bbox must be valid minLon,minLat,maxLon,maxLat.", "Use a tiny bbox such as 139.5,35.4,140.0,35.9."] };
   const start = parseDate(rawStart);
   const end = parseDate(rawEnd);
-  if (!start || !end || end < start) return { error: ["invalid_date", "start/end must be valid YYYY-MM-DD dates.", "Use a real date range."] };
+  if (!start || !end || end < start) return { error: ["missing_or_invalid_params", "start/end must be valid YYYY-MM-DD dates.", "Use a real date range."] };
   const spanDays = Math.floor((end.getTime() - start.getTime()) / MS_PER_DAY) + 1;
   const width = bbox[2] - bbox[0];
   const height = bbox[3] - bbox[1];
@@ -142,6 +142,7 @@ export async function onRequestGet({ request }) {
     }
     if (!matched) return error("asset_missing", "No PRECIP asset was found for this tiny research probe request.", "Try the verified Tokyo example and keep public UI metadata-only.", 404);
     const range_probe = await probeAsset(matched.asset.href, controller.signal);
+    if (!range_probe.accepts_range_probe) return error("range_failed", "PRECIP asset range probe failed.", "Keep public UI metadata-only and do not substitute synthetic precipitation values.", 502, { range_probe });
     return json({
       data_type: "real_observation_sample_probe",
       status: "ok",
