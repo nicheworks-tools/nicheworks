@@ -4,12 +4,14 @@
     ja: {
       active: 'Pro解放済み。このブラウザでは共通Proが有効です。',
       preview: 'Previewモードです。このブラウザでは共通Proがまだ有効ではありません。',
-      unknown: 'Pro状態を確認できませんでした。無料機能は引き続き利用できます。'
+      unknown: 'Pro状態を確認できませんでした。無料機能は引き続き利用できます。',
+      buy: 'NicheWorks Proを購入 — $2.99'
     },
     en: {
       active: 'Pro unlocked. Common Pro is active in this browser.',
       preview: 'Preview mode. Common Pro is not active in this browser yet.',
-      unknown: 'Could not check Pro status. Free features remain available.'
+      unknown: 'Could not check Pro status. Free features remain available.',
+      buy: 'Unlock NicheWorks Pro — $2.99'
     }
   };
 
@@ -17,10 +19,13 @@
     return document.documentElement.lang === 'en' ? 'en' : 'ja';
   }
 
+  function table() {
+    return STATUS_TEXT[currentLang()] || STATUS_TEXT.ja;
+  }
+
   function statusText(reason, active) {
-    const table = STATUS_TEXT[currentLang()];
-    if (active) return table.active;
-    return table[reason] || table.preview;
+    if (active) return table().active;
+    return table()[reason] || table().preview;
   }
 
   function setText(selector, text) {
@@ -35,6 +40,7 @@
         link.href = PAYMENT_LINK;
         link.target = '_blank';
         link.rel = 'noopener';
+        link.textContent = table().buy;
       }
     });
   }
@@ -63,6 +69,7 @@
     root.dataset.proStatus = nextReason;
     root.classList.toggle('nw-pro-active', active);
     root.classList.toggle('nw-pro-preview', !active);
+    wireBuyButtons();
     setText('[data-pro-status]', statusText(nextReason, active));
     updateVisibility(active);
     document.dispatchEvent(new CustomEvent('nw-pro-status-change', { detail: { active, reason: nextReason } }));
