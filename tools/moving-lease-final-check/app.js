@@ -289,7 +289,7 @@
     await copyText(basicText(), 'TXTをコピーしました。');
   }
 
-  function saveBlob(out, filename) {
+  function saveBlob(out, filename, successMessage = 'TXTを保存しました。') {
     if (!out) return toast('先にチェックリストを表示してください。');
     const blob = new Blob([out], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -300,7 +300,7 @@
     anchor.click();
     anchor.remove();
     URL.revokeObjectURL(url);
-    toast('TXTを保存しました。');
+    toast(successMessage);
   }
 
   function saveTxt() {
@@ -317,7 +317,7 @@
   function saveProTxt(event) {
     if (!requirePro(event)) return;
     const context = ctx();
-    saveBlob(proPack(), `moving-lease-final-pack-${context?.date || 'check'}-${context?.homeType || 'home'}.txt`);
+    saveBlob(proPack(), `moving-lease-final-pack-${context?.date || 'check'}-${context?.homeType || 'home'}.txt`, 'Pro PackをTXT保存しました。');
   }
 
   function printPro(event) {
