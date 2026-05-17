@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["ジョイントボックス|junction box", "ジョイントボックス", "Junction box", "./images/pilot/electrical-junction-box.svg?v=20260513-asset-12", "電線の接続部を収めるための電気用ボックス。", "Electrical box used to house wire joints."],
+    ["アウトレットボックス|outlet box", "アウトレットボックス", "Outlet box", "./images/pilot/electrical-outlet-box.svg?v=20260513-asset-12", "コンセントやスイッチを取り付けるためのボックス。", "Box used to mount outlets or switches."],
+    ["電線管カップリング|conduit coupling", "電線管カップリング", "Conduit coupling", "./images/pilot/conduit-coupling.svg?v=20260513-asset-12", "電線管同士を直線接続するための継手。", "Fitting used to connect conduit sections in line."],
+    ["電線管コネクタ|conduit connector", "電線管コネクタ", "Conduit connector", "./images/pilot/conduit-connector.svg?v=20260513-asset-12", "電線管をボックスや盤に接続するための部材。", "Connector used to attach conduit to boxes or panels."],
+    ["プルボックス|pull box", "プルボックス", "Pull box", "./images/pilot/electrical-pull-box.svg?v=20260513-asset-12", "通線や点検のために配線経路の途中へ設ける箱。", "Box placed along wiring routes for pulling and inspection."],
+    ["ケーブルラック|cable ladder", "ケーブルラック", "Cable ladder", "./images/pilot/cable-ladder.svg?v=20260513-asset-12", "ケーブルを支持しながらまとめて通すためのラック。", "Rack used to support and route cables."],
+    ["ケーブルグランド|cable gland", "ケーブルグランド", "Cable gland", "./images/pilot/cable-gland.svg?v=20260513-asset-12", "ケーブル引込部の固定や防じん・防水に使う部材。", "Fitting used to secure and seal cable entries."],
+    ["端子台|connector block|wiring connector block", "端子台", "Connector block", "./images/pilot/wiring-connector-block.svg?v=20260513-asset-12", "電線を整理して接続するための部材。", "Block used to organize and connect wiring."],
+    ["スイッチプレート|switch plate", "スイッチプレート", "Switch plate", "./images/pilot/switch-plate.svg?v=20260513-asset-12", "スイッチやコンセントまわりの開口を覆う仕上げプレート。", "Finish plate used to cover switch or outlet openings."],
+    ["配線ダクト|wire duct", "配線ダクト", "Wire duct", "./images/pilot/wire-duct.svg?v=20260513-asset-12", "盤内や設備まわりで配線を整理するダクト。", "Duct used to organize wiring around panels or equipment."]
+  ]
+}
