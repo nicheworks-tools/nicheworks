@@ -151,3 +151,59 @@ p,li,summary,label,select,textarea,button{ font-size:16px; line-height:1.7; }
   .nw-donate-links{ flex-direction:column; gap:8px; }
 }
 /* --- end --- */
+
+/* --- Common Pro integration --- */
+.lck-pro-panel{
+  margin-top:18px;
+  border:1px solid var(--nw-border);
+  border-radius:var(--nw-radius);
+  padding:16px;
+  background:#fff;
+}
+.lck-pro-heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.lck-pro-heading h3{ margin:0; }
+.lck-pro-status{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--nw-border);
+  border-radius:999px;
+  padding:6px 10px;
+  background:var(--nw-soft);
+  color:var(--nw-muted);
+  font-size:14px;
+  line-height:1.5;
+}
+html[data-pro-active="true"] .lck-pro-status{
+  background:#ecfdf5;
+  border-color:#a7f3d0;
+  color:#065f46;
+}
+.lck-pro-grid{
+  display:grid;
+  gap:12px;
+  margin-top:12px;
+}
+.lck-pro-card{
+  border:1px solid var(--nw-border);
+  border-radius:12px;
+  padding:12px;
+  background:#fff;
+}
+.lck-pro-card h4{ margin:0 0 8px; }
+.lck-pro-card .nw-pre{
+  max-height:280px;
+  margin:0;
+}
+code{
+  background:var(--nw-soft);
+  border:1px solid var(--nw-border);
+  border-radius:6px;
+  padding:1px 4px;
+}
+/* --- end Common Pro integration --- */
