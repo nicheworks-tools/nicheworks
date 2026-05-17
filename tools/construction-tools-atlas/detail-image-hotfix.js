@@ -7,7 +7,8 @@
     "./data/image-pilots-003.json?v=20260513-asset-7",
     "./data/image-pilots-004.json?v=20260513-asset-8",
     "./data/image-pilots-005.json?v=20260513-asset-9",
-    "./data/image-pilots-006.json?v=20260513-asset-10"
+    "./data/image-pilots-006.json?v=20260513-asset-10",
+    "./data/image-pilots-007.json?v=20260513-asset-11"
   ];
 
   const state = {
