@@ -1,8 +1,27 @@
 (() => {
   const PAYMENT_LINK = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
-  const ACTIVE_TEXT = 'Pro解放済み。このブラウザでは共通Proが有効です。';
-  const PREVIEW_TEXT = 'Previewモードです。このブラウザでは共通Proがまだ有効ではありません。';
-  const UNKNOWN_TEXT = 'Pro状態を確認できませんでした。無料機能は引き続き利用できます。';
+  const STATUS_TEXT = {
+    ja: {
+      active: 'Pro解放済み。このブラウザでは共通Proが有効です。',
+      preview: 'Previewモードです。このブラウザでは共通Proがまだ有効ではありません。',
+      unknown: 'Pro状態を確認できませんでした。無料機能は引き続き利用できます。'
+    },
+    en: {
+      active: 'Pro unlocked. Common Pro is active in this browser.',
+      preview: 'Preview mode. Common Pro is not active in this browser yet.',
+      unknown: 'Could not check Pro status. Free features remain available.'
+    }
+  };
+
+  function currentLang() {
+    return document.documentElement.lang === 'en' ? 'en' : 'ja';
+  }
+
+  function statusText(reason, active) {
+    const table = STATUS_TEXT[currentLang()];
+    if (active) return table.active;
+    return table[reason] || table.preview;
+  }
 
   function setText(selector, text) {
     document.querySelectorAll(selector).forEach((element) => {
@@ -39,13 +58,14 @@
 
   function publish(active, reason) {
     const root = document.documentElement;
+    const nextReason = reason || (active ? 'active' : 'preview');
     root.dataset.proActive = active ? 'true' : 'false';
-    root.dataset.proStatus = reason || (active ? 'active' : 'preview');
+    root.dataset.proStatus = nextReason;
     root.classList.toggle('nw-pro-active', active);
     root.classList.toggle('nw-pro-preview', !active);
-    setText('[data-pro-status]', active ? ACTIVE_TEXT : reason === 'unknown' ? UNKNOWN_TEXT : PREVIEW_TEXT);
+    setText('[data-pro-status]', statusText(nextReason, active));
     updateVisibility(active);
-    document.dispatchEvent(new CustomEvent('nw-pro-status-change', { detail: { active, reason: root.dataset.proStatus } }));
+    document.dispatchEvent(new CustomEvent('nw-pro-status-change', { detail: { active, reason: nextReason } }));
   }
 
   function readStatus() {
@@ -62,9 +82,18 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', readStatus, { once: true });
-  } else {
+  function init() {
     readStatus();
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('.nw-lang-switch button');
+      if (!button) return;
+      window.setTimeout(readStatus, 0);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
   }
 })();
