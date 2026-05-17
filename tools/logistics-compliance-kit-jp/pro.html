@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pro購入・復元｜Logistics Compliance Kit JP | NicheWorks</title>
-  <meta name="description" content="Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。">
+  <title>NicheWorks Pro｜Logistics Compliance Kit JP | NicheWorks</title>
+  <meta name="description" content="Logistics Compliance Kit JP の共通Pro機能と購入後の扱いを説明します。Pro状態はNicheWorks共通Pro基盤で確認します。">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html">
   <link rel="icon" href="/assets/favicon.ico">
@@ -13,13 +13,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="Pro購入・復元｜Logistics Compliance Kit JP | NicheWorks">
-  <meta property="og:description" content="Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。">
+  <meta property="og:title" content="NicheWorks Pro｜Logistics Compliance Kit JP | NicheWorks">
+  <meta property="og:description" content="Logistics Compliance Kit JP の共通Pro機能と購入後の扱いを説明します。Pro状態はNicheWorks共通Pro基盤で確認します。">
   <meta property="og:url" content="https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pro購入・復元｜Logistics Compliance Kit JP | NicheWorks">
-  <meta name="twitter:description" content="Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。">
+  <meta name="twitter:title" content="NicheWorks Pro｜Logistics Compliance Kit JP | NicheWorks">
+  <meta name="twitter:description" content="Logistics Compliance Kit JP の共通Pro機能と購入後の扱いを説明します。Pro状態はNicheWorks共通Pro基盤で確認します。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
@@ -35,9 +35,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Pro購入・復元｜Logistics Compliance Kit JP",
+    "name": "NicheWorks Pro｜Logistics Compliance Kit JP",
     "url": "https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html",
-    "description": "Logistics Compliance Kit JP Pro の購入・復元ページです。ProではMarkdown保存を利用できます。",
+    "description": "Logistics Compliance Kit JP の共通Pro機能と購入後の扱いを説明します。Pro状態はNicheWorks共通Pro基盤で確認します。",
     "inLanguage": "ja",
     "publisher": {
       "@type": "Organization",
@@ -50,8 +50,8 @@
 <body>
   <header class="nw-doc__header">
     <div class="nw-doc">
-      <h1>Logistics Compliance Kit JP Pro</h1>
-      <p class="nw-lead">Markdown保存を使うためのPro購入・復元ページです。</p>
+      <h1>Logistics Compliance Kit JP — NicheWorks Pro</h1>
+      <p class="nw-lead">このツールのPro機能は、NicheWorks共通Pro基盤（entitlement: <code>nicheworks_pro</code>）で解放されます。</p>
       <nav>
         <a class="nw-link" href="./">← ツールに戻る</a>
         <span class="nw-dot">•</span>
@@ -68,23 +68,36 @@
     </section>
 
     <section class="nw-doc__section">
-      <h2>Proで使える機能</h2>
-      <ul>
-        <li>Markdownプレビューの内容を <b>.md ファイルとして保存</b></li>
-        <li>今後追加予定：PDF出力</li>
-      </ul>
-      <p class="nw-note">判定とMarkdownプレビューは無料範囲です。保存・PDF出力などの持ち出し系機能をPro範囲として扱います。</p>
+      <h2>現在のPro状態</h2>
+      <p class="lck-pro-status" data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</p>
+      <div data-pro-preview>
+        <p class="nw-note">Pro未有効でもツール本体でPro Previewを確認できます。購入するとPro専用copy/export/saveが解放されます。</p>
+        <div class="lck-actions">
+          <a class="nw-btn" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener noreferrer">Buy Pro</a>
+        </div>
+      </div>
+      <div data-pro-only hidden>
+        <p class="nw-note">Pro解放済みです。ツール本体に戻ると、Pro専用copy/export/saveを利用できます。</p>
+        <p><a class="nw-btn" href="./">ツールに戻る</a></p>
+      </div>
     </section>
 
     <section class="nw-doc__section">
-      <h2>購入・復元</h2>
-      <p id="pro-state" class="nw-note">確認中です。</p>
-      <div class="lck-actions">
-        <a class="nw-btn" id="btn-buy-pro" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209">Proを購入する（Stripe）</a>
-        <a class="nw-btn nw-btn--ghost" href="/pro/unlock/?tool=logistics-compliance-kit-jp">購入済みの方：この端末でProを有効化</a>
-        <button class="nw-btn nw-btn--ghost" id="btn-disable-pro" type="button">この端末のProを解除</button>
-      </div>
-      <p class="nw-note">Stripeの支払い完了後、Pro有効化ページに移動します。別端末・別ブラウザでは再度有効化が必要です。</p>
+      <h2>Proで解放される機能</h2>
+      <ul>
+        <li>Markdown保存</li>
+        <li>社内共有メモ、委託先確認メモ、改善計画たたき台</li>
+        <li>GitHub Issue形式の出力、Codex依頼文の出力</li>
+        <li>Markdown handoff export、JSON export</li>
+        <li>将来のPDF出力に接続しやすい出力構造</li>
+      </ul>
+      <p class="nw-note">判定、根拠シグナル、次にやること、中長期計画ドラフト、現状メモの画面反映、Markdown previewは無料範囲です。</p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>購入後の扱い</h2>
+      <p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+      <p class="nw-note">このページとツール本体は <code>/assets/nw-pro.js</code> の <code>NWPro.getLocalStatus()</code> を読み、共通Pro状態だけでPreview / Pro解放済みを切り替えます。localStorageは補助状態で、サーバー側D1 <code>pro_entitlements</code> が正です。</p>
     </section>
 
     <section class="nw-doc__section nw-warning">
@@ -102,31 +115,7 @@
     </div>
   </footer>
 
-  <script>
-    (function(){
-      "use strict";
-      var PRO_KEY = "nw_pro_logistics-compliance-kit-jp";
-      var state = document.getElementById("pro-state");
-      var disable = document.getElementById("btn-disable-pro");
-
-      function isPro(){
-        try{ return localStorage.getItem(PRO_KEY) === "1"; }catch(e){ return false; }
-      }
-      function render(){
-        if(!state) return;
-        state.textContent = isPro()
-          ? "状態：この端末でProが有効です。ツールに戻るとMarkdown保存が使えます。"
-          : "状態：この端末ではProがまだ有効ではありません。";
-      }
-      if(disable){
-        disable.addEventListener("click", function(){
-          try{ localStorage.removeItem(PRO_KEY); }catch(e){}
-          render();
-          alert("この端末のProを解除しました。");
-        });
-      }
-      render();
-    })();
-  </script>
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
 </body>
 </html>

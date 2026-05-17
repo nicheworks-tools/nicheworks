@@ -86,7 +86,7 @@
         "name": "無料で使える範囲はどこまでですか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "初期版では判定とMarkdownプレビューまで無料で使えます。Markdown保存とPDF出力はPro機能として扱います。"
+          "text": "判定、根拠シグナル、次にやること、中長期計画ドラフト、現状メモの画面反映、Markdown previewは無料で使えます。Markdown保存、社内共有メモ、委託先確認メモ、改善計画、GitHub Issue、Codex依頼文、handoff Markdown、JSON exportは共通Proで解放されます。"
         }
       },
       {
@@ -94,7 +94,7 @@
         "name": "現状メモは判定に使われますか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "初期版では判定ロジックには使わず、出力メモとして記録します。"
+          "text": "判定ロジックには使わず、出力メモとして記録します。"
         }
       }
     ]
@@ -156,12 +156,12 @@
 
       <details>
         <summary>無料で使える範囲はどこまでですか？</summary>
-        <p>初期版では判定とMarkdownプレビューまで無料で使えます。Markdown保存とPDF出力はPro機能として扱います。</p>
+        <p>判定、根拠シグナル、次にやること、中長期計画ドラフト、現状メモの画面反映、Markdown previewは無料で使えます。Markdown保存、社内共有メモ、委託先確認メモ、改善計画、GitHub Issue、Codex依頼文、handoff Markdown、JSON exportは共通Proで解放されます。</p>
       </details>
 
       <details>
         <summary>現状メモは判定に使われますか？</summary>
-        <p>初期版では判定ロジックには使わず、出力メモとして記録します。</p>
+        <p>判定ロジックには使わず、出力メモとして記録します。</p>
       </details>
 
       <div id="faq-extra" class="nw-faq-extra" aria-live="polite"></div>
@@ -188,6 +188,10 @@
     </section>
   </main>
 
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./app.js"></script>
+  <script src="./pro-bridge.js"></script>
+
   <footer class="nw-footer">
     <div class="nw-doc">
       <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
@@ -195,7 +199,5 @@
       <p class="nw-footer-line"><a class="nw-link" href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
     </div>
   </footer>
-
-  <script src="./app.js"></script>
 </body>
 </html>
