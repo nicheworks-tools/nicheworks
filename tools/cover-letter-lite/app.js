@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const TEMPLATE_STYLES = new Set(["formal", "modern", "entry", "direct", "skill"]);
+  const TEMPLATE_LENGTHS = new Set(["short", "medium"]);
 
   function setStatus(message, type = "info") {
     if (!statusMessage) return;
@@ -32,9 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1800);
   }
 
-  async function loadTemplate(style) {
-    const safeStyle = TEMPLATE_STYLES.has(style) ? style : "formal";
-    const res = await fetch(`./templates/${safeStyle}.txt`, { cache: "no-cache" });
+  async function fetchTemplateFile(path) {
+    const res = await fetch(path, { cache: "no-cache" });
 
     if (!res.ok) {
       throw new Error("template_load_failed");
@@ -48,6 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return text;
+  }
+
+  async function loadTemplate(style, length) {
+    const safeStyle = TEMPLATE_STYLES.has(style) ? style : "formal";
+    const safeLength = TEMPLATE_LENGTHS.has(length) ? length : "short";
+
+    try {
+      return await fetchTemplateFile(`./templates/${safeStyle}-${safeLength}.txt`);
+    } catch (error) {
+      return await fetchTemplateFile(`./templates/${safeStyle}.txt`);
+    }
   }
 
   function buildSkillsPhrase(raw) {
@@ -85,7 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function insertExperienceParagraph(draft, normalizedExperience) {
     if (!normalizedExperience) {
-      return draft.replace(/\[EXPERIENCE\]/g, "").replace(/\n{3,}/g, "\n\n");
+      return draft
+        .replace(/^\[EXPERIENCE\]\n{0,2}/gm, "")
+        .replace(/\n{3,}/g, "\n\n");
     }
 
     const sentence = `My background includes ${normalizedExperience}.`;
@@ -102,29 +115,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${draft.trim()}\n\n${sentence}`;
   }
 
-  function compactShortDraft(draft) {
-    const blocks = draft.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
-    const signoffIndex = blocks.findIndex((block) => /^(Sincerely,|Best regards,)/.test(block));
-
-    if (signoffIndex <= 1) return draft;
-
-    const greeting = blocks[0];
-    const bodyBlocks = blocks.slice(1, signoffIndex);
-    const signoff = blocks.slice(signoffIndex).join("\n\n");
-    const bodySentences = bodyBlocks
-      .join(" ")
-      .split(/(?<=[.!?])\s+/)
-      .map((sentence) => sentence.trim())
-      .filter(Boolean)
-      .slice(0, 3)
-      .join(" ");
-
-    return [greeting, bodySentences, signoff].filter(Boolean).join("\n\n");
-  }
-
   function countWords(text) {
     const words = text.trim().match(/[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)?/g);
     return words ? words.length : 0;
+  }
+
+  function expectedRange(length) {
+    return length === "medium" ? { min: 105, max: 190 } : { min: 55, max: 130 };
   }
 
   async function copyToClipboard(text) {
@@ -192,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
     outputContainer.style.display = "none";
 
     try {
-      const template = await loadTemplate(style);
+      const template = await loadTemplate(style, length);
       const skillsPhrase = buildSkillsPhrase(rawSkills) || "relevant skills";
       const normalizedExperience = normalizeExperience(experienceRaw);
 
@@ -208,25 +205,20 @@ document.addEventListener("DOMContentLoaded", () => {
           .replace(/Sincerely,/g, "Best regards,");
       }
 
-      result = insertExperienceParagraph(result, normalizedExperience.text);
-
-      if (length === "short" && countWords(result) > 130) {
-        result = compactShortDraft(result);
-      }
-
-      result = result.trim();
+      result = insertExperienceParagraph(result, normalizedExperience.text).trim();
       outputArea.textContent = result;
       outputContainer.style.display = "block";
 
       const words = countWords(result);
-      wordCountEl.textContent = `${words} words. Edit before sending.`;
+      const range = expectedRange(length);
+      wordCountEl.textContent = `${words} words. ${length === "medium" ? "Medium" : "Short"} template. Edit before sending.`;
 
       if (normalizedExperience.wasTrimmed) {
         setStatus("Experience summary was shortened to keep the draft readable.", "warning");
-      } else if (length === "short" && words > 130) {
-        setStatus("This short draft is still a little long. Consider trimming details before sending.", "warning");
+      } else if (words < range.min || words > range.max) {
+        setStatus("Draft generated. Word count is outside the usual guide because inputs vary. Review before use.", "warning");
       } else {
-        setStatus("Draft generated. Review and customize it before use.", "success");
+        setStatus("Draft generated from a dedicated length template. Review and customize it before use.", "success");
       }
 
       showToast("Draft generated");
