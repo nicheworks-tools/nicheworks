@@ -65,36 +65,36 @@ const validate = (request) => {
   const preset = (url.searchParams.get("preset") || DEFAULT_PRESET).trim().toLowerCase();
 
   if (!rawBbox) {
-    return { error: ["missing_bbox", "bbox is required.", "Use bbox=minLon,minLat,maxLon,maxLat, for example bbox=139.5,35.4,140.0,35.9."] };
+    return { error: ["missing_or_invalid_params", "bbox is required.", "Use bbox=minLon,minLat,maxLon,maxLat, for example bbox=139.5,35.4,140.0,35.9."] };
   }
   if (!rawStart) {
-    return { error: ["missing_start", "start is required.", "Use start=YYYY-MM-DD, for example start=2025-08-01."] };
+    return { error: ["missing_or_invalid_params", "start is required.", "Use start=YYYY-MM-DD, for example start=2025-08-01."] };
   }
   if (!rawEnd) {
-    return { error: ["missing_end", "end is required.", "Use end=YYYY-MM-DD. Only one day is allowed, so end must match start for now."] };
+    return { error: ["missing_or_invalid_params", "end is required.", "Use end=YYYY-MM-DD. Only one day is allowed, so end must match start for now."] };
   }
   if (!ALLOWED_PRESETS.has(preset)) {
-    return { error: ["invalid_preset", "preset must be low for the current skeleton endpoint.", "Omit preset or use preset=low."] };
+    return { error: ["missing_or_invalid_params", "preset must be low for the current skeleton endpoint.", "Omit preset or use preset=low."] };
   }
 
   const bbox = parseBbox(rawBbox);
   if (!bbox) {
-    return { error: ["invalid_bbox", "bbox must be valid minLon,minLat,maxLon,maxLat within world bounds.", "Use a small bbox such as 139.5,35.4,140.0,35.9."] };
+    return { error: ["missing_or_invalid_params", "bbox must be valid minLon,minLat,maxLon,maxLat within world bounds.", "Use a small bbox such as 139.5,35.4,140.0,35.9."] };
   }
 
   const start = parseDate(rawStart);
   const end = parseDate(rawEnd);
   if (!start || !end) {
-    return { error: ["invalid_date", "start and end must be valid YYYY-MM-DD dates.", "Use matching one-day dates such as start=2025-08-01&end=2025-08-01."] };
+    return { error: ["missing_or_invalid_params", "start and end must be valid YYYY-MM-DD dates.", "Use matching one-day dates such as start=2025-08-01&end=2025-08-01."] };
   }
   if (rawStart !== rawEnd) {
-    return { error: ["date_range_not_supported", "Only one day is allowed for validated real sampling skeleton requests.", "Use the same YYYY-MM-DD value for start and end."] };
+    return { error: ["limit_exceeded", "Only one day is allowed for validated real sampling skeleton requests.", "Use the same YYYY-MM-DD value for start and end."] };
   }
 
   const width = bbox[2] - bbox[0];
   const height = bbox[3] - bbox[1];
   if (width > MAX_BBOX_SPAN_DEGREES || height > MAX_BBOX_SPAN_DEGREES) {
-    return { error: ["bbox_too_large", "bbox must be 0.5 degrees or less per axis for now.", "Shrink bbox so maxLon-minLon <= 0.5 and maxLat-minLat <= 0.5."] };
+    return { error: ["limit_exceeded", "bbox must be 0.5 degrees or less per axis for now.", "Shrink bbox so maxLon-minLon <= 0.5 and maxLat-minLat <= 0.5."] };
   }
 
   return { params: { bbox, start: rawStart, end: rawEnd, preset } };
