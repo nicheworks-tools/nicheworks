@@ -29,7 +29,32 @@ const callGet = async (onRequestGet, query = "") => {
 
 const requiredNullFields = ["unit", "mean", "min", "max", "nodata_count"];
 const requiredMetadataFields = ["dataset_id", "source", "license_status", "retrieved_at", "processing_note"];
+const requiredProvenanceFields = ["source", "dataset_id", "band", "license_status", "attribution", "retrieved_at", "processing_note"];
+const requiredDebugFields = ["endpoint_stage", "probe_decision_phase", "probe_decision_next", "validated_sample_ready", "public_ui_allowed"];
 const requiredReadinessFields = ["unit_status", "scale_status", "offset_status", "nodata_status", "geolocation_status", "validation_status"];
+
+const assertProvenanceAndDebug = (body, { endpointStage, probeDecisionPhase = null, probeDecisionNext = null } = {}) => {
+  assert.equal(typeof body.provenance, "object", "provenance must be present");
+  assert.equal(Array.isArray(body.provenance), false, "provenance must be an object");
+  assert.deepEqual(Object.keys(body.provenance), requiredProvenanceFields);
+  assert.equal(body.provenance.source, body.source);
+  assert.equal(body.provenance.dataset_id, body.dataset_id);
+  assert.equal(body.provenance.band, "PRECIP");
+  assert.equal(body.provenance.license_status, "pending_verification");
+  assert.equal(body.provenance.attribution, "JAXA/EORC GSMaP attribution pending verification; not validated for public output.");
+  assert.equal(body.provenance.retrieved_at, body.retrieved_at);
+  assert.equal(body.provenance.processing_note, body.processing_note);
+
+  assert.equal(typeof body.debug, "object", "debug must be present");
+  assert.equal(Array.isArray(body.debug), false, "debug must be an object");
+  assert.deepEqual(Object.keys(body.debug), requiredDebugFields);
+  assert.equal(body.debug.endpoint_stage, endpointStage);
+  assert.equal(body.debug.probe_decision_phase, probeDecisionPhase);
+  assert.equal(body.debug.probe_decision_next, probeDecisionNext);
+  assert.equal(body.debug.validated_sample_ready, false);
+  assert.equal(body.debug.public_ui_allowed, false);
+  assert.equal(body.public_ui_allowed, false);
+};
 
 const assertPublicRealOutputBlocked = (body, { geolocationStatus = "pending_verification" } = {}) => {
   for (const field of requiredReadinessFields) {
@@ -73,6 +98,7 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
   assert.equal(body.error_code, "missing_or_invalid_params");
   assert.match(body.message, /bbox is required/);
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
+  assertProvenanceAndDebug(body, { endpointStage: "request_validation_failed" });
 }
 
 {
@@ -125,6 +151,11 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
   assert.deepEqual(body.date_range, { start: "2025-08-01", end: "2025-08-01" });
   assert.equal(body.preset, "low");
   assertPublicRealOutputBlocked(body);
+  assertProvenanceAndDebug(body, {
+    endpointStage: "readiness_blocked",
+    probeDecisionPhase: "decoder_strategy_required",
+    probeDecisionNext: "choose_verified_geotiff_decoder_before_sampling",
+  });
 
   for (const field of requiredMetadataFields) {
     assert.ok(Object.hasOwn(body, field), `${field} must be present`);
@@ -161,6 +192,11 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
   assert.equal(body.readiness_blocker, "unit_scale_nodata_projection_not_validated");
   assert.equal(body.debug_first_pixel, 12.25);
   assertPublicRealOutputBlocked(body);
+  assertProvenanceAndDebug(body, {
+    endpointStage: "raw_pixel_probe_not_ready",
+    probeDecisionPhase: "raw_pixel_read",
+    probeDecisionNext: "validate_decoder_projection_units_and_no_data_rules",
+  });
 
   for (const field of requiredNullFields) {
     assert.ok(Object.hasOwn(body, field), `${field} must be present`);
@@ -181,6 +217,7 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
   assert.equal(body.status, "error");
   assert.equal(body.error_code, "method_not_allowed");
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
+  assertProvenanceAndDebug(body, { endpointStage: "method_not_allowed" });
 }
 
 console.log("precipitation-sample-real harness passed");

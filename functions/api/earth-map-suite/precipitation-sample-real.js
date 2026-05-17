@@ -3,6 +3,9 @@ import { classifyProbeStatus } from "./probe-status.js";
 
 const DATASET_ID = "JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily";
 const SOURCE = "JAXA/EORC GSMaP public COG/STAC research source";
+const BAND = "PRECIP";
+const LICENSE_STATUS = "pending_verification";
+const ATTRIBUTION = "JAXA/EORC GSMaP attribution pending verification; not validated for public output.";
 const DEFAULT_PRESET = "low";
 const ALLOWED_PRESETS = new Set(["low"]);
 const MAX_BBOX_SPAN_DEGREES = 0.5;
@@ -26,27 +29,60 @@ const validationMetadata = ({ geolocationStatus = "pending_verification" } = {})
   validation_status: PUBLIC_REAL_OUTPUT_NOT_READY,
 });
 
-const responseContract = (metadataOptions = {}) => ({
-  dataset_id: DATASET_ID,
+const provenanceContract = (retrievedAt) => ({
   source: SOURCE,
-  license_status: "not_validated_for_public_real_sampling",
-  retrieved_at: new Date().toISOString(),
+  dataset_id: DATASET_ID,
+  band: BAND,
+  license_status: LICENSE_STATUS,
+  attribution: ATTRIBUTION,
+  retrieved_at: retrievedAt,
   processing_note: PROCESSING_NOTE_PUBLIC_BLOCKED,
-  ...validationMetadata(metadataOptions),
-  unit: null,
-  mean: null,
-  min: null,
-  max: null,
-  nodata_count: null,
 });
 
-const unavailable = ({ code, message, guidance, status = 400, extra = {} }) => json({
+const debugContract = ({ endpointStage, probeDecision = null } = {}) => ({
+  endpoint_stage: endpointStage,
+  probe_decision_phase: probeDecision?.phase || null,
+  probe_decision_next: probeDecision?.next || null,
+  validated_sample_ready: false,
+  public_ui_allowed: false,
+});
+
+const responseContract = (metadataOptions = {}) => {
+  const retrievedAt = new Date().toISOString();
+  const provenance = provenanceContract(retrievedAt);
+
+  return {
+    dataset_id: DATASET_ID,
+    source: SOURCE,
+    license_status: LICENSE_STATUS,
+    retrieved_at: retrievedAt,
+    processing_note: PROCESSING_NOTE_PUBLIC_BLOCKED,
+    provenance,
+    public_ui_allowed: false,
+    debug: debugContract({
+      endpointStage: metadataOptions.endpointStage || "response_contract",
+      probeDecision: metadataOptions.probeDecision,
+    }),
+    ...validationMetadata(metadataOptions),
+    unit: null,
+    mean: null,
+    min: null,
+    max: null,
+    nodata_count: null,
+  };
+};
+
+const unavailable = ({ code, message, guidance, status = 400, extra = {}, endpointStage = "unavailable", probeDecision = null }) => json({
   data_type: "unavailable",
   status: "error",
   error_code: code,
   message,
   guidance,
-  ...responseContract({ geolocationStatus: extra.bbox ? "pending_verification" : "not_available" }),
+  ...responseContract({
+    geolocationStatus: extra.bbox ? "pending_verification" : "not_available",
+    endpointStage,
+    probeDecision,
+  }),
   ...extra,
 }, status);
 
@@ -153,6 +189,7 @@ const commonReadinessFields = ({ readiness, blocker, probeDecision }) => ({
   readiness_blocker: blocker,
   probe_decision: probeDecision,
   validated_sample_ready: false,
+  public_ui_allowed: false,
 });
 
 export async function onRequestGet(context) {
@@ -160,7 +197,7 @@ export async function onRequestGet(context) {
   const validation = validate(request);
   if (validation.error) {
     const [code, message, guidance] = validation.error;
-    return unavailable({ code, message, guidance, status: 400 });
+    return unavailable({ code, message, guidance, status: 400, endpointStage: "request_validation_failed" });
   }
 
   const probeReadiness = await readProbePayload(context);
@@ -188,7 +225,7 @@ export async function onRequestGet(context) {
       status: "ok",
       message: "A raw pixel probe returned a finite first pixel, but validated real precipitation sampling is still unavailable.",
       guidance: "Use debug_first_pixel only for EMS research. Do not publish it as precipitation and keep Storm, Compare, Card, and public UI disconnected.",
-      ...responseContract(),
+      ...responseContract({ endpointStage: "raw_pixel_probe_not_ready", probeDecision: probeReadiness.decision }),
       ...baseExtra,
       readiness_blocker: "unit_scale_nodata_projection_not_validated",
       debug_first_pixel: probeReadiness.summary.first_pixel,
@@ -201,6 +238,8 @@ export async function onRequestGet(context) {
     guidance: "Keep Storm, Compare, Card, and public UI disconnected until raw pixel reading, decoder, projection, unit, nodata, aggregation, and license validation are complete.",
     status: 501,
     extra: baseExtra,
+    endpointStage: "readiness_blocked",
+    probeDecision: probeReadiness.decision,
   });
 }
 
@@ -210,5 +249,6 @@ export async function onRequestPost() {
     message: "Use GET for the validated real precipitation sample skeleton endpoint.",
     guidance: "Call with bbox, start, end, and optional preset=low.",
     status: 405,
+    endpointStage: "method_not_allowed",
   });
 }
