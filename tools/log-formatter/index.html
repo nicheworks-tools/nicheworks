@@ -51,6 +51,14 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "購入後、Proはどのように有効になりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "購入後、このブラウザではNicheWorks Proが有効になります。通常はタブやブラウザを閉じても維持されますが、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。"
+        }
+      },
+      {
+        "@type": "Question",
         "name": "ログはサーバーに送信されますか？",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -163,6 +171,17 @@
         <button type="button" class="btn-ghost btn-xs" data-status-preset="5xx">5xx</button>
         <button type="button" class="btn-ghost btn-xs" data-status-preset="errors">4xx+5xx</button>
       </div>
+
+      <div class="pro-regex-box">
+        <div class="control-group checkbox-group">
+          <label><input id="regexMode" type="checkbox"> <span data-i18n="regex_mode">Regex mode（Pro）</span></label>
+        </div>
+        <div class="controls pro-regex-controls">
+          <div class="control-group"><label for="includeRegex" data-i18n="include_regex">Include regex</label><input id="includeRegex" type="text" placeholder="/api|/admin"></div>
+          <div class="control-group"><label for="excludeRegex" data-i18n="exclude_regex">Exclude regex</label><input id="excludeRegex" type="text" placeholder="health|static"></div>
+        </div>
+        <p id="regexMessage" class="copy-message" role="status" aria-live="polite"></p>
+      </div>
     </section>
 
     <section class="output-panel">
@@ -184,6 +203,69 @@
       <div id="logOutput" class="log-output"></div>
     </section>
 
+    <section class="pro-panel" aria-label="LogFormatter Pro">
+      <div class="pro-panel-head">
+        <div>
+          <p class="pro-kicker">NicheWorks Pro / LogFormatter v0.2</p>
+          <h2 data-i18n="pro_title">構造化出力・詳細分析・レポート化</h2>
+        </div>
+        <a class="btn-primary pro-buy" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener" data-i18n="pro_buy">NicheWorks Proを購入 — $2.99</a>
+      </div>
+      <p class="pro-status" data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</p>
+      <p class="mini-note" data-i18n="pro_after_purchase">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+
+      <div class="pro-preview" data-pro-preview>
+        <h3 data-i18n="pro_preview_title">Pro Preview</h3>
+        <div class="pro-preview-grid">
+          <pre>CSV: type,source,ip,time,method,path,status,size,referer,agent,level,message,raw,parsed</pre>
+          <pre>{"tool":"log-formatter","version":"0.2","summary":{},"rows":[]}</pre>
+          <pre># LogFormatter Report
+## Summary
+## Top User-Agents
+## Sensitive String Warning</pre>
+          <ul>
+            <li>Regex filter: <code>/api|admin|token/</code></li>
+            <li>User-Agent / bot-like summary sample: bot 2, browser 3</li>
+            <li>IP detail preview: top 3 rows by error rate or total</li>
+            <li>URL detail preview: top 3 paths with top IP</li>
+            <li>Sensitive warning sample: token / email / Authorization counts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pro-actions">
+        <button type="button" id="btnDownloadCsv" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_csv">CSV保存</button>
+        <button type="button" id="btnDownloadErrorCsv" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_error_csv">4xx/5xx CSV保存</button>
+        <button type="button" id="btnDownloadJson" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_json">JSON保存</button>
+        <button type="button" id="btnCopyMarkdown" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_copy_md">レポートコピー</button>
+        <button type="button" id="btnDownloadMarkdown" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_save_md">レポート保存</button>
+      </div>
+
+      <div class="pro-only" data-pro-only hidden>
+        <h3 data-i18n="pro_unlocked_title">Pro詳細分析</h3>
+        <div id="proSummaryPack" class="pro-summary-pack"></div>
+        <div class="pro-detail-grid">
+          <section><h4>User-Agent</h4><div id="uaSummary"></div></section>
+          <section><h4>Bot-like Summary</h4><div id="botSummary"></div></section>
+        </div>
+        <div class="pro-table-wrap">
+          <div class="pro-table-head"><h4>IP Detail</h4><button type="button" class="btn-ghost btn-xs" id="sortIpDetail">Sort error/total</button></div>
+          <div id="ipDetailTable"></div>
+        </div>
+        <div class="pro-table-wrap">
+          <div class="pro-table-head"><h4>URL Detail</h4><button type="button" class="btn-ghost btn-xs" id="sortUrlDetail">Sort error/total</button></div>
+          <div id="urlDetailTable"></div>
+        </div>
+        <div class="pro-table-wrap">
+          <h4>Sensitive String Warning</h4>
+          <div id="sensitiveDetails"></div>
+          <p class="mini-note"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> で共有前に確認してください。 / Review with API Key Token Redactor before sharing.</p>
+        </div>
+        <pre id="markdownPreview" class="markdown-preview"></pre>
+      </div>
+    </section>
+
+
     <div class="ad-slot ad-bottom">広告枠</div>
 
     <section class="faq-section" aria-label="LogFormatter FAQ">
@@ -203,6 +285,10 @@
       <details>
         <summary>機密情報を含むログを貼っても大丈夫ですか？ / Is it safe to paste sensitive logs?</summary>
         <p>ログはブラウザ内で処理されますが、共有や保存の前にIP、Cookie、Authorizationヘッダー、メールアドレス、トークンなどが含まれていないか確認してください。 / Processing is local, but before sharing or saving logs, check for IP addresses, cookies, Authorization headers, emails, tokens, and other sensitive data.</p>
+      </details>
+      <details>
+        <summary>購入後、Proはどのように有効になりますか？ / What happens after purchase?</summary>
+        <p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。 / After purchase, NicheWorks Pro becomes active in this browser. It usually remains active after closing tabs or the browser, but another device, another browser, private mode, or cleared site data requires activation again.</p>
       </details>
     </section>
 
@@ -228,6 +314,8 @@
     <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
