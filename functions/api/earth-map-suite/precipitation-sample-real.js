@@ -149,11 +149,12 @@ const validate = (request) => {
   return { params: { bbox, start: rawStart, end: rawEnd, preset } };
 };
 
-const blockerForDecision = (decision) => (
-  decision?.phase === "decoder_strategy_required"
-    ? "decoder_strategy_required"
-    : "raw_pixel_read_not_confirmed"
-);
+const blockerForDecision = (decision) => {
+  if (decision?.phase === "decoder_strategy_required") return "decoder_strategy_required";
+  if (decision?.phase === "raw_pixel_read") return "unit_scale_nodata_projection_not_validated";
+  if (decision?.phase === "endpoint_error") return "upstream_probe_failed";
+  return "raw_pixel_read_not_confirmed";
+};
 
 const readProbePayload = async (context) => {
   let probe = null;
@@ -168,7 +169,7 @@ const readProbePayload = async (context) => {
     probe = {
       data_type: null,
       status: "error",
-      error_code: "sample_real_probe_failed",
+      error_code: "upstream_fail",
       message: error?.message || String(error),
     };
   }
@@ -219,17 +220,20 @@ export async function onRequestGet(context) {
     ],
   };
 
-  if (probeReadiness.decision.phase === "raw_pixel_read") {
-    return json({
-      data_type: "research-only",
-      status: "ok",
-      message: "A raw pixel probe returned a finite first pixel, but validated real precipitation sampling is still unavailable.",
-      guidance: "Use debug_first_pixel only for EMS research. Do not publish it as precipitation and keep Storm, Compare, Card, and public UI disconnected.",
-      ...responseContract({ endpointStage: "raw_pixel_probe_not_ready", probeDecision: probeReadiness.decision }),
-      ...baseExtra,
-      readiness_blocker: "unit_scale_nodata_projection_not_validated",
-      debug_first_pixel: probeReadiness.summary.first_pixel,
-    }, 200);
+  if (probeReadiness.decision.phase === "endpoint_error") {
+    return unavailable({
+      code: "upstream_fail",
+      message: "The upstream precipitation probe failed before validated sampling could be checked.",
+      guidance: "Keep Storm, Compare, Card, and public UI disconnected. Retry later or inspect the pixel probe before enabling validated real sampling.",
+      status: 502,
+      extra: {
+        ...baseExtra,
+        upstream_status: probeReadiness.httpStatus,
+        upstream_error_code: probeReadiness.probe?.error_code || null,
+      },
+      endpointStage: "upstream_probe_failed",
+      probeDecision: probeReadiness.decision,
+    });
   }
 
   return unavailable({
@@ -237,18 +241,48 @@ export async function onRequestGet(context) {
     message: "Validated real precipitation sample validation is not complete, so this endpoint fails safely and returns no precipitation values.",
     guidance: "Keep Storm, Compare, Card, and public UI disconnected until raw pixel reading, decoder, projection, unit, nodata, aggregation, and license validation are complete.",
     status: 501,
-    extra: baseExtra,
-    endpointStage: "readiness_blocked",
+    extra: {
+      ...baseExtra,
+      raw_pixel_probe_observed: probeReadiness.decision.phase === "raw_pixel_read",
+    },
+    endpointStage: probeReadiness.decision.phase === "raw_pixel_read" ? "raw_pixel_probe_not_validated" : "readiness_blocked",
     probeDecision: probeReadiness.decision,
   });
 }
 
+const methodNotAllowed = () => unavailable({
+  code: "method_not_allowed",
+  message: "Use GET for the validated real precipitation sample skeleton endpoint.",
+  guidance: "Call with bbox, start, end, and optional preset=low. POST and other non-GET methods are not accepted.",
+  status: 405,
+  endpointStage: "method_not_allowed",
+});
+
+export async function onRequest(context) {
+  if (context.request.method === "GET") return onRequestGet(context);
+  return methodNotAllowed();
+}
+
 export async function onRequestPost() {
-  return unavailable({
-    code: "method_not_allowed",
-    message: "Use GET for the validated real precipitation sample skeleton endpoint.",
-    guidance: "Call with bbox, start, end, and optional preset=low.",
-    status: 405,
-    endpointStage: "method_not_allowed",
-  });
+  return methodNotAllowed();
+}
+
+export async function onRequestPut() {
+  return methodNotAllowed();
+}
+
+export async function onRequestPatch() {
+  return methodNotAllowed();
+}
+
+export async function onRequestDelete() {
+  return methodNotAllowed();
+}
+
+export async function onRequestHead() {
+  return methodNotAllowed();
+}
+
+export async function onRequestOptions() {
+  return methodNotAllowed();
 }
