@@ -8,8 +8,8 @@
 
   const copy = {
     active: {
-      ja: "Pro解放済み — Markdownパックのコピーと保存が使えます。",
-      en: "Pro unlocked — Markdown pack copy and save are available.",
+      ja: "Pro解放済み — Incident Communication Packのコピーと保存が使えます。",
+      en: "Pro unlocked — Incident Communication Pack copy and save are available.",
     },
     inactive: {
       ja: "Previewモード — 無料機能は使えます。Pro機能は購入後に解放されます。",
