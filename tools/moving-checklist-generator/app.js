@@ -25,12 +25,14 @@
   };
 
   const STORAGE_PREFIX = "moveChecklist:v2:";
+  let pendingDestructiveAction = null;
+  let pendingTimer = 0;
 
   const I18N = {
     ja: {
       title: "引っ越しやることチェックリスト",
       subtitle: "引っ越し日と条件を入れるだけで、30日前〜引越し後のやることを時系列で整理します。",
-      introText: "引っ越し日、家族構成、住居タイプから、住所変更・役所手続き・ライフライン・荷造り・当日確認・引越し後の確認をまとめます。",
+      introText: "引っ越し日、家族構成、住居タイプから、住所変更・役所手続き・ライフライン・荷造り・当日確認・引越し後の確認をまとめます。チェックリスト生成とチェック状態の保存処理はブラウザ内で行いますが、ページ表示のため広告・解析タグが読み込まれる場合があります。",
       usageLink: "使い方はこちら",
       movingDate: "引っ越し日",
       household: "家族構成",
@@ -40,7 +42,7 @@
       rental: "賃貸",
       owned: "持ち家",
       printNote: "（任意）印刷用メモ",
-      printNotePlaceholder: "例：○○家 / 部屋番号など",
+      printNotePlaceholder: "例：旧居 / 新居 / 家族用メモ",
       btnGenerate: "チェックリストを生成",
       btnPrint: "印刷 / PDF保存",
       btnClear: "チェック全解除",
@@ -51,21 +53,21 @@
       btnConfirmReset: "リセットする",
       btnCancelReset: "キャンセル",
       hint: "チェック状態と、条件識別用の引っ越し日・家族構成・住居タイプがこのブラウザのlocalStorageに保存されます。印刷用メモは保存しません。別端末・別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。",
-      printHint: "PDF保存はブラウザの印刷ダイアログから「PDFとして保存」を選んでください。",
+      printHint: "PDF保存はブラウザの印刷ダイアログから「PDFとして保存」を選んでください。印刷用メモに住所、電話番号、氏名、部屋番号などの個人情報を入れないでください。必要な場合は印刷直前に内容を確認してください。",
       resultTitle: "チェックリスト",
       emptyState: "引っ越し日を入れて「チェックリストを生成」を押してください。",
-      disclaimer: "本ツールは一般的な引っ越し作業を元にした参考リストです。自治体・管理会社・契約先の公式情報を必ず確認してください。",
+      disclaimer: "本ツールは一般的な引っ越し作業を元にした参考リストです。退去通知期限、原状回復、違約金、ライフライン停止/開始、自治体手続きの期限は、契約書・管理会社・自治体・各サービスの公式情報を優先してください。賃貸/持ち家で必要手続きは変わります。",
       donateText: "このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。",
       printTitle: "引っ越しチェックリスト",
       faqTitle: "よくある質問",
-      faqQ1: "チェック状態はどこに保存されますか？",
-      faqA1: "チェック状態と、条件識別用の引っ越し日・家族構成・住居タイプがこのブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれません。",
-      faqQ2: "PDFとして保存できますか？",
-      faqA2: "ブラウザの印刷画面から「PDFとして保存」を選んでください。",
-      faqQ3: "すべての手続きを網羅していますか？",
-      faqA3: "いいえ。一般的な参考リストです。自治体・管理会社・契約内容を必ず確認してください。",
-      faqQ4: "住所や個人情報を入力する必要はありますか？",
-      faqA4: "ありません。印刷用メモも任意で保存しません。印刷やPDFに出る場合があるため、個人情報は入力しないことを推奨します。",
+      faqQ1: "何が保存されますか？",
+      faqA1: "チェック状態と、条件識別用の引っ越し日・家族構成・住居タイプがこのブラウザのlocalStorageに保存されます。印刷用メモは保存しません。別端末や別ブラウザには引き継がれません。",
+      faqQ2: "入力内容は送信されますか？",
+      faqA2: "チェックリスト生成とチェック状態の保存処理はブラウザ内で行います。ただしページ表示のため広告・解析タグが読み込まれる場合があります。",
+      faqQ3: "退去や役所手続きの期限も保証されますか？",
+      faqA3: "いいえ。退去通知、原状回復、違約金、ライフライン、自治体手続きは、契約書・管理会社・自治体・各サービスの公式情報を必ず確認してください。",
+      faqQ4: "PDFに個人情報は残りますか？",
+      faqA4: "印刷用メモに入力した内容は印刷/PDFに出る場合があります。住所、電話番号、氏名、部屋番号などの個人情報は入力しないことを推奨します。",
       metaLine: ({dateStr, household, homeType}) => `${dateStr} / ${household} / ${homeType}`,
       rel: (d) => d === 0 ? "当日" : d > 0 ? `引越し後 ${d}日` : `${Math.abs(d)}日前`,
       dayTitle: (d) => d === 0 ? "当日（Moving Day）" : d > 0 ? `引越し後 ${d}日` : `${Math.abs(d)}日前`,
@@ -77,11 +79,14 @@
       cleared: "チェックを全解除しました。",
       needDate: "引っ越し日を入力してください。",
       resetShown: "リセット確認を表示しました。",
+      confirmClear: "もう一度押すと、この条件のチェックを全解除します。",
+      confirmDeleteSaved: "もう一度押すと、この条件の保存データを削除します。",
+      confirmDeleteAllSaved: "もう一度押すと、Moving Checklist の全保存データを削除します。",
     },
     en: {
       title: "Moving Checklist Generator",
       subtitle: "Enter your moving date and situation to get a timeline checklist from 30 days before to after moving.",
-      introText: "Create a timeline checklist for address changes, government procedures, utilities, packing, moving-day checks, and post-move follow-up.",
+      introText: "Create a timeline checklist for address changes, government procedures, utilities, packing, moving-day checks, and post-move follow-up. Checklist generation and check-state saving run in your browser, but ads and analytics tags may load for page display.",
       usageLink: "How to use",
       movingDate: "Moving date",
       household: "Household",
@@ -91,7 +96,7 @@
       rental: "Rental",
       owned: "Owned",
       printNote: "(Optional) Note for print",
-      printNotePlaceholder: "Example: Family name / room number",
+      printNotePlaceholder: "Example: Old home / new home / family note",
       btnGenerate: "Generate checklist",
       btnPrint: "Print / Save as PDF",
       btnClear: "Clear all checks",
@@ -102,21 +107,21 @@
       btnConfirmReset: "Reset",
       btnCancelReset: "Cancel",
       hint: "Check states plus the moving date, household, and home type used to identify this setup are saved in this browser's localStorage. The print note is not saved. They do not sync across devices or browsers, and may be cleared if you delete browser data.",
-      printHint: "To save as PDF, use your browser print dialog and choose “Save as PDF”.",
+      printHint: "To save as PDF, use your browser print dialog and choose “Save as PDF”. Do not put addresses, phone numbers, names, room numbers, or other personal information in the print note. Review it before printing if needed.",
       resultTitle: "Checklist",
       emptyState: "Select a moving date and click “Generate checklist”.",
-      disclaimer: "This is a general reference checklist. Always confirm critical procedures with your municipality, property manager, and service providers.",
+      disclaimer: "This is a general reference checklist. For move-out notice deadlines, restoration costs, penalties, utility stop/start timing, and municipal procedure deadlines, prioritize your contract, property manager, municipality, and official service information. Required steps differ for rental and owned homes.",
       donateText: "If this tool helped you, consider supporting continued development.",
       printTitle: "Moving Checklist",
       faqTitle: "FAQ",
-      faqQ1: "Where are checks saved?",
-      faqA1: "Check states plus the moving date, household, and home type used to identify this setup are saved in this browser's localStorage. They do not sync to another device or browser.",
-      faqQ2: "Can I save it as PDF?",
-      faqA2: "Use your browser print dialog and choose “Save as PDF”.",
-      faqQ3: "Does it cover every moving procedure?",
-      faqA3: "No. This is a general reference list. Confirm details with your municipality, property manager, and contracts.",
-      faqQ4: "Do I need to enter an address or personal information?",
-      faqA4: "No. The print note is optional and is not saved, but it may appear in print/PDF output, so avoid personal information.",
+      faqQ1: "What is saved?",
+      faqA1: "Check states plus the moving date, household, and home type used to identify this setup are saved in this browser's localStorage. The print note is not saved. They do not sync to another device or browser.",
+      faqQ2: "Is my input sent anywhere?",
+      faqA2: "Checklist generation and check-state saving run in your browser. However, ads and analytics tags may load for page display.",
+      faqQ3: "Are move-out or municipal deadlines guaranteed?",
+      faqA3: "No. For move-out notices, restoration costs, penalties, utilities, and municipal procedures, always confirm your contract, property manager, municipality, and official service information.",
+      faqQ4: "Can personal information remain in a PDF?",
+      faqA4: "Anything typed in the print note may appear in print/PDF output. Avoid addresses, phone numbers, names, room numbers, or other personal information.",
       metaLine: ({dateStr, household, homeType}) => `${dateStr} / ${household} / ${homeType}`,
       rel: (d) => d === 0 ? "Moving day" : d > 0 ? `${d} day(s) after` : `${Math.abs(d)} day(s) before`,
       dayTitle: (d) => d === 0 ? "Moving Day" : d > 0 ? `${d} day(s) after moving` : `${Math.abs(d)} day(s) before`,
@@ -128,6 +133,9 @@
       cleared: "All checks cleared.",
       needDate: "Please select a moving date.",
       resetShown: "Reset confirmation is shown.",
+      confirmClear: "Press again to clear all checks for this setup.",
+      confirmDeleteSaved: "Press again to delete saved data for this setup.",
+      confirmDeleteAllSaved: "Press again to delete all Moving Checklist saved data.",
     }
   };
 
@@ -196,6 +204,24 @@
     }, 2600);
   }
 
+  function resetPendingDestructiveAction() {
+    window.clearTimeout(pendingTimer);
+    pendingTimer = 0;
+    pendingDestructiveAction = null;
+  }
+
+  function confirmDestructiveAction(actionKey, message, callback) {
+    if (pendingDestructiveAction === actionKey) {
+      resetPendingDestructiveAction();
+      callback();
+      return;
+    }
+    pendingDestructiveAction = actionKey;
+    showToast(message);
+    window.clearTimeout(pendingTimer);
+    pendingTimer = window.setTimeout(resetPendingDestructiveAction, 4000);
+  }
+
   function setLang(lang) {
     const dict = I18N[lang] || I18N.ja;
     document.documentElement.lang = lang;
@@ -212,6 +238,7 @@
     els.printNote.placeholder = dict.printNotePlaceholder;
     els.usageLink.href = lang === "ja" ? "./usage.html" : "./usage-en.html";
     localStorage.setItem("nw_lang", lang);
+    resetPendingDestructiveAction();
   }
 
   function parseDateInput(value) {
@@ -273,6 +300,17 @@
 
   function clearChecklistDom() {
     while (els.checklist.firstChild) els.checklist.removeChild(els.checklist.firstChild);
+  }
+
+  function showEmptyState() {
+    const dict = I18N[readLang()] || I18N.ja;
+    els.resultMeta.textContent = "";
+    els.printMeta.textContent = "—";
+    els.progressSummary.hidden = true;
+    els.progressSummary.textContent = "";
+    clearChecklistDom();
+    els.emptyState.textContent = dict.emptyState;
+    els.emptyState.hidden = false;
   }
 
   function updateProgress({lang, tasks, checks}) {
@@ -361,6 +399,7 @@
   }
 
   function generate() {
+    resetPendingDestructiveAction();
     const lang = readLang();
     const dict = I18N[lang] || I18N.ja;
     const moveDate = parseDateInput(els.moveDate.value);
@@ -378,7 +417,7 @@
     return true;
   }
 
-  function clearChecks() {
+  function clearChecksNow() {
     const lang = readLang();
     const dict = I18N[lang] || I18N.ja;
     const moveDate = parseDateInput(els.moveDate.value);
@@ -391,24 +430,22 @@
     showToast(dict.cleared);
   }
 
+  function clearChecks() {
+    const dict = I18N[readLang()] || I18N.ja;
+    confirmDestructiveAction("clearChecks", dict.confirmClear, clearChecksNow);
+  }
+
   function resetFormNow() {
-    const lang = readLang();
-    const dict = I18N[lang] || I18N.ja;
     els.moveDate.value = "";
     els.household.value = "solo";
     els.homeType.value = "rental";
     els.printNote.value = "";
-    els.resultMeta.textContent = "";
-    els.printMeta.textContent = "—";
-    els.progressSummary.hidden = true;
-    els.progressSummary.textContent = "";
-    clearChecklistDom();
-    els.emptyState.textContent = dict.emptyState;
-    els.emptyState.hidden = false;
+    showEmptyState();
     els.confirmPanel.hidden = true;
+    resetPendingDestructiveAction();
   }
 
-  function deleteSavedForCurrentSetup() {
+  function deleteSavedForCurrentSetupNow() {
     const lang = readLang();
     const dict = I18N[lang] || I18N.ja;
     const moveDate = parseDateInput(els.moveDate.value);
@@ -426,21 +463,38 @@
     showToast(dict.savedDeleted);
   }
 
-  function deleteAllSaved() {
+  function deleteSavedForCurrentSetup() {
+    const dict = I18N[readLang()] || I18N.ja;
+    confirmDestructiveAction("deleteSavedForCurrentSetup", dict.confirmDeleteSaved, deleteSavedForCurrentSetupNow);
+  }
+
+  function deleteAllSavedNow() {
+    const dict = I18N[readLang()] || I18N.ja;
     const keys = [];
     for (let i = 0; i < localStorage.length; i += 1) {
       const key = localStorage.key(i);
       if (key && key.startsWith(STORAGE_PREFIX)) keys.push(key);
     }
     keys.forEach((key) => localStorage.removeItem(key));
-    generate();
-    showToast((I18N[readLang()] || I18N.ja).allSavedDeleted);
+    const hasMoveDate = !!parseDateInput(els.moveDate.value);
+    if (hasMoveDate) {
+      generate();
+    } else {
+      showEmptyState();
+    }
+    showToast(dict.allSavedDeleted);
+  }
+
+  function deleteAllSaved() {
+    const dict = I18N[readLang()] || I18N.ja;
+    confirmDestructiveAction("deleteAllSaved", dict.confirmDeleteAllSaved, deleteAllSavedNow);
   }
 
   els.btnGenerate.addEventListener("click", generate);
   els.btnPrint.addEventListener("click", () => window.print());
   els.btnClear.addEventListener("click", clearChecks);
   els.btnReset.addEventListener("click", () => {
+    resetPendingDestructiveAction();
     els.confirmPanel.hidden = false;
     showToast((I18N[readLang()] || I18N.ja).resetShown);
   });
@@ -448,6 +502,10 @@
   els.btnCancelReset.addEventListener("click", () => { els.confirmPanel.hidden = true; });
   els.btnDeleteSaved.addEventListener("click", deleteSavedForCurrentSetup);
   els.btnDeleteAllSaved.addEventListener("click", deleteAllSaved);
+
+  [els.moveDate, els.household, els.homeType].forEach((el) => {
+    el.addEventListener("change", resetPendingDestructiveAction);
+  });
 
   document.querySelectorAll(".nw-lang-switch button").forEach((b) => {
     b.addEventListener("click", () => {
