@@ -63,3 +63,32 @@ body{ margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Robot
 .nw-footer-line{ margin:2px 0; }
 .nw-footer a{ color:var(--muted); text-decoration:underline; }
 @media (max-width:480px){ .nw-main{ padding:10px 10px 18px; } .form-grid{ grid-template-columns:1fr; } .row{ flex-direction:column; align-items:stretch; } .btn{ width:100%; } }
+.nw-muted{ color:var(--muted); font-size:12px; }
+.pro-card{ border-color:#c7d2fe; background:linear-gradient(180deg,#fff,#f8fafc); }
+.pro-card .card-hd{ background:#eef2ff; border-bottom-color:#c7d2fe; }
+.pro-status{ margin:0 0 10px; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#eef2ff; color:#312e81; font-size:13px; font-weight:600; }
+.pro-actions{ margin:12px 0; }
+.pro-pill{ display:inline-flex; align-items:center; padding:8px 10px; border-radius:999px; background:#dcfce7; color:#166534; font-size:12px; font-weight:700; }
+.pro-preview{ border-color:#fde68a; }
+.pro-preview .card-hd{ background:#fffbeb; border-bottom-color:#fde68a; }
+.pro-button-row{ align-items:stretch; margin:8px 0; }
+.pro-button-row .btn{ flex:1 1 180px; }
+.btn.locked,
+.btn:disabled{ cursor:not-allowed; opacity:.58; background:#f3f4f6; color:#6b7280; transform:none; box-shadow:none; }
+.btn.locked:hover,
+.btn:disabled:hover{ transform:none; box-shadow:none; background:#f3f4f6; }
+.locked-help{ margin:12px 0; padding:10px; border:1px dashed #f59e0b; border-radius:12px; background:#fffbeb; color:#78350f; font-size:12px; }
+.locked-help p{ margin:0 0 8px; }
+.pro-unlocked-note{ margin:12px 0; padding:10px; border:1px solid #86efac; border-radius:12px; background:#f0fdf4; color:#166534; font-size:12px; font-weight:600; }
+html[data-pro-active="true"] [data-pro-preview]{ display:none !important; }
+html:not([data-pro-active="true"]) [data-pro-only]{ display:none !important; }
+html[data-pro-active="true"] .pro-card{ border-color:#86efac; }
+html[data-pro-active="true"] .pro-card .card-hd{ background:#f0fdf4; border-bottom-color:#86efac; }
+html[data-pro-active="true"] .pro-status{ border-color:#86efac; background:#f0fdf4; color:#166534; }
+html[data-pro-active="true"] [data-pro-buy]{ display:none; }
+html[data-pro-active="true"] [data-pro-ad]{ display:none; }
+@media (max-width:480px){
+  .pro-button-row .btn,
+  .pro-actions .btn,
+  .pro-actions .pro-pill{ width:100%; flex:1 1 auto; }
+}
