@@ -1,32 +1,26 @@
 # EMS-RD-05A deployed probe-status re-check
 
-Check date: 2026-05-17 (UTC)
+Verification date: 2026-05-17 (UTC)
 
 ## Scope
 
-This note re-checks the currently deployed Earth Map Suite research endpoints after the EMS-RD-04A through EMS-RD-04H notes were merged. It records the current branch decision for the Real Data First path based only on the deployed responses available from this verification environment.
+This note re-checks the currently deployed Earth Map Suite research probe endpoints after EMS-RD-04A through EMS-RD-04H were merged. It records only deployed endpoint reachability and the current Real Data First branch decision.
 
-No public UI was changed by this check. Storm / Compare / Card remain disconnected from these research endpoints, and public real precipitation values are still not enabled.
+No public UI was changed. Storm / Compare / Card remain disconnected from these research endpoints, and public real precipitation values are still not enabled.
 
-## Target deployment base
+## Target deployed endpoints
 
-The deployed URLs checked in this run use the existing production host recorded by the Earth Map Suite EMS-RD-04 deployment note:
+Primary deployed host used for this check: `https://nicheworks.app`.
 
-```text
-https://nicheworks.app
-```
+| Endpoint | Exact deployed URL |
+| --- | --- |
+| Probe status classifier | `https://nicheworks.app/api/earth-map-suite/probe-status` |
+| Pixel probe | `https://nicheworks.app/api/earth-map-suite/precipitation-pixel-probe?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01` |
+| Real sample skeleton | `https://nicheworks.app/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low` |
 
-## Endpoint results
+## Result summary
 
-| Endpoint | Exact endpoint URL | HTTP status if available | data_type | status | sampling_status | sample_status | decision.phase | decision.next | error_code | Usable for next implementation? |
-| --- | --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- |
-| Probe status | `https://nicheworks.app/api/earth-map-suite/probe-status` | `403 Forbidden` from outbound CONNECT tunnel (`server: envoy`) | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | No. This environment could not verify the deployed branch fields. |
-| Precipitation pixel probe | `https://nicheworks.app/api/earth-map-suite/precipitation-pixel-probe?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01` | `403 Forbidden` from outbound CONNECT tunnel (`server: envoy`) | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | No. This environment could not verify raw pixel readability or decoder requirements. |
-| Precipitation sample real | `https://nicheworks.app/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low` | `403 Forbidden` from outbound CONNECT tunnel (`server: envoy`) | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | Not available: deployed JSON was not reached | No. This environment could not verify the sample contract response. |
-
-## Exact network failure observed
-
-All three deployed checks failed before the deployed origin response body could be inspected. `curl` reported:
+All three primary deployed checks were blocked before the request reached the NicheWorks deployed origin. The verification environment returned a proxy-level CONNECT failure:
 
 ```text
 curl: (56) CONNECT tunnel failed, response 403
@@ -34,44 +28,98 @@ HTTP/1.1 403 Forbidden
 server: envoy
 ```
 
-Because the response failed at the outbound CONNECT tunnel, this run did not retrieve endpoint JSON. The fields `data_type`, `status`, `sampling_status`, `sample_status`, `decision.phase`, `decision.next`, and `error_code` are therefore intentionally recorded as unavailable rather than inferred.
+Because the origin JSON payloads were not retrievable, the endpoint fields below are recorded as unavailable rather than inferred.
 
-## Current branch decision
+| Endpoint | Endpoint URL | HTTP status if available | data_type | status | sampling_status | sample_status | decision.phase | decision.next | error_code | Usable for next implementation? |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Probe status classifier | `https://nicheworks.app/api/earth-map-suite/probe-status` | No endpoint HTTP status available. Environment proxy returned `403 Forbidden` during CONNECT (`server: envoy`). | Not available | Not available | Not available | Not available | Not available | Not available | Not available | No. The deployed branch decision cannot be read from this environment. |
+| Pixel probe | `https://nicheworks.app/api/earth-map-suite/precipitation-pixel-probe?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01` | No endpoint HTTP status available. Environment proxy returned `403 Forbidden` during CONNECT (`server: envoy`). | Not available | Not available | Not available | Not available | Not available | Not available | Not available | No. Raw pixel-read behavior cannot be confirmed from this environment. |
+| Real sample skeleton | `https://nicheworks.app/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low` | No endpoint HTTP status available. Environment proxy returned `403 Forbidden` during CONNECT (`server: envoy`). | Not available | Not available | Not available | Not available | Not available | Not available | Not available | No. Validated sampling readiness cannot be confirmed from this environment. |
 
-Current EMS-RD-05A deployed branch classification: **`network_unverified`**.
+## Fallback deployed host check
+
+The same paths were also attempted against the Cloudflare Pages host `https://nicheworks.pages.dev` to distinguish a custom-domain issue from a broader network/proxy issue. Those checks failed with the same proxy-level CONNECT failure before origin reachability:
+
+```text
+curl: (56) CONNECT tunnel failed, response 403
+HTTP/1.1 403 Forbidden
+server: envoy
+```
+
+Fallback URLs attempted:
+
+- `https://nicheworks.pages.dev/api/earth-map-suite/probe-status`
+- `https://nicheworks.pages.dev/api/earth-map-suite/precipitation-pixel-probe?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01`
+- `https://nicheworks.pages.dev/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low`
+
+## Branch decision
+
+Current EMS-RD-05A branch classification: **`network_unverified`**.
 
 Rationale:
 
-- The verification environment had network access in the sense that `curl` attempted outbound HTTPS requests.
-- The outbound tunnel returned `403 Forbidden` from `envoy` before the deployed origin JSON was available.
-- The deployed endpoint payloads were not inspected, so this check cannot honestly classify the branch as `raw_pixel_read`, `decoder_strategy_required`, `blocked`, `inconclusive`, or `endpoint_error` based on deployed JSON.
+- The deployed JSON response for `/api/earth-map-suite/probe-status` was not available.
+- `decision.phase` and `decision.next` could not be read from the deployed classifier response.
+- The pixel probe response could not be inspected, so this check does not prove `raw_pixel_read`.
+- The sample skeleton response could not be inspected, so this check does not validate sampling readiness.
+- The observed failure is a verification-environment network/proxy failure, not a parsed endpoint payload.
 
-## EMS-RD-05 next-step decision
+## EMS-RD-05 path recommendation
 
-EMS-RD-05 should **not** proceed to validated sampling based on this deployed check alone.
+EMS-RD-05 should **not** proceed to validated sampling based on this run alone. The next step is to re-run the deployed checks from an environment that can reach `nicheworks.app` or `nicheworks.pages.dev` and then choose one of the real endpoint-backed branches:
 
-EMS-RD-05 should also **not** start a decoder strategy solely from this run, because this run did not retrieve deployed probe fields proving that a decoder strategy is required.
+- Proceed toward validated sampling only if the deployed classifier confirms `decision.phase: "raw_pixel_read"` and the required sample validation work is still explicitly scoped.
+- Proceed to decoder strategy only if the deployed classifier confirms `decision.phase: "decoder_strategy_required"` or the deployed payload otherwise shows a compression/layout blocker requiring a decoder decision.
+- Treat endpoint or upstream failures as blockers, not as successful sampling.
 
-Recommended path: re-run the exact endpoint checks from an environment that can reach `https://nicheworks.app`, then choose one of the Real Data First branches from the deployed JSON:
-
-- `raw_pixel_read` → proceed toward validated sampling, while still keeping public UI disconnected until unit, scale, NoData, source, and license handling are validated.
-- `decoder_strategy_required` → begin decoder strategy research.
-- `blocked`, `inconclusive`, or `endpoint_error` → fix or investigate the endpoint state before validated sampling work.
-
-## Public real precipitation status
-
-Public real precipitation values are still **not enabled**. This note does not connect Storm, Compare, Card, or any public UI to real precipitation sampling.
+Public real precipitation values are still **not enabled**. Storm / Compare / Card remain metadata-only / preview-only until a later validated sampling task explicitly changes that status.
 
 ## Commands run
 
 ```bash
-curl -sS -L -D - --max-time 30 "https://nicheworks.app/api/earth-map-suite/probe-status"
+curl -sS -i --max-time 30 "https://nicheworks.app/api/earth-map-suite/probe-status"
+```
+
+Observed result:
+
+```text
+curl: (56) CONNECT tunnel failed, response 403
+HTTP/1.1 403 Forbidden
+content-length: 9
+content-type: text/plain
+date: Sun, 17 May 2026 14:29:07 GMT
+server: envoy
+connection: close
 ```
 
 ```bash
-curl -sS -L -D - --max-time 30 "https://nicheworks.app/api/earth-map-suite/precipitation-pixel-probe?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01"
+curl -sS -i --max-time 30 "https://nicheworks.app/api/earth-map-suite/precipitation-pixel-probe?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01"
+```
+
+Observed result:
+
+```text
+curl: (56) CONNECT tunnel failed, response 403
+HTTP/1.1 403 Forbidden
+content-length: 9
+content-type: text/plain
+date: Sun, 17 May 2026 14:29:07 GMT
+server: envoy
+connection: close
 ```
 
 ```bash
-curl -sS -L -D - --max-time 30 "https://nicheworks.app/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low"
+curl -sS -i --max-time 30 "https://nicheworks.app/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low"
+```
+
+Observed result:
+
+```text
+curl: (56) CONNECT tunnel failed, response 403
+HTTP/1.1 403 Forbidden
+content-length: 9
+content-type: text/plain
+date: Sun, 17 May 2026 14:29:08 GMT
+server: envoy
+connection: close
 ```

@@ -1,24 +1,17 @@
-# ExecPlan: EMS-RD-05A deployed probe-status re-check
+# EMS-RD-05A deployed probe check
 
 ## Scope
-
-- Target documentation only: `tools/earth-map-suite/EMS_RD_05_DEPLOYED_PROBE_CHECK.md`.
-- Supporting plan file: `.agent/plans/ems-rd-05a-deployed-probe-check.md`.
-- No public UI, `app.js`, Storm, Compare, Card, dependency, or deployment setting changes.
-
-## Files to touch
-
-- Create or update `tools/earth-map-suite/EMS_RD_05_DEPLOYED_PROBE_CHECK.md`.
-- Create this ExecPlan file.
+- Target documentation file: `tools/earth-map-suite/EMS_RD_05_DEPLOYED_PROBE_CHECK.md`.
+- No public UI files (`app.js`, HTML, CSS) will be changed.
+- No Storm / Compare / Card wiring, no dependencies, and no spec changes.
 
 ## Steps
-
-1. Inspect existing EMS-RD-04 research notes and endpoint contracts.
-2. Run deployed `curl` checks for the three requested Earth Map Suite endpoints if network access is available.
-3. Record exact endpoint URLs, HTTP status (if available), relevant JSON fields, failure details if blocked, usability for next implementation, and the branch decision.
-4. Verify only the intended documentation/plan files changed.
+1. Inspect existing EMS-RD-04 documentation for expected probe decision terminology.
+2. Query the deployed Earth Map Suite probe endpoints with exact URLs when network is available.
+3. Record exact HTTP / JSON results without fabricating missing fields.
+4. Classify the current branch decision for Real Data First.
+5. Verify only the intended documentation files changed, then commit and open one PR.
 
 ## Manual verification for user
-
-1. Re-run the listed `curl` commands from a network environment that can reach `https://nicheworks.app`.
-2. Confirm public Earth Map Suite UI remains unchanged and real precipitation values are still not enabled.
+- Re-run the three documented endpoint URLs from `EMS_RD_05_DEPLOYED_PROBE_CHECK.md`.
+- Confirm public UI remains unchanged and real precipitation values are still not enabled.
