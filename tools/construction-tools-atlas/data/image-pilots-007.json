@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["ウェッジアンカー|wedge anchor", "ウェッジアンカー", "Wedge anchor", "./images/pilot/wedge-anchor.svg?v=20260513-asset-11", "コンクリート内で拡張して固定するあと施工アンカー。", "Post-installed anchor that expands inside concrete."],
+    ["スリーブアンカー|sleeve anchor", "スリーブアンカー", "Sleeve anchor", "./images/pilot/sleeve-anchor.svg?v=20260513-asset-11", "スリーブ部分が広がって母材に固定されるアンカー。", "Anchor fixed by expansion of its sleeve."],
+    ["内部コーンアンカー|drop-in anchor", "内部コーンアンカー", "Drop-in anchor", "./images/pilot/drop-in-anchor.svg?v=20260513-asset-11", "コンクリート穴内に打ち込んで使う雌ねじ式アンカー。", "Internally threaded anchor set inside a drilled concrete hole."],
+    ["ケミカルアンカー|chemical anchor", "ケミカルアンカー", "Chemical anchor", "./images/pilot/chemical-anchor.svg?v=20260513-asset-11", "樹脂系接着材でボルトや全ねじを固定するアンカー工法。", "Bonded anchor system using resin adhesive."],
+    ["全ねじ|threaded rod", "全ねじ", "Threaded rod", "./images/pilot/threaded-rod.svg?v=20260513-asset-11", "全長にねじが切られた棒状の締結材。", "Rod with threads along its full length."],
+    ["チャンネルナット|channel nut", "チャンネルナット", "Channel nut", "./images/pilot/channel-nut.svg?v=20260513-asset-11", "チャンネル材の溝に入れて支持金物を固定するナット。", "Nut used inside strut channels to attach supports."],
+    ["チャンネル材|strut channel|unistrut channel", "チャンネル材", "Strut channel", "./images/pilot/unistrut-channel.svg?v=20260513-asset-11", "設備支持や架台に使う溝形の支持材。", "Slotted support rail used for equipment supports and frames."],
+    ["梁クランプ|beam clamp", "梁クランプ", "Beam clamp", "./images/pilot/beam-clamp.svg?v=20260513-asset-11", "鉄骨梁などに挟み込んで支持点を作る金物。", "Clamp used to create a support point on a steel beam."],
+    ["アイボルト|eye bolt", "アイボルト", "Eye bolt", "./images/pilot/eye-bolt.svg?v=20260513-asset-11", "吊り上げや引張り用の輪付きボルト。", "Bolt with a ring used for lifting or pulling."],
+    ["Uボルト|u bolt", "Uボルト", "U bolt", "./images/pilot/u-bolt.svg?v=20260513-asset-11", "配管や丸材を固定するU字形のボルト。", "U-shaped bolt used to secure pipes or round members."]
+  ]
+}
