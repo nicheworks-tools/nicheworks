@@ -7,19 +7,24 @@
   <title>PDFページ抽出・結合・並べ替え｜PDF Page Tools Mini | NicheWorks</title>
   <meta name="description" content="PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができる無料ツールです。ブラウザ内で処理し、元PDFは変更しません。">
   <link rel="canonical" href="https://nicheworks.app/tools/pdf-page-tools-mini/">
+  <meta name="robots" content="index,follow">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="PDFページ抽出・結合・並べ替え｜PDF Page Tools Mini | NicheWorks">
   <meta property="og:description" content="PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができる無料ツールです。ブラウザ内で処理し、元PDFは変更しません。">
   <meta property="og:url" content="https://nicheworks.app/tools/pdf-page-tools-mini/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDFページ抽出・結合・並べ替え｜PDF Page Tools Mini | NicheWorks">
+  <meta name="twitter:description" content="PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができる無料ツールです。ブラウザ内で処理し、元PDFは変更しません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <link rel="icon" href="/assets/favicon.ico">
-  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -53,29 +58,17 @@
   }
   </script>
 
-  <link rel="stylesheet" href="/assets/nw-base.css" />
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="/assets/nw-base.css">
+  <link rel="stylesheet" href="./style.css">
   <script defer src="./vendor/pdf-lib/pdf-lib.min.js"></script>
   <script type="module" src="./vendor/pdfjs/pdfjs-setup.mjs"></script>
   <script defer src="./app.js"></script>
-  <meta name="robots" content="index,follow">
-  <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="PDFページ抽出・結合・並べ替え｜PDF Page Tools Mini | NicheWorks">
-  <meta name="twitter:description" content="PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができる無料ツールです。ブラウザ内で処理し、元PDFは変更しません。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 
 <body>
   <header class="nw-header">
-    <h1 class="nw-title">
-      <span data-i18n="ja">PDFページ抽出・結合・並べ替え</span>
-      <span data-i18n="en">PDF Page Tools Mini</span>
-    </h1>
-    <div class="nw-lang-switch" aria-label="Language switch">
-      <button data-lang="ja" type="button">JP</button> /
-      <button data-lang="en" type="button">EN</button>
-    </div>
+    <h1 class="nw-title"><span data-i18n="ja">PDFページ抽出・結合・並べ替え</span><span data-i18n="en">PDF Page Tools Mini</span></h1>
+    <div class="nw-lang-switch" aria-label="Language switch"><button data-lang="ja" type="button">JP</button> / <button data-lang="en" type="button">EN</button></div>
     <p class="nw-subtitle" data-i18n="ja">PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存ができます。</p>
     <p class="nw-subtitle" data-i18n="en">Extract, merge, delete, reorder, rotate, and save PDF pages without uploading your files.</p>
   </header>
@@ -118,7 +111,7 @@
     <section class="nw-section">
       <h2 class="nw-h2"><span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span></h2>
       <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add PDF">
-        <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple />
+        <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple>
         <div class="dropzone-inner">
           <div class="dz-row">
             <button id="btnPick" type="button" class="btn-primary"><span data-i18n="ja">PDFを追加</span><span data-i18n="en">Add PDFs</span></button>
@@ -138,7 +131,7 @@
       </div>
     </section>
 
-    <section class="nw-section panel" id="panelAfterLoad" aria-label="Editor Panel">
+    <section class="nw-section panel" id="panelAfterLoad" aria-label="Editor Panel" hidden>
       <div class="toolbar pptm-actions">
         <button id="btnAddMore" type="button" class="btn"><span data-i18n="ja">追加</span><span data-i18n="en">Add</span></button>
         <button id="btnReset" type="button" class="btn"><span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span></button>
@@ -156,10 +149,10 @@
         <div class="extract-title"><span data-i18n="ja">抽出（範囲指定）</span><span data-i18n="en">Extract (range)</span></div>
         <div class="extract-row pptm-extract">
           <label class="label" for="extractRange"><span data-i18n="ja">範囲</span><span data-i18n="en">Range</span></label>
-          <input id="extractRange" class="input pptm-field" type="text" stable content="1-3,5,8-10" />
+          <input id="extractRange" class="input pptm-field" type="text" placeholder="1-3,5,8-10" inputmode="numeric" autocomplete="off" aria-describedby="rangeFeedback">
           <button id="btnExtract" type="button" class="btn"><span data-i18n="ja">抽出してダウンロード</span><span data-i18n="en">Extract & Download</span></button>
         </div>
-        <p class="muted"><span data-i18n="ja">例: 1-3,5,8-10（正しい時のみ実行できます）</span><span data-i18n="en">Example: 1-3,5,8-10 (enabled only when valid)</span></p>
+        <p id="rangeFeedback" class="range-feedback"><span data-i18n="ja">例: 1-3,5,8-10。現在表示されているページ番号を使います。</span><span data-i18n="en">Example: 1-3,5,8-10. Use the currently visible page numbers.</span></p>
       </div>
 
       <div class="pages">
@@ -191,11 +184,7 @@
     <div class="nw-links">
       <div class="nw-links-title" data-i18n="ja">関連ツール</div>
       <div class="nw-links-title" data-i18n="en">Related tools</div>
-      <ul class="nw-links-list">
-        <li><a href="/tools/pdf2csv-local/">PDF2CSV Local</a></li>
-        <li><a href="/tools/filetype-sniffer/">FileType Sniffer</a></li>
-        <li><a href="/tools/csv-tidy/">CSV Tidy</a></li>
-      </ul>
+      <ul class="nw-links-list"><li><a href="/tools/pdf2csv-local/">PDF2CSV Local</a></li><li><a href="/tools/filetype-sniffer/">FileType Sniffer</a></li><li><a href="/tools/csv-tidy/">CSV Tidy</a></li></ul>
     </div>
   </main>
 
