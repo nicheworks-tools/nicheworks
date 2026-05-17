@@ -340,6 +340,10 @@
   }
 
   function bindProButtons() {
+    document.querySelectorAll('[data-pro-locked]').forEach((button) => {
+      button.addEventListener('click', requirePro);
+    });
+
     const bindings = [
       ['btnCopyProPack', () => copyText(proPack(), 'Pro Packをコピーしました。')],
       ['btnSaveProPack', saveProTxt],
@@ -387,6 +391,9 @@
     } catch (error) {}
 
     window.addEventListener('nw-pro-state-change', updateProOutput);
+    window.addEventListener('afterprint', () => {
+      delete document.body.dataset.printMode;
+    });
     updateProOutput();
   }
 
