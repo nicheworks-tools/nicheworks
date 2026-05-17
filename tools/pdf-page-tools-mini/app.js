@@ -16,6 +16,7 @@
     btnUndo: $("#btnUndo"),
     btnSave: $("#btnSave"),
     extractRange: $("#extractRange"),
+    rangeFeedback: $("#rangeFeedback"),
     btnExtract: $("#btnExtract"),
     fileList: $("#fileList"),
     pageList: $("#pageList"),
@@ -34,7 +35,7 @@
   const ERR = {
     unsupported_file: { ja: "このファイルはPDFとして読み込めませんでした。別のPDFを試してください。", en: "This file could not be read as a PDF. Please try another PDF." },
     too_large_or_memory: { ja: "処理に失敗しました。ページ数を減らす、先に分割する、PCブラウザや別ブラウザで試してください。", en: "Processing failed. Reduce pages, split the PDF first, or try a desktop browser or another browser." },
-    extract_syntax_error: { ja: "範囲の書き方が正しくありません（例: 1-3,5,8-10）。", en: "Range format is invalid (e.g., 1-3,5,8-10)." },
+    extract_syntax_error: { ja: "範囲の書き方が正しくありません。例: 1-3,5,8-10", en: "Range format is invalid. Example: 1-3,5,8-10" },
     empty_result: { ja: "出力するページがありません。削除を戻すか、PDFを追加してください。", en: "No pages to export. Undo deletion or add PDFs." },
     missing_pdfjs: { ja: "PDF表示ライブラリ（pdf.js）の読み込みに失敗しました。ページを再読み込みしてください。", en: "PDF display library (pdf.js) failed to load. Please reload this page." },
     missing_pdflib: { ja: "PDF書き出しライブラリ（pdf-lib）が読み込めませんでした。ページを再読み込みしてください。", en: "PDF export library (pdf-lib) failed to load. Please reload this page." },
@@ -66,6 +67,30 @@
       await sleep(40);
     }
     return !!check();
+  }
+  function formatBytes(bytes){
+    const n = Number(bytes || 0);
+    if(n >= 1024 * 1024) return `${Math.round(n / 1024 / 1024)}MB`;
+    if(n >= 1024) return `${Math.round(n / 1024)}KB`;
+    return `${n}B`;
+  }
+  function shouldWarnFiles(files){
+    const list = Array.from(files || []);
+    const total = list.reduce((sum, f) => sum + (f.size || 0), 0);
+    return list.some((f) => (f.size || 0) >= 30 * 1024 * 1024) || total >= 60 * 1024 * 1024 || list.length >= 6;
+  }
+  function confirmLargeFiles(files){
+    const list = Array.from(files || []);
+    const total = list.reduce((sum, f) => sum + (f.size || 0), 0);
+    const text = msg(
+      `大きいPDFまたは複数PDFです（合計 ${formatBytes(total)}）。端末によって読み込みや保存に失敗する場合があります。このまま続けますか？`,
+      `Large or multiple PDFs selected (total ${formatBytes(total)}). Loading or saving may fail depending on your device. Continue?`
+    );
+    return window.confirm(text);
+  }
+  function confirmReset(){
+    if(state.pages.length === 0) return true;
+    return window.confirm(msg("読み込んだPDFと編集内容をクリアします。よろしいですか？", "Clear loaded PDFs and edits?"));
   }
 
   function applyLang(lang){
@@ -108,9 +133,35 @@
     const rotated = state.pages.filter((p) => ((p.rotation % 360) + 360) % 360 !== 0).length;
     const originalPages = state.files.reduce((sum, f) => sum + (f.pageCount || 0), 0);
     const deleted = Math.max(0, originalPages - pageCount);
+    const totalSize = state.files.reduce((sum, f) => sum + (f.size || 0), 0);
     box.textContent = pageCount === 0
       ? msg("現在の出力予定：ページはありません。", "Current output: no pages.")
-      : msg(`現在の出力予定：PDF数 ${pdfCount} / ページ数 ${pageCount} / 回転あり ${rotated} / 削除済み ${deleted}`, `Current output: ${pdfCount} PDF(s) / ${pageCount} page(s) / ${rotated} rotated / ${deleted} deleted`);
+      : msg(
+          `現在の出力予定：PDF数 ${pdfCount} / ページ数 ${pageCount} / 回転あり ${rotated} / 削除済み ${deleted} / 入力サイズ ${formatBytes(totalSize)}`,
+          `Current output: ${pdfCount} PDF(s) / ${pageCount} page(s) / ${rotated} rotated / ${deleted} deleted / input ${formatBytes(totalSize)}`
+        );
+  }
+
+  function updateRangeFeedback(){
+    if(!els.rangeFeedback || !els.extractRange) return;
+    const value = els.extractRange.value.trim();
+    els.rangeFeedback.classList.remove("is-ok", "is-error");
+    if(state.pages.length === 0){
+      els.rangeFeedback.textContent = msg("PDFを追加すると範囲抽出を使えます。", "Add a PDF to use range extraction.");
+      return;
+    }
+    if(!value){
+      els.rangeFeedback.textContent = msg(`例: 1-3,5,8-10。現在のページ数は ${state.pages.length} です。`, `Example: 1-3,5,8-10. Current page count: ${state.pages.length}.`);
+      return;
+    }
+    const parsed = parseRangeText(value, state.pages.length);
+    if(parsed.ok){
+      els.rangeFeedback.classList.add("is-ok");
+      els.rangeFeedback.textContent = msg(`${parsed.list.length}ページを抽出します。`, `${parsed.list.length} page(s) will be extracted.`);
+    }else{
+      els.rangeFeedback.classList.add("is-error");
+      els.rangeFeedback.textContent = msg(`範囲が正しくありません。1〜${state.pages.length} の範囲で指定してください。`, `Invalid range. Use page numbers from 1 to ${state.pages.length}.`);
+    }
   }
 
   function setBusy(on){
@@ -135,6 +186,7 @@
       els.panelAfterLoad.setAttribute("aria-busy", isBusy ? "true" : "false");
     }
     updateSummary();
+    updateRangeFeedback();
   }
 
   function isPdfLike(file){
@@ -158,7 +210,7 @@
       li.className = "file-item";
       const left = document.createElement("div");
       left.className = "file-left";
-      left.textContent = `${f.name} (${f.pageCount}p)`;
+      left.textContent = `${f.name} (${f.pageCount}p / ${formatBytes(f.size)})`;
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "file-remove";
@@ -300,6 +352,7 @@
   }
   function resetAll(){
     if(isBusy) return;
+    if(!confirmReset()) return;
     state.files.forEach((f) => { if(f.pdfDocPromise) f.pdfDocPromise.then((pdf) => pdf && pdf.destroy && pdf.destroy()).catch(() => {}); });
     state.files = [];
     state.pages = [];
@@ -330,13 +383,20 @@
     }
     return out.length ? { ok:true, list:out } : { ok:false };
   }
-  function syncExtractUi(){ if(!els.btnExtract || !els.extractRange) return; if(isBusy || state.pages.length === 0){ els.btnExtract.disabled = true; return; } els.btnExtract.disabled = !parseRangeText(els.extractRange.value, state.pages.length).ok; }
+  function syncExtractUi(){
+    if(!els.btnExtract || !els.extractRange) return;
+    if(isBusy || state.pages.length === 0){ els.btnExtract.disabled = true; updateRangeFeedback(); return; }
+    const value = els.extractRange.value.trim();
+    els.btnExtract.disabled = !value || !parseRangeText(value, state.pages.length).ok;
+    updateRangeFeedback();
+  }
 
   async function addFiles(files){
     const incoming = Array.from(files || []);
     if(incoming.length === 0) return;
     const pdfs = incoming.filter(isPdfLike);
     if(pdfs.length === 0){ showError("unsupported_file"); return; }
+    if(shouldWarnFiles(pdfs) && !confirmLargeFiles(pdfs)) return;
     const ready = await waitForLib(() => window.pdfjsLib && window.pdfjsLib.getDocument, 1600);
     if(!ready){ showError("missing_pdfjs"); return; }
     setBusy(true);
@@ -385,8 +445,33 @@
     downloadBlob(new Blob([bytes], { type: "application/pdf" }), filename);
     return true;
   }
-  async function saveCurrent(){ if(isBusy) return; const filename = buildOutputName("edited"); setBusy(true); hideStatus(); showStatus(msg("処理中…（PDFを書き出しています）", "Processing… (exporting PDF)")); try{ const ok = await exportPagesToPdf(state.pages, filename); if(ok) showStatus(msg(`保存しました：${filename}。元のPDFは変更されていません。ダウンロードフォルダを確認してください。`, `Saved: ${filename}. Original PDFs were not changed. Check your downloads folder.`)); }catch(err){ console.error(err); showError("too_large_or_memory"); }finally{ setBusy(false); } }
-  async function saveExtracted(){ if(isBusy) return; const parsed = parseRangeText(els.extractRange ? els.extractRange.value : "", state.pages.length); if(!parsed.ok){ showError("extract_syntax_error"); return; } const pages = parsed.list.map((n) => state.pages[n - 1]).filter(Boolean); const filename = buildOutputName("extracted"); setBusy(true); hideStatus(); showStatus(msg("処理中…（抽出してPDFを書き出しています）", "Processing… (extracting PDF)")); try{ const ok = await exportPagesToPdf(pages, filename); if(ok) showStatus(msg(`抽出して保存しました：${filename}。元のPDFは変更されていません。`, `Extracted and saved: ${filename}. Original PDFs were not changed.`)); }catch(err){ console.error(err); showError("too_large_or_memory"); }finally{ setBusy(false); } }
+  async function saveCurrent(){
+    if(isBusy) return;
+    const filename = buildOutputName("edited");
+    setBusy(true);
+    hideStatus();
+    showStatus(msg("処理中…（PDFを書き出しています）", "Processing… (exporting PDF)"));
+    try{
+      const ok = await exportPagesToPdf(state.pages, filename);
+      if(ok) showStatus(msg(`保存しました：${filename}。元のPDFは変更されていません。ダウンロードフォルダを確認してください。`, `Saved: ${filename}. Original PDFs were not changed. Check your downloads folder.`));
+    }catch(err){ console.error(err); showError("too_large_or_memory"); }
+    finally{ setBusy(false); }
+  }
+  async function saveExtracted(){
+    if(isBusy) return;
+    const parsed = parseRangeText(els.extractRange ? els.extractRange.value : "", state.pages.length);
+    if(!parsed.ok){ showError("extract_syntax_error"); updateRangeFeedback(); return; }
+    const pages = parsed.list.map((n) => state.pages[n - 1]).filter(Boolean);
+    const filename = buildOutputName("extracted");
+    setBusy(true);
+    hideStatus();
+    showStatus(msg("処理中…（抽出してPDFを書き出しています）", "Processing… (extracting PDF)"));
+    try{
+      const ok = await exportPagesToPdf(pages, filename);
+      if(ok) showStatus(msg(`抽出して保存しました：${filename}。元のPDFは変更されていません。`, `Extracted and saved: ${filename}. Original PDFs were not changed.`));
+    }catch(err){ console.error(err); showError("too_large_or_memory"); }
+    finally{ setBusy(false); }
+  }
 
   function openPicker(){ if(isBusy || !els.fileInput) return; els.fileInput.value = ""; els.fileInput.click(); }
 
