@@ -1,0 +1,168 @@
+import { classifyProbeStatus } from "./probe-status.js";
+
+const DATASET_ID = "JAXA.EORC_GSMaP_standard.Gauge.00Z-23Z.v6_daily";
+const SOURCE = "JAXA/EORC GSMaP public COG/STAC research source";
+const DEFAULT_PRESET = "low";
+const ALLOWED_PRESETS = new Set(["low"]);
+const MAX_BBOX_SPAN_DEGREES = 0.5;
+
+const json = (payload, status = 200) => new Response(JSON.stringify(payload, null, 2), {
+  status,
+  headers: {
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "no-store",
+  },
+});
+
+const responseContract = () => ({
+  dataset_id: DATASET_ID,
+  source: SOURCE,
+  license_status: "not_validated_for_public_real_sampling",
+  retrieved_at: new Date().toISOString(),
+  processing_note: "Validated real precipitation sample processing is not implemented yet; no raster values were decoded or aggregated.",
+  unit: null,
+  mean: null,
+  min: null,
+  max: null,
+  nodata_count: null,
+});
+
+const unavailable = ({ code, message, guidance, status = 400, extra = {} }) => json({
+  data_type: "unavailable",
+  status: "error",
+  error_code: code,
+  message,
+  guidance,
+  ...responseContract(),
+  ...extra,
+}, status);
+
+const isDateString = (value) => /^\d{4}-\d{2}-\d{2}$/.test(value || "");
+
+const parseDate = (value) => {
+  if (!isDateString(value)) return null;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== value) return null;
+  return date;
+};
+
+const parseBbox = (value) => {
+  const parts = String(value || "").split(",").map((part) => Number(part.trim()));
+  if (parts.length !== 4 || parts.some((part) => !Number.isFinite(part))) return null;
+
+  const [minLon, minLat, maxLon, maxLat] = parts;
+  if (minLon < -180 || maxLon > 180 || minLat < -90 || maxLat > 90) return null;
+  if (minLon >= maxLon || minLat >= maxLat) return null;
+
+  return parts;
+};
+
+const validate = (request) => {
+  const url = new URL(request.url);
+  const rawBbox = url.searchParams.get("bbox");
+  const rawStart = url.searchParams.get("start");
+  const rawEnd = url.searchParams.get("end");
+  const preset = (url.searchParams.get("preset") || DEFAULT_PRESET).trim().toLowerCase();
+
+  if (!rawBbox) {
+    return { error: ["missing_bbox", "bbox is required.", "Use bbox=minLon,minLat,maxLon,maxLat, for example bbox=139.5,35.4,140.0,35.9."] };
+  }
+  if (!rawStart) {
+    return { error: ["missing_start", "start is required.", "Use start=YYYY-MM-DD, for example start=2025-08-01."] };
+  }
+  if (!rawEnd) {
+    return { error: ["missing_end", "end is required.", "Use end=YYYY-MM-DD. Only one day is allowed, so end must match start for now."] };
+  }
+  if (!ALLOWED_PRESETS.has(preset)) {
+    return { error: ["invalid_preset", "preset must be low for the current skeleton endpoint.", "Omit preset or use preset=low."] };
+  }
+
+  const bbox = parseBbox(rawBbox);
+  if (!bbox) {
+    return { error: ["invalid_bbox", "bbox must be valid minLon,minLat,maxLon,maxLat within world bounds.", "Use a small bbox such as 139.5,35.4,140.0,35.9."] };
+  }
+
+  const start = parseDate(rawStart);
+  const end = parseDate(rawEnd);
+  if (!start || !end) {
+    return { error: ["invalid_date", "start and end must be valid YYYY-MM-DD dates.", "Use matching one-day dates such as start=2025-08-01&end=2025-08-01."] };
+  }
+  if (rawStart !== rawEnd) {
+    return { error: ["date_range_not_supported", "Only one day is allowed for validated real sampling skeleton requests.", "Use the same YYYY-MM-DD value for start and end."] };
+  }
+
+  const width = bbox[2] - bbox[0];
+  const height = bbox[3] - bbox[1];
+  if (width > MAX_BBOX_SPAN_DEGREES || height > MAX_BBOX_SPAN_DEGREES) {
+    return { error: ["bbox_too_large", "bbox must be 0.5 degrees or less per axis for now.", "Shrink bbox so maxLon-minLon <= 0.5 and maxLat-minLat <= 0.5."] };
+  }
+
+  return { params: { bbox, start: rawStart, end: rawEnd, preset } };
+};
+
+const determineReadiness = () => classifyProbeStatus({
+  probe: {
+    data_type: "real_observation_sample_probe",
+    status: "blocked",
+    sampling_status: "range_probe_only",
+    sample_status: "not_sampled",
+    block_reason: "validated_sampling_not_ready",
+    first_pixel: null,
+  },
+});
+
+export async function onRequestGet({ request }) {
+  const validation = validate(request);
+  if (validation.error) {
+    const [code, message, guidance] = validation.error;
+    return unavailable({ code, message, guidance, status: 400 });
+  }
+
+  const readiness = determineReadiness();
+
+  return unavailable({
+    code: "validated_sampling_not_ready",
+    message: "Validated real precipitation sample validation is not complete, so this endpoint fails safely and returns no precipitation values.",
+    guidance: "Keep Storm, Compare, Card, and public UI disconnected until decoder, projection, unit, nodata, aggregation, and license validation are complete.",
+    status: 501,
+    extra: {
+      bbox: validation.params.bbox,
+      date_range: { start: validation.params.start, end: validation.params.end },
+      preset: validation.params.preset,
+      readiness: {
+        phase: readiness.decision.phase,
+        next: readiness.decision.next,
+        reason: readiness.decision.reason,
+        can_continue_to_public_ui: readiness.decision.can_continue_to_public_ui,
+      },
+      future_real_response_shape: {
+        data_type: "real_observation_precipitation_sample",
+        status: "ok",
+        dataset_id: DATASET_ID,
+        source: SOURCE,
+        license_status: "validated",
+        retrieved_at: "ISO-8601 timestamp",
+        processing_note: "validated decoder/projection/unit/nodata/aggregation details",
+        unit: "mm/day",
+        mean: "number|null",
+        min: "number|null",
+        max: "number|null",
+        nodata_count: "number",
+      },
+      warnings: [
+        "No mean/min/max precipitation values are returned by this skeleton endpoint.",
+        "No synthetic fallback values are returned.",
+        "This endpoint is not connected to public UI.",
+      ],
+    },
+  });
+}
+
+export async function onRequestPost() {
+  return unavailable({
+    code: "method_not_allowed",
+    message: "Use GET for the validated real precipitation sample skeleton endpoint.",
+    guidance: "Call with bbox, start, end, and optional preset=low.",
+    status: 405,
+  });
+}
