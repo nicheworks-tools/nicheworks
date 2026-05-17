@@ -27,6 +27,12 @@ const callGet = async (onRequestGet, query = "") => {
   return { response, body: await response.json() };
 };
 
+const callAny = async (handler, { method = "GET", query = "" } = {}) => {
+  const request = new Request(`https://example.test/api/earth-map-suite/precipitation-sample-real${query}`, { method });
+  const response = await handler({ request });
+  return { response, body: await response.json() };
+};
+
 const requiredNullFields = ["unit", "mean", "min", "max", "nodata_count"];
 const requiredMetadataFields = ["dataset_id", "source", "license_status", "retrieved_at", "processing_note"];
 const requiredProvenanceFields = ["source", "dataset_id", "band", "license_status", "attribution", "retrieved_at", "processing_note"];
@@ -68,6 +74,26 @@ const assertPublicRealOutputBlocked = (body, { geolocationStatus = "pending_veri
   assert.equal(body.validation_status, "not_ready_for_public_real_output");
   assert.match(body.processing_note, /Public real precipitation output remains blocked/);
 };
+
+const assertCanonicalUnavailableError = (body, code) => {
+  assert.equal(body.data_type, "unavailable");
+  assert.equal(body.status, "error");
+  assert.equal(body.error_code, code);
+  assert.equal(typeof body.message, "string");
+  assert.ok(body.message.length > 0, "message must be non-empty");
+  assert.equal(typeof body.guidance, "string");
+  assert.ok(body.guidance.length > 0, "guidance must be non-empty");
+
+  for (const field of requiredNullFields) {
+    assert.ok(Object.hasOwn(body, field), `${field} must be present`);
+    assert.equal(body[field], null, `${field} must remain null for unavailable/errors`);
+  }
+
+  const serialized = JSON.stringify(body).toLowerCase();
+  assert.equal(serialized.includes("synthetic_precip"), false);
+  assert.equal(serialized.includes("synthetic_preview"), false);
+  assert.equal(serialized.includes("data_type\":\"real_observation"), false);
+};
 const validQuery = "?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01";
 
 const notReadyProbe = {
@@ -88,14 +114,18 @@ const rawPixelProbe = {
   summary: { unit: "source unit pending verification", first_pixel: 12.25 },
 };
 
-const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelProbe({ payload: notReadyProbe });
+const {
+  onRequest,
+  onRequestGet: notReadyGet,
+  onRequestPost,
+  onRequestPut,
+  onRequestOptions,
+} = await loadSampleWithPixelProbe({ payload: notReadyProbe });
 
 {
   const { response, body } = await callGet(notReadyGet, "?start=2025-08-01&end=2025-08-01");
   assert.equal(response.status, 400);
-  assert.equal(body.data_type, "unavailable");
-  assert.equal(body.status, "error");
-  assert.equal(body.error_code, "missing_or_invalid_params");
+  assertCanonicalUnavailableError(body, "missing_or_invalid_params");
   assert.match(body.message, /bbox is required/);
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
   assertProvenanceAndDebug(body, { endpointStage: "request_validation_failed" });
@@ -104,7 +134,7 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
 {
   const { response, body } = await callGet(notReadyGet, "?bbox=139.5,35.4,140.0,35.9&end=2025-08-01");
   assert.equal(response.status, 400);
-  assert.equal(body.error_code, "missing_or_invalid_params");
+  assertCanonicalUnavailableError(body, "missing_or_invalid_params");
   assert.match(body.message, /start is required/);
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
 }
@@ -112,15 +142,24 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
 {
   const { response, body } = await callGet(notReadyGet, "?bbox=139.5,35.4,140.0,35.9&start=2025-08-01");
   assert.equal(response.status, 400);
-  assert.equal(body.error_code, "missing_or_invalid_params");
+  assertCanonicalUnavailableError(body, "missing_or_invalid_params");
   assert.match(body.message, /end is required/);
+  assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
+}
+
+
+{
+  const { response, body } = await callGet(notReadyGet, "?bbox=139.5,35.4,139.4,35.9&start=2025-08-01&end=2025-08-01");
+  assert.equal(response.status, 400);
+  assertCanonicalUnavailableError(body, "missing_or_invalid_params");
+  assert.match(body.message, /bbox must be valid/);
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
 }
 
 {
   const { response, body } = await callGet(notReadyGet, "?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=medium");
   assert.equal(response.status, 400);
-  assert.equal(body.error_code, "missing_or_invalid_params");
+  assertCanonicalUnavailableError(body, "missing_or_invalid_params");
   assert.match(body.message, /preset must be low/);
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
 }
@@ -128,7 +167,7 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
 {
   const { response, body } = await callGet(notReadyGet, "?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-02");
   assert.equal(response.status, 400);
-  assert.equal(body.error_code, "limit_exceeded");
+  assertCanonicalUnavailableError(body, "limit_exceeded");
   assert.match(body.message, /Only one day/);
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
 }
@@ -136,7 +175,7 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
 {
   const { response, body } = await callGet(notReadyGet, "?bbox=139.0,35.0,139.6,35.4&start=2025-08-01&end=2025-08-01");
   assert.equal(response.status, 400);
-  assert.equal(body.error_code, "limit_exceeded");
+  assertCanonicalUnavailableError(body, "limit_exceeded");
   assert.match(body.message, /0\.5 degrees/);
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
 }
@@ -144,9 +183,7 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
 {
   const { response, body } = await callGet(notReadyGet, validQuery);
   assert.equal(response.status, 501);
-  assert.equal(body.data_type, "unavailable");
-  assert.equal(body.status, "error");
-  assert.equal(body.error_code, "validated_sampling_not_ready");
+  assertCanonicalUnavailableError(body, "validated_sampling_not_ready");
   assert.deepEqual(body.bbox, [139.5, 35.4, 140.0, 35.9]);
   assert.deepEqual(body.date_range, { start: "2025-08-01", end: "2025-08-01" });
   assert.equal(body.preset, "low");
@@ -182,42 +219,73 @@ const { onRequestGet: notReadyGet, onRequestPost } = await loadSampleWithPixelPr
 {
   const { onRequestGet: rawPixelGet } = await loadSampleWithPixelProbe({ payload: rawPixelProbe });
   const { response, body } = await callGet(rawPixelGet, validQuery);
-  assert.equal(response.status, 200);
-  assert.equal(body.data_type, "research-only");
-  assert.equal(body.status, "ok");
+  assert.equal(response.status, 501);
+  assertCanonicalUnavailableError(body, "validated_sampling_not_ready");
   assert.equal(body.validated_sample_ready, false);
   assert.equal(body.readiness?.phase, "raw_pixel_read");
   assert.equal(body.readiness?.can_continue_to_public_ui, false);
   assert.equal(body.probe_decision?.phase, "raw_pixel_read");
   assert.equal(body.readiness_blocker, "unit_scale_nodata_projection_not_validated");
-  assert.equal(body.debug_first_pixel, 12.25);
+  assert.equal(body.raw_pixel_probe_observed, true);
+  assert.equal(Object.hasOwn(body, "debug_first_pixel"), false);
   assertPublicRealOutputBlocked(body);
   assertProvenanceAndDebug(body, {
-    endpointStage: "raw_pixel_probe_not_ready",
+    endpointStage: "raw_pixel_probe_not_validated",
     probeDecisionPhase: "raw_pixel_read",
     probeDecisionNext: "validate_decoder_projection_units_and_no_data_rules",
   });
+}
 
-  for (const field of requiredNullFields) {
-    assert.ok(Object.hasOwn(body, field), `${field} must be present`);
-    assert.equal(body[field], null, `${field} must remain null until validated sampling is implemented`);
-  }
-
-  const serialized = JSON.stringify(body).toLowerCase();
-  assert.equal(serialized.includes("data_type\":\"real_observation"), false);
-  assert.equal(serialized.includes("synthetic_precip"), false);
-  assert.equal(serialized.includes("synthetic_preview"), false);
+{
+  const upstreamErrorProbe = {
+    data_type: "unavailable",
+    status: "error",
+    error_code: "upstream_fail",
+    message: "Pixel probe failed.",
+  };
+  const { onRequestGet: upstreamFailGet } = await loadSampleWithPixelProbe({ payload: upstreamErrorProbe, status: 502 });
+  const { response, body } = await callGet(upstreamFailGet, validQuery);
+  assert.equal(response.status, 502);
+  assertCanonicalUnavailableError(body, "upstream_fail");
+  assert.equal(body.upstream_status, 502);
+  assert.equal(body.upstream_error_code, "upstream_fail");
+  assertProvenanceAndDebug(body, {
+    endpointStage: "upstream_probe_failed",
+    probeDecisionPhase: "endpoint_error",
+    probeDecisionNext: "inspect_pixel_probe_endpoint",
+  });
 }
 
 {
   const response = await onRequestPost();
   const body = await response.json();
   assert.equal(response.status, 405);
-  assert.equal(body.data_type, "unavailable");
-  assert.equal(body.status, "error");
-  assert.equal(body.error_code, "method_not_allowed");
+  assertCanonicalUnavailableError(body, "method_not_allowed");
   assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
   assertProvenanceAndDebug(body, { endpointStage: "method_not_allowed" });
+}
+
+{
+  const { response, body } = await callAny(onRequest, { method: "POST", query: validQuery });
+  assert.equal(response.status, 405);
+  assertCanonicalUnavailableError(body, "method_not_allowed");
+  assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
+}
+
+{
+  const response = await onRequestPut();
+  const body = await response.json();
+  assert.equal(response.status, 405);
+  assertCanonicalUnavailableError(body, "method_not_allowed");
+  assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
+}
+
+{
+  const response = await onRequestOptions();
+  const body = await response.json();
+  assert.equal(response.status, 405);
+  assertCanonicalUnavailableError(body, "method_not_allowed");
+  assertPublicRealOutputBlocked(body, { geolocationStatus: "not_available" });
 }
 
 console.log("precipitation-sample-real harness passed");
