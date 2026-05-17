@@ -1,55 +1,99 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-pro-active="false">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>壊れたJSON修復・検証・整形｜JSON Repair | NicheWorks</title>
-  <meta name="description" content="壊れたJSONをブラウザ内で修復・検証・整形・ミニファイできる無料ツールです。末尾カンマ、コメント入りJSON、ログ混在JSONの確認に使えます。外部送信なし。">
+  <meta name="description" content="壊れたJSONをブラウザ内で修復・検証・整形・ミニファイできる無料ツールです。末尾カンマ、コメント入りJSON、ログ混在JSONを外部送信なしで扱えます。">
   <link rel="canonical" href="https://nicheworks.app/tools/json-repair/">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="壊れたJSON修復・検証・整形｜JSON Repair | NicheWorks">
-  <meta property="og:description" content="壊れたJSONをブラウザ内で修復・検証・整形・ミニファイできる無料ツールです。末尾カンマ、コメント入りJSON、ログ混在JSONの確認に使えます。外部送信なし。">
+  <meta property="og:description" content="壊れたJSONをブラウザ内で修復・検証・整形・ミニファイできる無料ツールです。外部送信なし。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/json-repair/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="壊れたJSON修復・検証・整形｜JSON Repair | NicheWorks">
+  <meta name="twitter:description" content="壊れたJSONをブラウザ内で修復・検証・整形・ミニファイできる無料ツールです。外部送信なし。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="robots" content="index,follow">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JSON Repair","url":"https://nicheworks.app/tools/json-repair/","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"壊れたJSONをブラウザ内で修復・検証・整形・ミニファイできる無料ツールです。外部送信なし。"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"入力したJSONはサーバーに送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。入力内容はブラウザ内で処理されます。"}},{"@type":"Question","name":"どんな壊れたJSONを直せますか？","acceptedAnswer":{"@type":"Answer","text":"末尾カンマ、コメント入りJSON、一部のログ混在JSONなどを修復できます。"}},{"@type":"Question","name":"Proでは何が使えますか？","acceptedAnswer":{"@type":"Answer","text":"Aggressive repair、JSON候補抽出、Schema check、ローカル履歴を使えます。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"入力したJSONはサーバーに送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。入力内容と修復処理はブラウザ内で完結します。"}},{"@type":"Question","name":"無料版では何ができますか？","acceptedAnswer":{"@type":"Answer","text":"検証、エラー位置表示、Safe repair、Standard repair、Pretty、Minify、コピー、.json保存、修復ログ、簡易Diffを使えます。"}},{"@type":"Question","name":"Pro購入後はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"購入後、このブラウザではNicheWorks Proが有効になります。通常はタブやブラウザを閉じても維持されますが、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。"}}]}</script>
   <link rel="stylesheet" href="./style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
-  <meta property="og:site_name" content="NicheWorks">
-  <meta name="twitter:title" content="壊れたJSON修復・検証・整形｜JSON Repair | NicheWorks">
-  <meta name="twitter:description" content="壊れたJSONをブラウザ内で修復・検証・整形・ミニファイできる無料ツールです。末尾カンマ、コメント入りJSON、ログ混在JSONの確認に使えます。外部送信なし。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 <body>
-<header class="nw-header"><div class="nw-header-top"><div class="nw-titlebox"><h1 class="nw-title" data-i18n="title">JSON Repair</h1><p class="nw-sub" data-i18n="subtitle">Repair JSON locally.</p></div><div class="nw-lang-switch"><button type="button" class="nw-lang-btn" data-lang="ja">JP</button><button type="button" class="nw-lang-btn" data-lang="en">EN</button></div></div></header>
+<header class="nw-header">
+  <div class="nw-header-top">
+    <div class="nw-titlebox">
+      <h1 class="nw-title" data-i18n="title">JSON Repair</h1>
+      <p class="nw-sub" data-i18n="subtitle">Repair JSON locally.</p>
+    </div>
+    <div class="nw-lang-switch" aria-label="Language">
+      <button type="button" class="nw-lang-btn" data-lang="ja">JP</button>
+      <button type="button" class="nw-lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
 <main class="nw-main">
   <div class="ad-slot ad-top">広告枠</div>
   <section class="jr-wrap" aria-label="JSON Repair tool">
     <div class="jr-note" data-i18n="privacyNote"></div>
-    <section class="jr-pro" aria-label="Free features"><div class="jr-pro-head"><h2 class="jr-h2" data-i18n="freeTitle"></h2><div class="jr-mini" data-i18n="freeBadge"></div></div><div class="jr-pro-note" data-i18n="freeDesc"></div></section>
+
     <div class="jr-controls">
-      <label class="jr-label"><span data-i18n="modeLabel"></span><select id="selMode"><option value="auto">Auto</option><option value="json">JSON</option><option value="jsonc">JSONC</option><option value="json5like">JSON5-like</option></select></label>
-      <label class="jr-label"><span data-i18n="sampleLabel"></span><select id="selSample"><option value="">(Select)</option><option value="trailingComma">Trailing comma</option><option value="comments">Comments</option><option value="logMixed">Log mixed</option><option value="array">Array JSON</option><option value="config">Config style</option><option value="singleQuotes" data-pro="true">Single quotes</option><option value="unquotedKeys" data-pro="true">Unquoted keys</option><option value="pythonLiterals" data-pro="true">Python literals</option></select></label>
-      <label class="jr-label"><span data-i18n="levelLabel"></span><select id="selRepairLevel"><option value="safe">Safe</option><option value="standard">Standard</option><option value="aggressive" disabled>Aggressive</option></select></label>
+      <label class="jr-label"><span data-i18n="modeLabel"></span><select id="selMode"><option value="auto">Auto</option><option value="json">JSON</option><option value="jsonc">JSONC</option></select></label>
+      <label class="jr-label"><span data-i18n="sampleLabel"></span><select id="selSample"><option value="">(Select)</option><option value="trailingComma">Trailing comma</option><option value="comments">Comments</option><option value="logMixed">Log mixed</option><option value="array">Array JSON</option><option value="config">Config style</option><option value="singleQuotes" data-pro="true">Single quotes (Pro)</option><option value="unquotedKeys" data-pro="true">Unquoted keys (Pro)</option><option value="pythonLiterals" data-pro="true">Python literals (Pro)</option></select></label>
+      <label class="jr-label"><span data-i18n="levelLabel"></span><select id="selRepairLevel"><option value="safe">Safe</option><option value="standard">Standard</option><option value="aggressive">Aggressive (Pro)</option></select></label>
       <label class="jr-label"><span data-i18n="indentLabel"></span><select id="selIndent"><option value="2">2</option><option value="4">4</option></select></label>
-      <div class="jr-spacer"></div><button type="button" id="btnLoad" class="jr-btn jr-btn-ghost" data-i18n="loadBtn"></button><input id="fileInput" type="file" accept=".json,.txt,application/json,text/plain" hidden>
+      <div class="jr-spacer"></div>
+      <button type="button" id="btnLoad" class="jr-btn jr-btn-ghost" data-i18n="loadBtn"></button><input id="fileInput" type="file" accept=".json,.txt,application/json,text/plain" hidden>
     </div>
     <div id="jrLevelHelp" class="jr-note"></div>
+
     <div class="jr-grid">
-      <section class="jr-panel"><div class="jr-panel-head"><h2 class="jr-h2" data-i18n="inputTitle"></h2><div class="jr-mini" id="jrStats">—</div></div><textarea id="jrInput" class="jr-textarea" spellcheck="false" aria-label="JSON input"></textarea><div class="jr-toolbar"><button type="button" id="btnValidate" class="jr-btn" data-i18n="validateBtn"></button><button type="button" id="btnRepair" class="jr-btn jr-btn-primary" data-i18n="repairBtn"></button><button type="button" id="btnFormatPretty" class="jr-btn" data-i18n="prettyBtn"></button><button type="button" id="btnFormatMinify" class="jr-btn" data-i18n="minifyBtn"></button><button type="button" id="btnReset" class="jr-btn jr-btn-ghost" data-i18n="resetBtn"></button></div><div class="jr-hint" data-i18n="shortcutsHint"></div></section>
-      <section class="jr-panel"><div class="jr-panel-head"><h2 class="jr-h2" data-i18n="outputTitle"></h2><div class="jr-mini" id="jrBusy"></div></div><div class="jr-tabs" id="jrTabs"><button type="button" class="jr-tab" aria-selected="true" data-tab="repaired" data-i18n="tabRepaired"></button><button type="button" class="jr-tab" aria-selected="false" data-tab="formatted" data-i18n="tabFormatted"></button><button type="button" class="jr-tab" aria-selected="false" data-tab="validate" data-i18n="tabValidate"></button></div><div class="jr-tabpanels"><div id="panelRepaired" class="jr-tabpanel"><textarea id="jrOutput" class="jr-textarea jr-textarea-out" readonly></textarea></div><div id="panelFormatted" class="jr-tabpanel" hidden><textarea id="jrFormattedOut" class="jr-textarea jr-textarea-out" readonly></textarea></div><div id="panelValidate" class="jr-tabpanel" hidden><div id="jrValidateOut" class="jr-validate"></div><div id="jrExplain" class="jr-explain"></div></div></div><div class="jr-toolbar"><button type="button" id="btnCopy" class="jr-btn" data-i18n="copyBtn"></button><button type="button" id="btnDownload" class="jr-btn" data-i18n="downloadBtn"></button><input id="jrFilename" class="jr-filename" value="repaired.json"></div></section>
+      <section class="jr-panel">
+        <div class="jr-panel-head"><h2 class="jr-h2" data-i18n="inputTitle"></h2><div class="jr-mini" id="jrStats">—</div></div>
+        <textarea id="jrInput" class="jr-textarea" spellcheck="false" aria-label="JSON input"></textarea>
+        <div class="jr-toolbar"><button type="button" id="btnValidate" class="jr-btn" data-i18n="validateBtn"></button><button type="button" id="btnRepair" class="jr-btn jr-btn-primary" data-i18n="repairBtn"></button><button type="button" id="btnFormatPretty" class="jr-btn" data-i18n="prettyBtn"></button><button type="button" id="btnFormatMinify" class="jr-btn" data-i18n="minifyBtn"></button><button type="button" id="btnReset" class="jr-btn jr-btn-ghost" data-i18n="resetBtn"></button></div>
+        <div class="jr-hint" data-i18n="shortcutsHint"></div>
+      </section>
+      <section class="jr-panel">
+        <div class="jr-panel-head"><h2 class="jr-h2" data-i18n="outputTitle"></h2><div class="jr-mini" id="jrBusy"></div></div>
+        <div class="jr-tabs" id="jrTabs"><button type="button" class="jr-tab" aria-selected="true" data-tab="repaired" data-i18n="tabRepaired"></button><button type="button" class="jr-tab" aria-selected="false" data-tab="formatted" data-i18n="tabFormatted"></button><button type="button" class="jr-tab" aria-selected="false" data-tab="validate" data-i18n="tabValidate"></button></div>
+        <div class="jr-tabpanels"><div id="panelRepaired" class="jr-tabpanel"><textarea id="jrOutput" class="jr-textarea jr-textarea-out" readonly></textarea></div><div id="panelFormatted" class="jr-tabpanel" hidden><textarea id="jrFormattedOut" class="jr-textarea jr-textarea-out" readonly></textarea></div><div id="panelValidate" class="jr-tabpanel" hidden><div id="jrValidateOut" class="jr-validate"></div><div id="jrExplain" class="jr-explain"></div></div></div>
+        <div class="jr-toolbar"><button type="button" id="btnCopy" class="jr-btn" data-i18n="copyBtn"></button><button type="button" id="btnDownload" class="jr-btn" data-i18n="downloadBtn"></button><input id="jrFilename" class="jr-filename" value="repaired.json"></div>
+      </section>
     </div>
+
     <section class="jr-logwrap"><div class="jr-loghead"><h2 class="jr-h2" data-i18n="logTitle"></h2><details class="jr-diff"><summary><span data-i18n="showDiff"></span> <span class="jr-badge">Free</span></summary><pre id="jrDiff" class="jr-diffpre"></pre></details></div><div id="jrLog" class="jr-log">—</div></section>
-    <section class="jr-pro" aria-label="Pro unlock"><div class="jr-pro-head"><h2 class="jr-h2" data-i18n="proTitle"></h2><div id="jrProState" class="jr-mini">Inactive</div></div><div class="jr-pro-row"><input id="jrProKey" class="jr-pro-key" aria-label="Pro unlock key" stable content="NW-JR-XXXX-XXXX-XXXX"><button type="button" id="btnProActivate" class="jr-btn jr-btn-primary" data-i18n="activateBtn"></button><button type="button" id="btnProClear" class="jr-btn jr-btn-ghost" data-i18n="clearBtn"></button></div><div class="jr-pro-note" data-i18n="proDesc"></div></section>
-    <details class="jr-cands" id="jrCandsWrap"><summary><span data-i18n="candidatesTitle"></span></summary><div id="jrCandidates" class="jr-cands-list">—</div></details>
-    <details class="jr-schema" id="jrSchemaWrap"><summary><span data-i18n="schemaTitle"></span></summary><div class="jr-mini" data-i18n="schemaHelp"></div><textarea id="jrSchemaRules" class="jr-textarea" style="min-height:140px" spellcheck="false"></textarea><div class="jr-toolbar"><button type="button" class="jr-btn" id="btnSchemaRun" data-i18n="schemaRunBtn"></button></div><div id="jrSchemaOut" class="jr-validate"></div></details>
-    <section class="jr-history" id="jrHistWrap"><div class="jr-pro-head"><h2 class="jr-h2" data-i18n="historyTitle"></h2><label class="jr-mini" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="jrHistEnable"><span data-i18n="historyEnable"></span></label></div><div id="jrHistList" class="jr-log">—</div></section>
+
+    <section class="jr-pro-card" aria-label="NicheWorks Pro">
+      <div class="jr-pro-head"><h2 class="jr-h2" data-i18n="proTitle"></h2><strong class="jr-status" data-pro-status></strong></div>
+      <div class="jr-pro-grid">
+        <div><h3 data-i18n="freeCanTitle"></h3><ul><li data-i18n="freeCan1"></li><li data-i18n="freeCan2"></li><li data-i18n="freeCan3"></li><li data-i18n="freeCan4"></li></ul></div>
+        <div><h3 data-i18n="proCanTitle"></h3><ul><li data-i18n="proCan1"></li><li data-i18n="proCan2"></li><li data-i18n="proCan3"></li><li data-i18n="proCan4"></li></ul></div>
+        <div data-pro-preview><h3 data-i18n="previewTitle"></h3><p data-i18n="previewDesc"></p><pre class="jr-sample-out">Aggressive repair: {'ok': True} → {"ok": true}
+Candidates: [{...}], {...}
+Schema: required/type checks
+Report: copied after Pro unlock</pre></div>
+        <div data-pro-only><h3 data-i18n="activeTitle"></h3><p data-i18n="activeDesc"></p><pre class="jr-sample-out" id="jrActiveSample"></pre></div>
+        <div><h3 data-i18n="purchaseFlowTitle"></h3><p data-i18n="purchaseFlow"></p></div>
+        <div><h3 data-i18n="limitsTitle"></h3><p data-i18n="limitsDesc"></p></div>
+      </div>
+      <p class="jr-pro-actions"><a class="jr-buy" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" rel="noopener" data-i18n="buyPro"></a></p>
+    </section>
+
+    <section class="jr-pro-tools" aria-label="Pro tools">
+      <details class="jr-cands" id="jrCandsWrap" open><summary><span data-i18n="candidatesTitle"></span> <span class="jr-badge">Pro</span></summary><div id="jrCandidates" class="jr-cands-list">—</div></details>
+      <details class="jr-schema" id="jrSchemaWrap"><summary><span data-i18n="schemaTitle"></span> <span class="jr-badge">Pro</span></summary><div class="jr-mini" data-i18n="schemaHelp"></div><textarea id="jrSchemaRules" class="jr-textarea" spellcheck="false">{
+  "required": ["name"],
+  "types": { "name": "string", "enabled": "boolean" }
+}</textarea><div class="jr-toolbar"><button type="button" class="jr-btn jr-pro-action" id="btnSchemaRun" data-i18n="schemaRunBtn"></button></div><div id="jrSchemaOut" class="jr-validate"></div></details>
+      <section class="jr-history" id="jrHistWrap"><div class="jr-pro-head"><h2 class="jr-h2" data-i18n="historyTitle"></h2><button type="button" id="btnHistoryClear" class="jr-btn jr-pro-action" data-i18n="historyClear"></button></div><div id="jrHistList" class="jr-log">—</div></section>
+      <section class="jr-report"><div class="jr-pro-head"><h2 class="jr-h2" data-i18n="reportTitle"></h2><div class="jr-toolbar"><button type="button" id="btnReportCopy" class="jr-btn jr-pro-action" data-i18n="reportCopy"></button><button type="button" id="btnExportMd" class="jr-btn jr-pro-action" data-i18n="exportMd"></button><button type="button" id="btnExportJson" class="jr-btn jr-pro-action" data-i18n="exportJson"></button></div></div><pre id="jrReport" class="jr-diffpre"></pre></section>
+    </section>
+
     <div id="jrToast" class="jr-toast" hidden></div>
   </section>
   <div class="ad-slot ad-bottom">広告枠</div>
@@ -58,6 +102,7 @@
   <section class="nw-links"><p class="nw-links-title">FAQ</p><details><summary data-i18n="faq1q"></summary><p data-i18n="faq1a"></p></details><details><summary data-i18n="faq2q"></summary><p data-i18n="faq2a"></p></details><details><summary data-i18n="faq3q"></summary><p data-i18n="faq3a"></p></details><details><summary data-i18n="faq4q"></summary><p data-i18n="faq4a"></p></details></section>
 </main>
 <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p></footer>
-<script src="./app-complete.js" defer></script>
+<script src="/assets/nw-pro.js" defer></script>
+<script src="./app.js" defer></script>
 </body>
 </html>
