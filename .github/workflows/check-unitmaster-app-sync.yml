@@ -1,0 +1,37 @@
+name: Check UnitMaster app data sync
+
+on:
+  pull_request:
+    paths:
+      - 'tools/unitmaster/app.js'
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/scripts/check-app-units-sync.mjs'
+      - '.github/workflows/check-unitmaster-app-sync.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/unitmaster/app.js'
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/scripts/check-app-units-sync.mjs'
+      - '.github/workflows/check-unitmaster-app-sync.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-unitmaster-app-sync:
+    name: Check app.js and units.json sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check UnitMaster app data sync
+        run: node tools/unitmaster/scripts/check-app-units-sync.mjs
