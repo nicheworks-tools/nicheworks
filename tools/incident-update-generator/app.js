@@ -124,8 +124,8 @@
       blocked: "先に更新文を生成してください。",
       saved: "TXTを保存しました。",
       proBlocked: "Pro限定機能です。購入後にこのブラウザでNicheWorks Proを有効化してください。",
-      markdownCopied: "Markdownパックをコピーしました。",
-      markdownSaved: "Markdownパックを保存しました。",
+      markdownCopied: "Incident Communication Packをコピーしました。",
+      markdownSaved: "Incident Communication Packを保存しました。",
       requiredNames: {
         service: "サービス名",
         status: "現在ステータス",
@@ -143,8 +143,8 @@
       blocked: "Generate the updates first.",
       saved: "TXT saved.",
       proBlocked: "This is a Pro feature. Purchase and activate NicheWorks Pro in this browser.",
-      markdownCopied: "Markdown pack copied.",
-      markdownSaved: "Markdown pack saved.",
+      markdownCopied: "Incident Communication Pack copied.",
+      markdownSaved: "Incident Communication Pack saved.",
       requiredNames: {
         service: "Service name",
         status: "Current status",
@@ -420,20 +420,173 @@
     return `${yyyy}${mm}${dd}`;
   };
 
+  const packValue = (value, fallback = "TBD") => value || fallback;
+
+  const buildStatuspageUpdate = (data) => {
+    const status = STATUS_MAP[data.statusKey]?.en || data.statusKey;
+    return [
+      `**Title:** ${packValue(data.service)} incident - ${status}`,
+      `**Status:** ${status}`,
+      `**Affected components:** ${packValue(data.components, "Confirm affected components")}`,
+      "",
+      currentOutputs.customer.en || "Customer update has not been generated.",
+      "",
+      `**Next update:** ${packValue(data.nextUpdate, "Set the next update window")}`,
+    ].join("\n");
+  };
+
+  const buildSlackTeamsUpdate = (data) => {
+    const status = STATUS_MAP[data.statusKey]?.en || data.statusKey;
+    return [
+      `:rotating_light: *Incident update: ${packValue(data.service)}*`,
+      `*Status:* ${status}`,
+      `*Impact:* ${packValue(data.impact, "Confirm customer and internal impact")}`,
+      `*Actions:* ${packValue(data.mitigation, "Assign owner and mitigation steps")}`,
+      `*Next update:* ${packValue(data.nextUpdate, "Set an update time")}`,
+      `*Public comms:* Use the customer/statuspage draft above after approval.`,
+    ].join("\n");
+  };
+
+  const buildSupportMacro = (data) => {
+    return [
+      `Subject: Update regarding ${packValue(data.service)} availability`,
+      "",
+      "Hello,",
+      currentOutputs.customer.en || "We are preparing a confirmed customer update.",
+      "",
+      "If a customer asks about SLA credits, refunds, contractual remedies, or legal responsibility, do not confirm them in this macro. Escalate to the incident owner and the approved support policy.",
+      `Latest confirmed next update: ${packValue(data.nextUpdate, "TBD")}`,
+    ].join("\n");
+  };
+
+  const buildPublicReviewChecklist = (data) => {
+    return [
+      "- [ ] Facts match the incident commander / owner notes",
+      "- [ ] Customer names, personal data, tokens, internal URLs, and vendor-confidential details are removed",
+      "- [ ] Cause, recovery, and scope are not overstated beyond confirmed information",
+      "- [ ] SLA, refund, compensation, and legal responsibility language is absent unless approved",
+      "- [ ] Security, legal, PR, and support owners reviewed the public text when relevant",
+      `- [ ] Next update time is present and realistic: ${packValue(data.nextUpdate, "TBD")}`,
+    ].join("\n");
+  };
+
+  const buildPostmortemOutline = (data) => {
+    return [
+      `# Postmortem outline - ${packValue(data.service)}`,
+      "",
+      "## Summary",
+      packValue(data.causeSummary, "Summarize the confirmed cause after investigation."),
+      "",
+      "## Impact",
+      packValue(data.impact, "Describe affected users, components, and customer-visible symptoms."),
+      "",
+      "## Timeline",
+      `- Start: ${packValue(data.start, "TBD")}`,
+      `- Recovery: ${packValue(data.recoveryTime, "TBD")}`,
+      `- Duration: ${packValue(data.duration, "TBD")}`,
+      "",
+      "## Detection and response",
+      packValue(data.mitigation, "Document detection signals, owners, mitigations, and validation steps."),
+      "",
+      "## Root cause",
+      packValue(data.causeSummary, "Add root cause once confirmed."),
+      "",
+      "## Follow-up actions",
+      packValue(data.followUpPlan, "Add owners, due dates, and prevention actions."),
+    ].join("\n");
+  };
+
+  const buildGitHubIncidentTicket = (data) => {
+    const status = STATUS_MAP[data.statusKey]?.en || data.statusKey;
+    return [
+      `Title: [Incident] ${packValue(data.service)} - ${status}`,
+      "",
+      "## Current status",
+      status,
+      "",
+      "## Impact",
+      packValue(data.impact, "TBD"),
+      "",
+      "## Affected components",
+      packValue(data.components, "TBD"),
+      "",
+      "## Mitigation / actions",
+      packValue(data.mitigation, "TBD"),
+      "",
+      "## Communication checklist",
+      "- [ ] Customer update drafted",
+      "- [ ] Internal update posted",
+      "- [ ] Statuspage updated",
+      "- [ ] Support macro shared",
+      "- [ ] Next update owner assigned",
+      "",
+      "## Follow-up",
+      packValue(data.followUpPlan, "TBD"),
+    ].join("\n");
+  };
+
+  const buildNextUpdateDraft = (data) => {
+    const status = STATUS_MAP[data.statusKey]?.en || data.statusKey;
+    const nextStatus = data.statusKey === "Resolved" ? "Resolved" : "Monitoring / Resolved / Still investigating";
+    return [
+      `At ${packValue(data.nextUpdate, "the next update time")}, publish one of the following after confirming facts:`,
+      "",
+      `- If unchanged: We are still working on the ${packValue(data.service)} incident. Current status: ${status}. We will share another update in [time window].`,
+      `- If improved: We have applied mitigation for ${packValue(data.service)} and are monitoring recovery. Remaining impact: [confirm scope].`,
+      `- If resolved: The incident affecting ${packValue(data.service)} has been resolved. Impact duration: ${packValue(data.duration, "TBD")}.`,
+      "",
+      `Target next status: ${nextStatus}`,
+    ].join("\n");
+  };
+
   const buildMarkdownPack = () => {
     const data = getFormData();
-    const title = data.service ? `Incident Update Pack - ${data.service}` : "Incident Update Pack";
+    const title = data.service ? `Incident Communication Pack - ${data.service}` : "Incident Communication Pack";
     const sections = [
       `# ${title}`,
       "",
       `- Status: ${STATUS_MAP[data.statusKey]?.en || data.statusKey}`,
       `- Generated: ${new Date().toISOString()}`,
+      `- Tone: ${TONE_MAP[data.tone]?.en || data.tone}`,
+      "",
+      "## Free generated updates",
       "",
     ];
 
     ["customer", "internal", "social"].forEach((audience) => {
-      sections.push(`## ${TITLE_MAP[audience].en} / ${TITLE_MAP[audience].ja}`, "", "### English", "", currentOutputs[audience].en || "", "", "### 日本語", "", currentOutputs[audience].ja || "", "");
+      sections.push(`### ${TITLE_MAP[audience].en} / ${TITLE_MAP[audience].ja}`, "", "#### English", "", currentOutputs[audience].en || "", "", "#### 日本語", "", currentOutputs[audience].ja || "", "");
     });
+
+    sections.push(
+      "## Statuspage update",
+      "",
+      buildStatuspageUpdate(data),
+      "",
+      "## Slack / Teams update",
+      "",
+      buildSlackTeamsUpdate(data),
+      "",
+      "## Support macro",
+      "",
+      buildSupportMacro(data),
+      "",
+      "## Public review checklist",
+      "",
+      buildPublicReviewChecklist(data),
+      "",
+      "## Postmortem outline",
+      "",
+      buildPostmortemOutline(data),
+      "",
+      "## GitHub Issue incident ticket",
+      "",
+      buildGitHubIncidentTicket(data),
+      "",
+      "## Next update draft",
+      "",
+      buildNextUpdateDraft(data),
+      "",
+    );
 
     return sections.join("\n");
   };

@@ -330,3 +330,41 @@ html[data-pro-active="true"] .pro-status{
   color:var(--muted);
   font-size:12px;
 }
+.pro-preview-samples{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin:10px 0;
+}
+.pro-preview-sample{
+  padding:8px 10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg-soft);
+  font-size:12px;
+}
+.pro-preview-sample strong{
+  display:block;
+  margin-bottom:4px;
+}
+.pro-preview-sample p{
+  margin:0;
+  color:var(--muted);
+}
+.faq-card details{
+  padding:8px 0;
+  border-bottom:1px solid var(--border);
+}
+.faq-card details:last-child{
+  border-bottom:none;
+}
+.faq-card summary{
+  cursor:pointer;
+  font-weight:600;
+  font-size:13px;
+}
+.faq-card p{
+  margin:8px 0 0;
+  font-size:12px;
+  color:var(--muted);
+}
