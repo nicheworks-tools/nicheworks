@@ -1,0 +1,20 @@
+{
+  "version": "2026-05-18-okj-extra-3",
+  "entries": {
+    "雜": { "modern": "雑", "readingJa": "ざつ・ぞう", "readingEn": "zatsu / zo", "meaningJa": "入り混じる・まとまりがない・さまざま。", "meaningEn": "mixed, miscellaneous, various.", "category": "common", "verified": true },
+    "壞": { "modern": "壊", "readingJa": "かい・こわれる", "readingEn": "kai / kowareru", "meaningJa": "壊れる・壊す・形がくずれる。", "meaningEn": "to break, destroy, collapse.", "category": "common", "verified": true },
+    "懷": { "modern": "懐", "readingJa": "かい・ふところ・なつかしい", "readingEn": "kai / futokoro / natsukashii", "meaningJa": "ふところ・心に思う・なつかしむ。", "meaningEn": "bosom, heart, to cherish, nostalgic.", "category": "common", "verified": true },
+    "歡": { "modern": "歓", "readingJa": "かん・よろこぶ", "readingEn": "kan / yorokobu", "meaningJa": "喜ぶ・楽しく迎える。", "meaningEn": "joy, delight, welcome.", "category": "common", "verified": true },
+    "擴": { "modern": "拡", "readingJa": "かく・ひろげる", "readingEn": "kaku / hirogeru", "meaningJa": "広げる・大きくする。", "meaningEn": "to expand, enlarge.", "category": "common", "verified": true },
+    "劑": { "modern": "剤", "readingJa": "ざい", "readingEn": "zai", "meaningJa": "薬などを調合したもの・薬剤。", "meaningEn": "medicine, preparation, agent.", "category": "common", "verified": true },
+    "藏": { "modern": "蔵", "readingJa": "ぞう・くら", "readingEn": "zo / kura", "meaningJa": "しまう・蓄える・蔵。", "meaningEn": "storehouse, to store, keep.", "category": "common", "verified": true },
+    "臟": { "modern": "臓", "readingJa": "ぞう", "readingEn": "zo", "meaningJa": "内臓・体内の器官。", "meaningEn": "internal organ, viscera.", "category": "common", "verified": true },
+    "險": { "modern": "険", "readingJa": "けん・けわしい", "readingEn": "ken / kewashii", "meaningJa": "険しい・危ない・難しい。", "meaningEn": "steep, dangerous, severe.", "category": "common", "verified": true },
+    "雙": { "modern": "双", "readingJa": "そう・ふた", "readingEn": "so / futa", "meaningJa": "二つで一組・双つ。", "meaningEn": "pair, twin, both.", "category": "common", "verified": true },
+    "疊": { "modern": "畳", "readingJa": "じょう・たたみ・たたむ", "readingEn": "jo / tatami / tatamu", "meaningJa": "たたむ・重ねる・畳。", "meaningEn": "to fold, stack; tatami mat.", "category": "common", "verified": true },
+    "擧": { "modern": "挙", "readingJa": "きょ・あげる", "readingEn": "kyo / ageru", "meaningJa": "挙げる・持ち上げる・行う。", "meaningEn": "to raise, cite, carry out.", "category": "common", "verified": true },
+    "圓": { "modern": "円", "readingJa": "えん・まるい", "readingEn": "en / marui", "meaningJa": "円い・円形・通貨単位。", "meaningEn": "circle, round, yen.", "category": "common", "verified": true },
+    "獻": { "modern": "献", "readingJa": "けん・たてまつる", "readingEn": "ken / tatematsuru", "meaningJa": "差し上げる・ささげる。", "meaningEn": "to offer, dedicate, present.", "category": "common", "verified": true },
+    "顯": { "modern": "顕", "readingJa": "けん・あらわれる", "readingEn": "ken / arawareru", "meaningJa": "明らかに現れる・目立つ。", "meaningEn": "manifest, appear clearly, prominent.", "category": "common", "verified": true }
+  }
+}
