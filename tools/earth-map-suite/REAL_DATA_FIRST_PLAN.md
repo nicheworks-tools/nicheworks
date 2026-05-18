@@ -1,6 +1,6 @@
 # Earth Map Suite Real Data First Plan
 
-Last updated: 2026-05-15
+Last updated: 2026-05-18
 
 ## Decision
 
@@ -102,40 +102,32 @@ If auto-run is needed later, recreate it from latest main in a fresh branch.
 
 | Task | Intended goal | Current status |
 |---|---|---|
-| EMS-RD-01 | Real Data Adapter investigation / connection method | Partially done |
-| EMS-RD-02 | precipitation dataset registry | Partially done |
-| EMS-RD-03 | Cloudflare Pages Function for real data retrieval | metadata-only done; real raster sampling not done |
-| EMS-RD-04 | connect Storm to real precipitation | metadata-only done; real values not done |
-| EMS-RD-05 | connect Compare to real precipitation | metadata-only done; real values not done |
-| EMS-RD-06 | connect Card to real precipitation | metadata-only done; real values not done |
+| EMS-RD-01 | Real Data Adapter investigation / connection method | Complete (research baseline) |
+| EMS-RD-02 | precipitation dataset registry | Complete (research baseline) |
+| EMS-RD-03 | Cloudflare Pages Function for real data retrieval | Complete as research/metadata + probe foundation |
+| EMS-RD-04A〜04H | Real observation contract / validation gates | Complete |
+| EMS-RD-05A〜05H | Probe/decoder branch and safe unavailable contract hardening | Complete |
+| EMS-RD-06 | Deployment and route verification gate | **Current active gate** |
+
+### EMS-RD-06 gate statement
+
+- `precipitation-sample-real` exists.
+- `precipitation-sample-real` is safe-unavailable by design until full validation/unlock.
+- `public_ui_allowed` remains `false`.
+- Storm / Compare / Card are not connected to real values.
+- `real_observation` public output is not enabled.
 
 ## Next required work
 
-The next work is not another support page.
+The next work is EMS-RD-06 deployment and route verification (not UI wiring).
 
-The next work is:
+Active next steps:
 
-```text
-EMS-RD-03B: Research real precipitation sampling from GSMaP COG
-```
-
-Goal:
-
-- Move beyond metadata-only.
-- Determine if a small Cloudflare Pages Function can read a tiny COG window or sample point/area values.
-- Keep this isolated from public Storm / Compare / Card UI until proven.
-
-Acceptance for EMS-RD-03B:
-
-- A research endpoint or script attempts a real sample for a tiny bbox / one date.
-- It reports whether sampling succeeded or why it failed.
-- It does not silently fabricate values.
-- It returns clear `data_type`:
-  - `real_observation_sample` if sampled
-  - `range_probe_only` if only asset access was checked
-  - `unavailable` if failed
-- It documents unit / NoData / scale handling status.
-- Public UI remains unchanged until sampling is proven.
+1. Add `/api/earth-map-suite/health` endpoint for lightweight deploy reachability checks.
+2. Add `/api/earth-map-suite/manifest` endpoint for local route/contract inventory checks.
+3. Run manual deployed verification from external network (`nicheworks.app` and `nicheworks.pages.dev`).
+4. Record branch decision after verification (`route_missing`, `functions_not_deployed`, `health_ok_probe_error`, `probe_status_raw_pixel_read`, `probe_status_decoder_strategy_required`).
+5. Keep Storm/Compare/Card real connection blocked until verification and sampling validation are approved.
 
 ## Guardrails for future implementation
 
