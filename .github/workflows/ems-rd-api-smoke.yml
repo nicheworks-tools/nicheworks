@@ -1,0 +1,113 @@
+name: EMS RD API smoke check
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Base URL to check"
+        required: true
+        default: "https://nicheworks.app"
+      run_probe:
+        description: "Also run probe-status and precipitation-sample-real checks"
+        required: true
+        type: choice
+        options:
+          - "false"
+          - "true"
+        default: "false"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Normalize input
+        id: vars
+        shell: bash
+        run: |
+          BASE_URL="${{ github.event.inputs.base_url }}"
+          BASE_URL="${BASE_URL%/}"
+          echo "base_url=$BASE_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Check health and manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="${{ steps.vars.outputs.base_url }}"
+          mkdir -p ems-rd-api-smoke
+
+          check_json () {
+            local name="$1"
+            local url="$2"
+            local out="ems-rd-api-smoke/${name}.json"
+            local headers="ems-rd-api-smoke/${name}.headers.txt"
+            local code
+            code=$(curl -sS -L --max-time 30 -D "$headers" -o "$out" -w "%{http_code}" "$url")
+            echo "$name $code $url"
+            echo "$code" > "ems-rd-api-smoke/${name}.http_status.txt"
+            python -m json.tool "$out" > /dev/null
+          }
+
+          check_json health "$BASE/api/earth-map-suite/health"
+          check_json manifest "$BASE/api/earth-map-suite/manifest"
+
+      - name: Optionally check probe endpoints
+        if: ${{ github.event.inputs.run_probe == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="${{ steps.vars.outputs.base_url }}"
+          mkdir -p ems-rd-api-smoke
+
+          check_json () {
+            local name="$1"
+            local url="$2"
+            local out="ems-rd-api-smoke/${name}.json"
+            local headers="ems-rd-api-smoke/${name}.headers.txt"
+            local code
+            code=$(curl -sS -L --max-time 30 -D "$headers" -o "$out" -w "%{http_code}" "$url")
+            echo "$name $code $url"
+            echo "$code" > "ems-rd-api-smoke/${name}.http_status.txt"
+            python -m json.tool "$out" > /dev/null
+          }
+
+          check_json probe-status "$BASE/api/earth-map-suite/probe-status"
+          check_json precipitation-sample-real "$BASE/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low"
+
+      - name: Summarize results
+        shell: bash
+        run: |
+          echo "## EMS RD API smoke check" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Base URL: ${{ steps.vars.outputs.base_url }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          for f in ems-rd-api-smoke/*.http_status.txt; do
+            name=$(basename "$f" .http_status.txt)
+            code=$(cat "$f")
+            data_type=$(python - <<PY
+import json
+p='ems-rd-api-smoke/${name}.json'
+try:
+    print(json.load(open(p)).get('data_type'))
+except Exception:
+    print('unreadable')
+PY
+)
+            status=$(python - <<PY
+import json
+p='ems-rd-api-smoke/${name}.json'
+try:
+    print(json.load(open(p)).get('status'))
+except Exception:
+    print('unreadable')
+PY
+)
+            echo "- $name: HTTP $code, data_type=$data_type, status=$status" >> "$GITHUB_STEP_SUMMARY"
+          done
+
+      - name: Upload smoke artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ems-rd-api-smoke
+          path: ems-rd-api-smoke/
