@@ -1,0 +1,55 @@
+{
+  "checked_at": null,
+  "checked_by": null,
+  "environment": null,
+  "domains_checked": [
+    "https://nicheworks.app",
+    "https://nicheworks.pages.dev"
+  ],
+  "endpoints": {
+    "health": {
+      "url": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "error_code": null,
+      "decision_phase": null,
+      "public_ui_allowed": null,
+      "notes": null
+    },
+    "manifest": {
+      "url": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "error_code": null,
+      "decision_phase": null,
+      "public_ui_allowed": null,
+      "notes": null
+    },
+    "probe-status": {
+      "url": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "error_code": null,
+      "decision_phase": null,
+      "public_ui_allowed": null,
+      "notes": null
+    },
+    "precipitation-sample-real": {
+      "url": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "error_code": null,
+      "decision_phase": null,
+      "public_ui_allowed": null,
+      "notes": null
+    }
+  },
+  "branch_decision": null,
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "next_action": null
+}

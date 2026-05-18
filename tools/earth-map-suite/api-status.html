@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth Map Suite API Status (Research Only)</title>
+  <meta name="description" content="Research-only API status check page for Earth Map Suite.">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; line-height: 1.6; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .warn { background: #fff9e8; border-color: #f2d58a; }
+    .links a { display: inline-block; margin: 6px 10px 6px 0; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>Earth Map Suite API Status Check (Research Only)</h1>
+
+  <div class="card warn">
+    <p><strong>Research-only API status check.</strong></p>
+    <ul>
+      <li>Public real precipitation values are not enabled.</li>
+      <li>Storm / Compare / Card are not connected to real values.</li>
+      <li>Do not treat any result on this page as public real-observation enablement.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Manual endpoint links</h2>
+    <div class="links">
+      <a href="/api/earth-map-suite/health" target="_blank" rel="noopener">Open /health</a>
+      <a href="/api/earth-map-suite/manifest" target="_blank" rel="noopener">Open /manifest</a>
+      <a href="/api/earth-map-suite/probe-status" target="_blank" rel="noopener">Open /probe-status</a>
+      <a href="/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low" target="_blank" rel="noopener">Open /precipitation-sample-real (safe check)</a>
+    </div>
+    <p>Note: probe-status and precipitation-sample-real are manual checks only. This page does not auto-run expensive probes.</p>
+  </div>
+
+  <div class="card">
+    <h2>Quick fetch (safe endpoints only)</h2>
+    <button id="check-health">Fetch health</button>
+    <button id="check-manifest">Fetch manifest</button>
+    <pre id="output">No checks yet.</pre>
+  </div>
+
+  <script>
+    const output = document.getElementById('output');
+
+    async function runCheck(path) {
+      output.textContent = `Fetching ${path} ...`;
+      try {
+        const res = await fetch(path, { cache: 'no-store' });
+        const text = await res.text();
+        output.textContent = `HTTP ${res.status}\n\n${text}`;
+      } catch (err) {
+        output.textContent = `Fetch failed for ${path}: ${err && err.message ? err.message : String(err)}`;
+      }
+    }
+
+    document.getElementById('check-health').addEventListener('click', () => runCheck('/api/earth-map-suite/health'));
+    document.getElementById('check-manifest').addEventListener('click', () => runCheck('/api/earth-map-suite/manifest'));
+  </script>
+</body>
+</html>
