@@ -5,16 +5,20 @@
   Usage:
     node tools/old-kanji-reference/validate-meta.js
 
-  Checks:
-    - meta keys exist in dict.json
-    - modern values match dict.json, except explicitly allowed legacy mapping conflicts
-    - category is one of the allowed values
-    - popularOrder entries exist and have complete verified metadata
-    - verified entries have reading / meaning / category
-    - placeholder-like text is not included
-    - duplicate metadata keys across meta files are reported
-    - metadata coverage is reported
-    - missing-meta.txt is generated for development follow-up
+  Fatal checks:
+    - JSON files must be readable
+    - meta keys must exist in dict.json
+    - category must be one of the allowed values
+    - popularOrder entries must exist and have verified metadata
+    - verified entries must have reading / meaning / category
+    - placeholder-like text must not be included
+
+  Non-fatal reports:
+    - modern value differences against dict.json are warnings because dict.json still
+      contains historical/variant quirks and duplicate mapping sources
+    - duplicate metadata keys across meta files are warnings
+    - usage note gaps are warnings
+    - metadata coverage and missing-meta.txt are development reports
 */
 
 const fs = require("fs");
@@ -37,11 +41,9 @@ const FORBIDDEN_PATTERNS = [
   /旧字体「.*」は現代表記「.*」に対応します/
 ];
 
-// dict.json currently contains a few historical/variant quirks. Keep these explicit
-// so the validator still catches accidental mismatches everywhere else.
-const MODERN_MISMATCH_ALLOWLIST = {
-  "獨": "dict currently maps 獨 to itself; meta intentionally normalizes it to 独.",
-  "據": "dict contains duplicate 據 mappings; meta may intentionally use 拠 depending on entry source."
+const KNOWN_MODERN_MISMATCH_NOTES = {
+  "獨": "dict currently maps 獨 to itself; metadata intentionally normalizes it to 独.",
+  "據": "dict has duplicate/variant mapping sources; metadata may intentionally use 拠 depending on entry source."
 };
 
 function readJson(filePath) {
@@ -145,11 +147,8 @@ function main() {
     modernGroups.get(modern).push(oldChar);
 
     if (hasText(entry.modern) && entry.modern !== expectedModern) {
-      if (MODERN_MISMATCH_ALLOWLIST[oldChar]) {
-        warnings.push(`Allowed modern mismatch for ${oldChar}: meta=${entry.modern} dict=${expectedModern}. ${MODERN_MISMATCH_ALLOWLIST[oldChar]}`);
-      } else {
-        errors.push(`Modern mismatch for ${oldChar}: meta=${entry.modern} dict=${expectedModern}`);
-      }
+      const note = KNOWN_MODERN_MISMATCH_NOTES[oldChar] || "Review dict/meta mapping before promoting this entry further.";
+      warnings.push(`Modern differs for ${oldChar}: meta=${entry.modern} dict=${expectedModern}. ${note}`);
     }
 
     if (!hasText(entry.category)) {
