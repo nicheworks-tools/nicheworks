@@ -10,6 +10,6 @@
     ["ケーブルグランド|cable gland", "ケーブルグランド", "Cable gland", "./images/pilot/cable-gland.svg?v=20260513-asset-12", "ケーブル引込部の固定や防じん・防水に使う部材。", "Fitting used to secure and seal cable entries."],
     ["端子台|connector block|wiring connector block", "端子台", "Connector block", "./images/pilot/wiring-connector-block.svg?v=20260513-asset-12", "電線を整理して接続するための部材。", "Block used to organize and connect wiring."],
     ["スイッチプレート|switch plate", "スイッチプレート", "Switch plate", "./images/pilot/switch-plate.svg?v=20260513-asset-12", "スイッチやコンセントまわりの開口を覆う仕上げプレート。", "Finish plate used to cover switch or outlet openings."],
-    ["配線ダクト|wire duct", "配線ダクト", "Wire duct", "./images/pilot/wire-duct.svg?v=20260513-asset-12", "盤内や設備まわりで配線を整理するダクト。", "Duct used to organize wiring around panels or equipment."]
+    ["配線ダクト|wire duct", "配線ダクト", "Wire duct", "./images/pilot/electrical-wire-duct.svg?v=20260513-asset-12", "盤内や設備まわりで配線を整理するダクト。", "Duct used to organize wiring around panels or equipment."]
   ]
 }
