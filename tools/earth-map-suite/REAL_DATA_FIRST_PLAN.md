@@ -333,3 +333,11 @@ EMS-RD-16 next gate mapping:
 - `SAMPLE` → validate sampling gates
 - `DECODER` → isolated decoder feasibility
 - `PROBEFIX` → repair probe chain
+
+## EMS-RD-17 browser verification flow
+- api-status supports ?autorun=safe and ?run=safe.
+- JSON can be copied, downloaded, and restored from localStorage.
+- Probes remain manual (no probe autorun).
+- branch_decision: browser_result_missing (until actual artifact exists).
+- next_task_family: VERIFY (until branch changes).
+- next gate: health_manifest_reachable -> PROBE, health_manifest_failed -> ROUTE, browser_result_missing -> VERIFY.

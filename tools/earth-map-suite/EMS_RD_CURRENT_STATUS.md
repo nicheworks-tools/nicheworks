@@ -43,3 +43,9 @@
 - no raw pixel as rainfall
 - no synthetic fallback inside real block
 - no paid infrastructure
+
+## 9) EMS-RD-17
+- Autorun safe URL enabled (?autorun=safe / ?run=safe).
+- Copy/download/restore flow available.
+- Probes manual only.
+- branch_decision browser_result_missing; next_task_family VERIFY unless updated by real artifact.
