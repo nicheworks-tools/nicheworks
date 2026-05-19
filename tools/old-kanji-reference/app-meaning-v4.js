@@ -10,8 +10,10 @@
   let recentOldChars = [];
   let favoriteOldChars = [];
   let activePreset = "";
+  let currentDisplayMode = "detail";
 
   const recentStorageKey = "oldKanjiReference.recent.v1";
+  const displayModeStorageKey = "oldKanjiReference.displayMode.v1";
   const favoritesStorageKey = "oldKanjiReference.favorites.v1";
 
   const messages = {
@@ -37,6 +39,12 @@
     { id: "reading", ja: "読み", en: "Reading" },
     { id: "meaning", ja: "意味", en: "Meaning" },
     { id: "unicode", ja: "Unicode", en: "Unicode" }
+  ];
+
+  const displayModes = [
+    { id: "compact", ja: "コンパクト", en: "Compact" },
+    { id: "detail", ja: "詳細", en: "Detail" },
+    { id: "table", ja: "表形式", en: "Table" }
   ];
   const fallbackPopularOrder = ["會", "區", "國", "壽", "學", "廣", "德", "戀", "舊", "榮", "澤", "濱", "狀", "獨", "禮", "體", "邊", "邉", "醫", "鐵", "驛", "齋", "﨑", "龍", "櫻", "實"];
   const paletteOldChars = ["國","學","體","會","舊","澤","邊","邉","齋","齊","濱","﨑","龍","櫻","實","醫","鐵","驛","應","禮","廣","德","榮","壽"];
@@ -144,7 +152,7 @@
   }
   function createEntryCard(entry, compact){
     const card = document.createElement("article");
-    card.className = compact ? "kanji-card popular-card" : "kanji-card";
+    card.className = compact ? "kanji-card compact-card" : "kanji-card";
     card.dataset.old = entry.oldChar;
         const readingText = currentLang === "en" ? (entry.readingEn || entry.readingJa) : (entry.readingJa || entry.readingEn);
     const meaningText = currentLang === "en" ? (entry.meaningEn || entry.meaningJa) : (entry.meaningJa || entry.meaningEn);
@@ -171,7 +179,7 @@
     actions.appendChild(favoriteBtn);
     card.appendChild(actions);
     const converterAction = document.createElement("a");
-    converterAction.className = "converter-link";
+    converterAction.className = compact ? "converter-link converter-link-subtle" : "converter-link";
     converterAction.href = toConverterUrl(entry.oldChar);
     converterAction.innerHTML = '<span data-i18n="ja">変換ツールで使う</span><span data-i18n="en">Use in converter</span>';
     card.appendChild(converterAction);
@@ -263,6 +271,38 @@
     panel.appendChild(converterAction);
     switchLang(currentLang);
   }
+
+  function isValidDisplayMode(mode){ return ["compact", "detail", "table"].includes(mode); }
+  function getDefaultDisplayMode(){ return window.innerWidth <= 480 ? "compact" : "detail"; }
+  function loadDisplayMode(){
+    try {
+      const stored = localStorage.getItem(displayModeStorageKey);
+      if (isValidDisplayMode(stored)) return stored;
+    } catch (_err) {}
+    return getDefaultDisplayMode();
+  }
+  function setDisplayMode(mode){
+    if (!isValidDisplayMode(mode)) return;
+    currentDisplayMode = mode;
+    localStorage.setItem(displayModeStorageKey, mode);
+    renderAll();
+  }
+  function renderDisplayModes(){
+    const wrap = document.getElementById("displayModePanel");
+    if (!wrap) return;
+    wrap.innerHTML = `<p class="display-mode-heading"><span data-i18n="ja">表示モード</span><span data-i18n="en">Display mode</span></p><div class="display-mode-buttons"></div>`;
+    const buttons = wrap.querySelector(".display-mode-buttons");
+    displayModes.forEach((mode) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "display-mode-btn";
+      btn.dataset.mode = mode.id;
+      btn.textContent = mode[currentLang];
+      btn.classList.toggle("active", mode.id === currentDisplayMode);
+      btn.addEventListener("click", () => setDisplayMode(mode.id));
+      buttons.appendChild(btn);
+    });
+  }
   function renderSearchModes(){ const wrap = document.getElementById("searchModes"); if (!wrap) return; wrap.innerHTML = ""; searchModes.forEach(mode => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "search-mode-btn"; btn.dataset.mode = mode.id; btn.textContent = mode[currentLang]; btn.classList.toggle("active", mode.id === currentSearchMode); btn.addEventListener("click", () => { currentSearchMode = mode.id; renderAll(); }); wrap.appendChild(btn); }); }
   function renderFilters(){ const wrap = document.getElementById("filterButtons"); if (!wrap) return; wrap.innerHTML = ""; filters.forEach(filter => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "filter-btn"; btn.dataset.filter = filter.id; btn.textContent = filter[currentLang]; btn.classList.toggle("active", filter.id === currentFilter); btn.addEventListener("click", () => { currentFilter = filter.id; renderAll(); }); wrap.appendChild(btn); }); }
   function getFilteredEntries(){ const q = currentQuery.trim().toLowerCase(); return entriesCache.filter(entry => {
@@ -279,8 +319,74 @@
     panel.hidden = false; panel.innerHTML = lines.join("");
   }
   function renderGroupedByModern(){ let panel = document.getElementById("modernSummary"); const wrapper = document.querySelector(".group-wrapper"); if (!wrapper) return; if (!panel) { panel = document.createElement("section"); panel.id = "modernSummary"; panel.className = "modern-summary"; wrapper.insertBefore(panel, document.getElementById("filterButtons")); } const map = new Map(); entriesCache.forEach(entry => { if (!map.has(entry.newText)) map.set(entry.newText, []); map.get(entry.newText).push(entry.oldChar); }); const blocks = Array.from(map.entries()).filter(([, olds]) => olds.length > 1).sort((a,b)=>a[0].localeCompare(b[0],"ja")).map(([modern, olds]) => `<li><strong>${modern}</strong><div>${Array.from(new Set(olds)).join(" / ")}</div></li>`).join(""); if (!blocks) { panel.hidden = true; panel.innerHTML = ""; return; } panel.hidden = false; panel.innerHTML = `<h3><span data-i18n="ja">新字体別まとめ</span><span data-i18n="en">Grouped by modern form</span></h3><ul>${blocks}</ul>`; }
+
+  function createTableRow(entry){
+    const row = document.createElement("article");
+    row.className = "kanji-table-row";
+    row.dataset.old = entry.oldChar;
+    const readingText = currentLang === "en" ? (entry.readingEn || entry.readingJa) : (entry.readingJa || entry.readingEn);
+    const meaningText = currentLang === "en" ? (entry.meaningEn || entry.meaningJa) : (entry.meaningJa || entry.meaningEn);
+    row.innerHTML = `<div class="kanji-table-cell cell-old" data-label="${currentLang === "en" ? "Old" : "旧字"}">${entry.oldChar}</div>
+      <div class="kanji-table-cell cell-modern" data-label="${currentLang === "en" ? "Modern" : "新字"}">${entry.newText}</div>
+      <div class="kanji-table-cell" data-label="${currentLang === "en" ? "Reading" : "読み"}">${readingText || "-"}</div>
+      <div class="kanji-table-cell" data-label="${currentLang === "en" ? "Meaning" : "意味"}">${meaningText || "-"}</div>`;
+    const actions = document.createElement("div");
+    actions.className = "kanji-table-cell table-actions";
+    actions.setAttribute("data-label", currentLang === "en" ? "Actions" : "操作");
+    const detailBtn = document.createElement("button");
+    detailBtn.type = "button";
+    detailBtn.className = "copy-btn table-detail-btn";
+    detailBtn.textContent = currentLang === "en" ? "Details" : "詳細";
+    detailBtn.addEventListener("click", (ev) => { ev.stopPropagation(); activeDetailOldChar = entry.oldChar; renderDetailPanel(entry); });
+    actions.appendChild(detailBtn);
+    actions.appendChild(createCopyButton(entry.oldChar, "old"));
+    actions.appendChild(createCopyButton(entry.newText, "new"));
+    const favoriteBtn = document.createElement("button");
+    favoriteBtn.type = "button";
+    favoriteBtn.className = "favorite-toggle";
+    favoriteBtn.dataset.old = entry.oldChar;
+    favoriteBtn.setAttribute("aria-pressed", isFavorite(entry.oldChar) ? "true" : "false");
+    favoriteBtn.setAttribute("aria-label", favoriteLabel(entry.oldChar));
+    favoriteBtn.textContent = favoriteLabel(entry.oldChar);
+    actions.appendChild(favoriteBtn);
+    row.appendChild(actions);
+    row.addEventListener("click", (ev) => {
+      if (ev.target.closest(".copy-btn") || ev.target.closest(".favorite-toggle")) return;
+      activeDetailOldChar = entry.oldChar;
+      renderDetailPanel(entry);
+    });
+    return row;
+  }
+
+  function renderTableList(entries){
+    const section = document.createElement("section");
+    section.className = "group-section";
+    const list = document.createElement("div");
+    list.className = "kanji-table-list";
+    list.innerHTML = `<div class="kanji-table-head">
+      <span>${currentLang === "en" ? "Old" : "旧字"}</span>
+      <span>${currentLang === "en" ? "Modern" : "新字"}</span>
+      <span>${currentLang === "en" ? "Reading" : "読み"}</span>
+      <span>${currentLang === "en" ? "Meaning" : "意味"}</span>
+      <span>${currentLang === "en" ? "Actions" : "操作"}</span>
+    </div>`;
+    entries.forEach(entry => list.appendChild(createTableRow(entry)));
+    section.appendChild(list);
+    return section;
+  }
   function renderGroups(entries){ const container = document.getElementById("groupContainer"); const emptyMessage = document.getElementById("emptyMessage"); if (!container || !emptyMessage) return; container.innerHTML = ""; emptyMessage.hidden = entries.length > 0; renderReverseSummary(); if (!entries.length) return;
-    const section = document.createElement("section"); section.className = "group-section"; const grid = document.createElement("div"); grid.className = "kanji-grid"; entries.forEach(entry => grid.appendChild(createEntryCard(entry, false))); section.appendChild(grid); container.appendChild(section);
+    if (currentDisplayMode === "table") {
+      container.appendChild(renderTableList(entries));
+    } else {
+      const section = document.createElement("section");
+      section.className = "group-section";
+      const grid = document.createElement("div");
+      grid.className = "kanji-grid";
+      const compactMode = currentDisplayMode === "compact";
+      entries.forEach(entry => grid.appendChild(createEntryCard(entry, compactMode)));
+      section.appendChild(grid);
+      container.appendChild(section);
+    }
     if (activeDetailOldChar) { const selected = entries.find(e => e.oldChar === activeDetailOldChar); if (selected) renderDetailPanel(selected); }
   }
   function renderPopular(){ const container = document.getElementById("popularContainer"); if (!container) return; container.innerHTML = ""; const popularSet = getPopularSet(); entriesCache.filter(entry => popularSet.has(entry.oldChar) && entry.verified).slice(0, 26).forEach(entry => container.appendChild(createEntryCard(entry, true))); }
@@ -396,7 +502,7 @@
     copyWithFallback([headerJa, headerEn, sep, ...lines].join("\n")).then(() => showToast(messages[currentLang].copiedMarkdown));
   }
 
-  function renderAll(){ renderSearchModes(); renderFilters(); renderPalette(); renderPresets(); renderPopular(); renderFavorites(); renderRecent(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
+  function renderAll(){ renderSearchModes(); renderFilters(); renderDisplayModes(); renderPalette(); renderPresets(); renderPopular(); renderFavorites(); renderRecent(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
   function copyWithFallback(value){ if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(value); const textarea = document.createElement("textarea"); textarea.value = value; textarea.style.position = "fixed"; textarea.style.left = "-9999px"; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); textarea.remove(); return Promise.resolve(); }
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -427,6 +533,7 @@
     });
     recentOldChars = loadStoredList(recentStorageKey);
     favoriteOldChars = loadStoredList(favoritesStorageKey);
+    currentDisplayMode = loadDisplayMode();
     const params = new URLSearchParams(window.location.search);
     const qParam = params.get("q");
     const textParam = params.get("text");
