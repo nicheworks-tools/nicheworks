@@ -8,6 +8,14 @@ const json = (payload, status = 200) => new Response(JSON.stringify(payload, nul
 
 const ENDPOINTS = [
   {
+    path: "/api/earth-map-suite/self-check",
+    purpose: "route-level API namespace reachability check without upstream fetches",
+    stage: "ems-rd-14-verify",
+    external_fetch: false,
+    public_ui_allowed: false,
+    real_observation_public_ready: false,
+  },
+  {
     path: "/api/earth-map-suite/health",
     purpose: "lightweight deployment reachability check",
     stage: "ems-rd-06",
