@@ -232,3 +232,36 @@ Do:
 - `raw_pixel_read` → EMS-RD-12-SAMPLE
 - `decoder_strategy_required` → EMS-RD-12-DECODER
 - `endpoint_error` / `blocked` / `inconclusive` → EMS-RD-12-PROBEFIX
+
+### EMS-RD-12 local browser-result validation gate
+
+Current branch: `browser_result_missing`.
+
+Current active gate:
+
+1. run browser self-check
+2. paste JSON result
+3. validate JSON result
+4. select next task family
+
+References:
+
+- `tools/earth-map-suite/EMS_RD_12_BROWSER_RESULT_PASTE_GUIDE.md`
+- `tools/earth-map-suite/validate-browser-self-check-result.mjs`
+- `tools/earth-map-suite/EMS_RD_12_VALIDATION_COMMANDS.md`
+
+Safety constraints (unchanged):
+
+- `public_real_data_enabled=false`
+- `storm_compare_card_connected=false`
+- `precipitation-sample-real` is not public real output
+- Storm / Compare / Card remain disconnected
+
+Next gate mapping:
+
+- `health_manifest_reachable` → `EMS-RD-12-PROBE`
+- `health_manifest_failed` → `EMS-RD-12-ROUTE`
+- `raw_pixel_read` → `EMS-RD-12-SAMPLE`
+- `decoder_strategy_required` → `EMS-RD-12-DECODER`
+- `endpoint_error` / `blocked` / `inconclusive` → `EMS-RD-12-PROBEFIX`
+- `browser_result_missing` / `network_unverified` → `EMS-RD-12-VERIFY`

@@ -67,3 +67,26 @@ Storm real stays blocked unless all of the following are true:
 - showing raw/debug pixel as rainfall.
 - falling back from real failure to synthetic in the same result block.
 - labeling synthetic preview as JAXA/EORC data.
+
+## EMS-RD-12 status
+
+- current `branch_decision`: `browser_result_missing`
+- browser JSON result must be pasted and validated before branch routing
+- Storm real remains blocked
+
+Required unlock conditions remain:
+
+1. health endpoint reachable
+2. manifest endpoint reachable
+3. probe branch recorded
+4. `precipitation-sample-real` returns validated `real_observation`
+5. unit / scale / offset / NoData / geolocation verified
+6. source / license / provenance verified
+7. `EMS_RD_05_STORM_REAL_PRECHECK.md` approved
+
+Explicitly forbidden while blocked:
+
+- `app.js` real connection
+- raw/debug pixel as rainfall
+- synthetic fallback inside real result block
+- JAXA/EORC label on synthetic preview
