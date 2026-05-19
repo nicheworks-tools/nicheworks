@@ -8,52 +8,6 @@
       .replace(/'/g, "&#039;");
   }
 
-  function currentLang() {
-    return document.documentElement.lang === "en" ? "en" : "ja";
-  }
-
-  function applyLanguageScope(root = document) {
-    const lang = currentLang();
-    root.querySelectorAll("[data-i18n]").forEach((el) => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
-  }
-
-  function codePointToEntity(text) {
-    return Array.from(String(text || ""))
-      .map((char) => `&#x${char.codePointAt(0).toString(16).toUpperCase()};`)
-      .join("");
-  }
-
-  function fixEntityDetailPanel() {
-    const panel = document.getElementById("detailPanel");
-    if (!panel || !panel.classList.contains("open")) return;
-
-    applyLanguageScope(panel);
-
-    const glyphs = panel.querySelectorAll(".glyph-large");
-    const oldGlyph = glyphs[0]?.textContent || "";
-    const modernGlyph = glyphs[1]?.textContent || "";
-    if (!oldGlyph && !modernGlyph) return;
-
-    const oldEntity = codePointToEntity(oldGlyph);
-    const modernEntity = codePointToEntity(modernGlyph);
-
-    const entityBlock = Array.from(panel.querySelectorAll(".code-block")).find((block) => {
-      const text = block.textContent || "";
-      return text.includes("HTML") || text.includes("エンティティ");
-    });
-    const codeEls = entityBlock ? entityBlock.querySelectorAll("code") : [];
-    if (codeEls[0]) codeEls[0].textContent = oldEntity;
-    if (codeEls[1]) codeEls[1].textContent = modernEntity;
-
-    panel.querySelectorAll(".detail-actions .copy-btn").forEach((button) => {
-      const text = button.textContent || "";
-      if (text.includes("旧字HTML") || /old HTML/i.test(text)) button.dataset.copyValue = oldEntity;
-      if (text.includes("新字HTML") || /modern HTML/i.test(text)) button.dataset.copyValue = modernEntity;
-    });
-  }
-
   function enhanceMetaLine(meta) {
     if (!meta || meta.dataset.badgeEnhanced === "1") return;
 
@@ -128,8 +82,10 @@
   }
 
   function syncLanguageDisplay() {
-    applyLanguageScope(document);
-    fixEntityDetailPanel();
+    const lang = document.documentElement.lang === "en" ? "en" : "ja";
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
+    });
   }
 
   function enhancePage() {
@@ -145,8 +101,6 @@
     const target = document.getElementById("groupContainer") || document.body;
     const observer = new MutationObserver(() => enhancePage());
     observer.observe(target, { childList: true, subtree: true });
-
-    document.addEventListener("click", () => setTimeout(fixEntityDetailPanel, 0), true);
 
     document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach((btn) => {
       btn.addEventListener("click", () => setTimeout(syncLanguageDisplay, 0));

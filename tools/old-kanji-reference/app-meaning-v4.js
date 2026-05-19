@@ -64,6 +64,22 @@
   function setStatusText(text){ const el = document.getElementById("statusMessage"); if (el) el.textContent = text || ""; }
   function buildEntries(dict){ const popularOrder = getPopularOrder(); entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => { const meta = getMeta(oldChar); const newText = Array.isArray(newChar) ? newChar.join("、") : String(newChar || ""); return { oldChar, newText, oldCode: getCodePoints(oldChar), newCode: getCodePoints(newText), category: getCategory(oldChar), verified: Boolean(meta.verified), readingJa: meta.readingJa || "", readingEn: meta.readingEn || "", meaningJa: meta.meaningJa || "", meaningEn: meta.meaningEn || "", usageJa: meta.usageJa || "", usageEn: meta.usageEn || "" }; }); entriesCache.sort((a,b) => { const ia = popularOrder.indexOf(a.oldChar); const ib = popularOrder.indexOf(b.oldChar); if (ia >= 0 && ib >= 0) return ia - ib; if (ia >= 0) return -1; if (ib >= 0) return 1; return a.oldChar.localeCompare(b.oldChar, "ja"); }); }
   function createCopyButton(value, kind){ const btn = document.createElement("button"); btn.type = "button"; btn.className = "copy-btn"; btn.dataset.copyValue = value; btn.dataset.copyKind = kind; btn.innerHTML = kind === "new" ? '<span data-i18n="ja">新字をコピー</span><span data-i18n="en">Copy modern</span>' : '<span data-i18n="ja">旧字をコピー</span><span data-i18n="en">Copy old</span>'; return btn; }
+  function createDetailCodeCopyButton(copyValue, toastJa, toastEn, labelJa, labelEn){
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "copy-btn";
+    button.dataset.copyValue = copyValue;
+    button.dataset.copyToastJa = toastJa;
+    button.dataset.copyToastEn = toastEn;
+    const ja = document.createElement("span");
+    ja.dataset.i18n = "ja";
+    ja.textContent = labelJa;
+    const en = document.createElement("span");
+    en.dataset.i18n = "en";
+    en.textContent = labelEn;
+    button.append(ja, en);
+    return button;
+  }
   function createEntryCard(entry, compact){
     const card = document.createElement("article");
     card.className = compact ? "kanji-card popular-card" : "kanji-card";
@@ -141,8 +157,8 @@
       </div>
       <div class="code-block">
         <h4><span data-i18n="ja">HTMLエンティティ</span><span data-i18n="en">HTML entity</span></h4>
-        <p class="detail-row"><strong><span data-i18n="ja">旧字体</span><span data-i18n="en">Old form</span></strong> <code>${oldHtmlEntity}</code></p>
-        <p class="detail-row"><strong><span data-i18n="ja">新字体</span><span data-i18n="en">Modern form</span></strong> <code>${modernHtmlEntity}</code></p>
+        <p class="detail-row detail-row-entity detail-row-entity-old"><strong><span data-i18n="ja">旧字体</span><span data-i18n="en">Old form</span></strong> <code></code></p>
+        <p class="detail-row detail-row-entity detail-row-entity-modern"><strong><span data-i18n="ja">新字体</span><span data-i18n="en">Modern form</span></strong> <code></code></p>
       </div>
     </section>
     <section class="font-compare">
@@ -155,20 +171,24 @@
       <p><span data-i18n="ja">表示される字形は端末・ブラウザ・フォントによって異なる場合があります。</span><span data-i18n="en">Rendered glyphs may vary by device, browser, and font.</span></p>
       ${showCompatNote ? `<p class="compat-emphasis"><span data-i18n="ja">この文字は環境やフォントによって表示差が出る場合があります。公的書類や氏名では、実際の登録字体を確認してください。</span><span data-i18n="en">This character may render differently depending on the font or environment. For names or official documents, confirm the actually registered form.</span></p>` : ""}
     </section>`;
+    const oldEntityCode = panel.querySelector(".detail-row-entity-old code");
+    const modernEntityCode = panel.querySelector(".detail-row-entity-modern code");
+    if (oldEntityCode) oldEntityCode.textContent = oldHtmlEntity;
+    if (modernEntityCode) modernEntityCode.textContent = modernHtmlEntity;
     const actions = document.createElement("div"); actions.className = "detail-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); panel.appendChild(actions);
     const codeActions = document.createElement("div");
     codeActions.className = "detail-actions";
-    codeActions.innerHTML = `
-      <button type="button" class="copy-btn" data-copy-value="${oldUnicode}" data-copy-toast-ja="旧字Unicodeをコピーしました" data-copy-toast-en="Copied old Unicode"><span data-i18n="ja">旧字Unicodeをコピー</span><span data-i18n="en">Copy old Unicode</span></button>
-      <button type="button" class="copy-btn" data-copy-value="${modernUnicode}" data-copy-toast-ja="新字Unicodeをコピーしました" data-copy-toast-en="Copied modern Unicode"><span data-i18n="ja">新字Unicodeをコピー</span><span data-i18n="en">Copy modern Unicode</span></button>
-      <button type="button" class="copy-btn" data-copy-value="${oldHtmlEntity}" data-copy-toast-ja="旧字HTMLをコピーしました" data-copy-toast-en="Copied old HTML"><span data-i18n="ja">旧字HTMLをコピー</span><span data-i18n="en">Copy old HTML</span></button>
-      <button type="button" class="copy-btn" data-copy-value="${modernHtmlEntity}" data-copy-toast-ja="新字HTMLをコピーしました" data-copy-toast-en="Copied modern HTML"><span data-i18n="ja">新字HTMLをコピー</span><span data-i18n="en">Copy modern HTML</span></button>`;
+    codeActions.appendChild(createDetailCodeCopyButton(oldUnicode, "旧字Unicodeをコピーしました", "Copied old Unicode", "旧字Unicodeをコピー", "Copy old Unicode"));
+    codeActions.appendChild(createDetailCodeCopyButton(modernUnicode, "新字Unicodeをコピーしました", "Copied modern Unicode", "新字Unicodeをコピー", "Copy modern Unicode"));
+    codeActions.appendChild(createDetailCodeCopyButton(oldHtmlEntity, "旧字HTMLをコピーしました", "Copied old HTML", "旧字HTMLをコピー", "Copy old HTML"));
+    codeActions.appendChild(createDetailCodeCopyButton(modernHtmlEntity, "新字HTMLをコピーしました", "Copied modern HTML", "新字HTMLをコピー", "Copy modern HTML"));
     panel.appendChild(codeActions);
     const converterAction = document.createElement("a");
     converterAction.className = "converter-link converter-link-detail";
     converterAction.href = toConverterUrl(entry.oldChar);
     converterAction.innerHTML = '<span data-i18n="ja">この文字を変換ツールで使う</span><span data-i18n="en">Use this character in converter</span>';
     panel.appendChild(converterAction);
+    switchLang(currentLang);
   }
   function renderSearchModes(){ const wrap = document.getElementById("searchModes"); if (!wrap) return; wrap.innerHTML = ""; searchModes.forEach(mode => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "search-mode-btn"; btn.dataset.mode = mode.id; btn.textContent = mode[currentLang]; btn.classList.toggle("active", mode.id === currentSearchMode); btn.addEventListener("click", () => { currentSearchMode = mode.id; renderAll(); }); wrap.appendChild(btn); }); }
   function renderFilters(){ const wrap = document.getElementById("filterButtons"); if (!wrap) return; wrap.innerHTML = ""; filters.forEach(filter => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "filter-btn"; btn.dataset.filter = filter.id; btn.textContent = filter[currentLang]; btn.classList.toggle("active", filter.id === currentFilter); btn.addEventListener("click", () => { currentFilter = filter.id; renderAll(); }); wrap.appendChild(btn); }); }
