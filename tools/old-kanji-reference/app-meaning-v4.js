@@ -40,6 +40,9 @@
   const getPopularOrder = () => Array.isArray(metaCache.popularOrder) && metaCache.popularOrder.length ? metaCache.popularOrder : fallbackPopularOrder;
   const getPopularSet = () => new Set(getPopularOrder());
   const getCodePoints = (text) => Array.from(String(text || "")).map(ch => `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")}`).join(" ");
+  const getCodePointList = (text) => Array.from(String(text || "")).map(ch => `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")}`);
+  const getHtmlHexEntity = (text) => Array.from(String(text || "")).map(ch => `&#x${ch.codePointAt(0).toString(16).toUpperCase()};`).join("");
+  const hasCompatibilityIdeograph = (text) => Array.from(String(text || "")).some(ch => { const cp = ch.codePointAt(0); return cp >= 0xF900 && cp <= 0xFAFF; });
   const getMeta = (oldChar) => (metaCache.entries && metaCache.entries[oldChar]) || {};
   const getCategory = (oldChar) => { const meta = getMeta(oldChar); if (meta.category) return meta.category; if (getPopularSet().has(oldChar)) return "popular"; if (nameOld.has(oldChar)) return "name"; if (commonOld.has(oldChar)) return "common"; if (documentOld.has(oldChar)) return "document"; return "rare"; };
   const labelForCategory = (category) => (filters.find(item => item.id === category) || filters[filters.length - 1])[currentLang];
@@ -105,8 +108,20 @@
     if (!wrapper) return;
     if (!panel) { panel = document.createElement("section"); panel.id = "detailPanel"; panel.className = "detail-panel"; wrapper.insertBefore(panel, document.getElementById("groupContainer")); }
     const related = getRelatedOldForms(entry);
+    const oldUnicode = getCodePointList(entry.oldChar).join(" ");
+    const modernUnicode = getCodePointList(entry.newText).join(" ");
+    const oldHtmlEntity = getHtmlHexEntity(entry.oldChar);
+    const modernHtmlEntity = getHtmlHexEntity(entry.newText);
+    const showCompatNote = hasCompatibilityIdeograph(entry.oldChar) || hasCompatibilityIdeograph(entry.newText);
     panel.classList.add("open");
     panel.innerHTML = `<h3 class="detail-heading"><span data-i18n="ja">詳細</span><span data-i18n="en">Details</span>: ${entry.oldChar} → ${entry.newText}</h3>
+    <section class="glyph-compare">
+      <h4><span data-i18n="ja">字形比較</span><span data-i18n="en">Glyph comparison</span></h4>
+      <div class="glyph-compare-grid">
+        <div class="glyph-box"><p class="glyph-label"><span data-i18n="ja">旧字体</span><span data-i18n="en">Old form</span></p><p class="glyph-large">${entry.oldChar}</p></div>
+        <div class="glyph-box"><p class="glyph-label"><span data-i18n="ja">新字体</span><span data-i18n="en">Modern form</span></p><p class="glyph-large">${entry.newText}</p></div>
+      </div>
+    </section>
     <div class="detail-grid">
       <p class="detail-row"><strong><span data-i18n="ja">旧字体</span><span data-i18n="en">Old form</span></strong> ${entry.oldChar}</p>
       <p class="detail-row"><strong><span data-i18n="ja">新字体</span><span data-i18n="en">Modern form</span></strong> ${entry.newText}</p>
@@ -115,11 +130,40 @@
       ${entry.usageJa || entry.usageEn ? `<p class="detail-row"><strong><span data-i18n="ja">用途</span><span data-i18n="en">Usage</span></strong> ${currentLang === "en" ? (entry.usageEn || entry.usageJa) : (entry.usageJa || entry.usageEn)}</p>` : ""}
       <p class="detail-row"><strong><span data-i18n="ja">分類</span><span data-i18n="en">Category</span></strong> ${labelForCategory(entry.category)}</p>
       <p class="detail-row"><strong><span data-i18n="ja">確認状態</span><span data-i18n="en">Status</span></strong> ${entry.verified ? messages[currentLang].verified : messages[currentLang].pairOnly}</p>
-      <p class="detail-row"><strong>Unicode</strong> <span data-i18n="ja">旧字 ${entry.oldCode} / 新字 ${entry.newCode}</span><span data-i18n="en">Old ${entry.oldCode} / Modern ${entry.newCode}</span></p>
       ${related.length ? `<p class="detail-row"><strong><span data-i18n="ja">関連する旧字体</span><span data-i18n="en">Related old forms</span></strong> ${related.join(" / ")}</p>` : ""}
       ${!entry.verified && !hasMeaning(entry) ? `<p class="pair-only-note"><span data-i18n="ja">この項目は旧字→新字の対応情報を中心に掲載しています。</span><span data-i18n="en">This entry currently focuses on the old → modern mapping.</span></p>` : ""}
     </div>`;
+    panel.innerHTML += `<section class="code-copy-grid">
+      <div class="code-block">
+        <h4>Unicode</h4>
+        <p class="detail-row"><strong><span data-i18n="ja">旧字体</span><span data-i18n="en">Old form</span></strong> ${oldUnicode}</p>
+        <p class="detail-row"><strong><span data-i18n="ja">新字体</span><span data-i18n="en">Modern form</span></strong> ${modernUnicode}</p>
+      </div>
+      <div class="code-block">
+        <h4><span data-i18n="ja">HTMLエンティティ</span><span data-i18n="en">HTML entity</span></h4>
+        <p class="detail-row"><strong><span data-i18n="ja">旧字体</span><span data-i18n="en">Old form</span></strong> <code>${oldHtmlEntity}</code></p>
+        <p class="detail-row"><strong><span data-i18n="ja">新字体</span><span data-i18n="en">Modern form</span></strong> <code>${modernHtmlEntity}</code></p>
+      </div>
+    </section>
+    <section class="font-compare">
+      <h4><span data-i18n="ja">フォント差比較</span><span data-i18n="en">Font comparison</span></h4>
+      <p class="font-row font-serif"><strong>Serif</strong><span>${entry.oldChar} / ${entry.newText}</span></p>
+      <p class="font-row font-sans"><strong>Sans-serif</strong><span>${entry.oldChar} / ${entry.newText}</span></p>
+      <p class="font-row font-system"><strong>System</strong><span>${entry.oldChar} / ${entry.newText}</span></p>
+    </section>
+    <section class="compat-note">
+      <p><span data-i18n="ja">表示される字形は端末・ブラウザ・フォントによって異なる場合があります。</span><span data-i18n="en">Rendered glyphs may vary by device, browser, and font.</span></p>
+      ${showCompatNote ? `<p class="compat-emphasis"><span data-i18n="ja">この文字は環境やフォントによって表示差が出る場合があります。公的書類や氏名では、実際の登録字体を確認してください。</span><span data-i18n="en">This character may render differently depending on the font or environment. For names or official documents, confirm the actually registered form.</span></p>` : ""}
+    </section>`;
     const actions = document.createElement("div"); actions.className = "detail-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); panel.appendChild(actions);
+    const codeActions = document.createElement("div");
+    codeActions.className = "detail-actions";
+    codeActions.innerHTML = `
+      <button type="button" class="copy-btn" data-copy-value="${oldUnicode}" data-copy-toast-ja="旧字Unicodeをコピーしました" data-copy-toast-en="Copied old Unicode"><span data-i18n="ja">旧字Unicodeをコピー</span><span data-i18n="en">Copy old Unicode</span></button>
+      <button type="button" class="copy-btn" data-copy-value="${modernUnicode}" data-copy-toast-ja="新字Unicodeをコピーしました" data-copy-toast-en="Copied modern Unicode"><span data-i18n="ja">新字Unicodeをコピー</span><span data-i18n="en">Copy modern Unicode</span></button>
+      <button type="button" class="copy-btn" data-copy-value="${oldHtmlEntity}" data-copy-toast-ja="旧字HTMLをコピーしました" data-copy-toast-en="Copied old HTML"><span data-i18n="ja">旧字HTMLをコピー</span><span data-i18n="en">Copy old HTML</span></button>
+      <button type="button" class="copy-btn" data-copy-value="${modernHtmlEntity}" data-copy-toast-ja="新字HTMLをコピーしました" data-copy-toast-en="Copied modern HTML"><span data-i18n="ja">新字HTMLをコピー</span><span data-i18n="en">Copy modern HTML</span></button>`;
+    panel.appendChild(codeActions);
     const converterAction = document.createElement("a");
     converterAction.className = "converter-link converter-link-detail";
     converterAction.href = toConverterUrl(entry.oldChar);
@@ -276,7 +320,7 @@
       const detectorBtn = ev.target.closest(".detector-item-btn");
       if (detectorBtn) { const old = detectorBtn.dataset.old; const selected = entriesCache.find(entry => entry.oldChar === old); if (selected) { activeDetailOldChar = selected.oldChar; renderDetailPanel(selected); } return; }
       const target = ev.target.closest(".copy-btn");
-      if (target) { const value = target.dataset.copyValue; const kind = target.dataset.copyKind || "old"; copyWithFallback(value).then(() => showToast(`${kind === "new" ? messages[currentLang].copiedNew : messages[currentLang].copiedOld}：${value}`)); }
+      if (target) { const value = target.dataset.copyValue; const kind = target.dataset.copyKind || "old"; const toast = currentLang === "en" ? target.dataset.copyToastEn : target.dataset.copyToastJa; copyWithFallback(value).then(() => showToast(toast || `${kind === "new" ? messages[currentLang].copiedNew : messages[currentLang].copiedOld}：${value}`)); }
       const toggle = ev.target.closest(".mobile-detail-toggle");
       if (toggle) { const card = toggle.closest(".kanji-card"); if (!card) return; card.classList.toggle("mobile-open"); toggle.innerHTML = card.classList.contains("mobile-open") ? `<span data-i18n="ja">${messages.ja.hideDetails}</span><span data-i18n="en">${messages.en.hideDetails}</span>` : `<span data-i18n="ja">${messages.ja.showDetails}</span><span data-i18n="en">${messages.en.showDetails}</span>`; switchLang(currentLang); renderDetector(); }
     });
