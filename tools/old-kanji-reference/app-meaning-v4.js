@@ -7,6 +7,7 @@
   let metaCache = { popularOrder: [], entries: {} };
   let shapeNotesCache = {};
   let strokeCountsCache = {};
+  let compatibilityNotesCache = {};
   let activeDetailOldChar = "";
   let loadFailed = false;
   let recentOldChars = [];
@@ -60,7 +61,11 @@
   const getCodePoints = (text) => Array.from(String(text || "")).map(ch => `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")}`).join(" ");
   const getCodePointList = (text) => Array.from(String(text || "")).map(ch => `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")}`);
   const getHtmlHexEntity = (text) => Array.from(String(text || "")).map(ch => `&#x${ch.codePointAt(0).toString(16).toUpperCase()};`).join("");
-  const hasCompatibilityIdeograph = (text) => Array.from(String(text || "")).some(ch => { const cp = ch.codePointAt(0); return cp >= 0xF900 && cp <= 0xFAFF; });
+  const getCodePointInfo = (text) => Array.from(String(text || "")).map(ch => ({ char: ch, codePoint: ch.codePointAt(0) }));
+  const hasCompatibilityIdeograph = (text) => getCodePointInfo(text).some(item => item.codePoint >= 0xF900 && item.codePoint <= 0xFAFF);
+  const hasSupplementaryPlaneChar = (text) => getCodePointInfo(text).some(item => item.codePoint > 0xFFFF);
+  const hasVariationSelector = (text) => getCodePointInfo(text).some(item => (item.codePoint >= 0xFE00 && item.codePoint <= 0xFE0F) || (item.codePoint >= 0xE0100 && item.codePoint <= 0xE01EF));
+  const getCompatibilityNote = (oldChar) => (compatibilityNotesCache && compatibilityNotesCache[oldChar]) || null;
   const getMeta = (oldChar) => (metaCache.entries && metaCache.entries[oldChar]) || {};
   const getShapeNote = (oldChar) => (shapeNotesCache && shapeNotesCache[oldChar]) || null;
   const getStrokeCount = (oldChar) => (strokeCountsCache && strokeCountsCache[oldChar]) || null;
@@ -79,7 +84,7 @@
   function switchLang(lang){ currentLang = lang === "en" ? "en" : "ja"; document.documentElement.lang = currentLang; document.querySelectorAll("[data-i18n]").forEach(el => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; }); document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang)); const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.placeholder = getSearchHint(searchInput, currentLang); const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.placeholder = currentLang === "en" ? (detectorInput.dataset.placeholderEn || "") : (detectorInput.dataset.placeholderJa || ""); }
   function showToast(text){ const toast = document.getElementById("toast"); if (!toast) return; toast.textContent = text; toast.classList.add("show"); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.remove("show"), 1600); }
   async function fetchJson(path){ const res = await fetch(path, { cache: "no-store" }); if (!res.ok) throw new Error(`Failed to load ${path}`); return res.json(); }
-  async function loadData(){ const [dict, meta, extra2, extra3, extra4, extra5, extra6, shapeNotes, strokeCounts] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-4.json?v=20260519-okj-extra-4").catch(() => ({ entries: {} })), fetchJson("./meta-extra-5.json?v=20260519-okj-extra-5").catch(() => ({ entries: {} })), fetchJson("./meta-extra-6.json?v=20260519-okj-extra-6").catch(() => ({ entries: {} })), fetchJson("./shape-notes.json").catch(() => ({ entries: {} })), fetchJson("./stroke-counts.json").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}, extra4.entries || {}, extra5.entries || {}, extra6.entries || {}) }; shapeNotesCache = (shapeNotes && shapeNotes.entries) || {}; strokeCountsCache = (strokeCounts && strokeCounts.entries) || {}; return dict; }
+  async function loadData(){ const [dict, meta, extra2, extra3, extra4, extra5, extra6, shapeNotes, strokeCounts, compatibilityNotes] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-4.json?v=20260519-okj-extra-4").catch(() => ({ entries: {} })), fetchJson("./meta-extra-5.json?v=20260519-okj-extra-5").catch(() => ({ entries: {} })), fetchJson("./meta-extra-6.json?v=20260519-okj-extra-6").catch(() => ({ entries: {} })), fetchJson("./shape-notes.json").catch(() => ({ entries: {} })), fetchJson("./stroke-counts.json").catch(() => ({ entries: {} })), fetchJson("./compatibility-notes.json").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}, extra4.entries || {}, extra5.entries || {}, extra6.entries || {}) }; shapeNotesCache = (shapeNotes && shapeNotes.entries) || {}; strokeCountsCache = (strokeCounts && strokeCounts.entries) || {}; compatibilityNotesCache = (compatibilityNotes && compatibilityNotes.entries) || {}; return dict; }
   function setCounts(dict){ const oldCount = Object.keys(dict.old_to_new || {}).length; document.querySelectorAll('[data-count="old"]').forEach(el => { el.textContent = oldCount; }); }
   function setStatusText(text){ const el = document.getElementById("statusMessage"); if (el) el.textContent = text || ""; }
   function buildEntries(dict){ const popularOrder = getPopularOrder(); entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => { const meta = getMeta(oldChar); const newText = Array.isArray(newChar) ? newChar.join("、") : String(newChar || ""); return { oldChar, newText, oldCode: getCodePoints(oldChar), newCode: getCodePoints(newText), category: getCategory(oldChar), verified: Boolean(meta.verified), readingJa: meta.readingJa || "", readingEn: meta.readingEn || "", meaningJa: meta.meaningJa || "", meaningEn: meta.meaningEn || "", usageJa: meta.usageJa || "", usageEn: meta.usageEn || "" }; }); entriesCache.sort((a,b) => { const ia = popularOrder.indexOf(a.oldChar); const ib = popularOrder.indexOf(b.oldChar); if (ia >= 0 && ib >= 0) return ia - ib; if (ia >= 0) return -1; if (ib >= 0) return 1; return a.oldChar.localeCompare(b.oldChar, "ja"); }); }
@@ -214,7 +219,31 @@
     const strokeCount = getStrokeCount(entry.oldChar);
     const defaultStrokeNoteJa = "画数は辞書・字体・数え方によって差が出る場合があります。参考値として確認してください。";
     const defaultStrokeNoteEn = "Stroke counts may vary by dictionary, glyph form, or counting method. Treat this as a reference value.";
-    const showCompatNote = hasCompatibilityIdeograph(entry.oldChar) || hasCompatibilityIdeograph(entry.newText);
+    const compatibilityNote = getCompatibilityNote(entry.oldChar);
+    const hasCompatRisk = hasCompatibilityIdeograph(entry.oldChar) || hasCompatibilityIdeograph(entry.newText);
+    const hasSupplementaryRisk = hasSupplementaryPlaneChar(entry.oldChar) || hasSupplementaryPlaneChar(entry.newText);
+    const hasVariationRisk = hasVariationSelector(entry.oldChar) || hasVariationSelector(entry.newText);
+    const shouldShowCompatibilitySection = Boolean(compatibilityNote || hasCompatRisk || hasSupplementaryRisk || hasVariationRisk);
+    let fallbackJa = "";
+    let fallbackEn = "";
+    if (!compatibilityNote && shouldShowCompatibilitySection) {
+      const partsJa = [];
+      const partsEn = [];
+      if (hasCompatRisk) {
+        partsJa.push("この文字は互換漢字の範囲に含まれるため、環境やフォントによって表示差が出る場合があります。");
+        partsEn.push("This character is in a compatibility ideograph range and may render differently depending on the environment or font.");
+      }
+      if (hasSupplementaryRisk) {
+        partsJa.push("この文字は一部の古い環境やアプリで正しく表示・保存できない場合があります。");
+        partsEn.push("This character may not display or save correctly in some older environments or apps.");
+      }
+      if (hasVariationRisk) {
+        partsJa.push("この文字は異体字セレクタを含む可能性があり、対応していない環境では見え方が変わる場合があります。");
+        partsEn.push("This character may include a variation selector, and unsupported environments may render it differently.");
+      }
+      fallbackJa = partsJa.join(" ");
+      fallbackEn = partsEn.join(" ");
+    }
     panel.classList.add("open");
     panel.innerHTML = `<h3 class="detail-heading"><span data-i18n="ja">詳細</span><span data-i18n="en">Details</span>: ${entry.oldChar} → ${entry.newText}</h3>
     <section class="glyph-compare">
@@ -282,11 +311,29 @@
       <p class="font-row font-serif"><strong>Serif</strong><span>${entry.oldChar} / ${entry.newText}</span></p>
       <p class="font-row font-sans"><strong>Sans-serif</strong><span>${entry.oldChar} / ${entry.newText}</span></p>
       <p class="font-row font-system"><strong>System</strong><span>${entry.oldChar} / ${entry.newText}</span></p>
-    </section>
-    <section class="compat-note">
-      <p><span data-i18n="ja">表示される字形は端末・ブラウザ・フォントによって異なる場合があります。</span><span data-i18n="en">Rendered glyphs may vary by device, browser, and font.</span></p>
-      ${showCompatNote ? `<p class="compat-emphasis"><span data-i18n="ja">この文字は環境やフォントによって表示差が出る場合があります。公的書類や氏名では、実際の登録字体を確認してください。</span><span data-i18n="en">This character may render differently depending on the font or environment. For names or official documents, confirm the actually registered form.</span></p>` : ""}
     </section>`;
+    if (shouldShowCompatibilitySection) {
+      const riskLevel = compatibilityNote?.riskLevel || "medium";
+      const riskJa = { low: "低", medium: "中", high: "高" }[riskLevel] || "中";
+      const riskEn = { low: "Low", medium: "Medium", high: "High" }[riskLevel] || "Medium";
+      const summaryJa = compatibilityNote?.summaryJa || fallbackJa;
+      const summaryEn = compatibilityNote?.summaryEn || fallbackEn;
+      const copyNoteJa = compatibilityNote?.copyNoteJa || "下のUnicodeコピーも確認に使えます。";
+      const copyNoteEn = compatibilityNote?.copyNoteEn || "You can also use the Unicode copy buttons below for checking.";
+      const technicalJa = compatibilityNote?.technicalJa || fallbackJa;
+      const technicalEn = compatibilityNote?.technicalEn || fallbackEn;
+      const recommendedCheckJa = compatibilityNote?.recommendedCheckJa || "貼り付け後に、表示された字形とUnicodeを確認してください。";
+      const recommendedCheckEn = compatibilityNote?.recommendedCheckEn || "After pasting, check the rendered glyph and Unicode code point.";
+      panel.innerHTML += `<section class="compatibility-note"><h4><span data-i18n="ja">表示環境の注意</span><span data-i18n="en">Rendering / compatibility note</span></h4>
+      <p class="compatibility-risk ${riskLevel}"><span data-i18n="ja">注意レベル: ${riskJa}</span><span data-i18n="en">Risk level: ${riskEn}</span></p>
+      <div class="compatibility-note-grid">
+        <p class="compatibility-note-row"><span class="compatibility-note-label"><span data-i18n="ja">起きやすいこと</span><span data-i18n="en">What may happen</span></span><span class="compatibility-note-text"><span data-i18n="ja">${summaryJa}</span><span data-i18n="en">${summaryEn}</span></span></p>
+        <p class="compatibility-note-row"><span class="compatibility-note-label"><span data-i18n="ja">コピー時の注意</span><span data-i18n="en">Copy note</span></span><span class="compatibility-note-text"><span data-i18n="ja">${copyNoteJa}</span><span data-i18n="en">${copyNoteEn}</span></span></p>
+        <p class="compatibility-note-row"><span class="compatibility-note-label"><span data-i18n="ja">技術メモ</span><span data-i18n="en">Technical note</span></span><span class="compatibility-note-text"><span data-i18n="ja">${technicalJa}</span><span data-i18n="en">${technicalEn}</span></span></p>
+        <p class="compatibility-note-row"><span class="compatibility-note-label"><span data-i18n="ja">確認ポイント</span><span data-i18n="en">Recommended check</span></span><span class="compatibility-note-text"><span data-i18n="ja">${recommendedCheckJa}</span><span data-i18n="en">${recommendedCheckEn}</span></span></p>
+      </div>
+      <p class="compatibility-note-caution"><span data-i18n="ja">旧字Unicodeを確認 / 新字Unicodeを確認（下のUnicodeコピーも確認に使えます。）</span><span data-i18n="en">Check old Unicode / Check modern Unicode (You can also use the Unicode copy buttons below for checking.)</span></p></section>`;
+    }
     const oldEntityCode = panel.querySelector(".detail-row-entity-old code");
     const modernEntityCode = panel.querySelector(".detail-row-entity-modern code");
     if (oldEntityCode) oldEntityCode.textContent = oldHtmlEntity;
