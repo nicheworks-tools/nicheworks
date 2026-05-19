@@ -18,6 +18,9 @@
   const recentStorageKey = "oldKanjiReference.recent.v1";
   const displayModeStorageKey = "oldKanjiReference.displayMode.v1";
   const favoritesStorageKey = "oldKanjiReference.favorites.v1";
+  const quizStatsStorageKey = "oldKanjiReference.quizStats.v1";
+
+  let quizState = { mode: "oldToModern", preset: "common", question: null, answered: false, selected: "", result: "", canGenerate: false, stats: { answered: 0, correct: 0 } };
 
   const messages = {
     ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応情報のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました", copiedMarkdown: "Markdown表をコピーしました", exportedCsv: "CSVを保存しました", exportedJson: "JSONを保存しました", nothingToExport: "出力できるデータがありません", noDetectorTextToSend: "変換する文章がありません" },
@@ -74,6 +77,67 @@
   const hasMeaning = (entry) => Boolean(entry.readingJa || entry.readingEn || entry.meaningJa || entry.meaningEn);
   const getRelatedOldForms = (entry) => entriesCache.filter(e => e.newText === entry.newText && e.oldChar !== entry.oldChar).map(e => e.oldChar);
 
+
+  const quizModes = [
+    { id: "oldToModern", ja: "旧字 → 新字", en: "Old → Modern" },
+    { id: "modernToOld", ja: "新字 → 旧字", en: "Modern → Old" },
+    { id: "readingToOld", ja: "読み → 旧字", en: "Reading → Old" }
+  ];
+  const quizPresets = [
+    { id: "common", ja: "よく使う旧字体", en: "Common old forms" },
+    { id: "name", ja: "人名・地名", en: "Names / Places" },
+    { id: "document", ja: "文献・古文書", en: "Old documents" },
+    { id: "random", ja: "ランダム", en: "Random" }
+  ];
+
+  function pickRandom(list){ return list[Math.floor(Math.random()*list.length)]; }
+  function shuffle(list){ const arr=[...list]; for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+  function loadQuizStats(){ try { const parsed = JSON.parse(localStorage.getItem(quizStatsStorageKey) || "{}"); return { answered: Number(parsed.answered)||0, correct: Number(parsed.correct)||0 }; } catch(_e){ return { answered:0, correct:0 }; } }
+  function saveQuizStats(){ localStorage.setItem(quizStatsStorageKey, JSON.stringify(quizState.stats)); }
+  function getQuizBasePool(){ return entriesCache.filter(entry => entry.verified && entry.newText); }
+  function getQuizPool(){
+    const base = getQuizBasePool();
+    let pool = base;
+    if (quizState.preset === "common") { const pset = new Set(getPopularOrder()); pool = base.filter(e => pset.has(e.oldChar)); }
+    if (quizState.preset === "name") pool = base.filter(e => e.category === "name");
+    if (quizState.preset === "document") pool = base.filter(e => e.category === "document");
+    if (pool.length < 4) pool = base;
+    if (quizState.mode === "readingToOld") pool = pool.filter(e => !e.pairOnly && (e.readingJa || e.readingEn));
+    return pool;
+  }
+  function makeQuizQuestion(){
+    const pool = getQuizPool();
+    quizState.canGenerate = pool.length >= 4;
+    if (!quizState.canGenerate) { quizState.question = null; quizState.answered=false; quizState.result=""; return; }
+    const correct = pickRandom(pool);
+    const answer = quizState.mode === "oldToModern" ? correct.newText : correct.oldChar;
+    let prompt = "";
+    if (quizState.mode === "oldToModern") prompt = currentLang === "en" ? `What is the modern form of ${correct.oldChar}?` : `${correct.oldChar} の新字体は？`;
+    if (quizState.mode === "modernToOld") prompt = currentLang === "en" ? `What is the old form of ${correct.newText}?` : `${correct.newText} の旧字体は？`;
+    if (quizState.mode === "readingToOld") { const r = currentLang === "en" ? (correct.readingEn || correct.readingJa) : (correct.readingJa || correct.readingEn); prompt = currentLang === "en" ? `Which old form matches reading "${r}"?` : `読み「${r}」に対応する旧字体は？`; }
+    const source = shuffle(pool.filter(e => e.oldChar !== correct.oldChar));
+    const distractors = [];
+    for (const entry of source){ const val = quizState.mode === "oldToModern" ? entry.newText : entry.oldChar; if (val && val !== answer && !distractors.includes(val)) distractors.push(val); if (distractors.length===3) break; }
+    if (distractors.length < 3){ const fallback = shuffle(getQuizBasePool()); for(const entry of fallback){ const val = quizState.mode === "oldToModern" ? entry.newText : entry.oldChar; if (val && val !== answer && !distractors.includes(val)) distractors.push(val); if (distractors.length===3) break; } }
+    if (distractors.length < 3) { quizState.canGenerate = false; quizState.question = null; return; }
+    quizState.question = { prompt, correctAnswer: answer, correctEntry: correct, choices: shuffle([answer, ...distractors]) };
+    quizState.answered=false; quizState.selected=""; quizState.result="";
+  }
+  function renderQuiz(){
+    const wrap=document.getElementById("quizContainer"); if(!wrap) return;
+    const modeOpts = quizModes.map(m=>`<option value="${m.id}" ${quizState.mode===m.id?'selected':''}>${m[currentLang]}</option>`).join("");
+    const presetOpts = quizPresets.map(m=>`<option value="${m.id}" ${quizState.preset===m.id?'selected':''}>${m[currentLang]}</option>`).join("");
+    const scoreLabel = currentLang === "en" ? "Score" : "スコア";
+    const empty = currentLang === "en" ? "There is not enough data to generate a quiz yet." : "出題できるデータがまだ足りません。";
+    const nextLabel = currentLang === "en" ? "Next question" : "次の問題";
+    const resetLabel = currentLang === "en" ? "Reset" : "リセット";
+    const detailsLabel = currentLang === "en" ? "View details" : "この字を詳しく見る";
+    const resultHtml = quizState.result ? `<p class="quiz-result">${quizState.result}</p>` : "";
+    const answerHtml = quizState.question ? `<div class="quiz-answers">${quizState.question.choices.map(c=>`<button type="button" class="quiz-answer-btn" data-quiz-answer="${c}" ${quizState.answered?'disabled':''}>${c}</button>`).join("")}</div>` : "";
+    wrap.innerHTML = `<div class="quiz-controls"><div class="quiz-control-group"><label>${currentLang==='en'?'Quiz mode':'出題モード'}</label><select id="quizModeSelect">${modeOpts}</select></div><div class="quiz-control-group"><label>${currentLang==='en'?'Question set':'出題範囲'}</label><select id="quizPresetSelect">${presetOpts}</select></div></div><p class="quiz-score">${scoreLabel}: ${quizState.stats.correct} / ${quizState.stats.answered}</p>${quizState.question?`<p class="quiz-question">${quizState.question.prompt}</p>${answerHtml}`:`<p class="quiz-result">${empty}</p>`}${resultHtml}<div class="quiz-actions"><button type="button" id="quizNextBtn">${nextLabel}</button><button type="button" id="quizResetBtn">${resetLabel}</button>${quizState.answered&&quizState.question?`<button type="button" id="quizViewDetailsBtn">${detailsLabel}</button>`:""}</div>`;
+    if (quizState.answered && quizState.question){ wrap.querySelectorAll('.quiz-answer-btn').forEach(btn=>{ const v=btn.dataset.quizAnswer; if(v===quizState.question.correctAnswer) btn.classList.add('correct'); if(v===quizState.selected&&v!==quizState.question.correctAnswer) btn.classList.add('incorrect'); }); }
+  }
+  function onQuizAnswer(value){ if(!quizState.question||quizState.answered) return; quizState.answered=true; quizState.selected=value; quizState.stats.answered+=1; const ok = value===quizState.question.correctAnswer; if(ok){ quizState.stats.correct+=1; quizState.result=currentLang==='en'?'Correct.':'正解です。'; } else { quizState.result=currentLang==='en'?`Incorrect. The answer is "${quizState.question.correctAnswer}".`:`不正解です。正解は「${quizState.question.correctAnswer}」です。`; } saveQuizStats(); renderQuiz(); switchLang(currentLang); }
   function getSearchHint(input, lang) {
     if (!input) return "";
     if (lang === "en") {
@@ -586,7 +650,7 @@
     copyWithFallback([headerJa, headerEn, sep, ...lines].join("\n")).then(() => showToast(messages[currentLang].copiedMarkdown));
   }
 
-  function renderAll(){ renderSearchModes(); renderFilters(); renderDisplayModes(); renderPalette(); renderPresets(); renderPopular(); renderFavorites(); renderRecent(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
+  function renderAll(){ renderSearchModes(); renderFilters(); renderDisplayModes(); renderPalette(); renderPresets(); renderPopular(); renderQuiz(); renderFavorites(); renderRecent(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
   function copyWithFallback(value){ if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(value); const textarea = document.createElement("textarea"); textarea.value = value; textarea.style.position = "fixed"; textarea.style.left = "-9999px"; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); textarea.remove(); return Promise.resolve(); }
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -600,6 +664,10 @@
     const exportJsonBtn = document.getElementById("exportJson"); if (exportJsonBtn) exportJsonBtn.addEventListener("click", exportJson);
     const copyMarkdownBtn = document.getElementById("copyMarkdown"); if (copyMarkdownBtn) copyMarkdownBtn.addEventListener("click", copyMarkdownTable);
     const printPageBtn = document.getElementById("printPage"); if (printPageBtn) printPageBtn.addEventListener("click", () => window.print());
+    document.addEventListener("change", ev => {
+      if (ev.target && ev.target.id === "quizModeSelect") { quizState.mode = ev.target.value; makeQuizQuestion(); renderQuiz(); switchLang(currentLang); }
+      if (ev.target && ev.target.id === "quizPresetSelect") { quizState.preset = ev.target.value; makeQuizQuestion(); renderQuiz(); switchLang(currentLang); }
+    });
     document.querySelectorAll(".panel-toggle").forEach(btn => btn.addEventListener("click", () => { const target = document.getElementById(btn.dataset.target); if (!target) return; const open = btn.getAttribute("aria-expanded") === "true"; btn.setAttribute("aria-expanded", open ? "false" : "true"); target.hidden = open; }));
     document.addEventListener("click", ev => {
       const detectorBtn = ev.target.closest(".detector-item-btn");
@@ -610,12 +678,21 @@
         if (old) toggleFavorite(old);
         return;
       }
+      const quizAnswer = ev.target.closest(".quiz-answer-btn");
+      if (quizAnswer) { onQuizAnswer(quizAnswer.dataset.quizAnswer || ""); return; }
+      const quizNext = ev.target.closest("#quizNextBtn");
+      if (quizNext) { makeQuizQuestion(); renderQuiz(); switchLang(currentLang); return; }
+      const quizReset = ev.target.closest("#quizResetBtn");
+      if (quizReset) { quizState.stats = { answered: 0, correct: 0 }; saveQuizStats(); makeQuizQuestion(); renderQuiz(); switchLang(currentLang); return; }
+      const quizViewDetails = ev.target.closest("#quizViewDetailsBtn");
+      if (quizViewDetails && quizState.question) { activeDetailOldChar = quizState.question.correctEntry.oldChar; renderDetailPanel(quizState.question.correctEntry); return; }
       const target = ev.target.closest(".copy-btn");
       if (target) { const value = target.dataset.copyValue; const kind = target.dataset.copyKind || "old"; const toast = currentLang === "en" ? target.dataset.copyToastEn : target.dataset.copyToastJa; copyWithFallback(value).then(() => showToast(toast || `${kind === "new" ? messages[currentLang].copiedNew : messages[currentLang].copiedOld}：${value}`)); }
       const toggle = ev.target.closest(".mobile-detail-toggle");
       if (toggle) { const card = toggle.closest(".kanji-card"); if (!card) return; card.classList.toggle("mobile-open"); toggle.innerHTML = card.classList.contains("mobile-open") ? `<span data-i18n="ja">${messages.ja.hideDetails}</span><span data-i18n="en">${messages.en.hideDetails}</span>` : `<span data-i18n="ja">${messages.ja.showDetails}</span><span data-i18n="en">${messages.en.showDetails}</span>`; switchLang(currentLang); renderDetector(); }
     });
     recentOldChars = loadStoredList(recentStorageKey);
+    quizState.stats = loadQuizStats();
     favoriteOldChars = loadStoredList(favoritesStorageKey);
     currentDisplayMode = loadDisplayMode();
     const params = new URLSearchParams(window.location.search);
@@ -626,6 +703,6 @@
       currentQuery = qParam;
     }
     if (detectorInput && textParam) detectorInput.value = textParam;
-    switchLang(currentLang); setStatusText(messages[currentLang].loading); loadData().then(dict => { loadFailed = false; setCounts(dict); buildEntries(dict); renderAll(); }).catch(() => { loadFailed = true; renderAll(); });
+    switchLang(currentLang); setStatusText(messages[currentLang].loading); loadData().then(dict => { loadFailed = false; setCounts(dict); buildEntries(dict); makeQuizQuestion(); renderAll(); }).catch(() => { loadFailed = true; renderAll(); });
   });
 })();
