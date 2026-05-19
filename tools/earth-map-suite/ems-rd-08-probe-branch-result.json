@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-05-19T00:00:00Z",
+  "checked_by": "codex-cli-agent",
+  "base_url": "https://nicheworks.app",
+  "health_result": "unknown",
+  "manifest_result": "unknown",
+  "probe_status_result": "not_run",
+  "precipitation_sample_real_result": "not_run",
+  "branch_decision": "network_unverified",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "next_action": "run smoke workflow manually"
+}

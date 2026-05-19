@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-05-19T00:00:00Z",
+  "checked_by": "codex-cli-agent",
+  "base_url": "https://nicheworks.app",
+  "workflow_run_url": null,
+  "workflow_run_id": null,
+  "health_result": "unknown",
+  "manifest_result": "unknown",
+  "branch_decision": "network_unverified",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "next_action": "run EMS RD API smoke workflow manually"
+}

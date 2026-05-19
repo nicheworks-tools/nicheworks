@@ -1,6 +1,6 @@
 # Earth Map Suite Real Data First Plan
 
-Last updated: 2026-05-18
+Last updated: 2026-05-19
 
 ## Decision
 
@@ -128,6 +128,30 @@ Active next steps:
 3. Run manual deployed verification from external network (`nicheworks.app` and `nicheworks.pages.dev`).
 4. Record branch decision after verification (`route_missing`, `functions_not_deployed`, `health_ok_probe_error`, `probe_status_raw_pixel_read`, `probe_status_decoder_strategy_required`).
 5. Keep Storm/Compare/Card real connection blocked until verification and sampling validation are approved.
+
+
+### EMS-RD-08 verification result
+
+- workflow availability: file exists locally; Actions visibility/dispatch are unverified from this environment.
+- health / manifest smoke result: `network_unverified` (manual dispatch blocker: GitHub Actions dispatch unavailable from this environment).
+- probe result: `network_unverified` (not run because health/manifest reachability is not confirmed).
+- final branch decision: `network_unverified`.
+
+#### EMS-RD-08 safety state (unchanged)
+
+- `precipitation-sample-real` is safe-unavailable.
+- `public_ui_allowed` is false.
+- `public_real_data_enabled` is false.
+- Storm / Compare / Card are not connected.
+- `real_observation` public output is not enabled.
+
+#### EMS-RD-08 next gate
+
+- `raw_pixel_read` → EMS-RD-09-SAMPLE
+- `decoder_strategy_required` → EMS-RD-09-DECODER
+- `health_manifest_failed` → EMS-RD-09-ROUTE
+- `endpoint_error` / `blocked` / `inconclusive` → EMS-RD-09-PROBEFIX
+- `network_unverified` → EMS-RD-09-VERIFY
 
 ## Guardrails for future implementation
 
