@@ -85,6 +85,16 @@
   <div class="card">
     <h2>Browser self-check</h2>
     <p class="small">This check runs from your browser against the currently hosted site. It does not approve public real-data output.</p>
+    <div class="card warn">
+      <p><strong>EMS-RD-11 copy steps</strong></p>
+      <ol>
+        <li>Run safe check first (health + manifest).</li>
+        <li>Copy JSON result.</li>
+        <li>Paste it into this project as the EMS-RD-11 browser result file.</li>
+        <li>Run research probes only after health/manifest are reachable.</li>
+      </ol>
+      <p class="small">Guardrails: <code>public_real_data_enabled=false</code>, <code>storm_compare_card_connected=false</code>.</p>
+    </div>
     <div>
       <button class="primary" id="check-safe">Run safe check: health + manifest</button>
       <button class="danger" id="check-probe">Run research probes</button>

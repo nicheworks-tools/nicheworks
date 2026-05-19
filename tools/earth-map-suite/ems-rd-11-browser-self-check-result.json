@@ -1,0 +1,71 @@
+{
+  "checked_at": null,
+  "checked_by": null,
+  "page_url": null,
+  "mode": null,
+  "branch_decision": "browser_result_missing",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "next_action": "run browser self-check on deployed api-status page",
+  "endpoints": [
+    {
+      "key": "health",
+      "path": "/api/earth-map-suite/health",
+      "ok": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
+    },
+    {
+      "key": "manifest",
+      "path": "/api/earth-map-suite/manifest",
+      "ok": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
+    },
+    {
+      "key": "probe_status",
+      "path": "/api/earth-map-suite/probe-status",
+      "ok": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
+    },
+    {
+      "key": "precipitation_sample_real",
+      "path": "/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low",
+      "ok": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
+    }
+  ],
+  "guardrails": [
+    "public_real_data_enabled=false",
+    "storm_compare_card_connected=false",
+    "do_not_connect_storm_compare_card",
+    "do_not_enable_public_real_precipitation"
+  ],
+  "notes": "actual browser self-check JSON not yet recorded"
+}
