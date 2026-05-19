@@ -90,6 +90,8 @@
       <button class="primary" id="check-safe">Run safe check: self-check + health + manifest</button>
       <button class="danger" id="check-probe">Run research probes</button>
       <button id="copy-json">Copy JSON result</button>
+      <button id="download-json">Download JSON result</button>
+      <button id="clear-local">Clear local result</button>
     </div>
     <div class="card warn">
     <h3>EMS-RD-11 copy instructions</h3>
@@ -101,6 +103,8 @@
     </ol>
     <p class="small">Guardrails: <code>public_real_data_enabled=false</code>, <code>storm_compare_card_connected=false</code>.</p>
   </div>
+    <p id="restore-note" class="small"></p>
+    <p id="status-line" class="small">autorun mode: off | last run mode: not_run | checked_at: null</p>
     <pre id="summary">No checks yet.</pre>
   </div>
 
@@ -112,6 +116,9 @@
   <script>
     const output = document.getElementById('output');
     const summary = document.getElementById('summary');
+    const restoreNote = document.getElementById('restore-note');
+    const statusLine = document.getElementById('status-line');
+    const STORAGE_KEY = 'earth_map_suite_browser_self_check_result_v1';
 
     const safeEndpoints = [
       { key: 'self_check', path: '/api/earth-map-suite/self-check' },
@@ -127,8 +134,29 @@
       data_type: 'earth_map_suite_browser_self_check',
       status: 'not_run',
       public_real_data_enabled: false,
-      storm_compare_card_connected: false
+      storm_compare_card_connected: false,
+      mode: 'not_run',
+      checked_at: null,
+      page_url: location.href,
+      branch_decision: 'browser_result_missing',
+      next_action: 'run browser safe-check from this page',
+      endpoints: [...safeEndpoints, ...probeEndpoints].map((e) => ({ key: e.key, path: e.path, ok: null, http_status: null, data_type: null, status: null, decision_phase: null, decision_next: null, public_ui_allowed: null, error_code: null, checked_at: null })),
+      guardrails: [
+        'This browser self-check does not approve public real precipitation output.',
+        'Storm / Compare / Card remain disconnected.',
+        'Do not show raw/debug pixel as rainfall.'
+      ]
     };
+
+    let autorunMode = 'off';
+
+    function updateStatusLine() {
+      statusLine.textContent = `autorun mode: ${autorunMode} | last run mode: ${lastResult.mode || 'not_run'} | checked_at: ${lastResult.checked_at || 'null'}`;
+    }
+
+    function saveLocalResult(result) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(result));
+    }
 
     async function fetchJson(endpoint) {
       const startedAt = new Date().toISOString();
@@ -191,6 +219,8 @@
         lines.push(`${item.key}: HTTP ${item.http_status || 'n/a'} / ${item.data_type || 'no data_type'} / ${item.status || 'no status'}`);
       }
       summary.textContent = lines.join('\n');
+      updateStatusLine();
+      saveLocalResult(result);
     }
 
     async function run(endpoints, mode) {
@@ -236,6 +266,54 @@
         summary.textContent += '\nCopy failed; select the JSON manually.';
       }
     });
+
+    document.getElementById('download-json').addEventListener('click', () => {
+      const pad = (n) => String(n).padStart(2, '0');
+      const dt = lastResult.checked_at ? new Date(lastResult.checked_at) : new Date();
+      const stamp = `${dt.getUTCFullYear()}${pad(dt.getUTCMonth()+1)}${pad(dt.getUTCDate())}-${pad(dt.getUTCHours())}${pad(dt.getUTCMinutes())}${pad(dt.getUTCSeconds())}`;
+      const blob = new Blob([JSON.stringify(lastResult, null, 2)], { type: 'application/json;charset=utf-8' });
+      const href = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = href;
+      a.download = `earth-map-suite-browser-self-check-${stamp}.json`;
+      a.click();
+      URL.revokeObjectURL(href);
+    });
+
+    document.getElementById('clear-local').addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY);
+      restoreNote.textContent = 'Cleared local result key.';
+    });
+
+    function handleAutorunFromQuery() {
+      const params = new URLSearchParams(location.search);
+      const mode = (params.get('autorun') || params.get('run') || '').trim().toLowerCase();
+      if (!mode) return;
+      if (mode === 'safe') {
+        autorunMode = 'safe';
+        updateStatusLine();
+        run(safeEndpoints, 'safe_self_health_manifest');
+        return;
+      }
+      if (mode.includes('probe')) {
+        summary.textContent = 'Probe autorun parameter was ignored. Research probes must be manually triggered.';
+      }
+    }
+
+    (function init() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed && parsed.data_type === 'earth_map_suite_browser_self_check') {
+            restoreNote.textContent = 'Restored local result';
+            render(parsed);
+          }
+        } catch (_) {}
+      }
+      updateStatusLine();
+      handleAutorunFromQuery();
+    })();
   </script>
 </body>
 </html>

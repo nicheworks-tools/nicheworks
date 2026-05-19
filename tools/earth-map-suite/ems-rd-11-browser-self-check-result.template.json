@@ -1,8 +1,8 @@
 {
   "checked_at": null,
   "checked_by": null,
-  "page_url": null,
-  "mode": null,
+  "page_url": "https://nicheworks.app/tools/earth-map-suite/api-status.html",
+  "mode": "not_run",
   "branch_decision": null,
   "public_real_data_enabled": false,
   "storm_compare_card_connected": false,
@@ -79,5 +79,6 @@
     "storm_compare_card_connected=false",
     "do_not_connect_storm_compare_card_until_validation"
   ],
-  "notes": null
+  "notes": null,
+  "data_type": "earth_map_suite_browser_self_check"
 }

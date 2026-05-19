@@ -166,3 +166,8 @@ Explicitly forbidden while blocked:
 - showing raw/debug pixel as rainfall
 - synthetic fallback inside real result block
 - labeling synthetic preview as JAXA/EORC data
+
+## EMS-RD-17 status
+- browser flow supports safe autorun + copy/download/local restore.
+- probes remain manual.
+- branch_decision browser_result_missing; next_task_family VERIFY.
