@@ -90,6 +90,16 @@
       <button class="danger" id="check-probe">Run research probes</button>
       <button id="copy-json">Copy JSON result</button>
     </div>
+    <div class="card warn">
+    <h3>EMS-RD-11 copy instructions</h3>
+    <ol>
+      <li>Run safe check first (<code>health</code> + <code>manifest</code>).</li>
+      <li>Copy JSON result.</li>
+      <li>Paste it into the project as EMS-RD-11 browser result (`ems-rd-11-browser-self-check-result.json`).</li>
+      <li>Run research probes only after health/manifest are reachable.</li>
+    </ol>
+    <p class="small">Guardrails: <code>public_real_data_enabled=false</code>, <code>storm_compare_card_connected=false</code>.</p>
+  </div>
     <pre id="summary">No checks yet.</pre>
   </div>
 
