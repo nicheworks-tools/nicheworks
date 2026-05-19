@@ -74,29 +74,30 @@
   <div class="card">
     <h2>Manual endpoint links</h2>
     <div class="links">
+      <a href="/api/earth-map-suite/self-check" target="_blank" rel="noopener">Open /self-check</a>
       <a href="/api/earth-map-suite/health" target="_blank" rel="noopener">Open /health</a>
       <a href="/api/earth-map-suite/manifest" target="_blank" rel="noopener">Open /manifest</a>
       <a href="/api/earth-map-suite/probe-status" target="_blank" rel="noopener">Open /probe-status</a>
       <a href="/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low" target="_blank" rel="noopener">Open /precipitation-sample-real (safe check)</a>
     </div>
-    <p>Run <code>health</code> and <code>manifest</code> first. Probe checks are manual and remain research-only.</p>
+    <p>Run <code>self-check</code>, <code>health</code>, and <code>manifest</code> first. Probe checks are manual and remain research-only.</p>
   </div>
 
   <div class="card">
     <h2>Browser self-check</h2>
     <p class="small">This check runs from your browser against the currently hosted site. It does not approve public real-data output.</p>
     <div>
-      <button class="primary" id="check-safe">Run safe check: health + manifest</button>
+      <button class="primary" id="check-safe">Run safe check: self-check + health + manifest</button>
       <button class="danger" id="check-probe">Run research probes</button>
       <button id="copy-json">Copy JSON result</button>
     </div>
     <div class="card warn">
     <h3>EMS-RD-11 copy instructions</h3>
     <ol>
-      <li>Run safe check first (<code>health</code> + <code>manifest</code>).</li>
+      <li>Run safe check first (<code>self-check</code> + <code>health</code> + <code>manifest</code>).</li>
       <li>Copy JSON result.</li>
       <li>Paste it into the project as EMS-RD-11 browser result (`ems-rd-11-browser-self-check-result.json`).</li>
-      <li>Run research probes only after health/manifest are reachable.</li>
+      <li>Run research probes only after self-check/health/manifest are reachable.</li>
     </ol>
     <p class="small">Guardrails: <code>public_real_data_enabled=false</code>, <code>storm_compare_card_connected=false</code>.</p>
   </div>
@@ -113,6 +114,7 @@
     const summary = document.getElementById('summary');
 
     const safeEndpoints = [
+      { key: 'self_check', path: '/api/earth-map-suite/self-check' },
       { key: 'health', path: '/api/earth-map-suite/health' },
       { key: 'manifest', path: '/api/earth-map-suite/manifest' }
     ];
@@ -166,13 +168,13 @@
 
     function classify(results) {
       const byKey = Object.fromEntries(results.map((item) => [item.key, item]));
-      if (byKey.health && byKey.manifest && byKey.health.ok && byKey.manifest.ok) {
+      if (byKey.self_check && byKey.health && byKey.manifest && byKey.self_check.ok && byKey.health.ok && byKey.manifest.ok) {
         if (!byKey.probe_status) return 'health_manifest_reachable';
         const phase = byKey.probe_status.decision_phase;
         if (phase) return phase;
         return 'probe_checked_without_phase';
       }
-      if (byKey.health || byKey.manifest) return 'health_manifest_failed';
+      if (byKey.self_check || byKey.health || byKey.manifest) return 'health_manifest_failed';
       return 'network_unverified';
     }
 
@@ -222,7 +224,7 @@
       });
     }
 
-    document.getElementById('check-safe').addEventListener('click', () => run(safeEndpoints, 'safe_health_manifest'));
+    document.getElementById('check-safe').addEventListener('click', () => run(safeEndpoints, 'safe_self_health_manifest'));
     document.getElementById('check-probe').addEventListener('click', () => run([...safeEndpoints, ...probeEndpoints], 'research_probe'));
     document.getElementById('copy-json').addEventListener('click', async () => {
       const text = JSON.stringify(lastResult, null, 2);
