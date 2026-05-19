@@ -9,6 +9,19 @@
   "next_action": null,
   "endpoints": [
     {
+      "key": "self_check",
+      "path": "/api/earth-map-suite/self-check",
+      "ok": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
+    },
+    {
       "key": "health",
       "path": "/api/earth-map-suite/health",
       "ok": null,

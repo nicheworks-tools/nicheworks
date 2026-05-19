@@ -9,6 +9,19 @@
   "next_action": "run browser self-check on deployed api-status page",
   "endpoints": [
     {
+      "key": "self_check",
+      "path": "/api/earth-map-suite/self-check",
+      "ok": null,
+      "http_status": null,
+      "data_type": null,
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
+    },
+    {
       "key": "health",
       "path": "/api/earth-map-suite/health",
       "ok": null,
@@ -66,5 +79,5 @@
     "storm_compare_card_connected=false",
     "do_not_connect_storm_compare_card_until_validation"
   ],
-  "notes": "No actual copied browser JSON is available in this execution environment. Deployed api-status fetch attempt returned HTTP 403 on 2026-05-19 UTC, so placeholder is intentionally retained."
+  "notes": "No actual copied browser JSON is available in this execution environment. Placeholder is intentionally retained without fabricated endpoint values."
 }

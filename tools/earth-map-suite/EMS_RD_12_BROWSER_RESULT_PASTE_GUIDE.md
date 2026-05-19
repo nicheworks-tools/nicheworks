@@ -2,34 +2,31 @@
 
 Last updated: 2026-05-19
 
-This guide explains how to paste a **real browser self-check result JSON** safely.
-
 ## Steps
 
 1. Open `/tools/earth-map-suite/api-status.html` on deployed site.
-2. Run **safe check first** (`health` + `manifest`) before any probe action.
-3. Copy the produced JSON result exactly as output.
-4. Replace `tools/earth-map-suite/ems-rd-11-browser-self-check-result.json` with the copied JSON.
-5. Validate JSON locally:
+2. Run **safe check first**.
+3. Safe check must include: `self-check` + `health` + `manifest`.
+4. Copy the JSON result exactly.
+5. Paste into `tools/earth-map-suite/ems-rd-11-browser-self-check-result.json`.
+6. Validate JSON and validator output.
 
-```bash
-python -m json.tool tools/earth-map-suite/ems-rd-11-browser-self-check-result.json
-```
+## Expected `self_check` facts in safe result
 
-6. Run branch selection/validation workflow after JSON validation.
+- `data_type=earth_map_suite_self_check`
+- `status=ok`
+- `external_fetch=false`
+- `public_real_data_enabled=false`
+- `storm_compare_card_connected=false`
 
-## Branch interpretation (initial routing)
+## Probe handling
 
-- `browser_result_missing` → keep verifying.
-- `health_manifest_reachable` → run research probe.
-- `health_manifest_failed` → route/deploy fix.
-- `raw_pixel_read` → sample validation only.
-- `decoder_strategy_required` → decoder feasibility only.
+- Probe check remains manual/research-only.
+- Do **not** run research probes unless `self-check` / `health` / `manifest` are reachable.
 
 ## Non-negotiables
 
-- Do not paste fake results.
-- Do not edit endpoint values by hand.
+- Do not fabricate endpoint values.
 - Keep `public_real_data_enabled=false`.
 - Keep `storm_compare_card_connected=false`.
-- Do not connect public UI.
+- Do not connect Storm / Compare / Card.

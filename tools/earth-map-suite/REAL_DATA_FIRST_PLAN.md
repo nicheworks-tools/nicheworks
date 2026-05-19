@@ -289,3 +289,24 @@ EMS-RD next gate mapping:
 - `SAMPLE` → validate unit/scale/NoData/geolocation/source/license
 - `DECODER` → isolated decoder feasibility
 - `PROBEFIX` → fix probe chain
+
+### EMS-RD-15 verification update
+
+- EMS-RD-14 added the `self_check` endpoint.
+- Browser result schema now includes `self_check`.
+- Local validator now requires `self_check`.
+- Current branch_decision: `browser_result_missing`.
+- Current next_task_family: `VERIFY`.
+- `public_real_data_enabled=false` (unchanged).
+- `storm_compare_card_connected=false` (unchanged).
+- `precipitation-sample-real` is not public real output (unchanged).
+- Storm / Compare / Card remain disconnected (unchanged).
+
+#### EMS-RD-15 next gate mapping
+
+- `VERIFY` → run browser safe check and paste result
+- `ROUTE` → fix route/deployment
+- `PROBE` → run research probe
+- `SAMPLE` → validate sampling gates
+- `DECODER` → isolated decoder feasibility
+- `PROBEFIX` → repair probe chain

@@ -1,8 +1,6 @@
 # EMS-RD-14 self-check endpoint
 
-## Purpose
-
-EMS-RD-13 stayed on the VERIFY path because browser result intake still lacked a confirmed deployed API result. EMS-RD-14 adds a route-level self-check endpoint that does not call any upstream Earth observation data source.
+Last updated: 2026-05-19
 
 ## Endpoint
 
@@ -17,24 +15,28 @@ EMS-RD-13 stayed on the VERIFY path because browser result intake still lacked a
 - `storm_compare_card_connected=false`
 - `real_observation_public_ready=false`
 
-## Updated status page
+## Browser safe-check order
 
-`/tools/earth-map-suite/api-status.html` now includes self-check in the safe browser check.
+1. `self-check`
+2. `health`
+3. `manifest`
 
-Safe check now fetches:
+Safe check is run from: `/tools/earth-map-suite/api-status.html`.
 
-- `/api/earth-map-suite/self-check`
-- `/api/earth-map-suite/health`
-- `/api/earth-map-suite/manifest`
+## Operator flow
+
+1. Run safe check first.
+2. Copy JSON result.
+3. Paste into `ems-rd-11-browser-self-check-result.json`.
+4. Validate with JSON tool + local validator.
+5. Keep probe check manual.
+
+## Warning
+
+Do not run research probes unless self-check, health, and manifest are reachable.
 
 ## Guardrails
 
-- This endpoint does not sample precipitation.
-- This endpoint does not approve public real precipitation output.
+- No endpoint result fabrication.
+- No public real precipitation enablement.
 - Storm / Compare / Card remain disconnected.
-- Research probes remain manual.
-- Raw/debug pixel must not be shown as rainfall.
-
-## Next step
-
-After deployment, run the safe browser check. If self-check, health, and manifest are reachable, run research probes only if needed and record the copied JSON result.
