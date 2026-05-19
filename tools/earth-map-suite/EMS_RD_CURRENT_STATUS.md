@@ -49,3 +49,15 @@
 - Copy/download/restore flow available.
 - Probes manual only.
 - branch_decision browser_result_missing; next_task_family VERIFY unless updated by real artifact.
+
+## EMS-RD-18 Status (2026-05-19)
+- autorun safe URL available: yes
+- JSON download available: yes
+- downloaded result intake exists: yes
+- canonical browser result sync exists: yes
+- current branch_decision: `browser_result_missing`
+- current next_task_family: `VERIFY`
+- public_real_data_enabled: false
+- storm_compare_card_connected: false
+- Storm/Compare/Card: disconnected
+- `precipitation-sample-real` remains non-public until full validation.
