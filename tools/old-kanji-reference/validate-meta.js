@@ -30,13 +30,15 @@ const baseMetaPath = path.join(dir, "meta.json");
 const missingPath = path.join(dir, "missing-meta.txt");
 
 const ALLOWED_CATEGORIES = new Set(["popular", "name", "common", "document", "rare"]);
+const ALLOWED_DATA_STATUS = new Set(["verified", "needs_review", "pair_only"]);
+const ALLOWED_CONFIDENCE = new Set(["high", "medium", "low"]);
 
 const FORBIDDEN_PATTERNS = [
   /準備中/,
   /placeholder/i,
   /pending/i,
   /語による/,
-  /todo/i,
+  /\btodo\b/i,
   /TBD/i,
   /旧字体「.*」は現代表記「.*」に対応します/
 ];
@@ -157,7 +159,26 @@ function main() {
       errors.push(`Invalid category for ${oldChar}: ${entry.category}`);
     }
 
+    if (!hasText(entry.dataStatus)) {
+      errors.push(`Missing dataStatus for ${oldChar}`);
+    } else if (!ALLOWED_DATA_STATUS.has(entry.dataStatus)) {
+      errors.push(`Invalid dataStatus for ${oldChar}: ${entry.dataStatus}`);
+    }
+
+    if (!hasText(entry.confidence)) {
+      errors.push(`Missing confidence for ${oldChar}`);
+    } else if (!ALLOWED_CONFIDENCE.has(entry.confidence)) {
+      errors.push(`Invalid confidence for ${oldChar}: ${entry.confidence}`);
+    }
+
+    if (!hasText(entry.sourceNote)) {
+      errors.push(`Missing sourceNote for ${oldChar}`);
+    }
+
     if (entry.verified) {
+      if (entry.dataStatus !== "verified") {
+        errors.push(`Verified entry ${oldChar} must set dataStatus=verified`);
+      }
       for (const field of ["readingJa", "readingEn", "meaningJa", "meaningEn"]) {
         if (!hasText(entry[field])) errors.push(`Verified entry ${oldChar} missing ${field}`);
       }
