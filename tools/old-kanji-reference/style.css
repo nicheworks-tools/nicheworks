@@ -469,3 +469,28 @@ a:hover { color: var(--accent); }
   .shortcut-chip{font-size:.86rem;padding:7px 8px;}
   .favorite-toggle{width:100%;}
 }
+
+.display-mode-panel{margin-top:12px;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff;}
+.display-mode-heading{margin:0 0 8px;font-size:.9rem;color:var(--muted);font-weight:600;}
+.display-mode-buttons{display:flex;flex-wrap:wrap;gap:8px;}
+.display-mode-btn{padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:#f6f6f6;cursor:pointer;font-family:inherit;font-size:.9rem;}
+.display-mode-btn.active{background:#eaf1ff;border-color:#2558b8;color:#1c4a9f;}
+.kanji-card.compact-card{padding:10px;gap:4px;}
+.kanji-card.compact-card .kanji-meaning,.kanji-card.compact-card .kanji-usage,.kanji-card.compact-card .kanji-pair-note,.kanji-card.compact-card .mobile-detail-toggle,.kanji-card.compact-card .mobile-detail-content{display:none;}
+.converter-link-subtle{font-size:.78rem;opacity:.85;}
+.kanji-table-list{display:flex;flex-direction:column;gap:8px;}
+.kanji-table-head,.kanji-table-row{display:grid;grid-template-columns:minmax(2.4em,auto) minmax(2.4em,auto) minmax(0,1.1fr) minmax(0,1.4fr) minmax(180px,1.1fr);gap:8px;align-items:start;}
+.kanji-table-head{padding:0 2px;color:var(--muted);font-size:.86rem;font-weight:600;}
+.kanji-table-row{padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;}
+.kanji-table-cell{font-size:.92rem;word-break:break-word;}
+.kanji-table-cell.cell-old{font-size:1.2rem;font-weight:600;}
+.table-actions{display:flex;flex-wrap:wrap;gap:6px;}
+.table-actions .copy-btn,.table-actions .favorite-toggle{font-size:.8rem;padding:6px 8px;}
+
+@media (max-width: 480px){
+  .kanji-table-head{display:none;}
+  .kanji-table-row{grid-template-columns:1fr;gap:6px;}
+  .kanji-table-cell::before{content:attr(data-label) " ";color:var(--muted);font-size:.8rem;font-weight:600;display:block;}
+  .kanji-table-cell.cell-old::before,.kanji-table-cell.cell-modern::before{display:none;}
+  .table-actions{gap:6px;}
+}
