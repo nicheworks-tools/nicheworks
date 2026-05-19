@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-19",
   "items": {
     "ai-project-pack": {
       "title_ja": "AIプロジェクトパック",
@@ -963,6 +963,18 @@
       "tags": [
         "earth",
         "timeseries"
+      ]
+    },
+    "name-old-kanji-checker": {
+      "title_ja": "人名旧字体チェッカー | Name Old Kanji Checker",
+      "title_en": "Name Old Kanji Checker",
+      "desc_ja": "人名旧字体チェッカー | Name Old Kanji Checker は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。",
+      "desc_en": "Name Old Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "name",
+        "old",
+        "kanji",
+        "checker"
       ]
     }
   }
