@@ -507,3 +507,40 @@ a:hover { color: var(--accent); }
   .shape-note-row{grid-template-columns:1fr;gap:3px;}
   .shape-note{overflow-x:hidden;}
 }
+
+.stroke-note {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #f8fbff;
+}
+.stroke-note-grid {
+  display: grid;
+  gap: 8px;
+}
+.stroke-note-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  margin: 0;
+}
+.stroke-note-label {
+  font-weight: 700;
+}
+.stroke-note-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.stroke-diff {
+  font-weight: 700;
+}
+.stroke-note-caution {
+  color: #425466;
+}
+@media (max-width: 360px) {
+  .stroke-note-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
