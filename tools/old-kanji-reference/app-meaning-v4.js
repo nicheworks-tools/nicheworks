@@ -8,8 +8,8 @@
   let activeDetailOldChar = "";
 
   const messages = {
-    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる" },
-    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Pair only", verified: "Verified", showDetails: "Show details", hideDetails: "Hide details" }
+    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました" },
+    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Pair only", verified: "Verified", showDetails: "Show details", hideDetails: "Hide details", copiedPairs: "Copied pairs", copiedOldFormsOnly: "Copied old forms only" }
   };
 
   const filters = [
@@ -51,7 +51,7 @@
     }
     return input.dataset.searchHintJa || input.dataset.placeholderJa || "旧字体・現代表記・読み・意味・Unicodeで検索できます";
   }
-  function switchLang(lang){ currentLang = lang === "en" ? "en" : "ja"; document.documentElement.lang = currentLang; document.querySelectorAll("[data-i18n]").forEach(el => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; }); document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang)); const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.placeholder = getSearchHint(searchInput, currentLang); }
+  function switchLang(lang){ currentLang = lang === "en" ? "en" : "ja"; document.documentElement.lang = currentLang; document.querySelectorAll("[data-i18n]").forEach(el => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; }); document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang)); const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.placeholder = getSearchHint(searchInput, currentLang); const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.placeholder = currentLang === "en" ? (detectorInput.dataset.placeholderEn || "") : (detectorInput.dataset.placeholderJa || ""); }
   function showToast(text){ const toast = document.getElementById("toast"); if (!toast) return; toast.textContent = text; toast.classList.add("show"); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.remove("show"), 1600); }
   async function fetchJson(path){ const res = await fetch(path, { cache: "no-store" }); if (!res.ok) throw new Error(`Failed to load ${path}`); return res.json(); }
   async function loadData(){ const [dict, meta, extra2, extra3] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}) }; return dict; }
@@ -133,18 +133,62 @@
   }
   function renderPopular(){ const container = document.getElementById("popularContainer"); if (!container) return; container.innerHTML = ""; const popularSet = getPopularSet(); entriesCache.filter(entry => popularSet.has(entry.oldChar) && entry.verified).slice(0, 26).forEach(entry => container.appendChild(createEntryCard(entry, true))); }
   function updateStatus(visibleCount){ const total = entriesCache.length; const q = currentQuery.trim(); const filteredCount = entriesCache.filter(entry => currentFilter === "all" || (currentFilter === "verified" && entry.verified === true) || (currentFilter === "hasMeaning" && hasMeaning(entry)) || (currentFilter === "pairOnly" && !hasMeaning(entry)) || ((["name", "common", "document", "rare"].includes(currentFilter)) && entry.category === currentFilter)).length; const searchOnlyCount = q ? entriesCache.filter(entry => { const allHaystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn} ${entry.oldCode} ${entry.newCode}`.toLowerCase(); const modeHaystack = { all: allHaystack, old: `${entry.oldChar}`.toLowerCase(), new: `${entry.newText}`.toLowerCase(), reading: `${entry.readingJa} ${entry.readingEn}`.toLowerCase(), meaning: `${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn}`.toLowerCase(), unicode: `${entry.oldCode} ${entry.newCode}`.toLowerCase() }; return (modeHaystack[currentSearchMode] || allHaystack).includes(q.toLowerCase()); }).length : total; setStatusText(currentLang === "en" ? `Total ${total} | Visible ${visibleCount} | Search ${searchOnlyCount} | Filter ${filteredCount}` : `全件数 ${total}件｜表示中 ${visibleCount}件｜検索結果 ${searchOnlyCount}件｜フィルタ適用中 ${filteredCount}件`); }
-  function renderAll(){ renderSearchModes(); renderFilters(); renderPopular(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); }
+
+  function escapeHtml(text){ return String(text || "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;"); }
+  function detectOldForms(text){
+    const counts = new Map();
+    Array.from(String(text || "")).forEach((ch) => { if (entriesCache.some(entry => entry.oldChar === ch)) counts.set(ch, (counts.get(ch) || 0) + 1); });
+    return entriesCache.filter(entry => counts.has(entry.oldChar)).map(entry => ({ entry, count: counts.get(entry.oldChar) }));
+  }
+  function renderDetector(){
+    const input = document.getElementById("detectorInput");
+    const list = document.getElementById("detectorResults");
+    const empty = document.getElementById("detectorEmpty");
+    const highlight = document.getElementById("detectorHighlight");
+    if (!input || !list || !empty || !highlight) return;
+    const text = input.value || "";
+    const detected = detectOldForms(text);
+    list.innerHTML = "";
+    if (!detected.length) {
+      empty.hidden = !text;
+      highlight.textContent = text;
+      return;
+    }
+    empty.hidden = true;
+    detected.forEach(({ entry, count }) => {
+      const li = document.createElement("li");
+      li.className = "detector-item";
+      li.innerHTML = `<button type="button" class="detector-item-btn" data-old="${entry.oldChar}"><span class="detector-pair">${entry.oldChar} → ${entry.newText}</span><span class="detector-count">${currentLang === "en" ? `${count}` : `${count}回`}</span></button>`;
+      list.appendChild(li);
+    });
+    const oldSet = new Set(detected.map(item => item.entry.oldChar));
+    highlight.innerHTML = Array.from(text).map((ch) => oldSet.has(ch) ? `<mark>${escapeHtml(ch)}</mark>` : escapeHtml(ch)).join("");
+  }
+  function copyDetected(kind){
+    const input = document.getElementById("detectorInput");
+    if (!input) return;
+    const detected = detectOldForms(input.value || "");
+    if (!detected.length) return;
+    const text = kind === "pairs" ? detected.map(({entry}) => `${entry.oldChar}→${entry.newText}`).join("\n") : detected.map(({entry}) => entry.oldChar).join(" ");
+    copyWithFallback(text).then(() => showToast(kind === "pairs" ? messages[currentLang].copiedPairs : messages[currentLang].copiedOldFormsOnly));
+  }
+  function renderAll(){ renderSearchModes(); renderFilters(); renderPopular(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
   function copyWithFallback(value){ if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(value); const textarea = document.createElement("textarea"); textarea.value = value; textarea.style.position = "fixed"; textarea.style.left = "-9999px"; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); textarea.remove(); return Promise.resolve(); }
 
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.addEventListener("click", () => { currentLang = btn.dataset.lang === "en" ? "en" : "ja"; renderAll(); }));
     const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.addEventListener("input", () => { currentQuery = searchInput.value || ""; renderAll(); });
+    const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.addEventListener("input", renderDetector);
+    const copyDetectedOld = document.getElementById("copyDetectedOld"); if (copyDetectedOld) copyDetectedOld.addEventListener("click", () => copyDetected("old"));
+    const copyDetectedPairs = document.getElementById("copyDetectedPairs"); if (copyDetectedPairs) copyDetectedPairs.addEventListener("click", () => copyDetected("pairs"));
     document.querySelectorAll(".panel-toggle").forEach(btn => btn.addEventListener("click", () => { const target = document.getElementById(btn.dataset.target); if (!target) return; const open = btn.getAttribute("aria-expanded") === "true"; btn.setAttribute("aria-expanded", open ? "false" : "true"); target.hidden = open; }));
     document.addEventListener("click", ev => {
+      const detectorBtn = ev.target.closest(".detector-item-btn");
+      if (detectorBtn) { const old = detectorBtn.dataset.old; const selected = entriesCache.find(entry => entry.oldChar === old); if (selected) { activeDetailOldChar = selected.oldChar; renderDetailPanel(selected); } return; }
       const target = ev.target.closest(".copy-btn");
       if (target) { const value = target.dataset.copyValue; const kind = target.dataset.copyKind || "old"; copyWithFallback(value).then(() => showToast(`${kind === "new" ? messages[currentLang].copiedNew : messages[currentLang].copiedOld}：${value}`)); }
       const toggle = ev.target.closest(".mobile-detail-toggle");
-      if (toggle) { const card = toggle.closest(".kanji-card"); if (!card) return; card.classList.toggle("mobile-open"); toggle.innerHTML = card.classList.contains("mobile-open") ? `<span data-i18n="ja">${messages.ja.hideDetails}</span><span data-i18n="en">${messages.en.hideDetails}</span>` : `<span data-i18n="ja">${messages.ja.showDetails}</span><span data-i18n="en">${messages.en.showDetails}</span>`; switchLang(currentLang); }
+      if (toggle) { const card = toggle.closest(".kanji-card"); if (!card) return; card.classList.toggle("mobile-open"); toggle.innerHTML = card.classList.contains("mobile-open") ? `<span data-i18n="ja">${messages.ja.hideDetails}</span><span data-i18n="en">${messages.en.hideDetails}</span>` : `<span data-i18n="ja">${messages.ja.showDetails}</span><span data-i18n="en">${messages.en.showDetails}</span>`; switchLang(currentLang); renderDetector(); }
     });
     switchLang(currentLang); setStatusText(messages[currentLang].loading); loadData().then(dict => { setCounts(dict); buildEntries(dict); renderAll(); }).catch(() => setStatusText(messages[currentLang].loadError));
   });

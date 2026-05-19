@@ -74,6 +74,25 @@
         <input id="searchInput" type="search" class="search-input" aria-label="検索" data-search-hint-ja="旧字体・現代表記・読み・意味・Unicodeで検索できます" data-search-hint-en="Search by old form, modern form, reading, meaning, or Unicode">
       </div>
     </section>
+
+    <section class="detector-panel">
+      <div class="panel-head">
+        <h2 class="section-title"><span data-i18n="ja">文章内の旧字体を検出</span><span data-i18n="en">Detect old kanji in text</span></h2>
+      </div>
+      <div class="panel-body">
+        <label class="sr-only" for="detectorInput">Detector input</label>
+        <textarea id="detectorInput" class="detector-input" rows="5"
+          data-placeholder-ja="例：舊字體の文章や古い表記を貼り付けて確認する"
+          data-placeholder-en="Example: Paste text with old kanji forms to check them"></textarea>
+        <div class="detector-actions">
+          <button type="button" id="copyDetectedOld" class="copy-btn"><span data-i18n="ja">旧字だけコピー</span><span data-i18n="en">Copy old forms only</span></button>
+          <button type="button" id="copyDetectedPairs" class="copy-btn"><span data-i18n="ja">対応表をコピー</span><span data-i18n="en">Copy pairs</span></button>
+        </div>
+        <p id="detectorEmpty" class="empty-message" hidden><span data-i18n="ja">入力文中に登録済みの旧字体は見つかりませんでした。</span><span data-i18n="en">No registered old kanji forms were found in the text.</span></p>
+        <ul id="detectorResults" class="detector-results" aria-live="polite"></ul>
+        <div id="detectorHighlight" class="detector-highlight" aria-live="polite"></div>
+      </div>
+    </section>
     <section class="popular-panel">
       <h2 class="section-title"><span data-i18n="ja">よく使われる旧字体</span><span data-i18n="en">Common Old Forms</span></h2>
       <p class="section-desc"><span data-i18n="ja">人名・地名・古い文献などで見かけやすい旧字体を先に表示します。</span><span data-i18n="en">Frequently seen old forms in names, places, and older documents.</span></p>
