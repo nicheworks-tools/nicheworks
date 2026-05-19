@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["レーザー墨出し器|laser level|layout laser level", "レーザー墨出し器", "Laser level", "./images/pilot/layout-laser-level.svg?v=20260513-asset-14", "水平・垂直などの基準線をレーザーで投影する測定工具。", "Tool that projects laser reference lines for layout work."],
+    ["回転レーザー|rotary laser level|rotary laser", "回転レーザー", "Rotary laser", "./images/pilot/rotary-laser-level.svg?v=20260513-asset-14", "広い範囲で水平基準を出すための回転式レーザー機器。", "Rotating laser device used to create a level reference over a wide area."],
+    ["受光器|laser receiver", "受光器", "Laser receiver", "./images/pilot/laser-receiver.svg?v=20260513-asset-14", "レーザー光を受けて位置や高さを確認する機器。", "Device used to detect laser lines or levels."],
+    ["測量三脚|survey tripod", "測量三脚", "Survey tripod", "./images/pilot/survey-tripod.svg?v=20260513-asset-14", "測量機器やレーザー機器を安定して据える三脚。", "Tripod used to support surveying or laser instruments."],
+    ["標尺|level staff", "標尺", "Level staff", "./images/pilot/level-staff.svg?v=20260513-asset-14", "高さや高低差を読むために使う目盛り付きの棒。", "Graduated rod used for elevation readings."],
+    ["墨つぼ|chalk line reel", "墨つぼ", "Chalk line reel", "./images/pilot/chalk-line-reel.svg?v=20260513-asset-14", "直線の墨出しを行うための糸巻き式工具。", "Reel tool used to snap straight layout lines."],
+    ["下げ振り|plumb bob", "下げ振り", "Plumb bob", "./images/pilot/plumb-bob.svg?v=20260513-asset-14", "鉛直方向を確認するための重り付き工具。", "Weighted tool used to check a vertical line."],
+    ["ロードメジャー|measuring wheel", "ロードメジャー", "Measuring wheel", "./images/pilot/measuring-wheel.svg?v=20260513-asset-14", "地面を転がして距離を測る測定器。", "Wheel device used to measure distance along the ground."],
+    ["角度計|angle finder", "角度計", "Angle finder", "./images/pilot/angle-finder.svg?v=20260513-asset-14", "部材や面の角度を確認する測定工具。", "Tool used to check angles of parts or surfaces."],
+    ["点検ミラー|inspection mirror", "点検ミラー", "Inspection mirror", "./images/pilot/inspection-mirror.svg?v=20260513-asset-14", "見えにくい奥や裏側を確認するためのミラー工具。", "Mirror tool used to inspect hidden or hard-to-see areas."]
+  ]
+}
