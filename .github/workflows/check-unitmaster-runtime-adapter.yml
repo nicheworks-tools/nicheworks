@@ -1,0 +1,39 @@
+name: Check UnitMaster runtime adapter
+
+on:
+  pull_request:
+    paths:
+      - 'tools/unitmaster/app.js'
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/runtime-units-adapter.js'
+      - 'tools/unitmaster/scripts/check-runtime-adapter.mjs'
+      - '.github/workflows/check-unitmaster-runtime-adapter.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/unitmaster/app.js'
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/runtime-units-adapter.js'
+      - 'tools/unitmaster/scripts/check-runtime-adapter.mjs'
+      - '.github/workflows/check-unitmaster-runtime-adapter.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-runtime-adapter:
+    name: Check runtime adapter output
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check UnitMaster runtime adapter
+        run: node tools/unitmaster/scripts/check-runtime-adapter.mjs
