@@ -1,1 +1,152 @@
-:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f7fb;color:#111}.name-checker{max-width:880px;margin:0 auto;padding:16px}header,.input-panel,.result-summary,.name-result-list,.risk-panel,.reference-links,.privacy-note,.related-links{background:#fff;border:1px solid #d8deea;border-radius:10px;padding:14px;margin-bottom:12px}.lang-switch{display:flex;gap:8px;margin-top:10px}.lang-switch button,#check-button,.copy-actions button{border:1px solid #9aa6c1;background:#f4f7ff;color:#14213d;border-radius:8px;padding:8px 10px;cursor:pointer}.lang-switch button.active{background:#14213d;color:#fff}#name-input{width:100%;max-width:100%;padding:10px;border:1px solid #b6bfd3;border-radius:8px;font-size:16px}.input-actions{margin-top:10px}.name-result-list{display:grid;gap:10px}.name-result-card{border:1px solid #d8deea;border-radius:8px;padding:10px;overflow-wrap:anywhere}.copy-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.reference-links a{overflow-wrap:anywhere}.risk-panel{border-left:5px solid #c98300}.privacy-note{font-size:14px;color:#243147}.related-links ul{margin:0;padding-left:20px}@media (max-width:420px){.name-checker{padding:10px}header,.input-panel,.result-summary,.name-result-list,.risk-panel,.reference-links,.privacy-note,.related-links{padding:10px}}
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f7fb;
+  color: #111;
+}
+
+.name-checker {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header,
+.ad-slot,
+.input-panel,
+.loading-state,
+.result-summary,
+.name-result-list,
+.risk-panel,
+.reference-links,
+.privacy-note,
+.nw-donate,
+.related-links {
+  background: #fff;
+  border: 1px solid #d8deea;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.ad-slot {
+  text-align: center;
+  color: #556;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.lang-switch button,
+#check-button,
+.copy-actions button {
+  border: 1px solid #9aa6c1;
+  background: #f4f7ff;
+  color: #14213d;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.lang-switch button.active {
+  background: #14213d;
+  color: #fff;
+}
+
+#name-input {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid #b6bfd3;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.input-actions {
+  margin-top: 10px;
+}
+
+.loading-state.status-loading,
+.loading-state.status-partial_error,
+.loading-state.status-error {
+  display: block;
+}
+
+.loading-state.status-partial_error,
+.loading-state.status-error {
+  border-left: 5px solid #c98300;
+}
+
+.name-result-list {
+  display: grid;
+  gap: 10px;
+}
+
+.name-result-card {
+  border: 1px solid #d8deea;
+  border-radius: 8px;
+  padding: 10px;
+  overflow-wrap: anywhere;
+}
+
+.copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.reference-links a {
+  overflow-wrap: anywhere;
+}
+
+.risk-panel {
+  border-left: 5px solid #c98300;
+}
+
+.privacy-note {
+  font-size: 14px;
+  color: #243147;
+}
+
+.related-links ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.nw-donate-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 420px) {
+  .name-checker {
+    padding: 10px;
+  }
+
+  header,
+  .ad-slot,
+  .input-panel,
+  .loading-state,
+  .result-summary,
+  .name-result-list,
+  .risk-panel,
+  .reference-links,
+  .privacy-note,
+  .nw-donate,
+  .related-links {
+    padding: 10px;
+  }
+}
