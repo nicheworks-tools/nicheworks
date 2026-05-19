@@ -5,6 +5,7 @@
   let currentQuery = "";
   let currentSearchMode = "all";
   let metaCache = { popularOrder: [], entries: {} };
+  let shapeNotesCache = {};
   let activeDetailOldChar = "";
   let loadFailed = false;
   let recentOldChars = [];
@@ -60,6 +61,7 @@
   const getHtmlHexEntity = (text) => Array.from(String(text || "")).map(ch => `&#x${ch.codePointAt(0).toString(16).toUpperCase()};`).join("");
   const hasCompatibilityIdeograph = (text) => Array.from(String(text || "")).some(ch => { const cp = ch.codePointAt(0); return cp >= 0xF900 && cp <= 0xFAFF; });
   const getMeta = (oldChar) => (metaCache.entries && metaCache.entries[oldChar]) || {};
+  const getShapeNote = (oldChar) => (shapeNotesCache && shapeNotesCache[oldChar]) || null;
   const getCategory = (oldChar) => { const meta = getMeta(oldChar); if (meta.category) return meta.category; if (getPopularSet().has(oldChar)) return "popular"; if (nameOld.has(oldChar)) return "name"; if (commonOld.has(oldChar)) return "common"; if (documentOld.has(oldChar)) return "document"; return "rare"; };
   const labelForCategory = (category) => (filters.find(item => item.id === category) || filters[filters.length - 1])[currentLang];
   const hasMeaning = (entry) => Boolean(entry.readingJa || entry.readingEn || entry.meaningJa || entry.meaningEn);
@@ -75,7 +77,7 @@
   function switchLang(lang){ currentLang = lang === "en" ? "en" : "ja"; document.documentElement.lang = currentLang; document.querySelectorAll("[data-i18n]").forEach(el => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; }); document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang)); const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.placeholder = getSearchHint(searchInput, currentLang); const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.placeholder = currentLang === "en" ? (detectorInput.dataset.placeholderEn || "") : (detectorInput.dataset.placeholderJa || ""); }
   function showToast(text){ const toast = document.getElementById("toast"); if (!toast) return; toast.textContent = text; toast.classList.add("show"); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.remove("show"), 1600); }
   async function fetchJson(path){ const res = await fetch(path, { cache: "no-store" }); if (!res.ok) throw new Error(`Failed to load ${path}`); return res.json(); }
-  async function loadData(){ const [dict, meta, extra2, extra3, extra4, extra5, extra6] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-4.json?v=20260519-okj-extra-4").catch(() => ({ entries: {} })), fetchJson("./meta-extra-5.json?v=20260519-okj-extra-5").catch(() => ({ entries: {} })), fetchJson("./meta-extra-6.json?v=20260519-okj-extra-6").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}, extra4.entries || {}, extra5.entries || {}, extra6.entries || {}) }; return dict; }
+  async function loadData(){ const [dict, meta, extra2, extra3, extra4, extra5, extra6, shapeNotes] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-4.json?v=20260519-okj-extra-4").catch(() => ({ entries: {} })), fetchJson("./meta-extra-5.json?v=20260519-okj-extra-5").catch(() => ({ entries: {} })), fetchJson("./meta-extra-6.json?v=20260519-okj-extra-6").catch(() => ({ entries: {} })), fetchJson("./shape-notes.json").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}, extra4.entries || {}, extra5.entries || {}, extra6.entries || {}) }; shapeNotesCache = (shapeNotes && shapeNotes.entries) || {}; return dict; }
   function setCounts(dict){ const oldCount = Object.keys(dict.old_to_new || {}).length; document.querySelectorAll('[data-count="old"]').forEach(el => { el.textContent = oldCount; }); }
   function setStatusText(text){ const el = document.getElementById("statusMessage"); if (el) el.textContent = text || ""; }
   function buildEntries(dict){ const popularOrder = getPopularOrder(); entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => { const meta = getMeta(oldChar); const newText = Array.isArray(newChar) ? newChar.join("、") : String(newChar || ""); return { oldChar, newText, oldCode: getCodePoints(oldChar), newCode: getCodePoints(newText), category: getCategory(oldChar), verified: Boolean(meta.verified), readingJa: meta.readingJa || "", readingEn: meta.readingEn || "", meaningJa: meta.meaningJa || "", meaningEn: meta.meaningEn || "", usageJa: meta.usageJa || "", usageEn: meta.usageEn || "" }; }); entriesCache.sort((a,b) => { const ia = popularOrder.indexOf(a.oldChar); const ib = popularOrder.indexOf(b.oldChar); if (ia >= 0 && ib >= 0) return ia - ib; if (ia >= 0) return -1; if (ib >= 0) return 1; return a.oldChar.localeCompare(b.oldChar, "ja"); }); }
@@ -228,6 +230,22 @@
       ${related.length ? `<p class="detail-row"><strong><span data-i18n="ja">関連する旧字体</span><span data-i18n="en">Related old forms</span></strong> ${related.join(" / ")}</p>` : ""}
       ${!entry.verified && !hasMeaning(entry) ? `<p class="pair-only-note"><span data-i18n="ja">この項目は旧字→新字の対応情報を中心に掲載しています。</span><span data-i18n="en">This entry currently focuses on the old → modern mapping.</span></p>` : ""}
     </div>`;
+
+    const shapeNote = getShapeNote(entry.oldChar);
+    if (shapeNote) {
+      const heading = currentLang === "en" ? "Shape comparison" : "形の見比べ";
+      const radicalLabel = currentLang === "en" ? "Radical / structure guide" : "部首・構成の目安";
+      const oldShapeLabel = currentLang === "en" ? "Old-form shape" : "旧字体の形";
+      const diffLabel = currentLang === "en" ? "Difference from modern form" : "新字体との違い";
+      const noteLabel = currentLang === "en" ? "Note" : "補足";
+      const radicalText = currentLang === "en" ? shapeNote.radicalEn : shapeNote.radicalJa;
+      const structureText = currentLang === "en" ? shapeNote.structureEn : shapeNote.structureJa;
+      const differenceText = currentLang === "en" ? shapeNote.differenceEn : shapeNote.differenceJa;
+      const noteText = currentLang === "en" ? shapeNote.noteEn : shapeNote.noteJa;
+      const tags = Array.isArray(shapeNote.tags) ? shapeNote.tags : [];
+      const tagsHtml = tags.length ? `<div class="shape-tags">${tags.map(tag => `<span class="shape-tag">${tag}</span>`).join("")}</div>` : "";
+      panel.innerHTML += `<section class="shape-note"><h4>${heading}</h4><div class="shape-note-grid"><p class="shape-note-row"><span class="shape-note-label">${radicalLabel}</span><span class="shape-note-text">${radicalText || "-"}</span></p><p class="shape-note-row"><span class="shape-note-label">${oldShapeLabel}</span><span class="shape-note-text">${structureText || "-"}</span></p><p class="shape-note-row"><span class="shape-note-label">${diffLabel}</span><span class="shape-note-text">${differenceText || "-"}</span></p><p class="shape-note-row"><span class="shape-note-label">${noteLabel}</span><span class="shape-note-text">${noteText || "-"}</span></p></div>${tagsHtml}</section>`;
+    }
     panel.innerHTML += `<section class="code-copy-grid">
       <div class="code-block">
         <h4>Unicode</h4>

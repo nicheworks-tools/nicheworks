@@ -494,3 +494,16 @@ a:hover { color: var(--accent); }
   .kanji-table-cell.cell-old::before,.kanji-table-cell.cell-modern::before{display:none;}
   .table-actions{gap:6px;}
 }
+
+.shape-note{margin:14px 0 0;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff;min-width:0;}
+.shape-note h4{margin:0 0 8px;font-size:1rem;}
+.shape-note-grid{display:grid;gap:8px;min-width:0;}
+.shape-note-row{margin:0;display:grid;grid-template-columns:minmax(130px,180px) minmax(0,1fr);gap:8px;align-items:start;}
+.shape-note-label{font-weight:600;color:#333;}
+.shape-note-text{color:var(--muted);word-break:break-word;}
+.shape-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;min-width:0;}
+.shape-tag{display:inline-flex;align-items:center;padding:2px 8px;border:1px solid var(--border);border-radius:999px;background:#f6f6f6;color:#444;font-size:.78rem;line-height:1.4;max-width:100%;word-break:break-word;}
+@media (max-width:480px){
+  .shape-note-row{grid-template-columns:1fr;gap:3px;}
+  .shape-note{overflow-x:hidden;}
+}
