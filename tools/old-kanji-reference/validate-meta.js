@@ -175,6 +175,16 @@ function main() {
       errors.push(`Missing sourceNote for ${oldChar}`);
     }
 
+    if (entry.dataStatus === "verified") {
+      if (entry.verified !== true) {
+        errors.push(`verified status entry ${oldChar} must set verified=true`);
+      }
+    } else if (entry.dataStatus === "needs_review" || entry.dataStatus === "pair_only") {
+      if (entry.verified !== false) {
+        errors.push(`${entry.dataStatus} entry ${oldChar} must set verified=false`);
+      }
+    }
+
     if (entry.verified) {
       if (entry.dataStatus !== "verified") {
         errors.push(`Verified entry ${oldChar} must set dataStatus=verified`);
