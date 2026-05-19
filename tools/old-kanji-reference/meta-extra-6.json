@@ -1,0 +1,1485 @@
+{
+  "version": "2026-05-19-okj-41-status-coverage",
+  "entries": {
+    "鋪": {
+      "modern": "舗",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "買": {
+      "modern": "買",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "遞": {
+      "modern": "逓",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "擊": {
+      "modern": "撃",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "盡": {
+      "modern": "尽",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "潛": {
+      "modern": "潜",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "俠": {
+      "modern": "侠",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "倫": {
+      "modern": "倫",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "偵": {
+      "modern": "偵",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "倂": {
+      "modern": "併",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "倉": {
+      "modern": "倉",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "們": {
+      "modern": "們",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "側": {
+      "modern": "側",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "剋": {
+      "modern": "剋",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "劒": {
+      "modern": "剣",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "墮": {
+      "modern": "堕",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "墻": {
+      "modern": "塀",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "寢": {
+      "modern": "寝",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "嶺": {
+      "modern": "嶺",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "嶼": {
+      "modern": "嶼",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "巒": {
+      "modern": "巒",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "彎": {
+      "modern": "弯",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "徵": {
+      "modern": "徴",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "慘": {
+      "modern": "惨",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "戲": {
+      "modern": "戯",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "揀": {
+      "modern": "揀",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "擺": {
+      "modern": "擺",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "曉": {
+      "modern": "暁",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "標": {
+      "modern": "標",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "橋": {
+      "modern": "橋",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "淚": {
+      "modern": "涙",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "滯": {
+      "modern": "滞",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "溫": {
+      "modern": "温",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "爍": {
+      "modern": "爍",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "爐": {
+      "modern": "炉",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "獸": {
+      "modern": "獣",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "獵": {
+      "modern": "猟",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "祿": {
+      "modern": "禄",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "稅": {
+      "modern": "税",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "稻": {
+      "modern": "稲",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "穡": {
+      "modern": "穫",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "竊": {
+      "modern": "窃",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "竝": {
+      "modern": "並",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "竣": {
+      "modern": "竣",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "筆": {
+      "modern": "筆",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "筍": {
+      "modern": "筍",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "箋": {
+      "modern": "箋",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "粹": {
+      "modern": "粋",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "糧": {
+      "modern": "糧",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "繼": {
+      "modern": "継",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "繩": {
+      "modern": "縄",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "纖": {
+      "modern": "繊",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "羣": {
+      "modern": "群",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "翫": {
+      "modern": "玩",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "翹": {
+      "modern": "翹",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "連": {
+      "modern": "連",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "脛": {
+      "modern": "脛",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "腳": {
+      "modern": "脚",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "膽": {
+      "modern": "胆",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "禦": {
+      "modern": "御",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "禍": {
+      "modern": "禍",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "禎": {
+      "modern": "禎",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "艷": {
+      "modern": "艶",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "蘆": {
+      "modern": "芦",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "虜": {
+      "modern": "虜",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "虛": {
+      "modern": "虚",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "蠶": {
+      "modern": "蚕",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "護": {
+      "modern": "護",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "觸": {
+      "modern": "触",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "贊": {
+      "modern": "賛",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "賓": {
+      "modern": "賓",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "著": {
+      "modern": "点",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "離": {
+      "modern": "離",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "飮": {
+      "modern": "飲",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "飯": {
+      "modern": "飯",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "飯": {
+      "modern": "飯",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "館": {
+      "modern": "館",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "驅": {
+      "modern": "駆",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "驕": {
+      "modern": "驕",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鬧": {
+      "modern": "騒",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "虜": {
+      "modern": "虜",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "魯": {
+      "modern": "魯",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "魯": {
+      "modern": "魯",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鶴": {
+      "modern": "鶴",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "麩": {
+      "modern": "麩",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "𤋮": {
+      "modern": "頗",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "頻": {
+      "modern": "頻",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "類": {
+      "modern": "類",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "礼": {
+      "modern": "礼",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "祐": {
+      "modern": "祐",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "綱": {
+      "modern": "綱",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "網": {
+      "modern": "網",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "練": {
+      "modern": "練",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "繁": {
+      "modern": "繁",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "織": {
+      "modern": "織",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "罰": {
+      "modern": "罰",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "羨": {
+      "modern": "羨",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "翔": {
+      "modern": "翔",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "﨧": {
+      "modern": "翔",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "耗": {
+      "modern": "耗",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "聖": {
+      "modern": "聖",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "腫": {
+      "modern": "腫",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "腺": {
+      "modern": "腺",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "臨": {
+      "modern": "臨",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "艦": {
+      "modern": "艦",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "艇": {
+      "modern": "艇",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "艶": {
+      "modern": "艶",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "蕣": {
+      "modern": "蕣",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "蘇": {
+      "modern": "蘇",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "襖": {
+      "modern": "襖",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "覆": {
+      "modern": "覆",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "覇": {
+      "modern": "覇",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "視": {
+      "modern": "視",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "訂": {
+      "modern": "訂",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "託": {
+      "modern": "託",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "訟": {
+      "modern": "訟",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "註": {
+      "modern": "註",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "詔": {
+      "modern": "詔",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "評": {
+      "modern": "評",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "詞": {
+      "modern": "詞",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "詰": {
+      "modern": "詰",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "誇": {
+      "modern": "誇",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "誤": {
+      "modern": "誤",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "說": {
+      "modern": "説",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "諦": {
+      "modern": "諦",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "論": {
+      "modern": "論",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "諸": {
+      "modern": "諸",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "警": {
+      "modern": "警",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "識": {
+      "modern": "識",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "貧": {
+      "modern": "貧",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "責": {
+      "modern": "責",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "貴": {
+      "modern": "貴",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "賢": {
+      "modern": "賢",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "賦": {
+      "modern": "賦",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "質": {
+      "modern": "質",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "贈": {
+      "modern": "贈",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "赦": {
+      "modern": "赦",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "躍": {
+      "modern": "躍",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "躰": {
+      "modern": "体",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "載": {
+      "modern": "載",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "輔": {
+      "modern": "輔",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "輝": {
+      "modern": "輝",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "輩": {
+      "modern": "輩",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "輯": {
+      "modern": "輯",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "輸": {
+      "modern": "輸",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "邨": {
+      "modern": "村",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "礦": {
+      "modern": "鉱",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鏡": {
+      "modern": "鏡",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鐘": {
+      "modern": "鐘",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "閣": {
+      "modern": "閣",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "閑": {
+      "modern": "閑",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "闢": {
+      "modern": "闢",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "阜": {
+      "modern": "阜",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "陰": {
+      "modern": "陰",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "霸": {
+      "modern": "覇",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "難": {
+      "modern": "難",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "難": {
+      "modern": "難",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "霜": {
+      "modern": "霜",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "霧": {
+      "modern": "霧",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "靠": {
+      "modern": "靠",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "頁": {
+      "modern": "頁",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "頃": {
+      "modern": "頃",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "頌": {
+      "modern": "頌",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "須": {
+      "modern": "須",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "頗": {
+      "modern": "頗",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "頻": {
+      "modern": "頻",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "願": {
+      "modern": "願",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "類": {
+      "modern": "類",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "飾": {
+      "modern": "飾",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "餝": {
+      "modern": "餝",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "館": {
+      "modern": "館",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "駄": {
+      "modern": "駄",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "駕": {
+      "modern": "駕",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "駐": {
+      "modern": "駐",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "駿": {
+      "modern": "駿",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "驪": {
+      "modern": "麗",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鬮": {
+      "modern": "鬮",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鬨": {
+      "modern": "鬨",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "魁": {
+      "modern": "魁",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "魂": {
+      "modern": "魂",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "魔": {
+      "modern": "魔",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鮮": {
+      "modern": "鮮",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鯨": {
+      "modern": "鯨",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "鶴": {
+      "modern": "鶴",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    },
+    "墨": {
+      "modern": "黙",
+      "category": "rare",
+      "dataStatus": "pair_only",
+      "confidence": "low",
+      "sourceNote": "dict.json の旧字・新字対応のみを表示する項目",
+      "verified": false
+    }
+  }
+}
