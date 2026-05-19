@@ -251,6 +251,24 @@ a:hover { color: var(--accent); }
 .copy-btn:hover { border-color: var(--accent); }
 .converter-link{display:inline-block;margin-top:6px;font-size:.82rem;color:#2558b8;text-decoration:underline;text-underline-offset:2px;}
 .converter-link-detail{margin-top:10px;}
+.glyph-compare,.font-compare,.compat-note,.code-copy-grid{margin:14px 0 0;}
+.glyph-compare h4,.font-compare h4,.code-copy-grid h4{margin:0 0 8px;font-size:1rem;}
+.glyph-compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.glyph-box{border:1px solid var(--border);border-radius:10px;padding:10px;background:#fff;min-width:0;}
+.glyph-label{margin:0;color:var(--muted);font-size:.85rem;}
+.glyph-large{margin:6px 0 0;font-size:3rem;line-height:1.2;word-break:break-word;}
+.code-copy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.code-block{border:1px solid var(--border);border-radius:10px;padding:10px;background:#fff;min-width:0;}
+.code-block code{display:inline-block;word-break:break-all;}
+.font-compare{border:1px solid var(--border);border-radius:10px;padding:10px;background:#fff;}
+.font-row{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:8px 0;min-width:0;}
+.font-row span{font-size:1.5rem;line-height:1.3;word-break:break-word;text-align:right;}
+.font-serif span{font-family:serif;}
+.font-sans span{font-family:sans-serif;}
+.font-system span{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+.compat-note{color:var(--muted);font-size:.9rem;}
+.compat-note p{margin:6px 0;}
+.compat-emphasis{color:#6a2a2a;}
 
 .faq-section details {
   border-top: 1px solid var(--border);
@@ -393,6 +411,10 @@ a:hover { color: var(--accent); }
   .copy-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .copy-btn { width: 100%; font-size: 0.82rem; padding: 7px 6px; }
   .converter-link{font-size:.8rem;}
+  .glyph-compare-grid,.code-copy-grid{grid-template-columns:1fr;}
+  .glyph-large{font-size:2.4rem;}
+  .font-row{flex-direction:column;align-items:flex-start;}
+  .font-row span{text-align:left;}
 }
 
 .panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
