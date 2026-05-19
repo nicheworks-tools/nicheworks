@@ -8,8 +8,8 @@
   let activeDetailOldChar = "";
 
   const messages = {
-    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました" },
-    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Pair only", verified: "Verified", showDetails: "Show details", hideDetails: "Hide details", copiedPairs: "Copied pairs", copiedOldFormsOnly: "Copied old forms only" }
+    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応情報のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました" },
+    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Mapping only", verified: "Checked", showDetails: "Show details", hideDetails: "Hide details", copiedPairs: "Copied pairs", copiedOldFormsOnly: "Copied old forms only" }
   };
 
   const filters = [
@@ -63,11 +63,14 @@
     const card = document.createElement("article");
     card.className = compact ? "kanji-card popular-card" : "kanji-card";
     card.dataset.old = entry.oldChar;
-    const statusText = entry.verified ? `${messages.ja.verified} / ${messages.en.verified}` : `${messages.ja.pairOnly} / ${messages.en.pairOnly}`;
+        const readingText = currentLang === "en" ? (entry.readingEn || entry.readingJa) : (entry.readingJa || entry.readingEn);
+    const meaningText = currentLang === "en" ? (entry.meaningEn || entry.meaningJa) : (entry.meaningJa || entry.meaningEn);
+    const pairNote = !hasMeaning(entry) ? (currentLang === "en" ? `Old form → modern form only` : `旧字→新字の対応のみ`) : "";
     card.innerHTML = `<div class="kanji-pair"><div class="kanji-old">${entry.oldChar}</div><div class="kanji-arrow">→</div><div class="kanji-new">${entry.newText}</div></div>
-      ${entry.readingJa || entry.readingEn ? `<p class="kanji-reading"><span data-i18n="ja">読み：${entry.readingJa || "-"}</span><span data-i18n="en">Reading: ${entry.readingEn || entry.readingJa}</span></p>` : ""}
-      <p class="kanji-meta"><span data-i18n="ja">分類：${labelForCategory(entry.category)} / 確認状態：${entry.verified ? messages.ja.verified : messages.ja.pairOnly}</span><span data-i18n="en">Category: ${labelForCategory(entry.category)} / Status: ${entry.verified ? messages.en.verified : messages.en.pairOnly}</span></p>
-      <p class="codepoint-line"><span data-i18n="ja">Unicode：旧字 ${entry.oldCode} / 新字 ${entry.newCode}</span><span data-i18n="en">Unicode: Old ${entry.oldCode} / Modern ${entry.newCode}</span></p>`;
+      ${readingText ? `<p class="kanji-reading">${currentLang === "en" ? `Reading: ${readingText}` : `読み：${readingText}`}</p>` : ""}
+      ${meaningText ? `<p class="kanji-meaning">${currentLang === "en" ? `Meaning: ${meaningText}` : `意味：${meaningText}`}</p>` : ""}
+      ${pairNote ? `<p class="kanji-pair-note">${pairNote}</p>` : ""}
+      <p class="kanji-meta">${currentLang === "en" ? `Category: ${labelForCategory(entry.category)} / ${entry.verified ? messages.en.verified : messages.en.pairOnly}` : `分類：${labelForCategory(entry.category)} / ${entry.verified ? messages.ja.verified : messages.ja.pairOnly}`}</p>`;
     if (!compact) {
       const mobileToggle = document.createElement("button");
       mobileToggle.type = "button";
@@ -82,7 +85,7 @@
       if (entry.usageJa || entry.usageEn) mobileDetail.innerHTML += `<p class="kanji-usage"><span data-i18n="ja">用途：${entry.usageJa || ""}</span><span data-i18n="en">Usage: ${entry.usageEn || entry.usageJa}</span></p>`;
       card.appendChild(mobileDetail);
     }
-    card.dataset.status = statusText;
+    card.dataset.status = entry.verified ? messages[currentLang].verified : messages[currentLang].pairOnly;
     card.addEventListener("click", (ev) => {
       if (ev.target.closest(".copy-btn") || ev.target.closest(".mobile-detail-toggle")) return;
       activeDetailOldChar = entry.oldChar;
@@ -108,7 +111,7 @@
       <p class="detail-row"><strong><span data-i18n="ja">確認状態</span><span data-i18n="en">Status</span></strong> ${entry.verified ? messages[currentLang].verified : messages[currentLang].pairOnly}</p>
       <p class="detail-row"><strong>Unicode</strong> <span data-i18n="ja">旧字 ${entry.oldCode} / 新字 ${entry.newCode}</span><span data-i18n="en">Old ${entry.oldCode} / Modern ${entry.newCode}</span></p>
       ${related.length ? `<p class="detail-row"><strong><span data-i18n="ja">関連する旧字体</span><span data-i18n="en">Related old forms</span></strong> ${related.join(" / ")}</p>` : ""}
-      ${!entry.verified && !hasMeaning(entry) ? `<p class="pair-only-note"><span data-i18n="ja">この項目は現在、旧字と新字の対応のみを表示しています。</span><span data-i18n="en">This entry currently shows the old/modern pair only.</span></p>` : ""}
+      ${!entry.verified && !hasMeaning(entry) ? `<p class="pair-only-note"><span data-i18n="ja">この項目は旧字→新字の対応情報を中心に掲載しています。</span><span data-i18n="en">This entry currently focuses on the old → modern mapping.</span></p>` : ""}
     </div>`;
     const actions = document.createElement("div"); actions.className = "detail-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); panel.appendChild(actions);
     switchLang(currentLang);
