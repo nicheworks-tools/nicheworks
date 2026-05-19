@@ -207,3 +207,28 @@ Do:
 - `health_manifest_failed` → EMS-RD-10-ROUTE
 - `endpoint_error` / `blocked` / `inconclusive` → EMS-RD-10-PROBEFIX
 - `network_unverified` → EMS-RD-10-VERIFY
+
+
+### EMS-RD-10 browser self-check gate
+
+- `tools/earth-map-suite/api-status.html` now provides browser self-check controls and copyable JSON output.
+- Safe check (`health` / `manifest`) exists for low-risk reachability verification.
+- Research probe check exists and remains manual/research-only.
+- Public real data remains disabled: `public_real_data_enabled=false`.
+- Storm / Compare / Card remain disconnected: `storm_compare_card_connected=false`.
+- `precipitation-sample-real` is still not public real output.
+
+### EMS-RD-11 browser result intake gate
+
+- Canonical intake template: `ems-rd-11-browser-self-check-result.template.json`.
+- Canonical result file: `ems-rd-11-browser-self-check-result.json`.
+- Current branch decision: `browser_result_missing`.
+
+#### EMS-RD-11 next gate mapping
+
+- `browser_result_missing` → EMS-RD-12-VERIFY
+- `health_manifest_failed` → EMS-RD-12-ROUTE
+- `health_manifest_reachable` → EMS-RD-12-PROBE
+- `raw_pixel_read` → EMS-RD-12-SAMPLE
+- `decoder_strategy_required` → EMS-RD-12-DECODER
+- `endpoint_error` / `blocked` / `inconclusive` → EMS-RD-12-PROBEFIX

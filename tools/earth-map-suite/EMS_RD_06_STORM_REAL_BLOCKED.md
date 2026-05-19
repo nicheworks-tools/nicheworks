@@ -43,3 +43,27 @@ Storm real must stay blocked unless **all** conditions above are true.
 - showing `debug_first_pixel` as rainfall value
 - using synthetic fallback inside real result block
 - labeling synthetic preview as JAXA/EORC observed precipitation
+
+
+## EMS-RD-10/11 sync status
+
+- browser self-check page exists: `tools/earth-map-suite/api-status.html`.
+- browser result intake file exists: `tools/earth-map-suite/ems-rd-11-browser-self-check-result.json` (currently placeholder).
+- current branch_decision: `browser_result_missing`.
+
+Storm real stays blocked unless all of the following are true:
+
+1. `health` endpoint reachable.
+2. `manifest` endpoint reachable.
+3. probe branch recorded.
+4. `precipitation-sample-real` returns validated `real_observation`.
+5. unit / scale / offset / NoData / geolocation verified.
+6. source / license / provenance verified.
+7. `EMS_RD_05_STORM_REAL_PRECHECK.md` approved.
+
+### Explicitly forbidden while blocked
+
+- connecting `app.js` to `precipitation-sample-real` as real data.
+- showing raw/debug pixel as rainfall.
+- falling back from real failure to synthetic in the same result block.
+- labeling synthetic preview as JAXA/EORC data.
