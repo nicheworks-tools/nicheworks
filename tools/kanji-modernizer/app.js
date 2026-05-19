@@ -201,6 +201,14 @@
     if (!bar) return;
     bar.style.display = active ? "block" : "none";
   }
+  function updateReferenceLink(inputValue) {
+    const value = String(inputValue || "").trim();
+    const href = value ? `/tools/old-kanji-reference/?q=${encodeURIComponent(value)}` : "/tools/old-kanji-reference/";
+    const linkJa = document.getElementById("backToOldKanjiReference");
+    const linkEn = document.getElementById("backToOldKanjiReferenceEn");
+    if (linkJa) linkJa.href = href;
+    if (linkEn) linkEn.href = href;
+  }
 
   function buildExclusionRanges(text) {
     const ranges = [];
@@ -330,6 +338,10 @@
     const replacementTableBody = document.getElementById("replacementTableBody");
     const replacementEmpty = document.getElementById("replacementEmpty");
     const retryBtn = document.getElementById("retryBtn");
+    const params = new URLSearchParams(window.location.search);
+    const qParam = params.get("q");
+    if (input && qParam) input.value = qParam;
+    updateReferenceLink(input ? input.value : "");
 
     const setConvertEnabled = enabled => {
       if (!convertBtn) return;
@@ -371,6 +383,7 @@
     });
 
     switchLang((navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en");
+    if (input) input.addEventListener("input", () => updateReferenceLink(input.value));
 
     const initDict = async () => {
       setConvertEnabled(false);
@@ -426,6 +439,7 @@
         }
       });
     }
+    if (qParam && convertBtn) convertBtn.click();
 
     if (copyTextBtn) {
       copyTextBtn.addEventListener("click", async () => {

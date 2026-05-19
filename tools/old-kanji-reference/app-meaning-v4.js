@@ -9,9 +9,10 @@
   let loadFailed = false;
 
   const messages = {
-    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応情報のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました", copiedMarkdown: "Markdown表をコピーしました", exportedCsv: "CSVを保存しました", exportedJson: "JSONを保存しました", nothingToExport: "出力できるデータがありません" },
-    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Mapping only", verified: "Checked", showDetails: "Show details", hideDetails: "Hide details", copiedPairs: "Copied pairs", copiedOldFormsOnly: "Copied old forms only", copiedMarkdown: "Copied Markdown table", exportedCsv: "Saved CSV", exportedJson: "Saved JSON", nothingToExport: "No data to export" }
+    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応情報のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました", copiedMarkdown: "Markdown表をコピーしました", exportedCsv: "CSVを保存しました", exportedJson: "JSONを保存しました", nothingToExport: "出力できるデータがありません", noDetectorTextToSend: "変換する文章がありません" },
+    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Mapping only", verified: "Checked", showDetails: "Show details", hideDetails: "Hide details", copiedPairs: "Copied pairs", copiedOldFormsOnly: "Copied old forms only", copiedMarkdown: "Copied Markdown table", exportedCsv: "Saved CSV", exportedJson: "Saved JSON", nothingToExport: "No data to export", noDetectorTextToSend: "No text to send" }
   };
+  const toConverterUrl = (value) => `../kanji-modernizer/?q=${encodeURIComponent(value)}`;
 
   const filters = [
     { id: "all", ja: "すべて", en: "All" },
@@ -79,6 +80,11 @@
       card.appendChild(mobileToggle);
     }
     const actions = document.createElement("div"); actions.className = "copy-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); card.appendChild(actions);
+    const converterAction = document.createElement("a");
+    converterAction.className = "converter-link";
+    converterAction.href = toConverterUrl(entry.oldChar);
+    converterAction.innerHTML = '<span data-i18n="ja">変換ツールで使う</span><span data-i18n="en">Use in converter</span>';
+    card.appendChild(converterAction);
     if (!compact && (entry.meaningJa || entry.meaningEn || entry.usageJa || entry.usageEn)) {
       const mobileDetail = document.createElement("div"); mobileDetail.className = "mobile-detail-content";
       if (entry.meaningJa || entry.meaningEn) mobileDetail.innerHTML += `<p class="kanji-meaning"><span data-i18n="ja">意味：${entry.meaningJa || ""}</span><span data-i18n="en">Meaning: ${entry.meaningEn || entry.meaningJa}</span></p>`;
@@ -114,6 +120,11 @@
       ${!entry.verified && !hasMeaning(entry) ? `<p class="pair-only-note"><span data-i18n="ja">この項目は旧字→新字の対応情報を中心に掲載しています。</span><span data-i18n="en">This entry currently focuses on the old → modern mapping.</span></p>` : ""}
     </div>`;
     const actions = document.createElement("div"); actions.className = "detail-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); panel.appendChild(actions);
+    const converterAction = document.createElement("a");
+    converterAction.className = "converter-link converter-link-detail";
+    converterAction.href = toConverterUrl(entry.oldChar);
+    converterAction.innerHTML = '<span data-i18n="ja">この文字を変換ツールで使う</span><span data-i18n="en">Use this character in converter</span>';
+    panel.appendChild(converterAction);
   }
   function renderSearchModes(){ const wrap = document.getElementById("searchModes"); if (!wrap) return; wrap.innerHTML = ""; searchModes.forEach(mode => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "search-mode-btn"; btn.dataset.mode = mode.id; btn.textContent = mode[currentLang]; btn.classList.toggle("active", mode.id === currentSearchMode); btn.addEventListener("click", () => { currentSearchMode = mode.id; renderAll(); }); wrap.appendChild(btn); }); }
   function renderFilters(){ const wrap = document.getElementById("filterButtons"); if (!wrap) return; wrap.innerHTML = ""; filters.forEach(filter => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "filter-btn"; btn.dataset.filter = filter.id; btn.textContent = filter[currentLang]; btn.classList.toggle("active", filter.id === currentFilter); btn.addEventListener("click", () => { currentFilter = filter.id; renderAll(); }); wrap.appendChild(btn); }); }
@@ -173,6 +184,15 @@
     if (!detected.length) return;
     const text = kind === "pairs" ? detected.map(({entry}) => `${entry.oldChar}→${entry.newText}`).join("\n") : detected.map(({entry}) => entry.oldChar).join(" ");
     copyWithFallback(text).then(() => showToast(kind === "pairs" ? messages[currentLang].copiedPairs : messages[currentLang].copiedOldFormsOnly));
+  }
+  function sendDetectorTextToConverter(){
+    const input = document.getElementById("detectorInput");
+    const text = (input?.value || "").trim();
+    if (!text) {
+      showToast(messages[currentLang].noDetectorTextToSend);
+      return;
+    }
+    window.location.href = toConverterUrl(text);
   }
 
   function getVisibleEntries(){ return getFilteredEntries(); }
@@ -246,6 +266,7 @@
     const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.addEventListener("input", renderDetector);
     const copyDetectedOld = document.getElementById("copyDetectedOld"); if (copyDetectedOld) copyDetectedOld.addEventListener("click", () => copyDetected("old"));
     const copyDetectedPairs = document.getElementById("copyDetectedPairs"); if (copyDetectedPairs) copyDetectedPairs.addEventListener("click", () => copyDetected("pairs"));
+    const sendDetectorTextBtn = document.getElementById("sendDetectorTextToConverter"); if (sendDetectorTextBtn) sendDetectorTextBtn.addEventListener("click", sendDetectorTextToConverter);
     const exportCsvBtn = document.getElementById("exportCsv"); if (exportCsvBtn) exportCsvBtn.addEventListener("click", exportCsv);
     const exportJsonBtn = document.getElementById("exportJson"); if (exportJsonBtn) exportJsonBtn.addEventListener("click", exportJson);
     const copyMarkdownBtn = document.getElementById("copyMarkdown"); if (copyMarkdownBtn) copyMarkdownBtn.addEventListener("click", copyMarkdownTable);
@@ -259,6 +280,14 @@
       const toggle = ev.target.closest(".mobile-detail-toggle");
       if (toggle) { const card = toggle.closest(".kanji-card"); if (!card) return; card.classList.toggle("mobile-open"); toggle.innerHTML = card.classList.contains("mobile-open") ? `<span data-i18n="ja">${messages.ja.hideDetails}</span><span data-i18n="en">${messages.en.hideDetails}</span>` : `<span data-i18n="ja">${messages.ja.showDetails}</span><span data-i18n="en">${messages.en.showDetails}</span>`; switchLang(currentLang); renderDetector(); }
     });
+    const params = new URLSearchParams(window.location.search);
+    const qParam = params.get("q");
+    const textParam = params.get("text");
+    if (searchInput && qParam) {
+      searchInput.value = qParam;
+      currentQuery = qParam;
+    }
+    if (detectorInput && textParam) detectorInput.value = textParam;
     switchLang(currentLang); setStatusText(messages[currentLang].loading); loadData().then(dict => { loadFailed = false; setCounts(dict); buildEntries(dict); renderAll(); }).catch(() => { loadFailed = true; renderAll(); });
   });
 })();

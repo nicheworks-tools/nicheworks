@@ -249,6 +249,8 @@ a:hover { color: var(--accent); }
 }
 
 .copy-btn:hover { border-color: var(--accent); }
+.converter-link{display:inline-block;margin-top:6px;font-size:.82rem;color:#2558b8;text-decoration:underline;text-underline-offset:2px;}
+.converter-link-detail{margin-top:10px;}
 
 .faq-section details {
   border-top: 1px solid var(--border);
@@ -390,6 +392,7 @@ a:hover { color: var(--accent); }
   .kanji-meta { font-size: 0.82rem; }
   .copy-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .copy-btn { width: 100%; font-size: 0.82rem; padding: 7px 6px; }
+  .converter-link{font-size:.8rem;}
 }
 
 .panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
