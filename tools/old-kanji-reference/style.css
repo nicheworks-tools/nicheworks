@@ -544,3 +544,17 @@ a:hover { color: var(--accent); }
     gap: 2px;
   }
 }
+
+.compatibility-note{margin-top:1rem;padding:.9rem;border:1px solid #d6dde9;border-radius:10px;background:#f8fbff}
+.compatibility-risk{display:inline-block;padding:.2rem .55rem;border-radius:999px;font-weight:700;font-size:.85rem;margin:.2rem 0 .7rem}
+.compatibility-risk.low{background:#e8f7ea;color:#1f6b33}
+.compatibility-risk.medium{background:#fff7df;color:#8a6400}
+.compatibility-risk.high{background:#ffe8e8;color:#9f1d1d}
+.compatibility-note-grid{display:grid;gap:.45rem}
+.compatibility-note-row{display:grid;grid-template-columns:9.5rem 1fr;gap:.55rem;margin:0}
+.compatibility-note-label{font-weight:700}
+.compatibility-note-text{min-width:0;overflow-wrap:anywhere}
+.compatibility-note-caution{margin:.65rem 0 0;color:#475569;font-size:.9rem;overflow-wrap:anywhere}
+@media (max-width: 600px){
+  .compatibility-note-row{grid-template-columns:1fr;gap:.2rem}
+}
