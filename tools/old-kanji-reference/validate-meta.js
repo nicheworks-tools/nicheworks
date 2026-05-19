@@ -7,7 +7,7 @@
 
   Fatal checks:
     - JSON files must be readable
-    - meta keys must exist in dict.json
+    - meta keys should exist in dict.json (reported as warnings for shared dictionary lag)
     - category must be one of the allowed values
     - popularOrder entries must exist and have verified metadata
     - verified entries must have reading / meaning / category
@@ -136,17 +136,17 @@ function main() {
   }
 
   for (const [oldChar, entry] of Object.entries(mergedEntries)) {
-    if (!Object.prototype.hasOwnProperty.call(oldToNew, oldChar)) {
-      errors.push(`Metadata key is not in dict.json: ${oldChar}`);
-      continue;
+    const existsInDict = Object.prototype.hasOwnProperty.call(oldToNew, oldChar);
+    if (!existsInDict) {
+      warnings.push(`Metadata key is not in dict.json yet: ${oldChar}. Keeping existing metadata but excluding it from missing-meta coverage.`);
     }
 
-    const expectedModern = normalizeModern(oldToNew[oldChar]);
+    const expectedModern = existsInDict ? normalizeModern(oldToNew[oldChar]) : "";
     const modern = hasText(entry.modern) ? entry.modern : expectedModern;
     if (!modernGroups.has(modern)) modernGroups.set(modern, []);
     modernGroups.get(modern).push(oldChar);
 
-    if (hasText(entry.modern) && entry.modern !== expectedModern) {
+    if (existsInDict && hasText(entry.modern) && entry.modern !== expectedModern) {
       const note = KNOWN_MODERN_MISMATCH_NOTES[oldChar] || "Review dict/meta mapping before promoting this entry further.";
       warnings.push(`Modern differs for ${oldChar}: meta=${entry.modern} dict=${expectedModern}. ${note}`);
     }
