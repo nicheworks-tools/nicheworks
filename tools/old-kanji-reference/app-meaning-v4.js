@@ -9,8 +9,8 @@
   let loadFailed = false;
 
   const messages = {
-    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応情報のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました" },
-    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Mapping only", verified: "Checked", showDetails: "Show details", hideDetails: "Hide details", copiedPairs: "Copied pairs", copiedOldFormsOnly: "Copied old forms only" }
+    ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応情報のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました", copiedMarkdown: "Markdown表をコピーしました", exportedCsv: "CSVを保存しました", exportedJson: "JSONを保存しました", nothingToExport: "出力できるデータがありません" },
+    en: { loading: "Loading dictionary…", loadError: "Failed to load dictionary.", copiedOld: "Copied old form", copiedNew: "Copied modern form", noMatch: "No matching entries found. Try another kanji, reading, or modern form.", showing: "Showing", searchResults: "Search results", total: "total", pairOnly: "Mapping only", verified: "Checked", showDetails: "Show details", hideDetails: "Hide details", copiedPairs: "Copied pairs", copiedOldFormsOnly: "Copied old forms only", copiedMarkdown: "Copied Markdown table", exportedCsv: "Saved CSV", exportedJson: "Saved JSON", nothingToExport: "No data to export" }
   };
 
   const filters = [
@@ -174,6 +174,69 @@
     const text = kind === "pairs" ? detected.map(({entry}) => `${entry.oldChar}→${entry.newText}`).join("\n") : detected.map(({entry}) => entry.oldChar).join(" ");
     copyWithFallback(text).then(() => showToast(kind === "pairs" ? messages[currentLang].copiedPairs : messages[currentLang].copiedOldFormsOnly));
   }
+
+  function getVisibleEntries(){ return getFilteredEntries(); }
+  function csvEscape(value){ const text = String(value ?? ""); return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text; }
+  function getDataStatus(entry){ return hasMeaning(entry) ? "verified" : "pair-only"; }
+  function getConfidence(entry){ return entry.verified ? "high" : (hasMeaning(entry) ? "medium" : "mapping-only"); }
+  function buildExportRows(entries){ return entries.map(entry => ({
+    old: entry.oldChar,
+    modern: entry.newText,
+    readingJa: entry.readingJa || "",
+    readingEn: entry.readingEn || "",
+    meaningJa: entry.meaningJa || "",
+    meaningEn: entry.meaningEn || "",
+    category: entry.category || "",
+    dataStatus: getDataStatus(entry),
+    confidence: getConfidence(entry)
+  })); }
+  function downloadTextFile(filename, content, mimeType){
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+  function formatDateStamp(){
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    return `${y}${m}${d}`;
+  }
+  function exportCsv(){
+    const rows = buildExportRows(getVisibleEntries());
+    if (!rows.length) return showToast(messages[currentLang].nothingToExport);
+    const headers = ["old","modern","readingJa","readingEn","meaningJa","meaningEn","category","dataStatus","confidence"];
+    const body = rows.map(row => headers.map(key => csvEscape(row[key])).join(",")).join("\n");
+    downloadTextFile(`old-kanji-reference-${formatDateStamp()}.csv`, `${headers.join(",")}\n${body}`, "text/csv;charset=utf-8");
+    showToast(messages[currentLang].exportedCsv);
+  }
+  function exportJson(){
+    const rows = buildExportRows(getVisibleEntries());
+    if (!rows.length) return showToast(messages[currentLang].nothingToExport);
+    downloadTextFile(`old-kanji-reference-${formatDateStamp()}.json`, JSON.stringify(rows, null, 2), "application/json;charset=utf-8");
+    showToast(messages[currentLang].exportedJson);
+  }
+  function copyMarkdownTable(){
+    const entries = getVisibleEntries();
+    if (!entries.length) return showToast(messages[currentLang].nothingToExport);
+    const headerJa = "| 旧字体 | 新字体 | 読み | 意味 | 分類 |";
+    const headerEn = "| Old form | Modern form | Reading | Meaning | Category |";
+    const sep = "| --- | --- | --- | --- | --- |";
+    const lines = entries.map(entry => {
+      const reading = (currentLang === "en" ? (entry.readingEn || entry.readingJa) : (entry.readingJa || entry.readingEn)) || "-";
+      const meaning = (currentLang === "en" ? (entry.meaningEn || entry.meaningJa) : (entry.meaningJa || entry.meaningEn)) || "-";
+      const category = labelForCategory(entry.category || "rare");
+      return `| ${entry.oldChar} | ${entry.newText} | ${reading.replaceAll("|", "\\|")} | ${meaning.replaceAll("|", "\\|")} | ${category.replaceAll("|", "\\|")} |`;
+    });
+    copyWithFallback([headerJa, headerEn, sep, ...lines].join("\n")).then(() => showToast(messages[currentLang].copiedMarkdown));
+  }
+
   function renderAll(){ renderSearchModes(); renderFilters(); renderPopular(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
   function copyWithFallback(value){ if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(value); const textarea = document.createElement("textarea"); textarea.value = value; textarea.style.position = "fixed"; textarea.style.left = "-9999px"; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); textarea.remove(); return Promise.resolve(); }
 
@@ -183,6 +246,10 @@
     const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.addEventListener("input", renderDetector);
     const copyDetectedOld = document.getElementById("copyDetectedOld"); if (copyDetectedOld) copyDetectedOld.addEventListener("click", () => copyDetected("old"));
     const copyDetectedPairs = document.getElementById("copyDetectedPairs"); if (copyDetectedPairs) copyDetectedPairs.addEventListener("click", () => copyDetected("pairs"));
+    const exportCsvBtn = document.getElementById("exportCsv"); if (exportCsvBtn) exportCsvBtn.addEventListener("click", exportCsv);
+    const exportJsonBtn = document.getElementById("exportJson"); if (exportJsonBtn) exportJsonBtn.addEventListener("click", exportJson);
+    const copyMarkdownBtn = document.getElementById("copyMarkdown"); if (copyMarkdownBtn) copyMarkdownBtn.addEventListener("click", copyMarkdownTable);
+    const printPageBtn = document.getElementById("printPage"); if (printPageBtn) printPageBtn.addEventListener("click", () => window.print());
     document.querySelectorAll(".panel-toggle").forEach(btn => btn.addEventListener("click", () => { const target = document.getElementById(btn.dataset.target); if (!target) return; const open = btn.getAttribute("aria-expanded") === "true"; btn.setAttribute("aria-expanded", open ? "false" : "true"); target.hidden = open; }));
     document.addEventListener("click", ev => {
       const detectorBtn = ev.target.closest(".detector-item-btn");

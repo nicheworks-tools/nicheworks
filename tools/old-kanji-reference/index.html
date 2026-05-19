@@ -107,6 +107,15 @@
         <p class="section-desc"><span data-i18n="ja">分類ボタンと検索を組み合わせて、旧字・新字の対応を絞り込めます。主要文字には読み・意味・用途・Unicodeも表示します。</span><span data-i18n="en">Combine filters and search to narrow down old and modern kanji pairs. Major entries also show readings, meanings, usage notes, and Unicode code points.</span></p>
         <div id="filterButtons" class="filter-buttons" aria-label="filters"></div>
         <div id="statusMessage" class="status-message" role="status"></div>
+        <div class="export-panel" aria-label="export">
+          <p class="export-title"><span data-i18n="ja">出力</span><span data-i18n="en">Export</span></p>
+          <div class="export-actions">
+            <button type="button" id="exportCsv" class="export-btn"><span data-i18n="ja">CSVを保存</span><span data-i18n="en">Save CSV</span></button>
+            <button type="button" id="exportJson" class="export-btn"><span data-i18n="ja">JSONを保存</span><span data-i18n="en">Save JSON</span></button>
+            <button type="button" id="copyMarkdown" class="export-btn"><span data-i18n="ja">Markdown表をコピー</span><span data-i18n="en">Copy Markdown table</span></button>
+            <button type="button" id="printPage" class="export-btn"><span data-i18n="ja">印刷する</span><span data-i18n="en">Print</span></button>
+          </div>
+        </div>
         <div id="groupContainer" class="group-container" aria-live="polite"></div>
         <p id="emptyMessage" class="empty-message" hidden><span data-i18n="ja">該当なしです。検索モード・フィルタ・キーワードを変えて再検索してください。</span><span data-i18n="en">No matches. Try another mode, filter, or keyword.</span></p>
       </div>
