@@ -171,3 +171,26 @@ Explicitly forbidden while blocked:
 - browser flow supports safe autorun + copy/download/local restore.
 - probes remain manual.
 - branch_decision browser_result_missing; next_task_family VERIFY.
+
+## EMS-RD-18 Status Sync (2026-05-19)
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
+- downloaded browser JSON recorded: no
+- canonical result synced: no (no actual downloaded browser JSON source)
+- current blocker: missing downloaded safe-check JSON from deployed browser run
+
+Storm real remains blocked unless **all** required gates are satisfied:
+1. self-check endpoint reachable
+2. health endpoint reachable
+3. manifest endpoint reachable
+4. probe branch recorded
+5. precipitation-sample-real returns validated `real_observation`
+6. unit / scale / offset / NoData / geolocation verified
+7. source / license / provenance verified
+8. `EMS_RD_05_STORM_REAL_PRECHECK.md` approved
+
+Explicitly forbidden:
+- connecting `app.js` to `precipitation-sample-real` as real data
+- showing raw/debug pixel as rainfall
+- synthetic fallback inside real result block
+- labeling synthetic preview as JAXA/EORC data

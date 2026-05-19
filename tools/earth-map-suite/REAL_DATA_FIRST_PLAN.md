@@ -341,3 +341,23 @@ EMS-RD-16 next gate mapping:
 - branch_decision: browser_result_missing (until actual artifact exists).
 - next_task_family: VERIFY (until branch changes).
 - next gate: health_manifest_reachable -> PROBE, health_manifest_failed -> ROUTE, browser_result_missing -> VERIFY.
+
+## EMS-RD-18 Verification Gate (2026-05-19)
+- autorun safe URL is available: `api-status.html?autorun=safe`
+- JSON download is available: yes
+- downloaded result intake exists: `ems-rd-17-downloaded-browser-result.json`
+- canonical browser result sync exists: yes (`ems-rd-11-browser-self-check-result.json`)
+- current branch_decision: `browser_result_missing`
+- current next_task_family: `VERIFY`
+- public_real_data_enabled: false
+- storm_compare_card_connected: false
+- `precipitation-sample-real` is not public real output.
+- Storm / Compare / Card remain disconnected.
+
+### Next gate mapping
+- VERIFY → obtain downloaded browser safe-check JSON
+- ROUTE → fix API route/deployment
+- PROBE → run research probe manually and record branch
+- SAMPLE → validate sampling gates
+- DECODER → isolated decoder feasibility
+- PROBEFIX → repair probe chain
