@@ -7,6 +7,12 @@
   let metaCache = { popularOrder: [], entries: {} };
   let activeDetailOldChar = "";
   let loadFailed = false;
+  let recentOldChars = [];
+  let favoriteOldChars = [];
+  let activePreset = "";
+
+  const recentStorageKey = "oldKanjiReference.recent.v1";
+  const favoritesStorageKey = "oldKanjiReference.favorites.v1";
 
   const messages = {
     ja: { loading: "辞書データを読み込み中です…", loadError: "辞書データの読み込みに失敗しました。", copiedOld: "旧字体をコピーしました", copiedNew: "現代表記をコピーしました", noMatch: "該当する旧字体が見つかりませんでした。別の漢字・読み・新字体で検索してください。", showing: "表示中", searchResults: "検索結果", total: "全", pairOnly: "対応情報のみ", verified: "確認済み", showDetails: "詳細を見る", hideDetails: "詳細を閉じる", copiedPairs: "対応表をコピーしました", copiedOldFormsOnly: "旧字だけコピーしました", copiedMarkdown: "Markdown表をコピーしました", exportedCsv: "CSVを保存しました", exportedJson: "JSONを保存しました", nothingToExport: "出力できるデータがありません", noDetectorTextToSend: "変換する文章がありません" },
@@ -33,6 +39,8 @@
     { id: "unicode", ja: "Unicode", en: "Unicode" }
   ];
   const fallbackPopularOrder = ["會", "區", "國", "壽", "學", "廣", "德", "戀", "舊", "榮", "澤", "濱", "狀", "獨", "禮", "體", "邊", "邉", "醫", "鐵", "驛", "齋", "﨑", "龍", "櫻", "實"];
+  const paletteOldChars = ["國","學","體","會","舊","澤","邊","邉","齋","齊","濱","﨑","龍","櫻","實","醫","鐵","驛","應","禮","廣","德","榮","壽"];
+  const schoolPresetOldChars = ["學", "國", "會", "體", "舊", "德", "龍", "禮", "實", "櫻", "廣"];
   const nameOld = new Set(["澤", "邊", "邉", "齋", "齊", "濱", "﨑", "德", "廣", "榮", "壽", "神", "祥", "福", "穗", "鄕", "國", "龍", "櫻", "實"]);
   const commonOld = new Set(["亞", "惡", "壓", "圍", "醫", "爲", "隱", "營", "驛", "應", "歐", "奧", "樂", "學", "關", "觀", "舊", "區", "徑", "輕", "藝", "儉", "劍", "嚴", "廣", "國", "齋", "參", "兒", "實", "壽", "從", "處", "敍", "將", "燒", "證", "讓", "眞", "圖", "數", "聲", "靜", "攝", "專", "戰", "淺", "爭", "總", "聰", "莊", "屬", "續", "體", "對", "臺", "擇", "澤", "擔", "團", "彈", "斷", "遲", "廳", "聽", "鐵", "點", "轉", "傳", "燈", "德", "獨", "讀", "惱", "腦", "廢", "拜", "賣", "麥", "發", "髮", "拔", "祕", "濱", "拂", "變", "邊", "寶", "豐", "滿", "藥", "豫", "餘", "譽", "樣", "謠", "來", "覽", "龍", "禮", "靈", "齡", "歷", "戀", "勞", "雜", "壞", "懷", "歡", "擴", "劑", "藏", "臟", "險", "雙", "疊", "擧", "圓", "獻", "顯"]);
   const documentOld = new Set(["舊", "學", "體", "會", "國", "縣", "營", "驛", "關", "戰", "廳", "敎", "數", "證", "讀", "觀", "嚴", "鐵", "藝", "靈", "讓", "爲", "據", "覽", "歸", "歷", "畫", "寶", "價", "傳", "圖", "團", "從", "應", "斷", "滿", "稱", "繪", "聲", "號", "譯", "轉", "輕", "驗", "黃", "黑"]);
@@ -63,6 +71,60 @@
   function setCounts(dict){ const oldCount = Object.keys(dict.old_to_new || {}).length; document.querySelectorAll('[data-count="old"]').forEach(el => { el.textContent = oldCount; }); }
   function setStatusText(text){ const el = document.getElementById("statusMessage"); if (el) el.textContent = text || ""; }
   function buildEntries(dict){ const popularOrder = getPopularOrder(); entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => { const meta = getMeta(oldChar); const newText = Array.isArray(newChar) ? newChar.join("、") : String(newChar || ""); return { oldChar, newText, oldCode: getCodePoints(oldChar), newCode: getCodePoints(newText), category: getCategory(oldChar), verified: Boolean(meta.verified), readingJa: meta.readingJa || "", readingEn: meta.readingEn || "", meaningJa: meta.meaningJa || "", meaningEn: meta.meaningEn || "", usageJa: meta.usageJa || "", usageEn: meta.usageEn || "" }; }); entriesCache.sort((a,b) => { const ia = popularOrder.indexOf(a.oldChar); const ib = popularOrder.indexOf(b.oldChar); if (ia >= 0 && ib >= 0) return ia - ib; if (ia >= 0) return -1; if (ib >= 0) return 1; return a.oldChar.localeCompare(b.oldChar, "ja"); }); }
+  function loadStoredList(key){
+    try {
+      const raw = localStorage.getItem(key);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed.filter(item => typeof item === "string" && item) : [];
+    } catch (_err) {
+      return [];
+    }
+  }
+  function saveStoredList(key, values){
+    localStorage.setItem(key, JSON.stringify(values));
+  }
+  function setRecent(oldChar){
+    recentOldChars = [oldChar, ...recentOldChars.filter(ch => ch !== oldChar)].slice(0, 12);
+    saveStoredList(recentStorageKey, recentOldChars);
+  }
+  function isFavorite(oldChar){ return favoriteOldChars.includes(oldChar); }
+  function toggleFavorite(oldChar){
+    favoriteOldChars = isFavorite(oldChar) ? favoriteOldChars.filter(ch => ch !== oldChar) : [oldChar, ...favoriteOldChars.filter(ch => ch !== oldChar)];
+    saveStoredList(favoritesStorageKey, favoriteOldChars);
+    renderAll();
+  }
+  function favoriteLabel(oldChar){
+    return isFavorite(oldChar)
+      ? (currentLang === "en" ? "Remove favorite" : "お気に入り解除")
+      : (currentLang === "en" ? "Add to favorites" : "お気に入りに追加");
+  }
+  function openEntryFromShortcut(oldChar){
+    const searchInput = document.getElementById("searchInput");
+    activePreset = "";
+    currentQuery = oldChar;
+    if (searchInput) searchInput.value = oldChar;
+    const exact = entriesCache.find(entry => entry.oldChar === oldChar);
+    activeDetailOldChar = exact ? oldChar : "";
+    renderAll();
+    if (exact) renderDetailPanel(exact);
+  }
+  function applyPreset(presetId){
+    const searchInput = document.getElementById("searchInput");
+    activePreset = presetId;
+    currentQuery = "";
+    if (searchInput) searchInput.value = "";
+    currentFilter = "all";
+    if (presetId === "names" || presetId === "places") currentFilter = "name";
+    if (presetId === "documents") currentFilter = "document";
+    if (presetId === "pairOnly") currentFilter = "pairOnly";
+    renderAll();
+  }
+  function createShortcutChip(oldChar, cls="shortcut-chip"){ const btn = document.createElement("button"); btn.type="button"; btn.className=cls; btn.textContent=oldChar; btn.addEventListener("click",()=>openEntryFromShortcut(oldChar)); return btn; }
+  function renderPalette(){ const wrap=document.getElementById("paletteContainer"); if(!wrap) return; wrap.innerHTML=`<section class="shortcut-panel"><h2 class="section-title"><span data-i18n="ja">旧字体パレット</span><span data-i18n="en">Old kanji palette</span></h2><p class="section-desc"><span data-i18n="ja">よく見かける旧字体を選んで、対応する新字体・読み・意味を確認できます。</span><span data-i18n="en">Choose a common old form to check its modern form, reading, and meaning.</span></p><div class="shortcut-chip-grid"></div></section>`; const grid=wrap.querySelector('.shortcut-chip-grid'); paletteOldChars.forEach(ch=>{ const b=createShortcutChip(ch); if(currentQuery.trim()===ch) b.classList.add('active'); grid.appendChild(b); }); }
+  function renderPresets(){ const wrap=document.getElementById("presetContainer"); if(!wrap) return; const defs=[{id:"names",ja:"名前で見かける字",en:"Seen in names"},{id:"places",ja:"地名で見かける字",en:"Seen in place names"},{id:"documents",ja:"古文書で見かける字",en:"Old documents"},{id:"schools",ja:"学校名・寺社名で見かける字",en:"Schools / temples / shrines"},{id:"common",ja:"よく使われる旧字体",en:"Common old forms"},{id:"pairOnly",ja:"対応のみ",en:"Pair only"}]; wrap.innerHTML='<section class="shortcut-panel"><h2 class="section-title"><span data-i18n="ja">用途別に探す</span><span data-i18n="en">Browse by use case</span></h2><div class="shortcut-chip-grid"></div></section>'; const grid=wrap.querySelector('.shortcut-chip-grid'); defs.forEach(d=>{ const b=document.createElement('button'); b.type='button'; b.className='shortcut-chip'; b.textContent=d[currentLang]; b.classList.toggle('active',activePreset===d.id); b.addEventListener('click',()=>applyPreset(d.id)); grid.appendChild(b); }); }
+  function renderRecent(){ const wrap=document.getElementById("recentContainer"); if(!wrap) return; if(!recentOldChars.length){ wrap.innerHTML=''; return; } wrap.innerHTML='<section class="shortcut-panel recent-panel"><h3 class="section-title"><span data-i18n="ja">最近見た旧字体</span><span data-i18n="en">Recently viewed</span></h3><div class="shortcut-chip-grid"></div></section>'; const grid=wrap.querySelector('.shortcut-chip-grid'); recentOldChars.forEach(ch=>grid.appendChild(createShortcutChip(ch))); }
+  function renderFavorites(){ const wrap=document.getElementById("favoritesContainer"); if(!wrap) return; if(!favoriteOldChars.length){ wrap.innerHTML=''; return; } wrap.innerHTML='<section class="shortcut-panel favorites-panel"><h3 class="section-title"><span data-i18n="ja">お気に入り</span><span data-i18n="en">Favorites</span></h3><div class="shortcut-chip-grid"></div></section>'; const grid=wrap.querySelector('.shortcut-chip-grid'); favoriteOldChars.forEach(ch=>grid.appendChild(createShortcutChip(ch))); }
+
   function createCopyButton(value, kind){ const btn = document.createElement("button"); btn.type = "button"; btn.className = "copy-btn"; btn.dataset.copyValue = value; btn.dataset.copyKind = kind; btn.innerHTML = kind === "new" ? '<span data-i18n="ja">新字をコピー</span><span data-i18n="en">Copy modern</span>' : '<span data-i18n="ja">旧字をコピー</span><span data-i18n="en">Copy old</span>'; return btn; }
   function createDetailCodeCopyButton(copyValue, toastJa, toastEn, labelJa, labelEn){
     const button = document.createElement("button");
@@ -98,7 +160,16 @@
       mobileToggle.innerHTML = `<span data-i18n="ja">${messages.ja.showDetails}</span><span data-i18n="en">${messages.en.showDetails}</span>`;
       card.appendChild(mobileToggle);
     }
-    const actions = document.createElement("div"); actions.className = "copy-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); card.appendChild(actions);
+    const actions = document.createElement("div"); actions.className = "copy-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new"));
+    const favoriteBtn = document.createElement("button");
+    favoriteBtn.type = "button";
+    favoriteBtn.className = "favorite-toggle";
+    favoriteBtn.dataset.old = entry.oldChar;
+    favoriteBtn.setAttribute("aria-pressed", isFavorite(entry.oldChar) ? "true" : "false");
+    favoriteBtn.setAttribute("aria-label", favoriteLabel(entry.oldChar));
+    favoriteBtn.textContent = favoriteLabel(entry.oldChar);
+    actions.appendChild(favoriteBtn);
+    card.appendChild(actions);
     const converterAction = document.createElement("a");
     converterAction.className = "converter-link";
     converterAction.href = toConverterUrl(entry.oldChar);
@@ -175,7 +246,9 @@
     const modernEntityCode = panel.querySelector(".detail-row-entity-modern code");
     if (oldEntityCode) oldEntityCode.textContent = oldHtmlEntity;
     if (modernEntityCode) modernEntityCode.textContent = modernHtmlEntity;
-    const actions = document.createElement("div"); actions.className = "detail-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); panel.appendChild(actions);
+    setRecent(entry.oldChar);
+    const actions = document.createElement("div"); actions.className = "detail-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new"));
+    const favoriteBtn = document.createElement("button"); favoriteBtn.type = "button"; favoriteBtn.className = "favorite-toggle"; favoriteBtn.dataset.old = entry.oldChar; favoriteBtn.setAttribute("aria-pressed", isFavorite(entry.oldChar) ? "true" : "false"); favoriteBtn.setAttribute("aria-label", favoriteLabel(entry.oldChar)); favoriteBtn.textContent = favoriteLabel(entry.oldChar); actions.appendChild(favoriteBtn); panel.appendChild(actions);
     const codeActions = document.createElement("div");
     codeActions.className = "detail-actions";
     codeActions.appendChild(createDetailCodeCopyButton(oldUnicode, "旧字Unicodeをコピーしました", "Copied old Unicode", "旧字Unicodeをコピー", "Copy old Unicode"));
@@ -192,7 +265,9 @@
   }
   function renderSearchModes(){ const wrap = document.getElementById("searchModes"); if (!wrap) return; wrap.innerHTML = ""; searchModes.forEach(mode => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "search-mode-btn"; btn.dataset.mode = mode.id; btn.textContent = mode[currentLang]; btn.classList.toggle("active", mode.id === currentSearchMode); btn.addEventListener("click", () => { currentSearchMode = mode.id; renderAll(); }); wrap.appendChild(btn); }); }
   function renderFilters(){ const wrap = document.getElementById("filterButtons"); if (!wrap) return; wrap.innerHTML = ""; filters.forEach(filter => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "filter-btn"; btn.dataset.filter = filter.id; btn.textContent = filter[currentLang]; btn.classList.toggle("active", filter.id === currentFilter); btn.addEventListener("click", () => { currentFilter = filter.id; renderAll(); }); wrap.appendChild(btn); }); }
-  function getFilteredEntries(){ const q = currentQuery.trim().toLowerCase(); return entriesCache.filter(entry => { const matchesFilter = currentFilter === "all" || (currentFilter === "verified" && entry.verified === true) || (currentFilter === "hasMeaning" && hasMeaning(entry)) || (currentFilter === "pairOnly" && !hasMeaning(entry)) || ((["name", "common", "document", "rare"].includes(currentFilter)) && entry.category === currentFilter); const allHaystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn} ${entry.oldCode} ${entry.newCode}`.toLowerCase(); const modeHaystack = { all: allHaystack, old: `${entry.oldChar}`.toLowerCase(), new: `${entry.newText}`.toLowerCase(), reading: `${entry.readingJa} ${entry.readingEn}`.toLowerCase(), meaning: `${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn}`.toLowerCase(), unicode: `${entry.oldCode} ${entry.newCode}`.toLowerCase() }; return matchesFilter && (!q || (modeHaystack[currentSearchMode] || allHaystack).includes(q)); }); }
+  function getFilteredEntries(){ const q = currentQuery.trim().toLowerCase(); return entriesCache.filter(entry => {
+    if (activePreset === "schools" && !schoolPresetOldChars.includes(entry.oldChar)) return false;
+    if (activePreset === "common" && !getPopularSet().has(entry.oldChar)) return false; const matchesFilter = currentFilter === "all" || (currentFilter === "verified" && entry.verified === true) || (currentFilter === "hasMeaning" && hasMeaning(entry)) || (currentFilter === "pairOnly" && !hasMeaning(entry)) || ((["name", "common", "document", "rare"].includes(currentFilter)) && entry.category === currentFilter); const allHaystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn} ${entry.oldCode} ${entry.newCode}`.toLowerCase(); const modeHaystack = { all: allHaystack, old: `${entry.oldChar}`.toLowerCase(), new: `${entry.newText}`.toLowerCase(), reading: `${entry.readingJa} ${entry.readingEn}`.toLowerCase(), meaning: `${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn}`.toLowerCase(), unicode: `${entry.oldCode} ${entry.newCode}`.toLowerCase() }; return matchesFilter && (!q || (modeHaystack[currentSearchMode] || allHaystack).includes(q)); }); }
   function renderReverseSummary(){ let panel = document.getElementById("reverseSummary"); const groupWrapper = document.querySelector(".group-wrapper"); if (!groupWrapper) return; if (!panel) { panel = document.createElement("div"); panel.id = "reverseSummary"; panel.className = "reverse-summary"; groupWrapper.insertBefore(panel, document.getElementById("groupContainer")); }
     const q = currentQuery.trim();
     const oldMatch = entriesCache.find(e => e.oldChar === q);
@@ -321,7 +396,7 @@
     copyWithFallback([headerJa, headerEn, sep, ...lines].join("\n")).then(() => showToast(messages[currentLang].copiedMarkdown));
   }
 
-  function renderAll(){ renderSearchModes(); renderFilters(); renderPopular(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
+  function renderAll(){ renderSearchModes(); renderFilters(); renderPalette(); renderPresets(); renderPopular(); renderFavorites(); renderRecent(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
   function copyWithFallback(value){ if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(value); const textarea = document.createElement("textarea"); textarea.value = value; textarea.style.position = "fixed"; textarea.style.left = "-9999px"; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); textarea.remove(); return Promise.resolve(); }
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -339,11 +414,19 @@
     document.addEventListener("click", ev => {
       const detectorBtn = ev.target.closest(".detector-item-btn");
       if (detectorBtn) { const old = detectorBtn.dataset.old; const selected = entriesCache.find(entry => entry.oldChar === old); if (selected) { activeDetailOldChar = selected.oldChar; renderDetailPanel(selected); } return; }
+      const favoriteToggle = ev.target.closest(".favorite-toggle");
+      if (favoriteToggle) {
+        const old = favoriteToggle.dataset.old;
+        if (old) toggleFavorite(old);
+        return;
+      }
       const target = ev.target.closest(".copy-btn");
       if (target) { const value = target.dataset.copyValue; const kind = target.dataset.copyKind || "old"; const toast = currentLang === "en" ? target.dataset.copyToastEn : target.dataset.copyToastJa; copyWithFallback(value).then(() => showToast(toast || `${kind === "new" ? messages[currentLang].copiedNew : messages[currentLang].copiedOld}：${value}`)); }
       const toggle = ev.target.closest(".mobile-detail-toggle");
       if (toggle) { const card = toggle.closest(".kanji-card"); if (!card) return; card.classList.toggle("mobile-open"); toggle.innerHTML = card.classList.contains("mobile-open") ? `<span data-i18n="ja">${messages.ja.hideDetails}</span><span data-i18n="en">${messages.en.hideDetails}</span>` : `<span data-i18n="ja">${messages.ja.showDetails}</span><span data-i18n="en">${messages.en.showDetails}</span>`; switchLang(currentLang); renderDetector(); }
     });
+    recentOldChars = loadStoredList(recentStorageKey);
+    favoriteOldChars = loadStoredList(favoritesStorageKey);
     const params = new URLSearchParams(window.location.search);
     const qParam = params.get("q");
     const textParam = params.get("text");
