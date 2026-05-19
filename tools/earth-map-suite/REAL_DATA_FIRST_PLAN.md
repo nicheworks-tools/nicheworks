@@ -265,3 +265,27 @@ Next gate mapping:
 - `decoder_strategy_required` → `EMS-RD-12-DECODER`
 - `endpoint_error` / `blocked` / `inconclusive` → `EMS-RD-12-PROBEFIX`
 - `browser_result_missing` / `network_unverified` → `EMS-RD-12-VERIFY`
+
+
+### EMS-RD-13 browser-result validation and branch classification
+
+- actual browser JSON recorded: **No** (placeholder retained; deployed source fetch unavailable in this run).
+- validator result: pass (`branch_decision=browser_result_missing`, `next_task_family=VERIFY`).
+- branch_decision: `browser_result_missing`.
+- next_task_family: `VERIFY`.
+
+EMS-RD-13 safety state remains unchanged:
+
+- `public_real_data_enabled=false`
+- `storm_compare_card_connected=false`
+- `precipitation-sample-real` is not public real output
+- Storm / Compare / Card remain disconnected
+
+EMS-RD next gate mapping:
+
+- `VERIFY` → continue browser result collection
+- `ROUTE` → fix health/manifest deployment
+- `PROBE` → run research probe and record branch
+- `SAMPLE` → validate unit/scale/NoData/geolocation/source/license
+- `DECODER` → isolated decoder feasibility
+- `PROBEFIX` → fix probe chain

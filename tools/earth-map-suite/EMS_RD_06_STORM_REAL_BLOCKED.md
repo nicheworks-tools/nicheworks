@@ -90,3 +90,27 @@ Explicitly forbidden while blocked:
 - raw/debug pixel as rainfall
 - synthetic fallback inside real result block
 - JAXA/EORC label on synthetic preview
+
+
+## EMS-RD-13 status
+
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
+- current blocker: actual deployed browser self-check JSON is still missing, so route/probe/sample gating cannot advance.
+
+Storm real remains blocked unless all are true:
+
+1. health endpoint reachable
+2. manifest endpoint reachable
+3. probe branch recorded
+4. `precipitation-sample-real` returns validated `real_observation`
+5. unit / scale / offset / NoData / geolocation verified
+6. source / license / provenance verified
+7. `EMS_RD_05_STORM_REAL_PRECHECK.md` approved
+
+Explicitly forbidden while blocked:
+
+- connecting `app.js` to `precipitation-sample-real` as real data
+- showing raw/debug pixel as rainfall
+- falling back from real failure to synthetic in the same result block
+- labeling synthetic preview as JAXA/EORC data
