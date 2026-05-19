@@ -310,3 +310,26 @@ EMS-RD next gate mapping:
 - `SAMPLE` → validate sampling gates
 - `DECODER` → isolated decoder feasibility
 - `PROBEFIX` → repair probe chain
+
+### EMS-RD-16 verification result
+
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
+- self_check / health / manifest status: `unknown` (actual deployed copied browser result is not recorded yet)
+- actual browser JSON recorded: `no`
+
+Safety state remains unchanged:
+
+- `public_real_data_enabled=false`
+- `storm_compare_card_connected=false`
+- `precipitation-sample-real` is not public real output
+- Storm / Compare / Card remain disconnected
+
+EMS-RD-16 next gate mapping:
+
+- `VERIFY` → rerun browser safe check and paste JSON
+- `ROUTE` → fix API route/deployment
+- `PROBE` → run research probe and record branch
+- `SAMPLE` → validate sampling gates
+- `DECODER` → isolated decoder feasibility
+- `PROBEFIX` → repair probe chain

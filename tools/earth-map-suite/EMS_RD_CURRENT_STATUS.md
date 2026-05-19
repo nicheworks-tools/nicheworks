@@ -1,25 +1,45 @@
 # EMS-RD Current Status
 
 ## 1) Current phase
-- `EMS-RD-15-VERIFY`
+- `EMS-RD-16-VERIFY`
 
-## 2) Current branch_decision
-- `browser_result_missing`
+## 2) branch_decision / next_task_family
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
 
-## 3) Current next_task_family
-- `VERIFY`
+## 3) Endpoint status snapshot (if known)
+- self_check: `unknown` (actual deployed copied browser result missing)
+- health: `unknown` (actual deployed copied browser result missing)
+- manifest: `unknown` (actual deployed copied browser result missing)
 
-## 4) EMS-RD-15 updates
-- `self_check` endpoint was added in EMS-RD-14.
-- Browser result schema now includes `self_check`.
-- Validator now requires `self_check` plus safety flags.
-- Current gate result recorded in `ems-rd-15-current-gate-result.json`.
+## 4) Complete
+- Real Data First plan established and maintained.
+- Probe research pathway and branch model are documented.
+- Contracts and safety constraints are documented.
+- Browser self-check flow/page exists.
+- `self_check` endpoint exists in verification schema/flow.
+- Validator now requires `self_check`.
 
-## 5) Safety state (unchanged)
+## 5) Not complete
+- Actual deployed browser result JSON is still missing.
+- Validated `real_observation` output is not approved.
+- Storm real connection is not enabled.
+- Compare real connection is not enabled.
+- Card real connection is not enabled.
+- Remaining 15 tools/modes are not in validated real-data state.
+
+## 6) Current blockers
+- No pasted deployed browser safe-check JSON from `https://nicheworks.app/tools/earth-map-suite/api-status.html`.
+- Without that artifact, route/probe/sample branch cannot advance beyond `VERIFY`.
+
+## 7) Next 3 actions
+1. Run deployed browser safe-check and copy JSON output.
+2. Paste JSON into `ems-rd-11-browser-self-check-result.json` and re-run validator/classification.
+3. Route to EMS-RD-17 family based on updated branch decision.
+
+## 8) Guardrails (must remain)
 - `public_real_data_enabled=false`
 - `storm_compare_card_connected=false`
-- `precipitation-sample-real` is not public real output
-- Storm / Compare / Card remain disconnected
-
-## 6) Current blocker
-- Actual copied browser safe-check JSON has not been provided, so branch remains `browser_result_missing`.
+- no raw pixel as rainfall
+- no synthetic fallback inside real block
+- no paid infrastructure
