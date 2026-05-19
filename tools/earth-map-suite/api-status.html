@@ -6,11 +6,19 @@
   <title>Earth Map Suite API Status (Research Only)</title>
   <meta name="description" content="Research-only API status check page for Earth Map Suite.">
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; line-height: 1.6; }
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; line-height: 1.6; color: #1f2937; }
     .card { border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
     .warn { background: #fff9e8; border-color: #f2d58a; }
-    .links a { display: inline-block; margin: 6px 10px 6px 0; }
-    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; overflow: auto; }
+    .ok { background: #ecfdf5; border-color: #a7f3d0; }
+    .bad { background: #fef2f2; border-color: #fecaca; }
+    .links a, button { display: inline-block; margin: 6px 10px 6px 0; }
+    button { padding: 8px 12px; border: 1px solid #bbb; border-radius: 8px; background: #fff; cursor: pointer; }
+    button.primary { border-color: #2563eb; color: #1d4ed8; font-weight: 700; }
+    button.danger { border-color: #dc2626; color: #b91c1c; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; overflow: auto; white-space: pre-wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .small { color: #666; font-size: 0.92rem; }
+    code { background: #f3f4f6; border-radius: 4px; padding: 1px 4px; }
   </style>
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/earth-map-suite/api-status.html">
@@ -59,6 +67,7 @@
       <li>Public real precipitation values are not enabled.</li>
       <li>Storm / Compare / Card are not connected to real values.</li>
       <li>Do not treat any result on this page as public real-observation enablement.</li>
+      <li>Probe buttons may call external upstream data through the API route. Run safe checks first.</li>
     </ul>
   </div>
 
@@ -70,32 +79,151 @@
       <a href="/api/earth-map-suite/probe-status" target="_blank" rel="noopener">Open /probe-status</a>
       <a href="/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low" target="_blank" rel="noopener">Open /precipitation-sample-real (safe check)</a>
     </div>
-    <p>Note: probe-status and precipitation-sample-real are manual checks only. This page does not auto-run expensive probes.</p>
+    <p>Run <code>health</code> and <code>manifest</code> first. Probe checks are manual and remain research-only.</p>
   </div>
 
   <div class="card">
-    <h2>Quick fetch (safe endpoints only)</h2>
-    <button id="check-health">Fetch health</button>
-    <button id="check-manifest">Fetch manifest</button>
-    <pre id="output">No checks yet.</pre>
+    <h2>Browser self-check</h2>
+    <p class="small">This check runs from your browser against the currently hosted site. It does not approve public real-data output.</p>
+    <div>
+      <button class="primary" id="check-safe">Run safe check: health + manifest</button>
+      <button class="danger" id="check-probe">Run research probes</button>
+      <button id="copy-json">Copy JSON result</button>
+    </div>
+    <pre id="summary">No checks yet.</pre>
+  </div>
+
+  <div class="card">
+    <h2>Raw result JSON</h2>
+    <pre id="output">{}</pre>
   </div>
 
   <script>
     const output = document.getElementById('output');
+    const summary = document.getElementById('summary');
 
-    async function runCheck(path) {
-      output.textContent = `Fetching ${path} ...`;
+    const safeEndpoints = [
+      { key: 'health', path: '/api/earth-map-suite/health' },
+      { key: 'manifest', path: '/api/earth-map-suite/manifest' }
+    ];
+    const probeEndpoints = [
+      { key: 'probe_status', path: '/api/earth-map-suite/probe-status' },
+      { key: 'precipitation_sample_real', path: '/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low' }
+    ];
+
+    let lastResult = {
+      data_type: 'earth_map_suite_browser_self_check',
+      status: 'not_run',
+      public_real_data_enabled: false,
+      storm_compare_card_connected: false
+    };
+
+    async function fetchJson(endpoint) {
+      const startedAt = new Date().toISOString();
       try {
-        const res = await fetch(path, { cache: 'no-store' });
+        const res = await fetch(endpoint.path, { cache: 'no-store' });
         const text = await res.text();
-        output.textContent = `HTTP ${res.status}\n\n${text}`;
+        let json = null;
+        try { json = JSON.parse(text); } catch (_) {}
+        return {
+          key: endpoint.key,
+          path: endpoint.path,
+          ok: res.ok,
+          http_status: res.status,
+          data_type: json && json.data_type ? json.data_type : null,
+          status: json && json.status ? json.status : null,
+          decision_phase: json && json.decision ? json.decision.phase : null,
+          decision_next: json && json.decision ? json.decision.next : null,
+          public_ui_allowed: json && Object.prototype.hasOwnProperty.call(json, 'public_ui_allowed') ? json.public_ui_allowed : null,
+          error_code: json && json.error_code ? json.error_code : null,
+          body: json || text.slice(0, 1200),
+          checked_at: startedAt
+        };
       } catch (err) {
-        output.textContent = `Fetch failed for ${path}: ${err && err.message ? err.message : String(err)}`;
+        return {
+          key: endpoint.key,
+          path: endpoint.path,
+          ok: false,
+          http_status: null,
+          data_type: null,
+          status: 'fetch_failed',
+          error_code: 'browser_fetch_failed',
+          message: err && err.message ? err.message : String(err),
+          checked_at: startedAt
+        };
       }
     }
 
-    document.getElementById('check-health').addEventListener('click', () => runCheck('/api/earth-map-suite/health'));
-    document.getElementById('check-manifest').addEventListener('click', () => runCheck('/api/earth-map-suite/manifest'));
+    function classify(results) {
+      const byKey = Object.fromEntries(results.map((item) => [item.key, item]));
+      if (byKey.health && byKey.manifest && byKey.health.ok && byKey.manifest.ok) {
+        if (!byKey.probe_status) return 'health_manifest_reachable';
+        const phase = byKey.probe_status.decision_phase;
+        if (phase) return phase;
+        return 'probe_checked_without_phase';
+      }
+      if (byKey.health || byKey.manifest) return 'health_manifest_failed';
+      return 'network_unverified';
+    }
+
+    function render(result) {
+      lastResult = result;
+      output.textContent = JSON.stringify(result, null, 2);
+      const lines = [
+        `branch_decision: ${result.branch_decision}`,
+        `public_real_data_enabled: ${result.public_real_data_enabled}`,
+        `storm_compare_card_connected: ${result.storm_compare_card_connected}`,
+        `next_action: ${result.next_action}`
+      ];
+      for (const item of result.endpoints) {
+        lines.push(`${item.key}: HTTP ${item.http_status || 'n/a'} / ${item.data_type || 'no data_type'} / ${item.status || 'no status'}`);
+      }
+      summary.textContent = lines.join('\n');
+    }
+
+    async function run(endpoints, mode) {
+      summary.textContent = `Running ${mode}...`;
+      const results = [];
+      for (const endpoint of endpoints) results.push(await fetchJson(endpoint));
+      const branch = classify(results);
+      const nextAction = branch === 'health_manifest_reachable'
+        ? 'run research probes only if needed'
+        : branch === 'raw_pixel_read'
+          ? 'start validated sample validation; do not connect public UI'
+          : branch === 'decoder_strategy_required'
+            ? 'start decoder feasibility; do not connect public UI'
+            : 'keep Storm real blocked and inspect failed endpoint/result';
+      render({
+        data_type: 'earth_map_suite_browser_self_check',
+        status: 'ok',
+        mode,
+        checked_at: new Date().toISOString(),
+        page_url: location.href,
+        branch_decision: branch,
+        public_real_data_enabled: false,
+        storm_compare_card_connected: false,
+        next_action: nextAction,
+        endpoints: results,
+        guardrails: [
+          'This browser self-check does not approve public real precipitation output.',
+          'Storm / Compare / Card remain disconnected.',
+          'Do not show raw/debug pixel as rainfall.'
+        ]
+      });
+    }
+
+    document.getElementById('check-safe').addEventListener('click', () => run(safeEndpoints, 'safe_health_manifest'));
+    document.getElementById('check-probe').addEventListener('click', () => run([...safeEndpoints, ...probeEndpoints], 'research_probe'));
+    document.getElementById('copy-json').addEventListener('click', async () => {
+      const text = JSON.stringify(lastResult, null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        summary.textContent += '\nCopied JSON result to clipboard.';
+      } catch (err) {
+        output.focus();
+        summary.textContent += '\nCopy failed; select the JSON manually.';
+      }
+    });
   </script>
 </body>
 </html>
