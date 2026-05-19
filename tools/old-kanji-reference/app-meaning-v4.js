@@ -3,6 +3,7 @@
   let entriesCache = [];
   let currentFilter = "all";
   let currentQuery = "";
+  let currentSearchMode = "all";
   let metaCache = { popularOrder: [], entries: {} };
   let activeDetailOldChar = "";
 
@@ -15,11 +16,19 @@
     { id: "all", ja: "すべて", en: "All" },
     { id: "verified", ja: "確認済みのみ", en: "Verified only" },
     { id: "hasMeaning", ja: "読み・意味あり", en: "With reading / meaning" },
-    { id: "popular", ja: "よく使う", en: "Common" },
     { id: "name", ja: "人名・地名", en: "Names / Places" },
     { id: "common", ja: "旧常用漢字", en: "Common-use old forms" },
     { id: "document", ja: "文献・古文書", en: "Old documents" },
-    { id: "rare", ja: "難読・参考", en: "Rare / Reference" }
+    { id: "rare", ja: "難読・参考", en: "Rare / Reference" },
+    { id: "pairOnly", ja: "対応のみ", en: "Pair only" }
+  ];
+  const searchModes = [
+    { id: "all", ja: "すべて", en: "All" },
+    { id: "old", ja: "旧字", en: "Old form" },
+    { id: "new", ja: "新字", en: "Modern form" },
+    { id: "reading", ja: "読み", en: "Reading" },
+    { id: "meaning", ja: "意味", en: "Meaning" },
+    { id: "unicode", ja: "Unicode", en: "Unicode" }
   ];
   const fallbackPopularOrder = ["會", "區", "國", "壽", "學", "廣", "德", "戀", "舊", "榮", "澤", "濱", "狀", "獨", "禮", "體", "邊", "邉", "醫", "鐵", "驛", "齋", "﨑", "龍", "櫻", "實"];
   const nameOld = new Set(["澤", "邊", "邉", "齋", "齊", "濱", "﨑", "德", "廣", "榮", "壽", "神", "祥", "福", "穗", "鄕", "國", "龍", "櫻", "實"]);
@@ -104,8 +113,9 @@
     const actions = document.createElement("div"); actions.className = "detail-actions"; actions.appendChild(createCopyButton(entry.oldChar, "old")); actions.appendChild(createCopyButton(entry.newText, "new")); panel.appendChild(actions);
     switchLang(currentLang);
   }
+  function renderSearchModes(){ const wrap = document.getElementById("searchModes"); if (!wrap) return; wrap.innerHTML = ""; searchModes.forEach(mode => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "search-mode-btn"; btn.dataset.mode = mode.id; btn.textContent = mode[currentLang]; btn.classList.toggle("active", mode.id === currentSearchMode); btn.addEventListener("click", () => { currentSearchMode = mode.id; renderAll(); }); wrap.appendChild(btn); }); }
   function renderFilters(){ const wrap = document.getElementById("filterButtons"); if (!wrap) return; wrap.innerHTML = ""; filters.forEach(filter => { const btn = document.createElement("button"); btn.type = "button"; btn.className = "filter-btn"; btn.dataset.filter = filter.id; btn.textContent = filter[currentLang]; btn.classList.toggle("active", filter.id === currentFilter); btn.addEventListener("click", () => { currentFilter = filter.id; renderAll(); }); wrap.appendChild(btn); }); }
-  function getFilteredEntries(){ const q = currentQuery.trim().toLowerCase(); const popularSet = getPopularSet(); return entriesCache.filter(entry => { const matchesFilter = currentFilter === "all" || (currentFilter === "verified" && entry.verified === true) || (currentFilter === "hasMeaning" && hasMeaning(entry)) || (currentFilter === "popular" && (popularSet.has(entry.oldChar) || entry.category === "popular")) || ((["name", "common", "document", "rare"].includes(currentFilter)) && entry.category === currentFilter); const haystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn} ${entry.oldCode} ${entry.newCode}`.toLowerCase(); return matchesFilter && (!q || haystack.includes(q)); }); }
+  function getFilteredEntries(){ const q = currentQuery.trim().toLowerCase(); return entriesCache.filter(entry => { const matchesFilter = currentFilter === "all" || (currentFilter === "verified" && entry.verified === true) || (currentFilter === "hasMeaning" && hasMeaning(entry)) || (currentFilter === "pairOnly" && !hasMeaning(entry)) || ((["name", "common", "document", "rare"].includes(currentFilter)) && entry.category === currentFilter); const allHaystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn} ${entry.oldCode} ${entry.newCode}`.toLowerCase(); const modeHaystack = { all: allHaystack, old: `${entry.oldChar}`.toLowerCase(), new: `${entry.newText}`.toLowerCase(), reading: `${entry.readingJa} ${entry.readingEn}`.toLowerCase(), meaning: `${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn}`.toLowerCase(), unicode: `${entry.oldCode} ${entry.newCode}`.toLowerCase() }; return matchesFilter && (!q || (modeHaystack[currentSearchMode] || allHaystack).includes(q)); }); }
   function renderReverseSummary(){ let panel = document.getElementById("reverseSummary"); const groupWrapper = document.querySelector(".group-wrapper"); if (!groupWrapper) return; if (!panel) { panel = document.createElement("div"); panel.id = "reverseSummary"; panel.className = "reverse-summary"; groupWrapper.insertBefore(panel, document.getElementById("groupContainer")); }
     const q = currentQuery.trim();
     const oldMatch = entriesCache.find(e => e.oldChar === q);
@@ -116,18 +126,20 @@
     if (oldMatch) { const related = getRelatedOldForms(oldMatch); lines.push(`<p><span data-i18n="ja">${oldMatch.oldChar} → ${oldMatch.newText}${related.length ? ` / 関連する旧字体：${related.join(" / ")}` : ""}</span><span data-i18n="en">${oldMatch.oldChar} → ${oldMatch.newText}${related.length ? ` / Related old forms: ${related.join(" / ")}` : ""}</span></p>`); }
     panel.hidden = false; panel.innerHTML = lines.join("");
   }
+  function renderGroupedByModern(){ let panel = document.getElementById("modernSummary"); const wrapper = document.querySelector(".group-wrapper"); if (!wrapper) return; if (!panel) { panel = document.createElement("section"); panel.id = "modernSummary"; panel.className = "modern-summary"; wrapper.insertBefore(panel, document.getElementById("filterButtons")); } const map = new Map(); entriesCache.forEach(entry => { if (!map.has(entry.newText)) map.set(entry.newText, []); map.get(entry.newText).push(entry.oldChar); }); const blocks = Array.from(map.entries()).filter(([, olds]) => olds.length > 1).sort((a,b)=>a[0].localeCompare(b[0],"ja")).map(([modern, olds]) => `<li><strong>${modern}</strong><div>${Array.from(new Set(olds)).join(" / ")}</div></li>`).join(""); if (!blocks) { panel.hidden = true; panel.innerHTML = ""; return; } panel.hidden = false; panel.innerHTML = `<h3><span data-i18n="ja">新字体別まとめ</span><span data-i18n="en">Grouped by modern form</span></h3><ul>${blocks}</ul>`; }
   function renderGroups(entries){ const container = document.getElementById("groupContainer"); const emptyMessage = document.getElementById("emptyMessage"); if (!container || !emptyMessage) return; container.innerHTML = ""; emptyMessage.hidden = entries.length > 0; renderReverseSummary(); if (!entries.length) return;
     const section = document.createElement("section"); section.className = "group-section"; const grid = document.createElement("div"); grid.className = "kanji-grid"; entries.forEach(entry => grid.appendChild(createEntryCard(entry, false))); section.appendChild(grid); container.appendChild(section);
     if (activeDetailOldChar) { const selected = entries.find(e => e.oldChar === activeDetailOldChar); if (selected) renderDetailPanel(selected); }
   }
   function renderPopular(){ const container = document.getElementById("popularContainer"); if (!container) return; container.innerHTML = ""; const popularSet = getPopularSet(); entriesCache.filter(entry => popularSet.has(entry.oldChar) && entry.verified).slice(0, 26).forEach(entry => container.appendChild(createEntryCard(entry, true))); }
-  function updateStatus(visibleCount){ const total = entriesCache.length; const isSearch = currentQuery.trim().length > 0 || currentFilter !== "all"; setStatusText(currentLang === "en" ? `${isSearch ? messages.en.searchResults : messages.en.showing}: ${visibleCount} / ${total}` : `${isSearch ? messages.ja.searchResults : messages.ja.showing}：${visibleCount}件 / ${messages.ja.total}${total}件`); }
-  function renderAll(){ renderFilters(); renderPopular(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); }
+  function updateStatus(visibleCount){ const total = entriesCache.length; const q = currentQuery.trim(); const filteredCount = entriesCache.filter(entry => currentFilter === "all" || (currentFilter === "verified" && entry.verified === true) || (currentFilter === "hasMeaning" && hasMeaning(entry)) || (currentFilter === "pairOnly" && !hasMeaning(entry)) || ((["name", "common", "document", "rare"].includes(currentFilter)) && entry.category === currentFilter)).length; const searchOnlyCount = q ? entriesCache.filter(entry => { const allHaystack = `${entry.oldChar} ${entry.newText} ${entry.readingJa} ${entry.readingEn} ${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn} ${entry.oldCode} ${entry.newCode}`.toLowerCase(); const modeHaystack = { all: allHaystack, old: `${entry.oldChar}`.toLowerCase(), new: `${entry.newText}`.toLowerCase(), reading: `${entry.readingJa} ${entry.readingEn}`.toLowerCase(), meaning: `${entry.meaningJa} ${entry.meaningEn} ${entry.usageJa} ${entry.usageEn}`.toLowerCase(), unicode: `${entry.oldCode} ${entry.newCode}`.toLowerCase() }; return (modeHaystack[currentSearchMode] || allHaystack).includes(q.toLowerCase()); }).length : total; setStatusText(currentLang === "en" ? `Total ${total} | Visible ${visibleCount} | Search ${searchOnlyCount} | Filter ${filteredCount}` : `全件数 ${total}件｜表示中 ${visibleCount}件｜検索結果 ${searchOnlyCount}件｜フィルタ適用中 ${filteredCount}件`); }
+  function renderAll(){ renderSearchModes(); renderFilters(); renderPopular(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); }
   function copyWithFallback(value){ if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(value); const textarea = document.createElement("textarea"); textarea.value = value; textarea.style.position = "fixed"; textarea.style.left = "-9999px"; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); textarea.remove(); return Promise.resolve(); }
 
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.addEventListener("click", () => { currentLang = btn.dataset.lang === "en" ? "en" : "ja"; renderAll(); }));
     const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.addEventListener("input", () => { currentQuery = searchInput.value || ""; renderAll(); });
+    document.querySelectorAll(".panel-toggle").forEach(btn => btn.addEventListener("click", () => { const target = document.getElementById(btn.dataset.target); if (!target) return; const open = btn.getAttribute("aria-expanded") === "true"; btn.setAttribute("aria-expanded", open ? "false" : "true"); target.hidden = open; }));
     document.addEventListener("click", ev => {
       const target = ev.target.closest(".copy-btn");
       if (target) { const value = target.dataset.copyValue; const kind = target.dataset.copyKind || "old"; copyWithFallback(value).then(() => showToast(`${kind === "new" ? messages[currentLang].copiedNew : messages[currentLang].copiedOld}：${value}`)); }
