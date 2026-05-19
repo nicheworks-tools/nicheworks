@@ -1,0 +1,38 @@
+{
+  "checked_at": "2026-05-19T00:00:00Z",
+  "checked_by": "Codex CLI agent",
+  "base_url": "https://nicheworks.app",
+  "workflow_run_url": null,
+  "workflow_run_id": null,
+  "health_result": {
+    "http_status": null,
+    "data_type": null,
+    "status": null
+  },
+  "manifest_result": {
+    "http_status": null,
+    "data_type": null,
+    "status": null
+  },
+  "probe_status_result": {
+    "http_status": null,
+    "data_type": null,
+    "status": null,
+    "decision": {
+      "phase": null,
+      "next": null,
+      "can_continue_to_public_ui": null
+    }
+  },
+  "precipitation_sample_real_result": {
+    "http_status": null,
+    "data_type": null,
+    "status": null,
+    "error_code": null,
+    "public_ui_allowed": null
+  },
+  "branch_decision": "network_unverified",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "next_action": "rerun/inspect workflow"
+}
