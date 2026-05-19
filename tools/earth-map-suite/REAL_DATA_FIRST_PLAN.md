@@ -183,3 +183,27 @@ Do:
 8. Then Alerts.
 9. Then earth-seo Rankings / Place Pages.
 10. Then News Check.
+
+
+### EMS-RD-09 verification result
+
+- workflow visibility result: `unknown` from this environment (GitHub API access blocked by `curl: (56) CONNECT tunnel failed, response 403`).
+- health / manifest result: `network_unverified` (workflow dispatch not executed because API visibility/dispatchability was unconfirmed).
+- probe result: `network_unverified` (not dispatched; prerequisite `health_manifest_reachable` not met).
+- final branch decision: `network_unverified`.
+
+#### EMS-RD-09 safety state (unchanged)
+
+- `precipitation-sample-real` is safe-unavailable.
+- `public_ui_allowed` is false.
+- `public_real_data_enabled` is false.
+- Storm / Compare / Card are not connected.
+- `real_observation` public output is not enabled.
+
+#### EMS-RD-09 next gate
+
+- `raw_pixel_read` → EMS-RD-10-SAMPLE
+- `decoder_strategy_required` → EMS-RD-10-DECODER
+- `health_manifest_failed` → EMS-RD-10-ROUTE
+- `endpoint_error` / `blocked` / `inconclusive` → EMS-RD-10-PROBEFIX
+- `network_unverified` → EMS-RD-10-VERIFY
