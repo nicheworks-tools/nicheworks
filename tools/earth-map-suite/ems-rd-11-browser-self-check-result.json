@@ -66,5 +66,5 @@
     "storm_compare_card_connected=false",
     "do_not_connect_storm_compare_card_until_validation"
   ],
-  "notes": null
+  "notes": "No actual copied browser JSON is available in this execution environment. Deployed api-status fetch attempt returned HTTP 403 on 2026-05-19 UTC, so placeholder is intentionally retained."
 }
