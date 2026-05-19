@@ -6,6 +6,7 @@
   let currentSearchMode = "all";
   let metaCache = { popularOrder: [], entries: {} };
   let shapeNotesCache = {};
+  let strokeCountsCache = {};
   let activeDetailOldChar = "";
   let loadFailed = false;
   let recentOldChars = [];
@@ -62,6 +63,7 @@
   const hasCompatibilityIdeograph = (text) => Array.from(String(text || "")).some(ch => { const cp = ch.codePointAt(0); return cp >= 0xF900 && cp <= 0xFAFF; });
   const getMeta = (oldChar) => (metaCache.entries && metaCache.entries[oldChar]) || {};
   const getShapeNote = (oldChar) => (shapeNotesCache && shapeNotesCache[oldChar]) || null;
+  const getStrokeCount = (oldChar) => (strokeCountsCache && strokeCountsCache[oldChar]) || null;
   const getCategory = (oldChar) => { const meta = getMeta(oldChar); if (meta.category) return meta.category; if (getPopularSet().has(oldChar)) return "popular"; if (nameOld.has(oldChar)) return "name"; if (commonOld.has(oldChar)) return "common"; if (documentOld.has(oldChar)) return "document"; return "rare"; };
   const labelForCategory = (category) => (filters.find(item => item.id === category) || filters[filters.length - 1])[currentLang];
   const hasMeaning = (entry) => Boolean(entry.readingJa || entry.readingEn || entry.meaningJa || entry.meaningEn);
@@ -77,7 +79,7 @@
   function switchLang(lang){ currentLang = lang === "en" ? "en" : "ja"; document.documentElement.lang = currentLang; document.querySelectorAll("[data-i18n]").forEach(el => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; }); document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang)); const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.placeholder = getSearchHint(searchInput, currentLang); const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.placeholder = currentLang === "en" ? (detectorInput.dataset.placeholderEn || "") : (detectorInput.dataset.placeholderJa || ""); }
   function showToast(text){ const toast = document.getElementById("toast"); if (!toast) return; toast.textContent = text; toast.classList.add("show"); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.remove("show"), 1600); }
   async function fetchJson(path){ const res = await fetch(path, { cache: "no-store" }); if (!res.ok) throw new Error(`Failed to load ${path}`); return res.json(); }
-  async function loadData(){ const [dict, meta, extra2, extra3, extra4, extra5, extra6, shapeNotes] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-4.json?v=20260519-okj-extra-4").catch(() => ({ entries: {} })), fetchJson("./meta-extra-5.json?v=20260519-okj-extra-5").catch(() => ({ entries: {} })), fetchJson("./meta-extra-6.json?v=20260519-okj-extra-6").catch(() => ({ entries: {} })), fetchJson("./shape-notes.json").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}, extra4.entries || {}, extra5.entries || {}, extra6.entries || {}) }; shapeNotesCache = (shapeNotes && shapeNotes.entries) || {}; return dict; }
+  async function loadData(){ const [dict, meta, extra2, extra3, extra4, extra5, extra6, shapeNotes, strokeCounts] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-4.json?v=20260519-okj-extra-4").catch(() => ({ entries: {} })), fetchJson("./meta-extra-5.json?v=20260519-okj-extra-5").catch(() => ({ entries: {} })), fetchJson("./meta-extra-6.json?v=20260519-okj-extra-6").catch(() => ({ entries: {} })), fetchJson("./shape-notes.json").catch(() => ({ entries: {} })), fetchJson("./stroke-counts.json").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}, extra4.entries || {}, extra5.entries || {}, extra6.entries || {}) }; shapeNotesCache = (shapeNotes && shapeNotes.entries) || {}; strokeCountsCache = (strokeCounts && strokeCounts.entries) || {}; return dict; }
   function setCounts(dict){ const oldCount = Object.keys(dict.old_to_new || {}).length; document.querySelectorAll('[data-count="old"]').forEach(el => { el.textContent = oldCount; }); }
   function setStatusText(text){ const el = document.getElementById("statusMessage"); if (el) el.textContent = text || ""; }
   function buildEntries(dict){ const popularOrder = getPopularOrder(); entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => { const meta = getMeta(oldChar); const newText = Array.isArray(newChar) ? newChar.join("、") : String(newChar || ""); return { oldChar, newText, oldCode: getCodePoints(oldChar), newCode: getCodePoints(newText), category: getCategory(oldChar), verified: Boolean(meta.verified), readingJa: meta.readingJa || "", readingEn: meta.readingEn || "", meaningJa: meta.meaningJa || "", meaningEn: meta.meaningEn || "", usageJa: meta.usageJa || "", usageEn: meta.usageEn || "" }; }); entriesCache.sort((a,b) => { const ia = popularOrder.indexOf(a.oldChar); const ib = popularOrder.indexOf(b.oldChar); if (ia >= 0 && ib >= 0) return ia - ib; if (ia >= 0) return -1; if (ib >= 0) return 1; return a.oldChar.localeCompare(b.oldChar, "ja"); }); }
@@ -209,6 +211,9 @@
     const modernUnicode = getCodePointList(entry.newText).join(" ");
     const oldHtmlEntity = getHtmlHexEntity(entry.oldChar);
     const modernHtmlEntity = getHtmlHexEntity(entry.newText);
+    const strokeCount = getStrokeCount(entry.oldChar);
+    const defaultStrokeNoteJa = "画数は辞書・字体・数え方によって差が出る場合があります。参考値として確認してください。";
+    const defaultStrokeNoteEn = "Stroke counts may vary by dictionary, glyph form, or counting method. Treat this as a reference value.";
     const showCompatNote = hasCompatibilityIdeograph(entry.oldChar) || hasCompatibilityIdeograph(entry.newText);
     panel.classList.add("open");
     panel.innerHTML = `<h3 class="detail-heading"><span data-i18n="ja">詳細</span><span data-i18n="en">Details</span>: ${entry.oldChar} → ${entry.newText}</h3>
@@ -245,6 +250,20 @@
       const tags = Array.isArray(shapeNote.tags) ? shapeNote.tags : [];
       const tagsHtml = tags.length ? `<div class="shape-tags">${tags.map(tag => `<span class="shape-tag">${tag}</span>`).join("")}</div>` : "";
       panel.innerHTML += `<section class="shape-note"><h4>${heading}</h4><div class="shape-note-grid"><p class="shape-note-row"><span class="shape-note-label">${radicalLabel}</span><span class="shape-note-text">${radicalText || "-"}</span></p><p class="shape-note-row"><span class="shape-note-label">${oldShapeLabel}</span><span class="shape-note-text">${structureText || "-"}</span></p><p class="shape-note-row"><span class="shape-note-label">${diffLabel}</span><span class="shape-note-text">${differenceText || "-"}</span></p><p class="shape-note-row"><span class="shape-note-label">${noteLabel}</span><span class="shape-note-text">${noteText || "-"}</span></p></div>${tagsHtml}</section>`;
+    }
+    if (strokeCount) {
+      const strokeHeading = currentLang === "en" ? "Stroke count reference" : "画数の目安";
+      const oldLabel = currentLang === "en" ? "Old form" : "旧字体";
+      const modernLabel = currentLang === "en" ? "Modern form" : "新字体";
+      const diffLabel = currentLang === "en" ? "Difference" : "差";
+      const noteLabel = currentLang === "en" ? "Note" : "補足";
+      const oldUnit = currentLang === "en" ? "strokes" : "画";
+      const modernUnit = currentLang === "en" ? "strokes" : "画";
+      const diffUnit = currentLang === "en" ? "strokes" : "画";
+      const diff = Number(strokeCount.difference);
+      const diffText = Number.isFinite(diff) ? `${diff >= 0 ? "+" : ""}${diff}${currentLang === "en" ? ` ${diffUnit}` : diffUnit}` : "-";
+      const caution = currentLang === "en" ? (strokeCount.noteEn || defaultStrokeNoteEn) : (strokeCount.noteJa || defaultStrokeNoteJa);
+      panel.innerHTML += `<section class="stroke-note"><h4>${strokeHeading}</h4><div class="stroke-note-grid"><p class="stroke-note-row"><span class="stroke-note-label">${oldLabel}</span><span class="stroke-note-value">${strokeCount.old} ${strokeCount.oldStrokes}${currentLang === "en" ? ` ${oldUnit}` : oldUnit}</span></p><p class="stroke-note-row"><span class="stroke-note-label">${modernLabel}</span><span class="stroke-note-value">${strokeCount.modern} ${strokeCount.modernStrokes}${currentLang === "en" ? ` ${modernUnit}` : modernUnit}</span></p><p class="stroke-note-row"><span class="stroke-note-label">${diffLabel}</span><span class="stroke-note-value stroke-diff">${diffText}</span></p><p class="stroke-note-row"><span class="stroke-note-label">${noteLabel}</span><span class="stroke-note-value stroke-note-caution">${caution}</span></p></div></section>`;
     }
     panel.innerHTML += `<section class="code-copy-grid">
       <div class="code-block">
