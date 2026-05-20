@@ -988,6 +988,18 @@
         "kanji",
         "checker"
       ]
+    },
+    "old-document-kanji-highlighter": {
+      "title_ja": "古文書旧字体ハイライター｜Old Document Kanji Highlighter",
+      "title_en": "Old Document Kanji Highlighter",
+      "desc_ja": "古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。",
+      "desc_en": "Old Document Kanji Highlighter is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "old",
+        "document",
+        "kanji",
+        "highlighter"
+      ]
     }
   }
 }
