@@ -1,0 +1,43 @@
+name: Check UnitMaster JSON runtime structure
+
+on:
+  pull_request:
+    paths:
+      - 'tools/unitmaster/index.html'
+      - 'tools/unitmaster/app-json-runtime.js'
+      - 'tools/unitmaster/app.js'
+      - 'tools/unitmaster/runtime-units-adapter.js'
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/scripts/check-json-runtime-structure.mjs'
+      - '.github/workflows/check-unitmaster-json-runtime.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/unitmaster/index.html'
+      - 'tools/unitmaster/app-json-runtime.js'
+      - 'tools/unitmaster/app.js'
+      - 'tools/unitmaster/runtime-units-adapter.js'
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/scripts/check-json-runtime-structure.mjs'
+      - '.github/workflows/check-unitmaster-json-runtime.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-json-runtime-structure:
+    name: Check UnitMaster JSON runtime structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check JSON runtime structure
+        run: node tools/unitmaster/scripts/check-json-runtime-structure.mjs
