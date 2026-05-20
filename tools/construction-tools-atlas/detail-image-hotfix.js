@@ -11,7 +11,8 @@
     "./data/image-pilots-007.json?v=20260513-asset-11",
     "./data/image-pilots-008.json?v=20260513-asset-12",
     "./data/image-pilots-009.json?v=20260513-asset-13",
-    "./data/image-pilots-010.json?v=20260513-asset-14"
+    "./data/image-pilots-010.json?v=20260513-asset-14",
+    "./data/image-pilots-011.json?v=20260513-asset-15"
   ];
 
   const state = {
