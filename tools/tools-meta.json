@@ -1000,6 +1000,17 @@
         "kanji",
         "highlighter"
       ]
+    },
+    "unicode-kanji-checker": {
+      "title_ja": "Unicode漢字チェッカー | Unicode Kanji Checker",
+      "title_en": "Unicode Kanji Checker",
+      "desc_ja": "漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。",
+      "desc_en": "Unicode Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "unicode",
+        "kanji",
+        "checker"
+      ]
     }
   }
 }
