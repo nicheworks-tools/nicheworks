@@ -194,3 +194,12 @@ Explicitly forbidden:
 - showing raw/debug pixel as rainfall
 - synthetic fallback inside real result block
 - labeling synthetic preview as JAXA/EORC data
+
+## EMS-RD-19 status
+
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
+- result_hash: `null` (no actual browser artifact yet)
+- pasted JSON loader added to `api-status.html` for intake, but Storm real remains blocked.
+
+Storm/Compare/Card stay disconnected and `public_real_data_enabled` remains `false`.
