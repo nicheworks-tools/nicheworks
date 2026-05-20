@@ -1,13 +1,13 @@
 {
-  "data_type": "earth_map_suite_browser_self_check",
-  "mode": "not_run",
   "checked_at": null,
+  "checked_by": null,
   "page_url": "https://nicheworks.app/tools/earth-map-suite/api-status.html",
+  "mode": "not_run",
   "branch_decision": "browser_result_missing",
-  "next_task_family": "VERIFY",
+  "result_hash": null,
+  "result_hash_algorithm": null,
   "public_real_data_enabled": false,
   "storm_compare_card_connected": false,
-  "storm_real_blocked": true,
   "next_action": "run deployed browser safe check and download JSON",
   "endpoints": [
     {
@@ -16,7 +16,12 @@
       "ok": null,
       "http_status": null,
       "data_type": null,
-      "status": null
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
     },
     {
       "key": "health",
@@ -24,7 +29,12 @@
       "ok": null,
       "http_status": null,
       "data_type": null,
-      "status": null
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
     },
     {
       "key": "manifest",
@@ -32,7 +42,12 @@
       "ok": null,
       "http_status": null,
       "data_type": null,
-      "status": null
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
     },
     {
       "key": "probe_status",
@@ -40,7 +55,12 @@
       "ok": null,
       "http_status": null,
       "data_type": null,
-      "status": null
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
     },
     {
       "key": "precipitation_sample_real",
@@ -48,13 +68,21 @@
       "ok": null,
       "http_status": null,
       "data_type": null,
-      "status": null
+      "status": null,
+      "decision_phase": null,
+      "decision_next": null,
+      "public_ui_allowed": null,
+      "error_code": null,
+      "checked_at": null
     }
   ],
   "guardrails": [
     "public_real_data_enabled=false",
     "storm_compare_card_connected=false",
-    "storm_real_blocked=true"
+    "do_not_connect_storm_compare_card_until_validation"
   ],
-  "notes": "No actual downloaded browser JSON was available in this run; placeholder retained without fabricating endpoint values."
+  "notes": "No actual downloaded browser JSON was available in this run; placeholder retained without fabricating endpoint values.",
+  "data_type": "earth_map_suite_browser_self_check",
+  "next_task_family": "VERIFY",
+  "storm_real_blocked": true
 }

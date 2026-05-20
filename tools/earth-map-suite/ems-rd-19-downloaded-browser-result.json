@@ -1,0 +1,16 @@
+{
+  "data_type": "earth_map_suite_browser_self_check",
+  "mode": "not_run",
+  "checked_at": null,
+  "page_url": "https://nicheworks.app/tools/earth-map-suite/api-status.html",
+  "branch_decision": "browser_result_missing",
+  "next_task_family": "VERIFY",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "storm_real_blocked": true,
+  "result_hash": null,
+  "result_hash_algorithm": null,
+  "next_action": "collect actual deployed browser safe-check JSON via autorun/download or paste loader",
+  "endpoints": [],
+  "notes": "Placeholder retained because actual downloaded browser JSON is not yet recorded."
+}

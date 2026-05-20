@@ -361,3 +361,21 @@ EMS-RD-16 next gate mapping:
 - SAMPLE → validate sampling gates
 - DECODER → isolated decoder feasibility
 - PROBEFIX → repair probe chain
+
+### EMS-RD-19 verification update (2026-05-19)
+
+- api-status now includes manual pasted JSON loader (local parse only).
+- browser self-check result now includes optional `result_hash` fingerprint fields.
+- validator accepts optional hash fields for backward compatibility.
+- current branch_decision: `browser_result_missing`
+- current next_task_family: `VERIFY`
+- unchanged safety state: `public_real_data_enabled=false`, `storm_compare_card_connected=false`, `storm_real_blocked=true`.
+- `precipitation-sample-real` remains non-public real output; Storm/Compare/Card remain disconnected.
+
+Next gate mapping:
+- VERIFY -> obtain actual browser safe-check JSON
+- ROUTE -> fix API route/deployment
+- PROBE -> run research probe manually
+- SAMPLE -> validate unit/scale/NoData/geolocation/source/license
+- DECODER -> isolated decoder feasibility
+- PROBEFIX -> repair probe chain

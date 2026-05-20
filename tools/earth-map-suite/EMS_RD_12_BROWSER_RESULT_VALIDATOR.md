@@ -17,6 +17,10 @@ Required top-level fields:
 - storm_compare_card_connected
 - endpoints
 
+Optional fingerprint fields (backward compatible):
+- result_hash (string or null)
+- result_hash_algorithm (string or null)
+
 Required endpoint keys:
 - self_check
 - health
@@ -35,4 +39,6 @@ Output includes:
 - branch_decision
 - next_task_family
 - mode
+- result_hash
+- result_hash_algorithm
 - required endpoints found/missing
