@@ -1,0 +1,25 @@
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background:#f5f7fb; color:#1f2937; }
+.place-checker { max-width: 920px; margin: 0 auto; padding: 16px; }
+header, .input-panel, .result-summary, .risk-panel, .place-result-card, .privacy-note { background:#fff; border:1px solid #d8e0eb; border-radius:12px; padding:14px; margin-bottom:12px; }
+.nw-lang-switch { display:flex; gap:8px; margin-bottom:8px; }
+.nw-lang-switch button { border:1px solid #b8c3d6; background:#fff; border-radius:8px; padding:6px 10px; }
+.nw-lang-switch button.active { background:#1e3a8a; color:#fff; }
+textarea { width:100%; border:1px solid #b8c3d6; border-radius:8px; padding:10px; resize:vertical; }
+#checkBtn { margin-top:8px; border:none; background:#0f766e; color:#fff; padding:10px 14px; border-radius:8px; }
+.place-result-list { display:grid; gap:10px; }
+.copy-actions { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.copy-actions button { border:1px solid #c6d3e6; background:#f8fbff; border-radius:8px; padding:6px 8px; }
+.candidate-list { margin:6px 0; overflow-wrap:anywhere; }
+.compatibility-note { margin-top:8px; padding:8px; border-left:4px solid #d97706; background:#fffbeb; }
+.reference-links a, .nw-links a { overflow-wrap:anywhere; }
+.toast { position:fixed; right:12px; bottom:12px; background:#111827; color:#fff; padding:8px 10px; border-radius:8px; opacity:0; transition:opacity .2s; }
+.toast.show { opacity:1; }
+[data-i18n="en"] { display:none; }
+html[lang="en"] [data-i18n="ja"] { display:none; }
+html[lang="en"] [data-i18n="en"] { display:initial; }
+@media (max-width: 480px) {
+  .place-checker { padding:10px; }
+  header, .input-panel, .result-summary, .risk-panel, .place-result-card, .privacy-note { padding:10px; }
+}
