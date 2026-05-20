@@ -41,3 +41,26 @@
 - no raw pixel as rainfall
 - no synthetic fallback inside real block
 - no paid infrastructure
+
+## 8) EMS-RD-20 update
+- capture checklist exists: `tools/earth-map-suite/EMS_RD_20_BROWSER_CAPTURE_CHECKLIST.md`
+- intake result exists: `tools/earth-map-suite/ems-rd-20-browser-safe-result.json`
+- canonical sync result: `no` (placeholder intake, no actual browser artifact yet)
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
+- result_hash: `null`
+
+Next gate mapping:
+- `VERIFY` -> obtain actual browser safe-check JSON
+- `ROUTE` -> fix API route/deployment
+- `PROBE` -> run research probe manually
+- `SAMPLE` -> validate unit/scale/NoData/geolocation/source/license
+- `DECODER` -> isolated decoder feasibility
+- `PROBEFIX` -> repair probe chain
+
+Safety guardrails unchanged:
+- `public_real_data_enabled=false`
+- `storm_compare_card_connected=false`
+- `storm_real_blocked=true`
+- `precipitation-sample-real` is not public real output
+- Storm / Compare / Card remain disconnected

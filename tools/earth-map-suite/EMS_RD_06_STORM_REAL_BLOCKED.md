@@ -203,3 +203,22 @@ Explicitly forbidden:
 - pasted JSON loader added to `api-status.html` for intake, but Storm real remains blocked.
 
 Storm/Compare/Card stay disconnected and `public_real_data_enabled` remains `false`.
+
+## EMS-RD-20 status
+
+- capture checklist: `tools/earth-map-suite/EMS_RD_20_BROWSER_CAPTURE_CHECKLIST.md`
+- intake file: `tools/earth-map-suite/ems-rd-20-browser-safe-result.json`
+- canonical sync: `no` (placeholder intake)
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
+- result_hash: `null`
+- current blocker: actual deployed browser safe-check JSON artifact is still missing.
+
+Storm real remains blocked unless all required gates are satisfied, and remains explicitly blocked in EMS-RD-20 (`storm_real_blocked=true`).
+
+Still forbidden while blocked:
+- public real-data enablement
+- Storm / Compare / Card connection
+- raw/debug pixel as rainfall
+- synthetic fallback inside real result block
+- paid infrastructure

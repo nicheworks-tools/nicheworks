@@ -379,3 +379,22 @@ Next gate mapping:
 - SAMPLE -> validate unit/scale/NoData/geolocation/source/license
 - DECODER -> isolated decoder feasibility
 - PROBEFIX -> repair probe chain
+
+### EMS-RD-20 verification update (2026-05-20)
+
+- capture checklist exists: `EMS_RD_20_BROWSER_CAPTURE_CHECKLIST.md`
+- EMS-RD-20 intake file exists: `ems-rd-20-browser-safe-result.json`
+- canonical sync result: `no` (placeholder intake; canonical missing-state retained)
+- branch_decision: `browser_result_missing`
+- next_task_family: `VERIFY`
+- result_hash: `null`
+- unchanged safety state: `public_real_data_enabled=false`, `storm_compare_card_connected=false`, `storm_real_blocked=true`
+- `precipitation-sample-real` is not public real output; Storm / Compare / Card remain disconnected.
+
+Next gate mapping:
+- VERIFY -> obtain actual browser safe-check JSON
+- ROUTE -> fix API route/deployment
+- PROBE -> run research probe manually
+- SAMPLE -> validate unit/scale/NoData/geolocation/source/license
+- DECODER -> isolated decoder feasibility
+- PROBEFIX -> repair probe chain
