@@ -222,3 +222,13 @@ Still forbidden while blocked:
 - raw/debug pixel as rainfall
 - synthetic fallback inside real result block
 - paid infrastructure
+
+## EMS-RD-21 Gate Marker (2026-05-20)
+- branch_decision: `health_manifest_reachable`
+- next_task_family: `PROBE`
+- `/api/earth-map-suite/safe-result` is route-level safe bundle only.
+- `public_real_data_enabled=false` (unchanged)
+- `storm_compare_card_connected=false` (unchanged)
+- `storm_real_blocked=true` (unchanged)
+- `precipitation-sample-real` remains non-public research output.
+- Next gate mapping: VERIFY obtain safe/browser result; ROUTE fix deployment; PROBE run manual probe; SAMPLE validate unit/scale/NoData/geolocation/source/license; DECODER isolated feasibility; PROBEFIX repair probe chain.

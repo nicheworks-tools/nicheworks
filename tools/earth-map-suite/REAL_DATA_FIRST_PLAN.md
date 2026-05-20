@@ -398,3 +398,11 @@ Next gate mapping:
 - SAMPLE -> validate unit/scale/NoData/geolocation/source/license
 - DECODER -> isolated decoder feasibility
 - PROBEFIX -> repair probe chain
+
+## EMS-RD-21 Safe-Result Gate (2026-05-20)
+- `/api/earth-map-suite/safe-result` exists (safe bundle only; no upstream fetch).
+- api-status can load safe-result manually via "Load server safe result".
+- Validator accepts `api_safe_bundle`.
+- Current branch_decision: `health_manifest_reachable`.
+- Current next_task_family: `PROBE`.
+- Guardrails unchanged: public real remains disabled; Storm/Compare/Card remain disconnected.

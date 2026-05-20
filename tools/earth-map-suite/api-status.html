@@ -78,6 +78,7 @@
       <a href="/api/earth-map-suite/self-check" target="_blank" rel="noopener">Open /self-check</a>
       <a href="/api/earth-map-suite/health" target="_blank" rel="noopener">Open /health</a>
       <a href="/api/earth-map-suite/manifest" target="_blank" rel="noopener">Open /manifest</a>
+      <a href="/api/earth-map-suite/safe-result" target="_blank" rel="noopener">Open /safe-result</a>
       <a href="/api/earth-map-suite/probe-status" target="_blank" rel="noopener">Open /probe-status</a>
       <a href="/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low" target="_blank" rel="noopener">Open /precipitation-sample-real (safe check)</a>
     </div>
@@ -89,6 +90,7 @@
     <p class="small">This check runs from your browser against the currently hosted site. It does not approve public real-data output.</p>
     <div>
       <button class="primary" id="check-safe">Run safe check: self-check + health + manifest</button>
+      <button id="load-server-safe-result">Load server safe result</button>
       <button class="danger" id="check-probe">Run research probes</button>
       <button id="copy-json">Copy JSON result</button>
       <button id="download-json">Download JSON result</button>
@@ -260,6 +262,20 @@
       saveLocalResult(withHash);
     }
 
+
+    async function loadServerSafeResult() {
+      summary.textContent = 'Loading server safe result...';
+      const loaded = await fetchJson({ key: 'safe_result', path: '/api/earth-map-suite/safe-result' });
+      if (!loaded.ok || !loaded.body || typeof loaded.body !== 'object') {
+        summary.textContent = `Failed to load /safe-result (HTTP ${loaded.http_status || 'n/a'}).`;
+        return;
+      }
+      if (loaded.body.public_real_data_enabled !== false || loaded.body.storm_compare_card_connected !== false) {
+        summary.textContent = 'Unsafe flags detected in /safe-result response. Keeping Storm real blocked.';
+      }
+      await render(loaded.body);
+    }
+
     async function run(endpoints, mode) {
       summary.textContent = `Running ${mode}...`;
       const results = [];
@@ -292,6 +308,7 @@
     }
 
     document.getElementById('check-safe').addEventListener('click', () => run(safeEndpoints, 'safe_self_health_manifest'));
+    document.getElementById('load-server-safe-result').addEventListener('click', () => loadServerSafeResult());
     document.getElementById('check-probe').addEventListener('click', () => run([...safeEndpoints, ...probeEndpoints], 'research_probe'));
     document.getElementById('copy-json').addEventListener('click', async () => {
       const text = JSON.stringify(lastResult, null, 2);
