@@ -18,8 +18,8 @@
       relatedLinks: '関連リンク', modernizerLink: '旧字体変換ツールで確認する', resultHeading: 'チェック結果',
       characters: '文字数', unique: '種類', compatibility: '互換漢字', supplementary: '補助平面文字', variation: '異体字セレクタ',
       char: '字', unicode: 'Unicode', decimal: '10進', htmlHex: 'HTML hex', htmlDec: 'HTML decimal', utf16: 'UTF-16',
-      oldModern: '旧字体対応', oldCandidates: '旧字体・異体字候補', reading: '読み', meaning: '意味', category: '分類',
-      renderNote: '表示環境の注意', summary: '概要', copyNote: 'コピー時の注意', recommended: '確認ポイント',
+      oldModern: '旧字体対応', oldCandidates: '旧字体・異体字候補', reading: '読み', meaning: '意味', category: '分類', usage: '用例',
+      renderNote: '表示環境の注意', summary: '概要', copyNote: 'コピー時の注意', technical: '技術メモ', recommended: '確認ポイント',
       copyCharacter: '文字をコピー', copyUnicode: 'Unicodeをコピー', copyHtmlHex: 'HTML hexをコピー', copyHtmlDec: 'HTML decimalをコピー', copyUtf16: 'UTF-16をコピー',
       viewInRef: '旧字体一覧で詳しく見る', cautionHeading: 'Unicode確認時の注意',
       cautionText: 'このツールは文字コード・表示環境の確認を補助する参考ツールです。氏名、地名、戸籍、登記、契約書類、システム登録などで使う場合は、実際の登録字体・保存形式・利用先システムでの表示を確認してください。',
@@ -34,14 +34,35 @@
       relatedLinks: 'Related links', modernizerLink: 'Check in Kanji Modernizer', resultHeading: 'Check result',
       characters: 'Characters', unique: 'Unique', compatibility: 'Compatibility ideographs', supplementary: 'Supplementary-plane characters', variation: 'Variation selectors',
       char: 'Character', unicode: 'Unicode', decimal: 'Decimal', htmlHex: 'HTML hex', htmlDec: 'HTML decimal', utf16: 'UTF-16',
-      oldModern: 'Old/modern mapping', oldCandidates: 'Possible old or variant forms', reading: 'Reading', meaning: 'Meaning', category: 'Category',
-      renderNote: 'Rendering note', summary: 'Summary', copyNote: 'Copy note', recommended: 'Recommended check',
+      oldModern: 'Old/modern mapping', oldCandidates: 'Possible old or variant forms', reading: 'Reading', meaning: 'Meaning', category: 'Category', usage: 'Usage',
+      renderNote: 'Rendering note', summary: 'Summary', copyNote: 'Copy note', technical: 'Technical note', recommended: 'Recommended check',
       copyCharacter: 'Copy character', copyUnicode: 'Copy Unicode', copyHtmlHex: 'Copy HTML hex', copyHtmlDec: 'Copy HTML decimal', copyUtf16: 'Copy UTF-16',
       viewInRef: 'View in Old Kanji Reference', cautionHeading: 'Important note for Unicode checks',
       cautionText: 'This tool is a reference aid for checking character codes and rendering behavior. For names, place names, family registers, registrations, contracts, or system records, confirm the actual registered glyph, storage format, and rendering in the target system.',
       copied: 'Copied', fallbackCompatibility: 'This character is in a compatibility ideograph range and may render differently depending on the environment or font.',
       fallbackSupplementary: 'This is a supplementary-plane character and may not display or save correctly in some older environments or apps.',
       fallbackVariation: 'This character may include a variation selector, and unsupported environments may render it differently.'
+    }
+  };
+
+
+
+  const CATEGORY_LABELS = {
+    ja: {
+      name: '人名・地名',
+      document: '文献・古文書',
+      common: '旧常用漢字',
+      rare: '参考',
+      popular: 'よく使う旧字体',
+      pair_only: '対応のみ'
+    },
+    en: {
+      name: 'Names / Places',
+      document: 'Old documents',
+      common: 'Common-use old forms',
+      rare: 'Reference',
+      popular: 'Common old forms',
+      pair_only: 'Pair only'
     }
   };
 
@@ -64,9 +85,13 @@
 
   function buildReverseLookupFromOldToNew(oldToNew) {
     const map = new Map();
-    Object.entries(oldToNew || {}).forEach(([oldChar, modernChar]) => {
-      if (!map.has(modernChar)) map.set(modernChar, []);
-      map.get(modernChar).push(oldChar);
+    Object.entries(oldToNew || {}).forEach(([oldChar, modernValue]) => {
+      const modernForms = Array.isArray(modernValue) ? modernValue : [modernValue];
+      modernForms.forEach((modernChar) => {
+        if (!modernChar) return;
+        if (!map.has(modernChar)) map.set(modernChar, []);
+        if (!map.get(modernChar).includes(oldChar)) map.get(modernChar).push(oldChar);
+      });
     });
     return map;
   }
@@ -78,7 +103,8 @@
         const res = await fetch(base + file);
         if (!res.ok) continue;
         const json = await res.json();
-        Object.entries(json || {}).forEach(([k, v]) => state.metadata.set(k, v));
+        const entries = json.entries || {};
+        Object.entries(entries).forEach(([oldChar, meta]) => state.metadata.set(oldChar, meta));
       } catch (_e) {}
     }
   }
@@ -88,7 +114,8 @@
       const res = await fetch(base + 'compatibility-notes.json');
       if (!res.ok) return;
       const json = await res.json();
-      Object.entries(json || {}).forEach(([k, v]) => state.compatibilityNotes.set(k, v));
+      const entries = json.entries || {};
+      Object.entries(entries).forEach(([oldChar, note]) => state.compatibilityNotes.set(oldChar, note));
     } catch (_e) {}
   }
 
@@ -156,15 +183,31 @@
     const card = el('article'); card.className = 'unicode-card';
     const grid = el('div'); grid.className = 'code-grid';
     const items = [[t.char, row.ch], [t.unicode, row.hex], [t.decimal, row.decimal], [t.htmlHex, row.htmlHex], [t.htmlDec, row.htmlDec], [t.utf16, row.utf16]];
-    if (row.oldModern) items.push([t.oldModern, `${row.ch} → ${row.oldModern}`]);
+    const oldModernValue = Array.isArray(row.oldModern) ? row.oldModern.join(' / ') : row.oldModern;
+    if (oldModernValue) items.push([t.oldModern, `${row.ch} → ${oldModernValue}`]);
     if (row.oldCandidates.length) items.push([t.oldCandidates, row.oldCandidates.join(', ')]);
-    if (row.meta.reading) items.push([t.reading, row.meta.reading]);
-    if (row.meta.meaning) items.push([t.meaning, row.meta.meaning]);
-    if (row.meta.category) items.push([t.category, row.meta.category]);
+
+    const reading = state.lang === 'ja'
+      ? (row.meta.readingJa || row.meta.readingEn)
+      : (row.meta.readingEn || row.meta.readingJa);
+    const meaning = state.lang === 'ja'
+      ? (row.meta.meaningJa || row.meta.meaningEn)
+      : (row.meta.meaningEn || row.meta.meaningJa);
+    const usage = state.lang === 'ja'
+      ? (row.meta.usageJa || row.meta.usageEn)
+      : (row.meta.usageEn || row.meta.usageJa);
+    const categoryRaw = row.meta.category;
+    const category = categoryRaw ? (CATEGORY_LABELS[state.lang][categoryRaw] || categoryRaw) : '';
+
+    if (reading) items.push([t.reading, reading]);
+    if (meaning) items.push([t.meaning, meaning]);
+    if (category) items.push([t.category, category]);
+    if (usage) items.push([t.usage, usage]);
     items.forEach(([k, v]) => { const r = el('div'); r.className = 'code-row'; const l = el('strong', `${k}: `); const s = el('span', v); r.append(l, s); grid.appendChild(r); });
     card.appendChild(grid);
 
-    card.appendChild(renderCompatibilityNote(row, t));
+    const compatibility = renderCompatibilityNote(row, t);
+    if (compatibility) card.appendChild(compatibility);
 
     const copy = el('div'); copy.className = 'copy-actions';
     [[t.copyCharacter, row.ch], [t.copyUnicode, row.hex], [t.copyHtmlHex, row.htmlHex], [t.copyHtmlDec, row.htmlDec], [t.copyUtf16, row.utf16]].forEach(([label, text]) => {
@@ -181,16 +224,23 @@
   }
 
   function renderCompatibilityNote(row, t) {
+    const hasCompat = Boolean(row.compatNote);
+    const hasFallback = row.fallback.length > 0;
+    if (!hasCompat && !hasFallback) return null;
+
     const wrap = el('section'); wrap.className = 'compatibility-note';
     const title = el('h3', t.renderNote); wrap.appendChild(title);
-    if (row.compatNote) {
-      wrap.appendChild(el('p', `${t.summary}: ${row.compatNote.summary || ''}`));
-      wrap.appendChild(el('p', `${t.copyNote}: ${row.compatNote.copy_note || ''}`));
-      wrap.appendChild(el('p', `${t.recommended}: ${row.compatNote.recommended_check || ''}`));
-      return wrap;
+    if (hasCompat) {
+      const summary = state.lang === 'ja' ? row.compatNote.summaryJa : row.compatNote.summaryEn;
+      const copyNote = state.lang === 'ja' ? row.compatNote.copyNoteJa : row.compatNote.copyNoteEn;
+      const technical = state.lang === 'ja' ? row.compatNote.technicalJa : row.compatNote.technicalEn;
+      const recommended = state.lang === 'ja' ? row.compatNote.recommendedCheckJa : row.compatNote.recommendedCheckEn;
+      if (summary) wrap.appendChild(el('p', `${t.summary}: ${summary}`));
+      if (copyNote) wrap.appendChild(el('p', `${t.copyNote}: ${copyNote}`));
+      if (technical) wrap.appendChild(el('p', `${t.technical}: ${technical}`));
+      if (recommended) wrap.appendChild(el('p', `${t.recommended}: ${recommended}`));
     }
     row.fallback.forEach((n) => wrap.appendChild(el('p', n.text)));
-    if (!row.fallback.length) wrap.appendChild(el('p', '-'));
     return wrap;
   }
 
@@ -228,7 +278,7 @@
 
   function toCsv(rows) {
     const header = ['character', 'unicode', 'decimal', 'htmlHex', 'htmlDecimal', 'utf16', 'oldModern', 'oldCandidates'];
-    const lines = rows.map((r) => [r.ch, r.hex, r.decimal, r.htmlHex, r.htmlDec, r.utf16, r.oldModern || '', r.oldCandidates.join('|')]);
+    const lines = rows.map((r) => [r.ch, r.hex, r.decimal, r.htmlHex, r.htmlDec, r.utf16, Array.isArray(r.oldModern) ? r.oldModern.join('|') : (r.oldModern || ''), r.oldCandidates.join('|')]);
     return [header, ...lines].map((arr) => arr.map((x) => `"${String(x).replaceAll('"', '""')}"`).join(',')).join('\n');
   }
 
