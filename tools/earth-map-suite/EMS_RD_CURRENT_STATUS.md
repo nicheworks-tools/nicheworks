@@ -64,3 +64,11 @@ Safety guardrails unchanged:
 - `storm_real_blocked=true`
 - `precipitation-sample-real` is not public real output
 - Storm / Compare / Card remain disconnected
+
+## EMS-RD-21 Update (2026-05-20)
+- safe-result endpoint: available at `/api/earth-map-suite/safe-result` (safe bundle mode).
+- api-status manual loader: available (no auto probe execution).
+- validator: `api_safe_bundle` accepted with strict safety flags.
+- branch_decision: `health_manifest_reachable`
+- next_task_family: `PROBE`
+- storm_real_blocked: true

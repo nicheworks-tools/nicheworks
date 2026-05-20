@@ -1,6 +1,6 @@
 # EMS-RD-12 Browser Result Validator
 
-Last updated: 2026-05-19
+Last updated: 2026-05-20
 
 Run:
 
@@ -10,7 +10,7 @@ node tools/earth-map-suite/validate-browser-self-check-result.mjs
 
 Required top-level fields:
 - branch_decision
-- mode (`safe_self_health_manifest` / `research_probe` / `not_run`)
+- mode (`safe_self_health_manifest` / `research_probe` / `not_run` / `api_safe_bundle`)
 - page_url
 - checked_at
 - public_real_data_enabled
@@ -35,10 +35,16 @@ Safety hard-fail:
 - missing endpoints array
 - missing required endpoint keys
 
+`api_safe_bundle` note:
+- intended source: `/api/earth-map-suite/safe-result`
+- accepted branch: `health_manifest_reachable`
+- mapped next task family: `PROBE`
+- probe endpoints remain required keys but may stay unexecuted/null in safe bundle mode.
+
 Output includes:
+- mode
 - branch_decision
 - next_task_family
-- mode
 - result_hash
 - result_hash_algorithm
 - required endpoints found/missing

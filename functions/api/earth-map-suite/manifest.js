@@ -24,6 +24,14 @@ const ENDPOINTS = [
     real_observation_public_ready: false,
   },
   {
+    path: "/api/earth-map-suite/safe-result",
+    purpose: "safe browser-result-like bundle without upstream fetches",
+    stage: "ems-rd-21-verify",
+    external_fetch: false,
+    public_ui_allowed: false,
+    real_observation_public_ready: false,
+  },
+  {
     path: "/api/earth-map-suite/probe-status",
     purpose: "classify precipitation probe branch status",
     stage: "ems-rd-04b-research",
