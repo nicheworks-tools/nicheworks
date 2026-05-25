@@ -1,11 +1,10 @@
 import { patterns } from './data/patterns-all.js';
+import { setupPatternFilters } from './filter-ui.js';
 
 const root = document.querySelector('[data-tool="pattern-atlas"]');
 
 if (root) {
   const isJapanese = document.documentElement.lang === 'ja';
-  const searchInput = root.querySelector('[data-pa-search]');
-  const resultCount = root.querySelector('[data-pa-results-count]');
   const grid = root.querySelector('.pa-card-grid');
 
   const getText = (pattern, enKey, jaKey) => isJapanese ? pattern[jaKey] : pattern[enKey];
@@ -41,6 +40,9 @@ if (root) {
     const card = createElement('article', 'pa-card');
     card.dataset.paCard = '';
     card.dataset.paSearch = buildSearchText(pattern);
+    card.dataset.paRegions = pattern.regions.join(' ');
+    card.dataset.paCategories = pattern.categories.join(' ');
+    card.dataset.paUses = pattern.useCases.join(' ');
 
     const preview = createElement('div', 'pa-pattern-preview');
     const sample = createElement('div', previewClassFor(pattern));
@@ -72,25 +74,6 @@ if (root) {
     grid.replaceChildren(...patterns.map(createCard));
   };
 
-  const updateResults = () => {
-    const query = (searchInput?.value || '').trim().toLowerCase();
-    const cards = Array.from(root.querySelectorAll('[data-pa-card]'));
-    let visible = 0;
-
-    cards.forEach((card) => {
-      const haystack = (card.dataset.paSearch || '').toLowerCase();
-      const show = !query || haystack.includes(query);
-      card.hidden = !show;
-      if (show) visible += 1;
-    });
-
-    if (resultCount) {
-      const unit = resultCount.dataset.paUnit || (isJapanese ? 'patterns' : 'patterns');
-      resultCount.textContent = `${visible} ${unit}`;
-    }
-  };
-
   renderCards();
-  searchInput?.addEventListener('input', updateResults);
-  updateResults();
+  setupPatternFilters({ root, patterns, isJapanese });
 }
