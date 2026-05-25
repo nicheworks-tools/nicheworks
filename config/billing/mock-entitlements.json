@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "nicheworks-mock-entitlements-v1",
+  "status": "dev_mock_only",
+  "enabledByDefault": false,
+  "warning": "Mock entitlements are for development/testing only and must not be treated as real purchase state.",
+  "mockEntitlements": [
+    {
+      "mockId": "okj-toolkit-pro-dev",
+      "productId": "okj.toolkit_pro",
+      "status": "test",
+      "features": [
+        "okj.batchOcr",
+        "okj.scanHistory",
+        "okj.oldKanjiCollection",
+        "okj.exportCsv",
+        "okj.exportMarkdown",
+        "okj.exportJson",
+        "okj.report",
+        "okj.cropOcr",
+        "okj.zoomInspect",
+        "okj.imageMarking",
+        "okj.batchNameCheck",
+        "okj.batchPlaceCheck",
+        "okj.batchTextHighlight",
+        "okj.savedCompareSets",
+        "okj.unicodeAuditExport",
+        "okj.quizHistory"
+      ],
+      "note": "Development-only mock entitlement for testing future Pro UI states."
+    }
+  ]
+}
