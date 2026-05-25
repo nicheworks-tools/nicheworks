@@ -1032,6 +1032,18 @@
         "pattern",
         "atlas"
       ]
+    },
+    "old-kanji-ocr-scanner": {
+      "title_ja": "旧字体OCRスキャナー | Old Kanji OCR Scanner",
+      "title_en": "Old Kanji Ocr Scanner",
+      "desc_ja": "画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。初期版では画像を読み込み、OCR結果と旧字体検出へつなぐための準備画面を提供します。 / An OCR entry point for checking old or variant kanji from images or smartphone photos. This initial version prepares image loading, preview, and later OCR/detection flows.",
+      "desc_en": "Old Kanji Ocr Scanner is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "old",
+        "kanji",
+        "ocr",
+        "scanner"
+      ]
     }
   }
 }
