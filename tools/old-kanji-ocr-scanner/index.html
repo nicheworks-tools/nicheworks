@@ -31,11 +31,42 @@
 
     <section class="copy-actions" id="copy-actions"><div class="button-row result-actions"><button id="copy-ocr" type="button" data-i18n="copyButton">OCR結果をコピー</button><button id="copy-old-forms" type="button" data-i18n="copyOldForms">検出された旧字だけコピー</button><button id="copy-pair-table" type="button" data-i18n="copyPairTable">対応表をコピー</button><button id="copy-modern-preview" type="button" data-i18n="copyModernPreview">現代表記プレビューをコピー</button></div><span class="copy-toast" id="copy-toast" aria-live="polite"></span></section>
 
-    <section class="related-links" id="manual-links"><a data-base-href="../old-document-kanji-highlighter/" target="_blank" rel="noopener noreferrer">Old Document Kanji Highlighter</a><a data-base-href="../unicode-kanji-checker/" target="_blank" rel="noopener noreferrer">Unicode Kanji Checker</a><a data-base-href="../variant-kanji-compare/" target="_blank" rel="noopener noreferrer">Variant Kanji Compare</a><a data-base-href="../old-kanji-reference/" target="_blank" rel="noopener noreferrer">Old Kanji Reference</a><a data-base-href="../kanji-modernizer/" target="_blank" rel="noopener noreferrer">Kanji Modernizer</a></section>
+
+    <section class="okj-pro-panel okj-pro-state-billing-unavailable" data-okj-pro-state="billing-unavailable">
+      <p class="okj-pro-badge"><span class="okj-pro-inline-lock" aria-hidden="true">🔒</span><span data-i18n="proBadge">Pro</span></p>
+      <h2 class="okj-pro-panel__title" data-i18n="proPanelHeading">Old Kanji Toolkit Pro</h2>
+      <p class="okj-pro-panel__body" data-i18n="proPanelLead">一括OCR、履歴保存、トリミングOCR、拡大確認、画像内マーキング、調査レポート出力は Pro 機能として提供予定です。</p>
+      <p class="okj-pro-panel__price" data-okj-pro-price data-i18n="proPanelPrice">$4.99 買い切り</p>
+      <div class="okj-pro-panel__features">
+        <article class="detected-card" data-okj-feature-id="okj.batchOcr">
+          <h3 data-i18n="proBatchTitle">一括OCRは Pro 機能です</h3>
+          <p data-i18n="proBatchText">複数画像のOCR、連続スキャン、検出結果のまとめ処理は Old Kanji Toolkit Pro で利用できます。</p>
+        </article>
+        <article class="detected-card" data-okj-feature-id="okj.scanHistory okj.oldKanjiCollection">
+          <h3 data-i18n="proHistoryTitle">履歴保存は Pro 機能です</h3>
+          <p data-i18n="proHistoryText">スキャン履歴、OCR結果、検出された旧字体コレクションの保存は Old Kanji Toolkit Pro で利用できます。</p>
+        </article>
+        <article class="detected-card" data-okj-feature-id="okj.cropOcr okj.zoomInspect okj.imageMarking">
+          <h3 data-i18n="proCropTitle">トリミング・拡大確認は Pro 機能です</h3>
+          <p data-i18n="proCropText">画像の一部を切り出したOCR、拡大確認、画像内マーキングは Old Kanji Toolkit Pro で利用できます。</p>
+        </article>
+        <article class="detected-card" data-okj-feature-id="okj.report okj.exportCsv okj.exportMarkdown okj.exportJson">
+          <h3 data-i18n="proReportTitle">レポート・出力は Pro 機能です</h3>
+          <p data-i18n="proReportText">OCR結果、旧字体検出結果、現代表記プレビューをCSV、Markdown、JSON、調査レポートとして出力する機能は Old Kanji Toolkit Pro で利用できます。</p>
+        </article>
+      </div>
+      <div class="okj-pro-panel__cta">
+        <button type="button" class="okj-pro-locked-button" data-okj-pro-cta aria-disabled="true" disabled data-i18n="proPanelCta">Pro を確認する</button>
+      </div>
+      <p class="okj-pro-panel__note" data-i18n="proPanelBillingNote">現在、Pro機能は準備中です。課金導線はまだ接続されていません。</p>
+    </section>
 
     <section class="notice-panel privacy-note"><p data-i18n="privacyNote">画像と入力内容はこの画面内で扱い、外部OCR APIには送信しません。OCRエンジンのスクリプトや解析用データ、アクセス解析、広告タグが読み込まれる場合があります。</p></section>
     <section class="notice-panel"><h2 data-i18n="accuracyHeading">OCR利用時の注意</h2><p data-i18n="accuracyText">旧字体、異体字、縦書き、かすれた文字、崩し字、古い看板や碑文はOCRで正しく読み取れない場合があります。OCR結果は必ず目視で確認し、必要に応じて手動修正してください。</p></section>
     <section class="notice-panel"><p data-i18n="proNote">無料版では1枚の画像確認を想定しています。複数画像OCR、履歴保存、トリミング、レポート出力は Old Kanji Toolkit Pro の対象予定です。</p></section>
+
+    <section class="related-links" id="manual-links"><a data-base-href="../old-document-kanji-highlighter/" target="_blank" rel="noopener noreferrer">Old Document Kanji Highlighter</a><a data-base-href="../unicode-kanji-checker/" target="_blank" rel="noopener noreferrer">Unicode Kanji Checker</a><a data-base-href="../variant-kanji-compare/" target="_blank" rel="noopener noreferrer">Variant Kanji Compare</a><a data-base-href="../old-kanji-reference/" target="_blank" rel="noopener noreferrer">Old Kanji Reference</a><a data-base-href="../kanji-modernizer/" target="_blank" rel="noopener noreferrer">Kanji Modernizer</a></section>
+
   </main>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script><script src="app.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "97e1db7e68e74035a70f449f3461fd23"}'></script>
 </body>
