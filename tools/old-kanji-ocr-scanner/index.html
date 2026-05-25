@@ -55,15 +55,22 @@
 
     <section class="ocr-placeholder">
       <h2 data-i18n="ocrHeading">OCR結果</h2>
-      <p data-i18n="ocrText">OCR機能は次のPRで接続します。この画面では、画像の読み込みとプレビューまで確認できます。</p>
-      <button type="button" disabled data-i18n="ocrButton">OCRを実行する（準備中）</button>
+      <p id="ocr-guidance" data-i18n="ocrIdleText">画像を選択するとOCRを実行できます。</p>
+      <button id="run-ocr" type="button" disabled data-i18n="ocrButton">OCRを実行する</button>
+      <p class="ocr-status" id="ocr-status" aria-live="polite"></p>
+      <p class="ocr-progress" id="ocr-progress" aria-live="polite"></p>
+      <p class="ocr-note" data-i18n="ocrLangNote">初期版では日本語OCRを想定しています。旧字体や異体字は誤認識される場合があります。</p>
     </section>
 
     <section class="manual-input-panel">
-      <h2 data-i18n="manualHeading">手動で文字を入力</h2>
-      <label for="manual-text" data-i18n="manualLabel">手動で文字を入力</label>
-      <textarea id="manual-text" rows="4" placeholder="舊字體 國 﨑"></textarea>
-      <p data-i18n="manualHelp">OCR接続前でも、気になる旧字体を手入力して関連ツールで確認できます。</p>
+      <h2 data-i18n="resultHeading">OCR結果テキスト</h2>
+      <label for="manual-text" data-i18n="resultLabel">OCR結果テキスト</label>
+      <textarea id="manual-text" rows="6" placeholder="舊字體 國 﨑"></textarea>
+      <p data-i18n="resultHelp">OCR結果は必要に応じて手動修正してください。OCR前は手動入力欄としても使えます。</p>
+      <div class="result-actions">
+        <button id="copy-ocr" type="button" data-i18n="copyButton">OCR結果をコピー</button>
+        <span class="copy-toast" id="copy-toast" aria-live="polite"></span>
+      </div>
       <div class="related-links" id="manual-links">
         <a data-base-href="../old-document-kanji-highlighter/" target="_blank" rel="noopener noreferrer">Old Document Kanji Highlighter</a>
         <a data-base-href="../unicode-kanji-checker/" target="_blank" rel="noopener noreferrer">Unicode Kanji Checker</a>
@@ -73,12 +80,12 @@
     </section>
 
     <section class="notice-panel privacy-note">
-      <p data-i18n="privacyNote">画像と入力内容はこの画面内で扱い、OCR用の外部APIには送信しません。アクセス解析や広告タグが読み込まれる場合があります。</p>
+      <p data-i18n="privacyNote">画像と入力内容はこの画面内で扱い、外部OCR APIには送信しません。OCRエンジンのスクリプトや解析用データ、アクセス解析、広告タグが読み込まれる場合があります。</p>
     </section>
 
     <section class="notice-panel">
       <h2 data-i18n="accuracyHeading">OCR利用時の注意</h2>
-      <p data-i18n="accuracyText">旧字体、異体字、縦書き、かすれた文字、崩し字、古い看板や碑文はOCRで正しく読み取れない場合があります。正式な氏名、地名、住所、戸籍、登記、契約、行政手続きでは、必ず原資料や登録字体を確認してください。</p>
+      <p data-i18n="accuracyText">旧字体、異体字、縦書き、かすれた文字、崩し字、古い看板や碑文はOCRで正しく読み取れない場合があります。OCR結果は必ず目視で確認し、必要に応じて手動修正してください。</p>
     </section>
 
     <section class="notice-panel">
@@ -96,6 +103,7 @@
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="app.js"></script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "97e1db7e68e74035a70f449f3461fd23"}'></script>
 </body>
