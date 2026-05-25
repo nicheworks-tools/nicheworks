@@ -1,4 +1,4 @@
-import { patterns } from '../js/data/patterns.js';
+import { patterns } from '../js/data/patterns-all.js';
 import {
   CAUTION_LEVELS,
   COLOR_SLOTS,
@@ -86,6 +86,10 @@ patterns.forEach((pattern) => {
     });
   }
 });
+
+if (patterns.length < 30) {
+  errors.push(`expected at least 30 seed patterns, got ${patterns.length}`);
+}
 
 if (errors.length) {
   console.error('Pattern Atlas data check failed:');
