@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unicode漢字チェッカー | Unicode Kanji Checker | NicheWorks</title>
+  <meta name="description" content="漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。">
+  <link rel="canonical" href="https://nicheworks.app/tools/unicode-kanji-checker/">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Unicode漢字チェッカー | Unicode Kanji Checker | NicheWorks">
+  <meta property="og:description" content="漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。">
+  <meta property="og:url" content="https://nicheworks.app/tools/unicode-kanji-checker/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Unicode漢字チェッカー | Unicode Kanji Checker | NicheWorks">
+  <meta name="twitter:description" content="漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <link rel="stylesheet" href="./style.css?v=20260520-okj-49-1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Unicode漢字チェッカー | Unicode Kanji Checker",
+    "url": "https://nicheworks.app/tools/unicode-kanji-checker/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="unicode-checker">
+    <header class="nw-header">
+      <div class="nw-lang-switch">
+        <button type="button" data-lang="ja" class="nw-lang-btn active">JP</button>
+        <button type="button" data-lang="en" class="nw-lang-btn">EN</button>
+      </div>
+      <h1><span data-i18n="title">Unicode漢字チェッカー</span></h1>
+      <p><span data-i18n="description">漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。</span></p>
+    </header>
+
+    <div class="ad-slot">広告枠</div>
+
+    <section class="input-panel">
+      <label for="inputText" data-i18n="inputLabel">文字を入力</label>
+      <textarea id="inputText" rows="4" data-placeholder-ja="例：國、﨑、髙、𠮷、邊、齋" data-placeholder-en="Example: kanji, old forms, compatibility forms, or variants"></textarea>
+      <div class="copy-actions">
+        <button id="analyzeBtn" type="button" data-i18n="analyzeBtn">確認する</button>
+        <button id="copyAllBtn" type="button" data-i18n="copyAll">全結果をコピー</button>
+        <button id="copyCsvBtn" type="button" data-i18n="copyCsv">CSV形式でコピー</button>
+      </div>
+      <p class="privacy-note" data-i18n="privacyNote">入力内容はブラウザ内で処理され、外部APIには送信しません。アクセス解析や広告タグが読み込まれる場合があります。</p>
+    </section>
+
+    <section id="summarySection" class="result-summary" hidden></section>
+    <section id="cardSection" class="unicode-card-list" aria-live="polite"></section>
+    <section id="cautionSection" class="risk-panel" hidden></section>
+    <p id="modernizerLinkWrap" class="reference-links" hidden><a id="modernizerLink" href="../kanji-modernizer/" data-i18n="modernizerLink">旧字体変換ツールで確認する</a></p>
+
+    <section class="reference-links">
+      <h2 data-i18n="relatedLinks">関連リンク</h2>
+      <ul>
+        <li><a href="../old-kanji-reference/">Old Kanji Reference</a></li>
+        <li><a href="../kanji-modernizer/">Kanji Modernizer</a></li>
+        <li><a href="../name-old-kanji-checker/">Name Old Kanji Checker</a></li>
+        <li><a href="../place-old-kanji-checker/">Place Old Kanji Checker</a></li>
+        <li><a href="../old-document-kanji-highlighter/">Old Document Kanji Highlighter</a></li>
+      </ul>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <footer class="nw-footer">
+      <p>© 2025 NicheWorks</p>
+      <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+    </footer>
+  </main>
+  <script src="./app.js?v=20260520-okj-49-1"></script>
+</body>
+</html>

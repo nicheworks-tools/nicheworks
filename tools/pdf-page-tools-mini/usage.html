@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>PDFページ抽出・結合・並べ替えの使い方｜PDF Page Tools Mini | NicheWorks</title>
+  <meta name="description" content="PDF Page Tools Miniの使い方。PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存を行う手順と非対応PDFへの対処を説明します。">
+  <link rel="canonical" href="https://nicheworks.app/tools/pdf-page-tools-mini/usage.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PDFページ抽出・結合・並べ替えの使い方｜PDF Page Tools Mini | NicheWorks">
+  <meta property="og:description" content="PDF Page Tools Miniの使い方。PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存を行う手順と非対応PDFへの対処を説明します。">
+  <meta property="og:url" content="https://nicheworks.app/tools/pdf-page-tools-mini/usage.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Page Tools Mini Usage",
+    "url": "https://nicheworks.app/tools/pdf-page-tools-mini/usage.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "PDF Page Tools Miniの使い方。PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存を行う手順と注意点を説明します。"
+  }
+  </script>
+
+  <link rel="stylesheet" href="/assets/nw-base.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <meta name="robots" content="index,follow">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta name="twitter:title" content="PDFページ抽出・結合・並べ替えの使い方｜PDF Page Tools Mini | NicheWorks">
+  <meta name="twitter:description" content="PDF Page Tools Miniの使い方。PDFをアップロードせずに、ページ抽出、結合、削除、並べ替え、回転、保存を行う手順と非対応PDFへの対処を説明します。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">
+      <span data-i18n="ja">PDFページ抽出・結合・並べ替えの使い方</span>
+      <span data-i18n="en">PDF Page Tools Mini — Usage</span>
+    </h1>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+
+    <p class="nw-subtitle" data-i18n="ja">PDFをアップロードせずに、ページ操作を行うための手順と注意点です。</p>
+    <p class="nw-subtitle" data-i18n="en">How to edit PDF pages without uploading your files.</p>
+  </header>
+
+  <main class="nw-main">
+    <section class="nw-card">
+      <h2 data-i18n="ja">このツールでできること</h2>
+      <h2 data-i18n="en">What this tool can do</h2>
+      <ul class="nw-list">
+        <li data-i18n="ja">複数PDFの結合</li>
+        <li data-i18n="en">Merge multiple PDFs.</li>
+        <li data-i18n="ja">指定ページ範囲の抽出</li>
+        <li data-i18n="en">Extract selected page ranges.</li>
+        <li data-i18n="ja">ページ削除、並べ替え、90度単位の回転</li>
+        <li data-i18n="en">Delete, reorder, and rotate pages by 90-degree increments.</li>
+        <li data-i18n="ja">編集後PDFの別ファイル保存</li>
+        <li data-i18n="en">Save the edited result as a separate PDF file.</li>
+      </ul>
+      <p class="nw-muted" data-i18n="ja">処理はブラウザ内で完結します。元のPDFは変更されません。</p>
+      <p class="nw-muted" data-i18n="en">Processing stays in your browser. Original PDFs are not changed.</p>
+    </section>
+
+    <section class="nw-card">
+      <h2 data-i18n="ja">基本手順</h2>
+      <h2 data-i18n="en">Basic workflow</h2>
+      <ol class="nw-steps">
+        <li data-i18n="ja"><strong>PDFを追加</strong>：ボタン、複数選択、ドラッグ&ドロップでPDFを読み込みます。</li>
+        <li data-i18n="en"><strong>Add PDFs</strong>: Use the button, multi-select, or drag and drop.</li>
+        <li data-i18n="ja"><strong>ページを編集</strong>：ページカードで削除、回転、上下移動を行います。PCではドラッグ並べ替えも使えます。</li>
+        <li data-i18n="en"><strong>Edit pages</strong>: Use page cards to delete, rotate, or move pages. Desktop drag and drop may also be available.</li>
+        <li data-i18n="ja"><strong>保存</strong>：「保存してダウンロード」で現在のページ順と回転を反映したPDFを保存します。</li>
+        <li data-i18n="en"><strong>Download</strong>: Save the current order and rotations as a PDF.</li>
+      </ol>
+    </section>
+
+    <section class="nw-card">
+      <h2 data-i18n="ja">抽出範囲の書き方</h2>
+      <h2 data-i18n="en">Extract range syntax</h2>
+      <p data-i18n="ja">ページ範囲欄には、現在表示されているページ番号を次の形式で入力します。</p>
+      <p data-i18n="en">Use the current visible page numbers and enter ranges like this.</p>
+      <pre class="nw-code">1-3,5,8-10</pre>
+      <ul class="nw-list">
+        <li data-i18n="ja">カンマで複数指定できます。</li>
+        <li data-i18n="en">Use commas for multiple ranges.</li>
+        <li data-i18n="ja">削除や並べ替え後は、画面上の #1, #2 ... の番号を基準にします。</li>
+        <li data-i18n="en">After deleting or reordering, use the visible #1, #2 ... order.</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2 data-i18n="ja">対応しないこと</h2>
+      <h2 data-i18n="en">Not supported</h2>
+      <ul class="nw-list">
+        <li data-i18n="ja">PDF圧縮、OCR、注釈編集、本文テキスト編集</li>
+        <li data-i18n="en">PDF compression, OCR, annotation editing, or text editing.</li>
+        <li data-i18n="ja">パスワード付きPDFや保護されたPDFの読み込み</li>
+        <li data-i18n="en">Loading password-protected or protected PDFs.</li>
+        <li data-i18n="ja">電子署名、透かし、PDFの画像化</li>
+        <li data-i18n="en">Digital signing, watermarking, or converting PDFs to images.</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2 data-i18n="ja">重いPDF・特殊PDFで失敗する場合</h2>
+      <h2 data-i18n="en">If a heavy or special PDF fails</h2>
+      <p data-i18n="ja">画像が多いPDF、100ページ以上のPDF、数十MB以上のPDF、破損PDF、一部の特殊PDFは端末によって失敗することがあります。</p>
+      <p data-i18n="en">Image-heavy PDFs, PDFs over 100 pages, PDFs of several dozen MB, corrupted PDFs, or some special PDFs may fail depending on your device.</p>
+      <ul class="nw-list">
+        <li data-i18n="ja">ページ数を減らす</li>
+        <li data-i18n="en">Reduce the page count.</li>
+        <li data-i18n="ja">先に小さなPDFへ分割する</li>
+        <li data-i18n="en">Split the PDF into smaller files first.</li>
+        <li data-i18n="ja">PCブラウザや別ブラウザで試す</li>
+        <li data-i18n="en">Try a desktop browser or another browser.</li>
+      </ul>
+    </section>
+
+    <section class="nw-card">
+      <h2 data-i18n="ja">よくある質問</h2>
+      <h2 data-i18n="en">FAQ</h2>
+      <div class="faq-item">
+        <h3 data-i18n="ja">ファイルはアップロードされますか？</h3>
+        <h3 data-i18n="en">Are files uploaded?</h3>
+        <p data-i18n="ja">いいえ。PDFの読み込み、編集、保存はブラウザ内で処理されます。</p>
+        <p data-i18n="en">No. Reading, editing, and exporting are handled in your browser.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">パスワード付きPDFは使えますか？</h3>
+        <h3 data-i18n="en">Are password-protected PDFs supported?</h3>
+        <p data-i18n="ja">非対応です。保護されたPDFは読み込めない場合があります。</p>
+        <p data-i18n="en">No. Protected PDFs may not load in this tool.</p>
+      </div>
+      <div class="faq-item">
+        <h3 data-i18n="ja">元のPDFは変更されますか？</h3>
+        <h3 data-i18n="en">Are original PDFs changed?</h3>
+        <p data-i18n="ja">変更されません。編集後のPDFを別ファイルとして保存します。</p>
+        <p data-i18n="en">No. The edited result is saved as a separate file.</p>
+      </div>
+    </section>
+
+    <section class="nw-card">
+      <h2 data-i18n="ja">戻る</h2>
+      <h2 data-i18n="en">Back</h2>
+      <p>
+        <a class="nw-link" href="./">
+          <span data-i18n="ja">← PDF Page Tools Mini に戻る</span>
+          <span data-i18n="en">← Back to PDF Page Tools Mini</span>
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+
+  <script>
+    (function(){
+      const buttons = Array.from(document.querySelectorAll('.nw-lang-switch button'));
+      const nodes = Array.from(document.querySelectorAll('[data-i18n]'));
+      let current = ((navigator.language || '').toLowerCase().startsWith('ja')) ? 'ja' : 'en';
+      function apply(lang){
+        current = lang;
+        document.documentElement.lang = lang;
+        nodes.forEach((el) => { el.style.display = el.dataset.i18n === lang ? '' : 'none'; });
+        buttons.forEach((btn) => btn.classList.toggle('active', btn.dataset.lang === lang));
+      }
+      buttons.forEach((btn) => btn.addEventListener('click', () => apply(btn.dataset.lang)));
+      apply(current);
+    })();
+  </script>
+</body>
+</html>

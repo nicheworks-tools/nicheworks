@@ -1,10 +1,8 @@
-Dear Hiring Manager at {{company}},
+Dear Hiring Manager,
 
-My application for the {{position}} position is driven by a strong alignment between your requirements and my technical strengths. I am especially confident in {{skills_phrase}}, supported by experience such as {{experience_sentence}}.
+I’m applying for the [JOB_TITLE] position at [COMPANY]. My key strengths include [SKILLS], which I use to improve quality, speed, and communication.
 
-{{extra}}
+I’d welcome the opportunity to contribute to your team.
 
-Thank you for your consideration.
-
-{{closing}}
-{{applicant}}
+Sincerely,
+[YOUR_NAME]

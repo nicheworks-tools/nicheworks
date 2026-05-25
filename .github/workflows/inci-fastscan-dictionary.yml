@@ -1,0 +1,32 @@
+name: INCI FastScan Dictionary
+
+on:
+  pull_request:
+    paths:
+      - "tools/inci-fastscan/data/**"
+      - "tools/inci-fastscan/js/generated_dictionary.js"
+      - "tools/inci-fastscan/validate-dictionary.mjs"
+      - ".github/workflows/inci-fastscan-dictionary.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "tools/inci-fastscan/data/**"
+      - "tools/inci-fastscan/js/generated_dictionary.js"
+      - "tools/inci-fastscan/validate-dictionary.mjs"
+      - ".github/workflows/inci-fastscan-dictionary.yml"
+
+jobs:
+  validate-inci-dictionary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate INCI dictionary
+        run: node tools/inci-fastscan/validate-dictionary.mjs

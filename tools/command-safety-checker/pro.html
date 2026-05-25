@@ -3,253 +3,135 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Thank you — Command Safety Checker Pro | NicheWorks</title>
-  <meta name="description" content="Thanks for purchasing Command Safety Checker Pro. This page explains what Pro is and what to do next.">
-
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/command-safety-checker/pro.html">
-
+  <title>Command Safety Checker Pro | NicheWorks</title>
+  <meta name="description" content="Command Safety Checker Pro turns free command risk findings into Markdown reports, Codex safety-check tasks, GitHub Issue drafts, priority checklists, and JSON exports using the shared NicheWorks Pro entitlement.">
+  <link rel="canonical" href="https://nicheworks.app/tools/command-safety-checker/pro.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Thank you — Command Safety Checker Pro | NicheWorks">
-  <meta property="og:description" content="Thanks for your support. Pro is a one-time purchase that strengthens safety guidance (no safety guarantee).">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/command-safety-checker/pro.html">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:title" content="Command Safety Checker Pro | NicheWorks">
+  <meta property="og:description" content="Command Safety Checker Pro turns free command risk findings into Markdown reports, Codex safety-check tasks, GitHub Issue drafts, priority checklists, and JSON exports using the shared NicheWorks Pro entitlement.">
+  <meta property="og:url" content="https://nicheworks.app/tools/command-safety-checker/pro.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
-
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <meta name="twitter:title" content="Command Safety Checker Pro | NicheWorks">
+  <meta name="twitter:description" content="Command Safety Checker Pro turns free command risk findings into Markdown reports, Codex safety-check tasks, GitHub Issue drafts, priority checklists, and JSON exports using the shared NicheWorks Pro entitlement.">
+  <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- AdSense (optional here; keep consistent if you want) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
   <style>
-    :root{
-      --bg:#ffffff; --text:#111827; --muted:#6b7280; --line:#e5e7eb; --soft:#f9fafb;
-      --shadow:0 1px 8px rgba(0,0,0,.06); --radius:14px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      --danger:#b91c1c; --ok:#047857;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--sans)}
-    a{color:inherit}
-    .nw-header{padding:16px 12px 10px;border-bottom:1px solid var(--line);background:#fff}
-    .nw-header-inner{max-width:960px;margin:0 auto}
-    .nw-title{margin:0;font-size:18px;line-height:1.25}
-    .nw-sub{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
-    .nw-lang-switch{text-align:center;margin:6px 0 0;font-size:11px;color:var(--muted)}
-    .nw-lang-switch button{border:none;background:transparent;padding:0 2px;cursor:pointer;font-size:11px;color:#4b5563}
-    .nw-lang-switch button.active{font-weight:600;text-decoration:underline}
-    .nw-main{max-width:960px;margin:0 auto;padding:12px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px;margin:12px 0}
-    .h2{margin:0 0 10px;font-size:15px}
-    .p{margin:8px 0;color:#111827;font-size:13px;line-height:1.75}
-    .muted{color:var(--muted)}
-    .divider{height:1px;background:var(--line);margin:12px 0}
-    .ul{margin:0;padding-left:18px;font-size:13px;line-height:1.75}
-    .ul li{margin:6px 0}
-    .code{font-family:var(--mono);font-size:12px;line-height:1.6;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px;white-space:pre-wrap;word-break:break-word;margin:8px 0;}
-    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btn{appearance:none;border:1px solid #d1d5db;background:#fff;color:#111827;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:13px;text-decoration:none;display:inline-block}
-    .btn:hover{background:var(--soft)}
-    .btn-primary{border-color:#111827;background:#111827;color:#fff}
-    .btn-primary:hover{filter:brightness(1.05)}
-    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;background:#fff}
-    .badge.ok{border-color:rgba(4,120,87,.25);background:rgba(4,120,87,.08);color:var(--ok);font-weight:700}
-    .badge.danger{border-color:rgba(185,28,28,.25);background:rgba(185,28,28,.10);color:var(--danger);font-weight:700}
-    .callout{border:1px solid rgba(185,28,28,.25);background:rgba(185,28,28,.08);border-radius:14px;padding:12px;margin:10px 0}
-    .notice{border:1px solid var(--line);background:var(--soft);border-radius:14px;padding:12px;margin:10px 0}
-    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
-    .nw-footer-line{margin:2px 0}
-    .nw-footer a{color:var(--muted);text-decoration:underline}
-    @media (max-width:480px){
-      .nw-main{padding:10px}
-      .btn{width:100%;text-align:center}
-      .btnrow{flex-direction:column}
-    }
+    :root{--bg:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--soft:#f9fafb;--ok:#047857;--pro:#4f46e5;--shadow:0 1px 8px rgba(0,0,0,.06);--radius:14px;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--sans:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    *{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--sans)}a{color:inherit}.nw-header{padding:16px 12px 10px;border-bottom:1px solid var(--line);background:#fff}.nw-header-inner,.nw-main{max-width:880px;margin:0 auto}.nw-title{margin:0;font-size:18px;line-height:1.25}.nw-sub{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.6}.nw-main{padding:12px}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin:12px 0}.h2{margin:0 0 10px;font-size:15px}.p{margin:8px 0;color:#111827;font-size:13px;line-height:1.75}.muted{color:var(--muted)}.ul{margin:0;padding-left:18px;font-size:13px;line-height:1.75}.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.btn{appearance:none;border:1px solid #d1d5db;background:#fff;color:#111827;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:13px;text-decoration:none;display:inline-block}.btn:hover{background:var(--soft)}.btn-primary{border-color:#111827;background:#111827;color:#fff}.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid rgba(79,70,229,.30);font-size:12px;background:rgba(79,70,229,.10);color:var(--pro);font-weight:700}.status{border:1px solid rgba(4,120,87,.22);background:rgba(4,120,87,.06);border-radius:12px;padding:10px;margin-top:10px;color:#065f46;font-size:13px;line-height:1.6}.code{font-family:var(--mono);font-size:12px;background:#f9fafb;border:1px solid var(--line);border-radius:12px;padding:10px;margin:10px 0 0;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;max-height:300px;overflow:auto}.caution{border:1px solid rgba(180,83,9,.25);background:rgba(180,83,9,.08);border-radius:12px;padding:10px;margin-top:10px}.nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}.nw-footer-line{margin:2px 0}.nw-footer a{color:var(--muted);text-decoration:underline}@media(max-width:480px){.nw-main{padding:10px}.btn{width:100%;text-align:center}.btnrow{flex-direction:column}}
   </style>
-
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <meta name="robots" content="index,follow">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Command Safety Checker Pro | NicheWorks",
+    "url": "https://nicheworks.app/tools/command-safety-checker/pro.html",
+    "description": "Command Safety Checker Pro turns free command risk findings into Markdown reports, Codex safety-check tasks, GitHub Issue drafts, priority checklists, and JSON exports using the shared NicheWorks Pro entitlement.",
+    "inLanguage": "ja",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
   </script>
 </head>
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
-      <h1 class="nw-title">
-        <span data-i18n="ja">購入ありがとう — Command Safety Checker Pro</span>
-        <span data-i18n="en">Thank you — Command Safety Checker Pro</span>
-      </h1>
-
-      <p class="nw-sub" data-i18n="ja">
-        ご支援ありがとう。ここが「購入後に戻ってくる場所」です（ブックマーク推奨）。
-      </p>
-      <p class="nw-sub" data-i18n="en">
-        Thanks for your support. This is your post-purchase hub (bookmark recommended).
-      </p>
-
-      <div class="nw-lang-switch" aria-label="Language switch">
-        <button type="button" data-lang="ja">JP</button> /
-        <button type="button" data-lang="en">EN</button>
-      </div>
+      <h1 class="nw-title">Command Safety Checker Pro</h1>
+      <p class="nw-sub">このページは共通NicheWorks Proへの案内です。This tool uses the shared NicheWorks Pro entitlement.</p>
     </div>
   </header>
-
   <main class="nw-main">
     <section class="card">
+      <h2 class="h2"><span class="badge">nicheworks_pro</span> 共通Pro基盤 / Shared Pro foundation</h2>
+      <p class="p">Command Safety Checker の購入と有効化は、NicheWorks共通Pro基盤だけで処理されます。個別Stripe・個別Webhook・個別D1・個別Pro解除方式は作らず、共通Payment Linkとサーバー側の pro_entitlements を正として扱います。無料チェック機能はPro状態に関係なく利用できます。</p>
+      <p class="p">Command Safety Checker purchase and activation are handled only by the shared NicheWorks Pro foundation. It does not use a separate payment flow, webhook, database, or unlock method; the shared Payment Link and server-side pro_entitlements are authoritative. Free checks remain available regardless of Pro status.</p>
+      <div id="sharedProStatus" class="status">Pro状態を確認中… / Checking Pro status…</div>
       <div class="btnrow">
-        <a class="btn btn-primary" href="./index.html">
-          <span data-i18n="ja">ツールに戻る</span>
-          <span data-i18n="en">Back to tool</span>
-        </a>
-        <a class="btn" href="./usage.html">
-          <span data-i18n="ja">使い方</span>
-          <span data-i18n="en">How to use</span>
-        </a>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="notice">
-        <p class="p" style="margin:0" data-i18n="ja">
-          <b>次にやること：</b> 支払い直後にこのページへ戻ってきた場合、購入確認できれば自動でProを有効化します。<br>
-          うまくいかない場合は、下の「この端末でProを有効化」（手動）を押してください。
-        </p>
-        <p class="p" style="margin:0" data-i18n="en">
-          <b>Next:</b> If you came back here right after payment, we try to auto-enable Pro after verification.<br>
-          If it doesn’t work, click “Enable Pro on this device” (manual fallback).
-        </p>
-      </div>
-
-      <div class="btnrow">
-        <button id="btnEnablePro" class="btn btn-primary" type="button">
-          <span data-i18n="ja">この端末でProを有効化（手動）</span>
-          <span data-i18n="en">Enable Pro on this device (manual)</span>
-        </button>
-        <button id="btnDisablePro" class="btn" type="button">
-          <span data-i18n="ja">（必要なら）Proを無効化</span>
-          <span data-i18n="en">(If needed) Disable Pro</span>
-        </button>
-      </div>
-
-      <p id="proState" class="p muted" style="margin-top:10px"></p>
-
-      <div class="callout">
-        <p class="p" data-i18n="ja">
-          <span class="badge danger">免責</span>
-          Proを含む本ツールは安全を保証しません。実行前に必ずコマンド内容・対象・影響範囲を確認してください。
-        </p>
-        <p class="p" data-i18n="en">
-          <span class="badge danger">Disclaimer</span>
-          This tool (including Pro) does not guarantee safety. Always verify contents, targets, and impact before running.
-        </p>
+        <a class="btn btn-primary" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">Buy Pro / Proを購入</a>
+        <a class="btn" href="/pro/unlock/">Open Pro Unlock / Pro有効化ページ</a>
+        <a class="btn" href="./">Back to Command Safety Checker / ツールへ戻る</a>
       </div>
     </section>
 
     <section class="card">
-      <h2 class="h2">
-        <span data-i18n="ja">Proで増えるもの（現状）</span>
-        <span data-i18n="en">What Pro adds (now)</span>
-      </h2>
-
+      <h2 class="h2">無料版でできること / Free features</h2>
       <ul class="ul">
-        <li data-i18n="ja">検出内容に応じた <b>安全代替案テンプレ</b> を自動表示</li>
-        <li data-i18n="ja"><b>実行前チェックリスト</b> を自動生成</li>
-
-        <li data-i18n="en">Auto-generated <b>safer alternative templates</b> based on findings</li>
-        <li data-i18n="en">Auto-generated <b>pre-run checklist</b></li>
+        <li>OS別の無料コマンドチェック / OS-specific free command checks</li>
+        <li>危険度、カテゴリ、理由、確認方法、簡易代替案の表示 / Risk, category, reason, check step, and quick alternative display</li>
+        <li>結果コピーとブラウザ内処理 / Result copy and browser-local processing</li>
       </ul>
+    </section>
 
-      <p class="p muted" data-i18n="ja">
-        ※このMVPはCloudflare Functionsで購入確認し、確認できた場合に自動でProを有効化します（端末ローカル解放）。
-      </p>
-      <p class="p muted" data-i18n="en">
-        This MVP verifies purchases via Cloudflare Functions and then enables Pro locally on this device.
-      </p>
+    <section class="card">
+      <h2 class="h2">Proで解放されること / Pro unlocks</h2>
+      <ul class="ul">
+        <li>Pro Review Report with original and normalized commands</li>
+        <li>Priority checklist mapping High to P0, Medium to P1, and Low to P2</li>
+        <li>Safer command suggestions focused on inspection, dry-run, and -WhatIf style steps</li>
+        <li>Codex safety-check task and GitHub Issue draft</li>
+        <li>Copy actions plus Markdown save, JSON export, and Markdown export</li>
+      </ul>
+      <pre class="code"># Command Safety Pro Review
+
+## 1. Summary
+- Overall risk: HIGH
+- High / Medium / Low counts: 1 / 1 / 0
+- OS mode: unix
+- Tool id: command-safety-checker
+
+## 5. Priority checklist
+- [ ] P0-1: Inspect remote script contents before execution.
+
+JSON excerpt:
+{"tool_id":"command-safety-checker","entitlement":"nicheworks_pro","priority_checklist":["P0-1: ..."],"final_note":"This report is a review aid only. It does not certify that a command is safe."}</pre>
+    </section>
+
+    <section class="card">
+      <h2 class="h2">Preview / Activeモード / Preview and Active modes</h2>
+      <p class="p"><b>Preview:</b> Pro未有効時はサンプルを表示し、Pro専用ボタンはロックされます。購入ボタンが表示されます。</p>
+      <p class="p"><b>Preview:</b> When Pro is inactive, samples are shown, Pro-only buttons are locked, and the buy button is visible.</p>
+      <p class="p"><b>Active:</b> Pro有効時はPreviewを隠し、無料チェック実行後に Pro Review Report / Codex task / GitHub Issue / JSON / Markdown 出力を使えます。</p>
+      <p class="p"><b>Active:</b> When Pro is active, Preview is hidden and Pro Review Report, Codex task, GitHub Issue, JSON, and Markdown actions work after a free check has run.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="h2">購入後の流れ / After purchase</h2>
+      <p class="p">購入後は https://nicheworks.app/pro/unlock/?session_id={CHECKOUT_SESSION_ID} の共通有効化ページを経由し、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、localStorageは補助状態のため、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+      <p class="p">After purchase, the shared activation page at https://nicheworks.app/pro/unlock/?session_id={CHECKOUT_SESSION_ID} enables NicheWorks Pro in this browser. It usually remains after closing tabs or the browser, but localStorage is only helper state, so another device, another browser, private browsing, or deleted site data requires activation again.</p>
+      <div class="caution">
+        <p class="p"><b>注意 / Caution:</b> このツールとPro出力は安全保証ではありません。実行前レビュー補助として使い、URL・パス・秘密情報・権限・ディスク影響・残リスクを必ず確認してください。</p>
+        <p class="p"><b>Caution:</b> This tool and its Pro exports do not certify that a command is safe. Use them as pre-run review aids and verify URLs, paths, secrets, permissions, disk impact, and residual risk.</p>
+      </div>
     </section>
   </main>
-
-  <footer class="nw-footer">
-    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
-    </p>
-  </footer>
-
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+  <script src="/assets/nw-pro.js"></script>
   <script>
-    (function(){
-      // language
-      const langButtons = document.querySelectorAll(".nw-lang-switch button");
-      const i18nNodes = document.querySelectorAll("[data-i18n]");
-      const browserLang = (navigator.language || "").toLowerCase();
-      let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
-
-      function t(ja,en){ return currentLang === "ja" ? ja : en; }
-
-      function applyLang(lang){
-        i18nNodes.forEach(el => { el.style.display = (el.dataset.i18n === lang) ? "" : "none"; });
-        langButtons.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
-        currentLang = lang;
-        renderState();
+    (() => {
+      const statusEl = document.getElementById("sharedProStatus");
+      try {
+        const status = window.NWPro.getLocalStatus();
+        document.documentElement.dataset.proActive = status.active ? "true" : "false";
+        statusEl.textContent = status.active ? "Pro解放済み / Pro unlocked" : "Previewモード / Preview mode";
+      } catch (error) {
+        document.documentElement.dataset.proActive = "false";
+        statusEl.textContent = "Error: Pro状態を確認できませんでした。無料機能は引き続き利用できます。 / Error: Pro status could not be checked. Free features remain available.";
       }
-      langButtons.forEach(btn => btn.addEventListener("click", () => applyLang(btn.dataset.lang)));
-
-      // pro local flag (must match app.js)
-      const PRO_FLAG_KEY = "nw_command_safety_pro_enabled_v1";
-
-      const stateEl = document.getElementById("proState");
-      const btnEnable = document.getElementById("btnEnablePro");
-      const btnDisable = document.getElementById("btnDisablePro");
-
-      function renderState(){
-        const enabled = localStorage.getItem(PRO_FLAG_KEY) === "1";
-        stateEl.textContent = enabled
-          ? t("状態：Proはこの端末で有効です。ツールに戻って結果をチェックしてください。", "Status: Pro is enabled on this device. Go back to the tool and run a check.")
-          : t("状態：Proはまだ有効ではありません。上のボタンで有効化してください。", "Status: Pro is not enabled yet. Click the button above.");
-      }
-
-      // Auto-unlock if redirected from Stripe with session_id
-      async function tryAutoUnlockFromSession() {
-        const params = new URLSearchParams(location.search);
-        const sessionId = params.get("session_id");
-        if (!sessionId) return;
-
-        stateEl.textContent = t("購入確認中…（Stripe）", "Verifying purchase… (Stripe)");
-
-        try {
-          const r = await fetch(`/api/verify?session_id=${encodeURIComponent(sessionId)}`, { cache: "no-store" });
-          const j = await r.json();
-
-          if (j && j.ok === true) {
-            localStorage.setItem(PRO_FLAG_KEY, "1");
-            // clean URL (remove session_id)
-            history.replaceState(null, "", "./pro.html");
-            renderState();
-            alert(t("購入を確認しました。Proを有効化しました。", "Purchase verified. Pro has been enabled."));
-          } else {
-            // Keep manual buttons usable
-            renderState();
-          }
-        } catch {
-          renderState();
-        }
-      }
-
-      btnEnable.addEventListener("click", () => {
-        localStorage.setItem(PRO_FLAG_KEY, "1");
-        renderState();
-        alert(t("Proをこの端末で有効化しました。ツールに戻ってください。", "Pro enabled on this device. Go back to the tool."));
-      });
-
-      btnDisable.addEventListener("click", () => {
-        localStorage.removeItem(PRO_FLAG_KEY);
-        renderState();
-        alert(t("Proを無効化しました。", "Pro disabled."));
-      });
-
-      applyLang(currentLang);
-      tryAutoUnlockFromSession();
     })();
   </script>
 </body>

@@ -1,268 +1,179 @@
-(function () {
-  const state = {
-    manuals: [],
-    filtered: [],
-    lang: "ja",
-  };
-
+(() => {
+  const isEnglishPath = /\/manual-finder\/en\/?/.test(window.location.pathname);
+  const basePath = isEnglishPath ? ".." : ".";
+  const DATA_URL = `${basePath}/data/manuals.json`;
+  const FULL_DATA_URL = `${basePath}/data/manuals.full.js`;
+  const fallbackRows = [
+    ["Apple","Apple（アップル）","Apple","PC・スマホ","Global","https://support.apple.com/ja-jp/docs","https://support.apple.com/","iPhone 型番、MacBook モデル名、iPad 世代"],
+    ["Sony","ソニー","Sony","家電","Japan","https://www.sony.jp/support/manual.html","https://www.sony.jp/support/","BRAVIA 型番、ヘッドホン型番、カメラ型番"],
+    ["Panasonic","パナソニック","Panasonic","家電","Japan","https://panasonic.jp/support/manual.html","https://panasonic.jp/support/","洗濯機 型番、冷蔵庫 型番、LUMIX 型番"],
+    ["Canon","キヤノン","Canon","カメラ・映像","Japan","https://cam.start.canon/","https://global.canon/en/support/","EOS 型番、PowerShot 型番、レンズ名"],
+    ["Epson","エプソン","Epson","プリンター・複合機","Japan","https://www.epson.jp/support/manual/","https://www.epson.jp/support/","EP / PX / EW から始まる型番"],
+    ["Brother","ブラザー工業","Brother","プリンター・複合機","Japan","https://support.brother.co.jp/j/b/manualtop.aspx","https://support.brother.co.jp/","DCP / MFC / HL / PT から始まる型番"],
+    ["HP","日本HP","HP","PC・スマホ","Global","https://support.hp.com/us-en/products","https://support.hp.com/","ノートPC型番、プリンター型番、シリアル番号"],
+    ["Dell","デル・テクノロジーズ","Dell","PC・スマホ","Global","https://www.dell.com/support/home/en-us?app=manuals","https://www.dell.com/support/home/","Service Tag、Inspiron / XPS / Latitude 型番"],
+    ["Lenovo","レノボ・ジャパン","Lenovo","PC・スマホ","Global","https://support.lenovo.com/us/en/documents","https://support.lenovo.com/","ThinkPad 型番、IdeaPad 型番、シリアル番号"],
+    ["Nintendo","任天堂","Nintendo","ゲーム","Japan","https://www.nintendo.co.jp/support/manual/","https://www.nintendo.co.jp/support/","Nintendo Switch、Joy-Con、型番"]
+  ];
+  const toRecord = ([brand,nameJa,nameEn,category,country,manualUrl,supportUrl,hint]) => ({
+    brand,nameJa,nameEn,category,country,manualUrl,supportUrl,hint,
+    note:"公式マニュアル／サポート入口です。",
+    tags:String(`${brand} ${nameJa} ${nameEn} ${category}`).toLowerCase().split(/\s+/),
+    sourceType:"official",
+    linkReview:"official entry"
+  });
+  const FALLBACK_MANUALS = fallbackRows.map(toRecord);
+  const state = { manuals:[], filtered:[], lang:isEnglishPath ? "en" : "ja", status:"loading", statusMessageJa:"データを読み込み中です...", statusMessageEn:"Loading manual directory..." };
   const els = {
-    results: document.getElementById("results"),
-    resultCount: document.getElementById("resultCount"),
-    emptyJa: document.getElementById("emptyMessage"),
-    emptyEn: document.getElementById("emptyMessageEn"),
-    searchInput: document.getElementById("searchInput"),
-    categorySelect: document.getElementById("categorySelect"),
-    quickButtons: document.getElementById("quickButtons"),
-    langButtons: document.querySelectorAll(".nw-lang-switch button"),
-    i18nNodes: document.querySelectorAll("[data-i18n]"),
+    results:document.getElementById("results"), resultCount:document.getElementById("resultCount"), loadStatus:document.getElementById("loadStatus"),
+    emptyJa:document.getElementById("emptyMessage"), emptyEn:document.getElementById("emptyMessageEn"), searchInput:document.getElementById("searchInput"),
+    categorySelect:document.getElementById("categorySelect"), quickButtons:document.getElementById("quickButtons"), langButtons:document.querySelectorAll(".nw-lang-switch button"), i18nNodes:document.querySelectorAll("[data-i18n]")
   };
-
-  // ==============================
-  // 言語切替
-  // ==============================
+  const text = (ja,en) => state.lang === "ja" ? ja : en;
+  const normalize = (v) => String(v || "").trim().toLowerCase();
+  function setStatus(status, ja, en) { state.status = status; state.statusMessageJa = ja || ""; state.statusMessageEn = en || ""; updateStatusMessage(); }
+  function updateStatusMessage() {
+    if (!els.loadStatus) return;
+    const message = text(state.statusMessageJa, state.statusMessageEn);
+    els.loadStatus.textContent = message;
+    els.loadStatus.hidden = !message || state.status === "ready";
+    els.loadStatus.classList.toggle("is-warning", state.status === "fallback");
+    els.loadStatus.classList.toggle("is-error", state.status === "error");
+  }
   function applyLang(lang) {
     state.lang = lang;
-
-    // data-i18n の表示切替（値が ja / en の2パターン）
-    els.i18nNodes.forEach((el) => {
-      const code = el.getAttribute("data-i18n");
-      if (!code) return;
-      el.hidden = code !== lang;
-    });
-
-    // ボタンのアクティブ状態
-    els.langButtons.forEach((btn) => {
-      const code = btn.getAttribute("data-lang");
-      btn.classList.toggle("active", code === lang);
-    });
-
-    // 再描画（リンク文言などを言語に合わせる）
-    render();
+    els.i18nNodes.forEach((el) => { const code = el.getAttribute("data-i18n"); if (code) el.hidden = code !== lang; });
+    els.langButtons.forEach((btn) => btn.classList.toggle("active", btn.getAttribute("data-lang") === lang));
+    updateStatusMessage(); render();
   }
-
   function initLang() {
-    // localStorage に保存があれば優先（なければブラウザ言語）
-    const saved = window.localStorage
-      ? window.localStorage.getItem("manualfinder_lang")
-      : null;
-
+    const saved = window.localStorage ? window.localStorage.getItem("manualfinder_lang") : null;
     const navLang = (navigator.language || "").toLowerCase();
-    const initial = saved || (navLang.startsWith("ja") ? "ja" : "en");
-
-    applyLang(initial);
-
-    els.langButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const lang = btn.getAttribute("data-lang");
-        if (!lang || lang === state.lang) return;
-        applyLang(lang);
-        if (window.localStorage) {
-          window.localStorage.setItem("manualfinder_lang", lang);
-        }
-      });
+    applyLang(isEnglishPath ? "en" : (saved || (navLang.startsWith("ja") ? "ja" : "en")));
+    els.langButtons.forEach((btn) => btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-lang");
+      if (!lang || lang === state.lang) return;
+      applyLang(lang);
+      if (window.localStorage) window.localStorage.setItem("manualfinder_lang", lang);
+    }));
+  }
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src=\"${src}\"]`)) return resolve();
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
     });
   }
-
-  // ==============================
-  // データ読み込み
-  // ==============================
-  function loadManuals() {
-    fetch("./data/manuals.json", { cache: "no-store" })
-      .then((res) => {
-        if (!res.ok) throw new Error("failed to load manuals.json");
-        return res.json();
-      })
+  function collectSearchParts(item) {
+    const parts = [item.brand,item.nameJa,item.nameEn,item.category,item.country,item.note,item.hint];
+    if (Array.isArray(item.tags)) parts.push(item.tags.join(" "));
+    return parts.filter(Boolean).join(" ").toLowerCase();
+  }
+  function getHint(item) {
+    if (item.hint) return item.hint;
+    const b = item.brand || "";
+    if (item.category === "プリンター・複合機") return `${b} 型番、プリンター型番、製品名`;
+    if (item.category === "カメラ・映像") return `${b} 型番、カメラ型番、レンズ名`;
+    if (item.category === "PC・スマホ") return `${b} 型番、モデル名、シリアル番号`;
+    if (item.category === "家電") return `${b} 型番、製品名、シリーズ名`;
+    if (item.category === "オーディオ") return `${b} 型番、製品名、シリーズ名`;
+    if (item.category === "ゲーム") return `${b} 本体名、型番、周辺機器名`;
+    if (item.category === "ネットワーク機器") return `${b} ルーター型番、製品名`;
+    return `${b} 型番、製品名、シリーズ名`;
+  }
+  function normalizeData(data) {
+    const seen = new Set();
+    return data.filter(Boolean).map((item) => ({
+      ...item,
+      hint:item.hint || getHint(item),
+      tags:Array.isArray(item.tags) ? item.tags : String(item.brand || "").toLowerCase().split(/\s+/),
+      note:item.note || "公式マニュアル／サポート入口です。"
+    })).filter((item) => {
+      const key = `${item.brand}|${item.category}`.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+  async function loadManuals() {
+    setStatus("loading", "データを読み込み中です...", "Loading manual directory...");
+    try {
+      await loadScript(FULL_DATA_URL);
+      if (!Array.isArray(window.MANUALFINDER_FULL_RECORDS)) throw new Error("full dataset missing");
+      state.manuals = normalizeData(window.MANUALFINDER_FULL_RECORDS);
+      setStatus("ready", "", "");
+      applyFilter();
+      return;
+    } catch (fullErr) {
+      console.warn(fullErr);
+    }
+    fetch(DATA_URL, { cache:"no-store" })
+      .then((res) => { if (!res.ok) throw new Error("failed to load manuals.json"); return res.json(); })
       .then((data) => {
-        if (!Array.isArray(data)) {
-          throw new Error("manuals.json is not an array");
-        }
-        state.manuals = data;
+        if (!Array.isArray(data)) throw new Error("manual data is not an array");
+        state.manuals = normalizeData(data);
+        setStatus("ready", "", "");
         applyFilter();
       })
       .catch((err) => {
         console.error(err);
-        if (els.results) {
-          els.results.innerHTML =
-            '<div class="empty-message">manuals.json の読み込みに失敗しました。パスまたはJSON構造を確認してください。</div>';
-        }
-        if (els.resultCount) els.resultCount.textContent = "0";
+        state.manuals = FALLBACK_MANUALS;
+        setStatus("fallback", "データ読み込みに失敗しました。主要メーカーの最小リストを表示しています。", "Could not load the full directory. Showing a fallback list of major brands.");
+        applyFilter();
       });
   }
-
-  // ==============================
-  // フィルタ処理
-  // ==============================
-  function applyFilter(quickBrand) {
-    const keywordRaw = (els.searchInput.value || "").trim().toLowerCase();
-    const keyword = quickBrand
-      ? String(quickBrand).trim().toLowerCase()
-      : keywordRaw;
-    const category = els.categorySelect.value;
-
+  function applyFilter(forcedKeyword) {
+    const keyword = normalize(forcedKeyword || (els.searchInput ? els.searchInput.value : ""));
+    const category = els.categorySelect ? els.categorySelect.value : "";
     let list = state.manuals.slice();
-
-    if (keyword) {
-      list = list.filter((item) => {
-        const parts = [
-          item.brand || "",
-          item.nameJa || "",
-          item.nameEn || "",
-          item.category || "",
-          item.country || "",
-        ];
-        if (Array.isArray(item.tags)) {
-          parts.push(item.tags.join(" "));
-        }
-        const haystack = parts.join(" ").toLowerCase();
-        return haystack.includes(keyword);
-      });
-    }
-
-    if (category) {
-      list = list.filter((item) => item.category === category);
-    }
-
+    if (keyword) list = list.filter((item) => collectSearchParts(item).includes(keyword));
+    if (category) list = list.filter((item) => item.category === category);
     state.filtered = list;
     render();
   }
-
-  // ==============================
-  // 描画
-  // ==============================
+  function makeText(tag, className, content) { const el = document.createElement(tag); el.className = className; el.textContent = content; return el; }
   function render() {
     if (!els.results || !els.resultCount) return;
-
+    updateStatusMessage();
     const list = state.filtered || [];
     els.results.innerHTML = "";
-
-    // 空メッセージ切り替え
-    if (!list.length) {
-      if (els.emptyJa) els.emptyJa.hidden = state.lang !== "ja";
-      if (els.emptyEn) els.emptyEn.hidden = state.lang !== "en";
-      els.resultCount.textContent = "0";
-      return;
-    } else {
-      if (els.emptyJa) els.emptyJa.hidden = true;
-      if (els.emptyEn) els.emptyEn.hidden = true;
-    }
-
-    // 件数は数値のみ
-    els.resultCount.textContent = String(list.length);
-
+    if (state.status === "loading") { els.resultCount.textContent = text("読み込み中...","Loading..."); if (els.emptyJa) els.emptyJa.hidden = true; if (els.emptyEn) els.emptyEn.hidden = true; return; }
+    if (!list.length) { els.resultCount.textContent = text("0件","0 records"); if (els.emptyJa) els.emptyJa.hidden = state.lang !== "ja"; if (els.emptyEn) els.emptyEn.hidden = state.lang !== "en"; return; }
+    if (els.emptyJa) els.emptyJa.hidden = true;
+    if (els.emptyEn) els.emptyEn.hidden = true;
+    els.resultCount.textContent = text(`全${list.length}件`, `${list.length} records`);
     const frag = document.createDocumentFragment();
-
     list.forEach((item) => {
-      const card = document.createElement("article");
-      card.className = "card";
-
-      // タイトル：言語に応じて nameJa / nameEn / brand を出し分け
-      const title = document.createElement("div");
-      title.className = "card-title";
-
-      if (state.lang === "ja") {
-        title.textContent =
-          item.nameJa || item.brand || item.nameEn || "";
-      } else {
-        title.textContent =
-          item.nameEn || item.brand || item.nameJa || "";
-      }
-
-      card.appendChild(title);
-
-      // カテゴリ＋国
-      const metaLine = document.createElement("div");
-
-      if (item.category) {
-        const cat = document.createElement("span");
-        cat.className = "card-category";
-        cat.textContent = item.category;
-        metaLine.appendChild(cat);
-      }
-
-      if (item.country) {
-        const country = document.createElement("span");
-        country.className = "card-country";
-        country.style.marginLeft = "8px";
-        country.textContent = item.country;
-        metaLine.appendChild(country);
-      }
-
-      card.appendChild(metaLine);
-
-      // 補足テキスト
-      if (item.note) {
-        const note = document.createElement("p");
-        note.className = "card-note";
-        note.textContent = item.note;
-        card.appendChild(note);
-      }
-
-      // リンク
-      const links = document.createElement("div");
-      links.className = "card-links";
-
-      if (item.manualUrl) {
-        const aManual = document.createElement("a");
-        aManual.href = item.manualUrl;
-        aManual.target = "_blank";
-        aManual.rel = "noopener noreferrer";
-        aManual.textContent =
-          state.lang === "ja" ? "マニュアル" : "Manuals";
-        links.appendChild(aManual);
-      }
-
-      if (item.supportUrl) {
-        const aSupport = document.createElement("a");
-        aSupport.href = item.supportUrl;
-        aSupport.target = "_blank";
-        aSupport.rel = "noopener noreferrer";
-        aSupport.textContent =
-          state.lang === "ja" ? "サポートTOP" : "Support";
-        links.appendChild(aSupport);
-      }
-
-      // 公式タグ
-      const tag = document.createElement("span");
-      tag.className = "tag-official";
-      tag.textContent =
-        state.lang === "ja" ? "公式サイト" : "Official";
-      links.appendChild(tag);
-
-      card.appendChild(links);
-
-      frag.appendChild(card);
+      const card = document.createElement("article"); card.className = "card";
+      card.appendChild(makeText("div","card-title", state.lang === "ja" ? (item.nameJa || item.brand) : (item.nameEn || item.brand)));
+      const meta = document.createElement("div"); meta.className = "card-meta";
+      meta.appendChild(makeText("span","card-category", item.category || text("その他","Other")));
+      if (item.country) meta.appendChild(makeText("span","card-country", item.country));
+      card.appendChild(meta);
+      card.appendChild(makeText("p","card-note", item.note || text("公式マニュアル／サポート入口です。","Official manual/support entry.")));
+      card.appendChild(makeText("p","card-hint", text(`検索ヒント：${getHint(item)}`, `Search hint: ${getHint(item)}`)));
+      if (item.linkReview) card.appendChild(makeText("p","card-audit", text("確認：公式入口として整理済み", "Checked: official entry normalized")));
+      const links = document.createElement("div"); links.className = "card-links";
+      if (item.manualUrl) { const a = document.createElement("a"); a.href = item.manualUrl; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = text("公式マニュアル","Official manuals"); links.appendChild(a); }
+      if (item.supportUrl) { const a = document.createElement("a"); a.href = item.supportUrl; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = text("サポートTOP","Support portal"); links.appendChild(a); }
+      links.appendChild(makeText("span","tag-official", text("公式サイト","Official")));
+      card.appendChild(links); frag.appendChild(card);
     });
-
     els.results.appendChild(frag);
   }
-
-  // ==============================
-  // イベント設定
-  // ==============================
   function bindEvents() {
-    if (els.searchInput) {
-      els.searchInput.addEventListener("input", () => applyFilter());
-    }
-    if (els.categorySelect) {
-      els.categorySelect.addEventListener("change", () => applyFilter());
-    }
-    if (els.quickButtons) {
-      els.quickButtons.addEventListener("click", (ev) => {
-        const btn = ev.target.closest("button[data-brand]");
-        if (!btn) return;
-        const brand = btn.getAttribute("data-brand") || "";
-        els.searchInput.value = brand;
-        applyFilter(brand);
-      });
-    }
+    if (els.searchInput) els.searchInput.addEventListener("input", () => applyFilter());
+    if (els.categorySelect) els.categorySelect.addEventListener("change", () => applyFilter());
+    if (els.quickButtons) els.quickButtons.addEventListener("click", (ev) => {
+      const btn = ev.target.closest("button"); if (!btn) return;
+      const category = btn.getAttribute("data-category");
+      const keyword = btn.getAttribute("data-keyword") || btn.getAttribute("data-brand") || "";
+      if (category) { if (els.categorySelect) els.categorySelect.value = category; if (els.searchInput) els.searchInput.value = ""; applyFilter(); }
+      else if (keyword) { if (els.searchInput) els.searchInput.value = keyword; if (els.categorySelect) els.categorySelect.value = ""; applyFilter(keyword); }
+    });
   }
-
-  // ==============================
-  // init
-  // ==============================
-  document.addEventListener("DOMContentLoaded", () => {
-    initLang();
-    bindEvents();
-    loadManuals();
-  });
+  document.addEventListener("DOMContentLoaded", () => { initLang(); bindEvents(); loadManuals(); });
 })();

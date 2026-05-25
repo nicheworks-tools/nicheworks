@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>スクショ縦結合・長い画像作成｜Screenshot Stitcher | NicheWorks</title>
+  <meta name="description" content="複数のスクリーンショットをブラウザ内で縦に結合し、長い画像として保存できる無料ツールです。幅揃え、余白トリム、PNG/WebP/JPEG出力、分割ZIP出力に対応。外部送信なし。">
+  <link rel="canonical" href="https://nicheworks.app/tools/screenshot-stitcher/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="スクショ縦結合・長い画像作成｜Screenshot Stitcher | NicheWorks">
+  <meta property="og:description" content="複数のスクリーンショットをブラウザ内で縦に結合し、長い画像として保存できる無料ツールです。幅揃え、余白トリム、PNG/WebP/JPEG出力、分割ZIP出力に対応。外部送信なし。">
+  <meta property="og:url" content="https://nicheworks.app/tools/screenshot-stitcher/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="スクショ縦結合・長い画像作成｜Screenshot Stitcher | NicheWorks">
+  <meta name="twitter:description" content="複数のスクリーンショットをブラウザ内で縦に結合し、長い画像として保存できる無料ツールです。幅揃え、余白トリム、PNG/WebP/JPEG出力、分割ZIP出力に対応。外部送信なし。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Screenshot Stitcher",
+    "url": "https://nicheworks.app/tools/screenshot-stitcher/",
+    "applicationCategory": "UtilityApplication",
+    "description": "複数のスクリーンショットをブラウザ内で縦に結合し、長い画像として保存できる無料ツールです。幅揃え、余白トリム、PNG/WebP/JPEG出力、分割ZIP出力に対応。",
+    "operatingSystem": "All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "画像はサーバーに送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。画像の結合、プレビュー生成、保存処理はブラウザ内で行われます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "HEICに対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "現時点では PNG / JPEG / WebP を対象にしています。HEICは先に対応形式へ変換してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "長すぎる画像は保存できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ブラウザや端末によって失敗する場合があります。高さが大きい場合は分割ZIP出力を使ってください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "スクショ内の個人情報も自動で隠せますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。このツールは結合用です。個人情報を隠す場合は Image Redact などのマスク用ツールを併用してください。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+  <meta name="robots" content="index,follow">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div>
+        <h1 data-i18n="title">スクショ縦結合・長い画像作成</h1>
+        <p class="lead" data-i18n="lead">複数のスクリーンショットを縦に結合し、長い画像として保存できます。処理はブラウザ内だけで行い、画像は外部送信しません。</p>
+      </div>
+      <div class="lang-switch" role="group" aria-label="language switch">
+        <button type="button" data-lang="ja">JP</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠</div>
+
+    <p class="usage-link">
+      <a href="./usage.html" data-i18n="usageLink">詳しい使い方はこちら</a>
+      <span aria-hidden="true"> / </span>
+      <a href="./usage-en.html" data-i18n="usageEnLink">English guide</a>
+    </p>
+
+    <section class="nw-donate" aria-label="donation links top">
+      <p class="nw-donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <section class="tool-grid">
+      <article class="card">
+        <h2 data-i18n="inputTitle">1. 画像を追加</h2>
+        <p class="muted" data-i18n="inputLead">ドラッグ&ドロップ / クリック選択 / ペースト（Ctrl/Cmd+V）に対応。PNG / JPEG / WebP を追加できます。</p>
+        <label class="dropzone" id="dropzone">
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" multiple />
+          <strong data-i18n="dropLabel">ここに画像をドロップ</strong>
+          <span data-i18n="dropSub">またはクリックして選択（PNG/JPEG/WebP）</span>
+        </label>
+        <div class="row spread compact">
+          <small id="countLabel">0 items</small>
+          <button type="button" class="btn ghost" id="clearBtn" data-i18n="clear">全削除</button>
+        </div>
+        <ul class="item-list" id="itemList"></ul>
+      </article>
+
+      <article class="card">
+        <h2 data-i18n="settingTitle">2. 結合設定</h2>
+
+        <label class="field">
+          <span data-i18n="fitMode">幅揃えモード</span>
+          <select id="fitMode">
+            <option value="max" data-i18n="fitMax">最大幅に合わせる</option>
+            <option value="custom" data-i18n="fitCustom">指定幅に合わせる</option>
+            <option value="min" data-i18n="fitMin">最小幅に合わせる</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span data-i18n="customWidth">指定幅 (px)</span>
+          <input id="customWidth" type="number" min="64" max="6000" value="1080" />
+        </label>
+
+        <label class="field check-line">
+          <input id="trimEnabled" type="checkbox" />
+          <span data-i18n="trimEnable">上下の単色余白を自動トリム</span>
+        </label>
+        <p class="note" data-i18n="trimNote">単色に近い上下余白を削ります。白いヘッダーやナビまで削られる場合があるため、必ずプレビューで確認してください。</p>
+
+        <label class="field">
+          <span data-i18n="trimThreshold">トリム閾値 (0-40)</span>
+          <input id="trimThreshold" type="number" min="0" max="40" value="12" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="gap">画像間余白 (px)</span>
+          <input id="gap" type="number" min="0" max="200" value="0" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="bg">背景</span>
+          <select id="background">
+            <option value="white" data-i18n="bgWhite">白</option>
+            <option value="transparent" data-i18n="bgTransparent">透明</option>
+          </select>
+        </label>
+
+        <div class="row two">
+          <label class="field">
+            <span data-i18n="format">出力形式</span>
+            <select id="format">
+              <option value="png">PNG</option>
+              <option value="webp">WebP</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+          </label>
+          <label class="field">
+            <span data-i18n="quality">画質(0.1-1)</span>
+            <input id="quality" type="number" min="0.1" max="1" step="0.1" value="0.92" />
+          </label>
+        </div>
+
+        <label class="field">
+          <span data-i18n="split">分割高さ (px / 0で分割なし)</span>
+          <input id="splitHeight" type="number" min="0" max="50000" value="0" />
+        </label>
+        <p class="note" data-i18n="splitNote">長すぎる画像は一部SNS・ブラウザ・ビューアで開けない場合があります。分割ZIPは指定pxごとに画像を分けて保存します。おすすめ：12000〜18000px。</p>
+
+        <div id="estimateBox" class="estimate" data-i18n="estimateEmpty">画像を追加すると、推定出力サイズを表示します。</div>
+
+        <div class="row compact action-row">
+          <button type="button" class="btn" id="previewBtn" data-i18n="preview">プレビュー生成</button>
+          <button type="button" class="btn" id="downloadBtn" disabled data-i18n="download">ダウンロード</button>
+          <button type="button" class="btn ghost" id="splitBtn" disabled data-i18n="splitExport">分割ZIP出力</button>
+        </div>
+        <p class="muted" data-i18n="localOnly">処理はブラウザ内のみ。画像データは外部送信しません。</p>
+      </article>
+    </section>
+
+    <section class="card preview-card">
+      <div class="row spread compact">
+        <h2 data-i18n="previewTitle">3. プレビュー</h2>
+        <span class="muted" id="previewMeta">-</span>
+      </div>
+      <canvas id="previewCanvas"></canvas>
+      <p id="status" class="status">-</p>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" data-i18n="faqTitle">FAQ</h2>
+      <details>
+        <summary data-i18n="faqPrivacyQ">画像はサーバーに送信されますか？</summary>
+        <p data-i18n="faqPrivacyA">いいえ。画像の結合、プレビュー生成、保存処理はブラウザ内で行われます。</p>
+      </details>
+      <details>
+        <summary data-i18n="faqHeicQ">HEICに対応していますか？</summary>
+        <p data-i18n="faqHeicA">現時点では PNG / JPEG / WebP を対象にしています。HEICは先に対応形式へ変換してください。</p>
+      </details>
+      <details>
+        <summary data-i18n="faqLongQ">長すぎる画像は保存できますか？</summary>
+        <p data-i18n="faqLongA">ブラウザや端末によって失敗する場合があります。高さが大きい場合は分割ZIP出力を使ってください。</p>
+      </details>
+      <details>
+        <summary data-i18n="faqRedactQ">スクショ内の個人情報も自動で隠せますか？</summary>
+        <p data-i18n="faqRedactA">いいえ。このツールは結合用です。個人情報を隠す場合は Image Redact などのマスク用ツールを併用してください。</p>
+      </details>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠</div>
+
+    <section class="nw-donate" aria-label="donation links bottom">
+      <p class="nw-donate-text" data-i18n="donateText2">このツールが役立った場合は、次の改善のためのご支援をご検討ください。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <div class="nw-links" aria-label="related tools">
+      <a href="/tools/image-redact/">Image Redact</a> /
+      <a href="/tools/exif-cleaner-mini/">EXIF Cleaner Mini</a> /
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
+      <a href="/tools/webp-avif-converter/">WebP / AVIF Converter</a>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p data-i18n="disclaimer">本ツールの出力結果は必ず最終確認してください。</p>
+    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

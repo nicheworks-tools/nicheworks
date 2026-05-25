@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>物流効率化セルフチェック・計画ドラフト｜Logistics Compliance Kit JP | NicheWorks</title>
+  <meta name="description" content="荷主向けに、荷待ち・納品時間指定・可視化不足・混雑などの状況を整理し、次にやることと計画ドラフトを作る簡易チェックツールです。法的助言ではありません。">
+  <link rel="canonical" href="https://nicheworks.app/tools/logistics-compliance-kit-jp/">
+
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="物流効率化セルフチェック・計画ドラフト｜Logistics Compliance Kit JP | NicheWorks">
+  <meta property="og:description" content="荷主向けに、荷待ち・納品時間指定・可視化不足・混雑などの状況を整理し、次にやることと計画ドラフトを作る簡易チェックツールです。法的助言ではありません。">
+  <meta property="og:url" content="https://nicheworks.app/tools/logistics-compliance-kit-jp/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="物流効率化セルフチェック・計画ドラフト｜Logistics Compliance Kit JP | NicheWorks">
+  <meta name="twitter:description" content="荷主向けに、荷待ち・納品時間指定・可視化不足・混雑などの状況を整理し、次にやることと計画ドラフトを作る簡易チェックツールです。法的助言ではありません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    function gtagSafe(){ try{ gtag.apply(null, arguments); }catch(e){} }
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Logistics Compliance Kit JP",
+    "url": "https://nicheworks.app/tools/logistics-compliance-kit-jp/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "荷主向けに、荷待ち・納品時間指定・可視化不足・混雑などの状況を整理し、次にやることと計画ドラフトを作る簡易チェックツールです。法的助言ではありません。",
+    "inLanguage": "ja",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "法令対応の判定ツールですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。物流効率化、荷待ち、納品条件などの状況整理と計画ドラフト作成を支援する簡易ツールです。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "入力内容は送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "判定処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "この結果を行政提出に使えますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "そのまま提出用書類として使うものではありません。必要に応じて公式情報や専門家に確認してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "無料で使える範囲はどこまでですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "判定、根拠シグナル、次にやること、中長期計画ドラフト、現状メモの画面反映、Markdown previewは無料で使えます。Markdown保存、社内共有メモ、委託先確認メモ、改善計画、GitHub Issue、Codex依頼文、handoff Markdown、JSON exportは共通Proで解放されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "現状メモは判定に使われますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "判定ロジックには使わず、出力メモとして記録します。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="nw-doc__header">
+    <div class="nw-doc">
+      <h1>物流効率化セルフチェック・計画ドラフト</h1>
+      <p class="nw-lead">荷主向けに、荷待ち・納品時間指定・可視化不足・混雑などを整理し、次にやることと計画ドラフトを作る簡易ツールです。</p>
+      <nav id="top-nav"></nav>
+    </div>
+  </header>
+
+  <main class="nw-doc" id="app">
+    <section class="nw-doc__section">
+      <div class="nw-doc__ad">広告枠</div>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>このツールでできること</h2>
+      <p>待機、納品時間帯指定、委託有無、現場可視化、混雑などの状況を入力すると、実務整理用の目安レベルと次の確認項目を作成します。</p>
+      <p class="usage-link"><a class="nw-link" href="./usage.html">使い方はこちら</a></p>
+    </section>
+
+    <section class="nw-doc__section nw-warning" aria-labelledby="important-note-title">
+      <h2 id="important-note-title">重要な注意</h2>
+      <p>このツールは物流効率化・荷待ち・納品条件などの状況整理を支援する簡易ツールです。法令対応、行政提出、契約義務、荷主責任の有無を判定するものではありません。</p>
+      <p>制度対応や法的判断は、国交省・経産省などの公式情報、専門家、社内法務・物流部門に確認してください。</p>
+    </section>
+
+    <section class="nw-doc__section">
+      <h2>入力内容の扱い</h2>
+      <p>入力内容の判定処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+    </section>
+
+    <section class="nw-doc__section" id="tool-main">
+      <p class="nw-note">ツールを読み込み中です。</p>
+    </section>
+
+    <section class="nw-doc__section" id="faq">
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>法令対応の判定ツールですか？</summary>
+        <p>いいえ。状況整理と計画ドラフト作成のための簡易ツールです。法的判断や制度対応の判定には使えません。</p>
+      </details>
+
+      <details>
+        <summary>入力内容は送信されますか？</summary>
+        <p>判定処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。</p>
+      </details>
+
+      <details>
+        <summary>この結果を行政提出に使えますか？</summary>
+        <p>そのまま提出用書類として使うものではありません。必要に応じて公式情報、専門家、社内法務・物流部門に確認してください。</p>
+      </details>
+
+      <details>
+        <summary>無料で使える範囲はどこまでですか？</summary>
+        <p>判定、根拠シグナル、次にやること、中長期計画ドラフト、現状メモの画面反映、Markdown previewは無料で使えます。Markdown保存、社内共有メモ、委託先確認メモ、改善計画、GitHub Issue、Codex依頼文、handoff Markdown、JSON exportは共通Proで解放されます。</p>
+      </details>
+
+      <details>
+        <summary>現状メモは判定に使われますか？</summary>
+        <p>判定ロジックには使わず、出力メモとして記録します。</p>
+      </details>
+
+      <div id="faq-extra" class="nw-faq-extra" aria-live="polite"></div>
+    </section>
+
+    <section class="nw-doc__section" id="cross-links">
+      <h2>関連ツール</h2>
+      <div class="nw-links">
+        <a class="nw-link" href="/tools/contract-risk-highlighter/">Contract Risk Highlighter</a>
+        <a class="nw-link" href="/tools/contract-cleaner/">Contract Cleaner</a>
+        <a class="nw-link" href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a>
+        <a class="nw-link" href="/tools/cold-email-requirement-checker/">Cold Email Requirement Checker</a>
+      </div>
+    </section>
+
+    <section class="nw-doc__section">
+      <div class="nw-donate">
+        <p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+        <div class="nw-donate-links">
+          <a class="nw-link" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+          <a class="nw-link" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./app.js"></script>
+  <script src="./pro-bridge.js"></script>
+
+  <footer class="nw-footer">
+    <div class="nw-doc">
+      <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+      <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+      <p class="nw-footer-line"><a class="nw-link" href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} // eslint-disable-line no-unused-vars
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>異体字比較ツール | Variant Kanji Compare | NicheWorks</title>
+  <meta name="description" content="見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。">
+  <link rel="canonical" href="https://nicheworks.app/tools/variant-kanji-compare/">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="異体字比較ツール | Variant Kanji Compare | NicheWorks">
+  <meta property="og:description" content="見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。">
+  <meta property="og:url" content="https://nicheworks.app/tools/variant-kanji-compare/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="異体字比較ツール | Variant Kanji Compare | NicheWorks">
+  <meta name="twitter:description" content="見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <link rel="stylesheet" href="./style.css?v=20260525-okj-50-1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "異体字比較ツール | Variant Kanji Compare",
+    "url": "https://nicheworks.app/tools/variant-kanji-compare/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="variant-compare">
+    <header class="nw-header">
+      <div class="nw-lang-switch">
+        <button type="button" class="nw-lang-btn active" data-lang="ja">JP</button>
+        <button type="button" class="nw-lang-btn" data-lang="en">EN</button>
+      </div>
+      <h1 data-i18n="title">異体字比較ツール</h1>
+      <p data-i18n="description">見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。</p>
+    </header>
+
+    <div class="ad-slot">広告枠</div>
+
+    <section class="input-panel">
+      <label for="inputText" data-i18n="inputLabel">比較する文字を入力</label>
+      <textarea id="inputText" rows="4" data-placeholder-ja="例：崎 﨑 / 高 髙 / 吉 𠮷 / 辺 邊 邉 / 斎 齋 齊" data-placeholder-en="Example: similar kanji, old forms, compatibility forms, or variants"></textarea>
+      <div class="copy-actions">
+        <button id="compareBtn" type="button" data-i18n="compareBtn">比較する</button>
+        <button id="copyAllBtn" type="button" data-i18n="copyComparison">比較結果をコピー</button>
+        <button id="copyCsvBtn" type="button" data-i18n="copyCsv">CSV形式でコピー</button>
+      </div>
+      <p class="privacy-note" data-i18n="privacyNote">入力内容はブラウザ内で処理され、外部APIには送信しません。アクセス解析や広告タグが読み込まれる場合があります。</p>
+    </section>
+
+    <section class="preset-panel">
+      <h2 data-i18n="presetTitle">プリセット比較</h2>
+      <div id="presetButtons" class="preset-buttons"></div>
+    </section>
+
+    <section id="summarySection" class="result-summary" hidden></section>
+    <section id="differenceHints" class="difference-hints" hidden></section>
+    <section id="comparisonGrid" class="comparison-grid" aria-live="polite"></section>
+    <section id="cautionSection" class="risk-panel" hidden></section>
+    <p id="unicodeCheckerWrap" class="reference-links" hidden><a id="unicodeCheckerLink" href="../unicode-kanji-checker/" data-i18n="unicodeCheckerLink">Unicode漢字チェッカーでも確認する</a></p>
+
+    <section class="reference-links">
+      <h2 data-i18n="relatedLinks">関連リンク</h2>
+      <ul>
+        <li><a href="../old-kanji-reference/">Old Kanji Reference</a></li>
+        <li><a href="../unicode-kanji-checker/">Unicode Kanji Checker</a></li>
+        <li><a href="../kanji-modernizer/">Kanji Modernizer</a></li>
+        <li><a href="../name-old-kanji-checker/">Name Old Kanji Checker</a></li>
+        <li><a href="../place-old-kanji-checker/">Place Old Kanji Checker</a></li>
+        <li><a href="../old-document-kanji-highlighter/">Old Document Kanji Highlighter</a></li>
+      </ul>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <footer class="nw-footer">
+      <p>© 2025 NicheWorks</p>
+      <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+    </footer>
+  </main>
+  <script src="./app.js?v=20260525-okj-50-1"></script>
+</body>
+</html>

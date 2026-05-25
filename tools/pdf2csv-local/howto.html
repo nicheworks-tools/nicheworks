@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>抽出のコツ｜PDF2CSV Local | NicheWorks</title>
+  <meta name="description" content="PDF2CSV LocalでテキストPDFの表を抽出するコツ。AutoとManualの使い分け、行列ズレの調整、OCR非対応PDFの見分け方をまとめます。">
+  <link rel="canonical" href="https://nicheworks.app/tools/pdf2csv-local/howto.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="抽出のコツ｜PDF2CSV Local | NicheWorks">
+  <meta property="og:description" content="PDF2CSV LocalでテキストPDFの表を抽出するコツ。AutoとManualの使い分け、行列ズレの調整、OCR非対応PDFの見分け方をまとめます。">
+  <meta property="og:url" content="https://nicheworks.app/tools/pdf2csv-local/howto.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="抽出のコツ｜PDF2CSV Local | NicheWorks">
+  <meta name="twitter:description" content="PDF2CSV LocalでテキストPDFの表を抽出するコツ。AutoとManualの使い分け、行列ズレの調整、OCR非対応PDFの見分け方をまとめます。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF2CSV Local",
+    "url": "https://nicheworks.app/tools/pdf2csv-local/howto.html",
+    "applicationCategory": "UtilityApplication",
+    "description": "PDF2CSV LocalでテキストPDFの表を抽出するコツ。AutoとManualの使い分け、行列ズレの調整、OCR非対応PDFの見分け方をまとめます。",
+    "operatingSystem": "All"
+  }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div data-p2c-lang="ja">
+        <h1 class="nw-title">抽出のコツ</h1>
+        <p class="nw-subtitle">PDF全体の見た目を再現するページではなく、PDF内のテキスト表を崩れにくく抽出するためのメモです。</p>
+      </div>
+      <div data-p2c-lang="en">
+        <h1 class="nw-title">Extraction tips</h1>
+        <p class="nw-subtitle">Tips for extracting text-based PDF tables with fewer row and column issues.</p>
+      </div>
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" data-lang="ja" class="active">JP</button> /
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc-main">
+    <section class="doc-card">
+      <div data-p2c-lang="ja">
+        <h2>まず確認すること</h2>
+        <ul class="doc-list">
+          <li>PDF上の文字をドラッグして選択できるか確認する。</li>
+          <li>文字を選択できないPDFは画像PDFの可能性が高く、このツールでは抽出できない。</li>
+          <li>斜めの表、複数段の表、装飾が多い表は崩れやすい。</li>
+        </ul>
+        <div class="doc-section">
+          <h2>Autoで試す</h2>
+          <ul class="doc-list">
+            <li>最初はAutoで抽出し、日付・摘要・金額などが列に分かれるか確認する。</li>
+            <li>行が分かれすぎる場合は行の近接判定を調整する。</li>
+            <li>列が混ざる場合は列のギャップ判定を調整する。</li>
+          </ul>
+        </div>
+        <div class="doc-section">
+          <h2>Manualを使う場面</h2>
+          <ul class="doc-list">
+            <li>請求書の明細表だけを抽出したい場合。</li>
+            <li>ページ全体を対象にすると会社名や合計欄が混ざる場合。</li>
+            <li>Autoで列が崩れるため、表の範囲だけに絞りたい場合。</li>
+          </ul>
+        </div>
+        <div class="doc-section">
+          <h2>保存前チェック</h2>
+          <ul class="doc-list">
+            <li>金額列、日付列、空欄、重複行を確認する。</li>
+            <li>ExcelでCSVが文字化けする場合はBOMをONにする。</li>
+            <li>Excel出力は抽出結果のXLSX保存であり、PDFの見た目再現ではない。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-p2c-lang="en">
+        <h2>Check first</h2>
+        <ul class="doc-list">
+          <li>Check whether text can be selected directly in the PDF.</li>
+          <li>If text cannot be selected, it is likely an image PDF and cannot be extracted here.</li>
+          <li>Rotated, multi-column, or heavily decorated tables may break.</li>
+        </ul>
+        <div class="doc-section">
+          <h2>Try Auto first</h2>
+          <ul class="doc-list">
+            <li>Run Auto and check whether dates, descriptions, and amounts become separate columns.</li>
+            <li>Adjust row proximity when rows split or merge incorrectly.</li>
+            <li>Adjust column gap when columns blend together.</li>
+          </ul>
+        </div>
+        <div class="doc-section">
+          <h2>When to use Manual</h2>
+          <ul class="doc-list">
+            <li>When you only need the line-item table in an invoice.</li>
+            <li>When page titles, addresses, or totals interfere with extraction.</li>
+            <li>When Auto breaks columns and you need to select only the table area.</li>
+          </ul>
+        </div>
+        <div class="doc-section">
+          <h2>Before saving</h2>
+          <ul class="doc-list">
+            <li>Check amount columns, date columns, blanks, and duplicate rows.</li>
+            <li>Turn on BOM when CSV text is garbled in Excel.</li>
+            <li>Excel export saves extracted results as XLSX; it does not recreate the PDF layout.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="doc-back"><a href="./index.html">← ツール本体へ戻る / Back to the tool</a></p>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+  <script src="./app.js"></script>
+  <script src="./copy-fix.js"></script>
+</body>
+</html>

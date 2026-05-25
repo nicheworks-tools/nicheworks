@@ -1,343 +1,243 @@
-const ingredientList = document.getElementById('ingredientList');
-const ingredientEmpty = document.getElementById('ingredientEmpty');
-const ocrInput = document.getElementById('ocrInput');
-const ocrDropzone = document.getElementById('ocrDropzone');
-const ocrStatus = document.getElementById('ocrStatus');
-const searchInput = document.getElementById('searchInput');
-const searchSuggestions = document.getElementById('searchSuggestions');
-const bulkInput = document.getElementById('bulkInput');
-const bulkAddButton = document.getElementById('bulkAddButton');
-const bulkClearButton = document.getElementById('bulkClearButton');
-const analyzeButton = document.getElementById('analyzeButton');
-const resultContainer = document.getElementById('resultContainer');
-const resultEmpty = document.getElementById('resultEmpty');
-const copyButton = document.getElementById('copyButton');
+const inciInput = document.getElementById('inciInput');
+const checkBtn = document.getElementById('checkBtn');
+const clearBtn = document.getElementById('clearBtn');
+const copyBtn = document.getElementById('copyBtn');
+const parsedCount = document.getElementById('parsedCount');
+const itemsTableBody = document.getElementById('itemsTableBody');
+const itemsEmpty = document.getElementById('itemsEmpty');
+const summaryGrid = document.getElementById('summaryGrid');
+const summaryBox = document.getElementById('summaryBox');
 const copyStatus = document.getElementById('copyStatus');
 
-let ingredientData = {};
-
-async function loadIngredients() {
-  try {
-    const res = await fetch('./data/ingredients.json');
-    ingredientData = await res.json();
-  } catch (e) {
-    ingredientData = {};
+const FLAG_RULES = [
+  {
+    key: 'fragrance',
+    label: '香料・アレルゲン指標',
+    note: '香りづけ成分。敏感な方は注意。',
+    keywords: ['FRAGRANCE', 'PARFUM', 'AROMA', 'PERFUME', 'LIMONENE', 'LINALOOL', 'CITRONELLOL', 'GERANIOL', 'CITRAL', 'EUGENOL']
+  },
+  {
+    key: 'preservative',
+    label: '防腐剤・保存成分',
+    note: '品質保持目的の保存成分。',
+    keywords: ['PHENOXYETHANOL', 'PARABEN', 'BENZOIC ACID', 'SORBIC ACID', 'SODIUM BENZOATE', 'POTASSIUM SORBATE', 'CHLORPHENESIN', 'DEHYDROACETIC ACID']
+  },
+  {
+    key: 'alcohol',
+    label: 'アルコール',
+    note: '溶剤・清涼感などに使用。乾燥しやすい肌は注意。',
+    keywords: ['ALCOHOL', 'ALCOHOL DENAT', 'SD ALCOHOL', 'ETHANOL', 'ISOPROPYL ALCOHOL']
+  },
+  {
+    key: 'acid',
+    label: '酸・アクティブ',
+    note: '角質ケアなどに使われる酸系成分。敏感肌は様子を見て使用。',
+    keywords: ['SALICYLIC ACID', 'GLYCOLIC ACID', 'LACTIC ACID', 'AZELAIC ACID', 'MANDELIC ACID']
+  },
+  {
+    key: 'comedogenic',
+    label: 'コメド注意ヒント',
+    note: '毛穴が詰まりやすいと感じる人も。使用感を確認。',
+    keywords: ['COCONUT OIL', 'COCOS NUCIFERA OIL', 'ISOPROPYL MYRISTATE', 'ISOPROPYL PALMITATE', 'MYRISTYL MYRISTATE', 'OCTYL STEARATE']
   }
+];
+
+const SPECIFIC_NOTES = {
+  WATER: '溶媒として広く使われる成分です。',
+  AQUA: '溶媒として広く使われる成分です。',
+  GLYCERIN: '保湿剤としてよく使われます。',
+  GLYCEROL: '保湿剤としてよく使われます。'
+};
+
+const summaryState = {
+  total: 0,
+  counts: {}
+};
+
+function normalizeText(value = '') {
+  return value
+    .normalize('NFKC')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-function normalize(text = '') {
-  const lowered = text.normalize('NFKC').toLowerCase();
-  const trimmed = lowered.replace(/[\u3000]/g, ' ').trim();
-  return trimmed;
+function normalizeForMatch(value = '') {
+  return normalizeText(value)
+    .replace(/[\(\)\[\]{}【】]/g, ' ')
+    .replace(/[\.·・]/g, ' ')
+    .toUpperCase();
 }
 
-function sanitizeTerm(term) {
-  let value = normalize(term);
-  value = value.replace(/[\(\)\[\]{}【】]/g, '');
-  value = value.replace(/[\,\/・\.]/g, ' ');
-  value = value.split(' ')[0] || '';
-  value = value.replace(/[^a-z0-9\u3040-\u30ff\u4e00-\u9faf]/gi, '');
-  if (value.length < 2) return '';
-  if (/^\d+$/.test(value)) return '';
-  return value;
+function splitIngredients(value = '') {
+  const raw = value.replace(/\r/g, '\n');
+  return raw
+    .split(/[\n,、，;；\/・]+/)
+    .map((item) => normalizeText(item))
+    .filter((item) => item.length > 0);
 }
 
-function isNoisyLine(line) {
-  if (!line || line.length < 2) return true;
-  if (/^\d+$/.test(line)) return true;
-  if (/^[\p{P}\p{S}]+$/u.test(line)) return true;
-  if (/^[\u4e00-\u9faf]{3,}[a-z0-9]+/i.test(line)) return true;
-  if (/[§※★◆]/.test(line)) return true;
-  return false;
+function findFlags(ingredientUpper) {
+  return FLAG_RULES.filter((rule) =>
+    rule.keywords.some((keyword) => ingredientUpper.includes(keyword))
+  );
 }
 
-function splitLines(text) {
-  return text.split(/\r?\n/).map((l) => normalize(l)).filter((l) => l);
+function buildDescription(ingredientUpper, flags) {
+  if (SPECIFIC_NOTES[ingredientUpper]) {
+    return SPECIFIC_NOTES[ingredientUpper];
+  }
+  if (flags.some((flag) => flag.key === 'fragrance')) {
+    return '香りづけ目的で使用される成分の一種です。';
+  }
+  if (flags.some((flag) => flag.key === 'preservative')) {
+    return '品質保持のための保存成分です。';
+  }
+  if (flags.some((flag) => flag.key === 'alcohol')) {
+    return '溶剤・清涼感などの目的で配合されることがあります。';
+  }
+  if (flags.some((flag) => flag.key === 'acid')) {
+    return '角質ケアなどに使われる酸系成分です。';
+  }
+  if (flags.some((flag) => flag.key === 'comedogenic')) {
+    return '油性のエモリエント成分で、毛穴が詰まりやすいと感じる人もいます。';
+  }
+  return '一般的な化粧品成分です。用途は製品によって異なります。';
 }
 
-function collectItems(text) {
-  const lines = splitLines(text);
-  const collected = new Set();
-  lines.forEach((line) => {
-    if (isNoisyLine(line)) return;
-    const fragments = line.split(/[\,\/・]/);
-    fragments.forEach((raw) => {
-      const sanitized = sanitizeTerm(raw);
-      if (sanitized) collected.add(sanitized);
+function renderFlagsCell(flags) {
+  if (!flags.length) {
+    return document.createTextNode('—');
+  }
+  const fragment = document.createDocumentFragment();
+  flags.forEach((flag) => {
+    const chip = document.createElement('span');
+    chip.className = `flag-chip ${flag.key}`;
+    chip.textContent = flag.label;
+    chip.title = flag.note;
+    fragment.appendChild(chip);
+  });
+  return fragment;
+}
+
+function updateSummary(items) {
+  summaryState.total = items.length;
+  summaryState.counts = {};
+  const seen = new Set();
+
+  items.forEach((item) => {
+    const upper = item.upper;
+    if (seen.has(upper)) return;
+    seen.add(upper);
+    item.flags.forEach((flag) => {
+      summaryState.counts[flag.key] = (summaryState.counts[flag.key] || 0) + 1;
     });
   });
-  return Array.from(collected);
-}
 
-function updateAnalyzeState() {
-  const hasItems = ingredientList.children.length > 0;
-  analyzeButton.disabled = !hasItems;
-  ingredientEmpty.classList.toggle('hidden', hasItems);
-}
-
-function createTag(name) {
-  const chip = document.createElement('span');
-  chip.className = 'cic-chip';
-  chip.title = name;
-
-  const text = document.createElement('span');
-  text.textContent = name;
-
-  const del = document.createElement('button');
-  del.type = 'button';
-  del.textContent = '✕';
-  del.addEventListener('click', () => {
-    chip.remove();
-    updateAnalyzeState();
+  summaryGrid.innerHTML = '';
+  FLAG_RULES.forEach((rule) => {
+    const card = document.createElement('div');
+    card.className = 'summary-item';
+    const label = document.createElement('div');
+    label.className = 'summary-label';
+    label.textContent = rule.label;
+    const count = document.createElement('div');
+    count.className = 'summary-count';
+    count.textContent = String(summaryState.counts[rule.key] || 0);
+    const note = document.createElement('div');
+    note.className = 'summary-note';
+    note.textContent = rule.note;
+    card.appendChild(label);
+    card.appendChild(count);
+    card.appendChild(note);
+    summaryGrid.appendChild(card);
   });
 
-  chip.appendChild(text);
-  chip.appendChild(del);
-  return chip;
+  summaryBox.classList.remove('hidden');
 }
 
-function existsTag(name) {
-  const target = normalize(name);
-  return Array.from(ingredientList.children).some((pill) => normalize(pill.firstChild.textContent) === target);
-}
-
-function addTag(name) {
-  const sanitized = sanitizeTerm(name);
-  if (!sanitized || existsTag(sanitized)) return;
-  const tag = createTag(sanitized);
-  ingredientList.appendChild(tag);
-  updateAnalyzeState();
-}
-
-function renderSuggestions(items) {
-  searchSuggestions.innerHTML = '';
-  items.slice(0, 8).forEach((item) => {
-    const label = item.name_jp || item.name_en;
-    const div = document.createElement('div');
-    div.className = 'cic-suggestion';
-    div.textContent = label;
-    div.title = `${item.name_jp} / ${item.name_en}`;
-    div.addEventListener('click', () => {
-      addTag(label);
-      searchSuggestions.innerHTML = '';
-      searchInput.value = '';
-    });
-    searchSuggestions.appendChild(div);
-  });
-}
-
-function handleSearchInput() {
-  const query = normalize(searchInput.value);
-  if (!query || query.length < 2) {
-    searchSuggestions.innerHTML = '';
+function renderTable(items) {
+  itemsTableBody.innerHTML = '';
+  if (!items.length) {
+    itemsEmpty.classList.remove('hidden');
     return;
   }
-  const entries = Object.values(ingredientData);
-  const filtered = entries.filter((item) => {
-    const targets = [item.name_jp, item.name_en, ...(item.aliases || [])].map((v) => normalize(v));
-    return targets.some((t) => t.includes(query));
+  itemsEmpty.classList.add('hidden');
+  items.forEach((item) => {
+    const row = document.createElement('tr');
+
+    const nameCell = document.createElement('td');
+    nameCell.textContent = item.name;
+
+    const flagCell = document.createElement('td');
+    flagCell.appendChild(renderFlagsCell(item.flags));
+
+    const noteCell = document.createElement('td');
+    noteCell.textContent = item.description;
+
+    row.appendChild(nameCell);
+    row.appendChild(flagCell);
+    row.appendChild(noteCell);
+    itemsTableBody.appendChild(row);
   });
-  renderSuggestions(filtered);
 }
 
-function toggleDrag(state) {
-  if (!ocrDropzone) return;
-  ocrDropzone.classList.toggle('dragover', state);
+function parseIngredients() {
+  const raw = inciInput.value || '';
+  const names = splitIngredients(raw);
+  const items = names.map((name) => {
+    const upper = normalizeForMatch(name);
+    const flags = findFlags(upper);
+    return {
+      name,
+      upper,
+      flags,
+      description: buildDescription(upper, flags)
+    };
+  });
+  return items;
 }
 
-async function handleOcrFile(file) {
-  if (!file) return;
-  ocrStatus.textContent = 'OCR中…';
-  try {
-    const data = await file.arrayBuffer();
-    const result = await Tesseract.recognize(new Blob([data]), 'jpn+eng', {
-      logger: (m) => {
-        if (m.status === 'recognizing text' && m.progress) {
-          ocrStatus.textContent = `OCR中… ${Math.round(m.progress * 100)}%`;
-        }
-      },
-    });
-    ocrStatus.textContent = 'OCR完了';
-    const items = collectItems(result.data.text);
-    items.forEach(addTag);
-  } catch (e) {
-    ocrStatus.textContent = 'OCRに失敗しました';
-  } finally {
-    if (ocrInput) ocrInput.value = '';
-  }
-}
-
-function handleOcrChange(event) {
-  const file = event.target.files?.[0];
-  handleOcrFile(file);
-}
-
-function handleDrop(event) {
-  event.preventDefault();
-  const file = event.dataTransfer.files?.[0];
-  toggleDrag(false);
-  handleOcrFile(file);
-}
-
-function handleDragOver(event) {
-  event.preventDefault();
-  toggleDrag(true);
-}
-
-function handleDragLeave(event) {
-  event.preventDefault();
-  toggleDrag(false);
-}
-
-function handleBulkAdd() {
-  const items = collectItems(bulkInput.value);
-  items.forEach(addTag);
-  bulkInput.value = '';
-}
-
-function handleBulkClear() {
-  ingredientList.innerHTML = '';
-  updateAnalyzeState();
-}
-
-function findMatch(name) {
-  const normalizedName = normalize(name);
-  const entries = Object.entries(ingredientData);
-  for (const [, value] of entries) {
-    const candidates = [value.name_jp, value.name_en, ...(value.aliases || [])].map((c) => normalize(c));
-    if (candidates.some((c) => c === normalizedName || c.startsWith(normalizedName) || normalizedName.startsWith(c))) {
-      return value;
-    }
-  }
-  return null;
-}
-
-function createResultCard(name, data) {
-  const article = document.createElement('article');
-  const level = data?.safety || 'unknown';
-  article.className = `cic-result-card level-${level}`;
-
-  const band = document.createElement('div');
-  band.className = 'color-band';
-
-  const body = document.createElement('div');
-  body.className = 'cic-result-body';
-
-  const title = document.createElement('h4');
-  title.className = 'cic-result-title';
-  title.textContent = data ? `${data.name_jp} / ${data.name_en}` : `${name} （未収載）`;
-
-  const usage = document.createElement('p');
-  usage.className = 'cic-result-meta';
-  usage.innerHTML = `<span class="cic-meta-label">【用途】</span>${data?.usage?.join('、 ') || '（未収載）このツールの成分データに掲載がありません。'}`;
-
-  const feature = document.createElement('p');
-  feature.className = 'cic-result-meta';
-  feature.innerHTML = `<span class="cic-meta-label">【特徴】</span>${data?.feature || '（未収載）このツールの成分データに掲載がありません。'}`;
-
-  const attention = document.createElement('p');
-  attention.className = 'cic-result-meta';
-  attention.innerHTML = `<span class="cic-meta-label">【注意点】</span>${data?.attention || '（未収載）このツールの成分データに掲載がありません。'}`;
-
-  body.appendChild(title);
-  body.appendChild(usage);
-  body.appendChild(feature);
-  body.appendChild(attention);
-
-  article.appendChild(band);
-  article.appendChild(body);
-  return article;
-}
-
-function renderResults(names) {
-  resultContainer.innerHTML = '';
+function handleCheck() {
+  const items = parseIngredients();
+  parsedCount.textContent = String(items.length);
+  renderTable(items);
+  updateSummary(items);
   copyStatus.textContent = '';
-  if (!names.length) {
-    resultEmpty.classList.remove('hidden');
-    return;
-  }
-  resultEmpty.classList.add('hidden');
-  names.forEach((raw) => {
-    const match = findMatch(raw);
-    const card = createResultCard(raw, match);
-    resultContainer.appendChild(card);
-  });
 }
 
-function renderSample() {
-  const sample = [
-    {
-      name_jp: 'ヒアルロン酸Na',
-      name_en: 'Sodium Hyaluronate',
-      safety: 'safe',
-      usage: ['保湿'],
-      feature: '水分保持力が高く、保湿目的でよく用いられる。',
-      attention: '特に報告は少ないが、肌状態に応じて様子を見る。'
-    },
-    {
-      name_jp: '香料',
-      name_en: 'Fragrance',
-      safety: 'caution',
-      usage: ['香り付け'],
-      feature: '配合種類が多様で、人によって刺激に感じる場合がある。',
-      attention: '敏感肌や香料が苦手な場合は注意。'
-    },
-    {
-      name_jp: 'サリチル酸',
-      name_en: 'Salicylic Acid',
-      safety: 'warning',
-      usage: ['角質ケア'],
-      feature: 'ピーリング作用を持ち、角質をやわらかくする。',
-      attention: '敏感肌では刺激になることがあるため注意。'
-    }
-  ];
-  resultEmpty.classList.add('hidden');
-  resultContainer.innerHTML = '';
+function handleClear() {
+  inciInput.value = '';
+  parsedCount.textContent = '0';
+  itemsTableBody.innerHTML = '';
+  itemsEmpty.classList.remove('hidden');
+  summaryGrid.innerHTML = '';
   copyStatus.textContent = '';
-  sample.forEach((item) => {
-    const card = createResultCard(item.name_jp, item);
-    resultContainer.appendChild(card);
-  });
-}
-
-function handleAnalyze() {
-  const names = Array.from(ingredientList.children).map((pill) => pill.firstChild.textContent);
-  renderResults(names);
-  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  updateSummary([]);
 }
 
 async function handleCopy() {
-  const cards = Array.from(resultContainer.querySelectorAll('.cic-result-card'));
-  if (!cards.length) {
-    copyStatus.textContent = 'コピーできる解析結果がありません。';
+  const rows = Array.from(itemsTableBody.querySelectorAll('tr'));
+  if (!rows.length) {
+    copyStatus.textContent = 'コピーできる結果がありません。';
     return;
   }
-  const lines = cards.map((card) => {
-    const title = card.querySelector('.cic-result-title')?.textContent?.trim() || '';
-    const metas = Array.from(card.querySelectorAll('.cic-result-meta')).map((m) => m.textContent.trim());
-    return [title, ...metas].join('\n');
+  const lines = rows.map((row) => {
+    const cells = Array.from(row.querySelectorAll('td')).map((cell) => cell.textContent.trim());
+    return cells.join(' / ');
   });
   try {
-    await navigator.clipboard.writeText(lines.join('\n\n'));
-    copyStatus.textContent = 'コピーしました';
-  } catch (e) {
-    copyStatus.textContent = 'コピーに失敗しました';
+    await navigator.clipboard.writeText(lines.join('\n'));
+    copyStatus.textContent = '解析結果をコピーしました。';
+  } catch (error) {
+    copyStatus.textContent = 'コピーに失敗しました。';
   }
 }
 
 function init() {
-  loadIngredients().then(renderSample);
-  ocrInput.addEventListener('change', handleOcrChange);
-  searchInput.addEventListener('input', handleSearchInput);
-  bulkAddButton.addEventListener('click', handleBulkAdd);
-  bulkClearButton.addEventListener('click', handleBulkClear);
-  analyzeButton.addEventListener('click', handleAnalyze);
-  copyButton.addEventListener('click', handleCopy);
-
-  ocrDropzone.addEventListener('dragover', handleDragOver);
-  ocrDropzone.addEventListener('dragleave', handleDragLeave);
-  ocrDropzone.addEventListener('drop', handleDrop);
-  ocrDropzone.addEventListener('click', () => ocrInput.click());
+  updateSummary([]);
+  checkBtn.addEventListener('click', handleCheck);
+  clearBtn.addEventListener('click', handleClear);
+  copyBtn.addEventListener('click', handleCopy);
 }
 
 document.addEventListener('DOMContentLoaded', init);

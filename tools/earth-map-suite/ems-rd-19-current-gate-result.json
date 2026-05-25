@@ -1,0 +1,10 @@
+{
+  "branch_decision": "browser_result_missing",
+  "next_task_family": "VERIFY",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "storm_real_blocked": true,
+  "result_hash": null,
+  "endpoint_summary": "actual deployed browser self-check JSON not recorded; endpoint reachability remains unverified from artifact perspective",
+  "next_action": "run api-status.html?autorun=safe, download/copy JSON, paste intake, validate, then reclassify"
+}

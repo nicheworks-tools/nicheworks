@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>障害報告・インシデント更新文作成｜Incident Update Generator | NicheWorks</title>
+<meta name="description" content="障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでIncident Communication Pack生成に対応します。">
+<link rel="canonical" href="https://nicheworks.app/tools/incident-update-generator/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NicheWorks"><meta property="og:title" content="障害報告・インシデント更新文作成｜Incident Update Generator | NicheWorks"><meta property="og:description" content="障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでIncident Communication Pack生成に対応します。"><meta property="og:url" content="https://nicheworks.app/tools/incident-update-generator/"><meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="障害報告・インシデント更新文作成｜Incident Update Generator | NicheWorks"><meta name="twitter:description" content="障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでIncident Communication Pack生成に対応します。"><meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+<link rel="icon" href="/assets/favicon.ico"><link rel="apple-touch-icon" href="/assets/favicon.ico">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="./style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "障害報告・インシデント更新文作成｜Incident Update Generator",
+    "url": "https://nicheworks.app/tools/incident-update-generator/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "障害・インシデント発生時に、顧客向け、社内向け、SNS向けの更新文をステータス別に作成するツールです。ProでIncident Communication Pack生成に対応します。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+<header class="nw-header"><h1 class="nw-title" data-i18n="ja">障害報告・インシデント更新文作成</h1><h1 class="nw-title" data-i18n="en" style="display:none;">Incident Update Generator</h1><p class="nw-lead" data-i18n="ja">顧客向け・社内向け・SNS向けの障害更新文を、ステータス別に作成します。</p><p class="nw-lead" data-i18n="en" style="display:none;">Create customer, internal, and social updates by status.</p><div class="nw-lang-switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div></header>
+<main class="nw-main"><div class="ad-slot ad-top">広告枠</div>
+<section class="nw-note nw-warning"><h2 data-i18n="ja">重要な注意</h2><h2 data-i18n="en" style="display:none;">Important note</h2><p data-i18n="ja">このツールは更新文のたたき台です。外部公開前に事実確認、責任者、法務、広報、セキュリティ担当の確認を行ってください。</p><p data-i18n="en" style="display:none;">This tool creates draft updates only. Review facts and wording with responsible, legal, PR, and security owners before publishing.</p></section>
+<section class="card"><div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none;">Input</h2></div><div class="card-bd"><div id="formError" class="form-error"></div>
+<div class="field"><label class="label" for="service">Service / サービス名</label><input id="service" class="input js-input" type="text" placeholder="API / Web app"></div>
+<div class="field"><label class="label" for="status">Status</label><select id="status" class="select js-input"><option value="Investigating">Investigating</option><option value="Identified">Identified</option><option value="Monitoring">Monitoring</option><option value="Resolved">Resolved</option></select></div>
+<div class="field"><label class="label" for="tone">Tone</label><select id="tone" class="select js-input"><option value="short">Short</option><option value="standard" selected>Standard</option><option value="polite">Polite</option></select></div>
+<div class="field"><label class="label" for="audience">Download audience</label><select id="audience" class="select"><option value="customer">Customer</option><option value="internal">Internal</option><option value="social">Social</option></select></div>
+<div class="field"><label class="label" for="startTime">Start / 発生時刻</label><input id="startTime" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="impact">Impact / 影響範囲</label><input id="impact" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="components">Components / 影響対象</label><input id="components" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="mitigation">Actions / 対応</label><input id="mitigation" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="nextUpdate">Next update / 次回更新</label><input id="nextUpdate" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="recoveryTime">Recovery / 復旧時刻</label><input id="recoveryTime" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="duration">Duration / 影響期間</label><input id="duration" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="causeSummary">Summary / 原因概要</label><input id="causeSummary" class="input js-input" type="text"></div>
+<div class="field"><label class="label" for="followUpPlan">Follow-up / 事後対応</label><input id="followUpPlan" class="input js-input" type="text"></div>
+<label class="check-row"><input id="includeUnknown" type="checkbox"> Mark missing optional fields as unconfirmed</label>
+<div class="row action-row"><button class="btn primary" id="generateBtn" type="button">Generate updates / 更新文を生成</button><button class="btn" id="downloadBtn" type="button" disabled>Download selected .txt</button></div></div></section>
+<section class="card pro-card" aria-labelledby="proTitle">
+  <div class="card-hd">
+    <h2 id="proTitle" class="card-title" data-i18n="ja">NicheWorks Pro</h2>
+    <h2 class="card-title" data-i18n="en" style="display:none;">NicheWorks Pro</h2>
+  </div>
+  <div class="card-bd">
+    <p class="pro-status" data-pro-status>Preview mode / Previewモード</p>
+    <div data-pro-preview>
+      <p data-i18n="ja">Previewモードです。無料版では入力した内容から顧客向け・社内向け・SNS向けの更新文生成、個別コピー、選択TXT保存が使えます。</p>
+      <p data-i18n="en" style="display:none;">Preview mode. The free version can generate customer, internal, and social updates, copy individual outputs, and save the selected TXT file.</p>
+      <p data-i18n="ja">Proでは、Statuspage、Slack / Teams、Support macro、Public review checklist、Postmortem outlineなどを含むIncident Communication PackをMarkdownでコピー・保存できます。</p>
+      <p data-i18n="en" style="display:none;">Pro unlocks a Markdown Incident Communication Pack with Statuspage, Slack / Teams, support macro, public review checklist, postmortem outline, and more.</p>
+      <div class="pro-preview-samples" aria-label="Pro Preview samples">
+        <div class="pro-preview-sample">
+          <strong>Statuspage update sample</strong>
+          <p>Investigating: We are investigating elevated errors affecting API requests. Next update: 30 minutes.</p>
+        </div>
+        <div class="pro-preview-sample">
+          <strong>Slack update sample</strong>
+          <p>:warning: Incident update — API error rate is elevated. Owner: on-call. Next update: 14:30.</p>
+        </div>
+        <div class="pro-preview-sample">
+          <strong>Support macro sample</strong>
+          <p>We are aware of the issue and are sharing confirmed updates on the status page. Please avoid promising SLA credits until approved.</p>
+        </div>
+        <div class="pro-preview-sample">
+          <strong>Postmortem outline sample</strong>
+          <p>Summary / Timeline / Impact / Root cause / Detection / Resolution / Follow-up actions.</p>
+        </div>
+      </div>
+      <div class="pro-actions pro-preview-actions" aria-hidden="true">
+        <button class="btn" type="button" disabled>Copy Incident Communication Pack (locked)</button>
+        <button class="btn" type="button" disabled>Save Incident Communication Pack (.md) (locked)</button>
+      </div>
+    </div>
+    <div class="pro-actions">
+      <a class="btn primary" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener" data-pro-buy>Buy Pro / Proを購入</a>
+      <button class="btn" id="copyMarkdownBtn" type="button" data-pro-only disabled>Copy Incident Communication Pack</button>
+      <button class="btn" id="saveMarkdownBtn" type="button" data-pro-only disabled>Save Incident Communication Pack (.md)</button>
+    </div>
+    <p class="nw-muted" data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+    <p class="nw-muted" data-i18n="en" style="display:none;">After purchase, NicheWorks Pro becomes active in this browser. It is usually kept after closing tabs or the browser, but another device, another browser, private mode, or cleared site data requires activation again.</p>
+  </div>
+</section>
+<section class="card"><div class="card-hd"><h2 class="card-title">Outputs</h2></div><div class="card-bd"><div class="output-grid">
+<div class="output-card" data-audience="customer"><div class="output-head"><div class="output-title">Customer</div><button class="btn btn-sm copy-btn" data-copy="customer" type="button" disabled>Copy</button></div><pre id="outputCustomerJa" class="out" data-i18n="ja">入力後に生成してください。</pre><pre id="outputCustomerEn" class="out" data-i18n="en" style="display:none;">Enter fields, then generate.</pre></div>
+<div class="output-card" data-audience="internal"><div class="output-head"><div class="output-title">Internal</div><button class="btn btn-sm copy-btn" data-copy="internal" type="button" disabled>Copy</button></div><pre id="outputInternalJa" class="out" data-i18n="ja">入力後に生成してください。</pre><pre id="outputInternalEn" class="out" data-i18n="en" style="display:none;">Enter fields, then generate.</pre></div>
+<div class="output-card" data-audience="social"><div class="output-head"><div class="output-title">Social</div><button class="btn btn-sm copy-btn" data-copy="social" type="button" disabled>Copy</button></div><pre id="outputSocialJa" class="out" data-i18n="ja">入力後に生成してください。</pre><pre id="outputSocialEn" class="out" data-i18n="en" style="display:none;">Enter fields, then generate.</pre></div>
+</div></div></section>
+<section class="card faq-card" aria-labelledby="faqTitle">
+  <div class="card-hd"><h2 id="faqTitle" class="card-title">FAQ</h2></div>
+  <div class="card-bd">
+    <details><summary>この文面をそのまま顧客に出せますか？</summary><p>いいえ。公開前に事実関係、影響範囲、責任者、法務・広報・セキュリティ担当の確認を行ってください。このツールはたたき台です。</p></details>
+    <details><summary>入力内容は送信されますか？</summary><p>入力内容はブラウザ内で処理され、ツールの生成処理のために外部サーバーへ送信しません。広告・解析などサイト共通の外部スクリプトは読み込まれる場合があります。</p></details>
+    <details><summary>セキュリティインシデントにも使えますか？</summary><p>初期連絡の骨子作りには使えますが、侵害有無、個人情報、脆弱性、法令報告に関わる内容は必ずセキュリティ責任者と法務の確認を通してください。</p></details>
+    <details><summary>SLAや補償文も作れますか？</summary><p>自動生成しません。SLA、返金、補償、法的責任を示す文言は契約・法務判断が必要なため、承認済みの定型文だけを追記してください。</p></details>
+    <details><summary>Pro購入後は別端末でも使えますか？</summary><p>Pro権限の正はサーバー側のD1 pro_entitlementsで管理されます。ブラウザ側のlocalStorageは表示・接続状態を補助するためのローカル状態です。別端末・別ブラウザ・シークレットモード・サイトデータ削除後は、既存のPro接続フローで再度有効化してください。</p></details>
+  </div>
+</section>
+<div class="nw-other nw-links" aria-label="Related tools"><p class="nw-other-title">関連ツール</p><div class="nw-other-links"><a href="/tools/log-formatter/">Log Formatter</a><a href="/tools/command-safety-checker/">Command Safety Checker</a><a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a><a href="/tools/minutes-to-ops/">Minutes to Ops</a></div></div><div class="ad-slot ad-bottom">広告枠</div><div class="nw-donate"><p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div></main>
+<footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="/assets/nw-pro.js"></script><script src="./app.js"></script><script src="./pro-bridge.js"></script></body></html>

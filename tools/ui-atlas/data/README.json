@@ -1,0 +1,38 @@
+{
+  "status": "free-seed-ready",
+  "version": 3,
+  "dataset": {
+    "file": "patterns.free.v1.json",
+    "id": "ui-atlas-free-seed",
+    "total_patterns": 50,
+    "source_language": "en",
+    "localized_languages": ["ja"],
+    "updated_at": "2026-03-26"
+  },
+  "schema": {
+    "required_per_pattern": [
+      "id",
+      "slug",
+      "name_en",
+      "name_ja",
+      "aliases_en",
+      "aliases_ja",
+      "category",
+      "purpose",
+      "mobile_fit",
+      "difficulty",
+      "summary_short_en",
+      "summary_short_ja",
+      "best_for_en",
+      "best_for_ja",
+      "not_for_en",
+      "not_for_ja",
+      "similar_patterns",
+      "short_prompt_en",
+      "short_prompt_ja",
+      "short_impl_note_en",
+      "short_impl_note_ja"
+    ]
+  },
+  "notes": "Production free seed dataset used by app.js card rendering. English is source of truth; Japanese entries are localized."
+}

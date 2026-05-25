@@ -1,66 +1,95 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>色置換ツール｜Color Replace Lite | NicheWorks</title>
-  <meta name="description" content="ブラウザで完結する色置換ツール。スポイトで色を抽出し、HEX・RGB・プリセットで指定した色に置換。ズームや許容範囲調整、PNG保存に対応。" />
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/color-replace/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="色置換ツール｜Color Replace Lite | NicheWorks" />
-  <meta property="og:description" content="スポイトとHEX/RGB同期で色を置換。ズーム確認と許容範囲調整、PNG保存対応のブラウザツール。" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/color-replace/" />
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png" />
-  <link rel="icon" type="image/png" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <title>画像の色置換・クリック色取得｜Color Replace Lite | NicheWorks</title>
+  <meta name="description" content="画像内の指定色をクリックで取得し、許容範囲を調整して別の色に置換できる無料ツールです。PNG/JPEG/WebPを読み込み、結果をPNGで保存できます。画像処理はブラウザ内で行います。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/color-replace/">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="画像の色置換・クリック色取得｜Color Replace Lite | NicheWorks">
+  <meta property="og:description" content="画像内の指定色をクリックで取得し、許容範囲を調整して別の色に置換できる無料ツールです。PNG/JPEG/WebPを読み込み、結果をPNGで保存できます。画像処理はブラウザ内で行います。">
+  <meta property="og:url" content="https://nicheworks.app/tools/color-replace/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="画像の色置換・クリック色取得｜Color Replace Lite | NicheWorks">
+  <meta name="twitter:description" content="画像内の指定色をクリックで取得し、許容範囲を調整して別の色に置換できる無料ツールです。PNG/JPEG/WebPを読み込み、結果をPNGで保存できます。画像処理はブラウザ内で行います。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="/assets/nw-base.css" />
   <link rel="stylesheet" href="./style.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Color Replace Lite",
-      "url": "https://nicheworks.pages.dev/tools/color-replace/",
-      "applicationCategory": "Utility",
-      "operatingSystem": "All",
-      "description": "スポイトとHEX/RGB同期に対応したブラウザ色置換ツール。ズーム確認や許容範囲調整、PNG保存が可能です。"
-    }
-  </script>
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="色置換ツール｜Color Replace Lite | NicheWorks">
-  <meta property="og:description:en" content="The description is pending and will be updated later.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/color-replace/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="色置換ツール｜Color Replace Lite | NicheWorks">
-  <meta name="twitter:description:en" content="The description is pending and will be updated later.">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- JSON-LD 日本語 -->
-  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "色置換ツール｜Color Replace Lite",
-    "url": "https://nicheworks.pages.dev/tools/color-replace/",
-    "description": "ブラウザで完結する色置換ツール。スポイトで色を抽出し、HEX・RGB・プリセットで指定した色に置換。ズームや許容範囲調整、PNG保存に対応。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
-  }
-  </script>
-  <!-- JSON-LD 英語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "色置換ツール｜Color Replace Lite | NicheWorks",
-    "url": "https://nicheworks.pages.dev/tools/color-replace/",
-    "description": "The description is pending and will be updated later.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Color Replace Lite",
+        "url": "https://nicheworks.app/tools/color-replace/",
+        "applicationCategory": "UtilityApplication",
+        "description": "画像内の指定色をクリックで取得し、許容範囲を調整して別の色に置換できる無料ツールです。PNG/JPEG/WebPを読み込み、結果をPNGで保存できます。",
+        "operatingSystem": "All"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "画像はアップロードされますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "いいえ。画像の読み込みと色置換処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "元画像は変更されますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "いいえ。元画像ファイルは変更せず、置換後のPNGを新しく保存します。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "大きい画像はそのまま保存されますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "いいえ。大きい画像は処理負荷を下げるため最大4MP程度に縮小され、保存画像も縮小後サイズになります。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "JPEGやWebPで保存できますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "初期版ではPNG保存のみです。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "透明部分は維持されますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "透明度は基本的に維持しますが、見え方は背景や画像ビューアによって変わる場合があります。"
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 <script defer
@@ -74,7 +103,7 @@
       <div>
         <p class="nw-label" data-i18n="toolLabel">Color Utility</p>
         <h1 class="nw-title" data-i18n="title">Color Replace Lite</h1>
-        <p class="nw-subtitle" data-i18n="description">スポイトで拾った色を別の色に置き換えるブラウザツール。HEX/RGB同期、ズーム、PNG保存に対応します。</p>
+        <p class="nw-subtitle" data-i18n="description">画像内の指定色をクリックで取得し、許容範囲を調整して別の色に置換できるブラウザツールです。</p>
       </div>
     </div>
   </header>
@@ -87,157 +116,95 @@
       <button class="btn ghost lang-button" data-lang="en" data-i18n="langEn">English</button>
     </div>
 
-    <section class="card">
-      <div class="input-row upload-row">
-        <label class="upload-label" for="imageInput" data-i18n="uploadLabel">画像をアップロード</label>
-        <input class="upload-input" type="file" id="imageInput" accept="image/*" />
-      </div>
-      <div class="canvas-area" data-view="before">
-        <div class="mobile-tab-header" role="tablist">
-          <div
-            class="mobile-tab-btn tab-button active"
-            data-tab="before"
-            data-target="before"
-            data-i18n="beforeTab"
-            role="tab"
-            tabindex="0"
-          >
-            Before
-          </div>
-          <div
-            class="mobile-tab-btn tab-button"
-            data-tab="after"
-            data-target="after"
-            data-i18n="afterTab"
-            role="tab"
-            tabindex="0"
-          >
-            After
-          </div>
-        </div>
-        <div class="canvas-grid preview-columns">
-          <div class="canvas-card preview-card before-card" data-role="before">
-            <div class="canvas-head">
-              <div>
-                <p class="canvas-label" data-i18n="beforeLabel">変換前（ズーム可）</p>
-                <p class="canvas-note" data-i18n="beforeNote">クリックでスポイト</p>
-              </div>
-              <div class="zoom-control">
-                <label for="zoomSlider" data-i18n="zoomLabel">ズーム</label>
-                <input type="range" id="zoomSlider" min="0.5" max="5" step="0.1" value="1" />
-                <span id="zoomValue">1.0x</span>
-              </div>
-            </div>
-            <canvas id="beforeCanvas"></canvas>
-          </div>
-          <div class="canvas-card preview-card after-card" data-role="after">
-            <div class="canvas-head">
-              <p class="canvas-label" data-i18n="afterLabel">変換後</p>
-              <p class="canvas-note" data-i18n="afterNote">許容範囲でリアルタイム反映</p>
-            </div>
-            <canvas id="afterCanvas"></canvas>
-          </div>
-        </div>
-      </div>
+    <section class="card intro-card">
+      <p class="lead" data-i18n="quickIntro">PNG/JPEG/WebP画像を読み込み、画像上で選んだ色を別の色に置換してPNGで保存できます。</p>
+      <ol class="steps">
+        <li data-i18n="step1">画像を選ぶ</li>
+        <li data-i18n="step2">変えたい色を画像上でクリック</li>
+        <li data-i18n="step3">置換後の色と許容範囲を調整</li>
+        <li data-i18n="step4">置換を適用</li>
+        <li data-i18n="step5">PNGで保存</li>
+      </ol>
+      <p class="note" data-i18n="privacyNote">画像の読み込み・色置換処理はブラウザ内で行います。画像ファイルはアップロードしません。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+      <p class="note" data-i18n="outputNote">入力：PNG / JPEG / WebP。出力：PNGのみ。Canvas経由のため、EXIFなどのメタデータは保持されない場合があります。</p>
     </section>
 
-    <section class="card color-section">
-      <div class="color-card" id="fromColorSection">
-        <div class="section-title-row">
-          <h2 data-i18n="fromColor">置換対象の色 (From)</h2>
-          <button class="btn ghost reset-btn" data-section-reset="from" data-i18n="resetSection">リセット</button>
-        </div>
-        <div class="color-controls">
-          <label data-i18n="pickerLabel">カラーピッカー</label>
-          <input type="color" id="fromPicker" />
-          <div class="color-preview-row">
-            <div class="color-preview" id="fromPreview"></div>
-            <div class="hex-group">
-              <label data-i18n="hexLabel">HEX</label>
-              <input class="hex-input" type="text" id="fromHex" value="#ff0000" />
-            </div>
-          </div>
-          <div class="rgb-group">
-            <label data-i18n="rgbLabel">RGB</label>
-            <div class="rgb-inputs">
-              <input type="number" id="fromR" min="0" max="255" />
-              <input type="number" id="fromG" min="0" max="255" />
-              <input type="number" id="fromB" min="0" max="255" />
-            </div>
-          </div>
-          <label for="fromPreset" data-i18n="presetLabel">プリセット</label>
-          <div class="preset-row" data-preset-group="from">
-            <div class="preset-swatches" aria-hidden="false">
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#ff0000" aria-label="赤" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#00ff00" aria-label="緑" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#0000ff" aria-label="青" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#ffffff" aria-label="白" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="fromPreset" data-value="#000000" aria-label="黒" onclick="const select=document.getElementById('fromPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-            </div>
-            <select id="fromPreset" class="preset-select">
-              <option value="#ff0000" data-i18n="presetRed">赤</option>
-              <option value="#00ff00" data-i18n="presetGreen">緑</option>
-              <option value="#0000ff" data-i18n="presetBlue">青</option>
-              <option value="#ffffff" data-i18n="presetWhite">白</option>
-              <option value="#000000" data-i18n="presetBlack">黒</option>
-            </select>
-          </div>
-        </div>
+    <section class="card">
+      <div class="field">
+        <label for="imageFile" data-i18n="uploadLabel">画像をアップロード</label>
+        <input type="file" id="imageFile" accept="image/png,image/jpeg,image/webp" />
       </div>
+      <p class="note" data-i18n="localNote">画像処理はブラウザ内で行います。画像ファイルはアップロードしません。</p>
+      <p class="note" id="scaleNote" aria-live="polite"></p>
+    </section>
 
-      <div class="color-card" id="toColorSection">
-        <div class="section-title-row">
-          <h2 data-i18n="toColor">置換後の色 (To)</h2>
-          <button class="btn ghost reset-btn" data-section-reset="to" data-i18n="resetSection">リセット</button>
+    <section class="card">
+      <div class="canvas-grid">
+        <div class="canvas-card">
+          <div class="canvas-head">
+            <h2 data-i18n="beforeLabel">変換前</h2>
+            <p class="canvas-note" data-i18n="pickTip">クリックで色を取得</p>
+          </div>
+          <canvas id="canvasBefore"></canvas>
         </div>
-        <div class="color-controls">
-          <label data-i18n="pickerLabel">カラーピッカー</label>
-          <input type="color" id="toPicker" />
-          <div class="color-preview-row">
-            <div class="color-preview" id="toPreview"></div>
-            <div class="hex-group">
-              <label data-i18n="hexLabel">HEX</label>
-              <input class="hex-input" type="text" id="toHex" value="#00ff00" />
-            </div>
+        <div class="canvas-card">
+          <div class="canvas-head">
+            <h2 data-i18n="afterLabel">変換後</h2>
           </div>
-          <div class="rgb-group">
-            <label data-i18n="rgbLabel">RGB</label>
-            <div class="rgb-inputs">
-              <input type="number" id="toR" min="0" max="255" />
-              <input type="number" id="toG" min="0" max="255" />
-              <input type="number" id="toB" min="0" max="255" />
-            </div>
-          </div>
-          <label for="toPreset" data-i18n="presetLabel">プリセット</label>
-          <div class="preset-row" data-preset-group="to">
-            <div class="preset-swatches" aria-hidden="false">
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#ff0000" aria-label="赤" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#00ff00" aria-label="緑" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#0000ff" aria-label="青" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#ffffff" aria-label="白" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-              <button type="button" class="preset-swatch" data-target="toPreset" data-value="#000000" aria-label="黒" onclick="const select=document.getElementById('toPreset');select.value=this.dataset.value;select.dispatchEvent(new Event('change'));"></button>
-            </div>
-            <select id="toPreset" class="preset-select">
-              <option value="#ff0000" data-i18n="presetRed">赤</option>
-              <option value="#00ff00" data-i18n="presetGreen">緑</option>
-              <option value="#0000ff" data-i18n="presetBlue">青</option>
-              <option value="#ffffff" data-i18n="presetWhite">白</option>
-              <option value="#000000" data-i18n="presetBlack">黒</option>
-            </select>
-          </div>
+          <canvas id="canvasAfter"></canvas>
         </div>
       </div>
     </section>
 
     <section class="card">
+      <div class="control-grid">
+        <div class="control-block">
+          <label for="srcColor" data-i18n="srcColorLabel">置換対象の色</label>
+          <input type="color" id="srcColor" value="#ff0000" />
+        </div>
+        <div class="control-block">
+          <label for="dstColor" data-i18n="dstColorLabel">置換後の色</label>
+          <input type="color" id="dstColor" value="#00ff00" />
+        </div>
+      </div>
       <div class="slider-row">
-        <label for="tolerance" data-i18n="toleranceLabel">置換許容範囲</label>
-        <input type="range" id="tolerance" min="0" max="255" value="60" />
-        <span id="toleranceValue">60</span>
+        <label for="tolerance" data-i18n="toleranceLabel">許容範囲</label>
+        <input type="range" id="tolerance" min="0" max="100" value="20" />
+        <span id="toleranceVal">20</span>
       </div>
       <div class="actions">
-        <button id="downloadBtn" class="btn primary" data-i18n="download">PNGで保存</button>
-        <button id="resetAll" class="btn ghost" data-i18n="resetAll">全体リセット</button>
+        <button id="applyBtn" class="btn primary" data-i18n="apply">置換を適用</button>
+        <button id="resetBtn" class="btn ghost" data-i18n="reset">リセット</button>
+        <button id="downloadBtn" class="btn" data-i18n="download">PNGで保存</button>
+      </div>
+      <p class="note" data-i18n="saveHint">置換を適用すると保存できます。</p>
+      <p class="note" data-i18n="alphaNote">RGB値を置換し、透明度は基本的に維持します。ただし背景色や画像ビューアによって見え方が変わる場合があります。</p>
+      <p id="resultSummary" class="result-summary" aria-live="polite"></p>
+    </section>
+
+    <section class="card faq-card" aria-labelledby="faqTitle">
+      <h2 id="faqTitle" data-i18n="faqTitle">よくある質問</h2>
+      <div class="faq-list">
+        <details>
+          <summary data-i18n="faqUploadQ">画像はアップロードされますか？</summary>
+          <p data-i18n="faqUploadA">いいえ。画像の読み込みと色置換処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+        </details>
+        <details>
+          <summary data-i18n="faqOriginalQ">元画像は変更されますか？</summary>
+          <p data-i18n="faqOriginalA">いいえ。元画像ファイルは変更せず、置換後のPNGを新しく保存します。</p>
+        </details>
+        <details>
+          <summary data-i18n="faqLargeQ">大きい画像はそのまま保存されますか？</summary>
+          <p data-i18n="faqLargeA">いいえ。大きい画像は処理負荷を下げるため最大4MP程度に縮小され、保存画像も縮小後サイズになります。</p>
+        </details>
+        <details>
+          <summary data-i18n="faqFormatQ">JPEGやWebPで保存できますか？</summary>
+          <p data-i18n="faqFormatA">初期版ではPNG保存のみです。</p>
+        </details>
+        <details>
+          <summary data-i18n="faqAlphaQ">透明部分は維持されますか？</summary>
+          <p data-i18n="faqAlphaA">透明度は基本的に維持しますが、見え方は背景や画像ビューアによって変わる場合があります。</p>
+        </details>
       </div>
     </section>
 
@@ -249,9 +216,11 @@
       </div>
       <h3 data-i18n="internalLinks">関連ツール</h3>
       <div class="link-list">
-        <a href="/tools/image-compression-inspector/" data-i18n="linkCompression">画像圧縮チェッカー</a>
-        <a href="/tools/exif-cleaner-mini/" data-i18n="linkExif">Exifクリーナー</a>
-        <a href="/tools/webp-avif-converter/" data-i18n="linkConverter">WebP/AVIF変換</a>
+        <a href="/tools/image-compression-inspector/" data-i18n="linkCompression">Image Compression Inspector</a>
+        <a href="/tools/exif-cleaner-mini/" data-i18n="linkExif">EXIF Cleaner Mini</a>
+        <a href="/tools/webp-avif-converter/" data-i18n="linkConverter">WebP/AVIF Converter</a>
+        <a href="/tools/image-redact/" data-i18n="linkRedact">Image Redact</a>
+        <a href="/tools/screenshot-stitcher/" data-i18n="linkStitcher">Screenshot Stitcher</a>
       </div>
     </section>
 
@@ -260,7 +229,7 @@
 
   <footer class="nw-footer">
     <div class="nw-footer-inner">
-      <p data-i18n="disclaimer">このツールはすべてローカルで処理され、画像はサーバーへ送信されません。</p>
+      <p data-i18n="disclaimer">画像の読み込み・色置換処理はブラウザ内で行います。画像ファイルはアップロードしません。ただしページ表示のため広告・解析タグは読み込まれます。</p>
       <p class="nw-footer-meta">© NicheWorks</p>
       <div class="nw-footer-links">
         <a href="/privacy.html" data-i18n="privacy">プライバシー</a>
@@ -269,7 +238,7 @@
     </div>
   </footer>
 
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="./app.js"></script>
-  
 </body>
 </html>

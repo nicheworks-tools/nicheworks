@@ -1,0 +1,34 @@
+name: Old Kanji Reference Validate
+
+on:
+  push:
+    paths:
+      - "tools/old-kanji-reference/dict.json"
+      - "tools/old-kanji-reference/meta.json"
+      - "tools/old-kanji-reference/meta-extra-*.json"
+      - "tools/old-kanji-reference/validate-meta.js"
+      - ".github/workflows/old-kanji-reference-validate.yml"
+  pull_request:
+    paths:
+      - "tools/old-kanji-reference/dict.json"
+      - "tools/old-kanji-reference/meta.json"
+      - "tools/old-kanji-reference/meta-extra-*.json"
+      - "tools/old-kanji-reference/validate-meta.js"
+      - ".github/workflows/old-kanji-reference-validate.yml"
+  workflow_dispatch:
+
+jobs:
+  validate-old-kanji-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate old kanji metadata
+        run: node tools/old-kanji-reference/validate-meta.js

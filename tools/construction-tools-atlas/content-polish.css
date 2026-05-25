@@ -1,0 +1,33 @@
+.intro,.faq,.nw-donate,.nw-links,.nw-footer,.popularSearches,.emptySearchHelp{border:1px solid var(--line);background:var(--card);border-radius:16px;}
+.intro{margin:8px 0 12px;padding:14px;}
+.intro__eyebrow{margin:0 0 6px;font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.intro h1{margin:0;font-size:22px;line-height:1.25;letter-spacing:.01em;}
+.intro p{margin:8px 0 0;color:var(--text);line-height:1.65;font-size:14px;}
+.intro .intro__privacy{color:var(--muted);font-size:12px;}
+.popularSearches{margin:0 0 12px;padding:12px;}
+.popularSearches__title{font-size:12px;font-weight:900;color:var(--muted);margin:0 0 8px;}
+.popularSearches__chips{display:flex;flex-wrap:wrap;gap:8px;}
+.popularSearches__chips .pillbtn{min-height:34px;font-size:12px;}
+.emptySearchHelp{margin:10px 0 12px;padding:12px;color:var(--text);}
+.emptySearchHelp strong{display:block;font-size:13px;margin:0 0 6px;}
+.emptySearchHelp ul{margin:0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.55;}
+.faq{margin:18px 0 14px;padding:14px;}
+.faq h2{margin:0 0 10px;font-size:16px;}
+.faq details{border-top:1px solid var(--line);padding:10px 0;}
+.faq details:first-of-type{border-top:0;}
+.faq summary{cursor:pointer;font-weight:900;line-height:1.45;}
+.faq p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.65;}
+.nw-donate{margin:14px 0;padding:14px;}
+.nw-donate-text{margin:0 0 10px;font-size:13px;line-height:1.6;color:var(--text);}
+.nw-donate-links{display:flex;flex-wrap:wrap;gap:10px;}
+.nw-donate-links a{display:inline-flex;min-height:40px;align-items:center;justify-content:center;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--chip);color:var(--text);text-decoration:none;font-weight:900;font-size:13px;}
+.nw-links{margin:14px 0 0;padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.nw-links a{color:var(--text);text-decoration:none;font-size:12px;font-weight:800;padding:6px 8px;border-radius:999px;background:var(--chip);border:1px solid var(--line);}
+.nw-footer{max-width:980px;margin:0 auto 24px;padding:14px;color:var(--muted);font-size:12px;line-height:1.6;}
+.nw-footer p{margin:4px 0;}
+.nw-footer a{color:var(--text);font-weight:900;}
+.menuGroup{padding:0 0 12px;margin:0 0 12px;border-bottom:1px solid var(--line);}
+.menuGroup__label{display:flex;gap:8px;align-items:center;font-weight:900;color:var(--text);}
+.menuGroup__actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.menuGroup__actions .pillbtn{min-height:40px;}
+@media (max-width:480px){.intro{margin-top:6px;padding:12px;}.intro h1{font-size:19px;}.nw-donate-links,.nw-links,.menuGroup__actions{flex-direction:column;align-items:stretch;}.nw-donate-links a,.nw-links a,.menuGroup__actions .pillbtn{width:100%;}.popularSearches__chips{display:grid;grid-template-columns:1fr 1fr;}.nw-footer{margin-left:12px;margin-right:12px;}}

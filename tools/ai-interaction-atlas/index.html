@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Interaction Patterns｜AI Interaction Atlas | NicheWorks</title>
+  <meta name="description" content="A practical dictionary of AI interaction patterns for chat UIs, copilots, agents, citations, review flows, and human-in-the-loop design.">
+  <link rel="canonical" href="https://nicheworks.app/tools/ai-interaction-atlas/">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:url" content="https://nicheworks.app/tools/ai-interaction-atlas/">
+  <meta property="og:title" content="AI Interaction Patterns｜AI Interaction Atlas | NicheWorks">
+  <meta property="og:description" content="A practical dictionary of AI interaction patterns for chat UIs, copilots, agents, citations, review flows, and human-in-the-loop design.">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Interaction Patterns｜AI Interaction Atlas | NicheWorks">
+  <meta name="twitter:description" content="A practical dictionary of AI interaction patterns for chat UIs, copilots, agents, citations, review flows, and human-in-the-loop design.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI Interaction Atlas","url":"https://nicheworks.app/tools/ai-interaction-atlas/","applicationCategory":"DesignApplication","description":"A practical dictionary of AI interaction patterns for builders designing AI chat, copilot, agent, and generative UI experiences.","operatingSystem":"All"}</script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="nw-header">
+    <div>
+      <p class="eyebrow">NicheWorks Atlas Series</p>
+      <h1>AI Interaction Atlas</h1>
+      <p>AI interaction patterns for builders who design with agents, copilots, and generative UI.</p>
+    </div>
+    <nav class="lang"><a href="./ja/">日本語</a></nav>
+  </header>
+  <main class="nw-main">
+    <div class="ad-slot ad-top">Ad space</div>
+    <section class="hero">
+      <p>Understand when to use each AI pattern, how it behaves, what can go wrong, and how to ask AI to build it correctly.</p>
+      <div class="search-row">
+        <input id="atlas-search" type="search" placeholder="Search AI patterns: prompt box, citations, review before apply..." aria-label="Search AI patterns">
+        <button id="open-filters" type="button">Filters</button>
+        <button id="clear-filters" type="button">Clear</button>
+      </div>
+      <div id="shortcut-list" class="shortcut-list" aria-label="Problem shortcuts"></div>
+    </section>
+    <section class="workspace">
+      <aside id="filter-panel" class="filters" aria-label="Filters">
+        <div class="mobile-row"><strong>Filters</strong><button id="close-filters" type="button">Close</button></div>
+        <div id="filters"></div>
+      </aside>
+      <section class="list-pane">
+        <div class="pane-head"><h2>Patterns</h2><span id="result-count">Loading data...</span></div>
+        <div id="pattern-list" class="pattern-list"></div>
+      </section>
+      <aside id="detail-panel" class="detail-pane" aria-label="Pattern detail">
+        <div class="mobile-row"><strong>Detail</strong><button id="mobile-detail-close" type="button">Close</button></div>
+        <div id="detail-content" class="detail-content"><p>Select a pattern.</p></div>
+        <section class="recent"><h3>Recently viewed</h3><div id="recent-list" class="recent-list"></div></section>
+      </aside>
+    </section>
+    <section class="compare-tray" aria-label="Comparison tray">
+      <div class="tray-head">
+        <h2>Compare</h2>
+        <label><input id="diff-only" type="checkbox"> Highlight differences only</label>
+        <button id="copy-compare" type="button">Copy comparison summary</button>
+        <button id="clear-compare" type="button">Clear</button>
+      </div>
+      <div id="compare-content"></div>
+      <p class="pro-note">Free compare supports 2 patterns. Pro unlocks 3–4 pattern comparison and comparison handoff packs.</p>
+    </section>
+    <section class="pro-handoff-pack" aria-label="Pro handoff pack">
+      <div class="pro-pack-head">
+        <div>
+          <p class="eyebrow">Common NicheWorks Pro</p>
+          <h2>Pro handoff pack</h2>
+          <p data-pro-status>Preview mode. Common Pro is not active in this browser yet.</p>
+        </div>
+        <p><a class="btn" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener noreferrer">Buy Pro</a></p>
+      </div>
+      <div data-pro-preview class="pro-preview-note">
+        <strong>Free features remain usable.</strong>
+        <p>Preview samples show Product spec handoff, Codex implementation task, GitHub Issue format, UX risk checklist, Safety / fallback checklist, and Markdown / JSON export. Pro-only copy/export/save buttons are locked until Common Pro is active.</p>
+      </div>
+      <div data-pro-only class="pro-unlocked-note" hidden>
+        <strong>Pro unlocked.</strong>
+        <p>Copy Pro outputs, export Markdown / JSON, and compare 3–4 AI interaction patterns.</p>
+      </div>
+      <div id="pro-handoff-content"></div>
+    </section>
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details><summary>Does this call an AI API?</summary><p>No. This page is static and client-side only. The previews are explanatory UI examples, not real AI output.</p></details>
+      <details><summary>What is free?</summary><p>All patterns, search, filters, detail view, best for / not for, failure states, trust notes, implementation notes, common mistakes, two-item comparison, recent history, five favorites, related links, and basic prompt copy are free.</p></details>
+      <details><summary>What is Pro for?</summary><p>Pro converts the selected AI UI pattern into Product spec handoff, Codex task, GitHub Issue, UX risk checklist, Safety / fallback checklist, Markdown / JSON exports, and 3–4 pattern comparison.</p></details>
+      <details><summary>What happens after purchase?</summary><p>After purchase, NicheWorks Pro becomes active in this browser. It normally remains available after closing tabs or the browser. Another device, another browser, private browsing, or deleted site data requires activation again.</p></details>
+    </section>
+    <div class="ad-slot ad-bottom">Ad space</div>
+    <div class="nw-donate"><p>If this tool helps, support continued development.</p><p><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a> <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></p></div>
+    <div class="nw-links"><a href="/tools/ui-atlas/">UI Atlas</a><a href="/tools/vibe-lexicon/">Vibe Lexicon</a><a href="/tools/motion-atlas/">Motion Atlas</a></div>
+  </main>
+  <footer class="nw-footer"><p>© NicheWorks — Small Web Tools for Boring Tasks</p><p>This site may include ads. Accuracy is not guaranteed. Verify important information.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+  <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
+  <script src="./app.js"></script>
+  <script src="./complete-details.js"></script>
+</body>
+</html>

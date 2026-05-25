@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>使い方｜PDF2CSV Local | NicheWorks</title>
+  <meta name="description" content="PDF2CSV Localの使い方ガイド。テキスト情報を含むPDFの表抽出、Auto/Manualの手順、OCR非対応、CSV/Excel出力の注意点をまとめます。">
+  <link rel="canonical" href="https://nicheworks.app/tools/pdf2csv-local/usage.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="使い方｜PDF2CSV Local | NicheWorks">
+  <meta property="og:description" content="PDF2CSV Localの使い方ガイド。テキスト情報を含むPDFの表抽出、Auto/Manualの手順、OCR非対応、CSV/Excel出力の注意点をまとめます。">
+  <meta property="og:url" content="https://nicheworks.app/tools/pdf2csv-local/usage.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="使い方｜PDF2CSV Local | NicheWorks">
+  <meta name="twitter:description" content="PDF2CSV Localの使い方ガイド。テキスト情報を含むPDFの表抽出、Auto/Manualの手順、OCR非対応、CSV/Excel出力の注意点をまとめます。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="robots" content="index,follow">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense（仕様：削除禁止） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF2CSV Local",
+    "url": "https://nicheworks.app/tools/pdf2csv-local/usage.html",
+    "applicationCategory": "UtilityApplication",
+    "description": "PDF2CSV Localの使い方ガイド。テキスト情報を含むPDFの表抽出、Auto/Manualの手順、OCR非対応、CSV/Excel出力の注意点をまとめます。",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <div data-p2c-lang="ja">
+        <h1 class="nw-title">使い方</h1>
+        <p class="nw-subtitle">PDF2CSV Localは、文字を選択できるPDF内の表をCSV/Excel向けに抽出する補助ツールです。</p>
+      </div>
+      <div data-p2c-lang="en">
+        <h1 class="nw-title">Usage</h1>
+        <p class="nw-subtitle">PDF2CSV Local helps extract tables from selectable-text PDFs for CSV/Excel export.</p>
+      </div>
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" data-lang="ja" class="active">JP</button> /
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc-main">
+    <section class="doc-card">
+      <div data-p2c-lang="ja">
+        <h2>このツールでできること</h2>
+        <ul class="doc-list">
+          <li>テキスト情報を含むPDFから、明細表・請求書表・一覧表を抽出する</li>
+          <li>Autoで自動抽出し、崩れる場合はManualで表エリアだけを指定して再抽出する</li>
+          <li>抽出結果をCSVまたはXLSX形式で保存する</li>
+        </ul>
+
+        <div class="doc-callout">
+          画像スキャンPDF・写真PDF・文字を選択できないPDFは対象外です。このツールはOCRを行いません。
+        </div>
+
+        <div class="doc-section">
+          <h2>手順</h2>
+          <ol class="doc-list">
+            <li>PDFを読み込みます。文字を選択できるPDFを使ってください。</li>
+            <li>必要に応じてページ範囲を指定します。空欄なら全ページを対象にします。</li>
+            <li>まずAutoで抽出します。</li>
+            <li>列や行が崩れる場合はManualに切り替え、プレビュー上で表エリアだけを囲んで再抽出します。</li>
+            <li>結果プレビューを確認し、CSVまたはExcelで保存します。</li>
+          </ol>
+        </div>
+
+        <div class="doc-section">
+          <h2>対応 / 非対応</h2>
+          <h3>対応</h3>
+          <ul class="doc-list">
+            <li>文字を選択できるPDF</li>
+            <li>銀行明細、請求書、一覧表など、行と列がある程度そろった表</li>
+            <li>複数ページにまたがる明細PDF</li>
+          </ul>
+          <h3>非対応</h3>
+          <ul class="doc-list">
+            <li>画像スキャンPDF、写真PDF、OCRが必要なPDF</li>
+            <li>パスワード付きPDF、強く暗号化されたPDF</li>
+            <li>斜めの表、複数段の表、装飾が多く列位置が崩れているPDF</li>
+          </ul>
+        </div>
+
+        <div class="doc-section">
+          <h2>出力形式</h2>
+          <ul class="doc-list">
+            <li>CSV: 会計ソフト、表計算、テキスト処理向け。Excelで開く場合はBOM ONを推奨します。</li>
+            <li>Excel: 抽出結果をXLSX形式で保存します。PDFの見た目を完全再現するものではありません。</li>
+            <li>タブ区切り: カンマを含むデータで崩れる場合の回避策として使えます。</li>
+          </ul>
+        </div>
+
+        <div class="doc-section">
+          <h2>注意点</h2>
+          <p class="doc-callout">抽出結果は必ず確認してください。PDFのレイアウトによって、列ズレ・行ズレ・空欄・重複が起きる場合があります。</p>
+          <p class="doc-muted">PDF内容は外部送信されません。ただし、PDF解析ライブラリの読み込みに外部CDNを使用する場合があります。</p>
+        </div>
+      </div>
+
+      <div data-p2c-lang="en">
+        <h2>What this tool can do</h2>
+        <ul class="doc-list">
+          <li>Extract tables from PDFs that contain selectable text.</li>
+          <li>Use Auto extraction first, then Manual selection when the layout breaks.</li>
+          <li>Save the extracted result as CSV or XLSX.</li>
+        </ul>
+
+        <div class="doc-callout">
+          Scanned image PDFs, photo PDFs, and PDFs without selectable text are not supported. This tool does not run OCR.
+        </div>
+
+        <div class="doc-section">
+          <h2>Steps</h2>
+          <ol class="doc-list">
+            <li>Load a PDF with selectable text.</li>
+            <li>Set a page range if needed. Leave it blank to process all pages.</li>
+            <li>Run Auto extraction first.</li>
+            <li>If rows or columns break, switch to Manual and select only the table area in the preview.</li>
+            <li>Review the preview, then save as CSV or Excel.</li>
+          </ol>
+        </div>
+
+        <div class="doc-section">
+          <h2>Supported / Not supported</h2>
+          <h3>Supported</h3>
+          <ul class="doc-list">
+            <li>PDFs with selectable text.</li>
+            <li>Statements, invoices, and lists with reasonably aligned rows and columns.</li>
+            <li>Multi-page statement PDFs.</li>
+          </ul>
+          <h3>Not supported</h3>
+          <ul class="doc-list">
+            <li>Scanned image PDFs, photo PDFs, or PDFs that require OCR.</li>
+            <li>Password-protected or strongly encrypted PDFs.</li>
+            <li>Rotated, multi-column, or heavily decorated layouts.</li>
+          </ul>
+        </div>
+
+        <div class="doc-section">
+          <h2>Output formats</h2>
+          <ul class="doc-list">
+            <li>CSV: for spreadsheets, accounting tools, and text processing. Use BOM when opening in Excel.</li>
+            <li>Excel: saves the extracted table as XLSX. It does not recreate the original PDF layout.</li>
+            <li>Tab delimiter: useful when comma-separated CSV breaks because values contain commas.</li>
+          </ul>
+        </div>
+
+        <div class="doc-section">
+          <h2>Notes</h2>
+          <p class="doc-callout">Always review the extracted result. PDF layout can cause shifted columns, shifted rows, blanks, or duplicates.</p>
+          <p class="doc-muted">PDF contents are not uploaded. The PDF parsing library may be loaded from an external CDN.</p>
+        </div>
+      </div>
+
+      <p class="doc-back"><a href="./index.html">← ツール本体へ戻る / Back to the tool</a></p>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+
+  <script src="./app.js"></script>
+  <script src="./copy-fix.js"></script>
+</body>
+</html>

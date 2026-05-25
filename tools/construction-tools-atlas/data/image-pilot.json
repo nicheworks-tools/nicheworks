@@ -1,0 +1,15 @@
+{
+  "version": "2026-05-10-pilot-1",
+  "items": [
+    { "id": "q011_torque_wrench", "src": "./images/pilot/torque-wrench.svg", "alt_ja": "トルクレンチの簡易図", "alt_en": "Simple diagram of a torque wrench", "caption_ja": "指定トルクで締付確認する工具。", "caption_en": "Tool used to tighten to a specified torque." },
+    { "id": "q011_anchor_bolt", "src": "./images/pilot/anchor-bolt.svg", "alt_ja": "アンカーボルトの簡易図", "alt_en": "Simple diagram of an anchor bolt", "caption_ja": "基礎やコンクリートに部材を固定するボルト。", "caption_en": "Bolt used to fix members to concrete or foundations." },
+    { "id": "q011_gypsum_board", "src": "./images/pilot/gypsum-board.svg", "alt_ja": "石膏ボードの簡易図", "alt_en": "Simple diagram of gypsum board", "caption_ja": "壁や天井の下地に使う板材。", "caption_en": "Board used for wall and ceiling lining." },
+    { "id": "q011_floor_leveler", "src": "./images/pilot/floor-leveler.svg", "alt_ja": "床レベラーの簡易図", "alt_en": "Simple diagram of floor leveler", "caption_ja": "床の不陸をならす下地調整材。", "caption_en": "Material used to level uneven floors." },
+    { "id": "q011_laser_level", "src": "./images/pilot/laser-level.svg", "alt_ja": "レーザー墨出し器の簡易図", "alt_en": "Simple diagram of a laser level", "caption_ja": "水平・垂直の基準線を投影する工具。", "caption_en": "Tool that projects level and plumb reference lines." },
+    { "id": "q011_caulking_gun", "src": "./images/pilot/caulking-gun.svg", "alt_ja": "コーキングガンの簡易図", "alt_en": "Simple diagram of a caulking gun", "caption_ja": "シーリング材を目地へ押し出す工具。", "caption_en": "Tool used to dispense sealant into joints." },
+    { "id": "q013_scaffold_clamp", "src": "./images/pilot/scaffold-clamp.svg", "alt_ja": "クランプの簡易図", "alt_en": "Simple diagram of a scaffold clamp", "caption_ja": "単管同士を固定する足場用金具。", "caption_en": "Clamp used to connect scaffold pipes." },
+    { "id": "q015_cable_tray", "src": "./images/pilot/cable-tray.svg", "alt_ja": "ケーブルトレイの簡易図", "alt_en": "Simple diagram of a cable tray", "caption_ja": "ケーブルをまとめて敷設する受け材。", "caption_en": "Tray used to support and organize cable runs." },
+    { "id": "q014_window_sash", "src": "./images/pilot/window-sash.svg", "alt_ja": "サッシの簡易図", "alt_en": "Simple diagram of a window sash", "caption_ja": "ガラスを納める窓の枠・可動部材。", "caption_en": "Window frame or operable unit that holds glazing." },
+    { "id": "q016_safety_glasses", "src": "./images/pilot/safety-glasses.svg", "alt_ja": "保護メガネの簡易図", "alt_en": "Simple diagram of safety glasses", "caption_ja": "切粉や粉じんから目を守る保護具。", "caption_en": "Eye protection used against chips and dust." }
+  ]
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>古文書旧字体ハイライター｜Old Document Kanji Highlighter | NicheWorks</title>
+  <meta name="description" content="古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。">
+  <link rel="canonical" href="https://nicheworks.app/tools/old-document-kanji-highlighter/">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="古文書旧字体ハイライター｜Old Document Kanji Highlighter | NicheWorks">
+  <meta property="og:description" content="古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。">
+  <meta property="og:url" content="https://nicheworks.app/tools/old-document-kanji-highlighter/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="古文書旧字体ハイライター｜Old Document Kanji Highlighter | NicheWorks">
+  <meta name="twitter:description" content="古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "古文書旧字体ハイライター｜Old Document Kanji Highlighter",
+    "url": "https://nicheworks.app/tools/old-document-kanji-highlighter/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="document-highlighter">
+    <header>
+      <div class="lang-switch"><button id="langJa" class="active">JP</button><button id="langEn">EN</button></div>
+      <h1 data-i18n="title">古文書旧字体ハイライター</h1>
+      <p data-i18n="desc">古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。</p>
+    </header>
+
+    <section class="input-panel">
+      <label for="inputText" data-i18n="inputLabel">文章を貼り付け</label>
+      <textarea id="inputText" rows="8" data-placeholder-ja="例：舊字體を含む文章、古い看板文、碑文、古地図の説明文など" data-placeholder-en="Example: text containing old kanji forms, old sign text, inscriptions, or old map descriptions"></textarea>
+      <div class="copy-actions"><button id="analyzeBtn" data-i18n="analyze">ハイライトする</button></div>
+      <p class="privacy-note" data-i18n="privacy">入力内容はブラウザ内で処理され、外部APIには送信しません。アクセス解析や広告タグが読み込まれる場合があります。</p>
+    </section>
+
+    <section id="resultSummary" class="result-summary"></section>
+    <section class="highlight-panel"><h2 data-i18n="highlightTitle">ハイライト表示</h2><div id="highlightOutput" class="highlight-output"></div></section>
+    <section class="detected-list"><h2>Detected</h2><div id="detectedList"></div></section>
+    <section class="modern-preview-panel"><h2 data-i18n="modernTitle">現代表記プレビュー</h2><p data-i18n="modernNote">これは機械的な置換プレビューです。文意・固有名詞・正式表記を保証するものではありません。</p><div id="modernPreview" class="modern-preview-output"></div></section>
+    <section id="cautionPanel" class="risk-panel"></section>
+
+    <section class="copy-actions">
+      <button id="copyOld" data-i18n="copyOld">旧字だけコピー</button>
+      <button id="copyPairs" data-i18n="copyPairs">対応表をコピー</button>
+      <button id="copyModern" data-i18n="copyModern">現代表記プレビューをコピー</button>
+      <a id="toConverter" href="#" hidden></a>
+    </section>
+
+    <div class="reference-links">
+      <a href="../old-kanji-reference/">Old Kanji Reference</a>
+      <a href="../kanji-modernizer/">Kanji Modernizer</a>
+      <a href="../name-old-kanji-checker/">Name Old Kanji Checker</a>
+      <a href="../place-old-kanji-checker/">Place Old Kanji Checker</a>
+    </div>
+  </main>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,169 +1,237 @@
-/* ===============================
-   言語切り替え
-================================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".nw-lang-switch button");
-  const nodes = document.querySelectorAll("[data-i18n]");
-  const browserLang = (navigator.language || "").toLowerCase();
-  let current = browserLang.startsWith("ja") ? "ja" : "en";
-
-  const applyLang = (lang) => {
-    nodes.forEach((el) => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
-    buttons.forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-    current = lang;
-  };
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => applyLang(btn.dataset.lang));
-  });
-
-  applyLang(current);
-});
+"use strict";
 
 /* ===============================
-    SNSごとの整形ロジック
+   共通ユーティリティ
 ================================= */
+const inputEl = document.getElementById("input");
+const formatBtn = document.getElementById("formatBtn");
+const resetBtn = document.getElementById("resetBtn");
+const resultsEl = document.getElementById("results");
+const statusEl = document.getElementById("status");
+const charCountEl = document.getElementById("charCount");
+const toastEl = document.getElementById("toast");
 
-// 共通：改行コード統一
-const normalize = (t) => t.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+if (inputEl) {
+  inputEl.removeAttribute("stable");
+  inputEl.removeAttribute("content");
+  inputEl.setAttribute("placeholder", "ここに整形したい文章を貼り付けてください");
+}
 
-// X
-const formatX = (t) => {
-  t = normalize(t);
-  t = t.replace(/\n{2,}/g, "\n");          // 連続改行 → 1
-  t = t.replace(/^[ ]+/gm, "");            // 行頭半角スペース除去
-  t = t.replace(/[ ]+$/gm, "");            // 行末半角スペース除去
-  return t;
-};
+let toastTimer = null;
 
-// Instagram
-const formatInstagram = (t) => {
-  t = normalize(t);
-  t = t.replace(/\n{3,}/g, "\n\n");        // 連続改行最大2
-  t = t.replace(/[ ]+$/gm, "");            // 行末スペース削除
-  t = t.replace(/^[ ]+/gm, "");            // 行頭スペース削除
-  t = t.replace(/([\p{Emoji_Presentation}\p{Extended_Pictographic}])\n/gu, "$1\u200B\n");
-  return t;
-};
+function setStatus(message, isError = false) {
+  if (!statusEl) return;
+  statusEl.textContent = message;
+  statusEl.classList.toggle("is-error", isError);
+}
 
-// LINE
-const formatLINE = (t) => {
-  t = normalize(t);
-  return t;
-};
+function showToast(message, isError = false) {
+  if (!toastEl) return;
+  toastEl.textContent = message;
+  toastEl.classList.toggle("is-error", isError);
+  toastEl.classList.add("is-visible");
 
-// Facebook
-const formatFacebook = (t) => {
-  t = normalize(t);
-  t = t.replace(/\n{3,}/g, "\n\n");        // 最大2
-  t = t.replace(/^[ ]+/gm, "");
-  t = t.replace(/[ ]+$/gm, "");
-  t = t.replace(/\n\n/g, "\n\u200B\n");    // 空行維持
-  return t;
-};
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => {
+    toastEl.classList.remove("is-visible");
+  }, 2600);
+}
 
-// LinkedIn
-const formatLinkedIn = (t) => {
-  t = normalize(t);
-  t = t.replace(/\n{2,}/g, "\n");          // 連続改行1つ
-  t = t.replace(/^[ ]+/gm, "");
-  t = t.replace(/[ ]+$/gm, "");
-  t = t.replace(/([\p{Emoji_Presentation}\p{Extended_Pictographic}])\n/gu, "$1\u200B\n");
-  return t;
-};
+function updateCharCount() {
+  if (!charCountEl || !inputEl) return;
+  charCountEl.textContent = String(inputEl.value.length);
+}
 
+async function copyText(text, label) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      showToast(`${label}向けテキストをコピーしました。`);
+      return true;
+    }
+    throw new Error("Clipboard API unavailable");
+  } catch (_) {
+    const fallback = document.createElement("textarea");
+    fallback.value = text;
+    fallback.setAttribute("readonly", "");
+    fallback.style.position = "fixed";
+    fallback.style.top = "-9999px";
+    fallback.style.left = "-9999px";
+    document.body.appendChild(fallback);
+    fallback.focus();
+    fallback.select();
+
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } catch (_) {
+      copied = false;
+    }
+
+    document.body.removeChild(fallback);
+
+    if (copied) {
+      showToast(`${label}向けテキストをコピーしました。`);
+      return true;
+    }
+
+    showToast("コピーできませんでした。テキストを選択して手動でコピーしてください。", true);
+    return false;
+  }
+}
+
+function createTextElement(tagName, className, text) {
+  const el = document.createElement(tagName);
+  if (className) el.className = className;
+  el.textContent = text;
+  return el;
+}
 
 /* ===============================
-    出力生成
+   SNSごとの整形ロジック
 ================================= */
+function normalizeLineBreaks(text) {
+  return text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+}
+
+function trimLineEdges(text) {
+  return text.replace(/^[ \t]+/gm, "").replace(/[ \t]+$/gm, "");
+}
+
+function keepBlankLinesWithZeroWidthSpace(text) {
+  return text.replace(/\n\n/g, "\n\u200B\n");
+}
+
+function addZeroWidthSpaceAfterEmojiLine(text) {
+  return text.replace(/([\p{Emoji_Presentation}\p{Extended_Pictographic}])\n/gu, "$1\u200B\n");
+}
+
+function formatX(text) {
+  let output = normalizeLineBreaks(text);
+  output = trimLineEdges(output);
+  output = output.replace(/\n{2,}/g, "\n");
+  return output.trim();
+}
+
+function formatInstagram(text) {
+  let output = normalizeLineBreaks(text);
+  output = trimLineEdges(output);
+  output = output.replace(/\n{3,}/g, "\n\n");
+  output = addZeroWidthSpaceAfterEmojiLine(output);
+  return output.trim();
+}
+
+function formatLine(text) {
+  return normalizeLineBreaks(text).trim();
+}
+
+function formatFacebook(text) {
+  let output = normalizeLineBreaks(text);
+  output = trimLineEdges(output);
+  output = output.replace(/\n{3,}/g, "\n\n");
+  output = keepBlankLinesWithZeroWidthSpace(output);
+  return output.trim();
+}
+
+function formatLinkedIn(text) {
+  let output = normalizeLineBreaks(text);
+  output = trimLineEdges(output);
+  output = output.replace(/\n{3,}/g, "\n\n");
+  output = keepBlankLinesWithZeroWidthSpace(output);
+  output = addZeroWidthSpaceAfterEmojiLine(output);
+  return output.trim();
+}
 
 const snsList = [
   {
-    id: "x",
-    title: "X（旧Twitter）",
+    title: "X",
     formatter: formatX,
-    guide: `Xは複数の改行を投稿時に1つに圧縮する仕様があります。
-行頭の半角スペースも削除されます。
-
-そのため、このツールでは以下の整形を行っています：
-・連続した改行を1つに統一
-・行頭の余計な半角スペースを削除
-・行末の余白を削除`
+    guide: "連続改行を1つにし、行頭・行末の余分な空白を削除します。短文投稿や告知文向けです。"
   },
   {
-    id: "instagram",
     title: "Instagram",
     formatter: formatInstagram,
-    guide: `Instagramは改行が無視されやすい仕様があります。
-
-そのため、このツールでは以下の補正を行っています：
-・連続改行は最大2つまでに最適化
-・行頭/行末のスペースを削除
-・絵文字直後に見えない文字（ゼロ幅スペース）を挿入`
+    guide: "連続改行を最大2つに整え、行頭・行末の空白を削除します。絵文字直後の改行維持にゼロ幅スペースを使う場合があります。"
   },
   {
-    id: "line",
     title: "LINE",
-    formatter: formatLINE,
-    guide: `LINEは改行を保持しますが、コピペ時に崩れることがあります。
-
-そのため、このツールでは以下の補正を行っています：
-・改行コードを統一（\\n）
-・行頭のスペースを保持`
+    formatter: formatLine,
+    guide: "改行コードを統一します。LINEは改行を比較的保持しやすいため、過剰な変換は行いません。"
   },
   {
-    id: "facebook",
     title: "Facebook",
     formatter: formatFacebook,
-    guide: `Facebookでは空行が消えやすい仕様があります。
-
-そのため、このツールでは以下の補正を行っています：
-・連続改行は最大2つまでに調整
-・空行が消えないようにゼロ幅スペースを追加
-・行頭/行末の余分なスペースを削除`
+    guide: "連続改行を最大2つに整え、空行維持のためゼロ幅スペースを入れる場合があります。"
   },
   {
-    id: "linkedin",
     title: "LinkedIn",
     formatter: formatLinkedIn,
-    guide: `LinkedInは自動整形が強く、段落が潰れやすいSNSです。
-
-そのため、このツールでは以下を行っています：
-・連続改行を1つに統一
-・段落維持のため必要に応じて全角スペース行を追加
-・絵文字直後にゼロ幅スペースを挿入`
+    guide: "段落が詰まりすぎないように連続改行を整理し、空行維持のためゼロ幅スペースを使う場合があります。"
   }
 ];
 
-document.getElementById("formatBtn").addEventListener("click", () => {
-  const input = document.getElementById("input").value || "";
-  const container = document.getElementById("results");
-  container.innerHTML = "";
+/* ===============================
+   出力生成
+================================= */
+function buildResultCard(sns, formatted) {
+  const block = document.createElement("section");
+  block.className = "sns-block";
 
+  const heading = createTextElement("h2", null, `${sns.title}向け`);
+  const pre = createTextElement("pre", "result-text", formatted);
+
+  const copyButton = document.createElement("button");
+  copyButton.type = "button";
+  copyButton.className = "copy-btn";
+  copyButton.textContent = `${sns.title}向けをコピー`;
+  copyButton.addEventListener("click", () => copyText(formatted, sns.title));
+
+  const details = document.createElement("details");
+  details.className = "sns-guide";
+
+  const summary = createTextElement("summary", null, "この整形になる理由");
+  const guide = createTextElement("p", "sns-guide-text", sns.guide);
+
+  details.append(summary, guide);
+  block.append(heading, pre, copyButton, details);
+  return block;
+}
+
+function renderResults() {
+  const rawInput = inputEl.value || "";
+  const trimmedInput = rawInput.trim();
+
+  resultsEl.replaceChildren();
+
+  if (!trimmedInput) {
+    setStatus("整形する文章を入力してください。", true);
+    inputEl.focus();
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
   snsList.forEach((sns) => {
-    const formatted = sns.formatter(input);
-
-    const block = document.createElement("section");
-    block.className = "sns-block";
-
-    block.innerHTML = `
-      <h2>${sns.title}</h2>
-      <pre class="result-text">${formatted}</pre>
-      <button class="copy-btn">コピー</button>
-
-      <details class="sns-guide">
-        <summary>この整形になる理由</summary>
-        <div class="sns-guide-text">${sns.guide}</div>
-      </details>
-    `;
-
-    container.appendChild(block);
-
-    // copy機能
-    block.querySelector(".copy-btn").addEventListener("click", () => {
-      navigator.clipboard.writeText(formatted);
-    });
+    const formatted = sns.formatter(rawInput);
+    fragment.appendChild(buildResultCard(sns, formatted));
   });
-});
+
+  resultsEl.appendChild(fragment);
+  setStatus("SNS別の整形結果を生成しました。投稿前に各SNSの投稿画面で表示を確認してください。", false);
+  showToast("整形結果を生成しました。");
+}
+
+function resetTool() {
+  inputEl.value = "";
+  resultsEl.replaceChildren();
+  setStatus("");
+  updateCharCount();
+  showToast("入力と結果をリセットしました。");
+  inputEl.focus();
+}
+
+if (inputEl && formatBtn && resetBtn && resultsEl) {
+  inputEl.addEventListener("input", updateCharCount);
+  formatBtn.addEventListener("click", renderResults);
+  resetBtn.addEventListener("click", resetTool);
+  updateCharCount();
+}

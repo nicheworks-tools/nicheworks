@@ -1,262 +1,82 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- AdSense（必須） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Analytics -->
-  
-
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <title>旧字体→新字体 変換｜Kanji Modernizer | NicheWorks</title>
-  <meta name="description" content="旧字体・新字体を一括変換する無料ツール。姓名・地名・古文書・寺院名などで使われる旧字を辞書ベースで現代の漢字へ変換。逆方向（新→旧）にも対応し、完全ローカルで動作します。">
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/kanji-modernizer/">
-
-  <!-- OGP -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="旧字体→新字体 変換｜Kanji Modernizer | NicheWorks">
-  <meta property="og:description" content="旧字体・新字体を一括変換する無料ツール。姓名・地名・古文書・寺院名などで使われる旧字を辞書ベースで変換。完全ローカル処理。">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/kanji-modernizer/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- favicon（共通） -->
+  <meta name="description" content="旧字体・新字体を辞書ベースで一括変換する無料ツール。姓名・地名・古文書などの旧字を現代漢字へ変換し、新→旧にも対応。入力本文は送信しません。">
+  <link rel="canonical" href="https://nicheworks.app/tools/kanji-modernizer/">
+  <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- WebApp schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Kanji Modernizer",
-    "url": "https://nicheworks.pages.dev/tools/kanji-modernizer/",
-    "applicationCategory": "UtilityApplication",
-    "description": "旧字体・新字体を一括変換する無料ツール。",
-    "operatingSystem": "All"
-  }
-  </script>
-
-  <!-- FAQ schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "旧字体とは何ですか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "戦前の印刷物や戸籍、人名・地名などで使われる古い字体のことです。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "すべての旧字体を変換できますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "辞書ベースのため完全対応ではありません。登録されていない文字は変換されずに残ります。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "入力したテキストは送信されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ、変換処理はブラウザ内のみで行われ、サーバー送信は一切ありません。"
-        }
-      }
-    ]
-  }
-  </script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="旧字体→新字体 変換｜Kanji Modernizer | NicheWorks">
-  <meta property="og:description:en" content="The description is pending and will be updated later.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/kanji-modernizer/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="旧字体→新字体 変換｜Kanji Modernizer | NicheWorks">
-  <meta name="twitter:description:en" content="The description is pending and will be updated later.">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- JSON-LD 日本語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "旧字体→新字体 変換｜Kanji Modernizer",
-    "url": "https://nicheworks.pages.dev/tools/kanji-modernizer/",
-    "description": "旧字体・新字体を一括変換する無料ツール。姓名・地名・古文書・寺院名などで使われる旧字を辞書ベースで現代の漢字へ変換。逆方向（新→旧）にも対応し、完全ローカルで動作します。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
-  }
-  </script>
-  <!-- JSON-LD 英語 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "旧字体→新字体 変換｜Kanji Modernizer | NicheWorks",
-    "url": "https://nicheworks.pages.dev/tools/kanji-modernizer/",
-    "description": "The description is pending and will be updated later.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
-  }
-  </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="旧字体→新字体 変換｜Kanji Modernizer | NicheWorks">
+  <meta property="og:description" content="旧字体・新字体を辞書ベースで一括変換する無料ツール。姓名・地名・古文書などの旧字を現代漢字へ変換し、新→旧にも対応。入力本文は送信しません。">
+  <meta property="og:url" content="https://nicheworks.app/tools/kanji-modernizer/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="旧字体→新字体 変換｜Kanji Modernizer | NicheWorks">
+  <meta name="twitter:description" content="旧字体・新字体を辞書ベースで一括変換する無料ツール。姓名・地名・古文書などの旧字を現代漢字へ変換し、新→旧にも対応。入力本文は送信しません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kanji Modernizer","url":"https://nicheworks.app/tools/kanji-modernizer/","applicationCategory":"UtilityApplication","description":"旧字体・新字体を辞書ベースで一括変換する無料ツール。","operatingSystem":"All"}</script>
+  <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
-  <main class="page">
-    <h1 class="page-title">
-      <span data-i18n="ja">旧字体・新字体 一括変換ツール</span>
-      <span data-i18n="en">Kanji Modernizer (Old ⇄ Modern)</span>
-    </h1>
-
-    <p class="page-desc">
-      <span data-i18n="ja">旧→新／新→旧を辞書ベースで一括変換します。入力された文字はブラウザ内のみで処理されます。</span>
-      <span data-i18n="en">Convert between old and modern kanji locally in your browser using a curated dictionary.</span>
-    </p>
-
-    <div class="lang-switch">
-      <button data-lang="ja" class="lang-btn active">JP</button>
-      <button data-lang="en" class="lang-btn">EN</button>
-    </div>
-
-    <p class="count-text" data-i18n="ja">収録字数：旧→新 <span data-count="old"></span>字 / 新→旧 <span data-count="new"></span>字（ユニーク <span data-count="unique"></span>字）</p>
-    <p class="count-text" data-i18n="en">Dictionary size: Old→New <span data-count="old"></span>, New→Old <span data-count="new"></span> (Unique <span data-count="unique"></span>)</p>
-
-    <!-- JP：旧字体一覧への導線ブロック -->
-    <div class="km-sibling" data-i18n="ja">
-      <p class="km-sibling-title">関連ツール</p>
-      <p class="km-sibling-desc">
-        旧字体を検索したい方は、一覧から調べられる
-        <b><a href="/tools/old-kanji-reference/">旧字体リファレンス一覧</a></b>
-        もご利用いただけます。
-      </p>
-    </div>
-    
-    <!-- EN：Old Kanji Reference link block -->
-    <div class="km-sibling" data-i18n="en">
-      <p class="km-sibling-title">Related tool</p>
-      <p class="km-sibling-desc">
-        If you want to browse old kanji directly, try the
-        <a href="/tools/old-kanji-reference/">Old Kanji Reference List</a>.
-      </p>
-    </div>
-
-    
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
-
+  <header class="nw-header">
+    <h1 class="nw-title"><span data-i18n="ja">旧字体・新字体 一括変換ツール</span><span data-i18n="en">Kanji Modernizer</span></h1>
+    <p class="nw-subtitle"><span data-i18n="ja">旧字・新字を辞書ベースで変換し、置換箇所と回数を確認できます。</span><span data-i18n="en">Convert old and modern kanji with a dictionary-based checker and replacement summary.</span></p>
+    <div class="nw-lang-switch lang-switch"><button type="button" data-lang="ja" class="lang-btn active">JP</button><button type="button" data-lang="en" class="lang-btn">EN</button></div>
+  </header>
+  <main class="nw-main page">
+    <div class="ad-slot ad-top"><span data-i18n="ja">広告枠</span><span data-i18n="en">Ad slot (preparing)</span></div>
+    <section class="intro-box">
+      <p><span data-i18n="ja">旧字体（例：舊・學・體）を新字体へ、または新字体を旧字体候補へ変換します。人名・地名・古い文書の確認用の補助ツールです。</span><span data-i18n="en">Convert old-style kanji into modern forms, or convert modern kanji back to old-form candidates.</span></p>
+      <p class="usage-link"><a href="./usage.html" data-i18n="ja">使い方・注意点はこちら</a><a href="./usage-en.html" data-i18n="en">Usage guide and notes</a></p>
+    </section>
+    <section class="policy-box">
+      <h2 class="policy-title"><span data-i18n="ja">このツールがすること・しないこと</span><span data-i18n="en">What this tool does / does not do</span></h2>
+      <ul class="policy-list">
+        <li data-i18n="ja">辞書に登録された文字を1文字単位で置換します。</li>
+        <li data-i18n="ja">正式表記や固有名詞の正確性は保証しません。</li>
+        <li data-i18n="ja">変換処理はブラウザ内で行われ、入力本文はサーバーに送信しません。</li>
+        <li data-i18n="ja">広告・アクセス解析などの外部タグを読み込む場合があります。</li>
+        <li data-i18n="en">Replaces registered characters one by one.</li>
+        <li data-i18n="en">It does not verify official names, context, or proper nouns.</li>
+        <li data-i18n="en">Conversion runs in your browser; the input text is not uploaded.</li>
+        <li data-i18n="en">This page may load advertising and analytics tags.</li>
+      </ul>
+    </section>
+    <p class="count-text" data-i18n="ja">収録字数：旧→新 <span data-count="old">--</span>字 / 新→旧 <span data-count="new">--</span>字（ユニーク <span data-count="unique">--</span>字）</p>
+    <p class="count-text" data-i18n="en">Dictionary size: Old→Modern <span data-count="old">--</span>, Modern→Old <span data-count="new">--</span> (Unique <span data-count="unique">--</span>)</p>
+    <div class="km-sibling" data-i18n="ja"><p class="km-sibling-title">関連ツール</p><p class="km-sibling-desc"><a id="backToOldKanjiReference" href="/tools/old-kanji-reference/"><span data-i18n="ja">旧字体一覧で調べる</span><span data-i18n="en">Search in Old Kanji Reference</span></a></p></div>
+    <div class="km-sibling" data-i18n="en"><p class="km-sibling-title">Related tool</p><p class="km-sibling-desc"><a id="backToOldKanjiReferenceEn" href="/tools/old-kanji-reference/"><span data-i18n="ja">旧字体一覧で調べる</span><span data-i18n="en">Search in Old Kanji Reference</span></a></p></div>
     <section class="section">
-      <h2 class="section-title">
-        <span data-i18n="ja">旧字体・新字体 変換</span>
-        <span data-i18n="en">Convert Kanji</span>
-      </h2>
-
-      <label class="field-label" for="inputText">
-        <span data-i18n="ja">変換したいテキスト</span>
-        <span data-i18n="en">Text to convert</span>
-      </label>
-      <textarea id="inputText" class="text-input" rows="8" placeholder="例）舊字體の東京府淺草區"></textarea>
-
-      <fieldset class="direction" aria-label="direction">
-        <label>
-          <input type="radio" name="direction" value="old-to-new" checked>
-          <span data-i18n="ja">旧 → 新</span>
-          <span data-i18n="en">Old → Modern</span>
-        </label>
-        <label>
-          <input type="radio" name="direction" value="new-to-old">
-          <span data-i18n="ja">新 → 旧</span>
-          <span data-i18n="en">Modern → Old</span>
-        </label>
-      </fieldset>
-
-      <div class="action-row">
-        <button id="convertBtn" class="btn-primary">
-          <span data-i18n="ja">変換する</span>
-          <span data-i18n="en">Convert</span>
-        </button>
-        <button id="resetBtn" class="btn-ghost">
-          <span data-i18n="ja">リセット</span>
-          <span data-i18n="en">Reset</span>
-        </button>
-      </div>
-
-      <div id="progress" class="progress" aria-hidden="true">
-        <div class="progress-bar"></div>
-      </div>
-
-      <div id="errorBox" class="error-box" hidden></div>
+      <h2 class="section-title"><span data-i18n="ja">旧字体・新字体 変換</span><span data-i18n="en">Convert kanji</span></h2>
+      <label class="field-label" for="inputText"><span data-i18n="ja">変換したいテキスト</span><span data-i18n="en">Text to convert</span></label>
+      <textarea id="inputText" class="text-input" rows="8"></textarea>
+      <fieldset class="direction"><label><input type="radio" name="direction" value="old-to-new" checked><span data-i18n="ja">旧 → 新</span><span data-i18n="en">Old → Modern</span></label><label><input type="radio" name="direction" value="new-to-old"><span data-i18n="ja">新 → 旧</span><span data-i18n="en">Modern → Old</span></label></fieldset>
+      <label class="toggle"><input type="checkbox" id="excludeToggle" checked><span data-i18n="ja">ASCII文字／URL／コードブロック内は変換しない</span><span data-i18n="en">Do not convert inside ASCII text, URLs, or code blocks</span></label>
+      <div class="action-row"><button id="convertBtn" class="btn-primary" type="button"><span data-i18n="ja">変換する</span><span data-i18n="en">Convert</span></button><button id="resetBtn" class="btn-ghost" type="button"><span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span></button></div>
+      <div id="progress" class="progress"><div class="progress-bar"></div></div>
+      <div id="messageBox" class="message-box" hidden><p id="messageText" class="message-text"></p><p id="messageNote" class="message-note" hidden><span data-i18n="ja">辞書の読み込みに失敗する場合は、キャッシュを消去して再読み込みしてください。</span><span data-i18n="en">If loading still fails, try a hard refresh or clear your cache.</span></p><button id="retryBtn" class="btn-secondary btn-small" type="button" hidden><span data-i18n="ja">再読み込み</span><span data-i18n="en">Retry</span></button></div>
     </section>
-
     <section class="section section-lg" id="resultBlock" hidden>
-      <h2 class="section-title">
-        <span data-i18n="ja">変換結果</span>
-        <span data-i18n="en">Result</span>
-      </h2>
-
-      <p class="field-label sub">
-        <span data-i18n="ja">変換前テキスト（ヒット部分を強調）</span>
-        <span data-i18n="en">Original text (highlighted hits)</span>
-      </p>
-      <div id="inputHighlight" class="result-text" aria-live="polite"></div>
-
-      <p class="field-label sub">
-        <span data-i18n="ja">変換後テキスト</span>
-        <span data-i18n="en">Converted text</span>
-      </p>
-      <div id="outputText" class="result-text" aria-live="polite"></div>
-
-      <div class="action-row result-actions">
-        <button id="copyBtn" class="btn-secondary">
-          <span data-i18n="ja">コピー</span>
-          <span data-i18n="en">Copy</span>
-        </button>
-      </div>
+      <h2 class="section-title"><span data-i18n="ja">変換結果</span><span data-i18n="en">Result</span></h2>
+      <p class="field-label sub"><span data-i18n="ja">変換前テキスト（ヒット部分を強調）</span><span data-i18n="en">Original text (highlighted hits)</span></p><div id="inputHighlight" class="result-text"></div>
+      <p class="field-label sub"><span data-i18n="ja">変換後テキスト</span><span data-i18n="en">Converted text</span></p><div id="outputText" class="result-text"></div>
+      <div class="action-row result-actions"><button id="copyTextBtn" class="btn-secondary" type="button"><span data-i18n="ja">変換後テキストをコピー</span><span data-i18n="en">Copy converted text</span></button><button id="copyTableBtn" class="btn-ghost" type="button"><span data-i18n="ja">置換一覧をコピー</span><span data-i18n="en">Copy replacement list</span></button></div>
+      <div class="replacement-block" id="replacementBlock" hidden><h3 class="replacement-title"><span data-i18n="ja">置換一覧</span><span data-i18n="en">Replacement list</span></h3><p class="replacement-desc"><span data-i18n="ja">変換元 → 変換先の置換と回数を表示します。</span><span data-i18n="en">Shows each replacement with its count.</span></p><div class="replacement-table-wrap"><table class="replacement-table"><thead><tr><th><span data-i18n="ja">変換元</span><span data-i18n="en">From</span></th><th><span data-i18n="ja">変換先</span><span data-i18n="en">To</span></th><th><span data-i18n="ja">回数</span><span data-i18n="en">Count</span></th></tr></thead><tbody id="replacementTableBody"></tbody></table></div><p id="replacementEmpty" class="replacement-empty"><span data-i18n="ja">置換はありません。</span><span data-i18n="en">No replacements found.</span></p></div>
     </section>
-
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
-
-    <div class="nw-donate">
-      <p data-i18n="ja">開発の継続のため、OFUSE / Ko-fi でご支援いただけると嬉しいです。</p>
-      <p data-i18n="en">If this tool helps, please consider supporting via OFUSE / Ko-fi.</p>
-
-      <div class="nw-donate-links">
-        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-      </div>
-    </div>
-
-    <div class="nw-links">
-      <a href="/tools/rename-wizard/">Rename Wizard</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a> /
-      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
-    </div>
+    <section class="faq-section"><h2><span data-i18n="ja">よくある質問</span><span data-i18n="en">FAQ</span></h2><details><summary><span data-i18n="ja">すべて正確に変換できますか？</span><span data-i18n="en">Can it convert everything accurately?</span></summary><p data-i18n="ja">いいえ。辞書ベースの補助変換です。重要な用途では原本・公式情報をご確認ください。</p><p data-i18n="en">No. This is a dictionary-based helper. Always check original or official sources for important use.</p></details><details><summary><span data-i18n="ja">入力本文は送信されますか？</span><span data-i18n="en">Is my input uploaded?</span></summary><p data-i18n="ja">変換処理はブラウザ内で行われ、入力本文はサーバーへ送信しません。</p><p data-i18n="en">Conversion runs in your browser and the input text is not uploaded.</p></details></section>
+    <div class="ad-slot ad-bottom"><span data-i18n="ja">広告枠</span><span data-i18n="en">Ad slot (preparing)</span></div>
+    <div class="nw-donate"><p data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p data-i18n="en">If this tool helps, please consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+    <div class="nw-links"><a href="/tools/old-kanji-reference/">Old Kanji Reference</a> / <a href="/tools/rename-wizard/">Rename Wizard</a> / <a href="/tools/log-formatter/">LogFormatter</a></div>
   </main>
-
-  <footer class="nw-footer">
-    <p>© 2025 NicheWorks</p>
-    <p>
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
-        nicheworks.pages.dev
-      </a>
-    </p>
-  </footer>
-
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line"><span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報・変換結果の正確性は保証しません。必ず原本・公式情報をご確認ください。</span><span data-i18n="en">This site may include ads. Information and conversion results are not guaranteed. Always check original or official sources.</span></p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
   <script src="./app.js"></script>
 </body>
 </html>

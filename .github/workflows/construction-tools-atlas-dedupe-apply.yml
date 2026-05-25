@@ -1,0 +1,50 @@
+name: Construction Tools Atlas apply dedupe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/construction-tools-atlas-dedupe-apply.yml'
+      - 'tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-dedupe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Apply exact duplicate removal
+        run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --write-report
+
+      - name: Audit after dedupe
+        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --write-report
+
+      - name: Upload duplicate reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: construction-tools-atlas-dedupe-reports
+          path: tools/construction-tools-atlas/reports/
+          if-no-files-found: ignore
+
+      - name: Commit deduped data
+        run: |
+          if git diff --quiet; then
+            echo "No duplicate data changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/construction-tools-atlas/data tools/construction-tools-atlas/reports
+          git commit -m "Deduplicate Construction Tools Atlas data"
+          git push

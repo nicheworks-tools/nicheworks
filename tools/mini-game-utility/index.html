@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>ミニゲームユーティリティ｜Mini Game Utility | NicheWorks</title>
+  <meta name="description" content="ミニゲーム向けのタイマーとスコア記録をまとめた無料ユーティリティ。履歴保存とCSV出力にも対応。">
+  <link rel="canonical" href="https://nicheworks.app/tools/mini-game-utility/">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ミニゲームユーティリティ｜Mini Game Utility | NicheWorks">
+  <meta property="og:description" content="ミニゲーム向けのタイマーとスコア記録をまとめた無料ユーティリティ。履歴保存とCSV出力にも対応。">
+  <meta property="og:url" content="https://nicheworks.app/tools/mini-game-utility/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token stable content) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mini Game Utility",
+    "url": "https://nicheworks.app/tools/mini-game-utility/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Timer and score logger for mini games.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+  <meta name="robots" content="index,follow">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta name="twitter:title" content="ミニゲームユーティリティ｜Mini Game Utility | NicheWorks">
+  <meta name="twitter:description" content="ミニゲーム向けのタイマーとスコア記録をまとめた無料ユーティリティ。履歴保存とCSV出力にも対応。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title" data-i18n="ja">ミニゲームユーティリティ</h1>
+    <h1 class="nw-title" data-i18n="en" style="display:none;">Mini Game Utility</h1>
+
+    <p class="nw-lead" data-i18n="ja">タイマーとスコア履歴をまとめて管理。</p>
+    <p class="nw-lead" data-i18n="en" style="display:none;">Manage timer and score history in one place.</p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <!-- Top Ad (required) -->
+    <div class="ad-slot ad-top">広告枠</div>
+
+    <!-- Privacy note (recommended for text tools) -->
+    <div class="nw-note" data-i18n="ja">※ブラウザ内だけで動作します。入力内容は外部送信しません。</div>
+    <div class="nw-note" data-i18n="en" style="display:none;">Runs locally in your browser. Your input is not sent anywhere.</div>
+
+    <!-- Tool UI -->
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title" data-i18n="ja">タイマー</h2>
+        <h2 class="card-title" data-i18n="en" style="display:none;">Timer</h2>
+      </div>
+
+      <div class="card-bd">
+        <div id="toolRoot">
+          <div class="field">
+            <label class="label" data-i18n="ja">タイマー表示</label>
+            <label class="label" data-i18n="en" style="display:none;">Timer display</label>
+            <div class="out" id="timerDisplay">00:00</div>
+          </div>
+          <div class="row">
+            <button class="btn primary" id="btnStart" type="button">
+              <span data-i18n="ja">スタート</span>
+              <span data-i18n="en" style="display:none;">Start</span>
+            </button>
+            <button class="btn" id="btnPause" type="button">
+              <span data-i18n="ja">一時停止</span>
+              <span data-i18n="en" style="display:none;">Pause</span>
+            </button>
+            <button class="btn" id="btnReset" type="button">
+              <span data-i18n="ja">リセット</span>
+              <span data-i18n="en" style="display:none;">Reset</span>
+            </button>
+          </div>
+
+          <hr class="hr" />
+
+          <div class="field">
+            <label class="label" data-i18n="ja">スコア記録</label>
+            <label class="label" data-i18n="en" style="display:none;">Score entry</label>
+            <input class="input" id="playerName" type="text" stable content="Player / チーム名" />
+            <input class="input" id="scoreValue" type="number" stable content="Score" />
+          </div>
+
+          <div class="row">
+            <button class="btn primary" id="btnAdd" type="button">
+              <span data-i18n="ja">記録する</span>
+              <span data-i18n="en" style="display:none;">Add score</span>
+            </button>
+            <button class="btn" id="btnExport" type="button">Export CSV</button>
+            <button class="btn danger" id="btnClear" type="button">
+              <span data-i18n="ja">履歴クリア</span>
+              <span data-i18n="en" style="display:none;">Clear history</span>
+            </button>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja">履歴</label>
+            <label class="label" data-i18n="en" style="display:none;">History</label>
+            <pre class="out" id="history">-</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Ad (recommended) -->
+    <div class="ad-slot ad-bottom">広告枠</div>
+
+    <!-- Donate (1–2 placements max) -->
+    <div class="nw-donate">
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <!-- Small "Other tools" block (3–4 links max; not a global nav) -->
+    <section class="nw-other">
+      <h3 class="nw-other-title" data-i18n="ja">他のツール</h3>
+      <h3 class="nw-other-title" data-i18n="en" style="display:none;">Other tools</h3>
+      <div class="nw-other-links">
+        <a href="/tools/log-formatter/">LogFormatter</a>
+        <a href="/tools/rename-wizard/">Rename Wizard</a>
+        <a href="/tools/manual-finder/">ManualFinder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

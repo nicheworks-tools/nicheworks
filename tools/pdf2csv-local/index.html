@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF表抽出・CSV/Excel保存｜PDF2CSV Local | NicheWorks</title>
+  <meta name="description" content="テキスト情報を含むPDFの明細表・請求書表をブラウザ内で抽出し、CSVまたはExcel形式で保存できる無料ツールです。画像スキャンPDFのOCRには対応していません。">
+  <link rel="canonical" href="https://nicheworks.app/tools/pdf2csv-local/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="PDF表抽出・CSV/Excel保存｜PDF2CSV Local | NicheWorks">
+  <meta property="og:description" content="テキスト情報を含むPDFの明細表・請求書表をブラウザ内で抽出し、CSVまたはExcel形式で保存できる無料ツールです。画像スキャンPDFのOCRには対応していません。">
+  <meta property="og:url" content="https://nicheworks.app/tools/pdf2csv-local/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF表抽出・CSV/Excel保存｜PDF2CSV Local | NicheWorks">
+  <meta name="twitter:description" content="テキスト情報を含むPDFの明細表・請求書表をブラウザ内で抽出し、CSVまたはExcel形式で保存できる無料ツールです。画像スキャンPDFのOCRには対応していません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="robots" content="index,follow">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense（仕様：削除禁止） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF2CSV Local",
+    "url": "https://nicheworks.app/tools/pdf2csv-local/",
+    "applicationCategory": "UtilityApplication",
+    "description": "テキスト情報を含むPDFの明細表・請求書表をブラウザ内で抽出し、CSVまたはExcel形式で保存できる無料ツールです。画像スキャンPDFのOCRには対応していません。",
+    "operatingSystem": "All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "画像スキャンPDFをCSVにできますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "いいえ。OCRには対応していません。文字を選択できるPDFが対象です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "PDFはサーバーに送信されますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "PDF内容は外部送信されません。ブラウザ内で処理します。ただしPDF解析ライブラリの読み込みに外部CDNを使用する場合があります。" }
+      },
+      {
+        "@type": "Question",
+        "name": "抽出結果は正確ですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "PDFのレイアウトに依存します。列ズレ・行ズレ・空欄・重複が起きる場合があるため、必ずプレビューを確認してください。" }
+      },
+      {
+        "@type": "Question",
+        "name": "Excel形式で保存できますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "はい。抽出結果をXLSX形式で保存できます。ただしPDFの見た目を完全再現するものではありません。" }
+      },
+      {
+        "@type": "Question",
+        "name": "CSVが文字化けします。",
+        "acceptedAnswer": { "@type": "Answer", "text": "Excelで開く場合はCSV BOMをONにしてください。必要に応じてカンマ区切りとタブ区切りを切り替えてください。" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="nw-header-inner">
+      <h1 class="nw-title" data-i18n-key="index.title">PDF2CSV Local</h1>
+      <p class="nw-subtitle" data-i18n-key="index.subtitle">PDF内のテキスト表をCSV/Excel向けに抽出するローカルツールです。</p>
+
+      <div class="nw-lang-switch" aria-label="Language switch">
+        <button type="button" data-lang="ja" class="active">JP</button> /
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top" data-i18n-key="common.adSlot">広告枠</div>
+
+    <section class="intro-card" aria-label="PDF2CSV Local overview">
+      <div data-p2c-lang="ja">
+        <p class="intro-lead">文字を選択できるPDF内の表を抽出し、CSVまたはExcel形式で保存します。銀行明細・請求書・一覧表の整理向けです。</p>
+        <p class="usage-link">詳しい説明: <a href="./usage.html">使い方</a> / <a href="./howto.html">変換のコツ</a> / <a href="./faq.html">FAQ</a></p>
+      </div>
+      <div data-p2c-lang="en">
+        <p class="intro-lead">Extract tables from text-based PDFs and save the result as CSV or Excel. This is for statements, invoices, and tabular lists.</p>
+        <p class="usage-link">Docs: <a href="./usage.html">Usage</a> / <a href="./howto.html">How-to</a> / <a href="./faq.html">FAQ</a></p>
+      </div>
+    </section>
+
+    <section class="card notice-card" aria-label="Supported PDFs">
+      <div data-p2c-lang="ja">
+        <h2 class="card-title">対応PDFについて</h2>
+        <div class="compat-grid">
+          <div>
+            <h3>向いているPDF</h3>
+            <ul>
+              <li>文字を選択できるPDF</li>
+              <li>銀行明細、請求書、一覧表</li>
+              <li>行と列がある程度そろっている表</li>
+            </ul>
+          </div>
+          <div>
+            <h3>向いていないPDF</h3>
+            <ul>
+              <li>画像スキャンPDF・写真PDF</li>
+              <li>OCRが必要なPDF</li>
+              <li>斜め、複数段、装飾が多い表</li>
+              <li>パスワード付きPDF・暗号化PDF</li>
+            </ul>
+          </div>
+        </div>
+        <p class="notice-strong">このツールはOCRを行いません。文字を選択できないPDFは抽出できません。</p>
+        <p class="form-hint">PDF内容は外部送信されません。ただし、PDF解析ライブラリの読み込みに外部CDNを使用する場合があります。</p>
+      </div>
+      <div data-p2c-lang="en">
+        <h2 class="card-title">Supported PDFs</h2>
+        <div class="compat-grid">
+          <div>
+            <h3>Good fit</h3>
+            <ul>
+              <li>PDFs where text can be selected</li>
+              <li>Bank statements, invoices, and lists</li>
+              <li>Tables with reasonably aligned rows and columns</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Not a good fit</h3>
+            <ul>
+              <li>Scanned image PDFs or photo PDFs</li>
+              <li>PDFs that require OCR</li>
+              <li>Rotated, multi-column, or heavily decorated tables</li>
+              <li>Password-protected or encrypted PDFs</li>
+            </ul>
+          </div>
+        </div>
+        <p class="notice-strong">This tool does not run OCR. PDFs without selectable text cannot be extracted.</p>
+        <p class="form-hint">PDF contents are not uploaded. The PDF parsing library may be loaded from an external CDN.</p>
+      </div>
+    </section>
+
+    <section class="card steps-card" aria-label="How to use">
+      <div data-p2c-lang="ja">
+        <h2 class="card-title">使い方は3ステップ</h2>
+        <ol class="steps-grid">
+          <li><strong>1. PDFを読み込む</strong><span>文字を選択できるPDFを追加します。</span></li>
+          <li><strong>2. Auto / Manualで抽出</strong><span>Autoで崩れる場合はManualで表エリアだけを囲みます。</span></li>
+          <li><strong>3. プレビュー確認後に保存</strong><span>列ズレ・行ズレを確認してCSV / Excelで保存します。</span></li>
+        </ol>
+      </div>
+      <div data-p2c-lang="en">
+        <h2 class="card-title">Use it in 3 steps</h2>
+        <ol class="steps-grid">
+          <li><strong>1. Load a PDF</strong><span>Add a PDF with selectable text.</span></li>
+          <li><strong>2. Extract with Auto / Manual</strong><span>If Auto breaks columns, use Manual and select only the table area.</span></li>
+          <li><strong>3. Review and save</strong><span>Check column/row alignment, then save as CSV or Excel.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card" aria-label="PDF input">
+      <h2 class="card-title" data-i18n-key="index.section.input">PDF入力</h2>
+
+      <div class="upload-grid" id="toolRoot">
+        <div class="upload-panel">
+          <label class="form-label" data-i18n-key="index.label.drag">PDFをドラッグ＆ドロップ</label>
+          <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="PDFをドロップまたはクリックして選択" data-i18n-key="index.drop.aria" data-i18n-attr="aria-label">
+            <input type="file" id="fileInput" accept=".pdf,application/pdf" hidden />
+            <p class="drop-zone-title" data-i18n-key="index.drop.title">ここにPDFをドロップ</p>
+            <p class="drop-zone-sub" data-i18n-key="index.drop.sub">またはクリックして選択</p>
+          </div>
+          <p class="form-hint" data-i18n-key="index.drop.hint">対応: テキストPDF / 30MBまで</p>
+        </div>
+
+        <div class="status-panel">
+          <label class="form-label" data-i18n-key="index.label.status">ステータス</label>
+          <dl class="status-list">
+            <div>
+              <dt data-i18n-key="index.status.filename">ファイル名</dt>
+              <dd id="statusName">-</dd>
+            </div>
+            <div>
+              <dt data-i18n-key="index.status.pages">ページ数</dt>
+              <dd id="statusPages">-</dd>
+            </div>
+            <div>
+              <dt data-i18n-key="index.status.size">サイズ</dt>
+              <dd id="statusSize">-</dd>
+            </div>
+          </dl>
+          <div class="error-box" id="errorBox" role="alert" hidden>
+            <p class="error-what" id="errorWhat"></p>
+            <p class="error-how" id="errorHow"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label class="form-label" data-i18n-key="index.label.range">ページ範囲</label>
+          <input type="text" id="pageRange" class="text-input" stable content="例: 1-3,5,7-9" />
+          <p class="form-hint" data-i18n-key="index.range.hint">空欄なら全ページ</p>
+        </div>
+        <div>
+          <label class="form-label" data-i18n-key="index.label.output">出力形式</label>
+          <div class="form-actions">
+            <button type="button" class="primary" id="downloadCsv" data-i18n-key="index.output.csv">CSV</button>
+            <button type="button" class="secondary" id="downloadXlsx" data-i18n-key="index.output.excel">Excel</button>
+          </div>
+          <p class="form-hint" data-p2c-output-help="ja">CSVは会計ソフトや表計算向けです。Excelで開く場合はBOM ONを推奨します。</p>
+          <p class="form-hint" data-p2c-output-help="en">CSV is useful for spreadsheets and accounting tools. Use BOM when opening CSV in Excel.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Extraction settings">
+      <h2 class="card-title" data-i18n-key="index.section.settings">抽出設定</h2>
+
+      <div class="form-row">
+        <div>
+          <label class="form-label" data-i18n-key="index.mode.label">モード</label>
+          <div class="segmented" role="radiogroup" aria-label="Extraction mode">
+            <label class="segmented-item">
+              <input type="radio" name="extractMode" value="auto" checked />
+              <span data-i18n-key="index.mode.auto">Auto</span>
+            </label>
+            <label class="segmented-item">
+              <input type="radio" name="extractMode" value="manual" />
+              <span data-i18n-key="index.mode.manual">Manual</span>
+            </label>
+          </div>
+          <p class="form-hint" id="modeNotice" data-i18n-key="index.mode.notice">Autoで列が崩れる場合は、Manualで表エリアだけを選択して再抽出してください。</p>
+          <div class="manual-controls" id="manualControls" hidden>
+            <p class="form-hint" data-i18n-key="index.manual.hint">プレビュー上で表の範囲だけをドラッグ選択し、Re-extractで再抽出してください。</p>
+            <div class="manual-actions">
+              <button type="button" class="secondary" id="resetSelection" data-i18n-key="index.manual.reset">Reset selection</button>
+              <button type="button" class="primary" id="reextractButton" disabled data-i18n-key="index.manual.reextract">Re-extract</button>
+            </div>
+            <p class="manual-coords" id="selectionCoords">Selection: -</p>
+            <p class="form-hint warning" id="manualWarning" data-i18n-key="index.manual.warning" hidden>選択範囲がありません。</p>
+          </div>
+        </div>
+        <div>
+          <label class="form-label" for="rowTolerance" data-i18n-key="index.settings.rowTolerance">行の近接判定 (px)</label>
+          <input type="number" id="rowTolerance" class="text-input" min="0" step="1" value="4" />
+        </div>
+        <div>
+          <label class="form-label" for="colGapThreshold" data-i18n-key="index.settings.colGap">列のギャップ判定 (px)</label>
+          <input type="number" id="colGapThreshold" class="text-input" min="0" step="1" value="14" />
+        </div>
+      </div>
+
+      <label class="toggle">
+        <input type="checkbox" id="headerToggle" checked />
+        <span class="toggle-label" data-i18n-key="index.settings.header">先頭行をヘッダー扱い</span>
+      </label>
+
+      <div class="form-actions align-center">
+        <button type="button" class="primary" id="extractButton" disabled data-i18n-key="index.settings.extract">Extract</button>
+        <button type="button" class="ghost" id="resetButton" data-i18n-key="index.action.reset">Reset</button>
+        <p class="form-hint inline" data-i18n-key="index.settings.extractNote">⏳ 解析は数秒かかる場合があります。</p>
+      </div>
+
+      <div class="progress-wrap" id="progressBar" hidden>
+        <div class="progress-track">
+          <div class="progress-value"></div>
+        </div>
+        <p class="progress-text" id="progressText" data-i18n-key="index.progress.text">解析中...</p>
+      </div>
+
+      <div class="warning-box" id="weakWarning" role="alert" hidden>
+        <p data-i18n-key="index.settings.weakWarning">抽出結果が少ないため、画像スキャンPDFの可能性があります。OCRには対応していません。文字を選択できるPDFか確認し、Manualモードも試してください。</p>
+      </div>
+
+      <p class="result-summary" id="resultSummary" data-i18n-key="index.settings.resultSummary">抽出結果: -</p>
+    </section>
+
+    <section class="card" aria-label="Page preview">
+      <h2 class="card-title" data-i18n-key="index.section.preview">ページプレビュー</h2>
+      <div class="preview-area">
+        <canvas id="pdfPreview" aria-label="PDF preview"></canvas>
+        <div class="selection-rect" id="selectionRect" hidden></div>
+        <p class="preview-stable content" id="previewstable content" data-i18n-key="index.preview.stable content">PDFを読み込むとプレビューが表示されます。</p>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Result preview">
+      <h2 class="card-title" data-i18n-key="index.section.result">抽出結果プレビュー</h2>
+      <div class="preview-controls">
+        <label class="toggle">
+          <input type="checkbox" id="removeEmptyRows" />
+          <span class="toggle-label" data-i18n-key="index.preview.removeRows">空行を削除</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="removeEmptyCols" />
+          <span class="toggle-label" data-i18n-key="index.preview.removeCols">空列を削除</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="csvBomToggle" checked />
+          <span class="toggle-label" data-i18n-key="index.preview.bom">CSV BOMを付与</span>
+        </label>
+        <div class="delimiter-field">
+          <span class="form-label small" data-i18n-key="index.preview.delimiter">CSV区切り</span>
+          <div class="segmented" role="radiogroup" aria-label="CSV delimiter">
+            <label class="segmented-item">
+              <input type="radio" name="delimiter" value="comma" checked />
+              <span data-i18n-key="index.preview.delimiter.comma">カンマ</span>
+            </label>
+            <label class="segmented-item">
+              <input type="radio" name="delimiter" value="tab" />
+              <span data-i18n-key="index.preview.delimiter.tab">タブ</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="result-caution" data-p2c-lang="ja">
+        抽出結果は必ず確認してください。PDFのレイアウトによって、列ズレ・行ズレ・空欄・重複が起きる場合があります。Excel出力は抽出結果をXLSX形式で保存するもので、PDFの見た目を完全再現するものではありません。
+      </div>
+      <div class="result-caution" data-p2c-lang="en">
+        Always review the extracted result. PDF layout can cause shifted columns, shifted rows, blanks, or duplicates. Excel export saves the extracted table as XLSX; it does not recreate the original PDF layout.
+      </div>
+      <p class="form-hint" data-i18n-key="index.preview.hint">先頭50行までを表示します。</p>
+      <div class="table-scroll">
+        <table class="preview-table" id="previewTable" hidden>
+          <thead id="previewHead"></thead>
+          <tbody id="previewBody"></tbody>
+        </table>
+        <p class="preview-empty" id="previewEmpty" data-i18n-key="index.preview.empty">抽出するとここに結果プレビューが表示されます。</p>
+      </div>
+    </section>
+
+    <section class="card mini-faq" aria-label="FAQ">
+      <div data-p2c-lang="ja">
+        <h2 class="card-title">よくある質問</h2>
+        <dl class="faq-list">
+          <dt>画像スキャンPDFをCSVにできますか？</dt>
+          <dd>いいえ。OCRには対応していません。文字を選択できるPDFが対象です。</dd>
+          <dt>PDFはサーバーに送信されますか？</dt>
+          <dd>PDF内容は外部送信されません。ブラウザ内で処理します。ただしPDF解析ライブラリの読み込みに外部CDNを使用する場合があります。</dd>
+          <dt>抽出結果は正確ですか？</dt>
+          <dd>PDFのレイアウトに依存します。必ずプレビューを確認してください。</dd>
+          <dt>Excel形式で保存できますか？</dt>
+          <dd>はい。抽出結果をXLSX形式で保存できます。ただしPDFの見た目を完全再現するものではありません。</dd>
+          <dt>CSVが文字化けします。</dt>
+          <dd>Excelで開く場合はCSV BOMをONにしてください。</dd>
+        </dl>
+      </div>
+      <div data-p2c-lang="en">
+        <h2 class="card-title">FAQ</h2>
+        <dl class="faq-list">
+          <dt>Can this convert scanned image PDFs to CSV?</dt>
+          <dd>No. OCR is not supported. Use PDFs with selectable text.</dd>
+          <dt>Are PDFs uploaded to a server?</dt>
+          <dd>No PDF contents are uploaded. Processing runs in your browser. The PDF parsing library may be loaded from an external CDN.</dd>
+          <dt>Is extraction always accurate?</dt>
+          <dd>No. It depends on the PDF layout. Always review the preview.</dd>
+          <dt>Can I save as Excel?</dt>
+          <dd>Yes. It saves the extracted table as XLSX, but it does not recreate the original PDF layout.</dd>
+          <dt>The CSV is garbled in Excel.</dt>
+          <dd>Turn on CSV BOM when opening the file in Excel.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="nw-donate" aria-label="Support">
+      <p class="nw-donate-text" data-i18n-key="index.note.donate">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <div class="nw-links" aria-label="Internal links">
+      <span data-i18n-key="index.related.label">関連ツール:</span>
+      <a href="/tools/pdf-page-tools-mini/">PDF Page Tools Mini</a>
+      <a href="/tools/csv-tidy/">CSV Tidy</a>
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
+      <a href="/tools/json-repair/">JSON Repair</a>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line" data-i18n-key="common.footer.disclaimer">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.2.67/build/pdf.min.js" crossorigin="anonymous"></script>
+  <script src="./vendor/xlsx.full.min.js"></script>
+  <script src="./app.js"></script>
+  <script src="./copy-fix.js"></script>
+</body>
+</html>

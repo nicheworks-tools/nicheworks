@@ -1,0 +1,33 @@
+{
+  "steps": [
+    {
+      "action": "fill",
+      "selector": "#contractText",
+      "value": "損害賠償 免責 解除 違約金 知的財産 秘密保持 準拠法 管轄"
+    },
+    {
+      "action": "click",
+      "selector": "#analyzeBtn"
+    },
+    {
+      "assert": "notEmpty",
+      "selector": "#totalHits"
+    },
+    {
+      "assert": "notEmpty",
+      "selector": "#categoryList"
+    },
+    {
+      "assertAny": [
+        {
+          "selector": "#highlightPreview",
+          "contains": "<mark"
+        },
+        {
+          "selector": "#highlightPreview",
+          "contains": "損害賠償"
+        }
+      ]
+    }
+  ]
+}

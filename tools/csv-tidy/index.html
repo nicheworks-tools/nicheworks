@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSV列入れ替え・整形｜CSV Tidy | NicheWorks</title>
+  <meta name="description" content="会計・EC・名簿などのCSVを、列順変更・列名変更・不要列削除・空白トリム・全角半角変換・UTF-8 BOM出力で一括整形できる無料ツール。外部送信なし、ブラウザ完結。">
+  <link rel="canonical" href="https://nicheworks.app/tools/csv-tidy/">
+
+  <meta property="og:title" content="CSV列入れ替え・整形｜CSV Tidy | NicheWorks">
+  <meta property="og:description" content="会計・EC・名簿などのCSVを、列順変更・列名変更・不要列削除・空白トリム・全角半角変換・UTF-8 BOM出力で一括整形できる無料ツール。外部送信なし、ブラウザ完結。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.app/tools/csv-tidy/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CSV Tidy",
+    "url": "https://nicheworks.app/tools/csv-tidy/",
+    "applicationCategory": "UtilityApplication",
+    "description": "CSVの列順変更、列名変更、不要列削除、空白トリム、全角半角変換、UTF-8 BOM出力を外部送信なしで行えるブラウザ完結ツール。",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <script type="application/ld+json" id="csvtidy-faq-jsonld">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "CSVファイルはサーバーに送信されますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "いいえ。CSVの読み込み、整形、保存はブラウザ内で処理されます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "Excelで文字化けしないようにできますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "UTF-8 BOM ONで出力すると、Excelで開きやすくなる場合があります。" }
+      },
+      {
+        "@type": "Question",
+        "name": "列を削除しても元ファイルは変わりますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "いいえ。元ファイルは変更されません。整形後のCSVを別ファイルとして保存します。" }
+      },
+      {
+        "@type": "Question",
+        "name": "Shift_JISに対応していますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "読み込み選択はありますが、ブラウザ環境によって対応が異なる場合があります。出力はUTF-8を基本とします。" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- AdSense (必須・変更禁止) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- GA4 (必須・変更禁止) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSV列入れ替え・整形｜CSV Tidy | NicheWorks">
+  <meta name="twitter:description" content="会計・EC・名簿などのCSVを、列順変更・列名変更・不要列削除・空白トリム・全角半角変換・UTF-8 BOM出力で一括整形できる無料ツール。外部送信なし、ブラウザ完結。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+</head>
+<body>
+  <header class="nw-header">
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+
+    <h1 class="nw-title">
+      <span data-i18n="ja">CSV列入れ替え・整形（CSV Tidy）</span>
+      <span data-i18n="en">CSV Tidy (Reorder & Clean)</span>
+    </h1>
+    <p class="nw-subtitle">
+      <span data-i18n="ja">列順・列名・不要列・空白・全角半角・UTF-8出力をまとめて整えるブラウザ完結ツール</span>
+      <span data-i18n="en">Clean CSV order, names, dropped columns, spaces, zen/han text, and UTF-8 output in your browser.</span>
+    </p>
+  </header>
+
+  <main class="nw-main csvtidy">
+    <div class="ad-slot ad-top">広告枠</div>
+
+    <section class="csvtidy-brief">
+      <p data-i18n="ja">CSVを読み込んで、列の並べ替え・削除・ヘッダ名変更・整形を行い、UTF-8で保存できます。</p>
+      <p data-i18n="en">Load a CSV, reorder/drop/rename columns, clean values, then download as UTF-8.</p>
+      <p class="csvtidy-privacy" data-i18n="ja">※ファイルは端末内で処理され、外部送信されません。</p>
+      <p class="csvtidy-privacy" data-i18n="en">No server upload. Everything runs locally in your browser.</p>
+    </section>
+
+    <section class="csvtidy-steps" aria-label="CSV Tidy steps">
+      <div class="csvtidy-step">
+        <strong data-i18n="ja">Step 1：CSVを読み込む</strong>
+        <strong data-i18n="en">Step 1: Load CSV</strong>
+        <span data-i18n="ja">ファイル選択、またはサンプルで試します。</span>
+        <span data-i18n="en">Choose a file or try a built-in sample.</span>
+      </div>
+      <div class="csvtidy-step">
+        <strong data-i18n="ja">Step 2：列と整形ルールを調整する</strong>
+        <strong data-i18n="en">Step 2: Adjust columns and rules</strong>
+        <span data-i18n="ja">列順、列名、除外、空白処理などを確認します。</span>
+        <span data-i18n="en">Review order, names, exclusions, and spacing rules.</span>
+      </div>
+      <div class="csvtidy-step">
+        <strong data-i18n="ja">Step 3：プレビューして保存する</strong>
+        <strong data-i18n="en">Step 3: Preview and save</strong>
+        <span data-i18n="ja">出力前サマリーを確認して保存します。</span>
+        <span data-i18n="en">Check the output summary before downloading.</span>
+      </div>
+    </section>
+
+    <section class="csvtidy-workbench">
+      <section class="panel panel-left" aria-labelledby="sec-input">
+        <h2 id="sec-input" class="panel-title"><span data-i18n="ja">Step 1：CSVを読み込む</span><span data-i18n="en">Step 1: Load CSV</span></h2>
+
+        <div class="card">
+          <div id="emptyGuide" class="empty">
+            <div class="empty-title"><span data-i18n="ja">まずCSVを読み込んでください</span><span data-i18n="en">Start by loading a CSV</span></div>
+            <div class="empty-desc"><span data-i18n="ja">ファイルを選ぶか、下のサンプルでそのまま試せます。</span><span data-i18n="en">Choose a file, or use a sample below.</span></div>
+          </div>
+
+          <label class="field">
+            <span class="label"><span data-i18n="ja">CSVファイル</span><span data-i18n="en">CSV file</span></span>
+            <input id="fileInput" type="file" accept=".csv,text/csv,text/plain" />
+          </label>
+
+          <section class="csvtidy-samples" aria-label="CSV samples">
+            <h3><span data-i18n="ja">サンプルCSVで試す</span><span data-i18n="en">Try sample CSV</span></h3>
+            <p data-i18n="ja">会計・EC・名簿のサンプルを画面に読み込んで、そのまま列編集と出力確認ができます。</p>
+            <p data-i18n="en">Load accounting, e-commerce, or contact-list samples directly into the tool.</p>
+            <div class="csvtidy-sample-buttons">
+              <button type="button" id="sampleAccounting" data-csv-sample="accounting"><span data-i18n="ja">会計サンプルを読み込む</span><span data-i18n="en">Load accounting sample</span></button>
+              <button type="button" id="sampleEc" data-csv-sample="ec"><span data-i18n="ja">ECサンプルを読み込む</span><span data-i18n="en">Load e-commerce sample</span></button>
+              <button type="button" id="sampleContacts" data-csv-sample="contacts"><span data-i18n="ja">名簿サンプルを読み込む</span><span data-i18n="en">Load contact-list sample</span></button>
+              <button type="button" id="sampleBtn"><span data-i18n="ja">汎用サンプルをダウンロード</span><span data-i18n="en">Download generic sample</span></button>
+            </div>
+          </section>
+
+          <div class="grid2">
+            <label class="field">
+              <span class="label"><span data-i18n="ja">入力文字コード</span><span data-i18n="en">Input encoding</span></span>
+              <select id="inEncoding">
+                <option value="auto" data-label-ja="自動判定" data-label-en="Auto">自動判定</option>
+                <option value="utf-8">UTF-8</option>
+                <option value="shift_jis">Shift_JIS</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="label"><span data-i18n="ja">入力区切り文字</span><span data-i18n="en">Input delimiter</span></span>
+              <select id="delimiter">
+                <option value="auto" data-label-ja="自動判定" data-label-en="Auto">自動判定</option>
+                <option value=",">,</option>
+                <option value="tab">TAB</option>
+                <option value=";">;</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="label"><span data-i18n="ja">ヘッダー行</span><span data-i18n="en">Header row</span></span>
+              <div class="seg">
+                <button type="button" class="seg-btn" id="hasHeaderOn" data-value="on">ON</button>
+                <button type="button" class="seg-btn" id="hasHeaderOff" data-value="off">OFF</button>
+              </div>
+            </label>
+
+            <label class="field">
+              <span class="label"><span data-i18n="ja">プレビュー行数</span><span data-i18n="en">Preview rows</span></span>
+              <select id="previewRows">
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="hint" id="loadHint"></div>
+
+          <details id="helpDetails" class="help">
+            <summary><span data-i18n="ja">読み込み時の注意</span><span data-i18n="en">Loading notes</span></summary>
+            <ul>
+              <li data-i18n="ja">文字化けする場合は、UTF-8 / Shift_JIS を切り替えて再読み込みしてください。</li>
+              <li data-i18n="en">If text looks garbled, reload with UTF-8 or Shift_JIS.</li>
+              <li data-i18n="ja">列がズレる場合は、入力区切り文字を切り替えてください。</li>
+              <li data-i18n="en">If columns shift, try a different input delimiter.</li>
+            </ul>
+          </details>
+        </div>
+
+        <h2 class="panel-title"><span data-i18n="ja">Step 2：整形ルール</span><span data-i18n="en">Step 2: Cleaning rules</span></h2>
+        <div class="card">
+          <label class="check"><input id="optTrim" type="checkbox" checked /><span><span data-i18n="ja">空白トリム（前後）</span><span data-i18n="en">Trim leading/trailing spaces</span></span></label>
+          <label class="check"><input id="optNormSpaces" type="checkbox" /><span><span data-i18n="ja">連続スペース正規化</span><span data-i18n="en">Normalize repeated spaces</span></span></label>
+          <label class="check"><input id="optZenHan" type="checkbox" checked /><span><span data-i18n="ja">全角/半角変換</span><span data-i18n="en">Zen/Han conversion</span></span></label>
+
+          <div class="grid2">
+            <label class="field">
+              <span class="label"><span data-i18n="ja">変換方向</span><span data-i18n="en">Direction</span></span>
+              <select id="zenHanDir">
+                <option value="zen2han" data-label-ja="全角 → 半角" data-label-en="Zen → Han">全角 → 半角</option>
+                <option value="han2zen" data-label-ja="半角 → 全角" data-label-en="Han → Zen">半角 → 全角</option>
+              </select>
+            </label>
+            <div class="field">
+              <span class="label"><span data-i18n="ja">対象</span><span data-i18n="en">Target</span></span>
+              <label class="check inline"><input id="zenHanHeader" type="checkbox" checked /><span><span data-i18n="ja">ヘッダー</span><span data-i18n="en">Header</span></span></label>
+              <label class="check inline"><input id="zenHanData" type="checkbox" checked /><span><span data-i18n="ja">データ</span><span data-i18n="en">Data</span></span></label>
+            </div>
+          </div>
+
+          <div class="grid2">
+            <label class="field">
+              <span class="label"><span data-i18n="ja">変換の適用範囲</span><span data-i18n="en">Conversion scope</span></span>
+              <select id="cleanScope">
+                <option value="all" data-label-ja="全列（既定）" data-label-en="All columns (default)">全列（既定）</option>
+                <option value="selected" data-label-ja="選択した列のみ" data-label-en="Selected columns only">選択した列のみ</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="label"><span data-i18n="ja">出力区切り文字</span><span data-i18n="en">Output delimiter</span></span>
+              <select id="outDelimiter">
+                <option value="input" data-label-ja="入力のまま（既定）" data-label-en="Same as input (default)">入力のまま（既定）</option>
+                <option value="comma" data-label-ja="カンマ ," data-label-en="Comma ,">カンマ ,</option>
+                <option value="tab">TAB</option>
+                <option value="semi" data-label-ja="セミコロン ;" data-label-en="Semicolon ;">セミコロン ;</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid2">
+            <label class="field">
+              <span class="label"><span data-i18n="ja">クォート方針</span><span data-i18n="en">Quote policy</span></span>
+              <select id="quotePolicy">
+                <option value="auto" data-label-ja="必要なときだけ（既定）" data-label-en="Only when needed (default)">必要なときだけ（既定）</option>
+                <option value="always" data-label-ja="常にクォート" data-label-en="Always quote">常にクォート</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="label"><span data-i18n="ja">改行</span><span data-i18n="en">Newline</span></span>
+              <select id="outNewline"><option value="crlf">CRLF</option><option value="lf">LF</option></select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="label"><span data-i18n="ja">UTF-8 BOM</span><span data-i18n="en">UTF-8 BOM</span></span>
+            <div class="seg">
+              <button type="button" class="seg-btn" id="bomOn" data-value="on">ON</button>
+              <button type="button" class="seg-btn" id="bomOff" data-value="off">OFF</button>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel panel-mid" aria-labelledby="sec-columns">
+        <div class="panel-head">
+          <h2 id="sec-columns" class="panel-title"><span data-i18n="ja">Step 2：列の編集</span><span data-i18n="en">Step 2: Columns</span></h2>
+          <input id="colSearch" class="search" type="search" stable content="列を検索..." />
+        </div>
+
+        <div class="card csvtidy-template">
+          <div class="template-row">
+            <label class="field compact">
+              <span class="label"><span data-i18n="ja">列テンプレ</span><span data-i18n="en">Column template</span></span>
+              <select id="tmplSelect">
+                <option value="" data-label-ja="（未選択）" data-label-en="None">（未選択）</option>
+                <option value="generic" data-label-ja="汎用（よくある整形）" data-label-en="Generic (common tidy)">汎用（よくある整形）</option>
+                <option value="accounting" data-label-ja="会計（例）" data-label-en="Accounting (example)">会計（例）</option>
+                <option value="ec" data-label-ja="EC（例）" data-label-en="E-commerce (example)">EC（例）</option>
+              </select>
+            </label>
+            <button type="button" class="btn-mini" id="tmplApply"><span data-i18n="ja">適用</span><span data-i18n="en">Apply</span></button>
+          </div>
+          <div class="hint" id="tmplInfo"></div>
+        </div>
+
+        <div class="card csvtidy-bulk">
+          <div class="bulk-row">
+            <button type="button" class="btn-mini" id="bulkResetOrder"><span data-i18n="ja">順序リセット</span><span data-i18n="en">Reset order</span></button>
+            <button type="button" class="btn-mini" id="bulkIncludeAll"><span data-i18n="ja">全て含める</span><span data-i18n="en">Include all</span></button>
+            <button type="button" class="btn-mini" id="bulkExcludeAll"><span data-i18n="ja">全て除外</span><span data-i18n="en">Exclude all</span></button>
+          </div>
+          <div class="bulk-row">
+            <button type="button" class="btn-mini" id="bulkIncludeMatched"><span data-i18n="ja">検索一致を含める</span><span data-i18n="en">Include matched</span></button>
+            <button type="button" class="btn-mini" id="bulkExcludeMatched"><span data-i18n="ja">検索一致を除外</span><span data-i18n="en">Exclude matched</span></button>
+            <button type="button" class="btn-mini" id="bulkClearSearch"><span data-i18n="ja">検索クリア</span><span data-i18n="en">Clear search</span></button>
+          </div>
+          <div class="hint" id="bulkHint"></div>
+        </div>
+
+        <div class="card">
+          <p class="muted"><span data-i18n="ja">ドラッグまたは↑↓で順序変更。除外ONの列は出力されません。</span><span data-i18n="en">Drag or use ↑↓ to reorder. Excluded columns are not exported.</span></p>
+          <ul id="colsList" class="cols-list" aria-label="Columns list"></ul>
+        </div>
+      </section>
+
+      <section class="panel panel-right" aria-labelledby="sec-preview">
+        <div class="panel-head">
+          <h2 id="sec-preview" class="panel-title"><span data-i18n="ja">Step 3：プレビュー</span><span data-i18n="en">Step 3: Preview</span></h2>
+          <div class="seg small">
+            <button type="button" class="seg-btn" id="prevIn" data-value="in"><span data-i18n="ja">入力</span><span data-i18n="en">Input</span></button>
+            <button type="button" class="seg-btn" id="prevOut" data-value="out"><span data-i18n="ja">出力</span><span data-i18n="en">Output</span></button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div id="summary" class="summary"></div>
+          <div class="table-wrap" role="region" aria-label="Preview table" tabindex="0"><table id="previewTable" class="table"></table></div>
+          <div id="errBox" class="err" role="status" aria-live="polite"></div>
+        </div>
+
+        <div class="map-warn" id="mapWarnBox" hidden>
+          <div class="map-warn-title">⚠️ <span data-i18n="ja">列マッピング警告</span><span data-i18n="en">Column mapping warnings</span> <span class="map-warn-count" id="mapWarnCount"></span></div>
+          <div class="map-warn-body" id="mapWarnBody"></div>
+        </div>
+
+        <section class="csvtidy-output-summary-wrap" aria-label="CSV output summary">
+          <h2><span data-i18n="ja">出力前サマリー</span><span data-i18n="en">Output summary</span></h2>
+          <p class="csvtidy-help" data-i18n="ja">保存前に、列数・除外列・BOM・区切り文字・改行コードを確認してください。</p>
+          <p class="csvtidy-help" data-i18n="en">Before saving, check columns, excluded columns, BOM, delimiter, and line endings.</p>
+          <div id="csvTidyOutputSummary" class="csvtidy-output-summary">
+            <span data-i18n="ja">CSVを読み込むと、ここに出力前の確認内容が表示されます。</span>
+            <span data-i18n="en">Load a CSV to see the output summary here.</span>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="csvtidy-export">
+      <div class="export-left">
+        <label class="field inline">
+          <span class="label"><span data-i18n="ja">ファイル名</span><span data-i18n="en">Filename</span></span>
+          <input id="outName" type="text" value="export.tidy.csv" />
+        </label>
+      </div>
+      <div class="export-right">
+        <button id="downloadBtn" class="btn-primary" type="button" disabled><span data-i18n="ja">CSVをダウンロード</span><span data-i18n="en">Download CSV</span></button>
+      </div>
+    </section>
+
+    <section class="csvtidy-note" aria-label="CSV encoding notes">
+      <h2><span data-i18n="ja">文字化け対策</span><span data-i18n="en">Encoding tips</span></h2>
+      <ul>
+        <li data-i18n="ja">Excelで開く場合は、UTF-8 BOM ON の出力を推奨します。</li>
+        <li data-i18n="en">For Excel, UTF-8 with BOM is usually recommended.</li>
+        <li data-i18n="ja">文字化けする場合は、入力文字コードを UTF-8 / Shift_JIS で切り替えて再読み込みしてください。</li>
+        <li data-i18n="en">If text looks garbled, reload with UTF-8 or Shift_JIS input encoding.</li>
+        <li data-i18n="ja">ブラウザ環境によっては Shift_JIS 読み込みに制限がある場合があります。</li>
+        <li data-i18n="en">Shift_JIS support may vary depending on the browser.</li>
+      </ul>
+    </section>
+
+    <section class="csvtidy-faq" aria-label="CSV Tidy FAQ">
+      <h2><span data-i18n="ja">よくある質問</span><span data-i18n="en">FAQ</span></h2>
+      <details><summary><span data-i18n="ja">CSVファイルはサーバーに送信されますか？</span><span data-i18n="en">Is my CSV uploaded to a server?</span></summary><p data-i18n="ja">いいえ。CSVの読み込み・整形・保存はブラウザ内で処理されます。</p><p data-i18n="en">No. Loading, tidying, and saving are processed in your browser.</p></details>
+      <details><summary><span data-i18n="ja">Excelで文字化けしないようにできますか？</span><span data-i18n="en">Can I avoid garbled text in Excel?</span></summary><p data-i18n="ja">UTF-8 BOM ONで出力すると、Excelで開きやすくなる場合があります。</p><p data-i18n="en">Exporting as UTF-8 with BOM may make the file easier to open in Excel.</p></details>
+      <details><summary><span data-i18n="ja">列を削除しても元ファイルは変わりますか？</span><span data-i18n="en">Does excluding columns change the original file?</span></summary><p data-i18n="ja">いいえ。元ファイルは変更されません。整形後のCSVを別ファイルとして保存します。</p><p data-i18n="en">No. The original file is not changed. The tidied CSV is saved as a separate file.</p></details>
+      <details><summary><span data-i18n="ja">Shift_JISに対応していますか？</span><span data-i18n="en">Does this support Shift_JIS?</span></summary><p data-i18n="ja">読み込み選択はありますが、ブラウザ環境によって対応が異なる場合があります。出力はUTF-8を基本とします。</p><p data-i18n="en">Input selection may be available, but support depends on the browser. Output is basically UTF-8.</p></details>
+    </section>
+
+    <div class="nw-links csvtidy-related-links">
+      <span data-i18n="ja">関連ツール：</span><span data-i18n="en">Related tools:</span>
+      <a href="/tools/json-repair/">JSON Repair</a> /
+      <a href="/tools/pdf2csv-local/">PDF2CSV Local</a> /
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a> /
+      <a href="/tools/log-formatter/">LogFormatter</a>
+    </div>
+
+    <div class="ad-slot ad-bottom">広告枠</div>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text"><span data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</span><span data-i18n="en">If this tool helped, your support keeps NicheWorks running.</span></p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+
+  <div id="busyOverlay" class="busy-overlay" hidden>
+    <div class="busy-card" role="status" aria-live="polite">
+      <div class="busy-spinner" aria-hidden="true"></div>
+      <div class="busy-text">
+        <div id="busyTitle"><span data-i18n="ja">処理中…</span><span data-i18n="en">Processing…</span></div>
+        <div id="busyDetail" class="busy-detail"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+  <script src="./complete.js"></script>
+</body>
+</html>

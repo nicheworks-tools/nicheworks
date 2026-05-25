@@ -1,0 +1,104 @@
+# ATS Paste Doctor | NicheWorks
+Fix formatting issues before pasting into ATS/job application forms.
+Free + Pro unlock ($2.99 one-time, USD)
+
+## Goal
+Users paste text (job summary / cover letter / bullet points) and the tool:
+- detects common causes of form/ATS paste issues (bullets, weird spaces, invisible chars, mixed newlines)
+- outputs a safer version to paste
+- provides an "ATS-style 2-line textbox preview" to simulate tiny ATS input fields
+No AI writing. No server. Browser-only.
+
+## NicheWorks Common Spec v3 (must follow)
+- Keep AdSense head script (do NOT remove).
+- Keep ad-top and ad-bottom DOM slots (ad-top required). Pro can hide these slots via CSS display:none but script remains.
+- Must have progress bar during processing and must have Reset button (mandatory).
+- Must have placeholder examples in textarea (mandatory).
+- Errors must be red bordered box with short What/How messages; on error, progress bar disappears immediately.
+- Do NOT place buttons or progress UI directly under the ad-top slot.
+- Do NOT hard-fix container width to 600px; use .nw-main max-width 960px.
+- No FAQ schema unless there is an actual FAQ section (only add JSON-LD when FAQ exists).
+
+## Pricing / Pro unlock
+- Price: $2.99 (one-time) through the shared NicheWorks Pro Payment Link.
+- Use the common entitlement `nicheworks_pro` through `/assets/nw-pro.js`.
+- The tool reads `NWPro.getLocalStatus()` via `pro-bridge.js`; it does not create an individual Stripe product, webhook, D1 table, or manual unlock flow.
+- When common Pro is active: hide ad slots in the UI, raise the limit, and show "Pro unlocked".
+
+## Features (Free)
+### Input
+- textarea input (max 30,000 chars; show error if too large)
+
+### Options
+- Output mode (segmented control):
+  1) ATS-safe (default)
+  2) Keep line breaks
+  3) Clean (remove invisible chars)
+- Optional character limit input (number; if set, show within/over status)
+
+### Checks (auto, real-time or debounced)
+Counts:
+- total characters
+- excluding spaces
+- excluding line breaks
+- lines
+- paragraphs
+- bullet lines
+- consecutive spaces count (or flag)
+
+Warnings:
+- invisible chars (ZWSP, ZWJ/ZWNJ, BOM)
+- NBSP (U+00A0) and other non-standard spaces
+- control chars (C0/C1 excluding newline/tab per design)
+- mixed newlines (CRLF + LF)
+- possible joined words (heuristic warning; optional)
+
+### Output
+- readonly output textarea
+- Copy output button (clipboard)
+- Download .txt button (recommended by common spec)
+- 2-line ATS preview box (fixed height ~2 lines, scrollable)
+- Reset button (clears everything back to defaults)
+
+### Progress
+- When user clicks "Generate output" (or "Process"), show progress bar during processing.
+- Use small delay (e.g., requestAnimationFrame + setTimeout(50-150ms)) so progress is visible even though processing is fast.
+
+### i18n
+- JP/EN toggle. Default: navigator.language starts with "ja" => JP else EN.
+- Use `messages = { ja: {...}, en: {...} }` and data-i18n attributes.
+- Placeholder must switch too.
+
+## Pro Features (MVP minimal)
+- Hide ads UI (ad-top/ad-bottom)
+- Higher max length (e.g., 200,000 chars)
+- PDF export (opens a printable view and uses print-to-PDF)
+- Templates (3 slots for save/load)
+- History (save up to 10 outputs)
+
+## Layout (must)
+Order:
+1) Header (tool title + lang toggle)
+2) ad-top slot
+3) Intro text (no buttons)
+4) Main tool card (input + options)
+5) Results (progress + errors + output + actions)
+6) Pro card (unlock)
+7) ad-bottom slot
+8) Footer (privacy note + donate placeholders)
+
+## Files to implement
+- index.html (static)
+- usage.html
+- usage-en.html
+- howto/index.html
+- howto/en/index.html
+- style.css
+- app.js
+No build tools. No external frameworks.
+
+## Done criteria
+- Works on mobile 360px
+- All common spec rules satisfied
+- Free flow works: paste -> output -> copy/download -> preview
+- Common Pro unlock via `/assets/nw-pro.js` works and hides ads

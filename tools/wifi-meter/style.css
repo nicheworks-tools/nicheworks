@@ -1,6 +1,6 @@
 /* ==========================================================
-   WiFi Congestion Meter - style.css
-   NicheWorks Minimal UI + Google Wifi Dashboard 風
+   WiFi Meter - style.css
+   NicheWorks Minimal UI
 ========================================================== */
 
 :root {
@@ -19,9 +19,6 @@
   --shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
-/* ----------------------------
-  Base
----------------------------- */
 body {
   margin: 0;
   padding: 0;
@@ -32,9 +29,6 @@ body {
   font-size: 15px;
 }
 
-/* ----------------------------
-  Header
----------------------------- */
 .nw-header {
   padding: 16px 16px 8px;
   max-width: 960px;
@@ -58,16 +52,20 @@ body {
   color: var(--sub);
 }
 
+.nw-status {
+  margin-top: 8px;
+}
+
 .nw-link {
   font-size: 0.9rem;
   color: var(--accent);
   text-decoration: underline;
 }
 
-/* Lang */
 .lang-switch {
   margin-top: 10px;
 }
+
 .lang-switch button {
   margin-right: 6px;
   background: #f5f5f5;
@@ -75,25 +73,39 @@ body {
   padding: 5px 11px;
   border-radius: 999px;
   font-size: 0.85rem;
+  cursor: pointer;
 }
 
-/* Ads */
-.nw-ad-top, .nw-ad-bottom {
+.lang-switch button.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.nw-ad-top,
+.nw-ad-bottom {
   margin: 12px auto;
   max-width: 960px;
   text-align: center;
 }
 
-/* Main */
+.ad-slot {
+  min-height: 72px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--sub);
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 16px 48px;
 }
 
-/* ----------------------------
-  Controls
----------------------------- */
 .nw-controls {
   margin-top: 12px;
 }
@@ -118,6 +130,12 @@ body {
   color: #fff;
 }
 
+.nw-btn-primary:disabled,
+.nw-btn-primary[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .nw-btn-secondary {
   background: #f5f5f5;
   border: 1px solid var(--border);
@@ -132,23 +150,21 @@ body {
   display: none !important;
 }
 
-/* 計測中インジケータ */
 .nw-indicator {
   margin-top: 8px;
   font-size: 0.9rem;
   color: var(--accent);
   animation: blink 1s infinite;
 }
+
 @keyframes blink {
   0% { opacity: 0.3; }
   50% { opacity: 1; }
   100% { opacity: 0.3; }
 }
 
-/* ----------------------------
-  Level Card（Google Wifi風）
----------------------------- */
-.nw-card.level-card {
+.nw-card.level-card,
+.nw-card.nw-notice {
   position: relative;
   margin-top: 18px;
   padding: 18px 16px;
@@ -156,7 +172,14 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
+}
+
+.nw-card.level-card {
   text-align: center;
+}
+
+.nw-notice p:last-child {
+  margin-bottom: 0;
 }
 
 .level-card::before {
@@ -185,9 +208,6 @@ body {
   font-size: 1.05rem;
 }
 
-/* ----------------------------
-  Values
----------------------------- */
 .nw-values {
   margin-top: 14px;
   background: #fafafa;
@@ -201,9 +221,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* ----------------------------
-  Graph
----------------------------- */
 .nw-graph-box {
   margin-top: 18px;
   padding: 10px;
@@ -219,9 +236,6 @@ body {
   display: block;
 }
 
-/* ----------------------------
-  FAQ
----------------------------- */
 .nw-faq {
   margin-top: 28px;
   padding: 16px;
@@ -246,9 +260,6 @@ body {
   margin-bottom: 0;
 }
 
-/* ----------------------------
-  Footer
----------------------------- */
 .nw-footer {
   margin-top: 24px;
   padding: 20px 16px 32px;
@@ -256,7 +267,6 @@ body {
   border-top: 1px solid var(--border);
 }
 
-/* 寄付 */
 .nw-donate p {
   margin: 4px 0;
   font-size: 0.9rem;
@@ -284,7 +294,6 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
-/* ツールリンク */
 .nw-links {
   margin-top: 20px;
 }
@@ -308,9 +317,28 @@ body {
   font-size: 0.9rem;
 }
 
-/* ----------------------------
-  PC向け微調整
----------------------------- */
+@media (max-width: 480px) {
+  .nw-controls-row,
+  .nw-donate-buttons {
+    flex-direction: column;
+  }
+
+  .nw-btn-primary,
+  .nw-btn-secondary,
+  .nw-btn-donate {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .nw-header,
+  .nw-main,
+  .nw-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
 @media (min-width: 900px) {
   body {
     font-size: 16px;

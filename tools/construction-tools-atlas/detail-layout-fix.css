@@ -1,0 +1,136 @@
+#detailSheet .sheet__body {
+  width: min(960px, calc(100% - 32px)) !important;
+  max-width: 960px !important;
+  min-height: 420px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+
+#detailSheet .termblock,
+#detailSheet .tabs,
+#detailSheet .tabpanel {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+
+#detailSheet .termblock {
+  margin-bottom: 12px !important;
+}
+
+#detailSheet .tabs {
+  min-height: 42px;
+}
+
+#detailSheet .tabpanel {
+  min-height: 190px;
+}
+
+#detailSheet #detailChips,
+#detailSheet #detailDesc,
+#detailSheet #detailBullets,
+#detailSheet .termblock__chiprow[hidden],
+#detailSheet .termblock__desc[hidden],
+#detailSheet .termblock__bullets[hidden] {
+  display: none !important;
+}
+
+#detailSheet .termblock__title {
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+#detailSheet .termblock__sub {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.5;
+  color: var(--muted, #6b7280);
+}
+
+#detailSheet .detailImagePilot {
+  display: grid;
+  gap: 8px;
+  width: min(420px, 100%);
+  max-width: 420px;
+  margin: 14px 0 18px;
+  padding: 10px;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  box-sizing: border-box;
+}
+
+#detailSheet .detailImagePilot[hidden] {
+  display: none !important;
+}
+
+#detailSheet .detailImagePilot svg,
+#detailSheet .detailImagePilot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+#detailSheet .detailImagePilot figcaption {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted, #6b7280);
+}
+
+#detailSheet .dictionaryBlock {
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+#detailSheet .dictionaryBlock__label,
+#detailSheet .tabpanel__label {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--muted, #6b7280);
+}
+
+#detailSheet .dictionaryBlock__text,
+#detailSheet .tabpanel__text {
+  margin: 0;
+  line-height: 1.75;
+}
+
+#detailSheet .dictionaryBlock__list,
+#detailSheet .tabpanel ul {
+  margin: 0;
+  padding-left: 1.25em;
+  line-height: 1.7;
+}
+
+#detailSheet .dictionaryBlock--definition .dictionaryBlock__text,
+#detailSheet .dictionaryBlock--definition .tabpanel__text {
+  font-weight: 600;
+}
+
+#detailSheet .dictionaryBlock--meta .termblock__chiprow {
+  margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+  #detailSheet .sheet__body {
+    width: calc(100% - 24px) !important;
+    max-width: none !important;
+    min-height: 420px;
+  }
+
+  #detailSheet .termblock__title {
+    font-size: 20px;
+  }
+
+  #detailSheet .detailImagePilot {
+    width: 100%;
+    max-width: none;
+  }
+}

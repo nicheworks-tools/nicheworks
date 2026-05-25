@@ -1,240 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Search Console -->
-  <meta name="google-site-verification" content="Zey-xqB1AdfsEAbxFuTGc_lOQ40LuGFgVWp7zwX6TGo" />
-
-  <title>NicheWorks | 静かなWebツール集</title>
-
-  <!-- Description（SEO・OGP・JSON-LDで統一） -->
-  <meta
-    name="description"
-    content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。"
-  >
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/">
-
-  <!-- Favicon -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NicheWorks｜旧字体一覧と小さなブラウザツール</title>
+  <meta name="description" content="NicheWorksは、旧字体と新字体の対応表を中心に、ブラウザで使える小さな実用ツールを公開している個人運営サイトです。広告、アクセス解析、Cookie、入力データの扱いも明記しています。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="/style.css">
-
-  <!-- Google Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- OGP -->
-  <meta property="og:title" content="NicheWorks | 静かなWebツール集">
-  <meta property="og:description" content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。">
+  <link rel="stylesheet" href="./style.css?v=20260512-adsense-review-2">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
   <meta property="og:site_name" content="NicheWorks">
-
-  <!-- Twitter -->
+  <meta property="og:title" content="NicheWorks｜旧字体一覧と小さなブラウザツール">
+  <meta property="og:description" content="NicheWorksは、旧字体と新字体の対応表を中心に、ブラウザで使える小さな実用ツールを公開している個人運営サイトです。広告、アクセス解析、Cookie、入力データの扱いも明記しています。">
+  <meta property="og:url" content="https://nicheworks.app/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NicheWorks | 静かなWebツール集">
-  <meta name="twitter:description" content="NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
-  <!-- JSON-LD (WebSite + WebPage) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://nicheworks.pages.dev/#website",
-        "name": "NicheWorks",
-        "url": "https://nicheworks.pages.dev/",
-        "description": "NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。",
-        "publisher": {
-          "@type": "Organization",
-          "name": "NicheWorks"
-        }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://nicheworks.pages.dev/",
-        "name": "NicheWorks | 静かなWebツール集",
-        "url": "https://nicheworks.pages.dev/",
-        "inLanguage": "ja",
-        "description": "NicheWorks（ニッチワークス）は、目立たないけれど確かに必要な小さなWebツールを静かに公開していくプロジェクトです。すべてブラウザ内で動作し、個人情報は送信されません。",
-        "isPartOf": {
-          "@id": "https://nicheworks.pages.dev/#website"
-        }
-      }
-    ]
-  }
-  </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <meta name="twitter:title" content="NicheWorks｜旧字体一覧と小さなブラウザツール">
+  <meta name="twitter:description" content="NicheWorksは、旧字体と新字体の対応表を中心に、ブラウザで使える小さな実用ツールを公開している個人運営サイトです。広告、アクセス解析、Cookie、入力データの扱いも明記しています。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"NicheWorks","url":"https://nicheworks.app/","description":"旧字体と新字体の対応表を中心に、ブラウザで使える小さな実用ツールを公開している個人運営サイトです。","inLanguage":["ja","en"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/","logo":"https://nicheworks.app/assets/nicheworks-logo.png","sameAs":["https://ofuse.me/nicheworks","https://ko-fi.com/nicheworks"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"NicheWorks reviewed pages","itemListElement":[{"@type":"ListItem","position":1,"name":"旧字体一覧・旧字新字対応表","url":"https://nicheworks.app/tools/old-kanji-reference/"}]}</script>
 </head>
-
-
 <body>
-  <main class="container">
-
+  <div class="container">
     <header>
-      <h1 class="site-title">
-        <img src="/assets/nicheworks-logo.png" alt="NicheWorks ロゴ" class="site-logo">
-        NicheWorks
-      </h1>
-
-      <p class="subtitle">「静かに役立つ」小さなWebツールの詰め合わせ</p>
-
-      <!-- Header Navigation -->
-      <div class="nav-inline">
-        <a href="./index.html">Home</a>
-        <span class="sep">/</span>
-        <a href="./about.html">About</a>
-        <span class="sep">/</span>
-        <a href="./privacy.html">Privacy</a>
-        <span class="sep">/</span>
-        <a href="./contact.html">Contact</a>
-      </div>
-
-      <!-- Language Switch -->
-      <div class="nav-inline">
-        <span>言語:</span>
-        <a href="./index.html">日本語</a>
-        <span class="sep">/</span>
-        <a href="./en/index.html">English</a>
-      </div>
+      <div class="site-title"><img class="site-logo" src="/assets/nicheworks-logo.png" alt="NicheWorks" onerror="this.remove()"><h1>NicheWorks</h1></div>
+      <p class="subtitle">旧字体と新字体の対応表を中心に、小さな実用ページを公開しています。</p>
+      <nav class="nav-inline" aria-label="Site navigation"><a href="/">Home</a><span class="sep">/</span><a href="/about.html">About</a><span class="sep">/</span><a href="/privacy.html">Privacy</a><span class="sep">/</span><a href="/contact.html">Contact</a><span class="sep">/</span><a href="/en/">EN</a></nav>
     </header>
-
-    <!-- このサイトについて -->
-    <section class="block">
-      <h2>このサイトについて</h2>
-      <p>
-        NicheWorks（ニッチワークス）は、<br>
-        目立たないけれど確かに必要なものを、<br>
-        小さく、静かに、かたちにしていくウェブプロジェクト群です。<br>
-        派手さよりも実用性を、話題性よりも継続性を重視しています。
-      </p>
-
-      <p class="small">
-        → プロジェクトの背景や思想は <a href="./about.html">About ページ</a> にまとめています。
-      </p>
-    </section>
-
-    <!-- ツール一覧（カテゴリ分け） -->
-    <section class="block">
-      <h2>ツール一覧</h2>
-
-      <!-- 文章・テキスト系 -->
-      <h3>文章・テキスト系</h3>
-      <p class="category-desc">テキスト処理・ログ解析などの軽量ツール群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/manual-finder/" target="_blank" rel="noopener">ManualFinder（製品マニュアルリンク集）</a></strong><br>家電・カメラ・スマホなどの公式マニュアルページまとめ。</li>
-        <li><strong><a href="/tools/trashnavi/" target="_blank" rel="noopener">TrashNavi（ごみ分別リンク集）</a></strong><br>自治体ごとの公式ごみ分別ページ・カレンダー。</li>
-        <li><strong><a href="/tools/log-formatter/" target="_blank" rel="noopener">地味ログ整形屋（LogFormatter）</a></strong><br>Nginx / HTTP アクセスログ整形。ローカル処理。</li>
-        <li><strong><a href="/tools/rename-wizard/" target="_blank" rel="noopener">Rename Wizard（ファイル名整形）</a></strong><br>ファイル名の一括整形。プレビューあり。</li>
-        <li><strong><a href="/tools/contract-cleaner/" target="_blank" rel="noopener">Contract Cleaner（契約書クリーナー）</a></strong><br>契約書テキストの危険語句を可視化。</li>
-        <li><strong><a href="/tools/exif-cleaner-mini/" target="_blank" rel="noopener">EXIF Cleaner Mini</a></strong><br>画像のEXIF情報を削除（ローカル処理）。</li>
-        <li><strong><a href="/tools/linebreak-doctor/" target="_blank" rel="noopener">LineBreak Doctor（改行修復）</a></strong><br>SNS投稿向けの不要改行修正。</li>
-        <li><strong><a href="/tools/url-title-collector/" target="_blank" rel="noopener">URL Title Collector</a></strong><br>複数URLのタイトルを一括取得。</li>
-        <li><strong><a href="/tools/message-generator/" target="_blank" rel="noopener">Message Generator</a></strong><br>短文テンプレ生成。</li>
-      </ul>
-
-      <!-- 画像・ファイル処理 -->
-      <h3>画像・ファイル処理</h3>
-      <p class="category-desc">画像・ファイルの変換・解析ツール群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/image-compression-inspector/" target="_blank" rel="noopener">Image Compression Inspector</a></strong><br>画像形式ごとの圧縮率を比較。</li>
-        <li><strong><a href="/tools/color-replace/" target="_blank" rel="noopener">Color Replace</a></strong><br>画像内の特定色を別の色へ置換。</li>
-        <li><strong><a href="/tools/webp-avif-converter/" target="_blank" rel="noopener">WebP / AVIF Converter</a></strong><br>画像を軽量形式へ変換。</li>
-        <li><strong><a href="/tools/filetype-sniffer/" target="_blank" rel="noopener">FileType Sniffer</a></strong><br>ファイルの中身を解析して種別判定。</li>
-      </ul>
-
-      <!-- 解析・変換ツール -->
-      <h3>解析・変換ツール</h3>
-      <p class="category-desc">変換・図式化などのユーティリティ群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/json2mermaid/" target="_blank" rel="noopener">JSON → Mermaid 変換</a></strong><br>JSON構造を自動で図に変換。</li>
-        <li><strong><a href="/tools/unitmaster/" target="_blank" rel="noopener">UnitMaster（単位変換）</a></strong><br>多数の単位を高速変換。</li>
-        <li><strong><a href="/tools/kanji-modernizer/" target="_blank" rel="noopener">Kanji Modernizer</a></strong><br>旧字体→新字体変換。</li>
-        <li><strong><a href="/tools/old-kanji-reference/" target="_blank" rel="noopener">Old Kanji Reference</a></strong><br>旧字体一覧辞書。</li>
-        <li><strong><a href="/tools/redirect-unwrapper/" target="_blank" rel="noopener">Redirect Unwrapper</a></strong><br>短縮URLの最終遷移先を表示。</li>
-      </ul>
-
-      <!-- 生活・実用ツール -->
-      <h3>生活・実用ツール</h3>
-      <p class="category-desc">日常で役立つ実用ツール群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/jp-postal-lite/" target="_blank" rel="noopener">JP Postal Lite</a></strong><br>郵便番号→住所検索。</li>
-        <li><strong><a href="https://unsubscribe-navi.pages.dev/" target="_blank" rel="noopener">解約どこナビ</a></strong><br>各サブスクの公式解約リンク。</li>
-      </ul>
-
-      <!-- その他ユーティリティ -->
-      <h3>その他ユーティリティ</h3>
-      <p class="category-desc">補助的な軽量ユーティリティ群です。</p>
-      <ul class="list">
-        <li><strong><a href="/tools/weatherdiff/" target="_blank" rel="noopener">WeatherDiff</a></strong><br>複数API予報の比較。地点入力・現在地対応。</li>
-        <li><strong><a href="/tools/wifi-meter/" target="_blank" rel="noopener">WiFi Meter</a></strong><br>周囲Wi-Fiの混雑状況を可視化。</li>
-        <li><strong><a href="/tools/cover-letter-lite/" target="_blank" rel="noopener">Cover Letter Lite</a></strong><br>英文カバーレター生成。</li>
-        <li><strong><a href="/tools/cosmetic-ingredient-checker-lite/" target="_blank" rel="noopener">Cosmetic Ingredient Checker Lite</a></strong><br>化粧品成分の簡易チェック。</li>
-      </ul>
-    </section>
-
-
-    <!-- 運営方針 -->
-    <section class="block">
-      <h2>運営方針</h2>
-      <p class="small">
-        多くのツールは「ブラウザ内で完結する」ことを重視しており、  
-        入力したデータはサーバーに送信せずローカルで処理されます。
-      </p>
-      <p class="small">
-        また、NicheWorks は非営利で運営されていますが、継続のため一部ページに広告を掲載する場合があります。  
-        収益はすべてツールの開発・維持管理・データ整備に利用されます。
-      </p>
-    </section>
-
-    <footer>
-
-      <!-- 寄付ブロック -->
-      <div class="block donate-block">
-        <h2>応援（寄付）</h2>
-        <p class="small">
-          NicheWorks は個人が作っている小さなツール集です。  
-          気に入ったツールがあれば、コーヒー１杯ぶんだけでも支援いただけるととても助かります。
-        </p>
-        <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-        </div>
-        <p class="small muted">
-          寄付は任意です。いただいた支援は開発費・データ整備などに充てています。
-        </p>
-      </div>
-
-      <div class="small">
-        <p class="small">
-          <a href="./index.html">Home</a> /
-          <a href="./about.html">About</a> /
-          <a href="./privacy.html">Privacy</a> /
-          <a href="./contact.html">Contact</a>
-        </p>
-        <p class="small">運営：NicheWorks</p>
-        <p class="small muted">一部のツールでは運営のため広告が表示される場合があります。</p>
-      </div>
-
-    </footer>
-
-  </main>
-
-  <!-- Cloudflare Web Analytics -->
-  
-
+    <main>
+      <section class="block">
+        <h2>旧字体と新字体を調べるためのリファレンス</h2>
+        <p class="category-desc">NicheWorks は、古い文書、名前、地名、看板、戸籍関連資料などで見かける旧字体を、現代表記と見比べるためのリファレンスを公開しています。主要な文字には読み、意味、用途、分類を付け、検索やフィルタで探せるようにしています。</p>
+      </section>
+      <section class="block" aria-labelledby="main-tool-title">
+        <h2 id="main-tool-title">公開中の主要ページ</h2>
+        <ul class="list compact">
+          <li><strong><a href="/tools/old-kanji-reference/">旧字体一覧・旧字新字対応表</a></strong><div class="small muted">旧字体と新字体の対応を検索・確認できるリファレンスです。人名、地名、古い文献などで見かける旧字を現代表記と見比べられます。</div></li>
+        </ul>
+      </section>
+      <section class="block" aria-labelledby="how-to-use-title">
+        <h2 id="how-to-use-title">使い方</h2>
+        <ul class="list compact">
+          <li><strong>検索する</strong><div class="small muted">旧字体、現代表記、一部の読みや意味から候補を絞り込めます。</div></li>
+          <li><strong>対応を確認する</strong><div class="small muted">同じ新字体に複数の旧字体や異体字が対応する場合があるため、一覧で見比べて確認できます。</div></li>
+          <li><strong>コピーする</strong><div class="small muted">表示された文字をコピーし、文書作成や調査メモに利用できます。</div></li>
+        </ul>
+      </section>
+      <section class="block" aria-labelledby="policy-title">
+        <h2 id="policy-title">運営方針</h2>
+        <ul class="list compact">
+          <li><strong>内容を確認できるページだけを公開</strong><div class="small muted">検索エンジンや利用者が迷わないよう、審査中は内容確認済みの主要ページだけを案内しています。</div></li>
+          <li><strong>広告と解析の説明</strong><div class="small muted">当サイトでは運営のため広告やアクセス解析を使う場合があります。詳細はPrivacy Policyに記載しています。</div></li>
+          <li><strong>問い合わせ先の明示</strong><div class="small muted">不具合報告、改善希望、広告やプライバシーに関する連絡先はContactページに掲載しています。</div></li>
+        </ul>
+      </section>
+      <section class="block" aria-labelledby="ads-privacy-title">
+        <h2 id="ads-privacy-title">広告・データの扱い</h2>
+        <p class="category-desc">当サイトでは運営のため広告を表示する場合があります。Google AdSense、Google Analytics 4、Cloudflare Web Analytics、Cookie、入力データの扱いは <a href="/privacy.html">Privacy Policy</a> に記載しています。連絡先は <a href="/contact.html">Contact</a> をご確認ください。</p>
+      </section>
+      <section class="block donate-block">
+        <h2>運営サポート</h2>
+        <p class="category-desc">役に立った場合は、任意のサポートで応援できます。</p>
+        <div class="donate-buttons"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
+      </section>
+      <footer><div class="small"><p class="small"><a href="/">Home</a> / <a href="/about.html">About</a> / <a href="/privacy.html">Privacy</a> / <a href="/contact.html">Contact</a></p><p class="small">運営：NicheWorks</p><p class="small muted">一部のページでは運営のため広告が表示される場合があります。</p></div></footer>
+    </main>
+  </div>
 </body>
 </html>

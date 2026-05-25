@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-05-20T13:20:45Z",
+  "checked_by": "codex",
+  "source_result_file": "tools/earth-map-suite/ems-rd-21-safe-result.json",
+  "canonical_result_file": "tools/earth-map-suite/ems-rd-11-browser-self-check-result.json",
+  "branch_decision": "health_manifest_reachable",
+  "next_task_family": "PROBE",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "storm_real_blocked": true,
+  "result_hash": null,
+  "endpoint_summary": {
+    "self_check": {"status": "ok", "http_status": 200},
+    "health": {"status": "ok", "http_status": 200},
+    "manifest": {"status": "ok", "http_status": 200},
+    "probe_status": {"status": null, "http_status": null},
+    "precipitation_sample_real": {"status": null, "http_status": null}
+  },
+  "next_action": "Run EMS-RD-22-PROBE from api-status manual research probes while keeping Storm real blocked."
+}

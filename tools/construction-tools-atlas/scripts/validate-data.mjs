@@ -1,217 +1,241 @@
-import { readFile } from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { promises as fs } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = path.resolve(__dirname, '..', 'data');
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const toolDir = path.resolve(scriptDir, "..");
+const dataDir = path.join(toolDir, "data");
+const indexPath = path.join(dataDir, "index.json");
 
-const MAX_ID_LENGTH = 120;
-const MAX_TERM_LENGTH = 200;
-const MAX_ALIAS_LENGTH = 200;
-const MAX_DESCRIPTION_LENGTH = 2000;
+const errors = [];
 
-function normalizeWhitespace(value) {
-  return value.trim().replace(/\s+/g, ' ');
-}
+const isObject = (value) => value !== null && typeof value === "object" && !Array.isArray(value);
 
-function normalizeString(value) {
-  if (typeof value !== 'string') return undefined;
-  return normalizeWhitespace(value);
-}
+const addError = (file, entryId, message) => {
+  errors.push(`[${file}] [${entryId}] ${message}`);
+};
 
-function normalizeStringArray(value) {
-  if (!Array.isArray(value)) return [];
-  return value
-    .filter((item) => typeof item === 'string')
-    .map((item) => normalizeWhitespace(item))
-    .filter((item) => item.length > 0);
-}
+const readJson = async (filePath) => {
+  const content = await fs.readFile(filePath, "utf8");
+  return JSON.parse(content);
+};
 
-function normalizeDescription(value) {
-  if (!value || typeof value !== 'object') return undefined;
-  const ja = normalizeString(value.ja);
-  const en = normalizeString(value.en);
-  if (!ja && !en) return undefined;
-  const description = {};
-  if (ja) description.ja = ja;
-  if (en !== undefined) description.en = en;
-  return description;
-}
+const normalizeDefinitions = (value, label, fileLabel) => {
+  const list = [];
+  const seen = new Set();
 
-function normalizeAliases(value) {
-  const aliases = value && typeof value === 'object' ? value : {};
-  return {
-    ja: normalizeStringArray(aliases.ja),
-    en: normalizeStringArray(aliases.en),
+  const addId = (id, source) => {
+    if (typeof id !== "string" || id.trim() === "") {
+      addError(fileLabel, "index", `${label} id must be a non-empty string (${source}).`);
+      return;
+    }
+    if (seen.has(id)) {
+      addError(fileLabel, "index", `${label} id is duplicated: ${id}.`);
+      return;
+    }
+    seen.add(id);
+    list.push({ id });
   };
-}
 
-function validateLength(value, max) {
-  if (value === undefined) return true;
-  return value.length <= max;
-}
-
-function validateEntry(entry) {
-  const issues = [];
-  const warnings = [];
-
-  if (!entry || typeof entry !== 'object') {
-    return { issues: [{ path: '', message: 'Entry must be an object', severity: 'error' }], warnings, normalized: undefined };
-  }
-
-  const id = normalizeString(entry.id);
-  if (!id) {
-    issues.push({ path: 'id', message: 'id is required and must be non-empty', severity: 'error' });
-  } else if (!validateLength(id, MAX_ID_LENGTH)) {
-    issues.push({ path: 'id', message: `id exceeds ${MAX_ID_LENGTH} characters`, severity: 'error' });
-  }
-
-  const term = entry.term && typeof entry.term === 'object' ? entry.term : undefined;
-  if (!term) {
-    issues.push({ path: 'term', message: 'term is required', severity: 'error' });
-  }
-  const termJa = normalizeString(term?.ja);
-  const termEn = normalizeString(term?.en ?? '');
-
-  if (!termJa) {
-    issues.push({ path: 'term.ja', message: 'term.ja is required and must be non-empty', severity: 'error' });
-  } else if (!validateLength(termJa, MAX_TERM_LENGTH)) {
-    issues.push({ path: 'term.ja', message: `term.ja exceeds ${MAX_TERM_LENGTH} characters`, severity: 'error' });
-  }
-
-  if (termEn === undefined) {
-    issues.push({ path: 'term.en', message: 'term.en must be a string (can be empty)', severity: 'error' });
-  } else if (!validateLength(termEn, MAX_TERM_LENGTH)) {
-    issues.push({ path: 'term.en', message: `term.en exceeds ${MAX_TERM_LENGTH} characters`, severity: 'error' });
-  } else if (termEn.length === 0) {
-    warnings.push({ path: 'term.en', message: 'term.en is empty (allowed)', severity: 'warning' });
-  }
-
-  const category = normalizeString(entry.category);
-  if (!category) {
-    issues.push({ path: 'category', message: 'category is required and must be non-empty', severity: 'error' });
-  }
-
-  const tags = normalizeStringArray(entry.tags);
-  if (entry.tags !== undefined && !Array.isArray(entry.tags)) {
-    issues.push({ path: 'tags', message: 'tags must be an array of strings', severity: 'error' });
-  }
-
-  const aliases = normalizeAliases(entry.aliases);
-
-  const description = normalizeDescription(entry.description);
-  if (description?.ja && !description.en) {
-    warnings.push({ path: 'description.en', message: 'description.ja exists but description.en is missing', severity: 'warning' });
-  }
-
-  if (description) {
-    if (!validateLength(description.ja, MAX_DESCRIPTION_LENGTH)) {
-      issues.push({ path: 'description.ja', message: `description.ja exceeds ${MAX_DESCRIPTION_LENGTH} characters`, severity: 'error' });
-    }
-    if (!validateLength(description.en, MAX_DESCRIPTION_LENGTH)) {
-      issues.push({ path: 'description.en', message: `description.en exceeds ${MAX_DESCRIPTION_LENGTH} characters`, severity: 'error' });
-    }
-  }
-
-  aliases.ja.forEach((value, index) => {
-    if (!validateLength(value, MAX_ALIAS_LENGTH)) {
-      issues.push({ path: `aliases.ja[${index}]`, message: `alias exceeds ${MAX_ALIAS_LENGTH} characters`, severity: 'error' });
-    }
-  });
-  aliases.en.forEach((value, index) => {
-    if (!validateLength(value, MAX_ALIAS_LENGTH)) {
-      issues.push({ path: `aliases.en[${index}]`, message: `alias exceeds ${MAX_ALIAS_LENGTH} characters`, severity: 'error' });
-    }
-  });
-
-  const hasErrors = issues.some((issue) => issue.severity === 'error');
-  const normalized = !hasErrors && id && termJa && category
-    ? {
-        id,
-        term: { ja: termJa, en: termEn ?? '' },
-        category,
-        tags,
-        aliases,
-        description,
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => {
+      if (typeof item === "string") {
+        addId(item, `array[${index}]`);
+        return;
       }
-    : undefined;
+      if (isObject(item)) {
+        if (typeof item.id === "string" && item.id.trim() !== "") {
+          addId(item.id, `array[${index}]`);
+        } else {
+          addError(fileLabel, "index", `${label} entry missing id in array[${index}].`);
+        }
+        return;
+      }
+      addError(fileLabel, "index", `${label} entry must be object or string in array[${index}].`);
+    });
+    return { list, idSet: seen };
+  }
 
-  return { issues, warnings, normalized };
-}
+  if (isObject(value)) {
+    Object.entries(value).forEach(([key, entry]) => {
+      if (!isObject(entry)) {
+        addError(fileLabel, "index", `${label} map entry for ${key} must be an object.`);
+        return;
+      }
+      addId(key, `map.${key}`);
+    });
+    return { list, idSet: seen };
+  }
 
-async function loadJson(filePath) {
-  const raw = await readFile(filePath, 'utf-8');
-  return JSON.parse(raw);
-}
+  addError(fileLabel, "index", `${label} must be an array or object map.`);
+  return { list, idSet: seen };
+};
 
-function reportIssue(file, entryId, issue, collector) {
-  const idPart = entryId ? `:${entryId}` : '';
-  const pathPart = issue.path ? `/${issue.path}` : '';
-  collector.push(`${issue.severity.toUpperCase()} [${file}${idPart}${pathPart}] ${issue.message}`);
-}
+const safeResolve = (relativePath, fileLabel) => {
+  const resolved = path.resolve(toolDir, relativePath);
+  if (!resolved.startsWith(toolDir + path.sep)) {
+    addError(fileLabel, "pack", `Invalid pack path outside tool directory: ${relativePath}`);
+    return null;
+  }
+  return resolved;
+};
 
-async function main() {
-  const errors = [];
-  const warnings = [];
-  const seenIds = new Map();
+const resolvePackPath = async (packFile, fileLabel) => {
+  if (typeof packFile !== "string" || packFile.trim() === "") {
+    addError(fileLabel, "pack", "Pack file path must be a non-empty string.");
+    return null;
+  }
 
-  const indexPath = path.join(DATA_DIR, 'index.json');
-  const indexData = await loadJson(indexPath);
+  const normalized = packFile.replace(/\\/g, "/").replace(/^\.\//, "");
+  const candidates = [];
 
-  if (!indexData || !Array.isArray(indexData.packs)) {
-    console.error('index.json must contain a packs array');
-    process.exitCode = 1;
+  if (normalized.startsWith("data/")) {
+    candidates.push(normalized);
+  } else if (normalized.startsWith("packs/")) {
+    candidates.push(path.join("data", normalized));
+  } else {
+    candidates.push(path.join("data", "packs", normalized));
+    candidates.push(path.join("data", normalized));
+    candidates.push(normalized);
+  }
+
+  for (const candidate of candidates) {
+    const resolved = safeResolve(candidate, fileLabel);
+    if (!resolved) {
+      continue;
+    }
+    try {
+      await fs.access(resolved);
+      return { resolved, display: candidate };
+    } catch {
+      continue;
+    }
+  }
+
+  addError(fileLabel, "pack", `Pack file not found for path: ${packFile}`);
+  return null;
+};
+
+const validateEntry = (entry, packLabel, categoriesSet, tasksSet, seenIds) => {
+  if (!isObject(entry)) {
+    addError(packLabel, "unknown", "Entry must be an object.");
     return;
   }
 
-  for (const pack of indexData.packs) {
-    const packPath = path.join(DATA_DIR, pack.file);
-    let packEntries;
-    try {
-      packEntries = await loadJson(packPath);
-    } catch (err) {
-      errors.push(`ERROR [${pack.file}] ${err.message}`);
-      continue;
+  const entryId = typeof entry.id === "string" ? entry.id.trim() : "";
+  if (!entryId) {
+    addError(packLabel, "missing-id", "Entry id is required and must be a non-empty string.");
+  } else if (seenIds.has(entryId)) {
+    addError(packLabel, entryId, "Entry id is duplicated across packs.");
+  } else {
+    seenIds.add(entryId);
+  }
+
+  const term = entry.term ?? entry.title;
+  if (!isObject(term)) {
+    addError(packLabel, entryId || "missing-id", "Entry term/title must be an object.");
+  } else {
+    const hasJa = typeof term.ja === "string" && term.ja.trim() !== "";
+    const hasEn = typeof term.en === "string" && term.en.trim() !== "";
+    if (!hasJa && !hasEn) {
+      addError(packLabel, entryId || "missing-id", "Entry term/title must include ja or en text.");
     }
-    if (!Array.isArray(packEntries)) {
-      errors.push(`ERROR [${pack.file}] pack file must contain an array`);
-      continue;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(entry, "description") && !isObject(entry.description)) {
+    addError(packLabel, entryId || "missing-id", "Entry description must be an object when present.");
+  }
+
+  const validateRefs = (value, set, label) => {
+    if (value === undefined || value === null) {
+      return;
+    }
+    const ids = [];
+    if (typeof value === "string") {
+      ids.push(value);
+    } else if (Array.isArray(value)) {
+      value.forEach((item) => ids.push(item));
+    } else {
+      addError(packLabel, entryId || "missing-id", `${label} must be a string or array.`);
+      return;
     }
 
-    packEntries.forEach((entry, index) => {
-      const { issues, warnings: entryWarnings, normalized } = validateEntry(entry);
-      const entryId = normalized?.id || (typeof entry?.id === 'string' ? entry.id : `index-${index}`);
-
-      issues.forEach((issue) => reportIssue(pack.file, entryId, issue, errors));
-      entryWarnings.forEach((issue) => reportIssue(pack.file, entryId, issue, warnings));
-
-      if (normalized) {
-        if (seenIds.has(normalized.id)) {
-          const firstLocation = seenIds.get(normalized.id);
-          errors.push(`ERROR [${pack.file}:${normalized.id}] duplicate id also found in ${firstLocation}`);
-        } else {
-          seenIds.set(normalized.id, pack.file);
-        }
+    ids.forEach((id) => {
+      if (typeof id !== "string" || id.trim() === "") {
+        addError(packLabel, entryId || "missing-id", `${label} id must be a non-empty string.`);
+        return;
+      }
+      if (!set.has(id)) {
+        addError(packLabel, entryId || "missing-id", `${label} id not found in index: ${id}.`);
       }
     });
-  }
+  };
 
-  if (warnings.length > 0) {
-    console.warn('Warnings:');
-    warnings.forEach((line) => console.warn(`  - ${line}`));
-  }
+  validateRefs(entry.categories, categoriesSet, "category");
+  validateRefs(entry.tasks, tasksSet, "task");
+};
 
-  if (errors.length > 0) {
-    console.error('Validation failed:');
-    errors.forEach((line) => console.error(`  - ${line}`));
-    process.exitCode = 1;
+const run = async () => {
+  let index;
+  try {
+    index = await readJson(indexPath);
+  } catch (error) {
+    addError("data/index.json", "index", `Failed to load index.json: ${error.message}`);
     return;
   }
 
-  console.log('Validation passed. Packs loaded: %d. Unique entries: %d.', indexData.packs.length, seenIds.size);
-}
+  const { idSet: categorySet } = normalizeDefinitions(index.categories, "category", "data/index.json");
+  const { idSet: taskSet } = normalizeDefinitions(index.tasks, "task", "data/index.json");
 
-main().catch((err) => {
-  console.error('Unexpected error during validation:', err);
-  process.exitCode = 1;
-});
+  if (!Array.isArray(index.packs)) {
+    addError("data/index.json", "index", "packs must be an array.");
+    return;
+  }
+
+  const seenIds = new Set();
+
+  for (const pack of index.packs) {
+    if (!isObject(pack)) {
+      addError("data/index.json", "index", "Each pack entry must be an object.");
+      continue;
+    }
+
+    const packFile = pack.file;
+    const resolved = await resolvePackPath(packFile, "data/index.json");
+    if (!resolved) {
+      continue;
+    }
+
+    const packLabel = resolved.display;
+    let packData;
+    try {
+      packData = await readJson(resolved.resolved);
+    } catch (error) {
+      addError(packLabel, "pack", `Failed to load pack JSON: ${error.message}`);
+      continue;
+    }
+
+    const entries = Array.isArray(packData)
+      ? packData
+      : isObject(packData) && Array.isArray(packData.entries)
+        ? packData.entries
+        : null;
+
+    if (!entries) {
+      addError(packLabel, "pack", "Pack must be an array or an object with entries array.");
+      continue;
+    }
+
+    entries.forEach((entry) => validateEntry(entry, packLabel, categorySet, taskSet, seenIds));
+  }
+};
+
+await run();
+
+if (errors.length > 0) {
+  errors.forEach((message) => console.error(message));
+  console.error(`Validation failed with ${errors.length} error(s).`);
+  process.exit(1);
+} else {
+  console.log("Validation passed.");
+}

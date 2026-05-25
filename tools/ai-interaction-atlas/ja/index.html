@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Interaction Patterns｜AI Interaction Atlas | NicheWorks</title>
+  <meta name="description" content="AIチャット、Copilot、エージェント、引用、レビュー導線、人間確認の設計に使えるAIインタラクションパターン集。">
+  <link rel="canonical" href="https://nicheworks.app/tools/ai-interaction-atlas/ja/">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:url" content="https://nicheworks.app/tools/ai-interaction-atlas/ja/">
+  <meta property="og:title" content="AI Interaction Patterns｜AI Interaction Atlas | NicheWorks">
+  <meta property="og:description" content="AIチャット、Copilot、エージェント、引用、レビュー導線、人間確認の設計に使えるAIインタラクションパターン集。">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Interaction Patterns｜AI Interaction Atlas | NicheWorks">
+  <meta name="twitter:description" content="AIチャット、Copilot、エージェント、引用、レビュー導線、人間確認の設計に使えるAIインタラクションパターン集。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI Interaction Atlas","url":"https://nicheworks.app/tools/ai-interaction-atlas/ja/","applicationCategory":"DesignApplication","description":"AIチャット、Copilot、エージェント、引用、レビュー導線、人間確認の設計に使えるAIインタラクションパターン集。","operatingSystem":"All","inLanguage":"ja"}</script>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nw-header">
+    <div>
+      <p class="eyebrow">NicheWorks Atlas Series</p>
+      <h1>AI Interaction Atlas</h1>
+      <p>エージェント、Copilot、生成UIを設計する人のためのAIインタラクションパターン集。</p>
+    </div>
+    <nav class="lang"><a href="../">English</a></nav>
+  </header>
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告スペース</div>
+    <section class="hero">
+      <p>AIパターンの使いどころ、挙動、失敗しやすい点、AIへどう依頼すればよいかを調べられます。</p>
+      <div class="search-row">
+        <input id="atlas-search" type="search" placeholder="検索: prompt box, citations, review before apply..." aria-label="AIパターンを検索">
+        <button id="open-filters" type="button">フィルタ</button>
+        <button id="clear-filters" type="button">クリア</button>
+      </div>
+      <div id="shortcut-list" class="shortcut-list" aria-label="課題ショートカット"></div>
+    </section>
+    <section class="workspace">
+      <aside id="filter-panel" class="filters" aria-label="フィルタ">
+        <div class="mobile-row"><strong>フィルタ</strong><button id="close-filters" type="button">閉じる</button></div>
+        <div id="filters"></div>
+      </aside>
+      <section class="list-pane">
+        <div class="pane-head"><h2>パターン</h2><span id="result-count">読み込み中...</span></div>
+        <div id="pattern-list" class="pattern-list"></div>
+      </section>
+      <aside id="detail-panel" class="detail-pane" aria-label="パターン詳細">
+        <div class="mobile-row"><strong>詳細</strong><button id="mobile-detail-close" type="button">閉じる</button></div>
+        <div id="detail-content" class="detail-content"><p>パターンを選択してください。</p></div>
+        <section class="recent"><h3>最近見た項目</h3><div id="recent-list" class="recent-list"></div></section>
+      </aside>
+    </section>
+    <section class="compare-tray" aria-label="比較トレイ">
+      <div class="tray-head">
+        <h2>比較</h2>
+        <label><input id="diff-only" type="checkbox"> 差分だけ強調</label>
+        <button id="copy-compare" type="button">比較サマリーをコピー</button>
+        <button id="clear-compare" type="button">クリア</button>
+      </div>
+      <div id="compare-content"></div>
+      <p class="pro-note">無料比較は2件までです。Proでは3〜4件比較と比較結果のhandoff packが使えます。</p>
+    </section>
+    <section class="pro-handoff-pack" aria-label="Pro handoff pack">
+      <div class="pro-pack-head">
+        <div>
+          <p class="eyebrow">NicheWorks 共通Pro</p>
+          <h2>Pro handoff pack</h2>
+          <p data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</p>
+        </div>
+        <p><a class="btn" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener noreferrer">Proを購入</a></p>
+      </div>
+      <div data-pro-preview class="pro-preview-note">
+        <strong>無料機能は引き続き利用できます。</strong>
+        <p>Product spec handoff、Codex実装依頼文、GitHub Issue形式、UX risk checklist、Safety / fallback checklist、Markdown / JSON export のサンプルを表示します。Pro専用copy/export/saveボタンは共通Proが有効になるまでロックされます。</p>
+      </div>
+      <div data-pro-only class="pro-unlocked-note" hidden>
+        <strong>Pro解放済み。</strong>
+        <p>Pro出力のコピー、Markdown / JSON export、3〜4件比較が使えます。</p>
+      </div>
+      <div id="pro-handoff-content"></div>
+    </section>
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details><summary>AI APIを呼び出しますか？</summary><p>いいえ。このページは静的でクライアント側のみ動作します。表示されるプレビューは説明用UI例で、実際のAI出力ではありません。</p></details>
+      <details><summary>無料版で何ができますか？</summary><p>全パターン、検索、フィルタ、詳細、best for / not for、failure states、trust notes、implementation notes、common mistakes、2件比較、最近見た項目、お気に入り5件、関連リンク、基本AI依頼文コピーが無料です。</p></details>
+      <details><summary>Proは何のためですか？</summary><p>選択中のAI UIパターンを Product spec handoff、Codex task、GitHub Issue、UX risk checklist、Safety / fallback checklist、Markdown / JSON export、3〜4件比較に変換するための機能です。</p></details>
+      <details><summary>購入後はどうなりますか？</summary><p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p></details>
+    </section>
+    <div class="ad-slot ad-bottom">広告スペース</div>
+    <div class="nw-donate"><p>このツールが役立ったら、開発継続を応援できます。</p><p><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a> <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></p></div>
+    <div class="nw-links"><a href="/tools/ui-atlas/">UI Atlas</a><a href="/tools/vibe-lexicon/">Vibe Lexicon</a><a href="/tools/motion-atlas/">Motion Atlas</a></div>
+  </main>
+  <footer class="nw-footer"><p>© NicheWorks — Small Web Tools for Boring Tasks</p><p>当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+  <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+  <script src="/assets/nw-pro.js"></script>
+  <script src="../pro-bridge.js"></script>
+  <script src="../app.js"></script>
+  <script src="../complete-details.js"></script>
+</body>
+</html>

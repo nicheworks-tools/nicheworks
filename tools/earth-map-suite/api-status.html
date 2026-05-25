@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth Map Suite API Status (Research Only)</title>
+  <meta name="description" content="Research-only API status check page for Earth Map Suite.">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; line-height: 1.6; color: #1f2937; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .warn { background: #fff9e8; border-color: #f2d58a; }
+    .ok { background: #ecfdf5; border-color: #a7f3d0; }
+    .bad { background: #fef2f2; border-color: #fecaca; }
+    .links a, button { display: inline-block; margin: 6px 10px 6px 0; }
+    button { padding: 8px 12px; border: 1px solid #bbb; border-radius: 8px; background: #fff; cursor: pointer; }
+    button.primary { border-color: #2563eb; color: #1d4ed8; font-weight: 700; }
+    button.danger { border-color: #dc2626; color: #b91c1c; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; overflow: auto; white-space: pre-wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .small { color: #666; font-size: 0.92rem; }
+    textarea { width: 100%; min-height: 150px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    code { background: #f3f4f6; border-radius: 4px; padding: 1px 4px; }
+  </style>
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/earth-map-suite/api-status.html">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Earth Map Suite API Status (Research Only)">
+  <meta property="og:description" content="Research-only API status check page for Earth Map Suite.">
+  <meta property="og:url" content="https://nicheworks.app/tools/earth-map-suite/api-status.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Earth Map Suite API Status (Research Only)">
+  <meta name="twitter:description" content="Research-only API status check page for Earth Map Suite.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Earth Map Suite API Status (Research Only)",
+    "url": "https://nicheworks.app/tools/earth-map-suite/api-status.html",
+    "description": "Research-only API status check page for Earth Map Suite.",
+    "inLanguage": "ja",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <h1>Earth Map Suite API Status Check (Research Only)</h1>
+
+  <div class="card warn">
+    <p><strong>Research-only API status check.</strong></p>
+    <ul>
+      <li>Public real precipitation values are not enabled.</li>
+      <li>Storm / Compare / Card are not connected to real values.</li>
+      <li>Do not treat any result on this page as public real-observation enablement.</li>
+      <li>Probe buttons may call external upstream data through the API route. Run safe checks first.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Manual endpoint links</h2>
+    <div class="links">
+      <a href="/api/earth-map-suite/self-check" target="_blank" rel="noopener">Open /self-check</a>
+      <a href="/api/earth-map-suite/health" target="_blank" rel="noopener">Open /health</a>
+      <a href="/api/earth-map-suite/manifest" target="_blank" rel="noopener">Open /manifest</a>
+      <a href="/api/earth-map-suite/safe-result" target="_blank" rel="noopener">Open /safe-result</a>
+      <a href="/api/earth-map-suite/probe-status" target="_blank" rel="noopener">Open /probe-status</a>
+      <a href="/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low" target="_blank" rel="noopener">Open /precipitation-sample-real (safe check)</a>
+    </div>
+    <p>Run <code>self-check</code>, <code>health</code>, and <code>manifest</code> first. Probe checks are manual and remain research-only.</p>
+  </div>
+
+  <div class="card">
+    <h2>Browser self-check</h2>
+    <p class="small">This check runs from your browser against the currently hosted site. It does not approve public real-data output.</p>
+    <div>
+      <button class="primary" id="check-safe">Run safe check: self-check + health + manifest</button>
+      <button id="load-server-safe-result">Load server safe result</button>
+      <button class="danger" id="check-probe">Run research probes</button>
+      <button id="copy-json">Copy JSON result</button>
+      <button id="download-json">Download JSON result</button>
+      <button id="clear-local">Clear local result</button>
+    </div>
+    <div class="card warn">
+    <h3>EMS-RD-11 copy instructions</h3>
+    <ol>
+      <li>Run safe check first (<code>self-check</code> + <code>health</code> + <code>manifest</code>).</li>
+      <li>Copy JSON result.</li>
+      <li>Paste it into the project as EMS-RD-11 browser result (`ems-rd-11-browser-self-check-result.json`).</li>
+      <li>Run research probes only after self-check/health/manifest are reachable.</li>
+    </ol>
+    <p class="small">Guardrails: <code>public_real_data_enabled=false</code>, <code>storm_compare_card_connected=false</code>.</p>
+  </div>
+    <div class="card">
+      <h3>Paste downloaded/copied JSON result</h3>
+      <textarea id="pasted-json" placeholder="Paste downloaded/copied browser self-check JSON here."></textarea>
+      <p class="small">Pasted JSON is parsed locally in your browser only and is not sent anywhere by this loader.</p>
+      <button id="load-pasted-json">Load pasted JSON</button>
+    </div>
+    <p id="restore-note" class="small"></p>
+    <p id="status-line" class="small">autorun mode: off | last run mode: not_run | checked_at: null</p>
+    <pre id="summary">No checks yet.</pre>
+  </div>
+
+  <div class="card">
+    <h2>Raw result JSON</h2>
+    <pre id="output">{}</pre>
+  </div>
+
+  <script>
+    const output = document.getElementById('output');
+    const summary = document.getElementById('summary');
+    const restoreNote = document.getElementById('restore-note');
+    const statusLine = document.getElementById('status-line');
+    const pastedJsonInput = document.getElementById('pasted-json');
+    const STORAGE_KEY = 'earth_map_suite_browser_self_check_result_v1';
+
+    const safeEndpoints = [
+      { key: 'self_check', path: '/api/earth-map-suite/self-check' },
+      { key: 'health', path: '/api/earth-map-suite/health' },
+      { key: 'manifest', path: '/api/earth-map-suite/manifest' }
+    ];
+    const probeEndpoints = [
+      { key: 'probe_status', path: '/api/earth-map-suite/probe-status' },
+      { key: 'precipitation_sample_real', path: '/api/earth-map-suite/precipitation-sample-real?bbox=139.5,35.4,140.0,35.9&start=2025-08-01&end=2025-08-01&preset=low' }
+    ];
+
+    let lastResult = {
+      data_type: 'earth_map_suite_browser_self_check',
+      status: 'not_run',
+      public_real_data_enabled: false,
+      storm_compare_card_connected: false,
+      mode: 'not_run',
+      checked_at: null,
+      page_url: location.href,
+      branch_decision: 'browser_result_missing',
+      next_action: 'run browser safe-check from this page',
+      endpoints: [...safeEndpoints, ...probeEndpoints].map((e) => ({ key: e.key, path: e.path, ok: null, http_status: null, data_type: null, status: null, decision_phase: null, decision_next: null, public_ui_allowed: null, error_code: null, checked_at: null })),
+      guardrails: [
+        'This browser self-check does not approve public real precipitation output.',
+        'Storm / Compare / Card remain disconnected.',
+        'Do not show raw/debug pixel as rainfall.'
+      ]
+    };
+
+    let autorunMode = 'off';
+
+    function updateStatusLine() {
+      statusLine.textContent = `autorun mode: ${autorunMode} | last run mode: ${lastResult.mode || 'not_run'} | checked_at: ${lastResult.checked_at || 'null'}`;
+    }
+
+    function saveLocalResult(result) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(result));
+    }
+
+    async function fetchJson(endpoint) {
+      const startedAt = new Date().toISOString();
+      try {
+        const res = await fetch(endpoint.path, { cache: 'no-store' });
+        const text = await res.text();
+        let json = null;
+        try { json = JSON.parse(text); } catch (_) {}
+        return {
+          key: endpoint.key,
+          path: endpoint.path,
+          ok: res.ok,
+          http_status: res.status,
+          data_type: json && json.data_type ? json.data_type : null,
+          status: json && json.status ? json.status : null,
+          decision_phase: json && json.decision ? json.decision.phase : null,
+          decision_next: json && json.decision ? json.decision.next : null,
+          public_ui_allowed: json && Object.prototype.hasOwnProperty.call(json, 'public_ui_allowed') ? json.public_ui_allowed : null,
+          error_code: json && json.error_code ? json.error_code : null,
+          body: json || text.slice(0, 1200),
+          checked_at: startedAt
+        };
+      } catch (err) {
+        return {
+          key: endpoint.key,
+          path: endpoint.path,
+          ok: false,
+          http_status: null,
+          data_type: null,
+          status: 'fetch_failed',
+          error_code: 'browser_fetch_failed',
+          message: err && err.message ? err.message : String(err),
+          checked_at: startedAt
+        };
+      }
+    }
+
+
+
+    function setResultHashFields(result) {
+      const clone = JSON.parse(JSON.stringify(result));
+      clone.result_hash = null;
+      clone.result_hash_algorithm = null;
+      return clone;
+    }
+
+    async function computeResultHash(result) {
+      const normalized = setResultHashFields(result);
+      if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) {
+        return { result_hash: null, result_hash_algorithm: 'unavailable' };
+      }
+      try {
+        const data = new TextEncoder().encode(JSON.stringify(normalized));
+        const digest = await window.crypto.subtle.digest('SHA-256', data);
+        const bytes = Array.from(new Uint8Array(digest));
+        const hex = bytes.map((b) => b.toString(16).padStart(2, '0')).join('');
+        return { result_hash: hex, result_hash_algorithm: 'SHA-256' };
+      } catch (_) {
+        return { result_hash: null, result_hash_algorithm: 'unavailable' };
+      }
+    }
+
+    function classify(results) {
+      const byKey = Object.fromEntries(results.map((item) => [item.key, item]));
+      if (byKey.self_check && byKey.health && byKey.manifest && byKey.self_check.ok && byKey.health.ok && byKey.manifest.ok) {
+        if (!byKey.probe_status) return 'health_manifest_reachable';
+        const phase = byKey.probe_status.decision_phase;
+        if (phase) return phase;
+        return 'probe_checked_without_phase';
+      }
+      if (byKey.self_check || byKey.health || byKey.manifest) return 'health_manifest_failed';
+      return 'network_unverified';
+    }
+
+    async function render(result) {
+      const hashFields = await computeResultHash(result);
+      const withHash = { ...result, ...hashFields };
+      lastResult = withHash;
+      output.textContent = JSON.stringify(withHash, null, 2);
+      const lines = [
+        `branch_decision: ${withHash.branch_decision}`,
+        `public_real_data_enabled: ${withHash.public_real_data_enabled}`,
+        `storm_compare_card_connected: ${withHash.storm_compare_card_connected}`,
+        `result_hash: ${withHash.result_hash || 'null'}`,
+        `result_hash_algorithm: ${withHash.result_hash_algorithm || 'null'}`,
+        `next_action: ${withHash.next_action}`
+      ];
+      for (const item of withHash.endpoints) {
+        lines.push(`${item.key}: HTTP ${item.http_status || 'n/a'} / ${item.data_type || 'no data_type'} / ${item.status || 'no status'}`);
+      }
+      summary.textContent = lines.join('\n');
+      updateStatusLine();
+      saveLocalResult(withHash);
+    }
+
+
+    async function loadServerSafeResult() {
+      summary.textContent = 'Loading server safe result...';
+      const loaded = await fetchJson({ key: 'safe_result', path: '/api/earth-map-suite/safe-result' });
+      if (!loaded.ok || !loaded.body || typeof loaded.body !== 'object') {
+        summary.textContent = `Failed to load /safe-result (HTTP ${loaded.http_status || 'n/a'}).`;
+        return;
+      }
+      if (loaded.body.public_real_data_enabled !== false || loaded.body.storm_compare_card_connected !== false) {
+        summary.textContent = 'Unsafe flags detected in /safe-result response. Keeping Storm real blocked.';
+      }
+      await render(loaded.body);
+    }
+
+    async function run(endpoints, mode) {
+      summary.textContent = `Running ${mode}...`;
+      const results = [];
+      for (const endpoint of endpoints) results.push(await fetchJson(endpoint));
+      const branch = classify(results);
+      const nextAction = branch === 'health_manifest_reachable'
+        ? 'run research probes only if needed'
+        : branch === 'raw_pixel_read'
+          ? 'start validated sample validation; do not connect public UI'
+          : branch === 'decoder_strategy_required'
+            ? 'start decoder feasibility; do not connect public UI'
+            : 'keep Storm real blocked and inspect failed endpoint/result';
+      await render({
+        data_type: 'earth_map_suite_browser_self_check',
+        status: 'ok',
+        mode,
+        checked_at: new Date().toISOString(),
+        page_url: location.href,
+        branch_decision: branch,
+        public_real_data_enabled: false,
+        storm_compare_card_connected: false,
+        next_action: nextAction,
+        endpoints: results,
+        guardrails: [
+          'This browser self-check does not approve public real precipitation output.',
+          'Storm / Compare / Card remain disconnected.',
+          'Do not show raw/debug pixel as rainfall.'
+        ]
+      });
+    }
+
+    document.getElementById('check-safe').addEventListener('click', () => run(safeEndpoints, 'safe_self_health_manifest'));
+    document.getElementById('load-server-safe-result').addEventListener('click', () => loadServerSafeResult());
+    document.getElementById('check-probe').addEventListener('click', () => run([...safeEndpoints, ...probeEndpoints], 'research_probe'));
+    document.getElementById('copy-json').addEventListener('click', async () => {
+      const text = JSON.stringify(lastResult, null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        summary.textContent += '\nCopied JSON result to clipboard.';
+      } catch (err) {
+        output.focus();
+        summary.textContent += '\nCopy failed; select the JSON manually.';
+      }
+    });
+
+
+
+    document.getElementById('load-pasted-json').addEventListener('click', async () => {
+      const raw = pastedJsonInput.value.trim();
+      if (!raw) {
+        summary.textContent = 'Load pasted JSON failed: input is empty.';
+        return;
+      }
+      let parsed;
+      try {
+        parsed = JSON.parse(raw);
+      } catch (err) {
+        summary.textContent = `Load pasted JSON failed: invalid JSON (${err && err.message ? err.message : 'parse error'}).`;
+        return;
+      }
+      const required = ['branch_decision', 'public_real_data_enabled', 'storm_compare_card_connected', 'endpoints'];
+      const missing = required.filter((field) => !Object.prototype.hasOwnProperty.call(parsed, field));
+      if (missing.length) {
+        summary.textContent = `Load pasted JSON failed: missing required field(s): ${missing.join(', ')}.`;
+        return;
+      }
+      if (parsed.public_real_data_enabled !== false) {
+        summary.textContent = 'Load pasted JSON failed: unsafe flag detected (public_real_data_enabled must be false).';
+        return;
+      }
+      if (parsed.storm_compare_card_connected !== false) {
+        summary.textContent = 'Load pasted JSON failed: unsafe flag detected (storm_compare_card_connected must be false).';
+        return;
+      }
+      if (!Array.isArray(parsed.endpoints)) {
+        summary.textContent = 'Load pasted JSON failed: endpoints must be an array.';
+        return;
+      }
+      const normalized = {
+        ...lastResult,
+        ...parsed,
+        checked_at: parsed.checked_at || new Date().toISOString(),
+        page_url: parsed.page_url || location.href
+      };
+      await render(normalized);
+      summary.textContent += '\nLoaded pasted JSON result successfully.';
+    });
+
+    document.getElementById('download-json').addEventListener('click', () => {
+      const pad = (n) => String(n).padStart(2, '0');
+      const dt = lastResult.checked_at ? new Date(lastResult.checked_at) : new Date();
+      const stamp = `${dt.getUTCFullYear()}${pad(dt.getUTCMonth()+1)}${pad(dt.getUTCDate())}-${pad(dt.getUTCHours())}${pad(dt.getUTCMinutes())}${pad(dt.getUTCSeconds())}`;
+      const blob = new Blob([JSON.stringify(lastResult, null, 2)], { type: 'application/json;charset=utf-8' });
+      const href = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = href;
+      a.download = `earth-map-suite-browser-self-check-${stamp}.json`;
+      a.click();
+      URL.revokeObjectURL(href);
+    });
+
+    document.getElementById('clear-local').addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY);
+      restoreNote.textContent = 'Cleared local result key.';
+    });
+
+    function handleAutorunFromQuery() {
+      const params = new URLSearchParams(location.search);
+      const mode = (params.get('autorun') || params.get('run') || '').trim().toLowerCase();
+      if (!mode) return;
+      if (mode === 'safe') {
+        autorunMode = 'safe';
+        updateStatusLine();
+        run(safeEndpoints, 'safe_self_health_manifest');
+        return;
+      }
+      if (mode.includes('probe')) {
+        summary.textContent = 'Probe autorun parameter was ignored. Research probes must be manually triggered.';
+      }
+    }
+
+    (function init() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed && parsed.data_type === 'earth_map_suite_browser_self_check') {
+            restoreNote.textContent = 'Restored local result';
+            render(parsed);
+          }
+        } catch (_) {}
+      }
+      updateStatusLine();
+      handleAutorunFromQuery();
+    })();
+  </script>
+</body>
+</html>

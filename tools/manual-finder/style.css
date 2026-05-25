@@ -23,7 +23,6 @@ body {
   line-height: 1.8;
 }
 
-/* ===== 共通レイアウト ===== */
 .nw-main {
   max-width: 960px;
   margin: 0 auto;
@@ -62,7 +61,6 @@ body {
   align-self: flex-start;
 }
 
-/* ===== 共通広告枠 ===== */
 .ad-slot {
   margin: 12px 0 16px;
   padding: 8px;
@@ -77,7 +75,24 @@ body {
 .ad-bottom { margin-bottom: 8px; }
 .ad-inline { margin: 24px 0; }
 
-/* ===== パネル ===== */
+.intro-panel {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fafafa;
+  color: #4b5563;
+  font-size: 12px;
+}
+.intro-panel p { margin: 0; }
+.usage-link {
+  display: inline-block;
+  margin-left: 8px;
+  color: #111827;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 .panel {
   background: #fff;
   border-radius: var(--radius);
@@ -99,11 +114,32 @@ body {
   margin-bottom: 8px;
 }
 .count {
+  min-width: 88px;
+  text-align: right;
   font-size: 11px;
   color: var(--sub);
 }
 
-/* ===== 操作UI ===== */
+.load-status {
+  margin: 0 0 10px;
+  padding: 7px 9px;
+  border-radius: 10px;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 11px;
+}
+.load-status.is-warning {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+.load-status.is-error {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
 .controls {
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.1fr);
@@ -131,7 +167,12 @@ input[type="text"]:focus, select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 1px rgba(0,0,0,.04);
 }
-
+.helper-text {
+  margin: 8px 0 0;
+  font-size: 10px;
+  color: var(--sub);
+}
+.quick-area { margin-top: 12px; }
 .quick-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -150,58 +191,51 @@ input[type="text"]:focus, select:focus {
   border-color: var(--accent);
   color: var(--accent);
 }
-.helper-text {
-  margin: 8px 0 0;
-  font-size: 10px;
-  color: var(--sub);
-}
 
-/* ===== カード表示 ===== */
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 8px;
+  margin-top: 12px;
 }
 .card {
   border-radius: 10px;
-  padding: 9px 9px 8px;
+  padding: 10px;
   border: 1px solid var(--border);
   background: #fff;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   font-size: 11px;
 }
-
-/* app.js が使うタイトル用 */
 .card-title {
   font-weight: 600;
   font-size: 12px;
 }
-
-/* 旧構成互換（使っていなくてもOK） */
-.card-header {
+.card-meta {
   display: flex;
-  justify-content: space-between;
-  gap: 4px;
-  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
 }
-.card-brand {
-  font-weight: 600;
-  font-size: 12px;
-}
-
 .card-category,
 .card-country {
   font-size: 9px;
   color: var(--sub);
 }
-
 .card-note {
+  margin: 0;
   font-size: 10px;
   color: var(--sub);
 }
-
+.card-hint {
+  margin: 0;
+  padding: 5px 6px;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #4b5563;
+  font-size: 10px;
+}
 .card-links {
   display: flex;
   flex-wrap: wrap;
@@ -231,18 +265,25 @@ input[type="text"]:focus, select:focus {
 }
 
 .empty-message {
-  margin-top: 4px;
-  font-size: 10px;
+  margin-top: 10px;
+  font-size: 11px;
   color: var(--sub);
 }
-
 .panel-note { font-size: 10px; }
 .note-list {
   padding-left: 16px;
   margin: 4px 0 0;
 }
+.faq-panel h3 {
+  margin: 12px 0 2px;
+  font-size: 13px;
+}
+.faq-panel p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 12px;
+}
 
-/* ===== 寄付導線（共通仕様 6章） ===== */
 .nw-donate {
   text-align: center;
   margin: 16px 0 8px;
@@ -278,7 +319,6 @@ input[type="text"]:focus, select:focus {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* ===== 言語切替UI（共通仕様 7章） ===== */
 .nw-lang-switch {
   text-align: center;
   margin: 4px 0 8px;
@@ -298,7 +338,6 @@ input[type="text"]:focus, select:focus {
   text-decoration: underline;
 }
 
-/* ===== 関連リンクブロック ===== */
 .nw-links {
   margin: 12px 0 4px;
   text-align: center;
@@ -311,7 +350,6 @@ input[type="text"]:focus, select:focus {
   margin: 0 4px;
 }
 
-/* ===== フッター（共通仕様） ===== */
 .nw-footer {
   margin-top: 24px;
   padding: 16px 8px 12px;
@@ -324,8 +362,13 @@ input[type="text"]:focus, select:focus {
 .nw-footer-line { margin: 2px 0; }
 .nw-footer a { color: #6b7280; text-decoration: underline; }
 
-/* ===== Responsive ===== */
 @media (max-width: 640px) {
+  .nw-main { padding: 12px; }
   .nw-header-inner { flex-direction: column; gap: 6px; }
+  .panel-header-row { align-items: flex-start; flex-direction: column; }
+  .count { min-width: 0; text-align: left; }
   .controls { grid-template-columns: 1fr; }
+  .quick-buttons button { flex: 1 1 auto; }
+  .card-list { grid-template-columns: 1fr; }
+  .usage-link { display: block; margin: 6px 0 0; }
 }

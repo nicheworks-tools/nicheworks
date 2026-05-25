@@ -4,171 +4,48 @@
   <meta charset="UTF-8">
   <title>Contact | NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Description -->
-  <meta
-    name="description"
-    content="Contact page for NicheWorks. For bug reports, feature requests, feedback, or general messages, please reach out here."
-  >
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/en/contact.html">
-
-  <!-- Favicon -->
+  <meta name="description" content="Contact NicheWorks for bug reports, improvement requests, advertising, privacy, and general site inquiries.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/en/contact.html">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- Styles -->
   <link rel="stylesheet" href="/style.css">
-
-  <!-- Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- OGP -->
-  <meta property="og:title" content="Contact | NicheWorks">
-  <meta property="og:description" content="Get in touch with NicheWorks. For bug reports, feature requests, or general inquiries, please contact us here.">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://nicheworks.pages.dev/en/contact.html">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-
-  <!-- Twitter -->
+  <meta property="og:title" content="Contact | NicheWorks">
+  <meta property="og:description" content="Contact NicheWorks for bug reports, improvement requests, advertising, privacy, and general site inquiries.">
+  <meta property="og:url" content="https://nicheworks.app/en/contact.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact | NicheWorks">
-  <meta name="twitter:description" content="For questions, bug reports, feedback, or messages regarding NicheWorks tools, please reach out here.">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
-  <!-- JSON-LD (ContactPage) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact NicheWorks",
-    "url": "https://nicheworks.pages.dev/en/contact.html",
-    "inLanguage": "en",
-    "description": "Contact page for NicheWorks. For inquiries, bug reports, and feedback.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks"
-    }
-  }
-  </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <meta name="twitter:description" content="Contact NicheWorks for bug reports, improvement requests, advertising, privacy, and general site inquiries.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact NicheWorks","url":"https://nicheworks.app/en/contact.html","inLanguage":"en","description":"Contact page for bug reports, improvement requests, advertising, privacy, and general site inquiries.","publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
 </head>
-
 <body>
   <main class="container">
-
     <header>
-      <h1 class="site-title">
-        <img src="/assets/nicheworks-logo.png" alt="NicheWorks logo" class="site-logo">
-        NicheWorks
-      </h1>
-
+      <h1 class="site-title"><img src="/assets/nicheworks-logo.png" alt="NicheWorks logo" class="site-logo">NicheWorks</h1>
       <p class="subtitle">A quiet collection of small, useful web tools</p>
-
-      <!-- Header Navigation -->
-      <div class="nav-inline">
-        <a href="./index.html">Home</a>
-        <span class="sep">/</span>
-        <a href="./about.html">About</a>
-        <span class="sep">/</span>
-        <a href="./privacy.html">Privacy</a>
-        <span class="sep">/</span>
-        <a href="./contact.html">Contact</a>
-      </div>
-
-      <!-- Language Switch -->
-      <div class="nav-inline">
-        <span>Language:</span>
-        <a href="./contact.html">English</a>
-        <span class="sep">/</span>
-        <a href="../contact.html">日本語</a>
-      </div>
+      <nav class="nav-inline" aria-label="Site navigation"><a href="/en/">Home</a><span class="sep">/</span><a href="/en/about.html">About</a><span class="sep">/</span><a href="/en/privacy.html">Privacy</a><span class="sep">/</span><a href="/en/contact.html">Contact</a><span class="sep">/</span><a href="/contact.html">日本語</a></nav>
     </header>
-
-    <!-- Contact Content -->
     <section class="block">
       <h2>Contact</h2>
-
-      <p>
-        If you have questions about any NicheWorks tools, wish to report a bug,  
-        request improvements, or simply leave a message,  
-        feel free to reach out via the email address below.
-      </p>
-
-      <p>
-        <strong>Email:</strong>
-        <span id="email-area"></span>
-      </p>
-
-      <script>
-        // Email obfuscation to reduce spam
-        (function() {
-          const user = "nicheworks.tools";
-          const domain = "gmail.com";
-          const full = user + "@" + domain;
-          const link = '<a href="mailto:' + full + '">' + full + '</a>';
-          document.getElementById("email-area").innerHTML = link;
-        })();
-      </script>
-
-      <h3>Response Policy</h3>
-      <p>
-        We try to respond to most messages,  
-        but as this is a personal project, replies may take some time.  
-        Please note that we may not be able to respond to every inquiry.
-      </p>
-
-      <h3>Before Contacting</h3>
-      <ul>
-        <li>If reporting a bug, please include your device and browser information.</li>
-        <li>Messages for advertising or spam-related purposes will not receive a reply.</li>
-      </ul>
-
+      <p>For questions, bug reports, improvement requests, advertising matters, or privacy-related inquiries about NicheWorks tools, please contact the email address below.</p>
+      <p><strong>Email:</strong> <a href="mailto:nicheworks.tools@gmail.com">nicheworks.tools@gmail.com</a></p>
+      <h3>Response policy</h3>
+      <p>NicheWorks is a personally operated project. Replies may take time, and a response to every message is not guaranteed.</p>
+      <h3>For bug reports</h3>
+      <ul><li>Tool name or URL</li><li>What happened</li><li>Your device, OS, and browser</li></ul>
+      <p class="small muted">Advertising spam, abusive messages, and unrelated promotions may not receive a response.</p>
     </section>
-
     <footer>
-
-      <!-- Donation Block -->
-      <div class="block donate-block">
-        <h2>Support</h2>
-        <p class="small">
-          NicheWorks is a personal project.  
-          If you enjoy the tools, even a small donation is greatly appreciated.
-        </p>
-        <div class="donate-buttons">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-        </div>
-        <p class="small muted">
-          Donations are optional. All support goes directly toward development and maintenance.
-        </p>
-      </div>
-
-      <!-- Footer links -->
-      <div class="small">
-        <p class="small">
-          <a href="./index.html">Home</a> /
-          <a href="./about.html">About</a> /
-          <a href="./privacy.html">Privacy</a> /
-          <a href="./contact.html">Contact</a>
-        </p>
-        <p class="small">NicheWorks Project</p>
-        <p class="small muted">Some tools may display ads to support the project.</p>
-      </div>
-
+      <div class="block donate-block"><h2>Support</h2><p class="small">NicheWorks is a personal collection of small browser tools. If a tool helped you, support is appreciated and helps continued development.</p><div class="donate-buttons"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+      <div class="small"><p class="small"><a href="/en/">Home</a> / <a href="/en/about.html">About</a> / <a href="/en/privacy.html">Privacy</a> / <a href="/en/contact.html">Contact</a></p><p class="small">NicheWorks Project</p><p class="small muted">Some tools may display ads to support operations.</p></div>
     </footer>
-
   </main>
-
-  <!-- Cloudflare Analytics -->
-  
-
 </body>
 </html>

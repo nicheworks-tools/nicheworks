@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EXIF Cleaner Mini の使い方・注意点 | NicheWorks</title>
+  <meta name="description" content="EXIF Cleaner Mini の使い方、対応形式、削除方式、非対応範囲、エラー時の対処をまとめた説明ページです。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/exif-cleaner-mini/usage.html">
+  <link rel="icon" href="/assets/favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <style>
+    body{font-family:system-ui,sans-serif;margin:0;background:#fff;color:#333;line-height:1.75}
+    main{max-width:680px;margin:0 auto;padding:24px 16px 40px}
+    h1{font-size:24px;line-height:1.35;margin:0 0 16px}
+    h2{font-size:18px;margin:28px 0 8px;border-top:1px solid #e5e7eb;padding-top:18px}
+    p,li{font-size:14px}
+    ul,ol{padding-left:1.4em}
+    .note{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;color:#4b5563}
+    .back{margin-top:28px}
+    a{color:#2563eb}
+    footer{border-top:1px solid #e5e7eb;text-align:center;font-size:11px;color:#6b7280;padding:16px 8px}
+  </style>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="EXIF Cleaner Mini の使い方・注意点 | NicheWorks">
+  <meta property="og:description" content="EXIF Cleaner Mini の使い方、対応形式、削除方式、非対応範囲、エラー時の対処をまとめた説明ページです。">
+  <meta property="og:url" content="https://nicheworks.app/tools/exif-cleaner-mini/usage.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EXIF Cleaner Mini の使い方・注意点 | NicheWorks">
+  <meta name="twitter:description" content="EXIF Cleaner Mini の使い方、対応形式、削除方式、非対応範囲、エラー時の対処をまとめた説明ページです。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "EXIF Cleaner Mini の使い方・注意点 | NicheWorks",
+    "url": "https://nicheworks.app/tools/exif-cleaner-mini/usage.html",
+    "description": "EXIF Cleaner Mini の使い方、対応形式、削除方式、非対応範囲、エラー時の対処をまとめた説明ページです。",
+    "inLanguage": "ja",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+<main>
+  <h1>EXIF Cleaner Mini の使い方・注意点</h1>
+
+  <p class="note">EXIF Cleaner Mini は、写真をブラウザ内で再生成し、共有前にEXIFメタデータを引き継がない画像として保存する無料ツールです。画像はサーバーに送信されません。</p>
+
+  <h2>1. このツールでできること</h2>
+  <p>JPEG / PNG / WebP 画像を読み込み、Canvasに描き直して新しい画像として保存します。この処理により、GPS位置情報、撮影日時、端末名など、多くのEXIFメタデータは引き継がれません。</p>
+
+  <h2>2. 使い方</h2>
+  <ol>
+    <li>ページ上のアップロード欄に画像をドラッグ＆ドロップ、またはクリックして選択します。</li>
+    <li>簡易チェック結果と出力形式を確認します。</li>
+    <li>必要に応じて出力形式やJPEG画質を変更します。</li>
+    <li>「EXIFを削除して保存」を押します。</li>
+    <li>保存された「-cleaned」付きの画像を共有用として使います。</li>
+  </ol>
+
+  <h2>3. 対応形式 / 非対応</h2>
+  <p>対応形式は JPEG / PNG / WebP です。HEIC、TIFF、RAW、PDF、動画ファイルには対応していません。HEIC画像は、先にJPEGまたはPNGへ変換してから使用してください。</p>
+
+  <h2>4. 削除方式と限界</h2>
+  <p>このツールは、画像をブラウザ内のCanvasへ描き直し、新しい画像として保存します。そのため、多くのEXIFメタデータは引き継がれません。</p>
+  <p>ただし、すべてのアプリ独自メタデータ、ファイル構造情報、表示内容そのものに写り込んだ個人情報の削除を保証するものではありません。画像内に住所、名前、顔、注文番号などが写っている場合は、別途黒塗りやぼかし処理が必要です。</p>
+
+  <h2>5. エラーについて</h2>
+  <ul>
+    <li>「対応していない画像形式です」：JPEG / PNG / WebP以外の可能性があります。</li>
+    <li>「ファイルが空です」：0バイトの壊れたファイルです。</li>
+    <li>「画像ファイルが大きすぎます」：ブラウザ内処理のため、より小さい画像で試してください。</li>
+    <li>「画像の処理に失敗しました」：ブラウザが画像を読み込めない、またはCanvas出力できない可能性があります。</li>
+  </ul>
+
+  <h2>6. よくある質問</h2>
+  <p><strong>Q. 画像はサーバーに送信されますか？</strong><br>いいえ。処理はブラウザ内で行われます。</p>
+  <p><strong>Q. GPS位置情報は削除されますか？</strong><br>多くの場合、Canvas再生成により引き継がれません。ただし完全保証ではありません。</p>
+  <p><strong>Q. EXIFが見つからない画像でも処理する意味はありますか？</strong><br>あります。共有前に画像を再生成することで、アプリ由来の余計な情報を減らせる場合があります。</p>
+
+  <h2>7. 免責</h2>
+  <p>本ツールは簡易的なメタデータ削除補助ツールです。完全な匿名化、全メタデータ削除、マルウェア検査、法的・業務上の安全性を保証するものではありません。重要な画像を公開する前には、内容の写り込みも含めて必ずご自身で確認してください。</p>
+
+  <p class="back"><a href="./">EXIF Cleaner Mini に戻る</a></p>
+</main>
+<footer>
+  <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+  <p><a href="https://nicheworks.app/">nicheworks.app</a></p>
+</footer>
+</body>
+</html>

@@ -4,134 +4,495 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks</title>
-  <meta name="description" content="APIキー・トークンを誤公開しないための伏字方法とチェック手順。GitHub/Discord/フォーム投稿前に、コード・ログ・.envを安全に共有するための最終確認ガイド。">
+  <title>APIキー・トークン伏字化｜API Key Token Redactor | NicheWorks</title>
+  <meta name="description" content="APIキー、Bearerトークン、JWT、秘密鍵、.envやJSON内のシークレットをブラウザ内で検出し、共有用に伏字化する無料ツールです。外部送信なし。">
+  <link rel="canonical" href="https://nicheworks.app/tools/api-key-token-redactor/">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
-
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="APIキー伏字のやり方｜貼る前チェック手順 | NicheWorks">
-  <meta property="og:description" content="APIキー・トークンの誤公開を防ぐための伏字方法と最終チェック手順。">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/api-key-token-redactor/usage.html">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="APIキー・トークン伏字化｜API Key Token Redactor | NicheWorks">
+  <meta property="og:description" content="APIキー、Bearerトークン、JWT、秘密鍵、.envやJSON内のシークレットをブラウザ内で検出し、共有用に伏字化する無料ツールです。外部送信なし。">
+  <meta property="og:url" content="https://nicheworks.app/tools/api-key-token-redactor/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- AdSense（削除禁止） -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Web Analytics -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "API Key Token Redactor",
+    "url": "https://nicheworks.app/tools/api-key-token-redactor/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "description": "APIキー、Bearerトークン、JWT、秘密鍵、.envやJSON内のシークレットをブラウザ内で検出し、共有用に伏字化する無料ツールです。"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "入力したテキストは送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。入力内容はブラウザ内で処理され、外部サーバーには送信されません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "すべての秘密情報を検出できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。一般的なAPIキー、トークン、秘密鍵、ラベル付きシークレットを検出しますが、独自形式や短い値は検出できない場合があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": ".env や JSON に対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。api_key、token、secret、password、client_secret、access_token などのキー名をもとに、quoted value も検出します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "伏字後のテキストは安全に共有できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "完全保証ではありません。共有前にURL、Cookie、Authorizationヘッダー、メールアドレス、IPなどを目視確認してください。"
+        }
+      }
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="./style.css">
-
-  <style>
-    .article { border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; margin: 12px 0 16px; background: #fff; }
-    .article h2 { margin-top: 18px; }
-    .article p, .article li { line-height: 1.8; }
-    .kbd { display:inline-block; padding:2px 8px; border:1px solid #d1d5db; border-bottom-width:2px; border-radius:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; background:#f9fafb; }
-    .callout { background:#f9fafb; border:1px solid #e5e7eb; border-radius:12px; padding:12px; margin:12px 0; }
-  </style>
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
   </script>
+  <meta name="robots" content="index,follow">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta name="twitter:title" content="APIキー・トークン伏字化｜API Key Token Redactor | NicheWorks">
+  <meta name="twitter:description" content="APIキー、Bearerトークン、JWT、秘密鍵、.envやJSON内のシークレットをブラウザ内で検出し、共有用に伏字化する無料ツールです。外部送信なし。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 </head>
 
 <body>
   <header class="nw-header">
-    <h1>APIキー伏字のやり方（貼る前チェック手順）</h1>
-    <p>GitHub / Discord / フォーム投稿の前に、秘密情報を誤公開しないための最終確認ガイド。</p>
-
-    <div class="nw-lang-switch">
-      <a href="./index.html" class="kbd">ツールへ戻る</a>
+    <div class="header-row">
+      <h1>
+        <span data-i18n="ja">APIキー・トークン伏字化</span>
+        <span data-i18n="en">API Key &amp; Token Redactor</span>
+      </h1>
+      <div class="nw-lang-switch">
+        <button type="button" data-lang="ja">日本語</button>
+        <button type="button" data-lang="en">English</button>
+      </div>
     </div>
+    <p>
+      <span data-i18n="ja">ログ、.env、JSON、curlコマンドに含まれる秘密情報らしき文字列を検出し、共有用に伏字化します。</span>
+      <span data-i18n="en">Detect likely secrets in logs, .env files, JSON, and curl commands, then redact them locally.</span>
+    </p>
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <div class="ad-slot ad-top">広告枠</div>
 
-    <article class="article">
-      <h2>このページで分かること</h2>
-      <ul>
-        <li>APIキー・トークンを貼ってはいけない理由（何が危険か）</li>
-        <li>コード・ログ・.env を安全に共有する「手順」</li>
-        <li>ありがちな漏洩パターンと対策</li>
-      </ul>
+    <section class="tool-note">
+      <p data-i18n="ja">このツールは、APIキー、Bearerトークン、JWT、秘密鍵、Cookie、URL内トークンなどをブラウザ内で検出し、外部送信なしで伏字化します。</p>
+      <p data-i18n="en">This tool detects API keys, Bearer tokens, JWTs, private keys, cookies, and URL tokens in your browser without uploading your text.</p>
+      <p class="usage-link">
+        <a href="./howto/" data-howto-link>
+          <span data-i18n="ja">詳しい使い方と検出パターン</span>
+          <span data-i18n="en">Full guide and supported patterns</span>
+        </a>
+      </p>
+    </section>
 
-      <div class="callout">
-        <strong>重要：</strong>伏字・検出は「取りこぼしゼロ」を保証できません。<br>
-        最終的な共有判断はあなたの責任で行ってください。
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">入力</span>
+        <span data-i18n="en">Input</span>
+      </h2>
+      <textarea id="inputText" placeholder="Paste logs, configs, .env, JSON, curl commands, or secrets here..."></textarea>
+      <div class="note">
+        <span data-i18n="ja">プライバシー: ブラウザ内で処理され、外部に送信されません。</span>
+        <span data-i18n="en">Privacy: Runs locally in your browser. Nothing is uploaded.</span>
+      </div>
+      <div class="sample-area" aria-label="Sample inputs">
+        <p class="sample-title">
+          <span data-i18n="ja">サンプル入力</span>
+          <span data-i18n="en">Sample inputs</span>
+        </p>
+        <div class="sample-grid">
+          <button type="button" class="btn-ghost" data-sample="env">.env</button>
+          <button type="button" class="btn-ghost" data-sample="json">JSON</button>
+          <button type="button" class="btn-ghost" data-sample="curl">curl</button>
+          <button type="button" class="btn-ghost" data-sample="log">
+            <span data-i18n="ja">ログ</span>
+            <span data-i18n="en">Log</span>
+          </button>
+          <button type="button" class="btn-ghost" data-sample="privateKey">
+            <span data-i18n="ja">秘密鍵</span>
+            <span data-i18n="en">Private key</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">検出モード</span>
+        <span data-i18n="en">Detection Modes</span>
+      </h2>
+      <div class="options-grid">
+        <label class="check-item"><input type="checkbox" id="modeApiKeys" checked> <span>API keys</span></label>
+        <label class="check-item"><input type="checkbox" id="modeBearer" checked> <span>Bearer / Authorization</span></label>
+        <label class="check-item"><input type="checkbox" id="modeJwt" checked> <span>JWT</span></label>
+        <label class="check-item"><input type="checkbox" id="modePrivateKey" checked> <span>Private keys (PEM)</span></label>
+        <label class="check-item"><input type="checkbox" id="modeGenericSecret" checked> <span>Generic / JSON / .env / URL / Cookie</span></label>
       </div>
 
-      <h2>危ないのは「APIキーだけ」じゃない</h2>
-      <p>
-        誤公開すると危険な情報は APIキーだけではありません。代表例は以下です。
-      </p>
-      <ul>
-        <li>OpenAI / Stripe / AWS / GitHub などの各種キー</li>
-        <li>JWT などのログイン系トークン</li>
-        <li>Slack などのワークスペース用トークン</li>
-        <li>.env / config の秘密値（DBパスワード、Webhook URL など）</li>
+      <div class="options-row">
+        <label class="select-item">
+          <span class="select-label" data-i18n="ja">置換文字</span>
+          <span class="select-label" data-i18n="en">Replacement text</span>
+          <select id="placeholderStyle">
+            <option value="[REDACTED]" selected>[REDACTED]</option>
+            <option value="****">****</option>
+            <option value="<redacted>">&lt;redacted&gt;</option>
+          </select>
+        </label>
+        <label class="toggle-item">
+          <input type="checkbox" id="keepLengthToggle">
+          <span data-i18n="ja">元の長さを保持（* で置換）</span>
+          <span data-i18n="en">Keep length (replace with *)</span>
+        </label>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" id="redactBtn">
+          <span data-i18n="ja">伏字にする</span>
+          <span data-i18n="en">Redact</span>
+        </button>
+        <button type="button" class="btn-ghost" id="clearBtn">
+          <span data-i18n="ja">クリア</span>
+          <span data-i18n="en">Clear</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">出力</span>
+        <span data-i18n="en">Output</span>
+      </h2>
+      <textarea id="outputText" readonly placeholder="Redacted text will appear here..."></textarea>
+
+      <div id="summary" class="summary">
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">APIキー</span>
+            <span data-i18n="en">API keys</span>
+          </span>
+          <span class="summary-value" id="countApiKeys">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">Bearer</span>
+            <span data-i18n="en">Bearer tokens</span>
+          </span>
+          <span class="summary-value" id="countBearer">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">JWT</span>
+          <span class="summary-value" id="countJwt">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">秘密鍵</span>
+            <span data-i18n="en">Private keys</span>
+          </span>
+          <span class="summary-value" id="countPrivateKey">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">ラベル付きsecret</span>
+            <span data-i18n="en">Labeled secrets</span>
+          </span>
+          <span class="summary-value" id="countGeneric">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">ヘッダー系</span>
+            <span data-i18n="en">Headers</span>
+          </span>
+          <span class="summary-value" id="countHeaders">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">
+            <span data-i18n="ja">URL内token</span>
+            <span data-i18n="en">URL tokens</span>
+          </span>
+          <span class="summary-value" id="countUrlQuery">0</span>
+        </div>
+        <div class="summary-row severity-count">
+          <span class="summary-label">High</span>
+          <span class="summary-value" id="countHigh">0</span>
+        </div>
+        <div class="summary-row severity-count">
+          <span class="summary-label">Medium</span>
+          <span class="summary-value" id="countMedium">0</span>
+        </div>
+        <div class="summary-row summary-total">
+          <span class="summary-label">
+            <span data-i18n="ja">合計</span>
+            <span data-i18n="en">Total</span>
+          </span>
+          <span class="summary-value" id="countTotal">0</span>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" id="copyBtn" class="btn-ghost">
+          <span data-i18n="ja">伏字済みテキストをコピー</span>
+          <span data-i18n="en">Copy redacted text</span>
+        </button>
+        <button type="button" id="downloadBtn" class="btn-ghost">
+          <span data-i18n="ja">TXTダウンロード</span>
+          <span data-i18n="en">Download TXT</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">検出結果</span>
+        <span data-i18n="en">Findings</span>
+      </h2>
+      <div id="findingsList" class="findings-list"></div>
+    </section>
+
+    <section class="tool-card compact">
+      <h2>
+        <span data-i18n="ja">安全サマリー</span>
+        <span data-i18n="en">Safety summary</span>
+      </h2>
+      <p id="safetySummary" class="safety-summary warning"></p>
+      <ul class="safe-checklist">
+        <li data-i18n="ja">検出できない形式の秘密情報が残る可能性があります。</li>
+        <li data-i18n="en">Some custom secret formats may remain undetected.</li>
+        <li data-i18n="ja">共有前に、URL、Cookie、Authorizationヘッダー、メールアドレス、IP、URLパラメータを確認してください。</li>
+        <li data-i18n="en">Before sharing, review URLs, cookies, Authorization headers, emails, IP addresses, and query parameters.</li>
       </ul>
+    </section>
 
-      <h2>安全に共有する最短手順（おすすめ）</h2>
-      <ol>
-        <li>共有したい内容（コード/ログ/.env）をコピーする</li>
-        <li><a href="./index.html">API Key &amp; Token Redactor</a> に貼り付ける</li>
-        <li><span class="kbd">検出する</span> を押す</li>
-        <li>検出結果（件数・種類）を確認する</li>
-        <li><span class="kbd">コピー</span> or <span class="kbd">TXTダウンロード</span> で「伏字済み全文」を取得する</li>
-        <li>その伏字済み全文だけを、GitHub / Discord / フォームなどに貼る</li>
-      </ol>
 
-      <h2>よくある漏洩パターン</h2>
-      <ul>
-        <li><strong>.env を丸ごと貼ってしまう</strong>（特に事故が多い）</li>
-        <li><strong>ログに Authorization ヘッダーやJWTが混ざる</strong></li>
-        <li><strong>スクショにキーが映り込む</strong>（ターミナル・管理画面）</li>
-        <li><strong>「一部だけ伏字」のつもりが、別の場所に残っている</strong></li>
-      </ul>
 
-      <h2>安全度を上げるコツ</h2>
-      <ul>
-        <li>伏字済み全文を貼ったあとも、投稿前に <strong>検索（Ctrl+F）</strong> で <strong>sk- / pk_ / rk_ / AKIA / ghp_</strong> などを再確認</li>
-        <li>不要なら <strong>ログの該当行を削る</strong>（最も安全）</li>
-        <li>事故った可能性がある場合は <strong>即ローテーション</strong>（キー再発行・無効化）</li>
-      </ul>
+    <section class="tool-card pro-card" aria-labelledby="proTitle">
+      <div class="pro-card-head">
+        <div>
+          <p class="eyebrow">NicheWorks Pro</p>
+          <h2 id="proTitle">
+            <span data-i18n="ja">安全確認パック</span>
+            <span data-i18n="en">Safety handoff pack</span>
+          </h2>
+        </div>
+        <span class="pro-status" data-pro-status>Preview</span>
+      </div>
+      <p class="note" data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+      <p class="note" data-i18n="en">After purchase, NicheWorks Pro is enabled in this browser. It usually stays available after closing tabs or the browser. Another device, another browser, private mode, or cleared site data requires activation again.</p>
 
-      <h2>このツールは何をしている？</h2>
-      <p>
-        ブラウザ内で文字列パターン（正規表現）を検出し、共有向けの形に置換します。
-        画像やテキストをサーバーへ送信しません（ローカル処理）。
-      </p>
+      <div class="pro-preview" data-pro-preview>
+        <h3>
+          <span data-i18n="ja">Pro Preview</span>
+          <span data-i18n="en">Pro Preview</span>
+        </h3>
+        <div class="pro-preview-grid">
+          <article>
+            <strong>Redaction Audit Report</strong>
+            <p data-i18n="ja">件数、重要度、検出表、残リスク、手動確認項目をMarkdownでまとめます。</p>
+            <p data-i18n="en">Summarizes counts, severity, finding table, remaining risks, and manual checks in Markdown.</p>
+          </article>
+          <article>
+            <strong>GitHub Issue template</strong>
+            <p data-i18n="ja">伏字済みログ、伏字内容、ローテーション確認をIssue形式に整えます。</p>
+            <p data-i18n="en">Formats redacted logs, redaction notes, and rotation checks for GitHub Issues.</p>
+          </article>
+          <article>
+            <strong>Support / Discord template</strong>
+            <p data-i18n="ja">サポート窓口やDiscordへ渡す短い説明と目視確認警告を生成します。</p>
+            <p data-i18n="en">Creates a short share note and manual-review warning for support or Discord.</p>
+          </article>
+          <article>
+            <strong>Rotation checklist</strong>
+            <p data-i18n="ja">GitHub、Slack、AWS、Stripe、npm、Google、GitLab、不明secretの確認項目です。</p>
+            <p data-i18n="en">Checklist for GitHub, Slack, AWS, Stripe, npm, Google, GitLab, and unknown secrets.</p>
+          </article>
+          <article>
+            <strong>Custom rules</strong>
+            <p data-i18n="ja">独自ラベル、prefix、最小長、重要度で追加検出できます。</p>
+            <p data-i18n="en">Add detections by custom label, prefix, minimum length, and severity.</p>
+          </article>
+          <article>
+            <strong>Redaction profile</strong>
+            <p data-i18n="ja">GitHub Issue、Discord、Support、Public paste、Codex handoff用に出力文脈を切り替えます。</p>
+            <p data-i18n="en">Switch output context for GitHub Issues, Discord, support, public paste, or Codex handoff.</p>
+          </article>
+        </div>
+        <a class="pro-buy-button" href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener" data-pro-buy>
+          <span data-i18n="ja">NicheWorks Proを購入</span>
+          <span data-i18n="en">Buy NicheWorks Pro</span>
+        </a>
+      </div>
 
-      <h2>次の機能（Pro予定）</h2>
-      <ul>
-        <li>マスキングルール指定（末尾N文字残す / 置換文字列指定）</li>
-        <li>ローカル履歴</li>
-        <li>より広い検出パターン</li>
-      </ul>
-    </article>
+      <div class="pro-only" data-pro-only hidden>
+        <div class="pro-controls">
+          <label class="select-item">
+            <span class="select-label" data-i18n="ja">Redaction profile</span>
+            <span class="select-label" data-i18n="en">Redaction profile</span>
+            <select id="profileSelect">
+              <option value="GitHub Issue">GitHub Issue</option>
+              <option value="Discord share">Discord share</option>
+              <option value="Support ticket">Support ticket</option>
+              <option value="Public paste">Public paste</option>
+              <option value="Codex handoff">Codex handoff</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="custom-rule-box">
+          <h3>
+            <span data-i18n="ja">Custom detection rules</span>
+            <span data-i18n="en">Custom detection rules</span>
+          </h3>
+          <div class="custom-rule-grid">
+            <label><span data-i18n="ja">ラベル</span><span data-i18n="en">Label</span><input id="customRuleLabel" type="text" placeholder="Internal API key"></label>
+            <label><span>Prefix</span><input id="customRulePrefix" type="text" placeholder="corp_live_"></label>
+            <label><span data-i18n="ja">最小長</span><span data-i18n="en">Minimum length</span><input id="customRuleMinLength" type="number" min="4" value="12"></label>
+            <label><span>Severity</span><select id="customRuleSeverity"><option value="high">High</option><option value="medium">Medium</option></select></label>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn-ghost" id="addCustomRuleBtn">
+              <span data-i18n="ja">Custom ruleを追加</span>
+              <span data-i18n="en">Add custom rule</span>
+            </button>
+          </div>
+          <div id="customRulesList" class="custom-rules-list"></div>
+        </div>
+
+        <div class="btn-row pro-action-row">
+          <button type="button" class="btn-ghost" id="copyAuditBtn">Copy Audit Markdown</button>
+          <button type="button" class="btn-ghost" id="copyGithubBtn">Copy GitHub Issue</button>
+          <button type="button" class="btn-ghost" id="copySupportBtn">Copy Support Template</button>
+          <button type="button" class="btn-ghost" id="copyDiscordBtn">Copy Discord Template</button>
+          <button type="button" class="btn-ghost" id="downloadJsonBtn">Download JSON findings</button>
+          <button type="button" class="btn-ghost" id="downloadCsvBtn">Download CSV findings</button>
+          <button type="button" class="btn-ghost" id="downloadHandoffBtn">Download Markdown handoff pack</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-card compact">
+      <h2>
+        <span data-i18n="ja">このツールでできること</span>
+        <span data-i18n="en">What this tool does</span>
+      </h2>
+      <p data-i18n="ja">ログ、.env、JSON、curlコマンド、設定ファイルに含まれる秘密情報らしき文字列を検出して伏字化します。</p>
+      <p data-i18n="en">It detects and redacts likely secrets in logs, .env files, JSON, curl commands, and config snippets.</p>
+      <p data-i18n="ja">注意：検出は完全ではありません。独自形式・短すぎる値・画像内の情報は検出できない場合があります。</p>
+      <p data-i18n="en">Note: detection is not perfect. Custom formats, very short values, and secrets inside images may not be detected.</p>
+    </section>
+
+    <section class="tool-card faq-card">
+      <h2>FAQ</h2>
+      <details>
+        <summary>
+          <span data-i18n="ja">入力したテキストは送信されますか？</span>
+          <span data-i18n="en">Is my pasted text uploaded?</span>
+        </summary>
+        <p data-i18n="ja">いいえ。処理はブラウザ内で行われ、外部に送信されません。</p>
+        <p data-i18n="en">No. Processing runs in your browser and your text is not uploaded.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">すべての秘密情報を検出できますか？</span>
+          <span data-i18n="en">Can it detect every secret?</span>
+        </summary>
+        <p data-i18n="ja">いいえ。一般的なパターンを検出しますが、独自形式や短い値は検出できない場合があります。</p>
+        <p data-i18n="en">No. It covers common patterns, but custom formats or short values can be missed.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">.env や JSON に対応していますか？</span>
+          <span data-i18n="en">Does it support .env and JSON?</span>
+        </summary>
+        <p data-i18n="ja">はい。api_key、token、secret、password、client_secret、access_token などのキー名をもとに検出します。</p>
+        <p data-i18n="en">Yes. It detects values labeled as api_key, token, secret, password, client_secret, access_token, and similar names.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">購入後のPro有効化はどう扱われますか？</span>
+          <span data-i18n="en">How does Pro activation work after purchase?</span>
+        </summary>
+        <p data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+        <p data-i18n="en">After purchase, NicheWorks Pro is enabled in this browser. It usually stays available after closing tabs or the browser. Another device, another browser, private mode, or cleared site data requires activation again.</p>
+      </details>
+      <details>
+        <summary>
+          <span data-i18n="ja">伏字後のテキストは安全に共有できますか？</span>
+          <span data-i18n="en">Is the redacted output always safe to share?</span>
+        </summary>
+        <p data-i18n="ja">完全保証ではありません。共有前に必ず出力を目視確認してください。</p>
+        <p data-i18n="en">It is not guaranteed. Always review the output manually before sharing.</p>
+      </details>
+    </section>
 
     <div class="nw-donate">
-      <p class="nw-donate-text">このツールが役に立ったら、開発継続のご支援をお願いします。</p>
+      <p class="nw-donate-text">
+        <span data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</span>
+        <span data-i18n="en">If this tool helped, support keeps these small utilities maintained.</span>
+      </p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
 
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+    <div class="nw-links" aria-label="Related tools">
+      <a href="/tools/json-repair/">JSON Repair</a>
+      <a href="/tools/log-formatter/">LogFormatter</a>
+      <a href="/tools/command-safety-checker/">Command Safety Checker</a>
+      <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a>
+    </div>
+
+    <div class="ad-slot ad-bottom">広告枠</div>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">完全な検出を保証するものではありません。</p>
     <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a>
+      <span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</span>
+      <span data-i18n="en">This site may contain ads. Accuracy is not guaranteed. Always confirm with official sources.</span>
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
     </p>
   </footer>
+
+  <div id="copyToast" class="toast" hidden>Copied</div>
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>

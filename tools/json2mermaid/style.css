@@ -96,24 +96,63 @@ html, body {
 }
 
 /* ----------------------------
-   Usage Link
+   Intro / Usage / Notes
 ---------------------------- */
-.usage-link-top {
-  text-align: center;
-  margin-bottom: 40px;
+.intro-block,
+.next-step-box {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin: 0 0 28px;
+  box-shadow: var(--shadow-soft);
 }
 
-.usage-link-top a {
+.intro-block p,
+.next-step-box p {
+  margin: 0 0 10px;
+  color: var(--sub);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.intro-block p:last-child,
+.next-step-box p:last-child {
+  margin-bottom: 0;
+}
+
+.limit-note,
+.external-note {
+  font-size: 13px;
+  color: var(--sub);
+}
+
+.usage-link-top {
+  margin-top: 12px;
+}
+
+.usage-link-top a,
+.next-step-box a {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
 }
 
+.next-step-box {
+  margin-top: 24px;
+}
+
+.next-step-box h2,
+.faq-section h2 {
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
 /* ----------------------------
-   FAQ（Diffchecker型）
+   FAQ
 ---------------------------- */
 .faq-section {
-  margin: 40px 0 40px;
+  margin: 44px 0 44px;
 }
 
 .faq-row {
@@ -123,13 +162,13 @@ html, body {
 .faq-q {
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin: 0 0 4px;
 }
 
 .faq-a {
   font-size: 15px;
   color: var(--sub);
-  margin-left: 12px;
+  margin: 0 0 0 12px;
   line-height: 1.5;
 }
 
@@ -145,6 +184,7 @@ html, body {
 
 .code-input,
 .code-output {
+  box-sizing: border-box;
   width: 100%;
   min-height: 180px;
   padding: 14px;
@@ -158,10 +198,29 @@ html, body {
 }
 
 /* ----------------------------
+   Presets
+---------------------------- */
+.preset-block {
+  margin-top: 20px;
+}
+
+.preset-label {
+  margin-top: 0;
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* ----------------------------
    Buttons
 ---------------------------- */
 .btn-area {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin: 16px 0 24px;
 }
@@ -172,6 +231,11 @@ button {
   border-radius: var(--radius);
   padding: 8px 14px;
   font-weight: 600;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
 }
 
 .btn-primary {
@@ -192,6 +256,10 @@ button {
 
 .btn-secondary:hover {
   background: var(--input-bg);
+}
+
+.export-area {
+  margin-top: 10px;
 }
 
 /* ----------------------------
@@ -224,7 +292,7 @@ button {
 }
 
 /* ----------------------------
-   Error Box
+   Error / Warning / Toast
 ---------------------------- */
 .error-box {
   color: #b00020;
@@ -236,6 +304,39 @@ button {
 }
 
 .error-box.hidden {
+  display: none;
+}
+
+.warning-box {
+  color: #7a4b00;
+  background: #fff7e6;
+  border: 1px solid #f2d08b;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  white-space: pre-line;
+}
+
+.warning-box.hidden {
+  display: none;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  max-width: min(520px, calc(100% - 32px));
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: #111111;
+  color: #ffffff;
+  font-size: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  z-index: 20;
+}
+
+.toast.hidden {
   display: none;
 }
 
@@ -293,7 +394,25 @@ button {
    Responsive
 ---------------------------- */
 @media (max-width: 600px) {
-  .btn-area {
+  .nw-header {
+    padding: 32px 16px 16px;
+  }
+
+  .tool-title {
+    font-size: 28px;
+  }
+
+  .nw-main {
+    padding: 16px;
+  }
+
+  .btn-area,
+  .preset-buttons {
     flex-direction: column;
+  }
+
+  .btn-area button,
+  .preset-buttons button {
+    width: 100%;
   }
 }

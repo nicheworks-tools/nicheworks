@@ -1,80 +1,86 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>WeatherDiff | 天気予報の比較ツールで API 予報のズレをチェック | NicheWorks</title>
-  <meta name="description" content="Open-Meteo と MET Norway などの天気API予報を比較し、気温・降水・風のズレをひと目で確認できる無料ウェブツール。">
+  <title>天気予報API比較｜WeatherDiff | NicheWorks</title>
+  <meta name="description" content="日本国内の地点を入力し、Open-Meteo と MET Norway の予報差分を比較する無料ツール。気温・降水・風の違いを参考用に確認できます。">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/weatherdiff/">
-  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/weatherdiff/">
-  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/weatherdiff/en/">
+  <link rel="canonical" href="https://nicheworks.app/tools/weatherdiff/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/weatherdiff/">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/weatherdiff/en/">
 
-  <meta property="og:title" content="WeatherDiff | 天気予報の比較ツールで API 予報のズレをチェック">
-  <meta property="og:description" content="天気APIの予報を比較して気温・降水・風の差を確認。Open-Meteo と MET Norway を同時にチェックできます。">
+  <meta property="og:title" content="天気予報API比較｜WeatherDiff | NicheWorks">
+  <meta property="og:description" content="日本国内の地点を入力し、Open-Meteo と MET Norway の予報差分を比較する無料ツール。気温・降水・風の違いを参考用に確認できます。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:url" content="https://nicheworks.app/tools/weatherdiff/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="WeatherDiff | 天気予報の比較ツール">
-  <meta name="twitter:description" content="複数の天気API予報を比較し、ズレを把握できる無料ツール。">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:title" content="天気予報API比較｜WeatherDiff | NicheWorks">
+  <meta name="twitter:description" content="日本国内の地点を入力し、Open-Meteo と MET Norway の予報差分を比較する無料ツール。気温・降水・風の違いを参考用に確認できます。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- favicon（共通） -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- AdSense（必須） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
      crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Analytics -->
-  
-
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="WeatherDiff | 天気予報の比較ツールで API 予報のズレをチェック">
-  <meta property="og:description:en" content="The description is pending and will be updated later.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/weatherdiff/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="WeatherDiff | 天気予報の比較ツール">
-  <meta name="twitter:description:en" content="The description is pending and will be updated later.">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-  <!-- JSON-LD 日本語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "WeatherDiff | 天気予報の比較ツールで API 予報のズレをチェック",
-    "url": "https://nicheworks.pages.dev/tools/weatherdiff/",
-    "description": "Open-Meteo と MET Norway などの天気API予報を比較し、気温・降水・風のズレをひと目で確認できる無料ウェブツール。",
-    "inLanguage": "ja",
+    "name": "WeatherDiff",
+    "url": "https://nicheworks.app/tools/weatherdiff/",
+    "applicationCategory": "UtilityApplication",
+    "description": "日本国内の地点を入力し、Open-Meteo と MET Norway の予報差分を比較する無料ツール。気温・降水・風の違いを参考用に確認できます。",
+    "operatingSystem": "All",
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
   }
   </script>
-  <!-- JSON-LD 英語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "WeatherDiff | 天気予報の比較ツールで API 予報のズレをチェック",
-    "url": "https://nicheworks.pages.dev/tools/weatherdiff/",
-    "description": "The description is pending and will be updated later.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "入力した地点名や現在地は送信されますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "はい。地点名検索ではジオコーディングサービスへ地点名を送信し、天気取得では緯度経度を Open-Meteo と MET Norway へ送信します。"}
+      },
+      {
+        "@type": "Question",
+        "name": "予報差分は正確ですか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "参考比較です。APIごとの仕様、更新タイミング、取得条件により差が出ます。正確性は保証しません。"}
+      },
+      {
+        "@type": "Question",
+        "name": "防災や避難判断に使えますか？",
+        "acceptedAnswer": {"@type": "Answer", "text": "使えません。防災、避難判断、警報、交通判断、業務判断では、気象庁、自治体、公式防災情報を確認してください。"}
+      }
+    ]
   }
   </script>
 <script defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
 </script>
+  <meta name="robots" content="index,follow">
 </head>
 
 <body>
@@ -95,18 +101,21 @@
 
 <main class="wd-main">
 
-  <!-- ===============================
-       入力エリア
-  =============================== -->
   <section class="wd-section wd-input-section">
 
     <div class="wd-intro">
       <p id="introLead">
-        このツールは複数の天気APIの予報を比較してズレを確認できるツールです。
+        このツールは、日本国内の地点を対象に複数の天気APIの予報差分を参考比較するツールです。
       </p>
       <p class="wd-usage-link">
-        <a id="usageLink" href="/tools/weatherdiff/usage.html" target="_blank">くわしい使い方はこちら →</a>
+        <a id="usageLink" href="/tools/weatherdiff/usage.html" target="_blank" rel="noopener noreferrer">くわしい使い方はこちら →</a>
       </p>
+    </div>
+
+    <div class="wd-warning">
+      <p>地点名検索では入力した地点名を外部のジオコーディングサービスへ送信します。現在地検索では、ブラウザで取得した緯度・経度を天気APIへ送信します。自宅住所、勤務先、学校など、個人を特定しやすい地点は必要に応じて避けてください。</p>
+      <p>このツールは参考比較用です。防災、避難判断、警報、交通判断、業務判断には使わず、気象庁・自治体・公式サービスを確認してください。APIの仕様変更、制限、障害により結果を取得できない場合があります。</p>
+      <p>ページ表示のため、広告・アクセス解析タグが読み込まれます。</p>
     </div>
 
     <label for="locationInput" class="wd-label" id="labelLocation">
@@ -117,7 +126,7 @@
       <input
         id="locationInput"
         type="text"
-        placeholder="東京都千代田区 / Shibuya / New York"
+        placeholder="東京都千代田区 / 渋谷 / 札幌"
         autocomplete="off"
       />
       <button id="btnCompare" class="wd-btn primary">比較</button>
@@ -133,9 +142,6 @@
 
   </section>
 
-  <!-- ===============================
-       結果エリア
-  =============================== -->
   <section id="resultSection" class="wd-section wd-result hidden">
 
     <div class="wd-warning">
@@ -153,15 +159,9 @@
       <button id="btnReset" class="wd-btn reset">リセット</button>
     </div>
 
-    <!-- ===============================
-         API比較（OM/MET） 2カラム
-    =============================== -->
     <div class="wd-api-grid">
-
-      <!-- ========== Open-Meteo ========== -->
       <article class="wd-card">
         <h3 class="wd-card-title">Open-Meteo</h3>
-
         <div class="wd-weather-row">
           <p class="wd-day-label" id="omDayToday" aria-hidden="true">今日</p>
           <div class="wd-weather-icon"><span id="omIconToday">☀️</span></div>
@@ -171,7 +171,6 @@
             <p id="omTodayWind">風: -</p>
           </div>
         </div>
-
         <div class="wd-weather-row">
           <p class="wd-day-label" id="omDayTomorrow" aria-hidden="true">明日</p>
           <div class="wd-weather-icon"><span id="omIconTomorrow">☀️</span></div>
@@ -183,10 +182,8 @@
         </div>
       </article>
 
-      <!-- ========== MET Norway ========== -->
       <article class="wd-card">
         <h3 class="wd-card-title">MET Norway</h3>
-
         <div class="wd-weather-row">
           <p class="wd-day-label" id="mnDayToday" aria-hidden="true">今日</p>
           <div class="wd-weather-icon"><span id="mnIconToday">☁️</span></div>
@@ -196,7 +193,6 @@
             <p id="mnTodayWind">風: -</p>
           </div>
         </div>
-
         <div class="wd-weather-row">
           <p class="wd-day-label" id="mnDayTomorrow" aria-hidden="true">明日</p>
           <div class="wd-weather-icon"><span id="mnIconTomorrow">☁️</span></div>
@@ -206,21 +202,13 @@
             <p id="mnTomorrowWind">風: -</p>
           </div>
         </div>
-
         <p class="wd-temp-note" id="tempNote">※最低気温は信頼性が低い推定値です</p>
       </article>
-
     </div>
 
-    <!-- ===============================
-         ズレ（Diff）
-    =============================== -->
     <article class="wd-card wd-diff-card">
       <h3 class="wd-card-title" id="diffTitle">予報のズレ（比較結果）</h3>
-
       <div class="wd-diff-grid">
-
-        <!-- 今日 -->
         <div class="wd-diff-day">
           <h4 id="diffTodayHeading">今日</h4>
           <p id="diffTodayMax"></p>
@@ -228,8 +216,6 @@
           <p id="diffTodayRain"></p>
           <p id="diffTodayWind"></p>
         </div>
-
-        <!-- 明日 -->
         <div class="wd-diff-day">
           <h4 id="diffTomorrowHeading">明日</h4>
           <p id="diffTomorrowMax"></p>
@@ -237,60 +223,69 @@
           <p id="diffTomorrowRain"></p>
           <p id="diffTomorrowWind"></p>
         </div>
-
       </div>
-
-      <!-- 注意文 -->
       <p id="diffNote" class="wd-diff-note"></p>
-
     </article>
 
-    <!-- ===============================
-         他サービスリンク
-    =============================== -->
     <section class="wd-section">
       <h3 class="wd-card-title" id="otherServicesTitle">他のサービスで詳しく見る</h3>
-
       <div class="wd-links-grid">
-        <a id="linkGoogleWeather" href="https://www.google.com/search?q=weather" target="_blank">Google Weather</a>
-        <a id="linkWeatherCom" href="https://weather.com" target="_blank">Weather.com</a>
-        <a id="linkAccuWeather" href="https://www.accuweather.com" target="_blank">AccuWeather</a>
-        <a id="linkJma" href="https://www.jma.go.jp/bosai/forecast/" target="_blank">気象庁</a>
-        <a id="linkTenki" href="https://tenki.jp" target="_blank">tenki.jp</a>
-        <a id="linkYahoo" href="https://weather.yahoo.co.jp/weather/" target="_blank">Yahoo天気</a>
+        <a id="linkGoogleWeather" href="https://www.google.com/search?q=weather" target="_blank" rel="noopener noreferrer">Google Weather</a>
+        <a id="linkWeatherCom" href="https://weather.com" target="_blank" rel="noopener noreferrer">Weather.com</a>
+        <a id="linkAccuWeather" href="https://www.accuweather.com" target="_blank" rel="noopener noreferrer">AccuWeather</a>
+        <a id="linkJma" href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener noreferrer">気象庁</a>
+        <a id="linkTenki" href="https://tenki.jp" target="_blank" rel="noopener noreferrer">tenki.jp</a>
+        <a id="linkYahoo" href="https://weather.yahoo.co.jp/weather/" target="_blank" rel="noopener noreferrer">Yahoo天気</a>
       </div>
     </section>
 
   </section>
 
+  <section class="wd-section wd-faq" aria-labelledby="faqTitle">
+    <h2 id="faqTitle" class="wd-card-title">FAQ</h2>
+    <details>
+      <summary>入力した地点名や現在地は送信されますか？</summary>
+      <p>はい。地点名検索ではジオコーディングサービスへ地点名を送信し、天気取得では緯度経度を Open-Meteo と MET Norway へ送信します。</p>
+    </details>
+    <details>
+      <summary>予報差分は正確ですか？</summary>
+      <p>参考比較です。APIごとの仕様、更新タイミング、取得条件により差が出ます。正確性は保証しません。</p>
+    </details>
+    <details>
+      <summary>防災や避難判断に使えますか？</summary>
+      <p>使えません。防災、避難判断、警報、交通判断、業務判断では、気象庁、自治体、公式防災情報を確認してください。</p>
+    </details>
+    <details>
+      <summary>海外地点にも対応していますか？</summary>
+      <p>現状の地点検索は日本国内向けです。海外地点の比較は想定していません。</p>
+    </details>
+  </section>
+
 </main>
 
-<!-- ===============================
-     Footer
-=============================== -->
 <footer class="wd-footer">
-
   <p class="wd-donate-msg" id="donateMsg">
     このツールが役に立ったら、寄付で応援していただけると嬉しいです。
   </p>
 
   <div class="wd-donate-buttons">
-    <a class="wd-donate-btn" href="https://ofuse.me" target="_blank">🧡 OFUSE</a>
-    <a class="wd-donate-btn" href="https://ko-fi.com" target="_blank">☕ Ko-fi</a>
+    <a class="wd-donate-btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">🧡 OFUSE</a>
+    <a class="wd-donate-btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>
   </div>
 
   <div class="wd-footer-links">
-    <a href="/tools/kanji-modernizer/">Kanji Modernizer</a>
+    <a href="/tools/dry-meter/">Dry Meter</a>
+    <span>/</span>
+    <a href="/tools/earth-map-suite/">Earth Map Suite</a>
+    <span>/</span>
+    <a href="/tools/light-check/">Light Check</a>
     <span>/</span>
     <a href="/tools/unitmaster/">UnitMaster</a>
-    <span>/</span>
-    <a href="/tools/logformatter/">LogFormatter</a>
   </div>
 
   <p class="wd-footer-copy">
-    © 2025 <a href="https://nicheworks.pages.dev/">NicheWorks</a>
+    © 2025 <a href="https://nicheworks.app/">NicheWorks</a>
   </p>
-
 </footer>
 
 <script src="app.js"></script>

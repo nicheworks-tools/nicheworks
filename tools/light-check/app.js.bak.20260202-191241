@@ -1,0 +1,39 @@
+// Light Check — LC-01 scaffold
+// Language switch: data-i18n="ja"|"en" + localStorage persistence.
+
+(function () {
+  function getPreferredLang() {
+    const saved = (localStorage.getItem("lang") || "").toLowerCase();
+    if (saved === "ja" || saved === "en") return saved;
+    const browserLang = (navigator.language || "").toLowerCase();
+    return browserLang.startsWith("ja") ? "ja" : "en";
+  }
+
+  function applyLang(lang) {
+    const nodes = document.querySelectorAll("[data-i18n]");
+    nodes.forEach((el) => {
+      el.style.display = el.dataset.i18n === lang ? "" : "none";
+    });
+
+    const buttons = document.querySelectorAll(".nw-lang-switch button");
+    buttons.forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    document.documentElement.lang = lang === "ja" ? "ja" : "en";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".nw-lang-switch button");
+    let current = getPreferredLang();
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        if (lang !== "ja" && lang !== "en") return;
+        localStorage.setItem("lang", lang);
+        current = lang;
+        applyLang(current);
+      });
+    });
+
+    applyLang(current);
+  });
+})();

@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["ヘルメット|hard hat|safety helmet", "ヘルメット", "Hard hat", "./images/pilot/site-hard-hat.svg?v=20260513-asset-13", "頭部を保護するために現場で着用する装備。", "Head gear worn on site for protection."],
+    ["反射ベスト|reflective vest", "反射ベスト", "Reflective vest", "./images/pilot/reflective-vest.svg?v=20260513-asset-13", "作業者の視認性を高めるために着用するベスト。", "Vest worn to improve worker visibility."],
+    ["作業手袋|work gloves", "作業手袋", "Work gloves", "./images/pilot/work-gloves.svg?v=20260513-asset-13", "手を保護し、材料や工具を扱いやすくする手袋。", "Gloves used to protect hands and improve grip during work."],
+    ["安全靴|site footwear|work boots", "安全靴", "Site footwear", "./images/pilot/site-footwear.svg?v=20260513-asset-13", "現場で足元を保護するための靴。", "Footwear used on site to protect the feet."],
+    ["防じんマスク|respirator mask|dust mask", "防じんマスク", "Respirator mask", "./images/pilot/respirator-mask.svg?v=20260513-asset-13", "粉じんの多い作業で呼吸まわりを保護する装備。", "Respiratory gear used in dusty work conditions."],
+    ["耳栓|イヤーマフ|ear protection", "耳栓・イヤーマフ", "Ear protection", "./images/pilot/ear-protection.svg?v=20260513-asset-13", "騒音の大きい作業で耳を守るための装備。", "Gear used to reduce noise exposure."],
+    ["フェイスシールド|face shield", "フェイスシールド", "Face shield", "./images/pilot/face-shield.svg?v=20260513-asset-13", "顔まわりを飛散物などから守るための透明な保護具。", "Clear face cover gear used around cutting or splash-prone work."],
+    ["フルハーネス|full body harness", "フルハーネス", "Full body harness", "./images/pilot/full-body-harness.svg?v=20260513-asset-13", "高所作業で身体を支えるための装着具。", "Body harness used for work-at-height safety systems."],
+    ["ランヤード|lanyard|safety lanyard", "ランヤード", "Lanyard", "./images/pilot/safety-lanyard.svg?v=20260513-asset-13", "ハーネスと支持点をつなぐための接続用ストラップ。", "Connector strap used between a harness and an anchor point."],
+    ["バリケードバー|barricade bar", "バリケードバー", "Barricade bar", "./images/pilot/barricade-bar.svg?v=20260513-asset-13", "作業区画や立入制限範囲を示すためのバー。", "Bar used to mark work zones or restricted areas."]
+  ]
+}

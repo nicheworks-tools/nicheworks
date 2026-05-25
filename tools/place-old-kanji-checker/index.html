@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} 
+  gtag('js', new Date());
+  gtag('config', 'G-57QT78M3JB');
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <title>地名旧字体チェッカー | Place Old Kanji Checker | NicheWorks</title>
+  <meta name="description" content="地名・住所・駅名・古地図・古い看板などに含まれる旧字体・異体字候補を確認するための参考ツールです。正式な住所表記・行政上の地名・登記・郵便・契約書類では、必ず実際の登録表記を確認してください。">
+  <link rel="canonical" href="https://nicheworks.app/tools/place-old-kanji-checker/">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="地名旧字体チェッカー | Place Old Kanji Checker | NicheWorks">
+  <meta property="og:description" content="地名・住所・駅名・古地図・古い看板などに含まれる旧字体・異体字候補を確認するための参考ツールです。正式な住所表記・行政上の地名・登記・郵便・契約書類では、必ず実際の登録表記を確認してください。">
+  <meta property="og:url" content="https://nicheworks.app/tools/place-old-kanji-checker/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="地名旧字体チェッカー | Place Old Kanji Checker | NicheWorks">
+  <meta name="twitter:description" content="地名・住所・駅名・古地図・古い看板などに含まれる旧字体・異体字候補を確認するための参考ツールです。正式な住所表記・行政上の地名・登記・郵便・契約書類では、必ず実際の登録表記を確認してください。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./app.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "地名旧字体チェッカー | Place Old Kanji Checker",
+    "url": "https://nicheworks.app/tools/place-old-kanji-checker/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "地名・住所・駅名・古地図・古い看板などに含まれる旧字体・異体字候補を確認するための参考ツールです。正式な住所表記・行政上の地名・登記・郵便・契約書類では、必ず実際の登録表記を確認してください。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="place-checker">
+    <header>
+      <div class="nw-lang-switch"><button type="button" class="active" data-lang="ja">JP</button><button type="button" data-lang="en">EN</button></div>
+      <h1><span data-i18n="ja">地名旧字体チェッカー</span><span data-i18n="en">Place Old Kanji Checker</span></h1>
+      <p><span data-i18n="ja">地名・住所・駅名・古地図・古い看板などに含まれる旧字体・異体字候補を確認するための参考ツールです。正式な住所表記・行政上の地名・登記・郵便・契約書類では、必ず実際の登録表記を確認してください。</span><span data-i18n="en">A reference tool for checking old or variant kanji forms that may appear in place names, addresses, station names, old maps, or signs. For official address records, administrative place names, registrations, postal use, or contracts, always confirm the actual registered spelling.</span></p>
+    </header>
+
+    <section class="input-panel">
+      <label for="placeInput"><span data-i18n="ja">地名・住所を入力</span><span data-i18n="en">Enter a place name or address</span></label>
+      <textarea id="placeInput" rows="4"></textarea>
+      <button id="checkBtn" type="button"><span data-i18n="ja">チェックする</span><span data-i18n="en">Check place name</span></button>
+    </section>
+
+    <section id="resultSummary" class="result-summary" hidden></section>
+    <section id="cautionPanel" class="risk-panel" hidden></section>
+    <section id="resultList" class="place-result-list"></section>
+
+    <p id="converterLink" class="reference-links" hidden><a id="converterAnchor" href="../kanji-modernizer/"><span data-i18n="ja">文章全体を旧字体変換ツールで確認する</span><span data-i18n="en">Check full text in converter</span></a></p>
+
+    <p class="privacy-note"><span data-i18n="ja">入力内容はブラウザ内で処理され、外部APIには送信しません。アクセス解析や広告タグが読み込まれる場合があります。</span><span data-i18n="en">Input is processed in the browser and is not sent to an external API. Analytics or ad tags may be loaded on the page.</span></p>
+
+    <div class="nw-links">
+      <a href="../old-kanji-reference/">Old Kanji Reference</a> /
+      <a href="../kanji-modernizer/">Kanji Modernizer</a> /
+      <a href="../name-old-kanji-checker/">Name Old Kanji Checker</a>
+    </div>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

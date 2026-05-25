@@ -1,0 +1,10 @@
+[
+  {"q":"法的助言ですか？","a":"いいえ。契約書内の注意パターンを機械的に拾う簡易チェックです。重要な契約は弁護士・専門家・社内法務に確認してください。","lang":"ja"},
+  {"q":"契約書テキストは送信されますか？","a":"本文解析はブラウザ内で行います。ただしページ表示のために広告・解析タグは読み込まれます。","lang":"ja"},
+  {"q":"Proは何ができますか？","a":"Findings全件表示、Full Review Markdown、.md download、Print / Save PDF、専門家相談メモ、相手方確認質問、Missing Clause Checklist、Next Action Memoが使えます。","lang":"ja"},
+  {"q":"PDFに対応していますか？","a":"PDF本文の直接抽出は準備中です。ProのPDFは解析結果をブラウザ印刷画面でPDF保存する方式です。","lang":"ja"},
+  {"q":"Is this legal advice?","a":"No. It only highlights potentially risky patterns. Consult a qualified professional for decisions.","lang":"en"},
+  {"q":"Is contract text uploaded?","a":"No. Text analysis runs in your browser. Ad and analytics tags are still loaded for the page.","lang":"en"},
+  {"q":"What does Pro unlock?","a":"All findings, Full Review Markdown, .md download, Print / Save PDF, consultation memo, counterparty questions, Missing Clause Checklist, and Next Action Memo.","lang":"en"},
+  {"q":"Does it support PDF?","a":"Direct PDF text extraction is coming soon. Pro PDF output means saving the analysis result through the browser print dialog.","lang":"en"}
+]

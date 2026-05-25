@@ -1,336 +1,681 @@
-// ===========================
-// API Key & Token Redactor (NicheWorks)
-// app.js (MVP + Stripe lightweight Pro unlock)
-// ===========================
-
-import { DEFAULT_PRO_RULES, scanAndRedact } from "./src/core.js";
-
-// Stripe Payment Link
-const PRO_PAYMENT_URL = "https://buy.stripe.com/eVq14p1MRfCR3dzdQPcV207";
-
-
-// Pro unlock flag (static site)
-const PRO_FLAG_KEY = "nw_api_key_redactor_pro_v1";
-const PRO_RULES_KEY = "nw_api_key_redactor_rules_v1";
-
-// ---------------------------
-// i18n (JP/EN) switch
-// ---------------------------
-function initLangSwitch() {
-  const buttons = document.querySelectorAll(".nw-lang-switch button");
-  const nodes = document.querySelectorAll("[data-i18n]");
-
-  const browserLang = (navigator.language || "").toLowerCase();
-  let current = browserLang.startsWith("ja") ? "ja" : "en";
-
-  const apply = (lang) => {
-    nodes.forEach((el) => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
-    buttons.forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-    current = lang;
-  };
-
-  buttons.forEach((btn) => btn.addEventListener("click", () => apply(btn.dataset.lang)));
-  apply(current);
-}
-
-// ---------------------------
-// Pro helpers
-// ---------------------------
-function isProEnabled() {
-  return localStorage.getItem(PRO_FLAG_KEY) === "1";
-}
-function enablePro() {
-  localStorage.setItem(PRO_FLAG_KEY, "1");
-}
-
-function getProRules() {
-  try {
-    const raw = localStorage.getItem(PRO_RULES_KEY);
-    if (!raw) return { ...DEFAULT_PRO_RULES };
-    const obj = JSON.parse(raw);
-    return {
-      mode: obj.mode === "replace_all" ? "replace_all" : "keep_last",
-      keepLastN: Number.isFinite(Number(obj.keepLastN))
-        ? Math.max(0, Number(obj.keepLastN))
-        : DEFAULT_PRO_RULES.keepLastN,
-      replaceText:
-        typeof obj.replaceText === "string" && obj.replaceText.length
-          ? obj.replaceText
-          : DEFAULT_PRO_RULES.replaceText,
-    };
-  } catch {
-    return { ...DEFAULT_PRO_RULES };
-  }
-}
-
-function setProRules(rules) {
-  localStorage.setItem(PRO_RULES_KEY, JSON.stringify(rules));
-}
-
-// Stripe success_url -> ?pro=1
-function consumeProQueryParam() {
-  const url = new URL(location.href);
-  if (url.searchParams.get("pro") === "1") {
-    enablePro();
-    url.searchParams.delete("pro");
-    history.replaceState({}, "", url.toString());
-    return true;
-  }
-  return false;
-}
-
-// ---------------------------
-// UI helpers
-// ---------------------------
 const el = (id) => document.getElementById(id);
 
-function setBusy(isBusy) {
-  const p = el("progress");
-  if (p) p.hidden = !isBusy;
-  const b = el("analyzeBtn");
-  if (b) b.disabled = isBusy;
-}
+let currentLang = "ja";
+let lastResult = null;
+let customRules = [];
 
-function showToast(msg) {
-  const t = el("copyToast");
-  if (!t) return;
-  t.textContent = msg;
-  t.hidden = false;
-  clearTimeout(showToast._timer);
-  showToast._timer = setTimeout(() => (t.hidden = true), 1200);
-}
+const defaultLang = () => {
+  const lang = (navigator.language || "").toLowerCase();
+  return lang.startsWith("ja") ? "ja" : "en";
+};
 
-function downloadText(filename, text) {
-  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
+const t = (ja, en) => (currentLang === "ja" ? ja : en);
 
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
+const EXPORT_SECRET_NOTE = "Important: Automated redaction is not exhaustive. Undetected secrets may remain in exported text; review manually before sharing.";
 
-// ---------------------------
-// Main
-// ---------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  initLangSwitch();
-
-  // Ensure spinner hidden on boot
-  setBusy(false);
-
-  // Pro activation from Stripe success_url
-  const activatedNow = consumeProQueryParam();
-
-  const input = el("inputText");
-  const analyzeBtn = el("analyzeBtn");
-  const clearBtn = el("clearBtn");
-
-  const resultSection = el("resultSection");
-  const totalFound = el("totalFound");
-  const typesFound = el("typesFound");
-  const hitList = el("hitList");
-  const maskedOutput = el("maskedOutput");
-
-  const copyBtn = el("copyBtn");
-  const downloadBtn = el("downloadBtn");
-  const resetBtn = el("resetBtn");
-
-  // Pro badge
-  const proBadge = el("proBadge");
-  function refreshProBadge() {
-    if (!proBadge) return;
-    const on = isProEnabled();
-    // 通常時は非表示、Pro時のみ表示（分かりやすい）
-    proBadge.hidden = !on;
-    proBadge.classList.toggle("is-pro", on);
+const applyLang = (lang) => {
+  currentLang = lang || defaultLang();
+  document.documentElement.lang = currentLang;
+  const nodes = document.querySelectorAll("[data-i18n]");
+  nodes.forEach((node) => {
+    node.style.display = node.dataset.i18n === currentLang ? "" : "none";
+  });
+  document.querySelectorAll(".nw-lang-switch button").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.lang === currentLang);
+  });
+  document.querySelectorAll("[data-howto-link]").forEach((link) => {
+    link.setAttribute("href", currentLang === "ja" ? "./howto/" : "./howto/en/");
+  });
+  if (lastResult) {
+    renderFindings(lastResult.findings);
+    updateSafetySummary(lastResult.findings);
   }
-  refreshProBadge();
-  if (activatedNow) {
-    refreshProBadge();
-    showToast("Pro enabled");
+  document.dispatchEvent(new CustomEvent("nw-lang-change", { detail: { lang: currentLang } }));
+};
+
+const placeholderFor = (text, useKeepLength, placeholder) => {
+  if (useKeepLength) {
+    return "*".repeat(Math.max(1, text.length));
+  }
+  return placeholder;
+};
+
+const lineNumberFor = (text, index) => text.slice(0, index).split(/\r\n|\r|\n/).length;
+
+const maskForPreview = (value) => {
+  const clean = String(value || "").replace(/\s+/g, " ").trim();
+  if (!clean) return "[REDACTED]";
+  if (clean.length <= 8) return `${clean.slice(0, 2)}…`;
+  return `${clean.slice(0, 6)}…${clean.slice(-4)}`;
+};
+
+const previewFor = (text, matchStart, matchEnd, secretStart, secretEnd) => {
+  const lineStart = text.lastIndexOf("\n", matchStart - 1) + 1;
+  const nextBreak = text.indexOf("\n", matchEnd);
+  const lineEnd = nextBreak === -1 ? text.length : nextBreak;
+  const before = text.slice(lineStart, Math.max(lineStart, secretStart));
+  const secret = text.slice(secretStart, secretEnd);
+  const after = text.slice(Math.min(secretEnd, lineEnd), lineEnd);
+  const raw = `${before}${maskForPreview(secret)}${after}`.replace(/\s+/g, " ").trim();
+  if (!raw) return maskForPreview(secret);
+  return raw.length > 140 ? `${raw.slice(0, 137)}...` : raw;
+};
+
+const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (ch) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+}[ch]));
+
+const severityRank = { high: 3, medium: 2, low: 1 };
+
+const redactContent = (text, options) => {
+  const findings = [];
+
+  const hasOverlap = (start, end) => findings.some((item) => start < item.end && end > item.start);
+
+  const addFinding = ({ match, value, valueIndex, type, label, severity }) => {
+    if (!match || !value) return;
+    const localOffset = typeof valueIndex === "number" ? valueIndex : match[0].indexOf(value);
+    if (localOffset < 0) return;
+    const start = match.index + localOffset;
+    const end = start + value.length;
+    if (start < 0 || end <= start || hasOverlap(start, end)) return;
+    findings.push({
+      type,
+      label,
+      severity,
+      line: lineNumberFor(text, start),
+      preview: previewFor(text, match.index, match.index + match[0].length, start, end),
+      redacted: placeholderFor(value, options.keepLength, options.placeholder),
+      start,
+      end,
+    });
+  };
+
+  const scanWhole = (regex, type, label, severity) => {
+    regex.lastIndex = 0;
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+      addFinding({ match, value: match[0], valueIndex: 0, type, label, severity });
+      if (match[0].length === 0) regex.lastIndex += 1;
+    }
+  };
+
+  const scanGroup = (regex, groupIndex, type, label, severity) => {
+    regex.lastIndex = 0;
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+      const value = match[groupIndex];
+      addFinding({ match, value, type, label, severity });
+      if (match[0].length === 0) regex.lastIndex += 1;
+    }
+  };
+
+  if (options.modePrivateKey) {
+    scanWhole(/-----BEGIN [^-]*PRIVATE KEY-----[\s\S]*?-----END [^-]*PRIVATE KEY-----/g, "privateKey", "Private key block", "high");
   }
 
-  // Clear input
-  if (clearBtn) {
-    clearBtn.addEventListener("click", () => {
-      if (input) input.value = "";
-      if (input) input.focus();
+  if (options.modeBearer) {
+    scanGroup(/(Authorization\s*:\s*Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Authorization Bearer token", "high");
+    scanGroup(/\b(Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Bearer token", "high");
+    scanGroup(/(Authorization\s*:\s*)(?!Bearer\s+)([^\r\n]{8,})/gi, 2, "header", "Authorization header", "high");
+    scanGroup(/(-H\s+["']Authorization\s*:\s*Bearer\s+)([^"'\r\n]{12,})/gi, 2, "bearer", "curl Authorization Bearer token", "high");
+  }
+
+  if (options.modeJwt) {
+    scanWhole(/\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/g, "jwt", "JWT", "high");
+  }
+
+  if (options.modeApiKeys) {
+    scanWhole(/\bsk-proj-[A-Za-z0-9_-]{12,}\b/g, "apiKeys", "OpenAI project key", "high");
+    scanWhole(/\bsk-[A-Za-z0-9]{16,}\b/g, "apiKeys", "OpenAI API key", "high");
+    scanWhole(/\bsk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", "Stripe secret key", "high");
+    scanWhole(/\brk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", "Stripe restricted key", "high");
+    scanWhole(/\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, "apiKeys", "GitHub fine-grained token", "high");
+    scanWhole(/\bgh[opuslr]_[A-Za-z0-9]{20,}\b/g, "apiKeys", "GitHub token", "high");
+    scanWhole(/\b(?:xox[baprs]|xapp)-[A-Za-z0-9-]{10,}\b/g, "apiKeys", "Slack token", "high");
+    scanWhole(/\bAIza[0-9A-Za-z_-]{20,}\b/g, "apiKeys", "Google API key", "high");
+    scanWhole(/\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "SendGrid API key", "high");
+    scanWhole(/\bglpat-[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "GitLab token", "high");
+    scanWhole(/\bnpm_[A-Za-z0-9]{24,}\b/g, "apiKeys", "npm token", "high");
+    scanWhole(/\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g, "apiKeys", "AWS access key ID", "high");
+    scanWhole(/\b\d{8,12}:[A-Za-z0-9_-]{30,}\b/g, "apiKeys", "Telegram bot token", "high");
+    scanWhole(/\b[A-Za-z0-9_-]{23,28}\.[A-Za-z0-9_-]{6,8}\.[A-Za-z0-9_-]{27,}\b/g, "apiKeys", "Discord-style token", "high");
+  }
+
+  if (options.modeGenericSecret) {
+    const secretKeys = "_?auth[_-]?token|api[_-]?key|apikey|token|secret|password|passwd|pwd|client[_-]?secret|access[_-]?token|refresh[_-]?token|auth[_-]?token|private[_-]?key|npm[_-]?token|vercel[_-]?token|database[_-]?url|db[_-]?password|aws[_-]?secret[_-]?access[_-]?key|secretAccessKey";
+    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)(["'])([^"'\\r\\n]{8,})(["'])`, "gi"), 3, "genericSecret", "Quoted secret value", "medium");
+    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)([^\\s"',}\\]]{8,})`, "gi"), 2, "genericSecret", "Labeled secret value", "medium");
+    scanGroup(/([?&](?:token|api_key|apikey|key|access_token|refresh_token|auth_token|client_secret|signature|sig)=)([^&#\s]{8,})/gi, 2, "urlQuery", "URL query secret", "medium");
+    scanGroup(/(Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Cookie header", "medium");
+    scanGroup(/(Set-Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Set-Cookie header", "medium");
+    scanGroup(/(\/\/registry\.npmjs\.org\/:_authToken=)([^\s\r\n]{8,})/gi, 2, "genericSecret", "npm auth token", "high");
+  }
+
+  if (options.proActive && Array.isArray(options.customRules)) {
+    options.customRules.forEach((rule) => {
+      if (!rule || !rule.prefix) return;
+      const escapedPrefix = rule.prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const minLength = Math.max(4, Number(rule.minLength || 12));
+      const pattern = new RegExp(`\\b${escapedPrefix}[A-Za-z0-9._~+/=-]{${minLength},}`, "g");
+      scanWhole(pattern, "customRule", rule.label || `Custom: ${rule.prefix}`, rule.severity === "medium" ? "medium" : "high");
     });
   }
 
-  // Analyze
-  if (analyzeBtn) {
-    analyzeBtn.addEventListener("click", () => {
-      const text = input?.value ? input.value : "";
+  findings.sort((a, b) => a.start - b.start || severityRank[b.severity] - severityRank[a.severity]);
 
-      setBusy(true);
-      try {
-        const pro = isProEnabled();
-        const rules = getProRules();
+  let output = "";
+  let cursor = 0;
+  findings.forEach((item) => {
+    output += text.slice(cursor, item.start);
+    output += placeholderFor(text.slice(item.start, item.end), options.keepLength, options.placeholder);
+    cursor = item.end;
+  });
+  output += text.slice(cursor);
 
-        const res = scanAndRedact(text, pro, rules);
-
-        if (totalFound) totalFound.textContent = String(res.total);
-        if (typesFound) typesFound.textContent = String(res.types);
-
-        if (hitList) {
-          hitList.innerHTML = "";
-          const entries = Object.values(res.hits).sort((a, b) => b.count - a.count);
-
-          if (entries.length === 0) {
-            const div = document.createElement("div");
-            div.className = "hit-item";
-            div.innerHTML = `<span class="hit-name">No obvious secrets found</span><span class="hit-count">0</span>`;
-            hitList.appendChild(div);
-          } else {
-            for (const h of entries) {
-              const div = document.createElement("div");
-              div.className = "hit-item";
-              div.innerHTML = `<span class="hit-name">${escapeHtml(h.label)}</span><span class="hit-count">${h.count}</span>`;
-              hitList.appendChild(div);
-            }
-          }
-        }
-
-        if (maskedOutput) maskedOutput.textContent = res.output;
-        if (resultSection) resultSection.hidden = false;
-
-        resultSection?.scrollIntoView({ behavior: "smooth", block: "start" });
-      } finally {
-        setBusy(false);
-      }
-    });
-  }
-
-  // Copy
-  if (copyBtn) {
-    copyBtn.addEventListener("click", async () => {
-      const text = maskedOutput?.textContent || "";
-      try {
-        await navigator.clipboard.writeText(text);
-        showToast("Copied");
-      } catch {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        showToast("Copied");
-      }
-    });
-  }
-
-  // Download
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", () => {
-      const text = maskedOutput?.textContent || "";
-      const name = `redacted-${new Date().toISOString().slice(0, 10)}.txt`;
-      downloadText(name, text);
-    });
-  }
-
-  // Reset
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      if (input) input.value = "";
-      if (maskedOutput) maskedOutput.textContent = "";
-      if (hitList) hitList.innerHTML = "";
-      if (totalFound) totalFound.textContent = "0";
-      if (typesFound) typesFound.textContent = "0";
-      if (resultSection) resultSection.hidden = true;
-      if (input) input.focus();
-      setBusy(false);
-    });
-  }
-
-  // ---------------------------
-  // Pro modal (Stripe unlock + rules)
-  // ---------------------------
-  const proBackdrop = el("proModalBackdrop");
-  const proModal = el("proModal");
-  const openProBtn = el("openProBtn");
-  const learnProBtn = el("learnProBtn");
-  const closeProModalBtn = el("closeProModalBtn");
-  const proLaterBtn = el("proLaterBtn");
-  const proBuyBtn = el("proBuyBtn");
-
-  const ruleMode = el("ruleMode");
-  const keepLastN = el("keepLastN");
-  const replaceText = el("replaceText");
-
-  function openPro() {
-    if (!proBackdrop || !proModal) return;
-    proBackdrop.hidden = false;
-    proModal.hidden = false;
-    document.body.style.overflow = "hidden";
-  }
-  function closePro() {
-    if (!proBackdrop || !proModal) return;
-    proBackdrop.hidden = true;
-    proModal.hidden = true;
-    document.body.style.overflow = "";
-  }
-
-  // init rules UI
-  const r = getProRules();
-  if (ruleMode) ruleMode.value = r.mode;
-  if (keepLastN) keepLastN.value = String(r.keepLastN);
-  if (replaceText) replaceText.value = r.replaceText;
-
-  function readRulesFromUI() {
-    const mode = ruleMode?.value === "replace_all" ? "replace_all" : "keep_last";
-    const n = keepLastN ? Math.max(0, Number(keepLastN.value || 0)) : DEFAULT_PRO_RULES.keepLastN;
-    const rt = replaceText ? String(replaceText.value || "[REDACTED]") : "[REDACTED]";
-    const next = { mode, keepLastN: n, replaceText: rt };
-    setProRules(next);
-    return next;
-  }
-
-  ruleMode?.addEventListener("change", readRulesFromUI);
-  keepLastN?.addEventListener("input", readRulesFromUI);
-  replaceText?.addEventListener("input", readRulesFromUI);
-
-  openProBtn?.addEventListener("click", openPro);
-  learnProBtn?.addEventListener("click", openPro);
-  closeProModalBtn?.addEventListener("click", closePro);
-  proLaterBtn?.addEventListener("click", closePro);
-  proBackdrop?.addEventListener("click", closePro);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && proModal && !proModal.hidden) closePro();
+  const counts = findings.reduce((acc, item) => {
+    acc[item.type] = (acc[item.type] || 0) + 1;
+    acc[item.severity] = (acc[item.severity] || 0) + 1;
+    acc.total += 1;
+    return acc;
+  }, {
+    apiKeys: 0,
+    bearer: 0,
+    jwt: 0,
+    privateKey: 0,
+    genericSecret: 0,
+    header: 0,
+    urlQuery: 0,
+    cookie: 0,
+    high: 0,
+    medium: 0,
+    low: 0,
+    total: 0,
   });
 
-  function refreshProBuyButton() {
-    if (!proBuyBtn) return;
-    if (isProEnabled()) {
-      proBuyBtn.textContent = "Pro enabled";
-      proBuyBtn.disabled = true;
-    } else {
-      proBuyBtn.textContent = "Buy ($2.99)";
-      proBuyBtn.disabled = false;
-    }
+  return { output, counts, findings };
+};
+
+const setText = (id, value) => {
+  const node = el(id);
+  if (node) node.textContent = String(value);
+};
+
+const updateSummary = (counts) => {
+  setText("countApiKeys", counts.apiKeys || 0);
+  setText("countBearer", counts.bearer || 0);
+  setText("countJwt", counts.jwt || 0);
+  setText("countPrivateKey", counts.privateKey || 0);
+  setText("countGeneric", counts.genericSecret || 0);
+  setText("countHeaders", (counts.header || 0) + (counts.cookie || 0));
+  setText("countUrlQuery", counts.urlQuery || 0);
+  setText("countHigh", counts.high || 0);
+  setText("countMedium", counts.medium || 0);
+  setText("countTotal", counts.total || 0);
+};
+
+const renderFindings = (findings = []) => {
+  const list = el("findingsList");
+  if (!list) return;
+  if (!findings.length) {
+    list.innerHTML = `<p class="empty-state">${escapeHtml(t("検出結果はまだありません。検出0件でも、共有前に目視確認してください。", "No findings yet. Even with zero detections, review manually before sharing."))}</p>`;
+    return;
   }
+  list.innerHTML = findings.map((item) => `
+    <article class="finding-item severity-${escapeHtml(item.severity)}">
+      <div class="finding-main">
+        <span class="severity-pill">${escapeHtml(item.severity.toUpperCase())}</span>
+        <strong>${escapeHtml(item.label)}</strong>
+        <span class="finding-line">${escapeHtml(t("行", "Line"))} ${escapeHtml(item.line)}</span>
+      </div>
+      <code>${escapeHtml(item.preview)}</code>
+    </article>
+  `).join("");
+};
 
-  refreshProBuyButton();
+const updateSafetySummary = (findings = []) => {
+  const box = el("safetySummary");
+  if (!box) return;
+  const high = findings.filter((item) => item.severity === "high").length;
+  const medium = findings.filter((item) => item.severity === "medium").length;
+  const privateKeys = findings.filter((item) => item.type === "privateKey").length;
+  const headers = findings.filter((item) => item.type === "bearer" || item.type === "header" || item.type === "cookie").length;
+  if (!findings.length) {
+    box.textContent = t("検出なし。ただし、独自形式の秘密情報・Cookie・URLパラメータ・メールアドレス・IPなどは残る可能性があります。", "No findings. Custom secrets, cookies, URL parameters, emails, or IP addresses may still remain.");
+    box.className = "safety-summary warning";
+    return;
+  }
+  box.textContent = t(
+    `検出結果：${findings.length}件 / High：${high}件 / Medium：${medium}件 / 秘密鍵：${privateKeys}件 / ヘッダー系：${headers}件。検出結果のプレビューは一部マスク済みです。共有前に出力を再確認してください。`,
+    `Findings: ${findings.length} / High: ${high} / Medium: ${medium} / Private keys: ${privateKeys} / Headers: ${headers}. Finding previews are partially masked. Review the output before sharing.`
+  );
+  box.className = high > 0 ? "safety-summary danger" : "safety-summary warning";
+};
 
-  proBuyBtn?.addEventListener("click", () => {
-    if (isProEnabled()) return;
-    readRulesFromUI();
-    window.location.href = PRO_PAYMENT_URL;
+const emptyCounts = () => ({
+  apiKeys: 0,
+  bearer: 0,
+  jwt: 0,
+  privateKey: 0,
+  genericSecret: 0,
+  header: 0,
+  urlQuery: 0,
+  cookie: 0,
+  high: 0,
+  medium: 0,
+  low: 0,
+  total: 0,
+});
+
+const showToast = (msg) => {
+  const toast = el("copyToast");
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.hidden = false;
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => {
+    toast.hidden = true;
+  }, 1600);
+};
+
+const downloadText = (filename, text) => {
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
+
+
+const copyText = async (text) => {
+  if (!text.trim()) return false;
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+    return true;
+  }
+};
+
+const downloadFile = (filename, text, type = "text/plain;charset=utf-8") => {
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
+
+const severityCounts = (findings = []) => ({
+  high: findings.filter((item) => item.severity === "high").length,
+  medium: findings.filter((item) => item.severity === "medium").length,
+});
+
+const selectedProfile = () => el("profileSelect")?.value || "GitHub Issue";
+
+const rotationChecklist = (findings = []) => {
+  const labels = findings.map((item) => `${item.label} ${item.type}`.toLowerCase());
+  const has = (word) => labels.some((label) => label.includes(word));
+  const rows = [
+    ["GitHub", has("github"), "Revoke the leaked PAT/token, review repository and organization audit logs, and rotate CI secrets."],
+    ["Slack", has("slack"), "Rotate bot/user tokens and inspect app installations and message exposure."],
+    ["AWS", has("aws"), "Disable the access key, rotate paired secret access key, and review CloudTrail/IAM use."],
+    ["Stripe", has("stripe"), "Roll secret/restricted keys and review dashboard events and webhook signing secrets."],
+    ["npm", has("npm"), "Revoke the automation token and check recent package publish activity."],
+    ["Google", has("google"), "Restrict or regenerate the API key and review API usage."],
+    ["GitLab", has("gitlab"), "Revoke the token and inspect project/group activity."],
+    ["Unknown generic secret", has("secret") || has("password") || has("custom"), "Identify owner, rotate at source, and confirm the old value no longer works."],
+  ];
+  return rows.map(([name, detected, note]) => `- [ ] ${name}${detected ? " (detected)" : ""}: ${note}`).join("\n");
+};
+
+const safeFindings = () => (lastResult?.findings || []).map((item) => ({
+  type: item.type,
+  label: item.label,
+  severity: item.severity,
+  line: item.line,
+  preview: item.preview,
+  redacted: item.redacted || "[REDACTED]",
+}));
+
+const currentRedactedOutput = () => el("outputText")?.value || "";
+
+const ensureResult = () => {
+  if (lastResult) return true;
+  showToast(t("先に伏字化を実行してください", "Run redaction first"));
+  return false;
+};
+
+const auditMarkdown = () => {
+  const findings = safeFindings();
+  const counts = severityCounts(findings);
+  const table = findings.length
+    ? findings.map((item) => `| ${item.severity.toUpperCase()} | ${item.type} | ${item.label} | ${item.line} | \`${item.preview.replace(/\|/g, "\\|")}\` |`).join("\n")
+    : "| - | - | No findings | - | Manual review still required |";
+  return `# Redaction Audit Report
+
+## Summary
+- Profile: ${selectedProfile()}
+- Total findings: ${findings.length}
+- Redacted output length: ${currentRedactedOutput().length} characters
+- Processing: local browser redaction only; pasted input is not uploaded by this tool.
+- Export caution: ${EXPORT_SECRET_NOTE}
+
+## Severity counts
+- High: ${counts.high}
+- Medium: ${counts.medium}
+
+## Finding table
+| Severity | Type | Label | Line | Masked preview |
+| --- | --- | --- | ---: | --- |
+${table}
+
+## Redaction notes
+- Finding previews and exports contain masked previews only.
+- Raw secret values are not included in this report.
+- ${EXPORT_SECRET_NOTE}
+- The redacted text should still be reviewed before sharing.
+
+## Manual review checklist
+- [ ] URLs and query parameters checked
+- [ ] Cookie and Set-Cookie headers checked
+- [ ] Authorization headers checked
+- [ ] Emails, IP addresses, and internal hostnames checked
+- [ ] Provider-side token rotation considered
+
+## Remaining risks
+- Custom formats, very short values, screenshots, and binary files may not be detected.
+- A redacted value may still reveal context such as service names, endpoint paths, or account IDs.
+
+## Rotation checklist
+${rotationChecklist(findings)}
+`;
+};
+
+const githubIssueTemplate = () => `## Summary
+I need help reviewing this redacted log/config snippet. Secrets were redacted locally before sharing.
+
+## Redacted log area
+\`\`\`text
+${currentRedactedOutput() || "(Run redaction first and paste the redacted output here.)"}
+\`\`\`
+
+## What was redacted
+${safeFindings().map((item) => `- ${item.severity.toUpperCase()} line ${item.line}: ${item.label} (${item.type}) — ${item.preview}`).join("\n") || "- No automated findings. Manual review still required."}
+
+## Manual checks still needed
+- [ ] ${EXPORT_SECRET_NOTE}
+- [ ] Confirm no raw tokens remain
+- [ ] Check URLs, Cookie headers, Authorization headers, emails, IPs, and internal hosts
+- [ ] Confirm this issue does not include sensitive customer data
+
+## Rotation checklist
+${rotationChecklist(safeFindings())}
+`;
+
+const supportTemplate = (target = "support") => `Hello,
+
+I redacted likely secrets locally before sharing this ${target} note. Please treat the snippet as potentially sensitive because automated detection is not perfect.
+
+Export caution: ${EXPORT_SECRET_NOTE}
+
+Redacted output:
+\`\`\`text
+${currentRedactedOutput() || "(Run redaction first.)"}
+\`\`\`
+
+Manual review warning: URLs, cookies, Authorization headers, account IDs, emails, IPs, provider-specific tokens, and other undetected secrets may still require human review.
+`;
+
+const handoffPackMarkdown = () => `# Redaction Handoff Pack
+
+Export caution: ${EXPORT_SECRET_NOTE}
+
+---
+
+${auditMarkdown()}
+
+---
+
+# GitHub Issue Template
+
+${githubIssueTemplate()}
+
+---
+
+# Support Template
+
+${supportTemplate("support")}
+
+---
+
+# Discord Template
+
+${supportTemplate("Discord")}
+`;
+
+const csvFindings = () => {
+  const rows = [["severity", "type", "label", "line", "preview"]];
+  safeFindings().forEach((item) => rows.push([item.severity, item.type, item.label, item.line, item.preview]));
+  return rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+};
+
+const renderCustomRules = () => {
+  const list = el("customRulesList");
+  if (!list) return;
+  if (!customRules.length) {
+    list.innerHTML = `<p class="empty-state">${escapeHtml(t("Custom ruleは未追加です。", "No custom rules added."))}</p>`;
+    return;
+  }
+  list.innerHTML = customRules.map((rule, index) => `
+    <div class="custom-rule-item">
+      <code>${escapeHtml(rule.label)} / ${escapeHtml(rule.prefix)} / min ${escapeHtml(rule.minLength)} / ${escapeHtml(rule.severity)}</code>
+      <button type="button" class="btn-ghost" data-remove-rule="${index}">${escapeHtml(t("削除", "Remove"))}</button>
+    </div>
+  `).join("");
+  list.querySelectorAll("[data-remove-rule]").forEach((button) => {
+    button.addEventListener("click", () => {
+      customRules.splice(Number(button.dataset.removeRule), 1);
+      renderCustomRules();
+      showToast(t("Custom ruleを削除しました", "Custom rule removed"));
+    });
+  });
+};
+
+const setupProActions = () => {
+  renderCustomRules();
+  el("addCustomRuleBtn")?.addEventListener("click", () => {
+    if (document.documentElement.dataset.proActive !== "true") {
+      showToast(t("ProでCustom ruleを追加できます", "Custom rules are available with Pro"));
+      return;
+    }
+    const label = el("customRuleLabel")?.value.trim() || "Custom secret";
+    const prefix = el("customRulePrefix")?.value.trim();
+    const minLength = Number(el("customRuleMinLength")?.value || 12);
+    const severity = el("customRuleSeverity")?.value === "medium" ? "medium" : "high";
+    if (!prefix) {
+      showToast(t("prefixを入力してください", "Enter a prefix"));
+      return;
+    }
+    customRules.push({ label, prefix, minLength: Math.max(4, minLength), severity });
+    renderCustomRules();
+    showToast(t("Custom ruleを追加しました", "Custom rule added"));
+  });
+
+  el("profileSelect")?.addEventListener("change", () => {
+    showToast(t("Profileを切り替えました", "Profile switched"));
+  });
+
+  const copyAction = (id, builder, message) => {
+    el(id)?.addEventListener("click", async () => {
+      if (!ensureResult()) return;
+      await copyText(builder());
+      showToast(message);
+    });
+  };
+
+  copyAction("copyAuditBtn", auditMarkdown, t("Audit Markdownをコピーしました", "Copied audit Markdown"));
+  copyAction("copyGithubBtn", githubIssueTemplate, t("GitHub Issueテンプレートをコピーしました", "Copied GitHub Issue template"));
+  copyAction("copySupportBtn", () => supportTemplate("support"), t("Supportテンプレートをコピーしました", "Copied support template"));
+  copyAction("copyDiscordBtn", () => supportTemplate("Discord"), t("Discordテンプレートをコピーしました", "Copied Discord template"));
+
+  el("downloadJsonBtn")?.addEventListener("click", () => {
+    if (!ensureResult()) return;
+    downloadFile(`redacted-findings-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(safeFindings(), null, 2), "application/json;charset=utf-8");
+    showToast(t("JSONを保存しました", "JSON saved"));
+  });
+  el("downloadCsvBtn")?.addEventListener("click", () => {
+    if (!ensureResult()) return;
+    downloadFile(`redacted-findings-${new Date().toISOString().slice(0, 10)}.csv`, csvFindings(), "text/csv;charset=utf-8");
+    showToast(t("CSVを保存しました", "CSV saved"));
+  });
+  el("downloadHandoffBtn")?.addEventListener("click", () => {
+    if (!ensureResult()) return;
+    downloadFile(`redaction-handoff-${new Date().toISOString().slice(0, 10)}.md`, handoffPackMarkdown(), "text/markdown;charset=utf-8");
+    showToast(t("Markdown handoff packを保存しました", "Markdown handoff pack saved"));
+  });
+};
+
+window.NWApiKeyTokenRedactor = {
+  auditMarkdown,
+  githubIssueTemplate,
+  supportTemplate,
+  handoffPackMarkdown,
+  safeFindings,
+};
+
+const samples = {
+  env: `OPENAI_API_KEY="sk-proj-demo1234567890abcdef"
+GITHUB_TOKEN=github_pat_demo_1234567890abcdef123456
+SLACK_BOT_TOKEN=xoxb-123456789012-123456789012-demoTOKEN
+AWS_ACCESS_KEY_ID=AKIA1234567890ABCDEF
+AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+NPM_TOKEN=npm_demo1234567890abcdef1234567890`,
+  json: `{
+  "apiKey": "AIzaSyDemoKey1234567890abcdefABCDE",
+  "client_secret": "demo-client-secret-1234567890",
+  "sendgrid": "SG.demo1234567890.demo1234567890",
+  "gitlab": "glpat-demo1234567890abcd",
+  "database_url": "postgres://user:password@example.com:5432/app"
+}`,
+  curl: `curl https://api.example.com/v1/items \\
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.demoPayload123456.demoSignature123456" \\
+  -H "Cookie: sessionid=abc123def456ghi789; token=hiddenvalue123456"`,
+  log: `2026-05-03T20:10:00Z GET /callback?access_token=abc123def456ghi789&signature=abcdef1234567890 200
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+password="should-not-be-shared-12345"`,
+  privateKey: `-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCdemoDemoDemo1234567890
+this-is-a-fake-private-key-block-for-redaction-testing-only
+-----END PRIVATE KEY-----`,
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang(defaultLang());
+
+  document.querySelectorAll(".nw-lang-switch button").forEach((btn) => {
+    btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+  });
+
+  const input = el("inputText");
+  const output = el("outputText");
+  const redactBtn = el("redactBtn");
+  const clearBtn = el("clearBtn");
+  const copyBtn = el("copyBtn");
+  const downloadBtn = el("downloadBtn");
+
+  const getOptions = () => ({
+    modeApiKeys: el("modeApiKeys").checked,
+    modeBearer: el("modeBearer").checked,
+    modeJwt: el("modeJwt").checked,
+    modePrivateKey: el("modePrivateKey").checked,
+    modeGenericSecret: el("modeGenericSecret").checked,
+    placeholder: el("placeholderStyle").value,
+    keepLength: el("keepLengthToggle").checked,
+    proActive: document.documentElement.dataset.proActive === "true",
+    customRules,
+  });
+
+  const runRedaction = () => {
+    const text = input.value || "";
+    const result = redactContent(text, getOptions());
+    output.value = result.output;
+    lastResult = result;
+    updateSummary(result.counts);
+    renderFindings(result.findings);
+    updateSafetySummary(result.findings);
+  };
+
+  updateSummary(emptyCounts());
+  renderFindings([]);
+  updateSafetySummary([]);
+  setupProActions();
+
+  redactBtn.addEventListener("click", runRedaction);
+
+  document.querySelectorAll("[data-sample]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const sample = samples[button.dataset.sample];
+      if (!sample) return;
+      input.value = sample;
+      runRedaction();
+    });
+  });
+
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    output.value = "";
+    lastResult = null;
+    updateSummary(emptyCounts());
+    renderFindings([]);
+    updateSafetySummary([]);
+    input.focus();
+  });
+
+  copyBtn.addEventListener("click", async () => {
+    const text = output.value || "";
+    if (!text.trim()) {
+      showToast(t("伏字済みテキストがありません", "No redacted text to copy"));
+      return;
+    }
+    try {
+      await copyText(text);
+      showToast(t("伏字済みテキストをコピーしました", "Copied redacted text"));
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+      showToast(t("伏字済みテキストをコピーしました", "Copied redacted text"));
+    }
+  });
+
+  downloadBtn.addEventListener("click", () => {
+    const text = output.value || "";
+    if (!text.trim()) {
+      showToast(t("保存する伏字済みテキストがありません", "No redacted text to save"));
+      return;
+    }
+    const filename = `redacted-secrets-${new Date().toISOString().slice(0, 10)}.txt`;
+    downloadText(filename, text);
+    showToast(t("TXTを保存しました", "TXT saved"));
   });
 });

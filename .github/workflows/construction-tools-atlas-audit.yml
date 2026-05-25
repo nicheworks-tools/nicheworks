@@ -1,0 +1,29 @@
+name: Construction Tools Atlas audit
+
+on:
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-audit.yml'
+  push:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-audit.yml'
+
+jobs:
+  duplicate-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Audit duplicate ids and exact terms
+        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs
+
+      - name: Check whether data dedupe would remove records
+        run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --dry-run --write-report

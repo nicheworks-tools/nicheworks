@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja" data-pro-active="false">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-57QT78M3JB');
+</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>外注仕様書・受入基準・修正ルール作成｜Outsource Spec Generator | NicheWorks</title>
+<meta name="description" content="外注依頼の作業範囲、成果物、納期、予算、受入基準、修正ルールを整理し、発注前に確認しやすい仕様書ドラフトをブラウザ内で作成する無料ツールです。契約書や法的助言ではありません。">
+<link rel="canonical" href="https://nicheworks.app/tools/outsource-spec-generator/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NicheWorks">
+<meta property="og:title" content="外注仕様書・受入基準・修正ルール作成｜Outsource Spec Generator | NicheWorks">
+<meta property="og:description" content="外注依頼の作業範囲、成果物、納期、予算、受入基準、修正ルールを整理し、発注前に確認しやすい仕様書ドラフトをブラウザ内で作成する無料ツールです。契約書や法的助言ではありません。">
+<meta property="og:url" content="https://nicheworks.app/tools/outsource-spec-generator/">
+<meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="外注仕様書・受入基準・修正ルール作成｜Outsource Spec Generator | NicheWorks">
+<meta name="twitter:description" content="外注依頼の作業範囲、成果物、納期、予算、受入基準、修正ルールを整理し、発注前に確認しやすい仕様書ドラフトをブラウザ内で作成する無料ツールです。契約書や法的助言ではありません。">
+<meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/favicon.ico">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Outsource Spec Generator","url":"https://nicheworks.app/tools/outsource-spec-generator/","applicationCategory":"UtilityApplication","description":"外注依頼の作業範囲、成果物、納期、予算、受入基準、修正ルールを整理し、発注前に確認しやすい仕様書ドラフトをブラウザ内で作成する無料ツールです。契約書や法的助言ではありません。","operatingSystem":"All"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"この出力は契約書として使えますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。外注仕様書のたたき台です。契約条件は契約書や発注書で確認してください。"}},{"@type":"Question","name":"入力内容は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"仕様書生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}},{"@type":"Question","name":"Pro購入後はどう扱われますか？","acceptedAnswer":{"@type":"Answer","text":"購入後、このブラウザではNicheWorks Proが有効になります。通常はタブやブラウザを閉じても維持されますが、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。"}},{"@type":"Question","name":"Proでは何ができますか？","acceptedAnswer":{"@type":"Answer","text":"Full Outsource Handoff Pack、成果物パック、検収チェックリスト、外注先への質問、Codex依頼文、GitHub Issue、Markdown保存、JSON exportを利用できます。"}}]}</script>
+<link rel="stylesheet" href="./style.css" />
+<script defer src="/assets/nw-pro.js"></script>
+<script defer src="./pro-bridge.js"></script>
+<script defer src="./app.js"></script>
+</head>
+<body>
+<header class="nw-header">
+  <h1 class="nw-title" data-i18n="ja">外注仕様書ジェネレーター</h1>
+  <h1 class="nw-title" data-i18n="en" style="display:none;">Outsource Spec Generator</h1>
+  <p class="nw-lead" data-i18n="ja">作業範囲、成果物、検収方法、修正ルールを整理して、外注前の仕様書ドラフトを作成します。</p>
+  <p class="nw-lead" data-i18n="en" style="display:none;">Create a draft outsourcing spec with scope, deliverables, acceptance checks, and revision rules.</p>
+  <div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div>
+</header>
+<main class="nw-main">
+  <div class="ad-slot ad-top" data-pro-ad>広告枠</div>
+  <p class="nw-note" data-i18n="ja">外注依頼の内容を、発注前に確認しやすい仕様書ドラフトへ整理します。無料版では簡易仕様書・簡易受入基準・簡易修正ルールを生成できます。</p>
+  <p class="nw-note" data-i18n="en" style="display:none;">Organize an outsourcing request into a practical draft spec. The free version generates a lightweight spec, acceptance criteria, and revision rules.</p>
+
+  <section class="nw-note nw-warning">
+    <h2 data-i18n="ja">重要な注意</h2><h2 data-i18n="en" style="display:none;">Important notice</h2>
+    <p data-i18n="ja">このツールは外注仕様書のたたき台を作る簡易ツールです。契約書、発注書、法的助言、検収合意、支払い条件の確定を代替するものではありません。</p>
+    <p data-i18n="en" style="display:none;">This tool creates a draft specification only. It does not replace contracts, purchase orders, legal advice, acceptance agreements, or final payment terms.</p>
+  </section>
+  <div class="nw-note" data-i18n="ja">仕様書生成処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。未公開案件、社名、担当者名、機密URL、共有ドキュメントURL、個人情報は必要に応じて伏せてください。</div>
+  <div class="nw-note" data-i18n="en" style="display:none;">Spec generation runs in your browser. Ads and analytics tags are loaded for the page. Mask unpublished project names, company names, private URLs, shared document URLs, and personal information as needed.</div>
+
+  <section class="card pro-card" id="proCard" aria-labelledby="proTitle">
+    <div class="card-hd">
+      <h2 class="card-title" id="proTitle" data-i18n="ja">NicheWorks Pro</h2>
+      <h2 class="card-title" data-i18n="en" style="display:none;">NicheWorks Pro</h2>
+    </div>
+    <div class="card-bd">
+      <p class="pro-status" data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</p>
+      <p data-i18n="ja">Proでは詳細な外注発注パック、成果物パック、検収チェックリスト、外注先への事前質問リスト、Codex依頼文、GitHub Issue形式、Markdown保存、JSON exportが解放されます。</p>
+      <p data-i18n="en" style="display:none;">Pro unlocks the full outsource handoff pack, deliverable pack, acceptance checklist, vendor questions, Codex task, GitHub Issue format, Markdown export, and JSON export.</p>
+      <div class="row pro-actions">
+        <a class="btn primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener"><span data-i18n="ja">Buy Pro</span><span data-i18n="en" style="display:none;">Buy Pro</span></a>
+        <span class="pro-pill" data-pro-only><span data-i18n="ja">Pro解放済み</span><span data-i18n="en" style="display:none;">Pro unlocked</span></span>
+      </div>
+      <p class="nw-muted" data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+      <p class="nw-muted" data-i18n="en" style="display:none;">After purchase, NicheWorks Pro is enabled in this browser. It is usually retained after closing tabs or the browser, but another device/browser, private mode, or cleared site data requires activation again.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none;">Input</h2></div>
+    <div class="card-bd">
+      <div id="requiredHint" class="alert" hidden></div>
+      <div class="form-grid">
+        <div class="field"><label class="label" for="workType"><span data-i18n="ja">作業種別 <span class="required">必須</span></span><span data-i18n="en" style="display:none;">Work type <span class="required">Required</span></span></label><input id="workType" class="input" type="text" placeholder="例: LP制作 / 記事執筆 / UI実装"></div>
+        <div class="field"><label class="label" for="purpose"><span data-i18n="ja">目的</span><span data-i18n="en" style="display:none;">Purpose</span></label><input id="purpose" class="input" type="text" placeholder="例: 新サービスの初期LPを公開する"></div>
+        <div class="field full"><label class="label" for="deliverables"><span data-i18n="ja">成果物・範囲 <span class="required">必須</span></span><span data-i18n="en" style="display:none;">Deliverables / scope <span class="required">Required</span></span></label><textarea id="deliverables" class="textarea" placeholder="例: トップページデザイン、HTML/CSS、問い合わせ導線、スマホ表示調整"></textarea></div>
+        <div class="field full"><label class="label" for="outOfScope"><span data-i18n="ja">対象外範囲</span><span data-i18n="en" style="display:none;">Out of scope</span></label><textarea id="outOfScope" class="textarea" placeholder="例: ロゴ制作、写真撮影、サーバー契約、広告運用"></textarea></div>
+        <div class="field"><label class="label" for="deadline"><span data-i18n="ja">納期 <span class="required">必須</span></span><span data-i18n="en" style="display:none;">Deadline <span class="required">Required</span></span></label><input id="deadline" class="input" type="text" placeholder="例: 2026/06/30"></div>
+        <div class="field"><label class="label" for="budget"><span data-i18n="ja">予算 <span class="required">必須</span></span><span data-i18n="en" style="display:none;">Budget <span class="required">Required</span></span></label><input id="budget" class="input" type="text" placeholder="例: 15万円"></div>
+        <div class="field"><label class="label" for="deliveryFormat"><span data-i18n="ja">納品形式</span><span data-i18n="en" style="display:none;">Delivery format</span></label><input id="deliveryFormat" class="input" type="text" placeholder="例: Figma / HTML一式 / Google Docs"></div>
+        <div class="field"><label class="label" for="acceptanceMethod"><span data-i18n="ja">検収方法 <span class="required">必須</span></span><span data-i18n="en" style="display:none;">Acceptance method <span class="required">Required</span></span></label><input id="acceptanceMethod" class="input" type="text" placeholder="例: チェックリスト確認後、3営業日以内に返答"></div>
+        <div class="field"><label class="label" for="acceptancePeriod"><span data-i18n="ja">検収期間</span><span data-i18n="en" style="display:none;">Acceptance period</span></label><input id="acceptancePeriod" class="input" type="text" placeholder="例: 初回納品後3営業日"></div>
+        <div class="field"><label class="label" for="communication"><span data-i18n="ja">連絡方法</span><span data-i18n="en" style="display:none;">Communication</span></label><input id="communication" class="input" type="text" placeholder="例: Chatwork / Slack / メール"></div>
+        <div class="field"><label class="label" for="revisionRounds"><span data-i18n="ja">修正回数</span><span data-i18n="en" style="display:none;">Revision rounds</span></label><input id="revisionRounds" class="input" type="text" placeholder="例: 軽微修正2回まで"></div>
+        <div class="field"><label class="label" for="paymentTerms"><span data-i18n="ja">支払い条件</span><span data-i18n="en" style="display:none;">Payment terms</span></label><input id="paymentTerms" class="input" type="text" placeholder="例: 検収完了後、月末締め翌月末払い"></div>
+        <div class="field"><label class="label" for="rightsUsage"><span data-i18n="ja">権利/利用範囲</span><span data-i18n="en" style="display:none;">Rights / usage scope</span></label><input id="rightsUsage" class="input" type="text" placeholder="例: 納品後、発注者がWeb・SNSで利用可能"></div>
+        <div class="field"><label class="label" for="portfolioPermission"><span data-i18n="ja">実績公開可否</span><span data-i18n="en" style="display:none;">Portfolio permission</span></label><input id="portfolioPermission" class="input" type="text" placeholder="例: 事前確認後に公開可 / 公開不可"></div>
+        <div class="field"><label class="label" for="confidentiality"><span data-i18n="ja">秘密保持</span><span data-i18n="en" style="display:none;">Confidentiality</span></label><input id="confidentiality" class="input" type="text" placeholder="例: 未公開情報は第三者へ共有しない"></div>
+        <div class="field full"><label class="label" for="mustHave"><span data-i18n="ja">必須条件</span><span data-i18n="en" style="display:none;">Must-have requirements</span></label><textarea id="mustHave" class="textarea" placeholder="例: 既存ブランドカラーを使用、スマホ表示優先、納品前に不明点を確認"></textarea></div>
+        <div class="field full"><label class="label" for="references"><span data-i18n="ja">参考資料</span><span data-i18n="en" style="display:none;">References</span></label><textarea id="references" class="textarea" placeholder="例: 参考サイト、共有ドキュメント、既存素材の場所"></textarea></div>
+      </div>
+      <div class="row" style="margin-top:12px;"><button class="btn primary" id="generateBtn" type="button"><span data-i18n="ja">簡易仕様書を生成</span><span data-i18n="en" style="display:none;">Generate free spec</span></button><button class="btn" id="copyBtn" type="button"><span data-i18n="ja">簡易仕様書をコピー</span><span data-i18n="en" style="display:none;">Copy free spec</span></button></div>
+      <div class="field"><label class="label"><span data-i18n="ja">無料出力</span><span data-i18n="en" style="display:none;">Free output</span></label><pre id="outputJa" class="out" data-i18n="ja"></pre><pre id="outputEn" class="out" data-i18n="en" style="display:none;"></pre></div>
+    </div>
+  </section>
+
+  <section class="card pro-preview" data-pro-preview>
+    <div class="card-hd"><h2 class="card-title" data-i18n="ja">Pro Preview</h2><h2 class="card-title" data-i18n="en" style="display:none;">Pro Preview</h2></div>
+    <div class="card-bd">
+      <p data-i18n="ja">購入前でも、Proで解放される詳細パックの構成を確認できます。購入後に全文コピー / Markdown保存 / JSON export が有効になります。</p>
+      <p data-i18n="en" style="display:none;">Before purchase, you can preview what Pro unlocks. After purchase, full copy, Markdown export, and JSON export become available.</p>
+      <pre class="out"># Full Outsource Handoff Pack Sample
+- Detailed spec with out-of-scope, delivery format, acceptance method, payment terms, rights, portfolio permission, and confidentiality
+- Deliverable pack sample: files, review notes, delivery note, risk memo
+- Acceptance checklist sample: scope, responsive, links, copy, references, handover
+- Vendor question list sample: assumptions, blockers, schedule, assets, revision boundaries
+- Codex task sample and GitHub Issue sample</pre>
+      <p><a class="btn primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener"><span data-i18n="ja">Buy Pro</span><span data-i18n="en" style="display:none;">Buy Pro</span></a></p>
+    </div>
+  </section>
+
+  <section class="card" id="proWorkspace">
+    <div class="card-hd"><h2 class="card-title" data-i18n="ja">Pro出力</h2><h2 class="card-title" data-i18n="en" style="display:none;">Pro output</h2></div>
+    <div class="card-bd">
+      <div class="field"><label class="label" for="packType"><span data-i18n="ja">成果物パック種別</span><span data-i18n="en" style="display:none;">Deliverable pack type</span></label><select id="packType" class="select"><option value="web">Web / UI</option><option value="design">Design</option><option value="writing">Writing</option></select></div>
+      <div class="row pro-button-row">
+        <button class="btn" id="handoffBtn" data-pro-action type="button"><span data-i18n="ja">Full Handoff Pack生成</span><span data-i18n="en" style="display:none;">Generate full handoff pack</span></button>
+        <button class="btn" id="packBtn" data-pro-action type="button"><span data-i18n="ja">成果物パック生成</span><span data-i18n="en" style="display:none;">Generate deliverable pack</span></button>
+        <button class="btn" id="checklistBtn" data-pro-action type="button"><span data-i18n="ja">検収チェックリスト生成</span><span data-i18n="en" style="display:none;">Generate acceptance checklist</span></button>
+        <button class="btn" id="questionsBtn" data-pro-action type="button"><span data-i18n="ja">質問リスト生成</span><span data-i18n="en" style="display:none;">Generate vendor questions</span></button>
+        <button class="btn" id="codexBtn" data-pro-action type="button"><span data-i18n="ja">Codex依頼文生成</span><span data-i18n="en" style="display:none;">Generate Codex task</span></button>
+        <button class="btn" id="issueBtn" data-pro-action type="button"><span data-i18n="ja">GitHub Issue生成</span><span data-i18n="en" style="display:none;">Generate GitHub Issue</span></button>
+      </div>
+      <div class="row pro-button-row">
+        <button class="btn" id="copyHandoffBtn" data-pro-action type="button">Copy full outsource handoff pack</button>
+        <button class="btn" id="copyChecklistBtn" data-pro-action type="button">Copy acceptance checklist</button>
+        <button class="btn" id="copyQuestionsBtn" data-pro-action type="button">Copy vendor question list</button>
+        <button class="btn" id="copyCodexBtn" data-pro-action type="button">Copy Codex task</button>
+        <button class="btn" id="copyIssueBtn" data-pro-action type="button">Copy GitHub Issue</button>
+        <button class="btn" id="exportBtn" data-pro-action type="button">Export Markdown</button>
+        <button class="btn" id="jsonBtn" data-pro-action type="button">Export JSON</button>
+      </div>
+      <div class="locked-help" data-pro-preview>
+        <p data-i18n="ja">Pro専用操作はPreviewモードではロックされています。購入後、このブラウザで共通Proが有効になると実行できます。</p>
+        <p data-i18n="en" style="display:none;">Pro-only actions are locked in Preview mode. They become available when common Pro is active in this browser.</p>
+        <a class="btn primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">Buy Pro</a>
+      </div>
+      <div data-pro-only class="pro-unlocked-note"><span data-i18n="ja">Pro解放済みです。各Pro出力を生成・コピー・保存できます。</span><span data-i18n="en" style="display:none;">Pro is unlocked. You can generate, copy, and export each Pro output.</span></div>
+      <div class="field"><label class="label"><span data-i18n="ja">Pro出力</span><span data-i18n="en" style="display:none;">Pro output</span></label><pre id="proOutputJa" class="out" data-i18n="ja"></pre><pre id="proOutputEn" class="out" data-i18n="en" style="display:none;"></pre></div>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-bottom" data-pro-ad>広告枠</div>
+  <section class="faq"><h2 data-i18n="ja">よくある質問</h2><h2 data-i18n="en" style="display:none;">FAQ</h2>
+    <details><summary><span data-i18n="ja">この出力は契約書として使えますか？</span><span data-i18n="en" style="display:none;">Can I use this as a contract?</span></summary><p data-i18n="ja">いいえ。外注仕様書のたたき台です。契約条件は契約書や発注書で確認してください。</p><p data-i18n="en" style="display:none;">No. It is a draft specification. Confirm contract terms in a contract or purchase order.</p></details>
+    <details><summary><span data-i18n="ja">入力内容は送信されますか？</span><span data-i18n="en" style="display:none;">Is my input sent anywhere?</span></summary><p data-i18n="ja">仕様書生成処理はブラウザ内で行います。ただし広告・解析タグは読み込まれます。</p><p data-i18n="en" style="display:none;">Spec generation runs in your browser. Ads and analytics tags are loaded for the page.</p></details>
+    <details><summary><span data-i18n="ja">権利や商用利用条件も決められますか？</span><span data-i18n="en" style="display:none;">Can this decide rights or commercial use?</span></summary><p data-i18n="ja">確認項目として整理できますが、法的な確定はできません。当事者間で合意してください。</p><p data-i18n="en" style="display:none;">It can organize points to check, but it cannot legally finalize them. Agree on them separately.</p></details>
+    <details><summary><span data-i18n="ja">Markdown保存やJSON exportは使えますか？</span><span data-i18n="en" style="display:none;">Can I save Markdown or export JSON?</span></summary><p data-i18n="ja">Markdown保存とJSON exportはPro機能です。無料版では簡易仕様書の生成と通常コピーを使えます。</p><p data-i18n="en" style="display:none;">Markdown save and JSON export are Pro features. The free version can generate and copy the lightweight spec.</p></details>
+    <details><summary><span data-i18n="ja">購入後のPro状態はどう維持されますか？</span><span data-i18n="en" style="display:none;">What happens after purchase?</span></summary><p data-i18n="ja">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p><p data-i18n="en" style="display:none;">After purchase, NicheWorks Pro is enabled in this browser. It is usually retained after closing tabs or the browser, but another device/browser, private mode, or cleared site data requires activation again.</p></details>
+  </section>
+  <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en" style="display:none;">If this tool helps, please consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+  <section class="nw-other"><h3 class="nw-other-title" data-i18n="ja">関連ツール</h3><h3 class="nw-other-title" data-i18n="en" style="display:none;">Related tools</h3><div class="nw-other-links"><a href="/tools/design-request-builder/">Design Request Builder</a><a href="/tools/contract-cleaner/">Contract Cleaner</a><a href="/tools/contract-risk-highlighter/">Contract Risk Highlighter</a><a href="/tools/niche-job-starter-kit/">Niche Job Starter Kit</a></div></section>
+</main>
+<footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+</body>
+</html>

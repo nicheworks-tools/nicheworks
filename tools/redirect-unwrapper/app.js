@@ -1,232 +1,313 @@
 /* ============================================================
-   Redirect Unwrapper - High Success Version (NicheWorks v2)
-   ※ bit.ly / t.co / amzn.to / lnkd.in など対応
+   Redirect Unwrapper - local URL string analyzer (NicheWorks)
+   - Does not open input URLs
+   - Does not fetch external URLs
 ============================================================ */
 
-/* ----------------------------
-   言語切替
----------------------------- */
+const UI_TEXT = {
+  ja: {
+    enterUrl: "URLを入力してください。",
+    invalidUrl: "URLとして解析できませんでした。入力内容を確認してください。",
+    copied: "コピーしました",
+    copyFailed: "コピーに失敗しました",
+    noCandidates: "URL内に転送先候補は見つかりませんでした。",
+    candidateFound: "転送先候補を抽出しました。",
+    notRedirectTracker: "短縮URLのサーバー側301/302リダイレクトは、このツール単体では追跡しません。",
+    noWarnings: "強い警告はありません。ただし安全性を保証するものではありません。",
+    destinationParam: "転送先らしいパラメータ",
+    embeddedUrl: "URL文字列内の埋め込みURL",
+    warnings: {
+      externalNotChecked: "このツールはURLを開かず、外部サイトへアクセスしません。表示結果は文字列解析です。",
+      insecureHttp: "HTTP URLです。暗号化されていない可能性があります。",
+      dangerousScheme: "危険または通常のWeb閲覧に不向きなスキームです。開かないでください。",
+      unsupportedScheme: "http/https以外のスキームです。通常のWeb URLとして扱えない可能性があります。",
+      ipHost: "ホストがIPアドレスです。偽装・一時サイト・管理画面URLの可能性に注意してください。",
+      punycode: "ドメインにpunycode（xn--）が含まれます。見た目が紛らわしい国際化ドメインの可能性があります。",
+      hasCredentials: "URL内にユーザー名/パスワード形式の情報が含まれます。表示ドメインの誤認に注意してください。",
+      hasEmbedded: "URL内に別のURLが含まれています。",
+      multiEmbedded: "URL内に複数のURL候補が含まれています。",
+      hostMismatch: "表示ドメインと転送先候補のドメインが異なります。",
+      manyTrackers: "追跡パラメータが多く含まれています。",
+      urlInPath: "パス部分に別URLらしい文字列が含まれています。"
+    }
+  },
+  en: {
+    enterUrl: "Please enter a URL.",
+    invalidUrl: "The input could not be parsed as a URL. Please check it.",
+    copied: "Copied",
+    copyFailed: "Copy failed",
+    noCandidates: "No embedded destination URL candidate was found.",
+    candidateFound: "Destination URL candidate extracted.",
+    notRedirectTracker: "This tool does not follow server-side 301/302 redirects by itself.",
+    noWarnings: "No strong warnings were detected, but this does not guarantee safety.",
+    destinationParam: "Likely destination parameter",
+    embeddedUrl: "Embedded URL in the string",
+    warnings: {
+      externalNotChecked: "This tool does not open the URL or access external sites. Results are based on string analysis.",
+      insecureHttp: "This is an HTTP URL. It may not be encrypted.",
+      dangerousScheme: "This URL uses a dangerous or non-browsing scheme. Do not open it.",
+      unsupportedScheme: "This URL uses a non-http/https scheme and may not behave like a normal web URL.",
+      ipHost: "The host is an IP address. Be careful with spoofed, temporary, or admin URLs.",
+      punycode: "The domain contains punycode (xn--). It may be a visually confusing internationalized domain.",
+      hasCredentials: "The URL contains username/password-style information. Be careful not to misread the real host.",
+      hasEmbedded: "Another URL is embedded inside this URL.",
+      multiEmbedded: "Multiple embedded URL candidates were found.",
+      hostMismatch: "The visible host and extracted destination host are different.",
+      manyTrackers: "Many tracking parameters are included.",
+      urlInPath: "The path appears to contain another URL."
+    }
+  }
+};
+
+const DESTINATION_PARAM_KEYS = new Set(["url", "u", "q", "target", "target_url", "redirect", "redirect_url", "redir", "dest", "destination", "to", "continue", "next", "return", "return_url", "r", "link"]);
+const TRACKING_PARAM_KEYS = new Set(["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id", "fbclid", "gclid", "dclid", "msclkid", "igshid", "mc_cid", "mc_eid", "yclid", "ref", "ref_src", "spm", "src", "campaign", "feature"]);
+const DANGEROUS_SCHEMES = new Set(["javascript:", "data:", "file:", "blob:", "vbscript:"]);
+const EXAMPLE_URL = "https://example.com/?url=https%3A%2F%2Fdestination.example%2Fpage";
+
+let currentLang = "ja";
+let lastAnalysis = null;
+
 document.addEventListener("DOMContentLoaded", () => {
-  const langButtons = document.querySelectorAll(".nw-lang-switch button");
-  const i18nNodes = document.querySelectorAll("[data-i18n]");
-  const browserLang = (navigator.language || "").toLowerCase();
-  let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
-
-  const applyLang = (lang) => {
-    i18nNodes.forEach((el) => {
-      el.style.display = el.dataset.i18n === lang ? "" : "none";
-    });
-    langButtons.forEach((b) =>
-      b.classList.toggle("active", b.dataset.lang === lang)
-    );
-    currentLang = lang;
-  };
-
-  langButtons.forEach((btn) => {
-    btn.addEventListener("click", () => applyLang(btn.dataset.lang));
-  });
-
-  applyLang(currentLang);
+  const urlInput = document.getElementById("urlInput");
+  urlInput.setAttribute("placeholder", EXAMPLE_URL);
+  setupLanguage();
+  setupEvents();
 });
 
-/* ----------------------------
-   結果UI
----------------------------- */
+function setupLanguage() {
+  const langButtons = document.querySelectorAll(".nw-lang-switch button");
+  const browserLang = (navigator.language || "").toLowerCase();
+  currentLang = browserLang.startsWith("ja") ? "ja" : "en";
 
-const resultsEl = document.getElementById("results");
-
-function renderError(msg) {
-  const div = document.createElement("div");
-  div.className = "result-error";
-  div.textContent = msg;
-  resultsEl.appendChild(div);
-}
-
-function renderResult({ input, finalUrl, chain }) {
-  const card = document.createElement("div");
-  card.className = "result-card";
-
-  const add = (label, value) => {
-    const row = document.createElement("div");
-    row.className = "result-row";
-    const l = document.createElement("div");
-    l.className = "result-label";
-    l.textContent = label;
-    const v = document.createElement("div");
-    v.className = "result-value";
-    v.textContent = value;
-    row.appendChild(l);
-    row.appendChild(v);
-    card.appendChild(row);
+  const applyLang = (lang) => {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach((el) => { el.style.display = el.dataset.i18n === lang ? "" : "none"; });
+    langButtons.forEach((button) => { button.classList.toggle("active", button.dataset.lang === lang); });
+    if (lastAnalysis) renderAnalysis(lastAnalysis);
   };
 
-  add("入力URL / Input URL", input);
-
-  if (chain.length === 0) {
-    add("中間リダイレクト / Redirect Chain", "なし / None");
-  } else {
-    add("中間リダイレクト / Redirect Chain", chain.join(" → "));
-  }
-
-  add("最終URL / Final URL", finalUrl || "(検出できませんでした)");
-
-  // コピー
-  const btn = document.createElement("button");
-  btn.className = "copy-btn";
-  btn.textContent = "コピー / Copy";
-  btn.addEventListener("click", () => {
-    navigator.clipboard.writeText(finalUrl || "");
-    btn.textContent = "Copied!";
-    setTimeout(() => (btn.textContent = "コピー / Copy"), 1000);
-  });
-  card.appendChild(btn);
-
-  resultsEl.appendChild(card);
+  langButtons.forEach((button) => { button.addEventListener("click", () => applyLang(button.dataset.lang)); });
+  applyLang(currentLang);
 }
 
-/* -----------------------------------------------------------
-   ★ 新ロジック：リンクを「ユーザー遷移扱い」で開く
-   → 新タブを開いて即 close
-   → navigation entries から最終URLを取得
------------------------------------------------------------ */
+function setupEvents() {
+  const analyzeBtn = document.getElementById("analyzeBtn");
+  const urlInput = document.getElementById("urlInput");
+  const copyCandidatesBtn = document.getElementById("copyCandidatesBtn");
+  const copySummaryBtn = document.getElementById("copySummaryBtn");
 
-async function resolveRedirectRealClick(url) {
-  return new Promise((resolve) => {
-    const chain = [];
-    let finalUrl = null;
-
-    // 新タブで開く（ユーザー起点扱い）
-    const newTab = window.open(url, "_blank");
-
-    if (!newTab) {
-      resolve({ finalUrl: null, chain });
-      return;
-    }
-
-    // すぐ閉じる（即閉じると navigation entry に残る）
-    setTimeout(() => {
-      try {
-        newTab.close();
-      } catch (e) {}
-    }, 300);
-
-    // 解析開始
-    // navigation entry は少し遅れて反映される
-    const start = performance.now();
-
-    const check = () => {
-      const elapsed = performance.now() - start;
-      if (elapsed > 3000) {
-        // タイムアウト
-        resolve({ finalUrl: null, chain });
-        return;
-      }
-
-      const nav = performance.getEntriesByType("navigation");
-      if (nav && nav.length > 0) {
-        const entry = nav[0];
-        const dest = entry.name;
-
-        if (dest && dest !== url) {
-          finalUrl = dest;
-          // chain生成：入力 != 最終 の場合だけ追加
-          if (finalUrl !== url) {
-            chain.push(finalUrl);
-          }
-          resolve({ finalUrl, chain });
-          return;
-        }
-      }
-
-      // 再チェック
-      requestAnimationFrame(check);
-    };
-
-    check();
-  });
+  analyzeBtn.addEventListener("click", startAnalysis);
+  urlInput.addEventListener("keydown", (event) => { if ((event.ctrlKey || event.metaKey) && event.key === "Enter") startAnalysis(); });
+  document.querySelectorAll("[data-sample]").forEach((button) => { button.addEventListener("click", () => { urlInput.value = button.dataset.sample; startAnalysis(); }); });
+  copyCandidatesBtn.addEventListener("click", () => { if (!lastAnalysis) return; const text = lastAnalysis.candidates.map((candidate) => candidate.url).join("\n"); copyText(text || UI_TEXT[currentLang].noCandidates, copyCandidatesBtn); });
+  copySummaryBtn.addEventListener("click", () => { if (!lastAnalysis) return; copyText(buildPlainSummary(lastAnalysis), copySummaryBtn); });
 }
 
-/* -----------------------------------------------------------
-   HTML fallback（meta refresh / JS redirect）
------------------------------------------------------------ */
-
-async function simpleHTMLFallback(url) {
-  try {
-    const res = await fetch(url);
-    const text = await res.text();
-
-    // meta refresh
-    const meta = text.match(/<meta[^>]*http-equiv=["']refresh["'][^>]*url=(.*?)["']/i);
-    if (meta && meta[1]) return meta[1].trim();
-
-    // JS redirect
-    const js = text.match(/location\.href\s*=\s*['"](.*?)['"]/i);
-    if (js && js[1]) return js[1].trim();
-
-    return null;
-  } catch (_) {
-    return null;
-  }
-}
-
-/* -----------------------------------------------------------
-   メイン解析フロー
------------------------------------------------------------ */
-
-async function unwrap(inputUrl) {
-  let url = inputUrl;
-  const chain = [];
-
-  // 安全のため https を補完
-  if (!/^https?:\/\//i.test(url)) {
-    url = "https://" + url;
-  }
-
-  // ①「本物のリダイレクト」を踏む
-  const real = await resolveRedirectRealClick(url);
-
-  if (real.finalUrl) {
-    return {
-      input: inputUrl,
-      chain: real.chain,
-      finalUrl: real.finalUrl,
-    };
-  }
-
-  // ② fallback：HTML解析
-  const viaHTML = await simpleHTMLFallback(url);
-  if (viaHTML) {
-    chain.push(viaHTML);
-    return {
-      input: inputUrl,
-      chain,
-      finalUrl: viaHTML,
-    };
-  }
-
-  // ③ それでも無理ならそのまま
-  return {
-    input: inputUrl,
-    chain,
-    finalUrl: url,
-  };
-}
-
-/* -----------------------------------------------------------
-   ボタンイベント
------------------------------------------------------------ */
-document.getElementById("analyzeBtn").addEventListener("click", start);
-document.getElementById("analyzeBtn-en").addEventListener("click", start);
-
-async function start() {
-  resultsEl.innerHTML = "";
+function startAnalysis() {
   const input = document.getElementById("urlInput").value.trim();
-
-  if (!input) {
-    renderError("URLを入力してください / Please enter a URL");
-    return;
+  const errorEl = document.getElementById("errorBox");
+  errorEl.hidden = true;
+  errorEl.textContent = "";
+  if (!input) { showError(UI_TEXT[currentLang].enterUrl); return; }
+  try {
+    const analysis = analyzeUrlString(input);
+    lastAnalysis = analysis;
+    renderAnalysis(analysis);
+  } catch (_) {
+    lastAnalysis = null;
+    document.getElementById("results").hidden = true;
+    showError(UI_TEXT[currentLang].invalidUrl);
   }
+}
 
-  const result = await unwrap(input);
-  renderResult(result);
+function showError(message) {
+  const errorEl = document.getElementById("errorBox");
+  errorEl.textContent = message;
+  errorEl.hidden = false;
+}
+
+function analyzeUrlString(input) {
+  const normalized = normalizeUrl(input);
+  const parsed = new URL(normalized);
+  const queryParams = Array.from(parsed.searchParams.entries()).map(([key, value]) => ({ key, value, decodedValue: decodeRepeated(value) }));
+  const trackingParams = queryParams.filter((param) => isTrackingParam(param.key));
+  const candidates = extractEmbeddedUrls(parsed, queryParams);
+  const warnings = buildWarnings(parsed, queryParams, candidates);
+  return { input, normalized: parsed.href, scheme: parsed.protocol, host: parsed.hostname, path: parsed.pathname, queryParams, trackingParams, candidates, warnings };
+}
+
+function normalizeUrl(input) {
+  let value = input.trim();
+  if (value.startsWith("//")) value = `https:${value}`;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(value)) value = `https://${value}`;
+  return value;
+}
+
+function decodeRepeated(value, max = 4) {
+  let current = String(value || "").replace(/\+/g, "%20");
+  for (let i = 0; i < max; i += 1) {
+    try {
+      const next = decodeURIComponent(current);
+      if (next === current) break;
+      current = next;
+    } catch (_) { break; }
+  }
+  return current;
+}
+
+function extractEmbeddedUrls(parsed, queryParams) {
+  const candidates = [];
+  const seen = new Set();
+  queryParams.forEach((param) => {
+    const key = param.key.toLowerCase();
+    addCandidatesFromText(candidates, seen, param.decodedValue, { source: DESTINATION_PARAM_KEYS.has(key) ? UI_TEXT[currentLang].destinationParam : UI_TEXT[currentLang].embeddedUrl, key: param.key });
+  });
+  addCandidatesFromText(candidates, seen, decodeRepeated(parsed.pathname), { source: "path", key: "" });
+  addCandidatesFromText(candidates, seen, decodeRepeated(parsed.hash), { source: "hash", key: "" });
+  return candidates;
+}
+
+function addCandidatesFromText(candidates, seen, text, meta) {
+  findHttpUrls(text).forEach((rawUrl) => {
+    try {
+      const parsedCandidate = new URL(rawUrl);
+      const normalizedCandidate = parsedCandidate.href;
+      if (seen.has(normalizedCandidate)) return;
+      seen.add(normalizedCandidate);
+      candidates.push({ url: normalizedCandidate, host: parsedCandidate.hostname, scheme: parsedCandidate.protocol, source: meta.source, key: meta.key });
+    } catch (_) {}
+  });
+}
+
+function findHttpUrls(text) {
+  const decoded = decodeRepeated(text);
+  const matches = decoded.match(/https?:\/\/[^\s"'<>]+/gi) || [];
+  return matches.map((url) => url.replace(/[)\],.;]+$/g, ""));
+}
+
+function isTrackingParam(key) {
+  const normalized = key.toLowerCase();
+  return normalized.startsWith("utm_") || TRACKING_PARAM_KEYS.has(normalized);
+}
+
+function buildWarnings(parsed, queryParams, candidates) {
+  const warnings = new Set();
+  const t = UI_TEXT[currentLang].warnings;
+  warnings.add(t.externalNotChecked);
+  if (parsed.protocol === "http:") warnings.add(t.insecureHttp);
+  if (DANGEROUS_SCHEMES.has(parsed.protocol)) warnings.add(t.dangerousScheme);
+  else if (!["http:", "https:"].includes(parsed.protocol)) warnings.add(t.unsupportedScheme);
+  if (isIpAddress(parsed.hostname)) warnings.add(t.ipHost);
+  if (isPunycodeHost(parsed.hostname)) warnings.add(t.punycode);
+  if (parsed.username || parsed.password) warnings.add(t.hasCredentials);
+  if (candidates.length > 0) warnings.add(t.hasEmbedded);
+  if (candidates.length > 1) warnings.add(t.multiEmbedded);
+  if (candidates.some((candidate) => candidate.host && candidate.host !== parsed.hostname)) warnings.add(t.hostMismatch);
+  if (queryParams.filter((param) => isTrackingParam(param.key)).length >= 3) warnings.add(t.manyTrackers);
+  if (findHttpUrls(parsed.pathname).length > 0) warnings.add(t.urlInPath);
+  candidates.forEach((candidate) => {
+    if (candidate.scheme === "http:") warnings.add(`${t.insecureHttp} (${candidate.host})`);
+    if (isIpAddress(candidate.host)) warnings.add(`${t.ipHost} (${candidate.host})`);
+    if (isPunycodeHost(candidate.host)) warnings.add(`${t.punycode} (${candidate.host})`);
+  });
+  return Array.from(warnings);
+}
+
+function isIpAddress(hostname) {
+  if (!hostname) return false;
+  return /^(?:\d{1,3}\.){3}\d{1,3}$/.test(hostname) || hostname.includes(":");
+}
+
+function isPunycodeHost(hostname) {
+  return hostname.toLowerCase().split(".").some((part) => part.startsWith("xn--"));
+}
+
+function renderAnalysis(analysis) {
+  const results = document.getElementById("results");
+  const summary = document.getElementById("resultSummary");
+  const details = document.getElementById("resultDetails");
+  const candidates = document.getElementById("candidateList");
+  const warnings = document.getElementById("warningList");
+  const copyCandidatesBtn = document.getElementById("copyCandidatesBtn");
+  results.hidden = false;
+  summary.textContent = analysis.candidates.length > 0 ? UI_TEXT[currentLang].candidateFound : `${UI_TEXT[currentLang].noCandidates} ${UI_TEXT[currentLang].notRedirectTracker}`;
+  details.innerHTML = "";
+  appendDetail(details, "Input", analysis.input);
+  appendDetail(details, "Normalized", analysis.normalized);
+  appendDetail(details, "Scheme", analysis.scheme || "-");
+  appendDetail(details, "Host", analysis.host || "-");
+  appendDetail(details, "Path", analysis.path || "/");
+  appendDetail(details, "Tracking parameters", analysis.trackingParams.map((param) => param.key).join(", ") || "-");
+  candidates.innerHTML = "";
+  if (analysis.candidates.length === 0) {
+    const item = document.createElement("li");
+    item.textContent = UI_TEXT[currentLang].noCandidates;
+    candidates.appendChild(item);
+  } else {
+    analysis.candidates.forEach((candidate, index) => {
+      const item = document.createElement("li");
+      const title = document.createElement("strong");
+      title.textContent = `${index + 1}. ${candidate.url}`;
+      const meta = document.createElement("span");
+      meta.className = "candidate-meta";
+      meta.textContent = `host: ${candidate.host || "-"} / source: ${candidate.key || candidate.source}`;
+      item.appendChild(title);
+      item.appendChild(meta);
+      candidates.appendChild(item);
+    });
+  }
+  warnings.innerHTML = "";
+  const warningItems = analysis.warnings.length > 0 ? analysis.warnings : [UI_TEXT[currentLang].noWarnings];
+  warningItems.forEach((warning) => {
+    const item = document.createElement("li");
+    item.textContent = warning;
+    warnings.appendChild(item);
+  });
+  copyCandidatesBtn.disabled = analysis.candidates.length === 0;
+}
+
+function appendDetail(container, label, value) {
+  const row = document.createElement("div");
+  row.className = "result-row";
+  const labelEl = document.createElement("div");
+  labelEl.className = "result-label";
+  labelEl.textContent = label;
+  const valueEl = document.createElement("div");
+  valueEl.className = "result-value";
+  valueEl.textContent = value;
+  row.appendChild(labelEl);
+  row.appendChild(valueEl);
+  container.appendChild(row);
+}
+
+function buildPlainSummary(analysis) {
+  return ["Redirect Unwrapper result", `Input: ${analysis.input}`, `Normalized: ${analysis.normalized}`, `Scheme: ${analysis.scheme || "-"}`, `Host: ${analysis.host || "-"}`, `Path: ${analysis.path || "/"}`, `Tracking parameters: ${analysis.trackingParams.map((param) => param.key).join(", ") || "-"}`, "", "Candidates:", ...(analysis.candidates.length > 0 ? analysis.candidates.map((candidate, index) => `${index + 1}. ${candidate.url}`) : [`- ${UI_TEXT[currentLang].noCandidates}`]), "", "Warnings:", ...(analysis.warnings.length > 0 ? analysis.warnings.map((warning) => `- ${warning}`) : [`- ${UI_TEXT[currentLang].noWarnings}`])].join("\n");
+}
+
+async function copyText(text, button) {
+  const originalHtml = button.innerHTML;
+  try {
+    if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
+    else fallbackCopy(text);
+    button.textContent = UI_TEXT[currentLang].copied;
+  } catch (_) {
+    button.textContent = UI_TEXT[currentLang].copyFailed;
+  }
+  setTimeout(() => {
+    button.innerHTML = originalHtml;
+    button.querySelectorAll("[data-i18n]").forEach((el) => { el.style.display = el.dataset.i18n === currentLang ? "" : "none"; });
+  }, 1200);
+}
+
+function fallbackCopy(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.top = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
 }

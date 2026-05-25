@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>URL Title Collector | NicheWorks</title>
 
   <!-- 日本語 description -->
-  <meta name="description"
-        content="複数URLのタイトル（<title>）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
+  <meta name="description" content="複数URLのタイトル（&lt;title&gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
 
   <!-- 共通 favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
   <!-- canonical -->
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/url-title-collector/">
+  <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/">
 
   <!-- CSS -->
   <link rel="stylesheet" href="/style.css">
@@ -23,11 +33,10 @@
 
   <!-- OGP 日本語 -->
   <meta property="og:title" content="URL Title Collector | NicheWorks">
-  <meta property="og:description"
-        content="複数URLのタイトル（<title>）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
+  <meta property="og:description" content="複数URLのタイトル（&lt;title&gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/url-title-collector/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:url" content="https://nicheworks.app/tools/url-title-collector/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 
   <!-- OGP 英語 -->
   <meta property="og:title:en" content="URL Title Collector | NicheWorks">
@@ -37,9 +46,8 @@
   <!-- Twitter 日本語 -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="URL Title Collector | NicheWorks">
-  <meta name="twitter:description"
-        content="複数URLのタイトル（<title>）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:description" content="複数URLのタイトル（&lt;title&gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <!-- Twitter 英語 -->
   <meta name="twitter:card:en" content="summary_large_image">
@@ -53,7 +61,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "URL Title Collector",
-    "url": "https://nicheworks.pages.dev/tools/url-title-collector/",
+    "url": "https://nicheworks.app/tools/url-title-collector/",
     "description": "複数URLの<title>を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。",
     "inLanguage": "ja",
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
@@ -66,7 +74,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "URL Title Collector",
-    "url": "https://nicheworks.pages.dev/tools/url-title-collector/",
+    "url": "https://nicheworks.app/tools/url-title-collector/",
     "description": "A lightweight tool that fetches webpage titles from multiple URLs at once. Fully browser-based and secure.",
     "inLanguage": "en",
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
@@ -84,6 +92,8 @@
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
 </script>
+  <meta name="robots" content="index,follow">
+  <meta property="og:site_name" content="NicheWorks">
 </head>
 
 <body>
@@ -106,7 +116,7 @@
 
     <!-- 広告 -->
     <div class="ad-area">
-      <div class="ad-placeholder">広告</div>
+      <div class="ad-stable content">広告</div>
     </div>
 
   </header>
@@ -114,7 +124,7 @@
   <main>
 
     <label for="urlInput" class="label">URL一覧（1行1つ）</label>
-    <textarea id="urlInput" placeholder="https://example.com&#10;https://nicheworks.pages.dev"></textarea>
+    <textarea id="urlInput" stable content="https://nicheworks.app&#10;https://nicheworks.app"></textarea>
 
     <button id="fetchBtn">タイトルを取得する</button>
 
@@ -151,7 +161,7 @@
 
   <footer>
     <p class="copy">
-      <a href="https://nicheworks.pages.dev/" style="color:#666; text-decoration:none;">
+      <a href="https://nicheworks.app/" style="color:#666; text-decoration:none;">
         NicheWorks Home
       </a>
     </p>

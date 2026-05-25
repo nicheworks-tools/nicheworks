@@ -1,0 +1,51 @@
+name: SEO audit
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'about.html'
+      - 'privacy.html'
+      - 'contact.html'
+      - 'en/**'
+      - 'tools/**'
+      - 'scripts/audit-seo.mjs'
+      - 'scripts/repair-seo-foundation.mjs'
+      - 'sitemap.xml'
+      - '.github/workflows/seo-audit.yml'
+      - '.github/workflows/seo-auto-repair.yml'
+  workflow_run:
+    workflows:
+      - SEO auto repair
+    types:
+      - completed
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout PR head
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Checkout main after auto repair
+        if: ${{ github.event_name == 'workflow_run' }}
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify SEO repair script has nothing to change
+        run: |
+          node scripts/repair-seo-foundation.mjs
+          git diff --exit-code
+
+      - name: Run SEO audit strict mode
+        run: node scripts/audit-seo.mjs --strict

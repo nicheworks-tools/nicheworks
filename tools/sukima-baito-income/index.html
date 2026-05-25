@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja" data-theme="light" data-font="medium">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>スキマバイト収入集計・月別メモ｜Sukima Baito Income | NicheWorks</title>
+  <meta name="description" content="タイミー、出前館、Uber Eatsなどのスキマバイト収入を1件ずつ入力し、月別・年間合計を整理する無料ツールです。スマホでも使いやすく、CSV保存に対応。税務判断は行いません。">
+  <link rel="canonical" href="https://nicheworks.app/tools/sukima-baito-income/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/sukima-baito-income/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/sukima-baito-income/howto/en/" />
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- ▼ SEO -->
-  <title>スキマバイト収入集計ツール｜月別・年間自動計算 | NicheWorks</title>
-  <meta
-    name="description"
-    content="タイミーなどのスキマバイト収入を、1件ずつ入力するだけで月別・年間の合計を自動計算する無料ツール。スマホ専用で確定申告準備にも役立ちます。"
-  />
+  <meta property="og:title" content="スキマバイト収入集計・月別メモ｜Sukima Baito Income | NicheWorks">
+  <meta property="og:description" content="タイミー、出前館、Uber Eatsなどのスキマバイト収入を1件ずつ入力し、月別・年間合計を整理する無料ツールです。スマホでも使いやすく、CSV保存に対応。税務判断は行いません。">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nicheworks.app/tools/sukima-baito-income/">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="スキマバイト収入集計・月別メモ｜Sukima Baito Income | NicheWorks">
+  <meta name="twitter:description" content="タイミー、出前館、Uber Eatsなどのスキマバイト収入を1件ずつ入力し、月別・年間合計を整理する無料ツールです。スマホでも使いやすく、CSV保存に対応。税務判断は行いません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/sukima-income/" />
-
-  <!-- ▼ Favicon / App icons -->
-  <link rel="icon" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon.ico" />
-
-  <!-- ▼ OGP -->
-  <meta property="og:title" content="スキマバイト収入集計ツール | NicheWorks" />
-  <meta
-    property="og:description"
-    content="1件入力するだけで月別・年間の収入を自動計算。タイミー等のスキマバイト利用者向けの無料ツール。"
-  />
-  <meta property="og:image" content="https://nicheworks.pages.dev/tools/sukima-income/og.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/sukima-income/" />
-  <meta property="og:site_name" content="NicheWorks" />
-
-  <!-- ▼ Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="スキマバイト収入集計ツール | NicheWorks" />
-  <meta
-    name="twitter:description"
-    content="1件入力するだけで月別・年間の収入を自動計算。スキマバイト利用者向けの無料ツール。"
-  />
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/tools/sukima-income/og.png" />
-
-  <!-- ▼ JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"WebApplication",
-    "name":"スキマバイト収入集計ツール",
-    "url":"https://nicheworks.pages.dev/tools/sukima-income/",
+    "name":"Sukima Baito Income",
+    "url":"https://nicheworks.app/tools/sukima-baito-income/",
     "applicationCategory":"UtilityApplication",
-    "description":"スキマバイト収入を1件ずつ入力するだけで月別・年間の合計を自動計算する無料ツール。スマホ特化。"
+    "description":"タイミー、出前館、Uber Eatsなどのスキマバイト収入を1件ずつ入力し、月別・年間合計を整理する無料ツールです。税務判断は行いません。",
+    "operatingSystem":"All"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"このツールで確定申告の判断ができますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。このツールは収入メモの集計用です。所得区分、必要経費、扶養、住民税、社会保険などの判断は行いません。"}},
+      {"@type":"Question","name":"入力データは保存されますか？","acceptedAnswer":{"@type":"Answer","text":"入力一覧は永続保存されません。必要な記録はCSVで保存してください。就業先候補のみ入力補助のため端末内に保存されます。"}},
+      {"@type":"Question","name":"入力内容は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"収入データの集計処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。"}},
+      {"@type":"Question","name":"OCR結果は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。OCRはβ版で誤読があります。日付、金額、就業先を必ず確認し、公式明細や支払通知と照合してください。"}}
+    ]
   }
   </script>
 
-  <!-- ▼ スタイル -->
   <link rel="stylesheet" href="style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <meta name="robots" content="index,follow">
 </head>
-
 <body>
-  <!-- ▼ 上部固定：フォント・テーマ設定 -->
   <header class="nw-header">
     <div class="header-inner">
       <h1 class="app-title">スキマバイト収入集計</h1>
@@ -67,55 +72,54 @@
 
   <main class="nw-main">
     <noscript>
-      <div class="error-box" style="display:block;">
-        このツールはJavaScriptが必要です。ブラウザの設定でJavaScriptを有効にしてください。
-      </div>
+      <div class="error-box" style="display:block;">このツールはJavaScriptが必要です。ブラウザの設定でJavaScriptを有効にしてください。</div>
     </noscript>
 
-    <!-- ▼ 説明（SEO文章） -->
+    <div class="ad-slot ad-top" aria-label="広告枠">広告枠</div>
+
     <section class="intro-text">
-      <p>
-        タイミー・出前館・Uber Eatsなど、スキマバイトの収入を1件ずつ入力するだけで
-        <strong>月別・年間合計を自動計算</strong>します。
-        スマホだけで使える無料ツールです。
-      </p>
-      <p style="margin-top:8px; opacity:0.85; font-size:0.95em;">
-        ※ 入力データはこのページ内でのみ扱います（サーバー送信しません）。必要ならCSVで保存してください。
-      </p>
+      <p>タイミー・出前館・Uber Eatsなど、スキマバイトの収入を1件ずつ入力して<strong>月別・年間合計を整理</strong>できます。スマホでも使いやすい無料ツールです。</p>
+      <p class="sub-note">収入メモやCSV整理の補助に使えます。税務判断や確定申告の可否判定は行いません。</p>
+      <p class="usage-link"><a href="./howto/">使い方・OCRガイドを見る</a></p>
     </section>
 
-    <!-- ▼ CSV入出力 -->
+    <section class="notice-card warning" aria-label="重要な注意">
+      <h2>重要な注意</h2>
+      <p>このツールはスキマバイト収入のメモと集計を補助する簡易ツールです。税務申告、所得区分、扶養、住民税、社会保険、源泉徴収、必要経費の判断は行いません。</p>
+      <p>確定申告や税金に関する判断は、国税庁・自治体・税理士などの公式情報や専門家に確認してください。</p>
+    </section>
+
+    <section class="notice-card privacy" aria-label="データと保存について">
+      <h2>データと保存について</h2>
+      <p>収入データの集計処理はブラウザ内で行います。ただし、ページ表示のため広告・解析タグは読み込まれます。</p>
+      <p>入力一覧は永続保存されません。ブラウザを閉じると消える場合があります。必要な記録はCSVエクスポートで保存してください。</p>
+      <p>就業先候補だけは入力補助のためこの端末に保存されます。実名、住所、勤務先の詳細、口座情報、マイナンバー、個人を特定できるメモは入力しないでください。</p>
+    </section>
+
     <div class="csv-actions" aria-label="CSV 入出力">
       <label for="csvInput" class="csv-btn" role="button" tabindex="0">CSVインポート</label>
       <input type="file" id="csvInput" accept=".csv,text/csv" style="display:none;" />
-
       <button id="csvExportBtn" type="button" class="csv-btn">CSVエクスポート</button>
-
-      <!-- OCR（β） -->
       <input id="ocrInput" type="file" accept="image/*" multiple hidden>
       <button id="ocrBtn" class="ghost-btn" type="button">スクショOCR（β）</button>
     </div>
 
-    <!-- ▼ エラー表示 -->
+    <section class="tool-note" aria-label="CSVとOCRの注意">
+      <p><strong>CSV形式：</strong><code>date,workplace,category,amount,memo</code></p>
+      <p>このツール内の入力一覧は永続保存されません。必要な記録はCSVで端末に保存してください。</p>
+      <p>OCRはβ版です。日付・金額・就業先を必ず確認し、税務・申告用の記録として使う場合は公式明細や支払通知と照合してください。</p>
+    </section>
+
     <div id="errorBox" class="error-box" style="display:none;"></div>
 
-    <!-- ▼ 入力フォーム -->
     <section class="input-section" aria-label="新規入力">
       <h2>新規入力</h2>
-
       <div class="input-card">
         <label for="dateInput">日付</label>
         <input type="date" id="dateInput" />
 
         <label for="workplaceInput">就業先</label>
-        <input
-          type="text"
-          id="workplaceInput"
-          placeholder="例：Amazon倉庫"
-          list="workplaceList"
-          autocomplete="off"
-          spellcheck="false"
-        />
+        <input type="text" id="workplaceInput" stable content="例：Amazon倉庫" list="workplaceList" autocomplete="off" spellcheck="false" />
         <datalist id="workplaceList"></datalist>
 
         <label for="categoryInput">区分</label>
@@ -127,38 +131,43 @@
         </select>
 
         <label for="amountInput">金額（円）</label>
-        <input
-          type="number"
-          id="amountInput"
-          placeholder="例：4200"
-          inputmode="numeric"
-          min="0"
-          step="1"
-          autocomplete="off"
-        />
+        <input type="number" id="amountInput" stable content="例：4200" inputmode="numeric" min="0" step="1" autocomplete="off" />
 
         <label for="memoInput">メモ（任意）</label>
-        <textarea id="memoInput" rows="2" placeholder="任意メモ"></textarea>
+        <textarea id="memoInput" rows="2" stable content="任意メモ"></textarea>
+        <p class="field-help">実名、住所、口座情報、マイナンバー、個人を特定できる内容は入力しないでください。</p>
 
         <button id="addBtn" type="button" class="add-btn">追加する</button>
       </div>
     </section>
 
-    <!-- ▼ 入力済みデータ一覧 -->
     <section class="entries-section" aria-label="入力一覧">
       <h2>入力一覧</h2>
       <div id="entriesList"></div>
     </section>
 
-    <!-- ▼ 集計セクション -->
     <section class="summary-section" aria-label="集計結果">
       <h2>集計結果</h2>
-
       <div id="totalSummary" class="sum-card"></div>
       <div id="monthlySummary" class="sum-list"></div>
     </section>
 
-    <!-- ▼ 寄付導線 -->
+    <section class="faq-section" aria-label="よくある質問">
+      <h2>よくある質問</h2>
+      <details><summary>このツールで確定申告の判断ができますか？</summary><p>いいえ。収入メモの集計用です。所得区分、必要経費、扶養、住民税、社会保険、源泉徴収などの判断は公式情報や専門家に確認してください。</p></details>
+      <details><summary>入力データは保存されますか？</summary><p>入力一覧は永続保存されません。必要な記録はCSVで保存してください。就業先候補のみ入力補助のため端末内に保存されます。</p></details>
+      <details><summary>入力内容は送信されますか？</summary><p>収入データの集計処理はブラウザ内で行います。ただし、広告・解析タグは読み込まれます。</p></details>
+      <details><summary>OCR結果は正確ですか？</summary><p>いいえ。OCRはβ版で誤読があります。日付・金額・就業先を必ず確認してください。</p></details>
+      <details><summary>口座情報やマイナンバーを入力してよいですか？</summary><p>入力しないでください。金額・日付・区分など、集計に必要な最小限の情報で使ってください。</p></details>
+    </section>
+
+    <nav class="nw-other-links" aria-label="関連ツール">
+      <a href="/tools/money-template-checker/">Money Template Checker</a>
+      <a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a>
+      <a href="/tools/image-redact/">Image Redact</a>
+      <a href="/tools/csv-tidy/">CSV Tidy</a>
+    </nav>
+
     <section class="nw-donate" aria-label="寄付">
       <p class="nw-donate-text">このツールがお役に立ったらご支援いただけると嬉しいです。</p>
       <div class="nw-donate-links">
@@ -167,21 +176,14 @@
       </div>
     </section>
 
-    <!-- ▼ ブランドフッター -->
     <footer class="nw-footer" aria-label="フッター">
       <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
-      <p class="note">掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
+      <p class="note">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p>
     </footer>
   </main>
 
-  <!-- ▼ アプリJS -->
   <script src="app.js"></script>
-
-  <!-- ▼ Cloudflare Analytics -->
-  <script
-    defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'
-  ></script>
+  <script src="dom-fixes.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
 </body>
 </html>

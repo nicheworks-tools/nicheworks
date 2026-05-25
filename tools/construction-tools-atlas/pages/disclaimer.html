@@ -1,21 +1,103 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="en" data-lang="en" data-theme="light">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+  <script>
+    (() => {
+      try {
+        const stored = localStorage.getItem("nw_theme");
+        const theme = stored === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Disclaimer | Construction Tools &amp; Slang Atlas</title>
-  <meta name="description" content="Disclaimer and safety notes." />
+  <meta name="description" content="Disclaimer | Construction Tools &amp; Slang Atlas は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <link rel="canonical" href="https://nicheworks.app/tools/construction-tools-atlas/pages/disclaimer.html">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/construction-tools-atlas/pages/disclaimer.html" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/construction-tools-atlas/pages/disclaimer.html?lang=ja" />
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Disclaimer | Construction Tools &amp; Slang Atlas">
+  <meta property="og:description" content="Disclaimer | Construction Tools &amp; Slang Atlas は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta property="og:url" content="https://nicheworks.app/tools/construction-tools-atlas/pages/disclaimer.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Disclaimer | Construction Tools &amp; Slang Atlas">
+  <meta name="twitter:description" content="Disclaimer | Construction Tools &amp; Slang Atlas は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <link rel="stylesheet" href="../style.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "NicheWorks",
+          "url": "https://nicheworks.app/"
+        },
+        {
+          "@type": "WebSite",
+          "name": "NicheWorks",
+          "url": "https://nicheworks.app/"
+        },
+        {
+          "@type": "WebPage",
+          "name": "Disclaimer | Construction Tools & Slang Atlas",
+          "url": "https://nicheworks.app/tools/construction-tools-atlas/pages/disclaimer.html",
+          "isPartOf": {
+            "@type": "WebSite",
+            "url": "https://nicheworks.app/"
+          }
+        }
+      ]
+    }
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
+    crossorigin="anonymous"></script>
+  <meta name="robots" content="index,follow">
 </head>
 <body>
   <div class="static-page">
+    <header class="topbar static-topbar" id="pageTop">
+      <div class="topbar-title">
+        <span class="topbar-brand">NicheWorks</span>
+        <span class="topbar-tool">Construction Tools &amp; Slang Atlas</span>
+      </div>
+      <div class="topbar-actions">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Theme toggle">Dark</button>
+        <div class="donate-buttons" aria-label="Support NicheWorks">
+          <a class="donate-button" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Donate</a>
+          <a class="donate-button donate-button--alt" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+        </div>
+      </div>
+    </header>
     <nav class="static-nav" aria-label="Navigation">
-      <a href="../">Atlas Home</a>
+      <a href="../index.html">Atlas Home</a>
       <a href="./about.html">About</a>
       <a href="./method.html">Method</a>
       <a href="./disclaimer.html" aria-current="page">Disclaimer</a>
       <a href="./credits.html">Credits</a>
     </nav>
+
+    <div class="ad-slot ad-top" aria-label="Advertisement">Ad space</div>
 
     <h1>Disclaimer</h1>
 
@@ -38,6 +120,38 @@
     <p>
       本サービスの利用により生じた損害・事故等について、作成者は一切の責任を負いません。
     </p>
+
+    <a class="back-home" href="../">Back to Atlas Home</a>
+
+    <footer class="tool-footer" aria-label="NicheWorks footer">
+      <p class="tool-footer-title">Part of NicheWorks Tools</p>
+      <a class="tool-footer-link" href="https://nicheworks.app/">https://nicheworks.app/</a>
+      <div class="donation-links" aria-label="Support NicheWorks">
+        <a class="donation-link" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+        <a class="donation-link" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+      </div>
+      <p class="tool-footer-disclaimer">No warranty. Use at your own risk.</p>
+    </footer>
   </div>
+
+  <script>
+    (() => {
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+      const apply = () => {
+        const stored = localStorage.getItem("nw_theme");
+        const theme = stored === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        toggle.textContent = theme === "dark" ? "Light" : "Dark";
+      };
+      apply();
+      toggle.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        localStorage.setItem("nw_theme", next);
+        document.documentElement.dataset.theme = next;
+        toggle.textContent = next === "dark" ? "Light" : "Dark";
+      });
+    })();
+  </script>
 </body>
 </html>

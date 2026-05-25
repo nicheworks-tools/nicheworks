@@ -2,7 +2,7 @@
 
 Nginxアクセスログなどのテキストログを、ブラウザ内だけで整形・色分け・フィルタ表示するツールです。
 
-- 公開URL: https://nicheworks.pages.dev/tools/log-formatter/
+- 公開URL: https://nicheworks.app/tools/log-formatter/
 - ログはすべてブラウザ内で処理され、サーバーには送信されません。
 
 ## 使い方（チェック用）

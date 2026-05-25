@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Earth Map Suite – Storm Replay 使い方 | NicheWorks</title>
+  <meta name="description" content="Earth Map SuiteのStorm Replayモードの使い方。入力項目とプレビュー結果の読み方を解説します。">
+  <link rel="canonical" href="https://nicheworks.app/tools/earth-map-suite/usage.html">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/earth-map-suite/usage.html" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/earth-map-suite/usage-en.html" />
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/earth-map-suite/usage.html" />
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Earth Map Suite – Storm Replay 使い方 | NicheWorks">
+  <meta property="og:description" content="Earth Map SuiteのStorm Replayモードの使い方。入力項目とプレビュー結果の読み方を解説します。">
+  <meta property="og:url" content="https://nicheworks.app/tools/earth-map-suite/usage.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Earth Map Suite – Storm Replay",
+    "url": "https://nicheworks.app/tools/earth-map-suite/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Earth Map SuiteのStorm Replayモードの使い方ガイド。",
+    "inLanguage": "ja",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-57QT78M3JB');
+</script>
+  <meta name="robots" content="index,follow">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta name="twitter:title" content="Earth Map Suite – Storm Replay 使い方 | NicheWorks">
+  <meta name="twitter:description" content="Earth Map SuiteのStorm Replayモードの使い方。入力項目とプレビュー結果の読み方を解説します。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+</head>
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">使い方</h1>
+    <p class="nw-lead">Earth Map Suiteの入力項目とプレビュー結果の見方をまとめています。</p>
+    <p class="hint"><a class="nw-link" href="./index.html">ツールに戻る</a> / <a class="nw-link" href="./usage-en.html">English</a></p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠</div>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">1. このツールでできること</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">地図ビューの要件を整理し、storm / compare / card 向けの確認メモを作るための下書きを生成します。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">2. 使い方の流れ（5ステップ）</h2>
+      </div>
+      <div class="card-bd">
+        <ol class="step-list">
+          <li>モード（storm / compare / card）を選択します。</li>
+          <li>対象範囲（BBoxまたは緯度経度）と期間を入力します。</li>
+          <li>レイヤーやメモなど、レビュー時に必要な情報を追記します。</li>
+          <li>「プレビューを作成」を押して結果を確認します。</li>
+          <li>テキスト・PNG・CSVをコピー/ダウンロードして共有します。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">3. 入力項目</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>BBox：対象範囲を「経度,緯度,経度,緯度」で指定（storm / compare）。</li>
+          <li>緯度 / 経度：ポイント指定（card モード）。</li>
+          <li>開始日 / 終了日：確認対象の期間（compare は A/B の2期間）。</li>
+          <li>プリセット：low / mid / detail のいずれか。</li>
+          <li>フレーム数（storm）：stormモードのみ必須。</li>
+          <li>対象エリア：地図の対象範囲や地点。</li>
+          <li>確認したいレイヤー：交通・地形・避難所などの情報。</li>
+          <li>補足メモ：レビュー時に伝えたい注意点。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">4. プレビュー結果の見方</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>storm：GSMaP実データのメタデータ状態パネルと、別枠の合成フレームスライダー/累積表示が出ます。</li>
+          <li>compare：Period A / Period B それぞれのGSMaP metadata到達性パネルと、別枠のA/B/Diff合成プレビューカード、CSV出力が出ます。</li>
+          <li>card：選択地点周辺のGSMaP metadata到達性パネルと、別枠の地点カード/ミニチャート/サマリー（合成プレビュー）が出ます。</li>
+        </ul>
+        <p class="hint">storm / compare / card のメタデータ状態は実GSMaP metadata到達性を示しますが、表示される地図・地点カード・ミニチャート・サマリーは合成プレビューです。実データとして確認しているのはmetadata到達性だけです。ラスター降水量値はまだサンプリングしていません。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">4a. データの状態</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>stormモードは <code>/api/earth-map-suite/precipitation</code> を1回呼び出し、GSMaP の実メタデータ到達性を表示します。</li>
+          <li>compareモードは同じエンドポイントをPeriod A / Period Bで別々に呼び出し、metadata-onlyの到達性だけを表示します。</li>
+          <li>cardモードは選択緯度経度の周辺bboxを作って同じエンドポイントを呼び出し、metadata-onlyの到達性だけを表示します。</li>
+          <li>表示項目は dataset / license / source / matched_dates / item_count / asset_count / sampling_status などの透明性情報です。</li>
+          <li>エンドポイント上限は low が14日まで、mid が7日までです。</li>
+          <li>ラスタの降水量値はまだサンプリングしていません。summary.mean/max/min は実値として表示しません。</li>
+          <li>storm地図プレビュー、CSVのフレーム値、compareのA/B/Diff、Cardの地点カード/ミニチャート/サマリーは合成プレビューであり、観測降水量ではありません。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">5. 入力例</h2>
+      </div>
+      <div class="card-bd">
+        <div class="example-grid">
+          <div class="example-card">
+            <h3 class="example-title">storm 例</h3>
+            <pre class="example-code">BBox: 139.5,35.4,140.0,35.9
+期間: 2025-08-01 → 2025-08-03
+プリセット: low
+フレーム数: 24
+対象エリア: 東京周辺
+レイヤー: 地形 / 主要道路 / 避難所
+メモ: Synthetic preview / not observed precipitation</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">compare 例</h3>
+            <pre class="example-code">BBox: 139.5,35.4,140.0,35.9
+期間A: 2025-08-01 → 2025-08-03
+期間B: 2025-08-04 → 2025-08-06
+プリセット: low
+注: A/B/Diffは合成プレビュー、metadata到達性だけ実データ確認</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">card 例</h3>
+            <pre class="example-code">緯度/経度: 35.68, 139.76
+期間: 2025-08-01 → 2025-08-03
+プリセット: low
+metadata bbox目安: 139.51,35.43,140.01,35.93
+メモ: 地点カード/ミニチャート/サマリーは合成プレビュー、metadata到達性だけ実データ確認</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">6. 無料枠の上限（free-ops）</h2>
+      </div>
+      <div class="card-bd">
+        <div class="table-wrap">
+          <table class="limit-table">
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th>上限</th>
+                <th>補足</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BBox</td>
+                <td>最大 5° × 5°</td>
+                <td>広い範囲は low 推奨</td>
+              </tr>
+              <tr>
+                <td>期間</td>
+                <td>UIプレビューは最大31日。metadata endpointは low 14日 / mid 7日</td>
+                <td>compare は A/B それぞれmetadata endpointを確認</td>
+              </tr>
+              <tr>
+                <td>プリセット</td>
+                <td>low / mid / detail</td>
+                <td>指定外はエラーになります</td>
+              </tr>
+              <tr>
+                <td>storm フレーム</td>
+                <td>最大 48</td>
+                <td>超えると自動間引き</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">上限を超える場合は error_code: limit_exceeded が表示されます。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">7. トラブルシューティング</h2>
+      </div>
+      <div class="card-bd">
+        <dl class="faq">
+          <dt>Q. プレビューが空白になります。</dt>
+          <dd>A. 必須項目（モード・期間・BBox/緯度経度）が空でないか確認してください。</dd>
+          <dt>Q. compare のカードが表示されません。</dt>
+          <dd>A. compare モードに切り替え、期間A/Bをすべて入力してください。</dd>
+          <dt>Q. エラーコードが表示されました。</dt>
+          <dd>A. 無料枠の上限を超えていないか、表の上限値を確認してください。</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">8. 広告・支援について</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">広告枠は整備済みです。公開後もページ上下のみの表示を想定しています。</p>
+        <p class="hint">支援ページは近日公開予定です（現在はプレースホルダ）。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">9. What’s next / available</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>地図ビューのテンプレート保存</li>
+          <li>チーム共有向けの一括エクスポート</li>
+          <li>カード表示の改善（凡例・注釈）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">10. 免責</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">本ページは地図の内容を保証するものではありません。必ず公式情報をご確認ください。</p>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">プレビューデータ：storm/compare/cardのメタデータ状態のみ実GSMaP到達性を表示。地図・地点カード・ミニチャート・サマリーは合成プレビューで観測降水量ではありません</p>
+    <p class="nw-footer-line">実データライセンス：メタデータ応答の dataset / license / source を透明性のため表示。ラスター値は未サンプリング</p>
+    <p class="nw-footer-line">免責：データの正確性は保証しません。必ず公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+</body>
+</html>

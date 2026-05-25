@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-57QT78M3JB');
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirect Unwrapper の使い方｜NicheWorks</title>
+  <meta name="description" content="Redirect Unwrapperの使い方、対応範囲、非対応範囲、警告表示の見方を説明します。URLを開かずに追跡リンク内の転送先候補を確認するための補足ページです。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/redirect-unwrapper/usage.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Redirect Unwrapper の使い方｜NicheWorks">
+  <meta property="og:description" content="Redirect Unwrapperの使い方、対応範囲、非対応範囲、警告表示の見方を説明します。URLを開かずに追跡リンク内の転送先候補を確認するための補足ページです。">
+  <meta property="og:url" content="https://nicheworks.app/tools/redirect-unwrapper/usage.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <style>
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#333;background:#fff;margin:0;line-height:1.8}.wrap{max-width:720px;margin:0 auto;padding:24px 14px}h1{font-size:26px;line-height:1.35;margin:0 0 12px}h2{font-size:20px;margin:28px 0 8px}p,li{font-size:15px}.note{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 14px;color:#78350f}.box{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px}code{background:#f3f4f6;padding:2px 4px;border-radius:4px}.links{margin-top:28px}.links a{color:#374151}.footer{margin-top:32px;border-top:1px solid #e5e7eb;padding-top:14px;color:#6b7280;font-size:12px}.ad-slot{margin:18px 0;padding:10px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;background:#fafafa;text-align:center;min-height:60px;border-radius:6px}
+  </style>
+  <meta name="twitter:title" content="Redirect Unwrapper の使い方｜NicheWorks">
+  <meta name="twitter:description" content="Redirect Unwrapperの使い方、対応範囲、非対応範囲、警告表示の見方を説明します。URLを開かずに追跡リンク内の転送先候補を確認するための補足ページです。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Redirect Unwrapper の使い方｜NicheWorks",
+    "url": "https://nicheworks.app/tools/redirect-unwrapper/usage.html",
+    "description": "Redirect Unwrapperの使い方、対応範囲、非対応範囲、警告表示の見方を説明します。URLを開かずに追跡リンク内の転送先候補を確認するための補足ページです。",
+    "inLanguage": "ja",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Redirect Unwrapper の使い方</h1>
+    <p>Redirect Unwrapper は、追跡リンクやSNSリンクのURL文字列に含まれる転送先URL候補を確認するための無料ツールです。</p>
+
+    <div class="ad-slot">広告枠</div>
+
+    <section class="note">
+      <strong>重要：</strong>このツールは入力URLを開きません。外部サイトへアクセスせず、ブラウザ内でURL文字列だけを解析します。短縮URLのサーバー側301/302リダイレクトを完全追跡するものではありません。
+    </section>
+
+    <h2>1. このツールでできること</h2>
+    <ul>
+      <li>URLのスキーム、ホスト、パスを分解して表示します。</li>
+      <li><code>url</code>、<code>u</code>、<code>q</code>、<code>redirect_url</code>、<code>destination</code> などのパラメータ内にあるURL候補を抽出します。</li>
+      <li>二重エンコードされたURL候補も可能な範囲で展開します。</li>
+      <li>UTM、fbclid、gclid などの追跡パラメータを表示します。</li>
+      <li>HTTP、危険なスキーム、punycode、IPアドレスhost、表示hostと候補hostの不一致などを警告します。</li>
+    </ul>
+
+    <h2>2. 使い方</h2>
+    <ol>
+      <li>解析したいURLを入力欄に貼り付けます。</li>
+      <li>「解析する」を押します。</li>
+      <li>「URL分解」「抽出された転送先候補」「警告・確認ポイント」を確認します。</li>
+      <li>必要なら候補URLまたは解析結果サマリーをコピーします。</li>
+    </ol>
+
+    <h2>3. 対応している入力例</h2>
+    <div class="box">
+      <p><code>https://www.google.com/url?q=https%3A%2F%2Fexample.com%2F</code></p>
+      <p><code>https://mail.example/click?redirect_url=https%253A%252F%252Fexample.com</code></p>
+      <p><code>https://nicheworks.app/page?utm_source=x&amp;utm_medium=social</code></p>
+    </div>
+
+    <h2>4. 非対応・限界</h2>
+    <ul>
+      <li><code>bit.ly</code>、<code>t.co</code>、<code>amzn.to</code> などのサーバー側リダイレクトは追跡しません。</li>
+      <li>候補URLが表示されても、安全性は保証しません。</li>
+      <li>URL短縮サービスの実際の到達先確認には、別途安全な環境や公式の確認手段が必要です。</li>
+      <li>このページ自体の表示に必要な広告・解析タグは読み込まれます。</li>
+    </ul>
+
+    <h2>5. 警告の見方</h2>
+    <ul>
+      <li><strong>HTTP URL：</strong>通信が暗号化されていない可能性があります。</li>
+      <li><strong>javascript / data / file：</strong>通常のWebリンクとして扱うべきではありません。</li>
+      <li><strong>punycode：</strong>見た目が紛らわしいドメインの可能性があります。</li>
+      <li><strong>IPアドレスhost：</strong>一時URL、管理画面、偽装リンクの可能性に注意してください。</li>
+      <li><strong>host mismatch：</strong>見えているドメインと転送先候補が異なります。</li>
+    </ul>
+
+    <h2>6. よくある質問</h2>
+    <h3>このツールはURLを開きますか？</h3>
+    <p>いいえ。URL文字列を解析するだけです。</p>
+    <h3>表示された候補URLは安全ですか？</h3>
+    <p>安全性は保証しません。不明なリンクは開かないでください。</p>
+    <h3>URLはサーバーに送信されますか？</h3>
+    <p>入力URLの解析はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+
+    <h2>7. 免責</h2>
+    <p>本ツールはURL文字列の確認補助です。リンク先の安全性、正確性、到達先を保証するものではありません。重要な確認は公式情報や安全な検証環境で行ってください。</p>
+
+    <p class="links"><a href="./">Redirect Unwrapper に戻る</a> / <a href="./usage-en.html">English usage</a></p>
+
+    <footer class="footer">© NicheWorks — Small Web Tools for Boring Tasks</footer>
+  </main>
+</body>
+</html>

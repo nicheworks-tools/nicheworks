@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion Atlas — UI motion dictionary with live demos and AI prompts</title>
+  <meta name="description" content="Explore UI motion patterns with live demos, compare similar animations, and copy AI-ready prompts for better web and app interactions.">
+  <link rel="canonical" href="https://nicheworks.app/tools/motion-atlas/">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/motion-atlas/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/motion-atlas/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/motion-atlas/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <meta property="og:type" content="website"><meta property="og:site_name" content="NicheWorks"><meta property="og:title" content="Motion Atlas — UI motion dictionary with live demos and AI prompts"><meta property="og:description" content="Explore UI motion patterns with live demos, compare similar animations, and copy AI-ready prompts for better web and app interactions."><meta property="og:url" content="https://nicheworks.app/tools/motion-atlas/"><meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Motion Atlas — UI motion dictionary with live demos and AI prompts"><meta name="twitter:description" content="Explore UI motion patterns with live demos, compare similar animations, and copy AI-ready prompts for better web and app interactions."><meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Motion Atlas","url":"https://nicheworks.app/tools/motion-atlas/","applicationCategory":"DesignApplication","operatingSystem":"All","description":"Explore UI motion patterns with live demos, compare similar animations, and copy AI-ready prompts for better web and app interactions.","inLanguage":["en","ja"],"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
+  <meta name="robots" content="index,follow"><link rel="apple-touch-icon" href="/assets/favicon.ico">
+</head>
+<body data-tool="motion-atlas" data-page="index" data-lang="en">
+  <header class="nw-header"><div><p class="nw-eyebrow">Niche Works / Motion decision tool</p><h1>Motion Atlas</h1><p class="nw-tagline">More than motion names. A motion atlas you can actually see, compare, and use with AI.</p></div><div class="nw-header-actions"><a href="ja/">日本語</a><a href="usage/">Usage</a><a href="about/">About</a><a href="pro/">Pro</a></div></header>
+  <main class="nw-main">
+    <section class="ad-slot ad-top" aria-label="advertisement">Ad space</section>
+    <section class="intro-panel"><p>Find the right UI motion by seeing it move, comparing similar patterns, and copying AI-ready motion prompts.</p><p class="privacy-note">Motion data, favorites, recent history, and compare choices stay in this browser. User-entered search text is not sent to a server.</p></section>
+    <section class="motion-shell" aria-label="Motion Atlas tool">
+      <aside class="filter-panel" aria-label="Filters"><div class="filter-head"><h2>Filters</h2><button type="button" data-reset>Reset filters</button></div><label>Search motions<input id="motion-search" type="search" aria-label="Search motions"></label><label>Category<select id="category-filter" multiple size="6"></select></label><label>Motion type<select id="type-filter" multiple size="6"></select></label><label>Trigger<select id="trigger-filter" multiple size="6"></select></label><div class="filter-grid"><label>Intensity <select id="intensity-filter"><option value="">Any</option></select></label><label>Speed feel <select id="speed-filter"><option value="">Any</option></select></label><label>Mobile fit <select id="mobile-filter"><option value="">Any</option></select></label><label>A11y load <select id="a11y-filter"><option value="">Any</option></select></label></div><label class="toggle-row"><input type="checkbox" id="reduced-toggle"><span>Reduce motion</span></label><p id="reduced-note" class="hint" hidden>Reduced motion is on. Demos use safer fallback behavior.</p></aside>
+      <section class="list-panel" aria-label="Motion list"><div class="list-toolbar"><h2>Motion catalog</h2><p><span id="result-count">0</span> results</p></div><div id="zero-state" class="zero-state" hidden><h3>No exact match</h3><p>Try: fade, slide, hover, loading, scroll reveal, button feedback, shake error, draw checkmark.</p><div id="quick-suggestions" class="chip-row"></div></div><div id="motion-list" class="motion-list"></div></section>
+      <aside class="detail-panel" aria-label="Motion detail"><div id="motion-detail" class="detail-card"></div></aside>
+    </section>
+    <section class="compare-section" aria-label="Compare tray"><div class="section-head"><h2 data-compare-title>Compare up to 2</h2><button type="button" data-clear-compare>Clear</button></div><div id="compare-tray" class="compare-tray"></div><div id="compare-table"></div></section>
+
+    <section class="pro-panel" aria-label="Motion Atlas Pro outputs">
+      <div class="pro-status" data-pro-status><strong>Preview mode</strong><span>Pro output samples are shown below. Unlock Pro to copy and export these outputs.</span></div>
+      <div data-pro-preview class="pro-preview">
+        <h2>Pro output preview</h2>
+        <p>Motion Atlas stays free for search, live demos, detail pages, 2-motion compare, basic prompt copy, favorites, recent history, and reduced-motion checks. Pro turns your motion decision into implementation handoff outputs.</p>
+        <div class="sample-grid">
+          <article><h3>Motion decision memo sample</h3><p>Selected motion, why this motion, when to use, when not to use, risk, fallback, implementation note, and review checklist.</p></article>
+          <article><h3>Framer Motion prompt sample</h3><p>Component target, initial / animate / transition, duration, easing, reduced motion support, and forbidden motion.</p></article>
+          <article><h3>CSS implementation prompt sample</h3><p>Keyframes, class design, duration, easing, reduced-motion media query, and replay design.</p></article>
+          <article><h3>Tailwind / React prompt sample</h3><p>React component, Tailwind classes, state/replay behavior, reduced motion, and accessibility notes.</p></article>
+          <article><h3>Codex task sample</h3><p>Target files, implementation purpose, changes, acceptance criteria, reduced-motion requirements, and regression checks.</p></article>
+          <article><h3>GitHub Issue sample</h3><p>Title, background, implementation requirements, accessibility requirements, acceptance criteria, and test checklist.</p></article>
+          <article><h3>Reduced motion checklist sample</h3><p>prefers-reduced-motion, transform removal, loop stop, shake/pulse/bounce alternatives, autoplay, replay, pause, and focus impact.</p></article>
+          <article><h3>Compare handoff sample</h3><p>Compared motions, recommendation, reason, rejected alternatives, fallback, implementation note, and Codex handoff.</p></article>
+        </div>
+        <p id="pro-lock-message" class="lock-message" hidden></p>
+        <a class="button-link" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209">Unlock NicheWorks Pro — $2.99</a>
+      </div>
+      <div data-pro-only class="pro-active" hidden>
+        <h2>Pro handoff tools</h2>
+        <p>Copy implementation-ready outputs for the selected motion or export the selected motion and compare handoff.</p>
+      </div>
+      <div class="pro-actions" aria-label="Pro copy and export actions">
+        <button type="button" data-pro-action="decision">Copy decision memo</button>
+        <button type="button" data-pro-action="framer">Copy Framer Motion prompt</button>
+        <button type="button" data-pro-action="css">Copy CSS implementation prompt</button>
+        <button type="button" data-pro-action="react">Copy Tailwind / React prompt</button>
+        <button type="button" data-pro-action="codex">Copy Codex task</button>
+        <button type="button" data-pro-action="issue">Copy GitHub Issue</button>
+        <button type="button" data-pro-action="compare">Copy compare handoff Markdown</button>
+        <button type="button" data-pro-action="markdown">Export Markdown</button>
+        <button type="button" data-pro-action="json">Export JSON</button>
+      </div>
+      <pre id="pro-output" class="pro-output" hidden></pre>
+    </section>
+    <section class="memory-section" aria-label="Favorites and recent history"><div><h2>Favorites</h2><div id="favorites-list" class="chip-row"></div></div><div><h2>Recent</h2><div id="recent-list" class="chip-row"></div></div></section>
+    <section class="ad-slot ad-bottom" aria-label="advertisement">Ad space</section>
+    <section class="nw-donate" aria-label="support"><h2>Support this project</h2><p>Motion Atlas is free-first. Support helps keep the catalog, demos, and bilingual notes maintained.</p><p class="donation-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a></p></section>
+    <section class="nw-links" aria-label="Related NicheWorks links"><a href="/tools/ui-atlas/">UI Atlas</a><a href="/tools/vibe-lexicon/">Vibe Lexicon</a><a href="/tools/">NicheWorks tools</a></section>
+  </main>
+  <footer class="nw-footer"><p>© Niche Works — Small Web Tools for Boring Tasks</p><p>This site may include ads. Motion Atlas is a production decision aid, not an accessibility diagnosis or implementation guarantee.</p><p>After purchase, NicheWorks Pro is enabled in this browser. It usually remains active after closing the tab or browser. You may need to unlock again on another device, another browser, private mode, or after clearing site data.</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p></footer>
+  <script src="/assets/nw-pro.js" defer></script>
+  <script src="pro-bridge.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

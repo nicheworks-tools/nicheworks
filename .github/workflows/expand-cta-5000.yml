@@ -1,0 +1,32 @@
+name: Expand Construction Tools Atlas data
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/expand-cta-basic-to-5000.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Expand tools.basic.json to 5000 entries
+        run: node scripts/expand-cta-basic-to-5000.mjs
+      - name: Commit expanded data
+        run: |
+          if git diff --quiet -- tools/construction-tools-atlas/data/tools.basic.json; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/construction-tools-atlas/data/tools.basic.json
+          git commit -m "Expand Construction Tools Atlas data to 5000 entries"
+          git push

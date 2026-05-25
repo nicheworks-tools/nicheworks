@@ -1,15 +1,26 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Command Safety Checker | Check risky patterns before running | NicheWorks</title>
-  <meta name="description" content="Paste bash/zsh/PowerShell commands before running them. Detect destructive/exfiltration/over-privileged patterns and show risk as Low/Medium/High. No storage." />
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/command-safety-checker/howto/en/" />
+  <meta name="description" content="Paste bash/zsh/PowerShell commands before running them. Detect destructive/exfiltration/over-privileged patterns and show risk as Low/Medium/High. No storage.">
+  <link rel="canonical" href="https://nicheworks.app/tools/command-safety-checker/howto/en/">
 
-  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/command-safety-checker/howto/en/" />
-  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/command-safety-checker/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/command-safety-checker/howto/en/" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/command-safety-checker/howto/" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
@@ -31,6 +42,40 @@
     .nw-footer a{color:inherit}
     code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
   </style>
+
+  <meta property="og:url" content="https://nicheworks.app/tools/command-safety-checker/howto/en/">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Command Safety Checker | Check risky patterns before running | NicheWorks">
+  <meta property="og:description" content="Paste bash/zsh/PowerShell commands before running them. Detect destructive/exfiltration/over-privileged patterns and show risk as Low/Medium/High. No storage.">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Command Safety Checker | Check risky patterns before running | NicheWorks">
+  <meta name="twitter:description" content="Paste bash/zsh/PowerShell commands before running them. Detect destructive/exfiltration/over-privileged patterns and show risk as Low/Medium/High. No storage.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Command Safety Checker | Check risky patterns before running",
+    "url": "https://nicheworks.app/tools/command-safety-checker/howto/en/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Paste bash/zsh/PowerShell commands before running them. Detect destructive/exfiltration/over-privileged patterns and show risk as Low/Medium/High. No storage.",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -40,18 +85,19 @@
       <a href="../../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">Command Safety Checker: Guide</h1>
-    <p class="muted" style="margin:0">Paste commands before running them. Spot risky patterns as a quick pre-run check (no storage).</p>
+    <p class="muted" style="margin:0">Paste commands before running them. Spot risky patterns with deterministic rules (no storage).</p>
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">Ad slot (placeholder)</div>
+    <div class="ad-slot ad-top">Ad slot</div>
 
     <section class="card">
       <h2 style="margin:0 0 8px">What it does</h2>
       <ul>
         <li>Paste bash/zsh/PowerShell commands and detect risky execution patterns</li>
-        <li>Flags destructive actions (delete/overwrite), exfiltration (send/output), and over-privileged runs (sudo/admin)</li>
-        <li>Shows a simple risk level: <code>Low / Medium / High</code> (for reference)</li>
+        <li>Flags destructive actions (delete/overwrite) and over-privileged runs (sudo/admin) with deterministic rules</li>
+        <li>Shows a simple risk level: <code>LOW / MED / HIGH</code> (for reference)</li>
+        <li>Provides a “safer steps” checklist automatically</li>
         <li>Runs locally in your browser (no server-side storage)</li>
       </ul>
       <div class="btns">
@@ -77,8 +123,8 @@
       <ol>
         <li>Open the tool</li>
         <li>Paste the command(s) you plan to run (multi-line OK)</li>
-        <li>Read the risk level (Low/Medium/High) and the findings</li>
-        <li>If unsure, re-check targets/paths/privileges and test in a safe environment first</li>
+        <li>Read the risk level (LOW/MED/HIGH) and the findings</li>
+        <li>Review the safer steps checklist and re-check targets/paths/privileges</li>
       </ol>
       <p class="muted" style="margin:0">Tip: don’t start on production—test on a dummy folder/sandbox first.</p>
     </section>
@@ -87,19 +133,20 @@
       <h2 style="margin:0 0 8px">Notes (limits)</h2>
       <ul>
         <li>This tool does not guarantee safety (reference only).</li>
+        <li>Rule-based checks can miss context-specific or environment-specific risks.</li>
         <li>Variables, pipes, redirects, privileges, and working directory can change outcomes.</li>
         <li>Static checks may miss environment-dependent or network-related risks.</li>
         <li>For important operations, use backups and least-privilege practices.</li>
       </ul>
     </section>
 
-    <div class="ad-slot ad-bottom">Ad slot (placeholder)</div>
+    <div class="ad-slot ad-bottom">Ad slot</div>
   </main>
 
   <footer class="nw-footer">
     <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p>This site may contain ads.</p>
-    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 </body>
 </html>

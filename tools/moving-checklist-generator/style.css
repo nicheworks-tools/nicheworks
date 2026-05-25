@@ -225,3 +225,91 @@ a{ color:#374151; }
   .print-title-main{ font-size: 16pt; font-weight: 700; }
   .print-title-sub{ font-size: 10pt; color:#444; margin-top: 1mm; }
 }
+
+/* Moving Checklist Generator additions */
+.intro-panel{ background: var(--bg-soft); }
+
+.confirm-panel{
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #facc15;
+  border-radius: 10px;
+  background: #fffbeb;
+  font-size: 13px;
+  color: #4b5563;
+}
+.confirm-panel p{ margin: 0 0 8px; line-height: 1.5; }
+.confirm-actions{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.confirm-actions button{
+  flex: 1 1 180px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+.toast{
+  margin-top: 10px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  color: #1f2937;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.progress-summary{
+  margin-top: 10px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-soft);
+  font-size: 13px;
+  color: #374151;
+}
+.empty{ margin-top: 10px; }
+.day-block:first-child{ border-top:none; }
+
+.faq-panel details{
+  border-top: 1px solid var(--border);
+  padding: 10px 0;
+}
+.faq-panel details:first-of-type{ margin-top: 8px; }
+.faq-panel summary{
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+.nw-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap: 8px;
+  margin: 16px 0 8px;
+  font-size: 12px;
+}
+.nw-links a{
+  display:inline-block;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  color: #374151;
+  background: #fff;
+}
+
+@media (max-width: 480px){
+  .confirm-actions{ flex-direction: column; }
+  .confirm-actions button{ width: 100%; flex: 1 1 auto; }
+  .nw-links{ justify-content: stretch; }
+  .nw-links a{ width: 100%; text-align:center; }
+}
+
+@media print{
+  .intro-panel, .faq-panel, .nw-links, .confirm-panel, .toast{ display:none !important; }
+}

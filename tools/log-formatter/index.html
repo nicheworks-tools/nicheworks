@@ -2,183 +2,185 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>LogFormatter – 地味ログ整形屋 | NicheWorks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- 日本語 description -->
-  <meta
-    name="description"
-    content="Nginxアクセスログなどのテキストログをブラウザ内だけで整形し、色分け・フィルタ表示できるツールです。"
-  >
-
+  <title>ログ整形・Nginxアクセスログ解析｜LogFormatter | NicheWorks</title>
+  <meta name="description" content="Nginxアクセスログやアプリケーションログをブラウザ内で整形し、ステータスコード別の色分け、キーワード絞り込み、異常行の確認ができる無料ツールです。ログはサーバーに送信されません。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/log-formatter/">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/log-formatter/">
-
   <link rel="stylesheet" href="./style.css">
 
-  <!-- OGP 日本語 -->
-  <meta property="og:title" content="LogFormatter – 地味ログ整形屋 | NicheWorks">
-  <meta
-    property="og:description"
-    content="Nginxアクセスログなどのテキストログをブラウザ内だけで整形し、色分け・フィルタ表示できるツールです。"
-  >
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/log-formatter/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
-
-  <!-- OGP 英語 -->
-  <meta property="og:title:en" content="LogFormatter – Simple Log Formatter | NicheWorks">
-  <meta
-    property="og:description:en"
-    content="A browser-only tool that formats Nginx access logs and other text logs with highlighting and filtering."
-  >
-
-  <!-- Twitter 日本語 -->
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="ログ整形・Nginxアクセスログ解析｜LogFormatter | NicheWorks">
+  <meta property="og:description" content="Nginxアクセスログやアプリケーションログをブラウザ内で整形し、ステータスコード別の色分け、キーワード絞り込み、異常行の確認ができる無料ツールです。ログはサーバーに送信されません。">
+  <meta property="og:url" content="https://nicheworks.app/tools/log-formatter/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="LogFormatter – 地味ログ整形屋 | NicheWorks">
-  <meta
-    name="twitter:description"
-    content="Nginxアクセスログなどのテキストログをブラウザ内だけで整形し、色分け・フィルタ表示できるツールです。"
-  >
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta name="twitter:title" content="ログ整形・Nginxアクセスログ解析｜LogFormatter | NicheWorks">
+  <meta name="twitter:description" content="Nginxアクセスログやアプリケーションログをブラウザ内で整形し、ステータスコード別の色分け、キーワード絞り込み、異常行の確認ができる無料ツールです。ログはサーバーに送信されません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Twitter 英語 -->
-  <meta name="twitter:card:en" content="summary_large_image">
-  <meta name="twitter:title:en" content="LogFormatter – Simple Log Formatter | NicheWorks">
-  <meta
-    name="twitter:description:en"
-    content="A browser-only tool that formats Nginx access logs and other text logs with highlighting and filtering."
-  >
-  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
-  <!-- JSON-LD 日本語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "LogFormatter – 地味ログ整形屋",
-    "url": "https://nicheworks.pages.dev/tools/log-formatter/",
-    "description": "Nginxアクセスログなどのテキストログをブラウザ内だけで整形し、色分け・フィルタ表示できるツールです。",
-    "inLanguage": "ja",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "name": "LogFormatter",
+    "url": "https://nicheworks.app/tools/log-formatter/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "description": "Nginxアクセスログやアプリケーションログをブラウザ内で整形し、ステータスコード別の色分けや絞り込みができる無料ツールです。",
+    "inLanguage": ["ja", "en"],
+    "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
   }
   </script>
-
-  <!-- JSON-LD 英語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "LogFormatter – Simple Log Formatter",
-    "url": "https://nicheworks.pages.dev/tools/log-formatter/",
-    "description": "A browser-only tool that formats Nginx access logs and other text logs with highlighting and filtering.",
-    "inLanguage": "en",
-    "publisher": {"@type": "Organization", "name": "NicheWorks"}
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "購入後、Proはどのように有効になりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "購入後、このブラウザではNicheWorks Proが有効になります。通常はタブやブラウザを閉じても維持されますが、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ログはサーバーに送信されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "いいえ。貼り付けたログはブラウザ内で処理され、NicheWorksのサーバーには送信されません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "どのログ形式に対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "主にNginx combined access log形式を想定しています。形式が違う行は未解析行として表示し、通常のコピーやTXT保存には含めます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "4xxや5xxだけ確認できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。ステータス抽出ボタンで2xx、3xx、4xx、5xx、4xx+5xxを切り替えられます。4xx/5xxだけをコピーすることもできます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "機密情報を含むログを貼っても大丈夫ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ログはブラウザ内で処理されますが、共有や保存の前にIP、Cookie、Authorizationヘッダー、メールアドレス、トークンなどが含まれていないか確認してください。"
+        }
+      }
+    ]
   }
   </script>
-
-  <!-- Google Adsense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
-    crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Analytics -->
-  
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body>
   <header class="nw-header">
     <div class="nw-header-inner">
       <h1 class="nw-title" data-i18n="app_title">LogFormatter – 地味ログ整形屋</h1>
       <p class="nw-subtitle" data-i18n="app_sub">
-        nginxアクセスログやアプリケーションログなど、長くて読みにくいテキストログをブラウザだけで整形します。
+        Nginxアクセスログやアプリケーションログなど、長くて読みにくいテキストログをブラウザだけで整形します。
       </p>
       <p class="notice" data-i18n="notice">
         ログはすべてブラウザ内で処理され、サーバーには送信されません。
       </p>
 
-      <!-- 言語切り替え（JA / EN） -->
       <div class="lang-switch">
-        <button id="langJa" class="lang-btn">JA</button>
+        <button id="langJa" class="lang-btn" type="button">JA</button>
         <span class="lang-sep">/</span>
-        <button id="langEn" class="lang-btn">EN</button>
+        <button id="langEn" class="lang-btn" type="button">EN</button>
       </div>
     </div>
   </header>
 
   <main class="nw-main">
-    <!-- 上部広告 -->
     <div class="ad-slot ad-top">
-      <!-- nw-logformatter-top -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-9879006623791275"
-           data-ad-slot="2447825001"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+      <ins class="adsbygoogle" style="display:block" data-ad-slot="2447825001" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+
+    <section class="tool-intro" aria-label="LogFormatter overview">
+      <h2 data-i18n="intro_title">このツールでできること</h2>
+      <p data-i18n="intro_body">
+        Nginxアクセスログなどのテキストログを貼り付けると、ステータスコードやURLを見やすく色分けします。キーワード、除外語、ステータス範囲で絞り込みできます。
+      </p>
+      <p class="notice" data-i18n="intro_privacy">
+        ログはブラウザ内で処理されます。IP、Cookie、Authorizationヘッダー、メールアドレス、トークンなどを共有・保存する前に必ず確認してください。
+      </p>
+      <p class="mini-note" data-i18n="intro_mobile">
+        大量ログの確認はPC表示を推奨します。スマホでは短いログの確認・コピー用途に向いています。
+      </p>
+    </section>
 
     <section class="input-panel">
       <div class="input-header">
-        <div>
-          <span class="label" data-i18n="input_label">ログを貼り付け</span>
-        </div>
+        <div><span class="label" data-i18n="input_label">ログを貼り付け</span></div>
         <div class="input-actions">
-          <button type="button" id="btnSample" class="btn-ghost btn-xs" data-i18n="btn_sample">
-            サンプルログ
-          </button>
-          <button type="button" id="btnClear" class="btn-ghost btn-xs" data-i18n="btn_clear">
-            クリア
-          </button>
-          <button type="button" id="btnFormat" class="btn-primary" data-i18n="btn_format">
-            整形する
-          </button>
+          <label class="sample-picker">
+            <span data-i18n="sample_label">サンプル</span>
+            <select id="sampleSelect">
+              <option value="nginx" data-i18n="sample_nginx">Nginx通常</option>
+              <option value="errors" data-i18n="sample_errors">エラー多め</option>
+              <option value="api" data-i18n="sample_api">APIアクセス</option>
+              <option value="mixed" data-i18n="sample_mixed">未解析混在</option>
+            </select>
+          </label>
+          <button type="button" id="btnSample" class="btn-ghost btn-xs" data-i18n="btn_sample">サンプル挿入</button>
+          <button type="button" id="btnClear" class="btn-ghost btn-xs" data-i18n="btn_clear">クリア</button>
+          <button type="button" id="btnFormat" class="btn-primary" data-i18n="btn_format">整形する</button>
         </div>
       </div>
 
-      <textarea
-        id="logInput"
-        class="log-input"
-        placeholder="nginx アクセスログなどをそのまま貼り付けてください。"
-      ></textarea>
+      <textarea id="logInput" class="log-input" placeholder="Nginxアクセスログなどをそのまま貼り付けてください。"></textarea>
 
       <div class="controls">
-        <div class="control-group">
-          <label for="filterInclude" data-i18n="filter_include">含めるキーワード</label>
-          <input id="filterInclude" type="text" />
+        <div class="control-group"><label for="filterInclude" data-i18n="filter_include">含めるキーワード</label><input id="filterInclude" type="text"></div>
+        <div class="control-group"><label for="filterExclude" data-i18n="filter_exclude">除外キーワード</label><input id="filterExclude" type="text"></div>
+        <div class="control-group"><label for="statusFrom" data-i18n="filter_status_from">ステータス最小</label><input id="statusFrom" type="number" min="100" max="599"></div>
+        <div class="control-group"><label for="statusTo" data-i18n="filter_status_to">ステータス最大</label><input id="statusTo" type="number" min="100" max="599"></div>
+        <div class="control-group"><label for="langSelect" data-i18n="lang_label">表示言語</label><select id="langSelect"><option value="ja">日本語</option><option value="en">English</option></select></div>
+        <div class="control-group checkbox-group toggle-dark"><button type="button" id="darkToggleBtn" class="btn-xs btn-ghost">🌙 Dark</button></div>
+      </div>
+
+      <div class="status-presets" aria-label="Status filters">
+        <span data-i18n="status_quick">ステータス抽出</span>
+        <button type="button" class="btn-ghost btn-xs" data-status-preset="all">All</button>
+        <button type="button" class="btn-ghost btn-xs" data-status-preset="2xx">2xx</button>
+        <button type="button" class="btn-ghost btn-xs" data-status-preset="3xx">3xx</button>
+        <button type="button" class="btn-ghost btn-xs" data-status-preset="4xx">4xx</button>
+        <button type="button" class="btn-ghost btn-xs" data-status-preset="5xx">5xx</button>
+        <button type="button" class="btn-ghost btn-xs" data-status-preset="errors">4xx+5xx</button>
+      </div>
+
+      <div class="pro-regex-box">
+        <div class="control-group checkbox-group">
+          <label><input id="regexMode" type="checkbox"> <span data-i18n="regex_mode">Regex mode（Pro）</span></label>
         </div>
-        <div class="control-group">
-          <label for="filterExclude" data-i18n="filter_exclude">除外キーワード</label>
-          <input id="filterExclude" type="text" />
+        <div class="controls pro-regex-controls">
+          <div class="control-group"><label for="includeRegex" data-i18n="include_regex">Include regex</label><input id="includeRegex" type="text" placeholder="/api|/admin"></div>
+          <div class="control-group"><label for="excludeRegex" data-i18n="exclude_regex">Exclude regex</label><input id="excludeRegex" type="text" placeholder="health|static"></div>
         </div>
-        <div class="control-group">
-          <label for="statusFrom" data-i18n="filter_status_from">ステータス最小</label>
-          <input id="statusFrom" type="number" min="100" max="599" />
-        </div>
-        <div class="control-group">
-          <label for="statusTo" data-i18n="filter_status_to">ステータス最大</label>
-          <input id="statusTo" type="number" min="100" max="599" />
-        </div>
-        <div class="control-group">
-          <label for="langSelect" data-i18n="lang_label">表示言語</label>
-          <select id="langSelect">
-            <option value="ja">日本語</option>
-            <option value="en">English</option>
-          </select>
-        </div>
-        <div class="control-group checkbox-group toggle-dark">
-          <button type="button" id="darkToggleBtn" class="btn-xs btn-ghost">
-            🌙 Dark
-          </button>
-        </div>
+        <p id="regexMessage" class="copy-message" role="status" aria-live="polite"></p>
       </div>
     </section>
 
@@ -187,32 +189,133 @@
         <div class="output-title" data-i18n="output_title">整形結果</div>
         <div class="output-meta" id="outputMeta"></div>
       </div>
-      <div id="logOutput" class="log-output">
-        <!-- 整形結果 -->
+
+      <div id="summaryGrid" class="summary-grid" aria-live="polite"></div>
+      <div id="summaryLists" class="summary-lists" aria-live="polite"></div>
+
+      <div class="output-toolbar">
+        <button type="button" id="btnCopyVisible" class="btn-ghost btn-xs" data-i18n="btn_copy_visible">表示中の結果をコピー</button>
+        <button type="button" id="btnCopyErrors" class="btn-ghost btn-xs" data-i18n="btn_copy_errors">4xx/5xxだけコピー</button>
+        <button type="button" id="btnDownloadTxt" class="btn-ghost btn-xs" data-i18n="btn_download_txt">TXT保存</button>
+        <span id="copyMessage" class="copy-message" role="status" aria-live="polite"></span>
+      </div>
+
+      <div id="logOutput" class="log-output"></div>
+    </section>
+
+    <section class="pro-panel" aria-label="LogFormatter Pro">
+      <div class="pro-panel-head">
+        <div>
+          <p class="pro-kicker">NicheWorks Pro / LogFormatter v0.2</p>
+          <h2 data-i18n="pro_title">構造化出力・詳細分析・レポート化</h2>
+        </div>
+        <a class="btn-primary pro-buy" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener" data-i18n="pro_buy">NicheWorks Proを購入 — $2.99</a>
+      </div>
+      <p class="pro-status" data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</p>
+      <p class="mini-note" data-i18n="pro_after_purchase">購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p>
+
+      <div class="pro-preview" data-pro-preview>
+        <h3 data-i18n="pro_preview_title">Pro Preview</h3>
+        <div class="pro-preview-grid">
+          <pre>CSV: type,source,ip,time,method,path,status,size,referer,agent,level,message,raw,parsed</pre>
+          <pre>{"tool":"log-formatter","version":"0.2","summary":{},"rows":[]}</pre>
+          <pre># LogFormatter Report
+## Summary
+## Top User-Agents
+## Sensitive String Warning</pre>
+          <ul>
+            <li>Regex filter: <code>/api|admin|token/</code></li>
+            <li>User-Agent / bot-like summary sample: bot 2, browser 3</li>
+            <li>IP detail preview: top 3 rows by error rate or total</li>
+            <li>URL detail preview: top 3 paths with top IP</li>
+            <li>Sensitive warning sample: token / email / Authorization counts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pro-actions">
+        <button type="button" id="btnDownloadCsv" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_csv">CSV保存</button>
+        <button type="button" id="btnDownloadErrorCsv" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_error_csv">4xx/5xx CSV保存</button>
+        <button type="button" id="btnDownloadJson" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_json">JSON保存</button>
+        <button type="button" id="btnCopyMarkdown" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_copy_md">レポートコピー</button>
+        <button type="button" id="btnDownloadMarkdown" class="btn-ghost btn-xs" data-pro-action data-i18n="btn_save_md">レポート保存</button>
+      </div>
+
+      <div class="pro-only" data-pro-only hidden>
+        <h3 data-i18n="pro_unlocked_title">Pro詳細分析</h3>
+        <div id="proSummaryPack" class="pro-summary-pack"></div>
+        <div class="pro-detail-grid">
+          <section><h4>User-Agent</h4><div id="uaSummary"></div></section>
+          <section><h4>Bot-like Summary</h4><div id="botSummary"></div></section>
+        </div>
+        <div class="pro-table-wrap">
+          <div class="pro-table-head"><h4>IP Detail</h4><button type="button" class="btn-ghost btn-xs" id="sortIpDetail">Sort error/total</button></div>
+          <div id="ipDetailTable"></div>
+        </div>
+        <div class="pro-table-wrap">
+          <div class="pro-table-head"><h4>URL Detail</h4><button type="button" class="btn-ghost btn-xs" id="sortUrlDetail">Sort error/total</button></div>
+          <div id="urlDetailTable"></div>
+        </div>
+        <div class="pro-table-wrap">
+          <h4>Sensitive String Warning</h4>
+          <div id="sensitiveDetails"></div>
+          <p class="mini-note"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> で共有前に確認してください。 / Review with API Key Token Redactor before sharing.</p>
+        </div>
+        <pre id="markdownPreview" class="markdown-preview"></pre>
       </div>
     </section>
 
-    <!-- 下部広告 -->
-    <div class="ad-slot ad-bottom">
-      広告枠（準備中）
-      <!-- 審査通過後に広告コードを挿入 -->
+
+    <div class="ad-slot ad-bottom">広告枠</div>
+
+    <section class="faq-section" aria-label="LogFormatter FAQ">
+      <h2>FAQ</h2>
+      <details open>
+        <summary>ログはサーバーに送信されますか？ / Are logs sent to a server?</summary>
+        <p>いいえ。貼り付けたログはブラウザ内で処理され、NicheWorksのサーバーには送信されません。 / No. The pasted logs are processed in your browser and are not sent to NicheWorks servers.</p>
+      </details>
+      <details>
+        <summary>どのログ形式に対応していますか？ / Which log format is supported?</summary>
+        <p>主にNginx combined access log形式を想定しています。形式が違う行は未解析行として表示し、通常のコピーやTXT保存には含めます。 / It is mainly designed for Nginx combined access logs. Unsupported lines are shown as unparsed and still included in normal copy and TXT export.</p>
+      </details>
+      <details>
+        <summary>4xxや5xxだけ確認できますか？ / Can I check only 4xx or 5xx errors?</summary>
+        <p>はい。ステータス抽出ボタンで2xx、3xx、4xx、5xx、4xx+5xxを切り替えられます。4xx/5xxだけをコピーすることもできます。 / Yes. Use the status shortcut buttons to filter 2xx, 3xx, 4xx, 5xx, or 4xx+5xx. You can also copy only 4xx/5xx lines.</p>
+      </details>
+      <details>
+        <summary>機密情報を含むログを貼っても大丈夫ですか？ / Is it safe to paste sensitive logs?</summary>
+        <p>ログはブラウザ内で処理されますが、共有や保存の前にIP、Cookie、Authorizationヘッダー、メールアドレス、トークンなどが含まれていないか確認してください。 / Processing is local, but before sharing or saving logs, check for IP addresses, cookies, Authorization headers, emails, tokens, and other sensitive data.</p>
+      </details>
+      <details>
+        <summary>購入後、Proはどのように有効になりますか？ / What happens after purchase?</summary>
+        <p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。 / After purchase, NicheWorks Pro becomes active in this browser. It usually remains active after closing tabs or the browser, but another device, another browser, private mode, or cleared site data requires activation again.</p>
+      </details>
+    </section>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text">このツールが役に立ったら、開発継続のためご支援いただけると嬉しいです。 / If this tool helped, support helps keep NicheWorks running.</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+
+    <div class="nw-links">
+      <a href="/tools/command-safety-checker/">Command Safety Checker</a> /
+      <a href="/tools/json-repair/">JSON Repair</a> /
+      <a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> /
+      <a href="/tools/csv-tidy/">CSV Tidy</a>
     </div>
   </main>
 
   <footer class="nw-footer">
-    <p class="nw-footer-line">
-      © NicheWorks — Small Web Tools for Boring Tasks
-    </p>
-    <p class="nw-footer-line">
-      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
-    </p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">
-        nicheworks.pages.dev
-      </a>
-    </p>
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。 / This site may contain ads. Accuracy is not guaranteed; always verify important information with official sources.</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
 
+  <script src="/assets/nw-pro.js"></script>
+  <script src="./pro-bridge.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

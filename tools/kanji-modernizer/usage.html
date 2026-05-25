@@ -1,200 +1,101 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>使い方｜旧字体 ⇄ 新字体 変換ツール | NicheWorks</title>
-  <meta name="description" content="旧字体 ⇄ 新字体 変換ツールの使い方ガイド。変換方式・収録字数・注意点・プライバシーなどをまとめています。">
-  <meta name="keywords" content="旧字体, 新字体, 異体字, 旧字, 新字, 漢字変換, 日本語, japanese kanji converter, kyujitai, shinjitai">
-
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/kanji-modernizer/usage.html">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="旧字体 ⇄ 新字体 変換ツールの使い方 | NicheWorks">
-  <meta property="og:description" content="旧字体 ⇄ 新字体 変換ツールの詳細な使い方。変換方式、注意点、収録字数、安全性などを解説。">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/og-kanji.png">
-
-  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-  <!-- Analytics -->
-  
-
+  <title>使い方｜旧字体 ⇄ 新字体 変換ツール | NicheWorks</title>
+  <meta name="description" content="旧字体 ⇄ 新字体 変換ツールの使い方ガイド。変換方式、辞書ベース変換の限界、入力本文の扱い、注意点をまとめています。">
+  <link rel="canonical" href="https://nicheworks.app/tools/kanji-modernizer/usage.html">
+  <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="使い方｜旧字体 ⇄ 新字体 変換ツール | NicheWorks">
+  <meta property="og:description" content="旧字体 ⇄ 新字体 変換ツールの使い方ガイド。変換方式、辞書ベース変換の限界、入力本文の扱い、注意点をまとめています。">
+  <meta property="og:url" content="https://nicheworks.app/tools/kanji-modernizer/usage.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="使い方｜旧字体 ⇄ 新字体 変換ツール | NicheWorks">
+  <meta name="twitter:description" content="旧字体 ⇄ 新字体 変換ツールの使い方ガイド。変換方式、辞書ベース変換の限界、入力本文の扱い、注意点をまとめています。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"使い方｜旧字体 ⇄ 新字体 変換ツール | NicheWorks","url":"https://nicheworks.app/tools/kanji-modernizer/usage.html","description":"旧字体 ⇄ 新字体 変換ツールの使い方ガイド。","inLanguage":"ja","publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
   <link rel="stylesheet" href="./style.css">
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
 </head>
-
 <body>
   <header class="nw-header">
     <h1 class="nw-title">使い方｜旧字体 ⇄ 新字体 変換ツール</h1>
-    <p class="nw-subtitle">変換方式、注意点、安全性をまとめています。</p>
+    <p class="nw-subtitle">変換方式、注意点、入力本文の扱いをまとめています。</p>
   </header>
-
-  <div class="ad-slot ad-top">広告枠（準備中）</div>
-
   <main class="nw-main">
-
+    <div class="ad-slot ad-top">広告枠</div>
     <a href="./index.html" class="usage-back">← ツールへ戻る</a>
-
     <section class="usage-section">
-      <h2>旧字体とは？</h2>
-      <p>旧字体（旧字・正字とも呼ばれます）は、康煕字典体を基盤とした印刷字形で、明治から戦前までの書籍・新聞・公文書に広く使われました。戦後、当用漢字の制定（1946年）を契機に簡略化された新字体が標準化されましたが、歴史的な経緯や慣習により旧字体が残る分野もあります。</p>
-      <p>特に戸籍や住民票、地名、寺社名、石碑・古文書では、戦前の字体や家系固有の文字形がそのまま使われることがあります。新字体に完全に統一されていないため、読み手やシステムが旧字体に対応できず不便が生じるケースがあります。</p>
-      <p>また、Unicode では同じ意味をもつ異体字を Variation Selector（IVS）で細かく区別する仕組みが存在します。IVS 対応フォントでないと見た目が同じに見える場合もあるため、デジタル環境での表記揺れにも注意が必要です。</p>
+      <h2>1. このツールでできること</h2>
+      <p>旧字体（舊・學・體など）を新字体へ、または新字体を旧字体候補へ変換できます。人名・地名・古い文書の確認を補助する辞書ベースのツールです。</p>
     </section>
-
     <section class="usage-section">
-      <h2>1. このツールは何をする？</h2>
-      <p>
-        旧字体（舊・學・體など）を新字体に一括変換したり、
-        新字体（旧・学・体など）を旧字体へ戻すツールです。
-        処理はすべてローカルで完結します。
-      </p>
-    </section>
-
-    <section class="usage-section">
-      <h2>2. 変換方向について</h2>
-      <ul>
-        <li><strong>旧 → 新</strong> … 古い文字を現代の文字へ変換</li>
-        <li><strong>新 → 旧</strong> … 現代の文字を旧字体へ変換（複数候補は先頭を採用）</li>
-      </ul>
-    </section>
-
-    <section class="usage-section">
-      <h2>3. 操作方法</h2>
+      <h2>2. 使い方</h2>
       <ol>
-        <li>変換方向（旧→新 / 新→旧）を選ぶ</li>
-        <li>テキストを入力欄に貼る</li>
-        <li>「変換する」を押す</li>
-        <li>結果欄からコピーする</li>
+        <li>変換方向を選びます。</li>
+        <li>テキストを貼り付けます。</li>
+        <li>必要ならURLやコードの除外をONにします。</li>
+        <li>「変換する」を押し、結果と置換一覧を確認します。</li>
       </ol>
     </section>
-
     <section class="usage-section">
-      <h2>4. 収録字数</h2>
-      <p>辞書は自動的に最新状態を読み込み、以下の数を表示します。</p>
+      <h2>3. 対応 / 非対応</h2>
+      <p>登録済みの文字だけを1文字単位で置換します。未登録の異体字、文脈依存の使い分け、正式表記の保証には対応しません。重要な用途では必ず原本や公式情報をご確認ください。</p>
       <ul>
-        <li>旧字体 → 新字体：<strong data-count="old">--</strong>字</li>
-        <li>新字体 → 旧字体：<strong data-count="new">--</strong>字</li>
-        <li>総ユニーク字数：<strong data-count="unique">--</strong>字</li>
+        <li>旧→新：登録済み旧字体を新字体へ変換します。</li>
+        <li>新→旧：複数候補がある場合、同一文字ではない候補を優先します。</li>
+        <li>URL、コード、ASCII文字列はオプションで除外できます。</li>
       </ul>
     </section>
-
     <section class="usage-section">
-      <h2>5. プライバシー</h2>
-      <p>
-        入力文字は一切サーバーに送信されません。
-        すべてブラウザ内（ローカル）で処理されます。
-      </p>
+      <h2>4. プライバシーと外部タグ</h2>
+      <p>変換処理はブラウザ内で行われ、入力本文はNicheWorksのサーバーへ送信しません。ただし、このページでは運営のためにAdSense、GA4、Cloudflare Web Analyticsなどの広告・アクセス解析関連の仕組みが使われる場合があります。</p>
     </section>
-
     <section class="usage-section">
-      <h2>6. 注意点</h2>
-      <ul>
-        <li>異体字（康煕字典体など）は変換対象外のものがあります</li>
-        <li>複数の旧字体が存在する場合、新→旧は「最も一般的な形」を採用</li>
-        <li>人名固有の特殊字体（高﨑・吉﨑など）は辞書収録の範囲内で変換</li>
-      </ul>
+      <h2>5. FAQ</h2>
+      <h3>すべての旧字体を変換できますか？</h3>
+      <p>いいえ。辞書に未登録の文字は変換されません。</p>
+      <h3>正式な表記確認に使えますか？</h3>
+      <p>補助用途です。公式書類や原本の確認を優先してください。</p>
+      <h3>入力本文は保存されますか？</h3>
+      <p>ツール側で入力本文を保存する機能はありません。</p>
     </section>
-
+    <section class="usage-section">
+      <h2>6. 免責</h2>
+      <p>このツールは旧字体・新字体変換の補助を目的としたものです。変換結果の正確性や公的手続きでの利用可能性は保証しません。</p>
+    </section>
     <div class="nw-donate">
-      <p>開発継続のため、寄付で支えていただけると大変助かります。</p>
+      <p>このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
-
     <div class="nw-links">
+      <a href="/tools/old-kanji-reference/">Old Kanji Reference</a> /
       <a href="/tools/rename-wizard/">Rename Wizard</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a> /
-      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
+      <a href="/tools/log-formatter/">LogFormatter</a>
     </div>
-
-    <p class="nw-back"><a href="./index.html">トップページに戻る</a></p>
+    <p class="nw-back"><a href="./index.html">ツールへ戻る</a></p>
   </main>
-
   <footer class="nw-footer">
-    <p>© 2025 NicheWorks</p>
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報・変換結果の正確性は保証しません。必ず原本・公式情報をご確認ください。</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
-
-  <script>
-    function normalizeChar(val) {
-      return typeof val === "string" ? val.normalize("NFC") : "";
-    }
-
-    function rebuildDict(raw) {
-      const normalizedOldToNew = {};
-      const normalizedNewToOld = {};
-
-      const rawOldToNew = raw && typeof raw === "object" ? raw.old_to_new || {} : {};
-      Object.keys(rawOldToNew).forEach(key => {
-        const nKey = normalizeChar(key);
-        const nVal = normalizeChar(rawOldToNew[key]);
-        if (!nKey || !nVal) return;
-        if (Object.prototype.hasOwnProperty.call(normalizedOldToNew, nKey)) return;
-        normalizedOldToNew[nKey] = nVal;
-      });
-
-      const rawNewToOld = raw && typeof raw === "object" ? raw.new_to_old || {} : {};
-      Object.keys(rawNewToOld).forEach(key => {
-        const nKey = normalizeChar(key);
-        if (!nKey) return;
-        const values = Array.isArray(rawNewToOld[key]) ? rawNewToOld[key] : [rawNewToOld[key]];
-        const normalizedValues = [];
-
-        values.forEach(v => {
-          const nVal = normalizeChar(v);
-          if (!nVal) return;
-          if (!normalizedValues.includes(nVal)) {
-            normalizedValues.push(nVal);
-          }
-        });
-
-        if (normalizedValues.length === 0) return;
-        if (!normalizedNewToOld[nKey]) {
-          normalizedNewToOld[nKey] = [];
-        }
-        normalizedValues.forEach(v => {
-          if (!normalizedNewToOld[nKey].includes(v)) {
-            normalizedNewToOld[nKey].push(v);
-          }
-        });
-      });
-
-      return { old_to_new: normalizedOldToNew, new_to_old: normalizedNewToOld };
-    }
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      try {
-        const res = await fetch("./dict.json", { cache: "no-store" });
-        if (!res.ok) return;
-        const rawDict = await res.json();
-        const dict = rebuildDict(rawDict);
-        const oldCount = Object.keys(dict.old_to_new || {}).length;
-        const newCount = Object.keys(dict.new_to_old || {}).length;
-        const uniqueCount = new Set([
-          ...Object.keys(dict.old_to_new || {}),
-          ...Object.keys(dict.new_to_old || {})
-        ]).size;
-
-        document.querySelectorAll('[data-count="old"]').forEach(el => {
-          el.textContent = oldCount;
-        });
-        document.querySelectorAll('[data-count="new"]').forEach(el => {
-          el.textContent = newCount;
-        });
-        document.querySelectorAll('[data-count="unique"]').forEach(el => {
-          el.textContent = uniqueCount;
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    });
-  </script>
 </body>
 </html>

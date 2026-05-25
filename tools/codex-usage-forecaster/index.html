@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codex使用率ログ・枠切れ予測｜Codex Usage Forecaster | NicheWorks</title>
+  <meta name="description" content="Codexなどの使用率ログを手入力で記録し、5時間枠・週枠の燃費と枠切れタイミングを簡易推定するツールです。予測は目安であり、実際の上限やリセット時刻を保証しません。">
+  <link rel="canonical" href="https://nicheworks.app/tools/codex-usage-forecaster/">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="Codex使用率ログ・枠切れ予測｜Codex Usage Forecaster | NicheWorks">
+  <meta property="og:description" content="Codexなどの使用率ログを手入力で記録し、5時間枠・週枠の燃費と枠切れタイミングを簡易推定するツールです。予測は目安であり、実際の上限やリセット時刻を保証しません。">
+  <meta property="og:url" content="https://nicheworks.app/tools/codex-usage-forecaster/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Codex使用率ログ・枠切れ予測｜Codex Usage Forecaster | NicheWorks">
+  <meta name="twitter:description" content="Codexなどの使用率ログを手入力で記録し、5時間枠・週枠の燃費と枠切れタイミングを簡易推定するツールです。予測は目安であり、実際の上限やリセット時刻を保証しません。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Codex Usage Forecaster","url":"https://nicheworks.app/tools/codex-usage-forecaster/","applicationCategory":"UtilityApplication","operatingSystem":"All","description":"Codexなどの使用率ログを手入力で記録し、5時間枠・週枠の燃費と枠切れタイミングを簡易推定するツールです。予測は目安であり、実際の上限やリセット時刻を保証しません。","inLanguage":["ja","en"]}
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="topbar"><div class="brand"><div class="logo">◉</div><div class="titles"><h1>Codex Usage Forecaster</h1><p class="tagline">使用率ログから燃費と枠切れを簡易予測する</p></div></div><div class="actions"><div class="lang"><a href="./index.html" aria-current="page">JA</a><span>·</span><a href="./en/index.html">EN</a></div><button class="themeBtn" type="button" id="themeToggle" aria-label="Toggle theme">☾</button></div></div>
+      <nav class="nav"><a href="./index.html" aria-current="page">Dashboard</a><a href="./usage.html">Usage</a><a href="./howto.html">HowTo</a></nav>
+    </header>
+    <section class="ad" aria-label="広告"><p class="label">Ad</p><div class="box"></div></section>
+    <section class="card warning"><h2>重要な注意</h2><p class="muted">このツールは手入力した使用率ログから燃費と枠切れ時刻を簡易推定するものです。実際の使用上限、リセット時刻、残量表示、制限条件を保証しません。</p><p class="small muted">サービス側の表示や公式情報を優先してください。</p></section>
+    <section class="card notice" style="margin-top:12px;"><h2>保存と外部タグについて</h2><p class="muted">使用率ログの保存・予測処理はこのブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p><p class="small muted">未公開の利用状況、業務名、顧客名、内部プロジェクト名などは必要に応じて伏せてください。</p></section>
+    <main class="grid">
+      <section class="card"><h2>入力 → 保存 → 予測</h2><div class="kpis" style="margin-top:10px;"><div class="kpi"><p class="label">週（燃費 / 枯渇ETA）</p><p class="value" id="kpi_week_main">—</p><p class="sub" id="kpi_week_sub">ログが必要</p></div><div class="kpi"><p class="label">5時間（燃費 / 枯渇ETA）</p><p class="value" id="kpi_5h_main">—</p><p class="sub" id="kpi_5h_sub">ログが必要</p></div><div class="kpi"><p class="label">次のリセット（推定/手動）</p><p class="value" id="kpi_reset_main">—</p><p class="sub" id="kpi_reset_sub">auto / manual</p></div></div><hr class="sep"/>
+        <div class="row"><div class="field"><label for="in_week">週の使用率（%）</label><input id="in_week" inputmode="decimal" stable content="例: 42" /></div><div class="field"><label for="in_5h">5時間の使用率（%）</label><input id="in_5h" inputmode="decimal" stable content="例: 18" /></div></div>
+        <div class="row" style="margin-top:10px;"><div class="field"><label for="in_mode">mode</label><select id="in_mode"><option value="">(none)</option><option value="cloud">cloud</option><option value="cli">cli</option><option value="local">local</option><option value="other">other</option></select></div><div class="field"><label for="in_status">status</label><select id="in_status"><option value="unknown">unknown</option><option value="ok">ok</option><option value="warn">warn</option><option value="limited">limited</option><option value="cooldown">cooldown</option></select></div><div class="field"><label for="in_model">model</label><select id="in_model"><option value="">(none)</option><option value="mini">mini</option><option value="high">high</option><option value="other">other</option></select></div></div>
+        <div class="row" style="margin-top:10px;"><div class="field" style="flex:1 1 420px;min-width:220px;"><label for="in_note">note</label><input id="in_note" stable content="例: heavy / light / search-heavy / big PR" /></div></div>
+        <div class="row" style="margin-top:12px;"><button class="btn primary" type="button" id="btn_save">保存</button><span class="pill" id="pill_count">logs: 0</span><span style="flex:1 1 auto;"></span><label class="pill" style="cursor:pointer;"><input type="checkbox" id="chk_affects" style="vertical-align:middle;margin-right:6px;" checked> Forecast uses filters</label></div><div class="hint" id="hint_box" style="display:none;"></div></section>
+      <section class="card" style="margin-top:12px;"><h2>フィルタ</h2><div class="row" style="margin-top:8px;"><div class="field"><label for="f_mode">mode</label><select id="f_mode"><option value="">(all)</option><option value="cloud">cloud</option><option value="cli">cli</option><option value="local">local</option><option value="other">other</option></select></div><div class="field"><label for="f_status">status</label><select id="f_status"><option value="">(all)</option><option value="unknown">unknown</option><option value="ok">ok</option><option value="warn">warn</option><option value="limited">limited</option><option value="cooldown">cooldown</option></select></div><div class="field"><label for="f_model">model</label><select id="f_model"><option value="">(all)</option><option value="mini">mini</option><option value="high">high</option><option value="other">other</option></select></div></div><div class="row" style="margin-top:10px;"><div class="field" style="flex:1 1 420px;min-width:220px;"><label for="f_note">note contains</label><input id="f_note" stable content="例: heavy" /></div></div><div class="row" style="margin-top:12px;"><button class="btn" type="button" id="btn_clear_filters">フィルタ解除</button><span class="pill" id="pill_filtered">filtered: 0</span></div></section>
+      <section class="card" style="margin-top:12px;"><h2>Profiles</h2><div class="row" style="margin-top:8px;"><div class="field" style="min-width:220px;"><label for="profiles_select">保存済み</label><select id="profiles_select"></select></div><button class="btn" type="button" id="btn_apply_profile">適用</button><button class="btn danger" type="button" id="btn_delete_profile">削除</button></div><div class="row" style="margin-top:10px;"><div class="field" style="flex:1 1 320px;min-width:220px;"><label for="profile_name">新規/上書き名</label><input id="profile_name" stable content="例: heavy / light / cloud-mini" /></div><button class="btn primary" type="button" id="btn_save_profile">保存</button></div><p class="small muted" style="margin-top:10px;">同名プロファイルは上書きされます。</p></section>
+      <section class="card" style="margin-top:12px;"><h2>リセット（手動固定）</h2><div class="row" style="margin-top:8px;"><div class="field"><label for="manual_reset_week">次の週リセット（日時）</label><input id="manual_reset_week" type="datetime-local" /></div><div class="field"><label for="manual_reset_5h">次の5hリセット（日時）</label><input id="manual_reset_5h" type="datetime-local" /></div></div><div class="row" style="margin-top:12px;"><button class="btn primary" type="button" id="btn_save_reset">保存</button><button class="btn" type="button" id="btn_clear_reset">クリア</button></div><p class="small muted" style="margin-top:10px;">分かる場合は手動設定を優先できます。分からない場合はauto推定です。</p></section>
+      <section class="card" style="margin-top:12px;"><h2>データ</h2><div class="row" style="margin-top:8px;"><button class="btn" type="button" id="btn_export">Export</button><label class="btn" style="display:inline-flex;align-items:center;gap:8px;">Import<input type="file" id="in_import" accept="application/json" style="display:none;"></label><button class="btn danger" type="button" id="btn_clear_all">全削除</button></div><p class="small muted" style="margin-top:10px;">保存されるもの：使用率ログ、フィルタプロファイル、手動リセット設定、テーマ設定。別端末・別ブラウザには自動で引き継がれません。ブラウザデータ削除で消えます。</p><p class="small muted">Exportはログ/プロファイル/設定を含むJSONです。ImportはこのツールのExport JSONのみを想定し、読み込み後は現在データを上書きします。</p></section>
+      <section class="card" style="margin-top:12px;"><h2>ログ一覧</h2><div id="empty_state" class="hint" style="display:none;"><strong>まだログがありません。</strong><br/>まず週%または5h%を入れて「保存」を押してください。2件以上で予測が出ます。</div><div style="overflow:auto;margin-top:10px;"><table class="table" id="logs_table" aria-label="logs"><thead><tr><th>time</th><th>week%</th><th>5h%</th><th>mode</th><th>status</th><th>model</th><th>note</th><th>操作</th></tr></thead><tbody id="logs_tbody"></tbody></table></div></section>
+      <section class="card faq" style="margin-top:12px;"><h2>FAQ</h2><p class="muted"><strong>Q. この予測は正確ですか？</strong><br>いいえ。手入力ログからの簡易推定です。実際の使用上限やリセット時刻を保証しません。</p><p class="muted"><strong>Q. 入力内容は送信されますか？</strong><br>ログ保存と予測処理はブラウザ内で行います。ただし広告・解析タグは読み込まれます。</p><p class="muted"><strong>Q. 何が保存されますか？</strong><br>使用率ログ、フィルタプロファイル、手動リセット設定、テーマ設定がlocalStorageに保存されます。</p></section>
+    </main>
+    <footer class="footer"><div class="row"><span>支援:</span><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a><span>·</span><a href="/tools/release-guardian/">Release Guardian</a><a href="/tools/microtool-launch-checklist/">Microtool Launch Checklist</a><a href="/tools/ops-weekly-report-generator/">Ops Weekly Report Generator</a><a href="/tools/money-template-checker/">Money Template Checker</a></div><div class="row" style="margin-top:6px;"><span>© NicheWorks</span><span>·</span><span>保存・予測処理はブラウザ内。広告・解析タグは読み込まれます。</span></div></footer>
+  </div>
+  <script src="./app-fixed.js"></script>
+  <script>(function(){const KEY='nw_theme';const root=document.documentElement;function pref(){try{const v=localStorage.getItem(KEY);if(v==='dark'||v==='light')return v;}catch(e){}return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}function apply(t){root.setAttribute('data-theme',t);const b=document.getElementById('themeToggle');if(b)b.textContent=t==='dark'?'☀':'☾';}apply(pref());const btn=document.getElementById('themeToggle');if(btn)btn.addEventListener('click',function(){const cur=root.getAttribute('data-theme')==='dark'?'dark':'light';const next=cur==='dark'?'light':'dark';apply(next);try{localStorage.setItem(KEY,next);}catch(e){}});})();</script>
+</body>
+</html>

@@ -1,50 +1,186 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+  <script>
+    (() => {
+      try {
+        const stored = localStorage.getItem("nw_theme");
+        const theme = stored === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Construction Tools & Slang Atlas | Guide | NicheWorks</title>
-  <meta name="description" content="Browse and search construction field terms, tools, and work processes by category. JA/EN toggle. Browser-only, no storage." />
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/construction-tools-atlas/howto/en/" />
+  <title>Construction Tools &amp; Slang Atlas | Guide | NicheWorks</title>
+  <meta name="description" content="Browse and search construction field terms, tools, and work processes by category. JA/EN toggle. Browser-only, no storage.">
+  <link rel="canonical" href="https://nicheworks.app/tools/construction-tools-atlas/howto/en/">
 
-  <link rel="alternate" hreflang="en" href="https://nicheworks.pages.dev/tools/construction-tools-atlas/howto/en/" />
-  <link rel="alternate" hreflang="ja" href="https://nicheworks.pages.dev/tools/construction-tools-atlas/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/construction-tools-atlas/howto/en/" />
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/construction-tools-atlas/howto/" />
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Construction Tools &amp; Slang Atlas | Guide | NicheWorks">
+  <meta property="og:description" content="Browse and search construction field terms, tools, and work processes by category. JA/EN toggle. Browser-only, no storage.">
+  <meta property="og:url" content="https://nicheworks.app/tools/construction-tools-atlas/howto/en/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Construction Tools &amp; Slang Atlas | Guide | NicheWorks">
+  <meta name="twitter:description" content="Browse and search construction field terms, tools, and work processes by category. JA/EN toggle. Browser-only, no storage.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "NicheWorks",
+          "url": "https://nicheworks.app/"
+        },
+        {
+          "@type": "WebSite",
+          "name": "NicheWorks",
+          "url": "https://nicheworks.app/"
+        },
+        {
+          "@type": "WebPage",
+          "name": "Construction Tools & Slang Atlas | Guide | NicheWorks",
+          "url": "https://nicheworks.app/tools/construction-tools-atlas/howto/en/",
+          "isPartOf": {
+            "@type": "WebSite",
+            "url": "https://nicheworks.app/"
+          }
+        }
+      ]
+    }
+  </script>
+
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <style>
-    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    :root{
+      color-scheme: light;
+      --bg:#f5f7fb;
+      --border:#d7dbe4;
+      --text:#121826;
+      --muted:#5b6476;
+      --panel:#ffffff;
+      --panel-2:#f2f4f8;
+      --accent:#2563eb;
+      --accent-contrast:#ffffff;
+      --card-bg:var(--panel);
+      --button-bg:var(--panel);
+      --ad-border:#d4d4d4;
+      --ad-text:#9ca3af;
+      --code-bg:#f3f4f6;
+      --code-border:#e5e7eb;
+    }
+    html[data-theme="dark"]{
+      color-scheme: dark;
+      --bg:#0f1116;
+      --border:#252b35;
+      --text:#e7ecf5;
+      --muted:#9ba4b5;
+      --panel:#171b23;
+      --panel-2:#1f2530;
+      --accent:#6fb1ff;
+      --accent-contrast:#ffffff;
+      --card-bg:var(--panel);
+      --button-bg:var(--panel-2);
+      --ad-border:rgba(231,236,245,0.2);
+      --ad-text:var(--muted);
+      --code-bg:rgba(231,236,245,0.08);
+      --code-border:rgba(231,236,245,0.16);
+    }
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
-    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-header{padding:16px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:40}
+    .header-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
-    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
-    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .ad-slot{margin:12px 0;padding:8px;border:1px dashed var(--border);border-radius:10px;min-height:60px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--muted);background:var(--panel)}
+    .ad-top{margin-top:0}
+    .ad-bottom{margin-bottom:0}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:var(--card-bg);margin:12px 0}
     .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
-    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .btn{border:1px solid var(--border);background:var(--button-bg);padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--accent);color:var(--accent-contrast);border-color:var(--accent)}
     .muted{color:var(--muted)}
     ol,ul{padding-left:20px}
-    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
     .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .header-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .theme-toggle{border:1px solid var(--border);background:var(--panel-2);color:var(--text);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
+    .donate-button{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--accent);color:var(--accent-contrast);font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap}
+    .donate-button--alt{background:var(--panel-2);color:var(--text)}
     .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
     .nw-footer a{color:inherit}
-    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+    .donation-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0}
+    .donation-link{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel-2);color:var(--text);font-size:12px;text-decoration:none}
+    .donation-link:hover{opacity:0.9}
+    code{background:var(--code-bg);border:1px solid var(--code-border);padding:2px 6px;border-radius:8px}
+    @media (max-width:640px){.header-actions{flex-direction:column;align-items:flex-start}}
   </style>
+  <meta name="robots" content="index,follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Construction Tools &amp;amp;amp; Slang Atlas | Guide",
+    "url": "https://nicheworks.app/tools/construction-tools-atlas/howto/en/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Browse and search construction field terms, tools, and work processes by category. JA/EN toggle. Browser-only, no storage.",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
 </head>
 
 <body>
   <header class="nw-header">
-    <div class="topnav">
-      <a href="../">JA</a>
-      <a href="../../">Tool</a>
+    <div class="header-actions">
+      <div class="topnav">
+        <a href="../">JA</a>
+        <a href="../../">Tool</a>
+      </div>
+      <div class="header-buttons" aria-label="Header actions">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Theme toggle">Dark</button>
+        <a class="donate-button" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">Donate</a>
+        <a class="donate-button donate-button--alt" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+      </div>
     </div>
     <h1 style="margin:10px 0 6px">Construction Tools & Slang Atlas: Guide</h1>
     <p class="muted" style="margin:0">Browse and search field terms, tools, and work processes (JA/EN toggle).</p>
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">Ad slot (placeholder)</div>
+    <div class="ad-slot ad-top">Ad slot (stable content)</div>
 
     <section class="card">
       <h2 style="margin:0 0 8px">What it does</h2>
@@ -90,13 +226,37 @@
       </ul>
     </section>
 
-    <div class="ad-slot ad-bottom">Ad slot (placeholder)</div>
+    <div class="ad-slot ad-bottom">Ad slot (stable content)</div>
   </main>
 
   <footer class="nw-footer">
     <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
     <p>This site may contain ads.</p>
-    <p><a href="https://nicheworks.pages.dev/" target="_blank" rel="noopener">nicheworks.pages.dev</a></p>
+    <div class="donation-links" aria-label="Support NicheWorks">
+      <a class="donation-link" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+      <a class="donation-link" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+    </div>
+    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
+
+  <script>
+    (() => {
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+      const apply = () => {
+        const stored = localStorage.getItem("nw_theme");
+        const theme = stored === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        toggle.textContent = theme === "dark" ? "Light" : "Dark";
+      };
+      apply();
+      toggle.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        localStorage.setItem("nw_theme", next);
+        document.documentElement.dataset.theme = next;
+        toggle.textContent = next === "dark" ? "Light" : "Dark";
+      });
+    })();
+  </script>
 </body>
 </html>

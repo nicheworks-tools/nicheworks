@@ -1,0 +1,58 @@
+name: Update JP Postal Lite data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 1 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Regenerate postal JSON from Japan Post official data
+        run: node tools/jp-postal-lite/scripts/build-postal-data.mjs
+
+      - name: Validate generated postal JSON files
+        run: |
+          set -euo pipefail
+          count=$(find tools/jp-postal-lite/data -maxdepth 1 -name '*.json' | wc -l | tr -d ' ')
+          if [ "$count" != "47" ]; then
+            echo "Expected 47 prefecture JSON files, got $count"
+            exit 1
+          fi
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const dir = path.join('tools', 'jp-postal-lite', 'data');
+          for (const file of fs.readdirSync(dir).filter((name) => name.endsWith('.json'))) {
+            const fullPath = path.join(dir, file);
+            const rows = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+            if (!Array.isArray(rows) || rows.length === 0) {
+              throw new Error(`${file} is empty or invalid`);
+            }
+            for (const row of rows) {
+              if (!/^\d{7}$/.test(String(row.postal_code || ''))) throw new Error(`${file}: invalid postal_code`);
+              if (!/^\d{3}-\d{4}$/.test(String(row.postal_hyphen || ''))) throw new Error(`${file}: invalid postal_hyphen`);
+              if (!row.pref || !row.city || !row.full) throw new Error(`${file}: missing required field`);
+            }
+          }
+          NODE
+
+      - name: Commit updated postal data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update JP Postal Lite postal data"
+          file_pattern: tools/jp-postal-lite/data/*.json

@@ -1,111 +1,229 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Construction Tools & Slang Atlas</title>
-  <meta name="description" content="Browse, search, and learn core construction field terms, tools, and work processes." />
-  <link rel="stylesheet" href="./style.css" />
-
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>建設工具・現場用語辞典｜Construction Tools Atlas | NicheWorks</title>
+  <meta name="description" content="建設工具・現場用語辞典｜Construction Tools Atlas は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。建設工具・現場用語・作業名・別名・英語表記をすばやく検索できます。">
+  <link rel="canonical" href="https://nicheworks.app/tools/construction-tools-atlas/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./content-polish.css">
+  <link rel="stylesheet" href="./detail-layout-fix.css?v=20260510-detail-5">
+  <meta name="robots" content="index,follow">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="建設工具・現場用語辞典｜Construction Tools Atlas | NicheWorks">
+  <meta property="og:description" content="建設工具・現場用語辞典｜Construction Tools Atlas は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。建設工具・現場用語・作業名・別名・英語表記をすばやく検索できます。">
+  <meta property="og:url" content="https://nicheworks.app/tools/construction-tools-atlas/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="建設工具・現場用語辞典｜Construction Tools Atlas | NicheWorks">
+  <meta name="twitter:description" content="建設工具・現場用語辞典｜Construction Tools Atlas は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。建設工具・現場用語・作業名・別名・英語表記をすばやく検索できます。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "建設工具・現場用語辞典｜Construction Tools Atlas",
+    "url": "https://nicheworks.app/tools/construction-tools-atlas/",
+    "applicationCategory": "ReferenceApplication",
+    "operatingSystem": "All",
+    "description": "建設工具・現場用語辞典｜Construction Tools Atlas は、建設工具・現場用語・作業名・別名・英語表記を検索できる無料の軽量辞典です。",
+    "inLanguage": ["ja", "en"],
+    "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
+  }
   </script>
 </head>
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="title-block">
-        <p class="eyebrow" id="eyebrow">Construction Tools &amp; Slang Atlas</p>
-        <h1 id="heroTitle">Browse, search, and learn core field terms.</h1>
-        <p class="lede" id="heroLede">Quickly find terminology, tools, and work processes across categories.</p>
-      </div>
-      <button id="langToggle" class="lang-toggle" type="button" aria-label="Language toggle">JA / EN</button>
-    </header>
+  <div id="overlay" class="overlay" hidden></div>
 
-    <section class="controls" aria-label="Search and filters">
-      <div class="control search-control">
-        <label id="searchLabel" for="searchInput">Search</label>
-        <input id="searchInput" type="search" name="q" placeholder="Search tools, slang, descriptions" autocomplete="off" />
+  <header class="topbar">
+    <div class="topbar__row">
+      <div class="brand" id="brandTitle">建設工具・現場用語辞典</div>
+      <div class="topbar__right">
+        <button id="themeBtn" class="iconbtn" type="button">☼</button>
+        <button id="langBtn" class="pillbtn" type="button">JA / EN</button>
+        <button id="menuBtn" class="pillbtn" type="button">メニュー</button>
+        <button id="supportBtn" class="pillbtn" type="button">支援</button>
       </div>
+    </div>
+  </header>
 
-      <div class="control filter-control">
-        <label id="categoryLabel" for="categorySelect">Category</label>
-        <select id="categorySelect" name="cat">
-          <option id="categoryDefaultOption" value="">All categories</option>
-        </select>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="pageTitle">
+      <h1 id="pageTitle">建設工具・現場用語辞典</h1>
+      <p id="pageLead">建設現場で使う工具名、作業名、別名、英語表記を検索できます。</p>
+      <p id="privacyNote" class="muted">検索内容はサーバーに送信されません。</p>
+    </section>
+
+    <div class="search">
+      <div class="search__box">
+        <span class="search__icon">🔎</span>
+        <input id="searchInput" class="search__input" type="search" placeholder="例：インパクト / 石膏ボード / 床レベラー / torque wrench">
+        <button id="clearBtn" class="pillbtn search__clear" type="button">×</button>
       </div>
+    </div>
 
-      <div class="control filter-control">
-        <label id="taskLabel" for="taskSelect">Task</label>
-        <select id="taskSelect" name="task">
-          <option id="taskDefaultOption" value="">All tasks</option>
-        </select>
+    <section class="filters">
+      <div id="actionChips" class="chips"></div>
+      <div class="chips chips--secondary">
+        <button id="filterOpenBtn" class="pillbtn filterOpenBtn" type="button">絞り込み▼</button>
+        <button id="categoryBtn" class="pillbtn" type="button">カテゴリ</button>
+        <button id="taskBtn" class="pillbtn" type="button">作業</button>
       </div>
     </section>
 
-    <section class="content" aria-label="Results and details">
-      <div class="results-panel">
-        <div class="results-header">
-          <h2 id="resultsTitle">Results</h2>
-          <p class="result-count" id="resultCount"></p>
-        </div>
-
-        <div id="results" class="results-list" role="list"></div>
-
-        <div id="emptyState" class="empty-state" hidden>
-          No results found. Try a different keyword or filter.
-        </div>
+    <section class="results" aria-live="polite">
+      <div class="results__meta">
+        <div id="resultCount" class="results__count">Results: 0</div>
+        <div id="hintText" class="results__hint"></div>
       </div>
-
-      <aside class="detail-panel" aria-live="polite">
-        <div id="detailPlaceholder" class="detail-placeholder">
-          Select an entry to view details.
-        </div>
-
-        <div id="detail" class="detail" hidden>
-          <p class="detail-category" id="detailCategory"></p>
-          <h3 id="detailTitle"></h3>
-          <p class="detail-subtitle" id="detailSubtitle"></p>
-
-          <div class="detail-section" id="detailDescription"></div>
-
-          <div class="detail-meta">
-            <!-- ✅ Task 表示（IDではなくラベルを入れる想定） -->
-            <div class="meta-block">
-              <p class="meta-label" id="detailTasksLabel">Task</p>
-              <p id="detailTasks"></p>
-            </div>
-
-            <div class="meta-block">
-              <p class="meta-label" id="detailAliasesLabel">Aliases</p>
-              <p id="detailAliases"></p>
-            </div>
-
-            <div class="meta-block">
-              <p class="meta-label" id="detailTagsLabel">Tags</p>
-              <p id="detailTags"></p>
-            </div>
-
-            <div class="meta-block">
-              <p class="meta-label" id="detailIdLabel">ID</p>
-              <p id="detailId"></p>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <div id="statusArea" class="status"></div>
+      <div id="resultList" class="list" role="list"></div>
+      <div id="loadMoreWrap" class="results__more" hidden>
+        <button id="loadMoreBtn" class="pillbtn" type="button">Load more</button>
+        <div id="loadMoreHint" class="results__morehint"></div>
+      </div>
     </section>
 
-    <nav class="info-links" aria-label="Reference pages">
-      <a id="aboutLink" href="./pages/about.html">About</a>
-      <a id="methodLink" href="./pages/method.html">Method</a>
-      <a id="disclaimerLink" href="./pages/disclaimer.html">Disclaimer</a>
-      <a id="creditsLink" href="./pages/credits.html">Credits</a>
-    </nav>
-  </div>
+    <section id="faq" class="faq nw-section">
+      <h2>よくある質問</h2>
+      <details><summary>このツールは何に使えますか？</summary><p>建設工具や現場用語の意味、別名、英語表記を確認するために使えます。</p></details>
+      <details><summary>正式な専門辞典ですか？</summary><p>いいえ。現場用語の理解を助ける簡易辞典です。正確な定義・安全基準・法令上の確認は公式資料をご確認ください。</p></details>
+      <details><summary>検索内容は送信されますか？</summary><p>検索はブラウザ内で処理されます。検索語をサーバーに送信する用途ではありません。</p></details>
+    </section>
 
-  <!-- engine.js が先、app.js が後 -->
-  <script src="./core/engine.js"></script>
-  <script src="./app.js"></script>
+    <section id="supportBlock" class="nw-donate nw-section">
+      <p class="nw-donate-text">この辞典が役に立ったら、開発継続のためにご支援いただけると助かります。</p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </section>
+
+    <section id="relatedTools" class="nw-links nw-section" aria-label="関連ツール">
+      <a href="/tools/manual-finder/">ManualFinder</a>
+      <a href="/tools/old-kanji-reference/">旧字体一覧</a>
+      <a href="/tools/kanji-modernizer/">Kanji Modernizer</a>
+      <a href="/tools/filetype-sniffer/">FileType Sniffer</a>
+    </section>
+  </main>
+
+  <div class="donation-data" data-ofuse="https://ofuse.me/nicheworks" data-kofi="https://ko-fi.com/nicheworks" hidden></div>
+
+  <aside id="detailSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top">
+      <button id="detailClose" class="iconbtn" type="button">×</button>
+      <h2 id="detailTitle" class="sheet__title">Detail</h2>
+      <button id="detailStar" class="starbtn" type="button">☆</button>
+    </div>
+    <div class="sheet__body sheet__body--compact">
+      <section class="termblock">
+        <div id="detailChips" class="termblock__chiprow"></div>
+        <div id="detailTerms" class="termblock__terms"></div>
+        <div id="detailDesc" class="termblock__desc"></div>
+        <ul id="detailBullets" class="termblock__bullets"></ul>
+      </section>
+      <div id="detailTabs" class="tabs">
+        <button class="tab tab--active" data-tab="meaning" type="button">Meaning</button>
+        <button class="tab" data-tab="examples" type="button">Examples</button>
+        <button class="tab" data-tab="aliases" type="button">Aliases</button>
+        <button class="tab" data-tab="meta" type="button">Meta</button>
+      </div>
+      <div id="tabMeaning" class="tabpanel"></div>
+      <div id="tabExamples" class="tabpanel" hidden></div>
+      <div id="tabAliases" class="tabpanel" hidden></div>
+      <div id="tabMeta" class="tabpanel" hidden></div>
+      <div class="supportInline"><button id="supportInlineBtn" class="pillbtn" type="button">支援する</button></div>
+    </div>
+  </aside>
+
+  <aside id="supportSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top">
+      <button id="supportClose" class="iconbtn" type="button">×</button>
+      <h2 class="sheet__title" id="supportSheetTitle">支援</h2>
+      <span aria-hidden="true"></span>
+    </div>
+    <div class="sheet__body sheet__body--compact">
+      <p id="supportLead" class="sheetLead">この辞典が役に立ったら、開発継続のためにご支援いただけると助かります。</p>
+      <div class="sheetActions">
+        <a id="ofuseLink" class="pillbtn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a>
+        <a id="kofiLink" class="pillbtn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a>
+      </div>
+      <p id="supportNote" class="muted">外部の支援ページを新しいタブで開きます。</p>
+    </div>
+  </aside>
+
+  <aside id="menuSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top"><button id="menuClose" class="iconbtn" type="button">×</button><h2 class="sheet__title" id="menuSheetTitle">メニュー</h2><span aria-hidden="true"></span></div>
+    <div class="sheet__body sheet__body--compact menuBody">
+      <button id="howtoOpen" class="menuLink" type="button">使い方</button>
+      <a class="menuLink menuJump" href="#faq">よくある質問</a>
+      <a class="menuLink menuJump" href="#relatedTools">関連ツール</a>
+      <a class="menuLink menuJump" href="#supportBlock">支援リンク</a>
+      <a class="menuLink" href="https://nicheworks.app/">NicheWorks Home</a>
+      <div class="menuGroup">
+        <label class="menuGroup__label"><input id="favsOnly" type="checkbox"> <span id="favsOnlyLabel">★ お気に入りのみ表示</span></label>
+        <p id="favsNote" class="muted">各用語の★でお気に入り保存できます。このブラウザ内だけに保存されます。</p>
+        <div class="menuGroup__actions"><button id="exportFavsBtn" class="pillbtn" type="button">お気に入りを書き出し</button><button id="importFavsBtn" class="pillbtn" type="button">お気に入りを読み込み</button></div>
+      </div>
+    </div>
+  </aside>
+
+  <aside id="howtoSheet" class="sheet sheet--bottom" hidden>
+    <div class="sheet__top"><button id="howtoClose" class="iconbtn" type="button">×</button><h2 class="sheet__title" id="howtoSheetTitle">使い方</h2><span aria-hidden="true"></span></div>
+    <div class="sheet__body sheet__body--compact"><ul id="howtoList" class="howtoList"><li>検索欄に工具名・作業名・別名・英語名を入力します。</li><li>結果の用語をタップすると、意味・例・別名・分類を確認できます。</li><li>★を押すとお気に入りに保存できます。</li><li>メニュー内の「お気に入りのみ表示」で保存済み用語だけに絞れます。</li><li>JA / EN で表示言語を切り替えられます。</li><li>カテゴリ・作業フィルタで絞り込めます。</li></ul></div>
+  </aside>
+
+  <aside id="filterSheet" class="sheet" hidden>
+    <button id="filterClose" class="iconbtn" type="button">×</button>
+    <h2 id="filterTitle">Filter</h2><p id="filterDesc"></p>
+    <h3 class="filterGroup__title">Action</h3><div id="filterActionItems"></div>
+    <h3 class="filterGroup__title">Category</h3><div id="filterCategoryItems"></div>
+    <h3 class="filterGroup__title">Task</h3><div id="filterTaskItems"></div>
+    <button id="filterApplyBtn" class="pillbtn" type="button">Apply</button>
+    <button id="filterResetBtn" class="pillbtn" type="button">Reset</button>
+  </aside>
+
+  <footer><p id="footerDisclaimer">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p></footer>
+
+  <script src="./data/quality-loader.js?v=20260513-dedupe-1"></script>
+  <script src="./app.runtime.js?v=20260513-runtime-1"></script>
+  <script src="./detail-dictionary-fix.js?v=20260510-detail-5"></script>
+  <script src="./detail-image-hotfix.js?v=20260513-image-manifest-11"></script>
+  <script>
+    (() => {
+      const closeMenu = () => document.getElementById('menuClose')?.click();
+      document.querySelectorAll('.menuJump').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          closeMenu();
+          setTimeout(() => target?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+        });
+      });
+      const polishSupport = () => {
+        const title = document.getElementById('supportSheetTitle');
+        const note = document.getElementById('supportNote');
+        const lead = document.getElementById('supportLead');
+        if (title) title.textContent = document.documentElement.lang === 'en' ? 'Support' : '支援';
+        if (lead) lead.textContent = document.documentElement.lang === 'en' ? 'If this dictionary helps, a small contribution supports continued development.' : 'この辞典が役に立ったら、開発継続のためにご支援いただけると助かります。';
+        if (note) note.textContent = document.documentElement.lang === 'en' ? 'External support pages open in a new tab.' : '外部の支援ページを新しいタブで開きます。';
+      };
+      document.getElementById('supportBtn')?.addEventListener('click', () => setTimeout(polishSupport, 0));
+      document.getElementById('langBtn')?.addEventListener('click', () => setTimeout(polishSupport, 0));
+      polishSupport();
+    })();
+  </script>
 </body>
 </html>

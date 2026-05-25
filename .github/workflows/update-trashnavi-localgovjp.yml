@@ -1,0 +1,30 @@
+name: Update TrashNavi local government dataset
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/update-trashnavi-localgovjp.mjs'
+      - '.github/workflows/update-trashnavi-localgovjp.yml'
+  schedule:
+    - cron: '0 18 1 * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-trashnavi-localgovjp:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build local TrashNavi dataset
+        run: node scripts/update-trashnavi-localgovjp.mjs
+      - name: Commit dataset changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update TrashNavi localgovjp dataset
+          file_pattern: tools/trashnavi/data/localgovjp-lite.json

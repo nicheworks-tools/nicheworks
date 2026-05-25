@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>照明チェック｜Light Check | NicheWorks</title>
+  <meta name="description" content="カメラ映像から、明るさ・色かぶり・影・フリッカー（ちらつき）を相対評価する無料ツール。スマホ1画面で結果と改善ヒントまで確認できます。" />
+
+  <link rel="canonical" href="https://nicheworks.app/tools/light-check/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NicheWorks" />
+  <meta property="og:title" content="Light Check | NicheWorks" />
+  <meta property="og:description" content="Check brightness, color cast, shadows, and flicker from your camera (relative analysis)." />
+  <meta property="og:url" content="https://nicheworks.app/tools/light-check/" />
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Light Check",
+    "url": "https://nicheworks.app/tools/light-check/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Relative lighting analysis from camera: brightness, color cast, shadows, flicker.",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">
+      <span data-i18n="ja">ライトチェック</span>
+      <span data-i18n="en">Light Check</span>
+    </h1>
+
+    <p class="nw-subtitle">
+      <span data-i18n="ja">照明の明るさ・色かぶり・影・ちらつきを、その場でチェック</span>
+      <span data-i18n="en">Check brightness, color cast, shadows, and flicker — instantly</span>
+    </p>
+
+    <p class="nw-note">
+      <span data-i18n="ja">※ lux実測ではなく、カメラ映像からの<strong>相対評価</strong>です。</span>
+      <span data-i18n="en">Not a lux meter. This is <strong>relative</strong> analysis from the camera image.</span>
+    </p>
+
+    <div class="nw-lang-switch" aria-label="Language switch">
+      <button type="button" data-lang="ja">JP</button> /
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">
+      <span data-i18n="ja">広告枠（準備中）</span>
+      <span data-i18n="en">Ad slot (coming soon)</span>
+    </div>
+
+    <section class="lc-card" aria-label="Tool">
+      <div class="lc-grid">
+        <div class="lc-preview" aria-label="Camera preview placeholder">
+          <div class="lc-preview-inner">
+            <div class="lc-preview-aspect">
+              <div class="lc-preview-placeholder">
+                <span data-i18n="ja">プレビュー（LC-02で実装）</span>
+                <span data-i18n="en">Preview (implemented in LC-02)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lc-panel" aria-label="Controls placeholder">
+          <div class="lc-row">
+            <button class="lc-btn" type="button" disabled>
+              <span data-i18n="ja">開始</span><span data-i18n="en">Start</span>
+            </button>
+            <button class="lc-btn" type="button" disabled>
+              <span data-i18n="ja">停止</span><span data-i18n="en">Stop</span>
+            </button>
+            <button class="lc-btn" type="button" disabled>
+              <span data-i18n="ja">反転</span><span data-i18n="en">Flip</span>
+            </button>
+            <button class="lc-btn" type="button" disabled>
+              <span data-i18n="ja">Lite</span><span data-i18n="en">Lite</span>
+            </button>
+          </div>
+
+          <div class="lc-results" aria-label="Results placeholder">
+            <div class="lc-results-title">
+              <span data-i18n="ja">結果（仮）</span>
+              <span data-i18n="en">Results (stub)</span>
+            </div>
+            <div class="lc-chips" role="list">
+              <span class="lc-chip" role="listitem">B: -</span>
+              <span class="lc-chip" role="listitem">C: -</span>
+              <span class="lc-chip" role="listitem">S: -</span>
+              <span class="lc-chip" role="listitem">F: -</span>
+            </div>
+
+            <p class="lc-small">
+              <span data-i18n="ja">ここはLC-02以降で「1画面UI＋ボトムシート」へ拡張する。</span>
+              <span data-i18n="en">This area will expand to the one-screen UI + bottom sheets in LC-02+.</span>
+            </p>
+
+            <p class="lc-small">
+              <a class="lc-link" href="./usage.html">
+                <span data-i18n="ja">使い方・制限・FAQ →</span>
+                <span data-i18n="en">How to use / limits / FAQ →</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">
+      <span data-i18n="ja">広告枠（準備中）</span>
+      <span data-i18n="en">Ad slot (coming soon)</span>
+    </div>
+
+    <div class="nw-donate">
+      <p class="nw-donate-text">
+        <span data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</span>
+        <span data-i18n="en">If this tool helps, consider supporting continued development.</span>
+      </p>
+      <div class="nw-donate-links">
+        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">
+      <span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</span>
+      <span data-i18n="en">This site may contain ads. Accuracy is not guaranteed; verify with official sources.</span>
+    </p>
+    <p class="nw-footer-line">
+      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

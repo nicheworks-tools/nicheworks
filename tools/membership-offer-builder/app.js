@@ -1,0 +1,21 @@
+(() => {
+  const STRIPE='https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
+  const KEY='nw_pro_membership_offer_builder';
+  const $=(id)=>document.getElementById(id);
+  const $$=(s)=>Array.from(document.querySelectorAll(s));
+  const lang=()=>document.documentElement.lang==='en'?'en':'ja';
+  const isPro=()=>localStorage.getItem(KEY)==='1'||!!localStorage.getItem('nw_pro_key');
+  let made=false;
+  function activate(){const u=new URL(location.href);if(u.searchParams.get('pro')==='1'){localStorage.setItem(KEY,'1');u.searchParams.delete('pro');history.replaceState({},'',u.toString())}}
+  function applyLang(l){$$('[data-i18n]').forEach(e=>e.style.display=e.dataset.i18n===l?'':'none');$$('.nw-lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));document.documentElement.lang=l;localStorage.setItem('nw_lang',l);window.dispatchEvent(new CustomEvent('nw:lang'));proBox()}
+  async function copy(t){try{await navigator.clipboard.writeText(t);return true}catch(_){return false}}
+  function dl(n,t){const b=new Blob([t],{type:'text/markdown;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),800)}
+  window.NW={applyLang,copyToClipboard:copy,downloadText:dl,hasPro:isPro};
+  function toast(m){const e=$('toast');if(!e)return;e.textContent=m;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2200)}
+  function v(id,fb='未入力'){return ($(id)?.value||'').trim()||fb}
+  function build(){return ['# メンバーシップ提案案','','■ 提案概要',`${v('topicInput')}をテーマに、${v('audienceInput')}向けのメンバーシップとして設計します。`,'','■ 提供内容',v('deliverablesInput'),'','■ 提供頻度',v('frequencyInput'),'','■ 価格案',v('priceInput','価格は要検討'),'','■ プラン構成',v('planCountInput'),'','■ 提供しないこと',v('notIncludedInput'),'','■ 解約/返金条件',v('cancelRefundInput'),'','■ 初月オンボーディング',v('firstMonthInput'),'','■ 継続施策',v('retentionInput'),'','■ コミュニティ',v('communityInput'),'','■ 運営負荷',v('workloadLimitInput'),'','---','','# Membership offer draft','','Topic: '+v('topicInput','Not provided'),'Audience: '+v('audienceInput','Not provided'),'Deliverables: '+v('deliverablesInput','Not provided'),'Frequency: '+v('frequencyInput','Not provided'),'Pricing: '+v('priceInput','To be decided')].join('\n')}
+  function proBox(){if(!$('nwProBox')){const s=document.createElement('section');s.id='nwProBox';s.className='nw-note';s.innerHTML=`<strong>Pro</strong><p id="nwProMsg"></p><p><a class="btn primary" href="${STRIPE}" target="_blank" rel="noopener">Unlock Pro / Proを購入</a></p><p class="nw-muted">After payment, open this page with ?pro=1.</p>`;document.querySelector('main')?.insertBefore(s,document.querySelector('main .card')?.nextSibling||null)}$('nwProMsg').textContent=isPro()?'Pro active: Markdown export is unlocked. / Pro解放済み。':'Pro locks Markdown export. / ProでMarkdown保存を解放。'}
+  function needPro(){if(isPro())return true;proBox();toast(lang()==='ja'?'Pro限定機能です。購入後に ?pro=1 で解放してください。':'Pro feature locked. Reopen with ?pro=1 after purchase.');return false}
+  function init(){activate();let l=(navigator.language||'').toLowerCase().startsWith('ja')?'ja':'en';try{const s=localStorage.getItem('nw_lang');if(s==='ja'||s==='en')l=s}catch(_){}$$('.nw-lang-switch button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));applyLang(l);$('offerOutput').value=lang()==='ja'?'入力後に「提案を作成」を押してください。':'Fill in the fields, then click Build offer.';$('buildOfferBtn').addEventListener('click',()=>{ $('offerOutput').value=build(); made=true; });$('copyOfferBtn').addEventListener('click',async()=>{if(!made)return toast(lang()==='ja'?'先に提案を生成してください。':'Build an offer first.');toast(await copy($('offerOutput').value)?(lang()==='ja'?'コピーしました。':'Copied.'):'Copy failed')});const btn=document.createElement('button');btn.className='btn';btn.type='button';btn.textContent='Pro: Save Markdown';btn.addEventListener('click',()=>{if(!needPro())return;if(!made)return toast(lang()==='ja'?'先に提案を生成してください。':'Build an offer first.');dl('membership-offer-pro.md',$('offerOutput').value)});$('copyOfferBtn').parentNode.appendChild(btn);}
+  document.addEventListener('DOMContentLoaded',init);
+})();

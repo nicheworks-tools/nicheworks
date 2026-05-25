@@ -1,0 +1,35 @@
+name: Validate UnitMaster units data
+
+on:
+  pull_request:
+    paths:
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/scripts/validate-units-json.mjs'
+      - '.github/workflows/validate-unitmaster-units.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/unitmaster/data/units.json'
+      - 'tools/unitmaster/scripts/validate-units-json.mjs'
+      - '.github/workflows/validate-unitmaster-units.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-unitmaster-units:
+    name: Validate UnitMaster units.json
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate UnitMaster units.json
+        run: node tools/unitmaster/scripts/validate-units-json.mjs

@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["ローラー|ペイントローラー|paint roller", "ローラー", "Paint roller", "./images/pilot/finishing-paint-roller.svg?v=20260513-asset-15", "広い面に塗料を均一に塗るための塗装工具。", "Painting tool used to apply paint evenly over broad surfaces."],
+    ["刷毛|paint brush", "刷毛", "Paint brush", "./images/pilot/finishing-paint-brush.svg?v=20260513-asset-15", "細部や端部を塗るための毛付きの塗装工具。", "Brush used for detail painting and edges."],
+    ["塗料皿|paint tray", "塗料皿", "Paint tray", "./images/pilot/finishing-paint-tray.svg?v=20260513-asset-15", "ローラーに塗料を含ませるための受け皿。", "Tray used to hold paint for rollers."],
+    ["パテベラ|filler spatula", "パテベラ", "Filler spatula", "./images/pilot/filler-spatula.svg?v=20260513-asset-15", "パテや補修材をのばすためのヘラ。", "Spatula used to spread filler or repair compound."],
+    ["研磨ブロック|abrasive block", "研磨ブロック", "Abrasive block", "./images/pilot/abrasive-pad-block.svg?v=20260513-asset-15", "表面をならすための研磨用ブロック。", "Block used to smooth surfaces."],
+    ["コーキングガン|sealant applicator", "コーキングガン", "Sealant applicator", "./images/pilot/sealant-applicator.svg?v=20260513-asset-15", "シーリング材を押し出して充填するための工具。", "Applicator used to dispense sealant."],
+    ["シーリングヘラ|sealant spatula", "シーリングヘラ", "Sealant spatula", "./images/pilot/sealant-spatula.svg?v=20260513-asset-15", "シーリング材の表面を整えるためのヘラ。", "Spatula used to shape and finish sealant."],
+    ["マスキングテープ|masking tape", "マスキングテープ", "Masking tape", "./images/pilot/masking-tape-roll.svg?v=20260513-asset-15", "塗装やシーリングで境界を養生するためのテープ。", "Tape used to mask edges during painting or sealing."],
+    ["養生シート|drop cloth", "養生シート", "Drop cloth", "./images/pilot/drop-cloth-sheet.svg?v=20260513-asset-15", "床や周辺を汚れから守るために敷くシート。", "Sheet used to cover and protect floors or nearby areas."],
+    ["目地ローラー|seam roller", "目地ローラー", "Seam roller", "./images/pilot/seam-roller.svg?v=20260513-asset-15", "シートやクロスの継ぎ目を押さえるためのローラー。", "Roller used to press seams on sheets or wall covering."]
+  ]
+}

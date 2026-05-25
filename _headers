@@ -1,0 +1,117 @@
+/robots.txt
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/sitemap-review.xml
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+  Content-Type: application/xml; charset=utf-8
+
+/sitemap-index.xml
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+  Content-Type: application/xml; charset=utf-8
+
+/sitemap.xml
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+  Content-Type: application/xml; charset=utf-8
+
+/sitemap.xml.gz
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/x-gzip
+
+/tools/construction-tools-atlas/*
+  X-Robots-Tag: noindex, follow
+
+/tools/api-key-token-redactor/*
+  X-Robots-Tag: noindex, follow
+
+/tools/color-replace/*
+  X-Robots-Tag: noindex, follow
+
+/tools/command-safety-checker/*
+  X-Robots-Tag: noindex, follow
+
+/tools/csv-tidy/*
+  X-Robots-Tag: noindex, follow
+
+/tools/exif-cleaner-mini/*
+  X-Robots-Tag: noindex, follow
+
+/tools/filetype-sniffer/*
+  X-Robots-Tag: noindex, follow
+
+/tools/image-redact/*
+  X-Robots-Tag: noindex, follow
+
+/tools/json-repair/*
+  X-Robots-Tag: noindex, follow
+
+/tools/json2mermaid/*
+  X-Robots-Tag: noindex, follow
+
+/tools/kanji-modernizer/*
+  X-Robots-Tag: noindex, follow
+
+/tools/laundry-code-decode/*
+  X-Robots-Tag: noindex, follow
+
+/tools/linebreak-doctor/*
+  X-Robots-Tag: noindex, follow
+
+/tools/log-formatter/*
+  X-Robots-Tag: noindex, follow
+
+/tools/manual-finder/*
+  X-Robots-Tag: noindex, follow
+
+/tools/pdf-page-tools-mini/*
+  X-Robots-Tag: noindex, follow
+
+/tools/pdf2csv-local/*
+  X-Robots-Tag: noindex, follow
+
+/tools/unitmaster/*
+  X-Robots-Tag: noindex, follow
+
+/tools/*/usage.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/usage-en.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/howto.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/howto-en.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/howto/*
+  X-Robots-Tag: noindex, follow
+
+/tools/*/en/usage.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/en/howto.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/pro.html
+  X-Robots-Tag: noindex, follow
+
+/tools/*/pro/*
+  X-Robots-Tag: noindex, follow
+
+/tools/earth-map-suite/*
+  X-Robots-Tag: noindex, follow
+
+/tools/earth-alerts/*
+  X-Robots-Tag: noindex, follow
+
+/tools/earth-timeseries/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/*
+  X-Robots-Tag: noindex, follow
+
+/tools/motion-atlas/pro/*
+  X-Robots-Tag: noindex, follow
+
+/tools/motion-atlas/ja/pro/*
+  X-Robots-Tag: noindex, follow

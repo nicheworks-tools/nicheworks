@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>洗濯物・布団の外干し判定｜DryMeter ガイド | NicheWorks</title>
+  <meta name="description" content="現在地の天気（雨・湿度・風・気温）から、洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示。ブラウザ完結・保存なし。">
+  <link rel="canonical" href="https://nicheworks.app/tools/dry-meter/howto/">
+
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/dry-meter/howto/" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/dry-meter/howto/en/" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <style>
+    :root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.65}
+    .nw-header{padding:20px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+    .nw-main{max-width:960px;margin:0 auto;padding:18px 16px}
+    .ad-slot{margin:12px 0 16px;padding:8px;border:1px dashed #d4d4d4;font-size:11px;color:#9ca3af;text-align:center;min-height:60px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;margin:12px 0}
+    .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;display:inline-block}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .muted{color:var(--muted)}
+    ol,ul{padding-left:20px}
+    .topnav{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+    .topnav a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+    .nw-footer a{color:inherit}
+    code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
+  </style>
+
+  <meta property="og:url" content="https://nicheworks.app/tools/dry-meter/howto/">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="洗濯物・布団の外干し判定｜DryMeter ガイド | NicheWorks">
+  <meta property="og:description" content="現在地の天気（雨・湿度・風・気温）から、洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示。ブラウザ完結・保存なし。">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="洗濯物・布団の外干し判定｜DryMeter ガイド | NicheWorks">
+  <meta name="twitter:description" content="現在地の天気（雨・湿度・風・気温）から、洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示。ブラウザ完結・保存なし。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "洗濯物・布団の外干し判定｜DryMeter ガイド",
+    "url": "https://nicheworks.app/tools/dry-meter/howto/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "現在地の天気（雨・湿度・風・気温）から、洗濯物や布団の外干し失敗リスクを🟢🟡🔴で判定。理由も短く表示。ブラウザ完結・保存なし。",
+    "inLanguage": [
+      "ja",
+      "en"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NicheWorks",
+      "url": "https://nicheworks.app/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header class="nw-header">
+    <div class="topnav">
+      <a href="./en/">EN</a>
+      <a href="../">Tool</a>
+    </div>
+    <h1 style="margin:10px 0 6px">DryMeter：使い方</h1>
+    <p class="muted" style="margin:0">雨・湿度・風・気温から、外干しの「失敗しやすさ」を🟢🟡🔴で判断します（保存なし）。</p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">広告枠</div>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">このツールでできること</h2>
+      <ul>
+        <li>現在地の天気（雨 / 湿度 / 風 / 気温）を元に、外干しリスクを <code>🟢🟡🔴</code> で表示</li>
+        <li>洗濯物 / 布団 の切替がある場合は、用途に合わせて判定を変える</li>
+        <li>結果の理由を短く表示（例：湿度が高い / 風が弱い / 雨リスク 等）</li>
+        <li>ブラウザ完結・保存なし</li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn" href="./en/">English guide</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">こんなときに使う</h2>
+      <ul>
+        <li>「今日、外に干して大丈夫？」を即判断したい</li>
+        <li>布団を干すか迷っていて、失敗（戻す羽目）を減らしたい</li>
+        <li>雨は降らなさそうだが、湿度や風が微妙で乾くか不安</li>
+      </ul>
+      <p class="muted" style="margin:8px 0 0">
+        関連キーワード：外干し 失敗 / 洗濯 乾きやすい日 / 布団 外干し 天気 / humidity wind dry forecast
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">使い方</h2>
+      <ol>
+        <li>ツールを開き、位置情報の利用を許可（現在地の天気取得のため）</li>
+        <li>洗濯物 / 布団 が選べる場合は用途を選ぶ</li>
+        <li>表示された判定（🟢🟡🔴）と理由を見て、外干し可否を決める</li>
+      </ol>
+      <p class="muted" style="margin:0">コツ：🟡の日は「短時間だけ干す」「風通しを作る」「浴室乾燥に切替」などで事故回避しやすい。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <ul>
+        <li>天気APIの誤差や、局地的な雨・日陰・建物の風の弱さなどは反映しきれない場合があります。</li>
+        <li>🟢でも突然の雨はゼロではありません。心配なら取り込み時間を早めに設定してください。</li>
+        <li>位置情報を許可しない場合、判定ができない/精度が落ちる可能性があります。</li>
+      </ul>
+    </section>
+
+    <div class="ad-slot ad-bottom">広告枠</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>当サイトには広告が含まれる場合があります。</p>
+    <p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+</body>
+</html>

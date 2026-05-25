@@ -1,72 +1,92 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-57QT78M3JB');
+</script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks</title>
-  <meta name="description" content="衣類タグの洗濯記号をタップするだけで、洗濯・乾燥・アイロン・漂白の意味を日本語と英語で即表示。完全ローカル動作の無料ツール。">
+  <meta name="description" content="衣類タグの洗濯記号を選ぶと、洗濯・漂白・乾燥・アイロン・クリーニングの意味を日本語と英語で確認できる無料ツールです。衣類タグやメーカー表示を優先してください。">
+  <link rel="canonical" href="https://nicheworks.app/tools/laundry-code-decode/">
 
-  <link rel="canonical" href="https://nicheworks.pages.dev/tools/laundry-code-decode/">
-
-  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks">
-  <meta property="og:description" content="洗濯記号を選ぶだけで意味を即表示。日本語/英語対応、完全ローカル。">
-  <meta property="og:url" content="https://nicheworks.pages.dev/tools/laundry-code-decode/">
-  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+  <meta property="og:description" content="衣類タグの洗濯記号を選ぶと、洗濯・漂白・乾燥・アイロン・クリーニングの意味を日本語と英語で確認できる無料ツールです。衣類タグやメーカー表示を優先してください。">
+  <meta property="og:url" content="https://nicheworks.app/tools/laundry-code-decode/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="洗濯記号の意味を解読｜Laundry Code Decode | NicheWorks">
+  <meta name="twitter:description" content="衣類タグの洗濯記号を選ぶと、洗濯・漂白・乾燥・アイロン・クリーニングの意味を日本語と英語で確認できる無料ツールです。衣類タグやメーカー表示を優先してください。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="robots" content="index,follow">
 
-  <!-- favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
-  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-
-  <!-- Cloudflare Analytics -->
-  
-
   <link rel="stylesheet" href="./style.css">
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Laundry Code Decode",
-    "url": "https://nicheworks.pages.dev/tools/laundry-code-decode/",
+    "url": "https://nicheworks.app/tools/laundry-code-decode/",
     "applicationCategory": "UtilityApplication",
-    "description": "洗濯記号の意味を日本語・英語で即座に解読する無料ツール。",
+    "description": "洗濯記号の意味を日本語・英語で即座に確認する無料ツール。衣類タグやメーカー表示を優先してください。",
     "operatingSystem": "All"
   }
   </script>
-<script defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
-</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"この結果どおりに洗えば必ず安全ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。一般的な洗濯表示の参考情報です。衣類タグ、メーカー表示、素材表示、クリーニング店の指示を優先してください。"}},
+      {"@type":"Question","name":"写真から自動判定できますか？","acceptedAnswer":{"@type":"Answer","text":"実験版の候補検索です。OCRではなく簡易画像比較のため、必ず候補を手で確認してください。"}},
+      {"@type":"Question","name":"画像はアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"写真候補検索はブラウザ内で処理します。ただしページ表示のため広告・解析タグは読み込まれます。"}},
+      {"@type":"Question","name":"海外の洗濯表示にも対応しますか？","acceptedAnswer":{"@type":"Answer","text":"一般的な記号を扱いますが、国・地域・年代により表示や意味が異なる場合があります。"}}
+    ]
+  }
+  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 
 <body>
   <header class="nw-header">
     <h1>洗濯記号デコーダ</h1>
     <p class="subtitle">Laundry Code Decode</p>
-
-    <div class="nw-lang-switch">
+    <div class="nw-lang-switch" aria-label="Language">
       <button data-lang="ja" type="button">JP</button> /
       <button data-lang="en" type="button">EN</button>
     </div>
   </header>
 
   <main class="nw-main">
-    <!-- ad-top -->
-    <div class="ad-slot ad-top">広告枠（準備中）</div>
+    <div class="ad-slot ad-top">広告枠</div>
 
     <section class="symbol-picker">
-      <p data-i18n="ja">カテゴリを選んで、洗濯記号をタップしてください</p>
-      <p data-i18n="en">Choose a category, then tap a symbol</p>
+      <p data-i18n="ja">カテゴリを選んで、洗濯記号をタップしてください。</p>
+      <p data-i18n="en">Choose a category, then tap a care symbol.</p>
+      <p class="privacy-note" data-i18n="ja">記号の検索・候補表示はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+      <p class="privacy-note" data-i18n="en">Symbol search and candidate display run in your browser, but ads and analytics tags are loaded to display this page.</p>
 
-      <!-- Category tabs -->
+      <section class="notice-card" aria-label="洗濯表示の注意">
+        <strong data-i18n="ja">使用前の注意</strong>
+        <strong data-i18n="en">Before using this result</strong>
+        <p data-i18n="ja">このツールは一般的な洗濯表示の参考情報です。衣類タグ、メーカー表示、素材表示、クリーニング店の指示を優先してください。国・地域・年代により表示や意味が異なる場合があります。高価な衣類・特殊素材は専門店に確認してください。</p>
+        <p data-i18n="en">This tool provides general reference information for care symbols. Prioritize the garment label, maker instructions, fabric notes, and professional cleaner guidance. Meanings can vary by country, region, and era. For expensive or special materials, ask a professional cleaner.</p>
+      </section>
+
       <div class="cat-tabs" role="tablist" aria-label="Laundry categories">
         <button class="cat-tab" data-cat="wash" type="button">Wash</button>
         <button class="cat-tab" data-cat="bleach" type="button">Bleach</button>
@@ -75,9 +95,8 @@
         <button class="cat-tab" data-cat="dryclean" type="button">Dry Clean</button>
       </div>
 
-      <!-- Search -->
       <div class="search-row">
-        <input id="q" type="search" placeholder="Search / 検索（例: 30 / bleach / 手洗い）" autocomplete="off">
+        <input id="q" type="search" stable content="Search / 検索（例: 30 / bleach / 手洗い）" autocomplete="off">
         <label class="search-all">
           <input id="searchAll" type="checkbox">
           <span data-i18n="ja">全カテゴリ</span>
@@ -85,79 +104,101 @@
         </label>
       </div>
 
-      <!-- Grid -->
       <div id="symbolGrid" class="symbol-grid"></div>
     </section>
 
-    <!-- OCR Beta -->
     <section class="ocr-box">
       <details>
         <summary>
-          <span data-i18n="ja">📷 写真から候補を探す（ベータ）</span>
-          <span data-i18n="en">📷 Find candidates from a photo (Beta)</span>
+          <span data-i18n="ja">📷 写真候補検索（実験版）</span>
+          <span data-i18n="en">📷 Photo candidate search (experimental)</span>
         </summary>
 
-        <p class="ocr-note" data-i18n="ja">
-          タグの記号をできるだけ大きく写した写真を入れてください。上位3候補を提案します（完全自動ではありません）。
-        </p>
-        <p class="ocr-note" data-i18n="en">
-          Upload a photo where the symbol is large and clear. We'll suggest top 3 candidates (not fully automatic).
-        </p>
+        <p class="ocr-note" data-i18n="ja">OCRではありません。画像の見た目をSVGテンプレートと簡易比較して近い候補を出します。正確な自動判定ではないため、必ず候補を手で確認してください。</p>
+        <p class="ocr-note" data-i18n="en">This is not OCR. It simply compares the image appearance with SVG templates and suggests close candidates. It is not an accurate automatic reading, so always verify the candidate manually.</p>
+        <p class="ocr-note" data-i18n="ja">対応画像：PNG / JPEG / WebP / GIF、上限10MB。破損画像や大きすぎる画像は読み込みません。</p>
+        <p class="ocr-note" data-i18n="en">Supported images: PNG / JPEG / WebP / GIF, up to 10 MB. Broken or oversized images are not loaded.</p>
 
         <div class="ocr-controls">
-          <input id="ocrFile" type="file" accept="image/*">
+          <input id="ocrFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
           <button id="ocrRun" type="button">Run</button>
+          <button id="ocrClear" type="button">Clear</button>
         </div>
+        <label class="search-all ocr-all-label">
+          <input id="ocrAll" type="checkbox">
+          <span data-i18n="ja">写真候補を全カテゴリで探す</span>
+          <span data-i18n="en">Search photo candidates across all categories</span>
+        </label>
+        <p id="ocrStatus" class="ocr-status" aria-live="polite"></p>
 
         <div class="ocr-preview">
           <img id="ocrPreviewImg" alt="">
         </div>
 
         <div class="ocr-candidates">
-          <div class="ocr-cand-title" data-i18n="ja">候補</div>
-          <div class="ocr-cand-title" data-i18n="en">Candidates</div>
+          <div class="ocr-cand-title" data-i18n="ja">候補（scoreは参考値）</div>
+          <div class="ocr-cand-title" data-i18n="en">Candidates (scores are reference values)</div>
           <div id="ocrCandidatesGrid" class="ocr-cand-grid"></div>
         </div>
       </details>
     </section>
 
-    <!-- Result -->
     <section id="result" class="result hidden">
       <h2 data-i18n="ja">意味</h2>
       <h2 data-i18n="en">Meaning</h2>
-
       <p id="resultSummary" class="result-summary"></p>
       <p id="resultDetail" class="result-detail"></p>
+      <p class="result-caution" data-i18n="ja">参考情報です。衣類タグ、メーカー表示、素材表示、クリーニング店の指示を優先してください。</p>
+      <p class="result-caution" data-i18n="en">Reference only. Prioritize the garment label, maker instructions, fabric notes, and professional cleaner guidance.</p>
+      <button id="resultCopy" class="secondary-btn" type="button">結果をコピー</button>
     </section>
 
-    <!-- Donate -->
+    <section class="faq-section" aria-label="FAQ">
+      <h2>FAQ</h2>
+      <details>
+        <summary><span data-i18n="ja">この結果どおりに洗えば必ず安全ですか？</span><span data-i18n="en">Is it always safe to wash exactly as shown?</span></summary>
+        <p data-i18n="ja">いいえ。参考情報です。衣類タグ、メーカー表示、素材表示、クリーニング店の指示を優先してください。</p>
+        <p data-i18n="en">No. This is reference information. Prioritize the garment label, maker instructions, fabric notes, and professional cleaner guidance.</p>
+      </details>
+      <details>
+        <summary><span data-i18n="ja">写真から自動判定できますか？</span><span data-i18n="en">Can this automatically read a photo?</span></summary>
+        <p data-i18n="ja">実験版の候補検索です。OCRではなく簡易画像比較のため、必ず候補を手で確認してください。</p>
+        <p data-i18n="en">It is an experimental candidate search, not OCR. It uses simple image comparison, so always verify the candidate manually.</p>
+      </details>
+      <details>
+        <summary><span data-i18n="ja">画像はアップロードされますか？</span><span data-i18n="en">Are images uploaded?</span></summary>
+        <p data-i18n="ja">写真候補検索はブラウザ内で処理します。ただしページ表示のため広告・解析タグは読み込まれます。</p>
+        <p data-i18n="en">Photo candidate search runs in your browser. Ads and analytics tags are still loaded to display the page.</p>
+      </details>
+      <details>
+        <summary><span data-i18n="ja">海外の洗濯表示にも対応しますか？</span><span data-i18n="en">Does it support overseas care labels?</span></summary>
+        <p data-i18n="ja">一般的な記号を扱いますが、国・地域・年代により意味が異なる場合があります。</p>
+        <p data-i18n="en">It covers common symbols, but meaning can vary by country, region, and era.</p>
+      </details>
+    </section>
+
     <div class="nw-donate">
-      <p class="nw-donate-text" data-i18n="ja">
-        このツールが役に立ったら、開発継続のためのご支援をお願いします。
-      </p>
-      <p class="nw-donate-text" data-i18n="en">
-        If this tool helped you, please consider supporting its development.
-      </p>
+      <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をお願いします。</p>
+      <p class="nw-donate-text" data-i18n="en">If this tool helped you, please consider supporting its development.</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener noreferrer">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>
       </div>
     </div>
 
-    <!-- ad-bottom -->
-    <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+    <div class="ad-slot ad-bottom">広告枠</div>
 
-    <!-- internal links -->
     <div class="nw-links">
-      <a href="/tools/manual-finder/">ManualFinder</a> /
-      <a href="/tools/trashnavi/">TrashNavi</a> /
-      <a href="/tools/log-formatter/">LogFormatter</a>
+      <a href="/tools/size-converter/">Size Converter</a> /
+      <a href="/tools/unitmaster/">UnitMaster</a> /
+      <a href="/tools/moving-checklist-generator/">Moving Checklist Generator</a> /
+      <a href="/tools/trashnavi/">TrashNavi</a>
     </div>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">本ツールは一般的な洗濯表示規格に基づく参考情報です。</p>
+    <p class="nw-footer-line">本ツールは一般的な洗濯表示規格に基づく参考情報です。必ず衣類タグ・公式表示・専門店の指示をご確認ください。</p>
   </footer>
 
   <script src="data.js"></script>

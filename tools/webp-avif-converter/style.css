@@ -1,11 +1,8 @@
 /* =====================================
    NicheWorks Formal UI - style.css
-   （共通テンプレ不使用。単体最適化版）
+   WebP / AVIF Converter
 ===================================== */
 
-/* -----------------------------
-   基本
------------------------------ */
 body {
   margin: 0;
   padding: 0;
@@ -24,10 +21,6 @@ body {
   margin-right: auto;
 }
 
-
-/* -----------------------------
-   HEADER（仕様準拠）
------------------------------ */
 .nw-header-inner {
   padding: 20px 0 12px;
 }
@@ -44,7 +37,6 @@ body {
   margin: 0 0 14px;
 }
 
-/* 言語切替 */
 .nw-lang-switch {
   display: flex;
   gap: 8px;
@@ -65,12 +57,29 @@ body {
   border-color: #111827;
 }
 
-
-/* -----------------------------
-   MAIN
------------------------------ */
 .nw-main {
   padding: 10px 16px 40px;
+}
+
+.ad-slot {
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+  color: #9ca3af;
+  font-size: 12px;
+  text-align: center;
+  padding: 12px;
+  margin: 12px 0 18px;
+  background: #fafafa;
+}
+
+.ad-bottom {
+  margin-top: 28px;
+}
+
+.nw-lead {
+  font-size: 14px;
+  margin: 0 0 10px;
+  color: #374151;
 }
 
 .nw-note {
@@ -79,23 +88,49 @@ body {
   background: #f3f4f6;
   padding: 8px 10px;
   border-radius: 8px;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
 }
 
+.format-note {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  background: #fff;
+}
 
-/* -----------------------------
-   ドロップゾーン（12-6）
------------------------------ */
+.format-note h2 {
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+
+.format-note ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.format-note li {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 2px 0;
+}
+
 .drop-zone {
   border: 2px dashed #d1d5db;
   border-radius: 12px;
-  padding: 40px 10px;
+  padding: 38px 10px;
   text-align: center;
   color: #374151;
   font-size: 14px;
   cursor: pointer;
   transition: border-color 0.25s, background 0.25s;
   margin-bottom: 14px;
+  white-space: pre-line;
+}
+
+.drop-zone:focus-visible {
+  outline: 3px solid #d1d5db;
+  outline-offset: 3px;
 }
 
 .drop-zone.dragover {
@@ -103,16 +138,16 @@ body {
   background: #f9fafb;
 }
 
+.drop-main {
+  margin: 0;
+}
+
 .drop-hint {
-  margin-top: 6px;
+  margin: 8px 0 0;
   font-size: 12px;
   color: #6b7280;
 }
 
-
-/* -----------------------------
-   エラーボックス（12-5）
------------------------------ */
 .error-box {
   background: #fef2f2;
   color: #b91c1c;
@@ -123,10 +158,22 @@ body {
   margin-bottom: 10px;
 }
 
+.error-box a {
+  color: #7f1d1d;
+  font-weight: 600;
+}
 
-/* -----------------------------
-   プログレスバー（12-1）
------------------------------ */
+.file-info {
+  background: #f9fafb;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  padding: 9px 11px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
 .progress-bar {
   width: 100%;
   height: 4px;
@@ -148,10 +195,6 @@ body {
   100% { transform: translateX(100%); }
 }
 
-
-/* -----------------------------
-   ボタン
------------------------------ */
 .btn-row {
   display: flex;
   gap: 10px;
@@ -192,10 +235,6 @@ body {
   margin-top: 20px;
 }
 
-
-/* -----------------------------
-   結果エリア（12-2）
------------------------------ */
 .result-title {
   font-size: 18px;
   font-weight: 600;
@@ -218,10 +257,6 @@ body {
   margin-bottom: 12px;
 }
 
-
-/* -----------------------------
-   FAQ（仕様推奨・Aでは必須採用）
------------------------------ */
 .faq-section {
   margin-top: 32px;
   padding: 16px;
@@ -240,6 +275,10 @@ body {
   margin-bottom: 12px;
 }
 
+.faq-item:last-child {
+  margin-bottom: 0;
+}
+
 .faq-q {
   font-weight: 600;
   font-size: 14px;
@@ -252,10 +291,6 @@ body {
   margin: 0;
 }
 
-
-/* -----------------------------
-   FOOTER（仕様完全準拠）
------------------------------ */
 .nw-footer {
   border-top: 1px solid #e5e7eb;
   padding: 20px 16px 28px;
@@ -271,29 +306,16 @@ body {
 .nw-links a {
   color: #374151;
   text-decoration: none;
-  padding: 0 6px;
+  padding: 0 4px;
 }
 
 .nw-links a:hover {
   text-decoration: underline;
 }
 
-/* usage */
-.nw-usage {
-  text-align: center;
-  margin-bottom: 14px;
-}
-
-.nw-usage a {
-  color: #374151;
-  font-size: 13px;
-  text-decoration: underline;
-}
-
-/* donate */
 .nw-donate {
   text-align: center;
-  margin-bottom: 14px;
+  margin: 24px 0 14px;
 }
 
 .nw-donate p {
@@ -320,16 +342,47 @@ body {
   background: #f3f4f6;
 }
 
-/* copy & notes */
-.nw-footer-copy {
+.nw-footer-copy,
+.nw-footer-line {
   text-align: center;
   font-size: 12px;
   color: #6b7280;
   margin: 4px 0;
 }
 
+.nw-footer-line a {
+  color: #374151;
+}
+
 .nw-footer-note {
   text-align: center;
   font-size: 11px;
   color: #6b7280;
+}
+
+@media (max-width: 480px) {
+  .nw-header,
+  .nw-main,
+  .nw-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .nw-title {
+    font-size: 20px;
+  }
+
+  .btn-row,
+  .nw-donate-links {
+    flex-direction: column;
+  }
+
+  .drop-zone {
+    padding: 30px 8px;
+  }
+
+  .nw-links a {
+    display: inline-block;
+    padding: 4px;
+  }
 }

@@ -1,0 +1,24 @@
+{
+  "version": "2026-05-09-manifest-7",
+  "base": [
+    "./data/tools.basic.json"
+  ],
+  "packs": [
+    { "path": "./data/tools.quality-001.json", "quality_batch": "001" },
+    { "path": "./data/tools.quality-002.json", "quality_batch": "002" },
+    { "path": "./data/tools.quality-003.json", "quality_batch": "003" },
+    { "path": "./data/tools.quality-004.json", "quality_batch": "004" },
+    { "path": "./data/tools.quality-005.json", "quality_batch": "005" },
+    { "path": "./data/tools.quality-006.json", "quality_batch": "006" },
+    { "path": "./data/tools.quality-007.json", "quality_batch": "007" },
+    { "path": "./data/tools.quality-008.json", "quality_batch": "008" },
+    { "path": "./data/tools.quality-009.json", "quality_batch": "009" },
+    { "path": "./data/tools.quality-010.json", "quality_batch": "010" },
+    { "path": "./data/tools.quality-011.json", "quality_batch": "011" },
+    { "path": "./data/tools.quality-012.json", "quality_batch": "012" },
+    { "path": "./data/tools.quality-013.json", "quality_batch": "013" },
+    { "path": "./data/tools.quality-014.json", "quality_batch": "014" },
+    { "path": "./data/tools.quality-015.json", "quality_batch": "015" },
+    { "path": "./data/tools.quality-016.json", "quality_batch": "016" }
+  ]
+}

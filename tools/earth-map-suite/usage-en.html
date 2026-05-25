@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Earth Map Suite – Storm Replay Usage | NicheWorks</title>
+  <meta name="description" content="How to use Earth Map Suite Storm Replay mode. Learn the inputs and how to read the preview output.">
+  <link rel="canonical" href="https://nicheworks.app/tools/earth-map-suite/usage-en.html">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/earth-map-suite/usage.html" />
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/earth-map-suite/usage-en.html" />
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/earth-map-suite/usage.html" />
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Earth Map Suite – Storm Replay Usage | NicheWorks">
+  <meta property="og:description" content="How to use Earth Map Suite Storm Replay mode. Learn the inputs and how to read the preview output.">
+  <meta property="og:url" content="https://nicheworks.app/tools/earth-map-suite/usage-en.html">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+
+  <!-- AdSense (MUST) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+
+  <!-- Cloudflare Web Analytics (optional; keep token placeholder) -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"YOUR_TOKEN_HERE"}'></script>
+  -->
+
+  <!-- JSON-LD (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Earth Map Suite – Storm Replay",
+    "url": "https://nicheworks.app/tools/earth-map-suite/",
+    "applicationCategory": "UtilityApplication",
+    "description": "Usage guide for Earth Map Suite Storm Replay mode.",
+    "inLanguage": "en",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-57QT78M3JB');
+</script>
+  <meta name="robots" content="index,follow">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta name="twitter:title" content="Earth Map Suite – Storm Replay Usage | NicheWorks">
+  <meta name="twitter:description" content="How to use Earth Map Suite Storm Replay mode. Learn the inputs and how to read the preview output.">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+</head>
+<body>
+  <header class="nw-header">
+    <h1 class="nw-title">Usage</h1>
+    <p class="nw-lead">A quick guide to Earth Map Suite inputs and the preview output.</p>
+    <p class="hint"><a class="nw-link" href="./index.html">Back to tool</a> / <a class="nw-link" href="./usage.html">日本語</a></p>
+  </header>
+
+  <main class="nw-main">
+    <div class="ad-slot ad-top">Ad slot</div>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">1. What this tool does</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">Summarize map view requirements and generate storm / compare / card review memos.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">2. Quick steps (5)</h2>
+      </div>
+      <div class="card-bd">
+        <ol class="step-list">
+          <li>Select a mode (storm / compare / card).</li>
+          <li>Enter the area (BBox or lat/lon) and the date range.</li>
+          <li>Add layers, notes, and review context.</li>
+          <li>Click “Generate preview” to build the memo.</li>
+          <li>Copy or download the text, PNGs, or CSVs.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">3. Inputs</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>BBox: specify the region as “lon,lat,lon,lat” (storm / compare).</li>
+          <li>Latitude / longitude: point selection (card).</li>
+          <li>Start / end date: the period to review (compare has A/B ranges).</li>
+          <li>Preset: choose low / mid / detail.</li>
+          <li>Frames (storm): required in storm mode.</li>
+          <li>Target area: the region or location to review.</li>
+          <li>Layers to verify: roads, terrain, shelters, and more.</li>
+          <li>Notes: additional instructions for reviewers.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">4. Reading the preview</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>storm: a GSMaP real metadata status panel appears, followed by a separate synthetic frame slider and cumulative view.</li>
+          <li>compare: a GSMaP metadata-only reachability panel for Period A and Period B appears separately from A/B/diff synthetic preview cards and CSV outputs.</li>
+          <li>card: a GSMaP metadata reachability panel appears for a small bbox around the selected point, separately from the synthetic preview point card, mini chart, and summary.</li>
+        </ul>
+        <p class="hint">The storm / compare / card metadata status can report real GSMaP metadata reachability, but visible maps, point cards, mini charts, and summaries are synthetic preview. Only metadata reachability is checked as real data. Raster precipitation values are not sampled yet.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">4a. Data status</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>Storm mode calls <code>/api/earth-map-suite/precipitation</code> once and shows real GSMaP metadata reachability.</li>
+          <li>Compare mode calls the same endpoint separately for Period A and Period B and shows metadata-only reachability only.</li>
+          <li>Card mode builds a small bbox around the selected latitude/longitude, calls the same endpoint, and shows metadata-only reachability only.</li>
+          <li>The panel displays transparency fields such as dataset, license, source, matched_dates, item_count, asset_count, and sampling_status.</li>
+          <li>Endpoint limits are low up to 14 days and mid up to 7 days.</li>
+          <li>Raster precipitation values are not sampled yet; summary mean/max/min are not shown as real values.</li>
+          <li>The storm map preview, CSV frame values, compare A/B/Diff, and Card point card/mini chart/summary remain synthetic preview and are not observed precipitation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">5. Examples</h2>
+      </div>
+      <div class="card-bd">
+        <div class="example-grid">
+          <div class="example-card">
+            <h3 class="example-title">storm example</h3>
+            <pre class="example-code">BBox: 139.5,35.4,140.0,35.9
+Range: 2025-08-01 → 2025-08-03
+Preset: low
+Frames: 24
+Target area: Tokyo area
+Layers: Terrain / main roads / shelters
+Note: Synthetic preview / not observed precipitation</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">compare example</h3>
+            <pre class="example-code">BBox: 139.5,35.4,140.0,35.9
+Period A: 2025-08-01 → 2025-08-03
+Period B: 2025-08-04 → 2025-08-06
+Preset: low
+Note: A/B/Diff are synthetic preview; only metadata reachability is real-data checked</pre>
+          </div>
+          <div class="example-card">
+            <h3 class="example-title">card example</h3>
+            <pre class="example-code">Lat/Lon: 35.68, 139.76
+Range: 2025-08-01 → 2025-08-03
+Preset: low
+Metadata bbox approx: 139.51,35.43,140.01,35.93
+Note: point card, mini chart, and summary remain synthetic preview; only metadata reachability is real-data checked</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">6. Free-ops limits</h2>
+      </div>
+      <div class="card-bd">
+        <div class="table-wrap">
+          <table class="limit-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Limit</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BBox</td>
+                <td>Up to 5° × 5°</td>
+                <td>Use low for wider areas</td>
+              </tr>
+              <tr>
+                <td>Date span</td>
+                <td>UI preview up to 31 days; metadata endpoint low 14 days / mid 7 days</td>
+                <td>Compare checks the metadata endpoint separately for A/B</td>
+              </tr>
+              <tr>
+                <td>Preset</td>
+                <td>low / mid / detail</td>
+                <td>Other values error out</td>
+              </tr>
+              <tr>
+                <td>Storm frames</td>
+                <td>Up to 48</td>
+                <td>Above 48 will be thinned</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">If a limit is exceeded, you will see error_code: limit_exceeded.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">7. Troubleshooting</h2>
+      </div>
+      <div class="card-bd">
+        <dl class="faq">
+          <dt>Q. The preview is blank.</dt>
+          <dd>A. Make sure required fields (mode, dates, BBox/lat-lon) are filled.</dd>
+          <dt>Q. Compare cards do not show.</dt>
+          <dd>A. Switch to compare mode and fill both A/B date ranges.</dd>
+          <dt>Q. I see an error code.</dt>
+          <dd>A. Check the limits table for the free-ops caps.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">8. Ads & support</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">Ad slots are in preparation and planned for top/bottom placement only.</p>
+        <p class="hint">A support page is available for voluntary donations.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">9. What’s next / available</h2>
+      </div>
+      <div class="card-bd">
+        <ul class="bullet">
+          <li>Template saving for common map views</li>
+          <li>Batch exports for team sharing</li>
+          <li>Improved card legends and annotations</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hd">
+        <h2 class="card-title">10. Disclaimer</h2>
+      </div>
+      <div class="card-bd">
+        <p class="hint">This page does not verify map accuracy. Always check official sources.</p>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-bottom">Ad slot</div>
+  </main>
+
+  <footer class="nw-footer">
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line">Preview data: storm metadata status can show real GSMaP metadata reachability; map previews remain synthetic/placeholders and not observed precipitation</p>
+    <p class="nw-footer-line">Real-data license: not enabled / pending verification</p>
+    <p class="nw-footer-line">Disclaimer: Data accuracy is not guaranteed. Always verify official sources.</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+  </footer>
+</body>
+</html>

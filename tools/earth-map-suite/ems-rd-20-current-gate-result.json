@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-05-20T00:00:00Z",
+  "checked_by": "codex",
+  "intake_result_file": "tools/earth-map-suite/ems-rd-20-browser-safe-result.json",
+  "canonical_result_file": "tools/earth-map-suite/ems-rd-11-browser-self-check-result.json",
+  "branch_decision": "browser_result_missing",
+  "next_task_family": "VERIFY",
+  "public_real_data_enabled": false,
+  "storm_compare_card_connected": false,
+  "storm_real_blocked": true,
+  "result_hash": null,
+  "result_hash_algorithm": null,
+  "endpoint_summary": {
+    "self_check": null,
+    "health": null,
+    "manifest": null,
+    "probe_status": null,
+    "precipitation_sample_real": null
+  },
+  "next_action": "open api-status.html?autorun=safe, download JSON, commit result"
+}

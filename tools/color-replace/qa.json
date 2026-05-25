@@ -1,0 +1,18 @@
+{
+  "steps": [
+    {
+      "action": "open"
+    },
+    {
+      "assert": "exists",
+      "selector": "#imageFile"
+    },
+    {
+      "assert": "exists",
+      "selector": "#applyBtn"
+    },
+    {
+      "assert": "noConsoleErrors"
+    }
+  ]
+}

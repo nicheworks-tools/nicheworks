@@ -1,0 +1,1644 @@
+const LANGUAGE_STORAGE_KEY = 'pdf2csv-local-lang';
+
+const I18N = {
+  ja: {
+    'index.title': 'PDF2CSV Local（ローカル完結PDF→CSV変換）',
+    'index.subtitle': '銀行明細・請求書PDFをCSV/Excel向けに整形するローカル変換ツールです。',
+    'index.note.local': '※ローカル完結で動作します。PDFは外部に送信されません。',
+    'index.note.docs': 'ドキュメント: <a href="./usage.html">使い方</a> / <a href="./howto.html">変換のコツ</a> / <a href="./faq.html">FAQ</a>',
+    'index.section.input': 'PDF入力',
+    'index.section.settings': '抽出設定',
+    'index.section.preview': 'ページプレビュー',
+    'index.section.result': '抽出結果プレビュー',
+    'index.label.drag': 'PDFをドラッグ＆ドロップ',
+    'index.label.status': 'ステータス',
+    'index.label.range': 'ページ範囲',
+    'index.label.output': '出力形式',
+    'index.mode.label': 'モード',
+    'index.mode.auto': 'Auto',
+    'index.mode.manual': 'Manual',
+    'index.mode.notice': 'Manualではプレビュー上で範囲を選択して再抽出できます。',
+    'index.manual.hint': 'プレビュー上でドラッグして表エリアを選択し、再抽出してください。',
+    'index.manual.reset': '選択をリセット',
+    'index.manual.reextract': '再抽出',
+    'index.manual.warning': '選択範囲がありません。',
+    'index.settings.rowTolerance': '行の近接判定 (px)',
+    'index.settings.colGap': '列のギャップ判定 (px)',
+    'index.settings.header': '先頭行をヘッダー扱い',
+    'index.settings.extract': '抽出開始',
+    'index.settings.extractNote': '⏳ 解析は数秒かかる場合があります。',
+    'index.action.reset': 'リセット',
+    'index.progress.text': '解析中...',
+    'index.settings.weakWarning': '抽出結果が少ないため、Manualモードの使用を検討してください。',
+    'index.settings.resultSummary': '抽出結果: -',
+    'index.drop.title': 'ここにPDFをドロップ',
+    'index.drop.sub': 'またはクリックして選択',
+    'index.drop.hint': '対応: PDF / 30MBまで',
+    'index.drop.aria': 'PDFをドロップまたはクリックして選択',
+    'index.status.filename': 'ファイル名',
+    'index.status.pages': 'ページ数',
+    'index.status.size': 'サイズ',
+    'index.range.placeholder': '例: 1-3,5,7-9',
+    'index.range.hint': '空欄なら全ページ',
+    'index.output.csv': 'CSV',
+    'index.output.excel': 'Excel',
+    'index.preview.removeRows': '空行を削除',
+    'index.preview.removeCols': '空列を削除',
+    'index.preview.bom': 'CSV BOMを付与',
+    'index.preview.delimiter': 'CSV区切り',
+    'index.preview.delimiter.comma': 'カンマ',
+    'index.preview.delimiter.tab': 'タブ',
+    'index.preview.hint': '先頭50行までを表示します。',
+    'index.preview.empty': '抽出するとここに結果プレビューが表示されます。',
+    'index.action.analyze': '解析開始',
+    'index.action.note': '⏳ この処理は最大3秒ほどかかる場合があります。',
+    'index.preview.placeholder': 'PDFを読み込むとプレビューが表示されます。',
+    'index.note.donate': 'このツールが役に立ったら、開発継続のご支援をお願いします。',
+    'index.related.label': '関連ツール:',
+    'common.adSlot': '広告枠（準備中）',
+    'common.footer.disclaimer': '当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。',
+    'usage.title': '使い方',
+    'usage.subtitle': 'PDF2CSV Localの操作手順をまとめます。',
+    'usage.section.capabilities.title': 'できること',
+    'usage.section.capabilities.item1': '銀行明細・請求書などの表をPDFからCSV/XLSXに変換',
+    'usage.section.capabilities.item2': 'Autoで自動抽出、Manualで範囲指定して再抽出',
+    'usage.section.capabilities.item3': '複数ページの表をまとめて出力',
+    'usage.section.steps.title': '手順（Auto / Manual）',
+    'usage.section.steps.auto.title': 'Auto',
+    'usage.section.steps.auto.step1': 'PDFを読み込み、ページ範囲と出力形式を選ぶ',
+    'usage.section.steps.auto.step2': '抽出設定（行・列の近接判定）を必要に応じて調整',
+    'usage.section.steps.auto.step3': 'Extractを実行してプレビューを確認し、CSV/Excelを保存',
+    'usage.section.steps.manual.title': 'Manual',
+    'usage.section.steps.manual.step1': 'モードをManualに切り替える',
+    'usage.section.steps.manual.step2': 'プレビュー上で表の範囲をドラッグ選択',
+    'usage.section.steps.manual.step3': 'Re-extractで再抽出する',
+    'usage.section.steps.manual.step4': '結果を確認してCSV/Excelで保存',
+    'usage.section.support.title': '対応/非対応',
+    'usage.section.support.ok.title': '対応',
+    'usage.section.support.ok.item1': 'テキスト情報を含むPDF（一般的な明細・請求書）',
+    'usage.section.support.ok.item2': '複数ページの連続した明細',
+    'usage.section.support.ng.title': '非対応',
+    'usage.section.support.ng.item1': '画像スキャンのみのPDF（文字が画像として埋め込まれているもの）',
+    'usage.section.support.ng.item2': '強い暗号化・パスワード付きPDF',
+    'usage.section.support.ng.item3': '複雑なレイアウトで表が分断されているPDF',
+    'usage.section.trouble.title': 'トラブルシュート',
+    'usage.section.trouble.item1': '行がまとまらない → 行の近接判定を少し大きくする',
+    'usage.section.trouble.item2': '列が結合される → 列のギャップ判定を少し大きくする',
+    'usage.section.trouble.item3': '抽出が少ない → Manualで範囲指定して再抽出',
+    'usage.section.trouble.item4': 'ページ範囲エラー → 入力形式を「1-3,5」などに合わせる',
+    'usage.section.output.title': '出力形式',
+    'usage.section.output.item1': 'CSV: 複数ページは区切り行（=== Page n ===）を挿入',
+    'usage.section.output.item2': 'Excel: ページごとにシートを作成（Page1, Page2...）',
+    'usage.section.output.item3': 'BOM付与や区切り文字はプレビューで変更可能',
+    'usage.section.disclaimer.title': '免責',
+    'usage.section.disclaimer.body': '変換精度は保証しません。処理はブラウザ内で完結し、PDFは外部に送信されません。',
+    'usage.back': '← ツール本体へ戻る',
+    'howto.title': '変換のコツ',
+    'howto.subtitle': '変換精度を高めるためのポイントを整理します。',
+    'howto.section.examples.title': '具体例（銀行明細 / 請求書）',
+    'howto.section.examples.bank.title': '銀行明細の例',
+    'howto.section.examples.bank.item1': 'Autoで抽出し、日付・摘要・金額が列に分かれるか確認',
+    'howto.section.examples.bank.item2': '残高列が混ざる場合は列のギャップ判定を少し上げる',
+    'howto.section.examples.invoice.title': '請求書の例',
+    'howto.section.examples.invoice.item1': '明細表のみを対象にしたい場合はManualで範囲指定',
+    'howto.section.examples.invoice.item2': '合計行だけ除外したい場合は抽出後に手動で削除',
+    'howto.section.tuning.title': 'うまくいかない時の調整順',
+    'howto.section.tuning.step1': '行の近接判定（rowTolerance）を微調整',
+    'howto.section.tuning.step2': '列のギャップ判定（colGap）を微調整',
+    'howto.section.tuning.step3': 'Manualで表エリアを指定して再抽出',
+    'howto.section.tuning.note': '行→列→Manualの順で調整すると原因を追いやすくなります。',
+    'howto.section.failures.title': 'よくある失敗と対処',
+    'howto.section.failures.item1': 'ヘッダー行が毎ページで繰り返される → 出力後に重複ヘッダーを削除',
+    'howto.section.failures.item2': '合計行が混ざる → Manualで明細行だけを選択して再抽出',
+    'howto.section.failures.item3': '残高行で列が崩れる → 列ギャップ判定を調整し、必要なら手動で修正',
+    'howto.back': '← ツール本体へ戻る',
+    'faq.title': 'FAQ',
+    'faq.subtitle': 'よくある質問と回答をまとめます。',
+    'faq.section.title': 'よくある質問',
+    'faq.q1': 'Q. PDFは外部に送信されますか？',
+    'faq.a1': 'A. 送信されません。処理はブラウザ内で完結し、PDFはローカルでのみ扱います。',
+    'faq.q2': 'Q. 画像スキャンのPDFは対応していますか？',
+    'faq.a2': 'A. 文字情報が埋め込まれていない画像スキャンPDFには対応していません。',
+    'faq.q3': 'Q. 抽出精度はどのくらいですか？',
+    'faq.a3': 'A. PDFのレイアウトに依存します。Autoで合わない場合はManualで範囲指定してください。',
+    'faq.q4': 'Q. 会社PCで使っても大丈夫？',
+    'faq.a4': 'A. ブラウザ内で処理されますが、社内ルールに従ってご利用ください。',
+    'faq.q5': 'Q. CSVが文字化けします。',
+    'faq.a5': 'A. Excelで開く場合はBOMを付与したCSVを推奨します。区切り文字も必要に応じて変更してください。',
+    'faq.back': '← ツール本体へ戻る',
+    'meta.index.title': 'PDF2CSV Local｜PDF明細・請求書をCSV/Excel変換 | NicheWorks',
+    'meta.index.desc': 'PDFの明細書・請求書をブラウザ内でCSV/Excelに変換するローカル完結ツール。アップロード内容は外部送信しません。',
+    'meta.usage.title': '使い方｜PDF2CSV Local | NicheWorks',
+    'meta.usage.desc': 'PDF2CSV Localの使い方ガイド。Auto/Manualの手順、対応PDF、出力形式、トラブルシュートをまとめます。',
+    'meta.howto.title': '変換のコツ｜PDF2CSV Local | NicheWorks',
+    'meta.howto.desc': 'PDF2CSV Localのチュートリアル。銀行明細・請求書の例、調整順、よくある失敗の対処を整理します。',
+    'meta.faq.title': 'FAQ｜PDF2CSV Local | NicheWorks',
+    'meta.faq.desc': 'PDF2CSV LocalのFAQ。安全性、対応PDF、精度、会社PC利用、CSV文字化けなどの質問に回答します。',
+    'error.notPdf.what': 'PDFファイルではありません。',
+    'error.notPdf.how': '拡張子が .pdf のファイルを選択してください。',
+    'error.tooLarge.what': 'ファイルサイズが上限を超えています。',
+    'error.tooLarge.how': '30MB以下のPDFで再度お試しください。',
+    'error.loadFailed.what': 'PDFの読み込みに失敗しました。',
+    'error.loadFailed.how': 'ファイルが破損していないか確認してください。',
+    'error.encrypted.what': '暗号化されたPDFは読み込めません。',
+    'error.encrypted.how': 'パスワードのかかっていないPDFを用意してください。',
+    'error.rangeInvalid.what': 'ページ範囲の入力が正しくありません。',
+    'error.rangeInvalid.how': '例: 1-3,5,7-9 のように入力してください。',
+    'error.rangeOut.what': 'ページ範囲がPDFのページ数を超えています。',
+    'error.rangeOut.how': '1〜最終ページの範囲で指定してください。',
+    'error.needPdf.what': 'PDFを読み込んでください。',
+    'error.needPdf.how': 'PDFを選択してからページ範囲を指定してください。',
+    'error.noResult.what': '抽出結果がありません。',
+    'error.noResult.how': 'ページ範囲やモード設定を見直してください。',
+    'error.xlsxFailed.what': 'Excelファイルの生成に失敗しました。',
+    'error.xlsxFailed.how': 'CSVでの出力を試すか、再度実行してください。'
+  },
+  en: {
+    'index.title': 'PDF2CSV Local',
+    'index.subtitle': 'Convert bank statements or invoices from PDF to CSV/Excel locally in your browser.',
+    'index.note.local': 'Runs locally in your browser. PDFs are not uploaded.',
+    'index.note.docs': 'Docs: <a href="./usage.html">Usage</a> / <a href="./howto.html">How-to</a> / <a href="./faq.html">FAQ</a>',
+    'index.section.input': 'PDF input',
+    'index.section.preview': 'Page preview',
+    'index.section.result': 'Result preview',
+    'index.label.drag': 'Drag & drop PDF',
+    'index.label.status': 'Status',
+    'index.label.range': 'Page range',
+    'index.label.output': 'Output format',
+    'index.mode.label': 'Mode',
+    'index.mode.auto': 'Auto',
+    'index.mode.manual': 'Manual',
+    'index.mode.notice': 'In Manual mode, drag to select an area on the preview and re-extract.',
+    'index.manual.hint': 'Drag to select the table area on the preview, then re-extract.',
+    'index.manual.reset': 'Reset selection',
+    'index.manual.reextract': 'Re-extract',
+    'index.manual.warning': 'No selection yet.',
+    'index.settings.rowTolerance': 'Row proximity (px)',
+    'index.settings.colGap': 'Column gap (px)',
+    'index.settings.header': 'Treat first row as header',
+    'index.settings.extract': 'Extract',
+    'index.settings.extractNote': '⏳ Extraction may take a few seconds.',
+    'index.action.reset': 'Reset',
+    'index.progress.text': 'Processing...',
+    'index.settings.weakWarning': 'Extraction looks sparse. Consider using Manual mode.',
+    'index.settings.resultSummary': 'Extraction result: -',
+    'index.drop.title': 'Drop PDF here',
+    'index.drop.sub': 'or click to select',
+    'index.drop.hint': 'Supported: PDF / up to 30MB',
+    'index.drop.aria': 'Drop a PDF or click to choose a file',
+    'index.status.filename': 'File name',
+    'index.status.pages': 'Pages',
+    'index.status.size': 'Size',
+    'index.range.placeholder': 'e.g. 1-3,5,7-9',
+    'index.range.hint': 'Leave blank for all pages',
+    'index.output.csv': 'CSV',
+    'index.output.excel': 'Excel',
+    'index.preview.removeRows': 'Remove empty rows',
+    'index.preview.removeCols': 'Remove empty columns',
+    'index.preview.bom': 'Add UTF-8 BOM',
+    'index.preview.delimiter': 'CSV delimiter',
+    'index.preview.delimiter.comma': 'Comma',
+    'index.preview.delimiter.tab': 'Tab',
+    'index.preview.hint': 'Showing up to the first 50 rows.',
+    'index.preview.empty': 'Run extraction to see the preview here.',
+    'index.action.analyze': 'Start analysis',
+    'index.action.note': '⏳ This may take up to 3 seconds.',
+    'index.preview.placeholder': 'Load a PDF to see the preview here.',
+    'index.note.donate': 'If this tool helps, please consider supporting development.',
+    'index.related.label': 'Related tools:',
+    'common.adSlot': 'Ad slot (coming soon)',
+    'common.footer.disclaimer': 'This site may include ads. We do not guarantee the accuracy of posted information. Please confirm official sources.',
+    'usage.title': 'Usage',
+    'usage.subtitle': 'Step-by-step guide to PDF2CSV Local.',
+    'usage.section.capabilities.title': 'What you can do',
+    'usage.section.capabilities.item1': 'Convert tables from bank statements or invoices into CSV/XLSX',
+    'usage.section.capabilities.item2': 'Use Auto extraction or Manual selection for re-extraction',
+    'usage.section.capabilities.item3': 'Export multi-page tables in one run',
+    'usage.section.steps.title': 'Steps (Auto / Manual)',
+    'usage.section.steps.auto.title': 'Auto',
+    'usage.section.steps.auto.step1': 'Load a PDF and choose page range + output format',
+    'usage.section.steps.auto.step2': 'Adjust row/column thresholds if needed',
+    'usage.section.steps.auto.step3': 'Run Extract, review the preview, and save CSV/Excel',
+    'usage.section.steps.manual.title': 'Manual',
+    'usage.section.steps.manual.step1': 'Switch mode to Manual',
+    'usage.section.steps.manual.step2': 'Drag to select the table area in the preview',
+    'usage.section.steps.manual.step3': 'Re-extract the selection',
+    'usage.section.steps.manual.step4': 'Review results and save CSV/Excel',
+    'usage.section.support.title': 'Supported / Not supported',
+    'usage.section.support.ok.title': 'Supported',
+    'usage.section.support.ok.item1': 'PDFs with embedded text (typical statements/invoices)',
+    'usage.section.support.ok.item2': 'Continuous multi-page statements',
+    'usage.section.support.ng.title': 'Not supported',
+    'usage.section.support.ng.item1': 'Image-only scanned PDFs (no embedded text)',
+    'usage.section.support.ng.item2': 'Strongly encrypted or password-protected PDFs',
+    'usage.section.support.ng.item3': 'Complex layouts where tables are fragmented',
+    'usage.section.trouble.title': 'Troubleshooting',
+    'usage.section.trouble.item1': 'Rows don’t group → increase row proximity slightly',
+    'usage.section.trouble.item2': 'Columns merge → increase column gap threshold',
+    'usage.section.trouble.item3': 'Too few results → re-extract in Manual mode',
+    'usage.section.trouble.item4': 'Page range error → use a format like “1-3,5”',
+    'usage.section.output.title': 'Output format',
+    'usage.section.output.item1': 'CSV: inserts separator rows (=== Page n ===) between pages',
+    'usage.section.output.item2': 'Excel: creates one sheet per page (Page1, Page2...)',
+    'usage.section.output.item3': 'BOM and delimiter can be changed in the preview',
+    'usage.section.disclaimer.title': 'Disclaimer',
+    'usage.section.disclaimer.body': 'Accuracy is not guaranteed. Processing is local in your browser and PDFs are never uploaded.',
+    'usage.back': '← Back to the tool',
+    'howto.title': 'How-to tips',
+    'howto.subtitle': 'Tips for improving conversion accuracy.',
+    'howto.section.examples.title': 'Examples (bank statements / invoices)',
+    'howto.section.examples.bank.title': 'Bank statements',
+    'howto.section.examples.bank.item1': 'Run Auto and check if date/description/amount columns are separated',
+    'howto.section.examples.bank.item2': 'If balance rows blend in, raise the column gap threshold slightly',
+    'howto.section.examples.invoice.title': 'Invoices',
+    'howto.section.examples.invoice.item1': 'Use Manual to select only the line-item table',
+    'howto.section.examples.invoice.item2': 'Remove total rows after extraction if needed',
+    'howto.section.tuning.title': 'Adjustment order when results are off',
+    'howto.section.tuning.step1': 'Tweak row proximity (rowTolerance)',
+    'howto.section.tuning.step2': 'Tweak column gap (colGap)',
+    'howto.section.tuning.step3': 'Use Manual selection and re-extract',
+    'howto.section.tuning.note': 'Adjusting row → column → Manual makes it easier to isolate causes.',
+    'howto.section.failures.title': 'Common failures and fixes',
+    'howto.section.failures.item1': 'Header repeats every page → delete duplicate headers after export',
+    'howto.section.failures.item2': 'Total rows mixed in → re-extract with Manual selection',
+    'howto.section.failures.item3': 'Balance rows break columns → adjust column gap, then fix manually',
+    'howto.back': '← Back to the tool',
+    'faq.title': 'FAQ',
+    'faq.subtitle': 'Frequently asked questions and answers.',
+    'faq.section.title': 'Frequently asked questions',
+    'faq.q1': 'Q. Are PDFs uploaded anywhere?',
+    'faq.a1': 'A. No. Everything runs locally in your browser and PDFs stay on your device.',
+    'faq.q2': 'Q. Do you support scanned image PDFs?',
+    'faq.a2': 'A. Image-only PDFs without embedded text are not supported.',
+    'faq.q3': 'Q. How accurate is the extraction?',
+    'faq.a3': 'A. It depends on the PDF layout. If Auto fails, try Manual selection.',
+    'faq.q4': 'Q. Can I use this on a company PC?',
+    'faq.a4': 'A. Processing is local, but please follow your company policies.',
+    'faq.q5': 'Q. The CSV is garbled in Excel.',
+    'faq.a5': 'A. Use CSV with BOM for Excel and adjust the delimiter as needed.',
+    'faq.back': '← Back to the tool',
+    'meta.index.title': 'PDF2CSV Local｜PDF Statements & Invoices to CSV/Excel | NicheWorks',
+    'meta.index.desc': 'Convert PDF statements or invoices to CSV/Excel locally in your browser. Files are never uploaded.',
+    'meta.usage.title': 'Usage｜PDF2CSV Local | NicheWorks',
+    'meta.usage.desc': 'Usage guide for PDF2CSV Local covering steps, supported PDFs, output formats, and troubleshooting.',
+    'meta.howto.title': 'How-to｜PDF2CSV Local | NicheWorks',
+    'meta.howto.desc': 'Tutorials with bank statement/invoice examples, adjustment order, and common fixes.',
+    'meta.faq.title': 'FAQ｜PDF2CSV Local | NicheWorks',
+    'meta.faq.desc': 'FAQ about safety, supported PDFs, accuracy, company PC use, and CSV encoding.',
+    'error.notPdf.what': 'This is not a PDF file.',
+    'error.notPdf.how': 'Choose a file with the .pdf extension.',
+    'error.tooLarge.what': 'File size exceeds the limit.',
+    'error.tooLarge.how': 'Please use a PDF smaller than 30MB.',
+    'error.loadFailed.what': 'Failed to load the PDF.',
+    'error.loadFailed.how': 'Check that the file is not corrupted.',
+    'error.encrypted.what': 'Encrypted PDFs are not supported.',
+    'error.encrypted.how': 'Please provide a PDF without a password.',
+    'error.rangeInvalid.what': 'The page range is invalid.',
+    'error.rangeInvalid.how': 'Use a format like 1-3,5,7-9.',
+    'error.rangeOut.what': 'The page range exceeds the PDF length.',
+    'error.rangeOut.how': 'Select pages within the document range.',
+    'error.needPdf.what': 'Please load a PDF first.',
+    'error.needPdf.how': 'Select a PDF before entering a page range.',
+    'error.noResult.what': 'No extraction results found.',
+    'error.noResult.how': 'Review the page range or mode settings and try again.',
+    'error.xlsxFailed.what': 'Failed to generate the Excel file.',
+    'error.xlsxFailed.how': 'Try exporting as CSV or run the conversion again.'
+  }
+};
+
+const languageButtons = document.querySelectorAll('[data-lang]');
+
+const applyTranslations = (lang) => {
+  const translations = I18N[lang];
+  if (!translations) {
+    return;
+  }
+
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n-key]').forEach((el) => {
+    const key = el.dataset.i18nKey;
+    const value = translations[key];
+    if (value === undefined) {
+      return;
+    }
+
+    const attr = el.dataset.i18nAttr;
+    if (attr) {
+      el.setAttribute(attr, value);
+      return;
+    }
+
+    if (el.dataset.i18nHtml === 'true') {
+      el.innerHTML = value;
+    } else {
+      el.textContent = value;
+    }
+  });
+
+  languageButtons.forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  updateResultSummary(extractionState.rows, extractionState.meta.columnCount || 0);
+  updateSelectionCoords();
+  renderPreviewTable();
+};
+
+const normalizeLanguage = (lang) => (lang && lang.toLowerCase().startsWith('ja') ? 'ja' : 'en');
+
+const getInitialLanguage = () => {
+  const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  if (stored === 'ja' || stored === 'en') {
+    return stored;
+  }
+  return normalizeLanguage(navigator.language || 'ja');
+};
+
+const setLanguage = (lang) => {
+  const normalized = lang === 'ja' ? 'ja' : 'en';
+  localStorage.setItem(LANGUAGE_STORAGE_KEY, normalized);
+  applyTranslations(normalized);
+};
+
+languageButtons.forEach((btn) => {
+  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+});
+
+const MAX_FILE_SIZE = 30 * 1024 * 1024;
+
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const statusName = document.getElementById('statusName');
+const statusPages = document.getElementById('statusPages');
+const statusSize = document.getElementById('statusSize');
+const pageRangeInput = document.getElementById('pageRange');
+const errorBox = document.getElementById('errorBox');
+const errorWhat = document.getElementById('errorWhat');
+const errorHow = document.getElementById('errorHow');
+const previewCanvas = document.getElementById('pdfPreview');
+const previewPlaceholder = document.getElementById('previewPlaceholder');
+const extractButton = document.getElementById('extractButton');
+const previewArea = previewCanvas?.closest('.preview-area');
+const rowToleranceInput = document.getElementById('rowTolerance');
+const colGapThresholdInput = document.getElementById('colGapThreshold');
+const headerToggle = document.getElementById('headerToggle');
+const modeNotice = document.getElementById('modeNotice');
+const weakWarning = document.getElementById('weakWarning');
+const resultSummary = document.getElementById('resultSummary');
+const modeInputs = document.querySelectorAll('input[name="extractMode"]');
+const manualControls = document.getElementById('manualControls');
+const resetSelectionButton = document.getElementById('resetSelection');
+const reextractButton = document.getElementById('reextractButton');
+const selectionCoords = document.getElementById('selectionCoords');
+const manualWarning = document.getElementById('manualWarning');
+const selectionRect = document.getElementById('selectionRect');
+const progressBar = document.getElementById('progressBar');
+const resetButton = document.getElementById('resetButton');
+const previewTable = document.getElementById('previewTable');
+const previewHead = document.getElementById('previewHead');
+const previewBody = document.getElementById('previewBody');
+const previewEmpty = document.getElementById('previewEmpty');
+const removeEmptyRowsToggle = document.getElementById('removeEmptyRows');
+const removeEmptyColsToggle = document.getElementById('removeEmptyCols');
+const csvBomToggle = document.getElementById('csvBomToggle');
+const delimiterInputs = document.querySelectorAll('input[name="delimiter"]');
+const downloadCsvButton = document.getElementById('downloadCsv');
+const downloadXlsxButton = document.getElementById('downloadXlsx');
+
+const PREVIEW_LIMIT = 50;
+
+let pdfDoc = null;
+let currentFile = null;
+let renderedPage = null;
+
+const extractionState = {
+  settings: {
+    mode: 'auto',
+    rowTolerance: 4,
+    colGapThreshold: 14,
+    header: true
+  },
+  ui: {
+    removeEmptyRows: false,
+    removeEmptyCols: false,
+    delimiter: 'comma',
+    csvBom: true,
+    headerEdits: []
+  },
+  rows: [],
+  rawRows: [],
+  pageRows: [],
+  meta: {},
+  warnings: []
+};
+
+window.pdf2csvState = extractionState;
+
+const previewState = {
+  scale: 1,
+  width: 0,
+  height: 0,
+  pageNumber: null
+};
+
+const selectionState = {
+  dragging: false,
+  start: null,
+  end: null,
+  rect: null
+};
+
+const initialMode = Array.from(modeInputs).find((input) => input.checked)?.value;
+extractionState.settings.mode = initialMode === 'manual' ? 'manual' : 'auto';
+
+if (window.pdfjsLib) {
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.2.67/build/pdf.worker.min.js';
+}
+
+const formatBytes = (bytes) => {
+  if (!bytes && bytes !== 0) {
+    return '-';
+  }
+  const units = ['B', 'KB', 'MB', 'GB'];
+  let size = bytes;
+  let unitIndex = 0;
+  while (size >= 1024 && unitIndex < units.length - 1) {
+    size /= 1024;
+    unitIndex += 1;
+  }
+  return `${size.toFixed(size >= 10 || unitIndex === 0 ? 0 : 1)} ${units[unitIndex]}`;
+};
+
+const translate = (key) => {
+  const lang = document.documentElement.lang || 'ja';
+  return I18N[lang]?.[key] ?? key;
+};
+
+const normalizeText = (text) => (text ?? '').replace(/\s+/g, ' ').trim();
+
+const showError = (whatKey, howKey) => {
+  errorWhat.textContent = translate(whatKey);
+  errorHow.textContent = translate(howKey);
+  errorBox.hidden = false;
+  setProgress(false);
+};
+
+const clearError = () => {
+  errorBox.hidden = true;
+  errorWhat.textContent = '';
+  errorHow.textContent = '';
+};
+
+const setProgress = (visible) => {
+  if (!progressBar) {
+    return;
+  }
+  progressBar.hidden = !visible;
+};
+
+const resetStatus = () => {
+  statusName.textContent = '-';
+  statusPages.textContent = '-';
+  statusSize.textContent = '-';
+};
+
+const resetPreview = () => {
+  const context = previewCanvas.getContext('2d');
+  context.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+  previewCanvas.width = 0;
+  previewCanvas.height = 0;
+  previewArea?.classList.remove('has-preview');
+  previewPlaceholder.hidden = false;
+  previewState.scale = 1;
+  previewState.width = 0;
+  previewState.height = 0;
+  previewState.pageNumber = null;
+  clearSelection();
+};
+
+const resetPreviewTable = () => {
+  if (previewTable) {
+    previewTable.hidden = true;
+  }
+  if (previewHead) {
+    previewHead.innerHTML = '';
+  }
+  if (previewBody) {
+    previewBody.innerHTML = '';
+  }
+  if (previewEmpty) {
+    previewEmpty.hidden = false;
+  }
+};
+
+const updateExtractButton = () => {
+  const rangeResult = validateRange(pageRangeInput.value.trim());
+  const isAuto = extractionState.settings.mode === 'auto';
+  const valid = Boolean(pdfDoc) && rangeResult.valid && isAuto;
+  if (extractButton) {
+    extractButton.disabled = !valid;
+  }
+};
+
+const validateRange = (value) => {
+  if (!value) {
+    if (!pdfDoc) {
+      return { valid: false, error: { what: 'error.needPdf.what', how: 'error.needPdf.how' } };
+    }
+    return { valid: true, pages: Array.from({ length: pdfDoc.numPages }, (_, i) => i + 1) };
+  }
+
+  if (!pdfDoc) {
+    return { valid: false, error: { what: 'error.needPdf.what', how: 'error.needPdf.how' } };
+  }
+
+  const normalized = value.replace(/\s+/g, '');
+  if (!/^[0-9,-]+$/.test(normalized)) {
+    return { valid: false, error: { what: 'error.rangeInvalid.what', how: 'error.rangeInvalid.how' } };
+  }
+
+  const segments = normalized.split(',').filter(Boolean);
+  const pages = [];
+
+  for (const segment of segments) {
+    if (segment.includes('-')) {
+      const [startRaw, endRaw] = segment.split('-');
+      const start = Number.parseInt(startRaw, 10);
+      const end = Number.parseInt(endRaw, 10);
+      if (!start || !end || start > end) {
+        return { valid: false, error: { what: 'error.rangeInvalid.what', how: 'error.rangeInvalid.how' } };
+      }
+      if (end > pdfDoc.numPages) {
+        return { valid: false, error: { what: 'error.rangeOut.what', how: 'error.rangeOut.how' } };
+      }
+      for (let page = start; page <= end; page += 1) {
+        pages.push(page);
+      }
+    } else {
+      const page = Number.parseInt(segment, 10);
+      if (!page) {
+        return { valid: false, error: { what: 'error.rangeInvalid.what', how: 'error.rangeInvalid.how' } };
+      }
+      if (page > pdfDoc.numPages) {
+        return { valid: false, error: { what: 'error.rangeOut.what', how: 'error.rangeOut.how' } };
+      }
+      pages.push(page);
+    }
+  }
+
+  if (!pages.length) {
+    return { valid: false, error: { what: 'error.rangeInvalid.what', how: 'error.rangeInvalid.how' } };
+  }
+
+  const uniquePages = Array.from(new Set(pages));
+  uniquePages.sort((a, b) => a - b);
+
+  return { valid: true, pages: uniquePages };
+};
+
+const updateModeUI = () => {
+  const isAuto = extractionState.settings.mode === 'auto';
+  if (modeNotice) {
+    modeNotice.hidden = isAuto;
+  }
+  if (manualControls) {
+    manualControls.hidden = isAuto;
+  }
+  previewArea?.classList.toggle('manual-active', !isAuto);
+  setManualWarning(false);
+  updateManualButtons();
+  updateExtractButton();
+};
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const normalizeSelectionRect = (start, end) => {
+  if (!start || !end) {
+    return null;
+  }
+  const x = Math.min(start.x, end.x);
+  const y = Math.min(start.y, end.y);
+  const width = Math.abs(start.x - end.x);
+  const height = Math.abs(start.y - end.y);
+  if (width < 2 || height < 2) {
+    return null;
+  }
+  return { x, y, width, height };
+};
+
+const updateSelectionOverlay = () => {
+  if (!selectionRect) {
+    return;
+  }
+  const rect = selectionState.rect;
+  if (!rect) {
+    selectionRect.hidden = true;
+    selectionRect.style.width = '0px';
+    selectionRect.style.height = '0px';
+    return;
+  }
+  const canvasRect = previewCanvas.getBoundingClientRect();
+  const areaRect = previewArea?.getBoundingClientRect();
+  const offsetX = areaRect ? canvasRect.left - areaRect.left : 0;
+  const offsetY = areaRect ? canvasRect.top - areaRect.top : 0;
+  selectionRect.hidden = false;
+  selectionRect.style.left = `${rect.x + offsetX}px`;
+  selectionRect.style.top = `${rect.y + offsetY}px`;
+  selectionRect.style.width = `${rect.width}px`;
+  selectionRect.style.height = `${rect.height}px`;
+};
+
+const updateSelectionCoords = () => {
+  if (!selectionCoords) {
+    return;
+  }
+  const rect = selectionState.rect;
+  const lang = document.documentElement.lang || 'ja';
+  if (!rect) {
+    selectionCoords.textContent = lang === 'ja' ? '選択範囲: -' : 'Selection: -';
+    return;
+  }
+  const x = Math.round(rect.x);
+  const y = Math.round(rect.y);
+  const width = Math.round(rect.width);
+  const height = Math.round(rect.height);
+  if (lang === 'ja') {
+    selectionCoords.textContent = `選択範囲: x=${x}, y=${y}, w=${width}, h=${height}`;
+  } else {
+    selectionCoords.textContent = `Selection: x=${x}, y=${y}, w=${width}, h=${height}`;
+  }
+};
+
+const updateManualButtons = () => {
+  if (!reextractButton) {
+    return;
+  }
+  const enabled = extractionState.settings.mode === 'manual' && Boolean(pdfDoc) && Boolean(selectionState.rect);
+  reextractButton.disabled = !enabled;
+};
+
+const setManualWarning = (visible) => {
+  if (manualWarning) {
+    manualWarning.hidden = !visible;
+  }
+};
+
+const clearSelection = () => {
+  selectionState.dragging = false;
+  selectionState.start = null;
+  selectionState.end = null;
+  selectionState.rect = null;
+  updateSelectionOverlay();
+  updateSelectionCoords();
+  updateManualButtons();
+  setManualWarning(false);
+};
+
+const syncSettingsFromUI = () => {
+  if (rowToleranceInput) {
+    const value = Number.parseInt(rowToleranceInput.value, 10);
+    extractionState.settings.rowTolerance = Number.isFinite(value) ? Math.max(0, value) : 4;
+  }
+  if (colGapThresholdInput) {
+    const value = Number.parseInt(colGapThresholdInput.value, 10);
+    extractionState.settings.colGapThreshold = Number.isFinite(value) ? Math.max(0, value) : 14;
+  }
+  if (headerToggle) {
+    extractionState.settings.header = headerToggle.checked;
+  }
+  if (csvBomToggle) {
+    extractionState.ui.csvBom = csvBomToggle.checked;
+  }
+};
+
+const setWeakWarning = (visible) => {
+  if (weakWarning) {
+    weakWarning.hidden = !visible;
+  }
+};
+
+const updateDownloadButtons = () => {
+  const hasRows = (extractionState.rows || []).length > 0;
+  if (downloadCsvButton) {
+    downloadCsvButton.disabled = !hasRows;
+  }
+  if (downloadXlsxButton) {
+    downloadXlsxButton.disabled = !hasRows;
+  }
+};
+
+function updateResultSummary(rows, maxColumns) {
+  if (!resultSummary) {
+    return;
+  }
+  const rowCount = rows.length;
+  const columnCount = maxColumns ?? 0;
+  const lang = document.documentElement.lang || 'ja';
+  if (lang === 'ja') {
+    resultSummary.textContent = `抽出結果: ${rowCount}行 / ${columnCount}列`;
+  } else {
+    resultSummary.textContent = `Extraction result: ${rowCount} rows / ${columnCount} cols`;
+  }
+}
+
+const getColumnLabel = (index) => {
+  const lang = document.documentElement.lang || 'ja';
+  if (lang === 'ja') {
+    return `列${index + 1}`;
+  }
+  return `Column ${index + 1}`;
+};
+
+const isRowEmpty = (row) => row.every((cell) => !normalizeText(cell));
+
+const getHeaderRowFromEdits = (headerRow, activeIndexes) => {
+  return activeIndexes.map((index) => {
+    if (Object.prototype.hasOwnProperty.call(extractionState.ui.headerEdits, index)) {
+      return extractionState.ui.headerEdits[index];
+    }
+    return headerRow?.[index] ?? '';
+  });
+};
+
+const buildExportConfig = () => {
+  const rawRows = extractionState.rawRows || [];
+  if (!rawRows.length) {
+    return null;
+  }
+  const hasHeader = extractionState.settings.header;
+  const headerRow = hasHeader ? rawRows[0] || [] : [];
+  let dataRows = hasHeader ? rawRows.slice(1) : [...rawRows];
+
+  if (extractionState.ui.removeEmptyRows) {
+    dataRows = dataRows.filter((row) => !isRowEmpty(row));
+  }
+
+  const maxColumns = Math.max(
+    headerRow.length,
+    dataRows.reduce((max, row) => Math.max(max, row.length), 0)
+  );
+  const columnIndexes = Array.from({ length: maxColumns }, (_, i) => i);
+
+  let activeIndexes = [...columnIndexes];
+  if (extractionState.ui.removeEmptyCols && maxColumns > 0) {
+    const keep = columnIndexes.filter((index) => {
+      const hasData = dataRows.some((row) => normalizeText(row[index]));
+      const hasHeaderValue = normalizeText(headerRow[index]);
+      return hasData || (!dataRows.length && hasHeaderValue);
+    });
+    activeIndexes = keep.length ? keep : activeIndexes;
+  }
+
+  return {
+    hasHeader,
+    headerRow,
+    editedHeaderRow: getHeaderRowFromEdits(headerRow, activeIndexes),
+    activeIndexes,
+    dataRows
+  };
+};
+
+const buildProjectedPageRows = (exportConfig) => {
+  const pages = extractionState.pageRows?.length
+    ? extractionState.pageRows
+    : [{ pageNumber: extractionState.meta.pages?.[0] ?? 1, rows: extractionState.rawRows || [] }];
+  const { activeIndexes, hasHeader } = exportConfig;
+  const projectRow = (row) => activeIndexes.map((index) => row?.[index] ?? '');
+  const projectedPages = [];
+  let firstPage = true;
+
+  pages.forEach((page) => {
+    let pageRows = page.rows || [];
+    if (hasHeader && firstPage) {
+      pageRows = pageRows.slice(1);
+      firstPage = false;
+    } else if (hasHeader) {
+      pageRows = [...pageRows];
+    }
+
+    if (extractionState.ui.removeEmptyRows) {
+      pageRows = pageRows.filter((row) => !isRowEmpty(row));
+    }
+
+    projectedPages.push({
+      pageNumber: page.pageNumber,
+      rows: pageRows.map(projectRow)
+    });
+  });
+
+  return projectedPages;
+};
+
+const buildPageSeparatorRow = (columnCount, pageNumber) => {
+  const row = Array.from({ length: columnCount }, () => '');
+  if (columnCount > 0) {
+    row[0] = `=== Page ${pageNumber} ===`;
+  } else {
+    row.push(`=== Page ${pageNumber} ===`);
+  }
+  return row;
+};
+
+const buildCombinedExportRows = (exportConfig, options = {}) => {
+  const { includeHeaderRow = true, includeSeparators = false } = options;
+  const pages = buildProjectedPageRows(exportConfig);
+  const combinedRows = [];
+  if (includeHeaderRow && exportConfig.hasHeader) {
+    combinedRows.push(exportConfig.editedHeaderRow);
+  }
+  const multiplePages = pages.length > 1;
+  pages.forEach((page) => {
+    if (includeSeparators && multiplePages) {
+      combinedRows.push(buildPageSeparatorRow(exportConfig.activeIndexes.length, page.pageNumber));
+    }
+    combinedRows.push(...page.rows);
+  });
+  return combinedRows;
+};
+
+const buildPreviewModel = () => {
+  const exportConfig = buildExportConfig();
+  if (!exportConfig) {
+    return null;
+  }
+
+  const previewRows = buildCombinedExportRows(exportConfig, {
+    includeHeaderRow: false,
+    includeSeparators: true
+  });
+
+  return {
+    activeIndexes: exportConfig.activeIndexes,
+    headerRow: exportConfig.editedHeaderRow,
+    dataRows: previewRows
+  };
+};
+
+const renderPreviewTable = () => {
+  if (!previewTable || !previewHead || !previewBody || !previewEmpty) {
+    return;
+  }
+
+  const previewModel = buildPreviewModel();
+  if (!previewModel || !previewModel.dataRows.length) {
+    resetPreviewTable();
+    return;
+  }
+
+  const { activeIndexes, headerRow, dataRows } = previewModel;
+  const limitedRows = dataRows.slice(0, PREVIEW_LIMIT);
+  const hasHeader = extractionState.settings.header;
+
+  previewHead.innerHTML = '';
+  previewBody.innerHTML = '';
+
+  const headRow = document.createElement('tr');
+  activeIndexes.forEach((colIndex, displayIndex) => {
+    const th = document.createElement('th');
+    if (hasHeader) {
+      const input = document.createElement('input');
+      const fallback = headerRow[displayIndex] ?? '';
+      input.value = extractionState.ui.headerEdits[colIndex] ?? fallback;
+      input.placeholder = fallback || getColumnLabel(displayIndex);
+      input.dataset.colIndex = `${colIndex}`;
+      input.addEventListener('input', () => {
+        const index = Number.parseInt(input.dataset.colIndex, 10);
+        extractionState.ui.headerEdits[index] = input.value;
+      });
+      th.appendChild(input);
+    } else {
+      th.textContent = getColumnLabel(displayIndex);
+    }
+    headRow.appendChild(th);
+  });
+  previewHead.appendChild(headRow);
+
+  limitedRows.forEach((row) => {
+    const tr = document.createElement('tr');
+    activeIndexes.forEach((_, index) => {
+      const td = document.createElement('td');
+      td.textContent = row[index] ?? '';
+      tr.appendChild(td);
+    });
+    previewBody.appendChild(tr);
+  });
+
+  previewTable.hidden = false;
+  previewEmpty.hidden = true;
+};
+
+const applyExtractionResults = (rows, meta, pageRows = []) => {
+  const maxColumns = rows.reduce((max, row) => Math.max(max, row.length), 0);
+  extractionState.rawRows = rows.map((row) => [...row]);
+  extractionState.rows = rows;
+  extractionState.pageRows = pageRows.map((page) => ({
+    pageNumber: page.pageNumber,
+    rows: page.rows.map((row) => [...row])
+  }));
+  extractionState.meta = {
+    ...meta,
+    rowCount: rows.length,
+    columnCount: maxColumns,
+    header: extractionState.settings.header,
+    mode: extractionState.settings.mode
+  };
+  extractionState.ui.headerEdits = [];
+  updateResultSummary(rows, maxColumns);
+  renderPreviewTable();
+  updateDownloadButtons();
+
+  if (!rows.length || maxColumns === 0) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return false;
+  }
+  return true;
+};
+
+const escapeCsvCell = (value, delimiter) => {
+  const cell = value ?? '';
+  const cellText = String(cell);
+  const mustQuote = cellText.includes('"') || cellText.includes('\n') || cellText.includes('\r') || cellText.includes(delimiter);
+  if (!mustQuote) {
+    return cellText;
+  }
+  return `"${cellText.replace(/"/g, '""')}"`;
+};
+
+const getDelimiterChar = () => (extractionState.ui.delimiter === 'tab' ? '\t' : ',');
+
+const formatTimestamp = () => {
+  const now = new Date();
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}`;
+};
+
+const buildExportFilename = (ext) => `pdf2csv-local_${formatTimestamp()}.${ext}`;
+
+const downloadBlob = (blob, filename) => {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
+
+const buildCsvRows = () => {
+  const exportConfig = buildExportConfig();
+  if (!exportConfig) {
+    return [];
+  }
+  return buildCombinedExportRows(exportConfig, {
+    includeHeaderRow: true,
+    includeSeparators: true
+  });
+};
+
+const buildXlsxSheets = () => {
+  const exportConfig = buildExportConfig();
+  if (!exportConfig) {
+    return [];
+  }
+  const pages = buildProjectedPageRows(exportConfig);
+  return pages.map((page, index) => ({
+    name: `Page${index + 1}`,
+    rows: exportConfig.hasHeader ? [exportConfig.editedHeaderRow, ...page.rows] : page.rows
+  }));
+};
+
+const groupItemsByRow = (items, rowTolerance) => {
+  const textItems = items
+    .map((item) => {
+      const transform = item.transform || [];
+      const x = transform[4] ?? 0;
+      const y = transform[5] ?? 0;
+      const text = normalizeText(item.str);
+      const width = item.width ?? 0;
+      return { x, y, text, width };
+    })
+    .filter((item) => item.text.length > 0);
+
+  if (!textItems.length) {
+    return [];
+  }
+
+  textItems.sort((a, b) => {
+    if (b.y !== a.y) {
+      return b.y - a.y;
+    }
+    return a.x - b.x;
+  });
+
+  const rows = [];
+
+  for (const item of textItems) {
+    let targetRow = null;
+    for (const row of rows) {
+      if (Math.abs(item.y - row.y) <= rowTolerance) {
+        targetRow = row;
+        break;
+      }
+    }
+    if (!targetRow) {
+      rows.push({ y: item.y, items: [item], count: 1 });
+    } else {
+      targetRow.items.push(item);
+      targetRow.y = (targetRow.y * targetRow.count + item.y) / (targetRow.count + 1);
+      targetRow.count += 1;
+    }
+  }
+
+  rows.sort((a, b) => b.y - a.y);
+  return rows;
+};
+
+const buildCellsFromRow = (rowItems, colGapThreshold) => {
+  const sorted = [...rowItems].sort((a, b) => a.x - b.x);
+  const cells = [];
+  let parts = [];
+  let prevEnd = null;
+
+  sorted.forEach((item) => {
+    const text = normalizeText(item.text);
+    if (!text) {
+      return;
+    }
+    if (prevEnd !== null && item.x - prevEnd > colGapThreshold) {
+      const joined = normalizeText(parts.join(' '));
+      if (joined) {
+        cells.push(joined);
+      }
+      parts = [];
+    }
+    parts.push(text);
+    const end = item.x + (item.width || 0);
+    prevEnd = prevEnd === null ? end : Math.max(prevEnd, end);
+  });
+
+  if (parts.length) {
+    const joined = normalizeText(parts.join(' '));
+    if (joined) {
+      cells.push(joined);
+    }
+  }
+
+  return cells;
+};
+
+const extractRowsFromItems = (items, rowTolerance, colGapThreshold) => {
+  const groupedRows = groupItemsByRow(items, rowTolerance);
+  return groupedRows
+    .map((row) => buildCellsFromRow(row.items, colGapThreshold))
+    .filter((row) => row.length > 0);
+};
+
+const getItemRect = (item, scale) => {
+  const transform = item.transform || [];
+  const x = (transform[4] ?? 0) * scale;
+  const baselineY = (transform[5] ?? 0) * scale;
+  const width = (item.width ?? 0) * scale;
+  const height = Math.abs(transform[3] ?? item.height ?? 0) * scale || 8 * scale;
+  const y = baselineY - height;
+  return {
+    left: x,
+    right: x + width,
+    top: y,
+    bottom: y + height
+  };
+};
+
+const filterItemsBySelection = (items, selection, scale) => {
+  if (!selection) {
+    return items;
+  }
+  const selectionLeft = selection.x;
+  const selectionRight = selection.x + selection.width;
+  const selectionTop = selection.y;
+  const selectionBottom = selection.y + selection.height;
+
+  return (items || []).filter((item) => {
+    const rect = getItemRect(item, scale);
+    const intersects =
+      rect.right >= selectionLeft &&
+      rect.left <= selectionRight &&
+      rect.bottom >= selectionTop &&
+      rect.top <= selectionBottom;
+    return intersects;
+  });
+};
+
+const extractRowsFromPages = async (pages, settings) => {
+  const results = [];
+  for (const pageNumber of pages) {
+    const page = await pdfDoc.getPage(pageNumber);
+    const textContent = await page.getTextContent();
+    const rows = extractRowsFromItems(textContent.items || [], settings.rowTolerance, settings.colGapThreshold);
+    results.push({ pageNumber, rows });
+  }
+  return results;
+};
+
+const downloadCsv = () => {
+  if (!extractionState.rows.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  const rows = buildCsvRows();
+  if (!rows.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  const delimiter = getDelimiterChar();
+  const csvLines = rows.map((row) => row.map((cell) => escapeCsvCell(cell, delimiter)).join(delimiter));
+  const csvContent = csvLines.join('\r\n');
+  const withBom = extractionState.ui.csvBom ? `\uFEFF${csvContent}` : csvContent;
+  const blob = new Blob([withBom], { type: 'text/csv;charset=utf-8;' });
+  downloadBlob(blob, buildExportFilename('csv'));
+};
+
+const downloadXlsx = () => {
+  if (!extractionState.rows.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  if (!window.XLSX || !window.XLSX.utils) {
+    showError('error.xlsxFailed.what', 'error.xlsxFailed.how');
+    return;
+  }
+  const sheets = buildXlsxSheets();
+  if (!sheets.length) {
+    showError('error.noResult.what', 'error.noResult.how');
+    return;
+  }
+  try {
+    const workbook = window.XLSX.utils.book_new();
+    sheets.forEach((sheetInfo) => {
+      const sheet = window.XLSX.utils.aoa_to_sheet(sheetInfo.rows);
+      Object.keys(sheet).forEach((key) => {
+        if (key.startsWith('!')) {
+          return;
+        }
+        const cell = sheet[key];
+        const value = cell?.v ?? '';
+        cell.t = 's';
+        cell.v = value === null || value === undefined ? '' : String(value);
+      });
+      window.XLSX.utils.book_append_sheet(workbook, sheet, sheetInfo.name);
+    });
+    const arrayBuffer = window.XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([arrayBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    });
+    downloadBlob(blob, buildExportFilename('xlsx'));
+  } catch (error) {
+    showError('error.xlsxFailed.what', 'error.xlsxFailed.how');
+  }
+};
+
+const runExtraction = async () => {
+  syncSettingsFromUI();
+  updateExtractButton();
+  if (extractionState.settings.mode !== 'auto') {
+    return;
+  }
+
+  const rangeResult = validateRange(pageRangeInput.value.trim());
+  if (!rangeResult.valid) {
+    showError(rangeResult.error.what, rangeResult.error.how);
+    return;
+  }
+
+  if (!pdfDoc) {
+    showError('error.needPdf.what', 'error.needPdf.how');
+    return;
+  }
+
+  clearError();
+  setWeakWarning(false);
+  setProgress(true);
+
+  try {
+    const pageResults = await extractRowsFromPages(rangeResult.pages, extractionState.settings);
+    const rows = pageResults.flatMap((page) => page.rows);
+    const hasResult = applyExtractionResults(rows, { pages: rangeResult.pages }, pageResults);
+    const maxColumns = extractionState.meta.columnCount ?? 0;
+    const weak = hasResult && (rows.length < 2 || maxColumns < 2);
+    extractionState.warnings = weak ? ['weak-extraction'] : [];
+    setWeakWarning(weak);
+  } catch (error) {
+    showError('error.loadFailed.what', 'error.loadFailed.how');
+  } finally {
+    setProgress(false);
+  }
+};
+
+const runManualExtraction = async () => {
+  syncSettingsFromUI();
+  if (extractionState.settings.mode !== 'manual') {
+    return;
+  }
+
+  if (!pdfDoc || !previewState.pageNumber) {
+    showError('error.needPdf.what', 'error.needPdf.how');
+    return;
+  }
+
+  if (!selectionState.rect) {
+    setManualWarning(true);
+    return;
+  }
+
+  clearError();
+  setManualWarning(false);
+  setWeakWarning(false);
+  setProgress(true);
+
+  try {
+    const page = await pdfDoc.getPage(previewState.pageNumber);
+    const textContent = await page.getTextContent();
+    const filteredItems = filterItemsBySelection(textContent.items || [], selectionState.rect, previewState.scale);
+    const rows = extractRowsFromItems(filteredItems, extractionState.settings.rowTolerance, extractionState.settings.colGapThreshold);
+    const hasResult = applyExtractionResults(rows, {
+      pages: [previewState.pageNumber],
+      selection: { ...selectionState.rect }
+    }, [{ pageNumber: previewState.pageNumber, rows }]);
+    const maxColumns = extractionState.meta.columnCount ?? 0;
+    const weak = hasResult && (rows.length < 2 || maxColumns < 2);
+    extractionState.warnings = weak ? ['weak-extraction'] : [];
+    setWeakWarning(weak);
+  } catch (error) {
+    showError('error.loadFailed.what', 'error.loadFailed.how');
+  } finally {
+    setProgress(false);
+  }
+};
+
+const renderPreview = async (pageNumber) => {
+  if (!pdfDoc) {
+    return;
+  }
+
+  renderedPage = pageNumber;
+  const page = await pdfDoc.getPage(pageNumber);
+  const initialViewport = page.getViewport({ scale: 1 });
+  const maxWidth = 620;
+  const scale = Math.min(1.6, maxWidth / initialViewport.width);
+  const viewport = page.getViewport({ scale });
+  const context = previewCanvas.getContext('2d');
+
+  previewCanvas.width = viewport.width;
+  previewCanvas.height = viewport.height;
+
+  await page.render({ canvasContext: context, viewport }).promise;
+
+  previewArea?.classList.add('has-preview');
+  previewPlaceholder.hidden = true;
+  previewState.scale = scale;
+  previewState.width = viewport.width;
+  previewState.height = viewport.height;
+  previewState.pageNumber = pageNumber;
+  clearSelection();
+};
+
+const updateRangeAndPreview = async () => {
+  const rangeValue = pageRangeInput.value.trim();
+  if (!pdfDoc) {
+    clearError();
+    resetPreview();
+    updateExtractButton();
+    return;
+  }
+
+  const result = validateRange(rangeValue);
+  if (!result.valid) {
+    showError(result.error.what, result.error.how);
+    updateExtractButton();
+    return;
+  }
+
+  clearError();
+  updateExtractButton();
+
+  const firstPage = result.pages[0];
+  if (firstPage && firstPage !== renderedPage) {
+    try {
+      await renderPreview(firstPage);
+    } catch (error) {
+      showError('error.loadFailed.what', 'error.loadFailed.how');
+    }
+  }
+};
+
+const updateStatus = (file, pages) => {
+  statusName.textContent = file?.name ?? '-';
+  statusPages.textContent = pages ? `${pages}` : '-';
+  statusSize.textContent = file ? formatBytes(file.size) : '-';
+};
+
+const getCanvasPoint = (event) => {
+  const rect = previewCanvas.getBoundingClientRect();
+  return {
+    x: clamp(event.clientX - rect.left, 0, rect.width),
+    y: clamp(event.clientY - rect.top, 0, rect.height)
+  };
+};
+
+const startSelection = (event) => {
+  if (extractionState.settings.mode !== 'manual' || !pdfDoc || !previewState.pageNumber) {
+    return;
+  }
+  if (event.button !== 0) {
+    return;
+  }
+  const point = getCanvasPoint(event);
+  selectionState.dragging = true;
+  selectionState.start = point;
+  selectionState.end = point;
+  selectionState.rect = normalizeSelectionRect(selectionState.start, selectionState.end);
+  updateSelectionOverlay();
+  updateSelectionCoords();
+  updateManualButtons();
+  setManualWarning(false);
+};
+
+const moveSelection = (event) => {
+  if (!selectionState.dragging) {
+    return;
+  }
+  selectionState.end = getCanvasPoint(event);
+  selectionState.rect = normalizeSelectionRect(selectionState.start, selectionState.end);
+  updateSelectionOverlay();
+  updateSelectionCoords();
+};
+
+const endSelection = () => {
+  if (!selectionState.dragging) {
+    return;
+  }
+  selectionState.dragging = false;
+  selectionState.rect = normalizeSelectionRect(selectionState.start, selectionState.end);
+  updateSelectionOverlay();
+  updateSelectionCoords();
+  updateManualButtons();
+};
+
+const handleFileError = (whatKey, howKey) => {
+  pdfDoc = null;
+  currentFile = null;
+  renderedPage = null;
+  resetStatus();
+  resetPreview();
+  resetPreviewTable();
+  extractionState.rows = [];
+  extractionState.rawRows = [];
+  extractionState.pageRows = [];
+  extractionState.meta = {};
+  extractionState.warnings = [];
+  extractionState.ui.headerEdits = [];
+  setWeakWarning(false);
+  updateResultSummary([], 0);
+  updateDownloadButtons();
+  showError(whatKey, howKey);
+  updateExtractButton();
+};
+
+const loadPdf = async (file) => {
+  if (!file) {
+    return;
+  }
+
+  const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+
+  if (!isPdf) {
+    handleFileError('error.notPdf.what', 'error.notPdf.how');
+    return;
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    handleFileError('error.tooLarge.what', 'error.tooLarge.how');
+    return;
+  }
+
+  clearError();
+  resetPreview();
+  resetPreviewTable();
+  updateStatus(file, null);
+  extractionState.rows = [];
+  extractionState.rawRows = [];
+  extractionState.pageRows = [];
+  extractionState.meta = {};
+  extractionState.warnings = [];
+  extractionState.ui.headerEdits = [];
+  setWeakWarning(false);
+  updateResultSummary([], 0);
+  updateDownloadButtons();
+
+  if (!window.pdfjsLib) {
+    handleFileError('error.loadFailed.what', 'error.loadFailed.how');
+    return;
+  }
+
+  try {
+    const buffer = await file.arrayBuffer();
+    const loadingTask = window.pdfjsLib.getDocument({ data: buffer });
+    const doc = await loadingTask.promise;
+    pdfDoc = doc;
+    currentFile = file;
+    updateStatus(file, doc.numPages);
+    await updateRangeAndPreview();
+  } catch (error) {
+    const message = error?.message ?? '';
+    if (error?.name === 'PasswordException' || /password/i.test(message)) {
+      handleFileError('error.encrypted.what', 'error.encrypted.how');
+    } else {
+      handleFileError('error.loadFailed.what', 'error.loadFailed.how');
+    }
+  }
+};
+
+const handleDrop = (event) => {
+  event.preventDefault();
+  dropZone.classList.remove('dragover');
+  const file = event.dataTransfer?.files?.[0];
+  if (file) {
+    fileInput.files = event.dataTransfer.files;
+    loadPdf(file);
+  }
+};
+
+const resetAll = () => {
+  setProgress(false);
+  clearError();
+  pdfDoc = null;
+  currentFile = null;
+  renderedPage = null;
+  if (fileInput) {
+    fileInput.value = '';
+  }
+  pageRangeInput.value = '';
+  extractionState.settings.mode = 'auto';
+  extractionState.settings.rowTolerance = 4;
+  extractionState.settings.colGapThreshold = 14;
+  extractionState.settings.header = true;
+  extractionState.rows = [];
+  extractionState.rawRows = [];
+  extractionState.pageRows = [];
+  extractionState.meta = {};
+  extractionState.warnings = [];
+  extractionState.ui.headerEdits = [];
+  extractionState.ui.removeEmptyRows = false;
+  extractionState.ui.removeEmptyCols = false;
+  extractionState.ui.delimiter = 'comma';
+  extractionState.ui.csvBom = true;
+
+  modeInputs.forEach((input) => {
+    input.checked = input.value === 'auto';
+  });
+  if (rowToleranceInput) {
+    rowToleranceInput.value = '4';
+  }
+  if (colGapThresholdInput) {
+    colGapThresholdInput.value = '14';
+  }
+  if (headerToggle) {
+    headerToggle.checked = true;
+  }
+  if (removeEmptyRowsToggle) {
+    removeEmptyRowsToggle.checked = false;
+  }
+  if (removeEmptyColsToggle) {
+    removeEmptyColsToggle.checked = false;
+  }
+  if (csvBomToggle) {
+    csvBomToggle.checked = true;
+  }
+  delimiterInputs.forEach((input) => {
+    input.checked = input.value === 'comma';
+  });
+
+  resetStatus();
+  resetPreview();
+  resetPreviewTable();
+  setWeakWarning(false);
+  updateResultSummary([], 0);
+  updateDownloadButtons();
+  updateModeUI();
+  updateExtractButton();
+};
+
+['dragenter', 'dragover'].forEach((eventName) => {
+  dropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    dropZone.classList.add('dragover');
+  });
+});
+
+['dragleave', 'drop'].forEach((eventName) => {
+  dropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    dropZone.classList.remove('dragover');
+  });
+});
+
+dropZone.addEventListener('drop', handleDrop);
+
+dropZone.addEventListener('click', () => fileInput.click());
+
+dropZone.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    fileInput.click();
+  }
+});
+
+previewCanvas.addEventListener('mousedown', startSelection);
+previewCanvas.addEventListener('mousemove', moveSelection);
+previewCanvas.addEventListener('mouseleave', endSelection);
+window.addEventListener('mouseup', endSelection);
+
+fileInput.addEventListener('change', (event) => {
+  const file = event.target.files?.[0];
+  if (file) {
+    loadPdf(file);
+  }
+});
+
+modeInputs.forEach((input) => {
+  input.addEventListener('change', () => {
+    extractionState.settings.mode = input.value === 'manual' ? 'manual' : 'auto';
+    updateModeUI();
+  });
+});
+
+rowToleranceInput?.addEventListener('input', () => {
+  syncSettingsFromUI();
+});
+
+colGapThresholdInput?.addEventListener('input', () => {
+  syncSettingsFromUI();
+});
+
+headerToggle?.addEventListener('change', () => {
+  syncSettingsFromUI();
+  renderPreviewTable();
+});
+
+pageRangeInput.addEventListener('input', () => {
+  updateRangeAndPreview();
+});
+
+extractButton.addEventListener('click', () => {
+  runExtraction();
+});
+
+resetButton?.addEventListener('click', () => {
+  resetAll();
+});
+
+resetSelectionButton?.addEventListener('click', () => {
+  clearSelection();
+});
+
+reextractButton?.addEventListener('click', () => {
+  runManualExtraction();
+});
+
+removeEmptyRowsToggle?.addEventListener('change', () => {
+  extractionState.ui.removeEmptyRows = removeEmptyRowsToggle.checked;
+  renderPreviewTable();
+});
+
+removeEmptyColsToggle?.addEventListener('change', () => {
+  extractionState.ui.removeEmptyCols = removeEmptyColsToggle.checked;
+  renderPreviewTable();
+});
+
+csvBomToggle?.addEventListener('change', () => {
+  extractionState.ui.csvBom = csvBomToggle.checked;
+});
+
+delimiterInputs.forEach((input) => {
+  input.addEventListener('change', () => {
+    if (input.checked) {
+      extractionState.ui.delimiter = input.value;
+    }
+  });
+});
+
+downloadCsvButton?.addEventListener('click', () => {
+  downloadCsv();
+});
+
+downloadXlsxButton?.addEventListener('click', () => {
+  downloadXlsx();
+});
+
+applyTranslations(getInitialLanguage());
+syncSettingsFromUI();
+updateModeUI();
+updateResultSummary([], 0);
+resetPreviewTable();
+updateDownloadButtons();

@@ -1,0 +1,596 @@
+{
+  "entries": {
+    "國": {
+      "old": "國",
+      "modern": "国",
+      "radicalJa": "囗（くにがまえ）",
+      "radicalEn": "enclosure radical",
+      "structureJa": "旧字体は外側の囲みの中に「或」を含む形です。",
+      "structureEn": "The old form contains 或 inside the enclosure.",
+      "differenceJa": "新字体では内側の構成が簡略化されています。",
+      "differenceEn": "The inner structure is simplified in the modern form.",
+      "noteJa": "形の見比べ用の参考メモです。",
+      "noteEn": "A quick visual note for comparing shapes.",
+      "tags": [
+        "enclosure",
+        "simplified-inner"
+      ]
+    },
+    "學": {
+      "old": "學",
+      "modern": "学",
+      "radicalJa": "子（こ）",
+      "radicalEn": "child component",
+      "structureJa": "上部に細かな部品が重なる旧字体です。",
+      "structureEn": "The old form has layered components above 子.",
+      "differenceJa": "新字体では上部が大きく整理されています。",
+      "differenceEn": "The upper part is streamlined in the modern form.",
+      "noteJa": "細部の数に注目すると見分けやすいです。",
+      "noteEn": "Count upper strokes to compare at a glance.",
+      "tags": [
+        "upper-complex",
+        "simplified"
+      ]
+    },
+    "體": {
+      "old": "體",
+      "modern": "体",
+      "radicalJa": "骨（ほね）",
+      "radicalEn": "bone radical",
+      "structureJa": "旧字体は「骨」の要素を含む重めの構成です。",
+      "structureEn": "The old form keeps a heavier structure with a bone component.",
+      "differenceJa": "新字体は左側中心の簡潔な形に置き換わります。",
+      "differenceEn": "The modern form shifts to a much simpler left-focused shape.",
+      "noteJa": "全体の密度差を見るためのメモです。",
+      "noteEn": "Useful for seeing the density difference.",
+      "tags": [
+        "dense",
+        "component-change"
+      ]
+    },
+    "會": {
+      "old": "會",
+      "modern": "会",
+      "radicalJa": "曰・人系の構成",
+      "radicalEn": "assembled top components",
+      "structureJa": "旧字体は上部と中段に部品が重なる形です。",
+      "structureEn": "The old form stacks multiple components in the upper and middle parts.",
+      "differenceJa": "新字体は主要部のみを残して短くなります。",
+      "differenceEn": "The modern form condenses to fewer key strokes.",
+      "noteJa": "上側の部品数が主な違いです。",
+      "noteEn": "The top component count is the key visual difference.",
+      "tags": [
+        "upper-complex",
+        "simplified"
+      ]
+    },
+    "舊": {
+      "old": "舊",
+      "modern": "旧",
+      "radicalJa": "臼（うす）系の構成",
+      "radicalEn": "mortar-related component",
+      "structureJa": "旧字体は右側に細かな部品を含む複雑な形です。",
+      "structureEn": "The old form includes finer right-side components.",
+      "differenceJa": "新字体は右側が大幅に省略されています。",
+      "differenceEn": "The right side is heavily reduced in the modern form.",
+      "noteJa": "右半分の情報量を見比べると分かりやすいです。",
+      "noteEn": "Compare the right half for clarity.",
+      "tags": [
+        "right-side",
+        "simplified"
+      ]
+    },
+    "澤": {
+      "old": "澤",
+      "modern": "沢",
+      "radicalJa": "氵（さんずい）",
+      "radicalEn": "water radical",
+      "structureJa": "旧字体は右側に複数部品を持つ構成です。",
+      "structureEn": "The old form has multiple components on the right side.",
+      "differenceJa": "新字体は右側を短い形にまとめています。",
+      "differenceEn": "The modern form compresses the right side.",
+      "noteJa": "さんずいは共通で、右側が比較ポイントです。",
+      "noteEn": "The water radical stays; compare the right side.",
+      "tags": [
+        "water",
+        "right-side"
+      ]
+    },
+    "邊": {
+      "old": "邊",
+      "modern": "辺",
+      "radicalJa": "辶（しんにょう）",
+      "radicalEn": "movement radical",
+      "structureJa": "旧字体は左側と上側に細部を持つ構成です。",
+      "structureEn": "The old form has extra details in the left and upper portions.",
+      "differenceJa": "新字体では内部構成が簡潔になっています。",
+      "differenceEn": "The internal structure is simplified in the modern form.",
+      "noteJa": "しんにょう以外の部分を中心に見比べてください。",
+      "noteEn": "Focus on non-radical components when comparing.",
+      "tags": [
+        "movement",
+        "component-change"
+      ]
+    },
+    "邉": {
+      "old": "邉",
+      "modern": "辺",
+      "radicalJa": "辶（しんにょう）",
+      "radicalEn": "movement radical",
+      "structureJa": "邊の異体として、内側部品の配置が少し異なります。",
+      "structureEn": "As a variant of 邊, inner component placement differs slightly.",
+      "differenceJa": "新字体では同じ「辺」に統合されます。",
+      "differenceEn": "Both variants converge to the same modern form 辺.",
+      "noteJa": "邊との違いもあわせて比較用に使えます。",
+      "noteEn": "Also useful for comparing against 邊.",
+      "tags": [
+        "variant",
+        "movement"
+      ]
+    },
+    "齋": {
+      "old": "齋",
+      "modern": "斎",
+      "radicalJa": "齊系の構成",
+      "radicalEn": "齊-family structure",
+      "structureJa": "旧字体は上中下に部品が多い縦長の形です。",
+      "structureEn": "The old form is vertically layered with many parts.",
+      "differenceJa": "新字体は中心部分を大きく整理した形です。",
+      "differenceEn": "The modern form greatly simplifies the central structure.",
+      "noteJa": "縦方向の部品数が比較ポイントです。",
+      "noteEn": "Vertical component density is the main cue.",
+      "tags": [
+        "vertical",
+        "simplified"
+      ]
+    },
+    "濱": {
+      "old": "濱",
+      "modern": "浜",
+      "radicalJa": "氵（さんずい）",
+      "radicalEn": "water radical",
+      "structureJa": "旧字体は右側に多段の部品を持ちます。",
+      "structureEn": "The old form has multi-layered right-side components.",
+      "differenceJa": "新字体は右側が短く整理されます。",
+      "differenceEn": "The modern form shortens and simplifies the right side.",
+      "noteJa": "浜/濱は地名での見比べにも使われます。",
+      "noteEn": "Commonly compared in place names.",
+      "tags": [
+        "water",
+        "simplified"
+      ]
+    },
+    "﨑": {
+      "old": "﨑",
+      "modern": "崎",
+      "radicalJa": "山（やま）",
+      "radicalEn": "mountain radical",
+      "structureJa": "旧字体（互換漢字）は右側の細部が異なる字形です。",
+      "structureEn": "This compatibility old form differs in right-side details.",
+      "differenceJa": "通常新字体では「崎」として扱われます。",
+      "differenceEn": "It is commonly normalized to 崎 in modern usage.",
+      "noteJa": "人名では登録字体を必ず確認してください。",
+      "noteEn": "For names, always confirm the registered glyph.",
+      "tags": [
+        "name-use",
+        "compatibility"
+      ]
+    },
+    "醫": {
+      "old": "醫",
+      "modern": "医",
+      "radicalJa": "酉系の構成",
+      "radicalEn": "medicine-related enclosure structure",
+      "structureJa": "旧字体は外枠内に複数部品を含む構成です。",
+      "structureEn": "The old form contains multiple inner components within the frame.",
+      "differenceJa": "新字体は内側が大きく単純化されています。",
+      "differenceEn": "The modern form substantially simplifies the inner structure.",
+      "noteJa": "外枠は似ていて、内側差が大きい字です。",
+      "noteEn": "Outer framing is similar; inner parts differ most.",
+      "tags": [
+        "enclosure",
+        "simplified-inner"
+      ]
+    },
+    "鐵": {
+      "old": "鐵",
+      "modern": "鉄",
+      "radicalJa": "金（かね）",
+      "radicalEn": "metal radical",
+      "structureJa": "旧字体は右側に複雑な部品を持つ形です。",
+      "structureEn": "The old form keeps a complex right-side component.",
+      "differenceJa": "新字体では右側が簡潔な構成になります。",
+      "differenceEn": "The modern form uses a simpler right-side structure.",
+      "noteJa": "左の金偏は共通で右側が比較点です。",
+      "noteEn": "Left metal radical is shared; compare the right side.",
+      "tags": [
+        "metal",
+        "right-side"
+      ]
+    },
+    "驛": {
+      "old": "驛",
+      "modern": "駅",
+      "radicalJa": "馬（うま）",
+      "radicalEn": "horse radical",
+      "structureJa": "旧字体は右側に画数の多い部品を含みます。",
+      "structureEn": "The old form includes a high-stroke right component.",
+      "differenceJa": "新字体は右側を短くした形です。",
+      "differenceEn": "The modern form reduces the right component.",
+      "noteJa": "駅名看板の旧表記比較でよく使われます。",
+      "noteEn": "Often compared in historical station signage.",
+      "tags": [
+        "horse",
+        "simplified"
+      ]
+    },
+    "應": {
+      "old": "應",
+      "modern": "応",
+      "radicalJa": "心（こころ）系",
+      "radicalEn": "heart-related component",
+      "structureJa": "旧字体は上部と内部に細かな部品があります。",
+      "structureEn": "The old form has finer upper and inner parts.",
+      "differenceJa": "新字体は上部を中心に整理された形です。",
+      "differenceEn": "The modern form streamlines primarily the upper structure.",
+      "noteJa": "内側の込み具合を目安にしてください。",
+      "noteEn": "Use inner density as your comparison cue.",
+      "tags": [
+        "upper-complex",
+        "simplified"
+      ]
+    },
+    "廣": {
+      "old": "廣",
+      "modern": "広",
+      "radicalJa": "广（まだれ）",
+      "radicalEn": "dotted cliff radical",
+      "structureJa": "旧字体はまだれの下に複雑な部品を持ちます。",
+      "structureEn": "The old form places complex parts under the dotted-cliff top.",
+      "differenceJa": "新字体は下部が大きく省略されています。",
+      "differenceEn": "The modern form significantly reduces the lower section.",
+      "noteJa": "上のまだれは共通で下側差が中心です。",
+      "noteEn": "The top stays similar; compare the lower part.",
+      "tags": [
+        "dotted-cliff",
+        "simplified"
+      ]
+    },
+    "德": {
+      "old": "德",
+      "modern": "徳",
+      "radicalJa": "彳（ぎょうにんべん）",
+      "radicalEn": "step radical",
+      "structureJa": "旧字体は右側に複数の細部を含む構成です。",
+      "structureEn": "The old form has multiple detailed right-side parts.",
+      "differenceJa": "新字体では右側が整理されます。",
+      "differenceEn": "The modern form tidies the right-side structure.",
+      "noteJa": "彳は共通で右側の差が見どころです。",
+      "noteEn": "With 彳 unchanged, right-side changes stand out.",
+      "tags": [
+        "step",
+        "right-side"
+      ]
+    },
+    "榮": {
+      "old": "榮",
+      "modern": "栄",
+      "radicalJa": "木（き）",
+      "radicalEn": "tree radical",
+      "structureJa": "旧字体は上部に重なった部品を持つ形です。",
+      "structureEn": "The old form includes stacked upper components.",
+      "differenceJa": "新字体では上部が簡略化されています。",
+      "differenceEn": "The modern form simplifies the upper layers.",
+      "noteJa": "木偏より上側の形を比較してください。",
+      "noteEn": "Compare the upper shape above the tree element.",
+      "tags": [
+        "tree",
+        "upper-complex"
+      ]
+    },
+    "壽": {
+      "old": "壽",
+      "modern": "寿",
+      "radicalJa": "士系の構成",
+      "radicalEn": "layered upper structure",
+      "structureJa": "旧字体は縦方向に多くの部品を重ねた形です。",
+      "structureEn": "The old form stacks many components vertically.",
+      "differenceJa": "新字体は全体を短くまとめた形です。",
+      "differenceEn": "The modern form condenses the entire structure.",
+      "noteJa": "縦の長さと部品数が主な違いです。",
+      "noteEn": "Height and component count are key differences.",
+      "tags": [
+        "vertical",
+        "simplified"
+      ]
+    },
+    "縣": {
+      "old": "縣",
+      "modern": "県",
+      "radicalJa": "糸（いと）系",
+      "radicalEn": "thread-related component",
+      "structureJa": "旧字体は左側に糸系、右側に細部を持つ形です。",
+      "structureEn": "The old form combines thread-related and detailed right components.",
+      "differenceJa": "新字体では全体が大きく簡潔になります。",
+      "differenceEn": "The modern form is much more compact.",
+      "noteJa": "右側の細かさに注目してください。",
+      "noteEn": "Focus on the intricate right side.",
+      "tags": [
+        "thread",
+        "simplified"
+      ]
+    },
+    "關": {
+      "old": "關",
+      "modern": "関",
+      "radicalJa": "門（もんがまえ）",
+      "radicalEn": "gate radical",
+      "structureJa": "旧字体は門構えの内側に複雑な部品があります。",
+      "structureEn": "The old form has complex inner parts within the gate.",
+      "differenceJa": "新字体は内側が簡略化されています。",
+      "differenceEn": "The modern form simplifies the inner portion.",
+      "noteJa": "門構え内の差を確認するためのメモです。",
+      "noteEn": "Use this to compare what changes inside the gate.",
+      "tags": [
+        "gate",
+        "simplified-inner"
+      ]
+    },
+    "戰": {
+      "old": "戰",
+      "modern": "戦",
+      "radicalJa": "戈（ほこ）系",
+      "radicalEn": "halberd-related component",
+      "structureJa": "旧字体は左右に細部が多い構成です。",
+      "structureEn": "The old form has many detailed parts on both sides.",
+      "differenceJa": "新字体は主要部分を残して整理されています。",
+      "differenceEn": "The modern form keeps key parts and trims detail.",
+      "noteJa": "画数差が大きい代表例です。",
+      "noteEn": "A typical high stroke-count reduction example.",
+      "tags": [
+        "high-stroke",
+        "simplified"
+      ]
+    },
+    "廳": {
+      "old": "廳",
+      "modern": "庁",
+      "radicalJa": "广（まだれ）",
+      "radicalEn": "dotted cliff radical",
+      "structureJa": "旧字体はまだれの下に長い内部構成を持ちます。",
+      "structureEn": "The old form has a long inner structure under the dotted-cliff top.",
+      "differenceJa": "新字体は内部を大幅に短縮しています。",
+      "differenceEn": "The modern form drastically shortens the inner structure.",
+      "noteJa": "外形より内部の省略が目立ちます。",
+      "noteEn": "Inner reduction is more notable than the outer frame.",
+      "tags": [
+        "dotted-cliff",
+        "simplified"
+      ]
+    },
+    "敎": {
+      "old": "敎",
+      "modern": "教",
+      "radicalJa": "攵（のぶん）",
+      "radicalEn": "strike/action component",
+      "structureJa": "旧字体は左上側の部品がやや複雑です。",
+      "structureEn": "The old form has a slightly more complex upper-left component.",
+      "differenceJa": "新字体はその部分が整理されています。",
+      "differenceEn": "That area is streamlined in the modern form.",
+      "noteJa": "全体は似ていますが左上が比較点です。",
+      "noteEn": "Overall similar, with key change at upper-left.",
+      "tags": [
+        "upper-left",
+        "component-change"
+      ]
+    },
+    "數": {
+      "old": "數",
+      "modern": "数",
+      "radicalJa": "攵（のぶん）",
+      "radicalEn": "strike/action component",
+      "structureJa": "旧字体は左側が細かく分かれた構成です。",
+      "structureEn": "The old form has a finely divided left-side structure.",
+      "differenceJa": "新字体は左側が簡潔化されています。",
+      "differenceEn": "The modern form simplifies the left side.",
+      "noteJa": "右の攵より左側差が目立ちます。",
+      "noteEn": "Left-side differences stand out more than the right.",
+      "tags": [
+        "left-side",
+        "simplified"
+      ]
+    },
+    "證": {
+      "old": "證",
+      "modern": "証",
+      "radicalJa": "言（ごんべん）",
+      "radicalEn": "speech radical",
+      "structureJa": "旧字体は右側に複数部品を持ちます。",
+      "structureEn": "The old form has multiple right-side components.",
+      "differenceJa": "新字体は右側を短くまとめています。",
+      "differenceEn": "The modern form condenses the right side.",
+      "noteJa": "ごんべんは共通で右側比較が中心です。",
+      "noteEn": "Speech radical is shared; compare right-side shapes.",
+      "tags": [
+        "speech",
+        "right-side"
+      ]
+    },
+    "讀": {
+      "old": "讀",
+      "modern": "読",
+      "radicalJa": "言（ごんべん）",
+      "radicalEn": "speech radical",
+      "structureJa": "旧字体は右側に密な構成を含みます。",
+      "structureEn": "The old form includes a dense right component.",
+      "differenceJa": "新字体は右側の情報量を減らしています。",
+      "differenceEn": "The modern form reduces right-side complexity.",
+      "noteJa": "言偏以外の部分を見比べると分かりやすいです。",
+      "noteEn": "Compare the non-radical side for clarity.",
+      "tags": [
+        "speech",
+        "simplified"
+      ]
+    },
+    "觀": {
+      "old": "觀",
+      "modern": "観",
+      "radicalJa": "見（みる）",
+      "radicalEn": "see radical",
+      "structureJa": "旧字体は左側と上部に細かな部品があります。",
+      "structureEn": "The old form has finer parts on the left and top.",
+      "differenceJa": "新字体はそれらをまとめた形です。",
+      "differenceEn": "The modern form consolidates those components.",
+      "noteJa": "見の部分より上左差が目立ちます。",
+      "noteEn": "Differences above and left of 見 are most visible.",
+      "tags": [
+        "see",
+        "upper-complex"
+      ]
+    },
+    "嚴": {
+      "old": "嚴",
+      "modern": "厳",
+      "radicalJa": "口（くち）系",
+      "radicalEn": "mouth-related structure",
+      "structureJa": "旧字体は上部に細かな繰り返し部品を含みます。",
+      "structureEn": "The old form includes repeated fine upper components.",
+      "differenceJa": "新字体は上部が整理され短くなります。",
+      "differenceEn": "The modern form streamlines and shortens the top.",
+      "noteJa": "上側の密度差が大きい字です。",
+      "noteEn": "Upper density difference is significant.",
+      "tags": [
+        "upper-complex",
+        "simplified"
+      ]
+    },
+    "傳": {
+      "old": "傳",
+      "modern": "伝",
+      "radicalJa": "亻（にんべん）",
+      "radicalEn": "person radical",
+      "structureJa": "旧字体は右側に多段の部品を持ちます。",
+      "structureEn": "The old form has a multi-part right component.",
+      "differenceJa": "新字体は右側が簡潔化されています。",
+      "differenceEn": "The modern form simplifies the right side.",
+      "noteJa": "にんべんは共通で右側比較向きです。",
+      "noteEn": "With the person radical stable, compare the right side.",
+      "tags": [
+        "person",
+        "right-side"
+      ]
+    },
+    "圖": {
+      "old": "圖",
+      "modern": "図",
+      "radicalJa": "囗（くにがまえ）",
+      "radicalEn": "enclosure radical",
+      "structureJa": "旧字体は囲みの内側に細かな要素を含みます。",
+      "structureEn": "The old form contains finer elements inside the enclosure.",
+      "differenceJa": "新字体では内側が簡略化されます。",
+      "differenceEn": "The modern form simplifies the inner portion.",
+      "noteJa": "外側より内側の形を見比べてください。",
+      "noteEn": "Focus on inner shapes rather than the outer frame.",
+      "tags": [
+        "enclosure",
+        "simplified-inner"
+      ]
+    },
+    "團": {
+      "old": "團",
+      "modern": "団",
+      "radicalJa": "囗（くにがまえ）",
+      "radicalEn": "enclosure radical",
+      "structureJa": "旧字体は囲みの内側に複数部品を持ちます。",
+      "structureEn": "The old form has multiple components inside the enclosure.",
+      "differenceJa": "新字体は内側が単純化されています。",
+      "differenceEn": "The inner structure is simplified in the modern form.",
+      "noteJa": "図と同様、囲み内の違いが中心です。",
+      "noteEn": "Like 圖, key differences sit inside the enclosure.",
+      "tags": [
+        "enclosure",
+        "simplified-inner"
+      ]
+    },
+    "從": {
+      "old": "從",
+      "modern": "従",
+      "radicalJa": "彳（ぎょうにんべん）",
+      "radicalEn": "step radical",
+      "structureJa": "旧字体は右側に複数の小部品を含みます。",
+      "structureEn": "The old form includes several small right-side components.",
+      "differenceJa": "新字体は右側が整理された形です。",
+      "differenceEn": "The modern form organizes and reduces the right side.",
+      "noteJa": "彳は共通で、右半分を比べる字です。",
+      "noteEn": "Compare the right half while 彳 remains unchanged.",
+      "tags": [
+        "step",
+        "simplified"
+      ]
+    },
+    "斷": {
+      "old": "斷",
+      "modern": "断",
+      "radicalJa": "斤（おの）系",
+      "radicalEn": "axe-related component",
+      "structureJa": "旧字体は左側に細かな構成が多い形です。",
+      "structureEn": "The old form has many fine components on the left.",
+      "differenceJa": "新字体は左側を簡潔にまとめています。",
+      "differenceEn": "The modern form compacts the left side.",
+      "noteJa": "右側より左側差が見やすい字です。",
+      "noteEn": "Left-side changes are more apparent here.",
+      "tags": [
+        "left-side",
+        "simplified"
+      ]
+    },
+    "靈": {
+      "old": "靈",
+      "modern": "霊",
+      "radicalJa": "雨（あめかんむり）",
+      "radicalEn": "rain radical",
+      "structureJa": "旧字体は雨冠の下に多層の部品があります。",
+      "structureEn": "The old form has layered components under the rain top.",
+      "differenceJa": "新字体では下部が整理されています。",
+      "differenceEn": "The modern form simplifies the lower structure.",
+      "noteJa": "上は似ていて下部差が大きい字です。",
+      "noteEn": "Top is similar; lower-part difference is larger.",
+      "tags": [
+        "rain",
+        "simplified"
+      ]
+    },
+    "讓": {
+      "old": "讓",
+      "modern": "譲",
+      "radicalJa": "言（ごんべん）",
+      "radicalEn": "speech radical",
+      "structureJa": "旧字体は右側に細かい部品が重なる構成です。",
+      "structureEn": "The old form stacks detailed components on the right.",
+      "differenceJa": "新字体は右側を簡潔にしています。",
+      "differenceEn": "The modern form simplifies the right side.",
+      "noteJa": "讀・證と同系統の比較ができます。",
+      "noteEn": "Comparable pattern to 讀 and 證.",
+      "tags": [
+        "speech",
+        "right-side"
+      ]
+    },
+    "樂": {
+      "old": "樂",
+      "modern": "楽",
+      "radicalJa": "木系の構成",
+      "radicalEn": "tree-related lower component",
+      "structureJa": "旧字体は上部と中央に細かな部品が重なります。",
+      "structureEn": "The old form layers detailed upper and central components.",
+      "differenceJa": "新字体は主要形を残して簡潔化されています。",
+      "differenceEn": "The modern form retains core shape with fewer details.",
+      "noteJa": "上中段の画数差が分かりやすい字です。",
+      "noteEn": "Stroke count difference is clear in upper/middle parts.",
+      "tags": [
+        "upper-complex",
+        "simplified"
+      ]
+    }
+  }
+}
