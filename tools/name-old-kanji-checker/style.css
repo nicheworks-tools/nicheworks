@@ -150,3 +150,10 @@ header,
     padding: 10px;
   }
 }
+
+.okj-pro-panel { background:#fff; border:1px solid #d8deea; border-radius:12px; padding:14px; margin:12px 0; }
+.okj-pro-badge { font-weight:700; margin:0 0 6px; }
+.okj-pro-price { margin:0 0 10px; font-weight:600; }
+.okj-pro-panel__features { border:1px solid #e5e7eb; border-radius:10px; padding:10px; margin-bottom:10px; overflow-wrap:anywhere; }
+.okj-pro-locked-button[disabled] { opacity:.7; cursor:not-allowed; width:100%; }
+.okj-pro-panel__note { margin:10px 0 0; font-size:.92rem; }
