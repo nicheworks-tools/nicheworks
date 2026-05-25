@@ -47,6 +47,11 @@ button {
   padding: 8px 12px;
 }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .lang-btn.active {
   background: #1f6feb;
   color: #fff;
@@ -56,6 +61,10 @@ button {
 #image-input,
 textarea {
   width: 100%;
+}
+
+textarea {
+  min-height: 130px;
 }
 
 .image-preview {
@@ -79,6 +88,27 @@ textarea {
 
 .file-meta dt {
   font-weight: 600;
+}
+
+.ocr-status,
+.ocr-progress,
+.ocr-note {
+  margin: 10px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.result-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 8px 0 10px;
+}
+
+.copy-toast {
+  color: #1a7f37;
+  font-weight: 600;
+  min-height: 1.2em;
 }
 
 .related-links {
@@ -115,7 +145,8 @@ textarea {
     padding: 12px;
   }
 
-  .related-links a {
+  .related-links a,
+  .result-actions button {
     width: 100%;
   }
 }
