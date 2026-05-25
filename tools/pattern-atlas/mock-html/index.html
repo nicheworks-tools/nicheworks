@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pattern Atlas HTML Mock</title>
+  <link rel="stylesheet" href="./pattern-atlas-mock.css">
+</head>
+<body>
+  <div class="pa-tool" data-tool="pattern-atlas-mock">
+    <header class="pa-header">
+      <p class="pa-kicker">NicheWorks / Creative Tools</p>
+      <h1 class="pa-title">Pattern Atlas</h1>
+      <p class="pa-lead">世界の模様を、意味から探して、色を変えて、素材として使う。This mock tests a restrained NicheWorks-native layout without the UI Atlas-style desktop three-column shell.</p>
+    </header>
+
+    <main class="pa-main">
+      <div class="pa-ad">広告枠（準備中）</div>
+
+      <section class="pa-section" aria-labelledby="search-title">
+        <h2 class="pa-section-title" id="search-title">Search patterns</h2>
+        <div class="pa-search-row">
+          <input class="pa-input" type="search" value="" placeholder="青海波、arabesque、wave、textile">
+          <button class="pa-button pa-button-primary" type="button">Search</button>
+        </div>
+        <div class="pa-filter-row" style="margin-top: 12px;">
+          <select class="pa-select" aria-label="Region"><option>Region: All</option><option>Japan</option><option>Islamic world</option><option>Europe</option><option>Africa</option></select>
+          <select class="pa-select" aria-label="Category"><option>Category: All</option><option>Geometric</option><option>Wave</option><option>Floral</option><option>Textile</option></select>
+          <select class="pa-select" aria-label="Use"><option>Use: All</option><option>Web background</option><option>Textile</option><option>Poster</option></select>
+          <select class="pa-select" aria-label="Caution"><option>Caution: All</option><option>Low</option><option>Medium</option><option>High</option></select>
+          <button class="pa-button pa-button-soft" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section class="pa-section" aria-labelledby="results-title">
+        <div class="pa-results-head">
+          <h2 class="pa-section-title" id="results-title">Pattern list</h2>
+          <p class="pa-results-count">Mock results: 8 patterns</p>
+        </div>
+        <div class="pa-card-grid">
+          <article class="pa-card">
+            <div class="pa-pattern-preview"><div class="pa-pattern-sample" aria-hidden="true"></div></div>
+            <div class="pa-card-body">
+              <h3 class="pa-card-title">Seigaiha / 青海波</h3>
+              <p class="pa-card-meta">Japan / Wave / Geometric</p>
+              <p class="pa-card-note">Calm waves, continuity, peace.</p>
+              <div class="pa-tag-row"><span class="pa-tag">low caution</span><span class="pa-tag">traditional</span></div>
+              <div class="pa-card-actions"><button class="pa-button" type="button">Detail</button><button class="pa-button pa-button-primary" type="button">Edit</button></div>
+            </div>
+          </article>
+
+          <article class="pa-card">
+            <div class="pa-pattern-preview"><div class="pa-pattern-sample alt" aria-hidden="true"></div></div>
+            <div class="pa-card-body">
+              <h3 class="pa-card-title">Shippo / 七宝</h3>
+              <p class="pa-card-meta">Japan / Circle / Geometric</p>
+              <p class="pa-card-note">Linked circles, continuity, harmony.</p>
+              <div class="pa-tag-row"><span class="pa-tag">low caution</span><span class="pa-tag">geometric</span></div>
+              <div class="pa-card-actions"><button class="pa-button" type="button">Detail</button><button class="pa-button pa-button-primary" type="button">Edit</button></div>
+            </div>
+          </article>
+
+          <article class="pa-card">
+            <div class="pa-pattern-preview"><div class="pa-pattern-sample knot" aria-hidden="true"></div></div>
+            <div class="pa-card-body">
+              <h3 class="pa-card-title">Arabesque</h3>
+              <p class="pa-card-meta">Islamic world / Floral / Geometry</p>
+              <p class="pa-card-note">Flowing ornament, vegetal rhythm.</p>
+              <div class="pa-tag-row"><span class="pa-tag">medium caution</span><span class="pa-tag">religious context</span></div>
+              <div class="pa-card-actions"><button class="pa-button" type="button">Detail</button><button class="pa-button pa-button-primary" type="button">Edit</button></div>
+            </div>
+          </article>
+
+          <article class="pa-card">
+            <div class="pa-pattern-preview"><div class="pa-pattern-sample alt" aria-hidden="true"></div></div>
+            <div class="pa-card-body">
+              <h3 class="pa-card-title">Kente-inspired band</h3>
+              <p class="pa-card-meta">Ghana / Textile / Stripe</p>
+              <p class="pa-card-note">Textile-inspired color and rhythm.</p>
+              <div class="pa-tag-row"><span class="pa-tag">high caution</span><span class="pa-tag">cultural context</span></div>
+              <div class="pa-card-actions"><button class="pa-button" type="button">Detail</button><button class="pa-button pa-button-primary" type="button">Edit</button></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="pa-section" aria-labelledby="detail-title">
+        <h2 class="pa-section-title" id="detail-title">Detail / edit / export mock</h2>
+        <div class="pa-detail-grid">
+          <div class="pa-large-preview"><div class="pa-pattern-sample" aria-hidden="true"></div></div>
+          <div>
+            <h3 class="pa-detail-title">Seigaiha / 青海波</h3>
+            <div class="pa-tag-row"><span class="pa-tag">Japan</span><span class="pa-tag">Wave</span><span class="pa-tag">Geometric</span><span class="pa-tag">low caution</span></div>
+            <div class="pa-info-list">
+              <div class="pa-info-item"><span class="pa-info-label">Meaning</span>Calm waves, continuity, peaceful life, and good fortune.</div>
+              <div class="pa-info-item"><span class="pa-info-label">Context</span>Modern SVG reconstruction inspired by a traditional Japanese pattern. Not an official historical reproduction.</div>
+              <div class="pa-info-item"><span class="pa-info-label">Use cases</span>Website background, packaging, textile-style layouts, cards.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pa-section" aria-labelledby="editor-title">
+        <h2 class="pa-section-title" id="editor-title">Color / preview / export</h2>
+        <div class="pa-editor-grid">
+          <div>
+            <h3 class="pa-card-title">Color editor</h3>
+            <div class="pa-color-row"><label>Background</label><input type="color" value="#ffffff"><input class="pa-input" value="#ffffff"></div>
+            <div class="pa-color-row"><label>Primary</label><input type="color" value="#1f4e79"><input class="pa-input" value="#1f4e79"></div>
+            <div class="pa-color-row"><label>Accent</label><input type="color" value="#8fbcd4"><input class="pa-input" value="#8fbcd4"></div>
+            <div class="pa-palette-row"><button class="pa-button" type="button">Default</button><button class="pa-button" type="button">Monochrome</button><button class="pa-button" type="button">Muted</button><button class="pa-button" type="button">Traditional</button></div>
+          </div>
+          <div class="pa-use-preview">
+            <h3 class="pa-card-title">Preview</h3>
+            <div class="pa-preview-tabs"><button class="pa-button pa-button-primary" type="button">Tile</button><button class="pa-button" type="button">Website</button><button class="pa-button" type="button">Poster</button><button class="pa-button" type="button">Fabric</button></div>
+            <div class="pa-use-preview-box" style="margin-top: 12px;"></div>
+          </div>
+        </div>
+
+        <div class="pa-notice">This is a modern reconstruction inspired by a traditional pattern, not an official historical reproduction. Review cultural context before commercial use.</div>
+
+        <div class="pa-export-row">
+          <select class="pa-select" aria-label="Format"><option>Format: SVG</option><option>PNG</option><option>CSS</option></select>
+          <select class="pa-select" aria-label="Size"><option>Size: 512</option><option>1024</option></select>
+          <select class="pa-select" aria-label="Tile"><option>Tile: single</option><option>2x2</option></select>
+          <button class="pa-button pa-button-primary" type="button">Download</button>
+          <button class="pa-button" type="button">Copy CSS</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pa-footer">
+      <p>© NicheWorks — Pattern Atlas mock. This file is a UI reference, not production implementation.</p>
+    </footer>
+  </div>
+</body>
+</html>
