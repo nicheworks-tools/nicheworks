@@ -1,0 +1,27 @@
+{
+  "id": "pattern-atlas",
+  "name": "Pattern Atlas",
+  "nameJa": "世界の模様辞典",
+  "path": "/tools/pattern-atlas/",
+  "type": "static-tool",
+  "entry": "index.html",
+  "version": "0.1.0-pre",
+  "i18n": "inline-ja-en",
+  "status": "pre-implementation",
+  "features": [
+    "dictionary",
+    "svg-preview",
+    "color-edit",
+    "tile-preview",
+    "svg-export",
+    "png-export",
+    "css-export"
+  ],
+  "constraints": [
+    "no-ui-atlas-three-column-layout",
+    "nicheworks-native-ui",
+    "static-html-css-js",
+    "client-side-only",
+    "pattern-atlas-files-stay-under-tool-directory"
+  ]
+}
