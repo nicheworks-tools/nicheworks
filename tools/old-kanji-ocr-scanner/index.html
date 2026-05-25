@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>旧字体OCRスキャナー | Old Kanji OCR Scanner</title>
+  <meta name="description" content="画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。初期版では画像を読み込み、OCR結果と旧字体検出へつなぐための準備画面を提供します。 / An OCR entry point for checking old or variant kanji from images or smartphone photos. This initial version prepares image loading, preview, and later OCR/detection flows.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.pages.dev/tools/old-kanji-ocr-scanner/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="旧字体OCRスキャナー | Old Kanji OCR Scanner">
+  <meta property="og:description" content="画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。初期版では画像を読み込み、OCR結果と旧字体検出へつなぐための準備画面を提供します。 / An OCR entry point for checking old or variant kanji from images or smartphone photos.">
+  <meta property="og:url" content="https://nicheworks.pages.dev/tools/old-kanji-ocr-scanner/">
+  <meta property="og:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="旧字体OCRスキャナー | Old Kanji OCR Scanner">
+  <meta name="twitter:description" content="画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。初期版では画像を読み込み、OCR結果と旧字体検出へつなぐための準備画面を提供します。 / An OCR entry point for checking old or variant kanji from images or smartphone photos.">
+  <meta name="twitter:image" content="https://nicheworks.pages.dev/assets/ogp.png">
+
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/nicheworks-logo.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="ocr-scanner">
+    <header class="tool-header">
+      <h1 data-i18n="title">旧字体OCRスキャナー</h1>
+      <p data-i18n="lead">画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。</p>
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button id="lang-ja" type="button" class="lang-btn" data-lang="ja">JP</button>
+        <button id="lang-en" type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </header>
+
+    <section class="input-panel">
+      <h2 data-i18n="inputHeading">画像を選択</h2>
+      <p data-i18n="inputHelp">看板、碑文、古い資料、古地図、紙面の写真などを1枚読み込めます。</p>
+      <input id="image-input" type="file" accept="image/*" capture="environment" aria-label="Image file input">
+    </section>
+
+    <section class="image-preview-panel" id="preview-panel" hidden>
+      <h2 data-i18n="previewHeading">画像プレビュー</h2>
+      <img id="preview-image" class="image-preview" alt="Selected image preview">
+      <dl class="file-meta">
+        <div><dt data-i18n="fileNameLabel">ファイル名</dt><dd id="file-name"></dd></div>
+        <div><dt data-i18n="fileSizeLabel">サイズ</dt><dd id="file-size"></dd></div>
+        <div><dt data-i18n="fileTypeLabel">種類</dt><dd id="file-type"></dd></div>
+      </dl>
+      <button id="remove-image" type="button" data-i18n="removeImage">画像を削除</button>
+    </section>
+
+    <section class="ocr-placeholder">
+      <h2 data-i18n="ocrHeading">OCR結果</h2>
+      <p data-i18n="ocrText">OCR機能は次のPRで接続します。この画面では、画像の読み込みとプレビューまで確認できます。</p>
+      <button type="button" disabled data-i18n="ocrButton">OCRを実行する（準備中）</button>
+    </section>
+
+    <section class="manual-input-panel">
+      <h2 data-i18n="manualHeading">手動で文字を入力</h2>
+      <label for="manual-text" data-i18n="manualLabel">手動で文字を入力</label>
+      <textarea id="manual-text" rows="4" placeholder="舊字體 國 﨑"></textarea>
+      <p data-i18n="manualHelp">OCR接続前でも、気になる旧字体を手入力して関連ツールで確認できます。</p>
+      <div class="related-links" id="manual-links">
+        <a data-base-href="../old-document-kanji-highlighter/" target="_blank" rel="noopener noreferrer">Old Document Kanji Highlighter</a>
+        <a data-base-href="../unicode-kanji-checker/" target="_blank" rel="noopener noreferrer">Unicode Kanji Checker</a>
+        <a data-base-href="../variant-kanji-compare/" target="_blank" rel="noopener noreferrer">Variant Kanji Compare</a>
+        <a data-base-href="../old-kanji-reference/" target="_blank" rel="noopener noreferrer">Old Kanji Reference</a>
+      </div>
+    </section>
+
+    <section class="notice-panel privacy-note">
+      <p data-i18n="privacyNote">画像と入力内容はこの画面内で扱い、OCR用の外部APIには送信しません。アクセス解析や広告タグが読み込まれる場合があります。</p>
+    </section>
+
+    <section class="notice-panel">
+      <h2 data-i18n="accuracyHeading">OCR利用時の注意</h2>
+      <p data-i18n="accuracyText">旧字体、異体字、縦書き、かすれた文字、崩し字、古い看板や碑文はOCRで正しく読み取れない場合があります。正式な氏名、地名、住所、戸籍、登記、契約、行政手続きでは、必ず原資料や登録字体を確認してください。</p>
+    </section>
+
+    <section class="notice-panel">
+      <p data-i18n="proNote">無料版では1枚の画像確認を想定しています。複数画像OCR、履歴保存、トリミング、レポート出力は Old Kanji Toolkit Pro の対象予定です。</p>
+    </section>
+
+    <section class="related-links footer-links">
+      <a href="../old-kanji-reference/">Old Kanji Reference</a>
+      <a href="../old-document-kanji-highlighter/">Old Document Kanji Highlighter</a>
+      <a href="../unicode-kanji-checker/">Unicode Kanji Checker</a>
+      <a href="../variant-kanji-compare/">Variant Kanji Compare</a>
+      <a href="../name-old-kanji-checker/">Name Old Kanji Checker</a>
+      <a href="../place-old-kanji-checker/">Place Old Kanji Checker</a>
+      <a href="../kanji-modernizer/">Kanji Modernizer</a>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "97e1db7e68e74035a70f449f3461fd23"}'></script>
+</body>
+</html>
