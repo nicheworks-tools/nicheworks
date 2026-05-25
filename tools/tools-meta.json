@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-20",
+  "updatedAt": "2026-05-25",
   "items": {
     "ai-project-pack": {
       "title_ja": "AIプロジェクトパック",
@@ -1010,6 +1010,17 @@
         "unicode",
         "kanji",
         "checker"
+      ]
+    },
+    "variant-kanji-compare": {
+      "title_ja": "異体字比較ツール | Variant Kanji Compare",
+      "title_en": "Variant Kanji Compare",
+      "desc_ja": "見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。",
+      "desc_en": "Variant Kanji Compare is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "variant",
+        "kanji",
+        "compare"
       ]
     }
   }
