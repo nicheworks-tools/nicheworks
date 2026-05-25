@@ -1,5 +1,6 @@
 import { patterns } from './data/patterns-all.js';
 import { setupPatternFilters } from './filter-ui.js';
+import { setupPatternDetail } from './detail-ui.js';
 
 const root = document.querySelector('[data-tool="pattern-atlas"]');
 
@@ -39,6 +40,7 @@ if (root) {
   const createCard = (pattern) => {
     const card = createElement('article', 'pa-card');
     card.dataset.paCard = '';
+    card.dataset.paPatternId = pattern.id;
     card.dataset.paSearch = buildSearchText(pattern);
     card.dataset.paRegions = pattern.regions.join(' ');
     card.dataset.paCategories = pattern.categories.join(' ');
@@ -76,4 +78,5 @@ if (root) {
 
   renderCards();
   setupPatternFilters({ root, patterns, isJapanese });
+  setupPatternDetail({ root, patterns, isJapanese });
 }
