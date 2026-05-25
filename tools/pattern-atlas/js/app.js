@@ -1,6 +1,7 @@
 import { patterns } from './data/patterns-all.js';
 import { setupPatternFilters } from './filter-ui.js';
 import { setupPatternDetail } from './detail-ui.js';
+import { renderPatternSvg } from './renderers/index.js';
 
 const root = document.querySelector('[data-tool="pattern-atlas"]');
 
@@ -31,10 +32,10 @@ if (root) {
     return element;
   };
 
-  const previewClassFor = (pattern) => {
-    if (pattern.rendererType === 'knot') return 'pa-pattern-sample knot';
-    if (pattern.rendererType === 'grid' || pattern.rendererType === 'diamond-repeat' || pattern.rendererType === 'stripe') return 'pa-pattern-sample alt';
-    return 'pa-pattern-sample';
+  const createSvgPreview = (pattern, className = 'pa-svg-preview') => {
+    const wrapper = createElement('div', className);
+    wrapper.innerHTML = renderPatternSvg(pattern);
+    return wrapper;
   };
 
   const createCard = (pattern) => {
@@ -47,9 +48,7 @@ if (root) {
     card.dataset.paUses = pattern.useCases.join(' ');
 
     const preview = createElement('div', 'pa-pattern-preview');
-    const sample = createElement('div', previewClassFor(pattern));
-    sample.setAttribute('aria-hidden', 'true');
-    preview.append(sample);
+    preview.append(createSvgPreview(pattern));
 
     const body = createElement('div', 'pa-card-body');
     const title = createElement('h3', 'pa-card-title', getText(pattern, 'nameEn', 'nameJa'));
