@@ -72,6 +72,10 @@
       privacyNote:
         '入力内容はブラウザ内で処理され、外部APIには送信しません。アクセス解析や広告タグが読み込まれる場合があります。',
       relatedLinks: '関連リンク',
+      proFeatureTitle: '一括処理・レポート・出力・保存セット・監査メモは Pro 機能です',
+      proFeatureText: '氏名チェック結果の一括処理、レポート作成、出力、保存セット、監査メモは Old Kanji Toolkit Pro で利用できます。',
+      proCta: 'Pro を確認する',
+      proBillingNote: '現在、Pro機能は準備中です。課金導線はまだ接続されていません。',
       riskTitle: '氏名で使う場合の注意',
       riskText:
         'このツールは旧字体・異体字の参考確認用です。氏名・戸籍・住民票・登記・銀行・保険・学校・勤務先などで使う場合は、必ず実際の登録字体を確認してください。ここで表示される候補は、法的な有効性や登録可否を判断するものではありません。',
@@ -114,6 +118,10 @@
       privacyNote:
         'Input is processed in the browser and is not sent to an external API. Analytics or ad tags may be loaded on the page.',
       relatedLinks: 'Related links',
+      proFeatureTitle: 'Batch, reports, exports, saved sets, and audit notes are Pro features',
+      proFeatureText: 'Batch processing, report generation, exports, saved sets, and audit notes for name-check results are available in Old Kanji Toolkit Pro.',
+      proCta: 'View Pro',
+      proBillingNote: 'Pro features are being prepared. Billing is not connected yet.',
       riskTitle: 'Important note for names',
       riskText:
         'This tool is for reference checking of old and variant kanji forms. For names, family registers, residence records, banking, insurance, school, workplace, or other official use, always confirm the actually registered glyph. The candidates shown here do not determine legal validity or registration availability.',
@@ -432,6 +440,10 @@
     el.checkButton.textContent = t('checkButton');
     el.privacyNote.textContent = t('privacyNote');
     el.relatedLinksTitle.textContent = t('relatedLinks');
+    document.getElementById('okj-pro-feature-title').textContent = t('proFeatureTitle');
+    document.getElementById('okj-pro-feature-text').textContent = t('proFeatureText');
+    document.getElementById('okj-pro-cta').textContent = t('proCta');
+    document.getElementById('okj-pro-note').textContent = t('proBillingNote');
 
     el.langButtons.forEach((button) => {
       button.classList.toggle('active', button.dataset.lang === lang);
