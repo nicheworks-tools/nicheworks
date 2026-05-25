@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "nicheworks-billing-products-v1",
+  "status": "planning",
+  "products": [
+    {
+      "productId": "okj.toolkit_pro",
+      "displayName": {
+        "en": "Old Kanji Toolkit Pro",
+        "ja": "Old Kanji Toolkit Pro"
+      },
+      "price": {
+        "amount": 4.99,
+        "currency": "USD",
+        "type": "one_time"
+      },
+      "stripe": {
+        "mode": "not_connected",
+        "priceIdEnv": "STRIPE_PRICE_OKJ_TOOLKIT_PRO"
+      },
+      "features": [
+        "okj.batchOcr",
+        "okj.scanHistory",
+        "okj.oldKanjiCollection",
+        "okj.exportCsv",
+        "okj.exportMarkdown",
+        "okj.exportJson",
+        "okj.report",
+        "okj.cropOcr",
+        "okj.zoomInspect",
+        "okj.imageMarking",
+        "okj.batchNameCheck",
+        "okj.batchPlaceCheck",
+        "okj.batchTextHighlight",
+        "okj.savedCompareSets",
+        "okj.unicodeAuditExport",
+        "okj.quizHistory"
+      ],
+      "ui": {
+        "state": "billing-unavailable",
+        "cta": {
+          "en": "View Pro",
+          "ja": "Pro を確認する"
+        },
+        "billingUnavailableNote": {
+          "en": "Pro features are being prepared. Billing is not connected yet.",
+          "ja": "現在、Pro機能は準備中です。課金導線はまだ接続されていません。"
+        }
+      }
+    }
+  ]
+}
