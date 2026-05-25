@@ -1,308 +1,51 @@
 const i18n = {
   ja: {
-    title: '旧字体OCRスキャナー',
-    lead: '画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。',
-    inputHeading: '画像を選択',
-    inputHelp: '看板、碑文、古い資料、古地図、紙面の写真などを1枚読み込めます。',
-    previewHeading: '画像プレビュー',
-    fileNameLabel: 'ファイル名',
-    fileSizeLabel: 'サイズ',
-    fileTypeLabel: '種類',
-    removeImage: '画像を削除',
-    ocrHeading: 'OCR結果',
-    ocrButton: 'OCRを実行する',
-    ocrIdleText: '画像を選択するとOCRを実行できます。',
-    ocrBusyText: 'OCR処理中です…',
-    ocrCompleteText: 'OCRが完了しました。結果は必要に応じて手動で修正できます。',
-    ocrFailedText: 'OCRに失敗しました。画像を変えるか、手動入力欄に文字を入力してください。',
-    ocrNoImageText: '先に画像を選択してください。',
-    ocrEmptyText: 'OCR結果が空でした。必要に応じて手動入力してください。',
-    ocrUnsupportedText: 'この画像形式はサポートされていません。別の画像を選択してください。',
-    ocrEngineLoading: 'OCRエンジンを読み込み中です。',
-    ocrAnalyzing: '画像を解析中です。',
-    ocrRecognizing: 'テキストを認識中です。',
-    ocrLangNote: '初期版では日本語OCRを想定しています。旧字体や異体字は誤認識される場合があります。',
-    resultHeading: 'OCR結果テキスト',
-    resultLabel: 'OCR結果テキスト',
-    resultHelp: 'OCR結果は必要に応じて手動修正してください。OCR前は手動入力欄としても使えます。',
-    copyButton: 'OCR結果をコピー',
-    copied: 'コピーしました',
-    privacyNote: '画像と入力内容はこの画面内で扱い、外部OCR APIには送信しません。OCRエンジンのスクリプトや解析用データ、アクセス解析、広告タグが読み込まれる場合があります。',
-    accuracyHeading: 'OCR利用時の注意',
-    accuracyText: '旧字体、異体字、縦書き、かすれた文字、崩し字、古い看板や碑文はOCRで正しく読み取れない場合があります。OCR結果は必ず目視で確認し、必要に応じて手動修正してください。',
-    proNote: '無料版では1枚の画像確認を想定しています。複数画像OCR、履歴保存、トリミング、レポート出力は Old Kanji Toolkit Pro の対象予定です。'
+    title: '旧字体OCRスキャナー', lead: '画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。',
+    inputHeading: '画像を選択', inputHelp: '看板、碑文、古い資料、古地図、紙面の写真などを1枚読み込めます。',
+    previewHeading: '画像プレビュー', fileNameLabel: 'ファイル名', fileSizeLabel: 'サイズ', fileTypeLabel: '種類', removeImage: '画像を削除',
+    ocrHeading: 'OCR結果', ocrButton: 'OCRを実行する', ocrIdleText: '画像を選択するとOCRを実行できます。', ocrBusyText: 'OCR処理中です…', ocrCompleteText: 'OCRが完了しました。結果は必要に応じて手動で修正できます。', ocrFailedText: 'OCRに失敗しました。画像を変えるか、手動入力欄に文字を入力してください。', ocrNoImageText: '先に画像を選択してください。', ocrEmptyText: 'OCR結果が空でした。必要に応じて手動入力してください。', ocrUnsupportedText: 'この画像形式はサポートされていません。別の画像を選択してください。', ocrEngineLoading: 'OCRエンジンを読み込み中です。', ocrAnalyzing: '画像を解析中です。', ocrRecognizing: 'テキストを認識中です。', ocrLangNote: '初期版では日本語OCRを想定しています。旧字体や異体字は誤認識される場合があります。',
+    resultHeading: 'OCR結果テキスト', resultLabel: 'OCR結果テキスト', resultHelp: 'OCR結果は必要に応じて手動修正してください。OCR前は手動入力欄としても使えます。', copyButton: 'OCR結果をコピー', copied: 'コピーしました',
+    detectionHeading:'旧字体検出結果', foundText:'OCR結果内に登録済みの旧字体・異体字が見つかりました。', notFoundText:'OCR結果内に登録済みの旧字体・異体字は見つかりませんでした。', matches:'検出数', unique:'種類',
+    highlightHeading:'ハイライト表示', modernPreviewHeading:'現代表記プレビュー', modernPreviewNote:'これはOCR結果に対する機械的な置換プレビューです。文意・固有名詞・正式表記を保証するものではありません。',
+    copyOldForms:'検出された旧字だけコピー', copyPairTable:'対応表をコピー', copyModernPreview:'現代表記プレビューをコピー', oldForm:'旧字体', modernForm:'新字体', occurrences:'出現', reading:'読み', meaning:'意味', usage:'用途', category:'分類', renderingNote:'表示環境の注意', copyOld:'旧字をコピー', copyModern:'新字をコピー', viewReference:'旧字体一覧で詳しく見る',
+    loadDataError:'旧字体データを読み込めませんでした。OCR結果の手動確認のみ利用できます。',
+    privacyNote:'画像と入力内容はこの画面内で扱い、外部OCR APIには送信しません。OCRエンジンのスクリプトや解析用データ、アクセス解析、広告タグが読み込まれる場合があります。', accuracyHeading:'OCR利用時の注意', accuracyText:'旧字体、異体字、縦書き、かすれた文字、崩し字、古い看板や碑文はOCRで正しく読み取れない場合があります。OCR結果は必ず目視で確認し、必要に応じて手動修正してください。', proNote:'無料版では1枚の画像確認を想定しています。複数画像OCR、履歴保存、トリミング、レポート出力は Old Kanji Toolkit Pro の対象予定です。'
   },
   en: {
-    title: 'Old Kanji OCR Scanner',
-    lead: 'An OCR entry point for checking old or variant kanji from images or smartphone photos.',
-    inputHeading: 'Choose image',
-    inputHelp: 'Load one image, such as a sign, inscription, old document, old map, or printed page photo.',
-    previewHeading: 'Image preview',
-    fileNameLabel: 'File name',
-    fileSizeLabel: 'Size',
-    fileTypeLabel: 'Type',
-    removeImage: 'Remove image',
-    ocrHeading: 'OCR result',
-    ocrButton: 'Run OCR',
-    ocrIdleText: 'Choose an image to run OCR.',
-    ocrBusyText: 'Running OCR…',
-    ocrCompleteText: 'OCR is complete. You can manually correct the result if needed.',
-    ocrFailedText: 'OCR failed. Try another image or enter text manually.',
-    ocrNoImageText: 'Please choose an image first.',
-    ocrEmptyText: 'OCR returned empty text. Please enter text manually if needed.',
-    ocrUnsupportedText: 'This image type is not supported. Please choose another image.',
-    ocrEngineLoading: 'Loading OCR engine.',
-    ocrAnalyzing: 'Analyzing image.',
-    ocrRecognizing: 'Recognizing text.',
-    ocrLangNote: 'The initial version assumes Japanese OCR. Old or variant kanji may be misread.',
-    resultHeading: 'OCR result text',
-    resultLabel: 'OCR result text',
-    resultHelp: 'Manually correct the OCR result if needed. Before OCR, this area can be used for manual input.',
-    copyButton: 'Copy OCR result',
-    copied: 'Copied',
-    privacyNote: 'Images and text are handled in this page and are not sent to an external OCR API. OCR engine scripts or data files, analytics, and ad tags may be loaded.',
-    accuracyHeading: 'OCR accuracy note',
-    accuracyText: 'Old kanji, variant kanji, vertical writing, faded text, cursive forms, old signs, and inscriptions may not be read correctly by OCR. Always visually confirm the OCR result and correct it manually if needed.',
-    proNote: 'The free version is intended for checking one image. Multiple-image OCR, saved history, crop tools, and report exports are planned for Old Kanji Toolkit Pro.'
+    title:'Old Kanji OCR Scanner',lead:'An OCR entry point for checking old or variant kanji from images or smartphone photos.',inputHeading:'Choose image',inputHelp:'Load one image, such as a sign, inscription, old document, old map, or printed page photo.',previewHeading:'Image preview',fileNameLabel:'File name',fileSizeLabel:'Size',fileTypeLabel:'Type',removeImage:'Remove image',ocrHeading:'OCR result',ocrButton:'Run OCR',ocrIdleText:'Choose an image to run OCR.',ocrBusyText:'Running OCR…',ocrCompleteText:'OCR is complete. You can manually correct the result if needed.',ocrFailedText:'OCR failed. Try another image or enter text manually.',ocrNoImageText:'Please choose an image first.',ocrEmptyText:'OCR returned empty text. Please enter text manually if needed.',ocrUnsupportedText:'This image type is not supported. Please choose another image.',ocrEngineLoading:'Loading OCR engine.',ocrAnalyzing:'Analyzing image.',ocrRecognizing:'Recognizing text.',ocrLangNote:'The initial version assumes Japanese OCR. Old or variant kanji may be misread.',resultHeading:'OCR result text',resultLabel:'OCR result text',resultHelp:'Manually correct the OCR result if needed. Before OCR, this area can be used for manual input.',copyButton:'Copy OCR result',copied:'Copied',
+    detectionHeading:'Old kanji detection result',foundText:'Registered old or variant kanji forms were found in the OCR result.',notFoundText:'No registered old or variant kanji forms were found in the OCR result.',matches:'Matches',unique:'Unique forms',highlightHeading:'Highlighted OCR text',modernPreviewHeading:'Modern-form preview',modernPreviewNote:'This is a mechanical replacement preview for the OCR result. It does not guarantee meaning, proper nouns, or official spelling.',copyOldForms:'Copy detected old forms',copyPairTable:'Copy pair table',copyModernPreview:'Copy modern preview',oldForm:'Old form',modernForm:'Modern form',occurrences:'Occurrences',reading:'Reading',meaning:'Meaning',usage:'Usage',category:'Category',renderingNote:'Rendering note',copyOld:'Copy old',copyModern:'Copy modern',viewReference:'View in Old Kanji Reference',loadDataError:'Could not load old-kanji data. Only manual OCR result review is available.',privacyNote:'Images and text are handled in this page and are not sent to an external OCR API. OCR engine scripts or data files, analytics, and ad tags may be loaded.',accuracyHeading:'OCR accuracy note',accuracyText:'Old kanji, variant kanji, vertical writing, faded text, cursive forms, old signs, and inscriptions may not be read correctly by OCR. Always visually confirm the OCR result and correct it manually if needed.',proNote:'The free version is intended for checking one image. Multiple-image OCR, saved history, crop tools, and report exports are planned for Old Kanji Toolkit Pro.'
   }
 };
-
-let currentObjectUrl = null;
-let currentLang = 'ja';
-let ocrBusy = false;
-let copyToastTimer = null;
-
-function setLang(lang) {
-  const locale = i18n[lang] ? lang : 'ja';
-  currentLang = locale;
-  document.documentElement.lang = locale;
-
-  document.querySelectorAll('[data-i18n]').forEach((element) => {
-    const key = element.dataset.i18n;
-    if (i18n[locale][key]) {
-      element.textContent = i18n[locale][key];
-    }
-  });
-
-  document.getElementById('lang-ja').classList.toggle('active', locale === 'ja');
-  document.getElementById('lang-en').classList.toggle('active', locale === 'en');
-}
-
-function handleImageSelection(event) {
-  const [file] = event.target.files || [];
-  if (!file) {
-    clearImage();
-    return;
-  }
-
-  if (!file.type || !file.type.startsWith('image/')) {
-    setOcrStatus('ocrUnsupportedText');
-    clearImage();
-    return;
-  }
-
-  renderImagePreview(file);
-  setOcrStatus('ocrIdleText');
-  setOcrProgress(null);
-  document.getElementById('run-ocr').disabled = false;
-}
-
-function renderImagePreview(file) {
-  const previewPanel = document.getElementById('preview-panel');
-  const previewImage = document.getElementById('preview-image');
-
-  revokeCurrentObjectUrl();
-  currentObjectUrl = URL.createObjectURL(file);
-
-  previewImage.src = currentObjectUrl;
-  previewImage.alt = file.name;
-
-  document.getElementById('file-name').textContent = file.name;
-  document.getElementById('file-size').textContent = formatFileSize(file.size);
-  document.getElementById('file-type').textContent = file.type || '-';
-
-  previewPanel.hidden = false;
-}
-
-function clearImage() {
-  revokeCurrentObjectUrl();
-
-  const input = document.getElementById('image-input');
-  const previewPanel = document.getElementById('preview-panel');
-  const previewImage = document.getElementById('preview-image');
-
-  input.value = '';
-  previewImage.removeAttribute('src');
-  previewImage.alt = '';
-  document.getElementById('file-name').textContent = '';
-  document.getElementById('file-size').textContent = '';
-  document.getElementById('file-type').textContent = '';
-  previewPanel.hidden = true;
-
-  setOcrBusy(false);
-  setOcrProgress(null);
-  setOcrStatus('ocrIdleText');
-  document.getElementById('run-ocr').disabled = true;
-}
-
-function formatFileSize(bytes) {
-  if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
-  if (bytes < 1024) return `${bytes} B`;
-
-  const kb = bytes / 1024;
-  if (kb < 1024) return `${kb.toFixed(1)} KB`;
-
-  return `${(kb / 1024).toFixed(2)} MB`;
-}
-
-function updateManualLinks() {
-  const text = document.getElementById('manual-text').value.trim();
-  const links = document.querySelectorAll('#manual-links a');
-
-  links.forEach((link) => {
-    const baseHref = link.dataset.baseHref;
-    link.href = `${baseHref}?q=${text ? encodeURIComponent(text) : ''}`;
-  });
-}
-
-function revokeCurrentObjectUrl() {
-  if (currentObjectUrl) {
-    URL.revokeObjectURL(currentObjectUrl);
-    currentObjectUrl = null;
-  }
-}
-
-async function runOcr() {
-  if (ocrBusy) return;
-
-  const input = document.getElementById('image-input');
-  const [file] = input.files || [];
-
-  if (!file) {
-    setOcrStatus('ocrNoImageText');
-    return;
-  }
-
-  if (!file.type || !file.type.startsWith('image/')) {
-    setOcrStatus('ocrUnsupportedText');
-    return;
-  }
-
-  if (typeof Tesseract === 'undefined') {
-    setOcrStatus('ocrFailedText');
-    return;
-  }
-
-  setOcrBusy(true);
-  setOcrStatus('ocrBusyText');
-  setOcrProgress(0);
-
-  try {
-    const result = await Tesseract.recognize(file, 'jpn', {
-      logger: (event) => {
-        if (!event || typeof event !== 'object') return;
-
-        if (event.status && event.status.includes('loading')) {
-          setOcrStatus('ocrEngineLoading');
-        } else if (event.status && event.status.includes('initializing')) {
-          setOcrStatus('ocrAnalyzing');
-        } else if (event.status && event.status.includes('recognizing')) {
-          setOcrStatus('ocrRecognizing');
-        }
-
-        if (typeof event.progress === 'number') {
-          setOcrProgress(event.progress);
-        }
-      }
-    });
-
-    const text = (result && result.data && typeof result.data.text === 'string')
-      ? result.data.text.trim()
-      : '';
-
-    updateResultText(text);
-
-    if (text) {
-      setOcrStatus('ocrCompleteText');
-    } else {
-      setOcrStatus('ocrEmptyText');
-    }
-  } catch (error) {
-    setOcrStatus('ocrFailedText');
-  } finally {
-    setOcrBusy(false);
-  }
-}
-
-function setOcrStatus(messageKeyOrText) {
-  const status = document.getElementById('ocr-status');
-  status.textContent = i18n[currentLang][messageKeyOrText] || messageKeyOrText || '';
-}
-
-function setOcrProgress(value) {
-  const progress = document.getElementById('ocr-progress');
-  if (typeof value === 'number' && Number.isFinite(value)) {
-    const clamped = Math.max(0, Math.min(1, value));
-    progress.textContent = `${Math.round(clamped * 100)}%`;
-  } else {
-    progress.textContent = '';
-  }
-}
-
-function setOcrBusy(isBusy) {
-  ocrBusy = Boolean(isBusy);
-  document.getElementById('image-input').disabled = ocrBusy;
-  document.getElementById('run-ocr').disabled = ocrBusy || !document.getElementById('image-input').files[0];
-  document.getElementById('remove-image').disabled = ocrBusy;
-}
-
-async function copyOcrText() {
-  const text = document.getElementById('manual-text').value;
-  if (!text) return;
-
-  let copied = false;
-  try {
-    await navigator.clipboard.writeText(text);
-    copied = true;
-  } catch (error) {
-    const helper = document.createElement('textarea');
-    helper.value = text;
-    helper.setAttribute('readonly', 'readonly');
-    helper.style.position = 'absolute';
-    helper.style.left = '-9999px';
-    document.body.appendChild(helper);
-    helper.select();
-    copied = document.execCommand('copy');
-    document.body.removeChild(helper);
-  }
-
-  if (copied) {
-    const toast = document.getElementById('copy-toast');
-    toast.textContent = i18n[currentLang].copied;
-    if (copyToastTimer) window.clearTimeout(copyToastTimer);
-    copyToastTimer = window.setTimeout(() => {
-      toast.textContent = '';
-    }, 1500);
-  }
-}
-
-function updateResultText(text) {
-  const textarea = document.getElementById('manual-text');
-  textarea.value = text || '';
-  updateManualLinks();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  setLang('ja');
-  updateManualLinks();
-  setOcrStatus('ocrIdleText');
-
-  document.getElementById('lang-ja').addEventListener('click', () => setLang('ja'));
-  document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
-  document.getElementById('image-input').addEventListener('change', handleImageSelection);
-  document.getElementById('remove-image').addEventListener('click', clearImage);
-  document.getElementById('manual-text').addEventListener('input', updateManualLinks);
-  document.getElementById('run-ocr').addEventListener('click', runOcr);
-  document.getElementById('copy-ocr').addEventListener('click', copyOcrText);
-  window.addEventListener('beforeunload', revokeCurrentObjectUrl);
-});
+let currentLang='ja',currentObjectUrl=null,ocrBusy=false,copyToastTimer=null,oldToNewMap={},metadataMap=new Map(),compatibilityMap=new Map(),dataLoadFailed=false,lastDetectionResult=null;
+async function loadOldKanjiData(){try{const json=await fetch('../old-kanji-reference/dict.json').then(r=>r.json());oldToNewMap=(json&&json.old_to_new&&typeof json.old_to_new==='object')?json.old_to_new:{};if(!Object.keys(oldToNewMap).length)dataLoadFailed=true;}catch{dataLoadFailed=true;oldToNewMap={};}}
+async function loadMetadata(){const files=['meta.json','meta-extra-2.json','meta-extra-3.json','meta-extra-4.json','meta-extra-5.json','meta-extra-6.json'];for(const file of files){try{const json=await fetch(`../old-kanji-reference/${file}`).then(r=>r.json());const entries=json.entries||{};Object.entries(entries).forEach(([c,m])=>metadataMap.set(c,m||{}));}catch{}}}
+async function loadCompatibilityNotes(){try{const json=await fetch('../old-kanji-reference/compatibility-notes.json').then(r=>r.json());Object.entries(json.entries||{}).forEach(([c,n])=>compatibilityMap.set(c,n||{}));}catch{}}
+function getOldToModernText(old){const mapped=oldToNewMap[old];if(Array.isArray(mapped)) return mapped[0]||'';return typeof mapped==='string'?mapped:'';}
+function getMetadataFields(meta){if(!meta) return {};const ja=currentLang==='ja';return {reading:ja?(meta.readingJa||meta.readingEn):(meta.readingEn||meta.readingJa),meaning:ja?(meta.meaningJa||meta.meaningEn):(meta.meaningEn||meta.meaningJa),usage:ja?(meta.usageJa||meta.usageEn):(meta.usageEn||meta.usageJa)};}
+function getCategoryLabel(v){const m={ja:{name:'人名・地名',document:'文献・古文書',common:'旧常用漢字',rare:'参考',popular:'よく使う旧字体',pair_only:'対応のみ'},en:{name:'Names / Places',document:'Old documents',common:'Common-use old forms',rare:'Reference',popular:'Common old forms',pair_only:'Pair only'}};return (m[currentLang]&&m[currentLang][v])||v||'';}
+function getCompatibilityNote(char){const note=compatibilityMap.get(char);if(note){const ja=currentLang==='ja';return [ja?note.summaryJa:note.summaryEn,ja?note.copyNoteJa:note.copyNoteEn,ja?note.technicalJa:note.technicalEn,ja?note.recommendedCheckJa:note.recommendedCheckEn].filter(Boolean);}const cp=char.codePointAt(0);const t=[];const ja=currentLang==='ja';if(cp>=0xF900&&cp<=0xFAFF)t.push(ja?'互換漢字：この文字は互換漢字の範囲に含まれるため、環境やフォントによって表示差が出る場合があります。':'Compatibility ideograph: This character is in a compatibility ideograph range and may render differently depending on the environment or font.');if(cp>0xFFFF)t.push(ja?'補助平面：この文字は補助平面の文字です。一部の古い環境やアプリでは正しく表示・保存できない場合があります。':'Supplementary plane: This is a supplementary-plane character and may not display or save correctly in some older environments or apps.');if(/[\uFE00-\uFE0F]/u.test(char)||/[\u{E0100}-\u{E01EF}]/u.test(char))t.push(ja?'異体字セレクタ：この文字は異体字セレクタを含む可能性があり、対応していない環境では見え方が変わる場合があります。':'Variation selector: This character may include a variation selector, and unsupported environments may render it differently.');return t;}
+function detectOldKanji(text){const items=new Map();let total=0;for(const ch of text||''){if(Object.prototype.hasOwnProperty.call(oldToNewMap,ch)){total++;if(!items.has(ch))items.set(ch,{oldChar:ch,modern:getOldToModernText(ch),count:0,meta:metadataMap.get(ch)||{}});items.get(ch).count++;}}return {total,unique:items.size,items:[...items.values()]};}
+function renderDetectionSummary(result){const el=document.getElementById('detection-summary');el.hidden=false;el.innerHTML='';const h=document.createElement('h2');h.textContent=i18n[currentLang].detectionHeading;const p=document.createElement('p');p.textContent=result.total?i18n[currentLang].foundText:i18n[currentLang].notFoundText;const c=document.createElement('p');c.textContent=currentLang==='ja'?`検出数：${result.total}件 / 種類：${result.unique}種類`:`Matches: ${result.total} / Unique forms: ${result.unique}`;el.append(h,p,c);if(dataLoadFailed){const w=document.createElement('p');w.className='empty-state';w.textContent=i18n[currentLang].loadDataError;el.appendChild(w);}}
+function renderHighlightedText(text,result){const panel=document.getElementById('highlight-panel');const out=document.getElementById('highlight-output');panel.hidden=!text;out.textContent='';if(!text)return;for(const ch of text){if(ch==='\n'){out.appendChild(document.createElement('br'));continue;}if(result.items.some((i)=>i.oldChar===ch)){const s=document.createElement('span');s.className='old-kanji-hit';s.textContent=ch;s.dataset.oldChar=ch;s.addEventListener('click',()=>{document.getElementById(`card-${encodeURIComponent(ch)}`)?.scrollIntoView({behavior:'smooth',block:'center'});});out.appendChild(s);}else{const t=document.createTextNode(ch);out.appendChild(t);}}}
+function renderDetectedCard(item){const card=document.createElement('article');card.className='detected-card';card.id=`card-${encodeURIComponent(item.oldChar)}`;const f=getMetadataFields(item.meta);const note=getCompatibilityNote(item.oldChar);card.innerHTML=`<h3 class="detected-card__glyph"></h3>`;card.querySelector('h3').textContent=`${item.oldChar} → ${item.modern||'-'}`;const add=(k,v)=>{if(!v)return;const p=document.createElement('p');p.textContent=`${k}: ${v}`;card.appendChild(p);};add(i18n[currentLang].oldForm,item.oldChar);add(i18n[currentLang].modernForm,item.modern||'-');add(i18n[currentLang].occurrences,String(item.count));add(i18n[currentLang].reading,f.reading);add(i18n[currentLang].meaning,f.meaning);add(i18n[currentLang].usage,f.usage);if(item.meta.category)add(i18n[currentLang].category,getCategoryLabel(item.meta.category));if(note.length){const n=document.createElement('div');n.className='compatibility-note';const t=document.createElement('strong');t.textContent=i18n[currentLang].renderingNote;n.appendChild(t);note.forEach((v)=>{const p=document.createElement('p');p.textContent=v;n.appendChild(p);});card.appendChild(n);}const btns=document.createElement('div');btns.className='result-actions';const b1=document.createElement('button');b1.textContent=i18n[currentLang].copyOld;b1.onclick=()=>copyText(item.oldChar);const b2=document.createElement('button');b2.textContent=i18n[currentLang].copyModern;b2.onclick=()=>copyText(item.modern||'');const link=document.createElement('a');link.href=`../old-kanji-reference/?q=${encodeURIComponent(item.oldChar)}`;link.textContent=i18n[currentLang].viewReference;link.target='_blank';link.rel='noopener noreferrer';btns.append(b1,b2,link);card.appendChild(btns);return card;}
+function renderDetectedCards(result){const list=document.getElementById('detected-list');list.hidden=!result.items.length;list.textContent='';result.items.forEach((item)=>list.appendChild(renderDetectedCard(item)));}
+function renderModernPreview(text){const p=document.getElementById('modern-preview-panel');const out=document.getElementById('modern-preview-output');p.hidden=!text;let r='';for(const ch of text||''){r+=Object.prototype.hasOwnProperty.call(oldToNewMap,ch)?(getOldToModernText(ch)||ch):ch;}out.textContent=r;out.dataset.value=r;}
+async function copyText(value){if(!value)return;try{await navigator.clipboard.writeText(value);}catch{const h=document.createElement('textarea');h.value=value;document.body.appendChild(h);h.select();document.execCommand('copy');h.remove();}const t=document.getElementById('copy-toast');t.textContent=i18n[currentLang].copied;clearTimeout(copyToastTimer);copyToastTimer=setTimeout(()=>{t.textContent='';},1500);}
+function copyDetectedOldForms(){copyText((lastDetectionResult?.items||[]).map(i=>i.oldChar).join('\n'));}
+function copyPairTable(){copyText((lastDetectionResult?.items||[]).map(i=>`${i.oldChar}\t${i.modern||''}`).join('\n'));}
+function copyModernPreview(){copyText(document.getElementById('modern-preview-output').dataset.value||'');}
+function updateDetection(){const text=document.getElementById('manual-text').value||'';const result=detectOldKanji(text);lastDetectionResult=result;renderDetectionSummary(result);renderHighlightedText(text,result);renderDetectedCards(result);renderModernPreview(text,result);document.getElementById('copy-actions').hidden=!text;}
+function setLang(lang){currentLang=i18n[lang]?lang:'ja';document.documentElement.lang=currentLang;document.querySelectorAll('[data-i18n]').forEach((e)=>{const k=e.dataset.i18n;if(i18n[currentLang][k])e.textContent=i18n[currentLang][k];});document.getElementById('lang-ja').classList.toggle('active',currentLang==='ja');document.getElementById('lang-en').classList.toggle('active',currentLang==='en');if(lastDetectionResult)updateDetection();}
+function handleImageSelection(event){const [file]=event.target.files||[];if(!file){clearImage();return;}if(!file.type||!file.type.startsWith('image/')){setOcrStatus('ocrUnsupportedText');clearImage();return;}renderImagePreview(file);setOcrStatus('ocrIdleText');setOcrProgress(null);document.getElementById('run-ocr').disabled=false;}
+function renderImagePreview(file){const p=document.getElementById('preview-panel');const i=document.getElementById('preview-image');revokeCurrentObjectUrl();currentObjectUrl=URL.createObjectURL(file);i.src=currentObjectUrl;i.alt=file.name;document.getElementById('file-name').textContent=file.name;document.getElementById('file-size').textContent=formatFileSize(file.size);document.getElementById('file-type').textContent=file.type||'-';p.hidden=false;}
+function clearImage(){revokeCurrentObjectUrl();const input=document.getElementById('image-input');const p=document.getElementById('preview-panel');const i=document.getElementById('preview-image');input.value='';i.removeAttribute('src');i.alt='';document.getElementById('file-name').textContent='';document.getElementById('file-size').textContent='';document.getElementById('file-type').textContent='';p.hidden=true;setOcrBusy(false);setOcrProgress(null);setOcrStatus('ocrIdleText');document.getElementById('run-ocr').disabled=true;}
+function formatFileSize(bytes){if(!Number.isFinite(bytes)||bytes<=0)return'0 B';if(bytes<1024)return`${bytes} B`;const kb=bytes/1024;if(kb<1024)return`${kb.toFixed(1)} KB`;return`${(kb/1024).toFixed(2)} MB`;}
+function updateManualLinks(){const text=document.getElementById('manual-text').value.trim();document.querySelectorAll('#manual-links a').forEach((link)=>{link.href=`${link.dataset.baseHref}?q=${text?encodeURIComponent(text):''}`;});}
+function revokeCurrentObjectUrl(){if(currentObjectUrl){URL.revokeObjectURL(currentObjectUrl);currentObjectUrl=null;}}
+async function runOcr(){if(ocrBusy)return;const [file]=document.getElementById('image-input').files||[];if(!file)return setOcrStatus('ocrNoImageText');if(!file.type||!file.type.startsWith('image/'))return setOcrStatus('ocrUnsupportedText');if(typeof Tesseract==='undefined')return setOcrStatus('ocrFailedText');setOcrBusy(true);setOcrStatus('ocrBusyText');setOcrProgress(0);try{const result=await Tesseract.recognize(file,'jpn',{logger:(event)=>{if(event?.status?.includes('loading'))setOcrStatus('ocrEngineLoading');else if(event?.status?.includes('initializing'))setOcrStatus('ocrAnalyzing');else if(event?.status?.includes('recognizing'))setOcrStatus('ocrRecognizing');if(typeof event?.progress==='number')setOcrProgress(event.progress);}});const text=(result?.data?.text||'').trim();updateResultText(text);setOcrStatus(text?'ocrCompleteText':'ocrEmptyText');}catch{setOcrStatus('ocrFailedText');}finally{setOcrBusy(false);}}
+function setOcrStatus(k){document.getElementById('ocr-status').textContent=i18n[currentLang][k]||k||'';}
+function setOcrProgress(v){document.getElementById('ocr-progress').textContent=typeof v==='number'?`${Math.round(Math.max(0,Math.min(1,v))*100)}%`:'';}
+function setOcrBusy(b){ocrBusy=!!b;document.getElementById('image-input').disabled=ocrBusy;document.getElementById('run-ocr').disabled=ocrBusy||!document.getElementById('image-input').files[0];document.getElementById('remove-image').disabled=ocrBusy;}
+function copyOcrText(){copyText(document.getElementById('manual-text').value);}
+function updateResultText(text){document.getElementById('manual-text').value=text||'';updateManualLinks();updateDetection();}
+document.addEventListener('DOMContentLoaded',async()=>{setLang('ja');await loadOldKanjiData();await loadMetadata();await loadCompatibilityNotes();updateManualLinks();setOcrStatus('ocrIdleText');updateDetection();document.getElementById('lang-ja').addEventListener('click',()=>setLang('ja'));document.getElementById('lang-en').addEventListener('click',()=>setLang('en'));document.getElementById('image-input').addEventListener('change',handleImageSelection);document.getElementById('remove-image').addEventListener('click',clearImage);document.getElementById('manual-text').addEventListener('input',()=>{updateManualLinks();updateDetection();});document.getElementById('run-ocr').addEventListener('click',runOcr);document.getElementById('copy-ocr').addEventListener('click',copyOcrText);document.getElementById('copy-old-forms').addEventListener('click',copyDetectedOldForms);document.getElementById('copy-pair-table').addEventListener('click',copyPairTable);document.getElementById('copy-modern-preview').addEventListener('click',copyModernPreview);window.addEventListener('beforeunload',revokeCurrentObjectUrl);});
