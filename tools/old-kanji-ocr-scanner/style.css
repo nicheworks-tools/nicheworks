@@ -1,0 +1,303 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f7fb;
+  color: #1b1f24;
+}
+
+.ocr-scanner {
+  width: min(960px, calc(100% - 24px));
+  margin: 20px auto 32px;
+  display: grid;
+  gap: 16px;
+}
+
+.tool-header,
+.input-panel,
+.image-preview-panel,
+.ocr-placeholder,
+.manual-input-panel,
+.notice-panel,
+.detection-summary,
+.highlight-panel,
+.detected-list,
+.modern-preview-panel,
+.copy-actions,
+.related-links {
+  background: #fff;
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+h1,h2,h3,p {
+  margin-top: 0;
+}
+
+.lang-switch,
+.button-row,
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lang-btn,
+button {
+  border: 1px solid #95a2b3;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.lang-btn.active {
+  background: #1f6feb;
+  color: #fff;
+  border-color: #1f6feb;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#image-input,
+textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+  border: 1px solid #95a2b3;
+  border-radius: 8px;
+  padding: 10px;
+  line-height: 1.6;
+}
+
+textarea:focus {
+  outline: 2px solid #1f6feb;
+  outline-offset: 1px;
+}
+
+.result-helper {
+  font-size: 0.95rem;
+  color: #1f4a7a;
+}
+
+.image-preview {
+  width: 100%;
+  max-width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  background: #f2f4f8;
+  border: 1px solid #dde4ec;
+  border-radius: 8px;
+}
+
+.file-meta div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ocr-status,
+.ocr-progress,
+.ocr-note,
+.highlight-output,
+.modern-preview-output,
+.compatibility-note,
+.copy-toast {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.copy-toast {
+  color: #1a7f37;
+  font-weight: 600;
+  min-height: 1.2em;
+  display: block;
+  margin-top: 8px;
+}
+
+.related-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.related-links a {
+  color: #0d4fb3;
+  text-decoration: none;
+  border: 1px solid #d4def0;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f8fbff;
+  flex: 1 1 220px;
+}
+
+.privacy-note {
+  border-left: 4px solid #2e7d32;
+}
+
+.highlight-output,
+.modern-preview-output {
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+.old-kanji-hit {
+  background: #fff2a8;
+  border-radius: 4px;
+  padding: 0 2px;
+  cursor: pointer;
+}
+
+.detected-list {
+  display: grid;
+  gap: 10px;
+}
+
+.detected-card {
+  border: 1px solid #dde4ec;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fdfefe;
+}
+
+.detected-card__glyph {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.compatibility-note {
+  border-left: 4px solid #cc7a00;
+  padding-left: 8px;
+  background: #fff9f0;
+}
+
+.empty-state {
+  color: #a94442;
+}
+
+.copy-actions button,
+.result-actions button {
+  flex: 1 1 220px;
+}
+
+@media (max-width: 480px) {
+  .ocr-scanner {
+    width: min(960px, calc(100% - 12px));
+    gap: 12px;
+  }
+
+  .tool-header,
+  .input-panel,
+  .image-preview-panel,
+  .ocr-placeholder,
+  .manual-input-panel,
+  .notice-panel,
+  .detection-summary,
+  .highlight-panel,
+  .detected-list,
+  .modern-preview-panel,
+  .copy-actions,
+  .related-links {
+    padding: 12px;
+  }
+
+  .related-links a,
+  .result-actions button,
+  .copy-actions button,
+  .lang-btn,
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  textarea {
+    min-height: 160px;
+  }
+}
+
+.okj-pro-panel {
+  border: 1px solid #d8ddf5;
+  background: #f7f8ff;
+}
+
+.okj-pro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #b8c1ee;
+  background: #eef1ff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.okj-pro-inline-lock {
+  font-size: 0.95rem;
+}
+
+.okj-pro-panel__title {
+  margin-bottom: 8px;
+}
+
+.okj-pro-panel__body {
+  margin-bottom: 8px;
+}
+
+.okj-pro-panel__price {
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.okj-pro-panel__features {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.okj-pro-panel__features .detected-card {
+  border-color: #ced6f5;
+  background: #fff;
+}
+
+.okj-pro-panel__features h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.okj-pro-panel__cta {
+  margin-bottom: 8px;
+}
+
+.okj-pro-locked-button {
+  width: 100%;
+  white-space: normal;
+}
+
+.okj-pro-panel__note {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  color: #2f3d58;
+}
+
+.okj-pro-state-billing-unavailable .okj-pro-locked-button {
+  background: #f2f4f8;
+}
