@@ -24,7 +24,7 @@ It should support:
 - common Pro UI state
 - future product expansion
 
-Common billing foundation does not mean common price. Old Kanji Toolkit Pro can be $4.99 one-time while smaller tools can remain $2.99 one-time.
+Common billing foundation does not mean common price. Old Kanji Toolkit Pro can be $4.99 one-time while smaller tools can remain $2.99 one-time. Reusable price tiers may be shared, but unlock scope is still product-specific.
 
 ## 2. Initial product
 
@@ -82,16 +82,35 @@ A user who owns `okj.toolkit_pro` should have access to all OKJ Pro feature IDs:
 - `okj.unicodeAuditExport`
 - `okj.quizHistory`
 
-## 5. Product registry design
+## 5. Product registry and price tier design
 
-Future product registry shape (example only):
+Product registry includes reusable `priceTiers` plus product-specific entries.
+
+Example shape (planning example):
 
 ```json
 {
+  "priceTiers": [
+    {
+      "priceTierId": "nw.one_time.usd_299",
+      "amount": 2.99,
+      "currency": "USD",
+      "type": "one_time",
+      "label": "$2.99 one-time"
+    },
+    {
+      "priceTierId": "nw.one_time.usd_499",
+      "amount": 4.99,
+      "currency": "USD",
+      "type": "one_time",
+      "label": "$4.99 one-time"
+    }
+  ],
   "products": [
     {
       "productId": "okj.toolkit_pro",
       "displayName": "Old Kanji Toolkit Pro",
+      "priceTierId": "nw.one_time.usd_499",
       "price": {
         "amount": 4.99,
         "currency": "USD",
@@ -113,6 +132,9 @@ Rules:
 - no real Stripe price IDs in repo
 - use env var names only
 - no secret keys
+- price tiers are reusable metadata only
+- entitlement boundary remains `productId`
+- same-tier products do not share unlock by default
 - product IDs must be stable
 - feature IDs must be stable
 - display copy can be localized separately
@@ -360,3 +382,14 @@ P05-A adapter reference:
 - `docs/billing/pro-entitlement-state-adapter.md` defines the client entitlement state adapter contract and disabled default state mapping.
 - P05-A is adapter/contract scaffolding only; real Stripe/D1-backed entitlement activation remains deferred.
 
+
+## 13. Shared tier vs shared unlock clarification
+
+If another future tool also uses `$4.99` one-time, it should:
+- define a new product ID
+- define its own Stripe price env var
+- define product-specific feature IDs
+
+This does not grant cross-product unlock even when both products reference `nw.one_time.usd_499`.
+
+If NicheWorks wants bundle/all-access access later, define a separate explicit bundle/all-access product ID and entitlement policy.

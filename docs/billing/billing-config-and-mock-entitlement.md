@@ -30,6 +30,9 @@ It prepares implementation handoff for P03-P05 but does not implement real billi
 - `productId`: stable internal product key.
 - `displayName`: localized product label for EN/JA surfaces.
 - `price`: list price metadata (`amount`, `currency`, `type`).
+
+- `priceTiers`: reusable pricing metadata (`priceTierId`, `amount`, `currency`, `type`, `label`).
+- `priceTierId`: product reference to a reusable price tier entry.
 - `stripe.mode`: integration status (`not_connected` in this phase).
 - `stripe.priceIdEnv`: environment-variable name placeholder for future Stripe price mapping.
 - `features`: feature entitlement IDs mapped from OKJ Pro planning docs.
@@ -39,13 +42,18 @@ It prepares implementation handoff for P03-P05 but does not implement real billi
 
 ## 4. Initial product
 
-Initial registry entry:
+Initial registry/tier entries:
 
+Price tiers:
+- `nw.one_time.usd_299` (`$2.99` one-time, `USD`)
+- `nw.one_time.usd_499` (`$4.99` one-time, `USD`)
+
+Product:
 - `okj.toolkit_pro`
-- Old Kanji Toolkit Pro
-- `$4.99` one-time
-- `USD`
+- references `priceTierId: nw.one_time.usd_499`
+- keeps product-level list price (`$4.99` one-time, `USD`)
 - Stripe not connected (`stripe.mode: not_connected`)
+- Stripe env var remains product-specific (`STRIPE_PRICE_OKJ_TOOLKIT_PRO`)
 - UI state `billing-unavailable`
 
 ## 5. Feature list
@@ -138,3 +146,17 @@ Validation checklist for this scaffold:
 - No real Stripe IDs.
 - `enabledByDefault` is `false`.
 - No runtime/tool files changed.
+
+## 12. Price tier vs entitlement boundary
+
+- Price tiers are reusable price metadata only.
+- Entitlement boundary remains `productId`, not `priceTierId`.
+- Feature unlock scope remains each product's `features` list.
+- A future `$4.99` tool must define its own `productId` and its own Stripe `priceIdEnv`.
+- Shared tier does not mean shared unlock.
+- Bundle/all-access requires separate explicit `productId` later.
+
+Mock entitlement behavior is unchanged:
+- still disabled by default
+- still dev/mock only
+- still not production purchase state
