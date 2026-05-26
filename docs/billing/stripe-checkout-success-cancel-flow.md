@@ -1,32 +1,25 @@
-# Stripe Checkout Success/Cancel Flow (OKJ-P03)
+# Stripe Checkout Success/Cancel Flow (OKJ-BILLING-LIVE-01)
 
 Status:
-- Phase: OKJ-P03
-- State: scaffold/documentation only
+- Phase: OKJ-BILLING-LIVE-01
+- State: test-safe Checkout session creation implemented (server-side)
 - Product: `okj.toolkit_pro`
-- Billing mode in config: `stripe.mode: not_connected`
 - Entitlement issuance: not implemented in this phase
 - Pro unlock: not implemented in this phase
 
-## 1. Scope of OKJ-P03
+## 1. Scope
 
-OKJ-P03 defines the Checkout boundary and success/cancel flow for `okj.toolkit_pro`.
+This phase enables Stripe Checkout Session creation from `POST /api/billing/create-checkout-session` with explicit safety gates.
 
-This phase adds a minimal server-side scaffold route shape and static success/cancel pages.
-It does **not** create entitlements and does **not** unlock Pro features.
+This phase does **not**:
+- issue entitlement,
+- unlock Pro features,
+- wire purchase buttons in OKJ tool UI,
+- enable live sales by default.
 
-## 2. Files changed
+## 2. Route behavior summary
 
-- `docs/billing/stripe-checkout-success-cancel-flow.md`
-- `docs/billing/billing-config-and-mock-entitlement.md` (small cross-reference update)
-- `functions/api/billing/create-checkout-session.js` (disabled-by-default scaffold)
-- `billing/success.html`
-- `billing/cancel.html`
-
-## 3. Checkout request shape
-
-Intended route:
-
+Checkout route:
 - `POST /api/billing/create-checkout-session`
 
 Request body:
@@ -38,126 +31,101 @@ Request body:
 }
 ```
 
-Validation rules in P03 scaffold:
+Validation:
+- only known `productId`
+- `productId` must be `okj.toolkit_pro`
+- product must match `priceTierId: nw.one_time.usd_499`
+- product `price.amount` must remain `4.99`
+- `returnPath` must be safe internal path (`/`, no `//`, no `://`)
 
-- Reject missing `productId`.
-- Reject unknown `productId`.
-- Reject unsafe `returnPath`.
-- Only allow safe internal paths for `returnPath`.
-- Disallow external redirect targets (`http://`, `https://`, protocol-relative `//`).
+## 3. Environment variables (server-side only)
 
-## 4. Product config dependency
+Required runtime env vars:
+- `STRIPE_SECRET_KEY`
+- `STRIPE_PRICE_OKJ_TOOLKIT_PRO`
+- `OKJ_STRIPE_TEST_CHECKOUT_ENABLED`
+- `OKJ_LIVE_CHECKOUT_ENABLED`
 
-Checkout scaffold reads product data from:
+Optional origin override:
+- `BILLING_BASE_ORIGIN` (if valid `http/https`, used for success/cancel absolute URLs)
 
-- `config/billing/products.json`
+Security constraints:
+- never expose `STRIPE_SECRET_KEY` to frontend.
+- never commit real Stripe secrets.
+- never commit real Stripe price IDs.
 
-Expected product:
+## 4. Test-safe gate rules
 
-- `productId: okj.toolkit_pro`
-- `price.amount: 4.99`
-- `price.currency: USD`
-- `price.type: one_time`
-- `stripe.mode: not_connected`
-- `stripe.priceIdEnv: STRIPE_PRICE_OKJ_TOOLKIT_PRO`
+If `STRIPE_SECRET_KEY` starts with `sk_test_`:
+- checkout is allowed only when `OKJ_STRIPE_TEST_CHECKOUT_ENABLED === "true"`
+- otherwise response:
 
-## 5. Environment variables
+```json
+{
+  "ok": false,
+  "error": "test_checkout_not_enabled"
+}
+```
 
-P03 references (server-side only):
+If `STRIPE_SECRET_KEY` starts with `sk_live_`:
+- checkout is rejected unless `OKJ_LIVE_CHECKOUT_ENABLED === "true"`
+- default live behavior remains blocked
+- blocked response:
 
-- `STRIPE_SECRET_KEY` (not used to create a real session in P03)
-- `STRIPE_PRICE_OKJ_TOOLKIT_PRO` (resolved via `stripe.priceIdEnv`)
+```json
+{
+  "ok": false,
+  "error": "live_checkout_blocked_until_entitlement"
+}
+```
 
-Constraints:
+## 5. Stripe Checkout Session creation
 
-- Stripe secret key must never be placed in frontend code.
-- Real Stripe price IDs must not be committed.
-- Webhook secrets must not be committed.
+Server calls Stripe Checkout Sessions API with:
+- `mode=payment`
+- `line_items[0][price]=STRIPE_PRICE_OKJ_TOOLKIT_PRO`
+- `line_items[0][quantity]=1`
+- `success_url=/billing/success.html?session_id={CHECKOUT_SESSION_ID}` (absolute origin)
+- `cancel_url=/billing/cancel.html` (absolute origin)
+- metadata:
+  - `productId=okj.toolkit_pro`
+  - `priceTierId=nw.one_time.usd_499`
 
-## 6. Success flow
+`priceTierId` is pricing metadata validation only.
+It is **not** entitlement scope.
 
-Success URL (planned):
+## 6. Response shape and redaction
 
-- `/billing/success.html?session_id={CHECKOUT_SESSION_ID}&returnPath=<encoded internal path>`
+Allowed response keys:
+- `ok`
+- `sessionId`
+- `url`
+- `productId`
+- `mode`
 
-Success page behavior in P03:
+Never return:
+- secret key
+- webhook secret
+- raw env dump
+- raw Stripe price ID
+- internal stack traces
 
-- States payment may have completed.
-- States Pro access is **not** activated by URL alone.
-- States entitlement verification is deferred to P04/P05.
-- Informs user to return to tool / wait for entitlement-enabled flow.
-- `session_id` is display/support reference only and must not unlock Pro.
+## 7. Success/cancel pages remain non-authoritative
 
-## 7. Cancel flow
+`/billing/success.html` remains informational only:
+- payment may have completed,
+- Pro access is not activated by URL alone,
+- entitlement verification is required.
 
-Cancel URL (planned):
+`/billing/cancel.html` remains informational only:
+- checkout canceled/not completed,
+- no Pro access granted.
 
-- `/billing/cancel.html?returnPath=<encoded internal path>`
+## 8. Current boundary and next step
 
-Cancel page behavior in P03:
+Still not implemented:
+- webhook signature verification
+- durable entitlement issuance
+- runtime Pro unlock from verified entitlement
 
-- States checkout was canceled or not completed.
-- States no Pro access was granted.
-- States no local unlock state was stored.
-- Informs user they can return to the original OKJ tool.
-
-## 8. Security constraints
-
-- Checkout session creation route is server-side boundary only.
-- Product lookup must use server-loaded config; never trust client to provide Stripe price ID.
-- Read Stripe price ID from env var named in product config (`stripe.priceIdEnv`).
-- Prevent open redirects by validating safe internal `returnPath`.
-- Do not introduce URL-param unlock or localStorage-only unlock.
-- Do not issue entitlement in P03.
-
-## 9. Privacy constraints
-
-- Do not include OCR text or document content in Checkout metadata.
-- Keep metadata minimal (`productId`, optional internal reference).
-- Do not persist user purchase state from URL parameters.
-
-## 10. What P03 does not implement
-
-- No real Stripe Checkout session creation.
-- No webhook verification.
-- No entitlement issuance.
-- No entitlement DB writes.
-- No real Pro feature unlock.
-
-
-- P04-A adds webhook/entitlement contract + disabled webhook scaffold only (`docs/billing/stripe-webhook-entitlement-issue.md`); real verification and entitlement issue are deferred to P04-B.
-
-## 11. P04 handoff
-
-P04 should implement:
-
-- Stripe webhook endpoint verification.
-- Verified `checkout.session.completed` processing.
-- Idempotent entitlement issuance.
-- Durable entitlement storage and audit logging.
-
-## 12. P05 handoff
-
-P05 should implement:
-
-- Real entitlement verification boundary from tool runtime.
-- Pro feature unlock only when entitlement is verified active.
-- User-facing access recovery/retry path if verification is delayed.
-
-## 13. Validation checklist
-
-- [x] `docs/billing/stripe-checkout-success-cancel-flow.md` exists.
-- [x] Product remains `okj.toolkit_pro` at `$4.99` one-time in USD.
-- [x] `config/billing/products.json` parses.
-- [x] `config/billing/mock-entitlements.json` parses.
-- [x] `stripe.mode` remains `not_connected`.
-- [x] No real Stripe IDs or secrets committed.
-- [x] No Pro unlock path added.
-- [x] Success/cancel text explicitly says P03 does not grant Pro access.
-- [x] P04 handoff covers webhook verification and entitlement issue.
-- [x] P05 handoff covers real Pro unlock.
-
-P05-A adapter reference:
-- `docs/billing/pro-entitlement-state-adapter.md` defines disabled-by-default entitlement state adapter contract used for future runtime gating.
-- P05-A remains contract/scaffold only; real Stripe/D1 entitlement verification and Pro activation remain deferred.
-
+Next step is webhook verification and entitlement issue path.
