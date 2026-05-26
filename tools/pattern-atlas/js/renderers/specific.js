@@ -1,3 +1,5 @@
+import { renderQualityOverrideSvg } from './quality-overrides.js';
+
 const esc = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
 const isTransparent = (value) => String(value || '').trim().toLowerCase() === 'transparent';
 const c = (pattern, key, fallback) => isTransparent(pattern.defaultColors?.[key]) ? 'transparent' : esc(pattern.defaultColors?.[key] || fallback);
@@ -277,5 +279,7 @@ const map = {
 };
 
 export function renderSpecificPatternSvg(pattern) {
+  const override = renderQualityOverrideSvg(pattern);
+  if (override) return override;
   return map[pattern.slug] ? map[pattern.slug](pattern) : null;
 }
