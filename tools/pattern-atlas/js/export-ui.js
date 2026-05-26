@@ -1,3 +1,4 @@
+import './copy-cleanup.js';
 import './prompt-autoload.js';
 import { renderPatternSvg } from './renderers/index.js';
 
