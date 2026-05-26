@@ -6,6 +6,18 @@ const cloneColors = (pattern) => ({ ...(pattern.defaultColors || {}) });
 const isHex = (value) => HEX_RE.test(String(value || '').trim());
 const isTransparent = (value) => String(value || '').trim().toLowerCase() === TRANSPARENT;
 const isValidColorValue = (value) => isHex(value) || isTransparent(value);
+const slotLabel = (slot, isJapanese) => {
+  const labels = {
+    background: ['Background', '背景'],
+    primary: ['Main pattern', '主模様'],
+    secondary: ['Sub pattern', '副模様'],
+    accent: ['Accent', 'アクセント'],
+    line: ['Line', '線'],
+    highlight: ['Highlight', 'ハイライト']
+  };
+  const pair = labels[slot] || [slot, slot];
+  return isJapanese ? `${pair[1]} (${slot})` : `${pair[0]} (${slot})`;
+};
 
 const create = (tag, className, text) => {
   const node = document.createElement(tag);
@@ -46,10 +58,11 @@ export function setupColorEditor({ root, patterns, isJapanese }) {
     const panel = create('div', 'pa-use-preview');
     panel.dataset.paColorEditor = '';
     panel.append(create('h3', 'pa-card-title', isJapanese ? '色編集' : 'Color editor'));
+    panel.append(create('p', 'pa-muted', isJapanese ? '各パーツごとに色または transparent を指定できます。透過部分は市松背景で確認できます。' : 'Set a color or transparent for each part. Transparent areas are shown over the checkerboard preview.'));
 
     selected.colorSlots.forEach((slot) => {
       const row = create('div', 'pa-color-row');
-      const label = create('label', '', slot);
+      const label = create('label', '', slotLabel(slot, isJapanese));
       const picker = document.createElement('input');
       picker.type = 'color';
       picker.value = toPickerValue(colors[slot]);
