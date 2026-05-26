@@ -174,10 +174,35 @@ async function copyText(text) {
   } catch (_) {}
 }
 
+function syncOkjProRuntimeState() {
+  const adapter = window.NicheWorksProEntitlement;
+  const panels = document.querySelectorAll('[data-okj-pro-state]');
+  panels.forEach((panel) => {
+    const features = panel.querySelectorAll('[data-okj-feature-id]');
+    let runtimeState = 'billing-unavailable';
+    let runtimeActive = false;
+    if (adapter && typeof adapter.getFeatureState === 'function') {
+      features.forEach((featureEl) => {
+        const featureIds = (featureEl.dataset.okjFeatureId || '').split(/\s+/).filter(Boolean);
+        featureIds.forEach((featureId) => {
+          const featureState = adapter.getFeatureState(featureId);
+          runtimeState = featureState?.state || runtimeState;
+          runtimeActive = runtimeActive || !!featureState?.active;
+          featureEl.dataset.okjRuntimeProState = featureState?.state || runtimeState;
+          featureEl.dataset.okjRuntimeProActive = String(!!featureState?.active);
+        });
+      });
+    }
+    panel.dataset.okjRuntimeProState = runtimeState;
+    panel.dataset.okjRuntimeProActive = String(runtimeActive);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('checkBtn').addEventListener('click', analyzeInput);
   document.getElementById('placeInput').addEventListener('input', analyzeInput);
   document.querySelectorAll('.nw-lang-switch button').forEach((btn) => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
   setLang('ja');
+  syncOkjProRuntimeState();
   await loadData();
 });
