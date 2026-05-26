@@ -1,173 +1,38 @@
-const esc = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
-const transparent = (value) => String(value || '').trim().toLowerCase() === 'transparent';
-const color = (pattern, key, fallback) => transparent(pattern.defaultColors?.[key]) ? 'transparent' : esc(pattern.defaultColors?.[key] || fallback);
-const wrap = (pattern, content) => {
-  const w = pattern.tile?.width || 220;
-  const h = pattern.tile?.height || 160;
-  const bg = pattern.defaultColors?.background || '#fff';
-  const bgRect = transparent(bg) ? '' : `<rect width="100%" height="100%" fill="${esc(bg)}"/>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(pattern.nameEn)} pattern preview">${bgRect}${content}</svg>`;
-};
+const esc=(v)=>String(v).replace(/[&<>'"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const isT=(v)=>String(v||'').trim().toLowerCase()==='transparent';
+const col=(p,k,f)=>isT(p.defaultColors?.[k])?'transparent':esc(p.defaultColors?.[k]||f);
+const wrap=(p,body,w=p.tile?.width||220,h=p.tile?.height||160)=>{const bg=p.defaultColors?.background||'#fff';return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(p.nameEn)} pattern preview">${isT(bg)?'':`<rect width="100%" height="100%" fill="${esc(bg)}"/>`}${body}</svg>`};
 
-const arabesque = (p) => {
-  const primary = color(p, 'primary', '#2f5f57');
-  const secondary = color(p, 'secondary', '#9aa38f');
-  const accent = color(p, 'accent', '#d9a441');
-  let out = '';
-  for (let x = -40; x < 260; x += 92) {
-    out += `<path d="M ${x} 88 C ${x + 28} 24, ${x + 72} 24, ${x + 104} 88 C ${x + 72} 136, ${x + 28} 136, ${x} 88 Z" fill="none" stroke="${primary}" stroke-width="4"/>`;
-    out += `<path d="M ${x + 18} 88 C ${x + 48} 48, ${x + 62} 48, ${x + 92} 88" fill="none" stroke="${secondary}" stroke-width="3"/>`;
-    out += `<path d="M ${x + 38} 72 c 12 -22 34 -14 24 8 c -8 18 -34 12 -24 -8 Z" fill="none" stroke="${primary}" stroke-width="2.5"/>`;
-    out += `<circle cx="${x + 52}" cy="88" r="5" fill="${accent}"/>`;
-  }
-  out += `<path d="M -20 132 C 36 104, 74 154, 128 126 S 210 112, 260 136" fill="none" stroke="${secondary}" stroke-width="2" opacity=".7"/>`;
-  return wrap(p, out);
-};
+const seigaiha=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#8fbcd4');let o='';for(let y=32;y<170;y+=28)for(let x=-24;x<270;x+=40)o+=`<path d="M${x} ${y}a20 20 0 0 1 40 0" fill="none" stroke="${a}" stroke-width="3.2"/><path d="M${x+6} ${y}a14 14 0 0 1 28 0" fill="none" stroke="${b}" stroke-width="2"/><path d="M${x+12} ${y}a8 8 0 0 1 16 0" fill="none" stroke="${a}" stroke-width="1.4"/>`;return wrap(p,o,240,160)};
+const runningWater=p=>wrap(p,`<path d="M-30 34C30 0 70 78 128 32S210 24 270 8" fill="none" stroke="${col(p,'primary','#2f6f9f')}" stroke-width="4.4" stroke-linecap="round"/><path d="M-20 78C44 38 86 106 150 68S226 70 270 48" fill="none" stroke="${col(p,'secondary','#9ec9df')}" stroke-width="3"/><path d="M0 116C48 86 96 136 150 106S220 98 260 126" fill="none" stroke="${col(p,'primary','#2f6f9f')}" stroke-width="2.4" opacity=".75"/>`,240,120);
+const shippo=p=>{const a=col(p,'primary','#8b5e34'),b=col(p,'accent','#d9c9a3');let o='';for(let y=-32;y<192;y+=40)for(let x=-32;x<192;x+=40)o+=`<circle cx="${x}" cy="${y}" r="34" fill="none" stroke="${a}" stroke-width="2.5"/><circle cx="${x+20}" cy="${y+20}" r="4" fill="${b}"/>`;return wrap(p,o,160,160)};
+const ichimatsu=p=>{const a=col(p,'primary','#222');let o='';for(let y=0;y<120;y+=30)for(let x=0;x<120;x+=30)if(((x+y)/30)%2===0)o+=`<rect x="${x}" y="${y}" width="30" height="30" fill="${a}"/>`;return wrap(p,o,120,120)};
+const asanoha=p=>{const a=col(p,'primary','#4f5d4f'),b=col(p,'secondary','#9aa38f');let o='';for(let cy=26;cy<184;cy+=52)for(let cx=0;cx<220;cx+=60)o+=`<path d="M${cx} ${cy-24}l26 16v16l-26 16l-26-16v-16z" fill="none" stroke="${a}" stroke-width="2"/><path d="M${cx} ${cy-24}v48M${cx-26} ${cy-8}l52 16M${cx+26} ${cy-8}l-52 16" stroke="${b}" stroke-width="1.8"/>`;return wrap(p,o,180,156)};
+const kikko=p=>{const a=col(p,'primary','#5b4636');let o='';for(let cy=20;cy<180;cy+=40)for(let cx=0;cx<220;cx+=48)o+=`<path d="M${cx} ${cy-18}l21 10v16l-21 12l-21-12v-16z" fill="none" stroke="${a}" stroke-width="2.6"/>`;return wrap(p,o,180,156)};
+const yagasuri=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o='';for(let x=-12;x<220;x+=28)o+=`<path d="M${x} 0l14 38h-8l18 48l18-48h-8l14-38" fill="none" stroke="${a}" stroke-width="3.4" stroke-linejoin="round"/><path d="M${x+24} 50v110" stroke="${b}" stroke-width="2"/>`;return wrap(p,o,180,160)};
+const uroko=p=>{const a=col(p,'primary','#1f4e79');let o='';for(let y=0;y<190;y+=28)for(let x=-14;x<210;x+=28)o+=`<path d="M${x} ${y}l14 24l14-24z" fill="none" stroke="${a}" stroke-width="2"/>`;return wrap(p,o,180,160)};
+const karakusa=p=>{const a=col(p,'primary','#2f5f57'),b=col(p,'accent','#d9a441');let o=`<path d="M-28 98C28 30 70 148 126 82S202 38 268 100" fill="none" stroke="${a}" stroke-width="4.6" stroke-linecap="round"/>`;for(const [x,y,s,f]of[[34,70,1,1],[82,106,.9,-1],[138,72,1.05,1],[186,104,.9,-1]])o+=`<path d="M${x} ${y}c${24*s*f} ${-30*s} ${50*s*f} ${16*s} ${10*s*f} ${34*s}" fill="none" stroke="${a}" stroke-width="2.8"/><path d="M${x+5*f} ${y-8}c${12*f} -8 ${24*f} 4 ${10*f} 16" fill="none" stroke="${b}" stroke-width="2"/>`;return wrap(p,o,220,160)};
+const hishi=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o='';for(let y=22;y<190;y+=40)for(let x=20;x<220;x+=40)o+=`<path d="M${x} ${y-16}l16 16l-16 16l-16-16z" fill="none" stroke="${a}" stroke-width="2.5"/><path d="M${x} ${y-7}l7 7l-7 7l-7-7z" fill="${b}" opacity=".78"/>`;return wrap(p,o,180,160)};
+const greekMeander=p=>{const a=col(p,'primary','#222');let o='';for(let x=-38;x<288;x+=54)o+=`<path d="M${x} 18h46v26h-24v-12h12" fill="none" stroke="${a}" stroke-width="7" stroke-linejoin="miter"/><path d="M${x} 62h46v-10" fill="none" stroke="${a}" stroke-width="7"/>`;return wrap(p,o,240,80)};
+const paisley=p=>{const a=col(p,'primary','#8b2f3c'),b=col(p,'secondary','#2f5f57'),d=col(p,'accent','#d9a441');let o='';for(let x=-30;x<250;x+=86)o+=`<path d="M${x+48} 28C${x+94} 24 ${x+116} 78 ${x+82} 118C${x+48} 158 ${x+4} 116 ${x+34} 78C${x+56} 54 ${x+34} 40 ${x+48} 28z" fill="none" stroke="${a}" stroke-width="3.5"/><path d="M${x+66} 56C${x+88} 72 ${x+78} 102 ${x+52} 102" fill="none" stroke="${b}" stroke-width="2.5"/><circle cx="${x+68}" cy="82" r="5" fill="${d}"/>`;return wrap(p,o,220,160)};
+const arabesque=p=>{const a=col(p,'primary','#2f5f57'),b=col(p,'secondary','#9aa38f'),d=col(p,'accent','#d9a441');let o='';for(let x=-50;x<270;x+=92)o+=`<path d="M${x} 86C${x+28} 24 ${x+72} 24 ${x+104} 86C${x+72} 136 ${x+28} 136 ${x} 86z" fill="none" stroke="${a}" stroke-width="3.6"/><path d="M${x+16} 86C${x+46} 48 ${x+64} 48 ${x+92} 86" fill="none" stroke="${b}" stroke-width="2.5"/><path d="M${x+40} 70c14-18 34-8 20 12c-12 16-34 8-20-12z" fill="none" stroke="${a}" stroke-width="2"/><circle cx="${x+52}" cy="86" r="4.5" fill="${d}"/>`;return wrap(p,o,220,160)};
+const celticKnot=p=>{const a=col(p,'primary','#5b4636'),b=col(p,'accent','#8b6f47');return wrap(p,`<path d="M34 80C34 28 98 28 98 80C98 132 34 132 34 80zM122 80C122 28 186 28 186 80C186 132 122 132 122 80z" fill="none" stroke="${a}" stroke-width="9"/><path d="M42 42C88 96 132 96 178 42M42 118C88 64 132 64 178 118" fill="none" stroke="${b}" stroke-width="5.4" stroke-linecap="round"/><path d="M72 30L148 130M148 30L72 130" stroke="#fff" stroke-width="2.6" opacity=".65"/>`,220,160)};
+const starTile=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o='';for(let cy=34;cy<180;cy+=52)for(let cx=34;cx<220;cx+=52)o+=`<path d="M${cx} ${cy-24}l8 16l16 8l-16 8l-8 16l-8-16l-16-8l16-8z" fill="none" stroke="${a}" stroke-width="2.6"/><path d="M${cx-24} ${cy}h48M${cx} ${cy-24}v48" stroke="${a}" stroke-width="1.5" opacity=".6"/><circle cx="${cx}" cy="${cy}" r="4" fill="${b}"/>`;return wrap(p,o,220,160)};
+const ikat=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o='';for(let x=-42;x<270;x+=34)o+=`<path d="M${x} 0L${x+48} 160" stroke="${a}" stroke-width="14" opacity=".75"/><path d="M${x+8} 0L${x+56} 160" stroke="${b}" stroke-width="4" stroke-dasharray="8 7" opacity=".7"/>`;return wrap(p,o,220,160)};
+const mandala=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o=`<circle cx="110" cy="80" r="8" fill="${b}"/><circle cx="110" cy="80" r="26" fill="none" stroke="${a}" stroke-width="2.6"/><circle cx="110" cy="80" r="55" fill="none" stroke="${a}" stroke-width="2"/>`;for(let i=0;i<16;i++){const r=Math.PI*2*i/16,x=110+Math.cos(r)*44,y=80+Math.sin(r)*44;o+=`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="5.5" ry="16" fill="none" stroke="${a}" stroke-width="1.8" transform="rotate(${(r*180/Math.PI).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`}return wrap(p,o,220,160)};
+const lotus=p=>{const a=col(p,'primary','#2f5f57'),b=col(p,'accent','#d9a441');let o='';for(let cx=28;cx<230;cx+=48)o+=`<path d="M${cx} 122C${cx-24} 84 ${cx-9} 40 ${cx} 26C${cx+9} 40 ${cx+24} 84 ${cx} 122z" fill="none" stroke="${a}" stroke-width="2.6"/><path d="M${cx-18} 118C${cx-29} 88 ${cx-17} 62 ${cx-3} 44M${cx+18} 118C${cx+29} 88 ${cx+17} 62 ${cx+3} 44" fill="none" stroke="${a}" stroke-width="1.7" opacity=".72"/><circle cx="${cx}" cy="126" r="4" fill="${b}"/>`;return wrap(p,o,220,160)};
+const batikParang=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o='';for(let x=-90;x<280;x+=50)o+=`<path d="M${x} 164C${x+40} 118 ${x+30} 50 ${x+88} -4" fill="none" stroke="${a}" stroke-width="16" stroke-linecap="round"/><path d="M${x+12} 160C${x+52} 112 ${x+42} 52 ${x+98} 0" fill="none" stroke="${b}" stroke-width="4"/><circle cx="${x+50}" cy="80" r="5" fill="${b}" opacity=".9"/>`;return wrap(p,o,220,160)};
+const chineseCloud=p=>{const a=col(p,'primary','#2f6f9f'),b=col(p,'accent','#d9a441');let o='';for(let x=-20;x<260;x+=108)o+=`<path d="M${x+12} 88C${x+30} 52 ${x+70} 68 ${x+58} 96C${x+96} 56 ${x+146} 66 ${x+128} 108C${x+154} 92 ${x+184} 106 ${x+188} 126H${x+12}" fill="none" stroke="${a}" stroke-width="4.5"/><path d="M${x+60} 112C${x+92} 88 ${x+124} 94 ${x+148} 118" fill="none" stroke="${b}" stroke-width="2.6"/>`;return wrap(p,o,220,160)};
+const dancheong=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'secondary','#9aa38f'),d=col(p,'accent','#d9a441');return wrap(p,`<rect y="18" width="100%" height="20" fill="${a}" opacity=".85"/><rect y="122" width="100%" height="20" fill="${a}" opacity=".85"/><rect y="48" width="100%" height="9" fill="${d}"/><rect y="103" width="100%" height="9" fill="${d}"/><path d="M18 82Q42 48 66 82T114 82T162 82T210 82" fill="none" stroke="${b}" stroke-width="5.2"/><circle cx="110" cy="82" r="18" fill="none" stroke="${a}" stroke-width="3.2"/><circle cx="110" cy="82" r="6" fill="${d}"/>`,220,160)};
+const moreu=p=>wrap(p,`<path d="M22 108C66 38 160 44 140 108C124 154 54 132 78 82C98 42 154 78 116 112" fill="none" stroke="${col(p,'primary','#1f4e79')}" stroke-width="6.5"/><path d="M150 72C172 66 188 86 176 106C166 122 142 112 148 94" fill="none" stroke="${col(p,'accent','#d9a441')}" stroke-width="3.6"/><path d="M34 122C70 112 94 138 126 126" fill="none" stroke="${col(p,'primary','#1f4e79')}" stroke-width="2.6" opacity=".65"/>`,220,160);
+const damask=p=>{const a=col(p,'primary','#2f5f57'),b=col(p,'secondary','#9aa38f'),d=col(p,'accent','#d9a441');return wrap(p,`<path d="M110 18C146 48 146 108 110 142C74 108 74 48 110 18z" fill="none" stroke="${a}" stroke-width="3.6"/><path d="M110 44C60 18 24 58 54 98C76 126 100 100 110 80M110 44C160 18 196 58 166 98C144 126 120 100 110 80" fill="none" stroke="${a}" stroke-width="2.7"/><path d="M110 62C94 78 96 100 110 116C124 100 126 78 110 62z" fill="${b}" opacity=".45"/><circle cx="110" cy="80" r="7" fill="${d}"/>`,220,160)};
+const tartan=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o='';for(let x=0;x<220;x+=42)o+=`<rect x="${x}" width="16" height="160" fill="${a}" opacity=".72"/><rect x="${x+22}" width="4" height="160" fill="${b}"/>`;for(let y=0;y<160;y+=42)o+=`<rect y="${y}" width="220" height="16" fill="${a}" opacity=".52"/><rect y="${y+22}" width="220" height="4" fill="${b}"/>`;return wrap(p,o,220,160)};
+const nordicRosette=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441');let o='';for(let y=32;y<160;y+=48)for(let x=28;x<220;x+=48)o+=`<path d="M${x} ${y-16}l5 11l11 5l-11 5l-5 11l-5-11l-11-5l11-5z" fill="none" stroke="${a}" stroke-width="2.5"/><circle cx="${x}" cy="${y}" r="3.6" fill="${b}"/>`;return wrap(p,o,220,160)};
+const kente=p=>{const a=col(p,'primary','#1f4e79'),b=col(p,'accent','#d9a441'),d=col(p,'secondary','#9aa38f');let o='';for(let y=0;y<160;y+=32)for(let x=0;x<220;x+=44){const f=((x/44+y/32)%3===0)?a:((x/44+y/32)%3===1?b:d);o+=`<rect x="${x}" y="${y}" width="44" height="32" fill="${f}" opacity=".86"/><path d="M${x+6} ${y+8}h32M${x+6} ${y+16}h32M${x+6} ${y+24}h32" stroke="#fff" stroke-width="1.6" opacity=".62"/>`}return wrap(p,o,220,160)};
+const kuba=p=>wrap(p,`<rect x="12" y="12" width="52" height="32" fill="${col(p,'primary','#1f4e79')}" opacity=".78"/><rect x="78" y="18" width="30" height="58" fill="${col(p,'secondary','#9aa38f')}" opacity=".75"/><path d="M118 20H196V46H160V78H204" fill="none" stroke="${col(p,'primary','#1f4e79')}" stroke-width="8"/><rect x="24" y="86" width="68" height="46" fill="${col(p,'accent','#d9a441')}" opacity=".74"/><path d="M18 144L60 112L112 148L168 102L204 132" fill="none" stroke="${col(p,'primary','#1f4e79')}" stroke-width="4.5"/>`,220,160);
+const andean=p=>wrap(p,`<path d="M110 18h26v28h28v28h-28v28h-26v28H84v-28H56V74h28V46h26z" fill="none" stroke="${col(p,'primary','#1f4e79')}" stroke-width="4.5"/><path d="M110 44h22v22h22M110 116H88V94H66" fill="none" stroke="${col(p,'accent','#d9a441')}" stroke-width="3.5"/>`,220,160);
+const koru=p=>wrap(p,`<path d="M28 118C72 40 174 44 146 112C124 158 58 132 82 84C102 46 154 76 124 108" fill="none" stroke="${col(p,'primary','#1f4e79')}" stroke-width="7.5"/><path d="M56 126C90 98 126 146 170 118" fill="none" stroke="${col(p,'primary','#1f4e79')}" stroke-width="2.7" opacity=".55"/><circle cx="96" cy="42" r="11" fill="${col(p,'accent','#d9a441')}"/>`,220,160);
+const dotGrid=p=>{let o='';const a=col(p,'primary','#1f4e79');for(let y=24;y<150;y+=22)for(let x=24;x<210;x+=22)o+=`<circle cx="${x}" cy="${y}" r="2.8" fill="${a}"/>`;return wrap(p,o,220,160)};
 
-const karakusa = (p) => {
-  const primary = color(p, 'primary', '#2f5f57');
-  const accent = color(p, 'accent', '#d9a441');
-  let out = `<path d="M -24 100 C 28 40, 66 146, 118 86 S 192 38, 248 96" fill="none" stroke="${primary}" stroke-width="5" stroke-linecap="round"/>`;
-  for (const [x, y, s, flip] of [[40,70,1,1],[78,104,.85,-1],[132,72,1.05,1],[176,104,.9,-1]]) {
-    out += `<path d="M ${x} ${y} c ${24*s*flip} ${-28*s}, ${48*s*flip} ${18*s}, ${10*s*flip} ${34*s}" fill="none" stroke="${primary}" stroke-width="3" stroke-linecap="round"/>`;
-    out += `<path d="M ${x + 4*flip} ${y - 6} c ${12*flip} -8, ${22*flip} 2, ${10*flip} 14" fill="none" stroke="${accent}" stroke-width="2.2"/>`;
-  }
-  return wrap(p, out);
-};
-
-const paisley = (p) => {
-  const primary = color(p, 'primary', '#8b2f3c');
-  const secondary = color(p, 'secondary', '#2f5f57');
-  const accent = color(p, 'accent', '#d9a441');
-  let out = '';
-  for (let x = -20; x < 240; x += 96) {
-    out += `<path d="M ${x + 54} 28 C ${x + 106} 26, ${x + 124} 86, ${x + 82} 122 C ${x + 42} 156, ${x + 0} 112, ${x + 36} 76 C ${x + 60} 52, ${x + 34} 38, ${x + 54} 28 Z" fill="none" stroke="${primary}" stroke-width="4"/>`;
-    out += `<path d="M ${x + 70} 54 C ${x + 92} 70, ${x + 84} 104, ${x + 56} 104" fill="none" stroke="${secondary}" stroke-width="3"/>`;
-    out += `<circle cx="${x + 72}" cy="82" r="6" fill="${accent}"/>`;
-    out += `<path d="M ${x + 34} 120 c 18 -12 40 -10 56 4" fill="none" stroke="${secondary}" stroke-width="2" opacity=".8"/>`;
-  }
-  return wrap(p, out);
-};
-
-const celticKnot = (p) => {
-  const primary = color(p, 'primary', '#5b4636');
-  const accent = color(p, 'accent', '#8b6f47');
-  return wrap(p, `<path d="M 34 80 C 34 28, 98 28, 98 80 C 98 132, 34 132, 34 80 Z" fill="none" stroke="${primary}" stroke-width="10"/><path d="M 122 80 C 122 28, 186 28, 186 80 C 186 132, 122 132, 122 80 Z" fill="none" stroke="${primary}" stroke-width="10"/><path d="M 42 42 C 88 96, 132 96, 178 42 M 42 118 C 88 64, 132 64, 178 118" fill="none" stroke="${accent}" stroke-width="6" stroke-linecap="round"/><path d="M 72 30 L 148 130 M 148 30 L 72 130" stroke="#fff" stroke-width="3" opacity=".7"/>`);
-};
-
-const damask = (p) => {
-  const primary = color(p, 'primary', '#2f5f57');
-  const secondary = color(p, 'secondary', '#9aa38f');
-  const accent = color(p, 'accent', '#d9a441');
-  return wrap(p, `<path d="M 110 18 C 146 48, 146 108, 110 142 C 74 108, 74 48, 110 18 Z" fill="none" stroke="${primary}" stroke-width="4"/><path d="M 110 44 C 60 18, 24 58, 54 98 C 76 126, 100 100, 110 80 M 110 44 C 160 18, 196 58, 166 98 C 144 126, 120 100, 110 80" fill="none" stroke="${primary}" stroke-width="3"/><path d="M 110 62 C 94 78, 96 100, 110 116 C 124 100, 126 78, 110 62 Z" fill="${secondary}" opacity=".45"/><circle cx="110" cy="80" r="7" fill="${accent}"/>`);
-};
-
-const dancheong = (p) => {
-  const primary = color(p, 'primary', '#1f4e79');
-  const secondary = color(p, 'secondary', '#9aa38f');
-  const accent = color(p, 'accent', '#d9a441');
-  return wrap(p, `<rect x="0" y="18" width="100%" height="22" fill="${primary}" opacity=".85"/><rect x="0" y="120" width="100%" height="22" fill="${primary}" opacity=".85"/><rect x="0" y="48" width="100%" height="10" fill="${accent}" opacity=".9"/><rect x="0" y="102" width="100%" height="10" fill="${accent}" opacity=".9"/><path d="M 20 82 Q 42 48 64 82 T 108 82 T 152 82 T 196 82" fill="none" stroke="${secondary}" stroke-width="6"/><circle cx="108" cy="82" r="18" fill="none" stroke="${primary}" stroke-width="4"/><circle cx="108" cy="82" r="7" fill="${accent}"/>`);
-};
-
-const moreu = (p) => {
-  const primary = color(p, 'primary', '#1f4e79');
-  const accent = color(p, 'accent', '#d9a441');
-  return wrap(p, `<path d="M 22 108 C 66 38, 160 44, 140 108 C 124 154, 54 132, 78 82 C 98 42, 154 78, 116 112" fill="none" stroke="${primary}" stroke-width="7" stroke-linecap="round"/><path d="M 150 72 C 172 66, 188 86, 176 106 C 166 122, 142 112, 148 94" fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round"/><path d="M 34 122 C 70 112, 94 138, 126 126" fill="none" stroke="${primary}" stroke-width="3" opacity=".65"/>`);
-};
-
-const koru = (p) => {
-  const primary = color(p, 'primary', '#1f4e79');
-  const accent = color(p, 'accent', '#d9a441');
-  return wrap(p, `<path d="M 28 118 C 72 40, 174 44, 146 112 C 124 158, 58 132, 82 84 C 102 46, 154 76, 124 108" fill="none" stroke="${primary}" stroke-width="8" stroke-linecap="round"/><path d="M 56 126 C 90 98, 126 146, 170 118" fill="none" stroke="${primary}" stroke-width="3" opacity=".55"/><circle cx="96" cy="42" r="12" fill="${accent}"/>`);
-};
-
-const kente = (p) => {
-  const primary = color(p, 'primary', '#1f4e79');
-  const accent = color(p, 'accent', '#d9a441');
-  const secondary = color(p, 'secondary', '#9aa38f');
-  let out = '';
-  for (let y = 0; y < 160; y += 32) for (let x = 0; x < 220; x += 44) {
-    const fill = ((x / 44 + y / 32) % 3 === 0) ? primary : ((x / 44 + y / 32) % 3 === 1 ? accent : secondary);
-    out += `<rect x="${x}" y="${y}" width="44" height="32" fill="${fill}" opacity=".86"/>`;
-    out += `<path d="M ${x + 6} ${y + 8} H ${x + 38} M ${x + 6} ${y + 16} H ${x + 38} M ${x + 6} ${y + 24} H ${x + 38}" stroke="#fff" stroke-width="1.8" opacity=".65"/>`;
-  }
-  return wrap(p, out);
-};
-
-const kuba = (p) => {
-  const primary = color(p, 'primary', '#1f4e79');
-  const accent = color(p, 'accent', '#d9a441');
-  const secondary = color(p, 'secondary', '#9aa38f');
-  return wrap(p, `<rect x="12" y="12" width="52" height="32" fill="${primary}" opacity=".8"/><rect x="78" y="18" width="30" height="58" fill="${secondary}" opacity=".75"/><path d="M 118 20 H 196 V 46 H 160 V 78 H 204" fill="none" stroke="${primary}" stroke-width="9"/><rect x="24" y="86" width="68" height="46" fill="${accent}" opacity=".75"/><path d="M 18 144 L 60 112 L 112 148 L 168 102 L 204 132" fill="none" stroke="${primary}" stroke-width="5"/>`);
-};
-
-const batikParang = (p) => {
-  const primary = color(p, 'primary', '#1f4e79');
-  const accent = color(p, 'accent', '#d9a441');
-  let out = '';
-  for (let x = -90; x <= 260; x += 56) {
-    out += `<path d="M ${x} 164 C ${x + 42} 118, ${x + 32} 52, ${x + 92} -4" fill="none" stroke="${primary}" stroke-width="18" stroke-linecap="round"/>`;
-    out += `<path d="M ${x + 12} 160 C ${x + 54} 112, ${x + 44} 52, ${x + 102} 0" fill="none" stroke="${accent}" stroke-width="5"/>`;
-    out += `<circle cx="${x + 52}" cy="80" r="6" fill="${accent}" opacity=".85"/>`;
-  }
-  return wrap(p, out);
-};
-
-const chineseCloud = (p) => {
-  const primary = color(p, 'primary', '#2f6f9f');
-  const accent = color(p, 'accent', '#d9a441');
-  let out = '';
-  for (let x = -10; x < 240; x += 110) {
-    out += `<path d="M ${x + 12} 88 C ${x + 30} 52, ${x + 70} 68, ${x + 58} 96 C ${x + 96} 56, ${x + 146} 66, ${x + 128} 108 C ${x + 154} 92, ${x + 184} 106, ${x + 188} 126 H ${x + 12}" fill="none" stroke="${primary}" stroke-width="5" stroke-linecap="round"/>`;
-    out += `<path d="M ${x + 60} 112 C ${x + 92} 88, ${x + 124} 94, ${x + 148} 118" fill="none" stroke="${accent}" stroke-width="3"/>`;
-  }
-  return wrap(p, out);
-};
-
-const mandala = (p) => {
-  const primary = color(p, 'primary', '#1f4e79');
-  const accent = color(p, 'accent', '#d9a441');
-  const cx = 110;
-  const cy = 80;
-  let out = `<circle cx="${cx}" cy="${cy}" r="10" fill="${accent}"/><circle cx="${cx}" cy="${cy}" r="28" fill="none" stroke="${primary}" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="${primary}" stroke-width="2"/>`;
-  for (let i = 0; i < 16; i += 1) {
-    const a = Math.PI * 2 * i / 16;
-    const x = cx + Math.cos(a) * 46;
-    const y = cy + Math.sin(a) * 46;
-    out += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="6" ry="18" fill="none" stroke="${primary}" stroke-width="2" transform="rotate(${(a * 180 / Math.PI).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`;
-  }
-  return wrap(p, out);
-};
-
-const lotus = (p) => {
-  const primary = color(p, 'primary', '#2f5f57');
-  const accent = color(p, 'accent', '#d9a441');
-  let out = '';
-  for (let cx = 38; cx <= 204; cx += 56) {
-    out += `<path d="M ${cx} 120 C ${cx - 28} 82, ${cx - 10} 38, ${cx} 24 C ${cx + 10} 38, ${cx + 28} 82, ${cx} 120 Z" fill="none" stroke="${primary}" stroke-width="3"/>`;
-    out += `<path d="M ${cx - 22} 116 C ${cx - 32} 88, ${cx - 20} 62, ${cx - 4} 44 M ${cx + 22} 116 C ${cx + 32} 88, ${cx + 20} 62, ${cx + 4} 44" fill="none" stroke="${primary}" stroke-width="2" opacity=".75"/>`;
-    out += `<circle cx="${cx}" cy="126" r="5" fill="${accent}"/>`;
-  }
-  return wrap(p, out);
-};
-
-const overrides = {
-  arabesque,
-  karakusa,
-  paisley,
-  'celtic-knot': celticKnot,
-  damask,
-  dancheong,
-  'ainu-moreu': moreu,
-  'koru-inspired': koru,
-  'kente-band': kente,
-  'kuba-cloth-grid': kuba,
-  'batik-parang': batikParang,
-  'chinese-cloud': chineseCloud,
-  mandala,
-  lotus
-};
-
-export function renderQualityOverrideSvg(pattern) {
-  return overrides[pattern.slug] ? overrides[pattern.slug](pattern) : null;
-}
+const renderers={seigaiha,'running-water':runningWater,shippo,ichimatsu,asanoha,kikko,yagasuri,uroko,karakusa,hishi,'greek-meander':greekMeander,paisley,arabesque,'celtic-knot':celticKnot,'islamic-star-tile':starTile,ikat,mandala,lotus,'batik-parang':batikParang,'chinese-cloud':chineseCloud,dancheong,'ainu-moreu':moreu,damask,tartan,'nordic-rosette':nordicRosette,'kente-band':kente,'kuba-cloth-grid':kuba,'andean-stepped-diamond':andean,'koru-inspired':koru,'dot-grid':dotGrid};
+export function renderQualityOverrideSvg(pattern){return renderers[pattern.slug]?.(pattern)||null;}
