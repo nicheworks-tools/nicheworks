@@ -1,9 +1,3 @@
-import {
-  buildEntitlementRecord,
-  getEntitlementByCheckoutSession,
-  issueEntitlement
-} from './entitlement-store.js';
-
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -16,6 +10,107 @@ function json(data, status = 200) {
 
 function hasValue(v) {
   return typeof v === 'string' && v.trim().length > 0;
+}
+
+function parseStripeSignatureHeader(header) {
+  if (!hasValue(header)) {
+    return { timestamp: null, signatures: [] };
+  }
+
+  const parts = header.split(',');
+  let timestamp = null;
+  const signatures = [];
+
+  for (const part of parts) {
+    const [rawKey, rawValue] = part.split('=');
+    const key = String(rawKey || '').trim();
+    const value = String(rawValue || '').trim();
+
+    if (!key || !value) {
+      continue;
+    }
+
+    if (key === 't') {
+      const parsed = Number.parseInt(value, 10);
+      if (Number.isFinite(parsed)) {
+        timestamp = parsed;
+      }
+      continue;
+    }
+
+    if (key === 'v1') {
+      signatures.push(value.toLowerCase());
+    }
+  }
+
+  return { timestamp, signatures };
+}
+
+function timingSafeEqualHex(a, b) {
+  if (!hasValue(a) || !hasValue(b) || a.length !== b.length) {
+    return false;
+  }
+
+  let mismatch = 0;
+  for (let i = 0; i < a.length; i += 1) {
+    mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+
+  return mismatch === 0;
+}
+
+function toHex(buffer) {
+  return Array.from(new Uint8Array(buffer))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+async function computeSignature(secret, payload) {
+  const encoder = new TextEncoder();
+  const keyData = encoder.encode(secret);
+  const payloadData = encoder.encode(payload);
+
+  const cryptoKey = await crypto.subtle.importKey(
+    'raw',
+    keyData,
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+
+  const signature = await crypto.subtle.sign('HMAC', cryptoKey, payloadData);
+  return toHex(signature);
+}
+
+function withinTolerance(timestamp, now, toleranceSeconds) {
+  if (!Number.isFinite(timestamp) || !Number.isFinite(now)) {
+    return false;
+  }
+
+  return Math.abs(now - timestamp) <= toleranceSeconds;
+}
+
+async function verifyStripeSignature(rawBody, signatureHeader, secret) {
+  const { timestamp, signatures } = parseStripeSignatureHeader(signatureHeader);
+  if (!Number.isFinite(timestamp) || signatures.length === 0) {
+    return { ok: false, error: 'webhook_signature_invalid' };
+  }
+
+  const nowSeconds = Math.floor(Date.now() / 1000);
+  const toleranceSeconds = 300;
+  if (!withinTolerance(timestamp, nowSeconds, toleranceSeconds)) {
+    return { ok: false, error: 'webhook_signature_invalid' };
+  }
+
+  const signedPayload = `${timestamp}.${rawBody}`;
+  const expected = await computeSignature(secret, signedPayload);
+
+  const matched = signatures.some((candidate) => timingSafeEqualHex(candidate, expected));
+  if (!matched) {
+    return { ok: false, error: 'webhook_signature_invalid' };
+  }
+
+  return { ok: true };
 }
 
 async function loadProductsConfig(request, env) {
@@ -32,7 +127,7 @@ async function loadProductsConfig(request, env) {
     }
 
     const parsed = await response.json();
-    if (!Array.isArray(parsed?.products)) {
+    if (!Array.isArray(parsed?.products) || !Array.isArray(parsed?.priceTiers)) {
       throw new Error('products_config_unavailable');
     }
 
@@ -47,16 +142,18 @@ function productById(productsConfig, productId) {
   return list.find((entry) => entry.productId === productId) || null;
 }
 
-function buildEntitlementFromSession(session, product) {
-  return buildEntitlementRecord({
-    productId: product.productId,
-    status: 'active',
-    source: 'stripe_webhook',
-    stripeCustomerId: session.customer || null,
-    stripeCheckoutSessionId: session.id || null,
-    stripePaymentIntentId: session.payment_intent || null,
-    features: Array.isArray(product.features) ? product.features : []
-  });
+function priceTierById(productsConfig, priceTierId) {
+  const list = Array.isArray(productsConfig?.priceTiers) ? productsConfig.priceTiers : [];
+  return list.find((entry) => entry.priceTierId === priceTierId) || null;
+}
+
+function sessionMatchesProductPrice(session, product, tier) {
+  const productPrice = product?.price || {};
+  return (
+    Number(productPrice.amount) === Number(tier.amount)
+    && String(productPrice.currency || '').toLowerCase() === String(tier.currency || '').toLowerCase()
+    && String(productPrice.type || '') === String(tier.type || '')
+  );
 }
 
 export async function onRequest({ request, env }) {
@@ -64,29 +161,43 @@ export async function onRequest({ request, env }) {
     return json({ ok: false, error: 'method_not_allowed', allowed: ['POST'] }, 405);
   }
 
-  const rawBody = await request.text();
-  void rawBody;
-
   if (!hasValue(env?.STRIPE_WEBHOOK_SECRET)) {
-    return json({ ok: false, error: 'webhook_not_configured' }, 503);
+    return json({ ok: false, error: 'webhook_secret_missing' }, 503);
   }
 
-  // TODO(OKJ-P04-B): Connect Stripe SDK signature verification using STRIPE_WEBHOOK_SECRET.
-  // This block must remain unreachable until Stripe SDK signature verification is implemented.
-  // Never move entitlement issue before verification.
-  const stripeSdkConnected = false;
-  if (!stripeSdkConnected) {
-    return json({ ok: false, error: 'stripe_sdk_not_connected' }, 501);
+  const signatureHeader = request.headers.get('Stripe-Signature');
+  if (!hasValue(signatureHeader)) {
+    return json({ ok: false, error: 'webhook_signature_missing' }, 400);
   }
 
-  // Placeholder for verified event from Stripe SDK.
-  const verifiedEvent = null;
-  if (!verifiedEvent) {
-    return json({ ok: false, error: 'event_not_verified' }, 400);
+  const rawBody = await request.text();
+
+  const verified = await verifyStripeSignature(rawBody, signatureHeader, env.STRIPE_WEBHOOK_SECRET);
+  if (!verified.ok) {
+    return json({ ok: false, error: verified.error || 'webhook_signature_invalid' }, 400);
   }
 
-  if (verifiedEvent.type !== 'checkout.session.completed') {
-    return json({ ok: true, received: true, ignored: true, eventType: verifiedEvent.type }, 200);
+  let event;
+  try {
+    event = JSON.parse(rawBody);
+  } catch {
+    return json({ ok: false, error: 'webhook_payload_invalid' }, 400);
+  }
+
+  const eventType = String(event?.type || '').trim();
+  if (eventType !== 'checkout.session.completed') {
+    return json({ ok: true, verified: true, received: true, ignored: true, eventType }, 200);
+  }
+
+  const session = event?.data?.object;
+  if (!session || typeof session !== 'object') {
+    return json({ ok: false, error: 'webhook_payload_invalid' }, 400);
+  }
+
+  const productId = String(session?.metadata?.productId || '').trim();
+  const priceTierId = String(session?.metadata?.priceTierId || '').trim();
+  if (!hasValue(productId) || !hasValue(priceTierId)) {
+    return json({ ok: false, error: 'webhook_payload_invalid' }, 400);
   }
 
   let productsConfig;
@@ -96,23 +207,22 @@ export async function onRequest({ request, env }) {
     return json({ ok: false, error: 'products_config_unavailable' }, 503);
   }
 
-  const session = verifiedEvent.data?.object || {};
-  const productId = String(session?.metadata?.productId || '').trim();
   const product = productById(productsConfig, productId);
-  if (!product) {
-    return json({ ok: false, error: 'unknown_product' }, 400);
+  const priceTier = priceTierById(productsConfig, priceTierId);
+  if (!product || !priceTier) {
+    return json({ ok: false, error: 'webhook_payload_invalid' }, 400);
   }
 
-  const existing = await getEntitlementByCheckoutSession(env, session.id || '');
-  if (existing?.ok && existing.record) {
-    return json({ ok: true, idempotent: true, entitlementId: existing.record.entitlementId }, 200);
+  if (product.priceTierId !== priceTierId || !sessionMatchesProductPrice(session, product, priceTier)) {
+    return json({ ok: false, error: 'webhook_payload_invalid' }, 400);
   }
 
-  const entitlement = buildEntitlementFromSession(session, product);
-  const issued = await issueEntitlement(env, entitlement);
-  if (!issued.ok) {
-    return json({ ok: false, error: issued.error || 'entitlement_issue_failed' }, 503);
-  }
-
-  return json({ ok: true, entitlementId: entitlement.entitlementId }, 200);
+  return json({
+    ok: true,
+    verified: true,
+    received: true,
+    eventType,
+    productId,
+    entitlementIssued: false
+  }, 200);
 }
