@@ -112,6 +112,8 @@ This scaffold aligns with the following docs:
 
 - P03 checkout/success/cancel scaffold doc: `docs/billing/stripe-checkout-success-cancel-flow.md`
 
+- P04-A contract (disabled webhook scaffold + entitlement contract only): `docs/billing/stripe-webhook-entitlement-issue.md`
+
 ### P03
 - Checkout/success/cancel scaffold only (see `docs/billing/stripe-checkout-success-cancel-flow.md`).
 - Still no webhook entitlement issuance in this phase.

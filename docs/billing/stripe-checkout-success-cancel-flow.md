@@ -124,6 +124,9 @@ Cancel page behavior in P03:
 - No entitlement DB writes.
 - No real Pro feature unlock.
 
+
+- P04-A adds webhook/entitlement contract + disabled webhook scaffold only (`docs/billing/stripe-webhook-entitlement-issue.md`); real verification and entitlement issue are deferred to P04-B.
+
 ## 11. P04 handoff
 
 P04 should implement:

@@ -146,6 +146,10 @@ Client:
 - must not contain Stripe secret key
 - must not self-unlock Pro features
 
+
+P04-A contract reference:
+- `docs/billing/stripe-webhook-entitlement-issue.md` defines disabled scaffold + verification/idempotency/storage boundaries; real webhook verification and entitlement issuing remain inactive until P04-B.
+
 ## 7. Entitlement design
 
 Required entitlement fields:
