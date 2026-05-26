@@ -23,14 +23,60 @@ const getExportState = (root) => {
   return { row, format, size: Number.isFinite(size) ? size : 512, button };
 };
 
-const confirmCulturalWarning = (pattern, isJapanese) => {
-  if (!pattern?.exportSafety?.requireWarning) return true;
-  const name = isJapanese ? pattern.nameJa : pattern.nameEn;
-  const message = isJapanese
-    ? `${name} には文化的・宗教的・民族的背景が含まれる可能性があります。\n\n出力素材は文化的認証素材・公式な歴史復元素材ではありません。商用利用や公的利用では追加確認してください。\n\nこの内容を理解して出力しますか？`
-    : `${name} may have cultural, religious, or ethnic context.\n\nThis export is not a culturally certified asset or an official historical reproduction. Review additional sources before commercial or public use.\n\nDo you understand and want to export it?`;
-  return window.confirm(message);
+const create = (tag, className, text) => {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
 };
+
+const confirmCulturalWarning = (root, pattern, isJapanese) => new Promise((resolve) => {
+  if (!pattern?.exportSafety?.requireWarning) {
+    resolve(true);
+    return;
+  }
+
+  root.querySelector('[data-pa-export-warning]')?.remove();
+  const name = isJapanese ? pattern.nameJa : pattern.nameEn;
+  const panel = create('div', 'pa-notice');
+  panel.dataset.paExportWarning = '';
+
+  const title = create('strong', '', isJapanese ? '出力前の確認' : 'Before export');
+  const body = create('p', '', isJapanese
+    ? `${name} には文化的・宗教的・民族的背景が含まれる可能性があります。この出力素材は文化的認証素材・公式な歴史復元素材ではありません。商用利用や公的利用では追加確認してください。`
+    : `${name} may have cultural, religious, or ethnic context. This export is not a culturally certified asset or an official historical reproduction. Review additional sources before commercial or public use.`);
+
+  const label = create('label');
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  label.append(checkbox, document.createTextNode(isJapanese ? ' 上記を理解しました' : ' I understand this notice'));
+
+  const actions = create('div', 'pa-card-actions');
+  const cancel = create('button', 'pa-button', isJapanese ? 'キャンセル' : 'Cancel');
+  const proceed = create('button', 'pa-button pa-button-primary', isJapanese ? '理解して出力' : 'Export with notice');
+  cancel.type = 'button';
+  proceed.type = 'button';
+  proceed.disabled = true;
+  actions.append(cancel, proceed);
+  panel.append(title, body, label, actions);
+
+  checkbox.addEventListener('change', () => {
+    proceed.disabled = !checkbox.checked;
+  });
+  cancel.addEventListener('click', () => {
+    panel.remove();
+    resolve(false);
+  });
+  proceed.addEventListener('click', () => {
+    panel.remove();
+    resolve(true);
+  });
+
+  const row = root.querySelector('.pa-export-row');
+  if (row) row.before(panel);
+  else root.append(panel);
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
 
 const svgToPngBlob = async (svg, width) => new Promise((resolve, reject) => {
   const viewBox = svg.match(/viewBox="0 0 ([0-9.]+) ([0-9.]+)"/);
@@ -103,13 +149,14 @@ export function setupSvgExport({ root, patterns, isJapanese }) {
     const card = event.target.closest('[data-pa-card]');
     if (card) {
       currentPattern = patternMap.get(card.dataset.paPatternId) || currentPattern;
+      root.querySelector('[data-pa-export-warning]')?.remove();
       requestAnimationFrame(refreshControls);
       return;
     }
 
     const button = event.target.closest('.pa-export-row button');
     if (!button || button.disabled) return;
-    if (!confirmCulturalWarning(currentPattern, isJapanese)) return;
+    if (!(await confirmCulturalWarning(root, currentPattern, isJapanese))) return;
     const { format } = getExportState(root);
     if (format === 'png') await downloadPng();
     else if (format === 'css') downloadCss();
