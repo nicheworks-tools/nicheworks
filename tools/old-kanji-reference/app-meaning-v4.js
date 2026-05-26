@@ -666,7 +666,10 @@ function syncOkjProRuntimeState() {
       featureEls.forEach((featureEl) => {
         const featureIds = (featureEl.dataset.okjFeatureId || '').split(/\s+/).filter(Boolean);
         featureIds.forEach((featureId) => {
-          const featureState = adapter.getFeatureState(featureId);
+          const featureState = adapter.getFeatureState({
+            productId: 'okj.toolkit_pro',
+            featureId
+          });
           if (featureState && typeof featureState.state === 'string') runtimeState = featureState.state;
           runtimeActive = runtimeActive || !!featureState?.active;
           featureEl.dataset.okjRuntimeProState = featureState?.state || runtimeState;
