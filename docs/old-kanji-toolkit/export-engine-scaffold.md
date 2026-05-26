@@ -171,14 +171,15 @@ Still intentionally disabled after P07-A:
 - Stripe checkout/webhook integration
 - server-side persistence integration (D1/KV/etc.)
 
-## 11) Future P07-B / P08 relationship
+## 11) Future phase relationship
 
 Planned follow-up responsibilities:
 
-- P07-B: wire export actions to existing locked UI placeholders through explicit gate checks
-- P08: integrate real entitlement resolution and billing flow, then allow active gates from server-verified state
+- **P07-B:** may wire export actions to existing locked UI placeholders through explicit gate checks, without enabling Pro unlock.
+- **P08-A:** may build the report engine scaffold using the normalized export payloads, without enabling Pro unlock.
+- **Stripe-resume phase / P04-B + P05-C:** may connect real webhook verification, durable entitlement storage, and server-verified runtime Pro unlock after payment infrastructure is ready.
 
-P07-A intentionally provides only reusable pure helper functions.
+P07-A intentionally provides only reusable export helper functions.
 
 ## 12) Validation checklist
 
