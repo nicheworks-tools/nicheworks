@@ -71,9 +71,15 @@
           <h3 data-i18n="proBatchTitle">一括OCRは Pro 機能です</h3>
           <p data-i18n="proBatchText">複数画像のOCR、連続スキャン、検出結果のまとめ処理は Old Kanji Toolkit Pro で利用できます。</p>
         </article>
-        <article class="detected-card" data-okj-feature-id="okj.scanHistory okj.oldKanjiCollection">
+        <article class="detected-card" data-okj-pro-state="billing-unavailable" data-okj-feature-id="okj.scanHistory" aria-disabled="true">
           <h3 data-i18n="proHistoryTitle">履歴保存は Pro 機能です</h3>
-          <p data-i18n="proHistoryText">スキャン履歴、OCR結果、検出された旧字体コレクションの保存は Old Kanji Toolkit Pro で利用できます。</p>
+          <p data-i18n="proHistoryText">スキャン履歴、OCR結果の保存は Old Kanji Toolkit Pro で利用できます。</p>
+          <button type="button" class="okj-pro-locked-button" disabled aria-disabled="true" data-i18n="proHistoryLockedButton">History is Pro</button>
+        </article>
+        <article class="detected-card" data-okj-pro-state="billing-unavailable" data-okj-feature-id="okj.oldKanjiCollection" aria-disabled="true">
+          <h3 data-i18n="proCollectionTitle">旧字体コレクションは Pro 機能です</h3>
+          <p data-i18n="proCollectionText">検出された旧字体の保存・整理は Old Kanji Toolkit Pro で利用できます。</p>
+          <button type="button" class="okj-pro-locked-button" disabled aria-disabled="true" data-i18n="proCollectionLockedButton">Collection is Pro</button>
         </article>
         <article class="detected-card" data-okj-feature-id="okj.cropOcr okj.zoomInspect okj.imageMarking">
           <h3 data-i18n="proCropTitle">トリミング・拡大確認は Pro 機能です</h3>
@@ -97,6 +103,6 @@
     <section class="related-links" id="manual-links"><a data-base-href="../old-document-kanji-highlighter/" target="_blank" rel="noopener noreferrer">Old Document Kanji Highlighter</a><a data-base-href="../unicode-kanji-checker/" target="_blank" rel="noopener noreferrer">Unicode Kanji Checker</a><a data-base-href="../variant-kanji-compare/" target="_blank" rel="noopener noreferrer">Variant Kanji Compare</a><a data-base-href="../old-kanji-reference/" target="_blank" rel="noopener noreferrer">Old Kanji Reference</a><a data-base-href="../kanji-modernizer/" target="_blank" rel="noopener noreferrer">Kanji Modernizer</a></section>
 
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script><script src="/assets/nw-pro-entitlement.js"></script><script src="app.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "97e1db7e68e74035a70f449f3461fd23"}'></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script><script src="/assets/nw-pro-entitlement.js"></script><script src="/assets/okj-history-collection.js"></script><script src="app.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "97e1db7e68e74035a70f449f3461fd23"}'></script>
 </body>
 </html>

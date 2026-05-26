@@ -50,7 +50,11 @@ const i18n = {
     proBatchTitle: '一括OCRは Pro 機能です',
     proBatchText: '複数画像のOCR、連続スキャン、検出結果のまとめ処理は Old Kanji Toolkit Pro で利用できます。',
     proHistoryTitle: '履歴保存は Pro 機能です',
-    proHistoryText: 'スキャン履歴、OCR結果、検出された旧字体コレクションの保存は Old Kanji Toolkit Pro で利用できます。',
+    proHistoryText: 'スキャン履歴、OCR結果の保存は Old Kanji Toolkit Pro で利用できます。',
+    proHistoryLockedButton: '履歴は Pro 機能です',
+    proCollectionTitle: '旧字体コレクションは Pro 機能です',
+    proCollectionText: '検出された旧字体の保存・整理は Old Kanji Toolkit Pro で利用できます。',
+    proCollectionLockedButton: 'コレクションは Pro 機能です',
     proCropTitle: 'トリミング・拡大確認は Pro 機能です',
     proCropText: '画像の一部を切り出したOCR、拡大確認、画像内マーキングは Old Kanji Toolkit Pro で利用できます。',
     proReportTitle: 'レポート・出力は Pro 機能です',
@@ -82,7 +86,11 @@ const i18n = {
     proBatchTitle: 'Batch OCR is a Pro feature',
     proBatchText: 'Multiple-image OCR, continuous scanning, and grouped detection results are available in Old Kanji Toolkit Pro.',
     proHistoryTitle: 'Saved history is a Pro feature',
-    proHistoryText: 'Scan history, OCR results, and detected old-kanji collections are available in Old Kanji Toolkit Pro.',
+    proHistoryText: 'Scan history and OCR result saving are available in Old Kanji Toolkit Pro.',
+    proHistoryLockedButton: 'History is Pro',
+    proCollectionTitle: 'Old-kanji collection is a Pro feature',
+    proCollectionText: 'Saving and organizing detected old-kanji forms are available in Old Kanji Toolkit Pro.',
+    proCollectionLockedButton: 'Collection is Pro',
     proCropTitle: 'Crop, zoom, and image marking are Pro features',
     proCropText: 'Crop OCR, zoom inspection, and image marking are available in Old Kanji Toolkit Pro.',
     proReportTitle: 'Reports and exports are Pro features',
@@ -162,6 +170,17 @@ function syncOkjProRuntimeState() {
     panel.dataset.okjRuntimeProActive = String(runtimeActive);
   });
 }
+
+function syncLockedFeaturePlaceholder(featureId) {
+  const adapter = window.NicheWorksProEntitlement;
+  const featureEl = document.querySelector(`[data-okj-feature-id="${featureId}"]`);
+  if (!featureEl) return;
+  const featureState = (adapter && typeof adapter.getFeatureState === 'function')
+    ? adapter.getFeatureState({ productId: 'okj.toolkit_pro', featureId })
+    : { state: 'billing-unavailable', active: false };
+  featureEl.dataset.okjRuntimeProState = featureState?.state || 'billing-unavailable';
+  featureEl.dataset.okjRuntimeProActive = String(!!featureState?.active);
+}
 document.addEventListener('DOMContentLoaded', async () => {
   setLang('ja');
   await loadOldKanjiData();
@@ -171,6 +190,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   setOcrStatus('ocrIdleText');
   updateDetection();
   syncOkjProRuntimeState();
+  syncLockedFeaturePlaceholder('okj.scanHistory');
+  syncLockedFeaturePlaceholder('okj.oldKanjiCollection');
 
   document.getElementById('lang-ja').addEventListener('click', () => setLang('ja'));
   document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
