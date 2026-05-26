@@ -1,0 +1,15 @@
+{
+  "schema": "cta-image-pilots-v1",
+  "items": [
+    ["タイルスペーサー|tile spacer", "タイルスペーサー", "Tile spacer", "./images/pilot/floor-tile-spacer.svg?v=20260513-asset-16", "目地幅をそろえるための小さな部材。", "Small part used to keep tile gaps even."],
+    ["くし目ごて|notched trowel", "くし目ごて", "Notched trowel", "./images/pilot/notched-trowel.svg?v=20260513-asset-16", "接着材を均一に広げる工具。", "Tool used to spread adhesive evenly."],
+    ["目地ごて|grout float|tile joint float", "目地ごて", "Grout float", "./images/pilot/tile-joint-float.svg?v=20260513-asset-16", "タイル目地の仕上げに使う工具。", "Tool used for tile joint finishing."],
+    ["タイルカッター|manual tile cutter", "タイルカッター", "Manual tile cutter", "./images/pilot/tile-cutter-manual.svg?v=20260513-asset-16", "タイル寸法を調整する手動工具。", "Manual tool used to adjust tile size."],
+    ["床ローラー|floor roller", "床ローラー", "Floor roller", "./images/pilot/vinyl-floor-roller.svg?v=20260513-asset-16", "床材を均一に圧着するローラー。", "Roller used to press flooring evenly."],
+    ["床スペーサー|flooring spacer", "床スペーサー", "Flooring spacer", "./images/pilot/flooring-spacer.svg?v=20260513-asset-16", "床材まわりの隙間を保つ部材。", "Spacer used around flooring edges."],
+    ["見切り材|transition strip", "見切り材", "Transition strip", "./images/pilot/floor-transition-strip.svg?v=20260513-asset-16", "床材の境目を納める部材。", "Strip used at flooring transitions."],
+    ["接着剤ヘラ|adhesive spreader", "接着剤ヘラ", "Adhesive spreader", "./images/pilot/floor-adhesive-spreader.svg?v=20260513-asset-16", "床用接着材を広げるヘラ。", "Tool used to spread floor adhesive."],
+    ["床材引き寄せ金具|flooring pull bar", "床材引き寄せ金具", "Flooring pull bar", "./images/pilot/flooring-pull-bar.svg?v=20260513-asset-16", "壁際の床材調整に使う金具。", "Metal tool used for edge flooring adjustment."],
+    ["当て木|floor edge pad", "当て木", "Floor edge pad", "./images/pilot/floor-edge-pad.svg?v=20260513-asset-16", "床材の端部を保護する当て材。", "Pad used to protect flooring edges."]
+  ]
+}
