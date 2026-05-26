@@ -1,3 +1,5 @@
+import { renderSpecificPatternSvg } from './specific.js';
+
 const svg = (content, pattern) => {
   const width = pattern.tile?.width || 180;
   const height = pattern.tile?.height || 160;
@@ -125,6 +127,9 @@ const fallback = (pattern) => {
 };
 
 export function renderPatternSvg(pattern) {
+  const specific = renderSpecificPatternSvg(pattern);
+  if (specific) return specific;
+
   switch (pattern.rendererType) {
     case 'wave-repeat': return wave(pattern);
     case 'grid': return grid(pattern);
