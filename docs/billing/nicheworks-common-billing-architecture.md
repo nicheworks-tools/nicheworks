@@ -355,3 +355,8 @@ Validation checklist:
 - confirm no SEO/sitemap/tools-index/tools-meta changed
 - confirm no data files changed
 - confirm no Stripe/billing code implemented
+
+P05-A adapter reference:
+- `docs/billing/pro-entitlement-state-adapter.md` defines the client entitlement state adapter contract and disabled default state mapping.
+- P05-A is adapter/contract scaffolding only; real Stripe/D1-backed entitlement activation remains deferred.
+

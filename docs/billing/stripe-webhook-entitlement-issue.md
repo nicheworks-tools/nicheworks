@@ -228,3 +228,8 @@ P05 should implement:
 - [x] Storage decision placeholder forbids JSON/localStorage as source of truth.
 - [x] P04-A explicitly keeps webhook/entitlement inactive by default.
 - [x] P04-B/P05 handoff responsibilities are documented.
+
+P05-A adapter reference:
+- `docs/billing/pro-entitlement-state-adapter.md` defines runtime entitlement state adapter contract consumed by future P05 wiring.
+- P05-A does not activate Stripe/D1 entitlement; webhook verification + durable issuance remain deferred beyond this contract phase.
+
