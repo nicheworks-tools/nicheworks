@@ -1,3 +1,5 @@
+import { buildEntitlementRecord, issueEntitlement } from './entitlement-store.js';
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -217,12 +219,42 @@ export async function onRequest({ request, env }) {
     return json({ ok: false, error: 'webhook_payload_invalid' }, 400);
   }
 
-  return json({
+  const checkoutSessionId = String(session?.id || '').trim();
+  if (!hasValue(checkoutSessionId)) {
+    return json({ ok: false, error: 'webhook_payload_invalid' }, 400);
+  }
+
+  const entitlementRecord = buildEntitlementRecord({
+    productId,
+    status: 'active',
+    source: 'stripe_webhook',
+    stripeCustomerId: session.customer || session.customer_id || null,
+    stripeCheckoutSessionId: checkoutSessionId,
+    stripePaymentIntentId: session.payment_intent || null,
+    customerEmailHash: null,
+    features: Array.isArray(product.features) ? product.features : [],
+    revokedAt: null
+  });
+
+  const issued = await issueEntitlement(env, entitlementRecord);
+  if (!issued.ok) {
+    const status = issued.error === 'entitlement_storage_not_configured' ? 503 : 500;
+    return json({ ok: false, error: issued.error || 'entitlement_issue_failed' }, status);
+  }
+
+  const response = {
     ok: true,
     verified: true,
     received: true,
     eventType,
     productId,
-    entitlementIssued: false
-  }, 200);
+    entitlementIssued: true,
+    entitlementId: issued.entitlement?.entitlementId || entitlementRecord.entitlementId
+  };
+
+  if (issued.idempotent) {
+    response.idempotent = true;
+  }
+
+  return json(response, 200);
 }
