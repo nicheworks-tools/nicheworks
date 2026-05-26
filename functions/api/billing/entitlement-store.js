@@ -51,6 +51,20 @@ function fromDbRow(row) {
   };
 }
 
+function toSafeEntitlement(entitlement) {
+  if (!entitlement) {
+    return null;
+  }
+
+  return {
+    entitlementId: entitlement.entitlementId,
+    productId: entitlement.productId,
+    status: entitlement.status,
+    source: entitlement.source,
+    features: Array.isArray(entitlement.features) ? entitlement.features : []
+  };
+}
+
 export function normalizeEntitlementStatus(status) {
   const normalized = String(status || '').trim().toLowerCase();
   return ALLOWED_STATUSES.has(normalized) ? normalized : 'unknown';
@@ -153,6 +167,48 @@ export async function getEntitlementByCheckoutSession(env, stripeCheckoutSession
     ok: true,
     found: Boolean(result),
     entitlement: fromDbRow(result)
+  };
+}
+
+export async function getActiveEntitlementByCheckoutSession(env, { productId, sessionId } = {}) {
+  const storage = detectStorageBinding(env);
+  if (!storage) {
+    return { ok: false, error: 'entitlement_storage_not_configured' };
+  }
+
+  const normalizedProductId = normalizeNullable(productId);
+  if (!normalizedProductId) {
+    return { ok: false, error: 'entitlement_product_id_required' };
+  }
+
+  const normalizedSessionId = normalizeNullable(sessionId);
+  if (!normalizedSessionId) {
+    return { ok: false, error: 'entitlement_checkout_session_id_required' };
+  }
+
+  const result = await storage.binding
+    .prepare(`
+      SELECT
+        entitlement_id,
+        product_id,
+        status,
+        source,
+        features_json
+      FROM billing_entitlements
+      WHERE stripe_checkout_session_id = ?
+        AND product_id = ?
+        AND status = 'active'
+      LIMIT 1
+    `)
+    .bind(normalizedSessionId, normalizedProductId)
+    .first();
+
+  const entitlement = fromDbRow(result);
+
+  return {
+    ok: true,
+    found: Boolean(entitlement),
+    entitlement: toSafeEntitlement(entitlement)
   };
 }
 
