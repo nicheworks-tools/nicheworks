@@ -2,6 +2,7 @@ import { renderPatternSvg } from './renderers/index.js';
 
 const cleanSvgForExport = (svg) => svg.replace(/<rect width="100%" height="100%" fill="transparent"\/>/, '');
 const safeName = (value) => String(value || 'pattern').toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '') || 'pattern';
+const svgDataUri = (svg) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 const downloadBlob = (blob, filename) => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -57,12 +58,12 @@ export function setupSvgExport({ root, patterns, isJapanese }) {
   const refreshControls = () => {
     const { format, button } = getExportState(root);
     if (!button) return;
-    const enabled = format === 'svg' || format === 'png';
+    const enabled = format === 'svg' || format === 'png' || format === 'css';
     button.disabled = !enabled;
-    button.textContent = format === 'png'
-      ? (isJapanese ? 'PNGをダウンロード' : 'Download PNG')
-      : (isJapanese ? 'SVGをダウンロード' : 'Download SVG');
-    button.title = enabled ? '' : (isJapanese ? 'CSS出力は後続PRで実装します' : 'CSS export will be implemented later');
+    if (format === 'png') button.textContent = isJapanese ? 'PNGをダウンロード' : 'Download PNG';
+    else if (format === 'css') button.textContent = isJapanese ? 'CSSをダウンロード' : 'Download CSS';
+    else button.textContent = isJapanese ? 'SVGをダウンロード' : 'Download SVG';
+    button.title = '';
   };
 
   const exportSvgString = () => cleanSvgForExport(renderPatternSvg(currentPattern));
@@ -80,6 +81,15 @@ export function setupSvgExport({ root, patterns, isJapanese }) {
     downloadBlob(blob, `pattern-atlas-${safeName(currentPattern.slug)}.png`);
   };
 
+  const downloadCss = () => {
+    if (!currentPattern) return;
+    const name = safeName(currentPattern.slug);
+    const svg = exportSvgString();
+    const css = `.pattern-atlas-${name} {\n  background-image: url("${svgDataUri(svg)}");\n  background-repeat: repeat;\n  background-size: ${currentPattern.tile?.width || 180}px ${currentPattern.tile?.height || 160}px;\n}\n`;
+    const blob = new Blob([css], { type: 'text/css;charset=utf-8' });
+    downloadBlob(blob, `pattern-atlas-${name}.css`);
+  };
+
   root.addEventListener('click', async (event) => {
     const card = event.target.closest('[data-pa-card]');
     if (card) {
@@ -92,6 +102,7 @@ export function setupSvgExport({ root, patterns, isJapanese }) {
     if (!button || button.disabled) return;
     const { format } = getExportState(root);
     if (format === 'png') await downloadPng();
+    else if (format === 'css') downloadCss();
     else if (format === 'svg') downloadSvg();
   });
 
