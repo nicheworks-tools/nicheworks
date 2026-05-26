@@ -1,0 +1,3 @@
+# Spec
+
+Free static tool.
