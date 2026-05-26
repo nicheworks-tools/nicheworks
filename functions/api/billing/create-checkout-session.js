@@ -8,10 +8,21 @@ function json(data, status = 200) {
   });
 }
 
-async function loadProductsConfig() {
-  const configUrl = new URL('../../../config/billing/products.json', import.meta.url);
-  const text = await (await fetch(configUrl)).text();
-  return JSON.parse(text);
+async function loadProductsConfig(request, env) {
+  const url = new URL('/config/billing/products.json', request.url);
+  const assetRequest = new Request(url.toString(), { method: 'GET' });
+
+  const response = env?.ASSETS && typeof env.ASSETS.fetch === 'function'
+    ? await env.ASSETS.fetch(assetRequest)
+    : await fetch(assetRequest);
+
+  if (!response.ok) throw new Error('products_config_unavailable');
+
+  try {
+    return await response.json();
+  } catch {
+    throw new Error('products_config_unavailable');
+  }
 }
 
 function readProduct(config, productId) {
@@ -43,7 +54,7 @@ export async function onRequestPost({ request, env }) {
 
   let config;
   try {
-    config = await loadProductsConfig();
+    config = await loadProductsConfig(request, env);
   } catch {
     return json({ ok: false, error: 'products_config_unavailable' }, 500);
   }
@@ -59,9 +70,9 @@ export async function onRequestPost({ request, env }) {
   const successUrl = `${origin}/billing/success.html?session_id={CHECKOUT_SESSION_ID}&returnPath=${encodeURIComponent(returnPath)}`;
   const cancelUrl = `${origin}/billing/cancel.html?returnPath=${encodeURIComponent(returnPath)}`;
 
-  const checkoutParams = {
+  const checkoutParamsPreview = {
     mode: 'payment',
-    line_items: [{ price: stripePriceId || `env:${priceIdEnvName}`, quantity: 1 }],
+    line_items: [{ price: `env:${priceIdEnvName}`, quantity: 1 }],
     success_url: successUrl,
     cancel_url: cancelUrl,
     metadata: { productId },
@@ -69,7 +80,7 @@ export async function onRequestPost({ request, env }) {
   };
 
   if (product?.stripe?.mode !== 'connected' || !env.STRIPE_SECRET_KEY || !stripePriceId) {
-    return json({ ok: false, error: 'checkout_not_connected', message: 'P03 scaffold only. Checkout session creation is disabled.', productId, priceIdEnv: priceIdEnvName, checkoutParamsPreview: checkoutParams }, 503);
+    return json({ ok: false, error: 'checkout_not_connected', message: 'P03 scaffold only. Checkout session creation is disabled.', productId, priceIdEnv: priceIdEnvName, checkoutParamsPreview }, 503);
   }
 
   return json({ ok: false, error: 'not_implemented_in_p03' }, 501);
