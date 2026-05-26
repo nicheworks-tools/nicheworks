@@ -1,4 +1,3 @@
-import products from '../../../config/billing/products.json';
 import {
   buildEntitlementRecord,
   getEntitlementByCheckoutSession,
@@ -19,8 +18,32 @@ function hasValue(v) {
   return typeof v === 'string' && v.trim().length > 0;
 }
 
-function productById(productId) {
-  const list = Array.isArray(products?.products) ? products.products : [];
+async function loadProductsConfig(request, env) {
+  try {
+    const url = new URL('/config/billing/products.json', request.url);
+    const assetRequest = new Request(url.toString(), { method: 'GET' });
+
+    const response = env?.ASSETS && typeof env.ASSETS.fetch === 'function'
+      ? await env.ASSETS.fetch(assetRequest)
+      : await fetch(assetRequest);
+
+    if (!response.ok) {
+      throw new Error('products_config_unavailable');
+    }
+
+    const parsed = await response.json();
+    if (!Array.isArray(parsed?.products)) {
+      throw new Error('products_config_unavailable');
+    }
+
+    return parsed;
+  } catch {
+    throw new Error('products_config_unavailable');
+  }
+}
+
+function productById(productsConfig, productId) {
+  const list = Array.isArray(productsConfig?.products) ? productsConfig.products : [];
   return list.find((entry) => entry.productId === productId) || null;
 }
 
@@ -48,8 +71,9 @@ export async function onRequest({ request, env }) {
     return json({ ok: false, error: 'webhook_not_configured' }, 503);
   }
 
-  // TODO(OKJ-P04 follow-up): Connect Stripe SDK signature verification using STRIPE_WEBHOOK_SECRET.
-  // Security rule: never trust unverified payload for payment proof or entitlement issuance.
+  // TODO(OKJ-P04-B): Connect Stripe SDK signature verification using STRIPE_WEBHOOK_SECRET.
+  // This block must remain unreachable until Stripe SDK signature verification is implemented.
+  // Never move entitlement issue before verification.
   const stripeSdkConnected = false;
   if (!stripeSdkConnected) {
     return json({ ok: false, error: 'stripe_sdk_not_connected' }, 501);
@@ -65,9 +89,16 @@ export async function onRequest({ request, env }) {
     return json({ ok: true, received: true, ignored: true, eventType: verifiedEvent.type }, 200);
   }
 
+  let productsConfig;
+  try {
+    productsConfig = await loadProductsConfig(request, env);
+  } catch {
+    return json({ ok: false, error: 'products_config_unavailable' }, 503);
+  }
+
   const session = verifiedEvent.data?.object || {};
   const productId = String(session?.metadata?.productId || '').trim();
-  const product = productById(productId);
+  const product = productById(productsConfig, productId);
   if (!product) {
     return json({ ok: false, error: 'unknown_product' }, 400);
   }
