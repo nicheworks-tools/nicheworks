@@ -6,6 +6,7 @@ import { setupPatternPreviews } from './preview-ui.js';
 import { setupPreviewColorSync } from './preview-color-sync.js';
 import { setupColorEditor } from './color-ui.js';
 import { setupPalettePresets } from './palette-ui.js';
+import { setupSvgExport } from './export-ui.js';
 import { renderPatternSvg } from './renderers/index.js';
 
 const root = document.querySelector('[data-tool="pattern-atlas"]');
@@ -88,4 +89,5 @@ if (root) {
   setupPreviewColorSync({ root });
   setupColorEditor({ root, patterns, isJapanese });
   setupPalettePresets({ root, isJapanese });
+  setupSvgExport({ root, patterns, isJapanese });
 }
