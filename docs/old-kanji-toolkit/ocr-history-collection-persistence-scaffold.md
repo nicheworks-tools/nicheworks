@@ -96,9 +96,11 @@ Current scaffold behavior:
 ## 12) Future P06-D handoff
 P06-D should build on this scaffold to add controlled import/export and migration hooks, still behind explicit entitlement checks.
 
-## 13) Future P07/P08 relationship
-- **P07 (billing connection phase):** may connect real entitlement sources, but must keep storage keys data-only.
-- **P08 (post-billing UX phase):** may wire UI affordances, but only after real entitlement state is authoritative.
+## 13) Future phase relationship
+- **P06-D:** may add controlled import/export and migration hooks, still behind explicit entitlement checks.
+- **P07-A:** may build export engine scaffolding using the normalized history/collection record shapes, without enabling Pro unlock.
+- **P08-A:** may build report engine scaffolding using the normalized history/collection record shapes, without enabling Pro unlock.
+- **Stripe-resume phase / P04-B + P05-C:** may connect real webhook verification, durable entitlement storage, and runtime Pro unlock after payment infrastructure is ready.
 
 ## 14) Validation checklist
 - [x] Persistence scaffold contract document added.
