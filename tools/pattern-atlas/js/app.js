@@ -3,6 +3,7 @@ import { setupPatternFilters } from './filter-ui.js';
 import { setupPatternDetail } from './detail-ui.js';
 import { setupDetailSvgPreview } from './detail-svg-preview.js';
 import { setupPatternPreviews } from './preview-ui.js';
+import { setupPreviewColorSync } from './preview-color-sync.js';
 import { setupColorEditor } from './color-ui.js';
 import { setupPalettePresets } from './palette-ui.js';
 import { renderPatternSvg } from './renderers/index.js';
@@ -84,6 +85,7 @@ if (root) {
   setupPatternDetail({ root, patterns, isJapanese });
   setupDetailSvgPreview({ root, patterns });
   setupPatternPreviews({ root, patterns, isJapanese });
+  setupPreviewColorSync({ root });
   setupColorEditor({ root, patterns, isJapanese });
   setupPalettePresets({ root, isJapanese });
 }
