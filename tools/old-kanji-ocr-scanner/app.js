@@ -134,6 +134,31 @@ function setOcrBusy(b) { ocrBusy = !!b; document.getElementById('image-input').d
 function copyOcrText() { copyText(document.getElementById('manual-text').value); }
 function updateResultText(text) { document.getElementById('manual-text').value = text || ''; updateManualLinks(); updateDetection(); }
 
+
+function syncOkjProRuntimeState() {
+  const adapter = window.NicheWorksProEntitlement;
+  const panels = document.querySelectorAll('[data-okj-pro-state]');
+  if (!panels.length) return;
+  panels.forEach((panel) => {
+    const featureEls = panel.querySelectorAll('[data-okj-feature-id]');
+    let runtimeState = 'billing-unavailable';
+    let runtimeActive = false;
+    if (adapter && typeof adapter.getFeatureState === 'function') {
+      featureEls.forEach((featureEl) => {
+        const featureIds = (featureEl.dataset.okjFeatureId || '').split(/\s+/).filter(Boolean);
+        featureIds.forEach((featureId) => {
+          const featureState = adapter.getFeatureState(featureId);
+          if (featureState && typeof featureState.state === 'string') runtimeState = featureState.state;
+          runtimeActive = runtimeActive || !!featureState?.active;
+          featureEl.dataset.okjRuntimeProState = featureState?.state || runtimeState;
+          featureEl.dataset.okjRuntimeProActive = String(!!featureState?.active);
+        });
+      });
+    }
+    panel.dataset.okjRuntimeProState = runtimeState;
+    panel.dataset.okjRuntimeProActive = String(runtimeActive);
+  });
+}
 document.addEventListener('DOMContentLoaded', async () => {
   setLang('ja');
   await loadOldKanjiData();
@@ -142,6 +167,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateManualLinks();
   setOcrStatus('ocrIdleText');
   updateDetection();
+  syncOkjProRuntimeState();
 
   document.getElementById('lang-ja').addEventListener('click', () => setLang('ja'));
   document.getElementById('lang-en').addEventListener('click', () => setLang('en'));

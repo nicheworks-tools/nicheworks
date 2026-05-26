@@ -653,7 +653,32 @@
   function renderAll(){ renderSearchModes(); renderFilters(); renderDisplayModes(); renderPalette(); renderPresets(); renderPopular(); renderQuiz(); renderFavorites(); renderRecent(); renderGroupedByModern(); const filtered = getFilteredEntries(); renderGroups(filtered); updateStatus(filtered.length); switchLang(currentLang); renderDetector(); }
   function copyWithFallback(value){ if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(value); const textarea = document.createElement("textarea"); textarea.value = value; textarea.style.position = "fixed"; textarea.style.left = "-9999px"; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); textarea.remove(); return Promise.resolve(); }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  
+function syncOkjProRuntimeState() {
+  const adapter = window.NicheWorksProEntitlement;
+  const panels = document.querySelectorAll('[data-okj-pro-state]');
+  if (!panels.length) return;
+  panels.forEach((panel) => {
+    const featureEls = panel.querySelectorAll('[data-okj-feature-id]');
+    let runtimeState = 'billing-unavailable';
+    let runtimeActive = false;
+    if (adapter && typeof adapter.getFeatureState === 'function') {
+      featureEls.forEach((featureEl) => {
+        const featureIds = (featureEl.dataset.okjFeatureId || '').split(/\s+/).filter(Boolean);
+        featureIds.forEach((featureId) => {
+          const featureState = adapter.getFeatureState(featureId);
+          if (featureState && typeof featureState.state === 'string') runtimeState = featureState.state;
+          runtimeActive = runtimeActive || !!featureState?.active;
+          featureEl.dataset.okjRuntimeProState = featureState?.state || runtimeState;
+          featureEl.dataset.okjRuntimeProActive = String(!!featureState?.active);
+        });
+      });
+    }
+    panel.dataset.okjRuntimeProState = runtimeState;
+    panel.dataset.okjRuntimeProActive = String(runtimeActive);
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".nw-lang-switch button[data-lang]").forEach(btn => btn.addEventListener("click", () => { currentLang = btn.dataset.lang === "en" ? "en" : "ja"; switchLang(currentLang); renderAll(); switchLang(currentLang); }));
     const searchInput = document.getElementById("searchInput"); if (searchInput) searchInput.addEventListener("input", () => { currentQuery = searchInput.value || ""; renderAll(); });
     const detectorInput = document.getElementById("detectorInput"); if (detectorInput) detectorInput.addEventListener("input", renderDetector);
@@ -703,6 +728,7 @@
       currentQuery = qParam;
     }
     if (detectorInput && textParam) detectorInput.value = textParam;
+    syncOkjProRuntimeState();
     switchLang(currentLang); setStatusText(messages[currentLang].loading); loadData().then(dict => { loadFailed = false; setCounts(dict); buildEntries(dict); makeQuizQuestion(); renderAll(); }).catch(() => { loadFailed = true; renderAll(); });
   });
 })();

@@ -26,7 +26,31 @@ function focusCard(ch){ document.querySelectorAll('.detected-card').forEach(c=>c
 function showToast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),1200); }
 function t(){ return i18n[state.lang]; }
 
-(async function init(){ await loadData(); await loadMetadata(); await loadCompatibilityNotes(); setLang('ja');
+function syncOkjProRuntimeState() {
+  const adapter = window.NicheWorksProEntitlement;
+  const panels = document.querySelectorAll('[data-okj-pro-state]');
+  panels.forEach((panel) => {
+    const features = panel.querySelectorAll('[data-okj-feature-id]');
+    let runtimeState = 'billing-unavailable';
+    let runtimeActive = false;
+    if (adapter && typeof adapter.getFeatureState === 'function') {
+      features.forEach((featureEl) => {
+        const featureIds = (featureEl.dataset.okjFeatureId || '').split(/\s+/).filter(Boolean);
+        featureIds.forEach((featureId) => {
+          const featureState = adapter.getFeatureState(featureId);
+          runtimeState = featureState?.state || runtimeState;
+          runtimeActive = runtimeActive || !!featureState?.active;
+          featureEl.dataset.okjRuntimeProState = featureState?.state || runtimeState;
+          featureEl.dataset.okjRuntimeProActive = String(!!featureState?.active);
+        });
+      });
+    }
+    panel.dataset.okjRuntimeProState = runtimeState;
+    panel.dataset.okjRuntimeProActive = String(runtimeActive);
+  });
+}
+
+(async function init(){ syncOkjProRuntimeState(); await loadData(); await loadMetadata(); await loadCompatibilityNotes(); setLang('ja');
   document.getElementById('analyzeBtn').onclick=analyzeText; document.getElementById('inputText').addEventListener('input', analyzeText);
   document.getElementById('langJa').onclick=()=>setLang('ja'); document.getElementById('langEn').onclick=()=>setLang('en');
   document.getElementById('copyOld').onclick=()=>copyText((state.last?.chars||[]).join(''));

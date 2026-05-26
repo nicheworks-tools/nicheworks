@@ -77,4 +77,28 @@ async function copyText(value) { if (navigator.clipboard?.writeText) { await nav
 function toCsv(items) { const header = ['character','unicode','html_hex','html_dec','utf16','old_to_modern']; const rows = items.map((x) => [x.ch, x.unicode, x.htmlHex, x.htmlDec, x.utf16, Array.isArray(x.oldToModern) ? x.oldToModern.join('|') : (x.oldToModern || '')]); return [header, ...rows].map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n'); }
 function renderAll(chars) { const uniqueChars = parseInputCharacters(chars.join('')); state.compared = compareCharacters(uniqueChars); document.getElementById('unicodeCheckerWrap').hidden = uniqueChars.length === 0; document.getElementById('unicodeCheckerLink').href = `../unicode-kanji-checker/?q=${encodeURIComponent(uniqueChars.join(''))}`; if (uniqueChars.length === 0) { document.getElementById('summarySection').hidden = true; document.getElementById('comparisonGrid').innerHTML = ''; renderCautionPanel(false); return; } renderSummary(state.compared); renderComparisonGrid(state.compared); renderDifferenceHints(state.compared); renderCautionPanel(true); }
 
-document.addEventListener('DOMContentLoaded', async () => { await loadData(); const input = document.getElementById('inputText'); const presetWrap = document.getElementById('presetButtons'); PRESETS.forEach((preset) => { const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = preset.replace(/ /g, ' / '); btn.addEventListener('click', () => { input.value = preset; renderAll(parseInputCharacters(preset)); }); presetWrap.appendChild(btn); }); document.getElementById('compareBtn').addEventListener('click', () => renderAll(parseInputCharacters(input.value))); input.addEventListener('input', () => renderAll(parseInputCharacters(input.value))); document.getElementById('copyAllBtn').addEventListener('click', () => copyText(state.compared.map((x) => `${x.ch} ${x.unicode} ${x.htmlHex} ${x.htmlDec} ${x.utf16} ${Array.isArray(x.oldToModern) ? x.oldToModern.join(' / ') : (x.oldToModern || '')}`.trim()).join('\n'))); document.getElementById('copyCsvBtn').addEventListener('click', () => copyText(toCsv(state.compared))); document.querySelectorAll('.nw-lang-btn').forEach((btn) => btn.addEventListener('click', () => setLang(btn.dataset.lang))); setLang('ja'); });
+function syncOkjProRuntimeState() {
+  const adapter = window.NicheWorksProEntitlement;
+  const panels = document.querySelectorAll('[data-okj-pro-state]');
+  panels.forEach((panel) => {
+    const features = panel.querySelectorAll('[data-okj-feature-id]');
+    let runtimeState = 'billing-unavailable';
+    let runtimeActive = false;
+    if (adapter && typeof adapter.getFeatureState === 'function') {
+      features.forEach((featureEl) => {
+        const featureIds = (featureEl.dataset.okjFeatureId || '').split(/\s+/).filter(Boolean);
+        featureIds.forEach((featureId) => {
+          const featureState = adapter.getFeatureState(featureId);
+          runtimeState = featureState?.state || runtimeState;
+          runtimeActive = runtimeActive || !!featureState?.active;
+          featureEl.dataset.okjRuntimeProState = featureState?.state || runtimeState;
+          featureEl.dataset.okjRuntimeProActive = String(!!featureState?.active);
+        });
+      });
+    }
+    panel.dataset.okjRuntimeProState = runtimeState;
+    panel.dataset.okjRuntimeProActive = String(runtimeActive);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', async () => { await loadData(); const input = document.getElementById('inputText'); const presetWrap = document.getElementById('presetButtons'); PRESETS.forEach((preset) => { const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = preset.replace(/ /g, ' / '); btn.addEventListener('click', () => { input.value = preset; renderAll(parseInputCharacters(preset)); }); presetWrap.appendChild(btn); }); document.getElementById('compareBtn').addEventListener('click', () => renderAll(parseInputCharacters(input.value))); input.addEventListener('input', () => renderAll(parseInputCharacters(input.value))); document.getElementById('copyAllBtn').addEventListener('click', () => copyText(state.compared.map((x) => `${x.ch} ${x.unicode} ${x.htmlHex} ${x.htmlDec} ${x.utf16} ${Array.isArray(x.oldToModern) ? x.oldToModern.join(' / ') : (x.oldToModern || '')}`.trim()).join('\n'))); document.getElementById('copyCsvBtn').addEventListener('click', () => copyText(toCsv(state.compared))); document.querySelectorAll('.nw-lang-btn').forEach((btn) => btn.addEventListener('click', () => setLang(btn.dataset.lang))); syncOkjProRuntimeState(); setLang('ja'); });
