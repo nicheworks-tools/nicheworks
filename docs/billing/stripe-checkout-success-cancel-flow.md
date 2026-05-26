@@ -156,3 +156,8 @@ P05 should implement:
 - [x] Success/cancel text explicitly says P03 does not grant Pro access.
 - [x] P04 handoff covers webhook verification and entitlement issue.
 - [x] P05 handoff covers real Pro unlock.
+
+P05-A adapter reference:
+- `docs/billing/pro-entitlement-state-adapter.md` defines disabled-by-default entitlement state adapter contract used for future runtime gating.
+- P05-A remains contract/scaffold only; real Stripe/D1 entitlement verification and Pro activation remain deferred.
+
