@@ -1,6 +1,7 @@
 import { patterns } from './data/patterns-all.js';
 import { setupPatternFilters } from './filter-ui.js';
 import { setupPatternDetail } from './detail-ui.js';
+import { setupDetailSvgPreview } from './detail-svg-preview.js';
 import { renderPatternSvg } from './renderers/index.js';
 
 const root = document.querySelector('[data-tool="pattern-atlas"]');
@@ -78,4 +79,5 @@ if (root) {
   renderCards();
   setupPatternFilters({ root, patterns, isJapanese });
   setupPatternDetail({ root, patterns, isJapanese });
+  setupDetailSvgPreview({ root, patterns });
 }
