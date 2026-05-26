@@ -159,7 +159,7 @@ Current PR behavior:
 
 ## 14) Future implementation steps
 1. P06-B: add minimal locked UI and read-only placeholders.
-2. P06-C: gated local persistence implementation for active entitlement only.
+2. P06-C: gated local persistence scaffold implemented with explicit active gate requirement (see `ocr-history-collection-persistence-scaffold.md`).
 3. P06-D: import/export flow with schema validation and migration hooks.
 4. Future billing phase: connect real entitlement after Stripe/webhook path is approved.
 

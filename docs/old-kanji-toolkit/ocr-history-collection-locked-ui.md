@@ -43,7 +43,7 @@
 - No OCR history or collection business logic.
 
 ## 9) Future P06-C handoff
-- P06-C can wire real history/collection behavior behind entitlement checks.
+- P06-C introduces a disabled-safe persistence scaffold behind explicit entitlement checks (see `ocr-history-collection-persistence-scaffold.md`).
 - P06-C can add storage strategy and migration rules.
 - P06-C should keep locked/fallback state safe when billing is unavailable.
 
