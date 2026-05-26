@@ -1,14 +1,24 @@
 import { renderPatternSvg } from './renderers/index.js';
 
 const HEX_RE = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+const TRANSPARENT = 'transparent';
 const cloneColors = (pattern) => ({ ...(pattern.defaultColors || {}) });
 const isHex = (value) => HEX_RE.test(String(value || '').trim());
+const isTransparent = (value) => String(value || '').trim().toLowerCase() === TRANSPARENT;
+const isValidColorValue = (value) => isHex(value) || isTransparent(value);
 
 const create = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
   if (text !== undefined) node.textContent = text;
   return node;
+};
+
+const toPickerValue = (value) => {
+  const next = String(value || '').trim();
+  if (isTransparent(next)) return '#000000';
+  if (next.length === 4) return `#${next[1]}${next[1]}${next[2]}${next[2]}${next[3]}${next[3]}`;
+  return isHex(next) ? next : '#000000';
 };
 
 export function setupColorEditor({ root, patterns, isJapanese }) {
@@ -25,6 +35,7 @@ export function setupColorEditor({ root, patterns, isJapanese }) {
     });
     const cardBox = root.querySelector(`[data-pa-card][data-pa-pattern-id="${selected.id}"] .pa-svg-preview`);
     if (cardBox) cardBox.innerHTML = renderPatternSvg(current);
+    root.dispatchEvent(new CustomEvent('pattern-atlas:colors-change', { detail: { pattern: current } }));
   };
 
   const render = () => {
@@ -41,27 +52,30 @@ export function setupColorEditor({ root, patterns, isJapanese }) {
       const label = create('label', '', slot);
       const picker = document.createElement('input');
       picker.type = 'color';
-      picker.value = isHex(colors[slot]) ? colors[slot] : '#000000';
+      picker.value = toPickerValue(colors[slot]);
       const text = create('input', 'pa-input');
-      text.value = isHex(colors[slot]) ? colors[slot] : '#000000';
-      text.setAttribute('aria-label', `${slot} color`);
+      text.value = isValidColorValue(colors[slot]) ? String(colors[slot]).trim() : '#000000';
+      text.setAttribute('aria-label', `${slot} color or transparent`);
+      const transparentButton = create('button', 'pa-button', isJapanese ? '透過' : 'Transparent');
+      transparentButton.type = 'button';
 
       const apply = (value) => {
         const next = String(value || '').trim();
-        if (!isHex(next)) {
+        if (!isValidColorValue(next)) {
           text.setAttribute('aria-invalid', 'true');
           return;
         }
         text.removeAttribute('aria-invalid');
-        colors[slot] = next;
-        text.value = next;
-        picker.value = next.length === 4 ? `#${next[1]}${next[1]}${next[2]}${next[2]}${next[3]}${next[3]}` : next;
+        colors[slot] = isTransparent(next) ? TRANSPARENT : next;
+        text.value = colors[slot];
+        picker.value = toPickerValue(colors[slot]);
         updatePreview();
       };
 
       picker.addEventListener('input', () => apply(picker.value));
       text.addEventListener('input', () => apply(text.value));
-      row.append(label, picker, text);
+      transparentButton.addEventListener('click', () => apply(TRANSPARENT));
+      row.append(label, picker, text, transparentButton);
       panel.append(row);
     });
 
