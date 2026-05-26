@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI作業コスト見積もり｜AI Cost Estimator | NicheWorks</title>
+  <meta name="description" content="AI Cost Estimator は、AIに依頼する前に作業量、料金目安、上限リスク、分割案を確認できる無料ツールです。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/ai-cost-estimator/">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/ai-cost-estimator.css?v=20260527-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="AI Cost Estimator | NicheWorks">
+  <meta property="og:description" content="AIに依頼する前に、作業量と分割案を確認できる無料ツールです。">
+  <meta property="og:url" content="https://nicheworks.app/tools/ai-cost-estimator/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI Cost Estimator","url":"https://nicheworks.app/tools/ai-cost-estimator/","applicationCategory":"UtilityApplication","operatingSystem":"All","description":"Estimate AI task workload, rough cost, and split suggestions before use."}</script>
+</head>
+<body>
+<header class="nw-header">
+  <h1 data-ja="AI作業コスト見積もり" data-en="AI Cost Estimator">AI作業コスト見積もり</h1>
+  <p data-ja="AIに依頼する前に、作業量・料金目安・上限リスク・分割案を確認します。" data-en="Estimate workload, rough cost, usage risk, and split plans before sending an AI request.">AIに依頼する前に、作業量・料金目安・上限リスク・分割案を確認します。</p>
+  <div class="nw-lang-switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div>
+</header>
+<main class="nw-main">
+  <div class="ad-slot ad-top">広告枠（準備中）</div>
+  <p class="intro" data-ja="正確な残り回数を出すものではありません。作業の重さを事前に把握するための概算ツールです。" data-en="This does not show exact remaining quota. It is a rough workload estimator.">正確な残り回数を出すものではありません。作業の重さを事前に把握するための概算ツールです。</p>
+  <section class="tool-grid">
+    <form class="panel" id="estimateForm">
+      <h2 data-ja="入力" data-en="Input">入力</h2>
+      <label>Platform<select id="platform"><option value="web">Web app</option><option value="api">API</option><option value="local">Local AI</option></select></label>
+      <label>Task<select id="task"><option value="chat">Normal chat</option><option value="writing">Long writing</option><option value="spec">Specification</option><option value="code">Code work</option><option value="github">GitHub / PR</option><option value="pdf">PDF</option><option value="screenshot">Screenshot / UI</option><option value="research">Web research</option></select></label>
+      <label>Input size<select id="inputSize"><option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option><option value="huge">Huge</option></select></label>
+      <label>Output length<select id="outputSize"><option value="short">Short</option><option value="normal">Normal</option><option value="detailed">Detailed</option><option value="spec">Spec-level</option></select></label>
+      <label>Text characters<input id="textChars" type="number" min="0" value="0"></label>
+      <label>Code lines<input id="codeLines" type="number" min="0" value="0"></label>
+      <label>PDF pages<input id="pdfPages" type="number" min="0" value="0"></label>
+      <label>Screenshots<input id="screenshots" type="number" min="0" value="0"></label>
+      <label>Prompt Analyzer<textarea id="promptText" rows="5" placeholder="Paste a planned AI request here"></textarea></label>
+      <button type="button" id="estimateBtn">Estimate</button>
+    </form>
+    <section class="panel result-panel" aria-live="polite">
+      <h2 data-ja="結果" data-en="Result">結果</h2>
+      <div id="resultSummary" class="summary-card">Estimate result will appear here.</div>
+      <div id="breakdown" class="breakdown"></div>
+      <div id="advice" class="advice"></div>
+      <button type="button" id="copyBtn">Copy result</button>
+    </section>
+  </section>
+  <section class="panel note-block">
+    <h2>FAQ</h2>
+    <details><summary data-ja="正確な請求額が分かりますか？" data-en="Does this show exact billing?">正確な請求額が分かりますか？</summary><p data-ja="いいえ。各社の料金や内部処理で変わるため、概算として扱ってください。" data-en="No. Treat it as a rough estimate because provider pricing and internal processing may vary.">いいえ。各社の料金や内部処理で変わるため、概算として扱ってください。</p></details>
+    <details><summary data-ja="入力内容は送信されますか？" data-en="Is my input sent anywhere?">入力内容は送信されますか？</summary><p data-ja="この初期版ではブラウザ内で処理します。" data-en="This initial version processes the form in the browser.">この初期版ではブラウザ内で処理します。</p></details>
+  </section>
+  <div class="nw-donate"><p>このツールが役に立ったら、開発継続の支援をお願いします。</p><div><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a> <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+  <div class="ad-slot ad-bottom">広告枠（準備中）</div>
+</main>
+<footer class="nw-footer"><p>© NicheWorks — Small Web Tools for Boring Tasks</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+<script src="./assets/ai-cost-estimator.js?v=20260527-1"></script>
+</body>
+</html>
