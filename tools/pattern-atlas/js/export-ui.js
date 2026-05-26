@@ -23,6 +23,15 @@ const getExportState = (root) => {
   return { row, format, size: Number.isFinite(size) ? size : 512, button };
 };
 
+const confirmCulturalWarning = (pattern, isJapanese) => {
+  if (!pattern?.exportSafety?.requireWarning) return true;
+  const name = isJapanese ? pattern.nameJa : pattern.nameEn;
+  const message = isJapanese
+    ? `${name} には文化的・宗教的・民族的背景が含まれる可能性があります。\n\n出力素材は文化的認証素材・公式な歴史復元素材ではありません。商用利用や公的利用では追加確認してください。\n\nこの内容を理解して出力しますか？`
+    : `${name} may have cultural, religious, or ethnic context.\n\nThis export is not a culturally certified asset or an official historical reproduction. Review additional sources before commercial or public use.\n\nDo you understand and want to export it?`;
+  return window.confirm(message);
+};
+
 const svgToPngBlob = async (svg, width) => new Promise((resolve, reject) => {
   const viewBox = svg.match(/viewBox="0 0 ([0-9.]+) ([0-9.]+)"/);
   const sourceWidth = Number(viewBox?.[1] || width);
@@ -100,6 +109,7 @@ export function setupSvgExport({ root, patterns, isJapanese }) {
 
     const button = event.target.closest('.pa-export-row button');
     if (!button || button.disabled) return;
+    if (!confirmCulturalWarning(currentPattern, isJapanese)) return;
     const { format } = getExportState(root);
     if (format === 'png') await downloadPng();
     else if (format === 'css') downloadCss();
