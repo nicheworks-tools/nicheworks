@@ -109,9 +109,12 @@ This scaffold aligns with the following docs:
 
 ## 10. Future implementation order
 
+
+- P03 checkout/success/cancel scaffold doc: `docs/billing/stripe-checkout-success-cancel-flow.md`
+
 ### P03
-- Create checkout session flow using product config.
-- Still no webhook entitlement unless explicitly added.
+- Checkout/success/cancel scaffold only (see `docs/billing/stripe-checkout-success-cancel-flow.md`).
+- Still no webhook entitlement issuance in this phase.
 
 ### P04
 - Webhook verification.
