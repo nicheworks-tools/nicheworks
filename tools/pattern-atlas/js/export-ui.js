@@ -1,3 +1,4 @@
+import './prompt-autoload.js';
 import { renderPatternSvg } from './renderers/index.js';
 
 const cleanSvgForExport = (svg) => svg.replace(/<rect width="100%" height="100%" fill="transparent"\/>/, '');
