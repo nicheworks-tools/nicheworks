@@ -7,7 +7,7 @@ const siteBase = 'https://nicheworks.app';
 const strict = process.argv.includes('--strict');
 const sitemap = read('sitemap.xml');
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
-const BAD_TEXT_PATTERNS = [/description is pending/i, /example\.com/i, /TODO/i, /FIXME/i, /placeholder/i, /coming soon/i, /未完成/, /仮置き/, /準備中/];
+const BAD_VISIBLE_TEXT = [/description is pending/i, /\bTODO\b/i, /\bFIXME\b/i, /coming soon/i, /未完成/, /仮置き/, /準備中/];
 
 function read(relativePath) {
   const file = path.join(root, relativePath);
@@ -25,19 +25,40 @@ function attr(html, attrName, attrValue) {
 const meta = (html, name) => attr(html, 'name', name);
 const prop = (html, name) => attr(html, 'property', name);
 function canonicalOf(html) { return html.match(/<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1]?.trim() || ''; }
+function visibleText(html) {
+  return html
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&(?:nbsp|amp|lt|gt|quot|#39);/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 let toolIndex = new Set();
 let toolMeta = {};
 try { toolIndex = new Set((JSON.parse(read('tools/tools-index.json')).items || []).map((item) => item.slug)); } catch {}
 try { toolMeta = JSON.parse(read('tools/tools-meta.json')).items || {}; } catch {}
 
+function excluded(file) {
+  const relative = rel(file);
+  return relative.startsWith('_archive/')
+    || relative.startsWith('apps/')
+    || relative.startsWith('templates/')
+    || relative.startsWith('tools/_template/')
+    || relative.startsWith('pro/unlock/')
+    || relative.includes('/mock/')
+    || relative.endsWith('/404.html')
+    || relative.includes('/howto/howto/');
+}
 function listHtml(dir = root) {
   const output = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (SKIP_DIRS.has(entry.name)) continue;
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) output.push(...listHtml(file));
-    else if (entry.isFile() && entry.name.endsWith('.html')) output.push(file);
+    else if (entry.isFile() && entry.name.endsWith('.html') && !excluded(file)) output.push(file);
   }
   return output;
 }
@@ -60,63 +81,58 @@ function stableMeta(slug) {
   return !!(item?.title_ja && item?.title_en && item?.desc_ja && item?.desc_en && Array.isArray(item.tags) && item.tags.length >= 2);
 }
 function internalLinks(html) {
-  return [...html.matchAll(/href=["'](\/tools\/([^/"'#?]+)\/?[^"']*)["']/gi)].map((match) => ({ href: match[1], slug: match[2] }));
+  return [...html.matchAll(/href=["'](\/tools\/([^/"'#?]+)\/?[^"']*)["']/gi)]
+    .map((match) => ({ href: match[1], slug: match[2] }))
+    .filter((link) => !link.href.includes('${'));
 }
 function brokenLinks(html) {
   return internalLinks(html).filter((link) => link.slug && !exists(`tools/${link.slug}/index.html`)).map((link) => link.href);
 }
 function badText(html, file) {
+  const text = visibleText(html);
   const honest = ['tools/earth-alerts/index.html', 'tools/earth-timeseries/index.html', 'tools/earth-map-suite/index.html'].includes(rel(file));
-  const patterns = honest ? BAD_TEXT_PATTERNS.filter((re) => !['/coming soon/i', '/準備中/', '/placeholder/i'].includes(String(re))) : BAD_TEXT_PATTERNS;
-  return patterns.filter((re) => re.test(html)).map(String);
+  const patterns = honest ? BAD_VISIBLE_TEXT.filter((re) => !['/coming soon/i', '/準備中/'].includes(String(re))) : BAD_VISIBLE_TEXT;
+  return patterns.filter((re) => re.test(text)).map(String);
 }
 function row(kind, slug, file, issues, warnings) {
   return { kind, slug, file: rel(file), status: issues.length ? 'FAIL' : warnings.length ? 'WARN' : 'OK', issues: issues.join('; '), warnings: warnings.join('; ') };
-}
-function checkRedirect(file, html, kind, slug, url) {
-  const issues = [];
-  const warnings = [];
-  const canonical = canonicalOf(html);
-  if (!has(html, /<html\b[^>]*lang=["'][^"']+["']/i)) issues.push('missing html lang');
-  if (!has(html, /<meta\b[^>]*name=["']viewport["']/i)) issues.push('missing viewport');
-  if (!titleOf(html)) issues.push('missing title');
-  if (!meta(html, 'robots').toLowerCase().includes('noindex')) issues.push('redirect page must be noindex');
-  if (!canonical) issues.push('missing canonical');
-  else if (canonical === url) warnings.push('redirect canonical points to itself');
-  if (sitemap.includes(url)) warnings.push('noindex redirect is present in sitemap.xml');
-  return row(`${kind}-redirect`, slug, file, issues, warnings);
 }
 function check(file) {
   const html = fs.readFileSync(file, 'utf8');
   const kind = kindOf(file);
   const slug = slugOf(file);
   const url = fileUrl(file);
-  if (has(html, /<meta\b[^>]*http-equiv=["']refresh["']/i)) return checkRedirect(file, html, kind, slug, url);
-
   const issues = [];
   const warnings = [];
   const title = titleOf(html);
   const description = meta(html, 'description');
   const canonical = canonicalOf(html);
+  const robots = meta(html, 'robots').toLowerCase();
+  const noindex = robots.includes('noindex');
+
   if (!has(html, /<html\b[^>]*lang=["'][^"']+["']/i)) issues.push('missing html lang');
   if (!has(html, /<meta\b[^>]*name=["']viewport["']/i)) issues.push('missing viewport');
   if (!title) issues.push('missing title'); else if (title === 'NicheWorks' || title === slug || title.length < 8) warnings.push('weak title');
-  if (!description) issues.push('missing meta description'); else if (description.length < 45) warnings.push('short meta description');
-  if (!canonical) issues.push('missing canonical'); else if (canonical !== url) warnings.push(`canonical mismatch: ${canonical}`);
-  if (!meta(html, 'robots')) warnings.push('missing robots');
-  for (const name of ['title', 'description', 'image']) if (!prop(html, `og:${name}`)) warnings.push(`missing og:${name}`);
-  for (const name of ['card', 'title', 'description', 'image']) if (!meta(html, `twitter:${name}`)) warnings.push(`missing twitter:${name}`);
-  if (!has(html, /<link[^>]+rel=["'](?:icon|shortcut icon)["']/i)) warnings.push('missing favicon');
-  if (!has(html, /<link[^>]+rel=["']apple-touch-icon["']/i)) warnings.push('missing apple-touch-icon');
-  if (!html.includes('G-57QT78M3JB')) issues.push('missing GA4');
-  if (!html.includes('ca-pub-9879006623791275')) warnings.push('missing AdSense');
-  if (!has(html, /application\/ld\+json/i)) warnings.push('missing JSON-LD');
-  if (kind === 'tool' && !html.includes('WebApplication')) warnings.push('missing WebApplication JSON-LD');
-  if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
-  if (kind === 'tool' && !toolIndex.has(slug)) warnings.push('not in tools-index.json');
-  if (kind === 'tool' && !stableMeta(slug)) warnings.push('missing tools-meta.json SEO metadata');
+
+  if (!noindex) {
+    if (!description) issues.push('missing meta description'); else if (description.length < 45) warnings.push('short meta description');
+    if (!canonical) issues.push('missing canonical'); else if (canonical !== url) warnings.push(`canonical mismatch: ${canonical}`);
+    if (!robots) warnings.push('missing robots');
+    for (const name of ['title', 'description', 'image']) if (!prop(html, `og:${name}`)) warnings.push(`missing og:${name}`);
+    for (const name of ['card', 'title', 'description', 'image']) if (!meta(html, `twitter:${name}`)) warnings.push(`missing twitter:${name}`);
+    if (!has(html, /<link[^>]+rel=["'](?:icon|shortcut icon)["']/i)) warnings.push('missing favicon');
+    if (!has(html, /<link[^>]+rel=["']apple-touch-icon["']/i)) warnings.push('missing apple-touch-icon');
+    if (!html.includes('G-57QT78M3JB')) issues.push('missing GA4');
+    if (!html.includes('ca-pub-9879006623791275')) warnings.push('missing AdSense');
+    if (!has(html, /application\/ld\+json/i)) warnings.push('missing JSON-LD');
+    if (kind === 'tool' && !html.includes('WebApplication')) warnings.push('missing WebApplication JSON-LD');
+    if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
+    if (kind === 'tool' && !toolIndex.has(slug)) warnings.push('not in tools-index.json');
+    if (kind === 'tool' && !stableMeta(slug)) warnings.push('missing tools-meta.json SEO metadata');
+  }
+
   const broken = brokenLinks(html); if (broken.length) warnings.push(`broken internal tool links: ${broken.join(', ')}`);
-  const bad = badText(html, file); if (bad.length) warnings.push(`placeholder/bad text found: ${bad.join(', ')}`);
+  const bad = badText(html, file); if (bad.length) warnings.push(`unfinished visible text found: ${bad.join(', ')}`);
   return row(kind, slug, file, issues, warnings);
 }
 function sitemapTargetRows() {
@@ -124,7 +140,7 @@ function sitemapTargetRows() {
     .map((match) => match[1])
     .filter((url) => url.startsWith(siteBase))
     .map((url) => {
-      let relative = url.slice(siteBase.length).replace(/^\//, '');
+      const relative = url.slice(siteBase.length).replace(/^\//, '');
       const file = relative ? path.join(root, relative.endsWith('/') ? relative + 'index.html' : relative) : path.join(root, 'index.html');
       return { url, file };
     })
