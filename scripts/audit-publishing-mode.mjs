@@ -40,8 +40,17 @@ if (indexText === null) {
 }
 
 const robots = read('robots.txt');
-const expectedRobots = 'User-agent: *\nAllow: /\n\nSitemap: https://nicheworks.app/sitemap.xml\n';
-if (robots !== expectedRobots) fail('robots.txt must contain only the normal sitemap declaration.');
+const robotsLines = robots === null
+  ? []
+  : robots.replaceAll('\r\n', '\n').split('\n').map((line) => line.trim()).filter(Boolean);
+const expectedRobotsLines = [
+  'User-agent: *',
+  'Allow: /',
+  'Sitemap: https://nicheworks.app/sitemap.xml'
+];
+if (JSON.stringify(robotsLines) !== JSON.stringify(expectedRobotsLines)) {
+  fail('robots.txt must contain only the normal sitemap declaration.');
+}
 
 if (failures.length > 0) {
   console.error('[publishing-mode] FAILED');
