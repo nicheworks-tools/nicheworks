@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - '404.html'
       - 'index.html'
       - 'about.html'
       - 'privacy.html'
@@ -20,6 +21,7 @@ on:
     branches:
       - main
     paths:
+      - '404.html'
       - 'index.html'
       - 'about.html'
       - 'privacy.html'
