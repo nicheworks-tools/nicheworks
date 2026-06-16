@@ -52,7 +52,19 @@ jobs:
         run: node scripts/audit-publishing-mode.mjs
 
       - name: Run strict SEO audit
-        run: node scripts/audit-seo.mjs --strict
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/audit-seo.mjs --strict 2>&1 | tee seo-audit-output.txt
+
+      - name: Upload SEO audit output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-audit-output
+          path: seo-audit-output.txt
+          if-no-files-found: warn
 
       - name: Confirm repository was not modified
+        if: success()
         run: git diff --exit-code
