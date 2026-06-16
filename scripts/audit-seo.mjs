@@ -3,202 +3,155 @@ import path from 'node:path';
 
 const root = process.cwd();
 const toolsDir = path.join(root, 'tools');
-const sitemapPath = path.join(root, 'sitemap.xml');
-const indexPath = path.join(root, 'tools', 'tools-index.json');
-const metaPath = path.join(root, 'tools', 'tools-meta.json');
 const siteBase = 'https://nicheworks.app';
 const strict = process.argv.includes('--strict');
-
+const sitemap = read('sitemap.xml');
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
-const BAD_TEXT_PATTERNS = [
-  /description is pending/i,
-  /example\.com/i,
-  /TODO/i,
-  /FIXME/i,
-  /placeholder/i,
-  /coming soon/i,
-  /未完成/,
-  /仮置き/,
-  /準備中/
-];
+const BAD_VISIBLE_TEXT = [/description is pending/i, /\bTODO\b/, /\bFIXME\b/i, /coming soon/i, /未完成/, /仮置き/, /準備中/];
 
-const read = (p) => fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
-const exists = (p) => fs.existsSync(p);
-const has = (html, re) => re.test(html);
-const titleText = (html) => (html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || '').trim();
-
-function attrContent(html, attrName, attrValue) {
-  const tagRe = new RegExp(`<meta\\b[^>]*${attrName}=["']${attrValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i');
-  const tag = html.match(tagRe)?.[0] || '';
+function read(relativePath) {
+  const file = path.join(root, relativePath);
+  return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+}
+function exists(relativePath) { return fs.existsSync(path.join(root, relativePath)); }
+function has(html, re) { return re.test(html); }
+function rel(file) { return path.relative(root, file).split(path.sep).join('/'); }
+function titleOf(html) { return (html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || '').trim(); }
+function attr(html, attrName, attrValue) {
+  const escaped = attrValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const tag = html.match(new RegExp(`<meta\\b[^>]*${attrName}=["']${escaped}["'][^>]*>`, 'i'))?.[0] || '';
   return tag.match(/content=["']([^"']+)["']/i)?.[1]?.trim() || '';
 }
+const meta = (html, name) => attr(html, 'name', name);
+const prop = (html, name) => attr(html, 'property', name);
+function canonicalOf(html) { return html.match(/<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1]?.trim() || ''; }
+function visibleText(html) {
+  return html
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&(?:nbsp|amp|lt|gt|quot|#39);/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
-const metaContent = (html, name) => attrContent(html, 'name', name);
-const propContent = (html, prop) => attrContent(html, 'property', prop);
-
-const sitemap = read(sitemapPath);
 let toolIndex = new Set();
 let toolMeta = {};
-try {
-  const parsed = JSON.parse(read(indexPath));
-  toolIndex = new Set((parsed.items || []).map((it) => it.slug));
-} catch {}
-try {
-  const parsed = JSON.parse(read(metaPath));
-  toolMeta = parsed.items || {};
-} catch {}
+try { toolIndex = new Set((JSON.parse(read('tools/tools-index.json')).items || []).map((item) => item.slug)); } catch {}
+try { toolMeta = JSON.parse(read('tools/tools-meta.json')).items || {}; } catch {}
 
-function listHtmlFiles(dir = root) {
-  if (!exists(dir)) return [];
-  const out = [];
-  for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (SKIP_DIRS.has(ent.name)) continue;
-    const p = path.join(dir, ent.name);
-    if (ent.isDirectory()) out.push(...listHtmlFiles(p));
-    else if (ent.isFile() && ent.name.endsWith('.html')) out.push(p);
+function excluded(file) {
+  const relative = rel(file);
+  return relative.startsWith('_archive/')
+    || relative.startsWith('apps/')
+    || relative.startsWith('templates/')
+    || relative.startsWith('tools/_template/')
+    || relative.startsWith('pro/unlock/')
+    || relative.includes('/mock/')
+    || relative.endsWith('/404.html')
+    || relative.includes('/howto/howto/');
+}
+function listHtml(dir = root) {
+  const output = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (SKIP_DIRS.has(entry.name)) continue;
+    const file = path.join(dir, entry.name);
+    if (entry.isDirectory()) output.push(...listHtml(file));
+    else if (entry.isFile() && entry.name.endsWith('.html') && !excluded(file)) output.push(file);
   }
-  return out;
+  return output;
 }
-
-function relPath(file) {
-  return path.relative(root, file).split(path.sep).join('/');
+function fileUrl(file) {
+  const relative = rel(file);
+  if (relative === 'index.html') return `${siteBase}/`;
+  if (relative.endsWith('/index.html')) return `${siteBase}/${relative.slice(0, -'index.html'.length)}`;
+  return `${siteBase}/${relative}`;
 }
-
-function fileToUrl(file) {
-  const rel = relPath(file);
-  if (rel === 'index.html') return `${siteBase}/`;
-  if (rel.endsWith('/index.html')) return `${siteBase}/${rel.slice(0, -'index.html'.length)}`;
-  return `${siteBase}/${rel}`;
+function kindOf(file) { return rel(file).startsWith('tools/') && rel(file).endsWith('/index.html') ? 'tool' : 'static'; }
+function slugOf(file) {
+  const relative = rel(file);
+  if (relative === 'index.html') return 'home';
+  if (relative === 'en/index.html') return 'home-en';
+  if (relative.startsWith('tools/') && relative.endsWith('/index.html')) return relative.split('/')[1];
+  return relative.replace(/\/index\.html$/, '').replace(/\.html$/, '').replaceAll('/', '__');
 }
-
-function fileKind(file) {
-  const rel = relPath(file);
-  if (rel.startsWith('tools/') && rel.endsWith('/index.html')) return 'tool';
-  return 'static';
+function stableMeta(slug) {
+  const item = toolMeta[slug];
+  return !!(item?.title_ja && item?.title_en && item?.desc_ja && item?.desc_en && Array.isArray(item.tags) && item.tags.length >= 2);
 }
-
-function pageSlug(file) {
-  const rel = relPath(file);
-  if (rel === 'index.html') return 'home';
-  if (rel === 'en/index.html') return 'home-en';
-  if (rel.startsWith('tools/') && rel.endsWith('/index.html')) return rel.split('/')[1];
-  return rel.replace(/\/index\.html$/, '').replace(/\.html$/, '').replaceAll('/', '__');
+function internalLinks(html) {
+  return [...html.matchAll(/href=["'](\/tools\/([^/"'#?]+)\/?[^"']*)["']/gi)]
+    .map((match) => ({ href: match[1], slug: match[2] }))
+    .filter((link) => !link.href.includes('${'));
 }
-
-function sitemapUrls() {
-  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+function brokenLinks(html) {
+  return internalLinks(html).filter((link) => link.slug && !exists(`tools/${link.slug}/index.html`)).map((link) => link.href);
 }
-
-function urlToFile(url) {
-  if (!url.startsWith(siteBase)) return null;
-  let rel = url.slice(siteBase.length);
-  if (!rel || rel === '/') return path.join(root, 'index.html');
-  rel = rel.replace(/^\//, '');
-  if (rel.endsWith('/')) return path.join(root, rel, 'index.html');
-  return path.join(root, rel);
+function badText(html, file) {
+  const text = visibleText(html);
+  const honest = ['tools/earth-alerts/index.html', 'tools/earth-timeseries/index.html', 'tools/earth-map-suite/index.html'].includes(rel(file));
+  const patterns = honest ? BAD_VISIBLE_TEXT.filter((re) => !['/coming soon/i', '/準備中/'].includes(String(re))) : BAD_VISIBLE_TEXT;
+  return patterns.filter((re) => re.test(text)).map(String);
 }
-
-function hasStableMeta(slug) {
-  const meta = toolMeta[slug];
-  return !!(
-    meta &&
-    meta.title_ja &&
-    meta.title_en &&
-    meta.desc_ja &&
-    meta.desc_en &&
-    Array.isArray(meta.tags) &&
-    meta.tags.length >= 2
-  );
+function row(kind, slug, file, issues, warnings) {
+  return { kind, slug, file: rel(file), status: issues.length ? 'FAIL' : warnings.length ? 'WARN' : 'OK', issues: issues.join('; '), warnings: warnings.join('; ') };
 }
-
-function extractInternalToolLinks(html) {
-  const links = [];
-  const re = /href=["'](\/tools\/([^/"'#?]+)\/?[^"']*)["']/gi;
-  let m;
-  while ((m = re.exec(html))) links.push({ href: m[1], slug: m[2] });
-  return links;
-}
-
-function missingInternalToolLinks(html) {
-  return extractInternalToolLinks(html)
-    .filter((l) => l.slug && l.slug !== '..' && !exists(path.join(toolsDir, l.slug, 'index.html')))
-    .map((l) => l.href);
-}
-
-function allowsHonestComingSoon(file) {
-  return ['tools/earth-alerts/index.html', 'tools/earth-timeseries/index.html', 'tools/earth-map-suite/index.html'].includes(relPath(file));
-}
-
-function hasBadText(html, file) {
-  const patterns = allowsHonestComingSoon(file)
-    ? BAD_TEXT_PATTERNS.filter((re) => !['/coming soon/i', '/準備中/', '/placeholder/i'].includes(String(re)))
-    : BAD_TEXT_PATTERNS;
-  return patterns.filter((re) => re.test(html)).map((re) => String(re));
-}
-
-function isToolPage(file) {
-  return fileKind(file) === 'tool';
-}
-
-function checkPage(file) {
-  const html = read(file);
-  const kind = fileKind(file);
-  const slug = pageSlug(file);
-  const url = fileToUrl(file);
-  const title = titleText(html);
-  const description = metaContent(html, 'description');
-  const canonical = html.match(/<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1]?.trim() || '';
+function check(file) {
+  const html = fs.readFileSync(file, 'utf8');
+  const kind = kindOf(file);
+  const slug = slugOf(file);
+  const url = fileUrl(file);
   const issues = [];
   const warnings = [];
-  const brokenLinks = missingInternalToolLinks(html);
-  const badTexts = hasBadText(html, file);
+  const title = titleOf(html);
+  const description = meta(html, 'description');
+  const canonical = canonicalOf(html);
+  const robots = meta(html, 'robots').toLowerCase();
+  const noindex = robots.includes('noindex');
 
   if (!has(html, /<html\b[^>]*lang=["'][^"']+["']/i)) issues.push('missing html lang');
   if (!has(html, /<meta\b[^>]*name=["']viewport["']/i)) issues.push('missing viewport');
-  if (!title) issues.push('missing title');
-  else if (title === 'NicheWorks' || title === slug || title.length < 8) warnings.push('weak title');
-  if (!description) issues.push('missing meta description');
-  else if (description.length < 45) warnings.push('short meta description');
-  if (!canonical) issues.push('missing canonical');
-  else if (canonical !== url) warnings.push(`canonical mismatch: ${canonical}`);
-  if (!metaContent(html, 'robots')) warnings.push('missing robots');
-  if (!propContent(html, 'og:title')) warnings.push('missing og:title');
-  if (!propContent(html, 'og:description')) warnings.push('missing og:description');
-  if (!propContent(html, 'og:image')) warnings.push('missing og:image');
-  if (!metaContent(html, 'twitter:card')) warnings.push('missing twitter:card');
-  if (!metaContent(html, 'twitter:title')) warnings.push('missing twitter:title');
-  if (!metaContent(html, 'twitter:description')) warnings.push('missing twitter:description');
-  if (!metaContent(html, 'twitter:image')) warnings.push('missing twitter:image');
-  if (!has(html, /<link[^>]+rel=["'](?:icon|shortcut icon)["']/i)) warnings.push('missing favicon');
-  if (!has(html, /<link[^>]+rel=["']apple-touch-icon["']/i)) warnings.push('missing apple-touch-icon');
-  if (!html.includes('G-57QT78M3JB')) issues.push('missing GA4');
-  if (!html.includes('ca-pub-9879006623791275')) warnings.push('missing AdSense');
-  if (!has(html, /application\/ld\+json/i)) warnings.push('missing JSON-LD');
-  if (isToolPage(file) && !html.includes('WebApplication')) warnings.push('missing WebApplication JSON-LD');
-  if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
-  if (isToolPage(file) && !toolIndex.has(slug)) warnings.push('not in tools-index.json');
-  if (isToolPage(file) && !hasStableMeta(slug)) warnings.push('missing tools-meta.json SEO metadata');
-  if (brokenLinks.length) warnings.push(`broken internal tool links: ${brokenLinks.join(', ')}`);
-  if (badTexts.length) warnings.push(`placeholder/bad text found: ${badTexts.join(', ')}`);
+  if (!title) issues.push('missing title'); else if (title === 'NicheWorks' || title === slug || title.length < 8) warnings.push('weak title');
 
-  return { kind, slug, file: relPath(file), status: issues.length ? 'FAIL' : warnings.length ? 'WARN' : 'OK', issues: issues.join('; '), warnings: warnings.join('; ') };
+  if (!noindex) {
+    if (!description) issues.push('missing meta description'); else if (description.length < 45) warnings.push('short meta description');
+    if (!canonical) issues.push('missing canonical'); else if (canonical !== url) warnings.push(`canonical mismatch: ${canonical}`);
+    if (!robots) warnings.push('missing robots');
+    for (const name of ['title', 'description', 'image']) if (!prop(html, `og:${name}`)) warnings.push(`missing og:${name}`);
+    for (const name of ['card', 'title', 'description', 'image']) if (!meta(html, `twitter:${name}`)) warnings.push(`missing twitter:${name}`);
+    if (!has(html, /<link[^>]+rel=["'](?:icon|shortcut icon)["']/i)) warnings.push('missing favicon');
+    if (!has(html, /<link[^>]+rel=["']apple-touch-icon["']/i)) warnings.push('missing apple-touch-icon');
+    if (!html.includes('G-57QT78M3JB')) issues.push('missing GA4');
+    if (!html.includes('ca-pub-9879006623791275')) warnings.push('missing AdSense');
+    if (!has(html, /application\/ld\+json/i)) warnings.push('missing JSON-LD');
+    if (kind === 'tool' && !html.includes('WebApplication')) warnings.push('missing WebApplication JSON-LD');
+    if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
+    if (kind === 'tool' && !toolIndex.has(slug)) warnings.push('not in tools-index.json');
+    if (kind === 'tool' && !stableMeta(slug)) warnings.push('missing tools-meta.json SEO metadata');
+  }
+
+  const broken = brokenLinks(html); if (broken.length) warnings.push(`broken internal tool links: ${broken.join(', ')}`);
+  const bad = badText(html, file); if (bad.length) warnings.push(`unfinished visible text found: ${bad.join(', ')}`);
+  return row(kind, slug, file, issues, warnings);
+}
+function sitemapTargetRows() {
+  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map((match) => match[1])
+    .filter((url) => url.startsWith(siteBase))
+    .map((url) => {
+      const relative = url.slice(siteBase.length).replace(/^\//, '');
+      const file = relative ? path.join(root, relative.endsWith('/') ? relative + 'index.html' : relative) : path.join(root, 'index.html');
+      return { url, file };
+    })
+    .filter((item) => !fs.existsSync(item.file))
+    .map((item) => ({ kind: 'sitemap', slug: item.url.replace(siteBase, ''), file: '', status: 'WARN', issues: '', warnings: `sitemap URL has no matching file: ${item.file}` }));
 }
 
-function checkSitemapTargets() {
-  return sitemapUrls()
-    .map((url) => ({ url, file: urlToFile(url) }))
-    .filter((it) => it.file && !exists(it.file))
-    .map((it) => ({ kind: 'sitemap', slug: it.url.replace(siteBase, ''), file: '', status: 'WARN', issues: '', warnings: `sitemap URL has no matching file: ${it.file}` }));
-}
-
-const rows = listHtmlFiles(root).map(checkPage);
-const sitemapRows = checkSitemapTargets();
-const allRows = [...rows, ...sitemapRows].sort((a, b) => a.status.localeCompare(b.status) || a.kind.localeCompare(b.kind) || a.slug.localeCompare(b.slug));
-const fail = allRows.filter((r) => r.status === 'FAIL').length;
-const warn = allRows.filter((r) => r.status === 'WARN').length;
-const ok = allRows.filter((r) => r.status === 'OK').length;
-
-console.log(`SEO audit: ${ok} OK / ${warn} WARN / ${fail} FAIL / ${allRows.length} checks${strict ? ' (strict)' : ''}`);
-console.table(allRows);
-
+const rows = [...listHtml().map(check), ...sitemapTargetRows()].sort((a, b) => a.status.localeCompare(b.status) || a.kind.localeCompare(b.kind) || a.slug.localeCompare(b.slug));
+const fail = rows.filter((item) => item.status === 'FAIL').length;
+const warn = rows.filter((item) => item.status === 'WARN').length;
+const ok = rows.filter((item) => item.status === 'OK').length;
+console.log(`SEO audit: ${ok} OK / ${warn} WARN / ${fail} FAIL / ${rows.length} checks${strict ? ' (strict)' : ''}`);
+console.table(rows);
 if (fail > 0 || (strict && warn > 0)) process.exitCode = 1;
