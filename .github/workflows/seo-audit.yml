@@ -1,6 +1,7 @@
 name: SEO audit
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - 'index.html'
@@ -10,42 +11,48 @@ on:
       - 'en/**'
       - 'tools/**'
       - 'scripts/audit-seo.mjs'
+      - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/repair-seo-foundation.mjs'
+      - 'robots.txt'
       - 'sitemap.xml'
       - '.github/workflows/seo-audit.yml'
-      - '.github/workflows/seo-auto-repair.yml'
-  workflow_run:
-    workflows:
-      - SEO auto repair
-    types:
-      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+      - 'about.html'
+      - 'privacy.html'
+      - 'contact.html'
+      - 'en/**'
+      - 'tools/**'
+      - 'scripts/audit-seo.mjs'
+      - 'scripts/audit-publishing-mode.mjs'
+      - 'scripts/repair-seo-foundation.mjs'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - '.github/workflows/seo-audit.yml'
+
+permissions:
+  contents: read
 
 jobs:
-  seo-audit:
+  audit:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout PR head
-        if: ${{ github.event_name == 'pull_request' }}
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Checkout main after auto repair
-        if: ${{ github.event_name == 'workflow_run' }}
-        uses: actions/checkout@v4
-        with:
-          ref: main
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Verify SEO repair script has nothing to change
-        run: |
-          node scripts/repair-seo-foundation.mjs
-          git diff --exit-code
+      - name: Verify normal publishing mode
+        run: node scripts/audit-publishing-mode.mjs
 
-      - name: Run SEO audit strict mode
+      - name: Run strict SEO audit
         run: node scripts/audit-seo.mjs --strict
+
+      - name: Confirm repository was not modified
+        run: git diff --exit-code
