@@ -46,6 +46,21 @@
 /tools/ai-interaction-atlas/ja/pro/*
   X-Robots-Tag: noindex, follow
 
+/tools/ai-interaction-atlas/categories/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/compare/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/patterns/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/search/*
+  X-Robots-Tag: noindex, follow
+
+/tools/ai-interaction-atlas/topics/*
+  X-Robots-Tag: noindex, follow
+
 /tools/motion-atlas/pro/*
   X-Robots-Tag: noindex, follow
 
