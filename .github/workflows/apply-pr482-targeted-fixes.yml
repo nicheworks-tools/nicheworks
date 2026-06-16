@@ -1,0 +1,62 @@
+name: Apply PR 482 targeted fixes
+
+on:
+  push:
+    branches:
+      - publishing-cleanup-482
+    paths:
+      - '.github/workflows/apply-pr482-targeted-fixes.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: publishing-cleanup-482
+
+      - name: Apply exact replacements
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              Path('tools/weatherdiff/en/index.html'): {
+                  '/tools/manualfinder/': '/tools/manual-finder/',
+                  '/tools/logformatter/': '/tools/log-formatter/',
+              },
+              Path('tools/command-safety-checker/usage.html'): {
+                  '/tools/ai-output-safety-check/': '/tools/command-safety-checker/',
+                  '/tools/text-encoding-inspector/': '/tools/unicode-kanji-checker/',
+              },
+              Path('scripts/audit-seo.mjs'): {
+                  r'/\bTODO\b/i': r'/\bTODO\b/',
+              },
+          }
+
+          for file, mapping in replacements.items():
+              text = file.read_text(encoding='utf-8')
+              for old, new in mapping.items():
+                  if old not in text:
+                      raise SystemExit(f'missing expected text in {file}: {old}')
+                  text = text.replace(old, new)
+              file.write_text(text, encoding='utf-8')
+
+          Path('_redirects').write_text('', encoding='utf-8')
+          PY
+
+      - name: Commit targeted fixes
+        run: |
+          if git diff --quiet; then
+            echo "Targeted fixes already applied."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add scripts/audit-seo.mjs tools/weatherdiff/en/index.html tools/command-safety-checker/usage.html _redirects
+            git commit -m "Fix remaining actionable SEO audit warnings"
+            git push origin HEAD:publishing-cleanup-482
+          fi
