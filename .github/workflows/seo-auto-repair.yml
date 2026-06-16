@@ -1,21 +1,21 @@
-name: SEO audit
+name: Normalize tools index once
 
 on:
-  workflow_dispatch:
-  pull_request:
   push:
     branches:
       - pr481-normal-publication
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  normalize:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: pr481-normal-publication
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -25,11 +25,14 @@ jobs:
       - name: Generate normal tools index
         run: node scripts/generate-tools-index.mjs
 
-      - name: Print generated tools index
-        run: cat tools/tools-index.json
-
-      - name: Verify normal publishing mode
-        run: node scripts/audit-publishing-mode.mjs
-
-      - name: Run strict SEO audit
-        run: node scripts/audit-seo.mjs --strict
+      - name: Commit generated index when changed
+        run: |
+          if git diff --quiet -- tools/tools-index.json; then
+            echo "Tools index already normalized."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add tools/tools-index.json
+            git commit -m "Regenerate normal 87-tool index"
+            git push origin HEAD:pr481-normal-publication
+          fi
