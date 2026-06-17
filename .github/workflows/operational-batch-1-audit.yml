@@ -1,0 +1,71 @@
+name: Operational batch 1 audit
+
+on:
+  pull_request:
+    paths:
+      - 'tools/pdf2csv-local/**'
+      - 'tools/pdf-page-tools-mini/**'
+      - 'tools/csv-tidy/**'
+      - 'tools/exif-cleaner-mini/**'
+      - 'tools/image-redact/**'
+      - 'tools/filetype-sniffer/**'
+      - 'tools/webp-avif-converter/**'
+      - 'tools/color-replace/**'
+      - 'tools/screenshot-stitcher/**'
+      - 'tools/rename-wizard/**'
+      - 'tools/metadatasnap/**'
+      - 'tools/image-compression-inspector/**'
+      - 'tools/og-image-maker/**'
+      - 'tools/old-kanji-ocr-scanner/**'
+      - 'tools/url-title-collector/**'
+      - 'scripts/audit-operational-batch-1.mjs'
+      - '.github/workflows/operational-batch-1-audit.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/pdf2csv-local/**'
+      - 'tools/pdf-page-tools-mini/**'
+      - 'tools/csv-tidy/**'
+      - 'tools/exif-cleaner-mini/**'
+      - 'tools/image-redact/**'
+      - 'tools/filetype-sniffer/**'
+      - 'tools/webp-avif-converter/**'
+      - 'tools/color-replace/**'
+      - 'tools/screenshot-stitcher/**'
+      - 'tools/rename-wizard/**'
+      - 'tools/metadatasnap/**'
+      - 'tools/image-compression-inspector/**'
+      - 'tools/og-image-maker/**'
+      - 'tools/old-kanji-ocr-scanner/**'
+      - 'tools/url-title-collector/**'
+      - 'scripts/audit-operational-batch-1.mjs'
+      - '.github/workflows/operational-batch-1-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Audit batch 1 tools
+        env:
+          OPERATIONAL_BATCH_REPORT: operational-batch-1-report.json
+        run: node scripts/audit-operational-batch-1.mjs
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: operational-batch-1-report
+          path: operational-batch-1-report.json
+          if-no-files-found: error
