@@ -1,0 +1,1594 @@
+{
+  "total_entries_before_runtime_dedupe": 5497,
+  "files_scanned": [
+    "tools.basic.json",
+    "tools.quality-001.json",
+    "tools.quality-002.json",
+    "tools.quality-003.json",
+    "tools.quality-004.json",
+    "tools.quality-005.json",
+    "tools.quality-006.json",
+    "tools.quality-007.json",
+    "tools.quality-008.json",
+    "tools.quality-009.json",
+    "tools.quality-010.json",
+    "tools.quality-011.json",
+    "tools.quality-012.json",
+    "tools.quality-013.json",
+    "tools.quality-014.json",
+    "tools.quality-015.json",
+    "tools.quality-016.json"
+  ],
+  "duplicate_ids": [],
+  "duplicate_exact_terms_ja_en": [],
+  "duplicate_ja_terms_review_needed": [
+    {
+      "key": "差し金",
+      "count": 3,
+      "entries": [
+        {
+          "id": "square_tool",
+          "ja": "差し金",
+          "en": "Try Square",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "speed_square",
+          "ja": "差し金",
+          "en": "Carpenter's Square",
+          "source": "tools.quality-001.json"
+        },
+        {
+          "id": "q012_builder_square",
+          "ja": "差し金",
+          "en": "Carpenter Square",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "集じん機",
+      "count": 3,
+      "entries": [
+        {
+          "id": "shop_vac",
+          "ja": "集じん機",
+          "en": "Shop Vacuum",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "dust_collection_vacuum",
+          "ja": "集じん機",
+          "en": "Dust Collection Vacuum",
+          "source": "tools.quality-009.json"
+        },
+        {
+          "id": "q012_dust_collector",
+          "ja": "集じん機",
+          "en": "Dust Collector",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "養生シート",
+      "count": 3,
+      "entries": [
+        {
+          "id": "drop_cloth",
+          "ja": "養生シート",
+          "en": "Drop cloth",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "protective_sheet",
+          "ja": "養生シート",
+          "en": "Protective Sheet",
+          "source": "tools.quality-004.json"
+        },
+        {
+          "id": "q011_curing_sheet",
+          "ja": "養生シート",
+          "en": "Curing Sheet",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "グラスウール",
+      "count": 2,
+      "entries": [
+        {
+          "id": "glasswool",
+          "ja": "グラスウール",
+          "en": "Fiberglass insulation",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "glass_wool",
+          "ja": "グラスウール",
+          "en": "Glass Wool",
+          "source": "tools.quality-004.json"
+        }
+      ]
+    },
+    {
+      "key": "クラックスケール",
+      "count": 2,
+      "entries": [
+        {
+          "id": "crack_gauge",
+          "ja": "クラックスケール",
+          "en": "Crack Gauge",
+          "source": "tools.quality-010.json"
+        },
+        {
+          "id": "q012_crack_scale",
+          "ja": "クラックスケール",
+          "en": "Crack Width Gauge",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "クランプ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "clamp_bar",
+          "ja": "クランプ",
+          "en": "Clamp",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_scaffold_clamp",
+          "ja": "クランプ",
+          "en": "Scaffold Clamp",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "コンプレッサー",
+      "count": 2,
+      "entries": [
+        {
+          "id": "air_compressor",
+          "ja": "コンプレッサー",
+          "en": "Air compressor",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "compressor",
+          "ja": "コンプレッサー",
+          "en": "Compressor",
+          "source": "tools.quality-009.json"
+        }
+      ]
+    },
+    {
+      "key": "ジョイントテープ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "drywall_tape",
+          "ja": "ジョイントテープ",
+          "en": "Drywall tape",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_joint_tape",
+          "ja": "ジョイントテープ",
+          "en": "Joint Tape",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "スリーブ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "sleeve",
+          "ja": "スリーブ",
+          "en": "Sleeve",
+          "source": "tools.quality-006.json"
+        },
+        {
+          "id": "q011_pipe_sleeve",
+          "ja": "スリーブ",
+          "en": "Pipe Sleeve",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "セパレーター",
+      "count": 2,
+      "entries": [
+        {
+          "id": "separator",
+          "ja": "セパレーター",
+          "en": "Form Separator",
+          "source": "tools.quality-005.json"
+        },
+        {
+          "id": "q011_separator",
+          "ja": "セパレーター",
+          "en": "Formwork Separator",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "ダイヤルゲージ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "dial_gauge",
+          "ja": "ダイヤルゲージ",
+          "en": "Dial gauge",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_dial_gauge",
+          "ja": "ダイヤルゲージ",
+          "en": "Dial Indicator",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "タイルスペーサー",
+      "count": 2,
+      "entries": [
+        {
+          "id": "tile_spacers",
+          "ja": "タイルスペーサー",
+          "en": "Tile spacers",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_tile_spacer",
+          "ja": "タイルスペーサー",
+          "en": "Tile Spacer",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "ノギス",
+      "count": 2,
+      "entries": [
+        {
+          "id": "caliper",
+          "ja": "ノギス",
+          "en": "Caliper",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_vernier_caliper",
+          "ja": "ノギス",
+          "en": "Vernier Caliper",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "パイプカッター",
+      "count": 2,
+      "entries": [
+        {
+          "id": "pipe_cutter",
+          "ja": "パイプカッター",
+          "en": "Pipe Cutter",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "tube_cutter",
+          "ja": "パイプカッター",
+          "en": "Tube Cutter",
+          "source": "tools.quality-005.json"
+        }
+      ]
+    },
+    {
+      "key": "パテ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "joint_compound",
+          "ja": "パテ",
+          "en": "Joint compound",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "putty",
+          "ja": "パテ",
+          "en": "Putty",
+          "source": "tools.quality-004.json"
+        }
+      ]
+    },
+    {
+      "key": "マーキングスプレー",
+      "count": 2,
+      "entries": [
+        {
+          "id": "marking_spray",
+          "ja": "マーキングスプレー",
+          "en": "Marking Spray Paint",
+          "source": "tools.quality-003.json"
+        },
+        {
+          "id": "q013_marking_paint",
+          "ja": "マーキングスプレー",
+          "en": "Marking Paint",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "ルーフィング",
+      "count": 2,
+      "entries": [
+        {
+          "id": "roofing_felt",
+          "ja": "ルーフィング",
+          "en": "Roofing felt",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_roof_underlayment",
+          "ja": "ルーフィング",
+          "en": "Roof Underlayment",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "ロックアウト・タグアウト",
+      "count": 2,
+      "entries": [
+        {
+          "id": "lockout_tagout_loto",
+          "ja": "ロックアウト・タグアウト",
+          "en": "Lockout/Tagout (LOTO)",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_lockout_tagout",
+          "ja": "ロックアウト・タグアウト",
+          "en": "Lockout Tagout",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "仮設分電盤",
+      "count": 2,
+      "entries": [
+        {
+          "id": "temporary_power_panel",
+          "ja": "仮設分電盤",
+          "en": "Temporary Power Panel",
+          "source": "tools.quality-009.json"
+        },
+        {
+          "id": "q012_temporary_distribution_box",
+          "ja": "仮設分電盤",
+          "en": "Temporary Distribution Box",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "全ねじ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "threaded_rod",
+          "ja": "全ねじ",
+          "en": "Threaded rod",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_all_thread_rod",
+          "ja": "全ねじ",
+          "en": "All-Thread Rod",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "六角レンチ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "allen_key",
+          "ja": "六角レンチ",
+          "en": "Allen key",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_hex_key",
+          "ja": "六角レンチ",
+          "en": "Hex Key",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "反射ベスト",
+      "count": 2,
+      "entries": [
+        {
+          "id": "high_visibility_vest",
+          "ja": "反射ベスト",
+          "en": "High-visibility vest",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "reflective_vest",
+          "ja": "反射ベスト",
+          "en": "Reflective Vest",
+          "source": "tools.quality-003.json"
+        }
+      ]
+    },
+    {
+      "key": "台車",
+      "count": 2,
+      "entries": [
+        {
+          "id": "hand_truck",
+          "ja": "台車",
+          "en": "Hand Truck",
+          "source": "tools.quality-009.json"
+        },
+        {
+          "id": "q013_dolly",
+          "ja": "台車",
+          "en": "Dolly",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "安全靴",
+      "count": 2,
+      "entries": [
+        {
+          "id": "safety_boots",
+          "ja": "安全靴",
+          "en": "Safety boots",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "safety_shoes",
+          "ja": "安全靴",
+          "en": "Safety Shoes",
+          "source": "tools.quality-003.json"
+        }
+      ]
+    },
+    {
+      "key": "床見切り材",
+      "count": 2,
+      "entries": [
+        {
+          "id": "base_trim",
+          "ja": "床見切り材",
+          "en": "Base Trim",
+          "source": "tools.quality-008.json"
+        },
+        {
+          "id": "q016_floor_joint_strip",
+          "ja": "床見切り材",
+          "en": "Floor Transition Strip",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "手すり",
+      "count": 2,
+      "entries": [
+        {
+          "id": "guardrail",
+          "ja": "手すり",
+          "en": "Guardrail",
+          "source": "tools.quality-003.json"
+        },
+        {
+          "id": "q014_handrail",
+          "ja": "手すり",
+          "en": "Handrail",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "救急箱",
+      "count": 2,
+      "entries": [
+        {
+          "id": "first_aid_kit",
+          "ja": "救急箱",
+          "en": "First-aid kit",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_first_aid_kit",
+          "ja": "救急箱",
+          "en": "First Aid Kit",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "水切り",
+      "count": 2,
+      "entries": [
+        {
+          "id": "drip_edge",
+          "ja": "水切り",
+          "en": "Drip Edge",
+          "source": "tools.quality-004.json"
+        },
+        {
+          "id": "q011_flashing",
+          "ja": "水切り",
+          "en": "Flashing",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "漏電遮断器",
+      "count": 2,
+      "entries": [
+        {
+          "id": "ground_fault_breaker",
+          "ja": "漏電遮断器",
+          "en": "GFCI/RCD",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q015_earth_leakage_breaker",
+          "ja": "漏電遮断器",
+          "en": "Earth Leakage Breaker",
+          "source": "tools.quality-015.json"
+        }
+      ]
+    },
+    {
+      "key": "熱収縮チューブ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "heat_shrink_tubing",
+          "ja": "熱収縮チューブ",
+          "en": "Heat-shrink tubing",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q015_heat_shrink_tube",
+          "ja": "熱収縮チューブ",
+          "en": "Heat Shrink Tube",
+          "source": "tools.quality-015.json"
+        }
+      ]
+    },
+    {
+      "key": "石膏ボード",
+      "count": 2,
+      "entries": [
+        {
+          "id": "drywall",
+          "ja": "石膏ボード",
+          "en": "Drywall",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "drywall_board",
+          "ja": "石膏ボード",
+          "en": "Gypsum Board",
+          "source": "tools.quality-002.json"
+        }
+      ]
+    },
+    {
+      "key": "耳栓・イヤーマフ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "ear_protection",
+          "ja": "耳栓・イヤーマフ",
+          "en": "Ear protection",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_hearing_protection",
+          "ja": "耳栓・イヤーマフ",
+          "en": "Hearing Protection",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "脚立",
+      "count": 2,
+      "entries": [
+        {
+          "id": "step_ladder",
+          "ja": "脚立",
+          "en": "Step Ladder",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "stepladder",
+          "ja": "脚立",
+          "en": "Stepladder",
+          "source": "tools.quality-001.json"
+        }
+      ]
+    },
+    {
+      "key": "透湿防水シート",
+      "count": 2,
+      "entries": [
+        {
+          "id": "housewrap",
+          "ja": "透湿防水シート",
+          "en": "Housewrap",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q014_weather_barrier",
+          "ja": "透湿防水シート",
+          "en": "Weather-Resistive Barrier",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "鉄筋探査機",
+      "count": 2,
+      "entries": [
+        {
+          "id": "rebar_detector",
+          "ja": "鉄筋探査機",
+          "en": "Rebar Detector",
+          "source": "tools.quality-010.json"
+        },
+        {
+          "id": "q012_rebar_locator",
+          "ja": "鉄筋探査機",
+          "en": "Rebar Locator",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "防じんマスク",
+      "count": 2,
+      "entries": [
+        {
+          "id": "respirator_mask",
+          "ja": "防じんマスク",
+          "en": "Respirator Mask",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "dust_mask",
+          "ja": "防じんマスク",
+          "en": "Dust Mask",
+          "source": "tools.quality-003.json"
+        }
+      ]
+    },
+    {
+      "key": "防水シート",
+      "count": 2,
+      "entries": [
+        {
+          "id": "waterproof_membrane",
+          "ja": "防水シート",
+          "en": "Waterproofing membrane",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "waterproof_sheet",
+          "ja": "防水シート",
+          "en": "Waterproof Sheet",
+          "source": "tools.quality-004.json"
+        }
+      ]
+    },
+    {
+      "key": "防水テープ",
+      "count": 2,
+      "entries": [
+        {
+          "id": "seal_tape",
+          "ja": "防水テープ",
+          "en": "Seal tape",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_waterproof_tape",
+          "ja": "防水テープ",
+          "en": "Waterproof Tape",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    }
+  ],
+  "duplicate_en_terms_review_needed": [
+    {
+      "key": "air compressor",
+      "count": 2,
+      "entries": [
+        {
+          "id": "air_compressor",
+          "ja": "コンプレッサー",
+          "en": "Air compressor",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_air_compressor",
+          "ja": "エアコンプレッサー",
+          "en": "Air Compressor",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "carpenter pencil",
+      "count": 2,
+      "entries": [
+        {
+          "id": "marking_pencil",
+          "ja": "建築用鉛筆",
+          "en": "Carpenter Pencil",
+          "source": "tools.quality-003.json"
+        },
+        {
+          "id": "q013_carpenter_pencil",
+          "ja": "大工鉛筆",
+          "en": "Carpenter Pencil",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "ceiling tile",
+      "count": 2,
+      "entries": [
+        {
+          "id": "ceiling_tile",
+          "ja": "天井パネル",
+          "en": "Ceiling Tile",
+          "source": "tools.quality-008.json"
+        },
+        {
+          "id": "q016_ceiling_tile",
+          "ja": "天井板",
+          "en": "Ceiling Tile",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "chemical anchor",
+      "count": 2,
+      "entries": [
+        {
+          "id": "chemical_anchor",
+          "ja": "接着系アンカー",
+          "en": "Chemical Anchor",
+          "source": "tools.quality-002.json"
+        },
+        {
+          "id": "q011_chemical_anchor",
+          "ja": "ケミカルアンカー",
+          "en": "Chemical Anchor",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "conduit bender",
+      "count": 2,
+      "entries": [
+        {
+          "id": "conduit_bender",
+          "ja": "パイプベンダー",
+          "en": "Conduit Bender",
+          "source": "tools.quality-005.json"
+        },
+        {
+          "id": "q011_conduit_bender",
+          "ja": "電線管ベンダー",
+          "en": "Conduit Bender",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "corner trowel",
+      "count": 2,
+      "entries": [
+        {
+          "id": "corner_float",
+          "ja": "コーナーゴテ",
+          "en": "Corner trowel",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_corner_trowel",
+          "ja": "角鏝",
+          "en": "Corner Trowel",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "cover meter",
+      "count": 2,
+      "entries": [
+        {
+          "id": "cover_meter",
+          "ja": "かぶり厚測定器",
+          "en": "Cover Meter",
+          "source": "tools.quality-010.json"
+        },
+        {
+          "id": "q012_concrete_cover_meter",
+          "ja": "かぶり厚さ計",
+          "en": "Cover Meter",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "diamond blade",
+      "count": 2,
+      "entries": [
+        {
+          "id": "diamond_blade",
+          "ja": "ダイヤモンドブレード",
+          "en": "Diamond blade",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_diamond_blade",
+          "ja": "ダイヤモンドカッター",
+          "en": "Diamond Blade",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "drip edge",
+      "count": 2,
+      "entries": [
+        {
+          "id": "drip_edge",
+          "ja": "水切り",
+          "en": "Drip Edge",
+          "source": "tools.quality-004.json"
+        },
+        {
+          "id": "q014_drip_edge",
+          "ja": "ドリップエッジ",
+          "en": "Drip Edge",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "drop cloth",
+      "count": 2,
+      "entries": [
+        {
+          "id": "drop_cloth",
+          "ja": "養生シート",
+          "en": "Drop cloth",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_drop_cloth",
+          "ja": "養生布",
+          "en": "Drop Cloth",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "dust barrier",
+      "count": 2,
+      "entries": [
+        {
+          "id": "dust_barrier",
+          "ja": "防じん養生（間仕切り）",
+          "en": "Dust barrier",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_dust_barrier",
+          "ja": "防塵養生",
+          "en": "Dust Barrier",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "expansion joint",
+      "count": 2,
+      "entries": [
+        {
+          "id": "expansion_joint",
+          "ja": "エキスパンションジョイント",
+          "en": "Expansion Joint",
+          "source": "tools.quality-006.json"
+        },
+        {
+          "id": "q011_expansion_joint",
+          "ja": "伸縮目地",
+          "en": "Expansion Joint",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "fascia board",
+      "count": 2,
+      "entries": [
+        {
+          "id": "fascia_board",
+          "ja": "鼻隠し",
+          "en": "Fascia Board",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q014_fascia_board",
+          "ja": "破風板",
+          "en": "Fascia Board",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "feeler gauge",
+      "count": 2,
+      "entries": [
+        {
+          "id": "feeler_gauge",
+          "ja": "シクネスゲージ",
+          "en": "Feeler gauge",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_feeler_gauge",
+          "ja": "シックネスゲージ",
+          "en": "Feeler Gauge",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "flashing",
+      "count": 2,
+      "entries": [
+        {
+          "id": "flashing",
+          "ja": "板金（フラッシング）",
+          "en": "Flashing",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_flashing",
+          "ja": "水切り",
+          "en": "Flashing",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "float",
+      "count": 2,
+      "entries": [
+        {
+          "id": "float",
+          "ja": "木ゴテ",
+          "en": "Float",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_float",
+          "ja": "木鏝・フロート",
+          "en": "Float",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "floor leveler",
+      "count": 2,
+      "entries": [
+        {
+          "id": "floor_leveler",
+          "ja": "床下地調整材",
+          "en": "Floor Leveler",
+          "source": "tools.quality-008.json"
+        },
+        {
+          "id": "q011_floor_leveler",
+          "ja": "床レベラー",
+          "en": "Floor Leveler",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "form tie",
+      "count": 2,
+      "entries": [
+        {
+          "id": "form_tie",
+          "ja": "フォームタイ（型枠締付）",
+          "en": "Form tie",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_form_tie",
+          "ja": "フォームタイ",
+          "en": "Form Tie",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "grout",
+      "count": 2,
+      "entries": [
+        {
+          "id": "grout",
+          "ja": "目地材（グラウト）",
+          "en": "Grout",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_grout",
+          "ja": "目地材",
+          "en": "Grout",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "hand saw",
+      "count": 2,
+      "entries": [
+        {
+          "id": "handsaw",
+          "ja": "手ノコ",
+          "en": "Hand Saw",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "hand_saw",
+          "ja": "手のこ",
+          "en": "Hand Saw",
+          "source": "tools.quality-001.json"
+        }
+      ]
+    },
+    {
+      "key": "hand tamper",
+      "count": 2,
+      "entries": [
+        {
+          "id": "tamper",
+          "ja": "ランマー(転圧)",
+          "en": "Hand Tamper",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_soil_tamper",
+          "ja": "タンパー",
+          "en": "Hand Tamper",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "joint compound",
+      "count": 2,
+      "entries": [
+        {
+          "id": "joint_compound",
+          "ja": "パテ",
+          "en": "Joint compound",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_joint_compound",
+          "ja": "ジョイントコンパウンド",
+          "en": "Joint Compound",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "junction box",
+      "count": 2,
+      "entries": [
+        {
+          "id": "junction_box",
+          "ja": "ジョイントボックス（配線箱）",
+          "en": "Junction box",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q015_junction_box",
+          "ja": "ジョイントボックス",
+          "en": "Junction Box",
+          "source": "tools.quality-015.json"
+        }
+      ]
+    },
+    {
+      "key": "leveling staff",
+      "count": 2,
+      "entries": [
+        {
+          "id": "leveling_staff",
+          "ja": "標尺",
+          "en": "Leveling Staff",
+          "source": "tools.quality-003.json"
+        },
+        {
+          "id": "q013_level_staff",
+          "ja": "スタッフ",
+          "en": "Leveling Staff",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "lever hoist",
+      "count": 2,
+      "entries": [
+        {
+          "id": "lever_hoist",
+          "ja": "レバーホイスト",
+          "en": "Lever Hoist",
+          "source": "tools.quality-009.json"
+        },
+        {
+          "id": "q013_lever_hoist",
+          "ja": "レバーブロック",
+          "en": "Lever Hoist",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "line level",
+      "count": 2,
+      "entries": [
+        {
+          "id": "line_level",
+          "ja": "糸水平器",
+          "en": "Line level",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_line_level",
+          "ja": "ラインレベル",
+          "en": "Line Level",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "mixing paddle",
+      "count": 2,
+      "entries": [
+        {
+          "id": "mixing_paddle",
+          "ja": "攪拌羽根（ミキサーパドル）",
+          "en": "Mixing paddle",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_mixing_paddle",
+          "ja": "撹拌羽根",
+          "en": "Mixing Paddle",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "notched trowel",
+      "count": 2,
+      "entries": [
+        {
+          "id": "notched_trowel",
+          "ja": "くし目ゴテ",
+          "en": "Notched trowel",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_notched_trowel",
+          "ja": "くし目ごて",
+          "en": "Notched Trowel",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "paint roller",
+      "count": 2,
+      "entries": [
+        {
+          "id": "paint_roller",
+          "ja": "ローラー",
+          "en": "Paint Roller",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_paint_roller",
+          "ja": "ローラー刷毛",
+          "en": "Paint Roller",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "paint tray",
+      "count": 2,
+      "entries": [
+        {
+          "id": "paint_tray",
+          "ja": "ローラートレイ",
+          "en": "Paint tray",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_paint_tray",
+          "ja": "ローラーバケット",
+          "en": "Paint Tray",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "primer",
+      "count": 2,
+      "entries": [
+        {
+          "id": "primer",
+          "ja": "下塗り（プライマー）",
+          "en": "Primer",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "primer_003",
+          "ja": "プライマー",
+          "en": "Primer",
+          "source": "tools.basic.json"
+        }
+      ]
+    },
+    {
+      "key": "punch list",
+      "count": 2,
+      "entries": [
+        {
+          "id": "punch_list",
+          "ja": "手直しリスト",
+          "en": "Punch list",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q016_punch_list",
+          "ja": "是正リスト",
+          "en": "Punch List",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "putty knife",
+      "count": 2,
+      "entries": [
+        {
+          "id": "putty_knife",
+          "ja": "ヘラ",
+          "en": "Putty Knife",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_putty_knife",
+          "ja": "パテベラ",
+          "en": "Putty Knife",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "repair patch",
+      "count": 2,
+      "entries": [
+        {
+          "id": "repair_patch",
+          "ja": "補修材",
+          "en": "Repair Patch",
+          "source": "tools.quality-010.json"
+        },
+        {
+          "id": "q016_repair_patch",
+          "ja": "補修パッチ",
+          "en": "Repair Patch",
+          "source": "tools.quality-016.json"
+        }
+      ]
+    },
+    {
+      "key": "roof batten",
+      "count": 2,
+      "entries": [
+        {
+          "id": "roof_batten",
+          "ja": "桟木",
+          "en": "Roof Batten",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q014_roof_batten",
+          "ja": "瓦桟",
+          "en": "Roof Batten",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "roof tile",
+      "count": 2,
+      "entries": [
+        {
+          "id": "roof_tile",
+          "ja": "屋根瓦",
+          "en": "Roof Tile",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q014_roof_tile",
+          "ja": "瓦",
+          "en": "Roof Tile",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "roof underlayment",
+      "count": 2,
+      "entries": [
+        {
+          "id": "roof_underlayment",
+          "ja": "屋根下葺き材",
+          "en": "Roof Underlayment",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q011_roof_underlayment",
+          "ja": "ルーフィング",
+          "en": "Roof Underlayment",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "safety harness",
+      "count": 2,
+      "entries": [
+        {
+          "id": "safety_harness",
+          "ja": "墜落制止用器具(フルハーネス)",
+          "en": "Safety Harness",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_safety_harness",
+          "ja": "安全帯・フルハーネス",
+          "en": "Safety Harness",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "shop vacuum",
+      "count": 2,
+      "entries": [
+        {
+          "id": "shop_vac",
+          "ja": "集じん機",
+          "en": "Shop Vacuum",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q012_shop_vacuum",
+          "ja": "業務用掃除機",
+          "en": "Shop Vacuum",
+          "source": "tools.quality-012.json"
+        }
+      ]
+    },
+    {
+      "key": "spacer block",
+      "count": 2,
+      "entries": [
+        {
+          "id": "spacer_block",
+          "ja": "スペーサー",
+          "en": "Spacer Block",
+          "source": "tools.quality-005.json"
+        },
+        {
+          "id": "q011_spacer_block",
+          "ja": "スペーサーブロック",
+          "en": "Spacer Block",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "stud finder",
+      "count": 2,
+      "entries": [
+        {
+          "id": "stud_finder",
+          "ja": "下地センサー",
+          "en": "Stud Finder",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_stud_finder",
+          "ja": "下地探し",
+          "en": "Stud Finder",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "tape measure",
+      "count": 2,
+      "entries": [
+        {
+          "id": "tape_measure",
+          "ja": "メジャー",
+          "en": "Tape Measure",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_tape_measure",
+          "ja": "コンベックス",
+          "en": "Tape Measure",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "threshold",
+      "count": 2,
+      "entries": [
+        {
+          "id": "threshold",
+          "ja": "敷居",
+          "en": "Threshold",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q014_threshold",
+          "ja": "沓摺",
+          "en": "Threshold",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "tile spacer",
+      "count": 2,
+      "entries": [
+        {
+          "id": "tile_spacer",
+          "ja": "スペーサー(タイル)",
+          "en": "Tile Spacer",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_tile_spacer",
+          "ja": "タイルスペーサー",
+          "en": "Tile Spacer",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "trowel",
+      "count": 2,
+      "entries": [
+        {
+          "id": "trowel",
+          "ja": "コテ",
+          "en": "Trowel",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q011_trowel",
+          "ja": "鏝",
+          "en": "Trowel",
+          "source": "tools.quality-011.json"
+        }
+      ]
+    },
+    {
+      "key": "utility knife",
+      "count": 2,
+      "entries": [
+        {
+          "id": "utility_knife",
+          "ja": "カッター",
+          "en": "Utility Knife",
+          "source": "tools.basic.json"
+        },
+        {
+          "id": "q013_utility_knife",
+          "ja": "カッターナイフ",
+          "en": "Utility Knife",
+          "source": "tools.quality-013.json"
+        }
+      ]
+    },
+    {
+      "key": "valley flashing",
+      "count": 2,
+      "entries": [
+        {
+          "id": "valley_flashing",
+          "ja": "谷板金",
+          "en": "Valley Flashing",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q014_valley_flashing",
+          "ja": "谷樋",
+          "en": "Valley Flashing",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    },
+    {
+      "key": "window sash",
+      "count": 2,
+      "entries": [
+        {
+          "id": "window_sash",
+          "ja": "サッシ障子",
+          "en": "Window Sash",
+          "source": "tools.quality-007.json"
+        },
+        {
+          "id": "q014_window_sash",
+          "ja": "サッシ",
+          "en": "Window Sash",
+          "source": "tools.quality-014.json"
+        }
+      ]
+    }
+  ]
+}

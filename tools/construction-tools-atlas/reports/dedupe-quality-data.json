@@ -1,0 +1,3134 @@
+{
+  "mode": "write",
+  "files_scanned": 17,
+  "total_removed": 334,
+  "per_file": [
+    {
+      "file": "tools.basic.json",
+      "status": "ok",
+      "before": 5000,
+      "after": 4822,
+      "removed": 178
+    },
+    {
+      "file": "tools.quality-001.json",
+      "status": "ok",
+      "before": 29,
+      "after": 8,
+      "removed": 21
+    },
+    {
+      "file": "tools.quality-002.json",
+      "status": "ok",
+      "before": 11,
+      "after": 6,
+      "removed": 5
+    },
+    {
+      "file": "tools.quality-003.json",
+      "status": "ok",
+      "before": 20,
+      "after": 17,
+      "removed": 3
+    },
+    {
+      "file": "tools.quality-004.json",
+      "status": "ok",
+      "before": 20,
+      "after": 12,
+      "removed": 8
+    },
+    {
+      "file": "tools.quality-005.json",
+      "status": "ok",
+      "before": 20,
+      "after": 9,
+      "removed": 11
+    },
+    {
+      "file": "tools.quality-006.json",
+      "status": "ok",
+      "before": 20,
+      "after": 15,
+      "removed": 5
+    },
+    {
+      "file": "tools.quality-007.json",
+      "status": "ok",
+      "before": 20,
+      "after": 20,
+      "removed": 0
+    },
+    {
+      "file": "tools.quality-008.json",
+      "status": "ok",
+      "before": 20,
+      "after": 19,
+      "removed": 1
+    },
+    {
+      "file": "tools.quality-009.json",
+      "status": "ok",
+      "before": 20,
+      "after": 16,
+      "removed": 4
+    },
+    {
+      "file": "tools.quality-010.json",
+      "status": "ok",
+      "before": 20,
+      "after": 18,
+      "removed": 2
+    },
+    {
+      "file": "tools.quality-011.json",
+      "status": "ok",
+      "before": 100,
+      "after": 54,
+      "removed": 46
+    },
+    {
+      "file": "tools.quality-012.json",
+      "status": "ok",
+      "before": 98,
+      "after": 84,
+      "removed": 14
+    },
+    {
+      "file": "tools.quality-013.json",
+      "status": "ok",
+      "before": 101,
+      "after": 85,
+      "removed": 16
+    },
+    {
+      "file": "tools.quality-014.json",
+      "status": "ok",
+      "before": 114,
+      "after": 109,
+      "removed": 5
+    },
+    {
+      "file": "tools.quality-015.json",
+      "status": "ok",
+      "before": 118,
+      "after": 115,
+      "removed": 3
+    },
+    {
+      "file": "tools.quality-016.json",
+      "status": "ok",
+      "before": 100,
+      "after": 88,
+      "removed": 12
+    }
+  ],
+  "removals": [
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_004",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_005",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_006",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_007",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_009",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_010",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_011",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_012",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_013",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_014",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_015",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_016",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_017",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_018",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_019",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_020",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_021",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_022",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_023",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_024",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_025",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_026",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_027",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_028",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_029",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_030",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_031",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_032",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_033",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_034",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_035",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_036",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_037",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_038",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_039",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_040",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_041",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_042",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_043",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_044",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_045",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_046",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_047",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_048",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_049",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_050",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_051",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_052",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_053",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_054",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_055",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_056",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_057",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_058",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_059",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_060",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_061",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_062",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_063",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_064",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_065",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_066",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_067",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_068",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_069",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_070",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_071",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_072",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_073",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_074",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_075",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_076",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_077",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_078",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_079",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_080",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_081",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_082",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_083",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_084",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_085",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_086",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_087",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_088",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_089",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_090",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_091",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_092",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_093",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_094",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_095",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_096",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_097",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_098",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_099",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_100",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_101",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_102",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_103",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_104",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_105",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_106",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_107",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_108",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_109",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_110",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_111",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_112",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_113",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_114",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_115",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_116",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_117",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_118",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_119",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_120",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_121",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_122",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_123",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_124",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_125",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_126",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_127",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_128",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_129",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_130",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_131",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_132",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_133",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_134",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_135",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_136",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_137",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_138",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_139",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_140",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_141",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_142",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_143",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_144",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_145",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_146",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_147",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_148",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_149",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_150",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_151",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_152",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_153",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_154",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_155",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_156",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_157",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_158",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_159",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_160",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_161",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_162",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_163",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_164",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_165",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_166",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_167",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_168",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_169",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_170",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_171",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_172",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_173",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_174",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "toolbox_talk_175",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "toolbox_talk"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "dust_control_176",
+      "ja": "粉塵対策",
+      "en": "Dust control",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "dust_control_008"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "construction_adhesive_177",
+      "ja": "建築用接着剤",
+      "en": "Construction adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "butyl_tape_178",
+      "ja": "ブチルテープ",
+      "en": "Butyl tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "butyl_tape_002"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "primer_179",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "wire_stripper_180",
+      "ja": "ワイヤーストリッパー",
+      "en": "Wire stripper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wire_stripper"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "pipe_cutter_181",
+      "ja": "パイプカッター",
+      "en": "Pipe cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.basic.json",
+      "id": "notched_trowel_182",
+      "ja": "くし目ゴテ",
+      "en": "Notched trowel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "impact_driver",
+      "ja": "インパクトドライバー",
+      "en": "Impact Driver",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "impact_driver"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "rotary_hammer",
+      "ja": "ハンマードリル",
+      "en": "Rotary Hammer",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "rotary_hammer"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "circular_saw",
+      "ja": "丸のこ",
+      "en": "Circular Saw",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "circular_saw"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "jigsaw",
+      "ja": "ジグソー",
+      "en": "Jigsaw",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "jigsaw"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "reciprocating_saw",
+      "ja": "レシプロソー",
+      "en": "Reciprocating Saw",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "reciprocating_saw"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "angle_grinder",
+      "ja": "ディスクグラインダー",
+      "en": "Angle Grinder",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "angle_grinder"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "laser_level",
+      "ja": "レーザー墨出し器",
+      "en": "Laser Level",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "laser_level"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "chalk_line",
+      "ja": "墨つぼ",
+      "en": "Chalk Line",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "chalk_line"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "spirit_level",
+      "ja": "水平器",
+      "en": "Spirit Level",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "spirit_level"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "tape_measure",
+      "ja": "スケール",
+      "en": "Tape Measure",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "tape_measure"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "utility_knife",
+      "ja": "カッター",
+      "en": "Utility Knife",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "utility_knife"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "caulking_gun",
+      "ja": "コーキングガン",
+      "en": "Caulking Gun",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "caulking_gun"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "plumb_bob",
+      "ja": "下げ振り",
+      "en": "Plumb Bob",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "plumb_bob"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "monkey_wrench",
+      "ja": "モンキーレンチ",
+      "en": "Adjustable Wrench",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wrench_adjustable"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "socket_wrench",
+      "ja": "ラチェットレンチ",
+      "en": "Ratchet Wrench",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "socket_wrench"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "crowbar",
+      "ja": "バール",
+      "en": "Pry Bar",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pry_bar"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "hammer",
+      "ja": "金づち",
+      "en": "Hammer",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "hammer"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "scaffold",
+      "ja": "足場",
+      "en": "Scaffold",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "scaffold"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "safety_harness",
+      "ja": "墜落制止用器具",
+      "en": "Safety Harness",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "safety_harness"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "hard_hat",
+      "ja": "ヘルメット",
+      "en": "Hard Hat",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "hard_hat"
+    },
+    {
+      "file": "tools.quality-001.json",
+      "id": "safety_glasses",
+      "ja": "保護メガネ",
+      "en": "Safety Glasses",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "safety_glasses"
+    },
+    {
+      "file": "tools.quality-002.json",
+      "id": "plywood",
+      "ja": "合板",
+      "en": "Plywood",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "plywood"
+    },
+    {
+      "file": "tools.quality-002.json",
+      "id": "stud",
+      "ja": "間柱",
+      "en": "Stud",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "stud"
+    },
+    {
+      "file": "tools.quality-002.json",
+      "id": "anchor_bolt",
+      "ja": "アンカーボルト",
+      "en": "Anchor Bolt",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "anchor_bolt"
+    },
+    {
+      "file": "tools.quality-002.json",
+      "id": "wedge_anchor",
+      "ja": "芯棒打込み式アンカー",
+      "en": "Wedge Anchor",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "wedge_anchor"
+    },
+    {
+      "file": "tools.quality-002.json",
+      "id": "backer_rod",
+      "ja": "バックアップ材",
+      "en": "Backer Rod",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "backer_rod"
+    },
+    {
+      "file": "tools.quality-003.json",
+      "id": "respirator",
+      "ja": "防毒マスク",
+      "en": "Respirator",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "respirator"
+    },
+    {
+      "file": "tools.quality-003.json",
+      "id": "work_gloves",
+      "ja": "作業手袋",
+      "en": "Work Gloves",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "work_gloves"
+    },
+    {
+      "file": "tools.quality-003.json",
+      "id": "ear_protection",
+      "ja": "耳栓・イヤーマフ",
+      "en": "Hearing Protection",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "ear_protection"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "joint_compound",
+      "ja": "ジョイントコンパウンド",
+      "en": "Joint Compound",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "joint_compound"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "sealant",
+      "ja": "シーリング材",
+      "en": "Sealant",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "caulking_sealant"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "primer",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "primer"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "construction_adhesive",
+      "ja": "建築用接着剤",
+      "en": "Construction Adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "construction_adhesive_001"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "masking_tape",
+      "ja": "マスキングテープ",
+      "en": "Masking Tape",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "masking_tape"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "rock_wool",
+      "ja": "ロックウール",
+      "en": "Rock Wool",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "rockwool"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "vapor_barrier",
+      "ja": "防湿シート",
+      "en": "Vapor Barrier",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "vapor_barrier"
+    },
+    {
+      "file": "tools.quality-004.json",
+      "id": "corner_bead",
+      "ja": "コーナービード",
+      "en": "Corner Bead",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "corner_bead"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "rebar",
+      "ja": "鉄筋",
+      "en": "Rebar",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "rebar"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "form_tie",
+      "ja": "フォームタイ",
+      "en": "Form Tie",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "form_tie"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "concrete_vibrator",
+      "ja": "コンクリートバイブレーター",
+      "en": "Concrete Vibrator",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "concrete_vibrator"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "trowel",
+      "ja": "こて",
+      "en": "Trowel",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "trowel"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "float",
+      "ja": "木ごて",
+      "en": "Float",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "float"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "screed",
+      "ja": "定規ずり",
+      "en": "Screed",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "screed"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "mortar",
+      "ja": "モルタル",
+      "en": "Mortar",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "mortar"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "grout",
+      "ja": "グラウト",
+      "en": "Grout",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "grout"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "pvc_pipe",
+      "ja": "塩ビ管",
+      "en": "PVC Pipe",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "pvc_pipe"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "junction_box",
+      "ja": "ジョイントボックス",
+      "en": "Junction Box",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "junction_box"
+    },
+    {
+      "file": "tools.quality-005.json",
+      "id": "pipe_wrench",
+      "ja": "パイプレンチ",
+      "en": "Pipe Wrench",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_wrench"
+    },
+    {
+      "file": "tools.quality-006.json",
+      "id": "notched_trowel",
+      "ja": "くし目ごて",
+      "en": "Notched Trowel",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "notched_trowel"
+    },
+    {
+      "file": "tools.quality-006.json",
+      "id": "tile_cutter",
+      "ja": "タイルカッター",
+      "en": "Tile Cutter",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "tile_cutter"
+    },
+    {
+      "file": "tools.quality-006.json",
+      "id": "tile_spacer",
+      "ja": "タイルスペーサー",
+      "en": "Tile Spacer",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "tile_spacer"
+    },
+    {
+      "file": "tools.quality-006.json",
+      "id": "beam",
+      "ja": "梁",
+      "en": "Beam",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "beam"
+    },
+    {
+      "file": "tools.quality-006.json",
+      "id": "column",
+      "ja": "柱",
+      "en": "Column",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "column"
+    },
+    {
+      "file": "tools.quality-008.json",
+      "id": "self_leveling_compound",
+      "ja": "セルフレベリング材",
+      "en": "Self-Leveling Compound",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "self_leveling_compound"
+    },
+    {
+      "file": "tools.quality-009.json",
+      "id": "safety_cone",
+      "ja": "カラーコーン",
+      "en": "Safety Cone",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "safety_cones"
+    },
+    {
+      "file": "tools.quality-009.json",
+      "id": "debris_chute",
+      "ja": "廃材シュート",
+      "en": "Debris Chute",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "debris_chute"
+    },
+    {
+      "file": "tools.quality-009.json",
+      "id": "wheelbarrow",
+      "ja": "一輪車",
+      "en": "Wheelbarrow",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "wheelbarrow"
+    },
+    {
+      "file": "tools.quality-009.json",
+      "id": "generator",
+      "ja": "発電機",
+      "en": "Generator",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "generator"
+    },
+    {
+      "file": "tools.quality-010.json",
+      "id": "punch_list",
+      "ja": "是正リスト",
+      "en": "Punch List",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "punch_list"
+    },
+    {
+      "file": "tools.quality-010.json",
+      "id": "torque_wrench",
+      "ja": "トルクレンチ",
+      "en": "Torque Wrench",
+      "reason": "duplicate_id",
+      "first_source": "tools.basic.json",
+      "first_id": "torque_wrench"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_gypsum_board",
+      "ja": "石膏ボード",
+      "en": "Gypsum Board",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-002.json",
+      "first_id": "drywall_board"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_torque_wrench",
+      "ja": "トルクレンチ",
+      "en": "Torque Wrench",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "torque_wrench"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_anchor_bolt",
+      "ja": "アンカーボルト",
+      "en": "Anchor Bolt",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "anchor_bolt"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_waterproof_sheet",
+      "ja": "防水シート",
+      "en": "Waterproof Sheet",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-004.json",
+      "first_id": "waterproof_sheet"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_rebar_cutter",
+      "ja": "鉄筋カッター",
+      "en": "Rebar Cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "rebar_cutter"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_rebar_bender",
+      "ja": "鉄筋ベンダー",
+      "en": "Rebar Bender",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "rebar_bender"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_concrete_vibrator",
+      "ja": "コンクリートバイブレーター",
+      "en": "Concrete Vibrator",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "concrete_vibrator"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_laser_level",
+      "ja": "レーザー墨出し器",
+      "en": "Laser Level",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "laser_level"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_chalk_line",
+      "ja": "墨つぼ",
+      "en": "Chalk Line",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "chalk_line"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_plumb_bob",
+      "ja": "下げ振り",
+      "en": "Plumb Bob",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "plumb_bob"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_caulking_gun",
+      "ja": "コーキングガン",
+      "en": "Caulking Gun",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "caulking_gun"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_sealant",
+      "ja": "シーリング材",
+      "en": "Sealant",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "caulking_sealant"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_backer_rod",
+      "ja": "バックアップ材",
+      "en": "Backer Rod",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "backer_rod"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_drywall_screw",
+      "ja": "ボードビス",
+      "en": "Drywall Screw",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "drywall_screw"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_corner_bead",
+      "ja": "コーナービード",
+      "en": "Corner Bead",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "corner_bead"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_metal_stud",
+      "ja": "軽量鉄骨スタッド",
+      "en": "Metal Stud",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "metal_stud"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_hanger_bolt",
+      "ja": "吊りボルト",
+      "en": "Hanger Bolt",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-008.json",
+      "first_id": "hanger_bolt"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_expansion_anchor",
+      "ja": "拡張アンカー",
+      "en": "Expansion Anchor",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "expansion_anchor"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_wedge_anchor",
+      "ja": "ウェッジアンカー",
+      "en": "Wedge Anchor",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wedge_anchor"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_sleeve_anchor",
+      "ja": "スリーブアンカー",
+      "en": "Sleeve Anchor",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "sleeve_anchor"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_form_oil",
+      "ja": "剥離剤",
+      "en": "Form Release Agent",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-005.json",
+      "first_id": "form_oil"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_stirrup",
+      "ja": "スターラップ",
+      "en": "Stirrup",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-005.json",
+      "first_id": "stirrup"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_tile_cutter",
+      "ja": "タイルカッター",
+      "en": "Tile Cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "tile_cutter"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_primer",
+      "ja": "プライマー",
+      "en": "Primer",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "primer_003"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_self_leveling_compound",
+      "ja": "セルフレベリング材",
+      "en": "Self-Leveling Compound",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "self_leveling_compound"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_ridge_cap",
+      "ja": "棟包み",
+      "en": "Ridge Cap",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-007.json",
+      "first_id": "ridge_cap"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_gutter",
+      "ja": "雨樋",
+      "en": "Gutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-007.json",
+      "first_id": "gutter"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_downspout",
+      "ja": "竪樋",
+      "en": "Downspout",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-007.json",
+      "first_id": "downspout"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_vapor_barrier",
+      "ja": "防湿シート",
+      "en": "Vapor Barrier",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "vapor_barrier"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_insulation_board",
+      "ja": "断熱ボード",
+      "en": "Insulation Board",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-004.json",
+      "first_id": "insulation_board"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_glass_wool",
+      "ja": "グラスウール",
+      "en": "Glass Wool",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-004.json",
+      "first_id": "glass_wool"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_rock_wool",
+      "ja": "ロックウール",
+      "en": "Rock Wool",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "rockwool"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_access_panel",
+      "ja": "点検口",
+      "en": "Access Panel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-004.json",
+      "first_id": "access_panel"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_pipe_wrench",
+      "ja": "パイプレンチ",
+      "en": "Pipe Wrench",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_wrench"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_pipe_cutter",
+      "ja": "パイプカッター",
+      "en": "Pipe Cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pipe_cutter"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_fish_tape",
+      "ja": "通線ワイヤー",
+      "en": "Fish Tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "fish_tape"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_cable_tie",
+      "ja": "結束バンド",
+      "en": "Cable Tie",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "cable_tie"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_crimping_tool",
+      "ja": "圧着工具",
+      "en": "Crimping Tool",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "crimping_tool"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_multimeter",
+      "ja": "テスター",
+      "en": "Multimeter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "multimeter"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_voltage_tester",
+      "ja": "検電器",
+      "en": "Voltage Tester",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "voltage_tester"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_conduit",
+      "ja": "電線管",
+      "en": "Conduit",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "conduit"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_flexible_conduit",
+      "ja": "可とう電線管",
+      "en": "Flexible Conduit",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-005.json",
+      "first_id": "flexible_conduit"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_pvc_pipe",
+      "ja": "塩ビ管",
+      "en": "PVC Pipe",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pvc_pipe"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_ball_valve",
+      "ja": "ボールバルブ",
+      "en": "Ball Valve",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "ball_valve"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_control_joint",
+      "ja": "誘発目地",
+      "en": "Control Joint",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-006.json",
+      "first_id": "control_joint"
+    },
+    {
+      "file": "tools.quality-011.json",
+      "id": "q011_construction_joint",
+      "ja": "打継ぎ目地",
+      "en": "Construction Joint",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-006.json",
+      "first_id": "construction_joint"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_socket_wrench",
+      "ja": "ソケットレンチ",
+      "en": "Socket Wrench",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "socket_wrench"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_adjustable_wrench",
+      "ja": "モンキーレンチ",
+      "en": "Adjustable Wrench",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wrench_adjustable"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_angle_finder",
+      "ja": "角度計",
+      "en": "Angle Finder",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "angle_finder"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_hole_saw",
+      "ja": "ホールソー",
+      "en": "Hole Saw",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "hole_saw"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_pry_bar",
+      "ja": "バール",
+      "en": "Pry Bar",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pry_bar"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_bolt_cutter",
+      "ja": "ボルトクリッパー",
+      "en": "Bolt Cutter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "bolt_cutter"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_self_drilling_screw",
+      "ja": "ドリルビス",
+      "en": "Self-Drilling Screw",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-002.json",
+      "first_id": "self_drilling_screw"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_lag_screw",
+      "ja": "コーチスクリュー",
+      "en": "Lag Screw",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "lag_screw"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_moisture_meter",
+      "ja": "含水率計",
+      "en": "Moisture Meter",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-010.json",
+      "first_id": "moisture_meter"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_thermal_camera",
+      "ja": "サーモカメラ",
+      "en": "Thermal Camera",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-010.json",
+      "first_id": "thermal_camera"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_borescope",
+      "ja": "内視鏡カメラ",
+      "en": "Borescope",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-010.json",
+      "first_id": "borescope"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_generator",
+      "ja": "発電機",
+      "en": "Generator",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "generator"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_safety_cone",
+      "ja": "カラーコーン",
+      "en": "Safety Cone",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "safety_cones"
+    },
+    {
+      "file": "tools.quality-012.json",
+      "id": "q012_barricade",
+      "ja": "バリケード",
+      "en": "Barricade",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-009.json",
+      "first_id": "barricade"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_shackle",
+      "ja": "シャックル",
+      "en": "Shackle",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-009.json",
+      "first_id": "shackle"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_chain_block",
+      "ja": "チェーンブロック",
+      "en": "Chain Block",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-009.json",
+      "first_id": "chain_block"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_pallet_jack",
+      "ja": "ハンドリフト",
+      "en": "Pallet Jack",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-009.json",
+      "first_id": "pallet_jack"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_wheelbarrow",
+      "ja": "一輪車",
+      "en": "Wheelbarrow",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "wheelbarrow"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_bucket",
+      "ja": "バケツ",
+      "en": "Bucket",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "bucket"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_concrete_saw",
+      "ja": "コンクリートカッター",
+      "en": "Concrete Saw",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "concrete_saw"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_plate_compactor",
+      "ja": "プレートコンパクター",
+      "en": "Plate Compactor",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "plate_compactor"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_pickaxe",
+      "ja": "つるはし",
+      "en": "Pickaxe",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "pickaxe"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_total_station",
+      "ja": "トータルステーション",
+      "en": "Total Station",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-003.json",
+      "first_id": "total_station"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_auto_level",
+      "ja": "オートレベル",
+      "en": "Automatic Level",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-003.json",
+      "first_id": "auto_level"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_string_line",
+      "ja": "水糸",
+      "en": "String Line",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "string_line"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_plasterboard_lifter",
+      "ja": "ボードリフター",
+      "en": "Drywall Lift",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "drywall_lift"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_deburring_tool",
+      "ja": "バリ取り工具",
+      "en": "Deburring Tool",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "deburring_tool"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_scraper",
+      "ja": "スクレーパー",
+      "en": "Scraper",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "caulking_scraper"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_paint_brush",
+      "ja": "刷毛",
+      "en": "Paint Brush",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "paint_brush"
+    },
+    {
+      "file": "tools.quality-013.json",
+      "id": "q013_masking_tape",
+      "ja": "マスキングテープ",
+      "en": "Masking Tape",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "masking_tape"
+    },
+    {
+      "file": "tools.quality-014.json",
+      "id": "q014_metal_roof_panel",
+      "ja": "金属屋根材",
+      "en": "Metal Roof Panel",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-007.json",
+      "first_id": "metal_roof_panel"
+    },
+    {
+      "file": "tools.quality-014.json",
+      "id": "q014_door_frame",
+      "ja": "ドア枠",
+      "en": "Door Frame",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-007.json",
+      "first_id": "door_frame"
+    },
+    {
+      "file": "tools.quality-014.json",
+      "id": "q014_weatherstrip",
+      "ja": "気密材",
+      "en": "Weatherstrip",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-007.json",
+      "first_id": "weatherstrip"
+    },
+    {
+      "file": "tools.quality-014.json",
+      "id": "q014_handrail_bracket",
+      "ja": "手すりブラケット",
+      "en": "Handrail Bracket",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-008.json",
+      "first_id": "handrail_bracket"
+    },
+    {
+      "file": "tools.quality-014.json",
+      "id": "q014_cleanout",
+      "ja": "掃除口",
+      "en": "Cleanout",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-006.json",
+      "first_id": "cleanout"
+    },
+    {
+      "file": "tools.quality-015.json",
+      "id": "q015_cable_tray",
+      "ja": "ケーブルトレイ",
+      "en": "Cable Tray",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-005.json",
+      "first_id": "cable_tray"
+    },
+    {
+      "file": "tools.quality-015.json",
+      "id": "q015_outlet_box",
+      "ja": "アウトレットボックス",
+      "en": "Outlet Box",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-005.json",
+      "first_id": "outlet_box"
+    },
+    {
+      "file": "tools.quality-015.json",
+      "id": "q015_circuit_breaker",
+      "ja": "ブレーカー",
+      "en": "Circuit Breaker",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "circuit_breaker"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_baseboard",
+      "ja": "巾木",
+      "en": "Baseboard",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-004.json",
+      "first_id": "baseboard"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_carpet_tile",
+      "ja": "タイルカーペット",
+      "en": "Carpet Tile",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-008.json",
+      "first_id": "carpet_tile"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_tile_adhesive",
+      "ja": "タイル接着剤",
+      "en": "Tile Adhesive",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-006.json",
+      "first_id": "tile_adhesive"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_adhesion_test",
+      "ja": "付着試験",
+      "en": "Adhesion Test",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-010.json",
+      "first_id": "adhesion_test"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_safety_glasses",
+      "ja": "保護メガネ",
+      "en": "Safety Glasses",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "safety_glasses"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_face_shield",
+      "ja": "フェイスシールド",
+      "en": "Face Shield",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-003.json",
+      "first_id": "face_shield"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_dust_mask",
+      "ja": "防じんマスク",
+      "en": "Dust Mask",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-003.json",
+      "first_id": "dust_mask"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_cut_resistant_gloves",
+      "ja": "耐切創手袋",
+      "en": "Cut-Resistant Gloves",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-003.json",
+      "first_id": "cut_resistant_gloves"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_knee_pads",
+      "ja": "膝当て",
+      "en": "Knee Pads",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-003.json",
+      "first_id": "kneepads"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_safety_shoes",
+      "ja": "安全靴",
+      "en": "Safety Shoes",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.quality-003.json",
+      "first_id": "safety_shoes"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_high_visibility_vest",
+      "ja": "反射ベスト",
+      "en": "High-Visibility Vest",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "high_visibility_vest"
+    },
+    {
+      "file": "tools.quality-016.json",
+      "id": "q016_fire_extinguisher",
+      "ja": "消火器",
+      "en": "Fire Extinguisher",
+      "reason": "duplicate_exact_term",
+      "first_source": "tools.basic.json",
+      "first_id": "fire_extinguisher"
+    }
+  ]
+}

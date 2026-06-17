@@ -1,1 +1,886 @@
-{"schema":"cta-compact-v1","quality_batch":"016","rows":[{"id":"q016_vinyl_floor_tile","t":"material","ja":"ビニル床タイル","en":"Vinyl Floor Tile","dj":"塩ビ系の床仕上げタイル。耐久性があり店舗や施設で使われる。","de":"PVC-based floor finish tile used in shops and facilities.","c":"floor","task":"install_floor_finish"},{"id":"q016_vinyl_sheet_flooring","t":"material","ja":"長尺シート","en":"Vinyl Sheet Flooring","dj":"継ぎ目を少なく施工できるロール状の床仕上げ材。","de":"Roll-type vinyl flooring that reduces seams.","c":"floor","task":"install_floor_finish"},{"id":"q016_flooring_board","t":"material","ja":"フローリング材","en":"Wood Flooring Board","dj":"木質系の床仕上げ材。住宅や内装仕上げに使う。","de":"Wood-based floor finishing board used in interiors.","c":"floor","task":"install_flooring"},{"id":"q016_laminate_flooring","t":"material","ja":"複合フローリング","en":"Laminate Flooring","dj":"基材と化粧層を組み合わせた木質床材。","de":"Flooring made from a core board and decorative surface layer.","c":"floor","task":"install_flooring"},{"id":"q016_floor_underlayment","t":"material","ja":"床下地材","en":"Floor Underlayment","dj":"仕上げ床の下に敷く調整・支持用の下地材。","de":"Layer installed below finish flooring for support or adjustment.","c":"floor","task":"prepare_floor"},{"id":"q016_floor_adhesive","t":"material","ja":"床用接着剤","en":"Floor Adhesive","dj":"床仕上げ材を下地に接着する材料。","de":"Adhesive used to bond floor finishes to substrates.","c":"floor","task":"bond_floor_finish"},{"id":"q016_floor_weld_rod","t":"material","ja":"溶接棒（床シート）","en":"Floor Welding Rod","dj":"長尺シートの継ぎ目を熱溶接する棒材。","de":"Rod used to heat-weld seams in vinyl sheet flooring.","c":"floor","task":"weld_floor_seam"},{"id":"q016_floor_joint_strip","t":"component","ja":"床見切り材","en":"Floor Transition Strip","dj":"床材の切替部や端部を仕上げる部材。","de":"Strip used to finish floor transitions or edges.","c":"floor","task":"finish_floor_edge"},{"id":"q016_baseboard","t":"component","ja":"巾木","en":"Baseboard","dj":"壁下部を保護し床との取り合いを仕上げる部材。","de":"Trim installed at the base of walls to protect and finish the joint.","c":"interior","task":"install_trim"},{"id":"q016_soft_baseboard","t":"material","ja":"ソフト巾木","en":"Vinyl Baseboard","dj":"塩ビなどの柔らかい巾木材。事務所や店舗で使われる。","de":"Flexible vinyl base trim used in offices and shops.","c":"interior","task":"install_trim"},{"id":"q016_cove_base","t":"component","ja":"巻上げ巾木","en":"Cove Base","dj":"床材を壁際まで立ち上げて清掃性を高める納まり。","de":"Base finish where flooring turns up the wall for cleanability.","c":"floor","task":"finish_floor_edge"},{"id":"q016_carpet_tile","t":"material","ja":"タイルカーペット","en":"Carpet Tile","dj":"部分交換しやすい正方形のカーペット床材。","de":"Modular carpet flooring tile that is easy to replace.","c":"floor","task":"install_carpet"},{"id":"q016_carpet_adhesive","t":"material","ja":"カーペット用接着剤","en":"Carpet Adhesive","dj":"カーペットやタイルカーペットを固定する接着剤。","de":"Adhesive used to install carpet or carpet tiles.","c":"floor","task":"install_carpet"},{"id":"q016_tack_strip","t":"component","ja":"グリッパー","en":"Carpet Tack Strip","dj":"カーペット端部を固定する釘付きの細材。","de":"Strip with pins used to hold carpet edges.","c":"floor","task":"install_carpet"},{"id":"q016_floor_sander","t":"tool","ja":"床サンダー","en":"Floor Sander","dj":"木床や下地面を研磨する機械。","de":"Machine used to sand wood floors or substrates.","c":"floor","task":"sand_floor"},{"id":"q016_floor_scraper","t":"tool","ja":"床スクレーパー","en":"Floor Scraper","dj":"床材や接着剤残りを削り取る工具。","de":"Tool used to remove flooring or adhesive residue.","c":"floor","task":"remove_floor_finish"},{"id":"q016_wallpaper","t":"material","ja":"壁紙・クロス","en":"Wallpaper","dj":"壁や天井に貼る内装仕上げ材。","de":"Interior finish material applied to walls or ceilings.","c":"wall","task":"hang_wallpaper"},{"id":"q016_wallpaper_adhesive","t":"material","ja":"クロス糊","en":"Wallpaper Adhesive","dj":"壁紙を下地へ貼るための糊。","de":"Adhesive used to apply wallpaper to substrates.","c":"wall","task":"hang_wallpaper"},{"id":"q016_wallpaper_brush","t":"tool","ja":"撫で刷毛","en":"Wallpaper Smoothing Brush","dj":"壁紙を押さえて空気を抜く刷毛。","de":"Brush used to smooth wallpaper and remove air pockets.","c":"wall","task":"hang_wallpaper"},{"id":"q016_wallpaper_seam_roller","t":"tool","ja":"ジョイントローラー","en":"Wallpaper Seam Roller","dj":"壁紙の継ぎ目を押さえるローラー。","de":"Roller used to press wallpaper seams.","c":"wall","task":"finish_wallpaper_seam"},{"id":"q016_wallpaper_spatula","t":"tool","ja":"クロスヘラ","en":"Wallpaper Spatula","dj":"壁紙を押さえたり端部を整えるヘラ。","de":"Spatula used to press and trim wallpaper.","c":"wall","task":"hang_wallpaper"},{"id":"q016_wallpaper_cutting_guide","t":"tool","ja":"地ベラ","en":"Wallpaper Cutting Guide","dj":"壁紙の端部を切る時のガイドに使うヘラ。","de":"Guide used when trimming wallpaper edges.","c":"wall","task":"trim_wallpaper"},{"id":"q016_wall_putty","t":"material","ja":"内装パテ","en":"Wall Putty","dj":"下地の段差やビス穴を埋める内装用充填材。","de":"Interior filler used to smooth joints, gaps, and screw holes.","c":"wall","task":"prepare_wall"},{"id":"q016_joint_compound","t":"material","ja":"ジョイントコンパウンド","en":"Joint Compound","dj":"石膏ボード継ぎ目を平滑に仕上げる材料。","de":"Compound used to finish drywall joints.","c":"drywall","task":"finish_joint"},{"id":"q016_corner_tape","t":"material","ja":"コーナーテープ","en":"Corner Tape","dj":"入隅や出隅を補強して直線を出すテープ材。","de":"Tape used to reinforce and straighten drywall corners.","c":"drywall","task":"finish_corner"},{"id":"q016_ceiling_tile","t":"material","ja":"天井板","en":"Ceiling Tile","dj":"天井面を仕上げる板状材。","de":"Tile or panel used to finish ceilings.","c":"ceiling","task":"install_ceiling"},{"id":"q016_acoustic_ceiling_tile","t":"material","ja":"吸音天井板","en":"Acoustic Ceiling Tile","dj":"音を吸収する性能を持つ天井材。","de":"Ceiling tile with sound absorption properties.","c":"ceiling","task":"install_ceiling"},{"id":"q016_suspended_ceiling_grid","t":"component","ja":"システム天井グリッド","en":"Suspended Ceiling Grid","dj":"天井板を支持する格子状の吊り天井部材。","de":"Grid system that supports suspended ceiling panels.","c":"ceiling","task":"install_ceiling_grid"},{"id":"q016_main_tee","t":"component","ja":"メインTバー","en":"Main Tee","dj":"システム天井の主方向に通す支持材。","de":"Primary support member in a suspended ceiling grid.","c":"ceiling","task":"install_ceiling_grid"},{"id":"q016_cross_tee","t":"component","ja":"クロスTバー","en":"Cross Tee","dj":"システム天井グリッドを構成する交差材。","de":"Secondary grid member in a suspended ceiling system.","c":"ceiling","task":"install_ceiling_grid"},{"id":"q016_ceiling_hanger_wire","t":"component","ja":"天井吊り線","en":"Ceiling Hanger Wire","dj":"吊り天井を上部構造から支持する線材。","de":"Wire used to suspend a ceiling grid from structure.","c":"ceiling","task":"hang_ceiling"},{"id":"q016_access_ceiling_panel","t":"component","ja":"天井点検口","en":"Ceiling Access Panel","dj":"天井内設備を点検するための開口パネル。","de":"Panel that provides access to services above ceilings.","c":"ceiling","task":"install_access_panel"},{"id":"q016_paint_primer_interior","t":"material","ja":"内装用プライマー","en":"Interior Primer","dj":"内装塗装前に下地へ塗る密着用下塗り材。","de":"Primer applied before interior painting to improve adhesion.","c":"paint","task":"prime_surface"},{"id":"q016_interior_paint","t":"material","ja":"内装塗料","en":"Interior Paint","dj":"壁や天井の内装仕上げに使う塗料。","de":"Paint used for interior walls and ceilings.","c":"paint","task":"paint_interior"},{"id":"q016_water_based_paint","t":"material","ja":"水性塗料","en":"Water-Based Paint","dj":"水を主な希釈材とする塗料。","de":"Paint that uses water as the main carrier or thinner.","c":"paint","task":"paint_surface"},{"id":"q016_oil_based_paint","t":"material","ja":"油性塗料","en":"Oil-Based Paint","dj":"溶剤を使う耐久性の高い塗料。","de":"Solvent-based paint with durable finish properties.","c":"paint","task":"paint_surface"},{"id":"q016_paint_putty","t":"material","ja":"塗装パテ","en":"Paint Filler","dj":"塗装前の凹みや傷を埋める材料。","de":"Filler used to repair dents or defects before painting.","c":"paint","task":"prepare_surface"},{"id":"q016_paint_roller_cover","t":"consumable","ja":"ローラー替筒","en":"Paint Roller Cover","dj":"塗料を含ませて塗るローラーの交換部材。","de":"Replaceable sleeve used on a paint roller.","c":"paint","task":"paint_surface"},{"id":"q016_paint_extension_pole","t":"tool","ja":"継ぎ柄","en":"Paint Extension Pole","dj":"高い壁や天井を塗るための延長柄。","de":"Extension pole used for painting high walls or ceilings.","c":"paint","task":"paint_high_area"},{"id":"q016_drop_cloth","t":"material","ja":"養生布","en":"Drop Cloth","dj":"塗装や作業時に床や家具を保護する布。","de":"Sheet used to protect floors or furniture during work.","c":"curing","task":"protect_surface"},{"id":"q016_masking_film","t":"material","ja":"マスカー","en":"Masking Film","dj":"テープ付きフィルムで広い範囲を養生する材料。","de":"Tape-attached film used for wide masking protection.","c":"curing","task":"mask_surface"},{"id":"q016_tile_adhesive","t":"material","ja":"タイル接着剤","en":"Tile Adhesive","dj":"タイルを下地に固定する接着材。","de":"Adhesive used to bond tile to a substrate.","c":"tile","task":"set_tile"},{"id":"q016_tile_backer_board","t":"material","ja":"タイル下地ボード","en":"Tile Backer Board","dj":"タイル施工の下地として使う耐水性ボード。","de":"Board used as a stable substrate for tile installation.","c":"tile","task":"prepare_tile_substrate"},{"id":"q016_tile_leveling_clip","t":"component","ja":"タイルレベリングクリップ","en":"Tile Leveling Clip","dj":"タイルの段差を抑えるための施工補助部材。","de":"Clip used to reduce lippage between tiles.","c":"tile","task":"set_tile"},{"id":"q016_tile_wedge","t":"component","ja":"タイルレベリングくさび","en":"Tile Leveling Wedge","dj":"レベリングクリップと組み合わせてタイル高さを揃える部材。","de":"Wedge used with leveling clips to align tile height.","c":"tile","task":"set_tile"},{"id":"q016_tile_nipper","t":"tool","ja":"タイルニッパー","en":"Tile Nipper","dj":"タイルの細かい切欠きや端部を割り取る工具。","de":"Tool used to nip small cuts or edges from tile.","c":"tile","task":"trim_tile"},{"id":"q016_wet_tile_saw","t":"tool","ja":"湿式タイルソー","en":"Wet Tile Saw","dj":"水で冷却しながらタイルを切断する機械。","de":"Water-cooled saw used to cut tile accurately.","c":"tile","task":"cut_tile"},{"id":"q016_grout_sponge","t":"tool","ja":"目地拭きスポンジ","en":"Grout Sponge","dj":"目地詰め後に余分な目地材を拭き取るスポンジ。","de":"Sponge used to clean excess grout after application.","c":"tile","task":"clean_grout"},{"id":"q016_grout_sealer","t":"material","ja":"目地シーラー","en":"Grout Sealer","dj":"目地の汚れや吸水を抑える保護材。","de":"Sealer used to protect grout from stains and water absorption.","c":"tile","task":"seal_grout"},{"id":"q016_plaster","t":"material","ja":"漆喰","en":"Lime Plaster","dj":"石灰を主成分とする左官仕上げ材。","de":"Lime-based plaster used for wall finishes.","c":"plaster","task":"apply_plaster"},{"id":"q016_plaster_base","t":"material","ja":"左官下地材","en":"Plaster Base Coat","dj":"仕上げ左官材の下に塗る下地材。","de":"Base coat applied before finish plaster.","c":"plaster","task":"prepare_plaster"},{"id":"q016_plaster_mesh","t":"material","ja":"左官メッシュ","en":"Plaster Mesh","dj":"ひび割れ抑制や補強に使うメッシュ材。","de":"Mesh used to reinforce plaster and reduce cracking.","c":"plaster","task":"reinforce_plaster"},{"id":"q016_skim_coat","t":"process","ja":"薄塗り仕上げ","en":"Skim Coat","dj":"薄く塗って表面を平滑にする仕上げ作業。","de":"Thin coat applied to create a smooth surface.","c":"plaster","task":"finish_surface"},{"id":"q016_plaster_hawk","t":"tool","ja":"盛り板","en":"Plaster Hawk","dj":"左官材を手元で保持する板。","de":"Board used to hold plaster material while applying.","c":"plaster","task":"apply_plaster"},{"id":"q016_plaster_trowel","t":"tool","ja":"左官鏝","en":"Plaster Trowel","dj":"左官材を塗り広げて仕上げる鏝。","de":"Trowel used to apply and finish plaster.","c":"plaster","task":"apply_plaster"},{"id":"q016_corner_trowel","t":"tool","ja":"角鏝","en":"Corner Trowel","dj":"入隅や出隅を整えるための鏝。","de":"Trowel used to finish inside or outside corners.","c":"plaster","task":"finish_corner"},{"id":"q016_sponge_float","t":"tool","ja":"スポンジ鏝","en":"Sponge Float","dj":"表面をならしながら模様や質感を整える鏝。","de":"Float used to smooth and texture plaster or mortar surfaces.","c":"plaster","task":"finish_surface"},{"id":"q016_repair_patch","t":"material","ja":"補修パッチ","en":"Repair Patch","dj":"穴や割れを部分的に補修する材料。","de":"Material used to patch holes or cracks locally.","c":"repair","task":"patch_surface"},{"id":"q016_wall_repair_mesh","t":"material","ja":"補修メッシュ","en":"Wall Repair Mesh","dj":"壁の穴やひび補修を補強するメッシュ。","de":"Mesh used to reinforce wall repair patches.","c":"repair","task":"repair_wall"},{"id":"q016_spackling_paste","t":"material","ja":"穴埋めパテ","en":"Spackling Paste","dj":"小さな穴や傷を埋める補修材。","de":"Paste used to fill small holes and dents.","c":"repair","task":"fill_hole"},{"id":"q016_crack_filler","t":"material","ja":"ひび割れ補修材","en":"Crack Filler","dj":"壁や床のひび割れを埋める材料。","de":"Material used to fill cracks in walls or floors.","c":"repair","task":"repair_crack"},{"id":"q016_epoxy_floor_coating","t":"material","ja":"エポキシ床塗料","en":"Epoxy Floor Coating","dj":"耐摩耗性や耐薬品性を高める床用塗膜材。","de":"Floor coating used for abrasion and chemical resistance.","c":"floor","task":"coat_floor"},{"id":"q016_floor_hardener","t":"material","ja":"床用硬化材","en":"Floor Hardener","dj":"コンクリート床表面の耐摩耗性を高める材料。","de":"Material used to improve wear resistance of concrete floors.","c":"floor","task":"harden_floor"},{"id":"q016_concrete_sealer","t":"material","ja":"コンクリートシーラー","en":"Concrete Sealer","dj":"コンクリート表面を保護し吸水を抑える材料。","de":"Sealer used to protect concrete surfaces and reduce absorption.","c":"floor","task":"seal_concrete"},{"id":"q016_floor_polisher","t":"tool","ja":"床ポリッシャー","en":"Floor Polisher","dj":"床面を洗浄・研磨する機械。","de":"Machine used to clean or polish floor surfaces.","c":"floor","task":"polish_floor"},{"id":"q016_moisture_barrier_coating","t":"material","ja":"防湿塗膜","en":"Moisture Barrier Coating","dj":"下地からの湿気上昇を抑える塗膜材。","de":"Coating used to reduce moisture migration from substrate.","c":"floor","task":"control_moisture"},{"id":"q016_subfloor_level_check","t":"process","ja":"床下地レベル確認","en":"Subfloor Level Check","dj":"床仕上げ前に下地の高さや不陸を確認する作業。","de":"Checking subfloor elevation and flatness before flooring.","c":"inspection","task":"inspect_floor"},{"id":"q016_flatness_check","t":"process","ja":"平滑度確認","en":"Flatness Check","dj":"床や壁の凹凸や波打ちを確認する作業。","de":"Inspection of unevenness or waviness in floors or walls.","c":"inspection","task":"inspect_surface"},{"id":"q016_adhesion_test","t":"test","ja":"付着試験","en":"Adhesion Test","dj":"塗膜や仕上げ材の密着状態を確認する試験。","de":"Test used to check adhesion of coatings or finishes.","c":"inspection","task":"test_adhesion"},{"id":"q016_pull_off_tester","t":"tool","ja":"付着強度試験機","en":"Pull-Off Tester","dj":"仕上げ材の付着強度を測る試験機。","de":"Tester used to measure pull-off adhesion strength.","c":"inspection","task":"test_adhesion"},{"id":"q016_cross_cut_tester","t":"tool","ja":"クロスカット試験器","en":"Cross-Cut Tester","dj":"塗膜の密着性を格子状切込みで確認する器具。","de":"Tool used to test coating adhesion by cross-cut pattern.","c":"inspection","task":"test_coating"},{"id":"q016_coating_thickness_gauge","t":"tool","ja":"膜厚計","en":"Coating Thickness Gauge","dj":"塗膜の厚さを測定する計器。","de":"Gauge used to measure coating thickness.","c":"inspection","task":"measure_coating"},{"id":"q016_color_sample_board","t":"material","ja":"色見本板","en":"Color Sample Board","dj":"塗装や仕上げ色を確認するための見本板。","de":"Sample board used to verify coating or finish color.","c":"inspection","task":"approve_finish"},{"id":"q016_finish_sample","t":"material","ja":"仕上げ見本","en":"Finish Sample","dj":"仕上げ材の色、質感、納まりを確認する見本。","de":"Sample used to confirm finish color, texture, and appearance.","c":"inspection","task":"approve_finish"},{"id":"q016_mockup_panel","t":"sample","ja":"モックアップパネル","en":"Mockup Panel","dj":"施工方法や仕上がりを事前確認する試験施工パネル。","de":"Panel used to verify workmanship and appearance before production work.","c":"inspection","task":"review_mockup"},{"id":"q016_punch_list","t":"process","ja":"是正リスト","en":"Punch List","dj":"引渡し前に残工事や是正箇所を整理するリスト。","de":"List of remaining or corrective work before handover.","c":"inspection","task":"inspect_finish"},{"id":"q016_snagging","t":"process","ja":"仕上げ検査","en":"Snagging","dj":"仕上げの傷、汚れ、不具合を確認する検査。","de":"Inspection for finish defects, damage, or incomplete work.","c":"inspection","task":"inspect_finish"},{"id":"q016_blue_tape_walk","t":"process","ja":"指摘テープ確認","en":"Blue Tape Walk","dj":"是正箇所をテープで示して確認する仕上げ検査。","de":"Walkthrough where defects are marked with tape for correction.","c":"inspection","task":"inspect_finish"},{"id":"q016_scratch_guard","t":"material","ja":"傷防止フィルム","en":"Scratch Protection Film","dj":"仕上げ面の傷を防ぐ保護フィルム。","de":"Film used to protect finished surfaces from scratches.","c":"curing","task":"protect_finish"},{"id":"q016_corner_protection_tape","t":"material","ja":"角養生テープ","en":"Corner Protection Tape","dj":"出隅や角部を傷から守る養生テープ。","de":"Tape used to protect corners during work.","c":"curing","task":"protect_corner"},{"id":"q016_temporary_floor_mat","t":"material","ja":"仮設養生マット","en":"Temporary Floor Mat","dj":"通行や作業中に床を保護するマット。","de":"Mat used to protect floors during temporary work.","c":"curing","task":"protect_floor"},{"id":"q016_dust_barrier","t":"material","ja":"防塵養生","en":"Dust Barrier","dj":"粉じんの拡散を抑える仮設の仕切り。","de":"Temporary barrier used to contain dust.","c":"safety","task":"control_dust"},{"id":"q016_zip_wall","t":"temporary","ja":"仮設間仕切り養生","en":"Temporary Dust Wall","dj":"改修工事で作業区画を仕切る仮設壁。","de":"Temporary wall used to isolate renovation work areas.","c":"safety","task":"isolate_work_area"},{"id":"q016_negative_air_machine","t":"equipment","ja":"負圧集じん機","en":"Negative Air Machine","dj":"作業区画を負圧にして粉じん流出を抑える機械。","de":"Machine that maintains negative pressure to contain dust.","c":"safety","task":"control_dust"},{"id":"q016_hepa_filter","t":"component","ja":"HEPAフィルター","en":"HEPA Filter","dj":"微細粉じんを捕集する高性能フィルター。","de":"High-efficiency filter used to capture fine particles.","c":"safety","task":"filter_air"},{"id":"q016_safety_glasses","t":"safety","ja":"保護メガネ","en":"Safety Glasses","dj":"切粉や粉じんから目を守る保護具。","de":"Eye protection used against chips and dust.","c":"safety","task":"protect_worker"},{"id":"q016_face_shield","t":"safety","ja":"フェイスシールド","en":"Face Shield","dj":"顔全体を飛散物から守る保護具。","de":"Face protection against flying particles or splashes.","c":"safety","task":"protect_worker"},{"id":"q016_dust_mask","t":"safety","ja":"防じんマスク","en":"Dust Mask","dj":"粉じんの吸入を抑える呼吸用保護具。","de":"Respiratory protection used to reduce dust inhalation.","c":"safety","task":"protect_worker"},{"id":"q016_cut_resistant_gloves","t":"safety","ja":"耐切創手袋","en":"Cut-Resistant Gloves","dj":"刃物や鋭利な材料から手を守る手袋。","de":"Gloves designed to protect hands from cuts.","c":"safety","task":"protect_worker"},{"id":"q016_knee_pads","t":"safety","ja":"膝当て","en":"Knee Pads","dj":"床作業時に膝を保護する保護具。","de":"Protective pads used for kneeling floor work.","c":"safety","task":"protect_worker"},{"id":"q016_hearing_protection","t":"safety","ja":"耳栓・イヤーマフ","en":"Hearing Protection","dj":"騒音作業で聴覚を守る保護具。","de":"Protection used to reduce noise exposure.","c":"safety","task":"protect_worker"},{"id":"q016_safety_shoes","t":"safety","ja":"安全靴","en":"Safety Shoes","dj":"つま先や足裏を保護する作業靴。","de":"Footwear designed to protect toes and soles.","c":"safety","task":"protect_worker"},{"id":"q016_high_visibility_vest","t":"safety","ja":"反射ベスト","en":"High-Visibility Vest","dj":"作業員の視認性を高めるベスト。","de":"Vest used to improve worker visibility.","c":"safety","task":"protect_worker"},{"id":"q016_first_aid_kit","t":"safety","ja":"救急箱","en":"First Aid Kit","dj":"軽傷時の応急処置用品をまとめた箱。","de":"Kit containing supplies for basic first aid.","c":"safety","task":"emergency_response"},{"id":"q016_fire_extinguisher","t":"safety","ja":"消火器","en":"Fire Extinguisher","dj":"初期消火に使う携帯式消火器具。","de":"Portable device used for initial fire suppression.","c":"safety","task":"fire_response"},{"id":"q016_hot_work_permit","t":"process","ja":"火気使用許可","en":"Hot Work Permit","dj":"溶接や切断など火気作業前に確認する許可手順。","de":"Permit process used before welding, cutting, or other hot work.","c":"safety","task":"manage_hot_work"},{"id":"q016_lockout_tagout","t":"process","ja":"ロックアウト・タグアウト","en":"Lockout Tagout","dj":"設備の誤作動を防ぐため電源やエネルギーを隔離する手順。","de":"Procedure to isolate energy sources and prevent unexpected startup.","c":"safety","task":"isolate_energy"},{"id":"q016_toolbox_meeting","t":"process","ja":"KYミーティング","en":"Toolbox Meeting","dj":"作業前に危険や手順を確認する短時間の安全打合せ。","de":"Short pre-work meeting to review hazards and procedures.","c":"safety","task":"safety_briefing"},{"id":"q016_near_miss_report","t":"process","ja":"ヒヤリハット報告","en":"Near Miss Report","dj":"事故になりかけた事象を共有して再発防止する報告。","de":"Report used to share near misses and prevent recurrence.","c":"safety","task":"report_hazard"},{"id":"q016_daily_safety_check","t":"process","ja":"日常安全点検","en":"Daily Safety Check","dj":"作業開始前に工具、足場、保護具などを確認する点検。","de":"Daily check of tools, access, PPE, and work conditions.","c":"safety","task":"inspect_safety"}]}
+{
+  "schema": "cta-compact-v1",
+  "quality_batch": "016",
+  "rows": [
+    {
+      "id": "q016_vinyl_floor_tile",
+      "t": "material",
+      "ja": "ビニル床タイル",
+      "en": "Vinyl Floor Tile",
+      "dj": "塩ビ系の床仕上げタイル。耐久性があり店舗や施設で使われる。",
+      "de": "PVC-based floor finish tile used in shops and facilities.",
+      "c": "floor",
+      "task": "install_floor_finish"
+    },
+    {
+      "id": "q016_vinyl_sheet_flooring",
+      "t": "material",
+      "ja": "長尺シート",
+      "en": "Vinyl Sheet Flooring",
+      "dj": "継ぎ目を少なく施工できるロール状の床仕上げ材。",
+      "de": "Roll-type vinyl flooring that reduces seams.",
+      "c": "floor",
+      "task": "install_floor_finish"
+    },
+    {
+      "id": "q016_flooring_board",
+      "t": "material",
+      "ja": "フローリング材",
+      "en": "Wood Flooring Board",
+      "dj": "木質系の床仕上げ材。住宅や内装仕上げに使う。",
+      "de": "Wood-based floor finishing board used in interiors.",
+      "c": "floor",
+      "task": "install_flooring"
+    },
+    {
+      "id": "q016_laminate_flooring",
+      "t": "material",
+      "ja": "複合フローリング",
+      "en": "Laminate Flooring",
+      "dj": "基材と化粧層を組み合わせた木質床材。",
+      "de": "Flooring made from a core board and decorative surface layer.",
+      "c": "floor",
+      "task": "install_flooring"
+    },
+    {
+      "id": "q016_floor_underlayment",
+      "t": "material",
+      "ja": "床下地材",
+      "en": "Floor Underlayment",
+      "dj": "仕上げ床の下に敷く調整・支持用の下地材。",
+      "de": "Layer installed below finish flooring for support or adjustment.",
+      "c": "floor",
+      "task": "prepare_floor"
+    },
+    {
+      "id": "q016_floor_adhesive",
+      "t": "material",
+      "ja": "床用接着剤",
+      "en": "Floor Adhesive",
+      "dj": "床仕上げ材を下地に接着する材料。",
+      "de": "Adhesive used to bond floor finishes to substrates.",
+      "c": "floor",
+      "task": "bond_floor_finish"
+    },
+    {
+      "id": "q016_floor_weld_rod",
+      "t": "material",
+      "ja": "溶接棒（床シート）",
+      "en": "Floor Welding Rod",
+      "dj": "長尺シートの継ぎ目を熱溶接する棒材。",
+      "de": "Rod used to heat-weld seams in vinyl sheet flooring.",
+      "c": "floor",
+      "task": "weld_floor_seam"
+    },
+    {
+      "id": "q016_floor_joint_strip",
+      "t": "component",
+      "ja": "床見切り材",
+      "en": "Floor Transition Strip",
+      "dj": "床材の切替部や端部を仕上げる部材。",
+      "de": "Strip used to finish floor transitions or edges.",
+      "c": "floor",
+      "task": "finish_floor_edge"
+    },
+    {
+      "id": "q016_soft_baseboard",
+      "t": "material",
+      "ja": "ソフト巾木",
+      "en": "Vinyl Baseboard",
+      "dj": "塩ビなどの柔らかい巾木材。事務所や店舗で使われる。",
+      "de": "Flexible vinyl base trim used in offices and shops.",
+      "c": "interior",
+      "task": "install_trim"
+    },
+    {
+      "id": "q016_cove_base",
+      "t": "component",
+      "ja": "巻上げ巾木",
+      "en": "Cove Base",
+      "dj": "床材を壁際まで立ち上げて清掃性を高める納まり。",
+      "de": "Base finish where flooring turns up the wall for cleanability.",
+      "c": "floor",
+      "task": "finish_floor_edge"
+    },
+    {
+      "id": "q016_carpet_adhesive",
+      "t": "material",
+      "ja": "カーペット用接着剤",
+      "en": "Carpet Adhesive",
+      "dj": "カーペットやタイルカーペットを固定する接着剤。",
+      "de": "Adhesive used to install carpet or carpet tiles.",
+      "c": "floor",
+      "task": "install_carpet"
+    },
+    {
+      "id": "q016_tack_strip",
+      "t": "component",
+      "ja": "グリッパー",
+      "en": "Carpet Tack Strip",
+      "dj": "カーペット端部を固定する釘付きの細材。",
+      "de": "Strip with pins used to hold carpet edges.",
+      "c": "floor",
+      "task": "install_carpet"
+    },
+    {
+      "id": "q016_floor_sander",
+      "t": "tool",
+      "ja": "床サンダー",
+      "en": "Floor Sander",
+      "dj": "木床や下地面を研磨する機械。",
+      "de": "Machine used to sand wood floors or substrates.",
+      "c": "floor",
+      "task": "sand_floor"
+    },
+    {
+      "id": "q016_floor_scraper",
+      "t": "tool",
+      "ja": "床スクレーパー",
+      "en": "Floor Scraper",
+      "dj": "床材や接着剤残りを削り取る工具。",
+      "de": "Tool used to remove flooring or adhesive residue.",
+      "c": "floor",
+      "task": "remove_floor_finish"
+    },
+    {
+      "id": "q016_wallpaper",
+      "t": "material",
+      "ja": "壁紙・クロス",
+      "en": "Wallpaper",
+      "dj": "壁や天井に貼る内装仕上げ材。",
+      "de": "Interior finish material applied to walls or ceilings.",
+      "c": "wall",
+      "task": "hang_wallpaper"
+    },
+    {
+      "id": "q016_wallpaper_adhesive",
+      "t": "material",
+      "ja": "クロス糊",
+      "en": "Wallpaper Adhesive",
+      "dj": "壁紙を下地へ貼るための糊。",
+      "de": "Adhesive used to apply wallpaper to substrates.",
+      "c": "wall",
+      "task": "hang_wallpaper"
+    },
+    {
+      "id": "q016_wallpaper_brush",
+      "t": "tool",
+      "ja": "撫で刷毛",
+      "en": "Wallpaper Smoothing Brush",
+      "dj": "壁紙を押さえて空気を抜く刷毛。",
+      "de": "Brush used to smooth wallpaper and remove air pockets.",
+      "c": "wall",
+      "task": "hang_wallpaper"
+    },
+    {
+      "id": "q016_wallpaper_seam_roller",
+      "t": "tool",
+      "ja": "ジョイントローラー",
+      "en": "Wallpaper Seam Roller",
+      "dj": "壁紙の継ぎ目を押さえるローラー。",
+      "de": "Roller used to press wallpaper seams.",
+      "c": "wall",
+      "task": "finish_wallpaper_seam"
+    },
+    {
+      "id": "q016_wallpaper_spatula",
+      "t": "tool",
+      "ja": "クロスヘラ",
+      "en": "Wallpaper Spatula",
+      "dj": "壁紙を押さえたり端部を整えるヘラ。",
+      "de": "Spatula used to press and trim wallpaper.",
+      "c": "wall",
+      "task": "hang_wallpaper"
+    },
+    {
+      "id": "q016_wallpaper_cutting_guide",
+      "t": "tool",
+      "ja": "地ベラ",
+      "en": "Wallpaper Cutting Guide",
+      "dj": "壁紙の端部を切る時のガイドに使うヘラ。",
+      "de": "Guide used when trimming wallpaper edges.",
+      "c": "wall",
+      "task": "trim_wallpaper"
+    },
+    {
+      "id": "q016_wall_putty",
+      "t": "material",
+      "ja": "内装パテ",
+      "en": "Wall Putty",
+      "dj": "下地の段差やビス穴を埋める内装用充填材。",
+      "de": "Interior filler used to smooth joints, gaps, and screw holes.",
+      "c": "wall",
+      "task": "prepare_wall"
+    },
+    {
+      "id": "q016_joint_compound",
+      "t": "material",
+      "ja": "ジョイントコンパウンド",
+      "en": "Joint Compound",
+      "dj": "石膏ボード継ぎ目を平滑に仕上げる材料。",
+      "de": "Compound used to finish drywall joints.",
+      "c": "drywall",
+      "task": "finish_joint"
+    },
+    {
+      "id": "q016_corner_tape",
+      "t": "material",
+      "ja": "コーナーテープ",
+      "en": "Corner Tape",
+      "dj": "入隅や出隅を補強して直線を出すテープ材。",
+      "de": "Tape used to reinforce and straighten drywall corners.",
+      "c": "drywall",
+      "task": "finish_corner"
+    },
+    {
+      "id": "q016_ceiling_tile",
+      "t": "material",
+      "ja": "天井板",
+      "en": "Ceiling Tile",
+      "dj": "天井面を仕上げる板状材。",
+      "de": "Tile or panel used to finish ceilings.",
+      "c": "ceiling",
+      "task": "install_ceiling"
+    },
+    {
+      "id": "q016_acoustic_ceiling_tile",
+      "t": "material",
+      "ja": "吸音天井板",
+      "en": "Acoustic Ceiling Tile",
+      "dj": "音を吸収する性能を持つ天井材。",
+      "de": "Ceiling tile with sound absorption properties.",
+      "c": "ceiling",
+      "task": "install_ceiling"
+    },
+    {
+      "id": "q016_suspended_ceiling_grid",
+      "t": "component",
+      "ja": "システム天井グリッド",
+      "en": "Suspended Ceiling Grid",
+      "dj": "天井板を支持する格子状の吊り天井部材。",
+      "de": "Grid system that supports suspended ceiling panels.",
+      "c": "ceiling",
+      "task": "install_ceiling_grid"
+    },
+    {
+      "id": "q016_main_tee",
+      "t": "component",
+      "ja": "メインTバー",
+      "en": "Main Tee",
+      "dj": "システム天井の主方向に通す支持材。",
+      "de": "Primary support member in a suspended ceiling grid.",
+      "c": "ceiling",
+      "task": "install_ceiling_grid"
+    },
+    {
+      "id": "q016_cross_tee",
+      "t": "component",
+      "ja": "クロスTバー",
+      "en": "Cross Tee",
+      "dj": "システム天井グリッドを構成する交差材。",
+      "de": "Secondary grid member in a suspended ceiling system.",
+      "c": "ceiling",
+      "task": "install_ceiling_grid"
+    },
+    {
+      "id": "q016_ceiling_hanger_wire",
+      "t": "component",
+      "ja": "天井吊り線",
+      "en": "Ceiling Hanger Wire",
+      "dj": "吊り天井を上部構造から支持する線材。",
+      "de": "Wire used to suspend a ceiling grid from structure.",
+      "c": "ceiling",
+      "task": "hang_ceiling"
+    },
+    {
+      "id": "q016_access_ceiling_panel",
+      "t": "component",
+      "ja": "天井点検口",
+      "en": "Ceiling Access Panel",
+      "dj": "天井内設備を点検するための開口パネル。",
+      "de": "Panel that provides access to services above ceilings.",
+      "c": "ceiling",
+      "task": "install_access_panel"
+    },
+    {
+      "id": "q016_paint_primer_interior",
+      "t": "material",
+      "ja": "内装用プライマー",
+      "en": "Interior Primer",
+      "dj": "内装塗装前に下地へ塗る密着用下塗り材。",
+      "de": "Primer applied before interior painting to improve adhesion.",
+      "c": "paint",
+      "task": "prime_surface"
+    },
+    {
+      "id": "q016_interior_paint",
+      "t": "material",
+      "ja": "内装塗料",
+      "en": "Interior Paint",
+      "dj": "壁や天井の内装仕上げに使う塗料。",
+      "de": "Paint used for interior walls and ceilings.",
+      "c": "paint",
+      "task": "paint_interior"
+    },
+    {
+      "id": "q016_water_based_paint",
+      "t": "material",
+      "ja": "水性塗料",
+      "en": "Water-Based Paint",
+      "dj": "水を主な希釈材とする塗料。",
+      "de": "Paint that uses water as the main carrier or thinner.",
+      "c": "paint",
+      "task": "paint_surface"
+    },
+    {
+      "id": "q016_oil_based_paint",
+      "t": "material",
+      "ja": "油性塗料",
+      "en": "Oil-Based Paint",
+      "dj": "溶剤を使う耐久性の高い塗料。",
+      "de": "Solvent-based paint with durable finish properties.",
+      "c": "paint",
+      "task": "paint_surface"
+    },
+    {
+      "id": "q016_paint_putty",
+      "t": "material",
+      "ja": "塗装パテ",
+      "en": "Paint Filler",
+      "dj": "塗装前の凹みや傷を埋める材料。",
+      "de": "Filler used to repair dents or defects before painting.",
+      "c": "paint",
+      "task": "prepare_surface"
+    },
+    {
+      "id": "q016_paint_roller_cover",
+      "t": "consumable",
+      "ja": "ローラー替筒",
+      "en": "Paint Roller Cover",
+      "dj": "塗料を含ませて塗るローラーの交換部材。",
+      "de": "Replaceable sleeve used on a paint roller.",
+      "c": "paint",
+      "task": "paint_surface"
+    },
+    {
+      "id": "q016_paint_extension_pole",
+      "t": "tool",
+      "ja": "継ぎ柄",
+      "en": "Paint Extension Pole",
+      "dj": "高い壁や天井を塗るための延長柄。",
+      "de": "Extension pole used for painting high walls or ceilings.",
+      "c": "paint",
+      "task": "paint_high_area"
+    },
+    {
+      "id": "q016_drop_cloth",
+      "t": "material",
+      "ja": "養生布",
+      "en": "Drop Cloth",
+      "dj": "塗装や作業時に床や家具を保護する布。",
+      "de": "Sheet used to protect floors or furniture during work.",
+      "c": "curing",
+      "task": "protect_surface"
+    },
+    {
+      "id": "q016_masking_film",
+      "t": "material",
+      "ja": "マスカー",
+      "en": "Masking Film",
+      "dj": "テープ付きフィルムで広い範囲を養生する材料。",
+      "de": "Tape-attached film used for wide masking protection.",
+      "c": "curing",
+      "task": "mask_surface"
+    },
+    {
+      "id": "q016_tile_backer_board",
+      "t": "material",
+      "ja": "タイル下地ボード",
+      "en": "Tile Backer Board",
+      "dj": "タイル施工の下地として使う耐水性ボード。",
+      "de": "Board used as a stable substrate for tile installation.",
+      "c": "tile",
+      "task": "prepare_tile_substrate"
+    },
+    {
+      "id": "q016_tile_leveling_clip",
+      "t": "component",
+      "ja": "タイルレベリングクリップ",
+      "en": "Tile Leveling Clip",
+      "dj": "タイルの段差を抑えるための施工補助部材。",
+      "de": "Clip used to reduce lippage between tiles.",
+      "c": "tile",
+      "task": "set_tile"
+    },
+    {
+      "id": "q016_tile_wedge",
+      "t": "component",
+      "ja": "タイルレベリングくさび",
+      "en": "Tile Leveling Wedge",
+      "dj": "レベリングクリップと組み合わせてタイル高さを揃える部材。",
+      "de": "Wedge used with leveling clips to align tile height.",
+      "c": "tile",
+      "task": "set_tile"
+    },
+    {
+      "id": "q016_tile_nipper",
+      "t": "tool",
+      "ja": "タイルニッパー",
+      "en": "Tile Nipper",
+      "dj": "タイルの細かい切欠きや端部を割り取る工具。",
+      "de": "Tool used to nip small cuts or edges from tile.",
+      "c": "tile",
+      "task": "trim_tile"
+    },
+    {
+      "id": "q016_wet_tile_saw",
+      "t": "tool",
+      "ja": "湿式タイルソー",
+      "en": "Wet Tile Saw",
+      "dj": "水で冷却しながらタイルを切断する機械。",
+      "de": "Water-cooled saw used to cut tile accurately.",
+      "c": "tile",
+      "task": "cut_tile"
+    },
+    {
+      "id": "q016_grout_sponge",
+      "t": "tool",
+      "ja": "目地拭きスポンジ",
+      "en": "Grout Sponge",
+      "dj": "目地詰め後に余分な目地材を拭き取るスポンジ。",
+      "de": "Sponge used to clean excess grout after application.",
+      "c": "tile",
+      "task": "clean_grout"
+    },
+    {
+      "id": "q016_grout_sealer",
+      "t": "material",
+      "ja": "目地シーラー",
+      "en": "Grout Sealer",
+      "dj": "目地の汚れや吸水を抑える保護材。",
+      "de": "Sealer used to protect grout from stains and water absorption.",
+      "c": "tile",
+      "task": "seal_grout"
+    },
+    {
+      "id": "q016_plaster",
+      "t": "material",
+      "ja": "漆喰",
+      "en": "Lime Plaster",
+      "dj": "石灰を主成分とする左官仕上げ材。",
+      "de": "Lime-based plaster used for wall finishes.",
+      "c": "plaster",
+      "task": "apply_plaster"
+    },
+    {
+      "id": "q016_plaster_base",
+      "t": "material",
+      "ja": "左官下地材",
+      "en": "Plaster Base Coat",
+      "dj": "仕上げ左官材の下に塗る下地材。",
+      "de": "Base coat applied before finish plaster.",
+      "c": "plaster",
+      "task": "prepare_plaster"
+    },
+    {
+      "id": "q016_plaster_mesh",
+      "t": "material",
+      "ja": "左官メッシュ",
+      "en": "Plaster Mesh",
+      "dj": "ひび割れ抑制や補強に使うメッシュ材。",
+      "de": "Mesh used to reinforce plaster and reduce cracking.",
+      "c": "plaster",
+      "task": "reinforce_plaster"
+    },
+    {
+      "id": "q016_skim_coat",
+      "t": "process",
+      "ja": "薄塗り仕上げ",
+      "en": "Skim Coat",
+      "dj": "薄く塗って表面を平滑にする仕上げ作業。",
+      "de": "Thin coat applied to create a smooth surface.",
+      "c": "plaster",
+      "task": "finish_surface"
+    },
+    {
+      "id": "q016_plaster_hawk",
+      "t": "tool",
+      "ja": "盛り板",
+      "en": "Plaster Hawk",
+      "dj": "左官材を手元で保持する板。",
+      "de": "Board used to hold plaster material while applying.",
+      "c": "plaster",
+      "task": "apply_plaster"
+    },
+    {
+      "id": "q016_plaster_trowel",
+      "t": "tool",
+      "ja": "左官鏝",
+      "en": "Plaster Trowel",
+      "dj": "左官材を塗り広げて仕上げる鏝。",
+      "de": "Trowel used to apply and finish plaster.",
+      "c": "plaster",
+      "task": "apply_plaster"
+    },
+    {
+      "id": "q016_corner_trowel",
+      "t": "tool",
+      "ja": "角鏝",
+      "en": "Corner Trowel",
+      "dj": "入隅や出隅を整えるための鏝。",
+      "de": "Trowel used to finish inside or outside corners.",
+      "c": "plaster",
+      "task": "finish_corner"
+    },
+    {
+      "id": "q016_sponge_float",
+      "t": "tool",
+      "ja": "スポンジ鏝",
+      "en": "Sponge Float",
+      "dj": "表面をならしながら模様や質感を整える鏝。",
+      "de": "Float used to smooth and texture plaster or mortar surfaces.",
+      "c": "plaster",
+      "task": "finish_surface"
+    },
+    {
+      "id": "q016_repair_patch",
+      "t": "material",
+      "ja": "補修パッチ",
+      "en": "Repair Patch",
+      "dj": "穴や割れを部分的に補修する材料。",
+      "de": "Material used to patch holes or cracks locally.",
+      "c": "repair",
+      "task": "patch_surface"
+    },
+    {
+      "id": "q016_wall_repair_mesh",
+      "t": "material",
+      "ja": "補修メッシュ",
+      "en": "Wall Repair Mesh",
+      "dj": "壁の穴やひび補修を補強するメッシュ。",
+      "de": "Mesh used to reinforce wall repair patches.",
+      "c": "repair",
+      "task": "repair_wall"
+    },
+    {
+      "id": "q016_spackling_paste",
+      "t": "material",
+      "ja": "穴埋めパテ",
+      "en": "Spackling Paste",
+      "dj": "小さな穴や傷を埋める補修材。",
+      "de": "Paste used to fill small holes and dents.",
+      "c": "repair",
+      "task": "fill_hole"
+    },
+    {
+      "id": "q016_crack_filler",
+      "t": "material",
+      "ja": "ひび割れ補修材",
+      "en": "Crack Filler",
+      "dj": "壁や床のひび割れを埋める材料。",
+      "de": "Material used to fill cracks in walls or floors.",
+      "c": "repair",
+      "task": "repair_crack"
+    },
+    {
+      "id": "q016_epoxy_floor_coating",
+      "t": "material",
+      "ja": "エポキシ床塗料",
+      "en": "Epoxy Floor Coating",
+      "dj": "耐摩耗性や耐薬品性を高める床用塗膜材。",
+      "de": "Floor coating used for abrasion and chemical resistance.",
+      "c": "floor",
+      "task": "coat_floor"
+    },
+    {
+      "id": "q016_floor_hardener",
+      "t": "material",
+      "ja": "床用硬化材",
+      "en": "Floor Hardener",
+      "dj": "コンクリート床表面の耐摩耗性を高める材料。",
+      "de": "Material used to improve wear resistance of concrete floors.",
+      "c": "floor",
+      "task": "harden_floor"
+    },
+    {
+      "id": "q016_concrete_sealer",
+      "t": "material",
+      "ja": "コンクリートシーラー",
+      "en": "Concrete Sealer",
+      "dj": "コンクリート表面を保護し吸水を抑える材料。",
+      "de": "Sealer used to protect concrete surfaces and reduce absorption.",
+      "c": "floor",
+      "task": "seal_concrete"
+    },
+    {
+      "id": "q016_floor_polisher",
+      "t": "tool",
+      "ja": "床ポリッシャー",
+      "en": "Floor Polisher",
+      "dj": "床面を洗浄・研磨する機械。",
+      "de": "Machine used to clean or polish floor surfaces.",
+      "c": "floor",
+      "task": "polish_floor"
+    },
+    {
+      "id": "q016_moisture_barrier_coating",
+      "t": "material",
+      "ja": "防湿塗膜",
+      "en": "Moisture Barrier Coating",
+      "dj": "下地からの湿気上昇を抑える塗膜材。",
+      "de": "Coating used to reduce moisture migration from substrate.",
+      "c": "floor",
+      "task": "control_moisture"
+    },
+    {
+      "id": "q016_subfloor_level_check",
+      "t": "process",
+      "ja": "床下地レベル確認",
+      "en": "Subfloor Level Check",
+      "dj": "床仕上げ前に下地の高さや不陸を確認する作業。",
+      "de": "Checking subfloor elevation and flatness before flooring.",
+      "c": "inspection",
+      "task": "inspect_floor"
+    },
+    {
+      "id": "q016_flatness_check",
+      "t": "process",
+      "ja": "平滑度確認",
+      "en": "Flatness Check",
+      "dj": "床や壁の凹凸や波打ちを確認する作業。",
+      "de": "Inspection of unevenness or waviness in floors or walls.",
+      "c": "inspection",
+      "task": "inspect_surface"
+    },
+    {
+      "id": "q016_pull_off_tester",
+      "t": "tool",
+      "ja": "付着強度試験機",
+      "en": "Pull-Off Tester",
+      "dj": "仕上げ材の付着強度を測る試験機。",
+      "de": "Tester used to measure pull-off adhesion strength.",
+      "c": "inspection",
+      "task": "test_adhesion"
+    },
+    {
+      "id": "q016_cross_cut_tester",
+      "t": "tool",
+      "ja": "クロスカット試験器",
+      "en": "Cross-Cut Tester",
+      "dj": "塗膜の密着性を格子状切込みで確認する器具。",
+      "de": "Tool used to test coating adhesion by cross-cut pattern.",
+      "c": "inspection",
+      "task": "test_coating"
+    },
+    {
+      "id": "q016_coating_thickness_gauge",
+      "t": "tool",
+      "ja": "膜厚計",
+      "en": "Coating Thickness Gauge",
+      "dj": "塗膜の厚さを測定する計器。",
+      "de": "Gauge used to measure coating thickness.",
+      "c": "inspection",
+      "task": "measure_coating"
+    },
+    {
+      "id": "q016_color_sample_board",
+      "t": "material",
+      "ja": "色見本板",
+      "en": "Color Sample Board",
+      "dj": "塗装や仕上げ色を確認するための見本板。",
+      "de": "Sample board used to verify coating or finish color.",
+      "c": "inspection",
+      "task": "approve_finish"
+    },
+    {
+      "id": "q016_finish_sample",
+      "t": "material",
+      "ja": "仕上げ見本",
+      "en": "Finish Sample",
+      "dj": "仕上げ材の色、質感、納まりを確認する見本。",
+      "de": "Sample used to confirm finish color, texture, and appearance.",
+      "c": "inspection",
+      "task": "approve_finish"
+    },
+    {
+      "id": "q016_mockup_panel",
+      "t": "sample",
+      "ja": "モックアップパネル",
+      "en": "Mockup Panel",
+      "dj": "施工方法や仕上がりを事前確認する試験施工パネル。",
+      "de": "Panel used to verify workmanship and appearance before production work.",
+      "c": "inspection",
+      "task": "review_mockup"
+    },
+    {
+      "id": "q016_punch_list",
+      "t": "process",
+      "ja": "是正リスト",
+      "en": "Punch List",
+      "dj": "引渡し前に残工事や是正箇所を整理するリスト。",
+      "de": "List of remaining or corrective work before handover.",
+      "c": "inspection",
+      "task": "inspect_finish"
+    },
+    {
+      "id": "q016_snagging",
+      "t": "process",
+      "ja": "仕上げ検査",
+      "en": "Snagging",
+      "dj": "仕上げの傷、汚れ、不具合を確認する検査。",
+      "de": "Inspection for finish defects, damage, or incomplete work.",
+      "c": "inspection",
+      "task": "inspect_finish"
+    },
+    {
+      "id": "q016_blue_tape_walk",
+      "t": "process",
+      "ja": "指摘テープ確認",
+      "en": "Blue Tape Walk",
+      "dj": "是正箇所をテープで示して確認する仕上げ検査。",
+      "de": "Walkthrough where defects are marked with tape for correction.",
+      "c": "inspection",
+      "task": "inspect_finish"
+    },
+    {
+      "id": "q016_scratch_guard",
+      "t": "material",
+      "ja": "傷防止フィルム",
+      "en": "Scratch Protection Film",
+      "dj": "仕上げ面の傷を防ぐ保護フィルム。",
+      "de": "Film used to protect finished surfaces from scratches.",
+      "c": "curing",
+      "task": "protect_finish"
+    },
+    {
+      "id": "q016_corner_protection_tape",
+      "t": "material",
+      "ja": "角養生テープ",
+      "en": "Corner Protection Tape",
+      "dj": "出隅や角部を傷から守る養生テープ。",
+      "de": "Tape used to protect corners during work.",
+      "c": "curing",
+      "task": "protect_corner"
+    },
+    {
+      "id": "q016_temporary_floor_mat",
+      "t": "material",
+      "ja": "仮設養生マット",
+      "en": "Temporary Floor Mat",
+      "dj": "通行や作業中に床を保護するマット。",
+      "de": "Mat used to protect floors during temporary work.",
+      "c": "curing",
+      "task": "protect_floor"
+    },
+    {
+      "id": "q016_dust_barrier",
+      "t": "material",
+      "ja": "防塵養生",
+      "en": "Dust Barrier",
+      "dj": "粉じんの拡散を抑える仮設の仕切り。",
+      "de": "Temporary barrier used to contain dust.",
+      "c": "safety",
+      "task": "control_dust"
+    },
+    {
+      "id": "q016_zip_wall",
+      "t": "temporary",
+      "ja": "仮設間仕切り養生",
+      "en": "Temporary Dust Wall",
+      "dj": "改修工事で作業区画を仕切る仮設壁。",
+      "de": "Temporary wall used to isolate renovation work areas.",
+      "c": "safety",
+      "task": "isolate_work_area"
+    },
+    {
+      "id": "q016_negative_air_machine",
+      "t": "equipment",
+      "ja": "負圧集じん機",
+      "en": "Negative Air Machine",
+      "dj": "作業区画を負圧にして粉じん流出を抑える機械。",
+      "de": "Machine that maintains negative pressure to contain dust.",
+      "c": "safety",
+      "task": "control_dust"
+    },
+    {
+      "id": "q016_hepa_filter",
+      "t": "component",
+      "ja": "HEPAフィルター",
+      "en": "HEPA Filter",
+      "dj": "微細粉じんを捕集する高性能フィルター。",
+      "de": "High-efficiency filter used to capture fine particles.",
+      "c": "safety",
+      "task": "filter_air"
+    },
+    {
+      "id": "q016_hearing_protection",
+      "t": "safety",
+      "ja": "耳栓・イヤーマフ",
+      "en": "Hearing Protection",
+      "dj": "騒音作業で聴覚を守る保護具。",
+      "de": "Protection used to reduce noise exposure.",
+      "c": "safety",
+      "task": "protect_worker"
+    },
+    {
+      "id": "q016_first_aid_kit",
+      "t": "safety",
+      "ja": "救急箱",
+      "en": "First Aid Kit",
+      "dj": "軽傷時の応急処置用品をまとめた箱。",
+      "de": "Kit containing supplies for basic first aid.",
+      "c": "safety",
+      "task": "emergency_response"
+    },
+    {
+      "id": "q016_hot_work_permit",
+      "t": "process",
+      "ja": "火気使用許可",
+      "en": "Hot Work Permit",
+      "dj": "溶接や切断など火気作業前に確認する許可手順。",
+      "de": "Permit process used before welding, cutting, or other hot work.",
+      "c": "safety",
+      "task": "manage_hot_work"
+    },
+    {
+      "id": "q016_lockout_tagout",
+      "t": "process",
+      "ja": "ロックアウト・タグアウト",
+      "en": "Lockout Tagout",
+      "dj": "設備の誤作動を防ぐため電源やエネルギーを隔離する手順。",
+      "de": "Procedure to isolate energy sources and prevent unexpected startup.",
+      "c": "safety",
+      "task": "isolate_energy"
+    },
+    {
+      "id": "q016_toolbox_meeting",
+      "t": "process",
+      "ja": "KYミーティング",
+      "en": "Toolbox Meeting",
+      "dj": "作業前に危険や手順を確認する短時間の安全打合せ。",
+      "de": "Short pre-work meeting to review hazards and procedures.",
+      "c": "safety",
+      "task": "safety_briefing"
+    },
+    {
+      "id": "q016_near_miss_report",
+      "t": "process",
+      "ja": "ヒヤリハット報告",
+      "en": "Near Miss Report",
+      "dj": "事故になりかけた事象を共有して再発防止する報告。",
+      "de": "Report used to share near misses and prevent recurrence.",
+      "c": "safety",
+      "task": "report_hazard"
+    },
+    {
+      "id": "q016_daily_safety_check",
+      "t": "process",
+      "ja": "日常安全点検",
+      "en": "Daily Safety Check",
+      "dj": "作業開始前に工具、足場、保護具などを確認する点検。",
+      "de": "Daily check of tools, access, PPE, and work conditions.",
+      "c": "safety",
+      "task": "inspect_safety"
+    }
+  ]
+}
