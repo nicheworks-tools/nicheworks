@@ -22,11 +22,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Audit duplicate ids and exact terms
-        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --write-report
+      - name: Build duplicate audit report
+        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --write-report || true
 
       - name: Upload duplicate audit report
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: construction-tools-atlas-duplicate-audit
@@ -34,6 +33,10 @@ jobs:
             tools/construction-tools-atlas/reports/duplicate-audit.json
             tools/construction-tools-atlas/reports/duplicate-audit.md
           if-no-files-found: error
+
+      - name: Enforce duplicate audit result
+        run: |
+          node --input-type=module -e "import fs from 'node:fs'; const report=JSON.parse(fs.readFileSync('tools/construction-tools-atlas/reports/duplicate-audit.json','utf8')); if(report.duplicate_ids.length || report.duplicate_exact_terms_ja_en.length) process.exit(1);"
 
       - name: Check whether data dedupe would remove records
         run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --dry-run --write-report
