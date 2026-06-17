@@ -7,6 +7,7 @@ const chips = document.getElementById('chips');
 const queryInput = document.getElementById('q');
 const statusText = document.getElementById('status');
 const emptyState = document.getElementById('empty');
+let clearButton = null;
 let activeFilter = 'all';
 let units = [];
 let categories = [];
@@ -72,6 +73,12 @@ function categoryLabel(id) {
   return category ? category.nameJa : id;
 }
 
+function updateClearButton() {
+  if (!clearButton) return;
+  const hasFilter = activeFilter !== 'all' || Boolean(normalize(queryInput.value));
+  clearButton.hidden = !hasFilter;
+}
+
 function applyFilters() {
   const keyword = normalize(queryInput.value);
   let count = 0;
@@ -89,6 +96,27 @@ function applyFilters() {
 
   statusText.textContent = count ? `${count}件の単位を表示中` : '該当する単位がありません。';
   emptyState.classList.toggle('show', count === 0);
+  updateClearButton();
+}
+
+function resetFilters() {
+  activeFilter = 'all';
+  queryInput.value = '';
+  renderChips();
+  applyFilters();
+  queryInput.focus();
+}
+
+function setupClearButton() {
+  const panel = queryInput.closest('.panel');
+  if (!panel || clearButton) return;
+  clearButton = document.createElement('button');
+  clearButton.type = 'button';
+  clearButton.className = 'chip';
+  clearButton.textContent = '条件をクリア';
+  clearButton.hidden = true;
+  clearButton.addEventListener('click', resetFilters);
+  chips.insertAdjacentElement('afterend', clearButton);
 }
 
 async function loadData() {
@@ -98,6 +126,7 @@ async function loadData() {
     const data = await response.json();
     categories = Array.isArray(data.categories) ? data.categories : [];
     units = Array.isArray(data.units) ? data.units : [];
+    setupClearButton();
     renderChips();
     renderUnits();
     applyFilters();
