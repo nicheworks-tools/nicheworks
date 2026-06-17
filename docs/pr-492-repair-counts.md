@@ -1,0 +1,1 @@
+PR 492 audit found 27 public HTML files requiring common repairs: 20 invalid placeholder attributes and 7 malformed ad loader URLs.
