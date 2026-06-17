@@ -58,7 +58,17 @@ jobs:
         run: node scripts/audit-publishing-mode.mjs
 
       - name: Audit common HTML breakage
+        env:
+          COMMON_BREAKAGE_REPORT: common-breakage-report.json
         run: node scripts/audit-common-breakage.mjs
+
+      - name: Upload common breakage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-breakage-report
+          path: common-breakage-report.json
+          if-no-files-found: error
 
       - name: Run strict SEO audit
         run: node scripts/audit-seo.mjs --strict
