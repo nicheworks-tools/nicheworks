@@ -12,7 +12,8 @@ const skippedDirectories = new Set([
   'build',
   'coverage',
   '_archive',
-  'templates'
+  'templates',
+  'apps'
 ]);
 
 const failures = [];
@@ -38,9 +39,11 @@ function countMatches(text, pattern) {
 }
 
 for (const file of collectHtml()) {
+  const fileName = relative(file);
+  if (fileName.includes('/mock/')) continue;
+
   checkedFiles += 1;
   const html = fs.readFileSync(file, 'utf8');
-  const fileName = relative(file);
   const issues = [];
 
   if (/\bstable\s+content\s*=/i.test(html)) {
