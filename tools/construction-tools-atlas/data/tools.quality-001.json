@@ -1,10 +1,677 @@
 [
-{"id":"drill_driver","type":"tool","term":{"ja":"ドリルドライバー","en":"Drill Driver"},"aliases":{"ja":["電動ドリルドライバー","充電ドリル"],"en":["Cordless drill driver","Drill/driver"]},"description":{"ja":"穴あけとネジ締めの両方に使える電動工具。クラッチで締付力を調整できるため、家具取付や仕上げ材まわりの作業に向く。強い締付にはインパクトドライバーを使い分ける。","en":"A power tool used for both drilling holes and driving screws. Its clutch can control torque, making it suitable for furniture installation and finish work. Use an impact driver for heavier fastening."},"categories":["power_tool","drilling","fastening"],"tasks":["drill_hole","fasten_screw","finish_work"],"fuzzy":["電動ドリル","下穴","クラッチ","drill driver","pilot hole"],"region":["jp","global"],"summary_ja":"穴あけとネジ締めに使う、トルク調整しやすい電動工具。","summary_en":"A drill and screw-driving tool with adjustable torque control.","detail_ja":"木材・石膏ボード・薄い金属などへの下穴あけ、軽いビス締めに使う。クラッチ番号を調整することで締め過ぎを防ぎやすい。コンクリート穴あけには振動ドリルやハンマードリルを使う。","detail_en":"Used for pilot holes in wood, drywall, and thin metal, and for light screw driving. Torque clutch settings help prevent over-driving. For concrete drilling, use a hammer drill or rotary hammer.","bullets_ja":["穴あけ材に合うドリルビットを選ぶ。","ビス締めではクラッチを調整する。","コンクリート用途とは分けて考える。"],"bullets_en":["Choose a drill bit suitable for the material.","Adjust the clutch for screw driving.","Do not treat it as a concrete drilling tool."],"examples":{"ja":["棚受け金具の下穴をあける。","内装材の小ビスを締める。"],"en":["Drilling pilot holes for shelf brackets.","Driving small screws in finish work."]},"summary":{"ja":"穴あけとネジ締めに使う、トルク調整しやすい電動工具。","en":"A drill and screw-driving tool with adjustable torque control."},"bullets":{"ja":["クラッチ調整が重要。","材料に合うビットを使う。"],"en":["Torque clutch control matters.","Use the correct bit for the material."]},"meta":{"quality_batch":"001"}},
-{"id":"hammer_drill","type":"tool","term":{"ja":"振動ドリル","en":"Hammer Drill"},"aliases":{"ja":["震動ドリル","コンクリートドリル"],"en":["Percussion drill","Impact drill"]},"description":{"ja":"回転に細かい打撃を加えて、モルタルやブロックなどに穴をあける電動工具。軽めのコンクリート穴あけに使う。大径穴や本格的なコンクリート作業ではハンマードリルを使う。","en":"A drill that adds rapid hammering action to rotation for drilling mortar, block, and light concrete. For larger holes or heavier concrete work, use a rotary hammer."},"categories":["power_tool","drilling","concrete"],"tasks":["drill_masonry","install_anchor"],"fuzzy":["振動","コンクリート","アンカー下穴","hammer drill","masonry drilling"],"region":["jp","global"],"summary_ja":"モルタルやブロックなどに穴をあける振動機能付きドリル。","summary_en":"A drill with hammer action for masonry and light concrete holes.","detail_ja":"プラグアンカーや軽量物の固定下穴に使う。鉄筋に当たると進まないため、無理に押し続けない。粉じん対策、保護メガネ、適切なコンクリート用ビットが必要。","detail_en":"Used for plug anchors and light-duty fixing holes. If it hits rebar, do not force it. Dust control, safety glasses, and a proper masonry bit are needed.","bullets_ja":["コンクリート用ビットを使う。","鉄筋に当たったら無理に進めない。","粉じんと目の保護を行う。"],"bullets_en":["Use a masonry bit.","Do not force drilling into rebar.","Control dust and protect eyes."],"examples":{"ja":["コンクリート壁にプラグ用の下穴をあける。","ブロック塀に軽量金物を固定する。"],"en":["Drilling a plug-anchor hole in a concrete wall.","Fixing light hardware to a block wall."]},"summary":{"ja":"モルタルやブロックなどに穴をあける振動機能付きドリル。","en":"A drill with hammer action for masonry and light concrete holes."},"bullets":{"ja":["粉じん対策を行う。","ビット選定が重要。"],"en":["Use dust control.","Select the correct bit."]},"meta":{"quality_batch":"001"}},
-{"id":"core_drill","type":"tool","term":{"ja":"コアドリル","en":"Core Drill"},"aliases":{"ja":["コア抜き機","ダイヤモンドコア"],"en":["Diamond core drill","Core drilling machine"]},"description":{"ja":"円筒状のビットでコンクリートやALCなどに丸穴をあける工具。設備配管、換気、電気配線の貫通穴に使う。水を使う湿式と、集じんを使う乾式がある。","en":"A drilling tool that cuts circular holes in concrete, ALC, and similar materials using a cylindrical bit. It is used for pipe, ventilation, and electrical penetrations. Wet and dry methods are common."},"categories":["power_tool","concrete","drilling","mep"],"tasks":["core_drilling","make_penetration","install_pipe"],"fuzzy":["コア抜き","貫通穴","ダイヤモンド","core drill","penetration"],"region":["jp","global"],"summary_ja":"配管や換気などの丸い貫通穴をあける工具。","summary_en":"A tool for making round penetration holes for pipes and ventilation.","detail_ja":"穴径、壁厚、配筋、裏側の安全、漏水対策を事前に確認する。湿式では水処理と養生が重要。構造部材へのコア抜きは設計者や管理者の確認が必要になる場合がある。","detail_en":"Check hole diameter, wall thickness, rebar, backside safety, and water control before drilling. Wet drilling requires water handling and protection. Core drilling through structural members may require designer or owner approval.","bullets_ja":["裏側の人・物を確認する。","湿式では水養生を行う。","構造部材は勝手に穴あけしない。"],"bullets_en":["Check people and objects behind the wall.","Provide water protection for wet drilling.","Do not drill structural members without approval."],"examples":{"ja":["換気扇用の外壁貫通穴をあける。","配管ルートに合わせてコア抜きを行う。"],"en":["Core drilling an exterior wall for a fan duct.","Making pipe-route penetrations with a core drill."]},"summary":{"ja":"配管や換気などの丸い貫通穴をあける工具。","en":"A tool for making round penetration holes for pipes and ventilation."},"bullets":{"ja":["裏側確認が重要。","水処理と養生が必要。"],"en":["Backside checks are critical.","Water handling and protection are required."]},"meta":{"quality_batch":"001"}},
-{"id":"random_orbit_sander","type":"tool","term":{"ja":"ランダムサンダー","en":"Random Orbit Sander"},"aliases":{"ja":["オービタルサンダー","電動サンダー"],"en":["Random orbital sander","Orbital sander"]},"description":{"ja":"円形パッドが回転と偏心運動をしながら木材やパテ面を研磨する電動工具。仕上げ研磨に向き、手研磨より均一に削りやすい。番手選びと粉じん対策が重要。","en":"A sander whose round pad rotates and orbits to sand wood, filler, and finish surfaces. It is suitable for finish sanding and produces more even results than hand sanding. Grit selection and dust control matter."},"categories":["power_tool","sanding","finishing"],"tasks":["sand_surface","prepare_finish","smooth_putty"],"fuzzy":["サンダー","研磨","パテ研ぎ","random orbit sander","sanding"],"region":["jp","global"],"summary_ja":"木材やパテ面を均一に研磨する電動工具。","summary_en":"A power tool for even sanding of wood and filler surfaces.","detail_ja":"粗い番手から細かい番手へ段階的に変える。押し付けすぎると回転が止まり、ムラや丸跡が残る。室内作業では集じん機やマスクを併用する。","detail_en":"Move from coarse to finer grits step by step. Excess pressure can stop pad rotation and leave swirl marks. Indoors, use dust extraction and a respirator or mask.","bullets_ja":["番手を段階的に変える。","押し付けすぎない。","粉じん対策を行う。"],"bullets_en":["Step through grit sizes.","Do not press too hard.","Control sanding dust."],"examples":{"ja":["木部塗装前に表面を整える。","パテ処理後の面を平滑にする。"],"en":["Preparing wood before painting.","Smoothing a filled surface after putty work."]},"summary":{"ja":"木材やパテ面を均一に研磨する電動工具。","en":"A power tool for even sanding of wood and filler surfaces."},"bullets":{"ja":["番手選びが重要。","集じんを使う。"],"en":["Grit choice matters.","Use dust extraction."]},"meta":{"quality_batch":"001"}},
-{"id":"speed_square","type":"tool","term":{"ja":"差し金","en":"Carpenter's Square"},"aliases":{"ja":["曲尺","さしがね","矩尺"],"en":["Framing square","Square"]},"description":{"ja":"直角や寸法、勾配の確認に使うL字型の測定工具。大工仕事や現場加工で、墨付け、直角確認、切断線の作図に使う。落下や曲がりで精度が狂うことがある。","en":"An L-shaped measuring tool used for right angles, dimensions, and slope layout. It is common in carpentry and site fabrication for marking, checking square, and drawing cut lines. Accuracy can be affected by bending or impact."},"categories":["measurement","layout","hand_tool","woodworking"],"tasks":["mark_square","check_angle","layout_cut"],"fuzzy":["曲尺","矩","直角","差し金","carpenter square","framing square"],"region":["jp","global"],"summary_ja":"直角確認や墨付けに使うL字型の測定工具。","summary_en":"An L-shaped tool for checking square and marking layout lines.","detail_ja":"長手と短手を材料の基準面に密着させて線を引く。曲がった差し金では直角が狂う。表裏の目盛りや勾配目盛りを使い分ける場合は読み間違いに注意する。","detail_en":"Hold the long and short legs tight against the reference edges before marking. A bent square gives inaccurate angles. When using front/back scales or pitch scales, avoid reading the wrong scale.","bullets_ja":["基準面に密着させる。","曲がりがないか確認する。","目盛りの読み間違いに注意する。"],"bullets_en":["Hold it against the reference edge.","Check for bending.","Avoid reading the wrong scale."],"examples":{"ja":["木材に直角の切断線を引く。","造作部材の矩を確認する。"],"en":["Marking a square cut line on lumber.","Checking a finish component for square."]},"summary":{"ja":"直角確認や墨付けに使うL字型の測定工具。","en":"An L-shaped tool for checking square and marking layout lines."},"bullets":{"ja":["曲がりに注意。","基準面に当てる。"],"en":["Check for bending.","Use a reference edge."]},"meta":{"quality_batch":"001"}},
-{"id":"chisel","type":"tool","term":{"ja":"のみ","en":"Chisel"},"aliases":{"ja":["鑿","木工のみ"],"en":["Wood chisel","Carpenter chisel"]},"description":{"ja":"木材を削る、ほぞ穴を整える、細部を加工するための刃物工具。木工や造作で使う。刃先が鋭いため、手の位置と切る方向に注意し、叩く場合は適した柄とハンマーを使う。","en":"A bladed hand tool for paring wood, cleaning mortises, and shaping details. It is used in carpentry and finish work. Because the edge is sharp, keep hands out of the cutting path and use the proper handle and mallet when striking."},"categories":["hand_tool","woodworking","finishing"],"tasks":["pare_wood","clean_mortise","shape_detail"],"fuzzy":["鑿","木工","ほぞ","chisel","mortise"],"region":["jp","global"],"summary_ja":"木材を削ったり細部を加工する刃物工具。","summary_en":"A bladed hand tool for paring and shaping wood details.","detail_ja":"刃を研いで使い、無理にこじらない。節や硬い材料では刃が欠けることがある。作業台や材料を固定し、刃の進む先に手を置かない。","detail_en":"Use it sharp and do not pry with the edge. Knots and hard materials can chip the blade. Secure the workpiece and keep hands away from the cutting direction.","bullets_ja":["刃の進行方向に手を置かない。","材料を固定する。","刃をこじらない。"],"bullets_en":["Keep hands out of the cut path.","Secure the workpiece.","Do not pry with the blade."],"examples":{"ja":["建具枠の細部を削る。","木材の欠き込みを整える。"],"en":["Paring a door-frame detail.","Cleaning a notch in wood."]},"summary":{"ja":"木材を削ったり細部を加工する刃物工具。","en":"A bladed hand tool for paring and shaping wood details."},"bullets":{"ja":["刃物の向きに注意。","固定して作業。"],"en":["Watch blade direction.","Secure the work."]},"meta":{"quality_batch":"001"}},
-{"id":"hand_saw","type":"tool","term":{"ja":"手のこ","en":"Hand Saw"},"aliases":{"ja":["のこぎり","鋸"],"en":["Handsaw","Pull saw"]},"description":{"ja":"人力で木材や合板を切るのこぎり。電動工具が使いにくい場所や細かい調整切りに使う。刃の種類には縦挽き、横挽き、胴付きなどがある。","en":"A manually operated saw for cutting lumber and plywood. It is useful where power tools are unsuitable or for fine adjustment cuts. Blade types include rip, crosscut, and backsaw styles."},"categories":["hand_tool","cutting","woodworking"],"tasks":["cut_lumber","trim_detail","finish_cut"],"fuzzy":["のこぎり","鋸","手切り","hand saw","pull saw"],"region":["jp","global"],"summary_ja":"木材や合板を人力で切る基本的なのこぎり。","summary_en":"A basic manual saw for cutting lumber and plywood.","detail_ja":"切断線を確認し、最初は浅くガイド溝を作る。刃を無理に曲げると切り口が曲がる。材料をしっかり支え、切り落とし側で刃が挟まれないようにする。","detail_en":"Confirm the cut line and start with shallow strokes to form a guide kerf. Forcing the blade can curve the cut. Support the workpiece and prevent the offcut from pinching the blade.","bullets_ja":["材料を安定させる。","切り始めは浅く入れる。","刃を無理に曲げない。"],"bullets_en":["Stabilize the material.","Start with shallow strokes.","Do not force the blade sideways."],"examples":{"ja":["下地材を少し切り詰める。","電動工具が入らない場所で切る。"],"en":["Trimming backing lumber slightly.","Cutting where a power saw cannot fit."]},"summary":{"ja":"木材や合板を人力で切る基本的なのこぎり。","en":"A basic manual saw for cutting lumber and plywood."},"bullets":{"ja":["材料支持が重要。","刃をこじらない。"],"en":["Support the workpiece.","Do not twist the blade."]},"meta":{"quality_batch":"001"}},
-{"id":"stepladder","type":"access","term":{"ja":"脚立","en":"Stepladder"},"aliases":{"ja":["脚立足場","踏み台脚立"],"en":["Step ladder","A-frame ladder"]},"description":{"ja":"自立して使う折りたたみ式の昇降具。高所の軽作業や点検に使う。天板に乗る、開き止めを掛けない、水平でない場所に置くなどは転落の原因になる。","en":"A self-supporting folding access tool used for light work and inspection at height. Standing on the top cap, failing to lock spreaders, or placing it on uneven ground can lead to falls."},"categories":["access","safety","temporary_work"],"tasks":["work_at_height","inspection","light_installation"],"fuzzy":["高所","脚立","転落","stepladder","work at height"],"region":["jp","global"],"summary_ja":"高所の軽作業に使う自立式の昇降具。","summary_en":"A self-supporting access tool for light work at height.","detail_ja":"開き止めを確実に掛け、安定した床に置く。身を乗り出すと重心が外れて転落しやすい。両手作業や長時間作業では脚立ではなく適切な作業台や足場を検討する。","detail_en":"Lock the spreaders and place the ladder on stable ground. Overreaching moves the center of gravity outside the base and can cause a fall. For two-handed or long-duration work, consider a platform or scaffold instead.","bullets_ja":["開き止めを掛ける。","天板に乗らない。","身を乗り出さない。"],"bullets_en":["Lock the spreaders.","Do not stand on the top cap.","Do not overreach."],"examples":{"ja":["天井付近の軽作業を行う。","高い位置の寸法を確認する。"],"en":["Performing light work near a ceiling.","Checking a dimension at height."]},"summary":{"ja":"高所の軽作業に使う自立式の昇降具。","en":"A self-supporting access tool for light work at height."},"bullets":{"ja":["転落対策が必須。","長時間作業は足場を検討。"],"en":["Fall prevention is essential.","Use a platform for longer work."]},"meta":{"quality_batch":"001"}}
+  {
+    "id": "drill_driver",
+    "type": "tool",
+    "term": {
+      "ja": "ドリルドライバー",
+      "en": "Drill Driver"
+    },
+    "aliases": {
+      "ja": [
+        "電動ドリルドライバー",
+        "充電ドリル"
+      ],
+      "en": [
+        "Cordless drill driver",
+        "Drill/driver"
+      ]
+    },
+    "description": {
+      "ja": "穴あけとネジ締めの両方に使える電動工具。クラッチで締付力を調整できるため、家具取付や仕上げ材まわりの作業に向く。強い締付にはインパクトドライバーを使い分ける。",
+      "en": "A power tool used for both drilling holes and driving screws. Its clutch can control torque, making it suitable for furniture installation and finish work. Use an impact driver for heavier fastening."
+    },
+    "categories": [
+      "power_tool",
+      "drilling",
+      "fastening"
+    ],
+    "tasks": [
+      "drill_hole",
+      "fasten_screw",
+      "finish_work"
+    ],
+    "fuzzy": [
+      "電動ドリル",
+      "下穴",
+      "クラッチ",
+      "drill driver",
+      "pilot hole"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "穴あけとネジ締めに使う、トルク調整しやすい電動工具。",
+    "summary_en": "A drill and screw-driving tool with adjustable torque control.",
+    "detail_ja": "木材・石膏ボード・薄い金属などへの下穴あけ、軽いビス締めに使う。クラッチ番号を調整することで締め過ぎを防ぎやすい。コンクリート穴あけには振動ドリルやハンマードリルを使う。",
+    "detail_en": "Used for pilot holes in wood, drywall, and thin metal, and for light screw driving. Torque clutch settings help prevent over-driving. For concrete drilling, use a hammer drill or rotary hammer.",
+    "bullets_ja": [
+      "穴あけ材に合うドリルビットを選ぶ。",
+      "ビス締めではクラッチを調整する。",
+      "コンクリート用途とは分けて考える。"
+    ],
+    "bullets_en": [
+      "Choose a drill bit suitable for the material.",
+      "Adjust the clutch for screw driving.",
+      "Do not treat it as a concrete drilling tool."
+    ],
+    "examples": {
+      "ja": [
+        "棚受け金具の下穴をあける。",
+        "内装材の小ビスを締める。"
+      ],
+      "en": [
+        "Drilling pilot holes for shelf brackets.",
+        "Driving small screws in finish work."
+      ]
+    },
+    "summary": {
+      "ja": "穴あけとネジ締めに使う、トルク調整しやすい電動工具。",
+      "en": "A drill and screw-driving tool with adjustable torque control."
+    },
+    "bullets": {
+      "ja": [
+        "クラッチ調整が重要。",
+        "材料に合うビットを使う。"
+      ],
+      "en": [
+        "Torque clutch control matters.",
+        "Use the correct bit for the material."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  },
+  {
+    "id": "hammer_drill",
+    "type": "tool",
+    "term": {
+      "ja": "振動ドリル",
+      "en": "Hammer Drill"
+    },
+    "aliases": {
+      "ja": [
+        "震動ドリル",
+        "コンクリートドリル"
+      ],
+      "en": [
+        "Percussion drill",
+        "Impact drill"
+      ]
+    },
+    "description": {
+      "ja": "回転に細かい打撃を加えて、モルタルやブロックなどに穴をあける電動工具。軽めのコンクリート穴あけに使う。大径穴や本格的なコンクリート作業ではハンマードリルを使う。",
+      "en": "A drill that adds rapid hammering action to rotation for drilling mortar, block, and light concrete. For larger holes or heavier concrete work, use a rotary hammer."
+    },
+    "categories": [
+      "power_tool",
+      "drilling",
+      "concrete"
+    ],
+    "tasks": [
+      "drill_masonry",
+      "install_anchor"
+    ],
+    "fuzzy": [
+      "振動",
+      "コンクリート",
+      "アンカー下穴",
+      "hammer drill",
+      "masonry drilling"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "モルタルやブロックなどに穴をあける振動機能付きドリル。",
+    "summary_en": "A drill with hammer action for masonry and light concrete holes.",
+    "detail_ja": "プラグアンカーや軽量物の固定下穴に使う。鉄筋に当たると進まないため、無理に押し続けない。粉じん対策、保護メガネ、適切なコンクリート用ビットが必要。",
+    "detail_en": "Used for plug anchors and light-duty fixing holes. If it hits rebar, do not force it. Dust control, safety glasses, and a proper masonry bit are needed.",
+    "bullets_ja": [
+      "コンクリート用ビットを使う。",
+      "鉄筋に当たったら無理に進めない。",
+      "粉じんと目の保護を行う。"
+    ],
+    "bullets_en": [
+      "Use a masonry bit.",
+      "Do not force drilling into rebar.",
+      "Control dust and protect eyes."
+    ],
+    "examples": {
+      "ja": [
+        "コンクリート壁にプラグ用の下穴をあける。",
+        "ブロック塀に軽量金物を固定する。"
+      ],
+      "en": [
+        "Drilling a plug-anchor hole in a concrete wall.",
+        "Fixing light hardware to a block wall."
+      ]
+    },
+    "summary": {
+      "ja": "モルタルやブロックなどに穴をあける振動機能付きドリル。",
+      "en": "A drill with hammer action for masonry and light concrete holes."
+    },
+    "bullets": {
+      "ja": [
+        "粉じん対策を行う。",
+        "ビット選定が重要。"
+      ],
+      "en": [
+        "Use dust control.",
+        "Select the correct bit."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  },
+  {
+    "id": "core_drill",
+    "type": "tool",
+    "term": {
+      "ja": "コアドリル",
+      "en": "Core Drill"
+    },
+    "aliases": {
+      "ja": [
+        "コア抜き機",
+        "ダイヤモンドコア"
+      ],
+      "en": [
+        "Diamond core drill",
+        "Core drilling machine"
+      ]
+    },
+    "description": {
+      "ja": "円筒状のビットでコンクリートやALCなどに丸穴をあける工具。設備配管、換気、電気配線の貫通穴に使う。水を使う湿式と、集じんを使う乾式がある。",
+      "en": "A drilling tool that cuts circular holes in concrete, ALC, and similar materials using a cylindrical bit. It is used for pipe, ventilation, and electrical penetrations. Wet and dry methods are common."
+    },
+    "categories": [
+      "power_tool",
+      "concrete",
+      "drilling",
+      "mep"
+    ],
+    "tasks": [
+      "core_drilling",
+      "make_penetration",
+      "install_pipe"
+    ],
+    "fuzzy": [
+      "コア抜き",
+      "貫通穴",
+      "ダイヤモンド",
+      "core drill",
+      "penetration"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "配管や換気などの丸い貫通穴をあける工具。",
+    "summary_en": "A tool for making round penetration holes for pipes and ventilation.",
+    "detail_ja": "穴径、壁厚、配筋、裏側の安全、漏水対策を事前に確認する。湿式では水処理と養生が重要。構造部材へのコア抜きは設計者や管理者の確認が必要になる場合がある。",
+    "detail_en": "Check hole diameter, wall thickness, rebar, backside safety, and water control before drilling. Wet drilling requires water handling and protection. Core drilling through structural members may require designer or owner approval.",
+    "bullets_ja": [
+      "裏側の人・物を確認する。",
+      "湿式では水養生を行う。",
+      "構造部材は勝手に穴あけしない。"
+    ],
+    "bullets_en": [
+      "Check people and objects behind the wall.",
+      "Provide water protection for wet drilling.",
+      "Do not drill structural members without approval."
+    ],
+    "examples": {
+      "ja": [
+        "換気扇用の外壁貫通穴をあける。",
+        "配管ルートに合わせてコア抜きを行う。"
+      ],
+      "en": [
+        "Core drilling an exterior wall for a fan duct.",
+        "Making pipe-route penetrations with a core drill."
+      ]
+    },
+    "summary": {
+      "ja": "配管や換気などの丸い貫通穴をあける工具。",
+      "en": "A tool for making round penetration holes for pipes and ventilation."
+    },
+    "bullets": {
+      "ja": [
+        "裏側確認が重要。",
+        "水処理と養生が必要。"
+      ],
+      "en": [
+        "Backside checks are critical.",
+        "Water handling and protection are required."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  },
+  {
+    "id": "random_orbit_sander",
+    "type": "tool",
+    "term": {
+      "ja": "ランダムサンダー",
+      "en": "Random Orbit Sander"
+    },
+    "aliases": {
+      "ja": [
+        "オービタルサンダー",
+        "電動サンダー"
+      ],
+      "en": [
+        "Random orbital sander",
+        "Orbital sander"
+      ]
+    },
+    "description": {
+      "ja": "円形パッドが回転と偏心運動をしながら木材やパテ面を研磨する電動工具。仕上げ研磨に向き、手研磨より均一に削りやすい。番手選びと粉じん対策が重要。",
+      "en": "A sander whose round pad rotates and orbits to sand wood, filler, and finish surfaces. It is suitable for finish sanding and produces more even results than hand sanding. Grit selection and dust control matter."
+    },
+    "categories": [
+      "power_tool",
+      "sanding",
+      "finishing"
+    ],
+    "tasks": [
+      "sand_surface",
+      "prepare_finish",
+      "smooth_putty"
+    ],
+    "fuzzy": [
+      "サンダー",
+      "研磨",
+      "パテ研ぎ",
+      "random orbit sander",
+      "sanding"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "木材やパテ面を均一に研磨する電動工具。",
+    "summary_en": "A power tool for even sanding of wood and filler surfaces.",
+    "detail_ja": "粗い番手から細かい番手へ段階的に変える。押し付けすぎると回転が止まり、ムラや丸跡が残る。室内作業では集じん機やマスクを併用する。",
+    "detail_en": "Move from coarse to finer grits step by step. Excess pressure can stop pad rotation and leave swirl marks. Indoors, use dust extraction and a respirator or mask.",
+    "bullets_ja": [
+      "番手を段階的に変える。",
+      "押し付けすぎない。",
+      "粉じん対策を行う。"
+    ],
+    "bullets_en": [
+      "Step through grit sizes.",
+      "Do not press too hard.",
+      "Control sanding dust."
+    ],
+    "examples": {
+      "ja": [
+        "木部塗装前に表面を整える。",
+        "パテ処理後の面を平滑にする。"
+      ],
+      "en": [
+        "Preparing wood before painting.",
+        "Smoothing a filled surface after putty work."
+      ]
+    },
+    "summary": {
+      "ja": "木材やパテ面を均一に研磨する電動工具。",
+      "en": "A power tool for even sanding of wood and filler surfaces."
+    },
+    "bullets": {
+      "ja": [
+        "番手選びが重要。",
+        "集じんを使う。"
+      ],
+      "en": [
+        "Grit choice matters.",
+        "Use dust extraction."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  },
+  {
+    "id": "speed_square",
+    "type": "tool",
+    "term": {
+      "ja": "差し金",
+      "en": "Carpenter's Square"
+    },
+    "aliases": {
+      "ja": [
+        "曲尺",
+        "さしがね",
+        "矩尺"
+      ],
+      "en": [
+        "Framing square",
+        "Square"
+      ]
+    },
+    "description": {
+      "ja": "直角や寸法、勾配の確認に使うL字型の測定工具。大工仕事や現場加工で、墨付け、直角確認、切断線の作図に使う。落下や曲がりで精度が狂うことがある。",
+      "en": "An L-shaped measuring tool used for right angles, dimensions, and slope layout. It is common in carpentry and site fabrication for marking, checking square, and drawing cut lines. Accuracy can be affected by bending or impact."
+    },
+    "categories": [
+      "measurement",
+      "layout",
+      "hand_tool",
+      "woodworking"
+    ],
+    "tasks": [
+      "mark_square",
+      "check_angle",
+      "layout_cut"
+    ],
+    "fuzzy": [
+      "曲尺",
+      "矩",
+      "直角",
+      "差し金",
+      "carpenter square",
+      "framing square"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "直角確認や墨付けに使うL字型の測定工具。",
+    "summary_en": "An L-shaped tool for checking square and marking layout lines.",
+    "detail_ja": "長手と短手を材料の基準面に密着させて線を引く。曲がった差し金では直角が狂う。表裏の目盛りや勾配目盛りを使い分ける場合は読み間違いに注意する。",
+    "detail_en": "Hold the long and short legs tight against the reference edges before marking. A bent square gives inaccurate angles. When using front/back scales or pitch scales, avoid reading the wrong scale.",
+    "bullets_ja": [
+      "基準面に密着させる。",
+      "曲がりがないか確認する。",
+      "目盛りの読み間違いに注意する。"
+    ],
+    "bullets_en": [
+      "Hold it against the reference edge.",
+      "Check for bending.",
+      "Avoid reading the wrong scale."
+    ],
+    "examples": {
+      "ja": [
+        "木材に直角の切断線を引く。",
+        "造作部材の矩を確認する。"
+      ],
+      "en": [
+        "Marking a square cut line on lumber.",
+        "Checking a finish component for square."
+      ]
+    },
+    "summary": {
+      "ja": "直角確認や墨付けに使うL字型の測定工具。",
+      "en": "An L-shaped tool for checking square and marking layout lines."
+    },
+    "bullets": {
+      "ja": [
+        "曲がりに注意。",
+        "基準面に当てる。"
+      ],
+      "en": [
+        "Check for bending.",
+        "Use a reference edge."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  },
+  {
+    "id": "chisel",
+    "type": "tool",
+    "term": {
+      "ja": "のみ",
+      "en": "Chisel"
+    },
+    "aliases": {
+      "ja": [
+        "鑿",
+        "木工のみ"
+      ],
+      "en": [
+        "Wood chisel",
+        "Carpenter chisel"
+      ]
+    },
+    "description": {
+      "ja": "木材を削る、ほぞ穴を整える、細部を加工するための刃物工具。木工や造作で使う。刃先が鋭いため、手の位置と切る方向に注意し、叩く場合は適した柄とハンマーを使う。",
+      "en": "A bladed hand tool for paring wood, cleaning mortises, and shaping details. It is used in carpentry and finish work. Because the edge is sharp, keep hands out of the cutting path and use the proper handle and mallet when striking."
+    },
+    "categories": [
+      "hand_tool",
+      "woodworking",
+      "finishing"
+    ],
+    "tasks": [
+      "pare_wood",
+      "clean_mortise",
+      "shape_detail"
+    ],
+    "fuzzy": [
+      "鑿",
+      "木工",
+      "ほぞ",
+      "chisel",
+      "mortise"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "木材を削ったり細部を加工する刃物工具。",
+    "summary_en": "A bladed hand tool for paring and shaping wood details.",
+    "detail_ja": "刃を研いで使い、無理にこじらない。節や硬い材料では刃が欠けることがある。作業台や材料を固定し、刃の進む先に手を置かない。",
+    "detail_en": "Use it sharp and do not pry with the edge. Knots and hard materials can chip the blade. Secure the workpiece and keep hands away from the cutting direction.",
+    "bullets_ja": [
+      "刃の進行方向に手を置かない。",
+      "材料を固定する。",
+      "刃をこじらない。"
+    ],
+    "bullets_en": [
+      "Keep hands out of the cut path.",
+      "Secure the workpiece.",
+      "Do not pry with the blade."
+    ],
+    "examples": {
+      "ja": [
+        "建具枠の細部を削る。",
+        "木材の欠き込みを整える。"
+      ],
+      "en": [
+        "Paring a door-frame detail.",
+        "Cleaning a notch in wood."
+      ]
+    },
+    "summary": {
+      "ja": "木材を削ったり細部を加工する刃物工具。",
+      "en": "A bladed hand tool for paring and shaping wood details."
+    },
+    "bullets": {
+      "ja": [
+        "刃物の向きに注意。",
+        "固定して作業。"
+      ],
+      "en": [
+        "Watch blade direction.",
+        "Secure the work."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  },
+  {
+    "id": "hand_saw",
+    "type": "tool",
+    "term": {
+      "ja": "手のこ",
+      "en": "Hand Saw"
+    },
+    "aliases": {
+      "ja": [
+        "のこぎり",
+        "鋸"
+      ],
+      "en": [
+        "Handsaw",
+        "Pull saw"
+      ]
+    },
+    "description": {
+      "ja": "人力で木材や合板を切るのこぎり。電動工具が使いにくい場所や細かい調整切りに使う。刃の種類には縦挽き、横挽き、胴付きなどがある。",
+      "en": "A manually operated saw for cutting lumber and plywood. It is useful where power tools are unsuitable or for fine adjustment cuts. Blade types include rip, crosscut, and backsaw styles."
+    },
+    "categories": [
+      "hand_tool",
+      "cutting",
+      "woodworking"
+    ],
+    "tasks": [
+      "cut_lumber",
+      "trim_detail",
+      "finish_cut"
+    ],
+    "fuzzy": [
+      "のこぎり",
+      "鋸",
+      "手切り",
+      "hand saw",
+      "pull saw"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "木材や合板を人力で切る基本的なのこぎり。",
+    "summary_en": "A basic manual saw for cutting lumber and plywood.",
+    "detail_ja": "切断線を確認し、最初は浅くガイド溝を作る。刃を無理に曲げると切り口が曲がる。材料をしっかり支え、切り落とし側で刃が挟まれないようにする。",
+    "detail_en": "Confirm the cut line and start with shallow strokes to form a guide kerf. Forcing the blade can curve the cut. Support the workpiece and prevent the offcut from pinching the blade.",
+    "bullets_ja": [
+      "材料を安定させる。",
+      "切り始めは浅く入れる。",
+      "刃を無理に曲げない。"
+    ],
+    "bullets_en": [
+      "Stabilize the material.",
+      "Start with shallow strokes.",
+      "Do not force the blade sideways."
+    ],
+    "examples": {
+      "ja": [
+        "下地材を少し切り詰める。",
+        "電動工具が入らない場所で切る。"
+      ],
+      "en": [
+        "Trimming backing lumber slightly.",
+        "Cutting where a power saw cannot fit."
+      ]
+    },
+    "summary": {
+      "ja": "木材や合板を人力で切る基本的なのこぎり。",
+      "en": "A basic manual saw for cutting lumber and plywood."
+    },
+    "bullets": {
+      "ja": [
+        "材料支持が重要。",
+        "刃をこじらない。"
+      ],
+      "en": [
+        "Support the workpiece.",
+        "Do not twist the blade."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  },
+  {
+    "id": "stepladder",
+    "type": "access",
+    "term": {
+      "ja": "脚立",
+      "en": "Stepladder"
+    },
+    "aliases": {
+      "ja": [
+        "脚立足場",
+        "踏み台脚立"
+      ],
+      "en": [
+        "Step ladder",
+        "A-frame ladder"
+      ]
+    },
+    "description": {
+      "ja": "自立して使う折りたたみ式の昇降具。高所の軽作業や点検に使う。天板に乗る、開き止めを掛けない、水平でない場所に置くなどは転落の原因になる。",
+      "en": "A self-supporting folding access tool used for light work and inspection at height. Standing on the top cap, failing to lock spreaders, or placing it on uneven ground can lead to falls."
+    },
+    "categories": [
+      "access",
+      "safety",
+      "temporary_work"
+    ],
+    "tasks": [
+      "work_at_height",
+      "inspection",
+      "light_installation"
+    ],
+    "fuzzy": [
+      "高所",
+      "脚立",
+      "転落",
+      "stepladder",
+      "work at height"
+    ],
+    "region": [
+      "jp",
+      "global"
+    ],
+    "summary_ja": "高所の軽作業に使う自立式の昇降具。",
+    "summary_en": "A self-supporting access tool for light work at height.",
+    "detail_ja": "開き止めを確実に掛け、安定した床に置く。身を乗り出すと重心が外れて転落しやすい。両手作業や長時間作業では脚立ではなく適切な作業台や足場を検討する。",
+    "detail_en": "Lock the spreaders and place the ladder on stable ground. Overreaching moves the center of gravity outside the base and can cause a fall. For two-handed or long-duration work, consider a platform or scaffold instead.",
+    "bullets_ja": [
+      "開き止めを掛ける。",
+      "天板に乗らない。",
+      "身を乗り出さない。"
+    ],
+    "bullets_en": [
+      "Lock the spreaders.",
+      "Do not stand on the top cap.",
+      "Do not overreach."
+    ],
+    "examples": {
+      "ja": [
+        "天井付近の軽作業を行う。",
+        "高い位置の寸法を確認する。"
+      ],
+      "en": [
+        "Performing light work near a ceiling.",
+        "Checking a dimension at height."
+      ]
+    },
+    "summary": {
+      "ja": "高所の軽作業に使う自立式の昇降具。",
+      "en": "A self-supporting access tool for light work at height."
+    },
+    "bullets": {
+      "ja": [
+        "転落対策が必須。",
+        "長時間作業は足場を検討。"
+      ],
+      "en": [
+        "Fall prevention is essential.",
+        "Use a platform for longer work."
+      ]
+    },
+    "meta": {
+      "quality_batch": "001"
+    }
+  }
 ]
