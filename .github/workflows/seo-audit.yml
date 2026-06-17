@@ -13,7 +13,6 @@ on:
       - 'categories/**'
       - 'tools/**'
       - 'scripts/audit-common-breakage.mjs'
-      - 'scripts/build-common-breakage-repair-bundle.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -33,7 +32,6 @@ on:
       - 'categories/**'
       - 'tools/**'
       - 'scripts/audit-common-breakage.mjs'
-      - 'scripts/build-common-breakage-repair-bundle.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -70,24 +68,6 @@ jobs:
         with:
           name: common-breakage-report
           path: common-breakage-report.json
-          if-no-files-found: error
-
-      - name: Build common repair bundle
-        if: always()
-        env:
-          COMMON_REPAIR_BUNDLE: common-breakage-repair-bundle.json
-        run: |
-          node scripts/build-common-breakage-repair-bundle.mjs
-          git rev-parse HEAD^{tree} > checkout-tree-sha.txt
-
-      - name: Upload common repair bundle
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: common-breakage-repair-bundle
-          path: |
-            common-breakage-repair-bundle.json
-            checkout-tree-sha.txt
           if-no-files-found: error
 
       - name: Run strict SEO audit
