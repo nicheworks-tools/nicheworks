@@ -1,1 +1,0 @@
-PR #492 tracks common residual repair and static category navigation. Category pages remain follow-only until final sitemap activation.
