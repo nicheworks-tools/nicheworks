@@ -65,6 +65,9 @@ jobs:
       - name: Capture Construction Tools Atlas duplicate output
         run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --summary-only > cta-duplicate-summary.txt 2>&1 || true
 
+      - name: Capture Construction Tools Atlas dedupe dry run
+        run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --dry-run --write-report > cta-dedupe-summary.txt 2>&1 || true
+
       - name: Upload audit reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,6 +76,8 @@ jobs:
           path: |
             common-breakage-report.json
             cta-duplicate-summary.txt
+            cta-dedupe-summary.txt
+            tools/construction-tools-atlas/reports/dedupe-quality-data.json
           if-no-files-found: error
 
       - name: Run strict SEO audit
