@@ -1,0 +1,46 @@
+name: PR 492 data format
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  format-data:
+    if: github.head_ref == 'work-492'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          path: current
+
+      - name: Checkout main baseline
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: baseline
+
+      - name: Copy baseline data
+        run: cp -R baseline/tools/construction-tools-atlas/data/. current/tools/construction-tools-atlas/data/
+
+      - name: Apply verified data cleanup
+        working-directory: current
+        run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --write-report
+
+      - name: Verify data
+        working-directory: current
+        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --summary-only
+
+      - name: Commit data
+        working-directory: current
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/construction-tools-atlas/data
+          git commit -m "Update Construction Tools Atlas data"
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
