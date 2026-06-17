@@ -10,7 +10,9 @@ on:
       - 'privacy.html'
       - 'contact.html'
       - 'en/**'
+      - 'categories/**'
       - 'tools/**'
+      - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -27,7 +29,9 @@ on:
       - 'privacy.html'
       - 'contact.html'
       - 'en/**'
+      - 'categories/**'
       - 'tools/**'
+      - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -52,6 +56,9 @@ jobs:
 
       - name: Verify normal publishing mode
         run: node scripts/audit-publishing-mode.mjs
+
+      - name: Audit common HTML breakage
+        run: node scripts/audit-common-breakage.mjs
 
       - name: Run strict SEO audit
         run: node scripts/audit-seo.mjs --strict
