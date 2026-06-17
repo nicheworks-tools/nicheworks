@@ -53,6 +53,12 @@ Fixed two broken HTML attributes that affected the page range input and preview 
   - `id="previewPlaceholder"`
   - `data-i18n-key="index.preview.placeholder"`
 
+### json2mermaid
+
+Fixed the broken input example attribute.
+
+- Replaced `stable content='{...}'` on the JSON input textarea with a valid `placeholder='{...}'`.
+
 ## Notes
 
 Construction Tools Atlas appears to have the same AdSense script URL issue, but the direct connector update for that full HTML file was blocked during this pass. Keep it in the PR #485 queue and retry via a smaller or alternate patch path.
