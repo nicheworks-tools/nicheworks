@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
+const reportPath = process.env.COMMON_BREAKAGE_REPORT || 'common-breakage-report.json';
 const skippedDirectories = new Set([
   '.git',
   '.github',
@@ -15,6 +16,7 @@ const skippedDirectories = new Set([
 ]);
 
 const failures = [];
+let checkedFiles = 0;
 
 function relative(file) {
   return path.relative(root, file).split(path.sep).join('/');
@@ -36,6 +38,7 @@ function countMatches(text, pattern) {
 }
 
 for (const file of collectHtml()) {
+  checkedFiles += 1;
   const html = fs.readFileSync(file, 'utf8');
   const fileName = relative(file);
   const issues = [];
@@ -67,6 +70,13 @@ for (const file of collectHtml()) {
   if (issues.length) failures.push({ file: fileName, issues });
 }
 
+const report = {
+  checked_files: checkedFiles,
+  failed_files: failures.length,
+  failures
+};
+fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+
 if (failures.length) {
   console.error(`Common breakage audit failed: ${failures.length} file(s)`);
   for (const item of failures) {
@@ -74,5 +84,5 @@ if (failures.length) {
   }
   process.exitCode = 1;
 } else {
-  console.log('Common breakage audit passed.');
+  console.log(`Common breakage audit passed: ${checkedFiles} HTML file(s) checked.`);
 }
