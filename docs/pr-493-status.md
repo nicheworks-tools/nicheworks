@@ -1,0 +1,1 @@
+PR #493 audits fifteen PDF, image, and file tools. The checks cover page presence, repeated HTML IDs, missing local assets, JavaScript syntax, and DOM-reference warnings. Confirmed defects will be corrected before merge.
