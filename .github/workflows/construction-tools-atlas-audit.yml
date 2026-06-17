@@ -10,29 +10,33 @@ on:
       - 'tools/construction-tools-atlas/**'
       - '.github/workflows/construction-tools-atlas-audit.yml'
 
+permissions:
+  contents: write
+
 jobs:
   duplicate-audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout PR branch
         uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Build duplicate audit report
         run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --write-report || true
 
-      - name: Upload duplicate audit report
-        uses: actions/upload-artifact@v4
-        with:
-          name: construction-tools-atlas-duplicate-audit
-          path: |
-            tools/construction-tools-atlas/reports/duplicate-audit.json
-            tools/construction-tools-atlas/reports/duplicate-audit.md
-          if-no-files-found: error
+      - name: Commit duplicate audit report on PR branch
+        if: github.event_name == 'pull_request' && github.head_ref == 'work-492'
+        run: |
+          git add -f tools/construction-tools-atlas/reports/duplicate-audit.json tools/construction-tools-atlas/reports/duplicate-audit.md
+          if git diff --cached --quiet; then
+            echo "Report is unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Record Construction Tools Atlas duplicate audit"
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
 
       - name: Enforce duplicate audit result
         run: |
