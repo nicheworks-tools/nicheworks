@@ -9,6 +9,7 @@ const dataDir = path.join(root, 'data');
 const reportDir = path.join(root, 'reports');
 const manifestPath = path.join(dataDir, 'quality-manifest.json');
 const writeReport = process.argv.includes('--write-report');
+const summaryOnly = process.argv.includes('--summary-only');
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -144,7 +145,14 @@ function toMarkdown(data) {
 }
 
 const jsonText = JSON.stringify(report, null, 2);
-console.log(jsonText);
+if (summaryOnly) {
+  console.log(`DUPLICATE_AUDIT_SUMMARY=${JSON.stringify({
+    duplicate_ids: report.duplicate_ids,
+    duplicate_exact_terms_ja_en: report.duplicate_exact_terms_ja_en,
+  })}`);
+} else {
+  console.log(jsonText);
+}
 
 if (writeReport) {
   fs.mkdirSync(reportDir, { recursive: true });
