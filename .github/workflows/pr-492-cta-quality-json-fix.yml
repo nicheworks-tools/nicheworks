@@ -1,0 +1,34 @@
+name: PR 492 CTA quality JSON fix
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.head_ref == 'work-492'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Repair quality JSON boundaries
+        run: node tools/construction-tools-atlas/scripts/fix-quality-json-boundaries.mjs
+
+      - name: Commit repairs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/construction-tools-atlas/data
+          if git diff --cached --quiet; then
+            echo "No quality JSON repairs were needed."
+            exit 0
+          fi
+          git commit -m "Repair Construction Tools Atlas quality JSON boundaries"
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
