@@ -1,0 +1,1 @@
+The PR #492 workflow now emits a common-breakage repair bundle and checkout tree SHA so the detected public HTML repairs can be applied as one Git tree update.
