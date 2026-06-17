@@ -62,8 +62,8 @@ jobs:
           COMMON_BREAKAGE_REPORT: common-breakage-report.json
         run: node scripts/audit-common-breakage.mjs
 
-      - name: Build Construction Tools Atlas duplicate report
-        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --write-report --summary-only || true
+      - name: Capture Construction Tools Atlas duplicate output
+        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --summary-only > cta-duplicate-summary.txt 2>&1 || true
 
       - name: Upload audit reports
         if: always()
@@ -72,8 +72,7 @@ jobs:
           name: common-breakage-report
           path: |
             common-breakage-report.json
-            tools/construction-tools-atlas/reports/duplicate-audit.json
-            tools/construction-tools-atlas/reports/duplicate-audit.md
+            cta-duplicate-summary.txt
           if-no-files-found: error
 
       - name: Run strict SEO audit
