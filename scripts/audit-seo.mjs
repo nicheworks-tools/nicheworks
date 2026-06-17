@@ -1,3 +1,4 @@
+// SEO strict verification marker: 2026-05-10 r3
 import fs from 'node:fs';
 import path from 'node:path';
 
