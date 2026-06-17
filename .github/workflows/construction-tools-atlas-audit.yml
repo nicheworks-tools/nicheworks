@@ -11,36 +11,19 @@ on:
       - '.github/workflows/construction-tools-atlas-audit.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   duplicate-audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR branch
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
+          show-progress: false
 
-      - name: Build duplicate audit report
-        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --write-report || true
-
-      - name: Commit duplicate audit report on PR branch
-        if: github.event_name == 'pull_request' && github.head_ref == 'work-492'
-        run: |
-          git add -f tools/construction-tools-atlas/reports/duplicate-audit.json tools/construction-tools-atlas/reports/duplicate-audit.md
-          if git diff --cached --quiet; then
-            echo "Report is unchanged."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Record Construction Tools Atlas duplicate audit"
-          git push origin "HEAD:${GITHUB_HEAD_REF}"
-
-      - name: Enforce duplicate audit result
-        run: |
-          node --input-type=module -e "import fs from 'node:fs'; const report=JSON.parse(fs.readFileSync('tools/construction-tools-atlas/reports/duplicate-audit.json','utf8')); if(report.duplicate_ids.length || report.duplicate_exact_terms_ja_en.length) process.exit(1);"
+      - name: Audit duplicate ids and exact terms
+        run: node tools/construction-tools-atlas/scripts/audit-duplicates.mjs --summary-only
 
       - name: Check whether data dedupe would remove records
         run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --dry-run --write-report
