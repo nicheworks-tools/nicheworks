@@ -16,6 +16,11 @@ function readJson(filePath) {
 }
 
 function writeJson(filePath, data) {
+  if (Array.isArray(data)) {
+    const rows = data.map((row) => JSON.stringify(row));
+    fs.writeFileSync(filePath, `[\n${rows.join(',\n')}\n]\n`);
+    return;
+  }
   fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
 }
 
