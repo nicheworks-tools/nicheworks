@@ -269,6 +269,7 @@ dropZone.addEventListener("drop", (e) => {
 
 fileInput.addEventListener("change", (e) => {
   handleFileList(e.target.files);
+  e.target.value = "";
 });
 
 function handleFileList(files) {
