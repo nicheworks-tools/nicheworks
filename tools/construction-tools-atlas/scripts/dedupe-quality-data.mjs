@@ -15,8 +15,39 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-function writeJson(filePath, data) {
-  fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
+function repairKnownBoundaries(text) {
+  return text
+    .replace(/("summary_en":"(?:\\.|[^"\\])*")\},"detail_ja"/g, '$1,"detail_ja"')
+    .replace(/("detail_en":"(?:\\.|[^"\\])*")\},"bullets_ja"/g, '$1,"bullets_ja"');
+}
+
+function readDataDocument(filePath) {
+  const originalText = fs.readFileSync(filePath, 'utf8');
+  const repairedText = repairKnownBoundaries(originalText);
+  return {
+    raw: JSON.parse(repairedText),
+    originalText,
+    syntaxRepaired: repairedText !== originalText,
+  };
+}
+
+function writeJson(filePath, data, originalText) {
+  const newline = originalText.includes('\r\n') ? '\r\n' : '\n';
+  let text;
+
+  if (Array.isArray(data)) {
+    const wasPretty = /^\[\r?\n {2}\{/.test(originalText);
+    if (wasPretty) {
+      text = JSON.stringify(data, null, 2);
+    } else {
+      text = `[${newline}${data.map((row) => JSON.stringify(row)).join(`,${newline}`)}${newline}]`;
+    }
+  } else {
+    const wasPretty = /^\{\r?\n {2}"/.test(originalText);
+    text = wasPretty ? JSON.stringify(data, null, 2) : JSON.stringify(data);
+  }
+
+  fs.writeFileSync(filePath, `${text}${newline}`);
 }
 
 function normalize(value) {
@@ -76,17 +107,20 @@ const seenIds = new Map();
 const seenTerms = new Map();
 const removals = [];
 const perFile = [];
+let syntaxRepairCount = 0;
 
 for (const file of files) {
   const filePath = path.join(dataDir, file);
   if (!fs.existsSync(filePath)) {
-    perFile.push({ file, status: 'missing', before: 0, after: 0, removed: 0 });
+    perFile.push({ file, status: 'missing', before: 0, after: 0, removed: 0, syntax_repaired: false });
     continue;
   }
 
-  const raw = readJson(filePath);
+  const { raw, originalText, syntaxRepaired } = readDataDocument(filePath);
   const { kind, rows } = rowsOf(raw);
   const kept = [];
+
+  if (syntaxRepaired) syntaxRepairCount += 1;
 
   for (const row of rows) {
     const id = getId(row);
@@ -114,16 +148,24 @@ for (const file of files) {
     kept.push(row);
   }
 
-  perFile.push({ file, status: 'ok', before: rows.length, after: kept.length, removed: rows.length - kept.length });
+  perFile.push({
+    file,
+    status: 'ok',
+    before: rows.length,
+    after: kept.length,
+    removed: rows.length - kept.length,
+    syntax_repaired: syntaxRepaired,
+  });
 
-  if (!dryRun && kept.length !== rows.length) {
-    writeJson(filePath, setRows(raw, kind, kept));
+  if (!dryRun && (syntaxRepaired || kept.length !== rows.length)) {
+    writeJson(filePath, setRows(raw, kind, kept), originalText);
   }
 }
 
 const report = {
   mode: dryRun ? 'dry-run' : 'write',
   files_scanned: files.length,
+  syntax_repaired_files: syntaxRepairCount,
   total_removed: removals.length,
   per_file: perFile,
   removals,

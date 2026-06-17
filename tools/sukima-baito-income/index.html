@@ -119,7 +119,7 @@
         <input type="date" id="dateInput" />
 
         <label for="workplaceInput">就業先</label>
-        <input type="text" id="workplaceInput" stable content="例：Amazon倉庫" list="workplaceList" autocomplete="off" spellcheck="false" />
+        <input type="text" id="workplaceInput" placeholder="例：Amazon倉庫" list="workplaceList" autocomplete="off" spellcheck="false" />
         <datalist id="workplaceList"></datalist>
 
         <label for="categoryInput">区分</label>
@@ -131,10 +131,10 @@
         </select>
 
         <label for="amountInput">金額（円）</label>
-        <input type="number" id="amountInput" stable content="例：4200" inputmode="numeric" min="0" step="1" autocomplete="off" />
+        <input type="number" id="amountInput" placeholder="例：4200" inputmode="numeric" min="0" step="1" autocomplete="off" />
 
         <label for="memoInput">メモ（任意）</label>
-        <textarea id="memoInput" rows="2" stable content="任意メモ"></textarea>
+        <textarea id="memoInput" rows="2" placeholder="任意メモ"></textarea>
         <p class="field-help">実名、住所、口座情報、マイナンバー、個人を特定できる内容は入力しないでください。</p>
 
         <button id="addBtn" type="button" class="add-btn">追加する</button>

@@ -10,7 +10,9 @@ on:
       - 'privacy.html'
       - 'contact.html'
       - 'en/**'
+      - 'categories/**'
       - 'tools/**'
+      - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -27,7 +29,9 @@ on:
       - 'privacy.html'
       - 'contact.html'
       - 'en/**'
+      - 'categories/**'
       - 'tools/**'
+      - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -52,6 +56,19 @@ jobs:
 
       - name: Verify normal publishing mode
         run: node scripts/audit-publishing-mode.mjs
+
+      - name: Audit common HTML breakage
+        env:
+          COMMON_BREAKAGE_REPORT: common-breakage-report.json
+        run: node scripts/audit-common-breakage.mjs
+
+      - name: Upload common breakage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-breakage-report
+          path: common-breakage-report.json
+          if-no-files-found: error
 
       - name: Run strict SEO audit
         run: node scripts/audit-seo.mjs --strict
