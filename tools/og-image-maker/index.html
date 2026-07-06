@@ -111,11 +111,46 @@
           </div>
 
           <div class="field">
-            <label class="label" data-i18n="ja" for="themeSelect">テーマ</label>
-            <label class="label" data-i18n="en" for="themeSelect" style="display:none;">Theme</label>
+            <label class="label" data-i18n="ja" for="templateSelect">テンプレート</label>
+            <label class="label" data-i18n="en" for="templateSelect" style="display:none;">Template</label>
+            <select class="select" id="templateSelect">
+              <option value="minimal">Minimal</option>
+              <option value="split">Split</option>
+              <option value="gradient">Gradient</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="themeSelect">テーマ（文字色・アクセント）</label>
+            <label class="label" data-i18n="en" for="themeSelect" style="display:none;">Theme (Text & Accent)</label>
             <select class="select" id="themeSelect">
               <option value="light">Light</option>
               <option value="dark">Dark</option>
+            </select>
+          </div>
+
+          <div class="field" id="field-bgColor">
+            <label class="label" data-i18n="ja" for="bgColorInput">背景色</label>
+            <label class="label" data-i18n="en" for="bgColorInput" style="display:none;">Background Color</label>
+            <input class="input" id="bgColorInput" type="color" value="#ffffff" />
+          </div>
+
+          <div class="field" id="field-gradient" style="display:none;">
+            <label class="label" data-i18n="ja">グラデーション</label>
+            <label class="label" data-i18n="en" style="display:none;">Gradient Colors</label>
+            <div class="row">
+              <input class="input" id="gradientStartInput" type="color" value="#3b82f6" style="flex:1" />
+              <span>→</span>
+              <input class="input" id="gradientEndInput" type="color" value="#1d4ed8" style="flex:1" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="ja" for="textAlignSelect">テキスト揃え</label>
+            <label class="label" data-i18n="en" for="textAlignSelect" style="display:none;">Text Alignment</label>
+            <select class="select" id="textAlignSelect">
+              <option value="left">Left / 左揃え</option>
+              <option value="center">Center / 中央揃え</option>
             </select>
           </div>
 
@@ -125,8 +160,23 @@
             <input class="input" id="logoInput" type="file" accept="image/*" />
           </div>
 
+          <div class="field">
+            <label class="label">
+              <input type="checkbox" id="safeAreaToggle" />
+              <span data-i18n="ja">セーフエリア表示（非表示エリアの目安）</span>
+              <span data-i18n="en" style="display:none;">Show Safe Area Guide</span>
+            </label>
+          </div>
+
           <div class="row">
-            <button class="btn primary" type="button" id="downloadBtn">PNG保存</button>
+            <button class="btn primary" type="button" id="downloadBtn">
+              <span data-i18n="ja">PNG保存</span>
+              <span data-i18n="en" style="display:none;">Save PNG</span>
+            </button>
+            <button class="btn danger" type="button" id="resetBtn">
+              <span data-i18n="ja">リセット</span>
+              <span data-i18n="en" style="display:none;">Reset</span>
+            </button>
           </div>
 
           <div class="field">
