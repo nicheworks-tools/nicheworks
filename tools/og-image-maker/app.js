@@ -372,12 +372,27 @@
     const batchInput = document.getElementById("batchInput");
     const resetBtn = document.getElementById("resetBtn");
 
+    let lastTheme = state.theme;
+
     const syncState = () => {
       state.title = titleInput.value.trim();
       state.subtitle = subtitleInput.value.trim();
       state.url = urlInput.value.trim();
       state.template = templateSelect.value;
-      state.theme = themeSelect.value;
+
+      const newTheme = themeSelect.value;
+      if (newTheme !== lastTheme) {
+        if (newTheme === "dark" && state.bgColor === "#ffffff") {
+          state.bgColor = "#0f172a";
+          bgColorInput.value = "#0f172a";
+        } else if (newTheme === "light" && state.bgColor === "#0f172a") {
+          state.bgColor = "#ffffff";
+          bgColorInput.value = "#ffffff";
+        }
+        lastTheme = newTheme;
+      }
+      state.theme = newTheme;
+
       state.bgColor = bgColorInput.value;
       state.gradientStart = gradientStartInput.value;
       state.gradientEnd = gradientEndInput.value;
@@ -478,7 +493,7 @@
         state.title = row.title;
         state.subtitle = row.subtitle;
         state.url = row.url;
-        renderCanvas(tempCanvas);
+        renderCanvas(tempCanvas, true);
         downloadCanvas(tempCanvas, `og-${index + 1}.png`);
       });
       syncState();
