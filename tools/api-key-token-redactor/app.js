@@ -123,8 +123,8 @@ const scanContent = (text, options) => {
   if (options.modeBearer) {
     scanGroup(/(Authorization\s*:\s*Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", ["Authorization Bearerトークン", "Authorization Bearer token"], "high");
     scanGroup(/\b(Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", ["Bearerトークン", "Bearer token"], "high");
-    scanGroup(/(Authorization\s*:\s*)(?!Bearer\s+)([^\r\n]{8,})/gi, 2, "header", ["Authorizationヘッダー", "Authorization header"], "high");
-    scanGroup(/(-H\s+["']Authorization\s*:\s*Bearer\s+)([^"'\r\n]{12,})/gi, 2, "bearer", ["curl Authorization Bearerトークン", "curl Authorization Bearer token"], "high");
+    scanGroup(/(Authorization\s*:\s*)(?!Bearer\s+)([^ \r\n][^\r\n]{6,}[^ \r\n])/gi, 2, "header", ["Authorizationヘッダー", "Authorization header"], "high");
+    scanGroup(/(-H\s+["']Authorization\s*:\s*Bearer\s+)([^"'\s\r\n]{12,})/gi, 2, "bearer", ["curl Authorization Bearerトークン", "curl Authorization Bearer token"], "high");
   }
 
   if (options.modeJwt) {
@@ -150,11 +150,11 @@ const scanContent = (text, options) => {
 
   if (options.modeGenericSecret) {
     const secretKeys = "_?auth[_-]?token|api[_-]?key|apikey|token|secret|password|passwd|pwd|client[_-]?secret|access[_-]?token|refresh[_-]?token|auth[_-]?token|private[_-]?key|npm[_-]?token|vercel[_-]?token|database[_-]?url|db[_-]?password|aws[_-]?secret[_-]?access[_-]?key|secretAccessKey";
-    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)(["'])([^"'\\r\\n]{8,})(["'])`, "gi"), 3, "genericSecret", ["引用符付きシークレット", "Quoted secret value"], "medium");
+    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)(["'])([^"'\\s\\r\\n]{8,})(["'])`, "gi"), 3, "genericSecret", ["引用符付きシークレット", "Quoted secret value"], "medium");
     scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)([^\\s"',}\\]]{8,})`, "gi"), 2, "genericSecret", ["ラベル付きシークレット", "Labeled secret value"], "medium");
     scanGroup(/([?&](?:token|api_key|apikey|key|access_token|refresh_token|auth_token|client_secret|signature|sig)=)([^&#\s]{8,})/gi, 2, "urlQuery", ["URLクエリシークレット", "URL query secret"], "medium");
-    scanGroup(/(Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", ["Cookieヘッダー", "Cookie header"], "medium");
-    scanGroup(/(Set-Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", ["Set-Cookieヘッダー", "Set-Cookie header"], "medium");
+    scanGroup(/(Cookie\s*:\s*)([^ \r\n][^\r\n]{10,}[^ \r\n])/gi, 2, "cookie", ["Cookieヘッダー", "Cookie header"], "medium");
+    scanGroup(/(Set-Cookie\s*:\s*)([^ \r\n][^\r\n]{10,}[^ \r\n])/gi, 2, "cookie", ["Set-Cookieヘッダー", "Set-Cookie header"], "medium");
     scanGroup(/(\/\/registry\.npmjs\.org\/:_authToken=)([^\s\r\n]{8,})/gi, 2, "genericSecret", ["npm認証トークン", "npm auth token"], "high");
   }
 
@@ -228,10 +228,12 @@ const updateSummary = (counts) => {
   setText("countTotal", counts.total || 0);
 };
 
-const renderFindings = (originalFindings = [], residualFindings = []) => {
+const renderFindings = (originalFindings = null, residualFindings = null) => {
   const list = el("findingsList");
   if (list) {
-    if (!originalFindings.length) {
+    if (originalFindings === null) {
+      list.innerHTML = "";
+    } else if (originalFindings.length === 0) {
       list.innerHTML = `<p class="empty-state">${escapeHtml(t("検出結果はまだありません。検出0件でも、共有前に目視確認してください。", "No findings yet. Even with zero detections, review manually before sharing."))}</p>`;
     } else {
       list.innerHTML = originalFindings.map((item) => `
@@ -249,7 +251,9 @@ const renderFindings = (originalFindings = [], residualFindings = []) => {
 
   const vlist = el("verificationList");
   if (vlist) {
-    if (residualFindings.length > 0) {
+    if (residualFindings === null) {
+      vlist.innerHTML = "";
+    } else if (residualFindings.length > 0) {
       const counts = residualFindings.reduce((acc, item) => {
         acc[item.severity] = (acc[item.severity] || 0) + 1;
         return acc;
@@ -292,7 +296,11 @@ const renderFindings = (originalFindings = [], residualFindings = []) => {
 
 const renderCoverage = (coverage) => {
   const container = el("coverageSummary");
-  if (!container || !coverage) return;
+  if (!container) return;
+  if (!coverage) {
+    container.innerHTML = "";
+    return;
+  }
 
   const modes = [
     { id: "modeApiKeys", label: t("APIキー", "API keys") },
@@ -309,16 +317,22 @@ const renderCoverage = (coverage) => {
   `).join("");
 };
 
-const updateSafetySummary = (findings = [], residualFindings = []) => {
+const updateSafetySummary = (findings = null, residualFindings = []) => {
   const box = el("safetySummary");
   if (!box) return;
-  const high = findings.filter((item) => item.severity === "high").length;
-  const medium = findings.filter((item) => item.severity === "medium").length;
-  const privateKeys = findings.filter((item) => item.type === "privateKey").length;
-  const headers = findings.filter((item) => item.type === "bearer" || item.type === "header" || item.type === "cookie").length;
+  if (findings === null || (Array.isArray(findings) && findings.length === 0 && residualFindings.length === 0 && !lastResult)) {
+    box.textContent = "";
+    box.className = "safety-summary";
+    return;
+  }
+  const findingsList = findings || [];
+  const high = findingsList.filter((item) => item.severity === "high").length;
+  const medium = findingsList.filter((item) => item.severity === "medium").length;
+  const privateKeys = findingsList.filter((item) => item.type === "privateKey").length;
+  const headers = findingsList.filter((item) => item.type === "bearer" || item.type === "header" || item.type === "cookie").length;
 
   let baseText = "";
-  if (!findings.length) {
+  if (!findingsList.length) {
     baseText = t("検出なし。ただし、独自形式の秘密情報・Cookie・URLパラメータ・メールアドレス・IPなどは残る可能性があります。", "No findings. Custom secrets, cookies, URL parameters, emails, or IP addresses may still remain.");
   } else {
     baseText = t(
@@ -699,12 +713,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const options = getOptions();
     const result = redactContent(text, options);
 
-    // Verification pass
-    const allResidual = scanContent(result.output, options);
-    const residualFindings = allResidual.filter(rf => {
-      // Ignore if it overlaps with a placeholder we just created
-      return !result.placeholderRanges.some(pr => rf.start < pr.end && rf.end > pr.start);
+    // Verification pass: Neutralize generated placeholders to avoid false positives
+    // while keeping string length and line structure identical.
+    let neutralizedText = result.output;
+    const sortedRanges = [...result.placeholderRanges].sort((a, b) => b.start - a.start);
+    sortedRanges.forEach(range => {
+      const len = range.end - range.start;
+      neutralizedText = neutralizedText.slice(0, range.start) + " ".repeat(len) + neutralizedText.slice(range.end);
     });
+
+    const residualFindings = scanContent(neutralizedText, options);
 
     output.value = result.output;
     lastResult = {
@@ -726,8 +744,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   updateSummary(emptyCounts());
-  renderFindings([]);
-  updateSafetySummary([]);
+  renderFindings(null, null);
+  updateSafetySummary(null);
   setupProActions();
 
   redactBtn.addEventListener("click", runRedaction);
@@ -746,8 +764,9 @@ document.addEventListener("DOMContentLoaded", () => {
     output.value = "";
     lastResult = null;
     updateSummary(emptyCounts());
-    renderFindings([]);
-    updateSafetySummary([]);
+    renderFindings(null, null);
+    renderCoverage(null);
+    updateSafetySummary(null);
     input.focus();
   });
 
