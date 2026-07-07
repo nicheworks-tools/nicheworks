@@ -11,6 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.getElementById("resetBtn");
   const downloadMmdBtn = document.getElementById("downloadMmd");
   const downloadTxtBtn = document.getElementById("downloadTxt");
+  const statsBox = document.getElementById("statsBox");
+  const statNodes = document.getElementById("statNodes");
+  const statEdges = document.getElementById("statEdges");
+  const statDepth = document.getElementById("statDepth");
+  const statOmitted = document.getElementById("statOmitted");
+  const statDepthLimit = document.getElementById("statDepthLimit");
   const progress = document.getElementById("progress");
   const errorBox = document.getElementById("errorBox");
   const warningBox = document.getElementById("warningBox");
@@ -36,7 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
       downloadTxt: ".txtで保存",
       presetSimple: "シンプルツリー",
       presetNested: "ネストオブジェクト",
-      presetArray: "配列オブジェクト"
+      presetArray: "配列オブジェクト",
+      yes: "はい",
+      no: "いいえ"
     },
     en: {
       convert: "Convert",
@@ -48,7 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
       downloadTxt: "Download .txt",
       presetSimple: "Simple tree",
       presetNested: "Nested object",
-      presetArray: "Array of objects"
+      presetArray: "Array of objects",
+      yes: "Yes",
+      no: "No"
     }
   };
 
@@ -74,6 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
     langButtons.forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.lang === currentLang);
     });
+
+    if (outputEl.value) {
+      convertHandler(true);
+    }
   };
 
   langButtons.forEach((btn) => {
@@ -177,10 +191,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return text;
   };
 
-  const jsonToMermaid = (jsonObj) => {
-    const lines = ["flowchart TD"];
+  const jsonToMermaid = (jsonObj, options) => {
+    const lines = [`flowchart ${options.direction || "TD"}`];
     const warnings = [];
     let idCounter = 0;
+    let nodeCount = 0;
+    let edgeCount = 0;
+    let maxDepth = 0;
+    let omittedCount = 0;
     let depthLimitHit = false;
     let arrayLimitHit = false;
 
@@ -188,18 +206,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const addNode = (label) => {
       const id = genId();
       lines.push(`  ${id}["${safeMermaidLabel(label)}"]`);
+      nodeCount++;
       return id;
     };
 
     const addEdge = (fromId, toId) => {
       if (fromId !== null) {
         lines.push(`  ${fromId} --> ${toId}`);
+        edgeCount++;
       }
     };
 
+    const isPrimitive = (v) => v === null || (typeof v !== "object" && typeof v !== "function");
+
     const walk = (node, parentId = null, label = "root", depth = 0) => {
+      maxDepth = Math.max(maxDepth, depth);
+
+      // Handle leafMode: inline for primitive values
+      if (options.leafMode === "inline" && isPrimitive(node) && parentId !== null) {
+        const inlineId = addNode(`${label}: ${node}`);
+        addEdge(parentId, inlineId);
+        return;
+      }
+
       const currentId = addNode(label);
       addEdge(parentId, currentId);
+
+      if (isPrimitive(node)) {
+        const valueId = addNode(node);
+        addEdge(currentId, valueId);
+        return;
+      }
 
       if (depth >= MAX_DEPTH) {
         depthLimitHit = true;
@@ -216,6 +253,15 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
+        if (options.arrayMode === "summarize") {
+          const summaryLabel = currentLang === "ja"
+            ? `Array(${node.length}件)`
+            : `Array(${node.length} items)`;
+          const summaryId = addNode(summaryLabel);
+          addEdge(currentId, summaryId);
+          return;
+        }
+
         const visibleItems = node.slice(0, MAX_ARRAY_ITEMS);
         visibleItems.forEach((item, index) => {
           walk(item, currentId, `[${index}]`, depth + 1);
@@ -224,6 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (node.length > MAX_ARRAY_ITEMS) {
           arrayLimitHit = true;
           const omitted = node.length - MAX_ARRAY_ITEMS;
+          omittedCount += omitted;
           const moreLabel = currentLang === "ja"
             ? `... ${omitted}件を省略`
             : `... ${omitted} more items`;
@@ -247,8 +294,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const valueId = addNode(node);
-      addEdge(currentId, valueId);
     };
 
     walk(jsonObj);
@@ -269,7 +314,17 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
 
-    return { code: lines.join("\n"), warnings };
+    return {
+      code: lines.join("\n"),
+      warnings,
+      stats: {
+        nodeCount,
+        edgeCount,
+        maxDepth,
+        omittedCount,
+        depthLimitHit
+      }
+    };
   };
 
   const setBusy = (busy) => {
@@ -277,45 +332,73 @@ document.addEventListener("DOMContentLoaded", () => {
     convertBtn.textContent = busy ? t("converting") : t("convert");
   };
 
-  const convertHandler = () => {
+  const convertHandler = (isSilent = false) => {
     hideError();
     hideWarning();
-    outputEl.value = "";
+    if (!isSilent) outputEl.value = "";
 
     const jsonText = inputEl.value.trim();
     if (!jsonText) {
-      showError(currentLang === "ja" ? "JSONが入力されていません。" : "No JSON provided.");
+      if (!isSilent) showError(currentLang === "ja" ? "JSONが入力されていません。" : "No JSON provided.");
       return;
     }
 
     if (getByteLength(jsonText) > MAX_INPUT_BYTES) {
-      showWarning(
-        currentLang === "ja"
-          ? "入力サイズが大きすぎます（300KB超）。小さく分割してお試しください。"
-          : "Input size is too large (over 300KB). Please split or reduce the JSON."
-      );
+      if (!isSilent) {
+        showWarning(
+          currentLang === "ja"
+            ? "入力サイズが大きすぎます（300KB超）。小さく分割してお試しください。"
+            : "Input size is too large (over 300KB). Please split or reduce the JSON."
+        );
+      }
       return;
     }
 
-    setBusy(true);
-    showProgress();
+    const direction = document.querySelector('input[name="direction"]:checked').value;
+    const leafMode = document.querySelector('input[name="leafMode"]:checked').value;
+    const arrayMode = document.querySelector('input[name="arrayMode"]:checked').value;
 
-    window.setTimeout(() => {
+    const options = { direction, leafMode, arrayMode };
+
+    if (!isSilent) {
+      setBusy(true);
+      showProgress();
+    }
+
+    const runConversion = () => {
       try {
         const parsed = JSON.parse(jsonText);
-        const result = jsonToMermaid(parsed);
+        const result = jsonToMermaid(parsed, options);
         outputEl.value = result.code;
-        if (result.warnings.length > 0) {
+        if (result.warnings.length > 0 && !isSilent) {
           showWarning(result.warnings.join("\n"));
         }
-        outputEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        updateStats(result.stats);
+        if (!isSilent) outputEl.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (e) {
-        showError(buildParseErrorMessage(e, jsonText));
+        if (!isSilent) showError(buildParseErrorMessage(e, jsonText));
       } finally {
-        setBusy(false);
-        hideProgress();
+        if (!isSilent) {
+          setBusy(false);
+          hideProgress();
+        }
       }
-    }, 80);
+    };
+
+    if (isSilent) {
+      runConversion();
+    } else {
+      window.setTimeout(runConversion, 80);
+    }
+  };
+
+  const updateStats = (stats) => {
+    statNodes.textContent = stats.nodeCount;
+    statEdges.textContent = stats.edgeCount;
+    statDepth.textContent = stats.maxDepth;
+    statOmitted.textContent = stats.omittedCount;
+    statDepthLimit.textContent = stats.depthLimitHit ? t("yes") : t("no");
+    statsBox.classList.remove("hidden");
   };
 
   const copyText = async (text) => {
@@ -370,6 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetHandler = () => {
     inputEl.value = "";
     outputEl.value = "";
+    statsBox.classList.add("hidden");
     hideError();
     hideWarning();
     hideProgress();
