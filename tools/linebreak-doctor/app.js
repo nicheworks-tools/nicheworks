@@ -246,17 +246,22 @@ function applyLang(lang) {
     if (t[key]) el.textContent = t[key];
   });
 
-  // Update data-i18n-title elements
-  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
-    const key = el.dataset.i18nTitle;
-    if (t[key]) el.textContent = t[key];
-  });
-
-  // Update data-i18n-content (for meta tags)
-  document.querySelectorAll("[data-i18n-content]").forEach((el) => {
-    const key = el.dataset.i18nContent;
-    if (t[key]) el.setAttribute("content", t[key]);
-  });
+  // Update page title and meta tags
+  if (t.page_title) {
+    document.title = t.page_title;
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", t.page_title);
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) twitterTitle.setAttribute("content", t.page_title);
+  }
+  if (t.page_description) {
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute("content", t.page_description);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute("content", t.page_description);
+    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDesc) twitterDesc.setAttribute("content", t.page_description);
+  }
 
   if (inputEl) {
     inputEl.placeholder = t.input_placeholder;
