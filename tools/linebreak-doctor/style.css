@@ -27,6 +27,27 @@
   margin: 2px 0 0;
 }
 
+.nw-lang-switch {
+  text-align: center;
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.nw-lang-switch button {
+  border: none;
+  background: transparent;
+  padding: 0 4px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.nw-lang-switch button.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 /* -----------------------------
    広告枠
 ------------------------------ */
@@ -118,6 +139,48 @@
   background: #fff;
 }
 
+.policy-controls {
+  margin-top: 16px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.policy-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #374151;
+}
+
+.policy-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.policy-options label {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: normal !important;
+  cursor: pointer;
+}
+
+.policy-options input[type="radio"] {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.policy-help {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  color: #6b7280;
+}
+
 .char-count,
 .status {
   margin: 8px 0 0;
@@ -180,6 +243,38 @@
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 12px;
+}
+
+.diag-summary {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #4b5563;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.diag-item {
+  display: flex;
+  gap: 4px;
+}
+
+.diag-label {
+  color: #6b7280;
+}
+
+.diag-value {
+  font-weight: 600;
+  color: #111827;
+}
+
+.diag-warn {
+  color: #b91c1c;
+  font-weight: 600;
 }
 
 .result-text {
