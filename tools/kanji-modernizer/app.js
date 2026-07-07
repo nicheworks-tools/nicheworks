@@ -303,10 +303,12 @@
 
   function pickMappedChar(mapped, sourceChar, policy, direction) {
     if (Array.isArray(mapped)) {
-      if (direction === "new-to-old" && policy === "conservative" && mapped.length > 1) {
-        return sourceChar;
+      const alternatives = [...new Set(mapped.filter(c => c && c !== sourceChar))];
+      if (alternatives.length === 1) return alternatives[0];
+      if (alternatives.length > 1) {
+        return (direction === "new-to-old" && policy === "conservative") ? sourceChar : alternatives[0];
       }
-      return mapped.find(candidate => candidate && candidate !== sourceChar) || mapped[0] || sourceChar;
+      return sourceChar;
     }
     return mapped || sourceChar;
   }
@@ -335,11 +337,21 @@
         }
 
         const mapped = map[ch];
-        const outputChar = pickMappedChar(mapped, ch, policy, direction);
-        const isHit = Boolean(mapped && outputChar !== ch);
+        const alternatives = (direction === "new-to-old" && Array.isArray(mapped))
+          ? [...new Set(mapped.filter(c => c && c !== ch))]
+          : [];
 
-        if (direction === "new-to-old" && Array.isArray(mapped) && mapped.length > 1) {
-          const amb = ambiguityMap.get(ch) || { from: ch, candidates: mapped, count: 0, action: outputChar === ch ? "preserved" : "selected", resultChar: outputChar };
+        const outputChar = pickMappedChar(mapped, ch, policy, direction);
+        const isHit = outputChar !== ch;
+
+        if (direction === "new-to-old" && alternatives.length > 1) {
+          const amb = ambiguityMap.get(ch) || {
+            from: ch,
+            candidates: alternatives,
+            count: 0,
+            action: outputChar === ch ? "preserved" : "selected",
+            resultChar: outputChar
+          };
           amb.count += 1;
           ambiguityMap.set(ch, amb);
         }
