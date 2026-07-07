@@ -72,6 +72,7 @@ button,select,textarea{font-family:inherit}
 .finding-detail{display:grid;grid-template-columns:72px 1fr;gap:6px 8px;margin:8px 0 0;font-size:12px;line-height:1.55}.finding-detail dt{font-weight:700;color:#374151}.finding-detail dd{margin:0;color:#4b5563}
 .ul{margin:0;padding-left:18px;color:#111827}.ul li{margin:6px 0;color:#111827}
 .preset-actions{margin-top:12px}.preset-buttons{display:flex;gap:8px;flex-wrap:wrap}.preset-buttons .btn{font-size:12px}
+.result-summary{margin-bottom:12px}
 .code-block{font-family:var(--mono);font-size:12px;background:#f9fafb;border:1px solid var(--line);border-radius:12px;padding:10px;margin:0;white-space:pre-wrap;word-break:break-word}
 
 .pro-block{margin-top:16px;border:1px solid rgba(79,70,229,.25);background:rgba(79,70,229,.06);border-radius:14px;padding:12px}.pro-head{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.badge-pro{border-color:rgba(79,70,229,.30);background:rgba(79,70,229,.10);color:var(--pro);font-weight:700}.pro-title{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.pro-note{margin:8px 0 0;color:var(--muted);font-size:12px}
