@@ -289,15 +289,21 @@
     if (req.multi) { score += 2; reasons.push(lang === "ja" ? "多言語対応" : "multilingual setup"); }
     if (req.privacy) { score += 2; reasons.push(lang === "ja" ? "ガバナンス要件" : "governance requirements"); }
 
-    let level = "Simple";
-    if (score >= 6) level = "High";
-    else if (score >= 3) level = "Moderate";
+    let levelKey = "Simple";
+    if (score >= 6) levelKey = "High";
+    else if (score >= 3) levelKey = "Moderate";
+
+    const labels = {
+      Simple: { ja: "初級", en: "Simple" },
+      Moderate: { ja: "中級", en: "Moderate" },
+      High: { ja: "上級", en: "High" }
+    };
 
     const reasonText = reasons.length > 0
       ? (lang === "ja" ? `${reasons.join("、")}が含まれるため` : `Includes ${reasons.join(", ")}`)
       : (lang === "ja" ? "標準的な構成のため" : "Standard configuration");
 
-    return { level, reason: reasonText };
+    return { levelKey, label: labels[levelKey][lang], reason: reasonText };
   };
 
   const getSetupDirection = (req, lang) => {
@@ -311,22 +317,32 @@
       .map(r => r.note[lang]);
   };
 
-  const scoreTool = (tool, req) => requirementDefs.reduce((total, def) => {
-    if (!req[def.key]) return total;
-    // Boost if matched
-    let score = tool.tags.includes(def.tag) ? def.weight : 0;
-    // Penalty if a critical requirement is missing
-    if (req[def.key] && !tool.tags.includes(def.tag) && def.weight >= 3) {
-        score -= 1;
-    }
-    return total + score;
-  }, 0);
+  const scoreTool = (tool, req) => {
+    let hasMatch = false;
+    const score = requirementDefs.reduce((total, def) => {
+      if (!req[def.key]) return total;
+      // Boost if matched
+      if (tool.tags.includes(def.tag)) {
+        hasMatch = true;
+        return total + def.weight;
+      }
+      // Penalty if a critical requirement is missing
+      if (def.weight >= 3) {
+        return total - 1;
+      }
+      return total;
+    }, 0);
+    return { score, hasMatch };
+  };
 
   const buildRecommendationData = (lang) => {
     const req = getSelections();
     return toolList
-      .map((tool) => ({ tool, score: scoreTool(tool, req) }))
-      .filter((pick) => pick.score > -100) // Keep candidates even if some requirements missing
+      .map((tool) => {
+        const { score, hasMatch } = scoreTool(tool, req);
+        return { tool, score, hasMatch };
+      })
+      .filter((pick) => pick.hasMatch) // Only show tools with at least one matched requirement
       .sort((a, b) => b.score - a.score || a.tool.key.localeCompare(b.tool.key))
       .slice(0, 3)
       .map((pick) => {
@@ -364,13 +380,17 @@
     const complexity = getComplexity(req, lang);
     const direction = getSetupDirection(req, lang);
     const attention = getAttentionNotes(req, lang);
+    const selected = selectedDefs(req).map((def) => def.label[lang]);
 
     const lines = [];
+    lines.push(lang === "ja" ? "選択した要件" : "Selected requirements");
+    selected.forEach(s => lines.push(`- ${s}`));
+    lines.push("");
     lines.push(lang === "ja" ? "推奨セットアップ方向" : "Recommended setup direction");
     lines.push(`- ${direction}`);
     lines.push("");
     lines.push(lang === "ja" ? "構成の複雑さ" : "Setup complexity");
-    lines.push(`- ${complexity.level}: ${complexity.reason}`);
+    lines.push(`- ${complexity.label}: ${complexity.reason}`);
     if (attention.length > 0) {
       lines.push("");
       lines.push(lang === "ja" ? "組み合わせ注意点" : "Combination-specific notes");
@@ -413,7 +433,7 @@
       return [
         "Decision memo",
         `推奨セットアップ: ${direction}`,
-        `複雑さ: ${complexity.level} （理由: ${complexity.reason}）`,
+        `複雑さ: ${complexity.label} （理由: ${complexity.reason}）`,
         `候補タイプ: ${top.name}`,
         `比較候補数: ${recommendations.length}件`,
         "選定理由:",
@@ -445,7 +465,7 @@
     return [
       "Decision memo",
       `Recommended setup: ${direction}`,
-      `Complexity: ${complexity.level} (Reason: ${complexity.reason})`,
+      `Complexity: ${complexity.label} (Reason: ${complexity.reason})`,
       `Candidate type: ${top.name}`,
       `Number of candidates compared: ${recommendations.length}`,
       "Selection reasons:",
@@ -536,7 +556,7 @@
     const head = document.createElement("div");
     head.className = "setup-head";
 
-    const badge = appendText(head, "span", `complexity-badge badge-${complexity.level.toLowerCase()}`, complexity.level);
+    const badge = appendText(head, "span", `complexity-badge badge-${complexity.levelKey.toLowerCase()}`, complexity.label);
     appendText(head, "span", "complexity-reason", complexity.reason);
     wrap.appendChild(head);
 
