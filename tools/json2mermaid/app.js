@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.classList.toggle("active", btn.dataset.lang === currentLang);
     });
 
-    if (outputEl.value) {
+    if (outputEl.value || !errorBox.classList.contains("hidden") || !warningBox.classList.contains("hidden")) {
       convertHandler(true);
     }
   };
@@ -335,24 +335,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const convertHandler = (isSilent = false) => {
     hideError();
     hideWarning();
-    if (!isSilent) outputEl.value = "";
 
     const jsonText = inputEl.value.trim();
     if (!jsonText) {
-      if (!isSilent) showError(currentLang === "ja" ? "JSONが入力されていません。" : "No JSON provided.");
+      outputEl.value = "";
+      statsBox.classList.add("hidden");
+      showError(currentLang === "ja" ? "JSONが入力されていません。" : "No JSON provided.");
       return;
     }
 
     if (getByteLength(jsonText) > MAX_INPUT_BYTES) {
-      if (!isSilent) {
-        showWarning(
-          currentLang === "ja"
-            ? "入力サイズが大きすぎます（300KB超）。小さく分割してお試しください。"
-            : "Input size is too large (over 300KB). Please split or reduce the JSON."
-        );
-      }
+      outputEl.value = "";
+      statsBox.classList.add("hidden");
+      showWarning(
+        currentLang === "ja"
+          ? "入力サイズが大きすぎます（300KB超）。小さく分割してお試しください。"
+          : "Input size is too large (over 300KB). Please split or reduce the JSON."
+      );
       return;
     }
+
+    if (!isSilent) outputEl.value = "";
 
     const direction = document.querySelector('input[name="direction"]:checked').value;
     const leafMode = document.querySelector('input[name="leafMode"]:checked').value;
@@ -378,13 +381,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateStats(result.stats);
         if (!isSilent) outputEl.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (e) {
-        if (!isSilent) showError(buildParseErrorMessage(e, jsonText));
-        else {
-          outputEl.value = "";
-          statsBox.classList.add("hidden");
-          hideWarning();
-          showError(buildParseErrorMessage(e, jsonText));
-        }
+        outputEl.value = "";
+        statsBox.classList.add("hidden");
+        showError(buildParseErrorMessage(e, jsonText));
       } finally {
         if (!isSilent) {
           setBusy(false);
