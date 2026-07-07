@@ -86,7 +86,7 @@ function scanMetadata(arrayBuffer, format) {
 
   if (format === 'jpeg') {
     let offset = 2; // Skip SOI (FF D8)
-    while (offset + 4 <= view.byteLength) {
+    while (offset + 1 < view.byteLength) {
       if (view.getUint8(offset) !== 0xFF) {
         offset++;
         continue;
@@ -96,7 +96,7 @@ function scanMetadata(arrayBuffer, format) {
         offset++;
         continue;
       }
-      if (marker === 0xD9) break; // EOI
+      if (marker === 0xD9 || marker === 0xDA) break; // EOI or SOS
 
       // Markers without length (RSTn, TEM)
       if ((marker >= 0xD0 && marker <= 0xD7) || marker === 0x01) {
@@ -104,7 +104,10 @@ function scanMetadata(arrayBuffer, format) {
         continue;
       }
 
+      if (offset + 4 > view.byteLength) break;
       const length = view.getUint16(offset + 2);
+      if (offset + 2 + length > view.byteLength) break;
+
       if (marker === 0xE1) { // APP1
         const sigExif = getString(view, offset + 4, 6);
         if (sigExif === "Exif\0\0") {
@@ -237,7 +240,6 @@ async function handleFile() {
     inspectionSummary.classList.remove("hidden");
 
     setupFormatControls();
-    detectExif(dataUrl);
   } catch (error) {
     console.error(error);
     setStatus("Failed to load the image.", "画像の読み込みに失敗しました。");
@@ -248,25 +250,6 @@ async function handleFile() {
   }
 }
 
-function detectExif(dataUrl) {
-  const binary = atob(dataUrl.split("base64,")[1]);
-  const hasExif = binary.includes("Exif") || binary.includes("EXIF");
-
-  setStatus(
-    hasExif
-      ? "Quick check: EXIF-like metadata was detected."
-      : "Quick check: no EXIF-like string was found.",
-    hasExif
-      ? "簡易チェック：EXIFらしきメタデータを検出しました。"
-      : "簡易チェック：EXIFらしき文字列は見つかりませんでした。"
-  );
-  setStatusNote(
-    "This is a simple check, not a full GPS or metadata analysis. You can now clean and save the image.",
-    "この判定は簡易チェックです。GPSの有無や全メタデータの詳細解析ではありません。削除して保存できます。"
-  );
-
-  setButtonsDisabled(false);
-}
 
 cleanBtnJa.addEventListener("click", cleanExif);
 cleanBtnEn.addEventListener("click", cleanExif);
