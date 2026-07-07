@@ -247,18 +247,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (Array.isArray(node)) {
-        if (node.length === 0) {
-          const emptyId = addNode("empty array");
-          addEdge(currentId, emptyId);
-          return;
-        }
-
         if (options.arrayMode === "summarize") {
           const summaryLabel = currentLang === "ja"
             ? `Array(${node.length}件)`
             : `Array(${node.length} items)`;
           const summaryId = addNode(summaryLabel);
           addEdge(currentId, summaryId);
+          return;
+        }
+
+        if (node.length === 0) {
+          const emptyId = addNode("empty array");
+          addEdge(currentId, emptyId);
           return;
         }
 
@@ -370,13 +370,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const parsed = JSON.parse(jsonText);
         const result = jsonToMermaid(parsed, options);
         outputEl.value = result.code;
-        if (result.warnings.length > 0 && !isSilent) {
+        if (result.warnings.length > 0) {
           showWarning(result.warnings.join("\n"));
+        } else {
+          hideWarning();
         }
         updateStats(result.stats);
         if (!isSilent) outputEl.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (e) {
         if (!isSilent) showError(buildParseErrorMessage(e, jsonText));
+        else {
+          outputEl.value = "";
+          statsBox.classList.add("hidden");
+          hideWarning();
+          showError(buildParseErrorMessage(e, jsonText));
+        }
       } finally {
         if (!isSilent) {
           setBusy(false);
@@ -492,6 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!presets[key]) return;
       inputEl.value = presets[key];
       outputEl.value = "";
+      statsBox.classList.add("hidden");
       hideError();
       hideWarning();
       inputEl.focus();
