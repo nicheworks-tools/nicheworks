@@ -45,10 +45,16 @@ const doneMsgEn = document.getElementById("done-msg-en");
 const resetBtn = document.getElementById("reset-btn");
 const resetBtnEn = document.getElementById("reset-btn-en");
 
+const inspectionSummary = document.getElementById("inspection-summary");
+const verificationSummary = document.getElementById("verification-summary");
+
 let inputFormat = null;
 let outputFormat = null;
 let latestStatus = { en: "", ja: "" };
 let latestStatusNote = { en: "", ja: "" };
+let inputScanResult = null;
+let outputScanResult = null;
+let imageDimensions = { width: 0, height: 0 };
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 
@@ -65,6 +71,102 @@ qualitySlider.addEventListener("input", () => {
 
 if (resetBtn) resetBtn.addEventListener("click", resetTool);
 if (resetBtnEn) resetBtnEn.addEventListener("click", resetTool);
+
+/**
+ * Scan for metadata containers in a format-aware way.
+ */
+function scanMetadata(arrayBuffer, format) {
+  const result = {
+    format: format,
+    size: arrayBuffer.byteLength,
+    containers: [] // { type: 'EXIF'|'XMP'|'TEXT'|'COM', count: number }
+  };
+
+  const view = new DataView(arrayBuffer);
+
+  if (format === 'jpeg') {
+    let offset = 2; // Skip SOI (FF D8)
+    while (offset + 4 <= view.byteLength) {
+      if (view.getUint8(offset) !== 0xFF) {
+        offset++;
+        continue;
+      }
+      const marker = view.getUint8(offset + 1);
+      if (marker === 0x00 || marker === 0xFF) {
+        offset++;
+        continue;
+      }
+      if (marker === 0xD9) break; // EOI
+
+      // Markers without length (RSTn, TEM)
+      if ((marker >= 0xD0 && marker <= 0xD7) || marker === 0x01) {
+        offset += 2;
+        continue;
+      }
+
+      const length = view.getUint16(offset + 2);
+      if (marker === 0xE1) { // APP1
+        const sigExif = getString(view, offset + 4, 6);
+        if (sigExif === "Exif\0\0") {
+          addContainer(result, 'EXIF');
+        } else {
+          const sigXmp = getString(view, offset + 4, 29);
+          if (sigXmp === "http://ns.adobe.com/xap/1.0/\0") {
+            addContainer(result, 'XMP');
+          }
+        }
+      } else if (marker === 0xFE) { // COM
+        addContainer(result, 'COM');
+      }
+      offset += 2 + length;
+    }
+  } else if (format === 'png') {
+    let offset = 8; // Skip signature
+    while (offset + 8 <= view.byteLength) {
+      const length = view.getUint32(offset);
+      const type = getString(view, offset + 4, 4);
+      if (type === 'eXIf') {
+        addContainer(result, 'EXIF');
+      } else if (type === 'tEXt' || type === 'zTXt' || type === 'iTXt') {
+        addContainer(result, 'TEXT');
+      }
+      offset += 8 + length + 4;
+    }
+  } else if (format === 'webp') {
+    if (getString(view, 0, 4) === 'RIFF' && getString(view, 8, 4) === 'WEBP') {
+      let offset = 12;
+      while (offset + 8 <= view.byteLength) {
+        const type = getString(view, offset, 4);
+        const length = view.getUint32(offset + 4, true);
+        if (type === 'EXIF') {
+          addContainer(result, 'EXIF');
+        } else if (type === 'XMP ') {
+          addContainer(result, 'XMP');
+        }
+        offset += 8 + length + (length % 2);
+      }
+    }
+  }
+  return result;
+}
+
+function getString(view, offset, length) {
+  let str = "";
+  for (let i = 0; i < length; i++) {
+    if (offset + i >= view.byteLength) break;
+    str += String.fromCharCode(view.getUint8(offset + i));
+  }
+  return str;
+}
+
+function addContainer(result, type) {
+  const existing = result.containers.find(c => c.type === type);
+  if (existing) {
+    existing.count++;
+  } else {
+    result.containers.push({ type: type, count: 1 });
+  }
+}
 
 dropArea.addEventListener("dragover", (e) => e.preventDefault());
 dropArea.addEventListener("drop", (e) => {
@@ -111,6 +213,7 @@ async function handleFile() {
     inputFormat = detectInputFormat(file, arrayBuffer);
     if (!inputFormat) {
       preview.classList.add("hidden");
+      inspectionSummary.classList.add("hidden");
       setStatus(
         "Unsupported image format.",
         "対応していない画像形式です。"
@@ -122,8 +225,16 @@ async function handleFile() {
       return;
     }
 
+    inputScanResult = scanMetadata(arrayBuffer, inputFormat);
+
+    const img = await loadImage(dataUrl);
+    imageDimensions = { width: img.width, height: img.height };
+
     preview.src = dataUrl;
     preview.classList.remove("hidden");
+
+    renderSummary(inspectionSummary, inputScanResult, imageDimensions);
+    inspectionSummary.classList.remove("hidden");
 
     setupFormatControls();
     detectExif(dataUrl);
@@ -190,6 +301,9 @@ async function cleanExif() {
       throw new Error("Failed to create image blob");
     }
 
+    const outputBuffer = await blob.arrayBuffer();
+    outputScanResult = scanMetadata(outputBuffer, outputFormat);
+
     const downloadName = buildDownloadName(file.name, outputFormat);
     const blobUrl = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -200,6 +314,10 @@ async function cleanExif() {
 
     if (doneMsgJa) doneMsgJa.textContent = `保存しました：${downloadName}`;
     if (doneMsgEn) doneMsgEn.textContent = `Saved: ${downloadName}`;
+
+    renderSummary(verificationSummary, outputScanResult, imageDimensions, true);
+    verificationSummary.classList.remove("hidden");
+
     if (resultPanel) resultPanel.classList.remove("hidden");
     setStatus(
       `Saved as ${downloadName}`,
@@ -250,6 +368,77 @@ function renderDynamicMessages() {
   renderStatus();
   renderStatusNote();
   updateOutputFormatText();
+  if (inputScanResult) {
+    renderSummary(inspectionSummary, inputScanResult, imageDimensions);
+  }
+  if (outputScanResult) {
+    renderSummary(verificationSummary, outputScanResult, imageDimensions, true);
+  }
+}
+
+function renderSummary(targetEl, scanResult, dimensions, isVerification = false) {
+  const lang = getCurrentLang();
+
+  let html = "";
+  if (isVerification) {
+    html += `<p class="summary-title">${lang === 'ja' ? '【検証結果】' : '[Verification Result]'}</p>`;
+  } else {
+    html += `<p class="summary-title">${lang === 'ja' ? '【スキャン概要】' : '[Scan Summary]'}</p>`;
+  }
+
+  const formatLabelMap = {
+    jpeg: "JPEG",
+    png: "PNG",
+    webp: "WebP",
+  };
+  const formatLabel = formatLabelMap[scanResult.format] || scanResult.format.toUpperCase();
+
+  html += `<table class="summary-table">`;
+  html += `<tr><th>${lang === 'ja' ? '形式' : 'Format'}</th><td>${formatLabel}</td></tr>`;
+  html += `<tr><th>${lang === 'ja' ? 'サイズ' : 'Size'}</th><td>${formatFileSize(scanResult.size)}</td></tr>`;
+  if (isVerification && inputScanResult) {
+    const diff = scanResult.size - inputScanResult.size;
+    const diffText = diff > 0 ? `(+${formatFileSize(diff)})` : `(${formatFileSize(diff)})`;
+    html += `<tr><th>${lang === 'ja' ? 'サイズ変化' : 'Size Change'}</th><td>${diffText}</td></tr>`;
+  }
+  html += `<tr><th>${lang === 'ja' ? '解像度' : 'Dimensions'}</th><td>${dimensions.width} x ${dimensions.height}</td></tr>`;
+
+  const containerLabels = {
+    EXIF: { ja: 'EXIFコンテナ', en: 'EXIF container' },
+    XMP: { ja: 'XMPメタデータ', en: 'XMP metadata' },
+    TEXT: { ja: 'テキスト形式メタデータ', en: 'Text metadata chunk' },
+    COM: { ja: 'コメント(COM)セグメント', en: 'Comment (COM) segment' }
+  };
+
+  if (scanResult.containers.length > 0) {
+    scanResult.containers.forEach(c => {
+      const label = containerLabels[c.type][lang];
+      html += `<tr><th>${label}</th><td>${lang === 'ja' ? '検出' : 'Detected'} (${c.count})</td></tr>`;
+    });
+  } else {
+    html += `<tr><th>${lang === 'ja' ? '検出メタデータ' : 'Detected Metadata'}</th><td>${lang === 'ja' ? '対応コンテナ未検出' : 'No supported containers detected'}</td></tr>`;
+  }
+  html += `</table>`;
+
+  if (isVerification) {
+    if (scanResult.containers.length === 0) {
+      html += `<p class="verify-state success">${lang === 'ja' ? '✓ 生成されたファイルから対応するメタデータコンテナは見つかりませんでした。' : '✓ No supported metadata containers detected in generated output.'}</p>`;
+      html += `<p class="verify-note">${lang === 'ja' ? '※これはすべてのメタデータ削除を保証するものではありません。' : '*This is not a universal metadata-removal guarantee.'}</p>`;
+    } else {
+      html += `<p class="verify-state warning">${lang === 'ja' ? '⚠ メタデータコンテナがまだ検出されます。' : '⚠ Metadata container still detected.'}</p>`;
+      html += `<p class="verify-note">${lang === 'ja' ? '共有前に内容を再確認してください。' : 'Please review before sharing.'}</p>`;
+    }
+  }
+
+  targetEl.innerHTML = html;
+}
+
+function formatFileSize(bytes) {
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
 function renderStatus() {
@@ -295,6 +484,13 @@ function resetTool() {
   preview.classList.add("hidden");
   inputFormat = null;
   outputFormat = null;
+  inputScanResult = null;
+  outputScanResult = null;
+  imageDimensions = { width: 0, height: 0 };
+  inspectionSummary.classList.add("hidden");
+  inspectionSummary.innerHTML = "";
+  verificationSummary.classList.add("hidden");
+  verificationSummary.innerHTML = "";
   formatControls.classList.add("hidden");
   outputFormatEl.textContent = "";
   setStatus("", "");
