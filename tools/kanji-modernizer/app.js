@@ -11,6 +11,7 @@
   let currentLang = "ja";
   let lastResultText = "";
   let lastReplacementList = [];
+  let lastAmbiguityList = [];
   let lastMessage = null;
 
   const messages = {
@@ -149,6 +150,33 @@
     lastMessage = null;
   }
 
+  const renderAmbiguityReview = (ambiguities) => {
+    const block = document.getElementById("ambiguityBlock");
+    const body = document.getElementById("ambiguityTableBody");
+    if (!block || !body) return;
+    body.replaceChildren();
+
+    if (!ambiguities || ambiguities.length === 0) {
+      block.hidden = true;
+      return;
+    }
+
+    ambiguities.forEach(item => {
+      const row = document.createElement("tr");
+      const actionLabel = item.action === "preserved" ?
+        (currentLang === "en" ? "Preserved" : "変換なし（維持）") :
+        (currentLang === "en" ? `Selected (${item.resultChar})` : `自動選択 (${item.resultChar})`);
+
+      [item.from, item.candidates.join(", "), String(item.count), actionLabel].forEach(value => {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+      body.appendChild(row);
+    });
+    block.hidden = false;
+  };
+
   function switchLang(lang) {
     currentLang = lang === "en" ? "en" : "ja";
     if (document.documentElement) {
@@ -170,6 +198,11 @@
 
     if (lastMessage) {
       showMessage(lastMessage.key, lastMessage);
+    }
+
+    // Refresh dynamic lists to avoid stale language content
+    if (typeof renderAmbiguityReview === "function") {
+      renderAmbiguityReview(lastAmbiguityList);
     }
   }
 
@@ -268,16 +301,21 @@
     return segments;
   }
 
-  function pickMappedChar(mapped, sourceChar) {
+  function pickMappedChar(mapped, sourceChar, policy, direction) {
     if (Array.isArray(mapped)) {
-      return mapped.find(candidate => candidate && candidate !== sourceChar) || mapped[0] || sourceChar;
+      const alternatives = [...new Set(mapped.filter(c => c && c !== sourceChar))];
+      if (alternatives.length === 1) return alternatives[0];
+      if (alternatives.length > 1) {
+        return (direction === "new-to-old" && policy === "conservative") ? sourceChar : alternatives[0];
+      }
+      return sourceChar;
     }
     return mapped || sourceChar;
   }
 
   function convertText(rawText, direction, dict, options = {}) {
     if (!rawText) {
-      return { plain: "", inputHtml: "", outputHtml: "", replacements: [] };
+      return { plain: "", inputHtml: "", outputHtml: "", replacements: [], ambiguities: [] };
     }
 
     const segments = buildSegments(rawText, options.exclude);
@@ -285,7 +323,9 @@
     const outputHtml = [];
     const outputPlain = [];
     const replacementMap = new Map();
+    const ambiguityMap = new Map();
     const map = direction === "new-to-old" ? dict.new_to_old || {} : dict.old_to_new || {};
+    const policy = options.policy || "conservative";
 
     segments.forEach(segment => {
       Array.from(segment.text).forEach(ch => {
@@ -297,8 +337,24 @@
         }
 
         const mapped = map[ch];
-        const outputChar = pickMappedChar(mapped, ch);
-        const isHit = Boolean(mapped && outputChar !== ch);
+        const alternatives = (direction === "new-to-old" && Array.isArray(mapped))
+          ? [...new Set(mapped.filter(c => c && c !== ch))]
+          : [];
+
+        const outputChar = pickMappedChar(mapped, ch, policy, direction);
+        const isHit = outputChar !== ch;
+
+        if (direction === "new-to-old" && alternatives.length > 1) {
+          const amb = ambiguityMap.get(ch) || {
+            from: ch,
+            candidates: alternatives,
+            count: 0,
+            action: outputChar === ch ? "preserved" : "selected",
+            resultChar: outputChar
+          };
+          amb.count += 1;
+          ambiguityMap.set(ch, amb);
+        }
 
         if (isHit) {
           inputHtml.push(`<span class="hl-hit">${escapeHtml(ch)}</span>`);
@@ -320,7 +376,8 @@
       plain: outputPlain.join(""),
       inputHtml: inputHtml.join(""),
       outputHtml: outputHtml.join(""),
-      replacements: Array.from(replacementMap.values()).sort((a, b) => b.count - a.count)
+      replacements: Array.from(replacementMap.values()).sort((a, b) => b.count - a.count),
+      ambiguities: Array.from(ambiguityMap.values()).sort((a, b) => a.from.localeCompare(b.from, "ja"))
     };
   }
 
@@ -372,10 +429,23 @@
       replacementBlock.hidden = false;
     };
 
-    const formatReplacementList = replacements => {
+
+    const formatReplacementList = (replacements, ambiguities) => {
       const header = currentLang === "en" ? "From\tTo\tCount" : "変換元\t変換先\t回数";
       const lines = replacements.map(item => `${item.from}\t${item.to}\t${item.count}`);
-      return [header, ...lines].join("\n");
+      let report = [header, ...lines].join("\n");
+
+      if (ambiguities && ambiguities.length > 0) {
+        const ambHeader = currentLang === "en" ? "\nAmbiguity Review\nModern\tCandidates\tCount\tAction" : "\n新→旧 変換候補の確認\n現代漢字\t旧字候補\t出現回数\t結果";
+        const ambLines = ambiguities.map(item => {
+          const actionLabel = item.action === "preserved" ?
+            (currentLang === "en" ? "Preserved" : "変換なし") :
+            (currentLang === "en" ? `Selected (${item.resultChar})` : `自動選択 (${item.resultChar})`);
+          return `${item.from}\t${item.candidates.join(", ")}\t${item.count}\t${actionLabel}`;
+        });
+        report += ambHeader + "\n" + ambLines.join("\n");
+      }
+      return report;
     };
 
     document.querySelectorAll(".lang-switch button[data-lang]").forEach(btn => {
@@ -384,6 +454,33 @@
 
     switchLang((navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en");
     if (input) input.addEventListener("input", () => updateReferenceLink(input.value));
+
+    const loadPolicy = () => {
+      const saved = localStorage.getItem("km-policy");
+      if (saved === "first" || saved === "conservative") {
+        const radio = document.querySelector(`input[name="conversionPolicy"][value="${saved}"]`);
+        if (radio) radio.checked = true;
+      }
+    };
+    loadPolicy();
+
+    document.querySelectorAll('input[name="conversionPolicy"]').forEach(radio => {
+      radio.addEventListener("change", e => {
+        localStorage.setItem("km-policy", e.target.value);
+      });
+    });
+
+    const updatePolicyVisibility = () => {
+      const selected = document.querySelector('input[name="direction"]:checked');
+      const policyFieldset = document.getElementById("policyFieldset");
+      if (policyFieldset) {
+        policyFieldset.hidden = !(selected && selected.value === "new-to-old");
+      }
+    };
+    updatePolicyVisibility();
+    document.querySelectorAll('input[name="direction"]').forEach(radio => {
+      radio.addEventListener("change", updatePolicyVisibility);
+    });
 
     const initDict = async () => {
       setConvertEnabled(false);
@@ -423,13 +520,17 @@
           const selected = document.querySelector('input[name="direction"]:checked');
           const direction = selected ? selected.value : "old-to-new";
           const exclude = excludeToggle ? excludeToggle.checked : false;
-          const result = convertText(text, direction, dict, { exclude });
+          const policyRadio = document.querySelector('input[name="conversionPolicy"]:checked');
+          const policy = policyRadio ? policyRadio.value : "conservative";
+          const result = convertText(text, direction, dict, { exclude, policy });
 
           lastResultText = result.plain;
           lastReplacementList = result.replacements;
+          lastAmbiguityList = result.ambiguities;
           if (inputHighlight) inputHighlight.innerHTML = result.inputHtml;
           if (output) output.innerHTML = result.outputHtml;
           renderReplacementTable(result.replacements);
+          renderAmbiguityReview(result.ambiguities);
           if (resultBlock) resultBlock.hidden = false;
         } catch (e) {
           console.error(e);
@@ -459,12 +560,12 @@
 
     if (copyTableBtn) {
       copyTableBtn.addEventListener("click", async () => {
-        if (!lastReplacementList || lastReplacementList.length === 0) {
+        if ((!lastReplacementList || lastReplacementList.length === 0) && (!lastAmbiguityList || lastAmbiguityList.length === 0)) {
           showMessage("noReplacements", { type: "notice" });
           return;
         }
         try {
-          const ok = await copyToClipboard(formatReplacementList(lastReplacementList));
+          const ok = await copyToClipboard(formatReplacementList(lastReplacementList, lastAmbiguityList));
           showMessage(ok ? "copiedTable" : "copyFailed", { type: ok ? "notice" : "error" });
         } catch (e) {
           console.error(e);
@@ -480,10 +581,13 @@
         if (inputHighlight) inputHighlight.textContent = "";
         if (resultBlock) resultBlock.hidden = true;
         if (replacementBlock) replacementBlock.hidden = true;
+        const ambBlock = document.getElementById("ambiguityBlock");
+        if (ambBlock) ambBlock.hidden = true;
         if (replacementEmpty) replacementEmpty.hidden = true;
         if (replacementTableBody) replacementTableBody.replaceChildren();
         lastResultText = "";
         lastReplacementList = [];
+        lastAmbiguityList = [];
         clearMessage();
       });
     }

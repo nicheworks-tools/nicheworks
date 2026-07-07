@@ -59,6 +59,13 @@
       <label class="field-label" for="inputText"><span data-i18n="ja">変換したいテキスト</span><span data-i18n="en">Text to convert</span></label>
       <textarea id="inputText" class="text-input" rows="8"></textarea>
       <fieldset class="direction"><label><input type="radio" name="direction" value="old-to-new" checked><span data-i18n="ja">旧 → 新</span><span data-i18n="en">Old → Modern</span></label><label><input type="radio" name="direction" value="new-to-old"><span data-i18n="ja">新 → 旧</span><span data-i18n="en">Modern → Old</span></label></fieldset>
+      <fieldset class="policy-fieldset" id="policyFieldset" hidden>
+        <legend class="field-label"><span data-i18n="ja">新 → 旧 変換ポリシー</span><span data-i18n="en">Modern → Old Policy</span></legend>
+        <div class="policy-options">
+          <label><input type="radio" name="conversionPolicy" value="conservative" checked><span data-i18n="ja">保守的（候補が複数ある場合は変換しない）</span><span data-i18n="en">Conservative (Preserve if multiple candidates exist)</span></label>
+          <label><input type="radio" name="conversionPolicy" value="first"><span data-i18n="ja">最初を採用（辞書順の最初の候補を自動選択）</span><span data-i18n="en">First candidate (Auto-select by dictionary order)</span></label>
+        </div>
+      </fieldset>
       <label class="toggle"><input type="checkbox" id="excludeToggle" checked><span data-i18n="ja">ASCII文字／URL／コードブロック内は変換しない</span><span data-i18n="en">Do not convert inside ASCII text, URLs, or code blocks</span></label>
       <div class="action-row"><button id="convertBtn" class="btn-primary" type="button"><span data-i18n="ja">変換する</span><span data-i18n="en">Convert</span></button><button id="resetBtn" class="btn-ghost" type="button"><span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span></button></div>
       <div id="progress" class="progress"><div class="progress-bar"></div></div>
@@ -70,6 +77,23 @@
       <p class="field-label sub"><span data-i18n="ja">変換後テキスト</span><span data-i18n="en">Converted text</span></p><div id="outputText" class="result-text"></div>
       <div class="action-row result-actions"><button id="copyTextBtn" class="btn-secondary" type="button"><span data-i18n="ja">変換後テキストをコピー</span><span data-i18n="en">Copy converted text</span></button><button id="copyTableBtn" class="btn-ghost" type="button"><span data-i18n="ja">置換一覧をコピー</span><span data-i18n="en">Copy replacement list</span></button></div>
       <div class="replacement-block" id="replacementBlock" hidden><h3 class="replacement-title"><span data-i18n="ja">置換一覧</span><span data-i18n="en">Replacement list</span></h3><p class="replacement-desc"><span data-i18n="ja">変換元 → 変換先の置換と回数を表示します。</span><span data-i18n="en">Shows each replacement with its count.</span></p><div class="replacement-table-wrap"><table class="replacement-table"><thead><tr><th><span data-i18n="ja">変換元</span><span data-i18n="en">From</span></th><th><span data-i18n="ja">変換先</span><span data-i18n="en">To</span></th><th><span data-i18n="ja">回数</span><span data-i18n="en">Count</span></th></tr></thead><tbody id="replacementTableBody"></tbody></table></div><p id="replacementEmpty" class="replacement-empty"><span data-i18n="ja">置換はありません。</span><span data-i18n="en">No replacements found.</span></p></div>
+      <div class="replacement-block" id="ambiguityBlock" hidden>
+        <h3 class="replacement-title"><span data-i18n="ja">新→旧 変換候補の確認（重複あり）</span><span data-i18n="en">Ambiguity Review (Modern → Old)</span></h3>
+        <p class="replacement-desc"><span data-i18n="ja">複数の旧字体候補があるため、選択したポリシーに従って処理された文字です。</span><span data-i18n="en">Characters with multiple old-form candidates, processed based on the selected policy.</span></p>
+        <div class="replacement-table-wrap">
+          <table class="replacement-table">
+            <thead>
+              <tr>
+                <th><span data-i18n="ja">現代漢字</span><span data-i18n="en">Modern</span></th>
+                <th><span data-i18n="ja">旧字候補</span><span data-i18n="en">Candidates</span></th>
+                <th><span data-i18n="ja">出現回数</span><span data-i18n="en">Count</span></th>
+                <th><span data-i18n="ja">結果</span><span data-i18n="en">Action</span></th>
+              </tr>
+            </thead>
+            <tbody id="ambiguityTableBody"></tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <section class="faq-section"><h2><span data-i18n="ja">よくある質問</span><span data-i18n="en">FAQ</span></h2><details><summary><span data-i18n="ja">すべて正確に変換できますか？</span><span data-i18n="en">Can it convert everything accurately?</span></summary><p data-i18n="ja">いいえ。辞書ベースの補助変換です。重要な用途では原本・公式情報をご確認ください。</p><p data-i18n="en">No. This is a dictionary-based helper. Always check original or official sources for important use.</p></details><details><summary><span data-i18n="ja">入力本文は送信されますか？</span><span data-i18n="en">Is my input uploaded?</span></summary><p data-i18n="ja">変換処理はブラウザ内で行われ、入力本文はサーバーへ送信しません。</p><p data-i18n="en">Conversion runs in your browser and the input text is not uploaded.</p></details></section>
     <div class="ad-slot ad-bottom"><span data-i18n="ja">広告枠</span><span data-i18n="en">Ad slot (preparing)</span></div>
