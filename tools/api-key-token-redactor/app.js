@@ -27,8 +27,9 @@ const applyLang = (lang) => {
     link.setAttribute("href", currentLang === "ja" ? "./howto/" : "./howto/en/");
   });
   if (lastResult) {
-    renderFindings(lastResult.findings);
-    updateSafetySummary(lastResult.findings);
+    renderFindings(lastResult.findings, lastResult.residualFindings);
+    renderCoverage(lastResult.coverage);
+    updateSafetySummary(lastResult.findings, lastResult.residualFindings);
   }
   document.dispatchEvent(new CustomEvent("nw-lang-change", { detail: { lang: currentLang } }));
 };
@@ -70,7 +71,7 @@ const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (ch) => ({
 
 const severityRank = { high: 3, medium: 2, low: 1 };
 
-const redactContent = (text, options) => {
+const scanContent = (text, options) => {
   const findings = [];
 
   const hasOverlap = (start, end) => findings.some((item) => start < item.end && end > item.start);
@@ -84,7 +85,9 @@ const redactContent = (text, options) => {
     if (start < 0 || end <= start || hasOverlap(start, end)) return;
     findings.push({
       type,
-      label,
+      label: Array.isArray(label) ? label[1] : label, // legacy support (EN)
+      labelJa: Array.isArray(label) ? label[0] : label,
+      labelEn: Array.isArray(label) ? label[1] : label,
       severity,
       line: lineNumberFor(text, start),
       preview: previewFor(text, match.index, match.index + match[0].length, start, end),
@@ -114,45 +117,45 @@ const redactContent = (text, options) => {
   };
 
   if (options.modePrivateKey) {
-    scanWhole(/-----BEGIN [^-]*PRIVATE KEY-----[\s\S]*?-----END [^-]*PRIVATE KEY-----/g, "privateKey", "Private key block", "high");
+    scanWhole(/-----BEGIN [^-]*PRIVATE KEY-----[\s\S]*?-----END [^-]*PRIVATE KEY-----/g, "privateKey", ["秘密鍵ブロック", "Private key block"], "high");
   }
 
   if (options.modeBearer) {
-    scanGroup(/(Authorization\s*:\s*Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Authorization Bearer token", "high");
-    scanGroup(/\b(Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", "Bearer token", "high");
-    scanGroup(/(Authorization\s*:\s*)(?!Bearer\s+)([^\r\n]{8,})/gi, 2, "header", "Authorization header", "high");
-    scanGroup(/(-H\s+["']Authorization\s*:\s*Bearer\s+)([^"'\r\n]{12,})/gi, 2, "bearer", "curl Authorization Bearer token", "high");
+    scanGroup(/(Authorization\s*:\s*Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", ["Authorization Bearerトークン", "Authorization Bearer token"], "high");
+    scanGroup(/\b(Bearer\s+)([A-Za-z0-9\-._~+/=]{12,})/gi, 2, "bearer", ["Bearerトークン", "Bearer token"], "high");
+    scanGroup(/(Authorization\s*:\s*)(?!Bearer\s+)([^\r\n]{8,})/gi, 2, "header", ["Authorizationヘッダー", "Authorization header"], "high");
+    scanGroup(/(-H\s+["']Authorization\s*:\s*Bearer\s+)([^"'\r\n]{12,})/gi, 2, "bearer", ["curl Authorization Bearerトークン", "curl Authorization Bearer token"], "high");
   }
 
   if (options.modeJwt) {
-    scanWhole(/\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/g, "jwt", "JWT", "high");
+    scanWhole(/\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/g, "jwt", ["JWT", "JWT"], "high");
   }
 
   if (options.modeApiKeys) {
-    scanWhole(/\bsk-proj-[A-Za-z0-9_-]{12,}\b/g, "apiKeys", "OpenAI project key", "high");
-    scanWhole(/\bsk-[A-Za-z0-9]{16,}\b/g, "apiKeys", "OpenAI API key", "high");
-    scanWhole(/\bsk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", "Stripe secret key", "high");
-    scanWhole(/\brk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", "Stripe restricted key", "high");
-    scanWhole(/\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, "apiKeys", "GitHub fine-grained token", "high");
-    scanWhole(/\bgh[opuslr]_[A-Za-z0-9]{20,}\b/g, "apiKeys", "GitHub token", "high");
-    scanWhole(/\b(?:xox[baprs]|xapp)-[A-Za-z0-9-]{10,}\b/g, "apiKeys", "Slack token", "high");
-    scanWhole(/\bAIza[0-9A-Za-z_-]{20,}\b/g, "apiKeys", "Google API key", "high");
-    scanWhole(/\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "SendGrid API key", "high");
-    scanWhole(/\bglpat-[A-Za-z0-9_-]{10,}\b/g, "apiKeys", "GitLab token", "high");
-    scanWhole(/\bnpm_[A-Za-z0-9]{24,}\b/g, "apiKeys", "npm token", "high");
-    scanWhole(/\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g, "apiKeys", "AWS access key ID", "high");
-    scanWhole(/\b\d{8,12}:[A-Za-z0-9_-]{30,}\b/g, "apiKeys", "Telegram bot token", "high");
-    scanWhole(/\b[A-Za-z0-9_-]{23,28}\.[A-Za-z0-9_-]{6,8}\.[A-Za-z0-9_-]{27,}\b/g, "apiKeys", "Discord-style token", "high");
+    scanWhole(/\bsk-proj-[A-Za-z0-9_-]{12,}\b/g, "apiKeys", ["OpenAIプロジェクトキー", "OpenAI project key"], "high");
+    scanWhole(/\bsk-[A-Za-z0-9]{16,}\b/g, "apiKeys", ["OpenAI APIキー", "OpenAI API key"], "high");
+    scanWhole(/\bsk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", ["Stripeシークレットキー", "Stripe secret key"], "high");
+    scanWhole(/\brk_(?:live|test)_[A-Za-z0-9]{16,}\b/g, "apiKeys", ["Stripe制限付きキー", "Stripe restricted key"], "high");
+    scanWhole(/\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, "apiKeys", ["GitHub微細トークン", "GitHub fine-grained token"], "high");
+    scanWhole(/\bgh[opuslr]_[A-Za-z0-9]{20,}\b/g, "apiKeys", ["GitHubトークン", "GitHub token"], "high");
+    scanWhole(/\b(?:xox[baprs]|xapp)-[A-Za-z0-9-]{10,}\b/g, "apiKeys", ["Slackトークン", "Slack token"], "high");
+    scanWhole(/\bAIza[0-9A-Za-z_-]{20,}\b/g, "apiKeys", ["Google APIキー", "Google API key"], "high");
+    scanWhole(/\bSG\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g, "apiKeys", ["SendGrid APIキー", "SendGrid API key"], "high");
+    scanWhole(/\bglpat-[A-Za-z0-9_-]{10,}\b/g, "apiKeys", ["GitLabトークン", "GitLab token"], "high");
+    scanWhole(/\bnpm_[A-Za-z0-9]{24,}\b/g, "apiKeys", ["npmトークン", "npm token"], "high");
+    scanWhole(/\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g, "apiKeys", ["AWSアクセスキーID", "AWS access key ID"], "high");
+    scanWhole(/\b\d{8,12}:[A-Za-z0-9_-]{30,}\b/g, "apiKeys", ["Telegramボットトークン", "Telegram bot token"], "high");
+    scanWhole(/\b[A-Za-z0-9_-]{23,28}\.[A-Za-z0-9_-]{6,8}\.[A-Za-z0-9_-]{27,}\b/g, "apiKeys", ["Discord風トークン", "Discord-style token"], "high");
   }
 
   if (options.modeGenericSecret) {
     const secretKeys = "_?auth[_-]?token|api[_-]?key|apikey|token|secret|password|passwd|pwd|client[_-]?secret|access[_-]?token|refresh[_-]?token|auth[_-]?token|private[_-]?key|npm[_-]?token|vercel[_-]?token|database[_-]?url|db[_-]?password|aws[_-]?secret[_-]?access[_-]?key|secretAccessKey";
-    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)(["'])([^"'\\r\\n]{8,})(["'])`, "gi"), 3, "genericSecret", "Quoted secret value", "medium");
-    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)([^\\s"',}\\]]{8,})`, "gi"), 2, "genericSecret", "Labeled secret value", "medium");
-    scanGroup(/([?&](?:token|api_key|apikey|key|access_token|refresh_token|auth_token|client_secret|signature|sig)=)([^&#\s]{8,})/gi, 2, "urlQuery", "URL query secret", "medium");
-    scanGroup(/(Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Cookie header", "medium");
-    scanGroup(/(Set-Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", "Set-Cookie header", "medium");
-    scanGroup(/(\/\/registry\.npmjs\.org\/:_authToken=)([^\s\r\n]{8,})/gi, 2, "genericSecret", "npm auth token", "high");
+    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)(["'])([^"'\\r\\n]{8,})(["'])`, "gi"), 3, "genericSecret", ["引用符付きシークレット", "Quoted secret value"], "medium");
+    scanGroup(new RegExp(`(["']?\\b(?:${secretKeys})\\b["']?\\s*[:=]\\s*)([^\\s"',}\\]]{8,})`, "gi"), 2, "genericSecret", ["ラベル付きシークレット", "Labeled secret value"], "medium");
+    scanGroup(/([?&](?:token|api_key|apikey|key|access_token|refresh_token|auth_token|client_secret|signature|sig)=)([^&#\s]{8,})/gi, 2, "urlQuery", ["URLクエリシークレット", "URL query secret"], "medium");
+    scanGroup(/(Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", ["Cookieヘッダー", "Cookie header"], "medium");
+    scanGroup(/(Set-Cookie\s*:\s*)([^\r\n]{12,})/gi, 2, "cookie", ["Set-Cookieヘッダー", "Set-Cookie header"], "medium");
+    scanGroup(/(\/\/registry\.npmjs\.org\/:_authToken=)([^\s\r\n]{8,})/gi, 2, "genericSecret", ["npm認証トークン", "npm auth token"], "high");
   }
 
   if (options.proActive && Array.isArray(options.customRules)) {
@@ -166,12 +169,20 @@ const redactContent = (text, options) => {
   }
 
   findings.sort((a, b) => a.start - b.start || severityRank[b.severity] - severityRank[a.severity]);
+  return findings;
+};
+
+const redactContent = (text, options) => {
+  const findings = scanContent(text, options);
+  const placeholderRanges = [];
 
   let output = "";
   let cursor = 0;
   findings.forEach((item) => {
     output += text.slice(cursor, item.start);
-    output += placeholderFor(text.slice(item.start, item.end), options.keepLength, options.placeholder);
+    const replacement = placeholderFor(text.slice(item.start, item.end), options.keepLength, options.placeholder);
+    placeholderRanges.push({ start: output.length, end: output.length + replacement.length });
+    output += replacement;
     cursor = item.end;
   });
   output += text.slice(cursor);
@@ -196,7 +207,7 @@ const redactContent = (text, options) => {
     total: 0,
   });
 
-  return { output, counts, findings };
+  return { output, counts, findings, placeholderRanges };
 };
 
 const setText = (id, value) => {
@@ -217,42 +228,113 @@ const updateSummary = (counts) => {
   setText("countTotal", counts.total || 0);
 };
 
-const renderFindings = (findings = []) => {
+const renderFindings = (originalFindings = [], residualFindings = []) => {
   const list = el("findingsList");
-  if (!list) return;
-  if (!findings.length) {
-    list.innerHTML = `<p class="empty-state">${escapeHtml(t("検出結果はまだありません。検出0件でも、共有前に目視確認してください。", "No findings yet. Even with zero detections, review manually before sharing."))}</p>`;
-    return;
+  if (list) {
+    if (!originalFindings.length) {
+      list.innerHTML = `<p class="empty-state">${escapeHtml(t("検出結果はまだありません。検出0件でも、共有前に目視確認してください。", "No findings yet. Even with zero detections, review manually before sharing."))}</p>`;
+    } else {
+      list.innerHTML = originalFindings.map((item) => `
+        <article class="finding-item severity-${escapeHtml(item.severity)}">
+          <div class="finding-main">
+            <span class="severity-pill">${escapeHtml(item.severity.toUpperCase())}</span>
+            <strong>${escapeHtml(t(item.labelJa, item.labelEn))}</strong>
+            <span class="finding-line">${escapeHtml(t("行", "Line"))} ${escapeHtml(item.line)}</span>
+          </div>
+          <code>${escapeHtml(item.preview)}</code>
+        </article>
+      `).join("");
+    }
   }
-  list.innerHTML = findings.map((item) => `
-    <article class="finding-item severity-${escapeHtml(item.severity)}">
-      <div class="finding-main">
-        <span class="severity-pill">${escapeHtml(item.severity.toUpperCase())}</span>
-        <strong>${escapeHtml(item.label)}</strong>
-        <span class="finding-line">${escapeHtml(t("行", "Line"))} ${escapeHtml(item.line)}</span>
-      </div>
-      <code>${escapeHtml(item.preview)}</code>
-    </article>
+
+  const vlist = el("verificationList");
+  if (vlist) {
+    if (residualFindings.length > 0) {
+      const counts = residualFindings.reduce((acc, item) => {
+        acc[item.severity] = (acc[item.severity] || 0) + 1;
+        return acc;
+      }, { high: 0, medium: 0, low: 0 });
+
+      const types = [...new Set(residualFindings.map(f => t(f.labelJa, f.labelEn)))].join(", ");
+
+      vlist.innerHTML = `
+        <div class="verification-warning">
+          <strong>${escapeHtml(t("懸念：未解決のパターンが検出されました", "Warning: Unresolved patterns detected"))}</strong>
+          <span class="verification-note">${escapeHtml(t(`enabledな検出ルールにより、伏字化後のテキストから ${residualFindings.length} 件の不審なパターンが見つかりました。`, `Enabled rules found ${residualFindings.length} suspicious patterns in the redacted output.`))}</span>
+          <span class="verification-note">${escapeHtml(t(`重要度別：High ${counts.high} / Medium ${counts.medium} / Low ${counts.low}`, `By severity: High ${counts.high} / Medium ${counts.medium} / Low ${counts.low}`))}</span>
+          <span class="verification-note">${escapeHtml(t(`検出タイプ：${types}`, `Detected types: ${types}`))}</span>
+          <span class="verification-note">${escapeHtml(t("共有前にさらなる手動確認が必要です。", "Further manual review is required before sharing."))}</span>
+        </div>
+        <div class="findings-list" style="margin-top:12px;">
+          ${residualFindings.map((item) => `
+            <article class="finding-item severity-${escapeHtml(item.severity)}">
+              <div class="finding-main">
+                <span class="severity-pill">${escapeHtml(item.severity.toUpperCase())}</span>
+                <strong>${escapeHtml(t(item.labelJa, item.labelEn))}</strong>
+                <span class="finding-line">${escapeHtml(t("行", "Line"))} ${escapeHtml(item.line)}</span>
+              </div>
+              <code>${escapeHtml(item.preview)}</code>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    } else {
+      vlist.innerHTML = `
+        <div class="verification-success">
+          <strong>${escapeHtml(t("enabledなルールによる残存マッチなし", "No residual matches detected by enabled rules"))}</strong>
+          <span class="verification-note">${escapeHtml(t("有効化されている検出モードの範囲内では、不審なパターンは見つかりませんでした。", "No suspicious patterns were found within the scope of enabled detection modes."))}</span>
+          <span class="verification-note">${escapeHtml(t("注意：手動での確認は引き続き必要です。独自形式や未知の秘密情報は残っている可能性があります。", "Manual review is still required. Provider-specific or unknown secret formats may remain."))}</span>
+        </div>
+      `;
+    }
+  }
+};
+
+const renderCoverage = (coverage) => {
+  const container = el("coverageSummary");
+  if (!container || !coverage) return;
+
+  const modes = [
+    { id: "modeApiKeys", label: t("APIキー", "API keys") },
+    { id: "modeBearer", label: t("Bearer / 認証", "Bearer / Auth") },
+    { id: "modeJwt", label: "JWT" },
+    { id: "modePrivateKey", label: t("秘密鍵", "Private keys") },
+    { id: "modeGenericSecret", label: t("汎用 / JSON / .env / URL / Cookie", "Generic / JSON / .env / URL / Cookie") },
+  ];
+
+  container.innerHTML = modes.map(m => `
+    <span class="coverage-tag ${coverage[m.id] ? "active" : ""}">
+      ${coverage[m.id] ? "✓" : "×"} ${escapeHtml(m.label)}
+    </span>
   `).join("");
 };
 
-const updateSafetySummary = (findings = []) => {
+const updateSafetySummary = (findings = [], residualFindings = []) => {
   const box = el("safetySummary");
   if (!box) return;
   const high = findings.filter((item) => item.severity === "high").length;
   const medium = findings.filter((item) => item.severity === "medium").length;
   const privateKeys = findings.filter((item) => item.type === "privateKey").length;
   const headers = findings.filter((item) => item.type === "bearer" || item.type === "header" || item.type === "cookie").length;
+
+  let baseText = "";
   if (!findings.length) {
-    box.textContent = t("検出なし。ただし、独自形式の秘密情報・Cookie・URLパラメータ・メールアドレス・IPなどは残る可能性があります。", "No findings. Custom secrets, cookies, URL parameters, emails, or IP addresses may still remain.");
-    box.className = "safety-summary warning";
-    return;
+    baseText = t("検出なし。ただし、独自形式の秘密情報・Cookie・URLパラメータ・メールアドレス・IPなどは残る可能性があります。", "No findings. Custom secrets, cookies, URL parameters, emails, or IP addresses may still remain.");
+  } else {
+    baseText = t(
+      `検出結果：${findings.length}件 / High：${high}件 / Medium：${medium}件 / 秘密鍵：${privateKeys}件 / ヘッダー系：${headers}件。検出結果のプレビューは一部マスク済みです。共有前に出力を再確認してください。`,
+      `Findings: ${findings.length} / High: ${high} / Medium: ${medium} / Private keys: ${privateKeys} / Headers: ${headers}. Finding previews are partially masked. Review the output before sharing.`
+    );
   }
-  box.textContent = t(
-    `検出結果：${findings.length}件 / High：${high}件 / Medium：${medium}件 / 秘密鍵：${privateKeys}件 / ヘッダー系：${headers}件。検出結果のプレビューは一部マスク済みです。共有前に出力を再確認してください。`,
-    `Findings: ${findings.length} / High: ${high} / Medium: ${medium} / Private keys: ${privateKeys} / Headers: ${headers}. Finding previews are partially masked. Review the output before sharing.`
-  );
-  box.className = high > 0 ? "safety-summary danger" : "safety-summary warning";
+
+  if (residualFindings.length > 0) {
+    const resText = t(` 【警告】伏字化後のテキストに ${residualFindings.length} 件の残存マッチがあります。`, ` [Warning] ${residualFindings.length} residual matches found in the redacted output.`);
+    box.textContent = baseText + resText;
+    box.className = "safety-summary danger";
+  } else {
+    box.textContent = baseText;
+    box.className = high > 0 ? "safety-summary danger" : "safety-summary warning";
+  }
 };
 
 const emptyCounts = () => ({
@@ -614,12 +696,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const runRedaction = () => {
     const text = input.value || "";
-    const result = redactContent(text, getOptions());
+    const options = getOptions();
+    const result = redactContent(text, options);
+
+    // Verification pass
+    const allResidual = scanContent(result.output, options);
+    const residualFindings = allResidual.filter(rf => {
+      // Ignore if it overlaps with a placeholder we just created
+      return !result.placeholderRanges.some(pr => rf.start < pr.end && rf.end > pr.start);
+    });
+
     output.value = result.output;
-    lastResult = result;
+    lastResult = {
+      ...result,
+      residualFindings,
+      coverage: {
+        modeApiKeys: options.modeApiKeys,
+        modeBearer: options.modeBearer,
+        modeJwt: options.modeJwt,
+        modePrivateKey: options.modePrivateKey,
+        modeGenericSecret: options.modeGenericSecret,
+      }
+    };
+
     updateSummary(result.counts);
-    renderFindings(result.findings);
-    updateSafetySummary(result.findings);
+    renderFindings(result.findings, residualFindings);
+    renderCoverage(lastResult.coverage);
+    updateSafetySummary(result.findings, residualFindings);
   };
 
   updateSummary(emptyCounts());
