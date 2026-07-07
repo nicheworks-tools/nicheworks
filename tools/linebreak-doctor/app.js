@@ -20,7 +20,7 @@ const translations = {
     input_label: "整形したい文章",
     input_placeholder: "ここに整形したい文章を貼り付けてください",
     policy_label: "見えない文字（ゼロ幅スペース）の扱い",
-    policy_safe: "プラットフォーム推奨（空行を維持）",
+    policy_safe: "表示崩れ防止（空行を維持）",
     policy_plain: "プレーンテキスト（見えない文字を挿入しない）",
     policy_help: "※プレーンテキスト設定では、SNSによって空行が消える場合があります。",
     char_count_label: "文字数：",
@@ -39,15 +39,15 @@ const translations = {
     faq_a4: "主に改行コードを統一し、コピー時の崩れを減らします。",
     diag_lines: "行数",
     diag_blanks: "空行",
-    diag_zwsp: "見えない文字",
+    diag_zwsp: "挿入された見えない文字",
     diag_changed: "本文変更あり",
     diag_no_change: "なし",
     diag_yes: "あり",
     result_suffix: "向け",
-    btn_copy: "向けをコピー",
+    btn_copy: "{name}向けをコピー",
     status_generating: "SNS別の整形結果を生成しました。投稿前に各SNSの投稿画面で表示を確認してください。",
     status_input_required: "整形する文章を入力してください。",
-    toast_copied: "向けテキストをコピーしました。",
+    toast_copied: "{name}向けテキストをコピーしました。",
     toast_copy_failed: "コピーできませんでした。テキストを選択して手動でコピーしてください。",
     toast_formatted: "整形結果を生成しました。",
     toast_reset: "入力と結果をリセットしました。",
@@ -89,15 +89,15 @@ const translations = {
     faq_a4: "It primarily normalizes line break codes to ensure consistency when copying.",
     diag_lines: "Lines",
     diag_blanks: "Blank Lines",
-    diag_zwsp: "Invisible Chars",
+    diag_zwsp: "Inserted Invisible Chars",
     diag_changed: "Content Changed",
     diag_no_change: "None",
     diag_yes: "Yes",
     result_suffix: "",
-    btn_copy: "Copy for ",
+    btn_copy: "Copy for {name}",
     status_generating: "Generated results for each platform. Please verify in the actual app.",
     status_input_required: "Please enter text to format.",
-    toast_copied: "Copied text for ",
+    toast_copied: "Copied text for {name}",
     toast_copy_failed: "Failed to copy. Please select and copy manually.",
     toast_formatted: "Formatting complete.",
     toast_reset: "Reset input and results.",
@@ -274,7 +274,12 @@ function applyLang(lang) {
   renderRules();
   renderFAQ();
   if (resultsEl.children.length > 0) {
-    renderResults(false); // Re-render without toast/status change
+    renderResults(false); // Re-render without toast change
+  } else if (statusEl.textContent.trim()) {
+    // If status message exists but no results (likely empty input error), translate it
+    if (statusEl.classList.contains("is-error")) {
+      setStatus(t.status_input_required, true);
+    }
   }
 }
 
@@ -320,8 +325,10 @@ function getDiagnostics(input, output) {
   const outputBlanks = outputLines.filter(isEffectivelyBlank).length;
 
   // Zero-width chars count (\u200B)
-  const zwspMatch = normOutput.match(/\u200B/g);
-  const zwspCount = zwspMatch ? zwspMatch.length : 0;
+  const zwspInInput = (normInput.match(/\u200B/g) || []).length;
+  const zwspInOutput = (normOutput.match(/\u200B/g) || []).length;
+  // Net inserted ZWSP
+  const zwspCount = Math.max(0, zwspInOutput - zwspInInput);
 
   // Check if visible content changed (ignoring whitespace and zwsp)
   const strip = (t) => t.replace(/[\s\u200B]/g, "");
@@ -367,10 +374,11 @@ function updateCharCount() {
 
 async function copyText(text, snsName) {
   const t = translations[currentLang];
+  const successMsg = t.toast_copied.replace("{name}", snsName);
   try {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(text);
-      showToast(`${t.toast_copied}${snsName}`);
+      showToast(successMsg);
       return true;
     }
     throw new Error("Clipboard API unavailable");
@@ -392,7 +400,7 @@ async function copyText(text, snsName) {
     }
     document.body.removeChild(fallback);
     if (copied) {
-      showToast(`${t.toast_copied}${snsName}`);
+      showToast(successMsg);
       return true;
     }
     showToast(t.toast_copy_failed, true);
@@ -427,7 +435,7 @@ function buildResultCard(sns, formatted, diag) {
   const copyButton = document.createElement("button");
   copyButton.type = "button";
   copyButton.className = "copy-btn";
-  copyButton.textContent = `${t.btn_copy}${sns.name}`;
+  copyButton.textContent = t.btn_copy.replace("{name}", sns.name);
   copyButton.addEventListener("click", () => copyText(formatted, sns.name));
 
   block.append(heading, pre, diagEl, copyButton);
@@ -459,6 +467,14 @@ function renderResults(showFeedback = true) {
   if (showFeedback) {
     setStatus(t.status_generating, false);
     showToast(t.toast_formatted);
+  } else {
+    // If just re-rendering (e.g. language switch), refresh the status message in current language
+    const currentStatus = statusEl.textContent.trim();
+    const jaGen = translations.ja.status_generating;
+    const enGen = translations.en.status_generating;
+    if (currentStatus === jaGen || currentStatus === enGen) {
+      setStatus(t.status_generating, false);
+    }
   }
 }
 
