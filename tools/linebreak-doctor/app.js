@@ -218,6 +218,7 @@ const faqListEl = document.getElementById("faq-list");
 
 let currentLang = "ja";
 let toastTimer = null;
+let currentResultsData = null;
 
 /* ===============================
    i18n Logic
@@ -273,8 +274,8 @@ function applyLang(lang) {
 
   renderRules();
   renderFAQ();
-  if (resultsEl.children.length > 0) {
-    renderResults(false); // Re-render without toast change
+  if (currentResultsData) {
+    renderResultsFromData();
   } else if (statusEl.textContent.trim()) {
     // If status message exists but no results (likely empty input error), translate it
     if (statusEl.classList.contains("is-error")) {
@@ -442,45 +443,56 @@ function buildResultCard(sns, formatted, diag) {
   return block;
 }
 
-function renderResults(showFeedback = true) {
+function renderResultsFromData(showFeedback = false) {
+  if (!currentResultsData) return;
+  const t = translations[currentLang];
+
+  const fragment = document.createDocumentFragment();
+  currentResultsData.forEach((item) => {
+    const sns = snsProfiles.find(p => p.id === item.id);
+    if (sns) {
+      fragment.appendChild(buildResultCard(sns, item.formatted, item.diag));
+    }
+  });
+
+  resultsEl.replaceChildren(fragment);
+
+  // Refresh status message if it was a generation status
+  const currentStatus = statusEl.textContent.trim();
+  const jaGen = translations.ja.status_generating;
+  const enGen = translations.en.status_generating;
+  if (showFeedback || currentStatus === jaGen || currentStatus === enGen) {
+    setStatus(t.status_generating, false);
+    if (showFeedback) showToast(t.toast_formatted);
+  }
+}
+
+function renderResults() {
   const rawInput = inputEl.value || "";
   const t = translations[currentLang];
   const policy = document.querySelector('input[name="policy"]:checked').value;
 
   if (!rawInput.trim()) {
-    if (showFeedback) {
-      resultsEl.innerHTML = "";
-      setStatus(t.status_input_required, true);
-      inputEl.focus();
-    }
+    currentResultsData = null;
+    resultsEl.innerHTML = "";
+    setStatus(t.status_input_required, true);
+    inputEl.focus();
     return;
   }
 
-  const fragment = document.createDocumentFragment();
-  snsProfiles.forEach((sns) => {
+  currentResultsData = snsProfiles.map((sns) => {
     const formatted = sns.formatter(rawInput, policy);
     const diag = getDiagnostics(rawInput, formatted);
-    fragment.appendChild(buildResultCard(sns, formatted, diag));
+    return { id: sns.id, formatted, diag };
   });
 
-  resultsEl.replaceChildren(fragment);
-  if (showFeedback) {
-    setStatus(t.status_generating, false);
-    showToast(t.toast_formatted);
-  } else {
-    // If just re-rendering (e.g. language switch), refresh the status message in current language
-    const currentStatus = statusEl.textContent.trim();
-    const jaGen = translations.ja.status_generating;
-    const enGen = translations.en.status_generating;
-    if (currentStatus === jaGen || currentStatus === enGen) {
-      setStatus(t.status_generating, false);
-    }
-  }
+  renderResultsFromData(true);
 }
 
 function resetTool() {
   const t = translations[currentLang];
   inputEl.value = "";
+  currentResultsData = null;
   resultsEl.replaceChildren();
   setStatus("");
   updateCharCount();
@@ -498,8 +510,8 @@ if (inputEl && formatBtn && resetBtn) {
 
   document.querySelectorAll('input[name="policy"]').forEach(radio => {
     radio.addEventListener("change", () => {
-      if (resultsEl.children.length > 0) {
-        renderResults(false);
+      if (currentResultsData) {
+        renderResults();
       }
     });
   });
