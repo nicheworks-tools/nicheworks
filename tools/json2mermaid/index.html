@@ -91,6 +91,33 @@
       </div>
     </div>
 
+    <div class="options-block">
+      <p class="section-label options-label" data-i18n="ja">変換オプション</p><p class="section-label options-label" data-i18n="en">Conversion Options</p>
+      <div class="options-grid">
+        <div class="option-group">
+          <span class="option-title" data-i18n="ja">方向</span><span class="option-title" data-i18n="en">Direction</span>
+          <div class="radio-group">
+            <label><input type="radio" name="direction" value="TD" checked> <span data-i18n="ja">縦 (TD)</span><span data-i18n="en">Top-Down (TD)</span></label>
+            <label><input type="radio" name="direction" value="LR"> <span data-i18n="ja">横 (LR)</span><span data-i18n="en">Left-to-Right (LR)</span></label>
+          </div>
+        </div>
+        <div class="option-group">
+          <span class="option-title" data-i18n="ja">末端ノード</span><span class="option-title" data-i18n="en">Leaf Nodes</span>
+          <div class="radio-group">
+            <label><input type="radio" name="leafMode" value="separate" checked> <span data-i18n="ja">値を分離</span><span data-i18n="en">Separate Values</span></label>
+            <label><input type="radio" name="leafMode" value="inline"> <span data-i18n="ja">値をインライン化</span><span data-i18n="en">Inline Values</span></label>
+          </div>
+        </div>
+        <div class="option-group">
+          <span class="option-title" data-i18n="ja">配列の扱い</span><span class="option-title" data-i18n="en">Array Mode</span>
+          <div class="radio-group">
+            <label><input type="radio" name="arrayMode" value="expand" checked> <span data-i18n="ja">展開</span><span data-i18n="en">Expand</span></label>
+            <label><input type="radio" name="arrayMode" value="summarize"> <span data-i18n="ja">要約</span><span data-i18n="en">Summarize</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <label class="section-label" for="jsonInput" data-i18n="ja">JSON（入力）</label><label class="section-label" for="jsonInput" data-i18n="en">JSON Input</label>
     <textarea id="jsonInput" class="code-input" placeholder='{&quot;user&quot;: {&quot;name&quot;: &quot;Alice&quot;}}'></textarea>
 
@@ -101,6 +128,17 @@
     <label class="section-label" for="mermaidOutput" data-i18n="ja">Mermaid記法（出力）</label><label class="section-label" for="mermaidOutput" data-i18n="en">Mermaid Output</label>
     <textarea id="mermaidOutput" class="code-output" readonly></textarea>
     <div class="btn-area export-area"><button id="downloadMmd" class="btn-secondary" data-i18n-key="downloadMmd">.mmdで保存</button><button id="downloadTxt" class="btn-secondary" data-i18n-key="downloadTxt">.txtで保存</button></div>
+
+    <div id="statsBox" class="stats-box hidden">
+      <p class="stats-title" data-i18n="ja">生成統計</p><p class="stats-title" data-i18n="en">Generation Statistics</p>
+      <div class="stats-grid">
+        <div class="stat-item"><span class="stat-label" data-i18n="ja">ノード数:</span><span class="stat-label" data-i18n="en">Nodes:</span> <span id="statNodes">-</span></div>
+        <div class="stat-item"><span class="stat-label" data-i18n="ja">エッジ数:</span><span class="stat-label" data-i18n="en">Edges:</span> <span id="statEdges">-</span></div>
+        <div class="stat-item"><span class="stat-label" data-i18n="ja">最大深度:</span><span class="stat-label" data-i18n="en">Max Depth:</span> <span id="statDepth">-</span></div>
+        <div class="stat-item"><span class="stat-label" data-i18n="ja">配列省略数:</span><span class="stat-label" data-i18n="en">Omitted Items:</span> <span id="statOmitted">-</span></div>
+        <div class="stat-item"><span class="stat-label" data-i18n="ja">深さ制限到達:</span><span class="stat-label" data-i18n="en">Depth Limit Hit:</span> <span id="statDepthLimit">-</span></div>
+      </div>
+    </div>
 
     <section class="next-step-box">
       <h2 data-i18n="ja">生成後の確認</h2><h2 data-i18n="en">Check the generated code</h2>

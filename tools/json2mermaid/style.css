@@ -198,13 +198,15 @@ html, body {
 }
 
 /* ----------------------------
-   Presets
+   Presets & Options
 ---------------------------- */
-.preset-block {
+.preset-block,
+.options-block {
   margin-top: 20px;
 }
 
-.preset-label {
+.preset-label,
+.options-label {
   margin-top: 0;
 }
 
@@ -213,6 +215,49 @@ html, body {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 10px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background: var(--input-bg);
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.radio-group label {
+  font-size: 14px;
+  color: var(--sub);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.radio-group input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
 }
 
 /* ----------------------------
@@ -260,6 +305,49 @@ button:disabled {
 
 .export-area {
   margin-top: 10px;
+}
+
+/* ----------------------------
+   Statistics
+---------------------------- */
+.stats-box {
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.stats-box.hidden {
+  display: none;
+}
+
+.stats-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--accent);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.stat-item {
+  font-size: 13px;
+  color: var(--fg);
+}
+
+.stat-label {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+#statDepthLimit {
+  font-weight: 700;
 }
 
 /* ----------------------------
@@ -414,5 +502,13 @@ button:disabled {
   .btn-area button,
   .preset-buttons button {
     width: 100%;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
