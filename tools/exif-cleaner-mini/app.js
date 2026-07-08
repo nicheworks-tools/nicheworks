@@ -56,6 +56,7 @@ let inputScanResult = null;
 let outputScanResult = null;
 let imageDimensions = { width: 0, height: 0 };
 let currentLoadId = 0;
+let currentCleanId = 0;
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 
@@ -260,6 +261,7 @@ async function handleFile() {
     );
     setButtonsDisabled(false);
   } catch (error) {
+    if (loadId !== currentLoadId) return;
     console.error(error);
     setStatus("Failed to load the image.", "画像の読み込みに失敗しました。");
     setStatusNote(
@@ -276,6 +278,9 @@ cleanBtnEn.addEventListener("click", cleanExif);
 async function cleanExif() {
   const file = fileInput.files[0];
   if (!file) return;
+
+  const cleanId = ++currentCleanId;
+  const loadIdAtStart = currentLoadId;
 
   resetMessages();
   setStatus("Processing image...", "画像を処理中...");
@@ -299,11 +304,15 @@ async function cleanExif() {
       outputFormat === "jpeg" ? Number(qualitySlider.value) : undefined;
 
     const blob = await canvasToBlob(canvas, mimeType, quality);
+    if (cleanId !== currentCleanId || loadIdAtStart !== currentLoadId) return;
+
     if (!blob) {
       throw new Error("Failed to create image blob");
     }
 
     const outputBuffer = await blob.arrayBuffer();
+    if (cleanId !== currentCleanId || loadIdAtStart !== currentLoadId) return;
+
     outputScanResult = scanMetadata(outputBuffer, outputFormat);
 
     const downloadName = buildDownloadName(file.name, outputFormat);
@@ -330,6 +339,7 @@ async function cleanExif() {
       "保存された画像はブラウザ内で再生成されました。"
     );
   } catch (error) {
+    if (cleanId !== currentCleanId || loadIdAtStart !== currentLoadId) return;
     console.error(error);
     setStatus(
       "Failed to clean the image. Please try another file.",
@@ -340,7 +350,9 @@ async function cleanExif() {
       "拡張子が対応形式でも、ブラウザで読み込めない画像は処理できない場合があります。"
     );
   } finally {
-    setButtonsDisabled(false);
+    if (cleanId === currentCleanId && loadIdAtStart === currentLoadId) {
+      setButtonsDisabled(false);
+    }
   }
 }
 
@@ -482,6 +494,7 @@ function updateQualityControl() {
 
 function resetTool() {
   fileInput.value = "";
+  currentLoadId++;
   resetFileState();
   formatControls.classList.add("hidden");
   outputFormatEl.textContent = "";
