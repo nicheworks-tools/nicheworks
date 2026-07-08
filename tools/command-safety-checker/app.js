@@ -49,90 +49,113 @@
   const interactionRules = [
     {
       id: "remote_download_exec",
+      os: "all",
+      tags: ["remote"],
       severity: "HIGH",
       category: INTERACTION_CATEGORIES.remoteExec,
       title: { ja: "リモートスクリプトの直接実行", en: "Remote download + direct execution" },
       why: { ja: "外部からダウンロードしたスクリプトを、中身を確認せずにそのままシェルへ渡しています。悪意のあるコードが含まれていた場合、即座に実行されます。", en: "A script downloaded from a remote source is passed directly to a shell without inspection. If it contains malicious code, it runs immediately." },
       check: { ja: "URLのドメイン、HTTPSの使用、スクリプトの内容を事前に確認してください。", en: "Verify the URL domain, HTTPS usage, and the actual script content before running." },
       alternative: { ja: "ファイルを一度保存し、内容を確認してから実行してください。", en: "Download the file first, inspect its content, and then execute it." },
-      match: (segments, os) => {
+      match: (segments) => {
+        const matches = [];
         for (let i = 0; i < segments.length - 1; i++) {
           const s1 = segments[i];
           const s2 = segments[i+1];
           if (s1.separator === "|") {
             const isDownload = /\b(curl|wget|iwr|Invoke-WebRequest)\b/i.test(s1.text);
             const isExec = /\b(sh|bash|zsh|iex|Invoke-Expression)\b/i.test(s2.text);
-            if (isDownload && isExec) return { segments: [s1, s2] };
+            if (isDownload && isExec) matches.push({ segments: [s1, s2] });
           }
         }
-        return null;
+        return matches;
       }
     },
     {
       id: "secret_exfil",
+      os: "all",
+      tags: ["exfil", "secret"],
       severity: "HIGH",
       category: INTERACTION_CATEGORIES.exfil,
       title: { ja: "機密情報の外部送信", en: "Secret source + external transfer" },
       why: { ja: "環境変数や設定ファイル、秘密鍵などの機密情報を外部のURLやホストへ送信しようとしています。情報漏洩の危険性が高い操作です。", en: "Sensitive information such as environment variables, config files, or private keys is being sent to a remote URL or host. This is a high-risk data exfiltration pattern." },
       check: { ja: "送信先のURL/ホストが信頼できるか、機密情報が含まれていないか確認してください。", en: "Verify the destination URL/host and ensure no secrets are being sent." },
       alternative: { ja: "機密情報は送信せず、必要なデータのみを手動で抽出・伏字化して共有してください。", en: "Do not send secrets; manually extract and redact only the necessary data for sharing." },
-      match: (segments, os) => {
+      match: (segments) => {
+        const matches = [];
         const secretRegex = /\.env|id_rsa|id_ed25519|credentials|\.npmrc|printenv|env\b/i;
         const transferRegex = /\b(curl|scp|rsync|nc|netcat)\b/i;
-        let hasSecret = false;
-        let secretSeg = null;
-        for (const s of segments) {
-          if (secretRegex.test(s.text)) {
-            hasSecret = true;
-            secretSeg = s;
+        for (let i = 0; i < segments.length; i++) {
+          const s = segments[i];
+          // Case 1: Same segment has both secret and transfer
+          if (secretRegex.test(s.text) && transferRegex.test(s.text)) {
+            matches.push({ segments: [s] });
           }
-          if (hasSecret && transferRegex.test(s.text)) {
-            return { segments: [secretSeg, s] };
+          // Case 2: Piped: secret source | transfer
+          if (s.separator === "|" && i < segments.length - 1) {
+            const next = segments[i+1];
+            if (secretRegex.test(s.text) && transferRegex.test(next.text)) {
+              matches.push({ segments: [s, next] });
+            }
           }
         }
-        return null;
+        return matches;
       }
     },
     {
       id: "sudo_destructive",
+      os: "unix",
+      tags: ["sudo", "destructive"],
       severity: "HIGH",
       category: INTERACTION_CATEGORIES.destructive,
       title: { ja: "高権限での破壊的操作", en: "Elevated privilege + destructive operation" },
       why: { ja: "管理者権限（sudo等）を使用して、ファイルの削除やディスク操作などの破壊的なコマンドを実行しようとしています。操作ミスがシステム全体に致命的な影響を与える可能性があります。", en: "Destructive commands like deletion or disk operations are combined with elevated privileges (e.g., sudo). A mistake can cause fatal system-wide damage." },
       check: { ja: "対象のパスやデバイス名が正しいか、管理者権限が本当に必要か再確認してください。", en: "Double-check target paths, device names, and whether administrative rights are truly necessary." },
       alternative: { ja: "まず権限なしで確認コマンドを実行し、必要最小限の範囲で操作してください。", en: "Run inspection commands without elevation first and limit the scope to the absolute minimum." },
-      match: (segments, os) => {
-        const sudoRegex = /\b(sudo|runAs)\b/i;
-        const destRegex = /\b(rm|dd|mkfs|fdisk|diskutil|Format-Volume|Clear-Disk|Remove-Partition)\b/i;
-        for (const s of segments) {
+      match: (segments) => {
+        const matches = [];
+        const sudoRegex = /\bsudo\b/i;
+        const destRegex = /\b(rm|dd|mkfs|fdisk|diskutil)\b/i;
+        segments.forEach(s => {
           if (sudoRegex.test(s.text) && destRegex.test(s.text)) {
-            return { segments: [s] };
+            matches.push({ segments: [s] });
           }
-        }
-        return null;
+        });
+        return matches;
       }
     },
     {
       id: "git_destructive_seq",
+      os: "all",
+      tags: ["git"],
       severity: "MED",
       category: INTERACTION_CATEGORIES.git,
       title: { ja: "Gitの連続破壊操作", en: "Destructive Git sequence" },
       why: { ja: "git reset --hard と git clean -fd を組み合わせています。未追跡のファイルと未コミットの変更の両方が完全に失われます。", en: "Combining git reset --hard and git clean -fd will permanently discard both uncommitted changes and untracked files." },
       check: { ja: "git status で失われる可能性があるファイルを確認してください。", en: "Check git status to see which files will be permanently lost." },
       alternative: { ja: "実行前に git stash や別ブランチへのコミットを行ってください。", en: "Use git stash or commit changes to a temporary branch before proceeding." },
-      match: (segments, os) => {
-        let hasReset = false;
-        let resetSeg = null;
-        for (const s of segments) {
-          if (/\bgit\s+reset\s+--hard\b/i.test(s.text)) {
-            hasReset = true;
-            resetSeg = s;
+      match: (segments) => {
+        const matches = [];
+        const resetRegex = /\bgit\s+reset\s+--hard\b/i;
+        const cleanRegex = /\bgit\s+clean\s+-fd\b/i;
+        for (let i = 0; i < segments.length; i++) {
+          const s1 = segments[i];
+          const hasReset = resetRegex.test(s1.text);
+          const hasClean = cleanRegex.test(s1.text);
+          if (hasReset && hasClean) {
+            matches.push({ segments: [s1] });
+            continue;
           }
-          if (hasReset && /\bgit\s+clean\s+-fd\b/i.test(s.text)) {
-            return { segments: [resetSeg, s] };
+          for (let j = i + 1; j < segments.length; j++) {
+            const s2 = segments[j];
+            const hasOtherReset = resetRegex.test(s2.text);
+            const hasOtherClean = cleanRegex.test(s2.text);
+            if ((hasReset && hasOtherClean) || (hasClean && hasOtherReset)) {
+              matches.push({ segments: [s1, s2] });
+            }
           }
         }
-        return null;
+        return matches;
       }
     }
   ];
@@ -296,7 +319,7 @@
       }
       if (!inDoubleQuote && !inSingleQuote) {
         if (char === "\n") {
-          if (current.trim()) segments.push({ text: current.trim(), separator: "newline", line: startLine });
+          if (current.trim()) segments.push({ text: current.trim(), separator: "\n", line: startLine });
           current = "";
           line++;
           startLine = line;
@@ -329,7 +352,7 @@
       current += char;
     }
     if (current.trim()) {
-      segments.push({ text: current.trim(), separator: "end", line: startLine });
+      segments.push({ text: current.trim(), separator: "", line: startLine });
     }
     return segments;
   }
@@ -372,46 +395,44 @@
     });
 
     const interactions = [];
+    const interactionKeySet = new Set();
     interactionRules.forEach(ir => {
-      const match = ir.match(segments, os);
-      if (match) {
-        interactions.push({
-          rule: ir,
-          involvedSegments: match.segments
+      if (!applies(ir, os)) return;
+      const matches = ir.match(segments, os);
+      if (matches && matches.length > 0) {
+        matches.forEach(m => {
+          const key = ir.id + ":" + m.segments.map(s => s.line + "-" + s.text).join(",");
+          if (!interactionKeySet.has(key)) {
+            interactionKeySet.add(key);
+            interactions.push({ rule: ir, involvedSegments: m.segments });
+            ir.tags.forEach(t => tagSet.add(t));
+            categoryMap.set(ir.category.en, ir.category);
+          }
         });
-        categoryMap.set(ir.category.en, ir.category);
       }
     });
 
     const counts = { HIGH: 0, MED: 0, LOW: 0 };
-    const accountedSegments = new Set();
     let risk = "LOW";
 
     interactions.forEach((i) => {
       counts[i.rule.severity] += 1;
       if (rank(i.rule.severity) > rank(risk)) risk = i.rule.severity;
-      i.involvedSegments.forEach(s => accountedSegments.add(s));
     });
 
     findings.sort((a, b) => rank(b.rule.severity) - rank(a.rule.severity) || a.line - b.line);
-
-    const segmentToHighestRisk = new Map();
     findings.forEach((f) => {
-      const seg = segments.find(s => s.line === f.line && s.text === f.command);
-      if (seg && !accountedSegments.has(seg)) {
-        const currentMax = segmentToHighestRisk.get(seg);
-        if (!currentMax || rank(f.rule.severity) > rank(currentMax.severity)) {
-          segmentToHighestRisk.set(seg, { severity: f.rule.severity });
-        }
-      }
+      counts[f.rule.severity] += 1;
       if (rank(f.rule.severity) > rank(risk)) risk = f.rule.severity;
     });
 
-    segmentToHighestRisk.forEach((v) => {
-      counts[v.severity] += 1;
-    });
+    const normalized = segments.map(s => {
+      let sep = s.separator;
+      if (sep === "\n") return s.text + "\n";
+      if (sep) return s.text + " " + sep + " ";
+      return s.text;
+    }).join("");
 
-    // Prepare findings for Pro bridge (merging interactions)
     const combinedForPro = [...findings];
     interactions.forEach(item => {
       combinedForPro.push({
@@ -425,7 +446,7 @@
 
     return {
       os,
-      normalized: segments.map(s => s.text).join("\n"),
+      normalized,
       segments,
       findings: combinedForPro,
       interactions,
