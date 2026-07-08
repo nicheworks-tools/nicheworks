@@ -109,20 +109,61 @@
         const matches = [];
         const secretRegex = /\.env|id_rsa|id_ed25519|credentials|\.npmrc|printenv\b/i;
 
+        const tokenize = (cmd) => {
+          const tokens = [];
+          let current = "";
+          let inDoubleQuote = false;
+          let inSingleQuote = false;
+          let escaped = false;
+          for (let i = 0; i < cmd.length; i++) {
+            const char = cmd[i];
+            if (escaped) { current += char; escaped = false; continue; }
+            if (char === "\\") { escaped = true; continue; }
+            if (char === '"' && !inSingleQuote) { inDoubleQuote = !inDoubleQuote; continue; }
+            if (char === "'" && !inDoubleQuote) { inSingleQuote = !inSingleQuote; continue; }
+            if (!inDoubleQuote && !inSingleQuote && /\s/.test(char)) {
+              if (current) tokens.push(current);
+              current = "";
+            } else {
+              current += char;
+            }
+          }
+          if (current) tokens.push(current);
+          return tokens;
+        };
+
         const isCurlExfil = (cmd) => {
-          // Detect upload options (-d, -F, -T, etc) correctly without relying on \b before -
-          const uploadOpts = /(?:^|\s)(?:-d|--data|--data-raw|--data-binary|--form|-F|--form-string)\s+[^\s]*@|(?:^|\s)(?:-T|--upload-file)\s+/i;
-          return /\bcurl\b/i.test(cmd) && uploadOpts.test(cmd) && secretRegex.test(cmd);
+          if (!/\bcurl\b/i.test(cmd)) return false;
+          const tokens = tokenize(cmd);
+          for (let i = 0; i < tokens.length; i++) {
+            const t = tokens[i];
+            const next = tokens[i + 1] || "";
+            // Check upload flags that require @ (data, form)
+            if (/^-(?:d|F)$|^--(?:data|data-raw|data-binary|form|form-string)$/i.test(t)) {
+              if (next.includes("@") && secretRegex.test(next)) return true;
+            }
+            // Check upload flags that take file directly
+            if (/^-(?:T)$|^--upload-file$/i.test(t)) {
+              if (secretRegex.test(next)) return true;
+            }
+          }
+          return false;
         };
 
         const isScpRsyncExfil = (cmd) => {
-          const isTransfer = /\b(scp|rsync)\b/i.test(cmd);
-          if (!isTransfer || !secretRegex.test(cmd)) return false;
-          // Strip identity files to avoid false positives
-          const content = cmd.replace(/(?:^|\s)-[A-Za-z]*i\s+[^\s]+/gi, "");
-          if (!secretRegex.test(content)) return false;
-          // Outbound check: local source must be secret, destination must be remote
-          const args = content.trim().split(/\s+/).filter(a => !a.startsWith("-"));
+          if (!/\b(scp|rsync)\b/i.test(cmd)) return false;
+          const tokens = tokenize(cmd);
+          const args = [];
+          for (let i = 1; i < tokens.length; i++) {
+            const t = tokens[i];
+            // Skip options and their values
+            if (t.startsWith("-")) {
+              // Known options with values for scp/rsync (simplified)
+              if (/^-(?:i|e|P|p|o)$|^--(?:rsh|exclude|include|bwlimit)$/i.test(t)) i++;
+              continue;
+            }
+            args.push(t);
+          }
           if (args.length < 2) return false;
           const destination = args[args.length - 1];
           const sources = args.slice(0, args.length - 1);
@@ -152,8 +193,16 @@
                 matches.push({ segments: [s, next] });
               }
               // curl needs @-
-              if (/\bcurl\b/i.test(nextCmd) && /(?:^|\s)(?:-d|--data|--data-raw|--data-binary|--form|-F|--form-string)\s+@-/i.test(nextCmd)) {
-                matches.push({ segments: [s, next] });
+              if (/\bcurl\b/i.test(nextCmd)) {
+                const tokens = tokenize(nextCmd);
+                const hasStdinUpload = tokens.some((t, idx) => {
+                  if (/^-(?:d|F)$|^--(?:data|data-raw|data-binary|form|form-string)$/i.test(t)) {
+                    const val = tokens[idx+1] || "";
+                    return val === "@-" || val.includes("=@-");
+                  }
+                  return false;
+                });
+                if (hasStdinUpload) matches.push({ segments: [s, next] });
               }
             }
           }
