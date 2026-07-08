@@ -193,10 +193,13 @@
     </section>
 
     <section class="tool-card">
-      <h2>
-        <span data-i18n="ja">出力</span>
-        <span data-i18n="en">Output</span>
-      </h2>
+      <div class="card-header-flex">
+        <h2>
+          <span data-i18n="ja">出力</span>
+          <span data-i18n="en">Output</span>
+        </h2>
+        <div id="coverageSummary" class="coverage-summary"></div>
+      </div>
       <textarea id="outputText" readonly placeholder="Redacted text will appear here..."></textarea>
 
       <div id="summary" class="summary">
@@ -277,10 +280,18 @@
 
     <section class="tool-card">
       <h2>
-        <span data-i18n="ja">検出結果</span>
-        <span data-i18n="en">Findings</span>
+        <span data-i18n="ja">検出結果（入力テキスト）</span>
+        <span data-i18n="en">Findings (Input Text)</span>
       </h2>
       <div id="findingsList" class="findings-list"></div>
+    </section>
+
+    <section class="tool-card">
+      <h2>
+        <span data-i18n="ja">伏字化後の検証</span>
+        <span data-i18n="en">Post-redaction Verification</span>
+      </h2>
+      <div id="verificationList" class="findings-list"></div>
     </section>
 
     <section class="tool-card compact">
