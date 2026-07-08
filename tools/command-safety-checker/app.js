@@ -107,19 +107,62 @@
       alternative: { ja: "機密情報は送信せず、必要なデータのみを手動で抽出・伏字化して共有してください。", en: "Do not send secrets; manually extract and redact only the necessary data for sharing." },
       match: (segments) => {
         const matches = [];
-        const secretRegex = /\.env|id_rsa|id_ed25519|credentials|\.npmrc|printenv|env\b/i;
-        const transferRegex = /\b(curl|scp|rsync|nc|netcat)\b/i;
+        const secretRegex = /\.env|id_rsa|id_ed25519|credentials|\.npmrc|printenv\b/i;
+        // Directional patterns
+        const curlUpload = /\bcurl\b/i;
+        const curlUploadFlags = /\b(?:-d|--data|--data-raw|--data-binary|--form|-F|-T|--upload-file)\b|@/i;
+        const scpExfil = /\bscp\b[^\n]+[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+:/i;
+        const rsyncExfil = /\brsync\b[^\n]+[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+:/i;
+        const ncExfil = /\b(?:nc|netcat)\b/i;
+
         for (let i = 0; i < segments.length; i++) {
           const s = segments[i];
-          // Case 1: Same segment has both secret and transfer
-          if (secretRegex.test(s.text) && transferRegex.test(s.text)) {
+          const hasSecret = secretRegex.test(s.text);
+
+          // curl with directional upload flags referencing a secret in same segment
+          if (curlUpload.test(s.text) && curlUploadFlags.test(s.text) && hasSecret) {
             matches.push({ segments: [s] });
           }
-          // Case 2: Piped: secret source | transfer
+          // scp/rsync from local secret to remote in same segment
+          if ((scpExfil.test(s.text) || rsyncExfil.test(s.text)) && hasSecret) {
+            // Exclude if it looks like a remote-to-local scp (remote source contains :)
+            // Standard scp: scp [options] [[user@]host1:]file1 ... [[user@]host2:]file2
+            const parts = s.text.split(/\s+/);
+            const remoteIndices = [];
+            parts.forEach((p, idx) => { if (p.includes(":")) remoteIndices.push(idx); });
+
+            // If the remote host index is the last non-option part, it's likely outbound
+            const lastPart = parts[parts.length - 1];
+            if (lastPart.includes(":")) {
+              // Avoid flagging if the secret is ONLY used for identity file (-i)
+              const identityMatch = /-[A-Za-z]*i\s+([^\s]+)/i.exec(s.text);
+              if (!identityMatch || !secretRegex.test(identityMatch[1]) || s.text.replace(identityMatch[0], "").match(secretRegex)) {
+                matches.push({ segments: [s] });
+              }
+            }
+          }
+          // nc receiving piped or redirected secret content
+          if (ncExfil.test(s.text) && hasSecret && (s.text.includes("<") || s.text.includes("|"))) {
+            matches.push({ segments: [s] });
+          }
+
+          // Case 2: Piped: secret source | transfer command that consumes stdin
           if (s.separator === "|" && i < segments.length - 1) {
             const next = segments[i+1];
-            if (secretRegex.test(s.text) && transferRegex.test(next.text)) {
-              matches.push({ segments: [s, next] });
+            // curl often needs -d @- or -F "=@-" to read from stdin, but we'll be cautious
+            // If it's a pipe, we check if the destination command is a known transfer tool
+            const nextIsTransfer = /\b(curl|nc|netcat|scp|rsync)\b/i.test(next.text);
+            if (hasSecret && nextIsTransfer) {
+              // For curl in a pipe, we still look for upload-like behavior or generic risk
+              if (/\bcurl\b/i.test(next.text)) {
+                // If it's just 'curl URL', it might not be exfil. But if it has data flags, it is.
+                if (curlUploadFlags.test(next.text)) {
+                  matches.push({ segments: [s, next] });
+                }
+              } else {
+                // nc/scp/rsync in a pipe with a secret source is high risk
+                matches.push({ segments: [s, next] });
+              }
             }
           }
         }
@@ -423,22 +466,19 @@
 
     const reconstructInteractionCmd = (involved) => {
       if (involved.length === 0) return "";
-      involved.sort((a, b) => a.index - b.index);
-      let result = involved[0].text;
-      for (let i = 0; i < involved.length - 1; i++) {
-        const s1 = involved[i];
-        const s2 = involved[i+1];
-        let sep = " ";
-        // If they are adjacent in original segments, use the actual separator
-        if (s2.index === s1.index + 1) {
-          sep = s1.separator === "\n" ? " \n " : ` ${s1.separator} `;
-        } else {
-          // If disconnected, use a standard spacer
-          sep = " ... ";
+      const indices = involved.map(s => s.index);
+      const minIdx = Math.min(...indices);
+      const maxIdx = Math.max(...indices);
+
+      let result = "";
+      for (let i = minIdx; i <= maxIdx; i++) {
+        const seg = segments[i];
+        result += seg.text;
+        if (i < maxIdx) {
+          result += (seg.separator === "\n" ? "\n" : ` ${seg.separator} `);
         }
-        result += sep + s2.text;
       }
-      return result;
+      return result.trim();
     };
 
     interactionRules.forEach(ir => {
