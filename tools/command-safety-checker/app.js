@@ -108,46 +108,53 @@
       match: (segments) => {
         const matches = [];
         const secretRegex = /\.env|id_rsa|id_ed25519|credentials|\.npmrc|printenv\b/i;
-        // Directional patterns
-        const curlExfil = /\bcurl\b[^\n]*?\b(?:-d|--data|--data-raw|--data-binary|--form|-F|--form-string)\b\s*[^\s]*@|\bcurl\b[^\n]*?\b(?:-T|--upload-file)\b/i;
-        const scpExfil = /\bscp\b[^\n]+[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+:/i;
-        const rsyncExfil = /\brsync\b[^\n]+[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+:/i;
-        const ncExfil = /\b(?:nc|netcat)\b/i;
+
+        const isCurlExfil = (cmd) => {
+          // Detect upload options (-d, -F, -T, etc) correctly without relying on \b before -
+          const uploadOpts = /(?:^|\s)(?:-d|--data|--data-raw|--data-binary|--form|-F|--form-string)\s+[^\s]*@|(?:^|\s)(?:-T|--upload-file)\s+/i;
+          return /\bcurl\b/i.test(cmd) && uploadOpts.test(cmd) && secretRegex.test(cmd);
+        };
+
+        const isScpRsyncExfil = (cmd) => {
+          const isTransfer = /\b(scp|rsync)\b/i.test(cmd);
+          if (!isTransfer || !secretRegex.test(cmd)) return false;
+          // Strip identity files to avoid false positives
+          const content = cmd.replace(/(?:^|\s)-[A-Za-z]*i\s+[^\s]+/gi, "");
+          if (!secretRegex.test(content)) return false;
+          // Outbound check: local source must be secret, destination must be remote
+          const args = content.trim().split(/\s+/).filter(a => !a.startsWith("-"));
+          if (args.length < 2) return false;
+          const destination = args[args.length - 1];
+          const sources = args.slice(0, args.length - 1);
+          return destination.includes(":") && sources.some(s => secretRegex.test(s));
+        };
 
         for (let i = 0; i < segments.length; i++) {
           const s = segments[i];
-          const hasSecret = secretRegex.test(s.text);
+          const cmd = s.text;
 
-          // curl explicit upload referencing a secret in same segment
-          if (curlExfil.test(s.text) && hasSecret) {
+          if (isCurlExfil(cmd) || isScpRsyncExfil(cmd)) {
             matches.push({ segments: [s] });
           }
-          // scp/rsync from local secret to remote in same segment
-          if ((scpExfil.test(s.text) || rsyncExfil.test(s.text)) && hasSecret) {
-            const parts = s.text.trim().split(/\s+/);
-            const lastPart = parts[parts.length - 1];
-            if (lastPart && lastPart.includes(":")) {
-              const identityMatch = /-[A-Za-z]*i\s+([^\s]+)/i.exec(s.text);
-              if (!identityMatch || !secretRegex.test(identityMatch[1]) || s.text.replace(identityMatch[0], "").match(secretRegex)) {
-                matches.push({ segments: [s] });
-              }
-            }
-          }
+
           // nc receiving redirected secret content
-          if (ncExfil.test(s.text) && hasSecret && s.text.includes("<")) {
+          if (/\b(?:nc|netcat)\b/i.test(cmd) && secretRegex.test(cmd) && cmd.includes("<")) {
             matches.push({ segments: [s] });
           }
 
           // Case 2: Piped: secret source | transfer command that consumes stdin
           if (s.separator === "|" && i < segments.length - 1) {
             const next = segments[i+1];
-            // nc consumes stdin for transfer by default
-            if (hasSecret && ncExfil.test(next.text)) {
-              matches.push({ segments: [s, next] });
-            }
-            // curl needs -d @- or equivalent to consume stdin
-            if (hasSecret && /\bcurl\b[^\n]*?\b(?:-d|--data|--data-raw|--data-binary|--form|-F|--form-string)\b\s*@-/i.test(next.text)) {
-              matches.push({ segments: [s, next] });
+            const nextCmd = next.text;
+            if (secretRegex.test(cmd)) {
+              // nc consumes stdin by default
+              if (/\b(?:nc|netcat)\b/i.test(nextCmd)) {
+                matches.push({ segments: [s, next] });
+              }
+              // curl needs @-
+              if (/\bcurl\b/i.test(nextCmd) && /(?:^|\s)(?:-d|--data|--data-raw|--data-binary|--form|-F|--form-string)\s+@-/i.test(nextCmd)) {
+                matches.push({ segments: [s, next] });
+              }
             }
           }
         }
