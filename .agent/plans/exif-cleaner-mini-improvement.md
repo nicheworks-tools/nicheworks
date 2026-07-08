@@ -8,6 +8,7 @@ Improve EXIF Cleaner Mini with format-aware metadata scanning and post-clean ver
   - Parse markers (0xFFXX).
   - Identify APP1 (0xFFE1) and check for "Exif\0\0" or "http://ns.adobe.com/xap/1.0/\0".
   - Identify COM (0xFFFE).
+  - Stop traversal at SOS (0xDA) or EOI (0xD9) to ensure deterministic scan and avoid false positives.
 - PNG:
   - Parse chunks (Length, Type, Data, CRC).
   - Identify `tEXt`, `zTXt`, `iTXt` (textual metadata).
