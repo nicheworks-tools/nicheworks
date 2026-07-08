@@ -48,12 +48,12 @@
 
   const interactionRules = [
     {
-      id: "remote_download_exec",
-      os: "all",
+      id: "unix_remote_download_exec",
+      os: "unix",
       tags: ["remote"],
       severity: "HIGH",
       category: INTERACTION_CATEGORIES.remoteExec,
-      title: { ja: "リモートスクリプトの直接実行", en: "Remote download + direct execution" },
+      title: { ja: "リモートスクリプトの直接実行 (Unix)", en: "Remote download + direct execution (Unix)" },
       why: { ja: "外部からダウンロードしたスクリプトを、中身を確認せずにそのままシェルへ渡しています。悪意のあるコードが含まれていた場合、即座に実行されます。", en: "A script downloaded from a remote source is passed directly to a shell without inspection. If it contains malicious code, it runs immediately." },
       check: { ja: "URLのドメイン、HTTPSの使用、スクリプトの内容を事前に確認してください。", en: "Verify the URL domain, HTTPS usage, and the actual script content before running." },
       alternative: { ja: "ファイルを一度保存し、内容を確認してから実行してください。", en: "Download the file first, inspect its content, and then execute it." },
@@ -63,8 +63,32 @@
           const s1 = segments[i];
           const s2 = segments[i+1];
           if (s1.separator === "|") {
-            const isDownload = /\b(curl|wget|iwr|Invoke-WebRequest)\b/i.test(s1.text);
-            const isExec = /\b(sh|bash|zsh|iex|Invoke-Expression)\b/i.test(s2.text);
+            const isDownload = /\b(curl|wget)\b/i.test(s1.text);
+            const isExec = /\b(sh|bash|zsh)\b/i.test(s2.text);
+            if (isDownload && isExec) matches.push({ segments: [s1, s2] });
+          }
+        }
+        return matches;
+      }
+    },
+    {
+      id: "ps_remote_download_exec",
+      os: "powershell",
+      tags: ["remote"],
+      severity: "HIGH",
+      category: INTERACTION_CATEGORIES.remoteExec,
+      title: { ja: "リモートスクリプトの直接実行 (PS)", en: "Remote download + direct execution (PS)" },
+      why: { ja: "外部からダウンロードしたPowerShellコードを、中身を確認せずに実行しています。悪意のあるコードが含まれていた場合、即座に実行されます。", en: "A remote PowerShell code is executed without inspection. If it contains malicious code, it runs immediately." },
+      check: { ja: "URLのドメイン、HTTPSの使用、スクリプトの内容を事前に確認してください。", en: "Verify the URL domain, HTTPS usage, and the actual script content before running." },
+      alternative: { ja: "まずスクリプトの内容を確認し、署名やハッシュを検証してから実行してください。", en: "Inspect script content, verify signatures or hashes before execution." },
+      match: (segments) => {
+        const matches = [];
+        for (let i = 0; i < segments.length - 1; i++) {
+          const s1 = segments[i];
+          const s2 = segments[i+1];
+          if (s1.separator === "|") {
+            const isDownload = /\b(iwr|Invoke-WebRequest|curl|wget)\b/i.test(s1.text);
+            const isExec = /\b(iex|Invoke-Expression)\b/i.test(s2.text);
             if (isDownload && isExec) matches.push({ segments: [s1, s2] });
           }
         }
@@ -137,7 +161,7 @@
       match: (segments) => {
         const matches = [];
         const resetRegex = /\bgit\s+reset\s+--hard\b/i;
-        const cleanRegex = /\bgit\s+clean\s+-fd\b/i;
+        const cleanRegex = /\bgit\s+clean\b[^\n]*-(?:[A-Za-z]*f[A-Za-z]*d|[A-Za-z]*d[A-Za-z]*f)\b/i;
         for (let i = 0; i < segments.length; i++) {
           const s1 = segments[i];
           const hasReset = resetRegex.test(s1.text);
@@ -319,31 +343,31 @@
       }
       if (!inDoubleQuote && !inSingleQuote) {
         if (char === "\n") {
-          if (current.trim()) segments.push({ text: current.trim(), separator: "\n", line: startLine });
+          if (current.trim()) segments.push({ text: current.trim(), separator: "\n", line: startLine, index: segments.length });
           current = "";
           line++;
           startLine = line;
           continue;
         }
         if (char === ";") {
-          if (current.trim()) segments.push({ text: current.trim(), separator: ";", line: startLine });
+          if (current.trim()) segments.push({ text: current.trim(), separator: ";", line: startLine, index: segments.length });
           current = "";
           continue;
         }
         if (char === "&" && input[i + 1] === "&") {
-          if (current.trim()) segments.push({ text: current.trim(), separator: "&&", line: startLine });
+          if (current.trim()) segments.push({ text: current.trim(), separator: "&&", line: startLine, index: segments.length });
           current = "";
           i++;
           continue;
         }
         if (char === "|" && input[i + 1] === "|") {
-          if (current.trim()) segments.push({ text: current.trim(), separator: "||", line: startLine });
+          if (current.trim()) segments.push({ text: current.trim(), separator: "||", line: startLine, index: segments.length });
           current = "";
           i++;
           continue;
         }
         if (char === "|") {
-          if (current.trim()) segments.push({ text: current.trim(), separator: "|", line: startLine });
+          if (current.trim()) segments.push({ text: current.trim(), separator: "|", line: startLine, index: segments.length });
           current = "";
           continue;
         }
@@ -352,7 +376,7 @@
       current += char;
     }
     if (current.trim()) {
-      segments.push({ text: current.trim(), separator: "", line: startLine });
+      segments.push({ text: current.trim(), separator: "", line: startLine, index: segments.length });
     }
     return segments;
   }
@@ -396,15 +420,40 @@
 
     const interactions = [];
     const interactionKeySet = new Set();
+
+    const reconstructInteractionCmd = (involved) => {
+      if (involved.length === 0) return "";
+      involved.sort((a, b) => a.index - b.index);
+      let result = involved[0].text;
+      for (let i = 0; i < involved.length - 1; i++) {
+        const s1 = involved[i];
+        const s2 = involved[i+1];
+        let sep = " ";
+        // If they are adjacent in original segments, use the actual separator
+        if (s2.index === s1.index + 1) {
+          sep = s1.separator === "\n" ? " \n " : ` ${s1.separator} `;
+        } else {
+          // If disconnected, use a standard spacer
+          sep = " ... ";
+        }
+        result += sep + s2.text;
+      }
+      return result;
+    };
+
     interactionRules.forEach(ir => {
       if (!applies(ir, os)) return;
       const matches = ir.match(segments, os);
       if (matches && matches.length > 0) {
         matches.forEach(m => {
-          const key = ir.id + ":" + m.segments.map(s => s.line + "-" + s.text).join(",");
+          const key = ir.id + ":" + m.segments.map(s => s.index).join(",");
           if (!interactionKeySet.has(key)) {
             interactionKeySet.add(key);
-            interactions.push({ rule: ir, involvedSegments: m.segments });
+            interactions.push({
+              rule: ir,
+              involvedSegments: m.segments,
+              reconstructed: reconstructInteractionCmd(m.segments)
+            });
             ir.tags.forEach(t => tagSet.add(t));
             categoryMap.set(ir.category.en, ir.category);
           }
@@ -437,7 +486,7 @@
     interactions.forEach(item => {
       combinedForPro.push({
         line: item.involvedSegments[0]?.line || 1,
-        command: item.involvedSegments.map(s => s.text).join(" | "),
+        command: item.reconstructed,
         rule: item.rule,
         isInteraction: true
       });
@@ -507,7 +556,7 @@
           li.className = "finding";
           li.style.borderColor = "var(--danger)";
           li.style.background = "rgba(185,28,28,0.02)";
-          const segmentsText = item.involvedSegments.map(s => s.text).join(" → ");
+          const segmentsText = item.reconstructed;
           const firstLine = item.involvedSegments[0]?.line || "?";
           li.innerHTML = `
             <div class="finding-head">
@@ -609,7 +658,7 @@
       result.interactions.forEach(item => {
         const line = item.involvedSegments[0]?.line || "?";
         lines.push(`- L${line}: [${item.rule.severity}] ${pick(item.rule.category)} — ${pick(item.rule.title)}`);
-        lines.push(`  involved commands: ${item.involvedSegments.map(s => s.text).join(" → ")}`);
+        lines.push(`  involved commands: ${item.reconstructed}`);
         lines.push(`  why: ${pick(item.rule.why)}`);
         lines.push(`  check: ${pick(item.rule.check)}`);
         lines.push(`  alternative: ${pick(item.rule.alternative)}`);
