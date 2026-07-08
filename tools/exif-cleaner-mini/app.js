@@ -184,6 +184,9 @@ async function handleFile() {
   const file = fileInput.files[0];
   if (!file) return;
 
+  // Clear previous state at the start of a new file selection attempt
+  resetFileState();
+
   resetMessages();
   setStatus("Loading image...", "画像を読み込んでいます...");
   setStatusNote("", "");
@@ -240,6 +243,15 @@ async function handleFile() {
     inspectionSummary.classList.remove("hidden");
 
     setupFormatControls();
+    setStatus(
+      "Inspection complete. You can now clean and save the image.",
+      "スキャンが完了しました。削除して保存できます。"
+    );
+    setStatusNote(
+      "The scan above shows detected metadata containers. Not all metadata is semantic EXIF.",
+      "上記のスキャン結果は検出されたコンテナを表示しています。すべてのメタデータが解析可能なEXIFとは限りません。"
+    );
+    setButtonsDisabled(false);
   } catch (error) {
     console.error(error);
     setStatus("Failed to load the image.", "画像の読み込みに失敗しました。");
@@ -463,6 +475,16 @@ function updateQualityControl() {
 
 function resetTool() {
   fileInput.value = "";
+  resetFileState();
+  formatControls.classList.add("hidden");
+  outputFormatEl.textContent = "";
+  setStatus("", "");
+  setStatusNote("", "");
+  resetMessages();
+  setButtonsDisabled(true);
+}
+
+function resetFileState() {
   preview.removeAttribute("src");
   preview.classList.add("hidden");
   inputFormat = null;
@@ -474,12 +496,6 @@ function resetTool() {
   inspectionSummary.innerHTML = "";
   verificationSummary.classList.add("hidden");
   verificationSummary.innerHTML = "";
-  formatControls.classList.add("hidden");
-  outputFormatEl.textContent = "";
-  setStatus("", "");
-  setStatusNote("", "");
-  resetMessages();
-  setButtonsDisabled(true);
 }
 
 function readFileAsDataURL(file) {
