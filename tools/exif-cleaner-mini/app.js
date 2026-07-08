@@ -55,6 +55,7 @@ let latestStatusNote = { en: "", ja: "" };
 let inputScanResult = null;
 let outputScanResult = null;
 let imageDimensions = { width: 0, height: 0 };
+let currentLoadId = 0;
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 
@@ -184,6 +185,8 @@ async function handleFile() {
   const file = fileInput.files[0];
   if (!file) return;
 
+  const loadId = ++currentLoadId;
+
   // Clear previous state at the start of a new file selection attempt
   resetFileState();
 
@@ -216,6 +219,8 @@ async function handleFile() {
       readFileAsArrayBuffer(file),
     ]);
 
+    if (loadId !== currentLoadId) return;
+
     inputFormat = detectInputFormat(file, arrayBuffer);
     if (!inputFormat) {
       preview.classList.add("hidden");
@@ -234,6 +239,8 @@ async function handleFile() {
     inputScanResult = scanMetadata(arrayBuffer, inputFormat);
 
     const img = await loadImage(dataUrl);
+    if (loadId !== currentLoadId) return;
+
     imageDimensions = { width: img.width, height: img.height };
 
     preview.src = dataUrl;
@@ -496,6 +503,11 @@ function resetFileState() {
   inspectionSummary.innerHTML = "";
   verificationSummary.classList.add("hidden");
   verificationSummary.innerHTML = "";
+
+  // Clear visible output-format UI state
+  formatControls.classList.add("hidden");
+  if (outputFormatEl) outputFormatEl.textContent = "";
+  updateQualityControl();
 }
 
 function readFileAsDataURL(file) {
