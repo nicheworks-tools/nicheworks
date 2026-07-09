@@ -154,12 +154,16 @@
           if (!/\b(scp|rsync)\b/i.test(cmd)) return false;
           const tokens = tokenize(cmd);
           const args = [];
+          const isScp = /\bscp\b/i.test(tokens[0]);
           for (let i = 1; i < tokens.length; i++) {
             const t = tokens[i];
-            // Skip options and their values
             if (t.startsWith("-")) {
-              // Known options with values for scp/rsync (simplified)
-              if (/^-(?:i|e|P|p|o)$|^--(?:rsh|exclude|include|bwlimit)$/i.test(t)) i++;
+              if (t.includes("=")) continue;
+              if (isScp) {
+                if (/^-(?:i|P|o|l|c|F|J|S)$/.test(t)) i++;
+              } else {
+                if (/^-(?:e|B)$|^--(?:rsh|exclude|include|bwlimit|config|password-file)$/.test(t)) i++;
+              }
               continue;
             }
             args.push(t);
