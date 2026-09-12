@@ -155,7 +155,7 @@ pilotでは東京都のpreferred candidate 7自治体のみを公開する。
 - site-wide analytics / advertising hooks
 - WebPage / BreadcrumbList structured data
 
-生成対象URLは `sitemap-trashnavi.xml` に収録する。`robots.txt` から同sitemapを直接公開し、`sitemap-index.xml` にも登録する。
+生成対象URLは正規の `sitemap.xml` に必ず1回収録し、`sitemap-trashnavi.xml` にもTrashNavi専用の補助一覧として収録する。`robots.txt` は既存の単一root sitemap宣言を維持し、`sitemap-index.xml` には補助の `sitemap-trashnavi.xml` を登録する。
 
 生成結果のdriftは次で検査する。
 
@@ -163,7 +163,7 @@ pilotでは東京都のpreferred candidate 7自治体のみを公開する。
 node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 ```
 
-CIではcoverage strict auditと生成drift checkの両方を必須とする。
+CIではcoverage strict auditと生成drift checkの両方を必須とし、pilot URLがroot sitemapから欠落しても失敗させる。
 
 ## Monetization boundary
 
@@ -209,8 +209,8 @@ CIではcoverage strict auditと生成drift checkの両方を必須とする。
 - [x] pilot 7自治体をmanifest allowlistで管理する。
 - [x] pilot自治体pageをgeneratorから静的生成する。
 - [x] generator `--check` で生成driftを検出する。
-- [x] pilot URLを専用sitemapへ収録する。
-- [x] robots / sitemap indexから専用sitemapを発見可能にする。
+- [x] pilot URLをroot sitemapと専用sitemapへ収録する。
+- [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ## Implementation evidence
@@ -223,5 +223,6 @@ CIではcoverage strict auditと生成drift checkの両方を必須とする。
 - `tools/trashnavi/municipality-page-manifest.json` — indexable municipality page allowlist。
 - `tools/trashnavi/scripts/generate-municipality-pages.mjs` — deterministic municipality page / sitemap generator and drift checker。
 - `tools/trashnavi/tokyo/*/index.html` — pilot municipality pages。
-- `sitemap-trashnavi.xml` — TrashNavi municipality sitemap。
+- `sitemap.xml` — indexable pilot URLの正規sitemap収録先。
+- `sitemap-trashnavi.xml` — TrashNavi municipality補助sitemap。
 - `.github/workflows/check-trashnavi-coverage.yml` — coverage strict audit and generated-page drift check。
