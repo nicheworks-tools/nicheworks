@@ -135,7 +135,7 @@ function buildDescription(ingredientKey, flags) {
   if (flags.some((flag) => flag.key === 'comedogenic')) {
     return '油性のエモリエント成分です。製品全体の処方や使用感も合わせて確認してください。';
   }
-  return 'この簡易ルールでは分類できません。用途・安全性・配合目的は製品表示やメーカー等の公式情報を確認してください。';
+  return 'この簡易辞書では分類できません。用途・安全性・配合目的は製品表示やメーカー等の公式情報を確認してください。';
 }
 
 function renderFlagsCell(flags) {
