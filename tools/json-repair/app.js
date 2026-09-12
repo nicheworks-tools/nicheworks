@@ -54,7 +54,7 @@
     try {
       if (!window.NWPro || typeof window.NWPro.getLocalStatus !== "function") throw new Error("NWPro unavailable");
       const status = window.NWPro.getLocalStatus();
-      state.proActive = !!(status && status.active && (!status.entitlement || status.entitlement === ENTITLEMENT));
+      state.proActive = !!(status && status.active === true && status.entitlement === ENTITLEMENT);
       state.proStatusFailed = false;
     } catch (_error) {
       state.proActive = false;
