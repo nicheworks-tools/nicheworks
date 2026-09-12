@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-25",
+  "updatedAt": "2026-09-13",
   "items": {
     "ai-project-pack": {
       "title_ja": "AIプロジェクトパック",
@@ -1043,6 +1043,18 @@
         "kanji",
         "ocr",
         "scanner"
+      ]
+    },
+    "reconcile": {
+      "title_ja": "CSV・Excel取引照合｜Reconcile",
+      "title_en": "CSV / Excel Reconciliation — Reconcile",
+      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、確認が必要な差分・候補・重複を抽出します。",
+      "desc_en": "Reconcile two CSV or Excel transaction datasets locally in your browser and isolate exceptions for manual review.",
+      "tags": [
+        "csv",
+        "xlsx",
+        "reconciliation",
+        "accounting"
       ]
     }
   }
