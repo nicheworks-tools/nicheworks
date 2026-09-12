@@ -91,22 +91,63 @@ function visibleRecords() {
   return database.records.filter((record) => record.publication_state !== 'placeholder');
 }
 
+function normalizeSearchText(value) {
+  return String(value || '')
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function searchTokens(query) {
+  const normalized = normalizeSearchText(query);
+  return normalized ? normalized.split(' ') : [];
+}
+
 function buildCategoryOptions(records) {
   const select = document.getElementById('categoryFilter');
-  const categories = [...new Set(records.map((record) => record.category).filter(Boolean))]
+  const counts = new Map();
+  for (const record of records) {
+    if (!record.category) continue;
+    counts.set(record.category, (counts.get(record.category) || 0) + 1);
+  }
+
+  const categories = [...counts.keys()]
     .sort((a, b) => (CATEGORY_LABELS[a] || a).localeCompare(CATEGORY_LABELS[b] || b, 'ja'));
 
   for (const category of categories) {
     const option = document.createElement('option');
     option.value = category;
-    option.textContent = CATEGORY_LABELS[category] || category;
+    option.textContent = `${CATEGORY_LABELS[category] || category}（${counts.get(category)}）`;
     select.appendChild(option);
   }
 }
 
-function matchesQuery(record, query) {
-  if (!query) return true;
-  const haystack = [
+function updateStateOptionCounts(records) {
+  const counts = {
+    verified: records.filter((record) => record.publication_state === 'verified').length,
+    review: records.filter((record) => ['legacy_review_required', 'needs_review'].includes(record.publication_state)).length,
+    retired: records.filter((record) => record.publication_state === 'retired').length
+  };
+
+  const select = document.getElementById('stateFilter');
+  for (const option of select.options) {
+    if (!option.value) continue;
+    const count = counts[option.value];
+    if (Number.isInteger(count)) {
+      const label = option.value === 'verified'
+        ? '検証済み'
+        : option.value === 'review'
+          ? '要再確認'
+          : '終了・移行済み';
+      option.textContent = `${label}（${count}）`;
+    }
+  }
+}
+
+function matchesQuery(record, tokens) {
+  if (!tokens.length) return true;
+  const haystack = normalizeSearchText([
     record.name,
     ...(record.aliases || []),
     ...(record.keywords || []),
@@ -114,8 +155,8 @@ function matchesQuery(record, query) {
     record.procedure_type,
     ...(record.billing_routes || []),
     CATEGORY_LABELS[record.category] || record.category
-  ].filter(Boolean).join(' ').toLowerCase();
-  return haystack.includes(query.toLowerCase());
+  ].filter(Boolean).join(' '));
+  return tokens.every((token) => haystack.includes(token));
 }
 
 function matchesState(record, state) {
@@ -186,24 +227,31 @@ function createCard(record) {
   return article;
 }
 
+function updateClearFiltersButton(query, category, state) {
+  const button = document.getElementById('clearFilters');
+  button.hidden = !(query || category || state);
+}
+
 function render() {
   const root = document.getElementById('results');
-  const query = document.getElementById('searchInput').value.trim();
+  const rawQuery = document.getElementById('searchInput').value;
+  const tokens = searchTokens(rawQuery);
   const category = document.getElementById('categoryFilter').value;
   const state = document.getElementById('stateFilter').value;
   const records = visibleRecords()
     .filter((record) => !category || record.category === category)
     .filter((record) => matchesState(record, state))
-    .filter((record) => matchesQuery(record, query))
+    .filter((record) => matchesQuery(record, tokens))
     .sort((a, b) => a.name.localeCompare(b.name, 'ja'));
 
   root.replaceChildren();
   document.getElementById('resultCount').textContent = String(records.length);
+  updateClearFiltersButton(tokens.length ? rawQuery : '', category, state);
 
   if (!records.length) {
     const empty = document.createElement('div');
     empty.className = 'empty';
-    empty.textContent = '該当するサービスが見つかりませんでした。';
+    empty.textContent = '該当するサービスが見つかりませんでした。検索語を減らすか、条件をクリアしてください。';
     root.appendChild(empty);
     return;
   }
@@ -219,18 +267,28 @@ function renderSummary(records) {
   summary.textContent = `収録 ${records.length}件 / 検証済み ${verified}件 / 再確認待ち ${review}件 / 終了・移行 ${retired}件`;
 }
 
+function clearFilters() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('categoryFilter').value = '';
+  document.getElementById('stateFilter').value = '';
+  render();
+  document.getElementById('searchInput').focus();
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const results = document.getElementById('results');
   try {
     database = await loadDatabase();
     const records = visibleRecords();
     buildCategoryOptions(records);
+    updateStateOptionCounts(records);
     renderSummary(records);
     render();
 
     document.getElementById('searchInput').addEventListener('input', render);
     document.getElementById('categoryFilter').addEventListener('change', render);
     document.getElementById('stateFilter').addEventListener('change', render);
+    document.getElementById('clearFilters').addEventListener('click', clearFilters);
   } catch (error) {
     console.error(error);
     results.innerHTML = '<div class="empty">データベースを読み込めませんでした。</div>';
