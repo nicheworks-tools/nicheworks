@@ -91,7 +91,7 @@ a { color: var(--accent); }
   margin-top: 14px;
   padding: 14px;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(180px, 1fr);
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(150px, 1fr));
   gap: 12px;
 }
 
@@ -224,7 +224,7 @@ a { color: var(--accent); }
   .service-head { flex-direction: column; }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .nw-header { padding-left: 12px; padding-right: 12px; }
   .service-actions { flex-direction: column; }
   .service-actions a { width: 100%; text-align: center; }
