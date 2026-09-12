@@ -1,5 +1,6 @@
 (() => {
   const PAYMENT_LINK = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
+  const EXPECTED_ENTITLEMENT = "nicheworks_pro";
   const lang = document.body?.dataset.lang === "ja" || document.documentElement.lang === "ja" ? "ja" : "en";
   const copy = {
     en: {
@@ -20,7 +21,7 @@
     if (window.NWPro && typeof window.NWPro.getLocalStatus === "function") {
       return window.NWPro.getLocalStatus();
     }
-    return { active: false, entitlement: "nicheworks_pro", checkedAt: "" };
+    return { active: false, entitlement: EXPECTED_ENTITLEMENT, checkedAt: "" };
   }
 
   function setHidden(nodes, hidden) {
@@ -32,7 +33,7 @@
 
   function render() {
     const status = localStatus();
-    const active = Boolean(status.active);
+    const active = Boolean(status.active && status.entitlement === EXPECTED_ENTITLEMENT);
     document.documentElement.dataset.proActive = active ? "true" : "false";
     if (document.body) document.body.dataset.proActive = active ? "true" : "false";
 

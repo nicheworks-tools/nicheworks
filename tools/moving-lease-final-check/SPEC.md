@@ -60,6 +60,7 @@ The primary experience is a short form followed by a checklist, progress bar, ou
 - Contract documents and property-management guidance take precedence.
 - PDF save is provided by the browser print dialog, not server-side PDF generation.
 - Pro preview content does not mean Pro actions are available without the shared entitlement.
+- Until product-scoped billing migration is explicitly completed for this tool, its legacy paid gate accepts only the shared `nicheworks_pro` entitlement; an active entitlement for another product must not unlock this tool.
 
 ## Acceptance criteria
 
@@ -67,9 +68,11 @@ The primary experience is a short form followed by a checklist, progress bar, ou
 - [ ] Completion state persists in the browser for the saved condition and can be deleted explicitly.
 - [ ] Free TXT copy/download and browser print remain usable independently of Pro.
 - [ ] The UI does not present checklist completion as a guarantee about restoration costs, deposits, or legal obligations.
+- [ ] A cached active entitlement other than `nicheworks_pro` does not unlock the Pro pack or Pro copy/save/print actions.
 
 ## Implementation evidence
 
 - `tools/moving-lease-final-check/index.html`
 - `tools/moving-lease-final-check/app.js`
+- `tools/moving-lease-final-check/pro-bridge.js`
 - `tools/moving-lease-final-check/style.css`
