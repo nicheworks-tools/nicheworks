@@ -34,14 +34,15 @@ Reconcile Pro controls are rendered but locked because no entitlement adapter is
 
 ### Reconcile Pro engine contract
 
+- CSV cap: 100,000 parsed rows and 50 MB per file.
+- XLSX cap: 50,000 parsed rows and 25 MB per file.
 - Amount tolerance >= 0.
 - Sign mode: normal / invert B / ignore sign.
 - Optional 1:n and n:1 matching.
 - Group size bounded to 2–5 rows.
 - Group-search safety budget defaults to 50,000 visited nodes in the engine; a truncated search becomes a review candidate instead of an automatic match.
 - 1:1 candidate-graph safety budget defaults to 100,000 acceptable A↔B edges and is hard-clamped to at most 500,000. The engine stops before partial automatic resolution if the graph exceeds the budget.
-- Pro browser safety file cap in the current implementation: 100 MB per file.
-- No artificial row-count cap once Pro is enabled, subject to browser memory and the explicit matching safety budgets.
+- File/row caps are product safety limits, not claims about theoretical browser capacity.
 
 ## Normalization behavior
 
@@ -64,7 +65,7 @@ The engine is deterministic and explanation-first. It does not use AI or probabi
 7. Auto-accept a 1:1 pair only when the relationship is mutually unique; a row is never awarded to whichever A-side row happens to appear first.
 8. Recompute mutual uniqueness after accepted pairs so resolvable chains collapse deterministically.
 9. Emit unresolved competing rows as candidate, including the case where multiple A rows claim the same sole B candidate.
-10. Count acceptable 1:1 candidate edges while building each graph. If the configured edge budget is exceeded, abort the reconciliation with `candidate_graph_too_large` before accepting a partial graph; the UI must tell the user to narrow the match space with Date and/or Transaction ID / Reference.
+10. Count acceptable 1:1 candidate edges while building each graph. If the configured edge budget is exceeded, abort the reconciliation with `candidate_graph_too_large` before accepting a partial graph; the UI tells the user to narrow the match space with Date and/or Transaction ID / Reference.
 11. When Pro grouped matching is enabled, search bounded 1:n and n:1 combinations up to five members.
 12. If grouped search exceeds the node budget, emit candidate and require manual review.
 13. Preserve unmatched rows as a_only / b_only and surface duplicate signatures separately.
@@ -107,7 +108,8 @@ Profile rules:
 - maximum 20 profiles;
 - import/export format: versioned JSON bundle `nicheworks-reconcile-profile-bundle`;
 - imported values are sanitized and numeric bounds are clamped before storage;
-- saved date tolerance is clamped to the public 0/±1-day contract.
+- saved date tolerance is clamped to the public 0/±1-day contract;
+- applying a profile to files that do not contain saved column names clears those missing mappings and warns the user instead of silently substituting another column.
 
 ## XLSX dependency contract
 
@@ -117,7 +119,7 @@ Profile rules:
 - Two independent GitHub vendor copies were verified to contain identical bytes: Git blob SHA `5bf1c223ce4bd59685ba711b77dce6da7a9747b8`, size `279523` bytes.
 - Recorded SHA-256 for the selected 0.20.3 mini build: `0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939`.
 - `xlsx-adapter.mjs` rejects a loaded runtime whose reported `XLSX.version` is not exactly `0.20.3`.
-- Apache-2.0 attribution/license requirements must be preserved when the vendored file is added.
+- Apache-2.0 attribution/license requirements are preserved under `tools/reconcile/vendor/`.
 
 ## State and persistence
 
@@ -146,6 +148,8 @@ The isolated branch hard-locks Pro controls. Billing integration is a separate l
 ## Acceptance criteria
 
 - Two valid CSVs up to the Free limits load without sending transaction rows to a server.
+- Free files above 500 rows or 5 MB are rejected.
+- Pro CSV files above 100,000 rows or 50 MB are rejected; Pro XLSX files above 50,000 rows or 25 MB are rejected.
 - Amount mapping is mandatory and invalid amounts are not silently converted to zero.
 - Common Japanese/international financial amount notations covered by the normalization contract parse deterministically.
 - Ambiguous/malformed amount and date values are rejected rather than guessed.
@@ -180,6 +184,8 @@ The isolated branch hard-locks Pro controls. Billing integration is a separate l
 - `tools/reconcile/xlsx-adapter.mjs`
 - `tools/reconcile/rules-store.mjs`
 - `tools/reconcile/vendor/README.md`
+- `tools/reconcile/vendor/LICENSE.sheetjs`
+- `tools/reconcile/vendor/NOTICE.sheetjs.txt`
 - `tools/reconcile/tests/normalize.test.mjs`
 - `tools/reconcile/tests/parser.test.mjs`
 - `tools/reconcile/tests/reconcile-engine.test.mjs`
