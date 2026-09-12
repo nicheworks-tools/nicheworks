@@ -19,8 +19,8 @@
   </header>
 
   <main class="nw-main">
-    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引データはNicheWorksへ送信しません。CSVは動作中です。XLSXアダプターは実装済みで、固定版ライブラリの同梱だけを残しています。</p>
-    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction data is not sent to NicheWorks. CSV is active. The XLSX adapter is implemented and only the pinned local vendor file remains to be added.</p>
+    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引データはNicheWorksへ送信しません。CSVは動作中です。XLSXアダプターは実装済みで、検証済み固定版ライブラリ本体の同梱だけを残しています。</p>
+    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction data is not sent to NicheWorks. CSV is active. The XLSX adapter is implemented and only the verified pinned vendor payload remains to be added.</p>
 
     <section class="steps" aria-label="Workflow">
       <div class="step"><strong>1. Files</strong><span data-i18n="ja">A/Bを読み込む</span><span data-i18n="en">Load A/B</span></div>
@@ -41,6 +41,8 @@
         <div class="file-card"><h3>File A</h3><input id="fileA" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><label id="sheetWrapA" class="field" hidden><span>Worksheet</span><select id="sheetA"></select></label><p id="metaA" class="meta"></p><div id="previewA"><p class="muted">—</p></div></div>
         <div class="file-card"><h3>File B</h3><input id="fileB" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><label id="sheetWrapB" class="field" hidden><span>Worksheet</span><select id="sheetB"></select></label><p id="metaB" class="meta"></p><div id="previewB"><p class="muted">—</p></div></div>
       </div>
+      <p class="muted" data-i18n="ja">Free上限: 各ファイル500行・5MB。上限超過時はファイル内容を送信せずブラウザ内で停止します。</p>
+      <p class="muted" data-i18n="en">Free limit: 500 rows and 5 MB per file. Over-limit files are stopped locally without uploading their contents.</p>
     </section>
 
     <section class="panel">
@@ -59,8 +61,8 @@
 
       <div class="pro-note">
         <div class="pro-note-head"><strong>Reconcile Pro — ¥3,980 one-time</strong><span class="pill pro" data-pro-state>課金接続待ち</span></div>
-        <span data-i18n="ja">大容量、金額許容差、符号モード、1:n / n:1、XLSXレポート、ルール保存を提供します。購入者にはNicheWorks共通Proも付与する設計です。</span>
-        <span data-i18n="en">Adds larger files, amount tolerance, sign modes, 1:n / n:1 matching, XLSX reports and saved profiles. The product is designed to grant shared NicheWorks Pro as well.</span>
+        <span data-i18n="ja">CSV 100,000行・50MB、XLSX 50,000行・25MBまで。金額許容差、符号モード、1:n / n:1、XLSXレポート、ルール保存を提供します。購入者にはNicheWorks共通Proも付与する設計です。</span>
+        <span data-i18n="en">Up to 100,000 rows / 50 MB for CSV and 50,000 rows / 25 MB for XLSX. Adds amount tolerance, sign modes, 1:n / n:1 matching, XLSX reports and saved profiles. Reconcile Pro is designed to grant shared NicheWorks Pro as well.</span>
       </div>
 
       <div class="pro-settings" aria-label="Reconcile Pro settings">
