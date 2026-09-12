@@ -114,12 +114,25 @@
 .measurement-card { padding: 15px; background: #f8fafc; }
 .measurement-card + .measurement-card { margin-top: 12px; }
 .measurement-card h3 { margin-bottom: 12px; }
+.measure-guide {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+}
+.measure-guide summary { cursor: pointer; font-weight: 700; color: #334155; }
+.measure-guide ul { margin: 10px 0 0; padding-left: 20px; color: #475569; line-height: 1.6; }
 .action-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .fit-result { margin-top: 12px; }
 .fit-card { padding: 14px; }
 .fit-card.error { border-color: #fecaca; background: #fff7f7; }
 .clothing-fit-size { margin-top: 10px; font-size: 32px; font-weight: 800; }
 .near-list { margin: 6px 0 0; padding-left: 20px; }
+.fit-detail { margin: 10px 0 0; font-weight: 700; line-height: 1.5; }
+.fit-note.subtle { font-size: 13px; color: #64748b; }
+.fit-basis-list { margin: 10px 0 0; padding-left: 20px; line-height: 1.6; }
+.fit-copy { margin-top: 12px; }
 
 .affiliate-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e7eb; }
 .amazon-cta { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #111827; background: #fff; color: #111827; text-decoration: none; }
@@ -138,5 +151,5 @@
   .result-grid, .fit-size-grid { gap: 6px; }
   .result-cell, .fit-size-pill { padding: 10px 6px; }
   .result-summary { font-size: 18px; }
-  .action-row .primary-btn, .action-row .secondary-btn, .amazon-cta, #copyQuickResult { width: 100%; }
+  .action-row .primary-btn, .action-row .secondary-btn, .amazon-cta, #copyQuickResult, .fit-copy { width: 100%; }
 }
