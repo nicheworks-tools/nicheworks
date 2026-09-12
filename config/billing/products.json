@@ -47,6 +47,38 @@
         }
       },
       "priceTierId": "nw.one_time.usd_499"
+    },
+    {
+      "productId": "reconcile.pro_v1",
+      "displayName": {
+        "en": "NicheWorks Reconcile Pro",
+        "ja": "NicheWorks Reconcile Pro"
+      },
+      "price": {
+        "amount": 3980,
+        "currency": "JPY",
+        "type": "one_time"
+      },
+      "stripe": {
+        "mode": "not_connected",
+        "priceIdEnv": "STRIPE_PRICE_RECONCILE_PRO"
+      },
+      "features": [
+        "reconcile_pro_v1",
+        "nicheworks_pro"
+      ],
+      "ui": {
+        "state": "billing-unavailable",
+        "cta": {
+          "en": "Get Reconcile Pro",
+          "ja": "Reconcile Pro を購入"
+        },
+        "billingUnavailableNote": {
+          "en": "Reconcile Pro billing is not connected yet.",
+          "ja": "Reconcile Pro の課金導線はまだ接続されていません。"
+        }
+      },
+      "priceTierId": "nw.one_time.jpy_3980"
     }
   ],
   "priceTiers": [
@@ -63,6 +95,13 @@
       "currency": "USD",
       "type": "one_time",
       "label": "$4.99 one-time"
+    },
+    {
+      "priceTierId": "nw.one_time.jpy_3980",
+      "amount": 3980,
+      "currency": "JPY",
+      "type": "one_time",
+      "label": "¥3,980 one-time"
     }
   ]
 }
