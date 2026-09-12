@@ -31,7 +31,7 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - `procedure_url` がある場合のみ公式手続き・関連情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
 - HTTP 200だけでverifiedへ昇格させない。
 
-Phase 1終了時点は40 effective records / 36 public-visible / 33 verified / 1 retired / 2 needs_review / 4 placeholder / legacy_review_required 0。Phase 2 wave 1で公式source確認済み10サービスを追加し、50 effective / 46 public-visible / 43 verifiedへ拡張する。
+Phase 1終了時点は40 effective / 36 public-visible / 33 verified。Phase 2 wave 1で10件、wave 2で7件のofficial-source verified serviceを追加し、57 effective / 53 public-visible / 50 verifiedへ拡張する。
 
 ## Inputs
 
@@ -86,6 +86,7 @@ Phase 1終了時点は40 effective records / 36 public-visible / 33 verified / 1
 - officialでないblogやaffiliate記事を手続きの一次sourceとして扱わない。
 - verifiedでないrecordへ架空のverification dateを入れない。
 - countを増やすためだけのplaceholderやgeneric brand entryを公開しない。
+- official procedure sourceが弱い候補を件数合わせでverified追加しない。
 - cancellationを妨害する収益導線を設置しない。
 - staged stateの間はpublic `index.html` を作らない。
 
@@ -100,6 +101,7 @@ Phase 1終了時点は40 effective records / 36 public-visible / 33 verified / 1
 - [x] re-verification waveをmigration provenance付きで段階適用できる。
 - [x] legacy recordのofficial-source再検証・分類が完了し、`legacy_review_required`が0になっている。
 - [x] Phase 2で新規serviceを既存migration snapshotと分離して追加できる。
+- [x] Phase 2 wave 2終了時点で53 public-visible / 50 verifiedへ到達する。
 - [ ] 100 public-visible service以上がverified中心で整理されている。
 
 ## Implementation evidence
