@@ -39,8 +39,9 @@ Reconcile Pro controls are rendered but locked because no entitlement adapter is
 - Optional 1:n and n:1 matching.
 - Group size bounded to 2–5 rows.
 - Group-search safety budget defaults to 50,000 visited nodes in the engine; a truncated search becomes a review candidate instead of an automatic match.
+- 1:1 candidate-graph safety budget defaults to 100,000 acceptable A↔B edges and is hard-clamped to at most 500,000. The engine stops before partial automatic resolution if the graph exceeds the budget.
 - Pro browser safety file cap in the current implementation: 100 MB per file.
-- No artificial row-count cap once Pro is enabled, subject to browser memory.
+- No artificial row-count cap once Pro is enabled, subject to browser memory and the explicit matching safety budgets.
 
 ## Normalization behavior
 
@@ -63,9 +64,10 @@ The engine is deterministic and explanation-first. It does not use AI or probabi
 7. Auto-accept a 1:1 pair only when the relationship is mutually unique; a row is never awarded to whichever A-side row happens to appear first.
 8. Recompute mutual uniqueness after accepted pairs so resolvable chains collapse deterministically.
 9. Emit unresolved competing rows as candidate, including the case where multiple A rows claim the same sole B candidate.
-10. When Pro grouped matching is enabled, search bounded 1:n and n:1 combinations up to five members.
-11. If grouped search exceeds the node budget, emit candidate and require manual review.
-12. Preserve unmatched rows as a_only / b_only and surface duplicate signatures separately.
+10. Count acceptable 1:1 candidate edges while building each graph. If the configured edge budget is exceeded, abort the reconciliation with `candidate_graph_too_large` before accepting a partial graph; the UI must tell the user to narrow the match space with Date and/or Transaction ID / Reference.
+11. When Pro grouped matching is enabled, search bounded 1:n and n:1 combinations up to five members.
+12. If grouped search exceeds the node budget, emit candidate and require manual review.
+13. Preserve unmatched rows as a_only / b_only and surface duplicate signatures separately.
 
 ## CSV row identity
 
@@ -110,9 +112,11 @@ Profile rules:
 ## XLSX dependency contract
 
 - SheetJS Community Edition is pinned to version `0.20.3`.
-- Runtime CDN loading is not permitted; the final script must be committed locally at `tools/reconcile/vendor/xlsx.full.min.js`.
-- The official documented MD5 for `xlsx.full.min.js` 0.20.3 is `6b3130af1ceadf07caa0ec08af7addff` and must be verified before the vendor file is committed.
-- `xlsx-adapter.mjs` also rejects a loaded runtime whose reported `XLSX.version` is not exactly `0.20.3`.
+- Use the browser `xlsx.mini.min.js` build, not the full build, because Reconcile only requires XLSX read/write and does not need the legacy-format/codepage surface of the full bundle.
+- Runtime CDN loading is not permitted; the final script must be committed locally at `tools/reconcile/vendor/xlsx.mini.min.js`.
+- Two independent GitHub vendor copies were verified to contain identical bytes: Git blob SHA `5bf1c223ce4bd59685ba711b77dce6da7a9747b8`, size `279523` bytes.
+- Recorded SHA-256 for the selected 0.20.3 mini build: `0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939`.
+- `xlsx-adapter.mjs` rejects a loaded runtime whose reported `XLSX.version` is not exactly `0.20.3`.
 - Apache-2.0 attribution/license requirements must be preserved when the vendored file is added.
 
 ## State and persistence
@@ -157,6 +161,8 @@ The isolated branch hard-locks Pro controls. Billing integration is a separate l
 - Running the same data/mapping/settings produces the same result ordering and classifications.
 - Result filtering/search does not mutate the reconciliation result.
 - CSV export includes status, relation, source row references, normalized amount/date, and reason.
+- A pathological dense 1:1 candidate graph stops before partial automatic matching when its edge budget is exceeded.
+- A dense same-amount dataset with unique exact References can still resolve through the Reference-priority path without triggering the generic candidate graph limit.
 - Grouped matching never searches beyond the configured safety budget without degrading to manual review.
 - Saved profiles never contain transaction rows or file bytes.
 - Invalid profile JSON/schema is rejected; imported options are normalized before persistence.
