@@ -1,4 +1,5 @@
 import { tableFromRows } from './parser.mjs';
+import { auditExportHeaders, buildAuditRows } from './export.mjs';
 
 export const EXPECTED_XLSX_VERSION = '0.20.3';
 export const DEFAULT_XLSX_VENDOR_URL = './vendor/xlsx.mini.min.js';
@@ -68,16 +69,19 @@ export function tableFromXlsx(source, sheetName, headerRow = 1, api = globalThis
   return tableFromRows(rows, headerRow);
 }
 
-function reportRows(results) {
-  return results.map((item) => ({
-    status: item.status,
-    relation: item.relation,
-    a_rows: item.aRows.join('|'),
-    b_rows: item.bRows.join('|'),
-    normalized_amount: item.amount ?? '',
-    normalized_date: item.date ?? '',
-    reason: item.reason
-  }));
+function mappingSummaryRows(side, mapping = {}) {
+  return ['amount', 'date', 'reference', 'description'].map((field) => [`${side} mapping: ${field}`, mapping[field] || '']);
+}
+
+function optionSummaryRows(options = {}) {
+  return [
+    ['Date tolerance days', options.dateToleranceDays ?? ''],
+    ['Amount tolerance', options.amountTolerance ?? ''],
+    ['Date mode', options.dateMode || ''],
+    ['Sign mode', options.signMode || ''],
+    ['Group matching', options.groupMatching ? 'true' : 'false'],
+    ['Max group size', options.maxGroupSize ?? '']
+  ];
 }
 
 export function createResultsWorkbook(results, context = {}, api = globalThis.XLSX) {
@@ -88,8 +92,12 @@ export function createResultsWorkbook(results, context = {}, api = globalThis.XL
     ['Generated at', context.generatedAt || new Date().toISOString()],
     ['File A', context.fileA || ''],
     ['File B', context.fileB || ''],
-    ['Date tolerance days', context.dateToleranceDays ?? ''],
-    ['Amount tolerance', context.amountTolerance ?? ''],
+    ['File A type', context.fileAType || ''],
+    ['File B type', context.fileBType || ''],
+    ['Header row', context.headerRow ?? ''],
+    ...mappingSummaryRows('A', context.mappingA),
+    ...mappingSummaryRows('B', context.mappingB),
+    ...optionSummaryRows(context.options),
     [],
     ['Status', 'Count']
   ];
@@ -97,6 +105,13 @@ export function createResultsWorkbook(results, context = {}, api = globalThis.XL
   for (const status of statuses) summaryRows.push([status, results.filter((item) => item.status === status).length]);
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(summaryRows), 'Summary');
 
+  const auditContext = {
+    rowsA: context.rowsA,
+    rowsB: context.rowsB,
+    mappingA: context.mappingA,
+    mappingB: context.mappingB
+  };
+  const auditRows = buildAuditRows(results, auditContext);
   const sheets = [
     ['Matches', new Set(['exact_match', 'tolerant_match'])],
     ['Candidates', new Set(['candidate'])],
@@ -106,10 +121,10 @@ export function createResultsWorkbook(results, context = {}, api = globalThis.XL
     ['Conflicts', new Set(['conflict'])]
   ];
   for (const [name, accepted] of sheets) {
-    const rows = reportRows(results.filter((item) => accepted.has(item.status)));
+    const rows = auditRows.filter((item) => accepted.has(item.status));
     const worksheet = rows.length
-      ? XLSX.utils.json_to_sheet(rows)
-      : XLSX.utils.aoa_to_sheet([['status', 'relation', 'a_rows', 'b_rows', 'normalized_amount', 'normalized_date', 'reason']]);
+      ? XLSX.utils.json_to_sheet(rows, { header: auditExportHeaders() })
+      : XLSX.utils.aoa_to_sheet([auditExportHeaders()]);
     XLSX.utils.book_append_sheet(workbook, worksheet, name);
   }
   return workbook;
