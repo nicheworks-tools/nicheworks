@@ -100,3 +100,29 @@ SR-JV80-16|https://lib.roland.co.jp/support/jp/manuals/res/1809853/SR-JV80-16_je
 SR-JV80-17|https://lib.roland.co.jp/support/jp/manuals/res/1809852/SR-JV80-17_je1.pdf
 SR-JV80-18|https://lib.roland.co.jp/support/jp/manuals/res/1809851/SR-JV80-18_je1.pdf
 SR-JV80-19|https://lib.roland.co.jp/support/jp/manuals/res/1809850/SR-JV80-19_je1.pdf`);
+
+// Wave 2P: SRQ/SRV/SS/SY/SYSTEM direct official manuals.
+window.MANUALFINDER_WAVE2_ROLAND.push(`SRQ-2031|https://lib.roland.co.jp/support/jp/manuals/res/1810466/SRQ-2031_j4.pdf
+SRQ-4015|https://lib.roland.co.jp/support/jp/manuals/res/1810461/SRQ-4015_j1.pdf
+SRV-2000|https://lib.roland.co.jp/support/jp/manuals/res/1809834/SRV-2000_j.pdf
+SRV-330|https://lib.roland.co.jp/support/jp/manuals/res/1809801/SRV-330_j.pdf
+SRV-3030|https://lib.roland.co.jp/support/jp/manuals/res/1809820/SRV-3030_-3030D_j.pdf
+SRV-3030D|https://lib.roland.co.jp/support/jp/manuals/res/1809819/SRV-3030_-3030D_j.pdf
+SS-115|https://lib.roland.co.jp/support/jp/manuals/res/1809845/SS-115_je.pdf
+SS-215|https://lib.roland.co.jp/support/jp/manuals/res/1808849/SS-215_je.pdf
+SS-515|https://lib.roland.co.jp/support/jp/manuals/res/1808850/SS-515_je.pdf
+SS-655|https://lib.roland.co.jp/support/jp/manuals/res/1808851/SS-655_je.pdf
+SSC-8004|https://lib.roland.co.jp/support/jp/manuals/res/1808852/SSC-8004_je.pdf
+SS-CAP|https://lib.roland.co.jp/support/jp/manuals/res/1809844/SS-CAP.pdf
+Studio Package Pro|https://lib.roland.co.jp/support/jp/manuals/res/1810455/StudioPackagePro_j2.pdf
+SVC-350|https://lib.roland.co.jp/support/jp/manuals/res/1808855/SVC-350_j.pdf
+SX-700|https://lib.roland.co.jp/support/jp/manuals/res/1810290/SX-700_J.pdf
+SYB-3|https://lib.roland.co.jp/support/jp/manuals/res/1809612/SYB-3_j.pdf
+SYR-10|https://lib.roland.co.jp/support/jp/manuals/res/1808856/SYR-10_je.pdf
+SYR-3100|https://lib.roland.co.jp/support/jp/manuals/res/1808858/SYR-3100_j.pdf
+SYR-4200|https://lib.roland.co.jp/support/jp/manuals/res/1809071/SYR-4200_j.pdf
+SYR-600|https://lib.roland.co.jp/support/jp/manuals/res/1809072/SYR-600_j.pdf
+SYR-500|https://lib.roland.co.jp/support/jp/manuals/res/1808859/SYR-500_j.pdf
+SYR-E84|https://lib.roland.co.jp/support/jp/manuals/res/63338418/SYR-E84_j02_W.pdf
+SYS-503|https://lib.roland.co.jp/support/jp/manuals/res/1809070/SYS-503_j.pdf
+SYSTEM-100-101|https://lib.roland.co.jp/support/jp/manuals/res/1809540/SYSTEM-100-101_j.pdf`);
