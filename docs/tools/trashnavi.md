@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** trash, garbage, local, life
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `FIX`
+- **Audit state:** `NEEDS_DECISION`
 
 ## 1. Identity
 
@@ -50,7 +50,10 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 ## 6. Error behavior
 
-NEEDS_DECISION — no explicit error/empty-state contract could be established from repository documentation; preserve current safe behavior until a product decision is recorded.
+- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
+- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
+- **Network/API failure:** The documented unavailable/error state is shown without substituting fabricated remote data.
+- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
 
 ## 7. Privacy/data handling
 
@@ -66,7 +69,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **found*
 - **Layout class:** `desktop-wide` (source classification: `hybrid`).
 - filter formとresult cardsをdesktop/mobile両方で利用できるdirectory layout。
 - The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current evidence: viewport meta present; responsive media rules present.
+- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
 
 ## 9. Language contract
 
@@ -88,7 +91,11 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 
 ## 13. Help/usage/FAQ contract
 
-Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ after the tool area, and usage documentation linked from safe non-input-flow placement. Observed: `usage.html` **missing**; `usage-en.html`/equivalent **missing**; FAQ **present**.
+- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
+- **Usage documentation:** `recommended-and-missing`. Evidence: no usage page found. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
+- **FAQ:** `recommended-and-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
+- **Language handling for existing usage pages:** not applicable while no usage page exists.
+- Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
 ## 14. Functional acceptance tests
 
@@ -121,7 +128,7 @@ Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ 
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
 - [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
-Automated test evidence: `tools/trashnavi/scripts/audit-coverage.mjs`, `tools/trashnavi/scripts/generate-municipality-pages.mjs`, `scripts/check-trashnavi-direct-links.mjs`, `scripts/update-trashnavi-localgovjp.mjs`, `scripts/validate-trashnavi-data.mjs`.
+Automated test evidence: `tools/trashnavi/scripts/audit-coverage.mjs` (audit script), `tools/trashnavi/scripts/generate-municipality-pages.mjs` (generator), `scripts/check-trashnavi-direct-links.mjs` (regression/contract test), `scripts/validate-trashnavi-data.mjs` (data validation). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
 
 ## 15. Explicit tool-specific exceptions
 

@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** moving, checklist, life, home
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `FIX`
+- **Audit state:** `NEEDS_DECISION`
 
 ## 1. Identity
 
@@ -48,7 +48,10 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 ## 6. Error behavior
 
-NEEDS_DECISION — no explicit error/empty-state contract could be established from repository documentation; preserve current safe behavior until a product decision is recorded.
+- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
+- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
+- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
+- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
 
 ## 7. Privacy/data handling
 
@@ -61,7 +64,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **not fo
 - **Layout class:** `mobile-oriented` (source classification: `mobile-oriented`).
 - The core interaction is a compact form followed by a chronological checklist; a dedicated print presentation is provided.
 - The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current evidence: viewport meta present; responsive media rules present.
+- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
 
 ## 9. Language contract
 
@@ -83,7 +86,11 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 
 ## 13. Help/usage/FAQ contract
 
-Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ after the tool area, and usage documentation linked from safe non-input-flow placement. Observed: `usage.html` **present**; `usage-en.html`/equivalent **present**; FAQ **present**.
+- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
+- **Usage documentation:** `optional-present`. Evidence: `tools/moving-checklist-generator/usage-en.html`, `tools/moving-checklist-generator/usage.html`. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
+- **FAQ:** `optional-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
+- **Language handling for existing usage pages:** Japanese coverage **present**; English coverage **present**. No hard mismatch was established by this static audit.
+- Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
 ## 14. Functional acceptance tests
 
@@ -93,7 +100,7 @@ Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ 
 - [ ] Delete-current and delete-all actions remove the corresponding saved checklist state.
 - [ ] Print/PDF uses the browser print flow and does not claim server-generated PDF storage.
 
-Automated test evidence: none found; a later repair wave must add behavior-level tests rather than file-existence-only checks.
+Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
 
 ## 15. Explicit tool-specific exceptions
 

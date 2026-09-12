@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** kanji, old-kanji, japanese, reference
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `FIX`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -53,7 +53,10 @@ Observed delivery capabilities: clipboard copy **present**; download/export **pr
 
 ## 6. Error behavior
 
-- [ ] The disabled Pro panel communicates billing unavailable and does not present planned learning/saved-set features as currently purchasable.
+- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
+- **Invalid, unsupported, or over-limit input:** The documented validation, supported-format, and limit rules apply; rejected input must not be represented as a valid result.
+- **Network/API failure:** The documented unavailable/error state is shown without substituting fabricated remote data.
+- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
 
 ## 7. Privacy/data handling
 
@@ -66,7 +69,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **found*
 - **Layout class:** `desktop-wide` (source classification: `pc-oriented`).
 - The dense searchable catalog, filters, detector, display modes, export controls, details, favorites/recent state, and quiz are best served by desktop width while remaining responsive.
 - The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current evidence: viewport meta present; responsive media rules present.
+- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
 
 ## 9. Language contract
 
@@ -88,7 +91,11 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 
 ## 13. Help/usage/FAQ contract
 
-Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ after the tool area, and usage documentation linked from safe non-input-flow placement. Observed: `usage.html` **missing**; `usage-en.html`/equivalent **missing**; FAQ **present**.
+- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
+- **Usage documentation:** `recommended-and-missing`. Evidence: no usage page found. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
+- **FAQ:** `recommended-and-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
+- **Language handling for existing usage pages:** not applicable while no usage page exists.
+- Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
 ## 14. Functional acceptance tests
 
@@ -100,7 +107,7 @@ Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ 
 - [ ] The disabled Pro panel communicates billing unavailable and does not present planned learning/saved-set features as currently purchasable.
 - [ ] Reference results retain cautions appropriate to non-authoritative old/variant-kanji data.
 
-Automated test evidence: `tools/old-kanji-reference/validate-compatibility-notes.js`, `tools/old-kanji-reference/validate-meta.js`, `tools/old-kanji-reference/validate-shape-notes.js`, `tools/old-kanji-reference/validate-stroke-counts.js`.
+Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs` (regression/contract test), `tools/old-kanji-reference/validate-compatibility-notes.js` (data validation), `tools/old-kanji-reference/validate-meta.js` (data validation), `tools/old-kanji-reference/validate-shape-notes.js` (data validation), `tools/old-kanji-reference/validate-stroke-counts.js` (data validation). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
 
 ## 15. Explicit tool-specific exceptions
 

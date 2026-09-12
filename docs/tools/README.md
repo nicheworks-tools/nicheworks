@@ -38,4 +38,16 @@ An optional `Implementation evidence` subsection records the inspected files. Sp
 - `scripts/check-tool-spec-coverage.mjs` verifies registry/spec bijection, unique slugs, required sections, and count agreement.
 - `scripts/check-tool-quality-contract.mjs` validates matrix structure, enums, per-tool fields, and agreement with the registry/spec layer.
 
+## Help-status semantics
+
+Usage documentation and FAQ are classified independently as `required-and-present`, `required-and-missing`, `recommended-and-present`, `recommended-and-missing`, `optional-present`, `optional-absent`, `not-applicable`, or `NEEDS_DECISION`. Common-spec sections 10–11 make `usage.html` optional (recommended for tools needing extended guidance) and FAQ conditional. Therefore, a missing recommended or optional document is not a hard compliance failure and cannot independently produce `FIX`.
+
+The exact-file fields `usage_html_present` and `usage_en_html_present` mean only that `tools/<slug>/usage.html` or `tools/<slug>/usage-en.html` exists. `help_documentation.usage_evidence` may additionally record an established directory-based equivalent. The contract classification describes applicability and is not a synonym for exact filename presence.
+
+## Test and final-state semantics
+
+Each `test_evidence` item classifies an existing path as `behavior test`, `regression/contract test`, `data validation`, `build script`, `generator`, `audit script`, or `other maintenance tooling`. Only `behavior test` evidence can produce `functional_test_status: behavior-test-present`; build and generation scripts never count as functional tests.
+
+Final states use deterministic precedence: `BLOCKED` (implementation evidence unavailable), then `NEEDS_DECISION` (one or more unresolved product-contract decisions), then `FIX` (hard compliance gap), then `PASS`. Recommendation-only documentation/test gaps remain visible but do not independently produce `FIX`.
+
 Production fixes must happen in later scoped repair waves and should update a tool specification only when the intended contract itself changes.

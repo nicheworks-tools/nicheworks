@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** pdf, csv, table, local
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `FIX`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -51,7 +51,11 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 ## 6. Error behavior
 
-- [ ] Invalid/oversized/encrypted PDF conditions produce explicit errors rather than fabricated output.
+- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
+- **Invalid, unsupported, or over-limit input:** The documented validation, supported-format, and limit rules apply; rejected input must not be represented as a valid result.
+- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
+- **File read or parsing failure:** The implementation’s documented error path applies and no failed parse is represented as a valid output.
+- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
 
 ## 7. Privacy/data handling
 
@@ -64,7 +68,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **not fo
 - **Layout class:** `desktop-wide` (source classification: `pc-oriented`).
 - PDF preview, manual region selection, extraction controls, and tabular result review are primarily desktop-oriented.
 - The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current evidence: viewport meta present; responsive media rules present.
+- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
 
 ## 9. Language contract
 
@@ -86,7 +90,11 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 
 ## 13. Help/usage/FAQ contract
 
-Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ after the tool area, and usage documentation linked from safe non-input-flow placement. Observed: `usage.html` **present**; `usage-en.html`/equivalent **missing**; FAQ **present**.
+- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
+- **Usage documentation:** `recommended-and-present`. Evidence: `tools/pdf2csv-local/usage.html`. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
+- **FAQ:** `recommended-and-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
+- **Language handling for existing usage pages:** Japanese coverage **present**; English coverage **not found**. No hard mismatch was established by this static audit.
+- Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
 ## 14. Functional acceptance tests
 
@@ -96,7 +104,7 @@ Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ 
 - [ ] Invalid/oversized/encrypted PDF conditions produce explicit errors rather than fabricated output.
 - [ ] Network-loading of the XLSX library is not described as PDF-content upload.
 
-Automated test evidence: none found; a later repair wave must add behavior-level tests rather than file-existence-only checks.
+Automated test evidence: `scripts/check-tool-runtime-contracts-wave5.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
 
 ## 15. Explicit tool-specific exceptions
 

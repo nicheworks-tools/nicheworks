@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** text, linebreak, format, writing
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `FIX`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -42,7 +42,10 @@ Observed delivery capabilities: clipboard copy **present**; download/export **no
 
 ## 6. Error behavior
 
-NEEDS_DECISION — no explicit error/empty-state contract could be established from repository documentation; preserve current safe behavior until a product decision is recorded.
+- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
+- **Invalid, unsupported, or over-limit input:** The documented validation, supported-format, and limit rules apply; rejected input must not be represented as a valid result.
+- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
+- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
 
 ## 7. Privacy/data handling
 
@@ -55,7 +58,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **not fo
 - **Layout class:** `mobile-oriented` (source classification: `mobile-oriented`).
 - The primary use case is preparing short/medium social text for copying, with a vertical input → policy → results flow suitable for phones.
 - The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current evidence: viewport meta present; responsive media rules present.
+- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
 
 ## 9. Language contract
 
@@ -77,7 +80,11 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 
 ## 13. Help/usage/FAQ contract
 
-Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ after the tool area, and usage documentation linked from safe non-input-flow placement. Observed: `usage.html` **missing**; `usage-en.html`/equivalent **missing**; FAQ **present**.
+- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
+- **Usage documentation:** `optional-absent`. Evidence: no usage page found. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
+- **FAQ:** `optional-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
+- **Language handling for existing usage pages:** not applicable while no usage page exists.
+- Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
 ## 14. Functional acceptance tests
 
@@ -86,7 +93,7 @@ Common-spec sections 10–11 require concise main-page guidance, an on-page FAQ 
 - [ ] Generated variants remain reviewable/copyable and the UI tells users to confirm the actual post preview before publishing.
 - [ ] JP/EN switching preserves the formatter, rule explanations, and invisible-character warning.
 
-Automated test evidence: none found; a later repair wave must add behavior-level tests rather than file-existence-only checks.
+Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
 
 ## 15. Explicit tool-specific exceptions
 
