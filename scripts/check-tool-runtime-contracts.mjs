@@ -19,16 +19,17 @@ const lacks = (rel, needle, label = needle) => {
 };
 
 // 1. AI Interaction Atlas — local state, free limits, legacy shared Pro bridge.
-has('tools/ai-interaction-atlas/app.js', "nw_aiia_favorites");
-has('tools/ai-interaction-atlas/app.js', "nw_aiia_recent");
-has('tools/ai-interaction-atlas/app.js', "nw_aiia_compare");
+has('tools/ai-interaction-atlas/app.js', 'nw_aiia_favorites');
+has('tools/ai-interaction-atlas/app.js', 'nw_aiia_recent');
+has('tools/ai-interaction-atlas/app.js', 'nw_aiia_compare');
 has('tools/ai-interaction-atlas/pro-bridge.js', 'NWPro.getLocalStatus');
 has('tools/ai-interaction-atlas/pro-bridge.js', 'nicheworks_pro');
 
 // 2. AI Project Pack — repository-first guide and bounded workflow remain visible.
 has('tools/ai-project-pack/index.html', 'https://github.com/nicheworks-tools/ai-project-pack/tree/main');
-has('tools/ai-project-pack/index.html', 'Report-only');
-has('tools/ai-project-pack/index.html', 'Safe-update');
+has('tools/ai-project-pack/index.html', 'report-only');
+has('tools/ai-project-pack/index.html', 'safe-update');
+has('tools/ai-project-pack/index.html', 'append one dated update log');
 has('tools/ai-project-pack/ja/index.html', 'https://github.com/nicheworks-tools/ai-project-pack/tree/main');
 
 // 3. Analytics Privacy Kit — provider drafting and local clear/copy/export controls.
@@ -62,8 +63,8 @@ has('tools/codex-usage-forecaster/app-fixed.js', 'nw_cuf_profiles_v1');
 has('tools/codex-usage-forecaster/SPEC.md', 'app-fixed.js');
 
 // 8. Codex Work OS — all five operator packs remain represented.
-for (const token of ['sales', 'pm', 'exec', 'research', 'cs']) {
-  has('tools/codex-work-os/index.html', token);
+for (const pack of ['sales-pack', 'pm-pack', 'exec-assist-pack', 'research-pack', 'cs-pack']) {
+  has('tools/codex-work-os/index.html', pack);
 }
 
 // 9. Cold Email Requirement Checker — no query-param/localStorage self-unlock.
@@ -93,7 +94,7 @@ has('tools/construction-tools-atlas/SPEC.md', 'app.runtime.js');
 // 13. Contract Cleaner — local rule-based analysis and non-authoritative wording.
 has('tools/contract-cleaner/app.js', 'Rule-based contract term checker');
 has('tools/contract-cleaner/app.js', '検出されない＝安全ではありません');
-has('tools/contract-cleaner/app.js', 'matched');
+has('tools/contract-cleaner/app.js', 'only_matched');
 
 // 14. Contract Risk Highlighter — free finding cap and shared Pro gate remain wired.
 has('tools/contract-risk-highlighter/app.js', 'MAX_FREE_FINDINGS = 3');
@@ -104,7 +105,7 @@ has('tools/contract-risk-highlighter/pro-bridge.js', 'NWPro.getLocalStatus');
 
 // 15. Cosmetic Ingredient Checker Lite — unknown entries must stay explicitly unclassified.
 has('tools/cosmetic-ingredient-checker-lite/app.js', 'この簡易辞書では分類できません');
-has('tools/cosmetic-ingredient-checker-lite/index.html', 'Japanese');
+has('tools/cosmetic-ingredient-checker-lite/index.html', '日本語のみ');
 
 if (failures.length) {
   console.error(`Tool runtime contract audit failed (${failures.length})`);
