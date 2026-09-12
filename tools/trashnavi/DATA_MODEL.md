@@ -19,6 +19,8 @@ Required identity fields for future municipality records:
 
 `pref + city` may be used as a temporary fallback only when `lgcode` is unavailable. New enrichment work should preserve `lgcode` whenever the municipality can be identified reliably.
 
+Some legacy supplementary files omit `lgcode`. For coverage auditing only, those rows may inherit an `lgcode` when the same `pref + city` maps to exactly one code in the nationwide master. Ambiguous matches must remain unresolved and be reported rather than guessed.
+
 ## 2. Official waste-link record
 
 Forward-compatible records should support these fields:
@@ -57,7 +59,7 @@ New enrichment work should use the following canonical taxonomy.
 
 | Canonical value | Current/runtime equivalent or intent |
 | --- | --- |
-| `municipal_home` | `自治体公式ページ` |
+| `municipal_home` | `自治体公式ページ` / legacy `公式サイト` |
 | `waste_sorting` | `ごみ分別ページ` |
 | `collection_calendar` | `収集カレンダー` |
 | `bulky_waste` | `粗大ごみ` |
@@ -75,6 +77,7 @@ The Phase-1 coverage audit maps existing values as follows:
 
 ```text
 自治体公式ページ -> municipal_home
+公式サイト       -> municipal_home
 ごみ分別ページ   -> waste_sorting
 収集カレンダー   -> collection_calendar
 粗大ごみ         -> bulky_waste
