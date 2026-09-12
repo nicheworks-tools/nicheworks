@@ -89,7 +89,9 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 
 ## Language mode
 
-Bilingual single-page. Japanese and English UI copy share the same public URL and are switched client-side using the common `nw_lang` preference.
+`bilingual single-page`
+
+Japanese and English UI copy share the same public URL and are switched client-side using the common `nw_lang` preference.
 
 ## Layout class
 
@@ -105,26 +107,25 @@ Bilingual single-page. Japanese and English UI copy share the same public URL an
 
 ## Acceptance criteria
 
-- Two valid CSV/XLSX files within Free limits load without transmitting their transaction contents.
-- Free files above 500 rows or 5 MB are rejected.
-- Amount mapping is mandatory and invalid amounts are not silently converted to zero.
-- Supported Japanese/international amount notations and configured date formats normalize deterministically; ambiguous or malformed inputs are rejected rather than guessed.
-- Exact and tolerant 1:1 matches are accepted only when mutually unique; competing candidates are not assigned by input order.
-- Same-reference unique pairs outside amount tolerance become `conflict`.
-- A duplicate signature group is emitted once and duplicate-member rows do not simultaneously appear under another primary status.
-- Each source row belongs to at most one primary reconciliation outcome.
-- Physical source row references survive skipped blank rows and alternate header rows.
-- Re-running identical data, mappings, and settings produces the same classification/order.
-- Result filtering/search does not mutate reconciliation results.
-- Dense candidate graphs stop before partial automatic resolution when the edge budget is exceeded.
-- Bounded grouped matching degrades to manual review when its search budget is exhausted.
-- CSV audit export includes the defined reconciliation context and selected original A/B identifying values.
-- The committed XLSX vendor passes fixed byte/hash/version checks plus real-vendor write/read and seven-sheet report re-read tests.
-- Saved profile serialization never contains transaction rows or uploaded file bytes.
-- Reconcile Pro controls unlock only when server verification for product `reconcile.pro_v1` includes feature `reconcile_pro_v1`; `nicheworks_pro` alone is insufficient.
-- Failed/unavailable entitlement verification fails closed without changing Free reconciliation behavior.
-- Japanese/English switching preserves the current reconciliation state and the wide result workflow remains usable with mobile stacking/scrolling.
-
+- [x] Two valid CSV/XLSX files within Free limits load without transmitting their transaction contents.
+- [x] Free files above 500 rows or 5 MB are rejected.
+- [x] Amount mapping is mandatory and invalid amounts are not silently converted to zero.
+- [x] Supported Japanese/international amount notations and configured date formats normalize deterministically; ambiguous or malformed inputs are rejected rather than guessed.
+- [x] Exact and tolerant 1:1 matches are accepted only when mutually unique; competing candidates are not assigned by input order.
+- [x] Same-reference unique pairs outside amount tolerance become `conflict`.
+- [x] A duplicate signature group is emitted once and duplicate-member rows do not simultaneously appear under another primary status.
+- [x] Each source row belongs to at most one primary reconciliation outcome.
+- [x] Physical source row references survive skipped blank rows and alternate header rows.
+- [x] Re-running identical data, mappings, and settings produces the same classification/order.
+- [x] Result filtering/search does not mutate reconciliation results.
+- [x] Dense candidate graphs stop before partial automatic resolution when the edge budget is exceeded.
+- [x] Bounded grouped matching degrades to manual review when its search budget is exhausted.
+- [x] CSV audit export includes the defined reconciliation context and selected original A/B identifying values.
+- [x] The committed XLSX vendor passes fixed byte/hash/version checks plus real-vendor write/read and seven-sheet report re-read tests.
+- [x] Saved profile serialization never contains transaction rows or uploaded file bytes.
+- [x] Reconcile Pro controls unlock only when server verification for product `reconcile.pro_v1` includes feature `reconcile_pro_v1`; `nicheworks_pro` alone is insufficient.
+- [x] Failed/unavailable entitlement verification fails closed without changing Free reconciliation behavior.
+- [x] Japanese/English switching preserves the current reconciliation state and the wide result workflow remains usable with mobile stacking/scrolling.
 ## Implementation evidence
 
 - `tools/reconcile/index.html`
