@@ -8,7 +8,7 @@ export function normalizeReference(value) {
 
 export function normalizeAmount(value) {
   if (typeof value === 'number') {
-    return Number.isFinite(value) ? value : null;
+    return Number.isFinite(value) ? Number(value.toFixed(12)) : null;
   }
   let text = normalizeText(value);
   if (!text) return null;
@@ -27,7 +27,8 @@ export function normalizeAmount(value) {
   if (!/^[-+]?\d+(?:\.\d+)?$/.test(text)) return null;
   const number = Number(text);
   if (!Number.isFinite(number)) return null;
-  return negative ? -Math.abs(number) : number;
+  const signed = negative ? -Math.abs(number) : number;
+  return Number(signed.toFixed(12));
 }
 
 function daysInMonth(year, month) {
