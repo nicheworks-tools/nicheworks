@@ -19,7 +19,8 @@ const state = {
   a: null,
   b: null,
   results: [],
-  filtered: []
+  filtered: [],
+  runContext: null
 };
 
 const $ = (id) => document.getElementById(id);
@@ -407,18 +408,33 @@ function run() {
   const mappingA = mapping('a');
   const mappingB = mapping('b');
   if (!mappingA.amount || !mappingB.amount) return setNotice(message('両方の金額列を指定してください。', 'Select an amount column for both files.'), 'error');
+  const options = currentOptions();
   try {
     state.results = reconcile({
       rowsA: state.a.rows,
       rowsB: state.b.rows,
       mappingA,
       mappingB,
-      options: currentOptions()
+      options
     });
+    state.runContext = {
+      rowsA: state.a.rows,
+      rowsB: state.b.rows,
+      mappingA: { ...mappingA },
+      mappingB: { ...mappingB },
+      fileA: state.a.name || '',
+      fileB: state.b.name || '',
+      fileAType: state.a.type || '',
+      fileBType: state.b.type || '',
+      headerRow: Number($('headerRow').value || 1),
+      options: { ...options },
+      generatedAt: new Date().toISOString()
+    };
     renderSummary();
     applyFilter();
     setNotice(message('照合が完了しました。', 'Reconciliation complete.'), 'success');
   } catch (error) {
+    state.runContext = null;
     if (error?.code === 'candidate_graph_too_large' || error?.message === 'candidate_graph_too_large') {
       setNotice(message('候補が多すぎるため安全上照合を停止しました。日付または取引ID/参照列を追加して候補を絞ってください。', 'Reconciliation stopped because there are too many possible matches. Map Date and/or Transaction ID / Reference to narrow the candidates.'), 'warning');
       return;
@@ -465,22 +481,16 @@ function renderResults() {
 }
 
 function exportCsv() {
-  if (!state.results.length) return setNotice(message('先に照合してください。', 'Run reconciliation first.'), 'error');
-  downloadText(`nicheworks-reconcile-${new Date().toISOString().slice(0, 10)}.csv`, resultsToCsv(state.results));
+  if (!state.results.length || !state.runContext) return setNotice(message('先に照合してください。', 'Run reconciliation first.'), 'error');
+  downloadText(`nicheworks-reconcile-${new Date().toISOString().slice(0, 10)}.csv`, resultsToCsv(state.results, state.runContext));
 }
 
 async function exportXlsx() {
   if (!requirePro()) return;
-  if (!state.results.length) return setNotice(message('先に照合してください。', 'Run reconciliation first.'), 'error');
+  if (!state.results.length || !state.runContext) return setNotice(message('先に照合してください。', 'Run reconciliation first.'), 'error');
   try {
     await ensureXlsxAvailable();
-    const options = currentOptions();
-    const bytes = resultsWorkbookBytes(state.results, {
-      fileA: state.a?.name || '',
-      fileB: state.b?.name || '',
-      dateToleranceDays: options.dateToleranceDays,
-      amountTolerance: options.amountTolerance
-    });
+    const bytes = resultsWorkbookBytes(state.results, state.runContext);
     downloadBytes(`nicheworks-reconcile-${new Date().toISOString().slice(0, 10)}.xlsx`, bytes, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   } catch (error) {
     setNotice(message(`XLSXを出力できませんでした: ${error.message}`, `Could not export XLSX: ${error.message}`), 'error');
