@@ -1,0 +1,56 @@
+name: TrashNavi Wave 6 Inawashiro one-shot
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave6-inawashiro-20260913
+    paths:
+      - 'tools/trashnavi/data/direct-waste-links-demand-wave6.json'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave6-inawashiro-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Wire Wave 6 dataset
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const appPath = 'tools/trashnavi/app.js';
+          let app = fs.readFileSync(appPath, 'utf8');
+          const oldFiles = '"data/direct-waste-links-demand-wave4.json","data/direct-waste-links-demand-wave5.json"]';
+          const newFiles = '"data/direct-waste-links-demand-wave4.json","data/direct-waste-links-demand-wave5.json","data/direct-waste-links-demand-wave6.json"]';
+          if (!app.includes('direct-waste-links-demand-wave6.json')) {
+            if (!app.includes(oldFiles)) throw new Error('DIRECT_LINK_FILES anchor not found');
+            app = app.replace(oldFiles, newFiles);
+          }
+          fs.writeFileSync(appPath, app);
+          NODE
+      - name: Validate Wave 6 enrichment
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict | tee /tmp/wave6-coverage.txt
+          node scripts/check-trashnavi-direct-links.mjs --inventory | tee /tmp/wave6-inventory.txt
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+      - name: Commit runtime wiring
+        shell: bash
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add tools/trashnavi/app.js
+          if git diff --cached --quiet; then
+            echo 'No runtime wiring changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Wire TrashNavi Wave 6 Inawashiro data'
+          git push origin HEAD:feat/trashnavi-wave6-inawashiro-20260913
