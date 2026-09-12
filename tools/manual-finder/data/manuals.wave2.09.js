@@ -147,3 +147,24 @@ S650|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/
 S651|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S651/S651.pdf
 S670|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S670/S670.pdf
 S680|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S680/S680.pdf`);
+
+// Wave 2AF: residual Seiko S-series primary manuals; quick/application auxiliaries are intentionally omitted.
+window.MANUALFINDER_WAVE2_SEIKO.push(`S055|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S055/S055.pdf
+S141|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S141/S141.pdf
+S602|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S602/S602.pdf
+S603|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S603/S603.pdf
+S620|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S620/S620.pdf
+S690|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S690/S690.pdf
+S701|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S701/S701.pdf
+S750|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S750/S750.pdf
+S760|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S760/S760.pdf
+S770|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S770/S770.pdf
+S771|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S771/S771.pdf
+S800|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S800/S800.pdf
+S802|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S802/S802.pdf
+S810|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S810/S810.pdf
+S811|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S811/S811.pdf
+S821|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S821/S821.pdf
+S822|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S822/S822.pdf
+S830|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S830/S830.pdf
+S833|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/S/S833/S833_2.pdf`);
