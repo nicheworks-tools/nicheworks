@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root = path.resolve(new URL('..', import.meta.url).pathname);
 const dataPath = path.join(root, 'data', 'services.json');
+const additionsDir = path.join(root, 'data', 'additions');
 const reverificationDir = path.join(root, 'data', 'reverification');
 const allowedStates = new Set(['legacy_review_required', 'verified', 'needs_review', 'retired', 'placeholder']);
 const errors = [];
@@ -16,6 +17,11 @@ function readJson(file) {
     fail(`cannot parse ${path.relative(root, file)}: ${error.message}`);
     return null;
   }
+}
+function jsonFiles(dir) {
+  return fs.existsSync(dir)
+    ? fs.readdirSync(dir).filter((name) => name.endsWith('.json')).sort()
+    : [];
 }
 
 const base = readJson(dataPath);
@@ -36,9 +42,38 @@ for (const record of baseRecords) {
   byId.set(record.id, record);
 }
 
-const overlayFiles = fs.existsSync(reverificationDir)
-  ? fs.readdirSync(reverificationDir).filter((name) => name.endsWith('.json')).sort()
-  : [];
+const additionFiles = jsonFiles(additionsDir);
+const additionIds = new Set();
+for (const name of additionFiles) {
+  const file = path.join(additionsDir, name);
+  const addition = readJson(file);
+  if (!addition) continue;
+  if (!Array.isArray(addition.records)) {
+    fail(`${name}: records must be an array`);
+    continue;
+  }
+
+  const idsInFile = new Set();
+  for (const record of addition.records) {
+    if (!record?.id) {
+      fail(`${name}: addition record missing id`);
+      continue;
+    }
+    if (idsInFile.has(record.id)) {
+      fail(`${name}: duplicate addition id ${record.id} within the same wave`);
+      continue;
+    }
+    idsInFile.add(record.id);
+    if (byId.has(record.id)) {
+      fail(`${name}: addition id ${record.id} collides with an existing record`);
+      continue;
+    }
+    additionIds.add(record.id);
+    byId.set(record.id, record);
+  }
+}
+
+const overlayFiles = jsonFiles(reverificationDir);
 const overlayIds = new Set();
 let supersededOverlayWrites = 0;
 
@@ -64,7 +99,7 @@ for (const name of overlayFiles) {
     idsInFile.add(record.id);
 
     if (!byId.has(record.id)) {
-      fail(`${name}: overlay id ${record.id} does not exist in legacy base`);
+      fail(`${name}: overlay id ${record.id} does not exist in base or additions`);
       continue;
     }
     if (overlayIds.has(record.id)) supersededOverlayWrites += 1;
@@ -131,7 +166,9 @@ const retiredCount = records.filter((record) => record.publication_state === 're
 const placeholderCount = records.filter((record) => record.publication_state === 'placeholder').length;
 
 console.log('unsubscribe-navi database audit');
-console.log(`- base records: ${baseRecords.length}`);
+console.log(`- legacy base records: ${baseRecords.length}`);
+console.log(`- phase 2 addition files: ${additionFiles.length}`);
+console.log(`- phase 2 added ids: ${additionIds.size}`);
 console.log(`- re-verification overlay files: ${overlayFiles.length}`);
 console.log(`- re-verified/overridden ids: ${overlayIds.size}`);
 console.log(`- later-wave superseding writes: ${supersededOverlayWrites}`);
