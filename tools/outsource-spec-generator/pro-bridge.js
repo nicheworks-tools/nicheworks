@@ -1,5 +1,6 @@
 (() => {
   const PAYMENT_LINK = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
+  const EXPECTED_ENTITLEMENT = 'nicheworks_pro';
   const STATUS_TEXT = {
     ja: {
       active: 'Pro解放済み。このブラウザでは共通Proが有効です。',
@@ -83,7 +84,8 @@
         return;
       }
       const status = window.NWPro.getLocalStatus();
-      publish(Boolean(status && status.active), status && status.active ? 'active' : 'preview');
+      const active = Boolean(status && status.active && status.entitlement === EXPECTED_ENTITLEMENT);
+      publish(active, active ? 'active' : 'preview');
     } catch (error) {
       publish(false, 'unknown');
     }
