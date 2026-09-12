@@ -1,57 +1,35 @@
 (() => {
-  const C = { pc:"PC・スマホ", home:"家電", printer:"プリンター・複合機", camera:"カメラ・映像", audio:"オーディオ", game:"ゲーム", net:"ネットワーク機器", other:"その他" };
-  const notes = {
-    [C.pc]:"PC・スマートフォン・タブレット等の公式マニュアル／サポート入口です。",
-    [C.home]:"生活家電・AV家電・キッチン家電等の公式マニュアル／サポート入口です。",
-    [C.printer]:"プリンター・複合機・ラベル機器等の公式マニュアル／サポート入口です。",
-    [C.camera]:"カメラ・映像機器・配信機材等の公式マニュアル／サポート入口です。",
-    [C.audio]:"オーディオ機器・ヘッドホン・楽器等の公式マニュアル／サポート入口です。",
-    [C.game]:"ゲーム機・VR機器・ゲーム周辺機器等の公式マニュアル／サポート入口です。",
-    [C.net]:"ルーター・NAS・ネットワーク機器等の公式マニュアル／サポート入口です。",
-    [C.other]:"時計・工具・車載機器・健康機器等の公式マニュアル／サポート入口です。"
-  };
-  const makers = {
-    Apple:["Apple","Global","https://support.apple.com/"], Sony:["ソニー","Japan","https://www.sony.jp/support/"], Panasonic:["パナソニック","Japan","https://panasonic.jp/support/"], Sharp:["シャープ","Japan","https://jp.sharp/support/"], Hitachi:["日立","Japan","https://kadenfan.hitachi.co.jp/support/"], Toshiba:["東芝","Japan","https://www.toshiba-lifestyle.com/jp/support/"], Mitsubishi:["三菱電機","Japan","https://www.mitsubishielectric.co.jp/support/"], Daikin:["ダイキン","Japan","https://www.daikin.co.jp/support/"], Iris:["アイリスオーヤマ","Japan","https://www.irisohyama.co.jp/support/"], Yamazen:["山善","Japan","https://book.yamazen.co.jp/"], Balmuda:["バルミューダ","Japan","https://www.balmuda.com/jp/support/"], Zojirushi:["象印マホービン","Japan","https://www.zojirushi.co.jp/toiawase/"], Tiger:["タイガー魔法瓶","Japan","https://www.tiger-corporation.com/ja/jpn/support/"], Canon:["キヤノン","Japan","https://canon.jp/support"], Nikon:["ニコン","Japan","https://downloadcenter.nikonimglib.com/"], Fujifilm:["富士フイルム","Japan","https://www.fujifilm.com/jp/ja/consumer/support"], Epson:["エプソン","Japan","https://www.epson.jp/support/"], Brother:["ブラザー","Japan","https://support.brother.co.jp/"], HP:["日本HP","Global","https://support.hp.com/"], Dell:["デル","Global","https://www.dell.com/support/home/"], Lenovo:["レノボ","Global","https://support.lenovo.com/"], ASUS:["ASUS","Global","https://www.asus.com/support/"], Acer:["Acer","Global","https://www.acer.com/support"], MSI:["MSI","Global","https://www.msi.com/support"], LG:["LG","Global","https://www.lg.com/support"], Samsung:["Samsung","Global","https://www.samsung.com/support/"], Google:["Google","Global","https://support.google.com/"], Microsoft:["Microsoft","Global","https://support.microsoft.com/"], Nintendo:["任天堂","Japan","https://www.nintendo.co.jp/support/"], PlayStation:["PlayStation","Global","https://www.playstation.com/support/"], Valve:["Valve","Global","https://help.steampowered.com/"], Meta:["Meta","Global","https://www.meta.com/help/quest/"], Yamaha:["ヤマハ","Japan","https://jp.yamaha.com/support/"], Bose:["Bose","Global","https://support.bose.com/"], JBL:["JBL","Global","https://support.jbl.com/"], Sennheiser:["Sennheiser","Global","https://www.sennheiser-hearing.com/support/"], AudioTechnica:["オーディオテクニカ","Japan","https://www.audio-technica.co.jp/support/"], Denon:["デノン","Global","https://support.denon.com/"], Marantz:["マランツ","Global","https://support.marantz.com/"], TPLink:["TP-Link","Global","https://www.tp-link.com/support/"], Buffalo:["バッファロー","Japan","https://www.buffalo.jp/support/"], Synology:["Synology","Global","https://www.synology.com/support"], QNAP:["QNAP","Global","https://www.qnap.com/en/support"], Ubiquiti:["Ubiquiti","Global","https://help.ui.com/"], Garmin:["Garmin","Global","https://support.garmin.com/"], Fitbit:["Fitbit","Global","https://help.fitbit.com/"], Anker:["Anker","Global","https://support.anker.com/"], Eufy:["Eufy","Global","https://support.eufy.com/"], Ring:["Ring","Global","https://ring.com/support"], Amazon:["Amazon Devices","Global","https://www.amazon.com/gp/help/customer/display.html"], Makita:["マキタ","Japan","https://www.makita.co.jp/product/support/"], HiKOKI:["HiKOKI","Japan","https://www.hikoki-powertools.jp/manual/"], BoschTools:["ボッシュ工具","Global","https://www.boschtools.com/us/en/service/product-manuals/"], Karcher:["ケルヒャー","Global","https://www.kaercher.com/int/services/support/manuals.html"], Dyson:["ダイソン","Global","https://www.dyson.com/support"], iRobot:["iRobot","Global","https://homesupport.irobot.com/"], Roborock:["Roborock","Global","https://support.roborock.com/"], Omron:["オムロンヘルスケア","Japan","https://www.healthcare.omron.co.jp/support/"], Tanita:["タニタ","Japan","https://www.tanita.co.jp/support/"], Withings:["Withings","Global","https://support.withings.com/"], Tesla:["Tesla","Global","https://www.tesla.com/ownersmanual"], Toyota:["トヨタ","Japan","https://manual.toyota.jp/"], Honda:["ホンダ","Japan","https://www.honda.co.jp/ownersmanual/"], Nissan:["日産","Japan","https://www.nissan.co.jp/OPTIONAL-PARTS/NAVIOM/"], Mazda:["マツダ","Japan","https://www.mazda.co.jp/carlife/owner/manual/"], Subaru:["スバル","Japan","https://www.subaru.jp/afterservice/tnst/"], Kenwood:["JVCケンウッド","Japan","https://www.kenwood.com/jp/cs/"], Pioneer:["パイオニア","Japan","https://jpn.pioneer/ja/support/manual/"], Eizo:["EIZO","Japan","https://www.eizo.co.jp/support/db/"], BenQ:["BenQ","Global","https://www.benq.com/en-us/support/downloads-faq.html"], Wacom:["ワコム","Global","https://www.wacom.com/support/product-support/manuals"]
-  };
-  const groups = [
-    [C.pc,["Apple","Sony","Panasonic","Sharp","HP","Dell","Lenovo","ASUS","Acer","MSI","LG","Samsung","Google","Microsoft","Anker","Eizo","BenQ","Wacom"],["Phone","Tablet","Laptop","Desktop","Monitor","Dock","Keyboard","Mouse","Workstation","Chromebook"]],
-    [C.home,["Sony","Panasonic","Sharp","Hitachi","Toshiba","Mitsubishi","Daikin","Iris","Yamazen","Balmuda","Zojirushi","Tiger","LG","Samsung","Dyson","iRobot","Roborock","Karcher"],["TV","Recorder","Refrigerator","Washing Machine","Microwave Oven","Air Conditioner","Vacuum Cleaner","Air Purifier","Rice Cooker","Lighting","Fan","Heater"]],
-    [C.printer,["Canon","Epson","Brother","Fujifilm","HP","Ricoh","Panasonic","Sharp"],["Inkjet Printer","Laser Printer","Business Printer","Scanner","Label Printer","Photo Printer","MFP","Fax","Large Format Printer","Receipt Printer"]],
-    [C.camera,["Sony","Canon","Nikon","Fujifilm","Ricoh","DJI","GoPro","Insta360","Panasonic","Epson","LG","Google","Eufy","Ring","Kenwood","Pioneer","BenQ"],["Camera","Lens","Projector","Action Camera","Dash Cam","Gimbal","Webcam","Drone","Security Camera","Video Recorder"]],
-    [C.audio,["Apple","Sony","Yamaha","Bose","JBL","Sennheiser","AudioTechnica","Denon","Marantz","LG","Samsung","DJI","Anker","Kenwood","Pioneer"],["Headphones","Earbuds","Speaker","Soundbar","AV Receiver","Microphone","Turntable","Mixer","Amplifier","Recorder"]],
-    [C.game,["Sony","Nintendo","PlayStation","Valve","Meta","Microsoft","ASUS","Acer","MSI","Dell","Lenovo","JBL","AudioTechnica","Eizo","BenQ"],["Game Console","Controller","Gaming Monitor","Gaming Headset","VR Headset","Arcade Controller","Handheld","Dock","Racing Wheel","Streaming Device"]],
-    [C.net,["TPLink","Buffalo","Synology","QNAP","Ubiquiti","ASUS","Yamaha","Google","Amazon","Anker","Microsoft"],["Router","Mesh Wi-Fi","NAS","Switch","Access Point","Repeater","Powerline","Modem","Network Camera","Gateway"]],
-    [C.other,["Apple","Samsung","Google","Garmin","Fitbit","Anker","Eufy","Amazon","Makita","HiKOKI","BoschTools","Omron","Tanita","Withings","Tesla","Toyota","Honda","Nissan","Mazda","Subaru","Wacom","Brother","Canon","Nikon","Yamaha"],["Watch","Scale","Thermometer","Power Tool","Battery Charger","Car Navigation","EV Charger","Smart Home","Fitness Tracker","Kitchen Scale","Sewing Machine","Electronic Dictionary"]]
-  ];
-  const records = [];
-  groups.forEach(([category, makerKeys, lines]) => {
-    makerKeys.forEach((key) => {
-      const m = makers[key];
-      if (!m) return;
-      const [nameJa,country,url] = m;
-      lines.forEach((line) => {
-        records.push({
-          brand:`${key} ${line}`,
-          nameJa:`${nameJa} ${line}`,
-          nameEn:`${key} ${line}`,
-          category,
-          country,
-          manualUrl:url,
-          supportUrl:url,
-          note:notes[category],
-          hint:`${line} 型番、製品名、シリーズ名`,
-          tags:`${key} ${nameJa} ${line} ${category}`.toLowerCase().split(/\s+/),
-          sourceType:"official",
-          linkReview:"category-curated support entry 2026-05-13"
-        });
-      });
-    });
-  });
-  const seen = new Set();
-  window.MANUALFINDER_FULL_RECORDS = records.filter((item) => {
-    const k = `${item.brand}|${item.category}`.toLowerCase();
-    if (seen.has(k)) return false;
-    seen.add(k);
-    return true;
-  });
+const V="2026-09-12";
+const C=["その他","オーディオ","カメラ・映像","ネットワーク機器","プリンター・複合機"];
+const F=["5G/4G mobile router","Ace Series","Action camera","Air","Avata/FPV","Casiotone","Color LED MFP","Color LED printer","Color MFP","Color printer","Current color MFP","Current mono MFP","Current wide MFP","DJI Mic","Dot impact printer","EX-word","Flip","G-SHOCK","GO Series","ISDN terminal adapter","Inspire","Link Series","Mavic","Mini","Mono MFP/copier","Mono printer","NAME LAND","Neo","Osmo 360","Osmo Action","Osmo Mobile","Osmo Nano","Osmo Pocket","Phantom","Power","RC","Ronin","Wi-Fi home router","Wi-Fi repeater","Wide MFP","X Series"];
+const FA={"2":["アクションカメラ"],"37":["Wi-Fiルーター","無線LANルーター","ホームルーター"],"38":["Wi-Fi中継機","無線LAN中継機","中継機"],"0":["モバイルルーター","5Gルーター","4Gルーター"],"19":["ISDN","ターミナルアダプター"],"9":["カラープリンター"],"25":["モノクロプリンター"],"8":["カラー複合機","複合機"],"24":["モノクロ複合機","複合機","コピー機"],"39":["広幅複合機","複合機"],"7":["カラーLEDプリンター","プリンター"],"6":["カラーLED複合機","複合機"],"14":["ドットインパクトプリンター","ドットプリンター"],"22":["ドローン"],"3":["ドローン"],"23":["ドローン"],"16":["ドローン"],"27":["ドローン"],"4":["FPVドローン","ドローン"],"20":["ドローン"],"33":["ドローン"],"35":["送信機","リモートコントローラー"],"29":["アクションカメラ"],"28":["360度カメラ","360カメラ"],"31":["カメラ"],"32":["ジンバルカメラ","カメラ"],"30":["スマホジンバル","ジンバル"],"13":["ワイヤレスマイク","マイク"],"36":["ジンバル","カメラスタビライザー"],"34":["ポータブル電源","充電器","電源"],"10":["カラー複合機","複合機"],"11":["モノクロ複合機","複合機"],"12":["広幅複合機","複合機"],"17":["Gショック","腕時計","時計"],"15":["エクスワード","電子辞書"],"26":["ネームランド","ラベルライター"],"5":["カシオトーン","電子キーボード","楽器"],"40":["360度カメラ","360カメラ"],"21":["ウェブカメラ","Webカメラ"],"18":["アクションカメラ","ウェアラブルカメラ"],"1":["アクションカメラ"]};
+const M=[["GoPro","https://gopro.com/","Global",["ゴープロ"],"https://gopro.com/ja/jp/update"],["Aterm","https://www.aterm.jp/","Japan",["エーターム","NEC Aterm","NEC"],"https://www.aterm.jp/support/"],["KYOCERA Document Solutions","https://www.kyoceradocumentsolutions.co.jp/","Japan",["KYOCERA","京セラ","京セラドキュメントソリューションズ"],"https://www.kyoceradocumentsolutions.co.jp/manual/past.html"],["OKI","https://www.oki.com/","Japan",["沖電気","OKIデータ"],null],["DJI","https://www.dji.com/","Global",["ディージェイアイ"],"https://www.dji.com/downloads"],["RICOH","https://www.ricoh.co.jp/","Japan",["Ricoh","リコー"],"https://www.ricoh.co.jp/support/manual"],["CASIO","https://www.casio.com/","Japan",["Casio","カシオ"],"https://www.casio.com/jp/support/manual/"],["Insta360","https://onlinemanual.insta360.com/","Global",["インスタ360"],"https://onlinemanual.insta360.com/"]];
+const OS={"c":"jp/printing/support/user-manual/color/index.html","m":"jp/printing/support/user-manual/colormfp/index.html","d":"jp/printing/support/user-manual/dot/index.html"};
+const R={p:"direct_model_support",m:"direct_manual_page",o:"direct_online_manual",s:"shared_official_manual_page"};
+window.MANUALFINDER_WAVE1_BATCHES=["manuals.wave1.01.js","manuals.wave1.02.js","manuals.wave1.03.js","manuals.wave1.04.js","manuals.wave1.05.js","manuals.wave1.06.js"];
+window.MANUALFINDER_WAVE1_RAW=[];
+window.MANUALFINDER_BUILD_WAVE1=()=>{
+  const lines=window.MANUALFINDER_WAVE1_RAW.flatMap((part)=>String(part||"").split("\n").filter(Boolean));
+  return lines.map((line)=>{
+    const [idx,mi,ci,fi,rsc,model,path]=line.split("~");
+    const [maker,base,country,makerAliases,supportBase]=M[Number(mi)];
+    const category=C[Number(ci)],family=F[Number(fi)],rc=rsc[0],sourceCode=rsc.slice(1),resolutionState=R[rc],shared=rc==="s";
+    const aliases=[...(makerAliases||[]),...(FA[String(fi)]||[])];
+    const supportUrl=supportBase||(base+OS[sourceCode]);
+    const manualUrl=base+path;
+    return {
+      id:`wave1-${String(idx).padStart(3,"0")}`,brand:maker,maker,model,family,
+      nameJa:`${maker} ${model}`,nameEn:`${maker} ${model}`,category,country,
+      manualUrl,supportUrl,
+      noteJa:shared?"メーカーが複数機種をまとめて提供している公式共通ページです。":"メーカー公式の機種別マニュアル／製品サポート先です。",
+      noteEn:shared?"Official vendor page intentionally shared by multiple models.":"Verified official model manual or product-support destination.",
+      hintJa:`${maker} ${model} ${family} ${aliases.join(" ")}`.trim(),
+      hintEn:`${maker} ${model} ${family}`.trim(),aliases,
+      tags:[maker,model,family,category,...aliases].join(" ").toLowerCase().split(/\s+/).filter(Boolean),
+      sourceType:"official",sourceLevel:"A",verifiedAt:V,evidenceUrl:supportUrl,resolutionState,
+      manualKind:rc==="m"?"manual":rc==="o"?"online-manual":shared?"shared-official":"product-support",
+      sharedTarget:shared,linkReview:`official Wave 1 target verified ${V}`
+    };
+  }).sort((a,b)=>a.id.localeCompare(b.id));
+};
 })();
