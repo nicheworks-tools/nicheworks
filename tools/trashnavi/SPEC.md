@@ -259,7 +259,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
 - [x] Wave 4で中央区をpreferred candidateへ引き上げ、自治体pageを公開する。
-- [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
+- [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
 
