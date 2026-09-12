@@ -1,131 +1,9 @@
-// === UI 初期制御（Codexが実装を追加する） ===
+"use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("generate-btn");
-  const purpose = document.getElementById("purpose");
-  const culture = document.getElementById("culture");
-  const formality = document.getElementById("formality");
-
-  // 必須項目が揃ったらボタンを有効化
-  function validate() {
-    btn.disabled = !(purpose.value && culture.value && formality.value);
-  }
-
-  purpose.onchange = validate;
-  culture.onchange = validate;
-  formality.onchange = validate;
-
-  // 生成ボタン押下処理（後で Codex が実装）
-  btn.addEventListener("click", () => {
-    console.log("Generate clicked (Codex will implement)");
-  });
-});
-
-// === 構文辞書（固定） ===
-const STRUCTURE = {
-  "cultures": {
-    "japan": {
-      "opening": {
-        "high": "拝啓",
-        "medium": "いつもお世話になっております。",
-        "casual": "こんにちは。"
-      },
-      "closing": {
-        "high": "敬具",
-        "medium": "よろしくお願いいたします。",
-        "casual": "では、また。"
-      }
-    },
-    "english": {
-      "opening": {
-        "high": "Dear Sir or Madam,",
-        "medium": "Hello,",
-        "casual": "Hi,"
-      },
-      "closing": {
-        "high": "Sincerely,",
-        "medium": "Best regards,",
-        "casual": "Cheers,"
-      }
-    },
-    "eu": {
-      "opening": {
-        "high": "To whom it may concern,",
-        "medium": "Hello,",
-        "casual": "Hi,"
-      },
-      "closing": {
-        "high": "Yours faithfully,",
-        "medium": "Kind regards,",
-        "casual": "Regards,"
-      }
-    }
-  },
-
-  "purposes": {
-    "wedding": {
-      "body_template": "結婚に関する主要メッセージを述べる（祝福・参加/欠席・新生活への言及など）。",
-      "keywords_influence": true
-    },
-    "funeral": {
-      "body_template": "弔意・お悔やみの言葉・励ましの気持ちなどを述べる。",
-      "keywords_influence": true
-    },
-    "thank_you": {
-      "body_template": "具体的に何に対する感謝かを述べ、相手への敬意や気遣いを含める。",
-      "keywords_influence": true
-    },
-    "apology": {
-      "body_template": "謝罪の理由・責任の明確化・改善策・再発防止への姿勢を示す。",
-      "keywords_influence": true
-    },
-    "greeting_seasonal": {
-      "body_template": "季節の挨拶と近況、相手への気遣いを述べる。",
-      "keywords_influence": false
-    },
-    "greeting_business": {
-      "body_template": "ビジネス関係の礼儀正しい挨拶（取引開始、担当変更、節目の挨拶など）。",
-      "keywords_influence": true
-    },
-    "casual_message": {
-      "body_template": "日常的な軽い連絡や近況、フレンドリーなメッセージを述べる。",
-      "keywords_influence": false
-    }
-  }
-};
-
-const RELATIONSHIP_PHRASES = {
-  friend: "いつも気軽に話せる友人として感謝しています。",
-  family: "家族としての温かい支えに心から感謝しています。",
-  boss: "日頃よりご指導ご鞭撻を賜り、誠にありがとうございます。",
-  client: "平素より格別のご高配を賜り、心より御礼申し上げます。"
-};
-
-const BODY_ENDINGS = {
-  high: [
-    "何卒ご理解賜りますようお願い申し上げます。",
-    "引き続きご高配のほどよろしくお願い申し上げます。"
-  ],
-  medium: [
-    "今後ともよろしくお願いいたします。",
-    "引き続きご連絡を取り合えれば幸いです。"
-  ],
-  casual: [
-    "また気軽にやり取りできると嬉しいです。",
-    "これからもよろしくね。"
-  ]
-};
-
-const BODY_LEAD_INS = {
-  high: ["このたびは", "早速ながら"],
-  medium: ["今回は", "改めて"],
-  casual: ["実は", "ちょっとだけ"]
-};
-
-const LANG_CONTENT = {
+const UI = {
   jp: {
     title: "文面ジェネレーター",
-    subtitle: "用途・文化圏・フォーマル度から最適な文章を自動生成",
+    subtitle: "用途・文化圏・フォーマル度から文面のたたき台を生成",
     labels: {
       purpose: "用途（Purpose）",
       culture: "文化圏（Culture）",
@@ -133,26 +11,21 @@ const LANG_CONTENT = {
       relationship: "相手との関係（任意）",
       keywords: "キーワード（任意）"
     },
-    placeholders: {
-      keywords: "例：欠席連絡、感謝、遅延の謝罪など"
-    },
+    placeholders: { keywords: "例：欠席連絡、感謝、遅延の謝罪など" },
     resultTitle: "生成された文面",
-    buttons: {
-      generate: "文面を生成する",
-      copy: "コピー",
-      regenerate: "再生成"
-    },
-    selectTexts: {
+    buttons: { generate: "文面を生成する", copy: "コピー", regenerate: "再生成" },
+    selects: {
       purpose: ["選択してください", "結婚", "弔事", "お礼", "お詫び", "季節の挨拶", "ビジネス挨拶", "カジュアルメッセージ"],
       culture: ["選択してください", "日本", "英語圏", "EU"],
       formality: ["選択してください", "高", "中", "低"],
       relationship: ["指定なし", "友人", "家族", "上司", "取引先"]
     },
-    copySuccess: "クリップボードへコピーしました"
+    copied: "クリップボードへコピーしました",
+    copyFailed: "コピーできませんでした。手動で選択してコピーしてください。"
   },
   en: {
     title: "Message Generator",
-    subtitle: "Create messages from purpose, culture, and formality",
+    subtitle: "Create a draft from purpose, culture, and formality",
     labels: {
       purpose: "Purpose",
       culture: "Culture",
@@ -160,209 +33,322 @@ const LANG_CONTENT = {
       relationship: "Relationship (optional)",
       keywords: "Keywords (optional)"
     },
-    placeholders: {
-      keywords: "e.g. RSVP, gratitude, delay apology"
-    },
+    placeholders: { keywords: "e.g. RSVP, gratitude, delay apology" },
     resultTitle: "Generated Message",
-    buttons: {
-      generate: "Generate",
-      copy: "Copy",
-      regenerate: "Regenerate"
-    },
-    selectTexts: {
+    buttons: { generate: "Generate", copy: "Copy", regenerate: "Regenerate" },
+    selects: {
       purpose: ["Please select", "Wedding", "Funeral", "Thank you", "Apology", "Seasonal greeting", "Business greeting", "Casual message"],
-      culture: ["Please select", "Japan", "English", "EU"],
+      culture: ["Please select", "Japan", "English-speaking", "EU"],
       formality: ["Please select", "Formal", "Standard", "Casual"],
       relationship: ["Not specified", "Friend", "Family", "Boss", "Client"]
     },
-    copySuccess: "Copied to clipboard"
+    copied: "Copied to clipboard",
+    copyFailed: "Copy failed. Select the result and copy it manually."
   }
 };
 
-let lastContext = null;
-let currentMessage = null;
-let copyNoticeEl = null;
+const CULTURES = {
+  japan: {
+    language: "ja",
+    opening: {
+      high: ["拝啓"],
+      medium: ["いつもお世話になっております。", "平素よりありがとうございます。"],
+      casual: ["こんにちは。", "お疲れさまです。"]
+    },
+    closing: {
+      high: ["何卒よろしくお願い申し上げます。\n\n敬具", "末筆ながら、今後ともよろしくお願い申し上げます。\n\n敬具"],
+      medium: ["今後ともよろしくお願いいたします。", "どうぞよろしくお願いいたします。"],
+      casual: ["また連絡します。", "これからもよろしくね。"]
+    }
+  },
+  english: {
+    language: "en",
+    opening: {
+      high: ["Dear Sir or Madam,", "Dear Recipient,"],
+      medium: ["Hello,", "Hi there,"],
+      casual: ["Hi,", "Hello!"]
+    },
+    closing: {
+      high: ["Sincerely,", "Yours sincerely,"],
+      medium: ["Best regards,", "Kind regards,"],
+      casual: ["Best,", "Cheers,"]
+    }
+  },
+  eu: {
+    language: "en",
+    opening: {
+      high: ["Dear Sir or Madam,", "To whom it may concern,"],
+      medium: ["Hello,", "Dear colleague,"],
+      casual: ["Hi,", "Hello!"]
+    },
+    closing: {
+      high: ["Yours faithfully,", "Kind regards,"],
+      medium: ["Kind regards,", "Best regards,"],
+      casual: ["Regards,", "Best,"]
+    }
+  }
+};
 
-function pickRandom(list) {
+const PURPOSE = {
+  wedding: {
+    ja: [
+      "ご結婚、誠におめでとうございます。お二人の新しい門出を心よりお祝い申し上げます。",
+      "このたびのご結婚を心からお祝いします。お二人の末永い幸せをお祈りしています。"
+    ],
+    en: [
+      "Congratulations on your wedding. Wishing you both a joyful start to this new chapter together.",
+      "Warmest congratulations on your marriage. I wish you both lasting happiness in the years ahead."
+    ]
+  },
+  funeral: {
+    ja: [
+      "このたびのご逝去を悼み、心よりお悔やみ申し上げます。どうかご無理をなさらずお過ごしください。",
+      "謹んでお悔やみ申し上げます。皆さまのお心が少しでも安らぐことをお祈りしております。"
+    ],
+    en: [
+      "I am very sorry for your loss. Please accept my sincere condolences during this difficult time.",
+      "Please accept my heartfelt sympathy. I am thinking of you and your family at this difficult time."
+    ]
+  },
+  thank_you: {
+    ja: [
+      "このたびは本当にありがとうございました。お心遣いに深く感謝しております。",
+      "ご対応いただき、心より感謝いたします。おかげさまで大変助かりました。"
+    ],
+    en: [
+      "Thank you very much for your help and consideration. I truly appreciate it.",
+      "I sincerely appreciate your support. Your help made a real difference."
+    ]
+  },
+  apology: {
+    ja: [
+      "このたびはご迷惑をおかけし、申し訳ございませんでした。状況を確認し、必要な改善に取り組みます。",
+      "ご不便をおかけしましたことをお詫び申し上げます。原因を確認し、再発防止に努めます。"
+    ],
+    en: [
+      "I apologize for the inconvenience caused. I am reviewing what happened and will take appropriate steps to improve the situation.",
+      "I am sorry for the trouble this caused. I will review the cause and work to prevent the same issue from happening again."
+    ]
+  },
+  greeting_seasonal: {
+    ja: [
+      "季節の変わり目となりましたが、いかがお過ごしでしょうか。どうぞお身体を大切にお過ごしください。",
+      "時節柄、どうぞご自愛ください。変わらずお元気でお過ごしのことを願っております。"
+    ],
+    en: [
+      "I hope you are doing well as the season changes. Wishing you good health and a pleasant season ahead.",
+      "I hope this season finds you well. Please take good care of yourself."
+    ]
+  },
+  greeting_business: {
+    ja: [
+      "平素より大変お世話になっております。改めまして、日頃のご支援に御礼申し上げます。",
+      "いつもお世話になっております。今後も円滑にご一緒できれば幸いです。"
+    ],
+    en: [
+      "Thank you for your continued support. I appreciate the opportunity to work with you.",
+      "I hope you are well. Thank you for your continued cooperation, and I look forward to working together."
+    ]
+  },
+  casual_message: {
+    ja: [
+      "ちょっと連絡したくてメッセージしました。最近どうしていますか？",
+      "ふと思い出して連絡しました。元気にしていますか？"
+    ],
+    en: [
+      "Just wanted to send a quick message and see how you are doing.",
+      "I thought of you and wanted to check in. Hope you are doing well."
+    ]
+  }
+};
+
+const RELATIONSHIP = {
+  ja: {
+    friend: "いつも気軽に話せる友人として、ありがとう。",
+    family: "いつも家族として支えてくれて、ありがとう。",
+    boss: "日頃よりご指導いただき、ありがとうございます。",
+    client: "平素より格別のご高配を賜り、ありがとうございます。"
+  },
+  en: {
+    friend: "I really value our friendship and appreciate you.",
+    family: "I am grateful for your support as family.",
+    boss: "Thank you for your continued guidance and support.",
+    client: "Thank you for your continued trust and support."
+  }
+};
+
+let uiLang = "jp";
+let lastContext = null;
+let currentMessage = "";
+let copyNotice = null;
+
+function pick(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-function formatKeywords(keywords) {
-  if (!keywords) return "";
-  const tokens = keywords
+function selectedContentLanguage(culture) {
+  return CULTURES[culture]?.language === "ja" ? "ja" : "en";
+}
+
+function keywordSentence(keywords, contentLang) {
+  const tokens = String(keywords || "")
     .split(/[、,]/)
-    .map((k) => k.trim())
-    .filter(Boolean);
+    .map((token) => token.trim())
+    .filter(Boolean)
+    .slice(0, 6);
   if (!tokens.length) return "";
-  if (tokens.length === 1) return tokens[0];
-  const last = tokens.pop();
-  return `${tokens.join("・")} と ${last}`;
+  if (contentLang === "ja") return `あわせて、${tokens.join("・")}についてもお伝えします。`;
+  return `I also wanted to mention ${tokens.join(", ")}.`;
 }
 
-function generateBody(purpose, formality, relationship, keywords) {
-  const purposeInfo = STRUCTURE.purposes[purpose];
-  const lead = pickRandom(BODY_LEAD_INS[formality]);
-  const baseSentence = `${lead}、${purposeInfo.body_template.replace(/。$/, "")}ことをお伝えしたくご連絡いたしました。`;
-  const sentences = [baseSentence];
+function generateMessage(context) {
+  const culture = CULTURES[context.culture];
+  const contentLang = selectedContentLanguage(context.culture);
+  const purposeOptions = PURPOSE[context.purpose]?.[contentLang] || [];
+  if (!culture || !purposeOptions.length) return "";
 
-  if (relationship && RELATIONSHIP_PHRASES[relationship]) {
-    sentences.unshift(RELATIONSHIP_PHRASES[relationship]);
-  }
-
-  const formattedKeywords = formatKeywords(keywords);
-  if (formattedKeywords) {
-    const keywordLine = purposeInfo.keywords_influence
-      ? `特に「${formattedKeywords}」に触れつつ、状況を整理いたしました。`
-      : `「${formattedKeywords}」についてもささやかに添えております。`;
-    sentences.push(keywordLine);
-  }
-
-  const ending = pickRandom(BODY_ENDINGS[formality]);
-  sentences.push(ending);
-
-  return sentences.join("\n");
+  const parts = [pick(culture.opening[context.formality])];
+  const relation = RELATIONSHIP[contentLang]?.[context.relationship];
+  if (relation) parts.push(relation);
+  parts.push(pick(purposeOptions));
+  const keywordLine = keywordSentence(context.keywords, contentLang);
+  if (keywordLine) parts.push(keywordLine);
+  parts.push(pick(culture.closing[context.formality]));
+  return parts.join("\n\n");
 }
 
-function generateMessage(purpose, culture, formality, relationship, keywords) {
-  const opening = STRUCTURE.cultures[culture].opening[formality];
-  const closing = STRUCTURE.cultures[culture].closing[formality];
-  const body = generateBody(purpose, formality, relationship, keywords);
-  const fullText = `${opening}\n\n${body}\n\n${closing}`;
-
-  return { opening, body, closing, fullText };
+function validateRequired() {
+  const button = document.getElementById("generate-btn");
+  const ready = Boolean(
+    document.getElementById("purpose")?.value &&
+    document.getElementById("culture")?.value &&
+    document.getElementById("formality")?.value
+  );
+  if (button) button.disabled = !ready;
+  return ready;
 }
 
 function setLanguage(lang) {
-  const langButtons = document.querySelectorAll(".lang-switch button");
-  langButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.lang === lang);
-  });
+  uiLang = lang === "en" ? "en" : "jp";
+  const content = UI[uiLang];
+  document.documentElement.lang = uiLang === "jp" ? "ja" : "en";
+  try { localStorage.setItem("nw_lang", uiLang === "jp" ? "ja" : "en"); } catch (_) {}
 
-  const content = LANG_CONTENT[lang];
-  document.documentElement.lang = lang === "jp" ? "ja" : "en";
+  document.querySelectorAll(".lang-switch button").forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === uiLang);
+  });
 
   document.querySelector(".title").textContent = content.title;
   document.querySelector(".subtitle").textContent = content.subtitle;
+
   const labels = document.querySelectorAll(".generator-panel label");
-  labels[0].textContent = content.labels.purpose;
-  labels[1].textContent = content.labels.culture;
-  labels[2].textContent = content.labels.formality;
-  labels[3].textContent = content.labels.relationship;
-  labels[4].textContent = content.labels.keywords;
+  const labelValues = [content.labels.purpose, content.labels.culture, content.labels.formality, content.labels.relationship, content.labels.keywords];
+  labels.forEach((label, index) => { if (labelValues[index]) label.textContent = labelValues[index]; });
 
-  const purposeOptions = document.querySelectorAll("#purpose option");
-  const cultureOptions = document.querySelectorAll("#culture option");
-  const formalityOptions = document.querySelectorAll("#formality option");
-  const relationOptions = document.querySelectorAll("#relationship option");
+  const updateOptions = (selector, values) => {
+    document.querySelectorAll(`${selector} option`).forEach((option, index) => {
+      if (values[index]) option.textContent = values[index];
+    });
+  };
+  updateOptions("#purpose", content.selects.purpose);
+  updateOptions("#culture", content.selects.culture);
+  updateOptions("#formality", content.selects.formality);
+  updateOptions("#relationship", content.selects.relationship);
 
-  content.selectTexts.purpose.forEach((text, idx) => {
-    if (purposeOptions[idx]) purposeOptions[idx].textContent = text;
-  });
-  content.selectTexts.culture.forEach((text, idx) => {
-    if (cultureOptions[idx]) cultureOptions[idx].textContent = text;
-  });
-  content.selectTexts.formality.forEach((text, idx) => {
-    if (formalityOptions[idx]) formalityOptions[idx].textContent = text;
-  });
-  content.selectTexts.relationship.forEach((text, idx) => {
-    if (relationOptions[idx]) relationOptions[idx].textContent = text;
-  });
-
-  const keywordInput = document.getElementById("keywords");
-  keywordInput.placeholder = content.placeholders.keywords;
+  document.getElementById("keywords").placeholder = content.placeholders.keywords;
   document.getElementById("generate-btn").textContent = content.buttons.generate;
   document.getElementById("copy-btn").textContent = content.buttons.copy;
   document.getElementById("regenerate-btn").textContent = content.buttons.regenerate;
   document.querySelector("#result-section h2").textContent = content.resultTitle;
+  validateRequired();
 }
 
-function toggleProgress(show) {
+function renderResult(text) {
+  currentMessage = text;
+  document.getElementById("result-text").textContent = text;
+  document.getElementById("result-section").classList.remove("hidden");
+}
+
+function showProgress(show) {
   const progress = document.getElementById("progress");
-  if (show) {
-    progress.classList.remove("hidden");
-    progress.classList.add("loading");
-  } else {
-    progress.classList.add("hidden");
-    progress.classList.remove("loading");
-  }
+  progress.classList.toggle("hidden", !show);
+  progress.classList.toggle("loading", show);
 }
 
-function renderResult(message) {
-  const resultSection = document.getElementById("result-section");
-  const resultText = document.getElementById("result-text");
-  resultText.textContent = message.fullText;
-  resultSection.classList.remove("hidden");
-  resultSection.scrollIntoView({ behavior: "smooth" });
+function currentContext() {
+  return {
+    purpose: document.getElementById("purpose").value,
+    culture: document.getElementById("culture").value,
+    formality: document.getElementById("formality").value,
+    relationship: document.getElementById("relationship").value,
+    keywords: document.getElementById("keywords").value.trim()
+  };
 }
 
-function showCopyNotice(text) {
-  if (!copyNoticeEl) {
-    copyNoticeEl = document.createElement("div");
-    copyNoticeEl.className = "copy-success";
-    document.querySelector(".result-actions").after(copyNoticeEl);
-  }
-  copyNoticeEl.textContent = text;
-}
-
-function handleGenerate(isRegenerate = false) {
-  const purposeEl = document.getElementById("purpose");
-  const cultureEl = document.getElementById("culture");
-  const formalityEl = document.getElementById("formality");
-  const relationshipEl = document.getElementById("relationship");
-  const keywordsEl = document.getElementById("keywords");
-
-  const context = isRegenerate && lastContext
-    ? lastContext
-    : {
-        purpose: purposeEl.value,
-        culture: cultureEl.value,
-        formality: formalityEl.value,
-        relationship: relationshipEl.value,
-        keywords: keywordsEl.value
-      };
-
-  if (!(context.purpose && context.culture && context.formality)) {
-    return;
-  }
-
+function handleGenerate(regenerate) {
+  const context = regenerate && lastContext ? { ...lastContext } : currentContext();
+  if (!(context.purpose && context.culture && context.formality)) return;
   lastContext = context;
-  toggleProgress(true);
-
-  setTimeout(() => {
-    currentMessage = generateMessage(
-      context.purpose,
-      context.culture,
-      context.formality,
-      context.relationship,
-      context.keywords
-    );
-    toggleProgress(false);
-    renderResult(currentMessage);
-  }, 420);
+  showProgress(true);
+  window.setTimeout(() => {
+    const result = generateMessage(context);
+    showProgress(false);
+    if (result) renderResult(result);
+  }, 120);
 }
 
-function attachEventHandlers() {
-  const langButtons = document.querySelectorAll(".lang-switch button");
-  langButtons.forEach((btn) => {
-    btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-  });
+async function copyText(text) {
+  if (!text) return false;
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (_) {}
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
+  textarea.remove();
+  return ok;
+}
 
-  const generateBtn = document.getElementById("generate-btn");
-  generateBtn.addEventListener("click", () => handleGenerate(false));
-
-  const regenerateBtn = document.getElementById("regenerate-btn");
-  regenerateBtn.addEventListener("click", () => handleGenerate(true));
-
-  const copyBtn = document.getElementById("copy-btn");
-  copyBtn.addEventListener("click", async () => {
-    if (!currentMessage) return;
-    await navigator.clipboard.writeText(currentMessage.fullText);
-    const activeLang = document.querySelector(".lang-switch button.active").dataset.lang;
-    showCopyNotice(LANG_CONTENT[activeLang].copySuccess);
-  });
+function showCopyNotice(message) {
+  if (!copyNotice) {
+    copyNotice = document.createElement("div");
+    copyNotice.className = "copy-success";
+    document.querySelector(".result-actions").after(copyNotice);
+  }
+  copyNotice.textContent = message;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  setLanguage("jp");
-  attachEventHandlers();
+  let initialUi = (navigator.language || "").toLowerCase().startsWith("ja") ? "jp" : "en";
+  try {
+    const saved = localStorage.getItem("nw_lang");
+    if (saved === "ja") initialUi = "jp";
+    if (saved === "en") initialUi = "en";
+  } catch (_) {}
+
+  document.querySelectorAll(".lang-switch button").forEach((button) => {
+    button.addEventListener("click", () => setLanguage(button.dataset.lang));
+  });
+  ["purpose", "culture", "formality"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("change", validateRequired);
+  });
+
+  document.getElementById("generate-btn")?.addEventListener("click", () => handleGenerate(false));
+  document.getElementById("regenerate-btn")?.addEventListener("click", () => handleGenerate(true));
+  document.getElementById("copy-btn")?.addEventListener("click", async () => {
+    if (!currentMessage) return;
+    const ok = await copyText(currentMessage);
+    showCopyNotice(ok ? UI[uiLang].copied : UI[uiLang].copyFailed);
+  });
+
+  setLanguage(initialUi);
 });

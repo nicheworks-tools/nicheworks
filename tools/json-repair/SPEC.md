@@ -17,6 +17,7 @@ Validate, format, minify, and repair common broken-JSON cases in the browser, wi
 - Provide Pretty and Minify formatting, repaired/formatted/validate result tabs, repair log, simple diff, copy, and `.json` download in free mode.
 - Keep Aggressive repair and related single-quote, unquoted-key, Python-literal examples gated by Pro.
 - With active Pro, expose repair candidates, simple schema rules/checking, local repair history, report generation, Markdown export, and JSON export.
+- The active Pro integration is implemented directly in `app.js`, which reads the shared `NWPro` status loaded by the public page; there is no tool-local `pro-bridge.js` in the current runtime.
 - Switch the same interface between Japanese and English.
 
 ## Inputs
@@ -70,4 +71,3 @@ The paired input/output editors, tabs, diff/log, schema, history, and report pan
 
 - `tools/json-repair/index.html`
 - `tools/json-repair/app.js`
-- `tools/json-repair/pro-bridge.js`
