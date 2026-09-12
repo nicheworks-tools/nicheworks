@@ -8,7 +8,7 @@
 - **Category:** ats, resume, paste, job
 - **Common specification:** `common-spec/spec-ja.md`
 - **Monetization class:** `PRO_BUNDLE`
-- **Audit state:** `FIX`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -92,7 +92,7 @@ Preserve existing GA4/AdSense identifiers/code. Advertising must not interrupt t
 
 ## 12. Donation/support contract
 
-Follow common-spec. Current donation/support evidence remains missing; monetization boundary work does not invent a new support block.
+Follow common-spec sections 6 and 9-4. Current main-page donation/support evidence: **present**. Preserve the footer-near OFUSE + Ko-fi support block and shared support styling unless the suite contract intentionally changes.
 
 ## 13. Help/usage/FAQ contract
 
