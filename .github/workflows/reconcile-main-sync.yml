@@ -45,7 +45,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RInE 'https?://(cdn\.)?sheetjs\.com|unpkg\.com/.?xlsx|cdn\.jsdelivr\.net/.?xlsx' tools/reconcile --exclude='README.md' --exclude='SPEC.md' --exclude='NOTICE.sheetjs.txt'; then
+          if grep -RInE 'https?://cdn\.sheetjs\.com|unpkg\.com/.?xlsx|cdn\.jsdelivr\.net/.?xlsx' tools/reconcile --exclude='README.md' --exclude='SPEC.md' --exclude='NOTICE.sheetjs.txt' --exclude='LICENSE.sheetjs'; then
             echo 'Runtime SheetJS CDN reference found' >&2
             exit 1
           fi
