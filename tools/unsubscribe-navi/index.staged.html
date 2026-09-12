@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>解約・退会方法を公式情報から探す｜解約どこナビ | NicheWorks</title>
-  <meta name="description" content="サブスク・動画配信・音楽・SaaS・通信などの解約・退会手続きを、公式情報へのリンクから探せる無料データベース。契約経路や注意点も順次検証して整理します。">
+  <meta name="description" content="サブスク・動画配信・音楽・SaaS・通信などの解約・退会手続きを、公式情報へのリンクから探せる無料データベース。契約経路や注意点も公式情報を確認して整理します。">
   <link rel="canonical" href="https://nicheworks.app/tools/unsubscribe-navi/">
   <meta name="robots" content="noindex,nofollow">
 
@@ -60,7 +60,7 @@
         "name": "要再確認と表示されるのはなぜですか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "旧版から移行したデータで、現在の公式手順として再検証が完了していないためです。必ずリンク先の公式情報をご確認ください。"
+          "text": "現在の日本向け公式手順や契約経路を十分に固定できていないためです。ページが開くだけでは検証済みにせず、公式情報を確認できるまで要再確認として扱います。"
         }
       },
       {
@@ -68,7 +68,7 @@
         "name": "App StoreやGoogle Playで契約した場合も同じ手順ですか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "サービスによって異なります。契約経路ごとの違いは検証済みデータから順次追加します。"
+          "text": "サービスによって異なります。契約経路ごとの違いは公式情報で確認できた範囲を各サービスの案内に反映します。"
         }
       }
     ]
@@ -89,7 +89,7 @@
     <section class="intro" aria-labelledby="intro-title">
       <h2 id="intro-title">サービス名から解約・退会の入口を探す</h2>
       <p>動画配信、音楽、クラウド、SaaS、通信、ゲームなどの公式サイト・公式手続きページへの導線を整理します。NicheWorks自身が解約処理を行うことはありません。</p>
-      <p class="notice"><strong>現在は単独版からの移行フェーズです。</strong>「要再確認」のデータは旧版から引き継いだ情報で、現行手順としての再検証がまだ完了していません。必ず遷移先の公式情報をご確認ください。</p>
+      <p class="notice"><strong>現在は正式公開前の品質監査中です。</strong> 100件の公開可能データまで拡張済みですが、件数だけで公開せず、公式ソース・契約経路・検索UI・更新性を確認しています。「要再確認」は、現在の公式手順を十分に固定できていない項目です。</p>
     </section>
 
     <section class="filters" aria-label="検索条件">
@@ -101,6 +101,15 @@
         <span>カテゴリ</span>
         <select id="categoryFilter">
           <option value="">すべて</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>確認状態</span>
+        <select id="stateFilter">
+          <option value="">すべて</option>
+          <option value="verified">検証済み</option>
+          <option value="review">要再確認</option>
+          <option value="retired">終了・移行済み</option>
         </select>
       </label>
     </section>
@@ -122,11 +131,11 @@
       </details>
       <details>
         <summary>「要再確認」と表示されるのはなぜですか？</summary>
-        <p>旧版から移行したデータで、現在の公式手順として再検証が終わっていないためです。HTTPでページが開くだけでは「正しい解約ページ」とは判定しません。</p>
+        <p>現在の日本向け公式手順、対象プラン、契約経路などを十分に固定できていないためです。HTTPでページが開くだけでは「正しい解約ページ」とは判定しません。</p>
       </details>
       <details>
         <summary>App StoreやGoogle Play経由の契約にも対応しますか？</summary>
-        <p>対応対象です。契約・請求経路ごとの違いは、公式ソースで確認できたものからデータベースへ追加します。</p>
+        <p>対応対象です。契約・請求経路ごとの違いは、公式ソースで確認できた範囲を各サービスの案内へ反映します。</p>
       </details>
     </section>
 
