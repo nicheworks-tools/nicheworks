@@ -227,21 +227,93 @@ Do not invent these values:
 - live/test enablement policy;
 - final production feature-ID namespace.
 
-## 5. Implementation order
+## 5. UI Atlas
 
-1. Command Safety now has a staged fail-closed product-scoped controller; obtain authoritative commercial configuration before connecting it to the public runtime.
+### 5.1 Free boundary — fixed
+
+The current Free contract remains:
+
+- catalog search/filter/detail across the public 100-example catalog;
+- short AI prompt copy;
+- local favorites and recent views;
+- compare up to two patterns;
+- Preview-marked generator/handoff output currently available while Pro is inactive, including the existing Preview copy, Markdown export, and JSON export behavior.
+
+The existence of export buttons must not be reclassified as paid-only merely to create product value.
+
+### 5.2 Paid boundary — runtime-backed delta
+
+Current runtime evidence supports three paid operations:
+
+1. **five-way compare** — expand the compare limit from two to five patterns;
+2. **full handoff output** — unlock the full handoff layer without Preview-only restrictions/markers;
+3. **Pro sample details** — unlock full Pro-only sample-bank detail/use instead of locked previews.
+
+The historical `$2.99` CTA and historical shared Payment Link are legacy commerce copy only. They do not establish a future UI Atlas product price.
+
+### 5.3 Staged product-scoped wrapper
+
+`tools/ui-atlas/product-scoped-controller.mjs` is a non-live wrapper around the shared `assets/nw-product-scoped-controller.mjs` core.
+
+The staging contract requires:
+
+- an explicit future product ID with no fallback/default;
+- a complete and unique feature-ID mapping for all three paid operations;
+- server-backed `refreshProState({ productId })` verification through the shared core;
+- exact product match;
+- `active: true`;
+- `source: "server"`;
+- `reason: "verified_entitlement"`;
+- operation-level activation only for feature IDs returned by the verified server response.
+
+The shared core rejects local/browser-only authority, legacy `nicheworks_pro`, wrong-product responses, unverified states, incomplete/duplicate mappings, and entitlement refresh failures.
+
+The current public runtime remains on `UIAtlasProBridge` / `NWPro` legacy state until commercial configuration and an explicit migration are authorized.
+
+### 5.4 Live migration requirements
+
+UI Atlas migration is complete only after all of the following are true:
+
+1. an authoritative UI Atlas product and commercial configuration are registered in the billing registry;
+2. the three paid-operation feature IDs are registered for that product;
+3. checkout uses the common billing endpoint for the UI Atlas product;
+4. webhook fulfillment records the matching paid entitlement in D1;
+5. both EN and JA public pages use server-verified product state for the three paid operations;
+6. Free compare remains two patterns when inactive or verification fails;
+7. Preview-marked generator copy/Markdown/JSON behavior remains available according to the current Free contract;
+8. the historical shared Payment Link, `$2.99` copy, and `nicheworks_pro` state stop being authoritative for UI Atlas.
+
+Return paths: `/tools/ui-atlas/` and `/tools/ui-atlas/ja/` as appropriate to the originating language page.
+
+### 5.5 Commercial fields intentionally unresolved
+
+Do not invent these values:
+
+- product ID;
+- display product name;
+- price / currency;
+- one-time vs recurring billing model;
+- price tier ID;
+- Stripe Price environment mapping;
+- production feature-ID namespace;
+- test/live checkout enablement policy.
+
+## 6. Implementation order
+
+1. Command Safety, Logistics, and UI Atlas have fail-closed product-scoped staging paths; obtain authoritative commercial configuration before connecting any of them to public runtime.
 2. Migrate Command Safety as the first legacy-shared reference product and prove checkout → webhook → D1 → entitlement → reload behavior.
 3. Keep JSON2Mermaid's additive Pro implementation staged until its commercial settings and Mermaid bundle delivery are explicitly authorized.
-4. Keep Logistics on the live legacy bridge while its server-verified product-scoped controller and regression checks remain ready for a later authorized migration.
-5. After the first product-scoped migration is proven, use the same verified path to migrate Logistics and the remaining legacy shared candidates.
+4. After the first live product-scoped migration is proven, migrate Logistics and UI Atlas using the same verified core and tool-specific operation mappings.
+5. Continue staging additional legacy shared candidates only where the current Free/Paid boundary is supported by runtime evidence.
 
-## 6. Definition of done for this contract wave
+## 7. Definition of done for this contract wave
 
 This documentation wave is complete when:
 
 - Command Safety has an exact Free/Paid boundary and a fail-closed staged product-scoped controller contract;
-- JSON2Mermaid's existing Free features are protected from retroactive paywalling;
-- JSON2Mermaid has a concrete additive paid feature package and staged local pipeline;
+- JSON2Mermaid's existing Free features are protected from retroactive paywalling and its additive Pro pipeline is staged;
 - Logistics has an exact Free/Paid boundary and a fail-closed staged product-scoped controller contract;
+- UI Atlas has an exact runtime-backed Free/Paid boundary and a thin staged wrapper over the shared controller core;
 - unresolved commercial settings are explicitly marked unresolved;
+- legacy price/payment-link copy is not treated as future product truth;
 - no tool is falsely described as product-scoped before runtime migration is implemented.

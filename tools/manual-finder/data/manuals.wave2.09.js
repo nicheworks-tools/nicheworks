@@ -74,3 +74,22 @@ RSS-303|https://lib.roland.co.jp/support/jp/manuals/res/1810486/RSS-303_j3.pdf
 RSS-8040|https://lib.roland.co.jp/support/jp/manuals/res/1808760/RSS-8048_ADA-8024_je.pdf
 RV-1000|https://lib.roland.co.jp/support/jp/manuals/res/1808761/RV-1000_j.pdf
 RV-2|https://lib.roland.co.jp/support/jp/manuals/res/1808763/RV-2_j.pdf`);
+
+// Wave 2Z: direct Seiko 9-series manuals; the official index exposes one primary manual per caliber.
+(window.MANUALFINDER_WAVE2_SEIKO ||= []).push(`9530|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/9/9530/9530.pdf
+9531|https://www.seikowatches.com/ch-de/-/media/Files/Common/Seiko/instructions/Japanese/9/9531/9531.pdf
+9533|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/9/9533/9533.pdf
+9539|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/9/9539/9539.pdf
+9544|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/9/9544/9544.pdf
+9581|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/9/9581/9581_2.pdf
+9587|https://www.seikowatches.com/ch-de/-/media/Files/Common/Seiko/instructions/Japanese/9/9587/9587.pdf
+9T82|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/9/9T82/9T82.pdf`);
+
+// Wave 2AA: direct Seiko A-series manuals; one primary official target per caliber.
+window.MANUALFINDER_WAVE2_SEIKO.push(`A824|https://www.seikowatches.com/instructions/html/SEIKO_A824_JP/index
+A825|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/A825/A825.pdf
+A860|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/A860/A860.pdf
+A861|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/A861/A861.pdf
+A862|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/A862/A862.pdf
+AS01|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/AS01/AS01.pdf
+AS32|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/AS32/AS32.pdf`);
