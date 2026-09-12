@@ -33,7 +33,7 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 
 2026-09-12のPhase 2 Wave 6で100 public-visibleへ到達し、その後Disney+を日本語公式解約記事で再検証した。現在のeffective stateは **104 effective / 100 public-visible / 98 verified / 1 needs_review / 1 retired / 4 placeholder**。Amazonプライムのみ、日本向けの安定した公開procedure sourceを正式公開前に引き続き確認する。
 
-個別service pageは`INDIVIDUAL_PAGE_CANDIDATES.md`で25件をP0/P1/P2へ選定済み。候補選定は公開を意味せず、まずP0の構造が異なる5件でstaged templateを検証する。
+個別service pageは`INDIVIDUAL_PAGE_CANDIDATES.md`で25件をP0/P1/P2へ選定済み。候補選定は公開を意味しない。P0の構造が異なる5件（FODプレミアム / LINE MUSIC / Adobe Creative Cloud / Y!mobile / Leminoプレミアム）について、`individual-page-manifest.staged.json`を正本に`staged-pages/*.html`を生成するtemplateを実装済み。各pageは`noindex,nofollow`で、public sitemap / registry / mother-siteには露出しない。
 
 ## Inputs
 
@@ -57,11 +57,23 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - official site URL
 - verification note / date
 
+staged individual pageは、verified recordと追加の公式source確認から以下を表示する。
+
+- service / plan identity
+- official procedure link
+- route別の解約先
+- cancellation / automatic-renewal stop / carrier termination等のprocedure type
+- 解約とaccount deletion / MNP / downgrade等の違い
+- official sourceに根拠がある注意事項
+- last verified date
+
 ## State and persistence
 
 ユーザー入力や検索状態を永続保存しない。localStorage、cookie、account DBは使用しない。データベース本体はrepository内のstatic JSONを正本とする。
 
 現段階では`data/services.json`をmigration snapshot、`data/additions/*.json`を新規収録wave、`data/reverification/*.json`をreview overlayとして保持する。十分な区切りでeffective recordsを新canonical datasetへcompactできる。
+
+individual pageのstaged contentは`individual-page-manifest.staged.json`を追加正本とし、`scripts/generate-individual-pages.mjs`でeffective recordとの整合性を検証してHTMLを生成する。manifestのsource URLとeffective recordの`procedure_url`、verification dateが一致しない場合はgeneratorを失敗させる。
 
 ## Privacy and network behavior
 
@@ -81,6 +93,8 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 
 検索・filterはmobileで1columnへ変形し、結果はdesktopで2column、狭幅で1columnとする。100〜200recordでも一覧性を保つ。480px未満ではaction controlsを縦積みにし、スマホ上で公式手続き導線を押しやすくする。
 
+individual pageもdesktopではroute cardを2column、680px以下で1column、480px以下でprimary actionを縦積みにする。
+
 ## Limits and non-goals
 
 - NicheWorks上で直接解約しない。
@@ -93,6 +107,7 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - cancellationを妨害する収益導線を設置しない。
 - staged stateの間はpublic `index.html` を作らない。
 - 個別service pageをSEO目的だけでthin pageとして量産しない。
+- staged individual pageをpublic sitemap / mother-site / registryへ載せない。
 
 ## Acceptance criteria
 
@@ -110,17 +125,23 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - [ ] Amazonプライムの日本向け安定procedure sourceを固定する。
 - [x] freshness / stale-source report-only監査を実装する。
 - [x] 個別service page候補20〜30件を正式公開前に選定する。
-- [ ] P0候補から5件のstaged individual-page templateを生成・検証する。
+- [x] P0候補から5件のstaged individual-page templateを生成する。
+- [x] staged page generatorがeffective recordのverified state / procedure URL / verification dateを検証する。
+- [ ] P0残り5件へ拡張する前に、初期5件の実ブラウザ表示・mobile usabilityを最終確認する。
 
 ## Implementation evidence
 
 - `tools/unsubscribe-navi/index.staged.html` — staged static UI / SEO / FAQ / NicheWorks common surfaces
 - `tools/unsubscribe-navi/app.js` — base + additions + re-verification merge, local search and rendering
 - `tools/unsubscribe-navi/style.css` — responsive hybrid layout
+- `tools/unsubscribe-navi/individual-page.css` — staged individual-page responsive layout
+- `tools/unsubscribe-navi/individual-page-manifest.staged.json` — first five staged individual-page content records
+- `tools/unsubscribe-navi/staged-pages/*.html` — generated noindex individual-page prototypes
 - `tools/unsubscribe-navi/data/services.json` — legacy migration snapshot
 - `tools/unsubscribe-navi/data/additions/*.json` — Phase 2+ new service waves
 - `tools/unsubscribe-navi/data/reverification/*.json` — official-source re-verification overlays
 - `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / additions / overlay audit and report-only freshness metrics
+- `tools/unsubscribe-navi/scripts/generate-individual-pages.mjs` — staged individual-page generator and `--check` stale-output validation
 - `tools/unsubscribe-navi/DATA_MODEL.md` — forward data, route and verification contract
 - `tools/unsubscribe-navi/ROADMAP.md` — 100–200 service expansion plan and current progress
 - `tools/unsubscribe-navi/INDIVIDUAL_PAGE_CANDIDATES.md` — selected 25 individual-page candidates and staged generation order
