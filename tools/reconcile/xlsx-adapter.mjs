@@ -1,6 +1,7 @@
 import { tableFromRows } from './parser.mjs';
 
 export const EXPECTED_XLSX_VERSION = '0.20.3';
+export const DEFAULT_XLSX_VENDOR_URL = './vendor/xlsx.mini.min.js';
 
 function xlsxApi(api = globalThis.XLSX) {
   if (!api || typeof api.read !== 'function' || !api.utils) {
@@ -19,7 +20,7 @@ export function isExpectedXlsxVersion(api = globalThis.XLSX) {
 
 let loaderPromise = null;
 
-export async function ensureXlsxAvailable(url = './vendor/xlsx.full.min.js') {
+export async function ensureXlsxAvailable(url = DEFAULT_XLSX_VENDOR_URL) {
   if (isExpectedXlsxVersion()) return globalThis.XLSX;
   if (isXlsxAvailable()) throw new Error('xlsx_version_mismatch');
   if (typeof document === 'undefined') throw new Error('xlsx_library_missing');
