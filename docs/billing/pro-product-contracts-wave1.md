@@ -298,15 +298,97 @@ Do not invent these values:
 - production feature-ID namespace;
 - test/live checkout enablement policy.
 
-## 6. Implementation order
+## 6. LogFormatter
 
-1. Command Safety, Logistics, and UI Atlas have fail-closed product-scoped staging paths; obtain authoritative commercial configuration before connecting any of them to public runtime.
+### 6.1 Free boundary — fixed
+
+The current Free contract remains:
+
+- log paste and built-in samples;
+- current Nginx combined / one-line JSON parsing and preservation of unparsed lines;
+- include/exclude keyword filters;
+- numeric and preset status filtering;
+- basic status-oriented summaries/lists;
+- formatted visible rows;
+- visible-result copy;
+- 4xx/5xx copy;
+- TXT download;
+- JP/EN UI and dark display mode.
+
+These current Free inspection functions must not be moved behind Pro during migration.
+
+### 6.2 Paid boundary — runtime-backed delta
+
+Current runtime evidence supports five paid operations:
+
+1. **regex filter** — include/exclude regular-expression filtering;
+2. **CSV export** — structured CSV output, including the 4xx/5xx-only CSV variant;
+3. **JSON export** — structured JSON export;
+4. **Markdown report** — generated report copy and Markdown save;
+5. **advanced analysis** — detailed User-Agent/bot, IP/URL and sensitive-string analysis currently presented in the Pro layer.
+
+The historical `$2.99` UI copy and historical shared Payment Link are legacy commerce copy only. They do not establish a future LogFormatter product price.
+
+### 6.3 Staged product-scoped wrapper
+
+`tools/log-formatter/product-scoped-controller.mjs` is a non-live wrapper around the shared `assets/nw-product-scoped-controller.mjs` core.
+
+The staging contract requires:
+
+- an explicit future product ID with no fallback/default;
+- a complete and unique feature-ID mapping for the five paid operations;
+- server-backed `refreshProState({ productId })` verification through the shared core;
+- exact product match;
+- `active: true`;
+- `source: "server"`;
+- `reason: "verified_entitlement"`;
+- operation-level activation only for feature IDs returned by the verified server response.
+
+The shared core rejects local/browser-only authority, legacy `nicheworks_pro`, wrong-product responses, unverified states, incomplete/duplicate mappings, and entitlement refresh failures.
+
+The current public runtime remains on `pro-bridge.js` / `NWPro` legacy state until commercial configuration and an explicit migration are authorized.
+
+### 6.4 Privacy boundary
+
+Product-scoped billing/entitlement requests must not contain pasted log text, parsed rows, IPs, URLs, User-Agent strings, sensitive-string findings, generated report text, filenames, or export payloads. Only fixed product/feature entitlement metadata may cross the billing boundary.
+
+### 6.5 Live migration requirements
+
+LogFormatter migration is complete only after all of the following are true:
+
+1. an authoritative LogFormatter product and commercial configuration are registered in the billing registry;
+2. the five paid-operation feature IDs are registered for that product;
+3. checkout uses the common billing endpoint for the LogFormatter product;
+4. webhook fulfillment records the matching paid entitlement in D1;
+5. public runtime uses server-verified product state for the five paid operations;
+6. Free keyword/status filters, basic summaries, copy, and TXT download remain independent of billing availability;
+7. a failed/inactive entitlement check leaves the complete current Free formatter usable;
+8. the historical shared Payment Link, `$2.99` copy, and legacy shared state stop being authoritative for LogFormatter.
+
+Return path: `/tools/log-formatter/`.
+
+### 6.6 Commercial fields intentionally unresolved
+
+Do not invent these values:
+
+- product ID;
+- display product name;
+- price / currency;
+- one-time vs recurring billing model;
+- price tier ID;
+- Stripe Price environment mapping;
+- production feature-ID namespace;
+- test/live checkout enablement policy.
+
+## 7. Implementation order
+
+1. Command Safety, Logistics, UI Atlas, and LogFormatter have fail-closed product-scoped staging paths; obtain authoritative commercial configuration before connecting any of them to public runtime.
 2. Migrate Command Safety as the first legacy-shared reference product and prove checkout → webhook → D1 → entitlement → reload behavior.
 3. Keep JSON2Mermaid's additive Pro implementation staged until its commercial settings and Mermaid bundle delivery are explicitly authorized.
-4. After the first live product-scoped migration is proven, migrate Logistics and UI Atlas using the same verified core and tool-specific operation mappings.
+4. After the first live product-scoped migration is proven, migrate Logistics, UI Atlas, and LogFormatter using the same verified core and tool-specific operation mappings.
 5. Continue staging additional legacy shared candidates only where the current Free/Paid boundary is supported by runtime evidence.
 
-## 7. Definition of done for this contract wave
+## 8. Definition of done for this contract wave
 
 This documentation wave is complete when:
 
@@ -314,6 +396,7 @@ This documentation wave is complete when:
 - JSON2Mermaid's existing Free features are protected from retroactive paywalling and its additive Pro pipeline is staged;
 - Logistics has an exact Free/Paid boundary and a fail-closed staged product-scoped controller contract;
 - UI Atlas has an exact runtime-backed Free/Paid boundary and a thin staged wrapper over the shared controller core;
+- LogFormatter has an exact runtime-backed Free/Paid boundary and a thin staged wrapper over the shared controller core;
 - unresolved commercial settings are explicitly marked unresolved;
 - legacy price/payment-link copy is not treated as future product truth;
 - no tool is falsely described as product-scoped before runtime migration is implemented.
