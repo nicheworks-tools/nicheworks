@@ -211,17 +211,41 @@ Wave 6反映後:
 - placeholder: 4
 - progress to 100 public-visible: **100%**
 
-最初の公開規模目標である100 public-visibleへ到達。ただし100件到達だけを理由に正式登録・index公開は行わない。Amazonプライム / ディズニープラスの2件は引き続き`needs_review`とし、staged状態でUI・data quality・個別page候補・freshness設計を次に確認する。
+最初の公開規模目標である100 public-visibleへ到達。ただし100件到達だけを理由に正式登録・index公開は行わない。
+
+### Post-100 quality pass — 2026-09-12
+
+100件到達後はraw count追加を止め、公開前品質を優先する。
+
+実施済み:
+
+- Disney+の日本語公式解約記事 `https://help.disneyplus.com/ja/article/disneyplus-ja-jp-cancel` を確認し、`needs_review`から`verified`へ昇格
+- staged landingの「単独版から移行中」という旧表示を撤去し、正式公開前の品質監査中であることを明示
+- category filterに加えてverification-state filterを追加
+- 480px未満でaction controlsを縦積みに統一
+- audit scriptへdirect procedure URL / procedure type / billing route coverageと90日freshnessのreport-only出力を追加
+
+現在:
+
+- effective records: **104**
+- public-visible: **100**
+- verified: **98**
+- retired: 1
+- needs_review: **1（Amazonプライム）**
+- placeholder: 4
+- verified share of visible: **98%**
+
+AmazonプライムはAmazon側の公開ページ取得が不安定で、日本向けの安定したprocedure sourceを今回も固定できなかったため、件数合わせで`verified`へ昇格しない。
 
 ### Phase 2 follow-up after 100
 
-100件到達後に優先するのはraw count増加ではない。
+残タスク:
 
-1. Amazonプライム / ディズニープラスの`needs_review` 2件を、安定した日本向けofficial sourceが確保できる場合のみ閉じる
-2. 100 public-visible recordのcategory偏り・procedure type・billing route coverageをauditする
+1. Amazonプライムの`needs_review`を、安定した日本向けofficial sourceが確保できる場合のみ閉じる
+2. audit出力を使ってcategory偏り・procedure type・billing route coverageを評価し、Phase 3の追加対象を決める
 3. verified recordから個別page候補20〜30件を選定する
-4. staged UIが100件規模で実用的か確認する
-5. freshness / stale-source検知のreport-only設計を作る
+4. staged UIを実データ100件で確認し、必要なら検索・絞り込みを追加調整する
+5. 90日freshness reportを運用し、stale判定を自動で`verified`へ反映しない
 6. current 87-tool quality cycleとのタイミングを見て正式登録可否を決める
 
 Rule:
@@ -283,14 +307,14 @@ Rule:
 
 旧版の「6時間ごとにHTTP 200ならok」は採用しない。
 
-将来自動化する場合はsignalを分ける:
+signalを分ける:
 
 - network health: status / timeout / redirect
 - source identity: final URL / title / canonical
 - semantic drift: expected service/procedure markers
 - human/research verification: verified state and date
 
-機械checkが成功しても`verified`を自動付与しない。
+`audit-services.mjs`は90日を超えたverified recordを**report-only**で列挙する。freshness reportや機械checkが成功・失敗しても、`verified`を自動付与・剥奪しない。状態変更はofficial sourceを再確認したreview結果だけで行う。
 
 ## Monetization stage
 
