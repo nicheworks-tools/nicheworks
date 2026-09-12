@@ -1,12 +1,18 @@
 import { readCsvFile, tableFromRows, parseCsvText } from './parser.mjs';
 import { reconcile, summarize } from './reconcile-engine.mjs';
-import { resultsToCsv, downloadText } from './export.mjs';
-import { ensureXlsxAvailable, readXlsxFile, tableFromXlsx } from './xlsx-adapter.mjs';
+import { resultsToCsv, downloadText, downloadBytes } from './export.mjs';
+import { ensureXlsxAvailable, readXlsxFile, tableFromXlsx, resultsWorkbookBytes } from './xlsx-adapter.mjs';
+import { createProfileStore } from './rules-store.mjs';
 
 const FREE_MAX_ROWS = 500;
 const FREE_MAX_BYTES = 5 * 1024 * 1024;
+const PRO_MAX_BYTES = 100 * 1024 * 1024;
+const profileStore = createProfileStore(localStorage);
+
 const state = {
   lang: localStorage.getItem('nw_lang') || (navigator.language.startsWith('ja') ? 'ja' : 'en'),
+  proEnabled: false,
+  selectedProfileId: '',
   a: null,
   b: null,
   results: [],
@@ -36,7 +42,25 @@ function setLang(lang) {
   document.querySelectorAll('[data-lang]').forEach((button) => button.classList.toggle('active', button.dataset.lang === state.lang));
   if (state.a) refreshMappingPlaceholders('a');
   if (state.b) refreshMappingPlaceholders('b');
+  renderProfileList();
   renderStatus();
+}
+
+function setProState(enabled) {
+  state.proEnabled = Boolean(enabled);
+  document.querySelectorAll('[data-pro-control]').forEach((node) => {
+    node.disabled = !state.proEnabled;
+  });
+  document.querySelectorAll('[data-pro-state]').forEach((node) => {
+    node.textContent = state.proEnabled ? message('Pro有効', 'Pro active') : message('課金接続待ち', 'Billing not connected');
+  });
+  renderProfileList();
+}
+
+function requirePro() {
+  if (state.proEnabled) return true;
+  setNotice(message('この機能はReconcile Pro用です。課金接続は公開統合PRで行います。', 'This feature is for Reconcile Pro. Billing will be connected in the publication integration PR.'), 'warning');
+  return false;
 }
 
 function populateSelect(select, headers, placeholder, selected = '') {
@@ -98,7 +122,7 @@ function renderPreview(side) {
 }
 
 function rowLimitOk(table) {
-  if (table.rows.length <= FREE_MAX_ROWS) return true;
+  if (state.proEnabled || table.rows.length <= FREE_MAX_ROWS) return true;
   setNotice(message(`Free版は500行までです（検出: ${table.rows.length}行）。`, `Free supports 500 rows per file (detected: ${table.rows.length}).`), 'error');
   return false;
 }
@@ -191,8 +215,9 @@ async function loadXlsx(side, file) {
 
 async function loadFile(side, file) {
   if (!file) return;
-  if (file.size > FREE_MAX_BYTES) {
-    setNotice(message('Free版は1ファイル5MBまでです。', 'Free supports files up to 5 MB each.'), 'error');
+  const maxBytes = state.proEnabled ? PRO_MAX_BYTES : FREE_MAX_BYTES;
+  if (file.size > maxBytes) {
+    setNotice(message(state.proEnabled ? '1ファイル100MBまでです。' : 'Free版は1ファイル5MBまでです。', state.proEnabled ? 'Files are limited to 100 MB each.' : 'Free supports files up to 5 MB each.'), 'error');
     return;
   }
   const lower = file.name.toLowerCase();
@@ -220,6 +245,133 @@ function mapping(side) {
   };
 }
 
+function currentOptions() {
+  return {
+    dateToleranceDays: Number($('dateTolerance').value),
+    amountTolerance: state.proEnabled ? Number($('amountTolerance').value || 0) : 0,
+    dateMode: $('dateMode').value,
+    signMode: state.proEnabled ? $('signMode').value : 'normal',
+    groupMatching: state.proEnabled ? $('groupMatching').checked : false,
+    maxGroupSize: state.proEnabled ? Number($('maxGroupSize').value || 5) : 5
+  };
+}
+
+function currentProfileConfig() {
+  const delimiter = $('delimiter').value === 'tab' ? '\t' : $('delimiter').value;
+  return {
+    parser: {
+      encoding: $('encoding').value,
+      delimiter,
+      headerRow: Number($('headerRow').value || 1)
+    },
+    mappingA: mapping('a'),
+    mappingB: mapping('b'),
+    options: currentOptions()
+  };
+}
+
+function setMapping(side, savedMapping) {
+  const table = state[side];
+  if (!table) return;
+  const suffix = side.toUpperCase();
+  for (const field of ['amount', 'date', 'reference', 'description']) {
+    const value = savedMapping?.[field] || '';
+    $(`${field}${suffix}`).value = table.headers.includes(value) ? value : '';
+  }
+}
+
+function applyProfile(profile) {
+  const config = profile?.config;
+  if (!config) return;
+  $('encoding').value = config.parser.encoding;
+  $('delimiter').value = config.parser.delimiter === '\t' ? 'tab' : config.parser.delimiter;
+  $('headerRow').value = String(config.parser.headerRow);
+  $('dateTolerance').value = String(config.options.dateToleranceDays);
+  $('dateMode').value = config.options.dateMode;
+  $('amountTolerance').value = String(config.options.amountTolerance);
+  $('signMode').value = config.options.signMode;
+  $('groupMatching').checked = Boolean(config.options.groupMatching);
+  $('maxGroupSize').value = String(config.options.maxGroupSize);
+  if (state.a) rebuildSide('a');
+  if (state.b) rebuildSide('b');
+  setMapping('a', config.mappingA);
+  setMapping('b', config.mappingB);
+  state.selectedProfileId = profile.id;
+  $('profileName').value = profile.name;
+  $('profileSelect').value = profile.id;
+  setNotice(message(`ルール「${profile.name}」を適用しました。`, `Applied profile “${profile.name}”.`), 'success');
+}
+
+function renderProfileList() {
+  const select = $('profileSelect');
+  if (!select) return;
+  const profiles = profileStore.list();
+  const selected = state.selectedProfileId;
+  select.innerHTML = `<option value="">${escapeHtml(message('保存済みルールを選択', 'Choose saved profile'))}</option>`;
+  for (const profile of profiles) {
+    const option = document.createElement('option');
+    option.value = profile.id;
+    option.textContent = profile.name;
+    select.appendChild(option);
+  }
+  if (selected && profiles.some((profile) => profile.id === selected)) select.value = selected;
+  $('profileCount').textContent = message(`${profiles.length} / 20 保存`, `${profiles.length} / 20 saved`);
+}
+
+function saveProfile() {
+  if (!requirePro()) return;
+  const name = $('profileName').value.trim();
+  if (!name) return setNotice(message('ルール名を入力してください。', 'Enter a profile name.'), 'error');
+  const saved = profileStore.save({
+    id: state.selectedProfileId || undefined,
+    name,
+    config: currentProfileConfig()
+  });
+  state.selectedProfileId = saved.id;
+  renderProfileList();
+  $('profileSelect').value = saved.id;
+  setNotice(message(`ルール「${saved.name}」をブラウザに保存しました。`, `Saved profile “${saved.name}” in this browser.`), 'success');
+}
+
+function selectProfile() {
+  if (!requirePro()) return;
+  const id = $('profileSelect').value;
+  const profile = profileStore.list().find((item) => item.id === id);
+  if (!profile) return;
+  applyProfile(profile);
+}
+
+function deleteProfile() {
+  if (!requirePro()) return;
+  const id = $('profileSelect').value || state.selectedProfileId;
+  if (!id) return setNotice(message('削除するルールを選択してください。', 'Choose a profile to delete.'), 'error');
+  profileStore.remove(id);
+  state.selectedProfileId = '';
+  $('profileName').value = '';
+  renderProfileList();
+  setNotice(message('保存済みルールを削除しました。', 'Deleted the saved profile.'), 'success');
+}
+
+function exportProfiles() {
+  if (!requirePro()) return;
+  const text = profileStore.exportBundle();
+  downloadText(`nicheworks-reconcile-profiles-${new Date().toISOString().slice(0, 10)}.json`, text, 'application/json;charset=utf-8');
+}
+
+async function importProfiles(file) {
+  if (!requirePro() || !file) return;
+  try {
+    const text = await file.text();
+    const result = profileStore.importBundle(text);
+    renderProfileList();
+    setNotice(message(`${result.imported}件のルールを読み込みました。`, `Imported ${result.imported} profile(s).`), 'success');
+  } catch (error) {
+    setNotice(message(`ルールを読み込めませんでした: ${error.message}`, `Could not import profiles: ${error.message}`), 'error');
+  } finally {
+    $('profileImport').value = '';
+  }
+}
+
 function run() {
   if (!state.a || !state.b) return setNotice(message('ファイルAとBを読み込んでください。', 'Load both file A and file B.'), 'error');
   const mappingA = mapping('a');
@@ -231,13 +383,7 @@ function run() {
       rowsB: state.b.rows,
       mappingA,
       mappingB,
-      options: {
-        dateToleranceDays: Number($('dateTolerance').value),
-        amountTolerance: 0,
-        dateMode: $('dateMode').value,
-        signMode: 'normal',
-        groupMatching: false
-      }
+      options: currentOptions()
     });
     renderSummary();
     applyFilter();
@@ -289,6 +435,24 @@ function exportCsv() {
   downloadText(`nicheworks-reconcile-${new Date().toISOString().slice(0, 10)}.csv`, resultsToCsv(state.results));
 }
 
+async function exportXlsx() {
+  if (!requirePro()) return;
+  if (!state.results.length) return setNotice(message('先に照合してください。', 'Run reconciliation first.'), 'error');
+  try {
+    await ensureXlsxAvailable();
+    const options = currentOptions();
+    const bytes = resultsWorkbookBytes(state.results, {
+      fileA: state.a?.name || '',
+      fileB: state.b?.name || '',
+      dateToleranceDays: options.dateToleranceDays,
+      amountTolerance: options.amountTolerance
+    });
+    downloadBytes(`nicheworks-reconcile-${new Date().toISOString().slice(0, 10)}.xlsx`, bytes, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  } catch (error) {
+    setNotice(message(`XLSXを出力できませんでした: ${error.message}`, `Could not export XLSX: ${error.message}`), 'error');
+  }
+}
+
 function loadSample() {
   const csvA = 'Date,Reference,Description,Amount\n2026-09-01,ORD-001,Alpha,12800\n2026-09-02,ORD-002,Beta,5500\n2026-09-03,ORD-003,Gamma,20000\n2026-09-04,ORD-004,Delta,10000\n';
   const csvB = 'Transaction Date,Transaction ID,Memo,Total\n2026-09-01,ORD-001,Alpha settlement,12800\n2026-09-03,ORD-002,Beta settlement,5500\n2026-09-03,ORD-003,Gamma settlement,20000\n2026-09-05,ORD-999,Other,7777\n';
@@ -338,7 +502,14 @@ function wire() {
   $('statusFilter').addEventListener('change', applyFilter);
   $('resultSearch').addEventListener('input', applyFilter);
   $('exportCsvBtn').addEventListener('click', exportCsv);
+  $('exportXlsxBtn').addEventListener('click', exportXlsx);
+  $('profileSaveBtn').addEventListener('click', saveProfile);
+  $('profileSelect').addEventListener('change', selectProfile);
+  $('profileDeleteBtn').addEventListener('click', deleteProfile);
+  $('profileExportBtn').addEventListener('click', exportProfiles);
+  $('profileImport').addEventListener('change', (event) => importProfiles(event.target.files[0]));
   setLang(state.lang);
+  setProState(false);
 }
 
 wire();
