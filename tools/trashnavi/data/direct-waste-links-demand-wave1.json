@@ -1,0 +1,90 @@
+[
+  {
+    "pref": "三重県",
+    "city": "御浜町",
+    "name": "御浜町 ごみの分別と出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.mihama.mie.jp/kurashinojoho/gomi_recycle/1483.html",
+    "lgcode": "245615",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "三重県",
+    "city": "御浜町",
+    "name": "御浜町 令和8年度家庭ごみ収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.mihama.mie.jp/kurashinojoho/gomi_recycle/1482.html",
+    "lgcode": "245615",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "岐阜県",
+    "city": "海津市",
+    "name": "海津市 令和8年度家庭ごみ収集日程・ごみカレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.kaizu.lg.jp/kurashi/0000001580.html",
+    "lgcode": "212211",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "岐阜県",
+    "city": "海津市",
+    "name": "海津市 粗大ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.kaizu.lg.jp/kurashi/0000000990.html",
+    "lgcode": "212211",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "茨城県",
+    "city": "結城市",
+    "name": "結城市 ごみ・資源物の分別ガイド",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.city.yuki.lg.jp/kurashi-tetsuzuki/gomi-recycle/gomi/page009978.html",
+    "lgcode": "082074",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "茨城県",
+    "city": "結城市",
+    "name": "結城市 令和8年度かんきょうカレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.yuki.lg.jp/kurashi-tetsuzuki/gomi-recycle/gomi/page009854.html",
+    "lgcode": "082074",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "東京都",
+    "city": "世田谷区",
+    "name": "世田谷区 令和8年(2026年)版資源とごみの収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.setagaya.lg.jp/02241/27859.html",
+    "lgcode": "131121",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  }
+]
