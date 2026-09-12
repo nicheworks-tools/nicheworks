@@ -1,6 +1,6 @@
 name: Apply common support wave 1
 
-# retry 2 after deterministic script syntax fix
+# retry 3 after whitespace-safe insertion fix
 on:
   push:
     branches:
