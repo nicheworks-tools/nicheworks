@@ -45,6 +45,10 @@ Until live migration, the legacy bridge may activate current paid behavior only 
 
 A missing entitlement must not be replaced with the expected legacy entitlement. An unrelated active standalone product must not unlock ATS Paste Doctor.
 
+The current application reads `data-pro-active` for its 30,000/200,000-character decision and Pro action checks. The bridge therefore also re-runs the exact entitlement check in the **capture phase** before normal UI clicks reach either the Generate button or any `[data-pro-action]` control. A manual DOM edit that changes `data-pro-active="true"` is reset from the exact legacy entitlement before the ordinary processing/Pro click path continues.
+
+This is an interim hardening measure only. It does not turn browser-local legacy state into future purchase authority; live migration still requires server-verified `nicheworks.pro` state.
+
 ## 5. Product-scoped staging
 
 `tools/ats-paste-doctor/product-scoped-controller.mjs` delegates to `assets/nw-product-scoped-controller.mjs` and exposes exactly:
