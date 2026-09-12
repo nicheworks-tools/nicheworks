@@ -3,6 +3,7 @@ name: Command Safety product-scoped staging check
 on:
   pull_request:
     paths:
+      - 'assets/nw-product-scoped-controller.mjs'
       - 'tools/command-safety-checker/product-scoped-controller.mjs'
       - 'tools/command-safety-checker/SPEC.md'
       - 'scripts/check-command-safety-product-scoped-staging.mjs'
@@ -13,6 +14,7 @@ on:
     branches:
       - main
     paths:
+      - 'assets/nw-product-scoped-controller.mjs'
       - 'tools/command-safety-checker/product-scoped-controller.mjs'
       - 'tools/command-safety-checker/SPEC.md'
       - 'scripts/check-command-safety-product-scoped-staging.mjs'
@@ -33,6 +35,7 @@ jobs:
           node-version: '20'
       - name: JavaScript syntax
         run: |
+          node --check assets/nw-product-scoped-controller.mjs
           node --check tools/command-safety-checker/product-scoped-controller.mjs
           node --check scripts/check-command-safety-product-scoped-staging.mjs
       - name: Command Safety product-scoped staging contracts
