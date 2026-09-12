@@ -1,0 +1,24 @@
+(window.MANUALFINDER_WAVE2_ROLAND ||= []).push(`PR-1|https://lib.roland.co.jp/support/jp/manuals/res/1809664/PR-1_j.pdf
+PR-100BK|https://lib.roland.co.jp/support/jp/manuals/res/1808725/PR-100BK_IV_j.pdf
+PR-300|https://lib.roland.co.jp/support/jp/manuals/res/1808726/PR-300_j.pdf
+PR-300S|https://lib.roland.co.jp/support/jp/manuals/res/1808728/PR-300S_j2.pdf
+PRO-E|https://lib.roland.co.jp/support/jp/manuals/res/1809727/PRO-E_je.pdf
+PS-2|https://lib.roland.co.jp/support/jp/manuals/res/1809899/PS-2_j.pdf
+PSM-5|https://lib.roland.co.jp/support/jp/manuals/res/1809105/PSM-5_j.pdf
+PV-1|https://lib.roland.co.jp/support/jp/manuals/res/1808730/PV-1_j.pdf
+PW-1|https://lib.roland.co.jp/support/jp/manuals/res/1808732/PW-1_j.pdf
+PW-2|https://lib.roland.co.jp/support/jp/manuals/res/1809104/PW-2_j.pdf
+R-4|https://lib.roland.co.jp/support/jp/manuals/res/1810335/R-4_j3.pdf
+R-44|https://lib.roland.co.jp/support/jp/manuals/res/1809585/R-44E_j02_W.pdf
+R-5|https://lib.roland.co.jp/support/jp/manuals/res/1809794/R-5_j.pdf
+R-70|https://lib.roland.co.jp/support/jp/manuals/res/1809778/R-70_j.pdf
+R-8|https://lib.roland.co.jp/support/jp/manuals/res/1809987/R-8_j.pdf
+R-880|https://lib.roland.co.jp/support/jp/manuals/res/1809007/R-880_j.pdf
+R-8M|https://lib.roland.co.jp/support/jp/manuals/res/1809994/R-8M_j.pdf
+R-8MK2|https://lib.roland.co.jp/support/jp/manuals/res/23906785/R-8MK2_j.pdf
+RA-30|https://lib.roland.co.jp/support/jp/manuals/res/1809103/RA-30_j.pdf
+RA-50|https://lib.roland.co.jp/support/jp/manuals/res/1809102/RA-50_j.pdf
+RA-90|https://lib.roland.co.jp/support/jp/manuals/res/1809101/RA-90_jei.pdf
+RAD-100|https://lib.roland.co.jp/support/jp/manuals/res/1810507/RAD-100_j1.pdf
+RAD-99|https://lib.roland.co.jp/support/jp/manuals/res/1809100/RAD-99_je1.pdf
+RAF-70|https://lib.roland.co.jp/support/jp/manuals/res/1810508/RAF-70_je4.pdf`);
