@@ -1,0 +1,46 @@
+name: Reconcile tools meta apply
+
+on:
+  push:
+    branches:
+      - fix/reconcile-tools-meta-20260913
+    paths:
+      - .github/workflows/reconcile-tools-meta-apply.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add Reconcile SEO metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('tools/tools-meta.json')
+          data = json.loads(p.read_text())
+          items = data.setdefault('items', {})
+          if 'reconcile' in items:
+              raise SystemExit('reconcile metadata already exists')
+          items['reconcile'] = {
+              'title_ja': 'CSV・Excel取引照合｜Reconcile',
+              'title_en': 'CSV / Excel Reconciliation — Reconcile',
+              'desc_ja': '2つのCSV・Excel取引データをブラウザ内で照合し、確認が必要な差分・候補・重複を抽出します。',
+              'desc_en': 'Reconcile two CSV or Excel transaction datasets locally in your browser and isolate exceptions for manual review.',
+              'tags': ['csv', 'xlsx', 'reconciliation', 'accounting']
+          }
+          data['updatedAt'] = '2026-09-13'
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+          PY
+          rm .github/workflows/reconcile-tools-meta-apply.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/tools-meta.json .github/workflows/reconcile-tools-meta-apply.yml
+          git diff --cached --check
+          git commit -m "seo(reconcile): add stable tool metadata"
+          git push origin HEAD:fix/reconcile-tools-meta-20260913
