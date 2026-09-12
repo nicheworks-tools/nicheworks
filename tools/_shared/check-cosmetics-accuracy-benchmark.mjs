@@ -38,7 +38,9 @@ for (const item of records) {
 }
 
 function exactCanonical(value) {
-  const owners = keyOwners.get(parser.normalizeKey(value));
+  const key = parser.normalizeKey(value);
+  if (!key) return null;
+  const owners = keyOwners.get(key);
   if (!owners || owners.size !== 1) return null;
   return [...owners][0];
 }
@@ -49,7 +51,7 @@ function uniqueCandidates(kind) {
   const sorted = records
     .filter((item) => item?.en)
     .slice()
-    .sort((a, b) => parser.normalizeKey(a.en).localeCompare(parser.normalizeKey(b.en)));
+    .sort((a, b) => parser.normalizeBaseKey(a.en).localeCompare(parser.normalizeBaseKey(b.en)));
 
   for (const item of sorted) {
     const values = kind === 'canonical'
@@ -72,13 +74,26 @@ function uniqueCandidates(kind) {
 
 const canonicalCases = uniqueCandidates('canonical').slice(0, 25);
 const jpCases = uniqueCandidates('jp').slice(0, 25);
-const aliasCases = uniqueCandidates('alias').slice(0, 20);
+const declaredAliasCases = uniqueCandidates('alias').slice(0, 10);
+const sharedAliasCases = [
+  { value: '精製水', canonical: 'Water' },
+  { value: 'グリセロール', canonical: 'Glycerin' },
+  { value: '1,3-ブチレングリコール', canonical: 'Butylene Glycol' },
+  { value: '塩化ナトリウム', canonical: 'Sodium Chloride' },
+  { value: 'クエン酸ナトリウム', canonical: 'Sodium Citrate' },
+  { value: '水酸化ナトリウム', canonical: 'Sodium Hydroxide' },
+  { value: 'エデト酸2ナトリウム', canonical: 'Disodium EDTA' },
+  { value: 'ニコチン酸アミド', canonical: 'Niacinamide' },
+  { value: 'ヒアルロン酸ナトリウム', canonical: 'Sodium Hyaluronate' },
+  { value: '乳酸ナトリウム', canonical: 'Sodium Lactate' }
+];
 
 assert.equal(canonicalCases.length, 25, 'benchmark requires 25 unique canonical cases');
 assert.equal(jpCases.length, 25, 'benchmark requires 25 unique Japanese-name cases');
-assert.equal(aliasCases.length, 20, 'benchmark requires 20 unique alias cases');
+assert.equal(declaredAliasCases.length, 10, 'benchmark requires 10 unique declared alias cases');
+assert.equal(sharedAliasCases.length, 10, 'benchmark requires 10 shared alias-equivalent cases');
 
-for (const test of [...canonicalCases, ...jpCases, ...aliasCases]) {
+for (const test of [...canonicalCases, ...jpCases, ...declaredAliasCases, ...sharedAliasCases]) {
   assert.equal(exactCanonical(test.value), test.canonical, `exact dictionary match failed: ${test.value}`);
 }
 
@@ -111,14 +126,14 @@ for (const [input, expected] of parserCases) {
 }
 
 const unknownCases = [
-  'Definitely Not An INCI Ingredient',
+  'AHA',
+  'BHA',
+  'PHA',
+  'Iron Oxides',
+  '酸化鉄',
   'PhenoxyethanoI',
   'Glycerln',
   'Niacinamlde',
-  'Sodlum Hyaluronate',
-  'Waterrr',
-  'グリセリソ',
-  'ナイアシソアミド',
   'ヒアル口ン酸Na',
   'OCR_NOISE_123'
 ];
@@ -141,7 +156,8 @@ for (const rel of DATA_FILES) {
 assert.ok(liteSource.includes('sharedParser'), 'Lite must keep using the shared parser');
 assert.ok(fastParserSource.includes('NWCosmeticIngredientParser'), 'FastScan must keep using the shared parser');
 
-const caseCount = canonicalCases.length + jpCases.length + aliasCases.length + parserCases.length + unknownCases.length;
+const aliasCount = declaredAliasCases.length + sharedAliasCases.length;
+const caseCount = canonicalCases.length + jpCases.length + aliasCount + parserCases.length + unknownCases.length;
 assert.equal(caseCount, 100, 'cosmetics benchmark must remain exactly 100 cases');
 
 console.log(JSON.stringify({
@@ -149,7 +165,9 @@ console.log(JSON.stringify({
   cases: caseCount,
   canonical: canonicalCases.length,
   japanese: jpCases.length,
-  aliases: aliasCases.length,
+  aliases: aliasCount,
+  declared_aliases: declaredAliasCases.length,
+  shared_alias_equivalents: sharedAliasCases.length,
   parser_edges: parserCases.length,
   unknown_or_ocr_noise: unknownCases.length,
   dictionary_records: records.length

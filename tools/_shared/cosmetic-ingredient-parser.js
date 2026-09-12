@@ -12,7 +12,7 @@
       .trim();
   }
 
-  function normalizeKey(value = "") {
+  function normalizeBaseKey(value = "") {
     return normalizeText(value)
       .toLowerCase()
       .replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, "-")
@@ -20,6 +20,49 @@
       .replace(/\s+/g, " ")
       .replace(/\s*,\s*/g, ",")
       .trim();
+  }
+
+  // Explicit, high-confidence naming equivalents only. These are identity
+  // variants for existing dictionary entries, not fuzzy guesses or safety
+  // classifications. Keep this list small and collision-checked.
+  const ALIAS_EQUIVALENTS = Object.freeze({
+    "精製水": "water",
+    "グリセロール": "glycerin",
+    "1,3-ブチレングリコール": "butylene glycol",
+    "塩化ナトリウム": "sodium chloride",
+    "クエン酸ナトリウム": "sodium citrate",
+    "水酸化ナトリウム": "sodium hydroxide",
+    "エデト酸2ナトリウム": "disodium edta",
+    "エデト酸二ナトリウム": "disodium edta",
+    "ニコチン酸アミド": "niacinamide",
+    "ヒアルロン酸ナトリウム": "sodium hyaluronate",
+    "ヒアルロン酸ソーダ": "sodium hyaluronate",
+    "乳酸ナトリウム": "sodium lactate",
+    "alcohol denat": "alcohol denat."
+  });
+
+  // These labels are category/group abbreviations or multi-identity labels in
+  // the maintained data. Exact matching one arbitrary record would be worse
+  // than leaving them unclassified for review.
+  const AMBIGUOUS_EXACT_KEYS = Object.freeze([
+    "aha",
+    "bha",
+    "pha",
+    "iron oxides",
+    "酸化鉄"
+  ]);
+  const ambiguousExactKeySet = new Set(AMBIGUOUS_EXACT_KEYS);
+
+  function normalizeKey(value = "") {
+    const base = normalizeBaseKey(value);
+    if (!base || ambiguousExactKeySet.has(base)) return "";
+    const equivalent = ALIAS_EQUIVALENTS[base] || base;
+    if (ambiguousExactKeySet.has(equivalent)) return "";
+    return equivalent;
+  }
+
+  function isAmbiguousExactName(value = "") {
+    return ambiguousExactKeySet.has(normalizeBaseKey(value));
   }
 
   function protectNumericLocantCommas(value) {
@@ -49,7 +92,7 @@
     const seen = new Set();
     const unique = [];
     for (const item of parts) {
-      const key = normalizeKey(item);
+      const key = normalizeKey(item) || `ambiguous:${normalizeBaseKey(item)}`;
       if (!key || seen.has(key)) continue;
       seen.add(key);
       unique.push(item);
@@ -103,11 +146,15 @@
   }
 
   const api = {
-    version: "1.2.0",
+    version: "1.4.0",
     normalizeText,
+    normalizeBaseKey,
     normalizeKey,
     splitIngredients,
-    isExactIngredientMatch
+    isExactIngredientMatch,
+    isAmbiguousExactName,
+    aliasEquivalents: ALIAS_EQUIVALENTS,
+    ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS
   };
 
   if (typeof module !== "undefined" && module.exports) {
