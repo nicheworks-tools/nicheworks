@@ -101,6 +101,12 @@
 <p class="nw-howto" data-i18n="en">
   How to Use: Enter a URL and tap “Analyze” to quickly extract key metadata.
 </p>
+<p class="nw-howto" data-i18n="ja">
+  通信について：解析時、入力URLはページ取得のためNicheWorks Workerへ送信されます。取得に失敗した場合は第三者サービスAllOriginsへURLを送る場合があります。OGP画像プレビューでは、ブラウザから画像URLへ直接アクセスする場合があります。
+</p>
+<p class="nw-howto" data-i18n="en">
+  Network note: When you analyze a page, the entered URL is sent to a NicheWorks Worker so the page can be fetched. If that fails, the URL may be sent to the third-party AllOrigins service. Showing an OG image preview may also request the image URL directly from your browser.
+</p>
 
 <!-- 入力カード（shadcn/ui パクリ構造） -->
 <div class="card input-card">
@@ -163,22 +169,22 @@
 <!-- FAQ（寄付の上） -->
 <div class="faq-block">
   <p><strong data-i18n="ja">URLはサーバーに送られますか？</strong></p>
-  <p data-i18n="ja">いいえ。すべてブラウザ内だけで処理されます。</p>
+  <p data-i18n="ja">はい。ページ取得のため、まずNicheWorks Workerへ送信されます。取得に失敗した場合はAllOriginsへ送信される場合があります。</p>
 
   <p><strong data-i18n="en">Are entered URLs sent to a server?</strong></p>
-  <p data-i18n="en">No — all processing happens in your browser.</p>
+  <p data-i18n="en">Yes. The URL is first sent to a NicheWorks Worker so the page can be fetched. If that request fails, the URL may be sent to AllOrigins as a fallback.</p>
 
   <p><strong data-i18n="ja">一部サイトが取得できない理由</strong></p>
-  <p data-i18n="ja">CORS等の制限により取得できない場合があります。</p>
+  <p data-i18n="ja">取得先サイトやプロキシ側の制限により取得できない場合があります。</p>
 
   <p><strong data-i18n="en">Why some sites can't be loaded</strong></p>
-  <p data-i18n="en">CORS restrictions may prevent loading.</p>
+  <p data-i18n="en">The target site or proxy may block or fail the request.</p>
 
   <p><strong data-i18n="ja">OGP画像が表示されない理由</strong></p>
-  <p data-i18n="ja">OGPが設定されていない場合があります。</p>
+  <p data-i18n="ja">OGPが設定されていない場合や、画像URLへのアクセスが拒否される場合があります。</p>
 
   <p><strong data-i18n="en">Why OGP image may be missing</strong></p>
-  <p data-i18n="en">The page may not provide OGP metadata.</p>
+  <p data-i18n="en">The page may not provide OG metadata, or the remote image request may be blocked.</p>
 </div>
 
 <!-- 寄付導線（柔らかめ） -->

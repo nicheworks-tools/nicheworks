@@ -11,18 +11,14 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>使い方 | URL Title Collector</title>
-
-  <!-- canonical -->
   <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/usage.html">
 
-  <!-- OGP -->
   <meta property="og:title" content="使い方 | URL Title Collector">
-  <meta property="og:description" content="使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta property="og:description" content="URL Title Collectorの使い方。入力URLはNicheWorks Workerへ送信され、Workerが対象HTMLを取得してタイトル抽出に利用します。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/url-title-collector/usage.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
@@ -90,14 +86,14 @@
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
 </script>
-  <meta name="description" content="使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="description" content="URL Title Collectorの使い方。入力URLはNicheWorks Workerへ送信され、Workerが対象HTMLを取得してタイトル抽出に利用します。">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="使い方 | URL Title Collector">
-  <meta name="twitter:description" content="使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="twitter:description" content="入力URLはNicheWorks Workerへ送信され、Workerが対象HTMLを取得してタイトル抽出に利用します。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script type="application/ld+json">
@@ -106,7 +102,7 @@
     "@type": "WebPage",
     "name": "使い方 | URL Title Collector",
     "url": "https://nicheworks.app/tools/url-title-collector/usage.html",
-    "description": "使い方 | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
+    "description": "URL Title Collectorの使い方。入力URLはNicheWorks Workerへ送信され、Workerが対象HTMLを取得してタイトル抽出に利用します。",
     "inLanguage": "ja",
     "publisher": {
       "@type": "Organization",
@@ -119,8 +115,6 @@
 <body>
 
 <main>
-
-  <!-- 言語切替 -->
   <div class="lang-switch">
     <a href="./usage.html">JP</a> |
     <a href="./en/usage.html">EN</a>
@@ -132,6 +126,7 @@
     URL Title Collector は、複数のURLをまとめて貼り付けるだけで、
     <strong>&lt;title&gt; タグを高速取得できる超軽量ツール</strong>です。
   </p>
+  <p><strong>通信について：</strong>「タイトルを取得する」を押すと、各入力URLはNicheWorks Cloudflare Workerへ送信されます。Workerが対象ページのHTMLを取得し、そのHTMLからブラウザ側で&lt;title&gt;を抽出します。</p>
 
   <h2>1. 使い方（3ステップ）</h2>
   <ul>
@@ -147,7 +142,7 @@
     <li><strong>success</strong>：タイトル取得に成功</li>
     <li><strong>no-title</strong>：ページ取得は成功したが &lt;title&gt; が存在しない</li>
     <li><strong>http-error</strong>：HTTPエラー（404 / 500 など）</li>
-    <li><strong>network-error</strong>：CORS / DNS などネットワーク側の問題</li>
+    <li><strong>network-error</strong>：DNS、接続拒否、取得失敗などネットワーク側の問題</li>
   </ul>
 
   <h2>3. 対応しているケース</h2>
@@ -161,14 +156,14 @@
   <ul>
     <li>ログインが必要なページ</li>
     <li>PDF / JSON / XML など HTMLでないURL</li>
-    <li>CSP（Content Security Policy）が非常に強いページ</li>
+    <li>Workerからの取得を拒否するサイト</li>
     <li>JavaScriptで動的に &lt;title&gt; を変更するサイト</li>
   </ul>
 
   <h2>5. CSV / TSV 出力</h2>
   <p>
-    結果テーブルはそのまま  
-    <strong>CSV（カンマ）</strong> / <strong>TSV（タブ）</strong> 形式でコピーできます。  
+    結果テーブルはそのまま
+    <strong>CSV（カンマ）</strong> / <strong>TSV（タブ）</strong> 形式でコピーできます。
     Excel / Google Sheets / Notion などに貼り付け可能です。
   </p>
 
@@ -177,25 +172,24 @@
     独自の404ページ（Not Found HTML）が返され、そのHTML内の &lt;title&gt; を取得しているためです。
   </p>
 
-  <p><strong>Q：海外サイトで失敗しやすい理由は？</strong><br>
-    CORS / CSP が強く、Worker 経由でも本文を取得できないためです。
+  <p><strong>Q：一部サイトで失敗する理由は？</strong><br>
+    取得先がWorkerからのrequestを拒否する、DNS/接続で失敗する、HTMLを返さない等の理由があります。
   </p>
 
   <p><strong>Q：大量URLの上限は？</strong><br>
-    ブラウザ動作のため、100〜300件程度が安全です（端末性能に依存）。
+    100〜300件程度が目安ですが、Workerや取得先サイト、通信状況、端末性能に依存します。
   </p>
 
-  <h2>7. 免責</h2>
+  <h2>7. 免責・データ送信</h2>
   <p>
-    本ツールはブラウザ内と Cloudflare Worker 上で動作します。  
-    入力URL・結果は保存されません。  
+    入力URLはページ取得のためNicheWorks Cloudflare Workerへ送信され、Workerから対象サイトへrequestされます。
+    URLや取得結果をこのツールが履歴として保存する仕様ではありませんが、Worker・取得先サイト・通常の解析/広告resourceとの通信は発生します。
     取得できないURLが存在する場合があります。
   </p>
 
   <div class="back">
     <a href="./index.html">← ツールに戻る</a>
   </div>
-
 </main>
 
 <div class="nw-links">
@@ -204,13 +198,9 @@
   <a href="/tools/exif-cleaner-mini/">MetaCleaner Mini</a>
 </div>
 
-
 <footer>
   <p><a href="https://nicheworks.app/">NicheWorks Home</a></p>
 </footer>
-
-<!-- Cloudflare Analytics -->
-
 
 </body>
 </html>
