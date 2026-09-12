@@ -4,96 +4,116 @@ This ExecPlan is a living document. Keep `Progress`, `Surprises & Discoveries`, 
 
 ## Purpose / Big Picture
 
-PR #502 fixed registered-tool public URLs, PR #503 fixed all-indexable URL identity, and PR #504 made JSON-LD parse/integrity explicit. The next gap is HTML head cardinality: the existing strict SEO audit proves that important metadata exists, but it generally reads the first matching tag and does not fail when the same standard metadata key appears more than once.
+PR #502 fixed registered-tool public URLs, PR #503 fixed all-indexable URL identity, and PR #504 made JSON-LD parse/integrity explicit. This PR closes the next structural gap: the existing strict SEO audit proves that important head metadata exists, but previously did not fail when the same standard key appeared more than once.
 
-This PR makes singleton head metadata deterministic on every indexable page. It detects duplicate or empty `<title>`, meta description, robots, Open Graph identity/content fields, and Twitter card fields without changing page copy or visual UI.
+The new contract makes singleton head metadata deterministic on every indexable page. It checks title, description, robots, standard Open Graph fields, and standard Twitter fields without changing page copy or visual UI.
 
 ## Progress
 
 - [x] Confirmed main HEAD `f8013665180aad413aad7f0d594ca5b835e7ffba` after PR #504.
 - [x] Created `fix/seo-head-metadata-cardinality-20260912` from that exact main commit.
-- [ ] Add a read-only head metadata cardinality checker.
-- [ ] Wire it into the existing SEO workflow.
-- [ ] Run against the full indexable HTML surface and record actual duplicate/empty/missing counts.
-- [ ] Repair only mechanical singleton metadata defects surfaced by the checker.
-- [ ] Re-run all previous SEO contracts and strict audit.
-- [ ] Review diff, update this ExecPlan, merge after green CI, and confirm main.
+- [x] Added `scripts/check-seo-head-metadata-cardinality.mjs`.
+- [x] Wired it into the existing SEO workflow.
+- [x] Opened PR #505 and ran the checker across the full indexable HTML surface.
+- [x] Initial run checked 3,135 singleton fields across 285 indexable pages and found exactly three duplicates.
+- [x] Repaired only those three duplicates by deleting one redundant standard image tag from each affected page.
+- [x] Re-run succeeded with all prior SEO contracts and strict audit still green.
+- [ ] Final diff/PR metadata review and squash merge.
+- [ ] Confirm the same SEO workflow succeeds on main after merge.
+
+## Surprises & Discoveries
+
+- Full scope remains 288 scanned HTML files: 285 indexable and 3 noindex.
+- The checker performs 11 singleton field checks per indexable page, for 3,135 total checks.
+- Only three defects existed:
+  - `tools/cosmetic-ingredient-checker-lite/index.html`: duplicate standard `twitter:image` in the English metadata block.
+  - `tools/message-generator/index.html`: duplicate standard `twitter:image` in the English metadata block.
+  - `tools/metadatasnap/index.html`: duplicate standard `og:image` in the English metadata block.
+- There were no additional missing/empty singleton fields, no non-HTTPS social image failures, and no `pages.dev` social metadata leaks.
+- Language-suffixed custom fields such as `og:title:en` and `twitter:card:en` remain untouched and do not count as duplicates of the standard keys.
 
 ## Decision Log
 
 - Decision: require exactly one non-empty `<title>` on every indexable page.
-  Rationale: multiple title elements are ambiguous and the current audit only reads the first.
+  Rationale: multiple title elements are ambiguous and the old audit only read the first.
   Date: 2026-09-12.
 
 - Decision: require exactly one non-empty standard meta description and robots tag on every indexable page.
-  Rationale: current strict audit already expects these fields; this PR adds cardinality rather than a new content requirement.
+  Rationale: these were already required by the strict audit; this adds cardinality, not a new content policy.
   Date: 2026-09-12.
 
-- Decision: require exactly one non-empty standard Open Graph `og:title`, `og:description`, `og:url`, and `og:image` field, and exactly one standard Twitter `twitter:card`, `twitter:title`, `twitter:description`, and `twitter:image` field.
-  Rationale: these are already expected by the current strict SEO audit (with `og:url` additionally enforced by PR #503). Language-suffixed custom keys such as `og:title:en` are distinct keys and are not treated as duplicates of `og:title`.
+- Decision: require exactly one non-empty standard `og:title`, `og:description`, `og:url`, `og:image`, `twitter:card`, `twitter:title`, `twitter:description`, and `twitter:image`.
+  Rationale: these are already expected by the current SEO rules. Exact key matching preserves language-suffixed custom metadata.
   Date: 2026-09-12.
 
 - Decision: do not add a new `og:type` requirement in this PR.
-  Rationale: `og:type` is not part of the current strict required set; adding it would be a separate policy/content expansion rather than cardinality hardening.
+  Rationale: this work hardens existing requirements rather than expanding policy.
   Date: 2026-09-12.
 
-- Decision: reject `pages.dev` in standard OG/Twitter image/url values and require absolute HTTPS URLs for standard social image fields.
-  Rationale: preview origins must not leak into share metadata, while dedicated per-tool NicheWorks images remain allowed.
+- Decision: reject `pages.dev` in standard OG/Twitter URL-bearing fields and require standard social images to be absolute HTTPS URLs.
+  Rationale: preview origins must not leak into public share metadata.
   Date: 2026-09-12.
 
 ## Outcomes & Retrospective
 
-Pending implementation and CI results.
+PR #505 turns singleton head metadata into a CI-enforced invariant. The repository was already close to the desired state: only three redundant standard image tags were found among 3,135 checks, and all three were removed with one-line deletions.
+
+Observed successful PR workflow:
+
+- `SEO public URL contract: OK (87 registered tools checked)`
+- `Indexable SEO URL identity: OK (285 indexable / 3 noindex / 288 scanned)`
+- `SEO head metadata cardinality: OK (285 indexable / 3 noindex / 288 scanned; 3135 singleton field checks)`
+- `SEO structured data integrity: OK (285 indexable / 3 noindex / 288 scanned; 356 JSON-LD blocks / 356 parsed; 135 page-identity nodes / 76 urls / 0 mainEntityOfPage identities)`
+- `SEO audit: 288 OK / 0 WARN / 0 FAIL / 288 checks (strict)`
+- `git diff --exit-code`: success
+
+Production HTML changes are exactly three deleted duplicate metadata lines. No UI, copy, routing, canonical, sitemap, or JSON-LD changes were made.
 
 ## Context and Orientation
 
 Relevant files:
 
-- `scripts/audit-seo.mjs`: current strict SEO presence/content audit.
+- `scripts/check-seo-head-metadata-cardinality.mjs`: singleton/non-empty social/head metadata contract.
 - `scripts/check-seo-indexable-url-identity.mjs`: canonical + `og:url` + sitemap identity.
 - `scripts/check-seo-structured-data-integrity.mjs`: JSON-LD integrity.
+- `scripts/audit-seo.mjs`: existing strict SEO audit.
 - `.github/workflows/seo-audit.yml`: combined SEO workflow.
 
-The checker will reuse the established public scan exclusions and `noindex` semantics used by PR #503/#504.
-
-## Plan of Work
-
-Create `scripts/check-seo-head-metadata-cardinality.mjs`.
+## Implemented Contract
 
 For each indexable HTML page:
 
-1. require exactly one non-empty `<title>`;
-2. require exactly one non-empty `<meta name="description">`;
-3. require exactly one non-empty `<meta name="robots">`;
-4. require exactly one non-empty `og:title`, `og:description`, `og:url`, and `og:image`;
-5. require exactly one non-empty `twitter:card`, `twitter:title`, `twitter:description`, and `twitter:image`;
-6. reject `pages.dev` in the standard OG/Twitter URL-bearing fields;
-7. require `og:image` and `twitter:image` to be absolute HTTPS URLs.
+1. exactly one non-empty `<title>`;
+2. exactly one non-empty description;
+3. exactly one non-empty robots tag;
+4. exactly one non-empty standard `og:title`, `og:description`, `og:url`, `og:image`;
+5. exactly one non-empty standard `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`;
+6. no `pages.dev` in standard OG/Twitter URL/image values;
+7. `og:image` and `twitter:image` are absolute HTTPS URLs.
 
-The checker must use exact metadata key matching, so custom keys such as `og:title:en` or `twitter:card:en` remain separate and do not count as duplicates.
-
-Wire the checker into `.github/workflows/seo-audit.yml` after URL identity and before structured-data/general strict auditing. Open a PR to obtain full repository results, then repair only duplicate/missing/empty standard tags required by this contract.
+Exact metadata key matching means `og:title:en`, `twitter:title:en`, and similar custom language keys remain distinct.
 
 ## Validation and Acceptance
 
-Acceptance requires:
+Acceptance demonstrated on PR #505:
 
-- all 285 current indexable pages satisfy singleton/non-empty head metadata rules;
-- no standard social URL/image field leaks a `pages.dev` origin;
-- social image values are absolute HTTPS URLs;
-- PR #502 public URL contract stays green;
-- PR #503 indexable URL identity stays green;
-- PR #504 structured-data integrity stays green;
-- strict SEO audit stays `288 OK / 0 WARN / 0 FAIL`;
-- validation leaves the repository unchanged.
+- 285 indexable / 3 noindex / 288 scanned.
+- 3,135 singleton field checks all pass.
+- Previous 87-tool URL contract passes.
+- Full indexable URL identity passes.
+- Structured-data integrity passes with 356/356 JSON-LD blocks parsed.
+- Strict SEO audit passes with 288/288 OK.
+- Validation leaves the repository unchanged.
 
 ## Idempotence and Recovery
 
-The checker is read-only. All repairs remain on `fix/seo-head-metadata-cardinality-20260912`. Before editing any existing file, refetch its blob SHA. Main changes only through the PR merge.
+The checker is read-only and safe to rerun. The three production repairs are deterministic one-line deletions. Main changes only through PR merge.
 
 ## Artifacts and Notes
 
 Base/main SHA: `f8013665180aad413aad7f0d594ca5b835e7ffba`.
+
+PR: `https://github.com/nicheworks-tools/nicheworks/pull/505`.
 
 Parent work: PR #502, #503, #504.
 
