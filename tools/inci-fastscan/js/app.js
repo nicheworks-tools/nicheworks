@@ -81,6 +81,10 @@ const UI_TEXT = {
     ja: "OCR実行中です。日本語OCRは時間がかかる場合があります。",
     en: "Running OCR. Japanese OCR may take longer."
   },
+  ocrProgress: {
+    ja: percent => `OCR処理中… ${percent}%`,
+    en: percent => `Running OCR… ${percent}%`
+  },
   ocrDone: {
     ja: "OCR結果を入力欄に入れました。誤認識がないか確認してからチェックしてください。",
     en: "OCR text was added to the input. Review it before checking ingredients."
@@ -102,6 +106,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   setupJBTranslator();
   setupResets();
   setupSamples();
+  setupCheckShortcuts();
   await loadDictionary();
 });
 
@@ -216,6 +221,9 @@ async function loadDictionary() {
 }
 
 function dedupeDictionary(items) {
+  const shared = globalThis.NWCosmeticIngredientParser;
+  if (shared?.mergeDictionaryRecords) return shared.mergeDictionaryRecords(items);
+
   const seen = new Set();
   const output = [];
   for (const item of items) {
@@ -229,6 +237,9 @@ function dedupeDictionary(items) {
 }
 
 function normalizeDictionaryKey(value) {
+  const shared = globalThis.NWCosmeticIngredientParser;
+  if (shared?.normalizeKey) return shared.normalizeKey(value);
+
   return String(value || "")
     .normalize("NFKC")
     .toLowerCase()
@@ -280,6 +291,7 @@ function setupFastCheck() {
   document.getElementById("btn-ocr-run-fast").onclick = async () => {
     const file = document.getElementById("ocr-file-fast").files[0];
     const status = document.getElementById("fast-ocr-status");
+    const progress = document.getElementById("fast-ocr-progress");
     if (!file) {
       setStatus(status, getText("chooseImage"), "status-warn");
       return;
@@ -289,15 +301,19 @@ function setupFastCheck() {
     const prev = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Running...";
+    startOcrProgress(progress);
     setStatus(status, getText("ocrRunning"), "");
 
     try {
-      const text = await runOCR(file, "eng");
+      const text = await runOCR(file, "eng", update => updateOcrProgress(status, progress, update));
       const processed = postProcessOcrText(text, { langHint: "en" });
       document.getElementById("fast-input").value = processed;
+      completeOcrProgress(progress);
       setStatus(status, getText("ocrDone"), "status-ok");
+      document.getElementById("fast-input").focus();
     } catch (e) {
       console.error(e);
+      resetOcrProgress(progress);
       setStatus(status, getText("ocrFailed"), "status-warn");
     } finally {
       btn.disabled = false;
@@ -318,6 +334,7 @@ function setupJBTranslator() {
   document.getElementById("btn-ocr-run").onclick = async () => {
     const file = document.getElementById("ocr-file").files[0];
     const status = document.getElementById("jb-ocr-status");
+    const progress = document.getElementById("jb-ocr-progress");
     if (!file) {
       setStatus(status, getText("chooseImage"), "status-warn");
       return;
@@ -327,15 +344,19 @@ function setupJBTranslator() {
     const prev = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Running...";
+    startOcrProgress(progress);
     setStatus(status, getText("ocrRunningJp"), "");
 
     try {
-      const text = await runOCR(file, "jpn+eng");
+      const text = await runOCR(file, "jpn+eng", update => updateOcrProgress(status, progress, update));
       const processed = postProcessOcrText(text, { langHint: "jp" });
       document.getElementById("jb-input").value = processed;
+      completeOcrProgress(progress);
       setStatus(status, getText("ocrDoneJp"), "status-ok");
+      document.getElementById("jb-input").focus();
     } catch (e) {
       console.error(e);
+      resetOcrProgress(progress);
       setStatus(status, getText("ocrFailed"), "status-warn");
     } finally {
       btn.disabled = false;
@@ -350,7 +371,7 @@ function setupSamples() {
 
   if (fastSample) {
     fastSample.onclick = () => {
-      document.getElementById("fast-input").value = "Water, Glycerin, Niacinamide, Butylene Glycol, Sodium Hyaluronate, Fragrance";
+      document.getElementById("fast-input").value = "Water, Glycerin, Niacinamide, Butylene Glycol, Sodium Hyaluronate, 1,2-Hexanediol, Fragrance";
     };
   }
 
@@ -359,6 +380,22 @@ function setupSamples() {
       document.getElementById("jb-input").value = "水、グリセリン、ナイアシンアミド、BG、ヒアルロン酸Na、香料";
     };
   }
+}
+
+function setupCheckShortcuts() {
+  [
+    ["fast-input", "btn-fast-check"],
+    ["jb-input", "btn-jb-check"]
+  ].forEach(([inputId, buttonId]) => {
+    const input = document.getElementById(inputId);
+    const button = document.getElementById(buttonId);
+    input?.addEventListener("keydown", event => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+        event.preventDefault();
+        button?.click();
+      }
+    });
+  });
 }
 
 function setupResets() {
@@ -370,11 +407,13 @@ function setupResets() {
       const file = document.getElementById("ocr-file-fast");
       const ocrBtn = document.getElementById("btn-ocr-run-fast");
       const status = document.getElementById("fast-ocr-status");
+      const progress = document.getElementById("fast-ocr-progress");
 
       if (input) input.value = "";
       if (results) results.innerHTML = "";
       if (file) file.value = "";
       if (status) status.hidden = true;
+      resetOcrProgress(progress);
       lastFastResults = null;
       if (ocrBtn) {
         ocrBtn.disabled = false;
@@ -391,11 +430,13 @@ function setupResets() {
       const file = document.getElementById("ocr-file");
       const ocrBtn = document.getElementById("btn-ocr-run");
       const status = document.getElementById("jb-ocr-status");
+      const progress = document.getElementById("jb-ocr-progress");
 
       if (input) input.value = "";
       if (results) results.innerHTML = "";
       if (file) file.value = "";
       if (status) status.hidden = true;
+      resetOcrProgress(progress);
       lastJbResults = null;
       if (ocrBtn) {
         ocrBtn.disabled = false;
@@ -403,6 +444,35 @@ function setupResets() {
       }
     };
   }
+}
+
+function startOcrProgress(progress) {
+  if (!progress) return;
+  progress.hidden = false;
+  progress.value = 0;
+}
+
+function updateOcrProgress(status, progress, update) {
+  const rawProgress = Number(update?.progress);
+  if (!Number.isFinite(rawProgress)) return;
+  const percent = Math.max(0, Math.min(100, Math.round(rawProgress * 100)));
+  if (progress) {
+    progress.hidden = false;
+    progress.value = percent;
+  }
+  setStatus(status, getText("ocrProgress", percent), "");
+}
+
+function completeOcrProgress(progress) {
+  if (!progress) return;
+  progress.hidden = false;
+  progress.value = 100;
+}
+
+function resetOcrProgress(progress) {
+  if (!progress) return;
+  progress.value = 0;
+  progress.hidden = true;
 }
 
 function setStatus(el, text, modifier) {

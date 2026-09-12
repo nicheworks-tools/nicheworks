@@ -1,0 +1,30 @@
+name: AI Interaction Atlas product-scoped staging check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/ai-interaction-atlas/**'
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'scripts/check-ai-interaction-atlas-product-scoped-staging.mjs'
+      - 'docs/tools/ai-interaction-atlas.md'
+      - 'docs/billing/pro-product-contracts-wave4.md'
+      - 'docs/billing/nicheworks-pro-bundle-contract.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - '.github/workflows/ai-interaction-atlas-product-scoped-staging-check.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check tools/ai-interaction-atlas/pro-bridge.js
+          node --check tools/ai-interaction-atlas/product-scoped-controller.mjs
+          node --check scripts/check-ai-interaction-atlas-product-scoped-staging.mjs
+      - name: AI Interaction Atlas bundle boundary contracts
+        run: node scripts/check-ai-interaction-atlas-product-scoped-staging.mjs

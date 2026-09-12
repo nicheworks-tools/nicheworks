@@ -17,14 +17,32 @@ on:
 jobs:
   check-trashnavi-direct-links:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Check direct waste links
+
+      - name: Check all direct waste links
         env:
           TRASHNAVI_STRICT_LINK_CHECK: ${{ github.event.inputs.strict == 'true' && '1' || '0' }}
           TRASHNAVI_LINK_TIMEOUT_MS: '10000'
-        run: node scripts/check-trashnavi-direct-links.mjs
+          TRASHNAVI_LINK_REPORT: 'trashnavi-link-check-report.json'
+        run: |
+          node scripts/check-trashnavi-direct-links.mjs | tee /tmp/trashnavi-link-check.txt
+          {
+            echo '## TrashNavi direct-link health'
+            echo '```text'
+            tail -n 80 /tmp/trashnavi-link-check.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload link-health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trashnavi-link-check-report
+          path: trashnavi-link-check-report.json
+          if-no-files-found: warn
+          retention-days: 30

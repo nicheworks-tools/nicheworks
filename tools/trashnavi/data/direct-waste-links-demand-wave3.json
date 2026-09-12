@@ -1,0 +1,37 @@
+[
+  {
+    "pref": "三重県",
+    "city": "御浜町",
+    "name": "御浜町 粗大ごみの収集について",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.mihama.mie.jp/kurashinojoho/gomi_recycle/520.html",
+    "lgcode": "245615",
+    "last_checked": "2026-09-12",
+    "language": "ja"
+  },
+  {
+    "pref": "岐阜県",
+    "city": "海津市",
+    "name": "海津市 ごみ分別アプリ「さんあ～る」",
+    "type": "ごみ分別アプリ",
+    "link_type": "waste_app",
+    "url": "https://www.city.kaizu.lg.jp/kurashi/0000001581.html",
+    "lgcode": "212211",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "茨城県",
+    "city": "結城市",
+    "name": "結城市 環境センターへのごみの持ち込み",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.city.yuki.lg.jp/kurashi-tetsuzuki/gomi-recycle/gomi/page003492.html",
+    "lgcode": "082074",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  }
+]

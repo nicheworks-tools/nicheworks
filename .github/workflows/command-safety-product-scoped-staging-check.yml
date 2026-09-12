@@ -1,0 +1,42 @@
+name: Command Safety product-scoped staging check
+
+on:
+  pull_request:
+    paths:
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'tools/command-safety-checker/product-scoped-controller.mjs'
+      - 'tools/command-safety-checker/SPEC.md'
+      - 'scripts/check-command-safety-product-scoped-staging.mjs'
+      - 'docs/billing/pro-product-contracts-wave1.md'
+      - '.agent/plans/2026-09-12-command-safety-product-scoped-staging.md'
+      - '.github/workflows/command-safety-product-scoped-staging-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'tools/command-safety-checker/product-scoped-controller.mjs'
+      - 'tools/command-safety-checker/SPEC.md'
+      - 'scripts/check-command-safety-product-scoped-staging.mjs'
+      - 'docs/billing/pro-product-contracts-wave1.md'
+      - '.agent/plans/2026-09-12-command-safety-product-scoped-staging.md'
+      - '.github/workflows/command-safety-product-scoped-staging-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check assets/nw-product-scoped-controller.mjs
+          node --check tools/command-safety-checker/product-scoped-controller.mjs
+          node --check scripts/check-command-safety-product-scoped-staging.mjs
+      - name: Command Safety product-scoped staging contracts
+        run: node scripts/check-command-safety-product-scoped-staging.mjs

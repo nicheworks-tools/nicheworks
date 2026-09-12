@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "東京都",
+    "city": "葛飾区",
+    "name": "葛飾区 2026年度版 資源とごみの収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.katsushika.lg.jp/kurashi/1000048/1017199/1020038.html",
+    "lgcode": "131229",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "東京都",
+    "city": "葛飾区",
+    "name": "葛飾区 粗大ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.katsushika.lg.jp/kurashi/1000048/1001536/1016343.html",
+    "lgcode": "131229",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]

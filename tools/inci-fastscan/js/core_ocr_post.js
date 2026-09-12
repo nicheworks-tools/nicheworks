@@ -1,20 +1,18 @@
+const OCR_LOCANT_COMMA = "\uE001";
+
 function coreProcessOCRText(raw) {
   if (!raw) return "";
 
-  // Basic cleanup: remove bullets / odd dots, normalize whitespace
-  let cleaned = String(raw)
+  // Basic cleanup only. Delimiter conversion is deferred to postProcessOcrText
+  // so valid numeric locants such as 1,2-Hexanediol can be preserved.
+  return String(raw)
     .replace(/[•●]/g, " ")
     .replace(/[、，]/g, ",")
     .replace(/\t/g, " ")
     .replace(/\u3000/g, " ")
     .replace(/[ ]{2,}/g, " ")
+    .replace(/\n{2,}/g, "\n")
     .trim();
-
-  // Convert to line-ish format: keep commas but prefer newlines for parsing
-  cleaned = cleaned.replace(/\s*[,;]\s*/g, "\n");
-  cleaned = cleaned.replace(/\n{2,}/g, "\n");
-
-  return cleaned.trim();
 }
 
 function postProcessOcrText(rawText, options = {}) {
@@ -87,7 +85,7 @@ function postProcessOcrText(rawText, options = {}) {
   for (let line of targetLines) {
     let cleaned = line
       .replace(/^[\s\-–—*•●・]+/g, "")
-      .replace(/[、，;・／/：:→]/g, ",")
+      .replace(/[、，;；：:→]/g, ",")
       .replace(/,+/g, ",")
       .replace(/[ ]{2,}/g, " ")
       .trim();
@@ -102,9 +100,10 @@ function postProcessOcrText(rawText, options = {}) {
       continue;
     }
 
-    const parts = cleaned
+    const protectedLine = protectNumericLocantCommas(cleaned);
+    const parts = protectedLine
       .split(/\s*,\s*/)
-      .map(part => part.trim())
+      .map(part => restoreNumericLocantCommas(part.trim()))
       .filter(Boolean);
 
     items.push(...parts);
@@ -127,6 +126,14 @@ function postProcessOcrText(rawText, options = {}) {
   }
 
   return merged.join("\n").trim();
+}
+
+function protectNumericLocantCommas(value) {
+  return String(value).replace(/(\d),(?=\d)/g, `$1${OCR_LOCANT_COMMA}`);
+}
+
+function restoreNumericLocantCommas(value) {
+  return String(value).replaceAll(OCR_LOCANT_COMMA, ",");
 }
 
 function findFirstMarker(line, markers) {

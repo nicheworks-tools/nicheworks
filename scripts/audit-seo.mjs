@@ -8,6 +8,7 @@ const strict = process.argv.includes('--strict');
 const sitemap = read('sitemap.xml');
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
 const BAD_VISIBLE_TEXT = [/description is pending/i, /\bTODO\b/, /\bFIXME\b/i, /coming soon/i, /未完成/, /仮置き/, /準備中/];
+const STATIC_TOOL_CONTENT_PATTERNS = [/^tools\/trashnavi\/[^/]+\/[^/]+\/index\.html$/];
 
 function read(relativePath) {
   const file = path.join(root, relativePath);
@@ -63,7 +64,11 @@ function listHtml(dir = root) {
   return output;
 }
 function fileUrl(file) { return htmlFilePublicUrl(rel(file)); }
-function kindOf(file) { return rel(file).startsWith('tools/') && rel(file).endsWith('/index.html') ? 'tool' : 'static'; }
+function kindOf(file) {
+  const relative = rel(file);
+  if (STATIC_TOOL_CONTENT_PATTERNS.some((pattern) => pattern.test(relative))) return 'static';
+  return relative.startsWith('tools/') && relative.endsWith('/index.html') ? 'tool' : 'static';
+}
 function slugOf(file) {
   const relative = rel(file);
   if (relative === 'index.html') return 'home';

@@ -1,391 +1,278 @@
 # NicheWorks Monetization Execution Authority
 
-Updated: 2026-09-12
+Updated: 2026-09-13
 
-This document is the **current execution authority** for monetization work in NicheWorks. `MONETIZATION_MASTER.md` remains the tool-by-tool model classification. `MONETIZATION_WAVE1.md` remains useful for tool-specific free boundaries, placements, KPIs, and guardrails, but where its execution assumptions conflict with this document, **this document wins**.
-
-The main conflicts this document resolves are:
-
-1. billing is now product-scoped rather than a future site-wide `nicheworks_pro` rollout;
-2. affiliate/performance monetization is zero-to-many offers, not one link per tool;
-3. the shared affiliate layer must be extracted from a real ManualFinder implementation rather than invented before that implementation is inspectable;
-4. Old Kanji acquisition-cluster Wave 1 is already implemented.
+This document is the **current execution authority** for monetization work in NicheWorks. `MONETIZATION_MASTER.md` remains the tool-by-tool model classification. The canonical per-tool specifications under `docs/tools/` and each tool's own `SPEC.md` define current product behavior. Where older monetization or billing documents conflict with this file, this file wins unless a newer explicit authority document says otherwise.
 
 ## 1. Current state
 
-Completed repository work:
+Completed repository work includes:
 
-- PR #513 — monetization master and initial Wave 1 contracts.
-- PR #516 — hardened/generalized product-scoped billing foundation.
-- PR #519 — Old Kanji acquisition/continuation cluster Wave 1.
+- PR #513 — monetization master and initial Wave 1 contracts;
+- PR #516 — hardened/generalized product-scoped billing foundation;
+- subsequent product-scoped staging work for multiple legacy Pro candidates;
+- the 87-tool canonical specification and quality-audit layer.
 
-ManualFinder is intentionally excluded from the 86-tool classification because its monetization implementation is being handled in a separate workstream.
+The important distinction is now:
 
-The 86 non-ManualFinder tools remain classified as:
+- **commercial product model**: selected professional tools may share one `NicheWorks Pro` purchase;
+- **technical billing engine**: the reusable product-scoped `/api/billing/*` foundation remains authoritative;
+- **legacy shared Pro implementation**: old `nicheworks_pro`, `NWPro`, shared Payment Link and browser-local active state are migration inputs only.
 
-- 42 Pro-primary candidates;
-- 13 affiliate/performance-primary candidates;
-- 26 AdSense + donation + SEO/internal-circulation-primary tools;
-- 5 hold/incomplete tools.
+No new paid product may invent a price, Stripe Price ID, entitlement, affiliate destination, or partner configuration.
 
-The classification is not an instruction to monetize all tools immediately. It defines the likely primary model; rollout still requires product-specific evidence and implementation readiness.
+## 2. Billing product model — current target
 
-## 2. Billing architecture — current target
+NicheWorks will use three paid-product types.
 
-The target billing architecture is **product-scoped entitlement**, not one global all-access NicheWorks Pro entitlement.
+### 2.1 NicheWorks Pro — primary shared bundle
 
-The common foundation now provides the reusable plumbing for:
+`NicheWorks Pro` is the primary paid product for selected professional/business/developer tools.
+
+Canonical future product ID:
+
+- `nicheworks.pro`
+
+The bundle is expected to be a **one-time purchase** unless a later explicit decision changes the billing model.
+
+One verified `nicheworks.pro` entitlement may unlock multiple tools that are explicitly listed as members of the bundle. Bundle membership is deliberate and must never be inferred merely because a tool historically contains Pro code.
+
+The exact one-time price, currency, Stripe Product, Stripe Price and environment-variable mapping are **not yet fixed**. Do not infer them from the historical `$2.99` shared Payment Link or from unrelated price tiers already present in the registry.
+
+### 2.2 Standalone Pro — exceptional separate products
+
+A product may remain standalone when it is materially separate from the general professional-tool bundle.
+
+Current planning examples include:
+
+- `okj.toolkit_pro` — Old Kanji Toolkit Pro;
+- `reconcile.pro_v1` — Reconcile Pro.
+
+Those entries remain separate and currently `not_connected`. They do not implicitly grant `nicheworks.pro`, and `nicheworks.pro` does not implicitly grant them unless a later explicit bundle policy says so.
+
+### 2.3 Usage / credit billing — deferred
+
+Usage or credit billing is deferred until a tool has meaningful per-use server/API/AI/OCR cost that makes one-time access economically inappropriate.
+
+Do not add usage billing pre-emptively to browser-local tools.
+
+## 3. Billing architecture — product-scoped engine, explicit shared bundle
+
+The forward technical architecture remains the reusable product-scoped billing foundation introduced by PR #516.
+
+The foundation provides:
 
 - registry-backed product configuration;
-- Stripe Checkout session creation;
+- server-created Stripe Checkout Sessions;
 - verified Stripe webhook fulfillment;
-- unpaid checkout fail-closed behavior;
+- unpaid/delayed-payment fail-closed handling;
 - D1 entitlement storage;
 - server-side product/session entitlement verification;
-- a browser adapter that treats server verification as authoritative rather than trusting a local `active=true` flag.
+- product/feature-scoped browser state that does not trust local `active=true` authority;
+- refund/revocation lifecycle support.
 
-A common billing foundation does **not** mean all paid tools share one entitlement. The product ID is the entitlement boundary.
+**Product-scoped does not mean one product per tool.**
 
-### 2.1 Legacy shared-Pro code
+`nicheworks.pro` is one explicit product. Multiple selected tools can ask whether that same product entitlement is active, while their individual paid operations remain defined in each tool's own contract.
 
-Some tools still contain older code built around:
+This is not a revival of the legacy global `nicheworks_pro` browser entitlement. The two identifiers have different roles:
 
-- a hard-coded Stripe Payment Link;
-- shared entitlement name `nicheworks_pro`;
-- old `NWPro.getLocalStatus()` behavior;
-- old shared unlock/pro pages.
+- `nicheworks.pro` — future server-verified billing product;
+- `nicheworks_pro` — legacy entitlement label retained only for compatibility/migration until retired.
 
-That code is migration input only. Do not use it as the architecture for new paid products.
+## 4. Legacy shared-Pro boundary
 
-### 2.2 Command Safety Checker status
+The repository still contains older infrastructure such as:
 
-Command Safety Checker remains the first migration candidate because it already has concrete paid-artifact concepts and a mature Pro UI. However, the repository currently does **not** contain a verified product-scoped Command Safety product entry.
+- a historical hard-coded Stripe Payment Link;
+- `assets/nw-pro.js`;
+- `/api/pro/status`;
+- `/api/stripe/webhook`;
+- `pro_purchases` / `pro_entitlements`;
+- `NWPro.getLocalStatus()`;
+- browser-local `nicheworks:pro` state;
+- old `/pro/unlock/` behavior;
+- tools gated by legacy `nicheworks_pro`.
 
-`config/billing/products.json` currently defines `okj.toolkit_pro` and common price tiers, but it does not prove which product ID, price, Stripe Price ID environment variable, or live enablement policy belongs to Command Safety Checker.
+Do not use those mechanisms for new paid work.
 
-Therefore:
+Do not delete them first either. Existing tools and possible historical purchasers must be accounted for before retirement.
 
-- do not guess a Command Safety product ID and call it final;
-- do not infer its price from an unrelated common price tier;
-- do not infer a Stripe Price ID from the old Payment Link;
-- do not migrate the checkout CTA to a fabricated configuration.
+The migration sequence is:
 
-Migration starts only after the product contract is explicitly verified.
+1. establish the `nicheworks.pro` bundle contract and membership ledger;
+2. establish the real price/Stripe configuration;
+3. register the product in `config/billing/products.json`;
+4. connect the new server-verified entitlement flow;
+5. migrate existing bundle tools in controlled waves;
+6. migrate/retain historical purchasers without losing access;
+7. only then retire the legacy billing path.
 
-### 2.3 Command Safety migration acceptance
+## 5. Pro-bundle membership rules
 
-Before a live migration is complete, verify:
+The existing `MONETIZATION_MASTER.md` list of Pro-primary candidates is a candidate set, not automatic bundle membership.
 
-1. canonical product ID;
-2. exact price and currency/type;
-3. Stripe Price environment-variable mapping;
-4. feature IDs included in the entitlement;
-5. checkout return path;
-6. test/live enablement policy;
-7. server-side paid entitlement grant;
-8. entitlement remains valid after refresh through server verification;
-9. cancelled, unpaid, or invalid checkout never unlocks paid output;
-10. no command text or checkout/session identifier is sent to analytics.
+Every registered tool must ultimately be classified exactly once for its primary monetization path:
 
-The safety analysis itself remains free.
+- `PRO_BUNDLE` — included in NicheWorks Pro;
+- `STANDALONE_PRO` — separate paid product;
+- `AFFILIATE` — free result first, contextual commercial next action;
+- `ADS_DONATION` — free acquisition/reference utility supported mainly by baseline monetization;
+- `FREE` — intentionally free where additional monetization pressure is not justified;
+- `HOLD` — incomplete or undecided product.
 
-## 3. Affiliate/performance architecture — zero to many offers
+The canonical 87-tool specifications are the functional evidence base for that classification.
 
-There is **no one-tool-one-link rule**.
+A legacy Pro bridge, old price label, Payment Link, `NWPro` call or historical roadmap item is **not** sufficient evidence that a tool belongs in `PRO_BUNDLE`.
 
-A tool may have:
+For every `PRO_BUNDLE` member, Free/Pro boundaries must be written explicitly before live migration. Existing useful Free behavior must not be removed merely to manufacture paid value.
 
-- zero offers;
-- one offer;
-- several offers for one result;
-- hundreds or thousands of offer mappings across its catalog.
+## 6. Reference bundle migration
 
-ManualFinder is the clearest example. A single model result can legitimately lead to multiple commercial next actions, such as the main product, battery, charger, compatible accessory, replacement item, or another merchant. A different model can produce a different set. The number of links must follow the user task and available verified offers, not a global fixed count.
+Command Safety Checker remains the preferred first live reference migration because its current Free/paid boundary is comparatively mature.
 
-### 3.1 What may be shared
+The Free safety analysis must remain available without purchase.
 
-A reusable affiliate layer may standardize only cross-tool concerns such as:
+Candidate paid operations already staged/currently evidenced include professional review/export artifacts such as:
 
-- `partner_key` — merchant / ASP identity;
-- `offer_id` — stable configured offer identity;
+- review Markdown/report;
+- Codex safety-check task;
+- GitHub Issue draft;
+- JSON export;
+- Markdown export.
+
+The migration target is **not** a Command-Safety-specific product. Once Command Safety is approved as a bundle member, its staged product-scoped controller should be configured to verify `nicheworks.pro` and the operation/feature mapping defined for that tool.
+
+A live reference migration is complete only after all of the following work:
+
+1. real `nicheworks.pro` price/currency/billing model are confirmed;
+2. Stripe Product/Price configuration is confirmed;
+3. the registry contains the real bundle product;
+4. checkout is server-created;
+5. signed webhook fulfillment writes the active D1 entitlement;
+6. refresh/reload re-verifies against the server;
+7. cancel/unpaid/invalid checkout never unlocks paid behavior;
+8. localStorage or URL modification cannot self-unlock;
+9. refund/revocation disables paid behavior;
+10. command text and checkout/session identifiers are excluded from analytics payloads.
+
+After that, a second bundle tool must prove that the **same purchase** unlocks its own approved paid operations without a second checkout. That second-tool proof is the acceptance test for the shared NicheWorks Pro model.
+
+## 7. Affiliate/performance architecture
+
+Affiliate monetization remains separate from the Pro track.
+
+There is no one-tool-one-link rule. A tool may have zero, one, several, or many verified offers depending on the actual result and task.
+
+Shared affiliate primitives may standardize cross-tool concerns such as:
+
+- `partner_key`;
+- `offer_id`;
 - destination or destination-generation metadata;
 - enabled/disabled state;
-- disclosure text/state;
-- `placement_id` and placement metadata;
-- neutral offer type/category metadata;
+- disclosure state;
+- placement metadata;
 - fixed analytics metadata;
-- optional validity/maintenance metadata where needed.
+- optional validity/maintenance metadata.
 
-The exact schema may evolve after ManualFinder is reviewed. Do not freeze a schema before the reference implementation exists.
-
-### 3.2 What must remain tool-specific
-
-The common layer must not decide:
-
-- which offer matches the current result;
-- how many offers to show;
-- whether an offer is relevant enough to show;
-- ordering based on the actual task/result;
-- product/model/category matching logic;
-- municipality-specific disposal context;
-- moving-result context;
-- ingredient-tool commerce context.
-
-Those are tool-domain decisions.
-
-Examples:
-
-- ManualFinder: manufacturer/model/result relationship determines related product offers.
-- TrashNavi: disposal result determines whether buyback, collection, moving, or no commercial option is appropriate.
-- Moving tools: generated result may make moving, buyback, or collection relevant.
-- Cosmetic/INCI tools: commerce must remain neutral product discovery and must never infer medical suitability from ingredient input.
-
-### 3.3 Affiliate display order
+Tool-specific logic must still decide which offer is relevant, how many offers to show, and in what order.
 
 Across affiliate/performance tools:
 
 1. deliver the core free result first;
-2. show authoritative/official guidance before commercial content when the tool has such guidance;
+2. show authoritative/official guidance before commercial content where applicable;
 3. show commercial next actions only after the result;
 4. keep commercial content visually distinct;
-5. identify commercial/affiliate nature clearly;
-6. never make a merchant look like the official answer;
-7. show nothing when there is no verified offer/program configuration.
+5. identify affiliate/commercial nature clearly;
+6. never present a merchant as an official answer;
+7. show no offer when no verified configuration exists.
 
-Do not create fake disabled merchant cards merely to fill a layout.
+Do not send raw user content to NicheWorks analytics. This includes search strings, manufacturer/model input, names, addresses, municipality input, ingredient text, lease/move details, command text, user URLs, filenames, checkout IDs or session IDs.
 
-### 3.4 Affiliate analytics
+## 8. Ads / donation / SEO track
 
-Allowed fixed/configured identifiers may include:
+Tools assigned primarily to acquisition/reference/retention should not be forced into Pro or affiliate solely because billing infrastructure exists.
 
-- `tool_id` / `tool_slug`;
-- `offer_id`;
-- `partner_key`;
-- `placement_id` / placement;
-- configured `offer_type`;
-- monetization model enum.
+The Old Kanji reference cluster remains primarily a free acquisition/continuation surface unless a separate product contract is deliberately approved.
 
-Never send raw user content, including:
+Similarly, simple converters, reference tools, privacy utilities and other low-differentiation tools should remain frictionless when there is no credible paid delta.
 
-- search strings;
-- manufacturer/model text typed by the user;
-- names;
-- addresses;
-- municipality input;
-- ingredient text;
-- lease/move details;
-- command text;
-- user-supplied URLs;
-- filenames;
-- checkout or session identifiers.
+## 9. Hold/incomplete track
 
-ASP/merchant-side attribution may use the provider's supported affiliate mechanism, but NicheWorks analytics must not leak user-entered content as event parameters.
+Incomplete products remain outside active monetization rollout until their underlying product contract is complete. Billing UI must not be used to make an unfinished tool look commercially ready.
 
-## 4. ManualFinder is the affiliate reference dependency
+## 10. Parallel-work rule
 
-ManualFinder's affiliate work is proceeding separately. At the time of this document, no finished affiliate implementation is present on `main`, and no affiliate/amazon-named implementation branch is visible as the stable reference.
+NicheWorks frequently has many feature/data/quality branches in flight. Billing work must therefore minimize cross-workstream collisions.
 
-Therefore the sequence is:
+Rules:
 
-1. finish and merge, or otherwise expose, the actual ManualFinder affiliate implementation;
-2. audit its real data model and rendering behavior;
-3. identify which parts are genuinely reusable;
-4. extract only those primitives into a common affiliate layer;
-5. do not rewrite ManualFinder merely to satisfy an abstract shared framework;
-6. then apply the shared layer to other affiliate/performance tools.
+- always branch from the latest `main`;
+- keep billing authority/foundation changes in small dedicated PRs;
+- do not modify unrelated tool runtime while establishing billing infrastructure;
+- do not stop unrelated ManualFinder, TrashNavi, data, SEO or quality work merely because billing migration is underway;
+- temporarily freeze only new ad-hoc Pro products, new prices, new Payment Links and new independent entitlement mechanisms until the common bundle contract is settled;
+- when a parallel branch touches a future Pro tool, preserve its current Free behavior and avoid inventing commercial configuration.
 
-This avoids building a framework that accidentally assumes one tool = one destination or cannot handle a large model/product catalog.
+## 11. Execution queue
 
-## 5. Affiliate rollout order after ManualFinder reference review
+The billing/Pro queue is now:
 
-### Wave A1 — TrashNavi
+1. **Complete:** canonical 87-tool specification/quality layer.
+2. **Complete in current authority work:** reconcile billing strategy around explicit shared `nicheworks.pro` plus separate standalone products.
+3. Classify all 87 registered tools into `PRO_BUNDLE`, `STANDALONE_PRO`, `AFFILIATE`, `ADS_DONATION`, `FREE`, or `HOLD`.
+4. Freeze the exact Free/Pro boundary for every `PRO_BUNDLE` tool.
+5. Decide the `nicheworks.pro` one-time price and Stripe commercial configuration.
+6. Register `nicheworks.pro` in the common billing registry.
+7. Unify D1 entitlement authority around the new billing store and design safe legacy-purchaser migration.
+8. Connect Command Safety Checker end to end as the first bundle member.
+9. Prove a second bundle tool unlocks from the same purchase.
+10. Migrate remaining approved bundle tools in measured waves.
+11. After migration, retire `/api/pro/status`, the old shared webhook path, browser-local purchase authority and the old unlock flow.
+12. Resume broader per-tool quality/Pro-value improvement using the canonical specs and quality matrix.
 
-Primary model: performance / affiliate.
+Affiliate work can continue independently when its required partner/source configuration is verified.
 
-Core rule: official disposal guidance first, commercial next action second.
+## 12. Measurement standard
 
-Potential verified offer classes:
+A monetization implementation is not successful merely because a CTA exists or a billing success page receives traffic.
 
-- buyback/resale;
-- collection/disposal service;
-- moving service when genuinely relevant.
+For Pro, measure at minimum:
 
-Do not label a partner as an official municipal service.
-
-### Wave A2 — Moving pair
-
-- Moving Checklist Generator
-- Moving / Lease Final Check
-
-Potential verified offer classes:
-
-- moving services/quotes;
-- unwanted-item buyback;
-- collection/disposal.
-
-Lease/legal guidance must remain separate from commercial content. No partner is required to satisfy a legal or contractual obligation.
-
-### Wave A3 — Cosmetic pair
-
-- Cosmetic Ingredient Checker Lite
-- INCI FastScan
-
-Primary commercial role: neutral product discovery after the free interpretation.
-
-Never produce health/safety recommendations from user-entered ingredient text. No allergy, pregnancy, treatment, diagnosis, or "safe for you" inference.
-
-### Wave A4 — Construction Tools Atlas
-
-Use tool/category/task context to surface relevant verified tool/product destinations. Do not reduce the Atlas to an affiliate catalog; its reference/usefulness comes first.
-
-### Later affiliate/performance group
-
-Expand to the remaining classified tools only after the first waves produce measurable evidence. A monetization classification is not sufficient reason to inject a CTA everywhere.
-
-## 6. Pro rollout order
-
-The affiliate track and Pro track are separate. ManualFinder does not need to block all Pro preparation, but no product may go live with invented commercial parameters.
-
-### P1 — Command Safety Checker migration
-
-First verify product and price configuration, then migrate the legacy shared-Pro implementation to the product-scoped billing foundation.
-
-Use the existing paid-artifact concepts as the starting product definition:
-
-- review Markdown/report;
-- priority checklist;
-- safer-command review artifacts;
-- Codex safety-check task;
-- GitHub Issue draft;
-- JSON/Markdown operational export.
-
-Do not paywall the free safety check.
-
-### P2 — JSON2Mermaid
-
-Keep current free conversion and current free exports. Candidate Pro value must be genuinely incremental, such as batch workflows, saved local presets/projects, higher proven-safe limits, or a professional export bundle.
-
-Do not manufacture Pro value by removing an existing free feature.
-
-### P3 — Logistics Compliance Kit JP
-
-Keep free assessment/result and current free preview. Paid value should focus on operational handoff/export artifacts already aligned with its workflow. Legal/regulatory disclaimers remain independent of entitlement state.
-
-### P4 — measured expansion
-
-Only after the first product-scoped paid products are measurable should Pro expand to additional candidates such as:
-
-- Codex Work OS;
-- Product Founder OS;
-- Release Guardian;
-- UI Atlas;
-- Screenshot Stitcher;
-- Log Formatter;
-- contract-oriented tools.
-
-If early products do not convert, revise product design before cloning the same paywall across the 42 candidates.
-
-## 7. Ads / donation / SEO acquisition track
-
-The 26 tools assigned primarily to acquisition/retention should not be forced into Pro or affiliate merely because a commercial framework exists.
-
-### Old Kanji cluster
-
-PR #519 completed the first acquisition-continuation implementation:
-
-- Old Kanji Reference is the hub;
-- hub links to six completed related Old Kanji tools;
-- leaf tools link back to the hub plus two context-relevant neighbors;
-- unrelated generic links were removed;
-- workflow-specific dynamic follow-up links were preserved;
-- Old Kanji OCR Scanner remains outside the cluster until its product is complete.
-
-The next action here is measurement, not more monetization UI.
-
-Watch existing GSC/GA4 for:
-
-- Old Kanji Reference landing traffic;
-- internal movement to Modernizer/Name/Place/Unicode/Variant/Old Document tools;
-- search performance stability;
-- whether the cluster creates additional useful sessions without harming the hub.
-
-Do not convert the hub into a hard paywall.
-
-## 8. Hold/incomplete track
-
-Current hold group remains outside active monetization rollout until each product contract is complete:
-
-- Earth Alerts;
-- Earth Timeseries;
-- Earth Map Suite;
-- Old Kanji OCR Scanner;
-- Pattern Atlas, unless/until its current product-state classification is deliberately re-reviewed after subsequent runtime work.
-
-A tool should not receive paid/affiliate pressure merely to make the monetization table look complete.
-
-## 9. Execution queue from this point
-
-The operational queue is:
-
-1. **Completed:** Old Kanji cluster Wave 1 (#519).
-2. **Affiliate dependency:** finish/merge ManualFinder affiliate implementation in its separate workstream.
-3. **Affiliate architecture:** audit ManualFinder and extract multi-offer reusable primitives.
-4. **Affiliate implementation:** TrashNavi.
-5. **Affiliate implementation:** Moving pair.
-6. **Affiliate implementation:** Cosmetic/INCI pair.
-7. **Affiliate implementation:** Construction Tools Atlas.
-8. **Pro prerequisite in parallel:** verify Command Safety product ID, price, Stripe Price env mapping, features, return path, and enablement policy.
-9. **Pro migration:** Command Safety Checker → product-scoped entitlement.
-10. **Pro validation:** prove paid checkout → webhook → D1 entitlement → server verification → active feature after refresh.
-11. **New Pro:** JSON2Mermaid.
-12. **New Pro:** Logistics Compliance Kit JP.
-13. **Decision point:** review GSC, GA4, affiliate reports, and Stripe revenue before broader rollout.
-
-If step 2 is still in progress elsewhere, steps 8–10 may proceed only to the extent that exact commercial configuration is verified. Do not bypass missing product/price decisions with guessed values.
-
-## 10. Measurement standard
-
-A monetization implementation is not successful merely because a CTA exists or a billing page receives traffic.
-
-For affiliate/performance, measure:
-
-- eligible result sessions;
-- monetization-block views;
-- offer clicks by fixed offer/placement identifiers;
-- provider-side conversions/revenue where available;
-- effect on result completion, bounce, and search traffic.
-
-For Pro, measure:
-
-- successful free result/use;
-- Pro feature interest;
+- successful free use;
+- Pro-feature interest;
 - checkout click;
 - verified payment/entitlement grant;
-- active paid feature use;
-- actual revenue.
+- active paid-feature use;
+- actual revenue;
+- refund/revocation behavior.
 
-A `/billing/success` pageview alone is not a paid conversion.
+For affiliate/performance, measure eligible sessions, commercial-block views, clicks by fixed offer/placement IDs and provider-side conversions/revenue where available, while watching effect on result completion and search traffic.
 
-## 11. Non-negotiable rules
+## 13. Non-negotiable rules
 
 - Do not fabricate affiliate partners, links, IDs, product availability, prices, Stripe Price IDs, or entitlement state.
 - Do not use browser-local `active=true` as proof of purchase.
-- Do not turn the product-scoped billing foundation into a hidden all-access entitlement.
-- Do not force one affiliate link per tool or one fixed offer count.
+- Do not revive legacy `nicheworks_pro` as the future server purchase authority.
+- Do not create one paid product per tool merely because the billing engine is product-scoped.
+- Do not automatically include every historical Pro candidate in the bundle.
+- Do not force one affiliate link per tool or a fixed offer count.
 - Do not let commission determine factual/safety output.
-- Do not send raw user inputs to analytics.
-- Do not hide the core free result behind commercial content in tools whose contract says the result remains free.
-- Do not modify ManualFinder from this execution track while its separate monetization workstream is active.
-- Do not expand monetization to incomplete tools before the underlying product is complete.
+- Do not send raw user inputs to analytics or billing records.
+- Do not remove established Free value just to manufacture a paywall.
+- Do not delete legacy purchaser records before a verified migration path exists.
+- Do not expand paid pressure to incomplete tools before the underlying product is complete.
 
-## 12. Source-of-truth order for future work
+## 14. Source-of-truth order for future monetization work
 
-When implementing monetization, use this order:
+Use this order:
 
-1. current tool runtime + tool `SPEC.md` for what the product actually does;
-2. `MONETIZATION_MASTER.md` for the assigned primary monetization model;
-3. this `MONETIZATION_EXECUTION.md` for current architecture and execution order;
-4. `MONETIZATION_WAVE1.md` for still-valid tool-specific placement/free-boundary/KPI detail;
-5. the current billing/affiliate implementation contracts in code.
+1. current runtime plus canonical per-tool specification for actual behavior;
+2. explicit 87-tool monetization classification/membership ledger once completed;
+3. this `MONETIZATION_EXECUTION.md` for commercial strategy and execution order;
+4. `docs/billing/nicheworks-common-billing-architecture.md` for technical billing architecture;
+5. `docs/billing/nicheworks-pro-bundle-contract.md` for the shared bundle contract;
+6. `MONETIZATION_MASTER.md` and `MONETIZATION_WAVE1.md` as evidence/prioritization inputs where still applicable;
+7. current billing/affiliate code contracts.
 
-If an older document conflicts with current runtime or this execution authority, do not silently implement the older assumption. Reconcile the documentation first.
+If an older document conflicts with this authority, reconcile the documentation before implementing the conflicting assumption.

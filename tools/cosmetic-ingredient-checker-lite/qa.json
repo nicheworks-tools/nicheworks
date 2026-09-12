@@ -3,7 +3,7 @@
     {
       "action": "fill",
       "selector": "#inciInput",
-      "value": "Water, Alcohol, Fragrance, Limonene, Phenoxyethanol"
+      "value": "水、グリセリン、ナイアシンアミド、1,2-Hexanediol、香料、Cetearyl Alcohol"
     },
     {
       "action": "click",
@@ -14,14 +14,18 @@
       "selector": "#parsedCount"
     },
     {
+      "assert": "notEmpty",
+      "selector": "#matchedCount"
+    },
+    {
       "assertAny": [
         {
           "selector": "#itemsTable",
-          "contains": "FRAGRANCE"
+          "contains": "辞書一致"
         },
         {
           "selector": "#itemsTable",
-          "contains": "Fragrance"
+          "contains": "確認候補"
         }
       ]
     },

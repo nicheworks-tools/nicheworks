@@ -5,7 +5,13 @@ on:
   pull_request:
     paths:
       - 'tools/trashnavi/**'
+      - 'scripts/check-trashnavi-direct-links.mjs'
+      - 'sitemap.xml'
+      - 'sitemap-trashnavi.xml'
+      - 'sitemap-index.xml'
+      - 'robots.txt'
       - '.github/workflows/check-trashnavi-coverage.yml'
+      - '.github/workflows/check-trashnavi-direct-links.yml'
 
 jobs:
   audit:
@@ -32,3 +38,12 @@ jobs:
 
       - name: Enforce coverage data quality
         run: node tools/trashnavi/scripts/audit-coverage.mjs --strict
+
+      - name: Check direct-link dataset inventory
+        run: node scripts/check-trashnavi-direct-links.mjs --inventory
+
+      - name: Check generated municipality pages
+        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+
+      - name: Check runtime contract
+        run: node tools/trashnavi/scripts/check-runtime-contract.mjs

@@ -12,83 +12,251 @@ Status: implemented.
 
 - standalone repositoryの約40recordをmonorepoへ移す
 - 旧6時間HTTP checkerをcanonical updaterとして廃止
-- legacy recordを`legacy_review_required`へ統一
 - database schema / audit / search / category filterを整備
 - current 87-tool quality cycleを壊さないためregistry追加は保留
 - repository SEO contractを守るためlandingは`index.staged.html` + `noindex,nofollow`で保持
 
 ## Phase 1 — Legacy 40 cleanup
 
-Status: **legacy migration cleanup complete (2026-09-12)**.
+Status: **complete (2026-09-12)**.
 
-旧40件を直接破壊的に書き換えず、`data/reverification/*.json`のoverlayでofficial-source review結果を固定した。後waveの再確認はlast-winsで前waveの暫定判断を上書きできる。Phase 2で新規serviceを追加する前に、必要に応じてeffective recordsを新canonical datasetへcompactする。
-
-### Final Phase 1 state after wave 3
+最終状態:
 
 - effective records: 40
 - `verified`: 33
 - `retired`: 1（dTV → Lemino）
 - `needs_review`: 2（Amazonプライム / ディズニープラス）
-- `placeholder`: 4（TVer旧placeholder + 旧generic 2件 + DMMブックス旧「読み放題」誤項目）
+- `placeholder`: 4
 - `legacy_review_required`: **0**
-- visible records: 36
-- visible recordsに占めるverified比率: 約92%
+- public-visible: 36
+- verified比率: 約92%
 
-### Wave 1 completed
+主な是正:
 
-- iCloud+の誤redirect URLを現行Apple公式案内へ修正
-- Notion / Slack / Adobe等の旧help URLを現行公式案内へ修正
-- ChatGPTの旧`Plus / Team`表記を現行有料プランの扱いへ整理
-- dTVを現役subscriptionではなくLemino移行済みhistoryへ変更
-- 楽天市場系 / au PAYマーケット系のgeneric rowをplaceholderへ隔離
-- carrier 4件で回線解約とMNPを混同しないsummaryへ整理
-- App Store / Google Play / direct billing等の主要routeをverified recordへ追加
+- iCloud+の誤redirect、Notion / Slack / Adobe等の旧help URLを現行official sourceへ修正
+- dTVをLemino移行済みhistoryへ変更
+- generic / 架空 / 実体不一致rowをplaceholderへ隔離
+- carrierの解約とMNP、subscription cancellationとaccount deletionを分離
+- Amazon Music Unlimited / Kindle Unlimited / ニコニコ / Rakuten TV / 楽天マガジン等を現行official sourceで再確認
 
-### Wave 2 completed
-
-- ABEMAの現行有料視聴プラン解約ページを確認し、決済経路別の解約を記録
-- AWA StandardプランのApp Store / Google Play / Web / partner経由の自動更新停止を確認
-- Boxの旧誤リンクを現行「アカウント/サブスクリプションのキャンセル方法」へ修正し、Personal ProとBusiness/Enterpriseの差を記録
-- BookLive旧「読み放題」項目を実在する「月額ポイントコース」へ是正。2025-09-24に新規登録終了済みで、解除後は再登録不可という公式注意点を記録
-- DMMブックス旧「読み放題」は現行公式helpで月額読み放題としての実体を確認できないためplaceholderへ隔離
-- 楽天マガジンをdirect procedure URL確定待ちの`needs_review`へ整理
-
-### Wave 3 completed
-
-- Amazon Music UnlimitedをAmazon公式キャンセル案内でverified化。Amazon直契約とApp Store / Google Play / carrier等の第三者請求を分離
-- Kindle UnlimitedをAmazon公式キャンセル案内でverified化。解約後も次回請求日までは利用可能という公式挙動を記録
-- ニコニコプレミアムを現行ニコニコヘルプの解約導線でverified化
-- Rakuten TVを2026年2月の大規模plan終了後の状態へ更新し、存続定額見放題planの購入履歴からの解約をverified化
-- 楽天マガジンを楽天公式サポートの「ご契約内容の確認・変更」導線でverified化
-- Amazonプライムは解約経路自体は確認できるが、日本向けの安定した公開help直リンクを正式公開前に再確認するため`needs_review`
-- ディズニープラスはdirect billing / third-party billing / account deletionの違いは公式確認できるが、日本向け個別解約記事URLを正式公開前に確定するため`needs_review`
-
-Phase 1の目的だった「旧版由来の未判定データを残さない」は達成。残る2件は具体的な公式導線の最終固定問題であり、legacy migration debtではない。
+旧40件は`data/services.json`をmigration snapshotとして保持し、`data/reverification/*.json`をlast-wins overlayとして適用する。
 
 ## Phase 2 — Expand to 100
 
-Status: **next**.
+Status: **100 public-visible milestone reached (2026-09-12)**.
 
-現在の40 seedを土台に、追加60件程度をresearch waveで収録する。ただしplaceholder 4件は公開数に含めないため、100 public-visibleを目標にする場合は実質64件以上の有効record追加が必要。
+100件というraw countではなく、**100 public-visible / verified中心**を目標とした。Phase 1のplaceholder 4件は公開数に含めず、開始時点36 public-visibleから公式sourceを確認できたserviceだけをwave単位で追加した。
 
-Priority categories:
+Phase 2では新規serviceを`data/additions/*.json`へwave単位で追加し、legacy migration snapshotを直接増築しない。merge順は legacy base → additions → re-verification overlays。
 
-1. 動画配信 / streaming
-2. 音楽 / audio
-3. AI / SaaS / productivity
-4. cloud / storage
-5. mobile / carrier / SIM
-6. gaming memberships
-7. ebooks / magazines / learning
-8. major shopping / paid memberships
+### Wave 1 — 2026-09-12
+
+Official-source verified 10件:
+
+- DAZN
+- FODプレミアム
+- TELASA 見放題プラン
+- Audible 会員プラン
+- Zoom 有料プラン
+- Evernote 有料プラン
+- Claude Pro / Max
+- mineo
+- UQ mobile
+- IIJmio
+
+Wave 1反映後:
+
+- effective records: 50
+- public-visible: 46
+- verified: 43
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **46%**
+
+### Wave 2 — 2026-09-12
+
+Official-source verified 7件:
+
+- WOWOW
+- GitHub Copilot Pro / Pro+ / Max
+- Perplexity Pro
+- LinkedIn Premium
+- Microsoft Copilot Pro
+- Apple One
+- Google Workspace Individual
+
+Wave 2反映後:
+
+- effective records: 57
+- public-visible: 53
+- verified: 50
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **53%**
+
+Wave 2では件数を10へ揃えることを優先せず、公式のキャンセル/解約手順を十分に固定できた7件だけを追加した。Canva等、公式情報はあるが直接手続きsourceの確定が弱い候補はverified追加を見送る。
+
+### Wave 3 — 2026-09-12
+
+Official-source verified 11件:
+
+- X Premium
+- Discord Nitro / Nitro Basic
+- 1Password
+- Grammarly 有料プラン
+- Strava サブスクリプション
+- Todoist Pro
+- Miro Starter / Business
+- Figma Professional
+- Google Play Pass
+- NordVPN
+- Skillshare
+
+Wave 3反映後:
+
+- effective records: 68
+- public-visible: 64
+- verified: 61
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **64%**
+
+Wave 3でも件数優先にはせず、公式の解約・自動更新停止sourceと契約経路を固定できたserviceだけを追加する。Amazonプライム / ディズニープラスは日本向けの安定した公式procedure URLをまだ固定できていないため、`needs_review`のまま維持する。
+
+### Wave 4 — 2026-09-12
+
+Official-source verified 11件:
+
+- Y!mobile
+- BIGLOBEモバイル
+- radikoプレミアム
+- マネーフォワード ME プレミアムサービス
+- Chatwork 有料プラン
+- Udemy 個人向け定額プラン
+- Medium Membership
+- Proton 有料プラン
+- Asana 有料プラン
+- Trello Standard / Premium
+- Dropbox Sign
+
+Wave 4反映後:
+
+- effective records: 79
+- public-visible: 75
+- verified: 72
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **75%**
+
+Wave 4では国内通信・音声・家計簿・業務SaaS・学習を厚くした。解約とMNP、サブスクリプション停止とアカウント削除、ストア課金とWeb課金を同一視せず、公式source上の手続き差をrecordへ反映する。
+
+### Wave 5 — 2026-09-12
+
+Official-source verified 11件:
+
+- BOOK☆WALKER 読み放題
+- コミックシーモア 読み放題
+- 楽天ミュージック
+- Crunchyroll Premium
+- Midjourney
+- Airtable 有料プラン
+- monday.com 有料プラン
+- ClickUp 有料プラン
+- Calendly 有料プラン
+- Zapier 有料プラン
+- Patreon 有料メンバーシップ
+
+Wave 5反映後:
+
+- effective records: 90
+- public-visible: 86
+- verified: 83
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **86%**
+
+Wave 5では電子書籍・音楽・動画を追加しつつ、AI / productivity / creator系SaaSの解約導線を補強した。ストア経由契約とWeb直接契約、プラン解約とアカウント削除・ダウングレードを公式sourceに従って分離する。
+
+### Wave 6 — 2026-09-12 — 100 milestone
+
+Official-source verified 14件:
+
+- dマガジン
+- pixivプレミアム
+- Apple Arcade
+- Dashlane 個人向け有料プラン
+- JetBrains 個人サブスクリプション
+- Bitwarden Premium
+- ExpressVPN
+- Surfshark
+- Clipchamp Premium
+- Leminoプレミアム
+- LYPプレミアム スタンダードプラン
+- 食べログプレミアム
+- Schoo プレミアムプラン
+- メルカリモバイル
+
+Wave 6反映後:
+
+- effective records: 104
+- public-visible: **100**
+- verified: **97**
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **100%**
+
+最初の公開規模目標である100 public-visibleへ到達。ただし100件到達だけを理由に正式登録・index公開は行わない。
+
+### Post-100 quality pass — 2026-09-12
+
+100件到達後はraw count追加を止め、公開前品質を優先する。
+
+実施済み:
+
+- Disney+の日本語公式解約記事 `https://help.disneyplus.com/ja/article/disneyplus-ja-jp-cancel` を確認し、`needs_review`から`verified`へ昇格
+- staged landingの「単独版から移行中」という旧表示を撤去し、正式公開前の品質監査中であることを明示
+- category filterに加えてverification-state filterを追加
+- 480px未満でaction controlsを縦積みに統一
+- audit scriptへdirect procedure URL / procedure type / billing route coverageと90日freshnessのreport-only出力を追加
+- verified recordから個別page候補25件をP0/P1/P2へ選定し、`INDIVIDUAL_PAGE_CANDIDATES.md`へ固定
+
+現在:
+
+- effective records: **104**
+- public-visible: **100**
+- verified: **98**
+- retired: 1
+- needs_review: **1（Amazonプライム）**
+- placeholder: 4
+- verified share of visible: **98%**
+- individual-page candidates: **25**
+
+AmazonプライムはAmazon側の公開ページ取得が不安定で、日本向けの安定したprocedure sourceを今回も固定できなかったため、件数合わせで`verified`へ昇格しない。
+
+### Phase 2 follow-up after 100
+
+残タスク:
+
+1. Amazonプライムの`needs_review`を、安定した日本向けofficial sourceが確保できる場合のみ閉じる
+2. audit出力を使ってcategory偏り・procedure type・billing route coverageを評価し、Phase 3の追加対象を決める
+3. P0候補から構造の異なる5件（FOD / LINE MUSIC / Adobe Creative Cloud / Y!mobile / Lemino）をstaged individual-page templateで生成・検証する
+4. staged UIを実データ100件で確認し、必要なら検索・絞り込みを追加調整する
+5. 90日freshness reportを運用し、stale判定を自動で`verified`へ反映しない
+6. current 87-tool quality cycleとのタイミングを見て正式登録可否を決める
 
 Rule:
 
 - candidate発見とverified公開を分離する
 - official sourceが取れない候補は公開数に含めない
 - 同一brandの複数planはprocedureが実際に異なる場合のみ分ける
-- まず100件候補を作るのではなく、**100 public-visible / verified中心**を目標に追加waveを組む
-- Amazonプライム / ディズニープラスの`needs_review` 2件はPhase 2初期に並行して閉じる
+- 新規addition `id`は既存base/additionと衝突不可
+- HTTP 200だけではverifiedへ昇格しない
 
 ## Phase 3 — Expand to 150
 
@@ -101,7 +269,7 @@ Rule:
 - 解約/退会/自動更新停止が混同されやすいservice
 - competitor pageはあるがofficial pathが見つけづらいservice
 
-この段階からservice-specific static page候補を選定する。
+個別pageはPhase 2 follow-upで選定済みのP0/P1/P2候補を先に検証し、Phase 3追加recordは同じ選定contractへ後から追加する。
 
 ## Phase 4 — Expand to 200
 
@@ -111,11 +279,19 @@ Rule:
 
 ## Individual service pages
 
-将来例:
+候補正本:
 
-- `/tools/unsubscribe-navi/netflix/`
-- `/tools/unsubscribe-navi/spotify/`
-- `/tools/unsubscribe-navi/adobe-creative-cloud/`
+- `tools/unsubscribe-navi/INDIVIDUAL_PAGE_CANDIDATES.md`
+- selected: **25 records**
+- P0: 10 / P1: 10 / P2: 5
+
+最初のtemplate検証対象:
+
+- `fod-premium`
+- `line-music`
+- `adobe-cc`
+- `ymobile`
+- `lemino-premium`
 
 生成条件:
 
@@ -137,18 +313,20 @@ Rule:
 - last verified date
 - change history when meaningful
 
+staged期間中は個別pageをpublic sitemap / mother-siteへ露出しない。
+
 ## Freshness and automation
 
 旧版の「6時間ごとにHTTP 200ならok」は採用しない。
 
-将来自動化する場合はsignalを分ける:
+signalを分ける:
 
 - network health: status / timeout / redirect
 - source identity: final URL / title / canonical
 - semantic drift: expected service/procedure markers
 - human/research verification: verified state and date
 
-機械checkが成功しても`verified`を自動付与しない。
+`audit-services.mjs`は90日を超えたverified recordを**report-only**で列挙する。freshness reportや機械checkが成功・失敗しても、`verified`を自動付与・剥奪しない。状態変更はofficial sourceを再確認したreview結果だけで行う。
 
 ## Monetization stage
 

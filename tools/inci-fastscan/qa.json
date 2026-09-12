@@ -1,0 +1,37 @@
+{
+  "steps": [
+    {
+      "action": "fill",
+      "selector": "#fast-input",
+      "value": "Water, Glycerin, 1,2-Hexanediol, PhenoxyethanoI"
+    },
+    {
+      "action": "click",
+      "selector": "#btn-fast-check"
+    },
+    {
+      "assert": "notEmpty",
+      "selector": "#fast-results"
+    },
+    {
+      "assertAny": [
+        {
+          "selector": "#fast-results",
+          "contains": "近い表記候補"
+        },
+        {
+          "selector": "#fast-results",
+          "contains": "Possible close matches"
+        }
+      ]
+    },
+    {
+      "assertAny": [
+        {
+          "selector": "#fast-results",
+          "contains": "1,2-Hexanediol"
+        }
+      ]
+    }
+  ]
+}

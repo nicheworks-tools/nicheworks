@@ -8,6 +8,27 @@ on:
       - 'tools/tool-spec-manifest.json'
       - 'tools/*/SPEC.md'
       - 'docs/tool-spec-standard.md'
+      - 'docs/tools/ats-paste-doctor.md'
+      - 'docs/tools/message-generator.md'
+      - 'docs/tools/old-document-kanji-highlighter.md'
+      - 'docs/tools/old-kanji-ocr-scanner.md'
+      - 'docs/tools/place-old-kanji-checker.md'
+      - 'docs/tools/unicode-kanji-checker.md'
+      - 'docs/tools/url-title-collector.md'
+      - 'docs/tools/variant-kanji-compare.md'
+      - 'audits/tool-quality-matrix.json'
+      - 'audits/tool-quality-matrix.md'
+      - 'tools/ats-paste-doctor/index.html'
+      - 'tools/message-generator/index.html'
+      - 'tools/old-document-kanji-highlighter/index.html'
+      - 'tools/old-kanji-ocr-scanner/index.html'
+      - 'tools/place-old-kanji-checker/index.html'
+      - 'tools/unicode-kanji-checker/index.html'
+      - 'tools/url-title-collector/index.html'
+      - 'tools/url-title-collector/en/index.html'
+      - 'tools/variant-kanji-compare/index.html'
+      - 'assets/nw-support.css'
+      - 'scripts/check-common-support-contract.mjs'
       - 'scripts/check-tool-spec-contract.mjs'
       - '.github/workflows/tool-spec-audit.yml'
   push:
@@ -18,6 +39,27 @@ on:
       - 'tools/tool-spec-manifest.json'
       - 'tools/*/SPEC.md'
       - 'docs/tool-spec-standard.md'
+      - 'docs/tools/ats-paste-doctor.md'
+      - 'docs/tools/message-generator.md'
+      - 'docs/tools/old-document-kanji-highlighter.md'
+      - 'docs/tools/old-kanji-ocr-scanner.md'
+      - 'docs/tools/place-old-kanji-checker.md'
+      - 'docs/tools/unicode-kanji-checker.md'
+      - 'docs/tools/url-title-collector.md'
+      - 'docs/tools/variant-kanji-compare.md'
+      - 'audits/tool-quality-matrix.json'
+      - 'audits/tool-quality-matrix.md'
+      - 'tools/ats-paste-doctor/index.html'
+      - 'tools/message-generator/index.html'
+      - 'tools/old-document-kanji-highlighter/index.html'
+      - 'tools/old-kanji-ocr-scanner/index.html'
+      - 'tools/place-old-kanji-checker/index.html'
+      - 'tools/unicode-kanji-checker/index.html'
+      - 'tools/url-title-collector/index.html'
+      - 'tools/url-title-collector/en/index.html'
+      - 'tools/variant-kanji-compare/index.html'
+      - 'assets/nw-support.css'
+      - 'scripts/check-common-support-contract.mjs'
       - 'scripts/check-tool-spec-contract.mjs'
       - '.github/workflows/tool-spec-audit.yml'
 
@@ -38,6 +80,9 @@ jobs:
 
       - name: Check per-tool specification contract
         run: node scripts/check-tool-spec-contract.mjs
+
+      - name: Check repaired common support contract
+        run: node scripts/check-common-support-contract.mjs
 
       - name: Confirm repository was not modified
         run: git diff --exit-code

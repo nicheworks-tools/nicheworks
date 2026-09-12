@@ -18,17 +18,22 @@
 monorepoへ吸収済みだが、既存87ツールの品質改善母数を変えないため正式公開前のstaged stateとする。production-intent landingは`index.staged.html`に保持し、正式登録時に`index.html`へ昇格させる。
 
 - `data/services.json` をlegacy migration snapshotとして読み込む。
-- `data/reverification/*.json` のofficial-source review結果を`id`単位でoverlayし、effective recordを生成する。
+- `data/additions/*.json` からPhase 2以降の新規serviceを追加する。
+- `data/reverification/*.json` のofficial-source review結果を`id`単位でoverlayする。
+- merge順は legacy base → additions → re-verification overlays とする。
+- additionの`id`は既存recordと衝突不可。overlayは既存`id`だけを上書き可能。
 - 後waveで同じ`id`を再確認した場合はlast-winsで新しい判断を正とする。
-- runtimeとauditは同じoverlay順序・同じmerge契約を使用する。
+- runtimeとauditは同じmerge契約を使用する。
 - サービス名、alias、keyword、category、summary、procedure type、billing routeを検索対象にする。
-- category filterを提供する。
+- category filterとverification-state filterを提供する。
 - `placeholder` recordは通常検索結果に表示しない。
 - `verified` / `needs_review` / `retired` / legacy dataをUI上で区別する。
 - `procedure_url` がある場合のみ公式手続き・関連情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
-- legacy recordをHTTP 200だけでverifiedへ昇格させない。
+- HTTP 200だけでverifiedへ昇格させない。
 
-2026-09-12 re-verification wave 3で旧40件のmigration cleanupを完了した。effective stateは`verified` 33件、`retired` 1件、`needs_review` 2件、`placeholder` 4件、`legacy_review_required` 0件。通常表示36件に対するverified比率は約92%。
+2026-09-12のPhase 2 Wave 6で100 public-visibleへ到達し、その後Disney+を日本語公式解約記事で再検証した。現在のeffective stateは **104 effective / 100 public-visible / 98 verified / 1 needs_review / 1 retired / 4 placeholder**。Amazonプライムのみ、日本向けの安定した公開procedure sourceを正式公開前に引き続き確認する。
+
+個別service pageは`INDIVIDUAL_PAGE_CANDIDATES.md`で25件をP0/P1/P2へ選定済み。候補選定は公開を意味しない。P0の構造が異なる5件（FODプレミアム / LINE MUSIC / Adobe Creative Cloud / Y!mobile / Leminoプレミアム）について、`individual-page-manifest.staged.json`を正本に`staged-pages/*.html`を生成するtemplateを実装済み。各pageは`noindex,nofollow`で、public sitemap / registry / mother-siteには露出しない。
 
 ## Inputs
 
@@ -36,6 +41,7 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 
 - 任意の検索語
 - category filter
+- verification-state filter
 
 入力はブラウザ内filterにのみ使用する。
 
@@ -51,11 +57,23 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - official site URL
 - verification note / date
 
+staged individual pageは、verified recordと追加の公式source確認から以下を表示する。
+
+- service / plan identity
+- official procedure link
+- route別の解約先
+- cancellation / automatic-renewal stop / carrier termination等のprocedure type
+- 解約とaccount deletion / MNP / downgrade等の違い
+- official sourceに根拠がある注意事項
+- last verified date
+
 ## State and persistence
 
 ユーザー入力や検索状態を永続保存しない。localStorage、cookie、account DBは使用しない。データベース本体はrepository内のstatic JSONを正本とする。
 
-Phase 1 cleanup完了後もmigration provenanceを保持するため、現時点では`data/services.json`をmigration snapshot、`data/reverification/*.json`をreview overlayとして保持する。Phase 2開始前または適切な区切りでeffective recordsを新canonical datasetへcompactできる。
+現段階では`data/services.json`をmigration snapshot、`data/additions/*.json`を新規収録wave、`data/reverification/*.json`をreview overlayとして保持する。十分な区切りでeffective recordsを新canonical datasetへcompactできる。
+
+individual pageのstaged contentは`individual-page-manifest.staged.json`を追加正本とし、`scripts/generate-individual-pages.mjs`でeffective recordとの整合性を検証してHTMLを生成する。manifestのsource URLとeffective recordの`procedure_url`、verification dateが一致しない場合はgeneratorを失敗させる。
 
 ## Privacy and network behavior
 
@@ -73,7 +91,9 @@ Phase 1 cleanup完了後もmigration provenanceを保持するため、現時点
 
 `hybrid`
 
-検索・filterはmobileで1columnへ変形し、結果はdesktopで2column、狭幅で1columnとする。100〜200recordでも一覧性を保つ。
+検索・filterはmobileで1columnへ変形し、結果はdesktopで2column、狭幅で1columnとする。100〜200recordでも一覧性を保つ。480px未満ではaction controlsを縦積みにし、スマホ上で公式手続き導線を押しやすくする。
+
+individual pageもdesktopではroute cardを2column、680px以下で1column、480px以下でprimary actionを縦積みにする。
 
 ## Limits and non-goals
 
@@ -83,8 +103,11 @@ Phase 1 cleanup完了後もmigration provenanceを保持するため、現時点
 - officialでないblogやaffiliate記事を手続きの一次sourceとして扱わない。
 - verifiedでないrecordへ架空のverification dateを入れない。
 - countを増やすためだけのplaceholderやgeneric brand entryを公開しない。
+- official procedure sourceが弱い候補を件数合わせでverified追加しない。
 - cancellationを妨害する収益導線を設置しない。
 - staged stateの間はpublic `index.html` を作らない。
+- 個別service pageをSEO目的だけでthin pageとして量産しない。
+- staged individual pageをpublic sitemap / mother-site / registryへ載せない。
 
 ## Acceptance criteria
 
@@ -96,15 +119,29 @@ Phase 1 cleanup完了後もmigration provenanceを保持するため、現時点
 - [x] current 87-tool registryを変えずにstaged sourceを保持する。
 - [x] re-verification waveをmigration provenance付きで段階適用できる。
 - [x] legacy recordのofficial-source再検証・分類が完了し、`legacy_review_required`が0になっている。
-- [ ] 100 service以上がverifiedまたは適切なretired historyとして整理されている。
+- [x] Phase 2で新規serviceを既存migration snapshotと分離して追加できる。
+- [x] 100 public-visible service以上がverified中心で整理されている。
+- [x] 100件規模でcategoryとverification-stateを組み合わせて絞り込める。
+- [ ] Amazonプライムの日本向け安定procedure sourceを固定する。
+- [x] freshness / stale-source report-only監査を実装する。
+- [x] 個別service page候補20〜30件を正式公開前に選定する。
+- [x] P0候補から5件のstaged individual-page templateを生成する。
+- [x] staged page generatorがeffective recordのverified state / procedure URL / verification dateを検証する。
+- [ ] P0残り5件へ拡張する前に、初期5件の実ブラウザ表示・mobile usabilityを最終確認する。
 
 ## Implementation evidence
 
 - `tools/unsubscribe-navi/index.staged.html` — staged static UI / SEO / FAQ / NicheWorks common surfaces
-- `tools/unsubscribe-navi/app.js` — base + re-verification overlay merge, local search and rendering
+- `tools/unsubscribe-navi/app.js` — base + additions + re-verification merge, local search and rendering
 - `tools/unsubscribe-navi/style.css` — responsive hybrid layout
+- `tools/unsubscribe-navi/individual-page.css` — staged individual-page responsive layout
+- `tools/unsubscribe-navi/individual-page-manifest.staged.json` — first five staged individual-page content records
+- `tools/unsubscribe-navi/staged-pages/*.html` — generated noindex individual-page prototypes
 - `tools/unsubscribe-navi/data/services.json` — legacy migration snapshot
+- `tools/unsubscribe-navi/data/additions/*.json` — Phase 2+ new service waves
 - `tools/unsubscribe-navi/data/reverification/*.json` — official-source re-verification overlays
-- `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / overlay audit
+- `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / additions / overlay audit and report-only freshness metrics
+- `tools/unsubscribe-navi/scripts/generate-individual-pages.mjs` — staged individual-page generator and `--check` stale-output validation
 - `tools/unsubscribe-navi/DATA_MODEL.md` — forward data, route and verification contract
 - `tools/unsubscribe-navi/ROADMAP.md` — 100–200 service expansion plan and current progress
+- `tools/unsubscribe-navi/INDIVIDUAL_PAGE_CANDIDATES.md` — selected 25 individual-page candidates and staged generation order

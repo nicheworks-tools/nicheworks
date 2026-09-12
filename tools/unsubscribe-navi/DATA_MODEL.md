@@ -8,7 +8,7 @@ HTTP 200、page title取得成功、redirect成功だけではverification evide
 
 ## 2. Canonical record
 
-Phase 1の必須/主要field:
+必須/主要field:
 
 | Field | Required | Meaning |
 | --- | --- | --- |
@@ -44,7 +44,7 @@ These fields must only be added when supported by official evidence.
 
 ### `legacy_review_required`
 
-Standalone repositoryから移行したrecord。旧版の自動HTTP checker結果はverificationとして引き継がない。
+Standalone repositoryから移行したrecord。旧版の自動HTTP checker結果はverificationとして引き継がない。Phase 1終了時点でeffective dataset上は0件。
 
 ### `verified`
 
@@ -83,10 +83,13 @@ service / planが終了、統合、名称変更等で現行契約対象ではな
 - `app_store`
 - `google_play`
 - `amazon_appstore`
+- `amazon_billing`
 - `partner_billing`
 - `carrier_billing`
 - `credit_card`
-- `line_store`
+- `paypal`
+- `account_portal`
+- `mnp_transfer`
 - operator/account specific route（例: `microsoft_account`, `nintendo_account`）
 
 route名は手続き差分の検索・監査用identifierであり、決済事業者を網羅すること自体を目的にしない。
@@ -103,21 +106,39 @@ verified昇格時に確認する内容:
 6. source titleと最終URLを記録する価値がある場合は保存する。
 7. 実際に確認した日だけ`last_verified_at`へ入れる。
 
-## 6. Re-verification overlays
+## 6. Dataset composition
 
-旧40件の再検証中は、`data/services.json`をmigration snapshotとして保持し、`data/reverification/*.json`を新しい検証結果のoverlayとして適用する。
+Phase 2以降のeffective datasetは3層で構成する。
+
+### Legacy base
+
+`data/services.json` はstandalone版から持ち込んだ40件のmigration snapshot。Phase 1 provenance保持のため原則として直接書き換えない。
+
+### Additions
+
+`data/additions/*.json` はPhase 2以降に新規収録するservice record。
 
 ルール:
 
-- overlay recordはbaseに存在する`id`だけを上書きできる。
+- addition recordの`id`はlegacy baseおよび先行addition waveと衝突してはならない。
 - 同一wave file内で同じ`id`を重複させない。
-- 後のwaveで同じ`id`を再確認した場合は、**後waveを正とするlast-wins**で上書きできる。これにより`needs_review`から`verified`への昇格等を履歴を残したまま表現する。
-- overlay適用順はファイル名の昇順とし、runtimeの明示listも同じwave順を維持する。
-- runtimeとauditはbase + overlayのeffective recordを同じmerge semanticsで解釈する。
-- overlayは「HTTP checker結果」ではなくofficial-source reviewの結果だけを保存する。
-- Phase 1終了時に、全旧recordの整理が完了したらeffective recordsを新しいcanonical datasetへcompactしてよい。
+- verified追加はofficial procedure source、verification date/source title、procedure typeを持つ。
+- 件数合わせだけのplaceholderはPhase 2追加数として扱わない。
+- runtimeとauditはaddition fileをファイル名昇順で読み、legacy baseの後に追加する。
 
-この方式により、旧版のmigration provenanceと途中waveの判断を残したまま、より新しい公式確認で暫定状態を更新できる。
+### Re-verification overlays
+
+`data/reverification/*.json` は既存recordの新しい公式確認結果を`id`単位で上書きする。
+
+ルール:
+
+- overlay recordはlegacy baseまたはadditionに既に存在する`id`だけを上書きできる。
+- 同一wave file内で同じ`id`を重複させない。
+- 後のwaveで同じ`id`を再確認した場合は、**後waveを正とするlast-wins**で上書きできる。
+- overlay適用順はファイル名の昇順とし、runtimeの明示listも同じwave順を維持する。
+- overlayは「HTTP checker結果」ではなくofficial-source reviewの結果だけを保存する。
+
+Merge orderは常に **legacy base → additions → re-verification overlays** とする。runtimeとauditはこのmerge semanticsを一致させる。
 
 ## 7. Database scale
 
@@ -134,6 +155,7 @@ Primary metrics:
 - category coverage
 - billing-route coverage
 - last-verified freshness
+- phase 2 added ids
 
 200件あっても大半がgeneric brand pageなら完成扱いしない。
 
@@ -151,4 +173,4 @@ Primary metrics:
 
 Standalone版の40recordは、`status: ok/check`や自動取得titleを捨て、元のservice identity / candidate URL / noteだけをmigration seedとして扱う。
 
-旧checkerの6時間自動commitはmonorepoへ移植しない。今後自動checkを入れる場合も、semantic verificationと機械的link healthを別signalとして保持する。
+Phase 1で全旧recordを再分類し、effective dataset上の`legacy_review_required`は0件になった。旧checkerの6時間自動commitはmonorepoへ移植しない。今後自動checkを入れる場合も、semantic verificationと機械的link healthを別signalとして保持する。

@@ -1,0 +1,39 @@
+[
+  {
+    "pref": "福島県",
+    "city": "猪苗代町",
+    "name": "猪苗代町 家庭ごみの分け方・出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.inawashiro.fukushima.jp/soshiki/4/1611.html",
+    "lgcode": "074080",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "福島県",
+    "city": "猪苗代町",
+    "name": "猪苗代町 令和8年度ごみリサイクルカレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.inawashiro.fukushima.jp/soshiki/4/3297.html",
+    "lgcode": "074080",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "福島県",
+    "city": "猪苗代町",
+    "name": "猪苗代町 粗大ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.inawashiro.fukushima.jp/soshiki/4/1607.html",
+    "lgcode": "074080",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]

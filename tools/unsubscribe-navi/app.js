@@ -18,12 +18,22 @@ const CATEGORY_LABELS = {
   other: 'その他'
 };
 
+const ADDITION_FILES = [
+  './data/additions/2026-09-12-phase2-wave1.json',
+  './data/additions/2026-09-12-phase2-wave2.json',
+  './data/additions/2026-09-12-phase2-wave3.json',
+  './data/additions/2026-09-12-phase2-wave4.json',
+  './data/additions/2026-09-12-phase2-wave5.json',
+  './data/additions/2026-09-12-phase2-wave6.json'
+];
+
 const REVERIFICATION_FILES = [
   './data/reverification/2026-09-12-wave1-media.json',
   './data/reverification/2026-09-12-wave1-cloud-software.json',
   './data/reverification/2026-09-12-wave1-carrier-hygiene.json',
   './data/reverification/2026-09-12-wave2-cleanup.json',
-  './data/reverification/2026-09-12-wave3-phase1-close.json'
+  './data/reverification/2026-09-12-wave3-phase1-close.json',
+  './data/reverification/2026-09-12-wave4-post100-quality.json'
 ];
 
 let database = { records: [] };
@@ -34,12 +44,20 @@ async function fetchJson(url) {
   return response.json();
 }
 
-function mergeReverification(base, overlays) {
+function buildDatabase(base, additions, overlays) {
   const byId = new Map((base.records || []).map((record) => [record.id, record]));
+
+  for (const addition of additions) {
+    for (const record of addition.records || []) {
+      if (byId.has(record.id)) throw new Error(`duplicate addition id: ${record.id}`);
+      byId.set(record.id, record);
+    }
+  }
 
   for (const overlay of overlays) {
     for (const record of overlay.records || []) {
-      const previous = byId.get(record.id) || {};
+      if (!byId.has(record.id)) throw new Error(`overlay targets unknown id: ${record.id}`);
+      const previous = byId.get(record.id);
       byId.set(record.id, {
         ...previous,
         ...record,
@@ -58,11 +76,15 @@ function mergeReverification(base, overlays) {
 }
 
 async function loadDatabase() {
-  const [base, ...overlays] = await Promise.all([
+  const loaded = await Promise.all([
     fetchJson('./data/services.json'),
+    ...ADDITION_FILES.map(fetchJson),
     ...REVERIFICATION_FILES.map(fetchJson)
   ]);
-  return mergeReverification(base, overlays);
+  const base = loaded[0];
+  const additions = loaded.slice(1, 1 + ADDITION_FILES.length);
+  const overlays = loaded.slice(1 + ADDITION_FILES.length);
+  return buildDatabase(base, additions, overlays);
 }
 
 function visibleRecords() {
@@ -94,6 +116,14 @@ function matchesQuery(record, query) {
     CATEGORY_LABELS[record.category] || record.category
   ].filter(Boolean).join(' ').toLowerCase();
   return haystack.includes(query.toLowerCase());
+}
+
+function matchesState(record, state) {
+  if (!state) return true;
+  if (state === 'review') {
+    return ['legacy_review_required', 'needs_review'].includes(record.publication_state);
+  }
+  return record.publication_state === state;
 }
 
 function createCard(record) {
@@ -160,8 +190,10 @@ function render() {
   const root = document.getElementById('results');
   const query = document.getElementById('searchInput').value.trim();
   const category = document.getElementById('categoryFilter').value;
+  const state = document.getElementById('stateFilter').value;
   const records = visibleRecords()
     .filter((record) => !category || record.category === category)
+    .filter((record) => matchesState(record, state))
     .filter((record) => matchesQuery(record, query))
     .sort((a, b) => a.name.localeCompare(b.name, 'ja'));
 
@@ -198,6 +230,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.getElementById('searchInput').addEventListener('input', render);
     document.getElementById('categoryFilter').addEventListener('change', render);
+    document.getElementById('stateFilter').addEventListener('change', render);
   } catch (error) {
     console.error(error);
     results.innerHTML = '<div class="empty">データベースを読み込めませんでした。</div>';

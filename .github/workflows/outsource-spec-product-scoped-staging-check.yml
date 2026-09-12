@@ -1,0 +1,46 @@
+name: Outsource Spec product-scoped staging check
+
+on:
+  pull_request:
+    paths:
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'tools/outsource-spec-generator/product-scoped-controller.mjs'
+      - 'tools/outsource-spec-generator/SPEC.md'
+      - 'tools/outsource-spec-generator/app.js'
+      - 'tools/outsource-spec-generator/pro-bridge.js'
+      - 'scripts/check-outsource-spec-product-scoped-staging.mjs'
+      - 'docs/billing/pro-product-contracts-wave2.md'
+      - '.agent/plans/2026-09-12-outsource-spec-product-scoped-staging.md'
+      - '.github/workflows/outsource-spec-product-scoped-staging-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'tools/outsource-spec-generator/product-scoped-controller.mjs'
+      - 'tools/outsource-spec-generator/SPEC.md'
+      - 'tools/outsource-spec-generator/app.js'
+      - 'tools/outsource-spec-generator/pro-bridge.js'
+      - 'scripts/check-outsource-spec-product-scoped-staging.mjs'
+      - 'docs/billing/pro-product-contracts-wave2.md'
+      - '.agent/plans/2026-09-12-outsource-spec-product-scoped-staging.md'
+      - '.github/workflows/outsource-spec-product-scoped-staging-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check assets/nw-product-scoped-controller.mjs
+          node --check tools/outsource-spec-generator/product-scoped-controller.mjs
+          node --check scripts/check-outsource-spec-product-scoped-staging.mjs
+      - name: Outsource Spec product-scoped staging contracts
+        run: node scripts/check-outsource-spec-product-scoped-staging.mjs

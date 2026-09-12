@@ -59,5 +59,25 @@ html,body{background:#fff;color:#111;margin:0;font-family:system-ui,-apple-syste
 .nw-lang-switch{text-align:center;margin:4px 0 8px;font-size:11px;color:#6b7280}
 .nw-lang-switch button{border:none;background:transparent;padding:0 2px;cursor:pointer;font-size:11px;color:#4b5563}
 .nw-lang-switch button.active{font-weight:600;text-decoration:underline}
-@media(min-width:720px){.search-form{grid-template-columns:repeat(4,minmax(0,1fr))}.field.actions{justify-content:flex-end;margin-top:0}}
-@media(max-width:480px){.nw-main{padding:10px}.search-section{padding:12px}.field.actions{flex-direction:column;align-items:stretch}.btn-primary,.btn-ghost,.result-button{justify-content:center;width:100%;box-sizing:border-box}.quick-pref{flex:1 1 calc(50% - 8px)}.nw-links{align-items:stretch;flex-direction:column;text-align:center}}
+/* Municipality landing pages */
+.municipality-page{max-width:960px}
+.municipality-breadcrumb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 12px;color:#6b7280;font-size:.78rem}
+.municipality-breadcrumb a{color:#2563eb;text-decoration:none}.municipality-breadcrumb a:hover{text-decoration:underline}
+.municipality-hero,.current-calendar-callout,.municipality-links-section,.municipality-guide,.municipality-related,.report-section{margin-top:16px;padding:16px;border:1px solid #e5e7eb;border-radius:14px;background:#fff}
+.municipality-hero h2,.current-calendar-callout h2,.municipality-links-section h2,.municipality-guide h2,.municipality-related h2,.report-section h2{margin:0 0 8px;font-size:1.08rem;color:#111827}
+.municipality-hero p,.current-calendar-callout p,.municipality-guide p,.municipality-related p,.report-section p{margin:0 0 8px;color:#4b5563;font-size:.9rem}
+.verification-summary{display:inline-block;padding:4px 9px;border-radius:999px;background:#f3f4f6;color:#4b5563!important;font-size:.76rem!important}
+.current-calendar-callout{background:#f8fbff;border-color:#bfdbfe}
+.official-link-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.official-link-card{display:flex;flex-direction:column;padding:14px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.035)}
+.official-link-card h3{margin:8px 0 2px;font-size:.96rem;color:#111827}
+.official-link-card .result-button{align-self:flex-start}
+.verification-meta{margin:4px 0 0;color:#6b7280;font-size:.75rem}
+.official-source-note{margin:7px 0 0;color:#6b7280;font-size:.8rem}
+.municipality-guide ol{margin:8px 0 12px;padding-left:1.3rem;color:#374151;font-size:.88rem}
+.official-source-warning{padding:10px 12px;border-left:3px solid #f59e0b;background:#fffbeb;color:#78350f!important;border-radius:6px}
+.municipality-related-links{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.municipality-related-links a{display:inline-block;padding:6px 10px;border:1px solid #d1d5db;border-radius:999px;color:#2563eb;text-decoration:none;font-size:.8rem;background:#fff}
+.municipality-related-links a:hover{background:#f3f4f6}
+@media(min-width:720px){.search-form{grid-template-columns:repeat(4,minmax(0,1fr))}.field.actions{justify-content:flex-end;margin-top:0}.official-link-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:480px){.nw-main{padding:10px}.search-section{padding:12px}.field.actions{flex-direction:column;align-items:stretch}.btn-primary,.btn-ghost,.result-button{justify-content:center;width:100%;box-sizing:border-box}.quick-pref{flex:1 1 calc(50% - 8px)}.nw-links{align-items:stretch;flex-direction:column;text-align:center}.municipality-hero,.current-calendar-callout,.municipality-links-section,.municipality-guide,.municipality-related,.report-section{padding:12px}.official-link-card .result-button{align-self:stretch}}

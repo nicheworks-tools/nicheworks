@@ -11,25 +11,57 @@ const RESULT_TEXT = {
     ja: "解析結果",
     en: "Result summary"
   },
+  summaryNote: {
+    ja: "照合結果は辞書上の整理です。安全性・刺激性・製品適合性の判定ではありません。",
+    en: "These are dictionary matching results, not a safety, irritation, or product-suitability judgment."
+  },
   known: {
-    ja: "既知",
-    en: "Known"
+    ja: "辞書一致",
+    en: "Dictionary match"
   },
   reviewNeeded: {
-    ja: "要確認",
-    en: "Review needed"
+    ja: "追加確認",
+    en: "Additional review"
   },
   unknown: {
-    ja: "不明",
-    en: "Unknown"
+    ja: "未一致",
+    en: "Unmatched"
   },
   unknownMany: {
-    ja: "不明成分が多いです。OCRの誤認識、カンマ区切り、表記ゆれを確認してから再チェックしてください。",
-    en: "Many items are unknown. Check OCR mistakes, comma separation, and spelling variants before running the check again."
+    ja: "未一致の成分が多いです。OCRの誤認識、カンマ区切り、表記ゆれを確認してから再チェックしてください。",
+    en: "Many items are unmatched. Check OCR mistakes, comma separation, and spelling variants before running the check again."
+  },
+  canonical: {
+    ja: "Canonical INCI",
+    en: "Canonical INCI"
   },
   input: {
-    ja: "入力",
+    ja: "入力表記",
     en: "Input"
+  },
+  matchRoute: {
+    ja: "照合方法",
+    en: "Match route"
+  },
+  routeCanonical: {
+    ja: "INCI名一致",
+    en: "Canonical INCI"
+  },
+  routeJapanese: {
+    ja: "日本語名一致",
+    en: "Japanese name"
+  },
+  routeAlias: {
+    ja: "別名一致",
+    en: "Declared alias"
+  },
+  routeSharedAlias: {
+    ja: "表記ゆれ一致",
+    en: "Normalized name variant"
+  },
+  matchedName: {
+    ja: "一致表記",
+    en: "Matched name"
   },
   jpNames: {
     ja: "日本語名候補",
@@ -40,16 +72,24 @@ const RESULT_TEXT = {
     en: "Category"
   },
   defaultNote: {
-    ja: "辞書に一致しました。アレルギーや肌トラブルがある場合は公式情報を確認してください。",
-    en: "Dictionary match. Check official information if you have allergies or skin concerns."
+    ja: "ローカル辞書に一致しました。必要に応じてメーカー等の公式情報も確認してください。",
+    en: "Matched the local dictionary. Check official manufacturer information when needed."
   },
   unknownLabel: {
-    ja: "不明",
-    en: "Unknown"
+    ja: "未一致",
+    en: "Unmatched"
   },
   unknownReason: {
-    ja: "辞書に見つかりませんでした。OCR崩れ、表記ゆれ、辞書未登録の可能性があります。",
-    en: "This was not found in the dictionary. It may be an OCR issue, spelling variant, or missing dictionary item."
+    ja: "辞書に一致しませんでした。OCR崩れ、表記ゆれ、辞書未登録、または曖昧なカテゴリ名の可能性があります。",
+    en: "No exact dictionary match was found. This may be an OCR issue, spelling variant, missing dictionary item, or an intentionally ambiguous group label."
+  },
+  suggestionTitle: {
+    ja: "近い表記候補",
+    en: "Possible close matches"
+  },
+  suggestionHint: {
+    ja: "候補は自動置換しません。元のラベルを見ながら入力欄を修正して再チェックしてください。",
+    en: "Suggestions are never applied automatically. Compare with the original label, edit the input, and run the check again."
   },
   tipSpell: {
     ja: "スペルやカンマ区切りを確認してください。",
@@ -64,16 +104,16 @@ const RESULT_TEXT = {
     en: "Use the manufacturer's official ingredient label for final confirmation."
   },
   labelRisk: {
-    ja: "要確認",
-    en: "Needs review"
+    ja: "追加確認",
+    en: "Additional review"
   },
   labelCaution: {
-    ja: "注意して確認",
-    en: "Review if sensitive"
+    ja: "追加確認",
+    en: "Additional review"
   },
   labelCommon: {
-    ja: "一般的に使用",
-    en: "Commonly used"
+    ja: "辞書一致",
+    en: "Dictionary match"
   }
 };
 
@@ -101,6 +141,7 @@ function renderResults(container, results, lang = "ja") {
       <span>${escapeHtml(rt("reviewNeeded", uiLang))}: ${summary.review}</span>
       <span>${escapeHtml(rt("unknown", uiLang))}: ${summary.unknown}</span>
     </div>
+    <div class="small">${escapeHtml(rt("summaryNote", uiLang))}</div>
   `;
   container.appendChild(summaryEl);
 
@@ -117,13 +158,17 @@ function renderResults(container, results, lang = "ja") {
 
     if (r.found) {
       const label = getReviewLabel(r.safety, uiLang);
+      const route = getMatchRouteLabel(r.match_kind, uiLang);
       div.classList.add("result-" + normalizeSafetyClass(r.safety));
       div.innerHTML = `
         <div class="result-card-head">
           <strong>${escapeHtml(r.en)}</strong>
           <span class="review-label">${escapeHtml(label)}</span>
         </div>
+        <div class="small">${escapeHtml(rt("canonical", uiLang))}: ${escapeHtml(r.en)}</div>
         <div class="small">${escapeHtml(rt("input", uiLang))}: ${escapeHtml(r.input)}</div>
+        <div class="small">${escapeHtml(rt("matchRoute", uiLang))}: ${escapeHtml(route)}</div>
+        ${r.matched_name ? `<div class="small">${escapeHtml(rt("matchedName", uiLang))}: ${escapeHtml(r.matched_name)}</div>` : ""}
         ${Array.isArray(r.jp) && r.jp.length ? `<div class="small">${escapeHtml(rt("jpNames", uiLang))}: ${escapeHtml(r.jp.join(" / "))}</div>` : ""}
         ${r.category ? `<div class="small">${escapeHtml(rt("category", uiLang))}: ${escapeHtml(r.category)}</div>` : ""}
         <div class="result-note">${escapeHtml(r.note_short || rt("defaultNote", uiLang))}</div>
@@ -136,6 +181,7 @@ function renderResults(container, results, lang = "ja") {
           <span class="review-label">${escapeHtml(rt("unknownLabel", uiLang))}</span>
         </div>
         <div class="result-note">${escapeHtml(rt("unknownReason", uiLang))}</div>
+        ${renderSuggestions(r.suggestions, uiLang)}
         <ul class="unknown-tips">
           <li>${escapeHtml(rt("tipSpell", uiLang))}</li>
           <li>${escapeHtml(rt("tipOcr", uiLang))}</li>
@@ -146,6 +192,30 @@ function renderResults(container, results, lang = "ja") {
 
     container.appendChild(div);
   });
+}
+
+function renderSuggestions(suggestions, lang) {
+  if (!Array.isArray(suggestions) || suggestions.length === 0) return "";
+
+  const chips = suggestions.map(item => {
+    const jp = Array.isArray(item.jp) && item.jp.length ? ` / ${item.jp[0]}` : "";
+    return `<span class="suggestion-chip">${escapeHtml(item.en + jp)}</span>`;
+  }).join("");
+
+  return `
+    <div class="suggestion-box">
+      <div class="suggestion-title">${escapeHtml(rt("suggestionTitle", lang))}</div>
+      <div class="suggestion-list">${chips}</div>
+      <div class="small suggestion-hint">${escapeHtml(rt("suggestionHint", lang))}</div>
+    </div>
+  `;
+}
+
+function getMatchRouteLabel(kind, lang) {
+  if (kind === "jp") return rt("routeJapanese", lang);
+  if (kind === "alias") return rt("routeAlias", lang);
+  if (kind === "shared_alias") return rt("routeSharedAlias", lang);
+  return rt("routeCanonical", lang);
 }
 
 function rt(key, lang) {

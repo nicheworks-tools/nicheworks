@@ -7,34 +7,32 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>マイク音量・周波数メーター｜Tiny Audio Meter | NicheWorks</title>
-  <meta name="description" content="ブラウザのマイク入力から、音量の目安、推定周波数、音階、スペクトラムをリアルタイム表示する無料ツールです。音声ファイルは保存せず、数値スナップショットと区間分析に対応します。">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>マイク音量・周波数比較メーター｜Tiny Audio Meter | NicheWorks</title>
+  <meta name="description" content="ブラウザのマイク入力から相対音量、推定周波数・音階、pitch confidence、スペクトラムを確認し、同じマイクで基準値との差も比較できる無料ツールです。">
+  <link rel="canonical" href="https://nicheworks.app/tools/tiny-audio-meter/">
+  <meta name="robots" content="index,follow">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="マイク音量・周波数メーター｜Tiny Audio Meter | NicheWorks">
-  <meta property="og:description" content="ブラウザのマイク入力から、音量の目安、推定周波数、音階、スペクトラムをリアルタイム表示する無料ツールです。音声ファイルは保存せず、数値スナップショットと区間分析に対応します。">
+  <meta property="og:title" content="マイク音量・周波数比較メーター｜Tiny Audio Meter | NicheWorks">
+  <meta property="og:description" content="相対音量・推定pitch・スペクトラムをリアルタイム確認し、同じマイクで基準値との差を比較できます。">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta property="og:url" content="https://nicheworks.app/tools/tiny-audio-meter/">
   <meta property="og:site_name" content="NicheWorks">
-
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="マイク音量・周波数メーター｜Tiny Audio Meter | NicheWorks">
-  <meta name="twitter:description" content="ブラウザのマイク入力から、音量の目安、推定周波数、音階、スペクトラムをリアルタイム表示する無料ツールです。音声ファイルは保存せず、数値スナップショットと区間分析に対応します。">
+  <meta name="twitter:title" content="マイク音量・周波数比較メーター｜Tiny Audio Meter | NicheWorks">
+  <meta name="twitter:description" content="相対音量・推定pitch・スペクトラムを確認し、同じマイクで基準値との差を比較できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <link rel="canonical" href="https://nicheworks.app/tools/tiny-audio-meter/">
-  <meta name="robots" content="index,follow">
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/assets/nw-base.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./comparison.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
@@ -45,13 +43,9 @@
     "url": "https://nicheworks.app/tools/tiny-audio-meter/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "ブラウザのマイク入力から、音量の目安、推定周波数、音階、スペクトラムをリアルタイム表示する無料ツールです。音声ファイルは保存せず、数値スナップショットと区間分析に対応します。",
+    "description": "ブラウザのマイク入力から相対音量、推定周波数・音階、pitch confidence、スペクトラムをリアルタイム表示し、同じマイクで基準値との差も比較できる無料ツール。",
     "inLanguage": ["ja", "en"],
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
+    "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
   }
   </script>
   <script type="application/ld+json">
@@ -59,289 +53,197 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "音声はアップロードされますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。解析処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "表示されるdBは騒音計と同じですか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "いいえ。マイク入力レベルから計算した相対的な目安です。騒音計のdB SPLではありません。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "楽器チューナーとして使えますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "単音の目安には使えますが、専用チューナーや測定器の代替ではありません。"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "スナップショットは保存されますか？",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "音声ファイルは保存しません。数値スナップショットはページ上の一時記録で、ページを更新すると消えます。"
-        }
-      }
+      {"@type":"Question","name":"音声はアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。音声解析はブラウザ内で行い、音声ファイルやマイクストリームをNicheWorksの解析APIへ送信しません。"}},
+      {"@type":"Question","name":"表示されるdBは騒音計と同じですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。マイク入力から計算した相対レベルで、校正済みのdB SPLではありません。基準値との差も同じ端末・同じマイク内の相対比較です。"}},
+      {"@type":"Question","name":"基準値比較はいつリセットされますか？","acceptedAnswer":{"@type":"Answer","text":"マイクを停止・再開した場合や入力マイクを切り替えた場合に基準値を破棄します。測定条件が変わった値を比較しないためです。"}},
+      {"@type":"Question","name":"pitch confidenceとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"単音らしさを自己相関から推定した相対的な信頼度です。測定精度や正しさを保証する値ではありません。"}}
     ]
   }
   </script>
 </head>
-
 <body>
 <header class="nw-header">
-  <div class="nw-header-inner">
-    <a href="/" class="nw-logo">NicheWorks</a>
+  <h1>Tiny Audio Meter</h1>
+  <p>
+    <span data-i18n="ja">マイク入力の相対音量・推定周波数・音階・スペクトラムを確認し、同じマイクで基準値との差も比べられます。</span>
+    <span data-i18n="en">Inspect relative microphone level, estimated pitch/note, spectrum, and changes from a same-microphone baseline.</span>
+  </p>
+  <div class="nw-lang-switch" aria-label="Language">
+    <button type="button" data-lang-switch="ja">JP</button> /
+    <button type="button" data-lang-switch="en">EN</button>
   </div>
 </header>
 
 <main class="nw-main">
-  <h1>Tiny Audio Meter</h1>
-
-  <div class="nw-lang-switch" aria-label="Language">
-    <button type="button" data-lang-switch="ja">JP</button>
-    <button type="button" data-lang-switch="en">EN</button>
-  </div>
-
-  <p class="nw-desc">
-    <span data-i18n="ja">ブラウザのマイク入力から、音量の目安、推定周波数、音階、スペクトラムをリアルタイム表示します。</span>
-    <span data-i18n="en">Visualize microphone input with relative loudness, estimated pitch, note, and spectrum in real time.</span>
-  </p>
-
   <div class="nw-ad ad-top" aria-label="Advertisement">
-    <span data-i18n="ja">広告枠</span>
-    <span data-i18n="en">Ad space</span>
+    <span data-i18n="ja">広告枠</span><span data-i18n="en">Ad space</span>
   </div>
 
-  <section class="notice-card" aria-labelledby="privacyTitle">
-    <h2 id="privacyTitle">
-      <span data-i18n="ja">マイクとプライバシーについて</span>
-      <span data-i18n="en">Microphone and privacy</span>
-    </h2>
-    <p>
-      <span data-i18n="ja">マイク音声の解析処理はブラウザ内で行います。音声ファイルをアップロードするものではありません。ただしページ表示のため広告・解析タグは読み込まれます。会話、個人情報、未公開情報、周囲の人の声が入らない環境で使用してください。</span>
-      <span data-i18n="en">Audio analysis runs in your browser. This tool does not upload audio files. However, advertising and analytics tags may load for page display. Use it away from conversations, personal information, unpublished information, and other people's voices.</span>
-    </p>
-  </section>
-
-  <section class="notice-card warning" aria-labelledby="accuracyTitle">
-    <h2 id="accuracyTitle">
-      <span data-i18n="ja">測定値の注意</span>
-      <span data-i18n="en">Measurement notes</span>
-    </h2>
-    <ul>
-      <li>
-        <span data-i18n="ja">表示されるdBはマイク入力レベルから計算した相対的な目安です。騒音計のdB SPLではありません。</span>
-        <span data-i18n="en">The displayed dB is a relative estimate from microphone input, not sound level meter dB SPL.</span>
-      </li>
-      <li>
-        <span data-i18n="ja">周波数・音階は単音に近い音を前提にした推定です。和音、雑音、会話、環境音では正しく出ない場合があります。</span>
-        <span data-i18n="en">Pitch and note are estimates for near-single tones. Chords, noise, speech, and ambient sound may be inaccurate.</span>
-      </li>
-      <li>
-        <span data-i18n="ja">騒音測定、労働安全、法的証明、音響測定、楽器チューナー用途では専用機器を使用してください。</span>
-        <span data-i18n="en">Use dedicated equipment for noise measurement, workplace safety, legal proof, acoustic measurement, or instrument tuning.</span>
-      </li>
-    </ul>
-  </section>
-
-  <section class="meter-section" aria-label="Tiny Audio Meter controls">
-    <div class="mic-controls">
-      <button id="micButton" class="primary-btn" type="button">
-        <span data-i18n="ja">マイクを許可</span>
-        <span data-i18n="en">Enable Mic</span>
-      </button>
-
-      <button id="stopMicButton" class="secondary-btn danger hidden" type="button" disabled>
-        <span data-i18n="ja">マイクを停止</span>
-        <span data-i18n="en">Stop Mic</span>
-      </button>
-    </div>
-
-    <p id="micStatus" class="mic-status hidden" role="status" aria-live="polite"></p>
-
-    <div id="voiceActivity" class="voice-activity silent">
-      <div class="bars" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <p>
-        <span data-i18n="ja">音を拾っています</span>
-        <span data-i18n="en">Detecting sound</span>
-      </p>
-    </div>
-
-    <div class="realtime-meter">
-      <h2>
-        <span data-i18n="ja">リアルタイム表示</span>
-        <span data-i18n="en">Real-time meter</span>
-      </h2>
-
-      <div class="meter-item">
-        <label>
-          <span data-i18n="ja">音量の目安</span>
-          <span data-i18n="en">Relative loudness</span>
-        </label>
-        <div class="meter-bar" aria-hidden="true">
-          <div id="volumeBar"></div>
-        </div>
-        <div id="volumeValue">-- dB</div>
-        <p class="meter-note">
-          <span data-i18n="ja">相対値です。騒音計のdB SPLではありません。</span>
-          <span data-i18n="en">Relative value only. Not sound level meter dB SPL.</span>
+  <section class="meter-workspace" aria-labelledby="liveTitle">
+    <div class="workspace-head">
+      <div>
+        <h2 id="liveTitle"><span data-i18n="ja">リアルタイム測定</span><span data-i18n="en">Live meter</span></h2>
+        <p class="compact-caution">
+          <span data-i18n="ja">相対入力レベルです。騒音計の dB SPL ではありません。</span>
+          <span data-i18n="en">Relative input level only. This is not sound level meter dB SPL.</span>
         </p>
       </div>
-
-      <div class="meter-item">
-        <label>
-          <span data-i18n="ja">推定周波数 / 音階</span>
-          <span data-i18n="en">Estimated pitch / note</span>
-        </label>
-        <div id="pitchValue">-- Hz</div>
-        <div id="noteValue">--</div>
-        <p class="meter-note">
-          <span data-i18n="ja">単音に近い音向けの推定です。</span>
-          <span data-i18n="en">Estimated for near-single tones.</span>
-        </p>
-      </div>
-
-      <div class="meter-item">
-        <label>
-          <span data-i18n="ja">スペクトラム</span>
-          <span data-i18n="en">Spectrum</span>
-        </label>
-        <canvas id="spectrumCanvas" width="300" height="120"></canvas>
+      <div id="micStateBadge" class="state-badge off">
+        <span data-i18n="ja">マイク停止中</span><span data-i18n="en">Mic off</span>
       </div>
     </div>
 
-    <div class="snapshot-actions">
-      <button id="snapshotButton" class="secondary-btn" type="button">
-        📸
-        <span data-i18n="ja">数値スナップショット</span>
-        <span data-i18n="en">Number Snapshot</span>
-      </button>
+    <div class="mic-setup">
+      <label id="deviceRow" hidden>
+        <span data-i18n="ja">入力マイク</span><span data-i18n="en">Input microphone</span>
+        <select id="deviceSelect" aria-label="Input microphone"></select>
+      </label>
+      <div class="mic-controls">
+        <button id="micButton" class="primary-btn" type="button">
+          <span data-i18n="ja">マイクを開始</span><span data-i18n="en">Start Mic</span>
+        </button>
+        <button id="stopMicButton" class="secondary-btn danger" type="button" disabled hidden>
+          <span data-i18n="ja">マイクを停止</span><span data-i18n="en">Stop Mic</span>
+        </button>
+      </div>
     </div>
 
-    <p class="small-note">
-      <span data-i18n="ja">スナップショットは音声ファイルではなく、音量・周波数などの数値だけです。ページ上の一時記録で、更新すると消えます。</span>
-      <span data-i18n="en">Snapshots are numbers only, not audio files. They are temporary page records and disappear when you refresh.</span>
-    </p>
+    <p id="micStatus" class="mic-status" role="status" aria-live="polite" hidden></p>
 
-    <details class="snapshot-list">
-      <summary>
-        <span data-i18n="ja">スナップショット一覧</span>
-        <span data-i18n="en">Snapshot List</span>
-        (<span id="snapshotCount">0</span>)
-      </summary>
-      <div id="snapshotItems"></div>
-      <button id="clearSnapshots" class="link-btn" type="button">
-        <span data-i18n="ja">全削除</span>
-        <span data-i18n="en">Clear All</span>
-      </button>
-    </details>
-
-    <section class="segment-section">
-      <h2>
-        <span data-i18n="ja">区間分析</span>
-        <span data-i18n="en">Segment Analysis</span>
-      </h2>
+    <div id="processingStatus" class="processing-status" hidden>
+      <span class="processing-label"><span data-i18n="ja">実際の入力処理</span><span data-i18n="en">Actual input processing</span></span>
+      <div class="processing-chips">
+        <span id="echoChip" class="process-chip">EC —</span>
+        <span id="noiseChip" class="process-chip">NS —</span>
+        <span id="gainChip" class="process-chip">AGC —</span>
+      </div>
       <p class="small-note">
-        <span data-i18n="ja">短い区間の平均音量・平均周波数・安定度の目安を数値で確認します。</span>
-        <span data-i18n="en">Check rough average loudness, pitch, and stability over a short segment.</span>
+        <span data-i18n="ja">このツールは自動補正OFFを要求しますが、ブラウザ・OS・端末が要求を無視する場合があります。</span>
+        <span data-i18n="en">The tool requests processing off, but the browser, OS, or device may ignore those constraints.</span>
       </p>
+      <p id="processingWarning" class="processing-warning" hidden>
+        <span data-i18n="ja">EC / NS / AGC のいずれかが実際にはONです。比較値は端末側の自動処理の影響を受ける可能性があります。</span>
+        <span data-i18n="en">At least one of EC / NS / AGC is actually ON. Comparison readings may be affected by device-side processing.</span>
+      </p>
+    </div>
 
-      <div class="segment-controls">
-        <button id="segmentStart" type="button">
-          <span data-i18n="ja">計測開始</span>
-          <span data-i18n="en">Start</span>
-        </button>
-        <button id="segmentStop" type="button" disabled>
-          <span data-i18n="ja">停止</span>
-          <span data-i18n="en">Stop</span>
-        </button>
-      </div>
+    <div class="live-grid">
+      <article class="metric-card">
+        <div class="metric-label"><span data-i18n="ja">相対音量</span><span data-i18n="en">Relative level</span></div>
+        <div id="volumeValue" class="metric-value">-- dB</div>
+        <div class="meter-bar" aria-hidden="true"><div id="volumeBar"></div></div>
+        <div id="voiceActivity" class="activity-line silent">
+          <span class="activity-dot" aria-hidden="true"></span>
+          <span data-i18n="ja">入力待機</span><span data-i18n="en">Waiting for input</span>
+        </div>
+      </article>
 
-      <div id="segmentResult" class="segment-result hidden"></div>
-    </section>
+      <article class="metric-card">
+        <div class="metric-label"><span data-i18n="ja">推定周波数 / 音階</span><span data-i18n="en">Estimated pitch / note</span></div>
+        <div id="pitchValue" class="metric-value">-- Hz</div>
+        <div id="noteValue" class="note-value">--</div>
+        <div class="confidence-row">
+          <span>Pitch confidence</span>
+          <strong id="confidenceValue">--%</strong>
+        </div>
+        <p class="small-note">
+          <span data-i18n="ja">confidenceは自己相関上の相対値で、精度保証ではありません。</span>
+          <span data-i18n="en">Confidence is an autocorrelation-relative score, not an accuracy guarantee.</span>
+        </p>
+      </article>
 
-    <button id="resetButton" class="link-btn hidden" type="button">
-      <span data-i18n="ja">表示・記録をリセット</span>
-      <span data-i18n="en">Reset Display / Records</span>
-    </button>
+      <article class="metric-card spectrum-card">
+        <div class="metric-label"><span data-i18n="ja">スペクトラム</span><span data-i18n="en">Spectrum</span></div>
+        <canvas id="spectrumCanvas" width="640" height="180" aria-label="Audio frequency spectrum"></canvas>
+        <div class="spectrum-axis" aria-hidden="true"><span>100 Hz</span><span>1 kHz</span><span>5 kHz</span><span>10 kHz</span></div>
+        <div class="spectrum-readout"><span><span data-i18n="ja">最大成分</span><span data-i18n="en">Spectrum peak</span></span><strong id="peakFrequencyValue">—</strong></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="analysis-tools" aria-labelledby="analysisTitle">
+    <h2 id="analysisTitle"><span data-i18n="ja">数値を比較する</span><span data-i18n="en">Compare numeric readings</span></h2>
+    <div class="analysis-grid">
+      <article class="analysis-card comparison-card">
+        <h3><span data-i18n="ja">基準値との差</span><span data-i18n="en">Compare with a baseline</span></h3>
+        <p class="small-note"><span data-i18n="ja">同じ端末・同じマイクの現在値を基準として保存し、その後の相対変化を表示します。校正済みdB SPL比較ではありません。</span><span data-i18n="en">Capture the current reading as a same-device, same-microphone baseline. This is not calibrated dB SPL comparison.</span></p>
+        <div class="comparison-actions">
+          <button id="baselineButton" class="primary-btn" type="button" disabled><span data-i18n="ja">現在値を基準にする</span><span data-i18n="en">Set current baseline</span></button>
+          <button id="baselineReset" class="secondary-btn" type="button" hidden><span data-i18n="ja">基準を解除</span><span data-i18n="en">Clear baseline</span></button>
+        </div>
+        <p id="baselineSummary" class="baseline-summary"></p>
+        <div class="delta-grid">
+          <div class="delta-item"><span><span data-i18n="ja">相対音量の差</span><span data-i18n="en">Relative level change</span></span><strong id="levelDeltaValue">—</strong></div>
+          <div class="delta-item"><span><span data-i18n="ja">pitchの差</span><span data-i18n="en">Pitch change</span></span><strong id="pitchDeltaValue">—</strong></div>
+        </div>
+      </article>
+
+      <article class="analysis-card">
+        <h3><span data-i18n="ja">スナップショット</span><span data-i18n="en">Snapshots</span></h3>
+        <p class="small-note"><span data-i18n="ja">現在値だけを最大20件保持します。音声は保存しません。</span><span data-i18n="en">Keep up to 20 current numeric readings. Audio is never stored.</span></p>
+        <button id="snapshotButton" class="secondary-btn" type="button" disabled><span data-i18n="ja">現在値を記録</span><span data-i18n="en">Capture values</span></button>
+        <details class="snapshot-list">
+          <summary><span data-i18n="ja">記録一覧</span><span data-i18n="en">Snapshot list</span> (<span id="snapshotCount">0</span>)</summary>
+          <div id="snapshotItems"></div>
+          <button id="clearSnapshots" class="link-btn" type="button" disabled><span data-i18n="ja">全削除</span><span data-i18n="en">Clear all</span></button>
+        </details>
+      </article>
+
+      <article class="analysis-card">
+        <h3><span data-i18n="ja">区間分析</span><span data-i18n="en">Segment analysis</span></h3>
+        <p class="small-note"><span data-i18n="ja">1秒以上の区間について平均相対音量、平均pitch、pitch安定度を算出します。</span><span data-i18n="en">Analyze 1s+ intervals for average relative level, pitch, and pitch stability.</span></p>
+        <div class="segment-controls">
+          <button id="segmentStart" class="secondary-btn" type="button" disabled><span data-i18n="ja">区間開始</span><span data-i18n="en">Start segment</span></button>
+          <button id="segmentStop" class="secondary-btn" type="button" disabled><span data-i18n="ja">停止・集計</span><span data-i18n="en">Stop & summarize</span></button>
+        </div>
+        <div id="segmentResult" class="segment-result" hidden></div>
+      </article>
+    </div>
+    <button id="resetButton" class="link-btn" type="button" hidden><span data-i18n="ja">記録・集計をリセット</span><span data-i18n="en">Reset records / analysis</span></button>
+  </section>
+
+  <section id="audioAffiliateSection" class="affiliate-section" hidden aria-labelledby="affiliateTitle">
+    <h2 id="affiliateTitle"><span data-i18n="ja">専用機器が必要な場合</span><span data-i18n="en">When dedicated hardware is needed</span></h2>
+    <p><span data-i18n="ja">このブラウザツールは簡易確認用です。用途に応じて専用機器を使用してください。</span><span data-i18n="en">This browser tool is for quick checks. Use dedicated hardware when your use case requires it.</span></p>
+    <div class="affiliate-grid">
+      <div id="soundLevelAffiliate" class="affiliate-slot" hidden></div>
+      <div id="usbMicAffiliate" class="affiliate-slot" hidden></div>
+    </div>
+  </section>
+
+  <div id="amazonDisclosure" class="affiliate-disclosure" hidden></div>
+
+  <section class="limitations" aria-labelledby="limitationsTitle">
+    <h2 id="limitationsTitle"><span data-i18n="ja">プライバシーと測定上の注意</span><span data-i18n="en">Privacy and measurement limits</span></h2>
+    <details>
+      <summary><span data-i18n="ja">音声・プライバシー</span><span data-i18n="en">Audio and privacy</span></summary>
+      <p><span data-i18n="ja">解析はブラウザ内で行い、音声ファイルやマイクストリームをNicheWorksの解析APIへ送信しません。会話、個人情報、未公開情報、第三者の声が入らない環境で利用してください。ページ表示のため広告・解析タグは別途読み込まれます。</span><span data-i18n="en">Analysis runs locally in the browser; microphone streams and audio files are not sent to a NicheWorks analysis API. Avoid conversations, personal information, unpublished information, and other people's voices. Advertising and analytics resources may load separately.</span></p>
+    </details>
+    <details>
+      <summary><span data-i18n="ja">測定値の限界</span><span data-i18n="en">Measurement limitations</span></summary>
+      <ul>
+        <li><span data-i18n="ja">dB表示と基準との差は相対値で、校正済みdB SPLではありません。</span><span data-i18n="en">The dB display and baseline difference are relative values, not calibrated dB SPL.</span></li>
+        <li><span data-i18n="ja">基準値はマイク再起動・入力マイク変更で破棄します。</span><span data-i18n="en">The baseline is cleared when the microphone restarts or the input device changes.</span></li>
+        <li><span data-i18n="ja">スペクトラム最大成分とpitch推定は別の指標です。雑音や倍音で一致しないことがあります。</span><span data-i18n="en">Spectrum peak and pitch estimate are different signals and may disagree with noise or harmonics.</span></li>
+        <li><span data-i18n="ja">騒音測定、労働安全、法的証明、専門音響測定、保証された楽器調律には専用機器を使用してください。</span><span data-i18n="en">Use dedicated equipment for noise compliance, workplace safety, legal evidence, professional acoustics, or guaranteed tuning.</span></li>
+      </ul>
+    </details>
   </section>
 
   <section class="faq-section" aria-labelledby="faqTitle">
     <h2 id="faqTitle">FAQ</h2>
-
-    <details>
-      <summary>
-        <span data-i18n="ja">音声はアップロードされますか？</span>
-        <span data-i18n="en">Is audio uploaded?</span>
-      </summary>
-      <p>
-        <span data-i18n="ja">いいえ。解析処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</span>
-        <span data-i18n="en">No. Analysis runs in your browser. Advertising and analytics tags may still load for page display.</span>
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        <span data-i18n="ja">表示されるdBは騒音計と同じですか？</span>
-        <span data-i18n="en">Is the displayed dB the same as a sound level meter?</span>
-      </summary>
-      <p>
-        <span data-i18n="ja">いいえ。マイク入力レベルから計算した相対的な目安です。騒音計のdB SPLではありません。</span>
-        <span data-i18n="en">No. It is a relative estimate from microphone input, not sound level meter dB SPL.</span>
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        <span data-i18n="ja">楽器チューナーとして使えますか？</span>
-        <span data-i18n="en">Can I use it as an instrument tuner?</span>
-      </summary>
-      <p>
-        <span data-i18n="ja">単音の目安には使えますが、専用チューナーの代替ではありません。和音や雑音がある環境では不正確になります。</span>
-        <span data-i18n="en">It can be a rough single-tone reference, but it is not a replacement for a dedicated tuner. Chords and noisy environments reduce accuracy.</span>
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        <span data-i18n="ja">スナップショットは保存されますか？</span>
-        <span data-i18n="en">Are snapshots saved?</span>
-      </summary>
-      <p>
-        <span data-i18n="ja">音声ファイルは保存しません。数値スナップショットはページ上の一時記録で、ページを閉じる/更新すると消えます。</span>
-        <span data-i18n="en">Audio files are not saved. Number snapshots are temporary page records and disappear when you close or refresh the page.</span>
-      </p>
-    </details>
+    <details><summary><span data-i18n="ja">表示されるdBは騒音計と同じですか？</span><span data-i18n="en">Is the displayed dB the same as a sound level meter?</span></summary><p><span data-i18n="ja">いいえ。マイク入力から計算した相対レベルで、dB SPLではありません。</span><span data-i18n="en">No. It is a relative microphone-input level, not dB SPL.</span></p></details>
+    <details><summary><span data-i18n="ja">基準値比較は何に使えますか？</span><span data-i18n="en">What is baseline comparison for?</span></summary><p><span data-i18n="ja">同じ端末・同じマイク・近い条件で、ファン交換前後やマイク位置変更前後などの相対変化を見る用途です。絶対騒音値の比較には使えません。</span><span data-i18n="en">It is for same-device, same-microphone relative changes such as before/after fan replacement or microphone positioning. It is not an absolute noise comparison.</span></p></details>
+    <details><summary><span data-i18n="ja">自動ゲイン補正などはOFFですか？</span><span data-i18n="en">Are automatic audio processors disabled?</span></summary><p><span data-i18n="ja">echo cancellation、noise suppression、auto gain controlをOFFで要求します。実際にONなら画面上で警告します。</span><span data-i18n="en">The tool requests echo cancellation, noise suppression, and automatic gain control off. A warning is shown if reported settings remain on.</span></p></details>
+    <details><summary><span data-i18n="ja">入力マイクを切り替えられますか？</span><span data-i18n="en">Can I switch input microphones?</span></summary><p><span data-i18n="ja">権限取得後、ブラウザが複数のaudio inputを公開している場合は選択できます。切替時は比較基準を破棄します。</span><span data-i18n="en">After permission is granted, you can choose among audio inputs exposed by the browser. Changing input clears the comparison baseline.</span></p></details>
   </section>
 
   <div class="nw-donate">
-    <p class="nw-donate-text">
-      <span data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</span>
-      <span data-i18n="en">If this tool helps, support is appreciated to keep development going.</span>
-    </p>
-    <div class="nw-donate-links">
-      <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-      <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-    </div>
+    <p class="nw-donate-text"><span data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</span><span data-i18n="en">If this tool helps, support is appreciated to keep development going.</span></p>
+    <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
   </div>
 
-  <div class="nw-ad ad-bottom" aria-label="Advertisement">
-    <span data-i18n="ja">広告枠</span>
-    <span data-i18n="en">Ad space</span>
-  </div>
+  <div class="nw-ad ad-bottom" aria-label="Advertisement"><span data-i18n="ja">広告枠</span><span data-i18n="en">Ad space</span></div>
 
   <nav class="nw-links" aria-label="Related tools">
     <a href="/tools/light-check/">Light Check</a>
@@ -353,13 +255,13 @@
 
 <footer class="nw-footer">
   <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-  <p class="nw-footer-line">
-    <span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</span>
-    <span data-i18n="en">This site may contain ads. Accuracy is not guaranteed. Always check official sources when needed.</span>
-  </p>
+  <p class="nw-footer-line"><span data-i18n="ja">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</span><span data-i18n="en">This site may contain ads. Accuracy is not guaranteed. Always check official sources when needed.</span></p>
   <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
 </footer>
 
-<script src="app.js"></script>
+<script src="/assets/amazon-affiliate.js"></script>
+<script src="./affiliate-config.js"></script>
+<script src="./comparison.js"></script>
+<script src="./app.js"></script>
 </body>
 </html>

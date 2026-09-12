@@ -64,6 +64,7 @@ The primary interface is a three-column filter/catalog/detail workspace plus com
 - Reduced-motion guidance does not replace product-specific accessibility review.
 - Free compare is limited to two motions.
 - Pro outputs are implementation drafts and require project-specific review.
+- Until product-scoped billing migration is explicitly completed for this tool, its legacy paid gate accepts only the shared `nicheworks_pro` entitlement; an active entitlement for another product must not unlock Motion Atlas.
 
 ## Acceptance criteria
 
@@ -71,6 +72,7 @@ The primary interface is a three-column filter/catalog/detail workspace plus com
 - [ ] Free compare rejects or prevents a third simultaneous motion selection.
 - [ ] Reduced-motion mode changes demo behavior without removing the underlying catalog decision context.
 - [ ] Pro handoff copy/export actions remain gated while the free catalog, demos, detail pages, favorites, recent history, and two-motion compare remain usable.
+- [ ] A cached active entitlement other than `nicheworks_pro` does not unlock Motion Atlas Pro actions.
 
 ## Implementation evidence
 

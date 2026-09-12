@@ -4,14 +4,22 @@ on:
   pull_request:
     paths:
       - 'tools/**'
+      - 'assets/amazon-affiliate.js'
       - 'scripts/check-tool-runtime-contracts.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave4.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave5.mjs'
+      - 'scripts/check-amazon-ready-tools.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
     branches:
       - main
     paths:
       - 'tools/**'
+      - 'assets/amazon-affiliate.js'
       - 'scripts/check-tool-runtime-contracts.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave4.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave5.mjs'
+      - 'scripts/check-amazon-ready-tools.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
 permissions:
@@ -29,8 +37,17 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Check runtime contracts
+      - name: Check runtime contracts waves 1-3
         run: node scripts/check-tool-runtime-contracts.mjs
+
+      - name: Check runtime contracts wave 4
+        run: node scripts/check-tool-runtime-contracts-wave4.mjs
+
+      - name: Check runtime contracts wave 5
+        run: node scripts/check-tool-runtime-contracts-wave5.mjs
+
+      - name: Check Amazon-ready tool contracts
+        run: node scripts/check-amazon-ready-tools.mjs
 
       - name: Verify audit is read-only
         run: |

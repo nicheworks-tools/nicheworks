@@ -1,5 +1,6 @@
 (() => {
   const PAYMENT_LINK = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
+  const EXPECTED_ENTITLEMENT = 'nicheworks_pro';
   const ACTIVE_TEXT = 'Pro解放済み。このブラウザでは共通Proが有効です。';
   const PREVIEW_TEXT = 'Previewモードです。このブラウザでは共通Proがまだ有効ではありません。';
 
@@ -63,8 +64,8 @@
       const nwPro = await loadNWPro();
       const status = nwPro && typeof nwPro.getLocalStatus === 'function'
         ? nwPro.getLocalStatus()
-        : { active: false };
-      applyState(!!status.active);
+        : { active: false, entitlement: EXPECTED_ENTITLEMENT };
+      applyState(Boolean(status.active && status.entitlement === EXPECTED_ENTITLEMENT));
     } catch (error) {
       applyState(false);
     }
