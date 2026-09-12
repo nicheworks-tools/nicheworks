@@ -145,6 +145,10 @@ Wave 3ではSearch Consoleで需要が確認され、3種類以上のofficial li
 - 岐阜県 海津市 — `/tools/trashnavi/gifu/kaizu/`
 - 茨城県 結城市 — `/tools/trashnavi/ibaraki/yuki/`
 
+Wave 4では、第三のofficial link typeとして収集曜日を確認できた東京都中央区を追加し、公開対象を **11自治体** とする。
+
+- 東京都 中央区 — `/tools/trashnavi/tokyo/chuo/`
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -170,16 +174,16 @@ node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 
 CIではcoverage strict auditと生成drift checkの両方を必須とし、公開URLがroot sitemapから欠落しても失敗させる。
 
-### Wave 3 verified coverage baseline
+### Wave 4 verified coverage baseline
 
-2026-09-12のWave 3 CI基準値は次のとおり。
+2026-09-13のWave 4 CI基準値は次のとおり。
 
 - municipalities: 1,916
-- records: 2,184 / 2,184 valid HTTP(S)
+- records: 2,185 / 2,185 valid HTTP(S)
 - municipalities with any waste-specific direct link: 77
 - publish candidates (2+ types): 11
-- preferred candidates (3+ types): 10
-- collection calendar coverage: 10 municipalities
+- preferred candidates (3+ types): 11
+- collection calendar coverage: 11 municipalities
 - bulky-waste coverage: 10 municipalities
 - drop-off facility coverage: 1 municipality
 - waste-app coverage: 1 municipality
@@ -248,12 +252,13 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開10自治体をmanifest allowlistで管理する。
+- [x] 公開11自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で10ページの生成driftを検出する。
+- [x] generator `--check` で11ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
+- [x] Wave 4で中央区をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -271,12 +276,14 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/app.js` — self-hosted JSON load、dedupe、filtering、forward link-type rendering、official external link behavior。
 - `tools/trashnavi/data/` — nationwide/local supplementary/direct waste link datasets。
 - `tools/trashnavi/data/direct-waste-links-demand-wave3.json` — 御浜町・海津市・結城市のWave 3 official-link enrichment。
+- `tools/trashnavi/data/direct-waste-links-demand-wave4.json` — 中央区のWave 4 collection-calendar enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/municipality-page-manifest.json` — indexable municipality page allowlist。
 - `tools/trashnavi/scripts/generate-municipality-pages.mjs` — deterministic municipality page / sitemap generator and drift checker。
 - `tools/trashnavi/tokyo/*/index.html` — initial Tokyo municipality pages。
 - `tools/trashnavi/mie/mihama/index.html` / `tools/trashnavi/gifu/kaizu/index.html` / `tools/trashnavi/ibaraki/yuki/index.html` — Wave 3 municipality pages。
+- `tools/trashnavi/tokyo/chuo/index.html` — Wave 4 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。

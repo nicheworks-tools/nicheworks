@@ -61,7 +61,7 @@ function page(entry, rows, manifest, names) {
   const desc = `${pref}${city}のごみ分別、収集カレンダー、粗大ごみなどの自治体公式ページをまとめています。TrashNaviは公式情報への案内で、分別ルールの最終判断や申込みは行いません。`;
   const calendar = links.find(r=>canonicalType(r)==='collection_calendar' && String(r.fiscal_year || '')==='2026');
   const checked = links.map(r=>String(r.last_checked || '').trim()).filter(Boolean).sort().at(-1) || '';
-  const related = manifest.filter(m=>m.publish && m.lgcode!==entry.lgcode).map(m=>`<a href="/tools/trashnavi/${esc(m.pref_slug)}/${esc(m.city_slug)}/">${esc(names.get(m.lgcode) || m.city_slug)}</a>`).join('');
+  const related = manifest.filter(m=>m.publish && m.lgcode!==entry.lgcode).slice(0,9).map(m=>`<a href="/tools/trashnavi/${esc(m.pref_slug)}/${esc(m.city_slug)}/">${esc(names.get(m.lgcode) || m.city_slug)}</a>`).join('');
   const ld = JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:title,url:canonical,description:desc,isPartOf:{'@type':'WebSite',name:'NicheWorks',url:'https://nicheworks.app/'},about:{'@type':'AdministrativeArea',name:`${pref}${city}`}}).replaceAll('<','\\u003c');
   const crumbs = JSON.stringify({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'NicheWorks',item:'https://nicheworks.app/'},{'@type':'ListItem',position:2,name:'TrashNavi',item:'https://nicheworks.app/tools/trashnavi/'},{'@type':'ListItem',position:3,name:city,item:canonical}]}).replaceAll('<','\\u003c');
   return `<!DOCTYPE html>
@@ -97,7 +97,7 @@ const by = new Map(), names = new Map();
 for (const row of rows) { const code=String(row.lgcode||'').trim(); if(!code) continue; if(!by.has(code)) by.set(code,[]); by.get(code).push(row); if(row.city) names.set(code,String(row.city).trim()); }
 const outputs=[];
 for(const entry of manifest.filter(x=>x.publish)) { const html=page(entry,by.get(entry.lgcode)||[],manifest,names); const relative=path.join('tools','trashnavi',entry.pref_slug,entry.city_slug,'index.html'); outputs.push({relative,absolute:path.join(repoRoot,relative),content:html,url:`https://nicheworks.app/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`}); }
-if(outputs.length!==10) throw new Error(`municipality page count must be 10; got ${outputs.length}`);
+if(outputs.length!==11) throw new Error(`municipality page count must be 11; got ${outputs.length}`);
 const lastmod=rows.map(r=>String(r.last_checked||'').trim()).filter(Boolean).sort().at(-1)||'';
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['https://nicheworks.app/tools/trashnavi/',...outputs.map(o=>o.url)].map(u=>`  <url>\n    <loc>${u}</loc>${lastmod?`\n    <lastmod>${lastmod}</lastmod>`:''}\n  </url>`).join('\n')}\n</urlset>\n`;
 const drift=[];
