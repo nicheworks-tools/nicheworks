@@ -6,7 +6,10 @@ import { createProfileStore } from './rules-store.mjs';
 
 const FREE_MAX_ROWS = 500;
 const FREE_MAX_BYTES = 5 * 1024 * 1024;
-const PRO_MAX_BYTES = 100 * 1024 * 1024;
+const PRO_CSV_MAX_ROWS = 100000;
+const PRO_CSV_MAX_BYTES = 50 * 1024 * 1024;
+const PRO_XLSX_MAX_ROWS = 50000;
+const PRO_XLSX_MAX_BYTES = 25 * 1024 * 1024;
 const profileStore = createProfileStore(localStorage);
 
 const state = {
@@ -121,14 +124,20 @@ function renderPreview(side) {
   target.innerHTML = `<div class="table-wrap"><table><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
 }
 
-function rowLimitOk(table) {
-  if (state.proEnabled || table.rows.length <= FREE_MAX_ROWS) return true;
-  setNotice(message(`Free版は500行までです（検出: ${table.rows.length}行）。`, `Free supports 500 rows per file (detected: ${table.rows.length}).`), 'error');
+function rowLimitOk(table, type = 'csv') {
+  const maxRows = state.proEnabled
+    ? (type === 'xlsx' ? PRO_XLSX_MAX_ROWS : PRO_CSV_MAX_ROWS)
+    : FREE_MAX_ROWS;
+  if (table.rows.length <= maxRows) return true;
+  const label = state.proEnabled
+    ? (type === 'xlsx' ? '50,000' : '100,000')
+    : '500';
+  setNotice(message(`このプランでは1ファイル${label}行までです（検出: ${table.rows.length}行）。`, `This plan supports up to ${label} rows per file (detected: ${table.rows.length}).`), 'error');
   return false;
 }
 
 function installTable(side, table, metadata, { guessColumns = true } = {}) {
-  if (!rowLimitOk(table)) return false;
+  if (!rowLimitOk(table, metadata.type)) return false;
   state[side] = { ...metadata, ...table };
   const suffix = side.toUpperCase();
   for (const field of ['amount', 'date', 'reference', 'description']) {
@@ -172,7 +181,7 @@ function rebuildSide(side) {
   const table = current.type === 'csv'
     ? tableFromRows(current.rawRows, headerRow)
     : tableFromXlsx(current.xlsxSource, current.sheetName, headerRow);
-  if (!rowLimitOk(table)) return;
+  if (!rowLimitOk(table, current.type)) return;
   state[side] = { ...current, ...table };
   for (const field of ['amount', 'date', 'reference', 'description']) {
     populateSelect($(`${field}${suffix}`), table.headers, message('未選択', 'Not selected'), previous[field]);
@@ -213,22 +222,36 @@ async function loadXlsx(side, file) {
   setNotice(message(`${side.toUpperCase()}のExcelを読み込みました。`, `Loaded Excel file ${side.toUpperCase()}.`), 'success');
 }
 
+function maxFileBytesFor(type) {
+  if (!state.proEnabled) return FREE_MAX_BYTES;
+  return type === 'xlsx' ? PRO_XLSX_MAX_BYTES : PRO_CSV_MAX_BYTES;
+}
+
 async function loadFile(side, file) {
   if (!file) return;
-  const maxBytes = state.proEnabled ? PRO_MAX_BYTES : FREE_MAX_BYTES;
-  if (file.size > maxBytes) {
-    setNotice(message(state.proEnabled ? '1ファイル100MBまでです。' : 'Free版は1ファイル5MBまでです。', state.proEnabled ? 'Files are limited to 100 MB each.' : 'Free supports files up to 5 MB each.'), 'error');
+  const lower = file.name.toLowerCase();
+  const type = lower.endsWith('.xlsx') ? 'xlsx' : lower.endsWith('.csv') ? 'csv' : '';
+  if (!type) {
+    setNotice(message('CSVまたはXLSXを選択してください。', 'Choose a CSV or XLSX file.'), 'error');
     return;
   }
-  const lower = file.name.toLowerCase();
+  const maxBytes = maxFileBytesFor(type);
+  if (file.size > maxBytes) {
+    const label = state.proEnabled ? (type === 'xlsx' ? '25MB' : '50MB') : '5MB';
+    setNotice(message(`このプランでは${type.toUpperCase()}は1ファイル${label}までです。`, `This plan supports ${type.toUpperCase()} files up to ${label} each.`), 'error');
+    return;
+  }
   try {
-    if (lower.endsWith('.csv')) await loadCsv(side, file);
-    else if (lower.endsWith('.xlsx')) await loadXlsx(side, file);
-    else setNotice(message('CSVまたはXLSXを選択してください。', 'Choose a CSV or XLSX file.'), 'error');
+    if (type === 'csv') await loadCsv(side, file);
+    else await loadXlsx(side, file);
   } catch (error) {
     const code = String(error?.message || error);
     if (code === 'xlsx_library_missing' || code === 'xlsx_vendor_load_failed') {
-      setNotice(message('XLSX処理ライブラリはまだこの開発ブランチへ同梱されていません。CSVは利用できます。', 'The XLSX processing library has not been vendored into this development branch yet. CSV remains available.'), 'warning');
+      setNotice(message('XLSX処理ライブラリ本体はまだこの開発ブランチへ同梱されていません。CSVは利用できます。', 'The XLSX vendor payload has not been committed to this development branch yet. CSV remains available.'), 'warning');
+      return;
+    }
+    if (code === 'xlsx_version_mismatch') {
+      setNotice(message('XLSXライブラリの版が固定仕様と一致しません。処理を停止しました。', 'The XLSX library version does not match the pinned contract. Processing stopped.'), 'error');
       return;
     }
     setNotice(message(`ファイルを読み込めませんでした: ${code}`, `Could not load file: ${code}`), 'error');
@@ -272,12 +295,16 @@ function currentProfileConfig() {
 
 function setMapping(side, savedMapping) {
   const table = state[side];
-  if (!table) return;
+  if (!table) return [];
   const suffix = side.toUpperCase();
+  const missing = [];
   for (const field of ['amount', 'date', 'reference', 'description']) {
     const value = savedMapping?.[field] || '';
-    $(`${field}${suffix}`).value = table.headers.includes(value) ? value : '';
+    const exists = !value || table.headers.includes(value);
+    $(`${field}${suffix}`).value = exists ? value : '';
+    if (value && !exists) missing.push(`${side.toUpperCase()}:${value}`);
   }
+  return missing;
 }
 
 function applyProfile(profile) {
@@ -294,11 +321,14 @@ function applyProfile(profile) {
   $('maxGroupSize').value = String(config.options.maxGroupSize);
   if (state.a) rebuildSide('a');
   if (state.b) rebuildSide('b');
-  setMapping('a', config.mappingA);
-  setMapping('b', config.mappingB);
+  const missing = [...setMapping('a', config.mappingA), ...setMapping('b', config.mappingB)];
   state.selectedProfileId = profile.id;
   $('profileName').value = profile.name;
   $('profileSelect').value = profile.id;
+  if (missing.length) {
+    setNotice(message(`ルール「${profile.name}」を適用しましたが、現在のファイルに存在しない列があります: ${missing.join(', ')}`, `Applied profile “${profile.name}”, but some saved columns are missing from the current files: ${missing.join(', ')}`), 'warning');
+    return;
+  }
   setNotice(message(`ルール「${profile.name}」を適用しました。`, `Applied profile “${profile.name}”.`), 'success');
 }
 
@@ -389,6 +419,10 @@ function run() {
     applyFilter();
     setNotice(message('照合が完了しました。', 'Reconciliation complete.'), 'success');
   } catch (error) {
+    if (error?.code === 'candidate_graph_too_large' || error?.message === 'candidate_graph_too_large') {
+      setNotice(message('候補が多すぎるため安全上照合を停止しました。日付または取引ID/参照列を追加して候補を絞ってください。', 'Reconciliation stopped because there are too many possible matches. Map Date and/or Transaction ID / Reference to narrow the candidates.'), 'warning');
+      return;
+    }
     setNotice(message(`照合できませんでした: ${error.message}`, `Reconciliation failed: ${error.message}`), 'error');
   }
 }
