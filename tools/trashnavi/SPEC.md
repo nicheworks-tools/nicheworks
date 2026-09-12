@@ -149,6 +149,10 @@ Wave 4では、第三のofficial link typeとして収集曜日を確認でき�
 
 - 東京都 中央区 — `/tools/trashnavi/tokyo/chuo/`
 
+Wave 5では、Search Consoleで葛飾区の粗大ごみ需要が確認されたため、葛飾区に2026年度収集カレンダーと粗大ごみ案内のofficial linkを追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げる。公開page化はdata enrichment検証後の別PRで行う。
+
+- 東京都 葛飾区 — preferred candidate（publication pending）
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -174,17 +178,17 @@ node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 
 CIではcoverage strict auditと生成drift checkの両方を必須とし、公開URLがroot sitemapから欠落しても失敗させる。
 
-### Wave 4 verified coverage baseline
+### Wave 5 verified coverage baseline
 
-2026-09-13のWave 4 CI基準値は次のとおり。
+2026-09-13のWave 5 CI基準値は次のとおり。
 
 - municipalities: 1,916
-- records: 2,185 / 2,185 valid HTTP(S)
+- records: 2,187 / 2,187 valid HTTP(S)
 - municipalities with any waste-specific direct link: 77
-- publish candidates (2+ types): 11
-- preferred candidates (3+ types): 11
-- collection calendar coverage: 11 municipalities
-- bulky-waste coverage: 10 municipalities
+- publish candidates (2+ types): 12
+- preferred candidates (3+ types): 12
+- collection calendar coverage: 12 municipalities
+- bulky-waste coverage: 11 municipalities
 - drop-off facility coverage: 1 municipality
 - waste-app coverage: 1 municipality
 - invalid records: 0
@@ -259,6 +263,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
 - [x] Wave 4で中央区をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 5で葛飾区をpreferred candidateへ引き上げる。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -277,6 +282,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/` — nationwide/local supplementary/direct waste link datasets。
 - `tools/trashnavi/data/direct-waste-links-demand-wave3.json` — 御浜町・海津市・結城市のWave 3 official-link enrichment。
 - `tools/trashnavi/data/direct-waste-links-demand-wave4.json` — 中央区のWave 4 collection-calendar enrichment。
+- `tools/trashnavi/data/direct-waste-links-demand-wave5.json` — 葛飾区のWave 5 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
