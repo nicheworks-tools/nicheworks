@@ -300,3 +300,38 @@ export async function issueEntitlement(env, record) {
     entitlement: record
   };
 }
+
+export async function updateEntitlementStatusByPaymentIntent(env, { paymentIntentId, status } = {}) {
+  const storage = detectStorageBinding(env);
+  if (!storage) {
+    return { ok: false, error: 'entitlement_storage_not_configured' };
+  }
+
+  const normalizedPaymentIntentId = normalizeNullable(paymentIntentId);
+  if (!normalizedPaymentIntentId) {
+    return { ok: false, error: 'entitlement_payment_intent_id_required' };
+  }
+
+  const normalizedStatus = normalizeEntitlementStatus(status);
+  if (!['refunded', 'disputed', 'revoked'].includes(normalizedStatus)) {
+    return { ok: false, error: 'entitlement_status_invalid' };
+  }
+
+  const timestamp = nowIso();
+  const result = await storage.binding
+    .prepare(`
+      UPDATE billing_entitlements
+      SET status = ?, updated_at = ?, revoked_at = ?
+      WHERE stripe_payment_intent_id = ?
+        AND status = 'active'
+    `)
+    .bind(normalizedStatus, timestamp, timestamp, normalizedPaymentIntentId)
+    .run();
+
+  const changes = Number(result?.meta?.changes ?? result?.changes ?? 0);
+  return {
+    ok: true,
+    updated: Number.isFinite(changes) ? changes : 0,
+    status: normalizedStatus
+  };
+}

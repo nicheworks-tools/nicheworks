@@ -1,4 +1,8 @@
-import { buildEntitlementRecord, issueEntitlement } from './entitlement-store.js';
+import {
+  buildEntitlementRecord,
+  issueEntitlement,
+  updateEntitlementStatusByPaymentIntent
+} from './entitlement-store.js';
 import { loadProductsConfig, productPaymentMatchesSession, validateConfiguredProduct } from './product-config.js';
 
 function json(data, status = 200) {
@@ -91,6 +95,50 @@ function acceptedFulfillmentEvent(eventType) {
   return eventType === 'checkout.session.completed' || eventType === 'checkout.session.async_payment_succeeded';
 }
 
+function revocationStatusForEvent(eventType) {
+  if (eventType === 'charge.refunded') return 'refunded';
+  if (eventType === 'charge.dispute.created') return 'disputed';
+  return null;
+}
+
+function stripeId(value) {
+  if (typeof value === 'string') return value.trim();
+  if (value && typeof value.id === 'string') return value.id.trim();
+  return '';
+}
+
+async function handleRevocationEvent(env, eventType, object) {
+  const status = revocationStatusForEvent(eventType);
+  const paymentIntentId = stripeId(object?.payment_intent);
+  if (!paymentIntentId) {
+    return {
+      ok: true,
+      verified: true,
+      received: true,
+      eventType,
+      entitlementUpdated: false,
+      ignored: true,
+      reason: 'payment_intent_missing'
+    };
+  }
+
+  const updated = await updateEntitlementStatusByPaymentIntent(env, { paymentIntentId, status });
+  if (!updated.ok) {
+    const httpStatus = updated.error === 'entitlement_storage_not_configured' ? 503 : 500;
+    return { ok: false, error: updated.error || 'entitlement_update_failed', httpStatus };
+  }
+
+  return {
+    ok: true,
+    verified: true,
+    received: true,
+    eventType,
+    entitlementUpdated: updated.updated > 0,
+    updatedCount: updated.updated,
+    entitlementStatus: status
+  };
+}
+
 export async function onRequest({ request, env }) {
   if (request.method !== 'POST') {
     return json({ ok: false, error: 'method_not_allowed', allowed: ['POST'] }, 405);
@@ -119,6 +167,13 @@ export async function onRequest({ request, env }) {
   }
 
   const eventType = String(event?.type || '').trim();
+  const revocationStatus = revocationStatusForEvent(eventType);
+  if (revocationStatus) {
+    const result = await handleRevocationEvent(env, eventType, event?.data?.object);
+    if (!result.ok) return json({ ok: false, error: result.error }, result.httpStatus || 500);
+    return json(result, 200);
+  }
+
   if (!acceptedFulfillmentEvent(eventType)) {
     return json({ ok: true, verified: true, received: true, ignored: true, eventType }, 200);
   }
@@ -154,6 +209,7 @@ export async function onRequest({ request, env }) {
       eventType,
       productId,
       entitlementIssued: false,
+      paymentVerified: false,
       paymentPending: String(session?.payment_status || '') === 'unpaid'
     }, 200);
   }
@@ -188,6 +244,7 @@ export async function onRequest({ request, env }) {
     eventType,
     productId,
     entitlementIssued: true,
+    paymentVerified: true,
     entitlementId: issued.entitlement?.entitlementId || entitlementRecord.entitlementId
   };
 
