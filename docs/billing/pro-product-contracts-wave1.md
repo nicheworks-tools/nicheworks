@@ -1,0 +1,148 @@
+# NicheWorks Pro Product Contracts — Wave 1
+
+Status: implementation contract, commercial configuration unresolved  
+Date: 2026-09-12  
+Authority: `PRO_MIGRATION_LEDGER.md`, current tool SPEC/runtime, and the product-scoped billing foundation introduced by PR #516.
+
+## 1. Rules shared by this wave
+
+These contracts define **what may be sold**, not a live product listing.
+
+- Existing Free contractual behavior stays Free.
+- Paid activation must use a product-scoped, server-verified entitlement.
+- Browser-local flags, query parameters, entitlement names, success-page arrival, or cached `active=true` values are not payment proof.
+- Product ID, price, Stripe Price ID/environment mapping, and live enablement remain unresolved until explicitly configured from an authoritative commercial source.
+- Checkout must return to the originating tool page after the common billing success/cancel flow.
+- User input processed locally by the tool must not be added to billing or analytics payloads.
+
+## 2. Command Safety Checker
+
+### 2.1 Free boundary — fixed
+
+The following remains Free:
+
+- paste shell or PowerShell commands;
+- select Unix-style shell or PowerShell mode;
+- run the current local heuristic checks;
+- receive risk level, category, reason, verification guidance, and safer/dry-run guidance;
+- use JP/EN UI and safety disclaimers.
+
+The safety checker itself must not become a paid gate. A user who has no paid entitlement must still be able to perform the current risk review.
+
+### 2.2 Paid boundary — existing implemented value
+
+The current paid-value surface is limited to the already implemented review/handoff artifacts:
+
+- review Markdown;
+- Codex safety-check task text;
+- GitHub Issue draft;
+- JSON export;
+- Markdown export.
+
+No additional paid feature is required to perform the reference migration.
+
+### 2.3 Product-scoped migration contract
+
+Migration is complete only when all of the following are true:
+
+1. the tool has its own registered product entry in the common billing registry;
+2. checkout is created through the common billing endpoint for that product;
+3. Stripe webhook fulfillment records the matching paid entitlement in D1;
+4. the public page checks that product-specific server entitlement before enabling paid artifacts;
+5. reloading the page re-verifies the entitlement rather than trusting a browser-local active flag;
+6. the legacy shared Payment Link and `nicheworks_pro` authority are no longer authoritative for this tool;
+7. the Free checker continues to function when entitlement lookup fails or returns inactive.
+
+Return path: `/tools/command-safety-checker/`
+
+### 2.4 Commercial fields intentionally unresolved
+
+Do not invent these values:
+
+- product ID;
+- display product name used by Stripe;
+- one-time vs recurring commercial model;
+- price / currency;
+- internal price tier ID;
+- Stripe Price environment variable mapping;
+- test/live checkout enablement policy.
+
+Until those fields are explicitly authorized, Command Safety remains on the legacy shared gate and must not be presented as product-scoped.
+
+## 3. JSON2Mermaid Lite
+
+### 3.1 Free boundary — fixed
+
+The existing current contract remains Free:
+
+- pasted JSON and built-in presets;
+- TD/LR direction;
+- inline/separate leaf values;
+- expanded/summarized array handling;
+- current approximately 300 KB input limit, depth limit 12, and up to 50 expanded array items;
+- Mermaid source generation and statistics/warnings;
+- copy source;
+- `.mmd` download;
+- `.txt` download;
+- explicit external Mermaid Live Editor handoff.
+
+None of these existing features may be moved behind Pro as part of Wave 1.
+
+### 3.2 Additive Pro boundary — Wave 1 product target
+
+Wave 1 Pro is an additive workflow/export package consisting of:
+
+1. **Batch workspace** — process multiple JSON inputs in one local session and produce a separate Mermaid result for each item.
+2. **Embedded diagram render** — render generated Mermaid inside NicheWorks instead of requiring the external Mermaid Live Editor for preview.
+3. **SVG export** — download the locally rendered diagram as SVG.
+4. **PNG export** — download the locally rendered diagram as PNG.
+5. **Reusable style presets** — save/apply local diagram presentation presets supported by the implementation.
+
+The first implementation does **not** promise larger parsing limits. Any higher input/depth/array limits require a separate performance benchmark and contract update; they must not be advertised merely because the user has Pro.
+
+### 3.3 Privacy and execution contract
+
+- JSON parsing, Mermaid source generation, batch processing, and saved style presets stay local to the browser unless a later contract explicitly says otherwise.
+- Embedded rendering must not silently submit source JSON or generated Mermaid to a third-party rendering service.
+- Product/billing analytics may identify the tool/product/feature/placement with fixed identifiers, but must not include JSON content, generated Mermaid source, filenames, node labels, or values from user input.
+
+### 3.4 Product-scoped activation contract
+
+When implemented, JSON2Mermaid Pro must use the same server-verified product-scoped path as the Command Safety migration:
+
+1. registered product;
+2. common checkout endpoint;
+3. webhook-confirmed D1 entitlement;
+4. matching server entitlement check on the public page;
+5. inactive/failure state leaves the complete current Free converter available.
+
+Return path: `/tools/json2mermaid/`
+
+### 3.5 Commercial fields intentionally unresolved
+
+The following are not defined by this contract:
+
+- product ID;
+- price / currency;
+- one-time vs recurring model;
+- price tier ID;
+- Stripe Price environment variable mapping;
+- live/test enablement policy.
+
+## 4. Implementation order
+
+1. Obtain authoritative commercial configuration for Command Safety.
+2. Migrate Command Safety as the first legacy-shared reference product and prove checkout → webhook → D1 → entitlement → reload behavior.
+3. Implement JSON2Mermaid's additive Pro features behind a disabled/non-live product-scoped gate.
+4. Configure JSON2Mermaid commercial settings only after the feature package exists and passes regression/privacy checks.
+5. Use the proven migration pattern for Logistics Compliance Kit JP and the remaining legacy shared candidates.
+
+## 5. Definition of done for this contract wave
+
+This documentation wave is complete when:
+
+- Command Safety's Free and paid boundaries are unambiguous;
+- JSON2Mermaid's existing Free features are protected from retroactive paywalling;
+- JSON2Mermaid has a concrete additive paid feature package;
+- unresolved commercial settings are explicitly marked unresolved;
+- neither tool is falsely described as product-scoped before runtime migration is implemented.
