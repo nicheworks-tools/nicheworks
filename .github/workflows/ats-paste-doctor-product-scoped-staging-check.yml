@@ -1,0 +1,30 @@
+name: ATS Paste Doctor product-scoped staging check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/ats-paste-doctor/**'
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'scripts/check-ats-paste-doctor-product-scoped-staging.mjs'
+      - 'docs/tools/ats-paste-doctor.md'
+      - 'docs/billing/pro-product-contracts-wave5.md'
+      - 'docs/billing/nicheworks-pro-bundle-contract.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - '.github/workflows/ats-paste-doctor-product-scoped-staging-check.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check tools/ats-paste-doctor/pro-bridge.js
+          node --check tools/ats-paste-doctor/product-scoped-controller.mjs
+          node --check scripts/check-ats-paste-doctor-product-scoped-staging.mjs
+      - name: ATS Paste Doctor bundle boundary contracts
+        run: node scripts/check-ats-paste-doctor-product-scoped-staging.mjs
