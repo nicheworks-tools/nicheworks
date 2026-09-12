@@ -29,7 +29,7 @@ has('tools/ai-interaction-atlas/pro-bridge.js', 'nicheworks_pro');
 has('tools/ai-project-pack/index.html', 'https://github.com/nicheworks-tools/ai-project-pack/tree/main');
 has('tools/ai-project-pack/index.html', 'report-only');
 has('tools/ai-project-pack/index.html', 'safe-update');
-has('tools/ai-project-pack/index.html', 'append one dated update log');
+has('tools/ai-project-pack/index.html', '<code>updates/</code>');
 has('tools/ai-project-pack/ja/index.html', 'https://github.com/nicheworks-tools/ai-project-pack/tree/main');
 
 // 3. Analytics Privacy Kit — provider drafting and local clear/copy/export controls.
