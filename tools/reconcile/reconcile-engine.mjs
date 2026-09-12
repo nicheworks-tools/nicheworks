@@ -68,8 +68,12 @@ function buildReferenceIndex(records) {
   return map;
 }
 
+function roundAmount(value) {
+  return Number(Number(value).toFixed(12));
+}
+
 function amountDistance(a, b) {
-  return Math.abs(a.amount - b.amount);
+  return roundAmount(Math.abs(a.amount - b.amount));
 }
 
 function dateDistance(a, b) {
@@ -83,8 +87,8 @@ function referencesCompatible(a, b, useReference) {
   return a.reference === b.reference;
 }
 
-function referenceConflict(a, b) {
-  return Boolean(a.reference && b.reference && a.reference === b.reference && a.amount !== null && b.amount !== null && a.amount !== b.amount);
+function referenceConflict(a, b, tolerance) {
+  return Boolean(a.reference && b.reference && a.reference === b.reference && a.amount !== null && b.amount !== null && amountDistance(a, b) > tolerance);
 }
 
 function duplicateSignature(record, useDate, useReference) {
@@ -137,7 +141,7 @@ function findCombinations(records, target, tolerance, maxSize, maxNodes) {
       truncated = true;
       return;
     }
-    if (picked.length >= 2 && Math.abs(sum - target) <= tolerance) {
+    if (picked.length >= 2 && roundAmount(Math.abs(sum - target)) <= tolerance) {
       solutions.push([...picked]);
       if (solutions.length > 1) return;
     }
@@ -145,7 +149,7 @@ function findCombinations(records, target, tolerance, maxSize, maxNodes) {
 
     for (let i = start; i < sorted.length; i += 1) {
       picked.push(sorted[i]);
-      walk(i + 1, picked, sum + sorted[i].amount);
+      walk(i + 1, picked, roundAmount(sum + sorted[i].amount));
       picked.pop();
       if (solutions.length > 1 || truncated) return;
     }
@@ -156,8 +160,8 @@ function findCombinations(records, target, tolerance, maxSize, maxNodes) {
 }
 
 function groupReason(relation, target, members, tolerance) {
-  const sum = members.reduce((total, item) => total + item.amount, 0);
-  const diff = Math.abs(sum - target.amount);
+  const sum = members.reduce((total, item) => roundAmount(total + item.amount), 0);
+  const diff = roundAmount(Math.abs(sum - target.amount));
   return `${relation} aggregate amount ${sum} · target ${target.amount} · difference ${diff}${tolerance ? ` · tolerance ${tolerance}` : ''}`;
 }
 
@@ -195,7 +199,7 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
     }
 
     const conflicts = (recordA.reference ? (referenceIndexB.get(recordA.reference) || []) : [])
-      .filter((recordB) => !usedB.has(recordB.sourceRow) && referenceConflict(recordA, recordB));
+      .filter((recordB) => !usedB.has(recordB.sourceRow) && referenceConflict(recordA, recordB, config.amountTolerance));
     if (conflicts.length === 1) {
       const recordB = conflicts[0];
       usedA.add(recordA.sourceRow);
