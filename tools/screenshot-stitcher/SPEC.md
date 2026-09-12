@@ -1,46 +1,77 @@
-# tools/screenshot-stitcher/SPEC.md
-# Screenshot Stitcher（スクショ縦結合）完成仕様 v1.1
+# Tool Specification — Screenshot Stitcher
 
-## 1. ゴール
-- 複数スクリーンショットを **ブラウザ内のみ** で縦結合し、1枚または分割で保存できる完成版ツールを提供する。
-- 入力画像は外部送信せず、ローカル処理のみで完結する。
+- Slug: `screenshot-stitcher`
+- Public URL: `https://nicheworks.app/tools/screenshot-stitcher/`
+- Specification status: `complete`
+- Common specification: `common-spec/spec-ja.md`
 
-## 2. レイアウト / 共通ルール
-- ライトテーマ固定（白背景ベース、濃い装飾は抑制）。
-- ヘッダーは非固定。構成は **タイトル + 短い説明 + JP/EN切替** のみ。
-- ヘッダーや本文にロゴは置かない。
-- `ad-top` と `ad-bottom` の枠を表示する。
-- 寄付導線は **2箇所必須**。URLは次の2つに厳密一致。
-  - https://ofuse.me/nicheworks
-  - https://ko-fi.com/nicheworks
-- 禁止リンク文言（問い合わせ / プライバシー / 利用規約 / クレジット）を表示しない。
-- フッターは3行（著作権、免責、nicheworks.appリンク）。
+## Purpose
 
-## 3. 機能要件
-1. 入力
-   - 追加方法: ファイル選択 / D&D / クリップボード貼り付け
-   - 対応形式: PNG / JPEG / WebP
-2. 画像リスト
-   - サムネイル、ファイル名、解像度表示
-   - ↑↓並べ替え、個別削除、全削除
-3. 変換設定
-   - 幅揃え: 最大幅 / 指定幅 / 最小幅
-   - 余白トリム: 上下のみ、ON/OFF、閾値 0-40
-   - 画像間余白: 0-200px
-   - 背景: 白 / 透明
-4. プレビュー
-   - Canvasで結合結果表示
-   - 20000px超の高さは警告表示
-5. 出力
-   - 単体出力: PNG / WebP / JPEG
-   - 分割出力: 指定pxごとに分割しZIPで保存
+Combine multiple screenshots vertically in the browser, with ordering and output controls, then save one stitched image or split output without uploading source screenshots through the tool workflow.
 
-## 4. 文言・言語
-- JP/EN切替でタイトル、説明、操作ラベル、状態表示を切替える。
-- 同一要素内に言語重複を置かず、切替時に崩れない。
-- 「外部送信なし」文言を常時表示する。
+## Current functional contract
 
-## 5. 品質要件
-- 320px幅でも基本操作が可能。
-- フォーカスリングを表示しキーボード操作可能。
-- エラー時はアプリが落ちず、再試行可能。
+- Accept PNG, JPEG, and WebP screenshots through file selection, drag and drop, or clipboard paste.
+- Show a source list with thumbnail, file name, dimensions, up/down ordering, individual removal, and clear-all behavior.
+- Support width normalization by maximum width, explicit width, or minimum width.
+- Support optional top/bottom margin trimming with threshold from 0 to 40, inter-image spacing from 0 to 200 px, and white or transparent background.
+- Render a Canvas preview of the stitched result and warn when resulting height exceeds 20,000 px.
+- Export a single stitched image as PNG, WebP, or JPEG.
+- Split output by a user-specified pixel height and save the resulting parts as ZIP.
+- Provide JP/EN UI and an always-visible local-processing privacy statement.
+
+## Inputs
+
+- One or more PNG, JPEG, or WebP image files from file picker, drag/drop, or clipboard.
+- Image order and remove/clear actions.
+- Width mode and optional target width.
+- Trim toggle/threshold, inter-image spacing, background mode, output format, and optional split height.
+- UI language selection.
+
+## Outputs
+
+- Ordered screenshot list and stitched Canvas preview.
+- Height/load warnings where applicable.
+- Single PNG/WebP/JPEG download or split-image ZIP download.
+
+## State and persistence
+
+Loaded screenshots, ordering, and transform settings are current-session browser state. Source images are not specified as persistent history. User-triggered image/ZIP downloads are saved by the browser.
+
+## Privacy and network behavior
+
+Image composition runs locally in the browser and source screenshots are not intentionally uploaded by the stitching workflow. Suite-wide advertising and analytics resources may load independently from image processing.
+
+## Language mode
+
+`bilingual single-page`
+
+JP/EN controls switch titles, explanatory copy, controls, and status text on the same tool page.
+
+## Layout class
+
+`hybrid`
+
+The preview and image list benefit from desktop width, while core add/reorder/configure/export actions are required to remain usable at narrow mobile widths, including around 320 px.
+
+## Limits and non-goals
+
+- The tool vertically stitches screenshots; it is not a general freeform image compositor or editor.
+- Margin trimming is top/bottom threshold-based rather than semantic content detection.
+- Very tall results can exceed practical canvas/browser limits; the UI warns at the implemented 20,000 px threshold and split output is available.
+- Rendering/export capability still depends on browser Canvas/image support and available device memory.
+
+## Acceptance criteria
+
+- [ ] PNG/JPEG/WebP screenshots can be added through the supported input paths, reordered, individually removed, and cleared.
+- [ ] Width, trim, spacing, and background settings affect the stitched preview without modifying the original source files.
+- [ ] A stitched result can be exported in each supported single-image format, and split mode can produce a ZIP of parts.
+- [ ] JP/EN switching keeps the complete stitching workflow usable and local-processing wording visible.
+- [ ] Basic controls remain operable at approximately 320 px width with visible keyboard focus and recoverable error handling.
+
+## Implementation evidence
+
+- `tools/screenshot-stitcher/SPEC.md` (pre-standard v1.1 contract migrated into this format)
+- `tools/screenshot-stitcher/index.html`
+- `tools/screenshot-stitcher/app.js`
+- `tools/screenshot-stitcher/style.css`

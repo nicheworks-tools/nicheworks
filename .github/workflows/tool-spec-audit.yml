@@ -1,0 +1,43 @@
+name: Tool spec audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/tools-index.json'
+      - 'tools/tool-spec-manifest.json'
+      - 'tools/*/SPEC.md'
+      - 'docs/tool-spec-standard.md'
+      - 'scripts/check-tool-spec-contract.mjs'
+      - '.github/workflows/tool-spec-audit.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/tools-index.json'
+      - 'tools/tool-spec-manifest.json'
+      - 'tools/*/SPEC.md'
+      - 'docs/tool-spec-standard.md'
+      - 'scripts/check-tool-spec-contract.mjs'
+      - '.github/workflows/tool-spec-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check per-tool specification contract
+        run: node scripts/check-tool-spec-contract.mjs
+
+      - name: Confirm repository was not modified
+        run: git diff --exit-code
