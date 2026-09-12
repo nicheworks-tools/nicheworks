@@ -7,7 +7,7 @@
 
 ## Purpose
 
-Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized ingredients with the local/generated INCI dictionary so known, review-needed, and unknown items can be inspected quickly. INCI FastScan is the photo/OCR and detailed-review member of the NicheWorks cosmetics pair; Cosmetic Ingredient Checker Lite remains the faster paste-only Japanese entry point.
+Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized ingredients with the local/generated INCI dictionary so dictionary matches, additional-review entries, and unmatched items can be inspected quickly. INCI FastScan is the photo/OCR and detailed-review member of the NicheWorks cosmetics pair; Cosmetic Ingredient Checker Lite remains the faster paste-only Japanese entry point.
 
 ## Current functional contract
 
@@ -20,8 +20,10 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Show OCR progress in the page while recognition is running.
 - Put OCR output back into the editable ingredient textarea and show a clear review cue after OCR; users review/correct OCR text before running ingredient matching.
 - Normalize/parse OCR or pasted text and match ingredients against the local/generated dictionary and declared aliases.
-- Show ingredient-analysis results that distinguish known, review-needed/caution, and unknown/unmatched items according to the current dictionary logic.
-- For sufficiently close unknown spellings, show up to three conservative near-match candidates without automatically replacing user input.
+- For every exact match, retain the canonical INCI name and identify the route used: canonical INCI, Japanese name, declared alias, or shared high-confidence naming variant.
+- Show result cards with canonical INCI, original input, match route, matched spelling, Japanese names where available, category, review cue, and neutral explanatory note.
+- Display `辞書一致 / Dictionary match`, `追加確認 / Additional review`, and `未一致 / Unmatched` as reference states; these are not safety or danger grades.
+- For sufficiently close unmatched spellings, show up to three conservative near-match candidates without automatically replacing user input.
 - Treat the Japanese-label tab as Japanese-name/alias matching, not machine translation.
 - Provide JP/EN UI and explicit warnings that OCR can misread text and ingredient results are not medical or safety guarantees.
 - Link to Cosmetic Ingredient Checker Lite near the lower related-tools area for users who only need a fast paste workflow.
@@ -39,9 +41,22 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Local selected-image preview prior to OCR.
 - Editable OCR text and visible OCR status/progress where OCR is used.
 - Post-OCR review reminder before ingredient matching.
-- Parsed/matched ingredient result groups and explanatory notes.
-- Known/review-needed/unknown classification according to the current dictionary/rules.
-- Conservative close-match suggestions for eligible unknown entries; suggestions are display-only and never auto-applied.
+- Result summary for dictionary matches, additional-review entries, and unmatched items.
+- Detailed match cards exposing canonical INCI, original input spelling, match route, matched name, Japanese names where available, category, and reference note.
+- Conservative close-match suggestions for eligible unmatched entries; suggestions are display-only and never auto-applied.
+
+## Match-route semantics
+
+Exact matched results may expose one of these internal routes:
+
+```txt
+canonical    = input matched the canonical INCI name
+jp           = input matched a maintained Japanese name
+alias        = input matched a maintained declared alias
+shared_alias = input matched a reviewed high-confidence naming equivalent from the shared parser
+```
+
+The route describes how the name was resolved. It does not imply ingredient concentration, quality, efficacy, or safety.
 
 ## State and persistence
 
@@ -99,7 +114,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - OCR may be slow and can omit, split, or misrecognize characters; users must visually verify OCR text before trusting scan results.
 - Image preview is a review aid only; this wave does not rotate/crop/re-encode the selected file before OCR.
 - Near-match suggestions are spelling/OCR repair hints only; they are not authoritative ingredient identification and are never auto-applied.
-- Dictionary coverage is finite; an unknown result is not evidence that an ingredient is unsafe.
+- `追加確認 / Additional review` reflects existing dictionary metadata or review cues and is not a declaration that an ingredient is dangerous or unsuitable.
+- Dictionary coverage is finite; an unmatched result is not evidence that an ingredient is unsafe.
 - The tool does not provide medical/dermatological diagnosis, allergy prediction, concentration analysis, product-safety certification, pregnancy suitability, drug-interaction advice, or regulatory approval.
 - External CDN availability can affect OCR even though ingredient processing itself is browser-side.
 - Amazon Associates is not active until account setup and policy verification are complete.
@@ -111,8 +127,9 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] OCR can be started from a selected image when the external Tesseract library loads and visible progress is exposed in the page.
 - [x] Selected OCR images can be previewed locally and removed/reselected without upload.
 - [x] OCR results remain editable and a review cue is shown before ingredient matching.
-- [x] Results distinguish known/review-needed/unknown states without presenting unknown as a medical safety judgment.
-- [x] Eligible unknown spellings can show conservative candidates without auto-replacement.
+- [x] Exact matched results expose canonical INCI plus canonical / Japanese / alias / shared-variant match route metadata.
+- [x] Displayed result states use neutral dictionary/review language rather than presenting a safe/unsafe score.
+- [x] Eligible unmatched spellings can show conservative candidates without auto-replacement.
 - [x] Japanese-label wording describes dictionary matching rather than machine translation.
 - [x] JP/EN switching preserves text scan, OCR, dictionary status, and medical/OCR disclaimers.
 - [x] The Lite tool is linked as the paste-only alternative.
