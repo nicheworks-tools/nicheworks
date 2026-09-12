@@ -105,7 +105,7 @@ Default configuration remains deliberately disabled:
 
 While disabled or without valid Amazon HTTPS targets, no Amazon CTA, disclosure, or affiliate click event is emitted. When Amazon Associates is ready, activation requires only verified target URLs plus `enabled: true`.
 
-The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results and comparison candidates are never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state is also not added to affiliate URLs or analytics.
+The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Comparison candidates are also never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state is also not added to affiliate URLs or analytics.
 
 ## State and persistence
 
