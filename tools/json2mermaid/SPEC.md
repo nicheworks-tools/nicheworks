@@ -35,9 +35,31 @@ Convert JSON structure into Mermaid `flowchart` source code locally so users can
 
 Input, conversion settings, generated source, and statistics are current-page state. The current contract does not include saved diagram projects or cloud persistence.
 
+## Planned additive Pro contract
+
+This section defines a future additive paid package. It does not claim that JSON2Mermaid currently has a paid runtime or registered product.
+
+The complete current functional contract remains Free, including current parsing limits, all direction/leaf/array controls, Mermaid source generation, statistics/warnings, clipboard copy, `.mmd` download, `.txt` download, and the external Mermaid Live Editor handoff.
+
+Wave 1 Pro may add only functionality that is not part of that current Free contract:
+
+- **Batch workspace** — process multiple JSON inputs in one local session and produce a separate Mermaid result for each item.
+- **Embedded diagram render** — render generated Mermaid inside NicheWorks instead of requiring the external Mermaid Live Editor for preview.
+- **SVG export** — download the locally rendered diagram as SVG.
+- **PNG export** — download the locally rendered diagram as PNG.
+- **Reusable style presets** — save and apply local diagram-presentation presets supported by the implementation.
+
+Higher parsing/input limits are explicitly not promised by this Wave 1 contract. Any larger input, depth, or array limits require benchmark evidence and a separate contract update before they are advertised as paid value.
+
+When implemented, paid activation must use a product-specific server-verified entitlement. Browser-local flags, query parameters, success-page arrival, or a shared entitlement name are not payment proof. The common billing flow must return to `/tools/json2mermaid/`, and inactive/failed entitlement checks must leave the entire current Free converter usable.
+
+Product ID, price, billing model, price tier, Stripe Price environment mapping, and live/test enablement policy remain unresolved until explicitly authorized. Detailed authority: `docs/billing/pro-product-contracts-wave1.md`.
+
 ## Privacy and network behavior
 
 JSON parsing and Mermaid-source generation run in the browser; input JSON is not intentionally uploaded by the conversion workflow. Opening or pasting into Mermaid Live Editor is an explicit external-site action governed by that site. Suite-wide analytics/advertising may load separately.
+
+For future Pro implementation, batch processing, embedded rendering, exports, and style presets must remain local unless a later specification explicitly changes that contract. Billing/analytics payloads must not contain JSON content, generated Mermaid source, filenames, node labels, or values derived from user input.
 
 ## Language mode
 
@@ -56,6 +78,7 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - The current page generates Mermaid source; it does not provide an embedded rendered-diagram preview.
 - Large/deep JSON is intentionally truncated/rejected according to the implemented limits.
 - External Mermaid rendering can expose pasted content to that external service, so confidential JSON-derived output should not be pasted there.
+- The planned Pro contract does not authorize a product ID, price, Stripe Price ID, live checkout, or higher parser limits by itself.
 
 ## Acceptance criteria
 
@@ -63,6 +86,8 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - [ ] Direction, leaf, and array options change the generated source according to the selected behavior.
 - [ ] Oversize, over-depth, or heavily expanded arrays surface limit/warning behavior rather than silently claiming complete representation.
 - [ ] Copy and `.mmd` / `.txt` downloads use the currently generated source and JP/EN switching preserves the workflow.
+- [ ] Future Pro implementation does not move any current Free contract feature behind a paid gate.
+- [ ] Future batch/render/export/style features do not silently upload user JSON or generated Mermaid to a third-party rendering backend.
 
 ## Implementation evidence
 
@@ -70,3 +95,4 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - `tools/json2mermaid/app.js`
 - `tools/json2mermaid/usage.html`
 - `tools/json2mermaid/usage-en.html`
+- `docs/billing/pro-product-contracts-wave1.md`

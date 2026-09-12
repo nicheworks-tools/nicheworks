@@ -23,7 +23,7 @@ Help users inspect AI-generated shell or PowerShell commands before execution by
 - OS mode: Unix-style shell or PowerShell.
 - One or more command lines.
 - UI language selection.
-- Shared NicheWorks Pro entitlement state.
+- Current runtime: legacy shared NicheWorks Pro entitlement state for the paid review/export surface.
 
 ## Outputs
 
@@ -33,11 +33,25 @@ Help users inspect AI-generated shell or PowerShell commands before execution by
 
 ## State and persistence
 
-Command text and findings are current-page working state. The tool does not define persistent command history as part of the free contract. Shared Pro entitlement is managed by the common browser entitlement mechanism; explicit exports are user-controlled files/copies.
+Command text and findings are current-page working state. The tool does not define persistent command history as part of the free contract. The current paid surface still uses the legacy shared browser entitlement mechanism; explicit exports are user-controlled files/copies.
+
+## Planned product-scoped Pro migration contract
+
+This section defines the migration target and does not claim that product-scoped billing is already active.
+
+- The command risk checker, findings, reasons, verification guidance, and safer/dry-run guidance remain Free.
+- The existing paid delta is limited to review Markdown, Codex safety-check task text, GitHub Issue draft, JSON export, and Markdown export.
+- Migration must use a tool-specific product registered in the common product-scoped billing registry.
+- Paid artifacts may unlock only after the matching server-backed entitlement is verified; browser-local `active=true`, query parameters, shared entitlement names, or success-page arrival are not payment proof.
+- The checkout flow must return to `/tools/command-safety-checker/` through the common billing success/cancel flow.
+- After migration, reload must re-verify the product entitlement instead of trusting legacy shared `nicheworks_pro` state.
+- A failed/inactive entitlement check must leave all current Free safety analysis available.
+- Product ID, price, billing model, price tier, Stripe Price environment mapping, and live/test enablement policy remain unresolved until explicitly authorized.
+- Detailed implementation authority: `docs/billing/pro-product-contracts-wave1.md`.
 
 ## Privacy and network behavior
 
-Risk matching runs locally in the browser and the pasted command is not intentionally submitted to an application backend by this checker. Suite-wide analytics, advertising, Cloudflare resources, and shared Pro resources may load independently.
+Risk matching runs locally in the browser and the pasted command is not intentionally submitted to an application backend by this checker. Suite-wide analytics, advertising, Cloudflare resources, and current legacy shared Pro resources may load independently. A future product-scoped entitlement check may contact the common billing API, but command text must not be included in billing or analytics payloads.
 
 ## Language mode
 
@@ -57,6 +71,7 @@ Large code input and review output benefit from desktop width, while the primary
 - It does not execute commands, fetch remote scripts for inspection, inspect the user's filesystem, or know the actual target environment.
 - Users must independently verify paths, URLs, permissions, secrets, disk impact, and residual risk before execution.
 - `app-core.js` is the active checker runtime loaded by the public page; the older `app.js` file is not the runtime evidence for the current page.
+- The planned product-scoped contract does not authorize a product ID, price, Stripe Price ID, or live checkout by itself.
 
 ## Acceptance criteria
 
@@ -64,6 +79,8 @@ Large code input and review output benefit from desktop width, while the primary
 - [ ] Empty or benign input does not imply a cryptographic or formal safety guarantee.
 - [ ] Free checking remains available when Pro is inactive; Pro-only review/export actions remain gated.
 - [ ] JP/EN modes preserve the same detection behavior and safety disclaimer.
+- [ ] Product-scoped migration, when implemented, does not move the current risk checker behind a paid gate.
+- [ ] Product-scoped migration does not treat browser-local state or legacy shared entitlement naming as purchase proof.
 
 ## Implementation evidence
 
@@ -71,3 +88,4 @@ Large code input and review output benefit from desktop width, while the primary
 - `tools/command-safety-checker/app-core.js`
 - `tools/command-safety-checker/pro-bridge.js`
 - `tools/command-safety-checker/usage.html`
+- `docs/billing/pro-product-contracts-wave1.md`
