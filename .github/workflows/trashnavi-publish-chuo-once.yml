@@ -1,0 +1,104 @@
+# One-shot generator; this file removes itself after a successful run.
+name: TrashNavi Chuo publication one-shot
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-chuo-publication-20260913
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-chuo-publication-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Patch publication contract
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const genPath = 'tools/trashnavi/scripts/generate-municipality-pages.mjs';
+          let gen = fs.readFileSync(genPath, 'utf8');
+          const relatedOld = ".filter(m=>m.publish && m.lgcode!==entry.lgcode).map(m=>`<a href=\"/tools/trashnavi/${esc(m.pref_slug)}/${esc(m.city_slug)}/\">${esc(names.get(m.lgcode) || m.city_slug)}</a>`).join('')";
+          const relatedNew = ".filter(m=>m.publish && m.lgcode!==entry.lgcode).slice(0,9).map(m=>`<a href=\"/tools/trashnavi/${esc(m.pref_slug)}/${esc(m.city_slug)}/\">${esc(names.get(m.lgcode) || m.city_slug)}</a>`).join('')";
+          if (!gen.includes(relatedOld)) throw new Error('generator related-links contract not found');
+          gen = gen.replace(relatedOld, relatedNew);
+          const countOld = 'if(outputs.length!==10) throw new Error(`municipality page count must be 10; got ${outputs.length}`);';
+          const countNew = 'if(outputs.length!==11) throw new Error(`municipality page count must be 11; got ${outputs.length}`);';
+          if (!gen.includes(countOld)) throw new Error('generator page-count contract not found');
+          gen = gen.replace(countOld, countNew);
+          fs.writeFileSync(genPath, gen);
+
+          const manifestPath = 'tools/trashnavi/municipality-page-manifest.json';
+          let manifest = fs.readFileSync(manifestPath, 'utf8');
+          if (!manifest.includes('"lgcode":"131024"')) {
+            if (!manifest.endsWith(']\n')) throw new Error('unexpected manifest ending');
+            manifest = manifest.replace(/\n\]\n$/, ',\n  {"lgcode":"131024","pref_slug":"tokyo","city_slug":"chuo","publish":true}\n]\n');
+            fs.writeFileSync(manifestPath, manifest);
+          }
+
+          const rootSitemapPath = 'sitemap.xml';
+          let rootSitemap = fs.readFileSync(rootSitemapPath, 'utf8');
+          const chuoUrl = 'https://nicheworks.app/tools/trashnavi/tokyo/chuo/';
+          if (!rootSitemap.includes(`<loc>${chuoUrl}</loc>`)) {
+            const entry = `  <url>\n    <loc>${chuoUrl}</loc>\n    <lastmod>2026-09-13</lastmod>\n  </url>\n`;
+            rootSitemap = rootSitemap.replace('</urlset>', `${entry}</urlset>`);
+            fs.writeFileSync(rootSitemapPath, rootSitemap);
+          }
+
+          const specPath = 'tools/trashnavi/SPEC.md';
+          let spec = fs.readFileSync(specPath, 'utf8');
+          const wave3List = '- 茨城県 結城市 — `/tools/trashnavi/ibaraki/yuki/`\n';
+          const wave4Text = '\nWave 4では、第三のofficial link typeとして収集曜日を確認できた東京都中央区を追加し、公開対象を **11自治体** とする。\n\n- 東京都 中央区 — `/tools/trashnavi/tokyo/chuo/`\n';
+          if (!spec.includes('`/tools/trashnavi/tokyo/chuo/`')) {
+            if (!spec.includes(wave3List)) throw new Error('SPEC Wave 3 anchor not found');
+            spec = spec.replace(wave3List, wave3List + wave4Text);
+          }
+          spec = spec.replace('### Wave 3 verified coverage baseline', '### Wave 4 verified coverage baseline');
+          spec = spec.replace('2026-09-12のWave 3 CI基準値は次のとおり。', '2026-09-13のWave 4 CI基準値は次のとおり。');
+          spec = spec.replace('- records: 2,184 / 2,184 valid HTTP(S)', '- records: 2,185 / 2,185 valid HTTP(S)');
+          spec = spec.replace('- preferred candidates (3+ types): 10', '- preferred candidates (3+ types): 11');
+          spec = spec.replace('- collection calendar coverage: 10 municipalities', '- collection calendar coverage: 11 municipalities');
+          spec = spec.replace('- [x] 公開10自治体をmanifest allowlistで管理する。', '- [x] 公開11自治体をmanifest allowlistで管理する。');
+          spec = spec.replace('- [x] generator `--check` で10ページの生成driftを検出する。', '- [x] generator `--check` で11ページの生成driftを検出する。');
+          const wave3Acceptance = '- [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。';
+          if (spec.includes(wave3Acceptance) && !spec.includes('Wave 4で中央区をpreferred candidate')) {
+            spec = spec.replace(wave3Acceptance, wave3Acceptance + '\n- [x] Wave 4で中央区をpreferred candidateへ引き上げ、自治体pageを公開する。');
+          }
+          const wave3Evidence = '- `tools/trashnavi/data/direct-waste-links-demand-wave3.json` — 御浜町・海津市・結城市のWave 3 official-link enrichment。';
+          if (spec.includes(wave3Evidence) && !spec.includes('direct-waste-links-demand-wave4.json')) {
+            spec = spec.replace(wave3Evidence, wave3Evidence + '\n- `tools/trashnavi/data/direct-waste-links-demand-wave4.json` — 中央区のWave 4 collection-calendar enrichment。');
+          }
+          const pageEvidence = '- `tools/trashnavi/mie/mihama/index.html` / `tools/trashnavi/gifu/kaizu/index.html` / `tools/trashnavi/ibaraki/yuki/index.html` — Wave 3 municipality pages。';
+          if (spec.includes(pageEvidence) && !spec.includes('tokyo/chuo/index.html')) {
+            spec = spec.replace(pageEvidence, pageEvidence + '\n- `tools/trashnavi/tokyo/chuo/index.html` — Wave 4 municipality page。');
+          }
+          fs.writeFileSync(specPath, spec);
+          NODE
+      - name: Generate municipality pages and sitemap
+        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs
+      - name: Validate generated state
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          echo 'Changed files before commit:'
+          git status --short
+      - name: Commit generated publication
+        shell: bash
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git rm .github/workflows/trashnavi-publish-chuo-once.yml
+          git add -A
+          git commit -m 'Publish Chuo Ward TrashNavi municipality page'
+          git push origin HEAD:feat/trashnavi-chuo-publication-20260913
