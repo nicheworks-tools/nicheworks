@@ -11,6 +11,7 @@ on:
       - 'tools/_shared/check-cosmetics-full-label-benchmark.mjs'
       - 'tools/_shared/cosmetics-full-label-fixtures.json'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
+      - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
@@ -33,6 +34,10 @@ jobs:
         run: node tools/_shared/check-cosmetic-ingredient-parser.mjs
       - name: Dictionary and alias quality
         run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
+      - name: Canonical merge regression
+        run: node tools/_shared/check-cosmetics-canonical-merge.mjs
+      - name: FastScan app syntax
+        run: node --check tools/inci-fastscan/js/app.js
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
       - name: Cosmetics full-label coverage benchmark
