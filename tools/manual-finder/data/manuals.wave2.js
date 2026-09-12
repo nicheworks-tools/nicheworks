@@ -3,12 +3,15 @@
   window.MANUALFINDER_WAVE2_BATCHES = [
     "manuals.wave2.01.js",
     "manuals.wave2.02.js",
-    "manuals.wave2.03.js"
+    "manuals.wave2.03.js",
+    "manuals.wave2.04.js"
   ];
   window.MANUALFINDER_WAVE2_TFAL = window.MANUALFINDER_WAVE2_TFAL || [];
   window.MANUALFINDER_WAVE2_OM = window.MANUALFINDER_WAVE2_OM || [];
   window.MANUALFINDER_WAVE2_FUJI = window.MANUALFINDER_WAVE2_FUJI || [];
   window.MANUALFINDER_WAVE2_HISENSE = window.MANUALFINDER_WAVE2_HISENSE || [];
+  window.MANUALFINDER_WAVE2_SEIKO = window.MANUALFINDER_WAVE2_SEIKO || [];
+  window.MANUALFINDER_WAVE2_ROLAND = window.MANUALFINDER_WAVE2_ROLAND || [];
 
   const slug = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const lines = (parts) => parts.flatMap((part) => String(part || "").split("\n").map((x) => x.trim()).filter(Boolean));
@@ -152,5 +155,71 @@
     });
   };
 
-  window.MANUALFINDER_BUILD_WAVE2 = () => [...tfal(), ...om(), ...fuji(), ...hisense()];
+  const seiko = () => {
+    const supportUrl = "https://www.seikowatches.com/jp-ja/customerservice/instruction?caliberNumber=&idx=H&language=ja-JP";
+    return lines(window.MANUALFINDER_WAVE2_SEIKO).map((line) => {
+      const [model, manualUrl] = line.split("|");
+      return {
+        id: `wave2-seiko-${slug(model)}`,
+        brand: "Seiko",
+        maker: "Seiko",
+        model,
+        family: "Watch caliber",
+        nameJa: `セイコー キャリバー ${model}`,
+        nameEn: `Seiko caliber ${model}`,
+        category: "その他",
+        country: "Japan",
+        manualUrl,
+        supportUrl,
+        noteJa: "セイコー公式のキャリバー別取扱説明書です。",
+        noteEn: "Official Seiko instruction manual for this caliber code.",
+        hintJa: `セイコー SEIKO ${model} キャリバー 腕時計 時計 取扱説明書`,
+        hintEn: `Seiko ${model} caliber watch manual`,
+        aliases: ["セイコー", "SEIKO", "キャリバー", "腕時計", "時計"],
+        sourceType: "official",
+        sourceLevel: "A",
+        verifiedAt: V,
+        evidenceUrl: supportUrl,
+        resolutionState: "direct_manual_page",
+        manualKind: manualUrl.includes("/instructions/html/") ? "online-manual" : "manual",
+        sharedTarget: false,
+        linkReview: `official Wave 2 target verified ${V}`
+      };
+    });
+  };
+
+  const roland = () => {
+    const supportUrl = "https://www.roland.com/jp/support/archives/archive_manuals_n-s/";
+    return lines(window.MANUALFINDER_WAVE2_ROLAND).map((line) => {
+      const [model, manualUrl] = line.split("|");
+      return {
+        id: `wave2-roland-${slug(model)}`,
+        brand: "Roland",
+        maker: "Roland",
+        model,
+        family: "Legacy music/audio product",
+        nameJa: `ローランド ${model}`,
+        nameEn: `Roland ${model}`,
+        category: "その他",
+        country: "Japan",
+        manualUrl,
+        supportUrl,
+        noteJa: "ローランド公式の旧製品取扱説明書PDFです。",
+        noteEn: "Official Roland legacy-product instruction manual PDF.",
+        hintJa: `ローランド Roland ${model} 楽器 音響 取扱説明書`,
+        hintEn: `Roland ${model} legacy product manual`,
+        aliases: ["ローランド", "Roland", "楽器", "音響", "旧製品"],
+        sourceType: "official",
+        sourceLevel: "A",
+        verifiedAt: V,
+        evidenceUrl: supportUrl,
+        resolutionState: "direct_manual_page",
+        manualKind: "manual",
+        sharedTarget: false,
+        linkReview: `official Wave 2 target verified ${V}`
+      };
+    });
+  };
+
+  window.MANUALFINDER_BUILD_WAVE2 = () => [...tfal(), ...om(), ...fuji(), ...hisense(), ...seiko(), ...roland()];
 })();
