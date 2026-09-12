@@ -4,27 +4,28 @@ This ExecPlan is a living document. Keep `Progress`, `Surprises & Discoveries`, 
 
 ## Purpose / Big Picture
 
-The repository now has strong cross-cutting SEO and publication contracts, but the 87 registered NicheWorks tools still lack a consistent per-tool functional specification layer. `common-spec/spec-ja.md` defines suite-wide rules, yet several of those rules explicitly require tool-by-tool decisions (for example language exceptions and mobile/PC layout classification). Without a per-tool specification, future repairs can satisfy common CI while silently changing a tool's intended behavior.
+The repository has strong cross-cutting SEO and publication contracts, but the 87 registered NicheWorks tools also need a stable per-tool functional contract. `common-spec/spec-ja.md` remains the suite-wide source of truth; `tools/{slug}/SPEC.md` records current tool-specific behavior, language scope, persistence/privacy behavior, layout class, limits, and acceptance criteria so future cleanup work cannot silently change what a tool is for.
 
-This PR establishes a human-readable `tools/{slug}/SPEC.md` contract, a complete 87-tool coverage manifest, and a CI checker. Wave 1 writes substantive specifications for the first 15 registry tools. Remaining tools stay explicitly `pending`; they are not represented by placeholder SPEC files.
+This PR establishes the specification standard, the full 87-tool manifest, and a read-only CI checker. Registry-order wave 1 adds 15 new substantive specs. During implementation one pre-existing `tools/screenshot-stitcher/SPEC.md` was discovered; it was preserved and migrated into the common format, bringing the actual completed coverage to 16 tools rather than hiding or deleting it.
 
 ## Progress
 
-- [x] Confirmed main HEAD `bc03ed5ba84c47b7f7409feee09cbc29d31db9c5` after PR #507.
+- [x] Confirmed base main HEAD `bc03ed5ba84c47b7f7409feee09cbc29d31db9c5` after PR #507.
 - [x] Confirmed `tools/tools-index.json` contains 87 registered tools.
-- [x] Searched the repository for `SPEC.md`, `仕様書`, `specification`, and `acceptance criteria`; no existing per-tool specification convention was found.
-- [x] Confirmed the common specification requires tool-specific decisions for language exceptions and mobile/PC layout behavior.
+- [x] Confirmed the common specification requires tool-specific language/layout decisions.
 - [x] Created branch `feat/tool-spec-contract-wave1-20260912` from the exact main commit.
-- [ ] Add the per-tool specification standard and 87-tool coverage manifest.
-- [ ] Add a read-only CI checker that validates registry/manifest parity and complete-spec structure.
-- [ ] Inspect the implemented behavior of the wave-1 tools and write substantive `SPEC.md` files for all 15.
-- [ ] Wire the checker into CI without changing production behavior.
-- [ ] Run the checker and existing repository validation; fix only specification/contract defects in this PR.
-- [ ] Update this ExecPlan, open/complete PR, squash merge, and confirm main.
+- [x] Added `docs/tool-spec-standard.md` and the full 87-tool coverage manifest.
+- [x] Added `scripts/check-tool-spec-contract.mjs` and `.github/workflows/tool-spec-audit.yml`.
+- [x] Inspected current implementation and added substantive specs for the 15 registry-order wave-1 tools.
+- [x] Discovered the existing Screenshot Stitcher v1.1 spec; migrated its existing functional/quality requirements into the new standard and tracked it as complete.
+- [x] Raised the monotonic coverage floor to 16 complete / 71 pending.
+- [x] Confirmed PR changed files contain only plan/workflow/standard/checker/manifest/SPEC documentation; production HTML/JS/CSS is unchanged.
+- [x] Tool spec audit run `34670919148` completed successfully, including the clean-working-tree step.
+- [ ] Squash merge PR #508 and confirm main-side tool-spec audit.
 
 ## Wave 1 scope
 
-The wave follows the current registry order and contains exactly 15 tools:
+New substantive specs added in registry order:
 
 1. `ai-interaction-atlas`
 2. `ai-project-pack`
@@ -42,37 +43,52 @@ The wave follows the current registry order and contains exactly 15 tools:
 14. `contract-risk-highlighter`
 15. `cosmetic-ingredient-checker-lite`
 
+Additional existing spec migrated and retained:
+
+16. `screenshot-stitcher`
+
+## Surprises & Discoveries
+
+- The initial code search did not reveal an existing per-tool convention, but the first CI run correctly detected `tools/screenshot-stitcher/SPEC.md` as an untracked existing specification. The file contained real functional and quality requirements and therefore must be preserved, not overwritten by a placeholder or ignored.
+- Several registered items are repository/reference guides rather than interactive browser transformers (`ai-project-pack`, `codex-product-shipping-playbooks`, `codex-work-os`). Their specs therefore use `None` for user data inputs and treat external GitHub navigation/documentation as the current functional contract.
+- Some tools load suite-wide analytics/advertising while their actual transformation remains local. Specs deliberately distinguish “tool input is not uploaded by the workflow” from the inaccurate claim that the page makes no network requests.
+- `cosmetic-ingredient-checker-lite` explicitly implements a Japanese-only UI. The spec records that exception so a future generic bilingual cleanup cannot silently add/remove language scope.
+- `contract-risk-highlighter` contains inconsistent copy around PDF extraction. The truthful current contract is pasted contract text as input; Pro PDF means browser Print/Save PDF of review output. The spec records that boundary without changing production behavior in this documentation PR.
+
 ## Decision Log
 
-- Decision: store the individual specification at `tools/{slug}/SPEC.md`.
-  Rationale: the specification belongs next to the implementation it constrains, is easy for humans and coding agents to discover, and does not alter public static output because Markdown is not linked as a user-facing page.
+- Decision: store individual specifications at `tools/{slug}/SPEC.md`.
+  Rationale: the contract belongs next to the implementation and is easy for humans and coding agents to discover.
   Date: 2026-09-12.
 
 - Decision: do not duplicate the entire common specification inside every tool spec.
-  Rationale: `common-spec/spec-ja.md` remains the suite-wide source of truth. Individual specs record only tool-specific purpose, behavior, exceptions, and acceptance criteria.
+  Rationale: `common-spec/spec-ja.md` remains authoritative for suite-wide rules; individual specs hold only tool-specific contracts.
   Date: 2026-09-12.
 
-- Decision: no placeholder `SPEC.md` files for the remaining 72 tools.
-  Rationale: a file that merely says TODO creates false confidence. Pending coverage is represented explicitly in the central manifest until a substantive spec is written.
+- Decision: do not create placeholder specs for pending tools.
+  Rationale: pending state belongs in the manifest; a TODO file would create false confidence.
   Date: 2026-09-12.
 
-- Decision: maintain a complete 87-tool manifest with `complete` / `pending` state and a monotonically non-decreasing `required_complete` floor.
-  Rationale: CI can prove there are no missing/orphan registry entries and can prevent a completed spec from silently disappearing in later changes.
+- Decision: maintain a complete 87-tool manifest with `complete` / `pending` states and a monotonically non-decreasing `required_complete` floor.
+  Rationale: CI can prevent completed specifications from silently disappearing.
   Date: 2026-09-12.
 
-- Decision: specifications describe current implemented behavior, not aspirational features.
-  Rationale: the immediate goal is a reliable contract for quality review and future regression control. Desired enhancements belong in plans/issues until implemented.
+- Decision: specs describe current implemented behavior, not aspirational roadmap features.
+  Rationale: the contract is intended for regression control and quality review.
   Date: 2026-09-12.
 
-- Decision: each complete spec must explicitly state language mode and layout class.
-  Rationale: the common specification makes these tool-specific decisions and warns agents not to infer them globally.
+- Decision: every complete spec explicitly declares language mode and layout class.
+  Rationale: these are tool-specific decisions required by the common responsive/language rules.
+  Date: 2026-09-12.
+
+- Decision: preserve and migrate the existing Screenshot Stitcher v1.1 specification, increasing wave-1 completion to 16.
+  Rationale: it contained substantive current requirements; deleting or leaving it untracked would weaken the contract layer.
   Date: 2026-09-12.
 
 ## Specification structure
 
-Each complete `SPEC.md` must contain:
+Each complete `SPEC.md` contains the exact standard identity block plus:
 
-- tool identity: slug and canonical public URL;
 - purpose and intended job;
 - current functional contract;
 - inputs;
@@ -80,35 +96,37 @@ Each complete `SPEC.md` must contain:
 - state / persistence;
 - privacy / network behavior;
 - language mode;
-- layout class (mobile-oriented, PC-oriented, or hybrid);
+- layout class (`mobile-oriented`, `pc-oriented`, or `hybrid`);
 - limits / non-goals;
-- acceptance criteria;
-- implementation evidence (the files whose current behavior supports the contract).
-
-The standard may add narrowly useful fields, but the checker should avoid enforcing prose wording beyond stable headings/identity fields.
+- testable acceptance criteria;
+- implementation evidence.
 
 ## Validation and Acceptance
 
 Acceptance requires:
 
 - manifest has exactly the same 87 slugs as `tools/tools-index.json`, with no duplicates or extras;
-- `required_complete` is 15 and at least 15 entries are `complete`;
-- exactly the 15 wave-1 tools have complete specs in this PR;
-- every complete spec exists at `tools/{slug}/SPEC.md` and contains all required headings plus matching slug/public URL;
-- no registered tool has an untracked `SPEC.md` while manifest state is `pending`;
-- no orphan spec exists for a non-registered tool;
-- production HTML/JS/CSS behavior is unchanged by this PR;
-- existing repository CI remains green.
+- `required_complete` is 16 and actual coverage is 16 complete / 71 pending;
+- every complete spec exists at `tools/{slug}/SPEC.md` with matching identity and all 11 required headings;
+- language and layout declarations use allowed values;
+- every complete spec contains at least three checklist acceptance criteria;
+- no pending registered tool has an untracked `SPEC.md`;
+- production HTML/JS/CSS is unchanged by this PR;
+- tool-spec CI and existing repository checks remain green.
 
 ## Idempotence and Recovery
 
 The checker is read-only. Specs and manifest are documentation/contract files only. All writes remain on `feat/tool-spec-contract-wave1-20260912`; main changes only through squash merge.
 
+## Outcomes & Retrospective
+
+The repository now has a machine-checked individual-specification layer for 16 of 87 tools. The remaining 71 tools are explicitly visible as pending rather than implicitly undocumented. This converts the next quality waves from broad visual/code cleanup into contract-driven review: inspect implementation, write/verify the spec, then repair deviations in bounded follow-up PRs.
+
 ## Artifacts and Notes
 
-Base/main SHA: `bc03ed5ba84c47b7f7409feee09cbc29d31db9c5`.
-
-Parent quality work: PR #502 through #507.
+- Base/main SHA: `bc03ed5ba84c47b7f7409feee09cbc29d31db9c5`.
+- Parent quality work: PR #502 through #507.
+- Successful PR tool-spec audit: run `34670919148`, job `103491989710`.
 
 ## Interfaces and Dependencies
 
