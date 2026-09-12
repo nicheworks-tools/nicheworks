@@ -1,395 +1,251 @@
 # NicheWorks Common Billing Architecture
 
-Status:
-- Planning spec
-- Runtime unchanged
-- Stripe not implemented yet
-- Checkout not implemented yet
-- Webhook not implemented yet
-- Entitlement not implemented yet
-- Pro unlock not implemented yet
-- Based on OKJ-M01 to OKJ-M10
+## Status
+
+The product-scoped common billing foundation is now partially implemented:
+
+- server-side Stripe Checkout Session creation: implemented;
+- verified Stripe webhook processing: implemented;
+- D1 entitlement issue and lookup: implemented;
+- product-scoped browser entitlement adapter: implemented;
+- success-page server verification: implemented;
+- additional NicheWorks products: not added until each product has verified pricing and Stripe configuration;
+- legacy shared `nicheworks_pro` tools: not migrated by this foundation change.
+
+The initial configured product remains **Old Kanji Toolkit Pro** (`okj.toolkit_pro`).
 
 ## 1. Purpose
 
-NicheWorks common billing foundation is a shared billing architecture for small paid NicheWorks products.
+NicheWorks uses one reusable billing architecture for small paid products while keeping entitlement scope product-specific.
 
-It should support:
-- one-time purchases
-- multiple products
-- different product prices
-- common Stripe Checkout flow
-- common webhook handling
-- common entitlement issuing
-- common Pro UI state
-- future product expansion
+The foundation supports:
 
-Common billing foundation does not mean common price. Old Kanji Toolkit Pro can be $4.99 one-time while smaller tools can remain $2.99 one-time. Reusable price tiers may be shared, but unlock scope is still product-specific.
+- one-time purchases;
+- multiple product IDs;
+- reusable price tiers;
+- server-created Stripe Checkout Sessions;
+- one verified webhook path;
+- D1-backed entitlements;
+- product/feature entitlement checks;
+- conservative browser Pro state.
 
-## 2. Initial product
+**Common billing foundation does not mean common all-access unlock.** Two products at the same price remain separate unless a future explicit bundle product is defined.
 
-Initial product definition:
+## 2. Product registry
 
-- Product: Old Kanji Toolkit Pro
+Canonical registry:
+
+- `config/billing/products.json`
+
+Each product defines:
+
+- stable `productId`;
+- display name;
+- one-time price metadata;
+- `priceTierId`;
+- environment-variable name containing the real Stripe Price ID;
+- stable feature IDs.
+
+Real Stripe Price IDs and secret keys are never committed to the repository.
+
+Current product:
+
 - Product ID: `okj.toolkit_pro`
+- Display product: Old Kanji Toolkit Pro
+- Price tier: `nw.one_time.usd_499`
 - Price: `$4.99` one-time
-- Currency: `USD`
-- Purchase type: `one-time`
+- Stripe Price env: `STRIPE_PRICE_OKJ_TOOLKIT_PRO`
 
-Primary feature groups:
-- OCR batch / history / crop / zoom / marking
-- export / report
-- batch name/place/text checks
-- saved sets / collections
-- learning history
+The existing OKJ price/features are preserved by the common-foundation hardening work.
 
-## 3. Future products
+## 3. Product vs price tier
 
-This architecture should support multiple product IDs in the same common billing foundation.
+`productId` is the entitlement boundary.
 
-Example future product IDs:
-- `nw.small_tool_pro`
-- `nw.toolkit_pro`
-- `ai_cost_scope_pro`
-- `pattern_atlas_pro`
+`priceTierId` is reusable pricing metadata and validation only.
 
-These examples are planning references only and are not implemented in this PR.
+A future product can use the same `$4.99` tier without receiving `okj.toolkit_pro` access. Cross-product access requires an explicit bundle/all-access product and policy.
 
-## 4. Billing model
+## 4. Checkout creation
 
-Purchase model:
-- one-time purchase
-- no subscription in initial OKJ phase
-- product-level entitlement
-- feature-level checks derived from product entitlement
+Route:
 
-Entitlement model:
-A user who owns `okj.toolkit_pro` should have access to all OKJ Pro feature IDs:
-- `okj.batchOcr`
-- `okj.scanHistory`
-- `okj.oldKanjiCollection`
-- `okj.exportCsv`
-- `okj.exportMarkdown`
-- `okj.exportJson`
-- `okj.report`
-- `okj.cropOcr`
-- `okj.zoomInspect`
-- `okj.imageMarking`
-- `okj.batchNameCheck`
-- `okj.batchPlaceCheck`
-- `okj.batchTextHighlight`
-- `okj.savedCompareSets`
-- `okj.unicodeAuditExport`
-- `okj.quizHistory`
-
-## 5. Product registry and price tier design
-
-Product registry includes reusable `priceTiers` plus product-specific entries.
-
-Example shape (planning example):
-
-```json
-{
-  "priceTiers": [
-    {
-      "priceTierId": "nw.one_time.usd_299",
-      "amount": 2.99,
-      "currency": "USD",
-      "type": "one_time",
-      "label": "$2.99 one-time"
-    },
-    {
-      "priceTierId": "nw.one_time.usd_499",
-      "amount": 4.99,
-      "currency": "USD",
-      "type": "one_time",
-      "label": "$4.99 one-time"
-    }
-  ],
-  "products": [
-    {
-      "productId": "okj.toolkit_pro",
-      "displayName": "Old Kanji Toolkit Pro",
-      "priceTierId": "nw.one_time.usd_499",
-      "price": {
-        "amount": 4.99,
-        "currency": "USD",
-        "type": "one_time"
-      },
-      "stripePriceIdEnv": "STRIPE_PRICE_OKJ_TOOLKIT_PRO",
-      "features": [
-        "okj.batchOcr",
-        "okj.scanHistory",
-        "okj.exportCsv"
-      ],
-      "status": "planned"
-    }
-  ]
-}
-```
-
-Rules:
-- no real Stripe price IDs in repo
-- use env var names only
-- no secret keys
-- price tiers are reusable metadata only
-- entitlement boundary remains `productId`
-- same-tier products do not share unlock by default
-- product IDs must be stable
-- feature IDs must be stable
-- display copy can be localized separately
-
-## 6. Stripe integration boundaries
-
-Future Stripe role boundaries:
-
-Checkout creation:
-- server-side only
-- uses `productId`
-- validates product exists
-- uses environment variable for Stripe price ID
-- redirects to Stripe Checkout
-- `success_url` and `cancel_url` must be controlled
-- no secret key in client files
-
-Webhook:
-- server-side only
-- verifies Stripe signature
-- handles `checkout.session.completed`
-- maps Stripe price/customer/payment to `productId`
-- issues entitlement
-- must be idempotent
-- must not trust client-provided payment state
-
-Client:
-- can request checkout session
-- can display locked panel
-- can check entitlement status
-- must not contain Stripe secret key
-- must not self-unlock Pro features
-
-
-P04-A contract reference:
-- `docs/billing/stripe-webhook-entitlement-issue.md` defines disabled scaffold + verification/idempotency/storage boundaries; real webhook verification and entitlement issuing remain inactive until P04-B.
-
-## 7. Entitlement design
-
-Required entitlement fields:
-- `entitlementId`
-- `productId`
-- `userId` or `customerId`
-- email hash or customer reference if no login
-- `status`
-- `source`
-- `stripeCustomerId`
-- `stripeCheckoutSessionId`
-- `stripePaymentIntentId` if available
-- `createdAt`
-- `updatedAt`
-- `revokedAt`
-- `features`
-
-Status values:
-- `active`
-- `revoked`
-- `refunded`
-- `disputed`
-- `test`
-- `unknown`
-
-Important:
-The final identity model is not implemented in P01. If no account/login exists, later PRs must decide how a purchaser restores access.
-
-## 8. Restore access / identity decision
-
-Unresolved but required identity/restore options:
-- A. email-based magic link
-- B. Stripe customer portal / lookup
-- C. license key
-- D. account login
-- E. local-only unlock token
-
-Initial recommendation:
-Use email-based restore or license-token style entitlement only if it can be implemented safely. Do not rely only on `localStorage` for paid access. `localStorage` may be used for cached UI state, not source of truth.
-
-## 9. Storage options
-
-Possible storage:
-- Cloudflare D1
-- Cloudflare KV
-- simple JSON not acceptable for real entitlement
-- `localStorage` only acceptable for mock/dev state
-
-Recommendation:
-Use D1 for durable entitlements if Cloudflare stack is used. KV can cache entitlement checks but should not be the only source of truth for payments/refunds.
-
-## 10. API route design
-
-Future route names (planning only; not implemented in P01):
 - `POST /api/billing/create-checkout-session`
+
+The route:
+
+1. loads the product registry;
+2. rejects unknown/misconfigured products;
+3. validates the product against its referenced price tier;
+4. resolves the product's Stripe Price ID from server environment only;
+5. accepts only a safe internal return path;
+6. creates a one-time Stripe Checkout Session;
+7. attaches only product/price-tier metadata;
+8. returns the Checkout URL and non-secret session metadata.
+
+Enablement is fail-closed. Generic runtime flags are:
+
+- `BILLING_TEST_CHECKOUT_ENABLED`
+- `BILLING_LIVE_CHECKOUT_ENABLED`
+
+The existing OKJ-specific enable flags remain accepted as backward-compatible aliases for the current OKJ product.
+
+## 5. Webhook and payment authority
+
+Route:
+
 - `POST /api/billing/stripe-webhook`
-- `GET /api/billing/entitlement`
-- `POST /api/billing/restore-access`
 
-Request examples:
+The webhook:
 
-Create checkout:
-```json
-{
-  "productId": "okj.toolkit_pro",
-  "returnPath": "/tools/old-kanji-ocr-scanner/"
-}
-```
+- verifies the Stripe signature against the raw body before parsing/fulfillment;
+- validates product + price tier metadata against the registry;
+- requires a fulfillment-ready payment state;
+- issues a D1 entitlement idempotently by Checkout Session ID.
 
-Entitlement check:
-```json
-{
-  "productId": "okj.toolkit_pro"
-}
-```
+Recognized fulfillment events:
 
-Rules:
-- route names are planning only
-- no route files in P01
-- no Worker implementation in P01
+- `checkout.session.completed`
+- `checkout.session.async_payment_succeeded`
 
-## 11. Client Pro state design
+A `checkout.session.completed` event with `payment_status=unpaid` does **not** issue paid access. Delayed payment methods can issue access after the corresponding async success event.
 
-Future client states:
-- `free`
-- `billing-unavailable`
-- `checkout-available`
-- `checkout-pending`
-- `pro-active`
-- `entitlement-error`
-- `restore-required`
+Redirect pages never substitute for webhook payment authority.
 
-Current state:
-- `billing-unavailable`
+## 6. Entitlement storage
 
-After P05:
-- OKJ tools may show `pro-active` if entitlement is valid.
+D1 binding:
+
+- `BILLING_DB`
+
+Table:
+
+- `billing_entitlements`
+
+Important fields include:
+
+- entitlement ID;
+- product ID;
+- status;
+- source;
+- Stripe Checkout Session ID;
+- Stripe customer/payment references needed for billing lifecycle work;
+- feature snapshot;
+- timestamps/revocation state.
+
+The Checkout Session ID is unique and is the current idempotency boundary.
+
+Billing storage must not contain OCR text, command text, names/addresses, uploaded documents, JSON payloads or other tool content.
+
+## 7. Server entitlement check
+
+Route:
+
+- `GET /api/billing/entitlement?productId=...&sessionId=...`
+
+Active access requires a D1 row matching:
+
+- product ID;
+- Checkout Session ID;
+- `status=active`.
+
+The response is deliberately minimized. It can return product ID, active/state, configured features and entitlement ID, but not customer/payment internals.
+
+## 8. Browser adapter
+
+Runtime:
+
+- `assets/nw-pro-entitlement.js`
+
+The adapter exposes:
+
+- sync conservative state reads (`getProState`, `getProductState`, `getFeatureState`);
+- async server refresh (`refreshProState`);
+- checkout-session activation (`activateFromSession`);
+- product-session clearing (`clearProductSession`).
+
+### Local state rule
+
+`localStorage` is not entitlement authority.
+
+After a server-confirmed active check, the adapter may remember only the product-scoped Checkout Session ID so it can re-check on a later page load. A new page lifecycle starts inactive/pending until the server confirms the D1 entitlement again.
+
+There is no authoritative browser `active=true` flag in this adapter.
+
+## 9. Feature scope
+
+A product can be server-active while a requested feature remains locked.
+
+Feature activation requires:
+
+1. server-active product entitlement; and
+2. the requested feature ID to appear in the server-returned configured feature list.
+
+This prevents a product entitlement from automatically unlocking unrelated product features.
+
+## 10. Success / cancel pages
+
+Checkout success URL carries:
+
+- `product_id`;
+- `session_id` supplied by Stripe through `{CHECKOUT_SESSION_ID}`;
+- validated `return_path`.
+
+`billing/success.html` asks the server adapter to verify the entitlement and only displays an active state after server confirmation.
+
+`billing/cancel.html` grants nothing and only offers a safe return path.
+
+Checkout Session IDs must not be emitted as GA4 event parameters.
+
+## 11. Restore access
+
+Current restore convenience is browser/device scoped: a verified Checkout Session ID can be retained locally and re-checked against D1.
+
+This is not a complete cross-device identity system. Future restore options can include a safe license-token, account, or email-based mechanism, but must not expose raw customer billing data or revert to local-only access authority.
 
 ## 12. Security requirements
 
-- never commit Stripe secret keys
-- never commit webhook signing secrets
-- never expose secret keys in frontend
-- verify webhook signatures
-- make webhook idempotent
-- do not trust client-side purchase state
-- do not unlock paid features from URL parameter alone
-- do not unlock paid features from `localStorage` alone
-- do not log personal/payment data unnecessarily
-- do not store full card data
-- support revocation/refund/dispute state later
+- never commit Stripe secret keys or webhook secrets;
+- never expose real Stripe Price IDs in frontend code;
+- verify webhook signatures;
+- do not issue paid access for an unpaid Checkout Session;
+- keep webhook handling idempotent;
+- do not trust URL state as entitlement proof;
+- do not trust localStorage as entitlement proof;
+- fail closed when product config, D1 or required server configuration is unavailable;
+- do not log/store tool content in billing records;
+- preserve product-specific entitlement scope.
 
-## 13. Privacy requirements
+## 13. Legacy shared Pro boundary
 
-- do not send old kanji user input to billing endpoints
-- do not include OCR text in checkout metadata
-- do not include names/addresses/documents in Stripe metadata
-- only send product/payment metadata required for purchase
-- avoid storing user tool content with payment records
-- analytics/ad identifiers must not be embedded in exports or entitlement records
+The repository also contains older infrastructure:
 
-## 14. Old Kanji Toolkit integration plan
+- `assets/nw-pro.js`
+- `/api/pro/status`
+- `/api/stripe/webhook`
+- `pro_purchases` / `pro_entitlements`
+- existing tools using `nicheworks_pro` and a shared Payment Link.
 
-P02:
-- billing config and mock entitlement
-- no real Stripe
-- dev/test only Pro state
+That path is **legacy and separate** from the newer product-scoped foundation in this slice. It is not silently removed because existing tools may still depend on it.
 
-P03:
-- Stripe Checkout success / cancel flow
-- create checkout session
-- no webhook entitlement yet unless explicitly included later
+Migration of Command Safety Checker, Logistics Compliance Kit JP, JSON2Mermaid or any other product must happen product-by-product after its product ID, price, Stripe Price environment variable and free/paid contract are verified.
 
-P04:
-- Stripe webhook
-- entitlement issue
-- idempotency
+## 14. Initial OKJ feature scope
 
-P05:
-- apply real Pro unlock to OKJ tools
-- locked panels can become active when entitlement is valid
+`okj.toolkit_pro` currently defines the existing OKJ feature IDs in the product registry, including OCR batch/history, export/report, name/place/text batch operations, saved compare sets, Unicode audit export and quiz history.
 
-P06-P10:
-- implement actual Pro features after unlock system exists
+This architecture does not itself implement those tool features; it only supplies the verified entitlement foundation they can use.
 
-## 15. Pricing policy
+## 15. Remaining work
 
-Old Kanji Toolkit Pro:
-- `$4.99` one-time
+Before declaring a specific product commercially live:
 
-Other NicheWorks small Pro tools:
-- `$2.99` one-time may remain valid
+1. confirm its product registry entry and price;
+2. configure the corresponding Stripe Price environment value;
+3. configure Stripe secret/webhook/D1 bindings;
+4. register the webhook endpoint;
+5. run a real test-mode Checkout → webhook → D1 → entitlement → tool-gate flow;
+6. verify cancellation, unpaid/delayed payment and duplicate webhook cases;
+7. then enable that product's UI checkout path.
 
-Rules:
-- product-specific pricing allowed
-- common billing foundation supports different prices
-- price copy must come from product config later
-- UI hardcoded price is acceptable only until billing config exists
-
-## 16. Failure states
-
-Failure states:
-- checkout unavailable
-- Stripe API error
-- webhook delay
-- entitlement not found
-- payment succeeded but unlock pending
-- refunded/revoked entitlement
-- network error
-- user changed device/browser
-
-UI should:
-- show clear non-technical message
-- never claim access if entitlement is unknown
-- provide restore/help path later
-
-## 17. Legal / disclaimer
-
-Billing unlock does not change product disclaimer.
-
-Old Kanji Toolkit Pro:
-- does not guarantee legal validity
-- does not verify official registered glyphs
-- does not guarantee OCR accuracy
-- does not replace professional/legal/academic/archive review
-
-## 18. Relationship to OKJ docs
-
-This architecture is aligned with and enables the billing phases described in:
-- `docs/old-kanji-toolkit/free-pro-ocr-billing-roadmap.md`
-- `docs/old-kanji-toolkit/pro-feature-matrix.md`
-- `docs/old-kanji-toolkit/pro-gate-ui-design.md`
-- `docs/old-kanji-toolkit/export-report-format-spec.md`
-
-## 19. Validation
-
-This PR is docs only.
-
-Validation checklist:
-- confirm `docs/billing/nicheworks-common-billing-architecture.md` exists
-- confirm no runtime files changed
-- confirm no tool HTML/CSS/JS changed
-- confirm no SEO/sitemap/tools-index/tools-meta changed
-- confirm no data files changed
-- confirm no Stripe/billing code implemented
-
-P05-A adapter reference:
-- `docs/billing/pro-entitlement-state-adapter.md` defines the client entitlement state adapter contract and disabled default state mapping.
-- P05-A is adapter/contract scaffolding only; real Stripe/D1-backed entitlement activation remains deferred.
-
-
-## 13. Shared tier vs shared unlock clarification
-
-If another future tool also uses `$4.99` one-time, it should:
-- define a new product ID
-- define its own Stripe price env var
-- define product-specific feature IDs
-
-This does not grant cross-product unlock even when both products reference `nw.one_time.usd_499`.
-
-If NicheWorks wants bundle/all-access access later, define a separate explicit bundle/all-access product ID and entitlement policy.
+Do not infer commercial readiness from visits to `/billing/success.html` or a tool's `/pro` page.
