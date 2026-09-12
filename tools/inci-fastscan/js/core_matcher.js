@@ -133,6 +133,12 @@ function normalize(s) {
     .trim();
 }
 
+function normalizeBase(s) {
+  const shared = globalThis.NWCosmeticIngredientParser;
+  if (shared?.normalizeBaseKey) return shared.normalizeBaseKey(s);
+  return normalize(s);
+}
+
 function normalizeForSuggestion(value) {
   return normalize(value)
     .replace(/[\s,.;:()（）［］\[\]{}\-_\/・]/g, "")
@@ -145,13 +151,43 @@ function detectScript(value) {
   return "other";
 }
 
+function classifyExactMatch(item, input) {
+  const inputBase = normalizeBase(input);
+  if (inputBase && inputBase === normalizeBase(item.en)) {
+    return { kind: "canonical", matchedName: item.en };
+  }
+
+  for (const name of Array.isArray(item.jp) ? item.jp : []) {
+    if (inputBase && inputBase === normalizeBase(name)) {
+      return { kind: "jp", matchedName: name };
+    }
+  }
+
+  for (const name of Array.isArray(item.alias) ? item.alias : []) {
+    if (inputBase && inputBase === normalizeBase(name)) {
+      return { kind: "alias", matchedName: name };
+    }
+  }
+
+  // Shared high-confidence identity equivalents intentionally normalize to the
+  // canonical key without being embedded into every dictionary record.
+  if (normalize(input) && normalize(input) === normalize(item.en)) {
+    return { kind: "shared_alias", matchedName: input };
+  }
+
+  return { kind: "canonical", matchedName: item.en };
+}
+
 function found(item, input) {
+  const route = classifyExactMatch(item, input);
   return {
     found: true,
     input,
     en: item.en,
     jp: item.jp || [],
     alias: item.alias || [],
+    match_kind: route.kind,
+    matched_name: route.matchedName,
     safety: item.safety,
     category: item.category || "general",
     note_short: item.note_short
