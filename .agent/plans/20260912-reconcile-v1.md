@@ -34,10 +34,11 @@ Publication and billing integration will be separate later PRs after rebasing on
 - Final v1 inputs: CSV + XLSX.
 - Free: 500 rows/file, 5 MB/file, basic 1:1 reconciliation, exact date or ±1 day, CSV export.
 - Reconcile Pro: ¥3,980 one-time, larger files, advanced amount/sign rules, 1:n / n:1, XLSX report, saved profiles.
+- Reconcile Pro CSV cap: 100,000 parsed rows and 50 MB/file.
+- Reconcile Pro XLSX cap: 50,000 parsed rows and 25 MB/file.
 - Reconcile Pro purchase also grants the existing shared `nicheworks_pro` entitlement.
 - Shared Pro purchase does not grant Reconcile Pro.
 - No user account, cloud transaction storage, AI matching, OCR, PDF input, or bank API in v1.
-- Pro browser safety cap is currently 100 MB/file; row count has no fixed Pro cap and remains browser-memory dependent.
 
 ## Implementation waves
 
@@ -105,12 +106,14 @@ After rebasing on current main:
 - [x] Complete Wave B advanced engine and grouped-search safety guard.
 - [x] Replace order-sensitive greedy 1:1 matching with Reference-priority + mutual-uniqueness resolution.
 - [x] Add 1:1 candidate-graph edge budget and dense-candidate regression fixtures.
+- [x] Restore the fixed v1 Free/Pro row and byte limits in the UI and documentation.
 - [x] Implement XLSX adapter, worksheet selection, report workbook generator, and fake-API tests.
 - [x] Select SheetJS CE 0.20.3 mini build and pin exact size/SHA-256 provenance.
 - [x] Point the adapter at `tools/reconcile/vendor/xlsx.mini.min.js` and retain the runtime `0.20.3` version guard.
 - [x] Add Apache-2.0 license and SheetJS vendor provenance notice.
 - [x] Implement local Pro profile store, schema validation, JSON import/export, and tests.
 - [x] Clamp imported/saved profile date tolerance to the public 0/±1-day contract.
+- [x] Warn when a saved profile references columns missing from the currently loaded files instead of silently substituting other columns.
 - [x] Wire advanced Pro rule/profile/report UI behind a hard entitlement lock.
 - [x] Update Reconcile specification and usage documentation to match the branch.
 - [ ] Commit the checksum-verified `xlsx.mini.min.js` bytes; this is the remaining isolated Wave C blocker.
@@ -131,6 +134,7 @@ After rebasing on current main:
 - Text/reference normalization now uses Unicode NFKC. Amount fixtures cover full-width Japanese values, accounting parentheses, Unicode/trailing minus, common currency symbols/codes, US-style thousands/decimal notation, European decimal-comma notation, and malformed inputs.
 - 1:1 matching previously processed A rows greedily, which allowed a shared sole B candidate to be assigned to whichever A row appeared first. The engine now resolves exact Reference relationships first and only auto-accepts mutually unique pairs; unresolved competition is emitted as candidate.
 - Dense same-value 1:1 graphs can create a quadratic number of acceptable edges even with indexed amount lookup. The engine now counts graph edges and throws `candidate_graph_too_large` before partial automatic matching once the configured budget is exceeded. A regression fixture forces a 20×20 dense graph over a 100-edge limit, while a 20×20 same-amount dataset with unique References still resolves as 20 exact matches.
+- The UI converts `candidate_graph_too_large` into a JA/EN action message telling the user to add Date and/or Transaction ID / Reference mappings.
 - The order-independence fixture reverses A-side rows in a Reference-priority case and verifies identical status counts.
 - Synthetic exact-match benchmark after the mutual-uniqueness change in the development environment: 10,000 rows ~116.5 ms; 20,000 rows ~161.6 ms; 50,000 rows ~406.1 ms. These figures are development evidence, not a public performance guarantee.
 - Group matching is bounded to maximum group size 5 and a default 50,000-node search budget; hitting the budget yields a review candidate instead of auto-resolving an incomplete search.
@@ -142,6 +146,9 @@ After rebasing on current main:
 
 Wave A/B acceptance:
 - two CSV files can be loaded locally;
+- Free rejects files above 500 rows or 5 MB;
+- Pro CSV rejects files above 100,000 rows or 50 MB;
+- Pro XLSX rejects files above 50,000 rows or 25 MB;
 - amount mapping is mandatory;
 - exact and ±1-day matching is deterministic;
 - common supported financial amount notations normalize predictably and malformed values are not silently guessed;
