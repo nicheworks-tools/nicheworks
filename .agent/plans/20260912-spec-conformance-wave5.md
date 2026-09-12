@@ -121,6 +121,18 @@ Wave 5 adds structural/executable checks for:
 - Sponsor Page Builder tier/missing-price behavior;
 - SQL destructive/read-only rules and an executable nested-vs-top-level WHERE regression test.
 
+## Verification
+
+PR `#586` on head `0d0336ef4c624c183d65355fdf6b76f13cb350c9` passed the first integrated CI cycle:
+
+- Tool runtime contract audit: run `34698081521` — success.
+- Tool spec audit: run `34698081522` — success.
+- Pro migration safety: run `34698081526` — success.
+- Validate Construction Tools Atlas Data: run `34698081555` — success.
+- SEO audit: run `34698081592` — success.
+
+The PR was `mergeable: true` after those checks. This documentation-only commit records the verified state; the final head must rerun the same relevant checks before merge.
+
 ## Progress
 
 - [x] Branch created from current main.
@@ -129,8 +141,9 @@ Wave 5 adds structural/executable checks for:
 - [x] Audit tools 71–75.
 - [x] Fix P0/P1 findings and synchronize affected specs.
 - [x] Add Wave 5 runtime-contract coverage.
-- [ ] Reconcile final branch with latest main.
-- [ ] Run CI, open PR, and merge only when green.
+- [x] Reconcile final branch with latest main.
+- [x] Open PR and complete first integrated CI cycle.
+- [ ] Rerun CI on final documentation head and merge only when green.
 
 ## Acceptance
 
