@@ -205,10 +205,112 @@ has('tools/inci-fastscan/js/web_ocr.js', 'Tesseract.recognize');
 has('tools/inci-fastscan/index.html', 'unknown items');
 has('tools/inci-fastscan/index.html', 'not medical advice or a safety guarantee');
 
+// 31. Incident Update Generator — required status model and shared Pro gate remain active.
+has('tools/incident-update-generator/app.js', 'const STATUS_MAP = {');
+has('tools/incident-update-generator/app.js', 'includeUnknown');
+has('tools/incident-update-generator/pro-bridge.js', 'NWPro.getLocalStatus');
+has('tools/incident-update-generator/pro-bridge.js', 'nicheworks_pro');
+
+// 32. JP Postal Lite — nationwide local data, bounded results, no automatic external backup fetch.
+has('tools/jp-postal-lite/app.js', 'const LIMIT = 50;');
+has('tools/jp-postal-lite/app.js', 'Object.fromEntries(PREFS.map');
+has('tools/jp-postal-lite/app.js', 'fetch(`./data/${encodeURIComponent(file)}`)');
+has('tools/jp-postal-lite/app.js', '外部バックアップJSONへの自動取得は行いません');
+
+// 33. JSON Repair — current public runtime loads common Pro and gates advanced actions in app.js.
+has('tools/json-repair/index.html', '/assets/nw-pro.js');
+has('tools/json-repair/app.js', 'NWPro.getLocalStatus');
+has('tools/json-repair/app.js', 'function guardPro()');
+lacks('tools/json-repair/SPEC.md', 'tools/json-repair/pro-bridge.js', 'stale removed pro-bridge evidence');
+
+// 34. JSON2Mermaid — public Free runtime and staged batch path share one bounded converter API.
+has('tools/json2mermaid/app.js', 'const LIMITS = Object.freeze({');
+has('tools/json2mermaid/app.js', 'maxInputBytes: 300 * 1024');
+has('tools/json2mermaid/app.js', 'maxDepth: 12');
+has('tools/json2mermaid/app.js', 'maxArrayItems: 50');
+has('tools/json2mermaid/app.js', 'window.NWJSON2MermaidConverter = Object.freeze({');
+has('tools/json2mermaid/app.js', 'const result = converter.convert(jsonText, options, currentLang);');
+has('tools/json2mermaid/pro-shared-converter-integration.mjs', 'converterApi.convert');
+lacks('tools/json2mermaid/index.html', 'pro-engine.mjs', 'staged Pro engine on public page');
+lacks('tools/json2mermaid/index.html', 'mermaid-renderer-adapter.mjs', 'staged Mermaid adapter on public page');
+
+// 35. Kanji Modernizer — local dictionary, ambiguity policy, and exclusion ranges remain wired.
+has('tools/kanji-modernizer/app.js', 'fetch("./dict.json"');
+has('tools/kanji-modernizer/app.js', 'policy === "conservative"');
+has('tools/kanji-modernizer/app.js', 'function buildExclusionRanges');
+
+// 36. Laundry Code Decode — photo helper remains bounded local template matching, not OCR.
+has('tools/laundry-code-decode/app.js', 'const MAX_IMAGE_BYTES = 10 * 1024 * 1024;');
+has('tools/laundry-code-decode/app.js', 'image/png", "image/jpeg", "image/webp", "image/gif');
+has('tools/laundry-code-decode/app.js', 'Photo candidate search: simple template matching');
+has('tools/laundry-code-decode/app.js', 'Prioritize the garment label');
+
+// 37. Light Check — camera access is user-started, stoppable, and explicitly relative/not calibrated.
+has('tools/light-check/app.js', 'navigator.mediaDevices.getUserMedia');
+has('tools/light-check/app.js', 'function hardStopCamera()');
+has('tools/light-check/app.js', 'Not a lux, color temperature, or flicker meter.');
+has('tools/light-check/app.js', 'track.stop()');
+
+// 38. LineBreak Doctor — platform-safe invisible-character behavior stays explicit and local.
+has('tools/linebreak-doctor/app.js', 'platform-safe');
+has('tools/linebreak-doctor/app.js', '\\u200B');
+for (const platform of ['X', 'Instagram', 'LINE', 'Facebook', 'LinkedIn']) {
+  has('tools/linebreak-doctor/app.js', `name: "${platform}"`);
+}
+has('tools/linebreak-doctor/app.js', 'Processing is done locally in your browser.');
+
+// 39. LogFormatter — unparsed lines remain copy/export candidates and advanced actions use shared Pro.
+has('tools/log-formatter/app.js', 'It is still included in filters and copy/export output.');
+has('tools/log-formatter/app.js', 'lastErrorLines');
+has('tools/log-formatter/pro-bridge.js', 'NWPro.getLocalStatus');
+has('tools/log-formatter/app.js', 'document.documentElement.dataset.proActive === "true"');
+
+// 40. Logistics Compliance Kit JP — memo is output-only and advanced artifacts use shared Pro.
+has('tools/logistics-compliance-kit-jp/app.js', '現状メモは判定ロジックには使わず、出力メモとして記録します。');
+has('tools/logistics-compliance-kit-jp/app.js', 'var memo = getMemo();');
+has('tools/logistics-compliance-kit-jp/pro-bridge.js', 'NWPro.getLocalStatus');
+has('tools/logistics-compliance-kit-jp/pro-bridge.js', 'nicheworks_pro');
+
+// 41. LP Skeleton Generator — user input is escaped in HTML and local MD/HTML exports remain available.
+has('tools/lp-skeleton-generator/app.js', 'const escapeHtml = (input)');
+has('tools/lp-skeleton-generator/app.js', 'downloadText("lp-skeleton.md"');
+has('tools/lp-skeleton-generator/app.js', 'downloadText("lp-skeleton.html"');
+has('tools/lp-skeleton-generator/app.js', 'escapeHtml(product)');
+
+// 42. ManualFinder — current runtime merges maintained waves, paginates, and preserves shared official targets.
+has('tools/manual-finder/app.paged.js', 'const FULL =');
+has('tools/manual-finder/app.paged.js', 'const WAVE2 =');
+has('tools/manual-finder/app.paged.js', 'sharedTarget: Boolean(x.sharedTarget)');
+has('tools/manual-finder/app.paged.js', 'per: 48');
+has('tools/manual-finder/app.paged.js', 'Official shared page');
+
+// 43. Membership Offer Builder — no legacy self-unlock; all contract inputs feed the free draft.
+lacks('tools/membership-offer-builder/app.js', "searchParams.get('pro')", '?pro=1 self-unlock');
+lacks('tools/membership-offer-builder/app.js', 'nw_pro_key', 'legacy shared local key');
+lacks('tools/membership-offer-builder/app.js', 'nw_pro_membership_offer_builder', 'tool-local Pro bypass key');
+has('tools/membership-offer-builder/app.js', 'availableTime: value("timeInput"');
+has('tools/membership-offer-builder/app.js', 'workloadLimit: value("workloadLimitInput"');
+has('tools/membership-offer-builder/app.js', 'async function copyText');
+
+// 44. Message Generator — UI language and selected culture are separate; culture controls body language.
+has('tools/message-generator/app.js', 'const CULTURES = {');
+has('tools/message-generator/app.js', 'function selectedContentLanguage(culture)');
+has('tools/message-generator/app.js', 'const purposeOptions = PURPOSE[context.purpose]?.[contentLang]');
+has('tools/message-generator/app.js', 'regenerate && lastContext');
+lacks('tools/message-generator/app.js', 'Codex will implement', 'placeholder click handler');
+
+// 45. MetadataSnap — proxy disclosure/order and visible failure handling stay aligned.
+has('tools/metadatasnap/app.js', 'curly-meadow-fda4.nicheworks-tools.workers.dev');
+has('tools/metadatasnap/app.js', 'api.allorigins.win/raw');
+has('tools/metadatasnap/app.js', "setError('fetchFailed')");
+has('tools/metadatasnap/index.html', 'entered URL is sent to a NicheWorks Worker');
+has('tools/metadatasnap/index.html', 'AllOrigins');
+has('tools/metadatasnap/SPEC.md', 'The public page now discloses this Worker-first / AllOrigins-fallback behavior');
+
 if (failures.length) {
   console.error(`Tool runtime contract audit failed (${failures.length})`);
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log('Tool runtime contract audit passed for waves 1-2 (30 tools).');
+console.log('Tool runtime contract audit passed for waves 1-3 (45 tools).');

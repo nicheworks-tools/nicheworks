@@ -23,6 +23,10 @@
   const messages = {
     empty: { ja: 'URLを入力してください。', en: 'Please enter a URL.' },
     invalid: { ja: 'http/httpsのURLを入力してください。', en: 'Enter a URL starting with http or https.' },
+    fetchFailed: {
+      ja: 'ページを取得できませんでした。取得先サイトまたはプロキシの制限が考えられます。時間を置くか別のURLでお試しください。',
+      en: 'The page could not be fetched. The target site or proxy may be blocking the request. Try again later or use another URL.'
+    },
     notFound: { ja: '未検出', en: 'Not Found' }
   };
 
@@ -33,23 +37,19 @@
     `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
 
   const setLang = (lang) => {
-    state.lang = lang;
+    state.lang = lang === 'en' ? 'en' : 'ja';
     body.classList.remove('lang-ja', 'lang-en');
-    body.classList.add(`lang-${lang}`);
+    body.classList.add(`lang-${state.lang}`);
     langButtons.forEach((btn) => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
+      btn.classList.toggle('active', btn.dataset.lang === state.lang);
     });
     renderResults();
     renderError();
   };
 
   const renderError = () => {
-    if (!errorText.dataset.key) {
-      errorText.textContent = '';
-      return;
-    }
-    const key = errorText.dataset.key;
-    errorText.textContent = messages[key]?.[state.lang] || '';
+    const key = errorText.dataset.key || '';
+    errorText.textContent = key ? (messages[key]?.[state.lang] || '') : '';
   };
 
   const setError = (key = '') => {
@@ -57,11 +57,19 @@
     renderError();
   };
 
-  const getLocalized = (value) => {
-    if (!value) {
-      return messages.notFound[state.lang];
-    }
-    return value;
+  const getLocalized = (value) => value || messages.notFound[state.lang];
+
+  const clearMetadataState = () => {
+    state.title = '';
+    state.description = '';
+    state.ogImage = '';
+    state.canonical = '';
+    resTitle.textContent = '';
+    resDesc.textContent = '';
+    resCanonical.textContent = '';
+    resOgp.removeAttribute('src');
+    resOgp.alt = '';
+    resOgp.hidden = true;
   };
 
   const renderResults = () => {
@@ -82,11 +90,19 @@
   };
 
   const validateUrl = (value) => {
-    if (!value.trim()) {
+    const trimmed = value.trim();
+    if (!trimmed) {
       setError('empty');
       return false;
     }
-    if (!/^https?:\/\//i.test(value.trim())) {
+    if (!/^https?:\/\//i.test(trimmed)) {
+      setError('invalid');
+      return false;
+    }
+    try {
+      const parsed = new URL(trimmed);
+      if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') throw new Error('invalid_protocol');
+    } catch (_) {
       setError('invalid');
       return false;
     }
@@ -96,15 +112,13 @@
 
   const fetchHTML = async (userURL) => {
     const proxies = [workerProxy, allOriginsProxy];
-
     for (const build of proxies) {
       try {
-        const res = await fetch(build(userURL), { mode: 'cors' });
-        if (res.ok) return await res.text();
-      } catch (e) {}
+        const response = await fetch(build(userURL), { mode: 'cors' });
+        if (response.ok) return await response.text();
+      } catch (_) {}
     }
-
-    throw new Error('All proxies failed');
+    throw new Error('all_proxies_failed');
   };
 
   const parseWithDom = (html) => {
@@ -117,7 +131,7 @@
         ogImage: doc.querySelector('meta[property="og:image"]')?.getAttribute('content')?.trim() || '',
         canonical: doc.querySelector('link[rel="canonical"]')?.getAttribute('href')?.trim() || ''
       };
-    } catch (e) {
+    } catch (_) {
       return null;
     }
   };
@@ -140,31 +154,25 @@
 
     analyzeBtn.disabled = true;
     urlInput.disabled = true;
-    resOgp.hidden = true;
+    clearMetadataState();
     resultCard.hidden = true;
     progress.hidden = false;
 
-    let parsed = { title: '', description: '', ogImage: '', canonical: '' };
-    let hasHtml = false;
-
     try {
       const html = await fetchHTML(url);
-
-      if (html) {
-        hasHtml = true;
-        parsed = parseWithDom(html) || parseWithRegex(html) || parsed;
-      }
-
-      state.title = parsed.title || '';
-      state.description = parsed.description || '';
-      state.ogImage = parsed.ogImage || '';
-      state.canonical = parsed.canonical || '';
-
-      if (hasHtml) {
-        resultCard.hidden = false;
-        renderResults();
-        resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      const parsed = parseWithDom(html) || parseWithRegex(html);
+      state.title = parsed?.title || '';
+      state.description = parsed?.description || '';
+      state.ogImage = parsed?.ogImage || '';
+      state.canonical = parsed?.canonical || '';
+      setError('');
+      resultCard.hidden = false;
+      renderResults();
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (_) {
+      clearMetadataState();
+      resultCard.hidden = true;
+      setError('fetchFailed');
     } finally {
       progress.hidden = true;
       analyzeBtn.disabled = false;
@@ -179,16 +187,7 @@
     setError('');
     progress.hidden = true;
     resultCard.hidden = true;
-    state.title = '';
-    state.description = '';
-    state.ogImage = '';
-    state.canonical = '';
-    resTitle.textContent = '';
-    resDesc.textContent = '';
-    resCanonical.textContent = '';
-    resOgp.removeAttribute('src');
-    resOgp.alt = '';
-    resOgp.hidden = true;
+    clearMetadataState();
     urlInput.focus();
   };
 
@@ -197,10 +196,8 @@
   });
 
   analyzeBtn.addEventListener('click', analyze);
-  urlInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      analyze();
-    }
+  urlInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') analyze();
   });
   resetBtn.addEventListener('click', reset);
 
@@ -209,5 +206,6 @@
     progress.hidden = true;
     resOgp.hidden = true;
   });
+
   setLang(state.lang);
 })();
