@@ -57,6 +57,14 @@ assert.ok(manyToOne);
 assert.equal(manyToOne.status, 'tolerant_match');
 assert.deepEqual(manyToOne.aRows, [2,3]);
 
+const guardedA = table('Date,Amount\n2026-09-01,999\n');
+const guardedB = table('Date,Amount\n2026-09-01,1\n2026-09-01,2\n2026-09-01,3\n2026-09-01,4\n2026-09-01,5\n2026-09-01,6\n2026-09-01,7\n2026-09-01,8\n');
+const guardedResults = reconcile({ rowsA:guardedA.rows, rowsB:guardedB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'}, options:{groupMatching:true,maxGroupSize:5,groupSearchNodeLimit:5} });
+const guardedCandidate = guardedResults.find((x)=>x.status==='candidate' && x.relation==='1:n?');
+assert.ok(guardedCandidate);
+assert.match(guardedCandidate.reason, /safety limit reached/);
+assert.equal(guardedResults.some((x)=>x.status==='tolerant_match'), false);
+
 const repeated = reconcile({ rowsA:a.rows, rowsB:b.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'}, options:{dateToleranceDays:1} });
 assert.deepEqual(repeated, results);
 
