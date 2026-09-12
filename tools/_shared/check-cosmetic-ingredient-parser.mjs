@@ -76,4 +76,10 @@ for (const [alias, canonicalOrDeclaredAlias] of aliasPairs) {
   );
 }
 
+for (const ambiguous of ["AHA", "BHA", "PHA", "Iron Oxides", "酸化鉄"]) {
+  assert.equal(parser.isAmbiguousExactName(ambiguous), true, `${ambiguous} must be marked ambiguous`);
+  assert.equal(parser.normalizeKey(ambiguous), "", `${ambiguous} must not produce an exact-match key`);
+  assert.equal(parser.isExactIngredientMatch(ambiguous, ambiguous), false, `${ambiguous} must never exact-match arbitrarily`);
+}
+
 console.log("cosmetic ingredient parser regression checks passed");
