@@ -8,6 +8,8 @@ on:
       - 'tools/_shared/cosmetic-ingredient-parser.js'
       - 'tools/_shared/check-cosmetic-ingredient-parser.mjs'
       - 'tools/_shared/check-cosmetics-accuracy-benchmark.mjs'
+      - 'tools/_shared/check-cosmetics-full-label-benchmark.mjs'
+      - 'tools/_shared/cosmetics-full-label-fixtures.json'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
@@ -33,5 +35,7 @@ jobs:
         run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
+      - name: Cosmetics full-label coverage benchmark
+        run: node tools/_shared/check-cosmetics-full-label-benchmark.mjs
       - name: Affiliate readiness contract remains isolated
         run: node tools/_shared/check-cosmetics-affiliate-contract.mjs

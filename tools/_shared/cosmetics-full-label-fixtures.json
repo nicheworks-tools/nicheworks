@@ -1,0 +1,86 @@
+[
+  {
+    "id": "jp-toner-basic",
+    "category": "toner",
+    "language": "ja",
+    "label": "精製水、グリセリン、BG、DPG、ナイアシンアミド、ベタイン、パンテノール、アラントイン、ヒアルロン酸ナトリウム、フェノキシエタノール、クエン酸ナトリウム、エデト酸2ナトリウム",
+    "maxUnknown": 0
+  },
+  {
+    "id": "en-toner-basic",
+    "category": "toner",
+    "language": "en",
+    "label": "Water, Glycerin, Butylene Glycol, Dipropylene Glycol, Niacinamide, Betaine, Panthenol, Allantoin, Sodium Hyaluronate, Phenoxyethanol, Sodium Citrate, Disodium EDTA",
+    "maxUnknown": 0
+  },
+  {
+    "id": "jp-serum-hydrating",
+    "category": "serum",
+    "language": "ja",
+    "label": "水、グリセロール、プロパンジオール、ペンチレングリコール、ナイアシンアミド、トレハロース、ヒアルロン酸Na、スクワラン、ジメチコン、トコフェロール、フェノキシエタノール、1,2-ヘキサンジオール",
+    "maxUnknown": 0
+  },
+  {
+    "id": "en-serum-hydrating",
+    "category": "serum",
+    "language": "en",
+    "label": "Aqua, Glycerol, Propanediol, Pentylene Glycol, Nicotinamide, Trehalose, Sodium Hyaluronate, Squalane, Dimethicone, Tocopherol, Phenoxyethanol, 1,2-Hexanediol",
+    "maxUnknown": 0
+  },
+  {
+    "id": "jp-cream-basic",
+    "category": "cream",
+    "language": "ja",
+    "label": "水、グリセリン、BG、スクワラン、ジメチコン、トコフェロール、酢酸トコフェロール、パンテノール、アラントイン、カルボマー、キサンタンガム、フェノキシエタノール",
+    "maxUnknown": 0
+  },
+  {
+    "id": "en-cream-basic",
+    "category": "cream",
+    "language": "en",
+    "label": "Water, Glycerin, Butylene Glycol, Squalane, Dimethicone, Tocopherol, Tocopheryl Acetate, Panthenol, Allantoin, Carbomer, Xanthan Gum, Phenoxyethanol",
+    "maxUnknown": 0
+  },
+  {
+    "id": "jp-cleanser-basic",
+    "category": "cleanser",
+    "language": "ja",
+    "label": "水、グリセリン、BG、コカミドプロピルベタイン、ラウレス硫酸Na、塩化ナトリウム、クエン酸、フェノキシエタノール、エチルヘキシルグリセリン、パンテノール",
+    "maxUnknown": 0
+  },
+  {
+    "id": "en-cleanser-basic",
+    "category": "cleanser",
+    "language": "en",
+    "label": "Water, Glycerin, Butylene Glycol, Cocamidopropyl Betaine, Sodium Laureth Sulfate, Sodium Chloride, Citric Acid, Phenoxyethanol, Ethylhexylglycerin, Panthenol",
+    "maxUnknown": 0
+  },
+  {
+    "id": "jp-hair-basic",
+    "category": "haircare",
+    "language": "ja",
+    "label": "水、グリセリン、BG、ラウレス硫酸Na、コカミドプロピルベタイン、塩化ナトリウム、パンテノール、クエン酸、フェノキシエタノール、エデト酸2ナトリウム",
+    "maxUnknown": 0
+  },
+  {
+    "id": "en-hair-basic",
+    "category": "haircare",
+    "language": "en",
+    "label": "Water, Glycerin, Butylene Glycol, Sodium Laureth Sulfate, Cocamidopropyl Betaine, Sodium Chloride, Panthenol, Citric Acid, Phenoxyethanol, Disodium EDTA",
+    "maxUnknown": 0
+  },
+  {
+    "id": "jp-mixed-one-unknown",
+    "category": "mixed",
+    "language": "mixed",
+    "label": "水、Glycerin、ナイアシンアミド、Panthenol、ヒアルロン酸ソーダ、Phenoxyethanol、架空成分テスト",
+    "maxUnknown": 1
+  },
+  {
+    "id": "en-ocr-like-one-unknown",
+    "category": "ocr-review",
+    "language": "en",
+    "label": "Water, Glycerin, Niacinamide, Panthenol, Sodium Hyaluronate, PhenoxyethanoI",
+    "maxUnknown": 1
+  }
+]
