@@ -88,7 +88,7 @@ After rebasing on current main:
 - [x] Confirmed isolated branch strategy.
 - [x] Created dedicated branch.
 - [x] Complete Wave A CSV core and deterministic fixtures.
-- [ ] Complete Wave B (advanced engine implemented; large grouped-match guard/profiling remains).
+- [x] Complete Wave B advanced engine and grouped-search safety guard.
 - [ ] Complete Wave C.
 - [ ] Complete billing integration.
 - [ ] Complete publication integration.
@@ -99,7 +99,7 @@ After rebasing on current main:
 - SheetJS CE 0.20.3 is the current official standalone release; final integration should vendor a pinned copy rather than depend on a runtime CDN.
 - Exact/tolerance 1:1 matching was changed from full Cartesian scanning to a sorted amount index with binary-range lookup.
 - Synthetic exact-match benchmark in the development environment after indexing: 10,000 rows ~59 ms; 20,000 rows ~105 ms; 50,000 rows ~212 ms. These numbers are development evidence, not a public performance guarantee.
-- Group matching remains intentionally bounded to maximum group size 5 and still requires an explicit large-pool guard before Pro launch.
+- Group matching is bounded to maximum group size 5 and a default 50,000-node search budget; hitting the budget yields a review candidate instead of auto-resolving an incomplete search.
 
 ## Validation
 
