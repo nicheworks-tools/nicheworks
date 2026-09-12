@@ -227,15 +227,113 @@ Do not invent:
 - production feature-ID namespace;
 - test/live checkout policy.
 
-## 4. Wave 2 implementation order
+## 4. Outsource Spec Generator
+
+### 4.1 Free boundary — fixed
+
+The current Free workflow remains available without paid entitlement:
+
+- require and accept the current outsourcing-spec form fields;
+- generate the lightweight outsourcing specification locally;
+- include the current lightweight acceptance criteria and revision rules;
+- copy the Free draft;
+- use JA/EN UI and the current legal/non-contract disclaimers.
+
+The Free draft workflow must not become dependent on billing availability.
+
+### 4.2 Paid boundary — runtime-backed delta
+
+Current runtime/SPEC evidence supports eight paid operations:
+
+1. **Full Handoff Pack** — generate/copy the full outsource handoff pack.
+2. **Deliverable Pack** — generate the selected deliverable pack.
+3. **Acceptance Checklist** — generate/copy the acceptance checklist.
+4. **Vendor Questions** — generate/copy the vendor preflight question list.
+5. **Codex Task** — generate/copy the Codex task draft.
+6. **GitHub Issue** — generate/copy the GitHub Issue draft.
+7. **Markdown Export** — save the full handoff pack as Markdown.
+8. **JSON Export** — save the structured outsource handoff as JSON.
+
+Generate and copy controls for the same artifact are one paid value boundary rather than separate entitlements. No new paid feature is invented for staging.
+
+### 4.3 Staged product-scoped wrapper
+
+`tools/outsource-spec-generator/product-scoped-controller.mjs` is a non-live wrapper around `assets/nw-product-scoped-controller.mjs`.
+
+The staged contract requires:
+
+- an explicit future product ID with no default/fallback;
+- a complete and unique feature-ID mapping for all eight paid operations;
+- server-backed `refreshProState({ productId })` through the shared controller core;
+- exact product match;
+- `active: true`;
+- `source: "server"`;
+- `reason: "verified_entitlement"`;
+- operation-level activation only for feature IDs returned by the verified server response.
+
+Wrong-product, local/browser-only, unverified, incomplete/duplicate mapping, and entitlement-refresh failure states fail closed. The staged wrapper contains no `NWPro`, `nicheworks_pro`, browser-storage authority, Payment Link logic, or project/form content.
+
+### 4.4 Legacy entitlement isolation — must be preserved
+
+The current legacy bridge only activates the shared Pro UI when `NWPro.getLocalStatus()` reports both an active state and the exact entitlement `nicheworks_pro`. A different active product-scoped entitlement is not authoritative for this tool.
+
+Product-scoped staging and eventual migration must not temporarily weaken this isolation. The historical `$2.99` copy and shared Payment Link are legacy commerce evidence only, not future pricing truth.
+
+### 4.5 Billing privacy boundary
+
+Outsourcing forms can contain confidential project and commercial context. Product-scoped billing and entitlement requests may contain only fixed product/feature entitlement metadata.
+
+Do not send any of the following through the billing/entitlement path:
+
+- project or company names;
+- deliverables, scope, out-of-scope, must-have, or reference content;
+- budgets, deadlines, payment terms, acceptance/revision terms, rights/usage, portfolio permission, or confidentiality notes;
+- private/reference URLs or personal information;
+- generated Free specification, handoff pack, deliverable pack, checklist, vendor questions, Codex task, or GitHub Issue content;
+- Markdown/JSON export payloads or filenames.
+
+### 4.6 Live migration requirements
+
+Outsource Spec Generator migration is complete only when all of the following are true:
+
+1. an authoritative product and commercial configuration are registered in `config/billing/products.json`;
+2. all eight paid-operation feature IDs are registered for that product;
+3. checkout uses the common billing endpoint for that product;
+4. signed Stripe webhook fulfillment records the matching paid entitlement in D1;
+5. public runtime uses server-verified product state for the eight paid operations;
+6. Free lightweight generation and copy remain independent of billing availability;
+7. failed/inactive entitlement checks leave the complete current Free drafting workflow usable;
+8. unrelated product entitlements cannot unlock the current or migrated paid surface;
+9. billing/entitlement traffic contains no project/form/generated user content;
+10. the historical shared Payment Link and legacy shared state stop being authoritative for this tool;
+11. the JSON export no longer identifies legacy `nicheworks_pro` as the product entitlement identity after live migration;
+12. reload re-verifies the product entitlement rather than trusting browser-local active state.
+
+Return path: `/tools/outsource-spec-generator/`.
+
+### 4.7 Commercial fields intentionally unresolved
+
+Do not invent:
+
+- product ID;
+- display product name;
+- price or currency;
+- one-time vs recurring billing model;
+- price tier ID;
+- Stripe Price environment mapping;
+- production feature-ID namespace;
+- test/live checkout policy.
+
+## 5. Wave 2 implementation order
 
 1. Stage only legacy Pro tools whose current Free/Paid boundary is supported by runtime evidence.
 2. Keep Command Safety as the first intended **live** product-scoped migration once authoritative commercial configuration is available.
 3. Use the shared controller core for staging and keep each tool wrapper limited to its operation list and tool label.
-4. Add privacy-specific regression checks for tools that process sensitive inputs; API Key Token Redactor is the reference secret-bearing-input case.
-5. Do not treat staging completion as product launch or payment configuration.
+4. Add privacy-specific regression checks for tools that process sensitive or confidential inputs.
+5. Preserve existing legacy entitlement-isolation fixes until each tool is explicitly migrated live.
+6. Do not treat staging completion as product launch or payment configuration.
 
-## 5. Definition of done for current Wave 2 staging
+## 6. Definition of done for current Wave 2 staging
 
 SQL DB Risk Checker:
 
@@ -257,6 +355,18 @@ API Key Token Redactor:
 - deterministic fail-closed tests;
 - visible-preview, clipboard, Blob, and safe-artifact hardening protected;
 - billing privacy boundary excludes secret-bearing/user-generated content;
+- path-scoped CI;
+- no commercial values invented;
+- public runtime remains legacy until authorized live migration.
+
+Outsource Spec Generator:
+
+- exact eight-operation runtime-backed paid boundary;
+- Free lightweight generation and copy protected;
+- thin shared-core wrapper with no project/form-data dependency;
+- deterministic fail-closed tests;
+- exact legacy `nicheworks_pro` entitlement isolation protected;
+- billing privacy boundary excludes project/form/generated content;
 - path-scoped CI;
 - no commercial values invented;
 - public runtime remains legacy until authorized live migration.
