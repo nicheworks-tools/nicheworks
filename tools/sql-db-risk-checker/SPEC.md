@@ -12,7 +12,8 @@ SQLを実行する前に文字列として解析し、破壊的DDL、WHERE句の
 ## Current functional contract
 
 - セミコロン区切りの複数SQL文を受け付け、コメントを除外しながら文単位へ分割してルールベースで解析する。
-- DROP / TRUNCATE / ALTER / DROP COLUMN等の危険DDL、WHEREなしUPDATE/DELETE、書き込み系操作などを検出し、警告理由・確認案・サマリー・risk levelを表示する。
+- DROP / TRUNCATE / ALTER / DROP COLUMN等の危険DDL、トップレベルWHEREのないUPDATE/DELETE、書き込み系操作などを検出し、警告理由・確認案・サマリー・risk levelを表示する。
+- UPDATE/DELETE内のサブクエリにだけ`WHERE`がある場合、それを対象行制限のトップレベルWHEREとして扱わず、全件操作の可能性を警告する。
 - 対象環境はUnknown / Dev / Staging / Prod、DB種別はGeneric / Postgres / MySQL / SQLiteを自己申告で選択できる。実際の接続先やDB種別を自動検出しない。
 - read-only modeではSELECT以外を強く警告する。
 - Freeではrisk summaryとpre-run checklistをコピーできる。
@@ -71,7 +72,8 @@ JA/ENのUIを同一ページで切り替える。入力SQLは翻訳しない。
 
 ## Acceptance criteria
 
-- [ ] WHERE句のないDELETEまたはUPDATEを入力すると重大警告として検出され、影響行確認を促す。
+- [ ] トップレベルWHERE句のないDELETEまたはUPDATEを入力すると重大警告として検出され、影響行確認を促す。
+- [ ] UPDATE/DELETE内のネストしたサブクエリにだけWHEREが存在する場合、それだけを理由に全件操作警告を抑止しない。
 - [ ] DROP / TRUNCATE等の破壊的SQLを入力すると危険操作として警告される。
 - [ ] read-only modeで非SELECT文を入力すると通常より強い警告が出る。
 - [ ] Environment / DB typeの選択がsummaryと該当する注意表示へ反映される。
@@ -82,4 +84,5 @@ JA/ENのUIを同一ページで切り替える。入力SQLは翻訳しない。
 
 - `tools/sql-db-risk-checker/index.html` — inputs、Free/Pro UI、privacy/disclaimer、共通Pro表示。
 - `tools/sql-db-risk-checker/app-sdrc.js` — statement split、comment stripping、risk rules、DB/environment/read-only handling、copy/export、language state。
+- `tools/sql-db-risk-checker/pro-bridge.js` — shared Pro entitlement gateと、ネストしたWHEREをトップレベルWHEREと誤認しないruntime safety guard。
 - `tools/sql-db-risk-checker/app.js` — legacy entryが空で、実処理が`app-sdrc.js`へ移行済みであることを明示。
