@@ -186,6 +186,27 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、公�
 - invalid records: 0
 - unknown type labels: 0
 
+### Direct-link health monitoring — Phase 4
+
+Phase 4では、単一legacy fileだけを確認していたlink checkを、`tools/trashnavi/data/direct-waste-links*.json` に一致する全direct-link datasetへ拡張する。
+
+`scripts/check-trashnavi-direct-links.mjs` は次の契約で動作する。
+
+- 対象datasetをdirectory scanから決定し、固定file listへ依存しない。
+- root valueがarrayであることと、各recordの`url`がHTTP(S)であることを検証する。
+- 同一URLは1回だけrequestしつつ、source file / row indexの参照を全件保持する。
+- HEADを先に試し、status 0 / 403 / 405 / 429ではGETへfallbackする。
+- 404 / 410だけをhard broken linkとして扱う。
+- timeout / block / transient server errorはwarning扱いとし、自動でsource dataを無効化しない。
+- redirectはfinal URLをreportするが、source URLを自動書換えしない。
+- `--inventory` は外部network requestなしでdataset discovery / URL validityだけをCI検証する。
+- `TRASHNAVI_LINK_REPORT` 指定時はmachine-readable JSON reportを生成する。
+- `TRASHNAVI_STRICT_LINK_CHECK=1` でもhard errorだけをfailure条件とする。
+
+`.github/workflows/check-trashnavi-coverage.yml` はPR時に`--inventory`を実行し、live municipality siteへのrequestを発生させない。`.github/workflows/check-trashnavi-direct-links.yml` は既存のmonthly schedule / manual dispatchでnetwork health checkを実行し、report artifactを保存する。
+
+CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource recordを自動更新してはならない。source変更はofficial pageのmanual verificationを経て行う。
+
 ## Monetization boundary
 
 - AdSense等のsite-wide monetization基盤はcommon specificationに従う。
@@ -235,6 +256,15 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、公�
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
 - [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
+### Link health Phase 4
+
+- [x] 全`direct-waste-links*.json` datasetを自動discoverする。
+- [x] `--inventory`でnetwork accessなしのPR validationを実行できる。
+- [x] unique URL単位でrequestをdedupeし、全source referenceを保持する。
+- [x] scheduled/manual checkがJSON report artifactを生成できる。
+- [x] 404 / 410だけをstrict modeのhard failureにする。
+- [x] redirect / timeout / block結果からsource URLやverification metadataを自動変更しない。
+
 ## Implementation evidence
 
 - `tools/trashnavi/index.html` — filter/result/report UI、published municipality links、official-source disclaimer、JA/EN copy。
@@ -247,6 +277,9 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、公�
 - `tools/trashnavi/scripts/generate-municipality-pages.mjs` — deterministic municipality page / sitemap generator and drift checker。
 - `tools/trashnavi/tokyo/*/index.html` — initial Tokyo municipality pages。
 - `tools/trashnavi/mie/mihama/index.html` / `tools/trashnavi/gifu/kaizu/index.html` / `tools/trashnavi/ibaraki/yuki/index.html` — Wave 3 municipality pages。
+- `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
+- `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
+- `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
 - `sitemap.xml` — indexable municipality URLの正規sitemap収録先。
 - `sitemap-trashnavi.xml` — TrashNavi municipality補助sitemap。
-- `.github/workflows/check-trashnavi-coverage.yml` — coverage strict audit and generated-page drift check。
+- `.github/workflows/check-trashnavi-coverage.yml` — coverage strict audit、direct-link inventory validation、generated-page drift check。
