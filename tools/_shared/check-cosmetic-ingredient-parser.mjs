@@ -29,6 +29,12 @@ assert.deepEqual(
 );
 
 assert.deepEqual(
+  parser.splitIngredients("1,2-Hexanediol, Glycerin"),
+  ["1,2-Hexanediol", "Glycerin"],
+  "numeric locant commas inside ingredient names must stay intact"
+);
+
+assert.deepEqual(
   parser.splitIngredients("Water, water, WATER", { dedupe: true }),
   ["Water"],
   "dedupe should use normalized ingredient keys"
