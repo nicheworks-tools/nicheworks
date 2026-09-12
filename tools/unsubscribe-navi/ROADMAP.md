@@ -225,6 +225,9 @@ Wave 6反映後:
 - 480px未満でaction controlsを縦積みに統一
 - audit scriptへdirect procedure URL / procedure type / billing route coverageと90日freshnessのreport-only出力を追加
 - verified recordから個別page候補25件をP0/P1/P2へ選定し、`INDIVIDUAL_PAGE_CANDIDATES.md`へ固定
+- P0から構造の異なる5件（FOD / LINE MUSIC / Adobe Creative Cloud / Y!mobile / Lemino）を`noindex,nofollow`のstaged individual pageとして生成
+- 100件時点のcategory / procedure type / billing-route field coverageを`POST100_AUDIT.md`へ固定
+- staged一覧検索を100件規模向けにNFKC正規化・空白区切りAND検索へ変更し、category/state件数表示と条件クリアを追加
 
 現在:
 
@@ -236,19 +239,34 @@ Wave 6反映後:
 - placeholder: 4
 - verified share of visible: **98%**
 - individual-page candidates: **25**
+- staged individual pages: **5**
+
+100件監査の主要値:
+
+- categories: `software_saas` 31 / `video_streaming` 18 / `mobile_carrier` 10 / `ebooks_media` 10 / `music_audio` 8 / `ai` 6 / `other` 6 / `shopping_membership` 5 / `gaming` 5 / `cloud_productivity` 5
+- verified procedure types: `subscription_cancellation` 74 / `automatic_renewal_stop` 10 / `carrier_termination` 10 / `plan_downgrade_or_cancellation` 3 / `account_deletion` 1
+- verified with `procedure_type`: **98/98**
+- verified with non-empty `billing_routes`: **98/98**
+- verified older than 90-day threshold on 2026-09-12: **0**
 
 AmazonプライムはAmazon側の公開ページ取得が不安定で、日本向けの安定したprocedure sourceを今回も固定できなかったため、件数合わせで`verified`へ昇格しない。
 
 ### Phase 2 follow-up after 100
 
+完了:
+
+1. category偏り・procedure type・billing route field coverageの評価
+2. 個別page候補25件の選定
+3. P0から構造の異なる5件のstaged individual-page template生成
+4. staged一覧UIの100件規模検索・絞り込み調整
+5. 90日freshnessのreport-only監査実装
+
 残タスク:
 
 1. Amazonプライムの`needs_review`を、安定した日本向けofficial sourceが確保できる場合のみ閉じる
-2. audit出力を使ってcategory偏り・procedure type・billing route coverageを評価し、Phase 3の追加対象を決める
-3. P0候補から構造の異なる5件（FOD / LINE MUSIC / Adobe Creative Cloud / Y!mobile / Lemino）をstaged individual-page templateで生成・検証する
-4. staged UIを実データ100件で確認し、必要なら検索・絞り込みを追加調整する
-5. 90日freshness reportを運用し、stale判定を自動で`verified`へ反映しない
-6. current 87-tool quality cycleとのタイミングを見て正式登録可否を決める
+2. 初期5 individual pageの実ブラウザ表示・mobile usabilityを最終確認する
+3. freshness reportを継続運用し、stale判定を自動で`verified`へ反映しない
+4. current 87-tool quality cycleとのタイミングを見て正式登録可否を決める
 
 Rule:
 
@@ -260,14 +278,24 @@ Rule:
 
 ## Phase 3 — Expand to 150
 
-100件時点のsearch query / GSC傾向とcategory gapを見て+50件。
+100件監査の正本は`tools/unsubscribe-navi/POST100_AUDIT.md`。
+
+現時点では`software_saas`が31/104で最大カテゴリであるため、Phase 3を「取りやすいSaaSをさらに50件足す」作業にはしない。
 
 重点:
 
-- 国内固有subscription
+- `shopping_membership` / `gaming` / `cloud_productivity`など現時点で5件しかないカテゴリ
+- `music_audio` / `ebooks_media` / 国内固有subscription
 - 契約経路が複雑なservice
-- 解約/退会/自動更新停止が混同されやすいservice
+- 解約 / 退会 / 自動更新停止 / downgrade / MNPが混同されやすいservice
 - competitor pageはあるがofficial pathが見つけづらいservice
+
+運用guardrail:
+
+- category countはcoverage signalであり件数quotaではない
+- official sourceが弱い候補をcategory穴埋めのためにverified化しない
+- `software_saas`は実需要・route complexityの根拠がない限り追加waveを支配させない
+- 公開後にGSC/search queryの実データが取れたら、監査時の仮優先順位より実需要を優先する
 
 個別pageはPhase 2 follow-upで選定済みのP0/P1/P2候補を先に検証し、Phase 3追加recordは同じ選定contractへ後から追加する。
 
@@ -285,7 +313,7 @@ Rule:
 - selected: **25 records**
 - P0: 10 / P1: 10 / P2: 5
 
-最初のtemplate検証対象:
+最初のtemplate検証対象（生成済み）:
 
 - `fod-premium`
 - `line-music`
