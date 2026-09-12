@@ -59,6 +59,52 @@
     return ambiguousExactKeySet.has(normalizeBaseKey(value));
   }
 
+  function mergeNameLists(...lists) {
+    const output = [];
+    const seen = new Set();
+    for (const list of lists) {
+      for (const value of Array.isArray(list) ? list : []) {
+        const text = normalizeText(value);
+        const key = normalizeBaseKey(text);
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        output.push(text);
+      }
+    }
+    return output;
+  }
+
+  function mergeDictionaryRecords(items = []) {
+    const byCanonical = new Map();
+    const order = [];
+
+    for (const raw of Array.isArray(items) ? items : []) {
+      if (!raw || !raw.en) continue;
+      const canonicalKey = normalizeBaseKey(raw.en);
+      if (!canonicalKey) continue;
+
+      if (!byCanonical.has(canonicalKey)) {
+        const first = {
+          ...raw,
+          jp: mergeNameLists(raw.jp),
+          alias: mergeNameLists(raw.alias)
+        };
+        byCanonical.set(canonicalKey, first);
+        order.push(canonicalKey);
+        continue;
+      }
+
+      const current = byCanonical.get(canonicalKey);
+      current.jp = mergeNameLists(current.jp, raw.jp);
+      current.alias = mergeNameLists(current.alias, raw.alias);
+      if (!current.category && raw.category) current.category = raw.category;
+      if (!current.note_short && raw.note_short) current.note_short = raw.note_short;
+      if (!current.safety && raw.safety) current.safety = raw.safety;
+    }
+
+    return order.map((key) => byCanonical.get(key));
+  }
+
   function protectNumericLocantCommas(value) {
     return String(value).replace(/(\d),(?=\d)/g, `$1${LOCANT_COMMA}`);
   }
@@ -154,13 +200,14 @@
   }
 
   const api = {
-    version: "1.6.0",
+    version: "1.7.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
     splitIngredients,
     isExactIngredientMatch,
     isAmbiguousExactName,
+    mergeDictionaryRecords,
     aliasEquivalents: ALIAS_EQUIVALENTS,
     ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS
   };
