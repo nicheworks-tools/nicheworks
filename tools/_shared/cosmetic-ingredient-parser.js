@@ -1,6 +1,8 @@
 (function attachCosmeticIngredientParser(root) {
   "use strict";
 
+  const LOCANT_COMMA = "\uE000";
+
   function normalizeText(value = "") {
     return String(value)
       .normalize("NFKC")
@@ -20,16 +22,26 @@
       .trim();
   }
 
+  function protectNumericLocantCommas(value) {
+    return String(value).replace(/(\d),(?=\d)/g, `$1${LOCANT_COMMA}`);
+  }
+
+  function restoreNumericLocantCommas(value) {
+    return String(value).replaceAll(LOCANT_COMMA, ",");
+  }
+
   function splitIngredients(value = "", options = {}) {
     const dedupe = Boolean(options.dedupe);
     const normalized = normalizeText(value);
     if (!normalized) return [];
 
-    // Ingredient names can legitimately contain '/' and '・'.
-    // Treat only explicit list punctuation/newlines as separators.
-    const parts = normalized
+    // Ingredient names can legitimately contain '/', '・', and numeric locant
+    // commas such as 1,2-Hexanediol. Preserve those while splitting explicit
+    // list punctuation and line breaks.
+    const protectedText = protectNumericLocantCommas(normalized);
+    const parts = protectedText
       .split(/[\n,、，;；]+/)
-      .map((item) => normalizeText(item))
+      .map((item) => restoreNumericLocantCommas(normalizeText(item)))
       .filter(Boolean);
 
     if (!dedupe) return parts;
@@ -52,7 +64,7 @@
   }
 
   const api = {
-    version: "1.0.0",
+    version: "1.1.0",
     normalizeText,
     normalizeKey,
     splitIngredients,
