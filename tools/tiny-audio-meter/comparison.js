@@ -188,6 +188,14 @@
     if (baseline) updateDelta();
   }
 
+  function loadRecordsExport() {
+    if (document.querySelector('script[data-tiny-audio-records-export]')) return;
+    const script = document.createElement("script");
+    script.src = "./records-export.js";
+    script.dataset.tinyAudioRecordsExport = "true";
+    document.head.appendChild(script);
+  }
+
   els.baselineButton?.addEventListener("click", captureBaseline);
   els.baselineReset?.addEventListener("click", clearBaseline);
   els.micButton?.addEventListener("click", () => {
@@ -224,4 +232,5 @@
 
   renderBaseline();
   refresh();
+  loadRecordsExport();
 })();

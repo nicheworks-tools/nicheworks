@@ -8,7 +8,7 @@
 
 ## Purpose
 
-ブラウザのマイク入力を使い、相対入力レベル、単音に近い音の推定周波数・音階、pitch confidence、スペクトラム、短い区間の傾向を確認し、同一端末・同一マイク内で基準値との差も比較する。騒音計、法定測定器、業務用音響計、専用チューナーの代替ではない。
+ブラウザのマイク入力を使い、相対入力レベル、単音に近い音の推定周波数・音階、pitch confidence、スペクトラム、短い区間の傾向を確認し、同一端末・同一マイク内で基準値との差も比較する。数値snapshotはローカルCSV/要約として持ち出せる。騒音計、法定測定器、業務用音響計、専用チューナーの代替ではない。
 
 ## Primary workflow
 
@@ -18,6 +18,7 @@
 4. relative level、pitch/note/confidence、spectrum、spectrum peakを表示する。
 5. 必要に応じて現在値をbaselineとして保存し、同じマイクでrelative level/pitchの差を比較する。
 6. 必要に応じてnumeric snapshotまたは1秒以上のsegment analysisを使う。
+7. 必要に応じて現在残っているnumeric snapshotsをCSV保存または数値要約としてコピーし、segment resultをテキストコピーする。
 
 ## Current functional contract
 
@@ -44,7 +45,12 @@
 ## Snapshot / segment contract
 
 - 数値snapshotを最大20件までpage memoryに保持する。音声は保存しない。
+- 現在snapshot一覧に残っている数値だけを、`time,relative_db,pitch_hz,note,pitch_confidence_percent`のCSVとしてbrowser内で生成・保存できる。
+- CSVにはaudio、device label、device ID、baseline、affiliate dataを含めない。
+- Snapshot一覧から削除した行は、その後のCSV/要約にも含めない。
+- Snapshotの数値要約として件数、relative dBのmin/avg/max、有効pitch件数、有効pitch平均Hzをローカルコピーできる。
 - Segment Analysisでは1秒以上の区間についてaverage relative level、average pitch、pitch stabilityの目安を算出する。
+- Segment resultをローカルコピーでき、コピー文にもrelative input valueでありdB SPLではない旨を含める。
 - snapshot、segment result、baselineはrefreshすると消える。
 
 ## Inputs
@@ -55,7 +61,8 @@
 - Start / Stop mic。
 - Set / Clear baseline。
 - Numeric snapshot。
-- Segment Analysis Start / Stop。
+- Numeric snapshot CSV / summary export action。
+- Segment Analysis Start / Stop / copy action。
 - UI language JA / EN。
 
 ## Outputs
@@ -68,11 +75,13 @@
 - EC / NS / AGCのreported track settingsと必要時のprocessing warning。
 - Baseline summary、relative level delta、validな場合のpitch delta。
 - 最大20件のnumeric snapshots。
-- Segment Analysis summary。
+- Snapshot numeric summaryとCSV。
+- Segment Analysis summaryとcopy text。
 
 ## State and persistence
 
 - baseline、snapshot、segment data、current meter values、device selectionはpage memoryのみ。
+- CSVは利用者操作時に現在のsnapshot DOMから一時生成し、cloudやlocalStorageへ保存しない。
 - 音声stream/fileを保存しない。
 - microphone device label / device IDをlocalStorageへ保存しない。
 - UI languageのみ`nw_lang`としてlocalStorageへ保存する。
@@ -82,6 +91,7 @@
 - マイク音声の解析はbrowser内で行い、audio stream/fileをNicheWorksの解析APIへuploadしない。
 - Stop時には全media stream trackを終了する。
 - GA4やaffiliate analyticsへdevice label、relative level、pitch、note、confidence、spectrum peak、baseline、snapshot、segment resultを送らない。
+- Snapshot CSV/summaryとsegment copyはbrowser内だけで生成し、外部送信しない。
 - ページ表示時にはGoogle Analytics / AdSense等の外部resourceが読み込まれ得る。
 
 ## Amazon affiliate readiness
@@ -111,11 +121,12 @@ Allowed affiliate analytics remain limited to coarse `tool`, `affiliate`, `targe
 
 `mobile-oriented`
 
-Live values appear first; baseline/snapshot/segment comparison tools are secondary; limitations and FAQ follow.
+Live values appear first; baseline/snapshot/segment comparison tools are secondary; numeric export controls stay inside the snapshot/segment workflow; limitations and FAQ follow.
 
 ## Limits and non-goals
 
 - Displayed dB and baseline dB delta are relative microphone input values, not calibrated dB SPL.
+- CSV `relative_db` is the same relative microphone-input metric, not sound-pressure level.
 - `echoCancellation=false`等を要求してもbrowser / OS / hardwareが無視する場合がある。
 - pitchは単音に近い入力向けで、和音、会話、雑音、環境音では不正確になり得る。
 - pitch confidenceは正解確率ではない。
@@ -134,6 +145,8 @@ Live values appear first; baseline/snapshot/segment comparison tools are seconda
 - [ ] microphone start/stopまたはdevice変更でbaselineが破棄される。
 - [ ] Baselineやmicrophone-derived valuesは永続保存・affiliate analytics送信されない。
 - [ ] snapshotは最大20件、segment analysisは1秒未満を短すぎるとして扱う。
+- [ ] 現在残っているsnapshotだけをCSV/summaryへ出力でき、音声・device metadata・baseline・affiliate dataは含めない。
+- [ ] Segment resultをrelative-value注意書き付きでローカルコピーできる。
 - [ ] JA/EN切替が動作し、選択言語のみ`nw_lang`へ保存される。
 - [ ] Default affiliate configurationではAmazon CTA/disclosureが表示されない。
 
@@ -142,6 +155,7 @@ Live values appear first; baseline/snapshot/segment comparison tools are seconda
 - `tools/tiny-audio-meter/index.html`
 - `tools/tiny-audio-meter/app.js`
 - `tools/tiny-audio-meter/comparison.js`
+- `tools/tiny-audio-meter/records-export.js`
 - `tools/tiny-audio-meter/style.css`
 - `tools/tiny-audio-meter/comparison.css`
 - `tools/tiny-audio-meter/affiliate-config.js`
