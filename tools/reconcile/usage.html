@@ -11,7 +11,7 @@
   <main class="nw-main" style="padding-top:30px">
     <section class="panel">
       <h1>NicheWorks Reconcile — Usage</h1>
-      <p>このページは開発ブランチ用です。CSV照合コアと高度照合エンジンは実装済みです。XLSXはアダプターまで実装済みですが、固定版ライブラリの同梱前なのでブラウザではまだ利用できません。Pro機能も課金接続前のためロックされています。</p>
+      <p>このページは開発ブランチ用です。CSV照合コアと高度照合エンジンは実装済みです。XLSXはアダプターまで実装済みですが、検証済みSheetJS CE 0.20.3 mini本体の同梱前なのでブラウザではまだ利用できません。Pro機能も課金接続前のためロックされています。</p>
 
       <h2>Free workflow</h2>
       <ol>
@@ -24,20 +24,21 @@
       </ol>
 
       <h2>Matching rules</h2>
-      <p>照合は決定論的です。複数の候補がある場合は勝手に1件を選ばずcandidateにします。同一参照IDでも金額差が許容範囲を超える場合はconflictとして扱います。</p>
+      <p>照合は決定論的です。Reference完全一致を優先し、その後もA/B双方から見て一意な1:1関係だけを自動確定します。複数の候補がある場合や複数A行が同じB行を取り合う場合は、入力順で勝手に割り当てずcandidateにします。同一参照IDでも金額差が許容範囲を超える場合はconflictとして扱います。</p>
+      <p>同額取引が大量に並ぶなど、1:1候補グラフが安全上限を超える場合は途中結果を自動確定せず照合を停止します。その場合は日付または取引ID/参照列を追加して候補を絞ります。1:n / n:1の組合せ探索にも別の探索上限があり、上限到達時は自動一致せずmanual review候補へ落とします。</p>
 
       <h2>Reconcile Pro implementation</h2>
       <p>Pro用の金額許容差、B側符号反転、符号無視、1:n / n:1照合、最大5件のグループ照合、XLSXレポート、保存済みルールのコードとUIは実装済みです。ただしこの隔離ブランチではentitlementを接続していないため、操作はロックされています。</p>
       <p>保存済みルールは列対応・CSV解析設定・照合条件だけをlocalStorageへ保存します。取引行、ファイル本体、照合結果は保存しません。ルールは最大20件で、JSONとしてimport/exportできます。</p>
 
       <h2>XLSX status</h2>
-      <p>複数worksheetの選択、Excel日付/数値の読み込み、Summary / Matches / Candidates / A Only / B Only / Duplicates / Conflicts の7シートレポート生成まで実装済みです。ランタイムCDNは使わず、検証済み固定版をローカルvendorとして同梱した後に有効化します。</p>
+      <p>複数worksheetの選択、Excel日付/数値の読み込み、Summary / Matches / Candidates / A Only / B Only / Duplicates / Conflicts の7シートレポート生成まで実装済みです。SheetJS CE 0.20.3のmini buildを固定し、ランタイムCDNは使用しません。ライセンスとchecksum契約は同梱済みで、残りはSHA-256検証済みJS本体のvendor commitと実ブラウザread/write確認です。</p>
 
       <h2>Privacy</h2>
       <p>取引行はブラウザ内で処理します。この開発ブランチのコードは取引データ送信用APIを持ちません。公開時の課金通信もentitlement情報のみを扱い、取引ファイルは送信対象にしません。</p>
 
       <h2>Current limits</h2>
-      <p>Freeは1ファイル500行・5MBまでです。Pro有効時の現在のブラウザ安全上限は1ファイル100MBで、行数に固定上限は設けません。実際の処理可能量は端末メモリに依存します。</p>
+      <p>Freeは1ファイル500行・5MBまでです。Pro有効時の現在のブラウザ安全上限は1ファイル100MBで、行数に固定上限は設けません。ただしブラウザメモリに加え、1:1候補グラフと1:n / n:1探索には明示的な安全予算を設けています。大きいだけではなく候補が極端に曖昧なデータも、安全側で停止します。</p>
 
       <p><a href="./">Return to Reconcile</a></p>
     </section>
