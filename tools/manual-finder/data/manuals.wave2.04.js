@@ -16,3 +16,42 @@ OD-2R|https://lib.roland.co.jp/support/jp/manuals/res/1809114/OD-2R_j.pdf
 P-1|https://lib.roland.co.jp/support/jp/manuals/res/1810528/P-1_r_j2.pdf
 P-330|https://lib.roland.co.jp/support/jp/manuals/res/1808903/P-330_j.pdf
 P-55|https://lib.roland.co.jp/support/jp/manuals/res/1810023/P-55_j.pdf`);
+
+// Wave 2S: direct Seiko caliber manuals verified from the official instruction index.
+window.MANUALFINDER_WAVE2_SEIKO.push(`3X22|https://www.seikowatches.com/instructions/html/SEIKO_3X22_JP/index
+3X32|https://www.seikowatches.com/instructions/html/SEIKO_3X32_JP/index
+3X62|https://www.seikowatches.com/instructions/html/SEIKO_3X62_JP/index
+4R34|https://www.seikowatches.com/instructions/html/SEIKO_4R34_JP/index
+4R57|https://www.seikowatches.com/instructions/html/SEIKO_4R57_JP/index
+5X53|https://www.seikowatches.com/instructions/html/SEIKO_5X53_JP/index
+5X63|https://www.seikowatches.com/instructions/html/SEIKO_5X63_JP/index
+5X83|https://www.seikowatches.com/instructions/html/SEIKO_5X83_JP/index
+6R54|https://www.seikowatches.com/instructions/html/SEIKO_6R54_JP/index
+6R64|https://www.seikowatches.com/instructions/html/SEIKO_6R64_JP/index
+7B75|https://www.seikowatches.com/instructions/html/SEIKO_7B75_JP/index
+7C17|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7C17/7C17.pdf
+7C21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7C21/7C21.pdf
+7C46|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7C46/7C46.pdf
+7D46|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7D46/7D46.pdf
+7D48|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7D48/7D48.pdf
+7J21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7J21/7J21.pdf
+7K36|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7K36/7K36.pdf
+7K52|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7K52/7K52.pdf
+7N00|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7N00/7N00.pdf
+7N07|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7N07/7N07.pdf
+7N21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7N21/7N21.pdf
+8B63|https://www.seikowatches.com/instructions/html/SEIKO_8B63_JP/index
+8B92|https://www.seikowatches.com/instructions/html/SEIKO_8B92_JP/index`);
+
+// Normalize Seiko evidence/support links to the model-specific official caliber search.
+// This removes the original H-index assumption while preserving the existing builder contract.
+{
+  const buildWave2 = window.MANUALFINDER_BUILD_WAVE2;
+  if (typeof buildWave2 === "function") {
+    window.MANUALFINDER_BUILD_WAVE2 = () => buildWave2().map((record) => {
+      if (record.maker !== "Seiko" || !record.model) return record;
+      const supportUrl = `https://www.seikowatches.com/jp-ja/customerservice/instruction?CaliberNumber=${encodeURIComponent(record.model)}&Language=ja-JP`;
+      return { ...record, supportUrl, evidenceUrl: supportUrl };
+    });
+  }
+}
