@@ -40,6 +40,7 @@ const overlayFiles = fs.existsSync(reverificationDir)
   ? fs.readdirSync(reverificationDir).filter((name) => name.endsWith('.json')).sort()
   : [];
 const overlayIds = new Set();
+let supersededOverlayWrites = 0;
 
 for (const name of overlayFiles) {
   const file = path.join(reverificationDir, name);
@@ -50,16 +51,23 @@ for (const name of overlayFiles) {
     continue;
   }
 
+  const idsInFile = new Set();
   for (const record of overlay.records) {
     if (!record?.id) {
       fail(`${name}: overlay record missing id`);
       continue;
     }
+    if (idsInFile.has(record.id)) {
+      fail(`${name}: duplicate overlay id ${record.id} within the same wave`);
+      continue;
+    }
+    idsInFile.add(record.id);
+
     if (!byId.has(record.id)) {
       fail(`${name}: overlay id ${record.id} does not exist in legacy base`);
       continue;
     }
-    if (overlayIds.has(record.id)) fail(`${record.id}: appears in more than one re-verification overlay`);
+    if (overlayIds.has(record.id)) supersededOverlayWrites += 1;
     overlayIds.add(record.id);
 
     const previous = byId.get(record.id);
@@ -116,7 +124,9 @@ for (const [index, record] of records.entries()) {
 
 const visibleCount = records.filter((record) => record.publication_state !== 'placeholder').length;
 const verifiedCount = records.filter((record) => record.publication_state === 'verified').length;
-const reviewCount = records.filter((record) => ['legacy_review_required', 'needs_review'].includes(record.publication_state)).length;
+const legacyCount = records.filter((record) => record.publication_state === 'legacy_review_required').length;
+const needsReviewCount = records.filter((record) => record.publication_state === 'needs_review').length;
+const reviewCount = legacyCount + needsReviewCount;
 const retiredCount = records.filter((record) => record.publication_state === 'retired').length;
 const placeholderCount = records.filter((record) => record.publication_state === 'placeholder').length;
 
@@ -124,10 +134,13 @@ console.log('unsubscribe-navi database audit');
 console.log(`- base records: ${baseRecords.length}`);
 console.log(`- re-verification overlay files: ${overlayFiles.length}`);
 console.log(`- re-verified/overridden ids: ${overlayIds.size}`);
+console.log(`- later-wave superseding writes: ${supersededOverlayWrites}`);
 console.log(`- effective records: ${records.length}`);
 console.log(`- public-visible records: ${visibleCount}`);
 console.log(`- verified: ${verifiedCount}`);
-console.log(`- review required: ${reviewCount}`);
+console.log(`- legacy review required: ${legacyCount}`);
+console.log(`- needs review: ${needsReviewCount}`);
+console.log(`- review required total: ${reviewCount}`);
 console.log(`- retired: ${retiredCount}`);
 console.log(`- placeholders hidden: ${placeholderCount}`);
 console.log(`- verified share of visible records: ${visibleCount ? Math.round((verifiedCount / visibleCount) * 100) : 0}%`);
