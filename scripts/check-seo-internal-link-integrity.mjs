@@ -25,7 +25,7 @@ function readText(file) {
   }
 }
 
-function excludedRelative(relative) {
+function scanExcludedRelative(relative) {
   return relative.startsWith('_archive/')
     || relative.startsWith('apps/')
     || relative.startsWith('templates/')
@@ -36,8 +36,17 @@ function excludedRelative(relative) {
     || relative.includes('/howto/howto/');
 }
 
-function excluded(file) {
-  return excludedRelative(rel(file));
+function targetExcludedRelative(relative) {
+  return relative.startsWith('_archive/')
+    || relative.startsWith('apps/')
+    || relative.startsWith('templates/')
+    || relative.startsWith('tools/_template/')
+    || relative.includes('/mock/')
+    || relative.includes('/howto/howto/');
+}
+
+function scanExcluded(file) {
+  return scanExcludedRelative(rel(file));
 }
 
 function listHtml(dir = root) {
@@ -46,7 +55,7 @@ function listHtml(dir = root) {
     if (SKIP_DIRS.has(entry.name)) continue;
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) output.push(...listHtml(file));
-    else if (entry.isFile() && entry.name.endsWith('.html') && !excluded(file)) output.push(file);
+    else if (entry.isFile() && entry.name.endsWith('.html') && !scanExcluded(file)) output.push(file);
   }
   return output;
 }
@@ -71,13 +80,24 @@ function isNoindex(html) {
   return metaValues(html, 'name', 'robots').some((value) => value.toLowerCase().split(/[\s,]+/).includes('noindex'));
 }
 
+function navigationMarkup(html) {
+  return html
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<template\b[\s\S]*?<\/template>/gi, ' ');
+}
+
 function anchorHrefs(html) {
-  return [...html.matchAll(/<a\b[^>]*>/gi)]
+  const markup = navigationMarkup(html);
+  return [...markup.matchAll(/<a\b[^>]*>/gi)]
     .map((match) => tagAttr(match[0], 'href'))
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((href) => !href.includes('${'));
 }
 
 function looksLikeHtmlNavigation(pathname) {
+  if (pathname.startsWith('/api/')) return false;
   if (pathname.endsWith('/')) return true;
   const basename = path.posix.basename(pathname);
   const extension = path.posix.extname(basename).toLowerCase();
@@ -112,7 +132,7 @@ function candidateRelatives(pathname) {
 
 function publicExistingTarget(pathname) {
   for (const relative of candidateRelatives(pathname)) {
-    if (!relative || excludedRelative(relative)) continue;
+    if (!relative || targetExcludedRelative(relative)) continue;
     const absolute = path.resolve(root, relative);
     const rootPrefix = `${root}${path.sep}`;
     if (absolute !== root && !absolute.startsWith(rootPrefix)) continue;
