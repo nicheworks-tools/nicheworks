@@ -15,6 +15,7 @@ on:
       - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
+      - 'scripts/check-seo-indexable-url-identity.mjs'
       - 'scripts/check-seo-public-url-contract.mjs'
       - 'scripts/seo-public-url-contract.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -36,6 +37,7 @@ on:
       - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
+      - 'scripts/check-seo-indexable-url-identity.mjs'
       - 'scripts/check-seo-public-url-contract.mjs'
       - 'scripts/seo-public-url-contract.mjs'
       - 'scripts/repair-seo-foundation.mjs'
@@ -76,6 +78,9 @@ jobs:
 
       - name: Check SEO public URL contract
         run: node scripts/check-seo-public-url-contract.mjs
+
+      - name: Check indexable SEO URL identity
+        run: node scripts/check-seo-indexable-url-identity.mjs
 
       - name: Run strict SEO audit
         run: node scripts/audit-seo.mjs --strict
