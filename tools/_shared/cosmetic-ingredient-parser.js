@@ -63,8 +63,47 @@
     return Boolean(valueKey && candidateKey && valueKey === candidateKey);
   }
 
+  function ensureStylesheet(documentRef, href) {
+    if (documentRef.querySelector(`link[href="${href}"]`)) return;
+    const link = documentRef.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    documentRef.head.appendChild(link);
+  }
+
+  function loadScript(documentRef, src) {
+    return new Promise((resolve, reject) => {
+      const existing = documentRef.querySelector(`script[src="${src}"]`);
+      if (existing) {
+        if (existing.dataset.nwLoaded === "true") resolve();
+        else existing.addEventListener("load", resolve, { once: true });
+        return;
+      }
+
+      const script = documentRef.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.addEventListener("load", () => {
+        script.dataset.nwLoaded = "true";
+        resolve();
+      }, { once: true });
+      script.addEventListener("error", reject, { once: true });
+      documentRef.head.appendChild(script);
+    });
+  }
+
+  function bootstrapOptionalAffiliateRuntime() {
+    const documentRef = root?.document;
+    if (!documentRef || !documentRef.getElementById("amazonAffiliateSlot")) return;
+
+    ensureStylesheet(documentRef, "/tools/_shared/cosmetics-affiliate-slot.css");
+    loadScript(documentRef, "/tools/_shared/cosmetics-affiliate-config.js")
+      .then(() => loadScript(documentRef, "/tools/_shared/cosmetics-affiliate-slot.js"))
+      .catch((error) => console.warn("Optional affiliate runtime unavailable", error));
+  }
+
   const api = {
-    version: "1.1.0",
+    version: "1.2.0",
     normalizeText,
     normalizeKey,
     splitIngredients,
@@ -78,4 +117,6 @@
   if (root) {
     root.NWCosmeticIngredientParser = api;
   }
+
+  bootstrapOptionalAffiliateRuntime();
 })(typeof globalThis !== "undefined" ? globalThis : this);
