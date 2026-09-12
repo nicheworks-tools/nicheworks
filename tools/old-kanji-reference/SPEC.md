@@ -20,8 +20,8 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - Maintain browser-local favorites, recent entries, display mode, and quiz statistics.
 - Provide quiz modes for old→modern, modern→old, and reading→old using suitable verified data.
 - Export the currently visible entries as CSV or JSON, copy a Markdown table, and invoke browser print.
-- The current implementation wires these export controls directly and does not gate them on Pro entitlement.
-- A visible Old Kanji Toolkit Pro panel describes export/report and other advanced features while billing is unavailable. That panel conflicts with the current ungated export implementation; runtime Free export behavior is authoritative for this specification.
+- CSV, JSON, Markdown, and print export controls are currently Free and are not gated on Pro entitlement.
+- The Old Kanji Toolkit Pro area is visibly marked billing-unavailable. Advanced learning-history and saved-set areas are described as planned/unavailable rather than purchasable current features.
 
 ## Inputs
 
@@ -66,16 +66,16 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - The tool is not an official family-register/name authority, historical-linguistics authority, or document transcription service.
 - Full-text conversion belongs to Kanji Modernizer rather than this reference catalog.
 - Rendering can vary for compatibility ideographs, supplementary-plane characters, and variation selectors.
-- The current Pro copy that labels export/report as Pro is inconsistent with the active Free export handlers and must not be treated as the implemented entitlement contract.
-- Old Kanji Toolkit billing is currently unavailable on this page.
+- Old Kanji Toolkit billing is currently unavailable on this page; planned Pro areas are not part of the currently purchasable functional contract.
 
 ## Acceptance criteria
 
 - [ ] Search modes and filters operate on loaded reference data without inventing missing metadata.
 - [ ] Detector text highlights registered old forms and supports copy/send-to-converter actions locally.
 - [ ] Favorites, recent entries, display mode, and quiz statistics restore from their documented localStorage keys.
-- [ ] CSV/JSON/Markdown/print actions remain functional under the current implementation without requiring Pro entitlement.
-- [ ] Public documentation must not describe currently ungated exports as runtime-Pro-only behavior unless the implementation is changed to enforce that gate.
+- [ ] CSV/JSON/Markdown/print actions remain functional without requiring Pro entitlement.
+- [ ] Public JP/EN copy explicitly identifies the current export actions as Free and does not label them Pro-only.
+- [ ] The disabled Pro panel communicates billing unavailable and does not present planned learning/saved-set features as currently purchasable.
 - [ ] Reference results retain cautions appropriate to non-authoritative old/variant-kanji data.
 
 ## Implementation evidence
