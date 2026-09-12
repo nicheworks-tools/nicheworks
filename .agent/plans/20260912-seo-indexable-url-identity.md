@@ -4,45 +4,61 @@ This ExecPlan is a living document. Keep `Progress`, `Surprises & Discoveries`, 
 
 ## Purpose / Big Picture
 
-PR #502 fixed and enforced the canonical public URL contract for the 87 registered tool landing pages. The remaining gap is the wider static publication surface: how-to pages, usage pages, language variants, Atlas subpages, mother-site pages, and other indexable HTML. Those pages are currently checked by the general SEO audit, but they do not have the same exact identity guarantees as registered tool landings.
+PR #502 fixed and enforced the canonical public URL contract for the 87 registered tool landing pages. This PR extends URL identity enforcement to the wider static publication surface: how-to pages, usage pages, language variants, Atlas subpages, mother-site pages, and other indexable HTML.
 
-This PR extends URL identity enforcement to every indexable public HTML page without changing product UI or routing. For each indexable page, canonical and `og:url` must equal the URL derived from its repository path, and the sitemap must publish that URL exactly once.
+For every indexable public HTML page, canonical and `og:url` must equal the URL derived from its repository path, and the sitemap must publish that URL exactly once. Product UI, routing, and page semantics remain unchanged.
 
 ## Progress
 
-- [x] 2026-09-12T11:10+09:00 Confirmed main HEAD is `263e8aa44e389631cd3edbfde4e7a8daa62945fd` after PR #502.
-- [x] 2026-09-12T11:10+09:00 Created branch `fix/seo-indexable-url-identity-20260912` from that exact main commit.
-- [x] 2026-09-12T11:10+09:00 Confirmed PR #502 already protects 87 registered tool landing pages but not the full indexable HTML surface.
-- [ ] Add a read-only indexable-page URL identity checker.
-- [ ] Wire the checker into the existing SEO audit workflow.
-- [ ] Run the checker through PR CI and record all pre-existing violations.
-- [ ] Repair only mechanical URL-identity defects required to make the contract adoptable.
-- [ ] Re-run strict SEO audit and clean-repository validation.
-- [ ] Review diff, update this ExecPlan, open/finish PR, and merge only after repository checks are green.
+- [x] 2026-09-12T11:10+09:00 Confirmed main HEAD `263e8aa44e389631cd3edbfde4e7a8daa62945fd` after PR #502.
+- [x] 2026-09-12T11:10+09:00 Created `fix/seo-indexable-url-identity-20260912` from that exact main commit.
+- [x] Added read-only `scripts/check-seo-indexable-url-identity.mjs`.
+- [x] Wired the checker into the existing SEO audit workflow after the 87-tool URL contract and before strict SEO audit.
+- [x] Opened PR #503 and ran the checker against the full repository.
+- [x] Initial run scanned 288 SEO-scope HTML pages: 285 indexable and 3 noindex. It found exactly five violations.
+- [x] All five violations were missing `og:url` tags on AI Interaction Atlas English subpages: `categories/`, `compare/`, `patterns/`, `search/`, and `topics/`.
+- [x] Repaired only those five defects by adding one path-correct `og:url` line to each page.
+- [x] Re-run succeeded: 285 indexable / 3 noindex / 288 scanned.
+- [x] Existing 87-tool public URL contract succeeded.
+- [x] Existing strict SEO audit succeeded with `288 OK / 0 WARN / 0 FAIL`.
+- [x] Clean-repository validation (`git diff --exit-code`) succeeded.
+- [ ] Final compare/PR metadata review and squash merge.
+- [ ] Confirm the same SEO workflow succeeds on main after merge.
 
 ## Surprises & Discoveries
 
 - PR #502 deliberately scoped WebApplication JSON-LD URL enforcement to the 87 registered tool landing pages, where the common specification explicitly defines that contract.
-- `scripts/audit-seo.mjs` already computes a canonical expected URL for all scanned HTML and warns on canonical mismatch, but sitemap membership is currently checked with a substring lookup and the audit does not require `og:url` to equal the page URL.
-- The common-breakage job scans roughly 292 HTML files, so the public indexable surface is materially larger than the 87 registered landing pages.
+- The wider SEO scan contains 288 HTML pages after existing exclusions. Of these, 285 are indexable and 3 are noindex.
+- The existing repository was already very close to the stronger contract: the only five failures were missing `og:url` on five English AI Interaction Atlas subpages.
+- Canonical URLs, sitemap membership, sitemap uniqueness, deprecated-origin checks, and `/index.html` alias checks produced no additional violations.
+- The final strict general SEO audit reports all 288 scanned pages as OK with zero warnings and zero failures.
 
 ## Decision Log
 
-- Decision: PR2 will enforce canonical + `og:url` + exact sitemap membership for every indexable public HTML page.
-  Rationale: these are page-identity fields that should be deterministic from deployment path and can be checked mechanically without changing page semantics.
+- Decision: enforce canonical + `og:url` + exact sitemap membership for every indexable public HTML page.
+  Rationale: these are deterministic page-identity fields and can be checked mechanically without changing page semantics.
   Date: 2026-09-12.
 
 - Decision: keep WebApplication JSON-LD enforcement in the existing registered-tool checker rather than require one schema type on every subpage.
   Rationale: subpages may legitimately use different schema types; the common specification's WebApplication requirement is specific to tool pages.
   Date: 2026-09-12.
 
-- Decision: no mass content, title, description, layout, or routing edits in this PR. Only URL-identity metadata defects surfaced by the checker may be repaired.
-  Rationale: keeps the PR reviewable and separates structural SEO identity from content-quality work.
+- Decision: repair only the five missing `og:url` tags surfaced by the new checker.
+  Rationale: no content, title, description, routing, sitemap, or layout changes were necessary to make the stronger contract pass.
   Date: 2026-09-12.
 
 ## Outcomes & Retrospective
 
-Pending implementation and CI results.
+The new checker is adoptable against the current repository with only five one-line metadata repairs. It converts a previously implicit convention into a CI-enforced invariant across the complete indexable static site, while PR #502 continues to provide the stronger registered-tool/WebApplication checks for the 87 primary tool landings.
+
+Observed successful PR workflow output:
+
+- `SEO public URL contract: OK (87 registered tools checked)`
+- `Indexable SEO URL identity: OK (285 indexable / 3 noindex / 288 scanned)`
+- `SEO audit: 288 OK / 0 WARN / 0 FAIL / 288 checks (strict)`
+- `git diff --exit-code`: success
+
+The page-level production changes are limited to five added `og:url` tags.
 
 ## Context and Orientation
 
@@ -50,66 +66,47 @@ Relevant files:
 
 - `scripts/seo-public-url-contract.mjs`: shared canonical origin and repository-path-to-public-URL helper added by PR #502.
 - `scripts/check-seo-public-url-contract.mjs`: registered-tool landing-page contract checker added by PR #502.
+- `scripts/check-seo-indexable-url-identity.mjs`: full indexable-page identity checker added by this PR.
 - `scripts/audit-seo.mjs`: repository-wide SEO audit.
-- `.github/workflows/seo-audit.yml`: existing PR/main SEO workflow.
+- `.github/workflows/seo-audit.yml`: PR/main SEO workflow.
 - `sitemap.xml`: public sitemap.
-- Static HTML under repository root and `tools/**` is the publication surface. Existing SEO-audit exclusions remain authoritative for archived, application, mock, template, and no-publication paths.
 
-An “indexable page” in this PR means an HTML file already included by the repository SEO scan whose effective robots meta does not contain `noindex`.
+An “indexable page” means an HTML file included by the existing repository SEO scan whose robots meta does not contain `noindex`.
 
-## Plan of Work
+## Implemented Contract
 
-Add `scripts/check-seo-indexable-url-identity.mjs`. It will reuse `htmlFilePublicUrl()` from the shared URL contract, walk the same public HTML scope used by `audit-seo.mjs`, skip noindex pages, and enforce:
+For every indexable page in the established SEO scan scope, the checker enforces:
 
-1. exactly one canonical tag and exact equality with the path-derived public URL;
-2. exactly one `og:url` and exact equality with the path-derived public URL;
-3. the exact expected URL occurs exactly once as a sitemap `<loc>`;
+1. exactly one canonical tag equal to `htmlFilePublicUrl(relativePath)`;
+2. exactly one `og:url` equal to that same URL;
+3. the expected URL appears exactly once as a sitemap `<loc>`;
 4. canonical and `og:url` do not use `pages.dev` or another public origin;
-5. sitemap `<loc>` entries are globally unique and do not publish `/index.html` aliases or deprecated `pages.dev` URLs.
+5. sitemap `<loc>` values are globally unique;
+6. sitemap does not publish deprecated `pages.dev` URLs or `/index.html` aliases.
 
-Wire that script into `.github/workflows/seo-audit.yml` after the registered-tool contract check and before the strict general SEO audit. Add the script itself to workflow path filters.
-
-Open a PR so GitHub Actions executes against the full repository. If the new checker reports pre-existing defects, repair only those identity tags or sitemap entries that are mechanically implied by the existing public path. Re-run until the new checker and existing strict SEO audit are both green.
-
-## Concrete Steps
-
-On branch `fix/seo-indexable-url-identity-20260912`:
-
-1. Add `scripts/check-seo-indexable-url-identity.mjs`.
-2. Update `.github/workflows/seo-audit.yml` path filters and steps.
-3. Open a pull request to trigger repository CI.
-4. Inspect checker output and repair any mechanical identity defects.
-5. Confirm `Check SEO public URL contract`, `Check indexable SEO URL identity`, `Run strict SEO audit`, and `Confirm repository was not modified` all succeed.
-6. Review compare diff against main and update this ExecPlan with observed counts/results.
-7. Squash merge after the PR is mergeable and repository checks are green.
-8. Confirm main runs the same SEO checks successfully after merge.
+No third-party package is required. The script uses Node.js built-ins and the shared PR #502 URL helper.
 
 ## Validation and Acceptance
 
-Acceptance requires:
+Acceptance has been demonstrated on PR #503:
 
-- Every indexable HTML page in the established SEO scan scope has exactly one canonical equal to `htmlFilePublicUrl(relativePath)`.
-- Every such page has exactly one `og:url` equal to the same URL.
-- Every such page occurs exactly once in `sitemap.xml`.
-- Sitemap locations are unique.
-- No indexable identity URL or sitemap location uses `pages.dev`.
-- Sitemap does not publish an `index.html` alias.
-- Existing 87-tool landing contract still passes.
-- Existing strict SEO audit still passes.
-- Validation scripts leave the repository unchanged.
-
-The checker must print a useful page count on success and page-specific expected/actual diagnostics on failure.
+- 285 indexable pages satisfy canonical identity.
+- 285 indexable pages satisfy `og:url` identity.
+- 285 indexable pages have exact single sitemap membership.
+- 3 noindex pages are intentionally excluded from identity enforcement.
+- Sitemap uniqueness/origin/index-alias checks pass.
+- Existing 87-tool landing contract passes.
+- Existing strict SEO audit passes with 288/288 OK.
+- Validation leaves the repository unchanged.
 
 ## Idempotence and Recovery
 
-All validation is read-only. Writes stay on `fix/seo-indexable-url-identity-20260912`. Before updating an existing file through the contents API, refetch its current blob SHA. Do not directly edit main. Mechanical repairs are safe to retry after refreshing the target SHA.
+All validation is read-only. The five page repairs are deterministic additions of the canonical path-derived `og:url`. The checker can be rerun safely on every pull request and main push. Main is modified only through the PR merge.
 
 ## Artifacts and Notes
 
 Base/main SHA: `263e8aa44e389631cd3edbfde4e7a8daa62945fd`.
 
+PR: `https://github.com/nicheworks-tools/nicheworks/pull/503`.
+
 Parent work: PR #502 / `.agent/plans/20260912-seo-public-url-contract.md`.
-
-## Interfaces and Dependencies
-
-No new package dependency is required. The checker uses Node.js built-ins and imports `SITE_ORIGIN` / `htmlFilePublicUrl` from `scripts/seo-public-url-contract.mjs`.
