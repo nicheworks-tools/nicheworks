@@ -69,6 +69,32 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`3B21|https://www.seikowatches.com/jp-ja/-/
 4S27|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4S27/4S27.pdf
 4S36|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4S36/4S36.pdf`);
 
+// Wave 2U: direct Seiko 5-series caliber manuals with unique official index targets.
+window.MANUALFINDER_WAVE2_SEIKO.push(`5B21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5B21/5B21.pdf
+5D22|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5D22/5D22.pdf
+5D44|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5D44/5D44.pdf
+5D88|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5D88/5D88.pdf
+5E21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5E21/5E21.pdf
+5E30|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5E30/5E30.pdf
+5E31|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5E31/5E31.pdf
+5E32|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5E32/5E32.pdf
+5E39|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5E39/5E39.pdf
+5E42|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5E42/5E42.pdf
+5E61|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5E61/5E61.pdf
+5J21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5J21/5J21.pdf
+5J22|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5J22/5J22.pdf
+5K22|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5K22/5K22.pdf
+5K65|https://www.seikowatches.com/instructions/html/SEIKO_5K65_D_JP/index
+5M23|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5M23/5M23.pdf
+5M42|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5M42/5M42.pdf
+5M45|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5M45/5M45.pdf
+5M47|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5M47/5M47.pdf
+5M62|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5M62/5M62.pdf
+5M85|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5M85/5M85_2.pdf
+5R67|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5R67/5R67.pdf
+5R85|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5R85/5R85.pdf
+5R86|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5R86/5R86.pdf`);
+
 // Normalize Seiko evidence/support links to the model-specific official caliber search.
 // This removes the original H-index assumption while preserving the existing builder contract.
 {
