@@ -3,29 +3,37 @@ name: API Key Redactor product-scoped staging check
 on:
   pull_request:
     paths:
+      - 'MONETIZATION_CLASSIFICATION_87.json'
       - 'assets/nw-product-scoped-controller.mjs'
       - 'tools/api-key-token-redactor/product-scoped-controller.mjs'
       - 'tools/api-key-token-redactor/SPEC.md'
       - 'tools/api-key-token-redactor/index.html'
       - 'tools/api-key-token-redactor/app.js'
       - 'tools/api-key-token-redactor/pro-bridge.js'
+      - 'docs/tools/api-key-token-redactor.md'
       - 'scripts/check-api-key-redactor-product-scoped-staging.mjs'
       - 'docs/billing/pro-product-contracts-wave2.md'
+      - 'docs/billing/pro-product-contracts-wave7.md'
       - '.agent/plans/2026-09-12-api-key-redactor-product-scoped-staging.md'
+      - '.agent/plans/2026-09-13-api-key-redactor-legacy-gate-hardening.md'
       - '.github/workflows/api-key-redactor-product-scoped-staging-check.yml'
   push:
     branches:
       - main
     paths:
+      - 'MONETIZATION_CLASSIFICATION_87.json'
       - 'assets/nw-product-scoped-controller.mjs'
       - 'tools/api-key-token-redactor/product-scoped-controller.mjs'
       - 'tools/api-key-token-redactor/SPEC.md'
       - 'tools/api-key-token-redactor/index.html'
       - 'tools/api-key-token-redactor/app.js'
       - 'tools/api-key-token-redactor/pro-bridge.js'
+      - 'docs/tools/api-key-token-redactor.md'
       - 'scripts/check-api-key-redactor-product-scoped-staging.mjs'
       - 'docs/billing/pro-product-contracts-wave2.md'
+      - 'docs/billing/pro-product-contracts-wave7.md'
       - '.agent/plans/2026-09-12-api-key-redactor-product-scoped-staging.md'
+      - '.agent/plans/2026-09-13-api-key-redactor-legacy-gate-hardening.md'
       - '.github/workflows/api-key-redactor-product-scoped-staging-check.yml'
 
 permissions:
@@ -43,6 +51,7 @@ jobs:
         run: |
           node --check assets/nw-product-scoped-controller.mjs
           node --check tools/api-key-token-redactor/product-scoped-controller.mjs
+          node --check tools/api-key-token-redactor/pro-bridge.js
           node --check scripts/check-api-key-redactor-product-scoped-staging.mjs
       - name: API Key Redactor product-scoped staging contracts
         run: node scripts/check-api-key-redactor-product-scoped-staging.mjs

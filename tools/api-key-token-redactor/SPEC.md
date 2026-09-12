@@ -4,6 +4,8 @@
 - Public URL: `https://nicheworks.app/tools/api-key-token-redactor/`
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
+- Canonical per-tool specification: `docs/tools/api-key-token-redactor.md`
+- Monetization class: `PRO_BUNDLE`
 
 ## Purpose
 
@@ -30,49 +32,37 @@ Detect likely secrets in pasted logs, configuration text, `.env`, JSON, curl com
 
 ## Outputs
 
-- Redacted text.
-- Finding/category/severity summaries and counts with secret-safe preview markers.
-- Clipboard copy of redacted text.
+Free:
+- redacted text;
+- finding/category/severity summaries and counts with secret-safe preview markers;
+- clipboard copy of redacted text;
 - TXT download generated from the redacted result.
-- Current legacy Pro review/export artifacts whose finding previews do not reproduce raw credential fragments.
+
+Current paid operation boundaries:
+1. `customRules` — add/remove custom secret-prefix rules used by Pro-active scanning;
+2. `redactionProfiles` — select the Pro-only handoff/redaction profile used by generated artifacts;
+3. `auditMarkdown` — copy generated Audit Markdown;
+4. `githubIssueTemplate` — copy generated GitHub Issue template;
+5. `supportTemplates` — copy Support/Discord sharing templates;
+6. `jsonFindingsExport` — download secret-safe findings JSON;
+7. `csvFindingsExport` — download secret-safe findings CSV;
+8. `handoffMarkdownExport` — download the generated Markdown handoff pack.
+
+No additional paid operation is implied by the current Pro panel.
 
 ## State and persistence
 
-Input and findings are ephemeral page state. The specification does not guarantee retention across reloads, and secret input is not intended to be stored as history by the tool. Current live Pro entitlement remains the legacy shared NicheWorks Pro state until an authorized product-scoped migration occurs.
+Input and findings are ephemeral page state. The tool does not intentionally persist secret-bearing input/history. Current live Pro entitlement remains the legacy shared NicheWorks Pro state until an authorized server-verified migration occurs.
 
-## Paid-operation boundary
+## Monetization and entitlement contract
 
-Current runtime/UI evidence supports eight product-scoped paid operations:
+`MONETIZATION_CLASSIFICATION_87.md` classifies `api-key-token-redactor` as `PRO_BUNDLE`. Future live product authority is the shared `nicheworks.pro` product. Legacy `nicheworks_pro` is compatibility/migration state only.
 
-1. **Custom rules** — add/remove custom secret-prefix rules used by Pro-active scanning.
-2. **Redaction profiles** — select the Pro-only profile used by generated audit/handoff material.
-3. **Audit Markdown** — copy the generated audit Markdown.
-4. **GitHub Issue template** — copy the generated GitHub Issue template.
-5. **Support templates** — copy Support or Discord sharing templates.
-6. **JSON findings export** — download secret-safe findings JSON.
-7. **CSV findings export** — download secret-safe findings CSV.
-8. **Markdown handoff export** — download the generated handoff pack.
+`tools/api-key-token-redactor/product-scoped-controller.mjs` remains non-live staging over `assets/nw-product-scoped-controller.mjs`. It keeps exactly the eight paid operations listed above and requires explicit product/feature configuration. For live migration, configured product ID must be `nicheworks.pro`; no API-Key-Redactor-specific paid product is authorized.
 
-The core detector, replacement controls, redacted output, safe summaries/findings, redacted-output clipboard copy, and TXT download remain Free.
+Until that migration, legacy activation requires exact `status.active === true && status.entitlement === "nicheworks_pro"`. Missing entitlement must fail closed and must not be replaced with the expected entitlement.
 
-## Product-scoped migration staging
-
-`tools/api-key-token-redactor/product-scoped-controller.mjs` is a **non-live staging wrapper** over `assets/nw-product-scoped-controller.mjs`. It does not register or activate a real API Key Token Redactor product and does not replace the current public `pro-bridge.js`.
-
-The staged contract requires:
-
-- explicit future `productId` with no default product;
-- complete and unique feature-ID mapping for all eight paid operations;
-- common server-backed `refreshProState({ productId })` verification through the shared controller core;
-- exact product match;
-- `active: true`;
-- `source: "server"`;
-- `reason: "verified_entitlement"`;
-- operation-level activation only for feature IDs returned by the verified server response.
-
-Wrong-product, local/browser-only, unverified, incomplete/duplicate mapping, and refresh-failure states fail closed through the shared core.
-
-Historical shared Payment Link / `nicheworks_pro` state is migration evidence only and does not establish future product ID, price, billing model, or production feature namespace.
+Because the current application reads `data-pro-active` when adding custom rules and when deciding whether custom rules participate in scanning, the bridge revalidates exact legacy state in click capture before `#redactBtn`, built-in sample buttons, and Pro controls. Pro-only profile/custom-rule/artifact/export controls are blocked at capture time when exact legacy entitlement is inactive. DOM-only `data-pro-active="true"` edits therefore do not survive the ordinary UI action path.
 
 ## Privacy and network behavior
 
@@ -105,8 +95,10 @@ The workflow supports narrow-screen use but also relies on large text areas, fin
 - Detection is heuristic and cannot guarantee that every secret or personal identifier is found.
 - A redacted result is not automatically safe to publish; users must still review URLs, cookies, headers, emails, IPs, and custom secret formats.
 - The tool is not a password manager, secret vault, or external credential-rotation service.
-- Product-scoped staging does not authorize a product ID, price, Stripe Price ID, production feature namespace, or live checkout.
-- The staging wave does not alter detector regexes, redaction behavior, secret-preview scrubbing, or artifact builders.
+- Free detector/redaction/copy/TXT behavior remains Free.
+- Legacy capture hardening is not future payment authority; production access still requires server-verified `nicheworks.pro`.
+- Product-scoped staging does not decide bundle price/currency, Stripe Product/Price, production feature IDs, restore policy, historical purchaser migration, or live rollout timing.
+- This hardening does not alter detector regexes, redaction behavior, secret-preview scrubbing, or artifact builders.
 
 ## Acceptance criteria
 
@@ -114,11 +106,13 @@ The workflow supports narrow-screen use but also relies on large text areas, fin
 - [ ] Category and severity counts reflect the current findings and clear/reset removes the current working result.
 - [ ] Free copy/download uses the redacted output rather than the original secret-bearing input.
 - [ ] Visible finding previews and review/export artifacts do not reproduce raw first/last credential fragments from detected secrets.
+- [ ] Missing or unrelated legacy entitlement cannot activate paid behavior.
+- [ ] A DOM-only `data-pro-active` edit is corrected before ordinary redaction/sample actions and cannot execute manually unhidden Pro controls while inactive.
 - [ ] JP/EN switching preserves all detection and replacement controls.
 - [ ] Staged wrapper defines exactly eight paid operations and delegates entitlement-state logic to the shared core.
 - [ ] Staged wrapper contains no secret-bearing user content or legacy browser/payment authority.
-- [ ] Existing clipboard, Blob, and visible-preview hardening remains protected by deterministic staging checks.
-- [ ] Public runtime remains on the current legacy gate until authoritative commercial configuration and an explicit live migration are authorized.
+- [ ] Existing clipboard, Blob, and visible-preview hardening remains protected by deterministic checks.
+- [ ] Future live authority is shared `nicheworks.pro`.
 
 ## Implementation evidence
 
@@ -128,4 +122,5 @@ The workflow supports narrow-screen use but also relies on large text areas, fin
 - `tools/api-key-token-redactor/product-scoped-controller.mjs`
 - `scripts/check-api-key-redactor-product-scoped-staging.mjs`
 - `docs/billing/pro-product-contracts-wave2.md`
+- `docs/billing/pro-product-contracts-wave7.md`
 - `tools/api-key-token-redactor/howto/`
