@@ -18,17 +18,20 @@
 monorepoへ吸収済みだが、既存87ツールの品質改善母数を変えないため正式公開前のstaged stateとする。production-intent landingは`index.staged.html`に保持し、正式登録時に`index.html`へ昇格させる。
 
 - `data/services.json` をlegacy migration snapshotとして読み込む。
-- `data/reverification/*.json` のofficial-source review結果を`id`単位でoverlayし、effective recordを生成する。
+- `data/additions/*.json` からPhase 2以降の新規serviceを追加する。
+- `data/reverification/*.json` のofficial-source review結果を`id`単位でoverlayする。
+- merge順は legacy base → additions → re-verification overlays とする。
+- additionの`id`は既存recordと衝突不可。overlayは既存`id`だけを上書き可能。
 - 後waveで同じ`id`を再確認した場合はlast-winsで新しい判断を正とする。
-- runtimeとauditは同じoverlay順序・同じmerge契約を使用する。
+- runtimeとauditは同じmerge契約を使用する。
 - サービス名、alias、keyword、category、summary、procedure type、billing routeを検索対象にする。
 - category filterを提供する。
 - `placeholder` recordは通常検索結果に表示しない。
 - `verified` / `needs_review` / `retired` / legacy dataをUI上で区別する。
 - `procedure_url` がある場合のみ公式手続き・関連情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
-- legacy recordをHTTP 200だけでverifiedへ昇格させない。
+- HTTP 200だけでverifiedへ昇格させない。
 
-2026-09-12 re-verification wave 3で旧40件のmigration cleanupを完了した。effective stateは`verified` 33件、`retired` 1件、`needs_review` 2件、`placeholder` 4件、`legacy_review_required` 0件。通常表示36件に対するverified比率は約92%。
+Phase 1終了時点は40 effective records / 36 public-visible / 33 verified / 1 retired / 2 needs_review / 4 placeholder / legacy_review_required 0。Phase 2 wave 1で公式source確認済み10サービスを追加し、50 effective / 46 public-visible / 43 verifiedへ拡張する。
 
 ## Inputs
 
@@ -55,7 +58,7 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 
 ユーザー入力や検索状態を永続保存しない。localStorage、cookie、account DBは使用しない。データベース本体はrepository内のstatic JSONを正本とする。
 
-Phase 1 cleanup完了後もmigration provenanceを保持するため、現時点では`data/services.json`をmigration snapshot、`data/reverification/*.json`をreview overlayとして保持する。Phase 2開始前または適切な区切りでeffective recordsを新canonical datasetへcompactできる。
+現段階では`data/services.json`をmigration snapshot、`data/additions/*.json`を新規収録wave、`data/reverification/*.json`をreview overlayとして保持する。十分な区切りでeffective recordsを新canonical datasetへcompactできる。
 
 ## Privacy and network behavior
 
@@ -96,15 +99,17 @@ Phase 1 cleanup完了後もmigration provenanceを保持するため、現時点
 - [x] current 87-tool registryを変えずにstaged sourceを保持する。
 - [x] re-verification waveをmigration provenance付きで段階適用できる。
 - [x] legacy recordのofficial-source再検証・分類が完了し、`legacy_review_required`が0になっている。
-- [ ] 100 service以上がverifiedまたは適切なretired historyとして整理されている。
+- [x] Phase 2で新規serviceを既存migration snapshotと分離して追加できる。
+- [ ] 100 public-visible service以上がverified中心で整理されている。
 
 ## Implementation evidence
 
 - `tools/unsubscribe-navi/index.staged.html` — staged static UI / SEO / FAQ / NicheWorks common surfaces
-- `tools/unsubscribe-navi/app.js` — base + re-verification overlay merge, local search and rendering
+- `tools/unsubscribe-navi/app.js` — base + additions + re-verification merge, local search and rendering
 - `tools/unsubscribe-navi/style.css` — responsive hybrid layout
 - `tools/unsubscribe-navi/data/services.json` — legacy migration snapshot
+- `tools/unsubscribe-navi/data/additions/*.json` — Phase 2+ new service waves
 - `tools/unsubscribe-navi/data/reverification/*.json` — official-source re-verification overlays
-- `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / overlay audit
+- `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / additions / overlay audit
 - `tools/unsubscribe-navi/DATA_MODEL.md` — forward data, route and verification contract
 - `tools/unsubscribe-navi/ROADMAP.md` — 100–200 service expansion plan and current progress
