@@ -994,7 +994,47 @@
   </url>
   <url>
     <loc>https://nicheworks.app/tools/trashnavi/</loc>
-    <lastmod>2026-06-16</lastmod>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/chiyoda/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/minato/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/nerima/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/setagaya/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/shibuya/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/shinjuku/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/suginami/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/mie/mihama/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/gifu/kaizu/</loc>
+    <lastmod>2026-09-12</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/ibaraki/yuki/</loc>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://nicheworks.app/tools/ui-atlas/</loc>
@@ -1139,6 +1179,14 @@
   <url>
     <loc>https://nicheworks.app/tools/wifi-meter/usage.html</loc>
     <lastmod>2026-06-16</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/chuo/</loc>
+    <lastmod>2026-09-13</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokyo/katsushika/</loc>
+    <lastmod>2026-09-13</lastmod>
   </url>
   <url>
     <loc>https://nicheworks.app/tools/reconcile/</loc>
