@@ -10,11 +10,15 @@ const PRO_CSV_MAX_ROWS = 100000;
 const PRO_CSV_MAX_BYTES = 50 * 1024 * 1024;
 const PRO_XLSX_MAX_ROWS = 50000;
 const PRO_XLSX_MAX_BYTES = 25 * 1024 * 1024;
+const RECONCILE_PRODUCT_ID = 'reconcile.pro_v1';
+const RECONCILE_FEATURE_ID = 'reconcile_pro_v1';
 const profileStore = createProfileStore(localStorage);
 
 const state = {
   lang: localStorage.getItem('nw_lang') || (navigator.language.startsWith('ja') ? 'ja' : 'en'),
   proEnabled: false,
+  proStatus: 'checking',
+  checkoutBusy: false,
   selectedProfileId: '',
   a: null,
   b: null,
@@ -36,6 +40,26 @@ function setNotice(text, kind = '') {
   node.className = `notice ${kind}`.trim();
 }
 
+function renderProState() {
+  document.querySelectorAll('[data-pro-state]').forEach((node) => {
+    if (state.proEnabled) {
+      node.textContent = message('Pro有効', 'Pro active');
+      return;
+    }
+    if (state.proStatus === 'checking') {
+      node.textContent = message('確認中', 'Checking');
+      return;
+    }
+    if (state.proStatus === 'error') {
+      node.textContent = message('確認エラー', 'Check error');
+      return;
+    }
+    node.textContent = 'Free';
+  });
+  const checkoutButton = $('proCheckoutBtn');
+  if (checkoutButton) checkoutButton.disabled = state.proEnabled || state.checkoutBusy;
+}
+
 function setLang(lang) {
   state.lang = lang === 'en' ? 'en' : 'ja';
   localStorage.setItem('nw_lang', state.lang);
@@ -47,24 +71,70 @@ function setLang(lang) {
   if (state.a) refreshMappingPlaceholders('a');
   if (state.b) refreshMappingPlaceholders('b');
   renderProfileList();
+  renderProState();
   renderStatus();
 }
 
-function setProState(enabled) {
+function setProState(enabled, status = enabled ? 'active' : 'free') {
   state.proEnabled = Boolean(enabled);
+  state.proStatus = status;
   document.querySelectorAll('[data-pro-control]').forEach((node) => {
     node.disabled = !state.proEnabled;
   });
-  document.querySelectorAll('[data-pro-state]').forEach((node) => {
-    node.textContent = state.proEnabled ? message('Pro有効', 'Pro active') : message('課金接続待ち', 'Billing not connected');
-  });
+  renderProState();
   renderProfileList();
 }
 
 function requirePro() {
   if (state.proEnabled) return true;
-  setNotice(message('この機能はReconcile Pro用です。課金接続は公開統合PRで行います。', 'This feature is for Reconcile Pro. Billing will be connected in the publication integration PR.'), 'warning');
+  setNotice(message('この機能はReconcile Pro用です。購入済みの場合はページを再読み込みして権利を再確認してください。', 'This feature requires Reconcile Pro. If you already purchased it, reload the page to re-check the entitlement.'), 'warning');
   return false;
+}
+
+async function refreshProEntitlement() {
+  const adapter = window.NicheWorksProEntitlement;
+  setProState(false, 'checking');
+  if (!adapter || typeof adapter.refreshProState !== 'function') {
+    setProState(false, 'error');
+    return;
+  }
+  try {
+    const result = await adapter.refreshProState({
+      productId: RECONCILE_PRODUCT_ID,
+      featureId: RECONCILE_FEATURE_ID
+    });
+    setProState(Boolean(result?.active), result?.active ? 'active' : (result?.state === 'entitlement-error' ? 'error' : 'free'));
+  } catch {
+    setProState(false, 'error');
+  }
+}
+
+async function startProCheckout() {
+  if (state.proEnabled || state.checkoutBusy) return;
+  state.checkoutBusy = true;
+  renderProState();
+  setNotice(message('安全な決済ページを準備しています。', 'Preparing secure checkout.'), '');
+  try {
+    const response = await fetch('/api/billing/create-checkout-session', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ productId: RECONCILE_PRODUCT_ID, returnPath: '/tools/reconcile/' })
+    });
+    const data = await response.json().catch(() => null);
+    if (!response.ok || !data?.ok || typeof data?.url !== 'string') {
+      throw new Error(data?.error || 'checkout_unavailable');
+    }
+    const checkoutUrl = new URL(data.url);
+    if (checkoutUrl.protocol !== 'https:' || checkoutUrl.hostname !== 'checkout.stripe.com') {
+      throw new Error('checkout_url_invalid');
+    }
+    location.assign(checkoutUrl.toString());
+  } catch (error) {
+    state.checkoutBusy = false;
+    renderProState();
+    const code = String(error?.message || error);
+    setNotice(message(`Reconcile Proの決済を開始できませんでした (${code})。`, `Could not start Reconcile Pro checkout (${code}).`), 'error');
+  }
 }
 
 function populateSelect(select, headers, placeholder, selected = '') {
@@ -552,8 +622,10 @@ function wire() {
   $('profileDeleteBtn').addEventListener('click', deleteProfile);
   $('profileExportBtn').addEventListener('click', exportProfiles);
   $('profileImport').addEventListener('change', (event) => importProfiles(event.target.files[0]));
+  if ($('proCheckoutBtn')) $('proCheckoutBtn').addEventListener('click', startProCheckout);
   setLang(state.lang);
-  setProState(false);
+  setProState(false, 'checking');
+  refreshProEntitlement();
 }
 
 wire();
