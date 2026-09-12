@@ -105,11 +105,14 @@ function makeUniqueHeaders(values) {
 export function tableFromRows(rows, headerRow = 1) {
   const index = Math.max(0, Number(headerRow || 1) - 1);
   const headers = makeUniqueHeaders(rows[index] || []);
-  const data = rows.slice(index + 1).filter((row) => row.some((cell) => String(cell ?? '').trim() !== ''));
+  const data = rows
+    .slice(index + 1)
+    .map((values, relativeIndex) => ({ values, sourceRow: index + relativeIndex + 2 }))
+    .filter(({ values }) => values.some((cell) => String(cell ?? '').trim() !== ''));
   return {
     headers,
-    rows: data.map((values, dataIndex) => ({
-      sourceRow: index + dataIndex + 2,
+    rows: data.map(({ values, sourceRow }) => ({
+      sourceRow,
       values: Object.fromEntries(headers.map((header, colIndex) => [header, values[colIndex] ?? '']))
     }))
   };
