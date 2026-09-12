@@ -17,6 +17,7 @@ on:
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/check-seo-head-metadata-cardinality.mjs'
       - 'scripts/check-seo-indexable-url-identity.mjs'
+      - 'scripts/check-seo-language-metadata-integrity.mjs'
       - 'scripts/check-seo-public-url-contract.mjs'
       - 'scripts/check-seo-structured-data-integrity.mjs'
       - 'scripts/seo-public-url-contract.mjs'
@@ -41,6 +42,7 @@ on:
       - 'scripts/audit-publishing-mode.mjs'
       - 'scripts/check-seo-head-metadata-cardinality.mjs'
       - 'scripts/check-seo-indexable-url-identity.mjs'
+      - 'scripts/check-seo-language-metadata-integrity.mjs'
       - 'scripts/check-seo-public-url-contract.mjs'
       - 'scripts/check-seo-structured-data-integrity.mjs'
       - 'scripts/seo-public-url-contract.mjs'
@@ -88,6 +90,9 @@ jobs:
 
       - name: Check SEO head metadata cardinality
         run: node scripts/check-seo-head-metadata-cardinality.mjs
+
+      - name: Check SEO language metadata integrity
+        run: node scripts/check-seo-language-metadata-integrity.mjs
 
       - name: Check SEO structured data integrity
         run: node scripts/check-seo-structured-data-integrity.mjs
