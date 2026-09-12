@@ -20,15 +20,15 @@
   const readStatus = () => {
     try {
       if (!window.NWPro || typeof window.NWPro.getLocalStatus !== "function") {
-        return { active: false, entitlement: ENTITLEMENT };
+        return { active: false, entitlement: "" };
       }
       const status = window.NWPro.getLocalStatus() || {};
       return {
-        active: status.active === true && (status.entitlement || ENTITLEMENT) === ENTITLEMENT,
-        entitlement: status.entitlement || ENTITLEMENT,
+        active: status.active === true && status.entitlement === ENTITLEMENT,
+        entitlement: status.entitlement || "",
       };
     } catch (_) {
-      return { active: false, entitlement: ENTITLEMENT };
+      return { active: false, entitlement: "" };
     }
   };
 
