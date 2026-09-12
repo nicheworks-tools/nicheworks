@@ -4,6 +4,19 @@
   const PAYMENT_LINK = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
   const ENTITLEMENT = 'nicheworks_pro';
   const SAFE_PREVIEW = '[REDACTED PREVIEW]';
+  const PRO_ACTION_SELECTOR = [
+    '#profileSelect',
+    '#addCustomRuleBtn',
+    '[data-remove-rule]',
+    '#copyAuditBtn',
+    '#copyGithubBtn',
+    '#copySupportBtn',
+    '#copyDiscordBtn',
+    '#downloadJsonBtn',
+    '#downloadCsvBtn',
+    '#downloadHandoffBtn'
+  ].join(', ');
+  const RESYNC_SELECTOR = `#redactBtn, [data-sample], ${PRO_ACTION_SELECTOR}`;
 
   const messages = {
     preview: {
@@ -38,17 +51,17 @@
   const readStatus = () => {
     try {
       if (!window.NWPro || typeof window.NWPro.getLocalStatus !== 'function') {
-        return { active: false, entitlement: ENTITLEMENT, checkedAt: '', error: true };
+        return { active: false, entitlement: '', checkedAt: '', error: true };
       }
       const status = window.NWPro.getLocalStatus() || {};
       return {
-        active: Boolean(status.active && (!status.entitlement || status.entitlement === ENTITLEMENT)),
-        entitlement: status.entitlement || ENTITLEMENT,
+        active: status.active === true && status.entitlement === ENTITLEMENT,
+        entitlement: status.entitlement || '',
         checkedAt: status.checkedAt || '',
         error: false,
       };
     } catch (error) {
-      return { active: false, entitlement: ENTITLEMENT, checkedAt: '', error: true };
+      return { active: false, entitlement: '', checkedAt: '', error: true };
     }
   };
 
@@ -77,7 +90,32 @@
     });
 
     window.dispatchEvent(new CustomEvent('nw-pro-status', { detail: status }));
+    return status;
   };
+
+  function guardLegacyInteraction(event) {
+    const target = event.target && typeof event.target.closest === 'function'
+      ? event.target.closest(RESYNC_SELECTOR)
+      : null;
+    if (!target) return;
+
+    const status = applyStatus();
+    if (target.matches(PRO_ACTION_SELECTOR) && status.active !== true) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  }
+
+  function guardLegacyProfileChange(event) {
+    const target = event.target;
+    if (!target || typeof target.matches !== 'function' || !target.matches('#profileSelect')) return;
+    const status = applyStatus();
+    if (status.active !== true) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      target.selectedIndex = 0;
+    }
+  }
 
   // The core detector historically generated human-readable previews that retained
   // the first/last characters of a detected credential. A redaction tool must not
@@ -161,6 +199,8 @@
 
   hardenClipboard();
   hardenDownloads();
+  document.addEventListener('click', guardLegacyInteraction, true);
+  document.addEventListener('change', guardLegacyProfileChange, true);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -187,6 +227,7 @@
 
   window.NWApiKeyTokenRedactorProBridge = {
     refresh: applyStatus,
+    isActive: () => readStatus().active === true,
     paymentLink: PAYMENT_LINK,
     entitlement: ENTITLEMENT,
     scrubPreviewText,
