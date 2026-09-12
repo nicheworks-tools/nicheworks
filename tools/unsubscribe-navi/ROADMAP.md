@@ -51,7 +51,7 @@ Phase 2では新規serviceを`data/additions/*.json`へwave単位で追加し、
 
 ### Wave 1 — 2026-09-12
 
-Official-source verified 10件を追加:
+Official-source verified 10件:
 
 - DAZN
 - FODプレミアム
@@ -64,7 +64,7 @@ Official-source verified 10件を追加:
 - UQ mobile
 - IIJmio
 
-Wave 1反映後の想定effective state:
+Wave 1反映後:
 
 - effective records: 50
 - public-visible: 46
@@ -74,7 +74,29 @@ Wave 1反映後の想定effective state:
 - placeholder: 4
 - progress to 100 public-visible: **46%**
 
-Wave 1では動画配信、SaaS/AI、通信、オーディオブックを優先し、公式の解約・退会手順まで確認できたrecordだけをverified追加する。
+### Wave 2 — 2026-09-12
+
+Official-source verified 7件:
+
+- WOWOW
+- GitHub Copilot Pro / Pro+ / Max
+- Perplexity Pro
+- LinkedIn Premium
+- Microsoft Copilot Pro
+- Apple One
+- Google Workspace Individual
+
+Wave 2反映後:
+
+- effective records: 57
+- public-visible: 53
+- verified: 50
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **53%**
+
+Wave 2では件数を10へ揃えることを優先せず、公式のキャンセル/解約手順を十分に固定できた7件だけを追加した。Canva等、公式情報はあるが直接手続きsourceの確定が弱い候補はverified追加を見送る。
 
 ### Next waves
 
@@ -89,7 +111,7 @@ Priority:
 7. ebooks / magazines / learning
 8. major shopping / paid memberships
 
-候補例としてLemino、WOWOW、Y!mobile、追加MVNO、Canva等を調査するが、official procedure sourceを確認できるまでverified追加しない。
+候補例としてLemino、Y!mobile、追加MVNO、Canva、学習subscription等を調査するが、official procedure sourceを確認できるまでverified追加しない。
 
 Rule:
 
