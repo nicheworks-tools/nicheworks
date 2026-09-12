@@ -1,0 +1,62 @@
+name: Contract Risk product-scoped staging check
+
+on:
+  pull_request:
+    paths:
+      - 'MONETIZATION_EXECUTION.md'
+      - 'MONETIZATION_CLASSIFICATION_87.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'assets/nw-pro.js'
+      - 'tools/contract-risk-highlighter/product-scoped-controller.mjs'
+      - 'tools/contract-risk-highlighter/SPEC.md'
+      - 'tools/contract-risk-highlighter/app.js'
+      - 'tools/contract-risk-highlighter/pro-bridge.js'
+      - 'docs/tools/contract-risk-highlighter.md'
+      - 'docs/billing/nicheworks-common-billing-architecture.md'
+      - 'docs/billing/nicheworks-pro-bundle-contract.md'
+      - 'docs/billing/pro-product-contracts-wave3.md'
+      - 'scripts/check-contract-risk-product-scoped-staging.mjs'
+      - '.agent/plans/2026-09-13-contract-risk-product-scoped-staging.md'
+      - '.github/workflows/contract-risk-product-scoped-staging-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'MONETIZATION_EXECUTION.md'
+      - 'MONETIZATION_CLASSIFICATION_87.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'assets/nw-pro.js'
+      - 'tools/contract-risk-highlighter/product-scoped-controller.mjs'
+      - 'tools/contract-risk-highlighter/SPEC.md'
+      - 'tools/contract-risk-highlighter/app.js'
+      - 'tools/contract-risk-highlighter/pro-bridge.js'
+      - 'docs/tools/contract-risk-highlighter.md'
+      - 'docs/billing/nicheworks-common-billing-architecture.md'
+      - 'docs/billing/nicheworks-pro-bundle-contract.md'
+      - 'docs/billing/pro-product-contracts-wave3.md'
+      - 'scripts/check-contract-risk-product-scoped-staging.mjs'
+      - '.agent/plans/2026-09-13-contract-risk-product-scoped-staging.md'
+      - '.github/workflows/contract-risk-product-scoped-staging-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check assets/nw-product-scoped-controller.mjs
+          node --check assets/nw-pro.js
+          node --check tools/contract-risk-highlighter/product-scoped-controller.mjs
+          node --check tools/contract-risk-highlighter/pro-bridge.js
+          node --check scripts/check-contract-risk-product-scoped-staging.mjs
+      - name: Contract Risk product-scoped staging contracts
+        run: node scripts/check-contract-risk-product-scoped-staging.mjs
