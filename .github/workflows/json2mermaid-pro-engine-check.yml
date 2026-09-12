@@ -3,19 +3,31 @@ name: JSON2Mermaid Pro engine check
 on:
   pull_request:
     paths:
+      - 'tools/json2mermaid/app.js'
+      - 'tools/json2mermaid/index.html'
       - 'tools/json2mermaid/pro-engine.mjs'
+      - 'tools/json2mermaid/pro-shared-converter-integration.mjs'
+      - 'tools/json2mermaid/pro-workspace.mjs'
       - 'tools/json2mermaid/mermaid-renderer-adapter.mjs'
       - 'tools/json2mermaid/SPEC.md'
       - 'scripts/check-json2mermaid-pro-engine.mjs'
+      - 'scripts/check-json2mermaid-shared-converter.mjs'
+      - 'scripts/check-json2mermaid-pro-workspace.mjs'
       - '.github/workflows/json2mermaid-pro-engine-check.yml'
   push:
     branches:
       - main
     paths:
+      - 'tools/json2mermaid/app.js'
+      - 'tools/json2mermaid/index.html'
       - 'tools/json2mermaid/pro-engine.mjs'
+      - 'tools/json2mermaid/pro-shared-converter-integration.mjs'
+      - 'tools/json2mermaid/pro-workspace.mjs'
       - 'tools/json2mermaid/mermaid-renderer-adapter.mjs'
       - 'tools/json2mermaid/SPEC.md'
       - 'scripts/check-json2mermaid-pro-engine.mjs'
+      - 'scripts/check-json2mermaid-shared-converter.mjs'
+      - 'scripts/check-json2mermaid-pro-workspace.mjs'
       - '.github/workflows/json2mermaid-pro-engine-check.yml'
 
 permissions:
@@ -31,8 +43,17 @@ jobs:
           node-version: '20'
       - name: JavaScript syntax
         run: |
+          node --check tools/json2mermaid/app.js
           node --check tools/json2mermaid/pro-engine.mjs
+          node --check tools/json2mermaid/pro-shared-converter-integration.mjs
+          node --check tools/json2mermaid/pro-workspace.mjs
           node --check tools/json2mermaid/mermaid-renderer-adapter.mjs
           node --check scripts/check-json2mermaid-pro-engine.mjs
+          node --check scripts/check-json2mermaid-shared-converter.mjs
+          node --check scripts/check-json2mermaid-pro-workspace.mjs
       - name: JSON2Mermaid Pro engine contracts
         run: node scripts/check-json2mermaid-pro-engine.mjs
+      - name: JSON2Mermaid shared converter contracts
+        run: node scripts/check-json2mermaid-shared-converter.mjs
+      - name: JSON2Mermaid Pro workspace staging contracts
+        run: node scripts/check-json2mermaid-pro-workspace.mjs
