@@ -14,13 +14,13 @@
   <header class="nw-header">
     <div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div>
     <h1 class="nw-title">NicheWorks Reconcile <span class="pill">Free core</span></h1>
-    <p class="nw-subtitle" data-i18n="ja">2つのCSVを照合し、人が確認すべき取引だけを絞り込むブラウザ完結ツールです。</p>
-    <p class="nw-subtitle" data-i18n="en">Reconcile two CSV datasets locally and isolate the transactions that require human review.</p>
+    <p class="nw-subtitle" data-i18n="ja">2つのCSV/XLSXを照合し、人が確認すべき取引だけを絞り込むブラウザ完結ツールです。</p>
+    <p class="nw-subtitle" data-i18n="en">Reconcile two CSV/XLSX datasets locally and isolate the transactions that require human review.</p>
   </header>
 
   <main class="nw-main">
-    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引CSVはNicheWorksへ送信しません。この開発波ではCSVのみ動作し、XLSXと課金接続は後工程です。</p>
-    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction CSV data is not sent to NicheWorks. This wave implements CSV; XLSX and billing are later integration work.</p>
+    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引データはNicheWorksへ送信しません。CSVは動作中です。XLSXアダプターは実装済みで、固定版ライブラリの同梱だけを残しています。</p>
+    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction data is not sent to NicheWorks. CSV is active. The XLSX adapter is implemented and only the pinned local vendor file remains to be added.</p>
 
     <section class="steps" aria-label="Workflow">
       <div class="step"><strong>1. Files</strong><span data-i18n="ja">A/Bを読み込む</span><span data-i18n="en">Load A/B</span></div>
@@ -32,14 +32,14 @@
     <section class="panel">
       <h2><span data-i18n="ja">Step 1 — ファイルを読み込む</span><span data-i18n="en">Step 1 — Load files</span></h2>
       <div class="controls">
-        <label class="field"><span data-i18n="ja">文字コード</span><span data-i18n="en">Encoding</span><select id="encoding"><option value="auto">Auto</option><option value="utf-8">UTF-8</option><option value="shift_jis">Shift_JIS</option></select></label>
-        <label class="field"><span data-i18n="ja">区切り文字</span><span data-i18n="en">Delimiter</span><select id="delimiter"><option value="auto">Auto</option><option value=",">Comma</option><option value="tab">Tab</option><option value=";">Semicolon</option></select></label>
+        <label class="field"><span data-i18n="ja">文字コード（CSV）</span><span data-i18n="en">Encoding (CSV)</span><select id="encoding"><option value="auto">Auto</option><option value="utf-8">UTF-8</option><option value="shift_jis">Shift_JIS</option></select></label>
+        <label class="field"><span data-i18n="ja">区切り文字（CSV）</span><span data-i18n="en">Delimiter (CSV)</span><select id="delimiter"><option value="auto">Auto</option><option value=",">Comma</option><option value="tab">Tab</option><option value=";">Semicolon</option></select></label>
         <label class="field"><span data-i18n="ja">ヘッダー行</span><span data-i18n="en">Header row</span><input id="headerRow" type="number" min="1" max="20" value="1"></label>
         <button class="btn" id="sampleBtn" type="button"><span data-i18n="ja">サンプルを読み込む</span><span data-i18n="en">Load sample</span></button>
       </div>
       <div class="file-grid">
-        <div class="file-card"><h3>File A</h3><input id="fileA" type="file" accept=".csv,text/csv"><p id="metaA" class="meta"></p><div id="previewA"><p class="muted">—</p></div></div>
-        <div class="file-card"><h3>File B</h3><input id="fileB" type="file" accept=".csv,text/csv"><p id="metaB" class="meta"></p><div id="previewB"><p class="muted">—</p></div></div>
+        <div class="file-card"><h3>File A</h3><input id="fileA" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><label id="sheetWrapA" class="field" hidden><span>Worksheet</span><select id="sheetA"></select></label><p id="metaA" class="meta"></p><div id="previewA"><p class="muted">—</p></div></div>
+        <div class="file-card"><h3>File B</h3><input id="fileB" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><label id="sheetWrapB" class="field" hidden><span>Worksheet</span><select id="sheetB"></select></label><p id="metaB" class="meta"></p><div id="previewB"><p class="muted">—</p></div></div>
       </div>
     </section>
 
@@ -56,7 +56,7 @@
         <label class="field"><span data-i18n="ja">日付許容差</span><span data-i18n="en">Date tolerance</span><select id="dateTolerance"><option value="0">0 days</option><option value="1">±1 day</option></select></label>
         <label class="field"><span data-i18n="ja">曖昧な日付形式</span><span data-i18n="en">Ambiguous date order</span><select id="dateMode"><option value="auto">Auto / reject ambiguous</option><option value="mdy">MM/DD/YYYY</option><option value="dmy">DD/MM/YYYY</option></select></label>
       </div>
-      <div class="pro-note"><strong>Reconcile Pro — ¥3,980 one-time</strong><br><span data-i18n="ja">大容量、金額許容差、1:n / n:1、XLSXレポート、ルール保存を後工程で接続。購入者にはNicheWorks共通Proも付与します。</span><span data-i18n="en">Later integration adds larger files, amount tolerance, 1:n / n:1, XLSX reports and saved profiles. Reconcile Pro also grants shared NicheWorks Pro.</span></div>
+      <div class="pro-note"><strong>Reconcile Pro — ¥3,980 one-time</strong><br><span data-i18n="ja">大容量、金額許容差、1:n / n:1、XLSXレポート、ルール保存を課金統合時に解放します。購入者にはNicheWorks共通Proも付与します。</span><span data-i18n="en">Billing integration unlocks larger files, amount tolerance, 1:n / n:1, XLSX reports and saved profiles. Reconcile Pro also grants shared NicheWorks Pro.</span></div>
       <div class="actions"><button class="btn btn-primary" id="reconcileBtn" type="button"><span data-i18n="ja">照合する</span><span data-i18n="en">Reconcile</span></button><button class="btn" type="button" disabled>Pro advanced rules</button></div>
       <div id="notice" class="notice" role="status"></div>
     </section>
