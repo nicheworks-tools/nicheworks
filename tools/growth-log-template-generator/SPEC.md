@@ -14,7 +14,7 @@ Turn KPI notes, hypotheses, learnings, and freeform notes into a structured grow
 - Provide SEO, Product, Sales, and Content presets with preset-specific KPI fields.
 - Accept hypothesis, learnings, and notes alongside the selected KPI inputs.
 - Generate a structured growth log and rule-based next-action suggestions in the browser.
-- Support optional number anonymization by replacing numeric values with `XXX`.
+- Support optional number anonymization by replacing numeric substrings in user-entered KPI values, hypotheses, learnings, and notes with `XXX` while leaving non-numeric text visible.
 - Support optional bilingual JP+EN output.
 - Provide example insertion/sample generation, clipboard copy, Markdown download, and TXT download.
 - Warn users to review revenue, conversion, DAU/WAU, ad metrics, customer information, internal initiatives, and tentative KPIs before publishing.
@@ -38,7 +38,7 @@ Inputs and generated log content are current-page state. The current contract do
 
 ## Privacy and network behavior
 
-Growth-log generation runs in the browser. Advertising and analytics resources may load separately. The anonymization option is only a simple numeric replacement aid and does not guarantee that a log is safe to publish.
+Growth-log generation runs in the browser. Advertising and analytics resources may load separately. The anonymization option is only a simple numeric replacement aid and does not guarantee that a log is safe to publish; names, project labels, strategies, identifiers, and other non-numeric context remain unless the user removes them.
 
 ## Language mode
 
@@ -56,12 +56,13 @@ The primary flow is a preset-driven input form followed by a generated text outp
 
 - Generated next actions are simple rule-based suggestions and are not business/analytics advice.
 - Number anonymization does not remove names, internal strategy, identifiers, or all potentially sensitive context.
+- Generated dates and rule-based suggestion text are tool-generated context rather than user-entered numeric values and are not part of the numeric-redaction guarantee.
 - The tool does not fetch analytics data automatically or validate whether KPI values are final/correct.
 
 ## Acceptance criteria
 
 - [ ] Each supported preset renders its corresponding KPI inputs and can generate a structured log.
-- [ ] Enabling number anonymization replaces numeric values according to the implemented behavior without claiming complete de-identification.
+- [ ] Enabling number anonymization replaces numeric substrings in KPI values, hypothesis, learnings, and notes with `XXX` without claiming complete de-identification or hiding ordinary non-numeric text.
 - [ ] Bilingual output, copy, Markdown, and TXT actions use the current generated draft.
 - [ ] JP/EN modes preserve the publication/privacy warnings and the rule-based nature of next actions.
 
