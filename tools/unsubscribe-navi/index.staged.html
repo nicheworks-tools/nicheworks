@@ -95,7 +95,8 @@
     <section class="filters" aria-label="検索条件">
       <label class="field field-search">
         <span>サービス名・キーワード</span>
-        <input id="searchInput" type="search" placeholder="例：Netflix、プライム、音楽、SaaS" autocomplete="off">
+        <input id="searchInput" type="search" placeholder="例：動画 App Store、AI サブスク" autocomplete="off">
+        <small>複数語はスペース区切りで絞り込めます。</small>
       </label>
       <label class="field">
         <span>カテゴリ</span>
@@ -112,6 +113,9 @@
           <option value="retired">終了・移行済み</option>
         </select>
       </label>
+      <div class="filter-actions">
+        <button id="clearFilters" type="button" hidden>条件をクリア</button>
+      </div>
     </section>
 
     <section class="summary" aria-live="polite">
