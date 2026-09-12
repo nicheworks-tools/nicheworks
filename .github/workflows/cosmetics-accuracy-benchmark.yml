@@ -8,7 +8,9 @@ on:
       - 'tools/_shared/cosmetic-ingredient-parser.js'
       - 'tools/_shared/check-cosmetic-ingredient-parser.mjs'
       - 'tools/_shared/check-cosmetics-accuracy-benchmark.mjs'
+      - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
+      - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
       - 'tools/_shared/cosmetics-affiliate-*.css'
       - '.github/workflows/cosmetics-accuracy-benchmark.yml'
@@ -27,6 +29,8 @@ jobs:
           node-version: '20'
       - name: Shared parser regression
         run: node tools/_shared/check-cosmetic-ingredient-parser.mjs
+      - name: Dictionary and alias quality
+        run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
       - name: Affiliate readiness contract remains isolated
