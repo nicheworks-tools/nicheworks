@@ -9,6 +9,7 @@ import { createResultsWorkbook, EXPECTED_XLSX_VERSION, readXlsxFile, tableFromXl
 const EXPECTED_SIZE = 279523;
 const EXPECTED_SHA256 = '0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939';
 const EXPECTED_GIT_BLOB_SHA = '5bf1c223ce4bd59685ba711b77dce6da7a9747b8';
+const EXPECTED_REPORT_SHEETS = ['Summary', 'Matches', 'Candidates', 'A Only', 'B Only', 'Duplicates', 'Conflicts'];
 const here = dirname(fileURLToPath(import.meta.url));
 const vendorPath = resolve(here, '../vendor/xlsx.mini.min.js');
 const bytes = await readFile(vendorPath);
@@ -68,12 +69,16 @@ const sourceBytes = XLSX.write(sourceBook, { bookType: 'xlsx', type: 'array', co
 const sourceFile = {
   name: 'source.xlsx',
   size: sourceBytes.byteLength,
-  async arrayBuffer() { return sourceBytes instanceof ArrayBuffer ? sourceBytes : sourceBytes.buffer.slice(sourceBytes.byteOffset, sourceBytes.byteOffset + sourceBytes.byteLength); }
+  async arrayBuffer() {
+    return sourceBytes instanceof ArrayBuffer
+      ? sourceBytes
+      : sourceBytes.buffer.slice(sourceBytes.byteOffset, sourceBytes.byteOffset + sourceBytes.byteLength);
+  }
 };
 const parsedSource = await readXlsxFile(sourceFile, XLSX);
-assert.deepEqual(parsedSource.sheetNames, ['Transactions', 'Metadata']);
+assert.deepEqual(Array.from(parsedSource.sheetNames), ['Transactions', 'Metadata']);
 const table = tableFromXlsx(parsedSource, 'Transactions', 1, XLSX);
-assert.deepEqual(table.headers, ['Date', 'Amount', 'Reference']);
+assert.deepEqual(Array.from(table.headers), ['Date', 'Amount', 'Reference']);
 assert.equal(table.rows.length, 2);
 assert.equal(table.rows[0].values.Reference, 'A-100');
 assert.equal(String(table.rows[1].values.Amount), '250');
@@ -87,6 +92,15 @@ const results = [
   { status: 'conflict', relation: '1:1', aRows: [8], bRows: [8], amount: 600, date: '2026-09-06', reason: 'Same reference, amount conflict' },
   { status: 'tolerant_match', relation: '1:1', aRows: [9], bRows: [9], amount: 700, date: '2026-09-07', reason: 'Within tolerance' }
 ];
+const makeRows = (rowNumbers, prefix) => rowNumbers.map((sourceRow) => ({
+  sourceRow,
+  values: {
+    Amount: String(sourceRow * 100),
+    Date: `2026-09-${String(Math.min(sourceRow - 1, 30)).padStart(2, '0')}`,
+    Reference: `${prefix}-${sourceRow}`,
+    Description: `${prefix} row ${sourceRow}`
+  }
+}));
 const reportContext = {
   generatedAt: '2026-09-12T00:00:00.000Z',
   fileA: 'a.xlsx',
@@ -94,17 +108,17 @@ const reportContext = {
   fileAType: 'xlsx',
   fileBType: 'xlsx',
   headerRow: 1,
-  rowsA: [],
-  rowsB: [],
+  rowsA: makeRows([2, 3, 4, 6, 7, 8, 9], 'A'),
+  rowsB: makeRows([2, 3, 4, 5, 8, 9], 'B'),
   mappingA: { amount: 'Amount', date: 'Date', reference: 'Reference', description: 'Description' },
   mappingB: { amount: 'Amount', date: 'Date', reference: 'Reference', description: 'Description' },
   options: { dateToleranceDays: 1, amountTolerance: 5, dateMode: 'auto', signMode: 'normal', groupMatching: true, maxGroupSize: 5 }
 };
 const report = createResultsWorkbook(results, reportContext, XLSX);
-assert.deepEqual(report.SheetNames, ['Summary', 'Matches', 'Candidates', 'A Only', 'B Only', 'Duplicates', 'Conflicts']);
+assert.deepEqual(Array.from(report.SheetNames), EXPECTED_REPORT_SHEETS);
 const reportBytes = XLSX.write(report, { bookType: 'xlsx', type: 'array', compression: true });
 const reread = XLSX.read(reportBytes, { type: 'array' });
-assert.deepEqual(reread.SheetNames, ['Summary', 'Matches', 'Candidates', 'A Only', 'B Only', 'Duplicates', 'Conflicts']);
+assert.deepEqual(Array.from(reread.SheetNames), EXPECTED_REPORT_SHEETS);
 const summary = XLSX.utils.sheet_to_json(reread.Sheets.Summary, { header: 1, defval: '' });
 assert.ok(summary.some((row) => row[0] === 'File A' && row[1] === 'a.xlsx'));
 assert.ok(summary.some((row) => row[0] === 'Group matching' && row[1] === 'true'));
