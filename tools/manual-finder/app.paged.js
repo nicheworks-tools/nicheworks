@@ -2,8 +2,8 @@
   const isEn = /\/manual-finder\/en\/?/.test(location.pathname);
   const base = isEn ? ".." : ".";
   const FULL = `${base}/data/manuals.full.js?v=mf-wave1-20260912a`;
-  const WAVE2 = `${base}/data/manuals.wave2.js?v=mf-wave2b-20260912a`;
-  const JSON_URL = `${base}/data/manuals.json?v=mf-wave2b-20260912a`;
+  const WAVE2 = `${base}/data/manuals.wave2.js?v=mf-wave2c-20260912a`;
+  const JSON_URL = `${base}/data/manuals.json?v=mf-wave2c-20260912a`;
   const S = { all: [], filtered: [], page: 1, per: 48, lang: isEn ? "en" : "ja" };
   const $ = (id) => document.getElementById(id);
   const E = {
@@ -211,7 +211,7 @@
     try {
       await loadScript(WAVE2);
       const batches = Array.isArray(window.MANUALFINDER_WAVE2_BATCHES) ? window.MANUALFINDER_WAVE2_BATCHES : [];
-      await Promise.all(batches.map((name) => loadScript(`${base}/data/${name}?v=mf-wave2b-20260912a`)));
+      await Promise.all(batches.map((name) => loadScript(`${base}/data/${name}?v=mf-wave2c-20260912a`)));
       if (typeof window.MANUALFINDER_BUILD_WAVE2 === "function") return window.MANUALFINDER_BUILD_WAVE2();
     } catch (_) {}
     return [];
