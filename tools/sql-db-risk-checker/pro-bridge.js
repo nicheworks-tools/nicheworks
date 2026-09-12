@@ -2,6 +2,7 @@
 
 (function () {
   const PAYMENT_LINK = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
+  const ENTITLEMENT = "nicheworks_pro";
   const PREVIEW_TEXT = "Previewモードです。このブラウザでは共通Proがまだ有効ではありません。";
   const ACTIVE_TEXT = "Pro解放済み。このブラウザでは共通Proが有効です。";
   const ERROR_TEXT = "Pro状態を確認できませんでした。無料機能は引き続き利用できます。";
@@ -9,8 +10,9 @@
   function normalizeStatus(status) {
     if (!status) return { active: false, source: "none" };
     if (typeof status === "string") return { active: status === "active" || status === "unlocked", source: "string" };
-    const active = status.active === true || status.pro === true || status.unlocked === true || status.status === "active" || status.entitlement === "nicheworks_pro";
-    return { active, source: status.source || "nw-pro" };
+    const entitlementMatches = !status.entitlement || status.entitlement === ENTITLEMENT;
+    const hasExplicitActiveState = status.active === true || status.pro === true || status.unlocked === true || status.status === "active";
+    return { active: Boolean(entitlementMatches && hasExplicitActiveState), source: status.source || "nw-pro" };
   }
 
   function setElements(active, failed) {

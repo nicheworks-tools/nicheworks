@@ -33,10 +33,15 @@ const isToolDir = (name) => {
   if (EXCLUDE.has(name)) return false;
   const p = path.join(TOOLS_DIR, name);
   try {
-    return statSync(p).isDirectory();
+    if (!statSync(p).isDirectory()) return false;
   } catch {
     return false;
   }
+
+  // The public tools index is a registry of publishable tool routes, not every
+  // working directory under tools/. Staged sources such as index.staged.html
+  // must remain unregistered until they are intentionally promoted to index.html.
+  return existsSync(path.join(p, "index.html"));
 };
 
 const dirs = readdirSync(TOOLS_DIR).filter(isToolDir).sort((a, b) => a.localeCompare(b));

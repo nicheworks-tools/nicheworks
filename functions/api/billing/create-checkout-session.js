@@ -1,3 +1,5 @@
+import { loadProductsConfig, validateConfiguredProduct } from './product-config.js';
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -8,45 +10,12 @@ function json(data, status = 200) {
   });
 }
 
-async function loadProductsConfig(request, env) {
-  const url = new URL('/config/billing/products.json', request.url);
-  const assetRequest = new Request(url.toString(), { method: 'GET' });
-
-  const response = env?.ASSETS && typeof env.ASSETS.fetch === 'function'
-    ? await env.ASSETS.fetch(assetRequest)
-    : await fetch(assetRequest);
-
-  if (!response.ok) throw new Error('products_config_unavailable');
-
-  try {
-    return await response.json();
-  } catch {
-    throw new Error('products_config_unavailable');
-  }
-}
-
-function readProduct(config, productId) {
-  const products = Array.isArray(config?.products) ? config.products : [];
-  return products.find((item) => item?.productId === productId) || null;
-}
-
 function isSafeReturnPath(returnPath) {
   if (typeof returnPath !== 'string') return false;
   if (!returnPath.startsWith('/')) return false;
   if (returnPath.startsWith('//')) return false;
   if (returnPath.includes('://')) return false;
   return returnPath.length <= 512;
-}
-
-function isExpectedProductShape(product) {
-  return (
-    product?.productId === 'okj.toolkit_pro'
-    && product?.priceTierId === 'nw.one_time.usd_499'
-    && product?.price?.amount === 4.99
-    && product?.price?.currency === 'USD'
-    && product?.price?.type === 'one_time'
-    && product?.stripe?.priceIdEnv === 'STRIPE_PRICE_OKJ_TOOLKIT_PRO'
-  );
 }
 
 function buildOrigin(request, env) {
@@ -56,27 +25,41 @@ function buildOrigin(request, env) {
       const parsed = new URL(configured);
       if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return parsed.origin;
     } catch {
-      // ignore invalid configured origin
+      // Ignore invalid configured origin and use the request origin.
     }
   }
 
-  const requestUrl = new URL(request.url);
-  return requestUrl.origin;
+  return new URL(request.url).origin;
 }
 
-function evaluateCheckoutGate(secretKey, env) {
-  if (typeof secretKey !== 'string' || !secretKey) return { ok: false, error: 'stripe_secret_key_missing', status: 503 };
+function enabledFlag(env, productId, mode) {
+  const commonFlag = mode === 'test' ? env.BILLING_TEST_CHECKOUT_ENABLED : env.BILLING_LIVE_CHECKOUT_ENABLED;
+  if (commonFlag === 'true') return true;
+
+  // Backward compatibility for the existing OKJ rollout controls.
+  if (productId === 'okj.toolkit_pro') {
+    const okjFlag = mode === 'test' ? env.OKJ_STRIPE_TEST_CHECKOUT_ENABLED : env.OKJ_LIVE_CHECKOUT_ENABLED;
+    return okjFlag === 'true';
+  }
+
+  return false;
+}
+
+function evaluateCheckoutGate(secretKey, env, productId) {
+  if (typeof secretKey !== 'string' || !secretKey) {
+    return { ok: false, error: 'stripe_secret_key_missing', status: 503 };
+  }
 
   if (secretKey.startsWith('sk_test_')) {
-    if (env.OKJ_STRIPE_TEST_CHECKOUT_ENABLED !== 'true') {
+    if (!enabledFlag(env, productId, 'test')) {
       return { ok: false, error: 'test_checkout_not_enabled', status: 403 };
     }
     return { ok: true, mode: 'test' };
   }
 
   if (secretKey.startsWith('sk_live_')) {
-    if (env.OKJ_LIVE_CHECKOUT_ENABLED !== 'true') {
-      return { ok: false, error: 'live_checkout_blocked_until_entitlement', status: 403 };
+    if (!enabledFlag(env, productId, 'live')) {
+      return { ok: false, error: 'live_checkout_not_enabled', status: 403 };
     }
     return { ok: true, mode: 'live' };
   }
@@ -131,34 +114,42 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: 'bad_json' }, 400);
   }
 
-  const productId = body?.productId;
+  const productId = typeof body?.productId === 'string' ? body.productId.trim() : '';
   const returnPath = body?.returnPath;
 
-  if (!productId || typeof productId !== 'string') return json({ ok: false, error: 'missing_product_id' }, 400);
+  if (!productId) return json({ ok: false, error: 'missing_product_id' }, 400);
   if (!isSafeReturnPath(returnPath)) return json({ ok: false, error: 'invalid_return_path' }, 400);
 
   let config;
   try {
     config = await loadProductsConfig(request, env);
   } catch {
-    return json({ ok: false, error: 'products_config_unavailable' }, 500);
+    return json({ ok: false, error: 'products_config_unavailable' }, 503);
   }
 
-  const product = readProduct(config, productId);
-  if (!product) return json({ ok: false, error: 'unknown_product_id' }, 404);
-  if (!isExpectedProductShape(product)) return json({ ok: false, error: 'product_config_mismatch' }, 409);
+  const productCheck = validateConfiguredProduct(config, productId);
+  if (!productCheck.ok) {
+    const status = productCheck.error === 'unknown_product_id' ? 404 : 409;
+    return json({ ok: false, error: productCheck.error }, status);
+  }
 
-  const priceIdEnvName = product?.stripe?.priceIdEnv;
-  const stripePriceId = typeof priceIdEnvName === 'string' ? env[priceIdEnvName] : '';
-  if (!priceIdEnvName || typeof priceIdEnvName !== 'string') return json({ ok: false, error: 'missing_price_env_name' }, 500);
-  if (!stripePriceId || typeof stripePriceId !== 'string') return json({ ok: false, error: 'missing_stripe_price_id' }, 503);
+  const { product } = productCheck;
+  const priceIdEnvName = product.stripe.priceIdEnv;
+  const stripePriceId = env[priceIdEnvName];
+  if (typeof stripePriceId !== 'string' || !stripePriceId) {
+    return json({ ok: false, error: 'missing_stripe_price_id' }, 503);
+  }
 
-  const gate = evaluateCheckoutGate(env.STRIPE_SECRET_KEY, env);
+  const gate = evaluateCheckoutGate(env.STRIPE_SECRET_KEY, env, product.productId);
   if (!gate.ok) return json({ ok: false, error: gate.error }, gate.status);
 
   const origin = buildOrigin(request, env);
-  const successUrl = `${origin}/billing/success.html?session_id={CHECKOUT_SESSION_ID}`;
-  const cancelUrl = `${origin}/billing/cancel.html`;
+  const query = new URLSearchParams({
+    product_id: product.productId,
+    return_path: returnPath
+  });
+  const successUrl = `${origin}/billing/success.html?${query.toString()}&session_id={CHECKOUT_SESSION_ID}`;
+  const cancelUrl = `${origin}/billing/cancel.html?${query.toString()}`;
 
   const stripeResult = await createStripeCheckoutSession({
     secretKey: env.STRIPE_SECRET_KEY,
@@ -173,5 +164,11 @@ export async function onRequestPost({ request, env }) {
 
   if (!stripeResult.ok) return json({ ok: false, error: stripeResult.error }, stripeResult.status);
 
-  return json({ ok: true, sessionId: stripeResult.sessionId, url: stripeResult.url, productId: product.productId, mode: gate.mode }, 200);
+  return json({
+    ok: true,
+    sessionId: stripeResult.sessionId,
+    url: stripeResult.url,
+    productId: product.productId,
+    mode: gate.mode
+  });
 }

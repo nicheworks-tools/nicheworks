@@ -11,83 +11,65 @@
   gtag('config', 'G-57QT78M3JB');
 </script>
 
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>URL Title Collector | NicheWorks</title>
+  <meta name="description" content="複数URLのタイトル（&lt;title&gt;）をNicheWorks Worker経由で取得し、URL・タイトル・ステータスを一覧化してCSV/TSVコピーできる軽量ツールです。入力URLは取得のためWorkerへ送信されます。">
 
-  <!-- 日本語 description -->
-  <meta name="description" content="複数URLのタイトル（&lt;title&gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
-
-  <!-- 共通 favicon -->
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-
-  <!-- canonical -->
   <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="style.css">
 
-  <!-- OGP 日本語 -->
   <meta property="og:title" content="URL Title Collector | NicheWorks">
-  <meta property="og:description" content="複数URLのタイトル（&lt;title&gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
+  <meta property="og:description" content="複数URLのタイトルをNicheWorks Worker経由で取得し、URL・タイトル・ステータスを一覧化します。入力URLは取得のためWorkerへ送信されます。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/url-title-collector/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- OGP 英語 -->
   <meta property="og:title:en" content="URL Title Collector | NicheWorks">
-  <meta property="og:description:en"
-        content="A lightweight tool that fetches webpage titles from multiple URLs at once. Fully browser-based and secure.">
+  <meta property="og:description:en" content="Fetch webpage titles from multiple URLs through a NicheWorks Worker. Entered URLs are sent to the Worker for retrieval.">
 
-  <!-- Twitter 日本語 -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="URL Title Collector | NicheWorks">
-  <meta name="twitter:description" content="複数URLのタイトル（&lt;title&gt;）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">）を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。">
+  <meta name="twitter:description" content="複数URLのタイトルをNicheWorks Worker経由で取得します。入力URLは取得のためWorkerへ送信されます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
-  <!-- Twitter 英語 -->
   <meta name="twitter:card:en" content="summary_large_image">
   <meta name="twitter:title:en" content="URL Title Collector | NicheWorks">
-  <meta name="twitter:description:en"
-        content="A lightweight tool that fetches webpage titles from multiple URLs at once.">
+  <meta name="twitter:description:en" content="Fetch webpage titles from multiple URLs through a NicheWorks Worker.">
 
-  <!-- JSON-LD 日本語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "URL Title Collector",
     "url": "https://nicheworks.app/tools/url-title-collector/",
-    "description": "複数URLの<title>を高速で一括取得できる軽量ツール。ローカル処理で安全に動作します。",
+    "description": "複数URLのtitleをNicheWorks Worker経由で取得し、URL・タイトル・ステータスを一覧化するツールです。入力URLは取得のためWorkerへ送信されます。",
     "inLanguage": "ja",
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
   }
   </script>
 
-  <!-- JSON-LD 英語 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "URL Title Collector",
     "url": "https://nicheworks.app/tools/url-title-collector/",
-    "description": "A lightweight tool that fetches webpage titles from multiple URLs at once. Fully browser-based and secure.",
+    "description": "Fetch webpage titles from multiple URLs through a NicheWorks Worker. Entered URLs are sent to the Worker for retrieval.",
     "inLanguage": "en",
     "publisher": {"@type": "Organization", "name": "NicheWorks"}
   }
   </script>
 
-  <!-- Google Adsense -->
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275"
     crossorigin="anonymous"></script>
 
-  <!-- Cloudflare Analytics -->
-  
 <script defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
@@ -99,8 +81,6 @@
 <body>
 
   <header>
-
-    <!-- 言語切替（右上） -->
     <div class="lang-switch" style="text-align:right; font-size:13px; color:#666;">
       <a href="./index.html" style="color:#666;">JP</a> |
       <a href="./en/index.html" style="color:#666;">EN</a>
@@ -108,48 +88,40 @@
 
     <h1>URL Title Collector</h1>
     <p class="sub">複数URLの&lt;title&gt;を高速で一括取得できます</p>
+    <p class="sub">入力URLはページ取得のためNicheWorks Cloudflare Workerへ送信されます。URLや取得結果をこのツールが履歴として保存する仕様ではありませんが、Workerおよび取得先サイトとの通信が発生します。</p>
 
-    <!-- 使い方リンク（広告より上） -->
     <p class="usage-link">
       <a href="./usage.html">使い方はこちら</a>
     </p>
 
-    <!-- 広告 -->
     <div class="ad-area">
       <div class="ad-stable content">広告</div>
     </div>
-
   </header>
 
   <main>
-
     <label for="urlInput" class="label">URL一覧（1行1つ）</label>
     <textarea id="urlInput" placeholder="https://nicheworks.app&#10;https://nicheworks.app"></textarea>
 
     <button id="fetchBtn">タイトルを取得する</button>
 
-    <!-- プログレスバー -->
     <div id="progressWrap" class="progress-wrap hidden">
       <div id="progressBar" class="progress-bar"></div>
     </div>
 
-    <!-- 件数 -->
     <div id="countArea" class="count-area hidden">
       <span id="countTotal">合計: 0</span>
       <span id="countSuccess">成功: 0</span>
       <span id="countFail">失敗: 0</span>
     </div>
 
-    <!-- 結果 -->
     <div id="results"></div>
 
-    <!-- CSV/TSV/Reset -->
     <div id="exportArea" class="export-area hidden">
       <button id="copyCsvBtn">CSVコピー</button>
       <button id="copyTsvBtn">TSVコピー</button>
       <button id="resetBtn" class="reset-btn">リセット</button>
     </div>
-
   </main>
 
   <div class="nw-links">
@@ -158,7 +130,6 @@
   <a href="/tools/exif-cleaner-mini/">MetaCleaner Mini</a>
 </div>
 
-
   <footer>
     <p class="copy">
       <a href="https://nicheworks.app/" style="color:#666; text-decoration:none;">
@@ -166,9 +137,6 @@
       </a>
     </p>
   </footer>
-
-  <!-- Cloudflare Analytics -->
-  
 
   <script src="./app.js"></script>
 </body>

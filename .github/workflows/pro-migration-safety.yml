@@ -1,0 +1,45 @@
+name: Pro migration safety
+
+on:
+  pull_request:
+    paths:
+      - 'PRO_MIGRATION_LEDGER.md'
+      - 'scripts/check-pro-migration-safety.mjs'
+      - 'tools/logistics-compliance-kit-jp/pro-bridge.js'
+      - 'tools/sql-db-risk-checker/pro-bridge.js'
+      - 'tools/og-image-maker/app.js'
+      - 'tools/og-image-maker/index.html'
+      - 'tools/og-image-maker/pro-bridge.js'
+      - 'tools/og-image-maker/SPEC.md'
+      - '.github/workflows/pro-migration-safety.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'PRO_MIGRATION_LEDGER.md'
+      - 'scripts/check-pro-migration-safety.mjs'
+      - 'tools/logistics-compliance-kit-jp/pro-bridge.js'
+      - 'tools/sql-db-risk-checker/pro-bridge.js'
+      - 'tools/og-image-maker/app.js'
+      - 'tools/og-image-maker/index.html'
+      - 'tools/og-image-maker/pro-bridge.js'
+      - 'tools/og-image-maker/SPEC.md'
+      - '.github/workflows/pro-migration-safety.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check tools/logistics-compliance-kit-jp/pro-bridge.js
+          node --check tools/sql-db-risk-checker/pro-bridge.js
+          node --check tools/og-image-maker/app.js
+          node --check tools/og-image-maker/pro-bridge.js
+          node --check scripts/check-pro-migration-safety.mjs
+      - name: Pro migration safety contracts
+        run: node scripts/check-pro-migration-safety.mjs

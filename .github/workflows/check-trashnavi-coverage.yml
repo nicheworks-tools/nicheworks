@@ -1,0 +1,34 @@
+name: Check TrashNavi coverage
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/trashnavi/**'
+      - '.github/workflows/check-trashnavi-coverage.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Report coverage baseline
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs | tee /tmp/trashnavi-coverage.txt
+          {
+            echo '## TrashNavi coverage audit'
+            echo '```text'
+            cat /tmp/trashnavi-coverage.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Enforce coverage data quality
+        run: node tools/trashnavi/scripts/audit-coverage.mjs --strict
