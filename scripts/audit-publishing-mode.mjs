@@ -3,7 +3,6 @@ import path from 'node:path';
 
 const root = process.cwd();
 const failures = [];
-const expectedToolCount = 88;
 const legacyFlagKey = ['review', 'Mode'].join('');
 const legacyIndexName = ['tools-index', 'review'].join('-') + '.json';
 const legacySitemapName = ['sitemap', 'review'].join('-') + '.xml';
@@ -17,6 +16,23 @@ function fail(message) {
   failures.push(message);
 }
 
+let expectedToolCount = null;
+const manifestText = read(path.join('tools', 'tool-spec-manifest.json'));
+if (manifestText === null) {
+  fail('tools/tool-spec-manifest.json is missing.');
+} else {
+  try {
+    const manifest = JSON.parse(manifestText);
+    if (!Number.isInteger(manifest.required_complete) || manifest.required_complete < 0) {
+      fail('tool spec manifest required_complete must be a non-negative integer.');
+    } else {
+      expectedToolCount = manifest.required_complete;
+    }
+  } catch (error) {
+    fail(`tool spec manifest is invalid JSON: ${error.message}`);
+  }
+}
+
 for (const relativePath of [path.join('tools', legacyIndexName), legacySitemapName]) {
   if (fs.existsSync(path.join(root, relativePath))) fail(`${relativePath} must not exist.`);
 }
@@ -28,11 +44,13 @@ if (indexText === null) {
   try {
     const index = JSON.parse(indexText);
     if (Object.prototype.hasOwnProperty.call(index, legacyFlagKey)) fail(`tools index still contains ${legacyFlagKey}.`);
-    if (index.total !== expectedToolCount) fail(`tools index total must be ${expectedToolCount}.`);
-    if (!Array.isArray(index.items) || index.items.length !== expectedToolCount) fail(`tools index must contain ${expectedToolCount} items.`);
-    if (Array.isArray(index.items)) {
-      const slugs = index.items.map((item) => item?.slug).filter(Boolean);
-      if (new Set(slugs).size !== expectedToolCount) fail('tools index contains missing or duplicate slugs.');
+    if (expectedToolCount !== null) {
+      if (index.total !== expectedToolCount) fail(`tools index total must be ${expectedToolCount}.`);
+      if (!Array.isArray(index.items) || index.items.length !== expectedToolCount) fail(`tools index must contain ${expectedToolCount} items.`);
+      if (Array.isArray(index.items)) {
+        const slugs = index.items.map((item) => item?.slug).filter(Boolean);
+        if (new Set(slugs).size !== expectedToolCount) fail('tools index contains missing or duplicate slugs.');
+      }
     }
   } catch (error) {
     fail(`tools index is invalid JSON: ${error.message}`);
