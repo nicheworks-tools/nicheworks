@@ -14,7 +14,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>使い方｜引っ越しやることチェックリスト | NicheWorks</title>
-  <meta name="description" content="引っ越しやることチェックリストの使い方。引っ越し日と条件を入力して、30日前〜引越し後のタスクを整理し、保存内容や印刷/PDF保存時の注意も確認できます。">
+  <meta name="description" content="引っ越しやることチェックリストの使い方。保存内容、広告・解析タグ、印刷/PDF、契約・自治体手続きの注意を確認できます。">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="./style.css" />
@@ -29,27 +29,15 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="使い方｜引っ越しやることチェックリスト | NicheWorks">
-  <meta property="og:description" content="引っ越しやることチェックリストの使い方。引っ越し日と条件を入力して、30日前〜引越し後のタスクを整理し、保存内容や印刷/PDF保存時の注意も確認できます。">
+  <meta property="og:description" content="引っ越しやることチェックリストの使い方。保存内容、広告・解析タグ、印刷/PDF、契約・自治体手続きの注意を確認できます。">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="使い方｜引っ越しやることチェックリスト | NicheWorks">
-  <meta name="twitter:description" content="引っ越しやることチェックリストの使い方。引っ越し日と条件を入力して、30日前〜引越し後のタスクを整理し、保存内容や印刷/PDF保存時の注意も確認できます。">
+  <meta name="twitter:description" content="引っ越しやることチェックリストの使い方。保存内容、広告・解析タグ、印刷/PDF、契約・自治体手続きの注意を確認できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "使い方｜引っ越しやることチェックリスト | NicheWorks",
-    "url": "https://nicheworks.app/tools/moving-checklist-generator/usage.html",
-    "description": "引っ越し日と条件を入力して、30日前〜引越し後のタスクを整理し、保存内容や印刷/PDF保存時の注意も確認できます。",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
-  }
+  {"@context":"https://schema.org","@type":"WebPage","name":"使い方｜引っ越しやることチェックリスト | NicheWorks","url":"https://nicheworks.app/tools/moving-checklist-generator/usage.html","description":"保存内容、広告・解析タグ、印刷/PDF、契約・自治体手続きの注意を確認できます。","inLanguage":"ja","publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}
   </script>
 </head>
 <body>
@@ -62,13 +50,13 @@
   <main class="nw-main">
     <section class="panel">
       <h2 class="result-title">1. このツールでできること</h2>
-      <p class="hint">引っ越し日・家族構成・住居タイプから、30日前〜引越し後の作業を時系列で整理して表示します。</p>
+      <p class="hint">引っ越し日・家族構成・住居タイプから、30日前〜引越し後の作業を時系列で整理して表示します。チェックリスト生成とチェック状態の保存処理はブラウザ内で行います。</p>
 
       <h2 class="result-title">2. 使い方の手順</h2>
       <ol class="hint">
         <li>引っ越し日を選びます。</li>
         <li>単身/家族、賃貸/持ち家を選びます。</li>
-        <li>必要なら印刷用メモを入力します。</li>
+        <li>必要なら印刷用メモを入力します。住所・連絡先・氏名・部屋番号などは入れないでください。</li>
         <li>「チェックリストを生成」を押します。</li>
         <li>終わった項目にチェックを入れます。チェック状態と条件識別用の引っ越し日・家族構成・住居タイプが、このブラウザのlocalStorageに保存されます。</li>
         <li>必要なら「印刷 / PDF保存」を押し、ブラウザの印刷画面からPDFとして保存します。</li>
@@ -79,20 +67,20 @@
         <li>対応：チェック保存（localStorage）、進捗表示、印刷/PDF保存、JP/EN切替</li>
         <li>保存されるもの：チェック状態、条件識別用の引っ越し日・家族構成・住居タイプ</li>
         <li>保存されないもの：印刷用メモ</li>
-        <li>非対応：クラウド同期、共有リンク、住所や個人情報の保存、個別事情の完全反映</li>
+        <li>非対応：クラウド同期、共有リンク、住所などの保存、個別事情の完全反映、契約・自治体期限の保証</li>
       </ul>
 
       <h2 class="result-title">4. エラーについて</h2>
-      <p class="hint">引っ越し日が未入力の場合、生成できません。画面内の通知で案内します。</p>
+      <p class="hint">引っ越し日が未入力の場合、生成できません。全保存データ削除後も、日付が未入力の場合は不要な再生成を行わず、空の状態を維持します。</p>
 
       <h2 class="result-title">5. 出力形式</h2>
       <p class="hint">30日前、14日前、7日前、5日前、3日前、前日、当日、引越し後のブロックで表示します。印刷用メモは保存されませんが、印刷やPDFには表示される場合があります。</p>
 
       <h2 class="result-title">6. FAQ</h2>
-      <p class="hint">チェック状態と条件識別用の設定は、このブラウザのlocalStorageに保存されます。別端末・別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。</p>
+      <p class="hint">チェック状態と条件識別用の設定は、このブラウザのlocalStorageに保存されます。別端末・別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。ページ表示のため、GA4 / AdSense / Cloudflare Analytics などの広告・解析タグが読み込まれる場合があります。</p>
 
       <h2 class="result-title">7. 免責</h2>
-      <p class="hint">本ツールは一般的な参考リストです。自治体・管理会社・契約先の公式情報を必ず確認してください。</p>
+      <p class="hint">本ツールは一般的な参考リストです。退去通知期限、原状回復、違約金、ライフライン停止/開始、自治体手続きの期限は、契約書・管理会社・自治体・各サービスの公式情報を優先してください。</p>
 
       <h2 class="result-title">8. 戻る</h2>
       <p class="usage-link"><a href="./index.html">ツールに戻る</a></p>
@@ -101,7 +89,7 @@
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener noreferrer">nicheworks.app</a></p>
   </footer>
 </body>
 </html>
