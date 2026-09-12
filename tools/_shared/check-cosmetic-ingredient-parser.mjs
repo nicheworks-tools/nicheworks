@@ -52,4 +52,28 @@ assert.equal(
   "fatty alcohol names must not match plain alcohol by substring"
 );
 
+const aliasPairs = [
+  ["精製水", "Water"],
+  ["グリセロール", "Glycerin"],
+  ["1,3-ブチレングリコール", "Butylene Glycol"],
+  ["塩化ナトリウム", "Sodium Chloride"],
+  ["クエン酸ナトリウム", "Sodium Citrate"],
+  ["水酸化ナトリウム", "Sodium Hydroxide"],
+  ["エデト酸2ナトリウム", "Disodium EDTA"],
+  ["エデト酸二ナトリウム", "Disodium EDTA"],
+  ["ニコチン酸アミド", "Niacinamide"],
+  ["ヒアルロン酸ナトリウム", "Sodium Hyaluronate"],
+  ["ヒアルロン酸ソーダ", "Sodium Hyaluronate"],
+  ["乳酸ナトリウム", "Sodium Lactate"],
+  ["Alcohol Denat", "Alcohol Denat."]
+];
+
+for (const [alias, canonicalOrDeclaredAlias] of aliasPairs) {
+  assert.equal(
+    parser.normalizeKey(alias),
+    parser.normalizeKey(canonicalOrDeclaredAlias),
+    `shared alias equivalence should normalize identically: ${alias}`
+  );
+}
+
 console.log("cosmetic ingredient parser regression checks passed");
