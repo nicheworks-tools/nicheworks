@@ -10,8 +10,9 @@ function coreProcessOCRText(raw) {
     .replace(/[ ]{2,}/g, " ")
     .trim();
 
-  // Convert to line-ish format: keep commas but prefer newlines for parsing
-  cleaned = cleaned.replace(/\s*[,;]\s*/g, "\n");
+  // Convert explicit list punctuation to line-ish format for parsing.
+  // Do not split '/' or '・' because they can be part of ingredient names.
+  cleaned = cleaned.replace(/\s*[,;；]\s*/g, "\n");
   cleaned = cleaned.replace(/\n{2,}/g, "\n");
 
   return cleaned.trim();
@@ -87,7 +88,7 @@ function postProcessOcrText(rawText, options = {}) {
   for (let line of targetLines) {
     let cleaned = line
       .replace(/^[\s\-–—*•●・]+/g, "")
-      .replace(/[、，;・／/：:→]/g, ",")
+      .replace(/[、，;；：:→]/g, ",")
       .replace(/,+/g, ",")
       .replace(/[ ]{2,}/g, " ")
       .trim();
