@@ -32,6 +32,42 @@ function buildRecord(row, mapping, options, side) {
   };
 }
 
+function buildAmountIndex(records) {
+  return records
+    .filter((record) => !record.invalidAmount && !record.dateError)
+    .sort((a, b) => a.amount - b.amount || a.sourceRow - b.sourceRow);
+}
+
+function lowerBoundAmount(records, value) {
+  let lo = 0;
+  let hi = records.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (records[mid].amount < value) lo = mid + 1;
+    else hi = mid;
+  }
+  return lo;
+}
+
+function recordsWithinAmount(records, amount, tolerance) {
+  const min = amount - tolerance;
+  const max = amount + tolerance;
+  const start = lowerBoundAmount(records, min);
+  const out = [];
+  for (let i = start; i < records.length && records[i].amount <= max; i += 1) out.push(records[i]);
+  return out;
+}
+
+function buildReferenceIndex(records) {
+  const map = new Map();
+  for (const record of records) {
+    if (!record.reference) continue;
+    if (!map.has(record.reference)) map.set(record.reference, []);
+    map.get(record.reference).push(record);
+  }
+  return map;
+}
+
 function amountDistance(a, b) {
   return Math.abs(a.amount - b.amount);
 }
@@ -135,6 +171,8 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
   const useReference = Boolean(mappingA.reference && mappingB.reference);
   const dupA = markDuplicates(a, useDate, useReference);
   const dupB = markDuplicates(b, useDate, useReference);
+  const amountIndexB = buildAmountIndex(b);
+  const referenceIndexB = buildReferenceIndex(b);
   const usedA = new Set();
   const usedB = new Set();
   const reservedCandidateA = new Set();
@@ -148,7 +186,8 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
       continue;
     }
 
-    const conflicts = b.filter((recordB) => !usedB.has(recordB.sourceRow) && referenceConflict(recordA, recordB));
+    const conflicts = (recordA.reference ? (referenceIndexB.get(recordA.reference) || []) : [])
+      .filter((recordB) => !usedB.has(recordB.sourceRow) && referenceConflict(recordA, recordB));
     if (conflicts.length === 1) {
       const recordB = conflicts[0];
       usedA.add(recordA.sourceRow);
@@ -158,10 +197,9 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
     }
 
     const candidates = [];
-    for (const recordB of b) {
-      if (usedB.has(recordB.sourceRow) || recordB.invalidAmount || recordB.dateError) continue;
+    for (const recordB of recordsWithinAmount(amountIndexB, recordA.amount, config.amountTolerance)) {
+      if (usedB.has(recordB.sourceRow)) continue;
       const amountGap = amountDistance(recordA, recordB);
-      if (amountGap > config.amountTolerance) continue;
       const dateGap = useDate ? dateDistance(recordA, recordB) : null;
       if (useDate && (dateGap === null || dateGap > config.dateToleranceDays)) continue;
       if (!referencesCompatible(recordA, recordB, useReference)) continue;
