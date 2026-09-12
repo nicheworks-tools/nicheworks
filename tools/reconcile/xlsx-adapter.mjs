@@ -1,5 +1,7 @@
 import { tableFromRows } from './parser.mjs';
 
+export const EXPECTED_XLSX_VERSION = '0.20.3';
+
 function xlsxApi(api = globalThis.XLSX) {
   if (!api || typeof api.read !== 'function' || !api.utils) {
     throw new Error('xlsx_library_missing');
@@ -11,10 +13,15 @@ export function isXlsxAvailable(api = globalThis.XLSX) {
   return Boolean(api && typeof api.read === 'function' && api.utils);
 }
 
+export function isExpectedXlsxVersion(api = globalThis.XLSX) {
+  return isXlsxAvailable(api) && api.version === EXPECTED_XLSX_VERSION;
+}
+
 let loaderPromise = null;
 
 export async function ensureXlsxAvailable(url = './vendor/xlsx.full.min.js') {
-  if (isXlsxAvailable()) return globalThis.XLSX;
+  if (isExpectedXlsxVersion()) return globalThis.XLSX;
+  if (isXlsxAvailable()) throw new Error('xlsx_version_mismatch');
   if (typeof document === 'undefined') throw new Error('xlsx_library_missing');
   if (!loaderPromise) {
     loaderPromise = new Promise((resolve, reject) => {
@@ -22,7 +29,11 @@ export async function ensureXlsxAvailable(url = './vendor/xlsx.full.min.js') {
       script.src = url;
       script.async = true;
       script.dataset.reconcileXlsxVendor = 'true';
-      script.addEventListener('load', () => isXlsxAvailable() ? resolve(globalThis.XLSX) : reject(new Error('xlsx_library_missing')), { once: true });
+      script.addEventListener('load', () => {
+        if (!isXlsxAvailable()) return reject(new Error('xlsx_library_missing'));
+        if (!isExpectedXlsxVersion()) return reject(new Error('xlsx_version_mismatch'));
+        resolve(globalThis.XLSX);
+      }, { once: true });
       script.addEventListener('error', () => reject(new Error('xlsx_vendor_load_failed')), { once: true });
       document.head.appendChild(script);
     }).catch((error) => {
