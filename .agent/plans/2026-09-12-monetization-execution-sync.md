@@ -104,7 +104,7 @@ Never emit user-entered search strings, model numbers typed by the user, names, 
 - [x] ManualFinder is a reference dependency, not modified by this work.
 - [x] No partner link, affiliate ID, price, product ID, or Stripe environment variable is invented.
 - [x] Old Kanji Wave 1 is recorded as completed.
-- [ ] Add a root execution document that makes these decisions explicit and supersedes conflicting execution assumptions in the older Wave 1 document.
+- [x] Add a root execution document that makes these decisions explicit and supersedes conflicting execution assumptions in the older Wave 1 document.
 
 ## 8. Scope
 
