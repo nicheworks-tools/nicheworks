@@ -98,6 +98,34 @@ Wave 2反映後:
 
 Wave 2では件数を10へ揃えることを優先せず、公式のキャンセル/解約手順を十分に固定できた7件だけを追加した。Canva等、公式情報はあるが直接手続きsourceの確定が弱い候補はverified追加を見送る。
 
+### Wave 3 — 2026-09-12
+
+Official-source verified 11件:
+
+- X Premium
+- Discord Nitro / Nitro Basic
+- 1Password
+- Grammarly 有料プラン
+- Strava サブスクリプション
+- Todoist Pro
+- Miro Starter / Business
+- Figma Professional
+- Google Play Pass
+- NordVPN
+- Skillshare
+
+Wave 3反映後:
+
+- effective records: 68
+- public-visible: 64
+- verified: 61
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **64%**
+
+Wave 3でも件数優先にはせず、公式の解約・自動更新停止sourceと契約経路を固定できたserviceだけを追加する。Amazonプライム / ディズニープラスは日本向けの安定した公式procedure URLをまだ固定できていないため、`needs_review`のまま維持する。
+
 ### Next waves
 
 Priority:
