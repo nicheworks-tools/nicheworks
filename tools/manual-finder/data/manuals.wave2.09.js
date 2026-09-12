@@ -113,3 +113,11 @@ NH36|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/
 NX04|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NX04/NX04.pdf
 NX11|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NX11/NX11.pdf
 NX14|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NX14/NX14.pdf`);
+
+// Wave 2AD: direct Seiko P-series manuals; one primary official target per caliber.
+window.MANUALFINDER_WAVE2_SEIKO.push(`P104|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/P/P104/P104.pdf
+P106|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/P/P106/P106.pdf
+P108|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/P/P108/P108.pdf
+P114|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/P/P114/P114.pdf
+P116|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/P/P116/P116.pdf
+P118|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/P/P118/P118.pdf`);
