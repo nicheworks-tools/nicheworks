@@ -6,10 +6,14 @@ Only NicheWorks Reconcile refund-policy presentation and its tool specification.
 
 ## Files to touch
 
+Final diff:
+
 - `tools/reconcile/index.html`
 - `tools/reconcile/refund.html` (new)
 - `tools/reconcile/SPEC.md`
 - `.agent/plans/2026-09-13-reconcile-refund-policy.md`
+
+A temporary self-deleting workflow under `.github/workflows/` may be used only to apply the mechanical text patch on this branch. It must remove itself before review and must not appear in the final PR diff.
 
 ## Contract
 
