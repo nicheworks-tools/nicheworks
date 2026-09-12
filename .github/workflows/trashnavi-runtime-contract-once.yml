@@ -1,0 +1,85 @@
+name: TrashNavi runtime contract one-shot
+
+on:
+  push:
+    branches:
+      - fix/trashnavi-runtime-contract-20260913
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/trashnavi-runtime-contract-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Patch TrashNavi runtime contract
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const indexPath = 'tools/trashnavi/index.html';
+          let html = fs.readFileSync(indexPath, 'utf8');
+          const yukiTail = '<a href="/tools/trashnavi/ibaraki/yuki/">結城市</a></div>';
+          const chuoTail = '<a href="/tools/trashnavi/ibaraki/yuki/">結城市</a><a href="/tools/trashnavi/tokyo/chuo/">中央区</a></div>';
+          if (!html.includes('/tools/trashnavi/tokyo/chuo/')) {
+            if (!html.includes(yukiTail)) throw new Error('TrashNavi published-link anchor not found');
+            html = html.replace(yukiTail, chuoTail);
+          }
+          html = html.replace('データ更新日：2026-09-12', 'データ更新日：2026-09-13');
+          html = html.replace('Data updated: 2026-09-12', 'Data updated: 2026-09-13');
+          fs.writeFileSync(indexPath, html);
+
+          const workflowPath = '.github/workflows/check-trashnavi-coverage.yml';
+          let workflow = fs.readFileSync(workflowPath, 'utf8');
+          const generatedStep = "      - name: Check generated municipality pages\n        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check\n";
+          const runtimeStep = "\n      - name: Check runtime contract\n        run: node tools/trashnavi/scripts/check-runtime-contract.mjs\n";
+          if (!workflow.includes('Check runtime contract')) {
+            if (!workflow.includes(generatedStep)) throw new Error('coverage workflow anchor not found');
+            workflow = workflow.replace(generatedStep, generatedStep + runtimeStep);
+          }
+          fs.writeFileSync(workflowPath, workflow);
+
+          const specPath = 'tools/trashnavi/SPEC.md';
+          let spec = fs.readFileSync(specPath, 'utf8');
+          const runtimeItems = [
+            'repository内自治体dataを読み込み、prefecture/municipality選択肢とresult listを生成できる。',
+            'prefecture、municipality、type、keywordを組み合わせてbrowser-sideで絞り込める。',
+            'result linkは該当official external pageへ遷移し、NicheWorks内で分別を確定しない。',
+            'resetでfilterを解除し、全件表示へ戻せる。',
+            'missing/broken link報告導線がGitHub Issueへ接続する。',
+            'JA/EN表示を切り替えられる。'
+          ];
+          for (const item of runtimeItems) {
+            spec = spec.replace(`- [ ] ${item}`, `- [x] ${item}`);
+          }
+          const evidence = '- `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。';
+          if (!spec.includes(evidence)) {
+            const anchor = /(- `tools\/trashnavi\/scripts\/audit-coverage\.mjs`[^\n]*\n)/;
+            if (!anchor.test(spec)) throw new Error('SPEC audit evidence anchor not found');
+            spec = spec.replace(anchor, `$1${evidence}\n`);
+          }
+          fs.writeFileSync(specPath, spec);
+          NODE
+      - name: Validate patched TrashNavi
+        run: |
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+      - name: Commit patched contract
+        shell: bash
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git rm .github/workflows/trashnavi-runtime-contract-once.yml
+          git add tools/trashnavi/index.html tools/trashnavi/SPEC.md tools/trashnavi/scripts/check-runtime-contract.mjs .github/workflows/check-trashnavi-coverage.yml
+          git commit -m 'Enforce TrashNavi runtime contract'
+          git push origin HEAD:fix/trashnavi-runtime-contract-20260913
