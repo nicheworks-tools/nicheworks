@@ -107,8 +107,9 @@ function updateMatrixMd(matrix) {
     lines[index] = row;
     md = lines.join('\n');
   }
-  md = md.replace(/## Recalculated Wave 1 recommendation[\s\S]*$/,
-`## Wave 1 hard-gap status\n\nThe mandatory donation/support shared-root-cause repair is complete for: ${targets.map((slug) => `\`${slug}\``).join(', ')}. Their recommendation-only usage/FAQ/test gaps remain visible, but the support-block defect no longer forces \\`FIX\\`. Current matrix state after this repair: **${matrix.counts.PASS} PASS / ${matrix.counts.FIX} FIX / ${matrix.counts.BLOCKED} BLOCKED / ${matrix.counts.NEEDS_DECISION} NEEDS_DECISION**.\n`);
+  const targetList = targets.map((slug) => '`' + slug + '`').join(', ');
+  const footer = `## Wave 1 hard-gap status\n\nThe mandatory donation/support shared-root-cause repair is complete for: ${targetList}. Their recommendation-only usage/FAQ/test gaps remain visible, but the support-block defect no longer forces \`FIX\`. Current matrix state after this repair: **${matrix.counts.PASS} PASS / ${matrix.counts.FIX} FIX / ${matrix.counts.BLOCKED} BLOCKED / ${matrix.counts.NEEDS_DECISION} NEEDS_DECISION**.\n`;
+  md = md.replace(/## Recalculated Wave 1 recommendation[\s\S]*$/, footer);
   write(rel, md);
 }
 
@@ -144,7 +145,10 @@ function verify() {
     check(doc.includes('Current main-page donation/support evidence: **present**'), `${slug} canonical doc: support evidence not present`);
   }
   const md = read('audits/tool-quality-matrix.md');
-  for (const slug of targets) check(md.includes(`| [${slug}](../docs/tools/${slug}.md)`) && md.includes(`| **PASS** |`), `${slug}: human matrix row missing`);
+  for (const slug of targets) {
+    const row = md.split('\n').find((line) => line.startsWith(`| [${slug}](`)) || '';
+    check(row.endsWith('| **PASS** |'), `${slug}: human matrix row is not PASS`);
+  }
 }
 
 if (fix) {
