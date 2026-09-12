@@ -5,6 +5,7 @@
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
 - Registration status: intentionally unregistered during the current 87-tool quality cycle
+- Staged landing: `tools/unsubscribe-navi/index.staged.html` (`noindex,nofollow` until registration)
 
 ## Purpose
 
@@ -13,6 +14,8 @@
 中長期の製品目標は、単なるリンク集ではなく、公式ソースで検証した100〜200サービス級の解約・退会手続きデータベースとする。
 
 ## Current functional contract
+
+Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数を変えないため正式公開前のstaged stateとする。production-intent landingは`index.staged.html`に保持し、正式登録時に`index.html`へ昇格させる。
 
 - `data/services.json` をブラウザから読み込む静的ツール。
 - サービス名、alias、keyword、category、summaryを検索対象にする。
@@ -74,6 +77,7 @@
 - verifiedでないrecordへ架空のverification dateを入れない。
 - countを増やすためだけのplaceholderやgeneric brand entryを公開しない。
 - cancellationを妨害する収益導線を設置しない。
+- staged stateの間はpublic `index.html` を作らない。
 
 ## Acceptance criteria
 
@@ -82,12 +86,13 @@
 - [x] 検索とcategory filterが100〜200record規模へそのまま拡張できる。
 - [x] schema / duplicate / state / target progressをnetworkなしで確認できるaudit scriptを持つ。
 - [x] 100→150→200 serviceへの拡張方針がrepository内ROADMAPに固定されている。
+- [x] current 87-tool registryを変えずにstaged sourceを保持する。
 - [ ] legacy recordのofficial-source再検証が完了している。
 - [ ] 100 service以上がverifiedまたは適切なretired historyとして整理されている。
 
 ## Implementation evidence
 
-- `tools/unsubscribe-navi/index.html` — static UI / SEO / FAQ / NicheWorks common surfaces
+- `tools/unsubscribe-navi/index.staged.html` — staged static UI / SEO / FAQ / NicheWorks common surfaces
 - `tools/unsubscribe-navi/app.js` — local database search and rendering
 - `tools/unsubscribe-navi/style.css` — responsive hybrid layout
 - `tools/unsubscribe-navi/data/services.json` — canonical service records
