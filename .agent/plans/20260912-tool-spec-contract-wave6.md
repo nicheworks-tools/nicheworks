@@ -31,9 +31,9 @@ Finish the machine-checked per-tool specification layer after PR #512. Wave 6 co
 
 - [x] PR #512 merged at `44c2fd501096d0e59fa9ee9114b550323c91b46f`.
 - [x] Created the wave-6 branch from that exact merge SHA.
-- [ ] Inspect current implementation of all 11 tools.
-- [ ] Add substantive current-state `SPEC.md` files.
-- [ ] Raise manifest to 87 complete / 0 pending with `required_complete: 87`.
+- [x] Inspected current implementation of all 11 tools.
+- [x] Added substantive current-state `SPEC.md` files for all 11 tools.
+- [x] Raised manifest to 87 complete / 0 pending with `required_complete: 87`.
 - [ ] Run Tool spec audit and existing repository checks.
 - [ ] Confirm documentation-only diff, open PR, squash merge, and confirm main-side audit.
 
@@ -47,14 +47,27 @@ Finish the machine-checked per-tool specification layer after PR #512. Wave 6 co
   Rationale: the final 87/87 contract must be an implementation-grounded SSOT for later quality repair.
   Date: 2026-09-12.
 
+- Decision: document measurement APIs as estimates rather than physical sensors where the browser does not expose the claimed physical quantity.
+  Rationale: Tiny Audio Meter and WiFi Meter must not imply calibrated dB SPL, RSSI, ping, or speed-test measurements that their runtimes do not perform.
+  Date: 2026-09-12.
+
 ## Validation and Acceptance
 
 Acceptance requires all final 11 specs to pass `scripts/check-tool-spec-contract.mjs`, manifest coverage to reach 87/87 with zero pending entries, and no production HTML/JS/CSS changes.
 
 ## Surprises & Discoveries
 
-Populate during implementation inspection.
+- `tiny-audio-meter` derives relative loudness from microphone RMS and estimates pitch only around 60–1200 Hz. It stores up to 20 numeric snapshots in page memory and never records audio files.
+- `trashnavi` is a browser-filtered directory over self-hosted nationwide municipality data plus verified direct waste links. It is not a waste-sorting decision engine or application service.
+- `ui-atlas` has 100 examples, language-specific local favorites/recent history, Free 2-item compare, and common-Pro 5-item compare.
+- `unicode-kanji-checker` and `variant-kanji-compare` consume same-site Old Kanji Reference dictionaries/metadata and keep their Old Kanji Toolkit Pro panels in `billing-unavailable` state.
+- `unitmaster` persists only the latest five conversion-history items plus language/theme settings and treats traditional units as representative approximations.
+- `url-title-collector` has a material disclosure mismatch: the page describes processing as local / fully browser-based, but runtime sends every entered URL to `floral-voice-bfc0.nicheworks-tools.workers.dev` so the Worker can fetch target HTML. The SPEC records the Worker transmission as truth; production copy repair is intentionally separate.
+- `vibe-lexicon` keeps Free compare at two terms; current Pro unlocks output work packs but does not expand the compare-count constant.
+- `weatherdiff` sends place-name queries to geocoding and coordinates to Open-Meteo and MET Norway; it is explicitly unsuitable for disaster, evacuation, warning, transport, or business-critical decisions.
+- `webp-avif-converter` uses browser decode plus Canvas for one image at a time. JPEG conversion flattens transparency to white at quality 0.92; AVIF support depends on the browser.
+- `wifi-meter` does not measure Wi-Fi signal strength, RSSI, SSID, real ping, packet loss, or throughput. It polls Network Information API estimates once per second and classifies them with local thresholds.
 
 ## Outcomes & Retrospective
 
-Populate after CI and merge.
+Pending CI and merge. The final implementation review now has substantive current-state contracts for all 87 registry tools, with the manifest raised to 87 complete / 0 pending and no production HTML/JS/CSS changes in this wave.
