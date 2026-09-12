@@ -1,0 +1,80 @@
+[
+  {
+    "pref": "東京都",
+    "city": "千代田区",
+    "name": "千代田区 令和8年（2026年）資源とごみの収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.chiyoda.lg.jp/koho/kurashi/gomi/wakekata/index.html",
+    "lgcode": "131016",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "東京都",
+    "city": "港区",
+    "name": "港区 ごみ・資源収集日カレンダー（令和8年4月1日から）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.minato.tokyo.jp/unei/2025gomikarenda.html",
+    "lgcode": "131032",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "東京都",
+    "city": "新宿区",
+    "name": "新宿区 資源回収・ごみ収集日（令和8年度）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.shinjuku.lg.jp/seikatsu/file09_01_00001.html",
+    "lgcode": "131041",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "東京都",
+    "city": "渋谷区",
+    "name": "渋谷区 令和8年（2026年）資源とごみの収集日一覧表",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.shibuya.tokyo.jp/kurashi/gomi/kateigomi/gomid.html",
+    "lgcode": "131130",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "東京都",
+    "city": "杉並区",
+    "name": "杉並区 令和8年度（2026年度）ごみ・資源の収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.suginami.tokyo.jp/s104/715.html",
+    "lgcode": "131156",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "東京都",
+    "city": "練馬区",
+    "name": "練馬区 年間カレンダー（令和8年4月～令和9年3月）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.nerima.tokyo.jp/kurashi/gomi/wakekata/ichiran/",
+    "lgcode": "131202",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-12",
+    "status": "active",
+    "language": "ja"
+  }
+]
