@@ -46,12 +46,16 @@ The workspace must reject missing/failed batch records and unknown preset IDs ex
 
 ## Acceptance
 
-- [ ] Batch conversion invokes the shared converter API rather than a duplicate implementation.
-- [ ] Raw JSON is absent from batch result records.
-- [ ] A saved style preset is applied to Mermaid initialization.
-- [ ] `startOnLoad: false` and `securityLevel: "strict"` remain forced by the adapter.
-- [ ] A successful batch result renders to SVG.
-- [ ] SVG and PNG Blob exports complete in deterministic tests.
-- [ ] Workspace source contains no JSON parser/tree-walk/flowchart generator and no network transport.
-- [ ] Public HTML does not load the staged workspace or a Mermaid runtime.
-- [ ] No billing/commercial/affiliate configuration is introduced.
+- [x] Batch conversion invokes the shared converter API rather than a duplicate implementation.
+- [x] Raw JSON is absent from batch result records.
+- [x] A saved style preset is applied to Mermaid initialization.
+- [x] `startOnLoad: false` and `securityLevel: "strict"` remain forced by the adapter.
+- [x] A successful batch result renders to SVG.
+- [x] SVG and PNG Blob exports complete in deterministic tests.
+- [x] Workspace source contains no JSON parser/tree-walk/flowchart generator and no network transport.
+- [x] Public HTML does not load the staged workspace or a Mermaid runtime.
+- [x] No billing/commercial/affiliate configuration is introduced.
+
+## Result
+
+The staged local Pro path is now composable through one workspace API: shared Free converter → batch → saved style preset → Mermaid adapter → SVG/PNG. It remains intentionally disconnected from the public page and from all commercial configuration.
