@@ -12,6 +12,10 @@ assert.equal(normalizeDate('2026/09/12').iso, '2026-09-12');
 assert.equal(normalizeDate('03/04/2026').error, 'ambiguous_date');
 assert.equal(normalizeDate('03/14/2026').iso, '2026-03-14');
 
+const duplicateHeader = tableFromRows(parseCsvText('Amount,Amount,Date\n100,200,2026-09-01\n').rows, 1);
+assert.deepEqual(duplicateHeader.headers, ['Amount', 'Amount (2)', 'Date']);
+assert.equal(duplicateHeader.rows[0].values['Amount (2)'], '200');
+
 const a = table('Date,Reference,Amount\n2026-09-01,A,100\n2026-09-02,B,200\n2026-09-03,C,300\n');
 const b = table('Date,Reference,Amount\n2026-09-01,A,100\n2026-09-03,B,200\n2026-09-03,C,350\n');
 const results = reconcile({ rowsA:a.rows, rowsB:b.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'}, options:{dateToleranceDays:1} });
