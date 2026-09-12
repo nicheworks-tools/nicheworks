@@ -25,13 +25,13 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - 後waveで同じ`id`を再確認した場合はlast-winsで新しい判断を正とする。
 - runtimeとauditは同じmerge契約を使用する。
 - サービス名、alias、keyword、category、summary、procedure type、billing routeを検索対象にする。
-- category filterを提供する。
+- category filterとverification-state filterを提供する。
 - `placeholder` recordは通常検索結果に表示しない。
 - `verified` / `needs_review` / `retired` / legacy dataをUI上で区別する。
 - `procedure_url` がある場合のみ公式手続き・関連情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
 - HTTP 200だけでverifiedへ昇格させない。
 
-Phase 1終了時点は40 effective / 36 public-visible / 33 verified。Phase 2 wave 1で10件、wave 2で7件のofficial-source verified serviceを追加し、57 effective / 53 public-visible / 50 verifiedへ拡張する。
+2026-09-12のPhase 2 Wave 6で100 public-visibleへ到達し、その後Disney+を日本語公式解約記事で再検証した。現在のeffective stateは **104 effective / 100 public-visible / 98 verified / 1 needs_review / 1 retired / 4 placeholder**。Amazonプライムのみ、日本向けの安定した公開procedure sourceを正式公開前に引き続き確認する。
 
 ## Inputs
 
@@ -39,6 +39,7 @@ Phase 1終了時点は40 effective / 36 public-visible / 33 verified。Phase 2 w
 
 - 任意の検索語
 - category filter
+- verification-state filter
 
 入力はブラウザ内filterにのみ使用する。
 
@@ -76,7 +77,7 @@ Phase 1終了時点は40 effective / 36 public-visible / 33 verified。Phase 2 w
 
 `hybrid`
 
-検索・filterはmobileで1columnへ変形し、結果はdesktopで2column、狭幅で1columnとする。100〜200recordでも一覧性を保つ。
+検索・filterはmobileで1columnへ変形し、結果はdesktopで2column、狭幅で1columnとする。100〜200recordでも一覧性を保つ。480px未満ではaction controlsを縦積みにし、スマホ上で公式手続き導線を押しやすくする。
 
 ## Limits and non-goals
 
@@ -101,8 +102,11 @@ Phase 1終了時点は40 effective / 36 public-visible / 33 verified。Phase 2 w
 - [x] re-verification waveをmigration provenance付きで段階適用できる。
 - [x] legacy recordのofficial-source再検証・分類が完了し、`legacy_review_required`が0になっている。
 - [x] Phase 2で新規serviceを既存migration snapshotと分離して追加できる。
-- [x] Phase 2 wave 2終了時点で53 public-visible / 50 verifiedへ到達する。
-- [ ] 100 public-visible service以上がverified中心で整理されている。
+- [x] 100 public-visible service以上がverified中心で整理されている。
+- [x] 100件規模でcategoryとverification-stateを組み合わせて絞り込める。
+- [ ] Amazonプライムの日本向け安定procedure sourceを固定する。
+- [ ] freshness / stale-source report-only監査を実装する。
+- [ ] 個別service page候補20〜30件を正式公開前に選定する。
 
 ## Implementation evidence
 
