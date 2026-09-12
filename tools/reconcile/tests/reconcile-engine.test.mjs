@@ -97,4 +97,28 @@ for (const sourceA of [priorityA, priorityAReversed]) {
   assert.equal(resolvedSummary.b_only, 0);
 }
 
+const denseRows = Array.from({length: 20}, () => '2026-09-01,100').join('\n');
+const denseA = table(`Date,Amount\n${denseRows}\n`);
+const denseB = table(`Date,Amount\n${denseRows}\n`);
+assert.throws(() => reconcile({
+  rowsA:denseA.rows,
+  rowsB:denseB.rows,
+  mappingA:{amount:'Amount',date:'Date'},
+  mappingB:{amount:'Amount',date:'Date'},
+  options:{candidateGraphEdgeLimit:100}
+}), /candidate_graph_too_large/);
+
+const refRowsA = Array.from({length: 20}, (_, i) => `2026-09-01,R${i},100`).join('\n');
+const refRowsB = Array.from({length: 20}, (_, i) => `2026-09-01,R${i},100`).join('\n');
+const refDenseA = table(`Date,Reference,Amount\n${refRowsA}\n`);
+const refDenseB = table(`Date,Reference,Amount\n${refRowsB}\n`);
+const refDenseResults = reconcile({
+  rowsA:refDenseA.rows,
+  rowsB:refDenseB.rows,
+  mappingA:{amount:'Amount',date:'Date',reference:'Reference'},
+  mappingB:{amount:'Amount',date:'Date',reference:'Reference'},
+  options:{candidateGraphEdgeLimit:100}
+});
+assert.equal(summarize(refDenseResults).exact_match, 20);
+
 console.log('reconcile-engine tests: OK');
