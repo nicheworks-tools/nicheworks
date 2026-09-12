@@ -124,12 +124,19 @@ function groupReferenceCompatible(anchor, record, useReference) {
   return referencesCompatible(anchor, record, useReference);
 }
 
-function findCombinations(records, target, tolerance, maxSize) {
+function findCombinations(records, target, tolerance, maxSize, maxNodes) {
   const solutions = [];
   const sorted = [...records].sort((a, b) => a.sourceRow - b.sourceRow);
+  let visitedNodes = 0;
+  let truncated = false;
 
   function walk(start, picked, sum) {
-    if (solutions.length > 1) return;
+    if (solutions.length > 1 || truncated) return;
+    visitedNodes += 1;
+    if (visitedNodes > maxNodes) {
+      truncated = true;
+      return;
+    }
     if (picked.length >= 2 && Math.abs(sum - target) <= tolerance) {
       solutions.push([...picked]);
       if (solutions.length > 1) return;
@@ -140,12 +147,12 @@ function findCombinations(records, target, tolerance, maxSize) {
       picked.push(sorted[i]);
       walk(i + 1, picked, sum + sorted[i].amount);
       picked.pop();
-      if (solutions.length > 1) return;
+      if (solutions.length > 1 || truncated) return;
     }
   }
 
   walk(0, [], 0);
-  return solutions;
+  return { solutions, truncated, visitedNodes };
 }
 
 function groupReason(relation, target, members, tolerance) {
@@ -161,7 +168,8 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
     dateMode: options.dateMode || 'auto',
     signMode: ['normal', 'invert_b', 'ignore_sign'].includes(options.signMode) ? options.signMode : 'normal',
     groupMatching: Boolean(options.groupMatching),
-    maxGroupSize: Math.min(5, Math.max(2, Number(options.maxGroupSize ?? 5)))
+    maxGroupSize: Math.min(5, Math.max(2, Number(options.maxGroupSize ?? 5))),
+    groupSearchNodeLimit: Math.max(1, Number(options.groupSearchNodeLimit ?? 50000))
   };
   if (!mappingA?.amount || !mappingB?.amount) throw new Error('amount_mapping_required');
 
@@ -248,8 +256,12 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
         && groupDateCompatible(recordA, recordB, useDate, config.dateToleranceDays)
         && groupReferenceCompatible(recordA, recordB, useReference)
       );
-      const solutions = findCombinations(pool, recordA.amount, config.amountTolerance, config.maxGroupSize);
-      if (solutions.length === 1) {
+      const groupSearch = findCombinations(pool, recordA.amount, config.amountTolerance, config.maxGroupSize, config.groupSearchNodeLimit);
+      const { solutions } = groupSearch;
+      if (groupSearch.truncated) {
+        reservedCandidateA.add(recordA.sourceRow);
+        results.push({ status: 'candidate', relation: '1:n?', aRows: [recordA.sourceRow], bRows: pool.slice(0, 20).map((item) => item.sourceRow), amount: recordA.amount, date: recordA.dateIso, reason: `Grouped search safety limit reached after ${groupSearch.visitedNodes} nodes; manual review required` });
+      } else if (solutions.length === 1) {
         const members = solutions[0];
         usedA.add(recordA.sourceRow);
         members.forEach((member) => usedB.add(member.sourceRow));
@@ -271,8 +283,12 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
         && groupDateCompatible(recordB, recordA, useDate, config.dateToleranceDays)
         && groupReferenceCompatible(recordB, recordA, useReference)
       );
-      const solutions = findCombinations(pool, recordB.amount, config.amountTolerance, config.maxGroupSize);
-      if (solutions.length === 1) {
+      const groupSearch = findCombinations(pool, recordB.amount, config.amountTolerance, config.maxGroupSize, config.groupSearchNodeLimit);
+      const { solutions } = groupSearch;
+      if (groupSearch.truncated) {
+        reservedCandidateB.add(recordB.sourceRow);
+        results.push({ status: 'candidate', relation: 'n:1?', aRows: pool.slice(0, 20).map((item) => item.sourceRow), bRows: [recordB.sourceRow], amount: recordB.amount, date: recordB.dateIso, reason: `Grouped search safety limit reached after ${groupSearch.visitedNodes} nodes; manual review required` });
+      } else if (solutions.length === 1) {
         const members = solutions[0];
         usedB.add(recordB.sourceRow);
         members.forEach((member) => usedA.add(member.sourceRow));
