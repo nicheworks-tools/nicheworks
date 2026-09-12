@@ -15,6 +15,7 @@ on:
       - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
+      - 'scripts/check-seo-head-metadata-cardinality.mjs'
       - 'scripts/check-seo-indexable-url-identity.mjs'
       - 'scripts/check-seo-public-url-contract.mjs'
       - 'scripts/check-seo-structured-data-integrity.mjs'
@@ -38,6 +39,7 @@ on:
       - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
+      - 'scripts/check-seo-head-metadata-cardinality.mjs'
       - 'scripts/check-seo-indexable-url-identity.mjs'
       - 'scripts/check-seo-public-url-contract.mjs'
       - 'scripts/check-seo-structured-data-integrity.mjs'
@@ -83,6 +85,9 @@ jobs:
 
       - name: Check indexable SEO URL identity
         run: node scripts/check-seo-indexable-url-identity.mjs
+
+      - name: Check SEO head metadata cardinality
+        run: node scripts/check-seo-head-metadata-cardinality.mjs
 
       - name: Check SEO structured data integrity
         run: node scripts/check-seo-structured-data-integrity.mjs
