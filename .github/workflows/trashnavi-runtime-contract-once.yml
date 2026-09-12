@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - fix/trashnavi-runtime-contract-20260913
+    paths:
+      - 'tools/trashnavi/scripts/check-runtime-contract.mjs'
 
 permissions:
   contents: write
@@ -37,16 +39,6 @@ jobs:
           html = html.replace('Data updated: 2026-09-12', 'Data updated: 2026-09-13');
           fs.writeFileSync(indexPath, html);
 
-          const workflowPath = '.github/workflows/check-trashnavi-coverage.yml';
-          let workflow = fs.readFileSync(workflowPath, 'utf8');
-          const generatedStep = "      - name: Check generated municipality pages\n        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check\n";
-          const runtimeStep = "\n      - name: Check runtime contract\n        run: node tools/trashnavi/scripts/check-runtime-contract.mjs\n";
-          if (!workflow.includes('Check runtime contract')) {
-            if (!workflow.includes(generatedStep)) throw new Error('coverage workflow anchor not found');
-            workflow = workflow.replace(generatedStep, generatedStep + runtimeStep);
-          }
-          fs.writeFileSync(workflowPath, workflow);
-
           const specPath = 'tools/trashnavi/SPEC.md';
           let spec = fs.readFileSync(specPath, 'utf8');
           const runtimeItems = [
@@ -79,7 +71,10 @@ jobs:
         run: |
           git config user.name 'nicheworks-tools'
           git config user.email 'nicheworks.tools@gmail.com'
-          git rm .github/workflows/trashnavi-runtime-contract-once.yml
-          git add tools/trashnavi/index.html tools/trashnavi/SPEC.md tools/trashnavi/scripts/check-runtime-contract.mjs .github/workflows/check-trashnavi-coverage.yml
+          git add tools/trashnavi/index.html tools/trashnavi/SPEC.md
+          if git diff --cached --quiet; then
+            echo 'No runtime patch changes to commit.'
+            exit 0
+          fi
           git commit -m 'Enforce TrashNavi runtime contract'
           git push origin HEAD:fix/trashnavi-runtime-contract-20260913
