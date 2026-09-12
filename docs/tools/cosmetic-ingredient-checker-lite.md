@@ -29,7 +29,8 @@ Provide a fast Japanese paste-first cosmetic ingredient checker that normalizes 
 - Reuse the maintained shared cosmetic parser and the local INCI FastScan dictionary files.
 - Match normalized input by exact INCI name, Japanese name, or declared alias; do not promote substring similarity into an exact ingredient identity.
 - Fall back to the implemented lightweight exact-match rules if the dictionary files cannot be loaded.
-- Show parsed count, dictionary-match count, review-candidate count, unclassified count, prominent functional categories, and a row-per-ingredient result table.
+- Show parsed count, dictionary-match count, review-candidate count, unclassified count, dictionary recognition percentage, prominent functional categories, and a row-per-ingredient result table.
+- Surface currently unclassified ingredient names as a compact review list so coverage gaps are visible without scanning the full table.
 - Keep caution/risk metadata internal to the matching layer; the Lite UI exposes only a non-diagnostic review cue.
 - Keep unknown entries explicitly unclassified rather than inventing a diagnosis or safety conclusion.
 - Support clear/reset and copying the current result.
@@ -40,6 +41,8 @@ Provide a fast Japanese paste-first cosmetic ingredient checker that normalizes 
 
 - Parsed ingredient count.
 - Dictionary-match, review-candidate, and unclassified summary counts.
+- Dictionary recognition percentage (`dictionary matches / parsed ingredients`) as a coverage indicator, not a safety score.
+- Compact list of currently unclassified ingredient names, capped in the summary while the full result table remains available.
 - Up to eight prominent functional-category chips derived from matched dictionary entries.
 - Ingredient table containing the original input name, current reference status/categories, and concise explanatory note.
 - Clipboard copy of the current result.
@@ -53,7 +56,7 @@ Observed delivery capabilities: clipboard copy **present**; download/export **no
 - **Invalid or unsupported input:** Unrecognized items remain explicitly unclassified rather than receiving an invented ingredient identity or safety conclusion.
 - **Copy failure:** Clipboard rejection follows the implemented feedback/fallback path and does not mutate the ingredient result.
 - **Safe fallback/reset:** Clear/reset removes the current input-derived result and returns the tool to a retryable state.
-- **Runtime evidence inspected:** `tools/_shared/cosmetic-ingredient-parser.js`, `tools/cosmetic-ingredient-checker-lite/app.js`, `tools/cosmetic-ingredient-checker-lite/index.html`, `tools/cosmetic-ingredient-checker-lite/qa.json`.
+- **Runtime evidence inspected:** `tools/_shared/cosmetic-ingredient-parser.js`, `tools/cosmetic-ingredient-checker-lite/app.js`, `tools/cosmetic-ingredient-checker-lite/enhancements.js`, `tools/cosmetic-ingredient-checker-lite/index.html`, `tools/cosmetic-ingredient-checker-lite/qa.json`.
 
 ## 7. Privacy/data handling
 
@@ -103,6 +106,8 @@ Follow common-spec sections 6 and 9-4. Current main-page donation/support eviden
 - [ ] Slash/middle-dot ingredient names and numeric locant commas are preserved by the shared parser.
 - [ ] Exact INCI/Japanese/alias matches enrich results from maintained local dictionary data without substring false positives such as treating `Cetearyl Alcohol` as plain `Alcohol`.
 - [ ] Unknown items remain explicitly unclassified rather than receiving fabricated safety claims.
+- [ ] Dictionary recognition percentage is visible after analysis and remains framed as dictionary coverage rather than a safety or product-quality score.
+- [ ] Unclassified ingredient names are surfaced compactly while the complete result table remains available.
 - [ ] Clear removes the current working result and copy uses the currently generated result.
 - [ ] The page remains Japanese-only and retains medical/regulatory disclaimers.
 - [ ] The INCI FastScan route remains available for photo/OCR use.
@@ -123,6 +128,8 @@ Automated evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contr
 - `tools/cosmetic-ingredient-checker-lite/index.html`
 - `tools/cosmetic-ingredient-checker-lite/app.js`
 - `tools/cosmetic-ingredient-checker-lite/style.css`
+- `tools/cosmetic-ingredient-checker-lite/enhancements.js`
+- `tools/cosmetic-ingredient-checker-lite/enhancements.css`
 - `tools/cosmetic-ingredient-checker-lite/qa.json`
 - `tools/cosmetic-ingredient-checker-lite/howto/`
 - `tools/inci-fastscan/data/ingredients*.json` (read-only runtime data dependency)
