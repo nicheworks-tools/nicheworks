@@ -1,7 +1,7 @@
 # ExecPlan: ATS Paste Doctor NicheWorks Pro bundle boundary
 
 ## Goal
-Freeze the exact runtime-backed Free/Pro boundary for `ats-paste-doctor`, harden the legacy shared-Pro entitlement check, and stage a fail-closed controller for future shared `nicheworks.pro` migration without activating live billing or inventing commercial configuration.
+Freeze the exact runtime-backed Free/Pro boundary for `ats-paste-doctor`, harden the legacy shared-Pro entitlement and ordinary UI interaction checks, and stage a fail-closed controller for future shared `nicheworks.pro` migration without activating live billing or inventing commercial configuration.
 
 ## Authority
 - `MONETIZATION_CLASSIFICATION_87.md`: `ats-paste-doctor` is `PRO_BUNDLE`.
@@ -22,12 +22,18 @@ Freeze the exact runtime-backed Free/Pro boundary for `ats-paste-doctor`, harden
 4. `templates` — browser-local template slots save/load.
 5. `history` — browser-local output history save/load/delete/clear.
 
-No additional paid feature is invented. Current copy/TXT remains Free.
+No additional paid feature is invented. Current copy/TXT remains Free. Historical ad hiding stays a suite/presentation concern rather than a sixth ATS tool-operation entitlement.
 
 ## Legacy hardening
-Replace the current entitlement fallback (`local.entitlement || nicheworks_pro`) with exact activation:
+Replace the previous entitlement fallback (`local.entitlement || nicheworks_pro`) with exact activation:
 - `local.active === true`
 - `local.entitlement === "nicheworks_pro"`
+
+Because current `app.js` reads `document.documentElement.dataset.proActive` for both the 30,000/200,000 processing limit and Pro actions, the bridge must also re-run that exact entitlement check in click capture before the normal UI handles:
+- `#processBtn`; and
+- every `[data-pro-action]` control.
+
+This closes ordinary DevTools DOM-attribute self-unlock without pretending the legacy browser-local mechanism is future payment authority.
 
 ## Product-scoped staging
 Add a thin wrapper over `assets/nw-product-scoped-controller.mjs` with the five operations above. Future live configuration for this approved bundle member must use `nicheworks.pro`.
@@ -44,11 +50,12 @@ Billing/entitlement traffic may contain fixed product/feature metadata only. Pas
 - no affiliate/ManualFinder/Amazon changes.
 
 ## Validation
-- exact five-operation controller contract;
-- partial verified feature activation;
-- local/wrong-product/unverified/error states fail closed;
-- Free 30,000 and Pro 200,000 limits protected;
-- Free copy/TXT contract protected;
-- paid pack/export/template/history evidence protected;
-- exact legacy entitlement check protected;
-- tool/canonical specs and Wave 5 contract aligned to `PRO_BUNDLE` + `nicheworks.pro`.
+- [x] exact five-operation controller contract;
+- [x] partial verified feature activation;
+- [x] local/wrong-product/unverified/error states fail closed;
+- [x] Free 30,000 and Pro 200,000 limits protected;
+- [x] Free copy/TXT contract protected;
+- [x] paid pack/export/template/history evidence protected;
+- [x] exact legacy entitlement check protected;
+- [x] normal Generate/Pro clicks revalidate legacy state before app handlers, so DOM-only `data-pro-active` edits do not survive the ordinary UI path;
+- [x] tool/canonical specs and Wave 5 contract aligned to `PRO_BUNDLE` + `nicheworks.pro`.
