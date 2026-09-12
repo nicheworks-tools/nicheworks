@@ -36,6 +36,16 @@ const toleranceB = table('Date,Amount\n2026-09-01,100.05\n');
 const toleranceResults = reconcile({ rowsA:toleranceA.rows, rowsB:toleranceB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'}, options:{amountTolerance:0.05} });
 assert.equal(toleranceResults[0].status, 'tolerant_match');
 
+const referenceToleranceA = table('Date,Reference,Amount\n2026-09-01,R1,100.00\n');
+const referenceToleranceB = table('Date,Reference,Amount\n2026-09-01,R1,100.05\n');
+const referenceToleranceResults = reconcile({ rowsA:referenceToleranceA.rows, rowsB:referenceToleranceB.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'}, options:{amountTolerance:0.05} });
+assert.equal(referenceToleranceResults[0].status, 'tolerant_match');
+
+const decimalGroupA = table('Date,Amount\n2026-09-01,0.3\n');
+const decimalGroupB = table('Date,Amount\n2026-09-01,0.1\n2026-09-01,0.2\n');
+const decimalGroupResults = reconcile({ rowsA:decimalGroupA.rows, rowsB:decimalGroupB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'}, options:{groupMatching:true,maxGroupSize:5} });
+assert.ok(decimalGroupResults.some((x)=>x.relation==='1:2' && x.status==='tolerant_match'));
+
 const signA = table('Date,Amount\n2026-09-01,100\n');
 const signB = table('Date,Amount\n2026-09-01,-100\n');
 const signResults = reconcile({ rowsA:signA.rows, rowsB:signB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'}, options:{signMode:'invert_b'} });
