@@ -115,6 +115,25 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`6810|https://www.seikowatches.com/au-en/-/
 6R15|https://www.seikowatches.com/id-id/-/media/Files/Common/Seiko/instructions/Japanese/6/6R15/6R15_3.pdf
 6T63|https://www.seikowatches.com/id-id/-/media/Files/Common/Seiko/instructions/Japanese/6/6T63/6T63.pdf`);
 
+// Wave 2W: direct Seiko 7-series manuals with verified one-caliber primary destinations.
+window.MANUALFINDER_WAVE2_SEIKO.push(`7002|https://www.seikowatches.com/sg-en/-/media/Files/Common/Seiko/instructions/English/7/7002/7002.pdf
+7B24|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7B24/7B24.pdf
+7B26|https://www.seikowatches.com/us-en/-/media/Files/Common/Seiko/instructions/English/7/7B26/7B26.pdf
+7B27|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7B27/7B27.pdf
+7L22|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/7/7L22/7L22.pdf
+7R68|https://www.seikowatches.com/ph-en/-/media/Files/Common/Seiko/instructions/English/7/7R68/7R68.pdf
+7T04|https://www.seikowatches.com/uk-en/-/media/Files/Common/Seiko/instructions/English/7/7T04/7T04.pdf
+7T11|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/7/7T11/7T11.pdf
+7T12|https://www.seikowatches.com/th-th/-/media/Files/Common/Seiko/instructions/English/7/7T12/7T12.pdf
+7T32|https://www.seikowatches.com/kr-ko/-/media/Files/Common/Seiko/instructions/Japanese/7/7T32/7T32.pdf
+7T34|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/7/7T34/7T34.pdf
+7T62|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/7/7T62/7T62.pdf
+7T82|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/7/7T82/7T82.pdf
+7T84|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/English/7/7T84/7T84.pdf
+7T85|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/7/7T85/7T85.pdf
+7T86|https://www.seikowatches.com/us-en/-/media/Files/Common/Seiko/instructions/English/7/7T86/7T86.pdf
+7T94|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/7/7T94/7T94.pdf`);
+
 // Normalize Seiko evidence/support links to the model-specific official caliber search.
 // This removes the original H-index assumption while preserving the existing builder contract.
 {
