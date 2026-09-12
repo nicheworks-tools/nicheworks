@@ -1,0 +1,10 @@
+SheetJS Community Edition (xlsx) — Apache License 2.0
+https://github.com/SheetJS/sheetjs  |  https://sheetjs.com
+
+Vendored build
+  file    : xlsx.mini.min.js
+  version : 0.20.3
+  source  : https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.mini.min.js
+  sha256  : 0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939
+
+NicheWorks does not load this dependency from a CDN at runtime. The vendored bytes must match the pinned SHA-256 above before publication.

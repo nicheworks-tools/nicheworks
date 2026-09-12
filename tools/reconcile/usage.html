@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Reconcile usage — development</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="nw-main" style="padding-top:30px">
+    <section class="panel">
+      <h1>NicheWorks Reconcile — Usage</h1>
+      <p>このページは開発ブランチ用です。CSV照合コア、高度照合エンジン、XLSX読込/出力は実装済みです。XLSXは検証済みSheetJS CE 0.20.3 miniをローカル同梱し、ランタイムCDNを使用しません。Pro機能は課金接続前のためロックされています。</p>
+
+      <h2>Free workflow</h2>
+      <ol>
+        <li>CSV A/Bを選択、またはサンプルを読み込みます。</li>
+        <li>必要なら文字コード、区切り文字、ヘッダー行を調整します。</li>
+        <li>金額列を必須で対応付け、必要なら日付・取引ID・摘要を選びます。</li>
+        <li>日付許容差と曖昧日付の解釈を選び、照合します。</li>
+        <li>exact / tolerant / candidate / A only / B only / duplicate / conflict を確認します。</li>
+        <li>結果をCSVで保存できます。</li>
+      </ol>
+
+      <h2>Matching rules</h2>
+      <p>照合は決定論的です。Reference完全一致を優先し、その後もA/B双方から見て一意な1:1関係だけを自動確定します。複数の候補がある場合や複数A行が同じB行を取り合う場合は、入力順で勝手に割り当てずcandidateにします。同一参照IDでも金額差が許容範囲を超える場合はconflictとして扱います。</p>
+      <p>同額取引が大量に並ぶなど、1:1候補グラフが安全上限を超える場合は途中結果を自動確定せず照合を停止します。その場合は日付または取引ID/参照列を追加して候補を絞ります。1:n / n:1の組合せ探索にも別の探索上限があり、上限到達時は自動一致せずmanual review候補へ落とします。</p>
+
+      <h2>Reconcile Pro implementation</h2>
+      <p>Pro用の金額許容差、B側符号反転、符号無視、1:n / n:1照合、最大5件のグループ照合、XLSXレポート、保存済みルールのコードとUIは実装済みです。ただしこの隔離ブランチではentitlementを接続していないため、操作はロックされています。</p>
+      <p>保存済みルールは列対応・CSV解析設定・照合条件だけをlocalStorageへ保存します。取引行、ファイル本体、照合結果は保存しません。ルールは最大20件で、JSONとしてimport/exportできます。保存した列名が新しいファイルに存在しない場合は、その列を勝手に置き換えず未選択に戻して警告します。</p>
+
+      <h2>XLSX status</h2>
+      <p>複数worksheetの選択、Excel日付/数値の読み込み、Summary / Matches / Candidates / A Only / B Only / Duplicates / Conflicts の7シートレポート生成まで実装済みです。SheetJS CE 0.20.3のmini buildをローカル固定し、ランタイムCDNは使用しません。vendor本体はsize / SHA-256 / Git blob SHA / runtime versionを照合済みで、実vendorを使ったXLSX write→read再読込テストも通過しています。公開前には実ブラウザUIで最終スモーク確認します。</p>
+
+      <h2>Privacy</h2>
+      <p>取引行はブラウザ内で処理します。この開発ブランチのコードは取引データ送信用APIを持ちません。公開時の課金通信もentitlement情報のみを扱い、取引ファイルは送信対象にしません。</p>
+
+      <h2>Current limits</h2>
+      <p>FreeはCSV/XLSXとも1ファイル500行・5MBまでです。Reconcile ProはCSVが1ファイル100,000行・50MBまで、XLSXが1ファイル50,000行・25MBまでです。これらはブラウザを安全に扱うための製品上限であり、理論上の処理能力を示すものではありません。さらに1:1候補グラフと1:n / n:1探索には明示的な安全予算を設けています。</p>
+
+      <p><a href="./development.html">Return to Reconcile development UI</a></p>
+    </section>
+  </main>
+</body>
+</html>
