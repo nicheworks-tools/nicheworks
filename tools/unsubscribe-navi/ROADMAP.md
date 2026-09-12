@@ -8,7 +8,7 @@
 
 ## Phase 0 — Absorption foundation
 
-Status: implemented on the absorption branch.
+Status: implemented.
 
 - standalone repositoryの約40recordをmonorepoへ移す
 - 旧6時間HTTP checkerをcanonical updaterとして廃止
@@ -21,21 +21,53 @@ Status: implemented on the absorption branch.
 
 Goal: 旧40件を「使える40件」へ変える。
 
-- 40件全件をofficial sourceで再確認
-- dead / renamed / migrated serviceを`retired`または現行identityへ整理
-- generic entry（例: 「○○系サブスク」）をactual service単位へ分解または削除
-- missing procedure URLを補う
-- App Store / Google Play / direct billing等のroute差を記録
-- 誤redirect / irrelevant pageを除去
+Status after re-verification wave 1 (2026-09-12):
+
+- effective records: 40
+- `verified`: 24
+- `retired`: 1（dTV → Lemino）
+- `needs_review`: 1（Rakuten TV定額見放題の2026年再編）
+- `placeholder`: 3（TVer旧placeholder + 旧generic 2件）
+- `legacy_review_required`: 11
+- visible records: 37
+- visible recordsに占めるverified比率: 約65%
+
+Wave 1では、旧40件を直接破壊的に書き換えず、`data/reverification/*.json`のoverlayでofficial-source review結果を固定した。Phase 1終了時にeffective recordsを新canonical datasetへcompactする。
+
+完了済みの主な修正:
+
+- iCloud+の誤redirect URLを現行Apple公式案内へ修正
+- Notion / Slack / Adobe等の旧help URLを現行公式案内へ修正
+- ChatGPTの旧`Plus / Team`表記を現行有料プランの扱いへ整理
+- dTVを現役subscriptionではなくLemino移行済みhistoryへ変更
+- 楽天市場系 / au PAYマーケット系のgeneric rowをplaceholderへ隔離
+- carrier 4件で回線解約とMNPを混同しないsummaryへ整理
+- App Store / Google Play / direct billing等の主要routeをverified recordへ追加
+
+残る主な再確認対象:
+
+- Amazonプライム
+- ディズニープラス
+- ABEMAプレミアム
+- AWA
+- Amazon Music Unlimited
+- Box
+- ニコニコプレミアム
+- 楽天マガジン
+- BookLive!旧読み放題項目
+- Kindle Unlimited
+- DMMブックス旧読み放題項目
+- Rakuten TVの存続plan単位への再編
 
 Exit gate:
 
 - legacy_review_requiredを原則0へ近づける
+- generic / obsolete recordを具体的service単位またはretired/historyへ整理する
 - visible recordの大半がverifiedまたは明示的retired
 
 ## Phase 2 — Expand to 100
 
-追加60件程度をresearch waveで収録する。
+Phase 1を閉じた後、追加60件程度をresearch waveで収録する。
 
 Priority categories:
 
