@@ -110,12 +110,14 @@ verified昇格時に確認する内容:
 ルール:
 
 - overlay recordはbaseに存在する`id`だけを上書きできる。
-- 同じ`id`を複数overlayへ重複させない。
-- runtimeとauditはbase + overlayのeffective recordを同じ順序で解釈する。
+- 同一wave file内で同じ`id`を重複させない。
+- 後のwaveで同じ`id`を再確認した場合は、**後waveを正とするlast-wins**で上書きできる。これにより`needs_review`から`verified`への昇格等を履歴を残したまま表現する。
+- overlay適用順はファイル名の昇順とし、runtimeの明示listも同じwave順を維持する。
+- runtimeとauditはbase + overlayのeffective recordを同じmerge semanticsで解釈する。
 - overlayは「HTTP checker結果」ではなくofficial-source reviewの結果だけを保存する。
 - Phase 1終了時に、全旧recordの整理が完了したらeffective recordsを新しいcanonical datasetへcompactしてよい。
 
-この方式により、旧版のmigration provenanceを残したまま、再検証結果を段階的に確定できる。
+この方式により、旧版のmigration provenanceと途中waveの判断を残したまま、より新しい公式確認で暫定状態を更新できる。
 
 ## 7. Database scale
 
