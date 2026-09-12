@@ -248,7 +248,7 @@ async function loadFile(side, file) {
   } catch (error) {
     const code = String(error?.message || error);
     if (code === 'xlsx_library_missing' || code === 'xlsx_vendor_load_failed') {
-      setNotice(message('XLSX処理ライブラリ本体はまだこの開発ブランチへ同梱されていません。CSVは利用できます。', 'The XLSX vendor payload has not been committed to this development branch yet. CSV remains available.'), 'warning');
+      setNotice(message('XLSX処理ライブラリを読み込めませんでした。ローカルvendorの読み込みに失敗したためXLSX処理を停止しました。', 'The XLSX library could not be loaded. XLSX processing stopped because the local vendor payload failed to load.'), 'warning');
       return;
     }
     if (code === 'xlsx_version_mismatch') {

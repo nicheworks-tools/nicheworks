@@ -19,8 +19,8 @@
   </header>
 
   <main class="nw-main">
-    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引データはNicheWorksへ送信しません。CSVは動作中です。XLSXアダプターは実装済みで、検証済み固定版ライブラリ本体の同梱だけを残しています。</p>
-    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction data is not sent to NicheWorks. CSV is active. The XLSX adapter is implemented and only the verified pinned vendor payload remains to be added.</p>
+    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引データはNicheWorksへ送信しません。CSV/XLSXともローカル処理です。XLSXは検証済みSheetJS CE 0.20.3 miniをローカル同梱し、ランタイムCDNを使用しません。</p>
+    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction data is not sent to NicheWorks. CSV and XLSX are processed locally. XLSX uses a verified locally vendored SheetJS CE 0.20.3 mini build with no runtime CDN dependency.</p>
 
     <section class="steps" aria-label="Workflow">
       <div class="step"><strong>1. Files</strong><span data-i18n="ja">A/Bを読み込む</span><span data-i18n="en">Load A/B</span></div>

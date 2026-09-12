@@ -119,9 +119,10 @@ After rebasing on current main:
 - [x] Warn when a saved profile references columns missing from the currently loaded files instead of silently substituting other columns.
 - [x] Wire advanced Pro rule/profile/report UI behind a hard entitlement lock.
 - [x] Update Reconcile specification and usage documentation to match the branch.
-- [ ] Enrich CSV/XLSX audit exports with selected original A/B values and full reconciliation context.
-- [ ] Commit the checksum-verified `xlsx.mini.min.js` bytes; this is the remaining isolated Wave C dependency blocker.
-- [ ] Run final browser validation with the real XLSX vendor present.
+- [x] Enrich CSV/XLSX audit exports with selected original A/B values and full reconciliation context.
+- [x] Commit the checksum-verified `xlsx.mini.min.js` bytes and verify size / SHA-256 / Git blob SHA / runtime version.
+- [x] Run real-vendor XLSX write/read round-trip and seven-sheet report re-read tests.
+- [ ] Run final browser UI smoke validation before publication.
 - [ ] Complete billing integration in a separate PR.
 - [ ] Complete publication integration in a separate PR.
 
@@ -132,8 +133,8 @@ After rebasing on current main:
 - Two independent public GitHub vendor copies of the selected mini build have identical bytes: size `279523` and Git blob SHA `5bf1c223ce4bd59685ba711b77dce6da7a9747b8`.
 - Recorded SHA-256 for those bytes is `0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939`.
 - Runtime CDN loading is forbidden. The adapter now expects `tools/reconcile/vendor/xlsx.mini.min.js` and rejects a runtime whose `XLSX.version` is not exactly `0.20.3`.
-- Apache-2.0 license and a vendor provenance notice are already committed under `tools/reconcile/vendor/`; only the verified JS payload remains to be added.
-- The current execution environment cannot directly clone/download external GitHub/CDN bytes through its shell because outbound DNS is unavailable. Cross-repository Git object SHA reuse was also rejected by GitHub. An unverified or retyped vendor payload is deliberately not being committed.
+- Apache-2.0 license, vendor provenance notice, and the checksum-verified SheetJS CE 0.20.3 mini payload are committed under `tools/reconcile/vendor/`.
+- The verified vendor payload was fetched on a GitHub-hosted runner from the pinned SheetJS CE 0.20.3 distribution, checked against size `279523`, SHA-256 `0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939`, Git blob SHA `5bf1c223ce4bd59685ba711b77dce6da7a9747b8`, and runtime version `0.20.3`, then committed only after all Reconcile tests passed.
 - CSV physical row identity previously shifted after blank lines because the data array was filtered before source-row numbering. The parser now attaches source-row identity before filtering; dedicated fixtures cover blank rows and non-row-1 headers.
 - Text/reference normalization now uses Unicode NFKC. Amount fixtures cover full-width Japanese values, accounting parentheses, Unicode/trailing minus, common currency symbols/codes, US-style thousands/decimal notation, European decimal-comma notation, and malformed inputs.
 - 1:1 matching previously processed A rows greedily, which allowed a shared sole B candidate to be assigned to whichever A row appeared first. The engine now resolves exact Reference relationships first and only auto-accepts mutually unique pairs; unresolved competition is emitted as candidate.
@@ -145,7 +146,7 @@ After rebasing on current main:
 - Group matching is bounded to maximum group size 5 and a default 50,000-node search budget; hitting the budget yields a review candidate instead of auto-resolving an incomplete search.
 - The profile store uses schema version 1, stores at most 20 profiles, and persists configuration only under `nw_reconcile_profiles_v1`.
 - Profile-store unit tests cover normalization, update-without-duplication, versioned export/import, invalid-schema rejection, bounds clamping, removal, and clearing.
-- XLSX adapter tests use an API-compatible fake and cover worksheet parsing and workbook/report construction without claiming real-vendor browser validation.
+- XLSX adapter tests cover the API contract, and `xlsx-real-vendor.test.mjs` validates the committed real vendor with XLSX write/read, worksheet selection, seven-sheet report generation, and workbook re-read. Final browser UI smoke validation remains separate publication-readiness work.
 
 ## Validation
 

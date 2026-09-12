@@ -20,14 +20,11 @@ The selected mini build was cross-checked in two independent public GitHub repos
 
 This evidence is used only to verify the bytes. Do not add a runtime dependency on either mirror.
 
-## Required verification before commit
+## Verification record
 
-1. Obtain the exact `xlsx.mini.min.js` bytes whose SHA-256 is `0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939`.
-2. Verify file size is `279523` bytes.
-3. Verify SHA-256 before creating the repository blob.
-4. Preserve the upstream copyright/license header.
-5. Add the applicable Apache-2.0 license/attribution alongside the vendored file before publication.
-6. Run `tools/reconcile/tests/xlsx-adapter.test.mjs` and real browser XLSX read/write validation.
+The committed payload was fetched from the pinned SheetJS CE 0.20.3 distribution and verified before commit: size `279523` bytes, SHA-256 `0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939`, Git blob SHA `5bf1c223ce4bd59685ba711b77dce6da7a9747b8`, and runtime version `0.20.3`. The upstream copyright/license header is preserved and Apache-2.0 attribution remains alongside the vendor file.
+
+Automated tests cover the adapter contract plus a real-vendor XLSX write/read round trip and seven-sheet report re-read. Final browser UI smoke validation remains part of publication readiness.
 
 Do not commit a third-party mirror merely because it claims to be version 0.20.3. The exact bytes must match the pinned checksum.
 

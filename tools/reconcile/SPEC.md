@@ -13,7 +13,7 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 
 The isolated implementation branch contains the complete CSV reconciliation flow, the advanced matching engine, the XLSX adapter/report layer, and a local saved-profile subsystem. Public billing and publication integration are intentionally absent.
 
-CSV input is operational. XLSX parsing/export code is present, including worksheet selection and seven-sheet report generation, but the pinned SheetJS vendor file is not yet committed. Therefore XLSX remains unavailable in the browser until that vendor file is added.
+CSV and XLSX parsing/export code is present, including worksheet selection and seven-sheet report generation. The pinned SheetJS CE 0.20.3 mini vendor is committed locally and verified by exact size, SHA-256, Git blob SHA, runtime version, and a real-vendor XLSX write/read round-trip test.
 
 Reconcile Pro controls are rendered but locked because no entitlement adapter is connected on this isolated branch. The code path for amount tolerance, sign modes, grouped matching, larger files, XLSX export, and saved profiles is already wired behind that lock.
 
@@ -176,7 +176,7 @@ The isolated branch hard-locks Pro controls. Billing integration is a separate l
 - Saved profiles never contain transaction rows or file bytes.
 - Invalid profile JSON/schema is rejected; imported options are normalized before persistence.
 - Pro controls remain unavailable until a real entitlement adapter enables them.
-- XLSX browser behavior is not declared complete until the pinned local vendor file is committed and browser-tested.
+- The pinned local XLSX vendor must pass byte-level verification and real-vendor write/read round-trip tests; final browser UI smoke validation remains a publication-readiness check.
 
 ## Implementation evidence
 
@@ -195,4 +195,6 @@ The isolated branch hard-locks Pro controls. Billing integration is a separate l
 - `tools/reconcile/tests/parser.test.mjs`
 - `tools/reconcile/tests/reconcile-engine.test.mjs`
 - `tools/reconcile/tests/xlsx-adapter.test.mjs`
+- `tools/reconcile/tests/xlsx-real-vendor.test.mjs`
+- `tools/reconcile/vendor/xlsx.mini.min.js`
 - `tools/reconcile/tests/rules-store.test.mjs`
