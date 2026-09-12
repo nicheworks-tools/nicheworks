@@ -3,7 +3,7 @@
 - Slug: `trashnavi`
 - Public URL: `https://nicheworks.app/tools/trashnavi/`
 - Specification status: `complete`
-- Expansion status: `official-gateway municipality pilot active`
+- Expansion status: `official-gateway municipality expansion active`
 - Common specification: `common-spec/spec-ja.md`
 - Data model: `tools/trashnavi/DATA_MODEL.md`
 
@@ -18,7 +18,7 @@
 - 自サイト内の自治体JSON dataを読み込み、全国の自治体top pageと確認済みのごみ分別・収集calendar・粗大ごみ・検索page等を一覧化する。
 - prefecture、municipality、link type、keywordでbrowser-side filteringする。
 - quick prefecture filterとして東京都、大阪府、神奈川県、愛知県、福岡県を提供する。
-- link typeは自治体公式ページ、ごみ分別ページ、収集カレンダー、粗大ごみ、検索ページを扱う。
+- runtimeのlink type filterは自治体公式ページ、ごみ分別ページ、収集カレンダー、粗大ごみ、粗大ごみ申込み、検索ページ、持込施設、ごみ分別アプリを扱う。
 - duplicateはlgcode/type/URLの組合せを基準に除外する。
 - 結果から自治体公式external pageを新しいtabで開く。
 - missing/broken linkはGitHub Issue templateへの報告導線を持つ。
@@ -121,14 +121,15 @@ first-pass candidateは、`municipal_home` を除いて **2種類以上の異な
 - waste sorting / official waste search
 - collection calendar
 - bulky-waste guidance / application
+- drop-off facility / official waste app などの自治体公式補助導線
 
 generic municipal top pageしか持たない自治体はthin landing pageを生成しない。
 
-### Municipality page pilot contract
+### Municipality page publication contract
 
 自治体別indexable pageは `tools/trashnavi/municipality-page-manifest.json` を公開対象のallowlistとし、`tools/trashnavi/scripts/generate-municipality-pages.mjs` から静的生成する。
 
-pilotでは東京都のpreferred candidate 7自治体のみを公開する。
+初期pilotでは東京都のpreferred candidate 7自治体を公開した。
 
 - 千代田区
 - 港区
@@ -138,7 +139,11 @@ pilotでは東京都のpreferred candidate 7自治体のみを公開する。
 - 杉並区
 - 練馬区
 
-公開URLは `/tools/trashnavi/tokyo/<municipality-slug>/` とする。
+Wave 3ではSearch Consoleで需要が確認され、3種類以上のofficial link typeへ到達した次の3自治体を追加し、公開対象を **10自治体** とする。
+
+- 三重県 御浜町 — `/tools/trashnavi/mie/mihama/`
+- 岐阜県 海津市 — `/tools/trashnavi/gifu/kaizu/`
+- 茨城県 結城市 — `/tools/trashnavi/ibaraki/yuki/`
 
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
@@ -151,7 +156,7 @@ pilotでは東京都のpreferred candidate 7自治体のみを公開する。
 - `last_checked` がある場合のみ確認日表示
 - 2026 collection calendarがある場合の明示導線
 - TrashNavi本体へのbreadcrumb
-- pilot自治体間のrelated links
+- 公開自治体間のrelated links
 - site-wide analytics / advertising hooks
 - WebPage / BreadcrumbList structured data
 
@@ -163,7 +168,23 @@ pilotでは東京都のpreferred candidate 7自治体のみを公開する。
 node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 ```
 
-CIではcoverage strict auditと生成drift checkの両方を必須とし、pilot URLがroot sitemapから欠落しても失敗させる。
+CIではcoverage strict auditと生成drift checkの両方を必須とし、公開URLがroot sitemapから欠落しても失敗させる。
+
+### Wave 3 verified coverage baseline
+
+2026-09-12のWave 3 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,184 / 2,184 valid HTTP(S)
+- municipalities with any waste-specific direct link: 77
+- publish candidates (2+ types): 11
+- preferred candidates (3+ types): 10
+- collection calendar coverage: 10 municipalities
+- bulky-waste coverage: 10 municipalities
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- invalid records: 0
+- unknown type labels: 0
 
 ## Monetization boundary
 
@@ -171,7 +192,7 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、pilo
 - monetizationを理由に自治体固有ルールを水増し・推測・転載しない。
 - Amazon等のaffiliateを将来追加する場合、自治体official link cardと商品recommendationを同一のauthorityに見せない。
 - affiliate/related-product surfaceはofficial municipality informationとは視覚的・意味的に分離する。
-- Phase 1 / municipality pilotではaffiliate block自体を追加しない。
+- 現在のmunicipality expansionではaffiliate block自体を追加しない。
 
 ## Limits and non-goals
 
@@ -180,7 +201,7 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、pilo
 - direct waste linkは全自治体で同じ深さまで揃っているわけではない。
 - URL変更、link切れ、制度改定があり得るため最新情報は自治体official siteで確認する。
 - 表示dataの更新日やcoverageは永続的な完全性を保証しない。
-- 全国の品目別分別ルールを一括してNicheWorks側で正規化することは、現時点のPhase 1対象外。
+- 全国の品目別分別ルールを一括してNicheWorks側で正規化することは、現時点の対象外。
 - 自治体pageの大量生成をdata coverageより先に行わない。
 
 ## Acceptance criteria
@@ -203,26 +224,29 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、pilo
 - [x] landing-page readinessがraw URL数ではなくdistinct waste-specific link type数で判定される。
 - [x] Phase 1では自治体固有ルールを新たに推測・転載しない。
 
-### Municipality page pilot
+### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] pilot 7自治体をmanifest allowlistで管理する。
-- [x] pilot自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で生成driftを検出する。
-- [x] pilot URLをroot sitemapと専用sitemapへ収録する。
+- [x] 公開10自治体をmanifest allowlistで管理する。
+- [x] 自治体pageをgeneratorから静的生成する。
+- [x] generator `--check` で10ページの生成driftを検出する。
+- [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
+- [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
 - [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ## Implementation evidence
 
-- `tools/trashnavi/index.html` — filter/result/report UI、official-source disclaimer、JA/EN copy。
-- `tools/trashnavi/app.js` — self-hosted JSON load、dedupe、filtering、result rendering、official external link behavior。
+- `tools/trashnavi/index.html` — filter/result/report UI、published municipality links、official-source disclaimer、JA/EN copy。
+- `tools/trashnavi/app.js` — self-hosted JSON load、dedupe、filtering、forward link-type rendering、official external link behavior。
 - `tools/trashnavi/data/` — nationwide/local supplementary/direct waste link datasets。
+- `tools/trashnavi/data/direct-waste-links-demand-wave3.json` — 御浜町・海津市・結城市のWave 3 official-link enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/municipality-page-manifest.json` — indexable municipality page allowlist。
 - `tools/trashnavi/scripts/generate-municipality-pages.mjs` — deterministic municipality page / sitemap generator and drift checker。
-- `tools/trashnavi/tokyo/*/index.html` — pilot municipality pages。
-- `sitemap.xml` — indexable pilot URLの正規sitemap収録先。
+- `tools/trashnavi/tokyo/*/index.html` — initial Tokyo municipality pages。
+- `tools/trashnavi/mie/mihama/index.html` / `tools/trashnavi/gifu/kaizu/index.html` / `tools/trashnavi/ibaraki/yuki/index.html` — Wave 3 municipality pages。
+- `sitemap.xml` — indexable municipality URLの正規sitemap収録先。
 - `sitemap-trashnavi.xml` — TrashNavi municipality補助sitemap。
 - `.github/workflows/check-trashnavi-coverage.yml` — coverage strict audit and generated-page drift check。

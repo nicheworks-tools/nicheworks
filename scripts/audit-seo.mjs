@@ -8,7 +8,7 @@ const strict = process.argv.includes('--strict');
 const sitemap = read('sitemap.xml');
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
 const BAD_VISIBLE_TEXT = [/description is pending/i, /\bTODO\b/, /\bFIXME\b/i, /coming soon/i, /未完成/, /仮置き/, /準備中/];
-const STATIC_TOOL_CONTENT_PATTERNS = [/^tools\/trashnavi\/tokyo\/[^/]+\/index\.html$/];
+const STATIC_TOOL_CONTENT_PATTERNS = [/^tools\/trashnavi\/[^/]+\/[^/]+\/index\.html$/];
 
 function read(relativePath) {
   const file = path.join(root, relativePath);

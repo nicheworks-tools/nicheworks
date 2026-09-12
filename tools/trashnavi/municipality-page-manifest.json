@@ -5,5 +5,8 @@
   {"lgcode":"131121","pref_slug":"tokyo","city_slug":"setagaya","publish":true},
   {"lgcode":"131130","pref_slug":"tokyo","city_slug":"shibuya","publish":true},
   {"lgcode":"131156","pref_slug":"tokyo","city_slug":"suginami","publish":true},
-  {"lgcode":"131202","pref_slug":"tokyo","city_slug":"nerima","publish":true}
+  {"lgcode":"131202","pref_slug":"tokyo","city_slug":"nerima","publish":true},
+  {"lgcode":"245615","pref_slug":"mie","city_slug":"mihama","publish":true},
+  {"lgcode":"212211","pref_slug":"gifu","city_slug":"kaizu","publish":true},
+  {"lgcode":"082074","pref_slug":"ibaraki","city_slug":"yuki","publish":true}
 ]
