@@ -12,7 +12,7 @@
       .trim();
   }
 
-  function normalizeKey(value = "") {
+  function normalizeBaseKey(value = "") {
     return normalizeText(value)
       .toLowerCase()
       .replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, "-")
@@ -20,6 +20,30 @@
       .replace(/\s+/g, " ")
       .replace(/\s*,\s*/g, ",")
       .trim();
+  }
+
+  // Explicit, high-confidence naming equivalents only. These are identity
+  // variants for existing dictionary entries, not fuzzy guesses or safety
+  // classifications. Keep this list small and collision-checked.
+  const ALIAS_EQUIVALENTS = Object.freeze({
+    "精製水": "water",
+    "グリセロール": "glycerin",
+    "1,3-ブチレングリコール": "butylene glycol",
+    "塩化ナトリウム": "sodium chloride",
+    "クエン酸ナトリウム": "sodium citrate",
+    "水酸化ナトリウム": "sodium hydroxide",
+    "エデト酸2ナトリウム": "disodium edta",
+    "エデト酸二ナトリウム": "disodium edta",
+    "ニコチン酸アミド": "niacinamide",
+    "ヒアルロン酸ナトリウム": "sodium hyaluronate",
+    "ヒアルロン酸ソーダ": "sodium hyaluronate",
+    "乳酸ナトリウム": "sodium lactate",
+    "alcohol denat": "alcohol denat."
+  });
+
+  function normalizeKey(value = "") {
+    const base = normalizeBaseKey(value);
+    return ALIAS_EQUIVALENTS[base] || base;
   }
 
   function protectNumericLocantCommas(value) {
@@ -103,11 +127,13 @@
   }
 
   const api = {
-    version: "1.2.0",
+    version: "1.3.0",
     normalizeText,
+    normalizeBaseKey,
     normalizeKey,
     splitIngredients,
-    isExactIngredientMatch
+    isExactIngredientMatch,
+    aliasEquivalents: ALIAS_EQUIVALENTS
   };
 
   if (typeof module !== "undefined" && module.exports) {
