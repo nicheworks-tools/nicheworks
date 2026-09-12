@@ -1,0 +1,77 @@
+name: Reconcile refund policy apply
+
+on:
+  push:
+    branches:
+      - fix/reconcile-refund-policy-20260913
+    paths:
+      - .github/workflows/reconcile-refund-policy-apply.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Apply Reconcile refund policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index = Path('tools/reconcile/index.html')
+          text = index.read_text()
+          old = '''        <div class="actions">\n          <button class="btn btn-primary" id="proCheckoutBtn" type="button"><span data-i18n="ja">Reconcile Proを購入</span><span data-i18n="en">Get Reconcile Pro</span></button>\n        </div>\n      </div>'''
+          new = '''        <div class="actions">\n          <button class="btn btn-primary" id="proCheckoutBtn" type="button"><span data-i18n="ja">Reconcile Proを購入</span><span data-i18n="en">Get Reconcile Pro</span></button>\n        </div>\n        <p class="muted" data-i18n="ja">購入完了後のお客様都合による返金・キャンセルは原則として受け付けません。二重請求、決済上の誤り、またはNicheWorks側の技術的不具合によりReconcile Proを利用できない場合は個別に確認します。<a href="./refund.html">Refund Policy</a></p>\n        <p class="muted" data-i18n="en">Customer-convenience refunds or cancellations are generally not accepted after purchase. Duplicate charges, payment-processing errors, or a NicheWorks-side technical failure that prevents use of Reconcile Pro are reviewed individually. <a href="./refund.html">Refund Policy</a></p>\n      </div>'''
+          if old not in text:
+              raise SystemExit('purchase CTA anchor not found')
+          text = text.replace(old, new, 1)
+          old_footer = '<footer class="nw-footer">NicheWorks Reconcile · <a href="./usage.html">Usage</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a></footer>'
+          new_footer = '<footer class="nw-footer">NicheWorks Reconcile · <a href="./usage.html">Usage</a> · <a href="./refund.html">Refund Policy</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a></footer>'
+          if old_footer not in text:
+              raise SystemExit('footer anchor not found')
+          index.write_text(text.replace(old_footer, new_footer, 1))
+
+          refund = Path('tools/reconcile/refund.html')
+          if refund.exists():
+              raise SystemExit('refund.html already exists')
+          refund.write_text('''<!doctype html>\n<html lang="ja">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <title>Reconcile Pro Refund Policy | NicheWorks</title>\n  <meta name="description" content="NicheWorks Reconcile Proの返金・キャンセル方針です。">\n  <meta name="robots" content="noindex,follow">\n  <link rel="canonical" href="https://nicheworks.app/tools/reconcile/refund.html">\n  <link rel="icon" href="/assets/favicon.ico">\n  <link rel="stylesheet" href="./styles.css">\n</head>\n<body>\n  <header class="nw-header">\n    <h1 class="nw-title">Reconcile Pro Refund Policy</h1>\n    <p class="nw-subtitle">Refund and cancellation terms for the one-time Reconcile Pro purchase.</p>\n  </header>\n\n  <main class="nw-main">\n    <section class="panel">\n      <h2>日本語</h2>\n      <p><strong>Reconcile Proは¥3,980 JPYの買い切りデジタル機能です。</strong></p>\n      <p>購入完了後のお客様都合による返金・キャンセルは、原則として受け付けません。購入後に機能を利用したこと、購入後に不要となったこと、その他購入者側の事情による返金希望は、原則として返金理由にはなりません。</p>\n      <p>ただし、二重請求、決済処理上の誤り、またはNicheWorks側の技術的不具合によりReconcile Proを利用できない場合は、状況を確認したうえで個別に返金対応を行うことがあります。法令上返金が必要な場合は、適用される法令に従います。</p>\n      <p>返金の自動受付・セルフサービス返金ボタンは提供していません。確認が必要な場合は <a href="/contact.html">Contact</a> からお問い合わせください。</p>\n      <p>返金または決済紛争が成立した場合、その購入に由来するReconcile Proの利用権は無効になります。別の購入に由来する権利は、その購入の返金処理によって無効にはしません。</p>\n    </section>\n\n    <section class="panel">\n      <h2>English</h2>\n      <p><strong>Reconcile Pro is a ¥3,980 JPY one-time digital feature purchase.</strong></p>\n      <p>Customer-convenience refunds or cancellations are generally not accepted after purchase. Use of the Pro features, no longer needing the product after purchase, or other buyer-side circumstances generally do not qualify for a refund.</p>\n      <p>Duplicate charges, payment-processing errors, or a NicheWorks-side technical failure that prevents use of Reconcile Pro may be reviewed individually for a refund. Refunds required by applicable law will be handled in accordance with that law.</p>\n      <p>There is no automatic or self-service refund button. Contact us through <a href="/contact.html">Contact</a> if a transaction needs review.</p>\n      <p>If a refund or payment dispute is completed, the Reconcile Pro access granted by that purchase is revoked. Entitlements originating from separate purchases are not revoked by that refund.</p>\n    </section>\n\n    <p class="muted">Effective: 2026-09-13</p>\n    <p><a href="./">Back to NicheWorks Reconcile</a></p>\n  </main>\n\n  <footer class="nw-footer">NicheWorks Reconcile · <a href="./">Tool</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a></footer>\n</body>\n</html>\n''')
+
+          spec = Path('tools/reconcile/SPEC.md')
+          s = spec.read_text()
+          anchor = '## Language mode\n'
+          section = '''## Refund and cancellation contract\n\n- Reconcile Pro is a ¥3,980 JPY one-time digital feature purchase.\n- Customer-convenience refunds or cancellations are generally not accepted after purchase.\n- Limited exceptions may be reviewed individually for duplicate charges, payment-processing errors, or a NicheWorks-side technical failure that prevents use of Reconcile Pro.\n- Refunds required by applicable law remain available.\n- The product does not expose an automatic or self-service refund button; refund review is handled through the site Contact route.\n- If a refund or payment dispute is completed, entitlement derived from that Reconcile purchase becomes inactive under the existing billing contract. Separate purchases and their entitlements must not be revoked by that event.\n- This presentation policy does not change the existing Stripe refund/dispute webhook handling or the one-way feature-grant contract.\n- Public policy page: `tools/reconcile/refund.html`.\n\n'''
+          if anchor not in s:
+              raise SystemExit('SPEC language anchor not found')
+          s = s.replace(anchor, section + anchor, 1)
+          acceptance_anchor = '- [x] Failed/unavailable entitlement verification fails closed without changing Free reconciliation behavior.\n'
+          acceptance_add = acceptance_anchor + '- [x] The purchase CTA states that customer-convenience refunds/cancellations are generally unavailable and links to the Reconcile refund policy before checkout.\n- [x] The refund policy documents limited review exceptions, applicable-law override, no self-service refund, and purchase-scoped entitlement revocation after refund/dispute.\n'
+          if acceptance_anchor not in s:
+              raise SystemExit('SPEC acceptance anchor not found')
+          s = s.replace(acceptance_anchor, acceptance_add, 1)
+          evidence_anchor = '- `tools/reconcile/usage.html`\n'
+          if evidence_anchor not in s:
+              raise SystemExit('SPEC evidence anchor not found')
+          s = s.replace(evidence_anchor, evidence_anchor + '- `tools/reconcile/refund.html`\n', 1)
+          spec.write_text(s)
+          PY
+
+          node --test tools/reconcile/tests/*.test.mjs
+          node --check tools/reconcile/app.mjs
+          rm .github/workflows/reconcile-refund-policy-apply.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/reconcile/index.html tools/reconcile/refund.html tools/reconcile/SPEC.md .github/workflows/reconcile-refund-policy-apply.yml
+          git diff --cached --check
+          git commit -m "fix(reconcile): define purchase refund policy"
+          git push origin HEAD:fix/reconcile-refund-policy-20260913
+
+# trigger after workflow registration
+# trigger apply
