@@ -20,8 +20,7 @@ export function resultsToCsv(results) {
   return `\uFEFF${lines.join('\r\n')}`;
 }
 
-export function downloadText(filename, text, type = 'text/csv;charset=utf-8') {
-  const blob = new Blob([text], { type });
+function triggerDownload(filename, blob) {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement('a');
   anchor.href = url;
@@ -30,4 +29,12 @@ export function downloadText(filename, text, type = 'text/csv;charset=utf-8') {
   anchor.click();
   anchor.remove();
   setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+export function downloadText(filename, text, type = 'text/csv;charset=utf-8') {
+  triggerDownload(filename, new Blob([text], { type }));
+}
+
+export function downloadBytes(filename, bytes, type = 'application/octet-stream') {
+  triggerDownload(filename, new Blob([bytes], { type }));
 }
