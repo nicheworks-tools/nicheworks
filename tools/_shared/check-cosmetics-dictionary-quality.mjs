@@ -1,7 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 
 const root = process.cwd();
+const require = createRequire(import.meta.url);
+const parser = require('./cosmetic-ingredient-parser.js');
+
 const DATA_FILES = [
   'tools/inci-fastscan/data/ingredients.json',
   'tools/inci-fastscan/data/ingredients-extra-1.json',
@@ -15,6 +19,7 @@ const DATA_FILES = [
 ];
 
 function baseKey(value = '') {
+  if (parser?.normalizeBaseKey) return parser.normalizeBaseKey(value);
   return String(value)
     .normalize('NFKC')
     .toLowerCase()
@@ -84,6 +89,26 @@ for (const [key, owners] of nameOwners) {
   }
 }
 
+const sharedAliases = parser?.aliasEquivalents || {};
+for (const [rawAlias, rawTarget] of Object.entries(sharedAliases)) {
+  const aliasKey = baseKey(rawAlias);
+  const targetKey = baseKey(rawTarget);
+  if (!aliasKey || !targetKey) {
+    failures.push(`shared alias has empty key: ${rawAlias} -> ${rawTarget}`);
+    continue;
+  }
+  if (!canonicalOwners.has(targetKey) && !nameOwners.has(targetKey)) {
+    failures.push(`shared alias target missing from maintained dictionary: ${rawAlias} -> ${rawTarget}`);
+    continue;
+  }
+
+  const existing = nameOwners.get(aliasKey) || [];
+  const foreignOwners = existing.filter((owner) => baseKey(owner.canonical) !== targetKey);
+  if (foreignOwners.length) {
+    failures.push(`shared alias collides with another ingredient: ${rawAlias} -> ${rawTarget}; existing ${foreignOwners.map((owner) => owner.canonical).join(', ')}`);
+  }
+}
+
 if (failures.length) {
   console.error(`Cosmetics dictionary quality check failed (${failures.length})`);
   for (const failure of failures) console.error(`- ${failure}`);
@@ -95,5 +120,6 @@ console.log(JSON.stringify({
   dictionary_records: rows.length,
   canonical_keys: canonicalOwners.size,
   exact_name_keys: nameOwners.size,
+  shared_alias_equivalents: Object.keys(sharedAliases).length,
   files: DATA_FILES.length
 }, null, 2));
