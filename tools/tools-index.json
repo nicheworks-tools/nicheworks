@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-16T09:46:13.501Z",
-  "total": 87,
+  "generatedAt": "2026-09-12T00:00:00.000Z",
+  "total": 88,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -877,6 +877,19 @@
         "founder",
         "startup",
         "workflow"
+      ]
+    },
+    {
+      "slug": "reconcile",
+      "title_en": "NicheWorks Reconcile",
+      "title_ja": "CSV・Excel取引照合ツール",
+      "desc_en": "Reconcile two CSV/XLSX transaction datasets locally and isolate records that require human review.",
+      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、候補・重複・不一致など人が確認すべき取引だけを絞り込みます。",
+      "tags": [
+        "csv",
+        "xlsx",
+        "reconcile",
+        "accounting"
       ]
     },
     {
