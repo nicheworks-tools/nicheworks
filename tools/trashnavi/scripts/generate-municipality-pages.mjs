@@ -9,6 +9,7 @@ const repoRoot = path.resolve(toolDir, '../..');
 const dataDir = path.join(toolDir, 'data');
 const manifestPath = path.join(toolDir, 'municipality-page-manifest.json');
 const sitemapPath = path.join(repoRoot, 'sitemap-trashnavi.xml');
+const rootSitemapPath = path.join(repoRoot, 'sitemap.xml');
 const checkMode = process.argv.includes('--check');
 
 const TYPE_MAP = new Map([
@@ -99,6 +100,19 @@ const lastmod=rows.map(r=>String(r.last_checked||'').trim()).filter(Boolean).sor
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['https://nicheworks.app/tools/trashnavi/',...outputs.map(o=>o.url)].map(u=>`  <url>\n    <loc>${u}</loc>${lastmod?`\n    <lastmod>${lastmod}</lastmod>`:''}\n  </url>`).join('\n')}\n</urlset>\n`;
 const drift=[];
 function sync(file,content,label){ if(checkMode){ if(!fs.existsSync(file)) return drift.push(`${label}: missing`); if(fs.readFileSync(file,'utf8')!==content) drift.push(`${label}: out of date`); } else { fs.mkdirSync(path.dirname(file),{recursive:true}); fs.writeFileSync(file,content,'utf8'); } }
-outputs.forEach(o=>sync(o.absolute,o.content,o.relative)); sync(sitemapPath,sitemap,'sitemap-trashnavi.xml');
+outputs.forEach(o=>sync(o.absolute,o.content,o.relative));
+sync(sitemapPath,sitemap,'sitemap-trashnavi.xml');
+if (checkMode) {
+  if (!fs.existsSync(rootSitemapPath)) {
+    drift.push('sitemap.xml: missing');
+  } else {
+    const rootSitemap = fs.readFileSync(rootSitemapPath, 'utf8');
+    for (const output of outputs) {
+      const needle = `<loc>${output.url}</loc>`;
+      const count = rootSitemap.split(needle).length - 1;
+      if (count !== 1) drift.push(`sitemap.xml: ${output.url} must appear exactly once; found ${count}`);
+    }
+  }
+}
 if(checkMode&&drift.length){console.error('TrashNavi municipality page generation drift:');drift.forEach(x=>console.error(`- ${x}`));process.exit(1);}
 console.log(`TrashNavi municipality pages: ${outputs.length} ${checkMode?'verified':'generated'}`);console.log(`Direct datasets read: ${files.length}`);console.log(`Sitemap: ${path.relative(repoRoot,sitemapPath)}`);
