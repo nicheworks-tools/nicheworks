@@ -1,0 +1,22 @@
+{
+  "wave": "2026-09-12-wave4-post100-quality",
+  "records": [
+    {
+      "id": "disney-plus",
+      "name": "ディズニープラス",
+      "category": "video_streaming",
+      "official_site_url": "https://www.disneyplus.com/ja-jp",
+      "procedure_url": "https://help.disneyplus.com/ja/article/disneyplus-ja-jp-cancel",
+      "keywords": ["動画配信", "サブスク", "Disney+", "ディズニー"],
+      "summary": "Disney+へ直接支払っている場合はアカウントのサブスクリプション管理から解約する。App Store、Google Play、ドコモ等の第三者経由で契約した場合は請求元・契約元の手順に従う。サブスクリプション解約とMyDisneyアカウント削除は別手続き。",
+      "publication_state": "verified",
+      "verification": {
+        "last_verified_at": "2026-09-12",
+        "source_title": "Disney+のサブスクリプションの解約方法",
+        "final_url": "https://help.disneyplus.com/ja/article/disneyplus-ja-jp-cancel"
+      },
+      "procedure_type": "subscription_cancellation",
+      "billing_routes": ["web_direct", "app_store", "google_play", "partner_billing"]
+    }
+  ]
+}
