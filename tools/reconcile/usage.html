@@ -1,1 +1,46 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Reconcile usage — development</title><link rel="stylesheet" href="./styles.css"></head><body><main class="nw-main" style="padding-top:30px"><section class="panel"><h1>NicheWorks Reconcile — Usage</h1><p>このページは開発ブランチ用です。現在の実装波はCSVのローカル照合コアを対象とします。</p><h2>Current workflow</h2><ol><li>CSV A/Bを選択、またはサンプルを読み込みます。</li><li>金額列を必須で対応付け、必要なら日付・取引ID・摘要を選びます。</li><li>日付許容差を選び、照合します。</li><li>exact / tolerant / candidate / A only / B only / duplicate / conflict を確認します。</li><li>CSVで照合結果を保存できます。</li></ol><h2>Privacy</h2><p>取引行はブラウザ内で処理します。この開発波のコードは取引データ送信用APIを持ちません。</p><h2>Not implemented in this wave</h2><p>XLSX、Pro entitlement、Stripe、1:n / n:1、金額許容差、ルール保存、XLSXレポートは後工程です。</p><p><a href="./">Return to Reconcile</a></p></section></main></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Reconcile usage — development</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="nw-main" style="padding-top:30px">
+    <section class="panel">
+      <h1>NicheWorks Reconcile — Usage</h1>
+      <p>このページは開発ブランチ用です。CSV照合コアと高度照合エンジンは実装済みです。XLSXはアダプターまで実装済みですが、固定版ライブラリの同梱前なのでブラウザではまだ利用できません。Pro機能も課金接続前のためロックされています。</p>
+
+      <h2>Free workflow</h2>
+      <ol>
+        <li>CSV A/Bを選択、またはサンプルを読み込みます。</li>
+        <li>必要なら文字コード、区切り文字、ヘッダー行を調整します。</li>
+        <li>金額列を必須で対応付け、必要なら日付・取引ID・摘要を選びます。</li>
+        <li>日付許容差と曖昧日付の解釈を選び、照合します。</li>
+        <li>exact / tolerant / candidate / A only / B only / duplicate / conflict を確認します。</li>
+        <li>結果をCSVで保存できます。</li>
+      </ol>
+
+      <h2>Matching rules</h2>
+      <p>照合は決定論的です。複数の候補がある場合は勝手に1件を選ばずcandidateにします。同一参照IDでも金額差が許容範囲を超える場合はconflictとして扱います。</p>
+
+      <h2>Reconcile Pro implementation</h2>
+      <p>Pro用の金額許容差、B側符号反転、符号無視、1:n / n:1照合、最大5件のグループ照合、XLSXレポート、保存済みルールのコードとUIは実装済みです。ただしこの隔離ブランチではentitlementを接続していないため、操作はロックされています。</p>
+      <p>保存済みルールは列対応・CSV解析設定・照合条件だけをlocalStorageへ保存します。取引行、ファイル本体、照合結果は保存しません。ルールは最大20件で、JSONとしてimport/exportできます。</p>
+
+      <h2>XLSX status</h2>
+      <p>複数worksheetの選択、Excel日付/数値の読み込み、Summary / Matches / Candidates / A Only / B Only / Duplicates / Conflicts の7シートレポート生成まで実装済みです。ランタイムCDNは使わず、検証済み固定版をローカルvendorとして同梱した後に有効化します。</p>
+
+      <h2>Privacy</h2>
+      <p>取引行はブラウザ内で処理します。この開発ブランチのコードは取引データ送信用APIを持ちません。公開時の課金通信もentitlement情報のみを扱い、取引ファイルは送信対象にしません。</p>
+
+      <h2>Current limits</h2>
+      <p>Freeは1ファイル500行・5MBまでです。Pro有効時の現在のブラウザ安全上限は1ファイル100MBで、行数に固定上限は設けません。実際の処理可能量は端末メモリに依存します。</p>
+
+      <p><a href="./">Return to Reconcile</a></p>
+    </section>
+  </main>
+</body>
+</html>
