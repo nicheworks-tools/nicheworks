@@ -7,22 +7,17 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-57QT78M3JB');
 </script>
-
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>How to Use | URL Title Collector</title>
-
-  <!-- canonical -->
   <link rel="canonical" href="https://nicheworks.app/tools/url-title-collector/en/usage.html">
 
-  <!-- OGP -->
   <meta property="og:title" content="How to Use | URL Title Collector">
-  <meta property="og:description" content="How to Use | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta property="og:description" content="How to use URL Title Collector. Entered URLs are sent to a NicheWorks Worker, which fetches target HTML for title extraction.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/url-title-collector/en/usage.html">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
@@ -90,14 +85,14 @@
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
 </script>
-  <meta name="description" content="How to Use | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="description" content="How to use URL Title Collector. Entered URLs are sent to a NicheWorks Worker, which fetches target HTML for title extraction.">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="How to Use | URL Title Collector">
-  <meta name="twitter:description" content="How to Use | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。">
+  <meta name="twitter:description" content="Entered URLs are sent to a NicheWorks Worker, which fetches target HTML for title extraction.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script type="application/ld+json">
@@ -106,8 +101,8 @@
     "@type": "WebPage",
     "name": "How to Use | URL Title Collector",
     "url": "https://nicheworks.app/tools/url-title-collector/en/usage.html",
-    "description": "How to Use | URL Title Collector は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
-    "inLanguage": "ja",
+    "description": "How to use URL Title Collector. Entered URLs are sent to a NicheWorks Worker, which fetches target HTML for title extraction.",
+    "inLanguage": "en",
     "publisher": {
       "@type": "Organization",
       "name": "NicheWorks",
@@ -119,8 +114,6 @@
 <body>
 
 <main>
-
-  <!-- Language Switch -->
   <div class="lang-switch">
     <a href="../usage.html">JP</a> |
     <a href="./usage.html">EN</a>
@@ -129,74 +122,70 @@
   <h1>How to Use URL Title Collector</h1>
 
   <p>
-    URL Title Collector lets you fetch  
-    <strong>&lt;title&gt; tags from multiple URLs at once</strong>  
-    using a lightweight, privacy-friendly mechanism that runs in your browser + Cloudflare Worker.
+    URL Title Collector lets you fetch
+    <strong>&lt;title&gt; tags from multiple URLs at once</strong>.
   </p>
+  <p><strong>Network behavior:</strong> When you click “Fetch Titles,” each entered URL is sent to a NicheWorks Cloudflare Worker. The Worker requests the target page HTML, and the browser extracts the &lt;title&gt; from the returned HTML.</p>
 
   <h2>1. Basic Steps</h2>
   <ul>
-    <li>① Paste URLs into the text area (one per line)</li>
+    <li>① Paste URLs into the text area, one per line</li>
     <li>② Click <strong>“Fetch Titles”</strong></li>
-    <li>③ Results (URL / title / status) appear in a table</li>
+    <li>③ URL, title, and status results appear in a table</li>
   </ul>
 
-  <p>Results can be copied as CSV or TSV. You can reset the tool anytime.</p>
+  <p>Results can be copied as CSV or TSV. You can reset the tool at any time.</p>
 
   <h2>2. Status Types</h2>
   <ul>
     <li><strong>success</strong> — title fetched successfully</li>
-    <li><strong>no-title</strong> — page fetched but has no &lt;title&gt;</li>
-    <li><strong>http-error</strong> — 404 / 500 / other HTTP errors</li>
-    <li><strong>network-error</strong> — CORS, DNS, CSP, or other access issues</li>
+    <li><strong>no-title</strong> — page fetched but no &lt;title&gt; was found</li>
+    <li><strong>http-error</strong> — target returned a 404, 500, or another non-success HTTP status</li>
+    <li><strong>network-error</strong> — DNS, connection, Worker, or retrieval failure</li>
   </ul>
 
   <h2>3. Supported Cases</h2>
   <ul>
     <li>Standard HTML pages</li>
-    <li>Blogs, news articles</li>
-    <li>Pages with a &lt;title&gt; tag</li>
+    <li>Blogs and news articles</li>
+    <li>Pages with a server-returned &lt;title&gt; tag</li>
   </ul>
 
   <h2>4. Not Supported</h2>
   <ul>
     <li>Login-required pages</li>
-    <li>PDF / JSON / XML (non-HTML)</li>
-    <li>Sites with very strict CSP rules</li>
-    <li>Sites where JavaScript dynamically changes the title</li>
+    <li>PDF / JSON / XML and other non-HTML resources</li>
+    <li>Sites that reject retrieval from the Worker</li>
+    <li>Sites where JavaScript changes the title only after page execution</li>
   </ul>
 
   <h2>5. CSV / TSV Output</h2>
   <p>
-    The result table can be exported as <strong>CSV</strong> or <strong>TSV</strong>.  
-    Works with Excel, Google Sheets, Notion, Airtable, etc.
+    The result table can be copied as <strong>CSV</strong> or <strong>TSV</strong> for use in Excel, Google Sheets, Notion, and similar tools.
   </p>
 
   <h2>6. FAQ</h2>
 
   <p><strong>Q: Why does a 404 page sometimes return a title?</strong><br>
-    Because the server returns a custom “Not Found” HTML page that still contains a &lt;title&gt; tag.
+    The target may return a custom Not Found HTML page that still contains a &lt;title&gt; tag.
   </p>
 
-  <p><strong>Q: Why do foreign sites fail more often?</strong><br>
-    Many overseas sites enforce strict CORS/CSP policies that prevent Workers from retrieving HTML.
+  <p><strong>Q: Why do some sites fail?</strong><br>
+    The target may reject requests from the Worker, fail at DNS or connection time, or return content that cannot be retrieved as normal HTML.
   </p>
 
   <p><strong>Q: How many URLs can I process?</strong><br>
-    100–300 is recommended (depends on your device performance).
+    Roughly 100–300 is a practical guideline, but actual behavior depends on the Worker, target sites, network conditions, and your device.
   </p>
 
-  <h2>7. Disclaimer</h2>
+  <h2>7. Disclaimer and data transmission</h2>
   <p>
-    The tool runs locally + via Cloudflare Worker.  
-    No URL or result is stored.  
-    Some URLs may not be retrievable due to CORS/CSP restrictions.
+    Entered URLs are sent to a NicheWorks Cloudflare Worker so the Worker can request the target pages. The tool does not keep a URL/result history, but network requests occur between your browser and the Worker, between the Worker and target sites, and through normal analytics or advertising resources loaded by the page. Some URLs may not be retrievable.
   </p>
 
   <div class="back">
     <a href="./index.html">← Back to Tool</a>
   </div>
-
 </main>
 
 <div class="nw-links">
@@ -205,13 +194,9 @@
   <a href="/tools/exif-cleaner-mini/">MetaCleaner Mini</a>
 </div>
 
-
 <footer>
   <p><a href="https://nicheworks.app/">NicheWorks Home</a></p>
 </footer>
-
-<!-- Cloudflare Analytics -->
-
 
 </body>
 </html>
