@@ -119,21 +119,144 @@ Do not invent:
 - production feature-ID namespace;
 - test/live checkout policy.
 
-## 3. Wave 2 implementation order
+## 3. API Key Token Redactor
+
+### 3.1 Free boundary — fixed
+
+The current Free redaction workflow remains available without paid entitlement:
+
+- paste secret-bearing text and run the supported local detectors;
+- enable/disable current detector categories;
+- choose replacement style and optional length-preserving masking;
+- receive redacted output, category/severity counts, findings, coverage and safety summaries;
+- use built-in samples and clear/reset behavior;
+- copy the redacted output;
+- download the redacted output as TXT;
+- use JA/EN UI.
+
+The basic detector and redactor must not become dependent on billing availability.
+
+### 3.2 Paid boundary — runtime-backed delta
+
+Current runtime/UI evidence supports eight paid operations:
+
+1. **Custom rules** — add/remove custom secret-prefix rules used during Pro-active scanning.
+2. **Redaction profiles** — select the Pro-only profile used by generated review/handoff artifacts.
+3. **Audit Markdown** — copy the generated audit Markdown.
+4. **GitHub Issue template** — copy the generated GitHub Issue template.
+5. **Support templates** — copy the generated Support or Discord sharing template.
+6. **JSON findings export** — download findings as JSON.
+7. **CSV findings export** — download findings as CSV.
+8. **Markdown handoff export** — download the generated Markdown handoff pack.
+
+These operations correspond to the existing legacy shared-Pro surface. No new paid feature is invented for staging.
+
+### 3.3 Staged product-scoped wrapper
+
+`tools/api-key-token-redactor/product-scoped-controller.mjs` is a non-live wrapper around `assets/nw-product-scoped-controller.mjs`.
+
+The staged contract requires:
+
+- an explicit future product ID with no default/fallback;
+- a complete and unique feature-ID mapping for all eight paid operations;
+- server-backed `refreshProState({ productId })` through the shared controller core;
+- exact product match;
+- `active: true`;
+- `source: "server"`;
+- `reason: "verified_entitlement"`;
+- operation-level activation only for feature IDs returned by the verified server response.
+
+Wrong-product, local/browser-only, unverified, incomplete/duplicate mapping, and entitlement-refresh failure states fail closed. The staged wrapper contains no `NWPro`, `nicheworks_pro`, local/session storage authority, Payment Link logic, pasted input, redacted output, finding preview, Blob, or clipboard dependency.
+
+### 3.4 Secret-safety hardening — must be preserved
+
+This tool processes credentials and other secret-bearing text. Product-scoped migration must preserve the current runtime hardening that prevents detected credential fragments from being re-exposed through Pro artifacts.
+
+The current safety contract includes:
+
+- visible finding/verification code previews are replaced with a fixed safe redacted marker;
+- clipboard text for generated review artifacts is scrubbed against unsafe preview strings before write;
+- string parts used to construct downloadable Blob artifacts are scrubbed before Blob creation;
+- generated findings/review artifacts use the tool's safe-finding path and must not intentionally reproduce detected raw secret values.
+
+A paid-entitlement migration must not weaken these controls or bypass them through a new export path.
+
+### 3.5 Billing privacy boundary
+
+Product-scoped billing and entitlement requests may contain only fixed product/feature entitlement metadata.
+
+Do not send any of the following through the billing/entitlement path:
+
+- pasted secret-bearing input;
+- detected raw credential/token/private-key values;
+- visible or internal preview fragments derived from detected secrets;
+- redacted output text;
+- findings, labels, line content, coverage/safety details, or custom-rule input;
+- selected profile content if it includes user-generated data;
+- generated Audit Markdown, GitHub Issue, Support/Discord template, or handoff content;
+- JSON/CSV/Markdown export payloads or filenames.
+
+### 3.6 Live migration requirements
+
+API Key Token Redactor migration is complete only when all of the following are true:
+
+1. an authoritative product and commercial configuration are registered in `config/billing/products.json`;
+2. all eight paid-operation feature IDs are registered for that product;
+3. checkout uses the common billing endpoint for that product;
+4. signed Stripe webhook fulfillment records the matching paid entitlement in D1;
+5. public runtime uses server-verified product state for the eight paid operations;
+6. Free detection/redaction, safe summaries, redacted-text copy, and TXT download remain independent of billing availability;
+7. failed/inactive entitlement checks leave the complete Free redactor usable;
+8. clipboard, Blob, visible-preview, and safe-finding hardening remain effective for all paid artifacts;
+9. billing/entitlement traffic contains no secret-bearing or generated user content;
+10. the historical shared Payment Link and legacy shared state stop being authoritative for this tool;
+11. reload re-verifies the product entitlement rather than trusting browser-local active state.
+
+Return path: `/tools/api-key-token-redactor/`.
+
+### 3.7 Commercial fields intentionally unresolved
+
+Do not invent:
+
+- product ID;
+- display product name;
+- price or currency;
+- one-time vs recurring billing model;
+- price tier ID;
+- Stripe Price environment mapping;
+- production feature-ID namespace;
+- test/live checkout policy.
+
+## 4. Wave 2 implementation order
 
 1. Stage only legacy Pro tools whose current Free/Paid boundary is supported by runtime evidence.
 2. Keep Command Safety as the first intended **live** product-scoped migration once authoritative commercial configuration is available.
 3. Use the shared controller core for staging and keep each tool wrapper limited to its operation list and tool label.
-4. Add privacy-specific regression checks for tools that process sensitive inputs.
+4. Add privacy-specific regression checks for tools that process sensitive inputs; API Key Token Redactor is the reference secret-bearing-input case.
 5. Do not treat staging completion as product launch or payment configuration.
 
-## 4. Definition of done for SQL DB Risk staging
+## 5. Definition of done for current Wave 2 staging
+
+SQL DB Risk Checker:
 
 - exact seven-operation runtime-backed paid boundary;
 - Free checker and two Free copy actions protected;
 - thin shared-core wrapper;
 - deterministic fail-closed tests;
 - previous entitlement-name-only bypass hardening protected;
+- nested-WHERE runtime safety guard protected;
+- path-scoped CI;
+- no commercial values invented;
+- public runtime remains legacy until authorized live migration.
+
+API Key Token Redactor:
+
+- exact eight-operation runtime-backed paid boundary;
+- Free detection/redaction, redacted-text copy, and TXT download protected;
+- thin shared-core wrapper with no secret-bearing data dependency;
+- deterministic fail-closed tests;
+- visible-preview, clipboard, Blob, and safe-artifact hardening protected;
+- billing privacy boundary excludes secret-bearing/user-generated content;
 - path-scoped CI;
 - no commercial values invented;
 - public runtime remains legacy until authorized live migration.
