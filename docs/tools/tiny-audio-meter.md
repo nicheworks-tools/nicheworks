@@ -7,115 +7,156 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** audio, meter, sound, browser
 - **Common specification:** `common-spec/spec-ja.md`
+- **Affiliate specification:** `common-spec/amazon-affiliate.md`
 - **Audit state:** `PASS`
 
 ## 1. Identity
 
-This record is the canonical per-tool contract for the registered `tiny-audio-meter` implementation at `/tools/tiny-audio-meter/`. It does not authorize a production rewrite.
+This record is the canonical per-tool contract for the registered `tiny-audio-meter` implementation at `/tools/tiny-audio-meter/`. The active measurement runtime is `app.js`; `comparison.js` adds same-stream baseline comparison and spectrum-peak observation without opening a second microphone stream.
 
 ## 2. Purpose
 
-ブラウザのマイク入力を使い、相対的な音量、単音に近い音の推定周波数・音階、スペクトラム、短い区間の傾向をリアルタイムで確認する。騒音計、法定測定器、業務用音響計、専用チューナーの代替ではない。
+Use browser microphone input to inspect relative input level, estimated single-tone pitch/note, pitch confidence, spectrum, short-segment trends, and same-device/same-microphone changes from a temporary baseline. It is not a calibrated sound level meter, statutory instrument, professional acoustic meter, or guaranteed tuner.
 
 ## 3. Inputs
 
-- ブラウザのmicrophone permission。
-- 端末のマイク入力stream。
-- Start / Stop mic。
-- Number Snapshot。
-- Segment Analysis Start / Stop。
-- UI language JA / EN。
+- Browser microphone permission.
+- Microphone input stream.
+- Audio input device selection when multiple devices are exposed after permission.
+- Start / Stop mic.
+- Set / Clear comparison baseline.
+- Numeric snapshot.
+- Segment Analysis Start / Stop.
+- JP/EN UI language.
 
 ## 4. Processing behavior
 
-- 利用者の許可後にブラウザのマイクstreamを開始し、停止操作でtrackを終了する。
-- Web Audioのtime-domain dataからRMSを計算し、相対音量を約`-60..0 dB`の範囲で表示する。これはdB SPLではない。
-- autocorrelationでpitchを推定し、約60–1200 Hzの範囲で有効な値だけを表示し、A4=440 Hz基準の音名へ変換する。
-- frequency dataをcanvas spectrumとして表示する。
-- 音量thresholdを使って簡易voice/activity表示を行う。
-- 数値snapshotを最大20件までページ内メモリに保持する。音声そのものはsnapshot化しない。
-- Segment Analysisでは1秒以上の短い区間について平均音量、平均pitch、安定度・noiseの目安を算出する。
-- JA/EN UIを同一ページで切り替える。
+- On microphone start, request `echoCancellation=false`, `noiseSuppression=false`, `autoGainControl=false`, and mono input where supported.
+- Display the actual reported EC / NS / AGC track settings because browsers/OS/hardware may ignore requested constraints.
+- Warn when any reported EC / NS / AGC setting remains ON because comparisons may be affected by device-side processing.
+- Enumerate `audioinput` devices after permission and allow switching when multiple inputs are exposed.
+- Device labels/IDs are page state only and are not persisted or sent to affiliate analytics.
+- Compute RMS from time-domain Web Audio data and show approximately `-60..0 dB` relative input level. This is not dB SPL.
+- Run pitch estimation at approximately 100 ms cadence rather than every animation frame.
+- Search normalized autocorrelation over approximately 60–1200 Hz and calculate relative pitch confidence.
+- Suppress low-confidence pitch estimates from the displayed Hz/note result.
+- Convert valid pitch to note name using A4=440 Hz.
+- Render frequency-domain data to the spectrum canvas.
+- Observe the same analyser frequency data to expose the strongest FFT component between roughly 40 Hz and 12 kHz as a `spectrum peak`; this is not guaranteed to equal the fundamental/pitch.
+- Use a simple RMS threshold for sound-activity display.
+- Keep numeric snapshots to a maximum of 20 in page memory.
+- Segment Analysis requires at least one second and summarizes average relative level, average valid pitch/confidence, and rough pitch stability.
+
+### Baseline comparison
+
+- Capturing a baseline stores the current relative level and, only when valid, current pitch/note/confidence in page memory.
+- While baseline exists, show current minus baseline relative-level change.
+- Show pitch delta only when both baseline and current pitch are valid.
+- Relative-level delta is explicitly a same-device/same-microphone relative comparison, not calibrated dB SPL difference.
+- Microphone start, stop, or input-device change clears the baseline to avoid comparing different acquisition conditions.
+- Baseline is not stored in localStorage and is not sent to analytics.
 
 ## 5. Outputs
 
-- Relative loudness表示とmeter bar。
-- 推定Hzと音名。
-- spectrum canvas。
-- sound activity表示。
-- 最大20件の数値snapshot一覧。
-- Segment Analysisのduration、average loudness、average pitch、stability/noise目安。
+- Relative input level and meter bar.
+- Estimated Hz and note name.
+- Relative pitch confidence.
+- Spectrum canvas with scale labels.
+- Spectrum peak frequency from the current FFT data.
+- Sound-activity indicator.
+- Reported EC / NS / AGC settings and processing warning when applicable.
+- Baseline summary, relative-level delta, and valid-pitch delta.
+- Up to 20 numeric snapshots.
+- Segment Analysis summary.
 
 Observed delivery capabilities: clipboard copy **not found**; download/export **not found**.
 
 ## 6. Error behavior
 
-- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
-- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
-- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
-- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
-- **Runtime evidence inspected:** `tools/tiny-audio-meter/app.js`, `tools/tiny-audio-meter/index.html`.
+- **No microphone API / unavailable AudioContext:** visible local unsupported/error state; no fabricated readings.
+- **Permission denied / security error:** visible permission error; no fallback fake stream.
+- **Device switch failure:** existing microphone start error handling applies; baseline is cleared before the changed acquisition condition is used.
+- **Low-confidence/no pitch:** Hz/note remains unavailable rather than showing a weak estimate as valid pitch.
+- **Segment under one second:** explicit too-short result.
+- **Safe stop/reset:** stream tracks and animation loop are stopped; page-local records can be reset without network operations.
 
 ## 7. Privacy/data handling
 
-- マイク音声の解析はブラウザ内で行い、音声stream/fileをNicheWorksの解析APIへuploadしない。
-- マイク利用にはブラウザpermissionが必要で、Stop時にはstream trackを終了する。
-- ページ表示時にはGoogle Analytics / AdSense等の外部resourceが読み込まれ得る。
-- 会話、個人情報、未公開情報、第三者の声が入る環境での利用は避けるようUIで注意する。
+Audio analysis runs in the browser. Audio stream/files are not uploaded to a NicheWorks analysis API. Microphone device label/ID, relative level, pitch, note, confidence, spectrum peak, baseline, snapshot, and segment data are not sent through affiliate analytics and are not persisted as measurement history.
 
-Persistence evidence: `localStorage`. Network-capable application code: **not found**; non-suite hosts observed: `ofuse.me`, `ko-fi.com`.
+Only the JP/EN preference may be stored as `nw_lang`. Ads/analytics resources may load separately under the common specification.
 
 ## 8. Responsive contract
 
-- **Layout class:** `mobile-oriented` (source classification: `mobile-oriented`).
-- 縦方向のmeter、snapshot、segment controlsを中心とし、スマートフォンでも単独操作できる構成。
-- The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
+- **Layout class:** `mobile-oriented`.
+- Live meter controls and readings remain the first interaction block.
+- Baseline/snapshot/segment comparison tools follow as secondary cards.
+- Comparison delta cards collapse for narrow viewports.
+- Spectrum stays inside its responsive canvas/card rather than forcing page overflow.
 
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- 同一ページ内でJA/EN表示を切り替える。
-- Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
+- JP/EN is switched in place and the existing bilingual mode must not be removed.
+- Only language preference is persisted.
 
 ## 10. SEO contract
 
-The main public page must meet common-spec section 9-3: a tool-specific title and meaningful description, exactly one self-referencing canonical for `https://nicheworks.app/tools/tiny-audio-meter/`, and valid `WebApplication` JSON-LD. Current audit: canonical **present**; WebApplication JSON-LD **present**. SEO prose must remain evidence-based rather than being padded arbitrarily.
+The main public page must keep a tool-specific title/description, exactly one self-referencing canonical for `https://nicheworks.app/tools/tiny-audio-meter/`, valid `WebApplication` JSON-LD, and evidence-based FAQ/schema copy. Claims must preserve the distinction between relative input level and calibrated dB SPL.
 
-## 11. Advertising contract
+## 11. Advertising / affiliate contract
 
-Preserve all existing GA4 and AdSense identifiers/code. Advertising must follow common-spec sections 1.1 and 9-5: no ad inserted into the input flow or directly beneath the principal action button. Current main-page evidence: GA4 **present**; AdSense **present**.
+- Preserve existing GA4 and AdSense identifiers/code and common-spec placement rules.
+- The shared `/assets/amazon-affiliate.js` helper and local `affiliate-config.js` form the Amazon insertion contract.
+- Production default remains `enabled: false` with empty `sound_level_meter` and `usb_microphone` targets until verified Amazon URLs exist.
+- Disabled or invalid configuration must show no Amazon CTA, no Associates disclosure, and emit no affiliate click event.
+- Valid enabled configuration may expose contextual Amazon navigation after the meter/analysis area for dedicated sound-level meters or USB microphones.
+- `affiliate_click` is limited to coarse `tool`, `affiliate`, `target`, and `placement` metadata.
+- Microphone/device/measurement/baseline/snapshot/segment values are forbidden affiliate analytics fields.
 
 ## 12. Donation/support contract
 
-Follow common-spec sections 6 and 9-4. Preserve and update in place rather than removing or restructuring a support block without specification support. Current main-page donation/support evidence: **present**.
+Preserve the existing donation/support block under common-spec rules. Future Amazon activation is an independent monetization path and does not implicitly remove support links.
 
 ## 13. Help/usage/FAQ contract
 
-- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
-- **Usage documentation:** `recommended-and-missing`. Evidence: no usage page found. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
-- **FAQ:** `optional-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
-- **Language handling for existing usage pages:** not applicable while no usage page exists.
-- Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
+- **Main-page concise explanation:** required-and-present.
+- **Usage documentation:** recommended-and-missing; not a hard compliance failure.
+- **FAQ:** optional-present and currently present.
+- Measurement limits and privacy notes remain visible after the primary tool workflow.
 
 ## 14. Functional acceptance tests
 
-- [ ] microphone permissionが得られると相対音量、pitch/note、spectrum表示が更新される。
-- [ ] Stop Micでstreamを停止し、meter更新を終了できる。
-- [ ] snapshotは音声fileではなく数値だけを保存し、20件を超えて無制限に増えない。
-- [ ] Segment Analysisは1秒未満を短すぎるとして扱い、十分な区間では集計値を表示する。
-- [ ] refresh後にsnapshotやsegment記録が永続復元されない。
-- [ ] JA/EN切替が動作し、選択言語が`nw_lang`へ保存される。
+- [ ] Microphone permission produces relative level, valid pitch/note/confidence, and spectrum updates.
+- [ ] EC / NS / AGC are requested OFF and reported settings are shown.
+- [ ] Any reported EC / NS / AGC ON state produces a processing warning.
+- [ ] Multiple exposed audio inputs can be selected without persisting the device identifier.
+- [ ] Low-confidence pitch is suppressed.
+- [ ] Spectrum peak derives from the existing analyser frequency data and is distinct from pitch semantics.
+- [ ] Baseline capture stores only page-memory numeric state.
+- [ ] Baseline relative-level delta is explicitly relative, not dB SPL.
+- [ ] Pitch delta is shown only when baseline/current pitch are both valid.
+- [ ] Mic start/stop/device change clears baseline.
+- [ ] Snapshots remain capped at 20 and segment analysis rejects intervals under one second.
+- [ ] Default Amazon config mounts no CTA/disclosure.
+- [ ] Enabled+valid Amazon config mounts contextual Amazon navigation using only coarse click metadata.
+- [ ] Enabled+missing/invalid target remains hidden.
 
-Automated test evidence: none found. Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
+Automated contract evidence: `scripts/check-amazon-ready-tools.mjs` for Amazon activation/helper behavior and source-contract assertions; the existing Tool runtime audit also executes that checker. A full real-microphone browser automation suite is not claimed.
 
 ## 15. Explicit tool-specific exceptions
 
-- No language exception is established beyond the language mode above.
-- No additional layout exception is established.
+- No language exception beyond bilingual single-page mode.
+- No additional layout exception.
+- Relative level, baseline delta, pitch confidence, and spectrum peak must not be promoted as calibrated measurement accuracy.
 
 ### Implementation evidence
 
 - `tools/tiny-audio-meter/index.html`
 - `tools/tiny-audio-meter/app.js`
+- `tools/tiny-audio-meter/comparison.js`
 - `tools/tiny-audio-meter/style.css`
+- `tools/tiny-audio-meter/comparison.css`
+- `tools/tiny-audio-meter/affiliate-config.js`
+- `assets/amazon-affiliate.js`
+- `common-spec/amazon-affiliate.md`
