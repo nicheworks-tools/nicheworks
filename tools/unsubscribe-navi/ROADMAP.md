@@ -15,6 +15,7 @@ Status: implemented on the absorption branch.
 - legacy recordを`legacy_review_required`へ統一
 - database schema / audit / search / category filterを整備
 - current 87-tool quality cycleを壊さないためregistry追加は保留
+- repository SEO contractを守るためlandingは`index.staged.html` + `noindex,nofollow`で保持
 
 ## Phase 1 — Legacy 40 cleanup
 
@@ -135,9 +136,12 @@ Examples:
 
 本toolはcurrent 87-tool quality cycleの母数を変えないため一時的にunregisteredで保持する。
 
-正式登録は別PR/phaseで行い、その時点のrepository contractに従って以下を更新する:
+正式登録は別PR/phaseで行い、その時点のrepository contractに従って同時に:
 
-- `tools/tools-index.json`
-- `tools/tool-spec-manifest.json`
-- sitemap / mother-site exposure
-- tool count / quality plan as necessary
+1. `tools/unsubscribe-navi/index.staged.html` を `index.html` へ昇格し、robotsを通常のindexable設定へ戻す
+2. `tools/tools-index.json` を更新
+3. `tools/tool-spec-manifest.json` を更新
+4. sitemap / mother-site exposureを更新
+5. tool count / quality planを必要に応じて更新
+
+これらを一つずつ分離して「indexだけ先に公開」「registryだけ先に増加」といった中間不整合を作らない。
