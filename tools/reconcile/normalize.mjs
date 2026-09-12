@@ -6,6 +6,10 @@ export function normalizeReference(value) {
   return normalizeText(value).toLowerCase();
 }
 
+const CURRENCY_CODE = '(?:USD|EUR|JPY|GBP|AUD|CAD|CHF|CNY|HKD|SGD|NZD|KRW|INR|BRL|MXN|ZAR|AED|SAR|TRY|PLN|SEK|NOK|DKK|CZK|HUF|ILS|THB|IDR|MYR|PHP|TWD|VND|RUB|UAH)';
+const LEADING_CURRENCY_CODE = new RegExp(`^${CURRENCY_CODE}\\s*`, 'i');
+const TRAILING_CURRENCY_CODE = new RegExp(`\\s*${CURRENCY_CODE}$`, 'i');
+
 function normalizeNumericSeparators(text) {
   const hasComma = text.includes(',');
   const hasDot = text.includes('.');
@@ -39,25 +43,25 @@ export function normalizeAmount(value) {
   let text = normalizeText(value);
   if (!text) return null;
 
-  let sign = 1;
+  let negative = false;
   if (/^\(.*\)$/.test(text)) {
-    sign = -1;
+    negative = true;
     text = text.slice(1, -1).trim();
   }
 
   text = text.replace(/−/g, '-');
   text = text
-    .replace(/^(?:[A-Z]{3})\s*/i, '')
-    .replace(/\s*(?:[A-Z]{3})$/i, '')
+    .replace(LEADING_CURRENCY_CODE, '')
+    .replace(TRAILING_CURRENCY_CODE, '')
     .replace(/[¥$€£₩₹₽₺₫฿₱₪₦₴₲₡₵₸₼₾]/g, '')
     .replace(/[\s'’]/g, '');
 
   if (/^[+-]/.test(text)) {
-    if (text[0] === '-') sign *= -1;
+    if (text[0] === '-') negative = true;
     text = text.slice(1);
   }
   if (/-$/.test(text)) {
-    sign *= -1;
+    negative = true;
     text = text.slice(0, -1);
   }
   if (/[+-]/.test(text)) return null;
@@ -66,7 +70,8 @@ export function normalizeAmount(value) {
   if (canonical === null) return null;
   const number = Number(canonical);
   if (!Number.isFinite(number)) return null;
-  return Number((sign * number).toFixed(12));
+  const signed = negative ? -Math.abs(number) : number;
+  return Number(signed.toFixed(12));
 }
 
 function daysInMonth(year, month) {
