@@ -3,7 +3,6 @@
 
   var PAYMENT_LINK = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
   var ENTITLEMENT = "nicheworks_pro";
-  var LEGACY_KEY = "nw_pro_logistics-compliance-kit-jp";
   var ACTIVE_TEXT = "Pro解放済み。このブラウザでは共通Proが有効です。";
   var PREVIEW_TEXT = "Previewモードです。このブラウザでは共通Proがまだ有効ではありません。";
 
@@ -16,17 +15,8 @@
     return { active: false, entitlement: ENTITLEMENT, checkedAt: "" };
   }
 
-  function hasLegacyFallback(){
-    try{
-      return window.localStorage && localStorage.getItem(LEGACY_KEY) === "1";
-    }catch(e){
-      return false;
-    }
-  }
-
   function resolveActive(status){
-    var commonActive = Boolean(status && status.active && (!status.entitlement || status.entitlement === ENTITLEMENT));
-    return commonActive || hasLegacyFallback();
+    return Boolean(status && status.active && (!status.entitlement || status.entitlement === ENTITLEMENT));
   }
 
   function updateBuyLinks(){
