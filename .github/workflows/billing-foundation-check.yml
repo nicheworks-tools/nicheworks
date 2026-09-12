@@ -1,0 +1,43 @@
+name: Billing foundation check
+
+on:
+  pull_request:
+    paths:
+      - 'functions/api/billing/**'
+      - 'assets/nw-pro-entitlement.js'
+      - 'billing/success.html'
+      - 'billing/cancel.html'
+      - 'config/billing/products.json'
+      - 'scripts/check-billing-foundation.mjs'
+      - '.github/workflows/billing-foundation-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'functions/api/billing/**'
+      - 'assets/nw-pro-entitlement.js'
+      - 'billing/success.html'
+      - 'billing/cancel.html'
+      - 'config/billing/products.json'
+      - 'scripts/check-billing-foundation.mjs'
+      - '.github/workflows/billing-foundation-check.yml'
+  workflow_dispatch:
+
+jobs:
+  check-billing-foundation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax check billing modules
+        run: |
+          node --check functions/api/billing/product-config.js
+          node --check functions/api/billing/create-checkout-session.js
+          node --check functions/api/billing/entitlement.js
+          node --check functions/api/billing/stripe-webhook.js
+          node --check assets/nw-pro-entitlement.js
+      - name: Check billing contract
+        run: node scripts/check-billing-foundation.mjs
