@@ -3,6 +3,227 @@
    NicheWorks client-side utility
 ========================================================== */
 
+(() => {
+  const LIMITS = Object.freeze({
+    maxInputBytes: 300 * 1024,
+    maxDepth: 12,
+    maxArrayItems: 50,
+    maxLabelLength: 120
+  });
+
+  const DEFAULTS = Object.freeze({
+    direction: "TD",
+    leafMode: "separate",
+    arrayMode: "expand"
+  });
+
+  const normalizeLang = (lang) => (lang === "en" ? "en" : "ja");
+
+  const normalizeOptions = (options = {}) => ({
+    direction: options.direction === "LR" ? "LR" : "TD",
+    leafMode: options.leafMode === "inline" ? "inline" : "separate",
+    arrayMode: options.arrayMode === "summarize" ? "summarize" : "expand"
+  });
+
+  const getByteLength = (text) => new TextEncoder().encode(text).length;
+
+  const createConverterError = (code, message) => {
+    const error = new Error(message);
+    error.code = code;
+    return error;
+  };
+
+  const safeMermaidLabel = (value) => {
+    let text;
+    if (value === null) {
+      text = "null";
+    } else if (value === undefined) {
+      text = "undefined";
+    } else {
+      text = String(value);
+    }
+
+    text = text
+      .replace(/[\r\n\t]+/g, " ")
+      .replace(/[\x00-\x1F\x7F]/g, "")
+      .replace(/\[/g, "（")
+      .replace(/\]/g, "）")
+      .replace(/"/g, '\\"')
+      .replace(/\s{2,}/g, " ")
+      .trim();
+
+    if (!text) text = "(empty)";
+
+    if (text.length > LIMITS.maxLabelLength) {
+      text = `${text.slice(0, LIMITS.maxLabelLength - 1)}…`;
+    }
+
+    return text;
+  };
+
+  const jsonToMermaid = (jsonObj, rawOptions, rawLang) => {
+    const options = normalizeOptions(rawOptions);
+    const lang = normalizeLang(rawLang);
+    const lines = [`flowchart ${options.direction}`];
+    const warnings = [];
+    let idCounter = 0;
+    let nodeCount = 0;
+    let edgeCount = 0;
+    let maxDepth = 0;
+    let omittedCount = 0;
+    let depthLimitHit = false;
+    let arrayLimitHit = false;
+
+    const genId = () => `node_${idCounter++}`;
+    const addNode = (label) => {
+      const id = genId();
+      lines.push(`  ${id}["${safeMermaidLabel(label)}"]`);
+      nodeCount++;
+      return id;
+    };
+
+    const addEdge = (fromId, toId) => {
+      if (fromId !== null) {
+        lines.push(`  ${fromId} --> ${toId}`);
+        edgeCount++;
+      }
+    };
+
+    const isPrimitive = (value) => value === null || (typeof value !== "object" && typeof value !== "function");
+
+    const walk = (node, parentId = null, label = "root", depth = 0) => {
+      maxDepth = Math.max(maxDepth, depth);
+
+      if (options.leafMode === "inline" && isPrimitive(node) && parentId !== null) {
+        const inlineId = addNode(`${label}: ${node}`);
+        addEdge(parentId, inlineId);
+        return;
+      }
+
+      const currentId = addNode(label);
+      addEdge(parentId, currentId);
+
+      if (isPrimitive(node)) {
+        const valueId = addNode(node);
+        addEdge(currentId, valueId);
+        return;
+      }
+
+      if (depth >= LIMITS.maxDepth) {
+        depthLimitHit = true;
+        const limitLabel = lang === "ja" ? "深さ制限に達しました" : "depth limit reached";
+        const limitId = addNode(limitLabel);
+        addEdge(currentId, limitId);
+        return;
+      }
+
+      if (Array.isArray(node)) {
+        if (options.arrayMode === "summarize") {
+          const summaryLabel = lang === "ja"
+            ? `Array(${node.length}件)`
+            : `Array(${node.length} items)`;
+          const summaryId = addNode(summaryLabel);
+          addEdge(currentId, summaryId);
+          return;
+        }
+
+        if (node.length === 0) {
+          const emptyId = addNode("empty array");
+          addEdge(currentId, emptyId);
+          return;
+        }
+
+        const visibleItems = node.slice(0, LIMITS.maxArrayItems);
+        visibleItems.forEach((item, index) => {
+          walk(item, currentId, `[${index}]`, depth + 1);
+        });
+
+        if (node.length > LIMITS.maxArrayItems) {
+          arrayLimitHit = true;
+          const omitted = node.length - LIMITS.maxArrayItems;
+          omittedCount += omitted;
+          const moreLabel = lang === "ja"
+            ? `... ${omitted}件を省略`
+            : `... ${omitted} more items`;
+          const moreId = addNode(moreLabel);
+          addEdge(currentId, moreId);
+        }
+        return;
+      }
+
+      if (node !== null && typeof node === "object") {
+        const keys = Object.keys(node);
+        if (keys.length === 0) {
+          const emptyId = addNode("empty object");
+          addEdge(currentId, emptyId);
+          return;
+        }
+
+        keys.forEach((key) => {
+          walk(node[key], currentId, key, depth + 1);
+        });
+      }
+    };
+
+    walk(jsonObj);
+
+    if (depthLimitHit) {
+      warnings.push(
+        lang === "ja"
+          ? `深さ制限（${LIMITS.maxDepth}階層）に達したため、一部を省略しました。`
+          : `Some branches were omitted because the depth limit (${LIMITS.maxDepth}) was reached.`
+      );
+    }
+
+    if (arrayLimitHit) {
+      warnings.push(
+        lang === "ja"
+          ? `配列は最大${LIMITS.maxArrayItems}件まで展開し、それ以上は省略しました。`
+          : `Arrays are expanded up to ${LIMITS.maxArrayItems} items; extra items were omitted.`
+      );
+    }
+
+    return {
+      code: lines.join("\n"),
+      warnings,
+      stats: {
+        nodeCount,
+        edgeCount,
+        maxDepth,
+        omittedCount,
+        depthLimitHit
+      }
+    };
+  };
+
+  const convert = (jsonText, options = DEFAULTS, lang = "ja") => {
+    const text = typeof jsonText === "string" ? jsonText.trim() : String(jsonText ?? "").trim();
+    if (!text) {
+      throw createConverterError("EMPTY_INPUT", "No JSON provided.");
+    }
+    if (getByteLength(text) > LIMITS.maxInputBytes) {
+      throw createConverterError("INPUT_TOO_LARGE", "Input exceeds the JSON2Mermaid Free input limit.");
+    }
+
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch (error) {
+      error.code = "INVALID_JSON";
+      throw error;
+    }
+
+    return jsonToMermaid(parsed, options, lang);
+  };
+
+  window.NWJSON2MermaidConverter = Object.freeze({
+    version: 1,
+    limits: LIMITS,
+    defaults: DEFAULTS,
+    convert
+  });
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
   const inputEl = document.getElementById("jsonInput");
   const outputEl = document.getElementById("mermaidOutput");
@@ -25,11 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const i18nKeyNodes = document.querySelectorAll("[data-i18n-key]");
   const langButtons = document.querySelectorAll(".nw-lang-switch button");
   const presetButtons = document.querySelectorAll(".preset-btn");
-
-  const MAX_INPUT_BYTES = 300 * 1024;
-  const MAX_DEPTH = 12;
-  const MAX_ARRAY_ITEMS = 50;
-  const MAX_LABEL_LENGTH = 120;
+  const converter = window.NWJSON2MermaidConverter;
 
   const labels = {
     ja: {
@@ -66,36 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentLang = browserLang.startsWith("ja") ? "ja" : "en";
 
   const t = (key) => (labels[currentLang] && labels[currentLang][key]) || labels.ja[key] || key;
-
-  const applyLang = (lang) => {
-    currentLang = lang === "en" ? "en" : "ja";
-
-    i18nNodes.forEach((el) => {
-      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
-    });
-
-    i18nKeyNodes.forEach((el) => {
-      const key = el.dataset.i18nKey;
-      if (labels[currentLang][key]) {
-        el.textContent = labels[currentLang][key];
-      }
-    });
-
-    langButtons.forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.lang === currentLang);
-    });
-
-    if (outputEl.value || !errorBox.classList.contains("hidden") || !warningBox.classList.contains("hidden")) {
-      convertHandler(true);
-    }
-  };
-
-  langButtons.forEach((btn) => {
-    btn.addEventListener("click", () => applyLang(btn.dataset.lang));
-  });
-
-  applyLang(currentLang);
-
   const showProgress = () => progress.classList.remove("hidden");
   const hideProgress = () => progress.classList.add("hidden");
 
@@ -163,173 +350,18 @@ document.addEventListener("DOMContentLoaded", () => {
       : `Invalid JSON format. (around line ${line}, column ${column})`;
   };
 
-  const safeMermaidLabel = (value) => {
-    let text;
-    if (value === null) {
-      text = "null";
-    } else if (value === undefined) {
-      text = "undefined";
-    } else {
-      text = String(value);
-    }
-
-    text = text
-      .replace(/[\r\n\t]+/g, " ")
-      .replace(/[\x00-\x1F\x7F]/g, "")
-      .replace(/\[/g, "（")
-      .replace(/\]/g, "）")
-      .replace(/"/g, '\\"')
-      .replace(/\s{2,}/g, " ")
-      .trim();
-
-    if (!text) text = "(empty)";
-
-    if (text.length > MAX_LABEL_LENGTH) {
-      text = `${text.slice(0, MAX_LABEL_LENGTH - 1)}…`;
-    }
-
-    return text;
-  };
-
-  const jsonToMermaid = (jsonObj, options) => {
-    const lines = [`flowchart ${options.direction || "TD"}`];
-    const warnings = [];
-    let idCounter = 0;
-    let nodeCount = 0;
-    let edgeCount = 0;
-    let maxDepth = 0;
-    let omittedCount = 0;
-    let depthLimitHit = false;
-    let arrayLimitHit = false;
-
-    const genId = () => `node_${idCounter++}`;
-    const addNode = (label) => {
-      const id = genId();
-      lines.push(`  ${id}["${safeMermaidLabel(label)}"]`);
-      nodeCount++;
-      return id;
-    };
-
-    const addEdge = (fromId, toId) => {
-      if (fromId !== null) {
-        lines.push(`  ${fromId} --> ${toId}`);
-        edgeCount++;
-      }
-    };
-
-    const isPrimitive = (v) => v === null || (typeof v !== "object" && typeof v !== "function");
-
-    const walk = (node, parentId = null, label = "root", depth = 0) => {
-      maxDepth = Math.max(maxDepth, depth);
-
-      // Handle leafMode: inline for primitive values
-      if (options.leafMode === "inline" && isPrimitive(node) && parentId !== null) {
-        const inlineId = addNode(`${label}: ${node}`);
-        addEdge(parentId, inlineId);
-        return;
-      }
-
-      const currentId = addNode(label);
-      addEdge(parentId, currentId);
-
-      if (isPrimitive(node)) {
-        const valueId = addNode(node);
-        addEdge(currentId, valueId);
-        return;
-      }
-
-      if (depth >= MAX_DEPTH) {
-        depthLimitHit = true;
-        const limitLabel = currentLang === "ja" ? "深さ制限に達しました" : "depth limit reached";
-        const limitId = addNode(limitLabel);
-        addEdge(currentId, limitId);
-        return;
-      }
-
-      if (Array.isArray(node)) {
-        if (options.arrayMode === "summarize") {
-          const summaryLabel = currentLang === "ja"
-            ? `Array(${node.length}件)`
-            : `Array(${node.length} items)`;
-          const summaryId = addNode(summaryLabel);
-          addEdge(currentId, summaryId);
-          return;
-        }
-
-        if (node.length === 0) {
-          const emptyId = addNode("empty array");
-          addEdge(currentId, emptyId);
-          return;
-        }
-
-        const visibleItems = node.slice(0, MAX_ARRAY_ITEMS);
-        visibleItems.forEach((item, index) => {
-          walk(item, currentId, `[${index}]`, depth + 1);
-        });
-
-        if (node.length > MAX_ARRAY_ITEMS) {
-          arrayLimitHit = true;
-          const omitted = node.length - MAX_ARRAY_ITEMS;
-          omittedCount += omitted;
-          const moreLabel = currentLang === "ja"
-            ? `... ${omitted}件を省略`
-            : `... ${omitted} more items`;
-          const moreId = addNode(moreLabel);
-          addEdge(currentId, moreId);
-        }
-        return;
-      }
-
-      if (node !== null && typeof node === "object") {
-        const keys = Object.keys(node);
-        if (keys.length === 0) {
-          const emptyId = addNode("empty object");
-          addEdge(currentId, emptyId);
-          return;
-        }
-
-        keys.forEach((key) => {
-          walk(node[key], currentId, key, depth + 1);
-        });
-        return;
-      }
-
-    };
-
-    walk(jsonObj);
-
-    if (depthLimitHit) {
-      warnings.push(
-        currentLang === "ja"
-          ? `深さ制限（${MAX_DEPTH}階層）に達したため、一部を省略しました。`
-          : `Some branches were omitted because the depth limit (${MAX_DEPTH}) was reached.`
-      );
-    }
-
-    if (arrayLimitHit) {
-      warnings.push(
-        currentLang === "ja"
-          ? `配列は最大${MAX_ARRAY_ITEMS}件まで展開し、それ以上は省略しました。`
-          : `Arrays are expanded up to ${MAX_ARRAY_ITEMS} items; extra items were omitted.`
-      );
-    }
-
-    return {
-      code: lines.join("\n"),
-      warnings,
-      stats: {
-        nodeCount,
-        edgeCount,
-        maxDepth,
-        omittedCount,
-        depthLimitHit
-      }
-    };
-  };
-
   const setBusy = (busy) => {
     convertBtn.disabled = busy;
     convertBtn.textContent = busy ? t("converting") : t("convert");
+  };
+
+  const updateStats = (stats) => {
+    statNodes.textContent = stats.nodeCount;
+    statEdges.textContent = stats.edgeCount;
+    statDepth.textContent = stats.maxDepth;
+    statOmitted.textContent = stats.omittedCount;
+    statDepthLimit.textContent = stats.depthLimitHit ? t("yes") : t("no");
+    statsBox.classList.remove("hidden");
   };
 
   const convertHandler = (isSilent = false) => {
@@ -344,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (getByteLength(jsonText) > MAX_INPUT_BYTES) {
+    if (getByteLength(jsonText) > converter.limits.maxInputBytes) {
       outputEl.value = "";
       statsBox.classList.add("hidden");
       showWarning(
@@ -357,11 +389,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isSilent) outputEl.value = "";
 
-    const direction = document.querySelector('input[name="direction"]:checked').value;
-    const leafMode = document.querySelector('input[name="leafMode"]:checked').value;
-    const arrayMode = document.querySelector('input[name="arrayMode"]:checked').value;
-
-    const options = { direction, leafMode, arrayMode };
+    const options = {
+      direction: document.querySelector('input[name="direction"]:checked')?.value || converter.defaults.direction,
+      leafMode: document.querySelector('input[name="leafMode"]:checked')?.value || converter.defaults.leafMode,
+      arrayMode: document.querySelector('input[name="arrayMode"]:checked')?.value || converter.defaults.arrayMode
+    };
 
     if (!isSilent) {
       setBusy(true);
@@ -370,8 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const runConversion = () => {
       try {
-        const parsed = JSON.parse(jsonText);
-        const result = jsonToMermaid(parsed, options);
+        const result = converter.convert(jsonText, options, currentLang);
         outputEl.value = result.code;
         if (result.warnings.length > 0) {
           showWarning(result.warnings.join("\n"));
@@ -380,10 +411,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         updateStats(result.stats);
         if (!isSilent) outputEl.scrollIntoView({ behavior: "smooth", block: "start" });
-      } catch (e) {
+      } catch (error) {
         outputEl.value = "";
         statsBox.classList.add("hidden");
-        showError(buildParseErrorMessage(e, jsonText));
+        if (error.code === "INPUT_TOO_LARGE") {
+          showWarning(
+            currentLang === "ja"
+              ? "入力サイズが大きすぎます（300KB超）。小さく分割してお試しください。"
+              : "Input size is too large (over 300KB). Please split or reduce the JSON."
+          );
+        } else if (error.code === "EMPTY_INPUT") {
+          showError(currentLang === "ja" ? "JSONが入力されていません。" : "No JSON provided.");
+        } else {
+          showError(buildParseErrorMessage(error, jsonText));
+        }
       } finally {
         if (!isSilent) {
           setBusy(false);
@@ -399,13 +440,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const updateStats = (stats) => {
-    statNodes.textContent = stats.nodeCount;
-    statEdges.textContent = stats.edgeCount;
-    statDepth.textContent = stats.maxDepth;
-    statOmitted.textContent = stats.omittedCount;
-    statDepthLimit.textContent = stats.depthLimitHit ? t("yes") : t("no");
-    statsBox.classList.remove("hidden");
+  const applyLang = (lang) => {
+    currentLang = lang === "en" ? "en" : "ja";
+
+    i18nNodes.forEach((el) => {
+      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
+    });
+
+    i18nKeyNodes.forEach((el) => {
+      const key = el.dataset.i18nKey;
+      if (labels[currentLang][key]) {
+        el.textContent = labels[currentLang][key];
+      }
+    });
+
+    langButtons.forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.lang === currentLang);
+    });
+
+    if (outputEl.value || !errorBox.classList.contains("hidden") || !warningBox.classList.contains("hidden")) {
+      convertHandler(true);
+    }
   };
 
   const copyText = async (text) => {
@@ -413,7 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         await navigator.clipboard.writeText(text);
         return true;
-      } catch (e) {
+      } catch (error) {
         // Fall through to textarea fallback.
       }
     }
@@ -430,7 +485,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let success = false;
     try {
       success = document.execCommand("copy");
-    } catch (e) {
+    } catch (error) {
       success = false;
     }
 
@@ -539,9 +594,15 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   };
 
+  langButtons.forEach((btn) => {
+    btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+  });
+
   convertBtn.addEventListener("click", convertHandler);
   copyBtn.addEventListener("click", copyHandler);
   resetBtn.addEventListener("click", resetHandler);
   downloadMmdBtn.addEventListener("click", () => downloadHandler("mmd"));
   downloadTxtBtn.addEventListener("click", () => downloadHandler("txt"));
+
+  applyLang(currentLang);
 });
