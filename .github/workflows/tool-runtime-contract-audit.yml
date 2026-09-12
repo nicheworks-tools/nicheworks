@@ -8,6 +8,7 @@ on:
       - 'scripts/check-tool-runtime-contracts.mjs'
       - 'scripts/check-tool-runtime-contracts-wave4.mjs'
       - 'scripts/check-tool-runtime-contracts-wave5.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave6.mjs'
       - 'scripts/check-amazon-ready-tools.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
@@ -19,6 +20,7 @@ on:
       - 'scripts/check-tool-runtime-contracts.mjs'
       - 'scripts/check-tool-runtime-contracts-wave4.mjs'
       - 'scripts/check-tool-runtime-contracts-wave5.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave6.mjs'
       - 'scripts/check-amazon-ready-tools.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
@@ -45,6 +47,9 @@ jobs:
 
       - name: Check runtime contracts wave 5
         run: node scripts/check-tool-runtime-contracts-wave5.mjs
+
+      - name: Check runtime contracts wave 6
+        run: node scripts/check-tool-runtime-contracts-wave6.mjs
 
       - name: Check Amazon-ready tool contracts
         run: node scripts/check-amazon-ready-tools.mjs
