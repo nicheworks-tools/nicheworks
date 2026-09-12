@@ -1,0 +1,105 @@
+[
+  {
+    "record_id": "fod-premium",
+    "slug": "fod-premium",
+    "headline": "FODプレミアムの解約方法を契約経路ごとに確認",
+    "lead": "FODプレミアムは決済方法によって解約先が変わります。最初にFODのマイページで現在の決済方法を確認し、その決済に対応する公式手順へ進みます。",
+    "route_groups": [
+      {"label":"FOD側で管理する決済","detail":"クレジットカード、PayPay、あと払い（ペイディ）、楽天ペイ、d払い、Amazon Pay、CATV局払い等は、FOD公式ヘルプで現在のコースと決済方法を確認して該当する解約導線へ進みます。"},
+      {"label":"iTunes Store決済","detail":"Appleのサブスクリプション管理で解約します。FOD側の通常解約とは操作先が異なります。"},
+      {"label":"Google Play課金","detail":"Google Playの定期購入管理で解約します。"},
+      {"label":"Amazon Fire TVのアプリ内決済","detail":"Amazon側の定期購読管理から解約します。"},
+      {"label":"一部の提携プラン","detail":"auの対象料金プランなど、FODでは解約できず契約元での手続きが必要なプランがあります。"}
+    ],
+    "cautions": [
+      "FOD公式ヘルプでは、決済方法を確認してから解約手順を選ぶよう案内しています。",
+      "一部の決済には解約手続きを行えない時間帯があります。最新の制限時間は公式ヘルプで確認してください。",
+      "アカウント削除とFODプレミアムの月額コース解約は同じ操作ではありません。"
+    ],
+    "source_url": "https://help.fod.fujitv.co.jp/hc/ja/articles/900001843323-%E8%A7%A3%E7%B4%84%E6%96%B9%E6%B3%95",
+    "source_title": "解約方法 – FOD ヘルプセンター",
+    "last_verified_at": "2026-09-12"
+  },
+  {
+    "record_id": "line-music",
+    "slug": "line-music",
+    "headline": "LINE MUSICの解約方法を購入場所・決済方法から確認",
+    "lead": "LINE MUSICは購入場所・決済方法によって解約手順が異なります。先にブラウザ版の会員情報などで購入場所・決済方法を確認してから、対応する解約先へ進みます。",
+    "route_groups": [
+      {"label":"Google Play","detail":"Google Playの定期購入からLINE MUSICを選んで解約します。"},
+      {"label":"App Store","detail":"Appleのサブスクリプション管理からLINE MUSICを選んで解約します。"},
+      {"label":"キャリア決済・クレジットカード","detail":"LINE MUSICアプリのマイチケットから自動更新の解約へ進みます。"},
+      {"label":"LINE STORE","detail":"LINE STOREのマイページにあるプラン管理からLINE MUSICを解約します。"},
+      {"label":"SoftBank / Y!mobile / LINEMOの対象オプション","detail":"各キャリア側のオプションサービス変更ページで解除します。LINE MUSIC側では解約できない契約があります。"}
+    ],
+    "cautions": [
+      "アプリをアンインストールしても自動更新は止まりません。",
+      "公式ヘルプでは現在のプラン有効期限が終了する24時間前までの解約を案内しています。",
+      "プラン解約後も有効期限までは利用できます。",
+      "LINE MUSICのプラン解約とLINE MUSICアカウントの退会は別手続きです。"
+    ],
+    "source_url": "https://help.line.me/LINEMusic/web/categoryId/200000172/3/pc?lang=ja",
+    "source_title": "プランの解約 | LINE MUSICヘルプセンター",
+    "last_verified_at": "2026-09-12"
+  },
+  {
+    "record_id": "adobe-cc",
+    "slug": "adobe-creative-cloud",
+    "headline": "Adobe Creative Cloudの解約方法を購入元から確認",
+    "lead": "Adobeから直接購入したプランと、Apple・Google・Microsoftなど第三者から購入したプランでは解約先が異なります。まず購入元を確認します。",
+    "route_groups": [
+      {"label":"Adobeから直接購入","detail":"Adobeアカウントへログインし、対象プランの「プランを管理」から「プランを解約」へ進みます。"},
+      {"label":"Appleから購入","detail":"Apple側のサブスクリプション管理に従って解約します。"},
+      {"label":"Googleから購入","detail":"Google Play側の定期購入管理に従って解約します。"},
+      {"label":"Microsoftなど第三者から購入","detail":"購入した第三者プロバイダーの解約手順に従います。"}
+    ],
+    "cautions": [
+      "支払い処理中または支払いに問題がある場合、Adobeアカウント上で解約できないことがあります。公式案内では24時間後の再試行が案内されています。",
+      "複数プランがある場合は各プランを個別に解約する必要があります。",
+      "Adobeから直接購入した場合、有料アプリ・サービスへのアクセスは通常、現在の課金期間終了まで継続します。",
+      "返金や解約料は契約種類と解約時期で異なるため、金額をNicheWorks側で断定しません。"
+    ],
+    "source_url": "https://helpx.adobe.com/jp/account/individual/subscriptions-and-plans/renewals-and-cancellations/cancel-adobe-subscription.html",
+    "source_title": "アドビ体験版またはサブスクリプションの解約 | Adobe Account",
+    "last_verified_at": "2026-09-12"
+  },
+  {
+    "record_id": "ymobile",
+    "slug": "ymobile",
+    "headline": "Y!mobileの回線解約とMNP転出を分けて確認",
+    "lead": "Y!mobileでは電話番号を引き継がず回線を解約する場合と、他社へ番号を引き継ぐMNP転出で手続きが異なります。目的を先に選びます。",
+    "route_groups": [
+      {"label":"電話番号を引き継がず解約","detail":"WebまたはY!mobileショップで回線解約を行います。Web手続きは24時間受付ですが、20時以降の申込みは翌日扱いと案内されています。"},
+      {"label":"MNPで他社へ転出","detail":"My Y!mobile、電話、ショップ等でMNPの手続きを進めます。転出先で新規加入が成立した時点でY!mobileは自動解約となる案内です。"}
+    ],
+    "cautions": [
+      "通常解約とMNP転出を同じ手続きとして扱わないでください。",
+      "解約によりY!mobileの一部メールアドレスや付随サービスが利用できなくなる場合があります。",
+      "契約状況や端末・オプションによる影響は公式ページで最新情報を確認してください。"
+    ],
+    "source_url": "https://www.ymobile.jp/support/process/cancellation/",
+    "source_title": "ワイモバイルの解約・MNP転出前に確認したい料金見直し｜Y!mobile（ワイモバイル）",
+    "last_verified_at": "2026-09-12"
+  },
+  {
+    "record_id": "lemino-premium",
+    "slug": "lemino-premium",
+    "headline": "Leminoプレミアムの解約方法を登録経路ごとに確認",
+    "lead": "LeminoプレミアムはApp Store / Google Playのアプリ内課金と、Web・My docomo・ドコモ側での契約で解約方法と解約後の利用可能期間が異なります。",
+    "route_groups": [
+      {"label":"App Storeで購入","detail":"Appleのサブスクリプション管理からLeminoを選び、サブスクリプションをキャンセルします。"},
+      {"label":"Google Playで購入","detail":"Google Playの「お支払いと定期購入」からLeminoの定期購入を解約します。"},
+      {"label":"Web / My docomo等で契約","detail":"Leminoの設定からdアカウントへ進み、「Leminoプレミアムの解約」からMy docomoの手続きへ進みます。ドコモ回線契約者はショップやインフォメーションセンターで対応できる場合もあります。"}
+    ],
+    "cautions": [
+      "アプリを削除しただけでは解約されません。",
+      "App Store / Google Play経由は解約後も有効期限まで利用できますが、それ以外の契約では解約時点で利用できなくなる案内があります。",
+      "月途中の解約でも日割りにならない案内があります。",
+      "Leminoプレミアムを解約してもdアカウント自体は削除されません。",
+      "無料会員はLeminoプレミアムの解約手続きは不要です。"
+    ],
+    "source_url": "https://lemino.docomo.ne.jp/leminonews/articles/979638277550112768",
+    "source_title": "Leminoプレミアムの解約方法は？ 退会できない場合の対処法まとめ | Lemino ニュース",
+    "last_verified_at": "2026-09-12"
+  }
+]
