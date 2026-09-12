@@ -2,7 +2,8 @@
 
 - Slug: `trashnavi`
 - Public URL: `https://nicheworks.app/tools/trashnavi/`
-- Specification status: `complete current runtime / official-gateway expansion Phase 1 defined`
+- Specification status: `complete`
+- Expansion status: `official-gateway Phase 1 defined`
 - Common specification: `common-spec/spec-ja.md`
 - Data model: `tools/trashnavi/DATA_MODEL.md`
 
@@ -141,7 +142,9 @@ generic municipal top pageしか持たない自治体はthin landing pageを生�
 - 全国の品目別分別ルールを一括してNicheWorks側で正規化することは、現時点のPhase 1対象外。
 - 自治体pageの大量生成をdata coverageより先に行わない。
 
-## Acceptance criteria — current runtime
+## Acceptance criteria
+
+### Current runtime
 
 - [ ] repository内自治体dataを読み込み、prefecture/municipality選択肢とresult listを生成できる。
 - [ ] prefecture、municipality、type、keywordを組み合わせてbrowser-sideで絞り込める。
@@ -150,7 +153,7 @@ generic municipal top pageしか持たない自治体はthin landing pageを生�
 - [ ] missing/broken link報告導線がGitHub Issueへ接続する。
 - [ ] JA/EN表示を切り替えられる。
 
-## Acceptance criteria — gateway Phase 1
+### Gateway Phase 1
 
 - [ ] forward data modelとcanonical link taxonomyがdocument化されている。
 - [ ] repository dataだけからcoverage auditを実行できる。
