@@ -1,0 +1,60 @@
+name: Apply common support wave 1
+
+on:
+  push:
+    branches:
+      - fix/common-support-wave1-20260913
+    paths:
+      - '.github/workflows/common-support-wave1-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/common-support-wave1-20260913
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Apply deterministic support repair
+        run: node scripts/check-common-support-contract.mjs --fix
+
+      - name: Verify repaired contract
+        run: node scripts/check-common-support-contract.mjs
+
+      - name: Commit generated repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/nw-support.css \
+            tools/ats-paste-doctor/index.html \
+            tools/message-generator/index.html \
+            tools/old-document-kanji-highlighter/index.html \
+            tools/old-kanji-ocr-scanner/index.html \
+            tools/place-old-kanji-checker/index.html \
+            tools/unicode-kanji-checker/index.html \
+            tools/url-title-collector/index.html \
+            tools/variant-kanji-compare/index.html \
+            docs/tools/ats-paste-doctor.md \
+            docs/tools/message-generator.md \
+            docs/tools/old-document-kanji-highlighter.md \
+            docs/tools/old-kanji-ocr-scanner.md \
+            docs/tools/place-old-kanji-checker.md \
+            docs/tools/unicode-kanji-checker.md \
+            docs/tools/url-title-collector.md \
+            docs/tools/variant-kanji-compare.md \
+            audits/tool-quality-matrix.json \
+            audits/tool-quality-matrix.md
+          if [ -f tools/url-title-collector/en/index.html ]; then git add tools/url-title-collector/en/index.html; fi
+          git diff --cached --check
+          git commit -m "Close mandatory support-block hard gaps"
+          git push origin HEAD:fix/common-support-wave1-20260913
