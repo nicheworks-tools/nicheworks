@@ -12,66 +12,73 @@ Status: implemented.
 
 - standalone repositoryの約40recordをmonorepoへ移す
 - 旧6時間HTTP checkerをcanonical updaterとして廃止
-- legacy recordを`legacy_review_required`へ統一
 - database schema / audit / search / category filterを整備
 - current 87-tool quality cycleを壊さないためregistry追加は保留
 - repository SEO contractを守るためlandingは`index.staged.html` + `noindex,nofollow`で保持
 
 ## Phase 1 — Legacy 40 cleanup
 
-Status: **legacy migration cleanup complete (2026-09-12)**.
+Status: **complete (2026-09-12)**.
 
-旧40件を直接破壊的に書き換えず、`data/reverification/*.json`のoverlayでofficial-source review結果を固定した。後waveの再確認はlast-winsで前waveの暫定判断を上書きできる。Phase 2で新規serviceを追加する前に、必要に応じてeffective recordsを新canonical datasetへcompactする。
-
-### Final Phase 1 state after wave 3
+最終状態:
 
 - effective records: 40
 - `verified`: 33
 - `retired`: 1（dTV → Lemino）
 - `needs_review`: 2（Amazonプライム / ディズニープラス）
-- `placeholder`: 4（TVer旧placeholder + 旧generic 2件 + DMMブックス旧「読み放題」誤項目）
+- `placeholder`: 4
 - `legacy_review_required`: **0**
-- visible records: 36
-- visible recordsに占めるverified比率: 約92%
+- public-visible: 36
+- verified比率: 約92%
 
-### Wave 1 completed
+主な是正:
 
-- iCloud+の誤redirect URLを現行Apple公式案内へ修正
-- Notion / Slack / Adobe等の旧help URLを現行公式案内へ修正
-- ChatGPTの旧`Plus / Team`表記を現行有料プランの扱いへ整理
-- dTVを現役subscriptionではなくLemino移行済みhistoryへ変更
-- 楽天市場系 / au PAYマーケット系のgeneric rowをplaceholderへ隔離
-- carrier 4件で回線解約とMNPを混同しないsummaryへ整理
-- App Store / Google Play / direct billing等の主要routeをverified recordへ追加
+- iCloud+の誤redirect、Notion / Slack / Adobe等の旧help URLを現行official sourceへ修正
+- dTVをLemino移行済みhistoryへ変更
+- generic / 架空 / 実体不一致rowをplaceholderへ隔離
+- carrierの解約とMNP、subscription cancellationとaccount deletionを分離
+- Amazon Music Unlimited / Kindle Unlimited / ニコニコ / Rakuten TV / 楽天マガジン等を現行official sourceで再確認
 
-### Wave 2 completed
-
-- ABEMAの現行有料視聴プラン解約ページを確認し、決済経路別の解約を記録
-- AWA StandardプランのApp Store / Google Play / Web / partner経由の自動更新停止を確認
-- Boxの旧誤リンクを現行「アカウント/サブスクリプションのキャンセル方法」へ修正し、Personal ProとBusiness/Enterpriseの差を記録
-- BookLive旧「読み放題」項目を実在する「月額ポイントコース」へ是正。2025-09-24に新規登録終了済みで、解除後は再登録不可という公式注意点を記録
-- DMMブックス旧「読み放題」は現行公式helpで月額読み放題としての実体を確認できないためplaceholderへ隔離
-- 楽天マガジンをdirect procedure URL確定待ちの`needs_review`へ整理
-
-### Wave 3 completed
-
-- Amazon Music UnlimitedをAmazon公式キャンセル案内でverified化。Amazon直契約とApp Store / Google Play / carrier等の第三者請求を分離
-- Kindle UnlimitedをAmazon公式キャンセル案内でverified化。解約後も次回請求日までは利用可能という公式挙動を記録
-- ニコニコプレミアムを現行ニコニコヘルプの解約導線でverified化
-- Rakuten TVを2026年2月の大規模plan終了後の状態へ更新し、存続定額見放題planの購入履歴からの解約をverified化
-- 楽天マガジンを楽天公式サポートの「ご契約内容の確認・変更」導線でverified化
-- Amazonプライムは解約経路自体は確認できるが、日本向けの安定した公開help直リンクを正式公開前に再確認するため`needs_review`
-- ディズニープラスはdirect billing / third-party billing / account deletionの違いは公式確認できるが、日本向け個別解約記事URLを正式公開前に確定するため`needs_review`
-
-Phase 1の目的だった「旧版由来の未判定データを残さない」は達成。残る2件は具体的な公式導線の最終固定問題であり、legacy migration debtではない。
+旧40件は`data/services.json`をmigration snapshotとして保持し、`data/reverification/*.json`をlast-wins overlayとして適用する。
 
 ## Phase 2 — Expand to 100
 
-Status: **next**.
+Status: **active**.
 
-現在の40 seedを土台に、追加60件程度をresearch waveで収録する。ただしplaceholder 4件は公開数に含めないため、100 public-visibleを目標にする場合は実質64件以上の有効record追加が必要。
+100件というraw countではなく、**100 public-visible / verified中心**を目標にする。Phase 1のplaceholder 4件は公開数に含めないため、開始時点36 public-visibleから+64以上の有効recordが必要。
 
-Priority categories:
+Phase 2では新規serviceを`data/additions/*.json`へwave単位で追加し、legacy migration snapshotを直接増築しない。merge順は legacy base → additions → re-verification overlays。
+
+### Wave 1 — 2026-09-12
+
+Official-source verified 10件を追加:
+
+- DAZN
+- FODプレミアム
+- TELASA 見放題プラン
+- Audible 会員プラン
+- Zoom 有料プラン
+- Evernote 有料プラン
+- Claude Pro / Max
+- mineo
+- UQ mobile
+- IIJmio
+
+Wave 1反映後の想定effective state:
+
+- effective records: 50
+- public-visible: 46
+- verified: 43
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **46%**
+
+Wave 1では動画配信、SaaS/AI、通信、オーディオブックを優先し、公式の解約・退会手順まで確認できたrecordだけをverified追加する。
+
+### Next waves
+
+Priority:
 
 1. 動画配信 / streaming
 2. 音楽 / audio
@@ -82,13 +89,15 @@ Priority categories:
 7. ebooks / magazines / learning
 8. major shopping / paid memberships
 
+候補例としてLemino、WOWOW、Y!mobile、追加MVNO、Canva等を調査するが、official procedure sourceを確認できるまでverified追加しない。
+
 Rule:
 
 - candidate発見とverified公開を分離する
 - official sourceが取れない候補は公開数に含めない
 - 同一brandの複数planはprocedureが実際に異なる場合のみ分ける
-- まず100件候補を作るのではなく、**100 public-visible / verified中心**を目標に追加waveを組む
-- Amazonプライム / ディズニープラスの`needs_review` 2件はPhase 2初期に並行して閉じる
+- 新規addition `id`は既存base/additionと衝突不可
+- Amazonプライム / ディズニープラスの`needs_review` 2件も並行して閉じる
 
 ## Phase 3 — Expand to 150
 

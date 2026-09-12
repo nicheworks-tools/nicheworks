@@ -18,6 +18,10 @@ const CATEGORY_LABELS = {
   other: 'その他'
 };
 
+const ADDITION_FILES = [
+  './data/additions/2026-09-12-phase2-wave1.json'
+];
+
 const REVERIFICATION_FILES = [
   './data/reverification/2026-09-12-wave1-media.json',
   './data/reverification/2026-09-12-wave1-cloud-software.json',
@@ -34,12 +38,20 @@ async function fetchJson(url) {
   return response.json();
 }
 
-function mergeReverification(base, overlays) {
+function buildDatabase(base, additions, overlays) {
   const byId = new Map((base.records || []).map((record) => [record.id, record]));
+
+  for (const addition of additions) {
+    for (const record of addition.records || []) {
+      if (byId.has(record.id)) throw new Error(`duplicate addition id: ${record.id}`);
+      byId.set(record.id, record);
+    }
+  }
 
   for (const overlay of overlays) {
     for (const record of overlay.records || []) {
-      const previous = byId.get(record.id) || {};
+      if (!byId.has(record.id)) throw new Error(`overlay targets unknown id: ${record.id}`);
+      const previous = byId.get(record.id);
       byId.set(record.id, {
         ...previous,
         ...record,
@@ -58,11 +70,15 @@ function mergeReverification(base, overlays) {
 }
 
 async function loadDatabase() {
-  const [base, ...overlays] = await Promise.all([
+  const loaded = await Promise.all([
     fetchJson('./data/services.json'),
+    ...ADDITION_FILES.map(fetchJson),
     ...REVERIFICATION_FILES.map(fetchJson)
   ]);
-  return mergeReverification(base, overlays);
+  const base = loaded[0];
+  const additions = loaded.slice(1, 1 + ADDITION_FILES.length);
+  const overlays = loaded.slice(1 + ADDITION_FILES.length);
+  return buildDatabase(base, additions, overlays);
 }
 
 function visibleRecords() {
