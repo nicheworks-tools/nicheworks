@@ -71,6 +71,10 @@ The current Free runtime now exposes its single JSON→Mermaid implementation as
 
 `tools/json2mermaid/pro-shared-converter-integration.mjs` connects the staged Pro batch engine to that same browser converter API by injecting `converterApi.convert(...)` into `runBatch`. It contains no second parser/tree-walk/Mermaid-generation algorithm.
 
+`tools/json2mermaid/pro-workspace.mjs` composes the staged components into one non-live workspace API. It can run batch conversion through the shared Free converter, manage the existing safe local style presets, render a successful batch result through the Mermaid adapter, and export that rendered result as SVG or PNG. The workspace does not implement its own parser, tree walk, flowchart generator, or network transport.
+
+The staged workspace is covered end-to-end by `scripts/check-json2mermaid-pro-workspace.mjs`, which exercises shared conversion → batch result → saved preset → Mermaid initialization/render → SVG Blob → PNG Blob and verifies `securityLevel: "strict"` / `startOnLoad: false` remain forced.
+
 These staged Pro modules are **not loaded by the current public page**, have no purchase CTA, have no product ID or entitlement mapping, and do not make the current tool a live Pro product. Mermaid bundle/version delivery and public Pro UI wiring remain later implementation steps.
 
 ## Privacy and network behavior
@@ -79,7 +83,7 @@ JSON parsing and Mermaid-source generation run in the browser; input JSON is not
 
 For future Pro implementation, batch processing, embedded rendering, exports, and style presets must remain local unless a later specification explicitly changes that contract. Billing/analytics payloads must not contain JSON content, generated Mermaid source, filenames, node labels, or values derived from user input.
 
-The staged Pro engine, shared-converter integration, and Mermaid adapter contain no built-in network transport. Raw batch JSON is passed to the shared converter only and is not copied into the engine's result records.
+The staged Pro engine, shared-converter integration, workspace, and Mermaid adapter contain no built-in network transport. Raw batch JSON is passed to the shared converter only and is not copied into the engine's result records.
 
 ## Language mode
 
@@ -99,7 +103,7 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - Large/deep JSON is intentionally truncated/rejected according to the implemented limits.
 - External Mermaid rendering can expose pasted content to that external service, so confidential JSON-derived output should not be pasted there.
 - The planned Pro contract does not authorize a product ID, price, Stripe Price ID, live checkout, or higher parser limits by itself.
-- The staged Pro engine/adapter/integration are not public Pro UI functionality yet, and this contract does not choose a Mermaid bundle delivery method.
+- The staged Pro engine/adapter/integration/workspace are not public Pro UI functionality yet, and this contract does not choose a Mermaid bundle delivery method.
 
 ## Acceptance criteria
 
@@ -108,6 +112,7 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - [ ] Oversize, over-depth, or heavily expanded arrays surface limit/warning behavior rather than silently claiming complete representation.
 - [ ] Copy and `.mmd` / `.txt` downloads use the currently generated source and JP/EN switching preserves the workflow.
 - [ ] The visible Free converter and staged Pro batch path use the same browser-local converter API rather than duplicated JSON→Mermaid implementations.
+- [ ] The staged Pro workspace can compose batch conversion, saved style preset application, local Mermaid rendering, and SVG/PNG export without adding network transport.
 - [ ] Future Pro implementation does not move any current Free contract feature behind a paid gate.
 - [ ] Future batch/render/export/style features do not silently upload user JSON or generated Mermaid to a third-party rendering backend.
 - [ ] The staged Pro modules remain disconnected from public Pro UI until product-scoped entitlement, Mermaid bundle delivery, and UI wiring are explicitly implemented.
@@ -118,9 +123,11 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - `tools/json2mermaid/app.js` — current Free runtime and shared browser-local converter API.
 - `tools/json2mermaid/pro-engine.mjs` — staged, non-live Pro infrastructure only.
 - `tools/json2mermaid/pro-shared-converter-integration.mjs` — staged batch integration using the Free converter API.
+- `tools/json2mermaid/pro-workspace.mjs` — staged, non-live composition of batch/preset/render/export paths.
 - `tools/json2mermaid/mermaid-renderer-adapter.mjs` — staged, non-live local Mermaid API adapter.
 - `tools/json2mermaid/usage.html`
 - `tools/json2mermaid/usage-en.html`
 - `scripts/check-json2mermaid-pro-engine.mjs`
 - `scripts/check-json2mermaid-shared-converter.mjs`
+- `scripts/check-json2mermaid-pro-workspace.mjs`
 - `docs/billing/pro-product-contracts-wave1.md`
