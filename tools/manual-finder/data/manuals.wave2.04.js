@@ -134,6 +134,32 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`7002|https://www.seikowatches.com/sg-en/-/
 7T86|https://www.seikowatches.com/us-en/-/media/Files/Common/Seiko/instructions/English/7/7T86/7T86.pdf
 7T94|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/7/7T94/7T94.pdf`);
 
+// Wave 2X: direct Seiko 8-series manuals with verified one-caliber primary destinations.
+window.MANUALFINDER_WAVE2_SEIKO.push(`8A50|https://www.seikowatches.com/instructions/html/SEIKO_8A50_JP/index
+8B43|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8B43/8B43.pdf
+8B53|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8B53/8B53.pdf
+8B54|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8B54/8B54.pdf
+8B82|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8B82/8B82.pdf
+8F32|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8F32/8F32.pdf
+8F33|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8F33/8F33.pdf
+8F35|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8F35/8F35.pdf
+8F56|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8F56/8F56.pdf
+8F58|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8F58/8F58.pdf
+8J41|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8J41/8J41.pdf
+8J42|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8J42/8J42.pdf
+8J55|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8J55/8J55.pdf
+8J56|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8J56/8J56.pdf
+8L21|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8L21/8L21.pdf
+8L34|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8L34/8L34.pdf
+8M11|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8M11/8M11.pdf
+8N40|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8N40/8N40.pdf
+8N41|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8N41/8N41.pdf
+8N45|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8N45/8N45.pdf
+8N46|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8N46/8N46.pdf
+8N51|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8N51/8N51.pdf
+8N65|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8N65/8N65.pdf
+8R28|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8R28/8R28.pdf`);
+
 // Normalize Seiko evidence/support links to the model-specific official caliber search.
 // This removes the original H-index assumption while preserving the existing builder contract.
 {
