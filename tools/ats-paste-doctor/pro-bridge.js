@@ -4,6 +4,7 @@
   const PAYMENT_LINK = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
   const ENTITLEMENT = "nicheworks_pro";
   const TOOL_ID = "ats-paste-doctor";
+  const INTERACTION_GUARD_SELECTOR = "#processBtn, [data-pro-action]";
 
   const STATUS = {
     active: "Pro解放済み。このブラウザでは共通Proが有効です。 / Pro unlocked. Common Pro is active in this browser.",
@@ -35,7 +36,7 @@
     $$('[data-pro-buy]').forEach((link) => {
       link.setAttribute("href", PAYMENT_LINK);
       link.setAttribute("target", "_blank");
-      link.setAttribute("rel", "noopener");
+      link.setAttribute("rel", "noopener noreferrer");
       link.removeAttribute("aria-disabled");
     });
   }
@@ -73,13 +74,31 @@
     return { ...status, active };
   }
 
+  function enforceBeforeInteraction(event) {
+    const target = event.target && typeof event.target.closest === "function"
+      ? event.target.closest(INTERACTION_GUARD_SELECTOR)
+      : null;
+    if (!target) return;
+    syncGate();
+  }
+
   function init() {
     syncGate();
+    document.addEventListener("click", enforceBeforeInteraction, true);
     window.addEventListener("storage", syncGate);
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) syncGate();
     });
   }
+
+  window.NWATSPasteDoctorPro = {
+    refresh: syncGate,
+    isActive: () => {
+      const status = getStatus();
+      return status.available === true && status.active === true;
+    },
+    paymentLink: PAYMENT_LINK,
+  };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
