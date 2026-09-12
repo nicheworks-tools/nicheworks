@@ -26,9 +26,12 @@
       ]
     },
     {
-      "assert": "contains",
-      "selector": "#fast-results",
-      "value": "1,2-Hexanediol"
+      "assertAny": [
+        {
+          "selector": "#fast-results",
+          "contains": "1,2-Hexanediol"
+        }
+      ]
     }
   ]
 }
