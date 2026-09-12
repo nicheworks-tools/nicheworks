@@ -51,6 +51,14 @@ const RESULT_TEXT = {
     ja: "辞書に見つかりませんでした。OCR崩れ、表記ゆれ、辞書未登録の可能性があります。",
     en: "This was not found in the dictionary. It may be an OCR issue, spelling variant, or missing dictionary item."
   },
+  suggestionTitle: {
+    ja: "近い表記候補",
+    en: "Possible close matches"
+  },
+  suggestionHint: {
+    ja: "候補は自動置換しません。元のラベルを見ながら入力欄を修正して再チェックしてください。",
+    en: "Suggestions are never applied automatically. Compare with the original label, edit the input, and run the check again."
+  },
   tipSpell: {
     ja: "スペルやカンマ区切りを確認してください。",
     en: "Check spelling and comma separation."
@@ -136,6 +144,7 @@ function renderResults(container, results, lang = "ja") {
           <span class="review-label">${escapeHtml(rt("unknownLabel", uiLang))}</span>
         </div>
         <div class="result-note">${escapeHtml(rt("unknownReason", uiLang))}</div>
+        ${renderSuggestions(r.suggestions, uiLang)}
         <ul class="unknown-tips">
           <li>${escapeHtml(rt("tipSpell", uiLang))}</li>
           <li>${escapeHtml(rt("tipOcr", uiLang))}</li>
@@ -146,6 +155,23 @@ function renderResults(container, results, lang = "ja") {
 
     container.appendChild(div);
   });
+}
+
+function renderSuggestions(suggestions, lang) {
+  if (!Array.isArray(suggestions) || suggestions.length === 0) return "";
+
+  const chips = suggestions.map(item => {
+    const jp = Array.isArray(item.jp) && item.jp.length ? ` / ${item.jp[0]}` : "";
+    return `<span class="suggestion-chip">${escapeHtml(item.en + jp)}</span>`;
+  }).join("");
+
+  return `
+    <div class="suggestion-box">
+      <div class="suggestion-title">${escapeHtml(rt("suggestionTitle", lang))}</div>
+      <div class="suggestion-list">${chips}</div>
+      <div class="small suggestion-hint">${escapeHtml(rt("suggestionHint", lang))}</div>
+    </div>
+  `;
 }
 
 function rt(key, lang) {
