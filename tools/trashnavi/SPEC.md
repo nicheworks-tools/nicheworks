@@ -233,12 +233,12 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 
 ### Current runtime
 
-- [ ] repository内自治体dataを読み込み、prefecture/municipality選択肢とresult listを生成できる。
-- [ ] prefecture、municipality、type、keywordを組み合わせてbrowser-sideで絞り込める。
-- [ ] result linkは該当official external pageへ遷移し、NicheWorks内で分別を確定しない。
-- [ ] resetでfilterを解除し、全件表示へ戻せる。
-- [ ] missing/broken link報告導線がGitHub Issueへ接続する。
-- [ ] JA/EN表示を切り替えられる。
+- [x] repository内自治体dataを読み込み、prefecture/municipality選択肢とresult listを生成できる。
+- [x] prefecture、municipality、type、keywordを組み合わせてbrowser-sideで絞り込める。
+- [x] result linkは該当official external pageへ遷移し、NicheWorks内で分別を確定しない。
+- [x] resetでfilterを解除し、全件表示へ戻せる。
+- [x] missing/broken link報告導線がGitHub Issueへ接続する。
+- [x] JA/EN表示を切り替えられる。
 
 ### Gateway Phase 1
 
@@ -279,6 +279,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/direct-waste-links-demand-wave4.json` — 中央区のWave 4 collection-calendar enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
+- `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
 - `tools/trashnavi/municipality-page-manifest.json` — indexable municipality page allowlist。
 - `tools/trashnavi/scripts/generate-municipality-pages.mjs` — deterministic municipality page / sitemap generator and drift checker。
 - `tools/trashnavi/tokyo/*/index.html` — initial Tokyo municipality pages。

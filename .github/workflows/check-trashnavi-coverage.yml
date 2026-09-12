@@ -44,3 +44,6 @@ jobs:
 
       - name: Check generated municipality pages
         run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+
+      - name: Check runtime contract
+        run: node tools/trashnavi/scripts/check-runtime-contract.mjs
