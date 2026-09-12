@@ -97,6 +97,11 @@ assert.match(bridge, /const ENTITLEMENT = "nicheworks_pro"/);
 assert.match(bridge, /local\.active === true && local\.entitlement === ENTITLEMENT/);
 assert.doesNotMatch(bridge, /local\.entitlement \|\| ENTITLEMENT/);
 assert.doesNotMatch(bridge, /entitlement:\s*ENTITLEMENT/);
+assert.match(bridge, /const INTERACTION_GUARD_SELECTOR = "#processBtn, \[data-pro-action\]"/);
+assert.match(bridge, /function enforceBeforeInteraction\(event\)[\s\S]*syncGate\(\);/);
+assert.match(bridge, /document\.addEventListener\("click", enforceBeforeInteraction, true\)/);
+assert.match(bridge, /window\.NWATSPasteDoctorPro/);
+assert.match(bridge, /isActive:\s*\(\) =>/);
 
 const classification = JSON.parse(fs.readFileSync(new URL('../MONETIZATION_CLASSIFICATION_87.json', import.meta.url), 'utf8'));
 assert.equal(classification.bundleProductId, 'nicheworks.pro');
@@ -113,5 +118,7 @@ for (const source of [localSpec, canonicalSpec, wave5]) {
 assert.match(wave5, /30,000/);
 assert.match(wave5, /200,000/);
 assert.match(wave5, /configured product ID must be `nicheworks\.pro`/i);
+assert.match(wave5, /capture phase/i);
+assert.match(wave5, /DOM/i);
 
 console.log('ATS Paste Doctor product-scoped staging contracts: OK');
