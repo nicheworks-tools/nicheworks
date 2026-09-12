@@ -1,0 +1,24 @@
+(window.MANUALFINDER_WAVE2_ROLAND ||= []).push(`RB-60|https://lib.roland.co.jp/support/jp/manuals/res/7908492/RB-60_j.pdf
+RB-600|https://lib.roland.co.jp/support/jp/manuals/res/7908495/RB-600_j.pdf
+RB-800|https://lib.roland.co.jp/support/jp/manuals/res/7908496/RB-800_j.pdf
+RBF-10|https://lib.roland.co.jp/support/jp/manuals/res/1808734/RBF-10_j.pdf
+RC-100|https://lib.roland.co.jp/support/jp/manuals/res/1809099/RC-100_j.pdf
+RC-20|https://lib.roland.co.jp/support/jp/manuals/res/1810018/RC-20_j2.pdf
+RC-800|https://lib.roland.co.jp/support/jp/manuals/res/1808736/RC-8000_j.pdf
+RCB-4|https://lib.roland.co.jp/support/jp/manuals/res/1808737/RCB-4_je.pdf
+RCE-10|https://lib.roland.co.jp/support/jp/manuals/res/1809940/RCE-10_j.pdf
+RCL-10|https://lib.roland.co.jp/support/jp/manuals/res/1809742/RCL-10_j.pdf
+RD-1000|https://lib.roland.co.jp/support/jp/manuals/res/1809597/RD-1000_j.pdf
+RD-150|https://lib.roland.co.jp/support/jp/manuals/res/1809098/RD-150_j1.pdf
+RD-500|https://lib.roland.co.jp/support/jp/manuals/res/1810120/RD-500_j.pdf
+RD-600|https://lib.roland.co.jp/support/jp/manuals/res/1810129/RD-600_j5.pdf
+RD-64|https://lib.roland.co.jp/support/jp/manuals/res/62960532/RD-64_j02_W.pdf
+RD-700|https://lib.roland.co.jp/support/jp/manuals/res/1810502/RD-700_j8.pdf
+RDD-10|https://lib.roland.co.jp/support/jp/manuals/res/1809532/RDD-10_j.pdf
+RDD-20|https://lib.roland.co.jp/support/jp/manuals/res/1809531/RDD-20_j.pdf
+RDE-1800|https://lib.roland.co.jp/support/jp/manuals/res/1808739/RDE-1800_j.pdf
+RDL-2040|https://lib.roland.co.jp/support/jp/manuals/res/1810503/RDL-2040_j2.pdf
+RDQ-2031|https://lib.roland.co.jp/support/jp/manuals/res/1810504/RDQ-2031_j4.pdf
+RDQ-4015|https://lib.roland.co.jp/support/jp/manuals/res/1810501/RDQ-4015_j1.pdf
+RDS-170|https://lib.roland.co.jp/support/jp/manuals/res/1808740/RDS-170_je.pdf
+RDS-55|https://lib.roland.co.jp/support/jp/manuals/res/1808742/RDS-55_je.pdf`);
