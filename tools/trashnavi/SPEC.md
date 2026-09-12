@@ -149,9 +149,9 @@ Wave 4では、第三のofficial link typeとして収集曜日を確認でき�
 
 - 東京都 中央区 — `/tools/trashnavi/tokyo/chuo/`
 
-Wave 5では、Search Consoleで葛飾区の粗大ごみ需要が確認されたため、葛飾区に2026年度収集カレンダーと粗大ごみ案内のofficial linkを追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げる。公開page化はdata enrichment検証後の別PRで行う。
+Wave 5では、Search Consoleで葛飾区の粗大ごみ需要が確認されたため、葛飾区に2026年度収集カレンダーと粗大ごみ案内のofficial linkを追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **12自治体** とする。
 
-- 東京都 葛飾区 — preferred candidate（publication pending）
+- 東京都 葛飾区 — `/tools/trashnavi/tokyo/katsushika/`
 
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
@@ -256,14 +256,14 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開11自治体をmanifest allowlistで管理する。
+- [x] 公開12自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で11ページの生成driftを検出する。
+- [x] generator `--check` で12ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
 - [x] Wave 4で中央区をpreferred candidateへ引き上げ、自治体pageを公開する。
-- [x] Wave 5で葛飾区をpreferred candidateへ引き上げる。
+- [x] Wave 5で葛飾区をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -291,6 +291,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/tokyo/*/index.html` — initial Tokyo municipality pages。
 - `tools/trashnavi/mie/mihama/index.html` / `tools/trashnavi/gifu/kaizu/index.html` / `tools/trashnavi/ibaraki/yuki/index.html` — Wave 3 municipality pages。
 - `tools/trashnavi/tokyo/chuo/index.html` — Wave 4 municipality page。
+- `tools/trashnavi/tokyo/katsushika/index.html` — Wave 5 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
