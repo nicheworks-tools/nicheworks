@@ -324,16 +324,109 @@ Do not invent:
 - production feature-ID namespace;
 - test/live checkout policy.
 
-## 5. Wave 2 implementation order
+## 5. Cold Email Requirement Checker
+
+### 5.1 Free boundary — fixed
+
+The current Free checker remains available without paid entitlement:
+
+- paste an email subject/body and run the implemented structural review;
+- receive checklist findings and missing/attention guidance;
+- use built-in presets and clear/reset;
+- copy the Free review;
+- use JA/EN UI and current legal/compliance/deliverability disclaimers.
+
+The Free checklist workflow must not become dependent on billing availability.
+
+### 5.2 Paid boundary — runtime-backed delta
+
+Current runtime evidence supports four paid operations:
+
+1. **Score** — reveal the current structure score.
+2. **Suggestions** — reveal the current improvement-candidate list.
+3. **Draft Compare** — compare Draft A with a Pro Draft B.
+4. **Markdown Export** — save the Pro review Markdown containing the selected drafts and stats.
+
+No new paid feature is invented for staging.
+
+### 5.3 Staged product-scoped wrapper
+
+`tools/cold-email-requirement-checker/product-scoped-controller.mjs` is a non-live wrapper around `assets/nw-product-scoped-controller.mjs`.
+
+The staged contract requires:
+
+- an explicit future product ID with no default/fallback;
+- a complete and unique feature-ID mapping for all four paid operations;
+- server-backed `refreshProState({ productId })` through the shared controller core;
+- exact product match;
+- `active: true`;
+- `source: "server"`;
+- `reason: "verified_entitlement"`;
+- operation-level activation only for feature IDs returned by the verified server response.
+
+Wrong-product, local/browser-only, unverified, incomplete/duplicate mapping, and entitlement-refresh failure states fail closed. The staged wrapper contains no `NWPro`, `nicheworks_pro`, browser-storage authority, Payment Link logic, email subject/body, or Draft B content.
+
+### 5.4 Legacy entitlement isolation — hardened
+
+The shared `NWPro.getLocalStatus()` contract always returns an entitlement identifier. The Cold Email legacy add-on therefore requires exact `status.entitlement === "nicheworks_pro"` together with `status.active` and no longer treats a missing entitlement as implicit shared Pro.
+
+A missing or unrelated entitlement must not unlock the current paid surface. The historical shared Payment Link is legacy commerce evidence only and does not establish future product/pricing truth.
+
+### 5.5 Billing privacy boundary
+
+Cold-email drafts can contain names, companies, offers, contact details, URLs, and confidential sales context. Product-scoped billing and entitlement requests may contain only fixed product/feature entitlement metadata.
+
+Do not send any of the following through the billing/entitlement path:
+
+- subject text;
+- Draft A email body;
+- Draft B comparison body;
+- recipient/sender names, company names, offers, URLs, or contact details extracted from drafts;
+- checklist findings, score or suggestion content;
+- comparison output;
+- generated Markdown review content or export filename/payload.
+
+### 5.6 Live migration requirements
+
+Cold Email migration is complete only when all of the following are true:
+
+1. an authoritative product and commercial configuration are registered in `config/billing/products.json`;
+2. all four paid-operation feature IDs are registered for that product;
+3. checkout uses the common billing endpoint for that product;
+4. signed Stripe webhook fulfillment records the matching paid entitlement in D1;
+5. public runtime uses server-verified product state for the four paid operations;
+6. Free checklist findings and review copy remain independent of billing availability;
+7. failed/inactive entitlement checks leave the complete current Free checker usable;
+8. missing or unrelated legacy entitlements cannot unlock the paid surface before migration;
+9. billing/entitlement traffic contains no draft/generated user content;
+10. the historical shared Payment Link and legacy shared state stop being authoritative for this tool;
+11. reload re-verifies the product entitlement rather than trusting browser-local active state.
+
+Return path: `/tools/cold-email-requirement-checker/`.
+
+### 5.7 Commercial fields intentionally unresolved
+
+Do not invent:
+
+- product ID;
+- display product name;
+- price or currency;
+- one-time vs recurring billing model;
+- price tier ID;
+- Stripe Price environment mapping;
+- production feature-ID namespace;
+- test/live checkout policy.
+
+## 6. Wave 2 implementation order
 
 1. Stage only legacy Pro tools whose current Free/Paid boundary is supported by runtime evidence.
 2. Keep Command Safety as the first intended **live** product-scoped migration once authoritative commercial configuration is available.
 3. Use the shared controller core for staging and keep each tool wrapper limited to its operation list and tool label.
 4. Add privacy-specific regression checks for tools that process sensitive or confidential inputs.
-5. Preserve existing legacy entitlement-isolation fixes until each tool is explicitly migrated live.
+5. Preserve or tighten existing legacy entitlement-isolation behavior until each tool is explicitly migrated live.
 6. Do not treat staging completion as product launch or payment configuration.
 
-## 6. Definition of done for current Wave 2 staging
+## 7. Definition of done for current Wave 2 staging
 
 SQL DB Risk Checker:
 
@@ -370,3 +463,15 @@ Outsource Spec Generator:
 - path-scoped CI;
 - no commercial values invented;
 - public runtime remains legacy until authorized live migration.
+
+Cold Email Requirement Checker:
+
+- exact four-operation runtime-backed paid boundary;
+- Free checklist/review copy protected;
+- thin shared-core wrapper with no draft-content dependency;
+- deterministic fail-closed tests;
+- legacy gate hardened to exact `nicheworks_pro` entitlement with no missing-entitlement fallback;
+- billing privacy boundary excludes subject/body/Draft B/generated content;
+- path-scoped CI;
+- no commercial values invented;
+- public product-scoped runtime remains staged until authorized live migration.

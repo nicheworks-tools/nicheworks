@@ -33,8 +33,7 @@
     try {
       if (!window.NWPro || typeof window.NWPro.getLocalStatus !== 'function') return false;
       const status = window.NWPro.getLocalStatus() || {};
-      const entitlement = status.entitlement || ENTITLEMENT;
-      return Boolean(status.active && entitlement === ENTITLEMENT);
+      return Boolean(status.active && status.entitlement === ENTITLEMENT);
     } catch (_) {
       return false;
     }
