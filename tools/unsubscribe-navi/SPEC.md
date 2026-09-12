@@ -17,13 +17,17 @@
 
 Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数を変えないため正式公開前のstaged stateとする。production-intent landingは`index.staged.html`に保持し、正式登録時に`index.html`へ昇格させる。
 
-- `data/services.json` をブラウザから読み込む静的ツール。
-- サービス名、alias、keyword、category、summaryを検索対象にする。
+- `data/services.json` をlegacy migration snapshotとして読み込む。
+- `data/reverification/*.json` のofficial-source review結果を`id`単位でoverlayし、effective recordを生成する。
+- runtimeとauditは同じoverlay順序・同じmerge契約を使用する。
+- サービス名、alias、keyword、category、summary、procedure type、billing routeを検索対象にする。
 - category filterを提供する。
 - `placeholder` recordは通常検索結果に表示しない。
-- `verified` と旧版移行データをUI上で明確に区別する。
-- `procedure_url` がある場合のみ手続き候補/公式手続き情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
+- `verified` / `needs_review` / `retired` / legacy dataをUI上で区別する。
+- `procedure_url` がある場合のみ公式手続き・関連情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
 - legacy recordをHTTP 200だけでverifiedへ昇格させない。
+
+2026-09-12 re-verification wave 1時点で、40 legacy seed中24件をofficial source確認済みの`verified`へ昇格し、dTVを`retired`、Rakuten TVを`needs_review`、旧generic 2件を`placeholder`へ隔離している。
 
 ## Inputs
 
@@ -50,9 +54,11 @@ Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数
 
 ユーザー入力や検索状態を永続保存しない。localStorage、cookie、account DBは使用しない。データベース本体はrepository内のstatic JSONを正本とする。
 
+Phase 1再検証中は`data/services.json`をmigration snapshot、`data/reverification/*.json`を検証済みoverlayとして扱う。Phase 1完了後にeffective recordsを新canonical datasetへcompactできる。
+
 ## Privacy and network behavior
 
-検索語は外部送信しない。runtime network accessは同一site上の`data/services.json`取得と、ユーザーが明示的にofficial linkを開いた場合に限る。GA4 / AdSenseはNicheWorks共通仕様に従う。
+検索語は外部送信しない。runtime network accessは同一site上のlocal JSON取得と、ユーザーが明示的にofficial linkを開いた場合に限る。GA4 / AdSenseはNicheWorks共通仕様に従う。
 
 解約先サービスのlogin情報、契約情報、決済情報をNicheWorksへ入力させてはならない。
 
@@ -87,15 +93,17 @@ Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数
 - [x] schema / duplicate / state / target progressをnetworkなしで確認できるaudit scriptを持つ。
 - [x] 100→150→200 serviceへの拡張方針がrepository内ROADMAPに固定されている。
 - [x] current 87-tool registryを変えずにstaged sourceを保持する。
+- [x] re-verification waveをmigration provenance付きで段階適用できる。
 - [ ] legacy recordのofficial-source再検証が完了している。
 - [ ] 100 service以上がverifiedまたは適切なretired historyとして整理されている。
 
 ## Implementation evidence
 
 - `tools/unsubscribe-navi/index.staged.html` — staged static UI / SEO / FAQ / NicheWorks common surfaces
-- `tools/unsubscribe-navi/app.js` — local database search and rendering
+- `tools/unsubscribe-navi/app.js` — base + re-verification overlay merge, local search and rendering
 - `tools/unsubscribe-navi/style.css` — responsive hybrid layout
-- `tools/unsubscribe-navi/data/services.json` — canonical service records
-- `tools/unsubscribe-navi/scripts/audit-services.mjs` — repository-local database audit
-- `tools/unsubscribe-navi/DATA_MODEL.md` — forward data and verification contract
-- `tools/unsubscribe-navi/ROADMAP.md` — 100–200 service expansion plan
+- `tools/unsubscribe-navi/data/services.json` — legacy migration snapshot
+- `tools/unsubscribe-navi/data/reverification/*.json` — official-source re-verification overlays
+- `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / overlay audit
+- `tools/unsubscribe-navi/DATA_MODEL.md` — forward data, route and verification contract
+- `tools/unsubscribe-navi/ROADMAP.md` — 100–200 service expansion plan and current progress
