@@ -73,9 +73,9 @@ The current UI explicitly labels itself Japanese-only. English UI must not be ad
 
 ## Layout class
 
-`mobile-oriented / input-first`
+`mobile-oriented`
 
-The first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by a horizontally safe detailed table.
+The page is input-first: the first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by a horizontally safe detailed table.
 
 ## Monetization readiness
 
