@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "registry": "tools/tools-index.json",
-  "required_complete": 15,
-  "complete": 15,
-  "pending": 72,
+  "required_complete": 16,
+  "complete": 16,
+  "pending": 71,
   "items": [
     {"slug":"ai-interaction-atlas","state":"complete","spec":"tools/ai-interaction-atlas/SPEC.md"},
     {"slug":"ai-project-pack","state":"complete","spec":"tools/ai-project-pack/SPEC.md"},
@@ -76,7 +76,7 @@
     {"slug":"redirect-unwrapper","state":"pending","spec":null},
     {"slug":"release-guardian","state":"pending","spec":null},
     {"slug":"rename-wizard","state":"pending","spec":null},
-    {"slug":"screenshot-stitcher","state":"pending","spec":null},
+    {"slug":"screenshot-stitcher","state":"complete","spec":"tools/screenshot-stitcher/SPEC.md"},
     {"slug":"size-converter","state":"pending","spec":null},
     {"slug":"sponsor-page-builder","state":"pending","spec":null},
     {"slug":"sql-db-risk-checker","state":"pending","spec":null},
