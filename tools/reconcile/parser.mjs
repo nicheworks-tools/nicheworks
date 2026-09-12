@@ -92,9 +92,19 @@ export async function readCsvFile(file, { encoding = 'auto', delimiter = 'auto' 
   return { ...parsed, encoding: usedEncoding, size: file.size, name: file.name };
 }
 
+function makeUniqueHeaders(values) {
+  const seen = new Map();
+  return values.map((value, i) => {
+    const base = String(value || `Column ${i + 1}`).trim() || `Column ${i + 1}`;
+    const count = (seen.get(base) || 0) + 1;
+    seen.set(base, count);
+    return count === 1 ? base : `${base} (${count})`;
+  });
+}
+
 export function tableFromRows(rows, headerRow = 1) {
   const index = Math.max(0, Number(headerRow || 1) - 1);
-  const headers = (rows[index] || []).map((value, i) => String(value || `Column ${i + 1}`).trim() || `Column ${i + 1}`);
+  const headers = makeUniqueHeaders(rows[index] || []);
   const data = rows.slice(index + 1).filter((row) => row.some((cell) => String(cell ?? '').trim() !== ''));
   return {
     headers,
