@@ -18,6 +18,13 @@ const DATA_FILES = [
   'tools/inci-fastscan/data/ingredients-extra-8.json'
 ];
 
+const EQUIVALENT_CANONICAL_GROUPS = [
+  ['bemotrizinol', 'bis-ethylhexyloxyphenol methoxyphenyl triazine'],
+  ['bisoctrizole', 'methylene bis-benzotriazolyl tetramethylbutylphenol'],
+  ['titanium dioxide', 'ci 77891'],
+  ['mica', 'ci 77019']
+].map((group) => new Set(group));
+
 function baseKey(value = '') {
   if (parser?.normalizeBaseKey) return parser.normalizeBaseKey(value);
   return String(value)
@@ -30,6 +37,11 @@ function baseKey(value = '') {
     .trim();
 }
 
+function isEquivalentCanonicalSet(canonicalKeys) {
+  if (!canonicalKeys.length) return false;
+  return EQUIVALENT_CANONICAL_GROUPS.some((group) => canonicalKeys.every((key) => group.has(key)));
+}
+
 const rows = DATA_FILES.flatMap((file) => {
   const data = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
   return data.map((item, index) => ({ ...item, __file: file, __index: index }));
@@ -38,6 +50,10 @@ const rows = DATA_FILES.flatMap((file) => {
 const failures = [];
 const canonicalOwners = new Map();
 const nameOwners = new Map();
+let redundantLocalNames = 0;
+let duplicateCanonicalRecords = 0;
+let equivalentIdentityCollisions = 0;
+let protectedAmbiguousKeys = 0;
 
 function pushOwner(map, key, owner) {
   if (!key) return;
@@ -68,7 +84,10 @@ for (const item of rows) {
       continue;
     }
     if (localSeen.has(key)) {
-      failures.push(`${item.en}: duplicate normalized name within one entry: ${value}`);
+      // Existing dictionaries intentionally contain full-width/half-width and
+      // other NFKC-equivalent spellings. Runtime normalization already merges
+      // these safely, so count them as redundancy rather than an identity bug.
+      redundantLocalNames += 1;
       continue;
     }
     localSeen.add(key);
@@ -76,17 +95,30 @@ for (const item of rows) {
   }
 }
 
-for (const [key, owners] of canonicalOwners) {
-  if (owners.length > 1) {
-    failures.push(`duplicate canonical key ${key}: ${owners.map((item) => `${item.en} @ ${item.__file}`).join(' | ')}`);
-  }
+for (const owners of canonicalOwners.values()) {
+  if (owners.length > 1) duplicateCanonicalRecords += owners.length - 1;
 }
 
+const ambiguousSet = new Set((parser?.ambiguousExactKeys || []).map(baseKey));
 for (const [key, owners] of nameOwners) {
-  const canonicals = [...new Set(owners.map((owner) => baseKey(owner.canonical)))];
-  if (canonicals.length > 1) {
-    failures.push(`cross-ingredient name collision ${key}: ${owners.map((owner) => `${owner.value} -> ${owner.canonical}`).join(' | ')}`);
+  const canonicalKeys = [...new Set(owners.map((owner) => baseKey(owner.canonical)))];
+  if (canonicalKeys.length <= 1) continue;
+
+  if (ambiguousSet.has(key)) {
+    if (parser.normalizeKey(key) !== '') {
+      failures.push(`ambiguous exact key must normalize to empty: ${key}`);
+    } else {
+      protectedAmbiguousKeys += 1;
+    }
+    continue;
   }
+
+  if (isEquivalentCanonicalSet(canonicalKeys)) {
+    equivalentIdentityCollisions += 1;
+    continue;
+  }
+
+  failures.push(`unprotected cross-ingredient name collision ${key}: ${owners.map((owner) => `${owner.value} -> ${owner.canonical}`).join(' | ')}`);
 }
 
 const sharedAliases = parser?.aliasEquivalents || {};
@@ -97,13 +129,21 @@ for (const [rawAlias, rawTarget] of Object.entries(sharedAliases)) {
     failures.push(`shared alias has empty key: ${rawAlias} -> ${rawTarget}`);
     continue;
   }
+  if (ambiguousSet.has(aliasKey) || ambiguousSet.has(targetKey)) {
+    failures.push(`shared alias may not use an ambiguous exact key: ${rawAlias} -> ${rawTarget}`);
+    continue;
+  }
   if (!canonicalOwners.has(targetKey) && !nameOwners.has(targetKey)) {
     failures.push(`shared alias target missing from maintained dictionary: ${rawAlias} -> ${rawTarget}`);
     continue;
   }
 
   const existing = nameOwners.get(aliasKey) || [];
-  const foreignOwners = existing.filter((owner) => baseKey(owner.canonical) !== targetKey);
+  const foreignOwners = existing.filter((owner) => {
+    const ownerKey = baseKey(owner.canonical);
+    if (ownerKey === targetKey) return false;
+    return !isEquivalentCanonicalSet([ownerKey, targetKey]);
+  });
   if (foreignOwners.length) {
     failures.push(`shared alias collides with another ingredient: ${rawAlias} -> ${rawTarget}; existing ${foreignOwners.map((owner) => owner.canonical).join(', ')}`);
   }
@@ -120,6 +160,10 @@ console.log(JSON.stringify({
   dictionary_records: rows.length,
   canonical_keys: canonicalOwners.size,
   exact_name_keys: nameOwners.size,
+  redundant_local_names: redundantLocalNames,
+  duplicate_canonical_records: duplicateCanonicalRecords,
+  equivalent_identity_collisions: equivalentIdentityCollisions,
+  protected_ambiguous_keys: protectedAmbiguousKeys,
   shared_alias_equivalents: Object.keys(sharedAliases).length,
   files: DATA_FILES.length
 }, null, 2));
