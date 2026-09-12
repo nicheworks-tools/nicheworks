@@ -61,7 +61,7 @@ Future billing/entitlement requests may contain fixed product/feature metadata o
 
 For live migration, configured product ID must be `nicheworks.pro`. No ATS-Paste-Doctor-specific paid product is authorized.
 
-The current legacy bridge must require both `local.active === true` and exact `local.entitlement === "nicheworks_pro"`; a missing entitlement must not fall back to the expected legacy entitlement.
+The current legacy bridge must require both `local.active === true` and exact `local.entitlement === "nicheworks_pro"`; a missing entitlement must not fall back to the expected legacy entitlement. Because current application gating reads `data-pro-active`, the bridge revalidates exact legacy state in click capture before `#processBtn` or any `[data-pro-action]` handler runs, so a DOM-only `data-pro-active="true"` edit does not survive the normal UI action path.
 
 ## Language mode
 
@@ -82,6 +82,7 @@ The desktop form uses paired panels while the same workflow remains usable on na
 - Free 30,000 / paid 200,000 character limits are product implementation limits, not ATS platform limits.
 - Free copy/TXT remains Free.
 - Current advertising-hiding copy is not represented as a tool-operation entitlement in this five-operation staging contract; suite-level ad behavior may be handled separately.
+- Legacy capture-phase hardening is not future billing authority; production access still requires server-verified `nicheworks.pro`.
 - Boundary staging does not decide price/currency, Stripe Product/Price, production feature IDs, restore policy, purchaser migration, or live rollout timing.
 
 ## Acceptance criteria
@@ -90,6 +91,7 @@ The desktop form uses paired panels while the same workflow remains usable on na
 - [ ] Free copy/TXT works up to 30,000 characters independently of billing state.
 - [ ] Current paid state raises processing to 200,000 characters and gates output pack, Pro exports, templates, and history.
 - [ ] Missing/unrelated legacy entitlement cannot unlock paid behavior even when active-like state exists.
+- [ ] A manual DOM edit to `data-pro-active` is rechecked before normal Generate/Pro click handlers execute.
 - [ ] Product-scoped staging exposes exactly the five documented paid operations and fails closed without matching server-verified product/features.
 - [ ] Future live product authority is shared `nicheworks.pro`.
 - [ ] Billing/entitlement traffic contains no pasted/generated application content.
