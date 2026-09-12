@@ -6,12 +6,16 @@ function coreParseIngredients(text) {
     return sharedParser.splitIngredients(text, { dedupe: true });
   }
 
-  // Safe local fallback: do not split on '/' or '・' because both can appear
-  // inside legitimate ingredient names.
-  const normalized = String(text).replace(/\r/g, "\n");
+  // Safe local fallback: do not split on '/', '・', or numeric locant commas
+  // such as 1,2-Hexanediol.
+  const locantComma = "\uE002";
+  const normalized = String(text)
+    .replace(/\r/g, "\n")
+    .replace(/(\d),(?=\d)/g, `$1${locantComma}`);
+
   const parts = normalized
     .split(/[\n,、，;；]+/)
-    .map(s => s.trim())
+    .map(s => s.replaceAll(locantComma, ",").trim())
     .filter(s => s.length > 0);
 
   const seen = new Set();
