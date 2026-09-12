@@ -154,6 +154,34 @@ Wave 4反映後:
 
 Wave 4では国内通信・音声・家計簿・業務SaaS・学習を厚くした。解約とMNP、サブスクリプション停止とアカウント削除、ストア課金とWeb課金を同一視せず、公式source上の手続き差をrecordへ反映する。
 
+### Wave 5 — 2026-09-12
+
+Official-source verified 11件:
+
+- BOOK☆WALKER 読み放題
+- コミックシーモア 読み放題
+- 楽天ミュージック
+- Crunchyroll Premium
+- Midjourney
+- Airtable 有料プラン
+- monday.com 有料プラン
+- ClickUp 有料プラン
+- Calendly 有料プラン
+- Zapier 有料プラン
+- Patreon 有料メンバーシップ
+
+Wave 5反映後:
+
+- effective records: 90
+- public-visible: 86
+- verified: 83
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **86%**
+
+Wave 5では電子書籍・音楽・動画を追加しつつ、AI / productivity / creator系SaaSの解約導線を補強した。ストア経由契約とWeb直接契約、プラン解約とアカウント削除・ダウングレードを公式sourceに従って分離する。
+
 ### Next waves
 
 Priority:

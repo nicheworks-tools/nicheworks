@@ -22,7 +22,8 @@ const ADDITION_FILES = [
   './data/additions/2026-09-12-phase2-wave1.json',
   './data/additions/2026-09-12-phase2-wave2.json',
   './data/additions/2026-09-12-phase2-wave3.json',
-  './data/additions/2026-09-12-phase2-wave4.json'
+  './data/additions/2026-09-12-phase2-wave4.json',
+  './data/additions/2026-09-12-phase2-wave5.json'
 ];
 
 const REVERIFICATION_FILES = [
