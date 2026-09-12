@@ -4,6 +4,8 @@
     <loc>https://nicheworks.app/sitemap.xml.gz</loc>
     <lastmod>2026-01-12</lastmod>
   </sitemap>
+  <sitemap>
+    <loc>https://nicheworks.app/sitemap-trashnavi.xml</loc>
+    <lastmod>2026-09-12</lastmod>
+  </sitemap>
 </sitemapindex>
-
-

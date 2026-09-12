@@ -3,7 +3,7 @@
 - Slug: `trashnavi`
 - Public URL: `https://nicheworks.app/tools/trashnavi/`
 - Specification status: `complete`
-- Expansion status: `official-gateway Phase 1 defined`
+- Expansion status: `official-gateway municipality pilot active`
 - Common specification: `common-spec/spec-ja.md`
 - Data model: `tools/trashnavi/DATA_MODEL.md`
 
@@ -124,13 +124,54 @@ first-pass candidateは、`municipal_home` を除いて **2種類以上の異な
 
 generic municipal top pageしか持たない自治体はthin landing pageを生成しない。
 
+### Municipality page pilot contract
+
+自治体別indexable pageは `tools/trashnavi/municipality-page-manifest.json` を公開対象のallowlistとし、`tools/trashnavi/scripts/generate-municipality-pages.mjs` から静的生成する。
+
+pilotでは東京都のpreferred candidate 7自治体のみを公開する。
+
+- 千代田区
+- 港区
+- 新宿区
+- 世田谷区
+- 渋谷区
+- 杉並区
+- 練馬区
+
+公開URLは `/tools/trashnavi/tokyo/<municipality-slug>/` とする。
+
+生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
+
+各自治体pageは最低限以下を持つ。
+
+- municipality固有title / description / canonical / OGP
+- official-source disclaimer
+- 確認済みofficial link cards
+- `fiscal_year` がある場合の年度表示
+- `last_checked` がある場合のみ確認日表示
+- 2026 collection calendarがある場合の明示導線
+- TrashNavi本体へのbreadcrumb
+- pilot自治体間のrelated links
+- site-wide analytics / advertising hooks
+- WebPage / BreadcrumbList structured data
+
+生成対象URLは正規の `sitemap.xml` に必ず1回収録し、`sitemap-trashnavi.xml` にもTrashNavi専用の補助一覧として収録する。`robots.txt` は既存の単一root sitemap宣言を維持し、`sitemap-index.xml` には補助の `sitemap-trashnavi.xml` を登録する。
+
+生成結果のdriftは次で検査する。
+
+```bash
+node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+```
+
+CIではcoverage strict auditと生成drift checkの両方を必須とし、pilot URLがroot sitemapから欠落しても失敗させる。
+
 ## Monetization boundary
 
 - AdSense等のsite-wide monetization基盤はcommon specificationに従う。
 - monetizationを理由に自治体固有ルールを水増し・推測・転載しない。
 - Amazon等のaffiliateを将来追加する場合、自治体official link cardと商品recommendationを同一のauthorityに見せない。
 - affiliate/related-product surfaceはofficial municipality informationとは視覚的・意味的に分離する。
-- Phase 1ではaffiliate block自体を追加しない。
+- Phase 1 / municipality pilotではaffiliate block自体を追加しない。
 
 ## Limits and non-goals
 
@@ -155,12 +196,22 @@ generic municipal top pageしか持たない自治体はthin landing pageを生�
 
 ### Gateway Phase 1
 
-- [ ] forward data modelとcanonical link taxonomyがdocument化されている。
-- [ ] repository dataだけからcoverage auditを実行できる。
-- [ ] auditがmunicipality / prefecture / link type単位のcoverageを出せる。
-- [ ] runtime-declared missing datasetとunloaded direct-link datasetを検出できる。
-- [ ] landing-page readinessがraw URL数ではなくdistinct waste-specific link type数で判定される。
-- [ ] Phase 1では自治体固有ルールを新たに推測・転載しない。
+- [x] forward data modelとcanonical link taxonomyがdocument化されている。
+- [x] repository dataだけからcoverage auditを実行できる。
+- [x] auditがmunicipality / prefecture / link type単位のcoverageを出せる。
+- [x] runtime-declared missing datasetとunloaded direct-link datasetを検出できる。
+- [x] landing-page readinessがraw URL数ではなくdistinct waste-specific link type数で判定される。
+- [x] Phase 1では自治体固有ルールを新たに推測・転載しない。
+
+### Municipality page pilot
+
+- [x] preferred readiness 3種類以上を生成時に再検証する。
+- [x] pilot 7自治体をmanifest allowlistで管理する。
+- [x] pilot自治体pageをgeneratorから静的生成する。
+- [x] generator `--check` で生成driftを検出する。
+- [x] pilot URLをroot sitemapと専用sitemapへ収録する。
+- [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
+- [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ## Implementation evidence
 
@@ -169,3 +220,9 @@ generic municipal top pageしか持たない自治体はthin landing pageを生�
 - `tools/trashnavi/data/` — nationwide/local supplementary/direct waste link datasets。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
+- `tools/trashnavi/municipality-page-manifest.json` — indexable municipality page allowlist。
+- `tools/trashnavi/scripts/generate-municipality-pages.mjs` — deterministic municipality page / sitemap generator and drift checker。
+- `tools/trashnavi/tokyo/*/index.html` — pilot municipality pages。
+- `sitemap.xml` — indexable pilot URLの正規sitemap収録先。
+- `sitemap-trashnavi.xml` — TrashNavi municipality補助sitemap。
+- `.github/workflows/check-trashnavi-coverage.yml` — coverage strict audit and generated-page drift check。

@@ -5,6 +5,10 @@ on:
   pull_request:
     paths:
       - 'tools/trashnavi/**'
+      - 'sitemap.xml'
+      - 'sitemap-trashnavi.xml'
+      - 'sitemap-index.xml'
+      - 'robots.txt'
       - '.github/workflows/check-trashnavi-coverage.yml'
 
 jobs:
@@ -32,3 +36,6 @@ jobs:
 
       - name: Enforce coverage data quality
         run: node tools/trashnavi/scripts/audit-coverage.mjs --strict
+
+      - name: Check generated municipality pages
+        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
