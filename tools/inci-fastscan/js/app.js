@@ -221,6 +221,9 @@ async function loadDictionary() {
 }
 
 function dedupeDictionary(items) {
+  const shared = globalThis.NWCosmeticIngredientParser;
+  if (shared?.mergeDictionaryRecords) return shared.mergeDictionaryRecords(items);
+
   const seen = new Set();
   const output = [];
   for (const item of items) {
