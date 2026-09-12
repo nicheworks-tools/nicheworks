@@ -6,6 +6,7 @@ on:
       - feat/trashnavi-wave6-inawashiro-20260913
     paths:
       - '.github/workflows/trashnavi-wave6-inawashiro-once.yml'
+      - 'tools/trashnavi/data/direct-waste-links-demand-wave6.json'
 
 permissions:
   contents: write
