@@ -90,7 +90,8 @@ async function loadFile(side, file) {
     return;
   }
   try {
-    const parsed = await readCsvFile(file, { encoding: $('encoding').value, delimiter: $('delimiter').value });
+    const selectedDelimiter = $('delimiter').value === 'tab' ? '\t' : $('delimiter').value;
+    const parsed = await readCsvFile(file, { encoding: $('encoding').value, delimiter: selectedDelimiter });
     const headerRow = Number($('headerRow').value || 1);
     const table = tableFromRows(parsed.rows, headerRow);
     if (table.rows.length > FREE_MAX_ROWS) {

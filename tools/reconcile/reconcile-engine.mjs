@@ -4,14 +4,24 @@ function selectedValue(row, column) {
   return column ? row.values[column] : '';
 }
 
-function buildRecord(row, mapping, options) {
-  const amount = normalizeAmount(selectedValue(row, mapping.amount));
+function applySignMode(amount, side, mode) {
+  if (amount === null) return null;
+  if (mode === 'invert_b' && side === 'b') return -amount;
+  if (mode === 'ignore_sign') return Math.abs(amount);
+  return amount;
+}
+
+function buildRecord(row, mapping, options, side) {
+  const rawAmount = normalizeAmount(selectedValue(row, mapping.amount));
+  const amount = applySignMode(rawAmount, side, options.signMode);
   const dateResult = mapping.date ? normalizeDate(selectedValue(row, mapping.date), options.dateMode) : { dayKey: null, iso: '', error: null };
   const reference = mapping.reference ? normalizeReference(selectedValue(row, mapping.reference)) : '';
   const description = mapping.description ? normalizeText(selectedValue(row, mapping.description)) : '';
   return {
     row,
+    side,
     sourceRow: row.sourceRow,
+    rawAmount,
     amount,
     dateKey: dateResult.dayKey,
     dateIso: dateResult.iso,
@@ -29,6 +39,12 @@ function amountDistance(a, b) {
 function dateDistance(a, b) {
   if (a.dateKey === null || b.dateKey === null) return null;
   return Math.abs(a.dateKey - b.dateKey);
+}
+
+function referencesCompatible(a, b, useReference) {
+  if (!useReference) return true;
+  if (!a.reference || !b.reference) return true;
+  return a.reference === b.reference;
 }
 
 function referenceConflict(a, b) {
@@ -62,32 +78,80 @@ function reasonFor(a, b, dateGap, amountGap) {
   return pieces.join(' · ');
 }
 
+function groupDateCompatible(anchor, record, useDate, tolerance) {
+  if (!useDate) return true;
+  const gap = dateDistance(anchor, record);
+  return gap !== null && gap <= tolerance;
+}
+
+function groupReferenceCompatible(anchor, record, useReference) {
+  return referencesCompatible(anchor, record, useReference);
+}
+
+function findCombinations(records, target, tolerance, maxSize) {
+  const solutions = [];
+  const sorted = [...records].sort((a, b) => a.sourceRow - b.sourceRow);
+
+  function walk(start, picked, sum) {
+    if (solutions.length > 1) return;
+    if (picked.length >= 2 && Math.abs(sum - target) <= tolerance) {
+      solutions.push([...picked]);
+      if (solutions.length > 1) return;
+    }
+    if (picked.length >= maxSize) return;
+
+    for (let i = start; i < sorted.length; i += 1) {
+      picked.push(sorted[i]);
+      walk(i + 1, picked, sum + sorted[i].amount);
+      picked.pop();
+      if (solutions.length > 1) return;
+    }
+  }
+
+  walk(0, [], 0);
+  return solutions;
+}
+
+function groupReason(relation, target, members, tolerance) {
+  const sum = members.reduce((total, item) => total + item.amount, 0);
+  const diff = Math.abs(sum - target.amount);
+  return `${relation} aggregate amount ${sum} · target ${target.amount} · difference ${diff}${tolerance ? ` · tolerance ${tolerance}` : ''}`;
+}
+
 export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
   const config = {
     dateToleranceDays: Math.max(0, Number(options.dateToleranceDays ?? 0)),
     amountTolerance: Math.max(0, Number(options.amountTolerance ?? 0)),
-    dateMode: options.dateMode || 'auto'
+    dateMode: options.dateMode || 'auto',
+    signMode: ['normal', 'invert_b', 'ignore_sign'].includes(options.signMode) ? options.signMode : 'normal',
+    groupMatching: Boolean(options.groupMatching),
+    maxGroupSize: Math.min(5, Math.max(2, Number(options.maxGroupSize ?? 5)))
   };
   if (!mappingA?.amount || !mappingB?.amount) throw new Error('amount_mapping_required');
 
-  const a = rowsA.map((row) => buildRecord(row, mappingA, config));
-  const b = rowsB.map((row) => buildRecord(row, mappingB, config));
+  const a = rowsA.map((row) => buildRecord(row, mappingA, config, 'a'));
+  const b = rowsB.map((row) => buildRecord(row, mappingB, config, 'b'));
   const useDate = Boolean(mappingA.date && mappingB.date);
   const useReference = Boolean(mappingA.reference && mappingB.reference);
   const dupA = markDuplicates(a, useDate, useReference);
   const dupB = markDuplicates(b, useDate, useReference);
+  const usedA = new Set();
   const usedB = new Set();
+  const reservedCandidateA = new Set();
+  const reservedCandidateB = new Set();
   const results = [];
 
   for (const recordA of a) {
     if (recordA.invalidAmount || recordA.dateError) {
       results.push({ status: 'a_only', relation: '1:0', aRows: [recordA.sourceRow], bRows: [], amount: recordA.amount, date: recordA.dateIso, reason: recordA.invalidAmount ? 'Invalid amount in A' : `Date error in A: ${recordA.dateError}` });
+      usedA.add(recordA.sourceRow);
       continue;
     }
 
     const conflicts = b.filter((recordB) => !usedB.has(recordB.sourceRow) && referenceConflict(recordA, recordB));
     if (conflicts.length === 1) {
       const recordB = conflicts[0];
+      usedA.add(recordA.sourceRow);
       usedB.add(recordB.sourceRow);
       results.push({ status: 'conflict', relation: '1:1', aRows: [recordA.sourceRow], bRows: [recordB.sourceRow], amount: recordA.amount, date: recordA.dateIso, reason: `Same reference · Amount differs by ${amountDistance(recordA, recordB)}` });
       continue;
@@ -100,7 +164,7 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
       if (amountGap > config.amountTolerance) continue;
       const dateGap = useDate ? dateDistance(recordA, recordB) : null;
       if (useDate && (dateGap === null || dateGap > config.dateToleranceDays)) continue;
-      if (useReference && recordA.reference && recordB.reference && recordA.reference !== recordB.reference) continue;
+      if (!referencesCompatible(recordA, recordB, useReference)) continue;
       candidates.push({ recordB, amountGap, dateGap });
     }
 
@@ -108,6 +172,7 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
 
     if (candidates.length === 1) {
       const match = candidates[0];
+      usedA.add(recordA.sourceRow);
       usedB.add(match.recordB.sourceRow);
       const exact = match.amountGap === 0 && (!useDate || match.dateGap === 0);
       results.push({
@@ -120,6 +185,8 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
         reason: reasonFor(recordA, match.recordB, match.dateGap, match.amountGap)
       });
     } else if (candidates.length > 1) {
+      reservedCandidateA.add(recordA.sourceRow);
+      candidates.forEach((item) => reservedCandidateB.add(item.recordB.sourceRow));
       results.push({
         status: 'candidate',
         relation: '1:?',
@@ -127,19 +194,68 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
         bRows: candidates.map((item) => item.recordB.sourceRow),
         amount: recordA.amount,
         date: recordA.dateIso,
-        reason: `${candidates.length} equally acceptable candidates require review`
+        reason: `${candidates.length} acceptable candidates require review`
       });
-    } else {
-      results.push({ status: 'a_only', relation: '1:0', aRows: [recordA.sourceRow], bRows: [], amount: recordA.amount, date: recordA.dateIso, reason: 'No acceptable B-side match' });
+    }
+  }
+
+  if (config.groupMatching) {
+    for (const recordA of a) {
+      if (usedA.has(recordA.sourceRow) || reservedCandidateA.has(recordA.sourceRow) || recordA.invalidAmount || recordA.dateError) continue;
+      const pool = b.filter((recordB) =>
+        !usedB.has(recordB.sourceRow)
+        && !reservedCandidateB.has(recordB.sourceRow)
+        && !recordB.invalidAmount
+        && !recordB.dateError
+        && groupDateCompatible(recordA, recordB, useDate, config.dateToleranceDays)
+        && groupReferenceCompatible(recordA, recordB, useReference)
+      );
+      const solutions = findCombinations(pool, recordA.amount, config.amountTolerance, config.maxGroupSize);
+      if (solutions.length === 1) {
+        const members = solutions[0];
+        usedA.add(recordA.sourceRow);
+        members.forEach((member) => usedB.add(member.sourceRow));
+        results.push({ status: 'tolerant_match', relation: `1:${members.length}`, aRows: [recordA.sourceRow], bRows: members.map((item) => item.sourceRow), amount: recordA.amount, date: recordA.dateIso, reason: groupReason(`1:${members.length}`, recordA, members, config.amountTolerance) });
+      } else if (solutions.length > 1) {
+        reservedCandidateA.add(recordA.sourceRow);
+        solutions.flat().forEach((member) => reservedCandidateB.add(member.sourceRow));
+        results.push({ status: 'candidate', relation: '1:n?', aRows: [recordA.sourceRow], bRows: [...new Set(solutions.flat().map((item) => item.sourceRow))], amount: recordA.amount, date: recordA.dateIso, reason: 'Multiple valid grouped B-side combinations require review' });
+      }
+    }
+
+    for (const recordB of b) {
+      if (usedB.has(recordB.sourceRow) || reservedCandidateB.has(recordB.sourceRow) || recordB.invalidAmount || recordB.dateError) continue;
+      const pool = a.filter((recordA) =>
+        !usedA.has(recordA.sourceRow)
+        && !reservedCandidateA.has(recordA.sourceRow)
+        && !recordA.invalidAmount
+        && !recordA.dateError
+        && groupDateCompatible(recordB, recordA, useDate, config.dateToleranceDays)
+        && groupReferenceCompatible(recordB, recordA, useReference)
+      );
+      const solutions = findCombinations(pool, recordB.amount, config.amountTolerance, config.maxGroupSize);
+      if (solutions.length === 1) {
+        const members = solutions[0];
+        usedB.add(recordB.sourceRow);
+        members.forEach((member) => usedA.add(member.sourceRow));
+        results.push({ status: 'tolerant_match', relation: `${members.length}:1`, aRows: members.map((item) => item.sourceRow), bRows: [recordB.sourceRow], amount: recordB.amount, date: recordB.dateIso, reason: groupReason(`${members.length}:1`, recordB, members, config.amountTolerance) });
+      } else if (solutions.length > 1) {
+        reservedCandidateB.add(recordB.sourceRow);
+        solutions.flat().forEach((member) => reservedCandidateA.add(member.sourceRow));
+        results.push({ status: 'candidate', relation: 'n:1?', aRows: [...new Set(solutions.flat().map((item) => item.sourceRow))], bRows: [recordB.sourceRow], amount: recordB.amount, date: recordB.dateIso, reason: 'Multiple valid grouped A-side combinations require review' });
+      }
+    }
+  }
+
+  for (const recordA of a) {
+    if (!usedA.has(recordA.sourceRow) && !reservedCandidateA.has(recordA.sourceRow)) {
+      results.push({ status: 'a_only', relation: '1:0', aRows: [recordA.sourceRow], bRows: [], amount: recordA.amount, date: recordA.dateIso, reason: recordA.invalidAmount ? 'Invalid amount in A' : 'No acceptable B-side match' });
     }
   }
 
   for (const recordB of b) {
-    if (!usedB.has(recordB.sourceRow)) {
-      const alreadyCandidate = results.some((item) => item.status === 'candidate' && item.bRows.includes(recordB.sourceRow));
-      if (!alreadyCandidate) {
-        results.push({ status: 'b_only', relation: '0:1', aRows: [], bRows: [recordB.sourceRow], amount: recordB.amount, date: recordB.dateIso, reason: recordB.invalidAmount ? 'Invalid amount in B' : 'No accepted A-side match' });
-      }
+    if (!usedB.has(recordB.sourceRow) && !reservedCandidateB.has(recordB.sourceRow)) {
+      results.push({ status: 'b_only', relation: '0:1', aRows: [], bRows: [recordB.sourceRow], amount: recordB.amount, date: recordB.dateIso, reason: recordB.invalidAmount ? 'Invalid amount in B' : 'No accepted A-side match' });
     }
   }
 
