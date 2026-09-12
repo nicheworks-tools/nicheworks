@@ -145,8 +145,18 @@
       .catch((error) => console.warn("Optional affiliate runtime unavailable", error));
   }
 
+  function bootstrapOptionalToolEnhancements() {
+    const documentRef = root?.document;
+    if (!documentRef) return;
+    if (documentRef.getElementById("inciInput") && documentRef.getElementById("summaryBox")) {
+      ensureStylesheet(documentRef, "/tools/cosmetic-ingredient-checker-lite/enhancements.css");
+      loadScript(documentRef, "/tools/cosmetic-ingredient-checker-lite/enhancements.js")
+        .catch((error) => console.warn("Lite enhancements unavailable", error));
+    }
+  }
+
   const api = {
-    version: "1.4.0",
+    version: "1.5.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
@@ -166,4 +176,5 @@
   }
 
   bootstrapOptionalAffiliateRuntime();
+  bootstrapOptionalToolEnhancements();
 })(typeof globalThis !== "undefined" ? globalThis : this);

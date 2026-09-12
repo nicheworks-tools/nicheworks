@@ -20,7 +20,8 @@ The Lite product is intentionally distinct from INCI FastScan:
 - Parse explicit list separators while preserving legitimate ingredient-name punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol`.
 - Match normalized input by exact INCI name, Japanese name, or declared alias against the existing local INCI FastScan dictionary files.
 - Fall back gracefully to the implemented lightweight exact-match rules if dictionary files cannot be loaded.
-- Show parsed count, dictionary-match count, review-candidate count, unclassified count, top functional categories, and a row-per-ingredient result table.
+- Show parsed count, dictionary-match count, review-candidate count, unclassified count, dictionary recognition percentage, top functional categories, and a row-per-ingredient result table.
+- Surface the current unclassified ingredient names as a compact review list so users can see coverage gaps without scanning the entire table.
 - Keep `caution` / `risk` dictionary metadata internal to the matching layer; the Lite UI exposes only a non-diagnostic `確認候補` signal.
 - Keep unknown entries explicitly unclassified rather than inventing a diagnosis or safety conclusion.
 - Support clear/reset and copying the current result.
@@ -38,6 +39,8 @@ The Lite product is intentionally distinct from INCI FastScan:
 
 - Parsed ingredient count.
 - Dictionary-match / review-candidate / unclassified summary.
+- Dictionary recognition percentage (`dictionary matches / parsed ingredients`).
+- Compact list of currently unclassified ingredient names, capped in the summary while the full table remains available.
 - Up to eight prominent functional-category chips derived from matched dictionary entries.
 - Ingredient table containing the original input name, current reference status/categories, and concise explanatory note.
 - Clipboard copy of the current result.
@@ -111,6 +114,7 @@ When activation is eventually allowed, optional analytics are limited to `affili
 ## Limits and non-goals
 
 - `辞書一致` means only that the normalized name matched a local dictionary entry; it is not a safety guarantee.
+- `辞書認識率` is a dictionary coverage indicator, not a product-quality or safety score.
 - `確認候補` is a review cue, not a danger label.
 - `未分類` is not evidence that an ingredient is unsafe.
 - The tool does not know ingredient concentration, complete formulation context, user allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from the pasted list alone.
@@ -125,6 +129,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] Exact INCI / Japanese / alias matches can enrich Lite results from the local maintained dictionary set.
 - [x] `Cetearyl Alcohol` does not become an ethanol-type alcohol result merely because the word `Alcohol` is present.
 - [x] Unknown items remain explicitly unclassified rather than receiving fabricated safety claims.
+- [x] Dictionary recognition percentage is visible after analysis without being framed as a safety score.
+- [x] Unclassified ingredient names are surfaced compactly while the complete result table remains available.
 - [x] The page remains explicitly Japanese-only and retains the medical/regulatory disclaimer.
 - [x] The NicheWorks logo image is not shown in the tool header.
 - [x] The donation block appears before the footer.
@@ -143,6 +149,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - `tools/cosmetic-ingredient-checker-lite/index.html`
 - `tools/cosmetic-ingredient-checker-lite/app.js`
 - `tools/cosmetic-ingredient-checker-lite/style.css`
+- `tools/cosmetic-ingredient-checker-lite/enhancements.js`
+- `tools/cosmetic-ingredient-checker-lite/enhancements.css`
 - `tools/cosmetic-ingredient-checker-lite/qa.json`
 - `tools/cosmetic-ingredient-checker-lite/howto/`
 - `tools/inci-fastscan/data/ingredients*.json` (read-only runtime data dependency)
