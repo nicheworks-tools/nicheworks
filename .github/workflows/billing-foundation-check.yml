@@ -36,6 +36,7 @@ jobs:
         run: |
           node --check functions/api/billing/product-config.js
           node --check functions/api/billing/create-checkout-session.js
+          node --check functions/api/billing/entitlement-store.js
           node --check functions/api/billing/entitlement.js
           node --check functions/api/billing/stripe-webhook.js
           node --check assets/nw-pro-entitlement.js
