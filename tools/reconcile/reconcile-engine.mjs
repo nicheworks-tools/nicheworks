@@ -4,6 +4,15 @@ function selectedValue(row, column) {
   return column ? row.values[column] : '';
 }
 
+function finiteNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
+function clampNumber(value, min, max, fallback) {
+  return Math.min(max, Math.max(min, finiteNumber(value, fallback)));
+}
+
 function applySignMode(amount, side, mode) {
   if (amount === null) return null;
   if (mode === 'invert_b' && side === 'b') return -amount;
@@ -98,15 +107,35 @@ function duplicateSignature(record, useDate, useReference) {
   return parts.join('|');
 }
 
-function markDuplicates(records, useDate, useReference) {
+function findDuplicateGroups(records, useDate, useReference) {
   const groups = new Map();
   for (const record of records) {
-    if (record.invalidAmount) continue;
+    if (record.invalidAmount || record.dateError) continue;
     const key = duplicateSignature(record, useDate, useReference);
     if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(record.sourceRow);
+    groups.get(key).push(record);
   }
-  return new Set([...groups.values()].filter((rows) => rows.length > 1).flat());
+  return [...groups.values()]
+    .filter((group) => group.length > 1)
+    .sort((a, b) => a[0].sourceRow - b[0].sourceRow);
+}
+
+function duplicateRowSet(groups) {
+  return new Set(groups.flatMap((group) => group.map((record) => record.sourceRow)));
+}
+
+function duplicateResult(group, side) {
+  const first = group[0];
+  const rows = group.map((record) => record.sourceRow).sort((a, b) => a - b);
+  return {
+    status: 'duplicate',
+    relation: side.toUpperCase(),
+    aRows: side === 'a' ? rows : [],
+    bRows: side === 'b' ? rows : [],
+    amount: first.amount,
+    date: first.dateIso,
+    reason: `${rows.length} rows share the same reconciliation signature on ${side.toUpperCase()} side`
+  };
 }
 
 function reasonFor(a, b, dateGap, amountGap) {
@@ -283,14 +312,14 @@ function groupReason(relation, target, members, tolerance) {
 
 export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
   const config = {
-    dateToleranceDays: Math.max(0, Number(options.dateToleranceDays ?? 0)),
-    amountTolerance: Math.max(0, Number(options.amountTolerance ?? 0)),
+    dateToleranceDays: Math.max(0, finiteNumber(options.dateToleranceDays, 0)),
+    amountTolerance: Math.max(0, finiteNumber(options.amountTolerance, 0)),
     dateMode: options.dateMode || 'auto',
     signMode: ['normal', 'invert_b', 'ignore_sign'].includes(options.signMode) ? options.signMode : 'normal',
     groupMatching: Boolean(options.groupMatching),
-    maxGroupSize: Math.min(5, Math.max(2, Number(options.maxGroupSize ?? 5))),
-    groupSearchNodeLimit: Math.max(1, Number(options.groupSearchNodeLimit ?? 50000)),
-    candidateGraphEdgeLimit: Math.min(500000, Math.max(100, Number(options.candidateGraphEdgeLimit ?? 100000)))
+    maxGroupSize: Math.round(clampNumber(options.maxGroupSize, 2, 5, 5)),
+    groupSearchNodeLimit: Math.round(clampNumber(options.groupSearchNodeLimit, 1, 1000000, 50000)),
+    candidateGraphEdgeLimit: Math.round(clampNumber(options.candidateGraphEdgeLimit, 100, 500000, 100000))
   };
   if (!mappingA?.amount || !mappingB?.amount) throw new Error('amount_mapping_required');
 
@@ -298,18 +327,24 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
   const b = rowsB.map((row) => buildRecord(row, mappingB, config, 'b'));
   const useDate = Boolean(mappingA.date && mappingB.date);
   const useReference = Boolean(mappingA.reference && mappingB.reference);
-  const dupA = markDuplicates(a, useDate, useReference);
-  const dupB = markDuplicates(b, useDate, useReference);
+  const duplicateGroupsA = findDuplicateGroups(a, useDate, useReference);
+  const duplicateGroupsB = findDuplicateGroups(b, useDate, useReference);
+  const duplicateRowsA = duplicateRowSet(duplicateGroupsA);
+  const duplicateRowsB = duplicateRowSet(duplicateGroupsB);
   const amountIndexB = buildAmountIndex(b);
   const referenceIndexA = buildReferenceIndex(a);
   const referenceIndexB = buildReferenceIndex(b);
-  const usedA = new Set();
-  const usedB = new Set();
+  const usedA = new Set(duplicateRowsA);
+  const usedB = new Set(duplicateRowsB);
   const reservedCandidateA = new Set();
   const reservedCandidateB = new Set();
-  const results = [];
+  const results = [
+    ...duplicateGroupsA.map((group) => duplicateResult(group, 'a')),
+    ...duplicateGroupsB.map((group) => duplicateResult(group, 'b'))
+  ];
 
   for (const recordA of a) {
+    if (usedA.has(recordA.sourceRow)) continue;
     if (recordA.invalidAmount || recordA.dateError) {
       results.push({ status: 'a_only', relation: '1:0', aRows: [recordA.sourceRow], bRows: [], amount: recordA.amount, date: recordA.dateIso, reason: recordA.invalidAmount ? 'Invalid amount in A' : `Date error in A: ${recordA.dateError}` });
       usedA.add(recordA.sourceRow);
@@ -405,11 +440,7 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
     }
   }
 
-  const duplicateResults = [];
-  for (const row of [...dupA].sort((x, y) => x - y)) duplicateResults.push({ status: 'duplicate', relation: 'A', aRows: [row], bRows: [], amount: null, date: '', reason: 'Duplicate reconciliation signature on A side' });
-  for (const row of [...dupB].sort((x, y) => x - y)) duplicateResults.push({ status: 'duplicate', relation: 'B', aRows: [], bRows: [row], amount: null, date: '', reason: 'Duplicate reconciliation signature on B side' });
-
-  return [...results, ...duplicateResults];
+  return results;
 }
 
 export function summarize(results) {
