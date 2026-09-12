@@ -33,7 +33,16 @@ function supportMarkup(language = 'bilingual') {
     : language === 'ja'
       ? 'このツールが役に立ったら、NicheWorks の開発継続をご支援いただけます。'
       : 'このツールが役に立ったら、NicheWorks の開発継続をご支援いただけます。 / If this tool helps, you can support ongoing NicheWorks development.';
-  return `\n    <section class="nw-donate" aria-label="Support NicheWorks">\n      <p class="nw-donate-text">${text}</p>\n      <div class="nw-donate-links">\n        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>\n        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>\n      </div>\n    </section>\n`;
+  return `<section class="nw-donate" aria-label="Support NicheWorks">\n      <p class="nw-donate-text">${text}</p>\n      <div class="nw-donate-links">\n        <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>\n        <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>\n      </div>\n    </section>`;
+}
+
+function insertBeforeClosingTag(html, tag, markup) {
+  const re = new RegExp(`^([ \\t]*)</${tag}>`, 'm');
+  const match = html.match(re);
+  if (match) return html.replace(re, `${match[1]}${markup}\n${match[1]}</${tag}>`);
+  const needle = `</${tag}>`;
+  if (html.includes(needle)) return html.replace(needle, `${markup}\n${needle}`);
+  return null;
 }
 
 function applySupport(rel, language = 'bilingual') {
@@ -48,10 +57,15 @@ function applySupport(rel, language = 'bilingual') {
     html = html.replace('</head>', '  <link rel="stylesheet" href="/assets/nw-support.css">\n</head>');
   }
   if (!hasOfuse && !hasKofi) {
-    if (html.includes('</main>')) html = html.replace('</main>', `${supportMarkup(language)}  </main>`);
-    else if (html.includes('<footer')) html = html.replace('<footer', `${supportMarkup(language)}  <footer`);
-    else if (html.includes('</body>')) html = html.replace('</body>', `${supportMarkup(language)}</body>`);
-    else throw new Error(`${rel}: no safe footer-near insertion point`);
+    const markup = supportMarkup(language);
+    const withMain = insertBeforeClosingTag(html, 'main', markup);
+    if (withMain !== null) html = withMain;
+    else if (html.includes('<footer')) html = html.replace(/^([ \\t]*)<footer/m, `$1${markup}\n$1<footer`);
+    else {
+      const withBody = insertBeforeClosingTag(html, 'body', markup);
+      if (withBody !== null) html = withBody;
+      else throw new Error(`${rel}: no safe footer-near insertion point`);
+    }
   }
   write(rel, html);
 }
