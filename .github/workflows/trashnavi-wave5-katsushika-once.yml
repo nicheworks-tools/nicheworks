@@ -1,0 +1,82 @@
+name: TrashNavi Wave 5 Katsushika one-shot
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave5-katsushika-20260913
+    paths:
+      - 'tools/trashnavi/data/direct-waste-links-demand-wave5.json'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave5-katsushika-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Patch Wave 5 runtime and specification
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const appPath = 'tools/trashnavi/app.js';
+          let app = fs.readFileSync(appPath, 'utf8');
+          const oldFiles = '"data/direct-waste-links-demand-wave3.json","data/direct-waste-links-demand-wave4.json"]';
+          const newFiles = '"data/direct-waste-links-demand-wave3.json","data/direct-waste-links-demand-wave4.json","data/direct-waste-links-demand-wave5.json"]';
+          if (!app.includes('direct-waste-links-demand-wave5.json')) {
+            if (!app.includes(oldFiles)) throw new Error('DIRECT_LINK_FILES anchor not found');
+            app = app.replace(oldFiles, newFiles);
+          }
+          fs.writeFileSync(appPath, app);
+
+          const specPath = 'tools/trashnavi/SPEC.md';
+          let spec = fs.readFileSync(specPath, 'utf8');
+          const wave4Item = '- 東京都 中央区 — `/tools/trashnavi/tokyo/chuo/`\n';
+          const wave5Text = '\nWave 5では、Search Consoleで葛飾区の粗大ごみ需要が確認されたため、葛飾区に2026年度収集カレンダーと粗大ごみ案内のofficial linkを追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げる。公開page化はdata enrichment検証後の別PRで行う。\n\n- 東京都 葛飾区 — preferred candidate（publication pending）\n';
+          if (!spec.includes('東京都 葛飾区 — preferred candidate')) {
+            if (!spec.includes(wave4Item)) throw new Error('Wave 4 publication anchor not found');
+            spec = spec.replace(wave4Item, wave4Item + wave5Text);
+          }
+          spec = spec.replace('### Wave 4 verified coverage baseline', '### Wave 5 verified coverage baseline');
+          spec = spec.replace('2026-09-13のWave 4 CI基準値は次のとおり。', '2026-09-13のWave 5 CI基準値は次のとおり。');
+          spec = spec.replace('- records: 2,185 / 2,185 valid HTTP(S)', '- records: 2,187 / 2,187 valid HTTP(S)');
+          spec = spec.replace('- publish candidates (2+ types): 11', '- publish candidates (2+ types): 12');
+          spec = spec.replace('- preferred candidates (3+ types): 11', '- preferred candidates (3+ types): 12');
+          spec = spec.replace('- collection calendar coverage: 11 municipalities', '- collection calendar coverage: 12 municipalities');
+          spec = spec.replace('- bulky-waste coverage: 10 municipalities', '- bulky-waste coverage: 11 municipalities');
+          const acceptance = '- [x] Wave 4で中央区をpreferred candidateへ引き上げ、自治体pageを公開する。';
+          if (spec.includes(acceptance) && !spec.includes('Wave 5で葛飾区をpreferred candidate')) {
+            spec = spec.replace(acceptance, acceptance + '\n- [x] Wave 5で葛飾区をpreferred candidateへ引き上げる。');
+          }
+          const evidence = '- `tools/trashnavi/data/direct-waste-links-demand-wave4.json` — 中央区のWave 4 collection-calendar enrichment。';
+          if (spec.includes(evidence) && !spec.includes('direct-waste-links-demand-wave5.json')) {
+            spec = spec.replace(evidence, evidence + '\n- `tools/trashnavi/data/direct-waste-links-demand-wave5.json` — 葛飾区のWave 5 collection-calendar / bulky-waste enrichment。');
+          }
+          fs.writeFileSync(specPath, spec);
+          NODE
+      - name: Validate Wave 5 enrichment
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+      - name: Commit Wave 5 runtime and specification
+        shell: bash
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add tools/trashnavi/app.js tools/trashnavi/SPEC.md
+          if git diff --cached --quiet; then
+            echo 'No Wave 5 patch changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Wire TrashNavi Wave 5 Katsushika data'
+          git push origin HEAD:feat/trashnavi-wave5-katsushika-20260913
