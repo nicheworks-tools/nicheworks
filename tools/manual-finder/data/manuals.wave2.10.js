@@ -23,3 +23,27 @@ VJ42|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/
 VJ46|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VJ46/VJ46.pdf
 VJ47|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VJ47/VJ47.pdf
 VJ48|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VJ48/VJ48.pdf`);
+
+// Wave 2AI: final direct Seiko V-series Japanese primary manuals; auxiliary VK guides are omitted.
+window.MANUALFINDER_WAVE2_SEIKO.push(`VJ52|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VJ52/VJ52.pdf
+VJ53|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VJ53/VJ53.pdf
+VJ76|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VJ76/VJ76.pdf
+VK63|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VK63/VK63.pdf
+VK67|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VK67/VK67.pdf
+VK68|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VK68/VK68.pdf
+VK73|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VK73/VK73.pdf
+VR33|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VR33/VR33.pdf
+VR42|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VR42/VR42.pdf
+VR43|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VR43/VR43.pdf
+VX00|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX00/VX00.pdf
+VX01|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX01/VX01.pdf
+VX32|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX32/VX32.pdf
+VX33|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX33/VX33.pdf
+VX3K|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX3K/VX3K.pdf
+VX42|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX42/VX42.pdf
+VX43|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX43/VX43.pdf
+VX50|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX50/VX50.pdf
+VX51|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX51/VX51.pdf
+VX82|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX82/VX82.pdf
+VX83|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX83/VX83.pdf
+VX89|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/V/VX89/VX89.pdf`);
