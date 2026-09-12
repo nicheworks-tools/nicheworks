@@ -13,8 +13,11 @@ on:
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-fastscan-result-contract.mjs'
+      - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
+      - 'tools/_shared/COSMETICS_CANONICAL_MERGE.md'
+      - 'tools/_shared/COSMETICS_RELEASE_GATE.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
       - 'tools/_shared/cosmetics-affiliate-*.css'
       - '.github/workflows/cosmetics-accuracy-benchmark.yml'
@@ -37,16 +40,30 @@ jobs:
         run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
       - name: Canonical merge regression
         run: node tools/_shared/check-cosmetics-canonical-merge.mjs
-      - name: FastScan JS syntax
+      - name: Cosmetics JavaScript syntax
         run: |
+          node --check tools/_shared/cosmetic-ingredient-parser.js
+          node --check tools/_shared/cosmetics-affiliate-config.js
+          node --check tools/_shared/cosmetics-affiliate-slot.js
+          node --check tools/cosmetic-ingredient-checker-lite/app.js
+          node --check tools/cosmetic-ingredient-checker-lite/enhancements.js
+          node --check tools/inci-fastscan/enhancements.js
           node --check tools/inci-fastscan/js/app.js
+          node --check tools/inci-fastscan/js/core_parser.js
           node --check tools/inci-fastscan/js/core_matcher.js
+          node --check tools/inci-fastscan/js/core_analyze.js
+          node --check tools/inci-fastscan/js/core_ocr_post.js
           node --check tools/inci-fastscan/js/web_ui.js
+          node --check tools/inci-fastscan/js/web_ocr.js
+          node --check tools/inci-fastscan/js/strings.js
+          node --check tools/inci-fastscan/js/generated_dictionary.js
       - name: FastScan detailed result contract
         run: node tools/_shared/check-fastscan-result-contract.mjs
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
       - name: Cosmetics full-label coverage benchmark
         run: node tools/_shared/check-cosmetics-full-label-benchmark.mjs
+      - name: Cross-tool release gate
+        run: node tools/_shared/check-cosmetics-cross-tool-release.mjs
       - name: Affiliate readiness contract remains isolated
         run: node tools/_shared/check-cosmetics-affiliate-contract.mjs
