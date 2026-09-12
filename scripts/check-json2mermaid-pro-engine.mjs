@@ -8,6 +8,7 @@ import {
   runBatch,
   svgToPngBlob
 } from '../tools/json2mermaid/pro-engine.mjs';
+import { createMermaidRenderer } from '../tools/json2mermaid/mermaid-renderer-adapter.mjs';
 
 assert.equal(JSON2MERMAID_PRO_ENGINE_VERSION, 1);
 
@@ -96,6 +97,38 @@ const rendered = await renderWithAdapter(
 assert.equal(rendererCalls, 1);
 assert.match(rendered.svg, /<svg\b/);
 
+const initializeCalls = [];
+const mermaidRenderCalls = [];
+const localMermaidRenderer = createMermaidRenderer({
+  initialize(config) {
+    initializeCalls.push(config);
+  },
+  async render(id, source) {
+    mermaidRenderCalls.push({ id, source });
+    return { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="60"></svg>' };
+  }
+}, { idPrefix: 'json2 mermaid test' });
+
+const locallyRendered = await renderWithAdapter(
+  'flowchart LR\n  x --> y',
+  {
+    config: {
+      theme: 'dark',
+      startOnLoad: true,
+      securityLevel: 'loose'
+    }
+  },
+  localMermaidRenderer
+);
+assert.match(locallyRendered.svg, /<svg\b/);
+assert.equal(initializeCalls.length, 1);
+assert.equal(initializeCalls[0].theme, 'dark');
+assert.equal(initializeCalls[0].startOnLoad, false);
+assert.equal(initializeCalls[0].securityLevel, 'strict');
+assert.equal(mermaidRenderCalls.length, 1);
+assert.match(mermaidRenderCalls[0].id, /^json2-mermaid-test-\d+$/);
+assert.equal(mermaidRenderCalls[0].source, 'flowchart LR\n  x --> y');
+
 const svgBlob = createSvgBlob(rendered.svg);
 assert.match(svgBlob.type, /^image\/svg\+xml/);
 assert.equal(await svgBlob.text(), rendered.svg);
@@ -150,8 +183,13 @@ assert.equal(pngBlob.type, 'image/png');
 assert.deepEqual(revoked, ['blob:json2mermaid-test']);
 
 const engineSource = fs.readFileSync(new URL('../tools/json2mermaid/pro-engine.mjs', import.meta.url), 'utf8');
-for (const forbidden of ['fetch(', 'XMLHttpRequest', 'WebSocket', 'sendBeacon(', 'http://', 'https://']) {
-  assert.equal(engineSource.includes(forbidden), false, `engine must not contain network transport: ${forbidden}`);
+const adapterSource = fs.readFileSync(new URL('../tools/json2mermaid/mermaid-renderer-adapter.mjs', import.meta.url), 'utf8');
+for (const [label, source] of [['engine', engineSource], ['adapter', adapterSource]]) {
+  for (const forbidden of ['fetch(', 'XMLHttpRequest', 'WebSocket', 'sendBeacon(', 'http://', 'https://']) {
+    assert.equal(source.includes(forbidden), false, `${label} must not contain network transport: ${forbidden}`);
+  }
 }
+assert.equal(adapterSource.includes('mermaidAPI'), false, 'adapter must not use Mermaid internal mermaidAPI');
+assert.equal(/\.init\s*\(/.test(adapterSource), false, 'adapter must not use deprecated Mermaid init()');
 
 console.log('JSON2Mermaid Pro engine contracts: OK');

@@ -65,7 +65,9 @@ Product ID, price, billing model, price tier, Stripe Price environment mapping, 
 - SVG Blob export;
 - browser Image/Canvas based SVG-to-PNG conversion with injectable adapters for deterministic tests.
 
-This engine is **not loaded by the current public page**, has no purchase CTA, has no product ID or entitlement mapping, and does not make the current tool a live Pro product. Renderer library selection and public UI wiring remain later implementation steps.
+`tools/json2mermaid/mermaid-renderer-adapter.mjs` implements the staged Mermaid API adapter expected by that engine. It accepts an already-loaded Mermaid object, calls the public `initialize()` and `render()` API, forces `startOnLoad: false` and `securityLevel: "strict"`, and returns SVG markup to the Pro engine. It does not use deprecated `init()`, internal `mermaidAPI`, a remote renderer, or a built-in CDN/package loader.
+
+These staged modules are **not loaded by the current public page**, have no purchase CTA, have no product ID or entitlement mapping, and do not make the current tool a live Pro product. Mermaid bundle/version delivery and public UI wiring remain later implementation steps.
 
 ## Privacy and network behavior
 
@@ -73,7 +75,7 @@ JSON parsing and Mermaid-source generation run in the browser; input JSON is not
 
 For future Pro implementation, batch processing, embedded rendering, exports, and style presets must remain local unless a later specification explicitly changes that contract. Billing/analytics payloads must not contain JSON content, generated Mermaid source, filenames, node labels, or values derived from user input.
 
-The staged Pro engine contains no built-in network transport; its renderer is supplied as a local adapter. Raw batch JSON is passed to the injected converter only and is not copied into the engine's result records.
+The staged Pro engine and Mermaid adapter contain no built-in network transport. Raw batch JSON is passed to the injected converter only and is not copied into the engine's result records.
 
 ## Language mode
 
@@ -93,7 +95,7 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - Large/deep JSON is intentionally truncated/rejected according to the implemented limits.
 - External Mermaid rendering can expose pasted content to that external service, so confidential JSON-derived output should not be pasted there.
 - The planned Pro contract does not authorize a product ID, price, Stripe Price ID, live checkout, or higher parser limits by itself.
-- The staged Pro engine does not choose or vendor a Mermaid rendering library and is not public UI functionality yet.
+- The staged Pro engine/adapter are not public UI functionality yet, and this contract does not choose a Mermaid bundle delivery method.
 
 ## Acceptance criteria
 
@@ -103,13 +105,14 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - [ ] Copy and `.mmd` / `.txt` downloads use the currently generated source and JP/EN switching preserves the workflow.
 - [ ] Future Pro implementation does not move any current Free contract feature behind a paid gate.
 - [ ] Future batch/render/export/style features do not silently upload user JSON or generated Mermaid to a third-party rendering backend.
-- [ ] The staged Pro engine remains disconnected from the public page until product-scoped entitlement and renderer/UI wiring are explicitly implemented.
+- [ ] The staged Pro modules remain disconnected from the public page until product-scoped entitlement, Mermaid bundle delivery, and UI wiring are explicitly implemented.
 
 ## Implementation evidence
 
 - `tools/json2mermaid/index.html`
 - `tools/json2mermaid/app.js`
 - `tools/json2mermaid/pro-engine.mjs` — staged, non-live Pro infrastructure only.
+- `tools/json2mermaid/mermaid-renderer-adapter.mjs` — staged, non-live local Mermaid API adapter.
 - `tools/json2mermaid/usage.html`
 - `tools/json2mermaid/usage-en.html`
 - `scripts/check-json2mermaid-pro-engine.mjs`
