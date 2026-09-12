@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "registry": "tools/tools-index.json",
-  "required_complete": 76,
-  "complete": 76,
-  "pending": 11,
+  "required_complete": 87,
+  "complete": 87,
+  "pending": 0,
   "items": [
     {"slug":"ai-interaction-atlas","state":"complete","spec":"tools/ai-interaction-atlas/SPEC.md"},
     {"slug":"ai-project-pack","state":"complete","spec":"tools/ai-project-pack/SPEC.md"},
@@ -81,16 +81,16 @@
     {"slug":"sponsor-page-builder","state":"complete","spec":"tools/sponsor-page-builder/SPEC.md"},
     {"slug":"sql-db-risk-checker","state":"complete","spec":"tools/sql-db-risk-checker/SPEC.md"},
     {"slug":"sukima-baito-income","state":"complete","spec":"tools/sukima-baito-income/SPEC.md"},
-    {"slug":"tiny-audio-meter","state":"pending","spec":null},
-    {"slug":"trashnavi","state":"pending","spec":null},
-    {"slug":"ui-atlas","state":"pending","spec":null},
-    {"slug":"unicode-kanji-checker","state":"pending","spec":null},
-    {"slug":"unitmaster","state":"pending","spec":null},
-    {"slug":"url-title-collector","state":"pending","spec":null},
-    {"slug":"variant-kanji-compare","state":"pending","spec":null},
-    {"slug":"vibe-lexicon","state":"pending","spec":null},
-    {"slug":"weatherdiff","state":"pending","spec":null},
-    {"slug":"webp-avif-converter","state":"pending","spec":null},
-    {"slug":"wifi-meter","state":"pending","spec":null}
+    {"slug":"tiny-audio-meter","state":"complete","spec":"tools/tiny-audio-meter/SPEC.md"},
+    {"slug":"trashnavi","state":"complete","spec":"tools/trashnavi/SPEC.md"},
+    {"slug":"ui-atlas","state":"complete","spec":"tools/ui-atlas/SPEC.md"},
+    {"slug":"unicode-kanji-checker","state":"complete","spec":"tools/unicode-kanji-checker/SPEC.md"},
+    {"slug":"unitmaster","state":"complete","spec":"tools/unitmaster/SPEC.md"},
+    {"slug":"url-title-collector","state":"complete","spec":"tools/url-title-collector/SPEC.md"},
+    {"slug":"variant-kanji-compare","state":"complete","spec":"tools/variant-kanji-compare/SPEC.md"},
+    {"slug":"vibe-lexicon","state":"complete","spec":"tools/vibe-lexicon/SPEC.md"},
+    {"slug":"weatherdiff","state":"complete","spec":"tools/weatherdiff/SPEC.md"},
+    {"slug":"webp-avif-converter","state":"complete","spec":"tools/webp-avif-converter/SPEC.md"},
+    {"slug":"wifi-meter","state":"complete","spec":"tools/wifi-meter/SPEC.md"}
   ]
 }
