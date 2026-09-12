@@ -18,12 +18,49 @@ const CATEGORY_LABELS = {
   other: 'その他'
 };
 
+const REVERIFICATION_FILES = [
+  './data/reverification/2026-09-12-wave1-media.json',
+  './data/reverification/2026-09-12-wave1-cloud-software.json',
+  './data/reverification/2026-09-12-wave1-carrier-hygiene.json'
+];
+
 let database = { records: [] };
 
-async function loadDatabase() {
-  const response = await fetch('./data/services.json', { cache: 'no-store' });
-  if (!response.ok) throw new Error(`database load failed: ${response.status}`);
+async function fetchJson(url) {
+  const response = await fetch(url, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`database load failed for ${url}: ${response.status}`);
   return response.json();
+}
+
+function mergeReverification(base, overlays) {
+  const byId = new Map((base.records || []).map((record) => [record.id, record]));
+
+  for (const overlay of overlays) {
+    for (const record of overlay.records || []) {
+      const previous = byId.get(record.id) || {};
+      byId.set(record.id, {
+        ...previous,
+        ...record,
+        verification: {
+          ...(previous.verification || {}),
+          ...(record.verification || {})
+        }
+      });
+    }
+  }
+
+  return {
+    ...base,
+    records: [...byId.values()]
+  };
+}
+
+async function loadDatabase() {
+  const [base, ...overlays] = await Promise.all([
+    fetchJson('./data/services.json'),
+    ...REVERIFICATION_FILES.map(fetchJson)
+  ]);
+  return mergeReverification(base, overlays);
 }
 
 function visibleRecords() {
@@ -50,6 +87,8 @@ function matchesQuery(record, query) {
     ...(record.aliases || []),
     ...(record.keywords || []),
     record.summary,
+    record.procedure_type,
+    ...(record.billing_routes || []),
     CATEGORY_LABELS[record.category] || record.category
   ].filter(Boolean).join(' ').toLowerCase();
   return haystack.includes(query.toLowerCase());
@@ -88,7 +127,7 @@ function createCard(record) {
     procedure.href = record.procedure_url;
     procedure.target = '_blank';
     procedure.rel = 'noopener noreferrer';
-    procedure.textContent = record.publication_state === 'verified' ? '公式の手続き情報' : '旧版の手続き候補';
+    procedure.textContent = record.publication_state === 'verified' ? '公式の手続き情報' : '手続き・関連情報';
     actions.appendChild(procedure);
   }
 
@@ -106,9 +145,9 @@ function createCard(record) {
   if (record.publication_state === 'verified' && record.verification?.last_verified_at) {
     verification.textContent = `最終確認: ${record.verification.last_verified_at}`;
   } else if (record.publication_state === 'retired') {
-    verification.textContent = '終了・移行状況を含めて記録しています。現在の契約可否は公式情報をご確認ください。';
+    verification.textContent = '終了・移行済みサービスとして履歴を記録しています。';
   } else {
-    verification.textContent = '単独版から移行した旧データです。現在の公式手順として再確認中です。';
+    verification.textContent = '現在の公式手順として再確認中です。';
   }
 
   article.append(head, summary, actions, verification);
@@ -141,8 +180,9 @@ function render() {
 function renderSummary(records) {
   const verified = records.filter((record) => record.publication_state === 'verified').length;
   const review = records.filter((record) => ['legacy_review_required', 'needs_review'].includes(record.publication_state)).length;
+  const retired = records.filter((record) => record.publication_state === 'retired').length;
   const summary = document.getElementById('databaseSummary');
-  summary.textContent = `収録 ${records.length}件 / 検証済み ${verified}件 / 再確認待ち ${review}件`;
+  summary.textContent = `収録 ${records.length}件 / 検証済み ${verified}件 / 再確認待ち ${review}件 / 終了・移行 ${retired}件`;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
