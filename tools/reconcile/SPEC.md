@@ -87,6 +87,17 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Checkout creation sends only product/return-path billing context to the NicheWorks billing API. Entitlement restoration sends the product ID plus Stripe Checkout Session ID. Neither request contains uploaded transaction rows, descriptions, amounts, references, mappings, or file contents.
 - Paid access is enabled only after the server confirms an active entitlement created from a verified Stripe webhook. URL parameters, redirects, and localStorage do not directly unlock Reconcile Pro.
 
+## Refund and cancellation contract
+
+- Reconcile Pro is a ¥3,980 JPY one-time digital feature purchase.
+- Customer-convenience refunds or cancellations are generally not accepted after purchase.
+- Limited exceptions may be reviewed individually for duplicate charges, payment-processing errors, or a NicheWorks-side technical failure that prevents use of Reconcile Pro.
+- Refunds required by applicable law remain available.
+- The product does not expose an automatic or self-service refund button; refund review is handled through the site Contact route.
+- If a refund or payment dispute is completed, entitlement derived from that Reconcile purchase becomes inactive under the existing billing contract. Separate purchases and their entitlements must not be revoked by that event.
+- This presentation policy does not change the existing Stripe refund/dispute webhook handling or the one-way feature-grant contract.
+- Public policy page: `tools/reconcile/refund.html`.
+
 ## Language mode
 
 `bilingual single-page`
@@ -125,6 +136,8 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - [x] Saved profile serialization never contains transaction rows or uploaded file bytes.
 - [x] Reconcile Pro controls unlock only when server verification for product `reconcile.pro_v1` includes feature `reconcile_pro_v1`; `nicheworks_pro` alone is insufficient.
 - [x] Failed/unavailable entitlement verification fails closed without changing Free reconciliation behavior.
+- [x] The purchase CTA states that customer-convenience refunds/cancellations are generally unavailable and links to the Reconcile refund policy before checkout.
+- [x] The refund policy documents limited review exceptions, applicable-law override, no self-service refund, and purchase-scoped entitlement revocation after refund/dispute.
 - [x] Japanese/English switching preserves the current reconciliation state and the wide result workflow remains usable with mobile stacking/scrolling.
 ## Implementation evidence
 
@@ -139,6 +152,7 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - `tools/reconcile/xlsx-adapter.mjs`
 - `tools/reconcile/rules-store.mjs`
 - `tools/reconcile/usage.html`
+- `tools/reconcile/refund.html`
 - `assets/nw-pro-entitlement.js`
 - `functions/api/billing/create-checkout-session.js`
 - `functions/api/billing/entitlement.js`
