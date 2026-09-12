@@ -21,14 +21,14 @@ Phase 1の必須/主要field:
 | `keywords` | no | search helpers |
 | `summary` | no | short procedural note |
 | `publication_state` | yes | verification/publication state |
+| `procedure_type` | recommended for verified | canonical procedure semantics |
+| `billing_routes` | recommended for verified | contract / billing routes that materially change the procedure |
 | `verification.last_verified_at` | verified only | actual manual/research verification date |
 | `verification.source_title` | verified only | title/identity of verified official source |
 | `verification.final_url` | no | observed final URL when redirects matter |
 
-Future expansion may add:
+Later expansion may add:
 
-- `procedure_type`
-- `billing_routes`
 - `account_deletion_url`
 - `auto_renewal_stop_url`
 - `transfer_or_mnp_url`
@@ -52,7 +52,7 @@ Standalone repositoryから移行したrecord。旧版の自動HTTP checker結�
 
 ### `needs_review`
 
-一度verifiedだったがsource change、redirect、手順変更、サービス再編等で再確認が必要。
+一度verifiedだった、またはservice再編等により単一recordのまま公開すると誤解を生む可能性があり、再整理・再確認が必要。
 
 ### `retired`
 
@@ -60,22 +60,36 @@ service / planが終了、統合、名称変更等で現行契約対象ではな
 
 ### `placeholder`
 
-候補管理用。通常のpublic search resultには出さない。
+候補管理用。通常のpublic search resultには出さない。旧版generic rowの隔離にも使用できる。
 
 ## 4. Procedure semantics
 
-解約関連語を同一視しない。将来の`procedure_type`は少なくとも以下を区別できる設計とする。
+解約関連語を同一視しない。`procedure_type`は少なくとも以下を区別できる設計とする。
 
-- subscription cancellation
-- automatic renewal stop
-- account deletion / withdrawal
-- plan downgrade
-- carrier termination
-- MNP / transfer-out
-- app-store subscription cancellation
-- marketplace / reseller cancellation
+- `subscription_cancellation`
+- `automatic_renewal_stop`
+- `account_deletion`
+- `plan_downgrade_or_cancellation`
+- `carrier_termination`
+- `mnp_transfer_out`
+- `app_store_subscription_cancellation`
+- `marketplace_or_reseller_cancellation`
 
-同じserviceでも契約経路によってprocedureが異なる場合、単一の説明文で無理に統合しない。
+同じserviceでも契約経路によってprocedureが異なる場合、`billing_routes`で主要経路を保持し、単一の説明文で無理に統合しない。
+
+現時点で利用してよいroute例:
+
+- `web_direct`
+- `app_store`
+- `google_play`
+- `amazon_appstore`
+- `partner_billing`
+- `carrier_billing`
+- `credit_card`
+- `line_store`
+- operator/account specific route（例: `microsoft_account`, `nintendo_account`）
+
+route名は手続き差分の検索・監査用identifierであり、決済事業者を網羅すること自体を目的にしない。
 
 ## 5. Verification rule
 
@@ -89,7 +103,21 @@ verified昇格時に確認する内容:
 6. source titleと最終URLを記録する価値がある場合は保存する。
 7. 実際に確認した日だけ`last_verified_at`へ入れる。
 
-## 6. Database scale
+## 6. Re-verification overlays
+
+旧40件の再検証中は、`data/services.json`をmigration snapshotとして保持し、`data/reverification/*.json`を新しい検証結果のoverlayとして適用する。
+
+ルール:
+
+- overlay recordはbaseに存在する`id`だけを上書きできる。
+- 同じ`id`を複数overlayへ重複させない。
+- runtimeとauditはbase + overlayのeffective recordを同じ順序で解釈する。
+- overlayは「HTTP checker結果」ではなくofficial-source reviewの結果だけを保存する。
+- Phase 1終了時に、全旧recordの整理が完了したらeffective recordsを新しいcanonical datasetへcompactしてよい。
+
+この方式により、旧版のmigration provenanceを残したまま、再検証結果を段階的に確定できる。
+
+## 7. Database scale
 
 100〜200 servicesを前提とし、raw countではなくqualityで進捗を見る。
 
@@ -107,7 +135,7 @@ Primary metrics:
 
 200件あっても大半がgeneric brand pageなら完成扱いしない。
 
-## 7. Source policy
+## 8. Source policy
 
 手続きの一次sourceとして優先:
 
@@ -117,7 +145,7 @@ Primary metrics:
 
 第三者blog、SEO記事、affiliate比較記事はservice候補発見や補助調査には使えても、verified procedureの正本にはしない。
 
-## 8. Legacy migration
+## 9. Legacy migration
 
 Standalone版の40recordは、`status: ok/check`や自動取得titleを捨て、元のservice identity / candidate URL / noteだけをmigration seedとして扱う。
 
