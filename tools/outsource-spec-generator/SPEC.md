@@ -16,6 +16,7 @@ Draft an outsourcing specification from scope, deliverables, deadline, budget, a
 - Free mode generates a lightweight outsourcing specification, acceptance criteria, and revision rules.
 - Free output can be copied for review before purchase/contract work proceeds.
 - Shared NicheWorks Pro adds the full outsource handoff pack, deliverable pack, acceptance checklist, vendor questions, Codex task, GitHub Issue format, Markdown save, and JSON export.
+- Pro activates only for an active shared `nicheworks_pro` entitlement; another product-scoped active entitlement is not authoritative for this tool.
 - Pro purchase uses the shared Stripe/NicheWorks Pro flow and is browser-bound after activation.
 - Switch JP/EN UI on the same page.
 - Generate all drafting logic locally in the browser.
@@ -26,7 +27,7 @@ Draft an outsourcing specification from scope, deliverables, deadline, budget, a
 - Deliverables/scope and out-of-scope work.
 - Deadline, budget, delivery format, acceptance method/period, communication, and revision terms.
 - JP/EN display language.
-- Pro actions when entitlement is active.
+- Pro actions when the expected shared entitlement is active.
 
 ## Outputs
 
@@ -42,7 +43,7 @@ Form inputs and generated drafts are current-page state. Shared NicheWorks Pro e
 
 ## Privacy and network behavior
 
-Specification generation runs in the browser. Project names, company names, private URLs, and personal information are not sent to a drafting backend. Ads/analytics and the external Stripe purchase flow may communicate independently.
+Specification generation runs in the browser. Project names, company names, private URLs, and personal information are not sent to a drafting backend. Ads/analytics and the external Stripe/shared-Pro status flow may communicate independently.
 
 ## Language mode
 
@@ -60,12 +61,13 @@ The tool contains a long project-specification form, multiple outputs, and Pro h
 - It cannot establish ownership/IP, confidentiality, tax, employment/contractor, liability, or dispute terms.
 - Generated acceptance criteria and revision rules require explicit agreement with the vendor.
 - Pro artifacts are handoff drafts, not proof that a vendor or Codex task has been executed.
+- A different product entitlement must not unlock this tool's shared Pro actions.
 
 ## Acceptance criteria
 
 - [ ] Required work type, deliverables, deadline, budget, and acceptance method are enforced before generation.
 - [ ] Free mode remains able to generate the lightweight spec, acceptance criteria, and revision rules without Pro.
-- [ ] Pro-only handoff, Codex/GitHub, Markdown, and JSON outputs remain gated by shared NicheWorks Pro entitlement.
+- [ ] Pro-only handoff, Codex/GitHub, Markdown, and JSON outputs require active shared `nicheworks_pro` and stay locked for unrelated product entitlements.
 - [ ] Draft generation does not send user-entered outsourcing details to an AI/spec-generation backend.
 
 ## Implementation evidence
