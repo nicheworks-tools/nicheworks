@@ -38,7 +38,9 @@ for (const item of records) {
 }
 
 function exactCanonical(value) {
-  const owners = keyOwners.get(parser.normalizeKey(value));
+  const key = parser.normalizeKey(value);
+  if (!key) return null;
+  const owners = keyOwners.get(key);
   if (!owners || owners.size !== 1) return null;
   return [...owners][0];
 }
@@ -49,7 +51,7 @@ function uniqueCandidates(kind) {
   const sorted = records
     .filter((item) => item?.en)
     .slice()
-    .sort((a, b) => parser.normalizeKey(a.en).localeCompare(parser.normalizeKey(b.en)));
+    .sort((a, b) => parser.normalizeBaseKey(a.en).localeCompare(parser.normalizeBaseKey(b.en)));
 
   for (const item of sorted) {
     const values = kind === 'canonical'
@@ -124,14 +126,14 @@ for (const [input, expected] of parserCases) {
 }
 
 const unknownCases = [
-  'Definitely Not An INCI Ingredient',
+  'AHA',
+  'BHA',
+  'PHA',
+  'Iron Oxides',
+  '酸化鉄',
   'PhenoxyethanoI',
   'Glycerln',
   'Niacinamlde',
-  'Sodlum Hyaluronate',
-  'Waterrr',
-  'グリセリソ',
-  'ナイアシソアミド',
   'ヒアル口ン酸Na',
   'OCR_NOISE_123'
 ];
