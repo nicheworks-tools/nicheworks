@@ -1,0 +1,115 @@
+name: Reconcile final sync
+
+on:
+  push:
+    branches:
+      - feat/reconcile-v1-20260912
+    paths:
+      - .github/workflows/reconcile-final-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  final-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/reconcile-v1-20260912
+          fetch-depth: 0
+
+      - name: Merge latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Sync isolated publication contract in ExecPlan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('.agent/plans/20260912-reconcile-v1.md')
+          s = p.read_text()
+          old = "After rebasing on current main:\n- add Reconcile to `tools/tools-index.json`;"
+          new = "After rebasing on current main:\n- promote the isolated `tools/reconcile/development.html` UI shell to the public `tools/reconcile/index.html` landing;\n- add Reconcile to `tools/tools-index.json`;"
+          if old not in s:
+              raise SystemExit('Wave E insertion anchor missing')
+          s = s.replace(old, new, 1)
+          old = "- XLSX adapter tests cover the API contract, and `xlsx-real-vendor.test.mjs` validates the committed real vendor with XLSX write/read, worksheet selection, seven-sheet report generation, and workbook re-read. Final browser UI smoke validation remains separate publication-readiness work."
+          new = old + "\n- The isolated Core PR intentionally has no `tools/reconcile/index.html`: the complete noindex development UI is retained as `tools/reconcile/development.html` so repository public-URL contracts remain valid until the publication PR adds the registry, sitemap, canonical metadata, and public landing together."
+          if old not in s:
+              raise SystemExit('Discovery anchor missing')
+          s = s.replace(old, new, 1)
+          old = "- browser validation passes with the real vendor build;\n- all Node fixtures pass."
+          new = "- committed real-vendor XLSX write/read and report re-read validation passes in Node;\n- all Node fixtures pass;\n- final interactive browser UI smoke validation is a publication-readiness gate, not an isolated Core merge gate."
+          if old not in s:
+              raise SystemExit('Wave C acceptance anchor missing')
+          s = s.replace(old, new, 1)
+          old = "Do not merge the isolated branch while its public landing is intentionally absent from registry/sitemap. Before any PR targeting main, rebase/merge current main into the branch or split publication changes into a current-main integration branch, then satisfy all current repository contracts."
+          new = "The isolated Core PR may merge with its UI retained as `tools/reconcile/development.html`; it must not introduce a public `tools/reconcile/index.html` until registry/sitemap/public SEO identity are added in the publication PR. Before merging the Core PR, merge current main into the feature branch, run all Reconcile fixtures, verify the pinned vendor, and confirm the final diff remains limited to this ExecPlan plus `tools/reconcile/**`. Billing and publication remain separate follow-up PRs."
+          if old not in s:
+              raise SystemExit('Recovery anchor missing')
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+          PY
+
+      - name: Verify isolated UI state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f tools/reconcile/development.html
+          test ! -e tools/reconcile/index.html
+          grep -F 'noindex,nofollow' tools/reconcile/development.html >/dev/null
+
+      - name: Verify pinned SheetJS vendor
+        shell: bash
+        run: |
+          set -euo pipefail
+          target='tools/reconcile/vendor/xlsx.mini.min.js'
+          test "$(wc -c < "$target" | tr -d ' ')" = '279523'
+          test "$(sha256sum "$target" | awk '{print $1}')" = '0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939'
+          test "$(git hash-object "$target")" = '5bf1c223ce4bd59685ba711b77dce6da7a9747b8'
+          grep -F 'version="0.20.3"' "$target" >/dev/null
+
+      - name: Assert no runtime SheetJS CDN dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE 'https?://cdn\.sheetjs\.com|unpkg\.com/.?xlsx|cdn\.jsdelivr\.net/.?xlsx' tools/reconcile --exclude='README.md' --exclude='SPEC.md' --exclude='NOTICE.sheetjs.txt' --exclude='LICENSE.sheetjs'; then
+            echo 'Runtime SheetJS CDN reference found' >&2
+            exit 1
+          fi
+
+      - name: Run all Reconcile tests
+        run: node --test tools/reconcile/tests/*.test.mjs
+
+      - name: Remove workflow and audit final diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/reconcile-final-sync.yml
+          git add .agent/plans/20260912-reconcile-v1.md
+          git diff --cached --check
+          git commit -m 'docs(reconcile): finalize isolated core merge contract'
+          git diff --check origin/main...HEAD
+          bad="$(git diff --name-only origin/main...HEAD | grep -Ev '^(\.agent/plans/20260912-reconcile-v1\.md|tools/reconcile/)' || true)"
+          if [ -n "$bad" ]; then
+            echo 'Isolation violation:' >&2
+            printf '%s\n' "$bad" >&2
+            exit 1
+          fi
+          echo 'Final isolated diff:'
+          git diff --name-only origin/main...HEAD
+
+      - name: Push final synchronized branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git push origin HEAD:feat/reconcile-v1-20260912
