@@ -62,6 +62,7 @@ The dashboard contains KPI groups, configuration panels, filters, profiles, and 
 - Forecasts are simple estimates from user-entered observations and do not guarantee actual OpenAI/Codex limits, reset times, remaining quota, or service policy.
 - The tool does not read the user's Codex account automatically.
 - Notes may contain sensitive work context, so users are expected to redact private project or customer names when needed.
+- `app-fixed.js` is the active page runtime. The older `app.js` file is not the implementation evidence for the current page contract.
 
 ## Acceptance criteria
 
@@ -73,6 +74,7 @@ The dashboard contains KPI groups, configuration panels, filters, profiles, and 
 ## Implementation evidence
 
 - `tools/codex-usage-forecaster/index.html`
+- `tools/codex-usage-forecaster/app-fixed.js`
 - `tools/codex-usage-forecaster/en/`
 - `tools/codex-usage-forecaster/usage.html`
 - `tools/codex-usage-forecaster/howto.html`

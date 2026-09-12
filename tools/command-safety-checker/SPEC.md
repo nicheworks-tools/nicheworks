@@ -56,6 +56,7 @@ Large code input and review output benefit from desktop width, while the primary
 - The checker is heuristic and cannot prove a command is safe or detect every dangerous side effect.
 - It does not execute commands, fetch remote scripts for inspection, inspect the user's filesystem, or know the actual target environment.
 - Users must independently verify paths, URLs, permissions, secrets, disk impact, and residual risk before execution.
+- `app-core.js` is the active checker runtime loaded by the public page; the older `app.js` file is not the runtime evidence for the current page.
 
 ## Acceptance criteria
 
@@ -67,5 +68,6 @@ Large code input and review output benefit from desktop width, while the primary
 ## Implementation evidence
 
 - `tools/command-safety-checker/index.html`
-- `tools/command-safety-checker/app.js`
+- `tools/command-safety-checker/app-core.js`
+- `tools/command-safety-checker/pro-bridge.js`
 - `tools/command-safety-checker/usage.html`

@@ -57,6 +57,7 @@ The atlas supports desktop reference browsing while detail/filter/menu interacti
 - This is a practical lightweight reference, not an authoritative safety standard, legal definition source, or formal trade dictionary.
 - Term definitions, aliases, and examples can be incomplete; official manuals, standards, and safety documentation remain authoritative.
 - Favorites are browser-local unless the user explicitly exports them.
+- `app.runtime.js` is the active public-page runtime. The older `app.js` file is not authoritative for the current rendered atlas.
 
 ## Acceptance criteria
 
@@ -68,6 +69,7 @@ The atlas supports desktop reference browsing while detail/filter/menu interacti
 ## Implementation evidence
 
 - `tools/construction-tools-atlas/index.html`
-- `tools/construction-tools-atlas/app.js`
+- `tools/construction-tools-atlas/app.runtime.js`
+- `tools/construction-tools-atlas/data/quality-loader.js`
 - `tools/construction-tools-atlas/data/`
 - `tools/construction-tools-atlas/style.css`

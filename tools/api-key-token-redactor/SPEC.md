@@ -15,6 +15,7 @@ Detect likely secrets in pasted logs, configuration text, `.env`, JSON, curl com
 - Allow detection modes to be enabled or disabled by category.
 - Support replacement styles including `[REDACTED]`, `****`, `<redacted>`, and optional length-preserving asterisk masking.
 - Produce redacted output plus category/severity counts and findings based on the original input.
+- Do not expose raw first/last credential fragments in visible finding previews, copied review material, or downloaded finding/audit artifacts; finding previews may retain only non-secret context plus a redacted marker.
 - Provide sample inputs, clear/reset behavior, clipboard copy, and TXT download.
 - Switch the same page between Japanese and English UI.
 
@@ -28,9 +29,10 @@ Detect likely secrets in pasted logs, configuration text, `.env`, JSON, curl com
 ## Outputs
 
 - Redacted text.
-- Finding/category/severity summaries and counts.
+- Finding/category/severity summaries and counts with secret-safe preview markers.
 - Clipboard copy of redacted text.
 - TXT download generated from the redacted result.
+- When Pro is active, review/export artifacts whose finding previews do not reproduce raw credential fragments.
 
 ## State and persistence
 
@@ -63,10 +65,12 @@ The workflow supports narrow-screen use but also relies on large text areas, fin
 - [ ] Supported secret patterns in sample or pasted text can be detected and replaced according to the selected masking mode.
 - [ ] Category and severity counts reflect the current findings and clear/reset removes the current working result.
 - [ ] Copy/download uses the redacted output rather than the original secret-bearing input.
+- [ ] Visible finding previews and review/export artifacts do not reproduce raw first/last credential fragments from detected secrets.
 - [ ] JP/EN switching preserves all detection and replacement controls.
 
 ## Implementation evidence
 
 - `tools/api-key-token-redactor/index.html`
 - `tools/api-key-token-redactor/app.js`
+- `tools/api-key-token-redactor/pro-bridge.js`
 - `tools/api-key-token-redactor/howto/`

@@ -101,7 +101,7 @@ function buildDescription(ingredientUpper, flags) {
   if (flags.some((flag) => flag.key === 'comedogenic')) {
     return '油性のエモリエント成分で、毛穴が詰まりやすいと感じる人もいます。';
   }
-  return '一般的な化粧品成分です。用途は製品によって異なります。';
+  return 'この簡易辞書では分類できません。用途・安全性・配合目的は製品表示やメーカー等の公式情報を確認してください。';
 }
 
 function renderFlagsCell(flags) {
