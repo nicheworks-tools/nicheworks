@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-06-16T09:46:13.501Z",
-  "total": 88,
+  "total": 87,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -1046,14 +1046,6 @@
         "calculator",
         "life"
       ]
-    },
-    {
-      "slug": "unsubscribe-navi",
-      "title_en": "unsubscribe-navi",
-      "title_ja": "unsubscribe-navi",
-      "desc_en": "",
-      "desc_ja": "",
-      "tags": []
     },
     {
       "slug": "url-title-collector",
