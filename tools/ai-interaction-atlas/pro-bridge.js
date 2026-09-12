@@ -24,17 +24,17 @@
   function readStatus() {
     try {
       if (!window.NWPro || typeof window.NWPro.getLocalStatus !== 'function') {
-        return { active: false, failed: true, entitlement: ENTITLEMENT };
+        return { active: false, failed: true, entitlement: '' };
       }
-      var status = window.NWPro.getLocalStatus();
+      var status = window.NWPro.getLocalStatus() || {};
       return {
-        active: Boolean(status && status.active && (status.entitlement || ENTITLEMENT) === ENTITLEMENT),
+        active: status.active === true && status.entitlement === ENTITLEMENT,
         failed: false,
-        entitlement: status && status.entitlement ? status.entitlement : ENTITLEMENT,
-        checkedAt: status && status.checkedAt ? status.checkedAt : ''
+        entitlement: status.entitlement || '',
+        checkedAt: status.checkedAt || ''
       };
     } catch (error) {
-      return { active: false, failed: true, entitlement: ENTITLEMENT };
+      return { active: false, failed: true, entitlement: '' };
     }
   }
 
@@ -47,8 +47,8 @@
 
   function apply() {
     var current = readStatus();
-    var active = Boolean(current.active);
-    var failed = Boolean(current.failed);
+    var active = current.active === true;
+    var failed = current.failed === true;
     var copy = TEXT[lang()];
     var statusText = failed ? copy.failed : (active ? copy.active : copy.preview);
 
@@ -77,7 +77,7 @@
       node.setAttribute('aria-disabled', active ? 'false' : 'true');
     });
 
-    var detail = { active: active, failed: failed, entitlement: ENTITLEMENT, status: current };
+    var detail = { active: active, failed: failed, entitlement: current.entitlement, status: current };
     window.dispatchEvent(new CustomEvent('nw-pro-status-change', { detail: detail }));
     window.dispatchEvent(new CustomEvent('nwpro:state', { detail: detail }));
   }
