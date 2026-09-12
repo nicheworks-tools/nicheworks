@@ -3,30 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NicheWorks Billing - Checkout Success (Pending Verification)</title>
+  <title>NicheWorks Billing - Purchase Verification</title>
   <style>
     body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: #f7f7f8; color: #111; }
     main { max-width: 760px; margin: 40px auto; background: #fff; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb; }
     h1 { margin-top: 0; }
-    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
     .muted { color: #4b5563; }
+    .status { margin: 18px 0; padding: 14px; border-radius: 10px; background: #f3f4f6; }
+    .status.ok { background: #ecfdf5; color: #065f46; }
+    .status.bad { background: #fef2f2; color: #991b1b; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .btn { display: inline-block; border: 1px solid #111827; border-radius: 999px; padding: 9px 14px; text-decoration: none; background: #111827; color: #fff; font: inherit; cursor: pointer; }
+    .btn.secondary { background: #fff; color: #111827; }
   </style>
-  <meta name="description" content="NicheWorks Billing - Checkout Success (Pending Verification) は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツール集に関する情報を掲載しています。">
-  <meta name="robots" content="index,follow">
+  <meta name="description" content="Verify a completed NicheWorks purchase against the server-side entitlement record.">
+  <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://nicheworks.app/billing/success.html">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="NicheWorks Billing - Checkout Success (Pending Verification)">
-  <meta property="og:description" content="NicheWorks Billing - Checkout Success (Pending Verification) は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツール集に関する情報を掲載しています。">
-  <meta property="og:url" content="https://nicheworks.app/billing/success.html">
-  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NicheWorks Billing - Checkout Success (Pending Verification)">
-  <meta name="twitter:description" content="NicheWorks Billing - Checkout Success (Pending Verification) は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツール集に関する情報を掲載しています。">
-  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -34,37 +28,74 @@
     gtag('js', new Date());
     gtag('config', 'G-57QT78M3JB');
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "NicheWorks Billing - Checkout Success (Pending Verification)",
-    "url": "https://nicheworks.app/billing/success.html",
-    "description": "NicheWorks Billing - Checkout Success (Pending Verification) は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツール集に関する情報を掲載しています。",
-    "inLanguage": "ja",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NicheWorks",
-      "url": "https://nicheworks.app/"
-    }
-  }
-  </script>
 </head>
 <body>
   <main>
-    <h1>Checkout completed (verification pending)</h1>
-    <p>Payment may have completed, but Pro access is not activated by URL alone.</p>
-    <p>Entitlement verification and grant flow will be added in P04/P05.</p>
-    <p>Please return to your tool and use the Pro access flow once entitlement checks are implemented.</p>
-    <p class="muted">Support reference only: <code id="sessionRef">(no session_id)</code></p>
+    <h1>Purchase verification</h1>
+    <p>Checkout has returned to NicheWorks. Paid access is enabled only after the server confirms an active entitlement created from a verified Stripe webhook.</p>
+    <div class="status" id="statusBox" role="status" aria-live="polite">
+      <strong id="statusTitle">Checking purchase…</strong>
+      <div id="statusText" class="muted">The payment webhook may take a moment to finish.</div>
+    </div>
+    <div class="actions">
+      <button class="btn secondary" id="retryButton" type="button">Check again</button>
+      <a class="btn" id="returnLink" href="/">Return to NicheWorks</a>
+    </div>
+    <p class="muted">The Checkout Session ID is used only to ask the NicheWorks server for the matching product entitlement. It is not displayed as proof of purchase and is not sent as a GA4 event parameter.</p>
   </main>
+  <script src="/assets/nw-pro-entitlement.js"></script>
   <script>
     (function () {
-      const params = new URLSearchParams(window.location.search);
-      const value = params.get('session_id');
-      if (value) {
-        document.getElementById('sessionRef').textContent = value;
+      const params = new URLSearchParams(location.search);
+      const sessionId = params.get('session_id') || '';
+      const productId = params.get('product_id') || 'okj.toolkit_pro';
+      const returnPath = params.get('return_path') || '/';
+      const box = document.getElementById('statusBox');
+      const title = document.getElementById('statusTitle');
+      const text = document.getElementById('statusText');
+      const retry = document.getElementById('retryButton');
+      const returnLink = document.getElementById('returnLink');
+
+      function safeReturnPath(value) {
+        return typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && !value.includes('://') && value.length <= 512;
       }
+
+      if (safeReturnPath(returnPath)) returnLink.href = returnPath;
+
+      function setState(kind, heading, message) {
+        box.classList.remove('ok', 'bad');
+        if (kind) box.classList.add(kind);
+        title.textContent = heading;
+        text.textContent = message;
+      }
+
+      async function verify() {
+        retry.disabled = true;
+        setState('', 'Checking purchase…', 'Waiting for a verified server entitlement.');
+
+        if (!sessionId || !window.NicheWorksProEntitlement) {
+          setState('bad', 'Verification information is missing', 'Paid access has not been enabled. Return to the tool and retry checkout or contact support with your Stripe receipt.');
+          retry.disabled = false;
+          return;
+        }
+
+        const state = await window.NicheWorksProEntitlement.activateFromSession({ productId, sessionId });
+        if (state.active) {
+          setState('ok', 'Purchase verified', 'This product entitlement is active in this browser. You can return to the tool.');
+          retry.disabled = false;
+          return;
+        }
+
+        if (state.state === 'restore-required') {
+          setState('', 'Payment confirmation is still pending', 'The checkout returned successfully, but no active server entitlement is available yet. This can happen while the Stripe webhook is still processing.');
+        } else {
+          setState('bad', 'Could not verify paid access', 'No paid access was enabled. Retry the check, or keep your Stripe receipt and contact support if the payment completed.');
+        }
+        retry.disabled = false;
+      }
+
+      retry.addEventListener('click', verify);
+      verify();
     })();
   </script>
 </body>

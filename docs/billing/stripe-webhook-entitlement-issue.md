@@ -1,115 +1,96 @@
-# Stripe Webhook Verification and D1 Entitlement Issue (LIVE-03)
+# Stripe Webhook Verification and D1 Entitlement Issue
 
-## 1) Status
-- Status: **OKJ-BILLING-LIVE-03**
-- Runtime posture: **verified webhook parsing enabled, server-side entitlement issue enabled**
-- Production payment flow: **entitlement issue only (no Pro runtime unlock yet)**
+## Status
 
-## 2) Current scope
-Implemented in this phase:
-- server-side `Stripe-Signature` verification using HMAC SHA-256 (Web Crypto)
-- strict raw body verification path (`request.text()`)
-- safe JSON parsing only after verification
-- strict event filtering for `checkout.session.completed`
-- metadata validation (`productId`, `priceTierId`) against `config/billing/products.json`
-- D1-backed idempotent entitlement issue by `stripeCheckoutSessionId`
+Runtime posture:
 
-Not implemented in this phase:
-- runtime Pro unlock wiring
-- client-side entitlement activation
-- localStorage-based entitlement source
+- Stripe signature verification enabled.
+- Product registry validation enabled.
+- D1 entitlement issue enabled.
+- Checkout-session idempotency enabled.
+- Delayed-payment fulfillment handled conservatively.
 
-## 3) Webhook route behavior
-- Route: `POST /api/billing/stripe-webhook`
-- Method: POST only
-- Non-POST response: `method_not_allowed`
+## Route
 
-Required env:
+- `POST /api/billing/stripe-webhook`
+
+Required runtime configuration:
+
 - `STRIPE_WEBHOOK_SECRET`
-- `BILLING_DB` (D1 binding)
+- `BILLING_DB`
+- product registry available through site assets
 
-Failure mapping:
-- missing webhook secret: `webhook_secret_missing`
-- missing `Stripe-Signature`: `webhook_signature_missing`
-- invalid signature/timestamp: `webhook_signature_invalid`
-- invalid verified JSON payload shape: `webhook_payload_invalid`
-- missing D1 entitlement storage binding: `entitlement_storage_not_configured`
+## Signature verification
 
-## 4) Security ordering
-Webhook signature verification and payload validation happen before entitlement issue.
-Unverified payloads are never treated as payment proof and never create entitlements.
+The handler reads the raw request body, verifies `Stripe-Signature` using HMAC SHA-256 and a 300-second timestamp tolerance, and parses JSON only after verification succeeds.
 
-## 5) Entitlement issue contract
-Entitlement issue happens only for verified `checkout.session.completed` events with valid product metadata.
+Unverified input never reaches entitlement issue.
 
-Entitlement boundary:
-- **`productId`** is the entitlement boundary.
-- **`priceTierId`** is validation-only (metadata consistency), not entitlement identity.
+## Accepted fulfillment events
 
-Persisted entitlement fields include:
-- `entitlementId`
+Entitlement fulfillment recognizes:
+
+- `checkout.session.completed`
+- `checkout.session.async_payment_succeeded`
+
+Other event types are acknowledged and ignored by this route.
+
+### Payment-state rule
+
+A completed Checkout Session does **not** automatically mean an entitlement is active.
+
+Before entitlement issue, the Checkout Session must have a payment state accepted for fulfillment:
+
+- `paid`, or
+- `no_payment_required` for a legitimately configured product that can produce that Stripe state.
+
+If `checkout.session.completed` arrives with `payment_status=unpaid`, the handler acknowledges the verified event with `entitlementIssued=false` and does not create an active entitlement.
+
+For delayed payment methods, Stripe can later send `checkout.session.async_payment_succeeded`; that event passes through the same product/payment checks and can issue the entitlement idempotently.
+
+## Product validation
+
+The webhook requires metadata:
+
 - `productId`
-- `status` (`active`)
-- `source` (`stripe_webhook`)
-- `stripeCustomerId`
-- `stripeCheckoutSessionId`
-- `stripePaymentIntentId`
-- `customerEmailHash` (LIVE-03 default is `null`)
-- `features` (from product config)
-- `createdAt`
-- `updatedAt`
-- `revokedAt` (`null` on issue)
+- `priceTierId`
 
-## 6) Idempotency
-Idempotency key: `stripeCheckoutSessionId` (`stripe_checkout_session_id` unique in D1).
+It loads `config/billing/products.json` and requires:
 
-Behavior:
-- If entitlement for checkout session already exists, webhook returns successful idempotent response.
-- If insert races and unique constraint is hit, existing entitlement is fetched and returned idempotently.
-- Duplicate active entitlements are not created for the same checkout session.
+- the product exists;
+- the referenced price tier exists;
+- product price metadata and price-tier metadata are internally consistent;
+- metadata `priceTierId` matches the selected product;
+- Checkout currency, when supplied, matches the configured product currency.
 
-## 7) Response shape examples
-New issue:
+The product ID is the entitlement boundary. A reusable price tier never implies cross-product unlock.
 
-```json
-{
-  "ok": true,
-  "verified": true,
-  "received": true,
-  "eventType": "checkout.session.completed",
-  "productId": "okj.toolkit_pro",
-  "entitlementIssued": true,
-  "entitlementId": "..."
-}
-```
+## D1 entitlement issue
 
-Idempotent duplicate:
+D1 binding:
 
-```json
-{
-  "ok": true,
-  "verified": true,
-  "received": true,
-  "eventType": "checkout.session.completed",
-  "productId": "okj.toolkit_pro",
-  "entitlementIssued": true,
-  "idempotent": true,
-  "entitlementId": "..."
-}
-```
+- `BILLING_DB`
 
-Missing D1 binding:
+Idempotency boundary:
 
-```json
-{
-  "ok": false,
-  "error": "entitlement_storage_not_configured"
-}
-```
+- `stripe_checkout_session_id`
 
-## 8) Explicit non-goals in LIVE-03
-- No changes to OKJ tool UI.
-- No changes to `assets/nw-pro-entitlement.js`.
-- No client-side unlock state.
-- No URL/localStorage unlock path.
-- Next phase is dedicated entitlement-check API for runtime gating.
+Stored entitlement state includes the product ID, feature snapshot, Stripe Checkout Session ID, payment/customer references needed for billing reconciliation, timestamps and status. Tool input is never stored with billing records.
+
+Duplicate fulfillment for the same Checkout Session returns the existing entitlement instead of creating a second row.
+
+## Failure posture
+
+The route fails closed when:
+
+- webhook secret is missing;
+- Stripe signature is missing/invalid/stale;
+- verified payload is malformed;
+- product metadata is missing/unknown/inconsistent;
+- D1 is unavailable;
+- Checkout Session ID is malformed;
+- payment state is not fulfilled.
+
+## Client boundary
+
+The webhook does not directly unlock browser UI. Client access is enabled only after the server entitlement API returns active for the same product + Checkout Session record.
