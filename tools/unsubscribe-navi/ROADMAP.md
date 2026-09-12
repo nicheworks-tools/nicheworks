@@ -224,6 +224,7 @@ Wave 6反映後:
 - category filterに加えてverification-state filterを追加
 - 480px未満でaction controlsを縦積みに統一
 - audit scriptへdirect procedure URL / procedure type / billing route coverageと90日freshnessのreport-only出力を追加
+- verified recordから個別page候補25件をP0/P1/P2へ選定し、`INDIVIDUAL_PAGE_CANDIDATES.md`へ固定
 
 現在:
 
@@ -234,6 +235,7 @@ Wave 6反映後:
 - needs_review: **1（Amazonプライム）**
 - placeholder: 4
 - verified share of visible: **98%**
+- individual-page candidates: **25**
 
 AmazonプライムはAmazon側の公開ページ取得が不安定で、日本向けの安定したprocedure sourceを今回も固定できなかったため、件数合わせで`verified`へ昇格しない。
 
@@ -243,7 +245,7 @@ AmazonプライムはAmazon側の公開ページ取得が不安定で、日本�
 
 1. Amazonプライムの`needs_review`を、安定した日本向けofficial sourceが確保できる場合のみ閉じる
 2. audit出力を使ってcategory偏り・procedure type・billing route coverageを評価し、Phase 3の追加対象を決める
-3. verified recordから個別page候補20〜30件を選定する
+3. P0候補から構造の異なる5件（FOD / LINE MUSIC / Adobe Creative Cloud / Y!mobile / Lemino）をstaged individual-page templateで生成・検証する
 4. staged UIを実データ100件で確認し、必要なら検索・絞り込みを追加調整する
 5. 90日freshness reportを運用し、stale判定を自動で`verified`へ反映しない
 6. current 87-tool quality cycleとのタイミングを見て正式登録可否を決める
@@ -267,7 +269,7 @@ Rule:
 - 解約/退会/自動更新停止が混同されやすいservice
 - competitor pageはあるがofficial pathが見つけづらいservice
 
-この段階からservice-specific static page候補を選定する。
+個別pageはPhase 2 follow-upで選定済みのP0/P1/P2候補を先に検証し、Phase 3追加recordは同じ選定contractへ後から追加する。
 
 ## Phase 4 — Expand to 200
 
@@ -277,11 +279,19 @@ Rule:
 
 ## Individual service pages
 
-将来例:
+候補正本:
 
-- `/tools/unsubscribe-navi/netflix/`
-- `/tools/unsubscribe-navi/spotify/`
-- `/tools/unsubscribe-navi/adobe-creative-cloud/`
+- `tools/unsubscribe-navi/INDIVIDUAL_PAGE_CANDIDATES.md`
+- selected: **25 records**
+- P0: 10 / P1: 10 / P2: 5
+
+最初のtemplate検証対象:
+
+- `fod-premium`
+- `line-music`
+- `adobe-cc`
+- `ymobile`
+- `lemino-premium`
 
 生成条件:
 
@@ -302,6 +312,8 @@ Rule:
 - official sources
 - last verified date
 - change history when meaningful
+
+staged期間中は個別pageをpublic sitemap / mother-siteへ露出しない。
 
 ## Freshness and automation
 

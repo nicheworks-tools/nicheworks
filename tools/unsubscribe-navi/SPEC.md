@@ -33,6 +33,8 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 
 2026-09-12のPhase 2 Wave 6で100 public-visibleへ到達し、その後Disney+を日本語公式解約記事で再検証した。現在のeffective stateは **104 effective / 100 public-visible / 98 verified / 1 needs_review / 1 retired / 4 placeholder**。Amazonプライムのみ、日本向けの安定した公開procedure sourceを正式公開前に引き続き確認する。
 
+個別service pageは`INDIVIDUAL_PAGE_CANDIDATES.md`で25件をP0/P1/P2へ選定済み。候補選定は公開を意味せず、まずP0の構造が異なる5件でstaged templateを検証する。
+
 ## Inputs
 
 ユーザー入力は以下のみ。
@@ -90,6 +92,7 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - official procedure sourceが弱い候補を件数合わせでverified追加しない。
 - cancellationを妨害する収益導線を設置しない。
 - staged stateの間はpublic `index.html` を作らない。
+- 個別service pageをSEO目的だけでthin pageとして量産しない。
 
 ## Acceptance criteria
 
@@ -105,8 +108,9 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - [x] 100 public-visible service以上がverified中心で整理されている。
 - [x] 100件規模でcategoryとverification-stateを組み合わせて絞り込める。
 - [ ] Amazonプライムの日本向け安定procedure sourceを固定する。
-- [ ] freshness / stale-source report-only監査を実装する。
-- [ ] 個別service page候補20〜30件を正式公開前に選定する。
+- [x] freshness / stale-source report-only監査を実装する。
+- [x] 個別service page候補20〜30件を正式公開前に選定する。
+- [ ] P0候補から5件のstaged individual-page templateを生成・検証する。
 
 ## Implementation evidence
 
@@ -116,6 +120,7 @@ monorepoへ吸収済みだが、既存87ツールの品質改善母数を変え�
 - `tools/unsubscribe-navi/data/services.json` — legacy migration snapshot
 - `tools/unsubscribe-navi/data/additions/*.json` — Phase 2+ new service waves
 - `tools/unsubscribe-navi/data/reverification/*.json` — official-source re-verification overlays
-- `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / additions / overlay audit
+- `tools/unsubscribe-navi/scripts/audit-services.mjs` — effective database / additions / overlay audit and report-only freshness metrics
 - `tools/unsubscribe-navi/DATA_MODEL.md` — forward data, route and verification contract
 - `tools/unsubscribe-navi/ROADMAP.md` — 100–200 service expansion plan and current progress
+- `tools/unsubscribe-navi/INDIVIDUAL_PAGE_CANDIDATES.md` — selected 25 individual-page candidates and staged generation order
