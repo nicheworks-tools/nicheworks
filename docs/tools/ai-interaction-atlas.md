@@ -7,11 +7,12 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** ai, interaction, atlas
 - **Common specification:** `common-spec/spec-ja.md`
+- **Monetization class:** `PRO_BUNDLE`
 - **Audit state:** `PASS`
 
 ## 1. Identity
 
-This record is the canonical per-tool contract for the registered `ai-interaction-atlas` implementation at `/tools/ai-interaction-atlas/`. It does not authorize a production rewrite.
+This record is the canonical per-tool contract for the registered `ai-interaction-atlas` implementation at `/tools/ai-interaction-atlas/`. It does not authorize a production rewrite or live billing launch.
 
 ## 2. Purpose
 
@@ -22,90 +23,124 @@ Provide a searchable reference atlas of AI interaction patterns so builders can 
 - Search text.
 - Filter selections for category, purpose, risk, control, and visibility.
 - Pattern selection, favorite actions, comparison selection, and diff-only toggle.
-- Shared NicheWorks Pro entitlement state in the current browser.
+- Current legacy shared NicheWorks Pro entitlement state.
 
 ## 4. Processing behavior
 
 - Load the local pattern dataset and support text search plus category, purpose, risk, user-control, and AI-visibility filters.
-- Open a pattern detail view with purpose, best-fit contexts, non-fit contexts, failure states, trust notes, implementation notes, required states, common mistakes, and a copyable implementation prompt.
-- Maintain recent items and favorites in browser storage; free favorites are capped at five.
-- Compare two patterns for free; active NicheWorks Pro raises comparison to three or four patterns.
-- Generate Pro handoff outputs for the selected pattern, including product-spec, Codex-task, GitHub-Issue, UX-risk, safety/fallback, Markdown, and JSON-oriented outputs.
+- Open a pattern detail view with purpose, best-fit contexts, non-fit contexts, failure states, trust notes, implementation notes, required states, common mistakes, and a copyable basic implementation prompt.
+- Maintain recent items and favorites in browser storage. Current runtime caps favorites at five regardless of current legacy-Pro state; a larger paid favorite limit is not implemented.
+- Compare up to two patterns for Free. Current legacy Pro raises comparison to four and expands the comparison from the Free rows to the additional Pro rows.
+- Generate the existing handoff blocks for the selected pattern. Preview content may be visible while inactive, but handoff copy and Markdown/JSON save actions are paid.
+- Save selected-pattern and comparison outputs as Markdown/JSON only when the current paid state is active.
 - Provide separate English and Japanese page families over the same atlas behavior.
 
 ## 5. Outputs
 
-- Filtered pattern cards and result count.
-- Pattern detail panels, comparison summaries, recent/favorite lists, copied prompts and comparison text.
-- Pro-only copied/downloaded handoff material when Pro is active.
+Free:
+- filtered pattern cards and result count;
+- pattern detail panels, recent/favorite lists, and basic prompt copy;
+- up to two compared patterns with Free comparison rows and Free comparison copy.
+
+Runtime-backed paid value boundaries:
+1. `advancedCompare` — three/four pattern comparison plus additional Pro comparison rows;
+2. `handoffCopy` — copy Product Spec, Codex task, GitHub Issue, UX-risk, and Safety/Fallback handoff blocks;
+3. `handoffExport` — save selected-pattern handoff Markdown/JSON;
+4. `comparisonExport` — save comparison Markdown/JSON.
 
 Observed delivery capabilities: clipboard copy **present**; download/export **present**.
 
 ## 6. Error behavior
 
-- **Empty or incomplete input:** The implemented required-field constraints and guard clauses prevent the affected action from completing normally. This observed behavior is the canonical contract.
-- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
-- **Parse or local-file failure:** Implemented exception/error handlers surface the failure through the current feedback path and do not present the failed operation as a successful output.
-- **Network/API failure:** The current request path has no separate recovery policy; an unsuccessful request produces no verified remote result. This observed limitation is not treated as an unresolved product choice.
-- **Copy/download failure:** Clipboard rejection is handled by the implemented feedback/fallback path. Download creation is offered only from the currently generated result; no failed operation is labeled as a successful export.
-- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
-- **Runtime evidence inspected:** `tools/ai-interaction-atlas/about/index.html`, `tools/ai-interaction-atlas/app.js`, `tools/ai-interaction-atlas/categories/index.html`, `tools/ai-interaction-atlas/compare/index.html`, `tools/ai-interaction-atlas/index.html`, `tools/ai-interaction-atlas/ja/about/index.html`, `tools/ai-interaction-atlas/ja/categories/index.html`, `tools/ai-interaction-atlas/ja/compare/index.html`.
+- **Empty or incomplete input:** Implemented guard clauses prevent invalid actions from being represented as successful outputs.
+- **Unsupported or over-limit input:** Current Free and paid limits are enforced by runtime controls; no unimplemented fallback limit is implied.
+- **Local data failure:** Dataset load failure produces the current load-failure state and no fabricated atlas result.
+- **Billing/entitlement failure:** Free atlas browsing remains usable; paid actions remain locked.
+- **Copy/download failure:** Clipboard rejection uses the existing feedback path; downloads are created only from current local generated output.
+- **Safe fallback/reset:** Current filters/selection/compare controls permit retry without invented state.
+- **Runtime evidence inspected:** `tools/ai-interaction-atlas/app.js`, `tools/ai-interaction-atlas/pro-bridge.js`, root/JA pages and local data.
 
 ## 7. Privacy/data handling
 
 Pattern search, filtering, comparison, storage, and export generation run in the browser. The tool loads repository-hosted atlas data and the shared NicheWorks Pro client; suite-wide advertising and analytics scripts may also load. User search/filter text is not sent to an AI API by the atlas implementation.
 
-Persistence evidence: `localStorage`. Network-capable application code: **found**; non-suite hosts observed: `buy.stripe.com`, `ofuse.me`, `ko-fi.com`.
+Persistence evidence: `localStorage`. Network-capable application code: **found**; non-suite hosts observed include the historical Stripe Payment Link and donation providers.
+
+Future billing/entitlement requests may contain fixed product/feature metadata only. Search text, filters, selected/favorite/recent interaction data, compared-pattern content, generated handoff text, export bodies, and filenames must not enter billing/entitlement traffic.
 
 ## 8. Responsive contract
 
 - **Layout class:** `desktop-wide` (source classification: `pc-oriented`).
 - The primary interaction is a multi-pane searchable reference workspace with filter, list, detail, and comparison regions; mobile controls adapt those panes rather than redefining the tool as a narrow single-column form.
-- The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
+- Preserve the functional width class and common-spec responsive adaptation rules.
 
 ## 9. Language contract
 
 - **Policy:** `separate JA/EN pages`.
-- The canonical root is English and `/ja/` provides the Japanese experience. Shared JavaScript selects copy based on the document language.
-- Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
+- The canonical root is English and `/ja/` provides the Japanese experience. Shared JavaScript selects copy based on document language.
+- Existing languages must not be removed.
 
 ## 10. SEO contract
 
-The main public page must meet common-spec section 9-3: a tool-specific title and meaningful description, exactly one self-referencing canonical for `https://nicheworks.app/tools/ai-interaction-atlas/`, and valid `WebApplication` JSON-LD. Current audit: canonical **present**; WebApplication JSON-LD **present**. SEO prose must remain evidence-based rather than being padded arbitrarily.
+The main public page must retain tool-specific title/description, self-referencing canonical, and valid WebApplication structured data according to common-spec. SEO prose must remain evidence-based.
 
 ## 11. Advertising contract
 
-Preserve all existing GA4 and AdSense identifiers/code. Advertising must follow common-spec sections 1.1 and 9-5: no ad inserted into the input flow or directly beneath the principal action button. Current main-page evidence: GA4 **present**; AdSense **present**.
+Preserve existing GA4 and AdSense identifiers/code. Advertising must not interrupt the primary input/action flow.
 
 ## 12. Donation/support contract
 
-Follow common-spec sections 6 and 9-4. Preserve and update in place rather than removing or restructuring a support block without specification support. Current main-page donation/support evidence: **present**.
+Preserve the existing support block in place according to common-spec; do not replace product actions with donation pressure.
 
 ## 13. Help/usage/FAQ contract
 
-- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
-- **Usage documentation:** `recommended-and-present`. Evidence: `tools/ai-interaction-atlas/ja/usage/index.html`, `tools/ai-interaction-atlas/usage/index.html`. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
-- **FAQ:** `recommended-and-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
-- **Language handling for existing usage pages:** Japanese coverage **present**; English coverage **present**. No hard mismatch was established by this static audit.
-- Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
+- Main-page concise explanation: required-and-present.
+- Usage documentation: recommended-and-present in EN/JA.
+- FAQ: recommended-and-present under current common-spec interpretation.
+- Usage links remain subdued text links and separated from advertising.
 
-## 14. Functional acceptance tests
+## 14. Monetization and entitlement contract
 
-- [ ] Searching or applying a supported filter changes the visible pattern set without external AI processing.
-- [ ] Opening a pattern exposes its detail information and supports prompt copying; recent state is retained locally.
-- [ ] Free comparison never exceeds two items, while active Pro allows up to four and exposes Pro handoff/export actions.
-- [ ] English and Japanese page families preserve equivalent core pattern browsing behavior.
+`MONETIZATION_CLASSIFICATION_87.md` classifies `ai-interaction-atlas` as `PRO_BUNDLE`. Its future paid product authority is the shared `nicheworks.pro` product; legacy `nicheworks_pro` is compatibility/migration state only.
 
-Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
+The exact current additive paid boundaries are the four operations in section 5. Free atlas browsing, five favorites, two-item comparison, Free comparison rows/copy, pattern details, and basic prompt copy must remain independent of billing availability.
 
-## 15. Explicit tool-specific exceptions
+The current legacy bridge must require exact `status.active === true` plus `status.entitlement === "nicheworks_pro"`. Missing or unrelated entitlement state must not unlock current paid behavior.
 
-- No language exception is established beyond the language mode above.
-- The information-dense workflow is desktop-wide; mobile adaptation must not collapse its primary wide workspace into an arbitrary fixed narrow width.
+`tools/ai-interaction-atlas/product-scoped-controller.mjs` is non-live staging. It requires explicit product/feature configuration and delegates fail-closed server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no separate AI Interaction Atlas product is created.
+
+NicheWorks Pro price/currency, Stripe Product/Price, production feature IDs, restore/account policy, legacy purchaser treatment, and migration-wave timing remain unresolved.
+
+## 15. Functional acceptance tests
+
+- [ ] Search/filter changes the visible pattern set without external AI processing.
+- [ ] Pattern detail and basic prompt copy remain Free; recent state remains local.
+- [ ] Free favorites stay capped at five; Free comparison never exceeds two patterns.
+- [ ] Paid behavior supports up to four patterns, additional comparison rows, handoff copy, handoff Markdown/JSON save, and comparison Markdown/JSON save.
+- [ ] Missing/unrelated legacy entitlement cannot unlock current paid behavior even when an active-like flag is present.
+- [ ] Product-scoped staging fails closed unless server-verified state matches configured product/features.
+- [ ] Future live authority is shared `nicheworks.pro`.
+- [ ] Billing/entitlement traffic remains free of atlas interaction/generated content.
+- [ ] English and Japanese page families preserve equivalent core behavior.
+
+Automated evidence includes the suite runtime-contract checker and `scripts/check-ai-interaction-atlas-product-scoped-staging.mjs`. Browser behavior-level coverage remains separate from source-contract checks.
+
+## 16. Explicit tool-specific exceptions
+
+- No language exception is established beyond separate EN/JA pages.
+- The information-dense workflow is desktop-wide; mobile adaptation must preserve the workspace rather than force an arbitrary narrow fixed width.
+- Pro does not currently increase the five-favorite runtime cap.
 
 ### Implementation evidence
 
 - `tools/ai-interaction-atlas/index.html`
 - `tools/ai-interaction-atlas/app.js`
+- `tools/ai-interaction-atlas/pro-bridge.js`
+- `tools/ai-interaction-atlas/product-scoped-controller.mjs`
 - `tools/ai-interaction-atlas/styles.css`
+- `tools/ai-interaction-atlas/data/`
+- `tools/ai-interaction-atlas/ja/`
+- `scripts/check-ai-interaction-atlas-product-scoped-staging.mjs`
+- `MONETIZATION_CLASSIFICATION_87.md`
+- `docs/billing/pro-product-contracts-wave4.md`
+- `docs/billing/nicheworks-pro-bundle-contract.md`
