@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
 Sitemap: https://nicheworks.app/sitemap.xml
-Sitemap: https://nicheworks.app/sitemap-trashnavi.xml
