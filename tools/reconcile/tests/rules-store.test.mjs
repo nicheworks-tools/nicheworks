@@ -72,6 +72,12 @@ test('rejects invalid bundle schema and clamps unsafe values', () => {
   assert.equal(saved.config.options.amountTolerance, 0);
   assert.equal(saved.config.options.maxGroupSize, 5);
   assert.equal(saved.config.options.signMode, 'normal');
+
+  const upperBound = store.save({
+    name: 'Date upper bound',
+    config: { options: { dateToleranceDays: 31 } }
+  }, { now: Date.parse('2026-09-12T00:00:01Z') });
+  assert.equal(upperBound.config.options.dateToleranceDays, 1);
 });
 
 test('remove and clear are deterministic', () => {
