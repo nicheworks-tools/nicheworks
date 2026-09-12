@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { SITE_ORIGIN, htmlFilePublicUrl } from './seo-public-url-contract.mjs';
 
 const root = process.cwd();
 const toolsDir = path.join(root, 'tools');
-const siteBase = 'https://nicheworks.app';
 const strict = process.argv.includes('--strict');
 const sitemap = read('sitemap.xml');
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
@@ -62,12 +62,7 @@ function listHtml(dir = root) {
   }
   return output;
 }
-function fileUrl(file) {
-  const relative = rel(file);
-  if (relative === 'index.html') return `${siteBase}/`;
-  if (relative.endsWith('/index.html')) return `${siteBase}/${relative.slice(0, -'index.html'.length)}`;
-  return `${siteBase}/${relative}`;
-}
+function fileUrl(file) { return htmlFilePublicUrl(rel(file)); }
 function kindOf(file) { return rel(file).startsWith('tools/') && rel(file).endsWith('/index.html') ? 'tool' : 'static'; }
 function slugOf(file) {
   const relative = rel(file);
@@ -138,14 +133,14 @@ function check(file) {
 function sitemapTargetRows() {
   return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
     .map((match) => match[1])
-    .filter((url) => url.startsWith(siteBase))
+    .filter((url) => url.startsWith(SITE_ORIGIN))
     .map((url) => {
-      const relative = url.slice(siteBase.length).replace(/^\//, '');
+      const relative = url.slice(SITE_ORIGIN.length).replace(/^\//, '');
       const file = relative ? path.join(root, relative.endsWith('/') ? relative + 'index.html' : relative) : path.join(root, 'index.html');
       return { url, file };
     })
     .filter((item) => !fs.existsSync(item.file))
-    .map((item) => ({ kind: 'sitemap', slug: item.url.replace(siteBase, ''), file: '', status: 'WARN', issues: '', warnings: `sitemap URL has no matching file: ${item.file}` }));
+    .map((item) => ({ kind: 'sitemap', slug: item.url.replace(SITE_ORIGIN, ''), file: '', status: 'WARN', issues: '', warnings: `sitemap URL has no matching file: ${item.file}` }));
 }
 
 const rows = [...listHtml().map(check), ...sitemapTargetRows()].sort((a, b) => a.status.localeCompare(b.status) || a.kind.localeCompare(b.kind) || a.slug.localeCompare(b.slug));
