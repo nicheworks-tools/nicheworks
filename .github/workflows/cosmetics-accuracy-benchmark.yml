@@ -1,0 +1,33 @@
+name: Cosmetics accuracy benchmark
+
+on:
+  pull_request:
+    paths:
+      - 'tools/cosmetic-ingredient-checker-lite/**'
+      - 'tools/inci-fastscan/**'
+      - 'tools/_shared/cosmetic-ingredient-parser.js'
+      - 'tools/_shared/check-cosmetic-ingredient-parser.mjs'
+      - 'tools/_shared/check-cosmetics-accuracy-benchmark.mjs'
+      - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
+      - 'tools/_shared/cosmetics-affiliate-*.js'
+      - 'tools/_shared/cosmetics-affiliate-*.css'
+      - '.github/workflows/cosmetics-accuracy-benchmark.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Shared parser regression
+        run: node tools/_shared/check-cosmetic-ingredient-parser.mjs
+      - name: Cosmetics 100-case accuracy benchmark
+        run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
+      - name: Affiliate readiness contract remains isolated
+        run: node tools/_shared/check-cosmetics-affiliate-contract.mjs
