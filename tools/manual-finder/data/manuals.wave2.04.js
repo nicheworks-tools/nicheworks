@@ -160,6 +160,17 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`8A50|https://www.seikowatches.com/instruct
 8N65|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8N65/8N65.pdf
 8R28|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8R28/8R28.pdf`);
 
+// Wave 2Y: residual direct Seiko 8-series manuals with one primary destination.
+window.MANUALFINDER_WAVE2_SEIKO.push(`8L36|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8L36/8L36.pdf
+8M25|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/English/8/8M25/8M25.pdf
+8M26|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/English/8/8M26/8M26.pdf
+8R39|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/English/8/8R39/8R39.pdf
+8R49|https://www.seikowatches.com/pl-pl/-/media/Files/Common/Seiko/instructions/Japanese/8/8R49/8R49.pdf
+8T63|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/English/8/8T63/8T63.pdf
+8T67|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/English/8/8T67/8T67.pdf
+8T68|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/English/8/8T68/8T68.pdf
+8V36|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/English/8/8V36/8V36.pdf`);
+
 // Normalize Seiko evidence/support links to the model-specific official caliber search.
 // This removes the original H-index assumption while preserving the existing builder contract.
 {
