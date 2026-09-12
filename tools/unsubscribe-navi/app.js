@@ -21,7 +21,8 @@ const CATEGORY_LABELS = {
 const REVERIFICATION_FILES = [
   './data/reverification/2026-09-12-wave1-media.json',
   './data/reverification/2026-09-12-wave1-cloud-software.json',
-  './data/reverification/2026-09-12-wave1-carrier-hygiene.json'
+  './data/reverification/2026-09-12-wave1-carrier-hygiene.json',
+  './data/reverification/2026-09-12-wave2-cleanup.json'
 ];
 
 let database = { records: [] };
