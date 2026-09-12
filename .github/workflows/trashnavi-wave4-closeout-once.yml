@@ -1,0 +1,45 @@
+name: TrashNavi Wave 4 closeout one-shot
+
+on:
+  push:
+    branches:
+      - docs/trashnavi-wave4-closeout-20260913
+
+permissions:
+  contents: write
+
+jobs:
+  closeout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/trashnavi-wave4-closeout-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Mark proven Wave 4 acceptance
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'tools/trashnavi/SPEC.md';
+          let s = fs.readFileSync(p, 'utf8');
+          const before = '- [ ] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。';
+          const after = '- [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。';
+          if (!s.includes(before)) throw new Error('target acceptance item not found');
+          s = s.replace(before, after);
+          fs.writeFileSync(p, s);
+          NODE
+      - name: Verify only intended SPEC state
+        run: |
+          grep -F -- '- [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。' tools/trashnavi/SPEC.md
+          git diff -- tools/trashnavi/SPEC.md
+      - name: Commit closeout and remove one-shot workflow
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git rm .github/workflows/trashnavi-wave4-closeout-once.yml
+          git add tools/trashnavi/SPEC.md
+          git commit -m 'Close TrashNavi Wave 4 acceptance'
+          git push origin HEAD:docs/trashnavi-wave4-closeout-20260913
