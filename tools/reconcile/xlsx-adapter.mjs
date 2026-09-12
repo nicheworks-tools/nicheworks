@@ -11,6 +11,28 @@ export function isXlsxAvailable(api = globalThis.XLSX) {
   return Boolean(api && typeof api.read === 'function' && api.utils);
 }
 
+let loaderPromise = null;
+
+export async function ensureXlsxAvailable(url = './vendor/xlsx.full.min.js') {
+  if (isXlsxAvailable()) return globalThis.XLSX;
+  if (typeof document === 'undefined') throw new Error('xlsx_library_missing');
+  if (!loaderPromise) {
+    loaderPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = url;
+      script.async = true;
+      script.dataset.reconcileXlsxVendor = 'true';
+      script.addEventListener('load', () => isXlsxAvailable() ? resolve(globalThis.XLSX) : reject(new Error('xlsx_library_missing')), { once: true });
+      script.addEventListener('error', () => reject(new Error('xlsx_vendor_load_failed')), { once: true });
+      document.head.appendChild(script);
+    }).catch((error) => {
+      loaderPromise = null;
+      throw error;
+    });
+  }
+  return loaderPromise;
+}
+
 export async function readXlsxFile(file, api = globalThis.XLSX) {
   const XLSX = xlsxApi(api);
   const buffer = await file.arrayBuffer();
