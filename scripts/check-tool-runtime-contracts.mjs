@@ -303,7 +303,7 @@ lacks('tools/message-generator/app.js', 'Codex will implement', 'placeholder cli
 has('tools/metadatasnap/app.js', 'curly-meadow-fda4.nicheworks-tools.workers.dev');
 has('tools/metadatasnap/app.js', 'api.allorigins.win/raw');
 has('tools/metadatasnap/app.js', "setError('fetchFailed')");
-has('tools/metadatasnap/index.html', 'input URL is sent to a NicheWorks Worker');
+has('tools/metadatasnap/index.html', 'entered URL is sent to a NicheWorks Worker');
 has('tools/metadatasnap/index.html', 'AllOrigins');
 has('tools/metadatasnap/SPEC.md', 'The public page now discloses this Worker-first / AllOrigins-fallback behavior');
 
