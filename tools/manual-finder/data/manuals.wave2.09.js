@@ -101,3 +101,15 @@ G510|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/
 L250|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/L/L250/L250.pdf
 L251|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/L/L251/L251.pdf
 M796|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/M/M796/M796.pdf`);
+
+// Wave 2AC: direct Seiko N-series primary manuals; auxiliary app, quick, regulatory, and time-zone notices are excluded.
+window.MANUALFINDER_WAVE2_SEIKO.push(`N830|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/N830/N830.pdf
+N851|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/N851/N851_3.pdf
+N855|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/N855/N855_3.pdf
+N857|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/N857/N857.pdf
+N877|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/N877/N877_3.pdf
+NH35|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NH35/NH35.pdf
+NH36|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NH36/NH36.pdf
+NX04|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NX04/NX04.pdf
+NX11|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NX11/NX11.pdf
+NX14|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/N/NX14/NX14.pdf`);
