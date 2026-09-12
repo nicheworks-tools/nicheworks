@@ -1,0 +1,35 @@
+name: JSON2Mermaid Pro engine check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/json2mermaid/pro-engine.mjs'
+      - 'tools/json2mermaid/SPEC.md'
+      - 'scripts/check-json2mermaid-pro-engine.mjs'
+      - '.github/workflows/json2mermaid-pro-engine-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/json2mermaid/pro-engine.mjs'
+      - 'tools/json2mermaid/SPEC.md'
+      - 'scripts/check-json2mermaid-pro-engine.mjs'
+      - '.github/workflows/json2mermaid-pro-engine-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check tools/json2mermaid/pro-engine.mjs
+          node --check scripts/check-json2mermaid-pro-engine.mjs
+      - name: JSON2Mermaid Pro engine contracts
+        run: node scripts/check-json2mermaid-pro-engine.mjs
