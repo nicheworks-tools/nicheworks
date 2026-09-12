@@ -46,7 +46,7 @@ Ingredient text, selected image, OCR result, and scan result are current-session
 
 ## Privacy and network behavior
 
-Ingredient text and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load. Raw ingredient text, OCR output, filenames, and images must not be added to analytics events or affiliate requests. The current contract does not claim a fully offline page.
+Ingredient text and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load. Raw ingredient text, OCR output, filenames, images, matched ingredients, and complete analysis results must not be added to analytics or affiliate events. The current contract does not claim a fully offline page.
 
 ## Language mode
 
@@ -62,7 +62,7 @@ Text/OCR input and result panels work on mobile but benefit from wider space for
 
 ## Monetization readiness
 
-The page includes an intentionally inactive, hidden result-adjacent container:
+The page includes the stable, intentionally inactive result-adjacent container:
 
 ```txt
 #amazonAffiliateSlot
@@ -71,9 +71,25 @@ placement = after-results
 state = inactive
 ```
 
-This is structural readiness only. It must contain no live Amazon URL, Associates tag, affiliate claim, product recommendation, or click tracking until the Amazon Associates setup is available and approved for use.
+Both cosmetics tools share these frozen runtime assets:
 
-Later activation must not transmit raw ingredient text, OCR output, filenames, images, or complete analysis results to Amazon or analytics. Any optional click analytics may use only non-sensitive metadata such as tool, placement, and static link key.
+```txt
+/tools/_shared/cosmetics-affiliate-config.js
+/tools/_shared/cosmetics-affiliate-slot.js
+/tools/_shared/cosmetics-affiliate-slot.css
+```
+
+`cosmetics-affiliate-config.js` is the single activation point. Before Amazon Associates setup is ready it must remain:
+
+```txt
+enabled = false
+associateTag = empty
+links = empty
+```
+
+The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to OCR, ingredient parsing, dictionary matching, result rendering, or the slot ID/placement.
+
+When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, and complete analysis results must never be attached.
 
 ## Limits and non-goals
 
@@ -82,7 +98,8 @@ Later activation must not transmit raw ingredient text, OCR output, filenames, i
 - Dictionary coverage is finite; an unknown result is not evidence that an ingredient is unsafe.
 - The tool does not provide medical/dermatological diagnosis, allergy prediction, concentration analysis, product-safety certification, pregnancy suitability, drug-interaction advice, or regulatory approval.
 - External CDN availability can affect OCR even though ingredient processing itself is browser-side.
-- This three-PR completion wave does not add crop/rotate image editing or conduct a full dictionary audit.
+- This improvement wave does not add crop/rotate image editing or conduct a full dictionary audit.
+- Amazon Associates is not active until account setup and policy verification are complete.
 
 ## Acceptance criteria
 
@@ -95,11 +112,16 @@ Later activation must not transmit raw ingredient text, OCR output, filenames, i
 - [x] Japanese-label wording describes dictionary matching rather than machine translation.
 - [x] JP/EN switching preserves text scan, OCR, dictionary status, and medical/OCR disclaimers.
 - [x] The Lite tool is linked as the paste-only alternative.
-- [x] The Amazon-ready slot exists but remains inactive and hidden with no live affiliate URL.
+- [x] The Amazon-ready slot exists and keeps the frozen `after-results` placement.
+- [x] Shared affiliate configuration remains disabled, empty, and non-tracking before activation.
 
 ## Implementation evidence
 
 - `tools/_shared/cosmetic-ingredient-parser.js`
+- `tools/_shared/cosmetics-affiliate-config.js`
+- `tools/_shared/cosmetics-affiliate-slot.js`
+- `tools/_shared/cosmetics-affiliate-slot.css`
+- `tools/_shared/check-cosmetics-affiliate-contract.mjs`
 - `tools/inci-fastscan/index.html`
 - `tools/inci-fastscan/style.css`
 - `tools/inci-fastscan/js/core_parser.js`
