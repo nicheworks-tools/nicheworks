@@ -8,6 +8,7 @@ const check = (condition, message) => { if (!condition) failures.push(message); 
 
 const config = read('tools/_shared/cosmetics-affiliate-config.js');
 const adapter = read('tools/_shared/cosmetics-affiliate-slot.js');
+const parser = read('tools/_shared/cosmetic-ingredient-parser.js');
 const lite = read('tools/cosmetic-ingredient-checker-lite/index.html');
 const fast = read('tools/inci-fastscan/index.html');
 
@@ -24,10 +25,16 @@ for (const [name, html, placement] of [
   check(html.includes('id="amazonAffiliateSlot"'), `${name}: stable amazonAffiliateSlot missing`);
   check(html.includes(`data-affiliate-placement="${placement}"`), `${name}: stable placement missing`);
   check(html.includes('data-affiliate-state="inactive"'), `${name}: slot must default inactive`);
-  check(html.includes('/tools/_shared/cosmetics-affiliate-slot.css'), `${name}: shared affiliate CSS missing`);
-  check(html.includes('/tools/_shared/cosmetics-affiliate-config.js'), `${name}: shared affiliate config missing`);
-  check(html.includes('/tools/_shared/cosmetics-affiliate-slot.js'), `${name}: shared affiliate adapter missing`);
 }
+
+for (const asset of [
+  '/tools/_shared/cosmetics-affiliate-slot.css',
+  '/tools/_shared/cosmetics-affiliate-config.js',
+  '/tools/_shared/cosmetics-affiliate-slot.js'
+]) {
+  check(parser.includes(asset), `shared cosmetics runtime must bootstrap ${asset}`);
+}
+check(parser.includes('getElementById("amazonAffiliateSlot")'), 'affiliate runtime must only bootstrap when a slot exists');
 
 for (const eventName of ['affiliate_impression', 'affiliate_click']) {
   check(adapter.includes(eventName), `adapter missing event ${eventName}`);
