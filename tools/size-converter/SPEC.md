@@ -8,7 +8,7 @@
 
 ## Purpose
 
-Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one directly entered size, with full reference tables and optional measurement-based estimates as secondary tools.
+Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one directly entered size, plus conservative measurement-based estimates that refuse to fabricate endpoint matches outside the supported chart.
 
 ## Primary workflow
 
@@ -17,26 +17,46 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 3. Select a base system or type a prefixed value such as `US 4`, `EU 42`, or `JP 26.5`.
 4. Resolve an exact row from the bundled reference table.
 5. Immediately display the corresponding JP/US/EU row and a concise source-to-target summary.
-6. Optionally copy the current conversion result.
-
-The direct one-size answer is the primary UI. The full table and measurement-fit utilities are secondary workflows.
+6. Optionally use the measurement section for a conservative nearby-size estimate.
 
 ## Current functional contract
 
+### Direct conversion
+
 - Convert one directly entered size across JP/US/EU using the bundled representative table.
-- Accept a plain size under the currently selected base system.
-- Accept `JP`, `US`, or `EU` prefixes and switch the source system locally when a prefix is present.
-- Normalize common dash variants and a trailing `cm` for exact matching; do not guess unsupported sizes.
+- Accept a plain size under the selected base system or a `JP` / `US` / `EU` prefixed size.
+- Normalize common dash variants and a trailing `cm` for exact matching; do not guess unsupported direct sizes.
 - Keep the same conversion row selected when switching the source system.
-- Show a no-match state for values outside the bundled table rather than silently choosing a nearby conversion row.
-- Support shoes and clothing with men's and women's reference charts.
-- Display the full currently selected conversion table on demand.
-- Copy the current direct conversion result or full table locally.
-- Provide a shoe fit-by-centimeter helper using foot length and optional foot width.
-- Provide a clothing fit helper using waist as required input plus optional chest/bust and hip measurements, with cm/inch input.
+- Show a no-match state for values outside the bundled table.
+- Display and locally copy the full selected table or the current direct conversion result.
+
+### Shoe measurement estimate
+
+- Require foot length in cm; foot width is optional.
+- Use the selected men's/women's shoe reference rows only within their supported JP-length envelope.
+- If foot length is below the minimum or above the maximum supported JP row, return an explicit out-of-range state rather than presenting the nearest endpoint as a fit result.
+- Within range, choose the nearest JP row and show nearby rows as alternatives.
+- Treat a distance of about 0.2 cm or more from the nearest 0.5 cm reference row as boundary context and advise checking adjacent sizes.
+- If foot width is supplied, calculate a simple width/length ratio only as context. It is not a JIS width/last or formal shoe-width classification.
+- Show the calculation basis and allow the result text to be copied locally.
+
+### Clothing measurement estimate
+
+- Require waist; chest/bust and hip remain optional.
+- Support cm/inch input and convert inches locally to cm.
+- Use chest/bust with extra weight for tops, waist as required context, and hip as optional tie-breaking context.
+- Before choosing a size, compare every supplied relevant measurement with the overall supported chart envelope for that metric.
+- If any supplied relevant measurement falls outside the chart envelope, return an explicit out-of-range state rather than presenting the smallest/largest size as a fit result.
+- For an in-range result, show each supplied measurement against the selected row's range.
+- Warn when a supplied measurement lies within 1 cm of a selected-row boundary.
+- Allow the result text to be copied locally.
+
+### Shared behavior
+
 - Switch JA/EN UI on the same page and persist only the UI-language choice.
 - Perform conversion and measurement calculations locally in the browser.
 - Do not apply brand-wide numerical size offsets. `brand.json` is not part of the active calculation path.
+- Results are approximate and official seller/brand charts take precedence.
 
 ## Inputs
 
@@ -52,10 +72,10 @@ The direct one-size answer is the primary UI. The full table and measurement-fit
 
 - Concise direct conversion sentence such as `US 8.5 → JP 26.5 / EU 42`.
 - One-row JP/US/EU conversion cards.
-- Full JP/US/EU reference table for the selected category/chart.
-- Approximate shoe fit result and nearby rows.
-- Approximate clothing size result.
-- Visible guidance that all results are general estimates and official seller/brand charts take precedence.
+- Full JP/US/EU reference table.
+- Approximate shoe fit result, nearby rows, or explicit out-of-range state.
+- Approximate clothing size result with measurement basis, or explicit out-of-range state.
+- Visible guidance that all results are general estimates.
 
 ## Amazon affiliate readiness
 
@@ -67,15 +87,9 @@ Default configuration remains deliberately disabled:
 - `shoes: ""`
 - `clothing: ""`
 
-While disabled or without valid Amazon HTTPS targets:
+While disabled or without valid Amazon HTTPS targets, no Amazon CTA, disclosure, or affiliate click event is emitted. When Amazon Associates is ready, activation requires only verified target URLs plus `enabled: true`.
 
-- no Amazon CTA is shown;
-- no Amazon disclosure is shown;
-- no affiliate click event is emitted.
-
-When the NicheWorks Amazon Associates setup is ready, activation must require only verified target URLs plus `enabled: true`. The active CTA remains immediately after a valid quick-conversion result and identifies Amazon explicitly.
-
-Allowed affiliate analytics are limited to the common coarse metadata. Direct size text, size system, gender/chart selection, measurements, and conversion results must never be passed into affiliate analytics.
+The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics.
 
 ## State and persistence
 
@@ -88,7 +102,6 @@ Allowed affiliate analytics are limited to the common coarse metadata. Direct si
 - Size conversion and fit calculations run locally in the browser.
 - Direct size text and measurements are not sent to a fitting backend or affiliate destination.
 - Ads and analytics may load separately under the NicheWorks common specification.
-- Affiliate links, when enabled later, are ordinary outbound links; user size input, measurements, and results are not encoded into them by this tool.
 
 ## Language mode
 
@@ -98,32 +111,32 @@ Allowed affiliate analytics are limited to the common coarse metadata. Direct si
 
 `mobile-oriented`
 
-The page uses a compact direct-input conversion card first, followed by an expandable full table and measurement helpers.
+The page uses a direct-input conversion card first, followed by an expandable table and measurement helpers with collapsible measurement guidance.
 
 ## Limits and non-goals
 
 - Results are approximate and can vary materially by brand, product, material, stretch, last shape, foot width/instep, and fit preference.
 - Results are approximate and must not be represented as guaranteed fit.
+- The foot-width ratio is a rough contextual signal only and is not a formal width-size standard.
 - Current direct conversion centers on JP/US/EU.
-- UK, CN, kids, wide sizing, and verified brand/model-specific official charts require separate verified data work; they are not fabricated from the current table.
+- UK, CN, kids, wide sizing, and verified brand/model-specific official charts require separate verified data work.
 - The tool is not a virtual fitting service.
-- The bundled reference table must not be represented as a universal brand standard.
 
 ## Acceptance criteria
 
-- [ ] A plain size resolves under the selected JP/US/EU base system.
-- [ ] `US 4`, `EU 42`, and `JP 26.5` style inputs can switch the source system and resolve an exact bundled row where present.
-- [ ] Unsupported direct sizes show a no-match state instead of a nearest-row conversion.
-- [ ] Changing the source system preserves the current conversion row.
-- [ ] Shoes/clothing and men/women selections rebuild suggestions and direct output consistently.
-- [ ] Women's US size 4 returns a representative JP/EU row.
-- [ ] The full table uses the same data as the direct converter.
-- [ ] Direct conversion can be copied without network transmission.
-- [ ] Shoe fit requires a usable foot length and treats width as optional context.
-- [ ] Clothing fit requires waist and handles cm/inch inputs without presenting a guaranteed fit.
+- [ ] A plain or prefixed direct size resolves only an exact bundled row.
+- [ ] Unsupported direct sizes show a no-match state.
+- [ ] Changing source system preserves the current conversion row.
+- [ ] Shoe foot length outside the current selected chart range returns out-of-range, not the nearest endpoint row.
+- [ ] In-range shoe estimates show the nearest row, nearby rows, calculation basis, and boundary context where applicable.
+- [ ] Optional foot width produces only a clearly labeled rough ratio context.
+- [ ] Clothing fit requires waist and supports cm/inch conversion.
+- [ ] Clothing measurements outside the overall chart envelope return out-of-range, not the smallest/largest size.
+- [ ] In-range clothing results show supplied measurements against selected-row ranges and flag near-boundary measurements.
+- [ ] Shoe/clothing estimate text can be copied locally.
 - [ ] No active brand-wide numerical correction changes a calculated result.
-- [ ] With default affiliate configuration, no Amazon CTA/disclosure is visible.
-- [ ] Enabling a valid Amazon target does not transmit size text or measurement state through affiliate analytics.
+- [ ] Default affiliate configuration keeps Amazon CTA/disclosure hidden.
+- [ ] Affiliate analytics never receive size text or measurement state.
 
 ## Implementation evidence
 

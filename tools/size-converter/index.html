@@ -12,11 +12,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>サイズ換算｜US・JP・EUサイズをすぐ変換 | NicheWorks</title>
-  <meta name="description" content="US 4、EU 42、JP 26.5など靴・服のサイズを直接入力してJP / US / EUへすぐ換算。対応表と実寸からのサイズ目安も確認できます。">
+  <meta name="description" content="US 4、EU 42、JP 26.5など靴・服のサイズを直接入力してJP / US / EUへすぐ換算。足長・足幅・体の実寸から近いサイズ目安も確認できます。">
   <link rel="canonical" href="https://nicheworks.app/tools/size-converter/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="サイズ換算｜US・JP・EUサイズをすぐ変換 | NicheWorks">
-  <meta property="og:description" content="US 4、EU 42、JP 26.5などを直接入力してJP / US / EUの目安をすぐ確認できます。">
+  <meta property="og:description" content="靴・服のJP / US / EUサイズを直接入力して換算し、実寸からのサイズ目安も確認できます。">
   <meta property="og:url" content="https://nicheworks.app/tools/size-converter/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta property="og:site_name" content="NicheWorks">
@@ -31,27 +31,15 @@
   <link rel="stylesheet" href="/assets/nw-base.css">
   <link rel="stylesheet" href="/tools/size-converter/style.css">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JP / US / EU Size Converter",
-    "url": "https://nicheworks.app/tools/size-converter/",
-    "applicationCategory": "UtilityApplication",
-    "description": "靴・服のJP / US / EUサイズを直接入力して換算し、対応表と実寸から近いサイズ目安も確認できる無料ツール。",
-    "operatingSystem": "All"
-  }
+  {"@context":"https://schema.org","@type":"WebApplication","name":"JP / US / EU Size Converter","url":"https://nicheworks.app/tools/size-converter/","applicationCategory":"UtilityApplication","description":"靴・服のJP / US / EUサイズを直接入力して換算し、足や体の実寸から近い代表サイズも確認できる無料ツール。","operatingSystem":"All"}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"USサイズを日本サイズへ換算できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。靴・服についてUS、JP、EUの代表的な対応関係を確認できます。US 4のように地域記号付きで直接入力することもできます。"}},
-      {"@type":"Question","name":"このサイズで必ず合いますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ブランド、製品、素材、靴型、足幅、好みで変わります。購入前に販売店・ブランド公式のサイズ表を確認してください。"}},
-      {"@type":"Question","name":"実寸判定は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"簡易的な目安です。足長や体の実寸から代表的な範囲に近いサイズを示しますが、購入保証ではありません。"}},
-      {"@type":"Question","name":"入力内容は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"サイズ換算と実寸判定はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}}
-    ]
-  }
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"USサイズを日本サイズへ換算できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。US、JP、EUの代表的な対応関係を確認できます。US 4のように地域記号付きで直接入力することもできます。"}},
+    {"@type":"Question","name":"このサイズで必ず合いますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ブランド、製品、素材、靴型、足幅、好みで変わります。購入前に販売店・ブランド公式のサイズ表を確認してください。"}},
+    {"@type":"Question","name":"実寸判定は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"簡易的な目安です。対応範囲外の入力は範囲外として表示し、最小・最大サイズへ強制的に丸めません。"}},
+    {"@type":"Question","name":"入力内容は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"サイズ換算と実寸判定はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}}
+  ]}
   </script>
 </head>
 <body>
@@ -69,28 +57,14 @@
   </section>
 
   <section class="quick-card" aria-labelledby="quickTitle">
-    <div class="section-heading"><div>
-      <h2 id="quickTitle"><span data-i18n="ja">サイズをすぐ換算</span><span data-i18n="en">Quick size conversion</span></h2>
-      <p><span data-i18n="ja">地域記号を付けて入力すると基準も自動で切り替わります。</span><span data-i18n="en">Prefix a size with JP, US, or EU to switch the source system automatically.</span></p>
-    </div></div>
-
+    <div class="section-heading"><div><h2 id="quickTitle"><span data-i18n="ja">サイズをすぐ換算</span><span data-i18n="en">Quick size conversion</span></h2><p><span data-i18n="ja">地域記号を付けて入力すると基準も自動で切り替わります。</span><span data-i18n="en">Prefix a size with JP, US, or EU to switch the source system automatically.</span></p></div></div>
     <div class="quick-grid quick-grid-context">
-      <label><span data-i18n="ja">カテゴリ</span><span data-i18n="en">Category</span>
-        <select id="categorySelect"><option value="shoes">靴 / Shoes</option><option value="clothing">衣類 / Clothing</option></select>
-      </label>
-      <label><span data-i18n="ja">サイズ表</span><span data-i18n="en">Chart</span>
-        <select id="genderSelect"><option value="men">メンズ / Men</option><option value="women">レディース / Women</option></select>
-      </label>
-      <label><span data-i18n="ja">基準</span><span data-i18n="en">From</span>
-        <select id="baseSelect"><option value="jp">JP</option><option value="us">US</option><option value="eu">EU</option></select>
-      </label>
-      <label class="size-input-wrap"><span data-i18n="ja">サイズを入力</span><span data-i18n="en">Enter size</span>
-        <input id="sizeInput" type="text" list="sizeOptions" autocomplete="off" spellcheck="false" inputmode="text" placeholder="US 8.5">
-        <datalist id="sizeOptions"></datalist>
-      </label>
+      <label><span data-i18n="ja">カテゴリ</span><span data-i18n="en">Category</span><select id="categorySelect"><option value="shoes">靴 / Shoes</option><option value="clothing">衣類 / Clothing</option></select></label>
+      <label><span data-i18n="ja">サイズ表</span><span data-i18n="en">Chart</span><select id="genderSelect"><option value="men">メンズ / Men</option><option value="women">レディース / Women</option></select></label>
+      <label><span data-i18n="ja">基準</span><span data-i18n="en">From</span><select id="baseSelect"><option value="jp">JP</option><option value="us">US</option><option value="eu">EU</option></select></label>
+      <label class="size-input-wrap"><span data-i18n="ja">サイズを入力</span><span data-i18n="en">Enter size</span><input id="sizeInput" type="text" list="sizeOptions" autocomplete="off" spellcheck="false" inputmode="text" placeholder="US 8.5"><datalist id="sizeOptions"></datalist></label>
     </div>
     <p class="input-hint"><span data-i18n="ja">例: <button type="button" class="example-chip" data-example="US 4">US 4</button> <button type="button" class="example-chip" data-example="EU 42">EU 42</button> <button type="button" class="example-chip" data-example="JP 26.5">JP 26.5</button></span><span data-i18n="en">Examples: <button type="button" class="example-chip" data-example="US 4">US 4</button> <button type="button" class="example-chip" data-example="EU 42">EU 42</button> <button type="button" class="example-chip" data-example="JP 26.5">JP 26.5</button></span></p>
-
     <div id="quickResult" class="quick-result" aria-live="polite"></div>
     <div class="quick-actions"><button id="copyQuickResult" class="secondary-btn" type="button" hidden><span data-i18n="ja">この換算結果をコピー</span><span data-i18n="en">Copy this conversion</span></button></div>
     <div id="sizeAffiliate" class="affiliate-block" hidden></div>
@@ -103,9 +77,11 @@
   </details>
 
   <section class="measurement-area" aria-labelledby="measurementTitle">
-    <div class="section-heading"><div><h2 id="measurementTitle"><span data-i18n="ja">実寸から目安を見る</span><span data-i18n="en">Estimate from measurements</span></h2><p><span data-i18n="ja">カテゴリに応じて、足または体の実寸から近い代表サイズを探します。</span><span data-i18n="en">Use foot or body measurements to find a nearby representative size.</span></p></div></div>
+    <div class="section-heading"><div><h2 id="measurementTitle"><span data-i18n="ja">実寸から目安を見る</span><span data-i18n="en">Estimate from measurements</span></h2><p><span data-i18n="ja">対応表の範囲内で近い代表サイズを探します。範囲外は無理に最小・最大サイズへ丸めません。</span><span data-i18n="en">Find a nearby reference size only inside the supported chart. Out-of-range measurements are not forced to the nearest endpoint.</span></p></div></div>
+
     <div id="shoeFitSection" class="measurement-card">
       <h3><span data-i18n="ja">靴：足長から判定</span><span data-i18n="en">Shoes: fit by foot length</span></h3>
+      <details class="measure-guide"><summary><span data-i18n="ja">測り方</span><span data-i18n="en">How to measure</span></summary><ul><li><span data-i18n="ja">かかとから最も長い指先までをcmで測ります。</span><span data-i18n="en">Measure from heel to the longest toe in cm.</span></li><li><span data-i18n="ja">左右とも測り、大きい方を参考にしてください。</span><span data-i18n="en">Measure both feet and use the larger measurement as a reference.</span></li><li><span data-i18n="ja">足幅は前足部の最も広い部分を直線で測る簡易入力です。</span><span data-i18n="en">Foot width is a rough straight-line measurement across the widest forefoot.</span></li></ul></details>
       <div class="measure-grid">
         <label><span data-i18n="ja">足長（cm・必須）</span><span data-i18n="en">Foot length (cm, required)</span><input id="footLength" type="text" inputmode="decimal" autocomplete="off" placeholder="26.3"></label>
         <label><span data-i18n="ja">足幅（cm・任意）</span><span data-i18n="en">Foot width (cm, optional)</span><input id="footWidth" type="text" inputmode="decimal" autocomplete="off" placeholder="10.2"></label>
@@ -113,8 +89,10 @@
       <div class="action-row"><button id="shoeFitRun" class="primary-btn" type="button"><span data-i18n="ja">判定する</span><span data-i18n="en">Check</span></button><button id="shoeFitReset" class="secondary-btn" type="button"><span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span></button></div>
       <div id="shoeFitResult" class="fit-result" aria-live="polite"></div>
     </div>
+
     <div id="clothingFitSection" class="measurement-card" hidden>
       <h3><span data-i18n="ja">服：実寸から判定</span><span data-i18n="en">Clothing: fit by measurements</span></h3>
+      <details class="measure-guide"><summary><span data-i18n="ja">測り方</span><span data-i18n="en">How to measure</span></summary><ul><li><span data-i18n="ja">衣服そのものではなく体の実寸を入力します。</span><span data-i18n="en">Enter body measurements, not the garment's laid-flat dimensions.</span></li><li><span data-i18n="ja">トップスは胸囲/バスト、ボトムスはウエストを特に重視します。</span><span data-i18n="en">Chest/bust matters most for tops; waist matters most for bottoms.</span></li><li><span data-i18n="ja">境界付近ではブランド公式表と商品のシルエットを優先してください。</span><span data-i18n="en">Near a boundary, prioritize the brand chart and the product silhouette.</span></li></ul></details>
       <div class="measure-grid clothing-options">
         <label><span data-i18n="ja">種類</span><span data-i18n="en">Type</span><select id="clothType"><option value="tops">トップス / Tops</option><option value="bottoms">ボトムス / Bottoms</option></select></label>
         <label><span data-i18n="ja">単位</span><span data-i18n="en">Unit</span><select id="clothUnit"><option value="cm">cm</option><option value="inch">inch</option></select></label>
@@ -129,9 +107,9 @@
 
   <section class="faq-section" aria-label="FAQ"><h2>FAQ</h2>
     <details><summary>USサイズを日本サイズへ換算できますか？ / Can I convert US sizes to JP?</summary><p>はい。USを基準にするか、「US 4」のように直接入力すると同じ行のJP / EU目安を表示します。</p></details>
+    <details><summary>実寸が対応範囲より小さい/大きい場合は？ / What if my measurement is outside the chart?</summary><p>対応範囲外として表示します。最小・最大サイズを適合サイズとして自動表示しません。</p></details>
     <details><summary>このサイズで必ず合いますか？ / Will this size always fit?</summary><p>いいえ。ブランド、製品、素材、靴型、足幅、好みで変わります。販売店・ブランド公式のサイズ表を優先してください。</p></details>
-    <details><summary>UKサイズやキッズサイズに対応していますか？ / Are UK or kids sizes supported?</summary><p>現在の直接換算はJP / US / EUのメンズ・レディースが中心です。根拠のない換算表を増やさず、UK・キッズは検証後の拡張対象とします。</p></details>
-    <details><summary>入力内容は送信されますか？ / Is my input sent anywhere?</summary><p>換算・判定処理はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。</p></details>
+    <details><summary>UKサイズやキッズサイズに対応していますか？ / Are UK or kids sizes supported?</summary><p>現在の直接換算はJP / US / EUのメンズ・レディースが中心です。UK・キッズは検証後の拡張対象です。</p></details>
   </section>
 
   <div id="amazonDisclosure" class="affiliate-disclosure" hidden></div>

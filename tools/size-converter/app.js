@@ -87,24 +87,28 @@
     ja: {
       approx: "一般的な目安", resultTitle: "換算結果", noMatch: "このサイズは現在の対応表にありません。候補から選ぶか、基準・カテゴリを確認してください。",
       official: "ブランドや製品で差があります。購入前は公式サイズ表を確認してください。",
-      copied: "コピーしました。", copyFail: "コピーできませんでした。",
+      copied: "コピーしました。", copyFail: "コピーできませんでした。", copyFit: "判定結果をコピー",
       footError: "足長は18〜35cmの数値で入力してください。", widthError: "足幅は数値で入力してください。未入力でも使えます。",
       waistError: "ウエストを数値で入力してください。", optionalError: "任意項目は、入力する場合は数値にしてください。",
-      fitTitle: "近いサイズ目安", nearby: "近い候補", boundary: "サイズ境界付近です。上のサイズや返品条件も確認してください。",
-      widthWide: "足幅は広めの傾向です。靴型によっては窮屈に感じる場合があります。",
-      widthNarrow: "足幅は細めの傾向です。サイズを上げると緩くなる場合があります。",
-      widthStd: "足幅は標準寄りの目安です。", widthNone: "足幅は任意です。入力すると幅の傾向を補足します。",
+      fitTitle: "近いサイズ目安", nearby: "近い候補", boundary: "サイズ境界付近です。前後のサイズと返品条件も確認してください。",
+      outOfRange: "現在の対応範囲外です。最小・最大サイズを適合サイズとして自動表示しません。",
+      supportedRange: "対応範囲", basis: "判定根拠", nearBoundary: "入力値がサイズ範囲の境界付近です。",
+      widthWide: "足幅は相対的に広めの傾向です。", widthNarrow: "足幅は相対的に細めの傾向です。",
+      widthStd: "足幅は中間的な傾向です。", widthNone: "足幅は未入力です。",
+      widthCaution: "足幅判定は足長との比率による簡易補足で、JIS等の正式な足囲・ワイズ判定ではありません。",
       amazonShoes: "Amazonでシューズを探す", amazonClothing: "Amazonで服を探す"
     },
     en: {
       approx: "General estimate", resultTitle: "Conversion result", noMatch: "That size is not in the current reference table. Choose a suggestion or check the source system and category.",
       official: "Fit varies by brand and product. Check the official size chart before buying.",
-      copied: "Copied.", copyFail: "Copy failed.",
+      copied: "Copied.", copyFail: "Copy failed.", copyFit: "Copy estimate",
       footError: "Enter foot length as a number from 18 to 35 cm.", widthError: "Foot width must be numeric. It can be left blank.",
       waistError: "Enter waist as a number.", optionalError: "Optional fields must be numeric when filled.",
-      fitTitle: "Nearby size estimate", nearby: "Nearby candidates", boundary: "Near a size boundary. Check the larger size and return policy too.",
-      widthWide: "Foot width looks wider. Some shoe shapes may feel tight.", widthNarrow: "Foot width looks narrower. Sizing up may feel loose.",
-      widthStd: "Foot width looks close to standard.", widthNone: "Foot width is optional. Add it for a rough width note.",
+      fitTitle: "Nearby size estimate", nearby: "Nearby candidates", boundary: "Near a size boundary. Check adjacent sizes and the return policy.",
+      outOfRange: "Outside the current reference range. The tool will not present an endpoint size as a fit result.",
+      supportedRange: "Supported range", basis: "Basis", nearBoundary: "A measurement is close to a chart boundary.",
+      widthWide: "Foot width trends relatively wider.", widthNarrow: "Foot width trends relatively narrower.", widthStd: "Foot width is in the middle range.", widthNone: "Foot width was not entered.",
+      widthCaution: "Width is only a rough foot-width-to-length ratio, not a formal width/last classification.",
       amazonShoes: "Find shoes on Amazon", amazonClothing: "Find clothing on Amazon"
     }
   };
@@ -143,16 +147,8 @@
   }
 
   function inputNumber(input) { return parseDecimal(input?.value); }
-  function normalizeSize(value) {
-    return String(value ?? "").trim().toUpperCase().replace(/CM$/i, "").replace(/[–—−]/g, "-").replace(/\s+/g, "");
-  }
-
-  function parseSizeEntry(raw) {
-    const text = String(raw || "").trim();
-    const match = /^(JP|US|EU)\s*[:\-]?\s*(.+)$/i.exec(text);
-    if (!match) return { system: els.base.value, value: text };
-    return { system: match[1].toLowerCase(), value: match[2] };
-  }
+  function normalizeSize(value) { return String(value ?? "").trim().toUpperCase().replace(/CM$/i, "").replace(/[–—−]/g, "-").replace(/\s+/g, ""); }
+  function parseSizeEntry(raw) { const text = String(raw || "").trim(); const match = /^(JP|US|EU)\s*[:\-]?\s*(.+)$/i.exec(text); return match ? { system: match[1].toLowerCase(), value: match[2] } : { system: els.base.value, value: text }; }
 
   function applyLang(lang) {
     currentLang = lang === "en" ? "en" : "ja";
@@ -168,37 +164,21 @@
 
   function rebuildSizeSuggestions({ reset = false, syncInput = true } = {}) {
     const current = rows();
-    if (reset || selectedIndex >= current.length) selectedIndex = Math.floor(Math.max(0, current.length - 1) / 2);
+    if (reset || selectedIndex < 0 || selectedIndex >= current.length) selectedIndex = Math.floor(Math.max(0, current.length - 1) / 2);
     clear(els.sizeOptions);
-    current.forEach((row) => {
-      const option = document.createElement("option");
-      option.value = row[els.base.value];
-      option.label = `${els.base.value.toUpperCase()} ${row[els.base.value]}`;
-      els.sizeOptions.appendChild(option);
-    });
+    current.forEach((row) => { const option = document.createElement("option"); option.value = row[els.base.value]; option.label = `${els.base.value.toUpperCase()} ${row[els.base.value]}`; els.sizeOptions.appendChild(option); });
     if (syncInput && current[selectedIndex]) els.sizeInput.value = current[selectedIndex][els.base.value];
     renderTable();
     renderQuickResult();
   }
 
-  function findSizeIndex(system, value) {
-    const wanted = normalizeSize(value);
-    if (!wanted) return -1;
-    return rows().findIndex((row) => normalizeSize(row[system]) === wanted);
-  }
+  function findSizeIndex(system, value) { const wanted = normalizeSize(value); if (!wanted) return -1; return rows().findIndex((row) => normalizeSize(row[system]) === wanted); }
 
   function resolveSizeInput() {
     const parsed = parseSizeEntry(els.sizeInput.value);
-    if (parsed.system !== els.base.value) {
-      els.base.value = parsed.system;
-      rebuildSizeSuggestions({ syncInput: false });
-    }
+    if (parsed.system !== els.base.value) { els.base.value = parsed.system; rebuildSizeSuggestions({ syncInput: false }); }
     const index = findSizeIndex(parsed.system, parsed.value);
-    if (index < 0) {
-      selectedIndex = -1;
-      renderQuickResult();
-      return false;
-    }
+    if (index < 0) { selectedIndex = -1; renderQuickResult(); return false; }
     selectedIndex = index;
     const row = selectedRow();
     els.sizeInput.value = row[els.base.value];
@@ -206,37 +186,18 @@
     return true;
   }
 
-  function quickText(row) {
-    if (!row) return "";
-    const source = els.base.value;
-    const targets = ["jp", "us", "eu"].filter((key) => key !== source).map((key) => `${key.toUpperCase()} ${row[key]}`).join(" / ");
-    return `${source.toUpperCase()} ${row[source]} → ${targets}`;
-  }
+  function quickText(row) { if (!row) return ""; const source = els.base.value; const targets = ["jp", "us", "eu"].filter((key) => key !== source).map((key) => `${key.toUpperCase()} ${row[key]}`).join(" / "); return `${source.toUpperCase()} ${row[source]} → ${targets}`; }
 
   function renderQuickResult() {
     clear(els.quickResult);
     const row = selectedRow();
     lastQuickText = "";
     els.copyQuick.hidden = true;
-    if (!row) {
-      els.quickResult.appendChild(make("p", "empty-note no-match", t("noMatch")));
-      mountAffiliate();
-      return;
-    }
-
-    const summary = make("div", "result-summary", quickText(row));
-    els.quickResult.appendChild(summary);
-    const heading = make("div", "result-heading");
-    heading.appendChild(make("strong", "", t("resultTitle")));
-    heading.appendChild(make("span", "result-badge", t("approx")));
-    els.quickResult.appendChild(heading);
+    if (!row) { els.quickResult.appendChild(make("p", "empty-note no-match", t("noMatch"))); mountAffiliate(); return; }
+    els.quickResult.appendChild(make("div", "result-summary", quickText(row)));
+    const heading = make("div", "result-heading"); heading.appendChild(make("strong", "", t("resultTitle"))); heading.appendChild(make("span", "result-badge", t("approx"))); els.quickResult.appendChild(heading);
     const grid = make("div", "result-grid");
-    ["jp", "us", "eu"].forEach((key) => {
-      const item = make("div", `result-cell${key === els.base.value ? " is-base" : ""}`);
-      item.appendChild(make("span", "result-system", key.toUpperCase()));
-      item.appendChild(make("strong", "result-value", row[key]));
-      grid.appendChild(item);
-    });
+    ["jp", "us", "eu"].forEach((key) => { const item = make("div", `result-cell${key === els.base.value ? " is-base" : ""}`); item.appendChild(make("span", "result-system", key.toUpperCase())); item.appendChild(make("strong", "result-value", row[key])); grid.appendChild(item); });
     els.quickResult.appendChild(grid);
     els.quickResult.appendChild(make("p", "result-note", t("official")));
     lastQuickText = `${quickText(row)}\n${t("official")}`;
@@ -246,35 +207,40 @@
 
   function renderTable() {
     clear(els.tbody);
-    rows().forEach((row) => {
-      const tr = document.createElement("tr");
-      ["jp", "us", "eu"].forEach((key) => tr.appendChild(make("td", key === els.base.value ? "is-base" : "", row[key])));
-      els.tbody.appendChild(tr);
-    });
+    rows().forEach((row) => { const tr = document.createElement("tr"); ["jp", "us", "eu"].forEach((key) => tr.appendChild(make("td", key === els.base.value ? "is-base" : "", row[key]))); els.tbody.appendChild(tr); });
   }
 
-  function syncCategory() {
-    const shoes = els.category.value === "shoes";
-    els.shoeSection.hidden = !shoes;
-    els.clothingSection.hidden = shoes;
-    rebuildSizeSuggestions({ reset: true });
-    mountAffiliate();
+  function syncCategory() { const shoes = els.category.value === "shoes"; els.shoeSection.hidden = !shoes; els.clothingSection.hidden = shoes; rebuildSizeSuggestions({ reset: true }); mountAffiliate(); }
+
+  function shoeRange() {
+    const current = DATA.shoes[els.gender.value] || [];
+    return current.length ? [Number(current[0].jp), Number(current[current.length - 1].jp)] : null;
   }
 
   function nearestShoe(length) {
     const current = DATA.shoes[els.gender.value] || [];
+    const range = shoeRange();
+    if (!range || length < range[0] || length > range[1]) return { outOfRange: true, range };
     let bestIndex = 0;
     let bestDiff = Infinity;
     current.forEach((row, index) => { const diff = Math.abs(Number(row.jp) - length); if (diff < bestDiff) { bestDiff = diff; bestIndex = index; } });
-    return { row: current[bestIndex], near: current.slice(Math.max(0, bestIndex - 1), Math.min(current.length, bestIndex + 2)), boundary: bestDiff >= 0.25 };
+    return {
+      outOfRange: false,
+      row: current[bestIndex],
+      near: current.slice(Math.max(0, bestIndex - 1), Math.min(current.length, bestIndex + 2)),
+      diff: bestDiff,
+      boundary: bestDiff >= 0.2,
+      range
+    };
   }
 
-  function widthNote(length, width) {
-    if (!Number.isFinite(width)) return t("widthNone");
+  function widthContext(length, width) {
+    if (!Number.isFinite(width)) return { text: t("widthNone"), ratio: null };
     const ratio = width / length;
-    if (ratio >= 0.41) return t("widthWide");
-    if (ratio <= 0.36) return t("widthNarrow");
-    return t("widthStd");
+    let text = t("widthStd");
+    if (ratio >= 0.41) text = t("widthWide");
+    else if (ratio <= 0.36) text = t("widthNarrow");
+    return { text, ratio };
   }
 
   function appendSizePills(parent, row) {
@@ -285,6 +251,13 @@
 
   function renderFitError(target, message) { clear(target); const card = make("div", "fit-card error"); card.appendChild(make("p", "", message)); target.appendChild(card); }
 
+  function appendCopyButton(parent, text) {
+    const button = make("button", "secondary-btn fit-copy", t("copyFit"));
+    button.type = "button";
+    button.addEventListener("click", () => copyText(text));
+    parent.appendChild(button);
+  }
+
   function runShoeFit() {
     const length = inputNumber(els.footLength);
     const width = inputNumber(els.footWidth);
@@ -293,20 +266,41 @@
     const result = nearestShoe(length);
     clear(els.shoeResult);
     const card = make("div", "fit-card");
+    if (result.outOfRange) {
+      card.appendChild(make("h4", "", t("outOfRange")));
+      card.appendChild(make("p", "fit-note", `${t("supportedRange")}: JP ${result.range[0].toFixed(1)}–${result.range[1].toFixed(1)} cm`));
+      card.appendChild(make("p", "fit-note", t("official")));
+      appendCopyButton(card, `${t("outOfRange")}\n${t("supportedRange")}: JP ${result.range[0].toFixed(1)}–${result.range[1].toFixed(1)} cm`);
+      els.shoeResult.appendChild(card);
+      return;
+    }
+
     card.appendChild(make("h4", "", t("fitTitle")));
     appendSizePills(card, result.row);
-    card.appendChild(make("p", "fit-note", widthNote(length, width)));
+    card.appendChild(make("p", "fit-detail", `${t("basis")}: ${length.toFixed(1)} cm → JP ${result.row.jp} (Δ ${result.diff.toFixed(1)} cm)`));
+    const widthInfo = widthContext(length, width);
+    card.appendChild(make("p", "fit-note", widthInfo.ratio == null ? widthInfo.text : `${widthInfo.text} (${(widthInfo.ratio * 100).toFixed(1)}%)`));
+    if (widthInfo.ratio != null) card.appendChild(make("p", "fit-note subtle", t("widthCaution")));
     if (result.boundary) card.appendChild(make("p", "fit-warning", t("boundary")));
     card.appendChild(make("p", "near-title", t("nearby")));
     const list = make("ul", "near-list");
     result.near.forEach((row) => list.appendChild(make("li", "", `JP ${row.jp} / US ${row.us} / EU ${row.eu}`)));
     card.appendChild(list);
     card.appendChild(make("p", "fit-note", t("official")));
+    const copy = `${t("fitTitle")}: JP ${result.row.jp} / US ${result.row.us} / EU ${result.row.eu}\n${t("basis")}: ${length.toFixed(1)} cm\n${widthInfo.text}\n${t("official")}`;
+    appendCopyButton(card, copy);
     els.shoeResult.appendChild(card);
   }
 
   function toCm(value, unit) { return unit === "inch" ? value * 2.54 : value; }
   function rangeDistance(value, range) { if (!Number.isFinite(value) || !range) return 0; if (value < range[0]) return range[0] - value; if (value > range[1]) return value - range[1]; return 0; }
+  function chartEnvelope(chart, key) {
+    const ranges = chart.map((row) => row[key]).filter((range) => Array.isArray(range));
+    if (!ranges.length) return null;
+    return [Math.min(...ranges.map((range) => range[0])), Math.max(...ranges.map((range) => range[1]))];
+  }
+  function nearRangeBoundary(value, range) { return Number.isFinite(value) && Array.isArray(range) && Math.min(Math.abs(value - range[0]), Math.abs(value - range[1])) <= 1; }
+  function describeMeasurement(label, value, range) { return `${label}: ${value.toFixed(1)} cm / ${range[0]}–${range[1]} cm`; }
 
   function runClothingFit() {
     const unit = els.clothUnit.value;
@@ -315,27 +309,57 @@
     const hipRaw = inputNumber(els.clothHip);
     if (!Number.isFinite(waistRaw)) return renderFitError(els.clothResult, t("waistError"));
     if (Number.isNaN(chestRaw) || Number.isNaN(hipRaw)) return renderFitError(els.clothResult, t("optionalError"));
+
     const input = { chest: Number.isFinite(chestRaw) ? toCm(chestRaw, unit) : null, waist: toCm(waistRaw, unit), hip: Number.isFinite(hipRaw) ? toCm(hipRaw, unit) : null };
     const type = els.clothType.value;
     const chart = CLOTH_CHART[els.gender.value]?.[type] || [];
-    let best = chart[0]; let bestScore = Infinity;
-    chart.forEach((row) => { let score = rangeDistance(input.waist, row.waist); if (type === "tops" && Number.isFinite(input.chest)) score += rangeDistance(input.chest, row.chest) * 1.5; if (Number.isFinite(input.hip)) score += rangeDistance(input.hip, row.hip) * 0.75; if (score < bestScore) { bestScore = score; best = row; } });
+    const measuredKeys = ["waist"];
+    if (type === "tops" && Number.isFinite(input.chest)) measuredKeys.push("chest");
+    if (Number.isFinite(input.hip)) measuredKeys.push("hip");
+
+    const outside = measuredKeys.find((key) => {
+      const envelope = chartEnvelope(chart, key);
+      return envelope && (input[key] < envelope[0] || input[key] > envelope[1]);
+    });
+
     clear(els.clothResult);
     const card = make("div", "fit-card");
+    if (outside) {
+      const envelope = chartEnvelope(chart, outside);
+      card.appendChild(make("h4", "", t("outOfRange")));
+      card.appendChild(make("p", "fit-note", `${t("supportedRange")}: ${outside} ${envelope[0]}–${envelope[1]} cm`));
+      card.appendChild(make("p", "fit-note", t("official")));
+      appendCopyButton(card, `${t("outOfRange")}\n${t("supportedRange")}: ${outside} ${envelope[0]}–${envelope[1]} cm`);
+      els.clothResult.appendChild(card);
+      return;
+    }
+
+    let best = chart[0];
+    let bestScore = Infinity;
+    chart.forEach((row) => {
+      let score = rangeDistance(input.waist, row.waist);
+      if (type === "tops" && Number.isFinite(input.chest)) score += rangeDistance(input.chest, row.chest) * 1.5;
+      if (Number.isFinite(input.hip)) score += rangeDistance(input.hip, row.hip) * 0.75;
+      if (score < bestScore) { bestScore = score; best = row; }
+    });
+
     card.appendChild(make("h4", "", t("fitTitle")));
     card.appendChild(make("div", "clothing-fit-size", best?.size || "—"));
+    const details = make("ul", "fit-basis-list");
+    measuredKeys.forEach((key) => { if (best?.[key]) details.appendChild(make("li", "", describeMeasurement(key, input[key], best[key]))); });
+    card.appendChild(details);
+    const boundary = measuredKeys.some((key) => best?.[key] && nearRangeBoundary(input[key], best[key]));
+    if (boundary) card.appendChild(make("p", "fit-warning", t("nearBoundary")));
     card.appendChild(make("p", "fit-note", t("official")));
+    const copyLines = [`${t("fitTitle")}: ${best?.size || "—"}`, ...measuredKeys.map((key) => best?.[key] ? describeMeasurement(key, input[key], best[key]) : "").filter(Boolean), t("official")];
+    appendCopyButton(card, copyLines.join("\n"));
     els.clothResult.appendChild(card);
   }
 
   function resetShoe() { els.footLength.value = ""; els.footWidth.value = ""; clear(els.shoeResult); }
   function resetClothing() { els.clothChest.value = ""; els.clothWaist.value = ""; els.clothHip.value = ""; clear(els.clothResult); }
 
-  async function copyText(text) {
-    try { await navigator.clipboard.writeText(text); toast(t("copied")); }
-    catch (_) { toast(t("copyFail")); }
-  }
-
+  async function copyText(text) { try { await navigator.clipboard.writeText(text); toast(t("copied")); } catch (_) { toast(t("copyFail")); } }
   function copyTable() { return copyText(["JP\tUS\tEU", ...rows().map((row) => `${row.jp}\t${row.us}\t${row.eu}`)].join("\n")); }
   function toast(message) { let node = $("sizeToast"); if (!node) { node = make("div", "toast"); node.id = "sizeToast"; node.setAttribute("role", "status"); document.body.appendChild(node); } node.textContent = message; clearTimeout(toast.timer); toast.timer = setTimeout(() => { node.textContent = ""; }, 2200); }
 
