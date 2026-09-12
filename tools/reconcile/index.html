@@ -56,8 +56,38 @@
         <label class="field"><span data-i18n="ja">日付許容差</span><span data-i18n="en">Date tolerance</span><select id="dateTolerance"><option value="0">0 days</option><option value="1">±1 day</option></select></label>
         <label class="field"><span data-i18n="ja">曖昧な日付形式</span><span data-i18n="en">Ambiguous date order</span><select id="dateMode"><option value="auto">Auto / reject ambiguous</option><option value="mdy">MM/DD/YYYY</option><option value="dmy">DD/MM/YYYY</option></select></label>
       </div>
-      <div class="pro-note"><strong>Reconcile Pro — ¥3,980 one-time</strong><br><span data-i18n="ja">大容量、金額許容差、1:n / n:1、XLSXレポート、ルール保存を課金統合時に解放します。購入者にはNicheWorks共通Proも付与します。</span><span data-i18n="en">Billing integration unlocks larger files, amount tolerance, 1:n / n:1, XLSX reports and saved profiles. Reconcile Pro also grants shared NicheWorks Pro.</span></div>
-      <div class="actions"><button class="btn btn-primary" id="reconcileBtn" type="button"><span data-i18n="ja">照合する</span><span data-i18n="en">Reconcile</span></button><button class="btn" type="button" disabled>Pro advanced rules</button></div>
+
+      <div class="pro-note">
+        <div class="pro-note-head"><strong>Reconcile Pro — ¥3,980 one-time</strong><span class="pill pro" data-pro-state>課金接続待ち</span></div>
+        <span data-i18n="ja">大容量、金額許容差、符号モード、1:n / n:1、XLSXレポート、ルール保存を提供します。購入者にはNicheWorks共通Proも付与する設計です。</span>
+        <span data-i18n="en">Adds larger files, amount tolerance, sign modes, 1:n / n:1 matching, XLSX reports and saved profiles. The product is designed to grant shared NicheWorks Pro as well.</span>
+      </div>
+
+      <div class="pro-settings" aria-label="Reconcile Pro settings">
+        <h3><span data-i18n="ja">Pro照合ルール</span><span data-i18n="en">Pro matching rules</span></h3>
+        <div class="controls">
+          <label class="field"><span data-i18n="ja">金額許容差</span><span data-i18n="en">Amount tolerance</span><input id="amountTolerance" data-pro-control disabled type="number" min="0" step="0.01" value="0"></label>
+          <label class="field"><span data-i18n="ja">符号モード</span><span data-i18n="en">Sign mode</span><select id="signMode" data-pro-control disabled><option value="normal">Normal</option><option value="invert_b">Invert B</option><option value="ignore_sign">Ignore sign</option></select></label>
+          <label class="field"><span data-i18n="ja">最大グループ件数</span><span data-i18n="en">Max group size</span><select id="maxGroupSize" data-pro-control disabled><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option></select></label>
+          <label class="check-field"><input id="groupMatching" data-pro-control disabled type="checkbox"><span data-i18n="ja">1:n / n:1照合を使う</span><span data-i18n="en">Enable 1:n / n:1 matching</span></label>
+        </div>
+      </div>
+
+      <div class="profile-box">
+        <div class="profile-head"><h3><span data-i18n="ja">保存済みルール</span><span data-i18n="en">Saved profiles</span> <span class="pill pro">PRO</span></h3><span id="profileCount" class="muted">0 / 20</span></div>
+        <p class="muted" data-i18n="ja">列対応・CSV解析設定・照合条件だけをブラウザに保存します。取引行は保存しません。</p>
+        <p class="muted" data-i18n="en">Only mappings, parser settings and matching options are stored in the browser. Transaction rows are never stored in profiles.</p>
+        <div class="profile-grid">
+          <label class="field"><span data-i18n="ja">ルール名</span><span data-i18n="en">Profile name</span><input id="profileName" data-pro-control disabled type="text" maxlength="80" placeholder="Stripe payout"></label>
+          <label class="field"><span data-i18n="ja">保存済み</span><span data-i18n="en">Saved</span><select id="profileSelect" data-pro-control disabled><option value="">—</option></select></label>
+          <button class="btn" id="profileSaveBtn" data-pro-control disabled type="button"><span data-i18n="ja">保存 / 更新</span><span data-i18n="en">Save / update</span></button>
+          <button class="btn" id="profileDeleteBtn" data-pro-control disabled type="button"><span data-i18n="ja">削除</span><span data-i18n="en">Delete</span></button>
+          <button class="btn" id="profileExportBtn" data-pro-control disabled type="button">JSON export</button>
+          <label class="btn file-btn"><span>JSON import</span><input id="profileImport" data-pro-control disabled type="file" accept="application/json,.json"></label>
+        </div>
+      </div>
+
+      <div class="actions"><button class="btn btn-primary" id="reconcileBtn" type="button"><span data-i18n="ja">照合する</span><span data-i18n="en">Reconcile</span></button></div>
       <div id="notice" class="notice" role="status"></div>
     </section>
 
@@ -69,13 +99,13 @@
         <input id="resultSearch" type="search" placeholder="Search results">
         <span id="resultCount" class="muted">0 / 0</span>
         <button class="btn" id="exportCsvBtn" type="button">CSV export</button>
-        <button class="btn" type="button" disabled>XLSX <span class="pill pro">PRO</span></button>
+        <button class="btn" id="exportXlsxBtn" data-pro-control disabled type="button">XLSX <span class="pill pro">PRO</span></button>
       </div>
       <div class="table-wrap"><table><thead><tr><th>Status</th><th>Relation</th><th>A row</th><th>B row</th><th>Amount</th><th>Date</th><th>Reason</th></tr></thead><tbody id="resultBody"></tbody></table></div>
     </section>
   </main>
 
-  <footer class="nw-footer">NicheWorks Reconcile development build. Transaction processing is local to the browser.</footer>
+  <footer class="nw-footer">NicheWorks Reconcile development build. Transaction processing is local to the browser. · <a href="./usage.html">Usage</a></footer>
   <script type="module" src="./app.mjs"></script>
 </body>
 </html>
