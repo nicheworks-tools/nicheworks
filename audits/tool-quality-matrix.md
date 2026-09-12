@@ -5,8 +5,8 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 - Registered tools: **87**
 - Specifications: **87**
 - Matrix records: **87**
-- PASS: **79**
-- FIX: **8**
+- PASS: **87**
+- FIX: **0**
 - BLOCKED: **0**
 - NEEDS_DECISION: **0**
 - Behavior-level tests missing: **85**
@@ -23,7 +23,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [ai-project-pack](../docs/tools/ai-project-pack.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [analytics-privacy-kit](../docs/tools/analytics-privacy-kit.md) | mobile-oriented | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [api-key-token-redactor](../docs/tools/api-key-token-redactor.md) | desktop-wide | recommended-and-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [ats-paste-doctor](../docs/tools/ats-paste-doctor.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 1 | 0 | **FIX** |
+| [ats-paste-doctor](../docs/tools/ats-paste-doctor.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [codex-product-shipping-playbooks](../docs/tools/codex-product-shipping-playbooks.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [codex-usage-forecaster](../docs/tools/codex-usage-forecaster.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [codex-work-os](../docs/tools/codex-work-os.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -62,7 +62,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [lp-skeleton-generator](../docs/tools/lp-skeleton-generator.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [manual-finder](../docs/tools/manual-finder.md) | desktop-wide | recommended-and-present | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
 | [membership-offer-builder](../docs/tools/membership-offer-builder.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [message-generator](../docs/tools/message-generator.md) | mobile-oriented | optional-absent | optional-absent | behavior-test-missing | 1 | 0 | **FIX** |
+| [message-generator](../docs/tools/message-generator.md) | mobile-oriented | optional-absent | optional-absent | behavior-test-missing | 0 | 0 | **PASS** |
 | [metadatasnap](../docs/tools/metadatasnap.md) | mobile-oriented | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [microtool-launch-checklist](../docs/tools/microtool-launch-checklist.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [mini-game-utility](../docs/tools/mini-game-utility.md) | mobile-oriented | optional-absent | optional-absent | behavior-test-missing | 0 | 0 | **PASS** |
@@ -76,8 +76,8 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [niche-job-starter-kit](../docs/tools/niche-job-starter-kit.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [notion-form-design-kit](../docs/tools/notion-form-design-kit.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [og-image-maker](../docs/tools/og-image-maker.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
-| [old-document-kanji-highlighter](../docs/tools/old-document-kanji-highlighter.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 1 | 0 | **FIX** |
-| [old-kanji-ocr-scanner](../docs/tools/old-kanji-ocr-scanner.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 1 | 0 | **FIX** |
+| [old-document-kanji-highlighter](../docs/tools/old-document-kanji-highlighter.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
+| [old-kanji-ocr-scanner](../docs/tools/old-kanji-ocr-scanner.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
 | [old-kanji-reference](../docs/tools/old-kanji-reference.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [ops-weekly-report-generator](../docs/tools/ops-weekly-report-generator.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [outsource-spec-generator](../docs/tools/outsource-spec-generator.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -85,7 +85,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [pattern-atlas](../docs/tools/pattern-atlas.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [pdf-page-tools-mini](../docs/tools/pdf-page-tools-mini.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [pdf2csv-local](../docs/tools/pdf2csv-local.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [place-old-kanji-checker](../docs/tools/place-old-kanji-checker.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 1 | 0 | **FIX** |
+| [place-old-kanji-checker](../docs/tools/place-old-kanji-checker.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
 | [product-founder-os](../docs/tools/product-founder-os.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [redirect-unwrapper](../docs/tools/redirect-unwrapper.md) | mobile-oriented | recommended-and-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [release-guardian](../docs/tools/release-guardian.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -98,10 +98,10 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [tiny-audio-meter](../docs/tools/tiny-audio-meter.md) | mobile-oriented | recommended-and-missing | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [trashnavi](../docs/tools/trashnavi.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [ui-atlas](../docs/tools/ui-atlas.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [unicode-kanji-checker](../docs/tools/unicode-kanji-checker.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 1 | 0 | **FIX** |
+| [unicode-kanji-checker](../docs/tools/unicode-kanji-checker.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
 | [unitmaster](../docs/tools/unitmaster.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [url-title-collector](../docs/tools/url-title-collector.md) | mobile-oriented | recommended-and-present | recommended-and-missing | behavior-test-missing | 1 | 0 | **FIX** |
-| [variant-kanji-compare](../docs/tools/variant-kanji-compare.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 1 | 0 | **FIX** |
+| [url-title-collector](../docs/tools/url-title-collector.md) | mobile-oriented | recommended-and-present | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
+| [variant-kanji-compare](../docs/tools/variant-kanji-compare.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
 | [vibe-lexicon](../docs/tools/vibe-lexicon.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [weatherdiff](../docs/tools/weatherdiff.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [webp-avif-converter](../docs/tools/webp-avif-converter.md) | mobile-oriented | recommended-and-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -114,6 +114,6 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 - **BLOCKED:** registered implementation evidence is unavailable.
 - **NEEDS_DECISION:** two or more plausible product behaviors remain after inspecting implementation, documentation, and tests. Missing prose alone never creates this state.
 
-## Recalculated Wave 1 recommendation
+## Wave 1 hard-gap status
 
-The corrected Wave 1 remains the mandatory donation/support shared-root-cause set: `ats-paste-doctor`, `message-generator`, `old-document-kanji-highlighter`, `old-kanji-ocr-scanner`, `place-old-kanji-checker`, `unicode-kanji-checker`, `url-title-collector`, `variant-kanji-compare`. These **8 tools** have confirmed hard common-spec gaps. Apply a narrowly scoped support-block repair while preserving each tool’s language, layout, analytics, advertising identifiers, and runtime behavior. Optional usage/FAQ creation is expressly excluded from Wave 1 prioritization.
+The mandatory donation/support shared-root-cause repair is complete for: `ats-paste-doctor`, `message-generator`, `old-document-kanji-highlighter`, `old-kanji-ocr-scanner`, `place-old-kanji-checker`, `unicode-kanji-checker`, `url-title-collector`, `variant-kanji-compare`. Their recommendation-only usage/FAQ/test gaps remain visible, but the support-block defect no longer forces `FIX`. Current matrix state after this repair: **87 PASS / 0 FIX / 0 BLOCKED / 0 NEEDS_DECISION**.

@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** place, old, kanji, checker
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `FIX`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -80,7 +80,7 @@ Preserve all existing GA4 and AdSense identifiers/code. Advertising must follow 
 
 ## 12. Donation/support contract
 
-Follow common-spec sections 6 and 9-4. Preserve and update in place rather than removing or restructuring a support block without specification support. Current main-page donation/support evidence: **missing**.
+Follow common-spec sections 6 and 9-4. Current main-page donation/support evidence: **present**. Preserve the footer-near OFUSE + Ko-fi support block and shared support styling unless the suite contract intentionally changes.
 
 ## 13. Help/usage/FAQ contract
 

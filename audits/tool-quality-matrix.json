@@ -11,8 +11,8 @@
     "NEEDS_DECISION"
   ],
   "counts": {
-    "PASS": 79,
-    "FIX": 8,
+    "PASS": 87,
+    "FIX": 0,
     "BLOCKED": 0,
     "NEEDS_DECISION": 0
   },
@@ -402,17 +402,16 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/ats-paste-doctor/index.html",
         "tools/ats-paste-doctor/README.md",
@@ -423,10 +422,8 @@
       ],
       "usage_html_present": true,
       "usage_en_html_present": true,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "optional-present",
@@ -447,9 +444,7 @@
         }
       ],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
       ]
@@ -3773,17 +3768,16 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/message-generator/index.html",
         "tools/message-generator/app.js",
@@ -3791,10 +3785,8 @@
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "optional-absent",
@@ -3812,9 +3804,7 @@
         }
       ],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
       ]
@@ -4965,19 +4955,18 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/old-document-kanji-highlighter/index.html",
         "tools/old-document-kanji-highlighter/app.js",
@@ -4985,10 +4974,8 @@
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "recommended-and-missing",
@@ -5006,9 +4993,7 @@
         }
       ],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
@@ -5058,19 +5043,18 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/old-kanji-ocr-scanner/index.html",
         "tools/old-kanji-ocr-scanner/app.js",
@@ -5078,10 +5062,8 @@
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "recommended-and-missing",
@@ -5099,9 +5081,7 @@
         }
       ],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
@@ -5775,19 +5755,18 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/place-old-kanji-checker/index.html",
         "tools/place-old-kanji-checker/app.js",
@@ -5795,10 +5774,8 @@
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "recommended-and-missing",
@@ -5816,9 +5793,7 @@
         }
       ],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
@@ -6888,17 +6863,16 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/unicode-kanji-checker/index.html",
         "tools/unicode-kanji-checker/app.js",
@@ -6906,10 +6880,8 @@
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "recommended-and-missing",
@@ -6922,9 +6894,7 @@
       },
       "test_evidence": [],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
@@ -7075,16 +7045,15 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "FAQ is recommended but absent.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/url-title-collector/index.html",
         "tools/url-title-collector/app.js",
@@ -7094,10 +7063,8 @@
       ],
       "usage_html_present": true,
       "usage_en_html_present": false,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "recommended-and-present",
@@ -7113,9 +7080,7 @@
       },
       "test_evidence": [],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "FAQ is recommended but absent.",
         "Behavior-level automated tests are absent."
@@ -7161,17 +7126,16 @@
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
-      "donation_status": "missing",
+      "donation_status": "present",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [],
       "outstanding_issues": [
-        "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
         "Behavior-level automated tests are absent."
       ],
-      "final_state": "FIX",
+      "final_state": "PASS",
       "evidence": [
         "tools/variant-kanji-compare/index.html",
         "tools/variant-kanji-compare/app.js",
@@ -7179,10 +7143,8 @@
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
-      "common_spec_compliance": "non-compliant",
-      "obvious_broken_or_incomplete_behavior": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
         "usage": "recommended-and-missing",
@@ -7195,9 +7157,7 @@
       },
       "test_evidence": [],
       "decision_gaps": [],
-      "hard_compliance_gaps": [
-        "Mandatory common-spec donation/support block is missing."
-      ],
+      "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
