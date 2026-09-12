@@ -15,10 +15,11 @@
 
 ## Current functional contract
 
-Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数を変えないため正式公開前のstaged stateとする。production-intent landingは`index.staged.html`に保持し、正式登録時に`index.html`へ昇格させる。
+monorepoへ吸収済みだが、既存87ツールの品質改善母数を変えないため正式公開前のstaged stateとする。production-intent landingは`index.staged.html`に保持し、正式登録時に`index.html`へ昇格させる。
 
 - `data/services.json` をlegacy migration snapshotとして読み込む。
 - `data/reverification/*.json` のofficial-source review結果を`id`単位でoverlayし、effective recordを生成する。
+- 後waveで同じ`id`を再確認した場合はlast-winsで新しい判断を正とする。
 - runtimeとauditは同じoverlay順序・同じmerge契約を使用する。
 - サービス名、alias、keyword、category、summary、procedure type、billing routeを検索対象にする。
 - category filterを提供する。
@@ -27,7 +28,7 @@ Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数
 - `procedure_url` がある場合のみ公式手続き・関連情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
 - legacy recordをHTTP 200だけでverifiedへ昇格させない。
 
-2026-09-12 re-verification wave 2時点で、40 legacy seed中28件をofficial source確認済みの`verified`へ昇格している。加えて`retired` 1件、`needs_review` 2件、通常検索から隔離する`placeholder` 4件、未処理の`legacy_review_required` 5件という状態である。
+2026-09-12 re-verification wave 3で旧40件のmigration cleanupを完了した。effective stateは`verified` 33件、`retired` 1件、`needs_review` 2件、`placeholder` 4件、`legacy_review_required` 0件。通常表示36件に対するverified比率は約92%。
 
 ## Inputs
 
@@ -54,7 +55,7 @@ Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数
 
 ユーザー入力や検索状態を永続保存しない。localStorage、cookie、account DBは使用しない。データベース本体はrepository内のstatic JSONを正本とする。
 
-Phase 1再検証中は`data/services.json`をmigration snapshot、`data/reverification/*.json`を検証済みoverlayとして扱う。Phase 1完了後にeffective recordsを新canonical datasetへcompactできる。
+Phase 1 cleanup完了後もmigration provenanceを保持するため、現時点では`data/services.json`をmigration snapshot、`data/reverification/*.json`をreview overlayとして保持する。Phase 2開始前または適切な区切りでeffective recordsを新canonical datasetへcompactできる。
 
 ## Privacy and network behavior
 
@@ -66,7 +67,7 @@ Phase 1再検証中は`data/services.json`をmigration snapshot、`data/reverifi
 
 `Japanese-only`
 
-本ツールは日本居住者・日本語検索を主対象とするためPhase 1は日本語のみとする。海外サービスも日本から利用されるsubscriptionとして収録できる。
+本ツールは日本居住者・日本語検索を主対象とするため現段階は日本語のみとする。海外サービスも日本から利用されるsubscriptionとして収録できる。
 
 ## Layout class
 
@@ -94,7 +95,7 @@ Phase 1再検証中は`data/services.json`をmigration snapshot、`data/reverifi
 - [x] 100→150→200 serviceへの拡張方針がrepository内ROADMAPに固定されている。
 - [x] current 87-tool registryを変えずにstaged sourceを保持する。
 - [x] re-verification waveをmigration provenance付きで段階適用できる。
-- [ ] legacy recordのofficial-source再検証が完了している。
+- [x] legacy recordのofficial-source再検証・分類が完了し、`legacy_review_required`が0になっている。
 - [ ] 100 service以上がverifiedまたは適切なretired historyとして整理されている。
 
 ## Implementation evidence

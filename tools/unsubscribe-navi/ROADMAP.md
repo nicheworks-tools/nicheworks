@@ -19,20 +19,20 @@ Status: implemented.
 
 ## Phase 1 — Legacy 40 cleanup
 
-Goal: 旧40件を「使える40件」へ変える。
+Status: **legacy migration cleanup complete (2026-09-12)**.
 
-### Current status after re-verification wave 2 (2026-09-12)
+旧40件を直接破壊的に書き換えず、`data/reverification/*.json`のoverlayでofficial-source review結果を固定した。後waveの再確認はlast-winsで前waveの暫定判断を上書きできる。Phase 2で新規serviceを追加する前に、必要に応じてeffective recordsを新canonical datasetへcompactする。
+
+### Final Phase 1 state after wave 3
 
 - effective records: 40
-- `verified`: 28
+- `verified`: 33
 - `retired`: 1（dTV → Lemino）
-- `needs_review`: 2（Rakuten TV定額見放題 / 楽天マガジン）
+- `needs_review`: 2（Amazonプライム / ディズニープラス）
 - `placeholder`: 4（TVer旧placeholder + 旧generic 2件 + DMMブックス旧「読み放題」誤項目）
-- `legacy_review_required`: 5
+- `legacy_review_required`: **0**
 - visible records: 36
-- visible recordsに占めるverified比率: 約78%
-
-旧40件を直接破壊的に書き換えず、`data/reverification/*.json`のoverlayでofficial-source review結果を固定する。Phase 1終了時にeffective recordsを新canonical datasetへcompactする。
+- visible recordsに占めるverified比率: 約92%
 
 ### Wave 1 completed
 
@@ -50,34 +50,26 @@ Goal: 旧40件を「使える40件」へ変える。
 - AWA StandardプランのApp Store / Google Play / Web / partner経由の自動更新停止を確認
 - Boxの旧誤リンクを現行「アカウント/サブスクリプションのキャンセル方法」へ修正し、Personal ProとBusiness/Enterpriseの差を記録
 - BookLive旧「読み放題」項目を実在する「月額ポイントコース」へ是正。2025-09-24に新規登録終了済みで、解除後は再登録不可という公式注意点を記録
-- DMMブックス旧「読み放題」は、現行公式helpで確認できる継続購入機能が「シリーズ購読」であり月額読み放題とは別物のためplaceholderへ隔離
-- 楽天マガジンは現役subscriptionであることと公式規約上の解約可能性は確認したが、直接の解約手続きURLを確定できていないため`needs_review`へ整理
+- DMMブックス旧「読み放題」は現行公式helpで月額読み放題としての実体を確認できないためplaceholderへ隔離
+- 楽天マガジンをdirect procedure URL確定待ちの`needs_review`へ整理
 
-### Remaining Phase 1 targets
+### Wave 3 completed
 
-`legacy_review_required`:
+- Amazon Music UnlimitedをAmazon公式キャンセル案内でverified化。Amazon直契約とApp Store / Google Play / carrier等の第三者請求を分離
+- Kindle UnlimitedをAmazon公式キャンセル案内でverified化。解約後も次回請求日までは利用可能という公式挙動を記録
+- ニコニコプレミアムを現行ニコニコヘルプの解約導線でverified化
+- Rakuten TVを2026年2月の大規模plan終了後の状態へ更新し、存続定額見放題planの購入履歴からの解約をverified化
+- 楽天マガジンを楽天公式サポートの「ご契約内容の確認・変更」導線でverified化
+- Amazonプライムは解約経路自体は確認できるが、日本向けの安定した公開help直リンクを正式公開前に再確認するため`needs_review`
+- ディズニープラスはdirect billing / third-party billing / account deletionの違いは公式確認できるが、日本向け個別解約記事URLを正式公開前に確定するため`needs_review`
 
-- Amazonプライム
-- ディズニープラス
-- Amazon Music Unlimited
-- ニコニコプレミアム
-- Kindle Unlimited
-
-`needs_review`:
-
-- Rakuten TVの存続plan単位への再編
-- 楽天マガジンの直接解約導線確定
-
-Exit gate:
-
-- `legacy_review_required`を原則0へする
-- `needs_review`は曖昧なbrand rowを残さず、具体的plan / routeへ整理する
-- generic / obsolete recordを具体的service単位またはretired/historyへ整理する
-- visible recordの大半をverifiedまたは明示的retiredにする
+Phase 1の目的だった「旧版由来の未判定データを残さない」は達成。残る2件は具体的な公式導線の最終固定問題であり、legacy migration debtではない。
 
 ## Phase 2 — Expand to 100
 
-Phase 1を閉じた後、追加60件程度をresearch waveで収録する。
+Status: **next**.
+
+現在の40 seedを土台に、追加60件程度をresearch waveで収録する。ただしplaceholder 4件は公開数に含めないため、100 public-visibleを目標にする場合は実質64件以上の有効record追加が必要。
 
 Priority categories:
 
@@ -95,6 +87,8 @@ Rule:
 - candidate発見とverified公開を分離する
 - official sourceが取れない候補は公開数に含めない
 - 同一brandの複数planはprocedureが実際に異なる場合のみ分ける
+- まず100件候補を作るのではなく、**100 public-visible / verified中心**を目標に追加waveを組む
+- Amazonプライム / ディズニープラスの`needs_review` 2件はPhase 2初期に並行して閉じる
 
 ## Phase 3 — Expand to 150
 
