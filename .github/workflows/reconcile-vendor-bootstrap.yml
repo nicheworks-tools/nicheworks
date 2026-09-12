@@ -6,6 +6,7 @@ on:
       - feat/reconcile-v1-20260912
     paths:
       - .github/workflows/reconcile-vendor-bootstrap.yml
+      - tools/reconcile/tests/xlsx-real-vendor.test.mjs
 
 permissions:
   contents: write
