@@ -1,0 +1,53 @@
+.affiliate-slot[hidden] {
+  display: none !important;
+}
+
+.affiliate-slot {
+  margin: 16px 0;
+}
+
+.nw-affiliate-card {
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.nw-affiliate-title {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.nw-affiliate-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nw-affiliate-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111827;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.nw-affiliate-links a:hover,
+.nw-affiliate-links a:focus-visible {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+.nw-affiliate-disclosure {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #6b7280;
+}

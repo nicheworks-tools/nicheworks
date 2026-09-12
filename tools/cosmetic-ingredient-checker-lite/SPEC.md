@@ -63,7 +63,7 @@ Input and parsed results are ephemeral current-page state. The current implement
 
 ## Privacy and network behavior
 
-Ingredient parsing and matching run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately, but raw ingredient input must not be included in analytics events.
+Ingredient parsing and matching run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately, but raw ingredient input must not be included in analytics or affiliate events.
 
 ## Language mode
 
@@ -79,7 +79,7 @@ The page is input-first: the first meaningful interaction after the existing top
 
 ## Monetization readiness
 
-The page includes an intentionally inactive, hidden result-adjacent container:
+The page includes the stable, intentionally inactive result-adjacent container:
 
 ```txt
 #amazonAffiliateSlot
@@ -88,9 +88,25 @@ placement = after-summary
 state = inactive
 ```
 
-This is structural readiness only. It must contain no live Amazon URL, Associates tag, affiliate claim, product recommendation, or click tracking until the Amazon Associates setup is actually available and approved for use.
+Both cosmetics tools share these frozen runtime assets:
 
-Later activation must not transmit the pasted ingredient list or raw analysis result to Amazon or analytics.
+```txt
+/tools/_shared/cosmetics-affiliate-config.js
+/tools/_shared/cosmetics-affiliate-slot.js
+/tools/_shared/cosmetics-affiliate-slot.css
+```
+
+`cosmetics-affiliate-config.js` is the single activation point. Before Amazon Associates setup is ready it must remain:
+
+```txt
+enabled = false
+associateTag = empty
+links = empty
+```
+
+The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to ingredient parsing, dictionary matching, result layout, or the slot ID/placement.
+
+When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Pasted ingredient names, complete analysis results, or other user-entered content must never be attached.
 
 ## Limits and non-goals
 
@@ -99,7 +115,8 @@ Later activation must not transmit the pasted ingredient list or raw analysis re
 - `未分類` is not evidence that an ingredient is unsafe.
 - The tool does not know ingredient concentration, complete formulation context, user allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from the pasted list alone.
 - Lite does not perform OCR; use INCI FastScan for image input.
-- This completion wave does not attempt a full audit of every dictionary entry.
+- This improvement wave does not attempt a full audit of every dictionary entry.
+- Amazon Associates is not active until account setup and policy verification are complete.
 
 ## Acceptance criteria
 
@@ -112,12 +129,17 @@ Later activation must not transmit the pasted ingredient list or raw analysis re
 - [x] The NicheWorks logo image is not shown in the tool header.
 - [x] The donation block appears before the footer.
 - [x] A clear INCI FastScan route exists for photo/OCR use.
-- [x] The Amazon-ready slot exists but remains inactive and hidden with no live affiliate URL.
+- [x] The Amazon-ready slot exists and keeps the frozen `after-summary` placement.
+- [x] Shared affiliate configuration remains disabled, empty, and non-tracking before activation.
 
 ## Implementation evidence
 
 - `tools/_shared/cosmetic-ingredient-parser.js`
 - `tools/_shared/check-cosmetic-ingredient-parser.mjs`
+- `tools/_shared/cosmetics-affiliate-config.js`
+- `tools/_shared/cosmetics-affiliate-slot.js`
+- `tools/_shared/cosmetics-affiliate-slot.css`
+- `tools/_shared/check-cosmetics-affiliate-contract.mjs`
 - `tools/cosmetic-ingredient-checker-lite/index.html`
 - `tools/cosmetic-ingredient-checker-lite/app.js`
 - `tools/cosmetic-ingredient-checker-lite/style.css`
