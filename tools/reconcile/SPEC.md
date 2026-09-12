@@ -42,20 +42,34 @@ Reconcile Pro controls are rendered but locked because no entitlement adapter is
 - Pro browser safety file cap in the current implementation: 100 MB per file.
 - No artificial row-count cap once Pro is enabled, subject to browser memory.
 
+## Normalization behavior
+
+- Text and references use Unicode NFKC normalization so full-width identifiers and digits are handled consistently.
+- Amount parsing supports ordinary signs, accounting parentheses, trailing minus notation, common currency symbols/codes, comma thousands separators, and unambiguous decimal-comma forms such as `1234,56` / `1.234,56`.
+- Malformed or materially ambiguous amount strings are rejected instead of being coerced to a number.
+- Dates accept ISO-like YMD and explicit MDY/DMY modes. Ambiguous day/month input is rejected in Auto mode.
+- Valid date-time suffixes may follow a parsed calendar date; arbitrary text glued directly onto a date is not accepted.
+
 ## Matching behavior
 
 The engine is deterministic and explanation-first. It does not use AI or probabilistic auto-resolution.
 
 1. Normalize amount, date, reference, and description fields.
 2. Detect invalid amounts and invalid/ambiguous dates without silently coercing them to zero or an arbitrary date.
-3. Detect same-reference amount conflicts using the configured amount tolerance.
-4. Search 1:1 candidates using a sorted amount index and binary-range lookup instead of a full Cartesian scan.
-5. Require date/reference compatibility when both mapped sides provide those fields.
-6. Emit a unique acceptable 1:1 row as exact_match or tolerant_match.
-7. Emit multiple acceptable rows as candidate; never choose one arbitrarily.
-8. When Pro grouped matching is enabled, search bounded 1:n and n:1 combinations up to five members.
-9. If grouped search exceeds the node budget, emit candidate and require manual review.
-10. Preserve unmatched rows as a_only / b_only and surface duplicate signatures separately.
+3. Detect uniquely identifiable same-reference amount conflicts using the configured amount tolerance.
+4. Prefer exact non-empty Reference relationships before lower-information fallback matching.
+5. Search 1:1 candidates using indexed amount lookup instead of a full Cartesian scan.
+6. Require date/reference compatibility when both mapped sides provide those fields.
+7. Auto-accept a 1:1 pair only when the relationship is mutually unique; a row is never awarded to whichever A-side row happens to appear first.
+8. Recompute mutual uniqueness after accepted pairs so resolvable chains collapse deterministically.
+9. Emit unresolved competing rows as candidate, including the case where multiple A rows claim the same sole B candidate.
+10. When Pro grouped matching is enabled, search bounded 1:n and n:1 combinations up to five members.
+11. If grouped search exceeds the node budget, emit candidate and require manual review.
+12. Preserve unmatched rows as a_only / b_only and surface duplicate signatures separately.
+
+## CSV row identity
+
+Blank physical rows may be skipped for reconciliation, but the retained records keep their original source row numbers. Result row references therefore continue to point to the actual source-file rows even when blank lines occur between transactions or the selected header is below row 1.
 
 ## Outputs
 
@@ -90,7 +104,16 @@ Profile rules:
 - schema version: 1;
 - maximum 20 profiles;
 - import/export format: versioned JSON bundle `nicheworks-reconcile-profile-bundle`;
-- imported values are sanitized and numeric bounds are clamped before storage.
+- imported values are sanitized and numeric bounds are clamped before storage;
+- saved date tolerance is clamped to the public 0/±1-day contract.
+
+## XLSX dependency contract
+
+- SheetJS Community Edition is pinned to version `0.20.3`.
+- Runtime CDN loading is not permitted; the final script must be committed locally at `tools/reconcile/vendor/xlsx.full.min.js`.
+- The official documented MD5 for `xlsx.full.min.js` 0.20.3 is `6b3130af1ceadf07caa0ec08af7addff` and must be verified before the vendor file is committed.
+- `xlsx-adapter.mjs` also rejects a loaded runtime whose reported `XLSX.version` is not exactly `0.20.3`.
+- Apache-2.0 attribution/license requirements must be preserved when the vendored file is added.
 
 ## State and persistence
 
@@ -120,12 +143,17 @@ The isolated branch hard-locks Pro controls. Billing integration is a separate l
 
 - Two valid CSVs up to the Free limits load without sending transaction rows to a server.
 - Amount mapping is mandatory and invalid amounts are not silently converted to zero.
-- An exact unique 1:1 match is classified exact_match.
-- A unique match inside enabled tolerances is classified tolerant_match.
+- Common Japanese/international financial amount notations covered by the normalization contract parse deterministically.
+- Ambiguous/malformed amount and date values are rejected rather than guessed.
+- An exact mutually unique 1:1 match is classified exact_match.
+- A mutually unique match inside enabled tolerances is classified tolerant_match.
 - Multiple acceptable matches produce candidate rather than arbitrary selection.
-- Same reference with an amount difference outside tolerance is conflict.
+- Multiple A rows competing for the same sole B row remain candidates; input row ordering cannot assign that B row arbitrarily.
+- Exact Reference matches may resolve before blank-reference fallback rows, and reversing the A row order does not change the resulting match/candidate counts.
+- Same reference with an amount difference outside tolerance is conflict when that reference identifies a unique A/B pair.
 - Unaccepted rows remain side-specific unmatched records.
 - Duplicate signatures are surfaced separately.
+- Physical source row numbers survive skipped blank rows and non-row-1 headers.
 - Running the same data/mapping/settings produces the same result ordering and classifications.
 - Result filtering/search does not mutate the reconciliation result.
 - CSV export includes status, relation, source row references, normalized amount/date, and reason.
@@ -145,6 +173,9 @@ The isolated branch hard-locks Pro controls. Billing integration is a separate l
 - `tools/reconcile/export.mjs`
 - `tools/reconcile/xlsx-adapter.mjs`
 - `tools/reconcile/rules-store.mjs`
+- `tools/reconcile/vendor/README.md`
+- `tools/reconcile/tests/normalize.test.mjs`
+- `tools/reconcile/tests/parser.test.mjs`
 - `tools/reconcile/tests/reconcile-engine.test.mjs`
 - `tools/reconcile/tests/xlsx-adapter.test.mjs`
 - `tools/reconcile/tests/rules-store.test.mjs`
