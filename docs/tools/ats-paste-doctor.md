@@ -107,7 +107,7 @@ Follow common-spec. Current donation/support evidence remains missing; monetizat
 
 The five exact current additive paid operation boundaries are listed in section 5. Free formatter behavior, 30,000-character processing, copy and TXT download remain independent of billing availability.
 
-The current legacy bridge must require exact `local.active === true` plus `local.entitlement === "nicheworks_pro"`. A missing/unrelated entitlement cannot activate current paid behavior.
+The current legacy bridge must require exact `local.active === true` plus `local.entitlement === "nicheworks_pro"`. A missing/unrelated entitlement cannot activate current paid behavior. Because the current app reads `data-pro-active` for plan checks, the bridge revalidates exact legacy state in the click capture phase before the Generate button or any `[data-pro-action]` control reaches normal application handlers. DOM-only `data-pro-active` edits therefore do not survive the ordinary UI action path.
 
 `tools/ats-paste-doctor/product-scoped-controller.mjs` is non-live staging. It requires explicit product/feature configuration and delegates server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no ATS-Paste-Doctor-specific product is authorized.
 
@@ -119,6 +119,7 @@ Bundle price/currency, Stripe Product/Price, production feature IDs, restore/acc
 - [ ] Free copy/TXT works up to 30,000 characters regardless of billing availability.
 - [ ] Current paid behavior supports 200,000 characters and the documented pack/export/template/history operations.
 - [ ] Missing/unrelated legacy entitlement cannot unlock paid behavior.
+- [ ] A manual `data-pro-active` DOM edit is revalidated before ordinary Generate/Pro clicks are handled.
 - [ ] Product-scoped staging fails closed without matching server-verified product/features.
 - [ ] Future live authority is shared `nicheworks.pro`.
 - [ ] Billing/entitlement traffic contains no application content or derived artifacts.
