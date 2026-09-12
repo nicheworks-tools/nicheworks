@@ -39,9 +39,10 @@ Continue the machine-checked per-tool specification layer introduced by PR #508 
 - [x] Inspected current implementation of all 15 tools.
 - [x] Added substantive current-state `SPEC.md` files for all 15 tools.
 - [x] Raised `tools/tool-spec-manifest.json` to 46 complete / 41 pending with `required_complete: 46`.
-- [ ] Run Tool spec audit and existing repository checks.
-- [ ] Confirm the diff is limited to this ExecPlan, 15 SPEC files, and manifest.
-- [ ] Open PR, document discoveries, squash merge, and confirm main-side audit.
+- [x] Ran Tool spec audit, SEO audit, and Construction Tools Atlas data validation successfully on PR #510.
+- [x] Confirmed the diff is limited to this ExecPlan, 15 SPEC files, and manifest; production HTML/JS/CSS is unchanged.
+- [x] Opened PR #510 and documented implementation discoveries.
+- [ ] Squash merge PR #510 and confirm main-side audit.
 
 ## Decision Log
 
@@ -61,6 +62,13 @@ Continue the machine-checked per-tool specification layer introduced by PR #508 
 
 Acceptance requires all 15 specs to be implementation-grounded, machine-valid under `scripts/check-tool-spec-contract.mjs`, coverage to rise to 46/87, no pending placeholders, and zero production HTML/JS/CSS changes.
 
+Validated on PR #510 before final ExecPlan update:
+
+- Tool spec audit run `34672231746`: success.
+- SEO audit run `34672231758`: success.
+- Validate Construction Tools Atlas Data run `34672231766`: success.
+- Diff: 17 files total — this ExecPlan, 15 SPEC files, and `tools/tool-spec-manifest.json` only.
+
 ## Surprises & Discoveries
 
 - `incident-update-generator` has a real Free/Pro boundary: Free generates customer/internal/social updates and selected TXT output; Pro adds the Markdown Incident Communication Pack.
@@ -74,4 +82,4 @@ Acceptance requires all 15 specs to be implementation-grounded, machine-valid un
 
 ## Outcomes & Retrospective
 
-Pending CI, PR, and merge. No production HTML/JS/CSS changes are intended in this wave.
+Wave 3 reached the target contract coverage of 46 complete / 41 pending without changing production HTML/JS/CSS. The specification pass exposed a concrete privacy-copy defect in MetadataSnap that should be repaired separately against the now-explicit runtime contract. PR #510 is ready for final-head CI and squash merge.
