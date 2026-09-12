@@ -32,7 +32,8 @@ const REVERIFICATION_FILES = [
   './data/reverification/2026-09-12-wave1-cloud-software.json',
   './data/reverification/2026-09-12-wave1-carrier-hygiene.json',
   './data/reverification/2026-09-12-wave2-cleanup.json',
-  './data/reverification/2026-09-12-wave3-phase1-close.json'
+  './data/reverification/2026-09-12-wave3-phase1-close.json',
+  './data/reverification/2026-09-12-wave4-post100-quality.json'
 ];
 
 let database = { records: [] };
@@ -117,6 +118,14 @@ function matchesQuery(record, query) {
   return haystack.includes(query.toLowerCase());
 }
 
+function matchesState(record, state) {
+  if (!state) return true;
+  if (state === 'review') {
+    return ['legacy_review_required', 'needs_review'].includes(record.publication_state);
+  }
+  return record.publication_state === state;
+}
+
 function createCard(record) {
   const article = document.createElement('article');
   article.className = 'service-card';
@@ -181,8 +190,10 @@ function render() {
   const root = document.getElementById('results');
   const query = document.getElementById('searchInput').value.trim();
   const category = document.getElementById('categoryFilter').value;
+  const state = document.getElementById('stateFilter').value;
   const records = visibleRecords()
     .filter((record) => !category || record.category === category)
+    .filter((record) => matchesState(record, state))
     .filter((record) => matchesQuery(record, query))
     .sort((a, b) => a.name.localeCompare(b.name, 'ja'));
 
@@ -219,6 +230,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.getElementById('searchInput').addEventListener('input', render);
     document.getElementById('categoryFilter').addEventListener('change', render);
+    document.getElementById('stateFilter').addEventListener('change', render);
   } catch (error) {
     console.error(error);
     results.innerHTML = '<div class="empty">データベースを読み込めませんでした。</div>';
