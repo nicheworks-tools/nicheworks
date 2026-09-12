@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - 'tools/trashnavi/**'
+      - 'sitemap.xml'
       - 'sitemap-trashnavi.xml'
       - 'sitemap-index.xml'
       - 'robots.txt'
