@@ -15,20 +15,19 @@
 
   function getStatus() {
     if (!window.NWPro || typeof window.NWPro.getLocalStatus !== "function") {
-      return { available: false, active: false, entitlement: ENTITLEMENT };
+      return { available: false, active: false, entitlement: "" };
     }
 
     try {
       const local = window.NWPro.getLocalStatus() || {};
-      const entitlement = local.entitlement || ENTITLEMENT;
       return {
         available: true,
-        active: Boolean(local.active && entitlement === ENTITLEMENT),
-        entitlement,
+        active: local.active === true && local.entitlement === ENTITLEMENT,
+        entitlement: local.entitlement || "",
         checkedAt: local.checkedAt || "",
       };
     } catch (error) {
-      return { available: false, active: false, entitlement: ENTITLEMENT };
+      return { available: false, active: false, entitlement: "" };
     }
   }
 
@@ -48,7 +47,7 @@
 
   function syncGate() {
     const status = getStatus();
-    const active = Boolean(status.available && status.active);
+    const active = status.available === true && status.active === true;
     const root = document.documentElement;
     root.dataset.proActive = active ? "true" : "false";
     root.dataset.proTool = TOOL_ID;
