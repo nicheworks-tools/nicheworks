@@ -22,9 +22,6 @@
       .trim();
   }
 
-  // Explicit, high-confidence naming equivalents only. These are identity
-  // variants for existing dictionary entries, not fuzzy guesses or safety
-  // classifications. Keep this list small and collision-checked.
   const ALIAS_EQUIVALENTS = Object.freeze({
     "精製水": "water",
     "グリセロール": "glycerin",
@@ -41,9 +38,6 @@
     "alcohol denat": "alcohol denat."
   });
 
-  // These labels are category/group abbreviations or multi-identity labels in
-  // the maintained data. Exact matching one arbitrary record would be worse
-  // than leaving them unclassified for review.
   const AMBIGUOUS_EXACT_KEYS = Object.freeze([
     "aha",
     "bha",
@@ -78,9 +72,6 @@
     const normalized = normalizeText(value);
     if (!normalized) return [];
 
-    // Ingredient names can legitimately contain '/', '・', and numeric locant
-    // commas such as 1,2-Hexanediol. Preserve those while splitting explicit
-    // list punctuation and line breaks.
     const protectedText = protectNumericLocantCommas(normalized);
     const parts = protectedText
       .split(/[\n,、，;；]+/)
@@ -148,15 +139,22 @@
   function bootstrapOptionalToolEnhancements() {
     const documentRef = root?.document;
     if (!documentRef) return;
+
     if (documentRef.getElementById("inciInput") && documentRef.getElementById("summaryBox")) {
       ensureStylesheet(documentRef, "/tools/cosmetic-ingredient-checker-lite/enhancements.css");
       loadScript(documentRef, "/tools/cosmetic-ingredient-checker-lite/enhancements.js")
         .catch((error) => console.warn("Lite enhancements unavailable", error));
     }
+
+    if (documentRef.getElementById("fast-input") && documentRef.getElementById("ocr-file-fast")) {
+      ensureStylesheet(documentRef, "/tools/inci-fastscan/enhancements.css");
+      loadScript(documentRef, "/tools/inci-fastscan/enhancements.js")
+        .catch((error) => console.warn("FastScan enhancements unavailable", error));
+    }
   }
 
   const api = {
-    version: "1.5.0",
+    version: "1.6.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
