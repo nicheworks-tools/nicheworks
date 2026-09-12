@@ -21,20 +21,20 @@ Status: implemented.
 
 Goal: 旧40件を「使える40件」へ変える。
 
-Status after re-verification wave 1 (2026-09-12):
+### Current status after re-verification wave 2 (2026-09-12)
 
 - effective records: 40
-- `verified`: 24
+- `verified`: 28
 - `retired`: 1（dTV → Lemino）
-- `needs_review`: 1（Rakuten TV定額見放題の2026年再編）
-- `placeholder`: 3（TVer旧placeholder + 旧generic 2件）
-- `legacy_review_required`: 11
-- visible records: 37
-- visible recordsに占めるverified比率: 約65%
+- `needs_review`: 2（Rakuten TV定額見放題 / 楽天マガジン）
+- `placeholder`: 4（TVer旧placeholder + 旧generic 2件 + DMMブックス旧「読み放題」誤項目）
+- `legacy_review_required`: 5
+- visible records: 36
+- visible recordsに占めるverified比率: 約78%
 
-Wave 1では、旧40件を直接破壊的に書き換えず、`data/reverification/*.json`のoverlayでofficial-source review結果を固定した。Phase 1終了時にeffective recordsを新canonical datasetへcompactする。
+旧40件を直接破壊的に書き換えず、`data/reverification/*.json`のoverlayでofficial-source review結果を固定する。Phase 1終了時にeffective recordsを新canonical datasetへcompactする。
 
-完了済みの主な修正:
+### Wave 1 completed
 
 - iCloud+の誤redirect URLを現行Apple公式案内へ修正
 - Notion / Slack / Adobe等の旧help URLを現行公式案内へ修正
@@ -44,26 +44,36 @@ Wave 1では、旧40件を直接破壊的に書き換えず、`data/reverificati
 - carrier 4件で回線解約とMNPを混同しないsummaryへ整理
 - App Store / Google Play / direct billing等の主要routeをverified recordへ追加
 
-残る主な再確認対象:
+### Wave 2 completed
+
+- ABEMAの現行有料視聴プラン解約ページを確認し、決済経路別の解約を記録
+- AWA StandardプランのApp Store / Google Play / Web / partner経由の自動更新停止を確認
+- Boxの旧誤リンクを現行「アカウント/サブスクリプションのキャンセル方法」へ修正し、Personal ProとBusiness/Enterpriseの差を記録
+- BookLive旧「読み放題」項目を実在する「月額ポイントコース」へ是正。2025-09-24に新規登録終了済みで、解除後は再登録不可という公式注意点を記録
+- DMMブックス旧「読み放題」は、現行公式helpで確認できる継続購入機能が「シリーズ購読」であり月額読み放題とは別物のためplaceholderへ隔離
+- 楽天マガジンは現役subscriptionであることと公式規約上の解約可能性は確認したが、直接の解約手続きURLを確定できていないため`needs_review`へ整理
+
+### Remaining Phase 1 targets
+
+`legacy_review_required`:
 
 - Amazonプライム
 - ディズニープラス
-- ABEMAプレミアム
-- AWA
 - Amazon Music Unlimited
-- Box
 - ニコニコプレミアム
-- 楽天マガジン
-- BookLive!旧読み放題項目
 - Kindle Unlimited
-- DMMブックス旧読み放題項目
+
+`needs_review`:
+
 - Rakuten TVの存続plan単位への再編
+- 楽天マガジンの直接解約導線確定
 
 Exit gate:
 
-- legacy_review_requiredを原則0へ近づける
+- `legacy_review_required`を原則0へする
+- `needs_review`は曖昧なbrand rowを残さず、具体的plan / routeへ整理する
 - generic / obsolete recordを具体的service単位またはretired/historyへ整理する
-- visible recordの大半がverifiedまたは明示的retired
+- visible recordの大半をverifiedまたは明示的retiredにする
 
 ## Phase 2 — Expand to 100
 
