@@ -95,6 +95,26 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`5B21|https://www.seikowatches.com/jp-ja/-/
 5R85|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5R85/5R85.pdf
 5R86|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/5/5R86/5R86.pdf`);
 
+// Wave 2V: direct Seiko 6-series manuals with verified one-caliber destinations.
+window.MANUALFINDER_WAVE2_SEIKO.push(`6810|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6810/6810.pdf
+6A32|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6A32/6A32.pdf
+6G27|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/6/6G27/6G27.pdf
+6G28|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6G28/6G28.pdf
+6G34|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6G34/6G34.pdf
+6L35|https://www.seikowatches.com/instructions/html/SEIKO_6L35_JP/index
+6L37|https://www.seikowatches.com/instructions/html/SEIKO_6L37_D_JP/index
+6M15|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/English/6/6M15/6M15.pdf
+6M25|https://www.seikowatches.com/uk-en/-/media/Files/Common/Seiko/instructions/English/6/6M25/6M25.pdf
+6M26|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6M26/6M26.pdf
+6N01|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6N01/6N01.pdf
+6N22|https://www.seikowatches.com/id-id/-/media/Files/Common/Seiko/instructions/Japanese/6/6N22/6N22.pdf
+6N33|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6N33/6N33.pdf
+6N52|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6N52/6N52.pdf
+6N53|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6N53/6N53.pdf
+6N76|https://www.seikowatches.com/au-en/-/media/Files/Common/Seiko/instructions/Japanese/6/6N76/6N76.pdf
+6R15|https://www.seikowatches.com/id-id/-/media/Files/Common/Seiko/instructions/Japanese/6/6R15/6R15_3.pdf
+6T63|https://www.seikowatches.com/id-id/-/media/Files/Common/Seiko/instructions/Japanese/6/6T63/6T63.pdf`);
+
 // Normalize Seiko evidence/support links to the model-specific official caliber search.
 // This removes the original H-index assumption while preserving the existing builder contract.
 {
