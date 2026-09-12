@@ -65,6 +65,58 @@
     }
   }
 
+  function hasTopLevelWhere(sql) {
+    const source = String(sql || "");
+    let depth = 0;
+    let inSingle = false;
+    let inDouble = false;
+    let inBacktick = false;
+
+    for (let i = 0; i < source.length; i += 1) {
+      const ch = source[i];
+      const next = source[i + 1];
+
+      if (inSingle) {
+        if (ch === "'" && next === "'") { i += 1; continue; }
+        if (ch === "'" && source[i - 1] !== "\\") inSingle = false;
+        continue;
+      }
+      if (inDouble) {
+        if (ch === '"' && next === '"') { i += 1; continue; }
+        if (ch === '"' && source[i - 1] !== "\\") inDouble = false;
+        continue;
+      }
+      if (inBacktick) {
+        if (ch === "`") inBacktick = false;
+        continue;
+      }
+
+      if (ch === "'") { inSingle = true; continue; }
+      if (ch === '"') { inDouble = true; continue; }
+      if (ch === "`") { inBacktick = true; continue; }
+      if (ch === "(") { depth += 1; continue; }
+      if (ch === ")") { depth = Math.max(0, depth - 1); continue; }
+
+      if (depth !== 0) continue;
+      if ((ch === "w" || ch === "W") && /^where\b/i.test(source.slice(i))) {
+        const prev = i === 0 ? "" : source[i - 1];
+        if (!/[A-Za-z0-9_$]/.test(prev)) return true;
+      }
+    }
+    return false;
+  }
+
+  function installSqlSafetyGuard() {
+    // app-sdrc.js defines hasTopWhere in the classic-script global scope. Replace
+    // the naive /where/ check after scripts have loaded so WHERE inside a nested
+    // subquery cannot suppress the full-table UPDATE/DELETE warning.
+    window.hasTopWhere = hasTopLevelWhere;
+    window.SQLDbRiskHasTopLevelWhere = hasTopLevelWhere;
+  }
+
   window.SQLDbRiskProBridge = { refresh, paymentLink: PAYMENT_LINK };
-  document.addEventListener("DOMContentLoaded", refresh);
+  document.addEventListener("DOMContentLoaded", () => {
+    installSqlSafetyGuard();
+    refresh();
+  });
 })();
