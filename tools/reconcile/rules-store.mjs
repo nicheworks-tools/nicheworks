@@ -43,7 +43,7 @@ function parserSettings(input = {}) {
 
 function matchingOptions(input = {}) {
   return {
-    dateToleranceDays: Math.round(clampNumber(input.dateToleranceDays, 0, 31, 0)),
+    dateToleranceDays: Math.round(clampNumber(input.dateToleranceDays, 0, 1, 0)),
     amountTolerance: clampNumber(input.amountTolerance, 0, 1_000_000_000_000, 0),
     dateMode: DATE_MODES.has(input.dateMode) ? input.dateMode : 'auto',
     signMode: SIGN_MODES.has(input.signMode) ? input.signMode : 'normal',
