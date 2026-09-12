@@ -11,7 +11,9 @@ const outputDir = path.join(toolDir, 'staged-pages');
 const checkMode = process.argv.includes('--check');
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
-const jsonFiles = (dir) => fs.existsSync(dir) ? fs.readdirSync(dir).filter((name) => name.endsWith('.json')).sort() : [];
+const jsonFiles = (dir) => fs.existsSync(dir)
+  ? fs.readdirSync(dir).filter((name) => name.endsWith('.json')).sort()
+  : [];
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
@@ -101,8 +103,8 @@ function renderPage(entry, record) {
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <link rel="stylesheet" href="/tools/unsubscribe-navi/style.css">
-  <link rel="stylesheet" href="/tools/unsubscribe-navi/individual-page.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../individual-page.css">
   <script type="application/ld+json">${webPageJson}</script>
   <script type="application/ld+json">${breadcrumbJson}</script>
 </head>
