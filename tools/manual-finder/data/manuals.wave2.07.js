@@ -71,3 +71,6 @@ SYSTEM-100M-181|https://lib.roland.co.jp/support/jp/manuals/res/1809250/SYSTEM-1
 SYSTEM-100M-182|https://lib.roland.co.jp/support/jp/manuals/res/1809249/SYSTEM-100M_182_j.pdf
 SYSTEM-100M-184|https://lib.roland.co.jp/support/jp/manuals/res/1809248/SYSTEM-100M_184_j.pdf
 SYSTEM-100M-191|https://lib.roland.co.jp/support/jp/manuals/res/1809245/SYSTEM-100M_191J_j.pdf`);
+
+// Wave 2R: final safe direct-only residual from Roland N-S archive.
+window.MANUALFINDER_WAVE2_ROLAND.push(`OP-RMP12|https://lib.roland.co.jp/support/jp/manuals/res/1808769/OP-RMP12_je1.pdf`);
