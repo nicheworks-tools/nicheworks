@@ -51,11 +51,13 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 ## 6. Error behavior
 
-- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
-- **Invalid, unsupported, or over-limit input:** The documented validation, supported-format, and limit rules apply; rejected input must not be represented as a valid result.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **File read or parsing failure:** The implementation’s documented error path applies and no failed parse is represented as a valid output.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
+- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
+- **Parse or local-file failure:** Implemented exception/error handlers surface the failure through the current feedback path and do not present the failed operation as a successful output.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Copy/download failure:** No additional clipboard failure policy is implemented beyond the browser operation. Download creation is offered only from the currently generated result; no failed operation is labeled as a successful export.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/pdf2csv-local/app.js`, `tools/pdf2csv-local/index.html`.
 
 ## 7. Privacy/data handling
 
@@ -73,7 +75,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **not fo
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- NEEDS_DECISION — language switching details are not documented.
+- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching or page-separation mechanism.
 - Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
 
 ## 10. SEO contract

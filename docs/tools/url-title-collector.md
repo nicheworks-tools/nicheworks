@@ -45,11 +45,13 @@ Observed delivery capabilities: clipboard copy **present**; download/export **no
 
 ## 6. Error behavior
 
-- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
-- **Invalid, unsupported, or over-limit input:** The documented validation, supported-format, and limit rules apply; rejected input must not be represented as a valid result.
-- **Network/API failure:** The documented unavailable/error state is shown without substituting fabricated remote data.
-- **File read or parsing failure:** The implementation’s documented error path applies and no failed parse is represented as a valid output.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
+- **Invalid or unsupported input:** The implementation has no separate unsupported-input mode beyond its current controls and validation path; that observed path is canonical.
+- **Parse or local-file failure:** Implemented exception/error handlers surface the failure through the current feedback path and do not present the failed operation as a successful output.
+- **Network/API failure:** Implemented response checks, rejection handling, timeout/abort logic, or catch paths expose the unavailable/error state; remote failure is not replaced with fabricated remote data.
+- **Copy/download failure:** No additional clipboard failure policy is implemented beyond the browser operation.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/url-title-collector/app.js`, `tools/url-title-collector/en/index.html`, `tools/url-title-collector/index.html`.
 
 ## 7. Privacy/data handling
 

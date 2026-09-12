@@ -59,6 +59,7 @@ for (const record of records) {
   if (record.final_state === 'FIX' && !record.hard_compliance_gaps.length && record.recommendation_only_gaps.length) errors.push(`${record.slug}: recommendation-only gaps cannot produce FIX`);
   const specText = fs.readFileSync(record.spec, 'utf8');
   if (record.decision_gaps.length && !specText.includes('`NEEDS_DECISION`')) errors.push(`${record.slug}: decision gaps are absent from its specification`);
+  if (!record.decision_gaps.length && specText.includes('`NEEDS_DECISION`')) errors.push(`${record.slug}: specification hides an unrecorded NEEDS_DECISION marker`);
 }
 
 const actualCounts = Object.fromEntries([...finalStates].map((state) => [state, records.filter((record) => record.final_state === state).length]));

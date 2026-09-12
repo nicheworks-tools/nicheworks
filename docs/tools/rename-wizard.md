@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** rename, file, batch, organize
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -44,11 +44,13 @@ Observed delivery capabilities: clipboard copy **present**; download/export **pr
 
 ## 6. Error behavior
 
-- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
-- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **File read or parsing failure:** The implementation’s documented error path applies and no failed parse is represented as a valid output.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented required-field constraints and guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
+- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
+- **Parse or local-file failure:** Implemented exception/error handlers surface the failure through the current feedback path and do not present the failed operation as a successful output.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Copy/download failure:** Clipboard rejection is handled by the implemented feedback/fallback path. Download creation is offered only from the currently generated result; no failed operation is labeled as a successful export.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/rename-wizard/app.js`, `tools/rename-wizard/en/index.html`, `tools/rename-wizard/howto/en/index.html`, `tools/rename-wizard/howto/index.html`, `tools/rename-wizard/index.html`.
 
 ## 7. Privacy/data handling
 

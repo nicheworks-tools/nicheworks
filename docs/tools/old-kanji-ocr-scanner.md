@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** old, kanji, ocr, scanner
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `FIX`
 
 ## 1. Identity
 
@@ -48,11 +48,13 @@ Observed delivery capabilities: clipboard copy **present**; download/export **pr
 
 ## 6. Error behavior
 
-- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
-- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
-- **Network/API failure:** The documented unavailable/error state is shown without substituting fabricated remote data.
-- **File read or parsing failure:** The implementation’s documented error path applies and no failed parse is represented as a valid output.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally. This observed behavior is the canonical contract.
+- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
+- **Parse or local-file failure:** No dedicated recovery branch is implemented; a failed read/parse produces no successful derived output. This current limitation is recorded rather than converted into a product decision.
+- **Network/API failure:** The current request path has no separate recovery policy; an unsuccessful request produces no verified remote result. This observed limitation is not treated as an unresolved product choice.
+- **Copy/download failure:** Clipboard rejection is handled by the implemented feedback/fallback path. Download creation is offered only from the currently generated result; no failed operation is labeled as a successful export.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/old-kanji-ocr-scanner/app.js`, `tools/old-kanji-ocr-scanner/index.html`.
 
 ## 7. Privacy/data handling
 
@@ -70,7 +72,7 @@ Persistence evidence: no `localStorage` or `sessionStorage` reference found in i
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- NEEDS_DECISION — language switching details are not documented.
+- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching or page-separation mechanism.
 - Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
 
 ## 10. SEO contract

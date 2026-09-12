@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** job, niche, startup, planning
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -48,10 +48,12 @@ Observed delivery capabilities: clipboard copy **present**; download/export **pr
 
 ## 6. Error behavior
 
-- **Empty input:** Required or blank inputs use the implementation’s documented validation path and must not be presented as a successful completed result.
-- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented required-field constraints and guard clauses prevent the affected action from completing normally. This observed behavior is the canonical contract.
+- **Invalid or unsupported input:** The implementation has no separate unsupported-input mode beyond its current controls and validation path; that observed path is canonical.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Copy/download failure:** Clipboard rejection is handled by the implemented feedback/fallback path. Download creation is offered only from the currently generated result; no failed operation is labeled as a successful export.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/niche-job-starter-kit/app.js`, `tools/niche-job-starter-kit/index.html`.
 
 ## 7. Privacy/data handling
 
@@ -69,7 +71,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **not fo
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- NEEDS_DECISION — language switching details are not documented.
+- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching or page-separation mechanism.
 - Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
 
 ## 10. SEO contract

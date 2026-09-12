@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** moving, checklist, life, home
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -48,10 +48,12 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 ## 6. Error behavior
 
-- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
-- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented required-field constraints and guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
+- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
+- **Parse or local-file failure:** No dedicated recovery branch is implemented; a failed read/parse produces no successful derived output. This current limitation is recorded rather than converted into a product decision.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/moving-checklist-generator/app.js`, `tools/moving-checklist-generator/howto/en/index.html`, `tools/moving-checklist-generator/howto/index.html`, `tools/moving-checklist-generator/index.html`.
 
 ## 7. Privacy/data handling
 
@@ -69,7 +71,7 @@ Persistence evidence: `localStorage`. Network-capable application code: **not fo
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- NEEDS_DECISION — language switching details are not documented.
+- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching or page-separation mechanism.
 - Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
 
 ## 10. SEO contract

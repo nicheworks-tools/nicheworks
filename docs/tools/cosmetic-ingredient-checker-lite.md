@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** cosmetic, ingredients, inci, beauty
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -41,10 +41,12 @@ Observed delivery capabilities: clipboard copy **present**; download/export **no
 
 ## 6. Error behavior
 
-- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
-- **Invalid, unsupported, or over-limit input:** The documented validation, supported-format, and limit rules apply; rejected input must not be represented as a valid result.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
+- **Invalid or unsupported input:** The implementation has no separate unsupported-input mode beyond its current controls and validation path; that observed path is canonical.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Copy/download failure:** Clipboard rejection is handled by the implemented feedback/fallback path.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/cosmetic-ingredient-checker-lite/app.js`, `tools/cosmetic-ingredient-checker-lite/howto/en/index.html`, `tools/cosmetic-ingredient-checker-lite/howto/index.html`, `tools/cosmetic-ingredient-checker-lite/index.html`.
 
 ## 7. Privacy/data handling
 

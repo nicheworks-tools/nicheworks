@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** message, writing, template, communication
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `FIX`
 
 ## 1. Identity
 
@@ -43,10 +43,12 @@ Observed delivery capabilities: clipboard copy **present**; download/export **no
 
 ## 6. Error behavior
 
-- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
-- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally. This observed behavior is the canonical contract.
+- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Copy/download failure:** Clipboard rejection is handled by the implemented feedback/fallback path.
+- **Safe fallback:** On a failed/guarded action, the implementation does not create a substitute successful result; retry uses the existing inputs and controls.
+- **Runtime evidence inspected:** `tools/message-generator/app.js`, `tools/message-generator/howto/en/index.html`, `tools/message-generator/howto/index.html`, `tools/message-generator/index.html`.
 
 ## 7. Privacy/data handling
 

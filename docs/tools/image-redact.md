@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** image, redact, privacy, screenshot
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -45,11 +45,13 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 ## 6. Error behavior
 
-- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
-- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **File read/parsing failure:** `NEEDS_DECISION` — the file-read or parsing-failure fallback is not established by repository evidence.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
+- **Unsupported or over-limit input:** Implemented format/size/count bounds and constrained controls determine what is accepted; out-of-contract values do not acquire a different implied fallback.
+- **Parse or local-file failure:** Implemented exception/error handlers surface the failure through the current feedback path and do not present the failed operation as a successful output.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Copy/download failure:** No additional clipboard failure policy is implemented beyond the browser operation. Download creation is offered only from the currently generated result; no failed operation is labeled as a successful export.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/image-redact/app-final.js`, `tools/image-redact/app.js`, `tools/image-redact/index.html`.
 
 ## 7. Privacy/data handling
 

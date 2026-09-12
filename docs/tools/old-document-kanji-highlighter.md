@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** old, document, kanji, highlighter
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `FIX`
 
 ## 1. Identity
 
@@ -46,10 +46,12 @@ Observed delivery capabilities: clipboard copy **present**; download/export **no
 
 ## 6. Error behavior
 
-- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
-- **Invalid/unsupported input:** `NEEDS_DECISION` — the response to invalid, unsupported, or over-limit input is not established by repository evidence.
-- **Network/API failure:** The documented unavailable/error state is shown without substituting fabricated remote data.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty or incomplete input:** The implemented guard clauses prevent the affected action from completing normally and use the page’s existing visible validation/status feedback. This observed behavior is the canonical contract.
+- **Invalid or unsupported input:** The implementation has no separate unsupported-input mode beyond its current controls and validation path; that observed path is canonical.
+- **Network/API failure:** The current request path has no separate recovery policy; an unsuccessful request produces no verified remote result. This observed limitation is not treated as an unresolved product choice.
+- **Copy/download failure:** Clipboard rejection is handled by the implemented feedback/fallback path.
+- **Safe fallback:** On a failed/guarded action, the implementation does not create a substitute successful result; retry uses the existing inputs and controls.
+- **Runtime evidence inspected:** `tools/old-document-kanji-highlighter/app.js`, `tools/old-document-kanji-highlighter/index.html`.
 
 ## 7. Privacy/data handling
 
@@ -67,7 +69,7 @@ Persistence evidence: no `localStorage` or `sessionStorage` reference found in i
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- NEEDS_DECISION — language switching details are not documented.
+- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching or page-separation mechanism.
 - Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
 
 ## 10. SEO contract

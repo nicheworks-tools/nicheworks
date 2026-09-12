@@ -7,7 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** json, mermaid, diagram, docs
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `NEEDS_DECISION`
+- **Audit state:** `PASS`
 
 ## 1. Identity
 
@@ -43,11 +43,13 @@ Observed delivery capabilities: clipboard copy **present**; download/export **pr
 
 ## 6. Error behavior
 
-- **Empty input:** `NEEDS_DECISION` — the expected user-visible response to empty input is not established by repository evidence.
-- **Invalid, unsupported, or over-limit input:** The documented validation, supported-format, and limit rules apply; rejected input must not be represented as a valid result.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **File read or parsing failure:** The implementation’s documented error path applies and no failed parse is represented as a valid output.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty input:** The converter throws `EMPTY_INPUT`. The UI catches it, clears the Mermaid output, hides statistics, and displays `JSONが入力されていません。` in Japanese or `No JSON provided.` in English.
+- **Invalid JSON / parse failure:** The converter reports its parse error through the localized UI error path; stale diagram code and statistics are not left visible as a successful result.
+- **Unsupported or over-limit input:** Converter size, nesting-depth, and array-item bounds are enforced before or during conversion; failures use the same non-success UI path.
+- **Copy/download failure:** Copy and export actions operate only on a generated result. Their implemented promise/renderer error paths report failure without replacing the current source JSON.
+- **External/network failure:** Core JSON conversion is local. Mermaid renderer loading/render failure is surfaced as an error rather than replaced by fabricated diagram output.
+- **Safe fallback/reset:** Error handling clears derived code/statistics while leaving source input available for correction; explicit clear resets the workspace.
+- **Runtime evidence inspected:** `tools/json2mermaid/app.js`, `tools/json2mermaid/howto/en/index.html`, `tools/json2mermaid/howto/index.html`, `tools/json2mermaid/index.html`.
 
 ## 7. Privacy/data handling
 

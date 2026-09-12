@@ -50,4 +50,6 @@ Each `test_evidence` item classifies an existing path as `behavior test`, `regre
 
 Final states use deterministic precedence: `BLOCKED` (implementation evidence unavailable), then `NEEDS_DECISION` (one or more unresolved product-contract decisions), then `FIX` (hard compliance gap), then `PASS`. Recommendation-only documentation/test gaps remain visible but do not independently produce `FIX`.
 
+Runtime HTML and JavaScript are valid specification evidence. An implemented guard, error message, failure path, or deliberate absence of a special recovery branch is documented as current behavior when it does not conflict with the common specification. Missing prose alone is never a decision gap; `NEEDS_DECISION` is reserved for cases where repository evidence leaves two or more plausible product contracts.
+
 Production fixes must happen in later scoped repair waves and should update a tool specification only when the intended contract itself changes.

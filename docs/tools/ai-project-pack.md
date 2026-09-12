@@ -38,9 +38,10 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 ## 6. Error behavior
 
-- **Empty/invalid input:** Not applicable because the current contract has no operational user input.
-- **External/network failure:** Not applicable to the core processing path identified by this audit; suite analytics and advertising are outside tool-result error handling.
-- **Safe fallback:** Existing user data must not be silently replaced by fabricated success data; where the exact recovery UI is not stated above, that UI remains outside this contract until evidence or a product decision exists.
+- **Empty, invalid, unsupported, or over-limit input:** Not applicable because the current implementation has no operational user-input workflow.
+- **External/network failure:** Not applicable to the core tool-processing path identified by this audit; suite analytics and advertising are not tool-result fallbacks.
+- **Safe fallback/reset:** The implemented clear/reset path removes current derived state or restores defaults so the user can retry without fabricated success data.
+- **Runtime evidence inspected:** `tools/ai-project-pack/index.html`, `tools/ai-project-pack/ja/index.html`.
 
 ## 7. Privacy/data handling
 

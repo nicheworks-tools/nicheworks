@@ -11,10 +11,10 @@
     "NEEDS_DECISION"
   ],
   "counts": {
-    "PASS": 15,
-    "FIX": 1,
+    "PASS": 79,
+    "FIX": 8,
     "BLOCKED": 0,
-    "NEEDS_DECISION": 71
+    "NEEDS_DECISION": 0
   },
   "records": [
     {
@@ -235,10 +235,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/analytics-privacy-kit/index.html",
         "tools/analytics-privacy-kit/app.js",
@@ -264,9 +263,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -322,11 +319,9 @@
         "tools/api-key-token-redactor/tests/generate_testdata.js"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/api-key-token-redactor/index.html",
         "tools/api-key-token-redactor/app.js",
@@ -360,10 +355,7 @@
           "classification": "generator"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -418,10 +410,9 @@
       ],
       "outstanding_issues": [
         "Mandatory common-spec donation/support block is missing.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "FIX",
       "evidence": [
         "tools/ats-paste-doctor/index.html",
         "tools/ats-paste-doctor/README.md",
@@ -455,9 +446,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [
         "Mandatory common-spec donation/support block is missing."
       ],
@@ -594,11 +583,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/codex-usage-forecaster/index.html",
         "tools/codex-usage-forecaster/app-fixed.js",
@@ -632,10 +619,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -770,10 +754,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/cold-email-requirement-checker/index.html",
         "tools/cold-email-requirement-checker/app.js",
@@ -804,9 +787,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -861,12 +842,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/color-replace/index.html",
         "tools/color-replace/app.js",
@@ -892,11 +870,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -951,10 +925,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/command-safety-checker/index.html",
         "tools/command-safety-checker/app-core.js",
@@ -984,9 +957,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -1046,12 +1017,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/construction-tools-atlas/index.html",
         "tools/construction-tools-atlas/app.js",
@@ -1086,11 +1054,7 @@
           "classification": "data validation"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -1146,11 +1110,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/contract-cleaner/index.html",
         "tools/contract-cleaner/app.js",
@@ -1176,10 +1138,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -1326,10 +1285,9 @@
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/cosmetic-ingredient-checker-lite/index.html",
         "tools/cosmetic-ingredient-checker-lite/app.js",
@@ -1355,9 +1313,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -1417,10 +1373,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/cover-letter-lite/index.html",
         "tools/cover-letter-lite/app.js",
@@ -1446,9 +1401,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -1503,10 +1456,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/csv-tidy/index.html",
         "tools/csv-tidy/app.js",
@@ -1535,9 +1487,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -1591,10 +1541,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/design-request-builder/index.html",
         "tools/design-request-builder/app.js",
@@ -1620,9 +1569,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -1681,12 +1628,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/dry-meter/index.html",
         "tools/dry-meter/app.js",
@@ -1712,11 +1656,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -1857,10 +1797,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/earth-map-suite/index.html",
         "tools/earth-map-suite/README.md",
@@ -1892,9 +1831,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -2026,11 +1963,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/exif-cleaner-mini/index.html",
         "tools/exif-cleaner-mini/app.js",
@@ -2059,10 +1994,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -2116,11 +2048,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/filetype-sniffer/index.html",
         "tools/filetype-sniffer/app.js",
@@ -2151,10 +2081,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -2208,10 +2135,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/form-tool-selector/index.html",
         "tools/form-tool-selector/app.js",
@@ -2237,9 +2163,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -2293,11 +2217,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/growth-log-template-generator/index.html",
         "tools/growth-log-template-generator/app.js",
@@ -2323,10 +2245,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -2380,11 +2299,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/habit-plan-generator/index.html",
         "tools/habit-plan-generator/app.js",
@@ -2410,10 +2327,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -2468,11 +2382,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/image-compression-inspector/index.html",
         "tools/image-compression-inspector/app.js",
@@ -2498,10 +2410,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -2557,12 +2466,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/image-redact/index.html",
         "tools/image-redact/app-final.js",
@@ -2589,11 +2495,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -2655,10 +2557,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/inci-fastscan/index.html",
         "tools/inci-fastscan/js/app.js",
@@ -2692,9 +2593,7 @@
           "classification": "data validation"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -2749,10 +2648,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/incident-update-generator/index.html",
         "tools/incident-update-generator/app.js",
@@ -2778,9 +2676,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -2840,10 +2736,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/jp-postal-lite/index.html",
         "tools/jp-postal-lite/app.js",
@@ -2873,9 +2768,7 @@
           "classification": "build script"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -2930,10 +2823,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/json-repair/index.html",
         "tools/json-repair/app.js",
@@ -2959,9 +2851,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3017,10 +2907,8 @@
         "scripts/check-json2mermaid-pro-workspace.mjs",
         "scripts/check-json2mermaid-shared-converter.mjs"
       ],
-      "outstanding_issues": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
-      "final_state": "NEEDS_DECISION",
+      "outstanding_issues": [],
+      "final_state": "PASS",
       "evidence": [
         "tools/json2mermaid/index.html",
         "tools/json2mermaid/app.js",
@@ -3063,9 +2951,7 @@
           "classification": "behavior test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": []
     },
@@ -3120,11 +3006,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/kanji-modernizer/index.html",
         "tools/kanji-modernizer/app.js",
@@ -3155,10 +3039,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3212,11 +3093,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/laundry-code-decode/index.html",
         "tools/laundry-code-decode/app.js",
@@ -3242,10 +3121,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3299,11 +3175,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/light-check/index.html",
         "tools/light-check/README.md",
@@ -3333,10 +3207,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3472,10 +3343,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/log-formatter/index.html",
         "tools/log-formatter/README.md",
@@ -3502,9 +3372,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3562,11 +3430,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/logistics-compliance-kit-jp/index.html",
         "tools/logistics-compliance-kit-jp/app.js",
@@ -3596,10 +3462,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3653,10 +3516,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/lp-skeleton-generator/index.html",
         "tools/lp-skeleton-generator/app.js",
@@ -3682,9 +3544,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3748,11 +3608,9 @@
       ],
       "outstanding_issues": [
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/manual-finder/index.html",
         "tools/manual-finder/app.curated.js",
@@ -3785,10 +3643,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "FAQ is recommended but absent.",
@@ -3843,10 +3698,9 @@
         "scripts/check-tool-runtime-contracts.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/membership-offer-builder/index.html",
         "tools/membership-offer-builder/app.js",
@@ -3872,9 +3726,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -3929,11 +3781,9 @@
       ],
       "outstanding_issues": [
         "Mandatory common-spec donation/support block is missing.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "FIX",
       "evidence": [
         "tools/message-generator/index.html",
         "tools/message-generator/app.js",
@@ -3961,10 +3811,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [
         "Mandatory common-spec donation/support block is missing."
       ],
@@ -4108,11 +3955,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/microtool-launch-checklist/index.html",
         "tools/microtool-launch-checklist/app.js",
@@ -4138,10 +3983,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4195,10 +4037,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/mini-game-utility/index.html",
         "tools/mini-game-utility/app.js",
@@ -4224,9 +4065,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4280,10 +4119,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/minutes-to-ops/index.html",
         "tools/minutes-to-ops/app.js",
@@ -4316,9 +4154,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4372,10 +4208,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/money-template-checker/index.html",
         "tools/money-template-checker/app.js",
@@ -4401,9 +4236,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4462,11 +4295,9 @@
       ],
       "outstanding_issues": [
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/motion-atlas/index.html",
         "tools/motion-atlas/README.md",
@@ -4496,10 +4327,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "FAQ is recommended but absent.",
@@ -4554,11 +4382,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/moving-checklist-generator/index.html",
         "tools/moving-checklist-generator/app.js",
@@ -4589,10 +4415,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4646,10 +4469,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/moving-lease-final-check/index.html",
         "tools/moving-lease-final-check/app.js",
@@ -4675,9 +4497,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4820,10 +4640,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/newsletter-kit-generator/index.html",
         "tools/newsletter-kit-generator/app.js",
@@ -4849,9 +4668,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4905,10 +4722,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/niche-job-starter-kit/index.html",
         "tools/niche-job-starter-kit/app.js",
@@ -4934,9 +4750,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -4990,11 +4804,9 @@
         "scripts/check-tool-runtime-contracts-wave4.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/notion-form-design-kit/index.html",
         "tools/notion-form-design-kit/app.js",
@@ -5020,10 +4832,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -5079,11 +4888,9 @@
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/og-image-maker/index.html",
         "tools/og-image-maker/app.js",
@@ -5109,10 +4916,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the file-read or parsing-failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -5171,11 +4975,9 @@
         "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "FIX",
       "evidence": [
         "tools/old-document-kanji-highlighter/index.html",
         "tools/old-document-kanji-highlighter/app.js",
@@ -5203,10 +5005,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [
         "Mandatory common-spec donation/support block is missing."
       ],
@@ -5269,10 +5068,9 @@
         "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "FIX",
       "evidence": [
         "tools/old-kanji-ocr-scanner/index.html",
         "tools/old-kanji-ocr-scanner/app.js",
@@ -5300,9 +5098,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [
         "Mandatory common-spec donation/support block is missing."
       ],
@@ -5470,10 +5266,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/ops-weekly-report-generator/index.html",
         "tools/ops-weekly-report-generator/app.js",
@@ -5499,9 +5294,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -5637,11 +5430,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/pages-deploy-guide/index.html",
         "tools/pages-deploy-guide/app.js",
@@ -5667,10 +5458,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -5723,11 +5511,9 @@
         "tools/pattern-atlas/checks/check-pattern-atlas-data.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/pattern-atlas/index.html",
         "tools/pattern-atlas/README.md",
@@ -5762,10 +5548,7 @@
           "classification": "data validation"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -5828,10 +5611,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/pdf-page-tools-mini/index.html",
         "tools/pdf-page-tools-mini/app.js",
@@ -5860,9 +5642,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -6005,11 +5785,9 @@
         "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "FIX",
       "evidence": [
         "tools/place-old-kanji-checker/index.html",
         "tools/place-old-kanji-checker/app.js",
@@ -6037,10 +5815,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [
         "Mandatory common-spec donation/support block is missing."
       ],
@@ -6098,11 +5873,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/product-founder-os/index.html",
         "tools/product-founder-os/style.css"
@@ -6127,10 +5900,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -6184,10 +5954,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/redirect-unwrapper/index.html",
         "tools/redirect-unwrapper/app.js",
@@ -6218,9 +5987,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -6274,10 +6041,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/release-guardian/index.html",
         "tools/release-guardian/style.css"
@@ -6302,9 +6068,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -6359,11 +6123,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/rename-wizard/index.html",
         "tools/rename-wizard/app.js",
@@ -6389,10 +6151,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -6447,10 +6206,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/screenshot-stitcher/index.html",
         "tools/screenshot-stitcher/README.md",
@@ -6482,9 +6240,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -6626,10 +6382,9 @@
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/sponsor-page-builder/index.html",
         "tools/sponsor-page-builder/app.js",
@@ -6655,9 +6410,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -6710,10 +6463,8 @@
       "automated_tests": [
         "scripts/check-tool-runtime-contracts-wave5.mjs"
       ],
-      "outstanding_issues": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
-      "final_state": "NEEDS_DECISION",
+      "outstanding_issues": [],
+      "final_state": "PASS",
       "evidence": [
         "tools/sql-db-risk-checker/index.html",
         "tools/sql-db-risk-checker/app-sdrc.js",
@@ -6743,9 +6494,7 @@
           "classification": "behavior test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": []
     },
@@ -6795,10 +6544,9 @@
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/sukima-baito-income/index.html",
         "tools/sukima-baito-income/app.js",
@@ -6819,9 +6567,7 @@
         }
       },
       "test_evidence": [],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -6874,10 +6620,9 @@
       "automated_tests": [],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/tiny-audio-meter/index.html",
         "tools/tiny-audio-meter/app.js",
@@ -6898,9 +6643,7 @@
         }
       },
       "test_evidence": [],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -6968,10 +6711,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/trashnavi/index.html",
         "tools/trashnavi/app.js",
@@ -7009,9 +6751,7 @@
           "classification": "data validation"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -7070,10 +6810,9 @@
         "scripts/check-ui-atlas-product-scoped-staging.mjs"
       ],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/ui-atlas/index.html",
         "tools/ui-atlas/README.md",
@@ -7103,9 +6842,7 @@
           "classification": "regression/contract test"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -7159,10 +6896,9 @@
         "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "FIX",
       "evidence": [
         "tools/unicode-kanji-checker/index.html",
         "tools/unicode-kanji-checker/app.js",
@@ -7185,9 +6921,7 @@
         }
       },
       "test_evidence": [],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [
         "Mandatory common-spec donation/support block is missing."
       ],
@@ -7252,11 +6986,9 @@
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/unitmaster/index.html",
         "tools/unitmaster/app-json-runtime.js",
@@ -7295,10 +7027,7 @@
           "classification": "data validation"
         }
       ],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
@@ -7440,11 +7169,9 @@
         "Mandatory common-spec donation/support block is missing.",
         "Usage documentation is recommended but absent.",
         "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "FIX",
       "evidence": [
         "tools/variant-kanji-compare/index.html",
         "tools/variant-kanji-compare/app.js",
@@ -7467,10 +7194,7 @@
         }
       },
       "test_evidence": [],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [
         "Mandatory common-spec donation/support block is missing."
       ],
@@ -7526,10 +7250,9 @@
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/vibe-lexicon/index.html",
         "tools/vibe-lexicon/README.md",
@@ -7554,9 +7277,7 @@
         }
       },
       "test_evidence": [],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -7617,12 +7338,9 @@
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/weatherdiff/index.html",
         "tools/weatherdiff/app-final.js",
@@ -7649,11 +7367,7 @@
         }
       },
       "test_evidence": [],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence.",
-        "Error behavior: the response to invalid, unsupported, or over-limit input is not established by repository evidence.",
-        "Error behavior: the network/API failure fallback is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -7705,10 +7419,9 @@
       "functional_test_status": "behavior-test-missing",
       "automated_tests": [],
       "outstanding_issues": [
-        "Behavior-level automated tests are absent.",
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
+        "Behavior-level automated tests are absent."
       ],
-      "final_state": "NEEDS_DECISION",
+      "final_state": "PASS",
       "evidence": [
         "tools/webp-avif-converter/index.html",
         "tools/webp-avif-converter/app.js",
@@ -7732,9 +7445,7 @@
         }
       },
       "test_evidence": [],
-      "decision_gaps": [
-        "Error behavior: the expected user-visible response to empty input is not established by repository evidence."
-      ],
+      "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
@@ -7840,5 +7551,7 @@
     "PASS"
   ],
   "previous_audit_fix_count": 84,
-  "false_fix_findings_removed": 76
+  "false_fix_findings_removed": 76,
+  "previous_decision_gap_count": 108,
+  "decision_gaps_removed_as_implementation_evidenced_false_positives": 108
 }
