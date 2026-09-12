@@ -91,6 +91,7 @@ Publication and billing integration will be separate later PRs after rebasing on
 ### Wave E — publication integration (separate PR)
 
 After rebasing on current main:
+- promote the isolated `tools/reconcile/development.html` UI shell to the public `tools/reconcile/index.html` landing;
 - add Reconcile to `tools/tools-index.json`;
 - add/update tool spec manifest according to the merged specification contract;
 - add sitemap/public URL identity;
@@ -147,6 +148,7 @@ After rebasing on current main:
 - The profile store uses schema version 1, stores at most 20 profiles, and persists configuration only under `nw_reconcile_profiles_v1`.
 - Profile-store unit tests cover normalization, update-without-duplication, versioned export/import, invalid-schema rejection, bounds clamping, removal, and clearing.
 - XLSX adapter tests cover the API contract, and `xlsx-real-vendor.test.mjs` validates the committed real vendor with XLSX write/read, worksheet selection, seven-sheet report generation, and workbook re-read. Final browser UI smoke validation remains separate publication-readiness work.
+- The isolated Core PR intentionally has no `tools/reconcile/index.html`: the complete noindex development UI is retained as `tools/reconcile/development.html` so repository public-URL contracts remain valid until the publication PR adds the registry, sitemap, canonical metadata, and public landing together.
 
 ## Validation
 
@@ -181,9 +183,10 @@ Wave C acceptance before it can be marked complete:
 - multi-sheet selection rebuilds the selected side deterministically;
 - Pro XLSX report exports the seven defined sheets and Summary includes source/mapping/rule context;
 - profile save/load/import/export never stores transaction rows;
-- browser validation passes with the real vendor build;
-- all Node fixtures pass.
+- committed real-vendor XLSX write/read and report re-read validation passes in Node;
+- all Node fixtures pass;
+- final interactive browser UI smoke validation is a publication-readiness gate, not an isolated Core merge gate.
 
 ## Recovery and merge discipline
 
-Do not merge the isolated branch while its public landing is intentionally absent from registry/sitemap. Before any PR targeting main, rebase/merge current main into the branch or split publication changes into a current-main integration branch, then satisfy all current repository contracts.
+The isolated Core PR may merge with its UI retained as `tools/reconcile/development.html`; it must not introduce a public `tools/reconcile/index.html` until registry/sitemap/public SEO identity are added in the publication PR. Before merging the Core PR, merge current main into the feature branch, run all Reconcile fixtures, verify the pinned vendor, and confirm the final diff remains limited to this ExecPlan plus `tools/reconcile/**`. Billing and publication remain separate follow-up PRs.
