@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
-import { isXlsxAvailable, readXlsxFile, tableFromXlsx, createResultsWorkbook, resultsWorkbookBytes } from '../xlsx-adapter.mjs';
+import { EXPECTED_XLSX_VERSION, isXlsxAvailable, isExpectedXlsxVersion, readXlsxFile, tableFromXlsx, createResultsWorkbook, resultsWorkbookBytes } from '../xlsx-adapter.mjs';
 
 const calls = [];
 const fake = {
+  version: EXPECTED_XLSX_VERSION,
   read(buffer, options) {
     calls.push(['read', buffer.byteLength, options.type, options.cellDates]);
     return { SheetNames: ['Sheet1', 'Other'], Sheets: { Sheet1: { fake: true }, Other: { fake: true } } };
@@ -23,7 +24,10 @@ const fake = {
   }
 };
 
+assert.equal(EXPECTED_XLSX_VERSION, '0.20.3');
 assert.equal(isXlsxAvailable(fake), true);
+assert.equal(isExpectedXlsxVersion(fake), true);
+assert.equal(isExpectedXlsxVersion({ ...fake, version: '0.20.2' }), false);
 assert.equal(isXlsxAvailable(null), false);
 
 const file = { name: 'sample.xlsx', size: 100, async arrayBuffer() { return new Uint8Array([1, 2]).buffer; } };
