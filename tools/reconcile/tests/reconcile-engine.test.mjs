@@ -25,11 +25,19 @@ assert.equal(summary.tolerant_match, 1);
 assert.equal(summary.conflict, 1);
 
 const candidateA = table('Date,Amount\n2026-09-01,100\n');
-const candidateB = table('Date,Amount\n2026-09-01,100\n2026-09-01,100\n');
-const candidates = reconcile({ rowsA:candidateA.rows, rowsB:candidateB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'}, options:{dateToleranceDays:0} });
+const candidateB = table('Date,Amount\n2026-09-01,100\n2026-09-02,100\n');
+const candidates = reconcile({ rowsA:candidateA.rows, rowsB:candidateB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'}, options:{dateToleranceDays:1} });
 assert.equal(candidates.filter((x)=>x.status==='candidate').length, 1);
 assert.equal(candidates.find((x)=>x.status==='candidate').bRows.length, 2);
 assert.equal(candidates.filter((x)=>x.status==='exact_match').length, 0);
+
+const duplicateA = table('Date,Reference,Amount\n2026-09-01,DUP,100\n2026-09-01,DUP,100\n');
+const duplicateB = table('Date,Reference,Amount\n');
+const duplicateResults = reconcile({ rowsA:duplicateA.rows, rowsB:duplicateB.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'} });
+const duplicateOnly = duplicateResults.filter((x)=>x.status==='duplicate');
+assert.equal(duplicateOnly.length, 1);
+assert.deepEqual(duplicateOnly[0].aRows, [2,3]);
+assert.equal(duplicateResults.some((x)=>x.status==='candidate' || x.status==='a_only'), false);
 
 const toleranceA = table('Date,Amount\n2026-09-01,100.00\n');
 const toleranceB = table('Date,Amount\n2026-09-01,100.05\n');
@@ -78,9 +86,9 @@ assert.equal(guardedResults.some((x)=>x.status==='tolerant_match'), false);
 const repeated = reconcile({ rowsA:a.rows, rowsB:b.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'}, options:{dateToleranceDays:1} });
 assert.deepEqual(repeated, results);
 
-const contestedA = table('Date,Amount\n2026-09-01,100\n2026-09-01,100\n');
+const contestedA = table('Date,Amount\n2026-09-01,100\n2026-09-02,100\n');
 const contestedB = table('Date,Amount\n2026-09-01,100\n');
-const contested = reconcile({ rowsA:contestedA.rows, rowsB:contestedB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'} });
+const contested = reconcile({ rowsA:contestedA.rows, rowsB:contestedB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'}, options:{dateToleranceDays:1} });
 assert.equal(contested.filter((x)=>x.status==='exact_match').length, 0);
 assert.equal(contested.filter((x)=>x.status==='candidate').length, 2);
 assert.ok(contested.filter((x)=>x.status==='candidate').every((x)=>x.bRows.length===1 && x.bRows[0]===2));
@@ -97,16 +105,17 @@ for (const sourceA of [priorityA, priorityAReversed]) {
   assert.equal(resolvedSummary.b_only, 0);
 }
 
-const denseRows = Array.from({length: 20}, () => '2026-09-01,100').join('\n');
-const denseA = table(`Date,Amount\n${denseRows}\n`);
-const denseB = table(`Date,Amount\n${denseRows}\n`);
+const denseRowsA = Array.from({length: 20}, (_, i) => `2026-09-01,${100 + i}`).join('\n');
+const denseRowsB = Array.from({length: 20}, (_, i) => `2026-09-01,${100 + i}`).join('\n');
+const denseA = table(`Date,Amount\n${denseRowsA}\n`);
+const denseB = table(`Date,Amount\n${denseRowsB}\n`);
 assert.throws(() => reconcile({
   rowsA:denseA.rows,
   rowsB:denseB.rows,
   mappingA:{amount:'Amount',date:'Date'},
   mappingB:{amount:'Amount',date:'Date'},
-  options:{candidateGraphEdgeLimit:100}
-}), /candidate_graph_too_large/);
+  options:{amountTolerance:20,candidateGraphEdgeLimit:100}
+}), (error) => error?.code === 'candidate_graph_too_large');
 
 const refRowsA = Array.from({length: 20}, (_, i) => `2026-09-01,R${i},100`).join('\n');
 const refRowsB = Array.from({length: 20}, (_, i) => `2026-09-01,R${i},100`).join('\n');
@@ -120,5 +129,8 @@ const refDenseResults = reconcile({
   options:{candidateGraphEdgeLimit:100}
 });
 assert.equal(summarize(refDenseResults).exact_match, 20);
+
+const invalidSafetyOptions = reconcile({ rowsA:a.rows, rowsB:b.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'}, options:{candidateGraphEdgeLimit:'bad',groupSearchNodeLimit:'bad',maxGroupSize:'bad',dateToleranceDays:1} });
+assert.deepEqual(invalidSafetyOptions, results);
 
 console.log('reconcile-engine tests: OK');
