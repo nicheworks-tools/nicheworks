@@ -36,6 +36,7 @@ Shared cosmetics-only support may live under `tools/_shared/`.
 - Exercise the shared parser and the same dictionary data used by both tools.
 - Record baseline match / unknown / parser expectations without inventing safety conclusions.
 - Add a repeatable Node check suitable for CI/manual regression use.
+- Add a path-scoped GitHub Actions workflow that runs only when the two cosmetics tools, shared cosmetics runtime/benchmark files, their dictionary data, or the workflow itself changes.
 
 ## PR6 — dictionary and alias quality
 
@@ -44,6 +45,7 @@ Shared cosmetics-only support may live under `tools/_shared/`.
 - Add collision/duplicate checks for canonical names and aliases.
 - Add regression fixtures for every corrected or newly added high-frequency alias.
 - Do not attempt exhaustive global INCI coverage.
+- Extend the PR5 path-scoped benchmark/check workflow rather than creating an unrelated global CI requirement.
 
 ## Amazon activation invariant
 
