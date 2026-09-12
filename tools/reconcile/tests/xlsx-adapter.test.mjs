@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { EXPECTED_XLSX_VERSION, isXlsxAvailable, isExpectedXlsxVersion, readXlsxFile, tableFromXlsx, createResultsWorkbook, resultsWorkbookBytes } from '../xlsx-adapter.mjs';
+import { DEFAULT_XLSX_VENDOR_URL, EXPECTED_XLSX_VERSION, isXlsxAvailable, isExpectedXlsxVersion, readXlsxFile, tableFromXlsx, createResultsWorkbook, resultsWorkbookBytes } from '../xlsx-adapter.mjs';
 
 const calls = [];
 const fake = {
@@ -25,6 +25,7 @@ const fake = {
 };
 
 assert.equal(EXPECTED_XLSX_VERSION, '0.20.3');
+assert.equal(DEFAULT_XLSX_VENDOR_URL, './vendor/xlsx.mini.min.js');
 assert.equal(isXlsxAvailable(fake), true);
 assert.equal(isExpectedXlsxVersion(fake), true);
 assert.equal(isExpectedXlsxVersion({ ...fake, version: '0.20.2' }), false);
