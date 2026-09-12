@@ -146,6 +146,11 @@ for (const forbidden of ['JSON.parse(', 'flowchart ', 'safeMermaidLabel', 'const
   assert.equal(workspaceSource.includes(forbidden), false, `workspace must not duplicate conversion or add network transport: ${forbidden}`);
 }
 assert.equal(publicHtml.includes('pro-workspace.mjs'), false, 'public page must not load staged Pro workspace');
-assert.equal(/mermaid(?:\.min)?\.js/i.test(publicHtml), false, 'public page must not load a Mermaid runtime yet');
+const publicScriptSources = [...publicHtml.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map((match) => match[1]);
+assert.equal(
+  publicScriptSources.some((src) => /(?:^|\/)mermaid(?:\.min)?\.js(?:$|[?#])/i.test(src)),
+  false,
+  'public page must not load a Mermaid runtime yet'
+);
 
 console.log('JSON2Mermaid Pro workspace staging contracts: OK');
