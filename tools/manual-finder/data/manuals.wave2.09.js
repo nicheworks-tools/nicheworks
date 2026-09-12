@@ -93,3 +93,11 @@ A861|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/
 A862|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/A862/A862.pdf
 AS01|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/AS01/AS01.pdf
 AS32|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/A/AS32/AS32.pdf`);
+
+// Wave 2AB: direct Seiko D/G/L/M manuals with one primary official target per caliber.
+window.MANUALFINDER_WAVE2_SEIKO.push(`DH33|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/D/DH33/DH33.pdf
+G300|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/G/G300/G300.pdf
+G510|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/G/G510/G510.pdf
+L250|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/L/L250/L250.pdf
+L251|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/L/L251/L251.pdf
+M796|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/M/M796/M796.pdf`);
